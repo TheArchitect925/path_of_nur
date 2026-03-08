@@ -10,12 +10,12 @@ import '../../../app/app_router.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../features/worship/domain/fasting_status.dart';
 import '../../../l10n/app_localizations.dart';
+import '../../../shared/application/app_summary_providers.dart';
 import '../../../shared/state/shell_state.dart';
 import '../../../shared/state/location_permission_state.dart';
 import '../../../shared/state/user_profile_state.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/section_title.dart';
-import '../application/home_dashboard_provider.dart';
 import '../data/home_verses.dart';
 
 class HomePage extends ConsumerWidget {
@@ -816,10 +816,11 @@ class _HomeDashboardSections extends StatelessWidget {
     return Consumer(
       builder: (context, ref, _) {
         final summary = ref.watch(homeDashboardSummaryProvider);
-        final prayerProgressText =
-            '${summary.prayerCompleted} / ${summary.prayerTotal}';
-        final dhikrProgressText = '${summary.dhikrCount} / ${summary.dhikrTarget}';
-        final xpProgress = summary.xp / (summary.xp + summary.nextLevelXpRemaining);
+        final worship = summary.worship;
+        final learn = summary.learn;
+        final journey = summary.journey;
+        final prayerProgressText = '${worship.prayerCompleted} / ${worship.prayerTotal}';
+        final dhikrProgressText = '${worship.dhikrCount} / ${worship.dhikrTarget}';
 
         return Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -855,14 +856,14 @@ class _HomeDashboardSections extends StatelessWidget {
                       Expanded(
                         child: _ValueTile(
                           title: l10n.homeCurrentStreakTitle,
-                          value: '${summary.currentStreakDays} ${l10n.homeDaysLabel}',
+                          value: '${journey.currentStreakDays} ${l10n.homeDaysLabel}',
                         ),
                       ),
                       const SizedBox(width: 12),
                       Expanded(
                         child: _ValueTile(
                           title: l10n.homeXpLevelTitle,
-                          value: '${l10n.levelLabel} ${summary.level}',
+                          value: '${l10n.levelLabel} ${journey.level}',
                         ),
                       ),
                     ],
@@ -871,7 +872,7 @@ class _HomeDashboardSections extends StatelessWidget {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(999),
                     child: LinearProgressIndicator(
-                      value: xpProgress.clamp(0, 1),
+                      value: journey.xpProgress,
                       minHeight: 8,
                       backgroundColor: AppColors.surfaceSoft.withValues(alpha: 0.6),
                       valueColor:
@@ -880,7 +881,7 @@ class _HomeDashboardSections extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    '${summary.nextLevelXpRemaining} ${l10n.homeXpToNextLevel}',
+                    '${journey.nextLevelXpRemaining} ${l10n.homeXpToNextLevel}',
                     style: Theme.of(context).textTheme.bodySmall,
                   ),
                 ],
@@ -908,7 +909,7 @@ class _HomeDashboardSections extends StatelessWidget {
                   const Divider(height: 12, color: Color(0x28BFAE98)),
                   _SummaryRow(
                     label: l10n.homeFastingStatusTitle,
-                    value: _fastingLabel(l10n, summary.fastingStatus),
+                    value: _fastingLabel(l10n, worship.fastingStatus),
                     onTap: () => goToTab(context, NavTab.worship),
                   ),
                   const Divider(height: 12, color: Color(0x28BFAE98)),
@@ -930,31 +931,31 @@ class _HomeDashboardSections extends StatelessWidget {
                 children: [
                   _SummaryRow(
                     label: l10n.homeLearnContinueQuran,
-                    value: l10n.homeLearnContinueQuranValue,
+                    value: '${learn.continueSurahName} ${learn.continueAyah}',
                     onTap: () => goToTab(context, NavTab.learn),
                   ),
                   const Divider(height: 12, color: Color(0x28BFAE98)),
                   _SummaryRow(
                     label: l10n.homeLearnFeaturedLife,
-                    value: l10n.homeLearnFeaturedLifeValue,
+                    value: _lifeTopicLabel(l10n, learn.featuredLifeTopic),
                     onTap: () => goToTab(context, NavTab.learn),
                   ),
                   const Divider(height: 12, color: Color(0x28BFAE98)),
                   _SummaryRow(
                     label: l10n.homeLearnFeaturedWorld,
-                    value: l10n.homeLearnFeaturedWorldValue,
+                    value: _worldTopicLabel(l10n, learn.featuredWorldTopic),
                     onTap: () => goToTab(context, NavTab.learn),
                   ),
                   const Divider(height: 12, color: Color(0x28BFAE98)),
                   _SummaryRow(
                     label: l10n.homeLearnFeaturedHadith,
-                    value: l10n.homeLearnFeaturedHadithValue,
+                    value: _hadithTopicLabel(l10n, learn.featuredHadithTopic),
                     onTap: () => goToTab(context, NavTab.learn),
                   ),
                   const Divider(height: 12, color: Color(0x28BFAE98)),
                   _SummaryRow(
                     label: l10n.homeLearnResumeNotes,
-                    value: l10n.homeLearnResumeNotesValue,
+                    value: learn.resumeNoteTitle,
                     onTap: () => goToTab(context, NavTab.learn),
                   ),
                 ],
@@ -970,32 +971,32 @@ class _HomeDashboardSections extends StatelessWidget {
                 children: [
                   _SummaryRow(
                     label: l10n.homeXpLevelTitle,
-                    value: '${l10n.levelLabel} ${summary.level}',
+                    value: '${l10n.levelLabel} ${journey.level}',
                     onTap: () => goToTab(context, NavTab.journey),
                   ),
                   const Divider(height: 12, color: Color(0x28BFAE98)),
                   _SummaryRow(
                     label: l10n.homeJourneyXpProgressTitle,
-                    value: '${summary.xp} XP',
+                    value: '${journey.xp} XP',
                     onTap: () => goToTab(context, NavTab.journey),
                   ),
                   const Divider(height: 12, color: Color(0x28BFAE98)),
                   _SummaryRow(
                     label: l10n.homeCurrentStreakTitle,
-                    value: '${summary.currentStreakDays} ${l10n.homeDaysLabel}',
+                    value: '${journey.currentStreakDays} ${l10n.homeDaysLabel}',
                     onTap: () => goToTab(context, NavTab.journey),
                   ),
                   const Divider(height: 12, color: Color(0x28BFAE98)),
                   _SummaryRow(
                     label: l10n.homeJourneyDailyRingsTitle,
                     value:
-                        'P ${_pct(summary.ringPrayer)} · D ${_pct(summary.ringDhikr)} · Q ${_pct(summary.ringQuran)}',
+                        'P ${_pct(journey.ringPrayer)} · D ${_pct(journey.ringDhikr)} · Q ${_pct(journey.ringQuran)}',
                     onTap: () => goToTab(context, NavTab.journey),
                   ),
                   const Divider(height: 12, color: Color(0x28BFAE98)),
                   _SummaryRow(
                     label: l10n.homeJourneyNextUnlockTitle,
-                    value: l10n.homeJourneyNextUnlockValue,
+                    value: _nextUnlockLabel(l10n, journey.nextUnlockPreviewKey),
                     onTap: () => goToTab(context, NavTab.journey),
                   ),
                 ],
@@ -1078,6 +1079,76 @@ class _HomeDashboardSections extends StatelessWidget {
   }
 
   String _pct(double value) => '${(value.clamp(0, 1) * 100).round()}%';
+
+  String _lifeTopicLabel(AppLocalizations l10n, LearnLifeTopic topic) {
+    switch (topic) {
+      case LearnLifeTopic.marriage:
+        return l10n.learnLifeMarriage;
+      case LearnLifeTopic.parents:
+        return l10n.learnLifeParents;
+      case LearnLifeTopic.children:
+        return l10n.learnLifeChildren;
+      case LearnLifeTopic.wealth:
+        return l10n.learnLifeWealth;
+      case LearnLifeTopic.patience:
+        return l10n.learnLifePatience;
+      case LearnLifeTopic.justice:
+        return l10n.learnLifeJustice;
+      case LearnLifeTopic.character:
+        return l10n.learnLifeCharacter;
+      case LearnLifeTopic.gratitude:
+        return l10n.learnLifeGratitude;
+    }
+  }
+
+  String _worldTopicLabel(AppLocalizations l10n, LearnWorldTopic topic) {
+    switch (topic) {
+      case LearnWorldTopic.moon:
+        return l10n.learnWorldMoon;
+      case LearnWorldTopic.bees:
+        return l10n.learnWorldBees;
+      case LearnWorldTopic.mountains:
+        return l10n.learnWorldMountains;
+      case LearnWorldTopic.rain:
+        return l10n.learnWorldRain;
+      case LearnWorldTopic.oceans:
+        return l10n.learnWorldOceans;
+      case LearnWorldTopic.animals:
+        return l10n.learnWorldAnimals;
+      case LearnWorldTopic.plants:
+        return l10n.learnWorldPlants;
+      case LearnWorldTopic.nightAndDay:
+        return l10n.learnWorldNightDay;
+    }
+  }
+
+  String _hadithTopicLabel(AppLocalizations l10n, LearnHadithTopic topic) {
+    switch (topic) {
+      case LearnHadithTopic.lifeLessons:
+        return l10n.learnHadithLifeLessonsTitle;
+      case LearnHadithTopic.worldLessons:
+        return l10n.learnHadithWorldLessonsTitle;
+      case LearnHadithTopic.characterAndManners:
+        return l10n.learnHadithCharacterTitle;
+      case LearnHadithTopic.worshipAndIntention:
+        return l10n.learnHadithWorshipTitle;
+      case LearnHadithTopic.familyAndSociety:
+        return l10n.learnHadithFamilyTitle;
+    }
+  }
+
+  String _nextUnlockLabel(AppLocalizations l10n, String unlockKey) {
+    switch (unlockKey) {
+      case 'wallpaper':
+        return l10n.journeyUnlockWallpaper;
+      case 'reflection':
+        return l10n.journeyUnlockReflection;
+      case 'theme':
+        return l10n.journeyUnlockTheme;
+      default:
+        return l10n.journeyUnlockFuture;
+    }
+  }
 
   String _fastingLabel(AppLocalizations l10n, FastingStatus status) {
     switch (status) {

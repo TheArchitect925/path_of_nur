@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../l10n/app_localizations.dart';
+import '../../../shared/application/app_summary_providers.dart';
 import '../../../shared/widgets/app_page_scaffold.dart';
 import '../../../shared/widgets/quran_quote_block.dart';
 import '../../../shared/widgets/quran_navigation.dart';
 import '../../../shared/widgets/section_title.dart';
 import 'widgets/journey_widgets.dart';
 
-class JourneyPage extends StatelessWidget {
+class JourneyPage extends ConsumerWidget {
   const JourneyPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
+    final summary = ref.watch(journeySummaryProvider);
     return AppPageScaffold(
       headerIcon: Icons.route_outlined,
       title: l10n.journeyTitle,
@@ -32,11 +35,11 @@ class JourneyPage extends StatelessWidget {
           subtitle: l10n.journeyLevelSectionSubtitle,
         ),
         JourneyHeroCard(
-          levelText: l10n.journeyLevelValue,
-          xpText: l10n.journeyXpValue,
-          nextLevelText: l10n.journeyNextLevelText,
+          levelText: '${l10n.levelLabel} ${summary.level}',
+          xpText: '${summary.xp} XP',
+          nextLevelText: '${summary.nextLevelXpRemaining} ${l10n.homeXpToNextLevel}',
           motivationText: l10n.journeyLevelMotivation,
-          progress: 0.81,
+          progress: summary.xpProgress,
         ),
         const SizedBox(height: 18),
         SectionTitle(
@@ -46,7 +49,8 @@ class JourneyPage extends StatelessWidget {
         JourneyLightProgressCard(
           title: l10n.journeyLightCardTitle,
           subtitle: l10n.journeyLightCardSubtitle,
-          progress: 0.68,
+          progress: ((summary.ringPrayer + summary.ringDhikr + summary.ringQuran) / 3)
+              .clamp(0, 1),
           sectionId: 'journey-home',
         ),
         const SizedBox(height: 18),
@@ -57,11 +61,14 @@ class JourneyPage extends StatelessWidget {
         JourneyDailyRingsCard(
           sectionId: 'journey-rings',
           items: [
-            JourneyRingItem(label: l10n.journeyRingPrayer, progress: 0.64),
-            JourneyRingItem(label: l10n.journeyRingDhikr, progress: 0.47),
-            JourneyRingItem(label: l10n.journeyRingQuran, progress: 0.35),
-            JourneyRingItem(label: l10n.journeyRingReflection, progress: 0.29),
-            JourneyRingItem(label: l10n.journeyRingFasting, progress: 0.16),
+            JourneyRingItem(label: l10n.journeyRingPrayer, progress: summary.ringPrayer),
+            JourneyRingItem(label: l10n.journeyRingDhikr, progress: summary.ringDhikr),
+            JourneyRingItem(label: l10n.journeyRingQuran, progress: summary.ringQuran),
+            JourneyRingItem(
+              label: l10n.journeyRingReflection,
+              progress: summary.ringReflection,
+            ),
+            JourneyRingItem(label: l10n.journeyRingFasting, progress: summary.ringFasting),
           ],
         ),
         const SizedBox(height: 18),
@@ -72,11 +79,11 @@ class JourneyPage extends StatelessWidget {
         JourneyStreaksCard(
           sectionId: 'journey-streak',
           currentTitle: l10n.journeyCurrentStreakLabel,
-          currentValue: l10n.journeyCurrentStreakValue,
+          currentValue: '${summary.currentStreakDays} ${l10n.homeDaysLabel}',
           bestTitle: l10n.journeyBestStreakLabel,
-          bestValue: l10n.journeyBestStreakValue,
+          bestValue: '${summary.bestStreakDays} ${l10n.homeDaysLabel}',
           weeklyLabel: l10n.journeyWeeklyConsistencyLabel,
-          weekBars: const [0.55, 0.72, 0.48, 0.9, 0.67, 0.4, 0.78],
+          weekBars: summary.weeklyConsistencyBars,
         ),
         const SizedBox(height: 18),
         SectionTitle(
@@ -100,7 +107,7 @@ class JourneyPage extends StatelessWidget {
         JourneyUnlocksCard(
           sectionId: 'journey-unlocks',
           items: [
-            l10n.journeyUnlockWallpaper,
+            _unlockLabel(l10n, summary.nextUnlockPreviewKey),
             l10n.journeyUnlockReflection,
             l10n.journeyUnlockTheme,
             l10n.journeyUnlockFuture,
@@ -128,5 +135,18 @@ class JourneyPage extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  String _unlockLabel(AppLocalizations l10n, String key) {
+    switch (key) {
+      case 'wallpaper':
+        return l10n.journeyUnlockWallpaper;
+      case 'reflection':
+        return l10n.journeyUnlockReflection;
+      case 'theme':
+        return l10n.journeyUnlockTheme;
+      default:
+        return l10n.journeyUnlockFuture;
+    }
   }
 }

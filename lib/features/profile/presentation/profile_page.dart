@@ -5,6 +5,7 @@ import '../../../core/localization/locale_provider.dart';
 import '../../../core/prayer/prayer_preferences.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../l10n/app_localizations.dart';
+import '../../../shared/application/app_summary_providers.dart';
 import '../../../shared/state/location_permission_state.dart';
 import '../../../shared/state/user_profile_state.dart';
 import '../../../shared/widgets/app_page_scaffold.dart';
@@ -28,7 +29,7 @@ class ProfilePage extends ConsumerWidget {
     final locationNotifier = ref.read(locationPermissionProvider.notifier);
     final profileSettings = ref.watch(profileSettingsProvider);
     final profileSettingsNotifier = ref.read(profileSettingsProvider.notifier);
-    final selectedLocale = ref.watch(appLocaleProvider) ?? Localizations.localeOf(context);
+    final profileSummary = ref.watch(profileSummaryProvider);
 
     return AppPageScaffold(
       headerIcon: Icons.manage_accounts,
@@ -45,12 +46,12 @@ class ProfilePage extends ConsumerWidget {
       onQuoteTap: (quote) => openQuranQuoteLocation(context, quote),
       children: [
         _ProfileSummaryCard(
-          address: _addressFromSex(userProfile.sex, l10n),
-          name: userProfile.name,
+          address: _addressFromSex(profileSummary.sex, l10n),
+          name: profileSummary.name,
           subtitle: l10n.profileSummarySubtitle,
-          levelValue: '7',
-          streakValue: '6 ${l10n.homeDaysLabel}',
-          selectedLanguage: _languageLabel(l10n, selectedLocale),
+          levelValue: '${profileSummary.level}',
+          streakValue: '${profileSummary.currentStreakDays} ${l10n.homeDaysLabel}',
+          selectedLanguage: _languageLabel(l10n, profileSummary.selectedLocale),
         ),
         const SizedBox(height: 14),
         PremiumCard(
