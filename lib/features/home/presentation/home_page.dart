@@ -6,13 +6,16 @@ import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:permission_handler/permission_handler.dart';
 
+import '../../../app/app_router.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../features/worship/domain/fasting_status.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/state/shell_state.dart';
 import '../../../shared/state/location_permission_state.dart';
 import '../../../shared/state/user_profile_state.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/section_title.dart';
+import '../application/home_dashboard_provider.dart';
 import '../data/home_verses.dart';
 
 class HomePage extends ConsumerWidget {
@@ -147,7 +150,7 @@ class HomePage extends ConsumerWidget {
                 const SizedBox(height: 14),
                 _SalahSummaryCard(l10n: l10n),
                 const SizedBox(height: 24),
-                _ExistingSections(l10n: l10n),
+                _HomeDashboardSections(l10n: l10n),
               ],
             ),
           ),
@@ -803,137 +806,380 @@ class _GlassCard extends StatelessWidget {
   }
 }
 
-class _ExistingSections extends StatelessWidget {
-  const _ExistingSections({required this.l10n});
+class _HomeDashboardSections extends StatelessWidget {
+  const _HomeDashboardSections({required this.l10n});
 
   final AppLocalizations l10n;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        SectionTitle(
-          title: l10n.homeSectionDailyNurTitle,
-          subtitle: l10n.homeSectionDailyNurSubtitle,
-        ),
-        PremiumCard(
-          child: InkWell(
-            onTap: () => context.pushNamed(
-              'featureSection',
-              pathParameters: {'sectionId': 'home-daily-nur'},
+    return Consumer(
+      builder: (context, ref, _) {
+        final summary = ref.watch(homeDashboardSummaryProvider);
+        final prayerProgressText =
+            '${summary.prayerCompleted} / ${summary.prayerTotal}';
+        final dhikrProgressText = '${summary.dhikrCount} / ${summary.dhikrTarget}';
+        final xpProgress = summary.xp / (summary.xp + summary.nextLevelXpRemaining);
+
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            SectionTitle(
+              title: l10n.homeOverviewHeroTitle,
+              subtitle: l10n.homeOverviewHeroSubtitle,
             ),
-            child: _MetricRow(
-              leftTitle: l10n.prayersCompletedLabel,
-              leftValue: '3 / 5',
-              rightTitle: l10n.dhikrSessionsLabel,
-              rightValue: l10n.oneToday,
+            PremiumCard(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Expanded(
+                        child: _ValueTile(
+                          title: l10n.homePrayerProgressTitle,
+                          value: prayerProgressText,
+                        ),
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: _ValueTile(
+                          title: l10n.homeDhikrProgressTitle,
+                          value: dhikrProgressText,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: _ValueTile(
+                          title: l10n.homeCurrentStreakTitle,
+                          value: '${summary.currentStreakDays} ${l10n.homeDaysLabel}',
+                        ),
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: _ValueTile(
+                          title: l10n.homeXpLevelTitle,
+                          value: '${l10n.levelLabel} ${summary.level}',
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 12),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(999),
+                    child: LinearProgressIndicator(
+                      value: xpProgress.clamp(0, 1),
+                      minHeight: 8,
+                      backgroundColor: AppColors.surfaceSoft.withValues(alpha: 0.6),
+                      valueColor:
+                          const AlwaysStoppedAnimation<Color>(AppColors.homeAccent),
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    '${summary.nextLevelXpRemaining} ${l10n.homeXpToNextLevel}',
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                ],
+              ),
             ),
-          ),
-        ),
-        const SizedBox(height: 18),
-        SectionTitle(
-          title: l10n.homePrayerSummaryTitle,
-          subtitle: l10n.homePrayerSummarySubtitle,
-        ),
-        PremiumCard(
-          child: _SimpleList(
-            items: {
-              l10n.prayerHistory: 'home-prayer-summary',
-              l10n.missedReminder: 'worshipSummary',
-              l10n.gentleSchedule: 'prayer',
-            },
-            onTap: (key) => context.pushNamed(
-              'featureSection',
-              pathParameters: {'sectionId': key},
+            const SizedBox(height: 18),
+            SectionTitle(
+              title: l10n.homeWorshipSummaryTitle,
+              subtitle: l10n.homeWorshipSummarySubtitle,
             ),
-          ),
-        ),
-        const SizedBox(height: 18),
-        SectionTitle(
-          title: l10n.homeDhikrLearningTitle,
-          subtitle: l10n.homeDhikrLearningSubtitle,
-        ),
-        PremiumCard(
-          child: Row(
-            children: [
-              Expanded(
-                child: _ShortcutButton(
-                  icon: Icons.format_quote,
-                  label: l10n.navDhikr,
-                  subtitle: l10n.start33Recitation,
-                  sectionId: 'home-dhikr-quick',
+            PremiumCard(
+              child: Column(
+                children: [
+                  _SummaryRow(
+                    label: l10n.homePrayerProgressTitle,
+                    value: prayerProgressText,
+                    onTap: () => goToTab(context, NavTab.worship),
+                  ),
+                  const Divider(height: 12, color: Color(0x28BFAE98)),
+                  _SummaryRow(
+                    label: l10n.homeDhikrProgressTitle,
+                    value: dhikrProgressText,
+                    onTap: () => goToTab(context, NavTab.worship),
+                  ),
+                  const Divider(height: 12, color: Color(0x28BFAE98)),
+                  _SummaryRow(
+                    label: l10n.homeFastingStatusTitle,
+                    value: _fastingLabel(l10n, summary.fastingStatus),
+                    onTap: () => goToTab(context, NavTab.worship),
+                  ),
+                  const Divider(height: 12, color: Color(0x28BFAE98)),
+                  _SummaryRow(
+                    label: l10n.homeKhusuQuickEntryTitle,
+                    value: l10n.homeKhusuQuickEntryValue,
+                    onTap: () => context.pushNamed('khusuFocus'),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 18),
+            SectionTitle(
+              title: l10n.homeLearnSummaryTitle,
+              subtitle: l10n.homeLearnSummarySubtitle,
+            ),
+            PremiumCard(
+              child: Column(
+                children: [
+                  _SummaryRow(
+                    label: l10n.homeLearnContinueQuran,
+                    value: l10n.homeLearnContinueQuranValue,
+                    onTap: () => goToTab(context, NavTab.learn),
+                  ),
+                  const Divider(height: 12, color: Color(0x28BFAE98)),
+                  _SummaryRow(
+                    label: l10n.homeLearnFeaturedLife,
+                    value: l10n.homeLearnFeaturedLifeValue,
+                    onTap: () => goToTab(context, NavTab.learn),
+                  ),
+                  const Divider(height: 12, color: Color(0x28BFAE98)),
+                  _SummaryRow(
+                    label: l10n.homeLearnFeaturedWorld,
+                    value: l10n.homeLearnFeaturedWorldValue,
+                    onTap: () => goToTab(context, NavTab.learn),
+                  ),
+                  const Divider(height: 12, color: Color(0x28BFAE98)),
+                  _SummaryRow(
+                    label: l10n.homeLearnFeaturedHadith,
+                    value: l10n.homeLearnFeaturedHadithValue,
+                    onTap: () => goToTab(context, NavTab.learn),
+                  ),
+                  const Divider(height: 12, color: Color(0x28BFAE98)),
+                  _SummaryRow(
+                    label: l10n.homeLearnResumeNotes,
+                    value: l10n.homeLearnResumeNotesValue,
+                    onTap: () => goToTab(context, NavTab.learn),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 18),
+            SectionTitle(
+              title: l10n.homeJourneySummaryTitle,
+              subtitle: l10n.homeJourneySummarySubtitle,
+            ),
+            PremiumCard(
+              child: Column(
+                children: [
+                  _SummaryRow(
+                    label: l10n.homeXpLevelTitle,
+                    value: '${l10n.levelLabel} ${summary.level}',
+                    onTap: () => goToTab(context, NavTab.journey),
+                  ),
+                  const Divider(height: 12, color: Color(0x28BFAE98)),
+                  _SummaryRow(
+                    label: l10n.homeJourneyXpProgressTitle,
+                    value: '${summary.xp} XP',
+                    onTap: () => goToTab(context, NavTab.journey),
+                  ),
+                  const Divider(height: 12, color: Color(0x28BFAE98)),
+                  _SummaryRow(
+                    label: l10n.homeCurrentStreakTitle,
+                    value: '${summary.currentStreakDays} ${l10n.homeDaysLabel}',
+                    onTap: () => goToTab(context, NavTab.journey),
+                  ),
+                  const Divider(height: 12, color: Color(0x28BFAE98)),
+                  _SummaryRow(
+                    label: l10n.homeJourneyDailyRingsTitle,
+                    value:
+                        'P ${_pct(summary.ringPrayer)} · D ${_pct(summary.ringDhikr)} · Q ${_pct(summary.ringQuran)}',
+                    onTap: () => goToTab(context, NavTab.journey),
+                  ),
+                  const Divider(height: 12, color: Color(0x28BFAE98)),
+                  _SummaryRow(
+                    label: l10n.homeJourneyNextUnlockTitle,
+                    value: l10n.homeJourneyNextUnlockValue,
+                    onTap: () => goToTab(context, NavTab.journey),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 18),
+            SectionTitle(
+              title: l10n.homeQuickActionsTitle,
+              subtitle: l10n.homeQuickActionsSubtitle,
+            ),
+            PremiumCard(
+              child: Row(
+                children: [
+                  Expanded(
+                    child: _QuickActionButton(
+                      icon: Icons.self_improvement_outlined,
+                      label: l10n.navDhikr,
+                      onTap: () => goToTab(context, NavTab.worship),
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: _QuickActionButton(
+                      icon: Icons.menu_book_outlined,
+                      label: l10n.navLearning,
+                      onTap: () => goToTab(context, NavTab.learn),
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: _QuickActionButton(
+                      icon: Icons.route_outlined,
+                      label: l10n.navPrayer,
+                      onTap: () => goToTab(context, NavTab.journey),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 10),
+            PremiumCard(
+              child: Row(
+                children: [
+                  Expanded(
+                    child: _QuickActionButton(
+                      icon: Icons.settings_outlined,
+                      label: l10n.profileTitle,
+                      onTap: () => context.goNamed('settings'),
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: _QuickActionButton(
+                      icon: Icons.spa_outlined,
+                      label: l10n.homeKhusuQuickEntryShort,
+                      onTap: () => context.pushNamed('khusuFocus'),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 18),
+            SectionTitle(
+              title: l10n.homeReflectionTitle,
+              subtitle: l10n.homeReflectionSubtitle,
+            ),
+            PremiumCard(
+              child: Text(
+                l10n.homeReflectionReminder,
+                style: const TextStyle(
+                  color: AppColors.onSurface,
+                  fontStyle: FontStyle.italic,
                 ),
               ),
-              const SizedBox(width: 10),
-              Expanded(
-                child: _ShortcutButton(
-                  icon: Icons.import_contacts,
-                  label: l10n.quranTitle,
-                  subtitle: l10n.resumeWhereLeft,
-                  sectionId: 'home-quran-continue',
-                ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  String _pct(double value) => '${(value.clamp(0, 1) * 100).round()}%';
+
+  String _fastingLabel(AppLocalizations l10n, FastingStatus status) {
+    switch (status) {
+      case FastingStatus.notFasting:
+        return l10n.homeFastingNotFasting;
+      case FastingStatus.intending:
+        return l10n.homeFastingIntending;
+      case FastingStatus.completed:
+        return l10n.homeFastingCompleted;
+      case FastingStatus.broken:
+        return l10n.homeFastingBroken;
+    }
+  }
+}
+
+class _SummaryRow extends StatelessWidget {
+  const _SummaryRow({
+    required this.label,
+    required this.value,
+    required this.onTap,
+  });
+
+  final String label;
+  final String value;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      child: Row(
+        children: [
+          Expanded(
+            child: Text(
+              label,
+              style: const TextStyle(
+                color: Color(0xFF4A423A),
+                fontSize: 14.5,
+                fontFamily: 'serif',
               ),
-            ],
-          ),
-        ),
-        const SizedBox(height: 18),
-        SectionTitle(
-          title: l10n.homeReflectionTitle,
-          subtitle: l10n.homeReflectionSubtitle,
-        ),
-        PremiumCard(
-          child: Text(
-            l10n.reflectionQuote,
-            style: const TextStyle(
-              color: AppColors.onSurface,
-              fontStyle: FontStyle.italic,
             ),
           ),
-        ),
-        const SizedBox(height: 18),
-        SectionTitle(
-          title: l10n.homeLevelStreakTitle,
-          subtitle: l10n.homeLevelStreakSubtitle,
-        ),
-        PremiumCard(
-          child: _MetricRow(
-            leftTitle: l10n.levelLabel,
-            leftValue: '4',
-            rightTitle: l10n.streakLabel,
-            rightValue: l10n.sevenDays,
+          const SizedBox(width: 10),
+          Flexible(
+            child: Text(
+              value,
+              textAlign: TextAlign.end,
+              style: const TextStyle(
+                color: Color(0xFF2F2923),
+                fontSize: 14,
+                fontWeight: FontWeight.w700,
+                fontFamily: 'serif',
+              ),
+            ),
           ),
-        ),
-      ],
+          const SizedBox(width: 4),
+          const Icon(Icons.chevron_right, size: 18, color: AppColors.onSurfaceSubtle),
+        ],
+      ),
     );
   }
 }
 
-class _MetricRow extends StatelessWidget {
-  const _MetricRow({
-    required this.leftTitle,
-    required this.leftValue,
-    required this.rightTitle,
-    required this.rightValue,
+class _QuickActionButton extends StatelessWidget {
+  const _QuickActionButton({
+    required this.icon,
+    required this.label,
+    required this.onTap,
   });
 
-  final String leftTitle;
-  final String leftValue;
-  final String rightTitle;
-  final String rightValue;
+  final IconData icon;
+  final String label;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: _ValueTile(title: leftTitle, value: leftValue),
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        decoration: BoxDecoration(
+          color: AppColors.surface.withValues(alpha: 0.2),
+          borderRadius: BorderRadius.circular(14),
+          border: Border.all(
+            color: AppColors.accentGoldSoft.withValues(alpha: 0.4),
+          ),
         ),
-        const SizedBox(width: 12),
-        Expanded(
-          child: _ValueTile(title: rightTitle, value: rightValue),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(icon, color: AppColors.accentGold, size: 18),
+            const SizedBox(width: 6),
+            Flexible(
+              child: Text(
+                label,
+                overflow: TextOverflow.ellipsis,
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 }
@@ -953,84 +1199,6 @@ class _ValueTile extends StatelessWidget {
         const SizedBox(height: 8),
         Text(value, style: Theme.of(context).textTheme.titleMedium),
       ],
-    );
-  }
-}
-
-class _SimpleList extends StatelessWidget {
-  const _SimpleList({required this.items, required this.onTap});
-
-  final Map<String, String> items;
-  final ValueChanged<String> onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: items.entries
-          .map(
-            (item) => Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8),
-              child: InkWell(
-                onTap: () => onTap(item.value),
-                child: Row(
-                  children: [
-                    const Icon(
-                      Icons.fiber_manual_record,
-                      size: 8,
-                      color: AppColors.homeAccent,
-                    ),
-                    const SizedBox(width: 8),
-                    Text(item.key),
-                  ],
-                ),
-              ),
-            ),
-          )
-          .toList(),
-    );
-  }
-}
-
-class _ShortcutButton extends StatelessWidget {
-  const _ShortcutButton({
-    required this.icon,
-    required this.label,
-    required this.subtitle,
-    required this.sectionId,
-  });
-
-  final IconData icon;
-  final String label;
-  final String subtitle;
-  final String sectionId;
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () => context.pushNamed(
-        'featureSection',
-        pathParameters: {'sectionId': sectionId},
-      ),
-      child: Container(
-        padding: const EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          color: AppColors.surface.withValues(alpha: 0.2),
-          borderRadius: BorderRadius.circular(14),
-          border: Border.all(
-            color: AppColors.accentGoldSoft.withValues(alpha: 0.4),
-          ),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Icon(icon, color: AppColors.accentGold),
-            const SizedBox(height: 8),
-            Text(label, style: Theme.of(context).textTheme.bodyMedium),
-            const SizedBox(height: 4),
-            Text(subtitle, style: Theme.of(context).textTheme.bodySmall),
-          ],
-        ),
-      ),
     );
   }
 }

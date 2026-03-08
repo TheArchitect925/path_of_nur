@@ -321,6 +321,240 @@ abstract class AppLocalizations {
   /// **'Growth signals without pressure.'**
   String get homeLevelStreakSubtitle;
 
+  /// No description provided for @homeOverviewHeroTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily Nur Overview'**
+  String get homeOverviewHeroTitle;
+
+  /// No description provided for @homeOverviewHeroSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A compact summary of worship, learning, and growth.'**
+  String get homeOverviewHeroSubtitle;
+
+  /// No description provided for @homePrayerProgressTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Prayer progress'**
+  String get homePrayerProgressTitle;
+
+  /// No description provided for @homeDhikrProgressTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Dhikr progress'**
+  String get homeDhikrProgressTitle;
+
+  /// No description provided for @homeCurrentStreakTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Current streak'**
+  String get homeCurrentStreakTitle;
+
+  /// No description provided for @homeXpLevelTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Level and XP'**
+  String get homeXpLevelTitle;
+
+  /// No description provided for @homeDaysLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'days'**
+  String get homeDaysLabel;
+
+  /// No description provided for @homeXpToNextLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'XP to next level'**
+  String get homeXpToNextLevel;
+
+  /// No description provided for @homeWorshipSummaryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Worship Summary'**
+  String get homeWorshipSummaryTitle;
+
+  /// No description provided for @homeWorshipSummarySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Prayer, dhikr, fasting, and Khusu in one place.'**
+  String get homeWorshipSummarySubtitle;
+
+  /// No description provided for @homeFastingStatusTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Fasting status'**
+  String get homeFastingStatusTitle;
+
+  /// No description provided for @homeKhusuQuickEntryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Khusu quick entry'**
+  String get homeKhusuQuickEntryTitle;
+
+  /// No description provided for @homeKhusuQuickEntryValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter focus mode'**
+  String get homeKhusuQuickEntryValue;
+
+  /// No description provided for @homeKhusuQuickEntryShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Khusu'**
+  String get homeKhusuQuickEntryShort;
+
+  /// No description provided for @homeFastingNotFasting.
+  ///
+  /// In en, this message translates to:
+  /// **'Not fasting'**
+  String get homeFastingNotFasting;
+
+  /// No description provided for @homeFastingIntending.
+  ///
+  /// In en, this message translates to:
+  /// **'Intending to fast'**
+  String get homeFastingIntending;
+
+  /// No description provided for @homeFastingCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get homeFastingCompleted;
+
+  /// No description provided for @homeFastingBroken.
+  ///
+  /// In en, this message translates to:
+  /// **'Missed / Broken'**
+  String get homeFastingBroken;
+
+  /// No description provided for @homeLearnSummaryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Learn Summary'**
+  String get homeLearnSummaryTitle;
+
+  /// No description provided for @homeLearnSummarySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue your knowledge path with focused previews.'**
+  String get homeLearnSummarySubtitle;
+
+  /// No description provided for @homeLearnContinueQuran.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue Quran'**
+  String get homeLearnContinueQuran;
+
+  /// No description provided for @homeLearnContinueQuranValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Resume last reading'**
+  String get homeLearnContinueQuranValue;
+
+  /// No description provided for @homeLearnFeaturedLife.
+  ///
+  /// In en, this message translates to:
+  /// **'Featured Life topic'**
+  String get homeLearnFeaturedLife;
+
+  /// No description provided for @homeLearnFeaturedLifeValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Patience'**
+  String get homeLearnFeaturedLifeValue;
+
+  /// No description provided for @homeLearnFeaturedWorld.
+  ///
+  /// In en, this message translates to:
+  /// **'Featured World topic'**
+  String get homeLearnFeaturedWorld;
+
+  /// No description provided for @homeLearnFeaturedWorldValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Mountains'**
+  String get homeLearnFeaturedWorldValue;
+
+  /// No description provided for @homeLearnFeaturedHadith.
+  ///
+  /// In en, this message translates to:
+  /// **'Featured Hadith topic'**
+  String get homeLearnFeaturedHadith;
+
+  /// No description provided for @homeLearnFeaturedHadithValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Character and Manners'**
+  String get homeLearnFeaturedHadithValue;
+
+  /// No description provided for @homeLearnResumeNotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Notes and reflection'**
+  String get homeLearnResumeNotes;
+
+  /// No description provided for @homeLearnResumeNotesValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Resume your latest note'**
+  String get homeLearnResumeNotesValue;
+
+  /// No description provided for @homeJourneySummaryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Journey Summary'**
+  String get homeJourneySummaryTitle;
+
+  /// No description provided for @homeJourneySummarySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Track progression, rings, and next unlocks.'**
+  String get homeJourneySummarySubtitle;
+
+  /// No description provided for @homeJourneyXpProgressTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'XP progress'**
+  String get homeJourneyXpProgressTitle;
+
+  /// No description provided for @homeJourneyDailyRingsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily rings'**
+  String get homeJourneyDailyRingsTitle;
+
+  /// No description provided for @homeJourneyNextUnlockTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Next unlock'**
+  String get homeJourneyNextUnlockTitle;
+
+  /// No description provided for @homeJourneyNextUnlockValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Wallpaper reward preview'**
+  String get homeJourneyNextUnlockValue;
+
+  /// No description provided for @homeQuickActionsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Quick Actions'**
+  String get homeQuickActionsTitle;
+
+  /// No description provided for @homeQuickActionsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Jump into your core sections quickly.'**
+  String get homeQuickActionsSubtitle;
+
+  /// No description provided for @homeReflectionReminder.
+  ///
+  /// In en, this message translates to:
+  /// **'\"Return softly to your intention. Small sincere acts build lasting light.\"'**
+  String get homeReflectionReminder;
+
   /// No description provided for @prayerHistory.
   ///
   /// In en, this message translates to:

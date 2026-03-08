@@ -109,6 +109,129 @@ class AppLocalizationsUr extends AppLocalizations {
   String get homeLevelStreakSubtitle => 'دباؤ کے بغیر ترقی کے اشارے۔';
 
   @override
+  String get homeOverviewHeroTitle => 'Daily Nur Overview';
+
+  @override
+  String get homeOverviewHeroSubtitle =>
+      'A compact summary of worship, learning, and growth.';
+
+  @override
+  String get homePrayerProgressTitle => 'Prayer progress';
+
+  @override
+  String get homeDhikrProgressTitle => 'Dhikr progress';
+
+  @override
+  String get homeCurrentStreakTitle => 'Current streak';
+
+  @override
+  String get homeXpLevelTitle => 'Level and XP';
+
+  @override
+  String get homeDaysLabel => 'days';
+
+  @override
+  String get homeXpToNextLevel => 'XP to next level';
+
+  @override
+  String get homeWorshipSummaryTitle => 'Worship Summary';
+
+  @override
+  String get homeWorshipSummarySubtitle =>
+      'Prayer, dhikr, fasting, and Khusu in one place.';
+
+  @override
+  String get homeFastingStatusTitle => 'Fasting status';
+
+  @override
+  String get homeKhusuQuickEntryTitle => 'Khusu quick entry';
+
+  @override
+  String get homeKhusuQuickEntryValue => 'Enter focus mode';
+
+  @override
+  String get homeKhusuQuickEntryShort => 'Khusu';
+
+  @override
+  String get homeFastingNotFasting => 'Not fasting';
+
+  @override
+  String get homeFastingIntending => 'Intending to fast';
+
+  @override
+  String get homeFastingCompleted => 'Completed';
+
+  @override
+  String get homeFastingBroken => 'Missed / Broken';
+
+  @override
+  String get homeLearnSummaryTitle => 'Learn Summary';
+
+  @override
+  String get homeLearnSummarySubtitle =>
+      'Continue your knowledge path with focused previews.';
+
+  @override
+  String get homeLearnContinueQuran => 'Continue Quran';
+
+  @override
+  String get homeLearnContinueQuranValue => 'Resume last reading';
+
+  @override
+  String get homeLearnFeaturedLife => 'Featured Life topic';
+
+  @override
+  String get homeLearnFeaturedLifeValue => 'Patience';
+
+  @override
+  String get homeLearnFeaturedWorld => 'Featured World topic';
+
+  @override
+  String get homeLearnFeaturedWorldValue => 'Mountains';
+
+  @override
+  String get homeLearnFeaturedHadith => 'Featured Hadith topic';
+
+  @override
+  String get homeLearnFeaturedHadithValue => 'Character and Manners';
+
+  @override
+  String get homeLearnResumeNotes => 'Notes and reflection';
+
+  @override
+  String get homeLearnResumeNotesValue => 'Resume your latest note';
+
+  @override
+  String get homeJourneySummaryTitle => 'Journey Summary';
+
+  @override
+  String get homeJourneySummarySubtitle =>
+      'Track progression, rings, and next unlocks.';
+
+  @override
+  String get homeJourneyXpProgressTitle => 'XP progress';
+
+  @override
+  String get homeJourneyDailyRingsTitle => 'Daily rings';
+
+  @override
+  String get homeJourneyNextUnlockTitle => 'Next unlock';
+
+  @override
+  String get homeJourneyNextUnlockValue => 'Wallpaper reward preview';
+
+  @override
+  String get homeQuickActionsTitle => 'Quick Actions';
+
+  @override
+  String get homeQuickActionsSubtitle =>
+      'Jump into your core sections quickly.';
+
+  @override
+  String get homeReflectionReminder =>
+      '\"Return softly to your intention. Small sincere acts build lasting light.\"';
+
+  @override
   String get prayerHistory => 'نماز ہسٹری';
 
   @override
