@@ -896,6 +896,270 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Resume your latest learning thread.'**
   String get learnNotesContinueSubtitle;
+
+  /// No description provided for @journeyLevelSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Level and XP'**
+  String get journeyLevelSectionTitle;
+
+  /// No description provided for @journeyLevelSectionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Long-term growth with steady progression.'**
+  String get journeyLevelSectionSubtitle;
+
+  /// No description provided for @journeyLevelValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Level 7'**
+  String get journeyLevelValue;
+
+  /// No description provided for @journeyXpValue.
+  ///
+  /// In en, this message translates to:
+  /// **'1620 XP'**
+  String get journeyXpValue;
+
+  /// No description provided for @journeyNextLevelText.
+  ///
+  /// In en, this message translates to:
+  /// **'380 XP to next level'**
+  String get journeyNextLevelText;
+
+  /// No description provided for @journeyLevelMotivation.
+  ///
+  /// In en, this message translates to:
+  /// **'Consistency builds depth. Small acts keep your journey moving.'**
+  String get journeyLevelMotivation;
+
+  /// No description provided for @journeyLightSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Light Progress'**
+  String get journeyLightSectionTitle;
+
+  /// No description provided for @journeyLightSectionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A calm visual of accumulated light and effort.'**
+  String get journeyLightSectionSubtitle;
+
+  /// No description provided for @journeyLightCardTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Light Accumulation'**
+  String get journeyLightCardTitle;
+
+  /// No description provided for @journeyLightCardSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Each sincere act adds light over time. Keep it gentle and consistent.'**
+  String get journeyLightCardSubtitle;
+
+  /// No description provided for @journeyRingsSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily Rings'**
+  String get journeyRingsSectionTitle;
+
+  /// No description provided for @journeyRingsSectionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Five daily focus rings for balanced growth.'**
+  String get journeyRingsSectionSubtitle;
+
+  /// No description provided for @journeyRingPrayer.
+  ///
+  /// In en, this message translates to:
+  /// **'Prayer'**
+  String get journeyRingPrayer;
+
+  /// No description provided for @journeyRingDhikr.
+  ///
+  /// In en, this message translates to:
+  /// **'Dhikr'**
+  String get journeyRingDhikr;
+
+  /// No description provided for @journeyRingQuran.
+  ///
+  /// In en, this message translates to:
+  /// **'Quran'**
+  String get journeyRingQuran;
+
+  /// No description provided for @journeyRingReflection.
+  ///
+  /// In en, this message translates to:
+  /// **'Reflection'**
+  String get journeyRingReflection;
+
+  /// No description provided for @journeyRingFasting.
+  ///
+  /// In en, this message translates to:
+  /// **'Fasting'**
+  String get journeyRingFasting;
+
+  /// No description provided for @journeyStreakSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Streaks'**
+  String get journeyStreakSectionTitle;
+
+  /// No description provided for @journeyStreakSectionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Current and best consistency snapshots.'**
+  String get journeyStreakSectionSubtitle;
+
+  /// No description provided for @journeyCurrentStreakLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Current streak'**
+  String get journeyCurrentStreakLabel;
+
+  /// No description provided for @journeyCurrentStreakValue.
+  ///
+  /// In en, this message translates to:
+  /// **'6 days'**
+  String get journeyCurrentStreakValue;
+
+  /// No description provided for @journeyBestStreakLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Best streak'**
+  String get journeyBestStreakLabel;
+
+  /// No description provided for @journeyBestStreakValue.
+  ///
+  /// In en, this message translates to:
+  /// **'18 days'**
+  String get journeyBestStreakValue;
+
+  /// No description provided for @journeyWeeklyConsistencyLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Weekly consistency'**
+  String get journeyWeeklyConsistencyLabel;
+
+  /// No description provided for @journeyMilestoneSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Milestones'**
+  String get journeyMilestoneSectionTitle;
+
+  /// No description provided for @journeyMilestoneSectionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Progress markers for key early achievements.'**
+  String get journeyMilestoneSectionSubtitle;
+
+  /// No description provided for @journeyMilestoneFirst7Days.
+  ///
+  /// In en, this message translates to:
+  /// **'First 7 days completed'**
+  String get journeyMilestoneFirst7Days;
+
+  /// No description provided for @journeyMilestoneDhikr100.
+  ///
+  /// In en, this message translates to:
+  /// **'100 dhikr completed'**
+  String get journeyMilestoneDhikr100;
+
+  /// No description provided for @journeyMilestonePrayerWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'First week of prayer consistency'**
+  String get journeyMilestonePrayerWeek;
+
+  /// No description provided for @journeyMilestoneLearningStreak.
+  ///
+  /// In en, this message translates to:
+  /// **'First learning streak achieved'**
+  String get journeyMilestoneLearningStreak;
+
+  /// No description provided for @journeyUnlocksSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlocks'**
+  String get journeyUnlocksSectionTitle;
+
+  /// No description provided for @journeyUnlocksSectionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Previews of rewards tied to consistency.'**
+  String get journeyUnlocksSectionSubtitle;
+
+  /// No description provided for @journeyUnlockWallpaper.
+  ///
+  /// In en, this message translates to:
+  /// **'Wallpaper unlock preview'**
+  String get journeyUnlockWallpaper;
+
+  /// No description provided for @journeyUnlockReflection.
+  ///
+  /// In en, this message translates to:
+  /// **'Reflection unlock preview'**
+  String get journeyUnlockReflection;
+
+  /// No description provided for @journeyUnlockTheme.
+  ///
+  /// In en, this message translates to:
+  /// **'Theme reward preview'**
+  String get journeyUnlockTheme;
+
+  /// No description provided for @journeyUnlockFuture.
+  ///
+  /// In en, this message translates to:
+  /// **'Future reward placeholder'**
+  String get journeyUnlockFuture;
+
+  /// No description provided for @journeyGrowthSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Garden / Tree / Character Progression'**
+  String get journeyGrowthSectionTitle;
+
+  /// No description provided for @journeyGrowthSectionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A visual reflection of long-term spiritual growth.'**
+  String get journeyGrowthSectionSubtitle;
+
+  /// No description provided for @journeyGrowthCardTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Growth Visual Preview'**
+  String get journeyGrowthCardTitle;
+
+  /// No description provided for @journeyGrowthCardSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your tree, garden, and character progression will evolve as your habits mature.'**
+  String get journeyGrowthCardSubtitle;
+
+  /// No description provided for @journeyOceanSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Ocean of Drops'**
+  String get journeyOceanSectionTitle;
+
+  /// No description provided for @journeyOceanSectionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A symbolic collective view of accumulated drops.'**
+  String get journeyOceanSectionSubtitle;
+
+  /// No description provided for @journeyOceanCardTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Community-inspired Drops'**
+  String get journeyOceanCardTitle;
+
+  /// No description provided for @journeyOceanCardSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Every drop matters. Over time, small drops become a meaningful ocean.'**
+  String get journeyOceanCardSubtitle;
 }
 
 class _AppLocalizationsDelegate

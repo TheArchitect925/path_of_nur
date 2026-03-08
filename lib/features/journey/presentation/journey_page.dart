@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
-import '../../../core/theme/app_colors.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/widgets/app_page_scaffold.dart';
-import '../../../shared/widgets/premium_card.dart';
-import '../../../shared/widgets/section_title.dart';
 import '../../../shared/widgets/quran_quote_block.dart';
 import '../../../shared/widgets/quran_navigation.dart';
+import '../../../shared/widgets/section_title.dart';
+import 'widgets/journey_widgets.dart';
 
 class JourneyPage extends StatelessWidget {
   const JourneyPage({super.key});
@@ -29,266 +27,106 @@ class JourneyPage extends StatelessWidget {
       ),
       onQuoteTap: (quote) => openQuranQuoteLocation(context, quote),
       children: [
-        const SectionTitle(
-          title: 'Level / XP Hero',
-          subtitle: 'Progression summary and destination markers.',
+        SectionTitle(
+          title: l10n.journeyLevelSectionTitle,
+          subtitle: l10n.journeyLevelSectionSubtitle,
         ),
-        PremiumCard(
-          child: _JourneyClickableCard(
-            sectionId: 'journey-home',
-            child: const _JourneyKpiRow(
-              values: ['Lv 4', 'XP 1,620', 'Next: 380'],
-            ),
-          ),
-        ),
-        const SizedBox(height: 18),
-        const SectionTitle(
-          title: 'Light Progress',
-          subtitle: 'Visual rhythm of consistency and flow.',
-        ),
-        PremiumCard(
-          child: const _JourneyKpiRow(
-            values: ['Faith', 'Discipline', 'Mercy'],
-            showBadges: true,
-          ),
+        JourneyHeroCard(
+          levelText: l10n.journeyLevelValue,
+          xpText: l10n.journeyXpValue,
+          nextLevelText: l10n.journeyNextLevelText,
+          motivationText: l10n.journeyLevelMotivation,
+          progress: 0.81,
         ),
         const SizedBox(height: 18),
-        const SectionTitle(
-          title: 'Daily Rings',
-          subtitle: 'Compact placeholders for habit rings.',
+        SectionTitle(
+          title: l10n.journeyLightSectionTitle,
+          subtitle: l10n.journeyLightSectionSubtitle,
         ),
-        PremiumCard(
-          child: InkWell(
-            onTap: () => context.pushNamed(
-              'featureSection',
-              pathParameters: {'sectionId': 'journey-rings'},
-            ),
-            child: const Wrap(
-            spacing: 8,
-            runSpacing: 8,
-            children: [
-              _StatusChip('Prayer 62%'),
-              _StatusChip('Dhikr 45%'),
-              _StatusChip('Learning 29%'),
-              _StatusChip('Reflection 18%'),
-            ],
-          ),
-          ),
+        JourneyLightProgressCard(
+          title: l10n.journeyLightCardTitle,
+          subtitle: l10n.journeyLightCardSubtitle,
+          progress: 0.68,
+          sectionId: 'journey-home',
         ),
         const SizedBox(height: 18),
-        const SectionTitle(
-          title: 'Streak Summary',
-          subtitle: 'Momentum insights.',
+        SectionTitle(
+          title: l10n.journeyRingsSectionTitle,
+          subtitle: l10n.journeyRingsSectionSubtitle,
         ),
-        PremiumCard(
-          child: _JourneyClickableCard(
-            sectionId: 'journey-streak',
-            child: const Text('Current streak: 6 days · Longest streak: 18 days'),
-          ),
-        ),
-        const SizedBox(height: 18),
-        const SectionTitle(
-          title: 'Milestones & Unlocks',
-          subtitle: 'Future progression points.',
-        ),
-        PremiumCard(
-          child: InkWell(
-            onTap: () => context.pushNamed(
-              'featureSection',
-              pathParameters: {'sectionId': 'journey-milestones'},
-            ),
-            child: const _BulletList([
-            'Complete 30 focused days',
-            'First Dhikr milestone',
-            'Read completion',
-            'Calm session chain',
-          ]),
-          ),
+        JourneyDailyRingsCard(
+          sectionId: 'journey-rings',
+          items: [
+            JourneyRingItem(label: l10n.journeyRingPrayer, progress: 0.64),
+            JourneyRingItem(label: l10n.journeyRingDhikr, progress: 0.47),
+            JourneyRingItem(label: l10n.journeyRingQuran, progress: 0.35),
+            JourneyRingItem(label: l10n.journeyRingReflection, progress: 0.29),
+            JourneyRingItem(label: l10n.journeyRingFasting, progress: 0.16),
+          ],
         ),
         const SizedBox(height: 18),
-        const SectionTitle(
-          title: 'Garden / Tree / Character',
-          subtitle: 'Spiritual growth companion preview.',
+        SectionTitle(
+          title: l10n.journeyStreakSectionTitle,
+          subtitle: l10n.journeyStreakSectionSubtitle,
         ),
-        PremiumCard(
-          child: InkWell(
-            onTap: () => context.pushNamed(
-              'featureSection',
-              pathParameters: {'sectionId': 'journey-garden'},
-            ),
-            child: Column(
-              children: [
-                _JourneyVisualPlaceholder('Garden preview', Icons.park),
-                const SizedBox(height: 10),
-                _JourneyVisualPlaceholder(
-                  'Character growth',
-                  Icons.cruelty_free_outlined,
-                ),
-              ],
-            ),
-          ),
+        JourneyStreaksCard(
+          sectionId: 'journey-streak',
+          currentTitle: l10n.journeyCurrentStreakLabel,
+          currentValue: l10n.journeyCurrentStreakValue,
+          bestTitle: l10n.journeyBestStreakLabel,
+          bestValue: l10n.journeyBestStreakValue,
+          weeklyLabel: l10n.journeyWeeklyConsistencyLabel,
+          weekBars: const [0.55, 0.72, 0.48, 0.9, 0.67, 0.4, 0.78],
         ),
         const SizedBox(height: 18),
-        const SectionTitle(
-          title: 'Ocean of Drops',
-          subtitle: 'Reward stream for persistence.',
+        SectionTitle(
+          title: l10n.journeyMilestoneSectionTitle,
+          subtitle: l10n.journeyMilestoneSectionSubtitle,
         ),
-        PremiumCard(
-          child: InkWell(
-            onTap: () => context.pushNamed(
-              'featureSection',
-              pathParameters: {'sectionId': 'journey-ocean'},
-            ),
-            child: Row(
-              children: const [
-                Icon(Icons.water_drop, color: AppColors.homeAccent),
-                SizedBox(width: 10),
-                Text('Drop count and milestone markers go here.'),
-              ],
-            ),
-          ),
+        JourneyMilestonesCard(
+          sectionId: 'journey-milestones',
+          entries: [
+            l10n.journeyMilestoneFirst7Days,
+            l10n.journeyMilestoneDhikr100,
+            l10n.journeyMilestonePrayerWeek,
+            l10n.journeyMilestoneLearningStreak,
+          ],
+        ),
+        const SizedBox(height: 18),
+        SectionTitle(
+          title: l10n.journeyUnlocksSectionTitle,
+          subtitle: l10n.journeyUnlocksSectionSubtitle,
+        ),
+        JourneyUnlocksCard(
+          sectionId: 'journey-unlocks',
+          items: [
+            l10n.journeyUnlockWallpaper,
+            l10n.journeyUnlockReflection,
+            l10n.journeyUnlockTheme,
+            l10n.journeyUnlockFuture,
+          ],
+        ),
+        const SizedBox(height: 18),
+        SectionTitle(
+          title: l10n.journeyGrowthSectionTitle,
+          subtitle: l10n.journeyGrowthSectionSubtitle,
+        ),
+        JourneyGrowthPreviewCard(
+          title: l10n.journeyGrowthCardTitle,
+          subtitle: l10n.journeyGrowthCardSubtitle,
+          sectionId: 'journey-garden',
+        ),
+        const SizedBox(height: 18),
+        SectionTitle(
+          title: l10n.journeyOceanSectionTitle,
+          subtitle: l10n.journeyOceanSectionSubtitle,
+        ),
+        JourneyOceanCard(
+          title: l10n.journeyOceanCardTitle,
+          subtitle: l10n.journeyOceanCardSubtitle,
+          sectionId: 'journey-ocean',
         ),
       ],
-    );
-  }
-}
-
-class _JourneyClickableCard extends StatelessWidget {
-  const _JourneyClickableCard({
-    required this.sectionId,
-    required this.child,
-  });
-
-  final String sectionId;
-  final Widget child;
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () => context.pushNamed(
-        'featureSection',
-        pathParameters: {'sectionId': sectionId},
-      ),
-      child: child,
-    );
-  }
-}
-
-class _JourneyKpiRow extends StatelessWidget {
-  const _JourneyKpiRow({required this.values, this.showBadges = false});
-
-  final List<String> values;
-  final bool showBadges;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: values
-          .map(
-            (e) => Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  if (showBadges)
-                    Container(
-                      height: 16,
-                      width: 58,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        border: Border.all(color: AppColors.accentGoldSoft),
-                        color: AppColors.surfaceSoft.withValues(alpha: 0.3),
-                      ),
-                      child: const Center(
-                        child: Text('ON', style: TextStyle(fontSize: 9)),
-                      ),
-                    ),
-                  const SizedBox(height: 6),
-                  Text(e, style: Theme.of(context).textTheme.titleSmall),
-                ],
-              ),
-            ),
-          )
-          .toList(),
-    );
-  }
-}
-
-class _StatusChip extends StatelessWidget {
-  const _StatusChip(this.label);
-  final String label;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(14),
-        border: Border.all(
-          color: AppColors.accentGoldSoft.withValues(alpha: 0.4),
-        ),
-        color: AppColors.surfaceSoft.withValues(alpha: 0.3),
-      ),
-      child: Text(label),
-    );
-  }
-}
-
-class _BulletList extends StatelessWidget {
-  const _BulletList(this.entries);
-  final List<String> entries;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: entries
-          .map(
-            (entry) => Padding(
-              padding: const EdgeInsets.only(bottom: 10),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Icon(
-                    Icons.circle,
-                    size: 8,
-                    color: AppColors.accentGold,
-                  ),
-                  const SizedBox(width: 8),
-                  Expanded(child: Text(entry)),
-                ],
-              ),
-            ),
-          )
-          .toList(),
-    );
-  }
-}
-
-class _JourneyVisualPlaceholder extends StatelessWidget {
-  const _JourneyVisualPlaceholder(this.label, this.icon);
-
-  final String label;
-  final IconData icon;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: 84,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(14),
-        border: Border.all(
-          color: AppColors.accentGoldSoft.withValues(alpha: 0.4),
-        ),
-        color: AppColors.surface.withValues(alpha: 0.3),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(icon, color: AppColors.accentGold),
-          const SizedBox(width: 8),
-          Text(label),
-        ],
-      ),
     );
   }
 }
