@@ -12,28 +12,28 @@ class AppLocalizationsHi extends AppLocalizations {
   String get appTitle => 'Path of Nur';
 
   @override
-  String get navDhikr => 'ज़िक्र';
+  String get navDhikr => 'Worship';
 
   @override
-  String get navLearning => 'सीखना';
+  String get navLearning => 'Learn';
 
   @override
-  String get navHome => 'होम';
+  String get navHome => 'Home';
 
   @override
-  String get navPrayer => 'नमाज़';
+  String get navPrayer => 'Journey';
 
   @override
-  String get navGarden => 'बाग़';
+  String get navGarden => 'Profile';
 
   @override
   String get greetingArabic => 'السلام عليكم ورحمة الله وبركاته';
 
   @override
-  String get brotherName => 'भाई शाहाब';
+  String get brotherName => 'Brother Shahab';
 
   @override
-  String get peaceUponYou => 'आप पर शांति हो';
+  String get peaceUponYou => 'Peace be upon you';
 
   @override
   String get ayahArabic => 'واستعينوا بالصبر والصلاة';
@@ -42,70 +42,72 @@ class AppLocalizationsHi extends AppLocalizations {
   String get ayahTranslit => 'Wastaeenu bi-s-sabri wa-s-salah';
 
   @override
-  String get ayahTranslation => 'सब्र और नमाज़ के जरिए मदद मांगो। (2:45)';
+  String get ayahTranslation => 'Seek help through patience and prayer. (2:45)';
 
   @override
-  String get quranTitle => 'कुरआन';
+  String get quranTitle => 'Quran';
 
   @override
-  String get quranSubtitle => 'पढ़ें • खोजें • नोट्स';
+  String get quranSubtitle => 'Read • Search • Notes';
 
   @override
-  String get nextSalah => 'अगली नमाज़';
+  String get nextSalah => 'Next Salah';
 
   @override
-  String get allSalahTimes => 'सभी नमाज़ समय';
+  String get allSalahTimes => 'All Salah Times';
 
   @override
-  String get dhuhr => 'ज़ुहर';
+  String get dhuhr => 'Dhuhr';
 
   @override
   String get dhuhrArabic => 'الظهر';
 
   @override
-  String get remainingTime => '2घं 3मि';
+  String get remainingTime => '2h 3m';
 
   @override
-  String get atTime => '1:30 PM पर';
+  String get atTime => 'at 1:30 PM';
 
   @override
-  String get salahCompleted => 'पूरी हुई नमाज़';
+  String get salahCompleted => 'Salah completed';
 
   @override
-  String get dhikrToday => 'आज का ज़िक्र';
+  String get dhikrToday => 'Dhikr today';
 
   @override
-  String get salahStreak => 'नमाज़ स्ट्रीक';
+  String get salahStreak => 'Salah Streak';
 
   @override
-  String get homeSectionDailyNurTitle => 'दैनिक नूर प्रगति';
+  String get homeSectionDailyNurTitle => 'Daily Nur Progress';
 
   @override
-  String get homeSectionDailyNurSubtitle => 'चिंतन के लिए उच्च-स्तरीय सार।';
+  String get homeSectionDailyNurSubtitle =>
+      'A high-level snapshot for reflection.';
 
   @override
-  String get homePrayerSummaryTitle => 'नमाज़ सारांश';
+  String get homePrayerSummaryTitle => 'Prayer Summary';
 
   @override
-  String get homePrayerSummarySubtitle => 'दैनिक इबादत की लय का त्वरित दृश्य।';
+  String get homePrayerSummarySubtitle =>
+      'Quick view into daily worship rhythm.';
 
   @override
-  String get homeDhikrLearningTitle => 'ज़िक्र और सीखना';
+  String get homeDhikrLearningTitle => 'Dhikr and Learning';
 
   @override
-  String get homeDhikrLearningSubtitle => 'आध्यात्मिक अभ्यासों तक तेज़ पहुंच।';
+  String get homeDhikrLearningSubtitle => 'Fast access to spiritual practices.';
 
   @override
-  String get homeReflectionTitle => 'चिंतन / याद दिलाना';
+  String get homeReflectionTitle => 'Reflection / Reminder';
 
   @override
-  String get homeReflectionSubtitle => 'आज का मुख्य संदेश।';
+  String get homeReflectionSubtitle => 'Centerpiece message for the day.';
 
   @override
-  String get homeLevelStreakTitle => 'लेवल और स्ट्रीक';
+  String get homeLevelStreakTitle => 'Level and Streak';
 
   @override
-  String get homeLevelStreakSubtitle => 'बिना दबाव के विकास संकेत।';
+  String get homeLevelStreakSubtitle => 'Growth signals without pressure.';
 
   @override
   String get homeOverviewHeroTitle => 'Daily Nur Overview';
@@ -231,118 +233,307 @@ class AppLocalizationsHi extends AppLocalizations {
       '\"Return softly to your intention. Small sincere acts build lasting light.\"';
 
   @override
-  String get prayerHistory => 'नमाज़ इतिहास';
+  String get prayerHistory => 'Prayer history';
 
   @override
-  String get missedReminder => 'छूटी हुई याद दिलाना';
+  String get missedReminder => 'Missed reminder';
 
   @override
-  String get gentleSchedule => 'सॉफ्ट शेड्यूल';
+  String get gentleSchedule => 'Gentle schedule';
 
   @override
-  String get start33Recitation => '33 ज़िक्र शुरू करें';
+  String get start33Recitation => 'Start 33 recitation';
 
   @override
-  String get resumeWhereLeft => 'जहां छोड़ा था वहीं से जारी रखें';
+  String get resumeWhereLeft => 'Resume where left';
 
   @override
   String get reflectionQuote =>
-      '\"एक सच्ची याद दिलाना कई बिखरे प्रयासों से अधिक प्रभावी हो सकती है।\"';
+      '\"One sincere reminder can outweigh many scattered efforts.\"';
 
   @override
-  String get levelLabel => 'लेवल';
+  String get levelLabel => 'Level';
 
   @override
-  String get streakLabel => 'स्ट्रीक';
+  String get streakLabel => 'Streak';
 
   @override
-  String get prayersCompletedLabel => 'पूरी हुई नमाज़';
+  String get prayersCompletedLabel => 'Prayers completed';
 
   @override
-  String get dhikrSessionsLabel => 'ज़िक्र सत्र';
+  String get dhikrSessionsLabel => 'Dhikr sessions';
 
   @override
-  String get oneToday => 'आज 1';
+  String get oneToday => '1 today';
 
   @override
-  String get sevenDays => '7 दिन';
+  String get sevenDays => '7 days';
 
   @override
-  String get worshipTitle => 'इबादत';
+  String get worshipTitle => 'Worship';
 
   @override
   String get worshipSubtitle =>
-      'दैनिक इबादत को शांत और उद्देश्यपूर्ण प्रवाह में रखें।';
+      'Daily acts of devotion centered into a calm, intentional flow.';
 
   @override
-  String get learnTitle => 'सीखें';
+  String get learnTitle => 'Learn';
 
   @override
-  String get learnSubtitle => 'चिंतन और गहरी समझ के लिए केंद्रित ज्ञान पथ।';
+  String get learnSubtitle =>
+      'A focused knowledge path for reflection and deeper understanding.';
 
   @override
-  String get journeyTitle => 'यात्रा';
+  String get journeyTitle => 'Journey';
 
   @override
-  String get journeySubtitle => 'दीर्घकालिक विकास, रोशनी दर रोशनी।';
+  String get journeySubtitle => 'Long-term growth, light by light.';
 
   @override
-  String get profileTitle => 'प्रोफाइल';
+  String get profileTitle => 'Profile';
 
   @override
-  String get profileSubtitle => 'नीयत, प्राथमिकताएं और निजीकरण।';
+  String get profileSubtitle => 'Intention, preferences, and personalization.';
 
   @override
-  String get languageOptionsTitle => 'भाषा विकल्प';
+  String get profileQuoteTranslation =>
+      'Whoever is mindful of Allah is guided toward balance and intention.';
+
+  @override
+  String get profileSummarySubtitle =>
+      'Keep your intention steady and your settings aligned with ease.';
+
+  @override
+  String get profileDisplayNameLabel => 'Display name';
+
+  @override
+  String get profileAddressMeAs => 'Address me as:';
+
+  @override
+  String get profileBrother => 'Brother';
+
+  @override
+  String get profileSister => 'Sister';
+
+  @override
+  String get profilePrayerSettingsTitle => 'Prayer & Prayer Time Settings';
+
+  @override
+  String get profilePrayerSettingsSubtitle =>
+      'Set location and calculation preferences.';
+
+  @override
+  String get profileLocationLabel => 'Location';
+
+  @override
+  String get profileMadhabLabel => 'Madhab';
+
+  @override
+  String get profileCalculationMethodLabel => 'Prayer calculation method';
+
+  @override
+  String get profileAppearanceTitle => 'Appearance';
+
+  @override
+  String get profileAppearanceSubtitle => 'Visual and atmosphere preferences.';
+
+  @override
+  String get profileThemeModeLabel => 'Theme mode';
+
+  @override
+  String get profileThemeSystem => 'System';
+
+  @override
+  String get profileThemeDark => 'Dark';
+
+  @override
+  String get profileThemeLight => 'Light';
+
+  @override
+  String get profileReduceMotion => 'Reduce motion effects';
+
+  @override
+  String get profileHighContrastText => 'High contrast text';
+
+  @override
+  String get profileModesTitle => 'Modes';
+
+  @override
+  String get profileModesSubtitle =>
+      'Mode presets to support focus and consistency.';
+
+  @override
+  String get profileRamadanModeTitle => 'Ramadan Mode';
+
+  @override
+  String get profileRamadanModeSubtitle =>
+      'Prioritize fasting rhythm and devotional consistency.';
+
+  @override
+  String get profileLossModeTitle => 'Loss Mode';
+
+  @override
+  String get profileLossModeSubtitle =>
+      'Gentle structure for spiritually heavy days.';
+
+  @override
+  String get profileGentleModeTitle => 'Gentle Mode';
+
+  @override
+  String get profileGentleModeSubtitle =>
+      'Lighter reminders and softer daily expectations.';
+
+  @override
+  String get profileTrackingPrivacyTitle => 'Tracking & Privacy';
+
+  @override
+  String get profileTrackingPrivacySubtitle =>
+      'Controls for reminders, summaries, and data intent.';
+
+  @override
+  String get profileLocationWhileUsingApp => 'Location while using app';
+
+  @override
+  String get profileLocationEnabledSubtitle =>
+      'Enabled for foreground use only.';
+
+  @override
+  String get profileLocationDisabledSubtitle =>
+      'Enable to keep prayer times accurate.';
+
+  @override
+  String get profileOpenSettings => 'Open settings';
+
+  @override
+  String get profileAllow => 'Allow';
+
+  @override
+  String get profilePrivateTrackingModeTitle => 'Private tracking mode';
+
+  @override
+  String get profilePrivateTrackingModeSubtitle =>
+      'Keep progress visible only on this device.';
+
+  @override
+  String get profileMinimalTrackingModeTitle => 'Minimal tracking mode';
+
+  @override
+  String get profileMinimalTrackingModeSubtitle =>
+      'Track only key essentials with reduced metrics.';
+
+  @override
+  String get profileHideGrowthVisualsTitle => 'Hide growth visuals';
+
+  @override
+  String get profileHideGrowthVisualsSubtitle =>
+      'Limit streak and level visuals for a quieter experience.';
+
+  @override
+  String get profileReflectionOnlyModeTitle => 'Reflection-only mode';
+
+  @override
+  String get profileReflectionOnlyModeSubtitle =>
+      'Prioritize reminders and notes over progress visuals.';
+
+  @override
+  String get profileEntrustDeedsTitle => 'Entrust deeds';
+
+  @override
+  String get profileEntrustDeedsSubtitle =>
+      'A gentle reminder: sincere deeds are with Allah.';
+
+  @override
+  String get profileNotificationsTitle => 'Notifications & Reminders';
+
+  @override
+  String get profileNotificationsSubtitle =>
+      'Placeholder controls for future scheduling.';
+
+  @override
+  String get profilePrayerReminders => 'Prayer reminders';
+
+  @override
+  String get profileDhikrReminders => 'Dhikr reminders';
+
+  @override
+  String get profileQuranReminders => 'Qur\'an reminders';
+
+  @override
+  String get profileReflectionReminders => 'Reflection reminders';
+
+  @override
+  String get profileFastingReminders => 'Fasting reminders';
+
+  @override
+  String get profileLanguageExpandTitle => 'Language options';
+
+  @override
+  String get profileLanguageExpandSubtitle => 'Select language below';
+
+  @override
+  String get profileAboutTitle => 'About';
+
+  @override
+  String get profileAboutSubtitle => 'Product and app information.';
+
+  @override
+  String get profileMissionLine =>
+      'A calm spiritual companion built for consistent, sincere growth.';
+
+  @override
+  String get profileVersionPlaceholder => 'Version 0.1.7 (placeholder)';
+
+  @override
+  String get languageOptionsTitle => 'Language Options';
 
   @override
   String get languageOptionsSubtitle =>
-      'ऐप की भाषा चुनें। फ़ारसी विकल्प: फ़ारसी, दरी और ताजिक।';
+      'Choose your app language. Persian options include Farsi, Dari, and Tajik.';
 
   @override
-  String get languageEnglish => 'अंग्रेज़ी';
+  String get languageEnglish => 'English';
 
   @override
-  String get languageArabic => 'अरबी';
+  String get languageArabic => 'Arabic';
 
   @override
-  String get languageIndonesian => 'इंडोनेशियाई';
+  String get languageIndonesian => 'Indonesian';
 
   @override
-  String get languageMalay => 'मलय';
+  String get languageMalay => 'Malay';
 
   @override
-  String get languageBengali => 'बंगाली';
+  String get languageBengali => 'Bengali';
 
   @override
-  String get languageUrdu => 'उर्दू';
+  String get languageUrdu => 'Urdu';
 
   @override
-  String get languageFarsi => 'फ़ारसी (फ़ारसी)';
+  String get languageFarsi => 'Persian (Farsi)';
 
   @override
-  String get languageDari => 'फ़ारसी (दरी)';
+  String get languageDari => 'Persian (Dari)';
 
   @override
-  String get languageTajik => 'फ़ारसी (ताजिक)';
+  String get languageTajik => 'Persian (Tajik)';
 
   @override
-  String get languageTurkish => 'तुर्की';
+  String get languageTurkish => 'Turkish';
 
   @override
-  String get languageHindi => 'हिंदी';
+  String get languageHindi => 'Hindi';
 
   @override
-  String get languagePunjabi => 'पंजाबी';
+  String get languagePunjabi => 'Punjabi';
 
   @override
-  String get languageHausa => 'हौसा';
+  String get languageHausa => 'Hausa';
 
   @override
-  String get languagePashto => 'पश्तो';
+  String get languagePashto => 'Pashto';
 
   @override
-  String get languageKurdish => 'कुर्दी';
+  String get languageKurdish => 'Kurdish';
 
   @override
   String get learnTabQuran => 'Quran';

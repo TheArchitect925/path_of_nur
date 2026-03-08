@@ -675,6 +675,348 @@ abstract class AppLocalizations {
   /// **'Intention, preferences, and personalization.'**
   String get profileSubtitle;
 
+  /// No description provided for @profileQuoteTranslation.
+  ///
+  /// In en, this message translates to:
+  /// **'Whoever is mindful of Allah is guided toward balance and intention.'**
+  String get profileQuoteTranslation;
+
+  /// No description provided for @profileSummarySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep your intention steady and your settings aligned with ease.'**
+  String get profileSummarySubtitle;
+
+  /// No description provided for @profileDisplayNameLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Display name'**
+  String get profileDisplayNameLabel;
+
+  /// No description provided for @profileAddressMeAs.
+  ///
+  /// In en, this message translates to:
+  /// **'Address me as:'**
+  String get profileAddressMeAs;
+
+  /// No description provided for @profileBrother.
+  ///
+  /// In en, this message translates to:
+  /// **'Brother'**
+  String get profileBrother;
+
+  /// No description provided for @profileSister.
+  ///
+  /// In en, this message translates to:
+  /// **'Sister'**
+  String get profileSister;
+
+  /// No description provided for @profilePrayerSettingsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Prayer & Prayer Time Settings'**
+  String get profilePrayerSettingsTitle;
+
+  /// No description provided for @profilePrayerSettingsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Set location and calculation preferences.'**
+  String get profilePrayerSettingsSubtitle;
+
+  /// No description provided for @profileLocationLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Location'**
+  String get profileLocationLabel;
+
+  /// No description provided for @profileMadhabLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Madhab'**
+  String get profileMadhabLabel;
+
+  /// No description provided for @profileCalculationMethodLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Prayer calculation method'**
+  String get profileCalculationMethodLabel;
+
+  /// No description provided for @profileAppearanceTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Appearance'**
+  String get profileAppearanceTitle;
+
+  /// No description provided for @profileAppearanceSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Visual and atmosphere preferences.'**
+  String get profileAppearanceSubtitle;
+
+  /// No description provided for @profileThemeModeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Theme mode'**
+  String get profileThemeModeLabel;
+
+  /// No description provided for @profileThemeSystem.
+  ///
+  /// In en, this message translates to:
+  /// **'System'**
+  String get profileThemeSystem;
+
+  /// No description provided for @profileThemeDark.
+  ///
+  /// In en, this message translates to:
+  /// **'Dark'**
+  String get profileThemeDark;
+
+  /// No description provided for @profileThemeLight.
+  ///
+  /// In en, this message translates to:
+  /// **'Light'**
+  String get profileThemeLight;
+
+  /// No description provided for @profileReduceMotion.
+  ///
+  /// In en, this message translates to:
+  /// **'Reduce motion effects'**
+  String get profileReduceMotion;
+
+  /// No description provided for @profileHighContrastText.
+  ///
+  /// In en, this message translates to:
+  /// **'High contrast text'**
+  String get profileHighContrastText;
+
+  /// No description provided for @profileModesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Modes'**
+  String get profileModesTitle;
+
+  /// No description provided for @profileModesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Mode presets to support focus and consistency.'**
+  String get profileModesSubtitle;
+
+  /// No description provided for @profileRamadanModeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Ramadan Mode'**
+  String get profileRamadanModeTitle;
+
+  /// No description provided for @profileRamadanModeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Prioritize fasting rhythm and devotional consistency.'**
+  String get profileRamadanModeSubtitle;
+
+  /// No description provided for @profileLossModeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Loss Mode'**
+  String get profileLossModeTitle;
+
+  /// No description provided for @profileLossModeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Gentle structure for spiritually heavy days.'**
+  String get profileLossModeSubtitle;
+
+  /// No description provided for @profileGentleModeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Gentle Mode'**
+  String get profileGentleModeTitle;
+
+  /// No description provided for @profileGentleModeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Lighter reminders and softer daily expectations.'**
+  String get profileGentleModeSubtitle;
+
+  /// No description provided for @profileTrackingPrivacyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Tracking & Privacy'**
+  String get profileTrackingPrivacyTitle;
+
+  /// No description provided for @profileTrackingPrivacySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Controls for reminders, summaries, and data intent.'**
+  String get profileTrackingPrivacySubtitle;
+
+  /// No description provided for @profileLocationWhileUsingApp.
+  ///
+  /// In en, this message translates to:
+  /// **'Location while using app'**
+  String get profileLocationWhileUsingApp;
+
+  /// No description provided for @profileLocationEnabledSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Enabled for foreground use only.'**
+  String get profileLocationEnabledSubtitle;
+
+  /// No description provided for @profileLocationDisabledSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable to keep prayer times accurate.'**
+  String get profileLocationDisabledSubtitle;
+
+  /// No description provided for @profileOpenSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Open settings'**
+  String get profileOpenSettings;
+
+  /// No description provided for @profileAllow.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow'**
+  String get profileAllow;
+
+  /// No description provided for @profilePrivateTrackingModeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Private tracking mode'**
+  String get profilePrivateTrackingModeTitle;
+
+  /// No description provided for @profilePrivateTrackingModeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep progress visible only on this device.'**
+  String get profilePrivateTrackingModeSubtitle;
+
+  /// No description provided for @profileMinimalTrackingModeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Minimal tracking mode'**
+  String get profileMinimalTrackingModeTitle;
+
+  /// No description provided for @profileMinimalTrackingModeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Track only key essentials with reduced metrics.'**
+  String get profileMinimalTrackingModeSubtitle;
+
+  /// No description provided for @profileHideGrowthVisualsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Hide growth visuals'**
+  String get profileHideGrowthVisualsTitle;
+
+  /// No description provided for @profileHideGrowthVisualsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Limit streak and level visuals for a quieter experience.'**
+  String get profileHideGrowthVisualsSubtitle;
+
+  /// No description provided for @profileReflectionOnlyModeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reflection-only mode'**
+  String get profileReflectionOnlyModeTitle;
+
+  /// No description provided for @profileReflectionOnlyModeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Prioritize reminders and notes over progress visuals.'**
+  String get profileReflectionOnlyModeSubtitle;
+
+  /// No description provided for @profileEntrustDeedsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Entrust deeds'**
+  String get profileEntrustDeedsTitle;
+
+  /// No description provided for @profileEntrustDeedsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A gentle reminder: sincere deeds are with Allah.'**
+  String get profileEntrustDeedsSubtitle;
+
+  /// No description provided for @profileNotificationsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications & Reminders'**
+  String get profileNotificationsTitle;
+
+  /// No description provided for @profileNotificationsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Placeholder controls for future scheduling.'**
+  String get profileNotificationsSubtitle;
+
+  /// No description provided for @profilePrayerReminders.
+  ///
+  /// In en, this message translates to:
+  /// **'Prayer reminders'**
+  String get profilePrayerReminders;
+
+  /// No description provided for @profileDhikrReminders.
+  ///
+  /// In en, this message translates to:
+  /// **'Dhikr reminders'**
+  String get profileDhikrReminders;
+
+  /// No description provided for @profileQuranReminders.
+  ///
+  /// In en, this message translates to:
+  /// **'Qur\'\'an reminders'**
+  String get profileQuranReminders;
+
+  /// No description provided for @profileReflectionReminders.
+  ///
+  /// In en, this message translates to:
+  /// **'Reflection reminders'**
+  String get profileReflectionReminders;
+
+  /// No description provided for @profileFastingReminders.
+  ///
+  /// In en, this message translates to:
+  /// **'Fasting reminders'**
+  String get profileFastingReminders;
+
+  /// No description provided for @profileLanguageExpandTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Language options'**
+  String get profileLanguageExpandTitle;
+
+  /// No description provided for @profileLanguageExpandSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Select language below'**
+  String get profileLanguageExpandSubtitle;
+
+  /// No description provided for @profileAboutTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'About'**
+  String get profileAboutTitle;
+
+  /// No description provided for @profileAboutSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Product and app information.'**
+  String get profileAboutSubtitle;
+
+  /// No description provided for @profileMissionLine.
+  ///
+  /// In en, this message translates to:
+  /// **'A calm spiritual companion built for consistent, sincere growth.'**
+  String get profileMissionLine;
+
+  /// No description provided for @profileVersionPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Version 0.1.7 (placeholder)'**
+  String get profileVersionPlaceholder;
+
   /// No description provided for @languageOptionsTitle.
   ///
   /// In en, this message translates to:
