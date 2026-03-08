@@ -315,69 +315,85 @@ class _LocationPermissionCarouselCard extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                height: 46,
-                width: 46,
+                height: 36,
+                width: 36,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(10),
                   color: const Color(0xFFF2E8DC).withValues(alpha: 0.7),
                   border: Border.all(
                     color: const Color(0xFFD8C49A).withValues(alpha: 0.45),
                   ),
                 ),
-                child: Icon(statusIcon, color: statusColor),
+                child: Icon(statusIcon, color: statusColor, size: 20),
               ),
-              const SizedBox(width: 12),
-              const Expanded(
-                child: Text(
-                  'Use location while using app?',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontFamily: 'serif',
-                    fontWeight: FontWeight.w600,
-                    color: Color(0xFF3A3027),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 8),
-          Text(
-            subtitle,
-            style: const TextStyle(
-              fontSize: 12.5,
-              color: Color(0xFF65584A),
-              height: 1.3,
-            ),
-          ),
-          const Spacer(),
-          Row(
-            children: [
+              const SizedBox(width: 10),
               Expanded(
-                child: OutlinedButton(
-                  onPressed: locationState.isLoading
-                      ? null
-                      : locationNotifier.requestWhileUsingApp,
-                  child: const Text('Allow while using'),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    Text(
+                      'Use location while using app?',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontFamily: 'serif',
+                        fontWeight: FontWeight.w600,
+                        color: Color(0xFF3A3027),
+                      ),
+                    ),
+                    SizedBox(height: 4),
+                    Text(
+                      'Enable foreground location for accurate prayer times.',
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        fontSize: 11.5,
+                        color: Color(0xFF65584A),
+                        height: 1.2,
+                      ),
+                    ),
+                  ],
                 ),
               ),
               const SizedBox(width: 8),
-              if (locationState.isPermanentlyDenied)
-                Expanded(
-                  child: TextButton(
-                    onPressed: locationNotifier.openSystemSettings,
-                    child: const Text('Open settings'),
-                  ),
-                )
-              else
-                Expanded(
-                  child: TextButton(
-                    onPressed: locationNotifier.refreshStatus,
-                    child: const Text('Not now'),
-                  ),
-                ),
+              locationState.isLoading
+                  ? const SizedBox(
+                      height: 20,
+                      width: 20,
+                      child: CircularProgressIndicator(strokeWidth: 2),
+                    )
+                  : TextButton(
+                      onPressed: locationState.isPermanentlyDenied
+                          ? locationNotifier.openSystemSettings
+                          : locationNotifier.requestWhileUsingApp,
+                      style: TextButton.styleFrom(
+                        visualDensity: VisualDensity.compact,
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 4,
+                        ),
+                        minimumSize: const Size(0, 28),
+                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      ),
+                      child: Text(
+                        locationState.isPermanentlyDenied ? 'Settings' : 'Allow',
+                        style: const TextStyle(fontSize: 12.5),
+                      ),
+                    ),
             ],
+          ),
+          const SizedBox(height: 6),
+          Text(
+            subtitle,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: const TextStyle(
+              fontSize: 11.5,
+              color: Color(0xFF65584A),
+              height: 1.2,
+            ),
           ),
         ],
       ),
