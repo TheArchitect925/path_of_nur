@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../core/theme/app_colors.dart';
+import '../application/learn_tab_provider.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/widgets/app_page_scaffold.dart';
-import '../../../shared/widgets/premium_card.dart';
-import '../../../shared/widgets/section_title.dart';
 import '../../../shared/widgets/quran_quote_block.dart';
 import '../../../shared/widgets/quran_navigation.dart';
+import 'widgets/learn_segmented_control.dart';
+import 'widgets/learn_tab_content.dart';
 
-class LearnPage extends StatelessWidget {
+class LearnPage extends ConsumerWidget {
   const LearnPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
+    final activeTab = ref.watch(learnTabProvider);
     return AppPageScaffold(
       headerIcon: Icons.menu_book_rounded,
       title: l10n.learnTitle,
@@ -29,98 +30,24 @@ class LearnPage extends StatelessWidget {
       ),
       onQuoteTap: (quote) => openQuranQuoteLocation(context, quote),
       children: [
-        const SectionTitle(
-          title: 'Knowledge Pillars',
-          subtitle: 'Core learning channels ready for future content.',
+        LearnSegmentedControl(
+          selected: activeTab,
+          onChanged: (tab) => ref.read(learnTabProvider.notifier).state = tab,
         ),
-        ..._contentEntries(context).map(
-          (entry) => Padding(
-            padding: const EdgeInsets.only(bottom: 14),
-            child: PremiumCard(
-              child: InkWell(
-                onTap: () => context.pushNamed(
-                  'featureSection',
-                  pathParameters: {'sectionId': entry.routeId},
-                ),
-                child: _learningSectionTile(entry.title, entry.subtitle),
-              ),
-            ),
+        const SizedBox(height: 14),
+        AnimatedSwitcher(
+          duration: const Duration(milliseconds: 240),
+          transitionBuilder: (child, animation) => FadeTransition(
+            opacity: animation,
+            child: child,
           ),
-        ),
-        const SectionTitle(
-          title: 'Continue Learning',
-          subtitle: 'Where you left off.',
-        ),
-        PremiumCard(
-          child: InkWell(
-            onTap: () => context.pushNamed(
-              'featureSection',
-              pathParameters: {'sectionId': 'continueLearning'},
-            ),
-            child: ListTile(
-              leading: const Icon(
-                Icons.local_library,
-                color: AppColors.accentGold,
-              ),
-              title: const Text('Life Through the Qur\'aan'),
-              subtitle: const Text('Surahs 1–5 reflection set'),
-              trailing: const Icon(
-                Icons.chevron_right,
-                color: AppColors.onSurfaceSubtle,
-              ),
-            ),
+          child: Padding(
+            key: ValueKey(activeTab),
+            padding: const EdgeInsets.only(bottom: 16),
+            child: LearnTabContent(tab: activeTab),
           ),
         ),
       ],
     );
   }
-
-  List<_LearnEntry> _contentEntries(BuildContext context) {
-    return const [
-      _LearnEntry(
-        title: 'Qur’an',
-        routeId: 'quran',
-        subtitle: 'Read, revisit, and annotate selected passages.',
-      ),
-      _LearnEntry(
-        title: 'Life Through the Qur’an',
-        routeId: 'lifeThroughQuran',
-        subtitle: 'Practical lessons and daily takeaways.',
-      ),
-      _LearnEntry(
-        title: 'World Through the Qur’an',
-        routeId: 'worldThroughQuran',
-        subtitle: 'Contextual reflections for modern moments.',
-      ),
-      _LearnEntry(
-        title: 'Hadith Lessons',
-        routeId: 'hadithLessons',
-        subtitle: 'Companion teachings with gentle prompts.',
-      ),
-      _LearnEntry(
-        title: 'Reflections / Notes',
-        routeId: 'reflections',
-        subtitle: 'Capture journaling thoughts and insights.',
-      ),
-    ];
-  }
-
-  Widget _learningSectionTile(String title, String subtitle) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4),
-      child: ListTile(
-        contentPadding: EdgeInsets.zero,
-        title: Text(title),
-        subtitle: Text(subtitle),
-        trailing: const Icon(Icons.chevron_right),
-      ),
-    );
-  }
-}
-
-class _LearnEntry {
-  const _LearnEntry({required this.title, required this.routeId, required this.subtitle});
-  final String title;
-  final String routeId;
-  final String subtitle;
 }

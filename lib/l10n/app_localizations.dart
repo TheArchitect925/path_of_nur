@@ -542,6 +542,360 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Kurdish'**
   String get languageKurdish;
+
+  /// No description provided for @learnTabQuran.
+  ///
+  /// In en, this message translates to:
+  /// **'Quran'**
+  String get learnTabQuran;
+
+  /// No description provided for @learnTabLife.
+  ///
+  /// In en, this message translates to:
+  /// **'Life'**
+  String get learnTabLife;
+
+  /// No description provided for @learnTabWorld.
+  ///
+  /// In en, this message translates to:
+  /// **'World'**
+  String get learnTabWorld;
+
+  /// No description provided for @learnTabHadith.
+  ///
+  /// In en, this message translates to:
+  /// **'Hadith'**
+  String get learnTabHadith;
+
+  /// No description provided for @learnTabNotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Notes'**
+  String get learnTabNotes;
+
+  /// No description provided for @learnQuranSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Quran Hub'**
+  String get learnQuranSectionTitle;
+
+  /// No description provided for @learnQuranSectionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Structured entry points for reading and review.'**
+  String get learnQuranSectionSubtitle;
+
+  /// No description provided for @learnQuranContinueTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue Reading'**
+  String get learnQuranContinueTitle;
+
+  /// No description provided for @learnQuranContinueSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Resume your last reading session.'**
+  String get learnQuranContinueSubtitle;
+
+  /// No description provided for @learnQuranDailyVerseTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily Verse'**
+  String get learnQuranDailyVerseTitle;
+
+  /// No description provided for @learnQuranDailyVerseSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'One verse for today\'\'s reflection.'**
+  String get learnQuranDailyVerseSubtitle;
+
+  /// No description provided for @learnQuranExplorerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Surah Explorer'**
+  String get learnQuranExplorerTitle;
+
+  /// No description provided for @learnQuranExplorerSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Browse surahs by name and theme.'**
+  String get learnQuranExplorerSubtitle;
+
+  /// No description provided for @learnQuranBookmarksTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Bookmarks'**
+  String get learnQuranBookmarksTitle;
+
+  /// No description provided for @learnQuranBookmarksSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Return to your saved ayat quickly.'**
+  String get learnQuranBookmarksSubtitle;
+
+  /// No description provided for @learnQuranProgressTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reading Streak and Progress'**
+  String get learnQuranProgressTitle;
+
+  /// No description provided for @learnQuranProgressSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Track consistency and growth with balance.'**
+  String get learnQuranProgressSubtitle;
+
+  /// No description provided for @learnLifeSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Life through the Quran'**
+  String get learnLifeSectionTitle;
+
+  /// No description provided for @learnLifeSectionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Practical topics grounded in revelation.'**
+  String get learnLifeSectionSubtitle;
+
+  /// No description provided for @learnLifeMarriage.
+  ///
+  /// In en, this message translates to:
+  /// **'Marriage'**
+  String get learnLifeMarriage;
+
+  /// No description provided for @learnLifeParents.
+  ///
+  /// In en, this message translates to:
+  /// **'Parents'**
+  String get learnLifeParents;
+
+  /// No description provided for @learnLifeChildren.
+  ///
+  /// In en, this message translates to:
+  /// **'Children'**
+  String get learnLifeChildren;
+
+  /// No description provided for @learnLifeWealth.
+  ///
+  /// In en, this message translates to:
+  /// **'Wealth'**
+  String get learnLifeWealth;
+
+  /// No description provided for @learnLifePatience.
+  ///
+  /// In en, this message translates to:
+  /// **'Patience'**
+  String get learnLifePatience;
+
+  /// No description provided for @learnLifeJustice.
+  ///
+  /// In en, this message translates to:
+  /// **'Justice'**
+  String get learnLifeJustice;
+
+  /// No description provided for @learnLifeCharacter.
+  ///
+  /// In en, this message translates to:
+  /// **'Character'**
+  String get learnLifeCharacter;
+
+  /// No description provided for @learnLifeGratitude.
+  ///
+  /// In en, this message translates to:
+  /// **'Gratitude'**
+  String get learnLifeGratitude;
+
+  /// No description provided for @learnWorldSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'World through the Quran'**
+  String get learnWorldSectionTitle;
+
+  /// No description provided for @learnWorldSectionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Creation-focused categories for reflection.'**
+  String get learnWorldSectionSubtitle;
+
+  /// No description provided for @learnWorldMoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Moon'**
+  String get learnWorldMoon;
+
+  /// No description provided for @learnWorldBees.
+  ///
+  /// In en, this message translates to:
+  /// **'Bees'**
+  String get learnWorldBees;
+
+  /// No description provided for @learnWorldMountains.
+  ///
+  /// In en, this message translates to:
+  /// **'Mountains'**
+  String get learnWorldMountains;
+
+  /// No description provided for @learnWorldRain.
+  ///
+  /// In en, this message translates to:
+  /// **'Rain'**
+  String get learnWorldRain;
+
+  /// No description provided for @learnWorldOceans.
+  ///
+  /// In en, this message translates to:
+  /// **'Oceans'**
+  String get learnWorldOceans;
+
+  /// No description provided for @learnWorldAnimals.
+  ///
+  /// In en, this message translates to:
+  /// **'Animals'**
+  String get learnWorldAnimals;
+
+  /// No description provided for @learnWorldPlants.
+  ///
+  /// In en, this message translates to:
+  /// **'Plants'**
+  String get learnWorldPlants;
+
+  /// No description provided for @learnWorldNightDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Night and Day'**
+  String get learnWorldNightDay;
+
+  /// No description provided for @learnHadithSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Hadith Learning'**
+  String get learnHadithSectionTitle;
+
+  /// No description provided for @learnHadithSectionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Companion pathways for applied understanding.'**
+  String get learnHadithSectionSubtitle;
+
+  /// No description provided for @learnHadithLifeLessonsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Life Lessons of Hadith'**
+  String get learnHadithLifeLessonsTitle;
+
+  /// No description provided for @learnHadithLifeLessonsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Everyday guidance from authentic narrations.'**
+  String get learnHadithLifeLessonsSubtitle;
+
+  /// No description provided for @learnHadithWorldLessonsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'World Lessons through Hadith'**
+  String get learnHadithWorldLessonsTitle;
+
+  /// No description provided for @learnHadithWorldLessonsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Wider perspective through prophetic insight.'**
+  String get learnHadithWorldLessonsSubtitle;
+
+  /// No description provided for @learnHadithCharacterTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Character and Manners'**
+  String get learnHadithCharacterTitle;
+
+  /// No description provided for @learnHadithCharacterSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Adab, mercy, and conduct foundations.'**
+  String get learnHadithCharacterSubtitle;
+
+  /// No description provided for @learnHadithWorshipTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Worship and Intention'**
+  String get learnHadithWorshipTitle;
+
+  /// No description provided for @learnHadithWorshipSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Actions anchored in sincerity and purpose.'**
+  String get learnHadithWorshipSubtitle;
+
+  /// No description provided for @learnHadithFamilyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Family and Society'**
+  String get learnHadithFamilyTitle;
+
+  /// No description provided for @learnHadithFamilySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Relationships, rights, and social balance.'**
+  String get learnHadithFamilySubtitle;
+
+  /// No description provided for @learnNotesSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Notes and Reflection'**
+  String get learnNotesSectionTitle;
+
+  /// No description provided for @learnNotesSectionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Study captures and personal insight placeholders.'**
+  String get learnNotesSectionSubtitle;
+
+  /// No description provided for @learnNotesSavedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved Notes'**
+  String get learnNotesSavedTitle;
+
+  /// No description provided for @learnNotesSavedSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your authored notes and study snippets.'**
+  String get learnNotesSavedSubtitle;
+
+  /// No description provided for @learnNotesReflectionsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reflections'**
+  String get learnNotesReflectionsTitle;
+
+  /// No description provided for @learnNotesReflectionsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Journal-style reflection entries.'**
+  String get learnNotesReflectionsSubtitle;
+
+  /// No description provided for @learnNotesHighlightsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Highlights'**
+  String get learnNotesHighlightsTitle;
+
+  /// No description provided for @learnNotesHighlightsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Collected passages and marked excerpts.'**
+  String get learnNotesHighlightsSubtitle;
+
+  /// No description provided for @learnNotesContinueTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue Learning'**
+  String get learnNotesContinueTitle;
+
+  /// No description provided for @learnNotesContinueSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Resume your latest learning thread.'**
+  String get learnNotesContinueSubtitle;
 }
 
 class _AppLocalizationsDelegate

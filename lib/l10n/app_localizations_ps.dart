@@ -219,4 +219,198 @@ class AppLocalizationsPs extends AppLocalizations {
 
   @override
   String get languageKurdish => 'کردي';
+
+  @override
+  String get learnTabQuran => 'Quran';
+
+  @override
+  String get learnTabLife => 'Life';
+
+  @override
+  String get learnTabWorld => 'World';
+
+  @override
+  String get learnTabHadith => 'Hadith';
+
+  @override
+  String get learnTabNotes => 'Notes';
+
+  @override
+  String get learnQuranSectionTitle => 'Quran Hub';
+
+  @override
+  String get learnQuranSectionSubtitle =>
+      'Structured entry points for reading and review.';
+
+  @override
+  String get learnQuranContinueTitle => 'Continue Reading';
+
+  @override
+  String get learnQuranContinueSubtitle => 'Resume your last reading session.';
+
+  @override
+  String get learnQuranDailyVerseTitle => 'Daily Verse';
+
+  @override
+  String get learnQuranDailyVerseSubtitle =>
+      'One verse for today\'s reflection.';
+
+  @override
+  String get learnQuranExplorerTitle => 'Surah Explorer';
+
+  @override
+  String get learnQuranExplorerSubtitle => 'Browse surahs by name and theme.';
+
+  @override
+  String get learnQuranBookmarksTitle => 'Bookmarks';
+
+  @override
+  String get learnQuranBookmarksSubtitle =>
+      'Return to your saved ayat quickly.';
+
+  @override
+  String get learnQuranProgressTitle => 'Reading Streak and Progress';
+
+  @override
+  String get learnQuranProgressSubtitle =>
+      'Track consistency and growth with balance.';
+
+  @override
+  String get learnLifeSectionTitle => 'Life through the Quran';
+
+  @override
+  String get learnLifeSectionSubtitle =>
+      'Practical topics grounded in revelation.';
+
+  @override
+  String get learnLifeMarriage => 'Marriage';
+
+  @override
+  String get learnLifeParents => 'Parents';
+
+  @override
+  String get learnLifeChildren => 'Children';
+
+  @override
+  String get learnLifeWealth => 'Wealth';
+
+  @override
+  String get learnLifePatience => 'Patience';
+
+  @override
+  String get learnLifeJustice => 'Justice';
+
+  @override
+  String get learnLifeCharacter => 'Character';
+
+  @override
+  String get learnLifeGratitude => 'Gratitude';
+
+  @override
+  String get learnWorldSectionTitle => 'World through the Quran';
+
+  @override
+  String get learnWorldSectionSubtitle =>
+      'Creation-focused categories for reflection.';
+
+  @override
+  String get learnWorldMoon => 'Moon';
+
+  @override
+  String get learnWorldBees => 'Bees';
+
+  @override
+  String get learnWorldMountains => 'Mountains';
+
+  @override
+  String get learnWorldRain => 'Rain';
+
+  @override
+  String get learnWorldOceans => 'Oceans';
+
+  @override
+  String get learnWorldAnimals => 'Animals';
+
+  @override
+  String get learnWorldPlants => 'Plants';
+
+  @override
+  String get learnWorldNightDay => 'Night and Day';
+
+  @override
+  String get learnHadithSectionTitle => 'Hadith Learning';
+
+  @override
+  String get learnHadithSectionSubtitle =>
+      'Companion pathways for applied understanding.';
+
+  @override
+  String get learnHadithLifeLessonsTitle => 'Life Lessons of Hadith';
+
+  @override
+  String get learnHadithLifeLessonsSubtitle =>
+      'Everyday guidance from authentic narrations.';
+
+  @override
+  String get learnHadithWorldLessonsTitle => 'World Lessons through Hadith';
+
+  @override
+  String get learnHadithWorldLessonsSubtitle =>
+      'Wider perspective through prophetic insight.';
+
+  @override
+  String get learnHadithCharacterTitle => 'Character and Manners';
+
+  @override
+  String get learnHadithCharacterSubtitle =>
+      'Adab, mercy, and conduct foundations.';
+
+  @override
+  String get learnHadithWorshipTitle => 'Worship and Intention';
+
+  @override
+  String get learnHadithWorshipSubtitle =>
+      'Actions anchored in sincerity and purpose.';
+
+  @override
+  String get learnHadithFamilyTitle => 'Family and Society';
+
+  @override
+  String get learnHadithFamilySubtitle =>
+      'Relationships, rights, and social balance.';
+
+  @override
+  String get learnNotesSectionTitle => 'Notes and Reflection';
+
+  @override
+  String get learnNotesSectionSubtitle =>
+      'Study captures and personal insight placeholders.';
+
+  @override
+  String get learnNotesSavedTitle => 'Saved Notes';
+
+  @override
+  String get learnNotesSavedSubtitle =>
+      'Your authored notes and study snippets.';
+
+  @override
+  String get learnNotesReflectionsTitle => 'Reflections';
+
+  @override
+  String get learnNotesReflectionsSubtitle =>
+      'Journal-style reflection entries.';
+
+  @override
+  String get learnNotesHighlightsTitle => 'Highlights';
+
+  @override
+  String get learnNotesHighlightsSubtitle =>
+      'Collected passages and marked excerpts.';
+
+  @override
+  String get learnNotesContinueTitle => 'Continue Learning';
+
+  @override
+  String get learnNotesContinueSubtitle =>
+      'Resume your latest learning thread.';
 }
