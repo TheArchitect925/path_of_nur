@@ -655,7 +655,7 @@ class _LanguageRow extends ConsumerWidget {
       dense: true,
       contentPadding: EdgeInsets.zero,
       onTap: () {
-        ref.read(appLocaleProvider.notifier).state = locale;
+        ref.read(appLocaleProvider.notifier).setLocale(locale);
       },
       title: Text(label),
       subtitle: Text(locale.toLanguageTag()),

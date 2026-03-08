@@ -1,5 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../shared/persistence/local_store.dart';
+
 enum ProfileThemePreference { system, dark, light }
 
 class ProfileSettingsState {
@@ -75,7 +77,7 @@ class ProfileSettingsState {
 }
 
 class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
-  ProfileSettingsNotifier()
+  ProfileSettingsNotifier(this._store)
       : super(
           const ProfileSettingsState(
             themePreference: ProfileThemePreference.system,
@@ -94,70 +96,148 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
             reflectionReminders: false,
             fastingReminders: false,
           ),
-        );
+        ) {
+    _load();
+  }
+
+  final LocalStore _store;
 
   void setThemePreference(ProfileThemePreference value) {
     state = state.copyWith(themePreference: value);
+    _save();
   }
 
   void setReduceMotion(bool value) {
     state = state.copyWith(reduceMotion: value);
+    _save();
   }
 
   void setHighContrastText(bool value) {
     state = state.copyWith(highContrastText: value);
+    _save();
   }
 
   void setRamadanModeEnabled(bool value) {
     state = state.copyWith(ramadanModeEnabled: value);
+    _save();
   }
 
   void setLossModeEnabled(bool value) {
     state = state.copyWith(lossModeEnabled: value);
+    _save();
   }
 
   void setGentleModeEnabled(bool value) {
     state = state.copyWith(gentleModeEnabled: value);
+    _save();
   }
 
   void setPrivateTrackingMode(bool value) {
     state = state.copyWith(privateTrackingMode: value);
+    _save();
   }
 
   void setMinimalTrackingMode(bool value) {
     state = state.copyWith(minimalTrackingMode: value);
+    _save();
   }
 
   void setHideGrowthVisuals(bool value) {
     state = state.copyWith(hideGrowthVisuals: value);
+    _save();
   }
 
   void setReflectionOnlyMode(bool value) {
     state = state.copyWith(reflectionOnlyMode: value);
+    _save();
   }
 
   void setPrayerReminders(bool value) {
     state = state.copyWith(prayerReminders: value);
+    _save();
   }
 
   void setDhikrReminders(bool value) {
     state = state.copyWith(dhikrReminders: value);
+    _save();
   }
 
   void setQuranReminders(bool value) {
     state = state.copyWith(quranReminders: value);
+    _save();
   }
 
   void setReflectionReminders(bool value) {
     state = state.copyWith(reflectionReminders: value);
+    _save();
   }
 
   void setFastingReminders(bool value) {
     state = state.copyWith(fastingReminders: value);
+    _save();
+  }
+
+  void _load() {
+    final data = _store.getJsonMap('settings.profile');
+    if (data == null) return;
+
+    ProfileThemePreference theme = state.themePreference;
+    final themeName = data['themePreference'] as String?;
+    for (final item in ProfileThemePreference.values) {
+      if (item.name == themeName) {
+        theme = item;
+        break;
+      }
+    }
+
+    state = state.copyWith(
+      themePreference: theme,
+      reduceMotion: data['reduceMotion'] as bool? ?? state.reduceMotion,
+      highContrastText: data['highContrastText'] as bool? ?? state.highContrastText,
+      ramadanModeEnabled:
+          data['ramadanModeEnabled'] as bool? ?? state.ramadanModeEnabled,
+      lossModeEnabled: data['lossModeEnabled'] as bool? ?? state.lossModeEnabled,
+      gentleModeEnabled:
+          data['gentleModeEnabled'] as bool? ?? state.gentleModeEnabled,
+      privateTrackingMode:
+          data['privateTrackingMode'] as bool? ?? state.privateTrackingMode,
+      minimalTrackingMode:
+          data['minimalTrackingMode'] as bool? ?? state.minimalTrackingMode,
+      hideGrowthVisuals:
+          data['hideGrowthVisuals'] as bool? ?? state.hideGrowthVisuals,
+      reflectionOnlyMode:
+          data['reflectionOnlyMode'] as bool? ?? state.reflectionOnlyMode,
+      prayerReminders: data['prayerReminders'] as bool? ?? state.prayerReminders,
+      dhikrReminders: data['dhikrReminders'] as bool? ?? state.dhikrReminders,
+      quranReminders: data['quranReminders'] as bool? ?? state.quranReminders,
+      reflectionReminders:
+          data['reflectionReminders'] as bool? ?? state.reflectionReminders,
+      fastingReminders: data['fastingReminders'] as bool? ?? state.fastingReminders,
+    );
+  }
+
+  void _save() {
+    _store.setJsonMap('settings.profile', {
+      'themePreference': state.themePreference.name,
+      'reduceMotion': state.reduceMotion,
+      'highContrastText': state.highContrastText,
+      'ramadanModeEnabled': state.ramadanModeEnabled,
+      'lossModeEnabled': state.lossModeEnabled,
+      'gentleModeEnabled': state.gentleModeEnabled,
+      'privateTrackingMode': state.privateTrackingMode,
+      'minimalTrackingMode': state.minimalTrackingMode,
+      'hideGrowthVisuals': state.hideGrowthVisuals,
+      'reflectionOnlyMode': state.reflectionOnlyMode,
+      'prayerReminders': state.prayerReminders,
+      'dhikrReminders': state.dhikrReminders,
+      'quranReminders': state.quranReminders,
+      'reflectionReminders': state.reflectionReminders,
+      'fastingReminders': state.fastingReminders,
+    });
   }
 }
 
 final profileSettingsProvider =
     StateNotifierProvider<ProfileSettingsNotifier, ProfileSettingsState>(
-  (ref) => ProfileSettingsNotifier(),
+  (ref) => ProfileSettingsNotifier(ref.watch(localStoreProvider)),
 );

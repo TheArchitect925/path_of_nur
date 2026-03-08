@@ -1,5 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../persistence/local_store.dart';
+
 enum UserSex { brother, sister }
 
 class UserProfileState {
@@ -17,19 +19,51 @@ class UserProfileState {
 }
 
 class UserProfileNotifier extends StateNotifier<UserProfileState> {
-  UserProfileNotifier() : super(const UserProfileState(name: 'Shahab', sex: UserSex.brother));
+  UserProfileNotifier(this._store)
+      : super(const UserProfileState(name: 'Shahab', sex: UserSex.brother)) {
+    _load();
+  }
+
+  final LocalStore _store;
 
   void updateName(String value) {
     if (value.trim().isEmpty) return;
     state = state.copyWith(name: value.trim());
+    _save();
   }
 
   void updateSex(UserSex sex) {
     state = state.copyWith(sex: sex);
+    _save();
+  }
+
+  void _load() {
+    final data = _store.getJsonMap('profile.user');
+    if (data == null) return;
+    final name = (data['name'] as String?)?.trim();
+    final sexName = data['sex'] as String?;
+    UserSex? sex;
+    for (final item in UserSex.values) {
+      if (item.name == sexName) {
+        sex = item;
+        break;
+      }
+    }
+    state = UserProfileState(
+      name: (name == null || name.isEmpty) ? state.name : name,
+      sex: sex ?? state.sex,
+    );
+  }
+
+  void _save() {
+    _store.setJsonMap('profile.user', {
+      'name': state.name,
+      'sex': state.sex.name,
+    });
   }
 }
 
 final userProfileProvider =
     StateNotifierProvider<UserProfileNotifier, UserProfileState>(
-      (ref) => UserProfileNotifier(),
+      (ref) => UserProfileNotifier(ref.watch(localStoreProvider)),
     );

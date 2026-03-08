@@ -1,5 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../shared/persistence/local_store.dart';
+
 enum PrayerCalculationMethod {
   muslimWorldLeague,
   egyptian,
@@ -192,12 +194,18 @@ final prayerSettingsProvider =
         madhab: PrayerMadhab.shafii,
         calculationMethod: PrayerCalculationMethod.muslimWorldLeague,
       );
-      return PrayerSettingsController(defaults);
+      return PrayerSettingsController(
+        defaults: defaults,
+        store: ref.watch(localStoreProvider),
+      );
     });
 
 class PrayerSettingsController extends StateNotifier<PrayerSettingsState> {
-  PrayerSettingsController(PrayerPreferences defaults)
-    : super(
+  PrayerSettingsController({
+    required PrayerPreferences defaults,
+    required LocalStore store,
+  })  : _store = store,
+        super(
         PrayerSettingsState(
           preferences: defaults,
           notificationModes: {
@@ -209,24 +217,31 @@ class PrayerSettingsController extends StateNotifier<PrayerSettingsState> {
             'tahajjud': PrayerNotificationMode.none,
           },
         ),
-      );
+      ) {
+    _load(defaults);
+  }
+
+  final LocalStore _store;
 
   void updateLocation(String location) {
     state = state.copyWith(
       preferences: state.preferences.copyWith(location: location),
     );
+    _save();
   }
 
   void updateMadhab(PrayerMadhab madhab) {
     state = state.copyWith(
       preferences: state.preferences.copyWith(madhab: madhab),
     );
+    _save();
   }
 
   void updateMethod(PrayerCalculationMethod method) {
     state = state.copyWith(
       preferences: state.preferences.copyWith(calculationMethod: method),
     );
+    _save();
   }
 
   void updateNotificationMode(String prayerId, PrayerNotificationMode mode) {
@@ -235,6 +250,70 @@ class PrayerSettingsController extends StateNotifier<PrayerSettingsState> {
     );
     updated[prayerId] = mode;
     state = state.copyWith(notificationModes: updated);
+    _save();
+  }
+
+  void _load(PrayerPreferences defaults) {
+    final data = _store.getJsonMap('settings.prayer');
+    if (data == null) return;
+
+    final location = data['location'] as String?;
+    final madhabName = data['madhab'] as String?;
+    final methodName = data['calculationMethod'] as String?;
+    final notificationsRaw = data['notificationModes'];
+
+    PrayerMadhab madhab = defaults.madhab;
+    for (final item in PrayerMadhab.values) {
+      if (item.name == madhabName) {
+        madhab = item;
+        break;
+      }
+    }
+
+    PrayerCalculationMethod method = defaults.calculationMethod;
+    for (final item in PrayerCalculationMethod.values) {
+      if (item.name == methodName) {
+        method = item;
+        break;
+      }
+    }
+
+    final restoredNotifications = Map<String, PrayerNotificationMode>.from(
+      state.notificationModes,
+    );
+    if (notificationsRaw is Map) {
+      for (final entry in notificationsRaw.entries) {
+        final key = entry.key.toString();
+        final valueName = entry.value?.toString();
+        for (final mode in PrayerNotificationMode.values) {
+          if (mode.name == valueName) {
+            restoredNotifications[key] = mode;
+            break;
+          }
+        }
+      }
+    }
+
+    state = state.copyWith(
+      preferences: PrayerPreferences(
+        location: location ?? defaults.location,
+        madhab: madhab,
+        calculationMethod: method,
+      ),
+      notificationModes: restoredNotifications,
+    );
+  }
+
+  void _save() {
+    _store.setJsonMap('settings.prayer', {
+      'location': state.preferences.location,
+      'madhab': state.preferences.madhab.name,
+      'calculationMethod': state.preferences.calculationMethod.name,
+      'notificationModes': {
+        for (final entry in state.notificationModes.entries)
+          entry.key: entry.value.name,
+      },
+    });
   }
 }
 

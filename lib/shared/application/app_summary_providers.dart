@@ -6,6 +6,7 @@ import '../../features/worship/application/dhikr_controller.dart';
 import '../../features/worship/application/fasting_controller.dart';
 import '../../features/worship/application/prayer_controller.dart';
 import '../../features/worship/domain/fasting_status.dart';
+import '../persistence/local_store.dart';
 import '../state/user_profile_state.dart';
 
 class WorshipSummary {
@@ -61,6 +62,103 @@ class JourneySummary {
 
   double get xpProgress =>
       (xp / (xp + nextLevelXpRemaining)).clamp(0, 1).toDouble();
+}
+
+class JourneyProgressState {
+  const JourneyProgressState({
+    required this.level,
+    required this.xp,
+    required this.nextLevelXpRemaining,
+    required this.currentStreakDays,
+    required this.bestStreakDays,
+    required this.nextUnlockPreviewKey,
+  });
+
+  final int level;
+  final int xp;
+  final int nextLevelXpRemaining;
+  final int currentStreakDays;
+  final int bestStreakDays;
+  final String nextUnlockPreviewKey;
+
+  JourneyProgressState copyWith({
+    int? level,
+    int? xp,
+    int? nextLevelXpRemaining,
+    int? currentStreakDays,
+    int? bestStreakDays,
+    String? nextUnlockPreviewKey,
+  }) {
+    return JourneyProgressState(
+      level: level ?? this.level,
+      xp: xp ?? this.xp,
+      nextLevelXpRemaining: nextLevelXpRemaining ?? this.nextLevelXpRemaining,
+      currentStreakDays: currentStreakDays ?? this.currentStreakDays,
+      bestStreakDays: bestStreakDays ?? this.bestStreakDays,
+      nextUnlockPreviewKey: nextUnlockPreviewKey ?? this.nextUnlockPreviewKey,
+    );
+  }
+}
+
+class JourneyProgressNotifier extends StateNotifier<JourneyProgressState> {
+  JourneyProgressNotifier(this._store)
+      : super(
+          const JourneyProgressState(
+            level: 7,
+            xp: 1620,
+            nextLevelXpRemaining: 380,
+            currentStreakDays: 6,
+            bestStreakDays: 18,
+            nextUnlockPreviewKey: 'wallpaper',
+          ),
+        ) {
+    _load();
+  }
+
+  final LocalStore _store;
+
+  void setProgress({
+    int? level,
+    int? xp,
+    int? nextLevelXpRemaining,
+    int? currentStreakDays,
+    int? bestStreakDays,
+    String? nextUnlockPreviewKey,
+  }) {
+    state = state.copyWith(
+      level: level,
+      xp: xp,
+      nextLevelXpRemaining: nextLevelXpRemaining,
+      currentStreakDays: currentStreakDays,
+      bestStreakDays: bestStreakDays,
+      nextUnlockPreviewKey: nextUnlockPreviewKey,
+    );
+    _save();
+  }
+
+  void _load() {
+    final data = _store.getJsonMap('journey.progress');
+    if (data == null) return;
+    state = state.copyWith(
+      level: data['level'] as int?,
+      xp: data['xp'] as int?,
+      nextLevelXpRemaining: data['nextLevelXpRemaining'] as int?,
+      currentStreakDays: data['currentStreakDays'] as int?,
+      bestStreakDays: data['bestStreakDays'] as int?,
+      nextUnlockPreviewKey: data['nextUnlockPreviewKey'] as String?,
+    );
+  }
+
+  void _save() {
+    _store.setJsonMap('journey.progress', {
+      'level': state.level,
+      'xp': state.xp,
+      'nextLevelXpRemaining': state.nextLevelXpRemaining,
+      'currentStreakDays': state.currentStreakDays,
+      'bestStreakDays': state.bestStreakDays,
+      'nextUnlockPreviewKey': state.nextUnlockPreviewKey,
+    });
+  }
 }
 
 enum LearnLifeTopic {
@@ -160,15 +258,21 @@ final worshipSummaryProvider = Provider<WorshipSummary>((ref) {
   );
 });
 
+final journeyProgressProvider =
+    StateNotifierProvider<JourneyProgressNotifier, JourneyProgressState>((ref) {
+  return JourneyProgressNotifier(ref.watch(localStoreProvider));
+});
+
 final journeySummaryProvider = Provider<JourneySummary>((ref) {
   final worship = ref.watch(worshipSummaryProvider);
+  final progress = ref.watch(journeyProgressProvider);
 
   return JourneySummary(
-    level: 7,
-    xp: 1620,
-    nextLevelXpRemaining: 380,
-    currentStreakDays: 6,
-    bestStreakDays: 18,
+    level: progress.level,
+    xp: progress.xp,
+    nextLevelXpRemaining: progress.nextLevelXpRemaining,
+    currentStreakDays: progress.currentStreakDays,
+    bestStreakDays: progress.bestStreakDays,
     ringPrayer: worship.prayerProgress,
     ringDhikr: worship.dhikrProgress,
     ringQuran: 0.35,
@@ -180,7 +284,7 @@ final journeySummaryProvider = Provider<JourneySummary>((ref) {
             : worship.fastingStatus == FastingStatus.notFasting
                 ? 0.12
                 : 0.2,
-    nextUnlockPreviewKey: 'wallpaper',
+    nextUnlockPreviewKey: progress.nextUnlockPreviewKey,
     weeklyConsistencyBars: const [0.55, 0.72, 0.48, 0.9, 0.67, 0.4, 0.78],
   );
 });

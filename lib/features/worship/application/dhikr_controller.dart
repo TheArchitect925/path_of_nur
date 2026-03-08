@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../shared/persistence/local_store.dart';
 import '../domain/dhikr_preset.dart';
 import '../domain/dhikr_session.dart';
 import '../domain/dhikr_summary.dart';
@@ -71,28 +72,37 @@ class DhikrSessionState {
 }
 
 class DhikrController extends StateNotifier<DhikrSessionState> {
-  DhikrController() : super(DhikrSessionState.initial());
+  DhikrController(this._store) : super(DhikrSessionState.initial()) {
+    _load();
+  }
+
+  final LocalStore _store;
 
   void selectPreset(DhikrPreset preset) {
     state = state.copyWith(selectedPreset: preset);
+    _save();
   }
 
   void setTarget(int target) {
     if (target <= 0) return;
     state = state.copyWith(target: target, currentCount: 0);
+    _save();
   }
 
   void increment() {
     state = state.copyWith(currentCount: state.currentCount + 1);
+    _save();
   }
 
   void undo() {
     if (state.currentCount <= 0) return;
     state = state.copyWith(currentCount: state.currentCount - 1);
+    _save();
   }
 
   void reset() {
     state = state.copyWith(currentCount: 0);
+    _save();
   }
 
   void finishSession() {
@@ -113,10 +123,79 @@ class DhikrController extends StateNotifier<DhikrSessionState> {
       currentCount: 0,
       recentSessions: [completed, ...state.recentSessions],
     );
+    _save();
+  }
+
+  void _load() {
+    final data = _store.getJsonMap('worship.dhikr');
+    if (data == null) return;
+
+    final presetId = data['selectedPresetId'] as String?;
+    DhikrPreset? preset;
+    for (final item in DhikrPreset.defaults) {
+      if (item.id == presetId) {
+        preset = item;
+        break;
+      }
+    }
+
+    final sessionsRaw = data['recentSessions'];
+    final sessions = <DhikrSession>[];
+    if (sessionsRaw is List) {
+      for (final row in sessionsRaw) {
+        if (row is! Map) continue;
+        final phraseLabel = row['phraseLabel']?.toString();
+        final count = row['count'];
+        final target = row['target'];
+        final startedAt = row['startedAt']?.toString();
+        final finishedAt = row['finishedAt']?.toString();
+        if (phraseLabel == null ||
+            count is! int ||
+            target is! int ||
+            startedAt == null ||
+            finishedAt == null) {
+          continue;
+        }
+        sessions.add(
+          DhikrSession(
+            phraseLabel: phraseLabel,
+            count: count,
+            target: target,
+            startedAt: DateTime.tryParse(startedAt) ?? DateTime.now(),
+            finishedAt: DateTime.tryParse(finishedAt) ?? DateTime.now(),
+          ),
+        );
+      }
+    }
+
+    state = state.copyWith(
+      selectedPreset: preset ?? state.selectedPreset,
+      target: data['target'] as int? ?? state.target,
+      currentCount: data['currentCount'] as int? ?? state.currentCount,
+      recentSessions: sessions,
+    );
+  }
+
+  void _save() {
+    _store.setJsonMap('worship.dhikr', {
+      'selectedPresetId': state.selectedPreset.id,
+      'target': state.target,
+      'currentCount': state.currentCount,
+      'recentSessions': state.recentSessions
+          .take(30)
+          .map((session) => {
+                'phraseLabel': session.phraseLabel,
+                'count': session.count,
+                'target': session.target,
+                'startedAt': session.startedAt.toIso8601String(),
+                'finishedAt': session.finishedAt.toIso8601String(),
+              })
+          .toList(),
+    });
   }
 }
 
 final dhikrControllerProvider =
     StateNotifierProvider<DhikrController, DhikrSessionState>(
-      (ref) => DhikrController(),
+      (ref) => DhikrController(ref.watch(localStoreProvider)),
     );
