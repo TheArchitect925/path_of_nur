@@ -12,6 +12,7 @@ class ProfileSettingsState {
     required this.ramadanModeEnabled,
     required this.lossModeEnabled,
     required this.gentleModeEnabled,
+    required this.kidsModeEnabled,
     required this.privateTrackingMode,
     required this.minimalTrackingMode,
     required this.hideGrowthVisuals,
@@ -21,6 +22,8 @@ class ProfileSettingsState {
     required this.quranReminders,
     required this.reflectionReminders,
     required this.fastingReminders,
+    this.ramadanStartDateIso,
+    this.ramadanEndDateIso,
   });
 
   final ProfileThemePreference themePreference;
@@ -29,6 +32,7 @@ class ProfileSettingsState {
   final bool ramadanModeEnabled;
   final bool lossModeEnabled;
   final bool gentleModeEnabled;
+  final bool kidsModeEnabled;
   final bool privateTrackingMode;
   final bool minimalTrackingMode;
   final bool hideGrowthVisuals;
@@ -38,6 +42,8 @@ class ProfileSettingsState {
   final bool quranReminders;
   final bool reflectionReminders;
   final bool fastingReminders;
+  final String? ramadanStartDateIso;
+  final String? ramadanEndDateIso;
 
   ProfileSettingsState copyWith({
     ProfileThemePreference? themePreference,
@@ -46,6 +52,7 @@ class ProfileSettingsState {
     bool? ramadanModeEnabled,
     bool? lossModeEnabled,
     bool? gentleModeEnabled,
+    bool? kidsModeEnabled,
     bool? privateTrackingMode,
     bool? minimalTrackingMode,
     bool? hideGrowthVisuals,
@@ -55,6 +62,8 @@ class ProfileSettingsState {
     bool? quranReminders,
     bool? reflectionReminders,
     bool? fastingReminders,
+    String? ramadanStartDateIso,
+    String? ramadanEndDateIso,
   }) {
     return ProfileSettingsState(
       themePreference: themePreference ?? this.themePreference,
@@ -63,6 +72,7 @@ class ProfileSettingsState {
       ramadanModeEnabled: ramadanModeEnabled ?? this.ramadanModeEnabled,
       lossModeEnabled: lossModeEnabled ?? this.lossModeEnabled,
       gentleModeEnabled: gentleModeEnabled ?? this.gentleModeEnabled,
+      kidsModeEnabled: kidsModeEnabled ?? this.kidsModeEnabled,
       privateTrackingMode: privateTrackingMode ?? this.privateTrackingMode,
       minimalTrackingMode: minimalTrackingMode ?? this.minimalTrackingMode,
       hideGrowthVisuals: hideGrowthVisuals ?? this.hideGrowthVisuals,
@@ -72,6 +82,8 @@ class ProfileSettingsState {
       quranReminders: quranReminders ?? this.quranReminders,
       reflectionReminders: reflectionReminders ?? this.reflectionReminders,
       fastingReminders: fastingReminders ?? this.fastingReminders,
+      ramadanStartDateIso: ramadanStartDateIso ?? this.ramadanStartDateIso,
+      ramadanEndDateIso: ramadanEndDateIso ?? this.ramadanEndDateIso,
     );
   }
 }
@@ -86,6 +98,7 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
             ramadanModeEnabled: false,
             lossModeEnabled: false,
             gentleModeEnabled: true,
+            kidsModeEnabled: false,
             privateTrackingMode: false,
             minimalTrackingMode: false,
             hideGrowthVisuals: false,
@@ -118,17 +131,53 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
   }
 
   void setRamadanModeEnabled(bool value) {
-    state = state.copyWith(ramadanModeEnabled: value);
+    state = state.copyWith(
+      ramadanModeEnabled: value,
+      lossModeEnabled: value ? false : state.lossModeEnabled,
+      gentleModeEnabled: value ? false : state.gentleModeEnabled,
+    );
     _save();
   }
 
   void setLossModeEnabled(bool value) {
-    state = state.copyWith(lossModeEnabled: value);
+    state = state.copyWith(
+      lossModeEnabled: value,
+      ramadanModeEnabled: value ? false : state.ramadanModeEnabled,
+      gentleModeEnabled: value ? false : state.gentleModeEnabled,
+    );
     _save();
   }
 
   void setGentleModeEnabled(bool value) {
-    state = state.copyWith(gentleModeEnabled: value);
+    state = state.copyWith(
+      gentleModeEnabled: value,
+      ramadanModeEnabled: value ? false : state.ramadanModeEnabled,
+      lossModeEnabled: value ? false : state.lossModeEnabled,
+    );
+    _save();
+  }
+
+  void setKidsModeEnabled(bool value) {
+    state = state.copyWith(kidsModeEnabled: value);
+    _save();
+  }
+
+  void setRamadanDateRange({
+    DateTime? start,
+    DateTime? end,
+  }) {
+    state = state.copyWith(
+      ramadanStartDateIso: start?.toIso8601String(),
+      ramadanEndDateIso: end?.toIso8601String(),
+    );
+    _save();
+  }
+
+  void clearRamadanDateRange() {
+    state = state.copyWith(
+      ramadanStartDateIso: '',
+      ramadanEndDateIso: '',
+    );
     _save();
   }
 
@@ -199,6 +248,7 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
       lossModeEnabled: data['lossModeEnabled'] as bool? ?? state.lossModeEnabled,
       gentleModeEnabled:
           data['gentleModeEnabled'] as bool? ?? state.gentleModeEnabled,
+      kidsModeEnabled: data['kidsModeEnabled'] as bool? ?? state.kidsModeEnabled,
       privateTrackingMode:
           data['privateTrackingMode'] as bool? ?? state.privateTrackingMode,
       minimalTrackingMode:
@@ -213,6 +263,10 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
       reflectionReminders:
           data['reflectionReminders'] as bool? ?? state.reflectionReminders,
       fastingReminders: data['fastingReminders'] as bool? ?? state.fastingReminders,
+      ramadanStartDateIso:
+          data['ramadanStartDateIso'] as String? ?? state.ramadanStartDateIso,
+      ramadanEndDateIso:
+          data['ramadanEndDateIso'] as String? ?? state.ramadanEndDateIso,
     );
   }
 
@@ -224,6 +278,7 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
       'ramadanModeEnabled': state.ramadanModeEnabled,
       'lossModeEnabled': state.lossModeEnabled,
       'gentleModeEnabled': state.gentleModeEnabled,
+      'kidsModeEnabled': state.kidsModeEnabled,
       'privateTrackingMode': state.privateTrackingMode,
       'minimalTrackingMode': state.minimalTrackingMode,
       'hideGrowthVisuals': state.hideGrowthVisuals,
@@ -233,6 +288,8 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
       'quranReminders': state.quranReminders,
       'reflectionReminders': state.reflectionReminders,
       'fastingReminders': state.fastingReminders,
+      'ramadanStartDateIso': state.ramadanStartDateIso,
+      'ramadanEndDateIso': state.ramadanEndDateIso,
     });
   }
 }

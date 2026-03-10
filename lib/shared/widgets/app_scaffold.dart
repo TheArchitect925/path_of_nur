@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../app/app_router.dart';
+import '../../l10n/app_localizations.dart';
 import '../state/shell_state.dart';
 import 'global_background.dart';
 
@@ -106,29 +107,35 @@ class AppShellScaffold extends ConsumerWidget {
       fontFamily: 'serif',
     );
 
-    return InkWell(
-      onTap: () => context.go(tab.path),
-      borderRadius: BorderRadius.circular(20),
-      child: SizedBox(
-        height: 56,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            _navIcon(
-              tab.icon,
-              isHome: isHome,
-              active: active,
-              iconColor: iconColor,
-            ),
-            const SizedBox(height: 2),
-            Flexible(
-              child: FittedBox(
-                fit: BoxFit.scaleDown,
-                child: Text(_tabLabel(context, tab), style: textStyle),
+    final label = _tabLabel(context, tab);
+    return Semantics(
+      button: true,
+      selected: active,
+      label: label,
+      child: InkWell(
+        onTap: () => context.go(tab.path),
+        borderRadius: BorderRadius.circular(20),
+        child: SizedBox(
+          height: 56,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              _navIcon(
+                tab.icon,
+                isHome: isHome,
+                active: active,
+                iconColor: iconColor,
               ),
-            ),
-          ],
+              const SizedBox(height: 2),
+              Flexible(
+                child: FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Text(label, style: textStyle),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -186,17 +193,18 @@ class AppShellScaffold extends ConsumerWidget {
   }
 
   String _tabLabel(BuildContext context, NavTab tab) {
+    final l10n = AppLocalizations.of(context);
     switch (tab) {
       case NavTab.worship:
-        return 'Worship';
+        return l10n.worshipTitle;
       case NavTab.learn:
-        return 'Learn';
+        return l10n.learnTitle;
       case NavTab.home:
-        return 'Home';
+        return l10n.homeTitle;
       case NavTab.journey:
-        return 'Journey';
+        return l10n.journeyTitle;
       case NavTab.profile:
-        return 'Profile';
+        return l10n.profileTitle;
     }
   }
 }

@@ -1,5 +1,12 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'dart:math' as math;
 
+import 'package:adhan/adhan.dart' as adhan;
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:intl/intl.dart';
+import 'package:permission_handler/permission_handler.dart';
+
+import '../../shared/application/daily_clock_provider.dart';
 import '../../shared/persistence/local_store.dart';
 
 enum PrayerCalculationMethod {
@@ -49,10 +56,10 @@ class PrayerScheduleItem {
     required this.name,
     required this.arabicName,
     required this.category,
-    required this.offerTime,
-    required this.windowStart,
-    required this.windowEnd,
-    required this.qaza,
+    required this.offerDateTime,
+    required this.windowStartDateTime,
+    required this.windowEndDateTime,
+    required this.qazaDateTime,
     required this.totalRakats,
   });
 
@@ -60,34 +67,105 @@ class PrayerScheduleItem {
   final String name;
   final String arabicName;
   final String category;
-  final String offerTime;
-  final String windowStart;
-  final String windowEnd;
-  final String qaza;
+  final DateTime offerDateTime;
+  final DateTime windowStartDateTime;
+  final DateTime windowEndDateTime;
+  final DateTime qazaDateTime;
   final int totalRakats;
+
+  String get offerTime => _formatTime(offerDateTime);
+  String get windowStart => _formatTime(windowStartDateTime);
+  String get windowEnd => _formatTime(windowEndDateTime);
+  String get qaza => _formatTime(qazaDateTime);
 }
 
-class _CityTimings {
-  const _CityTimings({
-    required this.fajr,
-    required this.sunrise,
-    required this.dhuhr,
-    required this.asr,
-    required this.maghrib,
-    required this.isha,
-    required this.method,
+class PrayerScheduleContext {
+  const PrayerScheduleContext({
+    required this.items,
+    required this.nextPrayerId,
+    required this.currentPrayerId,
+    required this.remainingToNext,
+    required this.progressToNext,
   });
 
-  final int fajr;
-  final int sunrise;
-  final int dhuhr;
-  final int asr;
-  final int maghrib;
-  final int isha;
-  final int method;
+  final List<PrayerScheduleItem> items;
+  final String? nextPrayerId;
+  final String? currentPrayerId;
+  final Duration remainingToNext;
+  final double progressToNext;
 }
 
-const _minutesPerHour = 60;
+class PrayerLocationState {
+  const PrayerLocationState({
+    required this.latitude,
+    required this.longitude,
+    required this.usingDeviceLocation,
+  });
+
+  final double latitude;
+  final double longitude;
+  final bool usingDeviceLocation;
+}
+
+class PrayerSettingsState {
+  const PrayerSettingsState({
+    required this.preferences,
+    required this.notificationModes,
+  });
+
+  final PrayerPreferences preferences;
+  final Map<String, PrayerNotificationMode> notificationModes;
+
+  PrayerSettingsState copyWith({
+    PrayerPreferences? preferences,
+    Map<String, PrayerNotificationMode>? notificationModes,
+  }) {
+    return PrayerSettingsState(
+      preferences: preferences ?? this.preferences,
+      notificationModes: notificationModes ?? this.notificationModes,
+    );
+  }
+}
+
+class _CityMeta {
+  const _CityMeta({
+    required this.label,
+    required this.latitude,
+    required this.longitude,
+  });
+
+  final String label;
+  final double latitude;
+  final double longitude;
+}
+
+const _cityMeta = <String, _CityMeta>{
+  'Toronto, Canada': _CityMeta(
+    label: 'Toronto, Canada',
+    latitude: 43.6532,
+    longitude: -79.3832,
+  ),
+  'Dubai, UAE': _CityMeta(
+    label: 'Dubai, UAE',
+    latitude: 25.2048,
+    longitude: 55.2708,
+  ),
+  'London, UK': _CityMeta(
+    label: 'London, UK',
+    latitude: 51.5072,
+    longitude: -0.1276,
+  ),
+  'Istanbul, Turkey': _CityMeta(
+    label: 'Istanbul, Turkey',
+    latitude: 41.0082,
+    longitude: 28.9784,
+  ),
+  'Riyadh, Saudi Arabia': _CityMeta(
+    label: 'Riyadh, Saudi Arabia',
+    latitude: 24.7136,
+    longitude: 46.6753,
+  ),
+};
 
 final Map<String, String> prayerMethodLabels = {
   'MWL': 'Muslim World League',
@@ -119,74 +197,6 @@ final Map<PrayerMadhab, String> prayerMadhabKey = {
   PrayerMadhab.hanbali: 'Hanbali',
 };
 
-final Map<String, _CityTimings> _cityTimings = {
-  'Toronto, Canada': _CityTimings(
-    fajr: 5 * 60 + 58,
-    sunrise: 7 * 60 + 8,
-    dhuhr: 12 * 60 + 17,
-    asr: 16 * 60 + 27,
-    maghrib: 18 * 60 + 15,
-    isha: 19 * 60 + 45,
-    method: 0,
-  ),
-  'Dubai, UAE': _CityTimings(
-    fajr: 4 * 60 + 54,
-    sunrise: 6 * 60 + 0,
-    dhuhr: 11 * 60 + 56,
-    asr: 15 * 60 + 21,
-    maghrib: 18 * 60 + 13,
-    isha: 19 * 60 + 33,
-    method: 2,
-  ),
-  'London, UK': _CityTimings(
-    fajr: 4 * 60 + 45,
-    sunrise: 5 * 60 + 58,
-    dhuhr: 12 * 60 + 56,
-    asr: 16 * 60 + 58,
-    maghrib: 21 * 60 + 12,
-    isha: 22 * 60 + 28,
-    method: 3,
-  ),
-  'Istanbul, Turkey': _CityTimings(
-    fajr: 4 * 60 + 50,
-    sunrise: 6 * 60 + 4,
-    dhuhr: 12 * 60 + 23,
-    asr: 16 * 60 + 2,
-    maghrib: 19 * 60 + 8,
-    isha: 20 * 60 + 10,
-    method: 1,
-  ),
-  'Riyadh, Saudi Arabia': _CityTimings(
-    fajr: 5 * 60 + 14,
-    sunrise: 6 * 60 + 27,
-    dhuhr: 12 * 60 + 0,
-    asr: 15 * 60 + 48,
-    maghrib: 18 * 60 + 27,
-    isha: 19 * 60 + 36,
-    method: 2,
-  ),
-};
-
-class PrayerSettingsState {
-  const PrayerSettingsState({
-    required this.preferences,
-    required this.notificationModes,
-  });
-
-  final PrayerPreferences preferences;
-  final Map<String, PrayerNotificationMode> notificationModes;
-
-  PrayerSettingsState copyWith({
-    PrayerPreferences? preferences,
-    Map<String, PrayerNotificationMode>? notificationModes,
-  }) {
-    return PrayerSettingsState(
-      preferences: preferences ?? this.preferences,
-      notificationModes: notificationModes ?? this.notificationModes,
-    );
-  }
-}
-
 final prayerSettingsProvider =
     StateNotifierProvider<PrayerSettingsController, PrayerSettingsState>((ref) {
       const defaults = PrayerPreferences(
@@ -204,20 +214,20 @@ class PrayerSettingsController extends StateNotifier<PrayerSettingsState> {
   PrayerSettingsController({
     required PrayerPreferences defaults,
     required LocalStore store,
-  })  : _store = store,
-        super(
-        PrayerSettingsState(
-          preferences: defaults,
-          notificationModes: {
-            'fajr': PrayerNotificationMode.none,
-            'dhuhr': PrayerNotificationMode.none,
-            'asr': PrayerNotificationMode.none,
-            'maghrib': PrayerNotificationMode.none,
-            'isha': PrayerNotificationMode.none,
-            'tahajjud': PrayerNotificationMode.none,
-          },
-        ),
-      ) {
+  }) : _store = store,
+       super(
+         PrayerSettingsState(
+           preferences: defaults,
+           notificationModes: {
+             'fajr': PrayerNotificationMode.none,
+             'dhuhr': PrayerNotificationMode.none,
+             'asr': PrayerNotificationMode.none,
+             'maghrib': PrayerNotificationMode.none,
+             'isha': PrayerNotificationMode.none,
+             'tahajjud': PrayerNotificationMode.none,
+           },
+         ),
+       ) {
     _load(defaults);
   }
 
@@ -317,37 +327,183 @@ class PrayerSettingsController extends StateNotifier<PrayerSettingsState> {
   }
 }
 
+class PrayerLocationNotifier extends StateNotifier<PrayerLocationState> {
+  PrayerLocationNotifier(this._store, this._preferences)
+    : super(_fallbackForLocation(_preferences.location)) {
+    _loadLastKnown();
+    _refresh();
+  }
+
+  final LocalStore _store;
+  final PrayerPreferences _preferences;
+
+  static PrayerLocationState _fallbackForLocation(String location) {
+    final fallback = _cityMeta[location] ?? _cityMeta.values.first;
+    return PrayerLocationState(
+      latitude: fallback.latitude,
+      longitude: fallback.longitude,
+      usingDeviceLocation: false,
+    );
+  }
+
+  Future<void> _refresh() async {
+    final status = await Permission.locationWhenInUse.status;
+    if (!status.isGranted) {
+      state = _fallbackForLocation(_preferences.location);
+      return;
+    }
+
+    final enabled = await Geolocator.isLocationServiceEnabled();
+    if (!enabled) {
+      state = _fallbackForLocation(_preferences.location);
+      return;
+    }
+
+    Position? pos;
+    try {
+      pos = await Geolocator.getCurrentPosition(
+        locationSettings: const LocationSettings(
+          accuracy: LocationAccuracy.low,
+        ),
+      );
+    } catch (_) {
+      pos = await Geolocator.getLastKnownPosition();
+    }
+
+    if (pos == null) {
+      state = _fallbackForLocation(_preferences.location);
+      return;
+    }
+
+    state = PrayerLocationState(
+      latitude: pos.latitude,
+      longitude: pos.longitude,
+      usingDeviceLocation: true,
+    );
+    _store.setJsonMap('settings.prayer.deviceCoordinates', {
+      'lat': pos.latitude,
+      'lng': pos.longitude,
+    });
+  }
+
+  void _loadLastKnown() {
+    final data = _store.getJsonMap('settings.prayer.deviceCoordinates');
+    if (data == null) return;
+    final lat = data['lat'];
+    final lng = data['lng'];
+    if (lat is num && lng is num) {
+      state = PrayerLocationState(
+        latitude: lat.toDouble(),
+        longitude: lng.toDouble(),
+        usingDeviceLocation: true,
+      );
+    }
+  }
+}
+
+final prayerLocationProvider =
+    StateNotifierProvider<PrayerLocationNotifier, PrayerLocationState>((ref) {
+      final settings = ref.watch(prayerSettingsProvider).preferences;
+      return PrayerLocationNotifier(ref.watch(localStoreProvider), settings);
+    });
+
 final availablePrayerLocationsProvider = Provider<List<String>>(
-  (ref) => _cityTimings.keys.toList(),
+  (ref) => _cityMeta.keys.toList(),
 );
 
 final prayerScheduleProvider = Provider<List<PrayerScheduleItem>>((ref) {
   final settings = ref.watch(prayerSettingsProvider).preferences;
-  final timings =
-      _cityTimings[settings.location] ?? _cityTimings['Toronto, Canada']!;
+  final location = ref.watch(prayerLocationProvider);
+  final now = ref.watch(dailyNowProvider).value ?? DateTime.now();
+  return buildPrayerScheduleForDate(
+    date: now,
+    latitude: location.latitude,
+    longitude: location.longitude,
+    settings: settings,
+  );
+});
 
-  final methodShift =
-      {
-        PrayerCalculationMethod.muslimWorldLeague: 0,
-        PrayerCalculationMethod.egyptian: 2,
-        PrayerCalculationMethod.isna: 3,
-        PrayerCalculationMethod.karachi: 1,
-        PrayerCalculationMethod.ummAlQura: -2,
-      }[settings.calculationMethod] ??
-      0;
+final prayerScheduleContextProvider = Provider<PrayerScheduleContext>((ref) {
+  final schedule = ref.watch(prayerScheduleProvider);
+  final now = ref.watch(dailyNowProvider).value ?? DateTime.now();
+  if (schedule.isEmpty) {
+    return const PrayerScheduleContext(
+      items: [],
+      nextPrayerId: null,
+      currentPrayerId: null,
+      remainingToNext: Duration.zero,
+      progressToNext: 0,
+    );
+  }
 
-  int asrMinutes =
-      timings.asr +
-      (settings.madhab == PrayerMadhab.hanafi ? 9 : 0) +
-      (methodShift > 0 ? (methodShift / 2).round() : 0);
+  PrayerScheduleItem? current;
+  PrayerScheduleItem? next;
 
-  final fajr = _normalizeMinute(timings.fajr + methodShift);
-  final sunrise = _normalizeMinute(timings.sunrise + methodShift);
-  final dhuhr = _normalizeMinute(timings.dhuhr + methodShift);
-  final asr = _normalizeMinute(asrMinutes);
-  final maghrib = _normalizeMinute(timings.maghrib + methodShift);
-  final isha = _normalizeMinute(timings.isha + methodShift);
-  final tahajjudStart = _normalizeMinute(isha + 95);
+  for (var i = 0; i < schedule.length; i += 1) {
+    final item = schedule[i];
+    if (!now.isBefore(item.windowStartDateTime) &&
+        now.isBefore(item.windowEndDateTime)) {
+      current = item;
+      next = i + 1 < schedule.length ? schedule[i + 1] : null;
+      break;
+    }
+    if (now.isBefore(item.windowStartDateTime)) {
+      next = item;
+      break;
+    }
+  }
+
+  next ??= schedule.first;
+  if (current == null && now.isAfter(schedule.last.windowEndDateTime)) {
+    current = schedule.last;
+  }
+
+  final nextStart = next.windowStartDateTime;
+  final prevAnchor =
+      current?.windowStartDateTime ?? now.subtract(const Duration(hours: 1));
+  final total = math.max(1, nextStart.difference(prevAnchor).inSeconds);
+  final elapsed = now.difference(prevAnchor).inSeconds.clamp(0, total);
+  final progress = (elapsed / total).clamp(0.0, 1.0).toDouble();
+
+  return PrayerScheduleContext(
+    items: schedule,
+    nextPrayerId: next.id,
+    currentPrayerId: current?.id,
+    remainingToNext: nextStart.difference(now),
+    progressToNext: progress,
+  );
+});
+
+List<PrayerScheduleItem> buildPrayerScheduleForDate({
+  required DateTime date,
+  required double latitude,
+  required double longitude,
+  required PrayerPreferences settings,
+}) {
+  final coordinates = adhan.Coordinates(latitude, longitude);
+  final params = _adhanMethod(settings.calculationMethod).getParameters();
+  params.madhab = settings.madhab == PrayerMadhab.hanafi
+      ? adhan.Madhab.hanafi
+      : adhan.Madhab.shafi;
+
+  final today = adhan.PrayerTimes(
+    coordinates,
+    adhan.DateComponents.from(date),
+    params,
+  );
+
+  final tomorrow = adhan.PrayerTimes(
+    coordinates,
+    adhan.DateComponents.from(date.add(const Duration(days: 1))),
+    params,
+  );
+
+  final tahajjudStart = today.isha.add(
+    Duration(
+      seconds: ((tomorrow.fajr.difference(today.isha).inSeconds) * 0.66)
+          .round(),
+    ),
+  );
 
   return [
     PrayerScheduleItem(
@@ -355,10 +511,10 @@ final prayerScheduleProvider = Provider<List<PrayerScheduleItem>>((ref) {
       name: 'Fajr',
       arabicName: 'الفجر',
       category: 'Fardh',
-      offerTime: _formatTime(fajr),
-      windowStart: _formatTime(fajr),
-      windowEnd: _formatTime(sunrise),
-      qaza: 'Until sunrise (${_formatTime(sunrise)})',
+      offerDateTime: today.fajr,
+      windowStartDateTime: today.fajr,
+      windowEndDateTime: today.sunrise,
+      qazaDateTime: today.sunrise,
       totalRakats: 2,
     ),
     PrayerScheduleItem(
@@ -366,10 +522,10 @@ final prayerScheduleProvider = Provider<List<PrayerScheduleItem>>((ref) {
       name: 'Dhuhr',
       arabicName: 'الظهر',
       category: 'Fardh',
-      offerTime: _formatTime(dhuhr),
-      windowStart: _formatTime(dhuhr),
-      windowEnd: _formatTime(asr),
-      qaza: 'Until Asr (${_formatTime(asr)})',
+      offerDateTime: today.dhuhr,
+      windowStartDateTime: today.dhuhr,
+      windowEndDateTime: today.asr,
+      qazaDateTime: today.asr,
       totalRakats: 4,
     ),
     PrayerScheduleItem(
@@ -377,10 +533,10 @@ final prayerScheduleProvider = Provider<List<PrayerScheduleItem>>((ref) {
       name: 'Asr',
       arabicName: 'العصر',
       category: 'Fardh',
-      offerTime: _formatTime(asr),
-      windowStart: _formatTime(asr),
-      windowEnd: _formatTime(maghrib),
-      qaza: 'Until Maghrib (${_formatTime(maghrib)})',
+      offerDateTime: today.asr,
+      windowStartDateTime: today.asr,
+      windowEndDateTime: today.maghrib,
+      qazaDateTime: today.maghrib,
       totalRakats: 4,
     ),
     PrayerScheduleItem(
@@ -388,10 +544,10 @@ final prayerScheduleProvider = Provider<List<PrayerScheduleItem>>((ref) {
       name: 'Maghrib',
       arabicName: 'المغرب',
       category: 'Fardh',
-      offerTime: _formatTime(maghrib),
-      windowStart: _formatTime(maghrib),
-      windowEnd: _formatTime(isha),
-      qaza: 'Until Isha (${_formatTime(isha)})',
+      offerDateTime: today.maghrib,
+      windowStartDateTime: today.maghrib,
+      windowEndDateTime: today.isha,
+      qazaDateTime: today.isha,
       totalRakats: 3,
     ),
     PrayerScheduleItem(
@@ -399,10 +555,10 @@ final prayerScheduleProvider = Provider<List<PrayerScheduleItem>>((ref) {
       name: 'Isha',
       arabicName: 'العشاء',
       category: 'Fardh',
-      offerTime: _formatTime(isha),
-      windowStart: _formatTime(isha),
-      windowEnd: _formatTime(tahajjudStart),
-      qaza: 'Until midnight (${_formatTime(23 * 60 + 59)})',
+      offerDateTime: today.isha,
+      windowStartDateTime: today.isha,
+      windowEndDateTime: tahajjudStart,
+      qazaDateTime: tahajjudStart,
       totalRakats: 4,
     ),
     PrayerScheduleItem(
@@ -410,27 +566,28 @@ final prayerScheduleProvider = Provider<List<PrayerScheduleItem>>((ref) {
       name: 'Tahajjud',
       arabicName: 'التهجد',
       category: 'Nafl',
-      offerTime: '${_formatTime(tahajjudStart)} onward',
-      windowStart: _formatTime(tahajjudStart),
-      windowEnd: _formatTime(fajr),
-      qaza: 'Before Fajr (${_formatTime(fajr)})',
+      offerDateTime: tahajjudStart,
+      windowStartDateTime: tahajjudStart,
+      windowEndDateTime: tomorrow.fajr,
+      qazaDateTime: tomorrow.fajr,
       totalRakats: 3,
     ),
   ];
-});
-
-String _formatTime(int minuteOfDay) {
-  final normalized =
-      ((minuteOfDay % (24 * _minutesPerHour)) + (24 * _minutesPerHour)) %
-      (24 * _minutesPerHour);
-  final hour = normalized ~/ _minutesPerHour;
-  final minute = normalized % _minutesPerHour;
-  final suffix = hour >= 12 ? 'PM' : 'AM';
-  final displayHour = hour % 12 == 0 ? 12 : hour % 12;
-  final minuteText = minute.toString().padLeft(2, '0');
-  return '$displayHour:$minuteText $suffix';
 }
 
-int _normalizeMinute(int minute) =>
-    (minute % (24 * _minutesPerHour) + (24 * _minutesPerHour)) %
-    (24 * _minutesPerHour);
+String _formatTime(DateTime value) => DateFormat.jm().format(value);
+
+adhan.CalculationMethod _adhanMethod(PrayerCalculationMethod method) {
+  switch (method) {
+    case PrayerCalculationMethod.muslimWorldLeague:
+      return adhan.CalculationMethod.muslim_world_league;
+    case PrayerCalculationMethod.egyptian:
+      return adhan.CalculationMethod.egyptian;
+    case PrayerCalculationMethod.isna:
+      return adhan.CalculationMethod.north_america;
+    case PrayerCalculationMethod.karachi:
+      return adhan.CalculationMethod.karachi;
+    case PrayerCalculationMethod.ummAlQura:
+      return adhan.CalculationMethod.umm_al_qura;
+  }
+}

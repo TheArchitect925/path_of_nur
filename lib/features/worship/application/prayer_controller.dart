@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../shared/application/daily_clock_provider.dart';
 import '../../../shared/persistence/local_store.dart';
 import '../domain/daily_prayer_record.dart';
 import '../domain/prayer_name.dart';
@@ -8,21 +9,22 @@ import '../domain/prayer_summary.dart';
 
 class PrayerController extends StateNotifier<List<DailyPrayerRecord>> {
   PrayerController(this._store)
-    : super(
-        const [
-          DailyPrayerRecord(prayer: PrayerName.fajr),
-          DailyPrayerRecord(prayer: PrayerName.dhuhr),
-          DailyPrayerRecord(prayer: PrayerName.asr, status: PrayerStatus.completed),
-          DailyPrayerRecord(prayer: PrayerName.maghrib),
-          DailyPrayerRecord(prayer: PrayerName.isha),
-        ],
-      ) {
-    _loadToday();
+    : super(const [
+        DailyPrayerRecord(prayer: PrayerName.fajr),
+        DailyPrayerRecord(prayer: PrayerName.dhuhr),
+        DailyPrayerRecord(prayer: PrayerName.asr),
+        DailyPrayerRecord(prayer: PrayerName.maghrib),
+        DailyPrayerRecord(prayer: PrayerName.isha),
+      ]) {
+    _activeDayKey = LocalStore.todayKey();
+    _loadForDay(_activeDayKey);
   }
 
   final LocalStore _store;
+  late String _activeDayKey;
 
   void cycleStatus(PrayerName prayer) {
+    _syncDayIfNeeded();
     state = state
         .map(
           (record) => record.prayer == prayer
@@ -30,11 +32,30 @@ class PrayerController extends StateNotifier<List<DailyPrayerRecord>> {
               : record,
         )
         .toList();
-    _saveToday();
+    _saveForDay(_activeDayKey);
   }
 
-  void _loadToday() {
-    final dayKey = LocalStore.todayKey();
+  void onDayChanged(String dayKey, {bool force = false}) {
+    if (!force && dayKey == _activeDayKey) return;
+    _activeDayKey = dayKey;
+    _loadForDay(dayKey);
+  }
+
+  void _syncDayIfNeeded() {
+    final today = LocalStore.todayKey();
+    if (today != _activeDayKey) {
+      onDayChanged(today);
+    }
+  }
+
+  void _loadForDay(String dayKey) {
+    state = const [
+      DailyPrayerRecord(prayer: PrayerName.fajr),
+      DailyPrayerRecord(prayer: PrayerName.dhuhr),
+      DailyPrayerRecord(prayer: PrayerName.asr),
+      DailyPrayerRecord(prayer: PrayerName.maghrib),
+      DailyPrayerRecord(prayer: PrayerName.isha),
+    ];
     final data = _store.getJsonMap('worship.prayer.$dayKey');
     if (data == null) return;
 
@@ -51,8 +72,7 @@ class PrayerController extends StateNotifier<List<DailyPrayerRecord>> {
     }).toList();
   }
 
-  void _saveToday() {
-    final dayKey = LocalStore.todayKey();
+  void _saveForDay(String dayKey) {
     _store.setJsonMap('worship.prayer.$dayKey', {
       for (final record in state) record.prayer.name: record.status.name,
     });
@@ -60,9 +80,13 @@ class PrayerController extends StateNotifier<List<DailyPrayerRecord>> {
 }
 
 final prayerControllerProvider =
-    StateNotifierProvider<PrayerController, List<DailyPrayerRecord>>(
-      (ref) => PrayerController(ref.watch(localStoreProvider)),
-    );
+    StateNotifierProvider<PrayerController, List<DailyPrayerRecord>>((ref) {
+      final notifier = PrayerController(ref.watch(localStoreProvider));
+      ref.listen<String>(dailyKeyProvider, (_, next) {
+        notifier.onDayChanged(next);
+      });
+      return notifier;
+    });
 
 final prayerSummaryProvider = Provider<PrayerSummary>((ref) {
   final records = ref.watch(prayerControllerProvider);

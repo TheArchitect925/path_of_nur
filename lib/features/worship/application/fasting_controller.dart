@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../shared/application/daily_clock_provider.dart';
 import '../../../shared/persistence/local_store.dart';
 import '../domain/daily_fasting_record.dart';
 import '../domain/fasting_status.dart';
@@ -55,23 +56,39 @@ class FastingState {
 
 class FastingController extends StateNotifier<FastingState> {
   FastingController(this._store) : super(FastingState.initial()) {
-    _load();
+    _activeDayKey = LocalStore.todayKey();
+    _load(_activeDayKey);
   }
 
   final LocalStore _store;
+  late String _activeDayKey;
 
   void setType(FastingType type) {
+    _syncDayIfNeeded();
     state = state.copyWith(selectedType: type);
     _save();
   }
 
   void setStatus(FastingStatus status) {
+    _syncDayIfNeeded();
     state = state.copyWith(todayStatus: status);
     _save();
   }
 
-  void _load() {
-    final dayKey = LocalStore.todayKey();
+  void onDayChanged(String dayKey) {
+    if (dayKey == _activeDayKey) return;
+    _activeDayKey = dayKey;
+    _load(dayKey);
+  }
+
+  void _syncDayIfNeeded() {
+    final today = LocalStore.todayKey();
+    if (today != _activeDayKey) {
+      onDayChanged(today);
+    }
+  }
+
+  void _load(String dayKey) {
     final today = _store.getJsonMap('worship.fasting.$dayKey');
     final historyRaw = _store.getJsonList('worship.fasting.history');
 
@@ -137,8 +154,7 @@ class FastingController extends StateNotifier<FastingState> {
   }
 
   void _save() {
-    final dayKey = LocalStore.todayKey();
-    _store.setJsonMap('worship.fasting.$dayKey', {
+    _store.setJsonMap('worship.fasting.$_activeDayKey', {
       'selectedType': state.selectedType.name,
       'todayStatus': state.todayStatus.name,
     });
@@ -147,17 +163,23 @@ class FastingController extends StateNotifier<FastingState> {
       'worship.fasting.history',
       state.history
           .take(21)
-          .map((record) => {
-                'dateLabel': record.dateLabel,
-                'type': record.type.name,
-                'status': record.status.name,
-              })
+          .map(
+            (record) => {
+              'dateLabel': record.dateLabel,
+              'type': record.type.name,
+              'status': record.status.name,
+            },
+          )
           .toList(),
     );
   }
 }
 
 final fastingControllerProvider =
-    StateNotifierProvider<FastingController, FastingState>(
-      (ref) => FastingController(ref.watch(localStoreProvider)),
-    );
+    StateNotifierProvider<FastingController, FastingState>((ref) {
+      final notifier = FastingController(ref.watch(localStoreProvider));
+      ref.listen<String>(dailyKeyProvider, (_, next) {
+        notifier.onDayChanged(next);
+      });
+      return notifier;
+    });

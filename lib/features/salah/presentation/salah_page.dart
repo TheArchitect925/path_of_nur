@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../core/prayer/prayer_preferences.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../l10n/app_localizations.dart';
 import '../../../shared/widgets/global_background.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/quran_quote_block.dart';
@@ -14,8 +15,10 @@ class SalahTimesPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     final settings = ref.watch(prayerSettingsProvider);
     final schedule = ref.watch(prayerScheduleProvider);
+    final scheduleContext = ref.watch(prayerScheduleContextProvider);
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: Stack(
@@ -30,10 +33,10 @@ class SalahTimesPage extends ConsumerWidget {
                   Row(
                     children: [
                       IconButton(
-                    onPressed: () => context.pop(),
-                    icon: const Icon(Icons.arrow_back_ios_new_rounded),
-                    color: const Color(0xFF3C2F25),
-                  ),
+                        onPressed: () => context.pop(),
+                        icon: const Icon(Icons.arrow_back_ios_new_rounded),
+                        color: const Color(0xFF3C2F25),
+                      ),
                       const SizedBox(width: 4),
                       const Icon(
                         Icons.schedule,
@@ -89,20 +92,55 @@ class SalahTimesPage extends ConsumerWidget {
                     child: ListView.separated(
                       physics: const BouncingScrollPhysics(),
                       itemCount: schedule.length,
-                      separatorBuilder: (context, index) => const SizedBox(height: 14),
+                      separatorBuilder: (context, index) =>
+                          const SizedBox(height: 14),
                       itemBuilder: (context, index) {
                         final entry = schedule[index];
+                        final isNext = scheduleContext.nextPrayerId == entry.id;
+                        final isCurrent =
+                            scheduleContext.currentPrayerId == entry.id;
                         return PremiumCard(
                           child: Padding(
                             padding: const EdgeInsets.all(14),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
+                                if (isNext || isCurrent)
+                                  Container(
+                                    margin: const EdgeInsets.only(bottom: 8),
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 10,
+                                      vertical: 6,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(999),
+                                      color:
+                                          (isCurrent
+                                                  ? const Color(0xFF8FAF89)
+                                                  : const Color(0xFFB58D46))
+                                              .withValues(alpha: 0.2),
+                                      border: Border.all(
+                                        color: isCurrent
+                                            ? const Color(0xFF8FAF89)
+                                            : const Color(0xFFB58D46),
+                                      ),
+                                    ),
+                                    child: Text(
+                                      isCurrent
+                                          ? l10n.salahCurrentPrayerBadge
+                                          : l10n.salahNextPrayerBadge,
+                                      style: const TextStyle(
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                  ),
                                 Row(
                                   children: [
                                     Expanded(
                                       child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
                                           Text(
                                             entry.name,
@@ -131,7 +169,9 @@ class SalahTimesPage extends ConsumerWidget {
                                         vertical: 6,
                                       ),
                                       decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(999),
+                                        borderRadius: BorderRadius.circular(
+                                          999,
+                                        ),
                                         border: Border.all(
                                           color: AppColors.accentGoldSoft,
                                         ),
@@ -148,19 +188,28 @@ class SalahTimesPage extends ConsumerWidget {
                                   ],
                                 ),
                                 const SizedBox(height: 10),
-                                _MetaRow(label: 'Offer time', value: entry.offerTime),
+                                _MetaRow(
+                                  label: 'Offer time',
+                                  value: entry.offerTime,
+                                ),
                                 const SizedBox(height: 6),
                                 _MetaRow(
                                   label: 'Offer Window',
-                                  value: '${entry.windowStart} to ${entry.windowEnd}',
+                                  value:
+                                      '${entry.windowStart} to ${entry.windowEnd}',
                                 ),
                                 const SizedBox(height: 6),
                                 _MetaRow(label: 'Qaza time', value: entry.qaza),
                                 const SizedBox(height: 6),
-                                _MetaRow(label: 'Category', value: entry.category),
+                                _MetaRow(
+                                  label: 'Category',
+                                  value: entry.category,
+                                ),
                                 const SizedBox(height: 12),
                                 _NotificationButtons(
-                                  active: settings.notificationModes[entry.id] ??
+                                  l10n: l10n,
+                                  active:
+                                      settings.notificationModes[entry.id] ??
                                       PrayerNotificationMode.none,
                                   onSelect: (mode) => ref
                                       .read(prayerSettingsProvider.notifier)
@@ -185,10 +234,12 @@ class SalahTimesPage extends ConsumerWidget {
 
 class _NotificationButtons extends StatelessWidget {
   const _NotificationButtons({
+    required this.l10n,
     required this.active,
     required this.onSelect,
   });
 
+  final AppLocalizations l10n;
   final PrayerNotificationMode active;
   final ValueChanged<PrayerNotificationMode> onSelect;
 
@@ -196,6 +247,13 @@ class _NotificationButtons extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
+        _NotificationButton(
+          icon: Icons.notifications_off_outlined,
+          label: l10n.salahNotificationOff,
+          selected: active == PrayerNotificationMode.none,
+          onPressed: () => onSelect(PrayerNotificationMode.none),
+        ),
+        const SizedBox(width: 8),
         _NotificationButton(
           icon: Icons.notifications_none,
           label: 'Notification',
@@ -216,15 +274,6 @@ class _NotificationButtons extends StatelessWidget {
           selected: active == PrayerNotificationMode.reminderBeforeQaza,
           onPressed: () => onSelect(PrayerNotificationMode.reminderBeforeQaza),
         ),
-        const SizedBox(width: 8),
-        if (active == PrayerNotificationMode.none)
-          Text(
-            'None',
-            style: TextStyle(
-              fontSize: 11,
-              color: Colors.black.withValues(alpha: 0.5),
-            ),
-          ),
       ],
     );
   }

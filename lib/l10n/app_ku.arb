@@ -1,12 +1,142 @@
 {
   "@@locale": "ku",
+  "@circlesJoinedCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@circlesMembers": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@oceanCommunityPlaceholder": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@profilePlannedRemindersToday": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "allSalahTimes": "All Salah Times",
   "appTitle": "Path of Nur",
+  "assistantEmptyState": "Ask for a focus suggestion, reflection prompt, or where to go next.",
+  "assistantInputHint": "Type your message",
+  "assistantQuickActionsTitle": "Quick actions",
+  "assistantQuickPromptsTitle": "Suggestions",
+  "assistantRecentPromptsTitle": "Recent prompts",
+  "assistantSubtitle": "A calm companion for guidance, reflection, and app navigation.",
+  "assistantTitle": "Nur Assistant",
   "atTime": "at 1:30 PM",
   "ayahArabic": "واستعينوا بالصبر والصلاة",
   "ayahTranslation": "Seek help through patience and prayer. (2:45)",
   "ayahTranslit": "Wastaeenu bi-s-sabri wa-s-salah",
+  "babyNamesAnyOption": "Any",
+  "babyNamesBoysLabel": "Boys",
+  "babyNamesBrowseSearchSubtitle": "Explore names by meaning, region, and style.",
+  "babyNamesBrowseSearchTitle": "Browse & Search",
+  "babyNamesClassicRareBalanced": "Balanced",
+  "babyNamesClassicRareClassic": "Classic",
+  "babyNamesClassicRareLabel": "Style preference",
+  "babyNamesClassicRareRare": "Rare",
+  "babyNamesClearCompare": "Clear compare",
+  "babyNamesClearFilters": "Clear",
+  "babyNamesCollectionsTitle": "Curated Collections",
+  "babyNamesCompanionLabel": "Companion",
+  "babyNamesCompanionOnlyLabel": "Companion names only",
+  "babyNamesCompareAction": "Compare",
+  "babyNamesCompareEmpty": "Select at least 2 names to compare them side by side.",
+  "babyNamesCompareSubtitle": "See key details side by side before deciding.",
+  "babyNamesCompareTitle": "Compare Names",
+  "babyNamesEasyEnglishLabel": "Prefer easy-in-English names",
+  "babyNamesFatherNameLabel": "Father name (optional)",
+  "babyNamesFavoriteAction": "Favorite",
+  "babyNamesFavoritesEmpty": "No saved names yet. Favorite names from Browse or Detail pages.",
+  "babyNamesFavoritesSubtitle": "Your saved names, private notes, and final picks.",
+  "babyNamesFavoritesTitle": "Favorites & Shortlist",
+  "babyNamesFieldGender": "Gender",
+  "babyNamesFieldOrigin": "Origin",
+  "babyNamesFieldRoot": "Root",
+  "babyNamesFieldTags": "Tags",
+  "babyNamesFiltersTitle": "Filters",
+  "babyNamesFinderEmpty": "Add a few preferences to generate suggestions.",
+  "babyNamesFirstLetterLabel": "Preferred first letter",
+  "babyNamesGenderAny": "Any",
+  "babyNamesGenderLabel": "Gender",
+  "babyNamesGirlsLabel": "Girls",
+  "babyNamesHistoricalAssociationsTitle": "Historical Associations",
+  "babyNamesHistoricalTags": "Historical Tags",
+  "babyNamesMeaningTags": "Meaning Tags",
+  "babyNamesMotherNameLabel": "Mother name (optional)",
+  "babyNamesNameOfDay": "Name of the Day",
+  "babyNamesNoResults": "No names match this combination yet. Try easing one or two filters.",
+  "babyNamesOpenCompare": "Open compare",
+  "babyNamesOpenDetails": "Open details",
+  "babyNamesOriginFilterLabel": "Origin",
+  "babyNamesOverviewTitle": "Library Overview",
+  "babyNamesPreferredMeaningTags": "Preferred meaning themes",
+  "babyNamesPrivateNotesHint": "Write why this name stands out for your family.",
+  "babyNamesPrivateNotesTitle": "Private Notes",
+  "babyNamesQuranicAssociationsTitle": "Qur’anic Associations",
+  "babyNamesQuranicLabel": "Qur’anic",
+  "babyNamesQuranicOnlyLabel": "Qur’anic names only",
+  "babyNamesRarityClassic": "Classic",
+  "babyNamesRarityCommon": "Common",
+  "babyNamesRarityLabel": "Rarity",
+  "babyNamesRarityRare": "Rare",
+  "babyNamesRarityUncommon": "Uncommon",
+  "babyNamesReflectionTitle": "Reflection",
+  "babyNamesRegionFilterLabel": "Region",
+  "babyNamesRegionsTitle": "Common Regions",
+  "babyNamesRelatedNamesTitle": "Related Names",
+  "babyNamesResultsLabel": "results",
+  "babyNamesSaveNote": "Save note",
+  "babyNamesSavedCountLabel": "saved",
+  "babyNamesSearchHint": "Search by name, Arabic, transliteration, meaning, origin, or tags",
+  "babyNamesSelectedCountLabel": "selected",
+  "babyNamesShortlistAction": "Shortlist",
+  "babyNamesShortlistCountLabel": "in shortlist",
+  "babyNamesShortlistTitle": "Shortlist",
+  "babyNamesSmartFinderSubtitle": "Get thoughtful suggestions based on family preferences.",
+  "babyNamesSmartFinderTitle": "Smart Name Finder",
+  "babyNamesSortAlphabetical": "Alphabetical",
+  "babyNamesSortLabel": "Sort",
+  "babyNamesSortMostSaved": "Most saved",
+  "babyNamesSortPopularity": "Popularity",
+  "babyNamesSortQuranicPriority": "Qur’anic priority",
+  "babyNamesSortShortest": "Shortest",
+  "babyNamesStyleTags": "Style Tags",
+  "babyNamesSubtitle": "A calm family naming library with meaning, context, and guidance.",
+  "babyNamesSuggestionsLabel": "suggestions",
+  "babyNamesTitle": "Muslim Baby Names",
+  "babyNamesUnisexLabel": "Unisex",
+  "babyNamesVariantsTitle": "Variants & Spellings",
   "brotherName": "Brother Shahab",
+  "circlesActivityPreviewTitle": "Activity preview",
+  "circlesEventsTitle": "Upcoming events",
+  "circlesGuidance": "Keep interactions respectful, gentle, and centered on beneficial growth.",
+  "circlesJoin": "Join",
+  "circlesJoinedCount": "Joined circles: {count}",
+  "circlesJoinedEmpty": "You have not joined any circles yet.",
+  "circlesJoinedPageSubtitle": "Your active and saved circles in one place.",
+  "circlesJoinedPageTitle": "Joined circles",
+  "circlesLeave": "Leave",
+  "circlesMembers": "Members: {count}",
+  "circlesNotFound": "Circle not found.",
+  "circlesRecommendedTitle": "Recommended circles",
+  "circlesSavedTitle": "Saved circles",
+  "circlesSubtitle": "Discover circles for learning, reflection, and shared growth.",
+  "circlesTitle": "Community Circles",
   "dhikrSessionsLabel": "Dhikr sessions",
   "dhikrToday": "Dhikr today",
   "dhuhr": "Dhuhr",
@@ -18,6 +148,8 @@
   "homeDhikrLearningSubtitle": "Fast access to spiritual practices.",
   "homeDhikrLearningTitle": "Dhikr and Learning",
   "homeDhikrProgressTitle": "Dhikr progress",
+  "homeEcosystemSummarySubtitle": "Ocean, rewards, circles, journal, and assistant previews.",
+  "homeEcosystemSummaryTitle": "Growth ecosystem",
   "homeFastingBroken": "Missed / Broken",
   "homeFastingCompleted": "Completed",
   "homeFastingIntending": "Intending to fast",
@@ -46,6 +178,12 @@
   "homeLearnSummaryTitle": "Learn Summary",
   "homeLevelStreakSubtitle": "Growth signals without pressure.",
   "homeLevelStreakTitle": "Level and Streak",
+  "homeLocationAllowWhileUsingForPrayer": "Allow location only while using the app for accurate prayer times.",
+  "homeLocationBlockedOpenSettings": "Location access is blocked. Open settings to enable while using app.",
+  "homeLocationEnabledWhileUsing": "Location access is enabled while you use the app.",
+  "homeLocationPromptSubtitle": "Enable foreground location for accurate prayer times.",
+  "homeLocationPromptTitle": "Use location while using app?",
+  "homeLocationStatusCanUpdate": "Location permission status can be updated anytime.",
   "homeOverviewHeroSubtitle": "A compact summary of worship, learning, and growth.",
   "homeOverviewHeroTitle": "Daily Nur Overview",
   "homePrayerProgressTitle": "Prayer progress",
@@ -56,12 +194,52 @@
   "homeReflectionReminder": "\"Return softly to your intention. Small sincere acts build lasting light.\"",
   "homeReflectionSubtitle": "Centerpiece message for the day.",
   "homeReflectionTitle": "Reflection / Reminder",
+  "homeSearchClearTooltip": "Clear search",
+  "homeSearchCloseTooltip": "Close search",
+  "homeSearchHint": "Search pages, features, and sections",
+  "homeSearchNoResults": "No matching section found.",
+  "homeSearchTooltip": "Search the app",
   "homeSectionDailyNurSubtitle": "A high-level snapshot for reflection.",
   "homeSectionDailyNurTitle": "Daily Nur Progress",
+  "homeTapVerseCardHint": "Tap this card to change verse",
+  "homeWelcomeDailyIntentionSubtitle": "Start the day with gentle focus, reflection, and consistency.",
+  "homeWelcomeDailyIntentionTitle": "Daily Intention",
+  "homeWelcomeDhikrQuietSubtitle": "Choose calm moments to track reminders and intention.",
+  "homeWelcomeDhikrQuietTitle": "Dhikr and Quiet",
+  "homeWelcomePrayerRhythmSubtitle": "Today''s next salah and guidance are synced and visible below.",
+  "homeWelcomePrayerRhythmTitle": "Prayer Rhythm",
   "homeWorshipSummarySubtitle": "Prayer, dhikr, fasting, and Khusu in one place.",
   "homeWorshipSummaryTitle": "Worship Summary",
   "homeXpLevelTitle": "Level and XP",
   "homeXpToNextLevel": "XP to next level",
+  "journalBodyField": "Reflection",
+  "journalCreateAction": "New entry",
+  "journalCreateSubtitle": "Write a reflection, observation, or gratitude note.",
+  "journalCreateTitle": "Create Journal Entry",
+  "journalEmptyState": "No entries yet. Start your first reflection.",
+  "journalFilterAll": "All",
+  "journalFilterFavorites": "Favorites",
+  "journalLinkedHadithLabel": "Linked Hadith reference (optional)",
+  "journalLinkedQuranLabel": "Linked Qur''an reference (optional)",
+  "journalLinkedTopicLabel": "Linked topic (optional)",
+  "journalMemoryResurfaceTitle": "This time last year",
+  "journalPhotoAttached": "Photo reference attached",
+  "journalPhotoReferenceField": "Photo reference (optional)",
+  "journalPhotoReferenceHelper": "For now, add a local path or short photo note.",
+  "journalSearchLabel": "Search journal",
+  "journalSubtitle": "Record reflections, observations, and memory moments.",
+  "journalTagsHelper": "Example: moon, patience, family",
+  "journalTagsLabel": "Tags (comma separated)",
+  "journalTimelineIntro": "Capture intentional memories and revisit meaningful moments over time.",
+  "journalTitle": "Journal & Timeline",
+  "journalTitleField": "Title (optional)",
+  "journalTypeField": "Entry type",
+  "journalTypeGratitude": "Gratitude",
+  "journalTypeLearning": "Learning",
+  "journalTypeMemory": "Memory",
+  "journalTypeObservation": "Observation",
+  "journalTypeReflection": "Reflection",
+  "journalUntitled": "Untitled entry",
   "journeyBestStreakLabel": "Best streak",
   "journeyBestStreakValue": "18 days",
   "journeyCurrentStreakLabel": "Current streak",
@@ -70,6 +248,7 @@
   "journeyGrowthCardTitle": "Growth Visual Preview",
   "journeyGrowthSectionSubtitle": "A visual reflection of long-term spiritual growth.",
   "journeyGrowthSectionTitle": "Garden / Tree / Character Progression",
+  "journeyLearnSummaryBody": "{completed} completed learn topics from {started} started.",
   "journeyLevelMotivation": "Consistency builds depth. Small acts keep your journey moving.",
   "journeyLevelSectionSubtitle": "Long-term growth with steady progression.",
   "journeyLevelSectionTitle": "Level and XP",
@@ -89,6 +268,8 @@
   "journeyOceanCardTitle": "Community-inspired Drops",
   "journeyOceanSectionSubtitle": "A symbolic collective view of accumulated drops.",
   "journeyOceanSectionTitle": "Ocean of Drops",
+  "journeyRewardSummaryBody": "{unlocked} wallpapers unlocked out of {total}.",
+  "journeyRewardSummaryTitle": "Rewards and learning",
   "journeyRingDhikr": "Dhikr",
   "journeyRingFasting": "Fasting",
   "journeyRingPrayer": "Prayer",
@@ -108,6 +289,13 @@
   "journeyUnlocksSectionTitle": "Unlocks",
   "journeyWeeklyConsistencyLabel": "Weekly consistency",
   "journeyXpValue": "1620 XP",
+  "kidsHomeHint": "Kids mode is active with simpler guidance and gentle next steps.",
+  "kidsHomeReflectionHint": "\"Small kind actions shine brightly. What is one good thing from today?\"",
+  "kidsJourneyHint": "Kids mode: your journey grows with every sincere step.",
+  "kidsLearnHint": "Kids mode: explore stories and short lessons one at a time.",
+  "kidsModeSubtitle": "Simpler wording and gentler guidance for younger users.",
+  "kidsModeTitle": "Kids Mode",
+  "kidsWorshipHint": "Kids mode: focus on simple steps and calm consistency.",
   "languageArabic": "Arabic",
   "languageBengali": "Bengali",
   "languageDari": "Persian (Dari)",
@@ -125,6 +313,29 @@
   "languageTajik": "Persian (Tajik)",
   "languageTurkish": "Turkish",
   "languageUrdu": "Urdu",
+  "learnContentContinueTitle": "Continue learning",
+  "learnContentFavorite": "Favorite topic",
+  "learnContentFavorited": "Favorited",
+  "learnContentFavoritesSubtitle": "{count} favorited topics",
+  "learnContentFavoritesTitle": "Favorite topics",
+  "learnContentMarkComplete": "Mark complete",
+  "learnContentMarkIncomplete": "Mark incomplete",
+  "learnContentModeFocusTitle": "Mode focus",
+  "learnContentNotFound": "Content not found.",
+  "learnContentOverviewTitle": "Overview",
+  "learnContentPathComplete": "You reached the end of this staged path.",
+  "learnContentPathContinue": "Continue to the next related topic.",
+  "learnContentProgressTitle": "Progress tracking",
+  "learnContentReferencesTitle": "Related references",
+  "learnContentReflectionIdeasTitle": "Reflection ideas",
+  "learnContentReflectionProgress": "Reflection {percent}%",
+  "learnContentReflectionPromptTitle": "Reflection prompt",
+  "learnContentRelatedTopicsTitle": "Related topics",
+  "learnContentSave": "Save topic",
+  "learnContentSaved": "Saved",
+  "learnContentThemesTitle": "Key themes",
+  "learnContentTopicLabel": "Topic",
+  "learnContentUnavailableSubtitle": "This topic is not available yet.",
   "learnHadithCharacterSubtitle": "Adab, mercy, and conduct foundations.",
   "learnHadithCharacterTitle": "Character and Manners",
   "learnHadithFamilySubtitle": "Relationships, rights, and social balance.",
@@ -157,6 +368,9 @@
   "learnNotesSavedTitle": "Saved Notes",
   "learnNotesSectionSubtitle": "Study captures and personal insight placeholders.",
   "learnNotesSectionTitle": "Notes and Reflection",
+  "learnProgressCardSubtitle": "Started {started}, completed {completed}, favorites {favorite}",
+  "learnProgressCardTitle": "Learning progress",
+  "learnProgressSummary": "Started: {started}  Completed: {completed}  Favorites: {favorite}",
   "learnQuranBookmarksSubtitle": "Return to your saved ayat quickly.",
   "learnQuranBookmarksTitle": "Bookmarks",
   "learnQuranContinueSubtitle": "Resume your last reading session.",
@@ -169,6 +383,9 @@
   "learnQuranProgressTitle": "Reading Streak and Progress",
   "learnQuranSectionSubtitle": "Structured entry points for reading and review.",
   "learnQuranSectionTitle": "Quran Hub",
+  "learnResumeTopicSubtitle": "Continue: {topicId}",
+  "learnResumeTopicSubtitleEmpty": "Start with any topic and continue steadily.",
+  "learnResumeTopicTitle": "Resume topic",
   "learnSubtitle": "A focused knowledge path for reflection and deeper understanding.",
   "learnTabHadith": "Hadith",
   "learnTabLife": "Life",
@@ -187,86 +404,628 @@
   "learnWorldSectionSubtitle": "Creation-focused categories for reflection.",
   "learnWorldSectionTitle": "World through the Quran",
   "levelLabel": "Level",
+  "lifeAddReflectionSubtitle": "Capture what stood out to you from this lesson.",
+  "lifeAddReflectionTitle": "Add a reflection",
+  "lifeBrowseByThemeTitle": "Browse by theme",
+  "lifeComparativeTeachingsTitle": "Related teachings in other traditions",
+  "lifeContinueLearningTitle": "Continue learning",
+  "lifeFeaturedLessonTitle": "Featured lesson",
+  "lifeLessonsTitle": "Lessons",
+  "lifeMarkCompleted": "Mark completed",
+  "lifeMarkInProgress": "Mark in progress",
+  "lifePracticalTakeawayTitle": "Practical life takeaway",
+  "lifeProgressOverviewBody": "{completed} completed of {total} lessons, with {inProgress} in progress.",
+  "lifeProgressOverviewTitle": "Life curriculum progress",
+  "lifeQuranicPerspectiveTitle": "Qur''anic perspective",
+  "lifeRecentOpenedTitle": "Recently opened",
+  "lifeStatusCompleted": "Status: completed",
+  "lifeStatusInProgress": "Status: in progress",
+  "lifeStatusNotStarted": "Status: not started",
+  "lifeSubcategoriesTitle": "Subcategories",
+  "lifeSubcategoryLabel": "Subcategory",
+  "lifeSubcategoryProgress": "{completed} of {total} lessons completed",
+  "lifeSuggestedNextLessonTitle": "Suggested next lesson",
+  "lifeSuggestedPathTitle": "Suggested learning path",
+  "lifeThemeLabel": "Major theme",
+  "lifeThemeNextSubcategoryTitle": "Recommended next subcategory",
+  "lifeThemeProgress": "{completed} of {total} lessons completed in this theme",
+  "lifeThemeWhyMattersTitle": "Why this theme matters",
   "missedReminder": "Missed reminder",
+  "modeGentleActionOneStep": "One Step",
+  "modeGentleActionReflect": "Reflection",
+  "modeGentleHomeSubtitle": "Keep one sincere step at a time and avoid pressure.",
+  "modeGentleHomeTitle": "Gentle Mode Active",
+  "modeGentleJourneySubtitle": "Reduce pressure and focus on calm consistency.",
+  "modeGentleJourneyTitle": "Gentle Journey",
+  "modeGentleLearnSubtitle": "Keep learning concise and consistent without overload.",
+  "modeGentleLearnTitle": "Gentle Learning",
+  "modeGentleWorshipSubtitle": "Keep worship steady and light, with mercy toward yourself.",
+  "modeLossActionDhikr": "Dhikr",
+  "modeLossActionKhusu": "Khusu",
+  "modeLossActionMercy": "Mercy Verses",
+  "modeLossHomeSubtitle": "Move softly today with remembrance, patience, and mercy.",
+  "modeLossHomeTitle": "Loss Support",
+  "modeLossJourneySubtitle": "Growth is measured gently through patience and remembrance.",
+  "modeLossJourneyTitle": "Compassionate Journey",
+  "modeLossLearnSubtitle": "Choose healing reminders, mercy verses, and soft reflection.",
+  "modeLossLearnTitle": "Supportive Learning",
+  "modeLossWorshipSubtitle": "Focus on simple remembrance and compassionate consistency.",
+  "modeRamadanActionFasting": "Fasting",
+  "modeRamadanActionQuran": "Quran",
+  "modeRamadanActionReflect": "Reflect",
+  "modeRamadanHomeSubtitle": "Center today on fasting, Quran, and gentle reflection.",
+  "modeRamadanHomeTitle": "Ramadan Focus",
+  "modeRamadanJourneySubtitle": "Track intention, fasting rhythm, and nightly consistency.",
+  "modeRamadanJourneyTitle": "Ramadan Season Progress",
+  "modeRamadanLearnSubtitle": "Prioritize Quran recitation and short reflection sessions.",
+  "modeRamadanLearnTitle": "Ramadan Learning",
+  "modeRamadanWorshipQiyam": "Qiyam",
+  "modeRamadanWorshipSubtitle": "Fasting and nightly worship are highlighted for this season.",
+  "modeRamadanWorshipTaraweeh": "Taraweeh",
+  "modeRamadanWorshipTitle": "Ramadan Worship Focus",
   "navDhikr": "Worship",
   "navGarden": "Profile",
   "navHome": "Home",
   "navLearning": "Learn",
   "navPrayer": "Journey",
   "nextSalah": "Next Salah",
+  "oceanCommunityPlaceholder": "Community ocean placeholder: {count} drops",
+  "oceanHistoryTitle": "Recent drop history",
+  "oceanLocalDropsLabel": "Local drops",
+  "oceanNextMilestone": "Next milestone: {count} drops",
+  "oceanNoSourceData": "No source data yet. Complete daily actions to add drops.",
+  "oceanOpenPage": "Open Ocean",
+  "oceanSourceDhikr": "Dhikr sessions",
+  "oceanSourceFasting": "Fasting completion",
+  "oceanSourceLearning": "Learning engagement",
+  "oceanSourceMilestone": "Milestone / unlock",
+  "oceanSourcePrayer": "Prayer completion",
+  "oceanSourceQuran": "Qur''an engagement",
+  "oceanSourceReflection": "Reflection / journal",
+  "oceanSourcesTitle": "Drop sources",
+  "oceanStageFlowing": "Flowing",
+  "oceanStageLabel": "Stage: {stage}",
+  "oceanStageRising": "Rising Tide",
+  "oceanStageSpring": "Spring",
+  "oceanStageStream": "Stream",
+  "oceanStageVast": "Vast Ocean",
+  "oceanSubtitle": "Your local drops and symbolic contribution journey.",
+  "oceanTitle": "Ocean of Drops",
+  "oceanTodayDropsLabel": "Drops today",
+  "oceanWeekDropsLabel": "Drops this week",
   "oneToday": "1 today",
   "peaceUponYou": "Peace be upon you",
   "prayerHistory": "Prayer history",
   "prayersCompletedLabel": "Prayers completed",
+  "profileAboutSubtitle": "Product and app information.",
+  "profileAboutTitle": "About",
+  "profileAddressMeAs": "Address me as:",
+  "profileAllow": "Allow",
+  "profileAppearanceSubtitle": "Visual and atmosphere preferences.",
+  "profileAppearanceTitle": "Appearance",
+  "profileBrother": "Brother",
+  "profileCalculationMethodLabel": "Prayer calculation method",
+  "profileDhikrReminders": "Dhikr reminders",
+  "profileDisplayNameLabel": "Display name",
+  "profileEntrustDeedsSubtitle": "A gentle reminder: sincere deeds are with Allah.",
+  "profileEntrustDeedsTitle": "Entrust deeds",
+  "profileFastingReminders": "Fasting reminders",
+  "profileGentleModeSubtitle": "Lighter reminders and softer daily expectations.",
+  "profileGentleModeTitle": "Gentle Mode",
+  "profileHideGrowthVisualsSubtitle": "Limit streak and level visuals for a quieter experience.",
+  "profileHideGrowthVisualsTitle": "Hide growth visuals",
+  "profileHighContrastText": "High contrast text",
+  "profileLanguageExpandSubtitle": "Select language below",
+  "profileLanguageExpandTitle": "Language options",
+  "profileLocationDisabledSubtitle": "Enable to keep prayer times accurate.",
+  "profileLocationEnabledSubtitle": "Enabled for foreground use only.",
+  "profileLocationLabel": "Location",
+  "profileLocationWhileUsingApp": "Location while using app",
+  "profileLossModeSubtitle": "Gentle structure for spiritually heavy days.",
+  "profileLossModeTitle": "Loss Mode",
+  "profileMadhabLabel": "Madhab",
+  "profileMinimalTrackingModeSubtitle": "Track only key essentials with reduced metrics.",
+  "profileMinimalTrackingModeTitle": "Minimal tracking mode",
+  "profileMissionLine": "A calm spiritual companion built for consistent, sincere growth.",
+  "profileModesSubtitle": "Mode presets to support focus and consistency.",
+  "profileModesTitle": "Modes",
+  "profileNotificationsSubtitle": "Placeholder controls for future scheduling.",
+  "profileNotificationsTitle": "Notifications & Reminders",
+  "profileOpenSettings": "Open settings",
+  "profilePlannedRemindersToday": "{count} planned reminders today",
+  "profilePrayerReminders": "Prayer reminders",
+  "profilePrayerSettingsSubtitle": "Set location and calculation preferences.",
+  "profilePrayerSettingsTitle": "Prayer & Prayer Time Settings",
+  "profilePrivateTrackingModeSubtitle": "Keep progress visible only on this device.",
+  "profilePrivateTrackingModeTitle": "Private tracking mode",
+  "profileQuoteTranslation": "Whoever is mindful of Allah is guided toward balance and intention.",
+  "profileQuranReminders": "Qur''an reminders",
+  "profileRamadanClearDates": "Clear dates",
+  "profileRamadanDateRangeTitle": "Ramadan date range",
+  "profileRamadanDateWindowActive": "Today falls inside your Ramadan date window.",
+  "profileRamadanDateWindowInactive": "Today is outside your Ramadan date window.",
+  "profileRamadanEndDate": "End date",
+  "profileRamadanModeSubtitle": "Prioritize fasting rhythm and devotional consistency.",
+  "profileRamadanModeTitle": "Ramadan Mode",
+  "profileRamadanSetDates": "Set dates",
+  "profileRamadanStartDate": "Start date",
+  "profileReduceMotion": "Reduce motion effects",
+  "profileReflectionOnlyModeSubtitle": "Prioritize reminders and notes over progress visuals.",
+  "profileReflectionOnlyModeTitle": "Reflection-only mode",
+  "profileReflectionReminders": "Reflection reminders",
+  "profileSister": "Sister",
   "profileSubtitle": "Intention, preferences, and personalization.",
+  "profileSummarySubtitle": "Keep your intention steady and your settings aligned with ease.",
+  "profileThemeDark": "Dark",
+  "profileThemeLight": "Light",
+  "profileThemeModeLabel": "Theme mode",
+  "profileThemeSystem": "System",
   "profileTitle": "Profile",
+  "profileTrackingPrivacySubtitle": "Controls for reminders, summaries, and data intent.",
+  "profileTrackingPrivacyTitle": "Tracking & Privacy",
+  "profileVersionPlaceholder": "Version 0.1.7 (placeholder)",
+  "quranAddNote": "Add note",
+  "quranArabicTextSize": "Arabic size",
+  "quranAyahsLabel": "ayahs",
+  "quranBookmark": "Bookmark",
+  "quranBookmarksEmpty": "No bookmarks yet. Save an ayah from the reader.",
+  "quranBookmarksPageSubtitle": "Saved ayah locations from your reading.",
+  "quranCancel": "Cancel",
+  "quranCleanReadingMode": "Clean mode",
+  "quranClearRecent": "Clear recent",
+  "quranConsistencyNote": "Consistency in reading",
+  "quranDeleteNote": "Delete note",
+  "quranExplorerSubtitle": "Browse surahs and open your reading flow.",
+  "quranExplorerTitle": "Surah Explorer",
+  "quranNoteHint": "Write a short reflection",
+  "quranNotesEmpty": "No notes yet. Add one from the reader.",
+  "quranNotesHighlightsTitle": "Notes and Highlights",
+  "quranNotesSubtitle": "Your saved reflections and highlights.",
+  "quranNotesTitle": "Quran Notes",
+  "quranOpenInReader": "Open in reader",
+  "quranReaderSubtitle": "Read and reflect verse by verse.",
+  "quranRecentSearches": "Recent searches",
+  "quranRemoveBookmark": "Remove bookmark",
+  "quranSave": "Save",
+  "quranSavedLocations": "saved locations",
+  "quranSavedNotes": "saved notes",
+  "quranSearchHint": "Search by surah, number, or phrase",
+  "quranSearchNoRecent": "No recent searches yet.",
+  "quranSearchNoResults": "No matches found. Try a different keyword.",
+  "quranSearchSubtitle": "Find surahs and verses quickly.",
+  "quranSearchTitle": "Quran Search",
+  "quranSetContinueReading": "Set as continue reading",
+  "quranShowTranslation": "Translation text",
+  "quranShowTransliteration": "Transliteration",
   "quranSubtitle": "Read • Search • Notes",
+  "quranTapToResume": "Tap to resume",
   "quranTitle": "Quran",
+  "quranTranslationBengali": "Bengali Translation",
+  "quranTranslationClearQuran": "The Clear Quran",
+  "quranTranslationDari": "Dari Translation",
+  "quranTranslationIndonesian": "Indonesian Translation",
+  "quranTranslationLabel": "Translation",
+  "quranTranslationPickthallPlaceholder": "Pickthall (placeholder)",
+  "quranTranslationSahih": "Sahih International",
+  "quranTranslationTextSize": "Translation size",
+  "quranTranslationTurkish": "Turkish Translation",
+  "quranTranslationUrdu": "Urdu Translation",
+  "quranUnknownSurah": "Unknown surah",
+  "quranUpdatedContinueReading": "Continue reading was updated.",
   "reflectionQuote": "\"One sincere reminder can outweigh many scattered efforts.\"",
   "remainingTime": "2h 3m",
   "resumeWhereLeft": "Resume where left",
   "salahCompleted": "Salah completed",
+  "salahCurrentPrayerBadge": "Current prayer",
+  "salahNextPrayerBadge": "Next prayer",
+  "salahNotificationOff": "Off",
   "salahStreak": "Salah Streak",
   "sevenDays": "7 days",
   "start33Recitation": "Start 33 recitation",
   "streakLabel": "Streak",
+  "wallpaperApply": "Apply",
+  "wallpaperLibrarySubtitle": "Unlock and select wallpapers through growth.",
+  "wallpaperLibraryTitle": "Wallpaper Library",
+  "wallpaperRewardSummary": "Unlocked {unlocked}/{total}. Next: {hint}",
+  "wallpaperSelected": "Selected",
+  "worldAddReflectionSubtitle": "Capture what this sign in creation stirred in you.",
+  "worldAddReflectionTitle": "Add a reflection",
+  "worldBrowseByThemeTitle": "Browse by theme",
+  "worldComparativeTeachingsTitle": "Related teachings in other traditions",
+  "worldContinueLearningTitle": "Continue learning",
+  "worldFeaturedLessonTitle": "Featured lesson",
+  "worldLessonsTitle": "Lessons",
+  "worldMarkCompleted": "Mark completed",
+  "worldMarkInProgress": "Mark in progress",
+  "worldObservationCtaSubtitle": "Create a journal entry with optional photo reference.",
+  "worldObservationCtaTitle": "Record an observation",
+  "worldObservationPromptTitle": "Observation prompt",
+  "worldPracticalTakeawayTitle": "Practical takeaway",
+  "worldProgressOverviewBody": "{completed} completed of {total} lessons, with {inProgress} in progress.",
+  "worldProgressOverviewTitle": "World curriculum progress",
+  "worldQuranicPerspectiveTitle": "Qur''anic perspective",
+  "worldRecentOpenedTitle": "Recently opened",
+  "worldReflectiveTakeawayTitle": "Reflective takeaway",
+  "worldStatusCompleted": "Status: completed",
+  "worldStatusInProgress": "Status: in progress",
+  "worldStatusNotStarted": "Status: not started",
+  "worldSubcategoriesTitle": "Subcategories",
+  "worldSubcategoryLabel": "Subcategory",
+  "worldSubcategoryProgress": "{completed} of {total} lessons completed",
+  "worldSuggestedNextLessonTitle": "Suggested next lesson",
+  "worldSuggestedPathTitle": "Suggested learning path",
+  "worldThemeLabel": "Major theme",
+  "worldThemeNextSubcategoryTitle": "Recommended next subcategory",
+  "worldThemeProgress": "{completed} of {total} lessons completed in this theme",
+  "worldThemeWhyMattersTitle": "Why this theme matters",
+  "worshipPrayerNextPrefix": "Next",
+  "worshipPrayerUpcomingPrefix": "Upcoming",
   "worshipSubtitle": "Daily acts of devotion centered into a calm, intentional flow.",
   "worshipTitle": "Worship",
-  "profileQuoteTranslation": "Whoever is mindful of Allah is guided toward balance and intention.",
-  "profileSummarySubtitle": "Keep your intention steady and your settings aligned with ease.",
-  "profileDisplayNameLabel": "Display name",
-  "profileAddressMeAs": "Address me as:",
-  "profileBrother": "Brother",
-  "profileSister": "Sister",
-  "profilePrayerSettingsTitle": "Prayer & Prayer Time Settings",
-  "profilePrayerSettingsSubtitle": "Set location and calculation preferences.",
-  "profileLocationLabel": "Location",
-  "profileMadhabLabel": "Madhab",
-  "profileCalculationMethodLabel": "Prayer calculation method",
-  "profileAppearanceTitle": "Appearance",
-  "profileAppearanceSubtitle": "Visual and atmosphere preferences.",
-  "profileThemeModeLabel": "Theme mode",
-  "profileThemeSystem": "System",
-  "profileThemeDark": "Dark",
-  "profileThemeLight": "Light",
-  "profileReduceMotion": "Reduce motion effects",
-  "profileHighContrastText": "High contrast text",
-  "profileModesTitle": "Modes",
-  "profileModesSubtitle": "Mode presets to support focus and consistency.",
-  "profileRamadanModeTitle": "Ramadan Mode",
-  "profileRamadanModeSubtitle": "Prioritize fasting rhythm and devotional consistency.",
-  "profileLossModeTitle": "Loss Mode",
-  "profileLossModeSubtitle": "Gentle structure for spiritually heavy days.",
-  "profileGentleModeTitle": "Gentle Mode",
-  "profileGentleModeSubtitle": "Lighter reminders and softer daily expectations.",
-  "profileTrackingPrivacyTitle": "Tracking & Privacy",
-  "profileTrackingPrivacySubtitle": "Controls for reminders, summaries, and data intent.",
-  "profileLocationWhileUsingApp": "Location while using app",
-  "profileLocationEnabledSubtitle": "Enabled for foreground use only.",
-  "profileLocationDisabledSubtitle": "Enable to keep prayer times accurate.",
-  "profileOpenSettings": "Open settings",
-  "profileAllow": "Allow",
-  "profilePrivateTrackingModeTitle": "Private tracking mode",
-  "profilePrivateTrackingModeSubtitle": "Keep progress visible only on this device.",
-  "profileMinimalTrackingModeTitle": "Minimal tracking mode",
-  "profileMinimalTrackingModeSubtitle": "Track only key essentials with reduced metrics.",
-  "profileHideGrowthVisualsTitle": "Hide growth visuals",
-  "profileHideGrowthVisualsSubtitle": "Limit streak and level visuals for a quieter experience.",
-  "profileReflectionOnlyModeTitle": "Reflection-only mode",
-  "profileReflectionOnlyModeSubtitle": "Prioritize reminders and notes over progress visuals.",
-  "profileEntrustDeedsTitle": "Entrust deeds",
-  "profileEntrustDeedsSubtitle": "A gentle reminder: sincere deeds are with Allah.",
-  "profileNotificationsTitle": "Notifications & Reminders",
-  "profileNotificationsSubtitle": "Placeholder controls for future scheduling.",
-  "profilePrayerReminders": "Prayer reminders",
-  "profileDhikrReminders": "Dhikr reminders",
-  "profileQuranReminders": "Qur''an reminders",
-  "profileReflectionReminders": "Reflection reminders",
-  "profileFastingReminders": "Fasting reminders",
-  "profileLanguageExpandTitle": "Language options",
-  "profileLanguageExpandSubtitle": "Select language below",
-  "profileAboutTitle": "About",
-  "profileAboutSubtitle": "Product and app information.",
-  "profileMissionLine": "A calm spiritual companion built for consistent, sincere growth.",
-  "profileVersionPlaceholder": "Version 0.1.7 (placeholder)"
+  "@lifeProgressOverviewBody": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      },
+      "inProgress": {
+        "type": "int"
+      }
+    }
+  },
+  "@lifeSubcategoryProgress": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "@lifeThemeProgress": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "@worldProgressOverviewBody": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      },
+      "inProgress": {
+        "type": "int"
+      }
+    }
+  },
+  "@worldSubcategoryProgress": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "@worldThemeProgress": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "quranWordTranslationChip": "Word translation",
+  "quranAudioV2Title": "Audio v2",
+  "quranRepeatFromLabel": "Repeat from",
+  "quranRepeatToLabel": "Repeat to",
+  "quranNoneLabel": "None",
+  "quranAyahNumberLabel": "Ayah {ayah}",
+  "@quranAyahNumberLabel": {
+    "placeholders": {
+      "ayah": {
+        "type": "int"
+      }
+    }
+  },
+  "quranLoopCountLabel": "Loop count",
+  "quranPlayLoopLabel": "Play loop",
+  "quranLoopRangeHint": "Set both range edges to enable loop playback.",
+  "quranMemorizationTitle": "Memorization (Hifz)",
+  "quranHifzRevealModeFull": "Reveal",
+  "quranHifzRevealModeFirstWord": "First word",
+  "quranHifzRevealModeHidden": "Hide",
+  "quranDailyRevisionPlanLabel": "Daily revision plan ({count} ayahs)",
+  "@quranDailyRevisionPlanLabel": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "quranDailyRevisionEmpty": "No checkpoints yet. Add one while reviewing ayahs.",
+  "quranOpenReviewDeckLabel": "Open review deck ({count})",
+  "@quranOpenReviewDeckLabel": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "quranPinForReviewLabel": "Pin for review",
+  "quranUnpinWordLabel": "Unpin word",
+  "quranPlayAyahTooltip": "Play ayah",
+  "quranHifzCheckpointTooltip": "Hifz checkpoint",
+  "quranNotesFoldersTagsTitle": "Folders and tags",
+  "quranNotesFolderLabel": "Folder",
+  "quranNotesTagLabel": "Tag",
+  "quranNotesFolderHint": "General",
+  "quranNotesFolderDefault": "General",
+  "quranNotesTagsLabel": "Tags",
+  "quranNotesTagsHint": "gratitude, dua, patience",
+  "quranSaveAsHighlightLabel": "Save as highlight",
+  "quranHighlightLabelInput": "Highlight label",
+  "quranHighlightHint": "Key reminder",
+  "quranHighlightLabel": "Highlight",
+  "quranUnknownDateLabel": "Unknown date",
+  "quranTopWordsTitle": "Quran Top Words",
+  "quranTopWordsSubtitle": "Study frequent Quran vocabulary with transliteration and meaning.",
+  "quranWordReviewTitle": "Word Review Deck",
+  "quranWordReviewSubtitle": "Pin words from reader word-by-word mode to study here.",
+  "quranWordReviewEmpty": "No pinned words yet. Open any ayah, tap a word, and pin it first.",
+  "quranWordReviewProgressLabel": "{current} of {total} pinned words",
+  "@quranWordReviewProgressLabel": {
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "quranWordReviewRevealHint": "Tap reveal to check transliteration and meaning.",
+  "quranWordReviewHide": "Hide",
+  "quranWordReviewReveal": "Reveal",
+  "quranWordReviewAgain": "Again",
+  "quranWordReviewEasy": "Easy",
+  "quranWordReviewHubSubtitle": "{count} pinned words • review and strengthen recall.",
+  "@quranWordReviewHubSubtitle": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "quranNamesOfAllahTitle": "99 Names of Allah",
+  "quranNamesOfAllahSubtitle": "Learn each name in Arabic with transliteration and meaning.",
+  "@learnContentReflectionProgress": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "@learnProgressSummary": {
+    "placeholders": {
+      "started": {
+        "type": "int"
+      },
+      "completed": {
+        "type": "int"
+      },
+      "favorite": {
+        "type": "int"
+      }
+    }
+  },
+  "@learnProgressCardSubtitle": {
+    "placeholders": {
+      "started": {
+        "type": "int"
+      },
+      "completed": {
+        "type": "int"
+      },
+      "favorite": {
+        "type": "int"
+      }
+    }
+  },
+  "@learnResumeTopicSubtitle": {
+    "placeholders": {
+      "topicId": {
+        "type": "String"
+      }
+    }
+  },
+  "@learnContentFavoritesSubtitle": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@oceanStageLabel": {
+    "placeholders": {
+      "stage": {
+        "type": "String"
+      }
+    }
+  },
+  "@oceanNextMilestone": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@wallpaperRewardSummary": {
+    "placeholders": {
+      "unlocked": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      },
+      "hint": {
+        "type": "String"
+      }
+    }
+  },
+  "@journeyRewardSummaryBody": {
+    "placeholders": {
+      "unlocked": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "@journeyLearnSummaryBody": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "started": {
+        "type": "int"
+      }
+    }
+  },
+  "learnTrackSelectorTitle": "ڕێگای فێربوونی پێشنیارکراو",
+  "learnBundleManagerTitle": "پەکەجەکانی ناوەڕۆکی ئۆفلاین",
+  "learnBundleManagerSubtitle": "ئێستا پەکەجە قۆناغییەکان دابمەزرێنە. بنەماکە بۆ هاوکاتکردنی دوورەوەی داهاتوو ئامادەیە.",
+  "learnTrackBeginner": "دەستپێکەر",
+  "learnTrackFamily": "خێزان",
+  "learnTrackCharacter": "ڕەوشت",
+  "learnTrackRamadan": "ڕەمەزان",
+  "learnTrackRevert": "نوێ‌موسڵمان",
+  "learnCitationPanelTitle": "سەرچاوەکان و تێبینییەکانی باوەڕپێکراوی",
+  "learnCompletionQualityTitle": "کوالێتی تەواوبوون",
+  "learnQualityNotRead": "نەخوێندراوە",
+  "learnQualityRead": "خوێندراوە",
+  "learnQualityReflected": "لێی بیرکراوەتەوە",
+  "learnQualityApplied": "جێبەجێکراوە",
+  "learnQualityLabel": "کوالێتی: {quality}",
+  "@learnQualityLabel": {
+    "placeholders": {
+      "quality": {}
+    }
+  },
+  "learnContinueReasonWithTrack": "ئەمە بۆ ڕێگای {track} ـی تۆ بە پشتبەستن بە تازەیی و مەبەست ڕیزبەندی کراوە.",
+  "@learnContinueReasonWithTrack": {
+    "placeholders": {
+      "track": {}
+    }
+  },
+  "circlesV2HubSubtitle": "Community forum + mosque buddy spaces are local-first and respectful.",
+  "circlesEventsCalendarTitle": "Events calendar",
+  "circlesEventsCalendarSubtitle": "Upcoming local events with RSVP tracking.",
+  "circlesMosqueBuddyPrefsTitle": "Mosque Buddy",
+  "circlesMosqueBuddyPrefsSubtitle": "Set distance, prayer habits, interests, and availability windows.",
+  "circlesModerationTitle": "Moderation & Safety",
+  "circlesModerationSubtitle": "Reporting, trust level, and content policy surfaces.",
+  "circlesAccountabilityTitle": "Accountability groups",
+  "circlesAccountabilitySubtitle": "Private support groups for prayer and habit streaks.",
+  "circlesNearbyMosquesTitle": "Nearby mosques",
+  "circlesNearbyMosquesSubtitle": "Import local prayer timetables and keep one selected.",
+  "circlesOpen": "Open",
+  "circlesRsvpGoing": "Going",
+  "circlesRsvpInterested": "Interested",
+  "circlesRsvpNotGoing": "Not going",
+  "circlesNoEvents": "No upcoming events right now.",
+  "circlesBuddyDistance": "Max distance",
+  "circlesBuddyPrayerConsistency": "Prayer habits",
+  "circlesBuddyInterests": "Interests",
+  "circlesBuddyAvailability": "Availability windows",
+  "circlesBuddyMatchesTitle": "Suggested buddies",
+  "circlesNoMatches": "No close matches yet. Adjust your preferences.",
+  "circlesTrustLevelTitle": "Trust level",
+  "circlesPolicyTitle": "Community policy",
+  "circlesPolicyBody": "Respectful conduct, verified meetups, no harassment, and no harmful/offensive content. Report concerns early.",
+  "circlesReportLogTitle": "Report log",
+  "circlesReportLogEmpty": "No reports submitted yet.",
+  "circlesTrustLevelLow": "New member",
+  "circlesTrustLevelMedium": "Trusted",
+  "circlesTrustLevelHigh": "Steward",
+  "circlesReport": "Report",
+  "circlesReportSubmitted": "Report submitted for moderation review.",
+  "circlesAccountabilityCheckIn": "Check in",
+  "circlesAccountabilityJoined": "Joined",
+  "circlesAccountabilityStreak": "Check-in streak",
+  "circlesImportTimetable": "Import timetable",
+  "circlesImported": "Imported",
+  "circlesMosqueSelected": "Selected mosque timetable",
+  "circlesCityLabel": "City",
+  "circlesFocusLabel": "Focus",
+  "circlesMosqueBuddyActive": "Mosque buddy active",
+  "circlesMosqueBuddyFind": "Find mosque buddy",
+  "circlesEventCapacity": "Going {going}/{capacity} • Interested {interested}",
+  "@circlesEventCapacity": {
+    "placeholders": {
+      "going": {},
+      "capacity": {},
+      "interested": {}
+    }
+  },
+  "circlesWaitlistActive": "Capacity reached. New Going responses are moved to interested/waitlist.",
+  "circlesEventFiltersTitle": "Event filters",
+  "circlesFilterCircle": "Circle",
+  "circlesFilterCategory": "Category",
+  "circlesFilterCity": "City",
+  "circlesFilterAll": "All",
+  "circlesRosterPreviewTitle": "Roster preview",
+  "circlesRosterGoingPreview": "Going: {names}",
+  "@circlesRosterGoingPreview": {
+    "placeholders": {
+      "names": {}
+    }
+  },
+  "circlesRosterInterestedPreview": "Interested: {names}",
+  "@circlesRosterInterestedPreview": {
+    "placeholders": {
+      "names": {}
+    }
+  },
+  "circlesRosterWaitlistCount": "Waitlist count: {count}",
+  "@circlesRosterWaitlistCount": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "circlesCreateEvent": "Create event",
+  "circlesCreateEventModerationHint": "User-created events are local for now. Future releases can enable mosque moderator approval workflows.",
+  "circlesCreateEventTitleLabel": "Event title",
+  "circlesCreateEventLocationLabel": "Location",
+  "circlesCreateEventDescriptionLabel": "Description",
+  "circlesCreateEventCreatorLabel": "Organizer name (optional)",
+  "circlesCreateEventDateValue": "Date: {date}",
+  "@circlesCreateEventDateValue": {
+    "placeholders": {
+      "date": {}
+    }
+  },
+  "circlesCreateEventCapacityLabel": "Capacity: {count}",
+  "@circlesCreateEventCapacityLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "circlesCreateEventValidation": "Please fill title, location, and description.",
+  "circlesCreateEventSubmit": "Save event",
+  "circlesCreateEventSuccess": "Event created and added to calendar."
 }

@@ -1,0 +1,219 @@
+import 'dart:math' as math;
+
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../../../../shared/widgets/app_page_scaffold.dart';
+import '../../../../../shared/widgets/premium_card.dart';
+import '../application/quran_words_provider.dart';
+import '../domain/quran_core_word.dart';
+
+enum _BandFilter { top25, top50, top100, all }
+
+class QuranWordsPage extends ConsumerStatefulWidget {
+  const QuranWordsPage({super.key});
+
+  @override
+  ConsumerState<QuranWordsPage> createState() => _QuranWordsPageState();
+}
+
+class _QuranWordsPageState extends ConsumerState<QuranWordsPage> {
+  _BandFilter _filter = _BandFilter.top50;
+  String _query = '';
+
+  @override
+  Widget build(BuildContext context) {
+    final wordsAsync = ref.watch(quranCoreWordsProvider);
+    final progress = ref.watch(quranWordsProgressProvider);
+    final progressNotifier = ref.read(quranWordsProgressProvider.notifier);
+
+    return AppPageScaffold(
+      headerIcon: Icons.translate_rounded,
+      title: 'Quran Top Words',
+      subtitle:
+          'Learn high-frequency Quran words (derived from your Top 500 Words source).',
+      children: [
+        PremiumCard(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Study Bands',
+                style: TextStyle(fontWeight: FontWeight.w700),
+              ),
+              const SizedBox(height: 8),
+              Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: [
+                  _BandChip(
+                    label: 'Top 25',
+                    selected: _filter == _BandFilter.top25,
+                    onTap: () => setState(() => _filter = _BandFilter.top25),
+                  ),
+                  _BandChip(
+                    label: 'Top 50',
+                    selected: _filter == _BandFilter.top50,
+                    onTap: () => setState(() => _filter = _BandFilter.top50),
+                  ),
+                  _BandChip(
+                    label: 'Top 100',
+                    selected: _filter == _BandFilter.top100,
+                    onTap: () => setState(() => _filter = _BandFilter.top100),
+                  ),
+                  _BandChip(
+                    label: 'All Loaded',
+                    selected: _filter == _BandFilter.all,
+                    onTap: () => setState(() => _filter = _BandFilter.all),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 10),
+              TextField(
+                onChanged: (value) => setState(() => _query = value),
+                decoration: const InputDecoration(
+                  hintText: 'Search transliteration or meaning',
+                  prefixIcon: Icon(Icons.search_rounded),
+                  border: OutlineInputBorder(),
+                  isDense: true,
+                ),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 12),
+        wordsAsync.when(
+          data: (words) {
+            final visible = _applyFilter(words, _filter, _query);
+            final visibleRanks = visible.map((e) => e.rank).toSet();
+            final masteredVisible = progress.masteredRanks
+                .where(visibleRanks.contains)
+                .length;
+            final ratio = visible.isEmpty
+                ? 0.0
+                : masteredVisible / visible.length;
+            final sample = visible.isEmpty
+                ? null
+                : visible[math.Random().nextInt(visible.length)];
+
+            return Column(
+              children: [
+                PremiumCard(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        '$masteredVisible / ${visible.length} mastered',
+                        style: const TextStyle(fontWeight: FontWeight.w700),
+                      ),
+                      const SizedBox(height: 8),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(999),
+                        child: LinearProgressIndicator(
+                          minHeight: 8,
+                          value: ratio,
+                        ),
+                      ),
+                      if (sample != null) ...[
+                        const SizedBox(height: 10),
+                        Text(
+                          'Flash card: ${sample.transliteration}  •  ${sample.meaning}',
+                          style: const TextStyle(
+                            color: Color(0xFF6A5A4A),
+                            height: 1.3,
+                          ),
+                        ),
+                      ],
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 12),
+                if (visible.isEmpty)
+                  const PremiumCard(
+                    child: Text('No words match this filter yet.'),
+                  )
+                else
+                  ...visible.map((word) {
+                    final mastered = progress.masteredRanks.contains(word.rank);
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: 10),
+                      child: PremiumCard(
+                        child: ListTile(
+                          contentPadding: EdgeInsets.zero,
+                          title: Text(
+                            '#${word.rank} • ${word.transliteration}',
+                            style: const TextStyle(fontWeight: FontWeight.w700),
+                          ),
+                          subtitle: Text(
+                            '${word.meaning}${word.occurrences > 0 ? ' • ${word.occurrences} verses' : ''}',
+                          ),
+                          trailing: Checkbox(
+                            value: mastered,
+                            onChanged: (_) =>
+                                progressNotifier.toggleMastered(word.rank),
+                          ),
+                          onTap: () =>
+                              progressNotifier.toggleMastered(word.rank),
+                        ),
+                      ),
+                    );
+                  }),
+              ],
+            );
+          },
+          loading: () => const PremiumCard(child: LinearProgressIndicator()),
+          error: (error, _) =>
+              PremiumCard(child: Text('Unable to load Quran words: $error')),
+        ),
+      ],
+    );
+  }
+
+  List<QuranCoreWord> _applyFilter(
+    List<QuranCoreWord> words,
+    _BandFilter filter,
+    String query,
+  ) {
+    var output = words;
+    switch (filter) {
+      case _BandFilter.top25:
+        output = words.where((item) => item.rank <= 25).toList();
+        break;
+      case _BandFilter.top50:
+        output = words.where((item) => item.rank <= 50).toList();
+        break;
+      case _BandFilter.top100:
+        output = words.where((item) => item.rank <= 100).toList();
+        break;
+      case _BandFilter.all:
+        break;
+    }
+    final trimmed = query.trim().toLowerCase();
+    if (trimmed.isEmpty) return output;
+    return output.where((item) {
+      return item.transliteration.toLowerCase().contains(trimmed) ||
+          item.meaning.toLowerCase().contains(trimmed);
+    }).toList();
+  }
+}
+
+class _BandChip extends StatelessWidget {
+  const _BandChip({
+    required this.label,
+    required this.selected,
+    required this.onTap,
+  });
+
+  final String label;
+  final bool selected;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return ChoiceChip(
+      label: Text(label),
+      selected: selected,
+      onSelected: (_) => onTap(),
+    );
+  }
+}

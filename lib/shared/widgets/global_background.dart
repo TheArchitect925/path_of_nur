@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class GlobalBackground extends StatelessWidget {
+import '../../features/wallpaper/application/wallpaper_provider.dart';
+
+class GlobalBackground extends ConsumerWidget {
   const GlobalBackground({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final wallpaper = ref.watch(selectedWallpaperProvider);
     return Positioned.fill(
       child: Image.asset(
-        'assets/images/backgrounds/bg_v1.png',
+        wallpaper.assetPath,
         fit: BoxFit.cover,
         color: const Color(0xFFEDE6DE).withValues(alpha: 0.65),
         colorBlendMode: BlendMode.srcATop,

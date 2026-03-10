@@ -11,23 +11,26 @@ class LearnActionCard extends StatelessWidget {
     required this.subtitle,
     required this.icon,
     this.sectionId,
+    this.onTap,
   });
 
   final String title;
   final String subtitle;
   final IconData icon;
   final String? sectionId;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
     return PremiumCard(
       child: InkWell(
-        onTap: sectionId == null
-            ? null
-            : () => context.pushNamed(
-                  'featureSection',
-                  pathParameters: {'sectionId': sectionId!},
-                ),
+        onTap: onTap ??
+            (sectionId == null
+                ? null
+                : () => context.pushNamed(
+                      'featureSection',
+                      pathParameters: {'sectionId': sectionId!},
+                    )),
         child: Row(
           children: [
             Container(
@@ -65,9 +68,11 @@ class LearnTopicGrid extends StatelessWidget {
   const LearnTopicGrid({
     super.key,
     required this.topics,
+    this.onTopicTap,
   });
 
   final List<String> topics;
+  final ValueChanged<String>? onTopicTap;
 
   @override
   Widget build(BuildContext context) {
@@ -80,17 +85,20 @@ class LearnTopicGrid extends StatelessWidget {
               width: (MediaQuery.of(context).size.width - 16 * 2 - 10 - 2) / 2,
               child: PremiumCard(
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
-                child: Row(
-                  children: [
-                    const Icon(Icons.auto_stories_outlined, size: 18),
-                    const SizedBox(width: 8),
-                    Expanded(
-                      child: Text(
-                        topic,
-                        style: const TextStyle(fontWeight: FontWeight.w600),
+                child: InkWell(
+                  onTap: onTopicTap == null ? null : () => onTopicTap!(topic),
+                  child: Row(
+                    children: [
+                      const Icon(Icons.auto_stories_outlined, size: 18),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: Text(
+                          topic,
+                          style: const TextStyle(fontWeight: FontWeight.w600),
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -99,4 +107,3 @@ class LearnTopicGrid extends StatelessWidget {
     );
   }
 }
-
