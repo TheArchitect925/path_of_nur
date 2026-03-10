@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../l10n/app_localizations.dart';
+import '../../../shared/theme/islamic_icons.dart';
 import '../../../shared/widgets/app_page_scaffold.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/quran_navigation.dart';
@@ -44,7 +45,7 @@ class WorshipPage extends ConsumerWidget {
     final mode = ref.watch(specialModeProvider);
 
     return AppPageScaffold(
-      headerIcon: Icons.self_improvement_rounded,
+      headerIcon: IslamicIcons.prayer,
       title: l10n.worshipTitle,
       subtitle: l10n.worshipSubtitle,
       quote: const QuranQuote(

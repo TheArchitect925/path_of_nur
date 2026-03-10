@@ -8,6 +8,7 @@ import '../../../features/ocean/application/ocean_drops_provider.dart';
 import '../../../features/wallpaper/application/wallpaper_provider.dart';
 import '../../../features/learn/content/application/learn_progress_provider.dart';
 import '../../../shared/application/special_mode_provider.dart';
+import '../../../shared/theme/islamic_icons.dart';
 import '../../../shared/widgets/app_page_scaffold.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/quran_quote_block.dart';
@@ -56,7 +57,7 @@ class _JourneyPageState extends ConsumerState<JourneyPage> {
     final mode = ref.watch(specialModeProvider);
     final weeklyReview = ref.watch(weeklyReflectionReviewSummaryProvider);
     return AppPageScaffold(
-      headerIcon: Icons.route_outlined,
+      headerIcon: IslamicIcons.tasbih,
       title: l10n.journeyTitle,
       subtitle: l10n.journeySubtitle,
       quote: const QuranQuote(
@@ -92,28 +93,28 @@ class _JourneyPageState extends ConsumerState<JourneyPage> {
           },
           items: [
             _JourneyHubItem(
-              icon: Icons.eco_outlined,
+              icon: IslamicIcons.family,
               title: l10n.journeyGrowthSectionTitle,
               subtitle: l10n.journeyStreakSectionTitle,
               routeName: 'journey',
               scrollToSectionId: 'journey-garden',
             ),
             _JourneyHubItem(
-              icon: Icons.autorenew_rounded,
+              icon: IslamicIcons.prayer,
               title: l10n.journeyRingsSectionTitle,
               subtitle: l10n.journeyRingsSectionSubtitle,
               routeName: 'journey',
               scrollToSectionId: 'journey-rings',
             ),
             _JourneyHubItem(
-              icon: Icons.workspace_premium_outlined,
+              icon: IslamicIcons.ninetyNine,
               title: l10n.journeyMilestoneSectionTitle,
               subtitle: l10n.journeyUnlocksSectionTitle,
               routeName: 'journey',
               scrollToSectionId: 'journey-milestones',
             ),
             _JourneyHubItem(
-              icon: Icons.water_drop_outlined,
+              icon: IslamicIcons.community,
               title: l10n.journeyOceanSectionTitle,
               subtitle: l10n.oceanTitle,
               routeName: 'oceanDrops',

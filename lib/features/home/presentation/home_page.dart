@@ -16,6 +16,7 @@ import '../../../shared/application/app_summary_providers.dart';
 import '../../../shared/application/special_mode_provider.dart';
 import '../../../shared/state/shell_state.dart';
 import '../../../shared/state/user_profile_state.dart';
+import '../../../shared/theme/islamic_icons.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/section_title.dart';
 import '../data/home_verses.dart';
@@ -188,7 +189,7 @@ class _TopGreetingBlock extends StatelessWidget {
             Row(
               children: [
                 const Icon(
-                  Icons.home_filled,
+                  IslamicIcons.mosque,
                   size: 24,
                   color: Color(0xFF6E563E),
                 ),

@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../core/prayer/prayer_preferences.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../l10n/app_localizations.dart';
+import '../../../shared/theme/islamic_icons.dart';
 import '../../../shared/widgets/global_background.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/quran_quote_block.dart';
@@ -39,7 +40,7 @@ class SalahTimesPage extends ConsumerWidget {
                       ),
                       const SizedBox(width: 4),
                       const Icon(
-                        Icons.schedule,
+                        IslamicIcons.prayer,
                         color: Color(0xFF3C2F25),
                         size: 24,
                       ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../shared/theme/islamic_icons.dart';
 
 enum PrayerName {
   fajr,
@@ -42,16 +43,15 @@ extension PrayerNameX on PrayerName {
   IconData get icon {
     switch (this) {
       case PrayerName.fajr:
-        return Icons.wb_twilight_rounded;
+        return IslamicIcons.prayingPerson;
       case PrayerName.dhuhr:
-        return Icons.wb_sunny_outlined;
+        return IslamicIcons.prayer;
       case PrayerName.asr:
-        return Icons.cloud_outlined;
+        return IslamicIcons.qibla;
       case PrayerName.maghrib:
-        return Icons.wb_cloudy_outlined;
+        return IslamicIcons.mosque;
       case PrayerName.isha:
-        return Icons.nightlight_outlined;
+        return IslamicIcons.lantern;
     }
   }
 }
-

@@ -65,6 +65,7 @@ import '../features/learn/life/baby_names/presentation/baby_names_finder_page.da
 import '../features/learn/life/baby_names/presentation/baby_names_home_page.dart';
 import '../features/onboarding/application/onboarding_state_provider.dart';
 import '../features/onboarding/presentation/onboarding_page.dart';
+import '../shared/theme/islamic_icons.dart';
 import '../shared/widgets/app_scaffold.dart';
 
 final _shellNavigatorKey = GlobalKey<NavigatorState>();
@@ -90,15 +91,15 @@ extension NavTabExt on NavTab {
   IconData get icon {
     switch (this) {
       case NavTab.worship:
-        return Icons.self_improvement_rounded;
+        return IslamicIcons.prayer;
       case NavTab.learn:
-        return Icons.menu_book_outlined;
+        return IslamicIcons.quran;
       case NavTab.home:
-        return Icons.home_rounded;
+        return IslamicIcons.mosque;
       case NavTab.journey:
-        return Icons.route_outlined;
+        return IslamicIcons.tasbih;
       case NavTab.profile:
-        return Icons.person_outline_rounded;
+        return IslamicIcons.muslim;
     }
   }
 }

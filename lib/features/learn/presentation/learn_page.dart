@@ -9,6 +9,7 @@ import '../shared/application/learn_unified_provider.dart';
 import '../shared/domain/learn_unified_models.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/application/special_mode_provider.dart';
+import '../../../shared/theme/islamic_icons.dart';
 import '../../../shared/widgets/app_page_scaffold.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/quran_quote_block.dart';
@@ -27,7 +28,7 @@ class LearnPage extends ConsumerWidget {
     final learnProgress = ref.watch(learnProgressSummaryProvider);
     final unified = ref.watch(learnUnifiedSummaryProvider);
     return AppPageScaffold(
-      headerIcon: Icons.menu_book_rounded,
+      headerIcon: IslamicIcons.quran,
       title: l10n.learnTitle,
       subtitle: l10n.learnSubtitle,
       quote: const QuranQuote(

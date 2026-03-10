@@ -6,6 +6,7 @@ import '../../../l10n/app_localizations.dart';
 import '../../../shared/application/app_summary_providers.dart';
 import '../../../shared/application/special_mode_provider.dart';
 import '../../../shared/state/user_profile_state.dart';
+import '../../../shared/theme/islamic_icons.dart';
 import '../../../shared/widgets/app_page_scaffold.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/section_title.dart';
@@ -25,7 +26,7 @@ class ProfilePage extends ConsumerWidget {
     final modeState = ref.watch(specialModeProvider);
 
     return AppPageScaffold(
-      headerIcon: Icons.manage_accounts,
+      headerIcon: IslamicIcons.muslim,
       title: l10n.profileTitle,
       subtitle: l10n.profileSubtitle,
       children: [
@@ -84,7 +85,7 @@ class ProfilePage extends ConsumerWidget {
           child: Column(
             children: [
               _ModeTile(
-                icon: Icons.nightlight_round,
+                icon: IslamicIcons.lantern,
                 title: l10n.profileRamadanModeTitle,
                 subtitle: l10n.profileRamadanModeSubtitle,
                 value: modeState.isRamadan,
@@ -92,7 +93,7 @@ class ProfilePage extends ConsumerWidget {
               ),
               const Divider(height: 1),
               _ModeTile(
-                icon: Icons.favorite_border,
+                icon: IslamicIcons.community,
                 title: l10n.profileLossModeTitle,
                 subtitle: l10n.profileLossModeSubtitle,
                 value: modeState.isLoss,
@@ -100,7 +101,7 @@ class ProfilePage extends ConsumerWidget {
               ),
               const Divider(height: 1),
               _ModeTile(
-                icon: Icons.spa_outlined,
+                icon: IslamicIcons.tasbih,
                 title: l10n.profileGentleModeTitle,
                 subtitle: l10n.profileGentleModeSubtitle,
                 value: modeState.isGentle,
@@ -108,7 +109,7 @@ class ProfilePage extends ConsumerWidget {
               ),
               const Divider(height: 1),
               _ModeTile(
-                icon: Icons.child_care_outlined,
+                icon: IslamicIcons.family,
                 title: l10n.kidsModeTitle,
                 subtitle: l10n.kidsModeSubtitle,
                 value: profileSettings.kidsModeEnabled,
@@ -122,7 +123,7 @@ class ProfilePage extends ConsumerWidget {
           PremiumCard(
             child: Row(
               children: [
-                const Icon(Icons.spa_outlined, color: Color(0xFF7A5A33)),
+                const Icon(IslamicIcons.tasbih, color: Color(0xFF7A5A33)),
                 const SizedBox(width: 10),
                 Expanded(
                   child: Text(
