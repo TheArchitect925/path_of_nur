@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../../shared/persistence/local_store.dart';
-import '../data/baby_names_seed.dart';
+import '../data/baby_names_repository.dart';
 import '../domain/baby_name_models.dart';
 
 class BabyNamesState {
@@ -10,9 +10,8 @@ class BabyNamesState {
     required this.filters,
     required this.sort,
     required this.favorites,
-    required this.shortlist,
-    required this.notesById,
-    required this.compareIds,
+    required this.recentSearches,
+    required this.recentlyViewed,
     required this.finderInput,
   });
 
@@ -20,9 +19,8 @@ class BabyNamesState {
   final BabyNameFilters filters;
   final BabyNameSort sort;
   final Set<String> favorites;
-  final Set<String> shortlist;
-  final Map<String, String> notesById;
-  final List<String> compareIds;
+  final List<String> recentSearches;
+  final List<String> recentlyViewed;
   final BabyNameFinderInput finderInput;
 
   BabyNamesState copyWith({
@@ -30,9 +28,8 @@ class BabyNamesState {
     BabyNameFilters? filters,
     BabyNameSort? sort,
     Set<String>? favorites,
-    Set<String>? shortlist,
-    Map<String, String>? notesById,
-    List<String>? compareIds,
+    List<String>? recentSearches,
+    List<String>? recentlyViewed,
     BabyNameFinderInput? finderInput,
   }) {
     return BabyNamesState(
@@ -40,9 +37,8 @@ class BabyNamesState {
       filters: filters ?? this.filters,
       sort: sort ?? this.sort,
       favorites: favorites ?? this.favorites,
-      shortlist: shortlist ?? this.shortlist,
-      notesById: notesById ?? this.notesById,
-      compareIds: compareIds ?? this.compareIds,
+      recentSearches: recentSearches ?? this.recentSearches,
+      recentlyViewed: recentlyViewed ?? this.recentlyViewed,
       finderInput: finderInput ?? this.finderInput,
     );
   }
@@ -52,27 +48,27 @@ class BabyNamesState {
       'searchQuery': searchQuery,
       'sort': sort.name,
       'favorites': favorites.toList(),
-      'shortlist': shortlist.toList(),
-      'notesById': notesById,
-      'compareIds': compareIds,
+      'recentSearches': recentSearches,
+      'recentlyViewed': recentlyViewed,
       'filters': {
         'gender': filters.gender?.name,
-        'region': filters.region,
+        'category': filters.category?.name,
+        'quranicOnly': filters.quranicOnly,
+        'prophetAssociationOnly': filters.prophetAssociationOnly,
+        'companionAssociationOnly': filters.companionAssociationOnly,
         'origin': filters.origin,
-        'onlyQuranic': filters.onlyQuranic,
-        'onlyCompanion': filters.onlyCompanion,
-        'rarity': filters.rarity?.name,
-        'meaningTags': filters.meaningTags.toList(),
+        'meaningTheme': filters.meaningTheme,
+        'startingLetter': filters.startingLetter,
+        'favoritesOnly': filters.favoritesOnly,
+        'featuredOnly': filters.featuredOnly,
       },
-      'finder': {
+      'finderInput': {
         'fatherName': finderInput.fatherName,
         'motherName': finderInput.motherName,
-        'gender': finderInput.gender?.name,
-        'meaningTags': finderInput.meaningTags.toList(),
-        'regionPreference': finderInput.regionPreference,
-        'firstLetter': finderInput.firstLetter,
-        'classicVsRare': finderInput.classicVsRare,
-        'easyInEnglish': finderInput.easyInEnglish,
+        'preferredGender': finderInput.preferredGender?.name,
+        'meaningThemes': finderInput.meaningThemes.toList(),
+        'quranicOnly': finderInput.quranicOnly,
+        'originPreference': finderInput.originPreference,
       },
     };
   }
@@ -80,122 +76,97 @@ class BabyNamesState {
   static BabyNamesState fromJson(Map<String, dynamic>? json) {
     if (json == null) return initialBabyNamesState;
 
-    BabyNameSort sort = BabyNameSort.alphabetical;
-    final sortRaw = json['sort']?.toString();
-    for (final value in BabyNameSort.values) {
-      if (value.name == sortRaw) {
-        sort = value;
-        break;
+    BabyNameSort parseSort(String? raw) {
+      for (final item in BabyNameSort.values) {
+        if (item.name == raw) return item;
       }
+      return BabyNameSort.alphabeticalAz;
     }
 
-    BabyNameGender? gender;
+    BabyNameGender? parseGender(String? raw) {
+      for (final item in BabyNameGender.values) {
+        if (item.name == raw) return item;
+      }
+      return null;
+    }
+
+    BabyNameCategory? parseCategory(String? raw) {
+      for (final item in BabyNameCategory.values) {
+        if (item.name == raw) return item;
+      }
+      return null;
+    }
+
     final filterRaw = json['filters'];
-    if (filterRaw is Map) {
-      final genderRaw = filterRaw['gender']?.toString();
-      for (final item in BabyNameGender.values) {
-        if (item.name == genderRaw) {
-          gender = item;
-          break;
-        }
-      }
-    }
+    final finderRaw = json['finderInput'];
 
-    BabyNameRarity? rarity;
-    if (filterRaw is Map) {
-      final rarityRaw = filterRaw['rarity']?.toString();
-      for (final item in BabyNameRarity.values) {
-        if (item.name == rarityRaw) {
-          rarity = item;
-          break;
-        }
-      }
-    }
+    final favorites = <String>{
+      if (json['favorites'] is List)
+        ...(json['favorites'] as List).map((e) => e.toString()),
+    };
 
-    final favorites = <String>{};
-    final shortlist = <String>{};
-    final compareIds = <String>[];
-    final notesById = <String, String>{};
+    final recentSearches = <String>[
+      if (json['recentSearches'] is List)
+        ...(json['recentSearches'] as List)
+            .map((e) => e.toString())
+            .where((e) => e.isNotEmpty),
+    ].take(10).toList();
 
-    final favRaw = json['favorites'];
-    if (favRaw is List) {
-      for (final item in favRaw) {
-        final value = item.toString();
-        if (value.isNotEmpty) favorites.add(value);
-      }
-    }
-
-    final shortlistRaw = json['shortlist'];
-    if (shortlistRaw is List) {
-      for (final item in shortlistRaw) {
-        final value = item.toString();
-        if (value.isNotEmpty) shortlist.add(value);
-      }
-    }
-
-    final compareRaw = json['compareIds'];
-    if (compareRaw is List) {
-      for (final item in compareRaw) {
-        final value = item.toString();
-        if (value.isNotEmpty) compareIds.add(value);
-      }
-    }
-
-    final notesRaw = json['notesById'];
-    if (notesRaw is Map) {
-      for (final entry in notesRaw.entries) {
-        final key = entry.key.toString();
-        final value = entry.value?.toString() ?? '';
-        if (key.isNotEmpty && value.isNotEmpty) {
-          notesById[key] = value;
-        }
-      }
-    }
-
-    final finderRaw = json['finder'];
-    BabyNameGender? finderGender;
-    if (finderRaw is Map) {
-      final finderGenderRaw = finderRaw['gender']?.toString();
-      for (final item in BabyNameGender.values) {
-        if (item.name == finderGenderRaw) {
-          finderGender = item;
-          break;
-        }
-      }
-    }
+    final recentlyViewed = <String>[
+      if (json['recentlyViewed'] is List)
+        ...(json['recentlyViewed'] as List)
+            .map((e) => e.toString())
+            .where((e) => e.isNotEmpty),
+    ].take(20).toList();
 
     return BabyNamesState(
       searchQuery: json['searchQuery']?.toString() ?? '',
-      sort: sort,
+      sort: parseSort(json['sort']?.toString()),
       favorites: favorites,
-      shortlist: shortlist,
-      notesById: notesById,
-      compareIds: compareIds.take(4).toList(),
+      recentSearches: recentSearches,
+      recentlyViewed: recentlyViewed,
       filters: BabyNameFilters(
-        gender: gender,
-        region: filterRaw is Map ? filterRaw['region']?.toString() : null,
+        gender: filterRaw is Map
+            ? parseGender(filterRaw['gender']?.toString())
+            : null,
+        category: filterRaw is Map
+            ? parseCategory(filterRaw['category']?.toString())
+            : null,
+        quranicOnly: filterRaw is Map && filterRaw['quranicOnly'] == true,
+        prophetAssociationOnly:
+            filterRaw is Map && filterRaw['prophetAssociationOnly'] == true,
+        companionAssociationOnly:
+            filterRaw is Map && filterRaw['companionAssociationOnly'] == true,
         origin: filterRaw is Map ? filterRaw['origin']?.toString() : null,
-        onlyQuranic: filterRaw is Map && filterRaw['onlyQuranic'] == true,
-        onlyCompanion: filterRaw is Map && filterRaw['onlyCompanion'] == true,
-        rarity: rarity,
-        meaningTags: filterRaw is Map && filterRaw['meaningTags'] is List
-            ? (filterRaw['meaningTags'] as List).map((e) => e.toString()).toSet()
-            : const <String>{},
+        meaningTheme: filterRaw is Map
+            ? filterRaw['meaningTheme']?.toString()
+            : null,
+        startingLetter: filterRaw is Map
+            ? filterRaw['startingLetter']?.toString()
+            : null,
+        favoritesOnly: filterRaw is Map && filterRaw['favoritesOnly'] == true,
+        featuredOnly: filterRaw is Map && filterRaw['featuredOnly'] == true,
       ),
       finderInput: BabyNameFinderInput(
-        fatherName: finderRaw is Map ? finderRaw['fatherName']?.toString() ?? '' : '',
-        motherName: finderRaw is Map ? finderRaw['motherName']?.toString() ?? '' : '',
-        gender: finderGender,
-        meaningTags: finderRaw is Map && finderRaw['meaningTags'] is List
-            ? (finderRaw['meaningTags'] as List).map((e) => e.toString()).toSet()
-            : const <String>{},
-        regionPreference:
-            finderRaw is Map ? finderRaw['regionPreference']?.toString() : null,
-        firstLetter: finderRaw is Map ? finderRaw['firstLetter']?.toString() : null,
-        classicVsRare: finderRaw is Map
-            ? finderRaw['classicVsRare']?.toString() ?? 'balanced'
-            : 'balanced',
-        easyInEnglish: finderRaw is Map && finderRaw['easyInEnglish'] == true,
+        fatherName: finderRaw is Map
+            ? finderRaw['fatherName']?.toString() ?? ''
+            : '',
+        motherName: finderRaw is Map
+            ? finderRaw['motherName']?.toString() ?? ''
+            : '',
+        preferredGender: finderRaw is Map
+            ? parseGender(finderRaw['preferredGender']?.toString())
+            : null,
+        meaningThemes: {
+          if (finderRaw is Map && finderRaw['meaningThemes'] is List)
+            ...(finderRaw['meaningThemes'] as List)
+                .map((e) => e.toString())
+                .where((e) => e.isNotEmpty),
+        },
+        quranicOnly: finderRaw is Map && finderRaw['quranicOnly'] == true,
+        originPreference: finderRaw is Map
+            ? finderRaw['originPreference']?.toString()
+            : null,
       ),
     );
   }
@@ -204,34 +175,45 @@ class BabyNamesState {
 const initialBabyNamesState = BabyNamesState(
   searchQuery: '',
   filters: BabyNameFilters(),
-  sort: BabyNameSort.alphabetical,
-  favorites: {},
-  shortlist: {},
-  notesById: {},
-  compareIds: [],
+  sort: BabyNameSort.alphabeticalAz,
+  favorites: <String>{},
+  recentSearches: <String>[],
+  recentlyViewed: <String>[],
   finderInput: BabyNameFinderInput(
     fatherName: '',
     motherName: '',
-    gender: null,
-    meaningTags: <String>{},
-    regionPreference: null,
-    firstLetter: null,
-    classicVsRare: 'balanced',
-    easyInEnglish: false,
+    preferredGender: null,
+    meaningThemes: <String>{},
+    quranicOnly: false,
+    originPreference: null,
   ),
 );
 
 class BabyNamesController extends StateNotifier<BabyNamesState> {
   BabyNamesController(this._store)
-      : super(BabyNamesState.fromJson(_store.getJsonMap(_key)));
+    : super(BabyNamesState.fromJson(_store.getJsonMap(_key)));
 
-  static const _key = 'learn.life.baby_names.state.v1';
   final LocalStore _store;
-
-  List<BabyNameRecord> get all => babyNameSeed;
+  static const _key = 'learn.life.baby_names.state.v2';
 
   void setSearchQuery(String value) {
-    state = state.copyWith(searchQuery: value.trimLeft());
+    state = state.copyWith(searchQuery: value);
+    _save();
+  }
+
+  void submitSearch(String value) {
+    final query = value.trim();
+    if (query.isEmpty) return;
+    final recent = [
+      query,
+      ...state.recentSearches.where((q) => q != query),
+    ].take(10).toList();
+    state = state.copyWith(searchQuery: query, recentSearches: recent);
+    _save();
+  }
+
+  void clearSearch() {
+    state = state.copyWith(searchQuery: '');
     _save();
   }
 
@@ -240,40 +222,8 @@ class BabyNamesController extends StateNotifier<BabyNamesState> {
     _save();
   }
 
-  void setGender(BabyNameGender? value) {
-    state = state.copyWith(filters: state.filters.copyWith(gender: value));
-    _save();
-  }
-
-  void setRegion(String? value) {
-    state = state.copyWith(filters: state.filters.copyWith(region: value));
-    _save();
-  }
-
-  void setOrigin(String? value) {
-    state = state.copyWith(filters: state.filters.copyWith(origin: value));
-    _save();
-  }
-
-  void setRarity(BabyNameRarity? value) {
-    state = state.copyWith(filters: state.filters.copyWith(rarity: value));
-    _save();
-  }
-
-  void toggleOnlyQuranic(bool value) {
-    state = state.copyWith(filters: state.filters.copyWith(onlyQuranic: value));
-    _save();
-  }
-
-  void toggleOnlyCompanion(bool value) {
-    state = state.copyWith(filters: state.filters.copyWith(onlyCompanion: value));
-    _save();
-  }
-
-  void toggleMeaningTag(String tag) {
-    final tags = Set<String>.from(state.filters.meaningTags);
-    if (!tags.remove(tag)) tags.add(tag);
-    state = state.copyWith(filters: state.filters.copyWith(meaningTags: tags));
+  void setFilters(BabyNameFilters filters) {
+    state = state.copyWith(filters: filters);
     _save();
   }
 
@@ -291,44 +241,24 @@ class BabyNamesController extends StateNotifier<BabyNamesState> {
     _save();
   }
 
-  void toggleShortlist(String id) {
-    final updated = Set<String>.from(state.shortlist);
-    if (!updated.remove(id)) {
-      updated.add(id);
-    }
-    state = state.copyWith(shortlist: updated);
+  void markViewed(String id) {
+    final updated = [
+      id,
+      ...state.recentlyViewed.where((item) => item != id),
+    ].take(20).toList();
+    state = state.copyWith(recentlyViewed: updated);
     _save();
   }
 
-  void setNote(String id, String note) {
-    final updated = Map<String, String>.from(state.notesById);
-    final trimmed = note.trim();
-    if (trimmed.isEmpty) {
-      updated.remove(id);
-    } else {
-      updated[id] = trimmed;
-    }
-    state = state.copyWith(notesById: updated);
+  void clearRecents() {
+    state = state.copyWith(
+      recentSearches: const <String>[],
+      recentlyViewed: const <String>[],
+    );
     _save();
   }
 
-  void toggleCompare(String id) {
-    final updated = List<String>.from(state.compareIds);
-    if (updated.contains(id)) {
-      updated.remove(id);
-    } else if (updated.length < 4) {
-      updated.add(id);
-    }
-    state = state.copyWith(compareIds: updated);
-    _save();
-  }
-
-  void clearCompare() {
-    state = state.copyWith(compareIds: []);
-    _save();
-  }
-
-  void setFinderInput(BabyNameFinderInput input) {
+  void updateFinderInput(BabyNameFinderInput input) {
     state = state.copyWith(finderInput: input);
     _save();
   }
@@ -340,231 +270,325 @@ class BabyNamesController extends StateNotifier<BabyNamesState> {
 
 final babyNamesControllerProvider =
     StateNotifierProvider<BabyNamesController, BabyNamesState>((ref) {
-  return BabyNamesController(ref.watch(localStoreProvider));
-});
-
-final babyNamesAllProvider = Provider<List<BabyNameRecord>>((ref) {
-  return ref.watch(babyNamesControllerProvider.notifier).all;
-});
-
-final babyNamesByIdProvider = Provider<Map<String, BabyNameRecord>>((ref) {
-  final all = ref.watch(babyNamesAllProvider);
-  return {for (final item in all) item.id: item};
-});
+      return BabyNamesController(ref.watch(localStoreProvider));
+    });
 
 final babyNamesFilterOptionsProvider = Provider<BabyNamesFilterOptions>((ref) {
-  final all = ref.watch(babyNamesAllProvider);
-  final regions = <String>{};
-  final origins = <String>{};
-  final meaningTags = <String>{};
-  for (final item in all) {
-    regions.addAll(item.regions);
-    origins.add(item.origin);
-    meaningTags.addAll(item.meaningTags);
+  final index = ref.watch(babyNamesIndexProvider).value;
+  if (index == null) {
+    return const BabyNamesFilterOptions(
+      origins: <String>[],
+      meaningThemes: <String>[],
+      startingLetters: <String>[],
+    );
   }
   return BabyNamesFilterOptions(
-    regions: regions.toList()..sort(),
-    origins: origins.toList()..sort(),
-    meaningTags: meaningTags.toList()..sort(),
+    origins: index.byOrigin.keys.toList()..sort(),
+    meaningThemes: index.byMeaningTheme.keys.toList()..sort(),
+    startingLetters: index.byStartingLetter.keys.toList()..sort(),
   );
 });
 
 class BabyNamesFilterOptions {
   const BabyNamesFilterOptions({
-    required this.regions,
     required this.origins,
-    required this.meaningTags,
+    required this.meaningThemes,
+    required this.startingLetters,
   });
 
-  final List<String> regions;
   final List<String> origins;
-  final List<String> meaningTags;
+  final List<String> meaningThemes;
+  final List<String> startingLetters;
 }
 
-final babyNamesCollectionsProvider = Provider<List<BabyNameCollection>>((ref) {
-  return babyNameCollections;
-});
-
-final babyNamesFilteredProvider = Provider<List<BabyNameRecord>>((ref) {
-  final all = ref.watch(babyNamesAllProvider);
+final babyNamesFilteredProvider = Provider<List<BabyNameEntry>>((ref) {
+  final index = ref.watch(babyNamesIndexProvider).value;
+  if (index == null) return const <BabyNameEntry>[];
   final state = ref.watch(babyNamesControllerProvider);
-  final loweredQuery = state.searchQuery.trim().toLowerCase();
-  final filtered = all.where((item) {
-    final f = state.filters;
-    if (f.gender != null && item.gender != f.gender) return false;
-    if (f.region != null && !item.regions.contains(f.region)) return false;
-    if (f.origin != null && item.origin != f.origin) return false;
-    if (f.onlyQuranic && !item.isQuranic) return false;
-    if (f.onlyCompanion && !item.isCompanionName) return false;
-    if (f.rarity != null && item.rarity != f.rarity) return false;
-    if (f.meaningTags.isNotEmpty && !item.meaningTags.any(f.meaningTags.contains)) {
-      return false;
+  final query = state.searchQuery.trim().toLowerCase();
+  final f = state.filters;
+
+  final candidateIds = <String>{...index.byId.keys};
+
+  void intersect(Set<String> ids) {
+    candidateIds.retainAll(ids);
+  }
+
+  if (f.gender != null) {
+    intersect(index.byGender[f.gender!] ?? const <String>{});
+  }
+  if (f.quranicOnly) {
+    intersect(index.quranicIds);
+  }
+  if (f.prophetAssociationOnly) {
+    intersect(index.prophetIds);
+  }
+  if (f.companionAssociationOnly) {
+    intersect(index.companionIds);
+  }
+  if (f.origin != null) {
+    intersect(index.byOrigin[f.origin!] ?? const <String>{});
+  }
+  if (f.meaningTheme != null) {
+    intersect(index.byMeaningTheme[f.meaningTheme!] ?? const <String>{});
+  }
+  if (f.startingLetter != null) {
+    intersect(index.byStartingLetter[f.startingLetter!] ?? const <String>{});
+  }
+  if (f.favoritesOnly) {
+    intersect(state.favorites);
+  }
+  if (f.featuredOnly) {
+    intersect({...index.popularIds, ...index.quranicIds});
+  }
+
+  if (f.category != null) {
+    switch (f.category!) {
+      case BabyNameCategory.quranic:
+        intersect(index.quranicIds);
+        break;
+      case BabyNameCategory.prophet:
+        intersect(index.prophetIds);
+        break;
+      case BabyNameCategory.companions:
+        intersect(index.companionIds);
+        break;
+      case BabyNameCategory.popular:
+        intersect(index.popularIds);
+        break;
+      case BabyNameCategory.classic:
+        intersect(index.byCategory['classic'] ?? const <String>{});
+        break;
+      case BabyNameCategory.modern:
+        intersect(index.byCategory['modern'] ?? const <String>{});
+        break;
     }
-    if (loweredQuery.isEmpty) return true;
-    final hay = [
-      item.english,
-      item.arabic,
-      item.transliteration,
-      item.meaning,
-      item.extendedMeaning,
-      item.origin,
-      ...item.meaningTags,
-      ...item.styleTags,
-      ...item.historicalTags,
-    ].join(' ').toLowerCase();
-    return hay.contains(loweredQuery);
-  }).toList();
+  }
+
+  if (query.isNotEmpty) {
+    candidateIds.retainWhere(
+      (id) => (index.searchableById[id] ?? '').contains(query),
+    );
+  }
+
+  final filtered = candidateIds
+      .map((id) => index.byId[id])
+      .whereType<BabyNameEntry>()
+      .toList();
+
+  final repository = ref.watch(babyNamesRepositoryProvider);
+  int compareAlpha(BabyNameEntry a, BabyNameEntry b) =>
+      a.name.compareTo(b.name);
 
   filtered.sort((a, b) {
+    if (query.isNotEmpty) {
+      final scoreA = repository.searchScore(a, query);
+      final scoreB = repository.searchScore(b, query);
+      final byScore = scoreB.compareTo(scoreA);
+      if (byScore != 0) return byScore;
+    }
+
     switch (state.sort) {
-      case BabyNameSort.alphabetical:
-        return a.english.compareTo(b.english);
-      case BabyNameSort.popularity:
-        return b.popularityScore.compareTo(a.popularityScore);
-      case BabyNameSort.quranicPriority:
-        if (a.isQuranic != b.isQuranic) return a.isQuranic ? -1 : 1;
-        return a.english.compareTo(b.english);
-      case BabyNameSort.shortest:
-        final len = a.english.length.compareTo(b.english.length);
-        return len != 0 ? len : a.english.compareTo(b.english);
-      case BabyNameSort.mostSaved:
-        final savesA = (state.favorites.contains(a.id) ? 2 : 0) +
-            (state.shortlist.contains(a.id) ? 1 : 0);
-        final savesB = (state.favorites.contains(b.id) ? 2 : 0) +
-            (state.shortlist.contains(b.id) ? 1 : 0);
-        final bySave = savesB.compareTo(savesA);
-        return bySave != 0 ? bySave : a.english.compareTo(b.english);
+      case BabyNameSort.alphabeticalAz:
+        return compareAlpha(a, b);
+      case BabyNameSort.alphabeticalZa:
+        return compareAlpha(b, a);
+      case BabyNameSort.mostPopular:
+        final p = b.popularityScore.compareTo(a.popularityScore);
+        return p == 0 ? compareAlpha(a, b) : p;
+      case BabyNameSort.classicFirst:
+        final aClassic =
+            a.associatedCategories.contains('classic') || a.isQuranic;
+        final bClassic =
+            b.associatedCategories.contains('classic') || b.isQuranic;
+        if (aClassic != bClassic) return aClassic ? -1 : 1;
+        return compareAlpha(a, b);
+      case BabyNameSort.modernFirst:
+        final aModern = a.associatedCategories.contains('modern');
+        final bModern = b.associatedCategories.contains('modern');
+        if (aModern != bModern) return aModern ? -1 : 1;
+        return compareAlpha(a, b);
+      case BabyNameSort.shortestFirst:
+        final len = a.name.length.compareTo(b.name.length);
+        return len == 0 ? compareAlpha(a, b) : len;
     }
   });
 
   return filtered;
 });
 
-final babyNamesFavoritesProvider = Provider<List<BabyNameRecord>>((ref) {
-  final byId = ref.watch(babyNamesByIdProvider);
-  final state = ref.watch(babyNamesControllerProvider);
-  return state.favorites.map((id) => byId[id]).whereType<BabyNameRecord>().toList()
-    ..sort((a, b) => a.english.compareTo(b.english));
+final babyNamesFavoritesProvider = Provider<List<BabyNameEntry>>((ref) {
+  final index = ref.watch(babyNamesIndexProvider).value;
+  if (index == null) return const <BabyNameEntry>[];
+  final favorites = ref.watch(babyNamesControllerProvider).favorites;
+  return favorites
+      .map((id) => index.byId[id])
+      .whereType<BabyNameEntry>()
+      .toList()
+    ..sort((a, b) => a.name.compareTo(b.name));
 });
 
-final babyNamesShortlistProvider = Provider<List<BabyNameRecord>>((ref) {
-  final byId = ref.watch(babyNamesByIdProvider);
-  final state = ref.watch(babyNamesControllerProvider);
-  return state.shortlist.map((id) => byId[id]).whereType<BabyNameRecord>().toList()
-    ..sort((a, b) => a.english.compareTo(b.english));
+final babyNamesRecentlyViewedProvider = Provider<List<BabyNameEntry>>((ref) {
+  final index = ref.watch(babyNamesIndexProvider).value;
+  if (index == null) return const <BabyNameEntry>[];
+  final ids = ref.watch(babyNamesControllerProvider).recentlyViewed;
+  return ids.map((id) => index.byId[id]).whereType<BabyNameEntry>().toList();
 });
 
-final babyNamesCompareProvider = Provider<List<BabyNameRecord>>((ref) {
-  final byId = ref.watch(babyNamesByIdProvider);
-  final state = ref.watch(babyNamesControllerProvider);
-  return state.compareIds.map((id) => byId[id]).whereType<BabyNameRecord>().toList();
-});
-
-final babyNamesNameOfDayProvider = Provider<BabyNameRecord>((ref) {
-  final all = ref.watch(babyNamesAllProvider);
+final babyNamesNameOfDayProvider = Provider<BabyNameEntry?>((ref) {
+  final namesIndex = ref.watch(babyNamesIndexProvider).value;
+  if (namesIndex == null) return null;
+  final all = namesIndex.all;
+  if (all.isEmpty) return null;
   final now = DateTime.now().toUtc();
-  final index = (now.year * 1000 + now.month * 50 + now.day) % all.length;
-  return all[index];
+  final dayIndex = (now.year * 1000 + now.month * 50 + now.day) % all.length;
+  return all[dayIndex];
 });
 
-final babyNamesFinderSuggestionsProvider = Provider<List<BabyNameSuggestion>>((ref) {
+final babyNamesFinderSuggestionsProvider = Provider<List<BabyNameSuggestion>>((
+  ref,
+) {
+  final index = ref.watch(babyNamesIndexProvider).value;
+  if (index == null) return const <BabyNameSuggestion>[];
+  final all = index.all;
   final state = ref.watch(babyNamesControllerProvider);
-  final all = ref.watch(babyNamesAllProvider);
   final input = state.finderInput;
-  final themeWords = _extractThemeWords(input.fatherName, input.motherName);
+
+  Set<String> inferParentThemes() {
+    final joined = '${input.fatherName} ${input.motherName}'.toLowerCase();
+    final map = {
+      'light': [
+        'noor',
+        'nur',
+        'ziya',
+        'diya',
+        'light',
+        'shahab',
+        'najm',
+        'star',
+      ],
+      'mercy': ['rahm', 'mercy'],
+      'patience': ['sabr', 'patience'],
+      'wisdom': ['hikm', 'wisdom', 'ilm'],
+      'faith': ['iman', 'faith'],
+      'guidance': ['huda', 'guide'],
+      'joy': ['farah', 'joy', 'saad'],
+      'peace': ['salam', 'aman', 'peace'],
+      'blessing': ['barak', 'bless', 'sadia', 'saad'],
+      'protection': ['hafiz', 'protect', 'guard'],
+    };
+
+    final themes = <String>{};
+    for (final entry in map.entries) {
+      if (entry.value.any(joined.contains)) themes.add(entry.key);
+    }
+    return themes;
+  }
+
+  final parentThemes = inferParentThemes();
+  final selectedThemes = {...input.meaningThemes, ...parentThemes};
+  final father = index.byNameLower[input.fatherName.toLowerCase()];
+  final mother = index.byNameLower[input.motherName.toLowerCase()];
+  if (father != null) selectedThemes.addAll(father.meaningThemes);
+  if (mother != null) selectedThemes.addAll(mother.meaningThemes);
+  final preferredSyllables = <int>{
+    if (father?.syllables != null) father!.syllables!,
+    if (mother?.syllables != null) mother!.syllables!,
+  };
+  final parentOrigins = <String>{...?father?.origin, ...?mother?.origin};
+
   final suggestions = <BabyNameSuggestion>[];
-
   for (final item in all) {
-    var score = item.popularityScore / 20.0;
-    final reasons = <String>[];
-
-    if (input.gender != null && item.gender == input.gender) {
-      score += 3.0;
-      reasons.add('Matches selected gender');
+    if (input.preferredGender != null && item.gender != input.preferredGender) {
+      continue;
     }
-    if (input.regionPreference != null && item.regions.contains(input.regionPreference)) {
+    if (input.quranicOnly && !item.isQuranic) continue;
+
+    var score = 0.0;
+    final why = <String>[];
+
+    if (input.preferredGender != null) {
+      score += 3;
+      why.add('Matches preferred gender');
+    }
+
+    final overlap = item.meaningThemes.where(selectedThemes.contains).length;
+    if (overlap > 0) {
+      score += overlap * 2.2;
+      why.add('Matches selected meaning themes');
+    }
+
+    if (input.quranicOnly && item.isQuranic) {
       score += 2.0;
-      reasons.add('Common in ${input.regionPreference}');
+      why.add('Quranic name');
+    } else if (item.isQuranic) {
+      score += 0.9;
+      why.add('Traditionally linked to Qur’anic usage');
     }
-    if (input.firstLetter != null &&
-        input.firstLetter!.isNotEmpty &&
-        item.english.toLowerCase().startsWith(input.firstLetter!.toLowerCase())) {
+
+    if (input.originPreference != null &&
+        item.origin.contains(input.originPreference)) {
+      score += 1.8;
+      why.add('Origin preference match');
+    } else if (parentOrigins.isNotEmpty &&
+        item.origin.any(parentOrigins.contains)) {
+      score += 1.2;
+      why.add('Matches parent origin style');
+    }
+
+    if (item.isProphetAssociated) {
       score += 1.5;
-      reasons.add('Matches preferred first letter');
-    }
-    if (input.easyInEnglish && item.easyInEnglish) {
-      score += 1.4;
-      reasons.add('Easy pronunciation in English');
-    }
-    if (input.classicVsRare == 'classic' &&
-        (item.rarity == BabyNameRarity.classic || item.rarity == BabyNameRarity.common)) {
-      score += 1.8;
-      reasons.add('Classic style');
-    } else if (input.classicVsRare == 'rare' &&
-        (item.rarity == BabyNameRarity.uncommon || item.rarity == BabyNameRarity.rare)) {
-      score += 1.8;
-      reasons.add('Leans toward rare style');
-    }
-    if (item.isQuranic) {
-      score += 1.2;
-      reasons.add('Qur’anic association');
-    }
-    if (input.meaningTags.isNotEmpty) {
-      final overlap = item.meaningTags.where(input.meaningTags.contains).length;
-      if (overlap > 0) {
-        score += overlap * 1.4;
-        reasons.add('Aligned with selected meaning themes');
-      }
+      why.add('Prophetic association');
     }
 
-    if (themeWords.contains('light') &&
-        (item.meaningTags.contains('light') || item.id == 'noor')) {
-      score += 1.3;
-      reasons.add('Shares light meaning');
+    if (item.isCompanionAssociated) {
+      score += 1.0;
+      why.add('Companion association');
     }
-    if (themeWords.contains('guidance') && item.meaningTags.contains('guidance')) {
-      score += 1.3;
-      reasons.add('Related to guidance');
+
+    if (preferredSyllables.isNotEmpty &&
+        item.syllables != null &&
+        preferredSyllables.contains(item.syllables)) {
+      score += 0.8;
+      why.add('Similar name rhythm');
     }
-    if (themeWords.contains('blessing') &&
-        (item.meaningTags.contains('blessing') || item.meaningTags.contains('abundance'))) {
-      score += 1.2;
-      reasons.add('Related to blessing and happiness');
-    }
-    if (themeWords.contains('trust') && item.meaningTags.contains('trust')) {
+
+    if (selectedThemes.contains('light') &&
+        (item.meaningThemes.contains('light') ||
+            item.meaning.toLowerCase().contains('star'))) {
       score += 1.1;
-      reasons.add('Echoes trust and reliability themes');
+      why.add('Matches celestial theme');
+    }
+    if (selectedThemes.contains('blessing') &&
+        (item.meaningThemes.contains('blessing') ||
+            item.meaningThemes.contains('joy'))) {
+      score += 0.9;
+      why.add('Matches blessing theme');
     }
 
-    if (reasons.isNotEmpty) {
+    score += item.popularityScore * 0.5;
+
+    if (score > 0) {
       suggestions.add(
         BabyNameSuggestion(
-          record: item,
+          entry: item,
           score: score,
-          reasons: reasons.take(3).toList(),
+          explanations: why.take(3).toList(),
         ),
       );
     }
   }
 
   suggestions.sort((a, b) => b.score.compareTo(a.score));
-  return suggestions.take(14).toList();
+  return suggestions.take(20).toList();
 });
 
-Set<String> _extractThemeWords(String father, String mother) {
-  final text = '${father.toLowerCase()} ${mother.toLowerCase()}';
-  final words = <String>{};
-  if (text.contains('noor') || text.contains('nur') || text.contains('light')) {
-    words.add('light');
-  }
-  if (text.contains('huda') || text.contains('guide') || text.contains('guidance')) {
-    words.add('guidance');
-  }
-  if (text.contains('barak') || text.contains('bless')) {
-    words.add('blessing');
-  }
-  if (text.contains('amin') || text.contains('aman')) {
-    words.add('trust');
-  }
-  return words;
-}
+final babyNamesFeaturedProphetsProvider = Provider<List<BabyNameEntry>>((ref) {
+  final index = ref.watch(babyNamesIndexProvider).value;
+  if (index == null) return const <BabyNameEntry>[];
+  return index.prophetIds
+      .map((id) => index.byId[id])
+      .whereType<BabyNameEntry>()
+      .take(12)
+      .toList();
+});

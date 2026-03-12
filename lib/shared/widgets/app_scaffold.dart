@@ -1,11 +1,16 @@
-import 'dart:ui';
+import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../app/app_router.dart';
+import '../../features/learn/quran/application/quran_providers.dart';
 import '../../l10n/app_localizations.dart';
+import '../../core/theme/app_colors.dart';
+import '../../core/theme/app_fonts.dart';
+import '../../core/theme/app_theme.dart';
 import '../state/shell_state.dart';
 import 'global_background.dart';
 
@@ -23,6 +28,7 @@ class AppShellScaffold extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final activeTab = navTabFromLocation(currentLocation);
     final previousLocation = ref.watch(shellCurrentLocationProvider);
+    final quranPlayer = ref.watch(quranSharedAudioPlayerProvider);
 
     if (previousLocation != currentLocation) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -51,60 +57,142 @@ class AppShellScaffold extends ConsumerWidget {
             },
             child: child,
           ),
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: 92,
+            child: _buildGlobalQuranPlaybackFab(
+              context: context,
+              player: quranPlayer,
+            ),
+          ),
         ],
       ),
       bottomNavigationBar: _buildBottomBar(context, activeTab),
     );
   }
 
-  Widget _buildBottomBar(BuildContext context, NavTab activeTab) {
-    final allTabs = NavTab.values;
+  Widget _buildGlobalQuranPlaybackFab({
+    required BuildContext context,
+    required AudioPlayer player,
+  }) {
+    final isQuranReaderRoute = currentLocation.startsWith(
+      '/learn/quran/surah/',
+    );
+    if (isQuranReaderRoute) return const SizedBox.shrink();
 
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(18, 0, 18, 16),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(36),
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 9, sigmaY: 9),
-          child: Container(
-            height: 56,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(36),
-              border: Border.all(
-                color: const Color(0xFFD5BC8A).withValues(alpha: 0.58),
-                width: 1.2,
-              ),
-              color: Colors.transparent,
-            ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: Row(
-                children: allTabs
-                    .map(
-                      (tab) => Expanded(
-                        child: _tabButton(context, tab, activeTab == tab),
-                      ),
-                    )
-                    .toList(),
+    return StreamBuilder<PlayerState>(
+      stream: player.playerStateStream,
+      initialData: player.playerState,
+      builder: (context, snapshot) {
+        final state = snapshot.data ?? player.playerState;
+        final hasActiveAudio =
+            player.audioSource != null &&
+            state.processingState != ProcessingState.idle;
+        if (!hasActiveAudio) return const SizedBox.shrink();
+
+        final isPlaying = state.playing;
+        return Center(
+          child: Material(
+            color: const Color(0xFFE8D7B8),
+            elevation: 6,
+            shadowColor: const Color(0xFF1D1A17).withValues(alpha: 0.22),
+            shape: const CircleBorder(),
+            child: InkWell(
+              customBorder: const CircleBorder(),
+              onTap: () {
+                if (isPlaying) {
+                  unawaited(player.pause());
+                } else {
+                  unawaited(player.play());
+                }
+              },
+              child: SizedBox(
+                width: 56,
+                height: 56,
+                child: Icon(
+                  isPlaying
+                      ? Icons.pause_circle_filled_rounded
+                      : Icons.play_circle_fill_rounded,
+                  size: 32,
+                  color: const Color(0xFF3A3026),
+                ),
               ),
             ),
           ),
+        );
+      },
+    );
+  }
+
+  Widget _buildBottomBar(BuildContext context, NavTab activeTab) {
+    final allTabs = NavTab.values;
+    const barRadius = 999.0;
+    final appearance = Theme.of(context).extension<AppAppearanceTheme>();
+    final surface = appearance?.surface ?? AppColors.surface;
+    final accent = appearance?.accent ?? AppColors.accentGold;
+    final borderAlpha =
+        appearance?.glassBorderAlpha ?? AppColors.glassBorderAlpha;
+    final surfaceAlpha =
+        appearance?.glassSurfaceAlpha ?? AppColors.glassSurfaceAlpha;
+
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
+      child: SizedBox(
+        height: 78,
+        child: Stack(
+          clipBehavior: Clip.none,
+          children: [
+            Positioned(
+              left: 0,
+              right: 0,
+              bottom: 0,
+              child: Container(
+                height: 62,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(barRadius),
+                  border: Border.all(
+                    color: accent.withValues(alpha: borderAlpha),
+                    width: 1.0,
+                  ),
+                  color: surface.withValues(alpha: surfaceAlpha),
+                ),
+              ),
+            ),
+            Positioned(
+              left: 0,
+              right: 0,
+              bottom: 0,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: Row(
+                  children: allTabs
+                      .map(
+                        (tab) => Expanded(
+                          child: _tabButton(context, tab, activeTab == tab),
+                        ),
+                      )
+                      .toList(),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
   }
 
   Widget _tabButton(BuildContext context, NavTab tab, bool active) {
-    final bool isHome = tab == NavTab.home;
-    final Color iconColor = active
-        ? const Color(0xFFFFFFFF)
-        : const Color(0xFFF5F3EE).withValues(alpha: 0.9);
+    const bool isHome = false;
+    final appearance = Theme.of(context).extension<AppAppearanceTheme>();
+    final iconColor = appearance?.onSurface ?? const Color(0xFF4B4036);
+    final subtle = appearance?.onSurfaceSubtle ?? const Color(0xFF4B4036);
     final textStyle = Theme.of(context).textTheme.labelMedium?.copyWith(
-      color: iconColor,
-      fontSize: isHome ? 13.5 : 12.7,
+      color: active ? iconColor : subtle,
+      fontSize: 12.7,
       fontWeight: active ? FontWeight.w700 : FontWeight.w500,
       letterSpacing: 0.2,
-      fontFamily: 'serif',
+      fontFamily: AppFonts.uiArabic,
     );
 
     final label = _tabLabel(context, tab);
@@ -116,18 +204,25 @@ class AppShellScaffold extends ConsumerWidget {
         onTap: () => context.go(tab.path),
         borderRadius: BorderRadius.circular(20),
         child: SizedBox(
-          height: 56,
+          height: 74,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              _navIcon(
-                tab.icon,
-                isHome: isHome,
-                active: active,
-                iconColor: iconColor,
+              SizedBox(
+                width: 56,
+                height: 56,
+                child: Center(
+                  child: _navIcon(
+                    context,
+                    tab.icon,
+                    isHome: isHome,
+                    active: active,
+                    iconColor: iconColor,
+                  ),
+                ),
               ),
-              const SizedBox(height: 2),
+              const SizedBox(height: 4),
               Flexible(
                 child: FittedBox(
                   fit: BoxFit.scaleDown,
@@ -142,53 +237,66 @@ class AppShellScaffold extends ConsumerWidget {
   }
 
   Widget _navIcon(
+    BuildContext context,
     IconData icon, {
     required bool isHome,
     required bool active,
     required Color iconColor,
   }) {
-    final double size = isHome ? 30 : 24;
-    if (!active) {
-      return Icon(icon, size: size, color: iconColor);
-    }
-
-    return SizedBox(
-      width: 42,
-      height: 36,
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          Container(
-            width: 34,
-            height: 34,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              gradient: RadialGradient(
-                colors: [
-                  const Color(0xFFF6E49F).withValues(alpha: 0.62),
-                  const Color(0xFFE1BD6E).withValues(alpha: 0.12),
-                  Colors.transparent,
-                ],
-              ),
-            ),
-          ),
-          Positioned(top: 4, right: 9, child: _sparkDot(3.2)),
-          Positioned(top: 10, left: 8, child: _sparkDot(2.4)),
-          Positioned(bottom: 5, right: 7, child: _sparkDot(2.6)),
-          Icon(icon, size: size, color: const Color(0xFFFFFFFF)),
-        ],
+    final appearance = Theme.of(context).extension<AppAppearanceTheme>();
+    final double size = 24;
+    final shadow = [
+      Shadow(
+        color:
+            (appearance?.isDark == true
+                    ? Colors.black
+                    : const Color(0xFF1E150D))
+                .withValues(alpha: active ? 0.32 : 0.14),
+        blurRadius: active ? 12 : 5,
+        offset: const Offset(0, 1.2),
       ),
-    );
-  }
+      Shadow(
+        color: (appearance?.accent ?? const Color(0xFFE5C683)).withValues(
+          alpha: active ? 0.30 : 0.08,
+        ),
+        blurRadius: active ? 14 : 5,
+        offset: const Offset(0, 0),
+      ),
+    ];
 
-  Widget _sparkDot(double size) {
     return Container(
-      width: size,
-      height: size,
-      decoration: const BoxDecoration(
-        color: Color(0xFFEED789),
+      width: 56,
+      height: 56,
+      decoration: BoxDecoration(
         shape: BoxShape.circle,
+        gradient: active
+            ? RadialGradient(
+                colors: [
+                  (appearance?.surfaceSoft ?? const Color(0xFFF4E2C8))
+                      .withValues(
+                        alpha: appearance?.isDark == true ? 0.5 : 0.96,
+                      ),
+                  (appearance?.accent ?? const Color(0xFFE8CFAB)).withValues(
+                    alpha: appearance?.isDark == true ? 0.35 : 0.78,
+                  ),
+                  (appearance?.accentSoft ?? const Color(0xFFD7AE74))
+                      .withValues(
+                        alpha: appearance?.isDark == true ? 0.25 : 0.28,
+                      ),
+                ],
+              )
+            : null,
+        border: active
+            ? Border.all(
+                color: (appearance?.accent ?? const Color(0xFFE4C690))
+                    .withValues(
+                      alpha: appearance?.isDark == true ? 0.42 : 0.68,
+                    ),
+                width: 1.1,
+              )
+            : null,
       ),
+      child: Icon(icon, size: size, color: iconColor, shadows: shadow),
     );
   }
 

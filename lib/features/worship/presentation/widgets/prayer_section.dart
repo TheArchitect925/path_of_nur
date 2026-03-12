@@ -4,11 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_compass/flutter_compass.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_tts/flutter_tts.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../core/prayer/prayer_preferences.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../shared/persistence/local_store.dart';
+import '../../../../shared/state/user_profile_state.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/section_title.dart';
 import '../../application/prayer_controller.dart';
@@ -55,6 +57,14 @@ class _PrayerHubTabs extends StatelessWidget {
         labelColor: AppColors.onSurface,
         unselectedLabelColor: AppColors.onSurfaceSubtle,
         indicatorColor: AppColors.accentGold,
+        labelStyle: TextStyle(
+          fontSize: 13.5,
+          fontWeight: FontWeight.w600,
+        ),
+        unselectedLabelStyle: TextStyle(
+          fontSize: 13.5,
+          fontWeight: FontWeight.w500,
+        ),
         tabs: [
           Tab(text: 'Times'),
           Tab(text: 'Tracker'),
@@ -95,6 +105,8 @@ class _PrayerTimesTab extends ConsumerWidget {
     final sisterCycle = ref.watch(sisterCycleProvider);
     final sisterCycleNotifier = ref.read(sisterCycleProvider.notifier);
     final sisterCycleGuidance = ref.watch(sisterCycleGuidanceProvider);
+    final userProfile = ref.watch(userProfileProvider);
+    final isSister = userProfile.sex == UserSex.sister;
     final settings = ref.watch(prayerSettingsProvider).preferences;
     final location = ref.watch(prayerLocationProvider);
     final schedule = buildPrayerScheduleForDate(
@@ -107,7 +119,6 @@ class _PrayerTimesTab extends ConsumerWidget {
     final moon = _moonPhaseForDate(tracker.selectedDate);
     final hijri = _toHijriDate(tracker.selectedDate);
     final dateFormat = DateFormat.yMMMMEEEEd();
-    final isToday = _sameDay(tracker.selectedDate, DateTime.now());
     final fajr = schedule.where((item) => item.id == 'fajr').firstOrNull;
     final maghrib = schedule.where((item) => item.id == 'maghrib').firstOrNull;
     final sunriseLabel = fajr == null
@@ -124,7 +135,7 @@ class _PrayerTimesTab extends ConsumerWidget {
           )
         : null;
 
-    return SingleChildScrollView(
+    return Padding(
       padding: const EdgeInsets.only(top: 12, bottom: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -134,110 +145,120 @@ class _PrayerTimesTab extends ConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
-                  children: [
-                    const Expanded(
-                      child: Text(
-                        'Sister cycle pause',
-                        style: TextStyle(fontWeight: FontWeight.w700),
-                      ),
-                    ),
-                    Switch.adaptive(
-                      value: sisterCycle.active,
-                      onChanged: sisterCycleNotifier.setActive,
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  sisterCycleGuidance.summary,
-                  style: const TextStyle(
-                    fontSize: 12.5,
-                    color: AppColors.onSurfaceSubtle,
-                    height: 1.35,
-                  ),
-                ),
-                if (sisterCycle.active) ...[
-                  const SizedBox(height: 6),
-                  Text(
-                    'Cycle day ${sisterCycleGuidance.dayNumber}',
-                    style: const TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                  const SizedBox(height: 6),
-                  Wrap(
-                    spacing: 6,
-                    runSpacing: 6,
-                    children: sisterCycleGuidance.recommendedFocus
-                        .map(
-                          (item) => Chip(
-                            visualDensity: VisualDensity.compact,
-                            label: Text(
-                              item,
-                              style: const TextStyle(fontSize: 11.5),
+                  children: isSister
+                      ? [
+                          const Expanded(
+                            child: Text(
+                              'Sister cycle pause',
+                              style: TextStyle(fontWeight: FontWeight.w700),
                             ),
                           ),
-                        )
-                        .toList(),
+                          Switch.adaptive(
+                            value: sisterCycle.active,
+                            onChanged: sisterCycleNotifier.setActive,
+                          ),
+                        ]
+                      : const [],
+                ),
+                if (isSister) ...[
+                  const SizedBox(height: 4),
+                  Text(
+                    sisterCycleGuidance.summary,
+                    style: const TextStyle(
+                      fontSize: 12.5,
+                      color: AppColors.onSurfaceSubtle,
+                      height: 1.35,
+                    ),
                   ),
-                ],
-                const SizedBox(height: 8),
-                Row(
-                  children: [
-                    const Expanded(
-                      child: Text(
-                        'Expected duration',
-                        style: TextStyle(fontWeight: FontWeight.w600),
+                  if (sisterCycle.active) ...[
+                    const SizedBox(height: 6),
+                    Text(
+                      'Cycle day ${sisterCycleGuidance.dayNumber}',
+                      style: const TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
-                    DropdownButton<int>(
-                      value: sisterCycle.expectedDurationDays,
-                      onChanged: (value) {
-                        if (value == null) return;
-                        sisterCycleNotifier.setExpectedDurationDays(value);
-                      },
-                      items: const [
-                        DropdownMenuItem(value: 5, child: Text('5 days')),
-                        DropdownMenuItem(value: 6, child: Text('6 days')),
-                        DropdownMenuItem(value: 7, child: Text('7 days')),
-                        DropdownMenuItem(value: 8, child: Text('8 days')),
-                        DropdownMenuItem(value: 9, child: Text('9 days')),
-                        DropdownMenuItem(value: 10, child: Text('10 days')),
-                      ],
+                    const SizedBox(height: 6),
+                    Wrap(
+                      spacing: 6,
+                      runSpacing: 6,
+                      children: sisterCycleGuidance.recommendedFocus
+                          .map(
+                            (item) => Chip(
+                              visualDensity: VisualDensity.compact,
+                              label: Text(
+                                item,
+                                style: const TextStyle(fontSize: 11.5),
+                              ),
+                            ),
+                          )
+                          .toList(),
                     ),
                   ],
-                ),
-                SwitchListTile.adaptive(
-                  value: sisterCycle.autoAdjustReminders,
-                  contentPadding: EdgeInsets.zero,
-                  title: const Text('Auto-adjust reminders'),
-                  subtitle: const Text(
-                    'Pauses prayer and fasting reminders and keeps gentle alternatives.',
+                  const SizedBox(height: 8),
+                  Row(
+                    children: [
+                      const Expanded(
+                        child: Text(
+                          'Expected duration',
+                          style: TextStyle(fontWeight: FontWeight.w600),
+                        ),
+                      ),
+                      DropdownButton<int>(
+                        value: sisterCycle.expectedDurationDays,
+                        style: Theme.of(context).textTheme.bodyLarge,
+                        onChanged: (value) {
+                          if (value == null) return;
+                          sisterCycleNotifier.setExpectedDurationDays(value);
+                        },
+                        items: const [
+                          DropdownMenuItem(value: 5, child: Text('5 days')),
+                          DropdownMenuItem(value: 6, child: Text('6 days')),
+                          DropdownMenuItem(value: 7, child: Text('7 days')),
+                          DropdownMenuItem(value: 8, child: Text('8 days')),
+                          DropdownMenuItem(value: 9, child: Text('9 days')),
+                          DropdownMenuItem(value: 10, child: Text('10 days')),
+                        ],
+                      ),
+                    ],
                   ),
-                  onChanged: sisterCycleNotifier.setAutoAdjustReminders,
-                ),
-                SwitchListTile.adaptive(
-                  value: sisterCycle.sendPurityCheckReminder,
-                  contentPadding: EdgeInsets.zero,
-                  title: const Text('Purity check reminder'),
-                  subtitle: const Text(
-                    'Send a gentle check-in near your expected end day.',
+                  SwitchListTile.adaptive(
+                    value: sisterCycle.autoAdjustReminders,
+                    contentPadding: EdgeInsets.zero,
+                    title: const Text('Auto-adjust reminders'),
+                    subtitle: const Text(
+                      'Pauses prayer and fasting reminders and keeps gentle alternatives.',
+                    ),
+                    onChanged: sisterCycleNotifier.setAutoAdjustReminders,
                   ),
-                  onChanged: sisterCycleNotifier.setSendPurityCheckReminder,
-                ),
-                const SizedBox(height: 8),
-                TextFormField(
-                  initialValue: sisterCycle.notes,
-                  onChanged: sisterCycleNotifier.updateNotes,
-                  maxLines: 2,
-                  decoration: const InputDecoration(
-                    hintText: 'Optional private notes',
-                    border: OutlineInputBorder(),
-                    isDense: true,
+                  SwitchListTile.adaptive(
+                    value: sisterCycle.sendPurityCheckReminder,
+                    contentPadding: EdgeInsets.zero,
+                    title: const Text('Purity check reminder'),
+                    subtitle: const Text(
+                      'Send a gentle check-in near your expected end day.',
+                    ),
+                    onChanged: sisterCycleNotifier.setSendPurityCheckReminder,
                   ),
-                ),
-                const SizedBox(height: 10),
+                  const SizedBox(height: 8),
+                  TextFormField(
+                    initialValue: sisterCycle.notes,
+                    onChanged: sisterCycleNotifier.updateNotes,
+                    maxLines: 2,
+                    decoration: const InputDecoration(
+                      hintText: 'Optional private notes',
+                      border: OutlineInputBorder(),
+                      isDense: true,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  Divider(
+                    height: 1,
+                    color: AppColors.onSurfaceSubtle.withValues(alpha: 0.22),
+                  ),
+                  const SizedBox(height: 10),
+                ],
                 Row(
                   children: [
                     IconButton(
@@ -280,42 +301,15 @@ class _PrayerTimesTab extends ConsumerWidget {
                     ),
                   ],
                 ),
-                const SizedBox(height: 8),
-                Wrap(
-                  spacing: 8,
-                  children: [
-                    ChoiceChip(
-                      selected:
-                          tracker.calendarMode == PrayerCalendarMode.gregorian,
-                      label: const Text('Gregorian'),
-                      onSelected: (_) => trackerNotifier.setCalendarMode(
-                        PrayerCalendarMode.gregorian,
-                      ),
-                    ),
-                    ChoiceChip(
-                      selected:
-                          tracker.calendarMode == PrayerCalendarMode.islamic,
-                      label: const Text('Islamic'),
-                      onSelected: (_) => trackerNotifier.setCalendarMode(
-                        PrayerCalendarMode.islamic,
-                      ),
-                    ),
-                    if (isToday)
-                      Chip(
-                        avatar: const Icon(Icons.today_rounded, size: 16),
-                        label: const Text('Today'),
-                      ),
-                  ],
-                ),
               ],
             ),
           ),
           const SizedBox(height: 12),
           _MoonPhaseCard(
             moon: moon,
+            prayerSchedule: schedule,
             nextPrayerName: timingContext.nextPrayerName,
             remaining: timingContext.remainingToNext,
-            progressToNext: timingContext.progressToNext,
             sunriseLabel: sunriseLabel,
             sunsetLabel: sunsetLabel,
             moonriseLabel: moonTimes == null
@@ -341,9 +335,10 @@ class _PrayerTimesTab extends ConsumerWidget {
                     child: ListTile(
                       dense: true,
                       contentPadding: EdgeInsets.zero,
+                      onTap: () => context.pushNamed('salahTimes'),
                       title: Text('${item.name} • ${item.arabicName}'),
                       subtitle: Text(
-                        'Offer: ${item.offerTime}  •  Window: ${item.windowStart}–${item.windowEnd}',
+                        '${item.offerTime}  •  Prayer Time Window: ${item.windowStart}–${item.windowEnd}',
                       ),
                       trailing: Text(
                         item.totalRakats.toString(),
@@ -378,7 +373,7 @@ class _PrayerTrackerTab extends ConsumerWidget {
     );
     final selected = tracker.selectedDate;
 
-    return SingleChildScrollView(
+    return Padding(
       padding: const EdgeInsets.only(top: 12, bottom: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -486,7 +481,7 @@ class _PrayerStatsTab extends ConsumerWidget {
       months: 6,
     );
 
-    return SingleChildScrollView(
+    return Padding(
       padding: const EdgeInsets.only(top: 12, bottom: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -557,7 +552,7 @@ class _PrayerStatsTab extends ConsumerWidget {
                 SizedBox(height: 8),
                 Text(
                   '1. Keep current prayers on time as the first priority.\n'
-                  '2. Make sincere tawbah and ask Allah for consistency.\n'
+                  '2. Make sincere tawbah and ask الله for consistency.\n'
                   '3. Build a manageable qada routine (for example: add one qada after each current prayer).\n'
                   '4. Track by prayer type to avoid overwhelm and maintain steady progress.\n'
                   '5. If your situation is complex, confirm your plan with a trusted local scholar.',
@@ -580,11 +575,11 @@ class _PrayerRakatTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      padding: const EdgeInsets.only(top: 12, bottom: 20),
+    return const Padding(
+      padding: EdgeInsets.only(top: 12, bottom: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
+        children: [
           _RakatCard(),
           SizedBox(height: 12),
           _SalahLearningModuleCard(),
@@ -1382,9 +1377,9 @@ class _QiblaFinderCard extends ConsumerWidget {
 class _MoonPhaseCard extends StatelessWidget {
   const _MoonPhaseCard({
     required this.moon,
+    required this.prayerSchedule,
     required this.nextPrayerName,
     required this.remaining,
-    required this.progressToNext,
     required this.sunriseLabel,
     required this.sunsetLabel,
     required this.moonriseLabel,
@@ -1392,9 +1387,9 @@ class _MoonPhaseCard extends StatelessWidget {
   });
 
   final _MoonPhaseData moon;
+  final List<PrayerScheduleItem> prayerSchedule;
   final String? nextPrayerName;
   final Duration remaining;
-  final double progressToNext;
   final String sunriseLabel;
   final String sunsetLabel;
   final String moonriseLabel;
@@ -1406,9 +1401,25 @@ class _MoonPhaseCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'Moon Phase',
-            style: TextStyle(fontWeight: FontWeight.w700),
+          Row(
+            children: [
+              const Text(
+                'Moon Phase',
+                style: TextStyle(fontWeight: FontWeight.w700),
+              ),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Text(
+                  '${moon.label} • ${moon.illuminationPercent}% illuminated',
+                  textAlign: TextAlign.right,
+                  style: const TextStyle(
+                    color: AppColors.onSurfaceSubtle,
+                    fontSize: 12.5,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+            ],
           ),
           const SizedBox(height: 8),
           Center(
@@ -1418,30 +1429,16 @@ class _MoonPhaseCard extends StatelessWidget {
               child: Stack(
                 alignment: Alignment.center,
                 children: [
-                  Positioned.fill(
-                    child: CustomPaint(
-                      painter: _FivePointRingPainter(progress: progressToNext),
+                  // overlay prayer names/times around the moon
+                  if (prayerSchedule.isNotEmpty)
+                    _PrayerTimesOverlay(
+                      schedule: prayerSchedule,
+                      onPrayerTimeTap: () => context.pushNamed('salahTimes'),
                     ),
-                  ),
                   Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(moon.emoji, style: const TextStyle(fontSize: 136)),
-                      Text(
-                        moon.label,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.w700,
-                          fontSize: 20,
-                        ),
-                      ),
-                      const SizedBox(height: 2),
-                      Text(
-                        '${moon.illuminationPercent}% illuminated',
-                        style: const TextStyle(
-                          color: AppColors.onSurfaceSubtle,
-                          fontSize: 13,
-                        ),
-                      ),
                     ],
                   ),
                 ],
@@ -1553,6 +1550,58 @@ class _MoonPhaseCard extends StatelessWidget {
   }
 }
 
+class _PrayerTimesOverlay extends StatelessWidget {
+  const _PrayerTimesOverlay({
+    required this.schedule,
+    required this.onPrayerTimeTap,
+  });
+
+  final List<PrayerScheduleItem> schedule;
+  final VoidCallback onPrayerTimeTap;
+
+  @override
+  Widget build(BuildContext context) {
+    // positions correspond to the five prayer points around the moon widget.
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final size = constraints.biggest;
+        final center = Offset(size.width / 2, size.height / 2);
+        final radius = size.width * 0.40;
+        return Stack(
+          children: List.generate(
+            schedule.length.clamp(0, 5),
+            (i) {
+              final angle = (-math.pi / 2) + (2 * math.pi * (i / 5));
+              final point = Offset(
+                center.dx + radius * math.cos(angle),
+                center.dy + radius * math.sin(angle),
+              );
+              final item = schedule[i];
+              final label = '${item.name} ${item.offerTime}';
+              return Positioned(
+                left: point.dx - 30,
+                top: point.dy - 10,
+                child: GestureDetector(
+                  onTap: onPrayerTimeTap,
+                  child: Text(
+                    label,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontSize: 10,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.onSurface,
+                    ),
+                  ),
+                ),
+              );
+            },
+          ),
+        );
+      },
+    );
+  }
+}
+
 class _MoonTimes {
   const _MoonTimes({required this.moonrise, required this.moonset});
 
@@ -1576,36 +1625,6 @@ _MoonTimes _calculateMoonTimesForDate(
   final moonrise = sunrise.add(Duration(minutes: offsetMinutes));
   final moonset = sunset.add(Duration(minutes: offsetMinutes));
   return _MoonTimes(moonrise: moonrise, moonset: moonset);
-}
-
-class _FivePointRingPainter extends CustomPainter {
-  const _FivePointRingPainter({required this.progress});
-
-  final double progress;
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final center = Offset(size.width / 2, size.height / 2);
-    final radius = size.width * 0.40;
-    for (var i = 0; i < 5; i += 1) {
-      final angle = (-math.pi / 2) + (2 * math.pi * (i / 5));
-      final point = Offset(
-        center.dx + radius * math.cos(angle),
-        center.dy + radius * math.sin(angle),
-      );
-      final threshold = (i + 1) / 5;
-      final active = progress >= threshold;
-      final paint = Paint()
-        ..color = active ? AppColors.accentGold : AppColors.surfaceSoft
-        ..style = PaintingStyle.fill;
-      canvas.drawCircle(point, 12, paint);
-    }
-  }
-
-  @override
-  bool shouldRepaint(covariant _FivePointRingPainter oldDelegate) {
-    return oldDelegate.progress != progress;
-  }
 }
 
 class _TimingContext {
@@ -1738,6 +1757,8 @@ Future<void> _showDateModeSheet(
   DateTime selected,
 ) async {
   final trackerNotifier = ref.read(prayerTrackerControllerProvider.notifier);
+  // Calendar opens in Gregorian by default; users can still switch in-sheet.
+  trackerNotifier.setCalendarMode(PrayerCalendarMode.gregorian);
   await showModalBottomSheet<void>(
     context: context,
     showDragHandle: true,

@@ -2,378 +2,730 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../application/learn_tab_provider.dart';
-import '../content/application/learn_progress_provider.dart';
-import '../shared/application/learn_enhancements_provider.dart';
-import '../shared/application/learn_unified_provider.dart';
-import '../shared/domain/learn_unified_models.dart';
-import '../../../l10n/app_localizations.dart';
-import '../../../shared/application/special_mode_provider.dart';
+import '../../../core/theme/app_colors.dart';
 import '../../../shared/theme/islamic_icons.dart';
-import '../../../shared/widgets/app_page_scaffold.dart';
 import '../../../shared/widgets/premium_card.dart';
-import '../../../shared/widgets/quran_quote_block.dart';
-import '../../../shared/widgets/quran_navigation.dart';
-import 'widgets/learn_segmented_control.dart';
-import 'widgets/learn_tab_content.dart';
+import 'data/learn_category_catalog.dart';
+import 'models/learn_category_item.dart';
+import '../shared/application/learn_system_engine_provider.dart';
+import '../shared/domain/learn_system_models.dart';
+import 'widgets/learn_category_grid.dart';
+import 'widgets/learn_hub_page_scaffold.dart';
 
-class LearnPage extends ConsumerWidget {
+class LearnPage extends ConsumerStatefulWidget {
   const LearnPage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = AppLocalizations.of(context);
-    final activeTab = ref.watch(learnTabProvider);
-    final mode = ref.watch(specialModeProvider);
-    final learnProgress = ref.watch(learnProgressSummaryProvider);
-    final unified = ref.watch(learnUnifiedSummaryProvider);
-    return AppPageScaffold(
+  ConsumerState<LearnPage> createState() => _LearnPageState();
+}
+
+class _LearnPageState extends ConsumerState<LearnPage> {
+  static const String _allCategoryGroups = 'all';
+  static const List<String> _categoryGroupOrder = [
+    'core',
+    'worship',
+    'family_utility',
+    'new_muslim',
+    'pilgrimage',
+  ];
+
+  late final TextEditingController _searchController;
+  String _selectedCategoryGroup = _allCategoryGroups;
+
+  @override
+  void initState() {
+    super.initState();
+    _searchController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final summary = ref.watch(learnUnifiedSummaryV2Provider);
+    final themes = ref.watch(learnSharedThemesProvider);
+    final paths = ref.watch(learnUnifiedPathsProvider);
+    final savedItems = ref.watch(learnUnifiedSavedItemsProvider);
+    final relations = ref.watch(learnUnifiedRelationshipsProvider);
+    final searchFilters = ref.watch(learnUnifiedSearchProvider);
+    final searchResults = ref.watch(learnUnifiedSearchResultsProvider);
+    final catalogItems = LearnCategoryCatalog.items;
+    final categoryGroups = _buildCategoryGroups(catalogItems);
+    final visibleCatalogItems = _selectedCategoryGroup == _allCategoryGroups
+        ? catalogItems
+        : catalogItems
+              .where((item) => item.categoryGroup == _selectedCategoryGroup)
+              .toList(growable: false);
+
+    if (_searchController.text != searchFilters.query) {
+      _searchController.value = TextEditingValue(
+        text: searchFilters.query,
+        selection: TextSelection.collapsed(offset: searchFilters.query.length),
+      );
+    }
+
+    return LearnHubPageScaffold(
       headerIcon: IslamicIcons.quran,
-      title: l10n.learnTitle,
-      subtitle: l10n.learnSubtitle,
-      quote: const QuranQuote(
-        arabic: 'وَاقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ',
-        transliteration: 'Waqra bi-ismi rabbika alladhi khalaq',
-        translation: 'Read in the name of your Lord who created everything.',
-        surah: 96,
-        verse: 1,
-        locationLabel: 'Qur’an 96:1',
-      ),
-      onQuoteTap: (quote) => openQuranQuoteLocation(context, quote),
+      title: 'Learning Hub',
+      subtitle:
+          'One unified learning experience across Qur’an, Hadith, Prophets, lessons, names, quizzes, and notes.',
       children: [
-        if (mode.isKids)
-          PremiumCard(
-            child: Text(
-              l10n.kidsLearnHint,
-              style: const TextStyle(color: Color(0xFF6A5A4A), height: 1.35),
-            ),
-          ),
-        if (mode.isKids) const SizedBox(height: 12),
-        const _LearnModeCard(),
+        _buildContinueAndDaily(summary),
         const SizedBox(height: 12),
-        const _TrackSelectorCard(),
+        _buildSearchFilters(
+          context,
+          searchFilters: searchFilters,
+          themes: themes,
+          paths: paths,
+        ),
+        if (searchFilters.query.trim().isNotEmpty ||
+            searchFilters.savedOnly ||
+            searchFilters.type != null ||
+            searchFilters.themeId != null ||
+            searchFilters.difficulty != null ||
+            searchFilters.pathId != null) ...[
+          const SizedBox(height: 10),
+          _buildSearchResults(context, searchResults),
+          const SizedBox(height: 12),
+        ],
+        _sectionTitle(
+          context,
+          'Explore Categories',
+          'Browse all Learn categories and filter by section.',
+        ),
+        const SizedBox(height: 8),
+        _buildCategoryGroupScrollBar(context, categoryGroups),
+        const SizedBox(height: 8),
+        LearnCategoryGrid(
+          items: visibleCatalogItems,
+          onTap: (item) {
+            context.pushNamed(
+              item.routeName,
+              pathParameters: item.pathParameters,
+              queryParameters: item.queryParameters,
+            );
+          },
+        ),
         const SizedBox(height: 12),
+        _sectionTitle(
+          context,
+          'Explore by Theme',
+          'Use a shared taxonomy across all learning domains.',
+        ),
+        const SizedBox(height: 8),
+        Wrap(
+          spacing: 8,
+          runSpacing: 8,
+          children: themes
+              .map(
+                (theme) => ActionChip(
+                  label: Text(theme.label),
+                  onPressed: () {
+                    ref
+                        .read(learnUnifiedSearchProvider.notifier)
+                        .setTheme(theme.id);
+                  },
+                ),
+              )
+              .toList(growable: false),
+        ),
+        const SizedBox(height: 12),
+        _sectionTitle(
+          context,
+          'Guided Paths',
+          'Mixed-content paths powered by one path engine.',
+        ),
+        const SizedBox(height: 8),
+        ...paths.map((path) => _pathCard(context, path)),
+        const SizedBox(height: 12),
+        _sectionTitle(
+          context,
+          'Saved & Notes',
+          'Unified saved and note view across Learn domains.',
+        ),
+        const SizedBox(height: 8),
         PremiumCard(
-          child: Text(
-            l10n.learnProgressSummary(
-              learnProgress.startedCount,
-              learnProgress.completedCount,
-              learnProgress.favoriteCount,
-            ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Saved items: ${summary.savedCount} • Notes: ${summary.noteCount}',
+                style: Theme.of(
+                  context,
+                ).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600),
+              ),
+              const SizedBox(height: 8),
+              if (savedItems.isEmpty)
+                const Text(
+                  'No saved items yet. Save any lesson, verse, hadith, or prophet to keep it here.',
+                )
+              else
+                ...savedItems.take(5).map((item) {
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 6),
+                    child: InkWell(
+                      onTap: () => _openItem(context, item),
+                      child: Row(
+                        children: [
+                          const Icon(Icons.bookmark_rounded, size: 16),
+                          const SizedBox(width: 8),
+                          Expanded(child: Text(item.title)),
+                          const Icon(Icons.chevron_right_rounded, size: 16),
+                        ],
+                      ),
+                    ),
+                  );
+                }),
+            ],
           ),
         ),
         const SizedBox(height: 12),
-        _UnifiedLearnOverviewCard(summary: unified),
-        const SizedBox(height: 12),
-        const _BundleManagerCard(),
-        const SizedBox(height: 12),
-        LearnSegmentedControl(
-          selected: activeTab,
-          onChanged: (tab) => ref.read(learnTabProvider.notifier).state = tab,
+        _sectionTitle(
+          context,
+          'Knowledge Constellation',
+          'Explore the shared relationship graph across domains.',
         ),
-        const SizedBox(height: 14),
-        AnimatedSwitcher(
-          duration: const Duration(milliseconds: 240),
-          transitionBuilder: (child, animation) =>
-              FadeTransition(opacity: animation, child: child),
-          child: Padding(
-            key: ValueKey(activeTab),
-            padding: const EdgeInsets.only(bottom: 16),
-            child: LearnTabContent(tab: activeTab),
+        const SizedBox(height: 8),
+        PremiumCard(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                '${relations.length} indexed relationships',
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  color: AppColors.onSurfaceSubtle,
+                ),
+              ),
+              const SizedBox(height: 8),
+              FilledButton.tonalIcon(
+                onPressed: () => context.pushNamed('knowledgeConstellation'),
+                icon: const Icon(Icons.hub_outlined),
+                label: const Text('Open Knowledge Constellation'),
+              ),
+            ],
           ),
         ),
       ],
     );
   }
-}
 
-class _LearnModeCard extends ConsumerWidget {
-  const _LearnModeCard();
+  Widget _buildContinueAndDaily(LearnUnifiedSummaryV2 summary) {
+    return Column(
+      children: [
+        if (summary.continueItem != null)
+          PremiumCard(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Continue where you left of',
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+                ),
+                const SizedBox(height: 6),
+                Text(summary.continueItem!.title),
+                const SizedBox(height: 2),
+                Text(
+                  summary.continueItem!.subtitle,
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: AppColors.onSurfaceSubtle,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                FilledButton.tonalIcon(
+                  onPressed: () => _openItem(context, summary.continueItem!),
+                  icon: const Icon(Icons.play_arrow_rounded),
+                  label: const Text('Resume'),
+                ),
+              ],
+            ),
+          ),
+        const SizedBox(height: 10),
+        PremiumCard(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Daily Learning',
+                style: Theme.of(
+                  context,
+                ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                'Theme: ${summary.dailyItem.theme.label}',
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  color: AppColors.onSurfaceSubtle,
+                ),
+              ),
+              const SizedBox(height: 6),
+              Text(summary.dailyItem.item.title),
+              const SizedBox(height: 2),
+              Text(
+                summary.dailyItem.item.summary,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+              const SizedBox(height: 8),
+              Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: [
+                  FilledButton.tonalIcon(
+                    onPressed: () => _openItem(context, summary.dailyItem.item),
+                    icon: const Icon(Icons.auto_awesome_rounded),
+                    label: const Text('Open Daily Reflection'),
+                  ),
+                  FilledButton.tonalIcon(
+                    onPressed: () => context.pushNamed('journalCreate'),
+                    icon: const Icon(Icons.edit_note_rounded),
+                    label: const Text('Write Reflection'),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
 
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = AppLocalizations.of(context);
-    final mode = ref.watch(specialModeProvider);
-    if (!mode.isRamadan && !mode.isLoss && !mode.isGentle) {
-      return const SizedBox.shrink();
-    }
-
-    String title;
-    String subtitle;
-
-    if (mode.isRamadan) {
-      title = l10n.modeRamadanLearnTitle;
-      subtitle = l10n.modeRamadanLearnSubtitle;
-    } else if (mode.isLoss) {
-      title = l10n.modeLossLearnTitle;
-      subtitle = l10n.modeLossLearnSubtitle;
-    } else {
-      title = l10n.modeGentleLearnTitle;
-      subtitle = l10n.modeGentleLearnSubtitle;
-    }
-
-    return PremiumCard(
+  Widget _buildSearchFilters(
+    BuildContext context, {
+    required LearnSearchFilterState searchFilters,
+    required List<LearnSharedTheme> themes,
+    required List<LearnUnifiedPath> paths,
+  }) {
+    return Container(
+      padding: const EdgeInsets.fromLTRB(12, 10, 12, 8),
+      decoration: BoxDecoration(
+        color: AppColors.surface.withValues(alpha: AppColors.glassSurfaceAlpha),
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(
+          color: AppColors.accentGold.withValues(
+            alpha: AppColors.glassBorderAlpha,
+          ),
+        ),
+      ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(title, style: const TextStyle(fontWeight: FontWeight.w700)),
-          const SizedBox(height: 6),
-          Text(
-            subtitle,
-            style: const TextStyle(color: Color(0xFF6A5A4A), height: 1.35),
+          Row(
+            children: [
+              Icon(
+                Icons.search_rounded,
+                size: 34,
+                color: AppColors.onSurface.withValues(alpha: 0.75),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: TextField(
+                  controller: _searchController,
+                  onChanged: (value) => ref
+                      .read(learnUnifiedSearchProvider.notifier)
+                      .setQuery(value),
+                  decoration: const InputDecoration(
+                    border: InputBorder.none,
+                    hintText:
+                        'Search across Qur’an, Hadith, Prophets, lessons, names...',
+                    isCollapsed: true,
+                  ),
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+              if (searchFilters.query.isNotEmpty)
+                IconButton(
+                  onPressed: () =>
+                      ref.read(learnUnifiedSearchProvider.notifier).clear(),
+                  icon: const Icon(Icons.close_rounded),
+                ),
+            ],
+          ),
+          Container(
+            height: 1,
+            color: AppColors.onSurface.withValues(alpha: 0.55),
+          ),
+          const SizedBox(height: 8),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                _filterMenuChip<LearnItemType?>(
+                  context,
+                  label: searchFilters.type == null
+                      ? 'Type: Any'
+                      : 'Type: ${_itemTypeLabel(searchFilters.type!)}',
+                  items: [
+                    const PopupMenuItem(value: null, child: Text('Any type')),
+                    ...LearnItemType.values.map(
+                      (value) => PopupMenuItem(
+                        value: value,
+                        child: Text(_itemTypeLabel(value)),
+                      ),
+                    ),
+                  ],
+                  onSelected: (value) => ref
+                      .read(learnUnifiedSearchProvider.notifier)
+                      .setType(value),
+                ),
+                const SizedBox(width: 8),
+                _filterMenuChip<String?>(
+                  context,
+                  label: searchFilters.themeId == null
+                      ? 'Theme: Any'
+                      : 'Theme: ${_themeLabel(themes, searchFilters.themeId!)}',
+                  items: [
+                    const PopupMenuItem(value: null, child: Text('Any theme')),
+                    ...themes.map(
+                      (theme) => PopupMenuItem(
+                        value: theme.id,
+                        child: Text(theme.label),
+                      ),
+                    ),
+                  ],
+                  onSelected: (value) => ref
+                      .read(learnUnifiedSearchProvider.notifier)
+                      .setTheme(value),
+                ),
+                const SizedBox(width: 8),
+                _filterMenuChip<LearnDifficulty?>(
+                  context,
+                  label: searchFilters.difficulty == null
+                      ? 'Difficulty: Any'
+                      : 'Difficulty: ${_difficultyLabel(searchFilters.difficulty!)}',
+                  items: [
+                    const PopupMenuItem(
+                      value: null,
+                      child: Text('Any difficulty'),
+                    ),
+                    ...LearnDifficulty.values.map(
+                      (difficulty) => PopupMenuItem(
+                        value: difficulty,
+                        child: Text(_difficultyLabel(difficulty)),
+                      ),
+                    ),
+                  ],
+                  onSelected: (value) => ref
+                      .read(learnUnifiedSearchProvider.notifier)
+                      .setDifficulty(value),
+                ),
+                const SizedBox(width: 8),
+                _filterMenuChip<String?>(
+                  context,
+                  label: searchFilters.pathId == null
+                      ? 'Path: Any'
+                      : 'Path: Active',
+                  items: [
+                    const PopupMenuItem(value: null, child: Text('Any path')),
+                    ...paths.map(
+                      (path) => PopupMenuItem(
+                        value: path.id,
+                        child: Text(path.title),
+                      ),
+                    ),
+                  ],
+                  onSelected: (value) => ref
+                      .read(learnUnifiedSearchProvider.notifier)
+                      .setPathId(value),
+                ),
+                const SizedBox(width: 8),
+                FilterChip(
+                  selected: searchFilters.savedOnly,
+                  onSelected: (value) => ref
+                      .read(learnUnifiedSearchProvider.notifier)
+                      .setSavedOnly(value),
+                  label: const Text('Saved only'),
+                ),
+              ],
+            ),
           ),
         ],
       ),
     );
   }
-}
 
-class _UnifiedLearnOverviewCard extends StatelessWidget {
-  const _UnifiedLearnOverviewCard({required this.summary});
-
-  final LearnUnifiedSummary summary;
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
+  Widget _buildSearchResults(
+    BuildContext context,
+    List<LearnUnifiedContentItem> results,
+  ) {
     return PremiumCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            l10n.learnContentContinueTitle,
-            style: const TextStyle(fontWeight: FontWeight.w700),
-          ),
-          const SizedBox(height: 8),
-          if (summary.continueItem != null)
-            ListTile(
-              onTap: () => context.pushNamed(
-                summary.continueItem!.routeName,
-                pathParameters: summary.continueItem!.pathParameters,
-                queryParameters: summary.continueItem!.queryParameters,
-              ),
-              contentPadding: EdgeInsets.zero,
-              title: Text(summary.continueItem!.title),
-              subtitle: Text(
-                '${summary.continueItem!.subtitle}\n${l10n.learnContinueReasonWithTrack(_trackLabel(l10n, summary.selectedTrack))}',
-              ),
-              isThreeLine: true,
-              trailing: const Icon(Icons.chevron_right),
-            )
-          else
-            Text(l10n.learnResumeTopicSubtitleEmpty),
-          const SizedBox(height: 10),
-          if (summary.suggestedNextItem != null)
-            ListTile(
-              onTap: () => context.pushNamed(
-                summary.suggestedNextItem!.routeName,
-                pathParameters: summary.suggestedNextItem!.pathParameters,
-                queryParameters: summary.suggestedNextItem!.queryParameters,
-              ),
-              contentPadding: EdgeInsets.zero,
-              title: Text(l10n.lifeSuggestedNextLessonTitle),
-              subtitle: Text(
-                '${summary.suggestedNextItem!.title} • ${_trackLabel(l10n, summary.selectedTrack)}',
-              ),
-              trailing: const Icon(Icons.auto_awesome_outlined),
-            ),
-          const SizedBox(height: 8),
-          Text(
-            l10n.learnContentThemesTitle,
-            style: const TextStyle(fontWeight: FontWeight.w700),
-          ),
-          const SizedBox(height: 8),
-          Wrap(
-            spacing: 8,
-            runSpacing: 8,
-            children: [
-              ActionChip(
-                label: Text(l10n.learnQuranSectionTitle),
-                onPressed: () => context.pushNamed('quranExplorer'),
-              ),
-              ActionChip(
-                label: Text(l10n.learnLifeSectionTitle),
-                onPressed: () => context.pushNamed('learnLifeLanding'),
-              ),
-              ActionChip(
-                label: Text(l10n.learnWorldSectionTitle),
-                onPressed: () => context.pushNamed('learnWorldLanding'),
-              ),
-              ActionChip(
-                label: Text(l10n.learnHadithSectionTitle),
-                onPressed: () => context.pushNamed('learnHadithLanding'),
-              ),
-            ],
-          ),
-          const SizedBox(height: 10),
-          ExpansionTile(
-            tilePadding: EdgeInsets.zero,
-            childrenPadding: EdgeInsets.zero,
-            title: Text(
-              l10n.lifeRecentOpenedTitle,
-              style: const TextStyle(fontWeight: FontWeight.w700),
-            ),
-            initiallyExpanded: false,
-            children: [
-              if (summary.recentItems.isNotEmpty)
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 8),
-                  child: Wrap(
-                    spacing: 8,
-                    runSpacing: 8,
-                    children: summary.recentItems
-                        .take(4)
-                        .map(
-                          (item) => ActionChip(
-                            label: Text(item.title),
-                            onPressed: () => context.pushNamed(
-                              item.routeName,
-                              pathParameters: item.pathParameters,
-                              queryParameters: item.queryParameters,
-                            ),
-                          ),
-                        )
-                        .toList(),
-                  ),
-                )
-              else
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Padding(
-                    padding: const EdgeInsets.only(bottom: 8),
-                    child: Text(l10n.learnResumeTopicSubtitleEmpty),
-                  ),
-                ),
-              if (summary.featuredItems.isNotEmpty)
-                ListTile(
-                  contentPadding: EdgeInsets.zero,
-                  title: Text(l10n.lifeFeaturedLessonTitle),
-                  subtitle: Text(summary.featuredItems.first.title),
-                  trailing: const Icon(Icons.chevron_right),
-                  onTap: () => context.pushNamed(
-                    summary.featuredItems.first.routeName,
-                    pathParameters: summary.featuredItems.first.pathParameters,
-                    queryParameters: summary.featuredItems.first.queryParameters,
-                  ),
-                ),
-              ListTile(
-                contentPadding: EdgeInsets.zero,
-                title: Text(l10n.learnNotesSectionTitle),
-                subtitle: Text(l10n.learnNotesSectionSubtitle),
-                trailing: const Icon(Icons.chevron_right),
-                onTap: () => context.pushNamed('learnNotesLanding'),
-              ),
-            ],
-          ),
-          const SizedBox(height: 2),
-          Text(
-            '${summary.overallCompletedLessons}/${summary.overallTotalLessons}',
+            '${results.length} results',
             style: Theme.of(
               context,
-            ).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w700),
-          ),
-          const SizedBox(height: 6),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(999),
-            child: LinearProgressIndicator(
-              minHeight: 8,
-              value: summary.overallCompletionRatio,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _TrackSelectorCard extends ConsumerWidget {
-  const _TrackSelectorCard();
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final selectedTrack = ref.watch(learnTrackProvider);
-    final l10n = AppLocalizations.of(context);
-    return PremiumCard(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            l10n.learnTrackSelectorTitle,
-            style: const TextStyle(fontWeight: FontWeight.w700),
+            ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
           ),
           const SizedBox(height: 8),
-          Wrap(
-            spacing: 8,
-            runSpacing: 8,
-            children: LearnTrackType.values
+          if (results.isEmpty)
+            const Text('No matching items. Try broader filters.')
+          else
+            ...results
+                .take(8)
                 .map(
-                  (track) => ChoiceChip(
-                    label: Text(_trackLabel(l10n, track)),
-                    selected: selectedTrack == track,
-                    onSelected: (_) =>
-                        ref.read(learnTrackProvider.notifier).setTrack(track),
+                  (item) => Padding(
+                    padding: const EdgeInsets.only(bottom: 8),
+                    child: InkWell(
+                      onTap: () => _openItem(context, item),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(item.title),
+                                Text(
+                                  item.subtitle,
+                                  style: Theme.of(context).textTheme.bodySmall,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ],
+                            ),
+                          ),
+                          const Icon(Icons.chevron_right_rounded),
+                        ],
+                      ),
+                    ),
                   ),
-                )
-                .toList(),
-          ),
+                ),
         ],
       ),
     );
   }
-}
 
-class _BundleManagerCard extends ConsumerWidget {
-  const _BundleManagerCard();
+  List<String> _buildCategoryGroups(List<LearnCategoryItem> items) {
+    final foundGroups = <String>{for (final item in items) item.categoryGroup};
+    final orderedGroups = [
+      _allCategoryGroups,
+      ..._categoryGroupOrder.where(foundGroups.contains),
+      ...foundGroups.where((group) => !_categoryGroupOrder.contains(group)),
+    ];
+    return orderedGroups;
+  }
 
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final bundles = ref.watch(learnBundlesProvider);
-    final l10n = AppLocalizations.of(context);
-    return PremiumCard(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            l10n.learnBundleManagerTitle,
-            style: const TextStyle(fontWeight: FontWeight.w700),
-          ),
-          const SizedBox(height: 4),
-          Text(
-            l10n.learnBundleManagerSubtitle,
-            style: const TextStyle(color: Color(0xFF6A5A4A)),
-          ),
-          const SizedBox(height: 10),
-          ...bundles.map(
-            (bundle) => SwitchListTile.adaptive(
-              value: bundle.installed,
-              contentPadding: EdgeInsets.zero,
-              title: Text(bundle.title),
-              subtitle: Text(
-                '${bundle.description}\n${bundle.sizeLabel} • v${bundle.version}',
-              ),
-              isThreeLine: true,
-              onChanged: (_) => ref
-                  .read(learnBundlesProvider.notifier)
-                  .toggleInstalled(bundle.id),
+  Widget _buildCategoryGroupScrollBar(
+    BuildContext context,
+    List<String> categoryGroups,
+  ) {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: categoryGroups
+            .map((group) {
+              final selected = _selectedCategoryGroup == group;
+              return Padding(
+                padding: const EdgeInsets.only(right: 8),
+                child: ChoiceChip(
+                  label: Text(_categoryGroupLabel(group)),
+                  selected: selected,
+                  onSelected: (_) =>
+                      setState(() => _selectedCategoryGroup = group),
+                ),
+              );
+            })
+            .toList(growable: false),
+      ),
+    );
+  }
+
+  Widget _pathCard(BuildContext context, LearnUnifiedPath path) {
+    final progress = ref.watch(learnUnifiedProgressProvider);
+    final completed = path.steps
+        .where((step) => progress.completedIds.contains(step.itemId))
+        .length;
+    final ratio = path.steps.isEmpty
+        ? 0.0
+        : (completed / path.steps.length).clamp(0.0, 1.0).toDouble();
+
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 10),
+      child: PremiumCard(
+        child: InkWell(
+          borderRadius: BorderRadius.circular(18),
+          onTap: () {
+            ref.read(learnUnifiedSearchProvider.notifier).setPathId(path.id);
+            if (path.steps.isNotEmpty) {
+              final first = path.steps.first;
+              final item = ref.read(learnUnifiedItemByIdProvider(first.itemId));
+              if (item != null) {
+                _openItem(context, item);
+              }
+            }
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(2),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  path.title,
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+                ),
+                const SizedBox(height: 6),
+                Text(path.summary),
+                const SizedBox(height: 8),
+                Text(
+                  '$completed / ${path.steps.length} completed',
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: AppColors.onSurfaceSubtle,
+                  ),
+                ),
+                const SizedBox(height: 6),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(999),
+                  child: LinearProgressIndicator(
+                    minHeight: 7,
+                    value: ratio,
+                    backgroundColor: AppColors.surface.withValues(alpha: 0.4),
+                    valueColor: AlwaysStoppedAnimation<Color>(
+                      AppColors.onSurface.withValues(alpha: 0.72),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
-        ],
+        ),
       ),
     );
   }
-}
 
-String _trackLabel(AppLocalizations l10n, LearnTrackType track) {
-  switch (track) {
-    case LearnTrackType.beginner:
-      return l10n.learnTrackBeginner;
-    case LearnTrackType.family:
-      return l10n.learnTrackFamily;
-    case LearnTrackType.character:
-      return l10n.learnTrackCharacter;
-    case LearnTrackType.ramadan:
-      return l10n.learnTrackRamadan;
-    case LearnTrackType.revert:
-      return l10n.learnTrackRevert;
+  Widget _sectionTitle(BuildContext context, String title, String subtitle) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          title,
+          style: Theme.of(
+            context,
+          ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+        ),
+        const SizedBox(height: 4),
+        Text(
+          subtitle,
+          style: Theme.of(
+            context,
+          ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),
+        ),
+      ],
+    );
+  }
+
+  void _openItem(BuildContext context, LearnUnifiedContentItem item) {
+    ref.read(learnUnifiedProgressProvider.notifier).markStarted(item.id);
+    final routeName = item.routeName;
+    if (routeName == null || routeName.isEmpty) return;
+    context.pushNamed(
+      routeName,
+      pathParameters: item.pathParameters,
+      queryParameters: item.queryParameters,
+    );
+  }
+
+  Widget _filterMenuChip<T>(
+    BuildContext context, {
+    required String label,
+    required List<PopupMenuEntry<T>> items,
+    required ValueChanged<T> onSelected,
+  }) {
+    return PopupMenuButton<T>(
+      itemBuilder: (_) => items,
+      onSelected: onSelected,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(999),
+          border: Border.all(
+            color: AppColors.accentGold.withValues(alpha: 0.35),
+          ),
+          color: AppColors.surface.withValues(alpha: 0.25),
+        ),
+        child: Row(
+          children: [
+            Text(label),
+            const SizedBox(width: 4),
+            const Icon(Icons.arrow_drop_down_rounded),
+          ],
+        ),
+      ),
+    );
+  }
+
+  String _itemTypeLabel(LearnItemType value) {
+    switch (value) {
+      case LearnItemType.verse:
+        return 'Verse';
+      case LearnItemType.hadith:
+        return 'Hadith';
+      case LearnItemType.prophet:
+        return 'Prophet';
+      case LearnItemType.lifeLesson:
+        return 'Life Lesson';
+      case LearnItemType.name:
+        return 'Name of Allah';
+      case LearnItemType.babyName:
+        return 'Baby Name';
+      case LearnItemType.quiz:
+        return 'Quiz';
+      case LearnItemType.note:
+        return 'Note';
+      case LearnItemType.reflection:
+        return 'Reflection';
+      case LearnItemType.pathStep:
+        return 'Path Step';
+    }
+  }
+
+  String _themeLabel(List<LearnSharedTheme> themes, String id) {
+    for (final theme in themes) {
+      if (theme.id == id) return theme.label;
+    }
+    return id;
+  }
+
+  String _difficultyLabel(LearnDifficulty value) {
+    switch (value) {
+      case LearnDifficulty.beginner:
+        return 'Beginner';
+      case LearnDifficulty.intermediate:
+        return 'Intermediate';
+      case LearnDifficulty.advanced:
+        return 'Advanced';
+    }
+  }
+
+  String _categoryGroupLabel(String categoryGroup) {
+    switch (categoryGroup) {
+      case _allCategoryGroups:
+        return 'All';
+      case 'core':
+        return 'Core';
+      case 'worship':
+        return 'Worship';
+      case 'family_utility':
+        return 'Family & Utility';
+      case 'new_muslim':
+        return 'New Muslim';
+      case 'pilgrimage':
+        return 'Pilgrimage';
+      default:
+        return categoryGroup
+            .replaceAll('_', ' ')
+            .split(' ')
+            .where((word) => word.isNotEmpty)
+            .map((word) => '${word[0].toUpperCase()}${word.substring(1)}')
+            .join(' ');
+    }
   }
 }

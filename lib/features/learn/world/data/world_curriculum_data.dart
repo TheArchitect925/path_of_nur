@@ -42,7 +42,7 @@ const _themes = <WorldTheme>[
     title: 'Water, Rain & Oceans',
     summary: 'Rain cycles, rivers, seas, winds, and life sustained by water.',
     whyItMatters:
-        'Water is framed as mercy, provision, and a recurring lesson in dependence on Allah.',
+        'Water is framed as mercy, provision, and a recurring lesson in dependence on الله.',
     subcategoryIds: ['water-rain-revival', 'water-rivers-seas'],
     relatedThemeIds: ['plants-trees-growth', 'earth-land-landscapes'],
     order: 3,
@@ -728,7 +728,7 @@ const _lessons = <WorldLesson>[
     overview:
         'Food systems combine human labor with factors beyond human control.',
     quranicPerspective:
-        'The Qur’an frames crop growth as a sign that balances effort with humble reliance on Allah.',
+        'The Qur’an frames crop growth as a sign that balances effort with humble reliance on الله.',
     reflectiveTakeaway:
         'Provision teaches cooperation between action and dependence.',
     practicalTakeaway:
@@ -865,7 +865,7 @@ const _lessons = <WorldLesson>[
     quranicPerspective:
         'Qur’anic signs in birds point to sustained care, ordered motion, and attentive observation.',
     reflectiveTakeaway:
-        'Motion and trust can coexist; action does not cancel reliance on Allah.',
+        'Motion and trust can coexist; action does not cancel reliance on الله.',
     practicalTakeaway:
         'During travel, use bird observation as a cue for brief trust-focused dua.',
     keyConcepts: ['motion', 'reliance', 'attentiveness'],

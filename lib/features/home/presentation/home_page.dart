@@ -1,5 +1,4 @@
 import 'dart:math' as math;
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -8,9 +7,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../app/app_router.dart';
 import '../../../core/prayer/prayer_preferences.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_text_styles.dart';
 import '../../../features/worship/domain/fasting_status.dart';
 import '../../../features/worship/application/worship_tab_provider.dart';
 import '../../../features/worship/application/prayer_controller.dart';
+import '../../../features/learn/quran/application/quran_providers.dart';
+import '../../../features/learn/prophets/application/daily_learning_service.dart';
+import '../../../features/learn/prophets/presentation/widgets/daily_learning_entry_surface.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/application/app_summary_providers.dart';
 import '../../../shared/application/special_mode_provider.dart';
@@ -18,7 +21,11 @@ import '../../../shared/state/shell_state.dart';
 import '../../../shared/state/user_profile_state.dart';
 import '../../../shared/theme/islamic_icons.dart';
 import '../../../shared/widgets/premium_card.dart';
+import '../../../shared/widgets/arabic_text_utils.dart';
+import '../../../shared/widgets/quran_text_span.dart';
 import '../../../shared/widgets/section_title.dart';
+import '../../learn/presentation/data/learn_category_catalog.dart';
+import '../../learn/presentation/models/learn_category_item.dart';
 import '../data/home_verses.dart';
 
 class HomePage extends ConsumerWidget {
@@ -104,6 +111,7 @@ class HomePage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
     final userProfile = ref.watch(userProfileProvider);
+    final quranReaderSettings = ref.watch(quranReaderSettingsProvider);
     final verseVersion = ref.watch(homeVerseVersionProvider);
     final verseIndex = verseVersion % homeQuranVerses.length;
     final verse = homeQuranVerses[verseIndex];
@@ -130,15 +138,16 @@ class HomePage extends ConsumerWidget {
               children: [
                 _TopGreetingBlock(l10n: l10n, userProfile: userProfile),
                 const SizedBox(height: 12),
-                const _WelcomeCarousel(),
-                const SizedBox(height: 10),
                 const _ModeAwareHomeCard(),
                 const SizedBox(height: 10),
-                const _AvatarHaloSection(),
-                const SizedBox(height: 16),
                 _AyahCard(
                   l10n: l10n,
                   verse: displayVerse,
+                  arabicScalePercent: quranReaderSettings.arabicScalePercent,
+                  transliterationScalePercent:
+                      quranReaderSettings.transliterationScalePercent,
+                  translationScalePercent:
+                      quranReaderSettings.translationScalePercent,
                   onTap: () => ref
                       .read(homeVerseVersionProvider.notifier)
                       .update((state) {
@@ -157,7 +166,10 @@ class HomePage extends ConsumerWidget {
                 const SizedBox(height: 14),
                 _SalahSummaryCard(l10n: l10n),
                 const SizedBox(height: 24),
-                _HomeSummaryShortcutCard(l10n: l10n),
+                _HomeSummaryShortcutCard(
+                  l10n: l10n,
+                  dailyBundle: ref.watch(todayDailyLearningBundleProvider),
+                ),
               ],
             ),
           ),
@@ -177,6 +189,12 @@ class _TopGreetingBlock extends StatelessWidget {
     return userProfile.sex == UserSex.brother
         ? l10n.profileBrother
         : l10n.profileSister;
+  }
+
+  String get _profileLogoAsset {
+    return userProfile.sex == UserSex.brother
+        ? 'assets/icons/brotherlogo.PNG'
+        : 'assets/icons/sisterlogo.PNG';
   }
 
   @override
@@ -223,6 +241,15 @@ class _TopGreetingBlock extends StatelessWidget {
               tooltip: l10n.homeSearchTooltip,
             ),
             IconButton(
+              onPressed: () => context.pushNamed('qiblaFinder'),
+              icon: const Icon(
+                IslamicIcons.qibla,
+                size: 28,
+                color: Color(0xFF7A5A33),
+              ),
+              tooltip: 'Qibla Finder',
+            ),
+            IconButton(
               onPressed: () => context.goNamed('settings'),
               icon: const Icon(
                 Icons.settings,
@@ -236,7 +263,8 @@ class _TopGreetingBlock extends StatelessWidget {
         const SizedBox(height: 2),
         Text(
           l10n.greetingArabic,
-          textAlign: TextAlign.center,
+          textAlign: textAlignForContent(l10n.greetingArabic),
+          textDirection: textDirectionForContent(l10n.greetingArabic),
           style: const TextStyle(
             fontSize: 20,
             color: Color(0xFF23201C),
@@ -263,6 +291,15 @@ class _TopGreetingBlock extends StatelessWidget {
             color: Color(0xFF5D4F44),
             fontFamily: 'serif',
           ),
+        ),
+        const SizedBox(height: 8),
+        Image.asset(
+          _profileLogoAsset,
+          width: 112,
+          height: 112,
+          fit: BoxFit.contain,
+          errorBuilder: (context, error, stackTrace) =>
+              const SizedBox(width: 112, height: 112),
         ),
       ],
     );
@@ -292,6 +329,12 @@ List<_HomeSearchDestination> _buildHomeSearchDestinations(
       subtitle: l10n.homeOverviewHeroSubtitle,
       keywords: ['home', 'dashboard', 'overview'],
       onSelected: (context) => context.go(NavTab.home.path),
+    ),
+    _HomeSearchDestination(
+      title: 'Qibla Finder',
+      subtitle: 'Compass guidance toward the Kaaba',
+      keywords: ['qibla', 'direction', 'compass', 'kaaba', 'ar qibla'],
+      onSelected: (context) => context.pushNamed('qiblaFinder'),
     ),
     _HomeSearchDestination(
       title: l10n.worshipTitle,
@@ -343,9 +386,9 @@ List<_HomeSearchDestination> _buildHomeSearchDestinations(
       onSelected: (context) => context.pushNamed('quranTopWords'),
     ),
     _HomeSearchDestination(
-      title: '99 Names of Allah',
+      title: '99 Names of الله',
       subtitle: 'Arabic names, transliteration, and concise meanings.',
-      keywords: ['99 names', 'asma ul husna', 'allah names', 'names of Allah'],
+      keywords: ['99 names', 'asma ul husna', 'allah names', 'names of الله'],
       onSelected: (context) => context.pushNamed('quranNamesOfAllah'),
     ),
     _HomeSearchDestination(
@@ -451,6 +494,30 @@ List<_HomeSearchDestination> _buildHomeSearchDestinations(
       keywords: ['profile', 'settings', 'reminders', 'preferences'],
       onSelected: (context) => context.go(NavTab.profile.path),
     ),
+    ..._learnCategorySearchDestinations(),
+  ];
+}
+
+List<_HomeSearchDestination> _learnCategorySearchDestinations() {
+  _HomeSearchDestination destinationForCategory(LearnCategoryItem item) {
+    return _HomeSearchDestination(
+      title: item.title,
+      subtitle:
+          item.description ??
+          'Learn category • ${item.sectionType.replaceAll('-', ' ')}',
+      keywords: [...item.searchKeywords, ...item.tags, item.sectionType],
+      onSelected: (context) => context.pushNamed(
+        item.routeName,
+        pathParameters: item.pathParameters,
+        queryParameters: item.queryParameters,
+      ),
+    );
+  }
+
+  return [
+    ...LearnCategoryCatalog.items.map(destinationForCategory),
+    ...LearnCategoryCatalog.otherLinks.map(destinationForCategory),
+    ...LearnCategoryCatalog.searchOnlyLinks.map(destinationForCategory),
   ];
 }
 
@@ -562,6 +629,7 @@ class _SearchResultList extends StatelessWidget {
   }
 }
 
+// ignore: unused_element
 class _WelcomeCarousel extends StatelessWidget {
   const _WelcomeCarousel();
 
@@ -611,7 +679,6 @@ class _WelcomeCarouselCard extends StatelessWidget {
     final resolvedSubtitle = _localize(context, subtitle, l10n);
     return _GlassCard(
       radius: 22,
-      alpha: 0.45,
       padding: const EdgeInsets.all(14),
       child: Row(
         children: [
@@ -683,6 +750,7 @@ class _WelcomeCarouselCard extends StatelessWidget {
   }
 }
 
+// ignore: unused_element
 class _AvatarHaloSection extends StatelessWidget {
   const _AvatarHaloSection();
 
@@ -760,15 +828,30 @@ class _AyahCard extends StatelessWidget {
   const _AyahCard({
     required this.l10n,
     required this.verse,
+    required this.arabicScalePercent,
+    required this.transliterationScalePercent,
+    required this.translationScalePercent,
     required this.onTap,
   });
 
   final AppLocalizations l10n;
   final HomeVerse verse;
+  final int arabicScalePercent;
+  final int transliterationScalePercent;
+  final int translationScalePercent;
   final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
+    final effectiveArabicSize = 34 * (arabicScalePercent / 100.0);
+    final effectiveTransliterationSize =
+        16 * (transliterationScalePercent / 100.0);
+    final effectiveTranslationSize = 15.5 * (translationScalePercent / 100.0);
+    final baseArabicStyle = AppTextStyles.quranVerse(
+      size: effectiveArabicSize,
+      color: const Color(0xFF1E1B18),
+    ).copyWith(fontWeight: FontWeight.w500, letterSpacing: 0.3, height: 1.9);
+
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(30),
@@ -777,23 +860,24 @@ class _AyahCard extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 24),
         child: Column(
           children: [
-            Text(
-              verse.arabic,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontSize: 22,
-                color: Color(0xFF1E1B18),
-                fontFamily: 'serif',
-                height: 1.2,
+            Text.rich(
+              buildQuranTextWithColoredHarakat(verse.arabic, baseArabicStyle),
+              textAlign: textAlignForContent(verse.arabic),
+              textDirection: textDirectionForContent(verse.arabic),
+              strutStyle: StrutStyle(
+                fontFamily: baseArabicStyle.fontFamily,
+                fontSize: baseArabicStyle.fontSize,
+                height: baseArabicStyle.height,
+                forceStrutHeight: true,
               ),
             ),
             const SizedBox(height: 8),
             Text(
               verse.transliteration,
               textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontSize: 16,
-                color: Color(0xFF5C5046),
+              style: TextStyle(
+                fontSize: effectiveTransliterationSize,
+                color: const Color(0xFF5C5046),
                 fontStyle: FontStyle.italic,
                 fontFamily: 'serif',
               ),
@@ -802,9 +886,9 @@ class _AyahCard extends StatelessWidget {
             Text(
               verse.translation,
               textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontSize: 15.5,
-                color: Color(0xFF42362D),
+              style: TextStyle(
+                fontSize: effectiveTranslationSize,
+                color: const Color(0xFF42362D),
                 fontFamily: 'serif',
                 height: 1.3,
               ),
@@ -818,16 +902,6 @@ class _AyahCard extends StatelessWidget {
                 color: Color(0xFF6D5A4C),
                 fontFamily: 'serif',
                 letterSpacing: 0.15,
-              ),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              l10n.homeTapVerseCardHint,
-              style: TextStyle(
-                fontSize: 11.5,
-                color: Color(0xFF6D5A4C),
-                fontFamily: 'serif',
-                letterSpacing: 0.2,
               ),
             ),
           ],
@@ -863,13 +937,11 @@ class _SalahSummaryCard extends ConsumerWidget {
       child: _GlassCard(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
         radius: 32,
-        alpha: 0.50,
         child: Column(
           children: [
             _GlassCard(
               padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
               radius: 24,
-              alpha: 0.46,
               child: Column(
                 children: [
                   Row(
@@ -917,6 +989,8 @@ class _SalahSummaryCard extends ConsumerWidget {
                           ),
                           Text(
                             nextArabic,
+                            textAlign: textAlignForContent(nextArabic),
+                            textDirection: textDirectionForContent(nextArabic),
                             style: const TextStyle(
                               fontSize: 18,
                               color: Color(0xFF2D3137),
@@ -1030,33 +1104,27 @@ class _GlassCard extends StatelessWidget {
     required this.child,
     this.padding = const EdgeInsets.all(16),
     this.radius = 30,
-    this.alpha = 0.58,
   });
 
   final Widget child;
   final EdgeInsetsGeometry padding;
   final double radius;
-  final double alpha;
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(radius),
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 5.4, sigmaY: 5.4),
-        child: Container(
-          padding: padding,
-          decoration: BoxDecoration(
-            color: const Color(0xFFF2EBE1).withValues(alpha: alpha),
-            borderRadius: BorderRadius.circular(radius),
-            border: Border.all(
-              color: const Color(0xFFD8C49A).withValues(alpha: 0.44),
-              width: 1.2,
-            ),
+    return Container(
+      padding: padding,
+      decoration: BoxDecoration(
+        color: AppColors.surface.withValues(alpha: AppColors.glassSurfaceAlpha),
+        borderRadius: BorderRadius.circular(radius),
+        border: Border.all(
+          color: AppColors.accentGold.withValues(
+            alpha: AppColors.glassBorderAlpha,
           ),
-          child: child,
+          width: 1.0,
         ),
       ),
+      child: child,
     );
   }
 }
@@ -1739,9 +1807,13 @@ class _ModeAwareHomeCard extends ConsumerWidget {
 }
 
 class _HomeSummaryShortcutCard extends StatelessWidget {
-  const _HomeSummaryShortcutCard({required this.l10n});
+  const _HomeSummaryShortcutCard({
+    required this.l10n,
+    required this.dailyBundle,
+  });
 
   final AppLocalizations l10n;
+  final DailyLearningBundle dailyBundle;
 
   @override
   Widget build(BuildContext context) {
@@ -1757,6 +1829,19 @@ class _HomeSummaryShortcutCard extends StatelessWidget {
           Text(
             l10n.homeOverviewHeroSubtitle,
             style: const TextStyle(color: AppColors.onSurfaceSubtle),
+          ),
+          const SizedBox(height: 12),
+          DailyLearningEntrySurface(
+            bundle: dailyBundle,
+            onOpenProphets: () => context.pushNamed(
+              'learnSectionHub',
+              pathParameters: {'sectionId': 'prophets'},
+            ),
+            onOpenQuiz: () => context.pushNamed(
+              'learnSectionHub',
+              pathParameters: {'sectionId': 'prophets'},
+              queryParameters: {'tab': 'quiz'},
+            ),
           ),
           const SizedBox(height: 12),
           Row(

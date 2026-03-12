@@ -135,7 +135,7 @@ const List<LearnTopicCatalogItem> learnExpansionCatalog = [
       'When do comparisons affect your peace most?',
       'How can gratitude redirect envy into growth?',
     ],
-    kidsSnippet: 'Be happy for others and ask Allah for your own good too.',
+    kidsSnippet: 'Be happy for others and ask الله for your own good too.',
     relatedQuranRef: '4:32 thematic reminder',
   ),
   LearnTopicCatalogItem(

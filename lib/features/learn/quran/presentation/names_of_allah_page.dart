@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../../core/theme/app_text_styles.dart';
+import '../../../../../shared/theme/islamic_icons.dart';
+import '../../../../../shared/widgets/arabic_text_utils.dart';
 import '../../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../../shared/widgets/premium_card.dart';
 import '../data/names_of_allah_data.dart';
@@ -26,8 +29,8 @@ class _NamesOfAllahPageState extends ConsumerState<NamesOfAllahPage> {
     }).toList();
 
     return AppPageScaffold(
-      headerIcon: Icons.auto_awesome_rounded,
-      title: '99 Names of Allah',
+      headerIcon: IslamicIcons.allahText,
+      title: '99 Names of الله',
       subtitle: 'Arabic, transliteration, and concise meanings for reflection.',
       children: [
         PremiumCard(
@@ -78,12 +81,12 @@ class _NamesOfAllahPageState extends ConsumerState<NamesOfAllahPage> {
                       children: [
                         Text(
                           name.arabic,
-                          style: const TextStyle(
-                            fontSize: 28,
-                            height: 1.15,
-                            fontWeight: FontWeight.w700,
+                          style: AppTextStyles.arabicLearning(
+                            size: 32,
+                            weight: FontWeight.w700,
                           ),
-                          textDirection: TextDirection.rtl,
+                          textAlign: textAlignForContent(name.arabic),
+                          textDirection: textDirectionForContent(name.arabic),
                         ),
                         const SizedBox(height: 4),
                         Text(

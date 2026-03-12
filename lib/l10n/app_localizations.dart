@@ -150,7 +150,7 @@ abstract class AppLocalizations {
   /// No description provided for @navPrayer.
   ///
   /// In en, this message translates to:
-  /// **'Journey'**
+  /// **'Growth'**
   String get navPrayer;
 
   /// No description provided for @navGarden.
@@ -768,7 +768,7 @@ abstract class AppLocalizations {
   /// No description provided for @journeyTitle.
   ///
   /// In en, this message translates to:
-  /// **'Journey'**
+  /// **'Growth'**
   String get journeyTitle;
 
   /// No description provided for @journeySubtitle.
@@ -792,7 +792,7 @@ abstract class AppLocalizations {
   /// No description provided for @profileQuoteTranslation.
   ///
   /// In en, this message translates to:
-  /// **'Whoever is mindful of Allah is guided toward balance and intention.'**
+  /// **'Whoever is mindful of الله is guided toward balance and intention.'**
   String get profileQuoteTranslation;
 
   /// No description provided for @profileSummarySubtitle.
@@ -1050,7 +1050,7 @@ abstract class AppLocalizations {
   /// No description provided for @profileEntrustDeedsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'A gentle reminder: sincere deeds are with Allah.'**
+  /// **'A gentle reminder: sincere deeds are with الله.'**
   String get profileEntrustDeedsSubtitle;
 
   /// No description provided for @profileNotificationsTitle.
@@ -3264,7 +3264,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranWordTranslationChip.
   ///
   /// In en, this message translates to:
-  /// **'Word translation'**
+  /// **'Word by Word Translation'**
   String get quranWordTranslationChip;
 
   /// No description provided for @quranAudioV2Title.
@@ -3528,7 +3528,7 @@ abstract class AppLocalizations {
   /// No description provided for @quranNamesOfAllahTitle.
   ///
   /// In en, this message translates to:
-  /// **'99 Names of Allah'**
+  /// **'99 Names of الله'**
   String get quranNamesOfAllahTitle;
 
   /// No description provided for @quranNamesOfAllahSubtitle.

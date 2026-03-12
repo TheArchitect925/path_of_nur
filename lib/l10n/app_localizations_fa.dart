@@ -21,7 +21,7 @@ class AppLocalizationsFa extends AppLocalizations {
   String get navHome => 'Home';
 
   @override
-  String get navPrayer => 'Journey';
+  String get navPrayer => 'Growth';
 
   @override
   String get navGarden => 'Profile';
@@ -349,7 +349,7 @@ class AppLocalizationsFa extends AppLocalizations {
   String get homeTitle => 'Home';
 
   @override
-  String get journeyTitle => 'Journey';
+  String get journeyTitle => 'Growth';
 
   @override
   String get journeySubtitle => 'Long-term growth, light by light.';
@@ -362,7 +362,7 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get profileQuoteTranslation =>
-      'Whoever is mindful of Allah is guided toward balance and intention.';
+      'Whoever is mindful of الله is guided toward balance and intention.';
 
   @override
   String get profileSummarySubtitle =>
@@ -505,7 +505,7 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get profileEntrustDeedsSubtitle =>
-      'A gentle reminder: sincere deeds are with Allah.';
+      'A gentle reminder: sincere deeds are with الله.';
 
   @override
   String get profileNotificationsTitle => 'Notifications & Reminders';
@@ -2726,7 +2726,7 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
   String get navHome => 'Home';
 
   @override
-  String get navPrayer => 'Journey';
+  String get navPrayer => 'Growth';
 
   @override
   String get navGarden => 'Profile';
@@ -3051,7 +3051,10 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
       'A focused knowledge path for reflection and deeper understanding.';
 
   @override
-  String get journeyTitle => 'Journey';
+  String get homeTitle => 'Home';
+
+  @override
+  String get journeyTitle => 'Growth';
 
   @override
   String get journeySubtitle => 'Long-term growth, light by light.';
@@ -3064,7 +3067,7 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
 
   @override
   String get profileQuoteTranslation =>
-      'Whoever is mindful of Allah is guided toward balance and intention.';
+      'Whoever is mindful of الله is guided toward balance and intention.';
 
   @override
   String get profileSummarySubtitle =>
@@ -3207,7 +3210,7 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
 
   @override
   String get profileEntrustDeedsSubtitle =>
-      'A gentle reminder: sincere deeds are with Allah.';
+      'A gentle reminder: sincere deeds are with الله.';
 
   @override
   String get profileNotificationsTitle => 'Notifications & Reminders';
@@ -4928,6 +4931,113 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
   }
 
   @override
+  String get journeyGraceTokenTitle => 'Streak protection';
+
+  @override
+  String journeyGraceTokenBody(
+    int remaining,
+    int allowance,
+    int protectedDays,
+  ) {
+    return '$remaining/$allowance grace tokens left this month. Protected days this week: $protectedDays.';
+  }
+
+  @override
+  String get journeyMonthlyBadgesTitle => 'Monthly badges';
+
+  @override
+  String get journeyMonthlyBadgesSubtitle =>
+      'Tiered consistency challenges with unlock effects.';
+
+  @override
+  String journeyBadgeTier(String tier, int current, int target) {
+    return '$tier • $current/$target';
+  }
+
+  @override
+  String get journeyTierStarting => 'Starting';
+
+  @override
+  String get journeyTierBronze => 'Bronze';
+
+  @override
+  String get journeyTierSilver => 'Silver';
+
+  @override
+  String get journeyTierGold => 'Gold';
+
+  @override
+  String get journeyTierPlatinum => 'Platinum';
+
+  @override
+  String get journeyWeeklyReflectionTitle => 'Weekly reflection review';
+
+  @override
+  String journeyWeeklyReflectionStats(
+    int worship,
+    int learning,
+    int journal,
+    int favorites,
+  ) {
+    return 'Worship actions: $worship. Learning completions: $learning. Journal entries: $journal. Favorites: $favorites.';
+  }
+
+  @override
+  String journeyWeeklyReflectionTags(String tags) {
+    return 'Top themes: $tags';
+  }
+
+  @override
+  String get journeyWeeklyHighlightWorship =>
+      'This week leaned into steady worship and presence.';
+
+  @override
+  String get journeyWeeklyHighlightLearning =>
+      'This week showed clear learning growth.';
+
+  @override
+  String get journeyWeeklyHighlightReflection =>
+      'This week held meaningful reflection moments.';
+
+  @override
+  String get journeyWeeklyHighlightSmallSteps =>
+      'Small steps were present this week; keep building gently.';
+
+  @override
+  String get oceanProgressionMapTitle => 'Progression map';
+
+  @override
+  String oceanTimelineSources(int count) {
+    return '$count active sources';
+  }
+
+  @override
+  String get oceanRecentDaysLabel => 'Recent day snapshots';
+
+  @override
+  String get wallpaperStoryCardsTitle => 'Unlock stories';
+
+  @override
+  String wallpaperStoryHint(String hint) {
+    return 'Path: $hint';
+  }
+
+  @override
+  String wallpaperStoryProgress(
+    int requiredLevel,
+    int currentLevel,
+    int requiredTopics,
+    int currentTopics,
+  ) {
+    return 'Level $requiredLevel required • current level $currentLevel. Learn target $requiredTopics • current $currentTopics.';
+  }
+
+  @override
+  String wallpaperStoryMilestone(String milestone) {
+    return 'Milestone link: $milestone';
+  }
+
+  @override
   String get homeEcosystemSummaryTitle => 'Growth ecosystem';
 
   @override
@@ -5188,6 +5298,15 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
   String get circlesCreateEventCreatorLabel => 'Organizer name (optional)';
 
   @override
+  String get circlesCreateEventRoleLabel => 'Creation role';
+
+  @override
+  String get circlesCreateEventRoleUser => 'Community member';
+
+  @override
+  String get circlesCreateEventRoleModerator => 'Mosque moderator';
+
+  @override
   String circlesCreateEventDateValue(Object date) {
     return 'Date: $date';
   }
@@ -5207,4 +5326,90 @@ class AppLocalizationsFaAf extends AppLocalizationsFa {
   @override
   String get circlesCreateEventSuccess =>
       'Event created and added to calendar.';
+
+  @override
+  String get circlesCreateEventPendingReview =>
+      'Event submitted and pending moderation review.';
+
+  @override
+  String get circlesCreatedEventsStatusTitle => 'Submitted events';
+
+  @override
+  String circlesCreatedEventsStatusBody(int pending, int rejected) {
+    return '$pending pending review • $rejected rejected';
+  }
+
+  @override
+  String get circlesModeratorCreateReady =>
+      'Moderator posting is enabled for your account.';
+
+  @override
+  String get circlesModeratorCreatePending =>
+      'Moderator posting unlocks after steward trust level and mosque import.';
+
+  @override
+  String get circlesPendingEventsTitle => 'Pending event queue';
+
+  @override
+  String get circlesPendingEventsEmpty =>
+      'No events are waiting for moderation.';
+
+  @override
+  String get circlesApproveEvent => 'Approve';
+
+  @override
+  String get circlesRejectEvent => 'Reject';
+
+  @override
+  String get circlesModerationAccessReady =>
+      'You can approve/reject pending events.';
+
+  @override
+  String get circlesModerationAccessLimited =>
+      'Approval actions unlock at steward trust level.';
+
+  @override
+  String get circlesMosqueVerifiedBadge => 'Mosque verified';
+
+  @override
+  String circlesEventReportCount(int count) {
+    return '$count report(s) linked';
+  }
+
+  @override
+  String circlesEventApprovedAudit(String name, String date) {
+    return 'Approved by $name on $date';
+  }
+
+  @override
+  String get onboardingDisclaimerBody =>
+      'This app is a companion for guidance and consistency. It does not replace local mosque community, scholars, or real-world support.';
+
+  @override
+  String get legalPrivacyBody =>
+      'Path of Nūr stores your progress and preferences locally by default. You can review and clear settings in Profile at any time.';
+
+  @override
+  String get legalTermsBody =>
+      'Path of Nūr is a companion app for learning, worship consistency, and reflection. It does not replace qualified scholarship or local community guidance.';
+
+  @override
+  String get legalSupportBody =>
+      'For support, use in-app feedback channels and local community resources. If something looks incorrect, report it from the relevant page.';
+
+  @override
+  String get legalBuildInfoTitle => 'Build information';
+
+  @override
+  String legalBuildFlavorLabel(String flavor) {
+    return 'Flavor: $flavor';
+  }
+
+  @override
+  String legalCrashLogCountLabel(int count) {
+    return 'Stored crash reports: $count';
+  }
+
+  @override
+  String get routerNotFoundTitle => 'Route not found';
 }

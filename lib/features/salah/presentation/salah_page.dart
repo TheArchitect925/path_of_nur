@@ -4,8 +4,10 @@ import 'package:go_router/go_router.dart';
 
 import '../../../core/prayer/prayer_preferences.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_text_styles.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/theme/islamic_icons.dart';
+import '../../../shared/widgets/arabic_text_utils.dart';
 import '../../../shared/widgets/global_background.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/quran_quote_block.dart';
@@ -45,13 +47,17 @@ class SalahTimesPage extends ConsumerWidget {
                         size: 24,
                       ),
                       const SizedBox(width: 8),
-                      const Text(
-                        'Salah Timings',
-                        style: TextStyle(
-                          fontSize: 26,
-                          fontFamily: 'serif',
-                          fontWeight: FontWeight.w700,
-                          color: Color(0xFF32251D),
+                      const Expanded(
+                        child: Text(
+                          'Salah Timings',
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontSize: 26,
+                            fontFamily: 'serif',
+                            fontWeight: FontWeight.w700,
+                            color: Color(0xFF32251D),
+                          ),
                         ),
                       ),
                     ],
@@ -155,10 +161,15 @@ class SalahTimesPage extends ConsumerWidget {
                                           const SizedBox(height: 2),
                                           Text(
                                             entry.arabicName,
-                                            style: const TextStyle(
-                                              fontSize: 15,
-                                              color: Color(0xFF3F332C),
-                                              fontFamily: 'serif',
+                                            textAlign: textAlignForContent(
+                                              entry.arabicName,
+                                            ),
+                                            textDirection: textDirectionForContent(
+                                              entry.arabicName,
+                                            ),
+                                            style: AppTextStyles.arabicLearning(
+                                              size: 18,
+                                              color: const Color(0xFF3F332C),
                                             ),
                                           ),
                                         ],
@@ -246,7 +257,9 @@ class _NotificationButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Wrap(
+      spacing: 8,
+      runSpacing: 8,
       children: [
         _NotificationButton(
           icon: Icons.notifications_off_outlined,
@@ -254,21 +267,18 @@ class _NotificationButtons extends StatelessWidget {
           selected: active == PrayerNotificationMode.none,
           onPressed: () => onSelect(PrayerNotificationMode.none),
         ),
-        const SizedBox(width: 8),
         _NotificationButton(
           icon: Icons.notifications_none,
           label: 'Notification',
           selected: active == PrayerNotificationMode.notificationOnly,
           onPressed: () => onSelect(PrayerNotificationMode.notificationOnly),
         ),
-        const SizedBox(width: 8),
         _NotificationButton(
           icon: Icons.volume_up,
           label: 'Adhan',
           selected: active == PrayerNotificationMode.adhanWithSound,
           onPressed: () => onSelect(PrayerNotificationMode.adhanWithSound),
         ),
-        const SizedBox(width: 8),
         _NotificationButton(
           icon: Icons.alarm,
           label: 'Before qaza',

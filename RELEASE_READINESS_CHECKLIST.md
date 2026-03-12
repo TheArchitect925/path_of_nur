@@ -10,6 +10,7 @@
 - Static analysis: `flutter analyze`
 - iOS debug smoke: `flutter run`
 - iOS release smoke: `flutter build ios --release --dart-define=APP_FLAVOR=prod`
+- Before opening Xcode packaging flow: review **Attributions & Licenses** page and re-verify source permissions/licensing for Qur'an text, translations, transliteration, audio, and API usage.
 
 ## 3) Flavors
 - Supported runtime flavors via `APP_FLAVOR`:
@@ -27,6 +28,7 @@
   - `/legal/privacy`
   - `/legal/terms`
   - `/legal/support`
+  - `/legal/attributions`
 
 ## 5) Deep Links & Route Guards
 - Verify legacy redirects:

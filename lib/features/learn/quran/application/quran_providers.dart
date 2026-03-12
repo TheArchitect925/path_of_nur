@@ -1,13 +1,19 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:just_audio/just_audio.dart';
 
 import '../../../../shared/persistence/local_store.dart';
+import '../data/quran_audio_repository.dart';
 import '../data/quran_repository.dart';
+import '../data/quran_transliteration_repository.dart';
+import '../data/quran_word_timing_repository.dart';
 import '../domain/quran_ayah.dart';
 import '../domain/quran_bookmark.dart';
 import '../domain/quran_daily_verse.dart';
+import '../domain/quran_reference_models.dart';
 import '../domain/quran_note.dart';
 import '../domain/quran_reading_progress.dart';
 import '../domain/quran_surah.dart';
+import 'quran_reference_graph_provider.dart';
 
 const _progressKey = 'learn.quran.readingProgress';
 const _bookmarksKey = 'learn.quran.bookmarks';
@@ -19,14 +25,19 @@ const _showTransliterationKey = 'learn.quran.showTransliteration';
 const _showTranslationKey = 'learn.quran.showTranslation';
 const _arabicScalePercentKey = 'learn.quran.arabicScalePercent';
 const _translationScalePercentKey = 'learn.quran.translationScalePercent';
+const _transliterationScalePercentKey =
+    'learn.quran.transliterationScalePercent';
 const _cleanReadingModeKey = 'learn.quran.cleanReadingMode';
 const _showWordByWordKey = 'learn.quran.showWordByWord';
+const _wordSyncHighlightBetaKey = 'learn.quran.wordSyncHighlightBeta';
+const _redDiacriticsKey = 'learn.quran.redDiacriticsEnabled';
 const _wordFavoritesKey = 'learn.quran.wordFavorites';
 const _wordReviewProgressKey = 'learn.quran.wordReviewProgress';
 const _audioSettingsKey = 'learn.quran.audioSettings';
 const _hifzSettingsKey = 'learn.quran.hifzSettings';
 const _notesFilterFolderKey = 'learn.quran.notesFilterFolder';
 const _notesFilterTagKey = 'learn.quran.notesFilterTag';
+const _recitationSessionKey = 'learn.quran.recitationSession';
 
 const quranTranslationCodes = <String>[
   'en.sahih',
@@ -45,8 +56,11 @@ class QuranReaderSettings {
     required this.showTranslation,
     required this.arabicScalePercent,
     required this.translationScalePercent,
+    required this.transliterationScalePercent,
     required this.cleanReadingMode,
     required this.showWordByWord,
+    required this.wordSyncHighlightBeta,
+    required this.redDiacriticsEnabled,
   });
 
   final String translationCode;
@@ -54,8 +68,11 @@ class QuranReaderSettings {
   final bool showTranslation;
   final int arabicScalePercent;
   final int translationScalePercent;
+  final int transliterationScalePercent;
   final bool cleanReadingMode;
   final bool showWordByWord;
+  final bool wordSyncHighlightBeta;
+  final bool redDiacriticsEnabled;
 
   QuranReaderSettings copyWith({
     String? translationCode,
@@ -63,8 +80,11 @@ class QuranReaderSettings {
     bool? showTranslation,
     int? arabicScalePercent,
     int? translationScalePercent,
+    int? transliterationScalePercent,
     bool? cleanReadingMode,
     bool? showWordByWord,
+    bool? wordSyncHighlightBeta,
+    bool? redDiacriticsEnabled,
   }) {
     return QuranReaderSettings(
       translationCode: translationCode ?? this.translationCode,
@@ -73,8 +93,13 @@ class QuranReaderSettings {
       arabicScalePercent: arabicScalePercent ?? this.arabicScalePercent,
       translationScalePercent:
           translationScalePercent ?? this.translationScalePercent,
+      transliterationScalePercent:
+          transliterationScalePercent ?? this.transliterationScalePercent,
       cleanReadingMode: cleanReadingMode ?? this.cleanReadingMode,
       showWordByWord: showWordByWord ?? this.showWordByWord,
+      wordSyncHighlightBeta:
+          wordSyncHighlightBeta ?? this.wordSyncHighlightBeta,
+      redDiacriticsEnabled: redDiacriticsEnabled ?? this.redDiacriticsEnabled,
     );
   }
 }
@@ -152,18 +177,24 @@ class QuranAudioSettings {
     required this.repeatStartAyah,
     required this.repeatEndAyah,
     required this.ayahLoopCount,
+    required this.reciterId,
+    required this.backgroundPlaybackEnabled,
   });
 
   final double playbackSpeed;
   final int? repeatStartAyah;
   final int? repeatEndAyah;
   final int ayahLoopCount;
+  final String reciterId;
+  final bool backgroundPlaybackEnabled;
 
   QuranAudioSettings copyWith({
     double? playbackSpeed,
     int? repeatStartAyah,
     int? repeatEndAyah,
     int? ayahLoopCount,
+    String? reciterId,
+    bool? backgroundPlaybackEnabled,
     bool clearRange = false,
   }) {
     return QuranAudioSettings(
@@ -173,6 +204,9 @@ class QuranAudioSettings {
           : repeatStartAyah ?? this.repeatStartAyah,
       repeatEndAyah: clearRange ? null : repeatEndAyah ?? this.repeatEndAyah,
       ayahLoopCount: ayahLoopCount ?? this.ayahLoopCount,
+      reciterId: reciterId ?? this.reciterId,
+      backgroundPlaybackEnabled:
+          backgroundPlaybackEnabled ?? this.backgroundPlaybackEnabled,
     );
   }
 
@@ -181,6 +215,8 @@ class QuranAudioSettings {
     'repeatStartAyah': repeatStartAyah,
     'repeatEndAyah': repeatEndAyah,
     'ayahLoopCount': ayahLoopCount,
+    'reciterId': reciterId,
+    'backgroundPlaybackEnabled': backgroundPlaybackEnabled,
   };
 
   static QuranAudioSettings fromJson(Map<String, dynamic>? json) {
@@ -190,8 +226,16 @@ class QuranAudioSettings {
         repeatStartAyah: null,
         repeatEndAyah: null,
         ayahLoopCount: 1,
+        reciterId: 'husary',
+        backgroundPlaybackEnabled: true,
       );
     }
+    final rawReciterId = json['reciterId']?.toString();
+    final defaultReciterId = QuranAudioRepository.reciters.first.id;
+    final reciterId =
+        QuranAudioRepository.reciters.any((item) => item.id == rawReciterId)
+        ? rawReciterId!
+        : defaultReciterId;
     return QuranAudioSettings(
       playbackSpeed: ((json['playbackSpeed'] as num?)?.toDouble() ?? 1.0).clamp(
         0.6,
@@ -203,6 +247,9 @@ class QuranAudioSettings {
         1,
         12,
       ),
+      reciterId: reciterId,
+      backgroundPlaybackEnabled:
+          (json['backgroundPlaybackEnabled'] as bool?) ?? true,
     );
   }
 }
@@ -300,12 +347,15 @@ class QuranReaderSettingsNotifier extends StateNotifier<QuranReaderSettings> {
     : super(
         const QuranReaderSettings(
           translationCode: 'en.sahih',
-          showTransliteration: false,
+          showTransliteration: true,
           showTranslation: true,
           arabicScalePercent: 100,
           translationScalePercent: 100,
+          transliterationScalePercent: 100,
           cleanReadingMode: false,
           showWordByWord: true,
+          wordSyncHighlightBeta: false,
+          redDiacriticsEnabled: true,
         ),
       ) {
     _load();
@@ -341,6 +391,12 @@ class QuranReaderSettingsNotifier extends StateNotifier<QuranReaderSettings> {
     _store.setInt(_translationScalePercentKey, clamped);
   }
 
+  void setTransliterationScalePercent(int value) {
+    final clamped = value.clamp(85, 140);
+    state = state.copyWith(transliterationScalePercent: clamped);
+    _store.setInt(_transliterationScalePercentKey, clamped);
+  }
+
   void setCleanReadingMode(bool value) {
     state = state.copyWith(cleanReadingMode: value);
     _store.setBool(_cleanReadingModeKey, value);
@@ -351,14 +407,29 @@ class QuranReaderSettingsNotifier extends StateNotifier<QuranReaderSettings> {
     _store.setBool(_showWordByWordKey, value);
   }
 
+  void setWordSyncHighlightBeta(bool value) {
+    state = state.copyWith(wordSyncHighlightBeta: value);
+    _store.setBool(_wordSyncHighlightBetaKey, value);
+  }
+
+  void setRedDiacriticsEnabled(bool value) {
+    state = state.copyWith(redDiacriticsEnabled: value);
+    _store.setBool(_redDiacriticsKey, value);
+  }
+
   void _load() {
     final code = _store.getString(_translationCodeKey);
     final showTransliteration = _store.getBool(_showTransliterationKey);
     final showTranslation = _store.getBool(_showTranslationKey);
     final arabicScalePercent = _store.getInt(_arabicScalePercentKey);
     final translationScalePercent = _store.getInt(_translationScalePercentKey);
+    final transliterationScalePercent = _store.getInt(
+      _transliterationScalePercentKey,
+    );
     final cleanReadingMode = _store.getBool(_cleanReadingModeKey);
     final showWordByWord = _store.getBool(_showWordByWordKey);
+    final wordSyncHighlightBeta = _store.getBool(_wordSyncHighlightBetaKey);
+    final redDiacriticsEnabled = _store.getBool(_redDiacriticsKey);
 
     state = state.copyWith(
       translationCode: (code != null && quranTranslationCodes.contains(code))
@@ -369,8 +440,13 @@ class QuranReaderSettingsNotifier extends StateNotifier<QuranReaderSettings> {
       arabicScalePercent: arabicScalePercent ?? state.arabicScalePercent,
       translationScalePercent:
           translationScalePercent ?? state.translationScalePercent,
+      transliterationScalePercent:
+          transliterationScalePercent ?? state.transliterationScalePercent,
       cleanReadingMode: cleanReadingMode ?? state.cleanReadingMode,
       showWordByWord: showWordByWord ?? state.showWordByWord,
+      wordSyncHighlightBeta:
+          wordSyncHighlightBeta ?? state.wordSyncHighlightBeta,
+      redDiacriticsEnabled: redDiacriticsEnabled ?? state.redDiacriticsEnabled,
     );
   }
 }
@@ -690,6 +766,20 @@ class QuranAudioSettingsNotifier extends StateNotifier<QuranAudioSettings> {
     _save();
   }
 
+  void setReciterId(String reciterId) {
+    final exists = QuranAudioRepository.reciters.any(
+      (item) => item.id == reciterId,
+    );
+    if (!exists) return;
+    state = state.copyWith(reciterId: reciterId);
+    _save();
+  }
+
+  void setBackgroundPlaybackEnabled(bool value) {
+    state = state.copyWith(backgroundPlaybackEnabled: value);
+    _save();
+  }
+
   void _save() {
     _store.setJsonMap(_audioSettingsKey, state.toJson());
   }
@@ -788,16 +878,52 @@ class QuranRecentSearchesNotifier extends StateNotifier<List<String>> {
   }
 }
 
+class QuranRecitationSessionNotifier
+    extends StateNotifier<QuranRecitationSession?> {
+  QuranRecitationSessionNotifier(this._store) : super(null) {
+    state = QuranRecitationSession.fromJson(
+      _store.getJsonMap(_recitationSessionKey),
+    );
+  }
+
+  final LocalStore _store;
+
+  void save({
+    required int surahNumber,
+    required int ayahNumber,
+    required int positionSeconds,
+  }) {
+    state = QuranRecitationSession(
+      surahNumber: surahNumber,
+      ayahNumber: ayahNumber,
+      positionSeconds: positionSeconds.clamp(0, 24 * 60 * 60),
+      updatedAtIso: DateTime.now().toIso8601String(),
+    );
+    _store.setJsonMap(_recitationSessionKey, state!.toJson());
+  }
+
+  void clear() {
+    state = null;
+    _store.remove(_recitationSessionKey);
+  }
+}
+
 class QuranSearchResult {
   const QuranSearchResult({
     required this.surah,
     this.ayah,
     required this.matchText,
+    this.reference,
+    this.knowledgeHint,
+    this.connectedKnowledgeCount = 0,
   });
 
   final QuranSurah surah;
   final QuranAyah? ayah;
   final String matchText;
+  final QuranReference? reference;
+  final String? knowledgeHint;
+  final int connectedKnowledgeCount;
 }
 
 class QuranContinueReadingSummary {
@@ -847,8 +973,69 @@ class QuranRecentReading {
   }
 }
 
+class QuranRecitationSession {
+  const QuranRecitationSession({
+    required this.surahNumber,
+    required this.ayahNumber,
+    required this.positionSeconds,
+    required this.updatedAtIso,
+  });
+
+  final int surahNumber;
+  final int ayahNumber;
+  final int positionSeconds;
+  final String updatedAtIso;
+
+  Map<String, dynamic> toJson() => {
+    'surahNumber': surahNumber,
+    'ayahNumber': ayahNumber,
+    'positionSeconds': positionSeconds,
+    'updatedAtIso': updatedAtIso,
+  };
+
+  static QuranRecitationSession? fromJson(Map<String, dynamic>? json) {
+    if (json == null) return null;
+    final surahNumber = json['surahNumber'];
+    final ayahNumber = json['ayahNumber'];
+    final updatedAtIso = json['updatedAtIso']?.toString();
+    if (surahNumber is! int || ayahNumber is! int || updatedAtIso == null) {
+      return null;
+    }
+    return QuranRecitationSession(
+      surahNumber: surahNumber,
+      ayahNumber: ayahNumber,
+      positionSeconds: ((json['positionSeconds'] as num?)?.toInt() ?? 0).clamp(
+        0,
+        24 * 60 * 60,
+      ),
+      updatedAtIso: updatedAtIso,
+    );
+  }
+}
+
 final quranRepositoryProvider = Provider<QuranRepository>((ref) {
   return QuranRepository();
+});
+
+final quranAudioRepositoryProvider = Provider<QuranAudioRepository>((ref) {
+  return QuranAudioRepository();
+});
+
+final quranSharedAudioPlayerProvider = Provider<AudioPlayer>((ref) {
+  final player = AudioPlayer();
+  ref.onDispose(player.dispose);
+  return player;
+});
+
+final quranTransliterationRepositoryProvider =
+    Provider<QuranTransliterationRepository>((ref) {
+      return QuranTransliterationRepository();
+    });
+
+final quranWordTimingRepositoryProvider = Provider<QuranWordTimingRepository>((
+  ref,
+) {
+  return QuranWordTimingRepository();
 });
 
 final quranReaderSettingsProvider =
@@ -900,6 +1087,12 @@ final quranRecentSearchesProvider =
     StateNotifierProvider<QuranRecentSearchesNotifier, List<String>>(
       (ref) => QuranRecentSearchesNotifier(ref.watch(localStoreProvider)),
     );
+
+final quranRecitationSessionProvider =
+    StateNotifierProvider<
+      QuranRecitationSessionNotifier,
+      QuranRecitationSession?
+    >((ref) => QuranRecitationSessionNotifier(ref.watch(localStoreProvider)));
 
 final quranRecentReadingsProvider = Provider<List<QuranRecentReading>>((ref) {
   ref.watch(quranReadingProgressProvider);
@@ -987,35 +1180,100 @@ final quranFilteredSurahListProvider = Provider.autoDispose<List<QuranSurah>>((
   }).toList();
 });
 
-final quranSearchResultsProvider =
-    Provider.autoDispose<List<QuranSearchResult>>((ref) {
-      final query = ref.watch(quranSearchQueryProvider).trim();
-      if (query.isEmpty) return const [];
-      final translationCode = ref.watch(
-        quranReaderSettingsProvider.select((state) => state.translationCode),
-      );
-      final repository = ref.watch(quranRepositoryProvider);
-      final rows = repository.search(
-        query,
-        translationCode: translationCode,
-        maxResults: 80,
-      );
+final quranSearchResultsProvider = Provider.autoDispose<List<QuranSearchResult>>(
+  (ref) {
+    final query = ref.watch(quranSearchQueryProvider).trim();
+    if (query.isEmpty) return const [];
+    final translationCode = ref.watch(
+      quranReaderSettingsProvider.select((state) => state.translationCode),
+    );
+    final repository = ref.watch(quranRepositoryProvider);
+    final graph = ref.watch(quranReferenceGraphProvider);
+    final graphHits = ref.watch(quranReferenceSearchHitsProvider(query));
+    final rows = repository.search(
+      query,
+      translationCode: translationCode,
+      maxResults: 80,
+    );
 
-      return rows.map((row) {
-        return QuranSearchResult(
+    final output = <QuranSearchResult>[];
+    final seenKeys = <String>{};
+
+    for (final row in rows) {
+      final ayahNumber = row.ayahNumber;
+      QuranReference? linkedReference;
+      if (ayahNumber != null) {
+        final ids =
+            graph.referenceIdsBySurah[row.surah.number] ?? const <String>[];
+        for (final id in ids) {
+          final reference = graph.referenceById[id];
+          if (reference != null && reference.containsAyah(ayahNumber)) {
+            linkedReference = reference;
+            break;
+          }
+        }
+      }
+
+      final key =
+          '${row.surah.number}:${ayahNumber ?? 0}:${linkedReference?.id ?? ''}';
+      if (!seenKeys.add(key)) continue;
+      output.add(
+        QuranSearchResult(
           surah: row.surah,
-          ayah: row.ayahNumber == null
+          ayah: ayahNumber == null
               ? null
               : QuranAyah(
                   surahNumber: row.surah.number,
-                  ayahNumber: row.ayahNumber!,
+                  ayahNumber: ayahNumber,
                   arabic: '',
                   translation: row.matchText,
                 ),
           matchText: row.matchText,
-        );
-      }).toList();
-    });
+          reference: linkedReference,
+          knowledgeHint: linkedReference?.topicTags.join(', '),
+          connectedKnowledgeCount: linkedReference == null
+              ? 0
+              : linkedReference.relatedLessonIds.length +
+                    linkedReference.relatedHadithIds.length +
+                    linkedReference.relatedProphetIds.length +
+                    linkedReference.relatedJourneyIds.length,
+        ),
+      );
+    }
+
+    final surahMap = ref.watch(quranSurahMapProvider);
+    for (final hit in graphHits) {
+      final reference = hit.reference;
+      final surah = surahMap[reference.surahNumber];
+      if (surah == null) continue;
+      final key =
+          '${reference.surahNumber}:${reference.ayahStart}:${reference.id}';
+      if (!seenKeys.add(key)) continue;
+      output.add(
+        QuranSearchResult(
+          surah: surah,
+          ayah: QuranAyah(
+            surahNumber: reference.surahNumber,
+            ayahNumber: reference.ayahStart,
+            arabic: '',
+            translation: reference.contextSummary,
+          ),
+          matchText:
+              '${reference.referenceLabel} • ${reference.contextSummary}',
+          reference: reference,
+          knowledgeHint: hit.matchedOn,
+          connectedKnowledgeCount:
+              reference.relatedLessonIds.length +
+              reference.relatedHadithIds.length +
+              reference.relatedProphetIds.length +
+              reference.relatedJourneyIds.length,
+        ),
+      );
+    }
+
+    return output.take(100).toList(growable: false);
+  },
+);
 
 final quranWordReviewDeckProvider = Provider<List<QuranWordFavorite>>((ref) {
   final favorites = ref.watch(quranWordFavoritesProvider);
@@ -1109,16 +1367,34 @@ final quranDailyRevisionPlanProvider = Provider<List<QuranRevisionItem>>((ref) {
   return output;
 });
 
-final quranSurahAyahsProvider = Provider.family<List<QuranAyah>, int>((
+final quranSurahAyahsProvider = FutureProvider.family<List<QuranAyah>, int>((
   ref,
   surahNumber,
-) {
+) async {
   final translationCode = ref.watch(
     quranReaderSettingsProvider.select((state) => state.translationCode),
   );
   final repository = ref.watch(quranRepositoryProvider);
-  return repository.getAyahsForSurah(
+  final transliterationRepository = ref.watch(
+    quranTransliterationRepositoryProvider,
+  );
+  final ayahs = repository.getAyahsForSurah(
     surahNumber,
     translationCode: translationCode,
   );
+  final transliterationRows = await transliterationRepository
+      .getSurahTransliteration(surahNumber);
+  return List<QuranAyah>.generate(ayahs.length, (index) {
+    final ayah = ayahs[index];
+    final transliteration = index < transliterationRows.length
+        ? transliterationRows[index]
+        : '';
+    return QuranAyah(
+      surahNumber: ayah.surahNumber,
+      ayahNumber: ayah.ayahNumber,
+      arabic: ayah.arabic,
+      translation: ayah.translation,
+      transliteration: transliteration,
+    );
+  });
 });

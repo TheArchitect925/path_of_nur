@@ -33,7 +33,7 @@ This document maps the current Learn ecosystem structure in Path of Nūr.
 - Reading Progress / Streak
 - Top Words
 - Word Review
-- 99 Names of Allah
+- 99 Names of الله
 
 ### Primary pages/routes
 
@@ -74,7 +74,7 @@ This document maps the current Learn ecosystem structure in Path of Nūr.
   - Generosity, Trust & Accountability
 - Hardship & Patience
   - Inner Resilience in Trials
-  - Prayer, Dua & Trust in Allah
+  - Prayer, Dua & Trust in الله
 - Community & Relationships
   - Friendship, Neighbors & Belonging
   - Disagreement, Promises & Social Trust

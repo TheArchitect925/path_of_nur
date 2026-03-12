@@ -33,6 +33,8 @@ void main() {
     await tester.tap(find.text('Worship').last);
     await tester.pumpAndSettle();
     expect(find.textContaining('Worship'), findsWidgets);
+    // moon phase card should be visible
+    expect(find.text('Moon Phase'), findsOneWidget);
 
     await tester.tap(find.text('Journey').last);
     await tester.pumpAndSettle();

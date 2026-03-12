@@ -5,14 +5,29 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../core/diagnostics/app_telemetry.dart';
 import '../l10n/app_localizations.dart';
 import '../features/journey/presentation/journey_page.dart';
+import '../features/journey/application/growth_models.dart';
+import '../features/journey/presentation/growth_habit_detail_page.dart';
+import '../features/journey/presentation/growth_entry_page.dart';
+import '../features/journey/presentation/growth_path_detail_page.dart';
+import '../features/journey/presentation/journey_legacy_page.dart';
 import '../features/learn/presentation/learn_page.dart';
+import '../features/learn/presentation/pages/learn_quran_hub_page.dart';
+import '../features/learn/presentation/pages/learn_salah_hub_page.dart';
+import '../features/learn/presentation/pages/learn_section_placeholder_page.dart';
+import '../features/learn/prophets/domain/prophets_tab.dart';
+import '../features/learn/quran_universe/presentation/quran_universe_page.dart';
+import '../features/learn/quran_universe/presentation/knowledge_constellation_page.dart';
+import '../features/learn/salah/presentation/wudu_guide_page.dart';
+import '../features/learn/salah/presentation/wudu_trainer_page.dart';
 import '../features/home/presentation/home_page.dart';
 import '../features/profile/presentation/profile_page.dart';
 import '../features/profile/presentation/profile_summary_page.dart';
 import '../features/profile/presentation/settings_page.dart';
 import '../features/worship/presentation/khusu_focus_page.dart';
+import '../features/worship/presentation/qibla_finder_page.dart';
 import '../features/shared/section_detail_page.dart';
 import '../features/shared/legal_info_page.dart';
+import '../features/shared/attributions_licenses_page.dart';
 import '../features/salah/presentation/salah_page.dart';
 import '../features/worship/presentation/worship_page.dart';
 import '../features/quran/presentation/quran_verse_page.dart';
@@ -21,6 +36,7 @@ import '../features/learn/quran/presentation/quran_notes_page.dart';
 import '../features/learn/quran/presentation/quran_reader_page.dart';
 import '../features/learn/quran/presentation/quran_search_page.dart';
 import '../features/learn/quran/presentation/quran_surah_explorer_page.dart';
+import '../features/learn/quran/presentation/quran_topic_explorer_page.dart';
 import '../features/learn/quran/presentation/names_of_allah_page.dart';
 import '../features/learn/quran/presentation/quran_words_page.dart';
 import '../features/learn/quran/presentation/quran_word_review_page.dart';
@@ -43,26 +59,39 @@ import '../features/circles/presentation/accountability_groups_page.dart';
 import '../features/circles/application/circles_provider.dart';
 import '../features/journal/presentation/journal_timeline_page.dart';
 import '../features/journal/presentation/journal_create_page.dart';
-import '../features/learn/life/presentation/life_landing_page.dart';
-import '../features/learn/life/presentation/life_lesson_page.dart';
-import '../features/learn/life/presentation/life_subcategory_page.dart';
-import '../features/learn/life/presentation/life_theme_page.dart';
+import '../features/learn/divine_life_lessons/presentation/divine_life_lessons_page.dart';
+import '../features/learn/divine_life_lessons/presentation/divine_life_lesson_detail_page.dart';
+import '../features/learn/divine_life_lessons/presentation/divine_life_reflection_page.dart';
 import '../features/learn/world/presentation/world_landing_page.dart';
 import '../features/learn/world/presentation/world_lesson_page.dart';
 import '../features/learn/world/presentation/world_subcategory_page.dart';
 import '../features/learn/world/presentation/world_theme_page.dart';
+import '../features/learn/world/presentation/pages/world_atmosphere_layers_page.dart';
+import '../features/learn/world/presentation/pages/world_cosmic_scale_page.dart';
+import '../features/learn/world/presentation/pages/world_creation_category_page.dart';
+import '../features/learn/world/presentation/pages/world_creation_lesson_page.dart';
+import '../features/learn/world/presentation/pages/world_creation_reflection_mode_page.dart';
+import '../features/learn/world/presentation/pages/world_deep_ocean_page.dart';
+import '../features/learn/world/presentation/pages/world_explore_creation_page.dart';
+import '../features/learn/world/presentation/pages/world_muslim_scientists_page.dart';
+import '../features/learn/world/presentation/pages/world_signs_explorer_page.dart';
 import '../features/learn/hadith/presentation/hadith_landing_page.dart';
 import '../features/learn/hadith/presentation/hadith_lesson_page.dart';
 import '../features/learn/hadith/presentation/hadith_subcategory_page.dart';
 import '../features/learn/hadith/presentation/hadith_theme_page.dart';
 import '../features/learn/hadith/presentation/important_hadith_collection_page.dart';
 import '../features/learn/hadith/presentation/important_hadith_detail_page.dart';
+import '../features/learn/hadith/presentation/hadith_learning_path_page.dart';
+import '../features/learn/hadith/presentation/hadith_quiz_session_page.dart';
+import '../features/learn/hadith/application/hadith_path_quiz_service.dart';
 import '../features/learn/life/baby_names/presentation/baby_name_detail_page.dart';
 import '../features/learn/life/baby_names/presentation/baby_names_browse_page.dart';
 import '../features/learn/life/baby_names/presentation/baby_names_compare_page.dart';
 import '../features/learn/life/baby_names/presentation/baby_names_favorites_page.dart';
 import '../features/learn/life/baby_names/presentation/baby_names_finder_page.dart';
+import '../features/learn/life/baby_names/presentation/baby_names_generator_page.dart';
 import '../features/learn/life/baby_names/presentation/baby_names_home_page.dart';
+import '../features/learn/life/baby_names/presentation/baby_names_meaning_explorer_page.dart';
 import '../features/onboarding/application/onboarding_state_provider.dart';
 import '../features/onboarding/presentation/onboarding_page.dart';
 import '../shared/theme/islamic_icons.dart';
@@ -97,7 +126,7 @@ extension NavTabExt on NavTab {
       case NavTab.home:
         return IslamicIcons.mosque;
       case NavTab.journey:
-        return IslamicIcons.tasbih;
+        return Icons.auto_graph_rounded;
       case NavTab.profile:
         return IslamicIcons.muslim;
     }
@@ -112,6 +141,8 @@ final appRouterProvider = Provider<GoRouter>((ref) {
     observers: [TelemetryNavigatorObserver()],
     redirect: (context, state) {
       final path = state.uri.path;
+      final deepLinkPath = _mapGrowthDeepLink(state.uri);
+      if (deepLinkPath != null) return deepLinkPath;
       if (path == '/quran/explorer') return '/learn/quran/explorer';
       if (path == '/quran/search') return '/learn/quran/search';
 
@@ -202,10 +233,22 @@ final appRouterProvider = Provider<GoRouter>((ref) {
             ),
           ),
           GoRoute(
+            path: '/legal/attributions',
+            name: 'attributionsLicenses',
+            pageBuilder: (context, state) =>
+                const MaterialPage(child: AttributionsLicensesPage()),
+          ),
+          GoRoute(
             path: '/khusu-focus',
             name: 'khusuFocus',
             pageBuilder: (context, state) =>
                 const MaterialPage(child: KhusuFocusPage()),
+          ),
+          GoRoute(
+            path: '/qibla-finder',
+            name: 'qiblaFinder',
+            pageBuilder: (context, state) =>
+                const MaterialPage(child: QiblaFinderPage()),
           ),
           GoRoute(
             path: '/quran-verse',
@@ -239,10 +282,21 @@ final appRouterProvider = Provider<GoRouter>((ref) {
               final ayah = int.tryParse(
                 state.uri.queryParameters['ayah'] ?? '',
               );
+              final endAyah = int.tryParse(
+                state.uri.queryParameters['endAyah'] ?? '',
+              );
+              final autoPlay = switch ((state.uri.queryParameters['autoplay'] ??
+                      '')
+                  .toLowerCase()) {
+                '1' || 'true' || 'yes' => true,
+                _ => false,
+              };
               return MaterialPage(
                 child: QuranReaderPage(
                   surahNumber: surahNumber,
                   initialAyah: ayah,
+                  endAyah: endAyah,
+                  autoPlay: autoPlay,
                 ),
               );
             },
@@ -264,6 +318,21 @@ final appRouterProvider = Provider<GoRouter>((ref) {
             name: 'quranSearch',
             pageBuilder: (context, state) =>
                 const MaterialPage(child: QuranSearchPage()),
+          ),
+          GoRoute(
+            path: '/learn/quran/topics',
+            name: 'quranTopicExplorer',
+            pageBuilder: (context, state) =>
+                const MaterialPage(child: QuranTopicExplorerPage()),
+          ),
+          GoRoute(
+            path: '/learn/quran/topics/:topicId',
+            name: 'quranTopicDetail',
+            pageBuilder: (context, state) => MaterialPage(
+              child: QuranTopicExplorerPage(
+                topicId: state.pathParameters['topicId'],
+              ),
+            ),
           ),
           GoRoute(
             path: '/learn/quran/names-of-allah',
@@ -368,10 +437,83 @@ final appRouterProvider = Provider<GoRouter>((ref) {
                 const MaterialPage(child: JournalCreatePage()),
           ),
           GoRoute(
+            path: '/learn/hub/quran',
+            name: 'learnQuranHub',
+            pageBuilder: (context, state) =>
+                const MaterialPage(child: LearnQuranHubPage()),
+          ),
+          GoRoute(
+            path: '/learn/hub/salah',
+            name: 'learnSalahHub',
+            pageBuilder: (context, state) =>
+                const MaterialPage(child: LearnSalahHubPage()),
+          ),
+          GoRoute(
+            path: '/learn/quran/universe',
+            name: 'quranUniverse',
+            pageBuilder: (context, state) =>
+                const MaterialPage(child: QuranUniversePage()),
+          ),
+          GoRoute(
+            path: '/learn/quran/constellation',
+            name: 'knowledgeConstellation',
+            pageBuilder: (context, state) =>
+                const MaterialPage(child: KnowledgeConstellationPage()),
+          ),
+          GoRoute(
+            path: '/learn/salah/wudu',
+            name: 'learnWuduGuide',
+            pageBuilder: (context, state) =>
+                const MaterialPage(child: WuduGuidePage()),
+          ),
+          GoRoute(
+            path: '/learn/salah/wudu/trainer',
+            name: 'learnWuduTrainer',
+            pageBuilder: (context, state) =>
+                const MaterialPage(child: WuduTrainerPage()),
+          ),
+          GoRoute(
+            path: '/learn/hub/:sectionId',
+            name: 'learnSectionHub',
+            pageBuilder: (context, state) {
+              final sectionId = state.pathParameters['sectionId'] ?? '';
+              ProphetsTab? initialProphetsTab;
+              String? initialProphetId;
+              final tabParam = state.uri.queryParameters['tab'];
+              if (sectionId == 'prophets' &&
+                  tabParam != null &&
+                  tabParam.isNotEmpty) {
+                for (final tab in ProphetsTab.values) {
+                  if (tab.name == tabParam) {
+                    initialProphetsTab = tab;
+                    break;
+                  }
+                }
+              }
+              if (sectionId == 'prophets') {
+                final prophetParam = state.uri.queryParameters['prophet'];
+                if (prophetParam != null && prophetParam.trim().isNotEmpty) {
+                  initialProphetId = prophetParam.trim();
+                }
+              }
+              return MaterialPage(
+                child: LearnSectionPlaceholderPage(
+                  sectionId: sectionId,
+                  initialProphetsTab: initialProphetsTab,
+                  initialProphetId: initialProphetId,
+                ),
+              );
+            },
+          ),
+          GoRoute(
             path: '/learn/life',
             name: 'learnLifeLanding',
-            pageBuilder: (context, state) =>
-                const MaterialPage(child: LifeLandingPage()),
+            pageBuilder: (context, state) => MaterialPage(
+              child: DivineLifeLessonsPage(
+                initialThemeId: state.uri.queryParameters['themeId'],
+                initialSituationId: state.uri.queryParameters['situationId'],
+              ),
+            ),
           ),
           GoRoute(
             path: '/learn/life/theme/:themeId',
@@ -379,9 +521,14 @@ final appRouterProvider = Provider<GoRouter>((ref) {
             pageBuilder: (context, state) {
               final themeId = state.pathParameters['themeId'] ?? '';
               if (themeId.isEmpty) {
-                return const MaterialPage(child: LifeLandingPage());
+                return const MaterialPage(child: DivineLifeLessonsPage());
               }
-              return MaterialPage(child: LifeThemePage(themeId: themeId));
+              return MaterialPage(
+                child: DivineLifeLessonsPage(
+                  initialThemeId: themeId,
+                  initialTab: DivineLifeTab.themes,
+                ),
+              );
             },
           ),
           GoRoute(
@@ -390,10 +537,13 @@ final appRouterProvider = Provider<GoRouter>((ref) {
             pageBuilder: (context, state) {
               final subcategoryId = state.pathParameters['subcategoryId'] ?? '';
               if (subcategoryId.isEmpty) {
-                return const MaterialPage(child: LifeLandingPage());
+                return const MaterialPage(child: DivineLifeLessonsPage());
               }
               return MaterialPage(
-                child: LifeSubcategoryPage(subcategoryId: subcategoryId),
+                child: DivineLifeLessonsPage(
+                  initialSituationId: subcategoryId,
+                  initialTab: DivineLifeTab.situations,
+                ),
               );
             },
           ),
@@ -403,10 +553,21 @@ final appRouterProvider = Provider<GoRouter>((ref) {
             pageBuilder: (context, state) {
               final lessonId = state.pathParameters['lessonId'] ?? '';
               if (lessonId.isEmpty) {
-                return const MaterialPage(child: LifeLandingPage());
+                return const MaterialPage(child: DivineLifeLessonsPage());
               }
-              return MaterialPage(child: LifeLessonPage(lessonId: lessonId));
+              return MaterialPage(
+                child: DivineLifeLessonDetailPage(lessonId: lessonId),
+              );
             },
+          ),
+          GoRoute(
+            path: '/learn/life/reflection',
+            name: 'divineLifeReflection',
+            pageBuilder: (context, state) => MaterialPage(
+              child: DivineLifeReflectionPage(
+                initialLessonId: state.uri.queryParameters['lessonId'],
+              ),
+            ),
           ),
           GoRoute(
             path: '/learn/life/family/baby-names',
@@ -420,8 +581,22 @@ final appRouterProvider = Provider<GoRouter>((ref) {
             pageBuilder: (context, state) => MaterialPage(
               child: BabyNamesBrowsePage(
                 collectionId: state.uri.queryParameters['collection'],
+                meaningTheme: state.uri.queryParameters['theme'],
+                startingLetter: state.uri.queryParameters['letter'],
               ),
             ),
+          ),
+          GoRoute(
+            path: '/learn/life/family/baby-names/meaning-explorer',
+            name: 'babyNamesMeaningExplorer',
+            pageBuilder: (context, state) =>
+                const MaterialPage(child: BabyNamesMeaningExplorerPage()),
+          ),
+          GoRoute(
+            path: '/learn/life/family/baby-names/generator',
+            name: 'babyNamesGenerator',
+            pageBuilder: (context, state) =>
+                const MaterialPage(child: BabyNamesGeneratorPage()),
           ),
           GoRoute(
             path: '/learn/life/family/baby-names/finder',
@@ -492,6 +667,74 @@ final appRouterProvider = Provider<GoRouter>((ref) {
             },
           ),
           GoRoute(
+            path: '/learn/world/creation/category/:categoryName',
+            name: 'worldCreationCategory',
+            pageBuilder: (context, state) {
+              final categoryName = state.pathParameters['categoryName'] ?? '';
+              if (categoryName.isEmpty) {
+                return const MaterialPage(child: WorldLandingPage());
+              }
+              return MaterialPage(
+                child: WorldCreationCategoryPage(categoryName: categoryName),
+              );
+            },
+          ),
+          GoRoute(
+            path: '/learn/world/creation/lesson/:lessonId',
+            name: 'worldCreationLessonDetail',
+            pageBuilder: (context, state) {
+              final lessonId = state.pathParameters['lessonId'] ?? '';
+              if (lessonId.isEmpty) {
+                return const MaterialPage(child: WorldLandingPage());
+              }
+              return MaterialPage(
+                child: WorldCreationLessonPage(lessonId: lessonId),
+              );
+            },
+          ),
+          GoRoute(
+            path: '/learn/world/explore-creation',
+            name: 'worldExploreCreation',
+            pageBuilder: (context, state) =>
+                const MaterialPage(child: WorldExploreCreationPage()),
+          ),
+          GoRoute(
+            path: '/learn/world/signs-explorer',
+            name: 'worldSignsExplorer',
+            pageBuilder: (context, state) =>
+                const MaterialPage(child: WorldSignsExplorerPage()),
+          ),
+          GoRoute(
+            path: '/learn/world/cosmic-scale',
+            name: 'worldCosmicScale',
+            pageBuilder: (context, state) =>
+                const MaterialPage(child: WorldCosmicScalePage()),
+          ),
+          GoRoute(
+            path: '/learn/world/deep-ocean',
+            name: 'worldDeepOcean',
+            pageBuilder: (context, state) =>
+                const MaterialPage(child: WorldDeepOceanPage()),
+          ),
+          GoRoute(
+            path: '/learn/world/atmosphere-layers',
+            name: 'worldAtmosphereLayers',
+            pageBuilder: (context, state) =>
+                const MaterialPage(child: WorldAtmosphereLayersPage()),
+          ),
+          GoRoute(
+            path: '/learn/world/reflection-mode',
+            name: 'worldCreationReflectionMode',
+            pageBuilder: (context, state) =>
+                const MaterialPage(child: WorldCreationReflectionModePage()),
+          ),
+          GoRoute(
+            path: '/learn/world/muslim-scientists',
+            name: 'worldMuslimScientists',
+            pageBuilder: (context, state) =>
+                const MaterialPage(child: WorldMuslimScientistsPage()),
+          ),
+          GoRoute(
             path: '/learn/hadith',
             name: 'learnHadithLanding',
             pageBuilder: (context, state) =>
@@ -537,6 +780,58 @@ final appRouterProvider = Provider<GoRouter>((ref) {
             name: 'learnHadithImportant',
             pageBuilder: (context, state) =>
                 const MaterialPage(child: ImportantHadithCollectionPage()),
+          ),
+          GoRoute(
+            path: '/learn/hadith/path/:pathId',
+            name: 'hadithPathDetail',
+            pageBuilder: (context, state) {
+              final pathId = state.pathParameters['pathId'] ?? '';
+              if (pathId.isEmpty) {
+                return const MaterialPage(child: HadithLandingPage());
+              }
+              return MaterialPage(
+                child: HadithLearningPathPage(pathId: pathId),
+              );
+            },
+          ),
+          GoRoute(
+            path: '/learn/hadith/path/:pathId/chapter/:chapterId/quiz',
+            name: 'hadithChapterQuiz',
+            pageBuilder: (context, state) {
+              final pathId = state.pathParameters['pathId'] ?? '';
+              final chapterId = state.pathParameters['chapterId'] ?? '';
+              if (pathId.isEmpty || chapterId.isEmpty) {
+                return const MaterialPage(child: HadithLandingPage());
+              }
+              return MaterialPage(
+                child: HadithQuizSessionPage.chapter(
+                  pathId: pathId,
+                  chapterId: chapterId,
+                ),
+              );
+            },
+          ),
+          GoRoute(
+            path: '/learn/hadith/review/quiz',
+            name: 'hadithReviewQuiz',
+            pageBuilder: (context, state) {
+              final mode = state.uri.queryParameters['mode'] ?? 'random';
+              final themeId = state.uri.queryParameters['themeId'];
+              final pathId = state.uri.queryParameters['pathId'];
+              final reviewMode = switch (mode) {
+                'theme' => HadithReviewQuizMode.byTheme,
+                'path' => HadithReviewQuizMode.byPath,
+                'weekly' => HadithReviewQuizMode.weekly,
+                _ => HadithReviewQuizMode.random,
+              };
+              return MaterialPage(
+                child: HadithQuizSessionPage.review(
+                  reviewMode: reviewMode,
+                  themeId: themeId,
+                  pathId: pathId,
+                ),
+              );
+            },
           ),
           GoRoute(
             path: '/learn/hadith/important/:number',
@@ -608,6 +903,92 @@ final appRouterProvider = Provider<GoRouter>((ref) {
               );
             },
           ),
+          GoRoute(
+            path: '/journey/growth/today',
+            name: 'growthTodayDeepLink',
+            pageBuilder: (context, state) => const MaterialPage(
+              child: GrowthEntryPage(initialTab: GrowthInternalTab.today),
+            ),
+          ),
+          GoRoute(
+            path: '/journey/growth/reflection',
+            name: 'growthReflectionDeepLink',
+            pageBuilder: (context, state) => const MaterialPage(
+              child: GrowthEntryPage(initialTab: GrowthInternalTab.reflection),
+            ),
+          ),
+          GoRoute(
+            path: '/journey/growth/journey',
+            name: 'growthJourneyDeepLink',
+            pageBuilder: (context, state) => const MaterialPage(
+              child: GrowthEntryPage(initialTab: GrowthInternalTab.journey),
+            ),
+          ),
+          GoRoute(
+            path: '/journey/growth/habits',
+            name: 'growthHabitsDeepLink',
+            pageBuilder: (context, state) => const MaterialPage(
+              child: GrowthEntryPage(initialTab: GrowthInternalTab.habits),
+            ),
+          ),
+          GoRoute(
+            path: '/growth/today',
+            name: 'growthTodayAlias',
+            pageBuilder: (context, state) => const MaterialPage(
+              child: GrowthEntryPage(initialTab: GrowthInternalTab.today),
+            ),
+          ),
+          GoRoute(
+            path: '/growth/reflection',
+            name: 'growthReflectionAlias',
+            pageBuilder: (context, state) => const MaterialPage(
+              child: GrowthEntryPage(initialTab: GrowthInternalTab.reflection),
+            ),
+          ),
+          GoRoute(
+            path: '/growth/journey',
+            name: 'growthJourneyAlias',
+            pageBuilder: (context, state) => const MaterialPage(
+              child: GrowthEntryPage(initialTab: GrowthInternalTab.journey),
+            ),
+          ),
+          GoRoute(
+            path: '/growth/habit/:habitId',
+            name: 'growthHabitAlias',
+            pageBuilder: (context, state) {
+              final habitId = state.pathParameters['habitId'] ?? '';
+              return MaterialPage(
+                child: GrowthEntryPage(
+                  initialTab: GrowthInternalTab.today,
+                  focusHabitId: habitId,
+                ),
+              );
+            },
+          ),
+          GoRoute(
+            path: '/journey/path/:pathId',
+            name: 'growthPathDetail',
+            pageBuilder: (context, state) {
+              final pathId = state.pathParameters['pathId'] ?? '';
+              return MaterialPage(child: GrowthPathDetailPage(pathId: pathId));
+            },
+          ),
+          GoRoute(
+            path: '/journey/habit/:habitId',
+            name: 'growthHabitDetail',
+            pageBuilder: (context, state) {
+              final habitId = state.pathParameters['habitId'] ?? '';
+              return MaterialPage(
+                child: GrowthHabitDetailPage(habitId: habitId),
+              );
+            },
+          ),
+          GoRoute(
+            path: '/journey/legacy',
+            name: 'growthLegacy',
+            pageBuilder: (context, state) =>
+                const MaterialPage(child: JourneyLegacyPage()),
+          ),
           ...NavTab.values.map(
             (tab) => GoRoute(
               path: tab.path,
@@ -663,6 +1044,34 @@ NavTab navTabFromLocation(String location) {
     }
   }
   return NavTab.home;
+}
+
+String? _mapGrowthDeepLink(Uri uri) {
+  final path = uri.path;
+  if (uri.scheme == 'pathofnur') {
+    if (uri.host == 'growth') {
+      if (path == '/today') return '/journey/growth/today';
+      if (path == '/reflection') return '/journey/growth/reflection';
+      if (path == '/journey') return '/journey/growth/journey';
+      if (path == '/habits') return '/journey/growth/habits';
+      if (path.startsWith('/habit/')) {
+        final id = path.substring('/habit/'.length);
+        if (id.isNotEmpty) return '/journey/habit/$id';
+      }
+    }
+    if (uri.host == 'quran') {
+      if (path == '/read') return '/learn/quran/surah/1';
+    }
+  }
+  if (path == '/growth/today') return '/journey/growth/today';
+  if (path == '/growth/reflection') return '/journey/growth/reflection';
+  if (path == '/growth/journey') return '/journey/growth/journey';
+  if (path == '/growth/habits') return '/journey/growth/habits';
+  if (path.startsWith('/growth/habit/')) {
+    final id = path.substring('/growth/habit/'.length);
+    if (id.isNotEmpty) return '/journey/habit/$id';
+  }
+  return null;
 }
 
 final Map<String, _SectionMeta> _sectionMeta = {
@@ -722,7 +1131,7 @@ final Map<String, _SectionMeta> _sectionMeta = {
     quoteKey: 'journey',
   ),
   'continueLearning': const _SectionMeta(
-    title: 'Continue Learning',
+    title: 'Continue where you left of',
     subtitle: 'Resume from your latest learning session.',
     quoteKey: 'learn',
   ),

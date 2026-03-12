@@ -86,7 +86,7 @@ const List<LearnContentPageData> _lifeTopics = [
     subtitle: 'Steadiness through ease and trial.',
     overview:
         'A staged reflection on patience in worship, hardship, and relationships.',
-    keyThemes: ['Steadfast worship', 'Emotional restraint', 'Hope in Allah'],
+    keyThemes: ['Steadfast worship', 'Emotional restraint', 'Hope in الله'],
     referencePlaceholders: ['Qur’an reference placeholder'],
     reflectionPrompt:
         'Where do you need sabr today: action, speech, or expectation?',
@@ -426,7 +426,7 @@ const List<LearnContentPageData> _lifeTopics = [
     title: 'Stay Away from Jealousy',
     subtitle: 'Purify the heart from envy and harmful comparison.',
     overview:
-        'The source lesson emphasizes avoiding envy and selfish comparison. Spiritual growth increases when you ask Allah for good without resenting others.',
+        'The source lesson emphasizes avoiding envy and selfish comparison. Spiritual growth increases when you ask الله for good without resenting others.',
     keyThemes: [
       'Heart purification',
       'Contentment and gratitude',
@@ -598,7 +598,7 @@ const List<LearnContentPageData> _worldTopics = [
     title: 'Bees',
     subtitle: 'Discipline and benefit in creation.',
     overview:
-        'A staged page on order, contribution, and benefit in Allah’s creation.',
+        'A staged page on order, contribution, and benefit in الله’s creation.',
     keyThemes: ['Purposeful effort', 'Service', 'Order'],
     referencePlaceholders: ['Qur’an reference placeholder'],
     reflectionPrompt:

@@ -4,70 +4,293 @@ import WidgetKit
 
 struct PrayerCountdownAttributes: ActivityAttributes {
   public struct ContentState: Codable, Hashable {
-    var prayerId: String
-    var prayerName: String
-    var prayerArabicName: String
-    var remainingSeconds: Int
-    var endAtEpoch: Int
+    var showCurrentPrayer: Bool
+    var currentPrayerId: String?
+    var currentPrayerName: String?
+    var currentPrayerArabicName: String?
+    var currentRemainingSeconds: Int?
+    var nextPrayerId: String
+    var nextPrayerName: String
+    var nextPrayerArabicName: String
+    var nextRemainingSeconds: Int
+    var nextTargetAtEpoch: Int
   }
 
-  var prayerId: String
-  var prayerName: String
+  var nextPrayerId: String
+  var nextPrayerName: String
+}
+
+struct QuranPlaybackAttributes: ActivityAttributes {
+  public struct ContentState: Codable, Hashable {
+    var surahNumber: Int
+    var surahName: String
+    var surahArabicName: String
+    var ayahNumber: Int
+    var reciterName: String
+    var isPlaying: Bool
+    var elapsedSeconds: Int
+    var totalSeconds: Int
+  }
+
+  var sessionId: String
+}
+
+struct GrowthSummaryAttributes: ActivityAttributes {
+  public struct ContentState: Codable, Hashable {
+    var todayCompletedCount: Int
+    var todayDueCount: Int
+    var todayProgressPercent: Int
+    var lightEarnedToday: Int
+    var currentStreak: Int
+    var nextDueHabitTitle: String
+    var reflectionPromptPreview: String
+    var privateModeEnabled: Bool
+  }
+
+  var dayKey: String
 }
 
 struct PrayerLiveActivityWidget: Widget {
   var body: some WidgetConfiguration {
     ActivityConfiguration(for: PrayerCountdownAttributes.self) { context in
-      VStack(alignment: .leading, spacing: 8) {
-        Text("Path of Nūr")
-          .font(.caption)
-          .foregroundStyle(.secondary)
-        Text(context.state.prayerName)
-          .font(.headline)
-        if !context.state.prayerArabicName.isEmpty {
-          Text(context.state.prayerArabicName)
-            .font(.title3)
-        }
-        HStack {
-          Image(systemName: "clock")
-          Text(timeLeftText(context.state.remainingSeconds))
-            .fontWeight(.semibold)
-        }
-      }
-      .padding()
-      .activityBackgroundTint(Color(.systemBackground))
-      .activitySystemActionForegroundColor(Color.accentColor)
+      PrayerLiveLockscreenCard(state: context.state)
+        .activityBackgroundTint(Color.black.opacity(0.22))
+        .activitySystemActionForegroundColor(Color(hex: 0xD8C49A))
     } dynamicIsland: { context in
       DynamicIsland {
         DynamicIslandExpandedRegion(.leading) {
-          Text(context.state.prayerName)
+          Text(primaryPrayerName(context.state))
             .font(.headline)
+            .foregroundStyle(Color(hex: 0xF3EEE5))
         }
         DynamicIslandExpandedRegion(.trailing) {
-          Text(timeLeftText(context.state.remainingSeconds))
+          Text(timeLeftText(primaryRemainingSeconds(context.state)))
             .font(.headline)
+            .monospacedDigit()
+            .foregroundStyle(Color(hex: 0xF3EEE5))
         }
         DynamicIslandExpandedRegion(.bottom) {
-          VStack(spacing: 4) {
-            if !context.state.prayerArabicName.isEmpty {
-              Text(context.state.prayerArabicName)
-                .font(.title3)
+          VStack(spacing: 6) {
+            if context.state.showCurrentPrayer,
+               let currentName = context.state.currentPrayerName,
+               let currentArabic = context.state.currentPrayerArabicName,
+               let currentRemaining = context.state.currentRemainingSeconds {
+              _DynamicRow(
+                label: "Current Prayer",
+                name: currentName,
+                arabicName: currentArabic,
+                valueLabel: "Remaining time",
+                seconds: currentRemaining
+              )
             }
-            Text("Next prayer in \(timeLeftText(context.state.remainingSeconds))")
-              .font(.caption)
-              .foregroundStyle(.secondary)
+            _DynamicRow(
+              label: "Next Prayer",
+              name: context.state.nextPrayerName,
+              arabicName: context.state.nextPrayerArabicName,
+              valueLabel: "Starts in",
+              seconds: context.state.nextRemainingSeconds
+            )
           }
         }
       } compactLeading: {
-        Text(shortPrayerLabel(context.state.prayerName))
+        Text(shortPrayerLabel(primaryPrayerName(context.state)))
           .font(.caption2)
+          .foregroundStyle(Color(hex: 0xE8D9C0))
       } compactTrailing: {
-        Text(compactTimeLeft(context.state.remainingSeconds))
+        Text(compactTimeLeft(primaryRemainingSeconds(context.state)))
           .font(.caption2)
+          .monospacedDigit()
+          .foregroundStyle(Color(hex: 0xE8D9C0))
       } minimal: {
         Image(systemName: "moon.stars.fill")
+          .foregroundStyle(Color(hex: 0xC6A978))
       }
     }
+  }
+}
+
+private struct PrayerLiveLockscreenCard: View {
+  let state: PrayerCountdownAttributes.ContentState
+
+  var body: some View {
+    ViewThatFits(in: .vertical) {
+      fullLayout
+      compactLayout
+    }
+  }
+
+  private var fullLayout: some View {
+    ZStack {
+      cardBackground
+      VStack(spacing: 10) {
+        if state.showCurrentPrayer,
+           let currentName = state.currentPrayerName,
+           let currentArabic = state.currentPrayerArabicName,
+           let currentRemaining = state.currentRemainingSeconds {
+          _PrayerSection(
+            sectionLabel: "Current Prayer",
+            prayerName: currentName,
+            prayerArabicName: currentArabic,
+            metricLabel: "Remaining time",
+            seconds: currentRemaining,
+            prominent: true
+          )
+          Divider()
+            .overlay(Color.white.opacity(0.14))
+            .padding(.horizontal, 8)
+        }
+
+        _PrayerSection(
+          sectionLabel: "Next Prayer",
+          prayerName: state.nextPrayerName,
+          prayerArabicName: state.nextPrayerArabicName,
+          metricLabel: "Starts in",
+          seconds: state.nextRemainingSeconds,
+          prominent: false
+        )
+      }
+      .padding(.vertical, 12)
+      .padding(.horizontal, 12)
+    }
+  }
+
+  private var compactLayout: some View {
+    ZStack {
+      cardBackground
+      VStack(spacing: 8) {
+        if state.showCurrentPrayer,
+           let currentName = state.currentPrayerName,
+           let currentArabic = state.currentPrayerArabicName,
+           let currentRemaining = state.currentRemainingSeconds {
+          _PrayerSection(
+            sectionLabel: "Current Prayer",
+            prayerName: currentName,
+            prayerArabicName: currentArabic,
+            metricLabel: "Remaining time",
+            seconds: currentRemaining,
+            prominent: false,
+            compact: true
+          )
+        }
+
+        _PrayerSection(
+          sectionLabel: "Next Prayer",
+          prayerName: state.nextPrayerName,
+          prayerArabicName: state.nextPrayerArabicName,
+          metricLabel: "Starts in",
+          seconds: state.nextRemainingSeconds,
+          prominent: false,
+          compact: true
+        )
+      }
+      .padding(.vertical, 10)
+      .padding(.horizontal, 12)
+    }
+  }
+
+  private var cardBackground: some View {
+    RoundedRectangle(cornerRadius: 18, style: .continuous)
+      .fill(
+        LinearGradient(
+          colors: [
+            Color(hex: 0x0B1D2A, alpha: 0.86),
+            Color(hex: 0x10313D, alpha: 0.82),
+            Color(hex: 0x112939, alpha: 0.80),
+          ],
+          startPoint: .topLeading,
+          endPoint: .bottomTrailing
+        )
+      )
+      .overlay(
+        RoundedRectangle(cornerRadius: 18, style: .continuous)
+          .stroke(Color(hex: 0x8CC4BF, alpha: 0.18), lineWidth: 1)
+      )
+  }
+}
+
+private struct _PrayerSection: View {
+  let sectionLabel: String
+  let prayerName: String
+  let prayerArabicName: String
+  let metricLabel: String
+  let seconds: Int
+  let prominent: Bool
+  let compact: Bool
+
+  init(
+    sectionLabel: String,
+    prayerName: String,
+    prayerArabicName: String,
+    metricLabel: String,
+    seconds: Int,
+    prominent: Bool,
+    compact: Bool = false
+  ) {
+    self.sectionLabel = sectionLabel
+    self.prayerName = prayerName
+    self.prayerArabicName = prayerArabicName
+    self.metricLabel = metricLabel
+    self.seconds = seconds
+    self.prominent = prominent
+    self.compact = compact
+  }
+
+  var body: some View {
+    VStack(spacing: compact ? 2 : 4) {
+      Text(sectionLabel)
+        .font(.caption2)
+        .foregroundStyle(Color(hex: 0xA7B9C4))
+      Text(prayerName)
+        .font(prominent ? .title3.weight(.semibold) : .headline.weight(.semibold))
+        .foregroundStyle(Color(hex: 0xF3EEE5))
+        .lineLimit(1)
+        .minimumScaleFactor(0.82)
+      if !prayerArabicName.isEmpty {
+        Text(prayerArabicName)
+          .font(compact ? .subheadline.weight(.medium) : .title3.weight(.medium))
+          .foregroundStyle(Color(hex: 0xD8E6EA))
+          .lineLimit(1)
+          .minimumScaleFactor(0.82)
+      }
+      HStack(spacing: 4) {
+        Text(metricLabel)
+          .font(.caption2)
+          .foregroundStyle(Color(hex: 0xA7B9C4))
+        Text(timeLeftText(seconds))
+          .font(compact ? .caption.weight(.semibold) : .subheadline.weight(.semibold))
+          .monospacedDigit()
+          .foregroundStyle(Color(hex: 0xE8D9C0))
+      }
+    }
+    .frame(maxWidth: .infinity)
+    .multilineTextAlignment(.center)
+  }
+}
+
+private struct _DynamicRow: View {
+  let label: String
+  let name: String
+  let arabicName: String
+  let valueLabel: String
+  let seconds: Int
+
+  var body: some View {
+    VStack(spacing: 2) {
+      Text(label)
+        .font(.caption2)
+        .foregroundStyle(Color(hex: 0xA7B9C4))
+      Text("\(name) \(arabicName)")
+        .font(.caption.weight(.semibold))
+        .foregroundStyle(Color(hex: 0xF3EEE5))
+        .lineLimit(1)
+        .minimumScaleFactor(0.82)
+      Text("\(valueLabel): \(timeLeftText(seconds))")
+        .font(.caption2)
+        .monospacedDigit()
+        .foregroundStyle(Color(hex: 0xD8E6EA))
+    }
+    .frame(maxWidth: .infinity)
+    .multilineTextAlignment(.center)
   }
 }
 
@@ -75,7 +298,258 @@ struct PrayerLiveActivityWidget: Widget {
 struct PrayerLiveActivityBundle: WidgetBundle {
   var body: some Widget {
     PrayerLiveActivityWidget()
+    QuranPlaybackLiveActivityWidget()
+    GrowthSummaryLiveActivityWidget()
   }
+}
+
+struct QuranPlaybackLiveActivityWidget: Widget {
+  var body: some WidgetConfiguration {
+    ActivityConfiguration(for: QuranPlaybackAttributes.self) { context in
+      QuranPlaybackLockscreenCard(state: context.state)
+        .activityBackgroundTint(Color.black.opacity(0.20))
+        .activitySystemActionForegroundColor(Color(hex: 0xD8C49A))
+    } dynamicIsland: { context in
+      DynamicIsland {
+        DynamicIslandExpandedRegion(.leading) {
+          VStack(alignment: .leading, spacing: 2) {
+            Text("Qur’an")
+              .font(.caption2.weight(.semibold))
+              .foregroundStyle(Color(hex: 0xA7B9C4))
+            Text(shortPrayerLabel(context.state.surahName))
+              .font(.headline)
+              .lineLimit(1)
+              .foregroundStyle(Color(hex: 0xF3EEE5))
+          }
+        }
+        DynamicIslandExpandedRegion(.trailing) {
+          Text(quranTimerText(state: context.state))
+            .font(.headline)
+            .monospacedDigit()
+            .foregroundStyle(Color(hex: 0xE8D9C0))
+        }
+        DynamicIslandExpandedRegion(.bottom) {
+          HStack(spacing: 14) {
+            _QuranControlPill(icon: "gobackward.15")
+            _QuranControlPill(
+              icon: context.state.isPlaying ? "pause.fill" : "play.fill",
+              prominent: true
+            )
+            _QuranControlPill(icon: "goforward.15")
+          }
+        }
+      } compactLeading: {
+        Image(systemName: context.state.isPlaying ? "pause.circle.fill" : "play.circle.fill")
+          .foregroundStyle(Color(hex: 0xE8D9C0))
+      } compactTrailing: {
+        Text(compactQuranTimerText(state: context.state))
+          .font(.caption2)
+          .monospacedDigit()
+          .foregroundStyle(Color(hex: 0xE8D9C0))
+      } minimal: {
+        Image(systemName: context.state.isPlaying ? "pause.circle.fill" : "play.circle.fill")
+          .foregroundStyle(Color(hex: 0xE8D9C0))
+      }
+    }
+  }
+}
+
+struct GrowthSummaryLiveActivityWidget: Widget {
+  var body: some WidgetConfiguration {
+    ActivityConfiguration(for: GrowthSummaryAttributes.self) { context in
+      ZStack {
+        RoundedRectangle(cornerRadius: 18, style: .continuous)
+          .fill(
+            LinearGradient(
+              colors: [
+                Color(hex: 0x0B1D2A, alpha: 0.86),
+                Color(hex: 0x10313D, alpha: 0.82),
+                Color(hex: 0x112939, alpha: 0.80),
+              ],
+              startPoint: .topLeading,
+              endPoint: .bottomTrailing
+            )
+          )
+          .overlay(
+            RoundedRectangle(cornerRadius: 18, style: .continuous)
+              .stroke(Color(hex: 0x8CC4BF, alpha: 0.18), lineWidth: 1)
+          )
+
+        VStack(spacing: 8) {
+          Text(context.state.privateModeEnabled ? "Today’s Path" : "Growth Today")
+            .font(.caption2.weight(.semibold))
+            .foregroundStyle(Color(hex: 0xA7B9C4))
+          Text("\(context.state.todayCompletedCount)/\(context.state.todayDueCount) complete")
+            .font(.headline.weight(.semibold))
+            .foregroundStyle(Color(hex: 0xF3EEE5))
+          Text("Progress \(context.state.todayProgressPercent)%")
+            .font(.caption.weight(.semibold))
+            .foregroundStyle(Color(hex: 0xE8D9C0))
+          Text("Streak \(context.state.currentStreak)d")
+            .font(.caption)
+            .foregroundStyle(Color(hex: 0xA7B9C4))
+            .monospacedDigit()
+          if !context.state.nextDueHabitTitle.isEmpty {
+            Text("Next: \(context.state.nextDueHabitTitle)")
+              .font(.caption2)
+              .lineLimit(1)
+              .foregroundStyle(Color(hex: 0xD8E6EA))
+          }
+          if !context.state.reflectionPromptPreview.isEmpty {
+            Text(context.state.reflectionPromptPreview)
+              .font(.caption2)
+              .lineLimit(1)
+              .foregroundStyle(Color(hex: 0xA7B9C4))
+          }
+        }
+        .padding(.vertical, 12)
+        .padding(.horizontal, 12)
+      }
+      .activityBackgroundTint(Color.black.opacity(0.20))
+      .activitySystemActionForegroundColor(Color(hex: 0xD8C49A))
+    } dynamicIsland: { context in
+      DynamicIsland {
+        DynamicIslandExpandedRegion(.leading) {
+          Text(context.state.privateModeEnabled ? "Quiet Progress" : "Today")
+            .font(.headline)
+            .foregroundStyle(Color(hex: 0xF3EEE5))
+        }
+        DynamicIslandExpandedRegion(.trailing) {
+          Text("\(context.state.todayProgressPercent)%")
+            .font(.headline)
+            .monospacedDigit()
+            .foregroundStyle(Color(hex: 0xE8D9C0))
+        }
+        DynamicIslandExpandedRegion(.bottom) {
+          HStack(spacing: 12) {
+            Text("Streak \(context.state.currentStreak)d")
+              .font(.caption)
+              .foregroundStyle(Color(hex: 0xD8E6EA))
+            if !context.state.nextDueHabitTitle.isEmpty {
+              Text(context.state.nextDueHabitTitle)
+                .font(.caption)
+                .lineLimit(1)
+                .foregroundStyle(Color(hex: 0xA7B9C4))
+            }
+          }
+        }
+      } compactLeading: {
+        Text("G")
+          .font(.caption2.weight(.semibold))
+          .foregroundStyle(Color(hex: 0xE8D9C0))
+      } compactTrailing: {
+        Text("\(context.state.todayProgressPercent)%")
+          .font(.caption2)
+          .monospacedDigit()
+          .foregroundStyle(Color(hex: 0xE8D9C0))
+      } minimal: {
+        Image(systemName: "sparkles")
+          .foregroundStyle(Color(hex: 0xE8D9C0))
+      }
+    }
+  }
+}
+
+private struct QuranPlaybackLockscreenCard: View {
+  let state: QuranPlaybackAttributes.ContentState
+
+  var body: some View {
+    ZStack {
+      RoundedRectangle(cornerRadius: 18, style: .continuous)
+        .fill(
+          LinearGradient(
+            colors: [
+              Color(hex: 0x0B1D2A, alpha: 0.86),
+              Color(hex: 0x10313D, alpha: 0.82),
+              Color(hex: 0x112939, alpha: 0.80),
+            ],
+            startPoint: .topLeading,
+            endPoint: .bottomTrailing
+          )
+        )
+        .overlay(
+          RoundedRectangle(cornerRadius: 18, style: .continuous)
+            .stroke(Color(hex: 0x8CC4BF, alpha: 0.18), lineWidth: 1)
+        )
+
+      VStack(spacing: 8) {
+        Text("Qur’an Playback")
+          .font(.caption2.weight(.semibold))
+          .foregroundStyle(Color(hex: 0xA7B9C4))
+        Text("\(state.surahName) \(state.surahNumber):\(state.ayahNumber)")
+          .font(.headline.weight(.semibold))
+          .lineLimit(1)
+          .minimumScaleFactor(0.82)
+          .foregroundStyle(Color(hex: 0xF3EEE5))
+        if !state.surahArabicName.isEmpty {
+          Text(state.surahArabicName)
+            .font(.title3.weight(.medium))
+            .lineLimit(1)
+            .minimumScaleFactor(0.82)
+            .foregroundStyle(Color(hex: 0xD8E6EA))
+        }
+        Text(state.reciterName)
+          .font(.caption)
+          .lineLimit(1)
+          .foregroundStyle(Color(hex: 0xA7B9C4))
+        Text(quranTimerText(state: state))
+          .font(.subheadline.weight(.semibold))
+          .monospacedDigit()
+          .foregroundStyle(Color(hex: 0xE8D9C0))
+        ProgressView(
+          value: quranProgressValue(state: state),
+          total: 1.0
+        )
+        .tint(Color(hex: 0x8CC4BF))
+        .padding(.horizontal, 12)
+
+        HStack(spacing: 14) {
+          _QuranControlPill(icon: "gobackward.15")
+          _QuranControlPill(
+            icon: state.isPlaying ? "pause.fill" : "play.fill",
+            prominent: true
+          )
+          _QuranControlPill(icon: "goforward.15")
+        }
+        .padding(.top, 2)
+      }
+      .padding(.vertical, 12)
+      .padding(.horizontal, 12)
+    }
+  }
+}
+
+private struct _QuranControlPill: View {
+  let icon: String
+  var prominent: Bool = false
+
+  var body: some View {
+    Image(systemName: icon)
+      .font(prominent ? .headline.weight(.semibold) : .subheadline.weight(.semibold))
+      .foregroundStyle(Color(hex: 0xF3EEE5))
+      .frame(width: prominent ? 32 : 28, height: prominent ? 32 : 28)
+      .background(
+        Circle().fill(
+          prominent
+            ? Color(hex: 0xD8C49A, alpha: 0.28)
+            : Color(hex: 0xD8C49A, alpha: 0.16)
+        )
+      )
+  }
+}
+
+private func primaryPrayerName(_ state: PrayerCountdownAttributes.ContentState) -> String {
+  if state.showCurrentPrayer, let current = state.currentPrayerName, !current.isEmpty {
+    return current
+  }
+  return state.nextPrayerName
+}
+
+private func primaryRemainingSeconds(_ state: PrayerCountdownAttributes.ContentState) -> Int {
+  if state.showCurrentPrayer, let currentSeconds = state.currentRemainingSeconds {
+    return max(0, currentSeconds)
+  }
+  return max(0, state.nextRemainingSeconds)
 }
 
 private func timeLeftText(_ seconds: Int) -> String {
@@ -106,8 +580,41 @@ private func shortPrayerLabel(_ value: String) -> String {
     return "Mgr"
   case "isha":
     return "Ish"
+  case "tahajjud":
+    return "Thj"
   default:
     return "Pr"
   }
 }
 
+private func quranProgressValue(state: QuranPlaybackAttributes.ContentState) -> Double {
+  guard state.totalSeconds > 0 else { return 0 }
+  let value = Double(max(0, state.elapsedSeconds)) / Double(state.totalSeconds)
+  return min(max(value, 0), 1)
+}
+
+private func quranTimerText(state: QuranPlaybackAttributes.ContentState) -> String {
+  let elapsed = max(0, state.elapsedSeconds)
+  let total = max(0, state.totalSeconds)
+  if total <= 0 {
+    return "Elapsed \(compactTimeLeft(elapsed))"
+  }
+  return "\(compactTimeLeft(elapsed)) / \(compactTimeLeft(total))"
+}
+
+private func compactQuranTimerText(state: QuranPlaybackAttributes.ContentState) -> String {
+  let total = max(0, state.totalSeconds)
+  if total <= 0 {
+    return compactTimeLeft(max(0, state.elapsedSeconds))
+  }
+  return compactTimeLeft(total - min(total, max(0, state.elapsedSeconds)))
+}
+
+private extension Color {
+  init(hex: UInt, alpha: Double = 1.0) {
+    let red = Double((hex >> 16) & 0xFF) / 255.0
+    let green = Double((hex >> 8) & 0xFF) / 255.0
+    let blue = Double(hex & 0xFF) / 255.0
+    self.init(red: red, green: green, blue: blue, opacity: alpha)
+  }
+}

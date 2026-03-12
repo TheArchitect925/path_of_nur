@@ -3,13 +3,20 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'app_router.dart';
+import 'app_quick_actions.dart';
 import '../core/localization/locale_provider.dart';
 import '../core/reminders/prayer_live_activity_service.dart';
 import '../core/reminders/reminder_scheduler.dart';
 import '../core/theme/app_theme.dart';
+import '../features/journey/application/growth_live_activity_service.dart';
+import '../features/journey/application/growth_reminder_scheduler.dart';
+import '../features/journey/application/growth_providers.dart';
+import '../features/journey/application/growth_widget_support.dart';
 import '../features/journey/application/journey_progression_provider.dart';
+import '../features/learn/prophets/application/daily_learning_surfaces.dart';
 import '../features/ocean/application/ocean_drops_provider.dart';
 import '../features/wallpaper/application/wallpaper_provider.dart';
+import '../features/profile/application/profile_settings_provider.dart';
 import '../l10n/app_localizations.dart';
 
 class PathOfNurApp extends ConsumerWidget {
@@ -18,16 +25,29 @@ class PathOfNurApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final locale = ref.watch(appLocaleProvider);
+    final profileSettings = ref.watch(profileSettingsProvider);
     ref.watch(reminderSchedulerBootstrapProvider);
+    ref.watch(growthReminderBootstrapProvider);
+    ref.watch(growthWidgetBootstrapProvider);
+    ref.watch(growthLiveActivityBootstrapProvider);
+    ref.watch(growthUnlocksAutoSyncProvider);
+    ref.watch(prophetDailySurfacesBootstrapProvider);
+    ref.watch(appQuickActionsBootstrapProvider);
     ref.watch(journeyProgressAutoSyncProvider);
     ref.watch(oceanDropsAutoSyncProvider);
     ref.watch(oceanDropsDerivedSyncProvider);
     ref.watch(wallpaperAutoUnlockProvider);
     ref.watch(prayerLiveActivityBootstrapProvider);
+    final theme = AppTheme.themeFor(
+      mode: profileSettings.appThemeMode,
+      disableGlassTransparency: profileSettings.disableGlassTransparency,
+      disableBackground: profileSettings.disableBackground,
+      highContrastText: profileSettings.highContrastText,
+    );
     return MaterialApp.router(
       onGenerateTitle: (context) => AppLocalizations.of(context).appTitle,
       debugShowCheckedModeBanner: false,
-      theme: AppTheme.darkTheme,
+      theme: theme,
       routerConfig: ref.read(appRouterProvider),
       locale: locale,
       localizationsDelegates: const [

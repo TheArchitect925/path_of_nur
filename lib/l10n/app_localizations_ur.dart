@@ -21,7 +21,7 @@ class AppLocalizationsUr extends AppLocalizations {
   String get navHome => 'Home';
 
   @override
-  String get navPrayer => 'Journey';
+  String get navPrayer => 'Growth';
 
   @override
   String get navGarden => 'Profile';
@@ -349,7 +349,7 @@ class AppLocalizationsUr extends AppLocalizations {
   String get homeTitle => 'Home';
 
   @override
-  String get journeyTitle => 'Journey';
+  String get journeyTitle => 'Growth';
 
   @override
   String get journeySubtitle => 'Long-term growth, light by light.';
@@ -362,7 +362,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get profileQuoteTranslation =>
-      'Whoever is mindful of Allah is guided toward balance and intention.';
+      'Whoever is mindful of الله is guided toward balance and intention.';
 
   @override
   String get profileSummarySubtitle =>
@@ -505,7 +505,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get profileEntrustDeedsSubtitle =>
-      'A gentle reminder: sincere deeds are with Allah.';
+      'A gentle reminder: sincere deeds are with الله.';
 
   @override
   String get profileNotificationsTitle => 'Notifications & Reminders';

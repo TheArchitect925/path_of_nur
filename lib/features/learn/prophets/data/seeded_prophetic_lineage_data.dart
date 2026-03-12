@@ -1,0 +1,156 @@
+import '../domain/prophet_lineage_edge.dart';
+import '../domain/prophet_lineage_node.dart';
+
+const List<PropheticLineageGroup> seededPropheticLineageGroups = [
+  PropheticLineageGroup(
+    id: 'family_of_ibrahim',
+    title: 'Family of Ibrahim',
+    summary:
+        'A central prophetic household through which major lines of guidance continued, including Ismail and Ishaq, with later prophets emerging through these lines.',
+    rootProphetId: 'ibrahim',
+    nodeIdsInDisplayOrder: [
+      'ibrahim',
+      'ismail',
+      'ishaq',
+      'yaqub',
+      'yusuf',
+      'muhammad',
+    ],
+    lineageLabel: 'Line of submission and covenant',
+    isFeatured: true,
+  ),
+  PropheticLineageGroup(
+    id: 'family_of_zakariya',
+    title: 'Family of Zakariya',
+    summary:
+        'A smaller but deeply meaningful prophetic family line marked by prayer, answered supplication, and devotion.',
+    rootProphetId: 'zakariya',
+    nodeIdsInDisplayOrder: ['zakariya', 'yahya'],
+    lineageLabel: 'Answered supplication and devotion',
+    isFeatured: true,
+  ),
+];
+
+const List<ProphetLineageNode> seededPropheticLineageNodes = [
+  ProphetLineageNode(
+    prophetId: 'ibrahim',
+    name: 'Ibrahim',
+    arabicName: 'إبراهيم',
+    lineageLabel: 'Patriarch of a major prophetic household',
+    parentIds: [],
+    childIds: ['ismail', 'ishaq'],
+    eraTitle: 'Age of Ibrahim',
+    regionLabel: 'Iraq / Palestine / Arabia (Traditional / Approximate)',
+    sortOrder: 1,
+  ),
+  ProphetLineageNode(
+    prophetId: 'ismail',
+    name: 'Ismail',
+    arabicName: 'إسماعيل',
+    lineageLabel: 'Son of Ibrahim',
+    parentIds: ['ibrahim'],
+    childIds: ['muhammad'],
+    eraTitle: 'Age of Ibrahim',
+    regionLabel: 'Arabia / Makkah (Traditional)',
+    sortOrder: 2,
+  ),
+  ProphetLineageNode(
+    prophetId: 'ishaq',
+    name: 'Ishaq',
+    arabicName: 'إسحاق',
+    lineageLabel: 'Son of Ibrahim',
+    parentIds: ['ibrahim'],
+    childIds: ['yaqub'],
+    eraTitle: 'Age of Ibrahim',
+    regionLabel: 'Palestine Region (Traditional / Approximate)',
+    sortOrder: 3,
+  ),
+  ProphetLineageNode(
+    prophetId: 'yaqub',
+    name: 'Yaqub',
+    arabicName: 'يعقوب',
+    lineageLabel: 'Son of Ishaq',
+    parentIds: ['ishaq'],
+    childIds: ['yusuf'],
+    eraTitle: 'Children of Israel',
+    regionLabel: 'Canaan Region (Traditional / Approximate)',
+    sortOrder: 4,
+  ),
+  ProphetLineageNode(
+    prophetId: 'yusuf',
+    name: 'Yusuf',
+    arabicName: 'يوسف',
+    lineageLabel: 'Son of Yaqub',
+    parentIds: ['yaqub'],
+    childIds: [],
+    eraTitle: 'Children of Israel',
+    regionLabel: 'Canaan and Egypt (Traditional / Approximate)',
+    sortOrder: 5,
+  ),
+  ProphetLineageNode(
+    prophetId: 'muhammad',
+    name: 'Muhammad ﷺ',
+    arabicName: 'محمد ﷺ',
+    lineageLabel: 'Final messenger through the line of Ismail',
+    parentIds: ['ismail'],
+    childIds: [],
+    eraTitle: 'Final Messenger',
+    regionLabel: 'Makkah and Madinah',
+    sortOrder: 6,
+  ),
+  ProphetLineageNode(
+    prophetId: 'zakariya',
+    name: 'Zakariya',
+    arabicName: 'زكريا',
+    lineageLabel: 'Father and prophet of devoted supplication',
+    parentIds: [],
+    childIds: ['yahya'],
+    eraTitle: 'Later Israelite Prophets',
+    regionLabel: 'Palestine Region (Traditional / Approximate)',
+    sortOrder: 7,
+  ),
+  ProphetLineageNode(
+    prophetId: 'yahya',
+    name: 'Yahya',
+    arabicName: 'يحيى',
+    lineageLabel: 'Son of Zakariya',
+    parentIds: ['zakariya'],
+    childIds: [],
+    eraTitle: 'Later Israelite Prophets',
+    regionLabel: 'Palestine Region (Traditional / Approximate)',
+    sortOrder: 8,
+  ),
+];
+
+const List<ProphetLineageEdge> seededPropheticLineageEdges = [
+  ProphetLineageEdge(
+    fromProphetId: 'ibrahim',
+    toProphetId: 'ismail',
+    relationshipType: LineageRelationshipType.fatherChild,
+  ),
+  ProphetLineageEdge(
+    fromProphetId: 'ibrahim',
+    toProphetId: 'ishaq',
+    relationshipType: LineageRelationshipType.fatherChild,
+  ),
+  ProphetLineageEdge(
+    fromProphetId: 'ishaq',
+    toProphetId: 'yaqub',
+    relationshipType: LineageRelationshipType.fatherChild,
+  ),
+  ProphetLineageEdge(
+    fromProphetId: 'yaqub',
+    toProphetId: 'yusuf',
+    relationshipType: LineageRelationshipType.fatherChild,
+  ),
+  ProphetLineageEdge(
+    fromProphetId: 'ismail',
+    toProphetId: 'muhammad',
+    relationshipType: LineageRelationshipType.descendantLine,
+  ),
+  ProphetLineageEdge(
+    fromProphetId: 'zakariya',
+    toProphetId: 'yahya',
+    relationshipType: LineageRelationshipType.fatherChild,
+  ),
+];

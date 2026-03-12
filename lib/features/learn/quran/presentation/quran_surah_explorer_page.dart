@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../../core/theme/app_text_styles.dart';
 import '../../../../../l10n/app_localizations.dart';
+import '../../../../../shared/widgets/arabic_text_utils.dart';
 import '../../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../../shared/widgets/premium_card.dart';
 import '../application/quran_providers.dart';
@@ -47,15 +49,16 @@ class QuranSurahExplorerPage extends ConsumerWidget {
         ),
         const SizedBox(height: 14),
         if (surahs.isEmpty)
-          PremiumCard(
-            child: Text(l10n.quranSearchNoResults),
-          )
+          PremiumCard(child: Text(l10n.quranSearchNoResults))
         else
           ...surahs.map(
             (surah) => Padding(
               padding: const EdgeInsets.only(bottom: 10),
               child: PremiumCard(
-                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 14,
+                  vertical: 12,
+                ),
                 child: InkWell(
                   onTap: () => context.pushNamed(
                     'quranReader',
@@ -69,7 +72,9 @@ class QuranSurahExplorerPage extends ConsumerWidget {
                         height: 34,
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
-                          color: const Color(0xFFD8C49A).withValues(alpha: 0.22),
+                          color: const Color(
+                            0xFFD8C49A,
+                          ).withValues(alpha: 0.22),
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: Text(
@@ -84,9 +89,13 @@ class QuranSurahExplorerPage extends ConsumerWidget {
                           children: [
                             Text(
                               surah.arabicName,
-                              style: const TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w700,
+                              textAlign: textAlignForContent(surah.arabicName),
+                              textDirection: textDirectionForContent(
+                                surah.arabicName,
+                              ),
+                              style: AppTextStyles.arabicLearning(
+                                size: 22,
+                                weight: FontWeight.w700,
                               ),
                             ),
                             const SizedBox(height: 2),

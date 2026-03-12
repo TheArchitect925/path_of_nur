@@ -1,16 +1,19 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/localization/locale_provider.dart';
 import '../../../core/prayer/prayer_preferences.dart';
-import '../../../l10n/app_localizations.dart';
-import '../../../shared/state/location_permission_state.dart';
+import '../../../features/learn/quran/application/quran_providers.dart';
 import '../../../shared/state/user_profile_state.dart';
 import '../../../shared/widgets/global_background.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../profile/application/profile_settings_provider.dart';
+import '../application/onboarding_preferences_provider.dart';
 import '../application/onboarding_state_provider.dart';
+import '../domain/onboarding_preferences.dart';
 
 class OnboardingPage extends ConsumerStatefulWidget {
   const OnboardingPage({super.key});
@@ -20,46 +23,116 @@ class OnboardingPage extends ConsumerStatefulWidget {
 }
 
 class _OnboardingPageState extends ConsumerState<OnboardingPage> {
+  static const _lastIndex = 15;
+
   late final PageController _controller;
-  final _nameController = TextEditingController();
+  late final TextEditingController _nameController;
 
-  int _step = 0;
-  Locale _selectedLocale = const Locale('en');
-  UserSex _selectedSex = UserSex.brother;
-  PrayerMadhab _selectedMadhab = PrayerMadhab.shafii;
-  PrayerCalculationMethod _selectedMethod =
-      PrayerCalculationMethod.muslimWorldLeague;
-  String _selectedLocation = 'Toronto, Canada';
-  bool _locationRequested = false;
-  bool _prayerReminders = true;
-  bool _dhikrReminders = true;
-  bool _quranReminders = false;
-  bool _reflectionReminders = false;
-  bool _fastingReminders = false;
-  _ModeChoice _modeChoice = _ModeChoice.gentle;
+  int _index = 0;
 
-  static const int _lastIndex = 9;
+  bool _showShahada = false;
+  bool _showAllahuAkbar = false;
+  bool _showBismillah = false;
+
+  _LanguageChoice _languageChoice = _languageChoices.first;
+  OnboardingAgeRange _ageRange = OnboardingAgeRange.age25_34;
+  OnboardingIslamExperience _islamExperience =
+      OnboardingIslamExperience.bornStillLearning;
+  OnboardingSalahConsistency _salahConsistency =
+      OnboardingSalahConsistency.sometimes;
+  OnboardingPrayerMethodChoice _methodChoice =
+      OnboardingPrayerMethodChoice.muslimWorldLeague;
+  PrayerMadhab _madhab = PrayerMadhab.shafii;
+
+  final Set<String> _growthInterests = <String>{
+    'Understanding the Qur’an',
+    'Strengthening my Salah',
+    'Daily inspiration',
+  };
+
+  OnboardingArabicReadMode _arabicReadMode =
+      OnboardingArabicReadMode.arabicTransliterationTranslation;
+  OnboardingHarakatChoice _harakatChoice = OnboardingHarakatChoice.full;
+  double _arabicTextScale = 1.0;
+
+  final Map<String, OnboardingReminderChoice> _prayerReminders = {
+    'fajr': OnboardingReminderChoice.adhanNotification,
+    'dhuhr': OnboardingReminderChoice.notificationOnly,
+    'asr': OnboardingReminderChoice.notificationOnly,
+    'maghrib': OnboardingReminderChoice.adhanNotification,
+    'isha': OnboardingReminderChoice.adhanNotification,
+    'tahajjud': OnboardingReminderChoice.notificationOnly,
+  };
+
+  bool _dailyQuranReminder = true;
+  bool _dailyLessonReminder = true;
+
+  final Set<String> _trackingModules = <String>{
+    'Salah tracking',
+    'Qur’an reading progress',
+    'Learning progress',
+  };
+
+  OnboardingDhikrHapticLevel _dhikrHaptic = OnboardingDhikrHapticLevel.light;
+  OnboardingDhikrSound _dhikrSound = OnboardingDhikrSound.softClick;
+  OnboardingDhikrPulse _dhikrPulse = OnboardingDhikrPulse.subtleGlow;
+  int _dhikrPreviewCount = 0;
+
+  UserSex _sex = UserSex.brother;
 
   @override
   void initState() {
     super.initState();
     _controller = PageController();
-    final profile = ref.read(userProfileProvider);
-    final locale = ref.read(appLocaleProvider);
-    final prayer = ref.read(prayerSettingsProvider).preferences;
-    final profileSettings = ref.read(profileSettingsProvider);
+    _nameController = TextEditingController(
+      text: ref.read(userProfileProvider).name,
+    );
 
-    _nameController.text = profile.name;
-    _selectedSex = profile.sex;
-    _selectedLocale = locale ?? const Locale('en');
-    _selectedLocation = prayer.location;
-    _selectedMadhab = prayer.madhab;
-    _selectedMethod = prayer.calculationMethod;
-    _prayerReminders = profileSettings.prayerReminders;
-    _dhikrReminders = profileSettings.dhikrReminders;
-    _quranReminders = profileSettings.quranReminders;
-    _reflectionReminders = profileSettings.reflectionReminders;
-    _fastingReminders = profileSettings.fastingReminders;
+    final existing = ref.read(onboardingPreferencesProvider);
+    if (existing != null) {
+      _ageRange = existing.ageRange;
+      _islamExperience = existing.islamExperience;
+      _salahConsistency = existing.salahConsistency;
+      _methodChoice = existing.prayerMethodChoice;
+      _madhab = existing.madhab;
+      _growthInterests
+        ..clear()
+        ..addAll(existing.growthInterests);
+      _arabicReadMode = existing.arabicReadMode;
+      _harakatChoice = existing.harakatChoice;
+      _arabicTextScale = existing.arabicTextScale;
+      _prayerReminders
+        ..clear()
+        ..addAll(existing.prayerReminderChoices);
+      _dailyQuranReminder = existing.dailyQuranReminder;
+      _dailyLessonReminder = existing.dailyLessonReminder;
+      _trackingModules
+        ..clear()
+        ..addAll(existing.trackingModules);
+      _dhikrHaptic = existing.dhikrHaptic;
+      _dhikrSound = existing.dhikrSound;
+      _dhikrPulse = existing.dhikrPulse;
+      _sex = existing.addressPreference;
+      if (existing.userName.trim().isNotEmpty) {
+        _nameController.text = existing.userName;
+      }
+      _LanguageChoice? language;
+      for (final item in _languageChoices) {
+        if (item.id == existing.languageChoiceId) {
+          language = item;
+          break;
+        }
+      }
+      if (language != null) _languageChoice = language;
+    } else {
+      final systemLocale = WidgetsBinding.instance.platformDispatcher.locale;
+      final country = (systemLocale.countryCode ?? '').toUpperCase();
+      if (country == 'US' || country == 'CA') {
+        _methodChoice = OnboardingPrayerMethodChoice.isna;
+      }
+    }
+
+    _triggerOpeningSequence();
   }
 
   @override
@@ -69,9 +142,29 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
     super.dispose();
   }
 
+  void _triggerOpeningSequence() {
+    setState(() {
+      _showShahada = false;
+      _showAllahuAkbar = false;
+      _showBismillah = false;
+    });
+    Future<void>.delayed(const Duration(milliseconds: 120), () {
+      if (!mounted || _index != 0) return;
+      setState(() => _showShahada = true);
+    });
+    Future<void>.delayed(const Duration(milliseconds: 700), () {
+      if (!mounted || _index != 0) return;
+      setState(() => _showAllahuAkbar = true);
+    });
+    Future<void>.delayed(const Duration(milliseconds: 1200), () {
+      if (!mounted || _index != 0) return;
+      setState(() => _showBismillah = true);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
+    final showSettingsHint = _index > 0 && _index < _lastIndex && _index != 11;
 
     return Scaffold(
       body: Stack(
@@ -79,140 +172,69 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
           const GlobalBackground(),
           SafeArea(
             child: Padding(
-              padding: const EdgeInsets.fromLTRB(16, 16, 16, 20),
+              padding: const EdgeInsets.fromLTRB(16, 14, 16, 20),
               child: Column(
                 children: [
                   Row(
                     children: [
-                      if (_step > 0)
-                        IconButton(
-                          onPressed: _previous,
-                          icon: const Icon(Icons.chevron_left),
-                        )
+                      IconButton(
+                        onPressed: _index == 0 ? null : _previous,
+                        icon: const Icon(Icons.chevron_left_rounded),
+                      ),
+                      const Spacer(),
+                      Text('${_index + 1} / ${_lastIndex + 1}'),
+                      const Spacer(),
+                      if (_index < _lastIndex)
+                        TextButton(onPressed: _next, child: const Text('Skip'))
                       else
-                        const SizedBox(width: 48),
-                      const Spacer(),
-                      Text(
-                        '${_step + 1} / ${_lastIndex + 1}',
-                        style: Theme.of(context).textTheme.bodyMedium,
-                      ),
-                      const Spacer(),
-                      TextButton(
-                        onPressed: _step == _lastIndex
-                            ? null
-                            : _skipCurrentStep,
-                        child: Text(l10n.quranCancel),
-                      ),
+                        const SizedBox(width: 62),
                     ],
                   ),
                   const SizedBox(height: 8),
                   LinearProgressIndicator(
-                    value: (_step + 1) / (_lastIndex + 1),
+                    value: (_index + 1) / (_lastIndex + 1),
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 12),
                   Expanded(
-                    child: PageView(
+                    child: PageView.builder(
                       controller: _controller,
-                      physics: const NeverScrollableScrollPhysics(),
-                      children: [
-                        _IntroStep(
-                          title: l10n.appTitle,
-                          subtitle: l10n.homeWelcomeDailyIntentionSubtitle,
-                        ),
-                        _LanguageStep(
-                          title: l10n.languageOptionsTitle,
-                          subtitle: l10n.languageOptionsSubtitle,
-                          selected: _selectedLocale,
-                          onSelected: (value) =>
-                              setState(() => _selectedLocale = value),
-                          labels: _languageLabels(l10n),
-                        ),
-                        _SexStep(
-                          title: l10n.profileAddressMeAs,
-                          brother: l10n.profileBrother,
-                          sister: l10n.profileSister,
-                          selected: _selectedSex,
-                          onChanged: (value) =>
-                              setState(() => _selectedSex = value),
-                        ),
-                        _NameStep(
-                          title: l10n.profileDisplayNameLabel,
-                          subtitle: l10n.profileSummarySubtitle,
-                          controller: _nameController,
-                        ),
-                        _IntroStep(
-                          title: l10n.profilePrayerSettingsTitle,
-                          subtitle: l10n.profilePrayerSettingsSubtitle,
-                        ),
-                        _LocationStep(
-                          title: l10n.homeLocationPromptTitle,
-                          subtitle: l10n.homeLocationPromptSubtitle,
-                          locationRequested: _locationRequested,
-                          onRequest: _requestLocation,
-                        ),
-                        _PrayerSetupStep(
-                          title: l10n.profilePrayerSettingsTitle,
-                          locationLabel: l10n.profileLocationLabel,
-                          madhabLabel: l10n.profileMadhabLabel,
-                          methodLabel: l10n.profileCalculationMethodLabel,
-                          selectedLocation: _selectedLocation,
-                          selectedMadhab: _selectedMadhab,
-                          selectedMethod: _selectedMethod,
-                          locations: ref.watch(
-                            availablePrayerLocationsProvider,
-                          ),
-                          onLocationChanged: (value) =>
-                              setState(() => _selectedLocation = value),
-                          onMadhabChanged: (value) =>
-                              setState(() => _selectedMadhab = value),
-                          onMethodChanged: (value) =>
-                              setState(() => _selectedMethod = value),
-                        ),
-                        _ReminderStep(
-                          title: l10n.profileNotificationsTitle,
-                          subtitle: l10n.profileNotificationsSubtitle,
-                          prayerReminders: _prayerReminders,
-                          dhikrReminders: _dhikrReminders,
-                          quranReminders: _quranReminders,
-                          reflectionReminders: _reflectionReminders,
-                          fastingReminders: _fastingReminders,
-                          onPrayerChanged: (value) =>
-                              setState(() => _prayerReminders = value),
-                          onDhikrChanged: (value) =>
-                              setState(() => _dhikrReminders = value),
-                          onQuranChanged: (value) =>
-                              setState(() => _quranReminders = value),
-                          onReflectionChanged: (value) =>
-                              setState(() => _reflectionReminders = value),
-                          onFastingChanged: (value) =>
-                              setState(() => _fastingReminders = value),
-                        ),
-                        _ModeStep(
-                          title: l10n.profileModesTitle,
-                          subtitle: l10n.profileModesSubtitle,
-                          modeChoice: _modeChoice,
-                          onChanged: (value) =>
-                              setState(() => _modeChoice = value),
-                          ramadanTitle: l10n.profileRamadanModeTitle,
-                          gentleTitle: l10n.profileGentleModeTitle,
-                          lossTitle: l10n.profileLossModeTitle,
-                        ),
-                        _FinishStep(
-                          title: l10n.navHome,
-                          subtitle: l10n.onboardingDisclaimerBody,
-                        ),
-                      ],
+                      itemCount: _lastIndex + 1,
+                      onPageChanged: (value) {
+                        setState(() => _index = value);
+                        if (value == 0) _triggerOpeningSequence();
+                      },
+                      itemBuilder: (context, pageIndex) {
+                        final page = _buildPage(pageIndex);
+                        return TweenAnimationBuilder<double>(
+                          key: ValueKey('onboarding-step-$pageIndex'),
+                          tween: Tween(begin: 0, end: 1),
+                          duration: const Duration(milliseconds: 320),
+                          builder: (context, opacity, child) {
+                            return Opacity(opacity: opacity, child: child);
+                          },
+                          child: page,
+                        );
+                      },
                     ),
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 12),
+                  if (showSettingsHint)
+                    Opacity(
+                      opacity: 0.62,
+                      child: Text(
+                        'You can change this anytime in Settings.',
+                        style: Theme.of(context).textTheme.bodySmall,
+                      ),
+                    ),
+                  if (showSettingsHint) const SizedBox(height: 8),
                   SizedBox(
                     width: double.infinity,
                     child: FilledButton(
-                      onPressed: _step == _lastIndex ? _finish : _next,
+                      onPressed: _index == _lastIndex ? _finish : _next,
                       child: Text(
-                        _step == _lastIndex
-                            ? l10n.navHome
-                            : l10n.learnContentContinueTitle,
+                        _index == _lastIndex
+                            ? 'Begin your journey'
+                            : 'Continue',
                       ),
                     ),
                   ),
@@ -225,481 +247,980 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
     );
   }
 
-  Map<Locale, String> _languageLabels(AppLocalizations l10n) {
-    return {
-      const Locale('en'): l10n.languageEnglish,
-      const Locale('ar'): l10n.languageArabic,
-      const Locale('id'): l10n.languageIndonesian,
-      const Locale('ms'): l10n.languageMalay,
-      const Locale('bn'): l10n.languageBengali,
-      const Locale('ur'): l10n.languageUrdu,
-      const Locale('fa'): l10n.languageFarsi,
-      const Locale('fa', 'AF'): l10n.languageDari,
-      const Locale('tg'): l10n.languageTajik,
-      const Locale('tr'): l10n.languageTurkish,
-      const Locale('hi'): l10n.languageHindi,
-      const Locale('pa'): l10n.languagePunjabi,
-      const Locale('ha'): l10n.languageHausa,
-      const Locale('ps'): l10n.languagePashto,
-      const Locale('ku'): l10n.languageKurdish,
-    };
-  }
-
-  Future<void> _requestLocation() async {
-    await ref.read(locationPermissionProvider.notifier).requestWhileUsingApp();
-    if (mounted) {
-      setState(() => _locationRequested = true);
+  Widget _buildPage(int pageIndex) {
+    switch (pageIndex) {
+      case 0:
+        return _openingPage();
+      case 1:
+        return _languagePage();
+      case 2:
+        return _agePage();
+      case 3:
+        return _experiencePage();
+      case 4:
+        return _salahConsistencyPage();
+      case 5:
+        return _prayerMethodPage();
+      case 6:
+        return _madhabPage();
+      case 7:
+        return _growthInterestsPage();
+      case 8:
+        return _arabicReadingPage();
+      case 9:
+        return _remindersPage();
+      case 10:
+        return _trackingPage();
+      case 11:
+        return _familyIntroPage();
+      case 12:
+        return _dhikrFeedbackPage();
+      case 13:
+        return _greetingPreferencePage();
+      case 14:
+        return _namePage();
+      case 15:
+        return _finalWelcomePage();
+      default:
+        return const SizedBox.shrink();
     }
   }
 
-  void _skipCurrentStep() {
-    if (_step < _lastIndex) {
-      _next();
-    }
-  }
-
-  void _previous() {
-    if (_step == 0) return;
-    setState(() => _step -= 1);
-    _controller.animateToPage(
-      _step,
-      duration: const Duration(milliseconds: 220),
-      curve: Curves.easeOut,
-    );
-  }
-
-  void _next() {
-    if (_step == 3 && _nameController.text.trim().isEmpty) {
-      return;
-    }
-    if (_step >= _lastIndex) return;
-    setState(() => _step += 1);
-    _controller.animateToPage(
-      _step,
-      duration: const Duration(milliseconds: 220),
-      curve: Curves.easeOut,
-    );
-  }
-
-  void _finish() {
-    final profileNotifier = ref.read(userProfileProvider.notifier);
-    final localeNotifier = ref.read(appLocaleProvider.notifier);
-    final prayerNotifier = ref.read(prayerSettingsProvider.notifier);
-    final settingsNotifier = ref.read(profileSettingsProvider.notifier);
-
-    final name = _nameController.text.trim();
-    if (name.isNotEmpty) {
-      profileNotifier.updateName(name);
-    }
-    profileNotifier.updateSex(_selectedSex);
-    localeNotifier.setLocale(_selectedLocale);
-    prayerNotifier.updateLocation(_selectedLocation);
-    prayerNotifier.updateMadhab(_selectedMadhab);
-    prayerNotifier.updateMethod(_selectedMethod);
-
-    settingsNotifier.setPrayerReminders(_prayerReminders);
-    settingsNotifier.setDhikrReminders(_dhikrReminders);
-    settingsNotifier.setQuranReminders(_quranReminders);
-    settingsNotifier.setReflectionReminders(_reflectionReminders);
-    settingsNotifier.setFastingReminders(_fastingReminders);
-    settingsNotifier.setRamadanModeEnabled(_modeChoice == _ModeChoice.ramadan);
-    settingsNotifier.setLossModeEnabled(_modeChoice == _ModeChoice.loss);
-    settingsNotifier.setGentleModeEnabled(_modeChoice == _ModeChoice.gentle);
-
-    ref.read(onboardingCompletedProvider.notifier).complete();
-    context.go('/home');
-  }
-}
-
-enum _ModeChoice { ramadan, gentle, loss }
-
-class _IntroStep extends StatelessWidget {
-  const _IntroStep({required this.title, required this.subtitle});
-
-  final String title;
-  final String subtitle;
-
-  @override
-  Widget build(BuildContext context) {
-    return PremiumCard(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(title, style: Theme.of(context).textTheme.titleLarge),
-          const SizedBox(height: 10),
-          Text(subtitle),
-        ],
-      ),
-    );
-  }
-}
-
-class _LanguageStep extends StatelessWidget {
-  const _LanguageStep({
-    required this.title,
-    required this.subtitle,
-    required this.selected,
-    required this.onSelected,
-    required this.labels,
-  });
-
-  final String title;
-  final String subtitle;
-  final Locale selected;
-  final ValueChanged<Locale> onSelected;
-  final Map<Locale, String> labels;
-
-  @override
-  Widget build(BuildContext context) {
-    return PremiumCard(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(title, style: Theme.of(context).textTheme.titleLarge),
-          const SizedBox(height: 6),
-          Text(subtitle),
-          const SizedBox(height: 12),
-          Expanded(
-            child: ListView(
-              children: labels.entries.map((entry) {
-                final locale = entry.key;
-                final selectedNow =
-                    selected.languageCode == locale.languageCode &&
-                    selected.countryCode == locale.countryCode;
-                return ListTile(
-                  dense: true,
-                  leading: Icon(
-                    selectedNow
-                        ? Icons.radio_button_checked
-                        : Icons.radio_button_unchecked,
-                    size: 18,
-                  ),
-                  title: Text(entry.value),
-                  onTap: () => onSelected(locale),
-                );
-              }).toList(),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _SexStep extends StatelessWidget {
-  const _SexStep({
-    required this.title,
-    required this.brother,
-    required this.sister,
-    required this.selected,
-    required this.onChanged,
-  });
-
-  final String title;
-  final String brother;
-  final String sister;
-  final UserSex selected;
-  final ValueChanged<UserSex> onChanged;
-
-  @override
-  Widget build(BuildContext context) {
-    return PremiumCard(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(title, style: Theme.of(context).textTheme.titleLarge),
-          const SizedBox(height: 12),
-          SegmentedButton<UserSex>(
-            segments: [
-              ButtonSegment(value: UserSex.brother, label: Text(brother)),
-              ButtonSegment(value: UserSex.sister, label: Text(sister)),
-            ],
-            selected: {selected},
-            onSelectionChanged: (value) => onChanged(value.first),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _NameStep extends StatelessWidget {
-  const _NameStep({
-    required this.title,
-    required this.subtitle,
-    required this.controller,
-  });
-
-  final String title;
-  final String subtitle;
-  final TextEditingController controller;
-
-  @override
-  Widget build(BuildContext context) {
-    return PremiumCard(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(title, style: Theme.of(context).textTheme.titleLarge),
-          const SizedBox(height: 6),
-          Text(subtitle),
-          const SizedBox(height: 12),
-          TextField(
-            controller: controller,
-            maxLength: 26,
-            decoration: const InputDecoration(border: OutlineInputBorder()),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _LocationStep extends StatelessWidget {
-  const _LocationStep({
-    required this.title,
-    required this.subtitle,
-    required this.locationRequested,
-    required this.onRequest,
-  });
-
-  final String title;
-  final String subtitle;
-  final bool locationRequested;
-  final VoidCallback onRequest;
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
-    return PremiumCard(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(title, style: Theme.of(context).textTheme.titleLarge),
-          const SizedBox(height: 6),
-          Text(subtitle),
-          const SizedBox(height: 12),
-          Text(
-            locationRequested
-                ? l10n.homeLocationEnabledWhileUsing
-                : l10n.homeLocationAllowWhileUsingForPrayer,
-          ),
-          const SizedBox(height: 12),
-          FilledButton.tonal(
-            onPressed: onRequest,
-            child: Text(l10n.profileAllow),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _PrayerSetupStep extends StatelessWidget {
-  const _PrayerSetupStep({
-    required this.title,
-    required this.locationLabel,
-    required this.madhabLabel,
-    required this.methodLabel,
-    required this.selectedLocation,
-    required this.selectedMadhab,
-    required this.selectedMethod,
-    required this.locations,
-    required this.onLocationChanged,
-    required this.onMadhabChanged,
-    required this.onMethodChanged,
-  });
-
-  final String title;
-  final String locationLabel;
-  final String madhabLabel;
-  final String methodLabel;
-  final String selectedLocation;
-  final PrayerMadhab selectedMadhab;
-  final PrayerCalculationMethod selectedMethod;
-  final List<String> locations;
-  final ValueChanged<String> onLocationChanged;
-  final ValueChanged<PrayerMadhab> onMadhabChanged;
-  final ValueChanged<PrayerCalculationMethod> onMethodChanged;
-
-  @override
-  Widget build(BuildContext context) {
+  Widget _openingPage() {
     return PremiumCard(
       child: SingleChildScrollView(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(title, style: Theme.of(context).textTheme.titleLarge),
-            const SizedBox(height: 12),
-            DropdownButtonFormField<String>(
-              key: ValueKey(selectedLocation),
-              initialValue: selectedLocation,
-              decoration: InputDecoration(labelText: locationLabel),
-              items: locations
-                  .map(
-                    (value) =>
-                        DropdownMenuItem(value: value, child: Text(value)),
-                  )
-                  .toList(),
-              onChanged: (value) {
-                if (value != null) onLocationChanged(value);
-              },
-            ),
-            const SizedBox(height: 12),
-            DropdownButtonFormField<PrayerMadhab>(
-              key: ValueKey(selectedMadhab),
-              initialValue: selectedMadhab,
-              decoration: InputDecoration(labelText: madhabLabel),
-              items: PrayerMadhab.values
-                  .map(
-                    (value) => DropdownMenuItem(
-                      value: value,
-                      child: Text(prayerMadhabLabels[prayerMadhabKey[value]!]!),
+            AnimatedOpacity(
+              duration: const Duration(milliseconds: 450),
+              opacity: _showShahada ? 1 : 0,
+              child: const Column(
+                children: [
+                  Text(
+                    'أَشْهَدُ أَنْ لَا إِلَٰهَ إِلَّا اللَّهُ\nوَأَشْهَدُ أَنَّ مُحَمَّدًا رَسُولُ اللَّهِ',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 25,
+                      height: 1.6,
+                      fontFamily: 'AmiriQuran',
                     ),
-                  )
-                  .toList(),
-              onChanged: (value) {
-                if (value != null) onMadhabChanged(value);
-              },
+                  ),
+                  SizedBox(height: 8),
+                  Text(
+                    'Ashhadu an la ilaha illa Allah\nwa ashhadu anna Muhammadan rasulullah',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontStyle: FontStyle.italic),
+                  ),
+                  SizedBox(height: 8),
+                  Text(
+                    'I bear witness that there is no god except Allah,\nand I bear witness that Muhammad is the Messenger of Allah.',
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
             ),
-            const SizedBox(height: 12),
-            DropdownButtonFormField<PrayerCalculationMethod>(
-              key: ValueKey(selectedMethod),
-              initialValue: selectedMethod,
-              decoration: InputDecoration(labelText: methodLabel),
-              items: PrayerCalculationMethod.values
-                  .map(
-                    (value) => DropdownMenuItem(
-                      value: value,
-                      child: Text(prayerMethodLabels[prayerMethodKey[value]!]!),
+            const SizedBox(height: 16),
+            AnimatedOpacity(
+              duration: const Duration(milliseconds: 500),
+              opacity: _showAllahuAkbar ? 1 : 0,
+              child: Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 8,
+                ),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(999),
+                  boxShadow: [
+                    BoxShadow(
+                      color: const Color(0xFFD8C49A).withValues(alpha: 0.24),
+                      blurRadius: 26,
+                      spreadRadius: 2,
                     ),
-                  )
-                  .toList(),
-              onChanged: (value) {
-                if (value != null) onMethodChanged(value);
-              },
+                  ],
+                ),
+                child: const Text(
+                  'اللَّهُ أَكْبَر',
+                  style: TextStyle(fontSize: 34, fontFamily: 'AmiriQuran'),
+                ),
+              ),
+            ),
+            const SizedBox(height: 16),
+            AnimatedOpacity(
+              duration: const Duration(milliseconds: 500),
+              opacity: _showBismillah ? 1 : 0,
+              child: const Column(
+                children: [
+                  Text(
+                    'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 28,
+                      height: 1.6,
+                      fontFamily: 'AmiriQuran',
+                    ),
+                  ),
+                  SizedBox(height: 8),
+                  Text('Bismillahir-Rahmanir-Rahim'),
+                  SizedBox(height: 6),
+                  Text(
+                    'In the name of Allah, the Most Compassionate, the Most Merciful.',
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 16),
+            const Text(
+              'May this journey bring khayr, consistency, and closeness to Allah.',
+              textAlign: TextAlign.center,
             ),
           ],
         ),
       ),
     );
   }
-}
 
-class _ReminderStep extends StatelessWidget {
-  const _ReminderStep({
-    required this.title,
-    required this.subtitle,
-    required this.prayerReminders,
-    required this.dhikrReminders,
-    required this.quranReminders,
-    required this.reflectionReminders,
-    required this.fastingReminders,
-    required this.onPrayerChanged,
-    required this.onDhikrChanged,
-    required this.onQuranChanged,
-    required this.onReflectionChanged,
-    required this.onFastingChanged,
-  });
-
-  final String title;
-  final String subtitle;
-  final bool prayerReminders;
-  final bool dhikrReminders;
-  final bool quranReminders;
-  final bool reflectionReminders;
-  final bool fastingReminders;
-  final ValueChanged<bool> onPrayerChanged;
-  final ValueChanged<bool> onDhikrChanged;
-  final ValueChanged<bool> onQuranChanged;
-  final ValueChanged<bool> onReflectionChanged;
-  final ValueChanged<bool> onFastingChanged;
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
-    return PremiumCard(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(title, style: Theme.of(context).textTheme.titleLarge),
-          const SizedBox(height: 6),
-          Text(subtitle),
-          const SizedBox(height: 10),
-          SwitchListTile(
-            value: prayerReminders,
-            title: Text(l10n.profilePrayerReminders),
-            onChanged: onPrayerChanged,
-          ),
-          SwitchListTile(
-            value: dhikrReminders,
-            title: Text(l10n.profileDhikrReminders),
-            onChanged: onDhikrChanged,
-          ),
-          SwitchListTile(
-            value: quranReminders,
-            title: Text(l10n.profileQuranReminders),
-            onChanged: onQuranChanged,
-          ),
-          SwitchListTile(
-            value: reflectionReminders,
-            title: Text(l10n.profileReflectionReminders),
-            onChanged: onReflectionChanged,
-          ),
-          SwitchListTile(
-            value: fastingReminders,
-            title: Text(l10n.profileFastingReminders),
-            onChanged: onFastingChanged,
-          ),
-        ],
+  Widget _languagePage() {
+    return _stepCard(
+      title: 'Choose your language',
+      subtitle: 'Select the language you would like to use in the app.',
+      child: ListView(
+        children: _languageChoices
+            .map(
+              (choice) => ListTile(
+                dense: true,
+                leading: Icon(
+                  _languageChoice.id == choice.id
+                      ? Icons.radio_button_checked
+                      : Icons.radio_button_unchecked,
+                  size: 20,
+                ),
+                title: Text(choice.label),
+                onTap: () {
+                  setState(() => _languageChoice = choice);
+                  final localeNotifier = ref.read(appLocaleProvider.notifier);
+                  if (choice.locale == null) {
+                    localeNotifier.clearLocale();
+                  } else {
+                    localeNotifier.setLocale(choice.locale!);
+                  }
+                },
+              ),
+            )
+            .toList(growable: false),
       ),
     );
   }
-}
 
-class _ModeStep extends StatelessWidget {
-  const _ModeStep({
-    required this.title,
-    required this.subtitle,
-    required this.modeChoice,
-    required this.onChanged,
-    required this.ramadanTitle,
-    required this.gentleTitle,
-    required this.lossTitle,
-  });
+  Widget _agePage() {
+    return _choicePage<OnboardingAgeRange>(
+      title: 'Which age range are you in?',
+      subtitle:
+          'This helps us present guidance in a way that fits your stage of life.',
+      value: _ageRange,
+      options: const {
+        OnboardingAgeRange.under18: 'Under 18',
+        OnboardingAgeRange.age18_24: '18-24',
+        OnboardingAgeRange.age25_34: '25-34',
+        OnboardingAgeRange.age35_44: '35-44',
+        OnboardingAgeRange.age45_54: '45-54',
+        OnboardingAgeRange.age55Plus: '55+',
+      },
+      onChanged: (value) => setState(() => _ageRange = value),
+    );
+  }
 
-  final String title;
-  final String subtitle;
-  final _ModeChoice modeChoice;
-  final ValueChanged<_ModeChoice> onChanged;
-  final String ramadanTitle;
-  final String gentleTitle;
-  final String lossTitle;
+  Widget _experiencePage() {
+    return _choicePage<OnboardingIslamExperience>(
+      title: 'What best describes your experience with Islam?',
+      subtitle:
+          'This helps the app guide you at the right pace and present content in a way that suits your journey.',
+      value: _islamExperience,
+      options: const {
+        OnboardingIslamExperience.exploring: 'Exploring Islam',
+        OnboardingIslamExperience.newToIslam: 'New to Islam',
+        OnboardingIslamExperience.bornStillLearning:
+            'Born Muslim, still learning',
+        OnboardingIslamExperience.practicingRegularly: 'Practicing regularly',
+        OnboardingIslamExperience.advanced: 'Experienced / advanced',
+      },
+      onChanged: (value) => setState(() => _islamExperience = value),
+    );
+  }
 
-  @override
-  Widget build(BuildContext context) {
-    return PremiumCard(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+  Widget _salahConsistencyPage() {
+    return _choicePage<OnboardingSalahConsistency>(
+      title: 'How consistent is your Salah currently?',
+      subtitle: 'Choose the option that best reflects where you are right now.',
+      value: _salahConsistency,
+      options: const {
+        OnboardingSalahConsistency.all: 'I pray all prayers consistently',
+        OnboardingSalahConsistency.most: 'I pray most prayers',
+        OnboardingSalahConsistency.sometimes: 'I pray sometimes',
+        OnboardingSalahConsistency.rarely: 'I rarely pray',
+        OnboardingSalahConsistency.justStarted: 'I am just getting started',
+      },
+      onChanged: (value) => setState(() => _salahConsistency = value),
+    );
+  }
+
+  Widget _prayerMethodPage() {
+    return _choicePage<OnboardingPrayerMethodChoice>(
+      title: 'Prayer time calculation method',
+      subtitle:
+          'Choose how prayer times should be calculated for your location.',
+      value: _methodChoice,
+      options: const {
+        OnboardingPrayerMethodChoice.muslimWorldLeague: 'Muslim World League',
+        OnboardingPrayerMethodChoice.isna:
+            'Islamic Society of North America (ISNA)',
+        OnboardingPrayerMethodChoice.ummAlQura: 'Umm Al-Qura University',
+        OnboardingPrayerMethodChoice.egyptian:
+            'Egyptian General Authority of Survey',
+        OnboardingPrayerMethodChoice.karachi:
+            'University of Islamic Sciences, Karachi',
+        OnboardingPrayerMethodChoice.moonsighting: 'Moonsighting Committee',
+      },
+      onChanged: (value) => setState(() => _methodChoice = value),
+    );
+  }
+
+  Widget _madhabPage() {
+    return _choicePage<PrayerMadhab>(
+      title: 'Which Madhab do you follow?',
+      subtitle:
+          'This affects how Asr prayer time is calculated. If you are unsure, you can keep the default.',
+      value: _madhab,
+      options: const {
+        PrayerMadhab.hanafi: 'Hanafi',
+        PrayerMadhab.shafii: 'Shafi\'i',
+        PrayerMadhab.maliki: 'Maliki',
+        PrayerMadhab.hanbali: 'Hanbali',
+      },
+      onChanged: (value) => setState(() => _madhab = value),
+    );
+  }
+
+  Widget _growthInterestsPage() {
+    return _stepCard(
+      title: 'What would you like to grow in?',
+      subtitle:
+          'Select the areas you would like Path of Nur to help you with. You can choose multiple.',
+      child: GridView.count(
+        crossAxisCount: 2,
+        mainAxisSpacing: 8,
+        crossAxisSpacing: 8,
+        childAspectRatio: 1.7,
+        children: _interestOptions
+            .map(
+              (item) => _toggleCard(
+                title: item.$1,
+                icon: item.$2,
+                selected: _growthInterests.contains(item.$1),
+                onTap: () {
+                  setState(() {
+                    if (!_growthInterests.add(item.$1)) {
+                      _growthInterests.remove(item.$1);
+                    }
+                  });
+                },
+              ),
+            )
+            .toList(growable: false),
+      ),
+    );
+  }
+
+  Widget _arabicReadingPage() {
+    return _stepCard(
+      title: 'How would you like to read Arabic?',
+      subtitle: 'Choose the reading style that feels most comfortable for you.',
+      child: ListView(
         children: [
-          Text(title, style: Theme.of(context).textTheme.titleLarge),
-          const SizedBox(height: 6),
-          Text(subtitle),
+          _choiceRow<OnboardingArabicReadMode>(
+            value: _arabicReadMode,
+            options: const {
+              OnboardingArabicReadMode.arabicOnly: 'Arabic only',
+              OnboardingArabicReadMode.arabicTransliteration:
+                  'Arabic + Transliteration',
+              OnboardingArabicReadMode.arabicTranslation:
+                  'Arabic + Translation',
+              OnboardingArabicReadMode.arabicTransliterationTranslation:
+                  'Arabic + Transliteration + Translation',
+            },
+            onChanged: (value) => setState(() => _arabicReadMode = value),
+          ),
           const SizedBox(height: 12),
-          SegmentedButton<_ModeChoice>(
-            segments: [
-              ButtonSegment(
-                value: _ModeChoice.gentle,
-                label: Text(gentleTitle),
+          const Text(
+            'Harakat / pronunciation marks',
+            style: TextStyle(fontWeight: FontWeight.w700),
+          ),
+          const SizedBox(height: 6),
+          _choiceRow<OnboardingHarakatChoice>(
+            value: _harakatChoice,
+            options: const {
+              OnboardingHarakatChoice.full: 'Full harakat',
+              OnboardingHarakatChoice.minimal: 'Minimal harakat',
+              OnboardingHarakatChoice.none: 'None',
+            },
+            onChanged: (value) => setState(() => _harakatChoice = value),
+          ),
+          const SizedBox(height: 12),
+          const Text(
+            'Text size',
+            style: TextStyle(fontWeight: FontWeight.w700),
+          ),
+          Slider(
+            value: _arabicTextScale,
+            min: 0.85,
+            max: 1.4,
+            divisions: 11,
+            label: _sizeLabel(_arabicTextScale),
+            onChanged: (value) => setState(() => _arabicTextScale = value),
+          ),
+          const SizedBox(height: 8),
+          PremiumCard(
+            child: Column(
+              children: [
+                Text(
+                  'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontFamily: 'AmiriQuran',
+                    fontSize: 30 * _arabicTextScale,
+                    height: 1.6,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                if (_arabicReadMode ==
+                        OnboardingArabicReadMode.arabicTransliteration ||
+                    _arabicReadMode ==
+                        OnboardingArabicReadMode
+                            .arabicTransliterationTranslation)
+                  const Text('Bismillahir-Rahmanir-Rahim'),
+                if (_arabicReadMode ==
+                        OnboardingArabicReadMode.arabicTranslation ||
+                    _arabicReadMode ==
+                        OnboardingArabicReadMode
+                            .arabicTransliterationTranslation)
+                  const Text(
+                    'In the name of Allah, the Most Compassionate, the Most Merciful.',
+                    textAlign: TextAlign.center,
+                  ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _remindersPage() {
+    return _stepCard(
+      title: 'How would you like to be reminded?',
+      subtitle:
+          'Choose your preferred reminders for prayer and daily spiritual routines.',
+      child: ListView(
+        children: [
+          ..._prayerReminders.keys.map(
+            (prayer) => Padding(
+              padding: const EdgeInsets.only(bottom: 8),
+              child: PremiumCard(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      _prayerLabel(prayer),
+                      style: const TextStyle(fontWeight: FontWeight.w700),
+                    ),
+                    const SizedBox(height: 6),
+                    _choiceRow<OnboardingReminderChoice>(
+                      value: _prayerReminders[prayer]!,
+                      options: const {
+                        OnboardingReminderChoice.notificationOnly:
+                            'Notification only',
+                        OnboardingReminderChoice.adhanNotification:
+                            'Adhan notification',
+                        OnboardingReminderChoice.forceAdhan: 'Force Adhan',
+                      },
+                      onChanged: (choice) =>
+                          setState(() => _prayerReminders[prayer] = choice),
+                    ),
+                  ],
+                ),
               ),
-              ButtonSegment(
-                value: _ModeChoice.ramadan,
-                label: Text(ramadanTitle),
+            ),
+          ),
+          const SizedBox(height: 6),
+          SwitchListTile(
+            value: _dailyQuranReminder,
+            title: const Text('Daily Qur\'an reading reminder'),
+            onChanged: (value) => setState(() => _dailyQuranReminder = value),
+          ),
+          SwitchListTile(
+            value: _dailyLessonReminder,
+            title: const Text('Daily lesson reminder'),
+            onChanged: (value) => setState(() => _dailyLessonReminder = value),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _trackingPage() {
+    return _stepCard(
+      title: 'What would you like to track?',
+      subtitle:
+          'Choose the areas you would like Path of Nur to help you track over time. You can choose multiple.',
+      child: ListView(
+        children: _trackingOptions
+            .map(
+              (item) => CheckboxListTile(
+                value: _trackingModules.contains(item),
+                title: Text(item),
+                onChanged: (_) {
+                  setState(() {
+                    if (!_trackingModules.add(item)) {
+                      _trackingModules.remove(item);
+                    }
+                  });
+                },
               ),
-              ButtonSegment(value: _ModeChoice.loss, label: Text(lossTitle)),
-            ],
-            selected: {modeChoice},
-            onSelectionChanged: (value) => onChanged(value.first),
+            )
+            .toList(growable: false),
+      ),
+    );
+  }
+
+  Widget _familyIntroPage() {
+    return _stepCard(
+      title: 'Grow together with family',
+      subtitle:
+          'Path of Nur can support individual journeys while also helping families grow together.',
+      child: const Column(
+        children: [
+          _FeatureInfoCard(
+            icon: Icons.groups_rounded,
+            title: 'Family profiles',
+            subtitle: 'Create profiles for family members.',
+          ),
+          SizedBox(height: 8),
+          _FeatureInfoCard(
+            icon: Icons.person_pin_circle_outlined,
+            title: 'Private journeys for each member',
+            subtitle: 'Each profile can keep separate progress and reminders.',
+          ),
+          SizedBox(height: 8),
+          _FeatureInfoCard(
+            icon: Icons.auto_stories_rounded,
+            title: 'Age-appropriate learning',
+            subtitle: 'Content can adapt to stage and experience level.',
+          ),
+          SizedBox(height: 8),
+          _FeatureInfoCard(
+            icon: Icons.favorite_outline_rounded,
+            title: 'Shared encouragement and growth',
+            subtitle: 'Build consistency together over time.',
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _dhikrFeedbackPage() {
+    return _stepCard(
+      title: 'Dhikr counter feedback',
+      subtitle: 'Choose how the dhikr counter should respond when you tap.',
+      child: ListView(
+        children: [
+          const Text(
+            'Haptic feedback',
+            style: TextStyle(fontWeight: FontWeight.w700),
+          ),
+          _choiceRow<OnboardingDhikrHapticLevel>(
+            value: _dhikrHaptic,
+            options: const {
+              OnboardingDhikrHapticLevel.off: 'Off',
+              OnboardingDhikrHapticLevel.light: 'Light',
+              OnboardingDhikrHapticLevel.medium: 'Medium',
+              OnboardingDhikrHapticLevel.strong: 'Strong',
+            },
+            onChanged: (value) => setState(() => _dhikrHaptic = value),
+          ),
+          const SizedBox(height: 10),
+          const Text(
+            'Sound feedback',
+            style: TextStyle(fontWeight: FontWeight.w700),
+          ),
+          _choiceRow<OnboardingDhikrSound>(
+            value: _dhikrSound,
+            options: const {
+              OnboardingDhikrSound.off: 'Off',
+              OnboardingDhikrSound.softClick: 'Soft click',
+              OnboardingDhikrSound.tasbih: 'Tasbih bead sound',
+            },
+            onChanged: (value) => setState(() => _dhikrSound = value),
+          ),
+          const SizedBox(height: 10),
+          const Text(
+            'Visual feedback',
+            style: TextStyle(fontWeight: FontWeight.w700),
+          ),
+          _choiceRow<OnboardingDhikrPulse>(
+            value: _dhikrPulse,
+            options: const {
+              OnboardingDhikrPulse.off: 'Off',
+              OnboardingDhikrPulse.subtleGlow: 'Subtle glow',
+              OnboardingDhikrPulse.pulse: 'Pulse animation',
+            },
+            onChanged: (value) => setState(() => _dhikrPulse = value),
+          ),
+          const SizedBox(height: 10),
+          Center(
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 250),
+              curve: Curves.easeOut,
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: const Color(0xFFD8C49A).withValues(
+                  alpha: _dhikrPulse == OnboardingDhikrPulse.off
+                      ? 0.18
+                      : (_dhikrPulse == OnboardingDhikrPulse.subtleGlow
+                            ? 0.28
+                            : 0.36),
+                ),
+              ),
+              child: IconButton(
+                onPressed: () => setState(() => _dhikrPreviewCount += 1),
+                icon: const Icon(Icons.touch_app_rounded),
+              ),
+            ),
+          ),
+          const SizedBox(height: 6),
+          Center(child: Text('Preview count: $_dhikrPreviewCount')),
+        ],
+      ),
+    );
+  }
+
+  Widget _greetingPreferencePage() {
+    return _choicePage<UserSex>(
+      title: 'How would you like to be addressed?',
+      subtitle:
+          'This helps us personalize messages and language throughout the app.',
+      value: _sex,
+      options: const {UserSex.brother: 'Brother', UserSex.sister: 'Sister'},
+      onChanged: (value) => setState(() => _sex = value),
+    );
+  }
+
+  Widget _namePage() {
+    return _stepCard(
+      title: 'What is your name?',
+      subtitle: 'This helps personalize your experience in Path of Nur.',
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          TextField(
+            controller: _nameController,
+            decoration: const InputDecoration(
+              hintText: 'Enter your name',
+              border: OutlineInputBorder(),
+            ),
+          ),
+          const SizedBox(height: 8),
+          Opacity(
+            opacity: 0.7,
+            child: Text(
+              'Your name is only used to personalize your experience within the app.',
+              style: Theme.of(context).textTheme.bodySmall,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _finalWelcomePage() {
+    final name = _nameController.text.trim().isEmpty
+        ? 'Friend'
+        : _nameController.text.trim();
+    final focus = <String>[];
+    focus.addAll(_growthInterests.take(2));
+    if (_salahConsistency.index >= OnboardingSalahConsistency.sometimes.index) {
+      focus.add('Salah consistency');
+    }
+    if (_prayerReminders.values.any(
+      (choice) => choice != OnboardingReminderChoice.notificationOnly,
+    )) {
+      focus.add('Prayer reminders');
+    }
+
+    return PremiumCard(
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Welcome to Path of Nur',
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
+            const SizedBox(height: 8),
+            Text('Assalamu Alaikum, $name.'),
+            const SizedBox(height: 8),
+            const Text(
+              'Your journey begins now. Path of Nur is ready to support you through learning, reflection, remembrance, and steady growth.',
+            ),
+            const SizedBox(height: 12),
+            const Text(
+              'You chose to focus on:',
+              style: TextStyle(fontWeight: FontWeight.w700),
+            ),
+            const SizedBox(height: 6),
+            ...focus
+                .take(3)
+                .map(
+                  (item) => Padding(
+                    padding: const EdgeInsets.only(bottom: 4),
+                    child: Text('• $item'),
+                  ),
+                ),
+            const SizedBox(height: 12),
+            const Text(
+              'رَبِّ زِدْنِي عِلْمًا',
+              style: TextStyle(fontSize: 30, fontFamily: 'AmiriQuran'),
+            ),
+            const SizedBox(height: 4),
+            const Text('My Lord, increase me in knowledge.'),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _stepCard({
+    required String title,
+    required String subtitle,
+    required Widget child,
+  }) {
+    return PremiumCard(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(title, style: Theme.of(context).textTheme.titleLarge),
+          if (subtitle.isNotEmpty) ...[
+            const SizedBox(height: 6),
+            Text(subtitle),
+          ],
+          const SizedBox(height: 10),
+          Expanded(child: child),
+        ],
+      ),
+    );
+  }
+
+  Widget _choicePage<T>({
+    required String title,
+    required String subtitle,
+    required T value,
+    required Map<T, String> options,
+    required ValueChanged<T> onChanged,
+  }) {
+    return _stepCard(
+      title: title,
+      subtitle: subtitle,
+      child: _choiceRow<T>(
+        value: value,
+        options: options,
+        onChanged: onChanged,
+      ),
+    );
+  }
+
+  Widget _choiceRow<T>({
+    required T value,
+    required Map<T, String> options,
+    required ValueChanged<T> onChanged,
+  }) {
+    return Column(
+      children: options.entries
+          .map(
+            (entry) => ListTile(
+              dense: true,
+              leading: Icon(
+                entry.key == value
+                    ? Icons.radio_button_checked
+                    : Icons.radio_button_unchecked,
+                size: 20,
+              ),
+              title: Text(entry.value),
+              onTap: () => onChanged(entry.key),
+            ),
+          )
+          .toList(growable: false),
+    );
+  }
+
+  Widget _toggleCard({
+    required String title,
+    required IconData icon,
+    required bool selected,
+    required VoidCallback onTap,
+  }) {
+    return InkWell(
+      borderRadius: BorderRadius.circular(14),
+      onTap: onTap,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 180),
+        padding: const EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(14),
+          color: selected
+              ? const Color(0xFFD8C49A).withValues(alpha: 0.24)
+              : const Color(0xFFF2EBE1).withValues(alpha: 0.62),
+          border: Border.all(
+            color: selected
+                ? const Color(0xFFD8C49A).withValues(alpha: 0.66)
+                : const Color(0xFFD8C49A).withValues(alpha: 0.34),
+          ),
+        ),
+        child: Row(
+          children: [
+            Icon(icon, size: 18),
+            const SizedBox(width: 8),
+            Expanded(
+              child: Text(
+                title,
+                style: TextStyle(
+                  fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  String _prayerLabel(String prayer) {
+    switch (prayer) {
+      case 'fajr':
+        return 'Fajr';
+      case 'dhuhr':
+        return 'Dhuhr';
+      case 'asr':
+        return 'Asr';
+      case 'maghrib':
+        return 'Maghrib';
+      case 'isha':
+        return 'Isha';
+      case 'tahajjud':
+        return 'Tahajjud';
+      default:
+        return prayer;
+    }
+  }
+
+  String _sizeLabel(double value) {
+    if (value < 0.93) return 'Small';
+    if (value < 1.03) return 'Medium';
+    if (value < 1.17) return 'Large';
+    return 'Extra large';
+  }
+
+  void _previous() {
+    if (_index == 0) return;
+    _controller.previousPage(
+      duration: const Duration(milliseconds: 240),
+      curve: Curves.easeOut,
+    );
+  }
+
+  void _next() {
+    if (_index == 7 && _growthInterests.isEmpty) return;
+    if (_index == 10 && _trackingModules.isEmpty) return;
+    if (_index == 14 && _nameController.text.trim().isEmpty) return;
+    if (_index >= _lastIndex) return;
+    _controller.nextPage(
+      duration: const Duration(milliseconds: 240),
+      curve: Curves.easeOut,
+    );
+  }
+
+  Future<void> _finish() async {
+    final localeNotifier = ref.read(appLocaleProvider.notifier);
+    final profileNotifier = ref.read(userProfileProvider.notifier);
+    final prayerNotifier = ref.read(prayerSettingsProvider.notifier);
+    final profileSettings = ref.read(profileSettingsProvider.notifier);
+    final quranReaderSettings = ref.read(quranReaderSettingsProvider.notifier);
+    final onboardingPreferencesNotifier = ref.read(
+      onboardingPreferencesProvider.notifier,
+    );
+
+    if (_languageChoice.locale == null) {
+      localeNotifier.clearLocale();
+    } else {
+      localeNotifier.setLocale(_languageChoice.locale!);
+    }
+
+    final trimmedName = _nameController.text.trim();
+    if (trimmedName.isNotEmpty) profileNotifier.updateName(trimmedName);
+    profileNotifier.updateSex(_sex);
+
+    prayerNotifier.updateMadhab(_madhab);
+    prayerNotifier.updateMethod(_mapPrayerMethod(_methodChoice));
+
+    for (final entry in _prayerReminders.entries) {
+      prayerNotifier.updateNotificationMode(
+        entry.key,
+        _mapReminderChoice(entry.value),
+      );
+    }
+
+    final hasPrayerReminder = _prayerReminders.isNotEmpty;
+    profileSettings.setPrayerReminders(hasPrayerReminder);
+    profileSettings.setQuranReminders(_dailyQuranReminder);
+    profileSettings.setReflectionReminders(_dailyLessonReminder);
+
+    quranReaderSettings.setShowTransliteration(
+      _arabicReadMode == OnboardingArabicReadMode.arabicTransliteration ||
+          _arabicReadMode ==
+              OnboardingArabicReadMode.arabicTransliterationTranslation,
+    );
+    quranReaderSettings.setShowTranslation(
+      _arabicReadMode == OnboardingArabicReadMode.arabicTranslation ||
+          _arabicReadMode ==
+              OnboardingArabicReadMode.arabicTransliterationTranslation,
+    );
+    final textScalePercent = (_arabicTextScale * 100).round();
+    quranReaderSettings.setArabicScalePercent(textScalePercent);
+    quranReaderSettings.setTranslationScalePercent(textScalePercent);
+    quranReaderSettings.setTransliterationScalePercent(textScalePercent);
+    quranReaderSettings.setRedDiacriticsEnabled(
+      _harakatChoice != OnboardingHarakatChoice.none,
+    );
+    quranReaderSettings.setTranslationCode(
+      _translationCodeForLanguage(_languageChoice.id),
+    );
+
+    profileSettings.setDhikrReminders(
+      _trackingModules.contains('Dhikr tracking') ||
+          _growthInterests.contains('Dhikr and remembrance'),
+    );
+
+    final prefs = OnboardingPreferences(
+      onboardingCompleted: true,
+      languageChoiceId: _languageChoice.id,
+      localeTag: _languageChoice.locale?.toLanguageTag(),
+      ageRange: _ageRange,
+      islamExperience: _islamExperience,
+      salahConsistency: _salahConsistency,
+      prayerMethodChoice: _methodChoice,
+      madhab: _madhab,
+      growthInterests: _growthInterests.toList(growable: false),
+      arabicReadMode: _arabicReadMode,
+      harakatChoice: _harakatChoice,
+      arabicTextScale: _arabicTextScale,
+      prayerReminderChoices: Map<String, OnboardingReminderChoice>.from(
+        _prayerReminders,
+      ),
+      dailyQuranReminder: _dailyQuranReminder,
+      dailyLessonReminder: _dailyLessonReminder,
+      trackingModules: _trackingModules.toList(growable: false),
+      dhikrHaptic: _dhikrHaptic,
+      dhikrSound: _dhikrSound,
+      dhikrPulse: _dhikrPulse,
+      addressPreference: _sex,
+      userName: trimmedName,
+      completedAtIso: DateTime.now().toIso8601String(),
+    );
+    onboardingPreferencesNotifier.save(prefs);
+
+    ref.read(onboardingCompletedProvider.notifier).complete();
+    if (!mounted) return;
+    context.go('/home');
+  }
+
+  PrayerCalculationMethod _mapPrayerMethod(
+    OnboardingPrayerMethodChoice choice,
+  ) {
+    switch (choice) {
+      case OnboardingPrayerMethodChoice.muslimWorldLeague:
+        return PrayerCalculationMethod.muslimWorldLeague;
+      case OnboardingPrayerMethodChoice.isna:
+        return PrayerCalculationMethod.isna;
+      case OnboardingPrayerMethodChoice.ummAlQura:
+        return PrayerCalculationMethod.ummAlQura;
+      case OnboardingPrayerMethodChoice.egyptian:
+        return PrayerCalculationMethod.egyptian;
+      case OnboardingPrayerMethodChoice.karachi:
+        return PrayerCalculationMethod.karachi;
+      case OnboardingPrayerMethodChoice.moonsighting:
+        return PrayerCalculationMethod.isna;
+    }
+  }
+
+  PrayerNotificationMode _mapReminderChoice(OnboardingReminderChoice choice) {
+    switch (choice) {
+      case OnboardingReminderChoice.notificationOnly:
+        return PrayerNotificationMode.notificationOnly;
+      case OnboardingReminderChoice.adhanNotification:
+        return PrayerNotificationMode.adhanWithSound;
+      case OnboardingReminderChoice.forceAdhan:
+        // Stored explicitly in onboarding preferences for future platform-specific behavior.
+        return PrayerNotificationMode.adhanWithSound;
+    }
+  }
+
+  String _translationCodeForLanguage(String languageChoiceId) {
+    switch (languageChoiceId) {
+      case 'ur':
+        return 'ur.urdu';
+      case 'bn':
+        return 'bn.bengali';
+      case 'id':
+        return 'id.indonesian';
+      case 'tr':
+        return 'tr.saheeh';
+      case 'fa':
+        return 'fa.dari';
+      default:
+        return 'en.sahih';
+    }
+  }
+}
+
+class _FeatureInfoCard extends StatelessWidget {
+  const _FeatureInfoCard({
+    required this.icon,
+    required this.title,
+    required this.subtitle,
+  });
+
+  final IconData icon;
+  final String title;
+  final String subtitle;
+
+  @override
+  Widget build(BuildContext context) {
+    return PremiumCard(
+      child: Row(
+        children: [
+          Icon(icon),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: const TextStyle(fontWeight: FontWeight.w700),
+                ),
+                const SizedBox(height: 2),
+                Text(subtitle),
+              ],
+            ),
           ),
         ],
       ),
@@ -707,23 +1228,47 @@ class _ModeStep extends StatelessWidget {
   }
 }
 
-class _FinishStep extends StatelessWidget {
-  const _FinishStep({required this.title, required this.subtitle});
+class _LanguageChoice {
+  const _LanguageChoice({required this.id, required this.label, this.locale});
 
-  final String title;
-  final String subtitle;
-
-  @override
-  Widget build(BuildContext context) {
-    return PremiumCard(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(title, style: Theme.of(context).textTheme.titleLarge),
-          const SizedBox(height: 8),
-          Text(subtitle),
-        ],
-      ),
-    );
-  }
+  final String id;
+  final String label;
+  final Locale? locale;
 }
+
+const _languageChoices = <_LanguageChoice>[
+  _LanguageChoice(id: 'system', label: 'System Default'),
+  _LanguageChoice(id: 'en', label: 'English', locale: Locale('en')),
+  _LanguageChoice(id: 'ar', label: 'Arabic (العربية)', locale: Locale('ar')),
+  _LanguageChoice(id: 'ur', label: 'Urdu (اردو)', locale: Locale('ur')),
+  _LanguageChoice(id: 'hi', label: 'Hindi (हिंदी)', locale: Locale('hi')),
+  _LanguageChoice(id: 'id', label: 'Indonesian', locale: Locale('id')),
+  _LanguageChoice(id: 'ms', label: 'Malay', locale: Locale('ms')),
+  _LanguageChoice(id: 'tr', label: 'Turkish', locale: Locale('tr')),
+  _LanguageChoice(id: 'bn', label: 'Bengali', locale: Locale('bn')),
+  _LanguageChoice(id: 'fr', label: 'French', locale: Locale('fr')),
+  _LanguageChoice(id: 'es', label: 'Spanish', locale: Locale('es')),
+  _LanguageChoice(id: 'de', label: 'German', locale: Locale('de')),
+];
+
+const _interestOptions = <(String, IconData)>[
+  ('Understanding the Qur’an', Icons.menu_book_rounded),
+  ('Learning Hadith', Icons.auto_stories_rounded),
+  ('Stories of the Prophets', Icons.history_edu_rounded),
+  ('Strengthening my Salah', Icons.mosque_rounded),
+  ('Dhikr and remembrance', Icons.favorite_outline_rounded),
+  ('Building better habits', Icons.timeline_rounded),
+  ('Learning about the world through the Qur’an', Icons.public_rounded),
+  ('Islamic knowledge', Icons.school_rounded),
+  ('Personal growth and discipline', Icons.self_improvement_rounded),
+  ('Daily inspiration', Icons.wb_sunny_outlined),
+];
+
+const _trackingOptions = <String>[
+  'Salah tracking',
+  'Dhikr tracking',
+  'Qur’an reading progress',
+  'Learning progress',
+  'Habit building',
+  'Reflection / journaling',
+];

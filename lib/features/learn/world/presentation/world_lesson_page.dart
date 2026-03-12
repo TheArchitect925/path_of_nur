@@ -8,6 +8,14 @@ import '../../../../shared/widgets/premium_card.dart';
 import '../../shared/application/learn_enhancements_provider.dart';
 import '../../shared/application/learn_unified_provider.dart';
 import '../../shared/domain/learn_unified_models.dart';
+import '../../shared/presentation/learning_detail_page.dart';
+import '../../shared/presentation/learning_expandable_section.dart';
+import '../../shared/presentation/learning_header.dart';
+import '../../shared/presentation/learning_lessons.dart';
+import '../../shared/presentation/learning_references.dart';
+import '../../shared/presentation/learning_reflection.dart';
+import '../../shared/presentation/learning_related_content.dart';
+import '../../shared/presentation/learning_section.dart';
 import '../application/world_progress_provider.dart';
 import '../data/world_curriculum_data.dart';
 import '../domain/world_models.dart';
@@ -90,67 +98,89 @@ class _WorldLessonPageState extends ConsumerState<WorldLessonPage> {
       nextLesson = worldLessonById(ordered[currentIndex + 1]);
     }
 
-    return AppPageScaffold(
+    final lessonSummary = _firstSentence(lesson.overview);
+    final relatedLessonLinks = related
+        .map(
+          (item) => LearningRelatedLink(
+            label: item.title,
+            onTap: () => context.pushNamed(
+              'worldLessonDetail',
+              pathParameters: {'lessonId': item.id},
+            ),
+          ),
+        )
+        .toList(growable: false);
+    final relatedCrossDomainLinks = crossDomainRelated
+        .map(
+          (item) => LearningRelatedLink(
+            label: item.title,
+            onTap: () => context.pushNamed(
+              item.routeName,
+              pathParameters: item.pathParameters,
+              queryParameters: item.queryParameters,
+            ),
+          ),
+        )
+        .toList(growable: false);
+    final citationReferences = citations
+        .map(
+          (citation) => LearningReferenceItem(
+            sourceTitle: citation.sourceTitle,
+            rangeOrSection: citation.reference,
+            label: '${citation.qualityBadge} • ${citation.confidenceNote}',
+          ),
+        )
+        .toList(growable: false);
+
+    return LearningDetailPage(
       headerIcon: Icons.menu_book_rounded,
       title: lesson.title,
       subtitle: lesson.subtitle,
-      children: [
-        PremiumCard(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('${l10n.worldThemeLabel}: ${theme?.title ?? ''}'),
-              Text('${l10n.worldSubcategoryLabel}: ${sub?.title ?? ''}'),
-              const SizedBox(height: 6),
-              Text(_statusLabel(l10n, progress?.status)),
-              const SizedBox(height: 4),
-              Text(
-                l10n.learnQualityLabel(_qualityLabel(l10n, quality)),
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(height: 12),
-        _SectionCard(
+      header: LearningHeader(
+        title: lesson.title,
+        chips: [
+          '${l10n.worldThemeLabel}: ${theme?.title ?? ''}',
+          '${l10n.worldSubcategoryLabel}: ${sub?.title ?? ''}',
+          _statusLabel(l10n, progress?.status),
+          l10n.learnQualityLabel(_qualityLabel(l10n, quality)),
+        ],
+        summary: lessonSummary,
+      ),
+      sections: [
+        LearningSection(
           title: l10n.learnContentOverviewTitle,
           body: lesson.overview,
         ),
-        _SectionCard(
+        LearningSection(
           title: l10n.worldQuranicPerspectiveTitle,
           body: lesson.quranicPerspective,
         ),
-        _SectionCard(
+        LearningSection(
           title: l10n.worldReflectiveTakeawayTitle,
           body: lesson.reflectiveTakeaway,
         ),
-        _SectionCard(
+        LearningSection(
           title: l10n.worldPracticalTakeawayTitle,
           body: lesson.practicalTakeaway,
         ),
-        _SectionCard(
+        LearningSection(
           title: l10n.learnContentThemesTitle,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: lesson.keyConcepts
-                .map(
-                  (item) => Padding(
-                    padding: const EdgeInsets.only(bottom: 6),
-                    child: Text('• $item'),
-                  ),
-                )
-                .toList(),
+          child: LearningLessons(
+            items: lesson.keyConcepts
+                .map((item) => LearningLessonItem(title: item))
+                .toList(growable: false),
           ),
         ),
-        _SectionCard(
+        LearningSection(
           title: l10n.learnContentReflectionPromptTitle,
-          body: lesson.reflectionPrompt,
+          child: LearningReflection(prompts: [lesson.reflectionPrompt]),
         ),
         if (lesson.observationPrompt != null)
-          _SectionCard(
+          LearningSection(
             title: l10n.worldObservationPromptTitle,
             body: lesson.observationPrompt,
           ),
-        _ExpandableSectionCard(
+        LearningExpandableSection(
           title: l10n.worldComparativeTeachingsTitle,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -181,109 +211,28 @@ class _WorldLessonPageState extends ConsumerState<WorldLessonPage> {
                 .toList(),
           ),
         ),
-        _SectionCard(
+        LearningSection(
           title: l10n.learnContentRelatedTopicsTitle,
-          child: Wrap(
-            spacing: 8,
-            runSpacing: 8,
-            children: related
-                .map(
-                  (item) => ActionChip(
-                    label: Text(item.title),
-                    onPressed: () => context.pushNamed(
-                      'worldLessonDetail',
-                      pathParameters: {'lessonId': item.id},
-                    ),
-                  ),
-                )
-                .toList(),
+          child: LearningRelatedContent(
+            title: l10n.learnContentRelatedTopicsTitle,
+            items: relatedLessonLinks,
           ),
         ),
         if (crossDomainRelated.isNotEmpty)
-          _SectionCard(
+          LearningSection(
             title: l10n.learnContentReferencesTitle,
-            child: Wrap(
-              spacing: 8,
-              runSpacing: 8,
-              children: crossDomainRelated
-                  .map(
-                    (item) => ActionChip(
-                      label: Text(item.title),
-                      onPressed: () => context.pushNamed(
-                        item.routeName,
-                        pathParameters: item.pathParameters,
-                        queryParameters: item.queryParameters,
-                      ),
-                    ),
-                  )
-                  .toList(),
+            child: LearningRelatedContent(
+              title: l10n.learnContentReferencesTitle,
+              items: relatedCrossDomainLinks,
             ),
           ),
         if (citations.isNotEmpty)
-          _ExpandableSectionCard(
+          LearningExpandableSection(
             title: l10n.learnCitationPanelTitle,
-            child: Column(
-              children: citations
-                  .map(
-                    (citation) => Container(
-                      width: double.infinity,
-                      margin: const EdgeInsets.only(bottom: 8),
-                      padding: const EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFF8F3EA),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              Expanded(
-                                child: Text(
-                                  citation.sourceTitle,
-                                  style: const TextStyle(
-                                    fontWeight: FontWeight.w700,
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 8,
-                                  vertical: 4,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: const Color(0xFFEDE2D3),
-                                  borderRadius: BorderRadius.circular(999),
-                                ),
-                                child: Text(
-                                  citation.qualityBadge,
-                                  style: const TextStyle(
-                                    fontSize: 11,
-                                    fontWeight: FontWeight.w700,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 6),
-                          Text(citation.confidenceNote),
-                          if (citation.reference != null &&
-                              citation.reference!.trim().isNotEmpty) ...[
-                            const SizedBox(height: 4),
-                            Text(
-                              citation.reference!,
-                              style: Theme.of(context).textTheme.bodySmall,
-                            ),
-                          ],
-                        ],
-                      ),
-                    ),
-                  )
-                  .toList(),
-            ),
+            child: LearningReferences(items: citationReferences),
           ),
         if (nextLesson != null)
-          _SectionCard(
+          LearningSection(
             title: l10n.worldSuggestedNextLessonTitle,
             child: ListTile(
               contentPadding: EdgeInsets.zero,
@@ -296,8 +245,8 @@ class _WorldLessonPageState extends ConsumerState<WorldLessonPage> {
               ),
             ),
           ),
-        const SizedBox(height: 8),
-        PremiumCard(
+        LearningSection(
+          title: l10n.learnContentProgressTitle,
           child: Row(
             children: [
               Expanded(
@@ -322,16 +271,11 @@ class _WorldLessonPageState extends ConsumerState<WorldLessonPage> {
             ],
           ),
         ),
-        const SizedBox(height: 10),
-        PremiumCard(
+        LearningSection(
+          title: l10n.learnCompletionQualityTitle,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                l10n.learnCompletionQualityTitle,
-                style: const TextStyle(fontWeight: FontWeight.w700),
-              ),
-              const SizedBox(height: 8),
               Wrap(
                 spacing: 8,
                 runSpacing: 8,
@@ -347,11 +291,20 @@ class _WorldLessonPageState extends ConsumerState<WorldLessonPage> {
                             quality: item,
                           );
                           if (item == LearnCompletionQuality.notRead) {
-                            notifier.setStatus(lesson.id, WorldLessonStatus.notStarted);
+                            notifier.setStatus(
+                              lesson.id,
+                              WorldLessonStatus.notStarted,
+                            );
                           } else if (item == LearnCompletionQuality.read) {
-                            notifier.setStatus(lesson.id, WorldLessonStatus.inProgress);
+                            notifier.setStatus(
+                              lesson.id,
+                              WorldLessonStatus.inProgress,
+                            );
                           } else {
-                            notifier.setStatus(lesson.id, WorldLessonStatus.completed);
+                            notifier.setStatus(
+                              lesson.id,
+                              WorldLessonStatus.completed,
+                            );
                           }
                         },
                       ),
@@ -361,8 +314,8 @@ class _WorldLessonPageState extends ConsumerState<WorldLessonPage> {
             ],
           ),
         ),
-        const SizedBox(height: 10),
-        PremiumCard(
+        LearningSection(
+          title: l10n.learnContentReflectionPromptTitle,
           child: ListTile(
             contentPadding: EdgeInsets.zero,
             title: Text(l10n.worldAddReflectionTitle),
@@ -371,8 +324,8 @@ class _WorldLessonPageState extends ConsumerState<WorldLessonPage> {
             onTap: () => context.pushNamed('journalCreate'),
           ),
         ),
-        const SizedBox(height: 10),
-        PremiumCard(
+        LearningSection(
+          title: l10n.worldObservationPromptTitle,
           child: ListTile(
             contentPadding: EdgeInsets.zero,
             title: Text(l10n.worldObservationCtaTitle),
@@ -383,6 +336,14 @@ class _WorldLessonPageState extends ConsumerState<WorldLessonPage> {
         ),
       ],
     );
+  }
+
+  String _firstSentence(String text) {
+    final trimmed = text.trim();
+    if (trimmed.isEmpty) return '';
+    final period = trimmed.indexOf('.');
+    if (period <= 0) return trimmed;
+    return trimmed.substring(0, period + 1);
   }
 
   String _qualityLabel(AppLocalizations l10n, LearnCompletionQuality quality) {
@@ -407,59 +368,5 @@ class _WorldLessonPageState extends ConsumerState<WorldLessonPage> {
       case WorldLessonStatus.completed:
         return l10n.worldStatusCompleted;
     }
-  }
-}
-
-class _SectionCard extends StatelessWidget {
-  const _SectionCard({required this.title, this.body, this.child});
-
-  final String title;
-  final String? body;
-  final Widget? child;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 12),
-      child: PremiumCard(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(title, style: const TextStyle(fontWeight: FontWeight.w700)),
-            const SizedBox(height: 8),
-            switch (body) {
-              final text? => Text(text),
-              null => const SizedBox.shrink(),
-            },
-            switch (child) {
-              final section? => section,
-              null => const SizedBox.shrink(),
-            },
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _ExpandableSectionCard extends StatelessWidget {
-  const _ExpandableSectionCard({required this.title, required this.child});
-
-  final String title;
-  final Widget child;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 12),
-      child: PremiumCard(
-        child: ExpansionTile(
-          tilePadding: EdgeInsets.zero,
-          childrenPadding: const EdgeInsets.only(top: 8),
-          title: Text(title, style: const TextStyle(fontWeight: FontWeight.w700)),
-          children: [child],
-        ),
-      ),
-    );
   }
 }

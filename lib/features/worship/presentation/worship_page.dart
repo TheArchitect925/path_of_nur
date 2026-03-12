@@ -148,11 +148,6 @@ class _WorshipModeCard extends ConsumerWidget {
       );
     }
 
-    return PremiumCard(
-      child: Text(
-        l10n.modeGentleWorshipSubtitle,
-        style: const TextStyle(color: Color(0xFF6A5A4A), height: 1.35),
-      ),
-    );
+    return const SizedBox.shrink();
   }
 }

@@ -13,7 +13,7 @@ const List<ImportantHadithEntry> importantHadithEntries = [
     summary:
         'Actions are judged by intention, so sincerity is the beginning of every act of worship and service.',
     practicalReflection:
-        'Choose one daily action and renew your intention for Allah before doing it.',
+        'Choose one daily action and renew your intention for الله before doing it.',
     source: 'The 50 Important Ahadith (Quran Memorization Guide, 2022)',
     themes: ['intention', 'sincerity', 'worship'],
   ),
@@ -51,7 +51,7 @@ const List<ImportantHadithEntry> importantHadithEntries = [
     summary:
         'Belief in divine decree brings humility, trust, and patience during uncertainty.',
     practicalReflection:
-        'In one worry, pair practical effort with dua and trust in Allah’s decree.',
+        'In one worry, pair practical effort with dua and trust in الله’s decree.',
     source: 'The 50 Important Ahadith (Quran Memorization Guide, 2022)',
     themes: ['qadar', 'trust', 'patience'],
   ),
@@ -88,7 +88,7 @@ const List<ImportantHadithEntry> importantHadithEntries = [
     collectionId: 'foundations',
     collectionTitle: 'Foundations of Faith and Practice',
     summary:
-        'Faith includes sincere concern for Allah’s rights, the Messenger, and the wellbeing of people.',
+        'Faith includes sincere concern for الله’s rights, the Messenger, and the wellbeing of people.',
     practicalReflection:
         'Offer one piece of gentle, sincere advice and also ask for advice yourself.',
     source: 'The 50 Important Ahadith (Quran Memorization Guide, 2022)',
@@ -96,7 +96,7 @@ const List<ImportantHadithEntry> importantHadithEntries = [
   ),
   ImportantHadithEntry(
     number: 8,
-    title: 'Striving in the way of Allah',
+    title: 'Striving in the way of الله',
     arabicTitle: 'الجهاد في سبيل',
     collectionId: 'foundations',
     collectionTitle: 'Foundations of Faith and Practice',
@@ -239,7 +239,7 @@ const List<ImportantHadithEntry> importantHadithEntries = [
   ),
   ImportantHadithEntry(
     number: 19,
-    title: 'Be mindful of Allah and He will protect you',
+    title: 'Be mindful of الله and He will protect you',
     arabicTitle: 'احفظ الله يحفظك',
     collectionId: 'character',
     collectionTitle: 'Character and Self-Discipline',
@@ -257,15 +257,15 @@ const List<ImportantHadithEntry> importantHadithEntries = [
     collectionId: 'character',
     collectionTitle: 'Character and Self-Discipline',
     summary:
-        'Hayaa protects dignity and guides speech, behavior, and choices with reverence for Allah.',
+        'Hayaa protects dignity and guides speech, behavior, and choices with reverence for الله.',
     practicalReflection:
-        'Ask: does this choice increase my modesty before Allah and people?',
+        'Ask: does this choice increase my modesty before الله and people?',
     source: 'The 50 Important Ahadith (Quran Memorization Guide, 2022)',
     themes: ['modesty', 'dignity', 'faith'],
   ),
   ImportantHadithEntry(
     number: 21,
-    title: 'Say, “I have faith in Allah,” then remain steadfast',
+    title: 'Say, “I have faith in الله,” then remain steadfast',
     arabicTitle: 'قل آمنت بالله ثم استقم',
     collectionId: 'worship',
     collectionTitle: 'Worship and Moral Boundaries',
@@ -380,15 +380,15 @@ const List<ImportantHadithEntry> importantHadithEntries = [
   ),
   ImportantHadithEntry(
     number: 30,
-    title: 'Rights of Allah Almighty',
+    title: 'Rights of الله Almighty',
     collectionId: 'worship',
     collectionTitle: 'Worship and Moral Boundaries',
     summary:
-        'The hadith emphasizes Allah’s right to be worshiped alone and obeyed sincerely.',
+        'The hadith emphasizes الله’s right to be worshiped alone and obeyed sincerely.',
     practicalReflection:
-        'Renew your daily acts with conscious devotion and gratitude to Allah.',
+        'Renew your daily acts with conscious devotion and gratitude to الله.',
     source: 'The 50 Important Ahadith (Quran Memorization Guide, 2022)',
-    themes: ['rights of Allah', 'tawhid', 'devotion'],
+    themes: ['rights of الله', 'tawhid', 'devotion'],
   ),
   ImportantHadithEntry(
     number: 31,
@@ -457,7 +457,7 @@ const List<ImportantHadithEntry> importantHadithEntries = [
   ),
   ImportantHadithEntry(
     number: 36,
-    title: 'Gathering to remember Allah',
+    title: 'Gathering to remember الله',
     arabicTitle: 'الاجتماع على الذكر',
     collectionId: 'community',
     collectionTitle: 'Community Ethics and Responsibility',
@@ -470,25 +470,25 @@ const List<ImportantHadithEntry> importantHadithEntries = [
   ),
   ImportantHadithEntry(
     number: 37,
-    title: 'Favor of Allah Almighty',
+    title: 'Favor of الله Almighty',
     arabicTitle: 'فضل الله تعالى',
     collectionId: 'community',
     collectionTitle: 'Community Ethics and Responsibility',
     summary:
-        'The hadith highlights Allah’s generosity and the expansive doors of reward.',
+        'The hadith highlights الله’s generosity and the expansive doors of reward.',
     practicalReflection:
-        'List three overlooked favors from Allah and thank Him intentionally.',
+        'List three overlooked favors from الله and thank Him intentionally.',
     source: 'The 50 Important Ahadith (Quran Memorization Guide, 2022)',
     themes: ['divine favor', 'hope', 'gratitude'],
   ),
   ImportantHadithEntry(
     number: 38,
-    title: 'Means of nearness to Allah',
+    title: 'Means of nearness to الله',
     arabicTitle: 'وسيلة القرب',
     collectionId: 'community',
     collectionTitle: 'Community Ethics and Responsibility',
     summary:
-        'Nearness to Allah grows through obligations, then voluntary acts done with love.',
+        'Nearness to الله grows through obligations, then voluntary acts done with love.',
     practicalReflection:
         'Add one consistent voluntary deed after securing your obligations.',
     source: 'The 50 Important Ahadith (Quran Memorization Guide, 2022)',
@@ -540,7 +540,7 @@ const List<ImportantHadithEntry> importantHadithEntries = [
     collectionId: 'heart',
     collectionTitle: 'Heart, Repentance, and Steadfastness',
     summary:
-        'Allah’s door of repentance remains open, encouraging return after mistakes.',
+        'الله’s door of repentance remains open, encouraging return after mistakes.',
     practicalReflection:
         'Make a sincere tawbah today and pair it with one corrective action.',
     source: 'The 50 Important Ahadith (Quran Memorization Guide, 2022)',
@@ -574,12 +574,12 @@ const List<ImportantHadithEntry> importantHadithEntries = [
   ),
   ImportantHadithEntry(
     number: 45,
-    title: 'Reliance upon Allah',
+    title: 'Reliance upon الله',
     arabicTitle: 'التوكل على الله',
     collectionId: 'heart',
     collectionTitle: 'Heart, Repentance, and Steadfastness',
     summary:
-        'Tawakkul means full trust in Allah while still taking responsible means.',
+        'Tawakkul means full trust in الله while still taking responsible means.',
     practicalReflection:
         'In one major concern, define your effort plan and your trust plan together.',
     source: 'The 50 Important Ahadith (Quran Memorization Guide, 2022)',
@@ -636,7 +636,7 @@ const List<ImportantHadithEntry> importantHadithEntries = [
   ),
   ImportantHadithEntry(
     number: 50,
-    title: 'Loving for Allah’s sake',
+    title: 'Loving for الله’s sake',
     collectionId: 'heart',
     collectionTitle: 'Heart, Repentance, and Steadfastness',
     summary:
@@ -644,7 +644,7 @@ const List<ImportantHadithEntry> importantHadithEntries = [
     practicalReflection:
         'Strengthen one relationship through sincere dua and faithful support.',
     source: 'The 50 Important Ahadith (Quran Memorization Guide, 2022)',
-    themes: ['love for Allah', 'brotherhood', 'sincerity'],
+    themes: ['love for الله', 'brotherhood', 'sincerity'],
   ),
 ];
 

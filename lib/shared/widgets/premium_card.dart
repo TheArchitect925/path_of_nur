@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'dart:ui';
 
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_radii.dart';
+import '../../core/theme/app_theme.dart';
 
 class PremiumCard extends StatelessWidget {
   const PremiumCard({
@@ -16,31 +16,26 @@ class PremiumCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(AppRadii.card),
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 4.8, sigmaY: 4.8),
-        child: Container(
-          width: double.infinity,
-          padding: padding,
-          decoration: BoxDecoration(
-            color: AppColors.surface.withValues(alpha: 0.58),
-            borderRadius: BorderRadius.circular(AppRadii.card),
-            border: Border.all(
-              color: AppColors.accentGoldSoft.withValues(alpha: 0.34),
-              width: 1.2,
-            ),
-            boxShadow: const [
-              BoxShadow(
-                color: Color(0x22000000),
-                blurRadius: 18,
-                offset: Offset(0, 7),
-              ),
-            ],
-          ),
-          child: child,
+    final appearance = Theme.of(context).extension<AppAppearanceTheme>();
+    final surface = appearance?.surface ?? AppColors.surface;
+    final accent = appearance?.accent ?? AppColors.accentGold;
+    final surfaceAlpha =
+        appearance?.glassSurfaceAlpha ?? AppColors.glassSurfaceAlpha;
+    final borderAlpha =
+        appearance?.glassBorderAlpha ?? AppColors.glassBorderAlpha;
+
+    return Container(
+      width: double.infinity,
+      padding: padding,
+      decoration: BoxDecoration(
+        color: surface.withValues(alpha: surfaceAlpha),
+        borderRadius: BorderRadius.circular(AppRadii.card),
+        border: Border.all(
+          color: accent.withValues(alpha: borderAlpha),
+          width: 1.0,
         ),
       ),
+      child: child,
     );
   }
 }

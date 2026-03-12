@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import '../../core/theme/app_theme.dart';
 import 'global_background.dart';
+import 'quran_navigation.dart';
 import 'quran_quote_block.dart';
 
 class AppPageScaffold extends StatelessWidget {
@@ -10,6 +12,9 @@ class AppPageScaffold extends StatelessWidget {
     this.quote,
     this.headerIcon,
     this.onQuoteTap,
+    this.scrollController,
+    this.headerActions,
+    this.floatingBottom,
     required this.children,
   });
 
@@ -18,11 +23,16 @@ class AppPageScaffold extends StatelessWidget {
   final QuranQuote? quote;
   final IconData? headerIcon;
   final ValueChanged<QuranQuote>? onQuoteTap;
+  final ScrollController? scrollController;
+  final List<Widget>? headerActions;
+  final Widget? floatingBottom;
   final List<Widget> children;
 
   @override
   Widget build(BuildContext context) {
     final canPop = Navigator.canPop(context);
+    final appearance = Theme.of(context).extension<AppAppearanceTheme>();
+    final foreground = appearance?.onSurface ?? const Color(0xFF3A3026);
     return Stack(
       children: [
         const GlobalBackground(),
@@ -30,6 +40,7 @@ class AppPageScaffold extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.fromLTRB(16, 18, 16, 24),
             child: ListView(
+              controller: scrollController,
               physics: const BouncingScrollPhysics(),
               children: [
                 if (canPop || headerIcon != null)
@@ -40,15 +51,12 @@ class AppPageScaffold extends StatelessWidget {
                         IconButton(
                           onPressed: () => Navigator.of(context).maybePop(),
                           icon: const Icon(Icons.chevron_left),
-                          color: const Color(0xFF3A3026),
+                          color: foreground,
                         ),
-                      if (canPop && headerIcon != null) const SizedBox(width: 4),
+                      if (canPop && headerIcon != null)
+                        const SizedBox(width: 4),
                       if (headerIcon != null)
-                        Icon(
-                          headerIcon,
-                          color: const Color(0xFF3A3026),
-                          size: 24,
-                        ),
+                        Icon(headerIcon, color: foreground, size: 24),
                       if (headerIcon != null) const SizedBox(width: 12),
                       Expanded(
                         child: Column(
@@ -59,19 +67,32 @@ class AppPageScaffold extends StatelessWidget {
                               style: Theme.of(context).textTheme.titleLarge,
                             ),
                             const SizedBox(height: 6),
-                            Text(subtitle, style: Theme.of(context).textTheme.bodyMedium),
+                            Text(
+                              subtitle,
+                              style: Theme.of(context).textTheme.bodyMedium,
+                            ),
                           ],
                         ),
                       ),
+                      if (headerActions != null) ...[
+                        const SizedBox(width: 8),
+                        ...headerActions!,
+                      ],
                     ],
                   )
                 else
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(title, style: Theme.of(context).textTheme.titleLarge),
+                      Text(
+                        title,
+                        style: Theme.of(context).textTheme.titleLarge,
+                      ),
                       const SizedBox(height: 6),
-                      Text(subtitle, style: Theme.of(context).textTheme.bodyMedium),
+                      Text(
+                        subtitle,
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
                     ],
                   ),
                 const SizedBox(height: 12),
@@ -79,9 +100,13 @@ class AppPageScaffold extends StatelessWidget {
                   const SizedBox(height: 12),
                   QuranQuoteBlock(
                     quote: quote!,
-                    onTap: onQuoteTap == null
-                        ? null
-                        : () => onQuoteTap!(quote!),
+                    onTap: () {
+                      if (onQuoteTap != null) {
+                        onQuoteTap!(quote!);
+                        return;
+                      }
+                      openQuranQuoteLocation(context, quote!);
+                    },
                   ),
                 ],
                 const SizedBox(height: 20),
@@ -90,6 +115,8 @@ class AppPageScaffold extends StatelessWidget {
             ),
           ),
         ),
+        if (floatingBottom != null)
+          Positioned(left: 16, right: 16, bottom: 92, child: floatingBottom!),
       ],
     );
   }

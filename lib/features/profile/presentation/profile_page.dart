@@ -12,6 +12,8 @@ import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/section_title.dart';
 import '../application/profile_settings_provider.dart';
 
+const bool _simplifiedProfileView = true;
+
 class ProfilePage extends ConsumerWidget {
   const ProfilePage({super.key});
 
@@ -35,7 +37,8 @@ class ProfilePage extends ConsumerWidget {
           name: profileSummary.name,
           subtitle: l10n.profileSummarySubtitle,
           levelValue: '${profileSummary.level}',
-          streakValue: '${profileSummary.currentStreakDays} ${l10n.homeDaysLabel}',
+          streakValue:
+              '${profileSummary.currentStreakDays} ${l10n.homeDaysLabel}',
           selectedLanguage: _languageLabel(l10n, profileSummary.selectedLocale),
         ),
         const SizedBox(height: 14),
@@ -77,90 +80,182 @@ class ProfilePage extends ConsumerWidget {
           ),
         ),
         const SizedBox(height: 18),
-        SectionTitle(
-          title: l10n.profileModesTitle,
-          subtitle: l10n.profileModesSubtitle,
-        ),
-        PremiumCard(
-          child: Column(
-            children: [
-              _ModeTile(
-                icon: IslamicIcons.lantern,
-                title: l10n.profileRamadanModeTitle,
-                subtitle: l10n.profileRamadanModeSubtitle,
-                value: modeState.isRamadan,
-                onChanged: profileSettingsNotifier.setRamadanModeEnabled,
-              ),
-              const Divider(height: 1),
-              _ModeTile(
-                icon: IslamicIcons.community,
-                title: l10n.profileLossModeTitle,
-                subtitle: l10n.profileLossModeSubtitle,
-                value: modeState.isLoss,
-                onChanged: profileSettingsNotifier.setLossModeEnabled,
-              ),
-              const Divider(height: 1),
-              _ModeTile(
-                icon: IslamicIcons.tasbih,
-                title: l10n.profileGentleModeTitle,
-                subtitle: l10n.profileGentleModeSubtitle,
-                value: modeState.isGentle,
-                onChanged: profileSettingsNotifier.setGentleModeEnabled,
-              ),
-              const Divider(height: 1),
-              _ModeTile(
-                icon: IslamicIcons.family,
-                title: l10n.kidsModeTitle,
-                subtitle: l10n.kidsModeSubtitle,
-                value: profileSettings.kidsModeEnabled,
-                onChanged: profileSettingsNotifier.setKidsModeEnabled,
-              ),
-            ],
-          ),
-        ),
-        if (modeState.isGentle) ...[
-          const SizedBox(height: 10),
+        if (_simplifiedProfileView)
           PremiumCard(
-            child: Row(
+            child: ExpansionTile(
+              tilePadding: EdgeInsets.zero,
+              childrenPadding: EdgeInsets.zero,
+              title: const Text(
+                'More profile options',
+                style: TextStyle(fontWeight: FontWeight.w700),
+              ),
+              subtitle: Text(l10n.profileAboutSubtitle),
               children: [
-                const Icon(IslamicIcons.tasbih, color: Color(0xFF7A5A33)),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: Text(
-                    l10n.modeGentleHomeSubtitle,
-                    style: const TextStyle(height: 1.35),
+                const SizedBox(height: 8),
+                SectionTitle(
+                  title: l10n.profileModesTitle,
+                  subtitle: l10n.profileModesSubtitle,
+                ),
+                _ModeTile(
+                  icon: IslamicIcons.lantern,
+                  title: l10n.profileRamadanModeTitle,
+                  subtitle: l10n.profileRamadanModeSubtitle,
+                  value: modeState.isRamadan,
+                  onChanged: profileSettingsNotifier.setRamadanModeEnabled,
+                ),
+                const Divider(height: 1),
+                _ModeTile(
+                  icon: IslamicIcons.community,
+                  title: l10n.profileLossModeTitle,
+                  subtitle: l10n.profileLossModeSubtitle,
+                  value: modeState.isLoss,
+                  onChanged: profileSettingsNotifier.setLossModeEnabled,
+                ),
+                const Divider(height: 1),
+                _ModeTile(
+                  icon: IslamicIcons.tasbih,
+                  title: l10n.profileGentleModeTitle,
+                  subtitle: l10n.profileGentleModeSubtitle,
+                  value: modeState.isGentle,
+                  onChanged: profileSettingsNotifier.setGentleModeEnabled,
+                ),
+                const Divider(height: 1),
+                _ModeTile(
+                  icon: IslamicIcons.family,
+                  title: l10n.kidsModeTitle,
+                  subtitle: l10n.kidsModeSubtitle,
+                  value: profileSettings.kidsModeEnabled,
+                  onChanged: profileSettingsNotifier.setKidsModeEnabled,
+                ),
+                if (modeState.isGentle) ...[
+                  const Divider(height: 1),
+                  ListTile(
+                    leading: const Icon(IslamicIcons.tasbih),
+                    title: Text(l10n.modeGentleHomeTitle),
+                    subtitle: Text(l10n.modeGentleHomeSubtitle),
                   ),
+                ],
+                const Divider(height: 1),
+                ListTile(
+                  leading: const Icon(Icons.summarize_outlined),
+                  title: Text(l10n.homeOverviewHeroTitle),
+                  subtitle: Text(l10n.homeOverviewHeroSubtitle),
+                  trailing: const Icon(Icons.chevron_right),
+                  onTap: () => context.pushNamed('profileSummary'),
+                ),
+                const Divider(height: 1),
+                ListTile(
+                  leading: const Icon(IslamicIcons.community),
+                  title: Text(l10n.circlesTitle),
+                  subtitle: Text(l10n.circlesSubtitle),
+                  trailing: const Icon(Icons.chevron_right),
+                  onTap: () => context.pushNamed('circlesDiscovery'),
+                ),
+                const Divider(height: 1),
+                ListTile(
+                  leading: const Icon(Icons.settings_outlined),
+                  title: Text(l10n.profilePrayerSettingsTitle),
+                  subtitle: Text(l10n.profilePrayerSettingsSubtitle),
+                  trailing: const Icon(Icons.chevron_right),
+                  onTap: () => context.pushNamed('settings'),
+                ),
+              ],
+            ),
+          )
+        else ...[
+          SectionTitle(
+            title: l10n.profileModesTitle,
+            subtitle: l10n.profileModesSubtitle,
+          ),
+          PremiumCard(
+            child: Column(
+              children: [
+                _ModeTile(
+                  icon: IslamicIcons.lantern,
+                  title: l10n.profileRamadanModeTitle,
+                  subtitle: l10n.profileRamadanModeSubtitle,
+                  value: modeState.isRamadan,
+                  onChanged: profileSettingsNotifier.setRamadanModeEnabled,
+                ),
+                const Divider(height: 1),
+                _ModeTile(
+                  icon: IslamicIcons.community,
+                  title: l10n.profileLossModeTitle,
+                  subtitle: l10n.profileLossModeSubtitle,
+                  value: modeState.isLoss,
+                  onChanged: profileSettingsNotifier.setLossModeEnabled,
+                ),
+                const Divider(height: 1),
+                _ModeTile(
+                  icon: IslamicIcons.tasbih,
+                  title: l10n.profileGentleModeTitle,
+                  subtitle: l10n.profileGentleModeSubtitle,
+                  value: modeState.isGentle,
+                  onChanged: profileSettingsNotifier.setGentleModeEnabled,
+                ),
+                const Divider(height: 1),
+                _ModeTile(
+                  icon: IslamicIcons.family,
+                  title: l10n.kidsModeTitle,
+                  subtitle: l10n.kidsModeSubtitle,
+                  value: profileSettings.kidsModeEnabled,
+                  onChanged: profileSettingsNotifier.setKidsModeEnabled,
+                ),
+              ],
+            ),
+          ),
+          if (modeState.isGentle) ...[
+            const SizedBox(height: 10),
+            PremiumCard(
+              child: Row(
+                children: [
+                  const Icon(IslamicIcons.tasbih, color: Color(0xFF7A5A33)),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: Text(
+                      l10n.modeGentleHomeSubtitle,
+                      style: const TextStyle(height: 1.35),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+          const SizedBox(height: 18),
+          SectionTitle(
+            title: l10n.profileAboutTitle,
+            subtitle: l10n.profileAboutSubtitle,
+          ),
+          PremiumCard(
+            child: Column(
+              children: [
+                ListTile(
+                  leading: const Icon(Icons.summarize_outlined),
+                  title: Text(l10n.homeOverviewHeroTitle),
+                  subtitle: Text(l10n.homeOverviewHeroSubtitle),
+                  trailing: const Icon(Icons.chevron_right),
+                  onTap: () => context.pushNamed('profileSummary'),
+                ),
+                const Divider(height: 1),
+                ListTile(
+                  leading: const Icon(IslamicIcons.community),
+                  title: Text(l10n.circlesTitle),
+                  subtitle: Text(l10n.circlesSubtitle),
+                  trailing: const Icon(Icons.chevron_right),
+                  onTap: () => context.pushNamed('circlesDiscovery'),
+                ),
+                const Divider(height: 1),
+                ListTile(
+                  leading: const Icon(Icons.settings_outlined),
+                  title: Text(l10n.profilePrayerSettingsTitle),
+                  subtitle: Text(l10n.profilePrayerSettingsSubtitle),
+                  trailing: const Icon(Icons.chevron_right),
+                  onTap: () => context.pushNamed('settings'),
                 ),
               ],
             ),
           ),
         ],
-        const SizedBox(height: 18),
-        SectionTitle(
-          title: l10n.profileAboutTitle,
-          subtitle: l10n.profileAboutSubtitle,
-        ),
-        PremiumCard(
-          child: Column(
-            children: [
-              ListTile(
-                leading: const Icon(Icons.summarize_outlined),
-                title: Text(l10n.homeOverviewHeroTitle),
-                subtitle: Text(l10n.homeOverviewHeroSubtitle),
-                trailing: const Icon(Icons.chevron_right),
-                onTap: () => context.pushNamed('profileSummary'),
-              ),
-              const Divider(height: 1),
-              ListTile(
-                leading: const Icon(Icons.settings_outlined),
-                title: Text(l10n.profilePrayerSettingsTitle),
-                subtitle: Text(l10n.profilePrayerSettingsSubtitle),
-                trailing: const Icon(Icons.chevron_right),
-                onTap: () => context.pushNamed('settings'),
-              ),
-            ],
-          ),
-        ),
       ],
     );
   }

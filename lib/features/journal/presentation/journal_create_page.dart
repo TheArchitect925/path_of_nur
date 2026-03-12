@@ -60,6 +60,7 @@ class _JournalCreatePageState extends ConsumerState<JournalCreatePage> {
               const SizedBox(height: 10),
               DropdownButtonFormField<JournalEntryType>(
                 initialValue: _type,
+                style: Theme.of(context).textTheme.bodyLarge,
                 items: JournalEntryType.values
                     .map(
                       (item) => DropdownMenuItem(

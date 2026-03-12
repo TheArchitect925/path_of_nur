@@ -81,6 +81,14 @@ class QuranHubSection extends ConsumerWidget {
         ),
         const SizedBox(height: 12),
         LearnActionCard(
+          title: 'Qur’an Topics',
+          subtitle:
+              'Browse guidance by themes like patience, mercy, and justice.',
+          icon: Icons.account_tree_outlined,
+          onTap: () => context.pushNamed('quranTopicExplorer'),
+        ),
+        const SizedBox(height: 12),
+        LearnActionCard(
           title: l10n.learnQuranBookmarksTitle,
           subtitle: '${bookmarks.length} ${l10n.quranSavedLocations}',
           icon: Icons.bookmark_outline_rounded,

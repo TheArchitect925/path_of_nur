@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../core/theme/app_theme.dart';
 import '../../../core/localization/locale_provider.dart';
 import '../../../core/prayer/prayer_preferences.dart';
 import '../../../core/reminders/reminder_scheduler.dart';
@@ -86,15 +87,16 @@ class SettingsPage extends ConsumerWidget {
         ),
         const SizedBox(height: 16),
         SectionTitle(
-          title: l10n.profileAppearanceTitle,
-          subtitle: l10n.profileAppearanceSubtitle,
+          title: 'Appearance',
+          subtitle:
+              'Choose the visual style that feels most comfortable for your journey.',
         ),
         PremiumCard(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                l10n.profileThemeModeLabel,
+                'Theme Mode',
                 style: Theme.of(context).textTheme.titleMedium,
               ),
               const SizedBox(height: 10),
@@ -103,33 +105,114 @@ class SettingsPage extends ConsumerWidget {
                 runSpacing: 8,
                 children: [
                   _ThemeChoiceChip(
-                    label: l10n.profileThemeSystem,
+                    label: 'Default',
                     selected:
-                        profileSettings.themePreference ==
-                        ProfileThemePreference.system,
-                    onSelected: () => profileSettingsNotifier.setThemePreference(
-                      ProfileThemePreference.system,
-                    ),
+                        profileSettings.appThemeMode ==
+                        AppThemeMode.defaultMode,
+                    onSelected: () {
+                      profileSettingsNotifier.setAppThemeMode(
+                        AppThemeMode.defaultMode,
+                      );
+                      _showAppearanceSnack(context, 'Appearance updated');
+                    },
                   ),
                   _ThemeChoiceChip(
-                    label: l10n.profileThemeDark,
+                    label: 'Calm and Beautiful',
                     selected:
-                        profileSettings.themePreference ==
-                        ProfileThemePreference.dark,
-                    onSelected: () => profileSettingsNotifier.setThemePreference(
-                      ProfileThemePreference.dark,
-                    ),
+                        profileSettings.appThemeMode ==
+                        AppThemeMode.calmBeautiful,
+                    onSelected: () {
+                      profileSettingsNotifier.setAppThemeMode(
+                        AppThemeMode.calmBeautiful,
+                      );
+                      _showAppearanceSnack(
+                        context,
+                        'Theme changed successfully',
+                      );
+                    },
                   ),
                   _ThemeChoiceChip(
-                    label: l10n.profileThemeLight,
+                    label: 'Easy Read',
                     selected:
-                        profileSettings.themePreference ==
-                        ProfileThemePreference.light,
-                    onSelected: () => profileSettingsNotifier.setThemePreference(
-                      ProfileThemePreference.light,
-                    ),
+                        profileSettings.appThemeMode == AppThemeMode.easyRead,
+                    onSelected: () {
+                      profileSettingsNotifier.setAppThemeMode(
+                        AppThemeMode.easyRead,
+                      );
+                      _showAppearanceSnack(
+                        context,
+                        'Theme changed successfully',
+                      );
+                    },
+                  ),
+                  _ThemeChoiceChip(
+                    label: 'Dark',
+                    selected: profileSettings.appThemeMode == AppThemeMode.dark,
+                    onSelected: () {
+                      profileSettingsNotifier.setAppThemeMode(
+                        AppThemeMode.dark,
+                      );
+                      _showAppearanceSnack(
+                        context,
+                        'Theme changed successfully',
+                      );
+                    },
                   ),
                 ],
+              ),
+              const SizedBox(height: 10),
+              Text(
+                _themeModeDescription(profileSettings.appThemeMode),
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+              const SizedBox(height: 10),
+              Text(
+                'Visual Preferences',
+                style: Theme.of(context).textTheme.titleSmall,
+              ),
+              const SizedBox(height: 6),
+              _SettingsToggleRow(
+                label: 'Disable Glass Transparency',
+                subtitle: 'Use solid surfaces instead of translucent glass.',
+                value: profileSettings.disableGlassTransparency,
+                onChanged: (value) {
+                  profileSettingsNotifier.setDisableGlassTransparency(value);
+                  _showAppearanceSnack(context, 'Visual preference updated');
+                },
+              ),
+              const Divider(height: 1),
+              _SettingsToggleRow(
+                label: 'Disable Background',
+                subtitle:
+                    'Hide decorative background imagery for a cleaner view.',
+                value: profileSettings.disableBackground,
+                onChanged: (value) {
+                  profileSettingsNotifier.setDisableBackground(value);
+                  _showAppearanceSnack(context, 'Visual preference updated');
+                },
+              ),
+              const SizedBox(height: 10),
+              Text(
+                'These settings change the look of the app without changing your content or progress.',
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+              if (profileSettings.appThemeMode == AppThemeMode.defaultMode &&
+                  !profileSettings.disableGlassTransparency &&
+                  !profileSettings.disableBackground) ...[
+                const SizedBox(height: 6),
+                Text(
+                  'Default appearance active',
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
+              ],
+              const SizedBox(height: 10),
+              OutlinedButton.icon(
+                onPressed: () {
+                  profileSettingsNotifier.resetAppearance();
+                  _showAppearanceSnack(context, 'Appearance reset to default');
+                },
+                icon: const Icon(Icons.refresh_rounded),
+                label: const Text('Reset Appearance'),
               ),
               const SizedBox(height: 10),
               _SettingsToggleRow(
@@ -312,12 +395,35 @@ class SettingsPage extends ConsumerWidget {
                 onPressed: () => context.pushNamed('supportInfo'),
                 child: Text(l10n.profileNotificationsTitle),
               ),
+              FilledButton.tonal(
+                onPressed: () => context.pushNamed('attributionsLicenses'),
+                child: const Text('Attributions & Licenses'),
+              ),
             ],
           ),
         ),
       ],
     );
   }
+}
+
+String _themeModeDescription(AppThemeMode mode) {
+  switch (mode) {
+    case AppThemeMode.defaultMode:
+      return 'Use the app’s original visual style. Keeps the current Path of Nūr look.';
+    case AppThemeMode.calmBeautiful:
+      return 'A soft, elegant look with gentle glow and depth. Designed for a soft and peaceful visual experience.';
+    case AppThemeMode.easyRead:
+      return 'Cleaner surfaces and stronger contrast for focused reading. Recommended for longer reading sessions.';
+    case AppThemeMode.dark:
+      return 'A calm low-light appearance for night use. Recommended for low-light environments.';
+  }
+}
+
+void _showAppearanceSnack(BuildContext context, String message) {
+  ScaffoldMessenger.of(context)
+    ..hideCurrentSnackBar()
+    ..showSnackBar(SnackBar(content: Text(message)));
 }
 
 class _ThemeChoiceChip extends StatelessWidget {
@@ -387,6 +493,7 @@ class _PreferenceDropdown<T> extends StatelessWidget {
       title: Text(label),
       trailing: DropdownButton<T>(
         value: value,
+        style: Theme.of(context).textTheme.bodyLarge,
         underline: const SizedBox.shrink(),
         onChanged: onChanged,
         items: entries.entries
@@ -413,7 +520,8 @@ class _LanguageRow extends ConsumerWidget {
     final current = Localizations.localeOf(context);
     final isCurrent =
         current.languageCode == locale.languageCode &&
-        (locale.countryCode == null || current.countryCode == locale.countryCode);
+        (locale.countryCode == null ||
+            current.countryCode == locale.countryCode);
 
     return ListTile(
       dense: true,

@@ -9,6 +9,7 @@ import '../application/quran_words_provider.dart';
 import '../domain/quran_core_word.dart';
 
 enum _BandFilter { top25, top50, top100, all }
+enum _WordSort { mostFrequent, rank, alphabetical }
 
 class QuranWordsPage extends ConsumerStatefulWidget {
   const QuranWordsPage({super.key});
@@ -19,6 +20,7 @@ class QuranWordsPage extends ConsumerStatefulWidget {
 
 class _QuranWordsPageState extends ConsumerState<QuranWordsPage> {
   _BandFilter _filter = _BandFilter.top50;
+  _WordSort _sort = _WordSort.mostFrequent;
   String _query = '';
 
   @override
@@ -69,6 +71,34 @@ class _QuranWordsPageState extends ConsumerState<QuranWordsPage> {
                 ],
               ),
               const SizedBox(height: 10),
+              DropdownButtonFormField<_WordSort>(
+                initialValue: _sort,
+                style: Theme.of(context).textTheme.bodyLarge,
+                decoration: const InputDecoration(
+                  labelText: 'Sort by',
+                  border: OutlineInputBorder(),
+                  isDense: true,
+                ),
+                items: const [
+                  DropdownMenuItem(
+                    value: _WordSort.mostFrequent,
+                    child: Text('Most frequent'),
+                  ),
+                  DropdownMenuItem(
+                    value: _WordSort.rank,
+                    child: Text('Top list rank'),
+                  ),
+                  DropdownMenuItem(
+                    value: _WordSort.alphabetical,
+                    child: Text('Alphabetical'),
+                  ),
+                ],
+                onChanged: (value) {
+                  if (value == null) return;
+                  setState(() => _sort = value);
+                },
+              ),
+              const SizedBox(height: 10),
               TextField(
                 onChanged: (value) => setState(() => _query = value),
                 decoration: const InputDecoration(
@@ -84,7 +114,7 @@ class _QuranWordsPageState extends ConsumerState<QuranWordsPage> {
         const SizedBox(height: 12),
         wordsAsync.when(
           data: (words) {
-            final visible = _applyFilter(words, _filter, _query);
+            final visible = _applyFilter(words, _filter, _query, _sort);
             final visibleRanks = visible.map((e) => e.rank).toSet();
             final masteredVisible = progress.masteredRanks
                 .where(visibleRanks.contains)
@@ -145,7 +175,7 @@ class _QuranWordsPageState extends ConsumerState<QuranWordsPage> {
                             style: const TextStyle(fontWeight: FontWeight.w700),
                           ),
                           subtitle: Text(
-                            '${word.meaning}${word.occurrences > 0 ? ' • ${word.occurrences} verses' : ''}',
+                            '${word.meaning}${word.occurrences > 0 ? ' • ${word.occurrences} times in Qur’an' : ''}',
                           ),
                           trailing: Checkbox(
                             value: mastered,
@@ -173,6 +203,7 @@ class _QuranWordsPageState extends ConsumerState<QuranWordsPage> {
     List<QuranCoreWord> words,
     _BandFilter filter,
     String query,
+    _WordSort sort,
   ) {
     var output = words;
     switch (filter) {
@@ -189,11 +220,33 @@ class _QuranWordsPageState extends ConsumerState<QuranWordsPage> {
         break;
     }
     final trimmed = query.trim().toLowerCase();
-    if (trimmed.isEmpty) return output;
-    return output.where((item) {
-      return item.transliteration.toLowerCase().contains(trimmed) ||
-          item.meaning.toLowerCase().contains(trimmed);
-    }).toList();
+    if (trimmed.isNotEmpty) {
+      output = output.where((item) {
+        return item.transliteration.toLowerCase().contains(trimmed) ||
+            item.meaning.toLowerCase().contains(trimmed);
+      }).toList();
+    }
+
+    switch (sort) {
+      case _WordSort.mostFrequent:
+        output.sort((a, b) {
+          final byFreq = b.occurrences.compareTo(a.occurrences);
+          if (byFreq != 0) return byFreq;
+          return a.rank.compareTo(b.rank);
+        });
+        break;
+      case _WordSort.rank:
+        output.sort((a, b) => a.rank.compareTo(b.rank));
+        break;
+      case _WordSort.alphabetical:
+        output.sort(
+          (a, b) => a.transliteration.toLowerCase().compareTo(
+            b.transliteration.toLowerCase(),
+          ),
+        );
+        break;
+    }
+    return output;
   }
 }
 

@@ -1,0 +1,6271 @@
+[
+  {
+    "id": "adam_m_001",
+    "name": "Adam",
+    "arabic": "آدم",
+    "transliteration": "Adam",
+    "pronunciation": "Aa-dam",
+    "gender": "male",
+    "meaning": "Man, human being",
+    "description": "The first human and first prophet in Islam.",
+    "meaningThemes": [
+      "knowledge",
+      "creation"
+    ],
+    "origin": [
+      "Arabic",
+      "Hebrew"
+    ],
+    "isQuranic": true,
+    "quranReferences": [
+      "Quran 2:31"
+    ],
+    "associatedFigures": [
+      "Prophet Adam"
+    ],
+    "associatedCategories": [
+      "prophet",
+      "quranic",
+      "classic"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "Global Muslim"
+    ],
+    "variants": [
+      "Aadam"
+    ],
+    "startsWith": "A",
+    "syllables": 2,
+    "isPopular": true,
+    "styleTags": [
+      "classic",
+      "prophetic"
+    ]
+  },
+  {
+    "id": "muhammad_m_002",
+    "name": "Muhammad",
+    "arabic": "محمد",
+    "transliteration": "Muhammad",
+    "pronunciation": "Mu-ham-mad",
+    "gender": "male",
+    "meaning": "The praised one",
+    "description": "Name of the final Prophet of Islam.",
+    "meaningThemes": [
+      "praise",
+      "nobility"
+    ],
+    "origin": [
+      "Arabic"
+    ],
+    "isQuranic": true,
+    "quranReferences": [
+      "Quran 33:40"
+    ],
+    "associatedFigures": [
+      "Prophet Muhammad"
+    ],
+    "associatedCategories": [
+      "prophet",
+      "quranic",
+      "classic"
+    ],
+    "popularityRegions": [
+      "Global Muslim"
+    ],
+    "variants": [
+      "Mohammed",
+      "Mohammad"
+    ],
+    "startsWith": "M",
+    "syllables": 3,
+    "isPopular": true,
+    "styleTags": [
+      "classic",
+      "prophetic"
+    ]
+  },
+  {
+    "id": "yusuf_m_003",
+    "name": "Yusuf",
+    "arabic": "يوسف",
+    "transliteration": "Yusuf",
+    "pronunciation": "Yoo-suf",
+    "gender": "male",
+    "meaning": "Allah increases",
+    "description": "A prophetic name associated with patience and wisdom.",
+    "meaningThemes": [
+      "patience",
+      "wisdom",
+      "blessing"
+    ],
+    "origin": [
+      "Arabic",
+      "Hebrew"
+    ],
+    "isQuranic": true,
+    "quranReferences": [
+      "Surah Yusuf"
+    ],
+    "associatedFigures": [
+      "Prophet Yusuf"
+    ],
+    "associatedCategories": [
+      "prophet",
+      "quranic",
+      "classic"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa"
+    ],
+    "variants": [
+      "Yousuf"
+    ],
+    "startsWith": "Y",
+    "syllables": 2,
+    "isPopular": true,
+    "styleTags": [
+      "classic"
+    ]
+  },
+  {
+    "id": "ibrahim_m_004",
+    "name": "Ibrahim",
+    "arabic": "إبراهيم",
+    "transliteration": "Ibrahim",
+    "pronunciation": "Ib-ra-heem",
+    "gender": "male",
+    "meaning": "Father of many nations",
+    "description": "A major prophet in Islam known for faith and devotion.",
+    "meaningThemes": [
+      "faith",
+      "devotion",
+      "strength"
+    ],
+    "origin": [
+      "Arabic",
+      "Hebrew"
+    ],
+    "isQuranic": true,
+    "quranReferences": [
+      "Quran 2:124"
+    ],
+    "associatedFigures": [
+      "Prophet Ibrahim"
+    ],
+    "associatedCategories": [
+      "prophet",
+      "quranic",
+      "classic"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "Africa"
+    ],
+    "variants": [
+      "Ibraheem"
+    ],
+    "startsWith": "I",
+    "syllables": 3,
+    "isPopular": true,
+    "styleTags": [
+      "classic"
+    ]
+  },
+  {
+    "id": "ali_m_005",
+    "name": "Ali",
+    "arabic": "علي",
+    "transliteration": "Ali",
+    "pronunciation": "A-lee",
+    "gender": "male",
+    "meaning": "High, exalted",
+    "description": "A revered companion of the Prophet and the fourth caliph.",
+    "meaningThemes": [
+      "nobility",
+      "strength"
+    ],
+    "origin": [
+      "Arabic"
+    ],
+    "isQuranic": false,
+    "associatedFigures": [
+      "Ali ibn Abi Talib"
+    ],
+    "associatedCategories": [
+      "companion",
+      "classic"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia"
+    ],
+    "variants": [],
+    "startsWith": "A",
+    "syllables": 2,
+    "isPopular": true,
+    "styleTags": [
+      "classic"
+    ]
+  },
+  {
+    "id": "umar_m_006",
+    "name": "Umar",
+    "arabic": "عمر",
+    "transliteration": "Umar",
+    "pronunciation": "Oo-mar",
+    "gender": "male",
+    "meaning": "Long life, flourishing",
+    "description": "The second caliph and a prominent companion of the Prophet.",
+    "meaningThemes": [
+      "strength",
+      "nobility"
+    ],
+    "origin": [
+      "Arabic"
+    ],
+    "isQuranic": false,
+    "associatedFigures": [
+      "Umar ibn Al-Khattab"
+    ],
+    "associatedCategories": [
+      "companion",
+      "classic"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia"
+    ],
+    "startsWith": "U",
+    "syllables": 2,
+    "isPopular": true,
+    "styleTags": [
+      "classic"
+    ]
+  },
+  {
+    "id": "rayyan_u_007",
+    "name": "Rayyan",
+    "arabic": "ريان",
+    "transliteration": "Rayyan",
+    "pronunciation": "Ray-yaan",
+    "gender": "unisex",
+    "meaning": "Gates of Paradise reserved for those who fast",
+    "description": "Associated with the gate of Paradise for those who fast.",
+    "meaningThemes": [
+      "faith",
+      "blessing"
+    ],
+    "origin": [
+      "Arabic"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern",
+      "spiritual"
+    ],
+    "popularityRegions": [
+      "Global Muslim"
+    ],
+    "startsWith": "R",
+    "syllables": 2,
+    "isPopular": true,
+    "styleTags": [
+      "modern"
+    ]
+  },
+  {
+    "id": "noor_u_008",
+    "name": "Noor",
+    "arabic": "نور",
+    "transliteration": "Noor",
+    "pronunciation": "Noor",
+    "gender": "unisex",
+    "meaning": "Light",
+    "description": "A widely used Muslim name symbolizing illumination and guidance.",
+    "meaningThemes": [
+      "light",
+      "guidance",
+      "purity"
+    ],
+    "origin": [
+      "Arabic"
+    ],
+    "isQuranic": true,
+    "quranReferences": [
+      "Quran 24:35"
+    ],
+    "associatedCategories": [
+      "quranic",
+      "modern"
+    ],
+    "popularityRegions": [
+      "Global Muslim"
+    ],
+    "variants": [
+      "Nur"
+    ],
+    "startsWith": "N",
+    "syllables": 1,
+    "isPopular": true,
+    "styleTags": [
+      "modern",
+      "short"
+    ]
+  },
+  {
+    "id": "maryam_f_009",
+    "name": "Maryam",
+    "arabic": "مريم",
+    "transliteration": "Maryam",
+    "pronunciation": "Mar-yam",
+    "gender": "female",
+    "meaning": "Pious woman, devoted servant",
+    "description": "Mother of Prophet Isa and one of the most honored women in Islam.",
+    "meaningThemes": [
+      "devotion",
+      "purity",
+      "faith"
+    ],
+    "origin": [
+      "Arabic",
+      "Hebrew"
+    ],
+    "isQuranic": true,
+    "quranReferences": [
+      "Surah Maryam"
+    ],
+    "associatedFigures": [
+      "Maryam mother of Isa"
+    ],
+    "associatedCategories": [
+      "quranic",
+      "classic"
+    ],
+    "popularityRegions": [
+      "Global Muslim"
+    ],
+    "startsWith": "M",
+    "syllables": 2,
+    "isPopular": true,
+    "styleTags": [
+      "classic"
+    ]
+  },
+  {
+    "id": "fatima_f_010",
+    "name": "Fatima",
+    "arabic": "فاطمة",
+    "transliteration": "Fatima",
+    "pronunciation": "Fa-ti-ma",
+    "gender": "female",
+    "meaning": "One who abstains",
+    "description": "Daughter of Prophet Muhammad and a highly revered figure in Islamic history.",
+    "meaningThemes": [
+      "purity",
+      "faith"
+    ],
+    "origin": [
+      "Arabic"
+    ],
+    "isQuranic": false,
+    "associatedFigures": [
+      "Fatima bint Muhammad"
+    ],
+    "associatedCategories": [
+      "family",
+      "classic"
+    ],
+    "popularityRegions": [
+      "Global Muslim"
+    ],
+    "startsWith": "F",
+    "syllables": 3,
+    "isPopular": true,
+    "styleTags": [
+      "classic"
+    ]
+  },
+  {
+    "id": "nuh_m_001",
+    "name": "Nuh",
+    "arabic": "نوح",
+    "transliteration": "Nuh",
+    "gender": "male",
+    "meaning": "Comfort, rest",
+    "origin": [
+      "Hebrew",
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "patience",
+      "faith"
+    ],
+    "isQuranic": true,
+    "associatedCategories": [
+      "classic",
+      "prophet",
+      "quranic"
+    ],
+    "startsWith": "N",
+    "pronunciation": "Nuh",
+    "quranReferences": [
+      "Qur’an 71:1"
+    ],
+    "associatedFigures": [
+      "Prophet Nuh"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Nuh"
+    ],
+    "similarNames": [
+      "Nabil"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 1
+  },
+  {
+    "id": "idris_m_001",
+    "name": "Idris",
+    "arabic": "إدريس",
+    "transliteration": "Idris",
+    "gender": "male",
+    "meaning": "Studious one",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "knowledge",
+      "patience"
+    ],
+    "isQuranic": true,
+    "associatedCategories": [
+      "classic",
+      "prophet",
+      "quranic"
+    ],
+    "startsWith": "I",
+    "pronunciation": "Idris",
+    "quranReferences": [
+      "Qur’an 19:56"
+    ],
+    "associatedFigures": [
+      "Prophet Idris"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Idris"
+    ],
+    "similarNames": [
+      "Ibrahim",
+      "Ilyas",
+      "Imran"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "hud_m_001",
+    "name": "Hud",
+    "arabic": "هود",
+    "transliteration": "Hud",
+    "gender": "male",
+    "meaning": "Guidance, right direction",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "guidance",
+      "faith"
+    ],
+    "isQuranic": true,
+    "associatedCategories": [
+      "classic",
+      "prophet",
+      "quranic"
+    ],
+    "startsWith": "H",
+    "pronunciation": "Hud",
+    "quranReferences": [
+      "Qur’an 11:50"
+    ],
+    "associatedFigures": [
+      "Prophet Hud"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Hud"
+    ],
+    "similarNames": [
+      "Hamza",
+      "Harun",
+      "Hasan"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 1
+  },
+  {
+    "id": "salih_m_001",
+    "name": "Salih",
+    "arabic": "صالح",
+    "transliteration": "Salih",
+    "gender": "male",
+    "meaning": "Righteous",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "faith"
+    ],
+    "isQuranic": true,
+    "associatedCategories": [
+      "classic",
+      "prophet",
+      "quranic"
+    ],
+    "startsWith": "S",
+    "pronunciation": "Salih",
+    "quranReferences": [
+      "Qur’an 7:73"
+    ],
+    "associatedFigures": [
+      "Prophet Salih"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Salih"
+    ],
+    "similarNames": [
+      "Sami",
+      "Shuayb",
+      "Sulayman"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "lut_m_001",
+    "name": "Lut",
+    "arabic": "لوط",
+    "transliteration": "Lut",
+    "gender": "male",
+    "meaning": "Prophet Lot",
+    "origin": [
+      "Hebrew",
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "faith"
+    ],
+    "isQuranic": true,
+    "associatedCategories": [
+      "classic",
+      "prophet",
+      "quranic"
+    ],
+    "startsWith": "L",
+    "pronunciation": "Lut",
+    "quranReferences": [
+      "Qur’an 7:80"
+    ],
+    "associatedFigures": [
+      "Prophet Lut"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Lut"
+    ],
+    "similarNames": [
+      "Luqman"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 1
+  },
+  {
+    "id": "ismail_m_001",
+    "name": "Ismail",
+    "arabic": "إسماعيل",
+    "transliteration": "Ismail",
+    "gender": "male",
+    "meaning": "Allah hears",
+    "origin": [
+      "Hebrew",
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "devotion",
+      "faith"
+    ],
+    "isQuranic": true,
+    "associatedCategories": [
+      "classic",
+      "popular",
+      "prophet",
+      "quranic"
+    ],
+    "startsWith": "I",
+    "pronunciation": "Ismail",
+    "quranReferences": [
+      "Qur’an 19:54"
+    ],
+    "associatedFigures": [
+      "Prophet Ismail"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Ismail"
+    ],
+    "similarNames": [
+      "Ibrahim",
+      "Idris",
+      "Ilyas"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 2,
+    "isPopular": true
+  },
+  {
+    "id": "ishaq_m_001",
+    "name": "Ishaq",
+    "arabic": "إسحاق",
+    "transliteration": "Ishaq",
+    "gender": "male",
+    "meaning": "Laughter, joy",
+    "origin": [
+      "Hebrew",
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "joy",
+      "blessing"
+    ],
+    "isQuranic": true,
+    "associatedCategories": [
+      "classic",
+      "prophet",
+      "quranic"
+    ],
+    "startsWith": "I",
+    "pronunciation": "Ishaq",
+    "quranReferences": [
+      "Qur’an 37:112"
+    ],
+    "associatedFigures": [
+      "Prophet Ishaq"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Ishaq"
+    ],
+    "similarNames": [
+      "Ibrahim",
+      "Idris",
+      "Ilyas"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "yaqub_m_001",
+    "name": "Yaqub",
+    "arabic": "يعقوب",
+    "transliteration": "Yaqub",
+    "gender": "male",
+    "meaning": "Follower, held by Allah",
+    "origin": [
+      "Hebrew",
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "faith",
+      "patience"
+    ],
+    "isQuranic": true,
+    "associatedCategories": [
+      "classic",
+      "prophet",
+      "quranic"
+    ],
+    "startsWith": "Y",
+    "pronunciation": "Yaqub",
+    "quranReferences": [
+      "Qur’an 12:6"
+    ],
+    "associatedFigures": [
+      "Prophet Yaqub"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Yaqub"
+    ],
+    "similarNames": [
+      "Yahya",
+      "Yunus",
+      "Yusuf"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "shuayb_m_001",
+    "name": "Shuayb",
+    "arabic": "شعيب",
+    "transliteration": "Shuayb",
+    "gender": "male",
+    "meaning": "One who guides his people",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "guidance"
+    ],
+    "isQuranic": true,
+    "associatedCategories": [
+      "classic",
+      "prophet",
+      "quranic"
+    ],
+    "startsWith": "S",
+    "pronunciation": "Shuayb",
+    "quranReferences": [
+      "Qur’an 11:84"
+    ],
+    "associatedFigures": [
+      "Prophet Shuayb"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Shuayb"
+    ],
+    "similarNames": [
+      "Salih",
+      "Sami",
+      "Sulayman"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 1
+  },
+  {
+    "id": "musa_m_001",
+    "name": "Musa",
+    "arabic": "موسى",
+    "transliteration": "Musa",
+    "gender": "male",
+    "meaning": "Drawn from water",
+    "origin": [
+      "Hebrew",
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "strength",
+      "faith"
+    ],
+    "isQuranic": true,
+    "associatedCategories": [
+      "classic",
+      "popular",
+      "prophet",
+      "quranic"
+    ],
+    "startsWith": "M",
+    "pronunciation": "Musa",
+    "quranReferences": [
+      "Qur’an 20:9"
+    ],
+    "associatedFigures": [
+      "Prophet Musa"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Musa"
+    ],
+    "similarNames": [
+      "Muhammad"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 2,
+    "isPopular": true
+  },
+  {
+    "id": "harun_m_001",
+    "name": "Harun",
+    "arabic": "هارون",
+    "transliteration": "Harun",
+    "gender": "male",
+    "meaning": "Exalted, mountain-like strength",
+    "origin": [
+      "Hebrew",
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "strength",
+      "nobility"
+    ],
+    "isQuranic": true,
+    "associatedCategories": [
+      "classic",
+      "prophet",
+      "quranic"
+    ],
+    "startsWith": "H",
+    "pronunciation": "Harun",
+    "quranReferences": [
+      "Qur’an 20:30"
+    ],
+    "associatedFigures": [
+      "Prophet Harun"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Harun"
+    ],
+    "similarNames": [
+      "Hamza",
+      "Hasan",
+      "Hud"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "dawud_m_001",
+    "name": "Dawud",
+    "arabic": "داود",
+    "transliteration": "Dawud",
+    "gender": "male",
+    "meaning": "Beloved",
+    "origin": [
+      "Hebrew",
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "devotion",
+      "gratitude"
+    ],
+    "isQuranic": true,
+    "associatedCategories": [
+      "classic",
+      "prophet",
+      "quranic"
+    ],
+    "startsWith": "D",
+    "pronunciation": "Dawud",
+    "quranReferences": [
+      "Qur’an 38:17"
+    ],
+    "associatedFigures": [
+      "Prophet Dawud"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Dawud"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "sulayman_m_001",
+    "name": "Sulayman",
+    "arabic": "سليمان",
+    "transliteration": "Sulayman",
+    "gender": "male",
+    "meaning": "Man of peace",
+    "origin": [
+      "Hebrew",
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "peace",
+      "wisdom"
+    ],
+    "isQuranic": true,
+    "associatedCategories": [
+      "classic",
+      "prophet",
+      "quranic"
+    ],
+    "startsWith": "S",
+    "pronunciation": "Sulayman",
+    "quranReferences": [
+      "Qur’an 27:15"
+    ],
+    "associatedFigures": [
+      "Prophet Sulayman"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Sulayman"
+    ],
+    "similarNames": [
+      "Salih",
+      "Sami",
+      "Shuayb"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 3
+  },
+  {
+    "id": "ilyas_m_001",
+    "name": "Ilyas",
+    "arabic": "إلياس",
+    "transliteration": "Ilyas",
+    "gender": "male",
+    "meaning": "The Lord is Allah",
+    "origin": [
+      "Hebrew",
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "faith",
+      "devotion"
+    ],
+    "isQuranic": true,
+    "associatedCategories": [
+      "classic",
+      "prophet",
+      "quranic"
+    ],
+    "startsWith": "I",
+    "pronunciation": "Ilyas",
+    "quranReferences": [
+      "Qur’an 37:123"
+    ],
+    "associatedFigures": [
+      "Prophet Ilyas"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Ilyas"
+    ],
+    "similarNames": [
+      "Ibrahim",
+      "Idris",
+      "Imran"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "yunus_m_001",
+    "name": "Yunus",
+    "arabic": "يونس",
+    "transliteration": "Yunus",
+    "gender": "male",
+    "meaning": "Dove",
+    "origin": [
+      "Hebrew",
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "mercy",
+      "hope"
+    ],
+    "isQuranic": true,
+    "associatedCategories": [
+      "classic",
+      "prophet",
+      "quranic"
+    ],
+    "startsWith": "Y",
+    "pronunciation": "Yunus",
+    "quranReferences": [
+      "Qur’an 21:87"
+    ],
+    "associatedFigures": [
+      "Prophet Yunus"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Yunus"
+    ],
+    "similarNames": [
+      "Yahya",
+      "Yaqub",
+      "Yusuf"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "zakariya_m_001",
+    "name": "Zakariya",
+    "arabic": "زكريا",
+    "transliteration": "Zakariya",
+    "gender": "male",
+    "meaning": "Allah remembers",
+    "origin": [
+      "Hebrew",
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "faith",
+      "hope"
+    ],
+    "isQuranic": true,
+    "associatedCategories": [
+      "classic",
+      "prophet",
+      "quranic"
+    ],
+    "startsWith": "Z",
+    "pronunciation": "Zakariya",
+    "quranReferences": [
+      "Qur’an 19:2"
+    ],
+    "associatedFigures": [
+      "Prophet Zakariya"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Zakariya"
+    ],
+    "similarNames": [
+      "Zayn",
+      "Zubair",
+      "Zayan"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 3
+  },
+  {
+    "id": "yahya_m_001",
+    "name": "Yahya",
+    "arabic": "يحيى",
+    "transliteration": "Yahya",
+    "gender": "male",
+    "meaning": "He lives",
+    "origin": [
+      "Hebrew",
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "faith",
+      "purity"
+    ],
+    "isQuranic": true,
+    "associatedCategories": [
+      "classic",
+      "prophet",
+      "quranic"
+    ],
+    "startsWith": "Y",
+    "pronunciation": "Yahya",
+    "quranReferences": [
+      "Qur’an 19:12"
+    ],
+    "associatedFigures": [
+      "Prophet Yahya"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Yahya"
+    ],
+    "similarNames": [
+      "Yaqub",
+      "Yunus",
+      "Yusuf"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "isa_m_001",
+    "name": "Isa",
+    "arabic": "عيسى",
+    "transliteration": "Isa",
+    "gender": "male",
+    "meaning": "Jesus; servant messenger",
+    "origin": [
+      "Hebrew",
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "faith",
+      "mercy"
+    ],
+    "isQuranic": true,
+    "associatedCategories": [
+      "classic",
+      "prophet",
+      "quranic"
+    ],
+    "startsWith": "I",
+    "pronunciation": "Isa",
+    "quranReferences": [
+      "Qur’an 3:45"
+    ],
+    "associatedFigures": [
+      "Prophet Isa"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Isa"
+    ],
+    "similarNames": [
+      "Ibrahim",
+      "Idris",
+      "Ilyas"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "ahmad_m_001",
+    "name": "Ahmad",
+    "arabic": "أحمد",
+    "transliteration": "Ahmad",
+    "gender": "male",
+    "meaning": "Most highly adored or most praised, this is also a variation of the name 'Muhammad'",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "gratitude"
+    ],
+    "isQuranic": true,
+    "associatedCategories": [
+      "classic",
+      "popular",
+      "prophet",
+      "quranic"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Ahmad",
+    "quranReferences": [
+      "Qur’an 61:6"
+    ],
+    "associatedFigures": [
+      "Prophet Ahmad"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Ahmad"
+    ],
+    "similarNames": [
+      "Aadam",
+      "Aaf",
+      "Aala"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 2,
+    "isPopular": true
+  },
+  {
+    "id": "uthman_m_001",
+    "name": "Uthman",
+    "arabic": "عثمان",
+    "transliteration": "Uthman",
+    "gender": "male",
+    "meaning": "Wise and modest",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "nobility",
+      "faith"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "classic",
+      "companion",
+      "popular"
+    ],
+    "startsWith": "U",
+    "pronunciation": "Uthman",
+    "associatedFigures": [
+      "Uthman ibn Affan"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Uthman"
+    ],
+    "similarNames": [
+      "Umar"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 2,
+    "isPopular": true
+  },
+  {
+    "id": "abu_bakr_m_002",
+    "name": "Abu Bakr",
+    "arabic": "أبو بكر",
+    "transliteration": "Abu Bakr",
+    "gender": "male",
+    "meaning": "Early and noble",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "nobility",
+      "faith"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "classic",
+      "companion"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Abu Bakr",
+    "associatedFigures": [
+      "Abu Bakr as-Siddiq"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Abu Bakr"
+    ],
+    "similarNames": [
+      "Aadam",
+      "Aaf",
+      "Aala"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 3
+  },
+  {
+    "id": "bilal_m_001",
+    "name": "Bilal",
+    "arabic": "بلال",
+    "transliteration": "Bilal",
+    "gender": "male",
+    "meaning": "Moistening, freshness",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "hope",
+      "devotion"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "classic",
+      "companion",
+      "popular"
+    ],
+    "startsWith": "B",
+    "pronunciation": "Bilal",
+    "associatedFigures": [
+      "Bilal ibn Rabah"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Bilal"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 2,
+    "isPopular": true
+  },
+  {
+    "id": "talha_m_001",
+    "name": "Talha",
+    "arabic": "طلحة",
+    "transliteration": "Talha",
+    "gender": "male",
+    "meaning": "Fruitful tree",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "blessing"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "classic",
+      "companion"
+    ],
+    "startsWith": "T",
+    "pronunciation": "Talha",
+    "associatedFigures": [
+      "Talha ibn Ubaydullah"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Talha"
+    ],
+    "similarNames": [
+      "Talut",
+      "Tariq"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "zubair_m_001",
+    "name": "Zubair",
+    "arabic": "زبير",
+    "transliteration": "Zubair",
+    "gender": "male",
+    "meaning": "Strong and wise",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "strength",
+      "wisdom"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "classic",
+      "companion"
+    ],
+    "startsWith": "Z",
+    "pronunciation": "Zubair",
+    "associatedFigures": [
+      "Az-Zubayr ibn Al-Awwam"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Zubair"
+    ],
+    "similarNames": [
+      "Zakariya",
+      "Zayn",
+      "Zayan"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "hamza_m_001",
+    "name": "Hamza",
+    "arabic": "حمزة",
+    "transliteration": "Hamza",
+    "gender": "male",
+    "meaning": "Strong and resolute",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "strength"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "classic",
+      "companion",
+      "popular"
+    ],
+    "startsWith": "H",
+    "pronunciation": "Hamza",
+    "associatedFigures": [
+      "Hamza ibn Abdul Muttalib"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Hamza"
+    ],
+    "similarNames": [
+      "Harun",
+      "Hasan",
+      "Hud"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 2,
+    "isPopular": true
+  },
+  {
+    "id": "ammar_m_001",
+    "name": "Ammar",
+    "arabic": "عمار",
+    "transliteration": "Ammar",
+    "gender": "male",
+    "meaning": "One who builds and maintains",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "strength",
+      "devotion",
+      "faith"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "classic",
+      "companion",
+      "popular"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Ammar",
+    "associatedFigures": [
+      "Companion Ammar ibn Yasir"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Europe",
+      "Global"
+    ],
+    "variants": [
+      "Ammar"
+    ],
+    "similarNames": [
+      "Aadam",
+      "Aaf",
+      "Aala"
+    ],
+    "styleTags": [
+      "classic",
+      "strong"
+    ],
+    "syllables": 2,
+    "isPopular": true
+  },
+  {
+    "id": "salman_m_001",
+    "name": "Salman",
+    "arabic": "سلمان",
+    "transliteration": "Salman",
+    "gender": "male",
+    "meaning": "Safe, secure",
+    "origin": [
+      "Arabic",
+      "Persian"
+    ],
+    "meaningThemes": [
+      "peace",
+      "faith",
+      "nobility"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "classic",
+      "companion",
+      "popular"
+    ],
+    "startsWith": "S",
+    "pronunciation": "Salman",
+    "associatedFigures": [
+      "Companion Salman al-Farisi"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Europe",
+      "Global"
+    ],
+    "variants": [
+      "Salman"
+    ],
+    "similarNames": [
+      "Salih",
+      "Sami",
+      "Shuayb"
+    ],
+    "styleTags": [
+      "classic"
+    ],
+    "syllables": 2,
+    "isPopular": true
+  },
+  {
+    "id": "imran_m_001",
+    "name": "Imran",
+    "arabic": "عمران",
+    "transliteration": "Imran",
+    "gender": "male",
+    "meaning": "Prosperity and devotion",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "faith",
+      "blessing"
+    ],
+    "isQuranic": true,
+    "associatedCategories": [
+      "classic",
+      "quranic"
+    ],
+    "startsWith": "I",
+    "pronunciation": "Imran",
+    "quranReferences": [
+      "Qur’an 3:33"
+    ],
+    "associatedFigures": [
+      "Family of Imran"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Imran"
+    ],
+    "similarNames": [
+      "Ibrahim",
+      "Idris",
+      "Ilyas"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "aayan_m_001",
+    "name": "Aayan",
+    "arabic": "أين",
+    "transliteration": "Aayan",
+    "gender": "male",
+    "meaning": "God's gift",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "faith"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Aayan",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Aayan",
+      "Ayaan"
+    ],
+    "similarNames": [
+      "Aadam",
+      "Aaf",
+      "Aala"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 1
+  },
+  {
+    "id": "zayan_m_001",
+    "name": "Zayan",
+    "arabic": "زيان",
+    "transliteration": "Zayan",
+    "gender": "male",
+    "meaning": "Grace, beauty, adornment",
+    "origin": [
+      "Arabic",
+      "Global Muslim"
+    ],
+    "meaningThemes": [
+      "beauty",
+      "joy",
+      "nobility"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern",
+      "popular"
+    ],
+    "startsWith": "Z",
+    "pronunciation": "Zayan",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Europe",
+      "Global"
+    ],
+    "variants": [
+      "Zayan"
+    ],
+    "similarNames": [
+      "Zakariya",
+      "Zayn",
+      "Zubair"
+    ],
+    "styleTags": [
+      "modern"
+    ],
+    "syllables": 1,
+    "isPopular": true
+  },
+  {
+    "id": "faris_m_001",
+    "name": "Faris",
+    "arabic": "فارس",
+    "transliteration": "Faris",
+    "gender": "male",
+    "meaning": "Knight",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "strength"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "classic"
+    ],
+    "startsWith": "F",
+    "pronunciation": "Faris",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Faris"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "rashid_m_001",
+    "name": "Rashid",
+    "arabic": "رشيد",
+    "transliteration": "Rashid",
+    "gender": "male",
+    "meaning": "Rightly guided",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "guidance",
+      "wisdom"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "classic",
+      "popular"
+    ],
+    "startsWith": "R",
+    "pronunciation": "Rashid",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Rashid"
+    ],
+    "similarNames": [
+      "Rahim",
+      "Rayyan"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 2,
+    "isPopular": true
+  },
+  {
+    "id": "luqman_m_001",
+    "name": "Luqman",
+    "arabic": "لقمان",
+    "transliteration": "Luqman",
+    "gender": "male",
+    "meaning": "Wise one",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "wisdom",
+      "knowledge"
+    ],
+    "isQuranic": true,
+    "associatedCategories": [
+      "classic",
+      "quranic"
+    ],
+    "startsWith": "L",
+    "pronunciation": "Luqman",
+    "quranReferences": [
+      "Surah Luqman (31)"
+    ],
+    "associatedFigures": [
+      "Luqman the wise"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Luqman"
+    ],
+    "similarNames": [
+      "Lut"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "khalid_m_001",
+    "name": "Khalid",
+    "arabic": "خالد",
+    "transliteration": "Khalid",
+    "gender": "male",
+    "meaning": "Everlasting",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "strength",
+      "nobility"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "classic",
+      "popular"
+    ],
+    "startsWith": "K",
+    "pronunciation": "Khalid",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Khalid"
+    ],
+    "similarNames": [
+      "Kareem"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 2,
+    "isPopular": true
+  },
+  {
+    "id": "sami_m_001",
+    "name": "Sami",
+    "arabic": "سامي",
+    "transliteration": "Sami",
+    "gender": "male",
+    "meaning": "Elevated, sublime",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "nobility",
+      "faith"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern",
+      "popular"
+    ],
+    "startsWith": "S",
+    "pronunciation": "Sami",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Sami"
+    ],
+    "similarNames": [
+      "Salih",
+      "Shuayb",
+      "Sulayman"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 2,
+    "isPopular": true
+  },
+  {
+    "id": "tariq_m_001",
+    "name": "Tariq",
+    "arabic": "طارق",
+    "transliteration": "Tariq",
+    "gender": "male",
+    "meaning": "Morning star, night visitor",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "light",
+      "hope"
+    ],
+    "isQuranic": true,
+    "associatedCategories": [
+      "classic",
+      "popular",
+      "quranic"
+    ],
+    "startsWith": "T",
+    "pronunciation": "Tariq",
+    "quranReferences": [
+      "Qur’an 86:1"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Tariq"
+    ],
+    "similarNames": [
+      "Talha",
+      "Talut"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 2,
+    "isPopular": true
+  },
+  {
+    "id": "hasan_m_001",
+    "name": "Hasan",
+    "arabic": "حسن",
+    "transliteration": "Hasan",
+    "gender": "male",
+    "meaning": "Beautiful, good",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "beauty",
+      "nobility"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "classic",
+      "companion",
+      "popular"
+    ],
+    "startsWith": "H",
+    "pronunciation": "Hasan",
+    "associatedFigures": [
+      "Hasan ibn Ali"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Hasan"
+    ],
+    "similarNames": [
+      "Hamza",
+      "Harun",
+      "Hud"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 2,
+    "isPopular": true
+  },
+  {
+    "id": "husayn_m_001",
+    "name": "Husayn",
+    "arabic": "حسين",
+    "transliteration": "Husayn",
+    "gender": "male",
+    "meaning": "Little handsome one",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "beauty",
+      "nobility"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "classic",
+      "companion",
+      "popular"
+    ],
+    "startsWith": "H",
+    "pronunciation": "Husayn",
+    "associatedFigures": [
+      "Husayn ibn Ali"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Husayn"
+    ],
+    "similarNames": [
+      "Hamza",
+      "Harun",
+      "Hasan"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 2,
+    "isPopular": true
+  },
+  {
+    "id": "abdullah_m_001",
+    "name": "Abdullah",
+    "arabic": "عبد الله",
+    "transliteration": "Abdullah",
+    "gender": "male",
+    "meaning": "Servant of Allah",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "devotion",
+      "faith"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "classic",
+      "popular"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Abdullah",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Abdullah"
+    ],
+    "similarNames": [
+      "Aadam",
+      "Aaf",
+      "Aala"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 3,
+    "isPopular": true
+  },
+  {
+    "id": "abdur_rahman_m_001",
+    "name": "Abdur Rahman",
+    "arabic": "عبد الرحمن",
+    "transliteration": "Abdur Rahman",
+    "gender": "male",
+    "meaning": "Servant of the Most Merciful",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "mercy",
+      "devotion"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "classic",
+      "popular"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Abdur Rahman",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Abdur Rahman"
+    ],
+    "similarNames": [
+      "Aadam",
+      "Aaf",
+      "Aala"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 4,
+    "isPopular": true
+  },
+  {
+    "id": "aamir_m_001",
+    "name": "Aamir",
+    "arabic": "أمير",
+    "transliteration": "Aamir",
+    "gender": "male",
+    "meaning": "Populous, Full, Prosperous, Amply Settled, Civilized. Also Used To Refer To A Prince, Ruler or Leader",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "faith"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Aamir",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Aamir"
+    ],
+    "similarNames": [
+      "Aadam",
+      "Aaf",
+      "Aala"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "aamin_m_001",
+    "name": "Aamin",
+    "arabic": "آمين",
+    "transliteration": "Aamin",
+    "gender": "male",
+    "meaning": "Safety and Security",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "peace",
+      "protection"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Aamin",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Aamin"
+    ],
+    "similarNames": [
+      "Aadam",
+      "Aaf",
+      "Aala"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "aarif_m_001",
+    "name": "Aarif",
+    "arabic": "أعرف",
+    "transliteration": "Aarif",
+    "gender": "male",
+    "meaning": "Knowing, Aware, Learned, (Intimate knowledge of Allah), The highest position a mystic can attain",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "knowledge"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Aarif",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Aarif"
+    ],
+    "similarNames": [
+      "Aadam",
+      "Aaf",
+      "Aala"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "aaqib_m_001",
+    "name": "Aaqib",
+    "arabic": "عقيب",
+    "transliteration": "Aaqib",
+    "gender": "male",
+    "meaning": "Replacement, Follower",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "faith"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Aaqib",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Aaqib"
+    ],
+    "similarNames": [
+      "Aadam",
+      "Aaf",
+      "Aala"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "aariz_m_001",
+    "name": "Aariz",
+    "arabic": "أرز",
+    "transliteration": "Aariz",
+    "gender": "male",
+    "meaning": "Leader, ruler, leader of nation.",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "faith"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Aariz",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Aariz"
+    ],
+    "similarNames": [
+      "Aadam",
+      "Aaf",
+      "Aala"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "aaryan_m_001",
+    "name": "Aaryan",
+    "arabic": "ارين",
+    "transliteration": "Aaryan",
+    "gender": "male",
+    "meaning": "Of Utmost strength",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "strength"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Aaryan",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Aaryan"
+    ],
+    "similarNames": [
+      "Aadam",
+      "Aaf",
+      "Aala"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "aatif_m_001",
+    "name": "Aatif",
+    "arabic": "عطيف",
+    "transliteration": "Aatif",
+    "gender": "male",
+    "meaning": "Kind Affectionate",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "kindness"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Aatif",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Aatif"
+    ],
+    "similarNames": [
+      "Aadam",
+      "Aaf",
+      "Aala"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "aatiq_m_001",
+    "name": "Aatiq",
+    "arabic": "أطيق",
+    "transliteration": "Aatiq",
+    "gender": "male",
+    "meaning": "Free, liberated, independent",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "faith"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Aatiq",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Aatiq"
+    ],
+    "similarNames": [
+      "Aadam",
+      "Aaf",
+      "Aala"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "abbas_m_001",
+    "name": "Abbas",
+    "arabic": "عباس",
+    "transliteration": "Abbas",
+    "gender": "male",
+    "meaning": "A furious lion,Grim-faced, Stern, Gloomy face,Uncle of the Holy Prophet Muhammad (pbuh)",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "faith"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Abbas",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Abbas"
+    ],
+    "similarNames": [
+      "Aadam",
+      "Aaf",
+      "Aala"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "kareem_m_001",
+    "name": "Kareem",
+    "arabic": "كريم",
+    "transliteration": "Kareem",
+    "gender": "male",
+    "meaning": "Generous and noble",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "generosity",
+      "nobility"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern",
+      "popular"
+    ],
+    "startsWith": "K",
+    "pronunciation": "Kareem",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Kareem"
+    ],
+    "similarNames": [
+      "Khalid"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 2,
+    "isPopular": true
+  },
+  {
+    "id": "nabil_m_001",
+    "name": "Nabil",
+    "arabic": "نبيل",
+    "transliteration": "Nabil",
+    "gender": "male",
+    "meaning": "Noble",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "nobility",
+      "kindness"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "classic"
+    ],
+    "startsWith": "N",
+    "pronunciation": "Nabil",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Nabil"
+    ],
+    "similarNames": [
+      "Nuh"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "talut_m_001",
+    "name": "Talut",
+    "arabic": "طالوت",
+    "transliteration": "Talut",
+    "gender": "male",
+    "meaning": "King Saul",
+    "origin": [
+      "Hebrew",
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "strength"
+    ],
+    "isQuranic": true,
+    "associatedCategories": [
+      "classic",
+      "quranic"
+    ],
+    "startsWith": "T",
+    "pronunciation": "Talut",
+    "quranReferences": [
+      "Qur’an 2:247"
+    ],
+    "associatedFigures": [
+      "King Talut"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Talut"
+    ],
+    "similarNames": [
+      "Talha",
+      "Tariq"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "rahim_m_001",
+    "name": "Rahim",
+    "arabic": "رحيم",
+    "transliteration": "Rahim",
+    "gender": "male",
+    "meaning": "Compassionate",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "mercy",
+      "kindness"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern",
+      "popular"
+    ],
+    "startsWith": "R",
+    "pronunciation": "Rahim",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Rahim"
+    ],
+    "similarNames": [
+      "Rashid",
+      "Rayyan"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 2,
+    "isPopular": true
+  },
+  {
+    "id": "asiya_f_001",
+    "name": "Asiya",
+    "arabic": "آسية",
+    "transliteration": "Asiya",
+    "gender": "female",
+    "meaning": "One who heals",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "kindness",
+      "faith"
+    ],
+    "isQuranic": true,
+    "associatedCategories": [
+      "classic",
+      "quranic"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Asiya",
+    "quranReferences": [
+      "Qur’an 66:11"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Asiya"
+    ],
+    "similarNames": [
+      "Aabroo",
+      "Aala",
+      "Aaliya"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "hajar_f_001",
+    "name": "Hajar",
+    "arabic": "هاجر",
+    "transliteration": "Hajar",
+    "gender": "female",
+    "meaning": "To migrate",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "devotion",
+      "strength"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "classic"
+    ],
+    "startsWith": "H",
+    "pronunciation": "Hajar",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Hajar"
+    ],
+    "similarNames": [
+      "Hafsa",
+      "Hawwa",
+      "Huda"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "aisha_f_001",
+    "name": "Aisha",
+    "arabic": "عائشة",
+    "transliteration": "Aisha",
+    "gender": "female",
+    "meaning": "Alive, living, happily living, well-living, prosperous, Well-off Youngest wife of the Prophet Muhammad (pbuh)",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "faith"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "classic",
+      "companion",
+      "popular"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Aisha",
+    "associatedFigures": [
+      "Companion association: Aisha"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Aisha"
+    ],
+    "similarNames": [
+      "Aabroo",
+      "Aala",
+      "Aaliya"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 2,
+    "isPopular": true
+  },
+  {
+    "id": "khadijah_f_001",
+    "name": "Khadijah",
+    "arabic": "خديجة",
+    "transliteration": "Khadijah",
+    "gender": "female",
+    "meaning": "Early child, trustworthy",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "nobility"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "classic",
+      "companion",
+      "popular"
+    ],
+    "startsWith": "K",
+    "pronunciation": "Khadijah",
+    "associatedFigures": [
+      "Khadijah bint Khuwaylid"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Khadijah"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 3,
+    "isPopular": true
+  },
+  {
+    "id": "hafsa_f_001",
+    "name": "Hafsa",
+    "arabic": "حفصة",
+    "transliteration": "Hafsa",
+    "gender": "female",
+    "meaning": "Young lioness",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "strength",
+      "nobility"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "classic",
+      "companion",
+      "popular"
+    ],
+    "startsWith": "H",
+    "pronunciation": "Hafsa",
+    "associatedFigures": [
+      "Hafsa bint Umar"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Hafsa"
+    ],
+    "similarNames": [
+      "Hajar",
+      "Hawwa",
+      "Huda"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 2,
+    "isPopular": true
+  },
+  {
+    "id": "safiyyah_f_001",
+    "name": "Safiyyah",
+    "arabic": "صفية",
+    "transliteration": "Safiyyah",
+    "gender": "female",
+    "meaning": "Pure chosen one",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "purity",
+      "nobility"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "classic",
+      "companion"
+    ],
+    "startsWith": "S",
+    "pronunciation": "Safiyyah",
+    "associatedFigures": [
+      "Safiyyah bint Huyayy"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Safiyyah"
+    ],
+    "similarNames": [
+      "Salma",
+      "Sama",
+      "Sara"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "zaynab_f_001",
+    "name": "Zaynab",
+    "arabic": "زينب",
+    "transliteration": "Zaynab",
+    "gender": "female",
+    "meaning": "Fragrant flower",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "beauty"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "classic",
+      "companion",
+      "popular"
+    ],
+    "startsWith": "Z",
+    "pronunciation": "Zaynab",
+    "associatedFigures": [
+      "Zaynab bint Jahsh / bint Ali"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Zaynab"
+    ],
+    "similarNames": [
+      "Zara"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 2,
+    "isPopular": true
+  },
+  {
+    "id": "ruqayyah_f_001",
+    "name": "Ruqayyah",
+    "arabic": "رقية",
+    "transliteration": "Ruqayyah",
+    "gender": "female",
+    "meaning": "Rise, ascent",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "nobility",
+      "hope"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "classic",
+      "companion"
+    ],
+    "startsWith": "R",
+    "pronunciation": "Ruqayyah",
+    "associatedFigures": [
+      "Ruqayyah bint Muhammad"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Ruqayyah"
+    ],
+    "similarNames": [
+      "Rania",
+      "Rimsha"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "sumayyah_f_001",
+    "name": "Sumayyah",
+    "arabic": "سمية",
+    "transliteration": "Sumayyah",
+    "gender": "female",
+    "meaning": "High, elevated",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "strength",
+      "nobility"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "classic",
+      "companion"
+    ],
+    "startsWith": "S",
+    "pronunciation": "Sumayyah",
+    "associatedFigures": [
+      "Sumayyah bint Khayyat"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Sumayyah"
+    ],
+    "similarNames": [
+      "Safiyyah",
+      "Salma",
+      "Sama"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "aminah_f_001",
+    "name": "Aminah",
+    "arabic": "آمنة",
+    "transliteration": "Aminah",
+    "gender": "female",
+    "meaning": "Trustworthy and safe",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "peace"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "classic",
+      "popular"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Aminah",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Aminah"
+    ],
+    "similarNames": [
+      "Aabroo",
+      "Aala",
+      "Aaliya"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 3,
+    "isPopular": true
+  },
+  {
+    "id": "lina_f_001",
+    "name": "Lina",
+    "arabic": "لينا",
+    "transliteration": "Lina",
+    "gender": "female",
+    "meaning": "Tender, delicate palm tree",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "kindness",
+      "beauty",
+      "hope"
+    ],
+    "isQuranic": true,
+    "associatedCategories": [
+      "modern",
+      "popular",
+      "quranic"
+    ],
+    "startsWith": "L",
+    "pronunciation": "Lina",
+    "quranReferences": [
+      "Qur’an 59:5"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Europe",
+      "Global"
+    ],
+    "variants": [
+      "Lina"
+    ],
+    "similarNames": [
+      "Layla"
+    ],
+    "styleTags": [
+      "modern",
+      "short"
+    ],
+    "syllables": 2,
+    "isPopular": true
+  },
+  {
+    "id": "amira_f_001",
+    "name": "Amira",
+    "arabic": "أميرة",
+    "transliteration": "Amira",
+    "gender": "female",
+    "meaning": "Princess, leader, Noble lady, An occupant of an abode, one who makes umrah or ziyaarah, abundant treasure.",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "nobility"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Amira",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Amira"
+    ],
+    "similarNames": [
+      "Aabroo",
+      "Aala",
+      "Aaliya"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 3
+  },
+  {
+    "id": "malika_f_001",
+    "name": "Malika",
+    "arabic": "مليكة",
+    "transliteration": "Malika",
+    "gender": "female",
+    "meaning": "Queenly, sovereign",
+    "origin": [
+      "Arabic",
+      "Swahili"
+    ],
+    "meaningThemes": [
+      "nobility",
+      "strength"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "classic",
+      "popular"
+    ],
+    "startsWith": "M",
+    "pronunciation": "Malika",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Europe",
+      "Global"
+    ],
+    "variants": [
+      "Malika"
+    ],
+    "similarNames": [
+      "Maha",
+      "Maryam",
+      "Maya"
+    ],
+    "styleTags": [
+      "classic"
+    ],
+    "syllables": 3,
+    "isPopular": true
+  },
+  {
+    "id": "yasmin_f_001",
+    "name": "Yasmin",
+    "arabic": "ياسمين",
+    "transliteration": "Yasmin",
+    "gender": "female",
+    "meaning": "Jasmine flower",
+    "origin": [
+      "Persian",
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "beauty",
+      "joy"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern",
+      "popular"
+    ],
+    "startsWith": "Y",
+    "pronunciation": "Yasmin",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Yasmin"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 2,
+    "isPopular": true
+  },
+  {
+    "id": "huda_f_001",
+    "name": "Huda",
+    "arabic": "هدى",
+    "transliteration": "Huda",
+    "gender": "female",
+    "meaning": "Guidance",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "guidance",
+      "faith"
+    ],
+    "isQuranic": true,
+    "associatedCategories": [
+      "classic",
+      "popular",
+      "quranic"
+    ],
+    "startsWith": "H",
+    "pronunciation": "Huda",
+    "quranReferences": [
+      "Qur’an 2:2"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Huda"
+    ],
+    "similarNames": [
+      "Hafsa",
+      "Hajar",
+      "Hawwa"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 2,
+    "isPopular": true
+  },
+  {
+    "id": "farah_f_001",
+    "name": "Farah",
+    "arabic": "فرح",
+    "transliteration": "Farah",
+    "gender": "female",
+    "meaning": "Joy",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "joy",
+      "hope"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern",
+      "popular"
+    ],
+    "startsWith": "F",
+    "pronunciation": "Farah",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Farah"
+    ],
+    "similarNames": [
+      "Fatimah",
+      "Fatima"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 2,
+    "isPopular": true
+  },
+  {
+    "id": "layla_f_001",
+    "name": "Layla",
+    "arabic": "ليلى",
+    "transliteration": "Layla",
+    "gender": "female",
+    "meaning": "Night",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "beauty"
+    ],
+    "isQuranic": true,
+    "associatedCategories": [
+      "classic",
+      "popular",
+      "quranic"
+    ],
+    "startsWith": "L",
+    "pronunciation": "Layla",
+    "quranReferences": [
+      "Qur’an 92:1"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Layla"
+    ],
+    "similarNames": [
+      "Lina"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 2,
+    "isPopular": true
+  },
+  {
+    "id": "sara_f_001",
+    "name": "Sara",
+    "arabic": "سارة",
+    "transliteration": "Sara",
+    "gender": "female",
+    "meaning": "Princess, noble woman",
+    "origin": [
+      "Hebrew",
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "nobility",
+      "beauty"
+    ],
+    "isQuranic": true,
+    "associatedCategories": [
+      "classic",
+      "popular",
+      "quranic"
+    ],
+    "startsWith": "S",
+    "pronunciation": "Sara",
+    "quranReferences": [
+      "Qur’an 11:71"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Sara"
+    ],
+    "similarNames": [
+      "Safiyyah",
+      "Salma",
+      "Sama"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 2,
+    "isPopular": true
+  },
+  {
+    "id": "salma_f_001",
+    "name": "Salma",
+    "arabic": "سلمى",
+    "transliteration": "Salma",
+    "gender": "female",
+    "meaning": "Peaceful",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "peace",
+      "kindness"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern",
+      "popular"
+    ],
+    "startsWith": "S",
+    "pronunciation": "Salma",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Salma"
+    ],
+    "similarNames": [
+      "Safiyyah",
+      "Sama",
+      "Sara"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 2,
+    "isPopular": true
+  },
+  {
+    "id": "rania_f_001",
+    "name": "Rania",
+    "arabic": "رانيا",
+    "transliteration": "Rania",
+    "gender": "female",
+    "meaning": "Gazing closely",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "wisdom",
+      "beauty"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern",
+      "popular"
+    ],
+    "startsWith": "R",
+    "pronunciation": "Rania",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Rania"
+    ],
+    "similarNames": [
+      "Rimsha",
+      "Ruqayyah"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 2,
+    "isPopular": true
+  },
+  {
+    "id": "asma_f_001",
+    "name": "Asma",
+    "arabic": "أسماء",
+    "transliteration": "Asma",
+    "gender": "female",
+    "meaning": "Exalted",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "nobility",
+      "faith"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "classic",
+      "companion",
+      "popular"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Asma",
+    "associatedFigures": [
+      "Asma bint Abi Bakr"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Asma"
+    ],
+    "similarNames": [
+      "Aabroo",
+      "Aala",
+      "Aaliya"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 2,
+    "isPopular": true
+  },
+  {
+    "id": "aaliyah_f_001",
+    "name": "Aaliyah",
+    "arabic": "عالية",
+    "transliteration": "Aaliyah",
+    "gender": "female",
+    "meaning": "Exalted",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "nobility",
+      "faith"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern",
+      "popular"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Aaliyah",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Aaliyah"
+    ],
+    "similarNames": [
+      "Aabroo",
+      "Aala",
+      "Aaliya"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 2,
+    "isPopular": true
+  },
+  {
+    "id": "maha_f_001",
+    "name": "Maha",
+    "arabic": "مها",
+    "transliteration": "Maha",
+    "gender": "female",
+    "meaning": "Wild gazelle, moon-like eyes",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "beauty"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern",
+      "popular"
+    ],
+    "startsWith": "M",
+    "pronunciation": "Maha",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Maha"
+    ],
+    "similarNames": [
+      "Maryam",
+      "Maya",
+      "Malika"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 2,
+    "isPopular": true
+  },
+  {
+    "id": "bushra_f_001",
+    "name": "Bushra",
+    "arabic": "بشرى",
+    "transliteration": "Bushra",
+    "gender": "female",
+    "meaning": "Glad tidings",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "hope",
+      "joy"
+    ],
+    "isQuranic": true,
+    "associatedCategories": [
+      "classic",
+      "quranic"
+    ],
+    "startsWith": "B",
+    "pronunciation": "Bushra",
+    "quranReferences": [
+      "Qur’an 10:64"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Bushra"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "eman_f_001",
+    "name": "Eman",
+    "arabic": "إيمان",
+    "transliteration": "Eman",
+    "gender": "female",
+    "meaning": "Faith",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "faith",
+      "devotion"
+    ],
+    "isQuranic": true,
+    "associatedCategories": [
+      "classic",
+      "popular",
+      "quranic"
+    ],
+    "startsWith": "E",
+    "pronunciation": "Eman",
+    "quranReferences": [
+      "Qur’an 49:14"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Eman"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 2,
+    "isPopular": true
+  },
+  {
+    "id": "iman_f_001",
+    "name": "Iman",
+    "arabic": "إيمان",
+    "transliteration": "Iman",
+    "gender": "female",
+    "meaning": "Faith",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "faith",
+      "devotion"
+    ],
+    "isQuranic": true,
+    "associatedCategories": [
+      "classic",
+      "popular",
+      "quranic"
+    ],
+    "startsWith": "I",
+    "pronunciation": "Iman",
+    "quranReferences": [
+      "Qur’an 49:14"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Iman"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 2,
+    "isPopular": true
+  },
+  {
+    "id": "hawwa_f_001",
+    "name": "Hawwa",
+    "arabic": "حواء",
+    "transliteration": "Hawwa",
+    "gender": "female",
+    "meaning": "Living one",
+    "origin": [
+      "Hebrew",
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "faith"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "classic"
+    ],
+    "startsWith": "H",
+    "pronunciation": "Hawwa",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Hawwa"
+    ],
+    "similarNames": [
+      "Hafsa",
+      "Hajar",
+      "Huda"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "jannah_f_001",
+    "name": "Jannah",
+    "arabic": "جنة",
+    "transliteration": "Jannah",
+    "gender": "female",
+    "meaning": "Garden of Paradise",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "hope",
+      "blessing"
+    ],
+    "isQuranic": true,
+    "associatedCategories": [
+      "classic",
+      "popular",
+      "quranic"
+    ],
+    "startsWith": "J",
+    "pronunciation": "Jannah",
+    "quranReferences": [
+      "Qur’an 2:25"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Jannah"
+    ],
+    "similarNames": [
+      "Jannat"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 2,
+    "isPopular": true
+  },
+  {
+    "id": "jannat_f_001",
+    "name": "Jannat",
+    "arabic": "جنة",
+    "transliteration": "Jannat",
+    "gender": "female",
+    "meaning": "Paradise garden",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "hope",
+      "blessing"
+    ],
+    "isQuranic": true,
+    "associatedCategories": [
+      "classic",
+      "popular",
+      "quranic"
+    ],
+    "startsWith": "J",
+    "pronunciation": "Jannat",
+    "quranReferences": [
+      "Qur’an 2:25"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Jannat"
+    ],
+    "similarNames": [
+      "Jannah"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 2,
+    "isPopular": true
+  },
+  {
+    "id": "maya_f_001",
+    "name": "Maya",
+    "arabic": "مايا",
+    "transliteration": "Maya",
+    "gender": "female",
+    "meaning": "Grace, spring water (commonly used)",
+    "origin": [
+      "Global Muslim"
+    ],
+    "meaningThemes": [
+      "beauty",
+      "joy"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern",
+      "popular"
+    ],
+    "startsWith": "M",
+    "pronunciation": "Maya",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Europe",
+      "Global"
+    ],
+    "variants": [
+      "Maya"
+    ],
+    "similarNames": [
+      "Maha",
+      "Maryam",
+      "Malika"
+    ],
+    "styleTags": [
+      "modern",
+      "short"
+    ],
+    "syllables": 1,
+    "isPopular": true
+  },
+  {
+    "id": "najwa_f_001",
+    "name": "Najwa",
+    "arabic": "نجوى",
+    "transliteration": "Najwa",
+    "gender": "female",
+    "meaning": "Whispered prayer",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "devotion",
+      "kindness"
+    ],
+    "isQuranic": true,
+    "associatedCategories": [
+      "classic",
+      "quranic"
+    ],
+    "startsWith": "N",
+    "pronunciation": "Najwa",
+    "quranReferences": [
+      "Qur’an 58:7"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Najwa"
+    ],
+    "similarNames": [
+      "Noor",
+      "Nour"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "parisa_f_001",
+    "name": "Parisa",
+    "arabic": "باريسا",
+    "transliteration": "Parisa",
+    "gender": "female",
+    "meaning": "Fairy-like, graceful",
+    "origin": [
+      "Persian"
+    ],
+    "meaningThemes": [
+      "beauty",
+      "joy"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern"
+    ],
+    "startsWith": "P",
+    "pronunciation": "Parisa",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Europe",
+      "Global"
+    ],
+    "variants": [
+      "Parisa"
+    ],
+    "styleTags": [
+      "modern"
+    ],
+    "syllables": 3
+  },
+  {
+    "id": "rimsha_f_001",
+    "name": "Rimsha",
+    "arabic": "رمشاء",
+    "transliteration": "Rimsha",
+    "gender": "female",
+    "meaning": "A bouquet, beautiful",
+    "origin": [
+      "Urdu",
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "beauty",
+      "joy"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern",
+      "popular"
+    ],
+    "startsWith": "R",
+    "pronunciation": "Rimsha",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Rimsha"
+    ],
+    "similarNames": [
+      "Rania",
+      "Ruqayyah"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 2,
+    "isPopular": true
+  },
+  {
+    "id": "sama_f_001",
+    "name": "Sama",
+    "arabic": "سماء",
+    "transliteration": "Sama",
+    "gender": "female",
+    "meaning": "Sky",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "hope",
+      "light"
+    ],
+    "isQuranic": true,
+    "associatedCategories": [
+      "classic",
+      "quranic"
+    ],
+    "startsWith": "S",
+    "pronunciation": "Sama",
+    "quranReferences": [
+      "Qur’an 67:3"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Sama"
+    ],
+    "similarNames": [
+      "Safiyyah",
+      "Salma",
+      "Sara"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "sidra_f_001",
+    "name": "Sidra",
+    "arabic": "سدرة",
+    "transliteration": "Sidra",
+    "gender": "female",
+    "meaning": "Lote tree",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "faith",
+      "protection"
+    ],
+    "isQuranic": true,
+    "associatedCategories": [
+      "classic",
+      "popular",
+      "quranic"
+    ],
+    "startsWith": "S",
+    "pronunciation": "Sidra",
+    "quranReferences": [
+      "Qur’an 53:14"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Sidra"
+    ],
+    "similarNames": [
+      "Safiyyah",
+      "Salma",
+      "Sama"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 2,
+    "isPopular": true
+  },
+  {
+    "id": "zara_f_001",
+    "name": "Zara",
+    "arabic": "زهراء",
+    "transliteration": "Zara",
+    "gender": "female",
+    "meaning": "Blooming flower",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "beauty",
+      "joy"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern",
+      "popular"
+    ],
+    "startsWith": "Z",
+    "pronunciation": "Zara",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Zara"
+    ],
+    "similarNames": [
+      "Zaynab"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 2,
+    "isPopular": true
+  },
+  {
+    "id": "aasia_f_001",
+    "name": "Aasia",
+    "arabic": "آسيا",
+    "transliteration": "Aasia",
+    "gender": "female",
+    "meaning": "Hope",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "hope"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Aasia",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Aasia"
+    ],
+    "similarNames": [
+      "Aabroo",
+      "Aala",
+      "Aaliya"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "aasiyah_f_001",
+    "name": "Aasiyah",
+    "arabic": "اصيح",
+    "transliteration": "Aasiyah",
+    "gender": "female",
+    "meaning": "Pharaoh's wife who embraced lslam",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "faith"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Aasiyah",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Aasiyah"
+    ],
+    "similarNames": [
+      "Aabroo",
+      "Aala",
+      "Aaliya"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "aaliya_f_001",
+    "name": "Aaliya",
+    "arabic": "عالية",
+    "transliteration": "Aaliya",
+    "gender": "female",
+    "meaning": "Noble, Elevated, Exulted, sublime, elevated, lofty, high, a women of highest social standing. class of people who live in Illiyyeen, those who have the highest rank in Paradise.",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "nobility"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "companion",
+      "modern"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Aaliya",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Aaliya"
+    ],
+    "similarNames": [
+      "Aabroo",
+      "Aala",
+      "Aaliyah"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "aatika_f_001",
+    "name": "Aatika",
+    "arabic": "اتيكا",
+    "transliteration": "Aatika",
+    "gender": "female",
+    "meaning": "Aatika is an Arabic name for girls that means pure, generous.",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "generosity",
+      "purity"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Aatika",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Aatika"
+    ],
+    "similarNames": [
+      "Aabroo",
+      "Aala",
+      "Aaliya"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 3
+  },
+  {
+    "id": "aatikah_f_001",
+    "name": "Aatikah",
+    "arabic": "اطيقه",
+    "transliteration": "Aatikah",
+    "gender": "female",
+    "meaning": "Generous",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "generosity"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Aatikah",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Aatikah"
+    ],
+    "similarNames": [
+      "Aabroo",
+      "Aala",
+      "Aaliya"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 3
+  },
+  {
+    "id": "aatifa_f_001",
+    "name": "Aatifa",
+    "arabic": "عطيفة",
+    "transliteration": "Aatifa",
+    "gender": "female",
+    "meaning": "Affection, Sympathy",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "faith"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Aatifa",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Aatifa"
+    ],
+    "similarNames": [
+      "Aabroo",
+      "Aala",
+      "Aaliya"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 3
+  },
+  {
+    "id": "aatifah_f_001",
+    "name": "Aatifah",
+    "arabic": "اتفه",
+    "transliteration": "Aatifah",
+    "gender": "female",
+    "meaning": "Aatifah is an Arabic name for girls that means affectionate, sympathetic. It also means affection, emotion, feeling.",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "faith"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Aatifah",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Aatifah"
+    ],
+    "similarNames": [
+      "Aabroo",
+      "Aala",
+      "Aaliya"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 3
+  },
+  {
+    "id": "afrah_f_001",
+    "name": "Afrah",
+    "arabic": "أفراح",
+    "transliteration": "Afrah",
+    "gender": "female",
+    "meaning": "Celebrations, festivals , Pl. of Farah, joy, happiness , one who has pleasant dreams, imaginative.",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "joy"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Afrah",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Afrah"
+    ],
+    "similarNames": [
+      "Aabroo",
+      "Aala",
+      "Aaliya"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "afifa_f_001",
+    "name": "Afifa",
+    "arabic": "عفيفى",
+    "transliteration": "Afifa",
+    "gender": "female",
+    "meaning": "Neat lady ,pure, chaste, modest, virtuous, honest, righteous, upright, decent , fem. Of Afif",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "faith",
+      "purity"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Afifa",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Afifa"
+    ],
+    "similarNames": [
+      "Aabroo",
+      "Aala",
+      "Aaliya"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 3
+  },
+  {
+    "id": "afsana_f_001",
+    "name": "Afsana",
+    "arabic": "فسنة",
+    "transliteration": "Afsana",
+    "gender": "female",
+    "meaning": "Story , Fable, fiction, romance.",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "faith"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Afsana",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Afsana"
+    ],
+    "similarNames": [
+      "Aabroo",
+      "Aala",
+      "Aaliya"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 3
+  },
+  {
+    "id": "afsheen_f_001",
+    "name": "Afsheen",
+    "arabic": "أفصح",
+    "transliteration": "Afsheen",
+    "gender": "female",
+    "meaning": "Shine like a star",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "faith"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Afsheen",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Afsheen"
+    ],
+    "similarNames": [
+      "Aabroo",
+      "Aala",
+      "Aaliya"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "aicha_f_001",
+    "name": "Aicha",
+    "arabic": "عائشة",
+    "transliteration": "Aicha",
+    "gender": "female",
+    "meaning": "enthusiasm",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "faith"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Aicha",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Aicha"
+    ],
+    "similarNames": [
+      "Aabroo",
+      "Aala",
+      "Aaliya"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "aileen_f_001",
+    "name": "Aileen",
+    "arabic": "ألين",
+    "transliteration": "Aileen",
+    "gender": "female",
+    "meaning": "Aileen is a Turkish name for girls that means halo around the moon, a halo that appears around the moon on certain nights of the year.",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "light"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Aileen",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Aileen"
+    ],
+    "similarNames": [
+      "Aabroo",
+      "Aala",
+      "Aaliya"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "aimal_f_001",
+    "name": "Aimal",
+    "arabic": "أعمال",
+    "transliteration": "Aimal",
+    "gender": "female",
+    "meaning": "Friend",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "faith"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Aimal",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Aimal"
+    ],
+    "similarNames": [
+      "Aabroo",
+      "Aala",
+      "Aaliya"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "aimen_f_001",
+    "name": "Aimen",
+    "arabic": "أيمن",
+    "transliteration": "Aimen",
+    "gender": "female",
+    "meaning": "Brave, fearless, lucky, right hand",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "strength"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Aimen",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Aimen"
+    ],
+    "similarNames": [
+      "Aabroo",
+      "Aala",
+      "Aaliya"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "aiyla_f_001",
+    "name": "Aiyla",
+    "arabic": "أيلة",
+    "transliteration": "Aiyla",
+    "gender": "female",
+    "meaning": "Moonlight",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "light"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Aiyla",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Aiyla"
+    ],
+    "similarNames": [
+      "Aabroo",
+      "Aala",
+      "Aaliya"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "ajwa_f_001",
+    "name": "Ajwa",
+    "arabic": "اجوا",
+    "transliteration": "Ajwa",
+    "gender": "female",
+    "meaning": "Name of a date in Saudia Arabia Tree planted by Holy Prohpet PBUH",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "faith"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Ajwa",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Ajwa"
+    ],
+    "similarNames": [
+      "Aabroo",
+      "Aala",
+      "Aaliya"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "adara_f_001",
+    "name": "Adara",
+    "arabic": "أدارة",
+    "transliteration": "Adara",
+    "gender": "female",
+    "meaning": "Virgin , Chaste one",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "purity"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Adara",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Adara"
+    ],
+    "similarNames": [
+      "Aabroo",
+      "Aala",
+      "Aaliya"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 3
+  },
+  {
+    "id": "adena_f_001",
+    "name": "Adena",
+    "arabic": "أدنى",
+    "transliteration": "Adena",
+    "gender": "female",
+    "meaning": "Noble, adorned",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "nobility"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Adena",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Adena"
+    ],
+    "similarNames": [
+      "Aabroo",
+      "Aala",
+      "Aaliya"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 3
+  },
+  {
+    "id": "adina_f_001",
+    "name": "Adina",
+    "arabic": "أدينا",
+    "transliteration": "Adina",
+    "gender": "female",
+    "meaning": "Adina is a Persian name for girls that means weekend, the last day of the week, which in Islamic culture means Friday. It is a variant of Adineh.",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "faith"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Adina",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Adina"
+    ],
+    "similarNames": [
+      "Aabroo",
+      "Aala",
+      "Aaliya"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 3
+  },
+  {
+    "id": "afrin_f_001",
+    "name": "Afrin",
+    "arabic": "عفرين",
+    "transliteration": "Afrin",
+    "gender": "female",
+    "meaning": "Beautiful, Brave, Acclaim ,Stimulation, Praise, lucky , encouragement",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "beauty",
+      "gratitude",
+      "strength"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Afrin",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Afrin"
+    ],
+    "similarNames": [
+      "Aabroo",
+      "Aala",
+      "Aaliya"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "nur_u_001",
+    "name": "Nur",
+    "arabic": "نور",
+    "transliteration": "Nur",
+    "gender": "unisex",
+    "meaning": "Light",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "light",
+      "guidance"
+    ],
+    "isQuranic": true,
+    "associatedCategories": [
+      "classic",
+      "popular",
+      "quranic"
+    ],
+    "startsWith": "N",
+    "pronunciation": "Nur",
+    "quranReferences": [
+      "Qur’an 24:35"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Nur"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 1,
+    "isPopular": true
+  },
+  {
+    "id": "rayan_u_001",
+    "name": "Rayan",
+    "arabic": "ريان",
+    "transliteration": "Rayan",
+    "gender": "unisex",
+    "meaning": "Watered, lush",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "blessing",
+      "hope"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern",
+      "popular"
+    ],
+    "startsWith": "R",
+    "pronunciation": "Rayan",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Rayan"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 1,
+    "isPopular": true
+  },
+  {
+    "id": "ziya_u_001",
+    "name": "Ziya",
+    "arabic": "ضياء",
+    "transliteration": "Ziya",
+    "gender": "unisex",
+    "meaning": "Radiance",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "light",
+      "guidance"
+    ],
+    "isQuranic": true,
+    "associatedCategories": [
+      "classic",
+      "quranic"
+    ],
+    "startsWith": "Z",
+    "pronunciation": "Ziya",
+    "quranReferences": [
+      "Qur’an 10:5"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Ziya"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 1
+  },
+  {
+    "id": "diya_u_001",
+    "name": "Diya",
+    "arabic": "ضياء",
+    "transliteration": "Diya",
+    "gender": "unisex",
+    "meaning": "Light and glow",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "light",
+      "hope"
+    ],
+    "isQuranic": true,
+    "associatedCategories": [
+      "classic",
+      "quranic"
+    ],
+    "startsWith": "D",
+    "pronunciation": "Diya",
+    "quranReferences": [
+      "Qur’an 10:5"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Diya"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 1
+  },
+  {
+    "id": "ihsan_u_001",
+    "name": "Ihsan",
+    "arabic": "إحسان",
+    "transliteration": "Ihsan",
+    "gender": "unisex",
+    "meaning": "Excellence",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "faith",
+      "kindness"
+    ],
+    "isQuranic": true,
+    "associatedCategories": [
+      "classic",
+      "quranic"
+    ],
+    "startsWith": "I",
+    "pronunciation": "Ihsan",
+    "quranReferences": [
+      "Qur’an 16:90"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Ihsan"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "mizan_u_001",
+    "name": "Mizan",
+    "arabic": "ميزان",
+    "transliteration": "Mizan",
+    "gender": "unisex",
+    "meaning": "Balance",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "wisdom"
+    ],
+    "isQuranic": true,
+    "associatedCategories": [
+      "classic",
+      "quranic"
+    ],
+    "startsWith": "M",
+    "pronunciation": "Mizan",
+    "quranReferences": [
+      "Qur’an 55:7"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Mizan"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "safa_u_001",
+    "name": "Safa",
+    "arabic": "صفا",
+    "transliteration": "Safa",
+    "gender": "unisex",
+    "meaning": "Purity and clarity",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "purity",
+      "faith"
+    ],
+    "isQuranic": true,
+    "associatedCategories": [
+      "classic",
+      "popular",
+      "quranic"
+    ],
+    "startsWith": "S",
+    "pronunciation": "Safa",
+    "quranReferences": [
+      "Qur’an 2:158"
+    ],
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Safa"
+    ],
+    "styleTags": [
+      "timeless",
+      "readable"
+    ],
+    "syllables": 2,
+    "isPopular": true
+  },
+  {
+    "id": "amal_u_001",
+    "name": "Amal",
+    "arabic": "أمل",
+    "transliteration": "Amal",
+    "gender": "unisex",
+    "meaning": "Hope",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "hope",
+      "joy"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern",
+      "popular"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Amal",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Amal"
+    ],
+    "similarNames": [
+      "Aabad",
+      "Aaban",
+      "Aabdar"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 2,
+    "isPopular": true
+  },
+  {
+    "id": "amanah_u_001",
+    "name": "Amanah",
+    "arabic": "أمانه",
+    "transliteration": "Amanah",
+    "gender": "unisex",
+    "meaning": "Loyal and Trustworthy",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "faith"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Amanah",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Amanah"
+    ],
+    "similarNames": [
+      "Aabad",
+      "Aaban",
+      "Aabdar"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 3
+  },
+  {
+    "id": "amara_u_001",
+    "name": "Amara",
+    "arabic": "عمارة",
+    "transliteration": "Amara",
+    "gender": "unisex",
+    "meaning": "large group of ships sailing together, tribe.",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "faith"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Amara",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Amara"
+    ],
+    "similarNames": [
+      "Aabad",
+      "Aaban",
+      "Aabdar"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 3
+  },
+  {
+    "id": "aabir_u_001",
+    "name": "Aabir",
+    "arabic": "عَابِر",
+    "transliteration": "Aabir",
+    "gender": "unisex",
+    "meaning": "Passing by, crossing, travelling on a road, one who interprets dreams or books.",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "faith"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Aabir",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Aabir"
+    ],
+    "similarNames": [
+      "Aabad",
+      "Aaban",
+      "Aabdar"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "aadil_u_001",
+    "name": "Aadil",
+    "arabic": "عَادِل",
+    "transliteration": "Aadil",
+    "gender": "unisex",
+    "meaning": "Just, Upright,Honorable, Righteous, Noble, one who acts with justice and fairness, moderate, virtuous, excellent in character",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "faith",
+      "nobility"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Aadil",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Aadil"
+    ],
+    "similarNames": [
+      "Aabad",
+      "Aaban",
+      "Aabdar"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "aafaq_u_002",
+    "name": "Aafaq",
+    "arabic": "آفَاق",
+    "transliteration": "Aafaq",
+    "gender": "unisex",
+    "meaning": "Horizons, The place where the earth & sky meet",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "faith"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Aafaq",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Aafaq"
+    ],
+    "similarNames": [
+      "Aabad",
+      "Aaban",
+      "Aabdar"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "aafiq_u_001",
+    "name": "Aafiq",
+    "arabic": "أفيق",
+    "transliteration": "Aafiq",
+    "gender": "unisex",
+    "meaning": "Intelligent, Educated and Intellectual",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "faith"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Aafiq",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Aafiq"
+    ],
+    "similarNames": [
+      "Aabad",
+      "Aaban",
+      "Aabdar"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "aafiya_u_001",
+    "name": "Aafiya",
+    "arabic": "عَافِيَة",
+    "transliteration": "Aafiya",
+    "gender": "unisex",
+    "meaning": "Good health, free from illness and grief, Away from all Problems.",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "faith"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Aafiya",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Aafiya"
+    ],
+    "similarNames": [
+      "Aabad",
+      "Aaban",
+      "Aabdar"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "aahil_u_001",
+    "name": "Aahil",
+    "arabic": "أهل",
+    "transliteration": "Aahil",
+    "gender": "unisex",
+    "meaning": "Prince",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "faith"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Aahil",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Aahil"
+    ],
+    "similarNames": [
+      "Aabad",
+      "Aaban",
+      "Aabdar"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "aaid_u_001",
+    "name": "Aaid",
+    "arabic": "عائد",
+    "transliteration": "Aaid",
+    "gender": "unisex",
+    "meaning": "Restore",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "faith"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Aaid",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Aaid"
+    ],
+    "similarNames": [
+      "Aabad",
+      "Aaban",
+      "Aabdar"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 1
+  },
+  {
+    "id": "aaida_u_001",
+    "name": "Aaida",
+    "arabic": "عَائِدَة",
+    "transliteration": "Aaida",
+    "gender": "unisex",
+    "meaning": "returner, visitor of the sick, Visiting, returning, reward ,Present ,returning, visitor",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "faith"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Aaida",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Aaida"
+    ],
+    "similarNames": [
+      "Aabad",
+      "Aaban",
+      "Aabdar"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "aaima_u_001",
+    "name": "Aaima",
+    "arabic": "إِيْمَاء",
+    "transliteration": "Aaima",
+    "gender": "unisex",
+    "meaning": "to make a subtle gesture, mark, insignia, to quote or reference something.",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "faith"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Aaima",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Aaima"
+    ],
+    "similarNames": [
+      "Aabad",
+      "Aaban",
+      "Aabdar"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "aaina_u_001",
+    "name": "Aaina",
+    "arabic": "انا",
+    "transliteration": "Aaina",
+    "gender": "unisex",
+    "meaning": "Mirror",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "faith"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Aaina",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Aaina"
+    ],
+    "similarNames": [
+      "Aabad",
+      "Aaban",
+      "Aabdar"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "aaiz_u_001",
+    "name": "Aaiz",
+    "arabic": "عايز",
+    "transliteration": "Aaiz",
+    "gender": "unisex",
+    "meaning": "Arabic for replacement, something fills the place of another thing, a gift from Allah given to you in place of something that was taken from you.",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "devotion",
+      "faith"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Aaiz",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Aaiz"
+    ],
+    "similarNames": [
+      "Aabad",
+      "Aaban",
+      "Aabdar"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 1
+  },
+  {
+    "id": "aaiza_u_001",
+    "name": "Aaiza",
+    "arabic": "عَائِضة",
+    "transliteration": "Aaiza",
+    "gender": "unisex",
+    "meaning": "replacement, something fills the place of another thing, a gift from Allah given to you in place of something that was taken from you.",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "devotion",
+      "faith"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Aaiza",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Aaiza"
+    ],
+    "similarNames": [
+      "Aabad",
+      "Aaban",
+      "Aabdar"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "aakif_u_001",
+    "name": "Aakif",
+    "arabic": "اقيف",
+    "transliteration": "Aakif",
+    "gender": "unisex",
+    "meaning": "Devoted to, dedicated to, persevering in, busily engaged, attached, intent.",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "devotion"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Aakif",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Aakif"
+    ],
+    "similarNames": [
+      "Aabad",
+      "Aaban",
+      "Aabdar"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "aakifah_u_001",
+    "name": "Aakifah",
+    "arabic": "عَاكِفَة",
+    "transliteration": "Aakifah",
+    "gender": "unisex",
+    "meaning": "Devoted, woman who Dedicated her life for Allah, A lady who worships Allah in solitude.",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "devotion"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Aakifah",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Aakifah"
+    ],
+    "similarNames": [
+      "Aabad",
+      "Aaban",
+      "Aabdar"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 3
+  },
+  {
+    "id": "aakil_u_001",
+    "name": "Aakil",
+    "arabic": "عَاقِل",
+    "transliteration": "Aakil",
+    "gender": "unisex",
+    "meaning": "Intelligent, wise, discerning, sensible, reasonable, educated , one who uses reasoning",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "wisdom"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Aakil",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Aakil"
+    ],
+    "similarNames": [
+      "Aabad",
+      "Aaban",
+      "Aabdar"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "aalam_u_001",
+    "name": "Aalam",
+    "arabic": "أعلم",
+    "transliteration": "Aalam",
+    "gender": "unisex",
+    "meaning": "The world, the universe.",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "faith"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Aalam",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Aalam"
+    ],
+    "similarNames": [
+      "Aabad",
+      "Aaban",
+      "Aabdar"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "aali_u_001",
+    "name": "Aali",
+    "arabic": "آلي",
+    "transliteration": "Aali",
+    "gender": "unisex",
+    "meaning": "High, Tall, High ranking, Eminent",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "faith"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "companion",
+      "modern"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Aali",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Aali"
+    ],
+    "similarNames": [
+      "Aabad",
+      "Aaban",
+      "Aabdar"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "aalif_u_001",
+    "name": "Aalif",
+    "arabic": "الف",
+    "transliteration": "Aalif",
+    "gender": "unisex",
+    "meaning": "Friendly and Hospitable | Kind, Compassionate and Tenderhearted",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "kindness",
+      "mercy"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "companion",
+      "modern"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Aalif",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Aalif"
+    ],
+    "similarNames": [
+      "Aabad",
+      "Aaban",
+      "Aabdar"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 2
+  },
+  {
+    "id": "aalifa_u_001",
+    "name": "Aalifa",
+    "arabic": "أَلِيْفة",
+    "transliteration": "Aalifa",
+    "gender": "unisex",
+    "meaning": "Kind, Friendly, Hospitable, Compassionate and Tenderhearted",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "kindness",
+      "mercy"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "companion",
+      "modern"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Aalifa",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Aalifa"
+    ],
+    "similarNames": [
+      "Aabad",
+      "Aaban",
+      "Aabdar"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 3
+  },
+  {
+    "id": "aamirah_u_001",
+    "name": "Aamirah",
+    "arabic": "عَامِرَة",
+    "transliteration": "Aamirah",
+    "gender": "unisex",
+    "meaning": "Aamira is an indirect Quranic name for girls that means prosperous, full of life, one who has a long and prosperous life.",
+    "origin": [
+      "Arabic"
+    ],
+    "meaningThemes": [
+      "faith"
+    ],
+    "isQuranic": false,
+    "associatedCategories": [
+      "modern"
+    ],
+    "startsWith": "A",
+    "pronunciation": "Aamirah",
+    "popularityRegions": [
+      "Middle East",
+      "South Asia",
+      "North Africa",
+      "Global Muslim communities"
+    ],
+    "variants": [
+      "Aamirah"
+    ],
+    "similarNames": [
+      "Aabad",
+      "Aaban",
+      "Aabdar"
+    ],
+    "styleTags": [
+      "modern",
+      "readable"
+    ],
+    "syllables": 3
+  }
+]

@@ -454,6 +454,7 @@ class _CommunityEventsPageState extends ConsumerState<CommunityEventsPage> {
                     const SizedBox(height: 8),
                     DropdownButtonFormField<String>(
                       initialValue: selectedCircle,
+                      style: Theme.of(context).textTheme.bodyLarge,
                       decoration: InputDecoration(
                         labelText: l10n.circlesFilterCircle,
                         border: OutlineInputBorder(
@@ -493,6 +494,7 @@ class _CommunityEventsPageState extends ConsumerState<CommunityEventsPage> {
                     const SizedBox(height: 8),
                     DropdownButtonFormField<CircleEventCreatorRole>(
                       initialValue: selectedRole,
+                      style: Theme.of(context).textTheme.bodyLarge,
                       decoration: InputDecoration(
                         labelText: l10n.circlesCreateEventRoleLabel,
                         border: OutlineInputBorder(
@@ -764,6 +766,7 @@ class _FilterDropdown extends StatelessWidget {
       width: 200,
       child: DropdownButtonFormField<String>(
         initialValue: options.contains(value) ? value : options.first,
+        style: Theme.of(context).textTheme.bodyLarge,
         decoration: InputDecoration(
           isDense: true,
           labelText: label,

@@ -24,12 +24,14 @@ class ReminderPlanItem {
     required this.kind,
     required this.prayerId,
     required this.when,
+    required this.notificationMode,
   });
 
   final String id;
   final ReminderKind kind;
   final String? prayerId;
   final DateTime when;
+  final PrayerNotificationMode? notificationMode;
 }
 
 class ReminderSchedulerState {
@@ -66,12 +68,16 @@ final reminderSchedulerProvider = Provider<ReminderSchedulerState>((ref) {
 
     if (mode == PrayerNotificationMode.notificationOnly ||
         mode == PrayerNotificationMode.adhanWithSound) {
+      final modeSuffix = mode == PrayerNotificationMode.adhanWithSound
+          ? 'adhan'
+          : 'notification';
       items.add(
         ReminderPlanItem(
-          id: 'prayer.${prayer.id}.at',
+          id: 'prayer.${prayer.id}.at.$modeSuffix',
           kind: ReminderKind.prayerAtTime,
           prayerId: prayer.id,
           when: prayer.offerDateTime,
+          notificationMode: mode,
         ),
       );
     }
@@ -83,6 +89,7 @@ final reminderSchedulerProvider = Provider<ReminderSchedulerState>((ref) {
           kind: ReminderKind.prayerBeforeQaza,
           prayerId: prayer.id,
           when: prayer.qazaDateTime.subtract(const Duration(minutes: 20)),
+          notificationMode: mode,
         ),
       );
     }
@@ -101,6 +108,7 @@ final reminderSchedulerProvider = Provider<ReminderSchedulerState>((ref) {
           shouldAutoAdjustForCycle ? 11 : 10,
           0,
         ),
+        notificationMode: null,
       ),
     );
   }
@@ -118,6 +126,7 @@ final reminderSchedulerProvider = Provider<ReminderSchedulerState>((ref) {
           shouldAutoAdjustForCycle ? 20 : 20,
           shouldAutoAdjustForCycle ? 0 : 30,
         ),
+        notificationMode: null,
       ),
     );
   }
@@ -137,6 +146,7 @@ final reminderSchedulerProvider = Provider<ReminderSchedulerState>((ref) {
           shouldAutoAdjustForCycle ? 21 : 21,
           shouldAutoAdjustForCycle ? 30 : 0,
         ),
+        notificationMode: null,
       ),
     );
   }
@@ -155,6 +165,7 @@ final reminderSchedulerProvider = Provider<ReminderSchedulerState>((ref) {
         kind: ReminderKind.fasting,
         prayerId: null,
         when: time,
+        notificationMode: null,
       ),
     );
   }
@@ -175,6 +186,7 @@ final reminderSchedulerProvider = Provider<ReminderSchedulerState>((ref) {
           kind: ReminderKind.cycleCheck,
           prayerId: null,
           when: checkAt,
+          notificationMode: null,
         ),
       );
     }
@@ -200,6 +212,7 @@ final reminderSchedulerBootstrapProvider = Provider<void>((ref) {
                 'kind': e.kind.name,
                 'prayerId': e.prayerId,
                 'when': e.when.toIso8601String(),
+                'notificationMode': e.notificationMode?.name,
               },
             )
             .toList(),

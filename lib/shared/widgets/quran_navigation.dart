@@ -8,6 +8,17 @@ void openQuranQuoteLocation(
   QuranQuote quote, {
   String routeName = 'quranVerse',
 }) {
+  if (quote.surah != null) {
+    context.pushNamed(
+      'quranReader',
+      pathParameters: {'surahNumber': quote.surah.toString()},
+      queryParameters: {
+        if (quote.verse != null) 'ayah': quote.verse.toString(),
+        if (quote.verse != null) 'autoplay': '1',
+      },
+    );
+    return;
+  }
   context.pushNamed(
     routeName,
     queryParameters: {
@@ -20,4 +31,3 @@ void openQuranQuoteLocation(
     },
   );
 }
-

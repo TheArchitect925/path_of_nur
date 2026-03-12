@@ -2,32 +2,129 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../../../l10n/app_localizations.dart';
 import '../../../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../../../shared/widgets/premium_card.dart';
 import '../application/baby_names_controller.dart';
+import '../data/baby_names_repository.dart';
 import '../domain/baby_name_models.dart';
 
 class BabyNamesBrowsePage extends ConsumerStatefulWidget {
   const BabyNamesBrowsePage({
     super.key,
     this.collectionId,
+    this.meaningTheme,
+    this.startingLetter,
   });
 
   final String? collectionId;
+  final String? meaningTheme;
+  final String? startingLetter;
 
   @override
-  ConsumerState<BabyNamesBrowsePage> createState() => _BabyNamesBrowsePageState();
+  ConsumerState<BabyNamesBrowsePage> createState() =>
+      _BabyNamesBrowsePageState();
 }
 
 class _BabyNamesBrowsePageState extends ConsumerState<BabyNamesBrowsePage> {
   final _searchCtrl = TextEditingController();
 
+  List<Widget> _buildActiveFilterChips(
+    BabyNamesState state,
+    BabyNamesController controller,
+  ) {
+    final chips = <Widget>[];
+    void add(String label, VoidCallback onDeleted) {
+      chips.add(InputChip(label: Text(label), onDeleted: onDeleted));
+    }
+
+    if (state.filters.gender != null) {
+      add(
+        'Gender: ${state.filters.gender!.name}',
+        () => controller.setFilters(state.filters.copyWith(gender: null)),
+      );
+    }
+    if (state.filters.category != null) {
+      add(
+        'Category: ${state.filters.category!.name}',
+        () => controller.setFilters(state.filters.copyWith(category: null)),
+      );
+    }
+    if (state.filters.quranicOnly) {
+      add(
+        'Quranic',
+        () => controller.setFilters(state.filters.copyWith(quranicOnly: false)),
+      );
+    }
+    if (state.filters.prophetAssociationOnly) {
+      add(
+        'Prophet linked',
+        () => controller.setFilters(
+          state.filters.copyWith(prophetAssociationOnly: false),
+        ),
+      );
+    }
+    if (state.filters.companionAssociationOnly) {
+      add(
+        'Companion linked',
+        () => controller.setFilters(
+          state.filters.copyWith(companionAssociationOnly: false),
+        ),
+      );
+    }
+    if (state.filters.origin != null) {
+      add(
+        'Origin: ${state.filters.origin}',
+        () => controller.setFilters(state.filters.copyWith(origin: null)),
+      );
+    }
+    if (state.filters.meaningTheme != null) {
+      add(
+        'Theme: ${state.filters.meaningTheme}',
+        () => controller.setFilters(state.filters.copyWith(meaningTheme: null)),
+      );
+    }
+    if (state.filters.startingLetter != null) {
+      add(
+        'Letter: ${state.filters.startingLetter}',
+        () =>
+            controller.setFilters(state.filters.copyWith(startingLetter: null)),
+      );
+    }
+    if (state.filters.favoritesOnly) {
+      add(
+        'Favorites',
+        () =>
+            controller.setFilters(state.filters.copyWith(favoritesOnly: false)),
+      );
+    }
+    if (state.filters.featuredOnly) {
+      add(
+        'Featured',
+        () =>
+            controller.setFilters(state.filters.copyWith(featuredOnly: false)),
+      );
+    }
+    return chips;
+  }
+
   @override
   void initState() {
     super.initState();
-    final state = ref.read(babyNamesControllerProvider);
-    _searchCtrl.text = state.searchQuery;
+    final controller = ref.read(babyNamesControllerProvider.notifier);
+    final existing = ref.read(babyNamesControllerProvider);
+    _searchCtrl.text = existing.searchQuery;
+
+    if (widget.meaningTheme != null || widget.startingLetter != null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        controller.setFilters(
+          existing.filters.copyWith(
+            meaningTheme: widget.meaningTheme ?? existing.filters.meaningTheme,
+            startingLetter:
+                widget.startingLetter ?? existing.filters.startingLetter,
+          ),
+        );
+      });
+    }
   }
 
   @override
@@ -38,33 +135,26 @@ class _BabyNamesBrowsePageState extends ConsumerState<BabyNamesBrowsePage> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
-    final state = ref.watch(babyNamesControllerProvider);
     final controller = ref.read(babyNamesControllerProvider.notifier);
+    final state = ref.watch(babyNamesControllerProvider);
     final options = ref.watch(babyNamesFilterOptionsProvider);
-    final collections = ref.watch(babyNamesCollectionsProvider);
-    var results = ref.watch(babyNamesFilteredProvider);
-    final collection = widget.collectionId == null
-        ? null
-        : collections.where((c) => c.id == widget.collectionId).firstOrNull;
-    if (collection != null) {
-      final ids = collection.nameIds.toSet();
-      results = results.where((r) => ids.contains(r.id)).toList();
-    }
+    final allAsync = ref.watch(babyNamesEntriesProvider);
+    final collectionsAsync = ref.watch(babyNamesCollectionsProvider);
 
     return AppPageScaffold(
       headerIcon: Icons.manage_search_rounded,
-      title: l10n.babyNamesBrowseSearchTitle,
-      subtitle: collection?.title ?? l10n.babyNamesBrowseSearchSubtitle,
+      title: 'Browse Baby Names',
+      subtitle: 'Search and filter across the full offline dataset',
       children: [
         PremiumCard(
           child: TextField(
             controller: _searchCtrl,
             onChanged: controller.setSearchQuery,
+            onSubmitted: controller.submitSearch,
             decoration: InputDecoration(
               isDense: true,
+              hintText: 'Search by name, Arabic, meaning, theme, or origin',
               border: const OutlineInputBorder(),
-              hintText: l10n.babyNamesSearchHint,
               prefixIcon: const Icon(Icons.search_rounded),
               suffixIcon: state.searchQuery.isEmpty
                   ? null
@@ -72,7 +162,7 @@ class _BabyNamesBrowsePageState extends ConsumerState<BabyNamesBrowsePage> {
                       icon: const Icon(Icons.clear_rounded),
                       onPressed: () {
                         _searchCtrl.clear();
-                        controller.setSearchQuery('');
+                        controller.clearSearch();
                       },
                     ),
             ),
@@ -83,73 +173,124 @@ class _BabyNamesBrowsePageState extends ConsumerState<BabyNamesBrowsePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(l10n.babyNamesFiltersTitle, style: const TextStyle(fontWeight: FontWeight.w700)),
+              const Text(
+                'Quick filters',
+                style: TextStyle(fontWeight: FontWeight.w700),
+              ),
               const SizedBox(height: 8),
               Wrap(
                 spacing: 8,
                 runSpacing: 8,
                 children: [
-                  _FilterChip(
-                    label: l10n.babyNamesGenderAny,
-                    selected: state.filters.gender == null,
-                    onTap: () => controller.setGender(null),
+                  FilterChip(
+                    label: const Text('All'),
+                    selected:
+                        state.filters.gender == null &&
+                        state.filters.category == null &&
+                        !state.filters.quranicOnly &&
+                        !state.filters.prophetAssociationOnly &&
+                        !state.filters.companionAssociationOnly &&
+                        state.filters.origin == null &&
+                        state.filters.meaningTheme == null &&
+                        state.filters.startingLetter == null &&
+                        !state.filters.favoritesOnly &&
+                        !state.filters.featuredOnly,
+                    onSelected: (_) => controller.clearFilters(),
                   ),
-                  _FilterChip(
-                    label: l10n.babyNamesBoysLabel,
-                    selected: state.filters.gender == BabyNameGender.boy,
-                    onTap: () => controller.setGender(BabyNameGender.boy),
+                  FilterChip(
+                    label: const Text('Boys'),
+                    selected: state.filters.gender == BabyNameGender.male,
+                    onSelected: (_) => controller.setFilters(
+                      state.filters.copyWith(gender: BabyNameGender.male),
+                    ),
                   ),
-                  _FilterChip(
-                    label: l10n.babyNamesGirlsLabel,
-                    selected: state.filters.gender == BabyNameGender.girl,
-                    onTap: () => controller.setGender(BabyNameGender.girl),
+                  FilterChip(
+                    label: const Text('Girls'),
+                    selected: state.filters.gender == BabyNameGender.female,
+                    onSelected: (_) => controller.setFilters(
+                      state.filters.copyWith(gender: BabyNameGender.female),
+                    ),
                   ),
-                  _FilterChip(
-                    label: l10n.babyNamesUnisexLabel,
+                  FilterChip(
+                    label: const Text('Unisex'),
                     selected: state.filters.gender == BabyNameGender.unisex,
-                    onTap: () => controller.setGender(BabyNameGender.unisex),
+                    onSelected: (_) => controller.setFilters(
+                      state.filters.copyWith(gender: BabyNameGender.unisex),
+                    ),
+                  ),
+                  FilterChip(
+                    label: const Text('Quranic'),
+                    selected: state.filters.quranicOnly,
+                    onSelected: (selected) => controller.setFilters(
+                      state.filters.copyWith(quranicOnly: selected),
+                    ),
+                  ),
+                  FilterChip(
+                    label: const Text('Prophet Association'),
+                    selected: state.filters.prophetAssociationOnly,
+                    onSelected: (selected) => controller.setFilters(
+                      state.filters.copyWith(prophetAssociationOnly: selected),
+                    ),
+                  ),
+                  FilterChip(
+                    label: const Text('Companion Association'),
+                    selected: state.filters.companionAssociationOnly,
+                    onSelected: (selected) => controller.setFilters(
+                      state.filters.copyWith(
+                        companionAssociationOnly: selected,
+                      ),
+                    ),
+                  ),
+                  FilterChip(
+                    label: const Text('Favorites'),
+                    selected: state.filters.favoritesOnly,
+                    onSelected: (selected) => controller.setFilters(
+                      state.filters.copyWith(favoritesOnly: selected),
+                    ),
                   ),
                 ],
               ),
               const SizedBox(height: 8),
+              SizedBox(
+                height: 38,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                    _LetterChip(
+                      label: 'All',
+                      selected: state.filters.startingLetter == null,
+                      onTap: () => controller.setFilters(
+                        state.filters.copyWith(startingLetter: null),
+                      ),
+                    ),
+                    ...options.startingLetters.map(
+                      (letter) => _LetterChip(
+                        label: letter,
+                        selected: state.filters.startingLetter == letter,
+                        onTap: () => controller.setFilters(
+                          state.filters.copyWith(startingLetter: letter),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 10),
               Row(
                 children: [
                   Expanded(
                     child: DropdownButtonFormField<String>(
-                      initialValue: state.filters.region,
-                      decoration: InputDecoration(
-                        border: const OutlineInputBorder(),
-                        isDense: true,
-                        labelText: l10n.babyNamesRegionFilterLabel,
-                      ),
-                      items: [
-                        DropdownMenuItem<String>(
-                          value: null,
-                          child: Text(l10n.babyNamesAnyOption),
-                        ),
-                        ...options.regions.map(
-                          (region) => DropdownMenuItem<String>(
-                            value: region,
-                            child: Text(region),
-                          ),
-                        ),
-                      ],
-                      onChanged: controller.setRegion,
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: DropdownButtonFormField<String>(
                       initialValue: state.filters.origin,
-                      decoration: InputDecoration(
-                        border: const OutlineInputBorder(),
-                        isDense: true,
-                        labelText: l10n.babyNamesOriginFilterLabel,
+                      isExpanded: true,
+                      isDense: true,
+                      decoration: const InputDecoration(
+                        labelText: 'Origin',
+                        border: OutlineInputBorder(),
                       ),
                       items: [
-                        DropdownMenuItem<String>(
+                        const DropdownMenuItem<String>(
                           value: null,
-                          child: Text(l10n.babyNamesAnyOption),
+                          child: Text('Any'),
                         ),
                         ...options.origins.map(
                           (origin) => DropdownMenuItem<String>(
@@ -158,80 +299,103 @@ class _BabyNamesBrowsePageState extends ConsumerState<BabyNamesBrowsePage> {
                           ),
                         ),
                       ],
-                      onChanged: controller.setOrigin,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 8),
-              Row(
-                children: [
-                  Expanded(
-                    child: CheckboxListTile(
-                      dense: true,
-                      contentPadding: EdgeInsets.zero,
-                      value: state.filters.onlyQuranic,
-                      title: Text(l10n.babyNamesQuranicOnlyLabel),
-                      onChanged: (v) => controller.toggleOnlyQuranic(v == true),
-                    ),
-                  ),
-                  Expanded(
-                    child: CheckboxListTile(
-                      dense: true,
-                      contentPadding: EdgeInsets.zero,
-                      value: state.filters.onlyCompanion,
-                      title: Text(l10n.babyNamesCompanionOnlyLabel),
-                      onChanged: (v) => controller.toggleOnlyCompanion(v == true),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 4),
-              Wrap(
-                spacing: 8,
-                runSpacing: 8,
-                children: options.meaningTags
-                    .take(12)
-                    .map(
-                      (tag) => FilterChip(
-                        label: Text(tag),
-                        selected: state.filters.meaningTags.contains(tag),
-                        onSelected: (_) => controller.toggleMeaningTag(tag),
+                      onChanged: (value) => controller.setFilters(
+                        state.filters.copyWith(origin: value),
                       ),
-                    )
-                    .toList(),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: DropdownButtonFormField<String>(
+                      initialValue: state.filters.meaningTheme,
+                      isExpanded: true,
+                      isDense: true,
+                      decoration: const InputDecoration(
+                        labelText: 'Meaning theme',
+                        border: OutlineInputBorder(),
+                      ),
+                      items: [
+                        const DropdownMenuItem<String>(
+                          value: null,
+                          child: Text('Any'),
+                        ),
+                        ...options.meaningThemes.map(
+                          (theme) => DropdownMenuItem<String>(
+                            value: theme,
+                            child: Text(theme),
+                          ),
+                        ),
+                      ],
+                      onChanged: (value) => controller.setFilters(
+                        state.filters.copyWith(meaningTheme: value),
+                      ),
+                    ),
+                  ),
+                ],
               ),
               const SizedBox(height: 8),
               Row(
                 children: [
+                  Expanded(
+                    child: DropdownButtonFormField<String>(
+                      initialValue: state.filters.startingLetter,
+                      isExpanded: true,
+                      isDense: true,
+                      decoration: const InputDecoration(
+                        labelText: 'Starts with',
+                        border: OutlineInputBorder(),
+                      ),
+                      items: [
+                        const DropdownMenuItem<String>(
+                          value: null,
+                          child: Text('Any'),
+                        ),
+                        ...options.startingLetters.map(
+                          (letter) => DropdownMenuItem<String>(
+                            value: letter,
+                            child: Text(letter),
+                          ),
+                        ),
+                      ],
+                      onChanged: (value) => controller.setFilters(
+                        state.filters.copyWith(startingLetter: value),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
                   Expanded(
                     child: DropdownButtonFormField<BabyNameSort>(
                       initialValue: state.sort,
+                      isExpanded: true,
                       isDense: true,
-                      decoration: InputDecoration(
-                        border: const OutlineInputBorder(),
-                        labelText: l10n.babyNamesSortLabel,
+                      decoration: const InputDecoration(
+                        labelText: 'Sort',
+                        border: OutlineInputBorder(),
                       ),
-                      items: [
+                      items: const [
                         DropdownMenuItem(
-                          value: BabyNameSort.alphabetical,
-                          child: Text(l10n.babyNamesSortAlphabetical),
+                          value: BabyNameSort.alphabeticalAz,
+                          child: Text('Alphabetical A-Z'),
                         ),
                         DropdownMenuItem(
-                          value: BabyNameSort.popularity,
-                          child: Text(l10n.babyNamesSortPopularity),
+                          value: BabyNameSort.alphabeticalZa,
+                          child: Text('Alphabetical Z-A'),
                         ),
                         DropdownMenuItem(
-                          value: BabyNameSort.quranicPriority,
-                          child: Text(l10n.babyNamesSortQuranicPriority),
+                          value: BabyNameSort.mostPopular,
+                          child: Text('Most popular'),
                         ),
                         DropdownMenuItem(
-                          value: BabyNameSort.shortest,
-                          child: Text(l10n.babyNamesSortShortest),
+                          value: BabyNameSort.classicFirst,
+                          child: Text('Classic first'),
                         ),
                         DropdownMenuItem(
-                          value: BabyNameSort.mostSaved,
-                          child: Text(l10n.babyNamesSortMostSaved),
+                          value: BabyNameSort.modernFirst,
+                          child: Text('Modern first'),
+                        ),
+                        DropdownMenuItem(
+                          value: BabyNameSort.shortestFirst,
+                          child: Text('Shortest first'),
                         ),
                       ],
                       onChanged: (value) {
@@ -239,42 +403,121 @@ class _BabyNamesBrowsePageState extends ConsumerState<BabyNamesBrowsePage> {
                       },
                     ),
                   ),
-                  const SizedBox(width: 8),
-                  OutlinedButton(
-                    onPressed: controller.clearFilters,
-                    child: Text(l10n.babyNamesClearFilters),
-                  ),
                 ],
               ),
-            ],
-          ),
-        ),
-        const SizedBox(height: 12),
-        PremiumCard(
-          child: Row(
-            children: [
-              Text(
-                '${results.length} ${l10n.babyNamesResultsLabel}',
-                style: const TextStyle(fontWeight: FontWeight.w700),
+              const SizedBox(height: 6),
+              Align(
+                alignment: Alignment.centerRight,
+                child: TextButton(
+                  onPressed: controller.clearFilters,
+                  child: const Text('Reset filters'),
+                ),
               ),
-              const Spacer(),
-              TextButton.icon(
-                onPressed: () => context.pushNamed('babyNamesCompare'),
-                icon: const Icon(Icons.compare_arrows_rounded),
-                label: Text(l10n.babyNamesCompareTitle),
-              ),
+              if (_buildActiveFilterChips(state, controller).isNotEmpty) ...[
+                const SizedBox(height: 2),
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: _buildActiveFilterChips(state, controller),
+                ),
+              ],
             ],
           ),
         ),
         const SizedBox(height: 10),
-        if (results.isEmpty)
-          PremiumCard(
-            child: Text(l10n.babyNamesNoResults),
+        allAsync.when(
+          data: (_) {
+            var results = ref.watch(babyNamesFilteredProvider);
+            final selectedCollectionId = widget.collectionId;
+
+            if (selectedCollectionId != null) {
+              final collections =
+                  collectionsAsync.value ?? const <BabyNameCollection>[];
+              BabyNameCollection? current;
+              for (final collection in collections) {
+                if (collection.id == selectedCollectionId) {
+                  current = collection;
+                  break;
+                }
+              }
+              if (current != null) {
+                final ids = current.nameIds.toSet();
+                results = results
+                    .where((item) => ids.contains(item.id))
+                    .toList();
+              }
+            }
+
+            return Column(
+              children: [
+                PremiumCard(
+                  child: Row(
+                    children: [
+                      Text(
+                        '${results.length} names',
+                        style: const TextStyle(fontWeight: FontWeight.w700),
+                      ),
+                      const Spacer(),
+                      TextButton.icon(
+                        onPressed: () =>
+                            context.pushNamed('babyNamesFavorites'),
+                        icon: const Icon(Icons.favorite_outline_rounded),
+                        label: const Text('Favorites'),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 10),
+                if (results.isEmpty)
+                  PremiumCard(
+                    child: Column(
+                      children: [
+                        const Text('No names match these filters.'),
+                        const SizedBox(height: 6),
+                        const Text(
+                          'Try removing a filter or exploring by meaning instead.',
+                          style: TextStyle(color: Color(0xFF6B604E)),
+                        ),
+                        const SizedBox(height: 8),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            OutlinedButton(
+                              onPressed: () {
+                                controller.clearSearch();
+                                controller.clearFilters();
+                                _searchCtrl.clear();
+                              },
+                              child: const Text('Reset filters'),
+                            ),
+                            const SizedBox(width: 8),
+                            OutlinedButton(
+                              onPressed: () =>
+                                  context.pushNamed('babyNamesMeaningExplorer'),
+                              child: const Text('Explore meanings'),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ...results.map(
+                  (entry) => Padding(
+                    padding: const EdgeInsets.only(bottom: 10),
+                    child: _NameListCard(entry: entry),
+                  ),
+                ),
+              ],
+            );
+          },
+          loading: () => const PremiumCard(
+            child: SizedBox(
+              height: 120,
+              child: Center(child: CircularProgressIndicator(strokeWidth: 2)),
+            ),
           ),
-        ...results.map(
-          (name) => Padding(
-            padding: const EdgeInsets.only(bottom: 10),
-            child: _NameResultCard(name: name),
+          error: (_, _) => const PremiumCard(
+            child: Text('Unable to load names at the moment.'),
           ),
         ),
       ],
@@ -282,78 +525,46 @@ class _BabyNamesBrowsePageState extends ConsumerState<BabyNamesBrowsePage> {
   }
 }
 
-class _NameResultCard extends ConsumerWidget {
-  const _NameResultCard({required this.name});
+class _NameListCard extends ConsumerWidget {
+  const _NameListCard({required this.entry});
 
-  final BabyNameRecord name;
+  final BabyNameEntry entry;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = AppLocalizations.of(context);
     final state = ref.watch(babyNamesControllerProvider);
     final notifier = ref.read(babyNamesControllerProvider.notifier);
-    final isFav = state.favorites.contains(name.id);
-    final isShort = state.shortlist.contains(name.id);
-    final isComp = state.compareIds.contains(name.id);
+    final isFavorite = state.favorites.contains(entry.id);
 
     return PremiumCard(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ListTile(
-            contentPadding: EdgeInsets.zero,
-            title: Text(name.english, style: const TextStyle(fontWeight: FontWeight.w700)),
-            subtitle: Text('${name.transliteration}\n${name.meaning}'),
-            leading: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(name.arabic, style: const TextStyle(fontSize: 20)),
-              ],
-            ),
-            trailing: const Icon(Icons.chevron_right),
-            onTap: () => context.pushNamed(
-              'babyNameDetail',
-              pathParameters: {'nameId': name.id},
-            ),
+      child: ListTile(
+        contentPadding: EdgeInsets.zero,
+        title: Text(
+          '${entry.name} • ${entry.arabic}',
+          style: const TextStyle(fontWeight: FontWeight.w700),
+        ),
+        subtitle: Text(
+          '${entry.transliteration} • ${entry.meaning}\n${entry.meaningThemes.take(3).join(' • ')}',
+          maxLines: 3,
+          overflow: TextOverflow.ellipsis,
+        ),
+        trailing: IconButton(
+          icon: Icon(
+            isFavorite ? Icons.favorite : Icons.favorite_border_rounded,
           ),
-          Wrap(
-            spacing: 6,
-            runSpacing: 6,
-            children: [
-              ActionChip(
-                avatar: Icon(
-                  isFav ? Icons.favorite : Icons.favorite_border,
-                  size: 16,
-                ),
-                label: Text(l10n.babyNamesFavoriteAction),
-                onPressed: () => notifier.toggleFavorite(name.id),
-              ),
-              ActionChip(
-                avatar: Icon(
-                  isShort ? Icons.bookmark : Icons.bookmark_border,
-                  size: 16,
-                ),
-                label: Text(l10n.babyNamesShortlistAction),
-                onPressed: () => notifier.toggleShortlist(name.id),
-              ),
-              ActionChip(
-                avatar: Icon(
-                  isComp ? Icons.check_circle_outline : Icons.add_circle_outline,
-                  size: 16,
-                ),
-                label: Text(l10n.babyNamesCompareAction),
-                onPressed: () => notifier.toggleCompare(name.id),
-              ),
-            ],
-          ),
-        ],
+          onPressed: () => notifier.toggleFavorite(entry.id),
+        ),
+        onTap: () => context.pushNamed(
+          'babyNameDetail',
+          pathParameters: {'nameId': entry.id},
+        ),
       ),
     );
   }
 }
 
-class _FilterChip extends StatelessWidget {
-  const _FilterChip({
+class _LetterChip extends StatelessWidget {
+  const _LetterChip({
     required this.label,
     required this.selected,
     required this.onTap,
@@ -365,10 +576,13 @@ class _FilterChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FilterChip(
-      label: Text(label),
-      selected: selected,
-      onSelected: (_) => onTap(),
+    return Padding(
+      padding: const EdgeInsets.only(right: 6),
+      child: ChoiceChip(
+        label: Text(label),
+        selected: selected,
+        onSelected: (_) => onTap(),
+      ),
     );
   }
 }

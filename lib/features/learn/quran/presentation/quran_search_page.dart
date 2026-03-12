@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../../core/theme/app_fonts.dart';
 import '../../../../../l10n/app_localizations.dart';
 import '../../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../../shared/widgets/premium_card.dart';
@@ -64,7 +65,10 @@ class QuranSearchPage extends ConsumerWidget {
                           (item) => ActionChip(
                             label: Text(item),
                             onPressed: () {
-                              ref.read(quranSearchQueryProvider.notifier).state = item;
+                              ref
+                                      .read(quranSearchQueryProvider.notifier)
+                                      .state =
+                                  item;
                             },
                           ),
                         )
@@ -86,7 +90,10 @@ class QuranSearchPage extends ConsumerWidget {
             (result) => Padding(
               padding: const EdgeInsets.only(bottom: 10),
               child: PremiumCard(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 10,
+                ),
                 child: ListTile(
                   dense: true,
                   contentPadding: EdgeInsets.zero,
@@ -97,13 +104,22 @@ class QuranSearchPage extends ConsumerWidget {
                     style: const TextStyle(fontWeight: FontWeight.w700),
                   ),
                   subtitle: Text(
-                    result.matchText,
+                    result.reference == null
+                        ? result.matchText
+                        : '${result.matchText}\n${result.connectedKnowledgeCount} connected links • ${result.knowledgeHint ?? 'knowledge graph'}',
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontFamily: _containsArabic(result.matchText)
+                          ? AppFonts.quranArabic
+                          : null,
+                    ),
                   ),
                   trailing: const Icon(Icons.chevron_right),
                   onTap: () {
-                    ref.read(quranRecentSearchesProvider.notifier).addSearch(query);
+                    ref
+                        .read(quranRecentSearchesProvider.notifier)
+                        .addSearch(query);
                     context.pushNamed(
                       'quranReader',
                       pathParameters: {
@@ -122,4 +138,8 @@ class QuranSearchPage extends ConsumerWidget {
       ],
     );
   }
+}
+
+bool _containsArabic(String text) {
+  return RegExp(r'[\u0600-\u06FF]').hasMatch(text);
 }

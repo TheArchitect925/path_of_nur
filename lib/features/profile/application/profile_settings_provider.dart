@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../core/theme/app_theme.dart';
 import '../../../shared/persistence/local_store.dart';
 
 enum ProfileThemePreference { system, dark, light }
@@ -22,6 +23,9 @@ class ProfileSettingsState {
     required this.quranReminders,
     required this.reflectionReminders,
     required this.fastingReminders,
+    required this.appThemeMode,
+    required this.disableGlassTransparency,
+    required this.disableBackground,
     this.ramadanStartDateIso,
     this.ramadanEndDateIso,
   });
@@ -42,6 +46,9 @@ class ProfileSettingsState {
   final bool quranReminders;
   final bool reflectionReminders;
   final bool fastingReminders;
+  final AppThemeMode appThemeMode;
+  final bool disableGlassTransparency;
+  final bool disableBackground;
   final String? ramadanStartDateIso;
   final String? ramadanEndDateIso;
 
@@ -62,6 +69,9 @@ class ProfileSettingsState {
     bool? quranReminders,
     bool? reflectionReminders,
     bool? fastingReminders,
+    AppThemeMode? appThemeMode,
+    bool? disableGlassTransparency,
+    bool? disableBackground,
     String? ramadanStartDateIso,
     String? ramadanEndDateIso,
   }) {
@@ -82,6 +92,10 @@ class ProfileSettingsState {
       quranReminders: quranReminders ?? this.quranReminders,
       reflectionReminders: reflectionReminders ?? this.reflectionReminders,
       fastingReminders: fastingReminders ?? this.fastingReminders,
+      appThemeMode: appThemeMode ?? this.appThemeMode,
+      disableGlassTransparency:
+          disableGlassTransparency ?? this.disableGlassTransparency,
+      disableBackground: disableBackground ?? this.disableBackground,
       ramadanStartDateIso: ramadanStartDateIso ?? this.ramadanStartDateIso,
       ramadanEndDateIso: ramadanEndDateIso ?? this.ramadanEndDateIso,
     );
@@ -90,26 +104,29 @@ class ProfileSettingsState {
 
 class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
   ProfileSettingsNotifier(this._store)
-      : super(
-          const ProfileSettingsState(
-            themePreference: ProfileThemePreference.system,
-            reduceMotion: false,
-            highContrastText: false,
-            ramadanModeEnabled: false,
-            lossModeEnabled: false,
-            gentleModeEnabled: true,
-            kidsModeEnabled: false,
-            privateTrackingMode: false,
-            minimalTrackingMode: false,
-            hideGrowthVisuals: false,
-            reflectionOnlyMode: false,
-            prayerReminders: true,
-            dhikrReminders: true,
-            quranReminders: false,
-            reflectionReminders: false,
-            fastingReminders: false,
-          ),
-        ) {
+    : super(
+        const ProfileSettingsState(
+          themePreference: ProfileThemePreference.system,
+          reduceMotion: false,
+          highContrastText: false,
+          ramadanModeEnabled: false,
+          lossModeEnabled: false,
+          gentleModeEnabled: true,
+          kidsModeEnabled: false,
+          privateTrackingMode: false,
+          minimalTrackingMode: false,
+          hideGrowthVisuals: false,
+          reflectionOnlyMode: false,
+          prayerReminders: true,
+          dhikrReminders: true,
+          quranReminders: false,
+          reflectionReminders: false,
+          fastingReminders: false,
+          appThemeMode: AppThemeMode.defaultMode,
+          disableGlassTransparency: false,
+          disableBackground: false,
+        ),
+      ) {
     _load();
   }
 
@@ -162,10 +179,7 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
     _save();
   }
 
-  void setRamadanDateRange({
-    DateTime? start,
-    DateTime? end,
-  }) {
+  void setRamadanDateRange({DateTime? start, DateTime? end}) {
     state = state.copyWith(
       ramadanStartDateIso: start?.toIso8601String(),
       ramadanEndDateIso: end?.toIso8601String(),
@@ -174,10 +188,7 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
   }
 
   void clearRamadanDateRange() {
-    state = state.copyWith(
-      ramadanStartDateIso: '',
-      ramadanEndDateIso: '',
-    );
+    state = state.copyWith(ramadanStartDateIso: '', ramadanEndDateIso: '');
     _save();
   }
 
@@ -226,6 +237,30 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
     _save();
   }
 
+  void setAppThemeMode(AppThemeMode mode) {
+    state = state.copyWith(appThemeMode: mode);
+    _save();
+  }
+
+  void setDisableGlassTransparency(bool value) {
+    state = state.copyWith(disableGlassTransparency: value);
+    _save();
+  }
+
+  void setDisableBackground(bool value) {
+    state = state.copyWith(disableBackground: value);
+    _save();
+  }
+
+  void resetAppearance() {
+    state = state.copyWith(
+      appThemeMode: AppThemeMode.defaultMode,
+      disableGlassTransparency: false,
+      disableBackground: false,
+    );
+    _save();
+  }
+
   void _load() {
     final data = _store.getJsonMap('settings.profile');
     if (data == null) return;
@@ -239,16 +274,28 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
       }
     }
 
+    AppThemeMode appThemeMode = state.appThemeMode;
+    final appThemeModeName = data['appThemeMode'] as String?;
+    for (final item in AppThemeMode.values) {
+      if (item.name == appThemeModeName) {
+        appThemeMode = item;
+        break;
+      }
+    }
+
     state = state.copyWith(
       themePreference: theme,
       reduceMotion: data['reduceMotion'] as bool? ?? state.reduceMotion,
-      highContrastText: data['highContrastText'] as bool? ?? state.highContrastText,
+      highContrastText:
+          data['highContrastText'] as bool? ?? state.highContrastText,
       ramadanModeEnabled:
           data['ramadanModeEnabled'] as bool? ?? state.ramadanModeEnabled,
-      lossModeEnabled: data['lossModeEnabled'] as bool? ?? state.lossModeEnabled,
+      lossModeEnabled:
+          data['lossModeEnabled'] as bool? ?? state.lossModeEnabled,
       gentleModeEnabled:
           data['gentleModeEnabled'] as bool? ?? state.gentleModeEnabled,
-      kidsModeEnabled: data['kidsModeEnabled'] as bool? ?? state.kidsModeEnabled,
+      kidsModeEnabled:
+          data['kidsModeEnabled'] as bool? ?? state.kidsModeEnabled,
       privateTrackingMode:
           data['privateTrackingMode'] as bool? ?? state.privateTrackingMode,
       minimalTrackingMode:
@@ -257,12 +304,20 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
           data['hideGrowthVisuals'] as bool? ?? state.hideGrowthVisuals,
       reflectionOnlyMode:
           data['reflectionOnlyMode'] as bool? ?? state.reflectionOnlyMode,
-      prayerReminders: data['prayerReminders'] as bool? ?? state.prayerReminders,
+      prayerReminders:
+          data['prayerReminders'] as bool? ?? state.prayerReminders,
       dhikrReminders: data['dhikrReminders'] as bool? ?? state.dhikrReminders,
       quranReminders: data['quranReminders'] as bool? ?? state.quranReminders,
       reflectionReminders:
           data['reflectionReminders'] as bool? ?? state.reflectionReminders,
-      fastingReminders: data['fastingReminders'] as bool? ?? state.fastingReminders,
+      fastingReminders:
+          data['fastingReminders'] as bool? ?? state.fastingReminders,
+      appThemeMode: appThemeMode,
+      disableGlassTransparency:
+          data['disableGlassTransparency'] as bool? ??
+          state.disableGlassTransparency,
+      disableBackground:
+          data['disableBackground'] as bool? ?? state.disableBackground,
       ramadanStartDateIso:
           data['ramadanStartDateIso'] as String? ?? state.ramadanStartDateIso,
       ramadanEndDateIso:
@@ -288,6 +343,9 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
       'quranReminders': state.quranReminders,
       'reflectionReminders': state.reflectionReminders,
       'fastingReminders': state.fastingReminders,
+      'appThemeMode': state.appThemeMode.name,
+      'disableGlassTransparency': state.disableGlassTransparency,
+      'disableBackground': state.disableBackground,
       'ramadanStartDateIso': state.ramadanStartDateIso,
       'ramadanEndDateIso': state.ramadanEndDateIso,
     });
@@ -296,5 +354,5 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
 
 final profileSettingsProvider =
     StateNotifierProvider<ProfileSettingsNotifier, ProfileSettingsState>(
-  (ref) => ProfileSettingsNotifier(ref.watch(localStoreProvider)),
-);
+      (ref) => ProfileSettingsNotifier(ref.watch(localStoreProvider)),
+    );

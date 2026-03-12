@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/application/app_summary_providers.dart';
+import '../../../../shared/widgets/premium_card.dart';
 import '../../shared/application/learn_unified_provider.dart';
 import '../../shared/domain/learn_unified_models.dart';
 import '../../../../shared/widgets/section_title.dart';
@@ -31,7 +32,7 @@ class LearnTabContent extends ConsumerWidget {
       case LearnTab.hadith:
         return _HadithTab(l10n: l10n, summary: summary, unified: unified);
       case LearnTab.notes:
-        return _NotesTab(l10n: l10n);
+        return _NotesTab(l10n: l10n, summary: summary);
     }
   }
 }
@@ -280,9 +281,10 @@ class _HadithTab extends StatelessWidget {
 }
 
 class _NotesTab extends StatelessWidget {
-  const _NotesTab({required this.l10n});
+  const _NotesTab({required this.l10n, required this.summary});
 
   final AppLocalizations l10n;
+  final LearnSummary summary;
 
   @override
   Widget build(BuildContext context) {
@@ -293,6 +295,16 @@ class _NotesTab extends StatelessWidget {
           title: l10n.learnNotesSectionTitle,
           subtitle: l10n.learnNotesSectionSubtitle,
         ),
+        PremiumCard(
+          child: Text(
+            l10n.learnProgressSummary(
+              summary.startedTopics,
+              summary.completedTopics,
+              summary.favoriteTopics,
+            ),
+          ),
+        ),
+        const SizedBox(height: 12),
         LearnActionCard(
           title: l10n.learnNotesSectionTitle,
           subtitle: l10n.learnNotesSectionSubtitle,

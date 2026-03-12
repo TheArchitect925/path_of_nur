@@ -51,6 +51,7 @@ class QuranNotesPage extends ConsumerWidget {
                   Expanded(
                     child: DropdownButtonFormField<String>(
                       initialValue: filter.folder,
+                      style: Theme.of(context).textTheme.bodyLarge,
                       decoration: InputDecoration(
                         labelText: l10n.quranNotesFolderLabel,
                         isDense: true,
@@ -74,6 +75,7 @@ class QuranNotesPage extends ConsumerWidget {
                   Expanded(
                     child: DropdownButtonFormField<String>(
                       initialValue: filter.tag,
+                      style: Theme.of(context).textTheme.bodyLarge,
                       decoration: InputDecoration(
                         labelText: l10n.quranNotesTagLabel,
                         isDense: true,

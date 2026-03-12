@@ -55,17 +55,17 @@ const List<HomeVerse> homeQuranVerses = [
   HomeVerse(
     arabic: 'إِنَّ ٱللَّهَ غَفُورٌ رَّحِيمٌ',
     transliteration: 'Inna Allāha ghafūrun raheem',
-    translation: 'Allah is Forgiving and Merciful.',
+    translation: 'الله is Forgiving and Merciful.',
   ),
   HomeVerse(
     arabic: 'وَمَا تُقَدِّمُوا لِأَنفُسِكُمْ مِنْ خَيْرٍ',
     transliteration: 'Wama tuqaddimoo li-anfusikum min khairin',
-    translation: 'Whatever good you send ahead for yourselves, you will find it with Allah.',
+    translation: 'Whatever good you send ahead for yourselves, you will find it with الله.',
   ),
   HomeVerse(
     arabic: 'قُلْ هُوَ ٱللَّهُ أَحَدٌ',
     transliteration: 'Qul huwa Allahu ahad',
-    translation: 'Say: He is Allah, One.',
+    translation: 'Say: He is الله, One.',
   ),
   HomeVerse(
     arabic: 'وَنَزَّلْنَا عَلَيْكَ ٱلْقُرْءَانَ تَعْلِيماً',
@@ -85,7 +85,7 @@ const List<HomeVerse> homeQuranVerses = [
   HomeVerse(
     arabic: 'لَا تَحْزَنْ إِنَّ ٱللَّهَ مَعَنَا',
     transliteration: 'La tahzani inna Allāha ma‘anā',
-    translation: 'Do not grieve; surely Allah is with us.',
+    translation: 'Do not grieve; surely الله is with us.',
   ),
   HomeVerse(
     arabic: 'قُلْ لِعِبَادِيْ الَّذِينَ ءَامَنُوا',
@@ -95,7 +95,7 @@ const List<HomeVerse> homeQuranVerses = [
   HomeVerse(
     arabic: 'وَمَا بِٱللَّهِ مِنْ دَابَّةٍ',
     transliteration: 'Wama billahi min dābbah',
-    translation: 'There is not a creature on earth but Allah holds it in care.',
+    translation: 'There is not a creature on earth but الله holds it in care.',
   ),
   HomeVerse(
     arabic: 'إِيَّاكَ نَعْبُدُ',
@@ -110,7 +110,7 @@ const List<HomeVerse> homeQuranVerses = [
   HomeVerse(
     arabic: 'بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ',
     transliteration: 'Bismillāh ar-Raḥmān ar-Raḥīm',
-    translation: 'In the name of Allah, the Most Gracious, the Most Merciful.',
+    translation: 'In the name of الله, the Most Gracious, the Most Merciful.',
   ),
   HomeVerse(
     arabic: 'وَالْعَصْرِ',
@@ -124,8 +124,8 @@ const List<HomeVerse> homeQuranVerses = [
   ),
   HomeVerse(
     arabic: 'وَتَوَكَّلْ عَلَى ٱللَّهِ',
-    transliteration: 'Wa tawakkal ‘ala Allah',
-    translation: 'And place your trust in Allah.',
+    transliteration: 'Wa tawakkal ‘ala الله',
+    translation: 'And place your trust in الله.',
   ),
   HomeVerse(
     arabic: 'فَإِنَّ مَعِيَ ٱلْعِبَادُ',
@@ -160,7 +160,7 @@ const List<HomeVerse> homeQuranVerses = [
   HomeVerse(
     arabic: 'وَلَا تَقْنَطُوا مِن رَّحْمَةِ ٱللَّهِ',
     transliteration: 'Wa lā taqnathū min raḥmati Allāh',
-    translation: 'Do not despair of Allah’s mercy.',
+    translation: 'Do not despair of الله’s mercy.',
   ),
   HomeVerse(
     arabic: 'وَأَعِدُّوا لَهُمْ مَا ٱسْتَطَعْتُمْ',
@@ -170,7 +170,7 @@ const List<HomeVerse> homeQuranVerses = [
   HomeVerse(
     arabic: 'وَاللَّهُ بِكُلِّ شَيْءٍ عَلِيمٌ',
     transliteration: 'Wallahu bikulli shay’in ‘alīm',
-    translation: 'Allah is all-knowing of everything.',
+    translation: 'الله is all-knowing of everything.',
   ),
   HomeVerse(
     arabic: 'إِلَّا مَنْ تَوَلّاهُ ٱلرَّحْمَٰنُ',
@@ -180,7 +180,7 @@ const List<HomeVerse> homeQuranVerses = [
   HomeVerse(
     arabic: 'وَٱللَّهُ نُورُ ٱلسَّمَٰوَاتِ وَٱلْأَرْضِ',
     transliteration: 'Wallāhu nūru as-samāwāti wal-arḍ',
-    translation: 'Allah is the Light of the heavens and the earth.',
+    translation: 'الله is the Light of the heavens and the earth.',
   ),
   HomeVerse(
     arabic: 'رَبِّ ٱشْرَحْ لِي صَدْرِي',
@@ -195,7 +195,7 @@ const List<HomeVerse> homeQuranVerses = [
   HomeVerse(
     arabic: 'إِنَّا لِلَّهِ وَإِنَّآ إِلَيْهِ رَاجِعُونَ',
     transliteration: 'Innā lillāhi wa innā ilayhi rāji‘ūn',
-    translation: 'We belong to Allah and to Him we return.',
+    translation: 'We belong to الله and to Him we return.',
   ),
   HomeVerse(
     arabic: 'وَيَغْفِرْ لَكُمْ',
@@ -230,12 +230,12 @@ const List<HomeVerse> homeQuranVerses = [
   HomeVerse(
     arabic: 'إِنْ تُعْطُوا مِنْ خَيْرٍ فَقَالَ',
     transliteration: 'In tu‘ṭū min khairin fa-qāla',
-    translation: 'If you are given good, say: this is from Allah.',
+    translation: 'If you are given good, say: this is from الله.',
   ),
   HomeVerse(
     arabic: 'وَمَا عِندَ ٱللَّهِ خَيْرٌ وَأَبْقَىٰ',
     transliteration: 'Wa mā ‘inda Allāhi khayrun wa abqā',
-    translation: 'What is with Allah is better and everlasting.',
+    translation: 'What is with الله is better and everlasting.',
   ),
   HomeVerse(
     arabic: 'رَبِّ ٱغْفِرْ لِي وَارْحَمْنِي',
@@ -270,7 +270,7 @@ const List<HomeVerse> homeQuranVerses = [
   HomeVerse(
     arabic: 'ٱلْحَمْدُ لِلَّهِ رَبِّ ٱلْعَالَمِينَ',
     transliteration: 'Al-ḥamdu lillāhi rabbil-‘ālamīn',
-    translation: 'Praise belongs to Allah, Lord of all worlds.',
+    translation: 'Praise belongs to الله, Lord of all worlds.',
   ),
   HomeVerse(
     arabic: 'لَا إِكْرَاهَ فِي ٱلدِّينِ',
@@ -300,7 +300,7 @@ const List<HomeVerse> homeQuranVerses = [
   HomeVerse(
     arabic: 'وَٱلَّذِينَ صَبَرُوا فَإِنَّ ٱللَّهَ',
     transliteration: 'Walladhīna ṣabarū fa-inna Allāh',
-    translation: 'And those who are patient, Allah is with them.',
+    translation: 'And those who are patient, الله is with them.',
   ),
   HomeVerse(
     arabic: 'وَٱسْتَغْفِرُوا رَبَّكُمْ',
@@ -330,6 +330,6 @@ const List<HomeVerse> homeQuranVerses = [
   HomeVerse(
     arabic: 'وَٱسْتَغْفِرِ ٱللَّهَ',
     transliteration: 'Wastaghfir Allāh',
-    translation: 'Seek Allah’s forgiveness.',
+    translation: 'Seek الله’s forgiveness.',
   ),
 ];
