@@ -8,9 +8,16 @@ import '../application/prophets_repository.dart';
 import '../domain/prophet_quiz.dart';
 
 class ProphetsQuizView extends ConsumerStatefulWidget {
-  const ProphetsQuizView({super.key, this.onReviewProphets});
+  const ProphetsQuizView({
+    super.key,
+    this.onReviewProphets,
+    this.initialModeName,
+    this.initialDifficultyName,
+  });
 
   final VoidCallback? onReviewProphets;
+  final String? initialModeName;
+  final String? initialDifficultyName;
 
   @override
   ConsumerState<ProphetsQuizView> createState() => _ProphetsQuizViewState();
@@ -21,6 +28,29 @@ class _ProphetsQuizViewState extends ConsumerState<ProphetsQuizView> {
   ProphetQuizMode? _selectedMode;
   String? _selectedProphetId;
   String? _selectedEraId;
+
+  @override
+  void initState() {
+    super.initState();
+    final initialDifficultyName = widget.initialDifficultyName;
+    if (initialDifficultyName != null) {
+      for (final difficulty in ProphetQuizDifficulty.values) {
+        if (difficulty.name == initialDifficultyName) {
+          _selectedDifficulty = difficulty;
+          break;
+        }
+      }
+    }
+    final initialModeName = widget.initialModeName;
+    if (initialModeName != null) {
+      for (final mode in ProphetQuizMode.values) {
+        if (mode.name == initialModeName) {
+          _selectedMode = mode;
+          break;
+        }
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

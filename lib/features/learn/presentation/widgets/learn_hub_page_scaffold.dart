@@ -24,7 +24,7 @@ class LearnHubPageScaffold extends StatelessWidget {
   final String subtitle;
   final IconData? headerIcon;
   final List<Widget> children;
-  final QuranQuote quote;
+  final QuranQuote? quote;
 
   @override
   Widget build(BuildContext context) {
@@ -33,10 +33,7 @@ class LearnHubPageScaffold extends StatelessWidget {
       title: title,
       subtitle: subtitle,
       quote: quote,
-      children: [
-        ...children,
-        const SizedBox(height: 96),
-      ],
+      children: [...children, const SizedBox(height: 96)],
     );
   }
 }

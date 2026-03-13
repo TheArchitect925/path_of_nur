@@ -26,6 +26,7 @@ class _KnowledgeConstellationPageState
     extends ConsumerState<KnowledgeConstellationPage> {
   static const Size _canvasSize = Size(2200, 1600);
   static const Offset _center = Offset(1100, 800);
+  static const Size _viewportSize = Size(900, 560);
 
   late final List<QuranUniverseNode> _nodes = seededUniverseNodes
       .where(
@@ -43,7 +44,24 @@ class _KnowledgeConstellationPageState
 
   late final Map<String, Offset> _positions = _buildNodePositions(_nodes);
   late final List<_ConstellationEdge> _edges = _buildEdges();
+  late final TransformationController _viewerController =
+      TransformationController(_initialTransform());
   String? _selectedNodeId;
+
+  Matrix4 _initialTransform() {
+    const initialScale = 0.62;
+    final dx = (_viewportSize.width / 2) - (_center.dx * initialScale);
+    final dy = (_viewportSize.height / 2) - (_center.dy * initialScale);
+    return Matrix4.identity()
+      ..translateByDouble(dx, dy, 0, 1)
+      ..scaleByDouble(initialScale, initialScale, 1, 1);
+  }
+
+  @override
+  void dispose() {
+    _viewerController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -104,10 +122,11 @@ class _KnowledgeConstellationPageState
         const SizedBox(height: 12),
         PremiumCard(
           child: SizedBox(
-            height: 560,
+            height: _viewportSize.height,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
               child: InteractiveViewer(
+                transformationController: _viewerController,
                 constrained: false,
                 boundaryMargin: const EdgeInsets.all(420),
                 minScale: 0.45,

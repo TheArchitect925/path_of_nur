@@ -15,6 +15,8 @@ import '../../prophets/application/prophet_quiz_pool_service.dart';
 import '../../prophets/application/prophets_repository.dart';
 import '../../prophets/application/prophets_ui_state.dart';
 import '../../prophets/domain/prophet_entry.dart';
+import '../../salah/data/salah_trainer_data.dart' as salah_data;
+import '../../salah/models/salah_trainer_models.dart';
 import '../../quran/application/quran_learning_system_service.dart';
 import '../../quran/application/quran_providers.dart';
 import '../../quran/data/names_of_allah_data.dart';
@@ -288,6 +290,12 @@ final learnDomainCardsProvider = Provider<List<LearnDomainCard>>((ref) {
       learnCategory: pickById('life-lessons-quran'),
     ),
     LearnDomainCard(
+      domain: LearnUnifiedDomain.salah,
+      title: 'Salah Trainer',
+      subtitle: 'Prayer structure, surah practice, and guided recitation.',
+      learnCategory: pickById('salah'),
+    ),
+    LearnDomainCard(
       domain: LearnUnifiedDomain.namesOfAllah,
       title: '99 Names of Allah',
       subtitle: 'Reflect on divine names and meanings.',
@@ -321,6 +329,8 @@ final learnUnifiedItemsProvider = Provider<List<LearnUnifiedContentItem>>((
   final hadithEntries = ref.watch(hadithEntriesProvider);
   final prophetEntries = ref.watch(prophetsProvider);
   final lifeLessons = divineLifeLessons;
+  final salahPrayers = salah_data.salahPrayers;
+  final salahSurahs = salah_data.salahSurahs;
   final hadithQuizzes = ref.watch(hadithChapterQuizzesProvider);
   final prophetQuizQuestions = ProphetQuizPoolService.buildExpandedPool();
   final quranNotes = ref.watch(quranNotesProvider);
@@ -437,6 +447,64 @@ final learnUnifiedItemsProvider = Provider<List<LearnUnifiedContentItem>>((
         isDailyEligible: true,
         routeName: 'lifeLessonDetail',
         pathParameters: {'lessonId': lesson.id},
+      ),
+    );
+  }
+
+  for (final prayer in salahPrayers) {
+    items.add(
+      LearnUnifiedContentItem(
+        id: 'salah:prayer:${prayer.id.name}',
+        type: LearnItemType.salahPrayer,
+        domain: LearnUnifiedDomain.salah,
+        title: prayer.title,
+        subtitle: '${prayer.fardRakahs} • ${prayer.recitationStyle}',
+        summary: prayer.shortDescription,
+        tags: ['salah', 'prayer', prayer.id.name, prayer.title.toLowerCase()],
+        themeIds: const ['prayer', 'knowledge'],
+        difficulty: LearnDifficulty.beginner,
+        estimatedReadMinutes: 5,
+        relatedItemIds: const <String>[],
+        reflectionPrompts: const [
+          'Which part of this prayer structure needs the most repetition this week?',
+        ],
+        practiceActions: const [
+          'Open the guided prayer mode and review one rakah slowly.',
+        ],
+        isFeatured:
+            prayer.id == SalahPrayerId.fajr || prayer.id == SalahPrayerId.isha,
+        isDailyEligible: true,
+        routeName: 'learnSalahPrayerDetail',
+        pathParameters: {'prayerId': prayer.id.name},
+      ),
+    );
+  }
+
+  for (final surah in salahSurahs) {
+    items.add(
+      LearnUnifiedContentItem(
+        id: 'salah:surah:${surah.id}',
+        type: LearnItemType.surah,
+        domain: LearnUnifiedDomain.salah,
+        title: surah.name,
+        subtitle: 'Surah ${surah.surahNumber}',
+        summary: surah.summary,
+        tags: ['salah', 'surah', 'memorization', surah.id, surah.name],
+        themeIds: const ['prayer', 'knowledge'],
+        difficulty: LearnDifficulty.beginner,
+        estimatedReadMinutes: 4,
+        relatedItemIds: const <String>[],
+        reflectionPrompts: [surah.reflection],
+        practiceActions: const [
+          'Play the surah in Learn Ayah and repeat it verse by verse.',
+        ],
+        isFeatured:
+            surah.id == 'al_fatihah' ||
+            surah.id == 'al_ikhlas' ||
+            surah.id == 'an_nas',
+        isDailyEligible: true,
+        routeName: 'learnSalahSurahDetail',
+        pathParameters: {'surahId': surah.id},
       ),
     );
   }

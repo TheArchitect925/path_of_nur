@@ -672,6 +672,12 @@ class _LearnPageState extends ConsumerState<LearnPage> {
         return 'Prophet';
       case LearnItemType.lifeLesson:
         return 'Life Lesson';
+      case LearnItemType.salahPrayer:
+        return 'Salah Prayer';
+      case LearnItemType.surah:
+        return 'Surah';
+      case LearnItemType.recitation:
+        return 'Recitation';
       case LearnItemType.name:
         return 'Name of Allah';
       case LearnItemType.babyName:

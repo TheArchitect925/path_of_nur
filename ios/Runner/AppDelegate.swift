@@ -10,6 +10,12 @@ struct PrayerCountdownAttributes: ActivityAttributes {
     var currentPrayerName: String?
     var currentPrayerArabicName: String?
     var currentRemainingSeconds: Int?
+    var showRamadanCountdown: Bool
+    var ramadanPrayerId: String?
+    var ramadanPrayerName: String?
+    var ramadanPrayerArabicName: String?
+    var ramadanRemainingSeconds: Int?
+    var ramadanTargetAtEpoch: Int?
     var nextPrayerId: String
     var nextPrayerName: String
     var nextPrayerArabicName: String
@@ -157,6 +163,17 @@ struct GrowthSummaryAttributes: ActivityAttributes {
     let currentRemainingSeconds = rawCurrentRemaining == nil
       ? nil
       : max(0, rawCurrentRemaining ?? 0)
+    let showRamadanCountdown = (args["showRamadanCountdown"] as? Bool) ?? false
+    let ramadanPrayerId = args["ramadanPrayerId"] as? String
+    let ramadanPrayerName = args["ramadanPrayerName"] as? String
+    let ramadanPrayerArabicName = args["ramadanPrayerArabicName"] as? String
+    let rawRamadanRemaining = args["ramadanRemainingSeconds"] as? Int
+    let ramadanRemainingSeconds = rawRamadanRemaining == nil
+      ? nil
+      : max(0, rawRamadanRemaining ?? 0)
+    let ramadanTargetAtIso = args["ramadanTargetAtIso"] as? String
+    let ramadanTargetAt = ramadanTargetAtIso.flatMap { ISO8601DateFormatter().date(from: $0) }
+    let ramadanTargetAtEpoch = ramadanTargetAt.map { Int($0.timeIntervalSince1970) }
 
     let nextPrayerId = (args["nextPrayerId"] as? String) ?? "prayer"
     let nextPrayerName = (args["nextPrayerName"] as? String) ?? "Prayer"
@@ -173,6 +190,12 @@ struct GrowthSummaryAttributes: ActivityAttributes {
       currentPrayerName: currentPrayerName,
       currentPrayerArabicName: currentPrayerArabicName,
       currentRemainingSeconds: currentRemainingSeconds,
+      showRamadanCountdown: showRamadanCountdown,
+      ramadanPrayerId: ramadanPrayerId,
+      ramadanPrayerName: ramadanPrayerName,
+      ramadanPrayerArabicName: ramadanPrayerArabicName,
+      ramadanRemainingSeconds: ramadanRemainingSeconds,
+      ramadanTargetAtEpoch: ramadanTargetAtEpoch,
       nextPrayerId: nextPrayerId,
       nextPrayerName: nextPrayerName,
       nextPrayerArabicName: nextPrayerArabicName,

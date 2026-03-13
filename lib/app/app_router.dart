@@ -14,11 +14,16 @@ import '../features/learn/presentation/learn_page.dart';
 import '../features/learn/presentation/pages/learn_quran_hub_page.dart';
 import '../features/learn/presentation/pages/learn_salah_hub_page.dart';
 import '../features/learn/presentation/pages/learn_section_placeholder_page.dart';
+import '../features/learn/dua/presentation/dua_detail_page.dart';
 import '../features/learn/prophets/domain/prophets_tab.dart';
 import '../features/learn/quran_universe/presentation/quran_universe_page.dart';
 import '../features/learn/quran_universe/presentation/knowledge_constellation_page.dart';
 import '../features/learn/salah/presentation/wudu_guide_page.dart';
+import '../features/learn/salah/presentation/salah_guided_prayer_page.dart';
+import '../features/learn/salah/presentation/salah_prayer_detail_page.dart';
+import '../features/learn/salah/presentation/salah_surah_detail_page.dart';
 import '../features/learn/salah/presentation/wudu_trainer_page.dart';
+import '../features/learn/salah/models/salah_trainer_models.dart';
 import '../features/home/presentation/home_page.dart';
 import '../features/profile/presentation/profile_page.dart';
 import '../features/profile/presentation/profile_summary_page.dart';
@@ -93,6 +98,9 @@ import '../features/learn/life/baby_names/presentation/baby_names_generator_page
 import '../features/learn/life/baby_names/presentation/baby_names_home_page.dart';
 import '../features/learn/life/baby_names/presentation/baby_names_meaning_explorer_page.dart';
 import '../features/onboarding/application/onboarding_state_provider.dart';
+import '../features/faq/pages/faq_landing_page.dart';
+import '../features/faq/pages/faq_category_page.dart';
+import '../features/faq/pages/faq_detail_page.dart';
 import '../features/onboarding/presentation/onboarding_page.dart';
 import '../shared/theme/islamic_icons.dart';
 import '../shared/widgets/app_scaffold.dart';
@@ -449,6 +457,42 @@ final appRouterProvider = Provider<GoRouter>((ref) {
                 const MaterialPage(child: LearnSalahHubPage()),
           ),
           GoRoute(
+            path: '/learn/salah/prayer/:prayerId',
+            name: 'learnSalahPrayerDetail',
+            pageBuilder: (context, state) {
+              final prayerId = _parsePrayerId(
+                state.pathParameters['prayerId'] ?? '',
+              );
+              return MaterialPage(
+                child: SalahPrayerDetailPage(
+                  prayerId: prayerId,
+                  focusSteps: state.uri.queryParameters['focus'] == 'steps',
+                ),
+              );
+            },
+          ),
+          GoRoute(
+            path: '/learn/salah/guided/:prayerId',
+            name: 'learnSalahGuidedPrayer',
+            pageBuilder: (context, state) {
+              final prayerId = _parsePrayerId(
+                state.pathParameters['prayerId'] ?? '',
+              );
+              return MaterialPage(
+                child: SalahGuidedPrayerPage(prayerId: prayerId),
+              );
+            },
+          ),
+          GoRoute(
+            path: '/learn/salah/surah/:surahId',
+            name: 'learnSalahSurahDetail',
+            pageBuilder: (context, state) => MaterialPage(
+              child: SalahSurahDetailPage(
+                surahId: state.pathParameters['surahId'] ?? '',
+              ),
+            ),
+          ),
+          GoRoute(
             path: '/learn/quran/universe',
             name: 'quranUniverse',
             pageBuilder: (context, state) =>
@@ -479,6 +523,8 @@ final appRouterProvider = Provider<GoRouter>((ref) {
               final sectionId = state.pathParameters['sectionId'] ?? '';
               ProphetsTab? initialProphetsTab;
               String? initialProphetId;
+              String? initialProphetQuizMode;
+              String? initialProphetQuizDifficulty;
               final tabParam = state.uri.queryParameters['tab'];
               if (sectionId == 'prophets' &&
                   tabParam != null &&
@@ -495,15 +541,56 @@ final appRouterProvider = Provider<GoRouter>((ref) {
                 if (prophetParam != null && prophetParam.trim().isNotEmpty) {
                   initialProphetId = prophetParam.trim();
                 }
+                final quizModeParam = state.uri.queryParameters['quizMode'];
+                if (quizModeParam != null && quizModeParam.trim().isNotEmpty) {
+                  initialProphetQuizMode = quizModeParam.trim();
+                }
+                final quizDifficultyParam =
+                    state.uri.queryParameters['quizDifficulty'];
+                if (quizDifficultyParam != null &&
+                    quizDifficultyParam.trim().isNotEmpty) {
+                  initialProphetQuizDifficulty = quizDifficultyParam.trim();
+                }
               }
               return MaterialPage(
                 child: LearnSectionPlaceholderPage(
                   sectionId: sectionId,
                   initialProphetsTab: initialProphetsTab,
                   initialProphetId: initialProphetId,
+                  initialProphetQuizMode: initialProphetQuizMode,
+                  initialProphetQuizDifficulty: initialProphetQuizDifficulty,
                 ),
               );
             },
+          ),
+          GoRoute(
+            path: '/learn/faq',
+            name: 'faqLanding',
+            pageBuilder: (context, state) =>
+                const MaterialPage(child: FaqLandingPage()),
+          ),
+          GoRoute(
+            path: '/learn/faq/category/:categoryId',
+            name: 'faqCategory',
+            pageBuilder: (context, state) => MaterialPage(
+              child: FaqCategoryPage(
+                categoryId: state.pathParameters['categoryId'] ?? '',
+              ),
+            ),
+          ),
+          GoRoute(
+            path: '/learn/faq/item/:faqId',
+            name: 'faqDetail',
+            pageBuilder: (context, state) => MaterialPage(
+              child: FaqDetailPage(faqId: state.pathParameters['faqId'] ?? ''),
+            ),
+          ),
+          GoRoute(
+            path: '/learn/duas/:duaId',
+            name: 'learnDuaDetail',
+            pageBuilder: (context, state) => MaterialPage(
+              child: DuaDetailPage(duaId: state.pathParameters['duaId'] ?? ''),
+            ),
           ),
           GoRoute(
             path: '/learn/life',
@@ -1202,4 +1289,11 @@ LearnTopicCategory _learnTopicCategoryFromParam(String value) {
     default:
       return LearnTopicCategory.life;
   }
+}
+
+SalahPrayerId _parsePrayerId(String value) {
+  for (final item in SalahPrayerId.values) {
+    if (item.name == value) return item;
+  }
+  return SalahPrayerId.fajr;
 }

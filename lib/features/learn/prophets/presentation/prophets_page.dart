@@ -25,10 +25,18 @@ import 'widgets/daily_prophet_quiz_card.dart';
 import 'widgets/daily_revelation_card.dart';
 
 class ProphetsPage extends ConsumerStatefulWidget {
-  const ProphetsPage({super.key, this.initialTab, this.initialProphetId});
+  const ProphetsPage({
+    super.key,
+    this.initialTab,
+    this.initialProphetId,
+    this.initialQuizModeName,
+    this.initialQuizDifficultyName,
+  });
 
   final ProphetsTab? initialTab;
   final String? initialProphetId;
+  final String? initialQuizModeName;
+  final String? initialQuizDifficultyName;
 
   @override
   ConsumerState<ProphetsPage> createState() => _ProphetsPageState();
@@ -318,6 +326,8 @@ class _ProphetsPageState extends ConsumerState<ProphetsPage> {
           )
         else if (ui.selectedTab == ProphetsTab.quiz)
           ProphetsQuizView(
+            initialModeName: widget.initialQuizModeName,
+            initialDifficultyName: widget.initialQuizDifficultyName,
             onReviewProphets: () {
               ref
                   .read(prophetsUiControllerProvider.notifier)

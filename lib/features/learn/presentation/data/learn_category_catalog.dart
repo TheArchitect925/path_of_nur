@@ -162,7 +162,7 @@ class LearnCategoryCatalog {
     ),
     LearnCategoryItem(
       id: 'salah',
-      title: 'Salah',
+      title: 'Salah Trainer',
       iconKey: 'salah',
       routeName: 'learnSalahHub',
       searchKeywords: [
@@ -179,6 +179,8 @@ class LearnCategoryCatalog {
       tags: ['worship', 'core', 'hub'],
       sectionType: 'hub',
       categoryGroup: 'worship',
+      description:
+          'Prayer structure, guided practice, surahs for salah, recitations, and wudu support.',
     ),
     LearnCategoryItem(
       id: 'notes',
@@ -243,17 +245,6 @@ class LearnCategoryCatalog {
       tags: ['foundations', 'core'],
       sectionType: 'placeholder',
       categoryGroup: 'core',
-    ),
-    LearnCategoryItem(
-      id: 'daily-duas',
-      title: 'Daily Duas',
-      iconKey: 'duas',
-      routeName: 'learnSectionHub',
-      pathParameters: {'sectionId': 'daily-duas'},
-      searchKeywords: ['daily duas', 'everyday supplications', 'adhkar'],
-      tags: ['dua', 'practice'],
-      sectionType: 'placeholder',
-      categoryGroup: 'worship',
     ),
     LearnCategoryItem(
       id: 'ramadhan-fasting',
@@ -331,21 +322,6 @@ class LearnCategoryCatalog {
       tags: ['fiqh', 'community'],
       sectionType: 'placeholder',
       categoryGroup: 'pilgrimage',
-    ),
-    LearnCategoryItem(
-      id: 'duas-quran-sunnah',
-      title: 'Duas from Quran & Sunnah',
-      iconKey: 'duas',
-      routeName: 'learnSectionHub',
-      pathParameters: {'sectionId': 'duas-quran-sunnah'},
-      searchKeywords: [
-        'duas from quran and sunnah',
-        'authentic duas',
-        'adhkar',
-      ],
-      tags: ['dua', 'quran', 'sunnah'],
-      sectionType: 'placeholder',
-      categoryGroup: 'worship',
     ),
     LearnCategoryItem(
       id: 'fiqh-basic',

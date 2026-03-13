@@ -133,12 +133,12 @@ class WorldLessonProgress {
   }
 
   Map<String, dynamic> toJson() => {
-        'lessonId': lessonId,
-        'status': status.name,
-        'lastOpenedIso': lastOpenedIso,
-        'completedIso': completedIso,
-        'openCount': openCount,
-      };
+    'lessonId': lessonId,
+    'status': status.name,
+    'lastOpenedIso': lastOpenedIso,
+    'completedIso': completedIso,
+    'openCount': openCount,
+  };
 
   static WorldLessonProgress? fromJson(dynamic raw) {
     if (raw is! Map) return null;
@@ -155,12 +155,19 @@ class WorldLessonProgress {
     }
     if (status == null) return null;
 
+    final rawOpenCount = raw['openCount'];
+    final openCount = switch (rawOpenCount) {
+      num value => value.toInt(),
+      String value => int.tryParse(value) ?? 0,
+      _ => 0,
+    };
+
     return WorldLessonProgress(
       lessonId: lessonId,
       status: status,
       lastOpenedIso: raw['lastOpenedIso']?.toString(),
       completedIso: raw['completedIso']?.toString(),
-      openCount: (raw['openCount'] as num?)?.toInt() ?? 0,
+      openCount: openCount,
     );
   }
 }

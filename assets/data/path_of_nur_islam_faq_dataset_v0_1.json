@@ -1,0 +1,912 @@
+{
+  "version": "0.1",
+  "app": "Path of Nur",
+  "dataset_name": "Islam FAQ Learning Page Dataset",
+  "notes": [
+    "This dataset is intended for educational onboarding and beginner-friendly learning.",
+    "Answers are concise by design and should be expandable in-app.",
+    "Content should go through a final scholarly review before public release.",
+    "Quran references are stored as strings for easy linking to the app's Quran module."
+  ],
+  "category_labels": {
+    "foundations_of_islam": "Foundations of Islam",
+    "worship_and_practice": "Worship and Practice",
+    "misconceptions_about_islam": "Misconceptions About Islam",
+    "women_in_islam": "Women in Islam",
+    "science_and_quran": "Science and the Qur'an",
+    "quran_and_revelation": "The Qur'an and Revelation",
+    "prophets_and_history": "Prophets and History",
+    "ethics_and_lifestyle": "Ethics and Lifestyle",
+    "afterlife_and_purpose": "Afterlife and Purpose",
+    "islam_in_the_modern_world": "Islam in the Modern World"
+  },
+  "fields": [
+    "id",
+    "category",
+    "question",
+    "short_answer",
+    "answer",
+    "quran_refs",
+    "hadith_refs",
+    "misconception_tag",
+    "related_topics",
+    "difficulty",
+    "is_featured"
+  ],
+  "items": [
+    {
+      "id": "foundations_001",
+      "category": "foundations_of_islam",
+      "question": "What does Islam mean?",
+      "short_answer": "Islam means willing submission to Allah, the one Creator.",
+      "answer": "Islam means submitting oneself to Allah in faith, worship, and obedience. A Muslim is someone who chooses that submission sincerely.",
+      "quran_refs": [
+        "3:19"
+      ],
+      "hadith_refs": [],
+      "misconception_tag": null,
+      "related_topics": [
+        "Who is Allah?",
+        "What is iman?"
+      ],
+      "difficulty": "beginner",
+      "is_featured": true
+    },
+    {
+      "id": "foundations_002",
+      "category": "foundations_of_islam",
+      "question": "Who is Allah?",
+      "short_answer": "Allah is the one, unique, eternal Creator with no partner or equal.",
+      "answer": "Muslims believe Allah is the one and only God: unique, eternal, independent, and unlike creation. He has no partner, child, or equal.",
+      "quran_refs": [
+        "112:1-4"
+      ],
+      "hadith_refs": [],
+      "misconception_tag": "allah_is_not_a_different_god",
+      "related_topics": [
+        "Tawhid",
+        "What is shirk?"
+      ],
+      "difficulty": "beginner",
+      "is_featured": true
+    },
+    {
+      "id": "foundations_003",
+      "category": "foundations_of_islam",
+      "question": "Do Muslims worship the same God as Abraham, Moses, and Jesus?",
+      "short_answer": "Yes. Islam teaches worship of the same one God worshipped by the earlier prophets.",
+      "answer": "Islam teaches continuity of revelation. Muslims believe the prophets, including Abraham, Moses, and Jesus, all called people to worship the same one God.",
+      "quran_refs": [
+        "2:136"
+      ],
+      "hadith_refs": [],
+      "misconception_tag": "same_god_of_abrahamic_prophets",
+      "related_topics": [
+        "Who is Allah?",
+        "What is revelation?"
+      ],
+      "difficulty": "beginner",
+      "is_featured": true
+    },
+    {
+      "id": "foundations_004",
+      "category": "foundations_of_islam",
+      "question": "Who is Prophet Muhammad ﷺ?",
+      "short_answer": "He is the final messenger of Allah, sent to guide humanity.",
+      "answer": "Muslims believe Muhammad ﷺ is the final prophet and messenger, sent with the Qur'an and as a model of how to live faithfully.",
+      "quran_refs": [
+        "33:40"
+      ],
+      "hadith_refs": [],
+      "misconception_tag": null,
+      "related_topics": [
+        "Why follow the Sunnah?",
+        "What is revelation?"
+      ],
+      "difficulty": "beginner",
+      "is_featured": true
+    },
+    {
+      "id": "foundations_005",
+      "category": "foundations_of_islam",
+      "question": "Do Muslims worship Prophet Muhammad ﷺ?",
+      "short_answer": "No. Muslims worship Allah alone.",
+      "answer": "Muslims love and follow Prophet Muhammad ﷺ, but worship belongs only to Allah. The Prophet ﷺ is a messenger, not divine.",
+      "quran_refs": [
+        "3:144",
+        "41:6"
+      ],
+      "hadith_refs": [],
+      "misconception_tag": "muslims_do_not_worship_muhammad",
+      "related_topics": [
+        "Who is Prophet Muhammad ﷺ?",
+        "What is shirk?"
+      ],
+      "difficulty": "beginner",
+      "is_featured": true
+    },
+    {
+      "id": "foundations_006",
+      "category": "foundations_of_islam",
+      "question": "What are the Five Pillars of Islam?",
+      "short_answer": "Faith testimony, prayer, charity, fasting Ramadan, and Hajj.",
+      "answer": "The Five Pillars are the Shahadah, Salah, Zakah, Sawm in Ramadan, and Hajj for those able. They are the core outward foundations of Muslim practice.",
+      "quran_refs": [
+        "2:43",
+        "2:183",
+        "3:97"
+      ],
+      "hadith_refs": [
+        "Sahih al-Bukhari 8",
+        "Sahih Muslim 16"
+      ],
+      "misconception_tag": null,
+      "related_topics": [
+        "What is iman?",
+        "Why do Muslims pray?"
+      ],
+      "difficulty": "beginner",
+      "is_featured": true
+    },
+    {
+      "id": "foundations_007",
+      "category": "foundations_of_islam",
+      "question": "What is iman?",
+      "short_answer": "Iman means faith in Allah, His angels, books, messengers, the Last Day, and divine decree.",
+      "answer": "Iman is the inward foundation of belief. It includes belief in Allah, His angels, His books, His messengers, the Last Day, and divine decree.",
+      "quran_refs": [
+        "2:285"
+      ],
+      "hadith_refs": [
+        "Sahih Muslim 8"
+      ],
+      "misconception_tag": null,
+      "related_topics": [
+        "What are the Five Pillars?",
+        "What is ihsan?"
+      ],
+      "difficulty": "beginner",
+      "is_featured": false
+    },
+    {
+      "id": "worship_001",
+      "category": "worship_and_practice",
+      "question": "Why do Muslims pray five times a day?",
+      "short_answer": "Prayer keeps a Muslim connected to Allah throughout the day.",
+      "answer": "Salah structures the day around remembrance, discipline, humility, and gratitude. It is both worship and spiritual grounding.",
+      "quran_refs": [
+        "20:14",
+        "29:45"
+      ],
+      "hadith_refs": [],
+      "misconception_tag": null,
+      "related_topics": [
+        "What are the Five Pillars?",
+        "What is khushu'?"
+      ],
+      "difficulty": "beginner",
+      "is_featured": true
+    },
+    {
+      "id": "worship_002",
+      "category": "worship_and_practice",
+      "question": "Why do Muslims fast in Ramadan?",
+      "short_answer": "To grow in taqwa, self-control, gratitude, and compassion.",
+      "answer": "Ramadan fasting trains the soul through restraint, remembrance, charity, and Qur'an. Its purpose is taqwa: conscious awareness of Allah.",
+      "quran_refs": [
+        "2:183-185"
+      ],
+      "hadith_refs": [],
+      "misconception_tag": null,
+      "related_topics": [
+        "What is taqwa?",
+        "Why is Ramadan important?"
+      ],
+      "difficulty": "beginner",
+      "is_featured": true
+    },
+    {
+      "id": "worship_003",
+      "category": "worship_and_practice",
+      "question": "Why do Muslims give zakah?",
+      "short_answer": "Zakah purifies wealth and supports people in need.",
+      "answer": "Zakah is an act of worship tied to justice, compassion, and responsibility. It purifies wealth from selfishness and helps strengthen the community.",
+      "quran_refs": [
+        "9:103",
+        "2:110"
+      ],
+      "hadith_refs": [],
+      "misconception_tag": null,
+      "related_topics": [
+        "What are the Five Pillars?",
+        "What is sadaqah?"
+      ],
+      "difficulty": "beginner",
+      "is_featured": false
+    },
+    {
+      "id": "worship_004",
+      "category": "worship_and_practice",
+      "question": "Why do Muslims make wudu before prayer?",
+      "short_answer": "Wudu prepares a person physically and spiritually for worship.",
+      "answer": "Wudu is ritual purification before salah. It cultivates cleanliness, attentiveness, and readiness to stand before Allah in prayer.",
+      "quran_refs": [
+        "5:6"
+      ],
+      "hadith_refs": [],
+      "misconception_tag": null,
+      "related_topics": [
+        "Why do Muslims pray?",
+        "What breaks wudu?"
+      ],
+      "difficulty": "beginner",
+      "is_featured": false
+    },
+    {
+      "id": "worship_005",
+      "category": "worship_and_practice",
+      "question": "Why is the Qur'an recited in Arabic during prayer?",
+      "short_answer": "Because the Qur'an was revealed in Arabic and its recited form is preserved that way.",
+      "answer": "Translations help with understanding, but the Qur'an itself is the revealed Arabic text. In salah, Muslims recite the preserved Qur'anic wording.",
+      "quran_refs": [
+        "12:2",
+        "43:3"
+      ],
+      "hadith_refs": [],
+      "misconception_tag": null,
+      "related_topics": [
+        "Why is the Qur'an in Arabic?",
+        "Can I read a translation?"
+      ],
+      "difficulty": "beginner",
+      "is_featured": false
+    },
+    {
+      "id": "quran_001",
+      "category": "quran_and_revelation",
+      "question": "What is the Qur'an?",
+      "short_answer": "The Qur'an is the final revelation from Allah to Prophet Muhammad ﷺ.",
+      "answer": "Muslims believe the Qur'an is the direct revelation of Allah, sent to Prophet Muhammad ﷺ over about twenty-three years as guidance for humanity.",
+      "quran_refs": [
+        "2:185",
+        "15:9"
+      ],
+      "hadith_refs": [],
+      "misconception_tag": null,
+      "related_topics": [
+        "How was the Qur'an preserved?",
+        "Why is the Qur'an in Arabic?"
+      ],
+      "difficulty": "beginner",
+      "is_featured": true
+    },
+    {
+      "id": "quran_002",
+      "category": "quran_and_revelation",
+      "question": "Has the Qur'an been preserved?",
+      "short_answer": "Muslims believe Allah preserved the Qur'an and its recitation.",
+      "answer": "Islam teaches that Allah Himself protected the Qur'an. Its memorization and written transmission became central to Muslim life from the beginning.",
+      "quran_refs": [
+        "15:9"
+      ],
+      "hadith_refs": [],
+      "misconception_tag": null,
+      "related_topics": [
+        "What is the Qur'an?",
+        "Why is recitation important?"
+      ],
+      "difficulty": "beginner",
+      "is_featured": true
+    },
+    {
+      "id": "quran_003",
+      "category": "quran_and_revelation",
+      "question": "Why is the Qur'an in Arabic?",
+      "short_answer": "It was revealed in Arabic to the first audience, and that wording is preserved.",
+      "answer": "The Qur'an came in Arabic because that was the language of the first recipients. Translations communicate meaning, but the Qur'an itself is the Arabic revelation.",
+      "quran_refs": [
+        "12:2",
+        "43:3"
+      ],
+      "hadith_refs": [],
+      "misconception_tag": null,
+      "related_topics": [
+        "What is the Qur'an?",
+        "Can I read a translation?"
+      ],
+      "difficulty": "beginner",
+      "is_featured": false
+    },
+    {
+      "id": "quran_004",
+      "category": "quran_and_revelation",
+      "question": "Can a translation be called the Qur'an?",
+      "short_answer": "A translation conveys meaning, but the Qur'an itself is the Arabic revelation.",
+      "answer": "A translation can help understanding, but it is an interpretation of meaning. The Qur'an in the strict sense is the revealed Arabic wording.",
+      "quran_refs": [
+        "26:192-195"
+      ],
+      "hadith_refs": [],
+      "misconception_tag": null,
+      "related_topics": [
+        "Why is the Qur'an in Arabic?",
+        "How should beginners study the Qur'an?"
+      ],
+      "difficulty": "intermediate",
+      "is_featured": false
+    },
+    {
+      "id": "misconceptions_001",
+      "category": "misconceptions_about_islam",
+      "question": "Does Islam force people to become Muslim?",
+      "short_answer": "No. The Qur'an states there is no compulsion in religion.",
+      "answer": "Faith has meaning only when it is chosen sincerely. The Qur'an explicitly says there is no compulsion in religion.",
+      "quran_refs": [
+        "2:256"
+      ],
+      "hadith_refs": [],
+      "misconception_tag": "no_compulsion_in_religion",
+      "related_topics": [
+        "What is Islam?",
+        "How should Muslims speak about faith?"
+      ],
+      "difficulty": "beginner",
+      "is_featured": true
+    },
+    {
+      "id": "misconceptions_002",
+      "category": "misconceptions_about_islam",
+      "question": "Does Islam promote violence?",
+      "short_answer": "No. Islam forbids aggression and condemns killing innocents.",
+      "answer": "The Qur'an permits fighting only within strict limits, such as self-defense, and forbids transgression. Unjust killing is treated as a grave crime.",
+      "quran_refs": [
+        "2:190",
+        "5:32"
+      ],
+      "hadith_refs": [],
+      "misconception_tag": "islam_does_not_promote_violence",
+      "related_topics": [
+        "What does jihad mean?",
+        "What is justice in Islam?"
+      ],
+      "difficulty": "beginner",
+      "is_featured": true
+    },
+    {
+      "id": "misconceptions_003",
+      "category": "misconceptions_about_islam",
+      "question": "What does jihad actually mean?",
+      "short_answer": "Jihad means striving or struggling in a just and disciplined way for Allah's sake.",
+      "answer": "Jihad is broader than warfare. It includes moral struggle, speaking truth, self-discipline, and, in limited cases, armed defense under ethical rules.",
+      "quran_refs": [
+        "22:78",
+        "25:52"
+      ],
+      "hadith_refs": [],
+      "misconception_tag": "jihad_not_equivalent_to_terrorism",
+      "related_topics": [
+        "Does Islam promote violence?",
+        "What is patience in Islam?"
+      ],
+      "difficulty": "intermediate",
+      "is_featured": true
+    },
+    {
+      "id": "misconceptions_004",
+      "category": "misconceptions_about_islam",
+      "question": "Is Islam a new religion?",
+      "short_answer": "No. Islam teaches the same core message brought by earlier prophets.",
+      "answer": "Islam sees itself as the continuation and restoration of the message of tawhid taught by Adam, Noah, Abraham, Moses, Jesus, and other prophets.",
+      "quran_refs": [
+        "2:136",
+        "42:13"
+      ],
+      "hadith_refs": [],
+      "misconception_tag": "islam_continuation_of_prophetic_message",
+      "related_topics": [
+        "Do Muslims believe in earlier prophets?",
+        "What is revelation?"
+      ],
+      "difficulty": "beginner",
+      "is_featured": true
+    },
+    {
+      "id": "misconceptions_005",
+      "category": "misconceptions_about_islam",
+      "question": "Do Muslims hate non-Muslims?",
+      "short_answer": "No. Islam commands justice, honesty, and good conduct with others.",
+      "answer": "Islam distinguishes between disagreement in belief and injustice in conduct. The Qur'an commands fairness and good treatment toward those who are not hostile.",
+      "quran_refs": [
+        "60:8",
+        "16:90"
+      ],
+      "hadith_refs": [],
+      "misconception_tag": "justice_and_good_conduct_with_others",
+      "related_topics": [
+        "No compulsion in religion",
+        "How should Muslims treat neighbors?"
+      ],
+      "difficulty": "beginner",
+      "is_featured": true
+    },
+    {
+      "id": "women_001",
+      "category": "women_in_islam",
+      "question": "Do women have rights in Islam?",
+      "short_answer": "Yes. Islam recognizes women as morally equal and gives them legal and financial rights.",
+      "answer": "The Qur'an addresses men and women as equal in human worth and accountability before Allah. Women also have rights in marriage, property, inheritance, and learning.",
+      "quran_refs": [
+        "33:35",
+        "4:7",
+        "2:228"
+      ],
+      "hadith_refs": [],
+      "misconception_tag": "women_have_rights_in_islam",
+      "related_topics": [
+        "Why do some Muslim women wear hijab?",
+        "Marriage in Islam"
+      ],
+      "difficulty": "beginner",
+      "is_featured": true
+    },
+    {
+      "id": "women_002",
+      "category": "women_in_islam",
+      "question": "Why do some Muslim women wear hijab?",
+      "short_answer": "Many wear hijab as an act of modesty, devotion, and identity.",
+      "answer": "Hijab is understood by many Muslim women as obedience to Allah and a visible expression of modesty and dignity. Muslim practice varies by culture and conviction.",
+      "quran_refs": [
+        "24:31",
+        "33:59"
+      ],
+      "hadith_refs": [],
+      "misconception_tag": "hijab_is_not_inherently_oppression",
+      "related_topics": [
+        "What is modesty in Islam?",
+        "Do men also have modesty rules?"
+      ],
+      "difficulty": "beginner",
+      "is_featured": true
+    },
+    {
+      "id": "women_003",
+      "category": "women_in_islam",
+      "question": "Do men also have rules of modesty in Islam?",
+      "short_answer": "Yes. Modesty in Islam applies to both men and women.",
+      "answer": "The Qur'an first instructs believing men to lower their gaze and guard their modesty, then gives guidance to believing women as well.",
+      "quran_refs": [
+        "24:30-31"
+      ],
+      "hadith_refs": [],
+      "misconception_tag": "modesty_applies_to_both_men_and_women",
+      "related_topics": [
+        "Why do some Muslim women wear hijab?",
+        "What is haya?"
+      ],
+      "difficulty": "beginner",
+      "is_featured": false
+    },
+    {
+      "id": "women_004",
+      "category": "women_in_islam",
+      "question": "Can a woman own property and wealth in Islam?",
+      "short_answer": "Yes. A woman can own, manage, inherit, and keep her own property.",
+      "answer": "Islamic law recognizes a woman's independent legal and financial identity. Her wealth remains hers and is not automatically controlled by a husband or male relative.",
+      "quran_refs": [
+        "4:7",
+        "4:32"
+      ],
+      "hadith_refs": [],
+      "misconception_tag": "women_can_own_property",
+      "related_topics": [
+        "Do women have rights in Islam?",
+        "Marriage in Islam"
+      ],
+      "difficulty": "beginner",
+      "is_featured": false
+    },
+    {
+      "id": "science_001",
+      "category": "science_and_quran",
+      "question": "Is the Qur'an a science textbook?",
+      "short_answer": "No. The Qur'an is a book of guidance, not a lab manual.",
+      "answer": "The Qur'an invites reflection on nature as signs of Allah, but its primary purpose is guidance, worship, ethics, and remembrance.",
+      "quran_refs": [
+        "3:190-191",
+        "41:53"
+      ],
+      "hadith_refs": [],
+      "misconception_tag": "quran_is_guidance_not_science_textbook",
+      "related_topics": [
+        "Does the Qur'an mention nature?",
+        "How should science verses be understood?"
+      ],
+      "difficulty": "beginner",
+      "is_featured": true
+    },
+    {
+      "id": "science_002",
+      "category": "science_and_quran",
+      "question": "Does the Qur'an encourage reflection on the natural world?",
+      "short_answer": "Yes. The Qur'an repeatedly points to creation as signs.",
+      "answer": "The Qur'an calls people to observe the heavens, earth, life, and history as signs pointing to wisdom, power, and truth.",
+      "quran_refs": [
+        "3:190-191",
+        "51:20-21",
+        "41:53"
+      ],
+      "hadith_refs": [],
+      "misconception_tag": null,
+      "related_topics": [
+        "Is the Qur'an a science textbook?",
+        "Why does Islam value knowledge?"
+      ],
+      "difficulty": "beginner",
+      "is_featured": false
+    },
+    {
+      "id": "prophets_001",
+      "category": "prophets_and_history",
+      "question": "How many prophets are mentioned in the Qur'an?",
+      "short_answer": "The Qur'an names 25 prophets explicitly.",
+      "answer": "Muslims believe many prophets were sent to humanity, while the Qur'an explicitly names 25 of them.",
+      "quran_refs": [
+        "4:164",
+        "6:83-86"
+      ],
+      "hadith_refs": [],
+      "misconception_tag": null,
+      "related_topics": [
+        "Do Muslims believe in Jesus?",
+        "Is Islam a new religion?"
+      ],
+      "difficulty": "beginner",
+      "is_featured": false
+    },
+    {
+      "id": "prophets_002",
+      "category": "prophets_and_history",
+      "question": "What does Islam say about Jesus (Isa عليه السلام)?",
+      "short_answer": "Jesus is a mighty prophet, Messiah, and miracle-born servant of Allah, not divine.",
+      "answer": "Muslims deeply honor Jesus عليه السلام. Islam teaches he was born miraculously, performed miracles by Allah's permission, and called people to worship Allah.",
+      "quran_refs": [
+        "3:45-49",
+        "4:171",
+        "5:75"
+      ],
+      "hadith_refs": [],
+      "misconception_tag": "jesus_honored_but_not_divine",
+      "related_topics": [
+        "Do Muslims believe in earlier prophets?",
+        "Who is Allah?"
+      ],
+      "difficulty": "beginner",
+      "is_featured": true
+    },
+    {
+      "id": "prophets_003",
+      "category": "prophets_and_history",
+      "question": "Do Muslims believe in Moses and Abraham?",
+      "short_answer": "Yes. Muslims must believe in all of Allah's messengers.",
+      "answer": "Belief in the prophets is part of Islamic faith. Muslims honor Abraham, Moses, Jesus, and many others as real messengers of Allah.",
+      "quran_refs": [
+        "2:136",
+        "2:285"
+      ],
+      "hadith_refs": [],
+      "misconception_tag": null,
+      "related_topics": [
+        "Is Islam a new religion?",
+        "What is iman?"
+      ],
+      "difficulty": "beginner",
+      "is_featured": false
+    },
+    {
+      "id": "ethics_001",
+      "category": "ethics_and_lifestyle",
+      "question": "What is the purpose of life in Islam?",
+      "short_answer": "To worship Allah and live in faithful obedience to Him.",
+      "answer": "The Qur'an states that humans and jinn were created to worship Allah. In Islam, worship includes prayer, ethics, service, and every sincere righteous act.",
+      "quran_refs": [
+        "51:56"
+      ],
+      "hadith_refs": [],
+      "misconception_tag": null,
+      "related_topics": [
+        "What is ihsan?",
+        "Why do Muslims pray?"
+      ],
+      "difficulty": "beginner",
+      "is_featured": true
+    },
+    {
+      "id": "ethics_002",
+      "category": "ethics_and_lifestyle",
+      "question": "Does Islam care about character and manners?",
+      "short_answer": "Yes. Good character is central to Islamic life.",
+      "answer": "Truthfulness, patience, mercy, justice, gratitude, and humility are central Islamic values. Worship without character misses the point.",
+      "quran_refs": [
+        "16:90",
+        "68:4"
+      ],
+      "hadith_refs": [
+        "Jami' at-Tirmidhi 2018"
+      ],
+      "misconception_tag": null,
+      "related_topics": [
+        "Why do Muslims pray?",
+        "How should Muslims treat others?"
+      ],
+      "difficulty": "beginner",
+      "is_featured": false
+    },
+    {
+      "id": "ethics_003",
+      "category": "ethics_and_lifestyle",
+      "question": "How should Muslims treat neighbors and strangers?",
+      "short_answer": "With kindness, fairness, honesty, and respect.",
+      "answer": "Islam teaches believers to uphold justice and excellence in dealings. That includes neighbors, strangers, coworkers, and wider society.",
+      "quran_refs": [
+        "4:36",
+        "16:90"
+      ],
+      "hadith_refs": [],
+      "misconception_tag": null,
+      "related_topics": [
+        "Do Muslims hate non-Muslims?",
+        "What is good character?"
+      ],
+      "difficulty": "beginner",
+      "is_featured": false
+    },
+    {
+      "id": "afterlife_001",
+      "category": "afterlife_and_purpose",
+      "question": "What happens after death in Islam?",
+      "short_answer": "Islam teaches resurrection, judgment, and eternal life in the Hereafter.",
+      "answer": "Every soul will die, be resurrected, judged by Allah with perfect justice, and then enter the Hereafter according to Allah's mercy and judgment.",
+      "quran_refs": [
+        "3:185",
+        "99:6-8"
+      ],
+      "hadith_refs": [],
+      "misconception_tag": null,
+      "related_topics": [
+        "What is the purpose of life?",
+        "What is the Last Day?"
+      ],
+      "difficulty": "beginner",
+      "is_featured": true
+    },
+    {
+      "id": "afterlife_002",
+      "category": "afterlife_and_purpose",
+      "question": "What is Jannah?",
+      "short_answer": "Jannah is Paradise, the eternal reward prepared for the righteous by Allah's mercy.",
+      "answer": "Jannah is described as a place of peace, nearness to Allah, joy, and lasting reward beyond worldly imagination.",
+      "quran_refs": [
+        "9:72",
+        "32:17"
+      ],
+      "hadith_refs": [],
+      "misconception_tag": null,
+      "related_topics": [
+        "What happens after death?",
+        "What is taqwa?"
+      ],
+      "difficulty": "beginner",
+      "is_featured": false
+    },
+    {
+      "id": "afterlife_003",
+      "category": "afterlife_and_purpose",
+      "question": "What is Jahannam?",
+      "short_answer": "Jahannam is Hell, a place of punishment and consequence in the Hereafter.",
+      "answer": "The Qur'an warns of Jahannam as a reality tied to rejection, injustice, and rebellion against Allah. These warnings are meant to awaken moral seriousness.",
+      "quran_refs": [
+        "4:56",
+        "25:65-66"
+      ],
+      "hadith_refs": [],
+      "misconception_tag": null,
+      "related_topics": [
+        "What happens after death?",
+        "What is repentance?"
+      ],
+      "difficulty": "intermediate",
+      "is_featured": false
+    },
+    {
+      "id": "modern_001",
+      "category": "islam_in_the_modern_world",
+      "question": "Can Islam be practiced in modern life?",
+      "short_answer": "Yes. Islam gives timeless principles that apply across times and places.",
+      "answer": "Islam is not limited to a single century or culture. Its core beliefs, ethics, and worship remain constant while many social applications require wisdom and scholarship.",
+      "quran_refs": [
+        "5:3",
+        "16:89"
+      ],
+      "hadith_refs": [],
+      "misconception_tag": null,
+      "related_topics": [
+        "Why ask scholars?",
+        "How do Muslims make decisions today?"
+      ],
+      "difficulty": "beginner",
+      "is_featured": true
+    },
+    {
+      "id": "modern_002",
+      "category": "islam_in_the_modern_world",
+      "question": "Does Islam value knowledge and learning?",
+      "short_answer": "Yes. Seeking knowledge is deeply rooted in Islam.",
+      "answer": "The Qur'an repeatedly calls people to think, reflect, remember, and understand. Knowledge is part of faithful living and wise action.",
+      "quran_refs": [
+        "20:114",
+        "39:9",
+        "16:43"
+      ],
+      "hadith_refs": [],
+      "misconception_tag": null,
+      "related_topics": [
+        "Is the Qur'an a science textbook?",
+        "What is iman?"
+      ],
+      "difficulty": "beginner",
+      "is_featured": true
+    },
+    {
+      "id": "modern_003",
+      "category": "islam_in_the_modern_world",
+      "question": "Why do Muslims ask scholars when they do not know?",
+      "short_answer": "Because the Qur'an instructs people to ask those with knowledge.",
+      "answer": "Islam values learning with humility. When a person does not know, the proper response is to ask qualified people rather than guess about religion.",
+      "quran_refs": [
+        "16:43"
+      ],
+      "hadith_refs": [],
+      "misconception_tag": null,
+      "related_topics": [
+        "Does Islam value knowledge?",
+        "How should beginners learn Islam?"
+      ],
+      "difficulty": "beginner",
+      "is_featured": true
+    },
+    {
+      "id": "clarification_001",
+      "category": "foundations_of_islam",
+      "question": "What is tawhid?",
+      "short_answer": "Tawhid is affirming Allah's absolute oneness in lordship, worship, and names and attributes.",
+      "answer": "Tawhid is the heart of Islam. It means Allah alone created, sustains, deserves worship, and possesses perfect names and attributes without equal.",
+      "quran_refs": [
+        "112:1-4",
+        "2:163"
+      ],
+      "hadith_refs": [],
+      "misconception_tag": null,
+      "related_topics": [
+        "Who is Allah?",
+        "What is shirk?"
+      ],
+      "difficulty": "intermediate",
+      "is_featured": false
+    },
+    {
+      "id": "clarification_002",
+      "category": "foundations_of_islam",
+      "question": "What is shirk?",
+      "short_answer": "Shirk is associating partners with Allah in worship or divinity.",
+      "answer": "Shirk is the opposite of tawhid. It includes directing worship, ultimate devotion, or divine qualities to other than Allah.",
+      "quran_refs": [
+        "4:48",
+        "31:13"
+      ],
+      "hadith_refs": [],
+      "misconception_tag": null,
+      "related_topics": [
+        "What is tawhid?",
+        "Do Muslims worship Muhammad?"
+      ],
+      "difficulty": "intermediate",
+      "is_featured": false
+    },
+    {
+      "id": "clarification_003",
+      "category": "worship_and_practice",
+      "question": "What is halal and haram?",
+      "short_answer": "Halal means permitted; haram means forbidden.",
+      "answer": "Halal and haram are moral and legal categories in Islam. They shape food, finance, behavior, and lifestyle in ways meant to protect faith and wellbeing.",
+      "quran_refs": [
+        "2:168",
+        "5:87-88"
+      ],
+      "hadith_refs": [],
+      "misconception_tag": null,
+      "related_topics": [
+        "What is taqwa?",
+        "How do Muslims make decisions?"
+      ],
+      "difficulty": "beginner",
+      "is_featured": false
+    },
+    {
+      "id": "clarification_004",
+      "category": "worship_and_practice",
+      "question": "What is taqwa?",
+      "short_answer": "Taqwa is mindful awareness of Allah that leads to careful, faithful living.",
+      "answer": "Taqwa is often described as God-consciousness. It means living with awareness, restraint, sincerity, and fear of displeasing Allah.",
+      "quran_refs": [
+        "2:183",
+        "49:13"
+      ],
+      "hadith_refs": [],
+      "misconception_tag": null,
+      "related_topics": [
+        "Why fast in Ramadan?",
+        "What is the purpose of life?"
+      ],
+      "difficulty": "intermediate",
+      "is_featured": false
+    },
+    {
+      "id": "clarification_005",
+      "category": "worship_and_practice",
+      "question": "What is ihsan?",
+      "short_answer": "Ihsan means worshipping Allah with excellence and awareness.",
+      "answer": "Ihsan is to worship Allah as though you see Him, and if you do not see Him, then know He sees you. It is the inner beauty of faith.",
+      "quran_refs": [
+        "16:90"
+      ],
+      "hadith_refs": [
+        "Sahih Muslim 8"
+      ],
+      "misconception_tag": null,
+      "related_topics": [
+        "What is iman?",
+        "What is taqwa?"
+      ],
+      "difficulty": "intermediate",
+      "is_featured": false
+    },
+    {
+      "id": "clarification_006",
+      "category": "misconceptions_about_islam",
+      "question": "Is Islam against reason and reflection?",
+      "short_answer": "No. The Qur'an repeatedly calls people to think, reflect, and observe.",
+      "answer": "Islam does not ask for blind irrationality. The Qur'an repeatedly appeals to reflection, understanding, memory, and observation of signs in creation and history.",
+      "quran_refs": [
+        "3:190-191",
+        "10:101",
+        "39:9"
+      ],
+      "hadith_refs": [],
+      "misconception_tag": "islam_encourages_reflection",
+      "related_topics": [
+        "Does Islam value knowledge?",
+        "Science and the Qur'an"
+      ],
+      "difficulty": "beginner",
+      "is_featured": true
+    },
+    {
+      "id": "clarification_007",
+      "category": "misconceptions_about_islam",
+      "question": "Is every cultural practice by Muslims part of Islam?",
+      "short_answer": "No. Culture and religion overlap, but they are not identical.",
+      "answer": "Muslims live in many cultures. Some practices are religious, some are cultural, and some may even contradict Islam. They should not be confused automatically.",
+      "quran_refs": [
+        "49:13"
+      ],
+      "hadith_refs": [],
+      "misconception_tag": "culture_is_not_identical_to_islam",
+      "related_topics": [
+        "Women in Islam",
+        "Islam in the modern world"
+      ],
+      "difficulty": "beginner",
+      "is_featured": true
+    }
+  ]
+}

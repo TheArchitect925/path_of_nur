@@ -5,8 +5,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../prayer/prayer_preferences.dart';
 import '../../features/worship/application/prayer_controller.dart';
+import '../../features/worship/application/fasting_controller.dart';
 import '../../features/worship/domain/daily_prayer_record.dart';
+import '../../features/worship/domain/fasting_status.dart';
 import '../../features/worship/domain/prayer_status.dart';
+import '../../shared/application/special_mode_provider.dart';
 
 class PrayerLiveActivityService {
   static const MethodChannel _channel = MethodChannel(
@@ -29,6 +32,9 @@ class PrayerLiveActivityService {
     required DateTime nextTargetTime,
     PrayerScheduleItem? currentPrayer,
     Duration? currentRemaining,
+    PrayerScheduleItem? ramadanPrayer,
+    Duration? ramadanRemaining,
+    DateTime? ramadanTargetTime,
   }) async {
     if (!Platform.isIOS) return;
     try {
@@ -43,6 +49,15 @@ class PrayerLiveActivityService {
         'nextPrayerArabicName': nextPrayer.arabicName,
         'nextRemainingSeconds': nextStartsIn.inSeconds,
         'nextTargetAtIso': nextTargetTime.toIso8601String(),
+        'showRamadanCountdown':
+            ramadanPrayer != null &&
+            ramadanRemaining != null &&
+            ramadanTargetTime != null,
+        'ramadanPrayerId': ramadanPrayer?.id,
+        'ramadanPrayerName': ramadanPrayer?.name,
+        'ramadanPrayerArabicName': ramadanPrayer?.arabicName,
+        'ramadanRemainingSeconds': ramadanRemaining?.inSeconds,
+        'ramadanTargetAtIso': ramadanTargetTime?.toIso8601String(),
       });
     } catch (_) {
       // Ignore failures when ActivityKit is unavailable or not configured.
@@ -86,6 +101,8 @@ final prayerLiveActivityBootstrapProvider = Provider<void>((ref) {
       }
       final nextTargetTime = _resolveNextPrayerStart(nextPrayer, now);
       final nextStartsIn = _nonNegative(nextTargetTime.difference(now));
+      final specialMode = ref.read(specialModeProvider);
+      final fasting = ref.read(fastingControllerProvider);
 
       PrayerScheduleItem? currentPrayerToShow;
       Duration? currentRemaining;
@@ -102,17 +119,42 @@ final prayerLiveActivityBootstrapProvider = Provider<void>((ref) {
         }
       }
 
+      PrayerScheduleItem? ramadanPrayer;
+      Duration? ramadanRemaining;
+      DateTime? ramadanTargetTime;
+      final shouldShowRamadanCountdown =
+          (specialMode.isRamadan || specialMode.ramadanDateWindowActive) &&
+          fasting.todayStatus != FastingStatus.notFasting;
+      if (shouldShowRamadanCountdown) {
+        final maghrib = _findPrayerById(context.items, 'maghrib');
+        if (maghrib != null) {
+          final target = _resolveSameDayTarget(maghrib.offerDateTime, now);
+          final remaining = target.difference(now);
+          if (!remaining.isNegative) {
+            ramadanPrayer = maghrib;
+            ramadanRemaining = remaining;
+            ramadanTargetTime = target;
+          }
+        }
+      }
+
       await service.updatePrayerCard(
         nextPrayer: nextPrayer,
         nextStartsIn: nextStartsIn,
         nextTargetTime: nextTargetTime,
         currentPrayer: currentPrayerToShow,
         currentRemaining: currentRemaining,
+        ramadanPrayer: ramadanPrayer,
+        ramadanRemaining: ramadanRemaining,
+        ramadanTargetTime: ramadanTargetTime,
       );
     });
   }
 
-  ref.listen<PrayerScheduleContext>(prayerScheduleContextProvider, (_, context) {
+  ref.listen<PrayerScheduleContext>(prayerScheduleContextProvider, (
+    _,
+    context,
+  ) {
     final records = ref.read(prayerControllerProvider);
     syncLiveActivity(context: context, records: records);
   }, fireImmediately: true);
@@ -130,7 +172,10 @@ PrayerScheduleItem? _findPrayerById(List<PrayerScheduleItem> items, String id) {
   return null;
 }
 
-PrayerStatus? _statusForPrayer(List<DailyPrayerRecord> records, String prayerId) {
+PrayerStatus? _statusForPrayer(
+  List<DailyPrayerRecord> records,
+  String prayerId,
+) {
   for (final record in records) {
     if (record.prayer.name == prayerId) return record.status;
   }
@@ -138,7 +183,8 @@ PrayerStatus? _statusForPrayer(List<DailyPrayerRecord> records, String prayerId)
 }
 
 bool _isPrayerActive(PrayerScheduleItem item, DateTime now) {
-  return !now.isBefore(item.windowStartDateTime) && now.isBefore(item.windowEndDateTime);
+  return !now.isBefore(item.windowStartDateTime) &&
+      now.isBefore(item.windowEndDateTime);
 }
 
 DateTime _resolveNextPrayerStart(PrayerScheduleItem nextPrayer, DateTime now) {
@@ -147,6 +193,25 @@ DateTime _resolveNextPrayerStart(PrayerScheduleItem nextPrayer, DateTime now) {
     target = target.add(const Duration(days: 1));
   }
   return target;
+}
+
+DateTime _resolveSameDayTarget(DateTime target, DateTime now) {
+  var resolved = target;
+  if (resolved.year != now.year ||
+      resolved.month != now.month ||
+      resolved.day != now.day) {
+    resolved = DateTime(
+      now.year,
+      now.month,
+      now.day,
+      target.hour,
+      target.minute,
+      target.second,
+      target.millisecond,
+      target.microsecond,
+    );
+  }
+  return resolved;
 }
 
 Duration _nonNegative(Duration value) {

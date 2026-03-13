@@ -28,9 +28,11 @@ class _WorldCreationLessonPageState
     super.didChangeDependencies();
     if (_trackedOpen) return;
     _trackedOpen = true;
-    ref
-        .read(worldCreationProgressProvider.notifier)
-        .openLesson(widget.lessonId);
+    Future<void>.microtask(
+      () => ref
+          .read(worldCreationProgressProvider.notifier)
+          .openLesson(widget.lessonId),
+    );
   }
 
   @override

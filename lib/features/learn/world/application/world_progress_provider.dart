@@ -24,10 +24,11 @@ class WorldProgressState {
   }
 
   Map<String, dynamic> toJson() => {
-        'lessonProgressById': lessonProgressById
-            .map((key, value) => MapEntry(key, value.toJson())),
-        'recentLessonIds': recentLessonIds,
-      };
+    'lessonProgressById': lessonProgressById.map(
+      (key, value) => MapEntry(key, value.toJson()),
+    ),
+    'recentLessonIds': recentLessonIds,
+  };
 
   static WorldProgressState fromJson(Map<String, dynamic>? json) {
     if (json == null) {
@@ -123,11 +124,23 @@ class WorldSubcategoryProgress {
 }
 
 class WorldProgressNotifier extends StateNotifier<WorldProgressState> {
-  WorldProgressNotifier(this._store)
-      : super(WorldProgressState.fromJson(_store.getJsonMap(_key)));
+  WorldProgressNotifier(this._store) : super(_loadInitialState(_store));
 
   static const _key = 'learn.world.progress.v1';
   final LocalStore _store;
+
+  static WorldProgressState _loadInitialState(LocalStore store) {
+    try {
+      return WorldProgressState.fromJson(store.getJsonMap(_key));
+    } catch (_) {
+      // Reset invalid legacy progress snapshots instead of crashing provider init.
+      store.remove(_key);
+      return const WorldProgressState(
+        lessonProgressById: {},
+        recentLessonIds: [],
+      );
+    }
+  }
 
   WorldLessonProgress progressFor(String lessonId) {
     return state.lessonProgressById[lessonId] ??
@@ -171,8 +184,9 @@ class WorldProgressNotifier extends StateNotifier<WorldProgressState> {
     final updated = current.copyWith(
       status: status,
       lastOpenedIso: DateTime.now().toIso8601String(),
-      completedIso:
-          status == WorldLessonStatus.completed ? DateTime.now().toIso8601String() : null,
+      completedIso: status == WorldLessonStatus.completed
+          ? DateTime.now().toIso8601String()
+          : null,
     );
 
     final map = Map<String, WorldLessonProgress>.from(state.lessonProgressById)
@@ -188,8 +202,8 @@ class WorldProgressNotifier extends StateNotifier<WorldProgressState> {
 
 final worldProgressProvider =
     StateNotifierProvider<WorldProgressNotifier, WorldProgressState>(
-  (ref) => WorldProgressNotifier(ref.watch(localStoreProvider)),
-);
+      (ref) => WorldProgressNotifier(ref.watch(localStoreProvider)),
+    );
 
 final worldProgressSummaryProvider = Provider<WorldProgressSummary>((ref) {
   final state = ref.watch(worldProgressProvider);
@@ -234,7 +248,10 @@ final worldProgressSummaryProvider = Provider<WorldProgressSummary>((ref) {
   );
 });
 
-final worldThemeProgressProvider = Provider.family<WorldThemeProgress, String>((ref, themeId) {
+final worldThemeProgressProvider = Provider.family<WorldThemeProgress, String>((
+  ref,
+  themeId,
+) {
   final state = ref.watch(worldProgressProvider);
   final subcategories = worldSubcategoriesForTheme(themeId);
   final lessonIds = subcategories.expand((item) => item.lessonIds).toList();
@@ -261,36 +278,36 @@ final worldThemeProgressProvider = Provider.family<WorldThemeProgress, String>((
 
 final worldSubcategoryProgressProvider =
     Provider.family<WorldSubcategoryProgress, String>((ref, subcategoryId) {
-  final state = ref.watch(worldProgressProvider);
-  final sub = worldSubcategoryById(subcategoryId);
-  if (sub == null) {
-    return const WorldSubcategoryProgress(
-      subcategoryId: '',
-      totalLessons: 0,
-      completedLessons: 0,
-      inProgressLessons: 0,
-    );
-  }
+      final state = ref.watch(worldProgressProvider);
+      final sub = worldSubcategoryById(subcategoryId);
+      if (sub == null) {
+        return const WorldSubcategoryProgress(
+          subcategoryId: '',
+          totalLessons: 0,
+          completedLessons: 0,
+          inProgressLessons: 0,
+        );
+      }
 
-  var completed = 0;
-  var inProgress = 0;
-  for (final id in sub.lessonIds) {
-    final p = state.lessonProgressById[id];
-    if (p == null) continue;
-    if (p.status == WorldLessonStatus.completed) {
-      completed += 1;
-    } else if (p.status == WorldLessonStatus.inProgress) {
-      inProgress += 1;
-    }
-  }
+      var completed = 0;
+      var inProgress = 0;
+      for (final id in sub.lessonIds) {
+        final p = state.lessonProgressById[id];
+        if (p == null) continue;
+        if (p.status == WorldLessonStatus.completed) {
+          completed += 1;
+        } else if (p.status == WorldLessonStatus.inProgress) {
+          inProgress += 1;
+        }
+      }
 
-  return WorldSubcategoryProgress(
-    subcategoryId: subcategoryId,
-    totalLessons: sub.lessonIds.length,
-    completedLessons: completed,
-    inProgressLessons: inProgress,
-  );
-});
+      return WorldSubcategoryProgress(
+        subcategoryId: subcategoryId,
+        totalLessons: sub.lessonIds.length,
+        completedLessons: completed,
+        inProgressLessons: inProgress,
+      );
+    });
 
 final worldSuggestedThemeOrderProvider = Provider<List<WorldTheme>>((ref) {
   return worldThemesInSuggestedOrder();

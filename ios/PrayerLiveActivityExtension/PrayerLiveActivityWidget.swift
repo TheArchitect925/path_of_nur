@@ -9,6 +9,12 @@ struct PrayerCountdownAttributes: ActivityAttributes {
     var currentPrayerName: String?
     var currentPrayerArabicName: String?
     var currentRemainingSeconds: Int?
+    var showRamadanCountdown: Bool
+    var ramadanPrayerId: String?
+    var ramadanPrayerName: String?
+    var ramadanPrayerArabicName: String?
+    var ramadanRemainingSeconds: Int?
+    var ramadanTargetAtEpoch: Int?
     var nextPrayerId: String
     var nextPrayerName: String
     var nextPrayerArabicName: String
@@ -54,7 +60,7 @@ struct PrayerLiveActivityWidget: Widget {
   var body: some WidgetConfiguration {
     ActivityConfiguration(for: PrayerCountdownAttributes.self) { context in
       PrayerLiveLockscreenCard(state: context.state)
-        .activityBackgroundTint(Color.black.opacity(0.22))
+        .activityBackgroundTint(Color(hex: 0x0D2030, alpha: 0.92))
         .activitySystemActionForegroundColor(Color(hex: 0xD8C49A))
     } dynamicIsland: { context in
       DynamicIsland {
@@ -64,13 +70,28 @@ struct PrayerLiveActivityWidget: Widget {
             .foregroundStyle(Color(hex: 0xF3EEE5))
         }
         DynamicIslandExpandedRegion(.trailing) {
-          Text(timeLeftText(primaryRemainingSeconds(context.state)))
-            .font(.headline)
-            .monospacedDigit()
+          countdownText(
+            seconds: primaryRemainingSeconds(context.state),
+            targetEpoch: primaryTargetEpoch(context.state),
+            font: .headline
+          )
             .foregroundStyle(Color(hex: 0xF3EEE5))
         }
         DynamicIslandExpandedRegion(.bottom) {
           VStack(spacing: 6) {
+            if context.state.showRamadanCountdown,
+               let ramadanName = context.state.ramadanPrayerName,
+               let ramadanArabic = context.state.ramadanPrayerArabicName,
+               let ramadanRemaining = context.state.ramadanRemainingSeconds {
+              _DynamicRow(
+                label: "Ramadan",
+                name: "Open Fast",
+                arabicName: ramadanArabic.isEmpty ? ramadanName : ramadanArabic,
+                valueLabel: "Time to iftar",
+                seconds: ramadanRemaining,
+                targetEpoch: context.state.ramadanTargetAtEpoch
+              )
+            }
             if context.state.showCurrentPrayer,
                let currentName = context.state.currentPrayerName,
                let currentArabic = context.state.currentPrayerArabicName,
@@ -80,7 +101,8 @@ struct PrayerLiveActivityWidget: Widget {
                 name: currentName,
                 arabicName: currentArabic,
                 valueLabel: "Remaining time",
-                seconds: currentRemaining
+                seconds: currentRemaining,
+                targetEpoch: context.state.nextTargetAtEpoch
               )
             }
             _DynamicRow(
@@ -88,7 +110,8 @@ struct PrayerLiveActivityWidget: Widget {
               name: context.state.nextPrayerName,
               arabicName: context.state.nextPrayerArabicName,
               valueLabel: "Starts in",
-              seconds: context.state.nextRemainingSeconds
+              seconds: context.state.nextRemainingSeconds,
+              targetEpoch: context.state.nextTargetAtEpoch
             )
           }
         }
@@ -97,9 +120,12 @@ struct PrayerLiveActivityWidget: Widget {
           .font(.caption2)
           .foregroundStyle(Color(hex: 0xE8D9C0))
       } compactTrailing: {
-        Text(compactTimeLeft(primaryRemainingSeconds(context.state)))
-          .font(.caption2)
-          .monospacedDigit()
+        countdownText(
+          seconds: primaryRemainingSeconds(context.state),
+          targetEpoch: primaryTargetEpoch(context.state),
+          font: .caption2,
+          compact: true
+        )
           .foregroundStyle(Color(hex: 0xE8D9C0))
       } minimal: {
         Image(systemName: "moon.stars.fill")
@@ -123,6 +149,23 @@ private struct PrayerLiveLockscreenCard: View {
     ZStack {
       cardBackground
       VStack(spacing: 10) {
+        if state.showRamadanCountdown,
+           let ramadanName = state.ramadanPrayerName,
+           let ramadanArabic = state.ramadanPrayerArabicName,
+           let ramadanRemaining = state.ramadanRemainingSeconds {
+          _PrayerSection(
+            sectionLabel: "Ramadan",
+            prayerName: "Open Fast",
+            prayerArabicName: ramadanArabic.isEmpty ? ramadanName : ramadanArabic,
+            metricLabel: "Time to iftar",
+            seconds: ramadanRemaining,
+            targetEpoch: state.ramadanTargetAtEpoch,
+            prominent: true
+          )
+          Divider()
+            .overlay(Color.white.opacity(0.14))
+            .padding(.horizontal, 8)
+        }
         if state.showCurrentPrayer,
            let currentName = state.currentPrayerName,
            let currentArabic = state.currentPrayerArabicName,
@@ -133,6 +176,7 @@ private struct PrayerLiveLockscreenCard: View {
             prayerArabicName: currentArabic,
             metricLabel: "Remaining time",
             seconds: currentRemaining,
+            targetEpoch: state.nextTargetAtEpoch,
             prominent: true
           )
           Divider()
@@ -146,6 +190,7 @@ private struct PrayerLiveLockscreenCard: View {
           prayerArabicName: state.nextPrayerArabicName,
           metricLabel: "Starts in",
           seconds: state.nextRemainingSeconds,
+          targetEpoch: state.nextTargetAtEpoch,
           prominent: false
         )
       }
@@ -158,6 +203,21 @@ private struct PrayerLiveLockscreenCard: View {
     ZStack {
       cardBackground
       VStack(spacing: 8) {
+        if state.showRamadanCountdown,
+           let ramadanName = state.ramadanPrayerName,
+           let ramadanArabic = state.ramadanPrayerArabicName,
+           let ramadanRemaining = state.ramadanRemainingSeconds {
+          _PrayerSection(
+            sectionLabel: "Ramadan",
+            prayerName: "Open Fast",
+            prayerArabicName: ramadanArabic.isEmpty ? ramadanName : ramadanArabic,
+            metricLabel: "Time to iftar",
+            seconds: ramadanRemaining,
+            targetEpoch: state.ramadanTargetAtEpoch,
+            prominent: true,
+            compact: true
+          )
+        }
         if state.showCurrentPrayer,
            let currentName = state.currentPrayerName,
            let currentArabic = state.currentPrayerArabicName,
@@ -168,6 +228,7 @@ private struct PrayerLiveLockscreenCard: View {
             prayerArabicName: currentArabic,
             metricLabel: "Remaining time",
             seconds: currentRemaining,
+            targetEpoch: state.nextTargetAtEpoch,
             prominent: false,
             compact: true
           )
@@ -179,6 +240,7 @@ private struct PrayerLiveLockscreenCard: View {
           prayerArabicName: state.nextPrayerArabicName,
           metricLabel: "Starts in",
           seconds: state.nextRemainingSeconds,
+          targetEpoch: state.nextTargetAtEpoch,
           prominent: false,
           compact: true
         )
@@ -214,6 +276,7 @@ private struct _PrayerSection: View {
   let prayerArabicName: String
   let metricLabel: String
   let seconds: Int
+  let targetEpoch: Int?
   let prominent: Bool
   let compact: Bool
 
@@ -223,6 +286,7 @@ private struct _PrayerSection: View {
     prayerArabicName: String,
     metricLabel: String,
     seconds: Int,
+    targetEpoch: Int? = nil,
     prominent: Bool,
     compact: Bool = false
   ) {
@@ -231,6 +295,7 @@ private struct _PrayerSection: View {
     self.prayerArabicName = prayerArabicName
     self.metricLabel = metricLabel
     self.seconds = seconds
+    self.targetEpoch = targetEpoch
     self.prominent = prominent
     self.compact = compact
   }
@@ -256,9 +321,11 @@ private struct _PrayerSection: View {
         Text(metricLabel)
           .font(.caption2)
           .foregroundStyle(Color(hex: 0xA7B9C4))
-        Text(timeLeftText(seconds))
-          .font(compact ? .caption.weight(.semibold) : .subheadline.weight(.semibold))
-          .monospacedDigit()
+        countdownText(
+          seconds: seconds,
+          targetEpoch: targetEpoch,
+          font: compact ? .caption.weight(.semibold) : .subheadline.weight(.semibold)
+        )
           .foregroundStyle(Color(hex: 0xE8D9C0))
       }
     }
@@ -273,6 +340,7 @@ private struct _DynamicRow: View {
   let arabicName: String
   let valueLabel: String
   let seconds: Int
+  let targetEpoch: Int?
 
   var body: some View {
     VStack(spacing: 2) {
@@ -284,9 +352,11 @@ private struct _DynamicRow: View {
         .foregroundStyle(Color(hex: 0xF3EEE5))
         .lineLimit(1)
         .minimumScaleFactor(0.82)
-      Text("\(valueLabel): \(timeLeftText(seconds))")
-        .font(.caption2)
-        .monospacedDigit()
+      HStack(spacing: 3) {
+        Text("\(valueLabel):")
+          .font(.caption2)
+        countdownText(seconds: seconds, targetEpoch: targetEpoch, font: .caption2)
+      }
         .foregroundStyle(Color(hex: 0xD8E6EA))
     }
     .frame(maxWidth: .infinity)
@@ -539,6 +609,9 @@ private struct _QuranControlPill: View {
 }
 
 private func primaryPrayerName(_ state: PrayerCountdownAttributes.ContentState) -> String {
+  if state.showRamadanCountdown {
+    return "Iftar"
+  }
   if state.showCurrentPrayer, let current = state.currentPrayerName, !current.isEmpty {
     return current
   }
@@ -546,10 +619,20 @@ private func primaryPrayerName(_ state: PrayerCountdownAttributes.ContentState) 
 }
 
 private func primaryRemainingSeconds(_ state: PrayerCountdownAttributes.ContentState) -> Int {
+  if state.showRamadanCountdown, let ramadanSeconds = state.ramadanRemainingSeconds {
+    return max(0, ramadanSeconds)
+  }
   if state.showCurrentPrayer, let currentSeconds = state.currentRemainingSeconds {
     return max(0, currentSeconds)
   }
   return max(0, state.nextRemainingSeconds)
+}
+
+private func primaryTargetEpoch(_ state: PrayerCountdownAttributes.ContentState) -> Int? {
+  if state.showRamadanCountdown {
+    return state.ramadanTargetAtEpoch
+  }
+  return state.nextTargetAtEpoch
 }
 
 private func timeLeftText(_ seconds: Int) -> String {
@@ -566,6 +649,26 @@ private func compactTimeLeft(_ seconds: Int) -> String {
   let clamped = max(0, seconds)
   let minutes = clamped / 60
   return "\(minutes)m"
+}
+
+@ViewBuilder
+private func countdownText(
+  seconds: Int,
+  targetEpoch: Int?,
+  font: Font,
+  compact: Bool = false
+) -> some View {
+  if let targetEpoch {
+    let endDate = Date(timeIntervalSince1970: TimeInterval(targetEpoch))
+    Text(timerInterval: Date()...endDate, countsDown: true)
+      .font(font)
+      .monospacedDigit()
+      .multilineTextAlignment(.trailing)
+  } else {
+    Text(compact ? compactTimeLeft(seconds) : timeLeftText(seconds))
+      .font(font)
+      .monospacedDigit()
+  }
 }
 
 private func shortPrayerLabel(_ value: String) -> String {

@@ -64,9 +64,8 @@ class _ProphetsMapViewState extends State<ProphetsMapView> {
                   height: _mapHeight,
                   child: Stack(
                     children: [
-                      CustomPaint(
-                        size: const Size(_mapWidth, _mapHeight),
-                        painter: _CalmWorldPainter(),
+                      Positioned.fill(
+                        child: CustomPaint(painter: _CalmWorldPainter()),
                       ),
                       ...markers.map((prophet) {
                         final point = _latLonToPoint(
