@@ -88,7 +88,7 @@ final reminderSchedulerProvider = Provider<ReminderSchedulerState>((ref) {
           id: 'prayer.${prayer.id}.beforeQaza',
           kind: ReminderKind.prayerBeforeQaza,
           prayerId: prayer.id,
-          when: prayer.qazaDateTime.subtract(const Duration(minutes: 20)),
+          when: prayer.overdueDateTime.subtract(const Duration(minutes: 20)),
           notificationMode: mode,
         ),
       );

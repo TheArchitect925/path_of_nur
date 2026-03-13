@@ -371,9 +371,9 @@ class JourneyGrowthPreviewCard extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: const [
-                  _VisualNode(icon: Icons.park_outlined, label: 'Garden'),
+                  _VisualNode(icon: Icons.park_outlined, label: 'Growth'),
                   _VisualNode(icon: Icons.account_circle_outlined, label: 'Character'),
-                  _VisualNode(icon: Icons.emoji_nature_outlined, label: 'Tree'),
+                  _VisualNode(icon: Icons.emoji_nature_outlined, label: 'Progress'),
                 ],
               ),
             ),
@@ -593,4 +593,3 @@ class _VisualNode extends StatelessWidget {
     );
   }
 }
-

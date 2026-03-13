@@ -65,7 +65,8 @@ class ProphetQuizPoolService {
       excludeId: prophetId,
       count: 3,
     );
-    final qArabicOptions = <String>[prophet.name, ...arabicDistractors]..shuffle();
+    final qArabicOptions = <String>[prophet.honoredName, ...arabicDistractors]
+      ..shuffle();
 
     final qEraOptions = _eraOptions(detail.eraTitle);
 
@@ -85,7 +86,8 @@ class ProphetQuizPoolService {
       excludeId: prophetId,
       count: 3,
     );
-    final qReferenceOptions = <String>[prophet.name, ...refDistractors]..shuffle();
+    final qReferenceOptions = <String>[prophet.honoredName, ...refDistractors]
+      ..shuffle();
 
     final questions = <ProphetQuizQuestion>[
       ProphetQuizQuestion(
@@ -95,11 +97,12 @@ class ProphetQuizPoolService {
         category: ProphetQuizCategory.prophetIdentification,
         eraId: prophet.eraGroup.name,
         tags: ['arabic_name', 'coverage'],
-        questionText: 'Which prophet has the Arabic name "${detail.arabicName}"?',
+        questionText:
+            'Which prophet has the Arabic name "${detail.arabicName}"?',
         options: qArabicOptions,
-        correctAnswerIndex: qArabicOptions.indexOf(prophet.name),
+        correctAnswerIndex: qArabicOptions.indexOf(prophet.honoredName),
         explanation:
-            '${prophet.name} is identified in the app dataset with the Arabic name ${detail.arabicName}.',
+            '${prophet.titledHonoredName} is identified in the app dataset with the Arabic name ${detail.honoredArabicName}.',
         relatedProphetId: prophet.id,
       ),
       ProphetQuizQuestion(
@@ -109,11 +112,12 @@ class ProphetQuizPoolService {
         category: ProphetQuizCategory.eraGrouping,
         eraId: prophet.eraGroup.name,
         tags: ['era', 'journey_of_revelation'],
-        questionText: 'Which era grouping includes Prophet ${prophet.name}?',
+        questionText:
+            'Which era grouping includes ${prophet.titledHonoredName}?',
         options: qEraOptions,
         correctAnswerIndex: qEraOptions.indexOf(detail.eraTitle),
         explanation:
-            'Prophet ${prophet.name} is placed in the "${detail.eraTitle}" era in Journey of Revelation.',
+            '${prophet.titledHonoredName} is placed in the "${detail.eraTitle}" era in Journey of Revelation.',
         relatedProphetId: prophet.id,
       ),
       ProphetQuizQuestion(
@@ -124,11 +128,11 @@ class ProphetQuizPoolService {
         eraId: prophet.eraGroup.name,
         tags: ['region', 'map_ready'],
         questionText:
-            'Which region label is associated with Prophet ${prophet.name} in this learning set?',
+            'Which region label is associated with ${prophet.titledHonoredName} in this learning set?',
         options: qRegionOptions,
         correctAnswerIndex: qRegionOptions.indexOf(detail.regionLabel),
         explanation:
-            'The prophet profile for ${prophet.name} uses "${detail.regionLabel}" as the careful regional association.',
+            'The prophet profile for ${prophet.titledHonoredName} uses "${detail.regionLabel}" as the careful regional association.',
         relatedProphetId: prophet.id,
       ),
     ];
@@ -145,9 +149,9 @@ class ProphetQuizPoolService {
           questionText:
               'Which prophet is associated with ${reference.surahName} ${reference.surahNumber}:${reference.verseRange} in this section?',
           options: qReferenceOptions,
-          correctAnswerIndex: qReferenceOptions.indexOf(prophet.name),
+          correctAnswerIndex: qReferenceOptions.indexOf(prophet.honoredName),
           explanation:
-              '${reference.surahName} ${reference.surahNumber}:${reference.verseRange} is listed among references for ${prophet.name}.',
+              '${reference.surahName} ${reference.surahNumber}:${reference.verseRange} is listed among references for ${prophet.titledHonoredName}.',
           relatedProphetId: prophet.id,
         ),
       );
@@ -164,8 +168,8 @@ class ProphetQuizPoolService {
     final names = <String>[];
     for (final prophet in prophets) {
       if (prophet.id == excludeId) continue;
-      if (names.contains(prophet.name)) continue;
-      names.add(prophet.name);
+      if (names.contains(prophet.honoredName)) continue;
+      names.add(prophet.honoredName);
       if (names.length >= count) break;
     }
     return names;
@@ -195,8 +199,8 @@ class ProphetQuizPoolService {
     final ids = <String>[];
     for (final prophet in prophets.reversed) {
       if (prophet.id == excludeId) continue;
-      if (ids.contains(prophet.name)) continue;
-      ids.add(prophet.name);
+      if (ids.contains(prophet.honoredName)) continue;
+      ids.add(prophet.honoredName);
       if (ids.length >= count) break;
     }
     return ids;

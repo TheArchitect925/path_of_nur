@@ -61,6 +61,8 @@ class PrayerScheduleItem {
     required this.windowEndDateTime,
     required this.qazaDateTime,
     required this.totalRakats,
+    this.overdueAtDateTime,
+    this.makeUpAvailableDateTime,
   });
 
   final String id;
@@ -71,12 +73,37 @@ class PrayerScheduleItem {
   final DateTime windowStartDateTime;
   final DateTime windowEndDateTime;
   final DateTime qazaDateTime;
+  final DateTime? overdueAtDateTime;
+  final DateTime? makeUpAvailableDateTime;
   final int totalRakats;
 
   String get offerTime => _formatTime(offerDateTime);
   String get windowStart => _formatTime(windowStartDateTime);
   String get windowEnd => _formatTime(windowEndDateTime);
   String get qaza => _formatTime(qazaDateTime);
+  DateTime get overdueDateTime => overdueAtDateTime ?? qazaDateTime;
+  String get overdueAt => _formatTime(overdueDateTime);
+  DateTime get makeUpFromDateTime => makeUpAvailableDateTime ?? overdueDateTime;
+  String get makeUpFrom => _formatTime(makeUpFromDateTime);
+  bool get hasDelayedMakeUpWindow =>
+      makeUpFromDateTime.isAfter(overdueDateTime);
+
+  String get qadaRuleSummary {
+    switch (id) {
+      case 'fajr':
+        return 'It becomes qada at sunrise. If you missed it, avoid the sunrise-forbidden period and make it up shortly after.';
+      case 'dhuhr':
+        return 'If missed, it becomes qada when Asr begins. Make it up as soon as reasonably possible.';
+      case 'asr':
+        return 'If missed, it becomes qada at Maghrib. Avoid praying during the sunset-forbidden period itself.';
+      case 'maghrib':
+        return 'If missed, it becomes qada when Isha begins. Make it up as soon as reasonably possible.';
+      case 'isha':
+        return 'If missed, this app marks it qada at Fajr. Many scholars also treat delaying it deep into the night as blameworthy, so offer it earlier when you can.';
+      default:
+        return 'Make up missed obligatory prayers as soon as possible, while avoiding prohibited times.';
+    }
+  }
 }
 
 class PrayerScheduleContext {
@@ -504,6 +531,7 @@ List<PrayerScheduleItem> buildPrayerScheduleForDate({
           .round(),
     ),
   );
+  const safeSunriseQadaDelay = Duration(minutes: 20);
 
   return [
     PrayerScheduleItem(
@@ -515,6 +543,8 @@ List<PrayerScheduleItem> buildPrayerScheduleForDate({
       windowStartDateTime: today.fajr,
       windowEndDateTime: today.sunrise,
       qazaDateTime: today.sunrise,
+      overdueAtDateTime: today.sunrise,
+      makeUpAvailableDateTime: today.sunrise.add(safeSunriseQadaDelay),
       totalRakats: 2,
     ),
     PrayerScheduleItem(
@@ -526,6 +556,7 @@ List<PrayerScheduleItem> buildPrayerScheduleForDate({
       windowStartDateTime: today.dhuhr,
       windowEndDateTime: today.asr,
       qazaDateTime: today.asr,
+      overdueAtDateTime: today.asr,
       totalRakats: 4,
     ),
     PrayerScheduleItem(
@@ -537,6 +568,7 @@ List<PrayerScheduleItem> buildPrayerScheduleForDate({
       windowStartDateTime: today.asr,
       windowEndDateTime: today.maghrib,
       qazaDateTime: today.maghrib,
+      overdueAtDateTime: today.maghrib,
       totalRakats: 4,
     ),
     PrayerScheduleItem(
@@ -548,6 +580,7 @@ List<PrayerScheduleItem> buildPrayerScheduleForDate({
       windowStartDateTime: today.maghrib,
       windowEndDateTime: today.isha,
       qazaDateTime: today.isha,
+      overdueAtDateTime: today.isha,
       totalRakats: 3,
     ),
     PrayerScheduleItem(
@@ -558,7 +591,8 @@ List<PrayerScheduleItem> buildPrayerScheduleForDate({
       offerDateTime: today.isha,
       windowStartDateTime: today.isha,
       windowEndDateTime: tahajjudStart,
-      qazaDateTime: tahajjudStart,
+      qazaDateTime: tomorrow.fajr,
+      overdueAtDateTime: tomorrow.fajr,
       totalRakats: 4,
     ),
     PrayerScheduleItem(

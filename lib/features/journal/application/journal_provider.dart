@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../ocean/application/ocean_drops_provider.dart';
 import '../../../shared/persistence/local_store.dart';
 
 enum JournalEntryType { reflection, gratitude, observation, learning, memory }
@@ -208,11 +209,12 @@ class JournalState {
 }
 
 class JournalNotifier extends StateNotifier<JournalState> {
-  JournalNotifier(this._store)
+  JournalNotifier(this._store, this._oceanDrops)
       : super(JournalState.fromJson(_store.getJsonMap(_key)));
 
   static const _key = 'journal.entries';
   final LocalStore _store;
+  final OceanDropService _oceanDrops;
 
   void addEntry({
     required String title,
@@ -243,6 +245,22 @@ class JournalNotifier extends StateNotifier<JournalState> {
 
     state = state.copyWith(entries: [entry, ...state.entries]);
     _save();
+
+    if (cleanBody.length >= 40) {
+      final actionType = switch (type) {
+        JournalEntryType.reflection ||
+        JournalEntryType.gratitude ||
+        JournalEntryType.observation =>
+          oceanActionReflectionCompleted,
+        _ => oceanActionJournalEntryCompleted,
+      };
+      _oceanDrops.awardDrop(
+        actionType: actionType,
+        sourceModule: oceanSourceNotes,
+        referenceId: entry.id,
+        metadata: {'timestamp': entry.createdAtIso, 'entryType': type.name},
+      );
+    }
   }
 
   void toggleFavorite(String entryId) {
@@ -296,7 +314,10 @@ class JournalNotifier extends StateNotifier<JournalState> {
 
 final journalProvider =
     StateNotifierProvider<JournalNotifier, JournalState>(
-  (ref) => JournalNotifier(ref.watch(localStoreProvider)),
+  (ref) => JournalNotifier(
+    ref.watch(localStoreProvider),
+    ref.read(oceanDropServiceProvider),
+  ),
 );
 
 final journalFilteredEntriesProvider = Provider<List<JournalEntry>>((ref) {

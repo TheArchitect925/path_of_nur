@@ -60,6 +60,7 @@ class WorshipPage extends ConsumerWidget {
       children: [
         if (mode.isKids)
           PremiumCard(
+            surfaceAlphaOverride: 0.9,
             child: Text(
               l10n.kidsWorshipHint,
               style: const TextStyle(color: Color(0xFF6A5A4A), height: 1.35),
@@ -102,6 +103,7 @@ class _WorshipModeCard extends ConsumerWidget {
 
     if (mode.isRamadan) {
       return PremiumCard(
+        surfaceAlphaOverride: 0.9,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -141,6 +143,7 @@ class _WorshipModeCard extends ConsumerWidget {
 
     if (mode.isLoss) {
       return PremiumCard(
+        surfaceAlphaOverride: 0.9,
         child: Text(
           l10n.modeLossWorshipSubtitle,
           style: const TextStyle(color: Color(0xFF6A5A4A), height: 1.35),

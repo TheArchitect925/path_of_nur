@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../ocean/application/ocean_drops_provider.dart';
 import '../../../../shared/persistence/local_store.dart';
 import '../data/world_curriculum_data.dart';
 import '../domain/world_models.dart';
@@ -124,10 +125,12 @@ class WorldSubcategoryProgress {
 }
 
 class WorldProgressNotifier extends StateNotifier<WorldProgressState> {
-  WorldProgressNotifier(this._store) : super(_loadInitialState(_store));
+  WorldProgressNotifier(this._store, this._oceanDrops)
+    : super(_loadInitialState(_store));
 
   static const _key = 'learn.world.progress.v1';
   final LocalStore _store;
+  final OceanDropService _oceanDrops;
 
   static WorldProgressState _loadInitialState(LocalStore store) {
     try {
@@ -193,6 +196,18 @@ class WorldProgressNotifier extends StateNotifier<WorldProgressState> {
       ..[lessonId] = updated;
     state = state.copyWith(lessonProgressById: map);
     _save();
+    if (status == WorldLessonStatus.completed &&
+        current.status != WorldLessonStatus.completed) {
+      _oceanDrops.awardDrop(
+        actionType: oceanActionLessonCompleted,
+        sourceModule: oceanSourceLearn,
+        referenceId: lessonId,
+        metadata: {
+          'timestamp': updated.completedIso,
+          'category': 'world',
+        },
+      );
+    }
   }
 
   void _save() {
@@ -202,7 +217,10 @@ class WorldProgressNotifier extends StateNotifier<WorldProgressState> {
 
 final worldProgressProvider =
     StateNotifierProvider<WorldProgressNotifier, WorldProgressState>(
-      (ref) => WorldProgressNotifier(ref.watch(localStoreProvider)),
+      (ref) => WorldProgressNotifier(
+        ref.watch(localStoreProvider),
+        ref.read(oceanDropServiceProvider),
+      ),
     );
 
 final worldProgressSummaryProvider = Provider<WorldProgressSummary>((ref) {

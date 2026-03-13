@@ -84,7 +84,7 @@ class FeatureSectionPage extends StatelessWidget {
       case 'journey-unlocks':
         return 'Rewards and milestones preview area for future growth layers.';
       case 'journey-garden':
-        return 'Character and garden evolution preview with planned next growth stage.';
+        return 'Character and growth evolution preview with planned next stage.';
       case 'journey-ocean':
         return 'A calming representation of persistence flowing over time.';
       case 'home-daily-nur':

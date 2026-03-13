@@ -55,13 +55,13 @@ class _GrowthReflectionPageState extends ConsumerState<GrowthReflectionPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Garden Changes', style: TextStyle(fontWeight: FontWeight.w700)),
+              const Text('Recent Changes', style: TextStyle(fontWeight: FontWeight.w700)),
               const SizedBox(height: 8),
               if (recentUnlocks.isEmpty)
                 const Text('Reflection nourishes quiet growth over time.')
               else ...[
                 Text(
-                  'A recent garden gift appeared through steady reflection and small steps.',
+                  'A recent unlock appeared through steady reflection and small steps.',
                   style: const TextStyle(fontSize: 12.5, color: Color(0xFF6A5A4A)),
                 ),
                 const SizedBox(height: 6),

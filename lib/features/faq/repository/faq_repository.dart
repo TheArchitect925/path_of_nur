@@ -1,26 +1,13 @@
-import 'dart:convert';
-
-import 'package:flutter/services.dart';
-
+import '../data/faq_seed_data.dart';
 import '../models/faq_item.dart';
 
 class FaqRepository {
-  FaqRepository({AssetBundle? bundle}) : _bundle = bundle ?? rootBundle;
-
-  static const String assetPath =
-      'assets/data/path_of_nur_islam_faq_dataset_v0_1.json';
-
-  final AssetBundle _bundle;
+  FaqRepository();
   FaqDataset? _cache;
 
   Future<FaqDataset> load() async {
     if (_cache != null) return _cache!;
-    final raw = await _bundle.loadString(assetPath);
-    final decoded = jsonDecode(raw);
-    if (decoded is! Map<String, dynamic>) {
-      throw const FormatException('Invalid FAQ dataset payload.');
-    }
-    _cache = FaqDataset.fromJson(decoded);
+    _cache = faqSeedDataset;
     return _cache!;
   }
 

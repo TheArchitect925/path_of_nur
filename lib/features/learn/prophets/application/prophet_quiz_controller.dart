@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../ocean/application/ocean_drops_provider.dart';
 import '../../../../shared/persistence/local_store.dart';
 import '../domain/prophet_quiz.dart';
 import 'prophet_quiz_pool_service.dart';
@@ -80,11 +81,13 @@ class ProphetQuizState {
 }
 
 class ProphetQuizController extends StateNotifier<ProphetQuizState> {
-  ProphetQuizController(this._store) : super(const ProphetQuizState()) {
+  ProphetQuizController(this._store, this._oceanDrops)
+    : super(const ProphetQuizState()) {
     _load();
   }
 
   final LocalStore _store;
+  final OceanDropService _oceanDrops;
   final List<ProphetQuizQuestion> _questionPool =
       ProphetQuizPoolService.buildExpandedPool();
 
@@ -264,6 +267,12 @@ class ProphetQuizController extends StateNotifier<ProphetQuizState> {
   void _finishQuiz() {
     final score = scoreForCurrentRun();
     final total = state.activeQuestionIds.length;
+    final referenceId = [
+      state.lastMode?.name ?? 'general',
+      state.lastDifficulty.name,
+      state.lastProphetId ?? 'all',
+      state.lastEraId ?? 'all',
+    ].join(':');
     final best = score > state.bestScore ? score : state.bestScore;
     state = state.copyWith(
       inProgress: false,
@@ -274,6 +283,12 @@ class ProphetQuizController extends StateNotifier<ProphetQuizState> {
       lastResult: ProphetQuizResult(score: score, total: total),
     );
     _save();
+    _oceanDrops.awardDrop(
+      actionType: oceanActionQuizCompleted,
+      sourceModule: oceanSourceQuiz,
+      referenceId: referenceId,
+      metadata: {'timestamp': DateTime.now().toIso8601String()},
+    );
   }
 
   ProphetQuizDifficulty _difficultyFromName(String? name) {
@@ -301,5 +316,8 @@ class ProphetQuizController extends StateNotifier<ProphetQuizState> {
 
 final prophetQuizControllerProvider =
     StateNotifierProvider<ProphetQuizController, ProphetQuizState>((ref) {
-      return ProphetQuizController(ref.watch(localStoreProvider));
+      return ProphetQuizController(
+        ref.watch(localStoreProvider),
+        ref.read(oceanDropServiceProvider),
+      );
     });

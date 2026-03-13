@@ -43,7 +43,7 @@ class SeededProphetDetailRepository extends ProphetDetailRepository {
           .toList(),
       quranReferences: prophet.quranReferences.map(_parseReference).toList(),
       reflectionPrompts: [
-        'Which quality from ${prophet.name} can you carry into this week?',
+        'Which quality from ${prophet.titledHonoredName} can you carry into this week?',
         'What one step can help your worship feel more sincere today?',
         'Where can you return gently to Allah with intention and gratitude?',
       ],

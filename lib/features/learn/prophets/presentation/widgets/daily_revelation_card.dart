@@ -41,9 +41,9 @@ class DailyRevelationCard extends StatelessWidget {
               Expanded(
                 child: Text(
                   item.title,
-                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                    fontWeight: FontWeight.w700,
-                  ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
                 ),
               ),
               if (isOpened)
@@ -57,7 +57,10 @@ class DailyRevelationCard extends StatelessWidget {
                     color: const Color(0x332D8F58),
                     border: Border.all(color: const Color(0x552D8F58)),
                   ),
-                  child: Text(copy.opened, style: const TextStyle(fontSize: 11.5)),
+                  child: Text(
+                    copy.opened,
+                    style: const TextStyle(fontSize: 11.5),
+                  ),
                 ),
             ],
           ),
@@ -98,9 +101,9 @@ class DailyRevelationCard extends StatelessWidget {
           const SizedBox(height: 8),
           Text(
             copy.returnTomorrow,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: AppColors.onSurfaceSubtle,
-            ),
+            style: Theme.of(
+              context,
+            ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),
           ),
         ],
       ),

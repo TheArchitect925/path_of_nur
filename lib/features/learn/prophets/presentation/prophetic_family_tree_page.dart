@@ -52,6 +52,7 @@ class _PropheticFamilyTreePageState extends State<PropheticFamilyTreePage> {
                 final node = nodesById[id];
                 if (node == null) return false;
                 return node.name.toLowerCase().contains(query) ||
+                    node.honoredName.toLowerCase().contains(query) ||
                     node.arabicName.contains(_searchController.text.trim()) ||
                     node.eraTitle.toLowerCase().contains(query) ||
                     (node.regionLabel?.toLowerCase().contains(query) ?? false);
@@ -191,6 +192,7 @@ class _PropheticFamilyTreePageState extends State<PropheticFamilyTreePage> {
         if (node == null) continue;
         final match =
             node.name.toLowerCase().contains(query) ||
+            node.honoredName.toLowerCase().contains(query) ||
             node.arabicName.contains(_searchController.text.trim()) ||
             node.eraTitle.toLowerCase().contains(query) ||
             (node.regionLabel?.toLowerCase().contains(query) ?? false);

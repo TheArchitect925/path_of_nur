@@ -105,7 +105,10 @@ class LocalNotificationService {
     if (didChangePlan) {
       await _store.setString(_fingerprintKey, fingerprint);
     }
-    await _store.setJsonList(_scheduledPrayerIdsKey, scheduledIds.toList()..sort());
+    await _store.setJsonList(
+      _scheduledPrayerIdsKey,
+      scheduledIds.toList()..sort(),
+    );
 
     await _recoverMissedReminders(plan, now);
   }
@@ -149,7 +152,10 @@ class LocalNotificationService {
       );
     }
 
-    await _store.setJsonList(_scheduledGrowthIdsKey, scheduledIds.toList()..sort());
+    await _store.setJsonList(
+      _scheduledGrowthIdsKey,
+      scheduledIds.toList()..sort(),
+    );
     await _store.setString(_growthFingerprintKey, fingerprint);
   }
 
@@ -247,9 +253,8 @@ class LocalNotificationService {
 
     return NotificationDetails(
       android: switch (item.kind) {
-        ReminderKind.prayerAtTime => useAdhanSound
-            ? prayerAtTimeAdhanChannel
-            : prayerAtTimeSilentChannel,
+        ReminderKind.prayerAtTime =>
+          useAdhanSound ? prayerAtTimeAdhanChannel : prayerAtTimeSilentChannel,
         ReminderKind.prayerBeforeQaza => prayerBeforeQazaChannel,
         _ => genericChannel,
       },
@@ -262,7 +267,7 @@ class LocalNotificationService {
       case ReminderKind.prayerAtTime:
         return '${_prayerName(item.prayerId)} prayer';
       case ReminderKind.prayerBeforeQaza:
-        return '${_prayerName(item.prayerId)} reminder';
+        return '${_prayerName(item.prayerId)} window reminder';
       case ReminderKind.dhikr:
         return 'Dhikr reminder';
       case ReminderKind.quran:
@@ -281,7 +286,7 @@ class LocalNotificationService {
       case ReminderKind.prayerAtTime:
         return 'It is time for ${_prayerName(item.prayerId)}. Stay connected with your prayer.';
       case ReminderKind.prayerBeforeQaza:
-        return 'Qaza time is approaching for ${_prayerName(item.prayerId)}.';
+        return '${_prayerName(item.prayerId)} time is about to end. Offer it before it becomes qada.';
       case ReminderKind.dhikr:
         return 'Take a calm moment for dhikr.';
       case ReminderKind.quran:
@@ -335,10 +340,14 @@ class LocalNotificationService {
 
   NotificationDetails _growthNotificationDetails(bool quietDelivery) {
     final android = AndroidNotificationDetails(
-      quietDelivery ? 'growth_gentle_reminders_quiet' : 'growth_gentle_reminders',
+      quietDelivery
+          ? 'growth_gentle_reminders_quiet'
+          : 'growth_gentle_reminders',
       quietDelivery ? 'Growth Reminders (Quiet)' : 'Growth Reminders',
       channelDescription: 'Gentle reminders for Growth habits',
-      importance: quietDelivery ? Importance.defaultImportance : Importance.high,
+      importance: quietDelivery
+          ? Importance.defaultImportance
+          : Importance.high,
       priority: quietDelivery ? Priority.defaultPriority : Priority.high,
       icon: _launcherIcon,
       color: _notificationAccent,
@@ -352,8 +361,9 @@ class LocalNotificationService {
       presentSound: !quietDelivery,
       presentBanner: true,
       presentList: true,
-      interruptionLevel:
-          quietDelivery ? InterruptionLevel.passive : InterruptionLevel.active,
+      interruptionLevel: quietDelivery
+          ? InterruptionLevel.passive
+          : InterruptionLevel.active,
       threadIdentifier: 'growth',
       subtitle: 'Path of Nur',
     );
@@ -425,9 +435,7 @@ class LocalNotificationService {
   }
 
   Set<String> _storedNotificationIds(String key) {
-    return {
-      ...?_store.getJsonList(key)?.map((item) => item.toString()),
-    };
+    return {...?_store.getJsonList(key)?.map((item) => item.toString())};
   }
 
   Future<void> _cancelStoredNotifications(String key) async {

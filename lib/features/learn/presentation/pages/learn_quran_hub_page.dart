@@ -9,13 +9,12 @@ import '../../../../shared/widgets/segmented_pill_control.dart';
 import '../../hadith/application/hadith_foundation_repository.dart';
 import '../../hadith/domain/hadith_foundation_models.dart';
 import '../../quran/application/quran_learning_system_service.dart';
-import '../../quran/application/quran_providers.dart';
 import '../../quran/domain/quran_learning_models.dart';
 import '../models/learn_category_item.dart';
 import '../widgets/learn_category_grid.dart';
 import '../widgets/learn_hub_page_scaffold.dart';
 
-enum _QuranLearningTab { recite, understand, reflect, paths, memorize }
+enum _QuranLearningTab { understand, reflect, paths, memorize }
 
 class LearnQuranHubPage extends ConsumerStatefulWidget {
   const LearnQuranHubPage({super.key});
@@ -25,36 +24,9 @@ class LearnQuranHubPage extends ConsumerStatefulWidget {
 }
 
 class _LearnQuranHubPageState extends ConsumerState<LearnQuranHubPage> {
-  _QuranLearningTab _tab = _QuranLearningTab.recite;
+  _QuranLearningTab _tab = _QuranLearningTab.understand;
 
   static const List<LearnCategoryItem> _quranTools = [
-    LearnCategoryItem(
-      id: 'quran-search',
-      title: 'Quran Search',
-      iconKey: 'search',
-      routeName: 'quranSearch',
-      searchKeywords: ['search', 'quran'],
-      tags: ['quran'],
-      sectionType: 'module',
-    ),
-    LearnCategoryItem(
-      id: 'quran-bookmarks',
-      title: 'Bookmarks',
-      iconKey: 'bookmarks',
-      routeName: 'quranBookmarks',
-      searchKeywords: ['bookmarks', 'saved'],
-      tags: ['quran'],
-      sectionType: 'module',
-    ),
-    LearnCategoryItem(
-      id: 'quran-notes',
-      title: 'Quran Notes',
-      iconKey: 'notes',
-      routeName: 'quranNotes',
-      searchKeywords: ['notes', 'reflection'],
-      tags: ['quran'],
-      sectionType: 'module',
-    ),
     LearnCategoryItem(
       id: 'quran-top-words',
       title: 'Top Quran Words',
@@ -74,6 +46,15 @@ class _LearnQuranHubPageState extends ConsumerState<LearnQuranHubPage> {
       sectionType: 'module',
     ),
     LearnCategoryItem(
+      id: 'quran-universe',
+      title: 'Qur’an Universe',
+      iconKey: 'quran_universe',
+      routeName: 'quranUniverse',
+      searchKeywords: ['quran universe', 'connections', 'themes', 'locations'],
+      tags: ['quran', 'exploration'],
+      sectionType: 'module',
+    ),
+    LearnCategoryItem(
       id: 'quran-topics',
       title: 'Qur’an Topics',
       iconKey: 'quran_universe',
@@ -82,13 +63,28 @@ class _LearnQuranHubPageState extends ConsumerState<LearnQuranHubPage> {
       tags: ['quran', 'knowledge graph'],
       sectionType: 'module',
     ),
+    LearnCategoryItem(
+      id: 'quran-notes',
+      title: 'Quran Notes',
+      iconKey: 'notes',
+      routeName: 'quranNotes',
+      searchKeywords: ['notes', 'reflection'],
+      tags: ['quran'],
+      sectionType: 'module',
+    ),
+    LearnCategoryItem(
+      id: 'quran-names-of-allah',
+      title: '99 Names of Allah',
+      iconKey: 'allah_names',
+      routeName: 'quranNamesOfAllah',
+      searchKeywords: ['99 names', 'asma ul husna', 'allah names'],
+      tags: ['quran', 'reflection'],
+      sectionType: 'module',
+    ),
   ];
 
   @override
   Widget build(BuildContext context) {
-    final progress = ref.watch(quranReadingProgressProvider);
-    final continueSummary = ref.watch(quranContinueReadingSummaryProvider);
-    final surahs = ref.watch(quranSurahListProvider);
     final verses = ref.watch(quranLearningVersesProvider);
     final paths = ref.watch(quranLearningPathsProvider);
     final memorization = ref.watch(quranMemorizationProgressProvider);
@@ -97,11 +93,36 @@ class _LearnQuranHubPageState extends ConsumerState<LearnQuranHubPage> {
     final dailyVerse = ref.watch(quranDailyReflectionVerseProvider);
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.menu_book_rounded,
+      headerIcon: Icons.school_rounded,
       title: 'Qur’an Learning',
       subtitle:
-          'Structured recitation, understanding, reflection, paths, and memorization in one calm learning flow.',
+          'Understanding, reflection, guided paths, memorization, and deeper Qur’an study in one calmer learning space.',
       children: [
+        PremiumCard(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Reader & Reciter',
+                style: Theme.of(
+                  context,
+                ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+              ),
+              const SizedBox(height: 6),
+              Text(
+                'Keep your practical reading flow separate from study and reflection.',
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
+              const SizedBox(height: 10),
+              FilledButton.tonalIcon(
+                onPressed: () => context.pushNamed('learnQuranHub'),
+                icon: const Icon(Icons.menu_book_rounded),
+                label: const Text('Open Holy Qur’an'),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 12),
         SegmentedPillControl<_QuranLearningTab>(
           items: _QuranLearningTab.values,
           selectedItem: _tab,
@@ -109,102 +130,6 @@ class _LearnQuranHubPageState extends ConsumerState<LearnQuranHubPage> {
           onChanged: (value) => setState(() => _tab = value),
         ),
         const SizedBox(height: 12),
-        if (_tab == _QuranLearningTab.recite) ...[
-          PremiumCard(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Recite',
-                  style: Theme.of(
-                    context,
-                  ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
-                ),
-                const SizedBox(height: 6),
-                Text(
-                  'Surah-based recitation with verse audio, current-ayah highlighting, word-tap audio support, and repeat controls in the reader.',
-                  style: Theme.of(context).textTheme.bodyMedium,
-                ),
-                const SizedBox(height: 10),
-                Wrap(
-                  spacing: 8,
-                  runSpacing: 8,
-                  children: [
-                    FilledButton.tonalIcon(
-                      onPressed: () => context.pushNamed(
-                        'quranReader',
-                        pathParameters: {
-                          'surahNumber': continueSummary.surahNumber.toString(),
-                        },
-                        queryParameters: {
-                          'ayah': continueSummary.ayahNumber.toString(),
-                        },
-                      ),
-                      icon: const Icon(Icons.play_circle_fill_rounded),
-                      label: const Text('Continue Reciting'),
-                    ),
-                    FilledButton.tonalIcon(
-                      onPressed: () => context.pushNamed('quranExplorer'),
-                      icon: const Icon(Icons.library_books_rounded),
-                      label: const Text('Browse Surahs'),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 10),
-          PremiumCard(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Current Recitation',
-                  style: Theme.of(
-                    context,
-                  ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
-                ),
-                const SizedBox(height: 6),
-                Text(
-                  '${continueSummary.surahName} ${continueSummary.surahNumber}:${continueSummary.ayahNumber}',
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  'Recent progress: Surah ${progress.surahNumber}, Ayah ${progress.ayahNumber}',
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.onSurfaceSubtle,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 10),
-          ...surahs
-              .take(12)
-              .map(
-                (surah) => Padding(
-                  padding: const EdgeInsets.only(bottom: 8),
-                  child: PremiumCard(
-                    child: ListTile(
-                      contentPadding: EdgeInsets.zero,
-                      title: Text(
-                        '${surah.number}. ${surah.transliteratedName}',
-                      ),
-                      subtitle: Text(
-                        '${surah.englishName} • ${surah.verseCount} ayat',
-                      ),
-                      trailing: const Icon(Icons.chevron_right_rounded),
-                      onTap: () => context.pushNamed(
-                        'quranReader',
-                        pathParameters: {
-                          'surahNumber': surah.number.toString(),
-                        },
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-        ],
         if (_tab == _QuranLearningTab.understand) ...[
           PremiumCard(
             child: Column(
@@ -634,8 +559,6 @@ class _LearnQuranHubPageState extends ConsumerState<LearnQuranHubPage> {
 
   String _tabLabel(_QuranLearningTab tab) {
     switch (tab) {
-      case _QuranLearningTab.recite:
-        return 'Recite';
       case _QuranLearningTab.understand:
         return 'Understand';
       case _QuranLearningTab.reflect:

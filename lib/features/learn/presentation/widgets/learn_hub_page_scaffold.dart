@@ -10,6 +10,8 @@ class LearnHubPageScaffold extends StatelessWidget {
     required this.subtitle,
     required this.children,
     this.headerIcon,
+    this.backgroundAssetPath,
+    this.backgroundOverlayColor,
     this.quote = const QuranQuote(
       arabic: 'رَبِّ زِدْنِي عِلْمًا',
       transliteration: 'Rabbi zidni ilma',
@@ -23,6 +25,8 @@ class LearnHubPageScaffold extends StatelessWidget {
   final String title;
   final String subtitle;
   final IconData? headerIcon;
+  final String? backgroundAssetPath;
+  final Color? backgroundOverlayColor;
   final List<Widget> children;
   final QuranQuote? quote;
 
@@ -32,6 +36,8 @@ class LearnHubPageScaffold extends StatelessWidget {
       headerIcon: headerIcon,
       title: title,
       subtitle: subtitle,
+      backgroundAssetPath: backgroundAssetPath,
+      backgroundOverlayColor: backgroundOverlayColor,
       quote: quote,
       children: [...children, const SizedBox(height: 96)],
     );

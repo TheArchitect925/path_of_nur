@@ -69,7 +69,10 @@ class LocalStoreProphetDailyWidgetSyncAdapter
 
   @override
   Future<void> syncSnapshot(ProphetDailySurfaceSnapshot snapshot) async {
-    await _store.setJsonMap('learn.prophets.daily.widget.snapshot.v1', snapshot.toJson());
+    await _store.setJsonMap(
+      'learn.prophets.daily.widget.snapshot.v1',
+      snapshot.toJson(),
+    );
   }
 }
 
@@ -81,17 +84,14 @@ class LocalStoreProphetDailyLockSurfaceSyncAdapter
 
   @override
   Future<void> syncSnapshot(ProphetDailySurfaceSnapshot snapshot) async {
-    await _store.setJsonMap(
-      'learn.prophets.daily.lock.snapshot.v1',
-      {
-        'dateKey': snapshot.dateKey,
-        'title': snapshot.title,
-        'subtitle': snapshot.subtitle,
-        'quizCompleted': snapshot.quizCompleted,
-        'deepLink': snapshot.deepLinkLearn,
-        'updatedAtIso': snapshot.updatedAtIso,
-      },
-    );
+    await _store.setJsonMap('learn.prophets.daily.lock.snapshot.v1', {
+      'dateKey': snapshot.dateKey,
+      'title': snapshot.title,
+      'subtitle': snapshot.subtitle,
+      'quizCompleted': snapshot.quizCompleted,
+      'deepLink': snapshot.deepLinkLearn,
+      'updatedAtIso': snapshot.updatedAtIso,
+    });
   }
 }
 
@@ -102,7 +102,9 @@ class LocalStoreProphetDailyNotificationHookAdapter
   final LocalStore _store;
 
   @override
-  Future<void> syncDailyNotificationDraft(ProphetDailySurfaceSnapshot snapshot) async {
+  Future<void> syncDailyNotificationDraft(
+    ProphetDailySurfaceSnapshot snapshot,
+  ) async {
     await _store.setJsonMap('learn.prophets.daily.notification.draft.v1', {
       'id': 'prophets.daily.${snapshot.dateKey}',
       'title': snapshot.title,
@@ -117,7 +119,9 @@ class LocalStoreProphetDailyNotificationHookAdapter
 
 final prophetDailyWidgetSyncAdapterProvider =
     Provider<ProphetDailyWidgetSyncAdapter>((ref) {
-      return LocalStoreProphetDailyWidgetSyncAdapter(ref.watch(localStoreProvider));
+      return LocalStoreProphetDailyWidgetSyncAdapter(
+        ref.watch(localStoreProvider),
+      );
     });
 
 final prophetDailyLockSurfaceSyncAdapterProvider =
@@ -134,48 +138,50 @@ final prophetDailyNotificationHookAdapterProvider =
       );
     });
 
-final prophetDailySurfaceSnapshotProvider = Provider<ProphetDailySurfaceSnapshot>((ref) {
-  final bundle = ref.watch(todayDailyLearningBundleProvider);
-  final item = bundle.item;
-  final prophetPath = item.linkedProphetId == null
-      ? null
-      : '/learn/section/prophets?prophet=${item.linkedProphetId}';
+final prophetDailySurfaceSnapshotProvider =
+    Provider<ProphetDailySurfaceSnapshot>((ref) {
+      final bundle = ref.watch(todayDailyLearningBundleProvider);
+      final item = bundle.item;
+      final prophetPath = item.linkedProphetId == null
+          ? null
+          : '/learn/section/prophets?prophet=${item.linkedProphetId}';
 
-  return ProphetDailySurfaceSnapshot(
-    dateKey: bundle.dateKey,
-    title: item.title,
-    subtitle: item.subtitle,
-    body: item.body,
-    quizQuestionId: bundle.quizQuestion.id,
-    quizCompleted: bundle.status.quizAnswered,
-    cardOpened: bundle.status.cardOpened,
-    deepLinkLearn: '/learn/section/prophets',
-    deepLinkProphet: prophetPath,
-    deepLinkQuiz: '/learn/section/prophets?tab=quiz',
-    updatedAtIso: DateTime.now().toIso8601String(),
-  );
-});
+      return ProphetDailySurfaceSnapshot(
+        dateKey: bundle.dateKey,
+        title: item.title,
+        subtitle: item.subtitle,
+        body: item.body,
+        quizQuestionId: bundle.quizQuestion.id,
+        quizCompleted: bundle.status.quizAnswered,
+        cardOpened: bundle.status.cardOpened,
+        deepLinkLearn: '/learn/section/prophets',
+        deepLinkProphet: prophetPath,
+        deepLinkQuiz: '/learn/section/prophets?tab=quiz',
+        updatedAtIso: DateTime.now().toIso8601String(),
+      );
+    });
 
 final prophetDailySurfacesBootstrapProvider = Provider<void>((ref) {
   final store = ref.read(localStoreProvider);
   final widgetAdapter = ref.read(prophetDailyWidgetSyncAdapterProvider);
   final lockAdapter = ref.read(prophetDailyLockSurfaceSyncAdapterProvider);
-  final notificationAdapter = ref.read(prophetDailyNotificationHookAdapterProvider);
-
-  ref.listen<ProphetDailySurfaceSnapshot>(
-    prophetDailySurfaceSnapshotProvider,
-    (_, snapshot) {
-      Future<void>.microtask(() async {
-        await store.setJsonMap('learn.prophets.daily.deeplinks.v1', {
-          'learn': snapshot.deepLinkLearn,
-          'quiz': snapshot.deepLinkQuiz,
-          'prophet': snapshot.deepLinkProphet,
-        });
-        await widgetAdapter.syncSnapshot(snapshot);
-        await lockAdapter.syncSnapshot(snapshot);
-        await notificationAdapter.syncDailyNotificationDraft(snapshot);
-      });
-    },
-    fireImmediately: true,
+  final notificationAdapter = ref.read(
+    prophetDailyNotificationHookAdapterProvider,
   );
+
+  ref.listen<ProphetDailySurfaceSnapshot>(prophetDailySurfaceSnapshotProvider, (
+    _,
+    snapshot,
+  ) {
+    Future<void>.microtask(() async {
+      await store.setJsonMap('learn.prophets.daily.deeplinks.v1', {
+        'learn': snapshot.deepLinkLearn,
+        'quiz': snapshot.deepLinkQuiz,
+        'prophet': snapshot.deepLinkProphet,
+      });
+      await widgetAdapter.syncSnapshot(snapshot);
+      await lockAdapter.syncSnapshot(snapshot);
+      await notificationAdapter.syncDailyNotificationDraft(snapshot);
+    });
+  }, fireImmediately: true);
 });

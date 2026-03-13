@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../ocean/application/ocean_drops_provider.dart';
 import '../../../../shared/persistence/local_store.dart';
 import '../data/hadith_curriculum_data.dart';
 import '../domain/hadith_models.dart';
@@ -123,11 +124,12 @@ class HadithSubcategoryProgress {
 }
 
 class HadithProgressNotifier extends StateNotifier<HadithProgressState> {
-  HadithProgressNotifier(this._store)
+  HadithProgressNotifier(this._store, this._oceanDrops)
       : super(HadithProgressState.fromJson(_store.getJsonMap(_key)));
 
   static const _key = 'learn.hadith.progress.v1';
   final LocalStore _store;
+  final OceanDropService _oceanDrops;
 
   HadithLessonProgress progressFor(String lessonId) {
     return state.lessonProgressById[lessonId] ??
@@ -179,6 +181,15 @@ class HadithProgressNotifier extends StateNotifier<HadithProgressState> {
       ..[lessonId] = updated;
     state = state.copyWith(lessonProgressById: map);
     _save();
+    if (status == HadithLessonStatus.completed &&
+        current.status != HadithLessonStatus.completed) {
+      _oceanDrops.awardDrop(
+        actionType: oceanActionHadithLessonCompleted,
+        sourceModule: oceanSourceLearn,
+        referenceId: lessonId,
+        metadata: {'timestamp': updated.completedIso},
+      );
+    }
   }
 
   void _save() {
@@ -188,7 +199,10 @@ class HadithProgressNotifier extends StateNotifier<HadithProgressState> {
 
 final hadithProgressProvider =
     StateNotifierProvider<HadithProgressNotifier, HadithProgressState>(
-  (ref) => HadithProgressNotifier(ref.watch(localStoreProvider)),
+  (ref) => HadithProgressNotifier(
+    ref.watch(localStoreProvider),
+    ref.read(oceanDropServiceProvider),
+  ),
 );
 
 final hadithProgressSummaryProvider = Provider<HadithProgressSummary>((ref) {

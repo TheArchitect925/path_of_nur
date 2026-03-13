@@ -12,6 +12,8 @@ class WorshipSegmentedControl extends StatelessWidget {
     required this.onChanged,
   });
 
+  static const double _surfaceAlpha = 0.9;
+
   final WorshipTab selected;
   final ValueChanged<WorshipTab> onChanged;
 
@@ -19,9 +21,11 @@ class WorshipSegmentedControl extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.surface.withValues(alpha: 0.34),
+        color: AppColors.surface.withValues(alpha: _surfaceAlpha),
         borderRadius: BorderRadius.circular(AppRadii.pill),
-        border: Border.all(color: AppColors.accentGold.withValues(alpha: 0.45)),
+        border: Border.all(
+          color: AppColors.accentGold.withValues(alpha: 0.55),
+        ),
       ),
       padding: const EdgeInsets.all(AppSpacing.xxs),
       child: Row(
@@ -41,7 +45,7 @@ class WorshipSegmentedControl extends StatelessWidget {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(AppRadii.pill),
                         color: selected == tab
-                            ? AppColors.accentGold.withValues(alpha: 0.30)
+                            ? AppColors.accentGold.withValues(alpha: 0.40)
                             : Colors.transparent,
                         border: selected == tab
                             ? Border.all(

@@ -367,7 +367,7 @@ class _ProphetsQuizViewState extends ConsumerState<ProphetsQuizView> {
                   ...prophets.map(
                     (prophet) => DropdownMenuItem<String?>(
                       value: prophet.id,
-                      child: Text(prophet.name),
+                      child: Text(prophet.honoredName),
                     ),
                   ),
                 ],
@@ -433,7 +433,7 @@ class _ProphetsQuizViewState extends ConsumerState<ProphetsQuizView> {
               Text('Question pool: ${controller.questionPool.length}'),
               if (state.lastProphetId != null || state.lastEraId != null)
                 Text(
-                  'Last focus: ${state.lastProphetId == null ? 'All prophets' : (prophetById[state.lastProphetId!]?.name ?? state.lastProphetId!)} · ${state.lastEraId == null ? 'All eras' : _eraLabel(state.lastEraId!)}',
+                  'Last focus: ${state.lastProphetId == null ? 'All prophets' : (prophetById[state.lastProphetId!]?.honoredName ?? state.lastProphetId!)} · ${state.lastEraId == null ? 'All eras' : _eraLabel(state.lastEraId!)}',
                 ),
             ],
           ),

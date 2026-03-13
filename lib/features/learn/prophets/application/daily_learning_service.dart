@@ -9,7 +9,9 @@ import '../domain/prophet_quiz.dart';
 import 'prophet_quiz_pool_service.dart';
 
 class DailyLearningState {
-  const DailyLearningState({this.entries = const <String, DailyLearningDayStatus>{}});
+  const DailyLearningState({
+    this.entries = const <String, DailyLearningDayStatus>{},
+  });
 
   final Map<String, DailyLearningDayStatus> entries;
 
@@ -55,9 +57,7 @@ class DailyLearningController extends StateNotifier<DailyLearningState> {
       for (final entry in entriesRaw.entries) {
         if (entry.key is! String || entry.value is! Map) continue;
         final parsed = DailyLearningDayStatus.fromJson(
-          (entry.value as Map).map(
-            (k, v) => MapEntry(k.toString(), v),
-          ),
+          (entry.value as Map).map((k, v) => MapEntry(k.toString(), v)),
         );
         if (parsed.dateKey.isNotEmpty) {
           entries[entry.key.toString()] = parsed;
@@ -86,7 +86,8 @@ class DailyLearningController extends StateNotifier<DailyLearningState> {
   DailyLearningBundle bundleForDate(String dateKey) {
     final item = _itemForDate(dateKey);
     final question = _questionForDate(dateKey, item);
-    final status = state.entries[dateKey] ?? DailyLearningDayStatus(dateKey: dateKey);
+    final status =
+        state.entries[dateKey] ?? DailyLearningDayStatus(dateKey: dateKey);
 
     return DailyLearningBundle(
       dateKey: dateKey,
@@ -101,7 +102,10 @@ class DailyLearningController extends StateNotifier<DailyLearningState> {
     final current = state.entries[key] ?? DailyLearningDayStatus(dateKey: key);
     if (current.cardOpened) return;
     final updated = current.copyWith(cardOpened: true);
-    final next = <String, DailyLearningDayStatus>{...state.entries, key: updated};
+    final next = <String, DailyLearningDayStatus>{
+      ...state.entries,
+      key: updated,
+    };
     state = state.copyWith(entries: next);
     await _save();
   }
@@ -113,7 +117,10 @@ class DailyLearningController extends StateNotifier<DailyLearningState> {
       cardOpened: true,
       lastLinkedProphetId: prophetId,
     );
-    final next = <String, DailyLearningDayStatus>{...state.entries, key: updated};
+    final next = <String, DailyLearningDayStatus>{
+      ...state.entries,
+      key: updated,
+    };
     state = state.copyWith(entries: next);
     await _save();
   }
@@ -131,7 +138,10 @@ class DailyLearningController extends StateNotifier<DailyLearningState> {
       quizSelectedIndex: selectedIndex,
       quizCorrect: selectedIndex == correctIndex,
     );
-    final next = <String, DailyLearningDayStatus>{...state.entries, key: updated};
+    final next = <String, DailyLearningDayStatus>{
+      ...state.entries,
+      key: updated,
+    };
     state = state.copyWith(entries: next);
     await _save();
   }
@@ -153,7 +163,9 @@ class DailyLearningController extends StateNotifier<DailyLearningState> {
 
     List<ProphetQuizQuestion> filtered;
     if (item.linkedProphetId != null) {
-      filtered = pool.where((q) => q.relatedProphetId == item.linkedProphetId).toList();
+      filtered = pool
+          .where((q) => q.relatedProphetId == item.linkedProphetId)
+          .toList();
     } else if (item.linkedEraId != null) {
       filtered = pool.where((q) => q.eraId == item.linkedEraId).toList();
     } else {
@@ -186,9 +198,7 @@ class DailyLearningController extends StateNotifier<DailyLearningState> {
   }
 
   List<DailyLearningItem> _dailyPoolForDate(DateTime date) {
-    final items = <DailyLearningItem>[
-      ...seededDailyLearningItems,
-    ];
+    final items = <DailyLearningItem>[...seededDailyLearningItems];
 
     if (_specialMode.isRamadan || _specialMode.ramadanDateWindowActive) {
       items.addAll(seededRamadanDailyLearningItems);

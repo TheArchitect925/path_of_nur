@@ -694,7 +694,7 @@ final growthUnlocksAutoSyncProvider = Provider<void>((ref) {
       if (ids.isEmpty) return;
       ref
           .read(growthControllerProvider.notifier)
-          .registerUnlockedRewards(ids, source: 'garden_progress');
+          .registerUnlockedRewards(ids, source: 'growth_progress');
     });
   }, fireImmediately: true);
 });

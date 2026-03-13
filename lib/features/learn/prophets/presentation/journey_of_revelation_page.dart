@@ -89,7 +89,7 @@ class JourneyOfRevelationPage extends ConsumerWidget {
               if (lastEra != null || lastProphet != null) ...[
                 const SizedBox(height: 6),
                 Text(
-                  'Continue from: ${lastEra?.title ?? 'Era'}${lastProphet == null ? '' : ' · ${lastProphet.name}'}',
+                  'Continue from: ${lastEra?.title ?? 'Era'}${lastProphet == null ? '' : ' · ${lastProphet.honoredName}'}',
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: AppColors.onSurfaceSubtle,
                   ),
@@ -177,11 +177,11 @@ class JourneyOfRevelationPage extends ConsumerWidget {
           final current =
               progress.lastVisitedEraId == era.id || focusedEraId == era.id;
           final featuredNames = era.featuredProphetIds
-              .map((id) => byId[id]?.name)
+              .map((id) => byId[id]?.honoredName)
               .whereType<String>()
               .toList();
           final featuredLabel = featuredNames.isEmpty
-              ? 'Featured: ${eraProphets.take(2).map((e) => e.name).join(', ')}'
+              ? 'Featured: ${eraProphets.take(2).map((e) => e.honoredName).join(', ')}'
               : 'Featured: ${featuredNames.join(', ')}';
 
           return Padding(
@@ -241,8 +241,8 @@ class JourneyOfRevelationPage extends ConsumerWidget {
                       : detail.keyLessons.first.title;
 
                   return RevelationProphetNode(
-                    name: prophet.name,
-                    arabicName: prophet.arabicName,
+                    name: prophet.honoredName,
+                    arabicName: prophet.honoredArabicName,
                     summary: prophet.shortSummary,
                     regionLabel: prophet.regionLabel,
                     keyLesson: keyLesson,

@@ -87,6 +87,8 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/images/backgrounds/
+    - assets/images/prophets/
     - assets/images/backgrounds/bg_v1.png
     - assets/icons/
     - assets/audio/

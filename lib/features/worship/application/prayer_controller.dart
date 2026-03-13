@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../ocean/application/ocean_drops_provider.dart';
 import '../../../shared/application/daily_clock_provider.dart';
 import '../../../shared/persistence/local_store.dart';
 import '../domain/daily_prayer_record.dart';
@@ -8,7 +9,7 @@ import '../domain/prayer_status.dart';
 import '../domain/prayer_summary.dart';
 
 class PrayerController extends StateNotifier<List<DailyPrayerRecord>> {
-  PrayerController(this._store)
+  PrayerController(this._store, this._oceanDrops)
     : super(const [
         DailyPrayerRecord(prayer: PrayerName.fajr),
         DailyPrayerRecord(prayer: PrayerName.dhuhr),
@@ -21,18 +22,31 @@ class PrayerController extends StateNotifier<List<DailyPrayerRecord>> {
   }
 
   final LocalStore _store;
+  final OceanDropService _oceanDrops;
   late String _activeDayKey;
 
   void cycleStatus(PrayerName prayer) {
     _syncDayIfNeeded();
+    PrayerStatus? nextStatus;
     state = state
         .map(
           (record) => record.prayer == prayer
-              ? record.copyWith(status: record.status.next)
+              ? (() {
+                  nextStatus = record.status.next;
+                  return record.copyWith(status: nextStatus);
+                })()
               : record,
         )
         .toList();
     _saveForDay(_activeDayKey);
+    if (nextStatus == PrayerStatus.completed) {
+      _oceanDrops.awardDrop(
+        actionType: oceanActionPrayerCompleted,
+        sourceModule: oceanSourcePrayer,
+        referenceId: prayer.name,
+        metadata: {'timestamp': '${_activeDayKey}T12:00:00'},
+      );
+    }
   }
 
   void onDayChanged(String dayKey, {bool force = false}) {
@@ -81,7 +95,10 @@ class PrayerController extends StateNotifier<List<DailyPrayerRecord>> {
 
 final prayerControllerProvider =
     StateNotifierProvider<PrayerController, List<DailyPrayerRecord>>((ref) {
-      final notifier = PrayerController(ref.watch(localStoreProvider));
+      final notifier = PrayerController(
+        ref.watch(localStoreProvider),
+        ref.read(oceanDropServiceProvider),
+      );
       ref.listen<String>(dailyKeyProvider, (_, next) {
         notifier.onDayChanged(next);
       });

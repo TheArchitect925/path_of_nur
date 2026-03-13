@@ -1,4 +1,5 @@
 import 'prophet_entry.dart';
+import 'prophet_name_formatter.dart';
 
 class ProphetDetailContent {
   const ProphetDetailContent({
@@ -36,6 +37,10 @@ class ProphetDetailContent {
   final List<String> relatedGrowthHabitIds;
   final String? locationLabel;
   final ProphetLocationConfidence? locationConfidence;
+
+  String get honoredName => formatProphetName(name);
+  String get titledHonoredName => formatProphetName(name, includeTitle: true);
+  String get honoredArabicName => formatProphetArabicName(arabicName, name);
 }
 
 class ProphetStorySection {

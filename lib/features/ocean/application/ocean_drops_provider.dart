@@ -1,84 +1,198 @@
+import 'dart:math' as math;
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../journal/application/journal_provider.dart';
 import '../../../shared/persistence/local_store.dart';
-import '../../journey/application/journey_progression_provider.dart';
+import 'community_ocean.dart';
 
-enum OceanDropSource {
-  prayer,
-  dhikr,
-  fasting,
-  quran,
-  reflection,
-  learning,
-  milestone,
-}
+const String oceanActionPrayerCompleted = 'prayer_completed';
+const String oceanActionMakeupPrayerCompleted = 'makeup_prayer_completed';
+const String oceanActionOptionalPrayerCompleted = 'optional_prayer_completed';
+const String oceanActionDhikrSetCompleted = 'dhikr_set_completed';
+const String oceanActionDhikrFreeHundredReached = 'dhikr_free_100_reached';
+const String oceanActionQuranPageCompleted = 'quran_page_completed';
+const String oceanActionQuranSurahCompleted = 'quran_surah_completed';
+const String oceanActionLearningSegmentCompleted = 'learning_segment_completed';
+const String oceanActionLessonCompleted = 'lesson_completed';
+const String oceanActionProphetStoryCompleted = 'prophet_story_completed';
+const String oceanActionHadithLessonCompleted = 'hadith_lesson_completed';
+const String oceanActionDuaLessonCompleted = 'dua_lesson_completed';
+const String oceanActionQuizCompleted = 'quiz_completed';
+const String oceanActionHabitCompleted = 'habit_completed';
+const String oceanActionReflectionCompleted = 'reflection_completed';
+const String oceanActionSalahTrainingCompleted = 'salah_training_completed';
+const String oceanActionJournalEntryCompleted = 'journal_entry_completed';
+
+const String oceanSourceHome = 'home';
+const String oceanSourcePrayer = 'prayer';
+const String oceanSourceDhikr = 'dhikr';
+const String oceanSourceQuran = 'quran';
+const String oceanSourceLearn = 'learn';
+const String oceanSourceQuiz = 'quiz';
+const String oceanSourceHabits = 'habits';
+const String oceanSourceSalahTrainer = 'salah_trainer';
+const String oceanSourceDua = 'dua';
+const String oceanSourceNotes = 'notes';
+const String oceanSourceGrowth = 'growth';
+
+enum _OceanDropScope { oncePerDay, oncePerWeek, onceLifetime, perEvent }
 
 class OceanDropEvent {
   const OceanDropEvent({
-    required this.source,
-    required this.drops,
-    required this.dateKey,
+    required this.id,
+    required this.timestamp,
+    required this.actionType,
+    required this.sourceModule,
+    required this.amount,
+    this.referenceId,
+    this.metadata,
   });
 
-  final OceanDropSource source;
-  final int drops;
-  final String dateKey;
+  final String id;
+  final DateTime timestamp;
+  final String actionType;
+  final String sourceModule;
+  final int amount;
+  final String? referenceId;
+  final Map<String, dynamic>? metadata;
 
-  Map<String, dynamic> toJson() => {
-    'source': source.name,
-    'drops': drops,
-    'dateKey': dateKey,
-  };
+  String get dateKey => LocalStore.todayKey(timestamp);
+
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'id': id,
+        'timestamp': timestamp.toIso8601String(),
+        'actionType': actionType,
+        'sourceModule': sourceModule,
+        'amount': amount,
+        'referenceId': referenceId,
+        'metadata': metadata,
+      };
 
   static OceanDropEvent? fromJson(dynamic raw) {
     if (raw is! Map) return null;
-    final sourceName = raw['source']?.toString();
-    final drops = raw['drops'];
-    final dateKey = raw['dateKey']?.toString();
-    if (sourceName == null || drops is! int || dateKey == null) return null;
-    OceanDropSource? source;
-    for (final item in OceanDropSource.values) {
-      if (item.name == sourceName) {
-        source = item;
-        break;
-      }
+    final id = raw['id']?.toString();
+    final timestamp = DateTime.tryParse(raw['timestamp']?.toString() ?? '');
+    final actionType = raw['actionType']?.toString();
+    final sourceModule = raw['sourceModule']?.toString();
+    if (id == null ||
+        timestamp == null ||
+        actionType == null ||
+        sourceModule == null) {
+      return null;
     }
-    if (source == null) return null;
-    return OceanDropEvent(source: source, drops: drops, dateKey: dateKey);
+    final metadata = raw['metadata'] is Map
+        ? (raw['metadata'] as Map)
+              .map((key, value) => MapEntry(key.toString(), value))
+        : null;
+    return OceanDropEvent(
+      id: id,
+      timestamp: timestamp,
+      actionType: actionType,
+      sourceModule: sourceModule,
+      amount: (raw['amount'] as num?)?.toInt() ?? 1,
+      referenceId: raw['referenceId']?.toString(),
+      metadata: metadata,
+    );
+  }
+}
+
+class OceanDropStats {
+  const OceanDropStats({
+    required this.totalDropsLifetime,
+    required this.dropsToday,
+    required this.dropsThisWeek,
+    required this.dropsThisMonth,
+    required this.freeDhikrCarryCount,
+    required this.lastDropAwardedAt,
+  });
+
+  final int totalDropsLifetime;
+  final int dropsToday;
+  final int dropsThisWeek;
+  final int dropsThisMonth;
+  final int freeDhikrCarryCount;
+  final DateTime? lastDropAwardedAt;
+
+  OceanDropStats copyWith({
+    int? totalDropsLifetime,
+    int? dropsToday,
+    int? dropsThisWeek,
+    int? dropsThisMonth,
+    int? freeDhikrCarryCount,
+    DateTime? lastDropAwardedAt,
+    bool clearLastDropAwardedAt = false,
+  }) {
+    return OceanDropStats(
+      totalDropsLifetime: totalDropsLifetime ?? this.totalDropsLifetime,
+      dropsToday: dropsToday ?? this.dropsToday,
+      dropsThisWeek: dropsThisWeek ?? this.dropsThisWeek,
+      dropsThisMonth: dropsThisMonth ?? this.dropsThisMonth,
+      freeDhikrCarryCount: freeDhikrCarryCount ?? this.freeDhikrCarryCount,
+      lastDropAwardedAt: clearLastDropAwardedAt
+          ? null
+          : (lastDropAwardedAt ?? this.lastDropAwardedAt),
+    );
+  }
+
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'totalDropsLifetime': totalDropsLifetime,
+        'dropsToday': dropsToday,
+        'dropsThisWeek': dropsThisWeek,
+        'dropsThisMonth': dropsThisMonth,
+        'freeDhikrCarryCount': freeDhikrCarryCount,
+        'lastDropAwardedAt': lastDropAwardedAt?.toIso8601String(),
+      };
+
+  static OceanDropStats fromJson(Map<String, dynamic>? json) {
+    if (json == null) {
+      return const OceanDropStats(
+        totalDropsLifetime: 0,
+        dropsToday: 0,
+        dropsThisWeek: 0,
+        dropsThisMonth: 0,
+        freeDhikrCarryCount: 0,
+        lastDropAwardedAt: null,
+      );
+    }
+    return OceanDropStats(
+      totalDropsLifetime: (json['totalDropsLifetime'] as num?)?.toInt() ?? 0,
+      dropsToday: (json['dropsToday'] as num?)?.toInt() ?? 0,
+      dropsThisWeek: (json['dropsThisWeek'] as num?)?.toInt() ?? 0,
+      dropsThisMonth: (json['dropsThisMonth'] as num?)?.toInt() ?? 0,
+      freeDhikrCarryCount: (json['freeDhikrCarryCount'] as num?)?.toInt() ?? 0,
+      lastDropAwardedAt:
+          DateTime.tryParse(json['lastDropAwardedAt']?.toString() ?? ''),
+    );
   }
 }
 
 class OceanDropsState {
   const OceanDropsState({
-    required this.totalLocalDrops,
-    required this.todayDrops,
-    required this.weekDrops,
+    required this.stats,
+    required this.personalStats,
+    required this.communityStats,
     required this.events,
-    required this.communityPlaceholderDrops,
-    required this.lastSyncDayKey,
-    required this.lastPrayerCompleted,
-    required this.lastDhikrSessions,
-    required this.lastQuranEngagements,
-    required this.lastReflectionEntries,
-    required this.lastFastingCompleted,
-    required this.lastLearningCompletions,
-    required this.lastUnlockedMilestones,
+    required this.dailyDropHistory,
+    required this.awardedEligibilityKeys,
+    required this.freeDhikrBlocksAwarded,
+    required this.communityBaselineDrops,
   });
 
-  final int totalLocalDrops;
-  final int todayDrops;
-  final int weekDrops;
+  final OceanDropStats stats;
+  final PersonalWaterStats personalStats;
+  final CommunityOceanStats communityStats;
   final List<OceanDropEvent> events;
-  final int communityPlaceholderDrops;
-  final String lastSyncDayKey;
-  final int lastPrayerCompleted;
-  final int lastDhikrSessions;
-  final int lastQuranEngagements;
-  final int lastReflectionEntries;
-  final int lastFastingCompleted;
-  final int lastLearningCompletions;
-  final int lastUnlockedMilestones;
+  final Map<String, int> dailyDropHistory;
+  final Set<String> awardedEligibilityKeys;
+  final int freeDhikrBlocksAwarded;
+  final BigInt communityBaselineDrops;
+
+  int get totalLocalDrops => personalStats.totalPersonalDrops.toInt();
+  int get todayDrops => stats.dropsToday;
+  int get weekDrops => stats.dropsThisWeek;
+  int get monthDrops => stats.dropsThisMonth;
+  int get freeDhikrCarryCount => stats.freeDhikrCarryCount;
+  BigInt get totalCommunityDrops => communityStats.totalCommunityDrops;
 
   String get symbolicStage {
     if (totalLocalDrops >= 5000) return 'vast';
@@ -89,303 +203,428 @@ class OceanDropsState {
   }
 
   OceanDropsState copyWith({
-    int? totalLocalDrops,
-    int? todayDrops,
-    int? weekDrops,
+    OceanDropStats? stats,
+    PersonalWaterStats? personalStats,
+    CommunityOceanStats? communityStats,
     List<OceanDropEvent>? events,
-    int? communityPlaceholderDrops,
-    String? lastSyncDayKey,
-    int? lastPrayerCompleted,
-    int? lastDhikrSessions,
-    int? lastQuranEngagements,
-    int? lastReflectionEntries,
-    int? lastFastingCompleted,
-    int? lastLearningCompletions,
-    int? lastUnlockedMilestones,
+    Map<String, int>? dailyDropHistory,
+    Set<String>? awardedEligibilityKeys,
+    int? freeDhikrBlocksAwarded,
+    BigInt? communityBaselineDrops,
   }) {
     return OceanDropsState(
-      totalLocalDrops: totalLocalDrops ?? this.totalLocalDrops,
-      todayDrops: todayDrops ?? this.todayDrops,
-      weekDrops: weekDrops ?? this.weekDrops,
+      stats: stats ?? this.stats,
+      personalStats: personalStats ?? this.personalStats,
+      communityStats: communityStats ?? this.communityStats,
       events: events ?? this.events,
-      communityPlaceholderDrops:
-          communityPlaceholderDrops ?? this.communityPlaceholderDrops,
-      lastSyncDayKey: lastSyncDayKey ?? this.lastSyncDayKey,
-      lastPrayerCompleted: lastPrayerCompleted ?? this.lastPrayerCompleted,
-      lastDhikrSessions: lastDhikrSessions ?? this.lastDhikrSessions,
-      lastQuranEngagements: lastQuranEngagements ?? this.lastQuranEngagements,
-      lastReflectionEntries:
-          lastReflectionEntries ?? this.lastReflectionEntries,
-      lastFastingCompleted: lastFastingCompleted ?? this.lastFastingCompleted,
-      lastLearningCompletions:
-          lastLearningCompletions ?? this.lastLearningCompletions,
-      lastUnlockedMilestones:
-          lastUnlockedMilestones ?? this.lastUnlockedMilestones,
+      dailyDropHistory: dailyDropHistory ?? this.dailyDropHistory,
+      awardedEligibilityKeys:
+          awardedEligibilityKeys ?? this.awardedEligibilityKeys,
+      freeDhikrBlocksAwarded:
+          freeDhikrBlocksAwarded ?? this.freeDhikrBlocksAwarded,
+      communityBaselineDrops:
+          communityBaselineDrops ?? this.communityBaselineDrops,
     );
   }
 
-  Map<String, dynamic> toJson() => {
-    'totalLocalDrops': totalLocalDrops,
-    'todayDrops': todayDrops,
-    'weekDrops': weekDrops,
-    'events': events.map((e) => e.toJson()).toList(),
-    'communityPlaceholderDrops': communityPlaceholderDrops,
-    'lastSyncDayKey': lastSyncDayKey,
-    'lastPrayerCompleted': lastPrayerCompleted,
-    'lastDhikrSessions': lastDhikrSessions,
-    'lastQuranEngagements': lastQuranEngagements,
-    'lastReflectionEntries': lastReflectionEntries,
-    'lastFastingCompleted': lastFastingCompleted,
-    'lastLearningCompletions': lastLearningCompletions,
-    'lastUnlockedMilestones': lastUnlockedMilestones,
-  };
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'stats': stats.toJson(),
+        'personalStats': personalStats.toJson(),
+        'communityStats': communityStats.toJson(),
+        'events': events.map((event) => event.toJson()).toList(),
+        'dailyDropHistory': dailyDropHistory,
+        'awardedEligibilityKeys': awardedEligibilityKeys.toList(),
+        'freeDhikrBlocksAwarded': freeDhikrBlocksAwarded,
+        'communityBaselineDrops': communityBaselineDrops.toString(),
+      };
 
   static OceanDropsState fromJson(Map<String, dynamic>? json) {
     if (json == null) {
-      return const OceanDropsState(
-        totalLocalDrops: 0,
-        todayDrops: 0,
-        weekDrops: 0,
-        events: [],
-        communityPlaceholderDrops: 500000,
-        lastSyncDayKey: '',
-        lastPrayerCompleted: 0,
-        lastDhikrSessions: 0,
-        lastQuranEngagements: 0,
-        lastReflectionEntries: 0,
-        lastFastingCompleted: 0,
-        lastLearningCompletions: 0,
-        lastUnlockedMilestones: 0,
+      return OceanDropsState(
+        stats: OceanDropStats.fromJson(null),
+        personalStats: PersonalWaterStats.fromJson(null),
+        communityStats: CommunityOceanStats.fromJson(null),
+        events: const <OceanDropEvent>[],
+        dailyDropHistory: const <String, int>{},
+        awardedEligibilityKeys: const <String>{},
+        freeDhikrBlocksAwarded: 0,
+        communityBaselineDrops: BigInt.from(500000),
       );
     }
-    final rawEvents = json['events'];
     final events = <OceanDropEvent>[];
-    if (rawEvents is List) {
-      for (final row in rawEvents) {
-        final parsed = OceanDropEvent.fromJson(row);
-        if (parsed != null) {
-          events.add(parsed);
-        }
-      }
+    for (final row in (json['events'] as List? ?? const <dynamic>[])) {
+      final parsed = OceanDropEvent.fromJson(row);
+      if (parsed != null) events.add(parsed);
     }
-
     return OceanDropsState(
-      totalLocalDrops: json['totalLocalDrops'] as int? ?? 0,
-      todayDrops: json['todayDrops'] as int? ?? 0,
-      weekDrops: json['weekDrops'] as int? ?? 0,
+      stats: OceanDropStats.fromJson(
+        (json['stats'] as Map?)?.map((key, value) => MapEntry(key.toString(), value)),
+      ),
+      personalStats: PersonalWaterStats.fromJson(
+        (json['personalStats'] as Map?)
+            ?.map((key, value) => MapEntry(key.toString(), value)),
+      ),
+      communityStats: CommunityOceanStats.fromJson(
+        (json['communityStats'] as Map?)
+            ?.map((key, value) => MapEntry(key.toString(), value)),
+      ),
       events: events,
-      communityPlaceholderDrops:
-          json['communityPlaceholderDrops'] as int? ?? 500000,
-      lastSyncDayKey: json['lastSyncDayKey'] as String? ?? '',
-      lastPrayerCompleted: json['lastPrayerCompleted'] as int? ?? 0,
-      lastDhikrSessions: json['lastDhikrSessions'] as int? ?? 0,
-      lastQuranEngagements: json['lastQuranEngagements'] as int? ?? 0,
-      lastReflectionEntries: json['lastReflectionEntries'] as int? ?? 0,
-      lastFastingCompleted: json['lastFastingCompleted'] as int? ?? 0,
-      lastLearningCompletions: json['lastLearningCompletions'] as int? ?? 0,
-      lastUnlockedMilestones: json['lastUnlockedMilestones'] as int? ?? 0,
+      dailyDropHistory: ((json['dailyDropHistory'] as Map?) ?? const {})
+          .map((key, value) => MapEntry(key.toString(), (value as num?)?.toInt() ?? 0)),
+      awardedEligibilityKeys: (json['awardedEligibilityKeys'] as List? ?? const [])
+          .map((item) => item.toString())
+          .toSet(),
+      freeDhikrBlocksAwarded:
+          (json['freeDhikrBlocksAwarded'] as num?)?.toInt() ?? 0,
+      communityBaselineDrops:
+          parseBigInt(json['communityBaselineDrops'], fallback: BigInt.from(500000)),
     );
   }
 }
 
-const oceanDropRules = <OceanDropSource, int>{
-  OceanDropSource.prayer: 6,
-  OceanDropSource.dhikr: 4,
-  OceanDropSource.fasting: 12,
-  OceanDropSource.quran: 5,
-  OceanDropSource.reflection: 5,
-  OceanDropSource.learning: 3,
-  OceanDropSource.milestone: 10,
-};
-
-class OceanDropsNotifier extends StateNotifier<OceanDropsState> {
-  OceanDropsNotifier(this._store)
-    : super(OceanDropsState.fromJson(_store.getJsonMap(_storageKey))) {
-    _recalculateTimeWindows();
+class OceanDropService extends StateNotifier<OceanDropsState> {
+  OceanDropService(
+    this._store, {
+    CommunityOceanSyncAdapter communitySyncAdapter =
+        const LocalCommunityOceanSyncAdapter(),
+  })  : _communitySyncAdapter = communitySyncAdapter,
+        super(OceanDropsState.fromJson(_store.getJsonMap(_storageKey))) {
+    _refreshStats();
   }
 
-  static const _storageKey = 'journey.oceanDrops';
+  static const _storageKey = 'journey.oceanDrops.v2';
+
   final LocalStore _store;
+  final CommunityOceanSyncAdapter _communitySyncAdapter;
 
-  void trackSource(OceanDropSource source, {int multiplier = 1}) {
-    final amount = (oceanDropRules[source] ?? 0) * multiplier;
-    if (amount <= 0) return;
-    final today = LocalStore.todayKey();
-
-    final nextEvents = <OceanDropEvent>[
-      OceanDropEvent(source: source, drops: amount, dateKey: today),
-      ...state.events,
-    ].take(500).toList();
-
-    state = state.copyWith(
-      totalLocalDrops: state.totalLocalDrops + amount,
-      events: nextEvents,
-    );
-    _recalculateTimeWindows();
-    _save();
-  }
-
-  void syncFromSnapshot(JourneyActivitySnapshot snapshot) {
-    final dayKey = LocalStore.todayKey(snapshot.now);
-    var baselinePrayer = state.lastPrayerCompleted;
-    var baselineDhikr = state.lastDhikrSessions;
-    var baselineQuran = state.lastQuranEngagements;
-    var baselineReflection = state.lastReflectionEntries;
-    var baselineFasting = state.lastFastingCompleted;
-
-    if (state.lastSyncDayKey != dayKey) {
-      baselinePrayer = 0;
-      baselineDhikr = 0;
-      baselineQuran = 0;
-      baselineReflection = 0;
-      baselineFasting = 0;
-    }
-
-    final deltaPrayer = snapshot.prayerCompletedToday - baselinePrayer;
-    final deltaDhikr = snapshot.dhikrSessionsToday - baselineDhikr;
-    final deltaQuran = snapshot.quranEngagementsToday - baselineQuran;
-    final deltaReflection =
-        snapshot.reflectionEntriesToday - baselineReflection;
-    final deltaFasting =
-        (snapshot.fastingCompletedToday ? 1 : 0) - baselineFasting;
-
-    if (deltaPrayer > 0) {
-      trackSource(OceanDropSource.prayer, multiplier: deltaPrayer);
-    }
-    if (deltaDhikr > 0) {
-      trackSource(OceanDropSource.dhikr, multiplier: deltaDhikr);
-    }
-    if (deltaQuran > 0) {
-      trackSource(OceanDropSource.quran, multiplier: deltaQuran);
-    }
-    if (deltaReflection > 0) {
-      trackSource(OceanDropSource.reflection, multiplier: deltaReflection);
-    }
-    if (deltaFasting > 0) {
-      trackSource(OceanDropSource.fasting, multiplier: deltaFasting);
-    }
-
-    state = state.copyWith(
-      lastSyncDayKey: dayKey,
-      lastPrayerCompleted: snapshot.prayerCompletedToday,
-      lastDhikrSessions: snapshot.dhikrSessionsToday,
-      lastQuranEngagements: snapshot.quranEngagementsToday,
-      lastReflectionEntries: snapshot.reflectionEntriesToday,
-      lastFastingCompleted: snapshot.fastingCompletedToday ? 1 : 0,
-    );
-    _save();
-  }
-
-  void syncDerived({
-    required int learningCompletions,
-    required int unlockedMilestones,
+  int awardDrop({
+    required String actionType,
+    required String sourceModule,
+    String? referenceId,
+    Map<String, dynamic>? metadata,
   }) {
-    final deltaLearning = learningCompletions - state.lastLearningCompletions;
-    final deltaMilestones = unlockedMilestones - state.lastUnlockedMilestones;
-
-    if (deltaLearning > 0) {
-      trackSource(OceanDropSource.learning, multiplier: deltaLearning);
-    }
-    if (deltaMilestones > 0) {
-      trackSource(OceanDropSource.milestone, multiplier: deltaMilestones);
+    if (actionType == oceanActionDhikrFreeHundredReached) {
+      return _awardFreeDhikrDrops(
+        sourceModule: sourceModule,
+        referenceId: referenceId,
+        metadata: metadata,
+      );
     }
 
-    if (deltaLearning <= 0 && deltaMilestones <= 0) return;
+    final now = _timestampFromMetadata(metadata) ?? DateTime.now();
+    final dayKey = LocalStore.todayKey(now);
+    final eligibilityKey = _eligibilityKeyFor(
+      actionType: actionType,
+      sourceModule: sourceModule,
+      referenceId: referenceId,
+      metadata: metadata,
+      timestamp: now,
+    );
+    if (eligibilityKey != null &&
+        state.awardedEligibilityKeys.contains(eligibilityKey)) {
+      return 0;
+    }
+
+    final event = OceanDropEvent(
+      id: eligibilityKey ??
+          '${actionType}_${referenceId ?? sourceModule}_${now.microsecondsSinceEpoch}',
+      timestamp: now,
+      actionType: actionType,
+      sourceModule: sourceModule,
+      amount: 1,
+      referenceId: referenceId,
+      metadata: metadata,
+    );
+
+    final nextHistory = Map<String, int>.from(state.dailyDropHistory)
+      ..update(dayKey, (value) => value + 1, ifAbsent: () => 1);
+    final nextKeys = Set<String>.from(state.awardedEligibilityKeys);
+    if (eligibilityKey != null) nextKeys.add(eligibilityKey);
 
     state = state.copyWith(
-      lastLearningCompletions: learningCompletions,
-      lastUnlockedMilestones: unlockedMilestones,
+      events: [event, ...state.events].take(2000).toList(),
+      dailyDropHistory: nextHistory,
+      awardedEligibilityKeys: nextKeys,
+      stats: state.stats.copyWith(lastDropAwardedAt: now),
     );
-    _save();
+    _refreshStats();
+    _persist();
+    return 1;
   }
 
-  void _recalculateTimeWindows() {
+  int _awardFreeDhikrDrops({
+    required String sourceModule,
+    String? referenceId,
+    Map<String, dynamic>? metadata,
+  }) {
+    final delta = (metadata?['countDelta'] as num?)?.toInt() ?? 0;
+    if (delta <= 0) return 0;
+    final now = _timestampFromMetadata(metadata) ?? DateTime.now();
+    final total = state.stats.freeDhikrCarryCount + delta;
+    final newDrops = total ~/ 100;
+    final carry = total % 100;
+
+    if (newDrops <= 0) {
+      state = state.copyWith(
+        stats: state.stats.copyWith(
+          freeDhikrCarryCount: carry,
+          lastDropAwardedAt: state.stats.lastDropAwardedAt,
+        ),
+      );
+      _persist();
+      return 0;
+    }
+
+    final nextHistory = Map<String, int>.from(state.dailyDropHistory);
+    final nextKeys = Set<String>.from(state.awardedEligibilityKeys);
+    final nextEvents = List<OceanDropEvent>.from(state.events);
+    var awarded = 0;
+    var blocksAwarded = state.freeDhikrBlocksAwarded;
+
+    for (var i = 0; i < newDrops; i += 1) {
+      blocksAwarded += 1;
+      final milestoneId =
+          'dhikr_free_100_reached:${referenceId ?? 'global'}:$blocksAwarded';
+      if (nextKeys.contains(milestoneId)) {
+        continue;
+      }
+      nextKeys.add(milestoneId);
+      final timestamp = now.add(Duration(milliseconds: i));
+      final dayKey = LocalStore.todayKey(timestamp);
+      nextHistory.update(dayKey, (value) => value + 1, ifAbsent: () => 1);
+      nextEvents.insert(
+        0,
+        OceanDropEvent(
+          id: milestoneId,
+          timestamp: timestamp,
+          actionType: oceanActionDhikrFreeHundredReached,
+          sourceModule: sourceModule,
+          amount: 1,
+          referenceId: referenceId,
+          metadata: {
+            ...?metadata,
+            'milestone': blocksAwarded * 100,
+          },
+        ),
+      );
+      awarded += 1;
+    }
+
+    state = state.copyWith(
+      events: nextEvents.take(2000).toList(),
+      dailyDropHistory: nextHistory,
+      awardedEligibilityKeys: nextKeys,
+      freeDhikrBlocksAwarded: blocksAwarded,
+      stats: state.stats.copyWith(
+        freeDhikrCarryCount: carry,
+        lastDropAwardedAt: awarded > 0 ? now : state.stats.lastDropAwardedAt,
+      ),
+    );
+    _refreshStats();
+    _persist();
+    return awarded;
+  }
+
+  int getTotalDrops() => state.stats.totalDropsLifetime;
+  int getDropsToday() => state.stats.dropsToday;
+  int getDropsThisWeek() => state.stats.dropsThisWeek;
+  int getDropsThisMonth() => state.stats.dropsThisMonth;
+  Map<String, int> getDailyDropHistory() =>
+      Map<String, int>.from(state.dailyDropHistory);
+  PersonalWaterStats getPersonalWaterStats() => state.personalStats;
+  CommunityOceanStats getCommunityOceanStats() => state.communityStats;
+
+  void updateCommunityBaseline(BigInt totalDrops) {
+    final baseline = totalDrops > BigInt.zero ? totalDrops : BigInt.zero;
+    if (baseline == state.communityBaselineDrops) return;
+    state = state.copyWith(communityBaselineDrops: baseline);
+    _refreshStats();
+    _persist();
+  }
+
+  void _refreshStats() {
     final now = DateTime.now();
     final todayKey = LocalStore.todayKey(now);
-    final weekThreshold = now.subtract(const Duration(days: 6));
+    final startOfWeek = _startOfWeek(now);
+    final startOfMonth = DateTime(now.year, now.month, 1);
 
-    var today = 0;
     var week = 0;
-
-    for (final event in state.events) {
-      if (event.dateKey == todayKey) {
-        today += event.drops;
-      }
-      final date = DateTime.tryParse(event.dateKey);
-      if (date != null &&
-          !date.isBefore(
-            DateTime(
-              weekThreshold.year,
-              weekThreshold.month,
-              weekThreshold.day,
-            ),
-          )) {
-        week += event.drops;
-      }
+    var month = 0;
+    for (final entry in state.dailyDropHistory.entries) {
+      final date = DateTime.tryParse(entry.key);
+      if (date == null) continue;
+      if (!date.isBefore(startOfWeek)) week += entry.value;
+      if (!date.isBefore(startOfMonth)) month += entry.value;
     }
 
-    state = state.copyWith(todayDrops: today, weekDrops: week);
+    final totalPersonalDrops = BigInt.from(
+      state.dailyDropHistory.values.fold<int>(
+        0,
+        (sum, count) => sum + count,
+      ),
+    );
+    final baseline = _communitySyncAdapter.resolveBaseline(
+      state.communityBaselineDrops,
+    );
+    final totalCommunityDrops = baseline + totalPersonalDrops;
+    final todayCommunityDrops = BigInt.from(state.dailyDropHistory[todayKey] ?? 0);
+    final weekCommunityDrops = BigInt.from(week);
+    final monthCommunityDrops = BigInt.from(month);
+
+    state = state.copyWith(
+      stats: state.stats.copyWith(
+        totalDropsLifetime: totalPersonalDrops.toInt(),
+        dropsToday: state.dailyDropHistory[todayKey] ?? 0,
+        dropsThisWeek: week,
+        dropsThisMonth: month,
+      ),
+      personalStats: state.personalStats.copyWith(
+        totalPersonalDrops: totalPersonalDrops,
+        personalDropsToday: state.dailyDropHistory[todayKey] ?? 0,
+        personalDropsThisWeek: week,
+        personalDropsThisMonth: month,
+        lastContributionAt: state.stats.lastDropAwardedAt,
+      ),
+      communityStats: state.communityStats.copyWith(
+        totalCommunityDrops: totalCommunityDrops,
+        todayCommunityDrops: todayCommunityDrops,
+        thisWeekCommunityDrops: weekCommunityDrops,
+        thisMonthCommunityDrops: monthCommunityDrops,
+        lastUpdatedAt: now,
+      ),
+      communityBaselineDrops: baseline,
+    );
   }
 
-  void _save() {
+  DateTime _startOfWeek(DateTime value) {
+    final day = DateTime(value.year, value.month, value.day);
+    return day.subtract(Duration(days: day.weekday - 1));
+  }
+
+  DateTime? _timestampFromMetadata(Map<String, dynamic>? metadata) {
+    final raw = metadata?['timestamp']?.toString();
+    if (raw == null || raw.isEmpty) return null;
+    return DateTime.tryParse(raw);
+  }
+
+  String? _eligibilityKeyFor({
+    required String actionType,
+    required String sourceModule,
+    required String? referenceId,
+    required Map<String, dynamic>? metadata,
+    required DateTime timestamp,
+  }) {
+    final scope = _scopeFor(actionType);
+    final effectiveRef = referenceId ??
+        metadata?['referenceId']?.toString() ??
+        metadata?['slot']?.toString() ??
+        metadata?['page']?.toString();
+    switch (scope) {
+      case _OceanDropScope.oncePerDay:
+        return '$actionType|$sourceModule|${effectiveRef ?? 'global'}|${LocalStore.todayKey(timestamp)}';
+      case _OceanDropScope.oncePerWeek:
+        return '$actionType|$sourceModule|${effectiveRef ?? 'global'}|${LocalStore.todayKey(_startOfWeek(timestamp))}';
+      case _OceanDropScope.onceLifetime:
+        return '$actionType|$sourceModule|${effectiveRef ?? 'global'}';
+      case _OceanDropScope.perEvent:
+        if (effectiveRef == null || effectiveRef.isEmpty) return null;
+        return '$actionType|$sourceModule|$effectiveRef';
+    }
+  }
+
+  _OceanDropScope _scopeFor(String actionType) {
+    switch (actionType) {
+      case oceanActionPrayerCompleted:
+      case oceanActionMakeupPrayerCompleted:
+      case oceanActionOptionalPrayerCompleted:
+      case oceanActionHabitCompleted:
+        return _OceanDropScope.oncePerDay;
+      case oceanActionLearningSegmentCompleted:
+      case oceanActionLessonCompleted:
+      case oceanActionProphetStoryCompleted:
+      case oceanActionHadithLessonCompleted:
+      case oceanActionDuaLessonCompleted:
+      case oceanActionQuizCompleted:
+      case oceanActionQuranSurahCompleted:
+      case oceanActionSalahTrainingCompleted:
+        return _OceanDropScope.onceLifetime;
+      case oceanActionQuranPageCompleted:
+        return _OceanDropScope.oncePerDay;
+      case oceanActionDhikrSetCompleted:
+      case oceanActionReflectionCompleted:
+      case oceanActionJournalEntryCompleted:
+        return _OceanDropScope.perEvent;
+      case oceanActionDhikrFreeHundredReached:
+        return _OceanDropScope.perEvent;
+    }
+    return _OceanDropScope.perEvent;
+  }
+
+  void _persist() {
     _store.setJsonMap(_storageKey, state.toJson());
   }
 }
 
-final oceanDropsProvider =
-    StateNotifierProvider<OceanDropsNotifier, OceanDropsState>(
-      (ref) => OceanDropsNotifier(ref.watch(localStoreProvider)),
-    );
-
-final oceanDropsAutoSyncProvider = Provider<void>((ref) {
-  ref.listen<JourneyActivitySnapshot>(journeyActivitySnapshotProvider, (
-    _,
-    snapshot,
-  ) {
-    Future<void>.microtask(
-      () => ref.read(oceanDropsProvider.notifier).syncFromSnapshot(snapshot),
-    );
-  }, fireImmediately: true);
+final communityOceanSyncAdapterProvider =
+    Provider<CommunityOceanSyncAdapter>((ref) {
+  return const LocalCommunityOceanSyncAdapter();
 });
 
-final oceanDropsDerivedSyncProvider = Provider<void>((ref) {
-  ref.listen<JourneyComputedProgress>(journeyComputedProgressProvider, (
-    _,
-    next,
-  ) {
-    Future<void>.microtask(() {
-      final progress = next;
-      final journal = ref.read(journalProvider);
-      final learningCompletions = journal.entries
-          .where((entry) => entry.type == JournalEntryType.learning)
-          .length;
-      final unlockedMilestones = progress.unlockedMilestoneKeys.length;
-      ref
-          .read(oceanDropsProvider.notifier)
-          .syncDerived(
-            learningCompletions: learningCompletions,
-            unlockedMilestones: unlockedMilestones,
-          );
+final oceanDropsProvider =
+    StateNotifierProvider<OceanDropService, OceanDropsState>((ref) {
+      return OceanDropService(
+        ref.watch(localStoreProvider),
+        communitySyncAdapter: ref.watch(communityOceanSyncAdapterProvider),
+      );
     });
-  }, fireImmediately: true);
+
+final oceanDropServiceProvider = Provider<OceanDropService>((ref) {
+  return ref.read(oceanDropsProvider.notifier);
+});
+
+final oceanDropsAutoSyncProvider = Provider<void>((ref) {});
+final oceanDropsDerivedSyncProvider = Provider<void>((ref) {});
+
+final personalWaterStatsProvider = Provider<PersonalWaterStats>((ref) {
+  return ref.watch(oceanDropsProvider.select((state) => state.personalStats));
+});
+
+final communityOceanStatsProvider = Provider<CommunityOceanStats>((ref) {
+  return ref.watch(oceanDropsProvider.select((state) => state.communityStats));
+});
+
+final communityOceanStageProgressProvider =
+    Provider<StageProgress<CommunityOceanStage>>((ref) {
+  final stats = ref.watch(communityOceanStatsProvider);
+  return CommunityOceanLogic.getCommunityStageProgress(
+    stats.totalCommunityDrops,
+  );
+});
+
+final personalWaterStageProgressProvider =
+    Provider<StageProgress<PersonalWaterStage>>((ref) {
+  final stats = ref.watch(personalWaterStatsProvider);
+  return CommunityOceanLogic.getPersonalStageProgress(
+    stats.totalPersonalDrops,
+  );
 });
 
 final oceanGroupedHistoryProvider =
-    Provider<Map<String, Map<OceanDropSource, int>>>((ref) {
+    Provider<Map<String, Map<String, int>>>((ref) {
       final state = ref.watch(oceanDropsProvider);
-      final grouped = <String, Map<OceanDropSource, int>>{};
+      final grouped = <String, Map<String, int>>{};
       for (final event in state.events) {
         final day = grouped.putIfAbsent(
           event.dateKey,
-          () => <OceanDropSource, int>{},
+          () => <String, int>{},
         );
-        day[event.source] = (day[event.source] ?? 0) + event.drops;
+        day[event.sourceModule] = (day[event.sourceModule] ?? 0) + event.amount;
       }
       return grouped;
     });
 
 final oceanMilestoneThresholdsProvider = Provider<List<int>>((ref) {
-  return const [100, 300, 500, 1200, 2500, 5000];
+  return const <int>[100, 300, 500, 1200, 2500, 5000];
 });
 
 class OceanMilestoneProgress {
@@ -409,7 +648,7 @@ class OceanTimelinePoint {
 
   final String label;
   final int totalDrops;
-  final Map<OceanDropSource, int> sources;
+  final Map<String, int> sources;
 }
 
 final oceanProgressionMapProvider = Provider<List<OceanMilestoneProgress>>((
@@ -421,13 +660,13 @@ final oceanProgressionMapProvider = Provider<List<OceanMilestoneProgress>>((
   for (var i = 0; i < milestones.length; i += 1) {
     final threshold = milestones[i];
     final previous = i == 0 ? 0 : milestones[i - 1];
-    final span = (threshold - previous).clamp(1, 100000);
-    final clamped = (state.totalLocalDrops - previous).clamp(0, span);
+    final span = math.max(1, threshold - previous);
+    final inBand = (state.totalLocalDrops - previous).clamp(0, span);
     result.add(
       OceanMilestoneProgress(
         threshold: threshold,
         reached: state.totalLocalDrops >= threshold,
-        progressToNext: (clamped / span).clamp(0.0, 1.0).toDouble(),
+        progressToNext: (inBand / span).clamp(0.0, 1.0).toDouble(),
       ),
     );
   }
@@ -445,7 +684,7 @@ final oceanHistoricalTimelineProvider = Provider<List<OceanTimelinePoint>>((
     return OceanTimelinePoint(
       label: entry.key,
       totalDrops: total,
-      sources: Map<OceanDropSource, int>.from(entry.value),
+      sources: Map<String, int>.from(entry.value),
     );
   }).toList();
 });

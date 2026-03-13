@@ -16,7 +16,7 @@ class GrowthJourneyPage extends ConsumerWidget {
     final stats = ref.watch(growthJourneyStatsProvider);
     final activity = ref.watch(growthRecentActivityProvider);
     final privateMode = ref.watch(growthControllerProvider).privateMode;
-    final garden = ref.watch(growthGardenProgressProvider);
+    final growthVisual = ref.watch(growthGardenProgressProvider);
     final unlockedRewards = ref.watch(growthUnlockedRewardsProvider);
     final recentUnlocks = ref.watch(growthRecentUnlocksProvider);
     final nextUnlock = ref.watch(growthNextUnlockPreviewProvider);
@@ -38,29 +38,31 @@ class GrowthJourneyPage extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                privateMode ? 'Quiet Progress' : 'Garden of Nūr',
+                privateMode ? 'Quiet Progress' : 'Growth Overview',
                 style: const TextStyle(fontWeight: FontWeight.w700),
               ),
               const SizedBox(height: 6),
-              Text('${garden.currentStageLabel} · ${garden.stageSubtitle}'),
+              Text(
+                '${growthVisual.currentStageLabel} · ${growthVisual.stageSubtitle}',
+              ),
               const SizedBox(height: 8),
               ClipRRect(
                 borderRadius: BorderRadius.circular(999),
-                child: LinearProgressIndicator(value: garden.stageProgress),
+                child: LinearProgressIndicator(value: growthVisual.stageProgress),
               ),
               const SizedBox(height: 8),
               Text(
-                garden.recentGrowthLine,
+                growthVisual.recentGrowthLine,
                 style: const TextStyle(color: Color(0xFF6A5A4A), fontSize: 12.5),
               ),
-              if (garden.nextStageLabel != null)
+              if (growthVisual.nextStageLabel != null)
                 Text(
-                  'Next stage: ${garden.nextStageLabel}',
+                  'Next stage: ${growthVisual.nextStageLabel}',
                   style: const TextStyle(color: Color(0xFF6A5A4A), fontSize: 12.5),
                 ),
               if (nextUnlock != null)
                 Text(
-                  'Next garden gift: ${nextUnlock.title}',
+                  'Next unlock: ${nextUnlock.title}',
                   style: const TextStyle(color: Color(0xFF6A5A4A), fontSize: 12.5),
                 ),
             ],
@@ -74,7 +76,7 @@ class GrowthJourneyPage extends ConsumerWidget {
               const Text('Unlockables', style: TextStyle(fontWeight: FontWeight.w700)),
               const SizedBox(height: 8),
               if (unlockedRewards.isEmpty)
-                const Text('Garden gifts appear as your path grows.')
+                const Text('Unlocks appear as your path grows.')
               else ...[
                 Wrap(
                   spacing: 8,
@@ -99,7 +101,7 @@ class GrowthJourneyPage extends ConsumerWidget {
               ],
               const SizedBox(height: 8),
               if (recentUnlocks.isNotEmpty) ...[
-                const Text('Recent garden gifts', style: TextStyle(fontWeight: FontWeight.w600)),
+                const Text('Recent unlocks', style: TextStyle(fontWeight: FontWeight.w600)),
                 const SizedBox(height: 6),
                 ...recentUnlocks.map(
                   (event) => ListTile(
@@ -123,7 +125,7 @@ class GrowthJourneyPage extends ConsumerWidget {
               const Text('Unlocked Wallpapers', style: TextStyle(fontWeight: FontWeight.w700)),
               const SizedBox(height: 8),
               if (unlockedWallpapers.isEmpty)
-                const Text('Wallpapers appear quietly as your garden grows.')
+                const Text('Wallpapers appear quietly as your progress grows.')
               else
                 ...unlockedWallpapers.map(
                   (wallpaper) => ListTile(
@@ -215,7 +217,7 @@ class GrowthJourneyPage extends ConsumerWidget {
               const SizedBox(height: 8),
               if (privateMode)
                 Text(
-                  'Private mode is on. Visible light remains quiet while your garden continues growing (${stats.subtleLight}).',
+                  'Private mode is on. Visible light remains quiet while your progress continues (${stats.subtleLight}).',
                 )
               else
                 Text(
@@ -455,7 +457,7 @@ class GrowthJourneyPage extends ConsumerWidget {
       case GrowthUnlockableType.wallpaper:
         return 'Wallpaper';
       case GrowthUnlockableType.gardenElement:
-        return 'Garden';
+        return 'Visual';
       case GrowthUnlockableType.visualTheme:
         return 'Theme';
       case GrowthUnlockableType.reflectionPack:

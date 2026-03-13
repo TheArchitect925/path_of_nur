@@ -270,7 +270,7 @@ const List<GrowthPathContent> seededGrowthPathContent = [
     pathId: 'foundations-of-light',
     whyItMatters: 'Strong foundations reduce overwhelm and keep worship steady.',
     stageLabel: 'Foundations of Light',
-    milestoneNames: ['First Light', 'Garden Beginnings'],
+    milestoneNames: ['First Light', 'Growth Beginnings'],
   ),
   GrowthPathContent(
     pathId: 'strengthening-heart',
@@ -306,7 +306,7 @@ const List<GrowthPathContent> seededGrowthPathContent = [
     pathId: 'family-service',
     whyItMatters: 'Service and family ties turn growth outward with mercy.',
     stageLabel: 'Strengthening the Heart',
-    milestoneNames: ['Garden Beginnings', 'Heart in Motion'],
+    milestoneNames: ['Growth Beginnings', 'Heart in Motion'],
   ),
 ];
 
@@ -463,7 +463,7 @@ const List<GrowthMilestoneContent> seededGrowthMilestones = [
   ),
   GrowthMilestoneContent(
     id: 'garden_beginnings',
-    title: 'Garden Beginnings',
+    title: 'Growth Beginnings',
     subtitle: 'Balanced growth starts',
     description: 'Consistency now spans multiple categories with balance.',
     unlockCondition: '3 category consistency markers',

@@ -1,3 +1,5 @@
+import 'prophet_name_formatter.dart';
+
 class ProphetLineageNode {
   const ProphetLineageNode({
     required this.prophetId,
@@ -24,6 +26,9 @@ class ProphetLineageNode {
   final String eraTitle;
   final String? regionLabel;
   final int sortOrder;
+
+  String get honoredName => formatProphetName(name);
+  String get honoredArabicName => formatProphetArabicName(arabicName, name);
 }
 
 class PropheticLineageGroup {

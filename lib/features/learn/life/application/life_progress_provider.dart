@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../ocean/application/ocean_drops_provider.dart';
 import '../../../../shared/persistence/local_store.dart';
 import '../data/life_curriculum_data.dart';
 import '../domain/life_models.dart';
@@ -123,11 +124,12 @@ class LifeSubcategoryProgress {
 }
 
 class LifeProgressNotifier extends StateNotifier<LifeProgressState> {
-  LifeProgressNotifier(this._store)
+  LifeProgressNotifier(this._store, this._oceanDrops)
       : super(LifeProgressState.fromJson(_store.getJsonMap(_key)));
 
   static const _key = 'learn.life.progress.v1';
   final LocalStore _store;
+  final OceanDropService _oceanDrops;
 
   LifeLessonProgress progressFor(String lessonId) {
     return state.lessonProgressById[lessonId] ??
@@ -180,6 +182,18 @@ class LifeProgressNotifier extends StateNotifier<LifeProgressState> {
       ..[lessonId] = updated;
     state = state.copyWith(lessonProgressById: map);
     _save();
+    if (status == LifeLessonStatus.completed &&
+        current.status != LifeLessonStatus.completed) {
+      _oceanDrops.awardDrop(
+        actionType: oceanActionLessonCompleted,
+        sourceModule: oceanSourceLearn,
+        referenceId: lessonId,
+        metadata: {
+          'timestamp': updated.completedIso,
+          'category': 'life',
+        },
+      );
+    }
   }
 
   void _save() {
@@ -189,7 +203,10 @@ class LifeProgressNotifier extends StateNotifier<LifeProgressState> {
 
 final lifeProgressProvider =
     StateNotifierProvider<LifeProgressNotifier, LifeProgressState>(
-  (ref) => LifeProgressNotifier(ref.watch(localStoreProvider)),
+  (ref) => LifeProgressNotifier(
+    ref.watch(localStoreProvider),
+    ref.read(oceanDropServiceProvider),
+  ),
 );
 
 final lifeProgressSummaryProvider = Provider<LifeProgressSummary>((ref) {

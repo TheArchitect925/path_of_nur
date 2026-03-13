@@ -40,16 +40,17 @@ class _GrowthEntryPageState extends ConsumerState<GrowthEntryPage> {
   }
 
   void _applyEntryIntent() {
-    ref.read(growthInternalTabProvider.notifier).state = widget.initialTab;
+    ref
+        .read(growthInternalTabProvider.notifier)
+        .state = widget.initialTab == GrowthInternalTab.habits
+        ? GrowthInternalTab.today
+        : widget.initialTab;
     if (_openedHabit || widget.focusHabitId == null || !mounted) {
       return;
     }
     _openedHabit = true;
     final target = widget.focusHabitId!;
-    context.pushNamed(
-      'growthHabitDetail',
-      pathParameters: {'habitId': target},
-    );
+    context.pushNamed('growthHabitDetail', pathParameters: {'habitId': target});
   }
 
   @override

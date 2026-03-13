@@ -44,9 +44,9 @@ class DailyProphetQuizCard extends StatelessWidget {
               Expanded(
                 child: Text(
                   copy.dailyQuizTitle,
-                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                    fontWeight: FontWeight.w700,
-                  ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
                 ),
               ),
               if (isAnswered)
@@ -60,7 +60,10 @@ class DailyProphetQuizCard extends StatelessWidget {
                     color: const Color(0x332D8F58),
                     border: Border.all(color: const Color(0x552D8F58)),
                   ),
-                  child: Text(copy.complete, style: const TextStyle(fontSize: 11.5)),
+                  child: Text(
+                    copy.complete,
+                    style: const TextStyle(fontSize: 11.5),
+                  ),
                 ),
             ],
           ),

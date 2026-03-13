@@ -1,19 +1,10 @@
-import 'dart:convert';
-
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../data/dua_seed_data.dart';
 import '../domain/dua_models.dart';
 
-const _duaAssetPath = 'assets/data/duas/dua_master_dataset_scaffold_v0_2.json';
-
 final duaDatasetProvider = FutureProvider<DuaDataset>((ref) async {
-  final raw = await rootBundle.loadString(_duaAssetPath);
-  final decoded = jsonDecode(raw);
-  if (decoded is! Map<String, dynamic>) {
-    throw const FormatException('Invalid dua dataset payload.');
-  }
-  return DuaDataset.fromJson(decoded);
+  return duaSeedDataset;
 });
 
 final duaCategorySummariesProvider =

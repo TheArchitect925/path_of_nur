@@ -300,7 +300,7 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
           : '${surah.transliteratedName} • ${surah.arabicName}',
       subtitle: surah == null
           ? l10n.quranReaderSubtitle
-          : '${surah.englishName} • ${surah.revelationPlace} • ${surah.verseCount} ${l10n.quranAyahsLabel}',
+          : '${surah.englishName} • ${surah.revelationPlace} • ${surah.revelationClassification} • Revelation ${surah.revelationOrder} • ${surah.revelationPeriod} • ${surah.verseCount} ${l10n.quranAyahsLabel}',
       floatingBottom: _shouldShowFloatingPlayer(ayahs)
           ? _buildFloatingSurahPlaybackControls(ayahs)
           : null,

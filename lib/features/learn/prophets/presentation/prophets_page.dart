@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../../core/theme/app_colors.dart';
 import '../../../../shared/widgets/premium_card.dart';
@@ -8,10 +7,8 @@ import '../../../../shared/widgets/segmented_pill_control.dart';
 import '../../presentation/data/learn_icon_registry.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/prophet_detail_repository.dart';
-import '../application/daily_learning_service.dart';
 import '../application/prophets_repository.dart';
 import '../application/prophets_ui_state.dart';
-import '../domain/daily_learning_item.dart';
 import '../domain/prophet_entry.dart';
 import '../domain/prophets_tab.dart';
 import 'prophet_detail_page.dart';
@@ -21,8 +18,6 @@ import 'prophets_map_view.dart';
 import 'prophets_quiz_view.dart';
 import 'prophets_stories_view.dart';
 import 'prophets_timeline_view.dart';
-import 'widgets/daily_prophet_quiz_card.dart';
-import 'widgets/daily_revelation_card.dart';
 
 class ProphetsPage extends ConsumerStatefulWidget {
   const ProphetsPage({
@@ -90,8 +85,6 @@ class _ProphetsPageState extends ConsumerState<ProphetsPage> {
     final isQuiz = ui.selectedTab == ProphetsTab.quiz;
     final isJourney = ui.selectedTab == ProphetsTab.journey;
     final isFamilyTree = ui.selectedTab == ProphetsTab.familyTree;
-    final dailyBundle = ref.watch(todayDailyLearningBundleProvider);
-    final dailyController = ref.read(dailyLearningControllerProvider.notifier);
     final regions = _regions(allProphets);
     final filtered = _applyFilters(allProphets, ui);
     final lastOpened = ui.lastOpenedProphetId == null
@@ -110,64 +103,6 @@ class _ProphetsPageState extends ConsumerState<ProphetsPage> {
       subtitle:
           'Explore prophetic lives through stories, chronology, and carefully labeled regions.',
       children: [
-        if (!isFamilyTree)
-          Padding(
-            padding: const EdgeInsets.only(bottom: 10),
-            child: DailyRevelationCard(
-              item: dailyBundle.item,
-              isOpened: dailyBundle.status.cardOpened,
-              onOpen: () => _openDailyItem(
-                item: dailyBundle.item,
-                allProphets: allProphets,
-              ),
-              onTakeQuiz: () {
-                if (ui.selectedTab == ProphetsTab.quiz) return;
-                ref
-                    .read(prophetsUiControllerProvider.notifier)
-                    .setSelectedTab(ProphetsTab.quiz);
-              },
-              showPracticeLesson: dailyBundle.item.linkedGrowthHabitId != null,
-              onPracticeLesson: () {
-                final habitId = dailyBundle.item.linkedGrowthHabitId;
-                if (habitId != null && habitId.trim().isNotEmpty) {
-                  context.go('/journey/habit/$habitId');
-                  return;
-                }
-                context.go('/journey/growth/habits');
-              },
-            ),
-          ),
-        if (!isFamilyTree)
-          Padding(
-            padding: const EdgeInsets.only(bottom: 10),
-            child: DailyProphetQuizCard(
-              question: dailyBundle.quizQuestion,
-              isAnswered: dailyBundle.status.quizAnswered,
-              selectedIndex: dailyBundle.status.quizSelectedIndex,
-              onSelectAnswer: (selected) {
-                dailyController.answerTodayQuiz(
-                  questionId: dailyBundle.quizQuestion.id,
-                  selectedIndex: selected,
-                  correctIndex: dailyBundle.quizQuestion.correctAnswerIndex,
-                );
-              },
-              onReviewProphet: () {
-                final prophet = allProphets
-                    .where(
-                      (item) =>
-                          item.id == dailyBundle.quizQuestion.relatedProphetId,
-                    )
-                    .firstOrNull;
-                if (prophet == null) return;
-                _openDetail(prophet);
-              },
-              onOpenFullQuiz: () {
-                ref
-                    .read(prophetsUiControllerProvider.notifier)
-                    .setSelectedTab(ProphetsTab.quiz);
-              },
-            ),
-          ),
         if (lastOpened != null && !isQuiz && !isJourney && !isFamilyTree)
           Padding(
             padding: const EdgeInsets.only(bottom: 10),
@@ -190,7 +125,7 @@ class _ProphetsPageState extends ConsumerState<ProphetsPage> {
                         ),
                         const SizedBox(height: 2),
                         Text(
-                          '${lastOpened.name} · ${lastOpened.eraTitle}',
+                          '${lastOpened.honoredName} · ${lastOpened.eraTitle}',
                           style: Theme.of(context).textTheme.bodySmall
                               ?.copyWith(color: AppColors.onSurfaceSubtle),
                         ),
@@ -368,7 +303,9 @@ class _ProphetsPageState extends ConsumerState<ProphetsPage> {
       final q = ui.searchQuery.trim().toLowerCase();
       if (q.isEmpty) return true;
       return prophet.name.toLowerCase().contains(q) ||
+          prophet.honoredName.toLowerCase().contains(q) ||
           prophet.arabicName.contains(ui.searchQuery.trim()) ||
+          prophet.honoredArabicName.contains(ui.searchQuery.trim()) ||
           prophet.eraTitle.toLowerCase().contains(q) ||
           prophet.regionLabel.toLowerCase().contains(q) ||
           (prophet.locationLabel?.toLowerCase().contains(q) ?? false) ||
@@ -485,36 +422,6 @@ class _ProphetsPageState extends ConsumerState<ProphetsPage> {
     );
   }
 
-  void _openDailyItem({
-    required DailyLearningItem item,
-    required List<ProphetEntry> allProphets,
-  }) {
-    ref.read(dailyLearningControllerProvider.notifier).markTodayCardOpened();
-    if (item.linkedProphetId != null) {
-      final prophet = allProphets
-          .where((entry) => entry.id == item.linkedProphetId)
-          .firstOrNull;
-      if (prophet == null) return;
-      ref
-          .read(dailyLearningControllerProvider.notifier)
-          .markTodayLinkedProphetOpened(prophet.id);
-      _openDetail(prophet);
-      return;
-    }
-
-    if (item.linkedEraId != null) {
-      setState(() => _focusEraId = item.linkedEraId);
-      ref
-          .read(prophetsUiControllerProvider.notifier)
-          .setSelectedTab(ProphetsTab.journey);
-      return;
-    }
-
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Today\'s reflection is marked as opened.')),
-    );
-  }
-
   void _openDetail(ProphetEntry prophet) {
     final allProphets = ref.read(prophetsProvider);
     final detailRepo = ref.read(prophetDetailRepositoryProvider);
@@ -552,8 +459,8 @@ class _ProphetsPageState extends ConsumerState<ProphetsPage> {
                 Navigator.of(context).pop();
                 _openDetail(related);
               },
-              previousProphetLabel: previous?.name,
-              nextProphetLabel: next?.name,
+              previousProphetLabel: previous?.honoredName,
+              nextProphetLabel: next?.honoredName,
               onOpenPreviousProphet: previous == null
                   ? null
                   : () {

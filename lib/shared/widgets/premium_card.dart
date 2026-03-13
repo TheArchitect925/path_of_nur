@@ -9,10 +9,12 @@ class PremiumCard extends StatelessWidget {
     super.key,
     required this.child,
     this.padding = const EdgeInsets.all(16),
+    this.surfaceAlphaOverride,
   });
 
   final Widget child;
   final EdgeInsetsGeometry padding;
+  final double? surfaceAlphaOverride;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,9 @@ class PremiumCard extends StatelessWidget {
     final surface = appearance?.surface ?? AppColors.surface;
     final accent = appearance?.accent ?? AppColors.accentGold;
     final surfaceAlpha =
-        appearance?.glassSurfaceAlpha ?? AppColors.glassSurfaceAlpha;
+        surfaceAlphaOverride ??
+        appearance?.glassSurfaceAlpha ??
+        AppColors.glassSurfaceAlpha;
     final borderAlpha =
         appearance?.glassBorderAlpha ?? AppColors.glassBorderAlpha;
 

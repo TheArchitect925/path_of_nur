@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../ocean/application/ocean_drops_provider.dart';
 import '../../../../shared/persistence/local_store.dart';
 import '../data/learn_content_catalog.dart';
 import '../domain/learn_topic_category.dart';
@@ -141,11 +142,12 @@ class LearnProgressSummary {
 }
 
 class LearnProgressNotifier extends StateNotifier<LearnProgressState> {
-  LearnProgressNotifier(this._store)
+  LearnProgressNotifier(this._store, this._oceanDrops)
       : super(LearnProgressState.fromJson(_store.getJsonMap(_storageKey)));
 
   static const _storageKey = 'learn.progress.v1';
   final LocalStore _store;
+  final OceanDropService _oceanDrops;
 
   LearnTopicProgress forTopic(LearnTopicCategory category, String topicId) {
     return state.byTopicId[topicId] ??
@@ -183,6 +185,17 @@ class LearnProgressNotifier extends StateNotifier<LearnProgressState> {
         reflectionProgress: value ? 1.0 : current.reflectionProgress,
       ),
     );
+    if (value && !current.completed) {
+      _oceanDrops.awardDrop(
+        actionType: oceanActionLearningSegmentCompleted,
+        sourceModule: oceanSourceLearn,
+        referenceId: topicId,
+        metadata: {
+          'timestamp': DateTime.now().toIso8601String(),
+          'category': category.name,
+        },
+      );
+    }
   }
 
   void toggleSaved(LearnTopicCategory category, String topicId) {
@@ -219,7 +232,10 @@ class LearnProgressNotifier extends StateNotifier<LearnProgressState> {
 
 final learnProgressProvider =
     StateNotifierProvider<LearnProgressNotifier, LearnProgressState>(
-  (ref) => LearnProgressNotifier(ref.watch(localStoreProvider)),
+  (ref) => LearnProgressNotifier(
+    ref.watch(localStoreProvider),
+    ref.read(oceanDropServiceProvider),
+  ),
 );
 
 final learnProgressSummaryProvider = Provider<LearnProgressSummary>((ref) {

@@ -186,13 +186,13 @@ class _TimelineNodeCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      '${prophet.timelineOrder}. ${prophet.name}',
+                      '${prophet.timelineOrder}. ${prophet.honoredName}',
                       style: Theme.of(context).textTheme.titleSmall?.copyWith(
                         fontWeight: FontWeight.w700,
                       ),
                     ),
                     Text(
-                      prophet.arabicName,
+                      prophet.honoredArabicName,
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: AppColors.onSurfaceSubtle,
                       ),

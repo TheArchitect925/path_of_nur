@@ -7,15 +7,29 @@ import '../../../../../l10n/app_localizations.dart';
 import '../../../../../shared/widgets/arabic_text_utils.dart';
 import '../../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../../shared/widgets/premium_card.dart';
+import '../../../../../shared/widgets/segmented_pill_control.dart';
 import '../application/quran_providers.dart';
+import '../domain/quran_surah.dart';
 
-class QuranSurahExplorerPage extends ConsumerWidget {
+enum _QuranExplorerSort { surahNumber, revelation }
+
+class QuranSurahExplorerPage extends ConsumerStatefulWidget {
   const QuranSurahExplorerPage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<QuranSurahExplorerPage> createState() =>
+      _QuranSurahExplorerPageState();
+}
+
+class _QuranSurahExplorerPageState
+    extends ConsumerState<QuranSurahExplorerPage> {
+  _QuranExplorerSort _sort = _QuranExplorerSort.surahNumber;
+
+  @override
+  Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final surahs = ref.watch(quranFilteredSurahListProvider);
+    final sortedSurahs = _sortedSurahs(surahs);
 
     return AppPageScaffold(
       headerIcon: Icons.explore_outlined,
@@ -48,10 +62,19 @@ class QuranSurahExplorerPage extends ConsumerWidget {
           ),
         ),
         const SizedBox(height: 14),
-        if (surahs.isEmpty)
+        PremiumCard(
+          child: SegmentedPillControl<_QuranExplorerSort>(
+            items: _QuranExplorerSort.values,
+            selectedItem: _sort,
+            labelBuilder: _sortLabel,
+            onChanged: (value) => setState(() => _sort = value),
+          ),
+        ),
+        const SizedBox(height: 14),
+        if (sortedSurahs.isEmpty)
           PremiumCard(child: Text(l10n.quranSearchNoResults))
         else
-          ...surahs.map(
+          ...sortedSurahs.map(
             (surah) => Padding(
               padding: const EdgeInsets.only(bottom: 10),
               child: PremiumCard(
@@ -108,7 +131,7 @@ class QuranSurahExplorerPage extends ConsumerWidget {
                             ),
                             const SizedBox(height: 4),
                             Text(
-                              '${surah.verseCount} ${l10n.quranAyahsLabel} • ${surah.revelationPlace}',
+                              '${surah.verseCount} ${l10n.quranAyahsLabel} • ${surah.revelationPlace} • ${surah.revelationClassification} • Revelation ${surah.revelationOrder} • ${surah.revelationPeriod}',
                               style: const TextStyle(
                                 fontSize: 12,
                                 color: Color(0xFF6A5A4A),
@@ -126,5 +149,29 @@ class QuranSurahExplorerPage extends ConsumerWidget {
           ),
       ],
     );
+  }
+
+  String _sortLabel(_QuranExplorerSort sort) {
+    switch (sort) {
+      case _QuranExplorerSort.surahNumber:
+        return 'Sort by Surah #';
+      case _QuranExplorerSort.revelation:
+        return 'Sort by Revelation';
+    }
+  }
+
+  List<QuranSurah> _sortedSurahs(List<QuranSurah> surahs) {
+    final sorted = List<QuranSurah>.of(surahs);
+    switch (_sort) {
+      case _QuranExplorerSort.surahNumber:
+        sorted.sort((a, b) => a.number.compareTo(b.number));
+      case _QuranExplorerSort.revelation:
+        sorted.sort((a, b) {
+          final byOrder = a.revelationOrder.compareTo(b.revelationOrder);
+          if (byOrder != 0) return byOrder;
+          return a.number.compareTo(b.number);
+        });
+    }
+    return sorted;
   }
 }

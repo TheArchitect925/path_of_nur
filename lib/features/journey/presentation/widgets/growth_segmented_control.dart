@@ -15,6 +15,13 @@ class GrowthSegmentedControl extends StatelessWidget {
   final GrowthInternalTab selected;
   final ValueChanged<GrowthInternalTab> onChanged;
 
+  static const _visibleTabs = <GrowthInternalTab>[
+    GrowthInternalTab.today,
+    GrowthInternalTab.paths,
+    GrowthInternalTab.journey,
+    GrowthInternalTab.reflection,
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -25,7 +32,7 @@ class GrowthSegmentedControl extends StatelessWidget {
       ),
       padding: const EdgeInsets.all(AppSpacing.xxs),
       child: Row(
-        children: GrowthInternalTab.values
+        children: _visibleTabs
             .map(
               (tab) => Expanded(
                 child: InkWell(
@@ -42,7 +49,9 @@ class GrowthSegmentedControl extends StatelessWidget {
                           : Colors.transparent,
                       border: selected == tab
                           ? Border.all(
-                              color: AppColors.accentGold.withValues(alpha: 0.55),
+                              color: AppColors.accentGold.withValues(
+                                alpha: 0.55,
+                              ),
                             )
                           : null,
                     ),

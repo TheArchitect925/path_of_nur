@@ -176,9 +176,9 @@ const seededGrowthUnlockables = <GrowthUnlockable>[
   GrowthUnlockable(
     id: 'theme_olive_garden',
     type: GrowthUnlockableType.visualTheme,
-    title: 'Olive Garden',
+    title: 'Olive Grove',
     subtitle: 'Natural greens and stillness.',
-    description: 'A grounded palette inspired by gardens and patience.',
+    description: 'A grounded palette inspired by stillness and patience.',
     previewAssetKey: 'theme_olive_garden',
     requiredTotalCompletions: 80,
     requiredStreakDays: 16,
@@ -264,7 +264,7 @@ const seededGrowthUnlockables = <GrowthUnlockable>[
     id: 'seasonal_ramadan_lantern',
     type: GrowthUnlockableType.seasonal,
     title: 'Ramadan Lantern',
-    subtitle: 'Seasonal Garden Accent',
+    subtitle: 'Seasonal Accent',
     description: 'Unlocks when Ramadan journey consistency is established.',
     previewAssetKey: 'seasonal_ramadan_lantern',
     requiredTotalCompletions: 60,
@@ -302,7 +302,7 @@ GrowthGardenVisualState gardenVisualForScore({
       progressToNext: (score - 0.2) / 0.2,
       nextStageLabel: 'Rooted',
       recentGrowthLine: privateMode
-          ? 'Garden growing quietly.'
+          ? 'Progress continuing quietly.'
           : 'Consistency is turning intention into growth.',
     );
   }
@@ -322,11 +322,11 @@ GrowthGardenVisualState gardenVisualForScore({
     return GrowthGardenVisualState(
       stage: GrowthGardenStage.flourishing,
       stageLabel: 'Flourishing',
-      stageSubtitle: privateMode ? 'Quiet flourishing' : 'Garden in bloom',
+      stageSubtitle: privateMode ? 'Quiet flourishing' : 'Growth in bloom',
       progressToNext: (score - 0.65) / 0.2,
       nextStageLabel: 'Light Upon Light',
       recentGrowthLine: privateMode
-          ? 'Garden growing with calm continuity.'
+          ? 'Growth continuing with calm continuity.'
           : 'Habits, reflection, and service are flourishing.',
     );
   }
@@ -337,7 +337,7 @@ GrowthGardenVisualState gardenVisualForScore({
     progressToNext: 1.0,
     nextStageLabel: null,
     recentGrowthLine: privateMode
-        ? 'Returning often has become a lasting garden.'
+        ? 'Returning often has become a lasting rhythm.'
         : 'A calm, sustained pattern of growth is now visible.',
   );
 }

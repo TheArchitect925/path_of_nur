@@ -143,7 +143,7 @@ class _ProphetsMapViewState extends State<ProphetsMapView> {
                   children: unknown
                       .map(
                         (prophet) => ActionChip(
-                          label: Text(prophet.name),
+                          label: Text(prophet.honoredName),
                           onPressed: () => widget.onOpenDetail(prophet),
                         ),
                       )
@@ -224,7 +224,7 @@ class _MapMarker extends StatelessWidget {
   Widget build(BuildContext context) {
     return Tooltip(
       message:
-          '${prophet.name} • ${prophet.locationLabel ?? prophet.regionLabel}',
+          '${prophet.honoredName} • ${prophet.locationLabel ?? prophet.regionLabel}',
       child: InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(20),

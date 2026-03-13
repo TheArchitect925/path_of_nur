@@ -6,8 +6,17 @@ import '../../core/theme/app_theme.dart';
 import '../../features/profile/application/profile_settings_provider.dart';
 import '../../features/wallpaper/application/wallpaper_provider.dart';
 
+const double _backgroundDecodeScale = 1.1;
+
 class GlobalBackground extends ConsumerWidget {
-  const GlobalBackground({super.key});
+  const GlobalBackground({
+    super.key,
+    this.assetPath,
+    this.overlayColor,
+  });
+
+  final String? assetPath;
+  final Color? overlayColor;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -20,12 +29,28 @@ class GlobalBackground extends ConsumerWidget {
       return Positioned.fill(child: ColoredBox(color: fallbackColor));
     }
 
+    final effectiveAsset = assetPath ?? wallpaper.assetPath;
+    final mediaSize = MediaQuery.sizeOf(context);
+    final cacheWidth = (mediaSize.width * _backgroundDecodeScale).round();
+    final cacheHeight = (mediaSize.height * _backgroundDecodeScale).round();
+
     return Positioned.fill(
-      child: Image.asset(
-        wallpaper.assetPath,
-        fit: BoxFit.cover,
-        errorBuilder: (context, error, stackTrace) =>
-            Container(color: fallbackColor),
+      child: Stack(
+        fit: StackFit.expand,
+        children: [
+          Image.asset(
+            effectiveAsset,
+            fit: BoxFit.cover,
+            alignment: Alignment.topCenter,
+            cacheWidth: cacheWidth > 0 ? cacheWidth : null,
+            cacheHeight: cacheHeight > 0 ? cacheHeight : null,
+            filterQuality: FilterQuality.none,
+            excludeFromSemantics: true,
+            errorBuilder: (context, error, stackTrace) =>
+                ColoredBox(color: fallbackColor),
+          ),
+          if (overlayColor != null) ColoredBox(color: overlayColor!),
+        ],
       ),
     );
   }

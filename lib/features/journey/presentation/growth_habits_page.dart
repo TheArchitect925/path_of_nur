@@ -3,8 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../shared/widgets/premium_card.dart';
+import '../application/growth_controller.dart';
 import '../application/growth_models.dart';
 import '../application/growth_providers.dart';
+import '../application/growth_seasonal.dart';
 import 'widgets/growth_ui_helpers.dart';
 
 class GrowthHabitsPage extends ConsumerWidget {
@@ -14,6 +16,7 @@ class GrowthHabitsPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final habits = ref.watch(growthAllHabitsProvider);
     final state = ref.watch(growthControllerProvider);
+    final controller = ref.read(growthControllerProvider.notifier);
     final selectedDate = ref.watch(growthSelectedDateProvider);
     final seasonalCards = ref.watch(growthActiveSeasonalJourneyCardsProvider);
     final reminderSettings = ref.watch(
@@ -24,20 +27,81 @@ class GrowthHabitsPage extends ConsumerWidget {
         .toList();
     final seasonalHabits = habits
         .where((h) => !h.isCustom && h.id.startsWith('s_') && !h.archived)
-        .where((habit) => isHabitDueOnDate(habit, selectedDate, state))
         .toList();
-    final myHabits = habits
+    final trackedHabits = habits
+        .where((h) => h.active && h.showInToday && !h.archived && !h.paused)
+        .toList();
+    final availableBuiltIn = builtIn
+        .where((h) => !h.active || !h.showInToday)
+        .toList();
+    final availableByCategory = <GrowthHabitCategory, List<GrowthHabit>>{};
+    for (final habit in availableBuiltIn) {
+      availableByCategory.putIfAbsent(habit.category, () => []);
+      availableByCategory[habit.category]!.add(habit);
+    }
+    final availableSeasonal = seasonalHabits
+        .where(
+          (habit) =>
+              (!habit.active || !habit.showInToday) &&
+              _isSeasonInView(habit, selectedDate, state),
+        )
+        .toList();
+    final customHabits = habits
         .where((h) => h.isCustom && !h.archived && !h.paused)
         .toList();
     final pausedOrArchived = habits
         .where((h) => h.paused || h.archived)
         .toList();
-
     final templates = _quickTemplates;
+    final packs = _habitPacks;
+    final packGroups = <String, List<_HabitPack>>{};
+    for (final pack in packs) {
+      packGroups.putIfAbsent(pack.group, () => []);
+      packGroups[pack.group]!.add(pack);
+    }
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        PremiumCard(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Choose Your Tracking Set',
+                style: TextStyle(fontWeight: FontWeight.w700),
+              ),
+              const SizedBox(height: 6),
+              Text(
+                trackedHabits.isEmpty
+                    ? 'Nothing is selected yet. Start with one habit or a simple pack.'
+                    : '${trackedHabits.length} habit${trackedHabits.length == 1 ? '' : 's'} currently selected for tracking.',
+                style: const TextStyle(color: Color(0xFF6A5A4A)),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 12),
+        _TrackedHabitsSection(
+          habits: trackedHabits,
+          onOpen: (habitId) => context.pushNamed(
+            'growthHabitDetail',
+            pathParameters: {'habitId': habitId},
+          ),
+          onRemove: (habit) => _untrackHabit(controller, habit),
+        ),
+        const SizedBox(height: 12),
+        ...packGroups.entries.map(
+          (entry) => Padding(
+            padding: const EdgeInsets.only(bottom: 12),
+            child: _HabitPackSection(
+              title: entry.key,
+              packs: entry.value,
+              habitsById: {for (final habit in habits) habit.id: habit},
+              onApply: (pack) => _applyPack(controller, pack),
+            ),
+          ),
+        ),
         PremiumCard(
           child: ExpansionTile(
             tilePadding: EdgeInsets.zero,
@@ -64,7 +128,9 @@ class GrowthHabitsPage extends ConsumerWidget {
                 onChanged: reminderSettings.remindersEnabled
                     ? (value) => ref
                           .read(growthControllerProvider.notifier)
-                          .updateGlobalReminderSettings(pauseAllReminders: value)
+                          .updateGlobalReminderSettings(
+                            pauseAllReminders: value,
+                          )
                     : null,
                 title: const Text('Pause all reminders for now'),
               ),
@@ -116,11 +182,47 @@ class GrowthHabitsPage extends ConsumerWidget {
           ),
         ),
         const SizedBox(height: 12),
+        if (availableSeasonal.isNotEmpty)
+          Padding(
+            padding: const EdgeInsets.only(bottom: 12),
+            child: _SelectableHabitSection(
+              title: 'Seasonal Habits',
+              subtitle: seasonalCards.isEmpty
+                  ? 'Optional habits available for this season.'
+                  : seasonalCards
+                        .map((card) => '${card.icon} ${card.title}')
+                        .join(' · '),
+              habits: availableSeasonal,
+              onOpen: (habitId) => context.pushNamed(
+                'growthHabitDetail',
+                pathParameters: {'habitId': habitId},
+              ),
+              onSelect: (habit) => _trackHabit(controller, habit),
+            ),
+          ),
+        ...availableByCategory.entries.map(
+          (entry) => Padding(
+            padding: const EdgeInsets.only(bottom: 12),
+            child: _SelectableHabitSection(
+              title: growthCategoryLabel(entry.key),
+              subtitle: 'Select only what you want to track right now.',
+              habits: entry.value,
+              onOpen: (habitId) => context.pushNamed(
+                'growthHabitDetail',
+                pathParameters: {'habitId': habitId},
+              ),
+              onSelect: (habit) => _trackHabit(controller, habit),
+            ),
+          ),
+        ),
         PremiumCard(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Quick Add Templates', style: TextStyle(fontWeight: FontWeight.w700)),
+              const Text(
+                'Quick Add Templates',
+                style: TextStyle(fontWeight: FontWeight.w700),
+              ),
               const SizedBox(height: 8),
               Wrap(
                 spacing: 8,
@@ -154,51 +256,17 @@ class GrowthHabitsPage extends ConsumerWidget {
           ),
         ),
         const SizedBox(height: 12),
-        if (seasonalHabits.isNotEmpty)
-          Padding(
-            padding: const EdgeInsets.only(bottom: 12),
-            child: _HabitSection(
-              title: 'Seasonal Journeys',
-              subtitle: seasonalCards.isEmpty
-                  ? 'Seasonal habits for blessed times.'
-                  : seasonalCards.map((card) => '${card.icon} ${card.title}').join(' · '),
-              habits: seasonalHabits,
-              isCustomSection: false,
-              onOpen: (habitId) => context.pushNamed(
-                'growthHabitDetail',
-                pathParameters: {'habitId': habitId},
-              ),
-              onAction: (habit, action) => _handleBuiltInAction(ref, habit, action),
-            ),
-          ),
-        const SizedBox(height: 0),
         _HabitSection(
-          title: 'Built-In Habits',
-          subtitle: 'Guided habits curated in Path of Nūr.',
-          habits: builtIn,
-          isCustomSection: false,
-          onOpen: (habitId) => context.pushNamed(
-            'growthHabitDetail',
-            pathParameters: {'habitId': habitId},
-          ),
-          onAction: (habit, action) => _handleBuiltInAction(ref, habit, action),
-        ),
-        const SizedBox(height: 12),
-        _HabitSection(
-          title: 'My Habits',
+          title: 'Custom Habits',
           subtitle: 'Your personal rhythms and custom intentions.',
-          habits: myHabits,
+          habits: customHabits,
           isCustomSection: true,
           onOpen: (habitId) => context.pushNamed(
             'growthHabitDetail',
             pathParameters: {'habitId': habitId},
           ),
-          onAction: (habit, action) => _handleCustomAction(
-            context,
-            ref,
-            habit,
-            action,
-          ),
+          onAction: (habit, action) =>
+              _handleCustomAction(context, ref, habit, action),
         ),
         const SizedBox(height: 12),
         _HabitSection(
@@ -210,57 +278,51 @@ class GrowthHabitsPage extends ConsumerWidget {
             'growthHabitDetail',
             pathParameters: {'habitId': habitId},
           ),
-          onAction: (habit, action) => _handleCustomAction(
-            context,
-            ref,
-            habit,
-            action,
-          ),
+          onAction: (habit, action) =>
+              _handleCustomAction(context, ref, habit, action),
         ),
       ],
     );
   }
 
-  void _handleBuiltInAction(WidgetRef ref, GrowthHabit habit, String action) {
-    final controller = ref.read(growthControllerProvider.notifier);
-    switch (action) {
-      case 'toggle_active':
-        controller.updateHabitOverride(habit.id, active: !habit.active);
-        break;
-      case 'toggle_paused':
-        controller.updateHabitOverride(habit.id, paused: !habit.paused);
-        break;
-      case 'toggle_mute':
-        controller.updateHabitOverride(habit.id, muted: !habit.muted);
-        break;
-      case 'toggle_hidden':
-        controller.updateHabitOverride(habit.id, hidden: !habit.hidden);
-        break;
-      case 'toggle_show_today':
-        controller.updateHabitOverride(habit.id, showInToday: !habit.showInToday);
-        break;
-      case 'toggle_entrust':
-        controller.updateHabitOverride(
-          habit.id,
-          entrustToAllah: !habit.entrustToAllah,
-        );
-        break;
-      case 'pin_focus':
-        controller.setFocusHabit(habit.id);
-        break;
-      case 'toggle_reminder':
-        controller.updateHabitOverride(
-          habit.id,
-          reminderEnabled: !habit.reminderEnabled,
-        );
-        break;
-      case 'toggle_reminders_paused':
-        controller.updateHabitOverride(
-          habit.id,
-          remindersPaused: !habit.remindersPaused,
-        );
-        break;
+  void _trackHabit(GrowthController controller, GrowthHabit habit) {
+    controller.updateHabitOverride(
+      habit.id,
+      active: true,
+      showInToday: true,
+      paused: false,
+      hidden: false,
+      muted: false,
+      archived: false,
+    );
+  }
+
+  void _untrackHabit(GrowthController controller, GrowthHabit habit) {
+    controller.updateHabitOverride(
+      habit.id,
+      active: false,
+      showInToday: false,
+      reminderEnabled: false,
+      paused: false,
+    );
+  }
+
+  void _applyPack(GrowthController controller, _HabitPack pack) {
+    for (final habitId in pack.habitIds) {
+      controller.updateHabitOverride(
+        habitId,
+        active: true,
+        showInToday: true,
+        paused: false,
+        hidden: false,
+        muted: false,
+        archived: false,
+      );
     }
+  }
+
+  bool _isSeasonInView(GrowthHabit habit, DateTime date, GrowthState state) {
+    return _seasonalHabitIdsForDate(date, state).contains(habit.id);
   }
 
   Future<void> _handleCustomAction(
@@ -287,7 +349,9 @@ class GrowthHabitsPage extends ConsumerWidget {
           context: context,
           builder: (context) => AlertDialog(
             title: const Text('Delete habit?'),
-            content: const Text('This removes the custom habit and its local progress log.'),
+            content: const Text(
+              'This removes the custom habit and its local progress log.',
+            ),
             actions: [
               TextButton(
                 onPressed: () => Navigator.of(context).pop(false),
@@ -320,7 +384,10 @@ class GrowthHabitsPage extends ConsumerWidget {
         controller.updateHabitOverride(habit.id, archived: !habit.archived);
         break;
       case 'toggle_show_today':
-        controller.updateHabitOverride(habit.id, showInToday: !habit.showInToday);
+        controller.updateHabitOverride(
+          habit.id,
+          showInToday: !habit.showInToday,
+        );
         break;
       case 'toggle_reminder':
         controller.updateHabitOverride(
@@ -384,7 +451,8 @@ class GrowthHabitsPage extends ConsumerWidget {
     final weekdays = <int>{...draft.weekdays};
     GrowthReminderMode reminderMode = draft.reminderMode;
     int reminderTimeMinutes = draft.reminderTimeMinutes;
-    GrowthReminderPrayerAnchor? reminderPrayerAnchor = draft.reminderPrayerAnchor;
+    GrowthReminderPrayerAnchor? reminderPrayerAnchor =
+        draft.reminderPrayerAnchor;
     int reminderOffsetMinutes = draft.reminderOffsetMinutes;
     GrowthReminderWindowType reminderWindowType =
         draft.reminderWindowType ?? GrowthReminderWindowType.evening;
@@ -428,18 +496,24 @@ class GrowthHabitsPage extends ConsumerWidget {
                       const SizedBox(height: 8),
                       TextField(
                         controller: subtitleCtrl,
-                        decoration: const InputDecoration(labelText: 'Subtitle (optional)'),
+                        decoration: const InputDecoration(
+                          labelText: 'Subtitle (optional)',
+                        ),
                       ),
                       const SizedBox(height: 8),
                       TextField(
                         controller: descriptionCtrl,
                         maxLines: 2,
-                        decoration: const InputDecoration(labelText: 'Description / Notes'),
+                        decoration: const InputDecoration(
+                          labelText: 'Description / Notes',
+                        ),
                       ),
                       const SizedBox(height: 8),
                       DropdownButtonFormField<GrowthHabitCategory>(
                         initialValue: category,
-                        decoration: const InputDecoration(labelText: 'Category'),
+                        decoration: const InputDecoration(
+                          labelText: 'Category',
+                        ),
                         items: GrowthHabitCategory.values
                             .map(
                               (e) => DropdownMenuItem(
@@ -456,7 +530,9 @@ class GrowthHabitsPage extends ConsumerWidget {
                       const SizedBox(height: 8),
                       DropdownButtonFormField<String>(
                         initialValue: linkedPathId,
-                        decoration: const InputDecoration(labelText: 'Linked path (optional)'),
+                        decoration: const InputDecoration(
+                          labelText: 'Linked path (optional)',
+                        ),
                         items: [
                           const DropdownMenuItem<String>(
                             value: null,
@@ -469,12 +545,15 @@ class GrowthHabitsPage extends ConsumerWidget {
                             ),
                           ),
                         ],
-                        onChanged: (value) => setState(() => linkedPathId = value),
+                        onChanged: (value) =>
+                            setState(() => linkedPathId = value),
                       ),
                       const SizedBox(height: 8),
                       DropdownButtonFormField<GrowthHabitRecurrenceType>(
                         initialValue: recurrence,
-                        decoration: const InputDecoration(labelText: 'Recurrence'),
+                        decoration: const InputDecoration(
+                          labelText: 'Recurrence',
+                        ),
                         items: const [
                           DropdownMenuItem(
                             value: GrowthHabitRecurrenceType.daily,
@@ -502,7 +581,8 @@ class GrowthHabitsPage extends ConsumerWidget {
                           setState(() => recurrence = value);
                         },
                       ),
-                      if (recurrence == GrowthHabitRecurrenceType.customWeekdays) ...[
+                      if (recurrence ==
+                          GrowthHabitRecurrenceType.customWeekdays) ...[
                         const SizedBox(height: 8),
                         Wrap(
                           spacing: 6,
@@ -524,29 +604,36 @@ class GrowthHabitsPage extends ConsumerWidget {
                           }),
                         ),
                       ],
-                      if (recurrence == GrowthHabitRecurrenceType.weeklyTarget) ...[
+                      if (recurrence ==
+                          GrowthHabitRecurrenceType.weeklyTarget) ...[
                         const SizedBox(height: 8),
                         TextField(
                           keyboardType: TextInputType.number,
                           decoration: const InputDecoration(
                             labelText: 'Times per week',
                           ),
-                          controller: TextEditingController(text: '$frequencyTarget'),
+                          controller: TextEditingController(
+                            text: '$frequencyTarget',
+                          ),
                           onChanged: (value) {
                             final parsed = int.tryParse(value);
                             if (parsed != null) frequencyTarget = parsed;
                           },
                         ),
                       ],
-                      if (recurrence == GrowthHabitRecurrenceType.customFrequency ||
-                          recurrence == GrowthHabitRecurrenceType.occasional) ...[
+                      if (recurrence ==
+                              GrowthHabitRecurrenceType.customFrequency ||
+                          recurrence ==
+                              GrowthHabitRecurrenceType.occasional) ...[
                         const SizedBox(height: 8),
                         TextField(
                           keyboardType: TextInputType.number,
                           decoration: const InputDecoration(
                             labelText: 'Every X days',
                           ),
-                          controller: TextEditingController(text: '$customIntervalDays'),
+                          controller: TextEditingController(
+                            text: '$customIntervalDays',
+                          ),
                           onChanged: (value) {
                             final parsed = int.tryParse(value);
                             if (parsed != null) customIntervalDays = parsed;
@@ -566,7 +653,9 @@ class GrowthHabitsPage extends ConsumerWidget {
                           Expanded(
                             child: DropdownButtonFormField<int>(
                               initialValue: difficulty,
-                              decoration: const InputDecoration(labelText: 'Difficulty'),
+                              decoration: const InputDecoration(
+                                labelText: 'Difficulty',
+                              ),
                               items: const [1, 2, 3]
                                   .map(
                                     (e) => DropdownMenuItem(
@@ -584,8 +673,12 @@ class GrowthHabitsPage extends ConsumerWidget {
                           Expanded(
                             child: TextField(
                               keyboardType: TextInputType.number,
-                              decoration: const InputDecoration(labelText: 'Light reward'),
-                              controller: TextEditingController(text: '$reward'),
+                              decoration: const InputDecoration(
+                                labelText: 'Light reward',
+                              ),
+                              controller: TextEditingController(
+                                text: '$reward',
+                              ),
                               onChanged: (v) {
                                 final parsed = int.tryParse(v);
                                 if (parsed != null) reward = parsed;
@@ -629,7 +722,9 @@ class GrowthHabitsPage extends ConsumerWidget {
                         const SizedBox(height: 8),
                         DropdownButtonFormField<GrowthReminderMode>(
                           initialValue: reminderMode,
-                          decoration: const InputDecoration(labelText: 'Reminder type'),
+                          decoration: const InputDecoration(
+                            labelText: 'Reminder type',
+                          ),
                           items: const [
                             DropdownMenuItem(
                               value: GrowthReminderMode.fixedTime,
@@ -661,7 +756,9 @@ class GrowthHabitsPage extends ConsumerWidget {
                               Expanded(
                                 child: OutlinedButton.icon(
                                   icon: const Icon(Icons.schedule_rounded),
-                                  label: Text(_formatMinutes(reminderTimeMinutes)),
+                                  label: Text(
+                                    _formatMinutes(reminderTimeMinutes),
+                                  ),
                                   onPressed: () async {
                                     final initial = TimeOfDay(
                                       hour: reminderTimeMinutes ~/ 60,
@@ -681,7 +778,8 @@ class GrowthHabitsPage extends ConsumerWidget {
                               ),
                             ],
                           ),
-                        if (reminderMode == GrowthReminderMode.prayerLinked) ...[
+                        if (reminderMode ==
+                            GrowthReminderMode.prayerLinked) ...[
                           DropdownButtonFormField<GrowthReminderPrayerAnchor>(
                             initialValue: reminderPrayerAnchor,
                             decoration: const InputDecoration(
@@ -709,7 +807,9 @@ class GrowthHabitsPage extends ConsumerWidget {
                             ),
                             onChanged: (value) {
                               final parsed = int.tryParse(value);
-                              if (parsed != null) reminderOffsetMinutes = parsed;
+                              if (parsed != null) {
+                                reminderOffsetMinutes = parsed;
+                              }
                             },
                           ),
                         ],
@@ -770,19 +870,22 @@ class GrowthHabitsPage extends ConsumerWidget {
                         SwitchListTile(
                           contentPadding: EdgeInsets.zero,
                           value: quietDelivery,
-                          onChanged: (value) => setState(() => quietDelivery = value),
+                          onChanged: (value) =>
+                              setState(() => quietDelivery = value),
                           title: const Text('Quiet delivery for this habit'),
                         ),
                         SwitchListTile(
                           contentPadding: EdgeInsets.zero,
                           value: allowSnooze,
-                          onChanged: (value) => setState(() => allowSnooze = value),
+                          onChanged: (value) =>
+                              setState(() => allowSnooze = value),
                           title: const Text('Allow snooze (future-ready)'),
                         ),
                         SwitchListTile(
                           contentPadding: EdgeInsets.zero,
                           value: remindersPaused,
-                          onChanged: (value) => setState(() => remindersPaused = value),
+                          onChanged: (value) =>
+                              setState(() => remindersPaused = value),
                           title: const Text('Pause reminders for now'),
                         ),
                       ],
@@ -812,17 +915,20 @@ class GrowthHabitsPage extends ConsumerWidget {
                               onPressed: () {
                                 final title = titleCtrl.text.trim();
                                 if (title.isEmpty) return;
-                                final subtitle = subtitleCtrl.text.trim().isEmpty
+                                final subtitle =
+                                    subtitleCtrl.text.trim().isEmpty
                                     ? 'Custom habit'
                                     : subtitleCtrl.text.trim();
-                                final description = descriptionCtrl.text.trim().isEmpty
+                                final description =
+                                    descriptionCtrl.text.trim().isEmpty
                                     ? 'Added by you for your personal growth path.'
                                     : descriptionCtrl.text.trim();
                                 final weekdaysList = weekdays.isEmpty
                                     ? const [1, 2, 3, 4, 5, 6, 7]
                                     : (weekdays.toList()..sort());
-                                final controller =
-                                    ref.read(growthControllerProvider.notifier);
+                                final controller = ref.read(
+                                  growthControllerProvider.notifier,
+                                );
 
                                 if (existingHabit == null) {
                                   controller.addCustomHabit(
@@ -836,7 +942,8 @@ class GrowthHabitsPage extends ConsumerWidget {
                                     difficulty: difficulty,
                                     lightReward: reward,
                                     reminderEnabled: reminder,
-                                    reflectionPrompt: reflectionCtrl.text.trim(),
+                                    reflectionPrompt: reflectionCtrl.text
+                                        .trim(),
                                     entrustable: entrustable,
                                     privateTracking: privateTracking,
                                     allowPartial: allowPartial,
@@ -848,7 +955,8 @@ class GrowthHabitsPage extends ConsumerWidget {
                                     reminderMode: reminderMode,
                                     reminderTimeMinutes: reminderTimeMinutes,
                                     reminderPrayerAnchor: reminderPrayerAnchor,
-                                    reminderOffsetMinutes: reminderOffsetMinutes,
+                                    reminderOffsetMinutes:
+                                        reminderOffsetMinutes,
                                     reminderWindowType: reminderWindowType,
                                     reminderDays: reminderDays.toList()..sort(),
                                     reminderMessageOverride:
@@ -872,7 +980,8 @@ class GrowthHabitsPage extends ConsumerWidget {
                                     difficulty: difficulty,
                                     lightReward: reward,
                                     reminderEnabled: reminder,
-                                    reflectionPrompt: reflectionCtrl.text.trim(),
+                                    reflectionPrompt: reflectionCtrl.text
+                                        .trim(),
                                     entrustable: entrustable,
                                     privateTracking: privateTracking,
                                     allowPartial: allowPartial,
@@ -886,7 +995,8 @@ class GrowthHabitsPage extends ConsumerWidget {
                                     reminderMode: reminderMode,
                                     reminderTimeMinutes: reminderTimeMinutes,
                                     reminderPrayerAnchor: reminderPrayerAnchor,
-                                    reminderOffsetMinutes: reminderOffsetMinutes,
+                                    reminderOffsetMinutes:
+                                        reminderOffsetMinutes,
                                     reminderWindowType: reminderWindowType,
                                     reminderDays: reminderDays.toList()..sort(),
                                     reminderMessageOverride:
@@ -901,7 +1011,11 @@ class GrowthHabitsPage extends ConsumerWidget {
 
                                 Navigator.of(context).pop();
                               },
-                              child: Text(existingHabit == null ? 'Create Habit' : 'Save Changes'),
+                              child: Text(
+                                existingHabit == null
+                                    ? 'Create Habit'
+                                    : 'Save Changes',
+                              ),
                             ),
                           ),
                         ],
@@ -983,6 +1097,223 @@ class GrowthHabitsPage extends ConsumerWidget {
       case GrowthReminderWindowType.weekend:
         return 'Weekend';
     }
+  }
+}
+
+class _TrackedHabitsSection extends StatelessWidget {
+  const _TrackedHabitsSection({
+    required this.habits,
+    required this.onOpen,
+    required this.onRemove,
+  });
+
+  final List<GrowthHabit> habits;
+  final ValueChanged<String> onOpen;
+  final ValueChanged<GrowthHabit> onRemove;
+
+  @override
+  Widget build(BuildContext context) {
+    if (habits.isEmpty) {
+      return PremiumCard(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            Text('Tracking Now', style: TextStyle(fontWeight: FontWeight.w700)),
+            SizedBox(height: 4),
+            Text(
+              'No habits selected yet. Choose one habit or start with a pack below.',
+              style: TextStyle(color: Color(0xFF6A5A4A)),
+            ),
+          ],
+        ),
+      );
+    }
+
+    return PremiumCard(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            'Tracking Now',
+            style: TextStyle(fontWeight: FontWeight.w700),
+          ),
+          const SizedBox(height: 4),
+          const Text(
+            'These habits will appear in Today when they are due.',
+            style: TextStyle(color: Color(0xFF6A5A4A)),
+          ),
+          const SizedBox(height: 8),
+          ...habits.map(
+            (habit) => ListTile(
+              contentPadding: EdgeInsets.zero,
+              title: Text(habit.title),
+              subtitle: Text(
+                '${growthCategoryLabel(habit.category)} · ${growthRecurrenceLabel(habit)}',
+              ),
+              trailing: TextButton(
+                onPressed: () => onRemove(habit),
+                child: const Text('Remove'),
+              ),
+              onTap: () => onOpen(habit.id),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _SelectableHabitSection extends StatelessWidget {
+  const _SelectableHabitSection({
+    required this.title,
+    required this.subtitle,
+    required this.habits,
+    required this.onOpen,
+    required this.onSelect,
+  });
+
+  final String title;
+  final String subtitle;
+  final List<GrowthHabit> habits;
+  final ValueChanged<String> onOpen;
+  final ValueChanged<GrowthHabit> onSelect;
+
+  @override
+  Widget build(BuildContext context) {
+    if (habits.isEmpty) return const SizedBox.shrink();
+    return PremiumCard(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(title, style: const TextStyle(fontWeight: FontWeight.w700)),
+          const SizedBox(height: 4),
+          Text(subtitle, style: const TextStyle(color: Color(0xFF6A5A4A))),
+          const SizedBox(height: 8),
+          ...habits.map(
+            (habit) => ListTile(
+              contentPadding: EdgeInsets.zero,
+              title: Text(habit.title),
+              subtitle: Text(
+                '${habit.subtitle} · ${growthRecurrenceLabel(habit)}',
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+              trailing: FilledButton.tonal(
+                onPressed: () => onSelect(habit),
+                child: const Text('Select'),
+              ),
+              onTap: () => onOpen(habit.id),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _HabitPackSection extends StatelessWidget {
+  const _HabitPackSection({
+    required this.title,
+    required this.packs,
+    required this.habitsById,
+    required this.onApply,
+  });
+
+  final String title;
+  final List<_HabitPack> packs;
+  final Map<String, GrowthHabit> habitsById;
+  final ValueChanged<_HabitPack> onApply;
+
+  @override
+  Widget build(BuildContext context) {
+    return PremiumCard(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(title, style: const TextStyle(fontWeight: FontWeight.w700)),
+          const SizedBox(height: 4),
+          const Text(
+            'Pick a small pack to avoid overwhelm.',
+            style: TextStyle(color: Color(0xFF6A5A4A)),
+          ),
+          const SizedBox(height: 10),
+          ...packs.map(
+            (pack) => Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: Container(
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: const Color(0xFFF8F3EC),
+                  borderRadius: BorderRadius.circular(14),
+                  border: Border.all(color: const Color(0xFFE3D4BE)),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            pack.title,
+                            style: const TextStyle(fontWeight: FontWeight.w700),
+                          ),
+                        ),
+                        _PackPill(label: pack.levelLabel),
+                      ],
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      pack.subtitle,
+                      style: const TextStyle(color: Color(0xFF6A5A4A)),
+                    ),
+                    const SizedBox(height: 8),
+                    Wrap(
+                      spacing: 6,
+                      runSpacing: 6,
+                      children: pack.habitIds
+                          .map(
+                            (id) =>
+                                _PackPill(label: habitsById[id]?.title ?? id),
+                          )
+                          .toList(),
+                    ),
+                    const SizedBox(height: 10),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: FilledButton.tonal(
+                        onPressed: () => onApply(pack),
+                        child: const Text('Select pack'),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _PackPill extends StatelessWidget {
+  const _PackPill({required this.label});
+
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+      decoration: BoxDecoration(
+        color: const Color(0xFFEFE2CF),
+        borderRadius: BorderRadius.circular(999),
+      ),
+      child: Text(
+        label,
+        style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+      ),
+    );
   }
 }
 
@@ -1110,7 +1441,10 @@ class _HabitSection extends StatelessWidget {
 
                   return [
                     const PopupMenuItem(value: 'edit', child: Text('Edit')),
-                    const PopupMenuItem(value: 'duplicate', child: Text('Duplicate')),
+                    const PopupMenuItem(
+                      value: 'duplicate',
+                      child: Text('Duplicate'),
+                    ),
                     ...common,
                     PopupMenuItem(
                       value: 'toggle_archive',
@@ -1143,6 +1477,112 @@ class _HabitSection extends StatelessWidget {
       ),
     );
   }
+}
+
+class _HabitPack {
+  const _HabitPack({
+    required this.title,
+    required this.subtitle,
+    required this.group,
+    required this.levelLabel,
+    required this.habitIds,
+  });
+
+  final String title;
+  final String subtitle;
+  final String group;
+  final String levelLabel;
+  final List<String> habitIds;
+}
+
+const List<_HabitPack> _habitPacks = [
+  _HabitPack(
+    title: 'Beginner Pack',
+    subtitle: 'A calm starting point with simple daily worship habits.',
+    group: 'Starter Packs',
+    levelLabel: 'Beginner',
+    habitIds: ['h_make_dua', 'h_gratitude', 'h_read_quran'],
+  ),
+  _HabitPack(
+    title: 'Prayer Foundations',
+    subtitle: 'Center the day around salah and core remembrance.',
+    group: 'Starter Packs',
+    levelLabel: 'Beginner',
+    habitIds: ['h_pray_five', 'h_morning_adhkar', 'h_evening_adhkar'],
+  ),
+  _HabitPack(
+    title: 'Heart & Reflection',
+    subtitle: 'Build a quieter inner rhythm of tawbah and reflection.',
+    group: 'Heart Packs',
+    levelLabel: 'Steady',
+    habitIds: ['h_istighfar', 'h_day_end_reflection', 'h_reflect_verse'],
+  ),
+  _HabitPack(
+    title: 'Character Builder',
+    subtitle: 'Focus on speech, patience, and humility.',
+    group: 'Character Packs',
+    levelLabel: 'Steady',
+    habitIds: ['h_harmful_speech', 'h_patience_anger', 'h_humility'],
+  ),
+  _HabitPack(
+    title: 'Knowledge & Service',
+    subtitle: 'Learn regularly and turn that learning outward.',
+    group: 'Growth Packs',
+    levelLabel: 'Steady',
+    habitIds: ['h_study_knowledge', 'h_help_someone', 'h_reconnect_family'],
+  ),
+];
+
+Set<String> _seasonalHabitIdsForDate(DateTime date, GrowthState state) {
+  final ids = <String>{};
+  final hijri = growthToHijriDate(date);
+  final isFriday = date.weekday == DateTime.friday;
+  final today = DateTime.now();
+  final isToday =
+      date.year == today.year &&
+      date.month == today.month &&
+      date.day == today.day;
+
+  if (hijri.month == 9 || (state.ramadanModeOverride && isToday)) {
+    ids.addAll(const {
+      's_ramadan_fast_today',
+      's_ramadan_quran',
+      's_ramadan_taraweeh',
+      's_ramadan_charity',
+      's_ramadan_dua',
+      's_ramadan_guard_speech',
+      's_ramadan_night_reflection',
+    });
+  }
+  if ((hijri.month == 9 && hijri.day >= 21) ||
+      (state.ramadanModeOverride && isToday)) {
+    ids.addAll(const {
+      's_last10_tahajjud',
+      's_last10_quran',
+      's_last10_dua',
+      's_last10_charity',
+      's_last10_reflection',
+    });
+  }
+  if (isFriday) {
+    ids.addAll(const {
+      's_friday_salawat',
+      's_friday_kahf',
+      's_friday_jumuah',
+      's_friday_charity',
+      's_friday_dua_maghrib',
+    });
+  }
+  if (hijri.month == 12 && hijri.day <= 10) {
+    ids.addAll(const {
+      's_dhul_fast',
+      's_dhul_dhikr',
+      's_dhul_charity',
+      's_dhul_extra_prayer',
+      's_dhul_quran_reflection',
+    });
+  }
+  return ids;
 }
 
 class _HabitEditorInitial {

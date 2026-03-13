@@ -13,9 +13,12 @@ import '../../../features/worship/application/worship_tab_provider.dart';
 import '../../../features/worship/application/prayer_controller.dart';
 import '../../../features/learn/quran/application/quran_providers.dart';
 import '../../../features/learn/prophets/application/daily_learning_service.dart';
-import '../../../features/learn/prophets/presentation/widgets/daily_learning_entry_surface.dart';
+import '../../../features/learn/prophets/application/prophets_repository.dart';
+import '../../../features/learn/prophets/presentation/widgets/daily_prophet_quiz_card.dart';
+import '../../../features/learn/prophets/presentation/widgets/daily_revelation_card.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/application/app_summary_providers.dart';
+import '../../../shared/application/daily_clock_provider.dart';
 import '../../../shared/application/special_mode_provider.dart';
 import '../../../shared/state/shell_state.dart';
 import '../../../shared/state/user_profile_state.dart';
@@ -165,6 +168,8 @@ class HomePage extends ConsumerWidget {
                 ),
                 const SizedBox(height: 14),
                 _SalahSummaryCard(l10n: l10n),
+                const SizedBox(height: 12),
+                const _HomeProphetsDailySection(),
                 const SizedBox(height: 24),
                 _HomeSummaryShortcutCard(
                   l10n: l10n,
@@ -174,6 +179,7 @@ class HomePage extends ConsumerWidget {
             ),
           ),
         ),
+        const Positioned(right: 18, bottom: 92, child: _FloatingQiblaChip()),
       ],
     );
   }
@@ -241,15 +247,6 @@ class _TopGreetingBlock extends StatelessWidget {
               tooltip: l10n.homeSearchTooltip,
             ),
             IconButton(
-              onPressed: () => context.pushNamed('qiblaFinder'),
-              icon: const Icon(
-                IslamicIcons.qibla,
-                size: 28,
-                color: Color(0xFF7A5A33),
-              ),
-              tooltip: 'Qibla Finder',
-            ),
-            IconButton(
               onPressed: () => context.goNamed('settings'),
               icon: const Icon(
                 Icons.settings,
@@ -273,35 +270,103 @@ class _TopGreetingBlock extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 10),
-        Text(
-          '$_address ${userProfile.name}',
-          style: const TextStyle(
-            fontSize: 21,
-            fontWeight: FontWeight.w700,
-            color: Color(0xFF3C2F25),
-            letterSpacing: 0.2,
-            fontFamily: 'serif',
+        Material(
+          color: Colors.transparent,
+          child: InkWell(
+            onTap: () => context.goNamed('profilePage'),
+            borderRadius: BorderRadius.circular(18),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+              child: Column(
+                children: [
+                  Text(
+                    '$_address ${userProfile.name}',
+                    style: const TextStyle(
+                      fontSize: 21,
+                      fontWeight: FontWeight.w700,
+                      color: Color(0xFF3C2F25),
+                      letterSpacing: 0.2,
+                      fontFamily: 'serif',
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    l10n.peaceUponYou,
+                    style: const TextStyle(
+                      fontSize: 15,
+                      color: Color(0xFF5D4F44),
+                      fontFamily: 'serif',
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Image.asset(
+                    _profileLogoAsset,
+                    width: 112,
+                    height: 112,
+                    fit: BoxFit.contain,
+                    errorBuilder: (context, error, stackTrace) =>
+                        const SizedBox(width: 112, height: 112),
+                  ),
+                ],
+              ),
+            ),
           ),
-        ),
-        const SizedBox(height: 4),
-        Text(
-          l10n.peaceUponYou,
-          style: const TextStyle(
-            fontSize: 15,
-            color: Color(0xFF5D4F44),
-            fontFamily: 'serif',
-          ),
-        ),
-        const SizedBox(height: 8),
-        Image.asset(
-          _profileLogoAsset,
-          width: 112,
-          height: 112,
-          fit: BoxFit.contain,
-          errorBuilder: (context, error, stackTrace) =>
-              const SizedBox(width: 112, height: 112),
         ),
       ],
+    );
+  }
+}
+
+class _FloatingQiblaChip extends StatelessWidget {
+  const _FloatingQiblaChip();
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: () => context.pushNamed('qiblaFinder'),
+        borderRadius: BorderRadius.circular(999),
+        child: Ink(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(999),
+            gradient: const LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [Color(0xFFF5E6C7), Color(0xFFE1C48F)],
+            ),
+            border: Border.all(
+              color: const Color(0xFF8A6A3D).withValues(alpha: 0.3),
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: const Color(0xFF8A6A3D).withValues(alpha: 0.18),
+                blurRadius: 14,
+                offset: const Offset(0, 8),
+              ),
+            ],
+          ),
+          child: const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(IslamicIcons.qibla, size: 18, color: Color(0xFF5C4325)),
+                SizedBox(width: 8),
+                Text(
+                  'Qibla',
+                  style: TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w700,
+                    color: Color(0xFF5C4325),
+                    letterSpacing: 0.2,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
@@ -489,10 +554,10 @@ List<_HomeSearchDestination> _buildHomeSearchDestinations(
       onSelected: (context) => context.pushNamed('wallpaperLibrary'),
     ),
     _HomeSearchDestination(
-      title: l10n.navGarden,
+      title: l10n.profileTitle,
       subtitle: l10n.profileSubtitle,
       keywords: ['profile', 'settings', 'reminders', 'preferences'],
-      onSelected: (context) => context.go(NavTab.profile.path),
+      onSelected: (context) => context.goNamed('profilePage'),
     ),
     ..._learnCategorySearchDestinations(),
   ];
@@ -919,8 +984,12 @@ class _SalahSummaryCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final scheduleContext = ref.watch(prayerScheduleContextProvider);
+    final now = ref.watch(dailyNowProvider).value ?? DateTime.now();
     final next = scheduleContext.items
         .where((item) => item.id == scheduleContext.nextPrayerId)
+        .firstOrNull;
+    final current = scheduleContext.items
+        .where((item) => item.id == scheduleContext.currentPrayerId)
         .firstOrNull;
     final prayerSummary = ref.watch(prayerSummaryProvider);
 
@@ -930,6 +999,9 @@ class _SalahSummaryCard extends ConsumerWidget {
     final remaining = next == null
         ? l10n.remainingTime
         : _formatDuration(scheduleContext.remainingToNext);
+    final currentEndsIn = current == null
+        ? null
+        : _formatDuration(current.overdueDateTime.difference(now));
 
     return InkWell(
       onTap: () => context.pushNamed('salahTimes'),
@@ -1039,6 +1111,20 @@ class _SalahSummaryCard extends ConsumerWidget {
               ),
             ),
             const SizedBox(height: 10),
+            if (current != null) ...[
+              _StatsLine(
+                label: 'Time remaining to offer ${current.name}',
+                value: currentEndsIn ?? current.overdueAt,
+              ),
+              if (current.hasDelayedMakeUpWindow) ...[
+                const Divider(height: 12, color: Color(0x28BFAE98)),
+                _StatsLine(
+                  label: '${current.name} becomes qada',
+                  value: current.overdueAt,
+                ),
+              ],
+              const Divider(height: 12, color: Color(0x28BFAE98)),
+            ],
             _StatsLine(
               label: l10n.salahCompleted,
               value: '${prayerSummary.completed} / ${prayerSummary.total}',
@@ -1806,6 +1892,85 @@ class _ModeAwareHomeCard extends ConsumerWidget {
   }
 }
 
+class _HomeProphetsDailySection extends ConsumerWidget {
+  const _HomeProphetsDailySection();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final dailyBundle = ref.watch(todayDailyLearningBundleProvider);
+    final dailyController = ref.read(dailyLearningControllerProvider.notifier);
+    final allProphets = ref.watch(prophetsProvider);
+
+    void openProphetById(String prophetId) {
+      context.pushNamed(
+        'learnSectionHub',
+        pathParameters: {'sectionId': 'prophets'},
+        queryParameters: {'prophet': prophetId},
+      );
+    }
+
+    void openDailyItem() {
+      final item = dailyBundle.item;
+      dailyController.markTodayCardOpened();
+      final linkedProphetId = item.linkedProphetId;
+      if (linkedProphetId != null &&
+          allProphets.any((entry) => entry.id == linkedProphetId)) {
+        dailyController.markTodayLinkedProphetOpened(linkedProphetId);
+        openProphetById(linkedProphetId);
+        return;
+      }
+      context.pushNamed(
+        'learnSectionHub',
+        pathParameters: {'sectionId': 'prophets'},
+      );
+    }
+
+    return Column(
+      children: [
+        DailyRevelationCard(
+          item: dailyBundle.item,
+          isOpened: dailyBundle.status.cardOpened,
+          onOpen: openDailyItem,
+          onTakeQuiz: () => context.pushNamed(
+            'learnSectionHub',
+            pathParameters: {'sectionId': 'prophets'},
+            queryParameters: {'tab': 'quiz'},
+          ),
+          showPracticeLesson: dailyBundle.item.linkedGrowthHabitId != null,
+          onPracticeLesson: () {
+            final habitId = dailyBundle.item.linkedGrowthHabitId;
+            if (habitId != null && habitId.trim().isNotEmpty) {
+              context.go('/journey/habit/$habitId');
+              return;
+            }
+            context.go('/journey/growth/habits');
+          },
+        ),
+        const SizedBox(height: 10),
+        DailyProphetQuizCard(
+          question: dailyBundle.quizQuestion,
+          isAnswered: dailyBundle.status.quizAnswered,
+          selectedIndex: dailyBundle.status.quizSelectedIndex,
+          onSelectAnswer: (selected) {
+            dailyController.answerTodayQuiz(
+              questionId: dailyBundle.quizQuestion.id,
+              selectedIndex: selected,
+              correctIndex: dailyBundle.quizQuestion.correctAnswerIndex,
+            );
+          },
+          onReviewProphet: () =>
+              openProphetById(dailyBundle.quizQuestion.relatedProphetId),
+          onOpenFullQuiz: () => context.pushNamed(
+            'learnSectionHub',
+            pathParameters: {'sectionId': 'prophets'},
+            queryParameters: {'tab': 'quiz'},
+          ),
+        ),
+      ],
+    );
+  }
+}
+
 class _HomeSummaryShortcutCard extends StatelessWidget {
   const _HomeSummaryShortcutCard({
     required this.l10n,
@@ -1829,19 +1994,6 @@ class _HomeSummaryShortcutCard extends StatelessWidget {
           Text(
             l10n.homeOverviewHeroSubtitle,
             style: const TextStyle(color: AppColors.onSurfaceSubtle),
-          ),
-          const SizedBox(height: 12),
-          DailyLearningEntrySurface(
-            bundle: dailyBundle,
-            onOpenProphets: () => context.pushNamed(
-              'learnSectionHub',
-              pathParameters: {'sectionId': 'prophets'},
-            ),
-            onOpenQuiz: () => context.pushNamed(
-              'learnSectionHub',
-              pathParameters: {'sectionId': 'prophets'},
-              queryParameters: {'tab': 'quiz'},
-            ),
           ),
           const SizedBox(height: 12),
           Row(

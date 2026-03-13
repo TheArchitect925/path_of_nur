@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../ocean/application/ocean_drops_provider.dart';
 import '../../../../shared/persistence/local_store.dart';
 import '../../hadith/application/hadith_foundation_repository.dart';
 import '../../hadith/application/hadith_path_quiz_service.dart';
@@ -104,7 +105,7 @@ const List<LearnSharedTheme> _sharedThemes = [
 
 class LearnUnifiedProgressController
     extends StateNotifier<LearnUnifiedProgressState> {
-  LearnUnifiedProgressController(this._store)
+  LearnUnifiedProgressController(this._store, this._oceanDrops)
     : super(
         LearnUnifiedProgressState.fromJson(
           _store.getJsonMap(_learnUnifiedProgressV2Key),
@@ -112,6 +113,7 @@ class LearnUnifiedProgressController
       );
 
   final LocalStore _store;
+  final OceanDropService _oceanDrops;
 
   void _persist() {
     _store.setJsonMap(_learnUnifiedProgressV2Key, state.toJson());
@@ -131,11 +133,23 @@ class LearnUnifiedProgressController
   }
 
   void markCompleted(String itemId) {
+    final alreadyCompleted = state.completedIds.contains(itemId);
     final started = Set<String>.from(state.startedIds)..add(itemId);
     final completed = Set<String>.from(state.completedIds)..add(itemId);
     state = state.copyWith(startedIds: started, completedIds: completed);
     _touch(itemId);
     _persist();
+    if (!alreadyCompleted) {
+      final actionType = _oceanActionTypeForItem(itemId);
+      if (actionType != null) {
+        _oceanDrops.awardDrop(
+          actionType: actionType,
+          sourceModule: _oceanSourceForItem(itemId),
+          referenceId: itemId,
+          metadata: {'timestamp': DateTime.now().toIso8601String()},
+        );
+      }
+    }
   }
 
   void toggleSaved(String itemId) {
@@ -156,10 +170,19 @@ class LearnUnifiedProgressController
   }
 
   void markPracticed(String itemId) {
+    final alreadyPracticed = state.practicedIds.contains(itemId);
     final next = Set<String>.from(state.practicedIds)..add(itemId);
     state = state.copyWith(practicedIds: next);
     _touch(itemId);
     _persist();
+    if (!alreadyPracticed && itemId.startsWith('salah:surah:')) {
+      _oceanDrops.awardDrop(
+        actionType: oceanActionSalahTrainingCompleted,
+        sourceModule: oceanSourceSalahTrainer,
+        referenceId: itemId,
+        metadata: {'timestamp': DateTime.now().toIso8601String()},
+      );
+    }
   }
 
   void markReviewed(String itemId) {
@@ -170,10 +193,19 @@ class LearnUnifiedProgressController
   }
 
   void markMemorized(String itemId) {
+    final alreadyMemorized = state.memorizedIds.contains(itemId);
     final next = Set<String>.from(state.memorizedIds)..add(itemId);
     state = state.copyWith(memorizedIds: next);
     _touch(itemId);
     _persist();
+    if (!alreadyMemorized && itemId.startsWith('salah:surah:')) {
+      _oceanDrops.awardDrop(
+        actionType: oceanActionSalahTrainingCompleted,
+        sourceModule: oceanSourceSalahTrainer,
+        referenceId: '$itemId:memorized',
+        metadata: {'timestamp': DateTime.now().toIso8601String()},
+      );
+    }
   }
 
   void setNote(String itemId, String note) {
@@ -187,6 +219,32 @@ class LearnUnifiedProgressController
     state = state.copyWith(notesByItemId: next);
     _touch(itemId);
     _persist();
+  }
+
+  String? _oceanActionTypeForItem(String itemId) {
+    if (itemId.startsWith('salah:prayer:')) {
+      return oceanActionSalahTrainingCompleted;
+    }
+    if (itemId.startsWith('dua:item:')) {
+      return oceanActionDuaLessonCompleted;
+    }
+    if (itemId.startsWith('world_creation:lesson:')) {
+      return oceanActionLessonCompleted;
+    }
+    if (itemId.startsWith('world_creation:challenge:')) {
+      return oceanActionLearningSegmentCompleted;
+    }
+    return null;
+  }
+
+  String _oceanSourceForItem(String itemId) {
+    if (itemId.startsWith('salah:')) {
+      return oceanSourceSalahTrainer;
+    }
+    if (itemId.startsWith('dua:')) {
+      return oceanSourceDua;
+    }
+    return oceanSourceLearn;
   }
 }
 
@@ -244,7 +302,10 @@ final learnUnifiedProgressProvider =
       LearnUnifiedProgressController,
       LearnUnifiedProgressState
     >((ref) {
-      return LearnUnifiedProgressController(ref.watch(localStoreProvider));
+      return LearnUnifiedProgressController(
+        ref.watch(localStoreProvider),
+        ref.read(oceanDropServiceProvider),
+      );
     });
 
 final learnUnifiedSearchProvider =

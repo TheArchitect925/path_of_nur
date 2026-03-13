@@ -65,8 +65,8 @@ class _ProphetDetailPageState extends State<ProphetDetailPage> {
     return AppPageScaffold(
       scrollController: _scrollController,
       headerIcon: Icons.menu_book_rounded,
-      title: widget.content.name,
-      subtitle: widget.content.arabicName,
+      title: widget.content.titledHonoredName,
+      subtitle: widget.content.honoredArabicName,
       quote: QuranQuote(
         arabic: 'فَاقْصُصِ الْقَصَصَ لَعَلَّهُمْ يَتَفَكَّرُونَ',
         transliteration: 'Faqsusi al-qasasa la\'allahum yatafakkarun',
@@ -209,13 +209,13 @@ class _ProphetDetailPageState extends State<ProphetDetailPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      widget.content.name,
+                      widget.content.honoredName,
                       style: Theme.of(context).textTheme.headlineSmall
                           ?.copyWith(fontWeight: FontWeight.w700),
                     ),
                     const SizedBox(height: 2),
                     Text(
-                      widget.content.arabicName,
+                      widget.content.honoredArabicName,
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
                         color: AppColors.onSurfaceSubtle,
                       ),
@@ -391,7 +391,7 @@ class _ProphetDetailPageState extends State<ProphetDetailPage> {
             children: relatedProphets
                 .map(
                   (entry) => ActionChip(
-                    label: Text(entry.name),
+                    label: Text(entry.honoredName),
                     onPressed: widget.onOpenRelatedProphet == null
                         ? null
                         : () => widget.onOpenRelatedProphet!(entry.id),

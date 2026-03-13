@@ -19,6 +19,8 @@ import '../../application/sister_cycle_provider.dart';
 import '../../domain/prayer_name.dart';
 import '../../domain/prayer_status.dart';
 
+const double _prayerSurfaceAlpha = 0.9;
+
 class PrayerSection extends ConsumerWidget {
   const PrayerSection({super.key});
 
@@ -50,7 +52,7 @@ class _PrayerHubTabs extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.surfaceSoft.withValues(alpha: 0.4),
+        color: AppColors.surfaceSoft.withValues(alpha: 0.9),
         borderRadius: BorderRadius.circular(14),
       ),
       child: const TabBar(
@@ -141,6 +143,7 @@ class _PrayerTimesTab extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           PremiumCard(
+            surfaceAlphaOverride: _prayerSurfaceAlpha,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -321,6 +324,7 @@ class _PrayerTimesTab extends ConsumerWidget {
           ),
           const SizedBox(height: 12),
           PremiumCard(
+            surfaceAlphaOverride: _prayerSurfaceAlpha,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -379,6 +383,7 @@ class _PrayerTrackerTab extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           PremiumCard(
+            surfaceAlphaOverride: _prayerSurfaceAlpha,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -421,6 +426,7 @@ class _PrayerTrackerTab extends ConsumerWidget {
           ),
           const SizedBox(height: 12),
           PremiumCard(
+            surfaceAlphaOverride: _prayerSurfaceAlpha,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -487,6 +493,7 @@ class _PrayerStatsTab extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           PremiumCard(
+            surfaceAlphaOverride: _prayerSurfaceAlpha,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -542,6 +549,7 @@ class _PrayerStatsTab extends ConsumerWidget {
           _PrayerConsistencyHeatmapCard(monthRecords: monthRecords),
           const SizedBox(height: 12),
           const PremiumCard(
+            surfaceAlphaOverride: _prayerSurfaceAlpha,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -776,6 +784,7 @@ class _QadaPlannerCard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final notifier = ref.read(prayerTrackerControllerProvider.notifier);
     return PremiumCard(
+      surfaceAlphaOverride: _prayerSurfaceAlpha,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -892,6 +901,7 @@ class _TrendChartCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PremiumCard(
+      surfaceAlphaOverride: _prayerSurfaceAlpha,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -969,6 +979,7 @@ class _PrayerConsistencyHeatmapCard extends StatelessWidget {
   Widget build(BuildContext context) {
     if (monthRecords.isEmpty) {
       return const PremiumCard(
+        surfaceAlphaOverride: _prayerSurfaceAlpha,
         child: Text(
           'No prayer records yet for this month.',
           style: TextStyle(color: AppColors.onSurfaceSubtle),
@@ -977,6 +988,7 @@ class _PrayerConsistencyHeatmapCard extends StatelessWidget {
     }
     final days = [...monthRecords.keys]..sort((a, b) => a.compareTo(b));
     return PremiumCard(
+      surfaceAlphaOverride: _prayerSurfaceAlpha,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -1054,6 +1066,7 @@ class _RakatCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PremiumCard(
+      surfaceAlphaOverride: _prayerSurfaceAlpha,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: const [
@@ -1181,6 +1194,7 @@ class _SalahLearningModuleCardState extends State<_SalahLearningModuleCard> {
     final isWudu = _activeFlow == 'wudu';
     final steps = isWudu ? _wuduSteps : _salahSteps;
     return PremiumCard(
+      surfaceAlphaOverride: _prayerSurfaceAlpha,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -1316,6 +1330,7 @@ class _QiblaFinderCard extends ConsumerWidget {
           accuracy: accuracy,
         );
         return PremiumCard(
+          surfaceAlphaOverride: _prayerSurfaceAlpha,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -1398,6 +1413,7 @@ class _MoonPhaseCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PremiumCard(
+      surfaceAlphaOverride: _prayerSurfaceAlpha,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

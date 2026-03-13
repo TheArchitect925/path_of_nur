@@ -8,7 +8,6 @@ import '../core/localization/locale_provider.dart';
 import '../core/reminders/prayer_live_activity_service.dart';
 import '../core/reminders/reminder_scheduler.dart';
 import '../core/theme/app_theme.dart';
-import '../features/journey/application/growth_live_activity_service.dart';
 import '../features/journey/application/growth_reminder_scheduler.dart';
 import '../features/journey/application/growth_providers.dart';
 import '../features/journey/application/growth_widget_support.dart';
@@ -29,7 +28,6 @@ class PathOfNurApp extends ConsumerWidget {
     ref.watch(reminderSchedulerBootstrapProvider);
     ref.watch(growthReminderBootstrapProvider);
     ref.watch(growthWidgetBootstrapProvider);
-    ref.watch(growthLiveActivityBootstrapProvider);
     ref.watch(growthUnlocksAutoSyncProvider);
     ref.watch(prophetDailySurfacesBootstrapProvider);
     ref.watch(appQuickActionsBootstrapProvider);

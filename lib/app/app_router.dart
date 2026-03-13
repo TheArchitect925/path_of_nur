@@ -12,6 +12,7 @@ import '../features/journey/presentation/growth_path_detail_page.dart';
 import '../features/journey/presentation/journey_legacy_page.dart';
 import '../features/learn/presentation/learn_page.dart';
 import '../features/learn/presentation/pages/learn_quran_hub_page.dart';
+import '../features/learn/presentation/pages/quran_app_hub_page.dart';
 import '../features/learn/presentation/pages/learn_salah_hub_page.dart';
 import '../features/learn/presentation/pages/learn_section_placeholder_page.dart';
 import '../features/learn/dua/presentation/dua_detail_page.dart';
@@ -447,6 +448,12 @@ final appRouterProvider = Provider<GoRouter>((ref) {
           GoRoute(
             path: '/learn/hub/quran',
             name: 'learnQuranHub',
+            pageBuilder: (context, state) =>
+                const MaterialPage(child: QuranAppHubPage()),
+          ),
+          GoRoute(
+            path: '/learn/hub/quran/learning',
+            name: 'learnQuranLearning',
             pageBuilder: (context, state) =>
                 const MaterialPage(child: LearnQuranHubPage()),
           ),
@@ -1268,8 +1275,8 @@ final Map<String, _SectionMeta> _sectionMeta = {
     quoteKey: 'journey-unlocks',
   ),
   'journey-garden': const _SectionMeta(
-    title: 'Garden / Tree / Character',
-    subtitle: 'Growth systems and visual progression.',
+    title: 'Growth / Character / Progress',
+    subtitle: 'Growth systems, character, and visual progression.',
     quoteKey: 'journey-garden',
   ),
   'journey-ocean': const _SectionMeta(

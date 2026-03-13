@@ -20,7 +20,27 @@ class LearnCategoryCatalog {
       tags: ['quran', 'core', 'hub'],
       sectionType: 'hub',
       categoryGroup: 'core',
-      description: 'Reader, search, words, names, and notes in one place.',
+      description:
+          'Reader, reciter, bookmarks, search, and juz browsing in one focused space.',
+    ),
+    LearnCategoryItem(
+      id: 'quran-learning',
+      title: 'Qur’an Learning',
+      iconKey: 'quran_universe',
+      routeName: 'learnQuranLearning',
+      searchKeywords: [
+        'quran learning',
+        'reflect',
+        'understand',
+        'memorize',
+        'quran universe',
+        'quran topics',
+      ],
+      tags: ['quran', 'study', 'learning'],
+      sectionType: 'hub',
+      categoryGroup: 'core',
+      description:
+          'Understand, reflect, memorize, and explore connections across the Qur’an.',
     ),
     LearnCategoryItem(
       id: 'hadith',
@@ -71,24 +91,6 @@ class LearnCategoryCatalog {
       tags: ['quran', 'world'],
       sectionType: 'placeholder',
       categoryGroup: 'core',
-    ),
-    LearnCategoryItem(
-      id: 'quran-universe',
-      title: 'Qur\'an Universe',
-      iconKey: 'quran_universe',
-      routeName: 'quranUniverse',
-      searchKeywords: [
-        'quran universe',
-        'explore by prophet',
-        'themes',
-        'locations',
-        'lessons',
-      ],
-      tags: ['quran', 'prophets', 'exploration'],
-      sectionType: 'content',
-      categoryGroup: 'core',
-      description:
-          'Discover how verses, prophets, themes, and lessons connect.',
     ),
     LearnCategoryItem(
       id: 'knowledge-constellation',

@@ -24,13 +24,13 @@ class ProphetMapPreviewSheet extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              prophet.name,
+              prophet.honoredName,
               style: Theme.of(
                 context,
               ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
             ),
             Text(
-              prophet.arabicName,
+              prophet.honoredArabicName,
               style: Theme.of(
                 context,
               ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),

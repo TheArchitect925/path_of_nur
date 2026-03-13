@@ -35,9 +35,9 @@ class DailyLearningEntrySurface extends StatelessWidget {
               Expanded(
                 child: Text(
                   copy.todayInRevelation,
-                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                    fontWeight: FontWeight.w700,
-                  ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
                 ),
               ),
               if (bundle.status.isCompleted)
@@ -51,23 +51,22 @@ class DailyLearningEntrySurface extends StatelessWidget {
                     color: const Color(0x332D8F58),
                     border: Border.all(color: const Color(0x552D8F58)),
                   ),
-                  child: Text(copy.completed, style: const TextStyle(fontSize: 11.5)),
+                  child: Text(
+                    copy.completed,
+                    style: const TextStyle(fontSize: 11.5),
+                  ),
                 ),
             ],
           ),
           const SizedBox(height: 6),
           Text(
             bundle.item.subtitle ?? bundle.item.title,
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              color: AppColors.onSurfaceSubtle,
-            ),
+            style: Theme.of(
+              context,
+            ).textTheme.bodyMedium?.copyWith(color: AppColors.onSurfaceSubtle),
           ),
           const SizedBox(height: 8),
-          Text(
-            bundle.item.body,
-            maxLines: 3,
-            overflow: TextOverflow.ellipsis,
-          ),
+          Text(bundle.item.body, maxLines: 3, overflow: TextOverflow.ellipsis),
           const SizedBox(height: 10),
           Wrap(
             spacing: 8,

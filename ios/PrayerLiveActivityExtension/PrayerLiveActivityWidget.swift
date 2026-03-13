@@ -41,21 +41,6 @@ struct QuranPlaybackAttributes: ActivityAttributes {
   var sessionId: String
 }
 
-struct GrowthSummaryAttributes: ActivityAttributes {
-  public struct ContentState: Codable, Hashable {
-    var todayCompletedCount: Int
-    var todayDueCount: Int
-    var todayProgressPercent: Int
-    var lightEarnedToday: Int
-    var currentStreak: Int
-    var nextDueHabitTitle: String
-    var reflectionPromptPreview: String
-    var privateModeEnabled: Bool
-  }
-
-  var dayKey: String
-}
-
 struct PrayerLiveActivityWidget: Widget {
   var body: some WidgetConfiguration {
     ActivityConfiguration(for: PrayerCountdownAttributes.self) { context in
@@ -369,7 +354,6 @@ struct PrayerLiveActivityBundle: WidgetBundle {
   var body: some Widget {
     PrayerLiveActivityWidget()
     QuranPlaybackLiveActivityWidget()
-    GrowthSummaryLiveActivityWidget()
   }
 }
 
@@ -424,101 +408,6 @@ struct QuranPlaybackLiveActivityWidget: Widget {
   }
 }
 
-struct GrowthSummaryLiveActivityWidget: Widget {
-  var body: some WidgetConfiguration {
-    ActivityConfiguration(for: GrowthSummaryAttributes.self) { context in
-      ZStack {
-        RoundedRectangle(cornerRadius: 18, style: .continuous)
-          .fill(
-            LinearGradient(
-              colors: [
-                Color(hex: 0x0B1D2A, alpha: 0.86),
-                Color(hex: 0x10313D, alpha: 0.82),
-                Color(hex: 0x112939, alpha: 0.80),
-              ],
-              startPoint: .topLeading,
-              endPoint: .bottomTrailing
-            )
-          )
-          .overlay(
-            RoundedRectangle(cornerRadius: 18, style: .continuous)
-              .stroke(Color(hex: 0x8CC4BF, alpha: 0.18), lineWidth: 1)
-          )
-
-        VStack(spacing: 8) {
-          Text(context.state.privateModeEnabled ? "Today’s Path" : "Growth Today")
-            .font(.caption2.weight(.semibold))
-            .foregroundStyle(Color(hex: 0xA7B9C4))
-          Text("\(context.state.todayCompletedCount)/\(context.state.todayDueCount) complete")
-            .font(.headline.weight(.semibold))
-            .foregroundStyle(Color(hex: 0xF3EEE5))
-          Text("Progress \(context.state.todayProgressPercent)%")
-            .font(.caption.weight(.semibold))
-            .foregroundStyle(Color(hex: 0xE8D9C0))
-          Text("Streak \(context.state.currentStreak)d")
-            .font(.caption)
-            .foregroundStyle(Color(hex: 0xA7B9C4))
-            .monospacedDigit()
-          if !context.state.nextDueHabitTitle.isEmpty {
-            Text("Next: \(context.state.nextDueHabitTitle)")
-              .font(.caption2)
-              .lineLimit(1)
-              .foregroundStyle(Color(hex: 0xD8E6EA))
-          }
-          if !context.state.reflectionPromptPreview.isEmpty {
-            Text(context.state.reflectionPromptPreview)
-              .font(.caption2)
-              .lineLimit(1)
-              .foregroundStyle(Color(hex: 0xA7B9C4))
-          }
-        }
-        .padding(.vertical, 12)
-        .padding(.horizontal, 12)
-      }
-      .activityBackgroundTint(Color.black.opacity(0.20))
-      .activitySystemActionForegroundColor(Color(hex: 0xD8C49A))
-    } dynamicIsland: { context in
-      DynamicIsland {
-        DynamicIslandExpandedRegion(.leading) {
-          Text(context.state.privateModeEnabled ? "Quiet Progress" : "Today")
-            .font(.headline)
-            .foregroundStyle(Color(hex: 0xF3EEE5))
-        }
-        DynamicIslandExpandedRegion(.trailing) {
-          Text("\(context.state.todayProgressPercent)%")
-            .font(.headline)
-            .monospacedDigit()
-            .foregroundStyle(Color(hex: 0xE8D9C0))
-        }
-        DynamicIslandExpandedRegion(.bottom) {
-          HStack(spacing: 12) {
-            Text("Streak \(context.state.currentStreak)d")
-              .font(.caption)
-              .foregroundStyle(Color(hex: 0xD8E6EA))
-            if !context.state.nextDueHabitTitle.isEmpty {
-              Text(context.state.nextDueHabitTitle)
-                .font(.caption)
-                .lineLimit(1)
-                .foregroundStyle(Color(hex: 0xA7B9C4))
-            }
-          }
-        }
-      } compactLeading: {
-        Text("G")
-          .font(.caption2.weight(.semibold))
-          .foregroundStyle(Color(hex: 0xE8D9C0))
-      } compactTrailing: {
-        Text("\(context.state.todayProgressPercent)%")
-          .font(.caption2)
-          .monospacedDigit()
-          .foregroundStyle(Color(hex: 0xE8D9C0))
-      } minimal: {
-        Image(systemName: "sparkles")
-          .foregroundStyle(Color(hex: 0xE8D9C0))
-      }
-    }
-  }
-}
 
 private struct QuranPlaybackLockscreenCard: View {
   let state: QuranPlaybackAttributes.ContentState

@@ -264,13 +264,13 @@ class _LineageNodeCardState extends State<_LineageNodeCard> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        widget.node.name,
+                        widget.node.honoredName,
                         style: Theme.of(context).textTheme.titleSmall?.copyWith(
                           fontWeight: FontWeight.w700,
                         ),
                       ),
                       Text(
-                        widget.node.arabicName,
+                        widget.node.honoredArabicName,
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
                           color: AppColors.onSurfaceSubtle,
                         ),

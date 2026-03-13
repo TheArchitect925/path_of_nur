@@ -79,6 +79,10 @@ class DuaLearningNotifier extends StateNotifier<DuaLearningState> {
         .markReflected(_itemId(duaId));
   }
 
+  void markLearned(String duaId) {
+    _ref.read(learnUnifiedProgressProvider.notifier).markCompleted(_itemId(duaId));
+  }
+
   void _persist() {
     _store.setJsonMap(_duaStateKey, state.toJson());
   }

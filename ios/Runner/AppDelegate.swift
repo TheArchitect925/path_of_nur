@@ -43,22 +43,6 @@ struct QuranPlaybackAttributes: ActivityAttributes {
   var sessionId: String
 }
 
-@available(iOS 16.1, *)
-struct GrowthSummaryAttributes: ActivityAttributes {
-  public struct ContentState: Codable, Hashable {
-    var todayCompletedCount: Int
-    var todayDueCount: Int
-    var todayProgressPercent: Int
-    var lightEarnedToday: Int
-    var currentStreak: Int
-    var nextDueHabitTitle: String
-    var reflectionPromptPreview: String
-    var privateModeEnabled: Bool
-  }
-
-  var dayKey: String
-}
-
 @main
 @objc class AppDelegate: FlutterAppDelegate, FlutterImplicitEngineDelegate {
   private let liveActivityChannelName = "path_of_nur/live_activities"
@@ -124,25 +108,6 @@ struct GrowthSummaryAttributes: ActivityAttributes {
       if #available(iOS 16.1, *) {
         Task {
           await endQuranActivities()
-          result(true)
-        }
-      } else {
-        result(false)
-      }
-    case "updateGrowthSummary":
-      if #available(iOS 16.1, *) {
-        guard let args = call.arguments as? [String: Any] else {
-          result(FlutterError(code: "bad_args", message: "Expected dictionary", details: nil))
-          return
-        }
-        updateGrowthSummary(args: args, result: result)
-      } else {
-        result(false)
-      }
-    case "endGrowthSummary":
-      if #available(iOS 16.1, *) {
-        Task {
-          await endGrowthActivities()
           result(true)
         }
       } else {
@@ -291,62 +256,6 @@ struct GrowthSummaryAttributes: ActivityAttributes {
   @available(iOS 16.1, *)
   private func endQuranActivities() async {
     for activity in Activity<QuranPlaybackAttributes>.activities {
-      await activity.end(dismissalPolicy: .immediate)
-    }
-  }
-
-  @available(iOS 16.1, *)
-  private func updateGrowthSummary(args: [String: Any], result: @escaping FlutterResult) {
-    let todayCompletedCount = max(0, (args["todayCompletedCount"] as? Int) ?? 0)
-    let todayDueCount = max(0, (args["todayDueCount"] as? Int) ?? 0)
-    let todayProgressPercent = max(0, min(100, (args["todayProgressPercent"] as? Int) ?? 0))
-    let lightEarnedToday = max(0, (args["lightEarnedToday"] as? Int) ?? 0)
-    let currentStreak = max(0, (args["currentStreak"] as? Int) ?? 0)
-    let nextDueHabitTitle = (args["nextDueHabitTitle"] as? String) ?? ""
-    let reflectionPromptPreview = (args["reflectionPromptPreview"] as? String) ?? ""
-    let privateModeEnabled = (args["privateModeEnabled"] as? Bool) ?? false
-    let dayKey = ISO8601DateFormatter().string(from: Date()).prefix(10)
-
-    let contentState = GrowthSummaryAttributes.ContentState(
-      todayCompletedCount: todayCompletedCount,
-      todayDueCount: todayDueCount,
-      todayProgressPercent: todayProgressPercent,
-      lightEarnedToday: lightEarnedToday,
-      currentStreak: currentStreak,
-      nextDueHabitTitle: nextDueHabitTitle,
-      reflectionPromptPreview: reflectionPromptPreview,
-      privateModeEnabled: privateModeEnabled
-    )
-
-    Task {
-      do {
-        if let existing = Activity<GrowthSummaryAttributes>.activities.first {
-          await existing.update(using: contentState)
-          result(true)
-          return
-        }
-        let attributes = GrowthSummaryAttributes(dayKey: String(dayKey))
-        _ = try Activity.request(
-          attributes: attributes,
-          contentState: contentState,
-          pushType: nil
-        )
-        result(true)
-      } catch {
-        result(
-          FlutterError(
-            code: "growth_live_activity_error",
-            message: "Unable to update growth live activity",
-            details: error.localizedDescription
-          )
-        )
-      }
-    }
-  }
-
-  @available(iOS 16.1, *)
-  private func endGrowthActivities() async {
-    for activity in Activity<GrowthSummaryAttributes>.activities {
       await activity.end(dismissalPolicy: .immediate)
     }
   }

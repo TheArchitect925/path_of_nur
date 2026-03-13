@@ -15,6 +15,8 @@ class AppPageScaffold extends StatelessWidget {
     this.scrollController,
     this.headerActions,
     this.floatingBottom,
+    this.backgroundAssetPath,
+    this.backgroundOverlayColor,
     required this.children,
   });
 
@@ -26,6 +28,8 @@ class AppPageScaffold extends StatelessWidget {
   final ScrollController? scrollController;
   final List<Widget>? headerActions;
   final Widget? floatingBottom;
+  final String? backgroundAssetPath;
+  final Color? backgroundOverlayColor;
   final List<Widget> children;
 
   @override
@@ -35,7 +39,10 @@ class AppPageScaffold extends StatelessWidget {
     final foreground = appearance?.onSurface ?? const Color(0xFF3A3026);
     return Stack(
       children: [
-        const GlobalBackground(),
+        GlobalBackground(
+          assetPath: backgroundAssetPath,
+          overlayColor: backgroundOverlayColor,
+        ),
         SafeArea(
           child: Padding(
             padding: const EdgeInsets.fromLTRB(16, 18, 16, 24),

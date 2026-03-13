@@ -6,6 +6,7 @@ import '../../../core/prayer/prayer_preferences.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../l10n/app_localizations.dart';
+import '../../../shared/application/daily_clock_provider.dart';
 import '../../../shared/theme/islamic_icons.dart';
 import '../../../shared/widgets/arabic_text_utils.dart';
 import '../../../shared/widgets/global_background.dart';
@@ -19,6 +20,7 @@ class SalahTimesPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
+    final now = ref.watch(dailyNowProvider).value ?? DateTime.now();
     final settings = ref.watch(prayerSettingsProvider);
     final schedule = ref.watch(prayerScheduleProvider);
     final scheduleContext = ref.watch(prayerScheduleContextProvider);
@@ -106,7 +108,9 @@ class SalahTimesPage extends ConsumerWidget {
                         final isNext = scheduleContext.nextPrayerId == entry.id;
                         final isCurrent =
                             scheduleContext.currentPrayerId == entry.id;
+                        final offerStatus = _offerTimingText(entry, now);
                         return PremiumCard(
+                          surfaceAlphaOverride: 0.9,
                           child: Padding(
                             padding: const EdgeInsets.all(14),
                             child: Column(
@@ -164,9 +168,10 @@ class SalahTimesPage extends ConsumerWidget {
                                             textAlign: textAlignForContent(
                                               entry.arabicName,
                                             ),
-                                            textDirection: textDirectionForContent(
-                                              entry.arabicName,
-                                            ),
+                                            textDirection:
+                                                textDirectionForContent(
+                                                  entry.arabicName,
+                                                ),
                                             style: AppTextStyles.arabicLearning(
                                               size: 18,
                                               color: const Color(0xFF3F332C),
@@ -211,7 +216,27 @@ class SalahTimesPage extends ConsumerWidget {
                                       '${entry.windowStart} to ${entry.windowEnd}',
                                 ),
                                 const SizedBox(height: 6),
-                                _MetaRow(label: 'Qaza time', value: entry.qaza),
+                                _MetaRow(
+                                  label: 'Becomes qada after',
+                                  value: entry.overdueAt,
+                                ),
+                                const SizedBox(height: 6),
+                                _MetaRow(
+                                  label: 'Time remaining to offer',
+                                  value: offerStatus,
+                                ),
+                                if (entry.hasDelayedMakeUpWindow) ...[
+                                  const SizedBox(height: 6),
+                                  _MetaRow(
+                                    label: 'Make up from',
+                                    value: entry.makeUpFrom,
+                                  ),
+                                ],
+                                const SizedBox(height: 6),
+                                _MetaRow(
+                                  label: 'Qada rule',
+                                  value: entry.qadaRuleSummary,
+                                ),
                                 const SizedBox(height: 6),
                                 _MetaRow(
                                   label: 'Category',
@@ -242,6 +267,25 @@ class SalahTimesPage extends ConsumerWidget {
       ),
     );
   }
+}
+
+String _offerTimingText(PrayerScheduleItem entry, DateTime now) {
+  if (now.isBefore(entry.windowStartDateTime)) {
+    return 'Starts in ${_formatDuration(entry.windowStartDateTime.difference(now))}';
+  }
+  if (now.isBefore(entry.overdueDateTime)) {
+    return _formatDuration(entry.overdueDateTime.difference(now));
+  }
+  return 'Offer window ended';
+}
+
+String _formatDuration(Duration value) {
+  if (value.isNegative) return '0m';
+  final totalMinutes = value.inMinutes;
+  final hours = totalMinutes ~/ 60;
+  final minutes = totalMinutes % 60;
+  if (hours <= 0) return '${minutes}m';
+  return '${hours}h ${minutes}m';
 }
 
 class _NotificationButtons extends StatelessWidget {

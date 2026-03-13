@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../ocean/application/ocean_drops_provider.dart';
 import '../../../shared/persistence/local_store.dart';
 import '../domain/dhikr_preset.dart';
 import '../domain/dhikr_session.dart';
@@ -72,11 +73,13 @@ class DhikrSessionState {
 }
 
 class DhikrController extends StateNotifier<DhikrSessionState> {
-  DhikrController(this._store) : super(DhikrSessionState.initial()) {
+  DhikrController(this._store, this._oceanDrops)
+    : super(DhikrSessionState.initial()) {
     _load();
   }
 
   final LocalStore _store;
+  final OceanDropService _oceanDrops;
 
   void selectPreset(DhikrPreset preset) {
     state = state.copyWith(selectedPreset: preset);
@@ -92,6 +95,17 @@ class DhikrController extends StateNotifier<DhikrSessionState> {
   void increment() {
     state = state.copyWith(currentCount: state.currentCount + 1);
     _save();
+    if (state.target >= 100) {
+      _oceanDrops.awardDrop(
+        actionType: oceanActionDhikrFreeHundredReached,
+        sourceModule: oceanSourceDhikr,
+        referenceId: 'free_dhikr',
+        metadata: {
+          'countDelta': 1,
+          'timestamp': DateTime.now().toIso8601String(),
+        },
+      );
+    }
   }
 
   void undo() {
@@ -124,6 +138,18 @@ class DhikrController extends StateNotifier<DhikrSessionState> {
       recentSessions: [completed, ...state.recentSessions],
     );
     _save();
+    if (completed.target < 100) {
+      _oceanDrops.awardDrop(
+        actionType: oceanActionDhikrSetCompleted,
+        sourceModule: oceanSourceDhikr,
+        referenceId: completed.finishedAt.toIso8601String(),
+        metadata: {
+          'target': completed.target,
+          'phraseLabel': completed.phraseLabel,
+          'timestamp': completed.finishedAt.toIso8601String(),
+        },
+      );
+    }
   }
 
   void _load() {
@@ -197,5 +223,8 @@ class DhikrController extends StateNotifier<DhikrSessionState> {
 
 final dhikrControllerProvider =
     StateNotifierProvider<DhikrController, DhikrSessionState>(
-      (ref) => DhikrController(ref.watch(localStoreProvider)),
+      (ref) => DhikrController(
+        ref.watch(localStoreProvider),
+        ref.read(oceanDropServiceProvider),
+      ),
     );

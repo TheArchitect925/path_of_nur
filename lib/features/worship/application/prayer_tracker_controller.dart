@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../ocean/application/ocean_drops_provider.dart';
 import '../../../shared/persistence/local_store.dart';
 import '../domain/prayer_name.dart';
 import '../domain/prayer_status.dart';
@@ -43,7 +44,7 @@ class PrayerTrackerState {
 }
 
 class PrayerTrackerController extends StateNotifier<PrayerTrackerState> {
-  PrayerTrackerController(this._store)
+  PrayerTrackerController(this._store, this._oceanDrops)
     : super(
         PrayerTrackerState(
           selectedDate: DateTime.now(),
@@ -60,6 +61,7 @@ class PrayerTrackerController extends StateNotifier<PrayerTrackerState> {
   }
 
   final LocalStore _store;
+  final OceanDropService _oceanDrops;
 
   static Map<PrayerName, PrayerStatus> _defaultRecords() {
     return {
@@ -110,6 +112,7 @@ class PrayerTrackerController extends StateNotifier<PrayerTrackerState> {
     state = state.copyWith(records: updated);
     _syncQadaQueueForTransition(prayer, current, next);
     _saveSelectedDay();
+    _awardPrayerDropIfNeeded(prayer, previous: current, next: next);
   }
 
   void setStatus(PrayerName prayer, PrayerStatus status) {
@@ -119,6 +122,7 @@ class PrayerTrackerController extends StateNotifier<PrayerTrackerState> {
     state = state.copyWith(records: updated);
     _syncQadaQueueForTransition(prayer, current, status);
     _saveSelectedDay();
+    _awardPrayerDropIfNeeded(prayer, previous: current, next: status);
   }
 
   void addQada(PrayerName prayer, int amount) {
@@ -137,12 +141,33 @@ class PrayerTrackerController extends StateNotifier<PrayerTrackerState> {
     if (current <= 0) {
       return;
     }
+    final nextCompletedCount = state.dailyQadaCompleted + 1;
     updated[prayer] = current - 1;
     state = state.copyWith(
       qadaBacklog: updated,
-      dailyQadaCompleted: state.dailyQadaCompleted + 1,
+      dailyQadaCompleted: nextCompletedCount,
     );
     _saveQadaBacklog();
+    _oceanDrops.awardDrop(
+      actionType: oceanActionMakeupPrayerCompleted,
+      sourceModule: oceanSourcePrayer,
+      referenceId: '${prayer.name}:$nextCompletedCount',
+      metadata: {'timestamp': DateTime.now().toIso8601String()},
+    );
+  }
+
+  void _awardPrayerDropIfNeeded(
+    PrayerName prayer, {
+    required PrayerStatus previous,
+    required PrayerStatus next,
+  }) {
+    if (previous == next || next != PrayerStatus.completed) return;
+    _oceanDrops.awardDrop(
+      actionType: oceanActionPrayerCompleted,
+      sourceModule: oceanSourcePrayer,
+      referenceId: prayer.name,
+      metadata: {'timestamp': state.selectedDate.toIso8601String()},
+    );
   }
 
   void setDailyQadaTarget(int target) {
@@ -296,7 +321,10 @@ class PrayerTrackerController extends StateNotifier<PrayerTrackerState> {
 
 final prayerTrackerControllerProvider =
     StateNotifierProvider<PrayerTrackerController, PrayerTrackerState>((ref) {
-      return PrayerTrackerController(ref.watch(localStoreProvider));
+      return PrayerTrackerController(
+        ref.watch(localStoreProvider),
+        ref.read(oceanDropServiceProvider),
+      );
     });
 
 final prayerMonthlyRecordsProvider =

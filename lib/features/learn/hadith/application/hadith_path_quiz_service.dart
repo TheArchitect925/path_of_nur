@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../shared/persistence/local_store.dart';
 import '../../../journey/application/journey_progression_provider.dart';
+import '../../../ocean/application/ocean_drops_provider.dart';
 import '../data/seeded_hadith_path_quiz_data.dart';
 import '../domain/hadith_foundation_models.dart';
 import '../domain/hadith_quiz_models.dart';
@@ -576,6 +577,17 @@ Future<HadithQuizSubmissionOutcome> submitHadithQuizSession(
     );
     ref.read(journeyProgressProvider.notifier).syncFromSnapshot(adjusted);
   }
+
+  ref.read(oceanDropServiceProvider).awardDrop(
+    actionType: oceanActionQuizCompleted,
+    sourceModule: oceanSourceQuiz,
+    referenceId: session.id,
+    metadata: {
+      'timestamp': now.toIso8601String(),
+      'score': score,
+      'questionCount': session.questions.length,
+    },
+  );
 
   return outcome;
 }

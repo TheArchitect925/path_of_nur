@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'prophet_name_formatter.dart';
+
 enum ProphetLocationConfidence { symbolic, approximate, traditional, strong }
 
 enum ProphetEraGroup {
@@ -150,4 +152,8 @@ class ProphetEntry {
   final int sortOrder;
 
   bool get hasMapLocation => latitude != null && longitude != null;
+
+  String get honoredName => formatProphetName(name);
+  String get titledHonoredName => formatProphetName(name, includeTitle: true);
+  String get honoredArabicName => formatProphetArabicName(arabicName, name);
 }
