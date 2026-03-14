@@ -556,26 +556,10 @@ Future<HadithQuizSubmissionOutcome> submitHadithQuizSession(
 
   final xp = outcome.result.xpAwarded;
   if (xp > 0) {
-    final snapshot = ref.read(journeyActivitySnapshotProvider);
     final bonusEntries = (xp / JourneyXpRules.xpPerReflectionEntry).round();
-    final nextReflectionEntries =
-        snapshot.reflectionEntriesToday + bonusEntries;
-
-    final adjusted = JourneyActivitySnapshot(
-      now: snapshot.now,
-      prayerCompletedToday: snapshot.prayerCompletedToday,
-      prayerProgress: snapshot.prayerProgress,
-      dhikrSessionsToday: snapshot.dhikrSessionsToday,
-      dhikrProgress: snapshot.dhikrProgress,
-      fastingStatus: snapshot.fastingStatus,
-      quranEngagementsToday: snapshot.quranEngagementsToday,
-      quranProgress: snapshot.quranProgress,
-      reflectionEntriesToday: nextReflectionEntries,
-      reflectionProgress: (nextReflectionEntries / 2)
-          .clamp(0.0, 1.0)
-          .toDouble(),
+    ref.read(journeyProgressUpdateHelperProvider).addReflectionEntries(
+      bonusEntries,
     );
-    ref.read(journeyProgressProvider.notifier).syncFromSnapshot(adjusted);
   }
 
   ref.read(oceanDropServiceProvider).awardDrop(

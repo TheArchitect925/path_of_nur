@@ -145,7 +145,10 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
         () =>
             _currentlyPlayingAyahKey = '${ayah.surahNumber}:${ayah.ayahNumber}',
       );
-      _scrollToAyah(ayah.ayahNumber);
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+        unawaited(_scrollToAyah(ayah.ayahNumber, retries: 20));
+      });
       _syncWordHighlightForCurrentTrack(ayah);
       _quranLiveActivityAyah = ayah;
       _lastSentLiveElapsedSecond = -1;
@@ -222,6 +225,7 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
     super.didUpdateWidget(oldWidget);
     if (oldWidget.surahNumber != widget.surahNumber ||
         oldWidget.initialAyah != widget.initialAyah) {
+      _ayahItemKeys.clear();
       _initialAyahAutoScrolled = false;
       _didAutoPlayFromRoute = false;
     }
@@ -1284,7 +1288,17 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
       if (targetAyah != null) {
-        unawaited(_handleAyahPlay(targetAyah));
+        unawaited(
+          () async {
+            await _scrollToAyah(targetAyah.ayahNumber, retries: 30);
+            if (!mounted) return;
+            await _startSurahPlaybackFromAyah(
+              ayahs,
+              targetAyah,
+              scrollBeforePlay: true,
+            );
+          }(),
+        );
         return;
       }
       unawaited(_startSurahPlayback(ayahs: ayahs, initialIndex: 0));
@@ -1298,7 +1312,7 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
     _initialAyahAutoScrolled = true;
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
-      unawaited(_scrollToAyah(targetAyah, retries: 10));
+      unawaited(_scrollToAyah(targetAyah, retries: 30));
     });
   }
 
@@ -1437,12 +1451,82 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
       }
       return;
     }
-    await Scrollable.ensureVisible(
-      targetContext,
-      duration: const Duration(milliseconds: 340),
-      curve: Curves.easeOutCubic,
-      alignment: 0.20,
-    );
+    final renderObject = targetContext.findRenderObject();
+    if (renderObject == null ||
+        renderObject is! RenderBox ||
+        !renderObject.attached) {
+      if (retries > 0) {
+        await Future<void>.delayed(const Duration(milliseconds: 50));
+        if (!mounted) return;
+        await _scrollToAyah(ayahNumber, retries: retries - 1);
+      }
+      return;
+    }
+
+    if (!_scrollController.hasClients) {
+      if (retries > 0) {
+        await Future<void>.delayed(const Duration(milliseconds: 50));
+        if (!mounted) return;
+        await _scrollToAyah(ayahNumber, retries: retries - 1);
+      }
+      return;
+    }
+
+    final listRenderObject = _scrollController
+        .position
+        .context
+        .storageContext
+        .findRenderObject();
+    final previousOffset = _scrollController.offset;
+
+    var didFallback = false;
+    if (listRenderObject != null) {
+      try {
+        final targetOffset = (_scrollController.offset +
+                renderObject.localToGlobal(
+                  Offset.zero,
+                  ancestor: listRenderObject,
+                ).dy -
+                120)
+            .clamp(
+              _scrollController.position.minScrollExtent,
+              _scrollController.position.maxScrollExtent,
+            )
+            as double;
+        if ((targetOffset - previousOffset).abs() > 1) {
+          didFallback = true;
+          await _scrollController.animateTo(
+            targetOffset,
+            duration: const Duration(milliseconds: 340),
+            curve: Curves.easeOutCubic,
+          );
+        }
+      } catch (_) {
+        didFallback = false;
+      }
+    }
+
+    if (!didFallback) {
+      await Scrollable.ensureVisible(
+        targetContext,
+        duration: const Duration(milliseconds: 340),
+        curve: Curves.easeOutCubic,
+        alignment: 0.1,
+      );
+    }
+
+    if (retries > 0) {
+      final top = renderObject.localToGlobal(Offset.zero).dy;
+      final bottom = top + renderObject.size.height;
+      final viewportHeight = MediaQuery.of(context).size.height;
+      final visible = bottom >= 0 && top <= viewportHeight;
+      if (!visible &&
+          (_scrollController.offset - previousOffset).abs() < 0.5) {
+        await Future<void>.delayed(const Duration(milliseconds: 70));
+        if (!mounted) return;
+        await _scrollToAyah(ayahNumber, retries: retries - 1);
+      }
+    }
   }
 
   Future<void> _toggleSurahPlayback(List<QuranAyah> ayahs) async {
@@ -1476,7 +1560,9 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
   Future<void> _startSurahPlaybackFromAyah(
     List<QuranAyah> ayahs,
     QuranAyah startAyah,
-  ) async {
+    {
+    bool scrollBeforePlay = false,
+  }) async {
     if (ayahs.isEmpty || _isPreparingSurahPlayback) return;
     final targetIndex = ayahs.indexWhere(
       (item) =>
@@ -1493,12 +1579,20 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
       if (_audioPlayer.playing) {
         await _audioPlayer.seek(Duration.zero, index: targetIndex);
       } else {
-        await _startSurahPlayback(ayahs: ayahs, initialIndex: targetIndex);
+        await _startSurahPlayback(
+          ayahs: ayahs,
+          initialIndex: targetIndex,
+          scrollBeforePlay: scrollBeforePlay,
+        );
       }
       return;
     }
 
-    await _startSurahPlayback(ayahs: ayahs, initialIndex: targetIndex);
+    await _startSurahPlayback(
+      ayahs: ayahs,
+      initialIndex: targetIndex,
+      scrollBeforePlay: scrollBeforePlay,
+    );
   }
 
   QuranAyah? _currentAyahFromPlaybackKey(List<QuranAyah> ayahs) {
@@ -1521,6 +1615,7 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
     required List<QuranAyah> ayahs,
     required int initialIndex,
     Duration initialPosition = Duration.zero,
+    bool scrollBeforePlay = false,
   }) async {
     if (ayahs.isEmpty) return;
     final sessionVersion = ++_playerSessionVersion;
@@ -1583,10 +1678,12 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
       }
       _quranLiveActivityAyah = first;
       _lastSentLiveElapsedSecond = -1;
-      _scrollToAyah(first.ayahNumber);
       _syncWordHighlightForCurrentTrack(first);
       await _updateQuranLiveActivity(ayah: first, force: true);
       if (sessionVersion != _playerSessionVersion) return;
+      if (scrollBeforePlay) {
+        await _scrollToAyah(first.ayahNumber, retries: 30);
+      }
       unawaited(_audioPlayer.play());
     } finally {
       _isSwitchingAyahSource = false;

@@ -13,6 +13,7 @@ import '../../features/wallpaper/application/wallpaper_provider.dart';
 import '../../features/assistant/application/assistant_provider.dart';
 import '../../features/circles/application/circles_provider.dart';
 import '../../features/journal/application/journal_provider.dart';
+import '../../features/journey/application/journey_progression_provider.dart';
 import '../../features/worship/application/dhikr_controller.dart';
 import '../../features/worship/application/fasting_controller.dart';
 import '../../features/worship/application/prayer_controller.dart';
@@ -63,6 +64,7 @@ class JourneySummary {
     required this.growthStageKey,
     required this.localDropsContributionCount,
     required this.monthlyBadges,
+    required this.dailyBadges,
     required this.graceTokensRemaining,
     required this.graceTokenMonthlyAllowance,
     required this.weeklyProtectedDays,
@@ -87,6 +89,7 @@ class JourneySummary {
   final String growthStageKey;
   final int localDropsContributionCount;
   final List<JourneyMonthlyBadge> monthlyBadges;
+  final List<JourneyDailyBadge> dailyBadges;
   final int graceTokensRemaining;
   final int graceTokenMonthlyAllowance;
   final int weeklyProtectedDays;
@@ -325,6 +328,7 @@ final journeySummaryProvider = Provider<JourneySummary>((ref) {
     growthStageKey: progress.growthStageKey,
     localDropsContributionCount: progress.localDropsContributionCount,
     monthlyBadges: progress.monthlyBadges,
+    dailyBadges: progress.dailyBadges,
     graceTokensRemaining: progress.graceTokensRemaining,
     graceTokenMonthlyAllowance: progress.graceTokenMonthlyAllowance,
     weeklyProtectedDays: progress.weeklyProtectedDays,

@@ -7,6 +7,41 @@ import '../domain/prayer_status.dart';
 
 enum PrayerCalendarMode { gregorian, islamic }
 
+enum PrayerOfferTiming { onTime, late, qada }
+
+enum PrayerOfferPlace { alone, congregation, masjid }
+
+class PrayerTrackerEntry {
+  const PrayerTrackerEntry({
+    this.status = PrayerStatus.pending,
+    this.timing,
+    this.place,
+    this.notes,
+  });
+
+  final PrayerStatus status;
+  final PrayerOfferTiming? timing;
+  final PrayerOfferPlace? place;
+  final String? notes;
+
+  PrayerTrackerEntry copyWith({
+    PrayerStatus? status,
+    PrayerOfferTiming? timing,
+    PrayerOfferPlace? place,
+    String? notes,
+    bool clearTiming = false,
+    bool clearPlace = false,
+    bool clearNotes = false,
+  }) {
+    return PrayerTrackerEntry(
+      status: status ?? this.status,
+      timing: clearTiming ? null : timing ?? this.timing,
+      place: clearPlace ? null : place ?? this.place,
+      notes: clearNotes ? null : notes ?? this.notes,
+    );
+  }
+}
+
 class PrayerTrackerState {
   const PrayerTrackerState({
     required this.selectedDate,
@@ -19,7 +54,7 @@ class PrayerTrackerState {
 
   final DateTime selectedDate;
   final PrayerCalendarMode calendarMode;
-  final Map<PrayerName, PrayerStatus> records;
+  final Map<PrayerName, PrayerTrackerEntry> records;
   final Map<PrayerName, int> qadaBacklog;
   final int dailyQadaTarget;
   final int dailyQadaCompleted;
@@ -27,7 +62,7 @@ class PrayerTrackerState {
   PrayerTrackerState copyWith({
     DateTime? selectedDate,
     PrayerCalendarMode? calendarMode,
-    Map<PrayerName, PrayerStatus>? records,
+    Map<PrayerName, PrayerTrackerEntry>? records,
     Map<PrayerName, int>? qadaBacklog,
     int? dailyQadaTarget,
     int? dailyQadaCompleted,
@@ -63,13 +98,13 @@ class PrayerTrackerController extends StateNotifier<PrayerTrackerState> {
   final LocalStore _store;
   final OceanDropService _oceanDrops;
 
-  static Map<PrayerName, PrayerStatus> _defaultRecords() {
+  static Map<PrayerName, PrayerTrackerEntry> _defaultRecords() {
     return {
-      PrayerName.fajr: PrayerStatus.pending,
-      PrayerName.dhuhr: PrayerStatus.pending,
-      PrayerName.asr: PrayerStatus.pending,
-      PrayerName.maghrib: PrayerStatus.pending,
-      PrayerName.isha: PrayerStatus.pending,
+      PrayerName.fajr: const PrayerTrackerEntry(),
+      PrayerName.dhuhr: const PrayerTrackerEntry(),
+      PrayerName.asr: const PrayerTrackerEntry(),
+      PrayerName.maghrib: const PrayerTrackerEntry(),
+      PrayerName.isha: const PrayerTrackerEntry(),
     };
   }
 
@@ -105,24 +140,73 @@ class PrayerTrackerController extends StateNotifier<PrayerTrackerState> {
   }
 
   void cycleStatus(PrayerName prayer) {
-    final updated = Map<PrayerName, PrayerStatus>.from(state.records);
-    final current = updated[prayer] ?? PrayerStatus.pending;
-    final next = current.next;
-    updated[prayer] = next;
+    final updated = Map<PrayerName, PrayerTrackerEntry>.from(state.records);
+    final current = updated[prayer] ?? const PrayerTrackerEntry();
+    final next = current.status.next;
+    updated[prayer] = next == PrayerStatus.completed
+        ? const PrayerTrackerEntry(
+            status: PrayerStatus.completed,
+            timing: PrayerOfferTiming.onTime,
+            place: PrayerOfferPlace.alone,
+          )
+        : PrayerTrackerEntry(
+            status: next,
+          );
     state = state.copyWith(records: updated);
-    _syncQadaQueueForTransition(prayer, current, next);
+    _syncQadaQueueForTransition(prayer, current.status, next);
     _saveSelectedDay();
-    _awardPrayerDropIfNeeded(prayer, previous: current, next: next);
+    _awardPrayerDropIfNeeded(prayer, previous: current.status, next: next);
   }
 
   void setStatus(PrayerName prayer, PrayerStatus status) {
-    final updated = Map<PrayerName, PrayerStatus>.from(state.records);
-    final current = updated[prayer] ?? PrayerStatus.pending;
-    updated[prayer] = status;
+    final updated = Map<PrayerName, PrayerTrackerEntry>.from(state.records);
+    final current = updated[prayer] ?? const PrayerTrackerEntry();
+    updated[prayer] = status == PrayerStatus.completed
+        ? const PrayerTrackerEntry(
+            status: PrayerStatus.completed,
+            timing: PrayerOfferTiming.onTime,
+            place: PrayerOfferPlace.alone,
+          )
+        : PrayerTrackerEntry(status: status);
     state = state.copyWith(records: updated);
-    _syncQadaQueueForTransition(prayer, current, status);
+    _syncQadaQueueForTransition(prayer, current.status, status);
     _saveSelectedDay();
-    _awardPrayerDropIfNeeded(prayer, previous: current, next: status);
+    _awardPrayerDropIfNeeded(prayer, previous: current.status, next: status);
+  }
+
+  void setEntry(
+    PrayerName prayer, {
+    required PrayerStatus status,
+    PrayerOfferTiming? timing,
+    PrayerOfferPlace? place,
+    String? notes,
+  }) {
+    final updated = Map<PrayerName, PrayerTrackerEntry>.from(state.records);
+    final current = updated[prayer] ?? const PrayerTrackerEntry();
+    updated[prayer] = PrayerTrackerEntry(
+      status: status,
+      timing: status == PrayerStatus.completed ? timing : null,
+      place: status == PrayerStatus.completed ? place : null,
+      notes: status == PrayerStatus.completed
+          ? (notes == null || notes.trim().isEmpty ? null : notes.trim())
+          : null,
+    );
+    state = state.copyWith(records: updated);
+    _syncQadaQueueForTransition(prayer, current.status, status);
+    _saveSelectedDay();
+    _awardPrayerDropIfNeeded(prayer, previous: current.status, next: status);
+  }
+
+  void bulkSetRemainingStatus(PrayerStatus status) {
+    final updated = Map<PrayerName, PrayerTrackerEntry>.from(state.records);
+    for (final prayer in PrayerName.values) {
+      final current = updated[prayer] ?? const PrayerTrackerEntry();
+      if (current.status != PrayerStatus.pending) continue;
+      updated[prayer] = PrayerTrackerEntry(status: status);
+      _syncQadaQueueForTransition(prayer, current.status, status);
+    }
+    state = state.copyWith(records: updated);
+    _saveSelectedDay();
   }
 
   void addQada(PrayerName prayer, int amount) {
@@ -220,6 +304,22 @@ class PrayerTrackerController extends StateNotifier<PrayerTrackerState> {
     final output = <DateTime, Map<PrayerName, PrayerStatus>>{};
     for (var i = 0; i < days; i += 1) {
       final day = first.add(Duration(days: i));
+      output[day] = {
+        for (final entry in _loadForDate(day).entries) entry.key: entry.value.status,
+      };
+    }
+    return output;
+  }
+
+  Map<DateTime, Map<PrayerName, PrayerTrackerEntry>> loadMonthEntryMap(
+    DateTime month,
+  ) {
+    final first = DateTime(month.year, month.month, 1);
+    final nextMonth = DateTime(month.year, month.month + 1, 1);
+    final days = nextMonth.difference(first).inDays;
+    final output = <DateTime, Map<PrayerName, PrayerTrackerEntry>>{};
+    for (var i = 0; i < days; i += 1) {
+      final day = first.add(Duration(days: i));
       output[day] = _loadForDate(day);
     }
     return output;
@@ -229,17 +329,41 @@ class PrayerTrackerController extends StateNotifier<PrayerTrackerState> {
     state = state.copyWith(records: _loadForDate(state.selectedDate));
   }
 
-  Map<PrayerName, PrayerStatus> _loadForDate(DateTime date) {
+  Map<PrayerName, PrayerTrackerEntry> _loadForDate(DateTime date) {
     final key = LocalStore.todayKey(date);
     final data = _store.getJsonMap('worship.prayer.$key');
     if (data == null) return _defaultRecords();
     final restored = _defaultRecords();
     for (final prayer in restored.keys) {
       final raw = data[prayer.name];
-      if (raw is! String) continue;
-      restored[prayer] = PrayerStatus.values.firstWhere(
-        (item) => item.name == raw,
+      final statusName = raw is String
+          ? raw
+          : raw is Map
+          ? raw['status']?.toString()
+          : null;
+      if (statusName == null) continue;
+      final status = PrayerStatus.values.firstWhere(
+        (item) => item.name == statusName,
         orElse: () => PrayerStatus.pending,
+      );
+      final timingName = raw is Map ? raw['timing']?.toString() : null;
+      final placeName = raw is Map ? raw['place']?.toString() : null;
+      final notes = raw is Map ? raw['notes']?.toString() : null;
+      PrayerOfferTiming? timing;
+      PrayerOfferPlace? place;
+      for (final item in PrayerOfferTiming.values) {
+        if (item.name == timingName) timing = item;
+      }
+      for (final item in PrayerOfferPlace.values) {
+        if (item.name == placeName) place = item;
+      }
+      restored[prayer] = PrayerTrackerEntry(
+        status: status,
+        timing: status == PrayerStatus.completed ? timing : null,
+        place: status == PrayerStatus.completed ? place : null,
+        notes: status == PrayerStatus.completed && notes != null && notes.isNotEmpty
+            ? notes
+            : null,
       );
     }
     return restored;
@@ -247,9 +371,19 @@ class PrayerTrackerController extends StateNotifier<PrayerTrackerState> {
 
   void _saveSelectedDay() {
     final key = LocalStore.todayKey(state.selectedDate);
+    final existing = _store.getJsonMap('worship.prayer.$key') ?? const {};
     _store.setJsonMap('worship.prayer.$key', {
       for (final entry in state.records.entries)
-        entry.key.name: entry.value.name,
+        entry.key.name: {
+          'status': entry.value.status.name,
+          'timing': entry.value.timing?.name,
+          'place': entry.value.place?.name,
+          'notes': entry.value.notes,
+          'completedAtIso': entry.value.status == PrayerStatus.completed &&
+                  existing[entry.key.name] is Map
+              ? (existing[entry.key.name] as Map)['completedAtIso']
+              : null,
+        },
     });
   }
 
@@ -341,3 +475,16 @@ final prayerMonthlyRecordsProvider =
       }
       return controller.loadMonthMap(anchor);
     });
+
+final prayerMonthlyEntryRecordsProvider = Provider.family<
+  Map<DateTime, Map<PrayerName, PrayerTrackerEntry>>,
+  DateTime
+>((ref, month) {
+  final controller = ref.watch(prayerTrackerControllerProvider.notifier);
+  final tick = ref.watch(prayerTrackerControllerProvider);
+  final anchor = DateTime(month.year, month.month, 1);
+  if (tick.selectedDate.year == -1) {
+    return const {};
+  }
+  return controller.loadMonthEntryMap(anchor);
+});

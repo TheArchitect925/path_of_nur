@@ -3,7 +3,6 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter_compass/flutter_compass.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_tts/flutter_tts.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
@@ -32,9 +31,9 @@ class PrayerSection extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: const [
           SectionTitle(
-            title: 'Prayer Hub',
+            title: 'Salah Hub',
             subtitle:
-                'Times, tracking, consistency, rakats, and practical guidance in one focused flow.',
+                'Salah times, tracking, consistency, rakats, and practical guidance in one focused flow.',
           ),
           _PrayerHubTabs(),
           SizedBox(height: 10),
@@ -69,7 +68,7 @@ class _PrayerHubTabs extends StatelessWidget {
         ),
         tabs: [
           Tab(text: 'Times'),
-          Tab(text: 'Tracker'),
+          Tab(text: 'Qada'),
           Tab(text: 'Stats'),
           Tab(text: 'Rakat'),
         ],
@@ -323,13 +322,15 @@ class _PrayerTimesTab extends ConsumerWidget {
                 : DateFormat.jm().format(moonTimes.moonset),
           ),
           const SizedBox(height: 12),
+          _PrayerHistoryCard(selectedDate: tracker.selectedDate),
+          const SizedBox(height: 12),
           PremiumCard(
             surfaceAlphaOverride: _prayerSurfaceAlpha,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
-                  'Prayer Times',
+                  'Salah Times',
                   style: TextStyle(fontWeight: FontWeight.w700),
                 ),
                 const SizedBox(height: 8),
@@ -342,7 +343,7 @@ class _PrayerTimesTab extends ConsumerWidget {
                       onTap: () => context.pushNamed('salahTimes'),
                       title: Text('${item.name} • ${item.arabicName}'),
                       subtitle: Text(
-                        '${item.offerTime}  •  Prayer Time Window: ${item.windowStart}–${item.windowEnd}',
+                        '${item.offerTime}  •  Salah Window: ${item.windowStart}–${item.windowEnd}',
                       ),
                       trailing: Text(
                         item.totalRakats.toString(),
@@ -353,11 +354,6 @@ class _PrayerTimesTab extends ConsumerWidget {
                 ),
               ],
             ),
-          ),
-          const SizedBox(height: 12),
-          _QiblaFinderCard(
-            latitude: location.latitude,
-            longitude: location.longitude,
           ),
         ],
       ),
@@ -372,10 +368,7 @@ class _PrayerTrackerTab extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final tracker = ref.watch(prayerTrackerControllerProvider);
     final trackerNotifier = ref.read(prayerTrackerControllerProvider.notifier);
-    final monthRecords = ref.watch(
-      prayerMonthlyRecordsProvider(tracker.selectedDate),
-    );
-    final selected = tracker.selectedDate;
+    final maxBacklog = tracker.qadaBacklog.values.fold<int>(0, math.max);
 
     return Padding(
       padding: const EdgeInsets.only(top: 12, bottom: 20),
@@ -388,137 +381,24 @@ class _PrayerTrackerTab extends ConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
-                  'Daily Salah Tracker',
+                  'Qada Overview',
                   style: TextStyle(fontWeight: FontWeight.w700),
                 ),
                 const SizedBox(height: 6),
                 const Text(
-                  'Each day has 5 points. Green = offered. Yellow = missed. Tap any prayer to update.',
+                  'See which salah queues are heaviest and plan your make-up rhythm clearly.',
                   style: TextStyle(color: AppColors.onSurfaceSubtle),
                 ),
                 const SizedBox(height: 10),
-                Wrap(
-                  spacing: 8,
-                  runSpacing: 8,
-                  children: PrayerName.values
-                      .map(
-                        (prayer) => _PrayerStatusChip(
-                          prayer: prayer,
-                          status:
-                              tracker.records[prayer] ?? PrayerStatus.pending,
-                          onTap: () {
-                            trackerNotifier.cycleStatus(prayer);
-                            if (_sameDay(selected, DateTime.now())) {
-                              ref
-                                  .read(prayerControllerProvider.notifier)
-                                  .onDayChanged(
-                                    LocalStore.todayKey(),
-                                    force: true,
-                                  );
-                            }
-                          },
-                        ),
-                      )
-                      .toList(),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 12),
-          PremiumCard(
-            surfaceAlphaOverride: _prayerSurfaceAlpha,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  'Monthly Consistency',
-                  style: TextStyle(fontWeight: FontWeight.w700),
-                ),
-                const SizedBox(height: 6),
-                Text(
-                  DateFormat.yMMMM().format(selected),
-                  style: const TextStyle(color: AppColors.onSurfaceSubtle),
-                ),
-                const SizedBox(height: 10),
-                _MonthlyTrackerGrid(
-                  selectedMonth: selected,
-                  monthRecords: monthRecords,
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _PrayerStatsTab extends ConsumerWidget {
-  const _PrayerStatsTab();
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final tracker = ref.watch(prayerTrackerControllerProvider);
-    final trackerNotifier = ref.read(prayerTrackerControllerProvider.notifier);
-    final monthRecords = ref.watch(
-      prayerMonthlyRecordsProvider(tracker.selectedDate),
-    );
-    final totalDays = monthRecords.length;
-    var completedPoints = 0;
-    var totalPoints = 0;
-    var missedPoints = 0;
-    for (final daily in monthRecords.values) {
-      for (final prayer in PrayerName.values) {
-        final status = daily[prayer] ?? PrayerStatus.pending;
-        totalPoints += 1;
-        if (status == PrayerStatus.completed) completedPoints += 1;
-        if (status == PrayerStatus.missed) missedPoints += 1;
-      }
-    }
-    final completion = totalPoints == 0 ? 0.0 : completedPoints / totalPoints;
-    final weeklyTrend = _buildWeeklyTrend(
-      ref.read(prayerTrackerControllerProvider.notifier),
-      tracker.selectedDate,
-      weeks: 8,
-    );
-    final monthlyTrend = _buildMonthlyTrend(
-      ref.read(prayerTrackerControllerProvider.notifier),
-      tracker.selectedDate,
-      months: 6,
-    );
-
-    return Padding(
-      padding: const EdgeInsets.only(top: 12, bottom: 20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          PremiumCard(
-            surfaceAlphaOverride: _prayerSurfaceAlpha,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  'Monthly Overview',
-                  style: TextStyle(fontWeight: FontWeight.w700),
-                ),
-                const SizedBox(height: 8),
-                Text('Tracked days: $totalDays'),
-                Text('Offered prayers: $completedPoints'),
-                Text('Missed prayers: $missedPoints'),
-                const SizedBox(height: 10),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(999),
-                  child: LinearProgressIndicator(
-                    value: completion,
-                    minHeight: 9,
-                    backgroundColor: AppColors.surfaceSoft,
-                    color: AppColors.success,
+                ...PrayerName.values.map(
+                  (prayer) => Padding(
+                    padding: const EdgeInsets.only(bottom: 10),
+                    child: _QadaBacklogBar(
+                      prayer: prayer,
+                      count: tracker.qadaBacklog[prayer] ?? 0,
+                      maxCount: maxBacklog == 0 ? 1 : maxBacklog,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 6),
-                Text(
-                  'Completion ${(completion * 100).toStringAsFixed(1)}%',
-                  style: const TextStyle(color: AppColors.onSurfaceSubtle),
                 ),
               ],
             ),
@@ -534,27 +414,13 @@ class _PrayerStatsTab extends ConsumerWidget {
             dailyProgress: trackerNotifier.qadaDailyTargetProgress(),
           ),
           const SizedBox(height: 12),
-          _TrendChartCard(
-            title: 'Weekly Consistency Trend',
-            subtitle: 'Completion across the last 8 weeks.',
-            bars: weeklyTrend,
-          ),
-          const SizedBox(height: 12),
-          _TrendChartCard(
-            title: 'Monthly Consistency Trend',
-            subtitle: 'Completion across the last 6 months.',
-            bars: monthlyTrend,
-          ),
-          const SizedBox(height: 12),
-          _PrayerConsistencyHeatmapCard(monthRecords: monthRecords),
-          const SizedBox(height: 12),
           const PremiumCard(
             surfaceAlphaOverride: _prayerSurfaceAlpha,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Missed Prayer Make-up (Qada) Guidance',
+                  'Missed Salah Make-up (Qada) Guidance',
                   style: TextStyle(fontWeight: FontWeight.w700),
                 ),
                 SizedBox(height: 8),
@@ -578,6 +444,402 @@ class _PrayerStatsTab extends ConsumerWidget {
   }
 }
 
+class _PrayerHistoryCard extends ConsumerWidget {
+  const _PrayerHistoryCard({required this.selectedDate});
+
+  final DateTime selectedDate;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final store = ref.watch(localStoreProvider);
+    final dayKey = LocalStore.todayKey(selectedDate);
+    final data = store.getJsonMap('worship.prayer.$dayKey') ?? const {};
+    final timeFormat = DateFormat.jm();
+
+    return PremiumCard(
+      surfaceAlphaOverride: _prayerSurfaceAlpha,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            'Salah History',
+            style: TextStyle(fontWeight: FontWeight.w700),
+          ),
+          const SizedBox(height: 6),
+          Text(
+            'Recorded completion times for ${DateFormat.yMMMd().format(selectedDate)}.',
+            style: const TextStyle(
+              color: AppColors.onSurfaceSubtle,
+              height: 1.35,
+            ),
+          ),
+          const SizedBox(height: 10),
+          ...PrayerName.values.map((prayer) {
+            final raw = data[prayer.name];
+            final statusName = raw is String
+                ? raw
+                : raw is Map
+                ? raw['status']?.toString()
+                : null;
+            final completedAtIso = raw is Map
+                ? raw['completedAtIso']?.toString()
+                : null;
+            final completedAt = completedAtIso == null
+                ? null
+                : DateTime.tryParse(completedAtIso);
+            final status = PrayerStatus.values.firstWhere(
+              (item) => item.name == statusName,
+              orElse: () => PrayerStatus.pending,
+            );
+            final statusColor = switch (status) {
+              PrayerStatus.completed => AppColors.success,
+              PrayerStatus.missed => AppColors.caution,
+              PrayerStatus.pending => AppColors.onSurfaceSubtle,
+            };
+
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 8),
+              child: Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 10,
+                ),
+                decoration: BoxDecoration(
+                  color: Colors.white.withValues(alpha: 0.42),
+                  borderRadius: BorderRadius.circular(14),
+                  border: Border.all(
+                    color: statusColor.withValues(alpha: 0.24),
+                  ),
+                ),
+                child: Row(
+                  children: [
+                    Container(
+                      width: 10,
+                      height: 10,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: statusColor,
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            _historyPrayerLabel(prayer),
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                          const SizedBox(height: 2),
+                          Text(
+                            completedAt != null
+                                ? 'Completed at ${timeFormat.format(completedAt)}'
+                                : status == PrayerStatus.missed
+                                ? 'Marked missed'
+                                : 'No recorded completion yet',
+                            style: const TextStyle(
+                              fontSize: 12,
+                              color: AppColors.onSurfaceSubtle,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Text(
+                      _historyStatusLabel(status),
+                      style: TextStyle(
+                        fontWeight: FontWeight.w700,
+                        color: statusColor,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          }),
+        ],
+      ),
+    );
+  }
+}
+
+String _historyPrayerLabel(PrayerName prayer) {
+  switch (prayer) {
+    case PrayerName.fajr:
+      return 'Fajr';
+    case PrayerName.dhuhr:
+      return 'Dhuhr';
+    case PrayerName.asr:
+      return 'Asr';
+    case PrayerName.maghrib:
+      return 'Maghrib';
+    case PrayerName.isha:
+      return 'Isha';
+  }
+}
+
+String _historyStatusLabel(PrayerStatus status) {
+  switch (status) {
+    case PrayerStatus.completed:
+      return 'Completed';
+    case PrayerStatus.missed:
+      return 'Missed';
+    case PrayerStatus.pending:
+      return 'Pending';
+  }
+}
+
+class _QadaBacklogBar extends StatelessWidget {
+  const _QadaBacklogBar({
+    required this.prayer,
+    required this.count,
+    required this.maxCount,
+  });
+
+  final PrayerName prayer;
+  final int count;
+  final int maxCount;
+
+  @override
+  Widget build(BuildContext context) {
+    final progress = count <= 0 ? 0.0 : count / maxCount;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Expanded(
+              child: Text(
+                prayer.label,
+                style: const TextStyle(fontWeight: FontWeight.w700),
+              ),
+            ),
+            Text(
+              '$count queued',
+              style: const TextStyle(
+                color: AppColors.onSurfaceSubtle,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 6),
+        ClipRRect(
+          borderRadius: BorderRadius.circular(999),
+          child: LinearProgressIndicator(
+            value: progress.clamp(0.0, 1.0),
+            minHeight: 9,
+            backgroundColor: AppColors.surfaceSoft,
+            color: count == 0 ? AppColors.success : const Color(0xFFC85E34),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _StatMiniTile extends StatelessWidget {
+  const _StatMiniTile({required this.label, required this.value});
+
+  final String label;
+  final String value;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12),
+        color: AppColors.surfaceSoft.withValues(alpha: 0.45),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            label,
+            style: const TextStyle(
+              fontSize: 11,
+              color: AppColors.onSurfaceSubtle,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            value,
+            style: const TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _PrayerStatsTab extends ConsumerWidget {
+  const _PrayerStatsTab();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final tracker = ref.watch(prayerTrackerControllerProvider);
+    final trackerNotifier = ref.read(prayerTrackerControllerProvider.notifier);
+    final monthRecords = ref.watch(
+      prayerMonthlyRecordsProvider(tracker.selectedDate),
+    );
+    final monthEntryRecords = ref.watch(
+      prayerMonthlyEntryRecordsProvider(tracker.selectedDate),
+    );
+    final totalDays = monthRecords.length;
+    var completedPoints = 0;
+    var totalPoints = 0;
+    var missedPoints = 0;
+    var timedCompletedCount = 0;
+    var onTimeCount = 0;
+    var masjidCount = 0;
+    var qadaCount = 0;
+    for (final daily in monthRecords.values) {
+      for (final prayer in PrayerName.values) {
+        final status = daily[prayer] ?? PrayerStatus.pending;
+        totalPoints += 1;
+        if (status == PrayerStatus.completed) completedPoints += 1;
+        if (status == PrayerStatus.missed) missedPoints += 1;
+      }
+    }
+    for (final daily in monthEntryRecords.values) {
+      for (final entry in daily.values) {
+        if (entry.status != PrayerStatus.completed) continue;
+        if (entry.timing != null) {
+          timedCompletedCount += 1;
+          if (entry.timing == PrayerOfferTiming.onTime) onTimeCount += 1;
+          if (entry.timing == PrayerOfferTiming.qada) qadaCount += 1;
+        }
+        if (entry.place == PrayerOfferPlace.masjid) {
+          masjidCount += 1;
+        }
+      }
+    }
+    final completion = totalPoints == 0 ? 0.0 : completedPoints / totalPoints;
+    final onTimeRate = timedCompletedCount == 0
+        ? 0.0
+        : onTimeCount / timedCompletedCount;
+    final weeklyTrend = _buildWeeklyTrend(
+      ref.read(prayerTrackerControllerProvider.notifier),
+      tracker.selectedDate,
+      weeks: 8,
+    );
+    final monthlyTrend = _buildMonthlyTrend(
+      ref.read(prayerTrackerControllerProvider.notifier),
+      tracker.selectedDate,
+      months: 6,
+    );
+
+    return Padding(
+      padding: const EdgeInsets.only(top: 12, bottom: 20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          PremiumCard(
+            surfaceAlphaOverride: _prayerSurfaceAlpha,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  'Monthly Salah Overview',
+                  style: TextStyle(fontWeight: FontWeight.w700),
+                ),
+                const SizedBox(height: 8),
+                Text('Tracked days: $totalDays'),
+                Text('Offered salahs: $completedPoints'),
+                Text('Missed salahs: $missedPoints'),
+                const SizedBox(height: 8),
+                Row(
+                  children: [
+                    Expanded(
+                      child: _StatMiniTile(
+                        label: 'On-time rate',
+                        value: '${(onTimeRate * 100).toStringAsFixed(0)}%',
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: _StatMiniTile(
+                        label: 'Masjid count',
+                        value: '$masjidCount',
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: _StatMiniTile(
+                        label: 'Qada count',
+                        value: '$qadaCount',
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 10),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(999),
+                  child: LinearProgressIndicator(
+                    value: completion,
+                    minHeight: 9,
+                    backgroundColor: AppColors.surfaceSoft,
+                    color: AppColors.success,
+                  ),
+                ),
+                const SizedBox(height: 6),
+                Text(
+                  'Completion ${(completion * 100).toStringAsFixed(1)}%',
+                  style: const TextStyle(color: AppColors.onSurfaceSubtle),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 12),
+          PremiumCard(
+            surfaceAlphaOverride: _prayerSurfaceAlpha,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  'Monthly Consistency',
+                  style: TextStyle(fontWeight: FontWeight.w700),
+                ),
+                const SizedBox(height: 6),
+                Text(
+                  DateFormat.yMMMM().format(tracker.selectedDate),
+                  style: const TextStyle(color: AppColors.onSurfaceSubtle),
+                ),
+                const SizedBox(height: 10),
+                _MonthlyTrackerGrid(
+                  selectedMonth: tracker.selectedDate,
+                  monthRecords: monthRecords,
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 12),
+          _TrendChartCard(
+            title: 'Weekly Consistency Trend',
+            subtitle: 'Completion across the last 8 weeks.',
+            bars: weeklyTrend,
+          ),
+          const SizedBox(height: 12),
+          _TrendChartCard(
+            title: 'Monthly Consistency Trend',
+            subtitle: 'Completion across the last 6 months.',
+            bars: monthlyTrend,
+          ),
+          const SizedBox(height: 12),
+          _PrayerConsistencyHeatmapCard(monthRecords: monthRecords),
+        ],
+      ),
+    );
+  }
+}
+
 class _PrayerRakatTab extends StatelessWidget {
   const _PrayerRakatTab();
 
@@ -589,8 +851,6 @@ class _PrayerRakatTab extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _RakatCard(),
-          SizedBox(height: 12),
-          _SalahLearningModuleCard(),
         ],
       ),
     );
@@ -600,16 +860,17 @@ class _PrayerRakatTab extends StatelessWidget {
 class _PrayerStatusChip extends StatelessWidget {
   const _PrayerStatusChip({
     required this.prayer,
-    required this.status,
+    required this.entry,
     required this.onTap,
   });
 
   final PrayerName prayer;
-  final PrayerStatus status;
+  final PrayerTrackerEntry entry;
   final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
+    final status = entry.status;
     Color color;
     switch (status) {
       case PrayerStatus.completed:
@@ -638,10 +899,332 @@ class _PrayerStatusChip extends StatelessWidget {
             ),
             const SizedBox(height: 2),
             Text(status.label, style: TextStyle(color: color, fontSize: 12)),
+            if (entry.status == PrayerStatus.completed &&
+                (entry.timing != null || entry.place != null)) ...[
+              const SizedBox(height: 4),
+              Wrap(
+                alignment: WrapAlignment.center,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                spacing: 4,
+                runSpacing: 2,
+                children: [
+                  if (entry.timing != null)
+                    _MiniMetaPill(
+                      icon: _timingIcon(entry.timing!),
+                      label: _timingLabel(entry.timing!),
+                      color: _timingColor(entry.timing!),
+                    ),
+                  if (entry.place != null)
+                    _MiniMetaPill(
+                      icon: _placeIcon(entry.place!),
+                      label: _placeLabel(entry.place!),
+                      color: const Color(0xFF6C5A46),
+                    ),
+                ],
+              ),
+            ],
+            if (entry.notes != null && entry.notes!.isNotEmpty) ...[
+              const SizedBox(height: 4),
+              Text(
+                entry.notes!,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontSize: 10.2,
+                  color: AppColors.onSurfaceSubtle,
+                  fontStyle: FontStyle.italic,
+                ),
+              ),
+            ],
           ],
         ),
       ),
     );
+  }
+}
+
+class _PrayerTrackerSheetResult {
+  const _PrayerTrackerSheetResult({
+    required this.status,
+    this.timing,
+    this.place,
+    this.notes,
+  });
+
+  final PrayerStatus status;
+  final PrayerOfferTiming? timing;
+  final PrayerOfferPlace? place;
+  final String? notes;
+}
+
+class _PrayerTrackerSheet extends StatefulWidget {
+  const _PrayerTrackerSheet({
+    required this.prayer,
+    required this.initialEntry,
+  });
+
+  final PrayerName prayer;
+  final PrayerTrackerEntry initialEntry;
+
+  @override
+  State<_PrayerTrackerSheet> createState() => _PrayerTrackerSheetState();
+}
+
+class _PrayerTrackerSheetState extends State<_PrayerTrackerSheet> {
+  late PrayerStatus _status;
+  PrayerOfferTiming? _timing;
+  PrayerOfferPlace? _place;
+  late final TextEditingController _notesController;
+
+  @override
+  void initState() {
+    super.initState();
+    _status = widget.initialEntry.status;
+    _timing = widget.initialEntry.timing;
+    _place = widget.initialEntry.place;
+    _notesController = TextEditingController(text: widget.initialEntry.notes);
+  }
+
+  @override
+  void dispose() {
+    _notesController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final canSaveCompleted =
+        _status != PrayerStatus.completed ||
+        (_timing != null && _place != null);
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
+        child: PremiumCard(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                widget.prayer.label,
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                'Salah status',
+                style: TextStyle(fontWeight: FontWeight.w700),
+              ),
+              const SizedBox(height: 8),
+              Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: [
+                  for (final status in PrayerStatus.values)
+                    ChoiceChip(
+                      label: Text(status.label),
+                      selected: _status == status,
+                      onSelected: (_) {
+                        setState(() {
+                          _status = status;
+                          if (_status != PrayerStatus.completed) {
+                            _timing = null;
+                            _place = null;
+                          } else {
+                            _timing ??= PrayerOfferTiming.onTime;
+                            _place ??= PrayerOfferPlace.alone;
+                          }
+                        });
+                      },
+                    ),
+                ],
+              ),
+              if (_status == PrayerStatus.completed) ...[
+                const SizedBox(height: 14),
+                const Text(
+                  'How was it offered?',
+                  style: TextStyle(fontWeight: FontWeight.w700),
+                ),
+                const SizedBox(height: 8),
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: [
+                    for (final timing in PrayerOfferTiming.values)
+                      ChoiceChip(
+                        label: Text(_timingLabel(timing)),
+                        selected: _timing == timing,
+                        onSelected: (_) => setState(() => _timing = timing),
+                      ),
+                  ],
+                ),
+                const SizedBox(height: 14),
+                const Text(
+                  'Where was it offered?',
+                  style: TextStyle(fontWeight: FontWeight.w700),
+                ),
+                const SizedBox(height: 8),
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: [
+                    for (final place in PrayerOfferPlace.values)
+                      ChoiceChip(
+                        label: Text(_placeLabel(place)),
+                        selected: _place == place,
+                        onSelected: (_) => setState(() => _place = place),
+                      ),
+                  ],
+                ),
+                const SizedBox(height: 14),
+                TextField(
+                  controller: _notesController,
+                  minLines: 1,
+                  maxLines: 2,
+                  decoration: const InputDecoration(
+                    labelText: 'Optional notes',
+                    hintText: 'Travelling, work, jama\'ah...',
+                    border: OutlineInputBorder(),
+                    isDense: true,
+                  ),
+                ),
+              ],
+              const SizedBox(height: 16),
+              Row(
+                children: [
+                  Expanded(
+                    child: OutlinedButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                      child: const Text('Cancel'),
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: FilledButton(
+                      onPressed: !canSaveCompleted
+                          ? null
+                          : () => Navigator.of(context).pop(
+                              _PrayerTrackerSheetResult(
+                                status: _status,
+                                timing: _status == PrayerStatus.completed
+                                    ? _timing
+                                    : null,
+                                place: _status == PrayerStatus.completed
+                                    ? _place
+                                    : null,
+                                notes: _status == PrayerStatus.completed
+                                    ? _notesController.text.trim()
+                                    : null,
+                              ),
+                            ),
+                      child: const Text('Save'),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+enum _BulkPrayerAction { pending, missed }
+
+class _MiniMetaPill extends StatelessWidget {
+  const _MiniMetaPill({
+    required this.icon,
+    required this.label,
+    required this.color,
+  });
+
+  final IconData icon;
+  final String label;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 3),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(999),
+        color: color.withValues(alpha: 0.12),
+        border: Border.all(color: color.withValues(alpha: 0.22)),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(icon, size: 11, color: color),
+          const SizedBox(width: 3),
+          Text(
+            label,
+            style: TextStyle(
+              fontSize: 9.8,
+              fontWeight: FontWeight.w700,
+              color: color,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+String _timingLabel(PrayerOfferTiming timing) {
+  switch (timing) {
+    case PrayerOfferTiming.onTime:
+      return 'On time';
+    case PrayerOfferTiming.late:
+      return 'Late';
+    case PrayerOfferTiming.qada:
+      return 'Qada';
+  }
+}
+
+IconData _timingIcon(PrayerOfferTiming timing) {
+  switch (timing) {
+    case PrayerOfferTiming.onTime:
+      return Icons.schedule_rounded;
+    case PrayerOfferTiming.late:
+      return Icons.access_time_filled_rounded;
+    case PrayerOfferTiming.qada:
+      return Icons.history_toggle_off_rounded;
+  }
+}
+
+Color _timingColor(PrayerOfferTiming timing) {
+  switch (timing) {
+    case PrayerOfferTiming.onTime:
+      return AppColors.success;
+    case PrayerOfferTiming.late:
+      return const Color(0xFFB58D46);
+    case PrayerOfferTiming.qada:
+      return const Color(0xFFC85E34);
+  }
+}
+
+String _placeLabel(PrayerOfferPlace place) {
+  switch (place) {
+    case PrayerOfferPlace.alone:
+      return 'Alone';
+    case PrayerOfferPlace.congregation:
+      return 'Congregation';
+    case PrayerOfferPlace.masjid:
+      return 'Masjid';
+  }
+}
+
+IconData _placeIcon(PrayerOfferPlace place) {
+  switch (place) {
+    case PrayerOfferPlace.alone:
+      return Icons.person_rounded;
+    case PrayerOfferPlace.congregation:
+      return Icons.groups_rounded;
+    case PrayerOfferPlace.masjid:
+      return Icons.mosque_rounded;
   }
 }
 
@@ -1085,221 +1668,6 @@ class _RakatCard extends StatelessWidget {
       ),
     );
   }
-}
-
-class _SalahLearningModuleCard extends StatefulWidget {
-  const _SalahLearningModuleCard();
-
-  @override
-  State<_SalahLearningModuleCard> createState() =>
-      _SalahLearningModuleCardState();
-}
-
-class _SalahLearningModuleCardState extends State<_SalahLearningModuleCard> {
-  final _tts = FlutterTts();
-  final _checkedStepIds = <String>{};
-  String _activeFlow = 'wudu';
-
-  static const _wuduSteps = <_LearningStep>[
-    _LearningStep(
-      id: 'wudu-1',
-      title: 'Make intention',
-      transliteration: 'Nawaytu al-wudu lillah',
-      guidance:
-          'Intend purification sincerely for salah. Niyyah remains in the heart.',
-    ),
-    _LearningStep(
-      id: 'wudu-2',
-      title: 'Wash hands',
-      transliteration: 'Bismillah',
-      guidance: 'Wash both hands to the wrists three times.',
-    ),
-    _LearningStep(
-      id: 'wudu-3',
-      title: 'Rinse mouth and nose',
-      transliteration: 'Madmadah and Istinshaq',
-      guidance:
-          'Rinse the mouth and nose gently, then clear them out, three times.',
-    ),
-    _LearningStep(
-      id: 'wudu-4',
-      title: 'Wash face and arms',
-      transliteration: 'From forehead to chin; right then left arm',
-      guidance:
-          'Wash face fully, then wash right arm and left arm including elbows.',
-    ),
-    _LearningStep(
-      id: 'wudu-5',
-      title: 'Wipe head and wash feet',
-      transliteration: 'Masah + washing feet',
-      guidance:
-          'Wipe the head once, include ears, then wash right and left feet including ankles.',
-    ),
-  ];
-
-  static const _salahSteps = <_LearningStep>[
-    _LearningStep(
-      id: 'salah-1',
-      title: 'Niyyah and Takbir',
-      transliteration: 'Allahu Akbar',
-      guidance:
-          'Face qibla, intend the specific prayer, and begin with Takbir.',
-    ),
-    _LearningStep(
-      id: 'salah-2',
-      title: 'Opening and recitation',
-      transliteration:
-          'Subhanaka Allahumma... then Al-Fatihah and a short surah',
-      guidance: 'Recite calmly with focus and measured pace.',
-    ),
-    _LearningStep(
-      id: 'salah-3',
-      title: 'Ruku and rising',
-      transliteration: 'Subhana Rabbiyal Adhim',
-      guidance:
-          'Bow with a straight back in ruku, then rise with stillness before sujud.',
-    ),
-    _LearningStep(
-      id: 'salah-4',
-      title: 'Sujud and sitting',
-      transliteration: 'Subhana Rabbiyal A\'la',
-      guidance:
-          'Perform two sujud with calm pauses and sit between them with humility.',
-    ),
-    _LearningStep(
-      id: 'salah-5',
-      title: 'Tashahhud and salam',
-      transliteration: 'At-tahiyyatu lillah... Assalamu alaikum wa rahmatullah',
-      guidance:
-          'Complete tashahhud, prayers on the Prophet, supplication, and end with salam.',
-    ),
-  ];
-
-  @override
-  void dispose() {
-    _tts.stop();
-    super.dispose();
-  }
-
-  Future<void> _speak(_LearningStep step) async {
-    await _tts.setLanguage('en-US');
-    await _tts.setSpeechRate(0.43);
-    await _tts.speak(
-      '${step.title}. ${step.transliteration}. ${step.guidance}',
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final isWudu = _activeFlow == 'wudu';
-    final steps = isWudu ? _wuduSteps : _salahSteps;
-    return PremiumCard(
-      surfaceAlphaOverride: _prayerSurfaceAlpha,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(
-            'Wudu & Salah Learning Module',
-            style: TextStyle(fontWeight: FontWeight.w700),
-          ),
-          const SizedBox(height: 6),
-          const Text(
-            'Step-by-step mode with transliteration, checklist, and audio guidance.',
-            style: TextStyle(color: AppColors.onSurfaceSubtle, fontSize: 12.5),
-          ),
-          const SizedBox(height: 10),
-          SegmentedButton<String>(
-            segments: const [
-              ButtonSegment(value: 'wudu', label: Text('Wudu')),
-              ButtonSegment(value: 'salah', label: Text('Salah')),
-            ],
-            selected: {_activeFlow},
-            onSelectionChanged: (selection) {
-              setState(() {
-                _activeFlow = selection.first;
-              });
-            },
-          ),
-          const SizedBox(height: 10),
-          ...steps.map((step) {
-            final checked = _checkedStepIds.contains(step.id);
-            return Container(
-              margin: const EdgeInsets.only(bottom: 8),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                color: AppColors.surfaceSoft.withValues(alpha: 0.35),
-                border: Border.all(
-                  color: checked
-                      ? AppColors.success.withValues(alpha: 0.6)
-                      : AppColors.surfaceSoft,
-                ),
-              ),
-              child: CheckboxListTile(
-                value: checked,
-                onChanged: (value) {
-                  setState(() {
-                    if (value == true) {
-                      _checkedStepIds.add(step.id);
-                    } else {
-                      _checkedStepIds.remove(step.id);
-                    }
-                  });
-                },
-                dense: true,
-                controlAffinity: ListTileControlAffinity.leading,
-                title: Text(step.title),
-                subtitle: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      step.transliteration,
-                      style: const TextStyle(
-                        color: AppColors.onSurfaceSubtle,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    const SizedBox(height: 2),
-                    Text(
-                      step.guidance,
-                      style: const TextStyle(
-                        color: AppColors.onSurfaceSubtle,
-                        fontSize: 12,
-                      ),
-                    ),
-                  ],
-                ),
-                secondary: IconButton(
-                  tooltip: 'Play',
-                  onPressed: () => _speak(step),
-                  icon: const Icon(Icons.volume_up_rounded),
-                ),
-              ),
-            );
-          }),
-          const SizedBox(height: 6),
-          const Text(
-            'Opening du\'a example: Subhanaka Allahumma wa bihamdika wa tabarakasmuka wa ta\'ala jadduka wa la ilaha ghayruk.',
-            style: TextStyle(color: AppColors.onSurfaceSubtle, height: 1.45),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _LearningStep {
-  const _LearningStep({
-    required this.id,
-    required this.title,
-    required this.transliteration,
-    required this.guidance,
-  });
-
-  final String id;
-  final String title;
-  final String transliteration;
-  final String guidance;
 }
 
 class _QiblaFinderCard extends ConsumerWidget {

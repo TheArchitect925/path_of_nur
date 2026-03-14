@@ -322,20 +322,6 @@ Future<bool> completeHadithPathLesson(WidgetRef ref, String lessonId) async {
       .markLessonCompleted(lessonId);
   if (!newlyCompleted) return false;
 
-  final snapshot = ref.read(journeyActivitySnapshotProvider);
-  final nextReflectionEntries = snapshot.reflectionEntriesToday + 1;
-  final adjusted = JourneyActivitySnapshot(
-    now: snapshot.now,
-    prayerCompletedToday: snapshot.prayerCompletedToday,
-    prayerProgress: snapshot.prayerProgress,
-    dhikrSessionsToday: snapshot.dhikrSessionsToday,
-    dhikrProgress: snapshot.dhikrProgress,
-    fastingStatus: snapshot.fastingStatus,
-    quranEngagementsToday: snapshot.quranEngagementsToday,
-    quranProgress: snapshot.quranProgress,
-    reflectionEntriesToday: nextReflectionEntries,
-    reflectionProgress: (nextReflectionEntries / 2).clamp(0.0, 1.0).toDouble(),
-  );
-  ref.read(journeyProgressProvider.notifier).syncFromSnapshot(adjusted);
+  ref.read(journeyProgressUpdateHelperProvider).addReflectionEntries(1);
   return true;
 }

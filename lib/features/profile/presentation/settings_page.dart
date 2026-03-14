@@ -5,11 +5,13 @@ import 'package:go_router/go_router.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../core/localization/locale_provider.dart';
 import '../../../core/prayer/prayer_preferences.dart';
+import '../../../core/prayer/prayer_location_search_service.dart';
 import '../../../core/reminders/reminder_scheduler.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/state/location_permission_state.dart';
 import '../../../shared/widgets/app_page_scaffold.dart';
 import '../../../shared/widgets/premium_card.dart';
+import '../../../shared/widgets/prayer_location_picker_sheet.dart';
 import '../../../shared/widgets/section_title.dart';
 import '../../profile/application/profile_settings_provider.dart';
 
@@ -26,6 +28,11 @@ class SettingsPage extends ConsumerWidget {
     final profileSettings = ref.watch(profileSettingsProvider);
     final profileSettingsNotifier = ref.read(profileSettingsProvider.notifier);
     final reminderPlan = ref.watch(reminderSchedulerProvider);
+    final displayLocation = ref.watch(prayerLocationDisplayLabelProvider);
+    final locationLabel = displayLocation.valueOrNull ??
+        (prayerState.preferences.useDeviceLocation
+            ? 'Current location'
+            : prayerState.preferences.location);
 
     return AppPageScaffold(
       headerIcon: Icons.settings_outlined,
@@ -39,17 +46,47 @@ class SettingsPage extends ConsumerWidget {
         PremiumCard(
           child: Column(
             children: [
-              _PreferenceDropdown<String>(
-                label: l10n.profileLocationLabel,
-                value: prayerState.preferences.location,
-                entries: {
-                  for (final location in ref.watch(
-                    availablePrayerLocationsProvider,
-                  ))
-                    location: location,
-                },
-                onChanged: (value) {
-                  if (value != null) prayerNotifier.updateLocation(value);
+              ListTile(
+                contentPadding: EdgeInsets.zero,
+                title: Text(l10n.profileLocationLabel),
+                subtitle: Text(locationLabel),
+                trailing: const Icon(Icons.chevron_right_rounded),
+                onTap: () async {
+                  final service = ref.read(prayerLocationSearchServiceProvider);
+                  final recentLocations = ref.read(prayerRecentLocationsProvider);
+                  final selection =
+                      await showModalBottomSheet<PrayerLocationPickerSelection>(
+                        context: context,
+                        backgroundColor: Colors.transparent,
+                        isScrollControlled: true,
+                        builder: (context) => PrayerLocationPickerSheet(
+                          currentLocationLabel: locationLabel,
+                          recentLocations: recentLocations,
+                          onSearch: service.search,
+                        ),
+                      );
+                  if (selection == null) return;
+                  if (selection.useDeviceLocation) {
+                    await locationNotifier.requestWhileUsingApp();
+                    prayerNotifier.useCurrentLocation();
+                    return;
+                  }
+                  if (selection.latitude == null ||
+                      selection.longitude == null) {
+                    return;
+                  }
+                  await ref.read(prayerRecentLocationsStoreProvider).save(
+                    PrayerRecentLocation(
+                      label: selection.label,
+                      latitude: selection.latitude!,
+                      longitude: selection.longitude!,
+                    ),
+                  );
+                  prayerNotifier.setManualLocation(
+                    label: selection.label,
+                    latitude: selection.latitude!,
+                    longitude: selection.longitude!,
+                  );
                 },
               ),
               const Divider(height: 1),
@@ -231,6 +268,44 @@ class SettingsPage extends ConsumerWidget {
         ),
         const SizedBox(height: 16),
         SectionTitle(
+          title: 'Prayer Notifications',
+          subtitle:
+              'Keep all prayer reminder behavior in one place, with one mode for each salah.',
+        ),
+        PremiumCard(
+          child: Column(
+            children: [
+              ListTile(
+                dense: true,
+                contentPadding: EdgeInsets.zero,
+                title: Text(l10n.profilePrayerReminders),
+                subtitle: Text(
+                  l10n.profilePlannedRemindersToday(
+                    reminderPlan.items
+                        .where((item) => item.kind == ReminderKind.prayerAtTime || item.kind == ReminderKind.prayerBeforeQaza)
+                        .length,
+                  ),
+                ),
+              ),
+              const Divider(height: 1),
+              _SettingsToggleRow(
+                label: l10n.profilePrayerReminders,
+                subtitle:
+                    'Turn all prayer reminders on or off without changing your saved per-prayer modes.',
+                value: profileSettings.prayerReminders,
+                onChanged: profileSettingsNotifier.setPrayerReminders,
+              ),
+              const Divider(height: 1),
+              ..._buildPrayerNotificationTiles(
+                context: context,
+                settings: prayerState,
+                onChanged: prayerNotifier.updateNotificationMode,
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 16),
+        SectionTitle(
           title: l10n.profileTrackingPrivacyTitle,
           subtitle: l10n.profileTrackingPrivacySubtitle,
         ),
@@ -307,12 +382,6 @@ class SettingsPage extends ConsumerWidget {
                 subtitle: Text(
                   l10n.profilePlannedRemindersToday(reminderPlan.items.length),
                 ),
-              ),
-              const Divider(height: 1),
-              _SettingsToggleRow(
-                label: l10n.profilePrayerReminders,
-                value: profileSettings.prayerReminders,
-                onChanged: profileSettingsNotifier.setPrayerReminders,
               ),
               const Divider(height: 1),
               _SettingsToggleRow(
@@ -403,6 +472,115 @@ class SettingsPage extends ConsumerWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+List<Widget> _buildPrayerNotificationTiles({
+  required BuildContext context,
+  required PrayerSettingsState settings,
+  required void Function(String prayerId, PrayerNotificationMode mode) onChanged,
+}) {
+  const prayerOrder = ['fajr', 'dhuhr', 'asr', 'maghrib', 'isha'];
+  final tiles = <Widget>[];
+  for (var index = 0; index < prayerOrder.length; index++) {
+    final prayerId = prayerOrder[index];
+    tiles.add(
+      _PrayerNotificationTile(
+        prayerId: prayerId,
+        title: _prayerDisplayName(prayerId),
+        active:
+            settings.notificationModes[prayerId] ?? PrayerNotificationMode.none,
+        onChanged: (mode) => onChanged(prayerId, mode),
+      ),
+    );
+    if (index != prayerOrder.length - 1) {
+      tiles.add(const Divider(height: 1));
+    }
+  }
+  return tiles;
+}
+
+String _prayerDisplayName(String prayerId) {
+  switch (prayerId) {
+    case 'fajr':
+      return 'Fajr';
+    case 'dhuhr':
+      return 'Dhuhr';
+    case 'asr':
+      return 'Asr';
+    case 'maghrib':
+      return 'Maghrib';
+    case 'isha':
+      return 'Isha';
+    default:
+      return prayerId;
+  }
+}
+
+String _notificationModeLabel(PrayerNotificationMode mode) {
+  switch (mode) {
+    case PrayerNotificationMode.none:
+      return 'Off';
+    case PrayerNotificationMode.notificationOnly:
+      return 'Notification';
+    case PrayerNotificationMode.adhanWithSound:
+      return 'Adhan';
+    case PrayerNotificationMode.reminderBeforeQaza:
+      return 'Before qaza';
+  }
+}
+
+class _PrayerNotificationTile extends StatelessWidget {
+  const _PrayerNotificationTile({
+    required this.prayerId,
+    required this.title,
+    required this.active,
+    required this.onChanged,
+  });
+
+  final String prayerId;
+  final String title;
+  final PrayerNotificationMode active;
+  final ValueChanged<PrayerNotificationMode> onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Expanded(
+                child: Text(
+                  title,
+                  style: Theme.of(context).textTheme.titleSmall,
+                ),
+              ),
+              Text(
+                _notificationModeLabel(active),
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+            ],
+          ),
+          const SizedBox(height: 8),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: PrayerNotificationMode.values
+                .map(
+                  (mode) => ChoiceChip(
+                    label: Text(_notificationModeLabel(mode)),
+                    selected: active == mode,
+                    onSelected: (_) => onChanged(mode),
+                  ),
+                )
+                .toList(),
+          ),
+        ],
+      ),
     );
   }
 }

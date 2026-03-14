@@ -13,6 +13,8 @@ import '../../domain/dhikr_session.dart';
 class DhikrSection extends ConsumerWidget {
   const DhikrSection({super.key});
 
+  static const _dailyDhikrGoal = 500;
+
   Future<void> _confirmReset(BuildContext context, WidgetRef ref) async {
     final shouldReset = await showDialog<bool>(
       context: context,
@@ -82,6 +84,16 @@ class DhikrSection extends ConsumerWidget {
     final state = ref.watch(dhikrControllerProvider);
     final notifier = ref.read(dhikrControllerProvider.notifier);
     final progress = (state.currentCount / state.target).clamp(0, 1).toDouble();
+    final now = DateTime.now();
+    final todayStart = DateTime(now.year, now.month, now.day);
+    final todayCompleted = state.recentSessions
+        .where((session) => !session.finishedAt.isBefore(todayStart))
+        .fold<int>(0, (sum, session) => sum + session.count);
+    final todaySessions = state.recentSessions
+        .where((session) => !session.finishedAt.isBefore(todayStart))
+        .length;
+    final todayTotal = todayCompleted + state.currentCount;
+    final dailyProgress = (todayTotal / _dailyDhikrGoal).clamp(0, 1).toDouble();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -231,8 +243,8 @@ class DhikrSection extends ConsumerWidget {
         ),
         const SizedBox(height: 16),
         const SectionTitle(
-          title: 'Target',
-          subtitle: 'Set target count for this session.',
+          title: 'Session Target',
+          subtitle: 'Set target count for this current dhikr session.',
         ),
         Wrap(
           spacing: 8,
@@ -253,17 +265,49 @@ class DhikrSection extends ConsumerWidget {
           ],
         ),
         const SizedBox(height: 16),
-        const SectionTitle(
-          title: 'Daily Dhikr Summary',
-          subtitle: 'Current session state and recent flow.',
-        ),
         PremiumCard(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Total today: ${state.summary.totalCount}'),
+              const Text(
+                'Daily Dhikr Goal',
+                style: TextStyle(fontWeight: FontWeight.w700),
+              ),
               const SizedBox(height: 6),
-              Text('Sessions completed: ${state.summary.sessionsCompleted}'),
+              LinearProgressIndicator(
+                value: dailyProgress,
+                backgroundColor: AppColors.surfaceSoft,
+                minHeight: 8,
+              ),
+              const SizedBox(height: 6),
+              Text(
+                '$todayTotal / $_dailyDhikrGoal',
+                style: const TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 22,
+                  color: AppColors.onSurface,
+                ),
+              ),
+              const SizedBox(height: 4),
+              const Text(
+                'Daily minimum across the day, separate from the current session target.',
+                style: TextStyle(color: AppColors.onSurfaceSubtle),
+              ),
+              const SizedBox(height: 14),
+              const Divider(height: 1),
+              const SizedBox(height: 14),
+              const Text(
+                'Session vs Daily',
+                style: TextStyle(fontWeight: FontWeight.w700),
+              ),
+              const SizedBox(height: 8),
+              Text('Current session: ${state.currentCount} / ${state.target}'),
+              const SizedBox(height: 6),
+              Text('Completed today: $todayCompleted'),
+              const SizedBox(height: 6),
+              Text('Daily total including current session: $todayTotal'),
+              const SizedBox(height: 6),
+              Text('Sessions completed today: $todaySessions'),
               const SizedBox(height: 6),
               Text('Favorite phrase: ${state.summary.favoritePhrase}'),
             ],

@@ -6,9 +6,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../app/app_router.dart';
 import '../../../core/prayer/prayer_preferences.dart';
+import '../../../core/prayer/prayer_location_search_service.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../features/worship/domain/fasting_status.dart';
+import '../../../features/worship/application/dhikr_controller.dart';
 import '../../../features/worship/application/worship_tab_provider.dart';
 import '../../../features/worship/application/prayer_controller.dart';
 import '../../../features/learn/quran/application/quran_providers.dart';
@@ -16,14 +18,17 @@ import '../../../features/learn/prophets/application/daily_learning_service.dart
 import '../../../features/learn/prophets/application/prophets_repository.dart';
 import '../../../features/learn/prophets/presentation/widgets/daily_prophet_quiz_card.dart';
 import '../../../features/learn/prophets/presentation/widgets/daily_revelation_card.dart';
+import '../../../features/journey/application/journey_progression_provider.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/application/app_summary_providers.dart';
 import '../../../shared/application/daily_clock_provider.dart';
 import '../../../shared/application/special_mode_provider.dart';
+import '../../../shared/state/location_permission_state.dart';
 import '../../../shared/state/shell_state.dart';
 import '../../../shared/state/user_profile_state.dart';
 import '../../../shared/theme/islamic_icons.dart';
 import '../../../shared/widgets/premium_card.dart';
+import '../../../shared/widgets/prayer_location_picker_sheet.dart';
 import '../../../shared/widgets/arabic_text_utils.dart';
 import '../../../shared/widgets/quran_text_span.dart';
 import '../../../shared/widgets/section_title.dart';
@@ -179,8 +184,92 @@ class HomePage extends ConsumerWidget {
             ),
           ),
         ),
-        const Positioned(right: 18, bottom: 92, child: _FloatingQiblaChip()),
+        const Positioned(
+          right: 18,
+          bottom: 92,
+          child: _FloatingShortcutDock(),
+        ),
       ],
+    );
+  }
+}
+
+class _FloatingQuranChip extends ConsumerWidget {
+  const _FloatingQuranChip();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final progress = ref.watch(quranReadingProgressProvider);
+    final recitationSession = ref.watch(quranRecitationSessionProvider);
+    final surahMap = ref.watch(quranSurahMapProvider);
+    final fallbackSurah = surahMap[1];
+    final currentSurah = surahMap[progress.surahNumber] ?? fallbackSurah;
+    final sessionSurah = recitationSession == null
+        ? null
+        : surahMap[recitationSession.surahNumber];
+    final sessionAyah = recitationSession?.ayahNumber;
+
+    final activeSurah = sessionSurah ?? currentSurah ?? fallbackSurah;
+    final surahNumber = activeSurah?.number ?? 1;
+    final ayahCount = activeSurah?.verseCount ?? 1;
+    final initialAyahFromSession = recitationSession?.ayahNumber;
+    final progressAyah = progress.ayahNumber;
+    final ayahNumber =
+        ayahCount > 0
+            ? ((initialAyahFromSession ?? progressAyah).clamp(1, ayahCount))
+            : 1;
+
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: () => context.pushNamed(
+          'quranReader',
+          pathParameters: {'surahNumber': surahNumber.toString()},
+          queryParameters: {
+            'ayah': ayahNumber.toString(),
+          },
+        ),
+        borderRadius: BorderRadius.circular(999),
+        child: Ink(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(999),
+            gradient: const LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [Color(0xFFEAF9EB), Color(0xFFBDE0C5)],
+            ),
+            border: Border.all(
+              color: const Color(0xFF4D8B63).withValues(alpha: 0.35),
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: const Color(0xFF4D8B63).withValues(alpha: 0.18),
+                blurRadius: 14,
+                offset: const Offset(0, 8),
+              ),
+            ],
+          ),
+          child: const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(Icons.menu_book_rounded, size: 18, color: Color(0xFF2D5E45)),
+                SizedBox(width: 8),
+                Text(
+                  'Quran',
+                  style: TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w700,
+                    color: Color(0xFF2D5E45),
+                    letterSpacing: 0.2,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
@@ -369,6 +458,346 @@ class _FloatingQiblaChip extends StatelessWidget {
       ),
     );
   }
+}
+
+class _FloatingShortcutDock extends ConsumerStatefulWidget {
+  const _FloatingShortcutDock();
+
+  @override
+  ConsumerState<_FloatingShortcutDock> createState() =>
+      _FloatingShortcutDockState();
+}
+
+class _FloatingShortcutDockState extends ConsumerState<_FloatingShortcutDock> {
+  bool _expanded = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final worship = ref.watch(worshipSummaryProvider);
+    final prayerRecords = ref.watch(prayerControllerProvider);
+    final scheduleContext = ref.watch(prayerScheduleContextProvider);
+    final now = ref.watch(dailyNowProvider).value ?? DateTime.now();
+    final dhikrDailyGoal = math.max(worship.dhikrTarget, 500);
+    final missedCount = prayerRecords
+        .where((record) => record.status.name == 'missed')
+        .length;
+    final currentPrayer = scheduleContext.items
+        .where((item) => item.id == scheduleContext.currentPrayerId)
+        .firstOrNull;
+    final timeUntilCurrentEnds = currentPrayer?.overdueDateTime.difference(now);
+    final isPrayerUrgent =
+        (timeUntilCurrentEnds != null &&
+            !timeUntilCurrentEnds.isNegative &&
+            timeUntilCurrentEnds <= const Duration(minutes: 60)) ||
+        (!scheduleContext.remainingToNext.isNegative &&
+            scheduleContext.remainingToNext <= const Duration(minutes: 30));
+
+    final shortcutItems = <_ShortcutDockItem>[
+      const _ShortcutDockItem(
+        keyName: 'quran',
+        child: _FloatingQuranChip(),
+      ),
+      _ShortcutDockItem(
+        keyName: 'salah',
+        child: _FloatingSalahChip(
+          statusText: '${worship.prayerCompleted}/${worship.prayerTotal}',
+          badgeIcon: missedCount > 0 ? Icons.error_outline_rounded : null,
+          badgeColor: const Color(0xFFC96A2B),
+          badgeTooltip: missedCount > 0 ? '$missedCount missed' : null,
+        ),
+      ),
+      _ShortcutDockItem(
+        keyName: 'dhikr',
+        child: _FloatingDhikrChip(
+          statusText: '${worship.dhikrCount}/$dhikrDailyGoal',
+          statusCaption: 'Daily',
+          badgeIcon: dhikrDailyGoal > 0 &&
+                  worship.dhikrCount >= dhikrDailyGoal
+              ? Icons.check_circle_rounded
+              : null,
+          badgeColor: const Color(0xFF5E8A43),
+          badgeTooltip: dhikrDailyGoal > 0 &&
+                  worship.dhikrCount >= dhikrDailyGoal
+              ? 'Daily dhikr goal reached'
+              : null,
+        ),
+      ),
+      const _ShortcutDockItem(
+        keyName: 'qibla',
+        child: _FloatingQiblaChip(),
+      ),
+    ];
+
+    shortcutItems.sort((a, b) {
+      final baseOrder = {
+        'quran': 0,
+        'salah': 1,
+        'dhikr': 2,
+        'qibla': 3,
+      };
+      final aOrder = isPrayerUrgent && a.keyName == 'salah'
+          ? -1
+          : baseOrder[a.keyName] ?? 99;
+      final bOrder = isPrayerUrgent && b.keyName == 'salah'
+          ? -1
+          : baseOrder[b.keyName] ?? 99;
+      return aOrder.compareTo(bOrder);
+    });
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        AnimatedSwitcher(
+          duration: const Duration(milliseconds: 220),
+          switchInCurve: Curves.easeOutCubic,
+          switchOutCurve: Curves.easeInCubic,
+          transitionBuilder: (child, animation) {
+            return FadeTransition(
+              opacity: animation,
+              child: SizeTransition(
+                sizeFactor: animation,
+                axisAlignment: 1,
+                child: child,
+              ),
+            );
+          },
+          child: !_expanded
+              ? const SizedBox.shrink()
+              : Column(
+                  key: const ValueKey('expanded-shortcuts'),
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    for (final item in shortcutItems) ...[
+                      item.child,
+                      const SizedBox(height: 10),
+                    ],
+                  ],
+                ),
+        ),
+        _FloatingShortcutChip(
+          label: _expanded ? 'Close' : 'Shortcuts',
+          icon: _expanded ? Icons.close_rounded : Icons.apps_rounded,
+          textColor: const Color(0xFF4E4034),
+          borderColor: const Color(0xFF8C775D),
+          shadowColor: const Color(0xFF8C775D),
+          gradient: const [Color(0xFFF7F0E1), Color(0xFFE3D2B4)],
+          onTap: () => setState(() => _expanded = !_expanded),
+        ),
+      ],
+    );
+  }
+}
+
+class _FloatingSalahChip extends ConsumerWidget {
+  const _FloatingSalahChip({
+    this.statusText,
+    this.badgeIcon,
+    this.badgeColor,
+    this.badgeTooltip,
+  });
+
+  final String? statusText;
+  final IconData? badgeIcon;
+  final Color? badgeColor;
+  final String? badgeTooltip;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return _FloatingShortcutChip(
+      label: 'Salah',
+      statusText: statusText,
+      badgeIcon: badgeIcon,
+      badgeColor: badgeColor,
+      badgeTooltip: badgeTooltip,
+      icon: Icons.checklist_rounded,
+      textColor: const Color(0xFF69411A),
+      borderColor: const Color(0xFF9F7A42),
+      shadowColor: const Color(0xFF9F7A42),
+      gradient: const [Color(0xFFF8E6D2), Color(0xFFE7BE8E)],
+      onTap: () {
+        ref.read(worshipTabProvider.notifier).state = WorshipTab.prayer;
+        goToTab(context, NavTab.worship);
+      },
+    );
+  }
+}
+
+class _FloatingDhikrChip extends ConsumerWidget {
+  const _FloatingDhikrChip({
+    this.statusText,
+    this.statusCaption,
+    this.badgeIcon,
+    this.badgeColor,
+    this.badgeTooltip,
+  });
+
+  final String? statusText;
+  final String? statusCaption;
+  final IconData? badgeIcon;
+  final Color? badgeColor;
+  final String? badgeTooltip;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return _FloatingShortcutChip(
+      label: 'Dhikr',
+      statusText: statusText,
+      statusCaption: statusCaption,
+      badgeIcon: badgeIcon,
+      badgeColor: badgeColor,
+      badgeTooltip: badgeTooltip,
+      icon: Icons.favorite_outline_rounded,
+      textColor: const Color(0xFF5D4520),
+      borderColor: const Color(0xFF8F7547),
+      shadowColor: const Color(0xFF8F7547),
+      gradient: const [Color(0xFFF6EFD8), Color(0xFFE1D0A0)],
+      onTap: () {
+        ref.read(worshipTabProvider.notifier).state = WorshipTab.dhikr;
+        goToTab(context, NavTab.worship);
+      },
+    );
+  }
+}
+
+class _FloatingShortcutChip extends StatelessWidget {
+  const _FloatingShortcutChip({
+    required this.label,
+    required this.icon,
+    required this.textColor,
+    required this.borderColor,
+    required this.shadowColor,
+    required this.gradient,
+    required this.onTap,
+    this.statusText,
+    this.statusCaption,
+    this.badgeIcon,
+    this.badgeColor,
+    this.badgeTooltip,
+  });
+
+  final String label;
+  final IconData icon;
+  final Color textColor;
+  final Color borderColor;
+  final Color shadowColor;
+  final List<Color> gradient;
+  final VoidCallback onTap;
+  final String? statusText;
+  final String? statusCaption;
+  final IconData? badgeIcon;
+  final Color? badgeColor;
+  final String? badgeTooltip;
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(999),
+        child: Ink(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(999),
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: gradient,
+            ),
+            border: Border.all(color: borderColor.withValues(alpha: 0.32)),
+            boxShadow: [
+              BoxShadow(
+                color: shadowColor.withValues(alpha: 0.18),
+                blurRadius: 14,
+                offset: const Offset(0, 8),
+              ),
+            ],
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(icon, size: 18, color: textColor),
+                const SizedBox(width: 8),
+                Text(
+                  label,
+                  style: TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w700,
+                    color: textColor,
+                    letterSpacing: 0.2,
+                  ),
+                ),
+                if (statusText != null && statusText!.isNotEmpty) ...[
+                  const SizedBox(width: 8),
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 4,
+                    ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(999),
+                      color: Colors.white.withValues(alpha: 0.34),
+                    ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        if (statusCaption != null &&
+                            statusCaption!.isNotEmpty) ...[
+                          Text(
+                            statusCaption!,
+                            style: TextStyle(
+                              fontSize: 9.5,
+                              fontWeight: FontWeight.w700,
+                              color: textColor.withValues(alpha: 0.78),
+                              height: 1,
+                            ),
+                          ),
+                          const SizedBox(height: 2),
+                        ],
+                        Text(
+                          statusText!,
+                          style: TextStyle(
+                            fontSize: 11.5,
+                            fontWeight: FontWeight.w700,
+                            color: textColor,
+                            height: 1,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+                if (badgeIcon != null) ...[
+                  const SizedBox(width: 6),
+                  Tooltip(
+                    message: badgeTooltip ?? '',
+                    child: Icon(
+                      badgeIcon,
+                      size: 16,
+                      color: badgeColor ?? textColor,
+                    ),
+                  ),
+                ],
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _ShortcutDockItem {
+  const _ShortcutDockItem({
+    required this.keyName,
+    required this.child,
+  });
+
+  final String keyName;
+  final Widget child;
 }
 
 class _HomeSearchDestination {
@@ -979,12 +1408,58 @@ class _AyahCard extends StatelessWidget {
 class _SalahSummaryCard extends ConsumerWidget {
   const _SalahSummaryCard({required this.l10n});
 
+  static const _zenithForbiddenLead = Duration(minutes: 5);
+  static const _sunsetForbiddenLead = Duration(minutes: 20);
+
   final AppLocalizations l10n;
+
+  Future<void> _showLocationPicker(
+    BuildContext context,
+    WidgetRef ref,
+    String currentLocationLabel,
+  ) async {
+    final service = ref.read(prayerLocationSearchServiceProvider);
+    final recentLocations = ref.read(prayerRecentLocationsProvider);
+    final selection = await showModalBottomSheet<PrayerLocationPickerSelection>(
+      context: context,
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      builder: (context) => PrayerLocationPickerSheet(
+        currentLocationLabel: currentLocationLabel,
+        recentLocations: recentLocations,
+        onSearch: service.search,
+      ),
+    );
+    if (selection == null) return;
+    final notifier = ref.read(prayerSettingsProvider.notifier);
+    if (selection.useDeviceLocation) {
+      final permissionNotifier = ref.read(locationPermissionProvider.notifier);
+      await permissionNotifier.requestWhileUsingApp();
+      notifier.useCurrentLocation();
+      return;
+    }
+    if (selection.latitude == null || selection.longitude == null) return;
+    await ref.read(prayerRecentLocationsStoreProvider).save(
+      PrayerRecentLocation(
+        label: selection.label,
+        latitude: selection.latitude!,
+        longitude: selection.longitude!,
+      ),
+    );
+    notifier.setManualLocation(
+      label: selection.label,
+      latitude: selection.latitude!,
+      longitude: selection.longitude!,
+    );
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final scheduleContext = ref.watch(prayerScheduleContextProvider);
     final now = ref.watch(dailyNowProvider).value ?? DateTime.now();
+    final prayerSettings = ref.watch(prayerSettingsProvider);
+    final displayLocation = ref.watch(prayerLocationDisplayLabelProvider);
+    final dhikrState = ref.watch(dhikrControllerProvider);
     final next = scheduleContext.items
         .where((item) => item.id == scheduleContext.nextPrayerId)
         .firstOrNull;
@@ -992,16 +1467,27 @@ class _SalahSummaryCard extends ConsumerWidget {
         .where((item) => item.id == scheduleContext.currentPrayerId)
         .firstOrNull;
     final prayerSummary = ref.watch(prayerSummaryProvider);
+    final forbiddenPeriod = _activeForbiddenPeriod(scheduleContext.items, now);
 
     final nextName = next?.name ?? l10n.dhuhr;
     final nextArabic = next?.arabicName ?? l10n.dhuhrArabic;
     final nextAt = next?.offerTime ?? l10n.atTime.replaceFirst('at ', '');
-    final remaining = next == null
-        ? l10n.remainingTime
-        : _formatDuration(scheduleContext.remainingToNext);
     final currentEndsIn = current == null
         ? null
         : _formatDuration(current.overdueDateTime.difference(now));
+    final todayStart = DateTime(now.year, now.month, now.day);
+    final dhikrCompletedToday = dhikrState.recentSessions
+        .where((session) => !session.finishedAt.isBefore(todayStart))
+        .fold<int>(0, (sum, session) => sum + session.count);
+    final dhikrToday = dhikrCompletedToday + dhikrState.currentCount;
+    const dhikrDailyGoal = 500;
+    final hasReachedDhikrDailyGoal = dhikrToday >= dhikrDailyGoal;
+    final offerByLabel = 'Begins at';
+    final offerByValue = nextAt;
+    final locationLabel = displayLocation.valueOrNull ??
+        (prayerSettings.preferences.useDeviceLocation
+            ? 'Current location'
+            : prayerSettings.preferences.location);
 
     return InkWell(
       onTap: () => context.pushNamed('salahTimes'),
@@ -1011,6 +1497,70 @@ class _SalahSummaryCard extends ConsumerWidget {
         radius: 32,
         child: Column(
           children: [
+            if (forbiddenPeriod != null) ...[
+              _StatsLine(
+                label: forbiddenPeriod.label,
+                value: forbiddenPeriod.value,
+                labelColor: const Color(0xFFD01919),
+                valueColor: const Color(0xFFD01919),
+              ),
+              const SizedBox(height: 10),
+            ] else if (current != null) ...[
+              _StatsLine(
+                label: 'Time remaining to offer ${current.name}',
+                value: currentEndsIn ?? current.overdueAt,
+              ),
+              if (current.hasDelayedMakeUpWindow) ...[
+                const Divider(height: 12, color: Color(0x28BFAE98)),
+                _StatsLine(
+                  label: '${current.name} becomes qada',
+                  value: current.overdueAt,
+                ),
+              ],
+              const SizedBox(height: 10),
+            ],
+            InkWell(
+              borderRadius: BorderRadius.circular(999),
+              onTap: () => _showLocationPicker(
+                context,
+                ref,
+                locationLabel,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 2),
+                child: Row(
+                  children: [
+                    const Icon(
+                      Icons.location_on_outlined,
+                      size: 15,
+                      color: Color(0xFF7A5A33),
+                    ),
+                    const SizedBox(width: 4),
+                    Expanded(
+                      child: Text(
+                        locationLabel,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                          color: Color(0xFF4D4036),
+                          fontSize: 12.8,
+                          fontWeight: FontWeight.w700,
+                          decoration: TextDecoration.underline,
+                          decorationColor: Color(0xFF7A5A33),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 6),
+                    const Icon(
+                      Icons.keyboard_arrow_down_rounded,
+                      size: 16,
+                      color: Color(0xFF7A5A33),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 10),
             _GlassCard(
               padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
               radius: 24,
@@ -1076,7 +1626,7 @@ class _SalahSummaryCard extends ConsumerWidget {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Text(
-                            remaining,
+                            offerByLabel,
                             style: const TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.w700,
@@ -1085,7 +1635,7 @@ class _SalahSummaryCard extends ConsumerWidget {
                           ),
                           const SizedBox(height: 2),
                           Text(
-                            'at $nextAt',
+                            offerByValue,
                             style: const TextStyle(
                               fontSize: 13,
                               color: Color(0xFF50545A),
@@ -1111,26 +1661,23 @@ class _SalahSummaryCard extends ConsumerWidget {
               ),
             ),
             const SizedBox(height: 10),
-            if (current != null) ...[
-              _StatsLine(
-                label: 'Time remaining to offer ${current.name}',
-                value: currentEndsIn ?? current.overdueAt,
-              ),
-              if (current.hasDelayedMakeUpWindow) ...[
-                const Divider(height: 12, color: Color(0x28BFAE98)),
-                _StatsLine(
-                  label: '${current.name} becomes qada',
-                  value: current.overdueAt,
-                ),
-              ],
-              const Divider(height: 12, color: Color(0x28BFAE98)),
-            ],
             _StatsLine(
               label: l10n.salahCompleted,
               value: '${prayerSummary.completed} / ${prayerSummary.total}',
             ),
             const Divider(height: 12, color: Color(0x28BFAE98)),
-            _StatsLine(label: l10n.dhikrToday, value: '0'),
+            _StatsLine(
+              label: l10n.dhikrToday,
+              value: '$dhikrToday / $dhikrDailyGoal',
+              trailingIcon: hasReachedDhikrDailyGoal
+                  ? Icons.check_circle_rounded
+                  : null,
+              trailingIconColor: const Color(0xFF5E8A43),
+              onTap: () {
+                ref.read(worshipTabProvider.notifier).state = WorshipTab.dhikr;
+                goToTab(context, NavTab.worship);
+              },
+            ),
             const Divider(height: 12, color: Color(0x28BFAE98)),
             _StatsLine(
               label: l10n.salahStreak,
@@ -1150,22 +1697,86 @@ class _SalahSummaryCard extends ConsumerWidget {
     if (hours <= 0) return '${minutes}m';
     return '${hours}h ${minutes}m';
   }
+
+  _ForbiddenPrayerPeriod? _activeForbiddenPeriod(
+    List<PrayerScheduleItem> items,
+    DateTime now,
+  ) {
+    PrayerScheduleItem? itemById(String id) => items
+        .where((item) => item.id == id)
+        .firstOrNull;
+
+    final fajr = itemById('fajr');
+    if (fajr != null) {
+      final sunriseStart = fajr.overdueDateTime;
+      final sunriseEnd = fajr.makeUpFromDateTime;
+      if (!now.isBefore(sunriseStart) && now.isBefore(sunriseEnd)) {
+        return _ForbiddenPrayerPeriod(
+          label: 'Prayer not allowed now • Sunrise',
+          value: 'Until ${fajr.makeUpFrom}',
+        );
+      }
+    }
+
+    final dhuhr = itemById('dhuhr');
+    if (dhuhr != null) {
+      final zenithStart = dhuhr.windowStartDateTime.subtract(
+        _zenithForbiddenLead,
+      );
+      final zenithEnd = dhuhr.windowStartDateTime;
+      if (!now.isBefore(zenithStart) && now.isBefore(zenithEnd)) {
+        return _ForbiddenPrayerPeriod(
+          label: 'Prayer not allowed now • Zenith',
+          value: 'Until ${dhuhr.windowStart}',
+        );
+      }
+    }
+
+    final maghrib = itemById('maghrib');
+    if (maghrib != null) {
+      final sunsetStart = maghrib.windowStartDateTime.subtract(
+        _sunsetForbiddenLead,
+      );
+      final sunsetEnd = maghrib.windowStartDateTime;
+      if (!now.isBefore(sunsetStart) && now.isBefore(sunsetEnd)) {
+        return _ForbiddenPrayerPeriod(
+          label: 'Prayer not allowed now • Sunset',
+          value: 'Until ${maghrib.windowStart}',
+        );
+      }
+    }
+
+    return null;
+  }
 }
 
 class _StatsLine extends StatelessWidget {
-  const _StatsLine({required this.label, required this.value});
+  const _StatsLine({
+    required this.label,
+    required this.value,
+    this.labelColor = const Color(0xFF4A423A),
+    this.valueColor = const Color(0xFF2F2923),
+    this.trailingIcon,
+    this.trailingIconColor,
+    this.onTap,
+  });
 
   final String label;
   final String value;
+  final Color labelColor;
+  final Color valueColor;
+  final IconData? trailingIcon;
+  final Color? trailingIconColor;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    final content = Row(
       children: [
         Text(
           label,
-          style: const TextStyle(
-            color: Color(0xFF4A423A),
+          style: TextStyle(
+            color: labelColor,
             fontSize: 14.5,
             fontFamily: 'serif',
           ),
@@ -1173,16 +1784,251 @@ class _StatsLine extends StatelessWidget {
         const Spacer(),
         Text(
           value,
-          style: const TextStyle(
-            color: Color(0xFF2F2923),
+          style: TextStyle(
+            color: valueColor,
             fontSize: 14.5,
             fontWeight: FontWeight.w700,
             fontFamily: 'serif',
           ),
         ),
+        if (trailingIcon != null) ...[
+          const SizedBox(width: 6),
+          Icon(
+            trailingIcon,
+            size: 16,
+            color: trailingIconColor ?? valueColor,
+          ),
+        ],
       ],
     );
+
+    if (onTap == null) return content;
+
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(10),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 2),
+        child: content,
+      ),
+    );
   }
+}
+
+class _DailyBadgeTile extends ConsumerWidget {
+  const _DailyBadgeTile({required this.badge});
+
+  final JourneyDailyBadge badge;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final spec = _dailyBadgeSpec(badge.id);
+    final active = badge.earnedToday;
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: () => _openBadgeDestination(context, ref, badge.id),
+        borderRadius: BorderRadius.circular(20),
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 220),
+          width: 124,
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: active
+                  ? [
+                      spec.base.withValues(alpha: 0.28),
+                      spec.accent.withValues(alpha: 0.22),
+                    ]
+                  : [const Color(0xFFF6F0E6), const Color(0xFFE7DCC8)],
+            ),
+            border: Border.all(
+              color: active
+                  ? spec.accent.withValues(alpha: 0.45)
+                  : const Color(0x28BFAE98),
+            ),
+            boxShadow: active
+                ? [
+                    BoxShadow(
+                      color: spec.accent.withValues(alpha: 0.18),
+                      blurRadius: 18,
+                      offset: const Offset(0, 8),
+                    ),
+                  ]
+                : const [],
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Container(
+                    width: 28,
+                    height: 28,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: active
+                          ? spec.accent.withValues(alpha: 0.18)
+                          : Colors.white.withValues(alpha: 0.75),
+                    ),
+                    child: Icon(
+                      spec.icon,
+                      size: 16,
+                      color: active ? spec.accent : const Color(0xFF7A6858),
+                    ),
+                  ),
+                  const Spacer(),
+                  if (active)
+                    Icon(
+                      Icons.verified_rounded,
+                      size: 16,
+                      color: spec.accent,
+                    ),
+                ],
+              ),
+              const Spacer(),
+              Text(
+                badge.title,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(
+                  fontSize: 12.5,
+                  fontWeight: FontWeight.w700,
+                  color: Color(0xFF352B23),
+                ),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                '${badge.earnedCount} earned',
+                style: TextStyle(
+                  fontSize: 11.5,
+                  fontWeight: FontWeight.w700,
+                  color: active ? spec.accent : const Color(0xFF6F6256),
+                ),
+              ),
+              if (active) ...[
+                const SizedBox(height: 4),
+                Text(
+                  'Earned today',
+                  style: TextStyle(
+                    fontSize: 10.5,
+                    fontWeight: FontWeight.w700,
+                    color: spec.accent,
+                  ),
+                ),
+              ],
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  _DailyBadgeSpec _dailyBadgeSpec(String id) {
+    switch (id) {
+      case 'all_prayers':
+        return const _DailyBadgeSpec(
+          icon: Icons.task_alt_rounded,
+          base: Color(0xFFE4F2E2),
+          accent: Color(0xFF5E8D58),
+        );
+      case 'daily_dhikr':
+        return const _DailyBadgeSpec(
+          icon: Icons.favorite_rounded,
+          base: Color(0xFFF6EACB),
+          accent: Color(0xFFB98A2F),
+        );
+      case 'quran_return':
+        return const _DailyBadgeSpec(
+          icon: Icons.menu_book_rounded,
+          base: Color(0xFFE2F2E8),
+          accent: Color(0xFF4D8B63),
+        );
+      case 'reflection':
+        return const _DailyBadgeSpec(
+          icon: Icons.edit_note_rounded,
+          base: Color(0xFFECE3F7),
+          accent: Color(0xFF8C6AA8),
+        );
+      case 'perfect_day':
+        return const _DailyBadgeSpec(
+          icon: Icons.workspace_premium_rounded,
+          base: Color(0xFFF7E6C2),
+          accent: Color(0xFFD29B28),
+        );
+      case 'no_missed_prayers':
+        return const _DailyBadgeSpec(
+          icon: Icons.shield_moon_rounded,
+          base: Color(0xFFE4F1EC),
+          accent: Color(0xFF4D7A6B),
+        );
+      case 'before_sunrise_fajr':
+        return const _DailyBadgeSpec(
+          icon: Icons.wb_twilight_rounded,
+          base: Color(0xFFFCE7CD),
+          accent: Color(0xFFC07A1E),
+        );
+      case 'streak_3':
+        return const _DailyBadgeSpec(
+          icon: Icons.local_fire_department_rounded,
+          base: Color(0xFFF8E1D8),
+          accent: Color(0xFFC85E34),
+        );
+      default:
+        return const _DailyBadgeSpec(
+          icon: Icons.emoji_events_rounded,
+          base: Color(0xFFF3ECE2),
+          accent: Color(0xFF8A755A),
+        );
+    }
+  }
+
+  void _openBadgeDestination(BuildContext context, WidgetRef ref, String id) {
+    switch (id) {
+      case 'all_prayers':
+      case 'no_missed_prayers':
+      case 'before_sunrise_fajr':
+        ref.read(worshipTabProvider.notifier).state = WorshipTab.prayer;
+        goToTab(context, NavTab.worship);
+        return;
+      case 'daily_dhikr':
+        ref.read(worshipTabProvider.notifier).state = WorshipTab.dhikr;
+        goToTab(context, NavTab.worship);
+        return;
+      case 'quran_return':
+        context.pushNamed('quranExplorer');
+        return;
+      case 'reflection':
+        context.pushNamed('learnNotesLanding');
+        return;
+      case 'perfect_day':
+      case 'streak_3':
+        context.pushNamed('profileSummary');
+        return;
+    }
+  }
+}
+
+class _DailyBadgeSpec {
+  const _DailyBadgeSpec({
+    required this.icon,
+    required this.base,
+    required this.accent,
+  });
+
+  final IconData icon;
+  final Color base;
+  final Color accent;
+}
+
+class _ForbiddenPrayerPeriod {
+  const _ForbiddenPrayerPeriod({required this.label, required this.value});
+
+  final String label;
+  final String value;
 }
 
 class _GlassCard extends StatelessWidget {
@@ -1287,9 +2133,9 @@ class _HomeDashboardSections extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 12),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(999),
+                const SizedBox(height: 12),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(999),
                     child: LinearProgressIndicator(
                       value: journey.xpProgress,
                       minHeight: 8,
@@ -1306,6 +2152,31 @@ class _HomeDashboardSections extends StatelessWidget {
                     '${journey.nextLevelXpRemaining} ${l10n.homeXpToNextLevel}',
                     style: Theme.of(context).textTheme.bodySmall,
                   ),
+                  if (journey.dailyBadges.isNotEmpty) ...[
+                    const SizedBox(height: 14),
+                    const Text(
+                      'Daily badges',
+                      style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w700,
+                        color: Color(0xFF4D4036),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    SizedBox(
+                      height: 98,
+                      child: ListView.separated(
+                        scrollDirection: Axis.horizontal,
+                        physics: const BouncingScrollPhysics(),
+                        itemCount: journey.dailyBadges.length,
+                        separatorBuilder: (_, __) => const SizedBox(width: 10),
+                        itemBuilder: (context, index) {
+                          final badge = journey.dailyBadges[index];
+                          return _DailyBadgeTile(badge: badge);
+                        },
+                      ),
+                    ),
+                  ],
                 ],
               ),
             ),

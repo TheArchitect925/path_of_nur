@@ -28,12 +28,19 @@ class PrayerController extends StateNotifier<List<DailyPrayerRecord>> {
   void cycleStatus(PrayerName prayer) {
     _syncDayIfNeeded();
     PrayerStatus? nextStatus;
+    final changedAt = DateTime.now();
     state = state
         .map(
           (record) => record.prayer == prayer
               ? (() {
                   nextStatus = record.status.next;
-                  return record.copyWith(status: nextStatus);
+                  return record.copyWith(
+                    status: nextStatus,
+                    completedAtIso: nextStatus == PrayerStatus.completed
+                        ? changedAt.toIso8601String()
+                        : null,
+                    clearCompletedAtIso: nextStatus != PrayerStatus.completed,
+                  );
                 })()
               : record,
         )
@@ -74,7 +81,13 @@ class PrayerController extends StateNotifier<List<DailyPrayerRecord>> {
     if (data == null) return;
 
     state = state.map((record) {
-      final statusName = data[record.prayer.name] as String?;
+      final raw = data[record.prayer.name];
+      final statusName = raw is String
+          ? raw
+          : raw is Map
+          ? raw['status']?.toString()
+          : null;
+      final completedAtIso = raw is Map ? raw['completedAtIso']?.toString() : null;
       PrayerStatus restored = record.status;
       for (final value in PrayerStatus.values) {
         if (value.name == statusName) {
@@ -82,13 +95,23 @@ class PrayerController extends StateNotifier<List<DailyPrayerRecord>> {
           break;
         }
       }
-      return record.copyWith(status: restored);
+      return record.copyWith(
+        status: restored,
+        completedAtIso: completedAtIso,
+        clearCompletedAtIso: completedAtIso == null,
+      );
     }).toList();
   }
 
   void _saveForDay(String dayKey) {
     _store.setJsonMap('worship.prayer.$dayKey', {
-      for (final record in state) record.prayer.name: record.status.name,
+      for (final record in state)
+        record.prayer.name: {
+          'status': record.status.name,
+          'completedAtIso': record.status == PrayerStatus.completed
+              ? record.completedAtIso
+              : null,
+        },
     });
   }
 }

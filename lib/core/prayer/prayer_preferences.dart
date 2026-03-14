@@ -6,6 +6,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
 import 'package:permission_handler/permission_handler.dart';
 
+import 'prayer_location_search_service.dart';
 import '../../shared/application/daily_clock_provider.dart';
 import '../../shared/persistence/local_store.dart';
 
@@ -31,21 +32,38 @@ class PrayerPreferences {
     required this.location,
     required this.madhab,
     required this.calculationMethod,
+    this.useDeviceLocation = true,
+    this.manualLatitude,
+    this.manualLongitude,
   });
 
   final String location;
   final PrayerMadhab madhab;
   final PrayerCalculationMethod calculationMethod;
+  final bool useDeviceLocation;
+  final double? manualLatitude;
+  final double? manualLongitude;
 
   PrayerPreferences copyWith({
     String? location,
     PrayerMadhab? madhab,
     PrayerCalculationMethod? calculationMethod,
+    bool? useDeviceLocation,
+    double? manualLatitude,
+    double? manualLongitude,
+    bool clearManualCoordinates = false,
   }) {
     return PrayerPreferences(
       location: location ?? this.location,
       madhab: madhab ?? this.madhab,
       calculationMethod: calculationMethod ?? this.calculationMethod,
+      useDeviceLocation: useDeviceLocation ?? this.useDeviceLocation,
+      manualLatitude: clearManualCoordinates
+          ? null
+          : manualLatitude ?? this.manualLatitude,
+      manualLongitude: clearManualCoordinates
+          ? null
+          : manualLongitude ?? this.manualLongitude,
     );
   }
 }
@@ -261,8 +279,41 @@ class PrayerSettingsController extends StateNotifier<PrayerSettingsState> {
   final LocalStore _store;
 
   void updateLocation(String location) {
+    final city = _cityMeta[location];
     state = state.copyWith(
-      preferences: state.preferences.copyWith(location: location),
+      preferences: state.preferences.copyWith(
+        location: location,
+        useDeviceLocation: false,
+        manualLatitude: city?.latitude,
+        manualLongitude: city?.longitude,
+        clearManualCoordinates: city == null,
+      ),
+    );
+    _save();
+  }
+
+  void setManualLocation({
+    required String label,
+    required double latitude,
+    required double longitude,
+  }) {
+    state = state.copyWith(
+      preferences: state.preferences.copyWith(
+        location: label,
+        useDeviceLocation: false,
+        manualLatitude: latitude,
+        manualLongitude: longitude,
+      ),
+    );
+    _save();
+  }
+
+  void useCurrentLocation() {
+    state = state.copyWith(
+      preferences: state.preferences.copyWith(
+        useDeviceLocation: true,
+        clearManualCoordinates: true,
+      ),
     );
     _save();
   }
@@ -297,6 +348,9 @@ class PrayerSettingsController extends StateNotifier<PrayerSettingsState> {
     final location = data['location'] as String?;
     final madhabName = data['madhab'] as String?;
     final methodName = data['calculationMethod'] as String?;
+    final useDeviceLocation = data['useDeviceLocation'];
+    final manualLatitude = data['manualLatitude'];
+    final manualLongitude = data['manualLongitude'];
     final notificationsRaw = data['notificationModes'];
 
     PrayerMadhab madhab = defaults.madhab;
@@ -336,6 +390,15 @@ class PrayerSettingsController extends StateNotifier<PrayerSettingsState> {
         location: location ?? defaults.location,
         madhab: madhab,
         calculationMethod: method,
+        useDeviceLocation: useDeviceLocation is bool
+            ? useDeviceLocation
+            : defaults.useDeviceLocation,
+        manualLatitude: manualLatitude is num
+            ? manualLatitude.toDouble()
+            : null,
+        manualLongitude: manualLongitude is num
+            ? manualLongitude.toDouble()
+            : null,
       ),
       notificationModes: restoredNotifications,
     );
@@ -346,6 +409,9 @@ class PrayerSettingsController extends StateNotifier<PrayerSettingsState> {
       'location': state.preferences.location,
       'madhab': state.preferences.madhab.name,
       'calculationMethod': state.preferences.calculationMethod.name,
+      'useDeviceLocation': state.preferences.useDeviceLocation,
+      'manualLatitude': state.preferences.manualLatitude,
+      'manualLongitude': state.preferences.manualLongitude,
       'notificationModes': {
         for (final entry in state.notificationModes.entries)
           entry.key: entry.value.name,
@@ -356,7 +422,7 @@ class PrayerSettingsController extends StateNotifier<PrayerSettingsState> {
 
 class PrayerLocationNotifier extends StateNotifier<PrayerLocationState> {
   PrayerLocationNotifier(this._store, this._preferences)
-    : super(_fallbackForLocation(_preferences.location)) {
+    : super(_fallbackForPreferences(_preferences)) {
     _loadLastKnown();
     _refresh();
   }
@@ -364,8 +430,17 @@ class PrayerLocationNotifier extends StateNotifier<PrayerLocationState> {
   final LocalStore _store;
   final PrayerPreferences _preferences;
 
-  static PrayerLocationState _fallbackForLocation(String location) {
-    final fallback = _cityMeta[location] ?? _cityMeta.values.first;
+  static PrayerLocationState _fallbackForPreferences(PrayerPreferences prefs) {
+    if (!prefs.useDeviceLocation &&
+        prefs.manualLatitude != null &&
+        prefs.manualLongitude != null) {
+      return PrayerLocationState(
+        latitude: prefs.manualLatitude!,
+        longitude: prefs.manualLongitude!,
+        usingDeviceLocation: false,
+      );
+    }
+    final fallback = _cityMeta[prefs.location] ?? _cityMeta.values.first;
     return PrayerLocationState(
       latitude: fallback.latitude,
       longitude: fallback.longitude,
@@ -374,15 +449,19 @@ class PrayerLocationNotifier extends StateNotifier<PrayerLocationState> {
   }
 
   Future<void> _refresh() async {
+    if (!_preferences.useDeviceLocation) {
+      state = _fallbackForPreferences(_preferences);
+      return;
+    }
     final status = await Permission.locationWhenInUse.status;
     if (!status.isGranted) {
-      state = _fallbackForLocation(_preferences.location);
+      state = _fallbackForPreferences(_preferences);
       return;
     }
 
     final enabled = await Geolocator.isLocationServiceEnabled();
     if (!enabled) {
-      state = _fallbackForLocation(_preferences.location);
+      state = _fallbackForPreferences(_preferences);
       return;
     }
 
@@ -398,7 +477,7 @@ class PrayerLocationNotifier extends StateNotifier<PrayerLocationState> {
     }
 
     if (pos == null) {
-      state = _fallbackForLocation(_preferences.location);
+      state = _fallbackForPreferences(_preferences);
       return;
     }
 
@@ -414,6 +493,7 @@ class PrayerLocationNotifier extends StateNotifier<PrayerLocationState> {
   }
 
   void _loadLastKnown() {
+    if (!_preferences.useDeviceLocation) return;
     final data = _store.getJsonMap('settings.prayer.deviceCoordinates');
     if (data == null) return;
     final lat = data['lat'];
@@ -437,6 +517,19 @@ final prayerLocationProvider =
 final availablePrayerLocationsProvider = Provider<List<String>>(
   (ref) => _cityMeta.keys.toList(),
 );
+
+final prayerLocationDisplayLabelProvider = FutureProvider<String>((ref) async {
+  final preferences = ref.watch(prayerSettingsProvider).preferences;
+  if (!preferences.useDeviceLocation) return preferences.location;
+  final location = ref.watch(prayerLocationProvider);
+  if (!location.usingDeviceLocation) return preferences.location;
+  final service = ref.watch(prayerLocationSearchServiceProvider);
+  return await service.reverseLookup(
+        latitude: location.latitude,
+        longitude: location.longitude,
+      ) ??
+      'Current location';
+});
 
 final prayerScheduleProvider = Provider<List<PrayerScheduleItem>>((ref) {
   final settings = ref.watch(prayerSettingsProvider).preferences;

@@ -4,10 +4,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../shared/persistence/local_store.dart';
 import '../../learn/quran/application/quran_providers.dart';
+import '../../worship/domain/prayer_status.dart';
 import '../../worship/application/dhikr_controller.dart';
 import '../../worship/application/fasting_controller.dart';
 import '../../worship/application/prayer_controller.dart';
 import '../../worship/domain/fasting_status.dart';
+import '../../../core/prayer/prayer_preferences.dart';
 
 const _journeyProgressKey = 'journey.progress.v2';
 
@@ -43,8 +45,11 @@ class JourneyActivitySnapshot {
   const JourneyActivitySnapshot({
     required this.now,
     required this.prayerCompletedToday,
+    required this.prayerMissedToday,
+    required this.fajrCompletedToday,
     required this.prayerProgress,
     required this.dhikrSessionsToday,
+    required this.dhikrCountToday,
     required this.dhikrProgress,
     required this.fastingStatus,
     required this.quranEngagementsToday,
@@ -55,14 +60,51 @@ class JourneyActivitySnapshot {
 
   final DateTime now;
   final int prayerCompletedToday;
+  final int prayerMissedToday;
+  final bool fajrCompletedToday;
   final double prayerProgress;
   final int dhikrSessionsToday;
+  final int dhikrCountToday;
   final double dhikrProgress;
   final FastingStatus fastingStatus;
   final int quranEngagementsToday;
   final double quranProgress;
   final int reflectionEntriesToday;
   final double reflectionProgress;
+
+  JourneyActivitySnapshot copyWith({
+    DateTime? now,
+    int? prayerCompletedToday,
+    int? prayerMissedToday,
+    bool? fajrCompletedToday,
+    double? prayerProgress,
+    int? dhikrSessionsToday,
+    int? dhikrCountToday,
+    double? dhikrProgress,
+    FastingStatus? fastingStatus,
+    int? quranEngagementsToday,
+    double? quranProgress,
+    int? reflectionEntriesToday,
+    double? reflectionProgress,
+  }) {
+    return JourneyActivitySnapshot(
+      now: now ?? this.now,
+      prayerCompletedToday: prayerCompletedToday ?? this.prayerCompletedToday,
+      prayerMissedToday: prayerMissedToday ?? this.prayerMissedToday,
+      fajrCompletedToday: fajrCompletedToday ?? this.fajrCompletedToday,
+      prayerProgress: prayerProgress ?? this.prayerProgress,
+      dhikrSessionsToday: dhikrSessionsToday ?? this.dhikrSessionsToday,
+      dhikrCountToday: dhikrCountToday ?? this.dhikrCountToday,
+      dhikrProgress: dhikrProgress ?? this.dhikrProgress,
+      fastingStatus: fastingStatus ?? this.fastingStatus,
+      quranEngagementsToday:
+          quranEngagementsToday ?? this.quranEngagementsToday,
+      quranProgress: quranProgress ?? this.quranProgress,
+      reflectionEntriesToday:
+          reflectionEntriesToday ?? this.reflectionEntriesToday,
+      reflectionProgress: reflectionProgress ?? this.reflectionProgress,
+    );
+  }
 
   bool get fastingCompletedToday => fastingStatus == FastingStatus.completed;
   bool get fastingIntendingToday => fastingStatus == FastingStatus.intending;
@@ -89,7 +131,10 @@ class JourneyActivitySnapshot {
 class JourneyDayMetrics {
   const JourneyDayMetrics({
     this.prayerCompleted = 0,
+    this.prayerMissed = 0,
+    this.fajrCompleted = 0,
     this.dhikrSessions = 0,
+    this.dhikrCount = 0,
     this.quranEngagements = 0,
     this.reflectionEntries = 0,
     this.fastingCompleted = 0,
@@ -97,7 +142,10 @@ class JourneyDayMetrics {
   });
 
   final int prayerCompleted;
+  final int prayerMissed;
+  final int fajrCompleted;
   final int dhikrSessions;
+  final int dhikrCount;
   final int quranEngagements;
   final int reflectionEntries;
   final int fastingCompleted;
@@ -105,7 +153,10 @@ class JourneyDayMetrics {
 
   JourneyDayMetrics copyWith({
     int? prayerCompleted,
+    int? prayerMissed,
+    int? fajrCompleted,
     int? dhikrSessions,
+    int? dhikrCount,
     int? quranEngagements,
     int? reflectionEntries,
     int? fastingCompleted,
@@ -113,7 +164,10 @@ class JourneyDayMetrics {
   }) {
     return JourneyDayMetrics(
       prayerCompleted: prayerCompleted ?? this.prayerCompleted,
+      prayerMissed: prayerMissed ?? this.prayerMissed,
+      fajrCompleted: fajrCompleted ?? this.fajrCompleted,
       dhikrSessions: dhikrSessions ?? this.dhikrSessions,
+      dhikrCount: dhikrCount ?? this.dhikrCount,
       quranEngagements: quranEngagements ?? this.quranEngagements,
       reflectionEntries: reflectionEntries ?? this.reflectionEntries,
       fastingCompleted: fastingCompleted ?? this.fastingCompleted,
@@ -124,7 +178,10 @@ class JourneyDayMetrics {
   Map<String, dynamic> toJson() {
     return {
       'prayerCompleted': prayerCompleted,
+      'prayerMissed': prayerMissed,
+      'fajrCompleted': fajrCompleted,
       'dhikrSessions': dhikrSessions,
+      'dhikrCount': dhikrCount,
       'quranEngagements': quranEngagements,
       'reflectionEntries': reflectionEntries,
       'fastingCompleted': fastingCompleted,
@@ -136,7 +193,10 @@ class JourneyDayMetrics {
     if (json == null) return const JourneyDayMetrics();
     return JourneyDayMetrics(
       prayerCompleted: _asInt(json['prayerCompleted']),
+      prayerMissed: _asInt(json['prayerMissed']),
+      fajrCompleted: _asInt(json['fajrCompleted']),
       dhikrSessions: _asInt(json['dhikrSessions']),
+      dhikrCount: _asInt(json['dhikrCount']),
       quranEngagements: _asInt(json['quranEngagements']),
       reflectionEntries: _asInt(json['reflectionEntries']),
       fastingCompleted: _asInt(json['fastingCompleted']),
@@ -434,9 +494,21 @@ class JourneyProgressNotifier extends StateNotifier<JourneyProgressState> {
         currentDayMetrics.prayerCompleted,
         snapshot.prayerCompletedToday,
       ),
+      prayerMissed: math.max(
+        currentDayMetrics.prayerMissed,
+        snapshot.prayerMissedToday,
+      ),
+      fajrCompleted: math.max(
+        currentDayMetrics.fajrCompleted,
+        snapshot.fajrCompletedToday ? 1 : 0,
+      ),
       dhikrSessions: math.max(
         currentDayMetrics.dhikrSessions,
         snapshot.dhikrSessionsToday,
+      ),
+      dhikrCount: math.max(
+        currentDayMetrics.dhikrCount,
+        snapshot.dhikrCountToday,
       ),
       quranEngagements: math.max(
         currentDayMetrics.quranEngagements,
@@ -590,6 +662,7 @@ class JourneyComputedProgress {
     required this.growthStageKey,
     required this.localDropsContributionCount,
     required this.monthlyBadges,
+    required this.dailyBadges,
     required this.graceTokensRemaining,
     required this.graceTokenMonthlyAllowance,
     required this.weeklyProtectedDays,
@@ -615,6 +688,7 @@ class JourneyComputedProgress {
   final String growthStageKey;
   final int localDropsContributionCount;
   final List<JourneyMonthlyBadge> monthlyBadges;
+  final List<JourneyDailyBadge> dailyBadges;
   final int graceTokensRemaining;
   final int graceTokenMonthlyAllowance;
   final int weeklyProtectedDays;
@@ -648,10 +722,28 @@ class JourneyMonthlyBadge {
   final bool earned;
 }
 
+class JourneyDailyBadge {
+  const JourneyDailyBadge({
+    required this.id,
+    required this.title,
+    required this.description,
+    required this.earnedToday,
+    required this.earnedCount,
+  });
+
+  final String id;
+  final String title;
+  final String description;
+  final bool earnedToday;
+  final int earnedCount;
+}
+
 final journeyActivitySnapshotProvider = Provider<JourneyActivitySnapshot>((
   ref,
 ) {
   final prayerSummary = ref.watch(prayerSummaryProvider);
+  final prayerRecords = ref.watch(prayerControllerProvider);
+  final prayerSchedule = ref.watch(prayerScheduleProvider);
   final dhikr = ref.watch(dhikrControllerProvider);
   final fasting = ref.watch(fastingControllerProvider);
   final quranProgress = ref.watch(quranReadingProgressProvider);
@@ -664,6 +756,11 @@ final journeyActivitySnapshotProvider = Provider<JourneyActivitySnapshot>((
   final dhikrSessionsToday = dhikr.recentSessions.where((session) {
     return LocalStore.todayKey(session.finishedAt) == todayKey;
   }).length;
+  final dhikrCountToday =
+      dhikr.recentSessions
+          .where((session) => LocalStore.todayKey(session.finishedAt) == todayKey)
+          .fold<int>(0, (sum, session) => sum + session.count) +
+      dhikr.currentCount;
 
   final quranUpdatedToday =
       LocalStore.todayKey(
@@ -684,14 +781,32 @@ final journeyActivitySnapshotProvider = Provider<JourneyActivitySnapshot>((
   final dhikrProgress = dhikr.target <= 0
       ? 0.0
       : (dhikr.currentCount / dhikr.target).clamp(0.0, 1.0).toDouble();
+  final prayerMissedToday = prayerRecords
+      .where((record) => record.status.name == 'missed')
+      .length;
+  final fajrWindowEnd = prayerSchedule
+      .where((item) => item.id == 'fajr')
+      .map((item) => item.windowEndDateTime)
+      .firstOrNull;
+  final fajrCompletedToday = prayerRecords.any((record) {
+    if (record.prayer.name != 'fajr' || record.status != PrayerStatus.completed) {
+      return false;
+    }
+    final completedAt = record.completedAt;
+    if (completedAt == null || fajrWindowEnd == null) return false;
+    return completedAt.isBefore(fajrWindowEnd);
+  });
 
   final quranProgressRatio = ref.watch(quranProgressRatioProvider);
 
   return JourneyActivitySnapshot(
     now: now,
     prayerCompletedToday: prayerSummary.completed,
+    prayerMissedToday: prayerMissedToday,
+    fajrCompletedToday: fajrCompletedToday,
     prayerProgress: prayerSummary.progress.clamp(0.0, 1.0).toDouble(),
     dhikrSessionsToday: dhikrSessionsToday,
+    dhikrCountToday: dhikrCountToday,
     dhikrProgress: dhikrProgress,
     fastingStatus: fasting.todayStatus,
     quranEngagementsToday: (quranUpdatedToday ? 1 : 0) + bookmarksToday,
@@ -733,6 +848,7 @@ final journeyComputedProgressProvider = Provider<JourneyComputedProgress>((
     growthStageKey: state.growthStageKey,
     localDropsContributionCount: state.localDropsContributionCount,
     monthlyBadges: _buildMonthlyBadges(state, snapshot.now),
+    dailyBadges: _buildDailyBadges(state, snapshot.now),
     graceTokensRemaining: state.graceTokensRemaining,
     graceTokenMonthlyAllowance: state.graceTokenMonthlyAllowance,
     weeklyProtectedDays: state.graceProtectedDayKeys.where((key) {
@@ -757,6 +873,30 @@ final journeyProgressAutoSyncProvider = Provider<void>((ref) {
     );
   }, fireImmediately: true);
 });
+
+final journeyProgressUpdateHelperProvider = Provider<JourneyProgressUpdateHelper>(
+  (ref) => JourneyProgressUpdateHelper(ref),
+);
+
+class JourneyProgressUpdateHelper {
+  const JourneyProgressUpdateHelper(this._ref);
+
+  final Ref _ref;
+
+  void addReflectionEntries(int count) {
+    if (count <= 0) return;
+    final snapshot = _ref.read(journeyActivitySnapshotProvider);
+    final nextReflectionEntries = snapshot.reflectionEntriesToday + count;
+    _ref.read(journeyProgressProvider.notifier).syncFromSnapshot(
+      snapshot.copyWith(
+        reflectionEntriesToday: nextReflectionEntries,
+        reflectionProgress: (nextReflectionEntries / 2)
+            .clamp(0.0, 1.0)
+            .toDouble(),
+      ),
+    );
+  }
+}
 
 List<JourneyMonthlyBadge> _buildMonthlyBadges(
   JourneyProgressState state,
@@ -880,6 +1020,105 @@ List<JourneyMonthlyBadge> _buildMonthlyBadges(
       description: 'Stay active across worship and learning together.',
       current: prayers + dhikr + quran + reflections,
       target: math.max(1, trackedDays * 3),
+    ),
+  ];
+}
+
+List<JourneyDailyBadge> _buildDailyBadges(
+  JourneyProgressState state,
+  DateTime now,
+) {
+  const dailyDhikrGoal = 500;
+  final todayKey = LocalStore.todayKey(now);
+  final today = state.dayMetricsByKey[todayKey] ?? const JourneyDayMetrics();
+
+  int achievedDays(bool Function(JourneyDayMetrics metrics) predicate) {
+    return state.dayMetricsByKey.values.where(predicate).length;
+  }
+
+  int streakAchievedDays(int minimumDays) {
+    final keys = state.dayScoreByKey.keys.toList()..sort();
+    var streak = 0;
+    var earned = 0;
+    for (final key in keys) {
+      final score = state.dayScoreByKey[key] ?? 0.0;
+      if (score >= JourneyXpRules.streakCompletionThreshold) {
+        streak += 1;
+        if (streak >= minimumDays) earned += 1;
+      } else {
+        streak = 0;
+      }
+    }
+    return earned;
+  }
+
+  return [
+    JourneyDailyBadge(
+      id: 'all_prayers',
+      title: 'All Prayers',
+      description: 'Completed all 5 daily prayers.',
+      earnedToday: today.prayerCompleted >= 5,
+      earnedCount: achievedDays((metrics) => metrics.prayerCompleted >= 5),
+    ),
+    JourneyDailyBadge(
+      id: 'daily_dhikr',
+      title: 'Dhikr 500',
+      description: 'Reached the 500 daily dhikr goal.',
+      earnedToday: today.dhikrCount >= dailyDhikrGoal,
+      earnedCount: achievedDays((metrics) => metrics.dhikrCount >= dailyDhikrGoal),
+    ),
+    JourneyDailyBadge(
+      id: 'quran_return',
+      title: 'Qur\'an Return',
+      description: 'Returned to Qur\'an at least once today.',
+      earnedToday: today.quranEngagements >= 1,
+      earnedCount: achievedDays((metrics) => metrics.quranEngagements >= 1),
+    ),
+    JourneyDailyBadge(
+      id: 'reflection',
+      title: 'Reflection',
+      description: 'Added at least one reflection today.',
+      earnedToday: today.reflectionEntries >= 1,
+      earnedCount: achievedDays((metrics) => metrics.reflectionEntries >= 1),
+    ),
+    JourneyDailyBadge(
+      id: 'perfect_day',
+      title: 'Perfect Day',
+      description: 'Prayers, dhikr, Qur\'an, and reflection all completed.',
+      earnedToday: today.prayerCompleted >= 5 &&
+          today.dhikrCount >= dailyDhikrGoal &&
+          today.quranEngagements >= 1 &&
+          today.reflectionEntries >= 1,
+      earnedCount: achievedDays(
+        (metrics) =>
+            metrics.prayerCompleted >= 5 &&
+            metrics.dhikrCount >= dailyDhikrGoal &&
+            metrics.quranEngagements >= 1 &&
+            metrics.reflectionEntries >= 1,
+      ),
+    ),
+    JourneyDailyBadge(
+      id: 'no_missed_prayers',
+      title: 'No Missed Prayers',
+      description: 'Completed the day without marking any salah as missed.',
+      earnedToday: today.prayerCompleted >= 5 && today.prayerMissed == 0,
+      earnedCount: achievedDays(
+        (metrics) => metrics.prayerCompleted >= 5 && metrics.prayerMissed == 0,
+      ),
+    ),
+    JourneyDailyBadge(
+      id: 'before_sunrise_fajr',
+      title: 'Before Sunrise Fajr',
+      description: 'Completed Fajr before sunrise with an exact recorded time.',
+      earnedToday: today.fajrCompleted >= 1,
+      earnedCount: achievedDays((metrics) => metrics.fajrCompleted >= 1),
+    ),
+    JourneyDailyBadge(
+      id: 'streak_3',
+      title: '3-Day Streak',
+      description: 'Reached three consecutive strong days.',
+      earnedToday: state.currentStreakDays >= 3,
+      earnedCount: streakAchievedDays(3),
     ),
   ];
 }
