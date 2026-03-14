@@ -12,6 +12,7 @@ class LearnCategoryItem {
     this.description,
     this.accentStyle,
     this.categoryGroup = 'general',
+    this.badgeLabel,
   });
 
   final String id;
@@ -26,4 +27,5 @@ class LearnCategoryItem {
   final String? description;
   final String? accentStyle;
   final String categoryGroup;
+  final String? badgeLabel;
 }

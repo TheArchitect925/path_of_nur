@@ -5,6 +5,7 @@ import 'package:quran/quran.dart' as q;
 
 import '../../../../core/theme/app_colors.dart';
 import '../../../../shared/widgets/premium_card.dart';
+import '../../../../shared/widgets/quran_quote_block.dart';
 import '../../../../shared/widgets/segmented_pill_control.dart';
 import '../../quran/application/quran_providers.dart';
 import '../../quran/domain/quran_surah.dart';
@@ -82,6 +83,8 @@ class _QuranAppHubPageState extends ConsumerState<QuranAppHubPage> {
       title: 'Holy Qur’an',
       subtitle:
           'A focused reading and recitation space with quick access to continue, search, and browse by juz.',
+      quote: null,
+      quotePool: quranFocusedQuotePool,
       children: [
         PremiumCard(
           child: Column(

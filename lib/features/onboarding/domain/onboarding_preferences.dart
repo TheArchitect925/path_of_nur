@@ -30,6 +30,7 @@ enum OnboardingPrayerMethodChoice {
 }
 
 enum OnboardingArabicReadMode {
+  noArabicYet,
   arabicOnly,
   arabicTransliteration,
   arabicTranslation,

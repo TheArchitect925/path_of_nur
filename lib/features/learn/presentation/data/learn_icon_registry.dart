@@ -11,6 +11,8 @@ class LearnIconRegistry {
 
   static const Map<String, IconData> _iconByKey = {
     'quran': IslamicIcons.quran,
+    'quran_arabic': Icons.translate_rounded,
+    'islamic_trivia': Icons.quiz_rounded,
     'hadith': IslamicIcons.allahText,
     'life': IslamicIcons.prayingPerson,
     'world': IslamicIcons.locationMuslim,
@@ -29,6 +31,12 @@ class LearnIconRegistry {
     'word_review': Icons.spellcheck_rounded,
     'top_words': Icons.translate_rounded,
     'quran_universe': Icons.hub_rounded,
+    'history': Icons.history_edu_rounded,
+    'ramadan': Icons.nightlight_round_rounded,
+    'dua': Icons.volunteer_activism_rounded,
+    'seerah': Icons.route_rounded,
+    'women_in_islam': Icons.groups_2_rounded,
+    'akhlaq': Icons.favorite_border_rounded,
   };
 
   static IconData iconFor(String key) {

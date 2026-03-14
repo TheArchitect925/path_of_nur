@@ -19,6 +19,7 @@ import '../../../features/learn/prophets/application/prophets_repository.dart';
 import '../../../features/learn/prophets/presentation/widgets/daily_prophet_quiz_card.dart';
 import '../../../features/learn/prophets/presentation/widgets/daily_revelation_card.dart';
 import '../../../features/journey/application/journey_progression_provider.dart';
+import '../../../features/onboarding/application/onboarding_state_provider.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/application/app_summary_providers.dart';
 import '../../../shared/application/daily_clock_provider.dart';
@@ -179,6 +180,21 @@ class HomePage extends ConsumerWidget {
                 _HomeSummaryShortcutCard(
                   l10n: l10n,
                   dailyBundle: ref.watch(todayDailyLearningBundleProvider),
+                ),
+                const SizedBox(height: 18),
+                Align(
+                  alignment: Alignment.center,
+                  child: OutlinedButton.icon(
+                    onPressed: () {
+                      ref.read(onboardingCompletedProvider.notifier).reset();
+                      WidgetsBinding.instance.addPostFrameCallback((_) {
+                        if (!context.mounted) return;
+                        context.goNamed('onboarding');
+                      });
+                    },
+                    icon: const Icon(Icons.slideshow_rounded),
+                    label: const Text('Start Welcome Carousel'),
+                  ),
                 ),
               ],
             ),

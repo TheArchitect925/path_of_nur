@@ -119,10 +119,19 @@ class _LearnQuranHubPageState extends ConsumerState<LearnQuranHubPage> {
                 icon: const Icon(Icons.menu_book_rounded),
                 label: const Text('Open Holy Qur’an'),
               ),
+              const SizedBox(height: 8),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: TextButton.icon(
+                  onPressed: () => context.pushNamed('learnQuranArabic'),
+                  icon: const Icon(Icons.translate_rounded),
+                  label: const Text('Open Learn Qur’anic Arabic'),
+                ),
+              ),
             ],
           ),
         ),
-        const SizedBox(height: 12),
+        const SizedBox(height: 10),
         SegmentedPillControl<_QuranLearningTab>(
           items: _QuranLearningTab.values,
           selectedItem: _tab,

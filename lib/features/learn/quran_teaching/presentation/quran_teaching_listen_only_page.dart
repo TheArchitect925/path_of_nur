@@ -1,0 +1,482 @@
+import 'dart:async';
+
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../../../core/theme/app_colors.dart';
+import '../../../../shared/widgets/premium_card.dart';
+import '../application/quran_teaching_asset_resolver.dart';
+import '../application/quran_teaching_controller.dart';
+import '../domain/quran_teaching_models.dart';
+import 'widgets/quran_teaching_asset_widgets.dart';
+
+class QuranTeachingListenOnlyPage extends ConsumerStatefulWidget {
+  const QuranTeachingListenOnlyPage({super.key, this.initialPackId});
+
+  final String? initialPackId;
+
+  @override
+  ConsumerState<QuranTeachingListenOnlyPage> createState() =>
+      _QuranTeachingListenOnlyPageState();
+}
+
+class _QuranTeachingListenOnlyPageState
+    extends ConsumerState<QuranTeachingListenOnlyPage> {
+  Timer? _autoAdvanceTimer;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (widget.initialPackId != null) {
+        ref
+            .read(quranTeachingListenOnlyProvider.notifier)
+            .selectPack(widget.initialPackId!);
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _autoAdvanceTimer?.cancel();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final catalog = ref.watch(quranTeachingCatalogProvider);
+    final state = ref.watch(quranTeachingListenOnlyProvider);
+    final controller = ref.read(quranTeachingListenOnlyProvider.notifier);
+    final packs = catalog.audioPracticePacks;
+    final selectedPack = state.selectedPackId == null
+        ? (packs.isEmpty ? null : packs.first)
+        : catalog.audioPackById(state.selectedPackId!);
+    final items = selectedPack?.items ?? const <QuranTeachingAudioPracticeItem>[];
+    final safeIndex = items.isEmpty ? 0 : state.currentIndex.clamp(0, items.length - 1);
+    final currentItem = items.isEmpty ? null : items[safeIndex];
+
+    if (selectedPack != null && state.selectedPackId == null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        controller.selectPack(selectedPack.id);
+      });
+    }
+
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Listen Only'),
+      ),
+      body: SafeArea(
+        child: ListView(
+          padding: const EdgeInsets.fromLTRB(20, 16, 20, 32),
+          children: [
+            PremiumCard(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Audio Practice',
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  const SizedBox(height: 6),
+                  Text(
+                    'Low-distraction listening for walks, chores, bedtime review, and calm repetition.',
+                  ),
+                  const SizedBox(height: 12),
+                  DropdownButtonFormField<String>(
+                    value: selectedPack?.id,
+                    items: packs
+                        .map(
+                          (pack) => DropdownMenuItem<String>(
+                            value: pack.id,
+                            child: Text(pack.title),
+                          ),
+                        )
+                        .toList(growable: false),
+                    onChanged: (value) {
+                      if (value == null) return;
+                      controller.selectPack(value);
+                    },
+                    decoration: const InputDecoration(
+                      labelText: 'Content set',
+                    ),
+                  ),
+                  if (selectedPack != null) ...[
+                    const SizedBox(height: 8),
+                    Text(
+                      selectedPack.description,
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: AppColors.onSurfaceSubtle,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    FutureBuilder<int>(
+                      future: QuranTeachingAssetResolver.availableAudioCount(
+                        selectedPack.items,
+                      ),
+                      builder: (context, snapshot) {
+                        final available = snapshot.data;
+                        if (available == null) {
+                          return const Text('Checking local audio...');
+                        }
+                        return Text(
+                          '$available of ${selectedPack.items.length} items currently have local audio.',
+                          style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                            color: AppColors.onSurfaceSubtle,
+                          ),
+                        );
+                      },
+                    ),
+                  ],
+                ],
+              ),
+            ),
+            const SizedBox(height: 12),
+            PremiumCard(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Text(
+                    selectedPack?.title ?? 'Choose a pack',
+                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20,
+                      vertical: 24,
+                    ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(24),
+                      color: AppColors.surfaceSoft.withValues(alpha: 0.6),
+                    ),
+                    child: currentItem == null
+                        ? Text(
+                            'Select a listening set to begin.',
+                            textAlign: TextAlign.center,
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          )
+                        : _ListenOnlyContent(
+                            item: currentItem,
+                            visibility: state.textVisibility,
+                            showVisualAnchor: state.visualModeEnabled,
+                          ),
+                  ),
+                  const SizedBox(height: 14),
+                  if (selectedPack != null)
+                    Text(
+                      '${safeIndex + 1} of ${items.length}',
+                      textAlign: TextAlign.center,
+                    ),
+                  const SizedBox(height: 8),
+                  LinearProgressIndicator(
+                    value: items.isEmpty ? 0 : (safeIndex + 1) / items.length,
+                    minHeight: 8,
+                    borderRadius: BorderRadius.circular(999),
+                  ),
+                  if (selectedPack != null) ...[
+                    const SizedBox(height: 8),
+                    Builder(
+                      builder: (context) {
+                        final meta = QuranTeachingAssetResolver.listenOnlyPackMeta(
+                          selectedPack.id,
+                        );
+                        if (meta?.estimatedDurationMs == null) {
+                          return const SizedBox.shrink();
+                        }
+                        final seconds = (meta!.estimatedDurationMs! / 1000).round();
+                        return Text(
+                          'Estimated pack length: ${seconds}s',
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                            color: AppColors.onSurfaceSubtle,
+                          ),
+                        );
+                      },
+                    ),
+                  ],
+                  const SizedBox(height: 16),
+                  FutureBuilder<bool>(
+                    future: QuranTeachingAssetResolver.hasAudio(currentItem?.audio),
+                    builder: (context, snapshot) {
+                      final audioAvailable = snapshot.data == true;
+                      return Column(
+                        children: [
+                          Row(
+                            children: [
+                              Expanded(
+                                child: IconButton.filledTonal(
+                                  onPressed: items.isEmpty
+                                      ? null
+                                      : () => controller.previous(items.length),
+                                  icon: const Icon(Icons.skip_previous_rounded),
+                                ),
+                              ),
+                              const SizedBox(width: 10),
+                              Expanded(
+                                child: IconButton.filled(
+                                  onPressed: !audioAvailable || items.isEmpty
+                                      ? null
+                                      : () {
+                                          final next = !state.isPlaying;
+                                          controller.setPlaying(next);
+                                          if (next) {
+                                            _startPlaybackSimulation(items.length);
+                                          } else {
+                                            _autoAdvanceTimer?.cancel();
+                                          }
+                                          _showAudioCue(
+                                            currentItem?.audio.label ?? 'Audio',
+                                            selectedPack?.title ?? 'Listen Only',
+                                          );
+                                        },
+                                  icon: Icon(
+                                    state.isPlaying
+                                        ? Icons.pause_rounded
+                                        : Icons.play_arrow_rounded,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(width: 10),
+                              Expanded(
+                                child: IconButton.filledTonal(
+                                  onPressed: items.isEmpty
+                                      ? null
+                                      : () => controller.next(items.length),
+                                  icon: const Icon(Icons.skip_next_rounded),
+                                ),
+                              ),
+                            ],
+                          ),
+                          if (!audioAvailable && currentItem != null) ...[
+                            const SizedBox(height: 8),
+                            Text(
+                              'Audio for this item is not added yet.',
+                              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                                color: AppColors.onSurfaceSubtle,
+                              ),
+                            ),
+                          ],
+                        ],
+                      );
+                    },
+                  ),
+                  const SizedBox(height: 10),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: QuranTeachingAudioIconButton(
+                          audio: currentItem?.audio,
+                          availableIcon: Icons.replay_rounded,
+                          label: 'Replay',
+                          onAvailablePressed: items.isEmpty
+                              ? null
+                              : () {
+                                  controller.replay();
+                                  _showAudioCue(
+                                    currentItem?.audio.label ?? 'Replay',
+                                    'Replay current item',
+                                  );
+                                },
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: DropdownButtonFormField<double>(
+                          value: state.playbackSpeed,
+                          items: const <double>[0.75, 1.0, 1.25]
+                              .map(
+                                (speed) => DropdownMenuItem<double>(
+                                  value: speed,
+                                  child: Text('${speed}x'),
+                                ),
+                              )
+                              .toList(growable: false),
+                          onChanged: (value) {
+                            if (value == null) return;
+                            controller.setPlaybackSpeed(value);
+                          },
+                          decoration: const InputDecoration(
+                            labelText: 'Speed',
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 12),
+            PremiumCard(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Mode options',
+                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  SwitchListTile.adaptive(
+                    contentPadding: EdgeInsets.zero,
+                    value: state.autoAdvance,
+                    onChanged: controller.toggleAutoAdvance,
+                    title: const Text('Auto-play next item'),
+                  ),
+                  SwitchListTile.adaptive(
+                    contentPadding: EdgeInsets.zero,
+                    value: state.repeatCurrent,
+                    onChanged: controller.toggleRepeatCurrent,
+                    title: const Text('Repeat current item'),
+                  ),
+                  SwitchListTile.adaptive(
+                    contentPadding: EdgeInsets.zero,
+                    value: state.shuffle,
+                    onChanged: controller.toggleShuffle,
+                    title: const Text('Shuffle order'),
+                  ),
+                  SwitchListTile.adaptive(
+                    contentPadding: EdgeInsets.zero,
+                    value: state.visualModeEnabled,
+                    onChanged: controller.toggleVisualMode,
+                    title: const Text('Visual mode'),
+                  ),
+                  const SizedBox(height: 8),
+                  SegmentedButton<QuranTeachingTextVisibility>(
+                    segments: const [
+                      ButtonSegment(
+                        value: QuranTeachingTextVisibility.arabicOnly,
+                        label: Text('Arabic'),
+                      ),
+                      ButtonSegment(
+                        value:
+                            QuranTeachingTextVisibility.arabicWithTransliteration,
+                        label: Text('Arabic + Transliteration'),
+                      ),
+                      ButtonSegment(
+                        value: QuranTeachingTextVisibility.hidden,
+                        label: Text('Audio only'),
+                      ),
+                    ],
+                    selected: <QuranTeachingTextVisibility>{
+                      state.textVisibility,
+                    },
+                    onSelectionChanged: (selection) {
+                      controller.setTextVisibility(selection.first);
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void _showAudioCue(String label, String contextLabel) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('$contextLabel • $label')),
+    );
+  }
+
+  void _startPlaybackSimulation(int itemCount) {
+    _autoAdvanceTimer?.cancel();
+    final state = ref.read(quranTeachingListenOnlyProvider);
+    if (!state.autoAdvance || itemCount <= 0) return;
+    _autoAdvanceTimer = Timer(
+      Duration(milliseconds: (2400 / state.playbackSpeed).round()),
+      () {
+        if (!mounted) return;
+        final current = ref.read(quranTeachingListenOnlyProvider);
+        if (!current.isPlaying) return;
+        final controller = ref.read(quranTeachingListenOnlyProvider.notifier);
+        if (current.repeatCurrent) {
+          controller.replay();
+        } else {
+          controller.next(itemCount);
+        }
+        _startPlaybackSimulation(itemCount);
+      },
+    );
+  }
+}
+
+class _ListenOnlyContent extends StatelessWidget {
+  const _ListenOnlyContent({
+    required this.item,
+    required this.visibility,
+    required this.showVisualAnchor,
+  });
+
+  final QuranTeachingAudioPracticeItem item;
+  final QuranTeachingTextVisibility visibility;
+  final bool showVisualAnchor;
+
+  @override
+  Widget build(BuildContext context) {
+    final hidden = visibility == QuranTeachingTextVisibility.hidden;
+    return Column(
+      children: [
+        if (hidden)
+          Text(
+            'Listening focus',
+            style: Theme.of(context).textTheme.titleMedium?.copyWith(
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+        if (!hidden && item.arabic != null)
+          Text(
+            item.arabic!,
+            textAlign: TextAlign.center,
+            textDirection: TextDirection.rtl,
+            style: const TextStyle(
+              fontSize: 42,
+              fontFamily: 'AmiriQuran',
+              height: 1.5,
+            ),
+          ),
+        if (!hidden &&
+            visibility == QuranTeachingTextVisibility.arabicWithTransliteration &&
+            item.transliteration != null) ...[
+          const SizedBox(height: 8),
+          Text(
+            item.transliteration!,
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
+        ],
+        if (!hidden && item.meaning != null) ...[
+          const SizedBox(height: 8),
+          Text(
+            item.meaning!,
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              color: AppColors.onSurfaceSubtle,
+            ),
+          ),
+        ],
+        if (showVisualAnchor && item.visualAnchor != null) ...[
+          const SizedBox(height: 12),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              QuranTeachingVisualAssetTile(
+                label: item.visualAnchor!.label,
+                hint: item.visualAnchor!.hint,
+                icon: item.visualAnchor!.icon,
+                imageAssetPath:
+                    item.imageAssetPath ?? item.visualAnchor!.imageAssetPath,
+                compact: true,
+              ),
+            ],
+          ),
+        ],
+      ],
+    );
+  }
+}

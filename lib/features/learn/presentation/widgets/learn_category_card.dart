@@ -92,48 +92,81 @@ class _LearnCategoryCardState extends State<LearnCategoryCard> {
                         ),
                       ),
                       child: Stack(
-                        alignment: Alignment.center,
                         children: [
-                          Positioned(
-                            top: 7,
-                            left: 10,
-                            child: _dustDot(0.12, 2.2),
+                          Align(
+                            alignment: Alignment.center,
+                            child: Stack(
+                              alignment: Alignment.center,
+                              children: [
+                                Positioned(
+                                  top: 7,
+                                  left: 10,
+                                  child: _dustDot(0.12, 2.2),
+                                ),
+                                Positioned(
+                                  top: 13,
+                                  right: 14,
+                                  child: _dustDot(0.18, 2.8),
+                                ),
+                                Positioned(
+                                  bottom: 10,
+                                  right: 18,
+                                  child: _dustDot(0.10, 2.4),
+                                ),
+                                if (isQuranCard)
+                                  Text(
+                                    'الْقُرْآن',
+                                    textAlign: TextAlign.center,
+                                    style: AppTextStyles.quranVerse(
+                                      size: 30,
+                                      color: const Color(0xFF4B3C2E),
+                                    ).copyWith(height: 1.6),
+                                  )
+                                else if (iconAsset != null)
+                                  Image.asset(
+                                    iconAsset,
+                                    width: 64,
+                                    height: 64,
+                                    fit: BoxFit.contain,
+                                    errorBuilder: (context, error, stackTrace) {
+                                      return Icon(
+                                        icon,
+                                        size: 46,
+                                        color: onSurfaceSubtle,
+                                      );
+                                    },
+                                  )
+                                else
+                                  Icon(icon, size: 46, color: onSurfaceSubtle),
+                              ],
+                            ),
                           ),
-                          Positioned(
-                            top: 13,
-                            right: 14,
-                            child: _dustDot(0.18, 2.8),
-                          ),
-                          Positioned(
-                            bottom: 10,
-                            right: 18,
-                            child: _dustDot(0.10, 2.4),
-                          ),
-                          if (isQuranCard)
-                            Text(
-                              'الْقُرْآن',
-                              textAlign: TextAlign.center,
-                              style: AppTextStyles.quranVerse(
-                                size: 30,
-                                color: const Color(0xFF4B3C2E),
-                              ).copyWith(height: 1.6),
-                            )
-                          else if (iconAsset != null)
-                            Image.asset(
-                              iconAsset,
-                              width: 64,
-                              height: 64,
-                              fit: BoxFit.contain,
-                              errorBuilder: (context, error, stackTrace) {
-                                return Icon(
-                                  icon,
-                                  size: 46,
-                                  color: onSurfaceSubtle,
-                                );
-                              },
-                            )
-                          else
-                            Icon(icon, size: 46, color: onSurfaceSubtle),
+                          if (widget.item.badgeLabel != null)
+                            Positioned(
+                              top: 10,
+                              right: 10,
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 8,
+                                  vertical: 4,
+                                ),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(999),
+                                  color: accent.withValues(alpha: 0.22),
+                                  border: Border.all(
+                                    color: accent.withValues(alpha: 0.35),
+                                  ),
+                                ),
+                                child: Text(
+                                  widget.item.badgeLabel!,
+                                  style: Theme.of(context).textTheme.labelSmall
+                                      ?.copyWith(
+                                        color: onSurface,
+                                        fontWeight: FontWeight.w700,
+                                      ),
+                                ),
+                              ),
+                            ),
                         ],
                       ),
                     ),

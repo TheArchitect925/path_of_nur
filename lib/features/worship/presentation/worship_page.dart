@@ -43,12 +43,9 @@ class WorshipPage extends ConsumerWidget {
     final l10n = AppLocalizations.of(context);
     final WorshipTab activeTab = ref.watch(worshipTabProvider);
     final mode = ref.watch(specialModeProvider);
-
-    return AppPageScaffold(
-      headerIcon: IslamicIcons.prayer,
-      title: l10n.worshipTitle,
-      subtitle: l10n.worshipSubtitle,
-      quote: const QuranQuote(
+    final quote = switch (activeTab) {
+      WorshipTab.dhikr => quoteFromPoolForToday(dhikrFocusedQuotePool),
+      _ => const QuranQuote(
         arabic: 'وَاسْتَعِينُوا بِالصَّبْرِ وَالصَّلَاةِ',
         transliteration: 'Wastaeenoo bis-sabri was-salah',
         translation: 'Seek help through patience and prayer.',
@@ -56,6 +53,13 @@ class WorshipPage extends ConsumerWidget {
         verse: 45,
         locationLabel: 'Qur’an 2:45',
       ),
+    };
+
+    return AppPageScaffold(
+      headerIcon: IslamicIcons.prayer,
+      title: l10n.worshipTitle,
+      subtitle: l10n.worshipSubtitle,
+      quote: quote,
       onQuoteTap: (quote) => openQuranQuoteLocation(context, quote),
       children: [
         if (mode.isKids)

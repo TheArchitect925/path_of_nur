@@ -15,6 +15,15 @@ import '../features/learn/presentation/pages/learn_quran_hub_page.dart';
 import '../features/learn/presentation/pages/quran_app_hub_page.dart';
 import '../features/learn/presentation/pages/learn_salah_hub_page.dart';
 import '../features/learn/presentation/pages/learn_section_placeholder_page.dart';
+import '../features/learn/quran_teaching/presentation/quran_teaching_section_page.dart';
+import '../features/learn/trivia/presentation/trivia_home_page.dart';
+import '../features/learn/trivia/presentation/trivia_knowledge_path_detail_page.dart';
+import '../features/learn/trivia/presentation/trivia_knowledge_path_stage_page.dart';
+import '../features/learn/trivia/presentation/trivia_knowledge_paths_page.dart';
+import '../features/learn/trivia/presentation/trivia_review_page.dart';
+import '../features/learn/trivia/presentation/trivia_results_page.dart';
+import '../features/learn/trivia/presentation/trivia_session_page.dart';
+import '../features/learn/trivia/presentation/trivia_stats_page.dart';
 import '../features/learn/dua/presentation/dua_detail_page.dart';
 import '../features/learn/prophets/domain/prophets_tab.dart';
 import '../features/learn/quran_universe/presentation/quran_universe_page.dart';
@@ -456,6 +465,67 @@ final appRouterProvider = Provider<GoRouter>((ref) {
             name: 'learnQuranLearning',
             pageBuilder: (context, state) =>
                 const MaterialPage(child: LearnQuranHubPage()),
+          ),
+          GoRoute(
+            path: '/learn/hub/quranic-arabic',
+            name: 'learnQuranArabic',
+            pageBuilder: (context, state) =>
+                const MaterialPage(child: QuranTeachingSectionPage()),
+          ),
+          GoRoute(
+            path: '/learn/hub/trivia',
+            name: 'learnIslamicTrivia',
+            pageBuilder: (context, state) =>
+                const MaterialPage(child: IslamicTriviaHomePage()),
+          ),
+          GoRoute(
+            path: '/learn/hub/trivia/paths',
+            name: 'learnTriviaKnowledgePaths',
+            pageBuilder: (context, state) =>
+                const MaterialPage(child: IslamicTriviaKnowledgePathsPage()),
+          ),
+          GoRoute(
+            path: '/learn/hub/trivia/paths/:pathId',
+            name: 'learnTriviaKnowledgePathDetail',
+            pageBuilder: (context, state) => MaterialPage(
+              child: IslamicTriviaKnowledgePathDetailPage(
+                pathId: state.pathParameters['pathId'] ?? '',
+              ),
+            ),
+          ),
+          GoRoute(
+            path: '/learn/hub/trivia/paths/:pathId/stages/:stageId',
+            name: 'learnTriviaKnowledgePathStage',
+            pageBuilder: (context, state) => MaterialPage(
+              child: IslamicTriviaKnowledgePathStagePage(
+                pathId: state.pathParameters['pathId'] ?? '',
+                stageId: state.pathParameters['stageId'] ?? '',
+              ),
+            ),
+          ),
+          GoRoute(
+            path: '/learn/hub/trivia/session',
+            name: 'learnTriviaSession',
+            pageBuilder: (context, state) =>
+                const MaterialPage(child: IslamicTriviaSessionPage()),
+          ),
+          GoRoute(
+            path: '/learn/hub/trivia/results',
+            name: 'learnTriviaResults',
+            pageBuilder: (context, state) =>
+                const MaterialPage(child: IslamicTriviaResultsPage()),
+          ),
+          GoRoute(
+            path: '/learn/hub/trivia/review',
+            name: 'learnTriviaReview',
+            pageBuilder: (context, state) =>
+                const MaterialPage(child: IslamicTriviaReviewPage()),
+          ),
+          GoRoute(
+            path: '/learn/hub/trivia/stats',
+            name: 'learnTriviaStats',
+            pageBuilder: (context, state) =>
+                const MaterialPage(child: IslamicTriviaStatsPage()),
           ),
           GoRoute(
             path: '/learn/hub/salah',

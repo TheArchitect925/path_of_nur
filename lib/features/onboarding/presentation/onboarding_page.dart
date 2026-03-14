@@ -219,11 +219,26 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
                   ),
                   const SizedBox(height: 12),
                   if (showSettingsHint)
-                    Opacity(
-                      opacity: 0.62,
+                    Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 12,
+                        vertical: 10,
+                      ),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        color: const Color(0xFFF3EBDD).withValues(alpha: 0.92),
+                        border: Border.all(
+                          color: const Color(0xFFD8C49A).withValues(alpha: 0.55),
+                        ),
+                      ),
                       child: Text(
                         'You can change this anytime in Settings.',
-                        style: Theme.of(context).textTheme.bodySmall,
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: const Color(0xFF5A4635),
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ),
                   if (showSettingsHint) const SizedBox(height: 8),
@@ -313,7 +328,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
                   ),
                   SizedBox(height: 8),
                   Text(
-                    'I bear witness that there is no god except Allah,\nand I bear witness that Muhammad is the Messenger of Allah.',
+                    'I bear witness that there is no god except Allah,\nand I bear witness that Muhammad ﷺ is the Messenger of Allah.',
                     textAlign: TextAlign.center,
                   ),
                 ],
@@ -416,7 +431,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
     return _choicePage<OnboardingAgeRange>(
       title: 'Which age range are you in?',
       subtitle:
-          'This helps us present guidance in a way that fits your stage of life.',
+          'Path of Nur adjusts some guidance, tone, and family-related recommendations based on your stage of life so the experience feels more relevant and supportive.',
       value: _ageRange,
       options: const {
         OnboardingAgeRange.under18: 'Under 18',
@@ -432,9 +447,9 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
 
   Widget _experiencePage() {
     return _choicePage<OnboardingIslamExperience>(
-      title: 'What best describes your experience with Islam?',
+      title: 'Which description fits your journey with Islam best?',
       subtitle:
-          'This helps the app guide you at the right pace and present content in a way that suits your journey.',
+          'We use this to set a better starting tone, pacing, and learning depth for your experience. Your selection is saved and used to shape guidance across the app.',
       value: _islamExperience,
       options: const {
         OnboardingIslamExperience.exploring: 'Exploring Islam',
@@ -540,6 +555,8 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
           _choiceRow<OnboardingArabicReadMode>(
             value: _arabicReadMode,
             options: const {
+              OnboardingArabicReadMode.noArabicYet:
+                  'I do not know any Arabic yet',
               OnboardingArabicReadMode.arabicOnly: 'Arabic only',
               OnboardingArabicReadMode.arabicTransliteration:
                   'Arabic + Transliteration',
@@ -583,7 +600,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
             child: Column(
               children: [
                 Text(
-                  'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ',
+                  _previewArabicForHarakat(_harakatChoice),
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontFamily: 'AmiriQuran',
@@ -592,7 +609,8 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
                   ),
                 ),
                 const SizedBox(height: 8),
-                if (_arabicReadMode ==
+                if (_arabicReadMode == OnboardingArabicReadMode.noArabicYet ||
+                    _arabicReadMode ==
                         OnboardingArabicReadMode.arabicTransliteration ||
                     _arabicReadMode ==
                         OnboardingArabicReadMode
@@ -622,6 +640,22 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
           'Choose your preferred reminders for prayer and daily spiritual routines.',
       child: ListView(
         children: [
+          Row(
+            children: [
+              const Expanded(
+                child: Text(
+                  'Prayer reminder styles',
+                  style: TextStyle(fontWeight: FontWeight.w700),
+                ),
+              ),
+              IconButton(
+                tooltip: 'Reminder help',
+                onPressed: _showReminderHelp,
+                icon: const Icon(Icons.help_outline_rounded),
+              ),
+            ],
+          ),
+          const SizedBox(height: 4),
           ..._prayerReminders.keys.map(
             (prayer) => Padding(
               padding: const EdgeInsets.only(bottom: 8),
@@ -702,7 +736,8 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
           _FeatureInfoCard(
             icon: Icons.groups_rounded,
             title: 'Family profiles',
-            subtitle: 'Create profiles for family members.',
+            subtitle:
+                'Create profiles for family members from the Profiles page.',
           ),
           SizedBox(height: 8),
           _FeatureInfoCard(
@@ -1084,7 +1119,9 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
     profileSettings.setReflectionReminders(_dailyLessonReminder);
 
     quranReaderSettings.setShowTransliteration(
-      _arabicReadMode == OnboardingArabicReadMode.arabicTransliteration ||
+      _arabicReadMode == OnboardingArabicReadMode.noArabicYet ||
+          _arabicReadMode ==
+              OnboardingArabicReadMode.arabicTransliteration ||
           _arabicReadMode ==
               OnboardingArabicReadMode.arabicTransliterationTranslation,
     );
@@ -1171,6 +1208,62 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
         // Stored explicitly in onboarding preferences for future platform-specific behavior.
         return PrayerNotificationMode.adhanWithSound;
     }
+  }
+
+  String _previewArabicForHarakat(OnboardingHarakatChoice choice) {
+    switch (choice) {
+      case OnboardingHarakatChoice.full:
+        return 'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ';
+      case OnboardingHarakatChoice.minimal:
+        return 'بسمِ اللهِ الرحمنِ الرحيم';
+      case OnboardingHarakatChoice.none:
+        return 'بسم الله الرحمن الرحيم';
+    }
+  }
+
+  void _showReminderHelp() {
+    showModalBottomSheet<void>(
+      context: context,
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      builder: (context) => SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
+          child: PremiumCard(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Adhan reminder options',
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+                const SizedBox(height: 10),
+                const Text(
+                  'Notification only: a standard reminder without adhan audio.',
+                ),
+                const SizedBox(height: 8),
+                const Text(
+                  'Adhan notification: sends a reminder with adhan-style audio when the prayer begins.',
+                ),
+                const SizedBox(height: 8),
+                const Text(
+                  'Force Adhan: will play Adhan audio even if the phone is set to silent.',
+                ),
+                const SizedBox(height: 14),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
+                    onPressed: () => Navigator.of(context).pop(),
+                    child: const Text('Close'),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 
   String _translationCodeForLanguage(String languageChoiceId) {
