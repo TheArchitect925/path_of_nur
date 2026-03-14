@@ -79,6 +79,43 @@ class DhikrSection extends ConsumerWidget {
     );
   }
 
+  void _addManualCount(BuildContext context, WidgetRef ref) {
+    final controller = TextEditingController();
+    showDialog<void>(
+      context: context,
+      builder: (dialogContext) {
+        return AlertDialog(
+          title: const Text('Add Dhikr Manually'),
+          content: TextField(
+            controller: controller,
+            keyboardType: TextInputType.number,
+            autofocus: true,
+            decoration: const InputDecoration(
+              border: OutlineInputBorder(),
+              hintText: 'Enter completed count',
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(dialogContext).pop(),
+              child: const Text('Cancel'),
+            ),
+            FilledButton(
+              onPressed: () {
+                final value = int.tryParse(controller.text.trim());
+                if (value != null && value > 0) {
+                  ref.read(dhikrControllerProvider.notifier).addManualCount(value);
+                }
+                Navigator.of(dialogContext).pop();
+              },
+              child: const Text('Add'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(dhikrControllerProvider);
@@ -174,19 +211,25 @@ class DhikrSection extends ConsumerWidget {
                     style: TextStyle(color: AppColors.success),
                   ),
                 ),
-              Row(
+              Wrap(
+                spacing: AppSpacing.s,
+                runSpacing: AppSpacing.s,
+                crossAxisAlignment: WrapCrossAlignment.center,
                 children: [
                   IconButton(
                     onPressed: notifier.undo,
                     icon: const Icon(Icons.undo_rounded),
                     tooltip: 'Undo one',
                   ),
-                  const SizedBox(width: AppSpacing.s),
+                  TextButton.icon(
+                    onPressed: () => _addManualCount(context, ref),
+                    icon: const Icon(Icons.edit_note_rounded),
+                    label: const Text('Add manually'),
+                  ),
                   TextButton(
                     onPressed: () => _confirmReset(context, ref),
                     child: const Text('Reset'),
                   ),
-                  const Spacer(),
                   ElevatedButton(
                     onPressed: notifier.finishSession,
                     child: const Text('Finish Session'),

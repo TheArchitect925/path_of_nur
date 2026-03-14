@@ -4,6 +4,8 @@ PODS:
     - FlutterMacOS
   - audio_session (0.0.1):
     - Flutter
+  - camera_avfoundation (0.0.1):
+    - Flutter
   - Flutter (1.0.0)
   - flutter_compass (0.0.1):
     - Flutter
@@ -16,11 +18,87 @@ PODS:
   - geolocator_apple (1.2.0):
     - Flutter
     - FlutterMacOS
+  - google_mlkit_commons (0.11.1):
+    - Flutter
+    - MLKitVision (~> 10.0.0)
+  - google_mlkit_image_labeling (0.14.2):
+    - Flutter
+    - google_mlkit_commons
+    - GoogleMLKit/ImageLabeling (~> 9.0.0)
+    - GoogleMLKit/ImageLabelingCustom (~> 9.0.0)
+  - GoogleDataTransport (10.1.0):
+    - nanopb (~> 3.30910.0)
+    - PromisesObjC (~> 2.4)
+  - GoogleMLKit/ImageLabeling (9.0.0):
+    - GoogleMLKit/MLKitCore
+    - MLKitImageLabeling (~> 8.0.0)
+  - GoogleMLKit/ImageLabelingCustom (9.0.0):
+    - GoogleMLKit/MLKitCore
+    - MLKitImageLabelingCustom (~> 8.0.0)
+  - GoogleMLKit/MLKitCore (9.0.0):
+    - MLKitCommon (~> 14.0.0)
+  - GoogleToolboxForMac/Defines (4.2.1)
+  - GoogleToolboxForMac/Logger (4.2.1):
+    - GoogleToolboxForMac/Defines (= 4.2.1)
+  - "GoogleToolboxForMac/NSData+zlib (4.2.1)":
+    - GoogleToolboxForMac/Defines (= 4.2.1)
+  - GoogleUtilities/Environment (8.1.0):
+    - GoogleUtilities/Privacy
+  - GoogleUtilities/Logger (8.1.0):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Privacy
+  - GoogleUtilities/Privacy (8.1.0)
+  - GoogleUtilities/UserDefaults (8.1.0):
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Privacy
+  - GTMSessionFetcher/Core (3.5.0)
+  - home_widget (0.0.1):
+    - Flutter
   - integration_test (0.0.1):
     - Flutter
   - just_audio (0.0.1):
     - Flutter
     - FlutterMacOS
+  - MLImage (1.0.0-beta8)
+  - MLKitCommon (14.0.0):
+    - GoogleDataTransport (~> 10.0)
+    - GoogleToolboxForMac/Logger (< 5.0, >= 4.2.1)
+    - "GoogleToolboxForMac/NSData+zlib (< 5.0, >= 4.2.1)"
+    - GoogleUtilities/Logger (~> 8.0)
+    - GoogleUtilities/UserDefaults (~> 8.0)
+    - GTMSessionFetcher/Core (< 4.0, >= 3.3.2)
+  - MLKitImageLabeling (8.0.0):
+    - MLKitCommon (~> 14.0)
+    - MLKitImageLabelingCommon (~> 10.0)
+    - MLKitVision (~> 10.0)
+    - MLKitVisionKit (~> 11.0)
+  - MLKitImageLabelingCommon (10.0.0):
+    - MLKitCommon (~> 14.0)
+    - MLKitVision (~> 10.0)
+  - MLKitImageLabelingCustom (8.0.0):
+    - MLKitCommon (~> 14.0)
+    - MLKitImageLabelingCommon (~> 10.0)
+    - MLKitVision (~> 10.0)
+    - MLKitVisionKit (~> 11.0)
+  - MLKitObjectDetectionCommon (10.0.0):
+    - MLKitCommon (~> 14.0)
+    - MLKitVision (~> 10.0)
+  - MLKitVision (10.0.0):
+    - GoogleToolboxForMac/Logger (< 5.0, >= 4.2.1)
+    - "GoogleToolboxForMac/NSData+zlib (< 5.0, >= 4.2.1)"
+    - GTMSessionFetcher/Core (< 4.0, >= 3.3.2)
+    - MLImage (= 1.0.0-beta8)
+    - MLKitCommon (~> 14.0)
+  - MLKitVisionKit (11.0.0):
+    - MLKitCommon (~> 14.0)
+    - MLKitImageLabelingCommon (~> 10.0)
+    - MLKitObjectDetectionCommon (~> 10.0)
+    - MLKitVision (~> 10.0)
+  - nanopb (3.30910.0):
+    - nanopb/decode (= 3.30910.0)
+    - nanopb/encode (= 3.30910.0)
+  - nanopb/decode (3.30910.0)
+  - nanopb/encode (3.30910.0)
   - package_info_plus (0.4.5):
     - Flutter
   - path_provider_foundation (0.0.1):
@@ -28,6 +106,7 @@ PODS:
     - FlutterMacOS
   - permission_handler_apple (9.3.0):
     - Flutter
+  - PromisesObjC (2.4.0)
   - quick_actions_ios (0.0.1):
     - Flutter
   - shared_preferences_foundation (0.0.1):
@@ -42,12 +121,16 @@ PODS:
 DEPENDENCIES:
   - audio_service (from `.symlinks/plugins/audio_service/darwin`)
   - audio_session (from `.symlinks/plugins/audio_session/ios`)
+  - camera_avfoundation (from `.symlinks/plugins/camera_avfoundation/ios`)
   - Flutter (from `Flutter`)
   - flutter_compass (from `.symlinks/plugins/flutter_compass/ios`)
   - flutter_local_notifications (from `.symlinks/plugins/flutter_local_notifications/ios`)
   - flutter_timezone (from `.symlinks/plugins/flutter_timezone/ios`)
   - flutter_tts (from `.symlinks/plugins/flutter_tts/ios`)
   - geolocator_apple (from `.symlinks/plugins/geolocator_apple/darwin`)
+  - google_mlkit_commons (from `.symlinks/plugins/google_mlkit_commons/ios`)
+  - google_mlkit_image_labeling (from `.symlinks/plugins/google_mlkit_image_labeling/ios`)
+  - home_widget (from `.symlinks/plugins/home_widget/ios`)
   - integration_test (from `.symlinks/plugins/integration_test/ios`)
   - just_audio (from `.symlinks/plugins/just_audio/darwin`)
   - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
@@ -58,11 +141,31 @@ DEPENDENCIES:
   - sqflite_darwin (from `.symlinks/plugins/sqflite_darwin/darwin`)
   - wakelock_plus (from `.symlinks/plugins/wakelock_plus/ios`)
 
+SPEC REPOS:
+  trunk:
+    - GoogleDataTransport
+    - GoogleMLKit
+    - GoogleToolboxForMac
+    - GoogleUtilities
+    - GTMSessionFetcher
+    - MLImage
+    - MLKitCommon
+    - MLKitImageLabeling
+    - MLKitImageLabelingCommon
+    - MLKitImageLabelingCustom
+    - MLKitObjectDetectionCommon
+    - MLKitVision
+    - MLKitVisionKit
+    - nanopb
+    - PromisesObjC
+
 EXTERNAL SOURCES:
   audio_service:
     :path: ".symlinks/plugins/audio_service/darwin"
   audio_session:
     :path: ".symlinks/plugins/audio_session/ios"
+  camera_avfoundation:
+    :path: ".symlinks/plugins/camera_avfoundation/ios"
   Flutter:
     :path: Flutter
   flutter_compass:
@@ -75,6 +178,12 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_tts/ios"
   geolocator_apple:
     :path: ".symlinks/plugins/geolocator_apple/darwin"
+  google_mlkit_commons:
+    :path: ".symlinks/plugins/google_mlkit_commons/ios"
+  google_mlkit_image_labeling:
+    :path: ".symlinks/plugins/google_mlkit_image_labeling/ios"
+  home_widget:
+    :path: ".symlinks/plugins/home_widget/ios"
   integration_test:
     :path: ".symlinks/plugins/integration_test/ios"
   just_audio:
@@ -97,22 +206,41 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   audio_service: aa99a6ba2ae7565996015322b0bb024e1d25c6fd
   audio_session: 9bb7f6c970f21241b19f5a3658097ae459681ba0
+  camera_avfoundation: 5675ca25298b6f81fa0a325188e7df62cc217741
   Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
   flutter_compass: b236ab69b61545cce89fd58527f401a7587d5cc1
   flutter_local_notifications: ad39620c743ea4c15127860f4b5641649a988100
   flutter_timezone: 7c838e17ffd4645d261e87037e5bebf6d38fe544
   flutter_tts: 35ac3c7d42412733e795ea96ad2d7e05d0a75113
   geolocator_apple: ab36aa0e8b7d7a2d7639b3b4e48308394e8cef5e
+  google_mlkit_commons: a5e4ffae5bc59ea4c7b9025dc72cb6cb79dc1166
+  google_mlkit_image_labeling: 6f6fdb11c14600e01898e59a8c4413b255ede272
+  GoogleDataTransport: aae35b7ea0c09004c3797d53c8c41f66f219d6a7
+  GoogleMLKit: b1eee21a41c57704fe72483b15c85cb2c0cd7444
+  GoogleToolboxForMac: d1a2cbf009c453f4d6ded37c105e2f67a32206d8
+  GoogleUtilities: 00c88b9a86066ef77f0da2fab05f65d7768ed8e1
+  GTMSessionFetcher: 5aea5ba6bd522a239e236100971f10cb71b96ab6
+  home_widget: f169fc41fd807b4d46ab6615dc44d62adbf9f64f
   integration_test: 4a889634ef21a45d28d50d622cf412dc6d9f586e
   just_audio: 4e391f57b79cad2b0674030a00453ca5ce817eed
+  MLImage: 0de5c6c2bf9e93b80ef752e2797f0836f03b58c0
+  MLKitCommon: 47d47b50a031d00db62f1b0efe5a1d8b09a3b2e6
+  MLKitImageLabeling: 739591b1b69ebab735e97fa1b4ce37cea8361bb7
+  MLKitImageLabelingCommon: 616b0c69b3e302720cfb65903da50dc2e697b915
+  MLKitImageLabelingCustom: 43cf5d49fb762adb93e3108cb55c81a8ec005d57
+  MLKitObjectDetectionCommon: 0639341c7cbb44327dac9a23c473d2484d3169dd
+  MLKitVision: 39a5a812db83c4a0794445088e567f3631c11961
+  MLKitVisionKit: 316cd349468797ef4e7fd785bf658ca838984de3
+  nanopb: fad817b59e0457d11a5dfbde799381cd727c1275
   package_info_plus: af8e2ca6888548050f16fa2f1938db7b5a5df499
   path_provider_foundation: 080d55be775b7414fd5a5ef3ac137b97b097e564
   permission_handler_apple: 4ed2196e43d0651e8ff7ca3483a069d469701f2d
+  PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
   quick_actions_ios: 500fcc11711d9f646739093395c4ae8eec25f779
   shared_preferences_foundation: 7036424c3d8ec98dfe75ff1667cb0cd531ec82bb
   sqflite_darwin: 20b2a3a3b70e43edae938624ce550a3cbf66a3d0
   wakelock_plus: e29112ab3ef0b318e58cfa5c32326458be66b556
 
-PODFILE CHECKSUM: 50fd0505f665bfa50c65bca6a6da7109c67dd0c6
+PODFILE CHECKSUM: 3b6db858c2ca83af82c9b1a2a6874fcbed345aaa
 
 COCOAPODS: 1.16.2

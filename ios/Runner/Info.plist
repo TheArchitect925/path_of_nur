@@ -40,7 +40,9 @@
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Path of Nūr may use location when allowed to keep prayer timing reminders accurate during daily movement.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Path of Nūr uses your location to calculate accurate prayer times, Qibla direction, and nearby mosque features.</string>
+	<string>Path of Nūr uses your location to calculate accurate prayer times, Qibla direction, nearby mosque features, and private creation observations.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Path of Nūr uses the camera for private, on-device Creation Explorer detection and observation journaling.</string>
 	<key>NSSupportsLiveActivities</key>
 	<true/>
 	<key>NSSupportsLiveActivitiesFrequentUpdates</key>

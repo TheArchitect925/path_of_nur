@@ -9,6 +9,7 @@ import '../../../shared/widgets/quran_navigation.dart';
 import '../../../shared/widgets/quran_quote_block.dart';
 import '../application/growth_models.dart';
 import '../application/growth_providers.dart';
+import 'growth_habits_page.dart';
 import 'growth_journey_page.dart';
 import 'growth_paths_page.dart';
 import 'growth_reflection_page.dart';
@@ -165,7 +166,7 @@ class GrowthHomePage extends ConsumerWidget {
             child: switch (tab) {
               GrowthInternalTab.today => const GrowthTodayPage(),
               GrowthInternalTab.paths => const GrowthPathsPage(),
-              GrowthInternalTab.habits => const GrowthTodayPage(),
+              GrowthInternalTab.habits => const GrowthHabitsPage(),
               GrowthInternalTab.journey => const GrowthJourneyPage(),
               GrowthInternalTab.reflection => const GrowthReflectionPage(),
             },

@@ -1478,6 +1478,7 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
         .storageContext
         .findRenderObject();
     final previousOffset = _scrollController.offset;
+    final viewportHeight = MediaQuery.sizeOf(context).height;
 
     var didFallback = false;
     if (listRenderObject != null) {
@@ -1491,8 +1492,7 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
             .clamp(
               _scrollController.position.minScrollExtent,
               _scrollController.position.maxScrollExtent,
-            )
-            as double;
+            );
         if ((targetOffset - previousOffset).abs() > 1) {
           didFallback = true;
           await _scrollController.animateTo(
@@ -1507,6 +1507,7 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
     }
 
     if (!didFallback) {
+      if (!targetContext.mounted) return;
       await Scrollable.ensureVisible(
         targetContext,
         duration: const Duration(milliseconds: 340),
@@ -1518,7 +1519,6 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
     if (retries > 0) {
       final top = renderObject.localToGlobal(Offset.zero).dy;
       final bottom = top + renderObject.size.height;
-      final viewportHeight = MediaQuery.of(context).size.height;
       final visible = bottom >= 0 && top <= viewportHeight;
       if (!visible &&
           (_scrollController.offset - previousOffset).abs() < 0.5) {

@@ -22,6 +22,18 @@ const String oceanActionHabitCompleted = 'habit_completed';
 const String oceanActionReflectionCompleted = 'reflection_completed';
 const String oceanActionSalahTrainingCompleted = 'salah_training_completed';
 const String oceanActionJournalEntryCompleted = 'journal_entry_completed';
+const String oceanActionCelestialCardOpened = 'celestial_card_opened';
+const String oceanActionSkyExplorerOpened = 'sky_explorer_opened';
+const String oceanActionCelestialVerseOpened = 'celestial_verse_opened';
+const String oceanActionCelestialObservationSaved =
+    'celestial_observation_saved';
+const String oceanActionCreationExplorerOpened = 'creation_explorer_opened';
+const String oceanActionCreationObservationSaved =
+    'creation_observation_saved';
+const String oceanActionCreationReflectionWritten =
+    'creation_reflection_written';
+const String oceanActionCreationChallengeCompleted =
+    'creation_challenge_completed';
 
 const String oceanSourceHome = 'home';
 const String oceanSourcePrayer = 'prayer';
@@ -34,6 +46,8 @@ const String oceanSourceSalahTrainer = 'salah_trainer';
 const String oceanSourceDua = 'dua';
 const String oceanSourceNotes = 'notes';
 const String oceanSourceGrowth = 'growth';
+const String oceanSourceCelestial = 'celestial';
+const String oceanSourceCreation = 'creation';
 
 enum _OceanDropScope { oncePerDay, oncePerWeek, onceLifetime, perEvent }
 
@@ -538,6 +552,11 @@ class OceanDropService extends StateNotifier<OceanDropsState> {
       case oceanActionMakeupPrayerCompleted:
       case oceanActionOptionalPrayerCompleted:
       case oceanActionHabitCompleted:
+      case oceanActionQuranPageCompleted:
+      case oceanActionCelestialCardOpened:
+      case oceanActionSkyExplorerOpened:
+      case oceanActionCelestialVerseOpened:
+      case oceanActionCreationExplorerOpened:
         return _OceanDropScope.oncePerDay;
       case oceanActionLearningSegmentCompleted:
       case oceanActionLessonCompleted:
@@ -548,11 +567,13 @@ class OceanDropService extends StateNotifier<OceanDropsState> {
       case oceanActionQuranSurahCompleted:
       case oceanActionSalahTrainingCompleted:
         return _OceanDropScope.onceLifetime;
-      case oceanActionQuranPageCompleted:
-        return _OceanDropScope.oncePerDay;
       case oceanActionDhikrSetCompleted:
       case oceanActionReflectionCompleted:
       case oceanActionJournalEntryCompleted:
+      case oceanActionCelestialObservationSaved:
+      case oceanActionCreationObservationSaved:
+      case oceanActionCreationReflectionWritten:
+      case oceanActionCreationChallengeCompleted:
         return _OceanDropScope.perEvent;
       case oceanActionDhikrFreeHundredReached:
         return _OceanDropScope.perEvent;

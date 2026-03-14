@@ -53,6 +53,7 @@ class LocalNotificationService {
 
     const initSettings = InitializationSettings(
       iOS: DarwinInitializationSettings(),
+      macOS: DarwinInitializationSettings(),
       android: AndroidInitializationSettings(_launcherIcon),
     );
 
@@ -61,6 +62,12 @@ class LocalNotificationService {
     await _plugin
         .resolvePlatformSpecificImplementation<
           IOSFlutterLocalNotificationsPlugin
+        >()
+        ?.requestPermissions(alert: true, badge: true, sound: true);
+
+    await _plugin
+        .resolvePlatformSpecificImplementation<
+          MacOSFlutterLocalNotificationsPlugin
         >()
         ?.requestPermissions(alert: true, badge: true, sound: true);
 
@@ -172,6 +179,44 @@ class LocalNotificationService {
       }
     }
     await _store.setJsonList(_scheduledGrowthIdsKey, retained..sort());
+  }
+
+  Future<void> showFastingMomentNotification({
+    required String id,
+    required String title,
+    required String body,
+  }) async {
+    await ensureInitialized();
+    await _plugin.show(
+      _notificationId('fasting.moment.$id'),
+      title,
+      body,
+      const NotificationDetails(
+        android: AndroidNotificationDetails(
+          'fasting_moments',
+          'Fasting Moments',
+          channelDescription:
+              'Time-sensitive reminders for beginning and ending the fast',
+          importance: Importance.max,
+          priority: Priority.high,
+          icon: _launcherIcon,
+          color: _notificationAccent,
+          colorized: true,
+          styleInformation: BigTextStyleInformation(''),
+          playSound: true,
+        ),
+        iOS: DarwinNotificationDetails(
+          presentAlert: true,
+          presentBadge: true,
+          presentSound: true,
+          presentBanner: true,
+          presentList: true,
+          interruptionLevel: InterruptionLevel.timeSensitive,
+          subtitle: 'Path of Nur',
+          threadIdentifier: 'fasting_moments',
+        ),
+      ),
+    );
   }
 
   NotificationDetails _notificationDetails(ReminderPlanItem item) {

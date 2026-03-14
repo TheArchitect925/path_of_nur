@@ -375,6 +375,16 @@ class _LessonStepBody extends StatelessWidget {
         ),
         const SizedBox(height: 16),
         Text(step.explanation),
+        if (step.sourceReference != null) ...[
+          const SizedBox(height: 8),
+          Text(
+            'Source: ${step.sourceReference}',
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              color: AppColors.onSurfaceSubtle,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ],
         if (step.helperText != null) ...[
           const SizedBox(height: 8),
           Text(
@@ -446,6 +456,17 @@ class _LessonStepBody extends StatelessWidget {
                               Text(
                                 example.meaning!,
                                 style: Theme.of(context).textTheme.bodySmall,
+                              ),
+                            if (example.verseReference != null)
+                              Padding(
+                                padding: const EdgeInsets.only(top: 4),
+                                child: Text(
+                                  'Source: ${example.verseReference}',
+                                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                                    color: AppColors.onSurfaceSubtle,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
                               ),
                             if (visualModeEnabled && example.visualAnchor != null)
                               Padding(

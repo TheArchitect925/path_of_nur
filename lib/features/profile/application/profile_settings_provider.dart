@@ -282,6 +282,9 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
         break;
       }
     }
+    if (appThemeMode == AppThemeMode.calmBeautiful) {
+      appThemeMode = AppThemeMode.defaultMode;
+    }
 
     state = state.copyWith(
       themePreference: theme,

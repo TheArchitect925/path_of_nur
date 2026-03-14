@@ -23,7 +23,7 @@ class OnboardingPage extends ConsumerStatefulWidget {
 }
 
 class _OnboardingPageState extends ConsumerState<OnboardingPage> {
-  static const _lastIndex = 15;
+  static const _lastIndex = 14;
 
   late final PageController _controller;
   late final TextEditingController _nameController;
@@ -67,11 +67,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
   bool _dailyQuranReminder = true;
   bool _dailyLessonReminder = true;
 
-  final Set<String> _trackingModules = <String>{
-    'Salah tracking',
-    'Qur’an reading progress',
-    'Learning progress',
-  };
+  final Set<String> _trackingModules = <String>{};
 
   OnboardingDhikrHapticLevel _dhikrHaptic = OnboardingDhikrHapticLevel.light;
   OnboardingDhikrSound _dhikrSound = OnboardingDhikrSound.softClick;
@@ -84,9 +80,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
   void initState() {
     super.initState();
     _controller = PageController();
-    _nameController = TextEditingController(
-      text: ref.read(userProfileProvider).name,
-    );
+    _nameController = TextEditingController();
 
     final existing = ref.read(onboardingPreferencesProvider);
     if (existing != null) {
@@ -164,6 +158,9 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
 
   @override
   Widget build(BuildContext context) {
+    final reduceMotion = ref.watch(
+      profileSettingsProvider.select((value) => value.reduceMotion),
+    );
     final showSettingsHint = _index > 0 && _index < _lastIndex && _index != 11;
 
     return Scaffold(
@@ -205,12 +202,20 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
                       },
                       itemBuilder: (context, pageIndex) {
                         final page = _buildPage(pageIndex);
+                        if (reduceMotion) return page;
                         return TweenAnimationBuilder<double>(
                           key: ValueKey('onboarding-step-$pageIndex'),
                           tween: Tween(begin: 0, end: 1),
-                          duration: const Duration(milliseconds: 320),
-                          builder: (context, opacity, child) {
-                            return Opacity(opacity: opacity, child: child);
+                          duration: const Duration(milliseconds: 260),
+                          curve: Curves.easeOutCubic,
+                          builder: (context, value, child) {
+                            return Opacity(
+                              opacity: value,
+                              child: Transform.translate(
+                                offset: Offset(0, (1 - value) * 10),
+                                child: child,
+                              ),
+                            );
                           },
                           child: page,
                         );
@@ -291,10 +296,8 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
       case 12:
         return _dhikrFeedbackPage();
       case 13:
-        return _greetingPreferencePage();
+        return _identityPage();
       case 14:
-        return _namePage();
-      case 15:
         return _finalWelcomePage();
       default:
         return const SizedBox.shrink();
@@ -839,28 +842,37 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
     );
   }
 
-  Widget _greetingPreferencePage() {
-    return _choicePage<UserSex>(
-      title: 'How would you like to be addressed?',
-      subtitle:
-          'This helps us personalize messages and language throughout the app.',
-      value: _sex,
-      options: const {UserSex.brother: 'Brother', UserSex.sister: 'Sister'},
-      onChanged: (value) => setState(() => _sex = value),
-    );
-  }
-
-  Widget _namePage() {
+  Widget _identityPage() {
     return _stepCard(
-      title: 'What is your name?',
-      subtitle: 'This helps personalize your experience in Path of Nur.',
+      title: 'How should we address you?',
+      subtitle:
+          'Choose your greeting and add your name if you would like a more personal welcome.',
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          const Text(
+            'Greeting',
+            style: TextStyle(fontWeight: FontWeight.w700),
+          ),
+          const SizedBox(height: 6),
+          _choiceRow<UserSex>(
+            value: _sex,
+            options: const {
+              UserSex.brother: 'Brother',
+              UserSex.sister: 'Sister',
+            },
+            onChanged: (value) => setState(() => _sex = value),
+          ),
+          const SizedBox(height: 12),
+          const Text(
+            'Name',
+            style: TextStyle(fontWeight: FontWeight.w700),
+          ),
+          const SizedBox(height: 6),
           TextField(
             controller: _nameController,
             decoration: const InputDecoration(
-              hintText: 'Enter your name',
+              hintText: 'Optional',
               border: OutlineInputBorder(),
             ),
           ),
@@ -868,7 +880,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
           Opacity(
             opacity: 0.7,
             child: Text(
-              'Your name is only used to personalize your experience within the app.',
+              'Your name is optional and only used to personalize your experience within the app.',
               style: Theme.of(context).textTheme.bodySmall,
             ),
           ),
@@ -1074,8 +1086,6 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
 
   void _next() {
     if (_index == 7 && _growthInterests.isEmpty) return;
-    if (_index == 10 && _trackingModules.isEmpty) return;
-    if (_index == 14 && _nameController.text.trim().isEmpty) return;
     if (_index >= _lastIndex) return;
     _controller.nextPage(
       duration: const Duration(milliseconds: 240),

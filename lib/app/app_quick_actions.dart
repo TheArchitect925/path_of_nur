@@ -13,7 +13,12 @@ const _qaLogGratitude = 'growth.log_gratitude';
 const _qaDailyLearning = 'learn.prophets.daily_learning';
 
 final appQuickActionsBootstrapProvider = Provider<void>((ref) {
-  if (kIsWeb) return;
+  if (kIsWeb ||
+      defaultTargetPlatform == TargetPlatform.macOS ||
+      defaultTargetPlatform == TargetPlatform.windows ||
+      defaultTargetPlatform == TargetPlatform.linux) {
+    return;
+  }
 
   final quickActions = const QuickActions();
   final router = ref.read(appRouterProvider);

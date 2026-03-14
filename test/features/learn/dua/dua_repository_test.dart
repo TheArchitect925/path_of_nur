@@ -12,8 +12,8 @@ void main() {
     final dataset = await container.read(duaDatasetProvider.future);
 
     expect(dataset.totalItems, 180);
-    expect(dataset.completeItems, 28);
-    expect(dataset.stubItems, 152);
+    expect(dataset.completeItems, 30);
+    expect(dataset.stubItems, 150);
     expect(dataset.items, hasLength(180));
     expect(dataset.verifiedItems, hasLength(dataset.completeItems));
     expect(

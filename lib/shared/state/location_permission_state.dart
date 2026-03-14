@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -37,11 +38,22 @@ class LocationPermissionNotifier
   }
 
   Future<void> refreshStatus() async {
+    if (!_supportsPermissionHandlerLocation()) {
+      state = state.copyWith(status: PermissionStatus.denied);
+      return;
+    }
     final status = await Permission.locationWhenInUse.status;
     state = state.copyWith(status: status);
   }
 
   Future<void> requestWhileUsingApp() async {
+    if (!_supportsPermissionHandlerLocation()) {
+      state = state.copyWith(
+        status: PermissionStatus.denied,
+        isLoading: false,
+      );
+      return;
+    }
     state = state.copyWith(isLoading: true);
     final status = await Permission.locationWhenInUse.request();
     state = state.copyWith(status: status, isLoading: false);
@@ -57,3 +69,8 @@ final locationPermissionProvider = StateNotifierProvider<
   (ref) => LocationPermissionNotifier(),
 );
 
+bool _supportsPermissionHandlerLocation() {
+  if (kIsWeb) return false;
+  return defaultTargetPlatform == TargetPlatform.android ||
+      defaultTargetPlatform == TargetPlatform.iOS;
+}

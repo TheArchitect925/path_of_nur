@@ -20,6 +20,8 @@ struct PrayerCountdownAttributes: ActivityAttributes {
     var nextPrayerArabicName: String
     var nextRemainingSeconds: Int
     var nextTargetAtEpoch: Int
+    var useStableDynamicIsland: Bool
+    var useStableLockScreenWidget: Bool
   }
 
   var nextPrayerId: String
@@ -41,6 +43,23 @@ struct QuranPlaybackAttributes: ActivityAttributes {
   var sessionId: String
 }
 
+struct FastingCountdownAttributes: ActivityAttributes {
+  public struct ContentState: Codable, Hashable {
+    var title: String
+    var arabicTitle: String
+    var metricLabel: String
+    var remainingSeconds: Int
+    var targetAtEpoch: Int
+    var targetRoute: String
+    var showDua: Bool
+    var duaTitle: String
+    var duaArabic: String
+    var duaTranslation: String
+  }
+
+  var entryId: String
+}
+
 struct PrayerLiveActivityWidget: Widget {
   var body: some WidgetConfiguration {
     ActivityConfiguration(for: PrayerCountdownAttributes.self) { context in
@@ -50,9 +69,17 @@ struct PrayerLiveActivityWidget: Widget {
     } dynamicIsland: { context in
       DynamicIsland {
         DynamicIslandExpandedRegion(.leading) {
-          Text(primaryPrayerName(context.state))
-            .font(.headline)
-            .foregroundStyle(Color(hex: 0xF3EEE5))
+          VStack(alignment: .leading, spacing: 2) {
+            Text(primaryPrayerLabel(context.state))
+              .font(.caption2)
+              .foregroundStyle(Color(hex: 0xA7B9C4))
+            Text(primaryPrayerName(context.state))
+              .font(.headline)
+              .foregroundStyle(Color(hex: 0xF3EEE5))
+              .lineLimit(1)
+              .minimumScaleFactor(0.82)
+          }
+          .fixedSize(horizontal: true, vertical: true)
         }
         DynamicIslandExpandedRegion(.trailing) {
           countdownText(
@@ -61,43 +88,46 @@ struct PrayerLiveActivityWidget: Widget {
             font: .headline
           )
             .foregroundStyle(Color(hex: 0xF3EEE5))
+            .fixedSize(horizontal: true, vertical: true)
         }
         DynamicIslandExpandedRegion(.bottom) {
-          VStack(spacing: 6) {
-            if context.state.showRamadanCountdown,
-               let ramadanName = context.state.ramadanPrayerName,
-               let ramadanArabic = context.state.ramadanPrayerArabicName,
-               let ramadanRemaining = context.state.ramadanRemainingSeconds {
+          if !context.state.useStableDynamicIsland {
+            HStack(alignment: .top, spacing: 10) {
+              if context.state.showRamadanCountdown,
+                 let ramadanName = context.state.ramadanPrayerName,
+                 let ramadanArabic = context.state.ramadanPrayerArabicName,
+                 let ramadanRemaining = context.state.ramadanRemainingSeconds {
+                _DynamicRow(
+                  label: "Ramadan",
+                  name: "Open Fast",
+                  arabicName: ramadanArabic.isEmpty ? ramadanName : ramadanArabic,
+                  valueLabel: "Iftar in",
+                  seconds: ramadanRemaining,
+                  targetEpoch: context.state.ramadanTargetAtEpoch
+                )
+              } else if context.state.showCurrentPrayer,
+                        let currentName = context.state.currentPrayerName,
+                        let currentArabic = context.state.currentPrayerArabicName,
+                        let currentRemaining = context.state.currentRemainingSeconds {
+                _DynamicRow(
+                  label: "Current",
+                  name: currentName,
+                  arabicName: currentArabic,
+                  valueLabel: "Ends in",
+                  seconds: currentRemaining,
+                  targetEpoch: context.state.nextTargetAtEpoch
+                )
+              }
               _DynamicRow(
-                label: "Ramadan",
-                name: "Open Fast",
-                arabicName: ramadanArabic.isEmpty ? ramadanName : ramadanArabic,
-                valueLabel: "Time to iftar",
-                seconds: ramadanRemaining,
-                targetEpoch: context.state.ramadanTargetAtEpoch
-              )
-            }
-            if context.state.showCurrentPrayer,
-               let currentName = context.state.currentPrayerName,
-               let currentArabic = context.state.currentPrayerArabicName,
-               let currentRemaining = context.state.currentRemainingSeconds {
-              _DynamicRow(
-                label: "Current Prayer",
-                name: currentName,
-                arabicName: currentArabic,
-                valueLabel: "Remaining time",
-                seconds: currentRemaining,
+                label: "Next",
+                name: context.state.nextPrayerName,
+                arabicName: context.state.nextPrayerArabicName,
+                valueLabel: "Starts in",
+                seconds: context.state.nextRemainingSeconds,
                 targetEpoch: context.state.nextTargetAtEpoch
               )
             }
-            _DynamicRow(
-              label: "Next Prayer",
-              name: context.state.nextPrayerName,
-              arabicName: context.state.nextPrayerArabicName,
-              valueLabel: "Starts in",
-              seconds: context.state.nextRemainingSeconds,
-              targetEpoch: context.state.nextTargetAtEpoch
-            )
+            .fixedSize(horizontal: true, vertical: true)
           }
         }
       } compactLeading: {
@@ -124,9 +154,15 @@ private struct PrayerLiveLockscreenCard: View {
   let state: PrayerCountdownAttributes.ContentState
 
   var body: some View {
-    ViewThatFits(in: .vertical) {
-      fullLayout
-      compactLayout
+    Group {
+      if state.useStableLockScreenWidget {
+        compactLayout
+      } else {
+        ViewThatFits(in: .vertical) {
+          fullLayout
+          compactLayout
+        }
+      }
     }
   }
 
@@ -179,15 +215,15 @@ private struct PrayerLiveLockscreenCard: View {
           prominent: false
         )
       }
-      .padding(.vertical, 12)
-      .padding(.horizontal, 12)
+      .padding(.vertical, 10)
+      .padding(.horizontal, 10)
     }
   }
 
   private var compactLayout: some View {
     ZStack {
       cardBackground
-      VStack(spacing: 8) {
+      VStack(spacing: 6) {
         if state.showRamadanCountdown,
            let ramadanName = state.ramadanPrayerName,
            let ramadanArabic = state.ramadanPrayerArabicName,
@@ -230,8 +266,8 @@ private struct PrayerLiveLockscreenCard: View {
           compact: true
         )
       }
-      .padding(.vertical, 10)
-      .padding(.horizontal, 12)
+      .padding(.vertical, 8)
+      .padding(.horizontal, 10)
     }
   }
 
@@ -286,7 +322,7 @@ private struct _PrayerSection: View {
   }
 
   var body: some View {
-    VStack(spacing: compact ? 2 : 4) {
+    VStack(spacing: compact ? 1 : 3) {
       Text(sectionLabel)
         .font(.caption2)
         .foregroundStyle(Color(hex: 0xA7B9C4))
@@ -314,7 +350,6 @@ private struct _PrayerSection: View {
           .foregroundStyle(Color(hex: 0xE8D9C0))
       }
     }
-    .frame(maxWidth: .infinity)
     .multilineTextAlignment(.center)
   }
 }
@@ -344,16 +379,179 @@ private struct _DynamicRow: View {
       }
         .foregroundStyle(Color(hex: 0xD8E6EA))
     }
-    .frame(maxWidth: .infinity)
+    .fixedSize(horizontal: true, vertical: true)
     .multilineTextAlignment(.center)
   }
+}
+
+private func primaryPrayerLabel(_ state: PrayerCountdownAttributes.ContentState) -> String {
+  if state.showRamadanCountdown {
+    return "Ramadan"
+  }
+  if state.showCurrentPrayer {
+    return "Current Prayer"
+  }
+  return "Next Prayer"
 }
 
 @main
 struct PrayerLiveActivityBundle: WidgetBundle {
   var body: some Widget {
     PrayerLiveActivityWidget()
+    FastingLiveActivityWidget()
     QuranPlaybackLiveActivityWidget()
+  }
+}
+
+struct FastingLiveActivityWidget: Widget {
+  var body: some WidgetConfiguration {
+    ActivityConfiguration(for: FastingCountdownAttributes.self) { context in
+      FastingLockscreenCard(state: context.state)
+        .widgetURL(URL(string: "pathofnur://\(context.state.targetRoute)"))
+        .activityBackgroundTint(Color(hex: 0x0D2030, alpha: 0.92))
+        .activitySystemActionForegroundColor(Color(hex: 0xD8C49A))
+    } dynamicIsland: { context in
+      DynamicIsland {
+        DynamicIslandExpandedRegion(.leading) {
+          VStack(alignment: .leading, spacing: 2) {
+            Text("Fast")
+              .font(.caption2)
+              .foregroundStyle(Color(hex: 0xA7B9C4))
+            Text(context.state.title)
+              .font(.headline)
+              .foregroundStyle(Color(hex: 0xF3EEE5))
+              .lineLimit(1)
+          }
+          .fixedSize(horizontal: true, vertical: true)
+        }
+        DynamicIslandExpandedRegion(.trailing) {
+          countdownText(
+            seconds: context.state.remainingSeconds,
+            targetEpoch: context.state.targetAtEpoch,
+            font: .headline,
+            compact: true
+          )
+            .foregroundStyle(Color(hex: 0xF3EEE5))
+        }
+        DynamicIslandExpandedRegion(.bottom) {
+          VStack(spacing: 4) {
+            if !context.state.arabicTitle.isEmpty {
+              Text(context.state.arabicTitle)
+                .font(.caption.weight(.semibold))
+                .foregroundStyle(Color(hex: 0xD8E6EA))
+                .lineLimit(1)
+            }
+            HStack(spacing: 4) {
+              Text(context.state.metricLabel)
+                .font(.caption2)
+                .foregroundStyle(Color(hex: 0xA7B9C4))
+              countdownText(
+                seconds: context.state.remainingSeconds,
+                targetEpoch: context.state.targetAtEpoch,
+                font: .caption.weight(.semibold)
+              )
+                .foregroundStyle(Color(hex: 0xE8D9C0))
+            }
+            if context.state.showDua {
+              Text(context.state.duaTitle)
+                .font(.caption2)
+                .foregroundStyle(Color(hex: 0xA7B9C4))
+            }
+          }
+          .fixedSize(horizontal: true, vertical: true)
+        }
+      } compactLeading: {
+        Text("Fast")
+          .font(.caption2)
+          .foregroundStyle(Color(hex: 0xE8D9C0))
+      } compactTrailing: {
+        countdownText(
+          seconds: context.state.remainingSeconds,
+          targetEpoch: context.state.targetAtEpoch,
+          font: .caption2,
+          compact: true
+        )
+          .foregroundStyle(Color(hex: 0xE8D9C0))
+      } minimal: {
+        Image(systemName: "moon.stars")
+          .foregroundStyle(Color(hex: 0xC6A978))
+      }
+      .widgetURL(URL(string: "pathofnur://\(context.state.targetRoute)"))
+    }
+  }
+}
+
+private struct FastingLockscreenCard: View {
+  let state: FastingCountdownAttributes.ContentState
+
+  var body: some View {
+    ZStack {
+      RoundedRectangle(cornerRadius: 18, style: .continuous)
+        .fill(
+          LinearGradient(
+            colors: [
+              Color(hex: 0x0B1D2A, alpha: 0.86),
+              Color(hex: 0x10313D, alpha: 0.82),
+              Color(hex: 0x112939, alpha: 0.80),
+            ],
+            startPoint: .topLeading,
+            endPoint: .bottomTrailing
+          )
+        )
+        .overlay(
+          RoundedRectangle(cornerRadius: 18, style: .continuous)
+            .stroke(Color(hex: 0x8CC4BF, alpha: 0.18), lineWidth: 1)
+        )
+
+      VStack(spacing: 8) {
+        Text("Fasting")
+          .font(.caption2.weight(.semibold))
+          .foregroundStyle(Color(hex: 0xA7B9C4))
+        Text(state.title)
+          .font(.title3.weight(.semibold))
+          .foregroundStyle(Color(hex: 0xF3EEE5))
+          .lineLimit(1)
+        if !state.arabicTitle.isEmpty {
+          Text(state.arabicTitle)
+            .font(.headline.weight(.medium))
+            .foregroundStyle(Color(hex: 0xD8E6EA))
+            .lineLimit(1)
+        }
+        HStack(spacing: 4) {
+          Text(state.metricLabel)
+            .font(.caption2)
+            .foregroundStyle(Color(hex: 0xA7B9C4))
+          countdownText(
+            seconds: state.remainingSeconds,
+            targetEpoch: state.targetAtEpoch,
+            font: .subheadline.weight(.semibold)
+          )
+            .foregroundStyle(Color(hex: 0xE8D9C0))
+        }
+        if state.showDua {
+          Divider()
+            .overlay(Color.white.opacity(0.14))
+            .padding(.horizontal, 8)
+          Text(state.duaTitle)
+            .font(.caption2)
+            .foregroundStyle(Color(hex: 0xA7B9C4))
+          if !state.duaArabic.isEmpty {
+            Text(state.duaArabic)
+              .font(.subheadline.weight(.medium))
+              .foregroundStyle(Color(hex: 0xF3EEE5))
+              .lineLimit(2)
+              .multilineTextAlignment(.center)
+          }
+          Text(state.duaTranslation)
+            .font(.caption)
+            .foregroundStyle(Color(hex: 0xD8E6EA))
+            .multilineTextAlignment(.center)
+            .lineLimit(3)
+        }
+      }
+      .padding(.vertical, 10)
+      .padding(.horizontal, 10)
+    }
   }
 }
 
@@ -432,9 +630,6 @@ private struct QuranPlaybackLockscreenCard: View {
         )
 
       VStack(spacing: 8) {
-        Text("Qur’an Playback")
-          .font(.caption2.weight(.semibold))
-          .foregroundStyle(Color(hex: 0xA7B9C4))
         Text("\(state.surahName) \(state.surahNumber):\(state.ayahNumber)")
           .font(.headline.weight(.semibold))
           .lineLimit(1)
@@ -548,15 +743,37 @@ private func countdownText(
   compact: Bool = false
 ) -> some View {
   if let targetEpoch {
-    let endDate = Date(timeIntervalSince1970: TimeInterval(targetEpoch))
-    Text(timerInterval: Date()...endDate, countsDown: true)
-      .font(font)
-      .monospacedDigit()
-      .multilineTextAlignment(.trailing)
+    _MinuteCountdownText(
+      targetEpoch: targetEpoch,
+      fallbackSeconds: seconds,
+      font: font,
+      compact: compact
+    )
   } else {
     Text(compact ? compactTimeLeft(seconds) : timeLeftText(seconds))
       .font(font)
       .monospacedDigit()
+  }
+}
+
+private struct _MinuteCountdownText: View {
+  let targetEpoch: Int
+  let fallbackSeconds: Int
+  let font: Font
+  let compact: Bool
+
+  var body: some View {
+    TimelineView(.periodic(from: .now, by: 60)) { timeline in
+      let remaining = max(
+        0,
+        Int(Date(timeIntervalSince1970: TimeInterval(targetEpoch)).timeIntervalSince(timeline.date))
+      )
+      let displaySeconds = remaining == 0 ? fallbackSeconds : remaining
+      Text(compact ? compactTimeLeft(displaySeconds) : timeLeftText(displaySeconds))
+        .font(font)
+        .monospacedDigit()
+        .multilineTextAlignment(.trailing)
+    }
   }
 }
 

@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 
 import 'package:adhan/adhan.dart' as adhan;
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
@@ -27,6 +28,213 @@ enum PrayerNotificationMode {
   reminderBeforeQaza,
 }
 
+enum PrayerTimeMode { calculatedAdjusted, manual }
+
+enum FridayReminderMode { normalDhuhr, customJumuah }
+
+class PrayerClockTimes {
+  const PrayerClockTimes({
+    this.fajrMinutes,
+    this.dhuhrMinutes,
+    this.asrMinutes,
+    this.maghribMinutes,
+    this.ishaMinutes,
+  });
+
+  final int? fajrMinutes;
+  final int? dhuhrMinutes;
+  final int? asrMinutes;
+  final int? maghribMinutes;
+  final int? ishaMinutes;
+
+  bool get isComplete =>
+      fajrMinutes != null &&
+      dhuhrMinutes != null &&
+      asrMinutes != null &&
+      maghribMinutes != null &&
+      ishaMinutes != null;
+
+  int? minuteForPrayer(String prayerId) {
+    switch (prayerId) {
+      case 'fajr':
+        return fajrMinutes;
+      case 'dhuhr':
+        return dhuhrMinutes;
+      case 'asr':
+        return asrMinutes;
+      case 'maghrib':
+        return maghribMinutes;
+      case 'isha':
+        return ishaMinutes;
+      default:
+        return null;
+    }
+  }
+
+  PrayerClockTimes copyWith({
+    int? fajrMinutes,
+    int? dhuhrMinutes,
+    int? asrMinutes,
+    int? maghribMinutes,
+    int? ishaMinutes,
+    bool clearFajr = false,
+    bool clearDhuhr = false,
+    bool clearAsr = false,
+    bool clearMaghrib = false,
+    bool clearIsha = false,
+  }) {
+    return PrayerClockTimes(
+      fajrMinutes: clearFajr ? null : fajrMinutes ?? this.fajrMinutes,
+      dhuhrMinutes: clearDhuhr ? null : dhuhrMinutes ?? this.dhuhrMinutes,
+      asrMinutes: clearAsr ? null : asrMinutes ?? this.asrMinutes,
+      maghribMinutes:
+          clearMaghrib ? null : maghribMinutes ?? this.maghribMinutes,
+      ishaMinutes: clearIsha ? null : ishaMinutes ?? this.ishaMinutes,
+    );
+  }
+
+  PrayerClockTimes withPrayerMinutes(String prayerId, int? minutes) {
+    switch (prayerId) {
+      case 'fajr':
+        return copyWith(fajrMinutes: minutes, clearFajr: minutes == null);
+      case 'dhuhr':
+        return copyWith(dhuhrMinutes: minutes, clearDhuhr: minutes == null);
+      case 'asr':
+        return copyWith(asrMinutes: minutes, clearAsr: minutes == null);
+      case 'maghrib':
+        return copyWith(
+          maghribMinutes: minutes,
+          clearMaghrib: minutes == null,
+        );
+      case 'isha':
+        return copyWith(ishaMinutes: minutes, clearIsha: minutes == null);
+      default:
+        return this;
+    }
+  }
+
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'fajrMinutes': fajrMinutes,
+        'dhuhrMinutes': dhuhrMinutes,
+        'asrMinutes': asrMinutes,
+        'maghribMinutes': maghribMinutes,
+        'ishaMinutes': ishaMinutes,
+      };
+
+  static PrayerClockTimes fromJson(dynamic raw) {
+    if (raw is! Map) return const PrayerClockTimes();
+    return PrayerClockTimes(
+      fajrMinutes: (raw['fajrMinutes'] as num?)?.toInt(),
+      dhuhrMinutes: (raw['dhuhrMinutes'] as num?)?.toInt(),
+      asrMinutes: (raw['asrMinutes'] as num?)?.toInt(),
+      maghribMinutes: (raw['maghribMinutes'] as num?)?.toInt(),
+      ishaMinutes: (raw['ishaMinutes'] as num?)?.toInt(),
+    );
+  }
+
+  static PrayerClockTimes fromSchedule(List<PrayerScheduleItem> schedule) {
+    int? minutesFor(String prayerId) {
+      final item = schedule.where((entry) => entry.id == prayerId).firstOrNull;
+      if (item == null) return null;
+      return item.offerDateTime.hour * 60 + item.offerDateTime.minute;
+    }
+
+    return PrayerClockTimes(
+      fajrMinutes: minutesFor('fajr'),
+      dhuhrMinutes: minutesFor('dhuhr'),
+      asrMinutes: minutesFor('asr'),
+      maghribMinutes: minutesFor('maghrib'),
+      ishaMinutes: minutesFor('isha'),
+    );
+  }
+}
+
+class PrayerTimeAdjustments {
+  const PrayerTimeAdjustments({
+    this.fajrOffsetMinutes = 0,
+    this.dhuhrOffsetMinutes = 0,
+    this.asrOffsetMinutes = 0,
+    this.maghribOffsetMinutes = 0,
+    this.ishaOffsetMinutes = 0,
+    this.lastUpdatedAt,
+  });
+
+  final int fajrOffsetMinutes;
+  final int dhuhrOffsetMinutes;
+  final int asrOffsetMinutes;
+  final int maghribOffsetMinutes;
+  final int ishaOffsetMinutes;
+  final DateTime? lastUpdatedAt;
+
+  int offsetForPrayer(String prayerId) {
+    switch (prayerId) {
+      case 'fajr':
+        return fajrOffsetMinutes;
+      case 'dhuhr':
+        return dhuhrOffsetMinutes;
+      case 'asr':
+        return asrOffsetMinutes;
+      case 'maghrib':
+        return maghribOffsetMinutes;
+      case 'isha':
+        return ishaOffsetMinutes;
+      default:
+        return 0;
+    }
+  }
+
+  bool get hasAnyAdjustment =>
+      fajrOffsetMinutes != 0 ||
+      dhuhrOffsetMinutes != 0 ||
+      asrOffsetMinutes != 0 ||
+      maghribOffsetMinutes != 0 ||
+      ishaOffsetMinutes != 0;
+
+  PrayerTimeAdjustments copyWith({
+    int? fajrOffsetMinutes,
+    int? dhuhrOffsetMinutes,
+    int? asrOffsetMinutes,
+    int? maghribOffsetMinutes,
+    int? ishaOffsetMinutes,
+    DateTime? lastUpdatedAt,
+    bool clearTimestamp = false,
+  }) {
+    return PrayerTimeAdjustments(
+      fajrOffsetMinutes: fajrOffsetMinutes ?? this.fajrOffsetMinutes,
+      dhuhrOffsetMinutes: dhuhrOffsetMinutes ?? this.dhuhrOffsetMinutes,
+      asrOffsetMinutes: asrOffsetMinutes ?? this.asrOffsetMinutes,
+      maghribOffsetMinutes: maghribOffsetMinutes ?? this.maghribOffsetMinutes,
+      ishaOffsetMinutes: ishaOffsetMinutes ?? this.ishaOffsetMinutes,
+      lastUpdatedAt: clearTimestamp
+          ? null
+          : (lastUpdatedAt ?? this.lastUpdatedAt),
+    );
+  }
+
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'fajrOffsetMinutes': fajrOffsetMinutes,
+        'dhuhrOffsetMinutes': dhuhrOffsetMinutes,
+        'asrOffsetMinutes': asrOffsetMinutes,
+        'maghribOffsetMinutes': maghribOffsetMinutes,
+        'ishaOffsetMinutes': ishaOffsetMinutes,
+        'lastUpdatedAt': lastUpdatedAt?.toIso8601String(),
+      };
+
+  static PrayerTimeAdjustments fromJson(dynamic raw) {
+    if (raw is! Map) return const PrayerTimeAdjustments();
+    return PrayerTimeAdjustments(
+      fajrOffsetMinutes: (raw['fajrOffsetMinutes'] as num?)?.toInt() ?? 0,
+      dhuhrOffsetMinutes: (raw['dhuhrOffsetMinutes'] as num?)?.toInt() ?? 0,
+      asrOffsetMinutes: (raw['asrOffsetMinutes'] as num?)?.toInt() ?? 0,
+      maghribOffsetMinutes:
+          (raw['maghribOffsetMinutes'] as num?)?.toInt() ?? 0,
+      ishaOffsetMinutes: (raw['ishaOffsetMinutes'] as num?)?.toInt() ?? 0,
+      lastUpdatedAt:
+          DateTime.tryParse(raw['lastUpdatedAt']?.toString() ?? ''),
+    );
+  }
+}
+
 class PrayerPreferences {
   const PrayerPreferences({
     required this.location,
@@ -35,6 +243,17 @@ class PrayerPreferences {
     this.useDeviceLocation = true,
     this.manualLatitude,
     this.manualLongitude,
+    this.useStableDynamicIsland = false,
+    this.useStableLockScreenWidget = false,
+    this.prayerTimeMode = PrayerTimeMode.calculatedAdjusted,
+    this.adjustments = const PrayerTimeAdjustments(),
+    this.manualTimes = const PrayerClockTimes(),
+    this.mosqueReferenceTimes = const PrayerClockTimes(),
+    this.jumuahOverrideEnabled = false,
+    this.jumuahTimeMinutes,
+    this.fridayReminderMode = FridayReminderMode.normalDhuhr,
+    this.activeProfileId = 'default',
+    this.lastModeSwitchAt,
   });
 
   final String location;
@@ -43,6 +262,17 @@ class PrayerPreferences {
   final bool useDeviceLocation;
   final double? manualLatitude;
   final double? manualLongitude;
+  final bool useStableDynamicIsland;
+  final bool useStableLockScreenWidget;
+  final PrayerTimeMode prayerTimeMode;
+  final PrayerTimeAdjustments adjustments;
+  final PrayerClockTimes manualTimes;
+  final PrayerClockTimes mosqueReferenceTimes;
+  final bool jumuahOverrideEnabled;
+  final int? jumuahTimeMinutes;
+  final FridayReminderMode fridayReminderMode;
+  final String activeProfileId;
+  final DateTime? lastModeSwitchAt;
 
   PrayerPreferences copyWith({
     String? location,
@@ -51,6 +281,19 @@ class PrayerPreferences {
     bool? useDeviceLocation,
     double? manualLatitude,
     double? manualLongitude,
+    bool? useStableDynamicIsland,
+    bool? useStableLockScreenWidget,
+    PrayerTimeMode? prayerTimeMode,
+    PrayerTimeAdjustments? adjustments,
+    PrayerClockTimes? manualTimes,
+    PrayerClockTimes? mosqueReferenceTimes,
+    bool? jumuahOverrideEnabled,
+    int? jumuahTimeMinutes,
+    FridayReminderMode? fridayReminderMode,
+    String? activeProfileId,
+    DateTime? lastModeSwitchAt,
+    bool clearJumuahTime = false,
+    bool clearLastModeSwitchAt = false,
     bool clearManualCoordinates = false,
   }) {
     return PrayerPreferences(
@@ -58,6 +301,24 @@ class PrayerPreferences {
       madhab: madhab ?? this.madhab,
       calculationMethod: calculationMethod ?? this.calculationMethod,
       useDeviceLocation: useDeviceLocation ?? this.useDeviceLocation,
+      useStableDynamicIsland:
+          useStableDynamicIsland ?? this.useStableDynamicIsland,
+      useStableLockScreenWidget:
+          useStableLockScreenWidget ?? this.useStableLockScreenWidget,
+      prayerTimeMode: prayerTimeMode ?? this.prayerTimeMode,
+      adjustments: adjustments ?? this.adjustments,
+      manualTimes: manualTimes ?? this.manualTimes,
+      mosqueReferenceTimes: mosqueReferenceTimes ?? this.mosqueReferenceTimes,
+      jumuahOverrideEnabled:
+          jumuahOverrideEnabled ?? this.jumuahOverrideEnabled,
+      jumuahTimeMinutes: clearJumuahTime
+          ? null
+          : jumuahTimeMinutes ?? this.jumuahTimeMinutes,
+      fridayReminderMode: fridayReminderMode ?? this.fridayReminderMode,
+      activeProfileId: activeProfileId ?? this.activeProfileId,
+      lastModeSwitchAt: clearLastModeSwitchAt
+          ? null
+          : lastModeSwitchAt ?? this.lastModeSwitchAt,
       manualLatitude: clearManualCoordinates
           ? null
           : manualLatitude ?? this.manualLatitude,
@@ -332,6 +593,223 @@ class PrayerSettingsController extends StateNotifier<PrayerSettingsState> {
     _save();
   }
 
+  void setStableDynamicIsland(bool value) {
+    state = state.copyWith(
+      preferences: state.preferences.copyWith(useStableDynamicIsland: value),
+    );
+    _save();
+  }
+
+  void setStableLockScreenWidget(bool value) {
+    state = state.copyWith(
+      preferences: state.preferences.copyWith(useStableLockScreenWidget: value),
+    );
+    _save();
+  }
+
+  void switchPrayerTimeMode({
+    required PrayerTimeMode mode,
+    required DateTime date,
+    required double latitude,
+    required double longitude,
+  }) {
+    var nextManualTimes = state.preferences.manualTimes;
+    if (mode == PrayerTimeMode.manual && !nextManualTimes.isComplete) {
+      final todaySchedule = buildPrayerScheduleForDate(
+        date: date,
+        latitude: latitude,
+        longitude: longitude,
+        settings: state.preferences.copyWith(
+          prayerTimeMode: PrayerTimeMode.calculatedAdjusted,
+        ),
+      );
+      nextManualTimes = PrayerClockTimes.fromSchedule(todaySchedule);
+    }
+    state = state.copyWith(
+      preferences: state.preferences.copyWith(
+        prayerTimeMode: mode,
+        manualTimes: nextManualTimes,
+        lastModeSwitchAt: DateTime.now(),
+      ),
+    );
+    _save();
+  }
+
+  String? updatePrayerAdjustment({
+    required String prayerId,
+    required int offsetMinutes,
+    required DateTime date,
+    required double latitude,
+    required double longitude,
+  }) {
+    final clamped = offsetMinutes.clamp(-30, 30);
+    var nextAdjustments = state.preferences.adjustments;
+    switch (prayerId) {
+      case 'fajr':
+        nextAdjustments = nextAdjustments.copyWith(
+          fajrOffsetMinutes: clamped,
+          lastUpdatedAt: DateTime.now(),
+        );
+        break;
+      case 'dhuhr':
+        nextAdjustments = nextAdjustments.copyWith(
+          dhuhrOffsetMinutes: clamped,
+          lastUpdatedAt: DateTime.now(),
+        );
+        break;
+      case 'asr':
+        nextAdjustments = nextAdjustments.copyWith(
+          asrOffsetMinutes: clamped,
+          lastUpdatedAt: DateTime.now(),
+        );
+        break;
+      case 'maghrib':
+        nextAdjustments = nextAdjustments.copyWith(
+          maghribOffsetMinutes: clamped,
+          lastUpdatedAt: DateTime.now(),
+        );
+        break;
+      case 'isha':
+        nextAdjustments = nextAdjustments.copyWith(
+          ishaOffsetMinutes: clamped,
+          lastUpdatedAt: DateTime.now(),
+        );
+        break;
+      default:
+        return 'Unknown prayer adjustment.';
+    }
+    final validation = validatePrayerAdjustmentsForDate(
+      date: date,
+      latitude: latitude,
+      longitude: longitude,
+      settings: state.preferences.copyWith(adjustments: nextAdjustments),
+    );
+    if (validation != null) return validation;
+    state = state.copyWith(
+      preferences: state.preferences.copyWith(adjustments: nextAdjustments),
+    );
+    _save();
+    return null;
+  }
+
+  String? updateManualPrayerTime({
+    required String prayerId,
+    required int minutes,
+    required DateTime date,
+    required double latitude,
+    required double longitude,
+  }) {
+    final nextManualTimes = state.preferences.manualTimes.withPrayerMinutes(
+      prayerId,
+      minutes.clamp(0, 1439),
+    );
+    final validation = validateManualPrayerTimesForDate(
+      date: date,
+      latitude: latitude,
+      longitude: longitude,
+      settings: state.preferences.copyWith(
+        prayerTimeMode: PrayerTimeMode.manual,
+        manualTimes: nextManualTimes,
+      ),
+    );
+    if (validation != null) return validation;
+    state = state.copyWith(
+      preferences: state.preferences.copyWith(manualTimes: nextManualTimes),
+    );
+    _save();
+    return null;
+  }
+
+  void initializeManualTimesFromCalculated({
+    required DateTime date,
+    required double latitude,
+    required double longitude,
+  }) {
+    final effectiveCalculatedSchedule = buildPrayerScheduleForDate(
+      date: date,
+      latitude: latitude,
+      longitude: longitude,
+      settings: state.preferences.copyWith(
+        prayerTimeMode: PrayerTimeMode.calculatedAdjusted,
+      ),
+    );
+    state = state.copyWith(
+      preferences: state.preferences.copyWith(
+        manualTimes: PrayerClockTimes.fromSchedule(effectiveCalculatedSchedule),
+      ),
+    );
+    _save();
+  }
+
+  void updateMosqueReferenceTime({
+    required String prayerId,
+    required int? minutes,
+  }) {
+    state = state.copyWith(
+      preferences: state.preferences.copyWith(
+        mosqueReferenceTimes: state.preferences.mosqueReferenceTimes
+            .withPrayerMinutes(prayerId, minutes),
+      ),
+    );
+    _save();
+  }
+
+  void applyPrayerAdjustments(PrayerTimeAdjustments adjustments) {
+    state = state.copyWith(
+      preferences: state.preferences.copyWith(
+        adjustments: adjustments.copyWith(lastUpdatedAt: DateTime.now()),
+      ),
+    );
+    _save();
+  }
+
+  void updateJumuahSettings({
+    bool? enabled,
+    int? jumuahTimeMinutes,
+    FridayReminderMode? fridayReminderMode,
+    bool clearJumuahTime = false,
+  }) {
+    state = state.copyWith(
+      preferences: state.preferences.copyWith(
+        jumuahOverrideEnabled: enabled,
+        jumuahTimeMinutes: jumuahTimeMinutes,
+        fridayReminderMode: fridayReminderMode,
+        clearJumuahTime: clearJumuahTime,
+      ),
+    );
+    _save();
+  }
+
+  void resetPrayerAdjustment(String prayerId) {
+    updatePrayerAdjustment(
+      prayerId: prayerId,
+      offsetMinutes: 0,
+      date: DateTime.now(),
+      latitude: _cityMeta[state.preferences.location]?.latitude ??
+          _cityMeta.values.first.latitude,
+      longitude: _cityMeta[state.preferences.location]?.longitude ??
+          _cityMeta.values.first.longitude,
+    );
+  }
+
+  void resetAllPrayerAdjustments() {
+    state = state.copyWith(
+      preferences: state.preferences.copyWith(
+        adjustments: const PrayerTimeAdjustments(lastUpdatedAt: null),
+      ),
+    );
+    _save();
+  }
+
+  void resetManualPrayerTimes() {
+    state = state.copyWith(
+      preferences: state.preferences.copyWith(
+        manualTimes: const PrayerClockTimes(),
+      ),
+    );
+    _save();
+  }
+
   void updateNotificationMode(String prayerId, PrayerNotificationMode mode) {
     final updated = Map<String, PrayerNotificationMode>.from(
       state.notificationModes,
@@ -351,6 +829,18 @@ class PrayerSettingsController extends StateNotifier<PrayerSettingsState> {
     final useDeviceLocation = data['useDeviceLocation'];
     final manualLatitude = data['manualLatitude'];
     final manualLongitude = data['manualLongitude'];
+    final legacyUseStablePrayerWidgets = data['useStablePrayerWidgets'];
+    final useStableDynamicIsland = data['useStableDynamicIsland'];
+    final useStableLockScreenWidget = data['useStableLockScreenWidget'];
+    final prayerTimeModeName = data['prayerTimeMode'] as String?;
+    final adjustmentsRaw = data['adjustments'];
+    final manualTimesRaw = data['manualTimes'];
+    final mosqueReferenceTimesRaw = data['mosqueReferenceTimes'];
+    final jumuahOverrideEnabled = data['jumuahOverrideEnabled'];
+    final jumuahTimeMinutes = data['jumuahTimeMinutes'];
+    final fridayReminderModeName = data['fridayReminderMode'] as String?;
+    final activeProfileId = data['activeProfileId'] as String?;
+    final lastModeSwitchAtRaw = data['lastModeSwitchAt'];
     final notificationsRaw = data['notificationModes'];
 
     PrayerMadhab madhab = defaults.madhab;
@@ -365,6 +855,22 @@ class PrayerSettingsController extends StateNotifier<PrayerSettingsState> {
     for (final item in PrayerCalculationMethod.values) {
       if (item.name == methodName) {
         method = item;
+        break;
+      }
+    }
+
+    PrayerTimeMode prayerTimeMode = PrayerTimeMode.calculatedAdjusted;
+    for (final item in PrayerTimeMode.values) {
+      if (item.name == prayerTimeModeName) {
+        prayerTimeMode = item;
+        break;
+      }
+    }
+
+    FridayReminderMode fridayReminderMode = FridayReminderMode.normalDhuhr;
+    for (final item in FridayReminderMode.values) {
+      if (item.name == fridayReminderModeName) {
+        fridayReminderMode = item;
         break;
       }
     }
@@ -393,6 +899,29 @@ class PrayerSettingsController extends StateNotifier<PrayerSettingsState> {
         useDeviceLocation: useDeviceLocation is bool
             ? useDeviceLocation
             : defaults.useDeviceLocation,
+        useStableDynamicIsland: useStableDynamicIsland is bool
+            ? useStableDynamicIsland
+            : legacyUseStablePrayerWidgets is bool
+                ? legacyUseStablePrayerWidgets
+                : defaults.useStableDynamicIsland,
+        useStableLockScreenWidget: useStableLockScreenWidget is bool
+            ? useStableLockScreenWidget
+            : legacyUseStablePrayerWidgets is bool
+                ? legacyUseStablePrayerWidgets
+                : defaults.useStableLockScreenWidget,
+        prayerTimeMode: prayerTimeMode,
+        adjustments: PrayerTimeAdjustments.fromJson(adjustmentsRaw),
+        manualTimes: PrayerClockTimes.fromJson(manualTimesRaw),
+        mosqueReferenceTimes: PrayerClockTimes.fromJson(mosqueReferenceTimesRaw),
+        jumuahOverrideEnabled: jumuahOverrideEnabled is bool
+            ? jumuahOverrideEnabled
+            : defaults.jumuahOverrideEnabled,
+        jumuahTimeMinutes:
+            (jumuahTimeMinutes as num?)?.toInt() ?? defaults.jumuahTimeMinutes,
+        fridayReminderMode: fridayReminderMode,
+        activeProfileId: activeProfileId ?? defaults.activeProfileId,
+        lastModeSwitchAt:
+            DateTime.tryParse(lastModeSwitchAtRaw?.toString() ?? ''),
         manualLatitude: manualLatitude is num
             ? manualLatitude.toDouble()
             : null,
@@ -410,6 +939,17 @@ class PrayerSettingsController extends StateNotifier<PrayerSettingsState> {
       'madhab': state.preferences.madhab.name,
       'calculationMethod': state.preferences.calculationMethod.name,
       'useDeviceLocation': state.preferences.useDeviceLocation,
+      'useStableDynamicIsland': state.preferences.useStableDynamicIsland,
+      'useStableLockScreenWidget': state.preferences.useStableLockScreenWidget,
+      'prayerTimeMode': state.preferences.prayerTimeMode.name,
+      'adjustments': state.preferences.adjustments.toJson(),
+      'manualTimes': state.preferences.manualTimes.toJson(),
+      'mosqueReferenceTimes': state.preferences.mosqueReferenceTimes.toJson(),
+      'jumuahOverrideEnabled': state.preferences.jumuahOverrideEnabled,
+      'jumuahTimeMinutes': state.preferences.jumuahTimeMinutes,
+      'fridayReminderMode': state.preferences.fridayReminderMode.name,
+      'activeProfileId': state.preferences.activeProfileId,
+      'lastModeSwitchAt': state.preferences.lastModeSwitchAt?.toIso8601String(),
       'manualLatitude': state.preferences.manualLatitude,
       'manualLongitude': state.preferences.manualLongitude,
       'notificationModes': {
@@ -450,6 +990,10 @@ class PrayerLocationNotifier extends StateNotifier<PrayerLocationState> {
 
   Future<void> _refresh() async {
     if (!_preferences.useDeviceLocation) {
+      state = _fallbackForPreferences(_preferences);
+      return;
+    }
+    if (!_supportsLocationPermissionChecks()) {
       state = _fallbackForPreferences(_preferences);
       return;
     }
@@ -508,6 +1052,12 @@ class PrayerLocationNotifier extends StateNotifier<PrayerLocationState> {
   }
 }
 
+bool _supportsLocationPermissionChecks() {
+  if (kIsWeb) return false;
+  return defaultTargetPlatform == TargetPlatform.android ||
+      defaultTargetPlatform == TargetPlatform.iOS;
+}
+
 final prayerLocationProvider =
     StateNotifierProvider<PrayerLocationNotifier, PrayerLocationState>((ref) {
       final settings = ref.watch(prayerSettingsProvider).preferences;
@@ -540,6 +1090,19 @@ final prayerScheduleProvider = Provider<List<PrayerScheduleItem>>((ref) {
     latitude: location.latitude,
     longitude: location.longitude,
     settings: settings,
+  );
+});
+
+final prayerBaseScheduleProvider = Provider<List<PrayerScheduleItem>>((ref) {
+  final settings = ref.watch(prayerSettingsProvider).preferences;
+  final location = ref.watch(prayerLocationProvider);
+  final now = ref.watch(dailyNowProvider).value ?? DateTime.now();
+  return buildPrayerScheduleForDate(
+    date: now,
+    latitude: location.latitude,
+    longitude: location.longitude,
+    settings: settings,
+    applyAdjustments: false,
   );
 });
 
@@ -599,6 +1162,41 @@ List<PrayerScheduleItem> buildPrayerScheduleForDate({
   required double latitude,
   required double longitude,
   required PrayerPreferences settings,
+  bool applyAdjustments = true,
+}) {
+  final baseSchedule = buildCalculatedPrayerScheduleForDate(
+    date: date,
+    latitude: latitude,
+    longitude: longitude,
+    settings: settings,
+  );
+  if (!applyAdjustments) {
+    return baseSchedule;
+  }
+  if (settings.prayerTimeMode == PrayerTimeMode.manual &&
+      settings.manualTimes.isComplete) {
+    return buildManualPrayerScheduleForDate(
+      date: date,
+      latitude: latitude,
+      longitude: longitude,
+      settings: settings,
+      baseSchedule: baseSchedule,
+    );
+  }
+  return applyCalculatedPrayerAdjustments(
+    date: date,
+    latitude: latitude,
+    longitude: longitude,
+    settings: settings,
+    baseSchedule: baseSchedule,
+  );
+}
+
+List<PrayerScheduleItem> buildCalculatedPrayerScheduleForDate({
+  required DateTime date,
+  required double latitude,
+  required double longitude,
+  required PrayerPreferences settings,
 }) {
   final coordinates = adhan.Coordinates(latitude, longitude);
   final params = _adhanMethod(settings.calculationMethod).getParameters();
@@ -618,9 +1216,28 @@ List<PrayerScheduleItem> buildPrayerScheduleForDate({
     params,
   );
 
-  final tahajjudStart = today.isha.add(
+  const adjustments = PrayerTimeAdjustments();
+  final adjustedFajr = today.fajr.add(
+    Duration(minutes: adjustments.fajrOffsetMinutes),
+  );
+  final adjustedDhuhr = today.dhuhr.add(
+    Duration(minutes: adjustments.dhuhrOffsetMinutes),
+  );
+  final adjustedAsr = today.asr.add(
+    Duration(minutes: adjustments.asrOffsetMinutes),
+  );
+  final adjustedMaghrib = today.maghrib.add(
+    Duration(minutes: adjustments.maghribOffsetMinutes),
+  );
+  final adjustedIsha = today.isha.add(
+    Duration(minutes: adjustments.ishaOffsetMinutes),
+  );
+  final tomorrowAdjustedFajr = tomorrow.fajr.add(
+    Duration(minutes: adjustments.fajrOffsetMinutes),
+  );
+  final tahajjudStart = adjustedIsha.add(
     Duration(
-      seconds: ((tomorrow.fajr.difference(today.isha).inSeconds) * 0.66)
+      seconds: ((tomorrowAdjustedFajr.difference(adjustedIsha).inSeconds) * 0.66)
           .round(),
     ),
   );
@@ -632,8 +1249,8 @@ List<PrayerScheduleItem> buildPrayerScheduleForDate({
       name: 'Fajr',
       arabicName: 'الفجر',
       category: 'Fardh',
-      offerDateTime: today.fajr,
-      windowStartDateTime: today.fajr,
+      offerDateTime: adjustedFajr,
+      windowStartDateTime: adjustedFajr,
       windowEndDateTime: today.sunrise,
       qazaDateTime: today.sunrise,
       overdueAtDateTime: today.sunrise,
@@ -645,11 +1262,11 @@ List<PrayerScheduleItem> buildPrayerScheduleForDate({
       name: 'Dhuhr',
       arabicName: 'الظهر',
       category: 'Fardh',
-      offerDateTime: today.dhuhr,
-      windowStartDateTime: today.dhuhr,
-      windowEndDateTime: today.asr,
-      qazaDateTime: today.asr,
-      overdueAtDateTime: today.asr,
+      offerDateTime: adjustedDhuhr,
+      windowStartDateTime: adjustedDhuhr,
+      windowEndDateTime: adjustedAsr,
+      qazaDateTime: adjustedAsr,
+      overdueAtDateTime: adjustedAsr,
       totalRakats: 4,
     ),
     PrayerScheduleItem(
@@ -657,11 +1274,11 @@ List<PrayerScheduleItem> buildPrayerScheduleForDate({
       name: 'Asr',
       arabicName: 'العصر',
       category: 'Fardh',
-      offerDateTime: today.asr,
-      windowStartDateTime: today.asr,
-      windowEndDateTime: today.maghrib,
-      qazaDateTime: today.maghrib,
-      overdueAtDateTime: today.maghrib,
+      offerDateTime: adjustedAsr,
+      windowStartDateTime: adjustedAsr,
+      windowEndDateTime: adjustedMaghrib,
+      qazaDateTime: adjustedMaghrib,
+      overdueAtDateTime: adjustedMaghrib,
       totalRakats: 4,
     ),
     PrayerScheduleItem(
@@ -669,11 +1286,11 @@ List<PrayerScheduleItem> buildPrayerScheduleForDate({
       name: 'Maghrib',
       arabicName: 'المغرب',
       category: 'Fardh',
-      offerDateTime: today.maghrib,
-      windowStartDateTime: today.maghrib,
-      windowEndDateTime: today.isha,
-      qazaDateTime: today.isha,
-      overdueAtDateTime: today.isha,
+      offerDateTime: adjustedMaghrib,
+      windowStartDateTime: adjustedMaghrib,
+      windowEndDateTime: adjustedIsha,
+      qazaDateTime: adjustedIsha,
+      overdueAtDateTime: adjustedIsha,
       totalRakats: 3,
     ),
     PrayerScheduleItem(
@@ -681,11 +1298,11 @@ List<PrayerScheduleItem> buildPrayerScheduleForDate({
       name: 'Isha',
       arabicName: 'العشاء',
       category: 'Fardh',
-      offerDateTime: today.isha,
-      windowStartDateTime: today.isha,
+      offerDateTime: adjustedIsha,
+      windowStartDateTime: adjustedIsha,
       windowEndDateTime: tahajjudStart,
-      qazaDateTime: tomorrow.fajr,
-      overdueAtDateTime: tomorrow.fajr,
+      qazaDateTime: tomorrowAdjustedFajr,
+      overdueAtDateTime: tomorrowAdjustedFajr,
       totalRakats: 4,
     ),
     PrayerScheduleItem(
@@ -695,11 +1312,231 @@ List<PrayerScheduleItem> buildPrayerScheduleForDate({
       category: 'Nafl',
       offerDateTime: tahajjudStart,
       windowStartDateTime: tahajjudStart,
-      windowEndDateTime: tomorrow.fajr,
-      qazaDateTime: tomorrow.fajr,
+      windowEndDateTime: tomorrowAdjustedFajr,
+      qazaDateTime: tomorrowAdjustedFajr,
       totalRakats: 3,
     ),
   ];
+}
+
+List<PrayerScheduleItem> applyCalculatedPrayerAdjustments({
+  required DateTime date,
+  required double latitude,
+  required double longitude,
+  required PrayerPreferences settings,
+  List<PrayerScheduleItem>? baseSchedule,
+}) {
+  final base = baseSchedule ??
+      buildCalculatedPrayerScheduleForDate(
+        date: date,
+        latitude: latitude,
+        longitude: longitude,
+        settings: settings,
+      );
+  final adjustments = settings.adjustments;
+  return base.map((item) {
+    final minutes = adjustments.offsetForPrayer(item.id);
+    if (minutes == 0) return item;
+    final delta = Duration(minutes: minutes);
+    return PrayerScheduleItem(
+      id: item.id,
+      name: item.name,
+      arabicName: item.arabicName,
+      category: item.category,
+      offerDateTime: item.offerDateTime.add(delta),
+      windowStartDateTime: item.windowStartDateTime.add(delta),
+      windowEndDateTime: item.windowEndDateTime.add(delta),
+      qazaDateTime: item.qazaDateTime.add(delta),
+      overdueAtDateTime: item.overdueAtDateTime?.add(delta),
+      makeUpAvailableDateTime: item.makeUpAvailableDateTime?.add(delta),
+      totalRakats: item.totalRakats,
+    );
+  }).toList(growable: false);
+}
+
+List<PrayerScheduleItem> buildManualPrayerScheduleForDate({
+  required DateTime date,
+  required double latitude,
+  required double longitude,
+  required PrayerPreferences settings,
+  List<PrayerScheduleItem>? baseSchedule,
+}) {
+  final base = baseSchedule ??
+      buildCalculatedPrayerScheduleForDate(
+        date: date,
+        latitude: latitude,
+        longitude: longitude,
+        settings: settings,
+      );
+  final nextDayBase = buildCalculatedPrayerScheduleForDate(
+    date: date.add(const Duration(days: 1)),
+    latitude: latitude,
+    longitude: longitude,
+    settings: settings,
+  );
+
+  final manual = settings.manualTimes;
+  final fajr = _dateWithMinutes(date, manual.fajrMinutes!);
+  final dhuhr = _dateWithMinutes(date, manual.dhuhrMinutes!);
+  final asr = _dateWithMinutes(date, manual.asrMinutes!);
+  final maghrib = _dateWithMinutes(date, manual.maghribMinutes!);
+  final isha = _dateWithMinutes(date, manual.ishaMinutes!);
+  final nextFajr = _dateWithMinutes(
+    date.add(const Duration(days: 1)),
+    manual.fajrMinutes!,
+  );
+  final sunrise = base.firstWhere((item) => item.id == 'fajr').qazaDateTime;
+  final tahajjudStart = isha.add(
+    Duration(
+      seconds: ((nextFajr.difference(isha).inSeconds) * 0.66).round(),
+    ),
+  );
+  final nextSunrise =
+      nextDayBase.firstWhere((item) => item.id == 'fajr').qazaDateTime;
+  const safeSunriseQadaDelay = Duration(minutes: 20);
+
+  return [
+    PrayerScheduleItem(
+      id: 'fajr',
+      name: 'Fajr',
+      arabicName: 'الفجر',
+      category: 'Fardh',
+      offerDateTime: fajr,
+      windowStartDateTime: fajr,
+      windowEndDateTime: sunrise,
+      qazaDateTime: sunrise,
+      overdueAtDateTime: sunrise,
+      makeUpAvailableDateTime: sunrise.add(safeSunriseQadaDelay),
+      totalRakats: 2,
+    ),
+    PrayerScheduleItem(
+      id: 'dhuhr',
+      name: 'Dhuhr',
+      arabicName: 'الظهر',
+      category: 'Fardh',
+      offerDateTime: dhuhr,
+      windowStartDateTime: dhuhr,
+      windowEndDateTime: asr,
+      qazaDateTime: asr,
+      overdueAtDateTime: asr,
+      totalRakats: 4,
+    ),
+    PrayerScheduleItem(
+      id: 'asr',
+      name: 'Asr',
+      arabicName: 'العصر',
+      category: 'Fardh',
+      offerDateTime: asr,
+      windowStartDateTime: asr,
+      windowEndDateTime: maghrib,
+      qazaDateTime: maghrib,
+      overdueAtDateTime: maghrib,
+      totalRakats: 4,
+    ),
+    PrayerScheduleItem(
+      id: 'maghrib',
+      name: 'Maghrib',
+      arabicName: 'المغرب',
+      category: 'Fardh',
+      offerDateTime: maghrib,
+      windowStartDateTime: maghrib,
+      windowEndDateTime: isha,
+      qazaDateTime: isha,
+      overdueAtDateTime: isha,
+      totalRakats: 3,
+    ),
+    PrayerScheduleItem(
+      id: 'isha',
+      name: 'Isha',
+      arabicName: 'العشاء',
+      category: 'Fardh',
+      offerDateTime: isha,
+      windowStartDateTime: isha,
+      windowEndDateTime: tahajjudStart,
+      qazaDateTime: nextFajr,
+      overdueAtDateTime: nextFajr,
+      totalRakats: 4,
+    ),
+    PrayerScheduleItem(
+      id: 'tahajjud',
+      name: 'Tahajjud',
+      arabicName: 'التهجد',
+      category: 'Nafl',
+      offerDateTime: tahajjudStart,
+      windowStartDateTime: tahajjudStart,
+      windowEndDateTime: nextFajr,
+      qazaDateTime: nextSunrise,
+      totalRakats: 3,
+    ),
+  ];
+}
+
+String? validatePrayerAdjustmentsForDate({
+  required DateTime date,
+  required double latitude,
+  required double longitude,
+  required PrayerPreferences settings,
+}) {
+  final schedule = buildPrayerScheduleForDate(
+    date: date,
+    latitude: latitude,
+    longitude: longitude,
+    settings: settings,
+    applyAdjustments: true,
+  ).where((item) => const ['fajr', 'dhuhr', 'asr', 'maghrib', 'isha'].contains(item.id)).toList(growable: false);
+  for (var i = 0; i < schedule.length - 1; i += 1) {
+    final current = schedule[i];
+    final next = schedule[i + 1];
+    if (!current.offerDateTime.isBefore(next.offerDateTime)) {
+      return '${current.name} must remain before ${next.name}.';
+    }
+  }
+  return null;
+}
+
+String? validateManualPrayerTimesForDate({
+  required DateTime date,
+  required double latitude,
+  required double longitude,
+  required PrayerPreferences settings,
+}) {
+  if (!settings.manualTimes.isComplete) {
+    return 'Enter all five daily salah times to use manual mode.';
+  }
+  final schedule = buildManualPrayerScheduleForDate(
+    date: date,
+    latitude: latitude,
+    longitude: longitude,
+    settings: settings,
+  ).where((item) {
+    return const ['fajr', 'dhuhr', 'asr', 'maghrib', 'isha'].contains(item.id);
+  }).toList(growable: false);
+  for (var i = 0; i < schedule.length - 1; i += 1) {
+    if (!schedule[i].offerDateTime.isBefore(schedule[i + 1].offerDateTime)) {
+      return '${schedule[i].name} must remain before ${schedule[i + 1].name}.';
+    }
+  }
+  final baseFajr = buildCalculatedPrayerScheduleForDate(
+    date: date,
+    latitude: latitude,
+    longitude: longitude,
+    settings: settings,
+  ).firstWhere((item) => item.id == 'fajr');
+  if (!schedule.first.offerDateTime.isBefore(baseFajr.qazaDateTime)) {
+    return 'Fajr must remain before sunrise.';
+  }
+  return null;
+}
+
+DateTime _dateWithMinutes(DateTime date, int minutes) {
+  final normalized = minutes.clamp(0, 1439);
+  return DateTime(
+    date.year,
+    date.month,
+    date.day,
+    normalized ~/ 60,
+    normalized % 60,
+  );
 }
 
 String _formatTime(DateTime value) => DateFormat.jm().format(value);

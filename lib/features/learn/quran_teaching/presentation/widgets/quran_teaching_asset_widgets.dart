@@ -86,7 +86,7 @@ class QuranTeachingVisualAssetTile extends StatelessWidget {
                     width: compact ? 32 : 40,
                     height: compact ? 32 : 40,
                     fit: BoxFit.cover,
-                    errorBuilder: (_, __, ___) => _FallbackIcon(
+                    errorBuilder: (context, error, stackTrace) => _FallbackIcon(
                       icon: icon,
                       compact: compact,
                     ),

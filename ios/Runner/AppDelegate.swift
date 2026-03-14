@@ -21,6 +21,8 @@ struct PrayerCountdownAttributes: ActivityAttributes {
     var nextPrayerArabicName: String
     var nextRemainingSeconds: Int
     var nextTargetAtEpoch: Int
+    var useStableDynamicIsland: Bool
+    var useStableLockScreenWidget: Bool
   }
 
   var nextPrayerId: String
@@ -43,14 +45,37 @@ struct QuranPlaybackAttributes: ActivityAttributes {
   var sessionId: String
 }
 
+@available(iOS 16.1, *)
+struct FastingCountdownAttributes: ActivityAttributes {
+  public struct ContentState: Codable, Hashable {
+    var title: String
+    var arabicTitle: String
+    var metricLabel: String
+    var remainingSeconds: Int
+    var targetAtEpoch: Int
+    var targetRoute: String
+    var showDua: Bool
+    var duaTitle: String
+    var duaArabic: String
+    var duaTranslation: String
+  }
+
+  var entryId: String
+}
+
 @main
 @objc class AppDelegate: FlutterAppDelegate, FlutterImplicitEngineDelegate {
   private let liveActivityChannelName = "path_of_nur/live_activities"
+  private let navigationChannelName = "path_of_nur/navigation"
+  private let pendingRouteKey = "path_of_nur.pending_route"
+  static weak var shared: AppDelegate?
+  private var navigationChannel: FlutterMethodChannel?
 
   override func application(
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
+    AppDelegate.shared = self
     if let registrar = self.registrar(forPlugin: "PathOfNurLiveActivityBridge") {
       let channel = FlutterMethodChannel(
         name: liveActivityChannelName,
@@ -58,6 +83,15 @@ struct QuranPlaybackAttributes: ActivityAttributes {
       )
       channel.setMethodCallHandler { [weak self] call, result in
         self?.handleLiveActivityCall(call: call, result: result)
+      }
+
+      let navigationChannel = FlutterMethodChannel(
+        name: navigationChannelName,
+        binaryMessenger: registrar.messenger()
+      )
+      self.navigationChannel = navigationChannel
+      navigationChannel.setMethodCallHandler { [weak self] call, result in
+        self?.handleNavigationCall(call: call, result: result)
       }
     }
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
@@ -113,6 +147,37 @@ struct QuranPlaybackAttributes: ActivityAttributes {
       } else {
         result(false)
       }
+    case "updateFastingCountdown":
+      if #available(iOS 16.1, *) {
+        guard let args = call.arguments as? [String: Any] else {
+          result(FlutterError(code: "bad_args", message: "Expected dictionary", details: nil))
+          return
+        }
+        updateFastingCountdown(args: args, result: result)
+      } else {
+        result(false)
+      }
+    case "endFastingCountdown":
+      if #available(iOS 16.1, *) {
+        Task {
+          await endFastingActivities()
+          result(true)
+        }
+      } else {
+        result(false)
+      }
+    default:
+      result(FlutterMethodNotImplemented)
+    }
+  }
+
+  private func handleNavigationCall(call: FlutterMethodCall, result: @escaping FlutterResult) {
+    switch call.method {
+    case "getPendingRoute":
+      let defaults = UserDefaults.standard
+      let route = defaults.string(forKey: pendingRouteKey)
+      defaults.removeObject(forKey: pendingRouteKey)
+      result(route)
     default:
       result(FlutterMethodNotImplemented)
     }
@@ -148,6 +213,8 @@ struct QuranPlaybackAttributes: ActivityAttributes {
     let nextTargetAt = ISO8601DateFormatter().date(from: nextTargetAtIso)
       ?? Date().addingTimeInterval(TimeInterval(nextRemainingSeconds))
     let nextTargetAtEpoch = Int(nextTargetAt.timeIntervalSince1970)
+    let useStableDynamicIsland = (args["useStableDynamicIsland"] as? Bool) ?? false
+    let useStableLockScreenWidget = (args["useStableLockScreenWidget"] as? Bool) ?? false
 
     let contentState = PrayerCountdownAttributes.ContentState(
       showCurrentPrayer: showCurrentPrayer,
@@ -165,7 +232,9 @@ struct QuranPlaybackAttributes: ActivityAttributes {
       nextPrayerName: nextPrayerName,
       nextPrayerArabicName: nextPrayerArabicName,
       nextRemainingSeconds: nextRemainingSeconds,
-      nextTargetAtEpoch: nextTargetAtEpoch
+      nextTargetAtEpoch: nextTargetAtEpoch,
+      useStableDynamicIsland: useStableDynamicIsland,
+      useStableLockScreenWidget: useStableLockScreenWidget
     )
 
     Task {
@@ -258,5 +327,75 @@ struct QuranPlaybackAttributes: ActivityAttributes {
     for activity in Activity<QuranPlaybackAttributes>.activities {
       await activity.end(dismissalPolicy: .immediate)
     }
+  }
+
+  @available(iOS 16.1, *)
+  private func updateFastingCountdown(args: [String: Any], result: @escaping FlutterResult) {
+    let title = (args["title"] as? String) ?? "Fast"
+    let arabicTitle = (args["arabicTitle"] as? String) ?? ""
+    let metricLabel = (args["metricLabel"] as? String) ?? "Ends in"
+    let remainingSeconds = max(0, (args["remainingSeconds"] as? Int) ?? 0)
+    let targetAtIso = (args["targetAtIso"] as? String) ?? ""
+    let targetAt = ISO8601DateFormatter().date(from: targetAtIso)
+      ?? Date().addingTimeInterval(TimeInterval(remainingSeconds))
+    let targetAtEpoch = Int(targetAt.timeIntervalSince1970)
+    let targetRoute = (args["targetRoute"] as? String) ?? "/learn/hub/duas"
+    let showDua = (args["showDua"] as? Bool) ?? false
+    let duaTitle = (args["duaTitle"] as? String) ?? ""
+    let duaArabic = (args["duaArabic"] as? String) ?? ""
+    let duaTranslation = (args["duaTranslation"] as? String) ?? ""
+
+    let contentState = FastingCountdownAttributes.ContentState(
+      title: title,
+      arabicTitle: arabicTitle,
+      metricLabel: metricLabel,
+      remainingSeconds: remainingSeconds,
+      targetAtEpoch: targetAtEpoch,
+      targetRoute: targetRoute,
+      showDua: showDua,
+      duaTitle: duaTitle,
+      duaArabic: duaArabic,
+      duaTranslation: duaTranslation
+    )
+
+    Task {
+      do {
+        if let existing = Activity<FastingCountdownAttributes>.activities.first {
+          await existing.update(using: contentState)
+          result(true)
+          return
+        }
+
+        let attributes = FastingCountdownAttributes(entryId: UUID().uuidString)
+        _ = try Activity.request(
+          attributes: attributes,
+          contentState: contentState,
+          pushType: nil
+        )
+        result(true)
+      } catch {
+        result(
+          FlutterError(
+            code: "fasting_live_activity_error",
+            message: "Unable to update fasting live activity",
+            details: error.localizedDescription
+          )
+        )
+      }
+    }
+  }
+
+  @available(iOS 16.1, *)
+  private func endFastingActivities() async {
+    for activity in Activity<FastingCountdownAttributes>.activities {
+      await activity.end(dismissalPolicy: .immediate)
+    }
+  }
+
+  func handleIncomingRouteURL(_ url: URL) {
+    guard url.scheme == "pathofnur" else { return }
+    let route = url.path.isEmpty ? "/" : url.path
+    UserDefaults.standard.set(route, forKey: pendingRouteKey)
+    navigationChannel?.invokeMethod("openRoute", arguments: route)
   }
 }

@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../app/app_router.dart';
 import '../../features/learn/quran/application/quran_providers.dart';
+import '../../features/profile/application/profile_settings_provider.dart';
 import '../../l10n/app_localizations.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_fonts.dart';
@@ -29,6 +30,9 @@ class AppShellScaffold extends ConsumerWidget {
     final activeTab = navTabFromLocation(currentLocation);
     final previousLocation = ref.watch(shellCurrentLocationProvider);
     final quranPlayer = ref.watch(quranSharedAudioPlayerProvider);
+    final reduceMotion = ref.watch(
+      profileSettingsProvider.select((value) => value.reduceMotion),
+    );
 
     if (previousLocation != currentLocation) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -55,7 +59,33 @@ class AppShellScaffold extends ConsumerWidget {
                 nav.pop();
               }
             },
-            child: child,
+            child: reduceMotion
+                ? KeyedSubtree(
+                    key: ValueKey<String>(currentLocation),
+                    child: child,
+                  )
+                : AnimatedSwitcher(
+                    duration: const Duration(milliseconds: 260),
+                    switchInCurve: Curves.easeOutCubic,
+                    switchOutCurve: Curves.easeOutCubic,
+                    transitionBuilder: (child, animation) {
+                      final slide = Tween<Offset>(
+                        begin: const Offset(0, 0.018),
+                        end: Offset.zero,
+                      ).animate(animation);
+                      return FadeTransition(
+                        opacity: animation,
+                        child: SlideTransition(
+                          position: slide,
+                          child: child,
+                        ),
+                      );
+                    },
+                    child: KeyedSubtree(
+                      key: ValueKey<String>(currentLocation),
+                      child: child,
+                    ),
+                  ),
           ),
           Positioned(
             left: 0,
@@ -66,9 +96,14 @@ class AppShellScaffold extends ConsumerWidget {
               player: quranPlayer,
             ),
           ),
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: 2,
+            child: _buildBottomBar(context, activeTab),
+          ),
         ],
       ),
-      bottomNavigationBar: _buildBottomBar(context, activeTab),
     );
   }
 
@@ -133,50 +168,58 @@ class AppShellScaffold extends ConsumerWidget {
     final accent = appearance?.accent ?? AppColors.accentGold;
     final borderAlpha =
         appearance?.glassBorderAlpha ?? AppColors.glassBorderAlpha;
-    final surfaceAlpha =
-        appearance?.glassSurfaceAlpha ?? AppColors.glassSurfaceAlpha;
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
-      child: SizedBox(
-        height: 78,
-        child: Stack(
-          clipBehavior: Clip.none,
-          children: [
-            Positioned(
-              left: 0,
-              right: 0,
-              bottom: 0,
-              child: Container(
-                height: 62,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(barRadius),
-                  border: Border.all(
-                    color: accent.withValues(alpha: borderAlpha),
-                    width: 1.0,
+      padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
+      child: SafeArea(
+        top: false,
+        child: SizedBox(
+          height: 78,
+          child: Stack(
+            clipBehavior: Clip.none,
+            children: [
+              Positioned(
+                left: 0,
+                right: 0,
+                bottom: 0,
+                child: Container(
+                  height: 62,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(barRadius),
+                    border: Border.all(
+                      color: accent.withValues(alpha: borderAlpha),
+                      width: 1.0,
+                    ),
+                    color: surface.withValues(alpha: 0.20),
+                    boxShadow: [
+                      BoxShadow(
+                        color: const Color(0xFF000000).withValues(alpha: 0.08),
+                        blurRadius: 18,
+                        offset: const Offset(0, 8),
+                      ),
+                    ],
                   ),
-                  color: surface.withValues(alpha: surfaceAlpha),
                 ),
               ),
-            ),
-            Positioned(
-              left: 0,
-              right: 0,
-              bottom: 0,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: Row(
-                  children: allTabs
-                      .map(
-                        (tab) => Expanded(
-                          child: _tabButton(context, tab, activeTab == tab),
-                        ),
-                      )
-                      .toList(),
+              Positioned(
+                left: 0,
+                right: 0,
+                bottom: 0,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: Row(
+                    children: allTabs
+                        .map(
+                          (tab) => Expanded(
+                            child: _tabButton(context, tab, activeTab == tab),
+                          ),
+                        )
+                        .toList(),
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

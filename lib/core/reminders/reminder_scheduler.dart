@@ -68,6 +68,10 @@ final reminderSchedulerProvider = Provider<ReminderSchedulerState>((ref) {
 
     if (mode == PrayerNotificationMode.notificationOnly ||
         mode == PrayerNotificationMode.adhanWithSound) {
+      final reminderAt = _effectiveReminderTime(
+        prayer: prayer,
+        settings: prayerSettings.preferences,
+      );
       final modeSuffix = mode == PrayerNotificationMode.adhanWithSound
           ? 'adhan'
           : 'notification';
@@ -76,7 +80,7 @@ final reminderSchedulerProvider = Provider<ReminderSchedulerState>((ref) {
           id: 'prayer.${prayer.id}.at.$modeSuffix',
           kind: ReminderKind.prayerAtTime,
           prayerId: prayer.id,
-          when: prayer.offerDateTime,
+          when: reminderAt,
           notificationMode: mode,
         ),
       );
@@ -196,6 +200,28 @@ final reminderSchedulerProvider = Provider<ReminderSchedulerState>((ref) {
 
   return ReminderSchedulerState(dayKey: dayKey, items: sorted);
 });
+
+DateTime _effectiveReminderTime({
+  required PrayerScheduleItem prayer,
+  required PrayerPreferences settings,
+}) {
+  final isFriday = prayer.offerDateTime.weekday == DateTime.friday;
+  if (prayer.id == 'dhuhr' &&
+      isFriday &&
+      settings.jumuahOverrideEnabled &&
+      settings.fridayReminderMode == FridayReminderMode.customJumuah &&
+      settings.jumuahTimeMinutes != null) {
+    final minutes = settings.jumuahTimeMinutes!;
+    return DateTime(
+      prayer.offerDateTime.year,
+      prayer.offerDateTime.month,
+      prayer.offerDateTime.day,
+      minutes ~/ 60,
+      minutes % 60,
+    );
+  }
+  return prayer.offerDateTime;
+}
 
 final reminderSchedulerBootstrapProvider = Provider<void>((ref) {
   final service = ref.read(localNotificationServiceProvider);

@@ -136,6 +136,7 @@ class QuranTeachingStep {
     this.helperText,
     this.audio,
     this.visualAnchor,
+    this.sourceReference,
     this.examples = const <QuranTeachingExample>[],
   });
 
@@ -148,6 +149,7 @@ class QuranTeachingStep {
   final String? helperText;
   final QuranAudioCue? audio;
   final QuranVisualAnchor? visualAnchor;
+  final String? sourceReference;
   final List<QuranTeachingExample> examples;
 }
 
@@ -512,7 +514,7 @@ class QuranTeachingProgressState {
       }
     }
 
-    List<String> _readStringList(String key) {
+    List<String> readStringList(String key) {
       final raw = json[key];
       if (raw is! List) return const <String>[];
       return raw.map((item) => item.toString()).toList(growable: false);
@@ -521,10 +523,10 @@ class QuranTeachingProgressState {
     return QuranTeachingProgressState(
       learnerLevel: learnerLevel,
       visualModeEnabled: json['visualModeEnabled'] == true,
-      completedLessonIds: _readStringList('completedLessonIds'),
-      startedLessonIds: _readStringList('startedLessonIds'),
-      reviewLaterLessonIds: _readStringList('reviewLaterLessonIds'),
-      recentLessonIds: _readStringList('recentLessonIds'),
+      completedLessonIds: readStringList('completedLessonIds'),
+      startedLessonIds: readStringList('startedLessonIds'),
+      reviewLaterLessonIds: readStringList('reviewLaterLessonIds'),
+      recentLessonIds: readStringList('recentLessonIds'),
       quizBestScores: quizBestScores,
       lastLessonId: json['lastLessonId']?.toString(),
       lastPracticedAt: DateTime.tryParse(

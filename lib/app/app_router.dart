@@ -7,6 +7,7 @@ import '../l10n/app_localizations.dart';
 import '../features/journey/presentation/journey_page.dart';
 import '../features/journey/application/growth_models.dart';
 import '../features/journey/presentation/growth_habit_detail_page.dart';
+import '../features/journey/presentation/growth_habits_page.dart';
 import '../features/journey/presentation/growth_entry_page.dart';
 import '../features/journey/presentation/growth_path_detail_page.dart';
 import '../features/journey/presentation/journey_legacy_page.dart';
@@ -36,7 +37,9 @@ import '../features/learn/salah/presentation/wudu_trainer_page.dart';
 import '../features/learn/salah/models/salah_trainer_models.dart';
 import '../features/home/presentation/home_page.dart';
 import '../features/profile/presentation/profile_page.dart';
+import '../features/profile/presentation/profile_coming_soon_page.dart';
 import '../features/profile/presentation/profile_summary_page.dart';
+import '../features/profile/presentation/profile_whats_new_page.dart';
 import '../features/profile/presentation/settings_page.dart';
 import '../features/worship/presentation/khusu_focus_page.dart';
 import '../features/worship/presentation/qibla_finder_page.dart';
@@ -63,6 +66,9 @@ import '../features/learn/content/presentation/quran_lessons_mapping_page.dart';
 import '../features/ocean/presentation/ocean_drops_page.dart';
 import '../features/wallpaper/presentation/wallpaper_library_page.dart';
 import '../features/assistant/presentation/assistant_page.dart';
+import '../features/celestial/presentation/celestial_explorer_page.dart';
+import '../features/creation_challenges/presentation/creation_challenges_page.dart';
+import '../features/creation_explorer/presentation/creation_explorer_page.dart';
 import '../features/circles/presentation/circle_detail_page.dart';
 import '../features/circles/presentation/community_events_page.dart';
 import '../features/circles/presentation/community_moderation_page.dart';
@@ -115,8 +121,6 @@ import '../features/onboarding/presentation/onboarding_page.dart';
 import '../shared/theme/islamic_icons.dart';
 import '../shared/widgets/app_scaffold.dart';
 
-final _shellNavigatorKey = GlobalKey<NavigatorState>();
-
 enum NavTab { worship, learn, home, journey, profile }
 
 extension NavTabExt on NavTab {
@@ -154,6 +158,7 @@ extension NavTabExt on NavTab {
 final appRouterProvider = Provider<GoRouter>((ref) {
   final onboardingCompleted = ref.watch(onboardingCompletedProvider);
   final initial = onboardingCompleted ? NavTab.home.path : '/onboarding';
+  final shellNavigatorKey = GlobalKey<NavigatorState>();
   return GoRouter(
     initialLocation: initial,
     observers: [TelemetryNavigatorObserver()],
@@ -201,7 +206,7 @@ final appRouterProvider = Provider<GoRouter>((ref) {
             const MaterialPage(child: OnboardingPage()),
       ),
       ShellRoute(
-        navigatorKey: _shellNavigatorKey,
+        navigatorKey: shellNavigatorKey,
         pageBuilder: (context, state, child) {
           return MaterialPage(
             child: AppShellScaffold(
@@ -228,6 +233,18 @@ final appRouterProvider = Provider<GoRouter>((ref) {
             name: 'profileSummary',
             pageBuilder: (context, state) =>
                 const MaterialPage(child: ProfileSummaryPage()),
+          ),
+          GoRoute(
+            path: '/profile/whats-new',
+            name: 'profileWhatsNew',
+            pageBuilder: (context, state) =>
+                const MaterialPage(child: ProfileWhatsNewPage()),
+          ),
+          GoRoute(
+            path: '/profile/coming-soon',
+            name: 'profileComingSoon',
+            pageBuilder: (context, state) =>
+                const MaterialPage(child: ProfileComingSoonPage()),
           ),
           GoRoute(
             path: '/legal/privacy',
@@ -387,6 +404,24 @@ final appRouterProvider = Provider<GoRouter>((ref) {
             name: 'assistant',
             pageBuilder: (context, state) =>
                 const MaterialPage(child: AssistantPage()),
+          ),
+          GoRoute(
+            path: '/sky-explorer',
+            name: 'skyExplorer',
+            pageBuilder: (context, state) =>
+                const MaterialPage(child: CelestialExplorerPage()),
+          ),
+          GoRoute(
+            path: '/explore/creation',
+            name: 'creationExplorer',
+            pageBuilder: (context, state) =>
+                const MaterialPage(child: CreationExplorerPage()),
+          ),
+          GoRoute(
+            path: '/explore/challenges',
+            name: 'creationChallenges',
+            pageBuilder: (context, state) =>
+                const MaterialPage(child: CreationChallengesPage()),
           ),
           GoRoute(
             path: '/circles',
@@ -1091,9 +1126,8 @@ final appRouterProvider = Provider<GoRouter>((ref) {
           GoRoute(
             path: '/journey/growth/habits',
             name: 'growthHabitsDeepLink',
-            pageBuilder: (context, state) => const MaterialPage(
-              child: GrowthEntryPage(initialTab: GrowthInternalTab.habits),
-            ),
+            pageBuilder: (context, state) =>
+                const MaterialPage(child: GrowthHabitsPage()),
           ),
           GoRoute(
             path: '/growth/today',

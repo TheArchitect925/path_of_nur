@@ -5,6 +5,8 @@ import 'package:go_router/go_router.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/segmented_pill_control.dart';
+import '../../../creation_challenges/application/creation_challenge_services.dart';
+import '../../../creation_challenges/domain/creation_challenge_models.dart';
 import '../application/world_creation_provider.dart';
 import '../data/world_creation_data.dart';
 import '../domain/world_creation_models.dart';
@@ -29,6 +31,8 @@ class _WorldLandingPageState extends ConsumerState<WorldLandingPage> {
     final progress = ref.watch(worldCreationProgressProvider);
     final dailySign = ref.watch(worldDailySignProvider);
     final scientists = ref.watch(worldCreationScientistsProvider);
+    final challengeSummaries = ref.watch(currentCreationChallengesProvider);
+    final dailyChallenge = challengeSummaries.firstWhere((item) => item.slot == ChallengeSlot.daily);
 
     return AppPageScaffold(
       headerIcon: Icons.public_rounded,
@@ -111,6 +115,28 @@ class _WorldLandingPageState extends ConsumerState<WorldLandingPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
+                  'Daily Creation Challenge',
+                  style: TextStyle(fontWeight: FontWeight.w700),
+                ),
+                const SizedBox(height: 8),
+                Text(dailyChallenge.challenge.title),
+                const SizedBox(height: 4),
+                Text(dailyChallenge.challenge.subtitle),
+                const SizedBox(height: 10),
+                FilledButton.tonalIcon(
+                  onPressed: () => context.pushNamed('creationChallenges'),
+                  icon: Icon(dailyChallenge.isCompleted ? Icons.check_circle_rounded : Icons.flag_circle_rounded),
+                  label: Text(dailyChallenge.isCompleted ? 'View challenge history' : 'Open challenges'),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 10),
+          PremiumCard(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
                   'Explore Creation',
                   style: TextStyle(fontWeight: FontWeight.w700),
                 ),
@@ -125,9 +151,19 @@ class _WorldLandingPageState extends ConsumerState<WorldLandingPage> {
                   children: [
                     FilledButton.tonalIcon(
                       onPressed: () =>
-                          context.pushNamed('worldExploreCreation'),
+                          context.pushNamed('creationExplorer'),
                       icon: const Icon(Icons.travel_explore_rounded),
                       label: const Text('Explore Creation'),
+                    ),
+                    FilledButton.tonalIcon(
+                      onPressed: () => context.pushNamed('creationChallenges'),
+                      icon: const Icon(Icons.flag_circle_rounded),
+                      label: const Text('Creation Challenges'),
+                    ),
+                    FilledButton.tonalIcon(
+                      onPressed: () => context.pushNamed('skyExplorer'),
+                      icon: const Icon(Icons.nights_stay_rounded),
+                      label: const Text('Sky Explorer'),
                     ),
                     OutlinedButton.icon(
                       onPressed: () => context.pushNamed('worldSignsExplorer'),
@@ -275,7 +311,7 @@ class _WorldLandingPageState extends ConsumerState<WorldLandingPage> {
 
   void _openCategory(BuildContext context, WorldCreationCategoryId category) {
     if (category == WorldCreationCategoryId.exploreCreation) {
-      context.pushNamed('worldExploreCreation');
+      context.pushNamed('creationExplorer');
       return;
     }
     if (category == WorldCreationCategoryId.muslimScientists) {

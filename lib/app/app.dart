@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'app_navigation_bridge.dart';
 import 'app_router.dart';
 import 'app_quick_actions.dart';
 import '../core/localization/locale_provider.dart';
@@ -31,6 +32,7 @@ class PathOfNurApp extends ConsumerWidget {
     ref.watch(growthUnlocksAutoSyncProvider);
     ref.watch(prophetDailySurfacesBootstrapProvider);
     ref.watch(appQuickActionsBootstrapProvider);
+    ref.watch(appNavigationBridgeBootstrapProvider);
     ref.watch(journeyProgressAutoSyncProvider);
     ref.watch(oceanDropsAutoSyncProvider);
     ref.watch(oceanDropsDerivedSyncProvider);

@@ -9,6 +9,7 @@ import '../../../core/prayer/prayer_preferences.dart';
 import '../../../core/prayer/prayer_location_search_service.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_text_styles.dart';
+import '../../../features/celestial/presentation/widgets/celestial_cycle_card.dart';
 import '../../../features/worship/domain/fasting_status.dart';
 import '../../../features/worship/application/dhikr_controller.dart';
 import '../../../features/worship/application/worship_tab_provider.dart';
@@ -175,7 +176,9 @@ class HomePage extends ConsumerWidget {
                 const SizedBox(height: 14),
                 _SalahSummaryCard(l10n: l10n),
                 const SizedBox(height: 12),
-                const _HomeProphetsDailySection(),
+                const CelestialCycleCard(),
+                const SizedBox(height: 12),
+                const _HomeLearningActionsCard(),
                 const SizedBox(height: 24),
                 _HomeSummaryShortcutCard(
                   l10n: l10n,
@@ -223,8 +226,6 @@ class _FloatingQuranChip extends ConsumerWidget {
     final sessionSurah = recitationSession == null
         ? null
         : surahMap[recitationSession.surahNumber];
-    final sessionAyah = recitationSession?.ayahNumber;
-
     final activeSurah = sessionSurah ?? currentSurah ?? fallbackSurah;
     final surahNumber = activeSurah?.number ?? 1;
     final ayahCount = activeSurah?.verseCount ?? 1;
@@ -2185,7 +2186,8 @@ class _HomeDashboardSections extends StatelessWidget {
                         scrollDirection: Axis.horizontal,
                         physics: const BouncingScrollPhysics(),
                         itemCount: journey.dailyBadges.length,
-                        separatorBuilder: (_, __) => const SizedBox(width: 10),
+                        separatorBuilder: (context, index) =>
+                            const SizedBox(width: 10),
                         itemBuilder: (context, index) {
                           final badge = journey.dailyBadges[index];
                           return _DailyBadgeTile(badge: badge);
@@ -2779,8 +2781,8 @@ class _ModeAwareHomeCard extends ConsumerWidget {
   }
 }
 
-class _HomeProphetsDailySection extends ConsumerWidget {
-  const _HomeProphetsDailySection();
+class _HomeLearningActionsCard extends ConsumerWidget {
+  const _HomeLearningActionsCard();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -2812,48 +2814,94 @@ class _HomeProphetsDailySection extends ConsumerWidget {
       );
     }
 
-    return Column(
-      children: [
-        DailyRevelationCard(
-          item: dailyBundle.item,
-          isOpened: dailyBundle.status.cardOpened,
-          onOpen: openDailyItem,
-          onTakeQuiz: () => context.pushNamed(
-            'learnSectionHub',
-            pathParameters: {'sectionId': 'prophets'},
-            queryParameters: {'tab': 'quiz'},
+    return PremiumCard(
+      child: Theme(
+        data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+        child: ExpansionTile(
+          tilePadding: EdgeInsets.zero,
+          childrenPadding: EdgeInsets.zero,
+          title: const Text(
+            'Daily learning & quizzes',
+            style: TextStyle(fontWeight: FontWeight.w700),
           ),
-          showPracticeLesson: dailyBundle.item.linkedGrowthHabitId != null,
-          onPracticeLesson: () {
-            final habitId = dailyBundle.item.linkedGrowthHabitId;
-            if (habitId != null && habitId.trim().isNotEmpty) {
-              context.go('/journey/habit/$habitId');
-              return;
-            }
-            context.go('/journey/growth/habits');
-          },
-        ),
-        const SizedBox(height: 10),
-        DailyProphetQuizCard(
-          question: dailyBundle.quizQuestion,
-          isAnswered: dailyBundle.status.quizAnswered,
-          selectedIndex: dailyBundle.status.quizSelectedIndex,
-          onSelectAnswer: (selected) {
-            dailyController.answerTodayQuiz(
-              questionId: dailyBundle.quizQuestion.id,
-              selectedIndex: selected,
-              correctIndex: dailyBundle.quizQuestion.correctAnswerIndex,
-            );
-          },
-          onReviewProphet: () =>
-              openProphetById(dailyBundle.quizQuestion.relatedProphetId),
-          onOpenFullQuiz: () => context.pushNamed(
-            'learnSectionHub',
-            pathParameters: {'sectionId': 'prophets'},
-            queryParameters: {'tab': 'quiz'},
+          subtitle: const Text(
+            'Keep daily revelation, prophet review, trivia, and guided quizzes in one place.',
           ),
+          children: [
+            const SizedBox(height: 10),
+            DailyRevelationCard(
+              item: dailyBundle.item,
+              isOpened: dailyBundle.status.cardOpened,
+              onOpen: openDailyItem,
+              onTakeQuiz: () => context.pushNamed(
+                'learnSectionHub',
+                pathParameters: {'sectionId': 'prophets'},
+                queryParameters: {'tab': 'quiz'},
+              ),
+              showPracticeLesson: dailyBundle.item.linkedGrowthHabitId != null,
+              onPracticeLesson: () {
+                final habitId = dailyBundle.item.linkedGrowthHabitId;
+                if (habitId != null && habitId.trim().isNotEmpty) {
+                  context.go('/journey/habit/$habitId');
+                  return;
+                }
+                context.go('/journey/growth/habits');
+              },
+            ),
+            const SizedBox(height: 10),
+            DailyProphetQuizCard(
+              question: dailyBundle.quizQuestion,
+              isAnswered: dailyBundle.status.quizAnswered,
+              selectedIndex: dailyBundle.status.quizSelectedIndex,
+              onSelectAnswer: (selected) {
+                dailyController.answerTodayQuiz(
+                  questionId: dailyBundle.quizQuestion.id,
+                  selectedIndex: selected,
+                  correctIndex: dailyBundle.quizQuestion.correctAnswerIndex,
+                );
+              },
+              onReviewProphet: () =>
+                  openProphetById(dailyBundle.quizQuestion.relatedProphetId),
+              onOpenFullQuiz: () => context.pushNamed(
+                'learnSectionHub',
+                pathParameters: {'sectionId': 'prophets'},
+                queryParameters: {'tab': 'quiz'},
+              ),
+            ),
+            const SizedBox(height: 10),
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: [
+                _QuickActionButton(
+                  icon: Icons.auto_stories_rounded,
+                  label: 'Prophets Quiz',
+                  onTap: () => context.pushNamed(
+                    'learnSectionHub',
+                    pathParameters: {'sectionId': 'prophets'},
+                    queryParameters: {'tab': 'quiz'},
+                  ),
+                ),
+                _QuickActionButton(
+                  icon: Icons.quiz_rounded,
+                  label: 'Islamic Trivia',
+                  onTap: () => context.pushNamed('learnIslamicTrivia'),
+                ),
+                _QuickActionButton(
+                  icon: Icons.route_rounded,
+                  label: 'Knowledge Paths',
+                  onTap: () => context.pushNamed('learnTriviaKnowledgePaths'),
+                ),
+                _QuickActionButton(
+                  icon: Icons.replay_circle_filled_rounded,
+                  label: 'Review Mistakes',
+                  onTap: () => context.pushNamed('learnTriviaReview'),
+                ),
+              ],
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 }

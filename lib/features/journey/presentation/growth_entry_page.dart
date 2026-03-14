@@ -42,9 +42,7 @@ class _GrowthEntryPageState extends ConsumerState<GrowthEntryPage> {
   void _applyEntryIntent() {
     ref
         .read(growthInternalTabProvider.notifier)
-        .state = widget.initialTab == GrowthInternalTab.habits
-        ? GrowthInternalTab.today
-        : widget.initialTab;
+        .state = widget.initialTab;
     if (_openedHabit || widget.focusHabitId == null || !mounted) {
       return;
     }

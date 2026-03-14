@@ -11,6 +11,7 @@ class QuranTeacherLetterSeed {
     required this.simpleExplanation,
     required this.exampleWord,
     required this.exampleMeaning,
+    required this.exampleReference,
     required this.audioAsset,
     this.visualModeAnchorId,
     this.visualHint,
@@ -25,6 +26,7 @@ class QuranTeacherLetterSeed {
   final String simpleExplanation;
   final String exampleWord;
   final String exampleMeaning;
+  final String exampleReference;
   final String audioAsset;
   final String? visualModeAnchorId;
   final String? visualHint;
@@ -57,6 +59,7 @@ class QuranTeacherReadingExampleSeed {
     required this.transliteration,
     required this.meaning,
     required this.audioAsset,
+    required this.verseReference,
   });
 
   final String id;
@@ -64,6 +67,7 @@ class QuranTeacherReadingExampleSeed {
   final String transliteration;
   final String meaning;
   final String audioAsset;
+  final String verseReference;
 }
 
 class QuranTeacherRuleSeed {
@@ -72,6 +76,7 @@ class QuranTeacherRuleSeed {
     required this.title,
     required this.simpleExplanation,
     required this.examples,
+    required this.exampleSourceReferences,
     required this.audioAsset,
     this.symbol,
   });
@@ -80,6 +85,7 @@ class QuranTeacherRuleSeed {
   final String title;
   final String simpleExplanation;
   final List<String> examples;
+  final List<String> exampleSourceReferences;
   final String audioAsset;
   final String? symbol;
 }
@@ -92,7 +98,7 @@ class QuranTeacherWordSeed {
     required this.meaning,
     required this.audioAsset,
     required this.category,
-    this.exampleVerse,
+    required this.exampleVerse,
     this.frequencyHint,
     this.imageAsset,
   });
@@ -103,7 +109,7 @@ class QuranTeacherWordSeed {
   final String meaning;
   final String audioAsset;
   final String category;
-  final String? exampleVerse;
+  final String exampleVerse;
   final String? frequencyHint;
   final String? imageAsset;
 }
@@ -116,7 +122,7 @@ class QuranTeacherPhraseSeed {
     required this.meaning,
     required this.audioAsset,
     required this.lessonLink,
-    this.sourceNote,
+    required this.sourceReference,
   });
 
   final String id;
@@ -125,7 +131,7 @@ class QuranTeacherPhraseSeed {
   final String meaning;
   final String audioAsset;
   final String lessonLink;
-  final String? sourceNote;
+  final String sourceReference;
 }
 
 class QuranTeacherSurahSeed {
@@ -250,6 +256,7 @@ const quranTeacherAlphabetSeeds = <QuranTeacherLetterSeed>[
         'Alif is a straight letter that often carries vowel sounds.',
     exampleWord: 'أَب',
     exampleMeaning: 'father',
+    exampleReference: 'Qur’an 12:4',
     audioAsset: 'assets/audio/quran_teacher/letters/alif.mp3',
     visualModeAnchorId: 'apple',
     visualHint: 'Apple helps you remember Alif.',
@@ -264,6 +271,7 @@ const quranTeacherAlphabetSeeds = <QuranTeacherLetterSeed>[
     simpleExplanation: 'Ba makes a b sound and has one dot below.',
     exampleWord: 'بَيْت',
     exampleMeaning: 'house',
+    exampleReference: 'Qur’an 2:125',
     audioAsset: 'assets/audio/quran_teacher/letters/ba.mp3',
     visualModeAnchorId: 'ball',
     visualHint: 'Ball helps you remember Ba.',
@@ -276,8 +284,9 @@ const quranTeacherAlphabetSeeds = <QuranTeacherLetterSeed>[
     name: 'Ta',
     transliteration: 'ta',
     simpleExplanation: 'Ta makes a t sound and has two dots above.',
-    exampleWord: 'تَمْر',
-    exampleMeaning: 'dates',
+    exampleWord: 'تَابَ',
+    exampleMeaning: 'he turned back in repentance',
+    exampleReference: 'Qur’an 2:37',
     audioAsset: 'assets/audio/quran_teacher/letters/ta.mp3',
     visualModeAnchorId: 'tree',
     visualHint: 'Tree helps you remember Ta.',
@@ -292,6 +301,7 @@ const quranTeacherAlphabetSeeds = <QuranTeacherLetterSeed>[
     simpleExplanation: 'Tha is softer than ta and has three dots above.',
     exampleWord: 'ثَوَاب',
     exampleMeaning: 'reward',
+    exampleReference: 'Qur’an 3:145',
     audioAsset: 'assets/audio/quran_teacher/letters/tha.mp3',
   ),
   QuranTeacherLetterSeed(
@@ -302,6 +312,7 @@ const quranTeacherAlphabetSeeds = <QuranTeacherLetterSeed>[
     simpleExplanation: 'Jeem is a j sound in beginner reading lessons.',
     exampleWord: 'جَنَّة',
     exampleMeaning: 'garden',
+    exampleReference: 'Qur’an 2:25',
     audioAsset: 'assets/audio/quran_teacher/letters/jeem.mp3',
     visualModeAnchorId: 'juice',
     visualHint: 'Juice helps you remember Jeem.',
@@ -316,6 +327,7 @@ const quranTeacherAlphabetSeeds = <QuranTeacherLetterSeed>[
     simpleExplanation: 'This haa is a soft breathy sound from deeper in the throat.',
     exampleWord: 'حَقّ',
     exampleMeaning: 'truth',
+    exampleReference: 'Qur’an 10:32',
     audioAsset: 'assets/audio/quran_teacher/letters/haa_soft.mp3',
   ),
   QuranTeacherLetterSeed(
@@ -326,6 +338,7 @@ const quranTeacherAlphabetSeeds = <QuranTeacherLetterSeed>[
     simpleExplanation: 'Khaa is a rougher throat sound than haa.',
     exampleWord: 'خَلَق',
     exampleMeaning: 'created',
+    exampleReference: 'Qur’an 96:1',
     audioAsset: 'assets/audio/quran_teacher/letters/khaa.mp3',
   ),
   QuranTeacherLetterSeed(
@@ -336,6 +349,7 @@ const quranTeacherAlphabetSeeds = <QuranTeacherLetterSeed>[
     simpleExplanation: 'Daal makes a d sound.',
     exampleWord: 'دِين',
     exampleMeaning: 'religion',
+    exampleReference: 'Qur’an 109:6',
     audioAsset: 'assets/audio/quran_teacher/letters/daal.mp3',
   ),
   QuranTeacherLetterSeed(
@@ -346,6 +360,7 @@ const quranTeacherAlphabetSeeds = <QuranTeacherLetterSeed>[
     simpleExplanation: 'Dhaal is a softer th sound with the tongue forward.',
     exampleWord: 'ذِكْر',
     exampleMeaning: 'remembrance',
+    exampleReference: 'Qur’an 15:9',
     audioAsset: 'assets/audio/quran_teacher/letters/dhaal.mp3',
   ),
   QuranTeacherLetterSeed(
@@ -356,6 +371,7 @@ const quranTeacherAlphabetSeeds = <QuranTeacherLetterSeed>[
     simpleExplanation: 'Raa is a light rolling r sound.',
     exampleWord: 'رَبّ',
     exampleMeaning: 'Lord',
+    exampleReference: 'Qur’an 1:2',
     audioAsset: 'assets/audio/quran_teacher/letters/raa.mp3',
   ),
   QuranTeacherLetterSeed(
@@ -366,6 +382,7 @@ const quranTeacherAlphabetSeeds = <QuranTeacherLetterSeed>[
     simpleExplanation: 'Zay makes a z sound.',
     exampleWord: 'زَكَاة',
     exampleMeaning: 'purifying charity',
+    exampleReference: 'Qur’an 2:43',
     audioAsset: 'assets/audio/quran_teacher/letters/zay.mp3',
   ),
   QuranTeacherLetterSeed(
@@ -376,6 +393,7 @@ const quranTeacherAlphabetSeeds = <QuranTeacherLetterSeed>[
     simpleExplanation: 'Seen makes an s sound and has a flowing tooth-like shape.',
     exampleWord: 'سَمَاء',
     exampleMeaning: 'sky',
+    exampleReference: 'Qur’an 2:19',
     audioAsset: 'assets/audio/quran_teacher/letters/seen.mp3',
     visualModeAnchorId: 'sun',
     visualHint: 'Sun helps you remember Seen.',
@@ -390,6 +408,7 @@ const quranTeacherAlphabetSeeds = <QuranTeacherLetterSeed>[
     simpleExplanation: 'Sheen looks like seen but adds three dots above.',
     exampleWord: 'شَمْس',
     exampleMeaning: 'sun',
+    exampleReference: 'Qur’an 91:1',
     audioAsset: 'assets/audio/quran_teacher/letters/sheen.mp3',
   ),
   QuranTeacherLetterSeed(
@@ -400,6 +419,7 @@ const quranTeacherAlphabetSeeds = <QuranTeacherLetterSeed>[
     simpleExplanation: 'Saad is a heavier s sound.',
     exampleWord: 'صَبْر',
     exampleMeaning: 'patience',
+    exampleReference: 'Qur’an 2:153',
     audioAsset: 'assets/audio/quran_teacher/letters/saad.mp3',
   ),
   QuranTeacherLetterSeed(
@@ -408,8 +428,9 @@ const quranTeacherAlphabetSeeds = <QuranTeacherLetterSeed>[
     name: 'Daad',
     transliteration: 'daad',
     simpleExplanation: 'Daad is a heavier d sound.',
-    exampleWord: 'ضِيَاء',
-    exampleMeaning: 'radiance',
+    exampleWord: 'أَرْض',
+    exampleMeaning: 'earth',
+    exampleReference: 'Qur’an 2:22',
     audioAsset: 'assets/audio/quran_teacher/letters/daad.mp3',
   ),
   QuranTeacherLetterSeed(
@@ -420,6 +441,7 @@ const quranTeacherAlphabetSeeds = <QuranTeacherLetterSeed>[
     simpleExplanation: 'This taa is heavier than regular ta.',
     exampleWord: 'طَيِّب',
     exampleMeaning: 'good / pure',
+    exampleReference: 'Qur’an 2:168',
     audioAsset: 'assets/audio/quran_teacher/letters/taa_heavy.mp3',
   ),
   QuranTeacherLetterSeed(
@@ -430,6 +452,7 @@ const quranTeacherAlphabetSeeds = <QuranTeacherLetterSeed>[
     simpleExplanation: 'This zaa is a heavier deep sound.',
     exampleWord: 'ظُلْم',
     exampleMeaning: 'wrongdoing',
+    exampleReference: 'Qur’an 6:82',
     audioAsset: 'assets/audio/quran_teacher/letters/zaa_heavy.mp3',
   ),
   QuranTeacherLetterSeed(
@@ -440,6 +463,7 @@ const quranTeacherAlphabetSeeds = <QuranTeacherLetterSeed>[
     simpleExplanation: 'Ayn comes from deep in the throat. Keep it gentle.',
     exampleWord: 'عِلْم',
     exampleMeaning: 'knowledge',
+    exampleReference: 'Qur’an 2:32',
     audioAsset: 'assets/audio/quran_teacher/letters/ayn.mp3',
   ),
   QuranTeacherLetterSeed(
@@ -450,6 +474,7 @@ const quranTeacherAlphabetSeeds = <QuranTeacherLetterSeed>[
     simpleExplanation: 'Ghayn is related to ayn but has a rougher sound.',
     exampleWord: 'غَفُور',
     exampleMeaning: 'all-forgiving',
+    exampleReference: 'Qur’an 2:173',
     audioAsset: 'assets/audio/quran_teacher/letters/ghayn.mp3',
   ),
   QuranTeacherLetterSeed(
@@ -460,6 +485,7 @@ const quranTeacherAlphabetSeeds = <QuranTeacherLetterSeed>[
     simpleExplanation: 'Faa makes an f sound.',
     exampleWord: 'فِي',
     exampleMeaning: 'in',
+    exampleReference: 'Qur’an 1:6',
     audioAsset: 'assets/audio/quran_teacher/letters/faa.mp3',
   ),
   QuranTeacherLetterSeed(
@@ -470,6 +496,7 @@ const quranTeacherAlphabetSeeds = <QuranTeacherLetterSeed>[
     simpleExplanation: 'Qaaf is deeper than kaaf.',
     exampleWord: 'قَلْب',
     exampleMeaning: 'heart',
+    exampleReference: 'Qur’an 50:37',
     audioAsset: 'assets/audio/quran_teacher/letters/qaaf.mp3',
   ),
   QuranTeacherLetterSeed(
@@ -480,6 +507,7 @@ const quranTeacherAlphabetSeeds = <QuranTeacherLetterSeed>[
     simpleExplanation: 'Kaaf makes a k sound.',
     exampleWord: 'كِتَاب',
     exampleMeaning: 'book',
+    exampleReference: 'Qur’an 2:2',
     audioAsset: 'assets/audio/quran_teacher/letters/kaaf.mp3',
   ),
   QuranTeacherLetterSeed(
@@ -490,6 +518,7 @@ const quranTeacherAlphabetSeeds = <QuranTeacherLetterSeed>[
     simpleExplanation: 'Laam makes a clear l sound.',
     exampleWord: 'لَيْل',
     exampleMeaning: 'night',
+    exampleReference: 'Qur’an 92:1',
     audioAsset: 'assets/audio/quran_teacher/letters/laam.mp3',
   ),
   QuranTeacherLetterSeed(
@@ -500,6 +529,7 @@ const quranTeacherAlphabetSeeds = <QuranTeacherLetterSeed>[
     simpleExplanation: 'Meem makes an m sound.',
     exampleWord: 'مَاء',
     exampleMeaning: 'water',
+    exampleReference: 'Qur’an 2:22',
     audioAsset: 'assets/audio/quran_teacher/letters/meem.mp3',
     visualModeAnchorId: 'moon',
     visualHint: 'Moon helps you remember Meem.',
@@ -514,6 +544,7 @@ const quranTeacherAlphabetSeeds = <QuranTeacherLetterSeed>[
     simpleExplanation: 'Noon makes an n sound.',
     exampleWord: 'نُور',
     exampleMeaning: 'light',
+    exampleReference: 'Qur’an 24:35',
     audioAsset: 'assets/audio/quran_teacher/letters/noon.mp3',
     visualModeAnchorId: 'nest',
     visualHint: 'Nest helps you remember Noon.',
@@ -528,6 +559,7 @@ const quranTeacherAlphabetSeeds = <QuranTeacherLetterSeed>[
     simpleExplanation: 'This haa is the lighter h sound used in many common words.',
     exampleWord: 'هُدًى',
     exampleMeaning: 'guidance',
+    exampleReference: 'Qur’an 2:2',
     audioAsset: 'assets/audio/quran_teacher/letters/haa.mp3',
   ),
   QuranTeacherLetterSeed(
@@ -538,6 +570,7 @@ const quranTeacherAlphabetSeeds = <QuranTeacherLetterSeed>[
     simpleExplanation: 'Waw can be a letter and later help make a long vowel.',
     exampleWord: 'وَلَد',
     exampleMeaning: 'child',
+    exampleReference: 'Qur’an 19:88',
     audioAsset: 'assets/audio/quran_teacher/letters/waw.mp3',
     visualModeAnchorId: 'water',
     visualHint: 'Water helps you remember Waw.',
@@ -552,6 +585,7 @@ const quranTeacherAlphabetSeeds = <QuranTeacherLetterSeed>[
     simpleExplanation: 'Yaa can be a letter and later help make a long vowel.',
     exampleWord: 'يَوْم',
     exampleMeaning: 'day',
+    exampleReference: 'Qur’an 1:4',
     audioAsset: 'assets/audio/quran_teacher/letters/yaa.mp3',
   ),
 ];
@@ -670,6 +704,7 @@ const quranTeacherTwoLetterSeeds = <QuranTeacherReadingExampleSeed>[
     transliteration: 'Rab',
     meaning: 'Lord',
     audioAsset: 'assets/audio/quran_teacher/words/rabb.mp3',
+    verseReference: 'Qur’an 1:2',
   ),
   QuranTeacherReadingExampleSeed(
     id: 'read_min',
@@ -677,6 +712,7 @@ const quranTeacherTwoLetterSeeds = <QuranTeacherReadingExampleSeed>[
     transliteration: 'Min',
     meaning: 'From',
     audioAsset: 'assets/audio/quran_teacher/words/min.mp3',
+    verseReference: 'Qur’an 1:7',
   ),
   QuranTeacherReadingExampleSeed(
     id: 'read_fi',
@@ -684,6 +720,7 @@ const quranTeacherTwoLetterSeeds = <QuranTeacherReadingExampleSeed>[
     transliteration: 'Fi',
     meaning: 'In',
     audioAsset: 'assets/audio/quran_teacher/words/fee.mp3',
+    verseReference: 'Qur’an 1:6',
   ),
   QuranTeacherReadingExampleSeed(
     id: 'read_lan',
@@ -691,6 +728,7 @@ const quranTeacherTwoLetterSeeds = <QuranTeacherReadingExampleSeed>[
     transliteration: 'Lan',
     meaning: 'Will not',
     audioAsset: 'assets/audio/quran_teacher/words/lan.mp3',
+    verseReference: 'Qur’an 2:95',
   ),
   QuranTeacherReadingExampleSeed(
     id: 'read_lahu',
@@ -698,6 +736,7 @@ const quranTeacherTwoLetterSeeds = <QuranTeacherReadingExampleSeed>[
     transliteration: 'Lahu',
     meaning: 'For him',
     audioAsset: 'assets/audio/quran_teacher/words/lahu.mp3',
+    verseReference: 'Qur’an 112:4',
   ),
   QuranTeacherReadingExampleSeed(
     id: 'read_bihi',
@@ -705,6 +744,7 @@ const quranTeacherTwoLetterSeeds = <QuranTeacherReadingExampleSeed>[
     transliteration: 'Bihi',
     meaning: 'With it / with him',
     audioAsset: 'assets/audio/quran_teacher/words/bihi.mp3',
+    verseReference: 'Qur’an 2:2',
   ),
 ];
 
@@ -715,6 +755,7 @@ const quranTeacherThreeLetterSeeds = <QuranTeacherReadingExampleSeed>[
     transliteration: 'Kataba',
     meaning: 'He wrote',
     audioAsset: 'assets/audio/quran_teacher/words/kataba.mp3',
+    verseReference: 'Qur’an 2:183',
   ),
   QuranTeacherReadingExampleSeed(
     id: 'read_abd',
@@ -722,6 +763,7 @@ const quranTeacherThreeLetterSeeds = <QuranTeacherReadingExampleSeed>[
     transliteration: 'Abd',
     meaning: 'Servant',
     audioAsset: 'assets/audio/quran_teacher/words/abd.mp3',
+    verseReference: 'Qur’an 17:1',
   ),
   QuranTeacherReadingExampleSeed(
     id: 'read_alima',
@@ -729,6 +771,7 @@ const quranTeacherThreeLetterSeeds = <QuranTeacherReadingExampleSeed>[
     transliteration: 'Alima',
     meaning: 'He knew',
     audioAsset: 'assets/audio/quran_teacher/words/ilm.mp3',
+    verseReference: 'Qur’an 2:235',
   ),
   QuranTeacherReadingExampleSeed(
     id: 'read_khalaqa',
@@ -736,6 +779,7 @@ const quranTeacherThreeLetterSeeds = <QuranTeacherReadingExampleSeed>[
     transliteration: 'Khalaqa',
     meaning: 'He created',
     audioAsset: 'assets/audio/quran_teacher/words/khalaqa.mp3',
+    verseReference: 'Qur’an 96:1',
   ),
   QuranTeacherReadingExampleSeed(
     id: 'read_samia',
@@ -743,6 +787,7 @@ const quranTeacherThreeLetterSeeds = <QuranTeacherReadingExampleSeed>[
     transliteration: 'Samia',
     meaning: 'He heard',
     audioAsset: 'assets/audio/quran_teacher/words/samia.mp3',
+    verseReference: 'Qur’an 58:1',
   ),
 ];
 
@@ -751,7 +796,8 @@ const quranTeacherRuleSeeds = <QuranTeacherRuleSeed>[
     id: 'rule_sukun',
     title: 'Sukun',
     simpleExplanation: 'Sukun means the letter stops and has no vowel sound.',
-    examples: <String>['بْ', 'مْ', 'يَكْتُب', 'الْحَمْد'],
+    examples: <String>['مِنْ', 'لَمْ', 'الْحَمْدُ'],
+    exampleSourceReferences: <String>['Qur’an 1:7', 'Qur’an 112:3', 'Qur’an 1:2'],
     audioAsset: 'assets/audio/quran_teacher/rules/sukun_intro.mp3',
     symbol: 'ْ',
   ),
@@ -759,7 +805,8 @@ const quranTeacherRuleSeeds = <QuranTeacherRuleSeed>[
     id: 'rule_shaddah',
     title: 'Shaddah',
     simpleExplanation: 'Shaddah doubles the sound of a letter.',
-    examples: <String>['رَبَّ', 'إِنَّ', 'ثُمَّ'],
+    examples: <String>['إِنَّ', 'ثُمَّ', 'رَبِّ'],
+    exampleSourceReferences: <String>['Qur’an 2:2', 'Qur’an 2:51', 'Qur’an 1:2'],
     audioAsset: 'assets/audio/quran_teacher/rules/shaddah_intro.mp3',
     symbol: 'ّ',
   ),
@@ -767,7 +814,8 @@ const quranTeacherRuleSeeds = <QuranTeacherRuleSeed>[
     id: 'rule_tanween',
     title: 'Tanween',
     simpleExplanation: 'Tanween adds an ending sound like un, in, or an.',
-    examples: <String>['كِتَابٌ', 'كِتَابٍ', 'كِتَابًا'],
+    examples: <String>['كِتَابٌ', 'هُدًى', 'عَلِيمًا'],
+    exampleSourceReferences: <String>['Qur’an 2:2', 'Qur’an 2:2', 'Qur’an 4:11'],
     audioAsset: 'assets/audio/quran_teacher/rules/tanween_damma.mp3',
   ),
   QuranTeacherRuleSeed(
@@ -775,6 +823,7 @@ const quranTeacherRuleSeeds = <QuranTeacherRuleSeed>[
     title: 'Sun letters',
     simpleExplanation: 'With sun letters, the l sound blends into the next letter.',
     examples: <String>['الشَّمْس'],
+    exampleSourceReferences: <String>['Qur’an 91:1'],
     audioAsset:
         'assets/audio/quran_teacher/rules/sun_letter_example_ash_shams.mp3',
   ),
@@ -783,6 +832,7 @@ const quranTeacherRuleSeeds = <QuranTeacherRuleSeed>[
     title: 'Moon letters',
     simpleExplanation: 'With moon letters, the l sound stays clear.',
     examples: <String>['الْقَمَر'],
+    exampleSourceReferences: <String>['Qur’an 54:1'],
     audioAsset:
         'assets/audio/quran_teacher/rules/moon_letter_example_al_qamar.mp3',
   ),
@@ -790,7 +840,8 @@ const quranTeacherRuleSeeds = <QuranTeacherRuleSeed>[
     id: 'rule_hamzah',
     title: 'Hamzah',
     simpleExplanation: 'Hamzah can appear in different shapes. Start by noticing it.',
-    examples: <String>['أ', 'إ', 'ؤ', 'ئ'],
+    examples: <String>['أَحَدٌ', 'إِيَّاكَ', 'السَّمَاءِ'],
+    exampleSourceReferences: <String>['Qur’an 112:1', 'Qur’an 1:5', 'Qur’an 86:1'],
     audioAsset: 'assets/audio/quran_teacher/rules/hamzah_intro.mp3',
   ),
   QuranTeacherRuleSeed(
@@ -799,6 +850,7 @@ const quranTeacherRuleSeeds = <QuranTeacherRuleSeed>[
     simpleExplanation:
         'This final shape looks like ya but sounds like a long a.',
     examples: <String>['هُدَى', 'مُوسَى'],
+    exampleSourceReferences: <String>['Qur’an 2:38', 'Qur’an 2:136'],
     audioAsset: 'assets/audio/quran_teacher/rules/alif_maqsurah_intro.mp3',
   ),
   QuranTeacherRuleSeed(
@@ -807,6 +859,7 @@ const quranTeacherRuleSeeds = <QuranTeacherRuleSeed>[
     simpleExplanation:
         'Sometimes a letter is written but not strongly heard in beginner reading.',
     examples: <String>['هٰذَا'],
+    exampleSourceReferences: <String>['Qur’an 2:2'],
     audioAsset: 'assets/audio/quran_teacher/rules/silent_letters_intro.mp3',
   ),
 ];
@@ -817,7 +870,8 @@ const quranTeacherTajweedSeeds = <QuranTeacherRuleSeed>[
     title: 'Qalqalah',
     simpleExplanation:
         'Qalqalah is a slight bounce on certain still letters.',
-    examples: <String>['ق ط ب ج د'],
+    examples: <String>['الْفَلَقِ', 'أَحَدٌ', 'يَلِدْ'],
+    exampleSourceReferences: <String>['Qur’an 113:1', 'Qur’an 112:1', 'Qur’an 112:3'],
     audioAsset: 'assets/audio/quran_teacher/tajweed/qalqalah_intro.mp3',
   ),
   QuranTeacherRuleSeed(
@@ -825,6 +879,7 @@ const quranTeacherTajweedSeeds = <QuranTeacherRuleSeed>[
     title: 'Ghunnah',
     simpleExplanation: 'Ghunnah is a soft nasal sound in certain places.',
     examples: <String>['إِنَّ'],
+    exampleSourceReferences: <String>['Qur’an 97:1'],
     audioAsset: 'assets/audio/quran_teacher/tajweed/ghunnah_intro.mp3',
   ),
   QuranTeacherRuleSeed(
@@ -833,116 +888,117 @@ const quranTeacherTajweedSeeds = <QuranTeacherRuleSeed>[
     simpleExplanation:
         'With noon saakin, the next letter can change how the sound is heard.',
     examples: <String>['مِنْ رَبِّهِمْ'],
+    exampleSourceReferences: <String>['Qur’an 2:5'],
     audioAsset: 'assets/audio/quran_teacher/tajweed/noon_saakin_intro.mp3',
   ),
 ];
 
 const quranTeacherFirst100Words = <QuranTeacherWordSeed>[
-  QuranTeacherWordSeed(id: 'word_allah', word: 'اللّٰه', transliteration: 'Allah', meaning: 'Allah', audioAsset: 'assets/audio/quran_teacher/words/allah.mp3', category: 'core', exampleVerse: '1:1', frequencyHint: 'Very frequent'),
-  QuranTeacherWordSeed(id: 'word_rabb', word: 'رَبّ', transliteration: 'Rabb', meaning: 'Lord', audioAsset: 'assets/audio/quran_teacher/words/rabb.mp3', category: 'core', exampleVerse: '1:2', frequencyHint: 'Very frequent'),
-  QuranTeacherWordSeed(id: 'word_yawm', word: 'يَوْم', transliteration: 'Yawm', meaning: 'Day', audioAsset: 'assets/audio/quran_teacher/words/yawm.mp3', category: 'core'),
-  QuranTeacherWordSeed(id: 'word_kitab', word: 'كِتَاب', transliteration: 'Kitab', meaning: 'Book', audioAsset: 'assets/audio/quran_teacher/words/kitab.mp3', category: 'core'),
-  QuranTeacherWordSeed(id: 'word_ayah', word: 'آيَة', transliteration: 'Ayah', meaning: 'Sign / verse', audioAsset: 'assets/audio/quran_teacher/words/ayah.mp3', category: 'core'),
-  QuranTeacherWordSeed(id: 'word_nur', word: 'نُور', transliteration: 'Nur', meaning: 'Light', audioAsset: 'assets/audio/quran_teacher/words/noor.mp3', category: 'core'),
-  QuranTeacherWordSeed(id: 'word_haqq', word: 'حَقّ', transliteration: 'Haqq', meaning: 'Truth', audioAsset: 'assets/audio/quran_teacher/words/haqq.mp3', category: 'core'),
-  QuranTeacherWordSeed(id: 'word_quran', word: 'قُرْآن', transliteration: 'Qur’an', meaning: 'Qur’an', audioAsset: 'assets/audio/quran_teacher/words/quran.mp3', category: 'core'),
-  QuranTeacherWordSeed(id: 'word_qawl', word: 'قَوْل', transliteration: 'Qawl', meaning: 'Word / saying', audioAsset: 'assets/audio/quran_teacher/words/qawl.mp3', category: 'core'),
-  QuranTeacherWordSeed(id: 'word_ilm', word: 'عِلْم', transliteration: 'Ilm', meaning: 'Knowledge', audioAsset: 'assets/audio/quran_teacher/words/ilm.mp3', category: 'core'),
-  QuranTeacherWordSeed(id: 'word_amr', word: 'أَمْر', transliteration: 'Amr', meaning: 'Command', audioAsset: 'assets/audio/quran_teacher/words/amr.mp3', category: 'core'),
-  QuranTeacherWordSeed(id: 'word_din', word: 'دِين', transliteration: 'Din', meaning: 'Religion / way', audioAsset: 'assets/audio/quran_teacher/words/din.mp3', category: 'core'),
-  QuranTeacherWordSeed(id: 'word_hikmah', word: 'حِكْمَة', transliteration: 'Hikmah', meaning: 'Wisdom', audioAsset: 'assets/audio/quran_teacher/words/hikmah.mp3', category: 'core'),
-  QuranTeacherWordSeed(id: 'word_qalb', word: 'قَلْب', transliteration: 'Qalb', meaning: 'Heart', audioAsset: 'assets/audio/quran_teacher/words/qalb.mp3', category: 'core'),
-  QuranTeacherWordSeed(id: 'word_nafs', word: 'نَفْس', transliteration: 'Nafs', meaning: 'Self / soul', audioAsset: 'assets/audio/quran_teacher/words/nafs.mp3', category: 'core'),
-  QuranTeacherWordSeed(id: 'word_mulk', word: 'مُلْك', transliteration: 'Mulk', meaning: 'Kingdom', audioAsset: 'assets/audio/quran_teacher/words/mulk.mp3', category: 'core'),
-  QuranTeacherWordSeed(id: 'word_rahman', word: 'رَحْمٰن', transliteration: 'Rahman', meaning: 'Most Merciful', audioAsset: 'assets/audio/quran_teacher/words/rahman.mp3', category: 'core'),
-  QuranTeacherWordSeed(id: 'word_rahim', word: 'رَحِيم', transliteration: 'Rahim', meaning: 'Especially Merciful', audioAsset: 'assets/audio/quran_teacher/words/rahim.mp3', category: 'core'),
-  QuranTeacherWordSeed(id: 'word_sirat', word: 'صِرَاط', transliteration: 'Sirat', meaning: 'Path', audioAsset: 'assets/audio/quran_teacher/words/sirat.mp3', category: 'core'),
-  QuranTeacherWordSeed(id: 'word_akhira', word: 'آخِرَة', transliteration: 'Akhirah', meaning: 'Hereafter', audioAsset: 'assets/audio/quran_teacher/words/akhirah.mp3', category: 'core'),
+  QuranTeacherWordSeed(id: 'word_allah', word: 'اللّٰه', transliteration: 'Allah', meaning: 'Allah', audioAsset: 'assets/audio/quran_teacher/words/allah.mp3', category: 'core', exampleVerse: 'Qur’an 1:1', frequencyHint: 'Very frequent'),
+  QuranTeacherWordSeed(id: 'word_rabb', word: 'رَبّ', transliteration: 'Rabb', meaning: 'Lord', audioAsset: 'assets/audio/quran_teacher/words/rabb.mp3', category: 'core', exampleVerse: 'Qur’an 1:2', frequencyHint: 'Very frequent'),
+  QuranTeacherWordSeed(id: 'word_yawm', word: 'يَوْم', transliteration: 'Yawm', meaning: 'Day', audioAsset: 'assets/audio/quran_teacher/words/yawm.mp3', category: 'core', exampleVerse: 'Qur’an 1:4'),
+  QuranTeacherWordSeed(id: 'word_kitab', word: 'كِتَاب', transliteration: 'Kitab', meaning: 'Book', audioAsset: 'assets/audio/quran_teacher/words/kitab.mp3', category: 'core', exampleVerse: 'Qur’an 2:2'),
+  QuranTeacherWordSeed(id: 'word_ayah', word: 'آيَة', transliteration: 'Ayah', meaning: 'Sign / verse', audioAsset: 'assets/audio/quran_teacher/words/ayah.mp3', category: 'core', exampleVerse: 'Qur’an 2:248'),
+  QuranTeacherWordSeed(id: 'word_nur', word: 'نُور', transliteration: 'Nur', meaning: 'Light', audioAsset: 'assets/audio/quran_teacher/words/noor.mp3', category: 'core', exampleVerse: 'Qur’an 24:35'),
+  QuranTeacherWordSeed(id: 'word_haqq', word: 'حَقّ', transliteration: 'Haqq', meaning: 'Truth', audioAsset: 'assets/audio/quran_teacher/words/haqq.mp3', category: 'core', exampleVerse: 'Qur’an 10:32'),
+  QuranTeacherWordSeed(id: 'word_quran', word: 'قُرْآن', transliteration: 'Qur’an', meaning: 'Qur’an', audioAsset: 'assets/audio/quran_teacher/words/quran.mp3', category: 'core', exampleVerse: 'Qur’an 17:9'),
+  QuranTeacherWordSeed(id: 'word_qawl', word: 'قَوْل', transliteration: 'Qawl', meaning: 'Word / saying', audioAsset: 'assets/audio/quran_teacher/words/qawl.mp3', category: 'core', exampleVerse: 'Qur’an 39:18'),
+  QuranTeacherWordSeed(id: 'word_ilm', word: 'عِلْم', transliteration: 'Ilm', meaning: 'Knowledge', audioAsset: 'assets/audio/quran_teacher/words/ilm.mp3', category: 'core', exampleVerse: 'Qur’an 2:32'),
+  QuranTeacherWordSeed(id: 'word_amr', word: 'أَمْر', transliteration: 'Amr', meaning: 'Command', audioAsset: 'assets/audio/quran_teacher/words/amr.mp3', category: 'core', exampleVerse: 'Qur’an 16:1'),
+  QuranTeacherWordSeed(id: 'word_din', word: 'دِين', transliteration: 'Din', meaning: 'Religion / way', audioAsset: 'assets/audio/quran_teacher/words/din.mp3', category: 'core', exampleVerse: 'Qur’an 1:4'),
+  QuranTeacherWordSeed(id: 'word_hikmah', word: 'حِكْمَة', transliteration: 'Hikmah', meaning: 'Wisdom', audioAsset: 'assets/audio/quran_teacher/words/hikmah.mp3', category: 'core', exampleVerse: 'Qur’an 2:269'),
+  QuranTeacherWordSeed(id: 'word_qalb', word: 'قَلْب', transliteration: 'Qalb', meaning: 'Heart', audioAsset: 'assets/audio/quran_teacher/words/qalb.mp3', category: 'core', exampleVerse: 'Qur’an 50:37'),
+  QuranTeacherWordSeed(id: 'word_nafs', word: 'نَفْس', transliteration: 'Nafs', meaning: 'Self / soul', audioAsset: 'assets/audio/quran_teacher/words/nafs.mp3', category: 'core', exampleVerse: 'Qur’an 3:185'),
+  QuranTeacherWordSeed(id: 'word_mulk', word: 'مُلْك', transliteration: 'Mulk', meaning: 'Kingdom', audioAsset: 'assets/audio/quran_teacher/words/mulk.mp3', category: 'core', exampleVerse: 'Qur’an 67:1'),
+  QuranTeacherWordSeed(id: 'word_rahman', word: 'رَحْمٰن', transliteration: 'Rahman', meaning: 'Most Merciful', audioAsset: 'assets/audio/quran_teacher/words/rahman.mp3', category: 'core', exampleVerse: 'Qur’an 1:3'),
+  QuranTeacherWordSeed(id: 'word_rahim', word: 'رَحِيم', transliteration: 'Rahim', meaning: 'Especially Merciful', audioAsset: 'assets/audio/quran_teacher/words/rahim.mp3', category: 'core', exampleVerse: 'Qur’an 1:3'),
+  QuranTeacherWordSeed(id: 'word_sirat', word: 'صِرَاط', transliteration: 'Sirat', meaning: 'Path', audioAsset: 'assets/audio/quran_teacher/words/sirat.mp3', category: 'core', exampleVerse: 'Qur’an 1:6'),
+  QuranTeacherWordSeed(id: 'word_akhira', word: 'آخِرَة', transliteration: 'Akhirah', meaning: 'Hereafter', audioAsset: 'assets/audio/quran_teacher/words/akhirah.mp3', category: 'core', exampleVerse: 'Qur’an 87:17'),
 
-  QuranTeacherWordSeed(id: 'word_salah', word: 'صَلَاة', transliteration: 'Salah', meaning: 'Prayer', audioAsset: 'assets/audio/quran_teacher/words/salah.mp3', category: 'worship'),
-  QuranTeacherWordSeed(id: 'word_zakah', word: 'زَكَاة', transliteration: 'Zakah', meaning: 'Purifying charity', audioAsset: 'assets/audio/quran_teacher/words/zakah.mp3', category: 'worship'),
-  QuranTeacherWordSeed(id: 'word_sabr', word: 'صَبْر', transliteration: 'Sabr', meaning: 'Patience', audioAsset: 'assets/audio/quran_teacher/words/sabr.mp3', category: 'worship'),
-  QuranTeacherWordSeed(id: 'word_dhikr', word: 'ذِكْر', transliteration: 'Dhikr', meaning: 'Remembrance', audioAsset: 'assets/audio/quran_teacher/words/dhikr.mp3', category: 'worship'),
-  QuranTeacherWordSeed(id: 'word_dua', word: 'دُعَاء', transliteration: 'Dua', meaning: 'Supplication', audioAsset: 'assets/audio/quran_teacher/words/dua.mp3', category: 'worship'),
-  QuranTeacherWordSeed(id: 'word_abd', word: 'عَبْد', transliteration: 'Abd', meaning: 'Servant', audioAsset: 'assets/audio/quran_teacher/words/abd.mp3', category: 'worship'),
-  QuranTeacherWordSeed(id: 'word_sujud', word: 'سُجُود', transliteration: 'Sujud', meaning: 'Prostration', audioAsset: 'assets/audio/quran_teacher/words/sujud.mp3', category: 'worship'),
-  QuranTeacherWordSeed(id: 'word_ruku', word: 'رُكُوع', transliteration: 'Ruku', meaning: 'Bowing', audioAsset: 'assets/audio/quran_teacher/words/ruku.mp3', category: 'worship'),
-  QuranTeacherWordSeed(id: 'word_siyam', word: 'صِيَام', transliteration: 'Siyam', meaning: 'Fasting', audioAsset: 'assets/audio/quran_teacher/words/siyam.mp3', category: 'worship'),
-  QuranTeacherWordSeed(id: 'word_hajj', word: 'حَجّ', transliteration: 'Hajj', meaning: 'Pilgrimage', audioAsset: 'assets/audio/quran_teacher/words/hajj.mp3', category: 'worship'),
-  QuranTeacherWordSeed(id: 'word_taqwa', word: 'تَقْوَى', transliteration: 'Taqwa', meaning: 'God-consciousness', audioAsset: 'assets/audio/quran_teacher/words/taqwa.mp3', category: 'worship'),
-  QuranTeacherWordSeed(id: 'word_iman', word: 'إِيمَان', transliteration: 'Iman', meaning: 'Faith', audioAsset: 'assets/audio/quran_teacher/words/iman.mp3', category: 'worship'),
-  QuranTeacherWordSeed(id: 'word_islam', word: 'إِسْلَام', transliteration: 'Islam', meaning: 'Submission', audioAsset: 'assets/audio/quran_teacher/words/islam.mp3', category: 'worship'),
-  QuranTeacherWordSeed(id: 'word_shukr', word: 'شُكْر', transliteration: 'Shukr', meaning: 'Gratitude', audioAsset: 'assets/audio/quran_teacher/words/shukr.mp3', category: 'worship'),
-  QuranTeacherWordSeed(id: 'word_tawbah', word: 'تَوْبَة', transliteration: 'Tawbah', meaning: 'Repentance', audioAsset: 'assets/audio/quran_teacher/words/tawbah.mp3', category: 'worship'),
+  QuranTeacherWordSeed(id: 'word_salah', word: 'صَلَاة', transliteration: 'Salah', meaning: 'Prayer', audioAsset: 'assets/audio/quran_teacher/words/salah.mp3', category: 'worship', exampleVerse: 'Qur’an 2:43'),
+  QuranTeacherWordSeed(id: 'word_zakah', word: 'زَكَاة', transliteration: 'Zakah', meaning: 'Purifying charity', audioAsset: 'assets/audio/quran_teacher/words/zakah.mp3', category: 'worship', exampleVerse: 'Qur’an 2:43'),
+  QuranTeacherWordSeed(id: 'word_sabr', word: 'صَبْر', transliteration: 'Sabr', meaning: 'Patience', audioAsset: 'assets/audio/quran_teacher/words/sabr.mp3', category: 'worship', exampleVerse: 'Qur’an 2:153'),
+  QuranTeacherWordSeed(id: 'word_dhikr', word: 'ذِكْر', transliteration: 'Dhikr', meaning: 'Remembrance', audioAsset: 'assets/audio/quran_teacher/words/dhikr.mp3', category: 'worship', exampleVerse: 'Qur’an 15:9'),
+  QuranTeacherWordSeed(id: 'word_dua', word: 'دُعَاء', transliteration: 'Dua', meaning: 'Supplication', audioAsset: 'assets/audio/quran_teacher/words/dua.mp3', category: 'worship', exampleVerse: 'Qur’an 13:14'),
+  QuranTeacherWordSeed(id: 'word_abd', word: 'عَبْد', transliteration: 'Abd', meaning: 'Servant', audioAsset: 'assets/audio/quran_teacher/words/abd.mp3', category: 'worship', exampleVerse: 'Qur’an 17:1'),
+  QuranTeacherWordSeed(id: 'word_sujud', word: 'سُجُود', transliteration: 'Sujud', meaning: 'Prostration', audioAsset: 'assets/audio/quran_teacher/words/sujud.mp3', category: 'worship', exampleVerse: 'Qur’an 50:40'),
+  QuranTeacherWordSeed(id: 'word_ruku', word: 'رُكُوع', transliteration: 'Ruku', meaning: 'Bowing', audioAsset: 'assets/audio/quran_teacher/words/ruku.mp3', category: 'worship', exampleVerse: 'Qur’an 2:43'),
+  QuranTeacherWordSeed(id: 'word_siyam', word: 'صِيَام', transliteration: 'Siyam', meaning: 'Fasting', audioAsset: 'assets/audio/quran_teacher/words/siyam.mp3', category: 'worship', exampleVerse: 'Qur’an 2:183'),
+  QuranTeacherWordSeed(id: 'word_hajj', word: 'حَجّ', transliteration: 'Hajj', meaning: 'Pilgrimage', audioAsset: 'assets/audio/quran_teacher/words/hajj.mp3', category: 'worship', exampleVerse: 'Qur’an 2:196'),
+  QuranTeacherWordSeed(id: 'word_taqwa', word: 'تَقْوَى', transliteration: 'Taqwa', meaning: 'God-consciousness', audioAsset: 'assets/audio/quran_teacher/words/taqwa.mp3', category: 'worship', exampleVerse: 'Qur’an 2:197'),
+  QuranTeacherWordSeed(id: 'word_iman', word: 'إِيمَان', transliteration: 'Iman', meaning: 'Faith', audioAsset: 'assets/audio/quran_teacher/words/iman.mp3', category: 'worship', exampleVerse: 'Qur’an 49:14'),
+  QuranTeacherWordSeed(id: 'word_islam', word: 'إِسْلَام', transliteration: 'Islam', meaning: 'Submission', audioAsset: 'assets/audio/quran_teacher/words/islam.mp3', category: 'worship', exampleVerse: 'Qur’an 3:19'),
+  QuranTeacherWordSeed(id: 'word_shukr', word: 'شُكْر', transliteration: 'Shukr', meaning: 'Gratitude', audioAsset: 'assets/audio/quran_teacher/words/shukr.mp3', category: 'worship', exampleVerse: 'Qur’an 14:7'),
+  QuranTeacherWordSeed(id: 'word_tawbah', word: 'تَوْبَة', transliteration: 'Tawbah', meaning: 'Repentance', audioAsset: 'assets/audio/quran_teacher/words/tawbah.mp3', category: 'worship', exampleVerse: 'Qur’an 9:104'),
 
-  QuranTeacherWordSeed(id: 'word_rahmah', word: 'رَحْمَة', transliteration: 'Rahmah', meaning: 'Mercy', audioAsset: 'assets/audio/quran_teacher/words/rahmah.mp3', category: 'mercy'),
-  QuranTeacherWordSeed(id: 'word_huda', word: 'هُدًى', transliteration: 'Huda', meaning: 'Guidance', audioAsset: 'assets/audio/quran_teacher/words/huda.mp3', category: 'mercy'),
-  QuranTeacherWordSeed(id: 'word_maghfirah', word: 'مَغْفِرَة', transliteration: 'Maghfirah', meaning: 'Forgiveness', audioAsset: 'assets/audio/quran_teacher/words/maghfirah.mp3', category: 'mercy'),
-  QuranTeacherWordSeed(id: 'word_karim', word: 'كَرِيم', transliteration: 'Karim', meaning: 'Generous / noble', audioAsset: 'assets/audio/quran_teacher/words/karim.mp3', category: 'mercy'),
-  QuranTeacherWordSeed(id: 'word_ghafur', word: 'غَفُور', transliteration: 'Ghafur', meaning: 'All-Forgiving', audioAsset: 'assets/audio/quran_teacher/words/ghafur.mp3', category: 'mercy'),
-  QuranTeacherWordSeed(id: 'word_tawwab', word: 'تَوَّاب', transliteration: 'Tawwab', meaning: 'Accepting repentance', audioAsset: 'assets/audio/quran_teacher/words/tawwab.mp3', category: 'mercy'),
-  QuranTeacherWordSeed(id: 'word_latif', word: 'لَطِيف', transliteration: 'Latif', meaning: 'Subtle / gentle', audioAsset: 'assets/audio/quran_teacher/words/latif.mp3', category: 'mercy'),
-  QuranTeacherWordSeed(id: 'word_wadud', word: 'وَدُود', transliteration: 'Wadud', meaning: 'Loving', audioAsset: 'assets/audio/quran_teacher/words/wadud.mp3', category: 'mercy'),
-  QuranTeacherWordSeed(id: 'word_afw', word: 'عَفْو', transliteration: 'Afw', meaning: 'Pardon', audioAsset: 'assets/audio/quran_teacher/words/afw.mp3', category: 'mercy'),
-  QuranTeacherWordSeed(id: 'word_furqan', word: 'فُرْقَان', transliteration: 'Furqan', meaning: 'Criterion', audioAsset: 'assets/audio/quran_teacher/words/furqan.mp3', category: 'mercy'),
-  QuranTeacherWordSeed(id: 'word_barakah', word: 'بَرَكَة', transliteration: 'Barakah', meaning: 'Blessing', audioAsset: 'assets/audio/quran_teacher/words/barakah.mp3', category: 'mercy'),
-  QuranTeacherWordSeed(id: 'word_sami', word: 'سَمِيع', transliteration: 'Sami', meaning: 'All-Hearing', audioAsset: 'assets/audio/quran_teacher/words/sami.mp3', category: 'mercy'),
-  QuranTeacherWordSeed(id: 'word_basir', word: 'بَصِير', transliteration: 'Basir', meaning: 'All-Seeing', audioAsset: 'assets/audio/quran_teacher/words/basir.mp3', category: 'mercy'),
-  QuranTeacherWordSeed(id: 'word_hakim', word: 'حَكِيم', transliteration: 'Hakim', meaning: 'Wise', audioAsset: 'assets/audio/quran_teacher/words/hakim.mp3', category: 'mercy'),
-  QuranTeacherWordSeed(id: 'word_alim', word: 'عَلِيم', transliteration: 'Alim', meaning: 'All-Knowing', audioAsset: 'assets/audio/quran_teacher/words/alim.mp3', category: 'mercy'),
+  QuranTeacherWordSeed(id: 'word_rahmah', word: 'رَحْمَة', transliteration: 'Rahmah', meaning: 'Mercy', audioAsset: 'assets/audio/quran_teacher/words/rahmah.mp3', category: 'mercy', exampleVerse: 'Qur’an 7:156'),
+  QuranTeacherWordSeed(id: 'word_huda', word: 'هُدًى', transliteration: 'Huda', meaning: 'Guidance', audioAsset: 'assets/audio/quran_teacher/words/huda.mp3', category: 'mercy', exampleVerse: 'Qur’an 2:2'),
+  QuranTeacherWordSeed(id: 'word_maghfirah', word: 'مَغْفِرَة', transliteration: 'Maghfirah', meaning: 'Forgiveness', audioAsset: 'assets/audio/quran_teacher/words/maghfirah.mp3', category: 'mercy', exampleVerse: 'Qur’an 3:133'),
+  QuranTeacherWordSeed(id: 'word_karim', word: 'كَرِيم', transliteration: 'Karim', meaning: 'Generous / noble', audioAsset: 'assets/audio/quran_teacher/words/karim.mp3', category: 'mercy', exampleVerse: 'Qur’an 27:29'),
+  QuranTeacherWordSeed(id: 'word_ghafur', word: 'غَفُور', transliteration: 'Ghafur', meaning: 'All-Forgiving', audioAsset: 'assets/audio/quran_teacher/words/ghafur.mp3', category: 'mercy', exampleVerse: 'Qur’an 2:173'),
+  QuranTeacherWordSeed(id: 'word_tawwab', word: 'تَوَّاب', transliteration: 'Tawwab', meaning: 'Accepting repentance', audioAsset: 'assets/audio/quran_teacher/words/tawwab.mp3', category: 'mercy', exampleVerse: 'Qur’an 2:37'),
+  QuranTeacherWordSeed(id: 'word_latif', word: 'لَطِيف', transliteration: 'Latif', meaning: 'Subtle / gentle', audioAsset: 'assets/audio/quran_teacher/words/latif.mp3', category: 'mercy', exampleVerse: 'Qur’an 6:103'),
+  QuranTeacherWordSeed(id: 'word_wadud', word: 'وَدُود', transliteration: 'Wadud', meaning: 'Loving', audioAsset: 'assets/audio/quran_teacher/words/wadud.mp3', category: 'mercy', exampleVerse: 'Qur’an 11:90'),
+  QuranTeacherWordSeed(id: 'word_afw', word: 'عَفْو', transliteration: 'Afw', meaning: 'Pardon', audioAsset: 'assets/audio/quran_teacher/words/afw.mp3', category: 'mercy', exampleVerse: 'Qur’an 4:149'),
+  QuranTeacherWordSeed(id: 'word_furqan', word: 'فُرْقَان', transliteration: 'Furqan', meaning: 'Criterion', audioAsset: 'assets/audio/quran_teacher/words/furqan.mp3', category: 'mercy', exampleVerse: 'Qur’an 2:185'),
+  QuranTeacherWordSeed(id: 'word_barakah', word: 'بَرَكَة', transliteration: 'Barakah', meaning: 'Blessing', audioAsset: 'assets/audio/quran_teacher/words/barakah.mp3', category: 'mercy', exampleVerse: 'Qur’an 7:96'),
+  QuranTeacherWordSeed(id: 'word_sami', word: 'سَمِيع', transliteration: 'Sami', meaning: 'All-Hearing', audioAsset: 'assets/audio/quran_teacher/words/sami.mp3', category: 'mercy', exampleVerse: 'Qur’an 2:127'),
+  QuranTeacherWordSeed(id: 'word_basir', word: 'بَصِير', transliteration: 'Basir', meaning: 'All-Seeing', audioAsset: 'assets/audio/quran_teacher/words/basir.mp3', category: 'mercy', exampleVerse: 'Qur’an 2:110'),
+  QuranTeacherWordSeed(id: 'word_hakim', word: 'حَكِيم', transliteration: 'Hakim', meaning: 'Wise', audioAsset: 'assets/audio/quran_teacher/words/hakim.mp3', category: 'mercy', exampleVerse: 'Qur’an 2:129'),
+  QuranTeacherWordSeed(id: 'word_alim', word: 'عَلِيم', transliteration: 'Alim', meaning: 'All-Knowing', audioAsset: 'assets/audio/quran_teacher/words/alim.mp3', category: 'mercy', exampleVerse: 'Qur’an 2:29'),
 
-  QuranTeacherWordSeed(id: 'word_sama', word: 'سَمَاء', transliteration: 'Sama', meaning: 'Sky', audioAsset: 'assets/audio/quran_teacher/words/sama.mp3', category: 'creation'),
-  QuranTeacherWordSeed(id: 'word_ard', word: 'أَرْض', transliteration: 'Ard', meaning: 'Earth', audioAsset: 'assets/audio/quran_teacher/words/ard.mp3', category: 'creation'),
-  QuranTeacherWordSeed(id: 'word_shams', word: 'شَمْس', transliteration: 'Shams', meaning: 'Sun', audioAsset: 'assets/audio/quran_teacher/words/shams.mp3', category: 'creation', imageAsset: 'assets/images/quran_teacher/visual_mode/words/shams_sun.png'),
-  QuranTeacherWordSeed(id: 'word_qamar', word: 'قَمَر', transliteration: 'Qamar', meaning: 'Moon', audioAsset: 'assets/audio/quran_teacher/words/qamar.mp3', category: 'creation', imageAsset: 'assets/images/quran_teacher/visual_mode/words/qamar_moon.png'),
-  QuranTeacherWordSeed(id: 'word_layl', word: 'لَيْل', transliteration: 'Layl', meaning: 'Night', audioAsset: 'assets/audio/quran_teacher/words/layl.mp3', category: 'creation'),
-  QuranTeacherWordSeed(id: 'word_nahar', word: 'نَهَار', transliteration: 'Nahar', meaning: 'Daytime', audioAsset: 'assets/audio/quran_teacher/words/nahar.mp3', category: 'creation'),
-  QuranTeacherWordSeed(id: 'word_maa', word: 'مَاء', transliteration: 'Maa', meaning: 'Water', audioAsset: 'assets/audio/quran_teacher/words/maa.mp3', category: 'creation', imageAsset: 'assets/images/quran_teacher/visual_mode/words/maa_water.png'),
-  QuranTeacherWordSeed(id: 'word_bahr', word: 'بَحْر', transliteration: 'Bahr', meaning: 'Sea', audioAsset: 'assets/audio/quran_teacher/words/bahr.mp3', category: 'creation'),
-  QuranTeacherWordSeed(id: 'word_jabal', word: 'جَبَل', transliteration: 'Jabal', meaning: 'Mountain', audioAsset: 'assets/audio/quran_teacher/words/jabal.mp3', category: 'creation'),
-  QuranTeacherWordSeed(id: 'word_nahr', word: 'نَهْر', transliteration: 'Nahr', meaning: 'River', audioAsset: 'assets/audio/quran_teacher/words/nahr.mp3', category: 'creation'),
-  QuranTeacherWordSeed(id: 'word_shajar', word: 'شَجَر', transliteration: 'Shajar', meaning: 'Tree', audioAsset: 'assets/audio/quran_teacher/words/shajar.mp3', category: 'creation'),
-  QuranTeacherWordSeed(id: 'word_hajar', word: 'حَجَر', transliteration: 'Hajar', meaning: 'Stone', audioAsset: 'assets/audio/quran_teacher/words/hajar.mp3', category: 'creation'),
-  QuranTeacherWordSeed(id: 'word_reeh', word: 'رِيح', transliteration: 'Reeh', meaning: 'Wind', audioAsset: 'assets/audio/quran_teacher/words/reeh.mp3', category: 'creation'),
-  QuranTeacherWordSeed(id: 'word_matar', word: 'مَطَر', transliteration: 'Matar', meaning: 'Rain', audioAsset: 'assets/audio/quran_teacher/words/matar.mp3', category: 'creation'),
-  QuranTeacherWordSeed(id: 'word_turab', word: 'تُرَاب', transliteration: 'Turab', meaning: 'Dust / soil', audioAsset: 'assets/audio/quran_teacher/words/turab.mp3', category: 'creation'),
-  QuranTeacherWordSeed(id: 'word_insan', word: 'إِنْسَان', transliteration: 'Insan', meaning: 'Human being', audioAsset: 'assets/audio/quran_teacher/words/insan.mp3', category: 'creation'),
-  QuranTeacherWordSeed(id: 'word_anam', word: 'أَنْعَام', transliteration: 'Anam', meaning: 'Cattle', audioAsset: 'assets/audio/quran_teacher/words/anam.mp3', category: 'creation'),
-  QuranTeacherWordSeed(id: 'word_dabbah', word: 'دَابَّة', transliteration: 'Dabbah', meaning: 'Living creature', audioAsset: 'assets/audio/quran_teacher/words/dabbah.mp3', category: 'creation'),
-  QuranTeacherWordSeed(id: 'word_nahr_light', word: 'نُور', transliteration: 'Nur', meaning: 'Light', audioAsset: 'assets/audio/quran_teacher/words/noor.mp3', category: 'creation'),
-  QuranTeacherWordSeed(id: 'word_falak', word: 'فَلَك', transliteration: 'Falak', meaning: 'Orbit', audioAsset: 'assets/audio/quran_teacher/words/falak.mp3', category: 'creation'),
+  QuranTeacherWordSeed(id: 'word_sama', word: 'سَمَاء', transliteration: 'Sama', meaning: 'Sky', audioAsset: 'assets/audio/quran_teacher/words/sama.mp3', category: 'creation', exampleVerse: 'Qur’an 2:19'),
+  QuranTeacherWordSeed(id: 'word_ard', word: 'أَرْض', transliteration: 'Ard', meaning: 'Earth', audioAsset: 'assets/audio/quran_teacher/words/ard.mp3', category: 'creation', exampleVerse: 'Qur’an 2:22'),
+  QuranTeacherWordSeed(id: 'word_shams', word: 'شَمْس', transliteration: 'Shams', meaning: 'Sun', audioAsset: 'assets/audio/quran_teacher/words/shams.mp3', category: 'creation', exampleVerse: 'Qur’an 91:1', imageAsset: 'assets/images/quran_teacher/visual_mode/words/shams_sun.png'),
+  QuranTeacherWordSeed(id: 'word_qamar', word: 'قَمَر', transliteration: 'Qamar', meaning: 'Moon', audioAsset: 'assets/audio/quran_teacher/words/qamar.mp3', category: 'creation', exampleVerse: 'Qur’an 54:1', imageAsset: 'assets/images/quran_teacher/visual_mode/words/qamar_moon.png'),
+  QuranTeacherWordSeed(id: 'word_layl', word: 'لَيْل', transliteration: 'Layl', meaning: 'Night', audioAsset: 'assets/audio/quran_teacher/words/layl.mp3', category: 'creation', exampleVerse: 'Qur’an 92:1'),
+  QuranTeacherWordSeed(id: 'word_nahar', word: 'نَهَار', transliteration: 'Nahar', meaning: 'Daytime', audioAsset: 'assets/audio/quran_teacher/words/nahar.mp3', category: 'creation', exampleVerse: 'Qur’an 92:2'),
+  QuranTeacherWordSeed(id: 'word_maa', word: 'مَاء', transliteration: 'Maa', meaning: 'Water', audioAsset: 'assets/audio/quran_teacher/words/maa.mp3', category: 'creation', exampleVerse: 'Qur’an 2:22', imageAsset: 'assets/images/quran_teacher/visual_mode/words/maa_water.png'),
+  QuranTeacherWordSeed(id: 'word_bahr', word: 'بَحْر', transliteration: 'Bahr', meaning: 'Sea', audioAsset: 'assets/audio/quran_teacher/words/bahr.mp3', category: 'creation', exampleVerse: 'Qur’an 2:50'),
+  QuranTeacherWordSeed(id: 'word_jabal', word: 'جَبَل', transliteration: 'Jabal', meaning: 'Mountain', audioAsset: 'assets/audio/quran_teacher/words/jabal.mp3', category: 'creation', exampleVerse: 'Qur’an 7:143'),
+  QuranTeacherWordSeed(id: 'word_nahr', word: 'نَهْر', transliteration: 'Nahr', meaning: 'River', audioAsset: 'assets/audio/quran_teacher/words/nahr.mp3', category: 'creation', exampleVerse: 'Qur’an 54:54'),
+  QuranTeacherWordSeed(id: 'word_shajar', word: 'شَجَر', transliteration: 'Shajar', meaning: 'Tree', audioAsset: 'assets/audio/quran_teacher/words/shajar.mp3', category: 'creation', exampleVerse: 'Qur’an 16:10'),
+  QuranTeacherWordSeed(id: 'word_hajar', word: 'حَجَر', transliteration: 'Hajar', meaning: 'Stone', audioAsset: 'assets/audio/quran_teacher/words/hajar.mp3', category: 'creation', exampleVerse: 'Qur’an 2:60'),
+  QuranTeacherWordSeed(id: 'word_reeh', word: 'رِيح', transliteration: 'Reeh', meaning: 'Wind', audioAsset: 'assets/audio/quran_teacher/words/reeh.mp3', category: 'creation', exampleVerse: 'Qur’an 10:22'),
+  QuranTeacherWordSeed(id: 'word_matar', word: 'مَطَر', transliteration: 'Matar', meaning: 'Rain', audioAsset: 'assets/audio/quran_teacher/words/matar.mp3', category: 'creation', exampleVerse: 'Qur’an 4:102'),
+  QuranTeacherWordSeed(id: 'word_turab', word: 'تُرَاب', transliteration: 'Turab', meaning: 'Dust / soil', audioAsset: 'assets/audio/quran_teacher/words/turab.mp3', category: 'creation', exampleVerse: 'Qur’an 3:59'),
+  QuranTeacherWordSeed(id: 'word_insan', word: 'إِنْسَان', transliteration: 'Insan', meaning: 'Human being', audioAsset: 'assets/audio/quran_teacher/words/insan.mp3', category: 'creation', exampleVerse: 'Qur’an 76:1'),
+  QuranTeacherWordSeed(id: 'word_anam', word: 'أَنْعَام', transliteration: 'Anam', meaning: 'Cattle', audioAsset: 'assets/audio/quran_teacher/words/anam.mp3', category: 'creation', exampleVerse: 'Qur’an 16:5'),
+  QuranTeacherWordSeed(id: 'word_dabbah', word: 'دَابَّة', transliteration: 'Dabbah', meaning: 'Living creature', audioAsset: 'assets/audio/quran_teacher/words/dabbah.mp3', category: 'creation', exampleVerse: 'Qur’an 24:45'),
+  QuranTeacherWordSeed(id: 'word_nahr_light', word: 'نُور', transliteration: 'Nur', meaning: 'Light', audioAsset: 'assets/audio/quran_teacher/words/noor.mp3', category: 'creation', exampleVerse: 'Qur’an 24:35'),
+  QuranTeacherWordSeed(id: 'word_falak', word: 'فَلَك', transliteration: 'Falak', meaning: 'Orbit', audioAsset: 'assets/audio/quran_teacher/words/falak.mp3', category: 'creation', exampleVerse: 'Qur’an 21:33'),
 
-  QuranTeacherWordSeed(id: 'word_jannah', word: 'جَنَّة', transliteration: 'Jannah', meaning: 'Paradise', audioAsset: 'assets/audio/quran_teacher/words/jannah.mp3', category: 'hereafter'),
-  QuranTeacherWordSeed(id: 'word_nar', word: 'نَار', transliteration: 'Nar', meaning: 'Fire', audioAsset: 'assets/audio/quran_teacher/words/nar.mp3', category: 'hereafter'),
-  QuranTeacherWordSeed(id: 'word_hisab', word: 'حِسَاب', transliteration: 'Hisab', meaning: 'Account', audioAsset: 'assets/audio/quran_teacher/words/hisab.mp3', category: 'hereafter'),
-  QuranTeacherWordSeed(id: 'word_akhirah_h', word: 'آخِرَة', transliteration: 'Akhirah', meaning: 'Hereafter', audioAsset: 'assets/audio/quran_teacher/words/akhirah.mp3', category: 'hereafter'),
-  QuranTeacherWordSeed(id: 'word_bath', word: 'بَعْث', transliteration: 'Bath', meaning: 'Resurrection', audioAsset: 'assets/audio/quran_teacher/words/bath.mp3', category: 'hereafter'),
-  QuranTeacherWordSeed(id: 'word_qiyamah', word: 'قِيَامَة', transliteration: 'Qiyamah', meaning: 'Resurrection day', audioAsset: 'assets/audio/quran_teacher/words/qiyamah.mp3', category: 'hereafter'),
-  QuranTeacherWordSeed(id: 'word_jaza', word: 'جَزَاء', transliteration: 'Jaza', meaning: 'Recompense', audioAsset: 'assets/audio/quran_teacher/words/jaza.mp3', category: 'hereafter'),
-  QuranTeacherWordSeed(id: 'word_ajr', word: 'أَجْر', transliteration: 'Ajr', meaning: 'Reward', audioAsset: 'assets/audio/quran_teacher/words/ajr.mp3', category: 'hereafter'),
-  QuranTeacherWordSeed(id: 'word_jahannam', word: 'جَهَنَّم', transliteration: 'Jahannam', meaning: 'Hell', audioAsset: 'assets/audio/quran_teacher/words/jahannam.mp3', category: 'hereafter'),
-  QuranTeacherWordSeed(id: 'word_mizan', word: 'مِيزَان', transliteration: 'Mizan', meaning: 'Scale', audioAsset: 'assets/audio/quran_teacher/words/mizan.mp3', category: 'hereafter'),
-  QuranTeacherWordSeed(id: 'word_firdaws', word: 'فِرْدَوْس', transliteration: 'Firdaws', meaning: 'Highest garden', audioAsset: 'assets/audio/quran_teacher/words/firdaws.mp3', category: 'hereafter'),
-  QuranTeacherWordSeed(id: 'word_sair', word: 'سَعِير', transliteration: 'Sair', meaning: 'Blazing fire', audioAsset: 'assets/audio/quran_teacher/words/sair.mp3', category: 'hereafter'),
-  QuranTeacherWordSeed(id: 'word_khulud', word: 'خُلُود', transliteration: 'Khulud', meaning: 'Lasting forever', audioAsset: 'assets/audio/quran_teacher/words/khulud.mp3', category: 'hereafter'),
-  QuranTeacherWordSeed(id: 'word_liqa', word: 'لِقَاء', transliteration: 'Liqa', meaning: 'Meeting', audioAsset: 'assets/audio/quran_teacher/words/liqa.mp3', category: 'hereafter'),
-  QuranTeacherWordSeed(id: 'word_hashr', word: 'حَشْر', transliteration: 'Hashr', meaning: 'Gathering', audioAsset: 'assets/audio/quran_teacher/words/hashr.mp3', category: 'hereafter'),
+  QuranTeacherWordSeed(id: 'word_jannah', word: 'جَنَّة', transliteration: 'Jannah', meaning: 'Paradise', audioAsset: 'assets/audio/quran_teacher/words/jannah.mp3', category: 'hereafter', exampleVerse: 'Qur’an 2:25'),
+  QuranTeacherWordSeed(id: 'word_nar', word: 'نَار', transliteration: 'Nar', meaning: 'Fire', audioAsset: 'assets/audio/quran_teacher/words/nar.mp3', category: 'hereafter', exampleVerse: 'Qur’an 2:24'),
+  QuranTeacherWordSeed(id: 'word_hisab', word: 'حِسَاب', transliteration: 'Hisab', meaning: 'Account', audioAsset: 'assets/audio/quran_teacher/words/hisab.mp3', category: 'hereafter', exampleVerse: 'Qur’an 2:202'),
+  QuranTeacherWordSeed(id: 'word_akhirah_h', word: 'آخِرَة', transliteration: 'Akhirah', meaning: 'Hereafter', audioAsset: 'assets/audio/quran_teacher/words/akhirah.mp3', category: 'hereafter', exampleVerse: 'Qur’an 87:17'),
+  QuranTeacherWordSeed(id: 'word_bath', word: 'بَعْث', transliteration: 'Bath', meaning: 'Resurrection', audioAsset: 'assets/audio/quran_teacher/words/bath.mp3', category: 'hereafter', exampleVerse: 'Qur’an 22:7'),
+  QuranTeacherWordSeed(id: 'word_qiyamah', word: 'قِيَامَة', transliteration: 'Qiyamah', meaning: 'Resurrection day', audioAsset: 'assets/audio/quran_teacher/words/qiyamah.mp3', category: 'hereafter', exampleVerse: 'Qur’an 75:1'),
+  QuranTeacherWordSeed(id: 'word_jaza', word: 'جَزَاء', transliteration: 'Jaza', meaning: 'Recompense', audioAsset: 'assets/audio/quran_teacher/words/jaza.mp3', category: 'hereafter', exampleVerse: 'Qur’an 78:26'),
+  QuranTeacherWordSeed(id: 'word_ajr', word: 'أَجْر', transliteration: 'Ajr', meaning: 'Reward', audioAsset: 'assets/audio/quran_teacher/words/ajr.mp3', category: 'hereafter', exampleVerse: 'Qur’an 2:62'),
+  QuranTeacherWordSeed(id: 'word_jahannam', word: 'جَهَنَّم', transliteration: 'Jahannam', meaning: 'Hell', audioAsset: 'assets/audio/quran_teacher/words/jahannam.mp3', category: 'hereafter', exampleVerse: 'Qur’an 15:43'),
+  QuranTeacherWordSeed(id: 'word_mizan', word: 'مِيزَان', transliteration: 'Mizan', meaning: 'Scale', audioAsset: 'assets/audio/quran_teacher/words/mizan.mp3', category: 'hereafter', exampleVerse: 'Qur’an 55:9'),
+  QuranTeacherWordSeed(id: 'word_firdaws', word: 'فِرْدَوْس', transliteration: 'Firdaws', meaning: 'Highest garden', audioAsset: 'assets/audio/quran_teacher/words/firdaws.mp3', category: 'hereafter', exampleVerse: 'Qur’an 18:107'),
+  QuranTeacherWordSeed(id: 'word_sair', word: 'سَعِير', transliteration: 'Sair', meaning: 'Blazing fire', audioAsset: 'assets/audio/quran_teacher/words/sair.mp3', category: 'hereafter', exampleVerse: 'Qur’an 67:5'),
+  QuranTeacherWordSeed(id: 'word_khulud', word: 'خُلُود', transliteration: 'Khulud', meaning: 'Lasting forever', audioAsset: 'assets/audio/quran_teacher/words/khulud.mp3', category: 'hereafter', exampleVerse: 'Qur’an 21:34'),
+  QuranTeacherWordSeed(id: 'word_liqa', word: 'لِقَاء', transliteration: 'Liqa', meaning: 'Meeting', audioAsset: 'assets/audio/quran_teacher/words/liqa.mp3', category: 'hereafter', exampleVerse: 'Qur’an 18:110'),
+  QuranTeacherWordSeed(id: 'word_hashr', word: 'حَشْر', transliteration: 'Hashr', meaning: 'Gathering', audioAsset: 'assets/audio/quran_teacher/words/hashr.mp3', category: 'hereafter', exampleVerse: 'Qur’an 59:2'),
 
-  QuranTeacherWordSeed(id: 'word_fi', word: 'فِي', transliteration: 'Fi', meaning: 'In', audioAsset: 'assets/audio/quran_teacher/words/fee.mp3', category: 'connector'),
-  QuranTeacherWordSeed(id: 'word_min', word: 'مِن', transliteration: 'Min', meaning: 'From', audioAsset: 'assets/audio/quran_teacher/words/min.mp3', category: 'connector'),
-  QuranTeacherWordSeed(id: 'word_ila', word: 'إِلَى', transliteration: 'Ila', meaning: 'To', audioAsset: 'assets/audio/quran_teacher/words/ila.mp3', category: 'connector'),
-  QuranTeacherWordSeed(id: 'word_ala', word: 'عَلَى', transliteration: 'Ala', meaning: 'Upon', audioAsset: 'assets/audio/quran_teacher/words/ala.mp3', category: 'connector'),
-  QuranTeacherWordSeed(id: 'word_inna', word: 'إِنَّ', transliteration: 'Inna', meaning: 'Indeed', audioAsset: 'assets/audio/quran_teacher/words/inna.mp3', category: 'connector'),
-  QuranTeacherWordSeed(id: 'word_la', word: 'لَا', transliteration: 'La', meaning: 'No / not', audioAsset: 'assets/audio/quran_teacher/words/la.mp3', category: 'connector'),
-  QuranTeacherWordSeed(id: 'word_wa', word: 'وَ', transliteration: 'Wa', meaning: 'And', audioAsset: 'assets/audio/quran_teacher/words/wa.mp3', category: 'connector'),
-  QuranTeacherWordSeed(id: 'word_fa', word: 'فَ', transliteration: 'Fa', meaning: 'Then / so', audioAsset: 'assets/audio/quran_teacher/words/fa.mp3', category: 'connector'),
-  QuranTeacherWordSeed(id: 'word_thumma', word: 'ثُمَّ', transliteration: 'Thumma', meaning: 'Then', audioAsset: 'assets/audio/quran_teacher/words/thumma.mp3', category: 'connector'),
-  QuranTeacherWordSeed(id: 'word_idha', word: 'إِذَا', transliteration: 'Idha', meaning: 'When', audioAsset: 'assets/audio/quran_teacher/words/idha.mp3', category: 'connector'),
-  QuranTeacherWordSeed(id: 'word_ma', word: 'مَا', transliteration: 'Ma', meaning: 'What / that which', audioAsset: 'assets/audio/quran_teacher/words/ma.mp3', category: 'connector'),
-  QuranTeacherWordSeed(id: 'word_man', word: 'مَنْ', transliteration: 'Man', meaning: 'Who', audioAsset: 'assets/audio/quran_teacher/words/man.mp3', category: 'connector'),
-  QuranTeacherWordSeed(id: 'word_alladhi', word: 'الَّذِي', transliteration: 'Alladhi', meaning: 'The one who', audioAsset: 'assets/audio/quran_teacher/words/alladhi.mp3', category: 'connector'),
-  QuranTeacherWordSeed(id: 'word_lan', word: 'لَنْ', transliteration: 'Lan', meaning: 'Will not', audioAsset: 'assets/audio/quran_teacher/words/lan.mp3', category: 'connector'),
-  QuranTeacherWordSeed(id: 'word_lam', word: 'لَمْ', transliteration: 'Lam', meaning: 'Did not', audioAsset: 'assets/audio/quran_teacher/words/lam.mp3', category: 'connector'),
+  QuranTeacherWordSeed(id: 'word_fi', word: 'فِي', transliteration: 'Fi', meaning: 'In', audioAsset: 'assets/audio/quran_teacher/words/fee.mp3', category: 'connector', exampleVerse: 'Qur’an 1:6'),
+  QuranTeacherWordSeed(id: 'word_min', word: 'مِن', transliteration: 'Min', meaning: 'From', audioAsset: 'assets/audio/quran_teacher/words/min.mp3', category: 'connector', exampleVerse: 'Qur’an 1:7'),
+  QuranTeacherWordSeed(id: 'word_ila', word: 'إِلَى', transliteration: 'Ila', meaning: 'To', audioAsset: 'assets/audio/quran_teacher/words/ila.mp3', category: 'connector', exampleVerse: 'Qur’an 96:8'),
+  QuranTeacherWordSeed(id: 'word_ala', word: 'عَلَى', transliteration: 'Ala', meaning: 'Upon', audioAsset: 'assets/audio/quran_teacher/words/ala.mp3', category: 'connector', exampleVerse: 'Qur’an 2:5'),
+  QuranTeacherWordSeed(id: 'word_inna', word: 'إِنَّ', transliteration: 'Inna', meaning: 'Indeed', audioAsset: 'assets/audio/quran_teacher/words/inna.mp3', category: 'connector', exampleVerse: 'Qur’an 2:2'),
+  QuranTeacherWordSeed(id: 'word_la', word: 'لَا', transliteration: 'La', meaning: 'No / not', audioAsset: 'assets/audio/quran_teacher/words/la.mp3', category: 'connector', exampleVerse: 'Qur’an 1:7'),
+  QuranTeacherWordSeed(id: 'word_wa', word: 'وَ', transliteration: 'Wa', meaning: 'And', audioAsset: 'assets/audio/quran_teacher/words/wa.mp3', category: 'connector', exampleVerse: 'Qur’an 103:1'),
+  QuranTeacherWordSeed(id: 'word_fa', word: 'فَ', transliteration: 'Fa', meaning: 'Then / so', audioAsset: 'assets/audio/quran_teacher/words/fa.mp3', category: 'connector', exampleVerse: 'Qur’an 108:2'),
+  QuranTeacherWordSeed(id: 'word_thumma', word: 'ثُمَّ', transliteration: 'Thumma', meaning: 'Then', audioAsset: 'assets/audio/quran_teacher/words/thumma.mp3', category: 'connector', exampleVerse: 'Qur’an 2:29'),
+  QuranTeacherWordSeed(id: 'word_idha', word: 'إِذَا', transliteration: 'Idha', meaning: 'When', audioAsset: 'assets/audio/quran_teacher/words/idha.mp3', category: 'connector', exampleVerse: 'Qur’an 99:1'),
+  QuranTeacherWordSeed(id: 'word_ma', word: 'مَا', transliteration: 'Ma', meaning: 'What / that which', audioAsset: 'assets/audio/quran_teacher/words/ma.mp3', category: 'connector', exampleVerse: 'Qur’an 2:26'),
+  QuranTeacherWordSeed(id: 'word_man', word: 'مَنْ', transliteration: 'Man', meaning: 'Who', audioAsset: 'assets/audio/quran_teacher/words/man.mp3', category: 'connector', exampleVerse: 'Qur’an 1:7'),
+  QuranTeacherWordSeed(id: 'word_alladhi', word: 'الَّذِي', transliteration: 'Alladhi', meaning: 'The one who', audioAsset: 'assets/audio/quran_teacher/words/alladhi.mp3', category: 'connector', exampleVerse: 'Qur’an 96:1'),
+  QuranTeacherWordSeed(id: 'word_lan', word: 'لَنْ', transliteration: 'Lan', meaning: 'Will not', audioAsset: 'assets/audio/quran_teacher/words/lan.mp3', category: 'connector', exampleVerse: 'Qur’an 2:95'),
+  QuranTeacherWordSeed(id: 'word_lam', word: 'لَمْ', transliteration: 'Lam', meaning: 'Did not', audioAsset: 'assets/audio/quran_teacher/words/lam.mp3', category: 'connector', exampleVerse: 'Qur’an 112:3'),
 ];
 
 const quranTeacherPhraseSeeds = <QuranTeacherPhraseSeed>[
@@ -953,6 +1009,7 @@ const quranTeacherPhraseSeeds = <QuranTeacherPhraseSeed>[
     meaning: 'All praise is for Allah',
     audioAsset: 'assets/audio/quran_teacher/phrases/alhamdulillah.mp3',
     lessonLink: 'phrase_fatihah_1',
+    sourceReference: 'Qur’an 1:2',
   ),
   QuranTeacherPhraseSeed(
     id: 'phrase_rabb_alamin',
@@ -961,6 +1018,7 @@ const quranTeacherPhraseSeeds = <QuranTeacherPhraseSeed>[
     meaning: 'Lord of the worlds',
     audioAsset: 'assets/audio/quran_teacher/phrases/rabb_al_alamin.mp3',
     lessonLink: 'phrase_fatihah_1',
+    sourceReference: 'Qur’an 1:2',
   ),
   QuranTeacherPhraseSeed(
     id: 'phrase_bismillah',
@@ -969,6 +1027,7 @@ const quranTeacherPhraseSeeds = <QuranTeacherPhraseSeed>[
     meaning: 'In the name of Allah',
     audioAsset: 'assets/audio/quran_teacher/phrases/bismillah.mp3',
     lessonLink: 'phrase_fatihah_1',
+    sourceReference: 'Qur’an 1:1',
   ),
   QuranTeacherPhraseSeed(
     id: 'phrase_maliki_yawmiddin',
@@ -977,6 +1036,7 @@ const quranTeacherPhraseSeeds = <QuranTeacherPhraseSeed>[
     meaning: 'Master of the Day of Judgement',
     audioAsset: 'assets/audio/quran_teacher/phrases/maliki_yawm_id_deen.mp3',
     lessonLink: 'phrase_fatihah_2',
+    sourceReference: 'Qur’an 1:4',
   ),
   QuranTeacherPhraseSeed(
     id: 'phrase_iyyaka_nabud',
@@ -985,6 +1045,7 @@ const quranTeacherPhraseSeeds = <QuranTeacherPhraseSeed>[
     meaning: 'You alone we worship',
     audioAsset: 'assets/audio/quran_teacher/phrases/iyyaka_nabud.mp3',
     lessonLink: 'phrase_fatihah_2',
+    sourceReference: 'Qur’an 1:5',
   ),
   QuranTeacherPhraseSeed(
     id: 'phrase_ihdina',
@@ -993,6 +1054,7 @@ const quranTeacherPhraseSeeds = <QuranTeacherPhraseSeed>[
     meaning: 'Guide us to the straight path',
     audioAsset: 'assets/audio/quran_teacher/phrases/ihdina_sirat.mp3',
     lessonLink: 'phrase_fatihah_2',
+    sourceReference: 'Qur’an 1:6',
   ),
   QuranTeacherPhraseSeed(
     id: 'phrase_qul_huwa_allahu_ahad',
@@ -1001,6 +1063,7 @@ const quranTeacherPhraseSeeds = <QuranTeacherPhraseSeed>[
     meaning: 'Say: He is Allah, the One',
     audioAsset: 'assets/audio/quran_teacher/phrases/qul_huwa_allahu_ahad.mp3',
     lessonLink: 'phrase_ikhlas_1',
+    sourceReference: 'Qur’an 112:1',
   ),
   QuranTeacherPhraseSeed(
     id: 'phrase_allahu_samad',
@@ -1009,6 +1072,7 @@ const quranTeacherPhraseSeeds = <QuranTeacherPhraseSeed>[
     meaning: 'Allah, the Eternal Refuge',
     audioAsset: 'assets/audio/quran_teacher/phrases/allahu_samad.mp3',
     lessonLink: 'phrase_ikhlas_1',
+    sourceReference: 'Qur’an 112:2',
   ),
 ];
 
@@ -1077,6 +1141,7 @@ const quranTeacherVisualModeSeeds = <QuranTeacherLetterSeed>[
     simpleExplanation: 'Alif can be remembered with Apple.',
     exampleWord: 'أَب',
     exampleMeaning: 'father',
+    exampleReference: 'Qur’an 12:4',
     audioAsset: 'assets/audio/quran_teacher/letters/alif.mp3',
     visualModeAnchorId: 'apple',
     visualHint: 'Apple helps you remember Alif.',
@@ -1091,6 +1156,7 @@ const quranTeacherVisualModeSeeds = <QuranTeacherLetterSeed>[
     simpleExplanation: 'Ba can be remembered with Ball.',
     exampleWord: 'بَيْت',
     exampleMeaning: 'house',
+    exampleReference: 'Qur’an 2:125',
     audioAsset: 'assets/audio/quran_teacher/letters/ba.mp3',
     visualModeAnchorId: 'ball',
     visualHint: 'Ball helps you remember Ba.',
@@ -1103,8 +1169,9 @@ const quranTeacherVisualModeSeeds = <QuranTeacherLetterSeed>[
     name: 'Ta',
     transliteration: 'ta',
     simpleExplanation: 'Ta can be remembered with Tree.',
-    exampleWord: 'تَمْر',
-    exampleMeaning: 'dates',
+    exampleWord: 'تَابَ',
+    exampleMeaning: 'He turned in repentance',
+    exampleReference: 'Qur’an 2:37',
     audioAsset: 'assets/audio/quran_teacher/letters/ta.mp3',
     visualModeAnchorId: 'tree',
     visualHint: 'Tree helps you remember Ta.',
@@ -1119,6 +1186,7 @@ const quranTeacherVisualModeSeeds = <QuranTeacherLetterSeed>[
     simpleExplanation: 'Jeem can be remembered with Juice.',
     exampleWord: 'جَنَّة',
     exampleMeaning: 'garden',
+    exampleReference: 'Qur’an 2:25',
     audioAsset: 'assets/audio/quran_teacher/letters/jeem.mp3',
     visualModeAnchorId: 'juice',
     visualHint: 'Juice helps you remember Jeem.',
@@ -1133,6 +1201,7 @@ const quranTeacherVisualModeSeeds = <QuranTeacherLetterSeed>[
     simpleExplanation: 'Seen can be remembered with Sun.',
     exampleWord: 'سَمَاء',
     exampleMeaning: 'sky',
+    exampleReference: 'Qur’an 86:1',
     audioAsset: 'assets/audio/quran_teacher/letters/seen.mp3',
     visualModeAnchorId: 'sun',
     visualHint: 'Sun helps you remember Seen.',
@@ -1147,6 +1216,7 @@ const quranTeacherVisualModeSeeds = <QuranTeacherLetterSeed>[
     simpleExplanation: 'Meem can be remembered with Moon.',
     exampleWord: 'مَاء',
     exampleMeaning: 'water',
+    exampleReference: 'Qur’an 21:30',
     audioAsset: 'assets/audio/quran_teacher/letters/meem.mp3',
     visualModeAnchorId: 'moon',
     visualHint: 'Moon helps you remember Meem.',
@@ -1161,6 +1231,7 @@ const quranTeacherVisualModeSeeds = <QuranTeacherLetterSeed>[
     simpleExplanation: 'Noon can be remembered with Nest.',
     exampleWord: 'نُور',
     exampleMeaning: 'light',
+    exampleReference: 'Qur’an 24:35',
     audioAsset: 'assets/audio/quran_teacher/letters/noon.mp3',
     visualModeAnchorId: 'nest',
     visualHint: 'Nest helps you remember Noon.',
@@ -1175,6 +1246,7 @@ const quranTeacherVisualModeSeeds = <QuranTeacherLetterSeed>[
     simpleExplanation: 'Waw can be remembered with Water.',
     exampleWord: 'وَلَد',
     exampleMeaning: 'child',
+    exampleReference: 'Qur’an 112:3',
     audioAsset: 'assets/audio/quran_teacher/letters/waw.mp3',
     visualModeAnchorId: 'water',
     visualHint: 'Water helps you remember Waw.',
@@ -1842,6 +1914,7 @@ QuranTeachingCatalog buildQuranTeachingCatalog() {
                   transliteration: entry.transliteration,
                   meaning: entry.meaning,
                   audio: _audioFromPath(entry.id, entry.transliteration, entry.audioAsset),
+                  verseReference: entry.verseReference,
                 ),
               )
               .toList(growable: false),
@@ -1875,6 +1948,7 @@ QuranTeachingCatalog buildQuranTeachingCatalog() {
                   transliteration: entry.transliteration,
                   meaning: entry.meaning,
                   audio: _audioFromPath(entry.id, entry.transliteration, entry.audioAsset),
+                  verseReference: entry.verseReference,
                 ),
               )
               .toList(growable: false),
@@ -2131,11 +2205,13 @@ QuranTeachingStep _letterStepFromSeed(QuranTeacherLetterSeed seed) {
     transliteration: seed.transliteration,
     audio: _audioFromPath(seed.id, seed.name, seed.audioAsset),
     visualAnchor: anchor,
+    sourceReference: seed.exampleReference,
     examples: <QuranTeachingExample>[
       QuranTeachingExample(
         arabic: seed.exampleWord,
         meaning: seed.exampleMeaning,
-        note: 'Example word for ${seed.name}',
+        note: 'Qur’anic example for ${seed.name}',
+        verseReference: seed.exampleReference,
       ),
     ],
   );
@@ -2197,6 +2273,15 @@ QuranTeachingStep _ruleStepFromSeed(QuranTeacherRuleSeed seed) {
     focusArabic: seed.examples.join('  '),
     explanation: seed.simpleExplanation,
     audio: _audioFromPath(seed.id, seed.title, seed.audioAsset),
+    sourceReference: seed.exampleSourceReferences.join(' • '),
+    examples: List<QuranTeachingExample>.generate(
+      seed.examples.length,
+      (index) => QuranTeachingExample(
+        arabic: seed.examples[index],
+        verseReference: seed.exampleSourceReferences[index],
+      ),
+      growable: false,
+    ),
   );
 }
 
@@ -2256,6 +2341,7 @@ QuranTeachingLesson _wordLesson(
                 transliteration: word.transliteration,
                 meaning: word.meaning,
                 audio: _audioFromPath(word.id, word.transliteration, word.audioAsset),
+                verseReference: word.exampleVerse,
                 imageAssetPath: word.imageAsset,
               ),
             )
@@ -2302,6 +2388,7 @@ QuranTeachingLesson _phraseLesson({
             transliteration: phrase.transliteration,
             explanation: phrase.meaning,
             audio: _audioFromPath(phrase.id, phrase.transliteration, phrase.audioAsset),
+            sourceReference: phrase.sourceReference,
           ),
         )
         .toList(growable: false),

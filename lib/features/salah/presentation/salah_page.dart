@@ -622,7 +622,7 @@ class _SummaryTile extends StatelessWidget {
                   ),
                 ),
               ),
-              if (trailing != null) trailing!,
+              if (trailing != null) ...<Widget>[trailing!],
             ],
           ),
           const SizedBox(height: 6),

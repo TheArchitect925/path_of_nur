@@ -4,7 +4,6 @@ import '../../../../../core/theme/app_colors.dart';
 import '../../../../../shared/widgets/premium_card.dart';
 import '../../application/quran_teaching_smart_review_controller.dart';
 import '../../domain/quran_teaching_review_models.dart';
-import '../quran_teaching_theme.dart';
 
 class QuranTeachingDailyReviewCard extends StatelessWidget {
   const QuranTeachingDailyReviewCard({

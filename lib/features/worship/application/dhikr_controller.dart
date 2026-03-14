@@ -108,6 +108,23 @@ class DhikrController extends StateNotifier<DhikrSessionState> {
     }
   }
 
+  void addManualCount(int count) {
+    if (count <= 0) return;
+    state = state.copyWith(currentCount: state.currentCount + count);
+    _save();
+    if (state.target >= 100) {
+      _oceanDrops.awardDrop(
+        actionType: oceanActionDhikrFreeHundredReached,
+        sourceModule: oceanSourceDhikr,
+        referenceId: 'free_dhikr',
+        metadata: {
+          'countDelta': count,
+          'timestamp': DateTime.now().toIso8601String(),
+        },
+      );
+    }
+  }
+
   void undo() {
     if (state.currentCount <= 0) return;
     state = state.copyWith(currentCount: state.currentCount - 1);

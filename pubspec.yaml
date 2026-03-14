@@ -55,6 +55,9 @@ dependencies:
   audio_service: ^0.18.18
   quick_actions: ^1.1.0
   wakelock_plus: ^1.2.8
+  home_widget: ^0.7.0
+  camera: ^0.11.1
+  google_mlkit_image_labeling: ^0.14.1
 
 dev_dependencies:
   flutter_test:

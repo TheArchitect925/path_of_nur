@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../core/theme/app_colors.dart';
 import '../../presentation/data/learn_icon_registry.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/trivia_controller.dart';

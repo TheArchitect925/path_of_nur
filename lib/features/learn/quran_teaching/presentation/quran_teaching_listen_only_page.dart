@@ -85,7 +85,7 @@ class _QuranTeachingListenOnlyPageState
                   ),
                   const SizedBox(height: 12),
                   DropdownButtonFormField<String>(
-                    value: selectedPack?.id,
+                    initialValue: selectedPack?.id,
                     items: packs
                         .map(
                           (pack) => DropdownMenuItem<String>(
@@ -286,7 +286,7 @@ class _QuranTeachingListenOnlyPageState
                       const SizedBox(width: 10),
                       Expanded(
                         child: DropdownButtonFormField<double>(
-                          value: state.playbackSpeed,
+                          initialValue: state.playbackSpeed,
                           items: const <double>[0.75, 1.0, 1.25]
                               .map(
                                 (speed) => DropdownMenuItem<double>(

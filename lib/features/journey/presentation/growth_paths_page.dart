@@ -6,14 +6,53 @@ import '../../../shared/widgets/premium_card.dart';
 import '../application/growth_providers.dart';
 import 'widgets/growth_ui_helpers.dart';
 
-class GrowthPathsPage extends ConsumerWidget {
+class GrowthPathsPage extends ConsumerStatefulWidget {
   const GrowthPathsPage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<GrowthPathsPage> createState() => _GrowthPathsPageState();
+}
+
+class _GrowthPathsPageState extends ConsumerState<GrowthPathsPage> {
+  late final TextEditingController _searchController;
+  String _query = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _searchController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final paths = ref.watch(growthPathProgressProvider);
     final pathCopy = ref.watch(growthPathContentByIdProvider);
     final stageCopy = ref.watch(growthStageContentByNumberProvider);
+    final visiblePaths = paths.where((progress) {
+      final trimmed = _query.trim().toLowerCase();
+      if (trimmed.isEmpty) return true;
+      final copy = pathCopy[progress.path.id];
+      final stageLabel =
+          copy?.stageLabel ?? stageCopy[progress.path.stage]?.title ?? '';
+      final milestoneNames = (copy?.milestoneNames ?? const <String>[]).join(' ');
+      final haystack = [
+        progress.path.title,
+        progress.path.subtitle,
+        progress.path.description,
+        progress.recommendedNextStep,
+        progress.path.estimatedCommitment,
+        copy?.whyItMatters ?? '',
+        stageLabel,
+        milestoneNames,
+      ].join(' ').toLowerCase();
+      return haystack.contains(trimmed);
+    }).toList(growable: false);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -24,130 +63,184 @@ class GrowthPathsPage extends ConsumerWidget {
           ),
         ),
         const SizedBox(height: 12),
-        ...paths.map(
-          (progress) => Padding(
-            padding: const EdgeInsets.only(bottom: 12),
-            child: PremiumCard(
-              child: InkWell(
-                borderRadius: BorderRadius.circular(18),
-                onTap: () => context.pushNamed(
-                  'growthPathDetail',
-                  pathParameters: {'pathId': progress.path.id},
+        PremiumCard(
+          child: Row(
+            children: [
+              const Icon(Icons.search_rounded),
+              const SizedBox(width: 10),
+              Expanded(
+                child: TextField(
+                  controller: _searchController,
+                  onChanged: (value) => setState(() => _query = value),
+                  decoration: InputDecoration(
+                    hintText: 'Search learning paths',
+                    border: InputBorder.none,
+                    isDense: true,
+                    suffixIcon: _query.trim().isEmpty
+                        ? null
+                        : IconButton(
+                            onPressed: () {
+                              _searchController.clear();
+                              setState(() => _query = '');
+                            },
+                            icon: const Icon(Icons.close_rounded),
+                          ),
+                  ),
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Container(
-                          width: 36,
-                          height: 36,
-                          decoration: BoxDecoration(
-                            color: const Color(0xFFEADDC8),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Icon(growthPathIcon(progress.path.icon), size: 19),
-                        ),
-                        const SizedBox(width: 10),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                progress.path.title,
-                                style: const TextStyle(fontWeight: FontWeight.w700),
-                              ),
-                              const SizedBox(height: 2),
-                              Text(
-                                progress.path.subtitle,
-                                style: const TextStyle(color: Color(0xFF6A5A4A)),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 10),
-                    Text(progress.path.description),
-                    const SizedBox(height: 8),
-                    Wrap(
-                      spacing: 8,
-                      runSpacing: 8,
-                      children: [
-                        _InfoPill(
-                          label: '${progress.completedHabits}/${progress.path.totalHabits} habits',
-                        ),
-                        _InfoPill(label: progress.path.estimatedCommitment),
-                        _InfoPill(
-                          label: pathCopy[progress.path.id]?.stageLabel ??
-                              stageCopy[progress.path.stage]?.title ??
-                              'Stage ${progress.path.stage}',
-                        ),
-                        _InfoPill(label: progress.unlocked ? 'Unlocked' : 'Locked'),
-                      ],
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      pathCopy[progress.path.id]?.whyItMatters ??
-                          'Consistency grows over time through steady steps.',
-                      style: const TextStyle(color: Color(0xFF6A5A4A), fontSize: 12.5),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      progress.recommendedNextStep,
-                      style: const TextStyle(color: Color(0xFF6A5A4A), fontSize: 12.5),
-                    ),
-                    if (progress.completionCelebrationPending) ...[
-                      const SizedBox(height: 6),
-                      const Text(
-                        'Path completed. Alhamdulillah. Open details to acknowledge completion.',
-                        style: TextStyle(fontWeight: FontWeight.w600),
-                      ),
-                    ],
-                    const SizedBox(height: 10),
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(999),
-                      child: LinearProgressIndicator(value: progress.progress),
-                    ),
-                    const SizedBox(height: 10),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: FilledButton.tonal(
-                            onPressed: !progress.unlocked
-                                ? null
-                                : () {
-                                    final controller =
-                                        ref.read(growthControllerProvider.notifier);
-                                    if (!progress.started) {
-                                      controller.setPathStarted(
-                                        progress.path.id,
-                                        started: true,
-                                      );
-                                      return;
-                                    }
-                                    controller.setPathPaused(
-                                      progress.path.id,
-                                      paused: !progress.paused,
-                                    );
-                                  },
-                            child: Text(
-                              !progress.started
-                                  ? 'Start'
-                                  : progress.paused
-                                  ? 'Resume'
-                                  : 'Pause',
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 12),
+        if (visiblePaths.isEmpty)
+          const PremiumCard(
+            child: Text(
+              'No learning paths match your search right now. Try a simpler term.',
+            ),
+          )
+        else
+          ...visiblePaths.map(
+            (progress) => Padding(
+              padding: const EdgeInsets.only(bottom: 12),
+              child: PremiumCard(
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(18),
+                  onTap: () => context.pushNamed(
+                    'growthPathDetail',
+                    pathParameters: {'pathId': progress.path.id},
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Container(
+                            width: 36,
+                            height: 36,
+                            decoration: BoxDecoration(
+                              color: const Color(0xFFEADDC8),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Icon(
+                              growthPathIcon(progress.path.icon),
+                              size: 19,
                             ),
                           ),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  progress.path.title,
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                                const SizedBox(height: 2),
+                                Text(
+                                  progress.path.subtitle,
+                                  style: const TextStyle(
+                                    color: Color(0xFF6A5A4A),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 10),
+                      Text(progress.path.description),
+                      const SizedBox(height: 8),
+                      Wrap(
+                        spacing: 8,
+                        runSpacing: 8,
+                        children: [
+                          _InfoPill(
+                            label:
+                                '${progress.completedHabits}/${progress.path.totalHabits} habits',
+                          ),
+                          _InfoPill(label: progress.path.estimatedCommitment),
+                          _InfoPill(
+                            label:
+                                pathCopy[progress.path.id]?.stageLabel ??
+                                stageCopy[progress.path.stage]?.title ??
+                                'Stage ${progress.path.stage}',
+                          ),
+                          _InfoPill(
+                            label: progress.unlocked ? 'Unlocked' : 'Locked',
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        pathCopy[progress.path.id]?.whyItMatters ??
+                            'Consistency grows over time through steady steps.',
+                        style: const TextStyle(
+                          color: Color(0xFF6A5A4A),
+                          fontSize: 12.5,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        progress.recommendedNextStep,
+                        style: const TextStyle(
+                          color: Color(0xFF6A5A4A),
+                          fontSize: 12.5,
+                        ),
+                      ),
+                      if (progress.completionCelebrationPending) ...[
+                        const SizedBox(height: 6),
+                        const Text(
+                          'Path completed. Alhamdulillah. Open details to acknowledge completion.',
+                          style: TextStyle(fontWeight: FontWeight.w600),
                         ),
                       ],
-                    ),
-                  ],
+                      const SizedBox(height: 10),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(999),
+                        child: LinearProgressIndicator(value: progress.progress),
+                      ),
+                      const SizedBox(height: 10),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: FilledButton.tonal(
+                              onPressed: !progress.unlocked
+                                  ? null
+                                  : () {
+                                      final controller = ref.read(
+                                        growthControllerProvider.notifier,
+                                      );
+                                      if (!progress.started) {
+                                        controller.setPathStarted(
+                                          progress.path.id,
+                                          started: true,
+                                        );
+                                        return;
+                                      }
+                                      controller.setPathPaused(
+                                        progress.path.id,
+                                        paused: !progress.paused,
+                                      );
+                                    },
+                              child: Text(
+                                !progress.started
+                                    ? 'Start'
+                                    : progress.paused
+                                    ? 'Resume'
+                                    : 'Pause',
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
           ),
-        ),
       ],
     );
   }

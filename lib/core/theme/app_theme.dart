@@ -48,20 +48,20 @@ class AppAppearanceTheme extends ThemeExtension<AppAppearanceTheme> {
       case AppThemeMode.defaultMode:
         return AppAppearanceTheme(
           mode: mode,
-          background: AppColors.background,
-          backgroundAlt: AppColors.backgroundAlt,
-          surface: AppColors.surface,
-          surfaceSoft: AppColors.surfaceSoft,
-          onSurface: AppColors.onSurface,
-          onSurfaceSubtle: AppColors.onSurfaceSubtle,
-          accent: AppColors.accentGold,
-          accentSoft: AppColors.accentGoldSoft,
+          background: const Color(0xFFEDE6DF),
+          backgroundAlt: const Color(0xFFE2D8CC),
+          surface: const Color(0xFFF5EEE5),
+          surfaceSoft: const Color(0xFFECE1D4),
+          onSurface: const Color(0xFF3D3025),
+          onSurfaceSubtle: const Color(0xFF6D5C4C),
+          accent: const Color(0xFFDABE8D),
+          accentSoft: const Color(0xFFB9955E),
           glassSurfaceAlpha: disableGlassTransparency
               ? 0.96
               : AppColors.glassSurfaceAlpha,
           glassBorderAlpha: disableGlassTransparency
-              ? 0.44
-              : AppColors.glassBorderAlpha,
+              ? 0.42
+              : 0.36,
           disableGlassTransparency: disableGlassTransparency,
           disableBackground: disableBackground,
         );
@@ -206,6 +206,10 @@ class AppTheme {
     final onSurfaceSubtle = highContrastText
         ? appearance.onSurface
         : appearance.onSurfaceSubtle;
+    final outlineColor = highContrastText
+        ? onSurface.withValues(alpha: 0.55)
+        : appearance.accentSoft.withValues(alpha: 0.24);
+    final mutedIconColor = highContrastText ? onSurface : onSurfaceSubtle;
     final brightness = appearance.isDark ? Brightness.dark : Brightness.light;
 
     return ThemeData(
@@ -220,6 +224,8 @@ class AppTheme {
         onPrimary: onSurface,
         onSurface: onSurface,
         onSurfaceVariant: onSurfaceSubtle,
+        outline: outlineColor,
+        outlineVariant: outlineColor.withValues(alpha: highContrastText ? 0.4 : 0.24),
         surface: appearance.surface,
         surfaceContainerHighest: appearance.surfaceSoft,
       ),
@@ -306,7 +312,7 @@ class AppTheme {
           if (states.contains(WidgetState.selected)) {
             return IconThemeData(color: onSurface);
           }
-          return IconThemeData(color: onSurfaceSubtle);
+          return IconThemeData(color: mutedIconColor);
         }),
         labelTextStyle: WidgetStateProperty.resolveWith((states) {
           if (states.contains(WidgetState.selected)) {
@@ -317,7 +323,7 @@ class AppTheme {
             );
           }
           return TextStyle(
-            color: onSurfaceSubtle,
+            color: mutedIconColor,
             fontWeight: FontWeight.w500,
             fontFamily: AppFonts.uiArabic,
           );
@@ -378,12 +384,48 @@ class AppTheme {
         ),
       ),
       dividerTheme: DividerThemeData(
-        color: appearance.accentSoft.withValues(alpha: 0.24),
+        color: outlineColor,
         thickness: 1,
       ),
       listTileTheme: ListTileThemeData(
-        iconColor: onSurfaceSubtle,
+        iconColor: mutedIconColor,
         textColor: onSurface,
+      ),
+      inputDecorationTheme: InputDecorationTheme(
+        isDense: true,
+        labelStyle: TextStyle(
+          color: onSurface,
+          fontWeight: highContrastText ? FontWeight.w600 : FontWeight.w500,
+          fontFamily: AppFonts.uiArabic,
+        ),
+        hintStyle: TextStyle(
+          color: onSurfaceSubtle,
+          fontWeight: highContrastText ? FontWeight.w500 : FontWeight.w400,
+          fontFamily: AppFonts.uiArabic,
+        ),
+        helperStyle: TextStyle(
+          color: onSurfaceSubtle,
+          fontFamily: AppFonts.uiArabic,
+        ),
+        counterStyle: TextStyle(
+          color: onSurfaceSubtle,
+          fontFamily: AppFonts.uiArabic,
+        ),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(AppRadii.button),
+          borderSide: BorderSide(color: outlineColor),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(AppRadii.button),
+          borderSide: BorderSide(color: outlineColor),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(AppRadii.button),
+          borderSide: BorderSide(
+            color: highContrastText ? onSurface : appearance.accentSoft,
+            width: highContrastText ? 1.6 : 1.2,
+          ),
+        ),
       ),
       chipTheme: ChipThemeData(
         backgroundColor: appearance.surface,
@@ -440,7 +482,7 @@ class AppTheme {
   }
 
   static final ThemeData darkTheme = themeFor(
-    mode: AppThemeMode.defaultMode,
+    mode: AppThemeMode.dark,
     disableGlassTransparency: false,
     disableBackground: false,
     highContrastText: false,
