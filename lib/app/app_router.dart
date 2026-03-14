@@ -41,6 +41,8 @@ import '../features/profile/presentation/profile_coming_soon_page.dart';
 import '../features/profile/presentation/profile_summary_page.dart';
 import '../features/profile/presentation/profile_whats_new_page.dart';
 import '../features/profile/presentation/settings_page.dart';
+import '../features/accounts_sync/application/accounts_sync_controller.dart';
+import '../features/accounts_sync/presentation/accounts_profiles_sync_page.dart';
 import '../features/worship/presentation/khusu_focus_page.dart';
 import '../features/worship/presentation/qibla_finder_page.dart';
 import '../features/shared/section_detail_page.dart';
@@ -157,6 +159,7 @@ extension NavTabExt on NavTab {
 
 final appRouterProvider = Provider<GoRouter>((ref) {
   final onboardingCompleted = ref.watch(onboardingCompletedProvider);
+  final accountsSyncState = ref.watch(accountsSyncControllerProvider);
   final initial = onboardingCompleted ? NavTab.home.path : '/onboarding';
   final shellNavigatorKey = GlobalKey<NavigatorState>();
   return GoRouter(
@@ -175,6 +178,15 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       }
       if (onboardingCompleted && onOnboarding) {
         return NavTab.home.path;
+      }
+      final onSharedPicker = state.matchedLocation == '/profiles/launch';
+      if (accountsSyncState.sharedDeviceModeEnabled &&
+          accountsSyncState.sharedDeviceSafety.requireProfileSelectionOnLaunch &&
+          accountsSyncState.sessionUnlockedProfileId == null &&
+          onboardingCompleted &&
+          !onSharedPicker &&
+          !state.matchedLocation.startsWith('/accounts-sync')) {
+        return '/profiles/launch';
       }
       return null;
     },
@@ -205,6 +217,12 @@ final appRouterProvider = Provider<GoRouter>((ref) {
         pageBuilder: (context, state) =>
             const MaterialPage(child: OnboardingPage()),
       ),
+      GoRoute(
+        path: '/profiles/launch',
+        name: 'sharedProfilePicker',
+        pageBuilder: (context, state) =>
+            const MaterialPage(child: SharedDeviceProfilePickerPage()),
+      ),
       ShellRoute(
         navigatorKey: shellNavigatorKey,
         pageBuilder: (context, state, child) {
@@ -227,6 +245,60 @@ final appRouterProvider = Provider<GoRouter>((ref) {
             name: 'settings',
             pageBuilder: (context, state) =>
                 const MaterialPage(child: SettingsPage()),
+          ),
+          GoRoute(
+            path: '/accounts-sync',
+            name: 'accountsSync',
+            pageBuilder: (context, state) =>
+                const MaterialPage(child: AccountsProfilesSyncPage()),
+          ),
+          GoRoute(
+            path: '/accounts-sync/profiles',
+            name: 'profilesInAccount',
+            pageBuilder: (context, state) =>
+                const MaterialPage(child: ProfilesInAccountPage()),
+          ),
+          GoRoute(
+            path: '/accounts-sync/accounts',
+            name: 'signedInAccounts',
+            pageBuilder: (context, state) =>
+                const MaterialPage(child: SignedInAccountsPage()),
+          ),
+          GoRoute(
+            path: '/accounts-sync/shared-device',
+            name: 'sharedDeviceSafety',
+            pageBuilder: (context, state) =>
+                const MaterialPage(child: SharedDeviceSafetyPage()),
+          ),
+          GoRoute(
+            path: '/accounts-sync/devices',
+            name: 'connectedDevices',
+            pageBuilder: (context, state) =>
+                const MaterialPage(child: ConnectedDevicesPage()),
+          ),
+          GoRoute(
+            path: '/accounts-sync/backup',
+            name: 'backupRestore',
+            pageBuilder: (context, state) =>
+                const MaterialPage(child: BackupRestoreHomePage()),
+          ),
+          GoRoute(
+            path: '/accounts-sync/backup/export',
+            name: 'backupExport',
+            pageBuilder: (context, state) =>
+                const MaterialPage(child: BackupExportFlowPage()),
+          ),
+          GoRoute(
+            path: '/accounts-sync/backup/import',
+            name: 'backupImport',
+            pageBuilder: (context, state) =>
+                const MaterialPage(child: BackupImportFlowPage()),
+          ),
+          GoRoute(
+            path: '/accounts-sync/sync-details',
+            name: 'syncDetails',
+            pageBuilder: (context, state) =>
+                const MaterialPage(child: SyncDetailsPage()),
           ),
           GoRoute(
             path: '/profile/summary',

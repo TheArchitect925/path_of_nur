@@ -169,6 +169,11 @@ class DhikrController extends StateNotifier<DhikrSessionState> {
     }
   }
 
+  void reloadFromStorage() {
+    state = DhikrSessionState.initial();
+    _load();
+  }
+
   void _load() {
     final data = _store.getJsonMap('worship.dhikr');
     if (data == null) return;

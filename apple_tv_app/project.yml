@@ -1,0 +1,47 @@
+name: PathOfNurTV
+options:
+  deploymentTarget:
+    tvOS: '17.0'
+settings:
+  base:
+    PRODUCT_BUNDLE_IDENTIFIER: com.pathofnur.tv
+    DEVELOPMENT_TEAM: ''
+packages: {}
+targets:
+  PathOfNurTV:
+    type: application
+    platform: tvOS
+    deploymentTarget: '17.0'
+    sources:
+      - PathOfNurTV
+    info:
+      path: PathOfNurTV/Info.plist
+      properties:
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+    settings:
+      base:
+        PRODUCT_NAME: Path of Nur TV
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        TARGETED_DEVICE_FAMILY: 3
+  PathOfNurTopShelf:
+    type: app-extension
+    platform: tvOS
+    deploymentTarget: '17.0'
+    sources:
+      - TopShelf
+    info:
+      path: TopShelf/Info.plist
+      properties:
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.tv-top-shelf
+          NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).PathOfNurTopShelfProvider
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.pathofnur.tv.topshelf
+        PRODUCT_NAME: Path of Nur Top Shelf
+        SKIP_INSTALL: true
+        TARGETED_DEVICE_FAMILY: 3

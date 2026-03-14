@@ -13,6 +13,7 @@ import '../../../shared/widgets/app_page_scaffold.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/prayer_location_picker_sheet.dart';
 import '../../../shared/widgets/section_title.dart';
+import '../../accounts_sync/application/accounts_sync_controller.dart';
 import '../../profile/application/profile_settings_provider.dart';
 
 class SettingsPage extends ConsumerWidget {
@@ -29,6 +30,7 @@ class SettingsPage extends ConsumerWidget {
     final profileSettingsNotifier = ref.read(profileSettingsProvider.notifier);
     final reminderPlan = ref.watch(reminderSchedulerProvider);
     final displayLocation = ref.watch(prayerLocationDisplayLabelProvider);
+    final accountsSync = ref.watch(accountsSyncControllerProvider);
     final locationLabel = displayLocation.valueOrNull ??
         (prayerState.preferences.useDeviceLocation
             ? 'Current location'
@@ -39,6 +41,53 @@ class SettingsPage extends ConsumerWidget {
       title: l10n.profilePrayerSettingsTitle,
       subtitle: l10n.profileSummarySubtitle,
       children: [
+        SectionTitle(
+          title: 'Accounts, Profiles & Sync',
+          subtitle:
+              'Manage shared devices, protected profiles, sync mode, and backups without disturbing your current journey.',
+        ),
+        PremiumCard(
+          child: Column(
+            children: [
+              ListTile(
+                contentPadding: EdgeInsets.zero,
+                title: const Text('Current Profile'),
+                subtitle: Text(
+                  accountsSync.activeProfile == null
+                      ? 'No profile selected'
+                      : '${accountsSync.activeProfile!.displayName} • ${accountsSync.activeProfile!.syncMode.name}',
+                ),
+                trailing: const Icon(Icons.chevron_right_rounded),
+                onTap: () => context.push('/accounts-sync'),
+              ),
+              const Divider(height: 1),
+              ListTile(
+                contentPadding: EdgeInsets.zero,
+                title: const Text('Sync Status'),
+                subtitle: Text(
+                  '${accountsSync.syncStatus.pendingChangesCount} pending • ${accountsSync.syncStatus.syncState.name}',
+                ),
+                trailing: const Icon(Icons.chevron_right_rounded),
+                onTap: () => context.push('/accounts-sync/sync-details'),
+              ),
+              const Divider(height: 1),
+              ListTile(
+                contentPadding: EdgeInsets.zero,
+                title: const Text('Backup & Restore'),
+                subtitle: Text(
+                  accountsSync.backupRecommended
+                      ? 'Backup recommended'
+                      : accountsSync.backupRecord.lastExportAtIso == null
+                          ? 'No manual backup yet'
+                          : 'Last export recorded',
+                ),
+                trailing: const Icon(Icons.chevron_right_rounded),
+                onTap: () => context.push('/accounts-sync/backup'),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 16),
         SectionTitle(
           title: l10n.profilePrayerSettingsTitle,
           subtitle: l10n.profilePrayerSettingsSubtitle,

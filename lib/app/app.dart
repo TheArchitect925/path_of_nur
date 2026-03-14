@@ -16,6 +16,7 @@ import '../features/journey/application/journey_progression_provider.dart';
 import '../features/learn/prophets/application/daily_learning_surfaces.dart';
 import '../features/ocean/application/ocean_drops_provider.dart';
 import '../features/wallpaper/application/wallpaper_provider.dart';
+import '../features/accounts_sync/application/accounts_sync_controller.dart';
 import '../features/profile/application/profile_settings_provider.dart';
 import '../l10n/app_localizations.dart';
 
@@ -26,6 +27,7 @@ class PathOfNurApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final locale = ref.watch(appLocaleProvider);
     final profileSettings = ref.watch(profileSettingsProvider);
+    final scopeVersion = ref.watch(profileScopeVersionProvider);
     ref.watch(reminderSchedulerBootstrapProvider);
     ref.watch(growthReminderBootstrapProvider);
     ref.watch(growthWidgetBootstrapProvider);
@@ -45,6 +47,7 @@ class PathOfNurApp extends ConsumerWidget {
       highContrastText: profileSettings.highContrastText,
     );
     return MaterialApp.router(
+      key: ValueKey<int>(scopeVersion),
       onGenerateTitle: (context) => AppLocalizations.of(context).appTitle,
       debugShowCheckedModeBanner: false,
       theme: theme,

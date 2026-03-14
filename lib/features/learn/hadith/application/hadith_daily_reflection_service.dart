@@ -331,6 +331,23 @@ Future<bool> completeHadithDailyReflection(WidgetRef ref) async {
       .completeToday();
   if (!wasNew) return false;
 
-  ref.read(journeyProgressUpdateHelperProvider).addReflectionEntries(1);
+  final snapshot = ref.read(journeyActivitySnapshotProvider);
+  final nextReflectionEntries = snapshot.reflectionEntriesToday + 1;
+  final adjusted = JourneyActivitySnapshot(
+    now: snapshot.now,
+    prayerCompletedToday: snapshot.prayerCompletedToday,
+    prayerMissedToday: snapshot.prayerMissedToday,
+    fajrCompletedToday: snapshot.fajrCompletedToday,
+    prayerProgress: snapshot.prayerProgress,
+    dhikrSessionsToday: snapshot.dhikrSessionsToday,
+    dhikrCountToday: snapshot.dhikrCountToday,
+    dhikrProgress: snapshot.dhikrProgress,
+    fastingStatus: snapshot.fastingStatus,
+    quranEngagementsToday: snapshot.quranEngagementsToday,
+    quranProgress: snapshot.quranProgress,
+    reflectionEntriesToday: nextReflectionEntries,
+    reflectionProgress: (nextReflectionEntries / 2).clamp(0.0, 1.0).toDouble(),
+  );
+  ref.read(journeyProgressProvider.notifier).syncFromSnapshot(adjusted);
   return true;
 }

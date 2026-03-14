@@ -64,4 +64,44 @@ class LocalStore {
   Future<bool> setJsonList(String key, List<dynamic> value) {
     return _prefs.setString(key, jsonEncode(value));
   }
+
+  Map<String, dynamic> dumpAll() {
+    final values = <String, dynamic>{};
+    for (final key in _prefs.getKeys()) {
+      values[key] = _prefs.get(key);
+    }
+    return values;
+  }
+
+  Future<void> removeMany(Iterable<String> keys) async {
+    for (final key in keys) {
+      await _prefs.remove(key);
+    }
+  }
+
+  Future<void> restoreAll(
+    Map<String, dynamic> values, {
+    Iterable<String> replaceKeys = const [],
+  }) async {
+    if (replaceKeys.isNotEmpty) {
+      await removeMany(replaceKeys);
+    }
+    for (final entry in values.entries) {
+      final value = entry.value;
+      if (value is String) {
+        await _prefs.setString(entry.key, value);
+      } else if (value is bool) {
+        await _prefs.setBool(entry.key, value);
+      } else if (value is int) {
+        await _prefs.setInt(entry.key, value);
+      } else if (value is double) {
+        await _prefs.setDouble(entry.key, value);
+      } else if (value is List) {
+        await _prefs.setStringList(
+          entry.key,
+          value.map((item) => item.toString()).toList(),
+        );
+      }
+    }
+  }
 }
