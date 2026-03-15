@@ -8,6 +8,7 @@ import 'package:intl/intl.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import 'prayer_location_search_service.dart';
+import '../reminders/adhan_options.dart';
 import '../../shared/application/daily_clock_provider.dart';
 import '../../shared/persistence/local_store.dart';
 
@@ -87,8 +88,9 @@ class PrayerClockTimes {
       fajrMinutes: clearFajr ? null : fajrMinutes ?? this.fajrMinutes,
       dhuhrMinutes: clearDhuhr ? null : dhuhrMinutes ?? this.dhuhrMinutes,
       asrMinutes: clearAsr ? null : asrMinutes ?? this.asrMinutes,
-      maghribMinutes:
-          clearMaghrib ? null : maghribMinutes ?? this.maghribMinutes,
+      maghribMinutes: clearMaghrib
+          ? null
+          : maghribMinutes ?? this.maghribMinutes,
       ishaMinutes: clearIsha ? null : ishaMinutes ?? this.ishaMinutes,
     );
   }
@@ -102,10 +104,7 @@ class PrayerClockTimes {
       case 'asr':
         return copyWith(asrMinutes: minutes, clearAsr: minutes == null);
       case 'maghrib':
-        return copyWith(
-          maghribMinutes: minutes,
-          clearMaghrib: minutes == null,
-        );
+        return copyWith(maghribMinutes: minutes, clearMaghrib: minutes == null);
       case 'isha':
         return copyWith(ishaMinutes: minutes, clearIsha: minutes == null);
       default:
@@ -114,12 +113,12 @@ class PrayerClockTimes {
   }
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'fajrMinutes': fajrMinutes,
-        'dhuhrMinutes': dhuhrMinutes,
-        'asrMinutes': asrMinutes,
-        'maghribMinutes': maghribMinutes,
-        'ishaMinutes': ishaMinutes,
-      };
+    'fajrMinutes': fajrMinutes,
+    'dhuhrMinutes': dhuhrMinutes,
+    'asrMinutes': asrMinutes,
+    'maghribMinutes': maghribMinutes,
+    'ishaMinutes': ishaMinutes,
+  };
 
   static PrayerClockTimes fromJson(dynamic raw) {
     if (raw is! Map) return const PrayerClockTimes();
@@ -212,13 +211,13 @@ class PrayerTimeAdjustments {
   }
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'fajrOffsetMinutes': fajrOffsetMinutes,
-        'dhuhrOffsetMinutes': dhuhrOffsetMinutes,
-        'asrOffsetMinutes': asrOffsetMinutes,
-        'maghribOffsetMinutes': maghribOffsetMinutes,
-        'ishaOffsetMinutes': ishaOffsetMinutes,
-        'lastUpdatedAt': lastUpdatedAt?.toIso8601String(),
-      };
+    'fajrOffsetMinutes': fajrOffsetMinutes,
+    'dhuhrOffsetMinutes': dhuhrOffsetMinutes,
+    'asrOffsetMinutes': asrOffsetMinutes,
+    'maghribOffsetMinutes': maghribOffsetMinutes,
+    'ishaOffsetMinutes': ishaOffsetMinutes,
+    'lastUpdatedAt': lastUpdatedAt?.toIso8601String(),
+  };
 
   static PrayerTimeAdjustments fromJson(dynamic raw) {
     if (raw is! Map) return const PrayerTimeAdjustments();
@@ -226,11 +225,9 @@ class PrayerTimeAdjustments {
       fajrOffsetMinutes: (raw['fajrOffsetMinutes'] as num?)?.toInt() ?? 0,
       dhuhrOffsetMinutes: (raw['dhuhrOffsetMinutes'] as num?)?.toInt() ?? 0,
       asrOffsetMinutes: (raw['asrOffsetMinutes'] as num?)?.toInt() ?? 0,
-      maghribOffsetMinutes:
-          (raw['maghribOffsetMinutes'] as num?)?.toInt() ?? 0,
+      maghribOffsetMinutes: (raw['maghribOffsetMinutes'] as num?)?.toInt() ?? 0,
       ishaOffsetMinutes: (raw['ishaOffsetMinutes'] as num?)?.toInt() ?? 0,
-      lastUpdatedAt:
-          DateTime.tryParse(raw['lastUpdatedAt']?.toString() ?? ''),
+      lastUpdatedAt: DateTime.tryParse(raw['lastUpdatedAt']?.toString() ?? ''),
     );
   }
 }
@@ -417,18 +414,22 @@ class PrayerSettingsState {
   const PrayerSettingsState({
     required this.preferences,
     required this.notificationModes,
+    required this.adhanSettings,
   });
 
   final PrayerPreferences preferences;
   final Map<String, PrayerNotificationMode> notificationModes;
+  final AdhanSettings adhanSettings;
 
   PrayerSettingsState copyWith({
     PrayerPreferences? preferences,
     Map<String, PrayerNotificationMode>? notificationModes,
+    AdhanSettings? adhanSettings,
   }) {
     return PrayerSettingsState(
       preferences: preferences ?? this.preferences,
       notificationModes: notificationModes ?? this.notificationModes,
+      adhanSettings: adhanSettings ?? this.adhanSettings,
     );
   }
 }
@@ -532,6 +533,7 @@ class PrayerSettingsController extends StateNotifier<PrayerSettingsState> {
              'isha': PrayerNotificationMode.none,
              'tahajjud': PrayerNotificationMode.none,
            },
+           adhanSettings: AdhanSettings.defaults,
          ),
        ) {
     _load(defaults);
@@ -785,9 +787,11 @@ class PrayerSettingsController extends StateNotifier<PrayerSettingsState> {
       prayerId: prayerId,
       offsetMinutes: 0,
       date: DateTime.now(),
-      latitude: _cityMeta[state.preferences.location]?.latitude ??
+      latitude:
+          _cityMeta[state.preferences.location]?.latitude ??
           _cityMeta.values.first.latitude,
-      longitude: _cityMeta[state.preferences.location]?.longitude ??
+      longitude:
+          _cityMeta[state.preferences.location]?.longitude ??
           _cityMeta.values.first.longitude,
     );
   }
@@ -819,6 +823,48 @@ class PrayerSettingsController extends StateNotifier<PrayerSettingsState> {
     _save();
   }
 
+  void setAdhanEnabled(bool value) {
+    state = state.copyWith(
+      adhanSettings: state.adhanSettings.copyWith(enabled: value),
+    );
+    _save();
+  }
+
+  void selectRegularAdhan(String id) {
+    state = state.copyWith(
+      adhanSettings: state.adhanSettings.copyWith(selectedRegularAdhanId: id),
+    );
+    _save();
+  }
+
+  void selectFajrAdhan(String id) {
+    state = state.copyWith(
+      adhanSettings: state.adhanSettings.copyWith(selectedFajrAdhanId: id),
+    );
+    _save();
+  }
+
+  void setAdhanVolume(double value) {
+    state = state.copyWith(
+      adhanSettings: state.adhanSettings.copyWith(
+        volume: value.clamp(0.0, 1.0),
+      ),
+    );
+    _save();
+  }
+
+  void setUseAppAdhanVolume(bool value) {
+    state = state.copyWith(
+      adhanSettings: state.adhanSettings.copyWith(useAppVolume: value),
+    );
+    _save();
+  }
+
+  void restoreDefaultAdhanSettings() {
+    state = state.copyWith(adhanSettings: AdhanSettings.defaults);
+    _save();
+  }
+
   void _load(PrayerPreferences defaults) {
     final data = _store.getJsonMap('settings.prayer');
     if (data == null) return;
@@ -842,6 +888,7 @@ class PrayerSettingsController extends StateNotifier<PrayerSettingsState> {
     final activeProfileId = data['activeProfileId'] as String?;
     final lastModeSwitchAtRaw = data['lastModeSwitchAt'];
     final notificationsRaw = data['notificationModes'];
+    final adhanSettingsRaw = data['adhanSettings'];
 
     PrayerMadhab madhab = defaults.madhab;
     for (final item in PrayerMadhab.values) {
@@ -902,17 +949,19 @@ class PrayerSettingsController extends StateNotifier<PrayerSettingsState> {
         useStableDynamicIsland: useStableDynamicIsland is bool
             ? useStableDynamicIsland
             : legacyUseStablePrayerWidgets is bool
-                ? legacyUseStablePrayerWidgets
-                : defaults.useStableDynamicIsland,
+            ? legacyUseStablePrayerWidgets
+            : defaults.useStableDynamicIsland,
         useStableLockScreenWidget: useStableLockScreenWidget is bool
             ? useStableLockScreenWidget
             : legacyUseStablePrayerWidgets is bool
-                ? legacyUseStablePrayerWidgets
-                : defaults.useStableLockScreenWidget,
+            ? legacyUseStablePrayerWidgets
+            : defaults.useStableLockScreenWidget,
         prayerTimeMode: prayerTimeMode,
         adjustments: PrayerTimeAdjustments.fromJson(adjustmentsRaw),
         manualTimes: PrayerClockTimes.fromJson(manualTimesRaw),
-        mosqueReferenceTimes: PrayerClockTimes.fromJson(mosqueReferenceTimesRaw),
+        mosqueReferenceTimes: PrayerClockTimes.fromJson(
+          mosqueReferenceTimesRaw,
+        ),
         jumuahOverrideEnabled: jumuahOverrideEnabled is bool
             ? jumuahOverrideEnabled
             : defaults.jumuahOverrideEnabled,
@@ -920,8 +969,9 @@ class PrayerSettingsController extends StateNotifier<PrayerSettingsState> {
             (jumuahTimeMinutes as num?)?.toInt() ?? defaults.jumuahTimeMinutes,
         fridayReminderMode: fridayReminderMode,
         activeProfileId: activeProfileId ?? defaults.activeProfileId,
-        lastModeSwitchAt:
-            DateTime.tryParse(lastModeSwitchAtRaw?.toString() ?? ''),
+        lastModeSwitchAt: DateTime.tryParse(
+          lastModeSwitchAtRaw?.toString() ?? '',
+        ),
         manualLatitude: manualLatitude is num
             ? manualLatitude.toDouble()
             : null,
@@ -930,6 +980,7 @@ class PrayerSettingsController extends StateNotifier<PrayerSettingsState> {
             : null,
       ),
       notificationModes: restoredNotifications,
+      adhanSettings: AdhanSettings.fromJson(adhanSettingsRaw),
     );
   }
 
@@ -956,6 +1007,7 @@ class PrayerSettingsController extends StateNotifier<PrayerSettingsState> {
         for (final entry in state.notificationModes.entries)
           entry.key: entry.value.name,
       },
+      'adhanSettings': state.adhanSettings.toJson(),
     });
   }
 }
@@ -1237,8 +1289,9 @@ List<PrayerScheduleItem> buildCalculatedPrayerScheduleForDate({
   );
   final tahajjudStart = adjustedIsha.add(
     Duration(
-      seconds: ((tomorrowAdjustedFajr.difference(adjustedIsha).inSeconds) * 0.66)
-          .round(),
+      seconds:
+          ((tomorrowAdjustedFajr.difference(adjustedIsha).inSeconds) * 0.66)
+              .round(),
     ),
   );
   const safeSunriseQadaDelay = Duration(minutes: 20);
@@ -1326,7 +1379,8 @@ List<PrayerScheduleItem> applyCalculatedPrayerAdjustments({
   required PrayerPreferences settings,
   List<PrayerScheduleItem>? baseSchedule,
 }) {
-  final base = baseSchedule ??
+  final base =
+      baseSchedule ??
       buildCalculatedPrayerScheduleForDate(
         date: date,
         latitude: latitude,
@@ -1334,24 +1388,26 @@ List<PrayerScheduleItem> applyCalculatedPrayerAdjustments({
         settings: settings,
       );
   final adjustments = settings.adjustments;
-  return base.map((item) {
-    final minutes = adjustments.offsetForPrayer(item.id);
-    if (minutes == 0) return item;
-    final delta = Duration(minutes: minutes);
-    return PrayerScheduleItem(
-      id: item.id,
-      name: item.name,
-      arabicName: item.arabicName,
-      category: item.category,
-      offerDateTime: item.offerDateTime.add(delta),
-      windowStartDateTime: item.windowStartDateTime.add(delta),
-      windowEndDateTime: item.windowEndDateTime.add(delta),
-      qazaDateTime: item.qazaDateTime.add(delta),
-      overdueAtDateTime: item.overdueAtDateTime?.add(delta),
-      makeUpAvailableDateTime: item.makeUpAvailableDateTime?.add(delta),
-      totalRakats: item.totalRakats,
-    );
-  }).toList(growable: false);
+  return base
+      .map((item) {
+        final minutes = adjustments.offsetForPrayer(item.id);
+        if (minutes == 0) return item;
+        final delta = Duration(minutes: minutes);
+        return PrayerScheduleItem(
+          id: item.id,
+          name: item.name,
+          arabicName: item.arabicName,
+          category: item.category,
+          offerDateTime: item.offerDateTime.add(delta),
+          windowStartDateTime: item.windowStartDateTime.add(delta),
+          windowEndDateTime: item.windowEndDateTime.add(delta),
+          qazaDateTime: item.qazaDateTime.add(delta),
+          overdueAtDateTime: item.overdueAtDateTime?.add(delta),
+          makeUpAvailableDateTime: item.makeUpAvailableDateTime?.add(delta),
+          totalRakats: item.totalRakats,
+        );
+      })
+      .toList(growable: false);
 }
 
 List<PrayerScheduleItem> buildManualPrayerScheduleForDate({
@@ -1361,7 +1417,8 @@ List<PrayerScheduleItem> buildManualPrayerScheduleForDate({
   required PrayerPreferences settings,
   List<PrayerScheduleItem>? baseSchedule,
 }) {
-  final base = baseSchedule ??
+  final base =
+      baseSchedule ??
       buildCalculatedPrayerScheduleForDate(
         date: date,
         latitude: latitude,
@@ -1387,12 +1444,11 @@ List<PrayerScheduleItem> buildManualPrayerScheduleForDate({
   );
   final sunrise = base.firstWhere((item) => item.id == 'fajr').qazaDateTime;
   final tahajjudStart = isha.add(
-    Duration(
-      seconds: ((nextFajr.difference(isha).inSeconds) * 0.66).round(),
-    ),
+    Duration(seconds: ((nextFajr.difference(isha).inSeconds) * 0.66).round()),
   );
-  final nextSunrise =
-      nextDayBase.firstWhere((item) => item.id == 'fajr').qazaDateTime;
+  final nextSunrise = nextDayBase
+      .firstWhere((item) => item.id == 'fajr')
+      .qazaDateTime;
   const safeSunriseQadaDelay = Duration(minutes: 20);
 
   return [
@@ -1477,13 +1533,24 @@ String? validatePrayerAdjustmentsForDate({
   required double longitude,
   required PrayerPreferences settings,
 }) {
-  final schedule = buildPrayerScheduleForDate(
-    date: date,
-    latitude: latitude,
-    longitude: longitude,
-    settings: settings,
-    applyAdjustments: true,
-  ).where((item) => const ['fajr', 'dhuhr', 'asr', 'maghrib', 'isha'].contains(item.id)).toList(growable: false);
+  final schedule =
+      buildPrayerScheduleForDate(
+            date: date,
+            latitude: latitude,
+            longitude: longitude,
+            settings: settings,
+            applyAdjustments: true,
+          )
+          .where(
+            (item) => const [
+              'fajr',
+              'dhuhr',
+              'asr',
+              'maghrib',
+              'isha',
+            ].contains(item.id),
+          )
+          .toList(growable: false);
   for (var i = 0; i < schedule.length - 1; i += 1) {
     final current = schedule[i];
     final next = schedule[i + 1];
@@ -1503,14 +1570,23 @@ String? validateManualPrayerTimesForDate({
   if (!settings.manualTimes.isComplete) {
     return 'Enter all five daily salah times to use manual mode.';
   }
-  final schedule = buildManualPrayerScheduleForDate(
-    date: date,
-    latitude: latitude,
-    longitude: longitude,
-    settings: settings,
-  ).where((item) {
-    return const ['fajr', 'dhuhr', 'asr', 'maghrib', 'isha'].contains(item.id);
-  }).toList(growable: false);
+  final schedule =
+      buildManualPrayerScheduleForDate(
+            date: date,
+            latitude: latitude,
+            longitude: longitude,
+            settings: settings,
+          )
+          .where((item) {
+            return const [
+              'fajr',
+              'dhuhr',
+              'asr',
+              'maghrib',
+              'isha',
+            ].contains(item.id);
+          })
+          .toList(growable: false);
   for (var i = 0; i < schedule.length - 1; i += 1) {
     if (!schedule[i].offerDateTime.isBefore(schedule[i + 1].offerDateTime)) {
       return '${schedule[i].name} must remain before ${schedule[i + 1].name}.';

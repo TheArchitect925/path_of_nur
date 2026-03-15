@@ -35,6 +35,7 @@ class _CreationExplorerPageState extends ConsumerState<CreationExplorerPage>
   CameraController? _cameraController;
   bool _cameraPermissionDenied = false;
   bool _isBootstrappingCamera = true;
+  bool _isImageLabelingDeviceOnly = false;
   bool _isProcessingFrame = false;
   bool _isStreaming = false;
   DateTime? _lastInferenceAt;
@@ -72,7 +73,20 @@ class _CreationExplorerPageState extends ConsumerState<CreationExplorerPage>
     setState(() {
       _isBootstrappingCamera = true;
       _cameraPermissionDenied = false;
+      _isImageLabelingDeviceOnly = false;
     });
+    final imageLabelingAvailable = await ref
+        .read(creationImageLabelingRuntimeProvider)
+        .isImageLabelingAvailable();
+    if (!mounted) return;
+    if (!imageLabelingAvailable) {
+      await _disposeCamera();
+      setState(() {
+        _isBootstrappingCamera = false;
+        _isImageLabelingDeviceOnly = true;
+      });
+      return;
+    }
     final status = await Permission.camera.request();
     if (!mounted) return;
     if (!status.isGranted && !status.isLimited) {
@@ -373,7 +387,13 @@ class _CreationExplorerPageState extends ConsumerState<CreationExplorerPage>
               _metricPill(
                 context,
                 'Camera',
-                _cameraPermissionDenied ? 'Off' : (_cameraController?.value.isInitialized == true ? 'Ready' : 'Pending'),
+                _isImageLabelingDeviceOnly
+                    ? 'Device only'
+                    : _cameraPermissionDenied
+                    ? 'Off'
+                    : (_cameraController?.value.isInitialized == true
+                          ? 'Ready'
+                          : 'Pending'),
               ),
             ],
           ),
@@ -416,6 +436,27 @@ class _CreationExplorerPageState extends ConsumerState<CreationExplorerPage>
         child: Padding(
           padding: EdgeInsets.symmetric(vertical: 36),
           child: Center(child: CircularProgressIndicator()),
+        ),
+      );
+    }
+    if (_isImageLabelingDeviceOnly) {
+      return PremiumCard(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Image labeling runs on device only',
+              style: theme.textTheme.titleMedium?.copyWith(
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+            const SizedBox(height: 8),
+            const Text(creationImageLabelingDeviceOnlyMessage),
+            const SizedBox(height: 8),
+            const Text(
+              'Use a physical iPhone or iPad to explore with the camera.',
+            ),
+          ],
         ),
       );
     }

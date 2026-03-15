@@ -1,5 +1,6 @@
+import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
 import 'dart:typed_data';
-import 'dart:ui';
 
 import 'package:camera/camera.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -25,8 +26,16 @@ final creationExplorerCameraProvider = FutureProvider<List<CameraDescription>>((
 final creationObjectDetectionServiceProvider = Provider<CreationObjectDetectionService>((ref) {
   return CreationObjectDetectionService(
     ref.watch(creationCategoryMappingServiceProvider),
+    ref.watch(creationImageLabelingRuntimeProvider),
   );
 });
+
+final creationImageLabelingRuntimeProvider = Provider<CreationImageLabelingRuntime>((ref) {
+  return const CreationImageLabelingRuntime();
+});
+
+const String creationImageLabelingDeviceOnlyMessage =
+    'Image labeling is available on a physical device.';
 
 final creationObservationRepositoryProvider = Provider<CreationObservationRepository>((ref) {
   return CreationObservationRepository(ref.watch(localStoreProvider));
@@ -250,15 +259,19 @@ class CreationExplorerActionService {
 }
 
 class CreationObjectDetectionService {
-  const CreationObjectDetectionService(this._mappingService);
+  const CreationObjectDetectionService(this._mappingService, this._runtime);
 
   static const double threshold = 0.70;
   final CreationCategoryMappingService _mappingService;
+  final CreationImageLabelingRuntime _runtime;
 
   Future<CreationDetection?> detect({
     required CameraImage image,
     required CameraDescription camera,
   }) async {
+    if (!await _runtime.isImageLabelingAvailable()) {
+      return null;
+    }
     final inputImage = _inputImageFromCameraImage(image, camera);
     if (inputImage == null) return null;
     final labeler = ImageLabeler(
@@ -329,5 +342,40 @@ class CreationObjectDetectionService {
       buffer.add(plane.bytes);
     }
     return buffer.toBytes();
+  }
+}
+
+class CreationImageLabelingRuntime {
+  const CreationImageLabelingRuntime({
+    MethodChannel methodChannel = _defaultMethodChannel,
+    TargetPlatform? platformOverride,
+    Future<bool> Function()? availabilityOverride,
+  }) : _methodChannel = methodChannel,
+       _platformOverride = platformOverride,
+       _availabilityOverride = availabilityOverride;
+
+  static const MethodChannel _defaultMethodChannel = MethodChannel(
+    'path_of_nur/platform_runtime',
+  );
+
+  final MethodChannel _methodChannel;
+  final TargetPlatform? _platformOverride;
+  final Future<bool> Function()? _availabilityOverride;
+
+  Future<bool> isImageLabelingAvailable() async {
+    final override = _availabilityOverride;
+    if (override != null) return override();
+    if (kIsWeb) return false;
+    final platform = _platformOverride ?? defaultTargetPlatform;
+    if (platform != TargetPlatform.iOS) return true;
+    try {
+      final isSimulator =
+          await _methodChannel.invokeMethod<bool>('isIosSimulator') ?? false;
+      return !isSimulator;
+    } on MissingPluginException {
+      return true;
+    } on PlatformException {
+      return true;
+    }
   }
 }

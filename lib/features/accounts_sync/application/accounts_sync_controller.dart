@@ -5,6 +5,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:path_provider/path_provider.dart';
 
+import 'sync_foundation.dart';
+import '../../../shared/persistence/app_database.dart';
 import '../../../shared/persistence/local_store.dart';
 
 const _accountsSyncStorageKey = 'accounts_sync.state.v1';
@@ -32,6 +34,44 @@ enum DevicePlatformKind {
   androidTablet,
   androidWatch,
   androidTv,
+}
+
+enum AuthStatus { unauthenticated, localOnly, authenticated }
+
+class AuthAccount {
+  const AuthAccount({
+    required this.accountId,
+    required this.provider,
+    required this.identifier,
+    required this.displayName,
+  });
+
+  final String accountId;
+  final AccountProviderType provider;
+  final String identifier;
+  final String displayName;
+}
+
+class AuthSession {
+  const AuthSession({
+    required this.deviceId,
+    required this.account,
+    required this.startedAtIso,
+  });
+
+  final String deviceId;
+  final AuthAccount? account;
+  final String startedAtIso;
+}
+
+class AuthState {
+  const AuthState({
+    required this.status,
+    required this.session,
+  });
+
+  final AuthStatus status;
+  final AuthSession? session;
 }
 
 class AccountRecord {
@@ -351,6 +391,10 @@ class SyncStatusSnapshot {
     required this.healthy,
     required this.recentEvents,
     required this.lastFailedSyncAtIso,
+    required this.transportLabel,
+    required this.transportAvailable,
+    required this.lastResultSummary,
+    required this.lastErrorSummary,
   });
 
   final ProfileSyncMode syncMode;
@@ -361,6 +405,10 @@ class SyncStatusSnapshot {
   final bool healthy;
   final List<String> recentEvents;
   final String? lastFailedSyncAtIso;
+  final String transportLabel;
+  final bool transportAvailable;
+  final String? lastResultSummary;
+  final String? lastErrorSummary;
 
   SyncStatusSnapshot copyWith({
     ProfileSyncMode? syncMode,
@@ -371,6 +419,10 @@ class SyncStatusSnapshot {
     bool? healthy,
     List<String>? recentEvents,
     String? lastFailedSyncAtIso,
+    String? transportLabel,
+    bool? transportAvailable,
+    String? lastResultSummary,
+    String? lastErrorSummary,
   }) {
     return SyncStatusSnapshot(
       syncMode: syncMode ?? this.syncMode,
@@ -381,6 +433,10 @@ class SyncStatusSnapshot {
       healthy: healthy ?? this.healthy,
       recentEvents: recentEvents ?? this.recentEvents,
       lastFailedSyncAtIso: lastFailedSyncAtIso ?? this.lastFailedSyncAtIso,
+      transportLabel: transportLabel ?? this.transportLabel,
+      transportAvailable: transportAvailable ?? this.transportAvailable,
+      lastResultSummary: lastResultSummary ?? this.lastResultSummary,
+      lastErrorSummary: lastErrorSummary ?? this.lastErrorSummary,
     );
   }
 
@@ -393,6 +449,10 @@ class SyncStatusSnapshot {
         'healthy': healthy,
         'recentEvents': recentEvents,
         'lastFailedSyncAtIso': lastFailedSyncAtIso,
+        'transportLabel': transportLabel,
+        'transportAvailable': transportAvailable,
+        'lastResultSummary': lastResultSummary,
+        'lastErrorSummary': lastErrorSummary,
       };
 
   factory SyncStatusSnapshot.fromJson(Map<String, dynamic>? json) =>
@@ -412,6 +472,10 @@ class SyncStatusSnapshot {
                 .toList() ??
             const [],
         lastFailedSyncAtIso: json?['lastFailedSyncAtIso']?.toString(),
+        transportLabel: json?['transportLabel']?.toString() ?? 'Local storage',
+        transportAvailable: json?['transportAvailable'] as bool? ?? false,
+        lastResultSummary: json?['lastResultSummary']?.toString(),
+        lastErrorSummary: json?['lastErrorSummary']?.toString(),
       );
 }
 
@@ -629,7 +693,13 @@ class AccountsSyncState {
       sharedDeviceModeEnabled: false,
       sharedDeviceSafety: SharedDeviceSafetySettings.fromJson(null),
       syncStatus: SyncStatusSnapshot.fromJson(
-        {'deviceName': device.deviceName, 'syncState': SyncStateKind.localOnly.name},
+        <String, dynamic>{
+          'deviceName': device.deviceName,
+          'syncState': SyncStateKind.localOnly.name,
+          'transportLabel': 'Local storage',
+          'transportAvailable': false,
+          'lastResultSummary': 'Local-only mode active',
+        },
       ),
       backupRecord: BackupRecord.fromJson(null),
       scopeVersion: 0,
@@ -638,11 +708,26 @@ class AccountsSyncState {
 }
 
 class AccountsSyncController extends StateNotifier<AccountsSyncState> {
-  AccountsSyncController(this._store) : super(AccountsSyncState.initial()) {
-    state = AccountsSyncState.fromJson(_store.getJsonMap(_accountsSyncStorageKey));
+  AccountsSyncController(
+    this._store,
+    this._database, {
+    required String currentDeviceId,
+    required String currentDeviceName,
+    required DevicePlatformKind currentDevicePlatform,
+  })
+      : super(AccountsSyncState.initial()) {
+    final restored =
+        AccountsSyncState.fromJson(_store.getJsonMap(_accountsSyncStorageKey));
+    state = _normalizeCurrentDevice(
+      restored,
+      currentDeviceId: currentDeviceId,
+      currentDeviceName: currentDeviceName,
+      currentDevicePlatform: currentDevicePlatform,
+    );
   }
 
   final LocalStore _store;
+  final AppDatabase _database;
 
   static const _defaultVisibleSections = [
     'home',
@@ -651,6 +736,44 @@ class AccountsSyncController extends StateNotifier<AccountsSyncState> {
     'journey',
     'profile',
   ];
+
+  AccountsSyncState _normalizeCurrentDevice(
+    AccountsSyncState source, {
+    required String currentDeviceId,
+    required String currentDeviceName,
+    required DevicePlatformKind currentDevicePlatform,
+  }) {
+    final now = DateTime.now().toIso8601String();
+    final others = source.connectedDevices
+        .where((item) => item.deviceId != currentDeviceId)
+        .map((item) => ConnectedDeviceRecord(
+              deviceId: item.deviceId,
+              deviceName: item.deviceName,
+              platform: item.platform,
+              lastActiveAtIso: item.lastActiveAtIso,
+              lastSyncAtIso: item.lastSyncAtIso,
+              syncState: item.syncState,
+              isCurrentDevice: false,
+            ))
+        .toList(growable: true);
+    final existing = source.connectedDevices.cast<ConnectedDeviceRecord?>().firstWhere(
+          (item) => item?.deviceId == currentDeviceId,
+          orElse: () => null,
+        );
+    others.insert(
+      0,
+      ConnectedDeviceRecord(
+        deviceId: currentDeviceId,
+        deviceName: currentDeviceName,
+        platform: currentDevicePlatform,
+        lastActiveAtIso: now,
+        lastSyncAtIso: existing?.lastSyncAtIso,
+        syncState: existing?.syncState ?? source.syncStatus.syncState,
+        isCurrentDevice: true,
+      ),
+    );
+    return source.copyWith(connectedDevices: others);
+  }
 
   Future<void> addAccount({
     required AccountProviderType provider,
@@ -836,18 +959,61 @@ class AccountsSyncController extends StateNotifier<AccountsSyncState> {
     final now = DateTime.now().toIso8601String();
     state = state.copyWith(
       syncStatus: state.syncStatus.copyWith(
-        syncState: state.activeProfile?.syncMode == ProfileSyncMode.iCloud
-            ? SyncStateKind.iCloudActive
-            : state.activeProfile?.syncMode == ProfileSyncMode.localOnly
-                ? SyncStateKind.localOnly
-                : SyncStateKind.allCaughtUp,
-        lastSyncAtIso: now,
-        pendingChangesCount: 0,
+        syncState: state.activeProfile?.syncMode == ProfileSyncMode.localOnly
+            ? SyncStateKind.localOnly
+            : SyncStateKind.syncing,
+        recentEvents: ['Sync started', ...state.syncStatus.recentEvents].take(10).toList(),
         healthy: true,
-        recentEvents: ['Sync completed', ...state.syncStatus.recentEvents].take(10).toList(),
+        lastFailedSyncAtIso: state.syncStatus.lastFailedSyncAtIso,
+        lastErrorSummary: null,
+      ),
+      connectedDevices: state.connectedDevices
+          .map((item) => item.isCurrentDevice
+              ? ConnectedDeviceRecord(
+                  deviceId: item.deviceId,
+                  deviceName: item.deviceName,
+                  platform: item.platform,
+                  lastActiveAtIso: now,
+                  lastSyncAtIso: item.lastSyncAtIso,
+                  syncState: SyncStateKind.syncing,
+                  isCurrentDevice: true,
+                )
+              : item)
+          .toList(),
+    );
+    await _persist();
+  }
+
+  Future<void> applySyncReport(SyncRunReport report, {required bool reloadScope}) async {
+    final syncState = !report.online
+        ? (state.activeProfile?.syncMode == ProfileSyncMode.localOnly
+            ? SyncStateKind.localOnly
+            : SyncStateKind.offlinePending)
+        : state.activeProfile?.syncMode == ProfileSyncMode.iCloud
+            ? SyncStateKind.iCloudActive
+            : report.pendingCount == 0
+                ? SyncStateKind.allCaughtUp
+                : SyncStateKind.offlinePending;
+    state = state.copyWith(
+      syncStatus: state.syncStatus.copyWith(
+        syncState: syncState,
+        lastSyncAtIso: report.succeeded && report.online
+            ? report.completedAtIso
+            : state.syncStatus.lastSyncAtIso,
+        pendingChangesCount: report.pendingCount,
+        healthy: report.errorMessage == null,
+        recentEvents: [...report.recentEvents, ...state.syncStatus.recentEvents]
+            .take(10)
+            .toList(),
+        lastFailedSyncAtIso:
+            report.errorMessage == null ? state.syncStatus.lastFailedSyncAtIso : report.completedAtIso,
+        transportLabel: report.transportLabel,
+        transportAvailable: report.transportAvailable,
+        lastResultSummary: report.resultSummary,
+        lastErrorSummary: report.errorMessage,
       ),
       accounts: state.accounts
-          .map((item) => item.accountId == state.activeAccountId
+          .map((item) => item.accountId == state.activeAccountId && report.succeeded && report.online
               ? AccountRecord(
                   accountId: item.accountId,
                   provider: item.provider,
@@ -855,12 +1021,26 @@ class AccountsSyncController extends StateNotifier<AccountsSyncState> {
                   displayName: item.displayName,
                   createdAtIso: item.createdAtIso,
                   lastLoginAtIso: item.lastLoginAtIso,
-                  lastSyncAtIso: now,
+                  lastSyncAtIso: report.completedAtIso,
                   connectedDeviceCount: item.connectedDeviceCount,
                   syncMode: item.syncMode,
                 )
               : item)
           .toList(),
+      connectedDevices: state.connectedDevices
+          .map((item) => item.isCurrentDevice
+              ? ConnectedDeviceRecord(
+                  deviceId: item.deviceId,
+                  deviceName: item.deviceName,
+                  platform: item.platform,
+                  lastActiveAtIso: report.completedAtIso,
+                  lastSyncAtIso: report.online ? report.completedAtIso : item.lastSyncAtIso,
+                  syncState: syncState,
+                  isCurrentDevice: true,
+                )
+              : item)
+          .toList(),
+      scopeVersion: reloadScope ? state.scopeVersion + 1 : state.scopeVersion,
     );
     await _persist();
   }
@@ -869,24 +1049,10 @@ class AccountsSyncController extends StateNotifier<AccountsSyncState> {
     required bool currentProfileOnly,
     required bool encrypt,
   }) async {
-    await _captureActiveProfileSnapshot();
-    final payload = <String, dynamic>{
-      'exportedAt': DateTime.now().toIso8601String(),
-      'currentProfileOnly': currentProfileOnly,
-      'encrypted': encrypt,
-      'accounts': currentProfileOnly
-          ? state.accounts.where((item) => item.accountId == state.activeAccountId).map((item) => item.toJson()).toList()
-          : state.accounts.map((item) => item.toJson()).toList(),
-      'profiles': currentProfileOnly
-          ? state.profiles.where((item) => item.profileId == state.activeProfileId).map((item) => item.toJson()).toList()
-          : state.profiles.map((item) => item.toJson()).toList(),
-      'profileSnapshots': currentProfileOnly
-          ? {if (state.activeProfileId != null) state.activeProfileId!: state.profileSnapshots[state.activeProfileId] ?? const {}}
-          : state.profileSnapshots,
-      'syncStatus': state.syncStatus.toJson(),
-    };
-    final raw = jsonEncode(payload);
-    final encoded = encrypt ? base64Encode(utf8.encode(raw)) : raw;
+    final encoded = await buildBackupPayload(
+      currentProfileOnly: currentProfileOnly,
+      encrypt: encrypt,
+    );
     final directory = await getApplicationDocumentsDirectory();
     final file = File(
       '${directory.path}/path_of_nur_backup_${DateTime.now().millisecondsSinceEpoch}.${encrypt ? 'enc.json' : 'json'}',
@@ -902,16 +1068,64 @@ class AccountsSyncController extends StateNotifier<AccountsSyncState> {
     return file.path;
   }
 
+  Future<String> buildBackupPayload({
+    required bool currentProfileOnly,
+    required bool encrypt,
+  }) async {
+    await _captureActiveProfileSnapshot();
+    final payload = <String, dynamic>{
+      'exportedAt': DateTime.now().toIso8601String(),
+      'schemaVersion': 1,
+      'currentProfileOnly': currentProfileOnly,
+      'encrypted': encrypt,
+      'accounts': currentProfileOnly
+          ? state.accounts
+              .where((item) => item.accountId == state.activeAccountId)
+              .map((item) => item.toJson())
+              .toList()
+          : state.accounts.map((item) => item.toJson()).toList(),
+      'profiles': currentProfileOnly
+          ? state.profiles
+              .where((item) => item.profileId == state.activeProfileId)
+              .map((item) => item.toJson())
+              .toList()
+          : state.profiles.map((item) => item.toJson()).toList(),
+      'profileSnapshots': currentProfileOnly
+          ? {
+              if (state.activeProfileId != null)
+                state.activeProfileId!:
+                    state.profileSnapshots[state.activeProfileId] ?? const {}
+            }
+          : state.profileSnapshots,
+      'structuredDataByProfile': {
+        for (final profile in (currentProfileOnly
+            ? state.profiles
+                .where((item) => item.profileId == state.activeProfileId)
+                .toList(growable: false)
+            : state.profiles))
+          profile.profileId: _database.exportStructuredData(profile.profileId),
+      },
+      'syncStatus': state.syncStatus.toJson(),
+    };
+    final raw = jsonEncode(payload);
+    return encrypt ? base64Encode(utf8.encode(raw)) : raw;
+  }
+
   Future<void> importBackup({
     required String payload,
     required bool encrypted,
     required bool createNewProfiles,
     required bool replaceExisting,
   }) async {
-    final decoded = encrypted ? utf8.decode(base64Decode(payload)) : payload;
-    final json = jsonDecode(decoded);
-    if (json is! Map) return;
-    final map = json.map((key, value) => MapEntry(key.toString(), value));
+    Map<String, dynamic> map;
+    try {
+      final decoded = encrypted ? utf8.decode(base64Decode(payload)) : payload;
+      final json = jsonDecode(decoded);
+      if (json is! Map) return;
+      map = json.map((key, value) => MapEntry(key.toString(), value));
+    } catch (_) {
+      return;
+    }
     final importedProfiles = ((map['profiles'] as List?) ?? const [])
         .map((item) => ProfileRecord.fromJson((item as Map).map((k, v) => MapEntry(k.toString(), v))))
         .toList();
@@ -923,6 +1137,15 @@ class AccountsSyncController extends StateNotifier<AccountsSyncState> {
               key.toString(),
               (value as Map).map((k, v) => MapEntry(k.toString(), v)),
             ));
+    final importedStructured = ((map['structuredDataByProfile'] as Map?) ?? const {})
+        .map(
+          (key, value) => MapEntry(
+            key.toString(),
+            value is Map
+                ? value.map((k, v) => MapEntry(k.toString(), v))
+                : <String, dynamic>{},
+          ),
+        );
     state = state.copyWith(
       accounts: replaceExisting ? importedAccounts : [...state.accounts, ...importedAccounts],
       profiles: replaceExisting
@@ -938,6 +1161,9 @@ class AccountsSyncController extends StateNotifier<AccountsSyncState> {
       ),
       scopeVersion: state.scopeVersion + 1,
     );
+    for (final entry in importedStructured.entries) {
+      _database.importStructuredData(entry.key, entry.value);
+    }
     await _persist();
   }
 
@@ -1057,8 +1283,25 @@ class SyncManager {
   const SyncManager(this.ref);
   final Ref ref;
 
-  Future<void> syncNow() =>
-      ref.read(accountsSyncControllerProvider.notifier).syncNow();
+  Future<void> syncNow() async {
+    final state = ref.read(accountsSyncControllerProvider);
+    final activeProfile = state.activeProfile;
+    final scopeId = state.activeProfileId;
+    if (activeProfile == null || scopeId == null) {
+      return;
+    }
+    await ref.read(accountsSyncControllerProvider.notifier).syncNow();
+    final report = await ref.read(syncEngineProvider).syncScope(
+          scopeId: scopeId,
+          accountId: state.activeAccountId,
+          deviceId: ref.read(deviceIdentityProvider).deviceId,
+          syncModeName: activeProfile.syncMode.name,
+        );
+    await ref.read(accountsSyncControllerProvider.notifier).applySyncReport(
+          report,
+          reloadScope: report.appliedInboundCount > 0,
+        );
+  }
 }
 
 class CloudSyncService {
@@ -1143,6 +1386,22 @@ DevicePlatformKind _platformForCurrentDevice() {
   }
 }
 
+DevicePlatformKind _devicePlatformKindFromKey(String platformKey) {
+  switch (platformKey) {
+    case 'ios':
+      return DevicePlatformKind.iphone;
+    case 'android':
+      return DevicePlatformKind.androidPhone;
+    case 'macos':
+      return DevicePlatformKind.ipad;
+    case 'windows':
+    case 'linux':
+    case 'fuchsia':
+      return DevicePlatformKind.androidTablet;
+  }
+  return DevicePlatformKind.iphone;
+}
+
 String _defaultDeviceName() {
   switch (_platformForCurrentDevice()) {
     case DevicePlatformKind.iphone:
@@ -1166,7 +1425,14 @@ String _defaultDeviceName() {
 
 final accountsSyncControllerProvider =
     StateNotifierProvider<AccountsSyncController, AccountsSyncState>((ref) {
-  return AccountsSyncController(ref.watch(localStoreProvider));
+  final deviceIdentity = ref.watch(deviceIdentityProvider);
+  return AccountsSyncController(
+    ref.watch(localStoreProvider),
+    ref.watch(appDatabaseProvider),
+    currentDeviceId: deviceIdentity.deviceId,
+    currentDeviceName: deviceIdentity.deviceName,
+    currentDevicePlatform: _devicePlatformKindFromKey(deviceIdentity.platformKey),
+  );
 });
 
 final profileScopeVersionProvider = Provider<int>((ref) {
@@ -1188,3 +1454,28 @@ final sharedDeviceModeControllerProvider =
     Provider<SharedDeviceModeController>(SharedDeviceModeController.new);
 final pinProtectionServiceProvider =
     Provider<PinProtectionService>(PinProtectionService.new);
+
+final authStateProvider = Provider<AuthState>((ref) {
+  final state = ref.watch(accountsSyncControllerProvider);
+  final deviceId = ref.watch(deviceIdentityProvider).deviceId;
+  final activeAccount = state.activeAccount;
+  if (activeAccount == null) {
+    return AuthState(status: AuthStatus.unauthenticated, session: null);
+  }
+  final authAccount = AuthAccount(
+    accountId: activeAccount.accountId,
+    provider: activeAccount.provider,
+    identifier: activeAccount.identifier,
+    displayName: activeAccount.displayName,
+  );
+  return AuthState(
+    status: activeAccount.provider == AccountProviderType.localOnly
+        ? AuthStatus.localOnly
+        : AuthStatus.authenticated,
+    session: AuthSession(
+      deviceId: deviceId,
+      account: authAccount,
+      startedAtIso: activeAccount.lastLoginAtIso,
+    ),
+  );
+});

@@ -1,6 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:path_of_nur/features/ocean/application/community_ocean.dart';
 import 'package:path_of_nur/features/ocean/application/ocean_drops_provider.dart';
+import 'package:path_of_nur/shared/persistence/app_database.dart';
 import 'package:path_of_nur/shared/persistence/local_store.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -8,7 +9,13 @@ void main() {
   Future<OceanDropService> createService() async {
     SharedPreferences.setMockInitialValues(<String, Object>{});
     final prefs = await SharedPreferences.getInstance();
-    return OceanDropService(LocalStore(prefs));
+    return OceanDropService(
+      OceanDropsRepository(
+        database: AppDatabase.inMemory(),
+        legacyStore: LocalStore(prefs),
+        scopeId: 'test-profile',
+      ),
+    );
   }
 
   test('awards prayer drops once per prayer slot per day', () async {

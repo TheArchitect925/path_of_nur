@@ -7,6 +7,10 @@ import '../../journey/application/journey_progression_provider.dart';
 import '../../ocean/application/ocean_drops_provider.dart';
 import '../../worship/application/dhikr_controller.dart';
 import '../../worship/application/prayer_controller.dart';
+import '../../worship/data/dhikr_repository.dart';
+import '../../worship/data/prayer_log_repository.dart';
+import '../../worship/domain/dhikr_session.dart';
+import '../../worship/domain/prayer_name.dart';
 import '../../worship/domain/prayer_status.dart';
 import 'watch_sync_diagnostics.dart';
 import 'watch_sync_validation.dart';
@@ -1090,12 +1094,10 @@ class WatchActionReconciler {
   }
 
   String _readPrayerStatus(String dayKey, String prayerId) {
-    final day = _readPrayerDayMap(dayKey);
-    final row = day[prayerId];
-    if (row is Map && row['status']?.toString() == 'completed') {
-      return 'completed';
-    }
-    return 'pending';
+    final prayer = PrayerName.values.where((item) => item.name == prayerId).firstOrNull;
+    if (prayer == null) return 'pending';
+    final row = _ref.read(prayerLogRepositoryProvider).readDayEntries(dayKey)[prayer];
+    return row?.status == PrayerStatus.completed ? 'completed' : 'pending';
   }
 
   void _writePrayerStatus({
@@ -1104,38 +1106,34 @@ class WatchActionReconciler {
     required String status,
     required DateTime? completedAt,
   }) {
-    final day = _readPrayerDayMap(dayKey);
-    day[prayerId] = <String, dynamic>{
-      'status': status,
-      'completedAtIso': status == 'completed' ? completedAt?.toIso8601String() : null,
-    };
-    _ref.read(localStoreProvider).setJsonMap('worship.prayer.$dayKey', day);
-  }
-
-  Map<String, dynamic> _readPrayerDayMap(String dayKey) {
-    final raw = _ref.read(localStoreProvider).getJsonMap('worship.prayer.$dayKey');
-    final base = <String, dynamic>{
-      'fajr': <String, dynamic>{'status': 'pending', 'completedAtIso': null},
-      'dhuhr': <String, dynamic>{'status': 'pending', 'completedAtIso': null},
-      'asr': <String, dynamic>{'status': 'pending', 'completedAtIso': null},
-      'maghrib': <String, dynamic>{'status': 'pending', 'completedAtIso': null},
-      'isha': <String, dynamic>{'status': 'pending', 'completedAtIso': null},
-    };
-    if (raw == null) return base;
-    return {...base, ...raw};
+    final prayer = PrayerName.values.where((item) => item.name == prayerId).firstOrNull;
+    if (prayer == null) return;
+    final repository = _ref.read(prayerLogRepositoryProvider);
+    final next = Map<PrayerName, PrayerLogDayEntry>.from(
+      repository.readDayEntries(dayKey),
+    );
+    final previous = next[prayer];
+    next[prayer] = PrayerLogDayEntry(
+      status: status == 'completed' ? PrayerStatus.completed : PrayerStatus.pending,
+      completedAtIso: status == 'completed' ? completedAt?.toIso8601String() : null,
+      timing: previous?.timing,
+      place: previous?.place,
+      notes: previous?.notes,
+    );
+    repository.saveDayEntries(dayKey, next);
   }
 
   void _writeDhikrStoreCurrentCount({
     required int currentCount,
     required int target,
   }) {
-    final store = _ref.read(localStoreProvider);
-    final raw = Map<String, dynamic>.from(store.getJsonMap('worship.dhikr') ?? <String, dynamic>{});
-    raw['target'] = target;
-    raw['currentCount'] = currentCount;
-    raw['selectedPresetId'] = raw['selectedPresetId'] ?? 'subhanallah';
-    raw['recentSessions'] = raw['recentSessions'] ?? <dynamic>[];
-    store.setJsonMap('worship.dhikr', raw);
+    final repository = _ref.read(dhikrRepositoryProvider);
+    final existing = repository.load();
+    repository.saveState(
+      selectedPresetId: existing.selectedPresetId,
+      target: target,
+      currentCount: currentCount,
+    );
     _ref.read(dhikrControllerProvider.notifier).reloadFromStorage();
   }
 
@@ -1147,25 +1145,31 @@ class WatchActionReconciler {
     required DateTime startedAt,
     required DateTime finishedAt,
   }) {
-    final store = _ref.read(localStoreProvider);
-    final raw = Map<String, dynamic>.from(store.getJsonMap('worship.dhikr') ?? <String, dynamic>{});
-    final sessions = List<dynamic>.from(raw['recentSessions'] as List? ?? const []);
-    final existing = sessions.any((row) => row is Map && row['sessionId']?.toString() == sessionId);
-    if (!existing) {
-      sessions.insert(0, <String, dynamic>{
-        'sessionId': sessionId,
-        'phraseLabel': _phraseLabelForMode(mode),
-        'count': count,
-        'target': target,
-        'startedAt': startedAt.toIso8601String(),
-        'finishedAt': finishedAt.toIso8601String(),
-      });
-    }
-    raw['recentSessions'] = sessions.take(30).toList();
-    raw['currentCount'] = 0;
-    raw['target'] = target;
-    raw['selectedPresetId'] = raw['selectedPresetId'] ?? 'subhanallah';
-    store.setJsonMap('worship.dhikr', raw);
+    final repository = _ref.read(dhikrRepositoryProvider);
+    final existing = repository.load();
+    final sessions = <DhikrSession>[
+      DhikrSession(
+        phraseLabel: _phraseLabelForMode(mode),
+        count: count,
+        target: target,
+        startedAt: startedAt,
+        finishedAt: finishedAt,
+      ),
+      ...existing.recentSessions.where(
+        (session) =>
+            session.startedAt != startedAt ||
+            session.finishedAt != finishedAt ||
+            session.count != count ||
+            session.target != target ||
+            session.phraseLabel != _phraseLabelForMode(mode),
+      ),
+    ].take(30).toList(growable: false);
+    repository.saveState(
+      selectedPresetId: existing.selectedPresetId,
+      target: target,
+      currentCount: 0,
+    );
+    repository.replaceRecentSessions(sessions);
     _ref.read(dhikrControllerProvider.notifier).reloadFromStorage();
   }
 
@@ -1197,6 +1201,10 @@ class WatchActionReconciler {
       prayerId == 'asr' ||
       prayerId == 'maghrib' ||
       prayerId == 'isha';
+}
+
+extension<T> on Iterable<T> {
+  T? get firstOrNull => isEmpty ? null : first;
 }
 
 class WatchActionIngestionService {

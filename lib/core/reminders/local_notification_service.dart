@@ -8,6 +8,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
+import 'adhan_audio_service.dart';
+import 'adhan_options.dart';
 import '../prayer/prayer_preferences.dart';
 import '../../shared/persistence/local_store.dart';
 import 'reminder_scheduler.dart';
@@ -31,13 +33,14 @@ class GrowthNotificationRequest {
 }
 
 class LocalNotificationService {
-  LocalNotificationService(this._store) {
+  LocalNotificationService(this._store, this._adhanRepository) {
     _plugin = FlutterLocalNotificationsPlugin();
   }
 
   static const Color _notificationAccent = Color(0xFFD8C49A);
   static const String _launcherIcon = '@mipmap/ic_launcher';
   final LocalStore _store;
+  final AdhanRepository _adhanRepository;
   late final FlutterLocalNotificationsPlugin _plugin;
   bool _initialized = false;
   static const _fingerprintKey = 'reminders.lastFingerprint';
@@ -80,10 +83,13 @@ class LocalNotificationService {
     _initialized = true;
   }
 
-  Future<void> syncWithPlan(ReminderSchedulerState plan) async {
+  Future<void> syncWithPlan(
+    ReminderSchedulerState plan, {
+    required AdhanSettings adhanSettings,
+  }) async {
     await ensureInitialized();
 
-    final fingerprint = _fingerprintFor(plan);
+    final fingerprint = _fingerprintFor(plan, adhanSettings);
     final previousFingerprint = _store.getString(_fingerprintKey);
     final didChangePlan = fingerprint != previousFingerprint;
 
@@ -102,7 +108,7 @@ class LocalNotificationService {
         _titleFor(item),
         _bodyFor(item),
         tz.TZDateTime.from(item.when, tz.local),
-        _notificationDetails(item),
+        _notificationDetails(item, adhanSettings),
         androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
         uiLocalNotificationDateInterpretation:
             UILocalNotificationDateInterpretation.absoluteTime,
@@ -117,7 +123,7 @@ class LocalNotificationService {
       scheduledIds.toList()..sort(),
     );
 
-    await _recoverMissedReminders(plan, now);
+    await _recoverMissedReminders(plan, now, adhanSettings);
   }
 
   Future<void> syncGrowthReminders({
@@ -219,10 +225,17 @@ class LocalNotificationService {
     );
   }
 
-  NotificationDetails _notificationDetails(ReminderPlanItem item) {
+  NotificationDetails _notificationDetails(
+    ReminderPlanItem item,
+    AdhanSettings adhanSettings,
+  ) {
     final useAdhanSound =
         item.kind == ReminderKind.prayerAtTime &&
-        item.notificationMode == PrayerNotificationMode.adhanWithSound;
+        item.notificationMode == PrayerNotificationMode.adhanWithSound &&
+        adhanSettings.enabled;
+    final resolvedAdhan = _adhanRepository
+        .resolveForPrayer(prayerId: item.prayerId, settings: adhanSettings)
+        .option;
 
     final prayerAtTimeSilentChannel = AndroidNotificationDetails(
       'prayer_reminders_notification_only',
@@ -238,8 +251,8 @@ class LocalNotificationService {
     );
 
     final prayerAtTimeAdhanChannel = AndroidNotificationDetails(
-      'prayer_reminders_adhan',
-      'Prayer Reminders (Adhan)',
+      'prayer_reminders_adhan_${resolvedAdhan.id}',
+      'Prayer Reminders (${resolvedAdhan.title})',
       channelDescription: 'Prayer reminder notifications with adhan audio',
       importance: Importance.max,
       priority: Priority.high,
@@ -248,7 +261,9 @@ class LocalNotificationService {
       colorized: true,
       styleInformation: const BigTextStyleInformation(''),
       playSound: true,
-      sound: const RawResourceAndroidNotificationSound('adhan'),
+      sound: RawResourceAndroidNotificationSound(
+        resolvedAdhan.androidRawResourceName,
+      ),
     );
 
     final prayerBeforeQazaChannel = AndroidNotificationDetails(
@@ -284,7 +299,7 @@ class LocalNotificationService {
       presentAlert: true,
       presentBadge: true,
       presentSound: useDefaultPrayerSound,
-      sound: useAdhanSound ? 'adhan.caf' : null,
+      sound: useAdhanSound ? resolvedAdhan.iosSoundFileName : null,
       presentBanner: true,
       presentList: true,
       interruptionLevel:
@@ -415,11 +430,23 @@ class LocalNotificationService {
     return NotificationDetails(android: android, iOS: ios);
   }
 
-  String _fingerprintFor(ReminderSchedulerState plan) {
+  String _fingerprintFor(
+    ReminderSchedulerState plan,
+    AdhanSettings adhanSettings,
+  ) {
     final parts = <String>[plan.dayKey];
     for (final item in plan.items) {
+      final adhanSelection = item.kind == ReminderKind.prayerAtTime
+          ? _adhanRepository
+                .resolveForPrayer(
+                  prayerId: item.prayerId,
+                  settings: adhanSettings,
+                )
+                .option
+                .id
+          : '-';
       parts.add(
-        '${item.id}|${item.when.toIso8601String()}|${item.kind.name}|${item.notificationMode?.name ?? '-'}',
+        '${item.id}|${item.when.toIso8601String()}|${item.kind.name}|${item.notificationMode?.name ?? '-'}|$adhanSelection|${adhanSettings.enabled}',
       );
     }
     return parts.join('||');
@@ -451,6 +478,7 @@ class LocalNotificationService {
   Future<void> _recoverMissedReminders(
     ReminderSchedulerState plan,
     DateTime now,
+    AdhanSettings adhanSettings,
   ) async {
     final recoveredKey = 'reminders.recovered.${plan.dayKey}';
     final recovered = <String>{
@@ -469,7 +497,7 @@ class LocalNotificationService {
         _notificationId('recovered.${item.id}'),
         _titleFor(item),
         'You missed this reminder earlier. ${_bodyFor(item)}',
-        _notificationDetails(item),
+        _notificationDetails(item, adhanSettings),
       );
       changed = true;
     }
@@ -501,5 +529,8 @@ class LocalNotificationService {
 final localNotificationServiceProvider = Provider<LocalNotificationService>((
   ref,
 ) {
-  return LocalNotificationService(ref.watch(localStoreProvider));
+  return LocalNotificationService(
+    ref.watch(localStoreProvider),
+    ref.watch(adhanRepositoryProvider),
+  );
 });

@@ -1,8 +1,13 @@
+import 'dart:convert';
 import 'dart:math' as math;
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../features/accounts_sync/application/accounts_sync_controller.dart';
+import '../../../features/accounts_sync/application/sync_foundation.dart';
+import '../../../shared/persistence/app_database.dart';
 import '../../../shared/persistence/local_store.dart';
+import '../../../shared/persistence/structured_data_scope.dart';
 import 'community_ocean.dart';
 
 const String oceanActionPrayerCompleted = 'prayer_completed';
@@ -266,10 +271,19 @@ class OceanDropsState {
       );
     }
     final events = <OceanDropEvent>[];
-    for (final row in (json['events'] as List? ?? const <dynamic>[])) {
+    final rawEvents = json['events'];
+    final rawEventList = rawEvents is List ? rawEvents : const <dynamic>[];
+    for (final row in rawEventList) {
       final parsed = OceanDropEvent.fromJson(row);
       if (parsed != null) events.add(parsed);
     }
+    final rawDailyHistory = json['dailyDropHistory'];
+    final dailyHistoryMap =
+        rawDailyHistory is Map ? rawDailyHistory : const <dynamic, dynamic>{};
+    final rawEligibilityKeys = json['awardedEligibilityKeys'];
+    final eligibilityKeyList = rawEligibilityKeys is List
+        ? rawEligibilityKeys
+        : const <dynamic>[];
     return OceanDropsState(
       stats: OceanDropStats.fromJson(
         (json['stats'] as Map?)?.map((key, value) => MapEntry(key.toString(), value)),
@@ -283,9 +297,9 @@ class OceanDropsState {
             ?.map((key, value) => MapEntry(key.toString(), value)),
       ),
       events: events,
-      dailyDropHistory: ((json['dailyDropHistory'] as Map?) ?? const {})
+      dailyDropHistory: dailyHistoryMap
           .map((key, value) => MapEntry(key.toString(), (value as num?)?.toInt() ?? 0)),
-      awardedEligibilityKeys: (json['awardedEligibilityKeys'] as List? ?? const [])
+      awardedEligibilityKeys: eligibilityKeyList
           .map((item) => item.toString())
           .toSet(),
       freeDhikrBlocksAwarded:
@@ -296,20 +310,295 @@ class OceanDropsState {
   }
 }
 
+class OceanDropStoredData {
+  const OceanDropStoredData({
+    required this.events,
+    required this.dailyDropHistory,
+    required this.awardedEligibilityKeys,
+    required this.freeDhikrCarryCount,
+    required this.freeDhikrBlocksAwarded,
+    required this.communityBaselineDrops,
+    required this.lastDropAwardedAt,
+  });
+
+  final List<OceanDropEvent> events;
+  final Map<String, int> dailyDropHistory;
+  final Set<String> awardedEligibilityKeys;
+  final int freeDhikrCarryCount;
+  final int freeDhikrBlocksAwarded;
+  final BigInt communityBaselineDrops;
+  final DateTime? lastDropAwardedAt;
+}
+
+class OceanDropsRepository {
+  OceanDropsRepository({
+    required AppDatabase database,
+    required LocalStore legacyStore,
+    required String scopeId,
+  })  : _database = database,
+        _legacyStore = legacyStore,
+        _scopeId = scopeId;
+
+  final AppDatabase _database;
+  final LocalStore _legacyStore;
+  final String _scopeId;
+  String get scopeId => _scopeId;
+
+  String get _migrationKey => 'migration.ocean_drops.v1.$_scopeId';
+
+  void ensureMigrated() {
+    if (_database.meta(_migrationKey) == 'done') {
+      return;
+    }
+    final hasEvents = _database.select(
+      'SELECT 1 FROM ocean_events WHERE scope_id = ? LIMIT 1;',
+      <Object?>[_scopeId],
+    );
+    final hasState = _database.select(
+      'SELECT 1 FROM ocean_state WHERE scope_id = ? LIMIT 1;',
+      <Object?>[_scopeId],
+    );
+    if (hasEvents.isNotEmpty || hasState.isNotEmpty) {
+      _database.setMeta(_migrationKey, 'done');
+      return;
+    }
+    final legacy = OceanDropsState.fromJson(
+      _legacyStore.getJsonMap(OceanDropService.legacyStorageKey),
+    );
+    persist(
+      OceanDropStoredData(
+        events: legacy.events,
+        dailyDropHistory: legacy.dailyDropHistory,
+        awardedEligibilityKeys: legacy.awardedEligibilityKeys,
+        freeDhikrCarryCount: legacy.stats.freeDhikrCarryCount,
+        freeDhikrBlocksAwarded: legacy.freeDhikrBlocksAwarded,
+        communityBaselineDrops: legacy.communityBaselineDrops,
+        lastDropAwardedAt: legacy.stats.lastDropAwardedAt,
+      ),
+    );
+    _database.setMeta(_migrationKey, 'done');
+  }
+
+  OceanDropStoredData load() {
+    ensureMigrated();
+    final eventRows = _database.select(
+      '''
+      SELECT event_id, timestamp_iso, date_key, action_type, source_module, amount,
+             reference_id, metadata_json, eligibility_key
+      FROM ocean_events
+      WHERE scope_id = ?
+      ORDER BY timestamp_iso DESC;
+      ''',
+      <Object?>[_scopeId],
+    );
+    final stateRows = _database.select(
+      '''
+      SELECT free_dhikr_carry_count, free_dhikr_blocks_awarded, community_baseline_drops,
+             last_drop_awarded_at_iso
+      FROM ocean_state
+      WHERE scope_id = ?
+      LIMIT 1;
+      ''',
+      <Object?>[_scopeId],
+    );
+    final events = <OceanDropEvent>[
+      for (final row in eventRows)
+        OceanDropEvent(
+          id: row['event_id'] as String,
+          timestamp: DateTime.tryParse(row['timestamp_iso'] as String) ??
+              DateTime.fromMillisecondsSinceEpoch(0),
+          actionType: row['action_type'] as String,
+          sourceModule: row['source_module'] as String,
+          amount: row['amount'] as int,
+          referenceId: row['reference_id']?.toString(),
+          metadata: row['metadata_json'] == null
+              ? null
+              : (jsonDecode(row['metadata_json'] as String) as Map)
+                  .map((key, value) => MapEntry(key.toString(), value)),
+        ),
+    ];
+    final dailyHistory = <String, int>{};
+    final awardedKeys = <String>{};
+    for (final event in events) {
+      dailyHistory.update(event.dateKey, (value) => value + event.amount,
+          ifAbsent: () => event.amount);
+      final eligibilityKey = _eligibilityKeyFromEvent(event);
+      if (eligibilityKey != null) {
+        awardedKeys.add(eligibilityKey);
+      }
+    }
+    return OceanDropStoredData(
+      events: events,
+      dailyDropHistory: dailyHistory,
+      awardedEligibilityKeys: awardedKeys,
+      freeDhikrCarryCount: stateRows.isEmpty
+          ? 0
+          : (stateRows.first['free_dhikr_carry_count'] as int),
+      freeDhikrBlocksAwarded: stateRows.isEmpty
+          ? 0
+          : (stateRows.first['free_dhikr_blocks_awarded'] as int),
+      communityBaselineDrops: stateRows.isEmpty
+          ? BigInt.from(500000)
+          : parseBigInt(
+              stateRows.first['community_baseline_drops'],
+              fallback: BigInt.from(500000),
+            ),
+      lastDropAwardedAt: stateRows.isEmpty
+          ? null
+          : DateTime.tryParse(
+              stateRows.first['last_drop_awarded_at_iso']?.toString() ?? '',
+            ),
+    );
+  }
+
+  void persist(OceanDropStoredData data) {
+    _database.transaction<void>(() {
+      _database.execute(
+        'DELETE FROM ocean_events WHERE scope_id = ?;',
+        <Object?>[_scopeId],
+      );
+      for (final event in data.events.take(2000)) {
+        _database.execute(
+          '''
+          INSERT OR REPLACE INTO ocean_events(
+            scope_id, event_id, timestamp_iso, date_key, action_type, source_module,
+            amount, reference_id, metadata_json, eligibility_key
+          ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+          ''',
+          <Object?>[
+            _scopeId,
+            event.id,
+            event.timestamp.toIso8601String(),
+            event.dateKey,
+            event.actionType,
+            event.sourceModule,
+            event.amount,
+            event.referenceId,
+            event.metadata == null ? null : jsonEncode(event.metadata),
+            _eligibilityKeyFromEvent(event),
+          ],
+        );
+      }
+      _database.execute(
+        '''
+        INSERT OR REPLACE INTO ocean_state(
+          scope_id, free_dhikr_carry_count, free_dhikr_blocks_awarded,
+          community_baseline_drops, last_drop_awarded_at_iso
+        ) VALUES (?, ?, ?, ?, ?);
+        ''',
+        <Object?>[
+          _scopeId,
+          data.freeDhikrCarryCount,
+          data.freeDhikrBlocksAwarded,
+          data.communityBaselineDrops.toString(),
+          data.lastDropAwardedAt?.toIso8601String(),
+        ],
+      );
+    });
+  }
+
+  String? _eligibilityKeyFromEvent(OceanDropEvent event) {
+    if (event.actionType == oceanActionDhikrFreeHundredReached) {
+      return event.id;
+    }
+    final metadata = event.metadata;
+    final effectiveRef = event.referenceId ??
+        metadata?['referenceId']?.toString() ??
+        metadata?['slot']?.toString() ??
+        metadata?['page']?.toString();
+    switch (_scopeFor(event.actionType)) {
+      case _OceanDropScope.oncePerDay:
+        return '${event.actionType}|${event.sourceModule}|${effectiveRef ?? 'global'}|${event.dateKey}';
+      case _OceanDropScope.oncePerWeek:
+        return '${event.actionType}|${event.sourceModule}|${effectiveRef ?? 'global'}|${LocalStore.todayKey(_startOfWeek(event.timestamp))}';
+      case _OceanDropScope.onceLifetime:
+        return '${event.actionType}|${event.sourceModule}|${effectiveRef ?? 'global'}';
+      case _OceanDropScope.perEvent:
+        return effectiveRef == null || effectiveRef.isEmpty
+            ? null
+            : '${event.actionType}|${event.sourceModule}|$effectiveRef';
+    }
+  }
+
+  DateTime _startOfWeek(DateTime value) {
+    final day = DateTime(value.year, value.month, value.day);
+    return day.subtract(Duration(days: day.weekday - 1));
+  }
+
+  _OceanDropScope _scopeFor(String actionType) {
+    switch (actionType) {
+      case oceanActionPrayerCompleted:
+      case oceanActionMakeupPrayerCompleted:
+      case oceanActionOptionalPrayerCompleted:
+      case oceanActionHabitCompleted:
+      case oceanActionQuranPageCompleted:
+      case oceanActionCelestialCardOpened:
+      case oceanActionSkyExplorerOpened:
+      case oceanActionCelestialVerseOpened:
+      case oceanActionCreationExplorerOpened:
+        return _OceanDropScope.oncePerDay;
+      case oceanActionLearningSegmentCompleted:
+      case oceanActionLessonCompleted:
+      case oceanActionProphetStoryCompleted:
+      case oceanActionHadithLessonCompleted:
+      case oceanActionDuaLessonCompleted:
+      case oceanActionQuizCompleted:
+      case oceanActionQuranSurahCompleted:
+      case oceanActionSalahTrainingCompleted:
+        return _OceanDropScope.onceLifetime;
+      case oceanActionDhikrSetCompleted:
+      case oceanActionReflectionCompleted:
+      case oceanActionJournalEntryCompleted:
+      case oceanActionCelestialObservationSaved:
+      case oceanActionCreationObservationSaved:
+      case oceanActionCreationReflectionWritten:
+      case oceanActionCreationChallengeCompleted:
+      case oceanActionDhikrFreeHundredReached:
+        return _OceanDropScope.perEvent;
+    }
+    return _OceanDropScope.perEvent;
+  }
+}
+
 class OceanDropService extends StateNotifier<OceanDropsState> {
   OceanDropService(
-    this._store, {
+    this._repository, {
     CommunityOceanSyncAdapter communitySyncAdapter =
         const LocalCommunityOceanSyncAdapter(),
+    SyncMutationRecorder? syncRecorder,
   })  : _communitySyncAdapter = communitySyncAdapter,
-        super(OceanDropsState.fromJson(_store.getJsonMap(_storageKey))) {
+        _syncRecorder = syncRecorder,
+        super(() {
+          final stored = _repository.load();
+          return OceanDropsState(
+            stats: OceanDropStats(
+              totalDropsLifetime: stored.dailyDropHistory.values.fold<int>(
+                0,
+                (sum, count) => sum + count,
+              ),
+              dropsToday: 0,
+              dropsThisWeek: 0,
+              dropsThisMonth: 0,
+              freeDhikrCarryCount: stored.freeDhikrCarryCount,
+              lastDropAwardedAt: stored.lastDropAwardedAt,
+            ),
+            personalStats: PersonalWaterStats.fromJson(null),
+            communityStats: CommunityOceanStats.fromJson(null),
+            events: stored.events,
+            dailyDropHistory: stored.dailyDropHistory,
+            awardedEligibilityKeys: stored.awardedEligibilityKeys,
+            freeDhikrBlocksAwarded: stored.freeDhikrBlocksAwarded,
+            communityBaselineDrops: stored.communityBaselineDrops,
+          );
+        }()) {
     _refreshStats();
   }
 
-  static const _storageKey = 'journey.oceanDrops.v2';
+  static const legacyStorageKey = 'journey.oceanDrops.v2';
 
-  final LocalStore _store;
+  final OceanDropsRepository _repository;
   final CommunityOceanSyncAdapter _communitySyncAdapter;
+  final SyncMutationRecorder? _syncRecorder;
 
   int awardDrop({
     required String actionType,
@@ -361,6 +650,12 @@ class OceanDropService extends StateNotifier<OceanDropsState> {
       awardedEligibilityKeys: nextKeys,
       stats: state.stats.copyWith(lastDropAwardedAt: now),
     );
+    _syncRecorder?.recordOceanEvent(<String, dynamic>{
+      ...event.toJson(),
+      'scopeId': _repository.scopeId,
+      'dateKey': dayKey,
+      'eligibilityKey': eligibilityKey,
+    });
     _refreshStats();
     _persist();
     return 1;
@@ -421,6 +716,21 @@ class OceanDropService extends StateNotifier<OceanDropsState> {
           },
         ),
       );
+      _syncRecorder?.recordOceanEvent(<String, dynamic>{
+        'id': milestoneId,
+        'timestamp': timestamp.toIso8601String(),
+        'dateKey': dayKey,
+        'actionType': oceanActionDhikrFreeHundredReached,
+        'sourceModule': sourceModule,
+        'amount': 1,
+        'referenceId': referenceId,
+        'metadata': {
+          ...?metadata,
+          'milestone': blocksAwarded * 100,
+        },
+        'eligibilityKey': milestoneId,
+        'scopeId': _repository.scopeId,
+      });
       awarded += 1;
     }
 
@@ -582,7 +892,17 @@ class OceanDropService extends StateNotifier<OceanDropsState> {
   }
 
   void _persist() {
-    _store.setJsonMap(_storageKey, state.toJson());
+    _repository.persist(
+      OceanDropStoredData(
+        events: state.events,
+        dailyDropHistory: state.dailyDropHistory,
+        awardedEligibilityKeys: state.awardedEligibilityKeys,
+        freeDhikrCarryCount: state.stats.freeDhikrCarryCount,
+        freeDhikrBlocksAwarded: state.freeDhikrBlocksAwarded,
+        communityBaselineDrops: state.communityBaselineDrops,
+        lastDropAwardedAt: state.stats.lastDropAwardedAt,
+      ),
+    );
   }
 }
 
@@ -593,9 +913,15 @@ final communityOceanSyncAdapterProvider =
 
 final oceanDropsProvider =
     StateNotifierProvider<OceanDropService, OceanDropsState>((ref) {
+      ref.watch(profileScopeVersionProvider);
       return OceanDropService(
-        ref.watch(localStoreProvider),
+        OceanDropsRepository(
+          database: ref.watch(appDatabaseProvider),
+          legacyStore: ref.watch(localStoreProvider),
+          scopeId: ref.watch(structuredDataScopeProvider),
+        ),
         communitySyncAdapter: ref.watch(communityOceanSyncAdapterProvider),
+        syncRecorder: ref.watch(syncMutationRecorderProvider),
       );
     });
 

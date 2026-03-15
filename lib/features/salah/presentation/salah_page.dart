@@ -8,6 +8,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../features/worship/application/prayer_tracker_controller.dart';
 import '../../../features/worship/domain/prayer_name.dart';
+import '../../../features/worship/domain/prayer_tracker_fields.dart';
 import '../../../features/worship/domain/prayer_status.dart';
 import '../../../shared/application/daily_clock_provider.dart';
 import '../../../shared/state/location_permission_state.dart';

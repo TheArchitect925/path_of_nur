@@ -6,8 +6,9 @@ import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../app/app_router.dart';
+import '../../core/navigation/app_navigation_gesture_config.dart';
+import '../../core/navigation/app_swipe_back_wrapper.dart';
 import '../../features/learn/quran/application/quran_providers.dart';
-import '../../features/profile/application/profile_settings_provider.dart';
 import '../../l10n/app_localizations.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_fonts.dart';
@@ -30,9 +31,6 @@ class AppShellScaffold extends ConsumerWidget {
     final activeTab = navTabFromLocation(currentLocation);
     final previousLocation = ref.watch(shellCurrentLocationProvider);
     final quranPlayer = ref.watch(quranSharedAudioPlayerProvider);
-    final reduceMotion = ref.watch(
-      profileSettingsProvider.select((value) => value.reduceMotion),
-    );
 
     if (previousLocation != currentLocation) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -52,40 +50,11 @@ class AppShellScaffold extends ConsumerWidget {
       body: Stack(
         children: [
           const GlobalBackground(),
-          GestureDetector(
-            onHorizontalDragEnd: (details) {
-              final nav = Navigator.of(context);
-              if ((details.primaryVelocity ?? 0) < -260 && nav.canPop()) {
-                nav.pop();
-              }
-            },
-            child: reduceMotion
-                ? KeyedSubtree(
-                    key: ValueKey<String>(currentLocation),
-                    child: child,
-                  )
-                : AnimatedSwitcher(
-                    duration: const Duration(milliseconds: 260),
-                    switchInCurve: Curves.easeOutCubic,
-                    switchOutCurve: Curves.easeOutCubic,
-                    transitionBuilder: (child, animation) {
-                      final slide = Tween<Offset>(
-                        begin: const Offset(0, 0.018),
-                        end: Offset.zero,
-                      ).animate(animation);
-                      return FadeTransition(
-                        opacity: animation,
-                        child: SlideTransition(
-                          position: slide,
-                          child: child,
-                        ),
-                      );
-                    },
-                    child: KeyedSubtree(
-                      key: ValueKey<String>(currentLocation),
-                      child: child,
-                    ),
-                  ),
+          AppSwipeBackWrapper(
+            enabled: AppNavigationGestureConfig.isEnabledForLocation(
+              currentLocation,
+            ),
+            child: child,
           ),
           Positioned(
             left: 0,

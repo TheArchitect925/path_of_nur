@@ -2,14 +2,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../ocean/application/ocean_drops_provider.dart';
 import '../../../shared/persistence/local_store.dart';
+import '../data/prayer_log_repository.dart';
 import '../domain/prayer_name.dart';
 import '../domain/prayer_status.dart';
-
+import '../domain/prayer_tracker_fields.dart';
 enum PrayerCalendarMode { gregorian, islamic }
-
-enum PrayerOfferTiming { onTime, late, qada }
-
-enum PrayerOfferPlace { alone, congregation, masjid }
 
 class PrayerTrackerEntry {
   const PrayerTrackerEntry({
@@ -79,7 +76,7 @@ class PrayerTrackerState {
 }
 
 class PrayerTrackerController extends StateNotifier<PrayerTrackerState> {
-  PrayerTrackerController(this._store, this._oceanDrops)
+  PrayerTrackerController(this._store, this._repository, this._oceanDrops)
     : super(
         PrayerTrackerState(
           selectedDate: DateTime.now(),
@@ -96,6 +93,7 @@ class PrayerTrackerController extends StateNotifier<PrayerTrackerState> {
   }
 
   final LocalStore _store;
+  final PrayerLogRepository _repository;
   final OceanDropService _oceanDrops;
 
   static Map<PrayerName, PrayerTrackerEntry> _defaultRecords() {
@@ -331,38 +329,20 @@ class PrayerTrackerController extends StateNotifier<PrayerTrackerState> {
 
   Map<PrayerName, PrayerTrackerEntry> _loadForDate(DateTime date) {
     final key = LocalStore.todayKey(date);
-    final data = _store.getJsonMap('worship.prayer.$key');
-    if (data == null) return _defaultRecords();
+    final data = _repository.readDayEntries(key);
+    if (data.isEmpty) return _defaultRecords();
     final restored = _defaultRecords();
     for (final prayer in restored.keys) {
-      final raw = data[prayer.name];
-      final statusName = raw is String
-          ? raw
-          : raw is Map
-          ? raw['status']?.toString()
-          : null;
-      if (statusName == null) continue;
-      final status = PrayerStatus.values.firstWhere(
-        (item) => item.name == statusName,
-        orElse: () => PrayerStatus.pending,
-      );
-      final timingName = raw is Map ? raw['timing']?.toString() : null;
-      final placeName = raw is Map ? raw['place']?.toString() : null;
-      final notes = raw is Map ? raw['notes']?.toString() : null;
-      PrayerOfferTiming? timing;
-      PrayerOfferPlace? place;
-      for (final item in PrayerOfferTiming.values) {
-        if (item.name == timingName) timing = item;
-      }
-      for (final item in PrayerOfferPlace.values) {
-        if (item.name == placeName) place = item;
-      }
+      final raw = data[prayer];
+      if (raw == null) continue;
       restored[prayer] = PrayerTrackerEntry(
-        status: status,
-        timing: status == PrayerStatus.completed ? timing : null,
-        place: status == PrayerStatus.completed ? place : null,
-        notes: status == PrayerStatus.completed && notes != null && notes.isNotEmpty
-            ? notes
+        status: raw.status,
+        timing: raw.status == PrayerStatus.completed ? raw.timing : null,
+        place: raw.status == PrayerStatus.completed ? raw.place : null,
+        notes: raw.status == PrayerStatus.completed &&
+                raw.notes != null &&
+                raw.notes!.isNotEmpty
+            ? raw.notes
             : null,
       );
     }
@@ -371,20 +351,22 @@ class PrayerTrackerController extends StateNotifier<PrayerTrackerState> {
 
   void _saveSelectedDay() {
     final key = LocalStore.todayKey(state.selectedDate);
-    final existing = _store.getJsonMap('worship.prayer.$key') ?? const {};
-    _store.setJsonMap('worship.prayer.$key', {
-      for (final entry in state.records.entries)
-        entry.key.name: {
-          'status': entry.value.status.name,
-          'timing': entry.value.timing?.name,
-          'place': entry.value.place?.name,
-          'notes': entry.value.notes,
-          'completedAtIso': entry.value.status == PrayerStatus.completed &&
-                  existing[entry.key.name] is Map
-              ? (existing[entry.key.name] as Map)['completedAtIso']
-              : null,
-        },
-    });
+    final existing = _repository.readDayEntries(key);
+    _repository.saveDayEntries(
+      key,
+      <PrayerName, PrayerLogDayEntry>{
+        for (final entry in state.records.entries)
+          entry.key: PrayerLogDayEntry(
+            status: entry.value.status,
+            timing: entry.value.timing,
+            place: entry.value.place,
+            notes: entry.value.notes,
+            completedAtIso: entry.value.status == PrayerStatus.completed
+                ? existing[entry.key]?.completedAtIso
+                : null,
+          ),
+      },
+    );
   }
 
   void _loadQadaBacklog() {
@@ -457,6 +439,7 @@ final prayerTrackerControllerProvider =
     StateNotifierProvider<PrayerTrackerController, PrayerTrackerState>((ref) {
       return PrayerTrackerController(
         ref.watch(localStoreProvider),
+        ref.watch(prayerLogRepositoryProvider),
         ref.read(oceanDropServiceProvider),
       );
     });

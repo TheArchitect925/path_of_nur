@@ -918,7 +918,9 @@ class SyncDetailsPage extends ConsumerWidget {
               ListTile(
                 contentPadding: EdgeInsets.zero,
                 title: const Text('Current provider'),
-                subtitle: Text(_syncModeLabel(sync.syncMode)),
+                subtitle: Text(
+                  '${_syncModeLabel(sync.syncMode)} • ${sync.transportLabel}',
+                ),
               ),
               const Divider(height: 1),
               ListTile(
@@ -926,6 +928,14 @@ class SyncDetailsPage extends ConsumerWidget {
                 title: const Text('Current state'),
                 subtitle: Text(_titleFromEnum(sync.syncState.name)),
               ),
+              if (sync.lastResultSummary != null) ...[
+                const Divider(height: 1),
+                ListTile(
+                  contentPadding: EdgeInsets.zero,
+                  title: const Text('Last result'),
+                  subtitle: Text(sync.lastResultSummary!),
+                ),
+              ],
               const Divider(height: 1),
               ListTile(
                 contentPadding: EdgeInsets.zero,
@@ -938,6 +948,22 @@ class SyncDetailsPage extends ConsumerWidget {
                 title: const Text('Last successful sync'),
                 subtitle: Text(_formatWhen(sync.lastSyncAtIso)),
               ),
+              const Divider(height: 1),
+              ListTile(
+                contentPadding: EdgeInsets.zero,
+                title: const Text('Transport availability'),
+                subtitle: Text(
+                  sync.transportAvailable ? 'Available' : 'Unavailable or offline',
+                ),
+              ),
+              if (sync.lastErrorSummary != null) ...[
+                const Divider(height: 1),
+                ListTile(
+                  contentPadding: EdgeInsets.zero,
+                  title: const Text('Last error'),
+                  subtitle: Text(sync.lastErrorSummary!),
+                ),
+              ],
             ],
           ),
         ),
@@ -980,7 +1006,11 @@ class SyncStatusCard extends ConsumerWidget {
           ListTile(
             contentPadding: EdgeInsets.zero,
             title: Text(_syncStateTitle(sync.syncState)),
-            subtitle: Text(_syncModeLabel(sync.syncMode)),
+            subtitle: Text(
+              sync.lastErrorSummary ??
+                  sync.lastResultSummary ??
+                  '${_syncModeLabel(sync.syncMode)} • ${sync.transportLabel}',
+            ),
             trailing: Icon(
               switch (sync.syncState) {
                 SyncStateKind.allCaughtUp => Icons.cloud_done_outlined,
@@ -1003,6 +1033,14 @@ class SyncStatusCard extends ConsumerWidget {
             contentPadding: EdgeInsets.zero,
             title: const Text('Pending changes'),
             subtitle: Text('${sync.pendingChangesCount} change${sync.pendingChangesCount == 1 ? '' : 's'} waiting'),
+          ),
+          const Divider(height: 1),
+          ListTile(
+            contentPadding: EdgeInsets.zero,
+            title: const Text('Transport'),
+            subtitle: Text(
+              '${sync.transportLabel} • ${sync.transportAvailable ? 'available' : 'unavailable'}',
+            ),
           ),
           const SizedBox(height: 12),
           Row(

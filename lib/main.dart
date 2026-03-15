@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:just_audio_background/just_audio_background.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'app/app.dart';
 import 'core/diagnostics/app_telemetry.dart';
+import 'shared/persistence/app_database.dart';
 import 'shared/persistence/local_store.dart';
 
 Future<void> main() async {
@@ -15,11 +17,18 @@ Future<void> main() async {
     androidNotificationOngoing: true,
   );
   final prefs = await SharedPreferences.getInstance();
+  final documentsDirectory = await getApplicationDocumentsDirectory();
+  final appDatabase = AppDatabase.openFile(
+    '${documentsDirectory.path}/path_of_nur.sqlite3',
+  );
   AppTelemetry.bootstrap(prefs);
 
   runApp(
     ProviderScope(
-      overrides: [sharedPreferencesProvider.overrideWithValue(prefs)],
+      overrides: [
+        sharedPreferencesProvider.overrideWithValue(prefs),
+        appDatabaseProvider.overrideWithValue(appDatabase),
+      ],
       child: const PathOfNurApp(),
     ),
   );

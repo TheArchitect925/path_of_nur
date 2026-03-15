@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-
+import 'quran_teaching_icon_registry.dart';
 import 'quran_teaching_models.dart';
 
 enum QuranTeachingReviewContentType {
@@ -583,7 +582,7 @@ Map<String, dynamic> _optionToJson(QuranTeachingQuizOption option) => {
   'label': option.label,
   'secondaryLabel': option.secondaryLabel,
   'arabic': option.arabic,
-  'iconCodePoint': option.icon?.codePoint,
+  ...QuranTeachingIconRegistry.iconToJson(option.icon),
   'audio': _audioToJson(option.audio),
   'imageAssetPath': option.imageAssetPath,
 };
@@ -596,16 +595,13 @@ List<QuranTeachingQuizOption> _readOptions(dynamic raw) {
     final id = item['id']?.toString();
     final label = item['label']?.toString();
     if (id == null || label == null) continue;
-    final codePoint = int.tryParse(item['iconCodePoint']?.toString() ?? '');
     options.add(
       QuranTeachingQuizOption(
         id: id,
         label: label,
         secondaryLabel: item['secondaryLabel']?.toString(),
         arabic: item['arabic']?.toString(),
-        icon: codePoint == null
-            ? null
-            : IconData(codePoint, fontFamily: 'MaterialIcons'),
+        icon: QuranTeachingIconRegistry.iconFromJson(item),
         audio: _audioFromJson(item['audio']),
         imageAssetPath: item['imageAssetPath']?.toString(),
       ),

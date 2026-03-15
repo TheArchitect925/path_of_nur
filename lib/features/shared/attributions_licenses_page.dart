@@ -11,7 +11,8 @@ class AttributionsLicensesPage extends StatelessWidget {
     return AppPageScaffold(
       headerIcon: Icons.verified_outlined,
       title: 'Attributions & Licenses',
-      subtitle: 'Quran text, translations, transliteration, audio and API usage.',
+      subtitle:
+          'Quran text, translations, transliteration, audio and API usage.',
       children: const [
         _AttributionCard(
           title: 'Qur’an Text & Translations',
@@ -47,7 +48,8 @@ class AttributionsLicensesPage extends StatelessWidget {
               'Original file URL:\n'
               'https://upload.wikimedia.org/wikipedia/commons/1/16/Adhan_wiki.oga\n\n'
               'Author listed on source page: Jarih (own work)\n'
-              'License: Creative Commons Attribution-ShareAlike 3.0 (CC BY-SA 3.0)',
+              'License: Creative Commons Attribution-ShareAlike 3.0 (CC BY-SA 3.0)\n\n'
+              'Current note: the app ships temporary offline fallback Adhan variants derived from this bundled clip until the curated Pixabay replacements are swapped in.',
         ),
         SizedBox(height: 10),
         _AttributionCard(
@@ -81,10 +83,7 @@ class _AttributionCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            title,
-            style: const TextStyle(fontWeight: FontWeight.w700),
-          ),
+          Text(title, style: const TextStyle(fontWeight: FontWeight.w700)),
           const SizedBox(height: 6),
           SelectableText(
             body,

@@ -6,7 +6,10 @@ import '../../../core/theme/app_theme.dart';
 import '../../../core/localization/locale_provider.dart';
 import '../../../core/prayer/prayer_preferences.dart';
 import '../../../core/prayer/prayer_location_search_service.dart';
+import '../../../core/reminders/adhan_audio_service.dart';
+import '../../../core/reminders/adhan_options.dart';
 import '../../../core/reminders/reminder_scheduler.dart';
+import '../../../core/theme/app_colors.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/state/location_permission_state.dart';
 import '../../../shared/widgets/app_page_scaffold.dart';
@@ -15,6 +18,7 @@ import '../../../shared/widgets/prayer_location_picker_sheet.dart';
 import '../../../shared/widgets/section_title.dart';
 import '../../accounts_sync/application/accounts_sync_controller.dart';
 import '../../profile/application/profile_settings_provider.dart';
+import 'adhan_option_picker_sheet.dart';
 
 class SettingsPage extends ConsumerWidget {
   const SettingsPage({super.key});
@@ -29,9 +33,15 @@ class SettingsPage extends ConsumerWidget {
     final profileSettings = ref.watch(profileSettingsProvider);
     final profileSettingsNotifier = ref.read(profileSettingsProvider.notifier);
     final reminderPlan = ref.watch(reminderSchedulerProvider);
+    final adhanRepository = ref.watch(adhanRepositoryProvider);
+    final adhanPreview = ref.watch(adhanPreviewControllerProvider);
+    final adhanPreviewController = ref.read(
+      adhanPreviewControllerProvider.notifier,
+    );
     final displayLocation = ref.watch(prayerLocationDisplayLabelProvider);
     final accountsSync = ref.watch(accountsSyncControllerProvider);
-    final locationLabel = displayLocation.valueOrNull ??
+    final locationLabel =
+        displayLocation.valueOrNull ??
         (prayerState.preferences.useDeviceLocation
             ? 'Current location'
             : prayerState.preferences.location);
@@ -78,11 +88,176 @@ class SettingsPage extends ConsumerWidget {
                   accountsSync.backupRecommended
                       ? 'Backup recommended'
                       : accountsSync.backupRecord.lastExportAtIso == null
-                          ? 'No manual backup yet'
-                          : 'Last export recorded',
+                      ? 'No manual backup yet'
+                      : 'Last export recorded',
                 ),
                 trailing: const Icon(Icons.chevron_right_rounded),
                 onTap: () => context.push('/accounts-sync/backup'),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 16),
+        SectionTitle(
+          title: 'Adhan',
+          subtitle:
+              'Choose a dedicated Fajr Adhan, preview the bundled clips, and keep prayer audio offline.',
+        ),
+        PremiumCard(
+          child: Column(
+            children: [
+              SwitchListTile.adaptive(
+                contentPadding: EdgeInsets.zero,
+                title: const Text('Enable Adhan audio'),
+                subtitle: const Text(
+                  'Prayer reminders can play the selected Adhan when this is on.',
+                ),
+                value: prayerState.adhanSettings.enabled,
+                onChanged: prayerNotifier.setAdhanEnabled,
+              ),
+              const Divider(height: 1),
+              ListTile(
+                contentPadding: EdgeInsets.zero,
+                title: const Text('Regular Adhan'),
+                subtitle: Text(
+                  adhanRepository
+                      .resolveRegular(prayerState.adhanSettings)
+                      .option
+                      .title,
+                ),
+                trailing: const Icon(Icons.chevron_right_rounded),
+                onTap: () async {
+                  await showModalBottomSheet<void>(
+                    context: context,
+                    backgroundColor: Colors.transparent,
+                    isScrollControlled: true,
+                    builder: (context) => AdhanOptionPickerSheet(
+                      category: AdhanOptionCategory.regular,
+                      selectedId:
+                          prayerState.adhanSettings.selectedRegularAdhanId,
+                      settings: prayerState.adhanSettings,
+                      onSelected: prayerNotifier.selectRegularAdhan,
+                    ),
+                  );
+                },
+              ),
+              const Divider(height: 1),
+              ListTile(
+                contentPadding: EdgeInsets.zero,
+                title: const Text('Fajr Adhan'),
+                subtitle: Text(
+                  adhanRepository
+                      .resolveFajr(prayerState.adhanSettings)
+                      .option
+                      .title,
+                ),
+                trailing: const Icon(Icons.chevron_right_rounded),
+                onTap: () async {
+                  await showModalBottomSheet<void>(
+                    context: context,
+                    backgroundColor: Colors.transparent,
+                    isScrollControlled: true,
+                    builder: (context) => AdhanOptionPickerSheet(
+                      category: AdhanOptionCategory.fajr,
+                      selectedId: prayerState.adhanSettings.selectedFajrAdhanId,
+                      settings: prayerState.adhanSettings,
+                      onSelected: prayerNotifier.selectFajrAdhan,
+                    ),
+                  );
+                },
+              ),
+              const Divider(height: 1),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 14),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Preview & volume',
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                    const SizedBox(height: 10),
+                    Wrap(
+                      spacing: 10,
+                      runSpacing: 10,
+                      children: [
+                        OutlinedButton.icon(
+                          onPressed: () {
+                            adhanPreviewController.playRegular(
+                              prayerState.adhanSettings,
+                            );
+                          },
+                          icon: Icon(
+                            adhanPreview.playingOptionId ==
+                                        prayerState
+                                            .adhanSettings
+                                            .selectedRegularAdhanId &&
+                                    (adhanPreview.isPlaying ||
+                                        adhanPreview.isBuffering)
+                                ? Icons.stop_circle_outlined
+                                : Icons.play_circle_outline_rounded,
+                          ),
+                          label: const Text('Test Regular Adhan'),
+                        ),
+                        OutlinedButton.icon(
+                          onPressed: () {
+                            adhanPreviewController.playFajr(
+                              prayerState.adhanSettings,
+                            );
+                          },
+                          icon: Icon(
+                            adhanPreview.playingOptionId ==
+                                        prayerState
+                                            .adhanSettings
+                                            .selectedFajrAdhanId &&
+                                    (adhanPreview.isPlaying ||
+                                        adhanPreview.isBuffering)
+                                ? Icons.stop_circle_outlined
+                                : Icons.play_circle_outline_rounded,
+                          ),
+                          label: const Text('Test Fajr Adhan'),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 10),
+                    SwitchListTile.adaptive(
+                      contentPadding: EdgeInsets.zero,
+                      title: const Text('Use App Volume'),
+                      subtitle: const Text(
+                        'Keep preview playback aligned with the app volume level.',
+                      ),
+                      value: prayerState.adhanSettings.useAppVolume,
+                      onChanged: prayerNotifier.setUseAppAdhanVolume,
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      'Adhan preview volume',
+                      style: Theme.of(context).textTheme.titleSmall,
+                    ),
+                    Slider(
+                      value: prayerState.adhanSettings.volume,
+                      onChanged: prayerState.adhanSettings.useAppVolume
+                          ? null
+                          : prayerNotifier.setAdhanVolume,
+                    ),
+                    Text(
+                      prayerState.adhanSettings.useAppVolume
+                          ? 'Using app volume'
+                          : '${(prayerState.adhanSettings.volume * 100).round()}%',
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: AppColors.onSurfaceSubtle,
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: TextButton.icon(
+                        onPressed: prayerNotifier.restoreDefaultAdhanSettings,
+                        icon: const Icon(Icons.refresh_rounded),
+                        label: const Text('Restore Default Adhan Settings'),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
@@ -102,7 +277,9 @@ class SettingsPage extends ConsumerWidget {
                 trailing: const Icon(Icons.chevron_right_rounded),
                 onTap: () async {
                   final service = ref.read(prayerLocationSearchServiceProvider);
-                  final recentLocations = ref.read(prayerRecentLocationsProvider);
+                  final recentLocations = ref.read(
+                    prayerRecentLocationsProvider,
+                  );
                   final selection =
                       await showModalBottomSheet<PrayerLocationPickerSelection>(
                         context: context,
@@ -124,13 +301,15 @@ class SettingsPage extends ConsumerWidget {
                       selection.longitude == null) {
                     return;
                   }
-                  await ref.read(prayerRecentLocationsStoreProvider).save(
-                    PrayerRecentLocation(
-                      label: selection.label,
-                      latitude: selection.latitude!,
-                      longitude: selection.longitude!,
-                    ),
-                  );
+                  await ref
+                      .read(prayerRecentLocationsStoreProvider)
+                      .save(
+                        PrayerRecentLocation(
+                          label: selection.label,
+                          latitude: selection.latitude!,
+                          longitude: selection.longitude!,
+                        ),
+                      );
                   prayerNotifier.setManualLocation(
                     label: selection.label,
                     latitude: selection.latitude!,
@@ -344,7 +523,11 @@ class SettingsPage extends ConsumerWidget {
                 subtitle: Text(
                   l10n.profilePlannedRemindersToday(
                     reminderPlan.items
-                        .where((item) => item.kind == ReminderKind.prayerAtTime || item.kind == ReminderKind.prayerBeforeQaza)
+                        .where(
+                          (item) =>
+                              item.kind == ReminderKind.prayerAtTime ||
+                              item.kind == ReminderKind.prayerBeforeQaza,
+                        )
                         .length,
                   ),
                 ),
@@ -541,7 +724,8 @@ class SettingsPage extends ConsumerWidget {
 List<Widget> _buildPrayerNotificationTiles({
   required BuildContext context,
   required PrayerSettingsState settings,
-  required void Function(String prayerId, PrayerNotificationMode mode) onChanged,
+  required void Function(String prayerId, PrayerNotificationMode mode)
+  onChanged,
 }) {
   const prayerOrder = ['fajr', 'dhuhr', 'asr', 'maghrib', 'isha'];
   final tiles = <Widget>[];
@@ -720,7 +904,9 @@ class _PrayerTimeModeCard extends StatelessWidget {
                       vertical: 4,
                     ),
                     decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.12),
+                      color: Theme.of(
+                        context,
+                      ).colorScheme.primary.withValues(alpha: 0.12),
                       borderRadius: BorderRadius.circular(999),
                     ),
                     child: Text(
@@ -789,7 +975,9 @@ class _CalculatedAdjustmentsContent extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
             decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.08),
+              color: Theme.of(
+                context,
+              ).colorScheme.primary.withValues(alpha: 0.08),
               borderRadius: BorderRadius.circular(999),
             ),
             child: Text(
@@ -812,24 +1000,24 @@ class _CalculatedAdjustmentsContent extends StatelessWidget {
               onTap: baseItem == null
                   ? null
                   : () => _showPrayerAdjustmentEditor(
-                        context: context,
-                        prayerId: prayerId,
-                        baseSchedule: baseSchedule,
-                        currentAdjustments: adjustments,
-                        latitude: location.latitude,
-                        longitude: location.longitude,
-                        onSave: (minutes) {
-                          final error = prayerNotifier.updatePrayerAdjustment(
-                            prayerId: prayerId,
-                            offsetMinutes: minutes,
-                            date: DateTime.now(),
-                            latitude: location.latitude,
-                            longitude: location.longitude,
-                          );
-                          return error;
-                        },
-                        preferences: prayerState.preferences,
-                      ),
+                      context: context,
+                      prayerId: prayerId,
+                      baseSchedule: baseSchedule,
+                      currentAdjustments: adjustments,
+                      latitude: location.latitude,
+                      longitude: location.longitude,
+                      onSave: (minutes) {
+                        final error = prayerNotifier.updatePrayerAdjustment(
+                          prayerId: prayerId,
+                          offsetMinutes: minutes,
+                          date: DateTime.now(),
+                          latitude: location.latitude,
+                          longitude: location.longitude,
+                        );
+                        return error;
+                      },
+                      preferences: prayerState.preferences,
+                    ),
             ),
           );
         }),
@@ -847,11 +1035,13 @@ class _CalculatedAdjustmentsContent extends StatelessWidget {
                         ),
                         actions: [
                           TextButton(
-                            onPressed: () => Navigator.of(dialogContext).pop(false),
+                            onPressed: () =>
+                                Navigator.of(dialogContext).pop(false),
                             child: const Text('Cancel'),
                           ),
                           FilledButton(
-                            onPressed: () => Navigator.of(dialogContext).pop(true),
+                            onPressed: () =>
+                                Navigator.of(dialogContext).pop(true),
                             child: const Text('Reset'),
                           ),
                         ],
@@ -924,8 +1114,10 @@ class _ManualPrayerTimesContent extends StatelessWidget {
                   initialTime: _timeOfDayFromMinutes(
                     manualTimes.minuteForPrayer(prayerId) ??
                         _minutesFromDateTime(
-                          _scheduleItemById(effectiveSchedule, prayerId)!
-                              .offerDateTime,
+                          _scheduleItemById(
+                            effectiveSchedule,
+                            prayerId,
+                          )!.offerDateTime,
                         ),
                   ),
                 );
@@ -947,10 +1139,14 @@ class _ManualPrayerTimesContent extends StatelessWidget {
                 width: double.infinity,
                 padding: const EdgeInsets.all(14),
                 decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.surface.withValues(alpha: 0.45),
+                  color: Theme.of(
+                    context,
+                  ).colorScheme.surface.withValues(alpha: 0.45),
                   borderRadius: BorderRadius.circular(18),
                   border: Border.all(
-                    color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.2),
+                    color: Theme.of(
+                      context,
+                    ).colorScheme.outline.withValues(alpha: 0.2),
                   ),
                 ),
                 child: Row(
@@ -1038,17 +1234,12 @@ class _MosqueComparisonSection extends StatelessWidget {
       mosqueReferenceTimes: mosqueReferenceTimes,
       currentAdjustments: prayerState.preferences.adjustments,
     );
-    final hasSuggestionChange = const [
-      'fajr',
-      'dhuhr',
-      'asr',
-      'maghrib',
-      'isha',
-    ].any(
-      (prayerId) =>
-          suggestedAdjustments.offsetForPrayer(prayerId) !=
-          prayerState.preferences.adjustments.offsetForPrayer(prayerId),
-    );
+    final hasSuggestionChange =
+        const ['fajr', 'dhuhr', 'asr', 'maghrib', 'isha'].any(
+          (prayerId) =>
+              suggestedAdjustments.offsetForPrayer(prayerId) !=
+              prayerState.preferences.adjustments.offsetForPrayer(prayerId),
+        );
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -1070,7 +1261,7 @@ class _MosqueComparisonSection extends StatelessWidget {
           final difference = mosqueMinutes == null || effectiveItem == null
               ? null
               : _minutesFromDateTime(effectiveItem.offerDateTime) -
-                  mosqueMinutes;
+                    mosqueMinutes;
           return Padding(
             padding: const EdgeInsets.only(bottom: 8),
             child: InkWell(
@@ -1093,10 +1284,14 @@ class _MosqueComparisonSection extends StatelessWidget {
                 width: double.infinity,
                 padding: const EdgeInsets.all(14),
                 decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.surface.withValues(alpha: 0.42),
+                  color: Theme.of(
+                    context,
+                  ).colorScheme.surface.withValues(alpha: 0.42),
                   borderRadius: BorderRadius.circular(18),
                   border: Border.all(
-                    color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.18),
+                    color: Theme.of(
+                      context,
+                    ).colorScheme.outline.withValues(alpha: 0.18),
                   ),
                 ),
                 child: Column(
@@ -1120,7 +1315,9 @@ class _MosqueComparisonSection extends StatelessWidget {
                     Text(
                       'Adjustment: ${_formatAdjustmentLabel(prayerState.preferences.adjustments.offsetForPrayer(prayerId))}',
                     ),
-                    Text('Effective: ${effectiveItem?.offerTime ?? 'Unavailable'}'),
+                    Text(
+                      'Effective: ${effectiveItem?.offerTime ?? 'Unavailable'}',
+                    ),
                     Text(
                       'Difference: ${difference == null ? 'Not set' : _formatDifferenceLabel(difference)}',
                     ),
@@ -1135,15 +1332,15 @@ class _MosqueComparisonSection extends StatelessWidget {
           child: TextButton(
             onPressed: hasSuggestionChange
                 ? () => _showSuggestedAdjustmentsSheet(
-                      context: context,
-                      currentAdjustments: prayerState.preferences.adjustments,
-                      suggestedAdjustments: suggestedAdjustments,
-                      onApply: () {
-                        prayerNotifier.applyPrayerAdjustments(
-                          suggestedAdjustments,
-                        );
-                      },
-                    )
+                    context: context,
+                    currentAdjustments: prayerState.preferences.adjustments,
+                    suggestedAdjustments: suggestedAdjustments,
+                    onApply: () {
+                      prayerNotifier.applyPrayerAdjustments(
+                        suggestedAdjustments,
+                      );
+                    },
+                  )
                 : null,
             child: const Text('Apply Suggested Adjustments'),
           ),
@@ -1194,7 +1391,9 @@ class _JumuahSettingsSection extends StatelessWidget {
           ListTile(
             contentPadding: EdgeInsets.zero,
             title: const Text('Jumu‘ah time'),
-            subtitle: const Text('Used for Friday reminder behavior when selected.'),
+            subtitle: const Text(
+              'Used for Friday reminder behavior when selected.',
+            ),
             trailing: Text(
               _formatMinutesLabel(context, preferences.jumuahTimeMinutes),
             ),
@@ -1286,7 +1485,9 @@ class _PrayerAdjustmentRow extends StatelessWidget {
                       vertical: 4,
                     ),
                     decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.08),
+                      color: Theme.of(
+                        context,
+                      ).colorScheme.primary.withValues(alpha: 0.08),
                       borderRadius: BorderRadius.circular(999),
                     ),
                     child: Text(
@@ -1334,7 +1535,11 @@ PrayerTimeAdjustments _suggestedAdjustmentsFromMosque({
       continue;
     }
     final calculatedMinutes = _minutesFromDateTime(baseItem.offerDateTime);
-    next = _setAdjustmentForPrayer(next, prayerId, mosqueMinutes - calculatedMinutes);
+    next = _setAdjustmentForPrayer(
+      next,
+      prayerId,
+      mosqueMinutes - calculatedMinutes,
+    );
   }
   return next;
 }
@@ -1623,9 +1828,9 @@ TimeOfDay _timeOfDayFromMinutes(int minutes) {
 
 String _formatMinutesLabel(BuildContext context, int? minutes) {
   if (minutes == null) return 'Not set';
-  return MaterialLocalizations.of(context).formatTimeOfDay(
-    _timeOfDayFromMinutes(minutes),
-  );
+  return MaterialLocalizations.of(
+    context,
+  ).formatTimeOfDay(_timeOfDayFromMinutes(minutes));
 }
 
 String _fridayReminderModeLabel(FridayReminderMode mode) {
@@ -1819,10 +2024,7 @@ class _PreferenceDropdown<T> extends StatelessWidget {
                   .map(
                     (entry) => DropdownMenuItem<T>(
                       value: entry.key,
-                      child: Text(
-                        entry.value,
-                        textAlign: TextAlign.right,
-                      ),
+                      child: Text(entry.value, textAlign: TextAlign.right),
                     ),
                   )
                   .toList(),

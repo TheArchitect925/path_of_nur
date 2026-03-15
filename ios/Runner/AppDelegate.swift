@@ -67,6 +67,8 @@ struct FastingCountdownAttributes: ActivityAttributes {
 @objc class AppDelegate: FlutterAppDelegate, FlutterImplicitEngineDelegate {
   private let liveActivityChannelName = "path_of_nur/live_activities"
   private let navigationChannelName = "path_of_nur/navigation"
+  private let iCloudSyncChannelName = "path_of_nur/icloud_sync"
+  private let platformRuntimeChannelName = "path_of_nur/platform_runtime"
   private let pendingRouteKey = "path_of_nur.pending_route"
   static weak var shared: AppDelegate?
   private var navigationChannel: FlutterMethodChannel?
@@ -92,6 +94,22 @@ struct FastingCountdownAttributes: ActivityAttributes {
       self.navigationChannel = navigationChannel
       navigationChannel.setMethodCallHandler { [weak self] call, result in
         self?.handleNavigationCall(call: call, result: result)
+      }
+
+      let iCloudSyncChannel = FlutterMethodChannel(
+        name: iCloudSyncChannelName,
+        binaryMessenger: registrar.messenger()
+      )
+      iCloudSyncChannel.setMethodCallHandler { [weak self] call, result in
+        self?.handleICloudSyncCall(call: call, result: result)
+      }
+
+      let platformRuntimeChannel = FlutterMethodChannel(
+        name: platformRuntimeChannelName,
+        binaryMessenger: registrar.messenger()
+      )
+      platformRuntimeChannel.setMethodCallHandler { [weak self] call, result in
+        self?.handlePlatformRuntimeCall(call: call, result: result)
       }
     }
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
@@ -171,6 +189,19 @@ struct FastingCountdownAttributes: ActivityAttributes {
     }
   }
 
+  private func handlePlatformRuntimeCall(call: FlutterMethodCall, result: @escaping FlutterResult) {
+    switch call.method {
+    case "isIosSimulator":
+      #if targetEnvironment(simulator)
+        result(true)
+      #else
+        result(false)
+      #endif
+    default:
+      result(FlutterMethodNotImplemented)
+    }
+  }
+
   private func handleNavigationCall(call: FlutterMethodCall, result: @escaping FlutterResult) {
     switch call.method {
     case "getPendingRoute":
@@ -178,6 +209,33 @@ struct FastingCountdownAttributes: ActivityAttributes {
       let route = defaults.string(forKey: pendingRouteKey)
       defaults.removeObject(forKey: pendingRouteKey)
       result(route)
+    default:
+      result(FlutterMethodNotImplemented)
+    }
+  }
+
+  private func handleICloudSyncCall(call: FlutterMethodCall, result: @escaping FlutterResult) {
+    let store = NSUbiquitousKeyValueStore.default
+    switch call.method {
+    case "isAvailable":
+      result(FileManager.default.ubiquityIdentityToken != nil)
+    case "readValue":
+      guard let args = call.arguments as? [String: Any],
+            let key = args["key"] as? String else {
+        result(FlutterError(code: "bad_args", message: "Expected key", details: nil))
+        return
+      }
+      store.synchronize()
+      result(store.string(forKey: key))
+    case "writeValue":
+      guard let args = call.arguments as? [String: Any],
+            let key = args["key"] as? String,
+            let value = args["value"] as? String else {
+        result(FlutterError(code: "bad_args", message: "Expected key/value", details: nil))
+        return
+      }
+      store.set(value, forKey: key)
+      result(store.synchronize())
     default:
       result(FlutterMethodNotImplemented)
     }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'quran_teaching_icon_registry.dart';
+
 enum QuranTeachingLearnerLevel {
   completelyNew,
   knowSomeLetters,
@@ -745,7 +747,7 @@ class QuranTeachingMistakeItem {
             'secondaryLabel': option.secondaryLabel,
             'arabic': option.arabic,
             'imageAssetPath': option.imageAssetPath,
-            'iconCodePoint': option.icon?.codePoint,
+            ...QuranTeachingIconRegistry.iconToJson(option.icon),
             'audio': option.audio == null
                 ? null
                 : {
@@ -828,8 +830,6 @@ class QuranTeachingMistakeItem {
         final id = item['id']?.toString();
         final label = item['label']?.toString();
         if (id == null || label == null) continue;
-        final codePoint =
-            int.tryParse(item['iconCodePoint']?.toString() ?? '');
         options.add(
           QuranTeachingQuizOption(
             id: id,
@@ -837,7 +837,7 @@ class QuranTeachingMistakeItem {
             secondaryLabel: item['secondaryLabel']?.toString(),
             arabic: item['arabic']?.toString(),
             imageAssetPath: item['imageAssetPath']?.toString(),
-            icon: codePoint == null ? null : IconData(codePoint, fontFamily: 'MaterialIcons'),
+            icon: QuranTeachingIconRegistry.iconFromJson(item),
             audio: parseAudio(item['audio']),
           ),
         );

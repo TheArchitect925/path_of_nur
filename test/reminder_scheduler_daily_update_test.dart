@@ -2,11 +2,34 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'package:path_of_nur/core/reminders/adhan_audio_service.dart';
+import 'package:path_of_nur/core/reminders/adhan_options.dart';
+import 'package:path_of_nur/core/reminders/local_notification_service.dart';
 import 'package:path_of_nur/core/prayer/prayer_preferences.dart';
 import 'package:path_of_nur/core/reminders/reminder_scheduler.dart';
 import 'package:path_of_nur/features/profile/application/profile_settings_provider.dart';
 import 'package:path_of_nur/shared/application/daily_clock_provider.dart';
 import 'package:path_of_nur/shared/persistence/local_store.dart';
+
+class _FakeLocalNotificationService extends LocalNotificationService {
+  _FakeLocalNotificationService(LocalStore store)
+      : super(store, const AdhanRepository());
+
+  ReminderSchedulerState? lastPlan;
+  AdhanSettings? lastAdhanSettings;
+
+  @override
+  Future<void> ensureInitialized() async {}
+
+  @override
+  Future<void> syncWithPlan(
+    ReminderSchedulerState plan, {
+    required AdhanSettings adhanSettings,
+  }) async {
+    lastPlan = plan;
+    lastAdhanSettings = adhanSettings;
+  }
+}
 
 PrayerScheduleItem _item({
   required String id,
@@ -175,4 +198,30 @@ void main() {
       expect(day2Dhuhr.minute, 10);
     },
   );
+
+  test('reminder bootstrap stays safe with sparse defaults and empty schedule', () async {
+    SharedPreferences.setMockInitialValues({});
+    final prefs = await SharedPreferences.getInstance();
+    final store = LocalStore(prefs);
+    final fakeService = _FakeLocalNotificationService(store);
+    final now = DateTime(2026, 3, 14, 9, 0);
+
+    final container = ProviderContainer(
+      overrides: [
+        sharedPreferencesProvider.overrideWithValue(prefs),
+        localNotificationServiceProvider.overrideWithValue(fakeService),
+        dailyNowProvider.overrideWith((ref) => Stream.value(now)),
+        prayerScheduleProvider.overrideWithValue(const <PrayerScheduleItem>[]),
+      ],
+    );
+    addTearDown(container.dispose);
+
+    container.read(reminderSchedulerBootstrapProvider);
+    await Future<void>.delayed(Duration.zero);
+
+    final storedPlan = store.getJsonList('reminders.plan.2026-03-14');
+    expect(container.read(reminderSchedulerProvider).dayKey, '2026-03-14');
+    expect(fakeService.lastPlan, isNotNull);
+    expect(storedPlan, isNotNull);
+  });
 }

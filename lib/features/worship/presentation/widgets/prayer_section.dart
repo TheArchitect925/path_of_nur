@@ -11,9 +11,11 @@ import '../../../../shared/persistence/local_store.dart';
 import '../../../../shared/state/user_profile_state.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/section_title.dart';
+import '../../data/prayer_log_repository.dart';
 import '../../application/prayer_tracker_controller.dart';
 import '../../application/sister_cycle_provider.dart';
 import '../../domain/prayer_name.dart';
+import '../../domain/prayer_tracker_fields.dart';
 import '../../domain/prayer_status.dart';
 
 const double _prayerSurfaceAlpha = 0.9;
@@ -449,9 +451,8 @@ class _PrayerHistoryCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final store = ref.watch(localStoreProvider);
     final dayKey = LocalStore.todayKey(selectedDate);
-    final data = store.getJsonMap('worship.prayer.$dayKey') ?? const {};
+    final data = ref.watch(prayerLogRepositoryProvider).readDayEntries(dayKey);
     final timeFormat = DateFormat.jm();
 
     return PremiumCard(
@@ -473,22 +474,11 @@ class _PrayerHistoryCard extends ConsumerWidget {
           ),
           const SizedBox(height: 10),
           ...PrayerName.values.map((prayer) {
-            final raw = data[prayer.name];
-            final statusName = raw is String
-                ? raw
-                : raw is Map
-                ? raw['status']?.toString()
-                : null;
-            final completedAtIso = raw is Map
-                ? raw['completedAtIso']?.toString()
-                : null;
-            final completedAt = completedAtIso == null
+            final raw = data[prayer];
+            final completedAt = raw?.completedAtIso == null
                 ? null
-                : DateTime.tryParse(completedAtIso);
-            final status = PrayerStatus.values.firstWhere(
-              (item) => item.name == statusName,
-              orElse: () => PrayerStatus.pending,
-            );
+                : DateTime.tryParse(raw!.completedAtIso!);
+            final status = raw?.status ?? PrayerStatus.pending;
             final statusColor = switch (status) {
               PrayerStatus.completed => AppColors.success,
               PrayerStatus.missed => AppColors.caution,

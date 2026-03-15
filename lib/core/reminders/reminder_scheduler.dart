@@ -226,24 +226,30 @@ DateTime _effectiveReminderTime({
 final reminderSchedulerBootstrapProvider = Provider<void>((ref) {
   final service = ref.read(localNotificationServiceProvider);
   final store = ref.read(localStoreProvider);
+  Future<void> syncReminders() async {
+    final plan = ref.read(reminderSchedulerProvider);
+    final prayerState = ref.read(prayerSettingsProvider);
+    await store.setJsonList(
+      'reminders.plan.${plan.dayKey}',
+      plan.items
+          .map(
+            (e) => {
+              'id': e.id,
+              'kind': e.kind.name,
+              'prayerId': e.prayerId,
+              'when': e.when.toIso8601String(),
+              'notificationMode': e.notificationMode?.name,
+            },
+          )
+          .toList(),
+    );
+    await service.syncWithPlan(plan, adhanSettings: prayerState.adhanSettings);
+  }
 
-  ref.listen<ReminderSchedulerState>(reminderSchedulerProvider, (_, plan) {
-    Future<void>.microtask(() async {
-      await store.setJsonList(
-        'reminders.plan.${plan.dayKey}',
-        plan.items
-            .map(
-              (e) => {
-                'id': e.id,
-                'kind': e.kind.name,
-                'prayerId': e.prayerId,
-                'when': e.when.toIso8601String(),
-                'notificationMode': e.notificationMode?.name,
-              },
-            )
-            .toList(),
-      );
-      await service.syncWithPlan(plan);
-    });
+  ref.listen<ReminderSchedulerState>(reminderSchedulerProvider, (_, nextPlan) {
+    Future<void>.microtask(syncReminders);
   }, fireImmediately: true);
+  ref.listen<PrayerSettingsState>(prayerSettingsProvider, (_, nextSettings) {
+    Future<void>.microtask(syncReminders);
+  });
 });
