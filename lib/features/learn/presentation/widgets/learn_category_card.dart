@@ -4,6 +4,8 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/theme/app_radii.dart';
 import '../../../../core/theme/app_theme.dart';
+import '../../../../l10n/app_localizations.dart';
+import '../learn_ui_localization.dart';
 import '../data/learn_icon_registry.dart';
 import '../models/learn_category_item.dart';
 
@@ -33,6 +35,7 @@ class _LearnCategoryCardState extends State<LearnCategoryCard> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final appearance = Theme.of(context).extension<AppAppearanceTheme>();
     final surface = appearance?.surface ?? AppColors.surface;
     final accent = appearance?.accent ?? AppColors.accentGold;
@@ -141,7 +144,7 @@ class _LearnCategoryCardState extends State<LearnCategoryCard> {
                               ],
                             ),
                           ),
-                          if (widget.item.badgeLabel != null)
+                          if (widget.item.localizedBadgeLabel(l10n) != null)
                             Positioned(
                               top: 10,
                               right: 10,
@@ -158,7 +161,7 @@ class _LearnCategoryCardState extends State<LearnCategoryCard> {
                                   ),
                                 ),
                                 child: Text(
-                                  widget.item.badgeLabel!,
+                                  widget.item.localizedBadgeLabel(l10n)!,
                                   style: Theme.of(context).textTheme.labelSmall
                                       ?.copyWith(
                                         color: onSurface,
@@ -173,7 +176,7 @@ class _LearnCategoryCardState extends State<LearnCategoryCard> {
                   ),
                   const SizedBox(height: 10),
                   Text(
-                    widget.item.title,
+                    widget.item.localizedTitle(l10n),
                     textAlign: TextAlign.center,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,

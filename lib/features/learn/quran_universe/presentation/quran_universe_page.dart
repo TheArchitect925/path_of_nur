@@ -584,20 +584,14 @@ class _QuranUniversePageState extends ConsumerState<QuranUniversePage> {
     ref
         .read(prophetsUiControllerProvider.notifier)
         .setSelectedTab(ProphetsTab.journey);
-    context.pushNamed(
-      'learnSectionHub',
-      pathParameters: {'sectionId': 'prophets'},
-    );
+    context.pushNamed('learnProphetsHub', queryParameters: {'tab': 'journey'});
   }
 
   void _openProphetQuiz() {
     ref
         .read(prophetsUiControllerProvider.notifier)
         .setSelectedTab(ProphetsTab.quiz);
-    context.pushNamed(
-      'learnSectionHub',
-      pathParameters: {'sectionId': 'prophets'},
-    );
+    context.pushNamed('learnProphetsHub', queryParameters: {'tab': 'quiz'});
   }
 
   void _openProphetDetail(
@@ -647,8 +641,8 @@ class _QuranUniversePageState extends ConsumerState<QuranUniversePage> {
                 .read(prophetsUiControllerProvider.notifier)
                 .setSelectedTab(ProphetsTab.timeline);
             context.pushNamed(
-              'learnSectionHub',
-              pathParameters: {'sectionId': 'prophets'},
+              'learnProphetsHub',
+              queryParameters: {'tab': 'timeline'},
             );
           },
           onViewOnMap: prophet.hasMapLocation
@@ -658,8 +652,8 @@ class _QuranUniversePageState extends ConsumerState<QuranUniversePage> {
                       .read(prophetsUiControllerProvider.notifier)
                       .setSelectedTab(ProphetsTab.map);
                   context.pushNamed(
-                    'learnSectionHub',
-                    pathParameters: {'sectionId': 'prophets'},
+                    'learnProphetsHub',
+                    queryParameters: {'tab': 'map'},
                   );
                 }
               : null,
@@ -669,8 +663,8 @@ class _QuranUniversePageState extends ConsumerState<QuranUniversePage> {
                 .read(prophetsUiControllerProvider.notifier)
                 .setSelectedTab(ProphetsTab.familyTree);
             context.pushNamed(
-              'learnSectionHub',
-              pathParameters: {'sectionId': 'prophets'},
+              'learnProphetsHub',
+              queryParameters: {'tab': 'family-tree'},
             );
           },
         ),

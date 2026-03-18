@@ -1,6 +1,8 @@
 import ActivityKit
 import Flutter
 import UIKit
+import Vision
+import ImageIO
 
 @available(iOS 16.1, *)
 struct PrayerCountdownAttributes: ActivityAttributes {
@@ -69,6 +71,7 @@ struct FastingCountdownAttributes: ActivityAttributes {
   private let navigationChannelName = "path_of_nur/navigation"
   private let iCloudSyncChannelName = "path_of_nur/icloud_sync"
   private let platformRuntimeChannelName = "path_of_nur/platform_runtime"
+  private let creationImageLabelingChannelName = "path_of_nur/creation_image_labeling"
   private let pendingRouteKey = "path_of_nur.pending_route"
   static weak var shared: AppDelegate?
   private var navigationChannel: FlutterMethodChannel?
@@ -110,6 +113,14 @@ struct FastingCountdownAttributes: ActivityAttributes {
       )
       platformRuntimeChannel.setMethodCallHandler { [weak self] call, result in
         self?.handlePlatformRuntimeCall(call: call, result: result)
+      }
+
+      let creationImageLabelingChannel = FlutterMethodChannel(
+        name: creationImageLabelingChannelName,
+        binaryMessenger: registrar.messenger()
+      )
+      creationImageLabelingChannel.setMethodCallHandler { [weak self] call, result in
+        self?.handleCreationImageLabelingCall(call: call, result: result)
       }
     }
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
@@ -199,6 +210,139 @@ struct FastingCountdownAttributes: ActivityAttributes {
       #endif
     default:
       result(FlutterMethodNotImplemented)
+    }
+  }
+
+  private func handleCreationImageLabelingCall(
+    call: FlutterMethodCall,
+    result: @escaping FlutterResult
+  ) {
+    switch call.method {
+    case "detectLabels":
+      guard let args = call.arguments as? [String: Any] else {
+        result(FlutterError(code: "bad_args", message: "Expected dictionary", details: nil))
+        return
+      }
+      detectCreationImageLabels(args: args, result: result)
+    default:
+      result(FlutterMethodNotImplemented)
+    }
+  }
+
+  private func detectCreationImageLabels(
+    args: [String: Any],
+    result: @escaping FlutterResult
+  ) {
+    DispatchQueue.global(qos: .userInitiated).async {
+      do {
+        guard let width = args["width"] as? NSNumber,
+              let height = args["height"] as? NSNumber,
+              let planes = args["planes"] as? [[String: Any]],
+              let firstPlane = planes.first,
+              let typedBytes = firstPlane["bytes"] as? FlutterStandardTypedData,
+              let bytesPerRow = firstPlane["bytesPerRow"] as? NSNumber else {
+          throw NSError(
+            domain: "creation_image_labeling",
+            code: 1,
+            userInfo: [NSLocalizedDescriptionKey: "Missing image payload"]
+          )
+        }
+
+        let cgImage = try self.makeClassificationImage(
+          bytes: typedBytes.data,
+          width: width.intValue,
+          height: height.intValue,
+          bytesPerRow: bytesPerRow.intValue
+        )
+        let request = VNClassifyImageRequest()
+        let rotation = (args["rotation"] as? NSNumber)?.intValue ?? 0
+        let orientation = self.cgOrientation(forRotationDegrees: rotation)
+        let handler = VNImageRequestHandler(
+          cgImage: cgImage,
+          orientation: orientation,
+          options: [:]
+        )
+        try handler.perform([request])
+
+        let threshold = Float((args["confidenceThreshold"] as? NSNumber)?.doubleValue ?? 0.7)
+        let observations = (request.results as? [VNClassificationObservation]) ?? []
+        let payload = observations
+          .filter { $0.confidence >= threshold }
+          .prefix(8)
+          .map { observation in
+            [
+              "label": observation.identifier,
+              "confidence": Double(observation.confidence),
+            ]
+          }
+
+        DispatchQueue.main.async {
+          result(payload)
+        }
+      } catch {
+        DispatchQueue.main.async {
+          result(
+            FlutterError(
+              code: "ios_image_labeling",
+              message: error.localizedDescription,
+              details: nil
+            )
+          )
+        }
+      }
+    }
+  }
+
+  private func makeClassificationImage(
+    bytes: Data,
+    width: Int,
+    height: Int,
+    bytesPerRow: Int
+  ) throws -> CGImage {
+    guard let provider = CGDataProvider(data: bytes as CFData) else {
+      throw NSError(
+        domain: "creation_image_labeling",
+        code: 2,
+        userInfo: [NSLocalizedDescriptionKey: "Unable to create image provider"]
+      )
+    }
+
+    let colorSpace = CGColorSpaceCreateDeviceRGB()
+    let bitmapInfo = CGBitmapInfo.byteOrder32Little.union(
+      CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedFirst.rawValue)
+    )
+    guard let image = CGImage(
+      width: width,
+      height: height,
+      bitsPerComponent: 8,
+      bitsPerPixel: 32,
+      bytesPerRow: bytesPerRow,
+      space: colorSpace,
+      bitmapInfo: bitmapInfo,
+      provider: provider,
+      decode: nil,
+      shouldInterpolate: false,
+      intent: .defaultIntent
+    ) else {
+      throw NSError(
+        domain: "creation_image_labeling",
+        code: 3,
+        userInfo: [NSLocalizedDescriptionKey: "Unable to build CGImage from camera bytes"]
+      )
+    }
+    return image
+  }
+
+  private func cgOrientation(forRotationDegrees rotation: Int) -> CGImagePropertyOrientation {
+    switch rotation {
+    case 90:
+      return .right
+    case 180:
+      return .down
+    case 270:
+      return .left
+    default:
+      return .up
     }
   }
 

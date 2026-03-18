@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../../core/theme/app_text_styles.dart';
+import '../../../../../l10n/app_localizations.dart';
 import '../../../../../shared/theme/islamic_icons.dart';
 import '../../../../../shared/widgets/arabic_text_utils.dart';
 import '../../../../../shared/widgets/app_page_scaffold.dart';
@@ -20,6 +21,7 @@ class _NamesOfAllahPageState extends ConsumerState<NamesOfAllahPage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final normalized = _query.trim().toLowerCase();
     final filtered = namesOfAllah.where((name) {
       if (normalized.isEmpty) return true;
@@ -30,14 +32,14 @@ class _NamesOfAllahPageState extends ConsumerState<NamesOfAllahPage> {
 
     return AppPageScaffold(
       headerIcon: IslamicIcons.allahText,
-      title: '99 Names of الله',
-      subtitle: 'Arabic, transliteration, and concise meanings for reflection.',
+      title: l10n.quranNamesOfAllahTitle,
+      subtitle: l10n.batch9NamesOfAllahSubtitle,
       children: [
         PremiumCard(
           child: TextField(
-            decoration: const InputDecoration(
-              prefixIcon: Icon(Icons.search_rounded),
-              hintText: 'Search by Arabic, transliteration, or meaning',
+            decoration: InputDecoration(
+              prefixIcon: const Icon(Icons.search_rounded),
+              hintText: l10n.batch9NamesOfAllahSearchHint,
               border: OutlineInputBorder(),
             ),
             onChanged: (value) => setState(() => _query = value),
@@ -46,7 +48,10 @@ class _NamesOfAllahPageState extends ConsumerState<NamesOfAllahPage> {
         const SizedBox(height: 12),
         PremiumCard(
           child: Text(
-            '${filtered.length} / ${namesOfAllah.length} names',
+            l10n.batch9NamesOfAllahCount(
+              '${filtered.length}',
+              '${namesOfAllah.length}',
+            ),
             style: const TextStyle(
               color: Color(0xFF6A5A4A),
               fontWeight: FontWeight.w600,

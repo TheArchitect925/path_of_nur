@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../core/theme/app_colors.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../hadith/data/seeded_hadith_path_quiz_data.dart';
 import '../../prophets/application/prophet_quiz_pool_service.dart';
@@ -37,6 +39,8 @@ class _LearnQuizzesHubPageState extends ConsumerState<LearnQuizzesHubPage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final numberFormat = NumberFormat.decimalPattern(l10n.localeName);
     final items = _allQuizItems();
     final filtered = items
         .where(_matchesFilter)
@@ -54,9 +58,8 @@ class _LearnQuizzesHubPageState extends ConsumerState<LearnQuizzesHubPage> {
 
     return LearnHubPageScaffold(
       headerIcon: Icons.quiz_rounded,
-      title: 'Quizzes',
-      subtitle:
-          'Practice what you have learned across the different learning sections with one organized quiz hub.',
+      title: l10n.learnCategoryQuizzesTitle,
+      subtitle: l10n.learnQuizzesHubSubtitle,
       children: [
         PremiumCard(
           child: Column(
@@ -65,9 +68,9 @@ class _LearnQuizzesHubPageState extends ConsumerState<LearnQuizzesHubPage> {
               TextField(
                 controller: _searchController,
                 onChanged: (_) => setState(() {}),
-                decoration: const InputDecoration(
-                  hintText: 'Search quiz titles, modules, topics...',
-                  prefixIcon: Icon(Icons.search_rounded),
+                decoration: InputDecoration(
+                  hintText: l10n.learnQuizzesSearchHint,
+                  prefixIcon: const Icon(Icons.search_rounded),
                   border: InputBorder.none,
                 ),
               ),
@@ -93,17 +96,17 @@ class _LearnQuizzesHubPageState extends ConsumerState<LearnQuizzesHubPage> {
           ),
         ),
         const SizedBox(height: 12),
-        _summaryCard(context, items.length),
+        _summaryCard(context, l10n, numberFormat, items.length),
         const SizedBox(height: 12),
         if (filtered.isEmpty)
           PremiumCard(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text('No quizzes match this filter.'),
+                Text(l10n.learnQuizzesNoMatchTitle),
                 const SizedBox(height: 6),
                 Text(
-                  'Try a broader keyword or switch categories.',
+                  l10n.learnQuizzesNoMatchSubtitle,
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: AppColors.onSurfaceSubtle,
                   ),
@@ -115,8 +118,8 @@ class _LearnQuizzesHubPageState extends ConsumerState<LearnQuizzesHubPage> {
           if (prophetItems.isNotEmpty) ...[
             _sectionTitle(
               context,
-              'Prophets Quizzes',
-              'Mode-based quizzes from the Prophets module.',
+              l10n.learnQuizzesProphetsSectionTitle,
+              l10n.learnQuizzesProphetsSectionSubtitle,
             ),
             const SizedBox(height: 8),
             ...prophetItems.map(_quizCard),
@@ -125,8 +128,8 @@ class _LearnQuizzesHubPageState extends ConsumerState<LearnQuizzesHubPage> {
           if (hadithItems.isNotEmpty) ...[
             _sectionTitle(
               context,
-              'Hadith Chapter Quizzes',
-              'Path and chapter quizzes from the Hadith module.',
+              l10n.learnQuizzesHadithSectionTitle,
+              l10n.learnQuizzesHadithSectionSubtitle,
             ),
             const SizedBox(height: 8),
             ...hadithItems.map(_quizCard),
@@ -135,8 +138,8 @@ class _LearnQuizzesHubPageState extends ConsumerState<LearnQuizzesHubPage> {
           if (reviewItems.isNotEmpty) ...[
             _sectionTitle(
               context,
-              'Hadith Review Quizzes',
-              'Review-style quizzes from your Hadith learning.',
+              l10n.learnQuizzesReviewSectionTitle,
+              l10n.learnQuizzesReviewSectionSubtitle,
             ),
             const SizedBox(height: 8),
             ...reviewItems.map(_quizCard),
@@ -146,16 +149,29 @@ class _LearnQuizzesHubPageState extends ConsumerState<LearnQuizzesHubPage> {
     );
   }
 
-  Widget _summaryCard(BuildContext context, int total) {
+  Widget _summaryCard(
+    BuildContext context,
+    AppLocalizations l10n,
+    NumberFormat numberFormat,
+    int total,
+  ) {
     return PremiumCard(
       child: Wrap(
         spacing: 8,
         runSpacing: 8,
         children: [
-          _chip('$total quizzes available'),
-          _chip('${seededHadithChapterQuizzes.length} hadith chapter quizzes'),
-          _chip('${ProphetQuizMode.values.length} prophet quiz modes'),
-          _chip('2 learning modules live'),
+          _chip(l10n.learnQuizzesAvailableCount(numberFormat.format(total))),
+          _chip(
+            l10n.learnQuizzesHadithChapterCount(
+              numberFormat.format(seededHadithChapterQuizzes.length),
+            ),
+          ),
+          _chip(
+            l10n.learnQuizzesProphetModeCount(
+              numberFormat.format(ProphetQuizMode.values.length),
+            ),
+          ),
+          _chip(l10n.learnQuizzesLearningModulesLive('2')),
         ],
       ),
     );
@@ -183,6 +199,8 @@ class _LearnQuizzesHubPageState extends ConsumerState<LearnQuizzesHubPage> {
   }
 
   Widget _quizCard(_QuizCatalogItem item) {
+    final l10n = AppLocalizations.of(context);
+    final numberFormat = NumberFormat.decimalPattern(l10n.localeName);
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
       child: PremiumCard(
@@ -193,10 +211,14 @@ class _LearnQuizzesHubPageState extends ConsumerState<LearnQuizzesHubPage> {
               spacing: 8,
               runSpacing: 8,
               children: [
-                _chip(item.module),
-                _chip(item.group),
+                _chip(_moduleLabel(l10n, item.module)),
+                _chip(_groupLabel(l10n, item.group)),
                 if (item.questionCount != null)
-                  _chip('${item.questionCount} questions'),
+                  _chip(
+                    l10n.triviaQuestionsCount(
+                      numberFormat.format(item.questionCount!),
+                    ),
+                  ),
                 if (item.difficultyLabel != null) _chip(item.difficultyLabel!),
               ],
             ),
@@ -254,15 +276,14 @@ class _LearnQuizzesHubPageState extends ConsumerState<LearnQuizzesHubPage> {
         title: _prophetModeLabel(mode),
         subtitle: _prophetModeSummary(mode),
         questionCount: count,
-        difficultyLabel: 'Starts at Easy',
-        routeName: 'learnSectionHub',
-        pathParameters: const {'sectionId': 'prophets'},
+        difficultyLabel: AppLocalizations.of(context).learnQuizzesStartsAtEasy,
+        routeName: 'learnProphetsHub',
         queryParameters: {
           'tab': 'quiz',
           'quizMode': mode.name,
           'quizDifficulty': ProphetQuizDifficulty.easy.name,
         },
-        ctaLabel: 'Open prophet quiz',
+        ctaLabel: AppLocalizations.of(context).learnQuizzesOpenProphetQuiz,
       );
     });
 
@@ -276,7 +297,7 @@ class _LearnQuizzesHubPageState extends ConsumerState<LearnQuizzesHubPage> {
         questionCount: quiz.questions.length,
         routeName: 'hadithChapterQuiz',
         pathParameters: {'pathId': quiz.pathId, 'chapterId': quiz.chapterId},
-        ctaLabel: 'Start chapter quiz',
+        ctaLabel: AppLocalizations.of(context).learnQuizzesStartChapterQuiz,
       );
     });
 
@@ -286,20 +307,24 @@ class _LearnQuizzesHubPageState extends ConsumerState<LearnQuizzesHubPage> {
         module: 'Hadith',
         group: 'Review',
         title: 'Random Hadith Review',
-        subtitle: 'Mixed review from completed or available hadith lessons.',
+        subtitle: AppLocalizations.of(
+          context,
+        ).learnQuizzesRandomHadithReviewSubtitle,
         routeName: 'hadithReviewQuiz',
         queryParameters: const {'mode': 'random'},
-        ctaLabel: 'Start review',
+        ctaLabel: AppLocalizations.of(context).triviaReviewStartAction,
       ),
       _QuizCatalogItem(
         id: 'hadith_review_weekly',
         module: 'Hadith',
         group: 'Review',
-        title: 'Weekly Knowledge Check',
-        subtitle: 'A weekly hadith check-in pulled from learned material.',
+        title: AppLocalizations.of(context).learnQuizzesWeeklyKnowledgeCheck,
+        subtitle: AppLocalizations.of(
+          context,
+        ).learnQuizzesWeeklyKnowledgeCheckSubtitle,
         routeName: 'hadithReviewQuiz',
         queryParameters: const {'mode': 'weekly'},
-        ctaLabel: 'Start weekly quiz',
+        ctaLabel: AppLocalizations.of(context).learnQuizzesStartWeeklyQuiz,
       ),
     ];
 
@@ -332,45 +357,72 @@ class _LearnQuizzesHubPageState extends ConsumerState<LearnQuizzesHubPage> {
   }
 
   String _filterLabel(LearnQuizFilter filter) {
+    final l10n = AppLocalizations.of(context);
     switch (filter) {
       case LearnQuizFilter.all:
-        return 'All';
+        return l10n.learnHubCategoryGroupAll;
       case LearnQuizFilter.prophets:
-        return 'Prophets';
+        return l10n.learnHubItemTypeProphet;
       case LearnQuizFilter.hadith:
-        return 'Hadith';
+        return l10n.learnHubItemTypeHadith;
       case LearnQuizFilter.review:
-        return 'Review';
+        return l10n.learnQuizzesFilterReview;
     }
   }
 
   String _prophetModeLabel(ProphetQuizMode mode) {
+    final l10n = AppLocalizations.of(context);
     switch (mode) {
       case ProphetQuizMode.prophetIdentification:
-        return 'Prophet Identification';
+        return l10n.learnQuizzesProphetModeIdentification;
       case ProphetQuizMode.timelineOrder:
-        return 'Timeline Order';
+        return l10n.learnQuizzesProphetModeTimeline;
       case ProphetQuizMode.storyMatching:
-        return 'Story Matching';
+        return l10n.learnQuizzesProphetModeStoryMatching;
       case ProphetQuizMode.quranReference:
-        return 'Qur’an Reference';
+        return l10n.learnQuizzesProphetModeQuranReference;
       case ProphetQuizMode.lessonRecognition:
-        return 'Lesson Recognition';
+        return l10n.learnQuizzesProphetModeLessonRecognition;
     }
   }
 
   String _prophetModeSummary(ProphetQuizMode mode) {
+    final l10n = AppLocalizations.of(context);
     switch (mode) {
       case ProphetQuizMode.prophetIdentification:
-        return 'Recognize prophets through names, roles, and core traits.';
+        return l10n.learnQuizzesProphetModeIdentificationSubtitle;
       case ProphetQuizMode.timelineOrder:
-        return 'Practice chronology and placement across prophetic history.';
+        return l10n.learnQuizzesProphetModeTimelineSubtitle;
       case ProphetQuizMode.storyMatching:
-        return 'Match prophets to events, tests, and story details.';
+        return l10n.learnQuizzesProphetModeStoryMatchingSubtitle;
       case ProphetQuizMode.quranReference:
-        return 'Connect prophets with their Qur’anic references and contexts.';
+        return l10n.learnQuizzesProphetModeQuranReferenceSubtitle;
       case ProphetQuizMode.lessonRecognition:
-        return 'Identify the life lessons each prophetic story teaches.';
+        return l10n.learnQuizzesProphetModeLessonRecognitionSubtitle;
+    }
+  }
+
+  String _moduleLabel(AppLocalizations l10n, String module) {
+    switch (module) {
+      case 'Prophets':
+        return l10n.learnHubItemTypeProphet;
+      case 'Hadith':
+        return l10n.learnHubItemTypeHadith;
+      default:
+        return module;
+    }
+  }
+
+  String _groupLabel(AppLocalizations l10n, String group) {
+    switch (group) {
+      case 'Mode Quiz':
+        return l10n.learnQuizzesModeQuizGroup;
+      case 'Chapter Quiz':
+        return l10n.learnQuizzesChapterQuizGroup;
+      case 'Review':
+        return l10n.learnQuizzesFilterReview;
+      default:
+        return group;
     }
   }
 }

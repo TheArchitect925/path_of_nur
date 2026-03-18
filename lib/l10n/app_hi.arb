@@ -264,7 +264,6 @@
   "homeWorshipSummarySubtitle": "Prayer, dhikr, fasting, and Khusu in one place.",
   "homeWorshipSummaryTitle": "Worship Summary",
   "homeXpLevelTitle": "Level and XP",
-  "homeXpToNextLevel": "XP to next level",
   "journalBodyField": "Reflection",
   "journalCreateAction": "New entry",
   "journalCreateSubtitle": "Write a reflection, observation, or gratitude note.",
@@ -383,6 +382,7 @@
   "languageTajik": "Persian (Tajik)",
   "languageTurkish": "Turkish",
   "languageUrdu": "Urdu",
+  "languageGerman": "German",
   "learnBundleManagerSubtitle": "चरणबद्ध बंडल अभी इंस्टॉल करें। संरचना भविष्य के रिमोट सिंक के लिए तैयार है।",
   "learnBundleManagerTitle": "ऑफ़लाइन कंटेंट बंडल",
   "learnCitationPanelTitle": "स्रोत और विश्वसनीयता नोट्स",
@@ -1202,6 +1202,2659 @@
       },
       "total": {
         "type": "int"
+      }
+    }
+  },
+  "learningJourneyLessonSectionIntroduction": "Introduction",
+  "learningJourneyLessonSectionArabicMeaning": "Arabic and meaning",
+  "learningJourneyLessonSectionTakeaways": "Key takeaways",
+  "learningJourneyLessonSectionReflection": "Reflection prompt",
+  "learningJourneyLessonSectionReferences": "References",
+  "learningJourneyLessonSectionExploreNow": "Explore now",
+  "learningJourneyLessonActionOpenDhikrCounter": "Open Dhikr Counter",
+  "learningJourneyLessonActionCompleted": "Completed",
+  "learningJourneyLessonActionMarkComplete": "Mark as Complete",
+  "learningJourneyLessonActionReturnToJourney": "Return to Journey",
+  "learningJourneyToolQuranReaderTitle": "Qur’an Reader",
+  "learningJourneyToolQuranReaderSubtitle": "Open the reader and continue slowly.",
+  "learningJourneyToolQuranStudyTitle": "Qur’an Study",
+  "learningJourneyToolQuranStudySubtitle": "Use the study hub for connected practice.",
+  "learningJourneyToolQuranArabicTitle": "Qur’anic Arabic",
+  "learningJourneyToolQuranArabicSubtitle": "Return to the Arabic learning path.",
+  "learningJourneyToolSalahHubTitle": "Salah Hub",
+  "learningJourneyToolSalahHubSubtitle": "Reconnect these phrases to worship practice.",
+  "learningJourneyStageReciteFatihahLessonTitle": "Understanding Al-Fatihah",
+  "learningJourneyStageReciteFatihahIntro": "Al-Fatihah is the surah you repeat most often in salah. Learning its core meaning turns familiar recitation into conscious worship.",
+  "learningJourneyStageReciteFatihahSection1Title": "A simple map of the surah",
+  "learningJourneyStageReciteFatihahSection1Body": "Al-Fatihah begins with praise of Allah, then reminds you that He is Lord, Master of the Day of Judgment, and the One alone you worship and ask for help. It ends as a dua for guidance to the straight path.",
+  "learningJourneyStageReciteFatihahSection2Title": "How to carry it into prayer",
+  "learningJourneyStageReciteFatihahSection2Body": "When you recite Al-Fatihah, slow down enough to feel the movement of the surah: praise, dependence, and asking to be guided.",
+  "learningJourneyStageReciteFatihahSection2Bullet1": "Praise Allah before asking for anything.",
+  "learningJourneyStageReciteFatihahSection2Bullet2": "Remember that worship and help both belong to Him alone.",
+  "learningJourneyStageReciteFatihahSection2Bullet3": "Treat the last verses as a living dua for guidance.",
+  "learningJourneyStageReciteFatihahTakeaway1": "Al-Fatihah is both praise and dua.",
+  "learningJourneyStageReciteFatihahTakeaway2": "Its meaning can make every rak‘ah more attentive.",
+  "learningJourneyStageReciteFatihahTakeaway3": "Understanding a little well is better than reciting without thought.",
+  "learningJourneyStageReciteFatihahReflection": "Which line of Al-Fatihah do you want to recite more consciously in your next prayer?",
+  "learningJourneyStageReciteFatihahInvocation1Title": "Opening praise",
+  "learningJourneyStageReciteFatihahInvocation1Meaning": "All praise belongs to Allah, Lord of all worlds.",
+  "learningJourneyStageReciteFatihahInvocation1Context": "This phrase reminds you that praise comes before requests.",
+  "learningJourneyStageReciteShortSurahsLessonTitle": "Common Phrases in Salah",
+  "learningJourneyStageReciteShortSurahsIntro": "Prayer includes short repeated phrases that shape humility, praise, and reverence. Knowing their meaning helps the body and heart move together.",
+  "learningJourneyStageReciteShortSurahsSection1Title": "What these phrases are doing",
+  "learningJourneyStageReciteShortSurahsSection1Body": "Takbir magnifies Allah. Tasbih in ruku and sujud glorifies Him. These short phrases are not filler between positions. They are part of the inner life of salah.",
+  "learningJourneyStageReciteShortSurahsSection2Title": "How to begin using them with understanding",
+  "learningJourneyStageReciteShortSurahsSection2Body": "Choose one phrase to pay attention to in your next prayer. Repeat it slowly enough that the meaning stays present for at least one moment.",
+  "learningJourneyStageReciteShortSurahsTakeaway1": "Short phrases can carry deep meaning inside prayer.",
+  "learningJourneyStageReciteShortSurahsTakeaway2": "Understanding grows khushu more naturally than forcing emotion.",
+  "learningJourneyStageReciteShortSurahsTakeaway3": "One attentive phrase is a strong place to begin.",
+  "learningJourneyStageReciteShortSurahsReflection": "Which phrase in salah do you want to stop rushing past?",
+  "learningJourneyStageReciteShortSurahsInvocation1Title": "Takbir",
+  "learningJourneyStageReciteShortSurahsInvocation1Meaning": "Allah is greater than everything competing for your attention.",
+  "learningJourneyStageReciteShortSurahsInvocation1Context": "Said when moving into major parts of the prayer.",
+  "learningJourneyStageReciteShortSurahsInvocation2Title": "Tasbih in bowing",
+  "learningJourneyStageReciteShortSurahsInvocation2Meaning": "Glory be to my Lord, the Most Great.",
+  "learningJourneyStageReciteShortSurahsInvocation2Context": "Said in ruku to glorify Allah with humility.",
+  "learningJourneyStageReciteShortSurahsInvocation3Title": "Tasbih in prostration",
+  "learningJourneyStageReciteShortSurahsInvocation3Meaning": "Glory be to my Lord, the Most High.",
+  "learningJourneyStageReciteShortSurahsInvocation3Context": "Said in sujud while you are physically lowest before Allah.",
+  "learningJourneyStageReciteMeaningLessonTitle": "Simple Dhikr Meanings",
+  "learningJourneyStageReciteMeaningIntro": "A few short phrases appear again and again in Muslim life. When you understand them, dhikr becomes lighter to carry and easier to keep.",
+  "learningJourneyStageReciteMeaningSection1Title": "Start with the smallest phrases",
+  "learningJourneyStageReciteMeaningSection1Body": "SubhanAllah clears Allah of نقص and imperfection. Alhamdulillah fills the heart with praise and gratitude. Short dhikr works because it can stay with you in ordinary moments.",
+  "learningJourneyStageReciteMeaningSection2Title": "Bridge meaning into daily rhythm",
+  "learningJourneyStageReciteMeaningSection2Body": "Use one phrase after prayer, one during a quiet walk, and one when something good happens. That is enough to start a sincere daily rhythm.",
+  "learningJourneyStageReciteMeaningSection2Bullet1": "Say SubhanAllah when you want to remember Allah’s perfection.",
+  "learningJourneyStageReciteMeaningSection2Bullet2": "Say Alhamdulillah when you notice a blessing.",
+  "learningJourneyStageReciteMeaningSection2Bullet3": "Keep the phrases short enough to remain present and sincere.",
+  "learningJourneyStageReciteMeaningTakeaway1": "Short dhikr becomes stronger when you understand it.",
+  "learningJourneyStageReciteMeaningTakeaway2": "Meaning makes repetition more alive, not less simple.",
+  "learningJourneyStageReciteMeaningTakeaway3": "Daily remembrance grows best through small steady anchors.",
+  "learningJourneyStageReciteMeaningReflection": "Which short phrase do you want to carry more intentionally through your day?",
+  "learningJourneyStageReciteMeaningInvocation1Title": "Tasbih",
+  "learningJourneyStageReciteMeaningInvocation1Meaning": "Glory be to Allah.",
+  "learningJourneyStageReciteMeaningInvocation1Context": "Use when remembering Allah’s perfection and greatness.",
+  "learningJourneyStageReciteMeaningInvocation2Title": "Hamd",
+  "learningJourneyStageReciteMeaningInvocation2Meaning": "All praise belongs to Allah.",
+  "learningJourneyStageReciteMeaningInvocation2Context": "Use when you notice mercy, provision, or any blessing.",
+  "learningJourneyStageReadingBasicsOpenLessonTitle": "Harakat and Reading Clues",
+  "learningJourneyStageReadingBasicsOpenIntro": "Before smooth reading comes a smaller skill: seeing the marks around the letters clearly enough to know how the sound should move.",
+  "learningJourneyStageReadingBasicsOpenSection1Title": "What to notice first",
+  "learningJourneyStageReadingBasicsOpenSection1Body": "Harakat are the short vowel signs that tell you whether the sound opens, lowers, or rounds. Start by noticing the mark before worrying about speed.",
+  "learningJourneyStageReadingBasicsOpenSection1Bullet1": "Fathah usually gives a light “a” sound.",
+  "learningJourneyStageReadingBasicsOpenSection1Bullet2": "Kasrah usually gives a light “i” sound.",
+  "learningJourneyStageReadingBasicsOpenSection1Bullet3": "Dammah usually gives a light “u” sound.",
+  "learningJourneyStageReadingBasicsOpenSection2Title": "A gentle way to practice",
+  "learningJourneyStageReadingBasicsOpenSection2Body": "Read one letter at a time, say the sound, then repeat the same pattern across two or three examples. Accuracy first. Speed later.",
+  "learningJourneyStageReadingBasicsOpenTakeaway1": "Reading improves when your eye sees the mark before your tongue rushes ahead.",
+  "learningJourneyStageReadingBasicsOpenTakeaway2": "Small accurate repetition is more useful than fast guessing.",
+  "learningJourneyStageReadingBasicsOpenTakeaway3": "Harakat are a doorway into confidence, not a burden.",
+  "learningJourneyStageReadingBasicsOpenReflection": "Which sound pattern still feels least stable for you right now?",
+  "learningJourneyStageReadingBasicsPracticeLessonTitle": "Joining Letters into Reading",
+  "learningJourneyStageReadingBasicsPracticeIntro": "After letter recognition, the next step is learning to stay calm when letters change shape and join together inside words.",
+  "learningJourneyStageReadingBasicsPracticeSection1Title": "Why joined letters feel harder",
+  "learningJourneyStageReadingBasicsPracticeSection1Body": "Arabic letters can look different at the beginning, middle, or end of a word. That is normal. The goal is not instant mastery. The goal is learning to recognize the same letter in more than one form.",
+  "learningJourneyStageReadingBasicsPracticeSection2Title": "How to practice without overload",
+  "learningJourneyStageReadingBasicsPracticeSection2Body": "Work with short groups of letters and simple words. Trace the sound from one letter to the next instead of trying to swallow the whole word at once.",
+  "learningJourneyStageReadingBasicsPracticeSection2Bullet1": "Pause when a familiar letter looks unfamiliar.",
+  "learningJourneyStageReadingBasicsPracticeSection2Bullet2": "Break the word into smaller sound groups.",
+  "learningJourneyStageReadingBasicsPracticeSection2Bullet3": "Repeat one short line several times before moving on.",
+  "learningJourneyStageReadingBasicsPracticeTakeaway1": "Joined letters become easier through pattern recognition, not force.",
+  "learningJourneyStageReadingBasicsPracticeTakeaway2": "Short words are enough for real progress.",
+  "learningJourneyStageReadingBasicsPracticeTakeaway3": "Calm repetition helps more than pushing for speed.",
+  "learningJourneyStageReadingBasicsPracticeReflection": "Do you need more patience with letter shapes or with sounding out words?",
+  "learningJourneyStageReadingBasicsCheckpointLessonTitle": "Reading Checkpoint",
+  "learningJourneyStageReadingBasicsCheckpointIntro": "A checkpoint is not a final exam. It is a quiet pause to notice what is becoming easier and what still needs one more calm pass.",
+  "learningJourneyStageReadingBasicsCheckpointSection1Title": "Simple self-checks",
+  "learningJourneyStageReadingBasicsCheckpointSection1Body": "Use a few short checks before moving forward. You do not need perfection. You need enough clarity to keep building without confusion.",
+  "learningJourneyStageReadingBasicsCheckpointSection1Bullet1": "Can you identify the basic harakat without panic?",
+  "learningJourneyStageReadingBasicsCheckpointSection1Bullet2": "Can you follow a short joined word more slowly and correctly?",
+  "learningJourneyStageReadingBasicsCheckpointSection1Bullet3": "Do you know which sound or shape still needs extra review?",
+  "learningJourneyStageReadingBasicsCheckpointSection2Title": "What to do next",
+  "learningJourneyStageReadingBasicsCheckpointSection2Body": "If one area still feels weak, return to that area on purpose. Steady loops build reading confidence better than pretending you are ready for everything.",
+  "learningJourneyStageReadingBasicsCheckpointTakeaway1": "Checkpoints are for clarity, not discouragement.",
+  "learningJourneyStageReadingBasicsCheckpointTakeaway2": "Knowing your weak spot is part of progress.",
+  "learningJourneyStageReadingBasicsCheckpointTakeaway3": "A calm return to basics is often the fastest way forward.",
+  "learningJourneyStageReadingBasicsCheckpointReflection": "Which small reading skill needs another week of focused attention before you move on?",
+  "learningJourneyHomeTitle": "Learning",
+  "learningJourneyHomeSubtitle": "A calmer learning home built around journeys, today’s guidance, and five clear islands.",
+  "learningJourneyHomeContinueBadge": "Continue",
+  "learningJourneyHomeContinueAction": "Continue",
+  "learningJourneyHomeStartFirstJourneyTitle": "Start Your First Journey",
+  "learningJourneyHomeStartFirstJourneySubtitle": "Begin with a simple guided path instead of browsing everything at once.",
+  "learningJourneyHomeExploreJourneys": "Explore Journeys",
+  "learningJourneyHomeRecommendedTitle": "Recommended Journeys",
+  "learningJourneyHomeRecommendedSubtitle": "A small set of paths that fit what you have already opened or completed.",
+  "learningJourneyHomeIslandsTitle": "5 Islands",
+  "learningJourneyHomeIslandsSubtitle": "Start from the island that fits what you want to learn now. Each island leads into real journeys and staged content.",
+  "learningJourneyHomeBrowseAllTitle": "Browse All Knowledge",
+  "learningJourneyHomeBrowseAllSubtitle": "Open the wider map of islands, tools, collections, and secondary exploration.",
+  "learningJourneyHomeLegacyTitle": "Legacy Learning Material",
+  "learningJourneyHomeLegacySubtitle": "Explore the original learning library while the journey architecture continues to grow.",
+  "learningJourneyTodayLightOpenAction": "Open",
+  "learningJourneyTodayLightBadgeProphet": "Prophet Daily",
+  "learningJourneyTodayLightBadgeHadith": "Hadith Daily",
+  "learningJourneyTodayLightBadgeVerse": "Daily Verse",
+  "learningJourneyTodayLightBadgeReflection": "Daily Reflection",
+  "learningJourneyTodayLightBadgeTrivia": "Trivia Daily",
+  "learningJourneyIslandOpenAction": "Open island",
+  "learningJourneyCardStageCount": "{count,plural,one{{count} stage} other{{count} stages}}",
+  "@learningJourneyCardStageCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "learningJourneyCardProgressLabel": "{complete} of {total} complete",
+  "@learningJourneyCardProgressLabel": {
+    "placeholders": {
+      "complete": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "learningJourneyCardActionStart": "Start",
+  "learningJourneyCardActionContinue": "Continue",
+  "learningJourneyStageCurrentBadge": "Current",
+  "learningJourneyStagePreviewBadge": "Preview",
+  "learningJourneyStageStatusReady": "Ready",
+  "learningJourneyStageStatusPartial": "Partial",
+  "learningJourneyStageStatusPlanned": "Planned",
+  "learningJourneyPlaceholderBuiltTitle": "This lesson is being built",
+  "learningJourneyPlaceholderExploreTitle": "Explore now",
+  "learningJourneyPlaceholderExploreSubtitle": "Use the available real content below while this stage is still being finished.",
+  "learningJourneyPlaceholderBackAction": "Back to Journey",
+  "learningJourneyIslandNotFoundTitle": "Island not found",
+  "learningJourneyIslandNotFoundSubtitle": "This learning island could not be located.",
+  "learningJourneyIslandNotFoundBody": "Return to the Learning Journey home and choose another path.",
+  "learningJourneyIslandActionStart": "Start",
+  "learningJourneyIslandActionContinue": "Continue",
+  "learningJourneyIslandJourneysTitle": "Journeys",
+  "learningJourneyIslandJourneysSubtitle": "Structured paths come first here. Related tools stay available below when you need them.",
+  "learningJourneyIslandRelatedToolsTitle": "Related Tools & Exploration",
+  "learningJourneyIslandRelatedToolsSubtitle": "Use these as supporting paths when you want to explore outside the main staged journeys.",
+  "learningJourneyIslandWhyCoreKnowledge": "Core sources and sacred history give the rest of the learning path its center and coherence.",
+  "learningJourneyIslandWhyPracticeWorship": "Practice-based learning is where knowledge starts shaping the rhythm of real daily worship.",
+  "learningJourneyIslandWhyUnderstandingIslam": "This island gives users a steadier frame for belief, law, and the bigger picture behind practice.",
+  "learningJourneyIslandWhyArabicLearning": "Arabic learning becomes sustainable when it is broken into calmer stages with clear next steps.",
+  "learningJourneyIslandWhyDiscovery": "Discovery keeps the system welcoming and reflective while still guiding users toward deeper journeys.",
+  "learningJourneyDetailAboutTitle": "About this journey",
+  "learningJourneyDetailLearnTitle": "What you will learn",
+  "learningJourneyDetailWhyThisMattersTitle": "Why this matters",
+  "learningJourneyDetailProgressTitle": "Progress",
+  "learningJourneyDetailProgressLabel": "{complete} of {total} stages complete",
+  "@learningJourneyDetailProgressLabel": {
+    "placeholders": {
+      "complete": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "learningJourneyDetailReadyChip": "{count} ready",
+  "@learningJourneyDetailReadyChip": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "learningJourneyDetailPartialChip": "{count} partial",
+  "@learningJourneyDetailPartialChip": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "learningJourneyDetailPlannedChip": "{count} planned",
+  "@learningJourneyDetailPlannedChip": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "learningJourneyDetailRelatedToolsTitle": "Related Tools",
+  "learningJourneyDetailRelatedToolsSubtitle": "These stay secondary to the stages, but they are useful when you want to branch out.",
+  "learningJourneyDetailCurrentMappingTitle": "Current mapping",
+  "learningJourneyDetailStagesTitle": "Stages",
+  "learningJourneyDetailStagesSubtitle": "Move one stage at a time. Current and completed stages are highlighted gently.",
+  "learningJourneyDetailActionStart": "Start Journey",
+  "learningJourneyDetailActionContinue": "Continue",
+  "learningJourneyDetailMissingTitle": "Journey not found",
+  "learningJourneyDetailMissingSubtitle": "This learning journey could not be located.",
+  "learningJourneyDetailMissingBody": "Return to the island page and choose another journey.",
+  "learningJourneyPlaceholderLearnLabel": "What you’ll learn",
+  "learningJourneyPlaceholderMessage": "This lesson is being built with the same structure as the rest of the journey so it feels coherent when it opens.",
+  "learningJourneyPlaceholderPlannedIncludesTitle": "What this lesson will include later",
+  "learningJourneyPlaceholderActionCompleted": "Completed",
+  "learningJourneyPlaceholderActionMarkComplete": "Mark as Complete",
+  "learningJourneyBrowseAllTitle": "Browse All",
+  "learningJourneyBrowseAllSubtitle": "Browse the journey architecture first, then reach for related tools, collections, and the original learning library where needed.",
+  "learningJourneyBrowseIslandsTitle": "Journey Islands",
+  "learningJourneyBrowseIslandsSubtitle": "The five islands remain the primary browse model. Everything else here is secondary exploration.",
+  "learningJourneyBrowseToolsTitle": "Tools & Collections",
+  "learningJourneyBrowseToolsSubtitle": "Secondary tools and utility surfaces live here without replacing the journey-first structure.",
+  "learningJourneyBrowseQuranTitle": "Qur’an",
+  "learningJourneyBrowseQuranSubtitle": "Open the primary Qur’an home for journeys, modes, and related tools.",
+  "learningJourneyBrowseQuranStudyTitle": "Qur’an Study",
+  "learningJourneyBrowseQuranStudySubtitle": "Open the study-focused layer for understanding, reflection, and memorization support.",
+  "learningJourneyBrowseQuranArabicTitle": "Qur’anic Arabic",
+  "learningJourneyBrowseQuranArabicSubtitle": "Keep the dedicated Arabic path available as a secondary Qur’an tool.",
+  "learningJourneyBrowseQuranUniverseTitle": "Qur’an Universe",
+  "learningJourneyBrowseQuranUniverseSubtitle": "Explore connected themes, concepts, and verse-linked relationships.",
+  "learningJourneyBrowseBabyNamesTitle": "Baby Names",
+  "learningJourneyBrowseBabyNamesSubtitle": "Browse names, meanings, favorites, and comparison tools from the current system.",
+  "learningJourneyBrowseNotesTitle": "Notes",
+  "learningJourneyBrowseNotesSubtitle": "Open the existing Learn notes landing page.",
+  "learningJourneyBrowseQuranBookmarksTitle": "Qur’an Bookmarks",
+  "learningJourneyBrowseQuranBookmarksSubtitle": "Return to saved Qur’an locations and reading marks.",
+  "learningJourneyBrowseQuranNotesTitle": "Qur’an Notes",
+  "learningJourneyBrowseQuranNotesSubtitle": "Review saved verse notes and highlights.",
+  "learningJourneyBrowseKnowledgeConstellationTitle": "Knowledge Constellation",
+  "learningJourneyBrowseKnowledgeConstellationSubtitle": "Explore existing cross-domain relationships and learning links.",
+  "learningJourneyBrowseLegacySubtitle": "Explore the original learning library while the new journey architecture continues to mature.",
+  "learningJourneyStageNotFoundTitle": "Stage not found",
+  "learningJourneyStageNotFoundSubtitle": "This learning stage could not be located.",
+  "learningJourneyStageNotFoundBody": "Return to the journey page and choose another stage.",
+  "learningJourneyStageOpeningSubtitle": "Opening available content for this stage.",
+  "learningJourneyStageLaunchingBody": "Launching stage content…",
+  "learningJourneyToolSearchTitle": "Search",
+  "learningJourneyToolBookmarksTitle": "Bookmarks",
+  "learningJourneyToolNotesTitle": "Notes",
+  "learningJourneyToolExplorerTitle": "Explorer",
+  "learningJourneyToolWuduGuideTitle": "Wudu Guide",
+  "learningJourneyToolWuduTrainerTitle": "Wudu Trainer",
+  "learningJourneyToolDuaHubTitle": "Dua Hub",
+  "learningJourneyToolNamesOfAllahTitle": "Names of Allah",
+  "learningJourneyToolProphetsTitle": "Prophets",
+  "learningJourneyToolProphetsTimelineTitle": "Prophets Timeline",
+  "learningJourneyToolProphetsMapTitle": "Prophets Map",
+  "learningJourneyToolFamilyTreeTitle": "Family Tree",
+  "learningJourneyToolWordsTitle": "Words",
+  "learningJourneyToolWordReviewTitle": "Word Review",
+  "learningJourneyToolGuidedPrayerTitle": "Guided Prayer",
+  "learningJourneyToolHadithHubTitle": "Hadith Hub",
+  "learningJourneyToolEssentialHadithTitle": "Essential Hadith",
+  "learningJourneyToolHadithReviewTitle": "Hadith Review",
+  "learningJourneyToolTriviaPathsTitle": "Trivia Paths",
+  "learningJourneyToolTriviaReviewTitle": "Trivia Review",
+  "learningJourneyToolWorldCreationTitle": "World & Creation",
+  "learningJourneyToolExploreCreationTitle": "Explore Creation",
+  "learningJourneyToolSignsExplorerTitle": "Signs Explorer",
+  "learningJourneyToolReflectionModeTitle": "Reflection Mode",
+  "learningJourneyToolLearnNotesTitle": "Learn Notes",
+  "learningJourneyToolKnowledgeConstellationTitle": "Knowledge Constellation",
+  "learningJourneyToolProphetsSubtitle": "Open the current Prophets system.",
+  "learningJourneyToolWordsSubtitle": "Browse recurring Qur’anic vocabulary.",
+  "learningJourneyToolWordReviewSubtitle": "Review saved and repeated word sets.",
+  "learningJourneySeerahEarlyLifeTitle": "Early Life of the Prophet ﷺ",
+  "learningJourneySeerahEarlyLifeIntro": "The early life of the Prophet Muhammad ﷺ teaches trust in Allah, quiet preparation, and noble character before public prophethood.",
+  "learningJourneySeerahEarlyLifeSection1Title": "Key events",
+  "learningJourneySeerahEarlyLifeSection1Body": "He ﷺ was born in Makkah, lost his father before birth, lost his mother in childhood, and was then cared for by his grandfather and uncle. These early losses did not diminish him. Allah cared for him and prepared him.",
+  "learningJourneySeerahEarlyLifeSection2Title": "Lessons from the early years",
+  "learningJourneySeerahEarlyLifeSection2Body": "Before revelation, people already knew him as truthful and trustworthy. The early Seerah shows that prophetic character was visible long before public mission.",
+  "learningJourneySeerahEarlyLifeBullet1": "Hardship can refine a person instead of destroying them.",
+  "learningJourneySeerahEarlyLifeBullet2": "Truthfulness and trust are foundations of da‘wah.",
+  "learningJourneySeerahEarlyLifeBullet3": "Allah prepares people long before a visible mission begins.",
+  "learningJourneySeerahEarlyLifeTakeaway1": "The Prophet ﷺ grew under Allah’s care through hardship and dignity.",
+  "learningJourneySeerahEarlyLifeTakeaway2": "Character is part of preparation for leadership.",
+  "learningJourneySeerahEarlyLifeTakeaway3": "The early Seerah teaches patience without self-pity.",
+  "learningJourneySeerahEarlyLifeReflection": "Which quality from the Prophet’s early life would most strengthen your own character right now?",
+  "learningJourneySeerahFirstRevelationTitle": "First Revelation",
+  "learningJourneySeerahFirstRevelationIntro": "The first revelation opened the mission of prophethood with a call to read in the name of Allah.",
+  "learningJourneySeerahFirstRevelationSection1Title": "What happened in Hira",
+  "learningJourneySeerahFirstRevelationSection1Body": "The Prophet ﷺ sought quiet reflection in the cave of Hira. There Jibril came with the first revelation and the command to read in the name of the Lord who created.",
+  "learningJourneySeerahFirstRevelationSection2Title": "Why this moment matters",
+  "learningJourneySeerahFirstRevelationSection2Body": "The beginning of revelation joined knowledge, worship, humility, and awe. It was a heavy moment, yet it became mercy for the world.",
+  "learningJourneySeerahFirstRevelationBullet1": "Revelation began with knowledge connected to Allah.",
+  "learningJourneySeerahFirstRevelationBullet2": "The Prophet ﷺ felt the weight of responsibility, not pride.",
+  "learningJourneySeerahFirstRevelationBullet3": "The Qur’an entered history gradually and purposefully.",
+  "learningJourneySeerahFirstRevelationTakeaway1": "Knowledge in Islam begins in the name of Allah.",
+  "learningJourneySeerahFirstRevelationTakeaway2": "The first revelation teaches humility before responsibility.",
+  "learningJourneySeerahFirstRevelationTakeaway3": "The Qur’an is revelation, not human wisdom.",
+  "learningJourneySeerahFirstRevelationReflection": "How would your approach to learning change if you began it consciously in the name of Allah?",
+  "learningJourneySeerahMakkahTitle": "Makkah Period",
+  "learningJourneySeerahMakkahIntro": "The Makkan years were years of tawheed, patience, sacrifice, and steady calling under pressure.",
+  "learningJourneySeerahMakkahSection1Title": "The Makkan call",
+  "learningJourneySeerahMakkahSection1Body": "In Makkah the Prophet ﷺ called people to worship Allah alone while facing mockery, pressure, and persecution. The early believers were formed in a difficult environment.",
+  "learningJourneySeerahMakkahSection2Title": "What Makkah built",
+  "learningJourneySeerahMakkahSection2Body": "The Makkan Qur’an built belief first: who Allah is, what the Hereafter means, why worship matters, and how patience steadies the heart.",
+  "learningJourneySeerahMakkahBullet1": "Belief is strengthened before public power arrives.",
+  "learningJourneySeerahMakkahBullet2": "Patience in truth is part of the prophetic path.",
+  "learningJourneySeerahMakkahBullet3": "The Qur’an shaped hearts before society was reshaped.",
+  "learningJourneySeerahMakkahTakeaway1": "The Makkan years centered tawheed and endurance.",
+  "learningJourneySeerahMakkahTakeaway2": "Strong worship often begins in difficult conditions.",
+  "learningJourneySeerahMakkahTakeaway3": "Early believers were trained through pressure and sincerity.",
+  "learningJourneySeerahMakkahReflection": "When your beliefs feel tested, what helps you stay gentle and steady instead of reactive?",
+  "learningJourneySeerahHijrahTitle": "Hijrah",
+  "learningJourneySeerahHijrahIntro": "Hijrah was a move for worship, safety, and the future of the Muslim community.",
+  "learningJourneySeerahHijrahSection1Title": "What hijrah required",
+  "learningJourneySeerahHijrahSection1Body": "The migration to Madinah required planning, secrecy, courage, sacrifice, and complete reliance on Allah. It was not escape for comfort, but movement for faith.",
+  "learningJourneySeerahHijrahSection2Title": "Trust and planning together",
+  "learningJourneySeerahHijrahSection2Body": "Hijrah teaches that tawakkul is not passive. The Prophet ﷺ trusted Allah completely while still taking wise practical means.",
+  "learningJourneySeerahHijrahBullet1": "Trust in Allah includes responsible action.",
+  "learningJourneySeerahHijrahBullet2": "Leaving something for Allah can become a mercy.",
+  "learningJourneySeerahHijrahBullet3": "Major transitions can open entirely new doors of good.",
+  "learningJourneySeerahHijrahTakeaway1": "Hijrah joined courage with careful preparation.",
+  "learningJourneySeerahHijrahTakeaway2": "Faithfulness sometimes requires hard transitions.",
+  "learningJourneySeerahHijrahTakeaway3": "Tawakkul means trust plus effort.",
+  "learningJourneySeerahHijrahReflection": "What important decision in your life needs both better planning and deeper trust in Allah?",
+  "learningJourneySeerahMadinahTitle": "Madinah Society",
+  "learningJourneySeerahMadinahIntro": "In Madinah, Islam was lived as worship, community, justice, brotherhood, and responsibility.",
+  "learningJourneySeerahMadinahSection1Title": "What was built in Madinah",
+  "learningJourneySeerahMadinahSection1Body": "The Prophet ﷺ established a masjid-centered community with worship, learning, brotherhood, agreements, teaching, family life, and leadership during peace and difficulty.",
+  "learningJourneySeerahMadinahSection2Title": "Why this stage matters",
+  "learningJourneySeerahMadinahSection2Body": "The Madinan period shows that Islam is not only personal belief. It also shapes society, relationships, public responsibility, and mutual care.",
+  "learningJourneySeerahMadinahBullet1": "Islam builds individuals and community together.",
+  "learningJourneySeerahMadinahBullet2": "The masjid is a center of worship, learning, and service.",
+  "learningJourneySeerahMadinahBullet3": "Brotherhood and justice are part of lived faith.",
+  "learningJourneySeerahMadinahTakeaway1": "Madinah shows Islam lived collectively, not privately alone.",
+  "learningJourneySeerahMadinahTakeaway2": "Community life is part of Islamic growth.",
+  "learningJourneySeerahMadinahTakeaway3": "Worship and public responsibility belong together.",
+  "learningJourneySeerahMadinahReflection": "How can your worship become more connected to service, relationships, and community life?",
+  "learningJourneySeerahLeadershipTitle": "Leadership and Character",
+  "learningJourneySeerahLeadershipIntro": "The Prophet ﷺ led through mercy, truth, patience, courage, and concern for people.",
+  "learningJourneySeerahLeadershipSection1Title": "What prophetic leadership looked like",
+  "learningJourneySeerahLeadershipSection1Body": "He ﷺ listened, forgave, consulted, showed courage when needed, and remained gentle with people while firm on truth. His leadership never became self-promotion.",
+  "learningJourneySeerahLeadershipSection2Title": "Character as leadership",
+  "learningJourneySeerahLeadershipSection2Body": "Mercy, patience, and trustworthiness were not separate from his leadership. They were the very way he led.",
+  "learningJourneySeerahLeadershipBullet1": "Mercy strengthens leadership rather than weakening it.",
+  "learningJourneySeerahLeadershipBullet2": "Consultation and patience are prophetic habits.",
+  "learningJourneySeerahLeadershipBullet3": "Character gives da‘wah its credibility.",
+  "learningJourneySeerahLeadershipTakeaway1": "Prophetic leadership is worshipful, not ego-driven.",
+  "learningJourneySeerahLeadershipTakeaway2": "Character and influence cannot be separated.",
+  "learningJourneySeerahLeadershipTakeaway3": "Mercy and firmness both have their proper place.",
+  "learningJourneySeerahLeadershipReflection": "Which prophetic quality would most improve the way you influence family, friends, or colleagues?",
+  "learningJourneySeerahFinalSermonTitle": "Final Sermon",
+  "learningJourneySeerahFinalSermonIntro": "The Farewell Sermon gathered major principles of dignity, justice, trust, and faithfulness near the end of the Prophet’s mission.",
+  "learningJourneySeerahFinalSermonSection1Title": "Key themes of the sermon",
+  "learningJourneySeerahFinalSermonSection1Body": "The Prophet ﷺ emphasized the sanctity of life, wealth, and honor, the rights people owe one another, and the obligation to hold firmly to divine guidance.",
+  "learningJourneySeerahFinalSermonSection2Title": "Why it remains urgent",
+  "learningJourneySeerahFinalSermonSection2Body": "The Farewell Sermon gives a closing frame for the Seerah: worship Allah, honor people, protect trust, and remain faithful to revelation.",
+  "learningJourneySeerahFinalSermonBullet1": "Human dignity and trust are sacred in Islam.",
+  "learningJourneySeerahFinalSermonBullet2": "The Prophetic mission joined worship with justice and responsibility.",
+  "learningJourneySeerahFinalSermonBullet3": "Guidance must remain central after the Prophet ﷺ has passed on.",
+  "learningJourneySeerahFinalSermonTakeaway1": "The Final Sermon summarizes core prophetic values.",
+  "learningJourneySeerahFinalSermonTakeaway2": "Justice and mercy are public Islamic responsibilities.",
+  "learningJourneySeerahFinalSermonTakeaway3": "The Seerah ends by pointing believers back to revelation.",
+  "learningJourneySeerahFinalSermonReflection": "Which principle from the Final Sermon feels most urgent for the time you live in?",
+  "learningJourneyDhikrWhatIsTitle": "What Is Dhikr?",
+  "learningJourneyDhikrWhatIsIntro": "Dhikr is remembering Allah with the heart, tongue, and life through praise, gratitude, repentance, and returning to Him often.",
+  "learningJourneyDhikrWhatIsSection1Title": "A simple understanding",
+  "learningJourneyDhikrWhatIsSection1Body": "Dhikr is not only repeating words. It is keeping Allah present in awareness through truthful phrases that soften the heart and direct the day.",
+  "learningJourneyDhikrWhatIsSection2Title": "How to begin a habit",
+  "learningJourneyDhikrWhatIsSection2Body": "Begin with a few short remembrances that you understand and can keep consistently. Small steady dhikr is better than overload that disappears.",
+  "learningJourneyDhikrWhatIsBullet1": "Choose short authentic phrases first.",
+  "learningJourneyDhikrWhatIsBullet2": "Attach remembrance to existing parts of your day.",
+  "learningJourneyDhikrWhatIsBullet3": "Understanding meaning keeps dhikr sincere.",
+  "learningJourneyDhikrWhatIsTakeaway1": "Dhikr is remembrance with meaning, not empty repetition.",
+  "learningJourneyDhikrWhatIsTakeaway2": "Consistency matters more than size at the beginning.",
+  "learningJourneyDhikrWhatIsTakeaway3": "The heart becomes calmer when Allah is remembered often.",
+  "learningJourneyDhikrWhatIsReflection": "Which daily moment could most easily become a steady remembrance anchor for you?",
+  "learningJourneyDhikrMorningTitle": "Morning Adhkar",
+  "learningJourneyDhikrMorningIntro": "Morning adhkar begin the day with dependence on Allah, gratitude, and spiritual protection.",
+  "learningJourneyDhikrMorningSection1Title": "When to say them",
+  "learningJourneyDhikrMorningSection1Body": "Morning adhkar are best read after Fajr or in the early part of the day. A beginner can start with one or two authentic remembrances and keep them steady.",
+  "learningJourneyDhikrMorningSection2Title": "Building the habit",
+  "learningJourneyDhikrMorningSection2Body": "Keep the morning set small at first. Tie it to a clear moment such as after prayer, before leaving the house, or before opening your phone.",
+  "learningJourneyDhikrMorningBullet1": "Begin with a short authentic opening remembrance.",
+  "learningJourneyDhikrMorningBullet2": "Use the same moment each day so the habit becomes easier.",
+  "learningJourneyDhikrMorningBullet3": "Read with understanding, not rush.",
+  "learningJourneyDhikrMorningTakeaway1": "Morning adhkar set the tone of the day around Allah.",
+  "learningJourneyDhikrMorningTakeaway2": "A short protected routine is better than an abandoned long list.",
+  "learningJourneyDhikrMorningTakeaway3": "The day begins more calmly when remembrance comes before distraction.",
+  "learningJourneyDhikrMorningReflection": "What would change in your mornings if remembrance came before hurry?",
+  "learningJourneyDhikrMorningInvocationTitle": "Morning opening remembrance",
+  "learningJourneyDhikrMorningInvocationMeaning": "O Allah, by You we enter the morning, by You we enter the evening, by You we live, by You we die, and to You is the resurrection.",
+  "learningJourneyDhikrMorningInvocationContext": "Read in the morning to begin the day with trust in Allah.",
+  "learningJourneyDhikrEveningTitle": "Evening Adhkar",
+  "learningJourneyDhikrEveningIntro": "Evening adhkar close the day with reliance on Allah, gratitude, and calm before night.",
+  "learningJourneyDhikrEveningSection1Title": "When to say them",
+  "learningJourneyDhikrEveningSection1Body": "Evening adhkar are read after Asr or around sunset. They help the heart leave the noise of the day and return to Allah before sleep.",
+  "learningJourneyDhikrEveningSection2Title": "How they help",
+  "learningJourneyDhikrEveningSection2Body": "A short evening routine creates spiritual closure. It is a gentle way to end the day with remembrance instead of heaviness or heedlessness.",
+  "learningJourneyDhikrEveningBullet1": "Choose one or two evening remembrances first.",
+  "learningJourneyDhikrEveningBullet2": "Keep the routine light enough to survive tired days.",
+  "learningJourneyDhikrEveningBullet3": "Treat the evening set as a return, not a burden.",
+  "learningJourneyDhikrEveningTakeaway1": "Evening adhkar settle the heart before night.",
+  "learningJourneyDhikrEveningTakeaway2": "A short evening habit can be built gradually.",
+  "learningJourneyDhikrEveningTakeaway3": "Closing the day with dhikr changes how you carry its weight.",
+  "learningJourneyDhikrEveningReflection": "What usually fills the end of your day, and how can remembrance reclaim part of it?",
+  "learningJourneyDhikrEveningInvocationTitle": "Evening opening remembrance",
+  "learningJourneyDhikrEveningInvocationMeaning": "O Allah, by You we enter the evening, by You we enter the morning, by You we live, by You we die, and to You is the final return.",
+  "learningJourneyDhikrEveningInvocationContext": "Read in the evening to close the day with remembrance.",
+  "learningJourneyDhikrAfterSalahTitle": "After Salah Dhikr",
+  "learningJourneyDhikrAfterSalahIntro": "After each prayer, a simple set of adhkar helps protect the prayer and extend its effect into the rest of the day.",
+  "learningJourneyDhikrAfterSalahSection1Title": "Why post-prayer dhikr matters",
+  "learningJourneyDhikrAfterSalahSection1Body": "Because salah already gathers the heart, the moments after salam are one of the easiest places to build a stable dhikr habit.",
+  "learningJourneyDhikrAfterSalahSection2Title": "How to keep it steady",
+  "learningJourneyDhikrAfterSalahSection2Body": "Start after one prayer each day if needed. Keep the rhythm calm and attentive instead of turning it into a rushed formula.",
+  "learningJourneyDhikrAfterSalahBullet1": "Choose one prayer if all five feel too much at first.",
+  "learningJourneyDhikrAfterSalahBullet2": "Understand the praise and glorification you are saying.",
+  "learningJourneyDhikrAfterSalahBullet3": "Let the dhikr extend the calm of salah.",
+  "learningJourneyDhikrAfterSalahTakeaway1": "Post-salah dhikr is one of the easiest daily anchors for remembrance.",
+  "learningJourneyDhikrAfterSalahTakeaway2": "Short formulas can carry deep meaning when done with attention.",
+  "learningJourneyDhikrAfterSalahTakeaway3": "Prayer becomes more continuous when remembrance follows it.",
+  "learningJourneyDhikrAfterSalahReflection": "Which prayer is the easiest place for you to begin a stable after-salah dhikr habit?",
+  "learningJourneyDhikrAfterSalahInvocationTitle": "Post-prayer glorification",
+  "learningJourneyDhikrAfterSalahInvocationMeaning": "Glory be to Allah, praise be to Allah, Allah is the Greatest.",
+  "learningJourneyDhikrAfterSalahInvocationContext": "A simple dhikr set read after salah.",
+  "learningJourneyDhikrRoutineTitle": "Simple Daily Routine",
+  "learningJourneyDhikrRoutineIntro": "A beginner dhikr routine should be small, clear, and sustainable.",
+  "learningJourneyDhikrRoutineSection1Title": "A workable routine",
+  "learningJourneyDhikrRoutineSection1Body": "Choose three anchor moments: morning, after one prayer, and before sleep. Attach one short remembrance to each moment and keep it for a week before adding more.",
+  "learningJourneyDhikrRoutineSection2Title": "What keeps the routine alive",
+  "learningJourneyDhikrRoutineSection2Body": "Clarity matters more than intensity. A small routine that survives real life will benefit you more than a large routine that collapses quickly.",
+  "learningJourneyDhikrRoutineBullet1": "Morning: one opening remembrance.",
+  "learningJourneyDhikrRoutineBullet2": "After salah: one short fixed set.",
+  "learningJourneyDhikrRoutineBullet3": "Night: one closing remembrance before sleep.",
+  "learningJourneyDhikrRoutineTakeaway1": "Tie dhikr to moments that already exist in your day.",
+  "learningJourneyDhikrRoutineTakeaway2": "Build slowly enough that the habit survives difficulty.",
+  "learningJourneyDhikrRoutineTakeaway3": "Steady remembrance is formed by clarity, not pressure.",
+  "learningJourneyDhikrRoutineReflection": "Which three moments could become your personal remembrance anchors this week?",
+  "learningJourneyDhikrIstighfarTitle": "Istighfar",
+  "learningJourneyDhikrIstighfarIntro": "Istighfar is seeking Allah’s forgiveness with humility, honesty, and hope in His mercy.",
+  "learningJourneyDhikrIstighfarSection1Title": "Why istighfar matters daily",
+  "learningJourneyDhikrIstighfarSection1Body": "A believer returns often to Allah, not only after major mistakes. Istighfar softens pride, cleans the heart, and keeps the servant close to mercy.",
+  "learningJourneyDhikrIstighfarSection2Title": "How to build the habit",
+  "learningJourneyDhikrIstighfarSection2Body": "Use istighfar after a sin, after heedlessness, after prayer, or whenever the heart feels dry and needs to return to Allah.",
+  "learningJourneyDhikrIstighfarBullet1": "Repent quickly instead of delaying return.",
+  "learningJourneyDhikrIstighfarBullet2": "Treat forgiveness as a daily need, not a rare emergency.",
+  "learningJourneyDhikrIstighfarBullet3": "Say it with awareness of both weakness and hope.",
+  "learningJourneyDhikrIstighfarTakeaway1": "Istighfar is a daily spiritual need.",
+  "learningJourneyDhikrIstighfarTakeaway2": "Repentance joins honesty about sin with hope in mercy.",
+  "learningJourneyDhikrIstighfarTakeaway3": "Short sincere repentance is better than thoughtless repetition.",
+  "learningJourneyDhikrIstighfarReflection": "What would change if repentance became one of your daily habits instead of a rare reaction?",
+  "learningJourneyDhikrIstighfarInvocationTitle": "Simple istighfar",
+  "learningJourneyDhikrIstighfarInvocationMeaning": "I seek Allah’s forgiveness and I turn to Him in repentance.",
+  "learningJourneyDhikrIstighfarInvocationContext": "A short daily formula of repentance and return.",
+  "learningJourneyDhikrSalawatTitle": "Salawat",
+  "learningJourneyDhikrSalawatIntro": "Sending prayers upon the Prophet ﷺ is an act of love, gratitude, and obedience to Allah.",
+  "learningJourneyDhikrSalawatSection1Title": "Why salawat matters",
+  "learningJourneyDhikrSalawatSection1Body": "Salawat keeps the heart connected to the Messenger ﷺ and reminds you that your path to Allah is shaped by following him with love and respect.",
+  "learningJourneyDhikrSalawatSection2Title": "How to make it steady",
+  "learningJourneyDhikrSalawatSection2Body": "Use a short form daily, after hearing the Prophet’s name ﷺ, on Fridays, and in quiet moments when you want to renew love for his guidance.",
+  "learningJourneyDhikrSalawatBullet1": "Keep a short form ready for frequent repetition.",
+  "learningJourneyDhikrSalawatBullet2": "Let salawat renew love, not become empty habit.",
+  "learningJourneyDhikrSalawatBullet3": "Use it often enough that gratitude becomes natural.",
+  "learningJourneyDhikrSalawatTakeaway1": "Salawat grows love for the Prophet ﷺ in daily life.",
+  "learningJourneyDhikrSalawatTakeaway2": "A short form used often is better than a long form rarely used.",
+  "learningJourneyDhikrSalawatTakeaway3": "This remembrance connects worship to gratitude for guidance.",
+  "learningJourneyDhikrSalawatReflection": "How can you make salawat part of your day in a way that feels sincere and frequent?",
+  "learningJourneyDhikrSalawatInvocationTitle": "Short salawat",
+  "learningJourneyDhikrSalawatInvocationMeaning": "O Allah, send prayers upon Muhammad.",
+  "learningJourneyDhikrSalawatInvocationContext": "A short form for daily remembrance and frequent salawat.",
+  "learningJourneyFaithBooksTitle": "Books",
+  "learningJourneyFaithBooksIntro": "Allah sent revelation for guidance, mercy, and truth. Muslims believe in the revealed books and hold the Qur’an as the final preserved revelation.",
+  "learningJourneyFaithBooksSection1Title": "Why revelation matters",
+  "learningJourneyFaithBooksSection1Body": "Allah did not leave humanity without guidance. He sent scriptures and messages so people could know truth, worship correctly, and live with justice and mercy.",
+  "learningJourneyFaithBooksSection2Title": "How the Qur’an fits",
+  "learningJourneyFaithBooksSection2Body": "Belief in the books deepens gratitude for the Qur’an. It is the final revelation, preserved and sufficient as guidance for the Ummah.",
+  "learningJourneyFaithBooksBullet1": "Revelation is a mercy from Allah.",
+  "learningJourneyFaithBooksBullet2": "The Qur’an confirms truth and stands as final guidance.",
+  "learningJourneyFaithBooksBullet3": "Belief in the books makes the Qur’an feel even more precious.",
+  "learningJourneyFaithBooksTakeaway1": "Guidance is one of Allah’s great mercies to humanity.",
+  "learningJourneyFaithBooksTakeaway2": "The Qur’an holds a unique place as final revelation.",
+  "learningJourneyFaithBooksTakeaway3": "A believer should receive the Qur’an with gratitude and seriousness.",
+  "learningJourneyFaithBooksReflection": "How would you treat the Qur’an differently if you saw it as direct guidance from Allah to you?",
+  "learningJourneyFaithProphetsTitle": "Prophets",
+  "learningJourneyFaithProphetsIntro": "Allah sent prophets to teach truth, model obedience, and call people back to worshipping Him alone.",
+  "learningJourneyFaithProphetsSection1Title": "Why Allah sent prophets",
+  "learningJourneyFaithProphetsSection1Body": "Prophets were chosen by Allah to deliver His message, teach His worship, and model what obedience looks like in real life.",
+  "learningJourneyFaithProphetsSection2Title": "How prophets shape faith",
+  "learningJourneyFaithProphetsSection2Body": "Their stories teach patience, trust, courage, mercy, repentance, and steadfastness. Belief becomes easier to live when it is seen in prophetic examples.",
+  "learningJourneyFaithProphetsBullet1": "Prophets carry revelation and model obedience.",
+  "learningJourneyFaithProphetsBullet2": "Their stories teach faith through real human examples.",
+  "learningJourneyFaithProphetsBullet3": "Love and respect for the prophets are part of faith.",
+  "learningJourneyFaithProphetsTakeaway1": "Prophets connect revelation to lived example.",
+  "learningJourneyFaithProphetsTakeaway2": "Their stories teach both belief and character.",
+  "learningJourneyFaithProphetsTakeaway3": "Respect for all prophets is part of Muslim faith.",
+  "learningJourneyFaithProphetsReflection": "Which prophetic quality feels most necessary for your own growth right now?",
+  "learningJourneyFaithJudgmentTitle": "Day of Judgment",
+  "learningJourneyFaithJudgmentIntro": "Muslims believe that life has an end, people will be raised, and every soul will stand before Allah.",
+  "learningJourneyFaithJudgmentSection1Title": "Why the Last Day matters",
+  "learningJourneyFaithJudgmentSection1Body": "Belief in the Hereafter means life is meaningful, deeds matter, and justice belongs fully to Allah even when the world feels unfair.",
+  "learningJourneyFaithJudgmentSection2Title": "How it changes daily life",
+  "learningJourneyFaithJudgmentSection2Body": "Remembering the Last Day encourages honesty, repentance, patience, and responsibility even when nobody else is watching.",
+  "learningJourneyFaithJudgmentBullet1": "The Hereafter gives seriousness to daily choices.",
+  "learningJourneyFaithJudgmentBullet2": "Allah’s judgment is perfect and just.",
+  "learningJourneyFaithJudgmentBullet3": "Remembering the Last Day encourages repentance and integrity.",
+  "learningJourneyFaithJudgmentTakeaway1": "The Last Day gives life moral weight and hope.",
+  "learningJourneyFaithJudgmentTakeaway2": "Justice ultimately belongs to Allah.",
+  "learningJourneyFaithJudgmentTakeaway3": "Accountability changes how a believer acts in private and public.",
+  "learningJourneyFaithJudgmentReflection": "What daily habit would change if your meeting with Allah felt more present in your mind?",
+  "learningJourneyFaithQadrTitle": "Qadr",
+  "learningJourneyFaithQadrIntro": "Qadr means Allah knows, writes, and wills all things with perfect wisdom, while people still make real choices and remain responsible.",
+  "learningJourneyFaithQadrSection1Title": "A simple understanding",
+  "learningJourneyFaithQadrSection1Body": "Nothing escapes Allah’s knowledge or power. At the same time, a believer is still commanded to choose obedience, make effort, and repent when they fall short.",
+  "learningJourneyFaithQadrSection2Title": "A common misunderstanding",
+  "learningJourneyFaithQadrSection2Body": "Qadr is not an excuse for laziness or sin. Trust in Allah’s decree should increase patience and effort, not passivity.",
+  "learningJourneyFaithQadrBullet1": "Allah’s decree is wise even when you do not understand it.",
+  "learningJourneyFaithQadrBullet2": "Trust in qadr brings calm without removing effort.",
+  "learningJourneyFaithQadrBullet3": "Belief in qadr should increase tawakkul, not passivity.",
+  "learningJourneyFaithQadrTakeaway1": "Allah’s decree is perfect and wise.",
+  "learningJourneyFaithQadrTakeaway2": "Human effort and divine decree are not opposites.",
+  "learningJourneyFaithQadrTakeaway3": "A believer trusts Allah while still acting responsibly.",
+  "learningJourneyFaithQadrReflection": "Where do you most need trust in Allah’s decree while still doing your part well?",
+  "learningJourneyWordsTopTitle": "Open top Qur’anic words",
+  "learningJourneyWordsTopIntro": "Recurring Qur’anic words are one of the fastest ways to increase familiarity and comprehension.",
+  "learningJourneyWordsTopSection1Title": "Why recurring words help",
+  "learningJourneyWordsTopSection1Body": "When you keep meeting the same words, the Qur’an starts feeling less distant. A small vocabulary can unlock many ayat more than people expect.",
+  "learningJourneyWordsTopSection2Title": "How to begin well",
+  "learningJourneyWordsTopSection2Body": "Choose a small cluster, repeat it often, and connect each word to one simple meaning instead of trying to collect too many terms at once.",
+  "learningJourneyWordsTopBullet1": "Start with small repeated groups of words.",
+  "learningJourneyWordsTopBullet2": "Use repetition to recognize words in real verses.",
+  "learningJourneyWordsTopBullet3": "Let frequency guide what you learn first.",
+  "learningJourneyWordsTopTakeaway1": "Recurring words create fast progress in comprehension.",
+  "learningJourneyWordsTopTakeaway2": "Small focused sets are easier to retain.",
+  "learningJourneyWordsTopTakeaway3": "Vocabulary should support real Qur’an reading, not remain isolated lists.",
+  "learningJourneyWordsTopReflection": "What kind of word set would feel easiest for you to revisit consistently?",
+  "learningJourneyWordsReviewTitle": "Review and retain",
+  "learningJourneyWordsReviewIntro": "Vocabulary only becomes useful when it is reviewed often enough to stay active in memory.",
+  "learningJourneyWordsReviewSection1Title": "Why review matters",
+  "learningJourneyWordsReviewSection1Body": "Words fade quickly when they are only seen once. Review brings them back until recognition feels natural rather than forced.",
+  "learningJourneyWordsReviewSection2Title": "A calm memory loop",
+  "learningJourneyWordsReviewSection2Body": "Use short frequent review sessions instead of long exhausting ones. Recognition grows through return and repetition.",
+  "learningJourneyWordsReviewBullet1": "Review a little, but review often.",
+  "learningJourneyWordsReviewBullet2": "Return to weak words before adding many new ones.",
+  "learningJourneyWordsReviewBullet3": "Tie review to a moment you already use for learning.",
+  "learningJourneyWordsReviewTakeaway1": "Retention grows through steady return.",
+  "learningJourneyWordsReviewTakeaway2": "A calm review loop is better than overloaded memorization.",
+  "learningJourneyWordsReviewTakeaway3": "Weak areas become easier when revisited without pressure.",
+  "learningJourneyWordsReviewReflection": "Which review habit would make your Qur’anic vocabulary more stable this month?",
+  "learningJourneyWordsPatternsTitle": "Patterns and meaning groups",
+  "learningJourneyWordsPatternsIntro": "Words become easier to remember when you notice families, themes, and repeated meaning clusters instead of isolated entries.",
+  "learningJourneyWordsPatternsSection1Title": "Grouping by meaning",
+  "learningJourneyWordsPatternsSection1Body": "Try collecting words around worship, mercy, guidance, gratitude, or the Hereafter. Grouping by theme helps memory attach words to meaning.",
+  "learningJourneyWordsPatternsSection2Title": "Reinforcement through patterns",
+  "learningJourneyWordsPatternsSection2Body": "Notice when related words keep returning in similar contexts. That repetition is a memory tool, not an accident.",
+  "learningJourneyWordsPatternsBullet1": "Group words by theme instead of only by list order.",
+  "learningJourneyWordsPatternsBullet2": "Reconnect reviewed words to real verses when possible.",
+  "learningJourneyWordsPatternsBullet3": "Use repeated patterns to reinforce memory gently.",
+  "learningJourneyWordsPatternsTakeaway1": "Meaning groups make vocabulary easier to retain.",
+  "learningJourneyWordsPatternsTakeaway2": "Patterns help the Qur’an feel more connected.",
+  "learningJourneyWordsPatternsTakeaway3": "Memory grows when words are linked to themes and contexts.",
+  "learningJourneyWordsPatternsReflection": "Which theme would you like to build a small Qur’anic word group around first?",
+  "learningJourneyLessonSectionContinueWith": "Continue with",
+  "learningJourneyLessonSectionRelatedJourneys": "Related journeys",
+  "learningJourneyLessonSectionActionStep": "Small action step",
+  "learningJourneyLessonSectionReviewSuggestion": "Review suggestion",
+  "learningJourneyDetailCompletionTitle": "Journey complete",
+  "learningJourneyDetailCompletionSubtitle": "You have reached the end of this journey. Revisit the final stage, review what stayed with you, and choose one next step to carry into daily life.",
+  "learningJourneyDetailActionReviewJourney": "Review Journey",
+  "learningJourneyBeautifulCharacterTitle": "Beautiful Character",
+  "learningJourneyBeautifulCharacterSubtitle": "Grow through the qualities that beautify faith and daily life.",
+  "learningJourneyBeautifulCharacterDescription": "Follow a guided journey through sincerity, patience, gratitude, humility, forgiveness, self-control, kindness, and final reflection.",
+  "learningJourneyBeautifulCharacterOutcome1": "Understand core qualities of beautiful Islamic character",
+  "learningJourneyBeautifulCharacterOutcome2": "Connect character to worship, relationships, and daily choices",
+  "learningJourneyBeautifulCharacterOutcome3": "Leave with one clear next step for personal growth",
+  "learningJourneyBeautifulCharacterWhyThisMatters": "Knowledge becomes lived Islam when it shapes character, speech, reactions, and service to others.",
+  "learningJourneyCharacterIkhlasStageTitle": "Sincerity",
+  "learningJourneyCharacterIkhlasStageSummary": "Begin with ikhlas so your actions are rooted in Allah alone.",
+  "learningJourneyCharacterSabrStageTitle": "Patience",
+  "learningJourneyCharacterSabrStageSummary": "Learn how sabr steadies faith through hardship, delay, and discipline.",
+  "learningJourneyCharacterShukrStageTitle": "Gratitude",
+  "learningJourneyCharacterShukrStageSummary": "See gratitude as worship of the heart, tongue, and daily choices.",
+  "learningJourneyCharacterHumilityStageTitle": "Humility",
+  "learningJourneyCharacterHumilityStageSummary": "Practice a humble heart while still standing firm on truth.",
+  "learningJourneyCharacterForgivenessStageTitle": "Forgiveness",
+  "learningJourneyCharacterForgivenessStageSummary": "Learn when forgiveness heals the heart and restores dignity.",
+  "learningJourneyCharacterAngerStageTitle": "Controlling anger",
+  "learningJourneyCharacterAngerStageSummary": "Train yourself to pause, restrain anger, and respond with wisdom.",
+  "learningJourneyCharacterKindnessStageTitle": "Kindness",
+  "learningJourneyCharacterKindnessStageSummary": "Carry mercy into speech, service, and everyday relationships.",
+  "learningJourneyCharacterCompletionStageTitle": "Completion reflection",
+  "learningJourneyCharacterCompletionStageSummary": "Gather what you learned and choose one character trait to keep practicing.",
+  "learningJourneyWordsTopReviewSuggestion": "Review a small word set again tomorrow, then notice those words the next time you read Qur’an.",
+  "learningJourneyWordsReviewSuggestion": "Use short, frequent review instead of long sessions so recognition stays light and steady.",
+  "learningJourneyWordsPatternsActionStep": "Choose one small word family to notice in your next recitation or reading session.",
+  "learningJourneyWordsPatternsReviewSuggestion": "Come back tomorrow and see whether the same meanings appear again in familiar verses.",
+  "learningJourneyWisdomDailyQuoteTitle": "Receive one wise reminder",
+  "learningJourneyWisdomDailyQuoteIntro": "A daily wisdom item should be small enough to carry and deep enough to reopen later in the day.",
+  "learningJourneyWisdomDailyQuoteSection1Title": "What Daily Wisdom gathers",
+  "learningJourneyWisdomDailyQuoteSection1Body": "Daily Wisdom brings short reminders from Qur’an, Hadith, prophetic example, and reflection into one calm entry point. The goal is not volume. The goal is one truthful reminder that stays with you.",
+  "learningJourneyWisdomDailyQuoteSection2Title": "How to use one item well",
+  "learningJourneyWisdomDailyQuoteSection2Body": "Read slowly, keep one idea, and let it shape one decision or dua before the day moves on.",
+  "learningJourneyWisdomDailyQuoteBullet1": "Choose one line instead of trying to remember everything.",
+  "learningJourneyWisdomDailyQuoteBullet2": "Return to it once later in the day.",
+  "learningJourneyWisdomDailyQuoteBullet3": "Let it point you toward a deeper journey when you are ready.",
+  "learningJourneyWisdomDailyQuoteTakeaway1": "One small reminder can be enough for a whole day.",
+  "learningJourneyWisdomDailyQuoteTakeaway2": "Daily wisdom works best when it stays simple and consistent.",
+  "learningJourneyWisdomDailyQuoteTakeaway3": "Short reminders should lead into deeper learning, not replace it.",
+  "learningJourneyWisdomDailyQuoteReflection": "What reminder do you need today more than extra information?",
+  "learningJourneyWisdomShortLessonTitle": "Turn wisdom into a short lesson",
+  "learningJourneyWisdomShortLessonIntro": "A brief lesson helps a daily reminder grow roots. It explains just enough to make the reminder usable.",
+  "learningJourneyWisdomShortLessonSection1Title": "Consistent explanation style",
+  "learningJourneyWisdomShortLessonSection1Body": "Whether the source is a hadith, a verse, a prophetic event, or a reflection prompt, the explanation should stay calm, practical, and beginner-friendly. That keeps Daily Wisdom coherent.",
+  "learningJourneyWisdomShortLessonSection2Title": "Where the lesson should lead",
+  "learningJourneyWisdomShortLessonSection2Body": "A short lesson should end with a next step. That next step might be a journey, a tool, a short act of worship, or a practical decision.",
+  "learningJourneyWisdomShortLessonBullet1": "Keep the explanation short enough to reread quickly.",
+  "learningJourneyWisdomShortLessonBullet2": "Tie the reminder to daily life.",
+  "learningJourneyWisdomShortLessonBullet3": "Offer one clear way to go deeper.",
+  "learningJourneyWisdomShortLessonTakeaway1": "Good daily teaching is clear, not crowded.",
+  "learningJourneyWisdomShortLessonTakeaway2": "A short lesson should help the heart and mind together.",
+  "learningJourneyWisdomShortLessonTakeaway3": "Daily Wisdom should naturally point into the wider journey system.",
+  "learningJourneyWisdomShortLessonReflection": "Which kind of daily reminder opens you most: a verse, a hadith, a story, or a reflection question?",
+  "learningJourneyWisdomPracticeTitle": "Carry wisdom into practice",
+  "learningJourneyWisdomPracticeIntro": "The purpose of daily wisdom is not to collect quotes. It is to gently change speech, intention, habits, and attention.",
+  "learningJourneyWisdomPracticeSection1Title": "One action is enough",
+  "learningJourneyWisdomPracticeSection1Body": "Choose one small action that matches the reminder: pause before speaking, thank Allah aloud, forgive quickly, review one verse, or return to dhikr.",
+  "learningJourneyWisdomPracticeSection2Title": "Build a repeatable rhythm",
+  "learningJourneyWisdomPracticeSection2Body": "A stable rhythm might be: open one wisdom item, keep one sentence, act on one step, and revisit one related journey later.",
+  "learningJourneyWisdomPracticeBullet1": "Do not overload the day with too many goals.",
+  "learningJourneyWisdomPracticeBullet2": "Let repetition turn insight into habit.",
+  "learningJourneyWisdomPracticeBullet3": "Use related journeys when you want depth.",
+  "learningJourneyWisdomPracticeTakeaway1": "Wisdom becomes useful when it changes action.",
+  "learningJourneyWisdomPracticeTakeaway2": "A small repeated act is stronger than a large short-lived intention.",
+  "learningJourneyWisdomPracticeTakeaway3": "Daily Wisdom should send you back into the wider learning system.",
+  "learningJourneyWisdomPracticeReflection": "What is one small action you can do today so this reminder becomes lived knowledge?",
+  "learningJourneyWisdomPracticeActionStep": "Before the day ends, return to this reminder once and ask whether it changed one choice, one word, or one dua.",
+  "learningJourneyCharacterIkhlasTitle": "Sincerity (Ikhlas)",
+  "learningJourneyCharacterIkhlasIntro": "Ikhlas means doing what is right for Allah, not for showing off, praise, or control.",
+  "learningJourneyCharacterIkhlasSection1Title": "What sincerity does",
+  "learningJourneyCharacterIkhlasSection1Body": "Sincerity purifies actions from the inside. Two people may do the same outward deed, but the one who seeks Allah alone carries a different weight with Him.",
+  "learningJourneyCharacterIkhlasSection2Title": "How sincerity appears in real life",
+  "learningJourneyCharacterIkhlasSection2Body": "Ikhlas shows up when you keep doing good even if no one notices, and when you correct your intention whenever pride tries to enter.",
+  "learningJourneyCharacterIkhlasBullet1": "Renew your intention before a good deed.",
+  "learningJourneyCharacterIkhlasBullet2": "Do some good privately when possible.",
+  "learningJourneyCharacterIkhlasBullet3": "If praise reaches you, thank Allah and keep your heart steady.",
+  "learningJourneyCharacterIkhlasTakeaway1": "Sincerity begins in the heart before it appears in action.",
+  "learningJourneyCharacterIkhlasTakeaway2": "Private worship helps protect sincerity.",
+  "learningJourneyCharacterIkhlasTakeaway3": "Ikhlas needs regular renewal, not a one-time decision.",
+  "learningJourneyCharacterIkhlasReflection": "Which part of your worship or service needs a quieter intention?",
+  "learningJourneyCharacterIkhlasActionStep": "Choose one small act today that only Allah knows you intended for Him.",
+  "learningJourneyCharacterSabrTitle": "Patience (Sabr)",
+  "learningJourneyCharacterSabrIntro": "Sabr is not passive weakness. It is steady obedience, self-restraint, and trust in Allah through difficulty.",
+  "learningJourneyCharacterSabrSection1Title": "Where patience is needed",
+  "learningJourneyCharacterSabrSection1Body": "Patience is needed in hardship, in delay, in resisting sin, and in staying consistent with worship when the heart feels low.",
+  "learningJourneyCharacterSabrSection2Title": "A practical form of sabr",
+  "learningJourneyCharacterSabrSection2Body": "Sabr often looks ordinary: lowering your reaction, continuing a duty, waiting without complaint, and asking Allah for help before speaking or acting.",
+  "learningJourneyCharacterSabrBullet1": "Pause before reacting when frustrated.",
+  "learningJourneyCharacterSabrBullet2": "Keep one obligation steady even on difficult days.",
+  "learningJourneyCharacterSabrBullet3": "Ask Allah for help instead of collapsing into panic.",
+  "learningJourneyCharacterSabrTakeaway1": "Patience is active strength, not passivity.",
+  "learningJourneyCharacterSabrTakeaway2": "Sabr is needed in both hardship and obedience.",
+  "learningJourneyCharacterSabrTakeaway3": "Short pauses can protect you from long regret.",
+  "learningJourneyCharacterSabrReflection": "Where do you most need to slow down and trust Allah more?",
+  "learningJourneyCharacterSabrActionStep": "The next time you feel pressure, pause, breathe, and delay your response for a few seconds.",
+  "learningJourneyCharacterShukrTitle": "Gratitude (Shukr)",
+  "learningJourneyCharacterShukrIntro": "Shukr means recognizing blessings from Allah and responding with praise, obedience, and better use of what He gave.",
+  "learningJourneyCharacterShukrSection1Title": "Gratitude is more than words",
+  "learningJourneyCharacterShukrSection1Body": "Saying Alhamdulillah matters, but gratitude also includes how you use time, health, wealth, knowledge, and relationships.",
+  "learningJourneyCharacterShukrSection2Title": "How gratitude grows",
+  "learningJourneyCharacterShukrSection2Body": "Gratitude grows when you notice specific blessings, name them, and turn them into worship and service instead of entitlement.",
+  "learningJourneyCharacterShukrBullet1": "Name one blessing clearly instead of vaguely.",
+  "learningJourneyCharacterShukrBullet2": "Use a blessing in a way Allah loves.",
+  "learningJourneyCharacterShukrBullet3": "Do not let comfort make you forget the Giver.",
+  "learningJourneyCharacterShukrTakeaway1": "Gratitude is a response of heart, tongue, and action.",
+  "learningJourneyCharacterShukrTakeaway2": "Blessings become safer when they increase thankfulness.",
+  "learningJourneyCharacterShukrTakeaway3": "Gratitude protects the heart from constant dissatisfaction.",
+  "learningJourneyCharacterShukrReflection": "Which blessing have you become too used to noticing with gratitude?",
+  "learningJourneyCharacterShukrActionStep": "Thank Allah specifically for one blessing today, then use it in one good way.",
+  "learningJourneyCharacterHumilityTitle": "Humility",
+  "learningJourneyCharacterHumilityIntro": "Humility means seeing your need for Allah clearly and treating people without arrogance.",
+  "learningJourneyCharacterHumilitySection1Title": "Humility and truth",
+  "learningJourneyCharacterHumilitySection1Body": "Humility does not mean weakness or self-erasure. It means accepting truth, lowering pride, and refusing to treat others with superiority.",
+  "learningJourneyCharacterHumilitySection2Title": "How arrogance enters",
+  "learningJourneyCharacterHumilitySection2Body": "Arrogance can hide inside knowledge, talent, worship, wealth, or social standing. Humility asks: do I still listen, learn, and respect others?",
+  "learningJourneyCharacterHumilityBullet1": "Accept correction without defensiveness.",
+  "learningJourneyCharacterHumilityBullet2": "Do not measure people only by status or outward polish.",
+  "learningJourneyCharacterHumilityBullet3": "Remember that every gift is from Allah.",
+  "learningJourneyCharacterHumilityTakeaway1": "Humility protects knowledge from becoming pride.",
+  "learningJourneyCharacterHumilityTakeaway2": "A humble person can be firm without being arrogant.",
+  "learningJourneyCharacterHumilityTakeaway3": "Remembering Allah reduces self-importance.",
+  "learningJourneyCharacterHumilityReflection": "Where does pride make it harder for you to listen or change?",
+  "learningJourneyCharacterHumilityActionStep": "Listen carefully to one person today without preparing your answer while they speak.",
+  "learningJourneyCharacterForgivenessTitle": "Forgiveness",
+  "learningJourneyCharacterForgivenessIntro": "Forgiveness softens the heart and frees it from carrying every injury forever.",
+  "learningJourneyCharacterForgivenessSection1Title": "What forgiveness is and is not",
+  "learningJourneyCharacterForgivenessSection1Body": "Forgiveness is not pretending harm was good. It is letting go of the desire to keep feeding resentment when forgiveness is wise and safe.",
+  "learningJourneyCharacterForgivenessSection2Title": "Why forgiveness matters",
+  "learningJourneyCharacterForgivenessSection2Body": "When a person forgives for Allah, the heart becomes lighter. Forgiveness can protect you from becoming shaped by the very harm you suffered.",
+  "learningJourneyCharacterForgivenessBullet1": "Ask Allah to heal your heart before forcing yourself into words.",
+  "learningJourneyCharacterForgivenessBullet2": "Keep justice and safety in view where needed.",
+  "learningJourneyCharacterForgivenessBullet3": "Do not let resentment become your identity.",
+  "learningJourneyCharacterForgivenessTakeaway1": "Forgiveness is strongest when done for Allah.",
+  "learningJourneyCharacterForgivenessTakeaway2": "A soft heart can still keep wise boundaries.",
+  "learningJourneyCharacterForgivenessTakeaway3": "Resentment harms the one carrying it.",
+  "learningJourneyCharacterForgivenessReflection": "Is there one hurt you need to place before Allah so it stops ruling your heart?",
+  "learningJourneyCharacterForgivenessActionStep": "Make dua for heart-healing before you think about how to respond to an old hurt.",
+  "learningJourneyCharacterAngerTitle": "Controlling anger",
+  "learningJourneyCharacterAngerIntro": "Anger itself may come, but Islamic character teaches restraint before anger becomes words or harm.",
+  "learningJourneyCharacterAngerSection1Title": "Why anger needs discipline",
+  "learningJourneyCharacterAngerSection1Body": "Anger narrows judgment quickly. A single uncontrolled moment can damage worship, relationships, and trust built over years.",
+  "learningJourneyCharacterAngerSection2Title": "How to respond well",
+  "learningJourneyCharacterAngerSection2Body": "Step back, lower your tone, seek refuge in Allah, change posture if needed, and avoid speaking while the heart is still inflamed.",
+  "learningJourneyCharacterAngerBullet1": "Do not answer every irritation immediately.",
+  "learningJourneyCharacterAngerBullet2": "Use silence before regretful words.",
+  "learningJourneyCharacterAngerBullet3": "Return to dhikr to cool the heart.",
+  "learningJourneyCharacterAngerTakeaway1": "Strength includes restraining yourself when angry.",
+  "learningJourneyCharacterAngerTakeaway2": "Most anger mistakes happen in the first moments.",
+  "learningJourneyCharacterAngerTakeaway3": "A calmer response protects dignity for everyone involved.",
+  "learningJourneyCharacterAngerReflection": "What usually happens just before your anger becomes speech?",
+  "learningJourneyCharacterAngerActionStep": "Choose one reset habit now: silence, changing posture, stepping away, or saying a short dhikr.",
+  "learningJourneyCharacterKindnessTitle": "Kindness",
+  "learningJourneyCharacterKindnessIntro": "Kindness is one of the clearest signs that knowledge has reached the heart.",
+  "learningJourneyCharacterKindnessSection1Title": "Kindness in ordinary life",
+  "learningJourneyCharacterKindnessSection1Body": "Kindness appears in small things: gentle speech, patient listening, thoughtful timing, service, smiling, and making room for others.",
+  "learningJourneyCharacterKindnessSection2Title": "Why mercy matters",
+  "learningJourneyCharacterKindnessSection2Body": "Mercy makes faith visible. People often feel Islam first through a Muslim’s character before they understand its deeper teachings.",
+  "learningJourneyCharacterKindnessBullet1": "Make your speech softer without becoming unclear.",
+  "learningJourneyCharacterKindnessBullet2": "Look for one hidden need you can ease today.",
+  "learningJourneyCharacterKindnessBullet3": "Treat family and those closest to you with extra care.",
+  "learningJourneyCharacterKindnessTakeaway1": "Kindness is one of the strongest forms of dawah in everyday life.",
+  "learningJourneyCharacterKindnessTakeaway2": "Mercy belongs in speech, service, and correction.",
+  "learningJourneyCharacterKindnessTakeaway3": "Gentleness often opens hearts that force cannot reach.",
+  "learningJourneyCharacterKindnessReflection": "Who in your daily life most needs gentleness from you right now?",
+  "learningJourneyCharacterKindnessActionStep": "Do one small act of gentleness today for someone who usually sees you in a rushed state.",
+  "learningJourneyCharacterCompletionTitle": "Completion reflection",
+  "learningJourneyCharacterCompletionIntro": "You have reached the end of this journey. Now the task is not more information. It is steady application.",
+  "learningJourneyCharacterCompletionSection1Title": "Look back honestly",
+  "learningJourneyCharacterCompletionSection1Body": "Which quality came easiest? Which one exposed your weakness? Honest reflection makes future growth real.",
+  "learningJourneyCharacterCompletionSection2Title": "Choose one trait to carry",
+  "learningJourneyCharacterCompletionSection2Body": "Do not try to perfect everything at once. Choose one quality that most needs attention in this season of life and keep returning to it.",
+  "learningJourneyCharacterCompletionBullet1": "Choose one trait, not seven.",
+  "learningJourneyCharacterCompletionBullet2": "Attach it to one daily situation.",
+  "learningJourneyCharacterCompletionBullet3": "Revisit related journeys for reinforcement.",
+  "learningJourneyCharacterCompletionTakeaway1": "Character grows by repetition, not intensity alone.",
+  "learningJourneyCharacterCompletionTakeaway2": "Reflection helps you see where to begin again.",
+  "learningJourneyCharacterCompletionTakeaway3": "The best completion is a small ongoing change.",
+  "learningJourneyCharacterCompletionReflection": "Which single character trait will you keep working on over the next week?",
+  "learningJourneyCharacterCompletionActionStep": "Write down one trait and one situation where you will consciously practice it this week.",
+  "learningJourneyDhikrRoutineActionStep": "Choose one dhikr for the morning, one for the evening, and one after salah so your routine stays small and sustainable.",
+  "learningJourneyHomeCompletedBadge": "Completed",
+  "learningJourneyHomeCompletedSuffix": "completed",
+  "learningJourneyHomeCompletedMessage": "Great work—marking your journey complete and ready for what comes next.",
+  "learningJourneyHomeExploreNextAction": "Open next",
+  "learningJourneyHomeSuggestedNextIntro": "Next suggestion: {journeyTitle}",
+  "@learningJourneyHomeSuggestedNextIntro": {
+    "placeholders": {
+      "journeyTitle": {
+        "type": "String"
+      }
+    }
+  },
+  "learningJourneyHomeRecommendedReasonDefault": "A small set of paths that fit what you have already opened or completed.",
+  "learningJourneyHomeRecommendedReasonWorship": "Try a worship-focused path to build consistency from what you already started.",
+  "learningJourneyHomeRecommendedReasonArabic": "Try an Arabic path next to strengthen understanding as you continue.",
+  "learningJourneyHomeRecommendedReasonNearCompletion": "You’re close to a completion point—continue with the next journey.",
+  "learningJourneyHomeRecommendedReasonCompleted": "You have completed this phase, so here is a thoughtful next step.",
+  "learningJourneyHomeRecommendedReasonFallback": "Try one of these paths to keep your learning rhythm steady.",
+  "learningJourneyTodayLightBadgeDhikr": "Dhikr Focus",
+  "learningJourneyTodayLightProphetTitleFallback": "Daily Prophet Reflection",
+  "learningJourneyTodayLightProphetSubtitleFallback": "Open the Prophet daily reflection for today.",
+  "learningJourneyTodayLightHadithTitleFallback": "Today’s Hadith Reflection",
+  "learningJourneyTodayLightHadithSubtitleFallback": "Open the current daily hadith reflection.",
+  "learningJourneyTodayLightVerseTitleFallback": "Daily Verse",
+  "learningJourneyTodayLightVerseSubtitleFallback": "Read today''s selected verse with meaning and reflection.",
+  "learningJourneyTodayLightReflectionTitleFallback": "Creation Reflection",
+  "learningJourneyTodayLightReflectionSubtitleFallback": "Reflect on the short prompt and carry it into your day.",
+  "learningJourneyTodayLightTriviaTitleFallback": "Today’s Trivia Round",
+  "learningJourneyTodayLightTriviaSubtitleFallback": "Open a short trivia session and keep learning in motion.",
+  "learningJourneyTodayLightDhikrTitleFallback": "Dhikr Focus",
+  "learningJourneyTodayLightDhikrSubtitleFallback": "Open the Daily Dhikr journey and continue with a short remembrance rhythm.",
+  "learningJourneyTodayLightStreakFallback": "You are on a {days} day learning streak.",
+  "@learningJourneyTodayLightStreakFallback": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "learningJourneyIslandCoreKnowledgeTitle": "Core Knowledge",
+  "learningJourneyIslandCoreKnowledgeSubtitle": "Qur’an, Prophets, Seerah, and Hadith.",
+  "learningJourneyIslandCoreKnowledgeDescription": "Build your foundations through the core sources and sacred history of Islam.",
+  "learningJourneyIslandPracticeWorshipTitle": "Practice & Worship",
+  "learningJourneyIslandPracticeWorshipSubtitle": "Salah, Dhikr, and Duas for daily life.",
+  "learningJourneyIslandPracticeWorshipDescription": "Learn the acts of worship that shape daily rhythm, remembrance, and presence.",
+  "learningJourneyIslandUnderstandingIslamTitle": "Understanding Islam",
+  "learningJourneyIslandUnderstandingIslamSubtitle": "Faith, fiqh, and the larger historical frame.",
+  "learningJourneyIslandUnderstandingIslamDescription": "Understand the essentials of belief, practice, and historical development with clarity.",
+  "learningJourneyIslandArabicLearningTitle": "Arabic Learning",
+  "learningJourneyIslandArabicLearningSubtitle": "Alphabet, reading, words, and tajweed basics.",
+  "learningJourneyIslandArabicLearningDescription": "Grow from letter recognition toward meaning, recitation, and confident repetition.",
+  "learningJourneyIslandDiscoveryTitle": "Discovery",
+  "learningJourneyIslandDiscoverySubtitle": "Trivia, daily wisdom, stories, and reflective exploration.",
+  "learningJourneyIslandDiscoveryDescription": "Explore lighter entry points that still lead into real understanding and reflection.",
+  "learningJourneyFeedbackFirstStageOpened": "Learning started. Stay present and take just one meaningful step.",
+  "learningJourneyFeedbackStageCompleted": "Stage complete. You’re on a {streak} day streak.",
+  "@learningJourneyFeedbackStageCompleted": {
+    "placeholders": {
+      "streak": {
+        "type": "int"
+      }
+    }
+  },
+  "learningJourneyHomeStreakMessage": "You’re on a {days} day learning streak.",
+  "@learningJourneyHomeStreakMessage": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "settingsCurrentLocation": "Current location",
+  "settingsProfilePersonalizationTitle": "Profile & Personalization",
+  "settingsProfilePersonalizationSubtitle": "Keep your name, address preference, modes, and profile-related shortcuts here now that Profile is no longer a top-level tab.",
+  "settingsWhatsNewTitle": "What''s new",
+  "settingsWhatsNewSubtitle": "See the latest app changes and earlier updates.",
+  "settingsComingSoonTitle": "Coming soon",
+  "settingsComingSoonSubtitle": "Preview the next improvements planned for the app.",
+  "settingsAccountsSyncTitle": "Accounts, Profiles & Sync",
+  "settingsAccountsSyncSubtitle": "Manage shared devices, protected profiles, sync mode, and backups without disturbing your current journey.",
+  "settingsCurrentProfileTitle": "Current Profile",
+  "settingsNoProfileSelected": "No profile selected",
+  "settingsSyncStatusTitle": "Sync Status",
+  "settingsBackupRestoreTitle": "Backup & Restore",
+  "settingsBackupRecommended": "Backup recommended",
+  "settingsNoManualBackupYet": "No manual backup yet",
+  "settingsLastExportRecorded": "Last export recorded",
+  "settingsAdhanTitle": "Adhan",
+  "settingsAdhanSubtitle": "Choose a dedicated Fajr Adhan, preview the bundled clips, and keep prayer audio offline.",
+  "settingsEnableAdhanAudioTitle": "Enable Adhan audio",
+  "settingsEnableAdhanAudioSubtitle": "Prayer reminders can play the selected Adhan when this is on.",
+  "settingsRegularAdhanTitle": "Regular Adhan",
+  "settingsFajrAdhanTitle": "Fajr Adhan",
+  "settingsPreviewVolumeTitle": "Preview & volume",
+  "settingsTestRegularAdhan": "Test Regular Adhan",
+  "settingsTestFajrAdhan": "Test Fajr Adhan",
+  "settingsUseAppVolumeTitle": "Use App Volume",
+  "settingsUseAppVolumeSubtitle": "Keep preview playback aligned with the app volume level.",
+  "settingsAdhanPreviewVolume": "Adhan preview volume",
+  "settingsUsingAppVolume": "Using app volume",
+  "settingsRestoreDefaultAdhanSettings": "Restore Default Adhan Settings",
+  "settingsMadhabShafii": "Shafi''i",
+  "settingsMadhabHanafi": "Hanafi",
+  "settingsMadhabMaliki": "Maliki",
+  "settingsMadhabHanbali": "Hanbali",
+  "settingsCalculationMethodMuslimWorldLeague": "Muslim World League",
+  "settingsCalculationMethodEgyptian": "Egyptian",
+  "settingsCalculationMethodIsna": "ISNA",
+  "settingsCalculationMethodKarachi": "Karachi",
+  "settingsCalculationMethodUmmAlQura": "Umm Al-Qura",
+  "settingsStableDynamicIslandTitle": "Stable Dynamic Island",
+  "settingsStableDynamicIslandSubtitle": "Keep the prayer Dynamic Island in a calmer, fixed layout.",
+  "settingsStableLockScreenWidgetTitle": "Stable Lock Screen Widget",
+  "settingsStableLockScreenWidgetSubtitle": "Keep the prayer lock screen Live Activity in a calmer, fixed layout.",
+  "settingsThemeChoiceDefault": "Default",
+  "settingsThemeChoiceEasyRead": "Easy Read",
+  "settingsThemeChangedSuccessfully": "Theme changed successfully",
+  "settingsVisualPreferencesTitle": "Visual Preferences",
+  "settingsDisableGlassTransparencyTitle": "Disable Glass Transparency",
+  "settingsDisableGlassTransparencySubtitle": "Use solid surfaces instead of translucent glass.",
+  "settingsVisualPreferenceUpdated": "Visual preference updated",
+  "settingsDisableBackgroundTitle": "Disable Background",
+  "settingsDisableBackgroundSubtitle": "Hide decorative background imagery for a cleaner view.",
+  "settingsAppearanceNoContentChangeNote": "These settings change the look of the app without changing your content or progress.",
+  "settingsDefaultAppearanceActive": "Default appearance active",
+  "settingsAppearanceResetToDefault": "Appearance reset to default",
+  "settingsResetAppearance": "Reset Appearance",
+  "settingsPrayerNotificationsTitle": "Prayer Notifications",
+  "settingsPrayerNotificationsSubtitle": "Keep all prayer reminder behavior in one place, with one mode for each salah.",
+  "settingsPrayerRemindersToggleSubtitle": "Turn all prayer reminders on or off without changing your saved per-prayer modes.",
+  "settingsPrayerTimeModeTitle": "Prayer Time Mode",
+  "settingsPrayerTimeModeSubtitle": "Choose how Path of Nūr handles your prayer schedule. Most users should keep calculated prayer times and apply small adjustments if needed.",
+  "settingsPrayerTimeModeCalculatedAdjustedTitle": "Calculated Times + Adjustments",
+  "settingsPrayerTimeModeCalculatedAdjustedDescription": "Best for most users. Path of Nūr calculates prayer times for your location and method each day, then applies your saved per-prayer adjustments automatically.",
+  "settingsPrayerTimeModeManualTitle": "Fully Manual Prayer Times",
+  "settingsPrayerTimeModeManualDescription": "Use exact prayer times that you enter yourself. This overrides normal daily prayer calculation for tracked salah times and should only be used if you intentionally want a fixed manual schedule.",
+  "settingsManualTimesPrefilledFromToday": "Manual times were prefilled from today''s active prayer schedule.",
+  "settingsPrayerTimeModeManualNote": "Manual mode is an advanced option. If your local prayer times change seasonally, you may need to update them yourself.",
+  "settingsRecommendedBadge": "Recommended",
+  "settingsPrayerTimeAdjustmentsTitle": "Prayer Time Adjustments",
+  "settingsPrayerTimeAdjustmentsSubtitle": "Fine-tune your calculated salah times by a few minutes. Path of Nūr will continue calculating prayer times normally for your location and method, then apply your saved adjustments automatically.",
+  "settingsPrayerTimeAdjustmentsExample": "If Fajr is calculated as 5:00 AM and you change it to 4:55 AM, the app saves a -5 minute adjustment for Fajr. Future Fajr times will also use that same saved adjustment.",
+  "settingsPrayerTimeAdjustmentsScope": "Your adjustments are used across the app for prayer display, reminders, countdowns, and daily prayer tracking.",
+  "settingsCustomAdjustmentsActive": "Custom adjustments active",
+  "settingsResetAllAdjustmentsTitle": "Reset all adjustments?",
+  "settingsResetAllAdjustmentsBody": "This will return Fajr, Dhuhr, Asr, Maghrib, and Isha to their calculated times.",
+  "settingsResetAllAdjustments": "Reset All Adjustments",
+  "settingsResetAdjustmentsNote": "Resetting removes all saved offsets and returns each salah to its calculated time.",
+  "settingsManualPrayerTimesTitle": "Manual Prayer Times",
+  "settingsManualPrayerTimesSubtitle": "These manual times will be used across the app for reminders, countdowns, and prayer tracking while manual mode is active.",
+  "settingsUseTodaysCalculatedTimes": "Use Today''s Calculated Times",
+  "settingsResetManualTimes": "Reset Manual Times",
+  "settingsReturnToRecommendedMode": "Return to Recommended Mode",
+  "settingsMosqueTimeComparisonTitle": "Mosque Time Comparison",
+  "settingsMosqueTimeComparisonSubtitle": "Compare your local masjid timetable with Path of Nūr''s calculated and adjusted prayer times. This stays local and helps you review how close your current adjustments are.",
+  "settingsApplySuggestedAdjustments": "Apply Suggested Adjustments",
+  "settingsJumuahSettingsTitle": "Jumu''ah Settings",
+  "settingsJumuahSettingsSubtitle": "Use a Friday-specific reminder time if your Jumu''ah timing differs from standard Dhuhr.",
+  "settingsEnableJumuahOverrideTitle": "Enable Jumu''ah override",
+  "settingsEnableJumuahOverrideSubtitle": "Use a dedicated Friday midday reminder without changing the tracked prayer schedule.",
+  "settingsJumuahTimeTitle": "Jumu''ah time",
+  "settingsJumuahTimeSubtitle": "Used for Friday reminder behavior when selected.",
+  "settingsNotSet": "Not set",
+  "settingsUnavailable": "Unavailable",
+  "settingsNoChange": "No change",
+  "settingsModified": "Modified",
+  "settingsApplySuggestedAdjustmentsTitle": "Apply Suggested Adjustments",
+  "settingsApplySuggestedAdjustmentsSubtitle": "Review the proposed offsets before replacing your current calculated-time adjustments.",
+  "settingsPrayerAdjustmentEditorFutureUseNote": "This adjustment will be applied to future calculated prayer times for this salah as well.",
+  "settingsResetThisPrayer": "Reset this prayer",
+  "settingsFridayReminderModeNormalDhuhr": "Normal Dhuhr timing",
+  "settingsFridayReminderModeCustomJumuah": "Custom Jumu''ah time",
+  "settingsPrayerNameFajr": "Fajr",
+  "settingsPrayerNameDhuhr": "Dhuhr",
+  "settingsPrayerNameAsr": "Asr",
+  "settingsPrayerNameMaghrib": "Maghrib",
+  "settingsPrayerNameIsha": "Isha",
+  "settingsNotificationModeNotification": "Notification",
+  "settingsNotificationModeAdhan": "Adhan",
+  "settingsNotificationModeBeforeQaza": "Before qaza",
+  "settingsAttributionsLicensesTitle": "Attributions & Licenses",
+  "settingsSyncModePathOfNurCloud": "Path of Nūr Cloud",
+  "settingsSyncModeICloud": "iCloud",
+  "settingsSyncModeLocalOnly": "Local only",
+  "settingsSyncModeManualBackupOnly": "Manual backup only",
+  "settingsSyncStateAllCaughtUp": "All caught up",
+  "settingsSyncStateSyncing": "Syncing",
+  "settingsSyncStateOfflinePending": "Offline with pending changes",
+  "settingsSyncStateNeedsAttention": "Needs attention",
+  "settingsSyncStateLocalOnly": "Local only",
+  "settingsSyncStateICloudActive": "iCloud active",
+  "settingsThemeModeDefaultDescription": "The default Path of Nūr look with a soft, elegant feel and gentle depth.",
+  "settingsThemeModeEasyReadDescription": "Cleaner surfaces and stronger contrast for focused reading. Recommended for longer reading sessions.",
+  "settingsThemeModeDarkDescription": "A calm low-light appearance for night use. Recommended for low-light environments.",
+  "settingsCurrentProfileSummary": "{name} • {syncMode}",
+  "settingsSyncStatusSummary": "{count} pending • {syncState}",
+  "settingsMosqueTimeLabel": "Mosque: {time}",
+  "settingsCalculatedTimeLabel": "Calculated: {time}",
+  "settingsAdjustmentValueLabel": "Adjustment: {value}",
+  "settingsEffectiveTimeLabel": "Effective: {time}",
+  "settingsDifferenceValueLabel": "Difference: {value}",
+  "settingsBaseTimeLabel": "Base: {time}",
+  "settingsFinalTimeLabel": "Final: {time}",
+  "settingsPrayerAdjustmentEditorBaseCalculatedTime": "Base calculated time: {time}",
+  "settingsPrayerAdjustmentEditorCurrentAdjustment": "Current adjustment: {value}",
+  "settingsPrayerAdjustmentEditorFinalEffectiveTime": "Final effective time: {time}",
+  "@settingsCurrentProfileSummary": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "syncMode": {
+        "type": "String"
+      }
+    }
+  },
+  "@settingsSyncStatusSummary": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "syncState": {
+        "type": "String"
+      }
+    }
+  },
+  "@settingsMosqueTimeLabel": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "@settingsCalculatedTimeLabel": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "@settingsAdjustmentValueLabel": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "@settingsEffectiveTimeLabel": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "@settingsDifferenceValueLabel": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "@settingsBaseTimeLabel": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "@settingsFinalTimeLabel": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "@settingsPrayerAdjustmentEditorBaseCalculatedTime": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "@settingsPrayerAdjustmentEditorCurrentAdjustment": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "@settingsPrayerAdjustmentEditorFinalEffectiveTime": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "shellQuranPlaybackPauseTooltip": "क़ुरआन प्लेबैक रोकें",
+  "shellQuranPlaybackResumeTooltip": "क़ुरआन प्लेबैक फिर शुरू करें",
+  "profileWhatsNewChangelogTitle": "परिवर्तन सूची",
+  "profileWhatsNewChangelogSubtitle": "सबसे नया अपडेट पहले खुलता है। पुराने अपडेट तब तक बंद रहते हैं जब तक आप उन्हें खोलें नहीं।",
+  "profileWhatsNewDateMarch2026": "मार्च 2026",
+  "profileWhatsNewDateFebruary2026": "फ़रवरी 2026",
+  "profileWhatsNewEntry113Title": "ऑनबोर्डिंग, मोशन और नमाज़ विजेट बेहतर किए गए",
+  "profileWhatsNewEntry113Summary": "इस अपडेट ने शुरुआती ऐप सेटअप को बेहतर किया, पेज ट्रांज़िशन को स्मूद बनाया, और नमाज़ विजेट्स को अधिक शांत और नियंत्रित बनाया।",
+  "profileWhatsNewEntry113Item1": "नाम और भाई/बहन चयन को एक ही ऑनबोर्डिंग चरण में जोड़ा गया, और नाम को डिफ़ॉल्ट रूप से खाली रखा गया।",
+  "profileWhatsNewEntry113Item2": "शुरुआत में हैबिट ट्रैकिंग को वैकल्पिक बनाया गया, ताकि उपयोगकर्ता अपनी गति से बाद में इसे चुन सकें।",
+  "profileWhatsNewEntry113Item3": "साझा पेजों और ऑनबोर्डिंग में हल्की प्रवेश एनीमेशन जोड़ी गई, और Reduce Motion का पूरा सम्मान रखा गया।",
+  "profileWhatsNewEntry113Item4": "हर सेकंड बदलने वाली नमाज़ Live Activity काउंटडाउन हटाई गई और Dynamic Island तथा lock screen widgets के लिए अलग स्थिर नियंत्रण जोड़े गए।",
+  "profileWhatsNewEntry113Item5": "थीम मोड को सरल बनाया गया ताकि शांत Path of Nūr रूप डिफ़ॉल्ट थीम रहे।",
+  "profileWhatsNewEntry112Title": "विश्वसनीय स्रोतों पर आधारित क़ुरआनी अरबी सुधार",
+  "profileWhatsNewEntry112Summary": "Learn Qur’anic Arabic सामग्री अब अधिक सख़्त स्रोत-प्रबंधन के साथ आती है, ताकि दिखने वाले क़ुरआनी उदाहरण अधिक स्पष्ट और सुसंगत रहें।",
+  "profileWhatsNewEntry112Item1": "अक्षरों, शब्द उदाहरणों, वाक्यांश पाठों और नियम उदाहरणों की समीक्षा की गई ताकि जहाँ उचित हो वहाँ विश्वसनीय क़ुरआनी संदर्भ उपयोग हों।",
+  "profileWhatsNewEntry112Item2": "पाठ-प्रवाह में सीधे स्रोत संदर्भ जोड़े गए ताकि उदाहरणों का स्रोत साफ़ तौर पर देखा जा सके।",
+  "profileWhatsNewEntry112Item3": "सीड किए गए 100-शब्द Qur’anic Arabic dataset को source-locked किया गया ताकि भविष्य के जोड़ में source metadata आवश्यक हो।",
+  "profileWhatsNewEntry111Title": "Islamic Trivia और Knowledge Paths",
+  "profileWhatsNewEntry111Summary": "Trivia अब एक अधिक पूर्ण learning feature बन गया है, जिसमें structured question packs और guided topic journeys शामिल हैं।",
+  "profileWhatsNewEntry111Item1": "श्रेणी-आधारित प्रश्नों, review flow, daily quiz behavior, stats और rewards integration के साथ Islamic Trivia जोड़ा गया।",
+  "profileWhatsNewEntry111Item2": "छोटे learning cards और staged quizzes के साथ guided learning journeys के लिए Knowledge Paths शुरू किए गए।",
+  "profileWhatsNewEntry111Item3": "Prophets, Qur’an Basics, Salah, Ramadan, Du‘a, Seerah और Islamic History के लिए curated trivia packs बढ़ाए गए।",
+  "profileWhatsNewEntry110Title": "अधिक समझदार Qur’anic Arabic अभ्यास",
+  "profileWhatsNewEntry110Summary": "Qur’anic Arabic learning अब अधिक adaptive हो गया है, teaching flow में अधिक अर्थपूर्ण review और guidance के साथ।",
+  "profileWhatsNewEntry110Item1": "spaced review और adaptive weak-area targeting के साथ Smart Daily Review system जोड़ा गया।",
+  "profileWhatsNewEntry110Item2": "teaching dashboard पर memory-strength tracking, review history और अधिक शांत progress visibility जोड़ी गई।",
+  "profileWhatsNewEntry110Item3": "आसान खोज के लिए Learn Qur’anic Arabic को अपने अलग Learn destination में ले जाया गया।",
+  "profileComingSoonRoadmapTitle": "आगे की योजना",
+  "profileComingSoonRoadmapSubtitle": "ये वे अगले क्षेत्र हैं जिन पर आने वाले अपडेट्स के लिए काम हो रहा है।",
+  "profileComingSoonCard1Title": "अधिक गहरी Qur’anic Arabic मार्गदर्शन",
+  "profileComingSoonCard1Description": "अधिक सत्यापित source-linked examples, बेहतर review support और स्पष्ट lesson progression अगला कदम हैं।",
+  "profileComingSoonCard2Title": "विस्तृत trivia journeys",
+  "profileComingSoonCard2Description": "अधिक curated knowledge paths, बेहतर category coverage और मजबूत content diagnostics की योजना है।",
+  "profileComingSoonCard3Title": "और बेहतर prayer widgets",
+  "profileComingSoonCard3Description": "lock screen और Dynamic Island के लिए और polish, अधिक सुसंगत प्रस्तुति और स्थिर display options के साथ।",
+  "profileComingSoonCard4Title": "और सहज personalization",
+  "profileComingSoonCard4Description": "अधिक वैकल्पिक onboarding और profile controls की योजना है ताकि ऐप बिना भारी लगे उपयोगकर्ता के अनुसार ढल सके।",
+  "familyLearningProfileTypeAdult": "वयस्क प्रोफ़ाइल",
+  "familyLearningProfileTypeYouth": "युवा प्रोफ़ाइल",
+  "familyLearningProfileTypeChild": "बच्चों की प्रोफ़ाइल",
+  "familyLearningProfileTypeGuest": "अतिथि प्रोफ़ाइल",
+  "settingsProfileDisplayNameSummary": "{title} {name}",
+  "@settingsProfileDisplayNameSummary": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      },
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsProfileLevelStreakSummary": "{levelSummary} • {streakSummary}",
+  "@settingsProfileLevelStreakSummary": {
+    "placeholders": {
+      "levelSummary": {
+        "type": "String"
+      },
+      "streakSummary": {
+        "type": "String"
+      }
+    }
+  },
+  "accountsSyncCurrentProfileSectionSubtitle": "देखें कि अभी कौन सक्रिय है और यह प्रोफ़ाइल कैसे सुरक्षित है।",
+  "accountsSyncNoActiveProfileTitle": "कोई सक्रिय प्रोफ़ाइल नहीं",
+  "accountsSyncChooseProfileToBegin": "शुरू करने के लिए एक प्रोफ़ाइल चुनें।",
+  "accountsSyncProfileStatusSummary": "{profileType} • {syncMode}",
+  "@accountsSyncProfileStatusSummary": {
+    "placeholders": {
+      "profileType": {
+        "type": "String"
+      },
+      "syncMode": {
+        "type": "String"
+      }
+    }
+  },
+  "accountsSyncSwitchProfileTitle": "प्रोफ़ाइल बदलें",
+  "accountsSyncSwitchProfileSubtitle": "प्रगति मिलाए बिना प्रोफ़ाइलों के बीच जाएँ।",
+  "accountsSyncProfilesInAccountTitle": "इस खाते में प्रोफ़ाइलें",
+  "accountsSyncProfilesInAccountCreateSubtitle": "वयस्कों, युवाओं, बच्चों या अतिथियों के लिए प्रोफ़ाइल बनाएँ।",
+  "accountsSyncProfilesInAccountManageSubtitle": "{accountName} के अंतर्गत संग्रहीत प्रोफ़ाइलों का प्रबंधन करें।",
+  "@accountsSyncProfilesInAccountManageSubtitle": {
+    "placeholders": {
+      "accountName": {
+        "type": "String"
+      }
+    }
+  },
+  "accountsSyncProfilesInAccountPageSubtitle": "वयस्कों, युवाओं, बच्चों या अतिथियों के लिए अलग यात्राएँ बनाएँ, बिना उनका डेटा मिलाए।",
+  "accountsSyncAccountsOnDeviceTitle": "इस डिवाइस पर खाते",
+  "accountsSyncAccountsOnDeviceSubtitle": "एक फ़ोन या टैबलेट पर कई साइन-इन पहचानें अलग रखें।",
+  "accountsSyncSignedInAccountsTitle": "इस डिवाइस पर साइन-इन किए गए खाते",
+  "accountsSyncSignedInAccountsSubtitle": "एक डिवाइस पर अलग पहचानें रखें, बिना उनकी यात्राएँ मिलाए।",
+  "accountsSyncAccountsAvailableCount": "{count, plural, =0 {0 खाते उपलब्ध} =1 {1 खाता उपलब्ध} other {{count} खाते उपलब्ध}}",
+  "@accountsSyncAccountsAvailableCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "accountsSyncSyncStatusSectionSubtitle": "समझें कि क्या स्थानीय रूप से संग्रहीत है, क्या सिंक है, और किस पर ध्यान चाहिए।",
+  "accountsSyncConnectedDevicesTitle": "कनेक्टेड डिवाइस",
+  "accountsSyncConnectedDevicesSubtitle": "देखें कि कौन से फ़ोन, टैबलेट, घड़ियाँ और टीवी इस यात्रा से जुड़े हैं।",
+  "accountsSyncDeviceCount": "{count, plural, =0 {0 डिवाइस} =1 {1 डिवाइस} other {{count} डिवाइस}}",
+  "@accountsSyncDeviceCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "accountsSyncBackupRestoreSectionSubtitleRecommended": "बैकअप की सलाह दी जाती है। इस यात्रा को हाल में एक्सपोर्ट नहीं किया गया है।",
+  "accountsSyncBackupRestoreSectionSubtitleDefault": "मैनुअल बैकअप एक्सपोर्ट करें या पुराने संग्रह से पुनर्स्थापित करें।",
+  "accountsSyncNoManualBackupExportedYet": "अभी तक कोई मैनुअल बैकअप एक्सपोर्ट नहीं किया गया।",
+  "accountsSyncLastExportLabel": "आख़िरी एक्सपोर्ट {time}",
+  "@accountsSyncLastExportLabel": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "accountsSyncSharedDeviceSafetyTitle": "साझा डिवाइस सुरक्षा",
+  "accountsSyncSharedDeviceSafetySubtitle": "ऐप खुलते समय प्रोफ़ाइल चयन आवश्यक करें और बच्चे या वयस्क प्रोफ़ाइल सुरक्षित रखें।",
+  "accountsSyncSharedDeviceSafetyPageSubtitle": "लॉन्च पर प्रोफ़ाइल चयन आवश्यक करें, वयस्क प्रोफ़ाइल की रक्षा करें और बच्चों के अनुभव को अधिक सुरक्षित रखें।",
+  "accountsSyncSharedDeviceModeActive": "साझा डिवाइस मोड सक्रिय है।",
+  "accountsSyncSharedDeviceModeDirectOpen": "यह डिवाइस अभी सीधे एक प्रोफ़ाइल में खुलता है।",
+  "accountsSyncSharedDeviceModeLabel": "साझा डिवाइस मोड",
+  "accountsSyncSharedDeviceModeHelper": "साझा टैबलेट और टीवी पर प्रोफ़ाइल चयनकर्ता दिखाएँ।",
+  "accountsSyncChooseProfileTitle": "एक प्रोफ़ाइल चुनें",
+  "accountsSyncChooseProfileSubtitle": "यह डिवाइस साझा उपयोग के लिए सेट है। जिस प्रोफ़ाइल के साथ जारी रखना है उसे चुनें।",
+  "accountsSyncProfileListSubtitle": "{profileType} • {syncMode} • अंतिम सक्रिय {lastActive}",
+  "@accountsSyncProfileListSubtitle": {
+    "placeholders": {
+      "profileType": {
+        "type": "String"
+      },
+      "syncMode": {
+        "type": "String"
+      },
+      "lastActive": {
+        "type": "String"
+      }
+    }
+  },
+  "accountsSyncAddProfileTitle": "प्रोफ़ाइल जोड़ें",
+  "accountsSyncAddProfileSubtitle": "एक वयस्क, युवा, बच्चा या अतिथि प्रोफ़ाइल बनाएँ।",
+  "accountsSyncSignInAnotherAccountTitle": "दूसरे खाते में साइन इन करें",
+  "accountsSyncSignInAnotherAccountSubtitle": "इस डिवाइस पर एक से अधिक Path of Nūr पहचानें रखें।",
+  "accountsSyncManageSharedDeviceSettingsTitle": "साझा-डिवाइस सेटिंग्स प्रबंधित करें",
+  "accountsSyncManageSharedDeviceSettingsSubtitle": "लॉन्च सुरक्षा और बच्चों की सीमाएँ समायोजित करें।",
+  "accountsSyncProtectedProfileTitle": "यह प्रोफ़ाइल सुरक्षित है",
+  "accountsSyncEnterPinHint": "पिन दर्ज करें",
+  "accountsSyncPinMismatch": "पिन मेल नहीं खाया।",
+  "accountsSyncOpenProfileAction": "खोलें",
+  "accountsSyncProfileActivated": "{name} अब सक्रिय है।",
+  "@accountsSyncProfileActivated": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "accountsSyncAddProfileSectionSubtitle": "प्रोफ़ाइल प्रकार चुनें, उसका अनुभव तय करें, और उसका डेटा कैसे रखा जाए यह चुनें।",
+  "accountsSyncDisplayNameLabel": "प्रदर्शित नाम",
+  "accountsSyncAvatarLabel": "अवतार",
+  "accountsSyncProfileTypeLabel": "प्रोफ़ाइल प्रकार",
+  "accountsSyncExperienceModeLabel": "अनुभव मोड",
+  "accountsSyncDataModeLabel": "डेटा मोड",
+  "accountsSyncSyncModeLabel": "सिंक मोड",
+  "accountsSyncOptionalPinLabel": "वैकल्पिक पिन",
+  "accountsSyncOptionalPinHelper": "यदि इस प्रोफ़ाइल को सुरक्षित नहीं रखना है तो खाली छोड़ें।",
+  "accountsSyncDefaultNewProfileName": "नई प्रोफ़ाइल",
+  "accountsSyncProfileCreated": "प्रोफ़ाइल बनाई गई",
+  "accountsSyncCreateProfileAction": "प्रोफ़ाइल बनाएँ",
+  "accountsSyncAccountSummary": "{provider} • {identifier} • {syncMode}",
+  "@accountsSyncAccountSummary": {
+    "placeholders": {
+      "provider": {
+        "type": "String"
+      },
+      "identifier": {
+        "type": "String"
+      },
+      "syncMode": {
+        "type": "String"
+      }
+    }
+  },
+  "accountsSyncSignInMethodLabel": "साइन-इन विधि",
+  "accountsSyncEmailOrIdentifierLabel": "ईमेल या पहचानकर्ता",
+  "accountsSyncDefaultAccountDisplayName": "Path of Nūr उपयोगकर्ता",
+  "accountsSyncAccountAddedOnDevice": "खाता इस डिवाइस पर जोड़ा गया",
+  "accountsSyncAddAccountAction": "खाता जोड़ें",
+  "accountsSyncRequireProfileSelectionOnLaunch": "लॉन्च पर प्रोफ़ाइल चयन आवश्यक करें",
+  "accountsSyncRequirePinForAdultProfiles": "वयस्क प्रोफ़ाइलों के लिए पिन आवश्यक करें",
+  "accountsSyncAutoLockAfterInactivity": "निष्क्रियता के बाद प्रोफ़ाइल ऑटो-लॉक करें",
+  "accountsSyncRestrictChildProfileSettings": "बच्चों की प्रोफ़ाइल सेटिंग्स सीमित करें",
+  "accountsSyncHideAdvancedToolsFromChildProfiles": "बच्चों की प्रोफ़ाइल से उन्नत टूल छिपाएँ",
+  "accountsSyncDeviceSummary": "{platform} • अंतिम सक्रिय {lastActive}",
+  "@accountsSyncDeviceSummary": {
+    "placeholders": {
+      "platform": {
+        "type": "String"
+      },
+      "lastActive": {
+        "type": "String"
+      }
+    }
+  },
+  "accountsSyncCurrentDeviceChip": "वर्तमान",
+  "accountsSyncBackupRestorePageSubtitle": "यदि आप केवल स्थानीय या केवल बैकअप स्टोरेज पसंद करते हैं, तो अपनी यात्रा की एक मैनुअल कॉपी रखें।",
+  "accountsSyncBackupRecommendedSubtitle": "यह प्रोफ़ाइल स्थानीय रूप से संग्रहीत है और हाल में एक्सपोर्ट नहीं की गई।",
+  "accountsSyncExportBackupTitle": "बैकअप एक्सपोर्ट करें",
+  "accountsSyncExportBackupSubtitleDefault": "अपनी वर्तमान प्रोफ़ाइल या खाते को JSON के रूप में एक्सपोर्ट करें।",
+  "accountsSyncImportBackupTitle": "बैकअप इम्पोर्ट करें",
+  "accountsSyncImportBackupSubtitle": "नई प्रोफ़ाइल के रूप में पुनर्स्थापित करें, मर्ज करें, या मौजूदा डेटा बदलें।",
+  "accountsSyncExportBackupPageSubtitle": "अपनी यात्रा की पुनर्स्थापित की जा सकने वाली कॉपी बनाएँ जिसे आप स्थानीय रूप से रख सकें, AirDrop से भेज सकें या Files में रख सकें।",
+  "accountsSyncCurrentProfileOnlyTitle": "केवल वर्तमान प्रोफ़ाइल",
+  "accountsSyncCurrentProfileOnlySubtitle": "पूरे स्थानीय खाते के बजाय केवल सक्रिय प्रोफ़ाइल एक्सपोर्ट करें।",
+  "accountsSyncEncryptedExportTitle": "एन्क्रिप्टेड एक्सपोर्ट",
+  "accountsSyncEncryptedExportSubtitle": "बैकअप payload को डिस्क पर लिखने से पहले एन्कोड करें।",
+  "accountsSyncExportNowAction": "अभी एक्सपोर्ट करें",
+  "accountsSyncImportBackupPageSubtitle": "एक्सपोर्ट किया गया बैकअप payload यहाँ पेस्ट करें और उसे नया बनाकर, मर्ज करके, या वर्तमान स्थानीय सेट बदलकर पुनर्स्थापित करें।",
+  "accountsSyncBackupPayloadLabel": "बैकअप payload",
+  "accountsSyncBackupPayloadHint": "एक्सपोर्ट किया गया JSON या एन्कोड किया गया बैकअप यहाँ पेस्ट करें।",
+  "accountsSyncEncryptedPayloadTitle": "एन्क्रिप्टेड payload",
+  "accountsSyncCreateNewProfilesTitle": "नई प्रोफ़ाइलें बनाएँ",
+  "accountsSyncReplaceExistingLocalDataTitle": "मौजूदा स्थानीय डेटा बदलें",
+  "accountsSyncBackupImported": "बैकअप इम्पोर्ट किया गया",
+  "accountsSyncRestoreBackupAction": "बैकअप पुनर्स्थापित करें",
+  "accountsSyncSyncDetailsTitle": "सिंक विवरण",
+  "accountsSyncSyncDetailsSubtitle": "लंबित अपलोड, हाल की सिंक घटनाएँ, और क्या इस डिवाइस को ध्यान चाहिए, यह देखें।",
+  "accountsSyncCurrentProviderTitle": "वर्तमान प्रदाता",
+  "accountsSyncCurrentProviderSummary": "{syncMode} • {transport}",
+  "@accountsSyncCurrentProviderSummary": {
+    "placeholders": {
+      "syncMode": {
+        "type": "String"
+      },
+      "transport": {
+        "type": "String"
+      }
+    }
+  },
+  "accountsSyncCurrentStateTitle": "वर्तमान स्थिति",
+  "accountsSyncLastResultTitle": "पिछला परिणाम",
+  "accountsSyncPendingUploadsTitle": "लंबित अपलोड",
+  "accountsSyncPendingChangesCount": "{count, plural, =0 {0 लंबित परिवर्तन} =1 {1 लंबित परिवर्तन} other {{count} लंबित परिवर्तन}}",
+  "@accountsSyncPendingChangesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "accountsSyncLastSuccessfulSyncTitle": "आख़िरी सफल सिंक",
+  "accountsSyncTransportAvailabilityTitle": "ट्रांसपोर्ट उपलब्धता",
+  "accountsSyncTransportAvailable": "उपलब्ध",
+  "accountsSyncTransportUnavailableOffline": "अनुपलब्ध या ऑफ़लाइन",
+  "accountsSyncLastErrorTitle": "पिछली त्रुटि",
+  "accountsSyncRecentSyncEventsTitle": "हाल की सिंक घटनाएँ",
+  "accountsSyncRecentSyncEventBullet": "• {event}",
+  "@accountsSyncRecentSyncEventBullet": {
+    "placeholders": {
+      "event": {
+        "type": "String"
+      }
+    }
+  },
+  "accountsSyncSyncNowAction": "अभी सिंक करें",
+  "accountsSyncLastSyncTitle": "आख़िरी सिंक",
+  "accountsSyncPendingChangesTitle": "लंबित परिवर्तन",
+  "accountsSyncPendingChangesWaiting": "{count, plural, =0 {0 परिवर्तन प्रतीक्षा में} =1 {1 परिवर्तन प्रतीक्षा में} other {{count} परिवर्तन प्रतीक्षा में}}",
+  "@accountsSyncPendingChangesWaiting": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "accountsSyncTransportTitle": "ट्रांसपोर्ट",
+  "accountsSyncTransportSummary": "{transport} • {status}",
+  "@accountsSyncTransportSummary": {
+    "placeholders": {
+      "transport": {
+        "type": "String"
+      },
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "accountsSyncViewDetailsAction": "विवरण देखें",
+  "accountsSyncTimeNotYet": "अभी नहीं",
+  "accountsSyncTimeUnknown": "अज्ञात",
+  "accountsSyncTimeJustNow": "अभी अभी",
+  "accountsSyncTimeMinutesAgo": "{count} मि. पहले",
+  "@accountsSyncTimeMinutesAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "accountsSyncTimeHoursAgo": "{count} घं. पहले",
+  "@accountsSyncTimeHoursAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "accountsSyncTimeDaysAgo": "{count} दिन पहले",
+  "@accountsSyncTimeDaysAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "accountsSyncTransportLocalStorage": "स्थानीय संग्रहण",
+  "accountsSyncProviderSignInWithApple": "Apple से साइन इन करें",
+  "accountsSyncProviderGoogle": "Google",
+  "accountsSyncProviderEmailMagicLink": "ईमेल मैजिक लिंक",
+  "accountsSyncProviderLocalOnly": "केवल स्थानीय",
+  "accountsSyncExperienceModeFull": "पूर्ण",
+  "accountsSyncExperienceModeSimplified": "सरल",
+  "accountsSyncExperienceModeLearningFocused": "सीखने पर केंद्रित",
+  "accountsSyncExperienceModePrayerFocused": "नमाज़ पर केंद्रित",
+  "accountsSyncDevicePlatformIPhone": "iPhone",
+  "accountsSyncDevicePlatformIPad": "iPad",
+  "accountsSyncDevicePlatformAppleWatch": "Apple Watch",
+  "accountsSyncDevicePlatformAppleDevice": "Apple डिवाइस",
+  "accountsSyncDevicePlatformAndroidPhone": "Android फ़ोन",
+  "accountsSyncDevicePlatformAndroidTablet": "Android टैबलेट",
+  "accountsSyncDevicePlatformWearOsWatch": "Wear OS घड़ी",
+  "accountsSyncDevicePlatformAndroidTv": "Android TV",
+  "settingsPercentValue": "{value}%",
+  "@settingsPercentValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsAdhanPickerFajrTitle": "फ़ज्र अज़ान चुनें",
+  "settingsAdhanPickerFajrSubtitle": "केवल फ़ज्र नमाज़ समय प्लेबैक के लिए उपयोग होता है।",
+  "settingsAdhanPickerRegularTitle": "सामान्य अज़ान चुनें",
+  "settingsAdhanPickerRegularSubtitle": "ज़ुहर, अस्र, मग़रिब और इशा के लिए उपयोग होता है।",
+  "settingsAdhanPreviewStopTooltip": "पूर्वावलोकन रोकें",
+  "settingsAdhanPreviewPlayTooltip": "पूर्वावलोकन चलाएँ",
+  "settingsMinutesValue": "{value} मि",
+  "@settingsMinutesValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsSuggestedAdjustmentChangeRow": "{prayerName}: {currentValue} → {suggestedValue}",
+  "@settingsSuggestedAdjustmentChangeRow": {
+    "placeholders": {
+      "prayerName": {
+        "type": "String"
+      },
+      "currentValue": {
+        "type": "String"
+      },
+      "suggestedValue": {
+        "type": "String"
+      }
+    }
+  },
+  "accountsSyncThisDeviceGeneric": "यह डिवाइस",
+  "accountsSyncThisDeviceIPhone": "यह iPhone",
+  "accountsSyncThisDeviceIPad": "यह iPad",
+  "accountsSyncThisDeviceAppleWatch": "यह Apple Watch",
+  "accountsSyncThisDeviceAppleTv": "यह Apple डिवाइस",
+  "accountsSyncThisDeviceAndroidPhone": "यह Android फ़ोन",
+  "accountsSyncThisDeviceAndroidTablet": "यह Android टैबलेट",
+  "accountsSyncThisDeviceAndroidWatch": "यह Wear OS घड़ी",
+  "accountsSyncThisDeviceAndroidTv": "यह Android TV",
+  "accountsSyncThisDeviceApple": "यह Apple डिवाइस",
+  "accountsSyncThisDeviceAndroid": "यह Android डिवाइस",
+  "accountsSyncThisDeviceMac": "यह Mac",
+  "accountsSyncThisDeviceWindows": "यह Windows PC",
+  "accountsSyncThisDeviceLinux": "यह Linux डिवाइस",
+  "accountsSyncResultLocalOnlyModeActive": "केवल-स्थानीय मोड सक्रिय",
+  "accountsSyncResultNoChanges": "सिंक करने के लिए कोई परिवर्तन नहीं",
+  "accountsSyncResultCompletedSuccessfully": "सिंक सफलतापूर्वक पूरा हुआ",
+  "accountsSyncEventLocalOnlyModeActive": "केवल-स्थानीय मोड सक्रिय",
+  "accountsSyncEventNoChanges": "सिंक करने के लिए कोई परिवर्तन नहीं",
+  "accountsSyncEventUploadedChanges": "{count} परिवर्तन अपलोड किए गए",
+  "@accountsSyncEventUploadedChanges": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "accountsSyncEventAppliedInboundChanges": "{count} आने वाले परिवर्तन लागू किए गए",
+  "@accountsSyncEventAppliedInboundChanges": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "accountsSyncErrorOffline": "ऑफ़लाइन",
+  "accountsSyncErrorSyncUnavailable": "सिंक उपलब्ध नहीं है",
+  "accountsSyncErrorICloudUnsupportedPlatform": "iCloud sync केवल Apple डिवाइसों पर उपलब्ध है",
+  "accountsSyncErrorICloudUnavailable": "iCloud उपलब्ध नहीं है या साइन इन नहीं है",
+  "accountsSyncErrorICloudWriteFailed": "iCloud में लिखना असफल हुआ। साइन-इन और iCloud क्षमता जाँचें।",
+  "accountsSyncErrorTransportFailure": "ट्रांसपोर्ट विफलता",
+  "notificationsFastingMomentsChannelName": "रोज़े के पल",
+  "notificationsFastingMomentsChannelDescription": "रोज़ा शुरू और समाप्त होने के समय के लिए समय-संवेदी याद दिलाने वाले संदेश",
+  "notificationsPrayerNotificationOnlyChannelName": "नमाज़ रिमाइंडर (सूचना)",
+  "notificationsPrayerNotificationOnlyChannelDescription": "अज़ान ऑडियो के बिना नमाज़ रिमाइंडर सूचनाएँ",
+  "notificationsPrayerAdhanChannelName": "नमाज़ रिमाइंडर ({adhanTitle})",
+  "@notificationsPrayerAdhanChannelName": {
+    "placeholders": {
+      "adhanTitle": {
+        "type": "String"
+      }
+    }
+  },
+  "notificationsPrayerAdhanChannelDescription": "अज़ान ऑडियो के साथ नमाज़ रिमाइंडर सूचनाएँ",
+  "notificationsPrayerBeforeQazaChannelName": "नमाज़ रिमाइंडर (क़ज़ा से पहले)",
+  "notificationsPrayerBeforeQazaChannelDescription": "क़ज़ा से पहले नमाज़ रिमाइंडर सूचनाएँ",
+  "notificationsDailyRemindersChannelName": "रोज़ाना रिमाइंडर",
+  "notificationsDailyRemindersChannelDescription": "ज़िक्र, क़ुरआन और चिंतन रिमाइंडर",
+  "notificationsGrowthRemindersChannelName": "ग्रोथ रिमाइंडर",
+  "notificationsGrowthRemindersQuietChannelName": "ग्रोथ रिमाइंडर (शांत)",
+  "notificationsGrowthRemindersChannelDescription": "ग्रोथ आदतों के लिए कोमल रिमाइंडर",
+  "notificationsPrayerAtTimeTitle": "{prayerName} नमाज़",
+  "@notificationsPrayerAtTimeTitle": {
+    "placeholders": {
+      "prayerName": {
+        "type": "String"
+      }
+    }
+  },
+  "notificationsPrayerBeforeQazaTitle": "{prayerName} समय रिमाइंडर",
+  "@notificationsPrayerBeforeQazaTitle": {
+    "placeholders": {
+      "prayerName": {
+        "type": "String"
+      }
+    }
+  },
+  "notificationsDhikrTitle": "ज़िक्र रिमाइंडर",
+  "notificationsQuranTitle": "क़ुरआन चिंतन",
+  "notificationsReflectionTitle": "दैनिक चिंतन",
+  "notificationsFastingTitle": "रोज़ा रिमाइंडर",
+  "notificationsCycleCheckTitle": "चक्र जाँच",
+  "notificationsPrayerAtTimeBody": "{prayerName} का समय हो गया है। अपनी नमाज़ से जुड़े रहें।",
+  "@notificationsPrayerAtTimeBody": {
+    "placeholders": {
+      "prayerName": {
+        "type": "String"
+      }
+    }
+  },
+  "notificationsPrayerBeforeQazaBody": "{prayerName} का समय समाप्त होने वाला है। इसे क़ज़ा होने से पहले अदा करें।",
+  "@notificationsPrayerBeforeQazaBody": {
+    "placeholders": {
+      "prayerName": {
+        "type": "String"
+      }
+    }
+  },
+  "notificationsDhikrBody": "ज़िक्र के लिए एक शांत पल निकालें।",
+  "notificationsQuranBody": "नीयत के साथ अपनी क़ुरआन पढ़ाई की ओर लौटें।",
+  "notificationsReflectionBody": "दिन समाप्त होने से पहले एक छोटी सी सोच लिखें।",
+  "notificationsFastingBody": "आज के रोज़े के लिए अपनी नीयत तैयार करें।",
+  "notificationsCycleCheckBody": "अपनी स्थिति देखें और तैयार होने पर नमाज़ रिमाइंडर फिर शुरू करें।",
+  "notificationsRecoveredReminderBody": "आप यह रिमाइंडर पहले चूक गए थे। {body}",
+  "@notificationsRecoveredReminderBody": {
+    "placeholders": {
+      "body": {
+        "type": "String"
+      }
+    }
+  },
+  "notificationsPrayerNameTahajjud": "तहज्जुद",
+  "notificationsGenericPrayerName": "नमाज़",
+  "notificationsFastingBeginsNowTitle": "रोज़ा अब शुरू होता है",
+  "notificationsFastingBeginsNowBody": "फ़ज्र से पहले रोज़े की नीयत नई करें। नीयत दिल में होती है।",
+  "notificationsIftarTimeTitle": "रोज़ा खोलने का समय हो गया है",
+  "notificationsIftarTimeBody": "प्यास चली गई, नसें तर हो गईं, और अगर अल्लाह चाहे तो सवाब पक्का हो गया।",
+  "notificationsFastingLiveFastBeginsTitle": "रोज़ा शुरू",
+  "notificationsFastingLiveFastBeginsArabicTitle": "يبدأ الصوم",
+  "notificationsFastingLiveStartsIn": "शुरू होने में",
+  "notificationsFastingLiveRenewIntentionTitle": "नीयत नई करें",
+  "notificationsFastingLiveRenewIntentionArabic": "",
+  "notificationsFastingLiveRenewIntentionTranslation": "यहाँ कोई निश्चित पढ़ी जाने वाली दुआ साबित नहीं है। फ़ज्र से पहले रोज़े की नीयत दिल में रखें।",
+  "notificationsFastingLiveFastEndsTitle": "रोज़ा समाप्त",
+  "notificationsFastingLiveFastEndsArabicTitle": "يفطر الصائم",
+  "notificationsFastingLiveEndsIn": "समाप्त होने में",
+  "notificationsFastingLiveIftarDuaTitle": "इफ़्तार की दुआ",
+  "notificationsFastingLiveIftarDuaArabic": "ذَهَبَ الظَّمَأُ وَابْتَلَّتِ العُرُوقُ وَثَبَتَ الأَجْرُ إِنْ شَاءَ اللَّهُ",
+  "notificationsFastingLiveIftarDuaTranslation": "प्यास चली गई, नसें तर हो गईं, और अगर अल्लाह चाहे तो सवाब पक्का हो गया।",
+  "notificationsFastingLiveIftarTitle": "इफ़्तार",
+  "notificationsFastingLiveIftarArabicTitle": "الإفطار",
+  "notificationsFastingLiveJustEntered": "अभी शुरू हुआ",
+  "worshipPrayerHubTitle": "सलाह हब",
+  "worshipPrayerHubSubtitle": "नमाज़ के समय, ट्रैकिंग, निरंतरता, रकअत और व्यावहारिक मार्गदर्शन एक केंद्रित प्रवाह में।",
+  "worshipPrayerTabTimes": "समय",
+  "worshipPrayerTabQada": "क़ज़ा",
+  "worshipPrayerTabStats": "आँकड़े",
+  "worshipPrayerTabRakat": "रकअत",
+  "worshipPrayerSisterCyclePauseTitle": "बहन चक्र विराम",
+  "worshipPrayerCycleDay": "चक्र दिन {dayNumber}",
+  "@worshipPrayerCycleDay": {
+    "placeholders": {
+      "dayNumber": {
+        "type": "String"
+      }
+    }
+  },
+  "worshipPrayerExpectedDurationTitle": "अपेक्षित अवधि",
+  "worshipPrayerAutoAdjustRemindersTitle": "रिमाइंडर स्वतः समायोजित करें",
+  "worshipPrayerAutoAdjustRemindersSubtitle": "नमाज़ और रोज़े के रिमाइंडर रोकता है और कोमल विकल्प बनाए रखता है।",
+  "worshipPrayerPurityCheckReminderTitle": "पवित्रता जाँच रिमाइंडर",
+  "worshipPrayerPurityCheckReminderSubtitle": "अनुमानित समाप्ति दिन के आसपास एक कोमल जाँच भेजें।",
+  "worshipPrayerOptionalPrivateNotesHint": "वैकल्पिक निजी नोट्स",
+  "worshipPrayerHijriDateValue": "{day} {month} {year} AH",
+  "@worshipPrayerHijriDateValue": {
+    "placeholders": {
+      "day": {
+        "type": "String"
+      },
+      "month": {
+        "type": "String"
+      },
+      "year": {
+        "type": "String"
+      }
+    }
+  },
+  "worshipPrayerHijriMonthMuharram": "मुहर्रम",
+  "worshipPrayerHijriMonthSafar": "सफ़र",
+  "worshipPrayerHijriMonthRabiAlAwwal": "रबीउल-अव्वल",
+  "worshipPrayerHijriMonthRabiAlThani": "रबीउस-सानी",
+  "worshipPrayerHijriMonthJumadaAlAwwal": "जुमादा अल-अव्वल",
+  "worshipPrayerHijriMonthJumadaAlThani": "जुमादा अल-सानी",
+  "worshipPrayerHijriMonthRajab": "रजब",
+  "worshipPrayerHijriMonthShaban": "शाबान",
+  "worshipPrayerHijriMonthRamadan": "रमज़ान",
+  "worshipPrayerHijriMonthShawwal": "शव्वाल",
+  "worshipPrayerHijriMonthDhuAlQidah": "ज़ुल-क़ादा",
+  "worshipPrayerHijriMonthDhuAlHijjah": "ज़ुल-हिज्जा",
+  "worshipPrayerSalahTimesTitle": "नमाज़ के समय",
+  "worshipPrayerSalahWindowValue": "{offerTime}  •  नमाज़ समय सीमा: {windowStart}–{windowEnd}",
+  "@worshipPrayerSalahWindowValue": {
+    "placeholders": {
+      "offerTime": {
+        "type": "String"
+      },
+      "windowStart": {
+        "type": "String"
+      },
+      "windowEnd": {
+        "type": "String"
+      }
+    }
+  },
+  "worshipPrayerQadaOverviewTitle": "क़ज़ा अवलोकन",
+  "worshipPrayerQadaOverviewSubtitle": "देखें किन नमाज़ कतारों का बोझ ज़्यादा है और अपनी अदायगी की लय स्पष्ट रूप से बनाएँ।",
+  "worshipPrayerQadaGuidanceTitle": "छूटी हुई नमाज़ की अदायगी (क़ज़ा) मार्गदर्शन",
+  "worshipPrayerQadaGuidanceBody": "1. सबसे पहले वर्तमान नमाज़ों को समय पर रखें।\n2. सच्ची तौबा करें और अल्लाह से निरंतरता माँगें।\n3. एक संभालने योग्य क़ज़ा दिनचर्या बनाएँ (उदाहरण: हर वर्तमान नमाज़ के बाद एक क़ज़ा)।\n4. घबराहट से बचने के लिए नमाज़ के प्रकार के अनुसार ट्रैक करें और स्थिर प्रगति रखें।\n5. यदि आपकी स्थिति जटिल है, तो अपनी योजना किसी भरोसेमंद स्थानीय आलिम से पुष्टि करें।",
+  "worshipPrayerHistoryTitle": "नमाज़ इतिहास",
+  "worshipPrayerHistorySubtitle": "{date} के लिए दर्ज पूर्णता समय।",
+  "@worshipPrayerHistorySubtitle": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "worshipPrayerCompletedAt": "{time} पर पूरी की गई",
+  "@worshipPrayerCompletedAt": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "worshipPrayerMarkedMissed": "छूटी हुई चिह्नित",
+  "worshipPrayerNoRecordedCompletionYet": "अभी तक कोई पूर्णता दर्ज नहीं है",
+  "worshipPrayerQueuedCount": "{count, plural, =0 {0 कतार में} =1 {1 कतार में} other {{count} कतार में}}",
+  "@worshipPrayerQueuedCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "worshipPrayerMonthlyOverviewTitle": "मासिक नमाज़ अवलोकन",
+  "worshipPrayerTrackedDays": "ट्रैक किए गए दिन: {count}",
+  "@worshipPrayerTrackedDays": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "worshipPrayerOfferedSalahs": "अदा की गई नमाज़ें: {count}",
+  "@worshipPrayerOfferedSalahs": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "worshipPrayerMissedSalahs": "छूटी हुई नमाज़ें: {count}",
+  "@worshipPrayerMissedSalahs": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "worshipPrayerOnTimeRateTitle": "समय पर दर",
+  "worshipPrayerMasjidCountTitle": "मस्जिद गिनती",
+  "worshipPrayerQadaCountTitle": "क़ज़ा गिनती",
+  "worshipPrayerPercentValue": "{value}%",
+  "@worshipPrayerPercentValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "worshipPrayerCompletionValue": "पूर्णता {value}%",
+  "@worshipPrayerCompletionValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "worshipPrayerMonthlyConsistencyTitle": "मासिक निरंतरता",
+  "worshipPrayerWeeklyTrendTitle": "साप्ताहिक निरंतरता प्रवृत्ति",
+  "worshipPrayerWeeklyTrendSubtitle": "पिछले 8 हफ्तों की पूर्णता।",
+  "worshipPrayerMonthlyTrendTitle": "मासिक निरंतरता प्रवृत्ति",
+  "worshipPrayerMonthlyTrendSubtitle": "पिछले 6 महीनों की पूर्णता।",
+  "worshipPrayerRakatGuideTitle": "रकअत मार्गदर्शिका (फ़र्ज़)",
+  "worshipPrayerRakatGuideValue": "फ़ज्र: 2  •  ज़ुहर: 4  •  अस्र: 4  •  मग़रिब: 3  •  इशा: 4",
+  "worshipPrayerRakatGuideTip": "सुझाव: पहले फ़र्ज़ में निरंतर रहें। फिर धीरे-धीरे सुन्नत और नफ़्ल जोड़ें।",
+  "worshipPrayerMoonPhaseTitle": "चाँद की अवस्था",
+  "worshipPrayerMoonPhaseIllumination": "{phaseLabel} • {percent}% प्रकाशित",
+  "@worshipPrayerMoonPhaseIllumination": {
+    "placeholders": {
+      "phaseLabel": {
+        "type": "String"
+      },
+      "percent": {
+        "type": "String"
+      }
+    }
+  },
+  "worshipPrayerMoonPhaseNewMoon": "नया चाँद",
+  "worshipPrayerMoonPhaseWaxingCrescent": "बढ़ता हिलाल",
+  "worshipPrayerMoonPhaseFirstQuarter": "पहला चौथाई",
+  "worshipPrayerMoonPhaseWaxingGibbous": "बढ़ता गिब्बस",
+  "worshipPrayerMoonPhaseFullMoon": "पूर्णिमा",
+  "worshipPrayerMoonPhaseWaningGibbous": "घटता गिब्बस",
+  "worshipPrayerMoonPhaseLastQuarter": "अंतिम चौथाई",
+  "worshipPrayerMoonPhaseWaningCrescent": "घटता हिलाल",
+  "worshipPrayerSunriseValue": "सूर्योदय • {time}",
+  "@worshipPrayerSunriseValue": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "worshipPrayerSunsetValue": "सूर्यास्त • {time}",
+  "@worshipPrayerSunsetValue": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "worshipPrayerMoonriseValue": "चंद्रोदय • {time}",
+  "@worshipPrayerMoonriseValue": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "worshipPrayerMoonsetValue": "चंद्रास्त • {time}",
+  "@worshipPrayerMoonsetValue": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "worshipPrayerNoUpcomingPrayer": "इस चुने हुए समय के लिए कोई आने वाली नमाज़ नहीं है।",
+  "worshipPrayerNextPrayerIn": "अगली नमाज़: {prayerName} {duration} में",
+  "@worshipPrayerNextPrayerIn": {
+    "placeholders": {
+      "prayerName": {
+        "type": "String"
+      },
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+  "worshipPrayerOverlayLabel": "{prayerName} {time}",
+  "@worshipPrayerOverlayLabel": {
+    "placeholders": {
+      "prayerName": {
+        "type": "String"
+      },
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "worshipPrayerQadaPlannerTitle": "क़ज़ा योजनाकार",
+  "worshipPrayerCadenceValue": "लय: {value}",
+  "@worshipPrayerCadenceValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "worshipPrayerCadenceQueueClear": "कतार साफ़ है। समय पर नमाज़ बनाए रखें।",
+  "worshipPrayerCadenceLight": "हल्की लय: फ़ज्र या इशा के बाद 1 अतिरिक्त क़ज़ा।",
+  "worshipPrayerCadenceSteady": "स्थिर लय: रोज़ 2 क़ज़ा (एक फ़ज्र के बाद, एक इशा के बाद)।",
+  "worshipPrayerCadenceFocused": "केंद्रित लय: निरंतरता के साथ छोटे भागों में रोज़ 3 क़ज़ा।",
+  "worshipPrayerEstimatedDaysToClear": "साफ़ होने के अनुमानित दिन: {days}",
+  "@worshipPrayerEstimatedDaysToClear": {
+    "placeholders": {
+      "days": {
+        "type": "String"
+      }
+    }
+  },
+  "worshipPrayerTodaysQadaTarget": "आज का क़ज़ा लक्ष्य: {completed} / {target}",
+  "@worshipPrayerTodaysQadaTarget": {
+    "placeholders": {
+      "completed": {
+        "type": "String"
+      },
+      "target": {
+        "type": "String"
+      }
+    }
+  },
+  "worshipPrayerDoneOneAction": "एक पूरा",
+  "worshipPrayerNextInQueueTitle": "कतार में अगला",
+  "worshipPrayerNoQueuedQadaLeft": "अब कोई क़ज़ा शेष नहीं। आज की नमाज़ों की हिफ़ाज़त करें।",
+  "worshipPrayerNoRecordsThisMonth": "इस महीने के लिए अभी तक कोई नमाज़ रिकॉर्ड नहीं है।",
+  "worshipPrayerHeatmapTitle": "नमाज़-दर-नमाज़ हीटमैप",
+  "worshipPrayerHeatmapSubtitle": "हर पंक्ति एक नमाज़ है। हरा अदा की गई, पीला छूटी हुई, हल्का धूसर लंबित।",
+  "worshipPrayerGregorianCalendarTitle": "सामान्य कैलेंडर (ग्रेगोरियन)",
+  "worshipPrayerIslamicCalendarTitle": "इस्लामी कैलेंडर (डिस्प्ले मोड)",
+  "worshipPrayerIslamicCalendarSubtitle": "उसी ट्रैक किए गए दिन के डेटा के साथ हिजरी तिथि प्रदर्शन में बदलता है।",
+  "worshipPrayerDurationHoursMinutes": "{hours}घं {minutes}मि",
+  "@worshipPrayerDurationHoursMinutes": {
+    "placeholders": {
+      "hours": {
+        "type": "String"
+      },
+      "minutes": {
+        "type": "String"
+      }
+    }
+  },
+  "worshipPrayerDurationMinutes": "{minutes}मि",
+  "@worshipPrayerDurationMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "String"
+      }
+    }
+  },
+  "worshipPrayerWeekLabel": "सप्ताह {weekNumber}",
+  "@worshipPrayerWeekLabel": {
+    "placeholders": {
+      "weekNumber": {
+        "type": "int"
+      }
+    }
+  },
+  "worshipPrayerStatusPending": "लंबित",
+  "worshipPrayerStatusCompleted": "पूर्ण",
+  "worshipPrayerStatusMissed": "छूटी हुई",
+  "worshipPrayerChooseLocationTitle": "स्थान चुनें",
+  "worshipPrayerUseCurrentLocationTitle": "वर्तमान स्थान उपयोग करें",
+  "worshipPrayerUseDeviceAction": "डिवाइस उपयोग करें",
+  "worshipPrayerSearchLocationHint": "शहर या स्थान खोजें",
+  "worshipPrayerRecentPlacesTitle": "हाल के स्थान",
+  "worshipPrayerStartTypingToSearch": "स्थान खोजने के लिए टाइप करना शुरू करें।",
+  "worshipPrayerLocationSearchUnavailable": "अभी स्थान नहीं मिल पा रहे हैं।",
+  "fastingSectionTitle": "रोज़ा",
+  "fastingSectionSubtitle": "आपकी नीयत और प्रवाह के लिए सरल मैनुअल ट्रैकिंग।",
+  "fastingTodayTitle": "आज",
+  "fastingStatusValue": "स्थिति: {value}",
+  "@fastingStatusValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "fastingTypeValue": "प्रकार: {value}",
+  "@fastingTypeValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "fastingFastTypeTitle": "रोज़े का प्रकार",
+  "fastingFastTypeSubtitle": "वह चुनें जो आज की नीयत को सबसे बेहतर दर्शाता हो।",
+  "fastingTodayStatusTitle": "आज की स्थिति",
+  "fastingTodayStatusSubtitle": "अपने रोज़े को स्पष्टता और आसानी से चिन्हित करें।",
+  "fastingRecentHistoryTitle": "हाल का रोज़ा इतिहास",
+  "fastingRecentHistorySubtitle": "प्रारंभिक कार्यान्वयन के लिए एक संक्षिप्त पूर्वावलोकन।",
+  "fastingHistoryEntry": "{type} • {status}",
+  "@fastingHistoryEntry": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      },
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "fastingGentleReminderTitle": "कोमल याद दिलाना",
+  "fastingGentleReminderBody": "इसे सख़्त पूर्णता के बजाय स्थिर आदतों के लिए उपयोग करें। दिन को सच्चाई से चिन्हित करें और निरंतरता का सम्मान करें।",
+  "fastingStatusNotFasting": "रोज़ा नहीं",
+  "fastingStatusIntending": "रोज़े की नीयत",
+  "fastingStatusCompleted": "पूरा",
+  "fastingStatusBroken": "छूटा / टूट गया",
+  "fastingTypeRamadan": "रमज़ान का रोज़ा",
+  "fastingTypeSunnah": "सुन्नत रोज़ा",
+  "fastingTypeQada": "क़ज़ा रोज़ा",
+  "fastingTypeVoluntary": "नफ़्ली रोज़ा",
+  "fastingTypeOther": "अन्य / कस्टम",
+  "prayerQadaRuleFajrSummary": "यह सूर्योदय पर क़ज़ा हो जाती है। अगर छूट जाए तो सूर्योदय के ममनूअ समय से बचें और थोड़ी देर बाद अदा करें।",
+  "prayerQadaRuleDhuhrSummary": "अगर छूट जाए तो अस्र शुरू होने पर क़ज़ा हो जाती है। जितनी जल्दी संभव हो अदा करें।",
+  "prayerQadaRuleAsrSummary": "अगर छूट जाए तो मग़रिब पर क़ज़ा हो जाती है। सूर्यास्त के ममनूअ समय में नमाज़ न पढ़ें।",
+  "prayerQadaRuleMaghribSummary": "अगर छूट जाए तो इशा शुरू होने पर क़ज़ा हो जाती है। जितनी जल्दी संभव हो अदा करें।",
+  "prayerQadaRuleIshaSummary": "अगर छूट जाए तो यह ऐप फ़ज्र पर इसे क़ज़ा मानता है। कई उलमा रात गहरी होने तक टालने को भी नापसंद करते हैं, इसलिए संभव हो तो पहले अदा करें।",
+  "prayerQadaRuleDefaultSummary": "छूटी हुई फ़र्ज़ नमाज़ें जितनी जल्दी हो सके अदा करें, ममनूअ समयों से बचते हुए।",
+  "prayerUnknownAdjustment": "अज्ञात नमाज़ समायोजन।",
+  "prayerValidationMustRemainBefore": "{current} को {next} से पहले रहना चाहिए।",
+  "@prayerValidationMustRemainBefore": {
+    "placeholders": {
+      "current": {
+        "type": "String"
+      },
+      "next": {
+        "type": "String"
+      }
+    }
+  },
+  "prayerValidationEnterAllFiveDailySalahTimes": "मैनुअल मोड उपयोग करने के लिए पाँचों दैनिक नमाज़ समय दर्ज करें।",
+  "prayerValidationFajrBeforeSunrise": "फ़ज्र सूर्योदय से पहले रहनी चाहिए।",
+  "prayerCadenceQueueClear": "कतार साफ़ है। समय पर नमाज़ बनाए रखें।",
+  "prayerCadenceLight": "हल्की लय: फ़ज्र या इशा के बाद 1 अतिरिक्त क़ज़ा।",
+  "prayerCadenceSteady": "स्थिर लय: रोज़ 2 क़ज़ा (एक फ़ज्र के बाद, एक इशा के बाद)।",
+  "prayerCadenceFocused": "केंद्रित लय: निरंतरता के साथ छोटे भागों में रोज़ 3 क़ज़ा।",
+  "homeXpToNextLevel": "अगले स्तर तक XP",
+  "homeStartWelcomeCarousel": "वेलकम कैरोसेल शुरू करें",
+  "homeSearchQiblaFinderTitle": "क़िबला फ़ाइंडर",
+  "homeSearchQiblaFinderSubtitle": "काबा की ओर कंपास मार्गदर्शन",
+  "homeSearchQuranTopWordsTitle": "क़ुरआन के प्रमुख शब्द",
+  "homeSearchQuranTopWordsSubtitle": "अपने स्रोत दस्तावेज़ से प्रचलित क़ुरआनी शब्द सीखें।",
+  "homeSearchNamesOfAllahTitle": "अल्लाह के 99 नाम",
+  "homeSearchNamesOfAllahSubtitle": "अरबी नाम, लिप्यंतरण और संक्षिप्त अर्थ।",
+  "homeSearchGuidanceHubTitle": "इस्लामी मार्गदर्शन हब",
+  "homeSearchGuidanceHubSubtitle": "हज, उमरा, नए/रिवर्ट मुस्लिम सहायता और अमल मार्गदर्शिकाएँ।",
+  "homeSearchQuranLessonsMappingTitle": "क़ुरआन 50 पाठ मैपिंग",
+  "homeSearchQuranLessonsMappingSubtitle": "पाठ PDF से स्रोत-से-श्रेणी मैपिंग।",
+  "homeSearchImportantHadithTitle": "50 महत्वपूर्ण अहादीस",
+  "homeSearchImportantHadithSubtitle": "आपके अपलोड किए गए सीखने के स्रोत से मुख्य हदीस संग्रह।",
+  "homeTimeRemainingToOffer": "{prayerName} अदा करने का शेष समय",
+  "@homeTimeRemainingToOffer": {
+    "placeholders": {
+      "prayerName": {}
+    }
+  },
+  "homePrayerBecomesQada": "{prayerName} क़ज़ा हो जाती है",
+  "@homePrayerBecomesQada": {
+    "placeholders": {
+      "prayerName": {}
+    }
+  },
+  "homeFractionValue": "{current} / {total}",
+  "@homeFractionValue": {
+    "placeholders": {
+      "current": {},
+      "total": {}
+    }
+  },
+  "homeDaysCount": "{count, plural, =0 {0 दिन} =1 {1 दिन} other {{count} दिन}}",
+  "@homeDaysCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "homeUntilTime": "{time} तक",
+  "@homeUntilTime": {
+    "placeholders": {
+      "time": {}
+    }
+  },
+  "homePrayerForbiddenSunrise": "अभी नमाज़ की अनुमति नहीं • सूर्योदय",
+  "homePrayerForbiddenZenith": "अभी नमाज़ की अनुमति नहीं • ज़वाल",
+  "homePrayerForbiddenSunset": "अभी नमाज़ की अनुमति नहीं • सूर्यास्त",
+  "homeLevelValue": "स्तर {level}",
+  "@homeLevelValue": {
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "homeXpValue": "{xp} XP",
+  "@homeXpValue": {
+    "placeholders": {
+      "xp": {}
+    }
+  },
+  "homeXpToNextLevelValue": "अगले स्तर तक {xp} XP",
+  "@homeXpToNextLevelValue": {
+    "placeholders": {
+      "xp": {}
+    }
+  },
+  "homeDailyBadgesTitle": "दैनिक बैज",
+  "homeContinueQuranValue": "{surahName} {ayahNumber}",
+  "@homeContinueQuranValue": {
+    "placeholders": {
+      "surahName": {},
+      "ayahNumber": {}
+    }
+  },
+  "homeJourneyRingsValue": "P {prayerPercent}% · D {dhikrPercent}% · Q {quranPercent}%",
+  "@homeJourneyRingsValue": {
+    "placeholders": {
+      "prayerPercent": {},
+      "dhikrPercent": {},
+      "quranPercent": {}
+    }
+  },
+  "homeCountAndLabel": "{count} • {label}",
+  "@homeCountAndLabel": {
+    "placeholders": {
+      "count": {},
+      "label": {}
+    }
+  },
+  "homeShortcutQiblaLabel": "क़िबला",
+  "homeShortcutSalahLabel": "सलाह",
+  "homeShortcutDhikrLabel": "ज़िक्र",
+  "homeShortcutDailyCaption": "दैनिक",
+  "homeShortcutMissedCount": "{count, plural, =0 {0 छूटी} =1 {1 छूटी} other {{count} छूटी}}",
+  "@homeShortcutMissedCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "homeShortcutDailyDhikrGoalReached": "दैनिक ज़िक्र लक्ष्य पूरा हुआ",
+  "homeShortcutClose": "बंद करें",
+  "homeShortcutOpen": "शॉर्टकट",
+  "homePrayerOfferedStatus": "अदा की गई",
+  "homePrayerBeginsAt": "शुरू होती है",
+  "homeDurationMinutes": "{minutes}मि",
+  "@homeDurationMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "String"
+      }
+    }
+  },
+  "homeDurationHoursMinutes": "{hours}घं {minutes}मि",
+  "@homeDurationHoursMinutes": {
+    "placeholders": {
+      "hours": {
+        "type": "String"
+      },
+      "minutes": {
+        "type": "String"
+      }
+    }
+  },
+  "homeLearnCategoryFallbackSubtitle": "सीखने की श्रेणी • {category}",
+  "@homeLearnCategoryFallbackSubtitle": {
+    "placeholders": {
+      "category": {
+        "type": "String"
+      }
+    }
+  },
+  "homeBadgeEarnedCount": "{count} प्राप्त",
+  "@homeBadgeEarnedCount": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "homeBadgeEarnedToday": "आज प्राप्त",
+  "homeDailyLearningQuizzesTitle": "दैनिक सीखना और क्विज़",
+  "homeDailyLearningQuizzesSubtitle": "दैनिक वह्य, पैग़ंबर समीक्षा, ट्रिविया और मार्गदर्शित क्विज़ एक ही जगह रखें।",
+  "homeDailyLearningProphetsQuiz": "पैग़ंबर क्विज़",
+  "homeDailyLearningIslamicTrivia": "इस्लामी ट्रिविया",
+  "homeDailyLearningKnowledgePaths": "ज्ञान पथ",
+  "homeDailyLearningReviewMistakes": "गलतियाँ दोबारा देखें",
+  "learnCommonNewBadge": "नया",
+  "learnCategoryHolyQuranTitle": "पवित्र क़ुरआन",
+  "learnCategoryQuranLearningTitle": "क़ुरआन सीखना",
+  "learnCategoryQuranicArabicTitle": "क़ुरआनी अरबी सीखें",
+  "learnCategoryIslamicTriviaTitle": "इस्लामी ट्रिविया",
+  "learnCategoryHadithTitle": "हदीस",
+  "learnCategoryDivineLifeLessonsTitle": "दिव्य जीवन पाठ",
+  "learnCategoryWorldCreationTitle": "दुनिया और सृष्टि",
+  "learnCategoryStoriesOfProphetsTitle": "अंबिया की कथाएँ",
+  "learnCategoryBabyNamesTitle": "बच्चों के नाम",
+  "learnCategoryQuizzesTitle": "क्विज़",
+  "learnCategoryDuasTitle": "दुआएँ",
+  "learnCategorySalahTrainerTitle": "सलाह ट्रेनर",
+  "learnCategoryNotesTitle": "नोट्स",
+  "learnHubTitle": "लर्निंग हब",
+  "learnHubSubtitle": "हदीस, अंबिया, जीवन पाठ, मार्गदर्शित अभ्यास, क्विज़ और नोट्स के लिए एकीकृत सीखने का अनुभव।",
+  "learnHubQuoteTranslation": "ऐ मेरे रब, मेरे ज्ञान में वृद्धि कर।",
+  "learnHubQuoteLocation": "क़ुरआन 20:114",
+  "learnHubExploreCategoriesTitle": "श्रेणियाँ देखें",
+  "learnHubExploreCategoriesSubtitle": "सभी सीखने की श्रेणियाँ देखें और अनुभाग के अनुसार फ़िल्टर करें।",
+  "learnHubExploreByThemeTitle": "विषय के अनुसार देखें",
+  "learnHubExploreByThemeSubtitle": "सभी सीखने वाले क्षेत्रों में साझा वर्गीकरण का उपयोग करें।",
+  "learnHubGuidedPathsTitle": "मार्गदर्शित पथ",
+  "learnHubGuidedPathsSubtitle": "एक ही पथ इंजन से संचालित मिश्रित सामग्री वाले पथ।",
+  "learnHubSavedAndNotesTitle": "सहेजे गए और नोट्स",
+  "learnHubSavedAndNotesSubtitle": "सभी लर्न डोमेनों में एकीकृत सहेजा गया और नोट दृश्य।",
+  "learnHubKnowledgeConstellationSubtitle": "डोमेनों के बीच साझा संबंध ग्राफ़ देखें।",
+  "learnHubSavedNotesSummary": "सहेजी गई वस्तुएँ: {saved} • नोट्स: {notes}",
+  "@learnHubSavedNotesSummary": {
+    "placeholders": {
+      "saved": {},
+      "notes": {}
+    }
+  },
+  "learnHubNoSavedItems": "अभी तक कोई सहेजी गई वस्तु नहीं। इसे यहाँ रखने के लिए कोई पाठ, आयत, हदीस या नबी सहेजें।",
+  "learnHubIndexedRelationshipsCount": "{count} सूचीबद्ध संबंध",
+  "@learnHubIndexedRelationshipsCount": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "learnHubOpenKnowledgeConstellation": "ज्ञान नक्षत्र खोलें",
+  "learnHubContinueWhereYouLeftOff": "जहाँ छोड़ा था वहीं से जारी रखें",
+  "learnHubResumeAction": "फिर शुरू करें",
+  "learnHubDailyLearningTitle": "दैनिक सीखना",
+  "learnHubDailyThemeLabel": "विषय: {theme}",
+  "@learnHubDailyThemeLabel": {
+    "placeholders": {
+      "theme": {}
+    }
+  },
+  "learnHubOpenDailyReflectionAction": "दैनिक चिंतन खोलें",
+  "learnHubWriteReflectionAction": "चिंतन लिखें",
+  "learnHubSearchHint": "क़ुरआन, हदीस, अंबिया, पाठ, नामों में खोजें...",
+  "learnHubClearSearchTooltip": "खोज साफ़ करें",
+  "learnHubFilterTypeTooltip": "प्रकार के अनुसार फ़िल्टर करें",
+  "learnHubFilterThemeTooltip": "विषय के अनुसार फ़िल्टर करें",
+  "learnHubFilterDifficultyTooltip": "कठिनाई के अनुसार फ़िल्टर करें",
+  "learnHubFilterPathTooltip": "पथ के अनुसार फ़िल्टर करें",
+  "learnHubTypeAnyLabel": "प्रकार: कोई भी",
+  "learnHubTypeValueLabel": "प्रकार: {type}",
+  "@learnHubTypeValueLabel": {
+    "placeholders": {
+      "type": {}
+    }
+  },
+  "learnHubAnyTypeOption": "कोई भी प्रकार",
+  "learnHubThemeAnyLabel": "विषय: कोई भी",
+  "learnHubThemeValueLabel": "विषय: {theme}",
+  "@learnHubThemeValueLabel": {
+    "placeholders": {
+      "theme": {}
+    }
+  },
+  "learnHubAnyThemeOption": "कोई भी विषय",
+  "learnHubDifficultyAnyLabel": "कठिनाई: कोई भी",
+  "learnHubDifficultyValueLabel": "कठिनाई: {difficulty}",
+  "@learnHubDifficultyValueLabel": {
+    "placeholders": {
+      "difficulty": {}
+    }
+  },
+  "learnHubAnyDifficultyOption": "कोई भी कठिनाई",
+  "learnHubPathAnyLabel": "पथ: कोई भी",
+  "learnHubPathActiveLabel": "पथ: सक्रिय",
+  "learnHubAnyPathOption": "कोई भी पथ",
+  "learnHubSavedOnlyFilter": "केवल सहेजे गए",
+  "learnHubResultsCount": "{count} परिणाम",
+  "@learnHubResultsCount": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "learnHubNoMatchingItems": "कोई मिलती हुई वस्तु नहीं। अधिक व्यापक फ़िल्टर आज़माएँ।",
+  "learnHubPathProgress": "{completed} / {total} पूर्ण",
+  "@learnHubPathProgress": {
+    "placeholders": {
+      "completed": {},
+      "total": {}
+    }
+  },
+  "learnHubItemTypeVerse": "आयत",
+  "learnHubItemTypeHadith": "हदीस",
+  "learnHubItemTypeProphet": "नबी",
+  "learnHubItemTypeLifeLesson": "जीवन पाठ",
+  "learnHubItemTypeSalahPrayer": "सलाह नमाज़",
+  "learnHubItemTypeSurah": "सूरह",
+  "learnHubItemTypeRecitation": "तिलावत",
+  "learnHubItemTypeNameOfAllah": "अल्लाह का नाम",
+  "learnHubItemTypeBabyName": "बच्चे का नाम",
+  "learnHubItemTypeQuiz": "क्विज़",
+  "learnHubItemTypeNote": "नोट",
+  "learnHubItemTypeReflection": "चिंतन",
+  "learnHubItemTypePathStep": "पथ चरण",
+  "learnHubDifficultyIntermediate": "मध्यम",
+  "learnHubDifficultyAdvanced": "उन्नत",
+  "learnHubCategoryGroupAll": "सभी",
+  "learnHubCategoryGroupCore": "मुख्य",
+  "learnHubCategoryGroupWorship": "इबादत",
+  "learnHubCategoryGroupFamilyUtility": "परिवार और उपयोगिता",
+  "learnHubCategoryGroupNewMuslim": "नया मुस्लिम",
+  "learnHubCategoryGroupPilgrimage": "तीर्थयात्रा",
+  "learningReferencesShowLess": "कम दिखाएँ",
+  "learningReferencesShowAll": "सभी संदर्भ दिखाएँ",
+  "quranReferenceViewerReferenceLabel": "क़ुरआन {reference}",
+  "@quranReferenceViewerReferenceLabel": {
+    "placeholders": {
+      "reference": {}
+    }
+  },
+  "quranReferenceViewerNotFound": "संदर्भ नहीं मिला।",
+  "quranReferenceViewerOpenInReader": "रीडर में आयत खोलें",
+  "quranReferenceViewerRelatedLifeLessons": "संबंधित जीवन पाठ",
+  "quranReferenceViewerRelatedHadith": "संबंधित हदीस",
+  "quranReferenceViewerRelatedProphets": "संबंधित अंबिया",
+  "quranReferenceViewerRelatedJourneys": "संबंधित यात्राएँ",
+  "batch9ReviewProphetsAction": "अंबिया की समीक्षा करें",
+  "batch9QuranReflectionVerseTitle": "क़ुरआन चिंतन आयत",
+  "batch9ReviewRelatedLessonAction": "संबंधित पाठ की समीक्षा करें",
+  "batch9PracticeAsAudioTooltip": "ऑडियो के रूप में अभ्यास करें",
+  "batch9CompleteLessonAction": "पाठ पूरा करें",
+  "batch9TryQuickQuizAction": "त्वरित क्विज़ आज़माएँ",
+  "batch9CheckAnswerAction": "उत्तर जाँचें",
+  "batch9FinishLessonAction": "पाठ समाप्त करें",
+  "batch9AudioNotAddedYet": "{label} के लिए ऑडियो अभी जोड़ा नहीं गया है।",
+  "@batch9AudioNotAddedYet": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      }
+    }
+  },
+  "batch9AudioReady": "{label} के लिए ऑडियो तैयार है।",
+  "@batch9AudioReady": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      }
+    }
+  },
+  "batch9DailyReviewTitle": "दैनिक समीक्षा",
+  "batch9DailyReviewFallbackSummary": "अब तक जो सीखा है उस पर आधारित एक छोटी मिश्रित समीक्षा।",
+  "batch9ReviewCorrectFeedback": "अच्छा। यह अब और मज़बूत हो रहा है।",
+  "batch9ReviewRetryFeedback": "ठीक है। यह आइटम जल्दी फिर आएगा।",
+  "batch9ListenOnlyTitle": "केवल सुनें",
+  "batch9AudioPracticeTitle": "ऑडियो अभ्यास",
+  "batch9AudioCue": "{context} • {label}",
+  "@batch9AudioCue": {
+    "placeholders": {
+      "context": {
+        "type": "String"
+      },
+      "label": {
+        "type": "String"
+      }
+    }
+  },
+  "batch9QuranWordsSubtitle": "लोड की गई मुख्य शब्द सूची से अधिक आवृत्ति वाले क़ुरआनी शब्द सीखें।",
+  "batch9QuranWordsStudyBands": "अध्ययन स्तर",
+  "batch9QuranWordsTop25": "शीर्ष 25",
+  "batch9QuranWordsTop50": "शीर्ष 50",
+  "batch9QuranWordsTop100": "शीर्ष 100",
+  "batch9QuranWordsAllLoaded": "सभी लोड हो चुके",
+  "batch9QuranWordsSortMostFrequent": "सबसे अधिक बार आने वाले",
+  "batch9QuranWordsSortRank": "शीर्ष सूची क्रम",
+  "batch9QuranWordsSearchHint": "लिप्यंतरण या अर्थ खोजें",
+  "batch9QuranWordsMasteredSummary": "{mastered} / {total} में महारत",
+  "@batch9QuranWordsMasteredSummary": {
+    "placeholders": {
+      "mastered": {
+        "type": "String"
+      },
+      "total": {
+        "type": "String"
+      }
+    }
+  },
+  "batch9QuranWordsFlashCard": "फ़्लैश कार्ड: {transliteration} • {meaning}",
+  "@batch9QuranWordsFlashCard": {
+    "placeholders": {
+      "transliteration": {
+        "type": "String"
+      },
+      "meaning": {
+        "type": "String"
+      }
+    }
+  },
+  "batch9QuranWordsEmpty": "अभी इस फ़िल्टर से कोई शब्द मेल नहीं खाता।",
+  "batch9QuranWordsOccurrenceSummary": "{meaning} • क़ुरआन में {count} बार",
+  "@batch9QuranWordsOccurrenceSummary": {
+    "placeholders": {
+      "meaning": {
+        "type": "String"
+      },
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "batch9QuranWordsLoadError": "क़ुरआन शब्द लोड नहीं हो सके: {error}",
+  "@batch9QuranWordsLoadError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "triviaModeQuickChallenge": "त्वरित चुनौती",
+  "triviaModeQuickChallengeSubtitle": "स्थिर अभ्यास के लिए एक छोटा मिश्रित सत्र।",
+  "triviaModeDeepDive": "गहन अध्ययन",
+  "triviaModeDeepDiveSubtitle": "अधिक गहराई वाला लंबा केंद्रित सत्र।",
+  "triviaModeDailyQuiz": "दैनिक क्विज़",
+  "triviaModeDailyQuizSubtitle": "आज के लिए एक चुना हुआ सेट, पहली पूर्णता पर इनाम के साथ।",
+  "triviaModeSurvival": "सर्वाइवल मोड",
+  "triviaModeSurvivalSubtitle": "जब तक आप चूकें नहीं या पूरा पूल समाप्त न हो जाए, जारी रखें।",
+  "triviaModeReviewMistakes": "गलतियों की समीक्षा",
+  "triviaModeReviewMistakesSubtitle": "उन प्रश्नों पर लौटें जिन्हें फिर से देखने की ज़रूरत है।",
+  "triviaDifficultyEasy": "आसान",
+  "triviaDifficultyMedium": "मध्यम",
+  "triviaDifficultyHard": "कठिन",
+  "triviaStageStateCompleted": "पूर्ण",
+  "triviaStageStateUnlocked": "अनलॉक",
+  "triviaStageStateLocked": "लॉक",
+  "triviaMasteryNew": "नया",
+  "triviaMasteryLearning": "सीख रहे हैं",
+  "triviaMasteryImproving": "सुधर रहा है",
+  "triviaMasteryMastered": "महारत हासिल",
+  "triviaStartAction": "शुरू करें",
+  "triviaQuickStartAction": "त्वरित शुरू",
+  "triviaOpenPathAction": "पथ खोलें",
+  "triviaOpenStageTooltip": "चरण खोलें",
+  "triviaQuestionsCount": "{count} प्रश्न",
+  "@triviaQuestionsCount": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "triviaHomeSubtitle": "छोटे क्विज़, दैनिक समीक्षा और कोमल पुनरावृत्ति के लिए एक शांत ज्ञान स्थान।",
+  "triviaHomeCurrentStreakLabel": "वर्तमान स्ट्रीक",
+  "triviaHomeLongestStreakCaption": "सबसे लंबी {count}",
+  "@triviaHomeLongestStreakCaption": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "triviaHomeAccuracyLabel": "शुद्धता",
+  "triviaHomeAnsweredCount": "{count} उत्तर दिए गए",
+  "@triviaHomeAnsweredCount": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "triviaHomeTriviaXpLabel": "ट्रिविया XP",
+  "triviaHomeQuizzesCompletedCount": "{count} क्विज़ पूर्ण",
+  "@triviaHomeQuizzesCompletedCount": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "triviaHomeOceanDropsLabel": "ओशन ड्रॉप्स",
+  "triviaHomeBestSurvivalCaption": "सर्वश्रेष्ठ सर्वाइवल {count}",
+  "@triviaHomeBestSurvivalCaption": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "triviaHomeContinuePreviousSessionTitle": "पिछला सत्र जारी रखें",
+  "triviaHomeContinuePreviousSessionSubtitle": "आपका अधूरा सत्र अभी भी प्रतीक्षा कर रहा है।",
+  "triviaHomeAnsweredProgress": "{answered} में से {total} उत्तर दिए गए।",
+  "@triviaHomeAnsweredProgress": {
+    "placeholders": {
+      "answered": {},
+      "total": {}
+    }
+  },
+  "triviaHomeTodayTitle": "आज",
+  "triviaHomeTodaySubtitle": "एक छोटे दैनिक सत्र से शुरू करें या उसे दोहराएँ जिसे फिर से देखने की ज़रूरत है।",
+  "triviaCompletedTodayLabel": "आज पूर्ण",
+  "triviaAvailableLabel": "उपलब्ध",
+  "triviaNoDueItemsLabel": "कोई देय आइटम नहीं",
+  "triviaDueCount": "{count} देय",
+  "@triviaDueCount": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "triviaHomeKnowledgePathsTitle": "ज्ञान पथ",
+  "triviaHomeKnowledgePathsSubtitle": "छोटे पाठों और केंद्रित चरण क्विज़ के साथ मार्गदर्शित यात्रा का पालन करें।",
+  "triviaHomeStructuredLearningTitle": "संरचित सीखना",
+  "triviaHomeStructuredLearningSubtitle": "शांत, विषय-आधारित यात्राओं में एक-एक चरण आगे बढ़ें।",
+  "triviaHomeOpenKnowledgePathsAction": "ज्ञान पथ खोलें",
+  "triviaHomeCoreModesTitle": "मुख्य मोड",
+  "triviaHomeCoreModesSubtitle": "एक छोटा मिश्रित सत्र चुनें या किसी विषय के साथ अधिक समय रहें।",
+  "triviaHomeCategoriesTitle": "श्रेणियाँ",
+  "triviaHomeCategoriesSubtitle": "किसी केंद्रित श्रेणी से शुरू करें या देखें कि आप कहाँ सबसे मज़बूत हैं।",
+  "triviaHomeNoAnswersYet": "अभी तक कोई उत्तर नहीं",
+  "triviaHomeCategoryAccuracy": "शुद्धता {percent}%",
+  "@triviaHomeCategoryAccuracy": {
+    "placeholders": {
+      "percent": {}
+    }
+  },
+  "triviaHomeReviewQueueAction": "रिव्यू कतार",
+  "triviaHomeProgressStatsAction": "प्रगति और आँकड़े",
+  "triviaHomeRecentPerformanceTitle": "हाल का प्रदर्शन",
+  "triviaHomeRecentPerformanceSubtitle": "आपके हालिया सत्रों पर एक शांत नज़र।",
+  "triviaHomeNoSessionsYetTitle": "अभी तक कोई सत्र नहीं",
+  "triviaHomeNoSessionsYetSubtitle": "एक छोटा क्विज़ शुरू करें, आपकी हालिया प्रगति यहाँ दिखाई देगी।",
+  "triviaMixedLabel": "मिश्रित",
+  "triviaHomeRecentPerformanceSummary": "{category} • {correct}/{total} सही • +{xp} XP",
+  "@triviaHomeRecentPerformanceSummary": {
+    "placeholders": {
+      "category": {},
+      "correct": {},
+      "total": {},
+      "xp": {}
+    }
+  },
+  "triviaResultsTitle": "सत्र परिणाम",
+  "triviaResultsSubtitle": "देखें क्या अच्छा हुआ और अगली समीक्षा में क्या फिर आना चाहिए।",
+  "triviaResultsScoreLabel": "स्कोर",
+  "triviaResultsXpGainedLabel": "प्राप्त XP",
+  "triviaResultsPerfectBonusIncluded": "पूर्ण स्कोर बोनस शामिल",
+  "triviaResultsReplayRewardsLighter": "दोबारा खेलने पर इनाम हल्के हैं",
+  "triviaResultsCompletedSummary": "{seconds}से में पूरा • {missed} छूटे",
+  "@triviaResultsCompletedSummary": {
+    "placeholders": {
+      "seconds": {},
+      "missed": {}
+    }
+  },
+  "triviaResultsBestRunInSession": "इस सत्र का सर्वोत्तम रन: {count}",
+  "@triviaResultsBestRunInSession": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "triviaResultsRetryStageAction": "चरण फिर करें",
+  "triviaResultsRetryAction": "फिर प्रयास करें",
+  "triviaReviewMistakesAction": "गलतियों की समीक्षा",
+  "triviaResultsBackToPathAction": "पथ पर वापस",
+  "triviaResultsGoHomeAction": "होम जाएँ",
+  "triviaResultsMissedQuestionsTitle": "छूटे हुए प्रश्न",
+  "triviaResultsMissedQuestionsSubtitle": "ये आपकी रिव्यू कतार में भी जाएँगे ताकि पुनरावृत्ति हो सके।",
+  "triviaResultsNoMissedQuestionsTitle": "कोई प्रश्न नहीं छूटा",
+  "triviaResultsNoMissedQuestionsSubtitle": "यह सत्र साफ़ रहा। आपकी रिव्यू कतार अब हल्की है।",
+  "triviaReviewMistakesTitle": "गलतियों की समीक्षा",
+  "triviaReviewMistakesSubtitle": "जो प्रश्न आपसे छूटे थे वे यहाँ फिर आते हैं जब तक वे स्थिर न हो जाएँ।",
+  "triviaReviewDueNowLabel": "अभी देय",
+  "triviaReviewImprovingLabel": "सुधर रहा है",
+  "triviaReviewMasteredLabel": "महारत हासिल",
+  "triviaReviewNoQuestionsDueTitle": "कोई समीक्षा प्रश्न देय नहीं",
+  "triviaReviewNoQuestionsDueSubtitle": "अभ्यास जारी रखें। जो प्रश्न आपसे छूटेंगे वे फिर यहाँ आएँगे।",
+  "triviaReviewStartSessionTitle": "समीक्षा सत्र शुरू करें",
+  "triviaReviewStartSessionSubtitle": "{count} आइटम तैयार हैं। कतार हाल में छूटे या अभी अस्थिर आइटमों को प्राथमिकता देती है।",
+  "@triviaReviewStartSessionSubtitle": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "triviaReviewStartAction": "समीक्षा शुरू करें",
+  "triviaReviewPriorityItemsTitle": "प्राथमिक आइटम",
+  "triviaReviewPriorityItemsSubtitle": "ये प्रश्न जल्दी देय हैं क्योंकि ये अधिक बार छूटे हैं।",
+  "triviaUnknownCategory": "अज्ञात",
+  "triviaReviewSeenCorrectIncorrect": "देखे गए {seen} • सही {correct} • गलत {incorrect}",
+  "@triviaReviewSeenCorrectIncorrect": {
+    "placeholders": {
+      "seen": {},
+      "correct": {},
+      "incorrect": {}
+    }
+  },
+  "triviaStageNotFoundTitle": "चरण नहीं मिला",
+  "triviaStageNotFoundSubtitle": "यह ज्ञान पथ चरण अभी उपलब्ध नहीं है।",
+  "triviaStageQuizTitle": "चरण क्विज़",
+  "triviaStageQuizSubtitle": "{count} केंद्रित प्रश्नों के उत्तर दें। गलत उत्तर आपकी रिव्यू कतार में भी जाएँगे।",
+  "@triviaStageQuizSubtitle": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "triviaContinueQuizAction": "क्विज़ जारी रखें",
+  "triviaStartQuizAction": "क्विज़ शुरू करें",
+  "triviaIncludedQuestionsTitle": "शामिल प्रश्न",
+  "triviaIncludedQuestionsSubtitle": "यह चरण किस बात को मज़बूत करेगा, उसका संक्षिप्त पूर्वावलोकन।",
+  "triviaNoQuestionsAvailableTitle": "कोई प्रश्न उपलब्ध नहीं",
+  "triviaNoQuestionsAvailableSubtitle": "इस चरण की परिभाषा में सही ट्रिविया प्रश्न लिंक चाहिए।",
+  "triviaKnowledgePathNotFoundTitle": "ज्ञान पथ नहीं मिला",
+  "triviaKnowledgePathNotFoundSubtitle": "यह मार्गदर्शित पथ अभी उपलब्ध नहीं है।",
+  "triviaKnowledgePathStagesCompleted": "{completed} में से {total} चरण पूर्ण",
+  "@triviaKnowledgePathStagesCompleted": {
+    "placeholders": {
+      "completed": {},
+      "total": {}
+    }
+  },
+  "triviaKnowledgePathCompleteSubtitle": "यह पथ पूरा हो चुका है। आप समीक्षा के लिए किसी भी चरण पर लौट सकते हैं।",
+  "triviaKnowledgePathIncompleteSubtitle": "हर चरण में एक छोटा पाठ और एक केंद्रित क्विज़ शामिल है।",
+  "triviaContinueStageAction": "चरण जारी रखें",
+  "triviaStartPathAction": "पथ शुरू करें",
+  "triviaContinuePathAction": "पथ जारी रखें",
+  "triviaStagesTitle": "चरण",
+  "triviaStagesSubtitle": "क्रम से आगे बढ़ें। हर पूर्ण चरण अगला चरण खोलता है।",
+  "triviaKnowledgeStageSummary": "{count} प्रश्न • +{xp} XP",
+  "@triviaKnowledgeStageSummary": {
+    "placeholders": {
+      "count": {},
+      "xp": {}
+    }
+  },
+  "triviaQuestionTypeMultipleChoice": "बहुविकल्पी",
+  "triviaQuestionTypeTrueFalse": "सही या गलत",
+  "triviaCategoryQuranTitle": "क़ुरआन",
+  "triviaCategoryQuranSubtitle": "आयतें, सूरहें, विषय और समझ।",
+  "triviaCategoryProphetsTitle": "अंबिया",
+  "triviaCategoryProphetsSubtitle": "कथाएँ, सबक और नबियों की समय-रेखाएँ।",
+  "triviaCategoryHadithTitle": "हदीस",
+  "triviaCategoryHadithSubtitle": "बुनियादी रिवायतें और उनके अर्थ।",
+  "triviaCategoryHistoryTitle": "इतिहास",
+  "triviaCategoryHistorySubtitle": "इस्लामी इतिहास के लोग, स्थान और महत्वपूर्ण घटनाएँ।",
+  "triviaCategoryGeneralTitle": "सामान्य ज्ञान",
+  "triviaCategoryGeneralSubtitle": "मुख्य इस्लामी विषयों की व्यापक समीक्षा।",
+  "triviaCategoryRamadanTitle": "रमज़ान",
+  "triviaCategoryRamadanSubtitle": "रोज़ा, फ़ज़ीलतें, रातें और रमज़ान के अमल।",
+  "triviaCategorySalahTitle": "सलाह",
+  "triviaCategorySalahSubtitle": "नमाज़ के समय, रकअतें, शर्तें और आदाब।",
+  "triviaCategoryDuaTitle": "दुआ",
+  "triviaCategoryDuaSubtitle": "मुनाजात, ज़िक्र और दैनिक दुआएँ।",
+  "triviaCategorySeerahTitle": "सीरत",
+  "triviaCategorySeerahSubtitle": "रसूल ﷺ की ज़िंदगी और मिशन।",
+  "triviaCategoryWomenInIslamTitle": "इस्लाम में महिलाएँ",
+  "triviaCategoryWomenInIslamSubtitle": "महत्वपूर्ण महिलाएँ, आदर्श और योगदान।",
+  "triviaCategoryAkhlaqTitle": "अख़लाक़",
+  "triviaCategoryAkhlaqSubtitle": "अच्छे आचरण, इख़लास, सब्र, रहमत और व्यवहार।",
+  "triviaKnowledgePathsPageTitle": "ज्ञान पथ",
+  "triviaKnowledgePathsPageSubtitle": "संरचित क्विज़ पथ जो समझ को कदम-दर-कदम बनाते हैं।",
+  "triviaKnowledgePathsEmptyTitle": "अभी कोई ज्ञान पथ नहीं",
+  "triviaKnowledgePathsEmptySubtitle": "जब संरचित अध्ययन मॉड्यूल तैयार होंगे, तब पथ यहाँ दिखाई देंगे।",
+  "triviaKnowledgePathsProgressLabel": "{completed}/{total} चरण पूर्ण",
+  "@triviaKnowledgePathsProgressLabel": {
+    "placeholders": {
+      "completed": {
+        "type": "String"
+      },
+      "total": {
+        "type": "String"
+      }
+    }
+  },
+  "triviaKnowledgePathFoundationsTitle": "इस्लाम की बुनियादें",
+  "triviaKnowledgePathFoundationsDescription": "मुख्य मान्यताओं, वह्य, नमाज़ और दुआ पर आधारित शुरुआती अनुकूल पथ।",
+  "triviaKnowledgePathProphetsTitle": "अंबिया की यात्रा",
+  "triviaKnowledgePathProphetsDescription": "नबियों, उनकी कथाओं और उनके सबकों पर एक संरचित पथ।",
+  "triviaKnowledgePathQuranTitle": "क़ुरआन को समझना",
+  "triviaKnowledgePathQuranDescription": "वह्य, संरचना, प्रसिद्ध सूरहों और क़ुरआन के साथ जीने की समझ विकसित करें।",
+  "triviaKnowledgePathSalahTitle": "सलाह सीखना",
+  "triviaKnowledgePathSalahDescription": "नमाज़, उसकी शर्तों, रकअतों और ख़ुशू की समझ को मज़बूत करें।",
+  "triviaKnowledgeStageFoundationsWhatIsIslam": "इस्लाम क्या है?",
+  "triviaKnowledgeStageFoundationsRevelation": "वह्य और मार्गदर्शन",
+  "triviaKnowledgeStageFoundationsProphets": "अंबिया",
+  "triviaKnowledgeStageFoundationsPrayer": "नमाज़ और इबादत",
+  "triviaKnowledgeStageFoundationsFastingDua": "रोज़ा और दुआ",
+  "triviaKnowledgeStageProphetsFirst": "पहले नबी",
+  "triviaKnowledgeStageProphetsNuhHudSalih": "नूह, हूद और सालेह",
+  "triviaKnowledgeStageProphetsIbrahimFamily": "इब्राहीम और उनका परिवार",
+  "triviaKnowledgeStageProphetsMusaHarun": "मूसा और हारून",
+  "triviaKnowledgeStageProphetsKingsWisdomTrial": "बादशाहत, हिकमत और परीक्षा",
+  "triviaKnowledgeStageProphetsIsaFinalMessenger": "ईसा और अंतिम रसूल",
+  "triviaKnowledgeStageQuranWhatIs": "क़ुरआन क्या है?",
+  "triviaKnowledgeStageQuranRevelationBegins": "वह्य की शुरुआत",
+  "triviaKnowledgeStageQuranStructureTerms": "संरचना और शब्दावली",
+  "triviaKnowledgeStageQuranFamousSurahs": "प्रसिद्ध सूरहें",
+  "triviaKnowledgeStageQuranLivingWithIt": "क़ुरआन के साथ जीना",
+  "triviaKnowledgeStageSalahFiveDailyPrayers": "पाँच दैनिक नमाज़ें",
+  "triviaKnowledgeStageSalahConditions": "नमाज़ की शर्तें",
+  "triviaKnowledgeStageSalahInsideRakah": "एक रकअत के भीतर",
+  "triviaKnowledgeStageSalahCongregationJumuah": "जमाअत और जुमुआ",
+  "triviaKnowledgeStageSalahSunnahKhushu": "सुन्नत और ख़ुशू",
+  "triviaSessionPageTitle": "ट्रिविया सत्र",
+  "triviaSessionNoActiveTitle": "कोई सक्रिय क्विज़ सत्र नहीं",
+  "triviaSessionNoActiveSubtitle": "हब से क्विज़ शुरू करें या वहीं से अपना पिछला सत्र फिर शुरू करें।",
+  "triviaSessionCorrectAnswer": "सही उत्तर",
+  "triviaSessionReviewThisPoint": "इस बिंदु की समीक्षा करें",
+  "triviaSessionSeeResults": "परिणाम देखें",
+  "triviaSessionFinish": "समाप्त करें",
+  "triviaSessionNext": "अगला",
+  "triviaSessionLeaveTitle": "इस सत्र से बाहर निकलें?",
+  "triviaSessionLeaveSubtitle": "आप इस सत्र को रखकर बाद में फिर शुरू कर सकते हैं, या अभी छोड़ सकते हैं।",
+  "triviaSessionResumeLater": "बाद में जारी रखें",
+  "triviaSessionDiscard": "छोड़ें",
+  "triviaStatsTitle": "ट्रिविया आँकड़े",
+  "triviaStatsSubtitle": "अपनी सीखने की लय, समीक्षा की मज़बूती और श्रेणी प्रदर्शन ट्रैक करें।",
+  "triviaStatsQuestionsAnswered": "उत्तर दिए गए प्रश्न",
+  "triviaStatsQuizzesCompleted": "पूर्ण किए गए क्विज़",
+  "triviaStatsCorrect": "सही",
+  "triviaStatsIncorrect": "गलत",
+  "triviaStatsOverallAccuracy": "कुल शुद्धता",
+  "triviaStatsDailyQuizStreak": "दैनिक क्विज़ स्ट्रीक",
+  "triviaStatsLongestStreak": "सबसे लंबी स्ट्रीक: {value}",
+  "@triviaStatsLongestStreak": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "triviaStatsXp": "ट्रिविया XP",
+  "triviaStatsOceanDrops": "ओशन ड्रॉप्स",
+  "triviaStatsPerformanceSnapshotTitle": "प्रदर्शन झलक",
+  "triviaStatsNotEnoughData": "अभी पर्याप्त डेटा नहीं",
+  "triviaStatsPerformanceSnapshotBody": "सबसे मज़बूत: {strongest} • सबसे कमज़ोर: {weakest} • अभी देय: {dueCount} • महारत: {masteredCount}",
+  "@triviaStatsPerformanceSnapshotBody": {
+    "placeholders": {
+      "strongest": {
+        "type": "String"
+      },
+      "weakest": {
+        "type": "String"
+      },
+      "dueCount": {
+        "type": "String"
+      },
+      "masteredCount": {
+        "type": "String"
+      }
+    }
+  },
+  "triviaStatsCategoryBreakdownTitle": "श्रेणी विभाजन",
+  "triviaStatsCategoryBreakdownSubtitle": "देखें हर अध्ययन क्षेत्र कैसा चल रहा है।",
+  "triviaStatsCategoryBreakdownRow": "{answered} उत्तर दिए गए • {accuracy}% शुद्धता • {quizzes} क्विज़",
+  "@triviaStatsCategoryBreakdownRow": {
+    "placeholders": {
+      "answered": {
+        "type": "String"
+      },
+      "accuracy": {
+        "type": "String"
+      },
+      "quizzes": {
+        "type": "String"
       }
     }
   }

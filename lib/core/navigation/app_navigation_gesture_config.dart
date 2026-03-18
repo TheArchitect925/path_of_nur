@@ -18,6 +18,7 @@ class AppNavigationGestureConfig {
   static const bool debugLogging = false;
 
   static const List<String> excludedRoutePrefixes = <String>[
+    '/quran/surah/',
     '/learn/quran/surah/',
     '/learn/quran/reader',
     '/learn/quran/app',

@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../core/theme/app_colors.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../application/trivia_controller.dart';
 import '../application/trivia_repository.dart';
 import '../domain/trivia_models.dart';
+import 'trivia_metadata_localization.dart';
+import 'trivia_ui_localization.dart';
 import 'widgets/trivia_widgets.dart';
 
 class IslamicTriviaSessionPage extends ConsumerStatefulWidget {
@@ -21,6 +25,8 @@ class _IslamicTriviaSessionPageState
     extends ConsumerState<IslamicTriviaSessionPage> {
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final numberFormat = NumberFormat.decimalPattern(l10n.localeName);
     final state = ref.watch(triviaControllerProvider);
     final controller = ref.read(triviaControllerProvider.notifier);
     final session = state.activeSession;
@@ -31,21 +37,25 @@ class _IslamicTriviaSessionPageState
     if (session == null || question == null) {
       return Scaffold(
         backgroundColor: AppColors.background,
-        appBar: AppBar(title: const Text('Islamic Trivia')),
-        body: const Padding(
+        appBar: AppBar(title: Text(l10n.triviaSessionPageTitle)),
+        body: Padding(
           padding: EdgeInsets.all(20),
           child: TriviaEmptyStateCard(
-            title: 'No active session',
-            subtitle:
-                'Start a new quiz from Islamic Trivia to begin a session.',
+            title: l10n.triviaSessionNoActiveTitle,
+            subtitle: l10n.triviaSessionNoActiveSubtitle,
           ),
         ),
       );
     }
 
     final categoryLabel = session.categoryId == null
-        ? 'Mixed'
-        : repository.categoryById(session.categoryId!)?.title ?? 'Mixed';
+        ? l10n.triviaMixedLabel
+        : repository.categoryById(session.categoryId!) == null
+        ? l10n.triviaMixedLabel
+        : localizedTriviaCategoryTitle(
+            l10n,
+            repository.categoryById(session.categoryId!)!,
+          );
     final progress =
         ((session.currentIndex + (questionState?.isAnswered == true ? 1 : 0)) /
                 session.questionIds.length)
@@ -55,7 +65,8 @@ class _IslamicTriviaSessionPageState
       backgroundColor: AppColors.background,
       appBar: AppBar(
         title: Text(
-          session.knowledgeStageTitle ?? session.mode.label,
+          session.knowledgeStageTitle ??
+              localizedTriviaModeLabel(l10n, session.mode),
         ),
         leading: IconButton(
           icon: const Icon(Icons.close_rounded),
@@ -77,13 +88,21 @@ class _IslamicTriviaSessionPageState
               spacing: 8,
               runSpacing: 8,
               children: [
-                _chip(context, '${session.currentIndex + 1}/${session.questionIds.length}'),
                 _chip(
                   context,
-                  session.isKnowledgePathSession ? 'Knowledge Path' : session.mode.label,
+                  l10n.homeFractionValue(
+                    numberFormat.format(session.currentIndex + 1),
+                    numberFormat.format(session.questionIds.length),
+                  ),
+                ),
+                _chip(
+                  context,
+                  session.isKnowledgePathSession
+                      ? l10n.triviaKnowledgePathsPageTitle
+                      : localizedTriviaModeLabel(l10n, session.mode),
                 ),
                 _chip(context, categoryLabel),
-                _chip(context, question.difficulty.label),
+                _chip(context, question.difficulty.localizedLabel(l10n)),
               ],
             ),
             const SizedBox(height: 16),
@@ -100,8 +119,10 @@ class _IslamicTriviaSessionPageState
                   const SizedBox(height: 16),
                   ...question.options.map((option) {
                     final isAnswered = questionState?.isAnswered == true;
-                    final isSelected = questionState?.selectedOptionId == option.id;
-                    final isCorrectOption = question.correctOptionId == option.id;
+                    final isSelected =
+                        questionState?.selectedOptionId == option.id;
+                    final isCorrectOption =
+                        question.correctOptionId == option.id;
                     final showIncorrect =
                         isAnswered && isSelected && !isCorrectOption;
                     return Padding(
@@ -139,11 +160,10 @@ class _IslamicTriviaSessionPageState
                         Expanded(
                           child: Text(
                             questionState?.isCorrect == true
-                                ? 'Correct answer'
-                                : 'Review this point',
-                            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                              fontWeight: FontWeight.w700,
-                            ),
+                                ? l10n.triviaSessionCorrectAnswer
+                                : l10n.triviaSessionReviewThisPoint,
+                            style: Theme.of(context).textTheme.titleSmall
+                                ?.copyWith(fontWeight: FontWeight.w700),
                           ),
                         ),
                       ],
@@ -199,10 +219,10 @@ class _IslamicTriviaSessionPageState
                 child: Text(
                   session.mode == TriviaMode.survival &&
                           questionState?.isCorrect == false
-                      ? 'See results'
+                      ? l10n.triviaSessionSeeResults
                       : session.isLastQuestion
-                          ? 'Finish'
-                          : 'Next',
+                      ? l10n.triviaSessionFinish
+                      : l10n.triviaSessionNext,
                 ),
               ),
             ],
@@ -213,23 +233,22 @@ class _IslamicTriviaSessionPageState
   }
 
   Future<void> _confirmQuit() async {
+    final l10n = AppLocalizations.of(context);
     final controller = ref.read(triviaControllerProvider.notifier);
     final shouldDiscard = await showDialog<bool>(
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: const Text('Leave this session?'),
-          content: const Text(
-            'You can keep this session and resume later, or discard it now.',
-          ),
+          title: Text(l10n.triviaSessionLeaveTitle),
+          content: Text(l10n.triviaSessionLeaveSubtitle),
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(false),
-              child: const Text('Resume later'),
+              child: Text(l10n.triviaSessionResumeLater),
             ),
             FilledButton.tonal(
               onPressed: () => Navigator.of(context).pop(true),
-              child: const Text('Discard'),
+              child: Text(l10n.triviaSessionDiscard),
             ),
           ],
         );
@@ -254,9 +273,9 @@ class _IslamicTriviaSessionPageState
       ),
       child: Text(
         label,
-        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-          fontWeight: FontWeight.w600,
-        ),
+        style: Theme.of(
+          context,
+        ).textTheme.bodySmall?.copyWith(fontWeight: FontWeight.w600),
       ),
     );
   }

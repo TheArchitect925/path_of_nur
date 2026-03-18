@@ -1,5 +1,7 @@
 import 'dart:math' as math;
 
+import 'package:intl/intl.dart';
+
 class CommunityOceanStats {
   const CommunityOceanStats({
     required this.totalCommunityDrops,
@@ -26,7 +28,8 @@ class CommunityOceanStats {
     return CommunityOceanStats(
       totalCommunityDrops: totalCommunityDrops ?? this.totalCommunityDrops,
       todayCommunityDrops: todayCommunityDrops ?? this.todayCommunityDrops,
-      thisWeekCommunityDrops: thisWeekCommunityDrops ?? this.thisWeekCommunityDrops,
+      thisWeekCommunityDrops:
+          thisWeekCommunityDrops ?? this.thisWeekCommunityDrops,
       thisMonthCommunityDrops:
           thisMonthCommunityDrops ?? this.thisMonthCommunityDrops,
       lastUpdatedAt: clearLastUpdatedAt
@@ -36,12 +39,12 @@ class CommunityOceanStats {
   }
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'totalCommunityDrops': totalCommunityDrops.toString(),
-        'todayCommunityDrops': todayCommunityDrops.toString(),
-        'thisWeekCommunityDrops': thisWeekCommunityDrops.toString(),
-        'thisMonthCommunityDrops': thisMonthCommunityDrops.toString(),
-        'lastUpdatedAt': lastUpdatedAt?.toIso8601String(),
-      };
+    'totalCommunityDrops': totalCommunityDrops.toString(),
+    'todayCommunityDrops': todayCommunityDrops.toString(),
+    'thisWeekCommunityDrops': thisWeekCommunityDrops.toString(),
+    'thisMonthCommunityDrops': thisMonthCommunityDrops.toString(),
+    'lastUpdatedAt': lastUpdatedAt?.toIso8601String(),
+  };
 
   static CommunityOceanStats fromJson(Map<String, dynamic>? json) {
     if (json == null) {
@@ -58,8 +61,7 @@ class CommunityOceanStats {
       todayCommunityDrops: parseBigInt(json['todayCommunityDrops']),
       thisWeekCommunityDrops: parseBigInt(json['thisWeekCommunityDrops']),
       thisMonthCommunityDrops: parseBigInt(json['thisMonthCommunityDrops']),
-      lastUpdatedAt:
-          DateTime.tryParse(json['lastUpdatedAt']?.toString() ?? ''),
+      lastUpdatedAt: DateTime.tryParse(json['lastUpdatedAt']?.toString() ?? ''),
     );
   }
 }
@@ -101,12 +103,12 @@ class PersonalWaterStats {
   }
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'totalPersonalDrops': totalPersonalDrops.toString(),
-        'personalDropsToday': personalDropsToday,
-        'personalDropsThisWeek': personalDropsThisWeek,
-        'personalDropsThisMonth': personalDropsThisMonth,
-        'lastContributionAt': lastContributionAt?.toIso8601String(),
-      };
+    'totalPersonalDrops': totalPersonalDrops.toString(),
+    'personalDropsToday': personalDropsToday,
+    'personalDropsThisWeek': personalDropsThisWeek,
+    'personalDropsThisMonth': personalDropsThisMonth,
+    'lastContributionAt': lastContributionAt?.toIso8601String(),
+  };
 
   static PersonalWaterStats fromJson(Map<String, dynamic>? json) {
     if (json == null) {
@@ -125,8 +127,9 @@ class PersonalWaterStats {
           (json['personalDropsThisWeek'] as num?)?.toInt() ?? 0,
       personalDropsThisMonth:
           (json['personalDropsThisMonth'] as num?)?.toInt() ?? 0,
-      lastContributionAt:
-          DateTime.tryParse(json['lastContributionAt']?.toString() ?? ''),
+      lastContributionAt: DateTime.tryParse(
+        json['lastContributionAt']?.toString() ?? '',
+      ),
     );
   }
 }
@@ -210,7 +213,8 @@ final List<CommunityOceanStage> communityOceanStages = <CommunityOceanStage>[
     title: 'Stream',
     shortLabel: 'Stream',
     requiredDrops: BigInt.from(1200000000),
-    description: 'A steady current shaped by many small acts arriving together.',
+    description:
+        'A steady current shaped by many small acts arriving together.',
   ),
   CommunityOceanStage(
     id: 'pond',
@@ -224,7 +228,8 @@ final List<CommunityOceanStage> communityOceanStages = <CommunityOceanStage>[
     title: 'Lake',
     shortLabel: 'Lake',
     requiredDrops: BigInt.from(9600000000000),
-    description: 'A broad body of water formed by patient, persistent offering.',
+    description:
+        'A broad body of water formed by patient, persistent offering.',
   ),
   CommunityOceanStage(
     id: 'great_lake',
@@ -238,7 +243,8 @@ final List<CommunityOceanStage> communityOceanStages = <CommunityOceanStage>[
     title: 'Inland Sea',
     shortLabel: 'Inland Sea',
     requiredDrops: BigInt.parse('33120000000000000000'),
-    description: 'An inland expanse carrying the weight of countless contributions.',
+    description:
+        'An inland expanse carrying the weight of countless contributions.',
   ),
   CommunityOceanStage(
     id: 'great_waters',
@@ -330,9 +336,7 @@ abstract class CommunityOceanSyncAdapter {
 }
 
 class LocalCommunityOceanSyncAdapter extends CommunityOceanSyncAdapter {
-  const LocalCommunityOceanSyncAdapter({
-    this.seedCommunityDrops = '500000',
-  });
+  const LocalCommunityOceanSyncAdapter({this.seedCommunityDrops = '500000'});
 
   final String seedCommunityDrops;
 
@@ -374,8 +378,9 @@ class CommunityOceanLogic {
       previousThreshold: previousThreshold,
       nextThreshold: nextThreshold,
       progress: currentProgress,
-      dropsRemainingToNext:
-          next == null ? BigInt.zero : _positiveDifference(next.requiredDrops, totalDrops),
+      dropsRemainingToNext: next == null
+          ? BigInt.zero
+          : _positiveDifference(next.requiredDrops, totalDrops),
       hasReachedCurrentStage: hasReachedAnyCommunityStage(totalDrops),
     );
   }
@@ -414,7 +419,9 @@ class CommunityOceanLogic {
     final current = getCurrentPersonalStage(personalDrops);
     final next = getNextPersonalStage(personalDrops);
     final reachedCurrent = personalDrops >= current.requiredDrops;
-    final previousThreshold = reachedCurrent ? current.requiredDrops : BigInt.zero;
+    final previousThreshold = reachedCurrent
+        ? current.requiredDrops
+        : BigInt.zero;
     final nextThreshold = next?.requiredDrops;
     return StageProgress<PersonalWaterStage>(
       currentStage: current,
@@ -428,8 +435,9 @@ class CommunityOceanLogic {
         end: nextThreshold ?? current.requiredDrops,
         clampAtOne: next == null,
       ),
-      dropsRemainingToNext:
-          next == null ? BigInt.zero : _positiveDifference(next.requiredDrops, personalDrops),
+      dropsRemainingToNext: next == null
+          ? BigInt.zero
+          : _positiveDifference(next.requiredDrops, personalDrops),
       hasReachedCurrentStage: reachedCurrent,
     );
   }
@@ -477,7 +485,7 @@ class CommunityOceanLogic {
       final liters = _formatFractional(drops, dropsPerLiter, 2);
       return ReadableWaterAmount(
         value: liters,
-        unit: 'liters',
+        unit: 'L',
         shortLabel: '$liters L',
       );
     }
@@ -523,10 +531,63 @@ class CommunityOceanLogic {
     return '${whole.toString()}.$tenths${suffixes[suffixIndex]}';
   }
 
+  static String formatLargeDropCountForLocale(BigInt drops, String locale) {
+    const suffixes = <String>[
+      '',
+      'K',
+      'M',
+      'B',
+      'T',
+      'Q',
+      'Qi',
+      'Sx',
+      'Sp',
+      'Oc',
+      'No',
+    ];
+    var value = drops;
+    var suffixIndex = 0;
+    final thousand = BigInt.from(1000);
+    while (value >= thousand && suffixIndex < suffixes.length - 1) {
+      value = value ~/ thousand;
+      suffixIndex += 1;
+    }
+
+    if (suffixIndex == 0) {
+      return NumberFormat.decimalPattern(locale).format(
+        int.tryParse(drops.toString()) ?? double.parse(drops.toString()),
+      );
+    }
+
+    final divisor = thousand.pow(suffixIndex);
+    final whole = drops ~/ divisor;
+    final remainder = drops % divisor;
+    final tenths = ((remainder * BigInt.from(10)) ~/ divisor).toInt();
+    final formattedWhole = NumberFormat.decimalPattern(
+      locale,
+    ).format(int.tryParse(whole.toString()) ?? double.parse(whole.toString()));
+    if (whole >= BigInt.from(100) || tenths == 0) {
+      return '$formattedWhole${suffixes[suffixIndex]}';
+    }
+    return '$formattedWhole.$tenths${suffixes[suffixIndex]}';
+  }
+
   static String formatReadablePercentage(double value) {
     final percentage = (value * 100).clamp(0, 100);
     if (percentage >= 10) return '${percentage.toStringAsFixed(0)}%';
     if (percentage >= 1) return '${percentage.toStringAsFixed(1)}%';
+    if (percentage <= 0) return '0%';
+    return '<1%';
+  }
+
+  static String formatReadablePercentageForLocale(double value, String locale) {
+    final percentage = (value * 100).clamp(0, 100);
+    if (percentage >= 10) {
+      return '${NumberFormat.decimalPattern(locale).format(percentage.round())}%';
+    }
+    if (percentage >= 1) {
+      return '${NumberFormat.decimalPatternDigits(locale: locale, decimalDigits: 1).format(percentage)}%';
+    }
     if (percentage <= 0) return '0%';
     return '<1%';
   }
@@ -538,6 +599,16 @@ class CommunityOceanLogic {
     if (total <= BigInt.zero || contribution <= BigInt.zero) return '0%';
     final ratio = _bigIntToDouble(contribution) / _bigIntToDouble(total);
     return formatReadablePercentage(ratio);
+  }
+
+  static String formatContributionPercentForLocale({
+    required BigInt contribution,
+    required BigInt total,
+    required String locale,
+  }) {
+    if (total <= BigInt.zero || contribution <= BigInt.zero) return '0%';
+    final ratio = _bigIntToDouble(contribution) / _bigIntToDouble(total);
+    return formatReadablePercentageForLocale(ratio, locale);
   }
 
   static String formatReadableStageDistance(BigInt drops) {
@@ -576,13 +647,20 @@ class CommunityOceanLogic {
     return double.parse(value.toString());
   }
 
-  static String _formatFractional(BigInt numerator, BigInt denominator, int scale) {
+  static String _formatFractional(
+    BigInt numerator,
+    BigInt denominator,
+    int scale,
+  ) {
     final whole = numerator ~/ denominator;
     final remainder = numerator % denominator;
     if (remainder == BigInt.zero) return whole.toString();
 
     final factor = BigInt.from(math.pow(10, scale).toInt());
-    final fraction = ((remainder * factor) ~/ denominator).toString().padLeft(scale, '0');
+    final fraction = ((remainder * factor) ~/ denominator).toString().padLeft(
+      scale,
+      '0',
+    );
     final trimmed = fraction.replaceFirst(RegExp(r'0+$'), '');
     if (trimmed.isEmpty) return whole.toString();
     return '${whole.toString()}.$trimmed';

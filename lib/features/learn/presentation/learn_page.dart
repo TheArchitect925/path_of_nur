@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 
 import '../../../core/theme/app_colors.dart';
-import '../../../shared/theme/islamic_icons.dart';
+import '../../../l10n/app_localizations.dart';
 import '../../../shared/widgets/premium_card.dart';
+import '../../../shared/widgets/quran_quote_block.dart';
 import 'data/learn_category_catalog.dart';
 import 'models/learn_category_item.dart';
 import '../shared/application/learn_system_engine_provider.dart';
@@ -46,6 +48,8 @@ class _LearnPageState extends ConsumerState<LearnPage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final numberFormat = NumberFormat.decimalPattern(l10n.localeName);
     final summary = ref.watch(learnUnifiedSummaryV2Provider);
     final themes = ref.watch(learnSharedThemesProvider);
     final paths = ref.watch(learnUnifiedPathsProvider);
@@ -53,7 +57,7 @@ class _LearnPageState extends ConsumerState<LearnPage> {
     final relations = ref.watch(learnUnifiedRelationshipsProvider);
     final searchFilters = ref.watch(learnUnifiedSearchProvider);
     final searchResults = ref.watch(learnUnifiedSearchResultsProvider);
-    final catalogItems = LearnCategoryCatalog.items;
+    final catalogItems = LearnCategoryCatalog.activeItems;
     final categoryGroups = _buildCategoryGroups(catalogItems);
     final visibleCatalogItems = _selectedCategoryGroup == _allCategoryGroups
         ? catalogItems
@@ -69,15 +73,21 @@ class _LearnPageState extends ConsumerState<LearnPage> {
     }
 
     return LearnHubPageScaffold(
-      headerIcon: IslamicIcons.quran,
-      title: 'Learning Hub',
-      subtitle:
-          'One unified learning experience across Qur’an, Hadith, Prophets, lessons, names, quizzes, and notes.',
+      headerIcon: Icons.school_rounded,
+      title: l10n.learnHubTitle,
+      subtitle: l10n.learnHubSubtitle,
+      quote: QuranQuote(
+        arabic: 'رَبِّ زِدْنِي عِلْمًا',
+        transliteration: 'Rabbi zidni ilma',
+        translation: l10n.learnHubQuoteTranslation,
+        locationLabel: l10n.learnHubQuoteLocation,
+      ),
       children: [
-        _buildContinueAndDaily(summary),
+        _buildContinueAndDaily(summary, l10n),
         const SizedBox(height: 12),
         _buildSearchFilters(
           context,
+          l10n: l10n,
           searchFilters: searchFilters,
           themes: themes,
           paths: paths,
@@ -89,13 +99,18 @@ class _LearnPageState extends ConsumerState<LearnPage> {
             searchFilters.difficulty != null ||
             searchFilters.pathId != null) ...[
           const SizedBox(height: 10),
-          _buildSearchResults(context, searchResults),
+          _buildSearchResults(
+            context,
+            l10n: l10n,
+            results: searchResults,
+            numberFormat: numberFormat,
+          ),
           const SizedBox(height: 12),
         ],
         _sectionTitle(
           context,
-          'Explore Categories',
-          'Browse all Learn categories and filter by section.',
+          l10n.learnHubExploreCategoriesTitle,
+          l10n.learnHubExploreCategoriesSubtitle,
         ),
         const SizedBox(height: 8),
         _buildCategoryGroupScrollBar(context, categoryGroups),
@@ -113,8 +128,8 @@ class _LearnPageState extends ConsumerState<LearnPage> {
         const SizedBox(height: 12),
         _sectionTitle(
           context,
-          'Explore by Theme',
-          'Use a shared taxonomy across all learning domains.',
+          l10n.learnHubExploreByThemeTitle,
+          l10n.learnHubExploreByThemeSubtitle,
         ),
         const SizedBox(height: 8),
         Wrap(
@@ -136,16 +151,16 @@ class _LearnPageState extends ConsumerState<LearnPage> {
         const SizedBox(height: 12),
         _sectionTitle(
           context,
-          'Guided Paths',
-          'Mixed-content paths powered by one path engine.',
+          l10n.learnHubGuidedPathsTitle,
+          l10n.learnHubGuidedPathsSubtitle,
         ),
         const SizedBox(height: 8),
-        ...paths.map((path) => _pathCard(context, path)),
+        ...paths.map((path) => _pathCard(context, l10n, numberFormat, path)),
         const SizedBox(height: 12),
         _sectionTitle(
           context,
-          'Saved & Notes',
-          'Unified saved and note view across Learn domains.',
+          l10n.learnHubSavedAndNotesTitle,
+          l10n.learnHubSavedAndNotesSubtitle,
         ),
         const SizedBox(height: 8),
         PremiumCard(
@@ -153,16 +168,18 @@ class _LearnPageState extends ConsumerState<LearnPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Saved items: ${summary.savedCount} • Notes: ${summary.noteCount}',
+                l10n.learnHubSavedNotesSummary(
+                  numberFormat.format(summary.savedCount),
+                  numberFormat.format(summary.noteCount),
+                  numberFormat.format(summary.savedCount + summary.noteCount),
+                ),
                 style: Theme.of(
                   context,
                 ).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600),
               ),
               const SizedBox(height: 8),
               if (savedItems.isEmpty)
-                const Text(
-                  'No saved items yet. Save any lesson, verse, hadith, or prophet to keep it here.',
-                )
+                Text(l10n.learnHubNoSavedItems)
               else
                 ...savedItems.take(5).map((item) {
                   return Padding(
@@ -173,7 +190,13 @@ class _LearnPageState extends ConsumerState<LearnPage> {
                         children: [
                           const Icon(Icons.bookmark_rounded, size: 16),
                           const SizedBox(width: 8),
-                          Expanded(child: Text(item.title)),
+                          Expanded(
+                            child: Text(
+                              item.title,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
                           const Icon(Icons.chevron_right_rounded, size: 16),
                         ],
                       ),
@@ -186,8 +209,8 @@ class _LearnPageState extends ConsumerState<LearnPage> {
         const SizedBox(height: 12),
         _sectionTitle(
           context,
-          'Knowledge Constellation',
-          'Explore the shared relationship graph across domains.',
+          l10n.learningJourneyBrowseKnowledgeConstellationTitle,
+          l10n.learnHubKnowledgeConstellationSubtitle,
         ),
         const SizedBox(height: 8),
         PremiumCard(
@@ -195,7 +218,9 @@ class _LearnPageState extends ConsumerState<LearnPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                '${relations.length} indexed relationships',
+                l10n.learnHubIndexedRelationshipsCount(
+                  numberFormat.format(relations.length),
+                ),
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: AppColors.onSurfaceSubtle,
                 ),
@@ -204,7 +229,7 @@ class _LearnPageState extends ConsumerState<LearnPage> {
               FilledButton.tonalIcon(
                 onPressed: () => context.pushNamed('knowledgeConstellation'),
                 icon: const Icon(Icons.hub_outlined),
-                label: const Text('Open Knowledge Constellation'),
+                label: Text(l10n.learnHubOpenKnowledgeConstellation),
               ),
             ],
           ),
@@ -213,7 +238,10 @@ class _LearnPageState extends ConsumerState<LearnPage> {
     );
   }
 
-  Widget _buildContinueAndDaily(LearnUnifiedSummaryV2 summary) {
+  Widget _buildContinueAndDaily(
+    LearnUnifiedSummaryV2 summary,
+    AppLocalizations l10n,
+  ) {
     return Column(
       children: [
         if (summary.continueItem != null)
@@ -222,7 +250,7 @@ class _LearnPageState extends ConsumerState<LearnPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Continue where you left of',
+                  l10n.learnHubContinueWhereYouLeftOff,
                   style: Theme.of(
                     context,
                   ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
@@ -240,7 +268,7 @@ class _LearnPageState extends ConsumerState<LearnPage> {
                 FilledButton.tonalIcon(
                   onPressed: () => _openItem(context, summary.continueItem!),
                   icon: const Icon(Icons.play_arrow_rounded),
-                  label: const Text('Resume'),
+                  label: Text(l10n.learnHubResumeAction),
                 ),
               ],
             ),
@@ -251,20 +279,24 @@ class _LearnPageState extends ConsumerState<LearnPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Daily Learning',
+                l10n.learnHubDailyLearningTitle,
                 style: Theme.of(
                   context,
                 ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
               ),
               const SizedBox(height: 4),
               Text(
-                'Theme: ${summary.dailyItem.theme.label}',
+                l10n.learnHubDailyThemeLabel(summary.dailyItem.theme.label),
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: AppColors.onSurfaceSubtle,
                 ),
               ),
               const SizedBox(height: 6),
-              Text(summary.dailyItem.item.title),
+              Text(
+                summary.dailyItem.item.title,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
               const SizedBox(height: 2),
               Text(
                 summary.dailyItem.item.summary,
@@ -279,12 +311,12 @@ class _LearnPageState extends ConsumerState<LearnPage> {
                   FilledButton.tonalIcon(
                     onPressed: () => _openItem(context, summary.dailyItem.item),
                     icon: const Icon(Icons.auto_awesome_rounded),
-                    label: const Text('Open Daily Reflection'),
+                    label: Text(l10n.learnHubOpenDailyReflectionAction),
                   ),
                   FilledButton.tonalIcon(
                     onPressed: () => context.pushNamed('journalCreate'),
                     icon: const Icon(Icons.edit_note_rounded),
-                    label: const Text('Write Reflection'),
+                    label: Text(l10n.learnHubWriteReflectionAction),
                   ),
                 ],
               ),
@@ -297,6 +329,7 @@ class _LearnPageState extends ConsumerState<LearnPage> {
 
   Widget _buildSearchFilters(
     BuildContext context, {
+    required AppLocalizations l10n,
     required LearnSearchFilterState searchFilters,
     required List<LearnSharedTheme> themes,
     required List<LearnUnifiedPath> paths,
@@ -328,10 +361,9 @@ class _LearnPageState extends ConsumerState<LearnPage> {
                   onChanged: (value) => ref
                       .read(learnUnifiedSearchProvider.notifier)
                       .setQuery(value),
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     border: InputBorder.none,
-                    hintText:
-                        'Search across Qur’an, Hadith, Prophets, lessons, names...',
+                    hintText: l10n.learnHubSearchHint,
                     isCollapsed: true,
                   ),
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
@@ -343,6 +375,7 @@ class _LearnPageState extends ConsumerState<LearnPage> {
                 IconButton(
                   onPressed: () =>
                       ref.read(learnUnifiedSearchProvider.notifier).clear(),
+                  tooltip: l10n.learnHubClearSearchTooltip,
                   icon: const Icon(Icons.close_rounded),
                 ),
             ],
@@ -358,15 +391,22 @@ class _LearnPageState extends ConsumerState<LearnPage> {
               children: [
                 _filterMenuChip<LearnItemType?>(
                   context,
+                  tooltip: l10n.learnHubFilterTypeTooltip,
                   label: searchFilters.type == null
-                      ? 'Type: Any'
-                      : 'Type: ${_itemTypeLabel(searchFilters.type!)}',
+                      ? l10n.learnHubTypeAnyLabel
+                      : l10n.learnHubTypeValueLabel(
+                          _itemTypeLabel(l10n, searchFilters.type!),
+                          _itemTypeLabel(l10n, searchFilters.type!),
+                        ),
                   items: [
-                    const PopupMenuItem(value: null, child: Text('Any type')),
+                    PopupMenuItem(
+                      value: null,
+                      child: Text(l10n.learnHubAnyTypeOption),
+                    ),
                     ...LearnItemType.values.map(
                       (value) => PopupMenuItem(
                         value: value,
-                        child: Text(_itemTypeLabel(value)),
+                        child: Text(_itemTypeLabel(l10n, value)),
                       ),
                     ),
                   ],
@@ -377,11 +417,18 @@ class _LearnPageState extends ConsumerState<LearnPage> {
                 const SizedBox(width: 8),
                 _filterMenuChip<String?>(
                   context,
+                  tooltip: l10n.learnHubFilterThemeTooltip,
                   label: searchFilters.themeId == null
-                      ? 'Theme: Any'
-                      : 'Theme: ${_themeLabel(themes, searchFilters.themeId!)}',
+                      ? l10n.learnHubThemeAnyLabel
+                      : l10n.learnHubThemeValueLabel(
+                          _themeLabel(themes, searchFilters.themeId!),
+                          _themeLabel(themes, searchFilters.themeId!),
+                        ),
                   items: [
-                    const PopupMenuItem(value: null, child: Text('Any theme')),
+                    PopupMenuItem(
+                      value: null,
+                      child: Text(l10n.learnHubAnyThemeOption),
+                    ),
                     ...themes.map(
                       (theme) => PopupMenuItem(
                         value: theme.id,
@@ -396,18 +443,22 @@ class _LearnPageState extends ConsumerState<LearnPage> {
                 const SizedBox(width: 8),
                 _filterMenuChip<LearnDifficulty?>(
                   context,
+                  tooltip: l10n.learnHubFilterDifficultyTooltip,
                   label: searchFilters.difficulty == null
-                      ? 'Difficulty: Any'
-                      : 'Difficulty: ${_difficultyLabel(searchFilters.difficulty!)}',
+                      ? l10n.learnHubDifficultyAnyLabel
+                      : l10n.learnHubDifficultyValueLabel(
+                          _difficultyLabel(l10n, searchFilters.difficulty!),
+                          _difficultyLabel(l10n, searchFilters.difficulty!),
+                        ),
                   items: [
-                    const PopupMenuItem(
+                    PopupMenuItem(
                       value: null,
-                      child: Text('Any difficulty'),
+                      child: Text(l10n.learnHubAnyDifficultyOption),
                     ),
                     ...LearnDifficulty.values.map(
                       (difficulty) => PopupMenuItem(
                         value: difficulty,
-                        child: Text(_difficultyLabel(difficulty)),
+                        child: Text(_difficultyLabel(l10n, difficulty)),
                       ),
                     ),
                   ],
@@ -418,11 +469,15 @@ class _LearnPageState extends ConsumerState<LearnPage> {
                 const SizedBox(width: 8),
                 _filterMenuChip<String?>(
                   context,
+                  tooltip: l10n.learnHubFilterPathTooltip,
                   label: searchFilters.pathId == null
-                      ? 'Path: Any'
-                      : 'Path: Active',
+                      ? l10n.learnHubPathAnyLabel
+                      : l10n.learnHubPathActiveLabel,
                   items: [
-                    const PopupMenuItem(value: null, child: Text('Any path')),
+                    PopupMenuItem(
+                      value: null,
+                      child: Text(l10n.learnHubAnyPathOption),
+                    ),
                     ...paths.map(
                       (path) => PopupMenuItem(
                         value: path.id,
@@ -440,7 +495,7 @@ class _LearnPageState extends ConsumerState<LearnPage> {
                   onSelected: (value) => ref
                       .read(learnUnifiedSearchProvider.notifier)
                       .setSavedOnly(value),
-                  label: const Text('Saved only'),
+                  label: Text(l10n.learnHubSavedOnlyFilter),
                 ),
               ],
             ),
@@ -451,22 +506,24 @@ class _LearnPageState extends ConsumerState<LearnPage> {
   }
 
   Widget _buildSearchResults(
-    BuildContext context,
-    List<LearnUnifiedContentItem> results,
-  ) {
+    BuildContext context, {
+    required AppLocalizations l10n,
+    required List<LearnUnifiedContentItem> results,
+    required NumberFormat numberFormat,
+  }) {
     return PremiumCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            '${results.length} results',
+            l10n.learnHubResultsCount(numberFormat.format(results.length)),
             style: Theme.of(
               context,
             ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
           ),
           const SizedBox(height: 8),
           if (results.isEmpty)
-            const Text('No matching items. Try broader filters.')
+            Text(l10n.learnHubNoMatchingItems)
           else
             ...results
                 .take(8)
@@ -481,7 +538,11 @@ class _LearnPageState extends ConsumerState<LearnPage> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(item.title),
+                                Text(
+                                  item.title,
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
                                 Text(
                                   item.subtitle,
                                   style: Theme.of(context).textTheme.bodySmall,
@@ -516,6 +577,7 @@ class _LearnPageState extends ConsumerState<LearnPage> {
     BuildContext context,
     List<String> categoryGroups,
   ) {
+    final l10n = AppLocalizations.of(context);
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
@@ -525,7 +587,7 @@ class _LearnPageState extends ConsumerState<LearnPage> {
               return Padding(
                 padding: const EdgeInsets.only(right: 8),
                 child: ChoiceChip(
-                  label: Text(_categoryGroupLabel(group)),
+                  label: Text(_categoryGroupLabel(l10n, group)),
                   selected: selected,
                   onSelected: (_) =>
                       setState(() => _selectedCategoryGroup = group),
@@ -537,7 +599,12 @@ class _LearnPageState extends ConsumerState<LearnPage> {
     );
   }
 
-  Widget _pathCard(BuildContext context, LearnUnifiedPath path) {
+  Widget _pathCard(
+    BuildContext context,
+    AppLocalizations l10n,
+    NumberFormat numberFormat,
+    LearnUnifiedPath path,
+  ) {
     final progress = ref.watch(learnUnifiedProgressProvider);
     final completed = path.steps
         .where((step) => progress.completedIds.contains(step.itemId))
@@ -568,15 +635,26 @@ class _LearnPageState extends ConsumerState<LearnPage> {
               children: [
                 Text(
                   path.title,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                   style: Theme.of(
                     context,
                   ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
                 ),
                 const SizedBox(height: 6),
-                Text(path.summary),
+                Text(
+                  path.summary,
+                  maxLines: 3,
+                  overflow: TextOverflow.ellipsis,
+                ),
                 const SizedBox(height: 8),
                 Text(
-                  '$completed / ${path.steps.length} completed',
+                  l10n.learnHubPathProgress(
+                    numberFormat.format(completed),
+                    numberFormat.format(path.steps.length),
+                    numberFormat.format(completed),
+                    numberFormat.format(path.steps.length),
+                  ),
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: AppColors.onSurfaceSubtle,
                   ),
@@ -638,8 +716,10 @@ class _LearnPageState extends ConsumerState<LearnPage> {
     required String label,
     required List<PopupMenuEntry<T>> items,
     required ValueChanged<T> onSelected,
+    String? tooltip,
   }) {
     return PopupMenuButton<T>(
+      tooltip: tooltip,
       itemBuilder: (_) => items,
       onSelected: onSelected,
       child: Container(
@@ -662,34 +742,34 @@ class _LearnPageState extends ConsumerState<LearnPage> {
     );
   }
 
-  String _itemTypeLabel(LearnItemType value) {
+  String _itemTypeLabel(AppLocalizations l10n, LearnItemType value) {
     switch (value) {
       case LearnItemType.verse:
-        return 'Verse';
+        return l10n.learnHubItemTypeVerse;
       case LearnItemType.hadith:
-        return 'Hadith';
+        return l10n.learnHubItemTypeHadith;
       case LearnItemType.prophet:
-        return 'Prophet';
+        return l10n.learnHubItemTypeProphet;
       case LearnItemType.lifeLesson:
-        return 'Life Lesson';
+        return l10n.learnHubItemTypeLifeLesson;
       case LearnItemType.salahPrayer:
-        return 'Salah Prayer';
+        return l10n.learnHubItemTypeSalahPrayer;
       case LearnItemType.surah:
-        return 'Surah';
+        return l10n.learnHubItemTypeSurah;
       case LearnItemType.recitation:
-        return 'Recitation';
+        return l10n.learnHubItemTypeRecitation;
       case LearnItemType.name:
-        return 'Name of Allah';
+        return l10n.learnHubItemTypeNameOfAllah;
       case LearnItemType.babyName:
-        return 'Baby Name';
+        return l10n.learnHubItemTypeBabyName;
       case LearnItemType.quiz:
-        return 'Quiz';
+        return l10n.learnHubItemTypeQuiz;
       case LearnItemType.note:
-        return 'Note';
+        return l10n.learnHubItemTypeNote;
       case LearnItemType.reflection:
-        return 'Reflection';
+        return l10n.learnHubItemTypeReflection;
       case LearnItemType.pathStep:
-        return 'Path Step';
+        return l10n.learnHubItemTypePathStep;
     }
   }
 
@@ -700,31 +780,31 @@ class _LearnPageState extends ConsumerState<LearnPage> {
     return id;
   }
 
-  String _difficultyLabel(LearnDifficulty value) {
+  String _difficultyLabel(AppLocalizations l10n, LearnDifficulty value) {
     switch (value) {
       case LearnDifficulty.beginner:
-        return 'Beginner';
+        return l10n.learnTrackBeginner;
       case LearnDifficulty.intermediate:
-        return 'Intermediate';
+        return l10n.learnHubDifficultyIntermediate;
       case LearnDifficulty.advanced:
-        return 'Advanced';
+        return l10n.learnHubDifficultyAdvanced;
     }
   }
 
-  String _categoryGroupLabel(String categoryGroup) {
+  String _categoryGroupLabel(AppLocalizations l10n, String categoryGroup) {
     switch (categoryGroup) {
       case _allCategoryGroups:
-        return 'All';
+        return l10n.learnHubCategoryGroupAll;
       case 'core':
-        return 'Core';
+        return l10n.learnHubCategoryGroupCore;
       case 'worship':
-        return 'Worship';
+        return l10n.learnHubCategoryGroupWorship;
       case 'family_utility':
-        return 'Family & Utility';
+        return l10n.learnHubCategoryGroupFamilyUtility;
       case 'new_muslim':
-        return 'New Muslim';
+        return l10n.learnHubCategoryGroupNewMuslim;
       case 'pilgrimage':
-        return 'Pilgrimage';
+        return l10n.learnHubCategoryGroupPilgrimage;
       default:
         return categoryGroup
             .replaceAll('_', ' ')

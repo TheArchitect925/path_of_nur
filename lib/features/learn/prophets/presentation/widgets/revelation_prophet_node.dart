@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../core/theme/app_colors.dart';
+import '../../../../../l10n/app_localizations.dart';
 import '../../../../../shared/widgets/premium_card.dart';
 
 class RevelationProphetNode extends StatelessWidget {
@@ -37,6 +38,7 @@ class RevelationProphetNode extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final lineColor = AppColors.accentGoldSoft.withValues(alpha: 0.48);
     final nodeColor = completed
         ? const Color(0xFF2D8F58)
@@ -107,9 +109,9 @@ class RevelationProphetNode extends StatelessWidget {
                     spacing: 8,
                     runSpacing: 8,
                     children: [
-                      _chip('Lesson • $keyLesson'),
-                      _chip('Core Call • $coreCall'),
-                      _chip('Region • $regionLabel'),
+                      _chip(l10n.prophetsLessonChip(keyLesson)),
+                      _chip(l10n.prophetsCoreCallChip(coreCall)),
+                      _chip(l10n.prophetsRegionChip(regionLabel)),
                       if (referenceLabel.isNotEmpty) _chip(referenceLabel),
                     ],
                   ),
@@ -121,11 +123,11 @@ class RevelationProphetNode extends StatelessWidget {
                       TextButton.icon(
                         onPressed: onOpenDetail,
                         icon: const Icon(Icons.menu_book_rounded),
-                        label: const Text('Open Detail'),
+                        label: Text(l10n.prophetsOpenDetailAction),
                       ),
                       OutlinedButton(
                         onPressed: onContinue,
-                        child: const Text('Continue Journey'),
+                        child: Text(l10n.prophetsJourneyContinueAction),
                       ),
                     ],
                   ),

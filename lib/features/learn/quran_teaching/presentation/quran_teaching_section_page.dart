@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/theme/app_colors.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/quran_teaching_controller.dart';
@@ -35,6 +36,7 @@ class _QuranTeachingSectionPageState
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final catalog = ref.watch(quranTeachingCatalogProvider);
     final progress = ref.watch(quranTeachingProgressProvider);
     final recommended = ref.watch(quranTeachingRecommendedLessonProvider);
@@ -43,7 +45,9 @@ class _QuranTeachingSectionPageState
     final mistakeItems = ref.watch(quranTeachingActiveMistakesProvider);
     final dailyReview = ref.watch(quranTeachingDailyReviewSummaryProvider);
     final reviewStats = ref.watch(quranTeachingReviewDashboardStatsProvider);
-    final recommendations = ref.watch(quranTeachingPracticeRecommendationsProvider);
+    final recommendations = ref.watch(
+      quranTeachingPracticeRecommendationsProvider,
+    );
     final query = _searchController.text.trim().toLowerCase();
 
     if (!_setupPromptShown && progress.learnerLevel == null) {
@@ -55,47 +59,54 @@ class _QuranTeachingSectionPageState
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
-      ref.read(quranTeachingSmartReviewProvider.notifier).ensureTodaySession(
+      ref
+          .read(quranTeachingSmartReviewProvider.notifier)
+          .ensureTodaySession(
             catalog: catalog,
             progress: progress,
             mistakes: mistakeItems,
           );
     });
 
-    final filteredModules = catalog.modules.where((module) {
-      if (query.isEmpty) return true;
-      if (module.title.toLowerCase().contains(query) ||
-          module.subtitle.toLowerCase().contains(query) ||
-          module.description.toLowerCase().contains(query)) {
-        return true;
-      }
-      final lessons = catalog.lessonsForModule(module.id);
-      for (final lesson in lessons) {
-        if (lesson.title.toLowerCase().contains(query) ||
-            lesson.subtitle.toLowerCase().contains(query) ||
-            lesson.searchTerms.any((term) => term.toLowerCase().contains(query))) {
-          return true;
-        }
-      }
-      for (final group in module.wordGroups) {
-        if (group.title.toLowerCase().contains(query)) return true;
-        for (final word in group.words) {
-          if (word.arabic.contains(query) ||
-              word.transliteration.toLowerCase().contains(query) ||
-              word.meaning.toLowerCase().contains(query)) {
-            return true;
-          }
-        }
-      }
-      for (final surah in module.surahPractice) {
-        if (surah.title.toLowerCase().contains(query) ||
-            surah.arabicTitle.contains(query)) {
-          return true;
-        }
-      }
-      return false;
-    }).toList(growable: true)
-      ..sort((a, b) => a.order.compareTo(b.order));
+    final filteredModules =
+        catalog.modules
+            .where((module) {
+              if (query.isEmpty) return true;
+              if (module.title.toLowerCase().contains(query) ||
+                  module.subtitle.toLowerCase().contains(query) ||
+                  module.description.toLowerCase().contains(query)) {
+                return true;
+              }
+              final lessons = catalog.lessonsForModule(module.id);
+              for (final lesson in lessons) {
+                if (lesson.title.toLowerCase().contains(query) ||
+                    lesson.subtitle.toLowerCase().contains(query) ||
+                    lesson.searchTerms.any(
+                      (term) => term.toLowerCase().contains(query),
+                    )) {
+                  return true;
+                }
+              }
+              for (final group in module.wordGroups) {
+                if (group.title.toLowerCase().contains(query)) return true;
+                for (final word in group.words) {
+                  if (word.arabic.contains(query) ||
+                      word.transliteration.toLowerCase().contains(query) ||
+                      word.meaning.toLowerCase().contains(query)) {
+                    return true;
+                  }
+                }
+              }
+              for (final surah in module.surahPractice) {
+                if (surah.title.toLowerCase().contains(query) ||
+                    surah.arabicTitle.contains(query)) {
+                  return true;
+                }
+              }
+              return false;
+            })
+            .toList(growable: true)
+          ..sort((a, b) => a.order.compareTo(b.order));
 
     final totalLessons = catalog.lessons.length;
     final completedLessons = progress.completedLessonIds.length;
@@ -122,9 +133,8 @@ class _QuranTeachingSectionPageState
                       children: [
                         Text(
                           'Your reading path',
-                          style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            fontWeight: FontWeight.w700,
-                          ),
+                          style: Theme.of(context).textTheme.titleMedium
+                              ?.copyWith(fontWeight: FontWeight.w700),
                         ),
                         const SizedBox(height: 6),
                         Text(
@@ -135,9 +145,10 @@ class _QuranTeachingSectionPageState
                     ),
                   ),
                   IconButton(
-                    onPressed: () => _showSetupSheet(context, progress.learnerLevel),
+                    onPressed: () =>
+                        _showSetupSheet(context, progress.learnerLevel),
                     icon: const Icon(Icons.tune_rounded),
-                    tooltip: 'Learning settings',
+                    tooltip: l10n.accessibilityLearningSettings,
                   ),
                 ],
               ),
@@ -156,7 +167,9 @@ class _QuranTeachingSectionPageState
                 children: [
                   _ModeChip(label: _modeLabel(progress.accessMode)),
                   _ModeChip(
-                    label: progress.visualModeEnabled ? 'Visual Mode on' : 'Standard Mode',
+                    label: progress.visualModeEnabled
+                        ? 'Visual Mode on'
+                        : 'Standard Mode',
                   ),
                 ],
               ),
@@ -170,9 +183,9 @@ class _QuranTeachingSectionPageState
             children: [
               Text(
                 'Continue where you left off',
-                style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                  fontWeight: FontWeight.w700,
-                ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
               ),
               const SizedBox(height: 8),
               Text(
@@ -197,7 +210,9 @@ class _QuranTeachingSectionPageState
                   );
                 },
                 icon: const Icon(Icons.play_circle_fill_rounded),
-                label: Text(continueLesson == null ? 'Start lesson' : 'Continue lesson'),
+                label: Text(
+                  continueLesson == null ? 'Start lesson' : 'Continue lesson',
+                ),
               ),
             ],
           ),
@@ -233,7 +248,9 @@ class _QuranTeachingSectionPageState
                       const SizedBox(height: 10),
                       TextButton(
                         onPressed: () {
-                          final module = catalog.moduleById(recommended.moduleId);
+                          final module = catalog.moduleById(
+                            recommended.moduleId,
+                          );
                           if (module == null) return;
                           Navigator.of(context).push(
                             MaterialPageRoute<void>(
@@ -361,18 +378,24 @@ class _QuranTeachingSectionPageState
             children: [
               Text(
                 'Review progress',
-                style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                  fontWeight: FontWeight.w700,
-                ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
               ),
               const SizedBox(height: 10),
               Wrap(
                 spacing: 8,
                 runSpacing: 8,
                 children: [
-                  _ModeChip(label: '${reviewStats.lettersReviewed} letters reviewed'),
-                  _ModeChip(label: '${reviewStats.wordsRecognized} words recognized'),
-                  _ModeChip(label: '${reviewStats.phrasesPracticed} phrases practiced'),
+                  _ModeChip(
+                    label: '${reviewStats.lettersReviewed} letters reviewed',
+                  ),
+                  _ModeChip(
+                    label: '${reviewStats.wordsRecognized} words recognized',
+                  ),
+                  _ModeChip(
+                    label: '${reviewStats.phrasesPracticed} phrases practiced',
+                  ),
                   _ModeChip(label: '${reviewStats.itemsDueToday} items due'),
                   _ModeChip(label: '${reviewStats.trickyItems} tricky items'),
                   _ModeChip(label: '${reviewStats.masteredCount} mastered'),
@@ -385,9 +408,9 @@ class _QuranTeachingSectionPageState
           const SizedBox(height: 12),
           Text(
             'Practice recommendations',
-            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-              fontWeight: FontWeight.w700,
-            ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
           ),
           const SizedBox(height: 10),
           ...recommendations.map(
@@ -423,9 +446,9 @@ class _QuranTeachingSectionPageState
               children: [
                 Text(
                   'Recently learned',
-                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                    fontWeight: FontWeight.w700,
-                  ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
                 ),
                 const SizedBox(height: 8),
                 Wrap(
@@ -464,19 +487,21 @@ class _QuranTeachingSectionPageState
               children: [
                 Text(
                   'Practice again',
-                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                    fontWeight: FontWeight.w700,
-                  ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
                 ),
                 const SizedBox(height: 6),
                 Text('These lessons need one more calm pass.'),
                 const SizedBox(height: 10),
-                ...weakLessons.take(3).map(
-                  (lesson) => Padding(
-                    padding: const EdgeInsets.only(bottom: 8),
-                    child: Text('• ${lesson.title}'),
-                  ),
-                ),
+                ...weakLessons
+                    .take(3)
+                    .map(
+                      (lesson) => Padding(
+                        padding: const EdgeInsets.only(bottom: 8),
+                        child: Text('• ${lesson.title}'),
+                      ),
+                    ),
               ],
             ),
           ),
@@ -484,9 +509,9 @@ class _QuranTeachingSectionPageState
         ],
         Text(
           'Learning path',
-          style: Theme.of(context).textTheme.titleMedium?.copyWith(
-            fontWeight: FontWeight.w700,
-          ),
+          style: Theme.of(
+            context,
+          ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
         ),
         const SizedBox(height: 8),
         Wrap(
@@ -497,10 +522,10 @@ class _QuranTeachingSectionPageState
                 (module) => Chip(
                   avatar: Icon(
                     isModuleUnlocked(
-                      module: module,
-                      catalog: catalog,
-                      progress: progress,
-                    )
+                          module: module,
+                          catalog: catalog,
+                          progress: progress,
+                        )
                         ? Icons.check_circle_outline_rounded
                         : Icons.lock_outline_rounded,
                     size: 18,
@@ -532,7 +557,8 @@ class _QuranTeachingSectionPageState
                     ? () {
                         Navigator.of(context).push(
                           MaterialPageRoute<void>(
-                            builder: (_) => QuranTeachingModulePage(module: module),
+                            builder: (_) =>
+                                QuranTeachingModulePage(module: module),
                           ),
                         );
                       }
@@ -556,9 +582,12 @@ class _QuranTeachingSectionPageState
                                   Expanded(
                                     child: Text(
                                       module.title,
-                                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                                        fontWeight: FontWeight.w700,
-                                      ),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleSmall
+                                          ?.copyWith(
+                                            fontWeight: FontWeight.w700,
+                                          ),
                                     ),
                                   ),
                                   if (recommendedHere)
@@ -568,12 +597,18 @@ class _QuranTeachingSectionPageState
                                         vertical: 4,
                                       ),
                                       decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(999),
-                                        color: module.color.withValues(alpha: 0.12),
+                                        borderRadius: BorderRadius.circular(
+                                          999,
+                                        ),
+                                        color: module.color.withValues(
+                                          alpha: 0.12,
+                                        ),
                                       ),
                                       child: Text(
                                         'Recommended',
-                                        style: Theme.of(context).textTheme.labelSmall,
+                                        style: Theme.of(
+                                          context,
+                                        ).textTheme.labelSmall,
                                       ),
                                     ),
                                 ],
@@ -583,9 +618,10 @@ class _QuranTeachingSectionPageState
                               const SizedBox(height: 4),
                               Text(
                                 module.description,
-                                style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                                  color: AppColors.onSurfaceSubtle,
-                                ),
+                                style: Theme.of(context).textTheme.bodySmall
+                                    ?.copyWith(
+                                      color: AppColors.onSurfaceSubtle,
+                                    ),
                               ),
                             ],
                           ),
@@ -630,9 +666,9 @@ class _QuranTeachingSectionPageState
             children: [
               Text(
                 'Choose your reading level',
-                style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  fontWeight: FontWeight.w700,
-                ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700),
               ),
               const SizedBox(height: 8),
               Text(
@@ -666,9 +702,8 @@ class _QuranTeachingSectionPageState
                         children: [
                           Text(
                             _levelLabel(level),
-                            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                              fontWeight: FontWeight.w700,
-                            ),
+                            style: Theme.of(context).textTheme.titleSmall
+                                ?.copyWith(fontWeight: FontWeight.w700),
                           ),
                           const SizedBox(height: 4),
                           Text(_levelDescription(level)),

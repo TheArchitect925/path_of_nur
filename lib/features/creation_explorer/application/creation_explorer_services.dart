@@ -1,10 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
-import 'dart:typed_data';
 
 import 'package:camera/camera.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_mlkit_image_labeling/google_mlkit_image_labeling.dart';
 
 import '../../../core/diagnostics/app_telemetry.dart';
 import '../../../core/prayer/prayer_preferences.dart';
@@ -16,50 +14,60 @@ import 'creation_category_mapping_service.dart';
 import '../data/creation_explorer_catalog.dart';
 import '../domain/creation_explorer_models.dart';
 
-final creationExplorerCameraProvider = FutureProvider<List<CameraDescription>>((ref) async {
+final creationExplorerCameraProvider = FutureProvider<List<CameraDescription>>((
+  ref,
+) async {
   final cameras = await availableCameras();
   return cameras
       .where((camera) => camera.lensDirection == CameraLensDirection.back)
       .toList(growable: false);
 });
 
-final creationObjectDetectionServiceProvider = Provider<CreationObjectDetectionService>((ref) {
-  return CreationObjectDetectionService(
-    ref.watch(creationCategoryMappingServiceProvider),
-    ref.watch(creationImageLabelingRuntimeProvider),
-  );
-});
+final creationObjectDetectionServiceProvider =
+    Provider<CreationObjectDetectionService>((ref) {
+      return CreationObjectDetectionService(
+        ref.watch(creationCategoryMappingServiceProvider),
+        ref.watch(creationImageLabelingRuntimeProvider),
+      );
+    });
 
-final creationImageLabelingRuntimeProvider = Provider<CreationImageLabelingRuntime>((ref) {
-  return const CreationImageLabelingRuntime();
-});
+final creationImageLabelingRuntimeProvider =
+    Provider<CreationImageLabelingRuntime>((ref) {
+      return const CreationImageLabelingRuntime();
+    });
 
 const String creationImageLabelingDeviceOnlyMessage =
-    'Image labeling is available on a physical device.';
+    'Image labeling is unavailable on this platform.';
 
-final creationObservationRepositoryProvider = Provider<CreationObservationRepository>((ref) {
-  return CreationObservationRepository(ref.watch(localStoreProvider));
-});
+final creationObservationRepositoryProvider =
+    Provider<CreationObservationRepository>((ref) {
+      return CreationObservationRepository(ref.watch(localStoreProvider));
+    });
 
-final creationExplorerActionServiceProvider = Provider<CreationExplorerActionService>((ref) {
-  return CreationExplorerActionService(
-    ref: ref,
-    store: ref.watch(localStoreProvider),
-    oceanDrops: ref.watch(oceanDropsProvider.notifier),
-    observations: ref.watch(creationObservationRepositoryProvider),
-    prayerPreferences: ref.watch(prayerSettingsProvider).preferences,
-    prayerLocation: ref.watch(prayerLocationProvider),
-  );
-});
+final creationExplorerActionServiceProvider =
+    Provider<CreationExplorerActionService>((ref) {
+      return CreationExplorerActionService(
+        ref: ref,
+        store: ref.watch(localStoreProvider),
+        oceanDrops: ref.watch(oceanDropsProvider.notifier),
+        observations: ref.watch(creationObservationRepositoryProvider),
+        prayerPreferences: ref.watch(prayerSettingsProvider).preferences,
+        prayerLocation: ref.watch(prayerLocationProvider),
+      );
+    });
 
 final creationObservationsProvider =
-    StateNotifierProvider<CreationObservationsController, List<CreationObservation>>((ref) {
+    StateNotifierProvider<
+      CreationObservationsController,
+      List<CreationObservation>
+    >((ref) {
       return CreationObservationsController(
         ref.watch(creationObservationRepositoryProvider),
       );
     });
 
-class CreationObservationsController extends StateNotifier<List<CreationObservation>> {
+class CreationObservationsController
+    extends StateNotifier<List<CreationObservation>> {
   CreationObservationsController(this._repository) : super(_repository.load());
 
   final CreationObservationRepository _repository;
@@ -69,16 +77,21 @@ class CreationObservationsController extends StateNotifier<List<CreationObservat
   }
 
   Future<void> add(CreationObservation observation) async {
-    final next = <CreationObservation>[observation, ...state.where((item) => item.id != observation.id)]
-        .take(160)
-        .toList(growable: false);
+    final next = <CreationObservation>[
+      observation,
+      ...state.where((item) => item.id != observation.id),
+    ].take(160).toList(growable: false);
     state = next;
     await _repository.saveAll(next);
   }
 
   Future<void> toggleFavorite(String id) async {
     final next = state
-        .map((item) => item.id == id ? item.copyWith(isFavorite: !item.isFavorite) : item)
+        .map(
+          (item) => item.id == id
+              ? item.copyWith(isFavorite: !item.isFavorite)
+              : item,
+        )
         .toList(growable: false);
     state = next;
     await _repository.saveAll(next);
@@ -86,7 +99,11 @@ class CreationObservationsController extends StateNotifier<List<CreationObservat
 
   Future<void> updateReflection(String id, String reflection) async {
     final next = state
-        .map((item) => item.id == id ? item.copyWith(userReflection: reflection.trim()) : item)
+        .map(
+          (item) => item.id == id
+              ? item.copyWith(userReflection: reflection.trim())
+              : item,
+        )
         .toList(growable: false);
     state = next;
     await _repository.saveAll(next);
@@ -156,13 +173,15 @@ class CreationExplorerActionService {
       );
     }
     AppTelemetry.logEvent('creation_explorer_opened');
-    await _ref.read(creationChallengeServiceProvider.notifier).processEvidence(
-      CreationChallengeEvidence(
-        ruleType: CreationChallengeRuleType.openExplorer,
-        source: CreationExplorerMode.creationExplorer,
-        occurredAt: DateTime.now(),
-      ),
-    );
+    await _ref
+        .read(creationChallengeServiceProvider.notifier)
+        .processEvidence(
+          CreationChallengeEvidence(
+            ruleType: CreationChallengeRuleType.openExplorer,
+            source: CreationExplorerMode.creationExplorer,
+            occurredAt: DateTime.now(),
+          ),
+        );
   }
 
   void markDetection(CreationDetection detection) {
@@ -174,15 +193,17 @@ class CreationExplorerActionService {
         'label': detection.rawLabel,
       },
     );
-    _ref.read(creationChallengeServiceProvider.notifier).processEvidence(
-      CreationChallengeEvidence(
-        ruleType: CreationChallengeRuleType.detectCategory,
-        source: CreationExplorerMode.creationExplorer,
-        occurredAt: DateTime.now(),
-        categoryId: detection.categoryId,
-        refId: detection.rawLabel,
-      ),
-    );
+    _ref
+        .read(creationChallengeServiceProvider.notifier)
+        .processEvidence(
+          CreationChallengeEvidence(
+            ruleType: CreationChallengeRuleType.detectCategory,
+            source: CreationExplorerMode.creationExplorer,
+            occurredAt: DateTime.now(),
+            categoryId: detection.categoryId,
+            refId: detection.rawLabel,
+          ),
+        );
   }
 
   Future<CreationObservation> saveObservation({
@@ -202,10 +223,15 @@ class CreationExplorerActionService {
       aiConfidence: detection.confidence,
       imagePath: imagePath,
       selectedVerseId: verse.id,
-      userReflection: trimmedReflection?.isEmpty == true ? null : trimmedReflection,
+      userReflection: trimmedReflection?.isEmpty == true
+          ? null
+          : trimmedReflection,
       isFavorite: false,
     );
-    final existing = _observations.load().where((item) => item.id != observation.id).toList(growable: true);
+    final existing = _observations
+        .load()
+        .where((item) => item.id != observation.id)
+        .toList(growable: true);
     existing.insert(0, observation);
     await _observations.saveAll(existing.take(160).toList(growable: false));
     _oceanDrops.awardDrop(
@@ -232,27 +258,31 @@ class CreationExplorerActionService {
         'hasPhoto': imagePath != null && imagePath.isNotEmpty,
       },
     );
-    await _ref.read(creationChallengeServiceProvider.notifier).processEvidence(
-      CreationChallengeEvidence(
-        ruleType: CreationChallengeRuleType.saveObservation,
-        source: CreationExplorerMode.journal,
-        occurredAt: observation.timestamp,
-        categoryId: detection.categoryId,
-        refId: observation.id,
-        notes: trimmedReflection,
-      ),
-    );
+    await _ref
+        .read(creationChallengeServiceProvider.notifier)
+        .processEvidence(
+          CreationChallengeEvidence(
+            ruleType: CreationChallengeRuleType.saveObservation,
+            source: CreationExplorerMode.journal,
+            occurredAt: observation.timestamp,
+            categoryId: detection.categoryId,
+            refId: observation.id,
+            notes: trimmedReflection,
+          ),
+        );
     if (trimmedReflection != null && trimmedReflection.isNotEmpty) {
-      await _ref.read(creationChallengeServiceProvider.notifier).processEvidence(
-        CreationChallengeEvidence(
-          ruleType: CreationChallengeRuleType.saveReflection,
-          source: CreationExplorerMode.journal,
-          occurredAt: observation.timestamp,
-          categoryId: detection.categoryId,
-          refId: '${observation.id}:reflection',
-          notes: trimmedReflection,
-        ),
-      );
+      await _ref
+          .read(creationChallengeServiceProvider.notifier)
+          .processEvidence(
+            CreationChallengeEvidence(
+              ruleType: CreationChallengeRuleType.saveReflection,
+              source: CreationExplorerMode.journal,
+              occurredAt: observation.timestamp,
+              categoryId: detection.categoryId,
+              refId: '${observation.id}:reflection',
+              notes: trimmedReflection,
+            ),
+          );
     }
     return observation;
   }
@@ -262,6 +292,8 @@ class CreationObjectDetectionService {
   const CreationObjectDetectionService(this._mappingService, this._runtime);
 
   static const double threshold = 0.70;
+  static const CreationNativeImageLabeler _labeler =
+      CreationNativeImageLabeler();
   final CreationCategoryMappingService _mappingService;
   final CreationImageLabelingRuntime _runtime;
 
@@ -272,33 +304,31 @@ class CreationObjectDetectionService {
     if (!await _runtime.isImageLabelingAvailable()) {
       return null;
     }
-    final inputImage = _inputImageFromCameraImage(image, camera);
-    if (inputImage == null) return null;
-    final labeler = ImageLabeler(
-      options: ImageLabelerOptions(confidenceThreshold: threshold),
+    final labels = await _labeler.processImage(
+      image: image,
+      camera: camera,
+      confidenceThreshold: threshold,
     );
-    try {
-      final labels = await labeler.processImage(inputImage);
-      return _bestDetection(labels);
-    } finally {
-      labeler.close();
-    }
+    return _bestDetection(labels);
   }
 
   CreationVerse verseForCategory(CreationCategoryId categoryId) {
-    final category = creationCategoryById[categoryId] ?? creationExplorerCategories.first;
-    return creationVerseById[category.verseIds.first] ?? creationExplorerVerses.first;
+    final category =
+        creationCategoryById[categoryId] ?? creationExplorerCategories.first;
+    return creationVerseById[category.verseIds.first] ??
+        creationExplorerVerses.first;
   }
 
   List<CreationVerse> versesForCategory(CreationCategoryId categoryId) {
-    final category = creationCategoryById[categoryId] ?? creationExplorerCategories.first;
+    final category =
+        creationCategoryById[categoryId] ?? creationExplorerCategories.first;
     return category.verseIds
         .map((id) => creationVerseById[id])
         .whereType<CreationVerse>()
         .toList(growable: false);
   }
 
-  CreationDetection? _bestDetection(List<ImageLabel> labels) {
+  CreationDetection? _bestDetection(List<CreationNativeImageLabel> labels) {
     CreationDetection? best;
     for (final label in labels) {
       final category = _mapLabel(label.label);
@@ -319,63 +349,95 @@ class CreationObjectDetectionService {
   CreationCategoryId? _mapLabel(String label) {
     return _mappingService.mapRawLabel(label);
   }
-
-  InputImage? _inputImageFromCameraImage(CameraImage image, CameraDescription camera) {
-    final rotation = InputImageRotationValue.fromRawValue(camera.sensorOrientation);
-    final format = InputImageFormatValue.fromRawValue(image.format.raw);
-    if (rotation == null || format == null) return null;
-    final bytes = _concatenatePlanes(image.planes);
-    return InputImage.fromBytes(
-      bytes: bytes,
-      metadata: InputImageMetadata(
-        size: Size(image.width.toDouble(), image.height.toDouble()),
-        rotation: rotation,
-        format: format,
-        bytesPerRow: image.planes.first.bytesPerRow,
-      ),
-    );
-  }
-
-  Uint8List _concatenatePlanes(List<Plane> planes) {
-    final buffer = BytesBuilder(copy: false);
-    for (final plane in planes) {
-      buffer.add(plane.bytes);
-    }
-    return buffer.toBytes();
-  }
 }
 
 class CreationImageLabelingRuntime {
   const CreationImageLabelingRuntime({
-    MethodChannel methodChannel = _defaultMethodChannel,
-    TargetPlatform? platformOverride,
     Future<bool> Function()? availabilityOverride,
-  }) : _methodChannel = methodChannel,
-       _platformOverride = platformOverride,
-       _availabilityOverride = availabilityOverride;
+    TargetPlatform? platformOverride,
+  }) : _availabilityOverride = availabilityOverride,
+       _platformOverride = platformOverride;
 
-  static const MethodChannel _defaultMethodChannel = MethodChannel(
-    'path_of_nur/platform_runtime',
-  );
-
-  final MethodChannel _methodChannel;
-  final TargetPlatform? _platformOverride;
   final Future<bool> Function()? _availabilityOverride;
+  final TargetPlatform? _platformOverride;
 
   Future<bool> isImageLabelingAvailable() async {
     final override = _availabilityOverride;
     if (override != null) return override();
     if (kIsWeb) return false;
     final platform = _platformOverride ?? defaultTargetPlatform;
-    if (platform != TargetPlatform.iOS) return true;
-    try {
-      final isSimulator =
-          await _methodChannel.invokeMethod<bool>('isIosSimulator') ?? false;
-      return !isSimulator;
-    } on MissingPluginException {
-      return true;
-    } on PlatformException {
-      return true;
+    return platform == TargetPlatform.android || platform == TargetPlatform.iOS;
+  }
+}
+
+class CreationNativeImageLabel {
+  const CreationNativeImageLabel({
+    required this.label,
+    required this.confidence,
+  });
+
+  final String label;
+  final double confidence;
+
+  static CreationNativeImageLabel? fromMap(Map<Object?, Object?> map) {
+    final label = map['label']?.toString();
+    final confidence = (map['confidence'] as num?)?.toDouble();
+    if (label == null || label.isEmpty || confidence == null) {
+      return null;
     }
+    return CreationNativeImageLabel(label: label, confidence: confidence);
+  }
+}
+
+class CreationNativeImageLabeler {
+  const CreationNativeImageLabeler({
+    MethodChannel methodChannel = _defaultMethodChannel,
+  }) : _methodChannel = methodChannel;
+
+  static const MethodChannel _defaultMethodChannel = MethodChannel(
+    'path_of_nur/creation_image_labeling',
+  );
+
+  final MethodChannel _methodChannel;
+
+  Future<List<CreationNativeImageLabel>> processImage({
+    required CameraImage image,
+    required CameraDescription camera,
+    required double confidenceThreshold,
+  }) async {
+    if (kIsWeb) return const <CreationNativeImageLabel>[];
+    final supportedPlatform = switch (defaultTargetPlatform) {
+      TargetPlatform.android || TargetPlatform.iOS => true,
+      _ => false,
+    };
+    if (!supportedPlatform || image.planes.isEmpty) {
+      return const <CreationNativeImageLabel>[];
+    }
+
+    final labels = await _methodChannel.invokeMethod<List<Object?>>(
+      'detectLabels',
+      <String, Object?>{
+        'width': image.width,
+        'height': image.height,
+        'rotation': camera.sensorOrientation,
+        'format': image.format.raw,
+        'confidenceThreshold': confidenceThreshold,
+        'planes': image.planes
+            .map(
+              (plane) => <String, Object?>{
+                'bytes': plane.bytes,
+                'bytesPerRow': plane.bytesPerRow,
+                'bytesPerPixel': plane.bytesPerPixel,
+              },
+            )
+            .toList(growable: false),
+      },
+    );
+
+    return (labels ?? const <Object?>[])
+        .whereType<Map<Object?, Object?>>()
+        .map(CreationNativeImageLabel.fromMap)
+        .whereType<CreationNativeImageLabel>()
+        .toList(growable: false);
   }
 }

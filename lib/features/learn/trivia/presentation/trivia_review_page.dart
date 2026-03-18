@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../core/theme/app_colors.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/trivia_controller.dart';
 import '../application/trivia_repository.dart';
 import '../domain/trivia_models.dart';
+import 'trivia_ui_localization.dart';
 import 'widgets/trivia_widgets.dart';
 
 class IslamicTriviaReviewPage extends ConsumerWidget {
@@ -15,6 +18,8 @@ class IslamicTriviaReviewPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final numberFormat = NumberFormat.decimalPattern(l10n.localeName);
     final controller = ref.read(triviaControllerProvider.notifier);
     final state = ref.watch(triviaControllerProvider);
     final repository = ref.read(triviaRepositoryProvider);
@@ -32,56 +37,56 @@ class IslamicTriviaReviewPage extends ConsumerWidget {
 
     return LearnHubPageScaffold(
       headerIcon: Icons.replay_circle_filled_rounded,
-      title: 'Review Mistakes',
-      subtitle:
-          'Questions you missed return here gently until they become steadier.',
+      title: l10n.triviaReviewMistakesTitle,
+      subtitle: l10n.triviaReviewMistakesSubtitle,
       children: [
         Row(
           children: [
             TriviaStatTile(
-              label: 'Due now',
-              value: '${dueItems.length}',
+              label: l10n.triviaReviewDueNowLabel,
+              value: numberFormat.format(dueItems.length),
             ),
             const SizedBox(width: 10),
             TriviaStatTile(
-              label: 'Improving',
-              value: '$improved',
+              label: l10n.triviaReviewImprovingLabel,
+              value: numberFormat.format(improved),
             ),
             const SizedBox(width: 10),
             TriviaStatTile(
-              label: 'Mastered',
-              value: '$mastered',
+              label: l10n.triviaReviewMasteredLabel,
+              value: numberFormat.format(mastered),
             ),
           ],
         ),
         const SizedBox(height: 14),
         if (dueItems.isEmpty)
-          const TriviaEmptyStateCard(
-            title: 'No review questions due',
-            subtitle:
-                'Keep practicing. Questions you miss will appear here for another pass.',
+          TriviaEmptyStateCard(
+            title: l10n.triviaReviewNoQuestionsDueTitle,
+            subtitle: l10n.triviaReviewNoQuestionsDueSubtitle,
           )
         else
           TriviaEmptyStateCard(
-            title: 'Start a review session',
-            subtitle:
-                '${dueItems.length} items are ready. The queue favors what was recently missed or still unstable.',
+            title: l10n.triviaReviewStartSessionTitle,
+            subtitle: l10n.triviaReviewStartSessionSubtitle(
+              numberFormat.format(dueItems.length),
+            ),
             action: FilledButton.tonalIcon(
               onPressed: () {
-                final started =
-                    controller.startSession(mode: TriviaMode.reviewMistakes);
+                final started = controller.startSession(
+                  mode: TriviaMode.reviewMistakes,
+                );
                 if (started) {
                   context.pushNamed('learnTriviaSession');
                 }
               },
               icon: const Icon(Icons.play_arrow_rounded),
-              label: const Text('Start Review'),
+              label: Text(l10n.triviaReviewStartAction),
             ),
           ),
         const SizedBox(height: 14),
-        const TriviaSectionHeader(
-          title: 'Priority items',
-          subtitle: 'These questions are due sooner because they were missed more often.',
+        TriviaSectionHeader(
+          title: l10n.triviaReviewPriorityItemsTitle,
+          subtitle: l10n.triviaReviewPriorityItemsSubtitle,
         ),
         const SizedBox(height: 8),
         if (dueItems.isEmpty)
@@ -105,14 +110,18 @@ class IslamicTriviaReviewPage extends ConsumerWidget {
                     ),
                     const SizedBox(height: 6),
                     Text(
-                      '${category?.title ?? 'Unknown'} • ${item.masteryState.label}',
+                      '${category?.title ?? l10n.triviaUnknownCategory} • ${item.masteryState.localizedLabel(l10n)}',
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: AppColors.onSurfaceSubtle,
                       ),
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      'Seen ${item.timesSeen} • Correct ${item.timesCorrect} • Incorrect ${item.timesIncorrect}',
+                      l10n.triviaReviewSeenCorrectIncorrect(
+                        numberFormat.format(item.timesSeen),
+                        numberFormat.format(item.timesCorrect),
+                        numberFormat.format(item.timesIncorrect),
+                      ),
                     ),
                   ],
                 ),

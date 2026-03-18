@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../l10n/app_localizations.dart';
 import '../../../shared/widgets/app_page_scaffold.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/quran_navigation.dart';
@@ -15,6 +16,7 @@ class GrowthHabitsPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     final selectedDate = ref.watch(growthSelectedDateProvider);
     final seasonal = ref.watch(growthSeasonalContextProvider);
     final ramadanDashboard = ref.watch(growthRamadanDashboardProvider);
@@ -29,8 +31,8 @@ class GrowthHabitsPage extends ConsumerWidget {
 
     return AppPageScaffold(
       headerIcon: Icons.checklist_rtl_rounded,
-      title: 'Habit Tracker',
-      subtitle: 'Track today’s habits with a clearer, dedicated space.',
+      title: l10n.growthTodayHabitTrackerTitle,
+      subtitle: l10n.growthHabitsPageSubtitle,
       quote: const QuranQuote(
         arabic: 'وَقُل رَّبِّ زِدْنِي عِلْمًا',
         transliteration: 'Wa qul rabbi zidni ilma',
@@ -75,7 +77,9 @@ class GrowthHabitsPage extends ConsumerWidget {
                     ),
                     Center(
                       child: Text(
-                        '${(summary.completionProgress * 100).round()}%',
+                        l10n.growthPercentValue(
+                          '${(summary.completionProgress * 100).round()}',
+                        ),
                         style: const TextStyle(fontWeight: FontWeight.w700),
                       ),
                     ),
@@ -87,37 +91,49 @@ class GrowthHabitsPage extends ConsumerWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      'Habit Summary',
+                    Text(
+                      l10n.growthHabitsSummaryTitle,
                       style: TextStyle(fontWeight: FontWeight.w700),
                     ),
                     const SizedBox(height: 6),
                     Text(
-                      '${summary.completedCount}/${summary.dueCount} gently completed',
+                      l10n.growthTodayCompletedSummary(
+                        '${summary.completedCount}',
+                        '${summary.dueCount}',
+                      ),
                     ),
                     if (summary.partialCount > 0)
-                      Text('${summary.partialCount} still in progress'),
-                    Text('Light added today: ${summary.visibleLightEarnedToday}'),
+                      Text(
+                        l10n.growthTodayInProgressSummary(summary.partialCount),
+                      ),
+                    Text(
+                      l10n.growthTodayLightAdded(
+                        '${summary.visibleLightEarnedToday}',
+                      ),
+                    ),
                     if (summary.subtleLightEarnedToday >
                         summary.visibleLightEarnedToday)
-                      const Text(
-                        'Some progress is entrusted and tracked quietly.',
+                      Text(
+                        l10n.growthTodayQuietProgressNote,
                         style: TextStyle(
                           fontSize: 12,
                           color: Color(0xFF6A5A4A),
                         ),
                       ),
                     Text(
-                      'Steady days: ${summary.currentStreakDays} (best ${summary.bestStreakDays})',
+                      l10n.growthTodaySteadyDaysSummary(
+                        '${summary.currentStreakDays}',
+                        '${summary.bestStreakDays}',
+                      ),
                     ),
                     Text(
                       summary.completedCount > 0
-                          ? encouragement.completion[
-                              (selectedDate.day + selectedDate.month) %
-                                  encouragement.completion.length]
-                          : encouragement.returning[
-                              (selectedDate.day + selectedDate.month) %
-                                  encouragement.returning.length],
+                          ? encouragement.completion[(selectedDate.day +
+                                    selectedDate.month) %
+                                encouragement.completion.length]
+                          : encouragement.returning[(selectedDate.day +
+                                    selectedDate.month) %
+                                encouragement.returning.length],
                       style: const TextStyle(
                         fontSize: 12,
                         color: Color(0xFF6A5A4A),
@@ -137,8 +153,8 @@ class GrowthHabitsPage extends ConsumerWidget {
               children: [
                 Text(
                   seasonal.isRamadanMode
-                      ? 'Ramadan Habit Tracking'
-                      : 'Seasonal Habit Tracking',
+                      ? l10n.growthHabitsRamadanTrackingTitle
+                      : l10n.growthHabitsSeasonalTrackingTitle,
                   style: const TextStyle(fontWeight: FontWeight.w700),
                 ),
                 const SizedBox(height: 6),
@@ -155,11 +171,20 @@ class GrowthHabitsPage extends ConsumerWidget {
                   spacing: 8,
                   runSpacing: 8,
                   children: [
-                    _seasonalPill('Fast', ramadanDashboard.fastCompleted),
-                    _seasonalPill('Qur’an', ramadanDashboard.quranHabitCompleted),
-                    _seasonalPill('Charity', ramadanDashboard.charityCompleted),
                     _seasonalPill(
-                      'Reflection',
+                      l10n.growthHabitsSeasonalPillFast,
+                      ramadanDashboard.fastCompleted,
+                    ),
+                    _seasonalPill(
+                      l10n.growthHabitsSeasonalPillQuran,
+                      ramadanDashboard.quranHabitCompleted,
+                    ),
+                    _seasonalPill(
+                      l10n.growthHabitsSeasonalPillCharity,
+                      ramadanDashboard.charityCompleted,
+                    ),
+                    _seasonalPill(
+                      l10n.growthTabReflection,
                       ramadanDashboard.reflectionCompleted,
                     ),
                   ],
@@ -167,7 +192,7 @@ class GrowthHabitsPage extends ConsumerWidget {
                 const SizedBox(height: 10),
                 Row(
                   children: [
-                    const Text('Qur’an completion plan'),
+                    Text(l10n.growthHabitsQuranCompletionPlan),
                     const SizedBox(width: 10),
                     DropdownButton<int>(
                       value: quranTracker.planDays,
@@ -175,7 +200,7 @@ class GrowthHabitsPage extends ConsumerWidget {
                           .map(
                             (days) => DropdownMenuItem(
                               value: days,
-                              child: Text('$days days'),
+                              child: Text(l10n.homeDaysCount(days)),
                             ),
                           )
                           .toList(),
@@ -190,10 +215,16 @@ class GrowthHabitsPage extends ConsumerWidget {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  'Juz journey ${quranTracker.currentJuzProgress.toStringAsFixed(1)}/30 · ${quranTracker.remainingJuz.toStringAsFixed(1)} to continue',
+                  l10n.growthHabitsJuzJourneySummary(
+                    quranTracker.currentJuzProgress.toStringAsFixed(1),
+                    quranTracker.remainingJuz.toStringAsFixed(1),
+                  ),
                 ),
                 Text(
-                  'A gentle pace: ~${quranTracker.estimatedDailyJuzNeeded.toStringAsFixed(2)} juz/day over ${quranTracker.estimatedDaysRemaining} days',
+                  l10n.growthHabitsGentlePaceSummary(
+                    quranTracker.estimatedDailyJuzNeeded.toStringAsFixed(2),
+                    '${quranTracker.estimatedDaysRemaining}',
+                  ),
                   style: const TextStyle(
                     fontSize: 12,
                     color: Color(0xFF6A5A4A),
@@ -218,12 +249,16 @@ class GrowthHabitsPage extends ConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                'Fast Tracking',
+              Text(
+                l10n.growthHabitsFastTrackingTitle,
                 style: TextStyle(fontWeight: FontWeight.w700),
               ),
               const SizedBox(height: 6),
-              Text('Recommended: ${_fastTypeLabel(fastTracking.recommendedType)}'),
+              Text(
+                l10n.growthHabitsRecommendedValue(
+                  _fastTypeLabel(fastTracking.recommendedType, l10n),
+                ),
+              ),
               const SizedBox(height: 8),
               Wrap(
                 spacing: 6,
@@ -232,7 +267,7 @@ class GrowthHabitsPage extends ConsumerWidget {
                     .map(
                       (type) => ChoiceChip(
                         selected: type == fastTracking.selectedType,
-                        label: Text(_fastTypeLabel(type)),
+                        label: Text(_fastTypeLabel(type, l10n)),
                         onSelected: (_) => ref
                             .read(growthControllerProvider.notifier)
                             .setFastTrackTypeForDay(
@@ -260,8 +295,8 @@ class GrowthHabitsPage extends ConsumerWidget {
                       },
                       child: Text(
                         fastTracking.completedToday
-                            ? 'Fast noted for today'
-                            : 'Note today’s fast',
+                            ? l10n.growthHabitsFastNotedToday
+                            : l10n.growthHabitsNoteTodaysFast,
                       ),
                     ),
                   ),
@@ -272,11 +307,7 @@ class GrowthHabitsPage extends ConsumerWidget {
         ),
         const SizedBox(height: 14),
         if (grouped.isEmpty)
-          const PremiumCard(
-            child: Text(
-              'No habits are due right now. Continue your path with a light review.',
-            ),
-          ),
+          PremiumCard(child: Text(l10n.growthHabitsNoHabitsDue)),
         ...grouped.entries.map(
           (entry) => Padding(
             padding: const EdgeInsets.only(bottom: 12),
@@ -331,7 +362,9 @@ class GrowthHabitsPage extends ConsumerWidget {
                                   children: [
                                     IconButton(
                                       onPressed: () => ref
-                                          .read(growthControllerProvider.notifier)
+                                          .read(
+                                            growthControllerProvider.notifier,
+                                          )
                                           .toggleCompleted(
                                             date: selectedDate,
                                             habitId: habit.id,
@@ -398,7 +431,8 @@ class GrowthHabitsPage extends ConsumerWidget {
                                             controller.setHabitStatus(
                                               date: selectedDate,
                                               habitId: habit.id,
-                                              status: GrowthHabitStatus.deferred,
+                                              status:
+                                                  GrowthHabitStatus.deferred,
                                             );
                                             break;
                                           case 'partial':
@@ -442,7 +476,10 @@ class GrowthHabitsPage extends ConsumerWidget {
                                           ),
                                         ),
                                         child: Text(
-                                          growthStatusLabel(status),
+                                          growthStatusLocalizedLabel(
+                                            status,
+                                            l10n,
+                                          ),
                                           style: const TextStyle(fontSize: 12),
                                         ),
                                       ),
@@ -457,9 +494,9 @@ class GrowthHabitsPage extends ConsumerWidget {
                                     ),
                                     child: Row(
                                       children: [
-                                        const Text(
-                                          'Progress',
-                                          style: TextStyle(fontSize: 11),
+                                        Text(
+                                          l10n.growthHabitsProgressLabel,
+                                          style: const TextStyle(fontSize: 11),
                                         ),
                                         const SizedBox(width: 8),
                                         Expanded(
@@ -472,7 +509,9 @@ class GrowthHabitsPage extends ConsumerWidget {
                                         ),
                                         const SizedBox(width: 8),
                                         Text(
-                                          '${(((log?.progress ?? 0) * 100).round())}%',
+                                          l10n.growthPercentValue(
+                                            '${(((log?.progress ?? 0) * 100).round())}',
+                                          ),
                                           style: const TextStyle(fontSize: 11),
                                         ),
                                       ],
@@ -494,13 +533,18 @@ class GrowthHabitsPage extends ConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                'End of Day',
+              Text(
+                l10n.growthTodayEndOfDayTitle,
                 style: TextStyle(fontWeight: FontWeight.w700),
               ),
               const SizedBox(height: 6),
               Text(
-                '${endOfDay.completionPercent}% tended · ${endOfDay.completed} completed · ${endOfDay.partial} on your path · ${endOfDay.missed} to revisit gently',
+                l10n.growthTodayEndOfDaySummary(
+                  '${endOfDay.completionPercent}',
+                  '${endOfDay.completed}',
+                  '${endOfDay.partial}',
+                  '${endOfDay.missed}',
+                ),
               ),
               const SizedBox(height: 6),
               Text(endOfDay.tone),
@@ -529,8 +573,10 @@ class GrowthHabitsPage extends ConsumerWidget {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    'Set partial completion',
+                  Text(
+                    AppLocalizations.of(
+                      context,
+                    ).growthHabitsSetPartialCompletion,
                     style: TextStyle(fontWeight: FontWeight.w700),
                   ),
                   const SizedBox(height: 10),
@@ -539,7 +585,9 @@ class GrowthHabitsPage extends ConsumerWidget {
                     min: 0.1,
                     max: 1.0,
                     divisions: 9,
-                    label: '${(progress * 100).round()}%',
+                    label: AppLocalizations.of(
+                      context,
+                    ).growthPercentValue('${(progress * 100).round()}'),
                     onChanged: (value) => setState(() => progress = value),
                   ),
                   const SizedBox(height: 8),
@@ -557,7 +605,7 @@ class GrowthHabitsPage extends ConsumerWidget {
                                 );
                             Navigator.of(context).pop();
                           },
-                          child: const Text('Save'),
+                          child: Text(AppLocalizations.of(context).quranSave),
                         ),
                       ),
                     ],
@@ -586,20 +634,20 @@ class GrowthHabitsPage extends ConsumerWidget {
     );
   }
 
-  String _fastTypeLabel(GrowthFastTrackType type) {
+  String _fastTypeLabel(GrowthFastTrackType type, AppLocalizations l10n) {
     switch (type) {
       case GrowthFastTrackType.ramadan:
-        return 'Ramadan';
+        return l10n.growthFastTypeRamadan;
       case GrowthFastTrackType.mondayThursday:
-        return 'Monday/Thursday';
+        return l10n.growthFastTypeMondayThursday;
       case GrowthFastTrackType.whiteDays:
-        return 'White Days';
+        return l10n.growthFastTypeWhiteDays;
       case GrowthFastTrackType.arafah:
-        return 'Arafah';
+        return l10n.growthFastTypeArafah;
       case GrowthFastTrackType.ashura:
-        return 'Ashura';
+        return l10n.growthFastTypeAshura;
       case GrowthFastTrackType.custom:
-        return 'Custom';
+        return l10n.growthFastTypeCustom;
     }
   }
 }

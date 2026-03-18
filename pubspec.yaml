@@ -1,5 +1,5 @@
 name: path_of_nur
-description: "A new Flutter project."
+description: "Path of Nūr is a Flutter app for worship, Qur'an engagement, guided learning, and daily spiritual growth."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -57,7 +57,7 @@ dependencies:
   wakelock_plus: ^1.2.8
   home_widget: ^0.7.0
   camera: ^0.11.1
-  google_mlkit_image_labeling: ^0.14.1
+  flutter_svg: ^2.2.1
   sqlite3: ^2.7.6
   sqlite3_flutter_libs: ^0.5.39
 
@@ -94,6 +94,7 @@ flutter:
     - assets/images/
     - assets/images/backgrounds/
     - assets/images/prophets/
+    - assets/images/kids_arabic_coloring/
     - assets/images/backgrounds/bg_v1.png
     - assets/icons/
     - assets/audio/

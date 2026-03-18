@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../l10n/app_localizations.dart';
 import '../../shared/persistence/local_store.dart';
 
 const _localeStorageKey = 'profile.locale';
+
+Locale? resolveStoredAppLocale(LocalStore store) {
+  final tag = store.getString(_localeStorageKey);
+  if (tag == null || tag.isEmpty) return null;
+  final locale = _localeFromTag(tag);
+  return _resolveToSupportedLocale(locale);
+}
 
 class AppLocaleNotifier extends StateNotifier<Locale?> {
   AppLocaleNotifier(this._store) : super(null) {
@@ -13,8 +21,14 @@ class AppLocaleNotifier extends StateNotifier<Locale?> {
   final LocalStore _store;
 
   void setLocale(Locale locale) {
-    state = locale;
-    _store.setString(_localeStorageKey, locale.toLanguageTag());
+    final supportedLocale = _resolveToSupportedLocale(locale);
+    if (supportedLocale == null) {
+      state = null;
+      _store.remove(_localeStorageKey);
+      return;
+    }
+    state = supportedLocale;
+    _store.setString(_localeStorageKey, supportedLocale.toLanguageTag());
   }
 
   void clearLocale() {
@@ -23,29 +37,51 @@ class AppLocaleNotifier extends StateNotifier<Locale?> {
   }
 
   void _load() {
-    final tag = _store.getString(_localeStorageKey);
-    if (tag == null || tag.isEmpty) return;
-    state = Locale.fromSubtags(
-      languageCode: _languageCode(tag),
-      countryCode: _countryCode(tag),
-    );
-  }
-
-  String _languageCode(String tag) {
-    final parts = tag.split('-');
-    return parts.first;
-  }
-
-  String? _countryCode(String tag) {
-    final parts = tag.split('-');
-    if (parts.length > 1 && parts[1].isNotEmpty) {
-      return parts[1];
+    final supportedLocale = resolveStoredAppLocale(_store);
+    if (supportedLocale == null) {
+      final tag = _store.getString(_localeStorageKey);
+      if (tag != null && tag.isNotEmpty) {
+        clearLocale();
+      }
+      return;
     }
-    return null;
+    state = supportedLocale;
   }
 }
 
-final appLocaleProvider = StateNotifierProvider<AppLocaleNotifier, Locale?>((ref) {
+Locale _localeFromTag(String tag) {
+  final parts = tag.split('-');
+  final language = parts.first.toLowerCase();
+  final country = parts.length > 1 && parts[1].isNotEmpty
+      ? parts[1].toUpperCase()
+      : null;
+  return Locale.fromSubtags(languageCode: language, countryCode: country);
+}
+
+Locale? _resolveToSupportedLocale(Locale locale) {
+  for (final supported in AppLocalizations.supportedLocales) {
+    if (_isLocaleMatch(locale, supported)) {
+      return supported;
+    }
+    if (locale.countryCode != null &&
+        supported.countryCode == null &&
+        locale.languageCode == supported.languageCode) {
+      return supported;
+    }
+  }
+  return null;
+}
+
+bool _isLocaleMatch(Locale locale, Locale other) {
+  if (locale.languageCode != other.languageCode) return false;
+  if (locale.countryCode == null) return other.countryCode == null;
+  if (other.countryCode == null) return false;
+  return locale.countryCode == other.countryCode;
+}
+
+final appLocaleProvider = StateNotifierProvider<AppLocaleNotifier, Locale?>((
+  ref,
+) {
   final store = ref.watch(localStoreProvider);
   return AppLocaleNotifier(store);
 });

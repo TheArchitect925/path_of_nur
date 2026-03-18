@@ -74,17 +74,15 @@ class _LifeTab extends StatelessWidget {
         ),
         const SizedBox(height: 12),
         LearnActionCard(
-          title: 'Islamic Guidance Hub',
-          subtitle:
-              'Hajj, Umrah, New/Revert Muslim support, sisters topics, and practical guides.',
+          title: l10n.homeSearchGuidanceHubTitle,
+          subtitle: l10n.homeSearchGuidanceHubSubtitle,
           icon: Icons.library_books_outlined,
           onTap: () => context.pushNamed('islamicGuides'),
         ),
         const SizedBox(height: 12),
         LearnActionCard(
-          title: 'Quran 50 Lessons Mapping',
-          subtitle:
-              'Track source lesson coverage across your Learn categories.',
+          title: l10n.homeSearchQuranLessonsMappingTitle,
+          subtitle: l10n.homeSearchQuranLessonsMappingSubtitle,
           icon: Icons.fact_check_outlined,
           onTap: () => context.pushNamed('quranLessonsMapping'),
         ),
@@ -248,8 +246,8 @@ class _HadithTab extends StatelessWidget {
         ],
         const SizedBox(height: 12),
         LearnActionCard(
-          title: '50 Important Ahadith',
-          subtitle: 'Study the source-based hadith collection in one place.',
+          title: l10n.homeSearchImportantHadithTitle,
+          subtitle: l10n.homeSearchImportantHadithSubtitle,
           icon: Icons.library_books_outlined,
           onTap: () => context.pushNamed('learnHadithImportant'),
         ),

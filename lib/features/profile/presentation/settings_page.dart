@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 
 import '../../../core/theme/app_theme.dart';
 import '../../../core/localization/locale_provider.dart';
@@ -11,13 +12,18 @@ import '../../../core/reminders/adhan_options.dart';
 import '../../../core/reminders/reminder_scheduler.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../l10n/app_localizations.dart';
+import '../../../shared/application/app_summary_providers.dart';
+import '../../../shared/application/special_mode_provider.dart';
 import '../../../shared/state/location_permission_state.dart';
+import '../../../shared/state/user_profile_state.dart';
+import '../../../shared/theme/islamic_icons.dart';
 import '../../../shared/widgets/app_page_scaffold.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/prayer_location_picker_sheet.dart';
 import '../../../shared/widgets/section_title.dart';
 import '../../accounts_sync/application/accounts_sync_controller.dart';
 import '../../profile/application/profile_settings_provider.dart';
+import '../../profile/domain/profile_age_preferences.dart';
 import 'adhan_option_picker_sheet.dart';
 
 class SettingsPage extends ConsumerWidget {
@@ -30,8 +36,12 @@ class SettingsPage extends ConsumerWidget {
     final prayerNotifier = ref.read(prayerSettingsProvider.notifier);
     final locationState = ref.watch(locationPermissionProvider);
     final locationNotifier = ref.read(locationPermissionProvider.notifier);
+    final userProfile = ref.watch(userProfileProvider);
+    final userProfileNotifier = ref.read(userProfileProvider.notifier);
+    final specialMode = ref.watch(specialModeProvider);
     final profileSettings = ref.watch(profileSettingsProvider);
     final profileSettingsNotifier = ref.read(profileSettingsProvider.notifier);
+    final profileSummary = ref.watch(profileSummaryProvider);
     final reminderPlan = ref.watch(reminderSchedulerProvider);
     final adhanRepository = ref.watch(adhanRepositoryProvider);
     final adhanPreview = ref.watch(adhanPreviewControllerProvider);
@@ -43,7 +53,7 @@ class SettingsPage extends ConsumerWidget {
     final locationLabel =
         displayLocation.valueOrNull ??
         (prayerState.preferences.useDeviceLocation
-            ? 'Current location'
+            ? l10n.settingsCurrentLocation
             : prayerState.preferences.location);
 
     return AppPageScaffold(
@@ -52,20 +62,221 @@ class SettingsPage extends ConsumerWidget {
       subtitle: l10n.profileSummarySubtitle,
       children: [
         SectionTitle(
-          title: 'Accounts, Profiles & Sync',
-          subtitle:
-              'Manage shared devices, protected profiles, sync mode, and backups without disturbing your current journey.',
+          title: l10n.settingsProfilePersonalizationTitle,
+          subtitle: l10n.settingsProfilePersonalizationSubtitle,
+        ),
+        PremiumCard(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ListTile(
+                contentPadding: EdgeInsets.zero,
+                leading: const CircleAvatar(child: Icon(Icons.person)),
+                title: Text(
+                  l10n.settingsProfileDisplayNameSummary(
+                    _addressFromSex(userProfile.sex, l10n),
+                    userProfile.name,
+                  ),
+                ),
+                subtitle: Text(
+                  l10n.settingsProfileLevelStreakSummary(
+                    l10n.homeLevelValue(
+                      _formatCount(context, profileSummary.level),
+                      _formatCount(context, profileSummary.level),
+                    ),
+                    l10n.homeDaysCount(profileSummary.currentStreakDays),
+                    profileSummary.currentStreakDays,
+                    profileSummary.level,
+                    profileSummary.currentStreakDays,
+                    profileSummary.currentStreakDays,
+                  ),
+                ),
+              ),
+              TextFormField(
+                initialValue: userProfile.name,
+                decoration: InputDecoration(
+                  labelText: l10n.profileDisplayNameLabel,
+                  isDense: true,
+                ),
+                onChanged: userProfileNotifier.updateName,
+                maxLength: 26,
+              ),
+              const SizedBox(height: 12),
+              Text(l10n.profileAddressMeAs),
+              const SizedBox(height: 8),
+              SegmentedButton<UserSex>(
+                segments: [
+                  ButtonSegment<UserSex>(
+                    value: UserSex.brother,
+                    label: Text(l10n.profileBrother),
+                  ),
+                  ButtonSegment<UserSex>(
+                    value: UserSex.sister,
+                    label: Text(l10n.profileSister),
+                  ),
+                ],
+                selected: {userProfile.sex},
+                onSelectionChanged: (value) {
+                  userProfileNotifier.updateSex(value.first);
+                },
+              ),
+              const Divider(height: 24),
+              _ModeTile(
+                icon: IslamicIcons.lantern,
+                title: l10n.profileRamadanModeTitle,
+                subtitle: l10n.profileRamadanModeSubtitle,
+                value: specialMode.isRamadan,
+                onChanged: profileSettingsNotifier.setRamadanModeEnabled,
+              ),
+              const Divider(height: 1),
+              _ModeTile(
+                icon: IslamicIcons.community,
+                title: l10n.profileLossModeTitle,
+                subtitle: l10n.profileLossModeSubtitle,
+                value: specialMode.isLoss,
+                onChanged: profileSettingsNotifier.setLossModeEnabled,
+              ),
+              const Divider(height: 1),
+              _ModeTile(
+                icon: IslamicIcons.tasbih,
+                title: l10n.profileGentleModeTitle,
+                subtitle: l10n.profileGentleModeSubtitle,
+                value: specialMode.isGentle,
+                onChanged: profileSettingsNotifier.setGentleModeEnabled,
+              ),
+              const Divider(height: 1),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 14),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        const Icon(IslamicIcons.family, size: 20),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                l10n.kidsUiThemeSettingTitle,
+                                style: Theme.of(context).textTheme.titleSmall
+                                    ?.copyWith(fontWeight: FontWeight.w700),
+                              ),
+                              const SizedBox(height: 4),
+                              Text(
+                                l10n.kidsUiThemeSettingSubtitle,
+                                style: const TextStyle(
+                                  color: Color(0xFF675B4E),
+                                  height: 1.35,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 14),
+                    DropdownButtonFormField<ProfileAgeRange>(
+                      initialValue: profileSettings.ageRange,
+                      decoration: InputDecoration(
+                        labelText: l10n.kidsUiAgeRangeTitle,
+                        isDense: true,
+                      ),
+                      items: ProfileAgeRange.values
+                          .map(
+                            (item) => DropdownMenuItem(
+                              value: item,
+                              child: Text(_profileAgeRangeLabel(item, l10n)),
+                            ),
+                          )
+                          .toList(growable: false),
+                      onChanged: (value) {
+                        if (value != null) {
+                          profileSettingsNotifier.setAgeRange(value);
+                        }
+                      },
+                    ),
+                    const SizedBox(height: 12),
+                    DropdownButtonFormField<KidsUiThemeMode>(
+                      initialValue: profileSettings.kidsUiThemeMode,
+                      decoration: InputDecoration(
+                        labelText: l10n.kidsUiThemeSettingModeTitle,
+                        helperText: l10n.kidsUiThemeSettingModeHelper(
+                          profileSettings.effectiveKidsUiThemeEnabled
+                              ? l10n.kidsUiThemeModeOn
+                              : l10n.kidsUiThemeModeOff,
+                        ),
+                        isDense: true,
+                      ),
+                      items: KidsUiThemeMode.values
+                          .map(
+                            (item) => DropdownMenuItem(
+                              value: item,
+                              child: Text(_kidsUiThemeModeLabel(item, l10n)),
+                            ),
+                          )
+                          .toList(growable: false),
+                      onChanged: (value) {
+                        if (value != null) {
+                          profileSettingsNotifier.setKidsUiThemeMode(value);
+                        }
+                      },
+                    ),
+                  ],
+                ),
+              ),
+              const Divider(height: 1),
+              ListTile(
+                contentPadding: EdgeInsets.zero,
+                leading: const Icon(Icons.summarize_outlined),
+                title: Text(l10n.homeOverviewHeroTitle),
+                subtitle: Text(l10n.homeOverviewHeroSubtitle),
+                trailing: const Icon(Icons.chevron_right_rounded),
+                onTap: () => context.pushNamed('profileSummary'),
+              ),
+              const Divider(height: 1),
+              ListTile(
+                contentPadding: EdgeInsets.zero,
+                leading: const Icon(Icons.new_releases_outlined),
+                title: Text(l10n.settingsWhatsNewTitle),
+                subtitle: Text(l10n.settingsWhatsNewSubtitle),
+                trailing: const Icon(Icons.chevron_right_rounded),
+                onTap: () => context.pushNamed('profileWhatsNew'),
+              ),
+              const Divider(height: 1),
+              ListTile(
+                contentPadding: EdgeInsets.zero,
+                leading: const Icon(Icons.upcoming_outlined),
+                title: Text(l10n.settingsComingSoonTitle),
+                subtitle: Text(l10n.settingsComingSoonSubtitle),
+                trailing: const Icon(Icons.chevron_right_rounded),
+                onTap: () => context.pushNamed('profileComingSoon'),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 16),
+        SectionTitle(
+          title: l10n.settingsAccountsSyncTitle,
+          subtitle: l10n.settingsAccountsSyncSubtitle,
         ),
         PremiumCard(
           child: Column(
             children: [
               ListTile(
                 contentPadding: EdgeInsets.zero,
-                title: const Text('Current Profile'),
+                title: Text(l10n.settingsCurrentProfileTitle),
                 subtitle: Text(
                   accountsSync.activeProfile == null
-                      ? 'No profile selected'
-                      : '${accountsSync.activeProfile!.displayName} • ${accountsSync.activeProfile!.syncMode.name}',
+                      ? l10n.settingsNoProfileSelected
+                      : l10n.settingsCurrentProfileSummary(
+                          accountsSync.activeProfile!.displayName,
+                          _profileSyncModeLabel(
+                            accountsSync.activeProfile!.syncMode,
+                            l10n,
+                          ),
+                        ),
                 ),
                 trailing: const Icon(Icons.chevron_right_rounded),
                 onTap: () => context.push('/accounts-sync'),
@@ -73,9 +284,12 @@ class SettingsPage extends ConsumerWidget {
               const Divider(height: 1),
               ListTile(
                 contentPadding: EdgeInsets.zero,
-                title: const Text('Sync Status'),
+                title: Text(l10n.settingsSyncStatusTitle),
                 subtitle: Text(
-                  '${accountsSync.syncStatus.pendingChangesCount} pending • ${accountsSync.syncStatus.syncState.name}',
+                  l10n.settingsSyncStatusSummary(
+                    accountsSync.syncStatus.pendingChangesCount,
+                    _syncStateLabel(accountsSync.syncStatus.syncState, l10n),
+                  ),
                 ),
                 trailing: const Icon(Icons.chevron_right_rounded),
                 onTap: () => context.push('/accounts-sync/sync-details'),
@@ -83,42 +297,53 @@ class SettingsPage extends ConsumerWidget {
               const Divider(height: 1),
               ListTile(
                 contentPadding: EdgeInsets.zero,
-                title: const Text('Backup & Restore'),
+                title: Text(l10n.settingsBackupRestoreTitle),
                 subtitle: Text(
                   accountsSync.backupRecommended
-                      ? 'Backup recommended'
+                      ? l10n.settingsBackupRecommended
                       : accountsSync.backupRecord.lastExportAtIso == null
-                      ? 'No manual backup yet'
-                      : 'Last export recorded',
+                      ? l10n.settingsNoManualBackupYet
+                      : l10n.settingsLastExportRecorded,
                 ),
                 trailing: const Icon(Icons.chevron_right_rounded),
                 onTap: () => context.push('/accounts-sync/backup'),
               ),
+              if (accountsSync.activeProfile != null &&
+                  accountsSync.activeProfile!.profileType !=
+                      ProfileKind.child &&
+                  accountsSync.activeProfile!.profileType !=
+                      ProfileKind.guest) ...[
+                const Divider(height: 1),
+                ListTile(
+                  contentPadding: EdgeInsets.zero,
+                  title: Text(l10n.familyLearningSettingsTitle),
+                  subtitle: Text(l10n.familyLearningSettingsSubtitle),
+                  trailing: const Icon(Icons.chevron_right_rounded),
+                  onTap: () => context.pushNamed('learnFamilyManagement'),
+                ),
+              ],
             ],
           ),
         ),
         const SizedBox(height: 16),
         SectionTitle(
-          title: 'Adhan',
-          subtitle:
-              'Choose a dedicated Fajr Adhan, preview the bundled clips, and keep prayer audio offline.',
+          title: l10n.settingsAdhanTitle,
+          subtitle: l10n.settingsAdhanSubtitle,
         ),
         PremiumCard(
           child: Column(
             children: [
               SwitchListTile.adaptive(
                 contentPadding: EdgeInsets.zero,
-                title: const Text('Enable Adhan audio'),
-                subtitle: const Text(
-                  'Prayer reminders can play the selected Adhan when this is on.',
-                ),
+                title: Text(l10n.settingsEnableAdhanAudioTitle),
+                subtitle: Text(l10n.settingsEnableAdhanAudioSubtitle),
                 value: prayerState.adhanSettings.enabled,
                 onChanged: prayerNotifier.setAdhanEnabled,
               ),
               const Divider(height: 1),
               ListTile(
                 contentPadding: EdgeInsets.zero,
-                title: const Text('Regular Adhan'),
+                title: Text(l10n.settingsRegularAdhanTitle),
                 subtitle: Text(
                   adhanRepository
                       .resolveRegular(prayerState.adhanSettings)
@@ -144,7 +369,7 @@ class SettingsPage extends ConsumerWidget {
               const Divider(height: 1),
               ListTile(
                 contentPadding: EdgeInsets.zero,
-                title: const Text('Fajr Adhan'),
+                title: Text(l10n.settingsFajrAdhanTitle),
                 subtitle: Text(
                   adhanRepository
                       .resolveFajr(prayerState.adhanSettings)
@@ -173,7 +398,7 @@ class SettingsPage extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Preview & volume',
+                      l10n.settingsPreviewVolumeTitle,
                       style: Theme.of(context).textTheme.titleMedium,
                     ),
                     const SizedBox(height: 10),
@@ -197,7 +422,7 @@ class SettingsPage extends ConsumerWidget {
                                 ? Icons.stop_circle_outlined
                                 : Icons.play_circle_outline_rounded,
                           ),
-                          label: const Text('Test Regular Adhan'),
+                          label: Text(l10n.settingsTestRegularAdhan),
                         ),
                         OutlinedButton.icon(
                           onPressed: () {
@@ -215,23 +440,21 @@ class SettingsPage extends ConsumerWidget {
                                 ? Icons.stop_circle_outlined
                                 : Icons.play_circle_outline_rounded,
                           ),
-                          label: const Text('Test Fajr Adhan'),
+                          label: Text(l10n.settingsTestFajrAdhan),
                         ),
                       ],
                     ),
                     const SizedBox(height: 10),
                     SwitchListTile.adaptive(
                       contentPadding: EdgeInsets.zero,
-                      title: const Text('Use App Volume'),
-                      subtitle: const Text(
-                        'Keep preview playback aligned with the app volume level.',
-                      ),
+                      title: Text(l10n.settingsUseAppVolumeTitle),
+                      subtitle: Text(l10n.settingsUseAppVolumeSubtitle),
                       value: prayerState.adhanSettings.useAppVolume,
                       onChanged: prayerNotifier.setUseAppAdhanVolume,
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      'Adhan preview volume',
+                      l10n.settingsAdhanPreviewVolume,
                       style: Theme.of(context).textTheme.titleSmall,
                     ),
                     Slider(
@@ -242,8 +465,14 @@ class SettingsPage extends ConsumerWidget {
                     ),
                     Text(
                       prayerState.adhanSettings.useAppVolume
-                          ? 'Using app volume'
-                          : '${(prayerState.adhanSettings.volume * 100).round()}%',
+                          ? l10n.settingsUsingAppVolume
+                          : l10n.settingsPercentValue(
+                              _formatCount(
+                                context,
+                                (prayerState.adhanSettings.volume * 100)
+                                    .round(),
+                              ),
+                            ),
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: AppColors.onSurfaceSubtle,
                       ),
@@ -253,7 +482,7 @@ class SettingsPage extends ConsumerWidget {
                       child: TextButton.icon(
                         onPressed: prayerNotifier.restoreDefaultAdhanSettings,
                         icon: const Icon(Icons.refresh_rounded),
-                        label: const Text('Restore Default Adhan Settings'),
+                        label: Text(l10n.settingsRestoreDefaultAdhanSettings),
                       ),
                     ),
                   ],
@@ -322,11 +551,12 @@ class SettingsPage extends ConsumerWidget {
                 label: l10n.profileMadhabLabel,
                 value: prayerState.preferences.madhab,
                 entries: const {
-                  PrayerMadhab.shafii: 'Shafi\'i',
-                  PrayerMadhab.hanafi: 'Hanafi',
-                  PrayerMadhab.maliki: 'Maliki',
-                  PrayerMadhab.hanbali: 'Hanbali',
+                  PrayerMadhab.shafii: '',
+                  PrayerMadhab.hanafi: '',
+                  PrayerMadhab.maliki: '',
+                  PrayerMadhab.hanbali: '',
                 },
+                entryBuilder: (value) => _madhabLabel(value, l10n),
                 onChanged: (value) {
                   if (value != null) prayerNotifier.updateMadhab(value);
                 },
@@ -336,13 +566,13 @@ class SettingsPage extends ConsumerWidget {
                 label: l10n.profileCalculationMethodLabel,
                 value: prayerState.preferences.calculationMethod,
                 entries: const {
-                  PrayerCalculationMethod.muslimWorldLeague:
-                      'Muslim World League',
-                  PrayerCalculationMethod.egyptian: 'Egyptian',
-                  PrayerCalculationMethod.isna: 'ISNA',
-                  PrayerCalculationMethod.karachi: 'Karachi',
-                  PrayerCalculationMethod.ummAlQura: 'Umm Al-Qura',
+                  PrayerCalculationMethod.muslimWorldLeague: '',
+                  PrayerCalculationMethod.egyptian: '',
+                  PrayerCalculationMethod.isna: '',
+                  PrayerCalculationMethod.karachi: '',
+                  PrayerCalculationMethod.ummAlQura: '',
                 },
+                entryBuilder: (value) => _calculationMethodLabel(value, l10n),
                 onChanged: (value) {
                   if (value != null) prayerNotifier.updateMethod(value);
                 },
@@ -351,6 +581,7 @@ class SettingsPage extends ConsumerWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 14),
                 child: _PrayerTimeAdjustmentsSection(
+                  l10n: l10n,
                   prayerState: prayerState,
                   prayerNotifier: prayerNotifier,
                 ),
@@ -358,20 +589,16 @@ class SettingsPage extends ConsumerWidget {
               const Divider(height: 1),
               SwitchListTile.adaptive(
                 contentPadding: EdgeInsets.zero,
-                title: const Text('Stable Dynamic Island'),
-                subtitle: const Text(
-                  'Keep the prayer Dynamic Island in a calmer, fixed layout.',
-                ),
+                title: Text(l10n.settingsStableDynamicIslandTitle),
+                subtitle: Text(l10n.settingsStableDynamicIslandSubtitle),
                 value: prayerState.preferences.useStableDynamicIsland,
                 onChanged: prayerNotifier.setStableDynamicIsland,
               ),
               const Divider(height: 1),
               SwitchListTile.adaptive(
                 contentPadding: EdgeInsets.zero,
-                title: const Text('Stable Lock Screen Widget'),
-                subtitle: const Text(
-                  'Keep the prayer lock screen Live Activity in a calmer, fixed layout.',
-                ),
+                title: Text(l10n.settingsStableLockScreenWidgetTitle),
+                subtitle: Text(l10n.settingsStableLockScreenWidgetSubtitle),
                 value: prayerState.preferences.useStableLockScreenWidget,
                 onChanged: prayerNotifier.setStableLockScreenWidget,
               ),
@@ -380,16 +607,15 @@ class SettingsPage extends ConsumerWidget {
         ),
         const SizedBox(height: 16),
         SectionTitle(
-          title: 'Appearance',
-          subtitle:
-              'Choose the visual style that feels most comfortable for your journey.',
+          title: l10n.profileAppearanceTitle,
+          subtitle: l10n.profileAppearanceSubtitle,
         ),
         PremiumCard(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Theme Mode',
+                l10n.profileThemeModeLabel,
                 style: Theme.of(context).textTheme.titleMedium,
               ),
               const SizedBox(height: 10),
@@ -398,7 +624,7 @@ class SettingsPage extends ConsumerWidget {
                 runSpacing: 8,
                 children: [
                   _ThemeChoiceChip(
-                    label: 'Default',
+                    label: l10n.settingsThemeChoiceDefault,
                     selected:
                         profileSettings.appThemeMode ==
                         AppThemeMode.defaultMode,
@@ -406,11 +632,14 @@ class SettingsPage extends ConsumerWidget {
                       profileSettingsNotifier.setAppThemeMode(
                         AppThemeMode.defaultMode,
                       );
-                      _showAppearanceSnack(context, 'Appearance updated');
+                      _showAppearanceSnack(
+                        context,
+                        l10n.settingsThemeChangedSuccessfully,
+                      );
                     },
                   ),
                   _ThemeChoiceChip(
-                    label: 'Easy Read',
+                    label: l10n.settingsThemeChoiceEasyRead,
                     selected:
                         profileSettings.appThemeMode == AppThemeMode.easyRead,
                     onSelected: () {
@@ -419,12 +648,12 @@ class SettingsPage extends ConsumerWidget {
                       );
                       _showAppearanceSnack(
                         context,
-                        'Theme changed successfully',
+                        l10n.settingsThemeChangedSuccessfully,
                       );
                     },
                   ),
                   _ThemeChoiceChip(
-                    label: 'Dark',
+                    label: l10n.profileThemeDark,
                     selected: profileSettings.appThemeMode == AppThemeMode.dark,
                     onSelected: () {
                       profileSettingsNotifier.setAppThemeMode(
@@ -432,7 +661,7 @@ class SettingsPage extends ConsumerWidget {
                       );
                       _showAppearanceSnack(
                         context,
-                        'Theme changed successfully',
+                        l10n.settingsThemeChangedSuccessfully,
                       );
                     },
                   ),
@@ -440,38 +669,43 @@ class SettingsPage extends ConsumerWidget {
               ),
               const SizedBox(height: 10),
               Text(
-                _themeModeDescription(profileSettings.appThemeMode),
+                _themeModeDescription(profileSettings.appThemeMode, l10n),
                 style: Theme.of(context).textTheme.bodySmall,
               ),
               const SizedBox(height: 10),
               Text(
-                'Visual Preferences',
+                l10n.settingsVisualPreferencesTitle,
                 style: Theme.of(context).textTheme.titleSmall,
               ),
               const SizedBox(height: 6),
               _SettingsToggleRow(
-                label: 'Disable Glass Transparency',
-                subtitle: 'Use solid surfaces instead of translucent glass.',
+                label: l10n.settingsDisableGlassTransparencyTitle,
+                subtitle: l10n.settingsDisableGlassTransparencySubtitle,
                 value: profileSettings.disableGlassTransparency,
                 onChanged: (value) {
                   profileSettingsNotifier.setDisableGlassTransparency(value);
-                  _showAppearanceSnack(context, 'Visual preference updated');
+                  _showAppearanceSnack(
+                    context,
+                    l10n.settingsVisualPreferenceUpdated,
+                  );
                 },
               ),
               const Divider(height: 1),
               _SettingsToggleRow(
-                label: 'Disable Background',
-                subtitle:
-                    'Hide decorative background imagery for a cleaner view.',
+                label: l10n.settingsDisableBackgroundTitle,
+                subtitle: l10n.settingsDisableBackgroundSubtitle,
                 value: profileSettings.disableBackground,
                 onChanged: (value) {
                   profileSettingsNotifier.setDisableBackground(value);
-                  _showAppearanceSnack(context, 'Visual preference updated');
+                  _showAppearanceSnack(
+                    context,
+                    l10n.settingsVisualPreferenceUpdated,
+                  );
                 },
               ),
               const SizedBox(height: 10),
               Text(
-                'These settings change the look of the app without changing your content or progress.',
+                l10n.settingsAppearanceNoContentChangeNote,
                 style: Theme.of(context).textTheme.bodySmall,
               ),
               if (profileSettings.appThemeMode == AppThemeMode.defaultMode &&
@@ -479,7 +713,7 @@ class SettingsPage extends ConsumerWidget {
                   !profileSettings.disableBackground) ...[
                 const SizedBox(height: 6),
                 Text(
-                  'Default appearance active',
+                  l10n.settingsDefaultAppearanceActive,
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
               ],
@@ -487,10 +721,13 @@ class SettingsPage extends ConsumerWidget {
               OutlinedButton.icon(
                 onPressed: () {
                   profileSettingsNotifier.resetAppearance();
-                  _showAppearanceSnack(context, 'Appearance reset to default');
+                  _showAppearanceSnack(
+                    context,
+                    l10n.settingsAppearanceResetToDefault,
+                  );
                 },
                 icon: const Icon(Icons.refresh_rounded),
-                label: const Text('Reset Appearance'),
+                label: Text(l10n.settingsResetAppearance),
               ),
               const SizedBox(height: 10),
               _SettingsToggleRow(
@@ -509,9 +746,8 @@ class SettingsPage extends ConsumerWidget {
         ),
         const SizedBox(height: 16),
         SectionTitle(
-          title: 'Prayer Notifications',
-          subtitle:
-              'Keep all prayer reminder behavior in one place, with one mode for each salah.',
+          title: l10n.settingsPrayerNotificationsTitle,
+          subtitle: l10n.settingsPrayerNotificationsSubtitle,
         ),
         PremiumCard(
           child: Column(
@@ -535,8 +771,7 @@ class SettingsPage extends ConsumerWidget {
               const Divider(height: 1),
               _SettingsToggleRow(
                 label: l10n.profilePrayerReminders,
-                subtitle:
-                    'Turn all prayer reminders on or off without changing your saved per-prayer modes.',
+                subtitle: l10n.settingsPrayerRemindersToggleSubtitle,
                 value: profileSettings.prayerReminders,
                 onChanged: profileSettingsNotifier.setPrayerReminders,
               ),
@@ -545,6 +780,7 @@ class SettingsPage extends ConsumerWidget {
                 context: context,
                 settings: prayerState,
                 onChanged: prayerNotifier.updateNotificationMode,
+                l10n: l10n,
               ),
             ],
           ),
@@ -669,6 +905,7 @@ class SettingsPage extends ConsumerWidget {
                 children: [
                   _LanguageRow(l10n.languageEnglish, const Locale('en')),
                   _LanguageRow(l10n.languageArabic, const Locale('ar')),
+                  _LanguageRow(l10n.languageGerman, const Locale('de')),
                   _LanguageRow(l10n.languageIndonesian, const Locale('id')),
                   _LanguageRow(l10n.languageMalay, const Locale('ms')),
                   _LanguageRow(l10n.languageBengali, const Locale('bn')),
@@ -711,7 +948,7 @@ class SettingsPage extends ConsumerWidget {
               ),
               FilledButton.tonal(
                 onPressed: () => context.pushNamed('attributionsLicenses'),
-                child: const Text('Attributions & Licenses'),
+                child: Text(l10n.settingsAttributionsLicensesTitle),
               ),
             ],
           ),
@@ -721,9 +958,125 @@ class SettingsPage extends ConsumerWidget {
   }
 }
 
+String _addressFromSex(UserSex sex, AppLocalizations l10n) {
+  return sex == UserSex.brother ? l10n.profileBrother : l10n.profileSister;
+}
+
+String _profileAgeRangeLabel(ProfileAgeRange ageRange, AppLocalizations l10n) {
+  switch (ageRange) {
+    case ProfileAgeRange.child:
+      return l10n.kidsUiAgeRangeChild;
+    case ProfileAgeRange.teen:
+      return l10n.kidsUiAgeRangeTeen;
+    case ProfileAgeRange.adult:
+      return l10n.kidsUiAgeRangeAdult;
+  }
+}
+
+String _kidsUiThemeModeLabel(KidsUiThemeMode mode, AppLocalizations l10n) {
+  switch (mode) {
+    case KidsUiThemeMode.auto:
+      return l10n.kidsUiThemeModeAuto;
+    case KidsUiThemeMode.on:
+      return l10n.kidsUiThemeModeOn;
+    case KidsUiThemeMode.off:
+      return l10n.kidsUiThemeModeOff;
+  }
+}
+
+String _madhabLabel(PrayerMadhab value, AppLocalizations l10n) {
+  switch (value) {
+    case PrayerMadhab.shafii:
+      return l10n.settingsMadhabShafii;
+    case PrayerMadhab.hanafi:
+      return l10n.settingsMadhabHanafi;
+    case PrayerMadhab.maliki:
+      return l10n.settingsMadhabMaliki;
+    case PrayerMadhab.hanbali:
+      return l10n.settingsMadhabHanbali;
+  }
+}
+
+String _calculationMethodLabel(
+  PrayerCalculationMethod value,
+  AppLocalizations l10n,
+) {
+  switch (value) {
+    case PrayerCalculationMethod.muslimWorldLeague:
+      return l10n.settingsCalculationMethodMuslimWorldLeague;
+    case PrayerCalculationMethod.egyptian:
+      return l10n.settingsCalculationMethodEgyptian;
+    case PrayerCalculationMethod.isna:
+      return l10n.settingsCalculationMethodIsna;
+    case PrayerCalculationMethod.karachi:
+      return l10n.settingsCalculationMethodKarachi;
+    case PrayerCalculationMethod.ummAlQura:
+      return l10n.settingsCalculationMethodUmmAlQura;
+  }
+}
+
+String _profileSyncModeLabel(ProfileSyncMode mode, AppLocalizations l10n) {
+  switch (mode) {
+    case ProfileSyncMode.pathOfNurCloud:
+      return l10n.settingsSyncModePathOfNurCloud;
+    case ProfileSyncMode.iCloud:
+      return l10n.settingsSyncModeICloud;
+    case ProfileSyncMode.localOnly:
+      return l10n.settingsSyncModeLocalOnly;
+    case ProfileSyncMode.manualBackupOnly:
+      return l10n.settingsSyncModeManualBackupOnly;
+  }
+}
+
+String _syncStateLabel(SyncStateKind state, AppLocalizations l10n) {
+  switch (state) {
+    case SyncStateKind.allCaughtUp:
+      return l10n.settingsSyncStateAllCaughtUp;
+    case SyncStateKind.syncing:
+      return l10n.settingsSyncStateSyncing;
+    case SyncStateKind.offlinePending:
+      return l10n.settingsSyncStateOfflinePending;
+    case SyncStateKind.needsAttention:
+      return l10n.settingsSyncStateNeedsAttention;
+    case SyncStateKind.localOnly:
+      return l10n.settingsSyncStateLocalOnly;
+    case SyncStateKind.iCloudActive:
+      return l10n.settingsSyncStateICloudActive;
+  }
+}
+
+class _ModeTile extends StatelessWidget {
+  const _ModeTile({
+    required this.icon,
+    required this.title,
+    required this.subtitle,
+    required this.value,
+    required this.onChanged,
+  });
+
+  final IconData icon;
+  final String title;
+  final String subtitle;
+  final bool value;
+  final ValueChanged<bool> onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    return SwitchListTile.adaptive(
+      contentPadding: EdgeInsets.zero,
+      secondary: Icon(icon),
+      title: Text(title),
+      subtitle: Text(subtitle),
+      value: value,
+      onChanged: onChanged,
+    );
+  }
+}
+
 List<Widget> _buildPrayerNotificationTiles({
   required BuildContext context,
   required PrayerSettingsState settings,
+  required AppLocalizations l10n,
   required void Function(String prayerId, PrayerNotificationMode mode)
   onChanged,
 }) {
@@ -734,9 +1087,10 @@ List<Widget> _buildPrayerNotificationTiles({
     tiles.add(
       _PrayerNotificationTile(
         prayerId: prayerId,
-        title: _prayerDisplayName(prayerId),
+        title: _prayerDisplayName(prayerId, l10n),
         active:
             settings.notificationModes[prayerId] ?? PrayerNotificationMode.none,
+        l10n: l10n,
         onChanged: (mode) => onChanged(prayerId, mode),
       ),
     );
@@ -749,10 +1103,12 @@ List<Widget> _buildPrayerNotificationTiles({
 
 class _PrayerTimeAdjustmentsSection extends ConsumerWidget {
   const _PrayerTimeAdjustmentsSection({
+    required this.l10n,
     required this.prayerState,
     required this.prayerNotifier,
   });
 
+  final AppLocalizations l10n;
   final PrayerSettingsState prayerState;
   final PrayerSettingsController prayerNotifier;
 
@@ -771,21 +1127,21 @@ class _PrayerTimeAdjustmentsSection extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Prayer Time Mode',
+          l10n.settingsPrayerTimeModeTitle,
           style: Theme.of(context).textTheme.titleMedium,
         ),
         const SizedBox(height: 8),
         Text(
-          'Choose how Path of Nūr handles your prayer schedule. Most users should keep calculated prayer times and apply small adjustments if needed.',
+          l10n.settingsPrayerTimeModeSubtitle,
           style: Theme.of(context).textTheme.bodyMedium,
         ),
         const SizedBox(height: 12),
         _PrayerTimeModeCard(
-          title: 'Calculated Times + Adjustments',
-          description:
-              'Best for most users. Path of Nūr calculates prayer times for your location and method each day, then applies your saved per-prayer adjustments automatically.',
+          title: l10n.settingsPrayerTimeModeCalculatedAdjustedTitle,
+          description: l10n.settingsPrayerTimeModeCalculatedAdjustedDescription,
           selected: mode == PrayerTimeMode.calculatedAdjusted,
           recommended: true,
+          l10n: l10n,
           onTap: () {
             if (mode == PrayerTimeMode.calculatedAdjusted) return;
             prayerNotifier.switchPrayerTimeMode(
@@ -798,10 +1154,10 @@ class _PrayerTimeAdjustmentsSection extends ConsumerWidget {
         ),
         const SizedBox(height: 10),
         _PrayerTimeModeCard(
-          title: 'Fully Manual Prayer Times',
-          description:
-              'Use exact prayer times that you enter yourself. This overrides normal daily prayer calculation for tracked salah times and should only be used if you intentionally want a fixed manual schedule.',
+          title: l10n.settingsPrayerTimeModeManualTitle,
+          description: l10n.settingsPrayerTimeModeManualDescription,
           selected: mode == PrayerTimeMode.manual,
+          l10n: l10n,
           onTap: () {
             if (mode == PrayerTimeMode.manual) return;
             prayerNotifier.switchPrayerTimeMode(
@@ -812,13 +1168,13 @@ class _PrayerTimeAdjustmentsSection extends ConsumerWidget {
             );
             _showAppearanceSnack(
               context,
-              'Manual times were prefilled from today’s active prayer schedule.',
+              l10n.settingsManualTimesPrefilledFromToday,
             );
           },
         ),
         const SizedBox(height: 8),
         Text(
-          'Manual mode is an advanced option. If your local prayer times change seasonally, you may need to update them yourself.',
+          l10n.settingsPrayerTimeModeManualNote,
           style: Theme.of(context).textTheme.bodySmall,
         ),
         const SizedBox(height: 16),
@@ -826,6 +1182,7 @@ class _PrayerTimeAdjustmentsSection extends ConsumerWidget {
           _CalculatedAdjustmentsContent(
             prayerState: prayerState,
             prayerNotifier: prayerNotifier,
+            l10n: l10n,
             baseSchedule: baseSchedule,
             effectiveSchedule: effectiveSchedule,
             location: location,
@@ -835,6 +1192,7 @@ class _PrayerTimeAdjustmentsSection extends ConsumerWidget {
           ),
         ] else ...[
           _ManualPrayerTimesContent(
+            l10n: l10n,
             prayerNotifier: prayerNotifier,
             effectiveSchedule: effectiveSchedule,
             location: location,
@@ -844,6 +1202,7 @@ class _PrayerTimeAdjustmentsSection extends ConsumerWidget {
         ],
         const SizedBox(height: 16),
         _JumuahSettingsSection(
+          l10n: l10n,
           prayerState: prayerState,
           prayerNotifier: prayerNotifier,
         ),
@@ -854,6 +1213,7 @@ class _PrayerTimeAdjustmentsSection extends ConsumerWidget {
 
 class _PrayerTimeModeCard extends StatelessWidget {
   const _PrayerTimeModeCard({
+    required this.l10n,
     required this.title,
     required this.description,
     required this.selected,
@@ -861,6 +1221,7 @@ class _PrayerTimeModeCard extends StatelessWidget {
     this.recommended = false,
   });
 
+  final AppLocalizations l10n;
   final String title;
   final String description;
   final bool selected;
@@ -910,7 +1271,7 @@ class _PrayerTimeModeCard extends StatelessWidget {
                       borderRadius: BorderRadius.circular(999),
                     ),
                     child: Text(
-                      'Recommended',
+                      l10n.settingsRecommendedBadge,
                       style: Theme.of(context).textTheme.labelSmall,
                     ),
                   ),
@@ -927,6 +1288,7 @@ class _PrayerTimeModeCard extends StatelessWidget {
 
 class _CalculatedAdjustmentsContent extends StatelessWidget {
   const _CalculatedAdjustmentsContent({
+    required this.l10n,
     required this.prayerState,
     required this.prayerNotifier,
     required this.baseSchedule,
@@ -937,6 +1299,7 @@ class _CalculatedAdjustmentsContent extends StatelessWidget {
     required this.mosqueReferenceTimes,
   });
 
+  final AppLocalizations l10n;
   final PrayerSettingsState prayerState;
   final PrayerSettingsController prayerNotifier;
   final List<PrayerScheduleItem> baseSchedule;
@@ -952,22 +1315,22 @@ class _CalculatedAdjustmentsContent extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Prayer Time Adjustments',
+          l10n.settingsPrayerTimeAdjustmentsTitle,
           style: Theme.of(context).textTheme.titleMedium,
         ),
         const SizedBox(height: 8),
         Text(
-          'Fine-tune your calculated salah times by a few minutes. Path of Nūr will continue calculating prayer times normally for your location and method, then apply your saved adjustments automatically.',
+          l10n.settingsPrayerTimeAdjustmentsSubtitle,
           style: Theme.of(context).textTheme.bodyMedium,
         ),
         const SizedBox(height: 8),
         Text(
-          'If Fajr is calculated as 5:00 AM and you change it to 4:55 AM, the app saves a -5 minute adjustment for Fajr. Future Fajr times will also use that same saved adjustment.',
+          l10n.settingsPrayerTimeAdjustmentsExample,
           style: Theme.of(context).textTheme.bodySmall,
         ),
         const SizedBox(height: 8),
         Text(
-          'Your adjustments are used across the app for prayer display, reminders, countdowns, and daily prayer tracking.',
+          l10n.settingsPrayerTimeAdjustmentsScope,
           style: Theme.of(context).textTheme.bodySmall,
         ),
         if (adjustments.hasAnyAdjustment) ...[
@@ -981,7 +1344,7 @@ class _CalculatedAdjustmentsContent extends StatelessWidget {
               borderRadius: BorderRadius.circular(999),
             ),
             child: Text(
-              'Custom adjustments active',
+              l10n.settingsCustomAdjustmentsActive,
               style: Theme.of(context).textTheme.labelMedium,
             ),
           ),
@@ -993,7 +1356,8 @@ class _CalculatedAdjustmentsContent extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.only(bottom: 8),
             child: _PrayerAdjustmentRow(
-              prayerName: _prayerDisplayName(prayerId),
+              l10n: l10n,
+              prayerName: _prayerDisplayName(prayerId, l10n),
               baseItem: baseItem,
               effectiveItem: effectiveItem,
               adjustmentMinutes: adjustments.offsetForPrayer(prayerId),
@@ -1001,6 +1365,7 @@ class _CalculatedAdjustmentsContent extends StatelessWidget {
                   ? null
                   : () => _showPrayerAdjustmentEditor(
                       context: context,
+                      l10n: l10n,
                       prayerId: prayerId,
                       baseSchedule: baseSchedule,
                       currentAdjustments: adjustments,
@@ -1029,20 +1394,18 @@ class _CalculatedAdjustmentsContent extends StatelessWidget {
                     final confirmed = await showDialog<bool>(
                       context: context,
                       builder: (dialogContext) => AlertDialog(
-                        title: const Text('Reset all adjustments?'),
-                        content: const Text(
-                          'This will return Fajr, Dhuhr, Asr, Maghrib, and Isha to their calculated times.',
-                        ),
+                        title: Text(l10n.settingsResetAllAdjustmentsTitle),
+                        content: Text(l10n.settingsResetAllAdjustmentsBody),
                         actions: [
                           TextButton(
                             onPressed: () =>
                                 Navigator.of(dialogContext).pop(false),
-                            child: const Text('Cancel'),
+                            child: Text(l10n.quranCancel),
                           ),
                           FilledButton(
                             onPressed: () =>
                                 Navigator.of(dialogContext).pop(true),
-                            child: const Text('Reset'),
+                            child: Text(l10n.settingsResetAllAdjustments),
                           ),
                         ],
                       ),
@@ -1052,15 +1415,16 @@ class _CalculatedAdjustmentsContent extends StatelessWidget {
                     }
                   }
                 : null,
-            child: const Text('Reset All Adjustments'),
+            child: Text(l10n.settingsResetAllAdjustments),
           ),
         ),
         Text(
-          'Resetting removes all saved offsets and returns each salah to its calculated time.',
+          l10n.settingsResetAdjustmentsNote,
           style: Theme.of(context).textTheme.bodySmall,
         ),
         const SizedBox(height: 18),
         _MosqueComparisonSection(
+          l10n: l10n,
           prayerNotifier: prayerNotifier,
           prayerState: prayerState,
           baseSchedule: baseSchedule,
@@ -1075,6 +1439,7 @@ class _CalculatedAdjustmentsContent extends StatelessWidget {
 
 class _ManualPrayerTimesContent extends StatelessWidget {
   const _ManualPrayerTimesContent({
+    required this.l10n,
     required this.prayerNotifier,
     required this.effectiveSchedule,
     required this.location,
@@ -1082,6 +1447,7 @@ class _ManualPrayerTimesContent extends StatelessWidget {
     required this.manualTimes,
   });
 
+  final AppLocalizations l10n;
   final PrayerSettingsController prayerNotifier;
   final List<PrayerScheduleItem> effectiveSchedule;
   final PrayerLocationState location;
@@ -1094,12 +1460,12 @@ class _ManualPrayerTimesContent extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Manual Prayer Times',
+          l10n.settingsManualPrayerTimesTitle,
           style: Theme.of(context).textTheme.titleMedium,
         ),
         const SizedBox(height: 8),
         Text(
-          'These manual times will be used across the app for reminders, countdowns, and prayer tracking while manual mode is active.',
+          l10n.settingsManualPrayerTimesSubtitle,
           style: Theme.of(context).textTheme.bodyMedium,
         ),
         const SizedBox(height: 14),
@@ -1153,7 +1519,7 @@ class _ManualPrayerTimesContent extends StatelessWidget {
                   children: [
                     Expanded(
                       child: Text(
-                        _prayerDisplayName(prayerId),
+                        _prayerDisplayName(prayerId, l10n),
                         style: Theme.of(context).textTheme.titleSmall,
                       ),
                     ),
@@ -1161,6 +1527,7 @@ class _ManualPrayerTimesContent extends StatelessWidget {
                       _formatMinutesLabel(
                         context,
                         manualTimes.minuteForPrayer(prayerId),
+                        l10n,
                       ),
                     ),
                   ],
@@ -1183,13 +1550,13 @@ class _ManualPrayerTimesContent extends StatelessWidget {
                     longitude: location.longitude,
                   );
                 },
-                child: const Text('Use Today’s Calculated Times'),
+                child: Text(l10n.settingsUseTodaysCalculatedTimes),
               ),
               TextButton(
                 onPressed: manualTimes.isComplete
                     ? () => prayerNotifier.resetManualPrayerTimes()
                     : null,
-                child: const Text('Reset Manual Times'),
+                child: Text(l10n.settingsResetManualTimes),
               ),
               TextButton(
                 onPressed: () {
@@ -1200,7 +1567,7 @@ class _ManualPrayerTimesContent extends StatelessWidget {
                     longitude: location.longitude,
                   );
                 },
-                child: const Text('Return to Recommended Mode'),
+                child: Text(l10n.settingsReturnToRecommendedMode),
               ),
             ],
           ),
@@ -1212,6 +1579,7 @@ class _ManualPrayerTimesContent extends StatelessWidget {
 
 class _MosqueComparisonSection extends StatelessWidget {
   const _MosqueComparisonSection({
+    required this.l10n,
     required this.prayerNotifier,
     required this.prayerState,
     required this.baseSchedule,
@@ -1220,6 +1588,7 @@ class _MosqueComparisonSection extends StatelessWidget {
     required this.prayerIds,
   });
 
+  final AppLocalizations l10n;
   final PrayerSettingsController prayerNotifier;
   final PrayerSettingsState prayerState;
   final List<PrayerScheduleItem> baseSchedule;
@@ -1245,12 +1614,12 @@ class _MosqueComparisonSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Mosque Time Comparison',
+          l10n.settingsMosqueTimeComparisonTitle,
           style: Theme.of(context).textTheme.titleMedium,
         ),
         const SizedBox(height: 8),
         Text(
-          'Compare your local masjid timetable with Path of Nūr’s calculated and adjusted prayer times. This stays local and helps you review how close your current adjustments are.',
+          l10n.settingsMosqueTimeComparisonSubtitle,
           style: Theme.of(context).textTheme.bodySmall,
         ),
         const SizedBox(height: 12),
@@ -1301,25 +1670,45 @@ class _MosqueComparisonSection extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Text(
-                            _prayerDisplayName(prayerId),
+                            _prayerDisplayName(prayerId, l10n),
                             style: Theme.of(context).textTheme.titleSmall,
                           ),
                         ),
                         Text(
-                          'Mosque: ${_formatMinutesLabel(context, mosqueMinutes)}',
+                          l10n.settingsMosqueTimeLabel(
+                            _formatMinutesLabel(context, mosqueMinutes, l10n),
+                          ),
                         ),
                       ],
                     ),
                     const SizedBox(height: 6),
-                    Text('Calculated: ${baseItem?.offerTime ?? 'Unavailable'}'),
                     Text(
-                      'Adjustment: ${_formatAdjustmentLabel(prayerState.preferences.adjustments.offsetForPrayer(prayerId))}',
+                      l10n.settingsCalculatedTimeLabel(
+                        baseItem?.offerTime ?? l10n.settingsUnavailable,
+                      ),
                     ),
                     Text(
-                      'Effective: ${effectiveItem?.offerTime ?? 'Unavailable'}',
+                      l10n.settingsAdjustmentValueLabel(
+                        _formatAdjustmentLabel(
+                          prayerState.preferences.adjustments.offsetForPrayer(
+                            prayerId,
+                          ),
+                          l10n,
+                          context,
+                        ),
+                      ),
                     ),
                     Text(
-                      'Difference: ${difference == null ? 'Not set' : _formatDifferenceLabel(difference)}',
+                      l10n.settingsEffectiveTimeLabel(
+                        effectiveItem?.offerTime ?? l10n.settingsUnavailable,
+                      ),
+                    ),
+                    Text(
+                      l10n.settingsDifferenceValueLabel(
+                        difference == null
+                            ? l10n.settingsNotSet
+                            : _formatDifferenceLabel(difference, l10n, context),
+                      ),
                     ),
                   ],
                 ),
@@ -1333,6 +1722,7 @@ class _MosqueComparisonSection extends StatelessWidget {
             onPressed: hasSuggestionChange
                 ? () => _showSuggestedAdjustmentsSheet(
                     context: context,
+                    l10n: l10n,
                     currentAdjustments: prayerState.preferences.adjustments,
                     suggestedAdjustments: suggestedAdjustments,
                     onApply: () {
@@ -1342,7 +1732,7 @@ class _MosqueComparisonSection extends StatelessWidget {
                     },
                   )
                 : null,
-            child: const Text('Apply Suggested Adjustments'),
+            child: Text(l10n.settingsApplySuggestedAdjustments),
           ),
         ),
       ],
@@ -1352,10 +1742,12 @@ class _MosqueComparisonSection extends StatelessWidget {
 
 class _JumuahSettingsSection extends StatelessWidget {
   const _JumuahSettingsSection({
+    required this.l10n,
     required this.prayerState,
     required this.prayerNotifier,
   });
 
+  final AppLocalizations l10n;
   final PrayerSettingsState prayerState;
   final PrayerSettingsController prayerNotifier;
 
@@ -1366,21 +1758,19 @@ class _JumuahSettingsSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Jumu‘ah Settings',
+          l10n.settingsJumuahSettingsTitle,
           style: Theme.of(context).textTheme.titleMedium,
         ),
         const SizedBox(height: 8),
         Text(
-          'Use a Friday-specific reminder time if your Jumu‘ah timing differs from standard Dhuhr.',
+          l10n.settingsJumuahSettingsSubtitle,
           style: Theme.of(context).textTheme.bodySmall,
         ),
         const SizedBox(height: 12),
         SwitchListTile.adaptive(
           contentPadding: EdgeInsets.zero,
-          title: const Text('Enable Jumu‘ah override'),
-          subtitle: const Text(
-            'Use a dedicated Friday midday reminder without changing the tracked prayer schedule.',
-          ),
+          title: Text(l10n.settingsEnableJumuahOverrideTitle),
+          subtitle: Text(l10n.settingsEnableJumuahOverrideSubtitle),
           value: preferences.jumuahOverrideEnabled,
           onChanged: (value) {
             prayerNotifier.updateJumuahSettings(enabled: value);
@@ -1390,12 +1780,10 @@ class _JumuahSettingsSection extends StatelessWidget {
           const SizedBox(height: 8),
           ListTile(
             contentPadding: EdgeInsets.zero,
-            title: const Text('Jumu‘ah time'),
-            subtitle: const Text(
-              'Used for Friday reminder behavior when selected.',
-            ),
+            title: Text(l10n.settingsJumuahTimeTitle),
+            subtitle: Text(l10n.settingsJumuahTimeSubtitle),
             trailing: Text(
-              _formatMinutesLabel(context, preferences.jumuahTimeMinutes),
+              _formatMinutesLabel(context, preferences.jumuahTimeMinutes, l10n),
             ),
             onTap: () async {
               final picked = await showTimePicker(
@@ -1417,7 +1805,7 @@ class _JumuahSettingsSection extends StatelessWidget {
             children: FridayReminderMode.values
                 .map(
                   (mode) => ChoiceChip(
-                    label: Text(_fridayReminderModeLabel(mode)),
+                    label: Text(_fridayReminderModeLabel(mode, l10n)),
                     selected: preferences.fridayReminderMode == mode,
                     onSelected: (_) {
                       prayerNotifier.updateJumuahSettings(
@@ -1436,6 +1824,7 @@ class _JumuahSettingsSection extends StatelessWidget {
 
 class _PrayerAdjustmentRow extends StatelessWidget {
   const _PrayerAdjustmentRow({
+    required this.l10n,
     required this.prayerName,
     required this.baseItem,
     required this.effectiveItem,
@@ -1443,6 +1832,7 @@ class _PrayerAdjustmentRow extends StatelessWidget {
     required this.onTap,
   });
 
+  final AppLocalizations l10n;
   final String prayerName;
   final PrayerScheduleItem? baseItem;
   final PrayerScheduleItem? effectiveItem;
@@ -1452,8 +1842,8 @@ class _PrayerAdjustmentRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final adjustmentLabel = adjustmentMinutes == 0
-        ? 'No change'
-        : '${adjustmentMinutes > 0 ? '+' : ''}$adjustmentMinutes min';
+        ? l10n.settingsNoChange
+        : _formatAdjustmentLabel(adjustmentMinutes, l10n, context);
     return InkWell(
       borderRadius: BorderRadius.circular(18),
       onTap: onTap,
@@ -1491,17 +1881,25 @@ class _PrayerAdjustmentRow extends StatelessWidget {
                       borderRadius: BorderRadius.circular(999),
                     ),
                     child: Text(
-                      'Modified',
+                      l10n.settingsModified,
                       style: Theme.of(context).textTheme.labelSmall,
                     ),
                   ),
               ],
             ),
             const SizedBox(height: 8),
-            Text('Base: ${baseItem?.offerTime ?? 'Unavailable'}'),
-            Text('Adjustment: $adjustmentLabel'),
             Text(
-              'Final: ${effectiveItem?.offerTime ?? baseItem?.offerTime ?? 'Unavailable'}',
+              l10n.settingsBaseTimeLabel(
+                baseItem?.offerTime ?? l10n.settingsUnavailable,
+              ),
+            ),
+            Text(l10n.settingsAdjustmentValueLabel(adjustmentLabel)),
+            Text(
+              l10n.settingsFinalTimeLabel(
+                effectiveItem?.offerTime ??
+                    baseItem?.offerTime ??
+                    l10n.settingsUnavailable,
+              ),
             ),
           ],
         ),
@@ -1546,6 +1944,7 @@ PrayerTimeAdjustments _suggestedAdjustmentsFromMosque({
 
 Future<void> _showSuggestedAdjustmentsSheet({
   required BuildContext context,
+  required AppLocalizations l10n,
   required PrayerTimeAdjustments currentAdjustments,
   required PrayerTimeAdjustments suggestedAdjustments,
   required VoidCallback onApply,
@@ -1563,12 +1962,12 @@ Future<void> _showSuggestedAdjustmentsSheet({
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Apply Suggested Adjustments',
+                  l10n.settingsApplySuggestedAdjustmentsTitle,
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Review the proposed offsets before replacing your current calculated-time adjustments.',
+                  l10n.settingsApplySuggestedAdjustmentsSubtitle,
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
                 const SizedBox(height: 12),
@@ -1582,7 +1981,30 @@ Future<void> _showSuggestedAdjustmentsSheet({
                   Padding(
                     padding: const EdgeInsets.only(bottom: 6),
                     child: Text(
-                      '${_prayerDisplayName(prayerId)}: ${_formatAdjustmentLabel(currentAdjustments.offsetForPrayer(prayerId))} → ${_formatAdjustmentLabel(suggestedAdjustments.offsetForPrayer(prayerId))}',
+                      l10n.settingsSuggestedAdjustmentChangeRow(
+                        _prayerDisplayName(prayerId, l10n),
+                        _formatAdjustmentLabel(
+                          currentAdjustments.offsetForPrayer(prayerId),
+                          l10n,
+                          context,
+                        ),
+                        _formatAdjustmentLabel(
+                          suggestedAdjustments.offsetForPrayer(prayerId),
+                          l10n,
+                          context,
+                        ),
+                        _formatAdjustmentLabel(
+                          suggestedAdjustments.offsetForPrayer(prayerId),
+                          l10n,
+                          context,
+                        ),
+                        _prayerDisplayName(prayerId, l10n),
+                        _formatAdjustmentLabel(
+                          suggestedAdjustments.offsetForPrayer(prayerId),
+                          l10n,
+                          context,
+                        ),
+                      ),
                     ),
                   ),
                 const SizedBox(height: 16),
@@ -1591,7 +2013,7 @@ Future<void> _showSuggestedAdjustmentsSheet({
                     Expanded(
                       child: OutlinedButton(
                         onPressed: () => Navigator.of(sheetContext).pop(),
-                        child: const Text('Cancel'),
+                        child: Text(l10n.quranCancel),
                       ),
                     ),
                     const SizedBox(width: 12),
@@ -1601,7 +2023,7 @@ Future<void> _showSuggestedAdjustmentsSheet({
                           onApply();
                           Navigator.of(sheetContext).pop();
                         },
-                        child: const Text('Apply'),
+                        child: Text(l10n.wallpaperApply),
                       ),
                     ),
                   ],
@@ -1617,6 +2039,7 @@ Future<void> _showSuggestedAdjustmentsSheet({
 
 Future<void> _showPrayerAdjustmentEditor({
   required BuildContext context,
+  required AppLocalizations l10n,
   required String prayerId,
   required List<PrayerScheduleItem> baseSchedule,
   required PrayerTimeAdjustments currentAdjustments,
@@ -1677,22 +2100,30 @@ Future<void> _showPrayerAdjustmentEditor({
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      _prayerDisplayName(prayerId),
+                      _prayerDisplayName(prayerId, l10n),
                       style: Theme.of(context).textTheme.titleLarge,
                     ),
                     const SizedBox(height: 8),
-                    Text('Base calculated time: ${baseItem.offerTime}'),
-                    const SizedBox(height: 4),
                     Text(
-                      'Current adjustment: ${draftMinutes == 0 ? 'No change' : '${draftMinutes > 0 ? '+' : ''}$draftMinutes min'}',
+                      l10n.settingsPrayerAdjustmentEditorBaseCalculatedTime(
+                        baseItem.offerTime,
+                      ),
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      'Final effective time: ${previewItem?.offerTime ?? baseItem.offerTime}',
+                      l10n.settingsPrayerAdjustmentEditorCurrentAdjustment(
+                        _formatAdjustmentLabel(draftMinutes, l10n, context),
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      l10n.settingsPrayerAdjustmentEditorFinalEffectiveTime(
+                        previewItem?.offerTime ?? baseItem.offerTime,
+                      ),
                     ),
                     const SizedBox(height: 12),
                     Text(
-                      'This adjustment will be applied to future calculated prayer times for this salah as well.',
+                      l10n.settingsPrayerAdjustmentEditorFutureUseNote,
                       style: Theme.of(context).textTheme.bodySmall,
                     ),
                     const SizedBox(height: 16),
@@ -1705,7 +2136,11 @@ Future<void> _showPrayerAdjustmentEditor({
                         Expanded(
                           child: Center(
                             child: Text(
-                              '${draftMinutes > 0 ? '+' : ''}$draftMinutes min',
+                              _formatAdjustmentLabel(
+                                draftMinutes,
+                                l10n,
+                                context,
+                              ),
                               style: Theme.of(context).textTheme.headlineSmall,
                             ),
                           ),
@@ -1723,11 +2158,7 @@ Future<void> _showPrayerAdjustmentEditor({
                       children: [-10, -5, 0, 5, 10]
                           .map(
                             (value) => ActionChip(
-                              label: Text(
-                                value == 0
-                                    ? '0'
-                                    : '${value > 0 ? '+' : ''}$value',
-                              ),
+                              label: Text(_formatSignedCount(context, value)),
                               onPressed: () => updateDraft(value),
                             ),
                           )
@@ -1736,7 +2167,7 @@ Future<void> _showPrayerAdjustmentEditor({
                     const SizedBox(height: 12),
                     TextButton(
                       onPressed: () => updateDraft(0),
-                      child: const Text('Reset this prayer'),
+                      child: Text(l10n.settingsResetThisPrayer),
                     ),
                     if (validation != null) ...[
                       const SizedBox(height: 4),
@@ -1753,7 +2184,7 @@ Future<void> _showPrayerAdjustmentEditor({
                         Expanded(
                           child: OutlinedButton(
                             onPressed: () => Navigator.of(sheetContext).pop(),
-                            child: const Text('Cancel'),
+                            child: Text(l10n.quranCancel),
                           ),
                         ),
                         const SizedBox(width: 12),
@@ -1773,7 +2204,7 @@ Future<void> _showPrayerAdjustmentEditor({
                                     Navigator.of(sheetContext).pop();
                                   }
                                 : null,
-                            child: const Text('Save'),
+                            child: Text(l10n.quranSave),
                           ),
                         ),
                       ],
@@ -1810,13 +2241,21 @@ PrayerTimeAdjustments _setAdjustmentForPrayer(
   }
 }
 
-String _formatAdjustmentLabel(int minutes) {
-  if (minutes == 0) return 'No change';
-  return '${minutes > 0 ? '+' : ''}$minutes min';
+String _formatAdjustmentLabel(
+  int minutes,
+  AppLocalizations l10n,
+  BuildContext context,
+) {
+  if (minutes == 0) return l10n.settingsNoChange;
+  return l10n.settingsMinutesValue(_formatSignedCount(context, minutes));
 }
 
-String _formatDifferenceLabel(int minutes) {
-  return '${minutes > 0 ? '+' : ''}$minutes min';
+String _formatDifferenceLabel(
+  int minutes,
+  AppLocalizations l10n,
+  BuildContext context,
+) {
+  return l10n.settingsMinutesValue(_formatSignedCount(context, minutes));
 }
 
 int _minutesFromDateTime(DateTime value) => value.hour * 60 + value.minute;
@@ -1826,60 +2265,84 @@ TimeOfDay _timeOfDayFromMinutes(int minutes) {
   return TimeOfDay(hour: normalized ~/ 60, minute: normalized % 60);
 }
 
-String _formatMinutesLabel(BuildContext context, int? minutes) {
-  if (minutes == null) return 'Not set';
+String _formatMinutesLabel(
+  BuildContext context,
+  int? minutes,
+  AppLocalizations l10n,
+) {
+  if (minutes == null) return l10n.settingsNotSet;
   return MaterialLocalizations.of(
     context,
   ).formatTimeOfDay(_timeOfDayFromMinutes(minutes));
 }
 
-String _fridayReminderModeLabel(FridayReminderMode mode) {
+String _formatCount(BuildContext context, num value) {
+  return NumberFormat.decimalPattern(
+    Localizations.localeOf(context).toLanguageTag(),
+  ).format(value);
+}
+
+String _formatSignedCount(BuildContext context, int value) {
+  final formatted = _formatCount(context, value.abs());
+  if (value == 0) return formatted;
+  return value > 0 ? '+$formatted' : '-$formatted';
+}
+
+String _fridayReminderModeLabel(
+  FridayReminderMode mode,
+  AppLocalizations l10n,
+) {
   switch (mode) {
     case FridayReminderMode.normalDhuhr:
-      return 'Normal Dhuhr timing';
+      return l10n.settingsFridayReminderModeNormalDhuhr;
     case FridayReminderMode.customJumuah:
-      return 'Custom Jumu‘ah time';
+      return l10n.settingsFridayReminderModeCustomJumuah;
   }
 }
 
-String _prayerDisplayName(String prayerId) {
+String _prayerDisplayName(String prayerId, AppLocalizations l10n) {
   switch (prayerId) {
     case 'fajr':
-      return 'Fajr';
+      return l10n.settingsPrayerNameFajr;
     case 'dhuhr':
-      return 'Dhuhr';
+      return l10n.settingsPrayerNameDhuhr;
     case 'asr':
-      return 'Asr';
+      return l10n.settingsPrayerNameAsr;
     case 'maghrib':
-      return 'Maghrib';
+      return l10n.settingsPrayerNameMaghrib;
     case 'isha':
-      return 'Isha';
+      return l10n.settingsPrayerNameIsha;
     default:
       return prayerId;
   }
 }
 
-String _notificationModeLabel(PrayerNotificationMode mode) {
+String _notificationModeLabel(
+  PrayerNotificationMode mode,
+  AppLocalizations l10n,
+) {
   switch (mode) {
     case PrayerNotificationMode.none:
-      return 'Off';
+      return l10n.salahNotificationOff;
     case PrayerNotificationMode.notificationOnly:
-      return 'Notification';
+      return l10n.settingsNotificationModeNotification;
     case PrayerNotificationMode.adhanWithSound:
-      return 'Adhan';
+      return l10n.settingsNotificationModeAdhan;
     case PrayerNotificationMode.reminderBeforeQaza:
-      return 'Before qaza';
+      return l10n.settingsNotificationModeBeforeQaza;
   }
 }
 
 class _PrayerNotificationTile extends StatelessWidget {
   const _PrayerNotificationTile({
+    required this.l10n,
     required this.prayerId,
     required this.title,
     required this.active,
     required this.onChanged,
   });
 
+  final AppLocalizations l10n;
   final String prayerId;
   final String title;
   final PrayerNotificationMode active;
@@ -1901,7 +2364,7 @@ class _PrayerNotificationTile extends StatelessWidget {
                 ),
               ),
               Text(
-                _notificationModeLabel(active),
+                _notificationModeLabel(active, l10n),
                 style: Theme.of(context).textTheme.bodySmall,
               ),
             ],
@@ -1913,7 +2376,7 @@ class _PrayerNotificationTile extends StatelessWidget {
             children: PrayerNotificationMode.values
                 .map(
                   (mode) => ChoiceChip(
-                    label: Text(_notificationModeLabel(mode)),
+                    label: Text(_notificationModeLabel(mode, l10n)),
                     selected: active == mode,
                     onSelected: (_) => onChanged(mode),
                   ),
@@ -1926,16 +2389,16 @@ class _PrayerNotificationTile extends StatelessWidget {
   }
 }
 
-String _themeModeDescription(AppThemeMode mode) {
+String _themeModeDescription(AppThemeMode mode, AppLocalizations l10n) {
   switch (mode) {
     case AppThemeMode.defaultMode:
-      return 'The default Path of Nūr look with a soft, elegant feel and gentle depth.';
+      return l10n.settingsThemeModeDefaultDescription;
     case AppThemeMode.calmBeautiful:
-      return 'The default Path of Nūr look with a soft, elegant feel and gentle depth.';
+      return l10n.settingsThemeModeDefaultDescription;
     case AppThemeMode.easyRead:
-      return 'Cleaner surfaces and stronger contrast for focused reading. Recommended for longer reading sessions.';
+      return l10n.settingsThemeModeEasyReadDescription;
     case AppThemeMode.dark:
-      return 'A calm low-light appearance for night use. Recommended for low-light environments.';
+      return l10n.settingsThemeModeDarkDescription;
   }
 }
 
@@ -1997,12 +2460,14 @@ class _PreferenceDropdown<T> extends StatelessWidget {
     required this.value,
     required this.entries,
     required this.onChanged,
+    this.entryBuilder,
   });
 
   final String label;
   final T value;
   final Map<T, String> entries;
   final ValueChanged<T?> onChanged;
+  final String Function(T value)? entryBuilder;
 
   @override
   Widget build(BuildContext context) {
@@ -2024,7 +2489,10 @@ class _PreferenceDropdown<T> extends StatelessWidget {
                   .map(
                     (entry) => DropdownMenuItem<T>(
                       value: entry.key,
-                      child: Text(entry.value, textAlign: TextAlign.right),
+                      child: Text(
+                        entryBuilder?.call(entry.key) ?? entry.value,
+                        textAlign: TextAlign.right,
+                      ),
                     ),
                   )
                   .toList(),

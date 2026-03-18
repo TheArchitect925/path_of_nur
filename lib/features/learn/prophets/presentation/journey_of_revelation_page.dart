@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/theme/app_colors.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../application/prophet_detail_repository.dart';
 import '../application/revelation_progress_service.dart';
 import '../domain/prophet_entry.dart';
 import '../domain/prophets_tab.dart';
 import '../domain/revelation_era.dart';
+import 'prophets_metadata_localization.dart';
 import 'widgets/revelation_era_card.dart';
 import 'widgets/revelation_growth_link_card.dart';
 import 'widgets/revelation_prophet_node.dart';
@@ -29,6 +31,7 @@ class JourneyOfRevelationPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     final eras = ref.watch(revelationErasProvider);
     final progress = ref.watch(revelationProgressProvider);
     final progressController = ref.read(revelationProgressProvider.notifier);
@@ -62,14 +65,14 @@ class JourneyOfRevelationPage extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Journey of Revelation',
+                l10n.prophetsJourneyTitle,
                 style: Theme.of(
                   context,
                 ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700),
               ),
               const SizedBox(height: 6),
               Text(
-                'Walk the prophetic message across eras, regions, and recurring calls to truth.',
+                l10n.prophetsJourneySubtitle,
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   color: AppColors.onSurfaceSubtle,
                 ),
@@ -81,7 +84,12 @@ class JourneyOfRevelationPage extends ConsumerWidget {
               ),
               const SizedBox(height: 6),
               Text(
-                'Progress: ${progress.openedProphetIds.length}/$totalProphets prophets explored · $completedEras/${eras.length} eras completed',
+                l10n.prophetsJourneyProgressSummary(
+                  '${progress.openedProphetIds.length}',
+                  '$totalProphets',
+                  '$completedEras',
+                  '${eras.length}',
+                ),
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: AppColors.onSurfaceSubtle,
                 ),
@@ -89,7 +97,17 @@ class JourneyOfRevelationPage extends ConsumerWidget {
               if (lastEra != null || lastProphet != null) ...[
                 const SizedBox(height: 6),
                 Text(
-                  'Continue from: ${lastEra?.title ?? 'Era'}${lastProphet == null ? '' : ' · ${lastProphet.honoredName}'}',
+                  l10n.prophetsJourneyContinueFrom(
+                    [
+                      lastEra == null
+                          ? l10n.prophetsJourneyGenericEra
+                          : localizedProphetEraTitle(
+                              l10n,
+                              _eraGroupForId(lastEra.id),
+                            ),
+                      if (lastProphet != null) lastProphet.honoredName,
+                    ].join(' • '),
+                  ),
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: AppColors.onSurfaceSubtle,
                   ),
@@ -104,7 +122,7 @@ class JourneyOfRevelationPage extends ConsumerWidget {
                     onPressed: () {
                       progressController.startJourney();
                     },
-                    child: const Text('Start Journey'),
+                    child: Text(l10n.prophetsJourneyStartAction),
                   ),
                   OutlinedButton(
                     onPressed: (lastEra == null && lastProphet == null)
@@ -122,15 +140,15 @@ class JourneyOfRevelationPage extends ConsumerWidget {
                               onOpenDetail(lastProphet);
                             }
                           },
-                    child: const Text('Continue Journey'),
+                    child: Text(l10n.prophetsJourneyContinueAction),
                   ),
                   OutlinedButton(
                     onPressed: () => onSwitchTab(ProphetsTab.stories),
-                    child: const Text('Explore Freely'),
+                    child: Text(l10n.prophetsJourneyExploreFreely),
                   ),
                   OutlinedButton(
                     onPressed: () => onSwitchTab(ProphetsTab.familyTree),
-                    child: const Text('Family Tree'),
+                    child: Text(l10n.prophetsFamilyTreeTitle),
                   ),
                 ],
               ),
@@ -143,14 +161,14 @@ class JourneyOfRevelationPage extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'One Message Across Time',
+                l10n.prophetsJourneyContinuityTitle,
                 style: Theme.of(
                   context,
                 ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
               ),
               const SizedBox(height: 6),
               Text(
-                'Across different eras and peoples, the prophetic call remains clear and connected.',
+                l10n.prophetsJourneyContinuitySubtitle,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: AppColors.onSurfaceSubtle,
                 ),
@@ -181,8 +199,10 @@ class JourneyOfRevelationPage extends ConsumerWidget {
               .whereType<String>()
               .toList();
           final featuredLabel = featuredNames.isEmpty
-              ? 'Featured: ${eraProphets.take(2).map((e) => e.honoredName).join(', ')}'
-              : 'Featured: ${featuredNames.join(', ')}';
+              ? l10n.prophetsJourneyFeaturedLabel(
+                  eraProphets.take(2).map((e) => e.honoredName).join(', '),
+                )
+              : l10n.prophetsJourneyFeaturedLabel(featuredNames.join(', '));
 
           return Padding(
             padding: const EdgeInsets.only(bottom: 12),
@@ -190,8 +210,11 @@ class JourneyOfRevelationPage extends ConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 RevelationEraCard(
-                  title: era.title,
-                  summary: era.summary,
+                  title: localizedProphetEraTitle(l10n, _eraGroupForId(era.id)),
+                  summary: localizedProphetEraSubtitle(
+                    l10n,
+                    _eraGroupForId(era.id),
+                  ),
                   regionLabel: era.regionLabel,
                   civilizationTitle: era.civilizationTitle,
                   civilizationSummary: era.civilizationSummary,
@@ -199,7 +222,10 @@ class JourneyOfRevelationPage extends ConsumerWidget {
                   humanPatternSummaries: era.humanPatterns
                       .map((pattern) => '${pattern.title}: ${pattern.summary}')
                       .toList(),
-                  growthHabitLabels: _habitLabels(era.relatedGrowthHabitIds),
+                  growthHabitLabels: _habitLabels(
+                    era.relatedGrowthHabitIds,
+                    l10n,
+                  ),
                   featuredProphetsLabel: featuredLabel,
                   started: started,
                   completed: completed,
@@ -249,7 +275,7 @@ class JourneyOfRevelationPage extends ConsumerWidget {
                     coreCall: era.coreMessage,
                     referenceLabel: reference.isEmpty
                         ? ''
-                        : 'Reference • $reference',
+                        : l10n.prophetsReferenceChip(reference),
                     completed: completedNode,
                     current: currentNode,
                     isFirst: index == 0,
@@ -283,7 +309,10 @@ class JourneyOfRevelationPage extends ConsumerWidget {
                   Padding(
                     padding: const EdgeInsets.only(top: 8),
                     child: RevelationGrowthLinkCard(
-                      habitLabels: _habitLabels(era.relatedGrowthHabitIds),
+                      habitLabels: _habitLabels(
+                        era.relatedGrowthHabitIds,
+                        l10n,
+                      ),
                     ),
                   ),
               ],
@@ -292,6 +321,18 @@ class JourneyOfRevelationPage extends ConsumerWidget {
         }),
       ],
     );
+  }
+
+  ProphetEraGroup _eraGroupForId(String id) {
+    return switch (id) {
+      'early_humanity' => ProphetEraGroup.earlyHumanity,
+      'early_civilizations' => ProphetEraGroup.earlyCivilizations,
+      'post_flood_peoples' => ProphetEraGroup.postFloodPeoples,
+      'age_of_ibrahim' => ProphetEraGroup.ageOfIbrahim,
+      'children_of_israel' => ProphetEraGroup.childrenOfIsrael,
+      'later_israelite_prophets' => ProphetEraGroup.laterIsraeliteProphets,
+      _ => ProphetEraGroup.finalMessenger,
+    };
   }
 
   Widget _continuityChip(String text) {
@@ -322,18 +363,10 @@ class JourneyOfRevelationPage extends ConsumerWidget {
     return byId[era.prophetIds.first];
   }
 
-  List<String> _habitLabels(List<String> habitIds) {
+  List<String> _habitLabels(List<String> habitIds, AppLocalizations l10n) {
     return habitIds
-        .map((id) => _habitLabelById[id] ?? _toTitleCase(id))
+        .map((id) => _habitLabelById(id, l10n))
         .toList(growable: false);
-  }
-
-  String _toTitleCase(String value) {
-    final words = value
-        .split('_')
-        .where((part) => part.trim().isNotEmpty)
-        .map((part) => '${part[0].toUpperCase()}${part.substring(1)}');
-    return words.join(' ');
   }
 }
 
@@ -345,16 +378,19 @@ extension<T> on Iterable<T> {
   }
 }
 
-const Map<String, String> _habitLabelById = {
-  'daily_istighfar': 'Daily Istighfar',
-  'make_dua_daily': 'Daily Dua',
-  'study_islamic_knowledge': 'Study Knowledge',
-  'practice_patience': 'Practice Patience',
-  'read_quran_daily': 'Read Qur\'an',
-  'practice_humility': 'Practice Humility',
-  'practice_gratitude': 'Practice Gratitude',
-  'end_day_with_reflection_and_tawbah': 'Night Reflection',
-  'reconnect_with_family': 'Reconnect with Family',
-  'help_someone': 'Help Someone',
-  'send_salawat': 'Send Salawat',
-};
+String _habitLabelById(String id, AppLocalizations l10n) {
+  return switch (id) {
+    'daily_istighfar' => l10n.prophetsHabitDailyIstighfar,
+    'make_dua_daily' => l10n.prophetsHabitDailyDua,
+    'study_islamic_knowledge' => l10n.prophetsHabitStudyKnowledge,
+    'practice_patience' => l10n.prophetsHabitPracticePatience,
+    'read_quran_daily' => l10n.prophetsHabitReadQuran,
+    'practice_humility' => l10n.prophetsHabitPracticeHumility,
+    'practice_gratitude' => l10n.prophetsHabitPracticeGratitude,
+    'end_day_with_reflection_and_tawbah' => l10n.prophetsHabitNightReflection,
+    'reconnect_with_family' => l10n.prophetsHabitReconnectFamily,
+    'help_someone' => l10n.prophetsHabitHelpSomeone,
+    'send_salawat' => l10n.prophetsHabitSendSalawat,
+    _ => id,
+  };
+}

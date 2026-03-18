@@ -1,10 +1,20 @@
-enum PrayerStatus {
-  pending,
-  completed,
-  missed,
-}
+import '../../../l10n/app_localizations.dart';
+
+enum PrayerStatus { pending, completed, missed }
 
 extension PrayerStatusX on PrayerStatus {
+  String localizedLabel(AppLocalizations l10n) {
+    switch (this) {
+      case PrayerStatus.pending:
+        return l10n.worshipPrayerStatusPending;
+      case PrayerStatus.completed:
+        return l10n.worshipPrayerStatusCompleted;
+      case PrayerStatus.missed:
+        return l10n.worshipPrayerStatusMissed;
+    }
+  }
+
+  @Deprecated('Use localizedLabel(AppLocalizations) for user-visible text.')
   String get label {
     switch (this) {
       case PrayerStatus.pending:
@@ -27,4 +37,3 @@ extension PrayerStatusX on PrayerStatus {
     }
   }
 }
-

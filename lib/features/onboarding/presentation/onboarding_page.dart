@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../l10n/app_localizations.dart';
 import '../../../core/localization/locale_provider.dart';
 import '../../../core/prayer/prayer_preferences.dart';
 import '../../../features/learn/quran/application/quran_providers.dart';
@@ -11,6 +12,7 @@ import '../../../shared/state/user_profile_state.dart';
 import '../../../shared/widgets/global_background.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../profile/application/profile_settings_provider.dart';
+import '../../learn/journey/application/learning_path_provider.dart';
 import '../application/onboarding_preferences_provider.dart';
 import '../application/onboarding_state_provider.dart';
 import '../domain/onboarding_preferences.dart';
@@ -23,7 +25,7 @@ class OnboardingPage extends ConsumerStatefulWidget {
 }
 
 class _OnboardingPageState extends ConsumerState<OnboardingPage> {
-  static const _lastIndex = 14;
+  static const _lastIndex = 15;
 
   late final PageController _controller;
   late final TextEditingController _nameController;
@@ -36,6 +38,8 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
 
   _LanguageChoice _languageChoice = _languageChoices.first;
   OnboardingAgeRange _ageRange = OnboardingAgeRange.age25_34;
+  OnboardingLearningAgeGroup _learningAgeGroup =
+      OnboardingLearningAgeGroup.adults;
   OnboardingIslamExperience _islamExperience =
       OnboardingIslamExperience.bornStillLearning;
   OnboardingSalahConsistency _salahConsistency =
@@ -85,6 +89,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
     final existing = ref.read(onboardingPreferencesProvider);
     if (existing != null) {
       _ageRange = existing.ageRange;
+      _learningAgeGroup = existing.learningAgeGroup;
       _islamExperience = existing.islamExperience;
       _salahConsistency = existing.salahConsistency;
       _methodChoice = existing.prayerMethodChoice;
@@ -234,7 +239,9 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
                         borderRadius: BorderRadius.circular(12),
                         color: const Color(0xFFF3EBDD).withValues(alpha: 0.92),
                         border: Border.all(
-                          color: const Color(0xFFD8C49A).withValues(alpha: 0.55),
+                          color: const Color(
+                            0xFFD8C49A,
+                          ).withValues(alpha: 0.55),
                         ),
                       ),
                       child: Text(
@@ -276,28 +283,30 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
       case 2:
         return _agePage();
       case 3:
-        return _experiencePage();
+        return _learningAgeGroupPage();
       case 4:
-        return _salahConsistencyPage();
+        return _experiencePage();
       case 5:
-        return _prayerMethodPage();
+        return _salahConsistencyPage();
       case 6:
-        return _madhabPage();
+        return _prayerMethodPage();
       case 7:
-        return _growthInterestsPage();
+        return _madhabPage();
       case 8:
-        return _arabicReadingPage();
+        return _growthInterestsPage();
       case 9:
-        return _remindersPage();
+        return _arabicReadingPage();
       case 10:
-        return _trackingPage();
+        return _remindersPage();
       case 11:
-        return _familyIntroPage();
+        return _trackingPage();
       case 12:
-        return _dhikrFeedbackPage();
+        return _familyIntroPage();
       case 13:
-        return _identityPage();
+        return _dhikrFeedbackPage();
       case 14:
+        return _identityPage();
+      case 15:
         return _finalWelcomePage();
       default:
         return const SizedBox.shrink();
@@ -463,6 +472,22 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
         OnboardingIslamExperience.advanced: 'Experienced / advanced',
       },
       onChanged: (value) => setState(() => _islamExperience = value),
+    );
+  }
+
+  Widget _learningAgeGroupPage() {
+    final l10n = AppLocalizations.of(context);
+    return _choicePage<OnboardingLearningAgeGroup>(
+      title: l10n.onboardingLearningAgeGroupTitle,
+      subtitle: l10n.onboardingLearningAgeGroupSubtitle,
+      value: _learningAgeGroup,
+      options: {
+        OnboardingLearningAgeGroup.kids: l10n.onboardingLearningAgeGroupKids,
+        OnboardingLearningAgeGroup.teens: l10n.onboardingLearningAgeGroupTeens,
+        OnboardingLearningAgeGroup.adults:
+            l10n.onboardingLearningAgeGroupAdults,
+      },
+      onChanged: (value) => setState(() => _learningAgeGroup = value),
     );
   }
 
@@ -652,7 +677,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
                 ),
               ),
               IconButton(
-                tooltip: 'Reminder help',
+                tooltip: AppLocalizations.of(context).accessibilityReminderHelp,
                 onPressed: _showReminderHelp,
                 icon: const Icon(Icons.help_outline_rounded),
               ),
@@ -831,6 +856,9 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
               ),
               child: IconButton(
                 onPressed: () => setState(() => _dhikrPreviewCount += 1),
+                tooltip: AppLocalizations.of(
+                  context,
+                ).accessibilityIncreaseDhikrCount,
                 icon: const Icon(Icons.touch_app_rounded),
               ),
             ),
@@ -850,10 +878,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'Greeting',
-            style: TextStyle(fontWeight: FontWeight.w700),
-          ),
+          const Text('Greeting', style: TextStyle(fontWeight: FontWeight.w700)),
           const SizedBox(height: 6),
           _choiceRow<UserSex>(
             value: _sex,
@@ -864,10 +889,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
             onChanged: (value) => setState(() => _sex = value),
           ),
           const SizedBox(height: 12),
-          const Text(
-            'Name',
-            style: TextStyle(fontWeight: FontWeight.w700),
-          ),
+          const Text('Name', style: TextStyle(fontWeight: FontWeight.w700)),
           const SizedBox(height: 6),
           TextField(
             controller: _nameController,
@@ -1130,8 +1152,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
 
     quranReaderSettings.setShowTransliteration(
       _arabicReadMode == OnboardingArabicReadMode.noArabicYet ||
-          _arabicReadMode ==
-              OnboardingArabicReadMode.arabicTransliteration ||
+          _arabicReadMode == OnboardingArabicReadMode.arabicTransliteration ||
           _arabicReadMode ==
               OnboardingArabicReadMode.arabicTransliterationTranslation,
     );
@@ -1161,6 +1182,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
       languageChoiceId: _languageChoice.id,
       localeTag: _languageChoice.locale?.toLanguageTag(),
       ageRange: _ageRange,
+      learningAgeGroup: _learningAgeGroup,
       islamExperience: _islamExperience,
       salahConsistency: _salahConsistency,
       prayerMethodChoice: _methodChoice,
@@ -1183,6 +1205,9 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
       completedAtIso: DateTime.now().toIso8601String(),
     );
     onboardingPreferencesNotifier.save(prefs);
+    ref
+        .read(learningPathSelectionProvider.notifier)
+        .syncFromOnboardingProfile(_islamExperience, _learningAgeGroup);
 
     ref.read(onboardingCompletedProvider.notifier).complete();
     if (!mounted) return;
@@ -1343,15 +1368,13 @@ const _languageChoices = <_LanguageChoice>[
   _LanguageChoice(id: 'system', label: 'System Default'),
   _LanguageChoice(id: 'en', label: 'English', locale: Locale('en')),
   _LanguageChoice(id: 'ar', label: 'Arabic (العربية)', locale: Locale('ar')),
+  _LanguageChoice(id: 'de', label: 'German (Deutsch)', locale: Locale('de')),
   _LanguageChoice(id: 'ur', label: 'Urdu (اردو)', locale: Locale('ur')),
   _LanguageChoice(id: 'hi', label: 'Hindi (हिंदी)', locale: Locale('hi')),
   _LanguageChoice(id: 'id', label: 'Indonesian', locale: Locale('id')),
   _LanguageChoice(id: 'ms', label: 'Malay', locale: Locale('ms')),
   _LanguageChoice(id: 'tr', label: 'Turkish', locale: Locale('tr')),
   _LanguageChoice(id: 'bn', label: 'Bengali', locale: Locale('bn')),
-  _LanguageChoice(id: 'fr', label: 'French', locale: Locale('fr')),
-  _LanguageChoice(id: 'es', label: 'Spanish', locale: Locale('es')),
-  _LanguageChoice(id: 'de', label: 'German', locale: Locale('de')),
 ];
 
 const _interestOptions = <(String, IconData)>[

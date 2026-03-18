@@ -1,7 +1,10 @@
 import 'dart:math' as math;
 
+import 'package:flutter/widgets.dart' show Locale;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../core/localization/locale_provider.dart';
+import '../../../l10n/app_localizations.dart';
 import '../../profile/application/profile_settings_provider.dart';
 import '../../../shared/persistence/local_store.dart';
 import 'growth_controller.dart';
@@ -16,11 +19,13 @@ final growthControllerProvider =
       return GrowthController(ref.watch(localStoreProvider));
     });
 
-final growthInternalTabProvider =
-    StateProvider<GrowthInternalTab>((ref) => GrowthInternalTab.today);
+final growthInternalTabProvider = StateProvider<GrowthInternalTab>(
+  (ref) => GrowthInternalTab.today,
+);
 
-final growthSelectedDateProvider =
-    StateProvider<DateTime>((ref) => DateTime.now());
+final growthSelectedDateProvider = StateProvider<DateTime>(
+  (ref) => DateTime.now(),
+);
 
 final growthSeededHabitsProvider = Provider<List<GrowthHabit>>((ref) {
   return seededGrowthHabits;
@@ -66,15 +71,14 @@ final growthStageContentByNumberProvider =
       return map;
     });
 
-final growthHabitContentByIdProvider = Provider<Map<String, GrowthHabitContent>>((
-  ref,
-) {
-  final map = <String, GrowthHabitContent>{};
-  for (final item in seededGrowthHabitContent) {
-    map[item.habitId] = item;
-  }
-  return map;
-});
+final growthHabitContentByIdProvider =
+    Provider<Map<String, GrowthHabitContent>>((ref) {
+      final map = <String, GrowthHabitContent>{};
+      for (final item in seededGrowthHabitContent) {
+        map[item.habitId] = item;
+      }
+      return map;
+    });
 
 final growthPathContentByIdProvider = Provider<Map<String, GrowthPathContent>>((
   ref,
@@ -92,8 +96,43 @@ final growthReflectionPromptGroupsProvider = Provider<List<GrowthPromptGroup>>((
   return seededGrowthPromptGroups;
 });
 
-final growthEncouragementCopyProvider = Provider<GrowthEncouragementCopy>((ref) {
-  return seededGrowthEncouragementCopy;
+final growthEncouragementCopyProvider = Provider<GrowthEncouragementCopy>((
+  ref,
+) {
+  final locale = ref.watch(appLocaleProvider);
+  final l10n = lookupAppLocalizations(locale ?? const Locale('en'));
+  return GrowthEncouragementCopy(
+    completion: [
+      l10n.growthEncouragementCompletion1,
+      l10n.growthEncouragementCompletion2,
+      l10n.growthEncouragementCompletion3,
+    ],
+    returning: [
+      l10n.growthEncouragementReturning1,
+      l10n.growthEncouragementReturning2,
+      l10n.growthEncouragementReturning3,
+    ],
+    streak: [
+      l10n.growthEncouragementStreak1,
+      l10n.growthEncouragementStreak2,
+      l10n.growthEncouragementStreak3,
+    ],
+    dayEnd: [
+      l10n.growthEncouragementDayEnd1,
+      l10n.growthEncouragementDayEnd2,
+      l10n.growthEncouragementDayEnd3,
+    ],
+    pathProgress: [
+      l10n.growthEncouragementPath1,
+      l10n.growthEncouragementPath2,
+      l10n.growthEncouragementPath3,
+    ],
+    gentleReminders: [
+      l10n.growthEncouragementReminder1,
+      l10n.growthEncouragementReminder2,
+      l10n.growthEncouragementReminder3,
+    ],
+  );
 });
 
 final growthMilestoneContentProvider = Provider<List<GrowthMilestoneContent>>((
@@ -104,7 +143,9 @@ final growthMilestoneContentProvider = Provider<List<GrowthMilestoneContent>>((
   return list;
 });
 
-final growthUnlockablesCatalogProvider = Provider<List<GrowthUnlockable>>((ref) {
+final growthUnlockablesCatalogProvider = Provider<List<GrowthUnlockable>>((
+  ref,
+) {
   return seededGrowthUnlockables;
 });
 
@@ -184,15 +225,16 @@ final growthHabitsByIdProvider = Provider<Map<String, GrowthHabit>>((ref) {
   return map;
 });
 
-final growthLogsForSelectedDateProvider =
-    Provider<Map<String, GrowthHabitLog>>((ref) {
-      final state = ref.watch(growthControllerProvider);
-      final date = ref.watch(growthSelectedDateProvider);
-      final dayKey = LocalStore.todayKey(date);
-      return Map<String, GrowthHabitLog>.from(
-        state.habitLogsByDay[dayKey] ?? const {},
-      );
-    });
+final growthLogsForSelectedDateProvider = Provider<Map<String, GrowthHabitLog>>(
+  (ref) {
+    final state = ref.watch(growthControllerProvider);
+    final date = ref.watch(growthSelectedDateProvider);
+    final dayKey = LocalStore.todayKey(date);
+    return Map<String, GrowthHabitLog>.from(
+      state.habitLogsByDay[dayKey] ?? const {},
+    );
+  },
+);
 
 final growthStatusesForSelectedDateProvider =
     Provider<Map<String, GrowthHabitStatus>>((ref) {
@@ -204,7 +246,9 @@ final growthStatusesForSelectedDateProvider =
       return status;
     });
 
-final growthDueHabitsForSelectedDateProvider = Provider<List<GrowthHabit>>((ref) {
+final growthDueHabitsForSelectedDateProvider = Provider<List<GrowthHabit>>((
+  ref,
+) {
   final habits = ref.watch(growthAllHabitsProvider);
   final state = ref.watch(growthControllerProvider);
   final date = ref.watch(growthSelectedDateProvider);
@@ -264,43 +308,45 @@ final growthFastTrackingProvider = Provider<GrowthFastTrackingData>((ref) {
   );
 });
 
-final growthRamadanQuranTrackerProvider = Provider<GrowthQuranCompletionTracker>((
-  ref,
-) {
-  final state = ref.watch(growthControllerProvider);
-  final context = ref.watch(growthSeasonalContextProvider);
-  final plan = state.ramadanQuranPlanDays.clamp(10, 30);
-  final juz = state.ramadanQuranCompletedJuz.clamp(0, 30).toDouble();
-  final remaining = (30 - juz).clamp(0, 30).toDouble();
-  final completedPercent = ((juz / 30) * 100).round().clamp(0, 100);
-  final day = context.hijriDate.day.clamp(1, plan);
-  final daysRemaining = (plan - day + 1).clamp(1, plan);
-  final neededPerDay = remaining <= 0 ? 0.0 : (remaining / daysRemaining);
+final growthRamadanQuranTrackerProvider =
+    Provider<GrowthQuranCompletionTracker>((ref) {
+      final state = ref.watch(growthControllerProvider);
+      final context = ref.watch(growthSeasonalContextProvider);
+      final plan = state.ramadanQuranPlanDays.clamp(10, 30);
+      final juz = state.ramadanQuranCompletedJuz.clamp(0, 30).toDouble();
+      final remaining = (30 - juz).clamp(0, 30).toDouble();
+      final completedPercent = ((juz / 30) * 100).round().clamp(0, 100);
+      final day = context.hijriDate.day.clamp(1, plan);
+      final daysRemaining = (plan - day + 1).clamp(1, plan);
+      final neededPerDay = remaining <= 0 ? 0.0 : (remaining / daysRemaining);
 
-  return GrowthQuranCompletionTracker(
-    planDays: plan,
-    currentJuzProgress: juz,
-    remainingJuz: remaining,
-    completedPercent: completedPercent,
-    estimatedDaysRemaining: daysRemaining,
-    estimatedDailyJuzNeeded: neededPerDay,
-  );
-});
+      return GrowthQuranCompletionTracker(
+        planDays: plan,
+        currentJuzProgress: juz,
+        remainingJuz: remaining,
+        completedPercent: completedPercent,
+        estimatedDaysRemaining: daysRemaining,
+        estimatedDailyJuzNeeded: neededPerDay,
+      );
+    });
 
 final growthRamadanDashboardProvider = Provider<GrowthRamadanDashboardData?>((
   ref,
 ) {
+  final l10n = lookupAppLocalizations(
+    ref.watch(appLocaleProvider) ?? const Locale('en'),
+  );
   final context = ref.watch(growthSeasonalContextProvider);
   if (!context.isRamadanMode) return null;
   final logs = ref.watch(growthLogsForSelectedDateProvider);
-  final completedFast = logs['s_ramadan_fast_today']?.status ==
-      GrowthHabitStatus.completed;
-  final completedQuran = logs['s_ramadan_quran']?.status ==
-      GrowthHabitStatus.completed;
-  final completedCharity = logs['s_ramadan_charity']?.status ==
-      GrowthHabitStatus.completed;
-  final completedReflection = logs['s_ramadan_night_reflection']?.status ==
-      GrowthHabitStatus.completed;
+  final completedFast =
+      logs['s_ramadan_fast_today']?.status == GrowthHabitStatus.completed;
+  final completedQuran =
+      logs['s_ramadan_quran']?.status == GrowthHabitStatus.completed;
+  final completedCharity =
+      logs['s_ramadan_charity']?.status == GrowthHabitStatus.completed;
+  final completedReflection =
+      logs['s_ramadan_night_reflection']?.status == GrowthHabitStatus.completed;
   var score = 0;
   if (completedFast) score += 1;
   if (completedQuran) score += 1;
@@ -313,42 +359,50 @@ final growthRamadanDashboardProvider = Provider<GrowthRamadanDashboardData?>((
     charityCompleted: completedCharity,
     reflectionCompleted: completedReflection,
     dailyProgress: progress,
-    progressLabel: '${(progress * 100).round()}% of today’s Ramadan path tended',
+    progressLabel: l10n.growthRamadanProgressLabel((progress * 100).round()),
   );
 });
 
 final growthReflectionPromptSuggestionsProvider = Provider<List<String>>((ref) {
+  final l10n = lookupAppLocalizations(
+    ref.watch(appLocaleProvider) ?? const Locale('en'),
+  );
   final due = ref.watch(growthDueHabitsForSelectedDateProvider);
   final logs = ref.watch(growthLogsForSelectedDateProvider);
   final grouped = ref.watch(growthReflectionPromptGroupsProvider);
   final date = ref.watch(growthSelectedDateProvider);
 
   final prompts = <String>[];
-  final completed = due.where((h) => logs[h.id]?.status == GrowthHabitStatus.completed);
+  final completed = due.where(
+    (h) => logs[h.id]?.status == GrowthHabitStatus.completed,
+  );
   final revisit = due.where((h) {
     final status = logs[h.id]?.status;
-    return status == GrowthHabitStatus.skipped || status == GrowthHabitStatus.deferred;
+    return status == GrowthHabitStatus.skipped ||
+        status == GrowthHabitStatus.deferred;
   });
 
   for (final habit in completed.take(2)) {
-    prompts.add('How did "${habit.title}" shape your heart today?');
+    prompts.add(l10n.growthReflectionPromptCompleted(habit.title));
   }
   for (final habit in revisit.take(2)) {
-    prompts.add('How can you return gently to "${habit.title}" and take one small step?');
+    prompts.add(l10n.growthReflectionPromptRevisit(habit.title));
   }
-  final dayIndex = (date.day + date.month + date.year) %
+  final dayIndex =
+      (date.day + date.month + date.year) %
       grouped.fold<int>(0, (sum, g) => sum + g.prompts.length).clamp(1, 9999);
   var cursor = 0;
   for (final group in grouped) {
     for (final prompt in group.prompts) {
-      if (cursor == dayIndex % grouped.fold<int>(0, (sum, g) => sum + g.prompts.length)) {
+      if (cursor ==
+          dayIndex % grouped.fold<int>(0, (sum, g) => sum + g.prompts.length)) {
         prompts.add(prompt);
       }
       cursor += 1;
     }
   }
   if (prompts.isEmpty) {
-    prompts.add('What was your most sincere moment today?');
+    prompts.add(l10n.growthReflectionPromptSincereMoment);
   }
   prompts.addAll(ref.watch(growthSeasonalReflectionPromptsProvider).take(2));
   return prompts.toSet().take(4).toList();
@@ -398,7 +452,9 @@ final growthTodaySummaryProvider = Provider<GrowthTodaySummary>((ref) {
     return sum + _completionCredit(log);
   });
 
-  final progress = due.isEmpty ? 0.0 : (progressCredit / due.length).clamp(0.0, 1.0);
+  final progress = due.isEmpty
+      ? 0.0
+      : (progressCredit / due.length).clamp(0.0, 1.0);
   final streak = _computeCurrentStreak(state, byId, date);
   final bestStreak = _computeBestStreak(state, byId, date);
 
@@ -424,8 +480,15 @@ final growthPathProgressProvider = Provider<List<GrowthPathProgress>>((ref) {
   final paths = ref.watch(growthPathsProvider);
   final allHabitsById = ref.watch(growthHabitsByIdProvider);
   final selectedDate = ref.watch(growthSelectedDateProvider);
+  final l10n = lookupAppLocalizations(
+    ref.watch(appLocaleProvider) ?? const Locale('en'),
+  );
 
-  final totalLightVisible = _computeTotalLight(state, allHabitsById, visibleOnly: true);
+  final totalLightVisible = _computeTotalLight(
+    state,
+    allHabitsById,
+    visibleOnly: true,
+  );
   final completedEver = <String, double>{};
   for (final day in state.habitLogsByDay.values) {
     for (final entry in day.entries) {
@@ -447,14 +510,18 @@ final growthPathProgressProvider = Provider<List<GrowthPathProgress>>((ref) {
       return sum + (completedEver[habit.id] ?? 0);
     });
 
-    final progress = habits.isEmpty ? 0.0 : (progressRaw / habits.length).clamp(0.0, 1.0);
+    final progress = habits.isEmpty
+        ? 0.0
+        : (progressRaw / habits.length).clamp(0.0, 1.0);
 
     var unlocked = true;
     if (path.unlockLight > 0 && totalLightVisible < path.unlockLight) {
       unlocked = false;
     }
     if (path.unlockPathId != null) {
-      final dependency = list.where((e) => e.path.id == path.unlockPathId).toList();
+      final dependency = list
+          .where((e) => e.path.id == path.unlockPathId)
+          .toList();
       if (dependency.isNotEmpty && dependency.first.progress < 0.55) {
         unlocked = false;
       }
@@ -465,23 +532,32 @@ final growthPathProgressProvider = Provider<List<GrowthPathProgress>>((ref) {
     final completedPath = progress >= 0.999;
 
     String? recommendedNextHabitId;
-    String recommendedNextStep = 'Keep this path active with one small step today.';
+    String recommendedNextStep = l10n.growthPathRecommendedNextStepDefault;
 
     if (habits.isNotEmpty) {
-      final dueToday = habits.where((habit) => isHabitDueOnDate(habit, selectedDate, state));
+      final dueToday = habits.where(
+        (habit) => isHabitDueOnDate(habit, selectedDate, state),
+      );
       for (final habit in dueToday) {
-        final log = state.habitLogsByDay[LocalStore.todayKey(selectedDate)]?[habit.id];
+        final log =
+            state.habitLogsByDay[LocalStore.todayKey(selectedDate)]?[habit.id];
         if (log == null || log.progress < 1) {
           recommendedNextHabitId = habit.id;
-          recommendedNextStep = 'Complete ${habit.title} today.';
+          recommendedNextStep = l10n.growthPathRecommendedNextStepCompleteToday(
+            habit.title,
+          );
           break;
         }
       }
       if (recommendedNextHabitId == null) {
-        final firstUnbuilt = habits.where((h) => (completedEver[h.id] ?? 0) < 1).toList();
+        final firstUnbuilt = habits
+            .where((h) => (completedEver[h.id] ?? 0) < 1)
+            .toList();
         if (firstUnbuilt.isNotEmpty) {
           recommendedNextHabitId = firstUnbuilt.first.id;
-          recommendedNextStep = 'Next focus: ${firstUnbuilt.first.title}';
+          recommendedNextStep = l10n.growthPathRecommendedNextStepFocus(
+            firstUnbuilt.first.title,
+          );
         }
       }
     }
@@ -492,7 +568,9 @@ final growthPathProgressProvider = Provider<List<GrowthPathProgress>>((ref) {
         unlocked: unlocked,
         started: started,
         paused: paused,
-        completedHabits: habits.where((h) => (completedEver[h.id] ?? 0) >= 1).length,
+        completedHabits: habits
+            .where((h) => (completedEver[h.id] ?? 0) >= 1)
+            .length,
         progress: progress,
         completed: completedPath,
         completionCelebrationPending:
@@ -511,6 +589,9 @@ final growthJourneyStatsProvider = Provider<GrowthJourneyStats>((ref) {
   final habitsById = ref.watch(growthHabitsByIdProvider);
   final paths = ref.watch(growthPathProgressProvider);
   final now = ref.watch(growthSelectedDateProvider);
+  final l10n = lookupAppLocalizations(
+    ref.watch(appLocaleProvider) ?? const Locale('en'),
+  );
 
   final visibleLight = _computeTotalLight(state, habitsById, visibleOnly: true);
   final subtleLight = _computeTotalLight(state, habitsById, visibleOnly: false);
@@ -525,30 +606,35 @@ final growthJourneyStatsProvider = Provider<GrowthJourneyStats>((ref) {
   final level = _levelForLight(visibleLight);
   final levelStart = _lightForLevel(level);
   final nextLevel = _lightForLevel(level + 1);
-  final levelProgress = ((visibleLight - levelStart) /
-          math.max(1, nextLevel - levelStart))
-      .clamp(0.0, 1.0)
-      .toDouble();
+  final levelProgress =
+      ((visibleLight - levelStart) / math.max(1, nextLevel - levelStart))
+          .clamp(0.0, 1.0)
+          .toDouble();
 
-  final weekSummary = _buildWeekSummary(state, habitsById, now);
-  final monthSummary = _buildMonthSummary(state, habitsById, now);
+  final weekSummary = _buildWeekSummary(state, habitsById, now, l10n);
+  final monthSummary = _buildMonthSummary(state, habitsById, now, l10n);
   final encouragement = ref.watch(growthEncouragementCopyProvider);
   final milestoneCatalog = ref.watch(growthMilestoneContentProvider);
 
   final milestones = <GrowthMilestoneView>[];
   GrowthMilestoneContent byId(String id) => milestoneCatalog.firstWhere(
-        (item) => item.id == id,
-        orElse: () => milestoneCatalog.first,
-      );
-  if (totalCompleted >= 1) milestones.add(GrowthMilestoneView(content: byId('first_light')));
-  if (bestStreak >= 7) milestones.add(GrowthMilestoneView(content: byId('steady_footsteps')));
+    (item) => item.id == id,
+    orElse: () => milestoneCatalog.first,
+  );
+  if (totalCompleted >= 1) {
+    milestones.add(GrowthMilestoneView(content: byId('first_light')));
+  }
+  if (bestStreak >= 7) {
+    milestones.add(GrowthMilestoneView(content: byId('steady_footsteps')));
+  }
   if (state.reflections.length >= 12) {
     milestones.add(GrowthMilestoneView(content: byId('heart_in_motion')));
   }
   if (bestStreak >= 14) {
     milestones.add(GrowthMilestoneView(content: byId('days_of_consistency')));
   }
-  if (streak.protectedDaysUsed > 0 || summaryReturningSignal(state, habitsById, now) >= 3) {
+  if (streak.protectedDaysUsed > 0 ||
+      summaryReturningSignal(state, habitsById, now) >= 3) {
     milestones.add(GrowthMilestoneView(content: byId('quiet_resolve')));
   }
   if (state.reflections.length >= 8) {
@@ -587,8 +673,9 @@ final growthJourneyStatsProvider = Provider<GrowthJourneyStats>((ref) {
     weeklySummary: weekSummary,
     monthlySummary: monthSummary,
     protectedDaysUsedThisWeek: streak.protectedDaysUsed,
-    encouragementLine: encouragement.pathProgress[(now.day + now.month) %
-        encouragement.pathProgress.length],
+    encouragementLine:
+        encouragement.pathProgress[(now.day + now.month) %
+            encouragement.pathProgress.length],
   );
 });
 
@@ -607,16 +694,17 @@ final growthGardenProgressProvider = Provider<GrowthGardenProgressView>((ref) {
   final categoryScore = stats.categoryProgress.isEmpty
       ? 0.0
       : stats.categoryProgress.values.fold<double>(0, (s, v) => s + v) /
-          stats.categoryProgress.length;
+            stats.categoryProgress.length;
   final seasonalScore = _seasonalCompletionScore(state, seasonalCards);
 
-  final gardenScore = ((completionScore * 0.24) +
-          (streakScore * 0.2) +
-          (reflectionScore * 0.18) +
-          (pathScore * 0.16) +
-          (categoryScore * 0.14) +
-          (seasonalScore * 0.08))
-      .clamp(0.0, 1.0);
+  final gardenScore =
+      ((completionScore * 0.24) +
+              (streakScore * 0.2) +
+              (reflectionScore * 0.18) +
+              (pathScore * 0.16) +
+              (categoryScore * 0.14) +
+              (seasonalScore * 0.08))
+          .clamp(0.0, 1.0);
 
   final visual = gardenVisualForScore(
     gardenScore: gardenScore,
@@ -635,7 +723,9 @@ final growthGardenProgressProvider = Provider<GrowthGardenProgressView>((ref) {
   );
 });
 
-final growthEligibleUnlockablesProvider = Provider<List<GrowthUnlockable>>((ref) {
+final growthEligibleUnlockablesProvider = Provider<List<GrowthUnlockable>>((
+  ref,
+) {
   final state = ref.watch(growthControllerProvider);
   final garden = ref.watch(growthGardenProgressProvider);
   final stats = ref.watch(growthJourneyStatsProvider);
@@ -688,7 +778,10 @@ final growthEligibleUnlockablesProvider = Provider<List<GrowthUnlockable>>((ref)
 });
 
 final growthUnlocksAutoSyncProvider = Provider<void>((ref) {
-  ref.listen<List<GrowthUnlockable>>(growthEligibleUnlockablesProvider, (_, eligible) {
+  ref.listen<List<GrowthUnlockable>>(growthEligibleUnlockablesProvider, (
+    _,
+    eligible,
+  ) {
     Future<void>.microtask(() {
       final ids = eligible.map((e) => e.id).toSet();
       if (ids.isEmpty) return;
@@ -712,7 +805,9 @@ final growthUnlockedRewardsProvider = Provider<List<GrowthUnlockable>>((ref) {
   return list;
 });
 
-final growthRecentUnlocksProvider = Provider<List<GrowthRecentUnlockView>>((ref) {
+final growthRecentUnlocksProvider = Provider<List<GrowthRecentUnlockView>>((
+  ref,
+) {
   final state = ref.watch(growthControllerProvider);
   final catalog = ref.watch(growthUnlockablesCatalogProvider);
   final map = {for (final reward in catalog) reward.id: reward};
@@ -743,13 +838,17 @@ final growthNextUnlockPreviewProvider = Provider<GrowthUnlockable?>((ref) {
       .toList();
   if (locked.isEmpty) return null;
   locked.sort((a, b) {
-    final aGap = (a.requiredTotalCompletions - stats.totalCompletedActions).abs();
-    final bGap = (b.requiredTotalCompletions - stats.totalCompletedActions).abs();
+    final aGap = (a.requiredTotalCompletions - stats.totalCompletedActions)
+        .abs();
+    final bGap = (b.requiredTotalCompletions - stats.totalCompletedActions)
+        .abs();
     if (aGap != bGap) return aGap.compareTo(bGap);
     final aStageGap =
-        _gardenStageIndex(a.requiredGardenStage) - _gardenStageIndex(garden.currentStage);
+        _gardenStageIndex(a.requiredGardenStage) -
+        _gardenStageIndex(garden.currentStage);
     final bStageGap =
-        _gardenStageIndex(b.requiredGardenStage) - _gardenStageIndex(garden.currentStage);
+        _gardenStageIndex(b.requiredGardenStage) -
+        _gardenStageIndex(garden.currentStage);
     return aStageGap.compareTo(bStageGap);
   });
   return locked.first;
@@ -762,7 +861,9 @@ final growthReflectionsForSelectedDateProvider =
       return state.reflections.where((e) => e.dayKey == dayKey).toList();
     });
 
-final growthReflectionHistoryProvider = Provider<List<GrowthReflectionEntry>>((ref) {
+final growthReflectionHistoryProvider = Provider<List<GrowthReflectionEntry>>((
+  ref,
+) {
   final list = [...ref.watch(growthControllerProvider).reflections];
   list.sort((a, b) => b.createdAt.compareTo(a.createdAt));
   return list;
@@ -796,7 +897,12 @@ final growthEndOfDaySummaryProvider = Provider<GrowthEndOfDaySummary>((ref) {
   );
 });
 
-final growthRecentActivityProvider = Provider<List<GrowthRecentActivity>>((ref) {
+final growthRecentActivityProvider = Provider<List<GrowthRecentActivity>>((
+  ref,
+) {
+  final l10n = lookupAppLocalizations(
+    ref.watch(appLocaleProvider) ?? const Locale('en'),
+  );
   final state = ref.watch(growthControllerProvider);
   final byId = ref.watch(growthHabitsByIdProvider);
 
@@ -812,9 +918,13 @@ final growthRecentActivityProvider = Provider<List<GrowthRecentActivity>>((ref) 
         GrowthRecentActivity(
           at: parsedDay,
           title: habit.title,
-          subtitle: _statusLabel(logEntry.value.status),
+          subtitle: _statusLabel(logEntry.value.status, l10n),
           isReflection: false,
-          isEntrusted: _isEntrustedForStats(habit: habit, log: logEntry.value, state: state),
+          isEntrusted: _isEntrustedForStats(
+            habit: habit,
+            log: logEntry.value,
+            state: state,
+          ),
         ),
       );
     }
@@ -824,8 +934,10 @@ final growthRecentActivityProvider = Provider<List<GrowthRecentActivity>>((ref) 
     items.add(
       GrowthRecentActivity(
         at: reflection.createdAt,
-        title: 'Reflection recorded',
-        subtitle: reflection.gratitude.isEmpty ? 'Private note' : reflection.gratitude,
+        title: l10n.growthRecentActivityReflectionRecorded,
+        subtitle: reflection.gratitude.isEmpty
+            ? l10n.growthRecentActivityPrivateNote
+            : reflection.gratitude,
         isReflection: true,
         isEntrusted: reflection.entrustToAllah,
       ),
@@ -857,7 +969,11 @@ bool isHabitDueOnDate(GrowthHabit habit, DateTime date, GrowthState state) {
     case GrowthHabitRecurrenceType.customWeekdays:
       return habit.weekdays.contains(date.weekday);
     case GrowthHabitRecurrenceType.weeklyTarget:
-      final completedInWeek = _countCompletionCreditInWeek(state, habit.id, date);
+      final completedInWeek = _countCompletionCreditInWeek(
+        state,
+        habit.id,
+        date,
+      );
       final dayInWeek = date.weekday.clamp(1, 7);
       final expectedByToday = ((habit.frequencyTarget * dayInWeek) / 7).ceil();
       return completedInWeek < expectedByToday;
@@ -883,7 +999,9 @@ bool _isSeasonalHabitActiveOnDate(
   final isFriday = date.weekday == DateTime.friday;
   final today = DateTime.now();
   final isToday =
-      date.year == today.year && date.month == today.month && date.day == today.day;
+      date.year == today.year &&
+      date.month == today.month &&
+      date.day == today.day;
   if (habitId.startsWith('s_ramadan_')) {
     return hijri.month == 9 || (state.ramadanModeOverride && isToday);
   }
@@ -917,7 +1035,11 @@ int summaryReturningSignal(
 ) {
   var count = 0;
   for (var i = 0; i < 28; i++) {
-    final day = DateTime(now.year, now.month, now.day).subtract(Duration(days: i));
+    final day = DateTime(
+      now.year,
+      now.month,
+      now.day,
+    ).subtract(Duration(days: i));
     final ratio = _dayCompletionRatio(state, habitsById, day);
     if (ratio >= 0.35 && ratio < 0.60) {
       count += 1;
@@ -926,12 +1048,18 @@ int summaryReturningSignal(
   return count;
 }
 
-DateTime? _lastCompletionDate(GrowthState state, String habitId, DateTime onOrBefore) {
+DateTime? _lastCompletionDate(
+  GrowthState state,
+  String habitId,
+  DateTime onOrBefore,
+) {
   DateTime? latest;
   for (final dayEntry in state.habitLogsByDay.entries) {
     final date = DateTime.tryParse(dayEntry.key);
     if (date == null) continue;
-    if (date.isAfter(DateTime(onOrBefore.year, onOrBefore.month, onOrBefore.day))) {
+    if (date.isAfter(
+      DateTime(onOrBefore.year, onOrBefore.month, onOrBefore.day),
+    )) {
       continue;
     }
     final log = dayEntry.value[habitId];
@@ -943,8 +1071,14 @@ DateTime? _lastCompletionDate(GrowthState state, String habitId, DateTime onOrBe
   return latest;
 }
 
-double _countCompletionCreditInWeek(GrowthState state, String habitId, DateTime date) {
-  final weekStart = date.subtract(Duration(days: date.weekday - DateTime.monday));
+double _countCompletionCreditInWeek(
+  GrowthState state,
+  String habitId,
+  DateTime date,
+) {
+  final weekStart = date.subtract(
+    Duration(days: date.weekday - DateTime.monday),
+  );
   var completed = 0.0;
   for (var i = 0; i < 7; i++) {
     final day = weekStart.add(Duration(days: i));
@@ -976,7 +1110,9 @@ double _dayCompletionRatio(
   Map<String, GrowthHabit> byId,
   DateTime date,
 ) {
-  final due = byId.values.where((habit) => isHabitDueOnDate(habit, date, state)).toList();
+  final due = byId.values
+      .where((habit) => isHabitDueOnDate(habit, date, state))
+      .toList();
   if (due.isEmpty) return 0.0;
   final logs = state.habitLogsByDay[LocalStore.todayKey(date)] ?? const {};
   var credit = 0.0;
@@ -1030,7 +1166,9 @@ _StreakResult _computeCurrentStreak(
     }
 
     final withinWeeklyCompassion = protectedUsed < 1;
-    if (withinWeeklyCompassion && ratio >= 0.45 && _dayHasReflection(state, pointer)) {
+    if (withinWeeklyCompassion &&
+        ratio >= 0.45 &&
+        _dayHasReflection(state, pointer)) {
       streak += 1;
       protectedUsed += 1;
       continue;
@@ -1050,7 +1188,11 @@ int _computeBestStreak(
   var best = 0;
   var running = 0;
   for (var i = 240; i >= 0; i--) {
-    final day = DateTime(now.year, now.month, now.day).subtract(Duration(days: i));
+    final day = DateTime(
+      now.year,
+      now.month,
+      now.day,
+    ).subtract(Duration(days: i));
     final ratio = _dayCompletionRatio(state, byId, day);
     if (ratio >= 0.60) {
       running += 1;
@@ -1084,7 +1226,8 @@ int _computeTotalLight(
       if (habit == null) continue;
       final log = entry.value;
       if (log.progress <= 0) continue;
-      if (visibleOnly && _isEntrustedForStats(habit: habit, log: log, state: state)) {
+      if (visibleOnly &&
+          _isEntrustedForStats(habit: habit, log: log, state: state)) {
         continue;
       }
       total += (habit.lightReward * log.progress).round();
@@ -1109,8 +1252,11 @@ List<double> _weeklyCompletionBars(
   Map<String, GrowthHabit> byId,
   DateTime now,
 ) {
-  final start = DateTime(now.year, now.month, now.day)
-      .subtract(Duration(days: now.weekday - DateTime.monday));
+  final start = DateTime(
+    now.year,
+    now.month,
+    now.day,
+  ).subtract(Duration(days: now.weekday - DateTime.monday));
   return List<double>.generate(7, (index) {
     return _dayCompletionRatio(state, byId, start.add(Duration(days: index)));
   });
@@ -1138,7 +1284,11 @@ Map<GrowthHabitCategory, double> _categoryProgress(
   final due = <GrowthHabitCategory, int>{};
   final completed = <GrowthHabitCategory, double>{};
   for (var i = 0; i < 30; i++) {
-    final date = DateTime(now.year, now.month, now.day).subtract(Duration(days: i));
+    final date = DateTime(
+      now.year,
+      now.month,
+      now.day,
+    ).subtract(Duration(days: i));
     final dayKey = LocalStore.todayKey(date);
     final dayLogs = state.habitLogsByDay[dayKey] ?? const {};
     for (final habit in byId.values) {
@@ -1146,7 +1296,8 @@ Map<GrowthHabitCategory, double> _categoryProgress(
       due[habit.category] = (due[habit.category] ?? 0) + 1;
       final log = dayLogs[habit.id];
       if (log != null) {
-        completed[habit.category] = (completed[habit.category] ?? 0) + _completionCredit(log);
+        completed[habit.category] =
+            (completed[habit.category] ?? 0) + _completionCredit(log);
       }
     }
   }
@@ -1167,15 +1318,18 @@ GrowthWeeklySummary _buildWeekSummary(
   GrowthState state,
   Map<String, GrowthHabit> byId,
   DateTime now,
+  AppLocalizations l10n,
 ) {
   final bars = _weeklyCompletionBars(state, byId, now);
-  final average = bars.isEmpty ? 0.0 : bars.reduce((a, b) => a + b) / bars.length;
+  final average = bars.isEmpty
+      ? 0.0
+      : bars.reduce((a, b) => a + b) / bars.length;
   final bestDay = bars.indexWhere((e) => e == bars.reduce(math.max));
   final consistency = average >= 0.75
-      ? 'A steady, nourishing rhythm is forming.'
+      ? l10n.growthWeeklySummaryStrong
       : average >= 0.45
-      ? 'A balanced week with gentle momentum.'
-      : 'Begin again today. Reflection can softly renew your rhythm.';
+      ? l10n.growthWeeklySummaryBalanced
+      : l10n.growthWeeklySummaryRestart;
 
   return GrowthWeeklySummary(
     averageCompletion: average,
@@ -1188,18 +1342,21 @@ GrowthMonthlySummary _buildMonthSummary(
   GrowthState state,
   Map<String, GrowthHabit> byId,
   DateTime now,
+  AppLocalizations l10n,
 ) {
   final map = _monthlyConsistencyCalendar(state, byId, now);
   final values = map.values.toList();
-  final average = values.isEmpty ? 0.0 : values.reduce((a, b) => a + b) / values.length;
+  final average = values.isEmpty
+      ? 0.0
+      : values.reduce((a, b) => a + b) / values.length;
   final strongDays = values.where((v) => v >= 0.65).length;
 
   return GrowthMonthlySummary(
     averageCompletion: average,
     strongDays: strongDays,
     note: strongDays >= 15
-        ? 'This month reflects steady patience and gentle continuity.'
-        : 'Continue with small, sincere steps.',
+        ? l10n.growthMonthlySummaryStrong
+        : l10n.growthMonthlySummaryGentle,
   );
 }
 
@@ -1218,18 +1375,18 @@ int _levelForLight(int light) {
   return level;
 }
 
-String _statusLabel(GrowthHabitStatus status) {
+String _statusLabel(GrowthHabitStatus status, AppLocalizations l10n) {
   switch (status) {
     case GrowthHabitStatus.completed:
-      return 'Done with care';
+      return l10n.growthStatusCompleted;
     case GrowthHabitStatus.partial:
-      return 'On your path';
+      return l10n.growthStatusPartial;
     case GrowthHabitStatus.skipped:
-      return 'Paused for today';
+      return l10n.growthStatusSkipped;
     case GrowthHabitStatus.snoozed:
-      return 'Return later';
+      return l10n.growthStatusSnoozed;
     case GrowthHabitStatus.deferred:
-      return 'Carry forward';
+      return l10n.growthStatusDeferred;
   }
 }
 
@@ -1334,9 +1491,7 @@ class GrowthJourneyStats {
 }
 
 class GrowthMilestoneView {
-  const GrowthMilestoneView({
-    required this.content,
-  });
+  const GrowthMilestoneView({required this.content});
 
   final GrowthMilestoneContent content;
 }
@@ -1472,7 +1627,9 @@ double _seasonalCompletionScore(
         completed += 1;
       }
     }
-    final ratio = card.habitIds.isEmpty ? 0.0 : completed / card.habitIds.length;
+    final ratio = card.habitIds.isEmpty
+        ? 0.0
+        : completed / card.habitIds.length;
     total += ratio;
     count += 1;
   }
@@ -1491,7 +1648,11 @@ bool _hasEverCompletedHabit(GrowthState state, String habitId) {
 
 int _fastCompletionCount(GrowthState state) {
   var count = 0;
-  const tracked = {'s_ramadan_fast_today', 's_fast_optional_today', 'h_sunnah_fasts'};
+  const tracked = {
+    's_ramadan_fast_today',
+    's_fast_optional_today',
+    'h_sunnah_fasts',
+  };
   for (final day in state.habitLogsByDay.values) {
     for (final entry in day.entries) {
       if (!tracked.contains(entry.key)) continue;

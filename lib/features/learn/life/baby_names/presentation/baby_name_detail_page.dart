@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../../../l10n/app_localizations.dart';
 import '../../../../../../core/theme/app_text_styles.dart';
 import '../../../../../../shared/widgets/arabic_text_utils.dart';
 import '../../../../../../shared/widgets/app_page_scaffold.dart';
@@ -30,6 +31,7 @@ class _BabyNameDetailPageState extends ConsumerState<BabyNameDetailPage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final state = ref.watch(babyNamesControllerProvider);
     final notifier = ref.read(babyNamesControllerProvider.notifier);
     final byIdAsync = ref.watch(babyNamesByIdProvider);
@@ -120,8 +122,8 @@ class _BabyNameDetailPageState extends ConsumerState<BabyNameDetailPage> {
                     child: Semantics(
                       button: true,
                       label: isFavorite
-                          ? 'Remove from favorites'
-                          : 'Save name to favorites',
+                          ? l10n.accessibilityRemoveFromFavorites
+                          : l10n.accessibilitySaveNameToFavorites,
                       child: FilledButton.tonalIcon(
                         onPressed: () => notifier.toggleFavorite(name.id),
                         icon: Icon(

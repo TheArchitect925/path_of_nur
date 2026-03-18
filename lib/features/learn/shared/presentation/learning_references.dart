@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/theme/app_colors.dart';
+import '../../../../l10n/app_localizations.dart';
 
 class LearningReferenceItem {
   const LearningReferenceItem({
@@ -35,6 +36,7 @@ class LearningReferences extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     if (items.isEmpty) {
       return const SizedBox.shrink();
     }
@@ -57,7 +59,11 @@ class LearningReferences extends StatelessWidget {
                     ? Icons.unfold_less_rounded
                     : Icons.unfold_more_rounded,
               ),
-              label: Text(expanded ? 'Show less' : 'Show all references'),
+              label: Text(
+                expanded
+                    ? l10n.learningReferencesShowLess
+                    : l10n.learningReferencesShowAll,
+              ),
             ),
           ),
       ],

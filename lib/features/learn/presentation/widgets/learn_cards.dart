@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../../core/theme/app_colors.dart';
 import '../../../../shared/widgets/premium_card.dart';
@@ -10,27 +9,19 @@ class LearnActionCard extends StatelessWidget {
     required this.title,
     required this.subtitle,
     required this.icon,
-    this.sectionId,
     this.onTap,
   });
 
   final String title;
   final String subtitle;
   final IconData icon;
-  final String? sectionId;
   final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
     return PremiumCard(
       child: InkWell(
-        onTap: onTap ??
-            (sectionId == null
-                ? null
-                : () => context.pushNamed(
-                      'featureSection',
-                      pathParameters: {'sectionId': sectionId!},
-                    )),
+        onTap: onTap,
         child: Row(
           children: [
             Container(
@@ -47,11 +38,21 @@ class LearnActionCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(title, style: const TextStyle(fontWeight: FontWeight.w700)),
+                  Text(
+                    title,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(fontWeight: FontWeight.w700),
+                  ),
                   const SizedBox(height: 2),
                   Text(
                     subtitle,
-                    style: const TextStyle(color: AppColors.onSurfaceSubtle, height: 1.35),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      color: AppColors.onSurfaceSubtle,
+                      height: 1.35,
+                    ),
                   ),
                 ],
               ),
@@ -65,11 +66,7 @@ class LearnActionCard extends StatelessWidget {
 }
 
 class LearnTopicGrid extends StatelessWidget {
-  const LearnTopicGrid({
-    super.key,
-    required this.topics,
-    this.onTopicTap,
-  });
+  const LearnTopicGrid({super.key, required this.topics, this.onTopicTap});
 
   final List<String> topics;
   final ValueChanged<String>? onTopicTap;
@@ -84,7 +81,10 @@ class LearnTopicGrid extends StatelessWidget {
             (topic) => SizedBox(
               width: (MediaQuery.of(context).size.width - 16 * 2 - 10 - 2) / 2,
               child: PremiumCard(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 14,
+                ),
                 child: InkWell(
                   onTap: onTopicTap == null ? null : () => onTopicTap!(topic),
                   child: Row(
@@ -94,6 +94,8 @@ class LearnTopicGrid extends StatelessWidget {
                       Expanded(
                         child: Text(
                           topic,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                           style: const TextStyle(fontWeight: FontWeight.w600),
                         ),
                       ),

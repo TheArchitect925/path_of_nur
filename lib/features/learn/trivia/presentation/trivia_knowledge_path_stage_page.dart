@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../core/theme/app_colors.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../application/trivia_controller.dart';
 import '../application/trivia_repository.dart';
 import '../domain/trivia_models.dart';
+import 'trivia_ui_localization.dart';
 import 'widgets/trivia_widgets.dart';
 
 class IslamicTriviaKnowledgePathStagePage extends ConsumerWidget {
@@ -21,6 +24,8 @@ class IslamicTriviaKnowledgePathStagePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final numberFormat = NumberFormat.decimalPattern(l10n.localeName);
     final controller = ref.read(triviaControllerProvider.notifier);
     final repository = ref.read(triviaRepositoryProvider);
     final state = ref.watch(triviaControllerProvider);
@@ -35,13 +40,13 @@ class IslamicTriviaKnowledgePathStagePage extends ConsumerWidget {
       }
     }
     if (path == null || stage == null) {
-      return const Scaffold(
+      return Scaffold(
         body: SafeArea(
           child: Padding(
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             child: TriviaEmptyStateCard(
-              title: 'Stage not found',
-              subtitle: 'This knowledge path stage is unavailable right now.',
+              title: l10n.triviaStageNotFoundTitle,
+              subtitle: l10n.triviaStageNotFoundSubtitle,
             ),
           ),
         ),
@@ -52,12 +57,13 @@ class IslamicTriviaKnowledgePathStagePage extends ConsumerWidget {
     final stageState = controller.stageState(path, resolvedStage);
     final questions = repository.questionsForIds(resolvedStage.questionIds);
     final activeSession = state.activeSession;
-    final canResume = activeSession?.knowledgePathId == path.id &&
+    final canResume =
+        activeSession?.knowledgePathId == path.id &&
         activeSession?.knowledgeStageId == resolvedStage.id;
 
     return Scaffold(
       backgroundColor: AppColors.background,
-        appBar: AppBar(title: Text(resolvedStage.title)),
+      appBar: AppBar(title: Text(resolvedStage.title)),
       body: SafeArea(
         child: ListView(
           padding: const EdgeInsets.fromLTRB(20, 12, 20, 24),
@@ -67,16 +73,14 @@ class IslamicTriviaKnowledgePathStagePage extends ConsumerWidget {
               runSpacing: 8,
               children: [
                 _chip(context, path.title),
-                _chip(context, resolvedStage.difficulty.label),
-                _chip(context, '${questions.length} questions'),
+                _chip(context, resolvedStage.difficulty.localizedLabel(l10n)),
                 _chip(
                   context,
-                  switch (stageState) {
-                    TriviaKnowledgeStageState.completed => 'Completed',
-                    TriviaKnowledgeStageState.unlocked => 'Unlocked',
-                    TriviaKnowledgeStageState.locked => 'Locked',
-                  },
+                  l10n.triviaQuestionsCount(
+                    numberFormat.format(questions.length),
+                  ),
                 ),
+                _chip(context, stageState.localizedLabel(l10n)),
               ],
             ),
             const SizedBox(height: 14),
@@ -104,7 +108,7 @@ class IslamicTriviaKnowledgePathStagePage extends ConsumerWidget {
                   if (resolvedStage.note != null) ...[
                     const SizedBox(height: 8),
                     Text(
-                        resolvedStage.note!,
+                      resolvedStage.note!,
                       style: Theme.of(context).textTheme.bodySmall,
                     ),
                   ],
@@ -113,11 +117,14 @@ class IslamicTriviaKnowledgePathStagePage extends ConsumerWidget {
             ),
             const SizedBox(height: 14),
             TriviaEmptyStateCard(
-              title: 'Stage quiz',
-              subtitle:
-                  'Answer ${questions.length} focused questions. Wrong answers still feed your review queue.',
+              title: l10n.triviaStageQuizTitle,
+              subtitle: l10n.triviaStageQuizSubtitle(
+                numberFormat.format(questions.length),
+              ),
               action: FilledButton.tonalIcon(
-                onPressed: stageState == TriviaKnowledgeStageState.locked || questions.isEmpty
+                onPressed:
+                    stageState == TriviaKnowledgeStageState.locked ||
+                        questions.isEmpty
                     ? null
                     : () {
                         final started = controller.startKnowledgePathStage(
@@ -129,21 +136,27 @@ class IslamicTriviaKnowledgePathStagePage extends ConsumerWidget {
                         }
                       },
                 icon: Icon(
-                  canResume ? Icons.play_circle_fill_rounded : Icons.quiz_rounded,
+                  canResume
+                      ? Icons.play_circle_fill_rounded
+                      : Icons.quiz_rounded,
                 ),
-                label: Text(canResume ? 'Continue Quiz' : 'Start Quiz'),
+                label: Text(
+                  canResume
+                      ? l10n.triviaContinueQuizAction
+                      : l10n.triviaStartQuizAction,
+                ),
               ),
             ),
             const SizedBox(height: 14),
-            const TriviaSectionHeader(
-              title: 'Included questions',
-              subtitle: 'A short preview of what this stage will reinforce.',
+            TriviaSectionHeader(
+              title: l10n.triviaIncludedQuestionsTitle,
+              subtitle: l10n.triviaIncludedQuestionsSubtitle,
             ),
             const SizedBox(height: 8),
             if (questions.isEmpty)
-              const TriviaEmptyStateCard(
-                title: 'No questions available',
-                subtitle: 'This stage definition needs valid trivia question links.',
+              TriviaEmptyStateCard(
+                title: l10n.triviaNoQuestionsAvailableTitle,
+                subtitle: l10n.triviaNoQuestionsAvailableSubtitle,
               )
             else
               ...questions.map((question) {
@@ -170,9 +183,9 @@ class IslamicTriviaKnowledgePathStagePage extends ConsumerWidget {
       ),
       child: Text(
         label,
-        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-          fontWeight: FontWeight.w600,
-        ),
+        style: Theme.of(
+          context,
+        ).textTheme.bodySmall?.copyWith(fontWeight: FontWeight.w600),
       ),
     );
   }

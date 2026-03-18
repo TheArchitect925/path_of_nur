@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/theme/app_colors.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../application/quran_teaching_asset_resolver.dart';
 import '../application/quran_teaching_controller.dart';
@@ -44,6 +45,7 @@ class _QuranTeachingListenOnlyPageState
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final catalog = ref.watch(quranTeachingCatalogProvider);
     final state = ref.watch(quranTeachingListenOnlyProvider);
     final controller = ref.read(quranTeachingListenOnlyProvider.notifier);
@@ -51,8 +53,11 @@ class _QuranTeachingListenOnlyPageState
     final selectedPack = state.selectedPackId == null
         ? (packs.isEmpty ? null : packs.first)
         : catalog.audioPackById(state.selectedPackId!);
-    final items = selectedPack?.items ?? const <QuranTeachingAudioPracticeItem>[];
-    final safeIndex = items.isEmpty ? 0 : state.currentIndex.clamp(0, items.length - 1);
+    final items =
+        selectedPack?.items ?? const <QuranTeachingAudioPracticeItem>[];
+    final safeIndex = items.isEmpty
+        ? 0
+        : state.currentIndex.clamp(0, items.length - 1);
     final currentItem = items.isEmpty ? null : items[safeIndex];
 
     if (selectedPack != null && state.selectedPackId == null) {
@@ -62,9 +67,7 @@ class _QuranTeachingListenOnlyPageState
     }
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Listen Only'),
-      ),
+      appBar: AppBar(title: Text(l10n.batch9ListenOnlyTitle)),
       body: SafeArea(
         child: ListView(
           padding: const EdgeInsets.fromLTRB(20, 16, 20, 32),
@@ -74,15 +77,13 @@ class _QuranTeachingListenOnlyPageState
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Audio Practice',
+                    l10n.batch9AudioPracticeTitle,
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.w700,
                     ),
                   ),
                   const SizedBox(height: 6),
-                  Text(
-                    'Low-distraction listening for walks, chores, bedtime review, and calm repetition.',
-                  ),
+                  Text(l10n.quranTeachingListenOnlySubtitle),
                   const SizedBox(height: 12),
                   DropdownButtonFormField<String>(
                     initialValue: selectedPack?.id,
@@ -98,8 +99,8 @@ class _QuranTeachingListenOnlyPageState
                       if (value == null) return;
                       controller.selectPack(value);
                     },
-                    decoration: const InputDecoration(
-                      labelText: 'Content set',
+                    decoration: InputDecoration(
+                      labelText: l10n.quranTeachingListenOnlyContentSetLabel,
                     ),
                   ),
                   if (selectedPack != null) ...[
@@ -118,13 +119,17 @@ class _QuranTeachingListenOnlyPageState
                       builder: (context, snapshot) {
                         final available = snapshot.data;
                         if (available == null) {
-                          return const Text('Checking local audio...');
+                          return Text(
+                            l10n.quranTeachingListenOnlyCheckingLocalAudio,
+                          );
                         }
                         return Text(
-                          '$available of ${selectedPack.items.length} items currently have local audio.',
-                          style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: AppColors.onSurfaceSubtle,
+                          l10n.quranTeachingListenOnlyAudioAvailability(
+                            '$available',
+                            '${selectedPack.items.length}',
                           ),
+                          style: Theme.of(context).textTheme.bodySmall
+                              ?.copyWith(color: AppColors.onSurfaceSubtle),
                         );
                       },
                     ),
@@ -138,7 +143,8 @@ class _QuranTeachingListenOnlyPageState
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Text(
-                    selectedPack?.title ?? 'Choose a pack',
+                    selectedPack?.title ??
+                        l10n.quranTeachingListenOnlyChoosePack,
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       fontWeight: FontWeight.w700,
                     ),
@@ -155,7 +161,7 @@ class _QuranTeachingListenOnlyPageState
                     ),
                     child: currentItem == null
                         ? Text(
-                            'Select a listening set to begin.',
+                            l10n.quranTeachingListenOnlySelectPackToBegin,
                             textAlign: TextAlign.center,
                             style: Theme.of(context).textTheme.bodyMedium,
                           )
@@ -168,7 +174,10 @@ class _QuranTeachingListenOnlyPageState
                   const SizedBox(height: 14),
                   if (selectedPack != null)
                     Text(
-                      '${safeIndex + 1} of ${items.length}',
+                      l10n.quranTeachingListenOnlyProgress(
+                        '${safeIndex + 1}',
+                        '${items.length}',
+                      ),
                       textAlign: TextAlign.center,
                     ),
                   const SizedBox(height: 8),
@@ -181,26 +190,31 @@ class _QuranTeachingListenOnlyPageState
                     const SizedBox(height: 8),
                     Builder(
                       builder: (context) {
-                        final meta = QuranTeachingAssetResolver.listenOnlyPackMeta(
-                          selectedPack.id,
-                        );
+                        final meta =
+                            QuranTeachingAssetResolver.listenOnlyPackMeta(
+                              selectedPack.id,
+                            );
                         if (meta?.estimatedDurationMs == null) {
                           return const SizedBox.shrink();
                         }
-                        final seconds = (meta!.estimatedDurationMs! / 1000).round();
+                        final seconds = (meta!.estimatedDurationMs! / 1000)
+                            .round();
                         return Text(
-                          'Estimated pack length: ${seconds}s',
-                          textAlign: TextAlign.center,
-                          style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: AppColors.onSurfaceSubtle,
+                          l10n.quranTeachingListenOnlyEstimatedPackLength(
+                            '$seconds',
                           ),
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context).textTheme.bodySmall
+                              ?.copyWith(color: AppColors.onSurfaceSubtle),
                         );
                       },
                     ),
                   ],
                   const SizedBox(height: 16),
                   FutureBuilder<bool>(
-                    future: QuranTeachingAssetResolver.hasAudio(currentItem?.audio),
+                    future: QuranTeachingAssetResolver.hasAudio(
+                      currentItem?.audio,
+                    ),
                     builder: (context, snapshot) {
                       final audioAvailable = snapshot.data == true;
                       return Column(
@@ -224,13 +238,17 @@ class _QuranTeachingListenOnlyPageState
                                           final next = !state.isPlaying;
                                           controller.setPlaying(next);
                                           if (next) {
-                                            _startPlaybackSimulation(items.length);
+                                            _startPlaybackSimulation(
+                                              items.length,
+                                            );
                                           } else {
                                             _autoAdvanceTimer?.cancel();
                                           }
                                           _showAudioCue(
-                                            currentItem?.audio.label ?? 'Audio',
-                                            selectedPack?.title ?? 'Listen Only',
+                                            currentItem?.audio.label ??
+                                                l10n.quranTeachingListenOnlyDefaultAudioLabel,
+                                            selectedPack?.title ??
+                                                l10n.quranTeachingListenOnlyDefaultContextLabel,
                                           );
                                         },
                                   icon: Icon(
@@ -254,10 +272,9 @@ class _QuranTeachingListenOnlyPageState
                           if (!audioAvailable && currentItem != null) ...[
                             const SizedBox(height: 8),
                             Text(
-                              'Audio for this item is not added yet.',
-                              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                                color: AppColors.onSurfaceSubtle,
-                              ),
+                              l10n.quranTeachingListenOnlyAudioUnavailable,
+                              style: Theme.of(context).textTheme.bodySmall
+                                  ?.copyWith(color: AppColors.onSurfaceSubtle),
                             ),
                           ],
                         ],
@@ -271,14 +288,15 @@ class _QuranTeachingListenOnlyPageState
                         child: QuranTeachingAudioIconButton(
                           audio: currentItem?.audio,
                           availableIcon: Icons.replay_rounded,
-                          label: 'Replay',
+                          label: l10n.quranTeachingListenOnlyReplayAction,
                           onAvailablePressed: items.isEmpty
                               ? null
                               : () {
                                   controller.replay();
                                   _showAudioCue(
-                                    currentItem?.audio.label ?? 'Replay',
-                                    'Replay current item',
+                                    currentItem?.audio.label ??
+                                        l10n.quranTeachingListenOnlyReplayAction,
+                                    l10n.quranTeachingListenOnlyReplayCurrentItem,
                                   );
                                 },
                         ),
@@ -299,8 +317,8 @@ class _QuranTeachingListenOnlyPageState
                             if (value == null) return;
                             controller.setPlaybackSpeed(value);
                           },
-                          decoration: const InputDecoration(
-                            labelText: 'Speed',
+                          decoration: InputDecoration(
+                            labelText: l10n.quranTeachingListenOnlySpeedLabel,
                           ),
                         ),
                       ),
@@ -315,7 +333,7 @@ class _QuranTeachingListenOnlyPageState
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Mode options',
+                    l10n.quranTeachingListenOnlyModeOptionsTitle,
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       fontWeight: FontWeight.w700,
                     ),
@@ -325,41 +343,43 @@ class _QuranTeachingListenOnlyPageState
                     contentPadding: EdgeInsets.zero,
                     value: state.autoAdvance,
                     onChanged: controller.toggleAutoAdvance,
-                    title: const Text('Auto-play next item'),
+                    title: Text(l10n.quranTeachingListenOnlyAutoPlayNextItem),
                   ),
                   SwitchListTile.adaptive(
                     contentPadding: EdgeInsets.zero,
                     value: state.repeatCurrent,
                     onChanged: controller.toggleRepeatCurrent,
-                    title: const Text('Repeat current item'),
+                    title: Text(l10n.quranTeachingListenOnlyRepeatCurrentItem),
                   ),
                   SwitchListTile.adaptive(
                     contentPadding: EdgeInsets.zero,
                     value: state.shuffle,
                     onChanged: controller.toggleShuffle,
-                    title: const Text('Shuffle order'),
+                    title: Text(l10n.quranTeachingListenOnlyShuffleOrder),
                   ),
                   SwitchListTile.adaptive(
                     contentPadding: EdgeInsets.zero,
                     value: state.visualModeEnabled,
                     onChanged: controller.toggleVisualMode,
-                    title: const Text('Visual mode'),
+                    title: Text(l10n.quranTeachingListenOnlyVisualMode),
                   ),
                   const SizedBox(height: 8),
                   SegmentedButton<QuranTeachingTextVisibility>(
-                    segments: const [
+                    segments: [
                       ButtonSegment(
                         value: QuranTeachingTextVisibility.arabicOnly,
-                        label: Text('Arabic'),
+                        label: Text(l10n.quranTeachingListenOnlyArabic),
                       ),
                       ButtonSegment(
-                        value:
-                            QuranTeachingTextVisibility.arabicWithTransliteration,
-                        label: Text('Arabic + Transliteration'),
+                        value: QuranTeachingTextVisibility
+                            .arabicWithTransliteration,
+                        label: Text(
+                          l10n.quranTeachingListenOnlyArabicTransliteration,
+                        ),
                       ),
                       ButtonSegment(
                         value: QuranTeachingTextVisibility.hidden,
-                        label: Text('Audio only'),
+                        label: Text(l10n.quranTeachingListenOnlyAudioOnly),
                       ),
                     ],
                     selected: <QuranTeachingTextVisibility>{
@@ -379,8 +399,9 @@ class _QuranTeachingListenOnlyPageState
   }
 
   void _showAudioCue(String label, String contextLabel) {
+    final l10n = AppLocalizations.of(context);
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('$contextLabel • $label')),
+      SnackBar(content: Text(l10n.batch9AudioCue(contextLabel, label))),
     );
   }
 
@@ -419,15 +440,16 @@ class _ListenOnlyContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final hidden = visibility == QuranTeachingTextVisibility.hidden;
     return Column(
       children: [
         if (hidden)
           Text(
-            'Listening focus',
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-              fontWeight: FontWeight.w700,
-            ),
+            l10n.quranTeachingListenOnlyListeningFocus,
+            style: Theme.of(
+              context,
+            ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
           ),
         if (!hidden && item.arabic != null)
           Text(
@@ -441,7 +463,8 @@ class _ListenOnlyContent extends StatelessWidget {
             ),
           ),
         if (!hidden &&
-            visibility == QuranTeachingTextVisibility.arabicWithTransliteration &&
+            visibility ==
+                QuranTeachingTextVisibility.arabicWithTransliteration &&
             item.transliteration != null) ...[
           const SizedBox(height: 8),
           Text(
@@ -455,9 +478,9 @@ class _ListenOnlyContent extends StatelessWidget {
           Text(
             item.meaning!,
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              color: AppColors.onSurfaceSubtle,
-            ),
+            style: Theme.of(
+              context,
+            ).textTheme.bodyMedium?.copyWith(color: AppColors.onSurfaceSubtle),
           ),
         ],
         if (showVisualAnchor && item.visualAnchor != null) ...[

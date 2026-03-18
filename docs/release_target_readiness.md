@@ -19,12 +19,12 @@ This document is the honest first-release scope, based on the currently validate
 ## Not first-release ready
 
 - Apple Watch
-  - native companion code exists, but it still needs dedicated build validation and real-device release QA
-  - do not advertise it as fully shipping until the native project and device flows are validated end to end
+  - native watchOS companion targets now exist, but they are only scaffolded
+  - do not advertise it as shipping until the watch feature set, assets, signing, and paired-device flows are validated end to end
 
 - tvOS
-  - target scaffolding may exist, but this project has not completed release-grade tvOS validation
-  - do not include tvOS in the first public release scope
+  - a native tvOS app target now exists, but it is only scaffolded
+  - do not include tvOS in the first public release scope until tvOS features, assets, signing, and Apple TV QA are complete
 
 - Path of Nūr Cloud Sync
   - not release-ready because there is no real production backend transport in this repository

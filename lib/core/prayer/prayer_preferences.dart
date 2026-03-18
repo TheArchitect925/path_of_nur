@@ -2,11 +2,13 @@ import 'dart:math' as math;
 
 import 'package:adhan/adhan.dart' as adhan;
 import 'package:flutter/foundation.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
 import 'package:permission_handler/permission_handler.dart';
 
+import '../../l10n/app_localizations.dart';
 import 'prayer_location_search_service.dart';
 import '../reminders/adhan_options.dart';
 import '../../shared/application/daily_clock_provider.dart';
@@ -365,19 +367,20 @@ class PrayerScheduleItem {
       makeUpFromDateTime.isAfter(overdueDateTime);
 
   String get qadaRuleSummary {
+    final l10n = _prayerL10n();
     switch (id) {
       case 'fajr':
-        return 'It becomes qada at sunrise. If you missed it, avoid the sunrise-forbidden period and make it up shortly after.';
+        return l10n.prayerQadaRuleFajrSummary;
       case 'dhuhr':
-        return 'If missed, it becomes qada when Asr begins. Make it up as soon as reasonably possible.';
+        return l10n.prayerQadaRuleDhuhrSummary;
       case 'asr':
-        return 'If missed, it becomes qada at Maghrib. Avoid praying during the sunset-forbidden period itself.';
+        return l10n.prayerQadaRuleAsrSummary;
       case 'maghrib':
-        return 'If missed, it becomes qada when Isha begins. Make it up as soon as reasonably possible.';
+        return l10n.prayerQadaRuleMaghribSummary;
       case 'isha':
-        return 'If missed, this app marks it qada at Fajr. Many scholars also treat delaying it deep into the night as blameworthy, so offer it earlier when you can.';
+        return l10n.prayerQadaRuleIshaSummary;
       default:
-        return 'Make up missed obligatory prayers as soon as possible, while avoiding prohibited times.';
+        return l10n.prayerQadaRuleDefaultSummary;
     }
   }
 }
@@ -678,7 +681,7 @@ class PrayerSettingsController extends StateNotifier<PrayerSettingsState> {
         );
         break;
       default:
-        return 'Unknown prayer adjustment.';
+        return _prayerL10n().prayerUnknownAdjustment;
     }
     final validation = validatePrayerAdjustmentsForDate(
       date: date,
@@ -1555,7 +1558,15 @@ String? validatePrayerAdjustmentsForDate({
     final current = schedule[i];
     final next = schedule[i + 1];
     if (!current.offerDateTime.isBefore(next.offerDateTime)) {
-      return '${current.name} must remain before ${next.name}.';
+      final l10n = _prayerL10n();
+      return l10n.prayerValidationMustRemainBefore(
+        _localizedPrayerName(current.id, l10n),
+        _localizedPrayerName(next.id, l10n),
+        _localizedPrayerName(current.id, l10n),
+        _localizedPrayerName(current.id, l10n),
+        _localizedPrayerName(next.id, l10n),
+        _localizedPrayerName(next.id, l10n),
+      );
     }
   }
   return null;
@@ -1568,7 +1579,7 @@ String? validateManualPrayerTimesForDate({
   required PrayerPreferences settings,
 }) {
   if (!settings.manualTimes.isComplete) {
-    return 'Enter all five daily salah times to use manual mode.';
+    return _prayerL10n().prayerValidationEnterAllFiveDailySalahTimes;
   }
   final schedule =
       buildManualPrayerScheduleForDate(
@@ -1589,7 +1600,15 @@ String? validateManualPrayerTimesForDate({
           .toList(growable: false);
   for (var i = 0; i < schedule.length - 1; i += 1) {
     if (!schedule[i].offerDateTime.isBefore(schedule[i + 1].offerDateTime)) {
-      return '${schedule[i].name} must remain before ${schedule[i + 1].name}.';
+      final l10n = _prayerL10n();
+      return l10n.prayerValidationMustRemainBefore(
+        _localizedPrayerName(schedule[i].id, l10n),
+        _localizedPrayerName(schedule[i + 1].id, l10n),
+        _localizedPrayerName(schedule[i].id, l10n),
+        _localizedPrayerName(schedule[i].id, l10n),
+        _localizedPrayerName(schedule[i + 1].id, l10n),
+        _localizedPrayerName(schedule[i + 1].id, l10n),
+      );
     }
   }
   final baseFajr = buildCalculatedPrayerScheduleForDate(
@@ -1599,9 +1618,38 @@ String? validateManualPrayerTimesForDate({
     settings: settings,
   ).firstWhere((item) => item.id == 'fajr');
   if (!schedule.first.offerDateTime.isBefore(baseFajr.qazaDateTime)) {
-    return 'Fajr must remain before sunrise.';
+    return _prayerL10n().prayerValidationFajrBeforeSunrise;
   }
   return null;
+}
+
+AppLocalizations _prayerL10n() {
+  final locale = Intl.getCurrentLocale().replaceAll('-', '_').split('_');
+  return lookupAppLocalizations(
+    Locale.fromSubtags(
+      languageCode: locale.isNotEmpty && locale.first.isNotEmpty
+          ? locale.first
+          : 'en',
+      countryCode: locale.length > 1 ? locale.last : null,
+    ),
+  );
+}
+
+String _localizedPrayerName(String prayerId, AppLocalizations l10n) {
+  switch (prayerId) {
+    case 'fajr':
+      return l10n.settingsPrayerNameFajr;
+    case 'dhuhr':
+      return l10n.settingsPrayerNameDhuhr;
+    case 'asr':
+      return l10n.settingsPrayerNameAsr;
+    case 'maghrib':
+      return l10n.settingsPrayerNameMaghrib;
+    case 'isha':
+      return l10n.settingsPrayerNameIsha;
+    default:
+      return prayerId;
+  }
 }
 
 DateTime _dateWithMinutes(DateTime date, int minutes) {

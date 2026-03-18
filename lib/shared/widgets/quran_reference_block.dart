@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:quran/quran.dart' as q;
 
 import '../../core/theme/app_text_styles.dart';
+import '../../l10n/app_localizations.dart';
 import '../../features/learn/quran/application/quran_providers.dart';
 import '../../features/learn/quran/domain/quran_ayah.dart';
 import 'arabic_text_utils.dart';
@@ -32,6 +33,7 @@ class QuranReferenceBlock extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     final settings = ref.watch(quranReaderSettingsProvider);
     final safeSurah = surahNumber.clamp(1, q.totalSurahCount);
     final requestedEndAyah = ayahEnd ?? ayahStart;
@@ -78,13 +80,13 @@ class QuranReferenceBlock extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            title ?? 'Quran $refLabel',
+            title ?? l10n.quranReferenceViewerReferenceLabel(refLabel),
             style: const TextStyle(fontWeight: FontWeight.w700),
           ),
           const SizedBox(height: 8),
           if (ayahsAsync.hasError)
             Text(
-              'Unable to load verse content right now.',
+              l10n.quranReferenceBlockLoadError,
               style: Theme.of(context).textTheme.bodySmall,
             )
           else if (arabic.isEmpty)
@@ -104,7 +106,7 @@ class QuranReferenceBlock extends ConsumerWidget {
             const SizedBox(height: 8),
             Text(
               transliteration.isEmpty
-                  ? 'Transliteration not available for this ayah yet.'
+                  ? l10n.quranReferenceBlockTransliterationUnavailable
                   : transliteration,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 fontStyle: FontStyle.italic,
@@ -115,7 +117,9 @@ class QuranReferenceBlock extends ConsumerWidget {
           if (settings.showTranslation) ...[
             const SizedBox(height: 8),
             Text(
-              translation.isEmpty ? 'Loading translation...' : translation,
+              translation.isEmpty
+                  ? l10n.quranReferenceBlockLoadingTranslation
+                  : translation,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 fontSize: 12.8 * translationScale,
               ),
@@ -123,7 +127,7 @@ class QuranReferenceBlock extends ConsumerWidget {
           ],
           const SizedBox(height: 8),
           Text(
-            '${surahName ?? 'Surah'} • $refLabel',
+            '${surahName ?? l10n.quranReferenceBlockSurahLabel} • $refLabel',
             style: Theme.of(context).textTheme.bodySmall,
           ),
           if (showOpenButton) ...[
@@ -139,7 +143,7 @@ class QuranReferenceBlock extends ConsumerWidget {
                 },
               ),
               icon: const Icon(Icons.play_arrow_rounded),
-              label: const Text('Open in Quran reader'),
+              label: Text(l10n.quranReferenceViewerOpenInReader),
             ),
           ],
         ],

@@ -57,6 +57,57 @@ class PrayerController extends StateNotifier<List<DailyPrayerRecord>> {
     }
   }
 
+  void markCompleted(PrayerName prayer) {
+    _syncDayIfNeeded();
+    final alreadyCompleted = state.any(
+      (record) =>
+          record.prayer == prayer && record.status == PrayerStatus.completed,
+    );
+    if (alreadyCompleted) return;
+
+    final changedAt = DateTime.now();
+    state = state
+        .map(
+          (record) => record.prayer == prayer
+              ? record.copyWith(
+                  status: PrayerStatus.completed,
+                  completedAtIso: changedAt.toIso8601String(),
+                )
+              : record,
+        )
+        .toList();
+    _saveForDay(_activeDayKey);
+    _oceanDrops.awardDrop(
+      actionType: oceanActionPrayerCompleted,
+      sourceModule: oceanSourcePrayer,
+      referenceId: prayer.name,
+      metadata: {'timestamp': '${_activeDayKey}T12:00:00'},
+    );
+  }
+
+  void toggleCompleted(PrayerName prayer) {
+    _syncDayIfNeeded();
+    final current = state
+        .where((record) => record.prayer == prayer)
+        .firstOrNull;
+    if (current == null) return;
+    if (current.status == PrayerStatus.completed) {
+      state = state
+          .map(
+            (record) => record.prayer == prayer
+                ? record.copyWith(
+                    status: PrayerStatus.pending,
+                    clearCompletedAtIso: true,
+                  )
+                : record,
+          )
+          .toList();
+      _saveForDay(_activeDayKey);
+      return;
+    }
+    markCompleted(prayer);
+  }
+
   void onDayChanged(String dayKey, {bool force = false}) {
     if (!force && dayKey == _activeDayKey) return;
     _activeDayKey = dayKey;

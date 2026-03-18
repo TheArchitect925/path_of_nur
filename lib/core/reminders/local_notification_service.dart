@@ -8,6 +8,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
+import '../../core/localization/locale_provider.dart';
+import '../../l10n/app_localizations.dart';
 import 'adhan_audio_service.dart';
 import 'adhan_options.dart';
 import '../prayer/prayer_preferences.dart';
@@ -193,16 +195,17 @@ class LocalNotificationService {
     required String body,
   }) async {
     await ensureInitialized();
+    final l10n = _l10n;
     await _plugin.show(
       _notificationId('fasting.moment.$id'),
       title,
       body,
-      const NotificationDetails(
+      NotificationDetails(
         android: AndroidNotificationDetails(
           'fasting_moments',
-          'Fasting Moments',
+          l10n.notificationsFastingMomentsChannelName,
           channelDescription:
-              'Time-sensitive reminders for beginning and ending the fast',
+              l10n.notificationsFastingMomentsChannelDescription,
           importance: Importance.max,
           priority: Priority.high,
           icon: _launcherIcon,
@@ -218,7 +221,7 @@ class LocalNotificationService {
           presentBanner: true,
           presentList: true,
           interruptionLevel: InterruptionLevel.timeSensitive,
-          subtitle: 'Path of Nur',
+          subtitle: l10n.appTitle,
           threadIdentifier: 'fasting_moments',
         ),
       ),
@@ -229,6 +232,7 @@ class LocalNotificationService {
     ReminderPlanItem item,
     AdhanSettings adhanSettings,
   ) {
+    final l10n = _l10n;
     final useAdhanSound =
         item.kind == ReminderKind.prayerAtTime &&
         item.notificationMode == PrayerNotificationMode.adhanWithSound &&
@@ -239,8 +243,9 @@ class LocalNotificationService {
 
     final prayerAtTimeSilentChannel = AndroidNotificationDetails(
       'prayer_reminders_notification_only',
-      'Prayer Reminders (Notification)',
-      channelDescription: 'Prayer reminder notifications without adhan audio',
+      l10n.notificationsPrayerNotificationOnlyChannelName,
+      channelDescription:
+          l10n.notificationsPrayerNotificationOnlyChannelDescription,
       importance: Importance.max,
       priority: Priority.high,
       icon: _launcherIcon,
@@ -252,8 +257,10 @@ class LocalNotificationService {
 
     final prayerAtTimeAdhanChannel = AndroidNotificationDetails(
       'prayer_reminders_adhan_${resolvedAdhan.id}',
-      'Prayer Reminders (${resolvedAdhan.title})',
-      channelDescription: 'Prayer reminder notifications with adhan audio',
+      l10n.notificationsPrayerAdhanChannelName(
+        resolvedAdhan.localizedTitle(l10n),
+      ),
+      channelDescription: l10n.notificationsPrayerAdhanChannelDescription,
       importance: Importance.max,
       priority: Priority.high,
       icon: _launcherIcon,
@@ -268,8 +275,8 @@ class LocalNotificationService {
 
     final prayerBeforeQazaChannel = AndroidNotificationDetails(
       'prayer_reminders_before_qaza',
-      'Prayer Reminders (Before Qaza)',
-      channelDescription: 'Prayer reminder notifications before qaza',
+      l10n.notificationsPrayerBeforeQazaChannelName,
+      channelDescription: l10n.notificationsPrayerBeforeQazaChannelDescription,
       importance: Importance.max,
       priority: Priority.high,
       icon: _launcherIcon,
@@ -281,8 +288,8 @@ class LocalNotificationService {
 
     final genericChannel = AndroidNotificationDetails(
       'daily_reminders',
-      'Daily Reminders',
-      channelDescription: 'Dhikr, Quran and reflection reminders',
+      l10n.notificationsDailyRemindersChannelName,
+      channelDescription: l10n.notificationsDailyRemindersChannelDescription,
       importance: Importance.defaultImportance,
       priority: Priority.defaultPriority,
       icon: _launcherIcon,
@@ -308,7 +315,7 @@ class LocalNotificationService {
           ? InterruptionLevel.timeSensitive
           : InterruptionLevel.active,
       threadIdentifier: item.prayerId ?? item.kind.name,
-      subtitle: 'Path of Nur',
+      subtitle: l10n.appTitle,
     );
 
     return NotificationDetails(
@@ -323,59 +330,73 @@ class LocalNotificationService {
   }
 
   String _titleFor(ReminderPlanItem item) {
+    final l10n = _l10n;
     switch (item.kind) {
       case ReminderKind.prayerAtTime:
-        return '${_prayerName(item.prayerId)} prayer';
+        return l10n.notificationsPrayerAtTimeTitle(
+          _prayerName(l10n, item.prayerId),
+          _prayerName(l10n, item.prayerId),
+        );
       case ReminderKind.prayerBeforeQaza:
-        return '${_prayerName(item.prayerId)} window reminder';
+        return l10n.notificationsPrayerBeforeQazaTitle(
+          _prayerName(l10n, item.prayerId),
+          _prayerName(l10n, item.prayerId),
+        );
       case ReminderKind.dhikr:
-        return 'Dhikr reminder';
+        return l10n.notificationsDhikrTitle;
       case ReminderKind.quran:
-        return 'Qur\'an reflection';
+        return l10n.notificationsQuranTitle;
       case ReminderKind.reflection:
-        return 'Daily reflection';
+        return l10n.notificationsReflectionTitle;
       case ReminderKind.fasting:
-        return 'Fasting reminder';
+        return l10n.notificationsFastingTitle;
       case ReminderKind.cycleCheck:
-        return 'Cycle check-in';
+        return l10n.notificationsCycleCheckTitle;
     }
   }
 
   String _bodyFor(ReminderPlanItem item) {
+    final l10n = _l10n;
     switch (item.kind) {
       case ReminderKind.prayerAtTime:
-        return 'It is time for ${_prayerName(item.prayerId)}. Stay connected with your prayer.';
+        return l10n.notificationsPrayerAtTimeBody(
+          _prayerName(l10n, item.prayerId),
+          _prayerName(l10n, item.prayerId),
+        );
       case ReminderKind.prayerBeforeQaza:
-        return '${_prayerName(item.prayerId)} time is about to end. Offer it before it becomes qada.';
+        return l10n.notificationsPrayerBeforeQazaBody(
+          _prayerName(l10n, item.prayerId),
+          _prayerName(l10n, item.prayerId),
+        );
       case ReminderKind.dhikr:
-        return 'Take a calm moment for dhikr.';
+        return l10n.notificationsDhikrBody;
       case ReminderKind.quran:
-        return 'Return to your Qur\'an reading with intention.';
+        return l10n.notificationsQuranBody;
       case ReminderKind.reflection:
-        return 'Capture a brief reflection before your day ends.';
+        return l10n.notificationsReflectionBody;
       case ReminderKind.fasting:
-        return 'Prepare your intention for fasting today.';
+        return l10n.notificationsFastingBody;
       case ReminderKind.cycleCheck:
-        return 'Review your status and resume prayer reminders when ready.';
+        return l10n.notificationsCycleCheckBody;
     }
   }
 
-  String _prayerName(String? id) {
+  String _prayerName(AppLocalizations l10n, String? id) {
     switch (id) {
       case 'fajr':
-        return 'Fajr';
+        return l10n.settingsPrayerNameFajr;
       case 'dhuhr':
-        return 'Dhuhr';
+        return l10n.settingsPrayerNameDhuhr;
       case 'asr':
-        return 'Asr';
+        return l10n.settingsPrayerNameAsr;
       case 'maghrib':
-        return 'Maghrib';
+        return l10n.settingsPrayerNameMaghrib;
       case 'isha':
-        return 'Isha';
+        return l10n.settingsPrayerNameIsha;
       case 'tahajjud':
-        return 'Tahajjud';
+        return l10n.notificationsPrayerNameTahajjud;
       default:
-        return 'Prayer';
+        return l10n.notificationsGenericPrayerName;
     }
   }
 
@@ -399,12 +420,15 @@ class LocalNotificationService {
   }
 
   NotificationDetails _growthNotificationDetails(bool quietDelivery) {
+    final l10n = _l10n;
     final android = AndroidNotificationDetails(
       quietDelivery
           ? 'growth_gentle_reminders_quiet'
           : 'growth_gentle_reminders',
-      quietDelivery ? 'Growth Reminders (Quiet)' : 'Growth Reminders',
-      channelDescription: 'Gentle reminders for Growth habits',
+      quietDelivery
+          ? l10n.notificationsGrowthRemindersQuietChannelName
+          : l10n.notificationsGrowthRemindersChannelName,
+      channelDescription: l10n.notificationsGrowthRemindersChannelDescription,
       importance: quietDelivery
           ? Importance.defaultImportance
           : Importance.high,
@@ -425,7 +449,7 @@ class LocalNotificationService {
           ? InterruptionLevel.passive
           : InterruptionLevel.active,
       threadIdentifier: 'growth',
-      subtitle: 'Path of Nur',
+      subtitle: l10n.appTitle,
     );
     return NotificationDetails(android: android, iOS: ios);
   }
@@ -496,7 +520,7 @@ class LocalNotificationService {
       await _plugin.show(
         _notificationId('recovered.${item.id}'),
         _titleFor(item),
-        'You missed this reminder earlier. ${_bodyFor(item)}',
+        _l10n.notificationsRecoveredReminderBody(_bodyFor(item)),
         _notificationDetails(item, adhanSettings),
       );
       changed = true;
@@ -524,6 +548,11 @@ class LocalNotificationService {
     if (parsed != null) return parsed;
     return _notificationId(token);
   }
+
+  AppLocalizations get _l10n => lookupAppLocalizations(
+    resolveStoredAppLocale(_store) ??
+        WidgetsBinding.instance.platformDispatcher.locale,
+  );
 }
 
 final localNotificationServiceProvider = Provider<LocalNotificationService>((

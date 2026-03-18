@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../l10n/app_localizations.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
@@ -115,6 +116,7 @@ class _HadithPreviewCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return InkWell(
       borderRadius: BorderRadius.circular(20),
       onTap: () => context.pushNamed(
@@ -137,7 +139,9 @@ class _HadithPreviewCard extends StatelessWidget {
                 ),
                 IconButton(
                   onPressed: onToggleSaved,
-                  tooltip: isSaved ? 'Remove from saved' : 'Save hadith',
+                  tooltip: isSaved
+                      ? l10n.accessibilityRemoveFromSaved
+                      : l10n.accessibilitySaveHadith,
                   icon: Icon(
                     isSaved
                         ? Icons.bookmark_rounded

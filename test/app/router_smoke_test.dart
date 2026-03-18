@@ -6,12 +6,17 @@ import 'package:path_of_nur/shared/application/daily_clock_provider.dart';
 import 'package:path_of_nur/features/accounts_sync/presentation/accounts_profiles_sync_page.dart';
 import 'package:path_of_nur/features/home/presentation/home_page.dart';
 import 'package:path_of_nur/features/journey/presentation/journey_page.dart';
+import 'package:path_of_nur/features/journey/presentation/growth_entry_page.dart';
+import 'package:path_of_nur/features/learn/journey/presentation/learning_journey_home_page.dart';
+import 'package:path_of_nur/features/learn/dua/presentation/dua_hub_page.dart';
+import 'package:path_of_nur/features/learn/presentation/pages/learn_quizzes_hub_page.dart';
 import 'package:path_of_nur/features/learn/presentation/learn_page.dart';
 import 'package:path_of_nur/features/learn/presentation/pages/quran_app_hub_page.dart';
+import 'package:path_of_nur/features/learn/prophets/presentation/prophets_page.dart';
 import 'package:path_of_nur/features/learn/quran/presentation/quran_search_page.dart';
 import 'package:path_of_nur/features/learn/quran/presentation/quran_surah_explorer_page.dart';
 import 'package:path_of_nur/features/ocean/presentation/ocean_drops_page.dart';
-import 'package:path_of_nur/features/profile/presentation/profile_page.dart';
+import 'package:path_of_nur/features/faq/pages/faq_landing_page.dart';
 import 'package:path_of_nur/features/profile/presentation/profile_summary_page.dart';
 import 'package:path_of_nur/features/profile/presentation/settings_page.dart';
 import 'package:path_of_nur/features/worship/presentation/worship_page.dart';
@@ -27,12 +32,15 @@ void main() {
     await tester.pump(const Duration(milliseconds: 180));
   }
 
-  testWidgets('root shell routes open without runtime failures', (tester) async {
+  testWidgets('root shell routes open without runtime failures', (
+    tester,
+  ) async {
     final container = await makeTestContainer(
       overrides: <Override>[
-        dailyNowProvider.overrideWith((ref) => Stream<DateTime>.value(
-              DateTime.parse('2026-03-14T12:00:00'),
-            )),
+        dailyNowProvider.overrideWith(
+          (ref) =>
+              Stream<DateTime>.value(DateTime.parse('2026-03-14T12:00:00')),
+        ),
       ],
     );
     addTearDown(container.dispose);
@@ -44,11 +52,12 @@ void main() {
 
     final cases = <(String, Type)>[
       ('/worship', WorshipPage),
-      ('/learn', LearnPage),
+      ('/learn', LearningJourneyHomePage),
       ('/home', HomePage),
       ('/journey', JourneyPage),
-      ('/profile', ProfilePage),
+      ('/quran', QuranAppHubPage),
       ('/settings', SettingsPage),
+      ('/learn/legacy', LearnPage),
       ('/accounts-sync', AccountsProfilesSyncPage),
       ('/accounts-sync/sync-details', SyncDetailsPage),
       ('/accounts-sync/backup', BackupRestoreHomePage),
@@ -68,9 +77,10 @@ void main() {
   testWidgets('key quran routes open without runtime failures', (tester) async {
     final container = await makeTestContainer(
       overrides: <Override>[
-        dailyNowProvider.overrideWith((ref) => Stream<DateTime>.value(
-              DateTime.parse('2026-03-14T12:00:00'),
-            )),
+        dailyNowProvider.overrideWith(
+          (ref) =>
+              Stream<DateTime>.value(DateTime.parse('2026-03-14T12:00:00')),
+        ),
       ],
     );
     addTearDown(container.dispose);
@@ -93,13 +103,49 @@ void main() {
     }
   });
 
-  testWidgets('onboarding redirect remains stable before first completion', (tester) async {
+  testWidgets('legacy learn aliases resolve to explicit product routes', (
+    tester,
+  ) async {
+    final container = await makeTestContainer(
+      overrides: <Override>[
+        dailyNowProvider.overrideWith(
+          (ref) =>
+              Stream<DateTime>.value(DateTime.parse('2026-03-14T12:00:00')),
+        ),
+      ],
+    );
+    addTearDown(container.dispose);
+    final router = container.read(appRouterProvider);
+
+    await tester.pumpWidget(buildRouterTestApp(container));
+    await pumpRouteFrames(tester);
+
+    final cases = <(String, Type)>[
+      ('/learn/section/prophets?tab=quiz', ProphetsPage),
+      ('/learn/section/duas', DuaHubPage),
+      ('/learn/section/quizzes', LearnQuizzesHubPage),
+      ('/learn/section/faq', FaqLandingPage),
+      ('/growth/today', GrowthEntryPage),
+    ];
+
+    for (final (path, pageType) in cases) {
+      router.go(path);
+      await pumpRouteFrames(tester);
+      expect(find.byType(pageType), findsOneWidget, reason: path);
+      expect(tester.takeException(), isNull, reason: path);
+    }
+  });
+
+  testWidgets('onboarding redirect remains stable before first completion', (
+    tester,
+  ) async {
     final container = await makeTestContainer(
       seed: <String, Object>{'app.onboardingCompleted': false},
       overrides: <Override>[
-        dailyNowProvider.overrideWith((ref) => Stream<DateTime>.value(
-              DateTime.parse('2026-03-14T12:00:00'),
-            )),
+        dailyNowProvider.overrideWith(
+          (ref) =>
+              Stream<DateTime>.value(DateTime.parse('2026-03-14T12:00:00')),
+        ),
       ],
     );
     addTearDown(container.dispose);
@@ -111,4 +157,30 @@ void main() {
     expect(find.byType(OnboardingPage), findsOneWidget);
     expect(tester.takeException(), isNull);
   });
+
+  testWidgets(
+    'completed onboarding does not allow returning to onboarding route',
+    (tester) async {
+      final container = await makeTestContainer(
+        overrides: <Override>[
+          dailyNowProvider.overrideWith(
+            (ref) =>
+                Stream<DateTime>.value(DateTime.parse('2026-03-14T12:00:00')),
+          ),
+        ],
+      );
+      addTearDown(container.dispose);
+      final router = container.read(appRouterProvider);
+
+      await tester.pumpWidget(buildRouterTestApp(container));
+      await pumpRouteFrames(tester);
+
+      router.go('/onboarding');
+      await pumpRouteFrames(tester);
+
+      expect(find.byType(HomePage), findsOneWidget);
+      expect(find.byType(OnboardingPage), findsNothing);
+      expect(tester.takeException(), isNull);
+    },
+  );
 }

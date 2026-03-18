@@ -32,6 +32,16 @@ migrate_working_dir/
 .pub/
 /build/
 /coverage/
+.codex_context_engine/
+.context_metrics/
+.codex_global_metrics/
+.codex_cost/
+.codex_planner/
+.codex_task_memory/
+.codex_failure_memory/
+.codex_memory_graph/
+.codex_library/
+CONTEXT_SAVINGS.md
 
 # Symbolication related
 app.*.symbols

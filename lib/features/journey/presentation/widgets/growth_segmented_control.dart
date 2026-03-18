@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_radii.dart';
 import '../../../../core/theme/app_spacing.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../application/growth_models.dart';
+import 'growth_ui_helpers.dart';
 
 class GrowthSegmentedControl extends StatelessWidget {
   const GrowthSegmentedControl({
@@ -24,6 +26,7 @@ class GrowthSegmentedControl extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Container(
       decoration: BoxDecoration(
         color: AppColors.surface.withValues(alpha: 0.34),
@@ -56,7 +59,7 @@ class GrowthSegmentedControl extends StatelessWidget {
                           : null,
                     ),
                     child: Text(
-                      _label(tab),
+                      growthInternalTabLocalizedLabel(tab, l10n),
                       textAlign: TextAlign.center,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -74,20 +77,5 @@ class GrowthSegmentedControl extends StatelessWidget {
             .toList(),
       ),
     );
-  }
-
-  String _label(GrowthInternalTab tab) {
-    switch (tab) {
-      case GrowthInternalTab.today:
-        return 'Today';
-      case GrowthInternalTab.paths:
-        return 'Paths';
-      case GrowthInternalTab.habits:
-        return 'Habits';
-      case GrowthInternalTab.journey:
-        return 'Journey';
-      case GrowthInternalTab.reflection:
-        return 'Reflection';
-    }
   }
 }

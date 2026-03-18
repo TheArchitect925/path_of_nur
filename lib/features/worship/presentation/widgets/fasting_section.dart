@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_radii.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/section_title.dart';
 import '../../application/fasting_controller.dart';
@@ -14,32 +15,39 @@ class FastingSection extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     final fasting = ref.watch(fastingControllerProvider);
     final notifier = ref.read(fastingControllerProvider.notifier);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SectionTitle(
-          title: 'Fasting',
-          subtitle: 'Simple manual tracking for your intention and flow.',
+        SectionTitle(
+          title: l10n.fastingSectionTitle,
+          subtitle: l10n.fastingSectionSubtitle,
         ),
         PremiumCard(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                'Today',
+              Text(
+                l10n.fastingTodayTitle,
                 style: TextStyle(fontWeight: FontWeight.w600),
               ),
               const SizedBox(height: 8),
               Text(
-                'Status: ${fasting.todayStatus.label}',
+                l10n.fastingStatusValue(
+                  fasting.todayStatus.label,
+                  fasting.todayStatus.label,
+                ),
                 style: const TextStyle(fontSize: 16),
               ),
               const SizedBox(height: 4),
               Text(
-                'Type: ${fasting.selectedType.label}',
+                l10n.fastingTypeValue(
+                  fasting.selectedType.label,
+                  fasting.selectedType.label,
+                ),
                 style: const TextStyle(color: AppColors.onSurfaceSubtle),
               ),
               const SizedBox(height: 12),
@@ -52,9 +60,9 @@ class FastingSection extends ConsumerWidget {
           ),
         ),
         const SizedBox(height: 14),
-        const SectionTitle(
-          title: 'Fast Type',
-          subtitle: 'Choose what best reflects today’s intention.',
+        SectionTitle(
+          title: l10n.fastingFastTypeTitle,
+          subtitle: l10n.fastingFastTypeSubtitle,
         ),
         Wrap(
           spacing: 8,
@@ -85,7 +93,9 @@ class FastingSection extends ConsumerWidget {
                     type.label,
                     style: TextStyle(
                       color: AppColors.onSurface,
-                      fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
+                      fontWeight: isSelected
+                          ? FontWeight.w700
+                          : FontWeight.w500,
                     ),
                   ),
                 ),
@@ -94,9 +104,9 @@ class FastingSection extends ConsumerWidget {
           ],
         ),
         const SizedBox(height: 14),
-        const SectionTitle(
-          title: 'Today Status',
-          subtitle: 'Mark your fast with clarity and ease.',
+        SectionTitle(
+          title: l10n.fastingTodayStatusTitle,
+          subtitle: l10n.fastingTodayStatusSubtitle,
         ),
         Wrap(
           spacing: 8,
@@ -133,9 +143,9 @@ class FastingSection extends ConsumerWidget {
           ],
         ),
         const SizedBox(height: 14),
-        const SectionTitle(
-          title: 'Recent Fasting History',
-          subtitle: 'A compact mock preview for early implementation.',
+        SectionTitle(
+          title: l10n.fastingRecentHistoryTitle,
+          subtitle: l10n.fastingRecentHistorySubtitle,
         ),
         ...fasting.history.map(
           (entry) => Padding(
@@ -163,7 +173,11 @@ class FastingSection extends ConsumerWidget {
                         ),
                         const SizedBox(height: 2),
                         Text(
-                          '${entry.type.label} · ${entry.status.label}',
+                          l10n.fastingHistoryEntry(
+                            entry.type.label,
+                            entry.status.label,
+                            entry.dateLabel,
+                          ),
                           style: const TextStyle(
                             color: AppColors.onSurfaceSubtle,
                           ),
@@ -180,11 +194,14 @@ class FastingSection extends ConsumerWidget {
         PremiumCard(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
-              Text('Gentle reminder', style: TextStyle(fontWeight: FontWeight.w600)),
+            children: [
+              Text(
+                l10n.fastingGentleReminderTitle,
+                style: const TextStyle(fontWeight: FontWeight.w600),
+              ),
               SizedBox(height: 8),
               Text(
-                'Use this for steady habits rather than strict perfection. Mark the day truthfully and celebrate consistency.',
+                l10n.fastingGentleReminderBody,
                 style: TextStyle(
                   color: AppColors.onSurfaceSubtle,
                   height: 1.45,

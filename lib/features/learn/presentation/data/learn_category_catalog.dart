@@ -3,12 +3,42 @@ import '../models/learn_category_item.dart';
 class LearnCategoryCatalog {
   const LearnCategoryCatalog._();
 
+  static const Set<String> _quranOwnedItemIds = {
+    'quran',
+    'quran-learning',
+    'quranic-arabic',
+    'allah-names',
+  };
+
+  static const Set<String> _hiddenItemIds = {
+    'baby-names',
+    'becoming-muslim',
+    'guidance-new-muslims',
+    'aqeedah-essentials',
+    'five-pillars',
+    'ramadhan-fasting',
+    'zakah-sadaqah',
+    'jummah',
+    'hajj',
+    'umrah',
+    'eid',
+    'funeral',
+    'fiqh-basic',
+  };
+
+  static const Set<String> _supportedSectionHubIds = {
+    'prophets',
+    'quizzes',
+    'duas',
+    'faq',
+  };
+
   static const List<LearnCategoryItem> items = [
     LearnCategoryItem(
       id: 'quran',
       title: 'Holy Quran',
       iconKey: 'quran',
-      routeName: 'learnQuranHub',
+      routeName: 'quran',
       searchKeywords: [
         'quran',
         'holy quran',
@@ -27,7 +57,7 @@ class LearnCategoryCatalog {
       id: 'quran-learning',
       title: 'Qur’an Learning',
       iconKey: 'quran_universe',
-      routeName: 'learnQuranLearning',
+      routeName: 'quranLearningHub',
       searchKeywords: [
         'quran learning',
         'reflect',
@@ -46,7 +76,7 @@ class LearnCategoryCatalog {
       id: 'quranic-arabic',
       title: 'Learn Qur’anic Arabic',
       iconKey: 'quran_arabic',
-      routeName: 'learnQuranArabic',
+      routeName: 'quranArabic',
       searchKeywords: [
         'learn quranic arabic',
         'quranic arabic',
@@ -130,7 +160,7 @@ class LearnCategoryCatalog {
         'science signs',
       ],
       tags: ['quran', 'world'],
-      sectionType: 'placeholder',
+      sectionType: 'content',
       categoryGroup: 'core',
     ),
     LearnCategoryItem(
@@ -154,11 +184,10 @@ class LearnCategoryCatalog {
       id: 'prophets',
       title: 'Stories of the Prophets',
       iconKey: 'prophets',
-      routeName: 'learnSectionHub',
-      pathParameters: {'sectionId': 'prophets'},
+      routeName: 'learnProphetsHub',
       searchKeywords: ['prophets', 'stories', 'anbiya', 'seerah'],
       tags: ['stories', 'history'],
-      sectionType: 'placeholder',
+      sectionType: 'hub',
       categoryGroup: 'core',
     ),
     LearnCategoryItem(
@@ -185,22 +214,20 @@ class LearnCategoryCatalog {
       id: 'quizzes',
       title: 'Quizzes',
       iconKey: 'quizzes',
-      routeName: 'learnSectionHub',
-      pathParameters: {'sectionId': 'quizzes'},
+      routeName: 'learnQuizzesHub',
       searchKeywords: ['quiz', 'quizzes', 'test'],
       tags: ['practice', 'assessment'],
-      sectionType: 'placeholder',
+      sectionType: 'hub',
       categoryGroup: 'family_utility',
     ),
     LearnCategoryItem(
       id: 'duas',
       title: 'Duas',
       iconKey: 'duas',
-      routeName: 'learnSectionHub',
-      pathParameters: {'sectionId': 'duas'},
+      routeName: 'learnDuaHub',
       searchKeywords: ['dua', 'duas', 'supplication', 'adhkar'],
       tags: ['worship', 'practice'],
-      sectionType: 'placeholder',
+      sectionType: 'hub',
       categoryGroup: 'worship',
     ),
     LearnCategoryItem(
@@ -249,19 +276,17 @@ class LearnCategoryCatalog {
       id: 'becoming-muslim',
       title: 'Becoming a Muslim',
       iconKey: 'prophets',
-      routeName: 'learnSectionHub',
-      pathParameters: {'sectionId': 'becoming-muslim'},
+      routeName: 'learnLegacy',
       searchKeywords: ['becoming muslim', 'shahada', 'convert', 'revert'],
       tags: ['guidance', 'foundations'],
-      sectionType: 'placeholder',
+      sectionType: 'content',
       categoryGroup: 'new_muslim',
     ),
     LearnCategoryItem(
       id: 'guidance-new-muslims',
       title: 'Guidance for New Muslims',
       iconKey: 'life',
-      routeName: 'learnSectionHub',
-      pathParameters: {'sectionId': 'guidance-new-muslims'},
+      routeName: 'learnLegacy',
       searchKeywords: ['new muslim', 'revert guidance', 'beginner islam'],
       tags: ['guidance', 'new muslim'],
       sectionType: 'placeholder',
@@ -271,8 +296,7 @@ class LearnCategoryCatalog {
       id: 'aqeedah-essentials',
       title: 'Aqeedah Essentials',
       iconKey: 'hadith',
-      routeName: 'learnSectionHub',
-      pathParameters: {'sectionId': 'aqeedah-essentials'},
+      routeName: 'learnLegacy',
       searchKeywords: ['aqeedah', 'creed', 'belief essentials'],
       tags: ['foundations', 'belief'],
       sectionType: 'placeholder',
@@ -282,8 +306,7 @@ class LearnCategoryCatalog {
       id: 'five-pillars',
       title: 'The Five Pillars of Islam',
       iconKey: 'salah',
-      routeName: 'learnSectionHub',
-      pathParameters: {'sectionId': 'five-pillars'},
+      routeName: 'learnLegacy',
       searchKeywords: ['five pillars', 'arkan al islam', 'pillars of islam'],
       tags: ['foundations', 'core'],
       sectionType: 'placeholder',
@@ -293,8 +316,7 @@ class LearnCategoryCatalog {
       id: 'ramadhan-fasting',
       title: 'Ramadhan and Fasting',
       iconKey: 'salah',
-      routeName: 'learnSectionHub',
-      pathParameters: {'sectionId': 'ramadhan-fasting'},
+      routeName: 'learnLegacy',
       searchKeywords: ['ramadhan', 'ramadan', 'fasting', 'sawm'],
       tags: ['worship', 'seasonal'],
       sectionType: 'placeholder',
@@ -304,8 +326,7 @@ class LearnCategoryCatalog {
       id: 'zakah-sadaqah',
       title: 'Zakah & Sadaqah',
       iconKey: 'life',
-      routeName: 'learnSectionHub',
-      pathParameters: {'sectionId': 'zakah-sadaqah'},
+      routeName: 'learnLegacy',
       searchKeywords: ['zakah', 'zakat', 'sadaqah', 'charity'],
       tags: ['finance', 'worship'],
       sectionType: 'placeholder',
@@ -315,8 +336,7 @@ class LearnCategoryCatalog {
       id: 'jummah',
       title: 'Jummah',
       iconKey: 'salah',
-      routeName: 'learnSectionHub',
-      pathParameters: {'sectionId': 'jummah'},
+      routeName: 'learnLegacy',
       searchKeywords: ['jummah', 'jumuah', 'friday prayer'],
       tags: ['worship', 'weekly'],
       sectionType: 'placeholder',
@@ -326,8 +346,7 @@ class LearnCategoryCatalog {
       id: 'hajj',
       title: 'Hajj',
       iconKey: 'life',
-      routeName: 'learnSectionHub',
-      pathParameters: {'sectionId': 'hajj'},
+      routeName: 'learnLegacy',
       searchKeywords: ['hajj', 'pilgrimage', 'manasik'],
       tags: ['pilgrimage', 'worship'],
       sectionType: 'placeholder',
@@ -337,8 +356,7 @@ class LearnCategoryCatalog {
       id: 'umrah',
       title: 'Umrah',
       iconKey: 'life',
-      routeName: 'learnSectionHub',
-      pathParameters: {'sectionId': 'umrah'},
+      routeName: 'learnLegacy',
       searchKeywords: ['umrah', 'minor pilgrimage'],
       tags: ['pilgrimage', 'worship'],
       sectionType: 'placeholder',
@@ -348,8 +366,7 @@ class LearnCategoryCatalog {
       id: 'eid',
       title: 'Eid',
       iconKey: 'duas',
-      routeName: 'learnSectionHub',
-      pathParameters: {'sectionId': 'eid'},
+      routeName: 'learnLegacy',
       searchKeywords: ['eid', 'eid prayer', 'eid etiquette'],
       tags: ['seasonal', 'worship'],
       sectionType: 'placeholder',
@@ -359,8 +376,7 @@ class LearnCategoryCatalog {
       id: 'funeral',
       title: 'Funeral',
       iconKey: 'life',
-      routeName: 'learnSectionHub',
-      pathParameters: {'sectionId': 'funeral'},
+      routeName: 'learnLegacy',
       searchKeywords: ['funeral', 'janazah', 'burial'],
       tags: ['fiqh', 'community'],
       sectionType: 'placeholder',
@@ -370,8 +386,7 @@ class LearnCategoryCatalog {
       id: 'fiqh-basic',
       title: 'Fiqh Basic',
       iconKey: 'hadith',
-      routeName: 'learnSectionHub',
-      pathParameters: {'sectionId': 'fiqh-basic'},
+      routeName: 'learnLegacy',
       searchKeywords: ['fiqh basic', 'fiqh basics', 'islamic rulings'],
       tags: ['fiqh', 'foundations'],
       sectionType: 'placeholder',
@@ -381,8 +396,7 @@ class LearnCategoryCatalog {
       id: 'faq',
       title: 'FAQ',
       iconKey: 'other',
-      routeName: 'learnSectionHub',
-      pathParameters: {'sectionId': 'faq'},
+      routeName: 'faqLanding',
       searchKeywords: ['faq', 'frequently asked questions', 'common questions'],
       tags: ['help', 'guidance'],
       sectionType: 'placeholder',
@@ -453,5 +467,23 @@ class LearnCategoryCatalog {
       if (item.id == id) return item;
     }
     return null;
+  }
+
+  static List<LearnCategoryItem> get activeItems {
+    return items
+        .where(
+          (item) =>
+              !_quranOwnedItemIds.contains(item.id) &&
+              !_hiddenItemIds.contains(item.id),
+        )
+        .toList(growable: false);
+  }
+
+  static List<LearnCategoryItem> get searchableItems {
+    return [...activeItems, ...otherLinks, ...searchOnlyLinks];
+  }
+
+  static bool isSupportedSectionHub(String sectionId) {
+    return _supportedSectionHubIds.contains(sectionId);
   }
 }

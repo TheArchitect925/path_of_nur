@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../core/theme/app_colors.dart';
+import '../../../../../l10n/app_localizations.dart';
 import '../../application/quran_teaching_asset_resolver.dart';
 import '../../domain/quran_teaching_models.dart';
 
@@ -22,6 +23,7 @@ class QuranTeachingAudioIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return FutureBuilder<bool>(
       future: QuranTeachingAssetResolver.hasAudio(audio),
       builder: (context, snapshot) {
@@ -29,7 +31,9 @@ class QuranTeachingAudioIconButton extends StatelessWidget {
         if (label == null) {
           return IconButton(
             onPressed: available ? onAvailablePressed : null,
-            tooltip: available ? 'Play audio' : 'Audio not added yet',
+            tooltip: available
+                ? l10n.accessibilityPlayAudio
+                : l10n.accessibilityAudioNotAddedYet,
             icon: Icon(available ? availableIcon : unavailableIcon),
           );
         }
@@ -86,10 +90,8 @@ class QuranTeachingVisualAssetTile extends StatelessWidget {
                     width: compact ? 32 : 40,
                     height: compact ? 32 : 40,
                     fit: BoxFit.cover,
-                    errorBuilder: (context, error, stackTrace) => _FallbackIcon(
-                      icon: icon,
-                      compact: compact,
-                    ),
+                    errorBuilder: (context, error, stackTrace) =>
+                        _FallbackIcon(icon: icon, compact: compact),
                   ),
                 )
               else

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../core/theme/app_colors.dart';
+import '../../../../../l10n/app_localizations.dart';
 import '../../../../../shared/widgets/premium_card.dart';
 import '../../domain/prophet_entry.dart';
+import '../prophets_metadata_localization.dart';
 
 class ProphetMapPreviewSheet extends StatelessWidget {
   const ProphetMapPreviewSheet({
@@ -16,6 +18,7 @@ class ProphetMapPreviewSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 12, 16, 24),
       child: PremiumCard(
@@ -43,12 +46,20 @@ class ProphetMapPreviewSheet extends StatelessWidget {
               runSpacing: 8,
               children: [
                 _chip(prophet.locationLabel ?? prophet.regionLabel),
-                _chip(prophet.locationConfidence.label),
+                _chip(
+                  localizedProphetLocationConfidenceLabel(
+                    l10n,
+                    prophet.locationConfidence,
+                  ),
+                ),
               ],
             ),
             const SizedBox(height: 8),
             Text(
-              prophet.locationConfidence.guidance,
+              localizedProphetLocationConfidenceGuidance(
+                l10n,
+                prophet.locationConfidence,
+              ),
               style: Theme.of(
                 context,
               ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),
@@ -57,7 +68,7 @@ class ProphetMapPreviewSheet extends StatelessWidget {
             FilledButton.icon(
               onPressed: onOpenDetail,
               icon: const Icon(Icons.menu_book_rounded),
-              label: const Text('Open Full Profile'),
+              label: Text(l10n.prophetsOpenFullProfile),
             ),
           ],
         ),

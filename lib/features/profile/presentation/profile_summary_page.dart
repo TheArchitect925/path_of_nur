@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 
 import '../../../app/app_router.dart';
 import '../../../features/worship/domain/fasting_status.dart';
@@ -27,8 +28,14 @@ class ProfileSummaryPage extends ConsumerWidget {
     final ocean = summary.ocean;
     final journal = summary.journal;
     final wallpaper = summary.wallpaper;
-    final prayerProgressText = '${worship.prayerCompleted} / ${worship.prayerTotal}';
-    final dhikrProgressText = '${worship.dhikrCount} / ${worship.dhikrTarget}';
+    final prayerProgressText = l10n.homeFractionValue(
+      _formatCount(context, worship.prayerCompleted),
+      _formatCount(context, worship.prayerTotal),
+    );
+    final dhikrProgressText = l10n.homeFractionValue(
+      _formatCount(context, worship.dhikrCount),
+      _formatCount(context, worship.dhikrTarget),
+    );
 
     return AppPageScaffold(
       headerIcon: Icons.summarize_outlined,
@@ -66,14 +73,17 @@ class ProfileSummaryPage extends ConsumerWidget {
                   Expanded(
                     child: _ValueTile(
                       title: l10n.homeCurrentStreakTitle,
-                      value: '${journey.currentStreakDays} ${l10n.homeDaysLabel}',
+                      value: l10n.homeDaysCount(journey.currentStreakDays),
                     ),
                   ),
                   const SizedBox(width: 12),
                   Expanded(
                     child: _ValueTile(
                       title: l10n.homeXpLevelTitle,
-                      value: '${l10n.levelLabel} ${journey.level}',
+                      value: l10n.homeLevelValue(
+                        _formatCount(context, journey.level),
+                        _formatCount(context, journey.level),
+                      ),
                     ),
                   ),
                 ],
@@ -127,7 +137,12 @@ class ProfileSummaryPage extends ConsumerWidget {
             children: [
               _SummaryRow(
                 label: l10n.homeLearnContinueQuran,
-                value: '${learn.continueSurahName} ${learn.continueAyah}',
+                value: l10n.homeContinueQuranValue(
+                  learn.continueSurahName,
+                  _formatCount(context, learn.continueAyah),
+                  learn.continueSurahName,
+                  _formatCount(context, learn.continueAyah),
+                ),
                 onTap: () => context.pushNamed('quranExplorer'),
               ),
               const Divider(height: 10),
@@ -161,20 +176,26 @@ class ProfileSummaryPage extends ConsumerWidget {
             children: [
               _SummaryRow(
                 label: l10n.homeXpLevelTitle,
-                value: '${l10n.levelLabel} ${journey.level}',
+                value: l10n.homeLevelValue(
+                  _formatCount(context, journey.level),
+                  _formatCount(context, journey.level),
+                ),
                 onTap: () => goToTab(context, NavTab.journey),
               ),
               const Divider(height: 10),
               _SummaryRow(
                 label: l10n.homeJourneyXpProgressTitle,
-                value: '${journey.xp} XP',
+                value: l10n.homeXpValue(
+                  _formatCount(context, journey.xp),
+                  _formatCount(context, journey.xp),
+                ),
                 onTap: () => goToTab(context, NavTab.journey),
               ),
               if (mode != AppSpecialMode.gentle) ...[
                 const Divider(height: 10),
                 _SummaryRow(
                   label: l10n.homeCurrentStreakTitle,
-                  value: '${journey.currentStreakDays} ${l10n.homeDaysLabel}',
+                  value: l10n.homeDaysCount(journey.currentStreakDays),
                   onTap: () => goToTab(context, NavTab.journey),
                 ),
               ],
@@ -197,31 +218,43 @@ class ProfileSummaryPage extends ConsumerWidget {
             children: [
               _SummaryRow(
                 label: l10n.oceanTitle,
-                value: '${ocean.totalDrops}',
+                value: _formatCount(context, ocean.totalDrops),
                 onTap: () => context.pushNamed('oceanDrops'),
               ),
               const Divider(height: 10),
               _SummaryRow(
                 label: l10n.wallpaperLibraryTitle,
-                value: '${wallpaper.unlockedCount} • ${wallpaper.selectedTitle}',
+                value: l10n.homeCountAndLabel(
+                  _formatCount(context, wallpaper.unlockedCount),
+                  wallpaper.selectedTitle,
+                ),
                 onTap: () => context.pushNamed('wallpaperLibrary'),
               ),
               const Divider(height: 10),
               _SummaryRow(
                 label: l10n.circlesTitle,
-                value: '${circles.joinedCount} • ${circles.featuredCircleTitle}',
+                value: l10n.homeCountAndLabel(
+                  _formatCount(context, circles.joinedCount),
+                  circles.featuredCircleTitle,
+                ),
                 onTap: () => context.pushNamed('circlesDiscovery'),
               ),
               const Divider(height: 10),
               _SummaryRow(
                 label: l10n.journalTitle,
-                value: '${journal.entriesCount} • ${journal.favoriteEntries}',
+                value: l10n.homeCountAndLabel(
+                  _formatCount(context, journal.entriesCount),
+                  journal.favoriteEntries,
+                ),
                 onTap: () => context.pushNamed('journalTimeline'),
               ),
               const Divider(height: 10),
               _SummaryRow(
                 label: l10n.assistantTitle,
-                value: '${assistant.recentMessages} • ${assistant.recentPrompts}',
+                value: l10n.homeCountAndLabel(
+                  _formatCount(context, assistant.recentMessages),
+                  assistant.recentPrompts,
+                ),
                 onTap: () => context.pushNamed('assistant'),
               ),
             ],
@@ -313,6 +346,11 @@ class ProfileSummaryPage extends ConsumerWidget {
         return l10n.homeFastingNotFasting;
     }
   }
+}
+
+String _formatCount(BuildContext context, num value) {
+  final locale = Localizations.localeOf(context).toLanguageTag();
+  return NumberFormat.decimalPattern(locale).format(value);
 }
 
 class _SummaryRow extends StatelessWidget {

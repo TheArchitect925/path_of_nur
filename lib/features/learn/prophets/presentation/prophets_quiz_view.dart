@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/theme/app_colors.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../application/prophet_quiz_controller.dart';
 import '../application/prophets_repository.dart';
@@ -54,6 +55,7 @@ class _ProphetsQuizViewState extends ConsumerState<ProphetsQuizView> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final state = ref.watch(prophetQuizControllerProvider);
     final controller = ref.read(prophetQuizControllerProvider.notifier);
     final prophets = ref.watch(prophetsProvider);
@@ -78,7 +80,10 @@ class _ProphetsQuizViewState extends ConsumerState<ProphetsQuizView> {
               children: [
                 Expanded(
                   child: Text(
-                    'Question ${state.currentIndex + 1} of ${activeQuestions.length}',
+                    l10n.batch9QuestionProgress(
+                      '${state.currentIndex + 1}',
+                      '${activeQuestions.length}',
+                    ),
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       fontWeight: FontWeight.w700,
                     ),
@@ -179,7 +184,9 @@ class _ProphetsQuizViewState extends ConsumerState<ProphetsQuizView> {
                 if (answered) ...[
                   const SizedBox(height: 6),
                   Text(
-                    isCorrect ? 'Correct' : 'Not quite',
+                    isCorrect
+                        ? l10n.batch9AnswerCorrect
+                        : l10n.batch9AnswerNotQuite,
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       fontWeight: FontWeight.w700,
                       color: isCorrect
@@ -196,8 +203,8 @@ class _ProphetsQuizViewState extends ConsumerState<ProphetsQuizView> {
                     },
                     child: Text(
                       state.currentIndex + 1 >= activeQuestions.length
-                          ? 'See Results'
-                          : 'Continue',
+                          ? l10n.triviaSessionSeeResults
+                          : l10n.batch9ContinueAction,
                     ),
                   ),
                 ],
@@ -223,17 +230,30 @@ class _ProphetsQuizViewState extends ConsumerState<ProphetsQuizView> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Quiz Results',
+                  l10n.batch9QuizResultsTitle,
                   style: Theme.of(
                     context,
                   ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700),
                 ),
                 const SizedBox(height: 8),
-                Text('Score: ${result.score}/${result.total}'),
-                Text('Accuracy: ${(result.accuracy * 100).round()}%'),
+                Text(
+                  l10n.batch9QuizScoreSummary(
+                    '${result.score}',
+                    '${result.total}',
+                  ),
+                ),
+                Text(
+                  l10n.batch9QuizAccuracySummary(
+                    '${(result.accuracy * 100).round()}',
+                  ),
+                ),
                 const SizedBox(height: 8),
-                Text('Best score: ${state.bestScore}'),
-                Text('Total quizzes taken: ${state.totalQuizzesTaken}'),
+                Text(l10n.batch9BestScoreSummary('${state.bestScore}')),
+                Text(
+                  l10n.batch9TotalQuizzesTakenSummary(
+                    '${state.totalQuizzesTaken}',
+                  ),
+                ),
                 const SizedBox(height: 12),
                 Wrap(
                   spacing: 8,
@@ -246,11 +266,11 @@ class _ProphetsQuizViewState extends ConsumerState<ProphetsQuizView> {
                         prophetId: _selectedProphetId,
                         eraId: _selectedEraId,
                       ),
-                      child: const Text('Retry Quiz'),
+                      child: Text(l10n.batch9RetryQuizAction),
                     ),
                     OutlinedButton(
                       onPressed: widget.onReviewProphets,
-                      child: const Text('Review Prophets'),
+                      child: Text(l10n.batch9ReviewProphetsAction),
                     ),
                   ],
                 ),
@@ -262,8 +282,8 @@ class _ProphetsQuizViewState extends ConsumerState<ProphetsQuizView> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'Learning Notes',
+                Text(
+                  l10n.batch9LearningNotesTitle,
                   style: TextStyle(fontWeight: FontWeight.w700),
                 ),
                 const SizedBox(height: 8),
@@ -289,21 +309,21 @@ class _ProphetsQuizViewState extends ConsumerState<ProphetsQuizView> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Prophet Quiz',
+                l10n.batch9ProphetQuizTitle,
                 style: Theme.of(
                   context,
                 ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700),
               ),
               const SizedBox(height: 6),
               Text(
-                'Test knowledge of prophetic stories, timelines, lessons, and Qur\'anic references.',
+                l10n.batch9ProphetQuizSubtitle,
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   color: AppColors.onSurfaceSubtle,
                 ),
               ),
               const SizedBox(height: 12),
               Text(
-                'Difficulty',
+                l10n.batch9DifficultyTitle,
                 style: Theme.of(
                   context,
                 ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
@@ -324,7 +344,7 @@ class _ProphetsQuizViewState extends ConsumerState<ProphetsQuizView> {
               ),
               const SizedBox(height: 10),
               Text(
-                'Mode',
+                l10n.batch9ModeTitle,
                 style: Theme.of(
                   context,
                 ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
@@ -335,7 +355,7 @@ class _ProphetsQuizViewState extends ConsumerState<ProphetsQuizView> {
                 runSpacing: 8,
                 children: [
                   ChoiceChip(
-                    label: const Text('Mixed'),
+                    label: Text(l10n.triviaMixedLabel),
                     selected: _selectedMode == null,
                     onSelected: (_) => setState(() => _selectedMode = null),
                   ),
@@ -351,7 +371,7 @@ class _ProphetsQuizViewState extends ConsumerState<ProphetsQuizView> {
               ),
               const SizedBox(height: 10),
               Text(
-                'Prophet Focus',
+                l10n.batch9ProphetFocusTitle,
                 style: Theme.of(
                   context,
                 ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
@@ -360,9 +380,9 @@ class _ProphetsQuizViewState extends ConsumerState<ProphetsQuizView> {
               DropdownButtonFormField<String?>(
                 initialValue: _selectedProphetId,
                 items: <DropdownMenuItem<String?>>[
-                  const DropdownMenuItem<String?>(
+                  DropdownMenuItem<String?>(
                     value: null,
-                    child: Text('All Prophets'),
+                    child: Text(l10n.batch9AllProphets),
                   ),
                   ...prophets.map(
                     (prophet) => DropdownMenuItem<String?>(
@@ -377,7 +397,7 @@ class _ProphetsQuizViewState extends ConsumerState<ProphetsQuizView> {
               ),
               const SizedBox(height: 10),
               Text(
-                'Era Focus',
+                l10n.batch9EraFocusTitle,
                 style: Theme.of(
                   context,
                 ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
@@ -386,14 +406,14 @@ class _ProphetsQuizViewState extends ConsumerState<ProphetsQuizView> {
               DropdownButtonFormField<String?>(
                 initialValue: _selectedEraId,
                 items: <DropdownMenuItem<String?>>[
-                  const DropdownMenuItem<String?>(
+                  DropdownMenuItem<String?>(
                     value: null,
-                    child: Text('All Eras'),
+                    child: Text(l10n.batch9AllEras),
                   ),
                   ..._eraOptionsFromPool(controller.questionPool).map(
                     (eraId) => DropdownMenuItem<String?>(
                       value: eraId,
-                      child: Text(_eraLabel(eraId)),
+                      child: Text(_eraLabel(l10n, eraId)),
                     ),
                   ),
                 ],
@@ -412,7 +432,7 @@ class _ProphetsQuizViewState extends ConsumerState<ProphetsQuizView> {
                         prophetId: _selectedProphetId,
                         eraId: _selectedEraId,
                       ),
-                      child: const Text('Start Quiz'),
+                      child: Text(l10n.triviaStartQuizAction),
                     ),
                   ),
                   if (state.inProgress) ...[
@@ -420,20 +440,36 @@ class _ProphetsQuizViewState extends ConsumerState<ProphetsQuizView> {
                     Expanded(
                       child: OutlinedButton(
                         onPressed: () {},
-                        child: const Text('Continue Quiz'),
+                        child: Text(l10n.triviaContinueQuizAction),
                       ),
                     ),
                   ],
                 ],
               ),
               const SizedBox(height: 10),
-              Text('Last score: ${state.lastScore}'),
-              Text('Best score: ${state.bestScore}'),
-              Text('Total quizzes taken: ${state.totalQuizzesTaken}'),
-              Text('Question pool: ${controller.questionPool.length}'),
+              Text(l10n.batch9LastScoreSummary('${state.lastScore}')),
+              Text(l10n.batch9BestScoreSummary('${state.bestScore}')),
+              Text(
+                l10n.batch9TotalQuizzesTakenSummary(
+                  '${state.totalQuizzesTaken}',
+                ),
+              ),
+              Text(
+                l10n.batch9QuestionPoolSummary(
+                  '${controller.questionPool.length}',
+                ),
+              ),
               if (state.lastProphetId != null || state.lastEraId != null)
                 Text(
-                  'Last focus: ${state.lastProphetId == null ? 'All prophets' : (prophetById[state.lastProphetId!]?.honoredName ?? state.lastProphetId!)} · ${state.lastEraId == null ? 'All eras' : _eraLabel(state.lastEraId!)}',
+                  l10n.batch9LastFocusSummary(
+                    state.lastProphetId == null
+                        ? l10n.batch9AllProphets
+                        : (prophetById[state.lastProphetId!]?.honoredName ??
+                              state.lastProphetId!),
+                    state.lastEraId == null
+                        ? l10n.batch9AllEras
+                        : _eraLabel(l10n, state.lastEraId!),
+                  ),
                 ),
             ],
           ),
@@ -445,26 +481,34 @@ class _ProphetsQuizViewState extends ConsumerState<ProphetsQuizView> {
   String _difficultyLabel(ProphetQuizDifficulty difficulty) {
     switch (difficulty) {
       case ProphetQuizDifficulty.easy:
-        return 'Easy';
+        return AppLocalizations.of(context).triviaDifficultyEasy;
       case ProphetQuizDifficulty.medium:
-        return 'Medium';
+        return AppLocalizations.of(context).triviaDifficultyMedium;
       case ProphetQuizDifficulty.hard:
-        return 'Hard';
+        return AppLocalizations.of(context).triviaDifficultyHard;
     }
   }
 
   String _modeLabel(ProphetQuizMode mode) {
     switch (mode) {
       case ProphetQuizMode.prophetIdentification:
-        return 'Identify';
+        return AppLocalizations.of(
+          context,
+        ).learnQuizzesProphetModeIdentification;
       case ProphetQuizMode.timelineOrder:
-        return 'Timeline';
+        return AppLocalizations.of(context).learnQuizzesProphetModeTimeline;
       case ProphetQuizMode.storyMatching:
-        return 'Story Match';
+        return AppLocalizations.of(
+          context,
+        ).learnQuizzesProphetModeStoryMatching;
       case ProphetQuizMode.quranReference:
-        return 'References';
+        return AppLocalizations.of(
+          context,
+        ).learnQuizzesProphetModeQuranReference;
       case ProphetQuizMode.lessonRecognition:
-        return 'Lessons';
+        return AppLocalizations.of(
+          context,
+        ).learnQuizzesProphetModeLessonRecognition;
     }
   }
 
@@ -480,22 +524,22 @@ class _ProphetsQuizViewState extends ConsumerState<ProphetsQuizView> {
     return sorted;
   }
 
-  String _eraLabel(String eraId) {
+  String _eraLabel(AppLocalizations l10n, String eraId) {
     switch (eraId) {
       case 'earlyHumanity':
-        return 'Early Humanity';
+        return l10n.prophetsEraEarlyHumanityTitle;
       case 'earlyCivilizations':
-        return 'Early Civilizations';
+        return l10n.prophetsEraEarlyCivilizationsTitle;
       case 'postFloodPeoples':
-        return 'Post-Flood Peoples';
+        return l10n.prophetsEraPostFloodPeoplesTitle;
       case 'ageOfIbrahim':
-        return 'Age of Ibrahim';
+        return l10n.prophetsEraAgeOfIbrahimTitle;
       case 'childrenOfIsrael':
-        return 'Children of Israel';
+        return l10n.prophetsEraChildrenOfIsraelTitle;
       case 'laterIsraeliteProphets':
-        return 'Later Israelite Prophets';
+        return l10n.prophetsEraLaterIsraeliteProphetsTitle;
       case 'finalMessenger':
-        return 'Final Messenger';
+        return l10n.prophetsEraFinalMessengerTitle;
       default:
         return eraId;
     }

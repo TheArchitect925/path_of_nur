@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/theme/app_colors.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../domain/prophet_entry.dart';
+import 'prophets_metadata_localization.dart';
 
 class ProphetsTimelineView extends StatefulWidget {
   const ProphetsTimelineView({
@@ -45,6 +47,7 @@ class _ProphetsTimelineViewState extends State<ProphetsTimelineView> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final grouped = <ProphetEraGroup, List<ProphetEntry>>{};
     for (final prophet in widget.prophets) {
       grouped.putIfAbsent(prophet.eraGroup, () => <ProphetEntry>[]);
@@ -63,14 +66,14 @@ class _ProphetsTimelineViewState extends State<ProphetsTimelineView> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      era.title,
+                      localizedProphetEraTitle(l10n, era),
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.w700,
                       ),
                     ),
                     const SizedBox(height: 2),
                     Text(
-                      era.subtitle,
+                      localizedProphetEraSubtitle(l10n, era),
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: AppColors.onSurfaceSubtle,
                       ),
@@ -120,6 +123,7 @@ class _TimelineNodeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final lineColor = AppColors.accentGold.withValues(alpha: 0.36);
     final nodeColor = focused ? AppColors.accentGold : prophet.eraGroup.tint;
 
@@ -199,7 +203,10 @@ class _TimelineNodeCard extends StatelessWidget {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      '${prophet.eraTitle} · ${prophet.regionLabel}',
+                      l10n.prophetsTimelineMeta(
+                        localizedProphetEraTitle(l10n, prophet.eraGroup),
+                        prophet.regionLabel,
+                      ),
                       style: Theme.of(context).textTheme.bodySmall,
                     ),
                     const SizedBox(height: 4),

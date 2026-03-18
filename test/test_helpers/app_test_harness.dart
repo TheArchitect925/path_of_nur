@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:path_of_nur/core/localization/locale_provider.dart';
 
 import 'package:path_of_nur/app/app_router.dart';
 import 'package:path_of_nur/l10n/app_localizations.dart';
@@ -32,15 +33,21 @@ Future<ProviderContainer> makeTestContainer({
 Widget buildRouterTestApp(ProviderContainer container) {
   return UncontrolledProviderScope(
     container: container,
-    child: MaterialApp.router(
-      routerConfig: container.read(appRouterProvider),
-      localizationsDelegates: const <LocalizationsDelegate<dynamic>>[
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: AppLocalizations.supportedLocales,
+    child: Consumer(
+      builder: (_, ref, _) {
+        final locale = ref.watch(appLocaleProvider);
+        return MaterialApp.router(
+          routerConfig: ref.read(appRouterProvider),
+          locale: locale,
+          localizationsDelegates: const <LocalizationsDelegate<dynamic>>[
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: AppLocalizations.supportedLocales,
+        );
+      },
     ),
   );
 }

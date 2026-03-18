@@ -14,7 +14,6 @@ import '../features/journey/application/growth_providers.dart';
 import '../features/journey/application/growth_widget_support.dart';
 import '../features/journey/application/journey_progression_provider.dart';
 import '../features/learn/prophets/application/daily_learning_surfaces.dart';
-import '../features/ocean/application/ocean_drops_provider.dart';
 import '../features/wallpaper/application/wallpaper_provider.dart';
 import '../features/accounts_sync/application/accounts_sync_controller.dart';
 import '../features/profile/application/profile_settings_provider.dart';
@@ -36,8 +35,6 @@ class PathOfNurApp extends ConsumerWidget {
     ref.watch(appQuickActionsBootstrapProvider);
     ref.watch(appNavigationBridgeBootstrapProvider);
     ref.watch(journeyProgressAutoSyncProvider);
-    ref.watch(oceanDropsAutoSyncProvider);
-    ref.watch(oceanDropsDerivedSyncProvider);
     ref.watch(wallpaperAutoUnlockProvider);
     ref.watch(prayerLiveActivityBootstrapProvider);
     final theme = AppTheme.themeFor(
@@ -46,8 +43,11 @@ class PathOfNurApp extends ConsumerWidget {
       disableBackground: profileSettings.disableBackground,
       highContrastText: profileSettings.highContrastText,
     );
+    final localeTag = locale?.toLanguageTag() ?? 'en';
     return MaterialApp.router(
-      key: ValueKey<int>(scopeVersion),
+      key: ValueKey<String>(
+        'app-$scopeVersion-$localeTag',
+      ),
       onGenerateTitle: (context) => AppLocalizations.of(context).appTitle,
       debugShowCheckedModeBanner: false,
       theme: theme,

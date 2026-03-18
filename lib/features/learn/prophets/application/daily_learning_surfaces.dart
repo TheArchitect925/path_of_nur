@@ -144,7 +144,7 @@ final prophetDailySurfaceSnapshotProvider =
       final item = bundle.item;
       final prophetPath = item.linkedProphetId == null
           ? null
-          : '/learn/section/prophets?prophet=${item.linkedProphetId}';
+          : '/learn/prophets?prophet=${item.linkedProphetId}';
 
       return ProphetDailySurfaceSnapshot(
         dateKey: bundle.dateKey,
@@ -154,9 +154,9 @@ final prophetDailySurfaceSnapshotProvider =
         quizQuestionId: bundle.quizQuestion.id,
         quizCompleted: bundle.status.quizAnswered,
         cardOpened: bundle.status.cardOpened,
-        deepLinkLearn: '/learn/section/prophets',
+        deepLinkLearn: '/learn/prophets',
         deepLinkProphet: prophetPath,
-        deepLinkQuiz: '/learn/section/prophets?tab=quiz',
+        deepLinkQuiz: '/learn/prophets?tab=quiz',
         updatedAtIso: DateTime.now().toIso8601String(),
       );
     });

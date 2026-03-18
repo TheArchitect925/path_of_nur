@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/theme/app_colors.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../application/quran_teaching_asset_resolver.dart';
 import '../application/quran_teaching_controller.dart';
@@ -51,10 +52,16 @@ class _QuranTeachingLessonPageState
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final progress = ref.watch(quranTeachingProgressProvider);
-    final reviewLater = progress.reviewLaterLessonIds.contains(widget.lesson.id);
-    final totalPages = widget.lesson.steps.length + widget.lesson.quizzes.length;
-    final currentPage = _inQuiz ? widget.lesson.steps.length + _quizIndex + 1 : _stepIndex + 1;
+    final reviewLater = progress.reviewLaterLessonIds.contains(
+      widget.lesson.id,
+    );
+    final totalPages =
+        widget.lesson.steps.length + widget.lesson.quizzes.length;
+    final currentPage = _inQuiz
+        ? widget.lesson.steps.length + _quizIndex + 1
+        : _stepIndex + 1;
 
     return Scaffold(
       appBar: AppBar(
@@ -63,8 +70,10 @@ class _QuranTeachingLessonPageState
           IconButton(
             onPressed: () {
               final catalog = ref.read(quranTeachingCatalogProvider);
-              final fallbackPack =
-                  _firstAudioPackForModule(catalog, widget.module.id);
+              final fallbackPack = _firstAudioPackForModule(
+                catalog,
+                widget.module.id,
+              );
               Navigator.of(context).push(
                 MaterialPageRoute<void>(
                   builder: (_) => QuranTeachingListenOnlyPage(
@@ -74,16 +83,20 @@ class _QuranTeachingLessonPageState
               );
             },
             icon: const Icon(Icons.headphones_rounded),
-            tooltip: 'Practice as audio',
+            tooltip: l10n.batch9PracticeAsAudioTooltip,
           ),
           IconButton(
             onPressed: () => ref
                 .read(quranTeachingProgressProvider.notifier)
                 .toggleReviewLater(widget.lesson.id),
             icon: Icon(
-              reviewLater ? Icons.bookmark_rounded : Icons.bookmark_border_rounded,
+              reviewLater
+                  ? Icons.bookmark_rounded
+                  : Icons.bookmark_border_rounded,
             ),
-            tooltip: reviewLater ? 'Saved for review' : 'Review later',
+            tooltip: reviewLater
+                ? l10n.accessibilitySavedForReview
+                : l10n.accessibilityReviewLater,
           ),
         ],
       ),
@@ -152,22 +165,24 @@ class _QuranTeachingLessonPageState
                 onPressed: _advanceStep,
                 child: Text(
                   _stepIndex == widget.lesson.steps.length - 1
-                      ? (widget.lesson.quizzes.isEmpty ? 'Complete lesson' : 'Try a quick quiz')
-                      : 'Continue',
+                      ? (widget.lesson.quizzes.isEmpty
+                            ? l10n.batch9CompleteLessonAction
+                            : l10n.batch9TryQuickQuizAction)
+                      : l10n.batch9ContinueAction,
                 ),
               ),
             if (_inQuiz && _feedback == null)
               FilledButton(
                 onPressed: _submitQuiz,
-                child: const Text('Check answer'),
+                child: Text(l10n.batch9CheckAnswerAction),
               ),
             if (_inQuiz && _feedback != null)
               FilledButton(
                 onPressed: _advanceQuiz,
                 child: Text(
                   _quizIndex == widget.lesson.quizzes.length - 1
-                      ? 'Finish lesson'
-                      : 'Next question',
+                      ? l10n.batch9FinishLessonAction
+                      : l10n.batch9NextQuestionAction,
                 ),
               ),
           ],
@@ -177,14 +192,15 @@ class _QuranTeachingLessonPageState
   }
 
   void _playAudio(QuranAudioCue audio) {
+    final l10n = AppLocalizations.of(context);
     QuranTeachingAssetResolver.resolveAudioPath(audio).then((path) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
             path == null
-                ? 'Audio for ${audio.label} is not added yet.'
-                : 'Audio ready for ${audio.label}.',
+                ? l10n.batch9AudioNotAddedYet(audio.label)
+                : l10n.batch9AudioReady(audio.label),
           ),
         ),
       );
@@ -218,14 +234,18 @@ class _QuranTeachingLessonPageState
         break;
     }
     _quizAnsweredCorrectly[quiz.id] = correct;
-    ref.read(quranTeachingSmartReviewProvider.notifier).recordQuizAttempt(
+    ref
+        .read(quranTeachingSmartReviewProvider.notifier)
+        .recordQuizAttempt(
           lesson: widget.lesson,
           quiz: quiz,
           correct: correct,
           source: QuranTeachingReviewSource.lesson,
         );
     if (!correct) {
-      ref.read(quranTeachingMistakeQueueProvider.notifier).recordMistake(
+      ref
+          .read(quranTeachingMistakeQueueProvider.notifier)
+          .recordMistake(
             lesson: widget.lesson,
             quiz: quiz,
             selectedOptionId: _selectedOptionId,
@@ -256,17 +276,23 @@ class _QuranTeachingLessonPageState
   void _finishLesson() {
     var score = 1.0;
     if (widget.lesson.quizzes.isNotEmpty) {
-      final correct = _quizAnsweredCorrectly.values.where((item) => item).length;
+      final correct = _quizAnsweredCorrectly.values
+          .where((item) => item)
+          .length;
       score = correct / widget.lesson.quizzes.length;
       for (final quiz in widget.lesson.quizzes) {
-        ref.read(quranTeachingProgressProvider.notifier).recordQuizScore(
+        ref
+            .read(quranTeachingProgressProvider.notifier)
+            .recordQuizScore(
               quiz.id,
               _quizAnsweredCorrectly[quiz.id] == true ? 1 : 0,
               lessonId: widget.lesson.id,
             );
       }
     }
-    ref.read(quranTeachingProgressProvider.notifier).completeLesson(widget.lesson.id);
+    ref
+        .read(quranTeachingProgressProvider.notifier)
+        .completeLesson(widget.lesson.id);
     ref
         .read(quranTeachingSmartReviewProvider.notifier)
         .registerLessonCompletion(widget.lesson);
@@ -283,9 +309,9 @@ class _QuranTeachingLessonPageState
             children: [
               Text(
                 'Lesson complete',
-                style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  fontWeight: FontWeight.w700,
-                ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700),
               ),
               const SizedBox(height: 8),
               Text(widget.lesson.title),
@@ -339,9 +365,9 @@ class _LessonStepBody extends StatelessWidget {
       children: [
         Text(
           step.title,
-          style: Theme.of(context).textTheme.titleMedium?.copyWith(
-            fontWeight: FontWeight.w700,
-          ),
+          style: Theme.of(
+            context,
+          ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
         ),
         const SizedBox(height: 16),
         Container(
@@ -389,9 +415,9 @@ class _LessonStepBody extends StatelessWidget {
           const SizedBox(height: 8),
           Text(
             step.helperText!,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: AppColors.onSurfaceSubtle,
-            ),
+            style: Theme.of(
+              context,
+            ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),
           ),
         ],
         const SizedBox(height: 16),
@@ -419,9 +445,9 @@ class _LessonStepBody extends StatelessWidget {
           const SizedBox(height: 18),
           Text(
             'Examples',
-            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-              fontWeight: FontWeight.w700,
-            ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
           ),
           const SizedBox(height: 10),
           ...step.examples.map(
@@ -429,7 +455,9 @@ class _LessonStepBody extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: 8),
               child: InkWell(
                 borderRadius: BorderRadius.circular(18),
-                onTap: example.audio == null ? null : () => onPlayAudio(example.audio!),
+                onTap: example.audio == null
+                    ? null
+                    : () => onPlayAudio(example.audio!),
                 child: Container(
                   padding: const EdgeInsets.all(14),
                   decoration: BoxDecoration(
@@ -462,20 +490,23 @@ class _LessonStepBody extends StatelessWidget {
                                 padding: const EdgeInsets.only(top: 4),
                                 child: Text(
                                   'Source: ${example.verseReference}',
-                                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                                    color: AppColors.onSurfaceSubtle,
-                                    fontWeight: FontWeight.w600,
-                                  ),
+                                  style: Theme.of(context).textTheme.bodySmall
+                                      ?.copyWith(
+                                        color: AppColors.onSurfaceSubtle,
+                                        fontWeight: FontWeight.w600,
+                                      ),
                                 ),
                               ),
-                            if (visualModeEnabled && example.visualAnchor != null)
+                            if (visualModeEnabled &&
+                                example.visualAnchor != null)
                               Padding(
                                 padding: const EdgeInsets.only(top: 6),
                                 child: Text(
                                   '${example.visualAnchor!.label} • ${example.visualAnchor!.hint}',
-                                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                                    color: AppColors.onSurfaceSubtle,
-                                  ),
+                                  style: Theme.of(context).textTheme.bodySmall
+                                      ?.copyWith(
+                                        color: AppColors.onSurfaceSubtle,
+                                      ),
                                 ),
                               ),
                           ],
@@ -531,9 +562,9 @@ class _QuizBody extends StatelessWidget {
       children: [
         Text(
           'Quick quiz',
-          style: Theme.of(context).textTheme.titleMedium?.copyWith(
-            fontWeight: FontWeight.w700,
-          ),
+          style: Theme.of(
+            context,
+          ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
         ),
         const SizedBox(height: 10),
         Text(quiz.prompt),
@@ -550,9 +581,9 @@ class _QuizBody extends StatelessWidget {
           const SizedBox(height: 6),
           Text(
             quiz.promptSecondary!,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: AppColors.onSurfaceSubtle,
-            ),
+            style: Theme.of(
+              context,
+            ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),
           ),
         ],
         if (quiz.audio != null) ...[
@@ -586,7 +617,9 @@ class _QuizBody extends StatelessWidget {
               border: Border.all(color: AppColors.surfaceSoft),
             ),
             child: Text(
-              buildSelection.isEmpty ? 'Tap the pieces in order.' : buildSelection.join('  '),
+              buildSelection.isEmpty
+                  ? 'Tap the pieces in order.'
+                  : buildSelection.join('  '),
               textAlign: TextAlign.center,
               style: const TextStyle(fontSize: 30, fontFamily: 'AmiriQuran'),
             ),
@@ -669,9 +702,7 @@ class _QuizBody extends StatelessWidget {
             padding: const EdgeInsets.all(14),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
-              color: (wasCorrect == true
-                      ? Colors.green
-                      : Colors.red)
+              color: (wasCorrect == true ? Colors.green : Colors.red)
                   .withValues(alpha: 0.10),
             ),
             child: Text(feedback!),

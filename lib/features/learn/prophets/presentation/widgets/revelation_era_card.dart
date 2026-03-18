@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../core/theme/app_colors.dart';
+import '../../../../../l10n/app_localizations.dart';
 import '../../../../../shared/widgets/premium_card.dart';
 
 class RevelationEraCard extends StatelessWidget {
@@ -43,6 +44,7 @@ class RevelationEraCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return PremiumCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,8 +69,8 @@ class RevelationEraCard extends StatelessWidget {
             spacing: 8,
             runSpacing: 8,
             children: [
-              _chip('Region • $regionLabel'),
-              _chip('Civilization • $civilizationTitle'),
+              _chip(l10n.prophetsRegionChip(regionLabel)),
+              _chip(l10n.prophetsCivilizationChip(civilizationTitle)),
             ],
           ),
           const SizedBox(height: 8),
@@ -81,7 +83,7 @@ class RevelationEraCard extends StatelessWidget {
           if (coreMessages.isNotEmpty) ...[
             const SizedBox(height: 8),
             Text(
-              'Main Message of This Era',
+              l10n.prophetsJourneyMainMessageTitle,
               style: Theme.of(
                 context,
               ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
@@ -97,7 +99,7 @@ class RevelationEraCard extends StatelessWidget {
           if (humanPatternSummaries.isNotEmpty) ...[
             const SizedBox(height: 4),
             Text(
-              'Human Patterns in This Era',
+              l10n.prophetsJourneyHumanPatternsTitle,
               style: Theme.of(
                 context,
               ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
@@ -118,7 +120,7 @@ class RevelationEraCard extends StatelessWidget {
               spacing: 8,
               runSpacing: 8,
               children: growthHabitLabels
-                  .map((label) => _chip('Practice • $label'))
+                  .map((label) => _chip(l10n.prophetsPracticeChip(label)))
                   .toList(),
             ),
           ],
@@ -136,17 +138,24 @@ class RevelationEraCard extends StatelessWidget {
             children: [
               FilledButton(
                 onPressed: onStartOrContinue,
-                child: Text(started ? 'Continue Era' : 'Begin Era'),
+                child: Text(
+                  started
+                      ? l10n.prophetsJourneyContinueEra
+                      : l10n.prophetsJourneyBeginEra,
+                ),
               ),
               OutlinedButton(
                 onPressed: onOpenTimeline,
-                child: const Text('Timeline'),
+                child: Text(l10n.prophetsJourneyTimelineAction),
               ),
               OutlinedButton(
                 onPressed: onOpenMap,
-                child: const Text('View Region on Map'),
+                child: Text(l10n.prophetsJourneyViewRegionOnMap),
               ),
-              OutlinedButton(onPressed: onOpenQuiz, child: const Text('Quiz')),
+              OutlinedButton(
+                onPressed: onOpenQuiz,
+                child: Text(l10n.prophetsJourneyQuizAction),
+              ),
             ],
           ),
         ],
@@ -156,12 +165,12 @@ class RevelationEraCard extends StatelessWidget {
 
   Widget _statusPill() {
     final text = completed
-        ? 'Completed'
+        ? 'completed'
         : current
-        ? 'Current'
+        ? 'current'
         : started
-        ? 'Started'
-        : 'Not started';
+        ? 'started'
+        : 'not_started';
     final color = completed
         ? const Color(0xFF2D8F58)
         : current
@@ -174,7 +183,18 @@ class RevelationEraCard extends StatelessWidget {
         color: color.withValues(alpha: 0.14),
         border: Border.all(color: color.withValues(alpha: 0.38)),
       ),
-      child: Text(text, style: const TextStyle(fontSize: 11.8)),
+      child: Builder(
+        builder: (context) {
+          final l10n = AppLocalizations.of(context);
+          final localized = switch (text) {
+            'completed' => l10n.prophetsJourneyStatusCompleted,
+            'current' => l10n.prophetsJourneyStatusCurrent,
+            'started' => l10n.prophetsJourneyStatusStarted,
+            _ => l10n.prophetsJourneyStatusNotStarted,
+          };
+          return Text(localized, style: const TextStyle(fontSize: 11.8));
+        },
+      ),
     );
   }
 

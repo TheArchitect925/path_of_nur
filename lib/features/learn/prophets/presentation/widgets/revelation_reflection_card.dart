@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../l10n/app_localizations.dart';
 import '../../../../../shared/widgets/premium_card.dart';
 
 class RevelationReflectionCard extends StatelessWidget {
@@ -9,13 +10,14 @@ class RevelationReflectionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     if (prompts.isEmpty) return const SizedBox.shrink();
     return PremiumCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Era Reflection',
+            l10n.prophetsJourneyEraReflectionTitle,
             style: Theme.of(
               context,
             ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),

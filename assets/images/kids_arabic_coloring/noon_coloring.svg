@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1240" height="1754" viewBox="0 0 1240 1754">
+  <rect width="1240" height="1754" fill="#ffffff"/>
+  <text x="620" y="180" text-anchor="middle" font-size="180" font-family="Noto Naskh Arabic" fill="#000000">ن</text>
+  <g stroke="#000000" stroke-width="16" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M260 760 C360 610 820 610 980 760"/>
+    <path d="M980 760 C860 960 380 980 260 760"/>
+    <circle cx="760" cy="560" r="30"/>
+    <path d="M360 1180 C460 1080 780 1080 880 1180"/>
+    <path d="M440 1310 L620 1450 L800 1310"/>
+    <path d="M300 480 Q380 410 460 480"/>
+    <path d="M840 430 Q930 360 1020 430"/>
+    <circle cx="200" cy="920" r="24"/>
+  </g>
+</svg>

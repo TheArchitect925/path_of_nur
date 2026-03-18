@@ -1,32 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 
+import '../../../../l10n/app_localizations.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/trivia_controller.dart';
 import '../domain/trivia_models.dart';
+import 'trivia_metadata_localization.dart';
+import 'trivia_ui_localization.dart';
 import 'widgets/trivia_widgets.dart';
 
 class IslamicTriviaKnowledgePathDetailPage extends ConsumerWidget {
-  const IslamicTriviaKnowledgePathDetailPage({
-    super.key,
-    required this.pathId,
-  });
+  const IslamicTriviaKnowledgePathDetailPage({super.key, required this.pathId});
 
   final String pathId;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final numberFormat = NumberFormat.decimalPattern(l10n.localeName);
     final controller = ref.read(triviaControllerProvider.notifier);
     final path = controller.knowledgePathById(pathId);
     if (path == null) {
-      return const Scaffold(
+      return Scaffold(
         body: SafeArea(
           child: Padding(
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             child: TriviaEmptyStateCard(
-              title: 'Knowledge path not found',
-              subtitle: 'This guided path is unavailable right now.',
+              title: l10n.triviaKnowledgePathNotFoundTitle,
+              subtitle: l10n.triviaKnowledgePathNotFoundSubtitle,
             ),
           ),
         ),
@@ -50,15 +53,17 @@ class IslamicTriviaKnowledgePathDetailPage extends ConsumerWidget {
 
     return LearnHubPageScaffold(
       headerIcon: path.icon,
-      title: path.title,
-      subtitle: path.description,
+      title: localizedTriviaKnowledgePathTitle(l10n, path),
+      subtitle: localizedTriviaKnowledgePathDescription(l10n, path),
       children: [
         TriviaEmptyStateCard(
-          title: '$completed of ${path.stages.length} stages completed',
-          subtitle:
-              progress.pathCompletionRewardGranted
-                  ? 'This path is complete. You can revisit any stage for review.'
-                  : 'Each stage includes a short lesson and a focused quiz.',
+          title: l10n.triviaKnowledgePathStagesCompleted(
+            numberFormat.format(completed),
+            numberFormat.format(path.stages.length),
+          ),
+          subtitle: progress.pathCompletionRewardGranted
+              ? l10n.triviaKnowledgePathCompleteSubtitle
+              : l10n.triviaKnowledgePathIncompleteSubtitle,
           action: FilledButton.tonalIcon(
             onPressed: () => context.pushNamed(
               'learnTriviaKnowledgePathStage',
@@ -67,8 +72,10 @@ class IslamicTriviaKnowledgePathDetailPage extends ConsumerWidget {
             icon: const Icon(Icons.play_arrow_rounded),
             label: Text(
               activeSession?.knowledgePathId == path.id
-                  ? 'Continue Stage'
-                  : (progress.completedStageIds.isEmpty ? 'Start Path' : 'Continue Path'),
+                  ? l10n.triviaContinueStageAction
+                  : (progress.completedStageIds.isEmpty
+                        ? l10n.triviaStartPathAction
+                        : l10n.triviaContinuePathAction),
             ),
           ),
         ),
@@ -78,9 +85,9 @@ class IslamicTriviaKnowledgePathDetailPage extends ConsumerWidget {
           minHeight: 8,
         ),
         const SizedBox(height: 14),
-        const TriviaSectionHeader(
-          title: 'Stages',
-          subtitle: 'Move in order. Each completed stage opens the next one.',
+        TriviaSectionHeader(
+          title: l10n.triviaStagesTitle,
+          subtitle: l10n.triviaStagesSubtitle,
         ),
         const SizedBox(height: 8),
         ...path.stages.asMap().entries.map((entry) {
@@ -91,8 +98,17 @@ class IslamicTriviaKnowledgePathDetailPage extends ConsumerWidget {
             padding: const EdgeInsets.only(bottom: 10),
             child: TriviaKnowledgeStageTile(
               index: index,
-              title: stage.title,
-              subtitle: '${stage.questionIds.length} questions • +${stage.xpReward} XP',
+              title: localizedTriviaKnowledgeStageTitle(l10n, path, stage),
+              subtitle: l10n.triviaKnowledgeStageSummary(
+                numberFormat.format(stage.questionIds.length),
+                numberFormat.format(stage.xpReward),
+                stage.difficulty.localizedLabel(l10n),
+                numberFormat.format(index + 1),
+                numberFormat.format(stage.questionIds.length),
+                numberFormat.format(stage.questionIds.length),
+                stageState.localizedLabel(l10n),
+                numberFormat.format(path.stages.length),
+              ),
               state: stageState,
               difficulty: stage.difficulty,
               onPressed: stageState == TriviaKnowledgeStageState.locked

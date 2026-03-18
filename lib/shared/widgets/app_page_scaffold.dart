@@ -42,7 +42,8 @@ class AppPageScaffold extends ConsumerWidget {
     final canPop = Navigator.canPop(context);
     final appearance = Theme.of(context).extension<AppAppearanceTheme>();
     final foreground = appearance?.onSurface ?? const Color(0xFF3A3026);
-    final resolvedQuote = quote ?? (quotePool == null ? null : quoteFromPoolForToday(quotePool!));
+    final resolvedQuote =
+        quote ?? (quotePool == null ? null : quoteFromPoolForToday(quotePool!));
     final reduceMotion = ref.watch(
       profileSettingsProvider.select((value) => value.reduceMotion),
     );
@@ -68,6 +69,9 @@ class AppPageScaffold extends ConsumerWidget {
                         if (canPop)
                           IconButton(
                             onPressed: () => Navigator.of(context).maybePop(),
+                            tooltip: MaterialLocalizations.of(
+                              context,
+                            ).backButtonTooltip,
                             icon: const Icon(Icons.chevron_left),
                             color: foreground,
                           ),
@@ -145,10 +149,7 @@ class AppPageScaffold extends ConsumerWidget {
 }
 
 class _AnimatedQuoteHeader extends StatefulWidget {
-  const _AnimatedQuoteHeader({
-    required this.child,
-    required this.reduceMotion,
-  });
+  const _AnimatedQuoteHeader({required this.child, required this.reduceMotion});
 
   final Widget child;
   final bool reduceMotion;

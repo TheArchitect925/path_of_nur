@@ -4,7 +4,9 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter_compass/flutter_compass.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:intl/intl.dart';
 
+import '../../../l10n/app_localizations.dart';
 import '../../../shared/widgets/app_page_scaffold.dart';
 import '../../../shared/widgets/premium_card.dart';
 
@@ -29,25 +31,25 @@ class _QiblaFinderPageState extends State<QiblaFinderPage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return AppPageScaffold(
       headerIcon: Icons.explore_rounded,
-      title: 'Qibla Finder',
-      subtitle:
-          'Use your device compass to align toward the Kaaba. Keep your phone level and away from magnetic interference.',
+      title: l10n.worshipQiblaFinderTitle,
+      subtitle: l10n.worshipQiblaFinderSubtitle,
       children: [
         PremiumCard(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Compass Direction',
+                l10n.worshipQiblaCompassDirectionTitle,
                 style: Theme.of(
                   context,
                 ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
               ),
               const SizedBox(height: 10),
               if (_loadingLocation)
-                const Row(
+                Row(
                   children: [
                     SizedBox(
                       width: 18,
@@ -55,7 +57,7 @@ class _QiblaFinderPageState extends State<QiblaFinderPage> {
                       child: CircularProgressIndicator(strokeWidth: 2),
                     ),
                     SizedBox(width: 10),
-                    Expanded(child: Text('Detecting your location...')),
+                    Expanded(child: Text(l10n.worshipQiblaDetectingLocation)),
                   ],
                 )
               else if (_error != null)
@@ -67,7 +69,7 @@ class _QiblaFinderPageState extends State<QiblaFinderPage> {
                   arMode: _arMode,
                 )
               else
-                const Text('Unable to determine location.'),
+                Text(l10n.worshipQiblaUnableToDetermineLocation),
             ],
           ),
         ),
@@ -77,15 +79,13 @@ class _QiblaFinderPageState extends State<QiblaFinderPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'AR Option',
+                l10n.worshipQiblaArOptionTitle,
                 style: Theme.of(
                   context,
                 ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
               ),
               const SizedBox(height: 6),
-              const Text(
-                'Enable AR-style mode for a simplified directional overlay while holding the phone upright.',
-              ),
+              Text(l10n.worshipQiblaArOptionSubtitle),
               const SizedBox(height: 10),
               FilledButton.tonalIcon(
                 onPressed: () => setState(() => _arMode = !_arMode),
@@ -94,13 +94,15 @@ class _QiblaFinderPageState extends State<QiblaFinderPage> {
                       ? Icons.view_in_ar_rounded
                       : Icons.view_in_ar_outlined,
                 ),
-                label: Text(_arMode ? 'Disable AR Mode' : 'Enable AR Mode'),
+                label: Text(
+                  _arMode
+                      ? l10n.worshipQiblaDisableArMode
+                      : l10n.worshipQiblaEnableArMode,
+                ),
               ),
               if (_arMode) ...[
                 const SizedBox(height: 8),
-                const Text(
-                  'AR Mode (Beta): Slowly rotate your body until the Qibla arrow aligns with the top marker.',
-                ),
+                Text(l10n.worshipQiblaArModeBetaHint),
               ],
             ],
           ),
@@ -110,13 +112,13 @@ class _QiblaFinderPageState extends State<QiblaFinderPage> {
   }
 
   Future<void> _resolveLocation() async {
+    final l10n = AppLocalizations.of(context);
     try {
       final serviceEnabled = await Geolocator.isLocationServiceEnabled();
       if (!serviceEnabled) {
         setState(() {
           _loadingLocation = false;
-          _error =
-              'Location services are disabled. Enable location to use Qibla Finder.';
+          _error = l10n.worshipQiblaLocationServicesDisabled;
         });
         return;
       }
@@ -130,8 +132,7 @@ class _QiblaFinderPageState extends State<QiblaFinderPage> {
           permission == LocationPermission.deniedForever) {
         setState(() {
           _loadingLocation = false;
-          _error =
-              'Location permission is required to calculate Qibla direction.';
+          _error = l10n.worshipQiblaLocationPermissionRequired;
         });
         return;
       }
@@ -152,7 +153,7 @@ class _QiblaFinderPageState extends State<QiblaFinderPage> {
       if (!mounted) return;
       setState(() {
         _loadingLocation = false;
-        _error = 'Unable to read location. Please try again.';
+        _error = l10n.worshipQiblaUnableToReadLocation;
       });
     }
   }
@@ -174,6 +175,12 @@ class _QiblaCompass extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final locale = Localizations.localeOf(context).toLanguageTag();
+    final decimal = NumberFormat.decimalPatternDigits(
+      locale: locale,
+      decimalDigits: 1,
+    );
     final qiblaBearing = _bearingToKaaba(
       lat: userLat,
       lng: userLng,
@@ -186,7 +193,7 @@ class _QiblaCompass extends StatelessWidget {
       builder: (context, snapshot) {
         final heading = snapshot.data?.heading;
         if (heading == null) {
-          return const Text('Compass not available on this device right now.');
+          return Text(l10n.worshipQiblaCompassUnavailable);
         }
 
         final normalizedHeading = (heading + 360) % 360;
@@ -218,10 +225,22 @@ class _QiblaCompass extends StatelessWidget {
                         color: const Color(0xFFF2EBE1).withValues(alpha: 0.24),
                       ),
                     ),
-                    const Positioned(top: 10, child: _CardinalLabel('N')),
-                    const Positioned(bottom: 10, child: _CardinalLabel('S')),
-                    const Positioned(left: 12, child: _CardinalLabel('W')),
-                    const Positioned(right: 12, child: _CardinalLabel('E')),
+                    Positioned(
+                      top: 10,
+                      child: _CardinalLabel(l10n.worshipQiblaCardinalNorth),
+                    ),
+                    Positioned(
+                      bottom: 10,
+                      child: _CardinalLabel(l10n.worshipQiblaCardinalSouth),
+                    ),
+                    Positioned(
+                      left: 12,
+                      child: _CardinalLabel(l10n.worshipQiblaCardinalWest),
+                    ),
+                    Positioned(
+                      right: 12,
+                      child: _CardinalLabel(l10n.worshipQiblaCardinalEast),
+                    ),
                     Transform.rotate(
                       angle: qiblaOffset * math.pi / 180,
                       child: Icon(
@@ -243,17 +262,21 @@ class _QiblaCompass extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 12),
-            Text('Qibla bearing: ${qiblaBearing.toStringAsFixed(1)}°'),
-            Text('Device heading: ${normalizedHeading.toStringAsFixed(1)}°'),
+            Text(l10n.worshipQiblaBearingValue(decimal.format(qiblaBearing))),
             Text(
-              'Alignment offset: ${diff.toStringAsFixed(1)}°',
+              l10n.worshipQiblaDeviceHeadingValue(
+                decimal.format(normalizedHeading),
+              ),
+            ),
+            Text(
+              l10n.worshipQiblaAlignmentOffsetValue(decimal.format(diff)),
               style: Theme.of(context).textTheme.bodySmall,
             ),
             const SizedBox(height: 8),
             Text(
               diff <= 10
-                  ? 'You are closely aligned with Qibla.'
-                  : 'Rotate until the arrow aligns upward for Qibla direction.',
+                  ? l10n.worshipQiblaAlignedMessage
+                  : l10n.worshipQiblaRotateMessage,
             ),
           ],
         );

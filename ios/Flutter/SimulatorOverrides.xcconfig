@@ -1,0 +1,2 @@
+// Keep arm64 enabled for Apple Silicon iOS simulators.
+EXCLUDED_ARCHS[sdk=iphonesimulator*]=i386

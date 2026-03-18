@@ -2,7 +2,9 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 
+import '../../../l10n/app_localizations.dart';
 import '../../../shared/state/user_profile_state.dart';
 import '../../../shared/widgets/app_page_scaffold.dart';
 import '../../../shared/widgets/premium_card.dart';
@@ -14,25 +16,28 @@ class OceanDropsPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final locale = Localizations.localeOf(context).toLanguageTag();
     final profile = ref.watch(userProfileProvider);
     final personal = ref.watch(personalWaterStatsProvider);
     final community = ref.watch(communityOceanStatsProvider);
     final personalStage = ref.watch(personalWaterStageProgressProvider);
     final communityStage = ref.watch(communityOceanStageProgressProvider);
     final sourceTotals = _sourceTotals(ref.watch(oceanDropsProvider).events);
-    final contributionPercent = CommunityOceanLogic.formatContributionPercent(
-      contribution: personal.totalPersonalDrops,
-      total: community.totalCommunityDrops,
-    );
+    final contributionPercent =
+        CommunityOceanLogic.formatContributionPercentForLocale(
+          contribution: personal.totalPersonalDrops,
+          total: community.totalCommunityDrops,
+          locale: locale,
+        );
     final benchmarkProgress = CommunityOceanLogic.oceanBenchmarkProgress(
       community.totalCommunityDrops,
     );
 
     return AppPageScaffold(
       headerIcon: Icons.water_drop_rounded,
-      title: 'Community Ocean',
-      subtitle:
-          'Every act adds a drop. Together, the drops gather into an ocean.',
+      title: l10n.oceanCommunityTitle,
+      subtitle: l10n.oceanCommunitySubtitle,
       children: [
         CommunityOceanHero(
           name: profile.name,
@@ -60,10 +65,7 @@ class OceanDropsPage extends ConsumerWidget {
           contributionPercent: contributionPercent,
         ),
         const SizedBox(height: 16),
-        PersonalWaterPathCard(
-          personal: personal,
-          personalStage: personalStage,
-        ),
+        PersonalWaterPathCard(personal: personal, personalStage: personalStage),
         const SizedBox(height: 16),
         WaterEquivalentCard(
           personal: personal,
@@ -80,8 +82,9 @@ class OceanDropsPage extends ConsumerWidget {
         const SizedBox(height: 16),
         ReflectionFooter(
           reflection: _reflectionFor(
-            personalStage.currentStage.title,
-            communityStage.currentStage.title,
+            context,
+            personalStage.currentStage.id,
+            communityStage.currentStage.id,
           ),
         ),
       ],
@@ -91,15 +94,28 @@ class OceanDropsPage extends ConsumerWidget {
   Map<String, int> _sourceTotals(List<OceanDropEvent> events) {
     final totals = <String, int>{};
     for (final event in events) {
-      totals[event.sourceModule] = (totals[event.sourceModule] ?? 0) + event.amount;
+      totals[event.sourceModule] =
+          (totals[event.sourceModule] ?? 0) + event.amount;
     }
     return totals;
   }
 
-  String _reflectionFor(String personalStage, String communityStage) {
-    final seed = (personalStage.length + communityStage.length) %
+  String _reflectionFor(
+    BuildContext context,
+    String personalStageId,
+    String communityStageId,
+  ) {
+    final l10n = AppLocalizations.of(context);
+    final seed =
+        (personalStageId.length + communityStageId.length) %
         communityOceanReflectionLines.length;
-    return communityOceanReflectionLines[seed];
+    final lines = <String>[
+      l10n.oceanReflectionLine1,
+      l10n.oceanReflectionLine2,
+      l10n.oceanReflectionLine3,
+      l10n.oceanReflectionLine4,
+    ];
+    return lines[seed];
   }
 }
 
@@ -121,6 +137,8 @@ class CommunityOceanHero extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final locale = Localizations.localeOf(context).toLanguageTag();
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(28),
@@ -138,18 +156,18 @@ class CommunityOceanHero extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Peaceful contribution, $name',
+                l10n.oceanHeroGreeting(name),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w700,
-                    ),
+                  color: Colors.white,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
               const SizedBox(height: 8),
               Text(
-                'Your drops travel a personal water path while also joining something far larger than any one person can finish alone.',
+                l10n.oceanHeroSubtitle,
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: Colors.white.withValues(alpha: 0.82),
-                    ),
+                  color: Colors.white.withValues(alpha: 0.82),
+                ),
               ),
               const SizedBox(height: 18),
               Wrap(
@@ -157,24 +175,33 @@ class CommunityOceanHero extends StatelessWidget {
                 runSpacing: 10,
                 children: [
                   _HeroMetricChip(
-                    label: 'Community stage',
-                    value: communityStage.currentStage.title,
+                    label: l10n.oceanMetricCommunityStage,
+                    value: _communityStageTitle(
+                      context,
+                      communityStage.currentStage.id,
+                    ),
                     icon: Icons.waves_rounded,
                   ),
                   _HeroMetricChip(
-                    label: 'Your water path',
-                    value: personalStage.currentStage.title,
+                    label: l10n.oceanMetricYourWaterPath,
+                    value: _personalStageTitle(
+                      context,
+                      personalStage.currentStage.id,
+                    ),
                     icon: Icons.waterfall_chart_rounded,
                   ),
                   _HeroMetricChip(
-                    label: 'Drops today',
-                    value: '${personal.personalDropsToday}',
+                    label: l10n.oceanMetricDropsToday,
+                    value: NumberFormat.decimalPattern(
+                      locale,
+                    ).format(personal.personalDropsToday),
                     icon: Icons.water_drop_outlined,
                   ),
                   _HeroMetricChip(
-                    label: 'Community total',
-                    value: CommunityOceanLogic.formatLargeDropCount(
+                    label: l10n.oceanMetricCommunityTotal,
+                    value: CommunityOceanLogic.formatLargeDropCountForLocale(
                       community.totalCommunityDrops,
+                      locale,
                     ),
                     icon: Icons.public_rounded,
                   ),
@@ -200,22 +227,35 @@ class CommunityOceanVisualCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final stageIndex = communityOceanStages.indexOf(communityStage.currentStage);
-    final visualDepth = (stageIndex + communityStage.progress) /
-        communityOceanStages.length;
+    final l10n = AppLocalizations.of(context);
+    final stageIndex = communityOceanStages.indexOf(
+      communityStage.currentStage,
+    );
+    final visualDepth =
+        (stageIndex + communityStage.progress) / communityOceanStages.length;
     return PremiumCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Shared waters',
+            l10n.oceanSharedWatersTitle,
             style: Theme.of(context).textTheme.titleMedium,
           ),
           const SizedBox(height: 6),
           Text(
             communityStage.hasReachedCurrentStage
-                ? 'The community is presently flowing in ${communityStage.currentStage.title.toLowerCase()}.'
-                : 'The first visible gathering is still moving toward ${communityStage.currentStage.title}.',
+                ? l10n.oceanSharedWatersFlowingIn(
+                    _communityStageTitle(
+                      context,
+                      communityStage.currentStage.id,
+                    ).toLowerCase(),
+                  )
+                : l10n.oceanSharedWatersMovingToward(
+                    _communityStageTitle(
+                      context,
+                      communityStage.currentStage.id,
+                    ),
+                  ),
             style: Theme.of(context).textTheme.bodyMedium,
           ),
           const SizedBox(height: 16),
@@ -226,7 +266,11 @@ class CommunityOceanVisualCard extends StatelessWidget {
               gradient: const LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
-                colors: [Color(0xFFE7F2F4), Color(0xFFD6E7EA), Color(0xFFB3CCD5)],
+                colors: [
+                  Color(0xFFE7F2F4),
+                  Color(0xFFD6E7EA),
+                  Color(0xFFB3CCD5),
+                ],
               ),
             ),
             child: ClipRRect(
@@ -267,37 +311,57 @@ class CommunityOceanProgressCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final locale = Localizations.localeOf(context).toLanguageTag();
     final nextStage = communityStage.nextStage;
     return PremiumCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Community stage progress',
+            l10n.oceanCommunityStageProgressTitle,
             style: Theme.of(context).textTheme.titleMedium,
           ),
           const SizedBox(height: 10),
           _KeyValueRow(
-            label: 'Current stage',
+            label: l10n.oceanCurrentStageLabel,
             value: communityStage.hasReachedCurrentStage
-                ? communityStage.currentStage.title
-                : 'Gathering toward ${communityStage.currentStage.title}',
+                ? _communityStageTitle(context, communityStage.currentStage.id)
+                : l10n.oceanGatheringToward(
+                    _communityStageTitle(
+                      context,
+                      communityStage.currentStage.id,
+                    ),
+                  ),
           ),
           _KeyValueRow(
-            label: 'Total community drops',
-            value:
-                '${CommunityOceanLogic.formatLargeDropCount(community.totalCommunityDrops)} (${community.totalCommunityDrops})',
+            label: l10n.oceanTotalCommunityDropsLabel,
+            value: l10n.oceanLargeAndExactDropCount(
+              CommunityOceanLogic.formatLargeDropCountForLocale(
+                community.totalCommunityDrops,
+                locale,
+              ),
+              _formatBigInt(locale, community.totalCommunityDrops),
+            ),
           ),
           _KeyValueRow(
-            label: 'Next stage',
-            value: nextStage?.title ?? 'Ocean of Creation reached',
-          ),
-          _KeyValueRow(
-            label: 'Remaining',
+            label: l10n.oceanNextStageLabel,
             value: nextStage == null
-                ? 'None'
-                : CommunityOceanLogic.formatReadableStageDistance(
-                    communityStage.dropsRemainingToNext,
+                ? l10n.oceanOceanOfCreationReached
+                : _communityStageTitle(context, nextStage.id),
+          ),
+          _KeyValueRow(
+            label: l10n.oceanRemainingLabel,
+            value: nextStage == null
+                ? l10n.oceanNone
+                : l10n.oceanReadableStageDistance(
+                    CommunityOceanLogic.formatLargeDropCountForLocale(
+                      communityStage.dropsRemainingToNext,
+                      locale,
+                    ),
+                    CommunityOceanLogic.convertDropsToReadableWater(
+                      communityStage.dropsRemainingToNext,
+                    ).shortLabel,
                   ),
           ),
           const SizedBox(height: 10),
@@ -308,23 +372,31 @@ class CommunityOceanProgressCard extends StatelessWidget {
           const SizedBox(height: 6),
           Text(
             nextStage == null
-                ? 'The community has crossed the symbolic horizon of Ocean of Creation.'
-                : '${CommunityOceanLogic.formatReadablePercentage(communityStage.progress)} of the way to ${nextStage.title}.',
+                ? l10n.oceanCrossedOceanOfCreation
+                : l10n.oceanProgressTowardStage(
+                    CommunityOceanLogic.formatReadablePercentageForLocale(
+                      communityStage.progress,
+                      locale,
+                    ),
+                    _communityStageTitle(context, nextStage.id),
+                  ),
             style: Theme.of(context).textTheme.bodySmall,
           ),
           const SizedBox(height: 14),
           Text(
-            'Final benchmark',
+            l10n.oceanFinalBenchmarkTitle,
             style: Theme.of(context).textTheme.titleSmall,
           ),
           const SizedBox(height: 8),
-          _SoftBar(
-            progress: benchmarkProgress,
-            color: const Color(0xFF6AB3C7),
-          ),
+          _SoftBar(progress: benchmarkProgress, color: const Color(0xFF6AB3C7)),
           const SizedBox(height: 6),
           Text(
-            '${CommunityOceanLogic.formatReadablePercentage(benchmarkProgress)} toward Ocean of Creation.',
+            l10n.oceanBenchmarkTowardCreation(
+              CommunityOceanLogic.formatReadablePercentageForLocale(
+                benchmarkProgress,
+                locale,
+              ),
+            ),
             style: Theme.of(context).textTheme.bodySmall,
           ),
         ],
@@ -349,13 +421,18 @@ class PersonalContributionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final locale = Localizations.localeOf(context).toLanguageTag();
     final personalWater = CommunityOceanLogic.convertDropsToReadableWater(
       personal.totalPersonalDrops,
     );
-    final nextTarget = communityStage.nextThreshold ?? communityStage.currentStage.requiredDrops;
-    final towardNext = CommunityOceanLogic.formatContributionPercent(
+    final nextTarget =
+        communityStage.nextThreshold ??
+        communityStage.currentStage.requiredDrops;
+    final towardNext = CommunityOceanLogic.formatContributionPercentForLocale(
       contribution: personal.totalPersonalDrops,
       total: nextTarget,
+      locale: locale,
     );
 
     return PremiumCard(
@@ -363,12 +440,20 @@ class PersonalContributionCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Your contribution',
+            l10n.oceanYourContributionTitle,
             style: Theme.of(context).textTheme.titleMedium,
           ),
           const SizedBox(height: 10),
           Text(
-            'You added ${personal.personalDropsToday} drops today. Your lifetime contribution is ${CommunityOceanLogic.formatLargeDropCount(personal.totalPersonalDrops)} drops.',
+            l10n.oceanContributionSummary(
+              NumberFormat.decimalPattern(
+                locale,
+              ).format(personal.personalDropsToday),
+              CommunityOceanLogic.formatLargeDropCountForLocale(
+                personal.totalPersonalDrops,
+                locale,
+              ),
+            ),
             style: Theme.of(context).textTheme.bodyMedium,
           ),
           const SizedBox(height: 12),
@@ -376,18 +461,35 @@ class PersonalContributionCard extends StatelessWidget {
             spacing: 10,
             runSpacing: 10,
             children: [
-              _StatCard(label: 'Lifetime', value: '${personal.totalPersonalDrops}'),
-              _StatCard(label: 'Today', value: '${personal.personalDropsToday}'),
-              _StatCard(label: 'Water', value: personalWater.shortLabel),
-              _StatCard(label: 'Of community', value: contributionPercent),
-              _StatCard(label: 'Toward next stage', value: towardNext),
+              _StatCard(
+                label: l10n.oceanStatLifetime,
+                value: _formatBigInt(locale, personal.totalPersonalDrops),
+              ),
+              _StatCard(
+                label: l10n.oceanStatToday,
+                value: NumberFormat.decimalPattern(
+                  locale,
+                ).format(personal.personalDropsToday),
+              ),
+              _StatCard(
+                label: l10n.oceanStatWater,
+                value: personalWater.shortLabel,
+              ),
+              _StatCard(
+                label: l10n.oceanStatOfCommunity,
+                value: contributionPercent,
+              ),
+              _StatCard(
+                label: l10n.oceanStatTowardNextStage,
+                value: towardNext,
+              ),
             ],
           ),
           const SizedBox(height: 12),
           Text(
             community.totalCommunityDrops > BigInt.zero
-                ? 'Your drops help move the community forward without needing to be loud to matter.'
-                : 'Your first drops will help begin the visible gathering.',
+                ? l10n.oceanContributionQuietNote
+                : l10n.oceanContributionFirstDropsNote,
             style: Theme.of(context).textTheme.bodySmall,
           ),
         ],
@@ -408,18 +510,20 @@ class PersonalWaterPathCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final locale = Localizations.localeOf(context).toLanguageTag();
     final nextStage = personalStage.nextStage;
     return PremiumCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Personal water path',
+            l10n.oceanPersonalWaterPathTitle,
             style: Theme.of(context).textTheme.titleMedium,
           ),
           const SizedBox(height: 6),
           Text(
-            'An intimate view of your own gathering water.',
+            l10n.oceanPersonalWaterPathSubtitle,
             style: Theme.of(context).textTheme.bodyMedium,
           ),
           const SizedBox(height: 14),
@@ -440,14 +544,20 @@ class PersonalWaterPathCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        personalStage.currentStage.title,
+                        _personalStageTitle(
+                          context,
+                          personalStage.currentStage.id,
+                        ),
                         style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                              fontWeight: FontWeight.w700,
-                            ),
+                          fontWeight: FontWeight.w700,
+                        ),
                       ),
                       const SizedBox(height: 6),
                       Text(
-                        personalStage.currentStage.description,
+                        _personalStageDescription(
+                          context,
+                          personalStage.currentStage.id,
+                        ),
                         style: Theme.of(context).textTheme.bodySmall,
                       ),
                     ],
@@ -466,8 +576,15 @@ class PersonalWaterPathCard extends StatelessWidget {
           const SizedBox(height: 8),
           Text(
             nextStage == null
-                ? 'Your path has reached Flowing Water and can continue deepening.'
-                : '${CommunityOceanLogic.formatLargeDropCount(personal.totalPersonalDrops)} drops gathered. ${personalStage.dropsRemainingToNext} remain until ${nextStage.title}.',
+                ? l10n.oceanPersonalPathComplete
+                : l10n.oceanPersonalPathRemaining(
+                    CommunityOceanLogic.formatLargeDropCountForLocale(
+                      personal.totalPersonalDrops,
+                      locale,
+                    ),
+                    _formatBigInt(locale, personalStage.dropsRemainingToNext),
+                    _personalStageTitle(context, nextStage.id),
+                  ),
             style: Theme.of(context).textTheme.bodySmall,
           ),
         ],
@@ -490,6 +607,7 @@ class WaterEquivalentCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final personalWater = CommunityOceanLogic.convertDropsToReadableWater(
       personal.totalPersonalDrops,
     );
@@ -501,7 +619,7 @@ class WaterEquivalentCard extends StatelessWidget {
     );
     final remainingToBenchmark =
         CommunityOceanLogic.oceanOfCreationBenchmark -
-            community.totalCommunityDrops;
+        community.totalCommunityDrops;
     final oceanRemainingWater = CommunityOceanLogic.convertDropsToReadableWater(
       remainingToBenchmark > BigInt.zero ? remainingToBenchmark : BigInt.zero,
     );
@@ -511,24 +629,24 @@ class WaterEquivalentCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Real water scale',
+            l10n.oceanRealWaterScaleTitle,
             style: Theme.of(context).textTheme.titleMedium,
           ),
           const SizedBox(height: 10),
           _KeyValueRow(
-            label: 'Your drops',
+            label: l10n.oceanWaterYourDropsLabel,
             value: personalWater.fullLabel,
           ),
           _KeyValueRow(
-            label: 'Community waters',
+            label: l10n.oceanWaterCommunityWatersLabel,
             value: communityWater.fullLabel,
           ),
           _KeyValueRow(
-            label: 'Remaining to next stage',
+            label: l10n.oceanWaterRemainingToNextStageLabel,
             value: remainingWater.fullLabel,
           ),
           _KeyValueRow(
-            label: 'Remaining to Ocean of Creation',
+            label: l10n.oceanWaterRemainingToCreationLabel,
             value: oceanRemainingWater.fullLabel,
           ),
         ],
@@ -549,27 +667,27 @@ class CommunityStageLadder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return PremiumCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Milestone explorer',
+            l10n.oceanMilestoneExplorerTitle,
             style: Theme.of(context).textTheme.titleMedium,
           ),
           const SizedBox(height: 10),
           ...communityOceanStages.map(
             (stage) => _StageTile<CommunityOceanStage>(
-              title: stage.title,
-              description: stage.description,
+              title: _communityStageTitle(context, stage.id),
+              description: _communityStageDescription(context, stage.id),
               requiredDrops: stage.requiredDrops,
               isCurrent: stage.id == communityStage.currentStage.id,
-              isReached:
-                  communityStage.currentDrops >= stage.requiredDrops,
+              isReached: communityStage.currentDrops >= stage.requiredDrops,
               onTap: () => _showStageSheet<CommunityOceanStage>(
                 context,
-                title: stage.title,
-                description: stage.description,
+                title: _communityStageTitle(context, stage.id),
+                description: _communityStageDescription(context, stage.id),
                 requiredDrops: stage.requiredDrops,
                 currentDrops: communityStage.currentDrops,
               ),
@@ -577,7 +695,7 @@ class CommunityStageLadder extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           Text(
-            'Your path',
+            l10n.oceanYourPathTitle,
             style: Theme.of(context).textTheme.titleSmall,
           ),
           const SizedBox(height: 8),
@@ -590,8 +708,8 @@ class CommunityStageLadder extends StatelessWidget {
               return GestureDetector(
                 onTap: () => _showStageSheet<PersonalWaterStage>(
                   context,
-                  title: stage.title,
-                  description: stage.description,
+                  title: _personalStageTitle(context, stage.id),
+                  description: _personalStageDescription(context, stage.id),
                   requiredDrops: stage.requiredDrops,
                   currentDrops: personalStage.currentDrops,
                 ),
@@ -605,15 +723,14 @@ class CommunityStageLadder extends StatelessWidget {
                     color: isCurrent
                         ? const Color(0xFFDDEEF3)
                         : reached
-                            ? const Color(0xFFEAF4EE)
-                            : const Color(0xFFF5F1E8),
+                        ? const Color(0xFFEAF4EE)
+                        : const Color(0xFFF5F1E8),
                   ),
                   child: Text(
-                    stage.title,
+                    _personalStageTitle(context, stage.id),
                     style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                          fontWeight:
-                              isCurrent ? FontWeight.w700 : FontWeight.w500,
-                        ),
+                      fontWeight: isCurrent ? FontWeight.w700 : FontWeight.w500,
+                    ),
                   ),
                 ),
               );
@@ -635,6 +752,8 @@ class CommunityStageLadder extends StatelessWidget {
       context: context,
       backgroundColor: Colors.transparent,
       builder: (context) {
+        final l10n = AppLocalizations.of(context);
+        final locale = Localizations.localeOf(context).toLanguageTag();
         final remaining = requiredDrops > currentDrops
             ? requiredDrops - currentDrops
             : BigInt.zero;
@@ -652,8 +771,8 @@ class CommunityStageLadder extends StatelessWidget {
                   Text(
                     title,
                     style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                          fontWeight: FontWeight.w700,
-                        ),
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
                   const SizedBox(height: 10),
                   Text(
@@ -662,19 +781,29 @@ class CommunityStageLadder extends StatelessWidget {
                   ),
                   const SizedBox(height: 14),
                   _KeyValueRow(
-                    label: 'Required drops',
-                    value:
-                        '${CommunityOceanLogic.formatLargeDropCount(requiredDrops)} ($requiredDrops)',
+                    label: l10n.oceanRequiredDropsLabel,
+                    value: l10n.oceanLargeAndExactDropCount(
+                      CommunityOceanLogic.formatLargeDropCountForLocale(
+                        requiredDrops,
+                        locale,
+                      ),
+                      _formatBigInt(locale, requiredDrops),
+                    ),
                   ),
                   _KeyValueRow(
-                    label: 'Water equivalent',
+                    label: l10n.oceanWaterEquivalentLabel,
                     value: water.fullLabel,
                   ),
                   _KeyValueRow(
-                    label: 'Current progress',
+                    label: l10n.oceanCurrentProgressLabel,
                     value: remaining == BigInt.zero
-                        ? 'Reached'
-                        : '${CommunityOceanLogic.formatLargeDropCount(remaining)} drops remain',
+                        ? l10n.oceanStageReached
+                        : l10n.oceanDropsRemain(
+                            CommunityOceanLogic.formatLargeDropCountForLocale(
+                              remaining,
+                              locale,
+                            ),
+                          ),
                   ),
                 ],
               ),
@@ -698,9 +827,9 @@ class ReflectionFooter extends StatelessWidget {
         child: Text(
           reflection,
           textAlign: TextAlign.center,
-          style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                fontWeight: FontWeight.w600,
-              ),
+          style: Theme.of(
+            context,
+          ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w600),
         ),
       ),
     );
@@ -714,6 +843,8 @@ class _SourceEchoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final locale = Localizations.localeOf(context).toLanguageTag();
     final entries = sourceTotals.entries.toList()
       ..sort((a, b) => b.value.compareTo(a.value));
     return PremiumCard(
@@ -721,54 +852,63 @@ class _SourceEchoCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Where drops have come from',
+            l10n.oceanSourceEchoTitle,
             style: Theme.of(context).textTheme.titleMedium,
           ),
           const SizedBox(height: 10),
           if (entries.isEmpty)
             Text(
-              'As you pray, learn, reflect, and remember, each area will begin to leave a trace here.',
+              l10n.oceanSourceEchoEmpty,
               style: Theme.of(context).textTheme.bodyMedium,
             )
           else
-            ...entries.take(6).map(
-              (entry) => Padding(
-                padding: const EdgeInsets.only(bottom: 8),
-                child: Row(
-                  children: [
-                    Expanded(child: Text(_sourceLabel(entry.key))),
-                    Text('+${entry.value}'),
-                  ],
+            ...entries
+                .take(6)
+                .map(
+                  (entry) => Padding(
+                    padding: const EdgeInsets.only(bottom: 8),
+                    child: Row(
+                      children: [
+                        Expanded(child: Text(_sourceLabel(context, entry.key))),
+                        Text(
+                          l10n.oceanDropsAdded(
+                            NumberFormat.decimalPattern(
+                              locale,
+                            ).format(entry.value),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-              ),
-            ),
         ],
       ),
     );
   }
 
-  String _sourceLabel(String source) {
+  String _sourceLabel(BuildContext context, String source) {
+    final l10n = AppLocalizations.of(context);
     switch (source) {
       case oceanSourcePrayer:
-        return 'Prayer';
+        return l10n.oceanSourcePrayer;
       case oceanSourceDhikr:
-        return 'Dhikr';
+        return l10n.oceanSourceDhikr;
       case oceanSourceQuran:
-        return 'Qur’an';
+        return l10n.oceanSourceQuran;
       case oceanSourceLearn:
-        return 'Learning';
+        return l10n.oceanSourceLearning;
       case oceanSourceQuiz:
-        return 'Quizzes';
+        return l10n.oceanSourceQuizzes;
       case oceanSourceHabits:
-        return 'Habits';
+        return l10n.oceanSourceHabits;
       case oceanSourceSalahTrainer:
-        return 'Salah trainer';
+        return l10n.oceanSourceSalahTrainer;
       case oceanSourceDua:
-        return 'Dua';
+        return l10n.oceanSourceDua;
       case oceanSourceNotes:
-        return 'Reflections';
+        return l10n.oceanSourceReflections;
       case oceanSourceGrowth:
-        return 'Growth';
+        return l10n.oceanSourceGrowth;
       default:
         return source;
     }
@@ -805,15 +945,15 @@ class _HeroMetricChip extends StatelessWidget {
               Text(
                 label,
                 style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                      color: Colors.white.withValues(alpha: 0.7),
-                    ),
+                  color: Colors.white.withValues(alpha: 0.7),
+                ),
               ),
               Text(
                 value,
                 style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w700,
-                    ),
+                  color: Colors.white,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
             ],
           ),
@@ -845,9 +985,9 @@ class _StatCard extends StatelessWidget {
           const SizedBox(height: 4),
           Text(
             value,
-            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                  fontWeight: FontWeight.w700,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
           ),
         ],
       ),
@@ -874,11 +1014,13 @@ class _StageTile<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final locale = Localizations.localeOf(context).toLanguageTag();
     final background = isCurrent
         ? const Color(0xFFDCEEF3)
         : isReached
-            ? const Color(0xFFEAF4EE)
-            : const Color(0xFFF7F3EB);
+        ? const Color(0xFFEAF4EE)
+        : const Color(0xFFF7F3EB);
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
       child: InkWell(
@@ -899,8 +1041,8 @@ class _StageTile<T> extends StatelessWidget {
                     Text(
                       title,
                       style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                            fontWeight: FontWeight.w700,
-                          ),
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
                     const SizedBox(height: 4),
                     Text(
@@ -915,18 +1057,21 @@ class _StageTile<T> extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
-                    CommunityOceanLogic.formatLargeDropCount(requiredDrops),
+                    CommunityOceanLogic.formatLargeDropCountForLocale(
+                      requiredDrops,
+                      locale,
+                    ),
                     style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                          fontWeight: FontWeight.w700,
-                        ),
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
                   const SizedBox(height: 4),
                   Text(
                     isCurrent
-                        ? 'Current'
+                        ? l10n.oceanStageCurrent
                         : isReached
-                            ? 'Reached'
-                            : 'Ahead',
+                        ? l10n.oceanStageReached
+                        : l10n.oceanStageAhead,
                     style: Theme.of(context).textTheme.labelSmall,
                   ),
                 ],
@@ -953,24 +1098,123 @@ class _KeyValueRow extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
-            child: Text(
-              label,
-              style: Theme.of(context).textTheme.bodyMedium,
-            ),
+            child: Text(label, style: Theme.of(context).textTheme.bodyMedium),
           ),
           const SizedBox(width: 12),
           Flexible(
             child: Text(
               value,
               textAlign: TextAlign.right,
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    fontWeight: FontWeight.w700,
-                  ),
+              style: Theme.of(
+                context,
+              ).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w700),
             ),
           ),
         ],
       ),
     );
+  }
+}
+
+String _formatBigInt(String locale, BigInt value) {
+  return NumberFormat.decimalPattern(
+    locale,
+  ).format(int.tryParse(value.toString()) ?? double.parse(value.toString()));
+}
+
+String _communityStageTitle(BuildContext context, String id) {
+  final l10n = AppLocalizations.of(context);
+  switch (id) {
+    case 'spring':
+      return l10n.oceanCommunityStageSpringTitle;
+    case 'stream':
+      return l10n.oceanCommunityStageStreamTitle;
+    case 'pond':
+      return l10n.oceanCommunityStagePondTitle;
+    case 'lake':
+      return l10n.oceanCommunityStageLakeTitle;
+    case 'great_lake':
+      return l10n.oceanCommunityStageGreatLakeTitle;
+    case 'inland_sea':
+      return l10n.oceanCommunityStageInlandSeaTitle;
+    case 'great_waters':
+      return l10n.oceanCommunityStageGreatWatersTitle;
+    case 'ocean_of_creation':
+      return l10n.oceanCommunityStageOceanOfCreationTitle;
+    default:
+      return id;
+  }
+}
+
+String _communityStageDescription(BuildContext context, String id) {
+  final l10n = AppLocalizations.of(context);
+  switch (id) {
+    case 'spring':
+      return l10n.oceanCommunityStageSpringDescription;
+    case 'stream':
+      return l10n.oceanCommunityStageStreamDescription;
+    case 'pond':
+      return l10n.oceanCommunityStagePondDescription;
+    case 'lake':
+      return l10n.oceanCommunityStageLakeDescription;
+    case 'great_lake':
+      return l10n.oceanCommunityStageGreatLakeDescription;
+    case 'inland_sea':
+      return l10n.oceanCommunityStageInlandSeaDescription;
+    case 'great_waters':
+      return l10n.oceanCommunityStageGreatWatersDescription;
+    case 'ocean_of_creation':
+      return l10n.oceanCommunityStageOceanOfCreationDescription;
+    default:
+      return id;
+  }
+}
+
+String _personalStageTitle(BuildContext context, String id) {
+  final l10n = AppLocalizations.of(context);
+  switch (id) {
+    case 'drop':
+      return l10n.oceanPersonalStageDropTitle;
+    case 'ripple':
+      return l10n.oceanPersonalStageRippleTitle;
+    case 'spring':
+      return l10n.oceanPersonalStageSpringTitle;
+    case 'stream':
+      return l10n.oceanPersonalStageStreamTitle;
+    case 'brook':
+      return l10n.oceanPersonalStageBrookTitle;
+    case 'pond':
+      return l10n.oceanPersonalStagePondTitle;
+    case 'quiet_lake':
+      return l10n.oceanPersonalStageQuietLakeTitle;
+    case 'flowing_water':
+      return l10n.oceanPersonalStageFlowingWaterTitle;
+    default:
+      return id;
+  }
+}
+
+String _personalStageDescription(BuildContext context, String id) {
+  final l10n = AppLocalizations.of(context);
+  switch (id) {
+    case 'drop':
+      return l10n.oceanPersonalStageDropDescription;
+    case 'ripple':
+      return l10n.oceanPersonalStageRippleDescription;
+    case 'spring':
+      return l10n.oceanPersonalStageSpringDescription;
+    case 'stream':
+      return l10n.oceanPersonalStageStreamDescription;
+    case 'brook':
+      return l10n.oceanPersonalStageBrookDescription;
+    case 'pond':
+      return l10n.oceanPersonalStagePondDescription;
+    case 'quiet_lake':
+      return l10n.oceanPersonalStageQuietLakeDescription;
+    case 'flowing_water':
+      return l10n.oceanPersonalStageFlowingWaterDescription;
+    default:
+      return id;
   }
 }
 
@@ -1059,10 +1303,7 @@ class _PersonalPathPainter extends CustomPainter {
 }
 
 class _CommunityOceanPainter extends CustomPainter {
-  const _CommunityOceanPainter({
-    required this.depth,
-    required this.shimmer,
-  });
+  const _CommunityOceanPainter({required this.depth, required this.shimmer});
 
   final double depth;
   final double shimmer;
@@ -1129,17 +1370,23 @@ class _CommunityOceanPainter extends CustomPainter {
       ..close();
 
     final waterPaint = Paint()
-      ..shader = LinearGradient(
-        begin: Alignment.topCenter,
-        end: Alignment.bottomCenter,
-        colors: [
-          const Color(0xFF74B6CA).withValues(alpha: 0.74),
-          const Color(0xFF3B7C98).withValues(alpha: 0.88),
-          const Color(0xFF1E4F66),
-        ],
-      ).createShader(
-        Rect.fromLTWH(0, waterTop - 30, size.width, size.height - waterTop + 30),
-      );
+      ..shader =
+          LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              const Color(0xFF74B6CA).withValues(alpha: 0.74),
+              const Color(0xFF3B7C98).withValues(alpha: 0.88),
+              const Color(0xFF1E4F66),
+            ],
+          ).createShader(
+            Rect.fromLTWH(
+              0,
+              waterTop - 30,
+              size.width,
+              size.height - waterTop + 30,
+            ),
+          );
     canvas.drawPath(waterPath, waterPaint);
 
     final shimmerPaint = Paint()

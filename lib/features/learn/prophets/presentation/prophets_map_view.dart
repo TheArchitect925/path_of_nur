@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/theme/app_colors.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../domain/prophet_entry.dart';
+import 'prophets_metadata_localization.dart';
 import 'widgets/prophet_map_preview_sheet.dart';
 
 class ProphetsMapView extends StatefulWidget {
@@ -44,6 +46,7 @@ class _ProphetsMapViewState extends State<ProphetsMapView> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final markers = widget.prophets.where((p) => p.hasMapLocation).toList();
     final unknown = widget.prophets.where((p) => !p.hasMapLocation).toList();
 
@@ -96,14 +99,14 @@ class _ProphetsMapViewState extends State<ProphetsMapView> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Location guidance',
+                l10n.prophetsMapLocationGuidanceTitle,
                 style: Theme.of(
                   context,
                 ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
               ),
               const SizedBox(height: 6),
               Text(
-                'Markers represent broad regions and traditional associations where certainty is limited.',
+                l10n.prophetsMapLocationGuidanceSubtitle,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: AppColors.onSurfaceSubtle,
                 ),
@@ -115,8 +118,14 @@ class _ProphetsMapViewState extends State<ProphetsMapView> {
                 children: ProphetLocationConfidence.values
                     .map(
                       (confidence) => _legendPill(
-                        title: confidence.label,
-                        subtitle: confidence.guidance,
+                        title: localizedProphetLocationConfidenceLabel(
+                          l10n,
+                          confidence,
+                        ),
+                        subtitle: localizedProphetLocationConfidenceGuidance(
+                          l10n,
+                          confidence,
+                        ),
                       ),
                     )
                     .toList(),
@@ -131,7 +140,7 @@ class _ProphetsMapViewState extends State<ProphetsMapView> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Symbolic or not mapped in this view',
+                  l10n.prophetsMapUnmappedTitle,
                   style: Theme.of(
                     context,
                   ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
@@ -222,9 +231,12 @@ class _MapMarker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Tooltip(
-      message:
-          '${prophet.honoredName} • ${prophet.locationLabel ?? prophet.regionLabel}',
+      message: l10n.prophetsMapMarkerTooltip(
+        prophet.honoredName,
+        prophet.locationLabel ?? prophet.regionLabel,
+      ),
       child: InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(20),

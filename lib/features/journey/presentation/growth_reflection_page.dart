@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../l10n/app_localizations.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../application/growth_models.dart';
 import '../application/growth_providers.dart';
@@ -34,8 +35,11 @@ class _GrowthReflectionPageState extends ConsumerState<GrowthReflectionPage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final date = ref.watch(growthSelectedDateProvider);
-    final todayReflections = ref.watch(growthReflectionsForSelectedDateProvider);
+    final todayReflections = ref.watch(
+      growthReflectionsForSelectedDateProvider,
+    );
     final privateMode = ref.watch(growthControllerProvider).privateMode;
     final prompts = ref.watch(growthReflectionPromptSuggestionsProvider);
     final seasonalPrompts = ref.watch(growthSeasonalReflectionPromptsProvider);
@@ -55,14 +59,20 @@ class _GrowthReflectionPageState extends ConsumerState<GrowthReflectionPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Recent Changes', style: TextStyle(fontWeight: FontWeight.w700)),
+              Text(
+                l10n.growthReflectionRecentChangesTitle,
+                style: const TextStyle(fontWeight: FontWeight.w700),
+              ),
               const SizedBox(height: 8),
               if (recentUnlocks.isEmpty)
-                const Text('Reflection nourishes quiet growth over time.')
+                Text(l10n.growthReflectionRecentChangesEmpty)
               else ...[
                 Text(
-                  'A recent unlock appeared through steady reflection and small steps.',
-                  style: const TextStyle(fontSize: 12.5, color: Color(0xFF6A5A4A)),
+                  l10n.growthReflectionRecentUnlockNote,
+                  style: const TextStyle(
+                    fontSize: 12.5,
+                    color: Color(0xFF6A5A4A),
+                  ),
                 ),
                 const SizedBox(height: 6),
                 Text(
@@ -71,7 +81,10 @@ class _GrowthReflectionPageState extends ConsumerState<GrowthReflectionPage> {
                 ),
                 Text(
                   recentUnlocks.first.reward.subtitle,
-                  style: const TextStyle(fontSize: 12.5, color: Color(0xFF6A5A4A)),
+                  style: const TextStyle(
+                    fontSize: 12.5,
+                    color: Color(0xFF6A5A4A),
+                  ),
                 ),
               ],
             ],
@@ -82,14 +95,20 @@ class _GrowthReflectionPageState extends ConsumerState<GrowthReflectionPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Seasonal prompts', style: TextStyle(fontWeight: FontWeight.w700)),
+              Text(
+                l10n.growthReflectionSeasonalPromptsTitle,
+                style: const TextStyle(fontWeight: FontWeight.w700),
+              ),
               const SizedBox(height: 8),
               if (seasonalPrompts.isEmpty)
-                const Text('No seasonal prompt today. Continue your path with sincerity.')
+                Text(l10n.growthReflectionNoSeasonalPrompt)
               else ...[
                 Text(
                   '${seasonal.hijriDate.day} ${seasonal.hijriDate.monthName}',
-                  style: const TextStyle(fontSize: 12, color: Color(0xFF6A5A4A)),
+                  style: const TextStyle(
+                    fontSize: 12,
+                    color: Color(0xFF6A5A4A),
+                  ),
                 ),
                 const SizedBox(height: 6),
                 Wrap(
@@ -114,18 +133,20 @@ class _GrowthReflectionPageState extends ConsumerState<GrowthReflectionPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Reflection', style: TextStyle(fontWeight: FontWeight.w700)),
-              const SizedBox(height: 8),
-              const Text(
-                'This space is for honest review, gratitude, tawbah, and entrusting your efforts to Allah.',
+              Text(
+                l10n.growthTabReflection,
+                style: const TextStyle(fontWeight: FontWeight.w700),
               ),
+              const SizedBox(height: 8),
+              Text(l10n.growthReflectionIntro),
               const SizedBox(height: 8),
               SwitchListTile(
                 contentPadding: EdgeInsets.zero,
                 value: privateMode,
-                onChanged: (v) =>
-                    ref.read(growthControllerProvider.notifier).setPrivateMode(v),
-                title: const Text('Private mode (quiet growth visuals)'),
+                onChanged: (v) => ref
+                    .read(growthControllerProvider.notifier)
+                    .setPrivateMode(v),
+                title: Text(l10n.growthReflectionPrivateModeTitle),
               ),
             ],
           ),
@@ -135,7 +156,10 @@ class _GrowthReflectionPageState extends ConsumerState<GrowthReflectionPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Prompt suggestions', style: TextStyle(fontWeight: FontWeight.w700)),
+              Text(
+                l10n.growthReflectionPromptSuggestionsTitle,
+                style: const TextStyle(fontWeight: FontWeight.w700),
+              ),
               const SizedBox(height: 8),
               Wrap(
                 spacing: 8,
@@ -151,9 +175,12 @@ class _GrowthReflectionPageState extends ConsumerState<GrowthReflectionPage> {
               ),
               const SizedBox(height: 8),
               Text(
-                encouragement.gentleReminders[
-                    (date.day + date.month) % encouragement.gentleReminders.length],
-                style: const TextStyle(color: Color(0xFF6A5A4A), fontSize: 12.5),
+                encouragement.gentleReminders[(date.day + date.month) %
+                    encouragement.gentleReminders.length],
+                style: const TextStyle(
+                  color: Color(0xFF6A5A4A),
+                  fontSize: 12.5,
+                ),
               ),
             ],
           ),
@@ -163,8 +190,8 @@ class _GrowthReflectionPageState extends ConsumerState<GrowthReflectionPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                'Prompt library',
+              Text(
+                l10n.growthReflectionPromptLibraryTitle,
                 style: TextStyle(fontWeight: FontWeight.w700),
               ),
               const SizedBox(height: 8),
@@ -204,18 +231,18 @@ class _GrowthReflectionPageState extends ConsumerState<GrowthReflectionPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Daily reflection prompt'),
+              Text(l10n.growthReflectionDailyPromptTitle),
               const SizedBox(height: 8),
               TextField(
                 controller: _promptCtrl,
                 maxLines: 2,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  hintText: 'What shaped your heart today?',
+                  hintText: l10n.growthReflectionDailyPromptHint,
                 ),
               ),
               const SizedBox(height: 8),
-              const Text('Mood / state'),
+              Text(l10n.growthReflectionMoodTitle),
               const SizedBox(height: 6),
               Wrap(
                 spacing: 6,
@@ -224,7 +251,7 @@ class _GrowthReflectionPageState extends ConsumerState<GrowthReflectionPage> {
                     .map(
                       (mood) => ChoiceChip(
                         selected: _mood == mood,
-                        label: Text(growthMoodLabel(mood)),
+                        label: Text(growthMoodLocalizedLabel(mood, l10n)),
                         onSelected: (_) => setState(() => _mood = mood),
                       ),
                     )
@@ -233,14 +260,14 @@ class _GrowthReflectionPageState extends ConsumerState<GrowthReflectionPage> {
               const SizedBox(height: 8),
               DropdownButtonFormField<String>(
                 initialValue: _linkedHabitId,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: 'Related habit (optional)',
+                  labelText: l10n.growthReflectionRelatedHabitLabel,
                 ),
                 items: [
-                  const DropdownMenuItem<String>(
+                  DropdownMenuItem<String>(
                     value: null,
-                    child: Text('None'),
+                    child: Text(l10n.growthReflectionNoneOption),
                   ),
                   ...habits.map(
                     (habit) => DropdownMenuItem(
@@ -252,36 +279,36 @@ class _GrowthReflectionPageState extends ConsumerState<GrowthReflectionPage> {
                 onChanged: (value) => setState(() => _linkedHabitId = value),
               ),
               const SizedBox(height: 8),
-              const Text('Gratitude'),
+              Text(l10n.growthReflectionGratitudeTitle),
               const SizedBox(height: 6),
               TextField(
                 controller: _gratitudeCtrl,
                 maxLines: 2,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  hintText: 'Name one blessing from today',
+                  hintText: l10n.growthReflectionGratitudeHint,
                 ),
               ),
               const SizedBox(height: 8),
-              const Text('Tawbah / review of the day'),
+              Text(l10n.growthReflectionTawbahTitle),
               const SizedBox(height: 6),
               TextField(
                 controller: _tawbahCtrl,
                 maxLines: 2,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  hintText: 'What do you seek forgiveness for?',
+                  hintText: l10n.growthReflectionTawbahHint,
                 ),
               ),
               const SizedBox(height: 8),
-              const Text('Short notes'),
+              Text(l10n.growthReflectionShortNotesTitle),
               const SizedBox(height: 6),
               TextField(
                 controller: _noteCtrl,
                 maxLines: 3,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  hintText: 'Keep this simple and sincere',
+                  hintText: l10n.growthReflectionShortNotesHint,
                 ),
               ),
               const SizedBox(height: 8),
@@ -289,10 +316,8 @@ class _GrowthReflectionPageState extends ConsumerState<GrowthReflectionPage> {
                 contentPadding: EdgeInsets.zero,
                 value: _entrustToAllah,
                 onChanged: (v) => setState(() => _entrustToAllah = v),
-                title: const Text('Entrust deeds to Allah'),
-                subtitle: const Text(
-                  'When enabled, this entry is tracked quietly without celebratory emphasis.',
-                ),
+                title: Text(l10n.growthReflectionEntrustToAllahTitle),
+                subtitle: Text(l10n.growthReflectionEntrustToAllahSubtitle),
               ),
               const SizedBox(height: 8),
               Row(
@@ -300,7 +325,9 @@ class _GrowthReflectionPageState extends ConsumerState<GrowthReflectionPage> {
                   Expanded(
                     child: FilledButton(
                       onPressed: () {
-                        ref.read(growthControllerProvider.notifier).addReflection(
+                        ref
+                            .read(growthControllerProvider.notifier)
+                            .addReflection(
                               date: date,
                               prompt: _promptCtrl.text.trim(),
                               gratitude: _gratitudeCtrl.text.trim(),
@@ -320,7 +347,7 @@ class _GrowthReflectionPageState extends ConsumerState<GrowthReflectionPage> {
                           _linkedHabitId = null;
                         });
                       },
-                      child: const Text('Save Reflection'),
+                      child: Text(l10n.growthReflectionSaveAction),
                     ),
                   ),
                 ],
@@ -333,10 +360,18 @@ class _GrowthReflectionPageState extends ConsumerState<GrowthReflectionPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('End-of-day summary', style: TextStyle(fontWeight: FontWeight.w700)),
+              Text(
+                l10n.growthTodayEndOfDayTitle,
+                style: const TextStyle(fontWeight: FontWeight.w700),
+              ),
               const SizedBox(height: 6),
               Text(
-                '${endOfDay.completionPercent}% tended · ${endOfDay.completed} completed · ${endOfDay.partial} on your path · ${endOfDay.missed} to revisit gently',
+                l10n.growthTodayEndOfDaySummary(
+                  '${endOfDay.completionPercent}',
+                  '${endOfDay.completed}',
+                  '${endOfDay.partial}',
+                  '${endOfDay.missed}',
+                ),
               ),
               const SizedBox(height: 4),
               Text(endOfDay.tone),
@@ -348,10 +383,13 @@ class _GrowthReflectionPageState extends ConsumerState<GrowthReflectionPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Today entries', style: TextStyle(fontWeight: FontWeight.w700)),
+              Text(
+                l10n.growthReflectionTodayEntriesTitle,
+                style: const TextStyle(fontWeight: FontWeight.w700),
+              ),
               const SizedBox(height: 8),
               if (todayReflections.isEmpty)
-                const Text('Begin again today with a short reflection.')
+                Text(l10n.growthReflectionBeginAgain)
               else
                 ...todayReflections.map(
                   (entry) => Padding(
@@ -366,15 +404,30 @@ class _GrowthReflectionPageState extends ConsumerState<GrowthReflectionPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           if (entry.mood != null)
-                            Text('Mood: ${growthMoodLabel(entry.mood!)}'),
-                          if (entry.prompt.isNotEmpty) Text('Prompt: ${entry.prompt}'),
+                            Text(
+                              l10n.growthReflectionMoodValue(
+                                growthMoodLocalizedLabel(entry.mood!, l10n),
+                              ),
+                            ),
+                          if (entry.prompt.isNotEmpty)
+                            Text(
+                              l10n.growthReflectionPromptValue(entry.prompt),
+                            ),
                           if (entry.gratitude.isNotEmpty)
-                            Text('Gratitude: ${entry.gratitude}'),
-                          if (entry.tawbah.isNotEmpty) Text('Tawbah: ${entry.tawbah}'),
-                          if (entry.note.isNotEmpty) Text('Note: ${entry.note}'),
+                            Text(
+                              l10n.growthReflectionGratitudeValue(
+                                entry.gratitude,
+                              ),
+                            ),
+                          if (entry.tawbah.isNotEmpty)
+                            Text(
+                              l10n.growthReflectionTawbahValue(entry.tawbah),
+                            ),
+                          if (entry.note.isNotEmpty)
+                            Text(l10n.growthReflectionNoteValue(entry.note)),
                           if (entry.entrustToAllah)
-                            const Text(
-                              'Entrusted quietly to Allah',
+                            Text(
+                              l10n.growthReflectionEntrustedQuietly,
                               style: TextStyle(fontStyle: FontStyle.italic),
                             ),
                         ],
@@ -390,10 +443,13 @@ class _GrowthReflectionPageState extends ConsumerState<GrowthReflectionPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Gratitude history', style: TextStyle(fontWeight: FontWeight.w700)),
+              Text(
+                l10n.growthReflectionGratitudeHistoryTitle,
+                style: const TextStyle(fontWeight: FontWeight.w700),
+              ),
               const SizedBox(height: 8),
               if (gratitudeHistory.isEmpty)
-                const Text('No gratitude history yet.')
+                Text(l10n.growthReflectionNoGratitudeHistory)
               else
                 ...gratitudeHistory.take(6).map((text) => Text('• $text')),
             ],
@@ -404,20 +460,29 @@ class _GrowthReflectionPageState extends ConsumerState<GrowthReflectionPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Recent reflections', style: TextStyle(fontWeight: FontWeight.w700)),
-              const SizedBox(height: 8),
-              ...history.take(5).map(
-                (entry) => ListTile(
-                  dense: true,
-                  contentPadding: EdgeInsets.zero,
-                  title: Text(entry.prompt.isEmpty ? 'Reflection entry' : entry.prompt),
-                  subtitle: Text(
-                    entry.gratitude.isEmpty ? entry.note : entry.gratitude,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ),
+              Text(
+                l10n.growthReflectionRecentReflectionsTitle,
+                style: const TextStyle(fontWeight: FontWeight.w700),
               ),
+              const SizedBox(height: 8),
+              ...history
+                  .take(5)
+                  .map(
+                    (entry) => ListTile(
+                      dense: true,
+                      contentPadding: EdgeInsets.zero,
+                      title: Text(
+                        entry.prompt.isEmpty
+                            ? l10n.growthReflectionEntryFallbackTitle
+                            : entry.prompt,
+                      ),
+                      subtitle: Text(
+                        entry.gratitude.isEmpty ? entry.note : entry.gratitude,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ),
             ],
           ),
         ),

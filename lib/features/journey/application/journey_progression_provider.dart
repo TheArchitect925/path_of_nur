@@ -22,6 +22,7 @@ class JourneyXpRules {
   static const int xpPerFastingIntending = 8;
   static const int xpPerQuranEngagement = 18;
   static const int xpPerReflectionEntry = 12;
+  static const int xpPerLearningStageCompletion = 8;
 
   static const double streakCompletionThreshold = 0.60;
 
@@ -56,6 +57,7 @@ class JourneyActivitySnapshot {
     required this.quranProgress,
     required this.reflectionEntriesToday,
     required this.reflectionProgress,
+    required this.learningStageCompletionsToday,
   });
 
   final DateTime now;
@@ -71,6 +73,7 @@ class JourneyActivitySnapshot {
   final double quranProgress;
   final int reflectionEntriesToday;
   final double reflectionProgress;
+  final int learningStageCompletionsToday;
 
   JourneyActivitySnapshot copyWith({
     DateTime? now,
@@ -86,6 +89,7 @@ class JourneyActivitySnapshot {
     double? quranProgress,
     int? reflectionEntriesToday,
     double? reflectionProgress,
+    int? learningStageCompletionsToday,
   }) {
     return JourneyActivitySnapshot(
       now: now ?? this.now,
@@ -103,6 +107,8 @@ class JourneyActivitySnapshot {
       reflectionEntriesToday:
           reflectionEntriesToday ?? this.reflectionEntriesToday,
       reflectionProgress: reflectionProgress ?? this.reflectionProgress,
+      learningStageCompletionsToday:
+          learningStageCompletionsToday ?? this.learningStageCompletionsToday,
     );
   }
 
@@ -137,6 +143,7 @@ class JourneyDayMetrics {
     this.dhikrCount = 0,
     this.quranEngagements = 0,
     this.reflectionEntries = 0,
+    this.learningStageCompletions = 0,
     this.fastingCompleted = 0,
     this.fastingIntending = 0,
   });
@@ -148,6 +155,7 @@ class JourneyDayMetrics {
   final int dhikrCount;
   final int quranEngagements;
   final int reflectionEntries;
+  final int learningStageCompletions;
   final int fastingCompleted;
   final int fastingIntending;
 
@@ -159,6 +167,7 @@ class JourneyDayMetrics {
     int? dhikrCount,
     int? quranEngagements,
     int? reflectionEntries,
+    int? learningStageCompletions,
     int? fastingCompleted,
     int? fastingIntending,
   }) {
@@ -170,6 +179,8 @@ class JourneyDayMetrics {
       dhikrCount: dhikrCount ?? this.dhikrCount,
       quranEngagements: quranEngagements ?? this.quranEngagements,
       reflectionEntries: reflectionEntries ?? this.reflectionEntries,
+      learningStageCompletions:
+          learningStageCompletions ?? this.learningStageCompletions,
       fastingCompleted: fastingCompleted ?? this.fastingCompleted,
       fastingIntending: fastingIntending ?? this.fastingIntending,
     );
@@ -184,6 +195,7 @@ class JourneyDayMetrics {
       'dhikrCount': dhikrCount,
       'quranEngagements': quranEngagements,
       'reflectionEntries': reflectionEntries,
+      'learningStageCompletions': learningStageCompletions,
       'fastingCompleted': fastingCompleted,
       'fastingIntending': fastingIntending,
     };
@@ -199,6 +211,7 @@ class JourneyDayMetrics {
       dhikrCount: _asInt(json['dhikrCount']),
       quranEngagements: _asInt(json['quranEngagements']),
       reflectionEntries: _asInt(json['reflectionEntries']),
+      learningStageCompletions: _asInt(json['learningStageCompletions']),
       fastingCompleted: _asInt(json['fastingCompleted']),
       fastingIntending: _asInt(json['fastingIntending']),
     );
@@ -213,6 +226,7 @@ class JourneyProgressState {
     required this.totalFastingIntending,
     required this.totalQuranEngagements,
     required this.totalReflectionEntries,
+    required this.totalLearningStageCompletions,
     required this.localDropsContributionCount,
     required this.currentStreakDays,
     required this.bestStreakDays,
@@ -230,6 +244,7 @@ class JourneyProgressState {
   final int totalFastingIntending;
   final int totalQuranEngagements;
   final int totalReflectionEntries;
+  final int totalLearningStageCompletions;
   final int localDropsContributionCount;
   final int currentStreakDays;
   final int bestStreakDays;
@@ -247,6 +262,7 @@ class JourneyProgressState {
     int? totalFastingIntending,
     int? totalQuranEngagements,
     int? totalReflectionEntries,
+    int? totalLearningStageCompletions,
     int? localDropsContributionCount,
     int? currentStreakDays,
     int? bestStreakDays,
@@ -268,6 +284,8 @@ class JourneyProgressState {
           totalQuranEngagements ?? this.totalQuranEngagements,
       totalReflectionEntries:
           totalReflectionEntries ?? this.totalReflectionEntries,
+      totalLearningStageCompletions:
+          totalLearningStageCompletions ?? this.totalLearningStageCompletions,
       localDropsContributionCount:
           localDropsContributionCount ?? this.localDropsContributionCount,
       currentStreakDays: currentStreakDays ?? this.currentStreakDays,
@@ -289,7 +307,9 @@ class JourneyProgressState {
         (totalFastingCompleted * JourneyXpRules.xpPerFastingCompleted) +
         (totalFastingIntending * JourneyXpRules.xpPerFastingIntending) +
         (totalQuranEngagements * JourneyXpRules.xpPerQuranEngagement) +
-        (totalReflectionEntries * JourneyXpRules.xpPerReflectionEntry);
+        (totalReflectionEntries * JourneyXpRules.xpPerReflectionEntry) +
+        (totalLearningStageCompletions *
+            JourneyXpRules.xpPerLearningStageCompletion);
   }
 
   int get level => JourneyXpRules.levelForXp(totalXp);
@@ -376,6 +396,7 @@ class JourneyProgressState {
       totalFastingIntending: 0,
       totalQuranEngagements: 0,
       totalReflectionEntries: 0,
+      totalLearningStageCompletions: 0,
       localDropsContributionCount: 0,
       currentStreakDays: 0,
       bestStreakDays: 0,
@@ -426,6 +447,9 @@ class JourneyProgressState {
       totalFastingIntending: _asInt(json['totalFastingIntending']),
       totalQuranEngagements: _asInt(json['totalQuranEngagements']),
       totalReflectionEntries: _asInt(json['totalReflectionEntries']),
+      totalLearningStageCompletions: _asInt(
+        json['totalLearningStageCompletions'],
+      ),
       localDropsContributionCount: _asInt(json['localDropsContributionCount']),
       currentStreakDays: _asInt(json['currentStreakDays']),
       bestStreakDays: _asInt(json['bestStreakDays']),
@@ -449,6 +473,7 @@ class JourneyProgressState {
       'totalFastingIntending': totalFastingIntending,
       'totalQuranEngagements': totalQuranEngagements,
       'totalReflectionEntries': totalReflectionEntries,
+      'totalLearningStageCompletions': totalLearningStageCompletions,
       'localDropsContributionCount': localDropsContributionCount,
       'currentStreakDays': currentStreakDays,
       'bestStreakDays': bestStreakDays,
@@ -518,6 +543,10 @@ class JourneyProgressNotifier extends StateNotifier<JourneyProgressState> {
         currentDayMetrics.reflectionEntries,
         snapshot.reflectionEntriesToday,
       ),
+      learningStageCompletions: math.max(
+        currentDayMetrics.learningStageCompletions,
+        snapshot.learningStageCompletionsToday,
+      ),
       fastingCompleted: math.max(
         currentDayMetrics.fastingCompleted,
         snapshot.fastingCompletedToday ? 1 : 0,
@@ -536,6 +565,9 @@ class JourneyProgressNotifier extends StateNotifier<JourneyProgressState> {
         nextDayMetrics.quranEngagements - currentDayMetrics.quranEngagements;
     final deltaReflection =
         nextDayMetrics.reflectionEntries - currentDayMetrics.reflectionEntries;
+    final deltaLearningStages =
+        nextDayMetrics.learningStageCompletions -
+        currentDayMetrics.learningStageCompletions;
     final deltaFastCompleted =
         nextDayMetrics.fastingCompleted - currentDayMetrics.fastingCompleted;
     final deltaFastIntending =
@@ -591,6 +623,7 @@ class JourneyProgressNotifier extends StateNotifier<JourneyProgressState> {
         deltaDhikr > 0 ||
         deltaQuran > 0 ||
         deltaReflection > 0 ||
+        deltaLearningStages > 0 ||
         deltaFastCompleted > 0 ||
         deltaFastIntending > 0;
     final scoreChanged = nextDailyScore != (state.dayScoreByKey[dayKey] ?? 0.0);
@@ -605,6 +638,7 @@ class JourneyProgressNotifier extends StateNotifier<JourneyProgressState> {
         deltaDhikr +
         (deltaQuran * 2) +
         deltaReflection +
+        deltaLearningStages +
         (deltaFastCompleted * 3) +
         deltaFastIntending;
 
@@ -613,6 +647,8 @@ class JourneyProgressNotifier extends StateNotifier<JourneyProgressState> {
       totalDhikrSessions: state.totalDhikrSessions + deltaDhikr,
       totalQuranEngagements: state.totalQuranEngagements + deltaQuran,
       totalReflectionEntries: state.totalReflectionEntries + deltaReflection,
+      totalLearningStageCompletions:
+          state.totalLearningStageCompletions + deltaLearningStages,
       totalFastingCompleted: state.totalFastingCompleted + deltaFastCompleted,
       totalFastingIntending: state.totalFastingIntending + deltaFastIntending,
       localDropsContributionCount:
@@ -813,6 +849,7 @@ final journeyActivitySnapshotProvider = Provider<JourneyActivitySnapshot>((
     quranProgress: quranProgressRatio.clamp(0.0, 1.0).toDouble(),
     reflectionEntriesToday: notesToday,
     reflectionProgress: (notesToday / 2).clamp(0.0, 1.0).toDouble(),
+    learningStageCompletionsToday: 0,
   );
 });
 
@@ -893,6 +930,17 @@ class JourneyProgressUpdateHelper {
         reflectionProgress: (nextReflectionEntries / 2)
             .clamp(0.0, 1.0)
             .toDouble(),
+      ),
+    );
+  }
+
+  void addLearningStageCompletions(int count) {
+    if (count <= 0) return;
+    final snapshot = _ref.read(journeyActivitySnapshotProvider);
+    _ref.read(journeyProgressProvider.notifier).syncFromSnapshot(
+      snapshot.copyWith(
+        learningStageCompletionsToday:
+            snapshot.learningStageCompletionsToday + count,
       ),
     );
   }

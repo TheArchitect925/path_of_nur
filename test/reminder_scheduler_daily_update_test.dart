@@ -13,7 +13,7 @@ import 'package:path_of_nur/shared/persistence/local_store.dart';
 
 class _FakeLocalNotificationService extends LocalNotificationService {
   _FakeLocalNotificationService(LocalStore store)
-      : super(store, const AdhanRepository());
+    : super(store, const AdhanRepository());
 
   ReminderSchedulerState? lastPlan;
   AdhanSettings? lastAdhanSettings;
@@ -199,29 +199,86 @@ void main() {
     },
   );
 
-  test('reminder bootstrap stays safe with sparse defaults and empty schedule', () async {
-    SharedPreferences.setMockInitialValues({});
-    final prefs = await SharedPreferences.getInstance();
-    final store = LocalStore(prefs);
-    final fakeService = _FakeLocalNotificationService(store);
-    final now = DateTime(2026, 3, 14, 9, 0);
+  test(
+    'reminder bootstrap stays safe with sparse defaults and empty schedule',
+    () async {
+      SharedPreferences.setMockInitialValues({});
+      final prefs = await SharedPreferences.getInstance();
+      final store = LocalStore(prefs);
+      final fakeService = _FakeLocalNotificationService(store);
+      final now = DateTime(2026, 3, 14, 9, 0);
 
-    final container = ProviderContainer(
-      overrides: [
-        sharedPreferencesProvider.overrideWithValue(prefs),
-        localNotificationServiceProvider.overrideWithValue(fakeService),
-        dailyNowProvider.overrideWith((ref) => Stream.value(now)),
-        prayerScheduleProvider.overrideWithValue(const <PrayerScheduleItem>[]),
-      ],
-    );
-    addTearDown(container.dispose);
+      final container = ProviderContainer(
+        overrides: [
+          sharedPreferencesProvider.overrideWithValue(prefs),
+          localNotificationServiceProvider.overrideWithValue(fakeService),
+          dailyNowProvider.overrideWith((ref) => Stream.value(now)),
+          prayerScheduleProvider.overrideWithValue(
+            const <PrayerScheduleItem>[],
+          ),
+        ],
+      );
+      addTearDown(container.dispose);
 
-    container.read(reminderSchedulerBootstrapProvider);
-    await Future<void>.delayed(Duration.zero);
+      container.read(reminderSchedulerBootstrapProvider);
+      await Future<void>.delayed(Duration.zero);
 
-    final storedPlan = store.getJsonList('reminders.plan.2026-03-14');
-    expect(container.read(reminderSchedulerProvider).dayKey, '2026-03-14');
-    expect(fakeService.lastPlan, isNotNull);
-    expect(storedPlan, isNotNull);
-  });
+      final storedPlan = store.getJsonList('reminders.plan.2026-03-14');
+      expect(container.read(reminderSchedulerProvider).dayKey, '2026-03-14');
+      expect(fakeService.lastPlan, isNotNull);
+      expect(storedPlan, isNotNull);
+    },
+  );
+
+  test(
+    'reminder bootstrap resyncs when prayer notification settings change',
+    () async {
+      SharedPreferences.setMockInitialValues({});
+      final prefs = await SharedPreferences.getInstance();
+      final store = LocalStore(prefs);
+      final fakeService = _FakeLocalNotificationService(store);
+      final now = DateTime(2026, 3, 14, 9, 0);
+
+      final container = ProviderContainer(
+        overrides: [
+          sharedPreferencesProvider.overrideWithValue(prefs),
+          localNotificationServiceProvider.overrideWithValue(fakeService),
+          dailyNowProvider.overrideWith((ref) => Stream.value(now)),
+          prayerScheduleProvider.overrideWithValue(<PrayerScheduleItem>[
+            _item(
+              id: 'fajr',
+              name: 'Fajr',
+              offer: DateTime(2026, 3, 14, 5, 30),
+              windowEnd: DateTime(2026, 3, 14, 6, 30),
+              qaza: DateTime(2026, 3, 14, 6, 30),
+            ),
+          ]),
+        ],
+      );
+      addTearDown(container.dispose);
+
+      container.read(reminderSchedulerBootstrapProvider);
+      await Future<void>.delayed(Duration.zero);
+
+      expect(
+        fakeService.lastPlan?.items.any((item) => item.prayerId == 'fajr'),
+        isFalse,
+      );
+
+      container
+          .read(prayerSettingsProvider.notifier)
+          .updateNotificationMode(
+            'fajr',
+            PrayerNotificationMode.notificationOnly,
+          );
+      await Future<void>.delayed(Duration.zero);
+
+      expect(
+        fakeService.lastPlan?.items.any(
+          (item) => item.id == 'prayer.fajr.at.notification',
+        ),
+        isTrue,
+      );
+    },
+  );
 }

@@ -18,6 +18,13 @@ const String oceanActionDhikrFreeHundredReached = 'dhikr_free_100_reached';
 const String oceanActionQuranPageCompleted = 'quran_page_completed';
 const String oceanActionQuranSurahCompleted = 'quran_surah_completed';
 const String oceanActionLearningSegmentCompleted = 'learning_segment_completed';
+const String oceanActionLearningJourneyCompleted = 'learning_journey_completed';
+const String oceanActionLearningPathPhaseCompleted =
+    'learning_path_phase_completed';
+const String oceanActionLearningTogetherCompleted =
+    'learning_together_completed';
+const String oceanActionLearningDailyLightCompleted =
+    'learning_daily_light_completed';
 const String oceanActionLessonCompleted = 'lesson_completed';
 const String oceanActionProphetStoryCompleted = 'prophet_story_completed';
 const String oceanActionHadithLessonCompleted = 'hadith_lesson_completed';
@@ -538,6 +545,9 @@ class OceanDropsRepository {
       case oceanActionCreationExplorerOpened:
         return _OceanDropScope.oncePerDay;
       case oceanActionLearningSegmentCompleted:
+      case oceanActionLearningJourneyCompleted:
+      case oceanActionLearningPathPhaseCompleted:
+      case oceanActionLearningTogetherCompleted:
       case oceanActionLessonCompleted:
       case oceanActionProphetStoryCompleted:
       case oceanActionHadithLessonCompleted:
@@ -546,6 +556,8 @@ class OceanDropsRepository {
       case oceanActionQuranSurahCompleted:
       case oceanActionSalahTrainingCompleted:
         return _OceanDropScope.onceLifetime;
+      case oceanActionLearningDailyLightCompleted:
+        return _OceanDropScope.oncePerDay;
       case oceanActionDhikrSetCompleted:
       case oceanActionReflectionCompleted:
       case oceanActionJournalEntryCompleted:
@@ -869,6 +881,9 @@ class OceanDropService extends StateNotifier<OceanDropsState> {
       case oceanActionCreationExplorerOpened:
         return _OceanDropScope.oncePerDay;
       case oceanActionLearningSegmentCompleted:
+      case oceanActionLearningJourneyCompleted:
+      case oceanActionLearningPathPhaseCompleted:
+      case oceanActionLearningTogetherCompleted:
       case oceanActionLessonCompleted:
       case oceanActionProphetStoryCompleted:
       case oceanActionHadithLessonCompleted:
@@ -877,6 +892,8 @@ class OceanDropService extends StateNotifier<OceanDropsState> {
       case oceanActionQuranSurahCompleted:
       case oceanActionSalahTrainingCompleted:
         return _OceanDropScope.onceLifetime;
+      case oceanActionLearningDailyLightCompleted:
+        return _OceanDropScope.oncePerDay;
       case oceanActionDhikrSetCompleted:
       case oceanActionReflectionCompleted:
       case oceanActionJournalEntryCompleted:
@@ -928,9 +945,6 @@ final oceanDropsProvider =
 final oceanDropServiceProvider = Provider<OceanDropService>((ref) {
   return ref.read(oceanDropsProvider.notifier);
 });
-
-final oceanDropsAutoSyncProvider = Provider<void>((ref) {});
-final oceanDropsDerivedSyncProvider = Provider<void>((ref) {});
 
 final personalWaterStatsProvider = Provider<PersonalWaterStats>((ref) {
   return ref.watch(oceanDropsProvider.select((state) => state.personalStats));

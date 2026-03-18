@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/theme/app_colors.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../application/quran_teaching_controller.dart';
 import '../application/quran_teaching_smart_review_controller.dart';
@@ -31,6 +32,7 @@ class _QuranTeachingDailyReviewPageState
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final catalog = ref.watch(quranTeachingCatalogProvider);
     final progress = ref.watch(quranTeachingProgressProvider);
     final mistakes = ref.watch(quranTeachingActiveMistakesProvider);
@@ -64,7 +66,7 @@ class _QuranTeachingDailyReviewPageState
     }
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Daily Review')),
+      appBar: AppBar(title: Text(l10n.batch9DailyReviewTitle)),
       body: SafeArea(
         child: ListView(
           padding: const EdgeInsets.fromLTRB(20, 16, 20, 32),
@@ -74,15 +76,15 @@ class _QuranTeachingDailyReviewPageState
               total: session?.itemRefs.length ?? 0,
               summary: session?.mixSummary.isNotEmpty == true
                   ? session!.mixSummary
-                  : 'A short mixed review built from what you have learned so far.',
+                  : l10n.batch9DailyReviewFallbackSummary,
             ),
             const SizedBox(height: 12),
             if (session == null || session.itemRefs.isEmpty)
               PremiumCard(
                 child: Text(
                   reviewState.records.isEmpty
-                      ? 'Start a few lessons and your daily review will appear here.'
-                      : 'No review due right now. Try a new lesson or open extra practice later.',
+                      ? l10n.quranTeachingDailyReviewEmptyStart
+                      : l10n.quranTeachingDailyReviewEmptyNoDue,
                 ),
               ),
             if (session != null &&
@@ -90,8 +92,8 @@ class _QuranTeachingDailyReviewPageState
                 currentRef != null &&
                 currentRecord == null &&
                 currentMistake == null)
-              const PremiumCard(
-                child: Text('This review item is no longer available.'),
+              PremiumCard(
+                child: Text(l10n.quranTeachingDailyReviewItemUnavailable),
               ),
             if (currentRecord != null) ...[
               _RecordReviewCard(
@@ -131,14 +133,18 @@ class _QuranTeachingDailyReviewPageState
                     Expanded(
                       child: FilledButton.tonal(
                         onPressed: () => _submitSelfCheck(currentRecord, true),
-                        child: const Text('I remembered it'),
+                        child: Text(
+                          l10n.quranTeachingDailyReviewRememberedAction,
+                        ),
                       ),
                     ),
                     const SizedBox(width: 10),
                     Expanded(
                       child: OutlinedButton(
                         onPressed: () => _submitSelfCheck(currentRecord, false),
-                        child: const Text('Need another pass'),
+                        child: Text(
+                          l10n.quranTeachingDailyReviewNeedAnotherPassAction,
+                        ),
                       ),
                     ),
                   ],
@@ -147,12 +153,12 @@ class _QuranTeachingDailyReviewPageState
                   !QuranTeachingReviewPresenter.isSelfCheck(currentRecord))
                 FilledButton(
                   onPressed: () => _submitRecord(currentRecord),
-                  child: const Text('Check answer'),
+                  child: Text(l10n.batch9CheckAnswerAction),
                 ),
               if (_feedback != null)
                 FilledButton(
                   onPressed: () => _advance(currentRef!),
-                  child: const Text('Next review item'),
+                  child: Text(l10n.quranTeachingDailyReviewNextItemAction),
                 ),
             ],
             if (currentMistake != null) ...[
@@ -187,12 +193,12 @@ class _QuranTeachingDailyReviewPageState
               if (_feedback == null)
                 FilledButton(
                   onPressed: () => _submitMistake(currentMistake!),
-                  child: const Text('Check answer'),
+                  child: Text(l10n.batch9CheckAnswerAction),
                 ),
               if (_feedback != null)
                 FilledButton(
                   onPressed: () => _advance(currentRef!),
-                  child: const Text('Next review item'),
+                  child: Text(l10n.quranTeachingDailyReviewNextItemAction),
                 ),
             ],
             if (session?.isComplete == true) ...[
@@ -203,13 +209,15 @@ class _QuranTeachingDailyReviewPageState
               const SizedBox(height: 12),
               FilledButton.tonal(
                 onPressed: () {
-                  ref.read(quranTeachingSmartReviewProvider.notifier).ensureTodaySession(
+                  ref
+                      .read(quranTeachingSmartReviewProvider.notifier)
+                      .ensureTodaySession(
                         catalog: catalog,
                         progress: progress,
                         mistakes: mistakes,
                       );
                 },
-                child: const Text('Review more later'),
+                child: Text(l10n.quranTeachingDailyReviewMoreLaterAction),
               ),
             ],
           ],
@@ -227,41 +235,42 @@ class _QuranTeachingDailyReviewPageState
   }
 
   void _playAudio(QuranAudioCue audio) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Audio ready for ${audio.label}.')),
-    );
+    final l10n = AppLocalizations.of(context);
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(l10n.batch9AudioReady(audio.label))));
   }
 
   void _submitSelfCheck(QuranTeachingReviewRecord record, bool correct) {
-    ref.read(quranTeachingSmartReviewProvider.notifier).recordDailyReviewOutcome(
-          recordId: record.id,
-          correct: correct,
-        );
+    final l10n = AppLocalizations.of(context);
+    ref
+        .read(quranTeachingSmartReviewProvider.notifier)
+        .recordDailyReviewOutcome(recordId: record.id, correct: correct);
     setState(() {
       _wasCorrect = correct;
       _feedback = correct
-          ? 'Nice. This one is getting stronger.'
-          : 'That is fine. This item will come back sooner.';
+          ? l10n.batch9ReviewCorrectFeedback
+          : l10n.batch9ReviewRetryFeedback;
       _revealed = true;
     });
   }
 
   void _submitRecord(QuranTeachingReviewRecord record) {
+    final l10n = AppLocalizations.of(context);
     final correct = QuranTeachingReviewPresenter.isCorrectRecordAnswer(
       record: record,
       selectedOptionId: _selectedOptionId,
       selectedTrueFalse: _selectedTrueFalse,
       selectedTokens: _selectedTokens,
     );
-    ref.read(quranTeachingSmartReviewProvider.notifier).recordDailyReviewOutcome(
-          recordId: record.id,
-          correct: correct,
-        );
+    ref
+        .read(quranTeachingSmartReviewProvider.notifier)
+        .recordDailyReviewOutcome(recordId: record.id, correct: correct);
     setState(() {
       _wasCorrect = correct;
       _feedback = correct
-          ? 'Correct. This item is settling in.'
-          : record.hintText ?? 'Not quite. This one will return sooner.';
+          ? l10n.quranTeachingDailyReviewCorrectFeedback
+          : record.hintText ?? l10n.quranTeachingDailyReviewRetryFeedback;
     });
   }
 
@@ -272,14 +281,12 @@ class _QuranTeachingDailyReviewPageState
       selectedTrueFalse: _selectedTrueFalse,
       selectedTokens: _selectedTokens,
     );
-    ref.read(quranTeachingMistakeQueueProvider.notifier).recordReviewResult(
-          item.quizId,
-          correct: correct,
-        );
-    ref.read(quranTeachingSmartReviewProvider.notifier).recordMistakeReviewOutcome(
-          item: item,
-          correct: correct,
-        );
+    ref
+        .read(quranTeachingMistakeQueueProvider.notifier)
+        .recordReviewResult(item.quizId, correct: correct);
+    ref
+        .read(quranTeachingSmartReviewProvider.notifier)
+        .recordMistakeReviewOutcome(item: item, correct: correct);
     setState(() {
       _wasCorrect = correct;
       _feedback = correct ? item.feedbackCorrect : item.feedbackIncorrect;
@@ -287,10 +294,9 @@ class _QuranTeachingDailyReviewPageState
   }
 
   void _advance(String itemRef) {
-    ref.read(quranTeachingSmartReviewProvider.notifier).completeTodayItem(
-          itemRef: itemRef,
-          correct: _wasCorrect == true,
-        );
+    ref
+        .read(quranTeachingSmartReviewProvider.notifier)
+        .completeTodayItem(itemRef: itemRef, correct: _wasCorrect == true);
     setState(() {
       _selectedOptionId = null;
       _selectedTrueFalse = null;
@@ -300,7 +306,6 @@ class _QuranTeachingDailyReviewPageState
       _revealed = false;
     });
   }
-
 }
 
 class _RecordReviewCard extends StatelessWidget {
@@ -334,6 +339,7 @@ class _RecordReviewCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return PremiumCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -343,9 +349,9 @@ class _RecordReviewCard extends StatelessWidget {
               Expanded(
                 child: Text(
                   record.prompt,
-                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                    fontWeight: FontWeight.w700,
-                  ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
                 ),
               ),
               QuranTeachingMemoryStateChip(memoryState: record.memoryState),
@@ -390,14 +396,14 @@ class _RecordReviewCard extends StatelessWidget {
                 QuranTeachingAudioIconButton(
                   audio: record.audio,
                   availableIcon: Icons.volume_up_rounded,
-                  label: 'Replay audio',
+                  label: l10n.quranTeachingDailyReviewReplayAudioAction,
                   onAvailablePressed: () => onPlayAudio(record.audio!),
                 ),
               if (!revealed)
                 OutlinedButton.icon(
                   onPressed: onReveal,
                   icon: const Icon(Icons.visibility_rounded),
-                  label: const Text('Reveal'),
+                  label: Text(l10n.quranTeachingDailyReviewRevealAction),
                 ),
             ],
           ),
@@ -408,7 +414,9 @@ class _RecordReviewCard extends StatelessWidget {
                 padding: const EdgeInsets.only(bottom: 8),
                 child: InkWell(
                   borderRadius: BorderRadius.circular(18),
-                  onTap: feedback == null ? () => onSelectOption(option.id) : null,
+                  onTap: feedback == null
+                      ? () => onSelectOption(option.id)
+                      : null,
                   child: Container(
                     padding: const EdgeInsets.all(14),
                     decoration: QuranTeachingTheme.borderedOptionContainer(
@@ -445,7 +453,9 @@ class _RecordReviewCard extends StatelessWidget {
                     (option) => FilterChip(
                       label: Text(option.arabic ?? option.label),
                       selected: selectedTokens.contains(option.label),
-                      onSelected: feedback == null ? (_) => onToggleToken(option.label) : null,
+                      onSelected: feedback == null
+                          ? (_) => onToggleToken(option.label)
+                          : null,
                     ),
                   )
                   .toList(growable: false),
@@ -494,15 +504,16 @@ class _MistakeReviewCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return PremiumCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             item.prompt,
-            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-              fontWeight: FontWeight.w700,
-            ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
           ),
           if (item.promptArabic != null) ...[
             const SizedBox(height: 10),
@@ -524,7 +535,7 @@ class _MistakeReviewCard extends StatelessWidget {
             QuranTeachingAudioIconButton(
               audio: item.audio,
               availableIcon: Icons.volume_up_rounded,
-              label: 'Replay audio',
+              label: l10n.quranTeachingDailyReviewReplayAudioAction,
               onAvailablePressed: () => onPlayAudio(item.audio!),
             ),
           ],
@@ -534,17 +545,21 @@ class _MistakeReviewCard extends StatelessWidget {
               children: [
                 Expanded(
                   child: ChoiceChip(
-                    label: const Text('True'),
+                    label: Text(l10n.quranTeachingDailyReviewTrue),
                     selected: selectedTrueFalse == true,
-                    onSelected: feedback == null ? (_) => onSelectTrueFalse(true) : null,
+                    onSelected: feedback == null
+                        ? (_) => onSelectTrueFalse(true)
+                        : null,
                   ),
                 ),
                 const SizedBox(width: 10),
                 Expanded(
                   child: ChoiceChip(
-                    label: const Text('False'),
+                    label: Text(l10n.quranTeachingDailyReviewFalse),
                     selected: selectedTrueFalse == false,
-                    onSelected: feedback == null ? (_) => onSelectTrueFalse(false) : null,
+                    onSelected: feedback == null
+                        ? (_) => onSelectTrueFalse(false)
+                        : null,
                   ),
                 ),
               ],
@@ -558,7 +573,9 @@ class _MistakeReviewCard extends StatelessWidget {
                     (option) => FilterChip(
                       label: Text(option.arabic ?? option.label),
                       selected: selectedTokens.contains(option.label),
-                      onSelected: feedback == null ? (_) => onToggleToken(option.label) : null,
+                      onSelected: feedback == null
+                          ? (_) => onToggleToken(option.label)
+                          : null,
                     ),
                   )
                   .toList(growable: false),
@@ -569,7 +586,9 @@ class _MistakeReviewCard extends StatelessWidget {
                 padding: const EdgeInsets.only(bottom: 8),
                 child: InkWell(
                   borderRadius: BorderRadius.circular(18),
-                  onTap: feedback == null ? () => onSelectOption(option.id) : null,
+                  onTap: feedback == null
+                      ? () => onSelectOption(option.id)
+                      : null,
                   child: Container(
                     padding: const EdgeInsets.all(14),
                     decoration: QuranTeachingTheme.borderedOptionContainer(

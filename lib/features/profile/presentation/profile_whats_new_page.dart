@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../l10n/app_localizations.dart';
 import '../../../shared/widgets/app_page_scaffold.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/section_title.dart';
@@ -14,22 +15,25 @@ class ProfileWhatsNewPage extends StatefulWidget {
 class _ProfileWhatsNewPageState extends State<ProfileWhatsNewPage> {
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final entries = _buildEntries(l10n);
     return AppPageScaffold(
       headerIcon: Icons.new_releases_outlined,
-      title: 'What’s new',
-      subtitle: 'Recent changes to Path of Nūr, with the latest updates first.',
+      title: l10n.settingsWhatsNewTitle,
+      subtitle: l10n.settingsWhatsNewSubtitle,
       children: [
-        const SectionTitle(
-          title: 'Changelog',
-          subtitle:
-              'The newest update opens first. Older updates stay collapsed until you expand them.',
+        SectionTitle(
+          title: l10n.profileWhatsNewChangelogTitle,
+          subtitle: l10n.profileWhatsNewChangelogSubtitle,
         ),
         ...List.generate(
-          _entries.length,
+          entries.length,
           (index) => Padding(
-            padding: EdgeInsets.only(bottom: index == _entries.length - 1 ? 0 : 14),
+            padding: EdgeInsets.only(
+              bottom: index == entries.length - 1 ? 0 : 14,
+            ),
             child: _WhatsNewEntryCard(
-              entry: _entries[index],
+              entry: entries[index],
               initiallyExpanded: index == 0,
             ),
           ),
@@ -90,7 +94,9 @@ class _WhatsNewEntryCard extends StatelessWidget {
                     Expanded(
                       child: Text(
                         item,
-                        style: theme.textTheme.bodyMedium?.copyWith(height: 1.4),
+                        style: theme.textTheme.bodyMedium?.copyWith(
+                          height: 1.4,
+                        ),
                       ),
                     ),
                   ],
@@ -120,55 +126,53 @@ class _WhatsNewEntry {
   final List<String> items;
 }
 
-const List<_WhatsNewEntry> _entries = [
-  _WhatsNewEntry(
-    version: '1.1.3',
-    dateLabel: 'March 2026',
-    title: 'Refined onboarding, motion, and prayer widgets',
-    summary:
-        'This update tightened early app setup, smoothed page transitions, and made prayer widgets calmer and more controlled.',
-    items: [
-      'Merged name and Brother/Sister selection into one onboarding step and left the name blank by default.',
-      'Made habit tracking optional at the start so users can opt in later at their own pace.',
-      'Applied subtle page entrance animation across shared pages and onboarding, with full respect for Reduce Motion.',
-      'Removed second-by-second prayer Live Activity countdowns and added separate stable controls for Dynamic Island and lock screen widgets.',
-      'Simplified theme mode so the calm Path of Nūr look is the default theme.',
-    ],
-  ),
-  _WhatsNewEntry(
-    version: '1.1.2',
-    dateLabel: 'March 2026',
-    title: 'Trusted-source Qur’anic Arabic improvements',
-    summary:
-        'The Learn Qur’anic Arabic content now uses stricter source handling so visible Qur’anic examples are more traceable and consistent.',
-    items: [
-      'Audited letters, word examples, phrase lessons, and rule examples to use trusted Qur’anic references where appropriate.',
-      'Added source references directly into the lesson flow so examples can be traced back clearly.',
-      'Source-locked the seeded 100-word Qur’anic Arabic dataset so future additions require source metadata.',
-    ],
-  ),
-  _WhatsNewEntry(
-    version: '1.1.1',
-    dateLabel: 'March 2026',
-    title: 'Islamic Trivia and Knowledge Paths',
-    summary:
-        'Trivia expanded into a fuller learning feature with structured question packs and guided topic journeys.',
-    items: [
-      'Added Islamic Trivia with category-based questions, review flow, daily quiz behavior, stats, and rewards integration.',
-      'Introduced Knowledge Paths for guided learning journeys with short learning cards and staged quizzes.',
-      'Expanded curated trivia packs for Prophets, Qur’an Basics, Salah, Ramadan, Duʿā, Seerah, and Islamic History.',
-    ],
-  ),
-  _WhatsNewEntry(
-    version: '1.1.0',
-    dateLabel: 'February 2026',
-    title: 'Smarter Qur’anic Arabic practice',
-    summary:
-        'Qur’anic Arabic learning became more adaptive, with more meaningful review and guidance across the teaching flow.',
-    items: [
-      'Added a Smart Daily Review system with spaced review and adaptive weak-area targeting.',
-      'Introduced memory-strength tracking, review history, and calmer progress visibility on the teaching dashboard.',
-      'Moved Learn Qur’anic Arabic into its own dedicated Learn destination for easier discovery.',
-    ],
-  ),
-];
+List<_WhatsNewEntry> _buildEntries(AppLocalizations l10n) {
+  return [
+    _WhatsNewEntry(
+      version: '1.1.3',
+      dateLabel: l10n.profileWhatsNewDateMarch2026,
+      title: l10n.profileWhatsNewEntry113Title,
+      summary: l10n.profileWhatsNewEntry113Summary,
+      items: [
+        l10n.profileWhatsNewEntry113Item1,
+        l10n.profileWhatsNewEntry113Item2,
+        l10n.profileWhatsNewEntry113Item3,
+        l10n.profileWhatsNewEntry113Item4,
+        l10n.profileWhatsNewEntry113Item5,
+      ],
+    ),
+    _WhatsNewEntry(
+      version: '1.1.2',
+      dateLabel: l10n.profileWhatsNewDateMarch2026,
+      title: l10n.profileWhatsNewEntry112Title,
+      summary: l10n.profileWhatsNewEntry112Summary,
+      items: [
+        l10n.profileWhatsNewEntry112Item1,
+        l10n.profileWhatsNewEntry112Item2,
+        l10n.profileWhatsNewEntry112Item3,
+      ],
+    ),
+    _WhatsNewEntry(
+      version: '1.1.1',
+      dateLabel: l10n.profileWhatsNewDateMarch2026,
+      title: l10n.profileWhatsNewEntry111Title,
+      summary: l10n.profileWhatsNewEntry111Summary,
+      items: [
+        l10n.profileWhatsNewEntry111Item1,
+        l10n.profileWhatsNewEntry111Item2,
+        l10n.profileWhatsNewEntry111Item3,
+      ],
+    ),
+    _WhatsNewEntry(
+      version: '1.1.0',
+      dateLabel: l10n.profileWhatsNewDateFebruary2026,
+      title: l10n.profileWhatsNewEntry110Title,
+      summary: l10n.profileWhatsNewEntry110Summary,
+      items: [
+        l10n.profileWhatsNewEntry110Item1,
+        l10n.profileWhatsNewEntry110Item2,
+        l10n.profileWhatsNewEntry110Item3,
+      ],
+    ),
+  ];
+}

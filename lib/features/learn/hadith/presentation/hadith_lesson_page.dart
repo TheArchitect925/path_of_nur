@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/quran_reference_block.dart';
@@ -26,6 +27,7 @@ class HadithLessonPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     final entry = ref.watch(hadithEntryByIdProvider(lessonId));
     if (entry == null) {
       return AppPageScaffold(
@@ -70,7 +72,9 @@ class HadithLessonPage extends ConsumerWidget {
             if (theme != null) theme.title,
           ],
           trailing: IconButton(
-            tooltip: isSaved ? 'Remove from saved' : 'Save hadith',
+            tooltip: isSaved
+                ? l10n.accessibilityRemoveFromSaved
+                : l10n.accessibilitySaveHadith,
             onPressed: () => savedNotifier.toggle(entry.id),
             icon: Icon(
               isSaved ? Icons.bookmark_rounded : Icons.bookmark_border_rounded,

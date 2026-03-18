@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../core/theme/app_spacing.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_radii.dart';
+import '../../../../l10n/app_localizations.dart';
+import '../../../../shared/application/special_mode_provider.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/section_title.dart';
 import '../../application/dhikr_controller.dart';
@@ -16,20 +19,21 @@ class DhikrSection extends ConsumerWidget {
   static const _dailyDhikrGoal = 500;
 
   Future<void> _confirmReset(BuildContext context, WidgetRef ref) async {
+    final l10n = AppLocalizations.of(context);
     final shouldReset = await showDialog<bool>(
       context: context,
       builder: (dialogContext) {
         return AlertDialog(
-          title: const Text('Reset Dhikr Session'),
-          content: const Text('This will clear your current count and start fresh.'),
+          title: Text(l10n.dhikrResetSessionTitle),
+          content: Text(l10n.dhikrResetSessionBody),
           actions: [
             TextButton(
               onPressed: () => Navigator.of(dialogContext).pop(false),
-              child: const Text('Cancel'),
+              child: Text(MaterialLocalizations.of(context).cancelButtonLabel),
             ),
             FilledButton(
               onPressed: () => Navigator.of(dialogContext).pop(true),
-              child: const Text('Reset'),
+              child: Text(l10n.dhikrResetAction),
             ),
           ],
         );
@@ -42,36 +46,35 @@ class DhikrSection extends ConsumerWidget {
   }
 
   void _setCustomTarget(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     final controller = TextEditingController();
     showDialog<void>(
       context: context,
       builder: (dialogContext) {
         return AlertDialog(
-          title: const Text('Custom Target'),
+          title: Text(l10n.dhikrCustomTargetTitle),
           content: TextField(
             controller: controller,
             keyboardType: TextInputType.number,
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
               border: OutlineInputBorder(),
-              hintText: 'Enter target count',
+              hintText: l10n.dhikrCustomTargetHint,
             ),
           ),
           actions: [
             TextButton(
               onPressed: () => Navigator.of(dialogContext).pop(),
-              child: const Text('Cancel'),
+              child: Text(MaterialLocalizations.of(context).cancelButtonLabel),
             ),
             FilledButton(
               onPressed: () {
                 final value = int.tryParse(controller.text.trim());
                 if (value != null && value > 0) {
-                  ref
-                      .read(dhikrControllerProvider.notifier)
-                      .setTarget(value);
+                  ref.read(dhikrControllerProvider.notifier).setTarget(value);
                 }
                 Navigator.of(dialogContext).pop();
               },
-              child: const Text('Apply'),
+              child: Text(l10n.dhikrApplyAction),
             ),
           ],
         );
@@ -80,35 +83,38 @@ class DhikrSection extends ConsumerWidget {
   }
 
   void _addManualCount(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     final controller = TextEditingController();
     showDialog<void>(
       context: context,
       builder: (dialogContext) {
         return AlertDialog(
-          title: const Text('Add Dhikr Manually'),
+          title: Text(l10n.dhikrAddManualTitle),
           content: TextField(
             controller: controller,
             keyboardType: TextInputType.number,
             autofocus: true,
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
               border: OutlineInputBorder(),
-              hintText: 'Enter completed count',
+              hintText: l10n.dhikrAddManualHint,
             ),
           ),
           actions: [
             TextButton(
               onPressed: () => Navigator.of(dialogContext).pop(),
-              child: const Text('Cancel'),
+              child: Text(MaterialLocalizations.of(context).cancelButtonLabel),
             ),
             FilledButton(
               onPressed: () {
                 final value = int.tryParse(controller.text.trim());
                 if (value != null && value > 0) {
-                  ref.read(dhikrControllerProvider.notifier).addManualCount(value);
+                  ref
+                      .read(dhikrControllerProvider.notifier)
+                      .addManualCount(value);
                 }
                 Navigator.of(dialogContext).pop();
               },
-              child: const Text('Add'),
+              child: Text(l10n.dhikrAddAction),
             ),
           ],
         );
@@ -118,6 +124,10 @@ class DhikrSection extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final isKidsMode = ref.watch(
+      specialModeProvider.select((mode) => mode.isKids),
+    );
     final state = ref.watch(dhikrControllerProvider);
     final notifier = ref.read(dhikrControllerProvider.notifier);
     final progress = (state.currentCount / state.target).clamp(0, 1).toDouble();
@@ -135,9 +145,10 @@ class DhikrSection extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SectionTitle(
-          title: 'Dhikr',
-          subtitle: 'A calm active session. Count with intention, pause with awareness.',
+        const SectionTitle(title: '', subtitle: ''),
+        SectionTitle(
+          title: l10n.dhikrSectionTitle,
+          subtitle: l10n.dhikrSectionSubtitle,
         ),
         PremiumCard(
           child: Column(
@@ -166,7 +177,10 @@ class DhikrSection extends ConsumerWidget {
               ),
               const SizedBox(height: 10),
               Text(
-                '${state.currentCount} / ${state.target}',
+                l10n.homeFractionValue(
+                  _formatCount(context, state.currentCount),
+                  _formatCount(context, state.target),
+                ),
                 style: const TextStyle(
                   fontWeight: FontWeight.w700,
                   fontSize: 28,
@@ -177,26 +191,30 @@ class DhikrSection extends ConsumerWidget {
               const SizedBox(height: 10),
               Align(
                 alignment: Alignment.center,
-                child: GestureDetector(
-                  onTap: notifier.increment,
-                  child: AnimatedContainer(
-                    duration: const Duration(milliseconds: 140),
-                    height: 96,
-                    width: 96,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: AppColors.homeAccent.withValues(alpha: 0.22),
-                      border: Border.all(
-                        color: AppColors.homeAccent.withValues(alpha: 0.7),
+                child: Semantics(
+                  button: true,
+                  label: l10n.dhikrTapToCountSemantics,
+                  child: GestureDetector(
+                    onTap: notifier.increment,
+                    child: AnimatedContainer(
+                      duration: const Duration(milliseconds: 140),
+                      height: 96,
+                      width: 96,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: AppColors.homeAccent.withValues(alpha: 0.22),
+                        border: Border.all(
+                          color: AppColors.homeAccent.withValues(alpha: 0.7),
+                        ),
                       ),
-                    ),
-                    alignment: Alignment.center,
-                    child: const Text(
-                      'Tap\nTo Count',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        color: AppColors.onSurface,
+                      alignment: Alignment.center,
+                      child: Text(
+                        l10n.dhikrTapToCount,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w700,
+                          color: AppColors.onSurface,
+                        ),
                       ),
                     ),
                   ),
@@ -204,10 +222,12 @@ class DhikrSection extends ConsumerWidget {
               ),
               const SizedBox(height: 10),
               if (state.hasTargetReached)
-                const Padding(
+                Padding(
                   padding: EdgeInsets.only(bottom: 8),
                   child: Text(
-                    'Beautiful — target reached. Finish this session when ready.',
+                    isKidsMode
+                        ? l10n.kidsDhikrTargetReachedMessage
+                        : l10n.dhikrTargetReachedMessage,
                     style: TextStyle(color: AppColors.success),
                   ),
                 ),
@@ -219,20 +239,34 @@ class DhikrSection extends ConsumerWidget {
                   IconButton(
                     onPressed: notifier.undo,
                     icon: const Icon(Icons.undo_rounded),
-                    tooltip: 'Undo one',
+                    tooltip: isKidsMode
+                        ? l10n.kidsDhikrUndoOneTooltip
+                        : l10n.dhikrUndoOneTooltip,
                   ),
                   TextButton.icon(
                     onPressed: () => _addManualCount(context, ref),
                     icon: const Icon(Icons.edit_note_rounded),
-                    label: const Text('Add manually'),
+                    label: Text(
+                      isKidsMode
+                          ? l10n.kidsDhikrAddManuallyAction
+                          : l10n.dhikrAddManuallyAction,
+                    ),
                   ),
                   TextButton(
                     onPressed: () => _confirmReset(context, ref),
-                    child: const Text('Reset'),
+                    child: Text(
+                      isKidsMode
+                          ? l10n.kidsDhikrResetAction
+                          : l10n.dhikrResetAction,
+                    ),
                   ),
                   ElevatedButton(
                     onPressed: notifier.finishSession,
-                    child: const Text('Finish Session'),
+                    child: Text(
+                      isKidsMode
+                          ? l10n.kidsDhikrFinishSessionAction
+                          : l10n.dhikrFinishSessionAction,
+                    ),
                   ),
                 ],
               ),
@@ -240,9 +274,9 @@ class DhikrSection extends ConsumerWidget {
           ),
         ),
         const SizedBox(height: 16),
-        const SectionTitle(
-          title: 'Choose Phrase',
-          subtitle: 'Pick one dhikr phrase for the current session.',
+        SectionTitle(
+          title: l10n.dhikrChoosePhraseTitle,
+          subtitle: l10n.dhikrChoosePhraseSubtitle,
         ),
         Wrap(
           spacing: 8,
@@ -275,8 +309,9 @@ class DhikrSection extends ConsumerWidget {
                       color: isSelected
                           ? AppColors.onSurface
                           : AppColors.onSurfaceSubtle,
-                      fontWeight:
-                          isSelected ? FontWeight.w700 : FontWeight.w500,
+                      fontWeight: isSelected
+                          ? FontWeight.w700
+                          : FontWeight.w500,
                     ),
                   ),
                 ),
@@ -285,9 +320,9 @@ class DhikrSection extends ConsumerWidget {
           ],
         ),
         const SizedBox(height: 16),
-        const SectionTitle(
-          title: 'Session Target',
-          subtitle: 'Set target count for this current dhikr session.',
+        SectionTitle(
+          title: l10n.dhikrSessionTargetTitle,
+          subtitle: l10n.dhikrSessionTargetSubtitle,
         ),
         Wrap(
           spacing: 8,
@@ -302,7 +337,7 @@ class DhikrSection extends ConsumerWidget {
             _TargetChip(
               value: null,
               isSelected: false,
-              label: 'Custom',
+              label: l10n.dhikrCustomTargetChip,
               onTap: () => _setCustomTarget(context, ref),
             ),
           ],
@@ -312,8 +347,10 @@ class DhikrSection extends ConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                'Daily Dhikr Goal',
+              Text(
+                isKidsMode
+                    ? l10n.kidsDhikrDailyGoalTitle
+                    : l10n.dhikrDailyGoalTitle,
                 style: TextStyle(fontWeight: FontWeight.w700),
               ),
               const SizedBox(height: 6),
@@ -324,7 +361,10 @@ class DhikrSection extends ConsumerWidget {
               ),
               const SizedBox(height: 6),
               Text(
-                '$todayTotal / $_dailyDhikrGoal',
+                l10n.homeFractionValue(
+                  _formatCount(context, todayTotal),
+                  _formatCount(context, _dailyDhikrGoal),
+                ),
                 style: const TextStyle(
                   fontWeight: FontWeight.w700,
                   fontSize: 22,
@@ -332,51 +372,65 @@ class DhikrSection extends ConsumerWidget {
                 ),
               ),
               const SizedBox(height: 4),
-              const Text(
-                'Daily minimum across the day, separate from the current session target.',
+              Text(
+                isKidsMode
+                    ? l10n.kidsDhikrDailyGoalSubtitle
+                    : l10n.dhikrDailyGoalSubtitle,
                 style: TextStyle(color: AppColors.onSurfaceSubtle),
               ),
               const SizedBox(height: 14),
               const Divider(height: 1),
               const SizedBox(height: 14),
-              const Text(
-                'Session vs Daily',
+              Text(
+                l10n.dhikrSessionVsDailyTitle,
                 style: TextStyle(fontWeight: FontWeight.w700),
               ),
               const SizedBox(height: 8),
-              Text('Current session: ${state.currentCount} / ${state.target}'),
+              Text(
+                l10n.dhikrCurrentSessionValue(
+                  l10n.homeFractionValue(
+                    _formatCount(context, state.currentCount),
+                    _formatCount(context, state.target),
+                  ),
+                ),
+              ),
               const SizedBox(height: 6),
-              Text('Completed today: $todayCompleted'),
+              Text(
+                l10n.dhikrCompletedTodayValue(
+                  _formatCount(context, todayCompleted),
+                ),
+              ),
               const SizedBox(height: 6),
-              Text('Daily total including current session: $todayTotal'),
+              Text(
+                l10n.dhikrDailyTotalValue(_formatCount(context, todayTotal)),
+              ),
               const SizedBox(height: 6),
-              Text('Sessions completed today: $todaySessions'),
+              Text(l10n.dhikrSessionsCompletedTodayValue(todaySessions)),
               const SizedBox(height: 6),
-              Text('Favorite phrase: ${state.summary.favoritePhrase}'),
+              Text(l10n.dhikrFavoritePhraseValue(state.summary.favoritePhrase)),
             ],
           ),
         ),
         const SizedBox(height: 12),
-        const Text(
-          'Recent Sessions',
+        Text(
+          l10n.dhikrRecentSessionsTitle,
           style: TextStyle(fontWeight: FontWeight.w600),
         ),
         const SizedBox(height: 8),
         if (state.recentSessions.isEmpty)
           PremiumCard(
-            child: const Text(
-              'No completed sessions yet. Keep the first one gentle.',
+            child: Text(
+              l10n.dhikrNoCompletedSessionsYet,
               style: TextStyle(color: AppColors.onSurfaceSubtle),
             ),
           )
         else
-          ...state.recentSessions
-              .map(
-                (session) => Padding(
-                  padding: const EdgeInsets.only(bottom: 8),
-                  child: _RecentDhikrSessionCard(session: session),
-                ),
-              ),
+          ...state.recentSessions.map(
+            (session) => Padding(
+              padding: const EdgeInsets.only(bottom: 8),
+              child: _RecentDhikrSessionCard(session: session),
+            ),
+          ),
       ],
     );
   }
@@ -433,6 +487,7 @@ class _RecentDhikrSessionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return PremiumCard(
       padding: const EdgeInsets.all(12),
       child: Row(
@@ -459,7 +514,13 @@ class _RecentDhikrSessionCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 2),
                 Text(
-                  '${session.count} / ${session.target} • ${session.durationLabel}',
+                  l10n.dhikrSessionSummaryValue(
+                    l10n.homeFractionValue(
+                      _formatCount(context, session.count),
+                      _formatCount(context, session.target),
+                    ),
+                    _formatSessionDuration(context, l10n, session),
+                  ),
                   style: const TextStyle(color: AppColors.onSurfaceSubtle),
                 ),
               ],
@@ -467,11 +528,29 @@ class _RecentDhikrSessionCard extends StatelessWidget {
           ),
           const SizedBox(width: 8),
           Text(
-            '${session.finishedAt.hour}:${session.finishedAt.minute.toString().padLeft(2, '0')}',
+            DateFormat.jm(
+              Localizations.localeOf(context).toLanguageTag(),
+            ).format(session.finishedAt),
             style: const TextStyle(color: AppColors.onSurfaceSubtle),
           ),
         ],
       ),
     );
   }
+}
+
+String _formatCount(BuildContext context, num value) {
+  return NumberFormat.decimalPattern(
+    Localizations.localeOf(context).toLanguageTag(),
+  ).format(value);
+}
+
+String _formatSessionDuration(
+  BuildContext context,
+  AppLocalizations l10n,
+  DhikrSession session,
+) {
+  final minutes = session.finishedAt.difference(session.startedAt).inMinutes;
+  if (minutes <= 0) return l10n.dhikrDurationJustNow;
+  return l10n.dhikrDurationMinutes(_formatCount(context, minutes));
 }

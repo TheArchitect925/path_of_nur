@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/theme/app_colors.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../data/seeded_prophetic_lineage_data.dart';
 import '../domain/prophet_entry.dart';
@@ -36,6 +37,7 @@ class _PropheticFamilyTreePageState extends State<PropheticFamilyTreePage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final prophetsById = {for (final p in widget.prophets) p.id: p};
     final nodesById = {
       for (final node in seededPropheticLineageNodes) node.prophetId: node,
@@ -75,14 +77,14 @@ class _PropheticFamilyTreePageState extends State<PropheticFamilyTreePage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Prophetic Family Tree',
+                l10n.prophetsFamilyTreeTitle,
                 style: Theme.of(
                   context,
                 ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700),
               ),
               const SizedBox(height: 6),
               Text(
-                'Explore major lineage connections where they are clearly known, with careful and respectful framing.',
+                l10n.prophetsFamilyTreeSubtitle,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: AppColors.onSurfaceSubtle,
                 ),
@@ -91,9 +93,9 @@ class _PropheticFamilyTreePageState extends State<PropheticFamilyTreePage> {
               TextField(
                 controller: _searchController,
                 onChanged: (_) => setState(() {}),
-                decoration: const InputDecoration(
-                  hintText: 'Search prophet, Arabic name, era, or region',
-                  prefixIcon: Icon(Icons.search),
+                decoration: InputDecoration(
+                  hintText: l10n.prophetsSearchHint,
+                  prefixIcon: const Icon(Icons.search),
                 ),
               ),
               const SizedBox(height: 8),
@@ -102,12 +104,12 @@ class _PropheticFamilyTreePageState extends State<PropheticFamilyTreePage> {
                 runSpacing: 8,
                 children: [
                   _filterChip(
-                    label: 'All Lines',
+                    label: l10n.prophetsFamilyTreeAllLines,
                     selected: !_featuredOnly,
                     onTap: () => setState(() => _featuredOnly = false),
                   ),
                   _filterChip(
-                    label: 'Featured Lines',
+                    label: l10n.prophetsFamilyTreeFeaturedLines,
                     selected: _featuredOnly,
                     onTap: () => setState(() => _featuredOnly = true),
                   ),
@@ -115,7 +117,7 @@ class _PropheticFamilyTreePageState extends State<PropheticFamilyTreePage> {
               ),
               const SizedBox(height: 6),
               Text(
-                'Linked with Journey of Revelation and prophet detail pages.',
+                l10n.prophetsFamilyTreeLinkedNote,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: AppColors.onSurfaceSubtle,
                 ),
@@ -126,7 +128,7 @@ class _PropheticFamilyTreePageState extends State<PropheticFamilyTreePage> {
         const SizedBox(height: 10),
         PremiumCard(
           child: Text(
-            'This lineage view focuses on major, well-known relationships and does not attempt a complete genealogy of all prophets.',
+            l10n.prophetsFamilyTreeScopeNote,
             style: Theme.of(
               context,
             ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),

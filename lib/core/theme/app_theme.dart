@@ -307,7 +307,7 @@ class AppTheme {
         margin: EdgeInsets.zero,
       ),
       navigationBarTheme: NavigationBarThemeData(
-        backgroundColor: appearance.surface.withValues(alpha: 0.90),
+        backgroundColor: appearance.surface.withValues(alpha: 0.80),
         indicatorColor: Colors.transparent,
         iconTheme: WidgetStateProperty.resolveWith((states) {
           if (states.contains(WidgetState.selected)) {

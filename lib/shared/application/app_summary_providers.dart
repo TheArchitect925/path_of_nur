@@ -20,6 +20,8 @@ import '../../features/worship/domain/fasting_status.dart';
 import '../state/user_profile_state.dart';
 import 'special_mode_provider.dart';
 
+const _reflectionDraftSentinel = '__reflection_draft__';
+
 class WorshipSummary {
   const WorshipSummary({
     required this.prayerCompleted,
@@ -437,7 +439,7 @@ final learnSummaryProvider = Provider<LearnSummary>((ref) {
     featuredHadithTopic: hadith,
     resumeNoteTitle: notes.isEmpty
         ? (unified.recentItems.isEmpty
-              ? 'Reflection Draft'
+              ? _reflectionDraftSentinel
               : unified.recentItems.first.title)
         : notes.first.text,
     startedTopics: learnProgress.startedCount,

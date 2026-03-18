@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/theme/app_colors.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../shared/presentation/learning_references.dart';
@@ -49,23 +50,18 @@ class _HadithQuizSessionPageState extends ConsumerState<HadithQuizSessionPage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final session = _resolveSession();
     final title = widget.mode == HadithQuizPageMode.chapter
-        ? 'Chapter Quiz'
-        : 'Hadith Review Quiz';
+        ? l10n.learnQuizzesChapterQuizGroup
+        : l10n.batch9HadithReviewQuizTitle;
 
     if (session == null) {
       return AppPageScaffold(
         headerIcon: Icons.quiz_outlined,
         title: title,
-        subtitle: 'Unavailable',
-        children: const [
-          PremiumCard(
-            child: Text(
-              'No quiz is available for this selection yet. Complete more lessons and try again.',
-            ),
-          ),
-        ],
+        subtitle: l10n.batch9Unavailable,
+        children: [PremiumCard(child: Text(l10n.batch9HadithQuizUnavailable))],
       );
     }
 
@@ -86,7 +82,10 @@ class _HadithQuizSessionPageState extends ConsumerState<HadithQuizSessionPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Question ${_index + 1} of ${session.questions.length}',
+                l10n.batch9QuestionProgress(
+                  '${_index + 1}',
+                  '${session.questions.length}',
+                ),
                 style: Theme.of(
                   context,
                 ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
@@ -230,9 +229,9 @@ class _HadithQuizSessionPageState extends ConsumerState<HadithQuizSessionPage> {
                   label: Text(
                     _showFeedback
                         ? (_index == session.questions.length - 1
-                              ? 'Finish Quiz'
-                              : 'Next Question')
-                        : 'Submit Answer',
+                              ? l10n.batch9FinishQuizAction
+                              : l10n.batch9NextQuestionAction)
+                        : l10n.batch9SubmitAnswerAction,
                   ),
                 ),
               ),
@@ -248,13 +247,14 @@ class _HadithQuizSessionPageState extends ConsumerState<HadithQuizSessionPage> {
     HadithQuizSession session,
     HadithQuizSubmissionOutcome outcome,
   ) {
+    final l10n = AppLocalizations.of(context);
     final result = outcome.result;
     final total = result.total;
     final percent = total <= 0 ? 0 : ((result.score / total) * 100).round();
 
     return AppPageScaffold(
       headerIcon: Icons.check_circle_outline_rounded,
-      title: 'Quiz Results',
+      title: l10n.batch9QuizResultsTitle,
       subtitle: session.title,
       children: [
         PremiumCard(
@@ -262,7 +262,11 @@ class _HadithQuizSessionPageState extends ConsumerState<HadithQuizSessionPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                '${result.score} / $total correct • $percent%',
+                l10n.batch9HadithQuizResultHeadline(
+                  '${result.score}',
+                  '$total',
+                  '$percent',
+                ),
                 style: Theme.of(
                   context,
                 ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700),
@@ -271,7 +275,7 @@ class _HadithQuizSessionPageState extends ConsumerState<HadithQuizSessionPage> {
               Text(result.encouragement),
               const SizedBox(height: 10),
               Text(
-                'XP Reward: +${result.xpAwarded}',
+                l10n.batch9XpReward('${result.xpAwarded}'),
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   fontWeight: FontWeight.w600,
                   color: AppColors.onSurface,
@@ -285,9 +289,9 @@ class _HadithQuizSessionPageState extends ConsumerState<HadithQuizSessionPage> {
                   runSpacing: 8,
                   children: [
                     if (result.chapterMilestoneUnlocked)
-                      _milestoneChip('Chapter completed'),
+                      _milestoneChip(l10n.batch9ChapterCompleted),
                     if (result.pathMilestoneUnlocked)
-                      _milestoneChip('Path completion milestone'),
+                      _milestoneChip(l10n.batch9PathCompletionMilestone),
                   ],
                 ),
               ],
@@ -300,7 +304,7 @@ class _HadithQuizSessionPageState extends ConsumerState<HadithQuizSessionPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Qur\'an Reflection Verse',
+                l10n.batch9QuranReflectionVerseTitle,
                 style: Theme.of(
                   context,
                 ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
@@ -329,7 +333,7 @@ class _HadithQuizSessionPageState extends ConsumerState<HadithQuizSessionPage> {
                 child: FilledButton.tonalIcon(
                   onPressed: _restart,
                   icon: const Icon(Icons.replay_rounded),
-                  label: const Text('Retry Quiz'),
+                  label: Text(l10n.batch9RetryQuizAction),
                 ),
               ),
               const SizedBox(height: 8),
@@ -344,7 +348,7 @@ class _HadithQuizSessionPageState extends ConsumerState<HadithQuizSessionPage> {
                     );
                   },
                   icon: const Icon(Icons.menu_book_rounded),
-                  label: const Text('Review Related Lesson'),
+                  label: Text(l10n.batch9ReviewRelatedLessonAction),
                 ),
               ),
             ],

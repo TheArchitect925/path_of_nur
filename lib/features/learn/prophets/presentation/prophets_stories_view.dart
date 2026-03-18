@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/theme/app_colors.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../application/prophet_image_resolver.dart';
 import '../domain/prophet_entry.dart';
+import 'prophets_metadata_localization.dart';
 
 class ProphetsStoriesView extends StatelessWidget {
   const ProphetsStoriesView({
@@ -21,12 +23,9 @@ class ProphetsStoriesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     if (prophets.isEmpty) {
-      return const PremiumCard(
-        child: Text(
-          'No prophets match this search yet. Try another name, era, or region.',
-        ),
-      );
+      return PremiumCard(child: Text(l10n.prophetsEmptySearch));
     }
 
     return Column(
@@ -63,6 +62,7 @@ class _StoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final imageAsset = resolveProphetImageAsset(prophet);
     final imageAlignment = resolveProphetImageAlignment(prophet);
 
@@ -120,9 +120,7 @@ class _StoryCard extends StatelessWidget {
                             Text(
                               prophet.honoredArabicName,
                               style: Theme.of(context).textTheme.bodyMedium
-                                  ?.copyWith(
-                                    color: AppColors.onSurfaceSubtle,
-                                  ),
+                                  ?.copyWith(color: AppColors.onSurfaceSubtle),
                             ),
                           ],
                         ),
@@ -134,16 +132,18 @@ class _StoryCard extends StatelessWidget {
                     spacing: 6,
                     runSpacing: 6,
                     children: [
-                      _MetaPill(text: prophet.eraTitle),
+                      _MetaPill(
+                        text: localizedProphetEraTitle(l10n, prophet.eraGroup),
+                      ),
                       _MetaPill(text: prophet.regionLabel),
                     ],
                   ),
                   const SizedBox(height: 8),
                   Text(
                     prophet.shortSummary,
-                    style: Theme.of(
-                      context,
-                    ).textTheme.bodyMedium?.copyWith(color: AppColors.onSurface),
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color: AppColors.onSurface,
+                    ),
                   ),
                 ],
               ),
@@ -172,6 +172,7 @@ class _StoryCardHero extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return ClipRRect(
       borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
       child: AspectRatio(
@@ -207,7 +208,10 @@ class _StoryCardHero extends StatelessWidget {
               top: 12,
               left: 12,
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 6,
+                ),
                 decoration: BoxDecoration(
                   color: const Color(0xFF201710).withValues(alpha: 0.62),
                   borderRadius: BorderRadius.circular(999),
@@ -229,16 +233,22 @@ class _StoryCardHero extends StatelessWidget {
               top: 8,
               right: 8,
               child: IconButton(
-                tooltip: saved ? 'Remove bookmark' : 'Save prophet',
+                tooltip: saved
+                    ? l10n.prophetsRemoveBookmark
+                    : l10n.prophetsSaveBookmark,
                 onPressed: onToggleBookmark,
                 style: IconButton.styleFrom(
-                  backgroundColor: const Color(0xFF201710).withValues(alpha: 0.45),
+                  backgroundColor: const Color(
+                    0xFF201710,
+                  ).withValues(alpha: 0.45),
                   foregroundColor: saved
                       ? const Color(0xFFF1D29A)
                       : Colors.white,
                 ),
                 icon: Icon(
-                  saved ? Icons.bookmark_rounded : Icons.bookmark_border_rounded,
+                  saved
+                      ? Icons.bookmark_rounded
+                      : Icons.bookmark_border_rounded,
                 ),
               ),
             ),

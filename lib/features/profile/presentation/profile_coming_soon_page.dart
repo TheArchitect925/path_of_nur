@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../l10n/app_localizations.dart';
 import '../../../shared/widgets/app_page_scaffold.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/section_title.dart';
@@ -10,41 +11,38 @@ class ProfileComingSoonPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return AppPageScaffold(
       headerIcon: Icons.upcoming_outlined,
-      title: 'Coming soon',
-      subtitle: 'A calm look at the next improvements planned for Path of Nūr.',
-      children: const [
+      title: l10n.settingsComingSoonTitle,
+      subtitle: l10n.settingsComingSoonSubtitle,
+      children: [
         SectionTitle(
-          title: 'On the roadmap',
-          subtitle: 'These are the next areas being shaped for future updates.',
+          title: l10n.profileComingSoonRoadmapTitle,
+          subtitle: l10n.profileComingSoonRoadmapSubtitle,
         ),
         _ComingSoonCard(
           icon: IslamicIcons.quran,
-          title: 'Deeper Qur’anic Arabic guidance',
-          description:
-              'More verified source-linked examples, stronger review support, and clearer lesson progression are planned next.',
+          title: l10n.profileComingSoonCard1Title,
+          description: l10n.profileComingSoonCard1Description,
         ),
-        SizedBox(height: 14),
+        const SizedBox(height: 14),
         _ComingSoonCard(
           icon: Icons.quiz_outlined,
-          title: 'Broader trivia journeys',
-          description:
-              'More curated knowledge paths, stronger category coverage, and better content diagnostics are planned.',
+          title: l10n.profileComingSoonCard2Title,
+          description: l10n.profileComingSoonCard2Description,
         ),
-        SizedBox(height: 14),
+        const SizedBox(height: 14),
         _ComingSoonCard(
           icon: IslamicIcons.prayer,
-          title: 'Refined prayer widgets',
-          description:
-              'Further lock screen and Dynamic Island polish, with tighter presentation and more stable display options.',
+          title: l10n.profileComingSoonCard3Title,
+          description: l10n.profileComingSoonCard3Description,
         ),
-        SizedBox(height: 14),
+        const SizedBox(height: 14),
         _ComingSoonCard(
           icon: Icons.auto_awesome_outlined,
-          title: 'Gentler personalization',
-          description:
-              'More optional onboarding and profile controls are planned so the app can adapt without feeling heavy.',
+          title: l10n.profileComingSoonCard4Title,
+          description: l10n.profileComingSoonCard4Description,
         ),
       ],
     );

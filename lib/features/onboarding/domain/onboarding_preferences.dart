@@ -10,6 +10,8 @@ enum OnboardingAgeRange {
   age55Plus,
 }
 
+enum OnboardingLearningAgeGroup { kids, teens, adults }
+
 enum OnboardingIslamExperience {
   exploring,
   newToIslam,
@@ -57,6 +59,7 @@ class OnboardingPreferences {
     required this.languageChoiceId,
     required this.localeTag,
     required this.ageRange,
+    required this.learningAgeGroup,
     required this.islamExperience,
     required this.salahConsistency,
     required this.prayerMethodChoice,
@@ -81,6 +84,7 @@ class OnboardingPreferences {
   final String languageChoiceId;
   final String? localeTag;
   final OnboardingAgeRange ageRange;
+  final OnboardingLearningAgeGroup learningAgeGroup;
   final OnboardingIslamExperience islamExperience;
   final OnboardingSalahConsistency salahConsistency;
   final OnboardingPrayerMethodChoice prayerMethodChoice;
@@ -105,6 +109,7 @@ class OnboardingPreferences {
     'languageChoiceId': languageChoiceId,
     'localeTag': localeTag,
     'ageRange': ageRange.name,
+    'learningAgeGroup': learningAgeGroup.name,
     'islamExperience': islamExperience.name,
     'salahConsistency': salahConsistency.name,
     'prayerMethodChoice': prayerMethodChoice.name,
@@ -170,6 +175,10 @@ class OnboardingPreferences {
       ageRange: enumOrDefault(
         OnboardingAgeRange.values,
         json['ageRange']?.toString(),
+      ),
+      learningAgeGroup: enumOrDefault(
+        OnboardingLearningAgeGroup.values,
+        json['learningAgeGroup']?.toString(),
       ),
       islamExperience: enumOrDefault(
         OnboardingIslamExperience.values,

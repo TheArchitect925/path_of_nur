@@ -1,11 +1,15 @@
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 
 import '../../ocean/application/ocean_drops_provider.dart';
+import '../../../l10n/app_localizations.dart';
 import '../../../shared/persistence/local_store.dart';
 import '../data/prayer_log_repository.dart';
 import '../domain/prayer_name.dart';
 import '../domain/prayer_status.dart';
 import '../domain/prayer_tracker_fields.dart';
+
 enum PrayerCalendarMode { gregorian, islamic }
 
 class PrayerTrackerEntry {
@@ -147,9 +151,7 @@ class PrayerTrackerController extends StateNotifier<PrayerTrackerState> {
             timing: PrayerOfferTiming.onTime,
             place: PrayerOfferPlace.alone,
           )
-        : PrayerTrackerEntry(
-            status: next,
-          );
+        : PrayerTrackerEntry(status: next);
     state = state.copyWith(records: updated);
     _syncQadaQueueForTransition(prayer, current.status, next);
     _saveSelectedDay();
@@ -271,15 +273,16 @@ class PrayerTrackerController extends StateNotifier<PrayerTrackerState> {
   }
 
   String cadenceRecommendation() {
+    final l10n = _prayerTrackerL10n();
     final total = state.qadaBacklog.values.fold<int>(0, (a, b) => a + b);
-    if (total <= 0) return 'Queue clear. Maintain on-time prayers.';
+    if (total <= 0) return l10n.prayerCadenceQueueClear;
     if (total <= 20) {
-      return 'Light cadence: 1 extra qada after Fajr or Isha.';
+      return l10n.prayerCadenceLight;
     }
     if (total <= 60) {
-      return 'Steady cadence: 2 qada daily (one after Fajr, one after Isha).';
+      return l10n.prayerCadenceSteady;
     }
-    return 'Focused cadence: 3 qada daily in small blocks with consistency.';
+    return l10n.prayerCadenceFocused;
   }
 
   List<PrayerName> qadaQueue({int limit = 30}) {
@@ -303,7 +306,8 @@ class PrayerTrackerController extends StateNotifier<PrayerTrackerState> {
     for (var i = 0; i < days; i += 1) {
       final day = first.add(Duration(days: i));
       output[day] = {
-        for (final entry in _loadForDate(day).entries) entry.key: entry.value.status,
+        for (final entry in _loadForDate(day).entries)
+          entry.key: entry.value.status,
       };
     }
     return output;
@@ -339,7 +343,8 @@ class PrayerTrackerController extends StateNotifier<PrayerTrackerState> {
         status: raw.status,
         timing: raw.status == PrayerStatus.completed ? raw.timing : null,
         place: raw.status == PrayerStatus.completed ? raw.place : null,
-        notes: raw.status == PrayerStatus.completed &&
+        notes:
+            raw.status == PrayerStatus.completed &&
                 raw.notes != null &&
                 raw.notes!.isNotEmpty
             ? raw.notes
@@ -352,21 +357,18 @@ class PrayerTrackerController extends StateNotifier<PrayerTrackerState> {
   void _saveSelectedDay() {
     final key = LocalStore.todayKey(state.selectedDate);
     final existing = _repository.readDayEntries(key);
-    _repository.saveDayEntries(
-      key,
-      <PrayerName, PrayerLogDayEntry>{
-        for (final entry in state.records.entries)
-          entry.key: PrayerLogDayEntry(
-            status: entry.value.status,
-            timing: entry.value.timing,
-            place: entry.value.place,
-            notes: entry.value.notes,
-            completedAtIso: entry.value.status == PrayerStatus.completed
-                ? existing[entry.key]?.completedAtIso
-                : null,
-          ),
-      },
-    );
+    _repository.saveDayEntries(key, <PrayerName, PrayerLogDayEntry>{
+      for (final entry in state.records.entries)
+        entry.key: PrayerLogDayEntry(
+          status: entry.value.status,
+          timing: entry.value.timing,
+          place: entry.value.place,
+          notes: entry.value.notes,
+          completedAtIso: entry.value.status == PrayerStatus.completed
+              ? existing[entry.key]?.completedAtIso
+              : null,
+        ),
+    });
   }
 
   void _loadQadaBacklog() {
@@ -435,6 +437,18 @@ class PrayerTrackerController extends StateNotifier<PrayerTrackerState> {
   }
 }
 
+AppLocalizations _prayerTrackerL10n() {
+  final locale = Intl.getCurrentLocale().replaceAll('-', '_').split('_');
+  return lookupAppLocalizations(
+    Locale.fromSubtags(
+      languageCode: locale.isNotEmpty && locale.first.isNotEmpty
+          ? locale.first
+          : 'en',
+      countryCode: locale.length > 1 ? locale.last : null,
+    ),
+  );
+}
+
 final prayerTrackerControllerProvider =
     StateNotifierProvider<PrayerTrackerController, PrayerTrackerState>((ref) {
       return PrayerTrackerController(
@@ -459,15 +473,16 @@ final prayerMonthlyRecordsProvider =
       return controller.loadMonthMap(anchor);
     });
 
-final prayerMonthlyEntryRecordsProvider = Provider.family<
-  Map<DateTime, Map<PrayerName, PrayerTrackerEntry>>,
-  DateTime
->((ref, month) {
-  final controller = ref.watch(prayerTrackerControllerProvider.notifier);
-  final tick = ref.watch(prayerTrackerControllerProvider);
-  final anchor = DateTime(month.year, month.month, 1);
-  if (tick.selectedDate.year == -1) {
-    return const {};
-  }
-  return controller.loadMonthEntryMap(anchor);
-});
+final prayerMonthlyEntryRecordsProvider =
+    Provider.family<
+      Map<DateTime, Map<PrayerName, PrayerTrackerEntry>>,
+      DateTime
+    >((ref, month) {
+      final controller = ref.watch(prayerTrackerControllerProvider.notifier);
+      final tick = ref.watch(prayerTrackerControllerProvider);
+      final anchor = DateTime(month.year, month.month, 1);
+      if (tick.selectedDate.year == -1) {
+        return const {};
+      }
+      return controller.loadMonthEntryMap(anchor);
+    });

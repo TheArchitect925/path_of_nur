@@ -22,8 +22,10 @@ class DhikrSessionState {
   bool get hasTargetReached => currentCount >= target;
 
   DhikrSummary get summary {
-    final totals =
-        recentSessions.fold<int>(0, (acc, session) => acc + session.count);
+    final totals = recentSessions.fold<int>(
+      0,
+      (acc, session) => acc + session.count,
+    );
     final top = _favoriteLabel();
     return DhikrSummary(
       totalCount: totals,
@@ -38,13 +40,14 @@ class DhikrSessionState {
     }
     final counts = <String, int>{};
     for (final session in recentSessions) {
-      counts.update(session.phraseLabel, (value) => value + session.count,
-          ifAbsent: () => session.count);
+      counts.update(
+        session.phraseLabel,
+        (value) => value + session.count,
+        ifAbsent: () => session.count,
+      );
     }
     return counts.entries
-        .reduce(
-          (left, right) => left.value >= right.value ? left : right,
-        )
+        .reduce((left, right) => left.value >= right.value ? left : right)
         .key;
   }
 
@@ -144,9 +147,7 @@ class DhikrController extends StateNotifier<DhikrSessionState> {
       phraseLabel: state.selectedPreset.label,
       count: state.currentCount,
       target: state.target,
-      startedAt: now.subtract(
-        Duration(seconds: state.currentCount),
-      ),
+      startedAt: now.subtract(Duration(seconds: state.currentCount)),
       finishedAt: now,
     );
 

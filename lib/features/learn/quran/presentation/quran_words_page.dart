@@ -3,12 +3,14 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../../l10n/app_localizations.dart';
 import '../../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../../shared/widgets/premium_card.dart';
 import '../application/quran_words_provider.dart';
 import '../domain/quran_core_word.dart';
 
 enum _BandFilter { top25, top50, top100, all }
+
 enum _WordSort { mostFrequent, rank, alphabetical }
 
 class QuranWordsPage extends ConsumerStatefulWidget {
@@ -25,23 +27,23 @@ class _QuranWordsPageState extends ConsumerState<QuranWordsPage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final wordsAsync = ref.watch(quranCoreWordsProvider);
     final progress = ref.watch(quranWordsProgressProvider);
     final progressNotifier = ref.read(quranWordsProgressProvider.notifier);
 
     return AppPageScaffold(
       headerIcon: Icons.translate_rounded,
-      title: 'Quran Top Words',
-      subtitle:
-          'Learn high-frequency Quran words (derived from your Top 500 Words source).',
+      title: l10n.quranTopWordsTitle,
+      subtitle: l10n.batch9QuranWordsSubtitle,
       children: [
         PremiumCard(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                'Study Bands',
-                style: TextStyle(fontWeight: FontWeight.w700),
+              Text(
+                l10n.batch9QuranWordsStudyBands,
+                style: const TextStyle(fontWeight: FontWeight.w700),
               ),
               const SizedBox(height: 8),
               Wrap(
@@ -49,22 +51,22 @@ class _QuranWordsPageState extends ConsumerState<QuranWordsPage> {
                 runSpacing: 8,
                 children: [
                   _BandChip(
-                    label: 'Top 25',
+                    label: l10n.batch9QuranWordsTop25,
                     selected: _filter == _BandFilter.top25,
                     onTap: () => setState(() => _filter = _BandFilter.top25),
                   ),
                   _BandChip(
-                    label: 'Top 50',
+                    label: l10n.batch9QuranWordsTop50,
                     selected: _filter == _BandFilter.top50,
                     onTap: () => setState(() => _filter = _BandFilter.top50),
                   ),
                   _BandChip(
-                    label: 'Top 100',
+                    label: l10n.batch9QuranWordsTop100,
                     selected: _filter == _BandFilter.top100,
                     onTap: () => setState(() => _filter = _BandFilter.top100),
                   ),
                   _BandChip(
-                    label: 'All Loaded',
+                    label: l10n.batch9QuranWordsAllLoaded,
                     selected: _filter == _BandFilter.all,
                     onTap: () => setState(() => _filter = _BandFilter.all),
                   ),
@@ -74,23 +76,23 @@ class _QuranWordsPageState extends ConsumerState<QuranWordsPage> {
               DropdownButtonFormField<_WordSort>(
                 initialValue: _sort,
                 style: Theme.of(context).textTheme.bodyLarge,
-                decoration: const InputDecoration(
-                  labelText: 'Sort by',
+                decoration: InputDecoration(
+                  labelText: l10n.batch9SortBy,
                   border: OutlineInputBorder(),
                   isDense: true,
                 ),
-                items: const [
+                items: [
                   DropdownMenuItem(
                     value: _WordSort.mostFrequent,
-                    child: Text('Most frequent'),
+                    child: Text(l10n.batch9QuranWordsSortMostFrequent),
                   ),
                   DropdownMenuItem(
                     value: _WordSort.rank,
-                    child: Text('Top list rank'),
+                    child: Text(l10n.batch9QuranWordsSortRank),
                   ),
                   DropdownMenuItem(
                     value: _WordSort.alphabetical,
-                    child: Text('Alphabetical'),
+                    child: Text(l10n.batch9SortAlphabetical),
                   ),
                 ],
                 onChanged: (value) {
@@ -101,8 +103,8 @@ class _QuranWordsPageState extends ConsumerState<QuranWordsPage> {
               const SizedBox(height: 10),
               TextField(
                 onChanged: (value) => setState(() => _query = value),
-                decoration: const InputDecoration(
-                  hintText: 'Search transliteration or meaning',
+                decoration: InputDecoration(
+                  hintText: l10n.batch9QuranWordsSearchHint,
                   prefixIcon: Icon(Icons.search_rounded),
                   border: OutlineInputBorder(),
                   isDense: true,
@@ -133,7 +135,11 @@ class _QuranWordsPageState extends ConsumerState<QuranWordsPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        '$masteredVisible / ${visible.length} mastered',
+                        l10n.batch9QuranWordsMasteredSummary(
+                          '$masteredVisible',
+                          '${visible.length}',
+                          masteredVisible,
+                        ),
                         style: const TextStyle(fontWeight: FontWeight.w700),
                       ),
                       const SizedBox(height: 8),
@@ -147,7 +153,10 @@ class _QuranWordsPageState extends ConsumerState<QuranWordsPage> {
                       if (sample != null) ...[
                         const SizedBox(height: 10),
                         Text(
-                          'Flash card: ${sample.transliteration}  •  ${sample.meaning}',
+                          l10n.batch9QuranWordsFlashCard(
+                            sample.transliteration,
+                            sample.meaning,
+                          ),
                           style: const TextStyle(
                             color: Color(0xFF6A5A4A),
                             height: 1.3,
@@ -159,9 +168,7 @@ class _QuranWordsPageState extends ConsumerState<QuranWordsPage> {
                 ),
                 const SizedBox(height: 12),
                 if (visible.isEmpty)
-                  const PremiumCard(
-                    child: Text('No words match this filter yet.'),
-                  )
+                  PremiumCard(child: Text(l10n.batch9QuranWordsEmpty))
                 else
                   ...visible.map((word) {
                     final mastered = progress.masteredRanks.contains(word.rank);
@@ -175,7 +182,12 @@ class _QuranWordsPageState extends ConsumerState<QuranWordsPage> {
                             style: const TextStyle(fontWeight: FontWeight.w700),
                           ),
                           subtitle: Text(
-                            '${word.meaning}${word.occurrences > 0 ? ' • ${word.occurrences} times in Qur’an' : ''}',
+                            word.occurrences > 0
+                                ? l10n.batch9QuranWordsOccurrenceSummary(
+                                    word.meaning,
+                                    '${word.occurrences}',
+                                  )
+                                : word.meaning,
                           ),
                           trailing: Checkbox(
                             value: mastered,
@@ -192,8 +204,9 @@ class _QuranWordsPageState extends ConsumerState<QuranWordsPage> {
             );
           },
           loading: () => const PremiumCard(child: LinearProgressIndicator()),
-          error: (error, _) =>
-              PremiumCard(child: Text('Unable to load Quran words: $error')),
+          error: (error, _) => PremiumCard(
+            child: Text(l10n.batch9QuranWordsLoadError('$error')),
+          ),
         ),
       ],
     );

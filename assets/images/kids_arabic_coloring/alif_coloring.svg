@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1240" height="1754" viewBox="0 0 1240 1754">
+  <rect width="1240" height="1754" fill="#ffffff"/>
+  <text x="620" y="180" text-anchor="middle" font-size="180" font-family="Noto Naskh Arabic" fill="#000000">ا</text>
+  <g stroke="#000000" stroke-width="16" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M620 360 L620 1180"/>
+    <path d="M500 1260 H740"/>
+    <path d="M320 700 C380 620 460 590 520 610"/>
+    <path d="M920 740 C860 650 770 620 700 640"/>
+    <path d="M420 1310 C500 1230 740 1230 820 1310"/>
+    <circle cx="360" cy="420" r="42"/>
+    <circle cx="880" cy="470" r="36"/>
+    <path d="M260 980 Q340 930 420 980"/>
+    <path d="M820 980 Q900 930 980 980"/>
+  </g>
+</svg>

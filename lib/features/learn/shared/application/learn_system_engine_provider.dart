@@ -1,5 +1,8 @@
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../core/localization/locale_provider.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../ocean/application/ocean_drops_provider.dart';
 import '../../../../shared/persistence/local_store.dart';
 import '../../hadith/application/hadith_foundation_repository.dart';
@@ -318,6 +321,8 @@ final learnSharedThemesProvider = Provider<List<LearnSharedTheme>>((_) {
 });
 
 final learnDomainCardsProvider = Provider<List<LearnDomainCard>>((ref) {
+  final locale = ref.watch(appLocaleProvider) ?? const Locale('en');
+  final l10n = lookupAppLocalizations(locale);
   LearnCategoryItem pickById(String id) {
     for (final item in LearnCategoryCatalog.items) {
       if (item.id == id) return item;
@@ -328,56 +333,56 @@ final learnDomainCardsProvider = Provider<List<LearnDomainCard>>((ref) {
   return [
     LearnDomainCard(
       domain: LearnUnifiedDomain.quran,
-      title: 'Qur’an',
-      subtitle: 'Recite, understand, reflect, and memorize.',
+      title: l10n.quranTitle,
+      subtitle: l10n.learnMetadataDomainQuranSubtitle,
       learnCategory: pickById('quran'),
     ),
     LearnDomainCard(
       domain: LearnUnifiedDomain.hadith,
-      title: 'Hadith',
-      subtitle: 'Themes, daily reflections, and guided paths.',
+      title: l10n.learnCategoryHadithTitle,
+      subtitle: l10n.learnMetadataDomainHadithSubtitle,
       learnCategory: pickById('hadith'),
     ),
     LearnDomainCard(
       domain: LearnUnifiedDomain.prophets,
-      title: 'Prophets',
-      subtitle: 'Stories, timeline, map, and guided journeys.',
+      title: l10n.learnCategoryStoriesOfProphetsTitle,
+      subtitle: l10n.learnMetadataDomainProphetsSubtitle,
       learnCategory: pickById('prophets'),
     ),
     LearnDomainCard(
       domain: LearnUnifiedDomain.lifeLessons,
-      title: 'Life Lessons',
-      subtitle: 'Qur’an-rooted lessons for daily conduct.',
+      title: l10n.learnCategoryDivineLifeLessonsTitle,
+      subtitle: l10n.learnMetadataDomainLifeLessonsSubtitle,
       learnCategory: pickById('life-lessons-quran'),
     ),
     LearnDomainCard(
       domain: LearnUnifiedDomain.salah,
-      title: 'Salah Trainer',
-      subtitle: 'Prayer structure, surah practice, and guided recitation.',
+      title: l10n.learnCategorySalahTrainerTitle,
+      subtitle: l10n.learnMetadataDomainSalahSubtitle,
       learnCategory: pickById('salah'),
     ),
     LearnDomainCard(
       domain: LearnUnifiedDomain.namesOfAllah,
-      title: '99 Names of Allah',
-      subtitle: 'Reflect on divine names and meanings.',
+      title: l10n.quranNamesOfAllahTitle,
+      subtitle: l10n.learnMetadataDomainNamesSubtitle,
       learnCategory: pickById('allah-names'),
     ),
     LearnDomainCard(
       domain: LearnUnifiedDomain.babyNames,
-      title: 'Baby Names',
-      subtitle: 'Explore meanings, roots, and saved lists.',
+      title: l10n.learnCategoryBabyNamesTitle,
+      subtitle: l10n.learnMetadataDomainBabyNamesSubtitle,
       learnCategory: pickById('baby-names'),
     ),
     LearnDomainCard(
       domain: LearnUnifiedDomain.quizzes,
-      title: 'Quizzes',
-      subtitle: 'Knowledge checks across learning domains.',
+      title: l10n.learnCategoryQuizzesTitle,
+      subtitle: l10n.learnMetadataDomainQuizzesSubtitle,
       learnCategory: pickById('quizzes'),
     ),
     LearnDomainCard(
       domain: LearnUnifiedDomain.notes,
-      title: 'Notes',
-      subtitle: 'Saved reflections and annotations in one place.',
+      title: l10n.learnCategoryNotesTitle,
+      subtitle: l10n.learnMetadataDomainNotesSubtitle,
       learnCategory: pickById('notes'),
     ),
   ];
@@ -386,6 +391,8 @@ final learnDomainCardsProvider = Provider<List<LearnDomainCard>>((ref) {
 final learnUnifiedItemsProvider = Provider<List<LearnUnifiedContentItem>>((
   ref,
 ) {
+  final locale = ref.watch(appLocaleProvider) ?? const Locale('en');
+  final l10n = lookupAppLocalizations(locale);
   final quranVerses = ref.watch(quranLearningVersesProvider);
   final hadithEntries = ref.watch(hadithEntriesProvider);
   final prophetEntries = ref.watch(prophetsProvider);
@@ -411,7 +418,7 @@ final learnUnifiedItemsProvider = Provider<List<LearnUnifiedContentItem>>((
         id: id,
         type: LearnItemType.verse,
         domain: LearnUnifiedDomain.quran,
-        title: 'Qur’an ${verse.surah}:${verse.ayah}',
+        title: l10n.learnMetadataQuranVerseTitle(verse.surah, verse.ayah),
         subtitle: verse.translation,
         summary: verse.explanation,
         tags: ['quran', 'verse', ...themeIds],
@@ -440,7 +447,10 @@ final learnUnifiedItemsProvider = Provider<List<LearnUnifiedContentItem>>((
         type: LearnItemType.hadith,
         domain: LearnUnifiedDomain.hadith,
         title: entry.title,
-        subtitle: '${entry.displaySourceCollection} • ${entry.grading}',
+        subtitle: l10n.learnMetadataHadithSubtitle(
+          entry.displaySourceCollection,
+          entry.grading,
+        ),
         summary: entry.excerpt,
         tags: ['hadith', ...entry.tags],
         themeIds: [themeId],
@@ -480,8 +490,7 @@ final learnUnifiedItemsProvider = Provider<List<LearnUnifiedContentItem>>((
         practiceActions: const ['Read the prophet detail and note one lesson.'],
         isFeatured: prophet.isFeatured,
         isDailyEligible: true,
-        routeName: 'learnSectionHub',
-        pathParameters: {'sectionId': 'prophets'},
+        routeName: 'learnProphetsHub',
       ),
     );
   }
@@ -519,7 +528,10 @@ final learnUnifiedItemsProvider = Provider<List<LearnUnifiedContentItem>>((
         type: LearnItemType.salahPrayer,
         domain: LearnUnifiedDomain.salah,
         title: prayer.title,
-        subtitle: '${prayer.fardRakahs} • ${prayer.recitationStyle}',
+        subtitle: l10n.learnMetadataSalahPrayerSubtitle(
+          prayer.fardRakahs,
+          prayer.recitationStyle,
+        ),
         summary: prayer.shortDescription,
         tags: ['salah', 'prayer', prayer.id.name, prayer.title.toLowerCase()],
         themeIds: const ['prayer', 'knowledge'],
@@ -548,7 +560,7 @@ final learnUnifiedItemsProvider = Provider<List<LearnUnifiedContentItem>>((
         type: LearnItemType.surah,
         domain: LearnUnifiedDomain.salah,
         title: surah.name,
-        subtitle: 'Surah ${surah.surahNumber}',
+        subtitle: l10n.learnMetadataSurahSubtitle('${surah.surahNumber}'),
         summary: surah.summary,
         tags: ['salah', 'surah', 'memorization', surah.id, surah.name],
         themeIds: const ['prayer', 'knowledge'],
@@ -635,7 +647,7 @@ final learnUnifiedItemsProvider = Provider<List<LearnUnifiedContentItem>>((
         type: LearnItemType.quiz,
         domain: LearnUnifiedDomain.quizzes,
         title: quiz.title,
-        subtitle: '${quiz.questions.length} questions',
+        subtitle: l10n.learnMetadataQuestionCount(quiz.questions.length),
         summary: quiz.description,
         tags: const ['quiz', 'hadith'],
         themeIds: const ['knowledge'],
@@ -662,10 +674,9 @@ final learnUnifiedItemsProvider = Provider<List<LearnUnifiedContentItem>>((
         id: 'quiz:prophets:mixed',
         type: LearnItemType.quiz,
         domain: LearnUnifiedDomain.quizzes,
-        title: 'Prophets Review Quiz',
-        subtitle: '$prophetQuizCount questions in pool',
-        summary:
-            'Mixed prophet identification, timeline, lesson, and Qur’anic reference review.',
+        title: l10n.learnMetadataProphetsReviewQuizTitle,
+        subtitle: l10n.learnMetadataQuestionsInPool(prophetQuizCount),
+        summary: l10n.learnMetadataProphetsReviewQuizSummary,
         tags: const ['quiz', 'prophets'],
         themeIds: const ['knowledge', 'faith'],
         difficulty: LearnDifficulty.intermediate,
@@ -677,8 +688,7 @@ final learnUnifiedItemsProvider = Provider<List<LearnUnifiedContentItem>>((
         practiceActions: const ['Take a prophets quiz session.'],
         isFeatured: true,
         isDailyEligible: true,
-        routeName: 'learnSectionHub',
-        pathParameters: {'sectionId': 'prophets'},
+        routeName: 'learnProphetsHub',
         queryParameters: {'tab': 'quiz'},
       ),
     );
@@ -691,9 +701,15 @@ final learnUnifiedItemsProvider = Provider<List<LearnUnifiedContentItem>>((
         type: LearnItemType.note,
         domain: LearnUnifiedDomain.notes,
         title: note.text.trim().isEmpty
-            ? 'Qur’an note ${note.surahNumber}:${note.ayahNumber}'
+            ? l10n.learnMetadataQuranNoteTitle(
+                '${note.surahNumber}',
+                '${note.ayahNumber}',
+              )
             : note.text.split('\n').first.trim(),
-        subtitle: 'Qur’an ${note.surahNumber}:${note.ayahNumber}',
+        subtitle: l10n.learnMetadataQuranNoteSubtitle(
+          '${note.surahNumber}',
+          '${note.ayahNumber}',
+        ),
         summary: note.text,
         tags: ['notes', 'quran', ...note.tags],
         themeIds: const ['knowledge'],
@@ -725,6 +741,8 @@ final learnUnifiedItemByIdProvider =
     });
 
 final learnUnifiedPathsProvider = Provider<List<LearnUnifiedPath>>((ref) {
+  final locale = ref.watch(appLocaleProvider) ?? const Locale('en');
+  final l10n = lookupAppLocalizations(locale);
   final items = ref.watch(learnUnifiedItemsProvider);
   final itemIds = items.map((item) => item.id).toSet();
 
@@ -745,74 +763,99 @@ final learnUnifiedPathsProvider = Provider<List<LearnUnifiedPath>>((ref) {
   final seeded = <LearnUnifiedPath>[
     LearnUnifiedPath(
       id: 'path_faith_foundations',
-      title: 'Foundations of Faith',
-      summary:
-          'A mixed path through Qur’an, hadith, prophets, reflection, and quiz review.',
+      title: l10n.learnMetadataPathFaithFoundationsTitle,
+      summary: l10n.learnMetadataPathFaithFoundationsSummary,
       themeIds: const ['faith', 'intention', 'prayer'],
       steps: steps([
         (
           'quran:verse:1:5',
-          'Start with worship and reliance',
+          l10n.learnMetadataPathFaithStep1,
           LearnItemType.verse,
         ),
         (
           'hadith:lesson:intentions_core',
-          'Purify intention',
+          l10n.learnMetadataPathFaithStep2,
           LearnItemType.hadith,
         ),
         (
           'prophet:adam',
-          'Learn from the beginning of guidance',
+          l10n.learnMetadataPathFaithStep3,
           LearnItemType.prophet,
         ),
         (
           'quran:verse:29:45',
-          'Strengthen salah and conduct',
+          l10n.learnMetadataPathFaithStep4,
           LearnItemType.verse,
         ),
-        ('quiz:prophets:mixed', 'Knowledge check', LearnItemType.quiz),
+        (
+          'quiz:prophets:mixed',
+          l10n.learnMetadataPathFaithStep5,
+          LearnItemType.quiz,
+        ),
       ]),
     ),
     LearnUnifiedPath(
       id: 'path_character_mercy',
-      title: 'Character and Mercy',
-      summary:
-          'Develop speech ethics, mercy, and justice through connected sources.',
+      title: l10n.learnMetadataPathCharacterTitle,
+      summary: l10n.learnMetadataPathCharacterSummary,
       themeIds: const ['character', 'mercy', 'justice', 'family'],
       steps: steps([
         (
           'hadith:lesson:sent_to_perfect_character',
-          'Prophetic standard of character',
+          l10n.learnMetadataPathCharacterStep1,
           LearnItemType.hadith,
         ),
-        ('quran:verse:16:90', 'Justice and excellence', LearnItemType.verse),
+        (
+          'quran:verse:16:90',
+          l10n.learnMetadataPathCharacterStep2,
+          LearnItemType.verse,
+        ),
         (
           'life:lesson:speak_well_2_83',
-          'Speak to people well',
+          l10n.learnMetadataPathCharacterStep3,
           LearnItemType.lifeLesson,
         ),
-        ('prophet:muhammad', 'Mercy in leadership', LearnItemType.prophet),
-        ('hadith:lesson:kind_speech', 'Guard the tongue', LearnItemType.hadith),
+        (
+          'prophet:muhammad',
+          l10n.learnMetadataPathCharacterStep4,
+          LearnItemType.prophet,
+        ),
+        (
+          'hadith:lesson:kind_speech',
+          l10n.learnMetadataPathCharacterStep5,
+          LearnItemType.hadith,
+        ),
       ]),
     ),
     LearnUnifiedPath(
       id: 'path_return_hope',
-      title: 'Return with Hope',
-      summary:
-          'A repentance-focused path bridging Qur’an, hadith, and remembrance practices.',
+      title: l10n.learnMetadataPathReturnTitle,
+      summary: l10n.learnMetadataPathReturnSummary,
       themeIds: const ['repentance', 'trust_allah', 'dua_remembrance'],
       steps: steps([
-        ('quran:verse:39:53', 'Do not despair of mercy', LearnItemType.verse),
+        (
+          'quran:verse:39:53',
+          l10n.learnMetadataPathReturnStep1,
+          LearnItemType.verse,
+        ),
         (
           'hadith:lesson:repentance_joy',
-          'Joy of repentance',
+          l10n.learnMetadataPathReturnStep2,
           LearnItemType.hadith,
         ),
-        ('prophet:yunus', 'Return in darkness', LearnItemType.prophet),
-        ('name:allah:14', 'Reflect on Al-Ghaffar', LearnItemType.name),
+        (
+          'prophet:yunus',
+          l10n.learnMetadataPathReturnStep3,
+          LearnItemType.prophet,
+        ),
+        (
+          'name:allah:14',
+          l10n.learnMetadataPathReturnStep4,
+          LearnItemType.name,
+        ),
         (
           'hadith:lesson:prophet_sought_forgiveness_daily',
-          'Daily istighfar practice',
+          l10n.learnMetadataPathReturnStep5,
           LearnItemType.hadith,
         ),
       ]),

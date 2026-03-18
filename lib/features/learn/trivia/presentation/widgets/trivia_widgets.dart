@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../../core/theme/app_colors.dart';
+import '../../../../../l10n/app_localizations.dart';
 import '../../../../../shared/widgets/premium_card.dart';
 import '../../domain/trivia_models.dart';
+import '../trivia_ui_localization.dart';
 
 class TriviaStatTile extends StatelessWidget {
   const TriviaStatTile({
@@ -26,23 +29,20 @@ class TriviaStatTile extends StatelessWidget {
           children: [
             Text(
               value,
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                fontWeight: FontWeight.w700,
-              ),
+              style: Theme.of(
+                context,
+              ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700),
             ),
             const SizedBox(height: 4),
             Text(
               label,
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                color: AppColors.onSurfaceSubtle,
-              ),
+              style: Theme.of(
+                context,
+              ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),
             ),
             if (caption != null) ...[
               const SizedBox(height: 4),
-              Text(
-                caption!,
-                style: Theme.of(context).textTheme.bodySmall,
-              ),
+              Text(caption!, style: Theme.of(context).textTheme.bodySmall),
             ],
           ],
         ),
@@ -65,6 +65,7 @@ class TriviaModeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return PremiumCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -73,28 +74,27 @@ class TriviaModeCard extends StatelessWidget {
             children: [
               Expanded(
                 child: Text(
-                  mode.label,
-                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                    fontWeight: FontWeight.w700,
-                  ),
+                  mode.localizedLabel(l10n),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
                 ),
               ),
-              if (trailingLabel != null)
-                _pill(context, trailingLabel!),
+              if (trailingLabel != null) _pill(context, trailingLabel!),
             ],
           ),
           const SizedBox(height: 6),
           Text(
-            mode.subtitle,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: AppColors.onSurfaceSubtle,
-            ),
+            mode.localizedSubtitle(l10n),
+            style: Theme.of(
+              context,
+            ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),
           ),
           const SizedBox(height: 10),
           FilledButton.tonalIcon(
             onPressed: onPressed,
             icon: const Icon(Icons.play_arrow_rounded),
-            label: const Text('Start'),
+            label: Text(l10n.triviaStartAction),
           ),
         ],
       ),
@@ -122,6 +122,8 @@ class TriviaCategoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final numberFormat = NumberFormat.decimalPattern(l10n.localeName);
     final enabled = questionCount > 0 && onQuickStart != null;
     return PremiumCard(
       child: Column(
@@ -134,20 +136,23 @@ class TriviaCategoryCard extends StatelessWidget {
               Expanded(
                 child: Text(
                   title,
-                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                    fontWeight: FontWeight.w700,
-                  ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
                 ),
               ),
-              _pill(context, '$questionCount questions'),
+              _pill(
+                context,
+                l10n.triviaQuestionsCount(numberFormat.format(questionCount)),
+              ),
             ],
           ),
           const SizedBox(height: 8),
           Text(
             subtitle,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: AppColors.onSurfaceSubtle,
-            ),
+            style: Theme.of(
+              context,
+            ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),
           ),
           const SizedBox(height: 10),
           Row(
@@ -160,7 +165,7 @@ class TriviaCategoryCard extends StatelessWidget {
               ),
               FilledButton.tonal(
                 onPressed: enabled ? onQuickStart : null,
-                child: const Text('Quick Start'),
+                child: Text(l10n.triviaQuickStartAction),
               ),
             ],
           ),
@@ -195,8 +200,8 @@ class TriviaOptionCard extends StatelessWidget {
     final color = correct
         ? AppColors.success
         : incorrect
-            ? AppColors.caution
-            : AppColors.surface;
+        ? AppColors.caution
+        : AppColors.surface;
     return Semantics(
       button: true,
       enabled: !disabled,
@@ -208,7 +213,9 @@ class TriviaOptionCard extends StatelessWidget {
           width: double.infinity,
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
-            color: color.withValues(alpha: selected || correct || incorrect ? 0.95 : 0.8),
+            color: color.withValues(
+              alpha: selected || correct || incorrect ? 0.95 : 0.8,
+            ),
             borderRadius: BorderRadius.circular(18),
             border: Border.all(
               color: selected || correct || incorrect
@@ -222,7 +229,9 @@ class TriviaOptionCard extends StatelessWidget {
                 child: Text(
                   label,
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    fontWeight: selected || correct ? FontWeight.w600 : FontWeight.w500,
+                    fontWeight: selected || correct
+                        ? FontWeight.w600
+                        : FontWeight.w500,
                   ),
                 ),
               ),
@@ -262,21 +271,18 @@ class TriviaEmptyStateCard extends StatelessWidget {
         children: [
           Text(
             title,
-            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-              fontWeight: FontWeight.w700,
-            ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
           ),
           const SizedBox(height: 6),
           Text(
             subtitle,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: AppColors.onSurfaceSubtle,
-            ),
+            style: Theme.of(
+              context,
+            ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),
           ),
-          if (action != null) ...[
-            const SizedBox(height: 10),
-            action!,
-          ],
+          if (action != null) ...[const SizedBox(height: 10), action!],
         ],
       ),
     );
@@ -300,16 +306,16 @@ class TriviaSectionHeader extends StatelessWidget {
       children: [
         Text(
           title,
-          style: Theme.of(context).textTheme.titleMedium?.copyWith(
-            fontWeight: FontWeight.w700,
-          ),
+          style: Theme.of(
+            context,
+          ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
         ),
         const SizedBox(height: 4),
         Text(
           subtitle,
-          style: Theme.of(context).textTheme.bodySmall?.copyWith(
-            color: AppColors.onSurfaceSubtle,
-          ),
+          style: Theme.of(
+            context,
+          ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),
         ),
       ],
     );
@@ -336,6 +342,7 @@ class TriviaKnowledgePathCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return PremiumCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -347,9 +354,9 @@ class TriviaKnowledgePathCard extends StatelessWidget {
               Expanded(
                 child: Text(
                   title,
-                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                    fontWeight: FontWeight.w700,
-                  ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
                 ),
               ),
               _pill(context, progressLabel),
@@ -358,9 +365,9 @@ class TriviaKnowledgePathCard extends StatelessWidget {
           const SizedBox(height: 8),
           Text(
             subtitle,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: AppColors.onSurfaceSubtle,
-            ),
+            style: Theme.of(
+              context,
+            ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),
           ),
           const SizedBox(height: 12),
           LinearProgressIndicator(
@@ -373,7 +380,7 @@ class TriviaKnowledgePathCard extends StatelessWidget {
           FilledButton.tonalIcon(
             onPressed: onPressed,
             icon: const Icon(Icons.route_rounded),
-            label: const Text('Open Path'),
+            label: Text(l10n.triviaOpenPathAction),
           ),
         ],
       ),
@@ -401,16 +408,13 @@ class TriviaKnowledgeStageTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final icon = switch (state) {
       TriviaKnowledgeStageState.completed => Icons.check_circle_rounded,
       TriviaKnowledgeStageState.unlocked => Icons.play_circle_outline_rounded,
       TriviaKnowledgeStageState.locked => Icons.lock_rounded,
     };
-    final stateLabel = switch (state) {
-      TriviaKnowledgeStageState.completed => 'Completed',
-      TriviaKnowledgeStageState.unlocked => 'Unlocked',
-      TriviaKnowledgeStageState.locked => 'Locked',
-    };
+    final stateLabel = state.localizedLabel(l10n);
     return PremiumCard(
       child: Row(
         children: [
@@ -424,9 +428,9 @@ class TriviaKnowledgeStageTile extends StatelessWidget {
             alignment: Alignment.center,
             child: Text(
               '${index + 1}',
-              style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                fontWeight: FontWeight.w700,
-              ),
+              style: Theme.of(
+                context,
+              ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
             ),
           ),
           const SizedBox(width: 12),
@@ -436,9 +440,9 @@ class TriviaKnowledgeStageTile extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                    fontWeight: FontWeight.w700,
-                  ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
                 ),
                 const SizedBox(height: 4),
                 Text(
@@ -453,7 +457,7 @@ class TriviaKnowledgeStageTile extends StatelessWidget {
                   runSpacing: 8,
                   children: [
                     _pill(context, stateLabel),
-                    _pill(context, difficulty.label),
+                    _pill(context, difficulty.localizedLabel(l10n)),
                   ],
                 ),
               ],
@@ -461,7 +465,10 @@ class TriviaKnowledgeStageTile extends StatelessWidget {
           ),
           const SizedBox(width: 8),
           IconButton(
-            onPressed: state == TriviaKnowledgeStageState.locked ? null : onPressed,
+            onPressed: state == TriviaKnowledgeStageState.locked
+                ? null
+                : onPressed,
+            tooltip: l10n.triviaOpenStageTooltip,
             icon: Icon(icon),
           ),
         ],
@@ -479,9 +486,9 @@ Widget _pill(BuildContext context, String label) {
     ),
     child: Text(
       label,
-      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-        fontWeight: FontWeight.w600,
-      ),
+      style: Theme.of(
+        context,
+      ).textTheme.bodySmall?.copyWith(fontWeight: FontWeight.w600),
     ),
   );
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../../l10n/app_localizations.dart';
 import '../../application/quran_reference_graph_provider.dart';
 
 Future<void> showQuranReferenceViewer(
@@ -32,11 +33,14 @@ class QuranReferenceChip extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     final reference = ref.watch(quranReferenceByIdProvider(referenceId));
     if (reference == null) return const SizedBox.shrink();
     return ActionChip(
       avatar: leading,
-      label: Text('Qur’an ${reference.referenceLabel}'),
+      label: Text(
+        l10n.quranReferenceViewerReferenceLabel(reference.referenceLabel),
+      ),
       onPressed: () =>
           showQuranReferenceViewer(context, ref, referenceId: referenceId),
     );
@@ -50,16 +54,17 @@ class _QuranReferenceViewer extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     final reference = ref.watch(quranReferenceByIdProvider(referenceId));
     final bundle = ref.watch(
       quranReferenceKnowledgeBundleProvider(referenceId),
     );
 
     if (reference == null) {
-      return const SafeArea(
+      return SafeArea(
         child: Padding(
-          padding: EdgeInsets.all(16),
-          child: Text('Reference not found.'),
+          padding: const EdgeInsets.all(16),
+          child: Text(l10n.quranReferenceViewerNotFound),
         ),
       );
     }
@@ -71,7 +76,7 @@ class _QuranReferenceViewer extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Qur’an ${reference.referenceLabel}',
+              l10n.quranReferenceViewerReferenceLabel(reference.referenceLabel),
               style: Theme.of(
                 context,
               ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
@@ -108,13 +113,13 @@ class _QuranReferenceViewer extends ConsumerWidget {
                 );
               },
               icon: const Icon(Icons.play_arrow_rounded),
-              label: const Text('Open verse in reader'),
+              label: Text(l10n.quranReferenceViewerOpenInReader),
             ),
             if (bundle.lifeLessons.isNotEmpty) ...[
               const SizedBox(height: 14),
               _section(
                 context,
-                title: 'Related Life Lessons',
+                title: l10n.quranReferenceViewerRelatedLifeLessons,
                 items: bundle.lifeLessons,
               ),
             ],
@@ -122,7 +127,7 @@ class _QuranReferenceViewer extends ConsumerWidget {
               const SizedBox(height: 10),
               _section(
                 context,
-                title: 'Related Hadith',
+                title: l10n.quranReferenceViewerRelatedHadith,
                 items: bundle.hadithEntries,
               ),
             ],
@@ -130,7 +135,7 @@ class _QuranReferenceViewer extends ConsumerWidget {
               const SizedBox(height: 10),
               _section(
                 context,
-                title: 'Related Prophets',
+                title: l10n.quranReferenceViewerRelatedProphets,
                 items: bundle.prophets,
               ),
             ],
@@ -138,7 +143,7 @@ class _QuranReferenceViewer extends ConsumerWidget {
               const SizedBox(height: 10),
               _section(
                 context,
-                title: 'Related Journeys',
+                title: l10n.quranReferenceViewerRelatedJourneys,
                 items: bundle.journeys,
               ),
             ],

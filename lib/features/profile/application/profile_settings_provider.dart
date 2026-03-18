@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/theme/app_theme.dart';
+import '../domain/profile_age_preferences.dart';
 import '../../../shared/persistence/local_store.dart';
 
 enum ProfileThemePreference { system, dark, light }
@@ -8,6 +9,8 @@ enum ProfileThemePreference { system, dark, light }
 class ProfileSettingsState {
   const ProfileSettingsState({
     required this.themePreference,
+    required this.ageRange,
+    required this.kidsUiThemeMode,
     required this.reduceMotion,
     required this.highContrastText,
     required this.ramadanModeEnabled,
@@ -31,6 +34,8 @@ class ProfileSettingsState {
   });
 
   final ProfileThemePreference themePreference;
+  final ProfileAgeRange ageRange;
+  final KidsUiThemeMode kidsUiThemeMode;
   final bool reduceMotion;
   final bool highContrastText;
   final bool ramadanModeEnabled;
@@ -52,8 +57,15 @@ class ProfileSettingsState {
   final String? ramadanStartDateIso;
   final String? ramadanEndDateIso;
 
+  bool get effectiveKidsUiThemeEnabled => resolveKidsUiThemeEnabled(
+        ageRange: ageRange,
+        mode: kidsUiThemeMode,
+      );
+
   ProfileSettingsState copyWith({
     ProfileThemePreference? themePreference,
+    ProfileAgeRange? ageRange,
+    KidsUiThemeMode? kidsUiThemeMode,
     bool? reduceMotion,
     bool? highContrastText,
     bool? ramadanModeEnabled,
@@ -77,6 +89,8 @@ class ProfileSettingsState {
   }) {
     return ProfileSettingsState(
       themePreference: themePreference ?? this.themePreference,
+      ageRange: ageRange ?? this.ageRange,
+      kidsUiThemeMode: kidsUiThemeMode ?? this.kidsUiThemeMode,
       reduceMotion: reduceMotion ?? this.reduceMotion,
       highContrastText: highContrastText ?? this.highContrastText,
       ramadanModeEnabled: ramadanModeEnabled ?? this.ramadanModeEnabled,
@@ -107,6 +121,8 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
     : super(
         const ProfileSettingsState(
           themePreference: ProfileThemePreference.system,
+          ageRange: ProfileAgeRange.adult,
+          kidsUiThemeMode: KidsUiThemeMode.auto,
           reduceMotion: false,
           highContrastText: false,
           ramadanModeEnabled: false,
@@ -134,6 +150,28 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
 
   void setThemePreference(ProfileThemePreference value) {
     state = state.copyWith(themePreference: value);
+    _save();
+  }
+
+  void setAgeRange(ProfileAgeRange value) {
+    state = state.copyWith(
+      ageRange: value,
+      kidsModeEnabled: resolveKidsUiThemeEnabled(
+        ageRange: value,
+        mode: state.kidsUiThemeMode,
+      ),
+    );
+    _save();
+  }
+
+  void setKidsUiThemeMode(KidsUiThemeMode value) {
+    state = state.copyWith(
+      kidsUiThemeMode: value,
+      kidsModeEnabled: resolveKidsUiThemeEnabled(
+        ageRange: state.ageRange,
+        mode: value,
+      ),
+    );
     _save();
   }
 
@@ -175,7 +213,10 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
   }
 
   void setKidsModeEnabled(bool value) {
-    state = state.copyWith(kidsModeEnabled: value);
+    state = state.copyWith(
+      kidsUiThemeMode: value ? KidsUiThemeMode.on : KidsUiThemeMode.off,
+      kidsModeEnabled: value,
+    );
     _save();
   }
 
@@ -286,8 +327,38 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
       appThemeMode = AppThemeMode.defaultMode;
     }
 
+    ProfileAgeRange ageRange = state.ageRange;
+    final ageRangeName = data['ageRange'] as String?;
+    for (final item in ProfileAgeRange.values) {
+      if (item.name == ageRangeName) {
+        ageRange = item;
+        break;
+      }
+    }
+
+    KidsUiThemeMode kidsUiThemeMode = state.kidsUiThemeMode;
+    final kidsUiThemeModeName = data['kidsUiThemeMode'] as String?;
+    for (final item in KidsUiThemeMode.values) {
+      if (item.name == kidsUiThemeModeName) {
+        kidsUiThemeMode = item;
+        break;
+      }
+    }
+    if (kidsUiThemeModeName == null && data.containsKey('kidsModeEnabled')) {
+      kidsUiThemeMode =
+          (data['kidsModeEnabled'] as bool? ?? false)
+              ? KidsUiThemeMode.on
+              : KidsUiThemeMode.off;
+    }
+    final resolvedKidsMode = resolveKidsUiThemeEnabled(
+      ageRange: ageRange,
+      mode: kidsUiThemeMode,
+    );
+
     state = state.copyWith(
       themePreference: theme,
+      ageRange: ageRange,
+      kidsUiThemeMode: kidsUiThemeMode,
       reduceMotion: data['reduceMotion'] as bool? ?? state.reduceMotion,
       highContrastText:
           data['highContrastText'] as bool? ?? state.highContrastText,
@@ -297,8 +368,7 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
           data['lossModeEnabled'] as bool? ?? state.lossModeEnabled,
       gentleModeEnabled:
           data['gentleModeEnabled'] as bool? ?? state.gentleModeEnabled,
-      kidsModeEnabled:
-          data['kidsModeEnabled'] as bool? ?? state.kidsModeEnabled,
+      kidsModeEnabled: resolvedKidsMode,
       privateTrackingMode:
           data['privateTrackingMode'] as bool? ?? state.privateTrackingMode,
       minimalTrackingMode:
@@ -331,12 +401,14 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
   void _save() {
     _store.setJsonMap('settings.profile', {
       'themePreference': state.themePreference.name,
+      'ageRange': state.ageRange.name,
+      'kidsUiThemeMode': state.kidsUiThemeMode.name,
       'reduceMotion': state.reduceMotion,
       'highContrastText': state.highContrastText,
       'ramadanModeEnabled': state.ramadanModeEnabled,
       'lossModeEnabled': state.lossModeEnabled,
       'gentleModeEnabled': state.gentleModeEnabled,
-      'kidsModeEnabled': state.kidsModeEnabled,
+      'kidsModeEnabled': state.effectiveKidsUiThemeEnabled,
       'privateTrackingMode': state.privateTrackingMode,
       'minimalTrackingMode': state.minimalTrackingMode,
       'hideGrowthVisuals': state.hideGrowthVisuals,

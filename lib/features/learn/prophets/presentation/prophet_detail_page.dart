@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/theme/app_colors.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/quran_quote_block.dart';
 import '../domain/prophet_detail_content.dart';
 import '../domain/prophet_entry.dart';
+import 'prophets_metadata_localization.dart';
 
 class ProphetDetailPage extends StatefulWidget {
   const ProphetDetailPage({
@@ -62,6 +64,7 @@ class _ProphetDetailPageState extends State<ProphetDetailPage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return AppPageScaffold(
       scrollController: _scrollController,
       headerIcon: Icons.menu_book_rounded,
@@ -83,14 +86,14 @@ class _ProphetDetailPageState extends State<ProphetDetailPage> {
         _sectionCard(
           _overviewKey,
           context,
-          title: 'Overview',
+          title: l10n.prophetsDetailOverviewTitle,
           child: Text(widget.content.overview),
         ),
         const SizedBox(height: 10),
         _sectionCard(
           _storyKey,
           context,
-          title: 'Story',
+          title: l10n.prophetsDetailStoryTitle,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: widget.content.storySections
@@ -118,7 +121,7 @@ class _ProphetDetailPageState extends State<ProphetDetailPage> {
         _sectionCard(
           _lessonsKey,
           context,
-          title: 'Lessons',
+          title: l10n.prophetsDetailLessonsTitle,
           child: Column(
             children: widget.content.keyLessons
                 .map(
@@ -161,14 +164,14 @@ class _ProphetDetailPageState extends State<ProphetDetailPage> {
         _sectionCard(
           _referencesKey,
           context,
-          title: 'References',
+          title: l10n.prophetsDetailReferencesTitle,
           child: _referencesBlock(),
         ),
         const SizedBox(height: 10),
         _sectionCard(
           _reflectionKey,
           context,
-          title: 'Reflect',
+          title: l10n.prophetsDetailReflectTitle,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: widget.content.reflectionPrompts
@@ -185,7 +188,7 @@ class _ProphetDetailPageState extends State<ProphetDetailPage> {
         _sectionCard(
           _relatedKey,
           context,
-          title: 'Related',
+          title: l10n.prophetsDetailRelatedTitle,
           child: _relatedContent(context),
         ),
         if (widget.onOpenPreviousProphet != null ||
@@ -198,6 +201,7 @@ class _ProphetDetailPageState extends State<ProphetDetailPage> {
   }
 
   Widget _heroHeader(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return PremiumCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -225,8 +229,8 @@ class _ProphetDetailPageState extends State<ProphetDetailPage> {
               ),
               IconButton(
                 tooltip: widget.isBookmarked
-                    ? 'Remove bookmark'
-                    : 'Save prophet',
+                    ? l10n.prophetsRemoveBookmark
+                    : l10n.prophetsSaveBookmark,
                 onPressed: widget.onToggleBookmark,
                 icon: Icon(
                   widget.isBookmarked
@@ -244,12 +248,17 @@ class _ProphetDetailPageState extends State<ProphetDetailPage> {
             spacing: 8,
             runSpacing: 8,
             children: [
-              _pill(widget.content.eraTitle),
+              _pill(localizedProphetEraTitle(l10n, widget.prophet.eraGroup)),
               _pill(widget.content.regionLabel),
               if (widget.content.locationLabel != null)
                 _pill(widget.content.locationLabel!),
               if (widget.content.locationConfidence != null)
-                _pill(widget.content.locationConfidence!.label),
+                _pill(
+                  localizedProphetLocationConfidenceLabel(
+                    l10n,
+                    widget.content.locationConfidence!,
+                  ),
+                ),
             ],
           ),
           const SizedBox(height: 10),
@@ -263,19 +272,19 @@ class _ProphetDetailPageState extends State<ProphetDetailPage> {
                 OutlinedButton.icon(
                   onPressed: widget.onViewInTimeline,
                   icon: const Icon(Icons.timeline_rounded),
-                  label: const Text('View in Timeline'),
+                  label: Text(l10n.prophetsViewInTimeline),
                 ),
               if (widget.onViewOnMap != null)
                 OutlinedButton.icon(
                   onPressed: widget.onViewOnMap,
                   icon: const Icon(Icons.map_rounded),
-                  label: const Text('View on Map'),
+                  label: Text(l10n.prophetsViewOnMap),
                 ),
               if (widget.onViewInFamilyTree != null)
                 OutlinedButton.icon(
                   onPressed: widget.onViewInFamilyTree,
                   icon: const Icon(Icons.account_tree_rounded),
-                  label: const Text('View in Family Tree'),
+                  label: Text(l10n.prophetsViewInFamilyTree),
                 ),
             ],
           ),
@@ -285,18 +294,19 @@ class _ProphetDetailPageState extends State<ProphetDetailPage> {
   }
 
   Widget _sectionJumpRow() {
+    final l10n = AppLocalizations.of(context);
     return PremiumCard(
       padding: const EdgeInsets.all(10),
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Row(
           children: [
-            _jumpChip('Overview', _overviewKey),
-            _jumpChip('Story', _storyKey),
-            _jumpChip('Lessons', _lessonsKey),
-            _jumpChip('References', _referencesKey),
-            _jumpChip('Reflect', _reflectionKey),
-            _jumpChip('Related', _relatedKey),
+            _jumpChip(l10n.prophetsDetailOverviewTitle, _overviewKey),
+            _jumpChip(l10n.prophetsDetailStoryTitle, _storyKey),
+            _jumpChip(l10n.prophetsDetailLessonsTitle, _lessonsKey),
+            _jumpChip(l10n.prophetsDetailReferencesTitle, _referencesKey),
+            _jumpChip(l10n.prophetsDetailReflectTitle, _reflectionKey),
+            _jumpChip(l10n.prophetsDetailRelatedTitle, _relatedKey),
           ],
         ),
       ),
@@ -325,6 +335,7 @@ class _ProphetDetailPageState extends State<ProphetDetailPage> {
   }
 
   Widget _referencesBlock() {
+    final l10n = AppLocalizations.of(context);
     final refs = widget.content.quranReferences;
     final visible = _referencesExpanded || refs.length <= 4
         ? refs
@@ -350,8 +361,8 @@ class _ProphetDetailPageState extends State<ProphetDetailPage> {
               ),
               label: Text(
                 _referencesExpanded
-                    ? 'Show fewer references'
-                    : 'Show all references',
+                    ? l10n.learningReferencesShowLess
+                    : l10n.learningReferencesShowAll,
               ),
             ),
           ),
@@ -360,6 +371,7 @@ class _ProphetDetailPageState extends State<ProphetDetailPage> {
   }
 
   Widget _relatedContent(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final relatedProphets = widget.content.relatedProphetIds
         .map(
           (id) => widget.allProphets.where((item) => item.id == id).firstOrNull,
@@ -379,12 +391,12 @@ class _ProphetDetailPageState extends State<ProphetDetailPage> {
           OutlinedButton.icon(
             onPressed: widget.onViewInFamilyTree,
             icon: const Icon(Icons.account_tree_rounded),
-            label: const Text('Open Family Tree'),
+            label: Text(l10n.prophetsOpenFamilyTree),
           ),
           const SizedBox(height: 12),
         ],
         if (relatedProphets.isNotEmpty) ...[
-          _subheading(context, 'Related Prophets'),
+          _subheading(context, l10n.prophetsRelatedProphetsTitle),
           Wrap(
             spacing: 8,
             runSpacing: 8,
@@ -402,34 +414,34 @@ class _ProphetDetailPageState extends State<ProphetDetailPage> {
           const SizedBox(height: 12),
         ],
         if (widget.content.relatedLifeLessonIds.isNotEmpty) ...[
-          _subheading(context, 'Related Life Lessons'),
+          _subheading(context, l10n.prophetsRelatedLifeLessonsTitle),
           Wrap(
             spacing: 8,
             runSpacing: 8,
             children: widget.content.relatedLifeLessonIds
-                .map((id) => _routeReadyChip('Life • $id'))
+                .map((id) => _routeReadyChip(l10n.prophetsLifeChip(id)))
                 .toList(),
           ),
           const SizedBox(height: 12),
         ],
         if (widget.content.relatedGrowthHabitIds.isNotEmpty) ...[
-          _subheading(context, 'Related Growth Habits'),
+          _subheading(context, l10n.prophetsRelatedGrowthHabitsTitle),
           Wrap(
             spacing: 8,
             runSpacing: 8,
             children: widget.content.relatedGrowthHabitIds
-                .map((id) => _routeReadyChip('Growth • $id'))
+                .map((id) => _routeReadyChip(l10n.prophetsGrowthChip(id)))
                 .toList(),
           ),
           const SizedBox(height: 12),
         ],
         if (quranTopics.isNotEmpty) ...[
-          _subheading(context, 'Related Qur’an Topics'),
+          _subheading(context, l10n.prophetsRelatedQuranTopicsTitle),
           Wrap(
             spacing: 8,
             runSpacing: 8,
             children: quranTopics
-                .map((topic) => _routeReadyChip('Qur’an • $topic'))
+                .map((topic) => _routeReadyChip(l10n.prophetsQuranChip(topic)))
                 .toList(),
           ),
         ],
@@ -438,6 +450,7 @@ class _ProphetDetailPageState extends State<ProphetDetailPage> {
   }
 
   Widget _navigatorCard(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return PremiumCard(
       child: Row(
         children: [
@@ -445,7 +458,10 @@ class _ProphetDetailPageState extends State<ProphetDetailPage> {
             child: OutlinedButton.icon(
               onPressed: widget.onOpenPreviousProphet,
               icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 16),
-              label: Text(widget.previousProphetLabel ?? 'Previous Prophet'),
+              label: Text(
+                widget.previousProphetLabel ??
+                    l10n.prophetsPreviousProphetFallback,
+              ),
             ),
           ),
           const SizedBox(width: 8),
@@ -453,7 +469,9 @@ class _ProphetDetailPageState extends State<ProphetDetailPage> {
             child: OutlinedButton.icon(
               onPressed: widget.onOpenNextProphet,
               icon: const Icon(Icons.arrow_forward_ios_rounded, size: 16),
-              label: Text(widget.nextProphetLabel ?? 'Next Prophet'),
+              label: Text(
+                widget.nextProphetLabel ?? l10n.prophetsNextProphetFallback,
+              ),
             ),
           ),
         ],

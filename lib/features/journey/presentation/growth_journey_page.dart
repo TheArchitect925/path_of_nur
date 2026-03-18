@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 
+import '../../../l10n/app_localizations.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../application/growth_garden.dart';
 import '../application/growth_models.dart';
@@ -13,6 +15,7 @@ class GrowthJourneyPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     final stats = ref.watch(growthJourneyStatsProvider);
     final activity = ref.watch(growthRecentActivityProvider);
     final privateMode = ref.watch(growthControllerProvider).privateMode;
@@ -29,6 +32,8 @@ class GrowthJourneyPage extends ConsumerWidget {
     final seasonal = ref.watch(growthSeasonalContextProvider);
     final seasonalCards = ref.watch(growthActiveSeasonalJourneyCardsProvider);
     final seasonalPrompts = ref.watch(growthSeasonalReflectionPromptsProvider);
+    final locale = Localizations.localeOf(context).toLanguageTag();
+    final countFormat = NumberFormat.decimalPattern(locale);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,7 +43,9 @@ class GrowthJourneyPage extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                privateMode ? 'Quiet Progress' : 'Growth Overview',
+                privateMode
+                    ? l10n.growthJourneyQuietProgressTitle
+                    : l10n.growthJourneyOverviewTitle,
                 style: const TextStyle(fontWeight: FontWeight.w700),
               ),
               const SizedBox(height: 6),
@@ -48,22 +55,35 @@ class GrowthJourneyPage extends ConsumerWidget {
               const SizedBox(height: 8),
               ClipRRect(
                 borderRadius: BorderRadius.circular(999),
-                child: LinearProgressIndicator(value: growthVisual.stageProgress),
+                child: LinearProgressIndicator(
+                  value: growthVisual.stageProgress,
+                ),
               ),
               const SizedBox(height: 8),
               Text(
                 growthVisual.recentGrowthLine,
-                style: const TextStyle(color: Color(0xFF6A5A4A), fontSize: 12.5),
+                style: const TextStyle(
+                  color: Color(0xFF6A5A4A),
+                  fontSize: 12.5,
+                ),
               ),
               if (growthVisual.nextStageLabel != null)
                 Text(
-                  'Next stage: ${growthVisual.nextStageLabel}',
-                  style: const TextStyle(color: Color(0xFF6A5A4A), fontSize: 12.5),
+                  l10n.growthJourneyNextStageValue(
+                    growthVisual.nextStageLabel!,
+                  ),
+                  style: const TextStyle(
+                    color: Color(0xFF6A5A4A),
+                    fontSize: 12.5,
+                  ),
                 ),
               if (nextUnlock != null)
                 Text(
-                  'Next unlock: ${nextUnlock.title}',
-                  style: const TextStyle(color: Color(0xFF6A5A4A), fontSize: 12.5),
+                  l10n.growthJourneyNextUnlockValue(nextUnlock.title),
+                  style: const TextStyle(
+                    color: Color(0xFF6A5A4A),
+                    fontSize: 12.5,
+                  ),
                 ),
             ],
           ),
@@ -73,10 +93,13 @@ class GrowthJourneyPage extends ConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Unlockables', style: TextStyle(fontWeight: FontWeight.w700)),
+              Text(
+                l10n.growthJourneyUnlockablesTitle,
+                style: const TextStyle(fontWeight: FontWeight.w700),
+              ),
               const SizedBox(height: 8),
               if (unlockedRewards.isEmpty)
-                const Text('Unlocks appear as your path grows.')
+                Text(l10n.growthJourneyUnlocksAppear)
               else ...[
                 Wrap(
                   spacing: 8,
@@ -93,7 +116,12 @@ class GrowthJourneyPage extends ConsumerWidget {
                             color: const Color(0xFFF5EEE3),
                             borderRadius: BorderRadius.circular(999),
                           ),
-                          child: Text('${_unlockTypeLabel(unlock.type)} · ${unlock.title}'),
+                          child: Text(
+                            l10n.growthJourneyUnlockTypeValue(
+                              _unlockTypeLabel(unlock.type, l10n),
+                              unlock.title,
+                            ),
+                          ),
                         ),
                       )
                       .toList(),
@@ -101,7 +129,10 @@ class GrowthJourneyPage extends ConsumerWidget {
               ],
               const SizedBox(height: 8),
               if (recentUnlocks.isNotEmpty) ...[
-                const Text('Recent unlocks', style: TextStyle(fontWeight: FontWeight.w600)),
+                Text(
+                  l10n.growthJourneyRecentUnlocksTitle,
+                  style: const TextStyle(fontWeight: FontWeight.w600),
+                ),
                 const SizedBox(height: 6),
                 ...recentUnlocks.map(
                   (event) => ListTile(
@@ -109,7 +140,10 @@ class GrowthJourneyPage extends ConsumerWidget {
                     contentPadding: EdgeInsets.zero,
                     title: Text(event.reward.title),
                     subtitle: Text(
-                      '${event.reward.subtitle} · ${_formatDate(event.unlockedAt)}',
+                      l10n.growthJourneyUnlockEventValue(
+                        event.reward.subtitle,
+                        _formatDate(event.unlockedAt, locale),
+                      ),
                     ),
                   ),
                 ),
@@ -122,10 +156,13 @@ class GrowthJourneyPage extends ConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Unlocked Wallpapers', style: TextStyle(fontWeight: FontWeight.w700)),
+              Text(
+                l10n.growthJourneyUnlockedWallpapersTitle,
+                style: const TextStyle(fontWeight: FontWeight.w700),
+              ),
               const SizedBox(height: 8),
               if (unlockedWallpapers.isEmpty)
-                const Text('Wallpapers appear quietly as your progress grows.')
+                Text(l10n.growthJourneyWallpapersAppear)
               else
                 ...unlockedWallpapers.map(
                   (wallpaper) => ListTile(
@@ -135,7 +172,9 @@ class GrowthJourneyPage extends ConsumerWidget {
                     subtitle: Text(
                       wallpaper.hasRealAsset
                           ? wallpaper.subtitle
-                          : '${wallpaper.subtitle} · preview placeholder ready',
+                          : l10n.growthJourneyPreviewPlaceholderReady(
+                              wallpaper.subtitle,
+                            ),
                     ),
                   ),
                 ),
@@ -147,10 +186,13 @@ class GrowthJourneyPage extends ConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Visual Themes', style: TextStyle(fontWeight: FontWeight.w700)),
+              Text(
+                l10n.growthJourneyVisualThemesTitle,
+                style: const TextStyle(fontWeight: FontWeight.w700),
+              ),
               const SizedBox(height: 8),
               if (unlockedThemes.isEmpty)
-                const Text('Theme accents appear through steady consistency.')
+                Text(l10n.growthJourneyThemesAppear)
               else
                 Wrap(
                   spacing: 8,
@@ -179,14 +221,24 @@ class GrowthJourneyPage extends ConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Seasonal Journeys', style: TextStyle(fontWeight: FontWeight.w700)),
+              Text(
+                l10n.growthJourneySeasonalJourneysTitle,
+                style: const TextStyle(fontWeight: FontWeight.w700),
+              ),
               const SizedBox(height: 6),
               if (seasonalCards.isEmpty)
-                const Text('No seasonal journey is active. Keep walking your steady path.')
+                Text(l10n.growthJourneyNoSeasonalJourney)
               else ...[
                 Text(
-                  '${seasonal.hijriDate.day} ${seasonal.hijriDate.monthName} ${seasonal.hijriDate.year} AH',
-                  style: const TextStyle(fontSize: 12.5, color: Color(0xFF6A5A4A)),
+                  l10n.growthJourneyHijriDateValue(
+                    countFormat.format(seasonal.hijriDate.day),
+                    seasonal.hijriDate.monthName,
+                    countFormat.format(seasonal.hijriDate.year),
+                  ),
+                  style: const TextStyle(
+                    fontSize: 12.5,
+                    color: Color(0xFF6A5A4A),
+                  ),
                 ),
                 const SizedBox(height: 8),
                 ...seasonalCards.map(
@@ -201,7 +253,10 @@ class GrowthJourneyPage extends ConsumerWidget {
                   const SizedBox(height: 6),
                   Text(
                     seasonalPrompts.first,
-                    style: const TextStyle(fontSize: 12.5, color: Color(0xFF6A5A4A)),
+                    style: const TextStyle(
+                      fontSize: 12.5,
+                      color: Color(0xFF6A5A4A),
+                    ),
                   ),
                 ],
               ],
@@ -213,20 +268,32 @@ class GrowthJourneyPage extends ConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Journey', style: TextStyle(fontWeight: FontWeight.w700)),
+              Text(
+                l10n.growthJourneyMainJourneyTitle,
+                style: const TextStyle(fontWeight: FontWeight.w700),
+              ),
               const SizedBox(height: 8),
               if (privateMode)
                 Text(
-                  'Private mode is on. Visible light remains quiet while your progress continues (${stats.subtleLight}).',
+                  l10n.growthJourneyPrivateModeSummary(
+                    countFormat.format(stats.subtleLight),
+                  ),
                 )
               else
                 Text(
-                  'Level ${stats.level} · ${stats.visibleLight} visible light · ${stats.nextLevelLightRemaining} light to the next stage',
+                  l10n.growthJourneyLevelSummary(
+                    countFormat.format(stats.level),
+                    countFormat.format(stats.visibleLight),
+                    countFormat.format(stats.nextLevelLightRemaining),
+                  ),
                 ),
               const SizedBox(height: 6),
               Text(
                 stats.encouragementLine,
-                style: const TextStyle(color: Color(0xFF6A5A4A), fontSize: 12.5),
+                style: const TextStyle(
+                  color: Color(0xFF6A5A4A),
+                  fontSize: 12.5,
+                ),
               ),
               const SizedBox(height: 8),
               ClipRRect(
@@ -238,10 +305,26 @@ class GrowthJourneyPage extends ConsumerWidget {
                 spacing: 8,
                 runSpacing: 8,
                 children: [
-                  _Pill(label: 'Steady days ${stats.currentStreakDays}'),
-                  _Pill(label: 'Best steady run ${stats.bestStreakDays}'),
-                  _Pill(label: '${stats.totalCompletedActions} acts tended'),
-                  _Pill(label: '${stats.protectedDaysUsedThisWeek} gentle return day'),
+                  _Pill(
+                    label: l10n.growthJourneySteadyDaysPill(
+                      countFormat.format(stats.currentStreakDays),
+                    ),
+                  ),
+                  _Pill(
+                    label: l10n.growthJourneyBestSteadyRunPill(
+                      countFormat.format(stats.bestStreakDays),
+                    ),
+                  ),
+                  _Pill(
+                    label: l10n.growthJourneyActsTendedPill(
+                      countFormat.format(stats.totalCompletedActions),
+                    ),
+                  ),
+                  _Pill(
+                    label: l10n.growthJourneyGentleReturnDayPill(
+                      stats.protectedDaysUsedThisWeek,
+                    ),
+                  ),
                 ],
               ),
             ],
@@ -252,10 +335,18 @@ class GrowthJourneyPage extends ConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Weekly summary', style: TextStyle(fontWeight: FontWeight.w700)),
+              Text(
+                l10n.growthJourneyWeeklySummaryTitle,
+                style: const TextStyle(fontWeight: FontWeight.w700),
+              ),
               const SizedBox(height: 6),
               Text(
-                'Weekly rhythm ${(stats.weeklySummary.averageCompletion * 100).round()}% · ${stats.weeklySummary.note}',
+                l10n.growthJourneyWeeklyRhythmSummary(
+                  countFormat.format(
+                    (stats.weeklySummary.averageCompletion * 100).round(),
+                  ),
+                  stats.weeklySummary.note,
+                ),
               ),
               const SizedBox(height: 8),
               Row(
@@ -266,7 +357,9 @@ class GrowthJourneyPage extends ConsumerWidget {
                           margin: const EdgeInsets.symmetric(horizontal: 2),
                           height: 12 + (value * 30),
                           decoration: BoxDecoration(
-                            color: const Color(0xFFAF7B35).withValues(alpha: 0.55),
+                            color: const Color(
+                              0xFFAF7B35,
+                            ).withValues(alpha: 0.55),
                             borderRadius: BorderRadius.circular(8),
                           ),
                         ),
@@ -282,10 +375,18 @@ class GrowthJourneyPage extends ConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Monthly summary', style: TextStyle(fontWeight: FontWeight.w700)),
+              Text(
+                l10n.growthJourneyMonthlySummaryTitle,
+                style: const TextStyle(fontWeight: FontWeight.w700),
+              ),
               const SizedBox(height: 6),
               Text(
-                '${stats.monthlySummary.strongDays} rooted days · ${(stats.monthlySummary.averageCompletion * 100).round()}% monthly rhythm',
+                l10n.growthJourneyMonthlyRhythmSummary(
+                  countFormat.format(stats.monthlySummary.strongDays),
+                  countFormat.format(
+                    (stats.monthlySummary.averageCompletion * 100).round(),
+                  ),
+                ),
               ),
               const SizedBox(height: 4),
               Text(stats.monthlySummary.note),
@@ -323,27 +424,28 @@ class GrowthJourneyPage extends ConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Category consistency', style: TextStyle(fontWeight: FontWeight.w700)),
-              const SizedBox(height: 8),
-              ...GrowthHabitCategory.values.map(
-                (category) {
-                  final value = stats.categoryProgress[category] ?? 0;
-                  return Padding(
-                    padding: const EdgeInsets.only(bottom: 8),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(growthCategoryLabel(category)),
-                        const SizedBox(height: 4),
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(999),
-                          child: LinearProgressIndicator(value: value),
-                        ),
-                      ],
-                    ),
-                  );
-                },
+              Text(
+                l10n.growthJourneyCategoryConsistencyTitle,
+                style: const TextStyle(fontWeight: FontWeight.w700),
               ),
+              const SizedBox(height: 8),
+              ...GrowthHabitCategory.values.map((category) {
+                final value = stats.categoryProgress[category] ?? 0;
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 8),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(growthCategoryLocalizedLabel(category, l10n)),
+                      const SizedBox(height: 4),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(999),
+                        child: LinearProgressIndicator(value: value),
+                      ),
+                    ],
+                  ),
+                );
+              }),
             ],
           ),
         ),
@@ -352,7 +454,10 @@ class GrowthJourneyPage extends ConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Path progress', style: TextStyle(fontWeight: FontWeight.w700)),
+              Text(
+                l10n.growthJourneyPathProgressTitle,
+                style: const TextStyle(fontWeight: FontWeight.w700),
+              ),
               const SizedBox(height: 8),
               ...stats.pathProgress.map(
                 (path) => ListTile(
@@ -360,7 +465,10 @@ class GrowthJourneyPage extends ConsumerWidget {
                   contentPadding: EdgeInsets.zero,
                   title: Text(path.path.title),
                   subtitle: Text(
-                    '${(path.progress * 100).round()}% complete · ${path.recommendedNextStep}',
+                    l10n.growthJourneyPathProgressValue(
+                      countFormat.format((path.progress * 100).round()),
+                      path.recommendedNextStep,
+                    ),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -379,10 +487,13 @@ class GrowthJourneyPage extends ConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Milestones', style: TextStyle(fontWeight: FontWeight.w700)),
+              Text(
+                l10n.growthJourneyMilestonesTitle,
+                style: const TextStyle(fontWeight: FontWeight.w700),
+              ),
               const SizedBox(height: 8),
               if (stats.milestones.isEmpty)
-                const Text('Milestones will appear as your consistency builds.')
+                Text(l10n.growthJourneyMilestonesAppear)
               else
                 ...stats.milestoneDetails.map(
                   (item) => Padding(
@@ -410,17 +521,22 @@ class GrowthJourneyPage extends ConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Recent growth activity', style: TextStyle(fontWeight: FontWeight.w700)),
+              Text(
+                l10n.growthJourneyRecentGrowthActivityTitle,
+                style: const TextStyle(fontWeight: FontWeight.w700),
+              ),
               const SizedBox(height: 8),
               ...activity.map(
                 (item) => ListTile(
                   dense: true,
                   contentPadding: EdgeInsets.zero,
-                  leading: Icon(item.isReflection ? Icons.menu_book : Icons.check),
+                  leading: Icon(
+                    item.isReflection ? Icons.menu_book : Icons.check,
+                  ),
                   title: Text(item.title),
                   subtitle: Text(
                     item.isEntrusted
-                        ? '${item.subtitle} · entrusted quietly'
+                        ? l10n.growthJourneyEntrustedQuietly(item.subtitle)
                         : item.subtitle,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
@@ -430,47 +546,29 @@ class GrowthJourneyPage extends ConsumerWidget {
             ],
           ),
         ),
-        const SizedBox(height: 12),
-        PremiumCard(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text('Growth Section (Legacy)', style: TextStyle(fontWeight: FontWeight.w700)),
-              const SizedBox(height: 8),
-              const Text(
-                'All previous Growth content is preserved intact and available here.',
-              ),
-              const SizedBox(height: 10),
-              FilledButton.tonal(
-                onPressed: () => context.pushNamed('growthLegacy'),
-                child: const Text('Open Legacy Growth Content'),
-              ),
-            ],
-          ),
-        ),
       ],
     );
   }
 
-  String _unlockTypeLabel(GrowthUnlockableType type) {
+  String _unlockTypeLabel(GrowthUnlockableType type, AppLocalizations l10n) {
     switch (type) {
       case GrowthUnlockableType.wallpaper:
-        return 'Wallpaper';
+        return l10n.growthUnlockTypeWallpaper;
       case GrowthUnlockableType.gardenElement:
-        return 'Visual';
+        return l10n.growthUnlockTypeVisual;
       case GrowthUnlockableType.visualTheme:
-        return 'Theme';
+        return l10n.growthUnlockTypeTheme;
       case GrowthUnlockableType.reflectionPack:
-        return 'Reflection Pack';
+        return l10n.growthUnlockTypeReflectionPack;
       case GrowthUnlockableType.milestoneTitle:
-        return 'Milestone';
+        return l10n.growthUnlockTypeMilestone;
       case GrowthUnlockableType.seasonal:
-        return 'Seasonal';
+        return l10n.growthUnlockTypeSeasonal;
     }
   }
 
-  String _formatDate(DateTime date) {
-    return '${date.year}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}';
+  String _formatDate(DateTime date, String locale) {
+    return DateFormat.yMMMd(locale).format(date);
   }
 }
 

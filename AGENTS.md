@@ -1,3 +1,19 @@
+LOCALIZATION REQUIREMENT
+Any new page, widget, section title, subtitle, button label, helper text, placeholder text, lesson text, “coming soon” text, or content summary added in this pass must be localization-ready and integrated with the app’s existing translation/localization system.
+
+Requirements:
+- Do not hardcode user-facing strings if the app already uses a localization layer.
+- Add new translation keys wherever needed.
+- Update all relevant locale files/resources used by the project.
+- Ensure new learning pages and new lesson content display translated/localized text the same way as the rest of the app.
+- If some larger seeded lesson content is not yet fully localized, structure it so it is easy to translate next and avoid scattering raw strings across widgets.
+- Preserve existing translations and do not break current locale loading.
+
+At the end of the pass, report:
+- which new translation keys were added
+- which locale files/resources were updated
+- any content intentionally left translation-ready but not yet fully translated
+
 Besides your own logic apply these or apply these when applicable
 
 Always make sure you get information from trusted islamic sources.
@@ -101,3 +117,32 @@ Provide updated widget code.
 When i say ok, continue with the enhancement and next steps
 if i say enhancement build out the enhancements
 when i say next, do the next steps
+
+<!-- CODEX_CONTEXT_ENGINE:BEGIN -->
+## Codex Context Engine
+
+This repository uses a repo-local `codex_context_engine` snapshot.
+
+- Engine source: `tools/codex_context_engine/`
+- Start every future implementation, bugfix, audit, localization, cleanup, or catch-up run by reading, in this order:
+  - `.codex_context_engine/state.json`
+  - `.codex_memory/session_start_guide.md`
+  - `.codex_memory/working_assumptions.md`
+  - `.codex_memory/current_state.md`
+  - `.codex_memory/route_map.md`
+  - `.codex_memory/feature_inventory.md`
+  - `.codex_memory/do_not_rebuild.md`
+  - `.codex_memory/continuation_backlog.md`
+  - `CODEX_CONTEXT_ENGINE_BACKLOG.md`
+- Treat the repo-local layers `.codex_memory/`, `.codex_planner/`, `.codex_cost/`, `.codex_task_memory/`, `.codex_failure_memory/`, `.codex_memory_graph/`, `.context_metrics/`, `.codex_global_metrics/`, and `.codex_library/` as the active engine state for this project.
+- Preserve the project-specific instructions above. The engine layer is additive and must not override the localization, Islamic content, or minimal-change constraints already defined here.
+- Prefer updating the existing catch-up artifacts over recreating project understanding from scratch.
+- Do not rebuild already-shipped surfaces when the memory snapshot says they exist; extend or repair them in place.
+- Treat canonical route and ownership decisions in `.codex_memory/route_map.md` as the default for new work; keep aliases only for compatibility unless explicitly migrating them.
+- Check `.codex_memory/do_not_rebuild.md` before reviving any legacy Profile, Learn placeholder, or legacy Journey/Worship pattern.
+- Use `.codex_memory/session_start_guide.md` as the day-to-day task router before doing broad repo discovery.
+- Treat the repo-local memory files as the continuity layer for this project and update them when the repo reality changes in a meaningful way.
+- After any substantial pass that changes architecture, routes, feature ownership, backlog priority, removed surfaces, settings ownership, sync posture, launch readiness, or other project reality, update the relevant files under `.codex_memory/` and refresh `.codex_context_engine/state.json` if the engine status or key memory entrypoints changed.
+- When a task is narrow and does not change project reality, do not rewrite the whole memory layer; make only the smallest relevant continuity update or leave memory unchanged.
+- If repo code and older docs disagree, treat current code plus the local `.codex_memory/*` files as the source of truth and reconcile outdated docs deliberately instead of following stale assumptions.
+<!-- CODEX_CONTEXT_ENGINE:END -->

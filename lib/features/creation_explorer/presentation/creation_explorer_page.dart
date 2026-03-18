@@ -8,6 +8,7 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:permission_handler/permission_handler.dart';
 
+import '../../../l10n/app_localizations.dart';
 import '../../../shared/widgets/app_page_scaffold.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/segmented_pill_control.dart';
@@ -23,7 +24,8 @@ class CreationExplorerPage extends ConsumerStatefulWidget {
   const CreationExplorerPage({super.key});
 
   @override
-  ConsumerState<CreationExplorerPage> createState() => _CreationExplorerPageState();
+  ConsumerState<CreationExplorerPage> createState() =>
+      _CreationExplorerPageState();
 }
 
 class _CreationExplorerPageState extends ConsumerState<CreationExplorerPage>
@@ -64,7 +66,8 @@ class _CreationExplorerPageState extends ConsumerState<CreationExplorerPage>
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
       unawaited(_startImageStream());
-    } else if (state == AppLifecycleState.inactive || state == AppLifecycleState.paused) {
+    } else if (state == AppLifecycleState.inactive ||
+        state == AppLifecycleState.paused) {
       unawaited(_stopImageStream());
     }
   }
@@ -111,7 +114,7 @@ class _CreationExplorerPageState extends ConsumerState<CreationExplorerPage>
       camera,
       ResolutionPreset.medium,
       enableAudio: false,
-      imageFormatGroup: ImageFormatGroup.yuv420,
+      imageFormatGroup: _preferredImageFormatGroup(),
     );
     await controller.initialize();
     if (!mounted) {
@@ -123,6 +126,13 @@ class _CreationExplorerPageState extends ConsumerState<CreationExplorerPage>
       _isBootstrappingCamera = false;
     });
     await _startImageStream();
+  }
+
+  ImageFormatGroup _preferredImageFormatGroup() {
+    if (Platform.isIOS) {
+      return ImageFormatGroup.bgra8888;
+    }
+    return ImageFormatGroup.nv21;
   }
 
   Future<void> _disposeCamera() async {
@@ -147,7 +157,9 @@ class _CreationExplorerPageState extends ConsumerState<CreationExplorerPage>
 
   Future<void> _stopImageStream() async {
     final controller = _cameraController;
-    if (controller == null || !_isStreaming || !controller.value.isStreamingImages) {
+    if (controller == null ||
+        !_isStreaming ||
+        !controller.value.isStreamingImages) {
       return;
     }
     await controller.stopImageStream();
@@ -158,16 +170,16 @@ class _CreationExplorerPageState extends ConsumerState<CreationExplorerPage>
     final controller = _cameraController;
     final now = DateTime.now();
     if (controller == null || _isProcessingFrame) return;
-    if (_lastInferenceAt != null && now.difference(_lastInferenceAt!) < _detectionThrottle) {
+    if (_lastInferenceAt != null &&
+        now.difference(_lastInferenceAt!) < _detectionThrottle) {
       return;
     }
     _isProcessingFrame = true;
     _lastInferenceAt = now;
     try {
-      final detection = await ref.read(creationObjectDetectionServiceProvider).detect(
-            image: image,
-            camera: controller.description,
-          );
+      final detection = await ref
+          .read(creationObjectDetectionServiceProvider)
+          .detect(image: image, camera: controller.description);
       if (!mounted) return;
       _applyDetection(detection);
     } catch (_) {
@@ -180,7 +192,9 @@ class _CreationExplorerPageState extends ConsumerState<CreationExplorerPage>
 
   void _applyDetection(CreationDetection? detection) {
     final now = DateTime.now();
-    _recentDetections.removeWhere((item) => now.difference(item.detectedAt) > _staleDetectionWindow);
+    _recentDetections.removeWhere(
+      (item) => now.difference(item.detectedAt) > _staleDetectionWindow,
+    );
     if (detection != null) {
       _recentDetections.add(detection);
       if (_recentDetections.length > 5) {
@@ -197,7 +211,8 @@ class _CreationExplorerPageState extends ConsumerState<CreationExplorerPage>
     final latestByCategory = <CreationCategoryId, CreationDetection>{};
     for (final item in _recentDetections) {
       counts[item.categoryId] = (counts[item.categoryId] ?? 0) + 1;
-      confidenceTotals[item.categoryId] = (confidenceTotals[item.categoryId] ?? 0) + item.confidence;
+      confidenceTotals[item.categoryId] =
+          (confidenceTotals[item.categoryId] ?? 0) + item.confidence;
       latestByCategory[item.categoryId] = item;
     }
     CreationDetection? best;
@@ -207,14 +222,18 @@ class _CreationExplorerPageState extends ConsumerState<CreationExplorerPage>
       final average = (confidenceTotals[entry.key] ?? 0) / entry.value;
       final candidate = latestByCategory[entry.key];
       if (candidate == null) continue;
-      final shouldTake = entry.value > bestCount || (entry.value == bestCount && average > bestAverage);
+      final shouldTake =
+          entry.value > bestCount ||
+          (entry.value == bestCount && average > bestAverage);
       if (shouldTake) {
         best = candidate;
         bestCount = entry.value;
         bestAverage = average;
       }
     }
-    final resolved = best != null && (bestCount >= 2 || bestAverage >= 0.82) ? best : null;
+    final resolved = best != null && (bestCount >= 2 || bestAverage >= 0.82)
+        ? best
+        : null;
     setState(() => _stableDetection = resolved);
     if (resolved != null && resolved.categoryId.name != _lastLoggedCategory) {
       _lastLoggedCategory = resolved.categoryId.name;
@@ -225,7 +244,9 @@ class _CreationExplorerPageState extends ConsumerState<CreationExplorerPage>
   Future<void> _openReflectionCard(CreationDetection detection) async {
     final detectionService = ref.read(creationObjectDetectionServiceProvider);
     final verse = detectionService.verseForCategory(detection.categoryId);
-    final category = creationCategoryById[detection.categoryId] ?? creationExplorerCategories.first;
+    final category =
+        creationCategoryById[detection.categoryId] ??
+        creationExplorerCategories.first;
     final reflectionController = TextEditingController();
     final result = await showModalBottomSheet<bool>(
       context: context,
@@ -250,13 +271,17 @@ class _CreationExplorerPageState extends ConsumerState<CreationExplorerPage>
                   await _startImageStream();
                 }
               }
-              final observation = await ref.read(creationExplorerActionServiceProvider).saveObservation(
+              final observation = await ref
+                  .read(creationExplorerActionServiceProvider)
+                  .saveObservation(
                     detection: detection,
                     verse: verse,
                     imagePath: imagePath,
                     reflection: reflectionController.text,
                   );
-              await ref.read(creationObservationsProvider.notifier).add(observation);
+              await ref
+                  .read(creationObservationsProvider.notifier)
+                  .add(observation);
               if (!sheetContext.mounted) return;
               Navigator.of(sheetContext).pop(true);
             }
@@ -277,17 +302,28 @@ class _CreationExplorerPageState extends ConsumerState<CreationExplorerPage>
                       children: [
                         CircleAvatar(
                           radius: 22,
-                          backgroundColor: Theme.of(context).colorScheme.primary.withValues(alpha: 0.12),
-                          child: Icon(category.icon, color: Theme.of(context).colorScheme.primary),
+                          backgroundColor: Theme.of(
+                            context,
+                          ).colorScheme.primary.withValues(alpha: 0.12),
+                          child: Icon(
+                            category.icon,
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
                         ),
                         const SizedBox(width: 12),
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(category.name, style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700)),
+                              Text(
+                                category.name,
+                                style: Theme.of(context).textTheme.titleMedium
+                                    ?.copyWith(fontWeight: FontWeight.w700),
+                              ),
                               const SizedBox(height: 2),
-                              Text('${_confidenceBandLabel(detection.confidence)} detection · ${_confidenceLabel(detection.confidence)} confidence'),
+                              Text(
+                                '${_confidenceBandLabel(detection.confidence)} detection · ${_confidenceLabel(detection.confidence)} confidence',
+                              ),
                             ],
                           ),
                         ),
@@ -296,13 +332,20 @@ class _CreationExplorerPageState extends ConsumerState<CreationExplorerPage>
                     const SizedBox(height: 12),
                     Text(category.description),
                     const SizedBox(height: 12),
-                    Text(verse.ayahReference, style: Theme.of(context).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w700)),
+                    Text(
+                      verse.ayahReference,
+                      style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
                     const SizedBox(height: 6),
                     if (verse.arabicText != null) ...[
                       Text(
                         verse.arabicText!,
                         textAlign: TextAlign.right,
-                        style: Theme.of(context).textTheme.titleMedium?.copyWith(height: 1.6),
+                        style: Theme.of(
+                          context,
+                        ).textTheme.titleMedium?.copyWith(height: 1.6),
                       ),
                       const SizedBox(height: 8),
                     ],
@@ -314,9 +357,13 @@ class _CreationExplorerPageState extends ConsumerState<CreationExplorerPage>
                       controller: reflectionController,
                       minLines: 2,
                       maxLines: 4,
-                      decoration: const InputDecoration(
-                        labelText: 'Your reflection',
-                        hintText: 'What did you notice? What did it remind you of?',
+                      decoration: InputDecoration(
+                        labelText: AppLocalizations.of(
+                          context,
+                        ).creationExplorerYourReflectionLabel,
+                        hintText: AppLocalizations.of(
+                          context,
+                        ).creationExplorerYourReflectionHint,
                       ),
                     ),
                     const SizedBox(height: 12),
@@ -324,8 +371,14 @@ class _CreationExplorerPageState extends ConsumerState<CreationExplorerPage>
                       children: [
                         Expanded(
                           child: OutlinedButton(
-                            onPressed: isSaving ? null : () => Navigator.of(context).pop(false),
-                            child: const Text('Close'),
+                            onPressed: isSaving
+                                ? null
+                                : () => Navigator.of(context).pop(false),
+                            child: Text(
+                              AppLocalizations.of(
+                                context,
+                              ).creationExplorerCloseAction,
+                            ),
                           ),
                         ),
                         const SizedBox(width: 10),
@@ -336,10 +389,16 @@ class _CreationExplorerPageState extends ConsumerState<CreationExplorerPage>
                                 ? const SizedBox(
                                     width: 16,
                                     height: 16,
-                                    child: CircularProgressIndicator(strokeWidth: 2),
+                                    child: CircularProgressIndicator(
+                                      strokeWidth: 2,
+                                    ),
                                   )
                                 : const Icon(Icons.bookmark_add_rounded),
-                            label: const Text('Save observation'),
+                            label: Text(
+                              AppLocalizations.of(
+                                context,
+                              ).creationExplorerSaveObservationAction,
+                            ),
                           ),
                         ),
                       ],
@@ -362,12 +421,14 @@ class _CreationExplorerPageState extends ConsumerState<CreationExplorerPage>
   Widget build(BuildContext context) {
     final observations = ref.watch(creationObservationsProvider);
     final challengeSummaries = ref.watch(currentCreationChallengesProvider);
-    final dailyChallenge = challengeSummaries.firstWhere((item) => item.slot == ChallengeSlot.daily);
+    final dailyChallenge = challengeSummaries.firstWhere(
+      (item) => item.slot == ChallengeSlot.daily,
+    );
     final theme = Theme.of(context);
     return AppPageScaffold(
       headerIcon: Icons.travel_explore_rounded,
-      title: 'Creation Explorer',
-      subtitle: 'Observe the world, notice a sign, and connect it with Qur’anic reflection.',
+      title: AppLocalizations.of(context).creationExplorerTitle,
+      subtitle: AppLocalizations.of(context).creationExplorerSubtitle,
       children: [
         SegmentedPillControl<_CreationExplorerTab>(
           items: _CreationExplorerTab.values,
@@ -381,19 +442,39 @@ class _CreationExplorerPageState extends ConsumerState<CreationExplorerPage>
             spacing: 8,
             runSpacing: 8,
             children: [
-              _metricPill(context, 'Observations', '${observations.length}'),
-              _metricPill(context, 'Categories', '${creationExplorerCategories.length}'),
-              _metricPill(context, 'Verses', '${creationExplorerVerses.length}'),
               _metricPill(
                 context,
-                'Camera',
+                AppLocalizations.of(context).creationExplorerMetricObservations,
+                '${observations.length}',
+              ),
+              _metricPill(
+                context,
+                AppLocalizations.of(context).creationExplorerMetricCategories,
+                '${creationExplorerCategories.length}',
+              ),
+              _metricPill(
+                context,
+                AppLocalizations.of(context).creationExplorerMetricVerses,
+                '${creationExplorerVerses.length}',
+              ),
+              _metricPill(
+                context,
+                AppLocalizations.of(context).creationExplorerMetricCamera,
                 _isImageLabelingDeviceOnly
-                    ? 'Device only'
+                    ? AppLocalizations.of(
+                        context,
+                      ).creationExplorerMetricCameraDeviceOnly
                     : _cameraPermissionDenied
-                    ? 'Off'
+                    ? AppLocalizations.of(
+                        context,
+                      ).creationExplorerMetricCameraOff
                     : (_cameraController?.value.isInitialized == true
-                          ? 'Ready'
-                          : 'Pending'),
+                          ? AppLocalizations.of(
+                              context,
+                            ).creationExplorerMetricCameraReady
+                          : AppLocalizations.of(
+                              context,
+                            ).creationExplorerMetricCameraPending),
               ),
             ],
           ),
@@ -406,7 +487,12 @@ class _CreationExplorerPageState extends ConsumerState<CreationExplorerPage>
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('Today’s challenge', style: TextStyle(fontWeight: FontWeight.w700)),
+                    Text(
+                      AppLocalizations.of(
+                        context,
+                      ).creationExplorerTodaysChallenge,
+                      style: TextStyle(fontWeight: FontWeight.w700),
+                    ),
                     const SizedBox(height: 6),
                     Text(dailyChallenge.challenge.title),
                     const SizedBox(height: 2),
@@ -417,7 +503,13 @@ class _CreationExplorerPageState extends ConsumerState<CreationExplorerPage>
               const SizedBox(width: 10),
               OutlinedButton(
                 onPressed: () => context.pushNamed('creationChallenges'),
-                child: Text(dailyChallenge.isCompleted ? 'History' : 'Open'),
+                child: Text(
+                  dailyChallenge.isCompleted
+                      ? AppLocalizations.of(
+                          context,
+                        ).creationExplorerHistoryAction
+                      : AppLocalizations.of(context).creationExplorerOpenAction,
+                ),
               ),
             ],
           ),
@@ -425,7 +517,8 @@ class _CreationExplorerPageState extends ConsumerState<CreationExplorerPage>
         const SizedBox(height: 10),
         if (_tab == _CreationExplorerTab.camera) _buildCameraTab(theme),
         if (_tab == _CreationExplorerTab.discover) _buildDiscoverTab(),
-        if (_tab == _CreationExplorerTab.journal) _buildJournalTab(observations),
+        if (_tab == _CreationExplorerTab.journal)
+          _buildJournalTab(observations),
       ],
     );
   }
@@ -445,7 +538,7 @@ class _CreationExplorerPageState extends ConsumerState<CreationExplorerPage>
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Image labeling runs on device only',
+              AppLocalizations.of(context).creationExplorerDeviceOnlyTitle,
               style: theme.textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.w700,
               ),
@@ -453,9 +546,7 @@ class _CreationExplorerPageState extends ConsumerState<CreationExplorerPage>
             const SizedBox(height: 8),
             const Text(creationImageLabelingDeviceOnlyMessage),
             const SizedBox(height: 8),
-            const Text(
-              'Use a physical iPhone or iPad to explore with the camera.',
-            ),
+            Text(AppLocalizations.of(context).creationExplorerDeviceOnlyBody),
           ],
         ),
       );
@@ -465,9 +556,14 @@ class _CreationExplorerPageState extends ConsumerState<CreationExplorerPage>
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Camera access is needed', style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700)),
+            Text(
+              AppLocalizations.of(context).creationExplorerCameraAccessTitle,
+              style: theme.textTheme.titleMedium?.copyWith(
+                fontWeight: FontWeight.w700,
+              ),
+            ),
             const SizedBox(height: 8),
-            const Text('Creation Explorer runs entirely on-device. Camera access lets the app detect broad categories like birds, plants, water, and sky without uploading images.'),
+            Text(AppLocalizations.of(context).creationExplorerCameraAccessBody),
             const SizedBox(height: 12),
             Wrap(
               spacing: 10,
@@ -476,12 +572,20 @@ class _CreationExplorerPageState extends ConsumerState<CreationExplorerPage>
                 FilledButton.icon(
                   onPressed: _initializeCamera,
                   icon: const Icon(Icons.camera_alt_rounded),
-                  label: const Text('Allow camera'),
+                  label: Text(
+                    AppLocalizations.of(
+                      context,
+                    ).creationExplorerAllowCameraAction,
+                  ),
                 ),
                 OutlinedButton.icon(
                   onPressed: openAppSettings,
                   icon: const Icon(Icons.settings_outlined),
-                  label: const Text('Open settings'),
+                  label: Text(
+                    AppLocalizations.of(
+                      context,
+                    ).creationExplorerOpenSettingsAction,
+                  ),
                 ),
               ],
             ),
@@ -495,16 +599,29 @@ class _CreationExplorerPageState extends ConsumerState<CreationExplorerPage>
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('Camera unavailable'),
+            Text(
+              AppLocalizations.of(context).creationExplorerCameraUnavailable,
+            ),
             const SizedBox(height: 8),
-            const Text('Creation Explorer could not start the camera right now.'),
+            Text(
+              AppLocalizations.of(
+                context,
+              ).creationExplorerCameraUnavailableBody,
+            ),
             const SizedBox(height: 12),
-            FilledButton.tonal(onPressed: _initializeCamera, child: const Text('Retry')),
+            FilledButton.tonal(
+              onPressed: _initializeCamera,
+              child: Text(
+                AppLocalizations.of(context).creationExplorerRetryAction,
+              ),
+            ),
           ],
         ),
       );
     }
-    final detectedCategory = _stableDetection == null ? null : creationCategoryById[_stableDetection!.categoryId];
+    final detectedCategory = _stableDetection == null
+        ? null
+        : creationCategoryById[_stableDetection!.categoryId];
     return Column(
       children: [
         ClipRRect(
@@ -535,19 +652,29 @@ class _CreationExplorerPageState extends ConsumerState<CreationExplorerPage>
                   child: Row(
                     children: [
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 8,
+                        ),
                         decoration: BoxDecoration(
                           color: Colors.black.withValues(alpha: 0.38),
                           borderRadius: BorderRadius.circular(18),
                         ),
-                        child: const Text(
-                          'On-device detection',
-                          style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
+                        child: Text(
+                          AppLocalizations.of(
+                            context,
+                          ).creationExplorerOnDeviceDetection,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                       ),
                       const Spacer(),
                       IconButton.filledTonal(
-                        tooltip: 'Refresh camera',
+                        tooltip: AppLocalizations.of(
+                          context,
+                        ).accessibilityRefreshCamera,
                         onPressed: _initializeCamera,
                         icon: const Icon(Icons.refresh_rounded),
                       ),
@@ -567,14 +694,18 @@ class _CreationExplorerPageState extends ConsumerState<CreationExplorerPage>
                           border: Border.all(
                             color: detectedCategory == null
                                 ? Colors.white24
-                                : detectedCategory.colorTheme.withValues(alpha: 0.92),
+                                : detectedCategory.colorTheme.withValues(
+                                    alpha: 0.92,
+                                  ),
                             width: 1.5,
                           ),
                           boxShadow: [
                             BoxShadow(
                               color: detectedCategory == null
                                   ? Colors.transparent
-                                  : detectedCategory.colorTheme.withValues(alpha: 0.28),
+                                  : detectedCategory.colorTheme.withValues(
+                                      alpha: 0.28,
+                                    ),
                               blurRadius: 28,
                               spreadRadius: 1,
                             ),
@@ -594,29 +725,49 @@ class _CreationExplorerPageState extends ConsumerState<CreationExplorerPage>
                     child: Semantics(
                       button: detectedCategory != null,
                       label: detectedCategory == null
-                          ? 'No stable creation category detected yet'
-                          : '${detectedCategory.name} detected. Tap to open reflection card.',
+                          ? AppLocalizations.of(
+                              context,
+                            ).accessibilityCreationCategoryNotDetected
+                          : AppLocalizations.of(
+                              context,
+                            ).accessibilityCreationCategoryDetected(
+                              detectedCategory.name,
+                            ),
                       child: GestureDetector(
-                        onTap: _stableDetection == null ? null : () => _openReflectionCard(_stableDetection!),
+                        onTap: _stableDetection == null
+                            ? null
+                            : () => _openReflectionCard(_stableDetection!),
                         child: Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 16,
+                            vertical: 14,
+                          ),
                           decoration: BoxDecoration(
                             color: Colors.black.withValues(alpha: 0.52),
                             borderRadius: BorderRadius.circular(24),
-                            border: Border.all(color: Colors.white.withValues(alpha: 0.14)),
+                            border: Border.all(
+                              color: Colors.white.withValues(alpha: 0.14),
+                            ),
                           ),
                           child: detectedCategory == null
-                              ? const Column(
+                              ? Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     Text(
-                                      'Look at a plant, animal, bird, or landscape.',
-                                      style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
+                                      AppLocalizations.of(
+                                        context,
+                                      ).creationExplorerDetectionPromptTitle,
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w600,
+                                      ),
                                     ),
                                     SizedBox(height: 4),
                                     Text(
-                                      'Labels appear only when the signal is stable.',
+                                      AppLocalizations.of(
+                                        context,
+                                      ).creationExplorerDetectionPromptSubtitle,
                                       style: TextStyle(color: Colors.white70),
                                     ),
                                   ],
@@ -624,30 +775,51 @@ class _CreationExplorerPageState extends ConsumerState<CreationExplorerPage>
                               : Row(
                                   children: [
                                     CircleAvatar(
-                                      backgroundColor: detectedCategory.colorTheme.withValues(alpha: 0.24),
-                                      child: Icon(detectedCategory.icon, color: Colors.white),
+                                      backgroundColor: detectedCategory
+                                          .colorTheme
+                                          .withValues(alpha: 0.24),
+                                      child: Icon(
+                                        detectedCategory.icon,
+                                        color: Colors.white,
+                                      ),
                                     ),
                                     const SizedBox(width: 12),
                                     Expanded(
                                       child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
                                           Text(
                                             detectedCategory.name,
-                                            style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w700, fontSize: 17),
+                                            style: const TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w700,
+                                              fontSize: 17,
+                                            ),
                                           ),
                                           const SizedBox(height: 4),
                                           Text(
-                                            'Tap to reflect',
-                                            style: TextStyle(color: Colors.white.withValues(alpha: 0.88)),
+                                            AppLocalizations.of(
+                                              context,
+                                            ).creationExplorerTapToReflect,
+                                            style: TextStyle(
+                                              color: Colors.white.withValues(
+                                                alpha: 0.88,
+                                              ),
+                                            ),
                                           ),
                                         ],
                                       ),
                                     ),
                                     Text(
-                                      _confidenceLabel(_stableDetection!.confidence),
-                                      style: const TextStyle(color: Colors.white70, fontWeight: FontWeight.w600),
+                                      _confidenceLabel(
+                                        _stableDetection!.confidence,
+                                      ),
+                                      style: const TextStyle(
+                                        color: Colors.white70,
+                                        fontWeight: FontWeight.w600,
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -665,9 +837,14 @@ class _CreationExplorerPageState extends ConsumerState<CreationExplorerPage>
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('How it works', style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700)),
+              Text(
+                AppLocalizations.of(context).creationExplorerHowItWorksTitle,
+                style: theme.textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
               const SizedBox(height: 8),
-              const Text('Creation Explorer uses on-device labeling to detect broad categories only. It waits for a stable signal before showing a label, then offers a Qur’anic reflection connected to what you are seeing.'),
+              Text(AppLocalizations.of(context).creationExplorerHowItWorksBody),
             ],
           ),
         ),
@@ -684,14 +861,25 @@ class _CreationExplorerPageState extends ConsumerState<CreationExplorerPage>
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text('Current detected sign', style: TextStyle(fontWeight: FontWeight.w700)),
+                Text(
+                  AppLocalizations.of(
+                    context,
+                  ).creationExplorerCurrentDetectedSign,
+                  style: TextStyle(fontWeight: FontWeight.w700),
+                ),
                 const SizedBox(height: 8),
                 _CategoryVerseTile(
                   category: creationCategoryById[_stableDetection!.categoryId]!,
-                  verse: detectionService.verseForCategory(_stableDetection!.categoryId),
+                  verse: detectionService.verseForCategory(
+                    _stableDetection!.categoryId,
+                  ),
                   trailing: FilledButton.tonal(
                     onPressed: () => _openReflectionCard(_stableDetection!),
-                    child: const Text('Reflect'),
+                    child: Text(
+                      AppLocalizations.of(
+                        context,
+                      ).creationExplorerReflectAction,
+                    ),
                   ),
                 ),
               ],
@@ -705,10 +893,19 @@ class _CreationExplorerPageState extends ConsumerState<CreationExplorerPage>
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text('Also explore the sky', style: TextStyle(fontWeight: FontWeight.w700)),
+                  children: [
+                    Text(
+                      AppLocalizations.of(
+                        context,
+                      ).creationExplorerAlsoExploreSkyTitle,
+                      style: TextStyle(fontWeight: FontWeight.w700),
+                    ),
                     SizedBox(height: 6),
-                    Text('Creation Explorer and Sky Explorer are complementary: one notices what is around you, the other what is above you.'),
+                    Text(
+                      AppLocalizations.of(
+                        context,
+                      ).creationExplorerAlsoExploreSkySubtitle,
+                    ),
                   ],
                 ),
               ),
@@ -716,7 +913,11 @@ class _CreationExplorerPageState extends ConsumerState<CreationExplorerPage>
               OutlinedButton.icon(
                 onPressed: () => context.pushNamed('skyExplorer'),
                 icon: const Icon(Icons.nights_stay_rounded),
-                label: const Text('Sky Explorer'),
+                label: Text(
+                  AppLocalizations.of(
+                    context,
+                  ).creationExplorerSkyExplorerAction,
+                ),
               ),
             ],
           ),
@@ -741,150 +942,236 @@ class _CreationExplorerPageState extends ConsumerState<CreationExplorerPage>
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('No observations saved yet', style: TextStyle(fontWeight: FontWeight.w700)),
+            Text(
+              AppLocalizations.of(context).creationExplorerNoObservationsTitle,
+              style: TextStyle(fontWeight: FontWeight.w700),
+            ),
             const SizedBox(height: 8),
-            const Text('Save a moment from the camera view and it will appear here with its verse, category, and your reflection.'),
+            Text(
+              AppLocalizations.of(context).creationExplorerNoObservationsBody,
+            ),
             const SizedBox(height: 12),
             FilledButton.tonal(
-              onPressed: () => setState(() => _tab = _CreationExplorerTab.camera),
-              child: const Text('Open camera explore'),
+              onPressed: () =>
+                  setState(() => _tab = _CreationExplorerTab.camera),
+              child: Text(
+                AppLocalizations.of(
+                  context,
+                ).creationExplorerOpenCameraExploreAction,
+              ),
             ),
           ],
         ),
       );
     }
     return Column(
-      children: observations.map((observation) {
-        final category = creationCategoryById[observation.categoryId] ?? creationExplorerCategories.first;
-        final verse = creationVerseById[observation.selectedVerseId] ?? creationExplorerVerses.first;
-        final reflection = observation.userReflection;
-        final imageFile = observation.imagePath == null ? null : File(observation.imagePath!);
-        final hasImage = imageFile != null && imageFile.existsSync();
-        return Padding(
-          padding: const EdgeInsets.only(bottom: 10),
-          child: PremiumCard(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                if (hasImage) ...[
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(18),
-                    child: Image.file(
-                      imageFile,
-                      height: 190,
-                      width: double.infinity,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-                ],
-                Row(
+      children: observations
+          .map((observation) {
+            final category =
+                creationCategoryById[observation.categoryId] ??
+                creationExplorerCategories.first;
+            final verse =
+                creationVerseById[observation.selectedVerseId] ??
+                creationExplorerVerses.first;
+            final reflection = observation.userReflection;
+            final imageFile = observation.imagePath == null
+                ? null
+                : File(observation.imagePath!);
+            final hasImage = imageFile != null && imageFile.existsSync();
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: PremiumCard(
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    CircleAvatar(
-                      backgroundColor: Theme.of(context).colorScheme.primary.withValues(alpha: 0.12),
-                      child: Icon(category.icon, color: Theme.of(context).colorScheme.primary),
+                    if (hasImage) ...[
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(18),
+                        child: Image.file(
+                          imageFile,
+                          height: 190,
+                          width: double.infinity,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+                    ],
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        CircleAvatar(
+                          backgroundColor: Theme.of(
+                            context,
+                          ).colorScheme.primary.withValues(alpha: 0.12),
+                          child: Icon(
+                            category.icon,
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
+                        ),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                category.name,
+                                style: Theme.of(context).textTheme.titleMedium
+                                    ?.copyWith(fontWeight: FontWeight.w700),
+                              ),
+                              const SizedBox(height: 4),
+                              Text(
+                                DateFormat.yMMMd().add_jm().format(
+                                  observation.timestamp,
+                                ),
+                              ),
+                              if (observation.locationName != null &&
+                                  observation.locationName!
+                                      .trim()
+                                      .isNotEmpty) ...[
+                                const SizedBox(height: 2),
+                                Text(observation.locationName!),
+                              ],
+                            ],
+                          ),
+                        ),
+                        IconButton(
+                          tooltip: observation.isFavorite
+                              ? AppLocalizations.of(
+                                  context,
+                                ).accessibilityRemoveFavorite
+                              : AppLocalizations.of(
+                                  context,
+                                ).accessibilitySaveFavorite,
+                          onPressed: () => ref
+                              .read(creationObservationsProvider.notifier)
+                              .toggleFavorite(observation.id),
+                          icon: Icon(
+                            observation.isFavorite
+                                ? Icons.favorite_rounded
+                                : Icons.favorite_border_rounded,
+                          ),
+                        ),
+                        IconButton(
+                          tooltip: AppLocalizations.of(
+                            context,
+                          ).accessibilityDeleteObservation,
+                          onPressed: () => ref
+                              .read(creationObservationsProvider.notifier)
+                              .remove(observation.id),
+                          icon: const Icon(Icons.delete_outline_rounded),
+                        ),
+                      ],
                     ),
-                    const SizedBox(width: 12),
-                    Expanded(
+                    const SizedBox(height: 10),
+                    Text(
+                      verse.ayahReference,
+                      style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text('"${verse.translation}"'),
+                    const SizedBox(height: 8),
+                    Text(verse.reflection),
+                    const SizedBox(height: 10),
+                    Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        color: Theme.of(context)
+                            .colorScheme
+                            .surfaceContainerHighest
+                            .withValues(alpha: 0.45),
+                        borderRadius: BorderRadius.circular(16),
+                      ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(category.name, style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700)),
-                          const SizedBox(height: 4),
-                          Text(DateFormat.yMMMd().add_jm().format(observation.timestamp)),
-                          if (observation.locationName != null && observation.locationName!.trim().isNotEmpty) ...[
-                            const SizedBox(height: 2),
-                            Text(observation.locationName!),
-                          ],
+                          Text(
+                            AppLocalizations.of(
+                              context,
+                            ).creationExplorerYourReflectionLabel,
+                            style: TextStyle(fontWeight: FontWeight.w700),
+                          ),
+                          const SizedBox(height: 6),
+                          Text(
+                            reflection == null || reflection.trim().isEmpty
+                                ? AppLocalizations.of(
+                                    context,
+                                  ).creationExplorerNoReflectionSaved
+                                : reflection,
+                          ),
                         ],
                       ),
                     ),
-                    IconButton(
-                      tooltip: observation.isFavorite ? 'Remove favorite' : 'Favorite',
-                      onPressed: () => ref.read(creationObservationsProvider.notifier).toggleFavorite(observation.id),
-                      icon: Icon(observation.isFavorite ? Icons.favorite_rounded : Icons.favorite_border_rounded),
-                    ),
-                    IconButton(
-                      tooltip: 'Delete observation',
-                      onPressed: () => ref.read(creationObservationsProvider.notifier).remove(observation.id),
-                      icon: const Icon(Icons.delete_outline_rounded),
+                    const SizedBox(height: 10),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: OutlinedButton.icon(
+                        onPressed: () => _editReflection(observation),
+                        icon: const Icon(Icons.edit_outlined),
+                        label: Text(
+                          AppLocalizations.of(
+                            context,
+                          ).creationExplorerEditReflectionAction,
+                        ),
+                      ),
                     ),
                   ],
                 ),
-                const SizedBox(height: 10),
-                Text(verse.ayahReference, style: Theme.of(context).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w700)),
-                const SizedBox(height: 4),
-                Text('"${verse.translation}"'),
-                const SizedBox(height: 8),
-                Text(verse.reflection),
-                const SizedBox(height: 10),
-                Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.surfaceContainerHighest.withValues(alpha: 0.45),
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text('Your reflection', style: TextStyle(fontWeight: FontWeight.w700)),
-                      const SizedBox(height: 6),
-                      Text(reflection == null || reflection.trim().isEmpty ? 'No reflection saved yet.' : reflection),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 10),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: OutlinedButton.icon(
-                    onPressed: () => _editReflection(observation),
-                    icon: const Icon(Icons.edit_outlined),
-                    label: const Text('Edit reflection'),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        );
-      }).toList(growable: false),
+              ),
+            );
+          })
+          .toList(growable: false),
     );
   }
 
   Future<void> _editReflection(CreationObservation observation) async {
-    final controller = TextEditingController(text: observation.userReflection ?? '');
+    final controller = TextEditingController(
+      text: observation.userReflection ?? '',
+    );
     final result = await showDialog<String>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Edit reflection'),
+        title: Text(
+          AppLocalizations.of(context).creationExplorerEditReflectionAction,
+        ),
         content: TextField(
           controller: controller,
           minLines: 3,
           maxLines: 5,
-          decoration: const InputDecoration(
-            hintText: 'Write what this observation reminded you of.',
+          decoration: InputDecoration(
+            hintText: AppLocalizations.of(
+              context,
+            ).creationExplorerEditReflectionHint,
           ),
         ),
         actions: [
-          TextButton(onPressed: () => Navigator.of(context).pop(), child: const Text('Cancel')),
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: Text(AppLocalizations.of(context).quranCancel),
+          ),
           FilledButton(
             onPressed: () => Navigator.of(context).pop(controller.text.trim()),
-            child: const Text('Save'),
+            child: Text(AppLocalizations.of(context).quranSave),
           ),
         ],
       ),
     );
     controller.dispose();
     if (result == null) return;
-    await ref.read(creationObservationsProvider.notifier).updateReflection(observation.id, result);
+    await ref
+        .read(creationObservationsProvider.notifier)
+        .updateReflection(observation.id, result);
   }
 
   Widget _metricPill(BuildContext context, String label, String value) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.surfaceContainerHighest.withValues(alpha: 0.4),
+        color: Theme.of(
+          context,
+        ).colorScheme.surfaceContainerHighest.withValues(alpha: 0.4),
         borderRadius: BorderRadius.circular(14),
       ),
       child: Text('$label: $value'),
@@ -894,11 +1181,11 @@ class _CreationExplorerPageState extends ConsumerState<CreationExplorerPage>
   String _tabLabel(_CreationExplorerTab tab) {
     switch (tab) {
       case _CreationExplorerTab.camera:
-        return 'Camera';
+        return AppLocalizations.of(context).creationExplorerTabCamera;
       case _CreationExplorerTab.discover:
-        return 'Discover';
+        return AppLocalizations.of(context).creationExplorerTabDiscover;
       case _CreationExplorerTab.journal:
-        return 'Journal';
+        return AppLocalizations.of(context).creationExplorerTabJournal;
     }
   }
 
@@ -939,11 +1226,21 @@ class _CategoryVerseTile extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(category.name, style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700)),
+              Text(
+                category.name,
+                style: Theme.of(
+                  context,
+                ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
+              ),
               const SizedBox(height: 4),
               Text(category.description),
               const SizedBox(height: 10),
-              Text(verse.ayahReference, style: Theme.of(context).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w700)),
+              Text(
+                verse.ayahReference,
+                style: Theme.of(
+                  context,
+                ).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w700),
+              ),
               const SizedBox(height: 4),
               Text('"${verse.translation}"'),
               const SizedBox(height: 6),
@@ -951,10 +1248,7 @@ class _CategoryVerseTile extends StatelessWidget {
             ],
           ),
         ),
-        if (trailing != null) ...[
-          const SizedBox(width: 12),
-          trailing!,
-        ],
+        if (trailing != null) ...[const SizedBox(width: 12), trailing!],
       ],
     );
   }

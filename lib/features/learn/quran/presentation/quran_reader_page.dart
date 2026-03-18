@@ -293,7 +293,7 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
       headerIcon: Icons.menu_book_rounded,
       headerActions: [
         IconButton(
-          tooltip: 'Sources & licensing',
+          tooltip: l10n.accessibilitySourcesAndLicensing,
           onPressed: () => _showSourcesInfoSheet(context),
           icon: const Icon(Icons.info_outline_rounded),
           color: const Color(0xFF3A3026),
@@ -1085,8 +1085,8 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
         links.add(
           _AyahContextLink(
             title: 'Prophet ${matcher.displayName}',
-            routeName: 'learnSectionHub',
-            pathParameters: const {'sectionId': 'prophets'},
+            routeName: 'learnProphetsHub',
+            pathParameters: const <String, String>{},
             queryParameters: {'tab': 'stories', 'prophet': matcher.prophetId},
           ),
         );
@@ -1127,6 +1127,7 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
   }
 
   Widget _buildFloatingSurahPlaybackControls(List<QuranAyah> ayahs) {
+    final l10n = AppLocalizations.of(context);
     final hasPlayback =
         _audioPlayer.audioSource != null || _currentlyPlayingAyahKey != null;
     final isPlaying = hasPlayback && _audioPlayer.playing;
@@ -1155,14 +1156,14 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
                         ? null
                         : _closeSurahPlaybackPlayer,
                     icon: const Icon(Icons.close_rounded),
-                    tooltip: 'Close player',
+                    tooltip: l10n.accessibilityClosePlayer,
                   ),
                   IconButton.filledTonal(
                     onPressed: (_isPreparingSurahPlayback || !hasPlayback)
                         ? null
                         : () => _seekRelative(const Duration(seconds: -15)),
                     icon: const Icon(Icons.replay_10_rounded),
-                    tooltip: 'Back 15 seconds',
+                    tooltip: l10n.accessibilityBack15Seconds,
                   ),
                   const SizedBox(width: 10),
                   Expanded(
@@ -1177,8 +1178,10 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
                       ),
                       label: Text(
                         _isPreparingSurahPlayback
-                            ? 'Preparing...'
-                            : (isPlaying ? 'Pause' : 'Play'),
+                            ? l10n.accessibilityPreparingPlayback
+                            : (isPlaying
+                                  ? l10n.accessibilityPause
+                                  : l10n.accessibilityPlay),
                       ),
                     ),
                   ),
@@ -1188,7 +1191,7 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
                         ? null
                         : () => _seekRelative(const Duration(seconds: 15)),
                     icon: const Icon(Icons.forward_10_rounded),
-                    tooltip: 'Forward 15 seconds',
+                    tooltip: l10n.accessibilityForward15Seconds,
                   ),
                 ],
               ),
@@ -1288,17 +1291,15 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
       if (targetAyah != null) {
-        unawaited(
-          () async {
-            await _scrollToAyah(targetAyah.ayahNumber, retries: 30);
-            if (!mounted) return;
-            await _startSurahPlaybackFromAyah(
-              ayahs,
-              targetAyah,
-              scrollBeforePlay: true,
-            );
-          }(),
-        );
+        unawaited(() async {
+          await _scrollToAyah(targetAyah.ayahNumber, retries: 30);
+          if (!mounted) return;
+          await _startSurahPlaybackFromAyah(
+            ayahs,
+            targetAyah,
+            scrollBeforePlay: true,
+          );
+        }());
         return;
       }
       unawaited(_startSurahPlayback(ayahs: ayahs, initialIndex: 0));
@@ -1472,10 +1473,7 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
       return;
     }
 
-    final listRenderObject = _scrollController
-        .position
-        .context
-        .storageContext
+    final listRenderObject = _scrollController.position.context.storageContext
         .findRenderObject();
     final previousOffset = _scrollController.offset;
     final viewportHeight = MediaQuery.sizeOf(context).height;
@@ -1483,16 +1481,16 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
     var didFallback = false;
     if (listRenderObject != null) {
       try {
-        final targetOffset = (_scrollController.offset +
-                renderObject.localToGlobal(
-                  Offset.zero,
-                  ancestor: listRenderObject,
-                ).dy -
-                120)
-            .clamp(
-              _scrollController.position.minScrollExtent,
-              _scrollController.position.maxScrollExtent,
-            );
+        final targetOffset =
+            (_scrollController.offset +
+                    renderObject
+                        .localToGlobal(Offset.zero, ancestor: listRenderObject)
+                        .dy -
+                    120)
+                .clamp(
+                  _scrollController.position.minScrollExtent,
+                  _scrollController.position.maxScrollExtent,
+                );
         if ((targetOffset - previousOffset).abs() > 1) {
           didFallback = true;
           await _scrollController.animateTo(
@@ -1520,8 +1518,7 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
       final top = renderObject.localToGlobal(Offset.zero).dy;
       final bottom = top + renderObject.size.height;
       final visible = bottom >= 0 && top <= viewportHeight;
-      if (!visible &&
-          (_scrollController.offset - previousOffset).abs() < 0.5) {
+      if (!visible && (_scrollController.offset - previousOffset).abs() < 0.5) {
         await Future<void>.delayed(const Duration(milliseconds: 70));
         if (!mounted) return;
         await _scrollToAyah(ayahNumber, retries: retries - 1);
@@ -1559,8 +1556,7 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
 
   Future<void> _startSurahPlaybackFromAyah(
     List<QuranAyah> ayahs,
-    QuranAyah startAyah,
-    {
+    QuranAyah startAyah, {
     bool scrollBeforePlay = false,
   }) async {
     if (ayahs.isEmpty || _isPreparingSurahPlayback) return;

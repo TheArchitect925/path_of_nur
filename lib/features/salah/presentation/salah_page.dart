@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../l10n/app_localizations.dart';
 import '../../../core/prayer/prayer_preferences.dart';
 import '../../../core/prayer/prayer_location_search_service.dart';
 import '../../../core/theme/app_colors.dart';
@@ -63,13 +64,15 @@ class _SalahTimesPageState extends ConsumerState<SalahTimesPage> {
       return;
     }
     if (selection.latitude == null || selection.longitude == null) return;
-    await ref.read(prayerRecentLocationsStoreProvider).save(
-      PrayerRecentLocation(
-        label: selection.label,
-        latitude: selection.latitude!,
-        longitude: selection.longitude!,
-      ),
-    );
+    await ref
+        .read(prayerRecentLocationsStoreProvider)
+        .save(
+          PrayerRecentLocation(
+            label: selection.label,
+            latitude: selection.latitude!,
+            longitude: selection.longitude!,
+          ),
+        );
     notifier.setManualLocation(
       label: selection.label,
       latitude: selection.latitude!,
@@ -108,7 +111,8 @@ class _SalahTimesPageState extends ConsumerState<SalahTimesPage> {
       now: now,
     );
     final salahQuote = _dailySalahQuote(now);
-    final locationLabel = displayLocation.valueOrNull ??
+    final locationLabel =
+        displayLocation.valueOrNull ??
         (settings.preferences.useDeviceLocation
             ? 'Current location'
             : settings.preferences.location);
@@ -154,10 +158,8 @@ class _SalahTimesPageState extends ConsumerState<SalahTimesPage> {
                 const SizedBox(height: 10),
                 _SalahVerseHeader(
                   quote: salahQuote,
-                  onOpenQuran: () => openQuranQuoteLocation(
-                    context,
-                    salahQuote,
-                  ),
+                  onOpenQuran: () =>
+                      openQuranQuoteLocation(context, salahQuote),
                 ),
                 const SizedBox(height: 12),
                 _SalahSummaryHeader(
@@ -179,11 +181,8 @@ class _SalahTimesPageState extends ConsumerState<SalahTimesPage> {
                   children: [
                     InkWell(
                       borderRadius: BorderRadius.circular(999),
-                      onTap: () => _showLocationPicker(
-                        context,
-                        ref,
-                        locationLabel,
-                      ),
+                      onTap: () =>
+                          _showLocationPicker(context, ref, locationLabel),
                       child: const Padding(
                         padding: EdgeInsets.symmetric(
                           horizontal: 2,
@@ -204,11 +203,8 @@ class _SalahTimesPageState extends ConsumerState<SalahTimesPage> {
                     ),
                     InkWell(
                       borderRadius: BorderRadius.circular(999),
-                      onTap: () => _showLocationPicker(
-                        context,
-                        ref,
-                        locationLabel,
-                      ),
+                      onTap: () =>
+                          _showLocationPicker(context, ref, locationLabel),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
                           horizontal: 2,
@@ -241,10 +237,10 @@ class _SalahTimesPageState extends ConsumerState<SalahTimesPage> {
                 ...List.generate(schedule.length, (index) {
                   final entry = schedule[index];
                   final isNext = scheduleContext.nextPrayerId == entry.id;
-                  final isCurrent =
-                      scheduleContext.currentPrayerId == entry.id;
+                  final isCurrent = scheduleContext.currentPrayerId == entry.id;
                   final trackerEntry = tracker.records[_toPrayerName(entry.id)];
-                  final isMostRecentUntracked = mostRecentUntrackedId == entry.id;
+                  final isMostRecentUntracked =
+                      mostRecentUntrackedId == entry.id;
                   final highlightCard = isCurrent || isMostRecentUntracked;
                   final offerStatus = _offerTimingText(entry, now);
                   return Padding(
@@ -269,8 +265,12 @@ class _SalahTimesPageState extends ConsumerState<SalahTimesPage> {
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(999),
                                   color: isCurrent
-                                      ? const Color(0xFF5E8D58).withValues(alpha: 0.14)
-                                      : const Color(0xFFB58D46).withValues(alpha: 0.14),
+                                      ? const Color(
+                                          0xFF5E8D58,
+                                        ).withValues(alpha: 0.14)
+                                      : const Color(
+                                          0xFFB58D46,
+                                        ).withValues(alpha: 0.14),
                                   border: Border.all(
                                     color: isCurrent
                                         ? const Color(0xFF5E8D58)
@@ -308,9 +308,7 @@ class _SalahTimesPageState extends ConsumerState<SalahTimesPage> {
                                   ),
                                 ),
                                 child: Text(
-                                  isCurrent
-                                      ? 'Current Salah'
-                                      : 'Next Salah',
+                                  isCurrent ? 'Current Salah' : 'Next Salah',
                                   style: const TextStyle(
                                     fontWeight: FontWeight.w700,
                                     fontSize: 12,
@@ -373,11 +371,15 @@ class _SalahTimesPageState extends ConsumerState<SalahTimesPage> {
                               ],
                             ),
                             const SizedBox(height: 10),
-                            _MetaRow(label: 'Offer time', value: entry.offerTime),
+                            _MetaRow(
+                              label: 'Offer time',
+                              value: entry.offerTime,
+                            ),
                             const SizedBox(height: 6),
                             _MetaRow(
                               label: 'Offer Window',
-                              value: '${entry.windowStart} to ${entry.windowEnd}',
+                              value:
+                                  '${entry.windowStart} to ${entry.windowEnd}',
                             ),
                             const SizedBox(height: 6),
                             _MetaRow(
@@ -397,9 +399,7 @@ class _SalahTimesPageState extends ConsumerState<SalahTimesPage> {
                               ),
                             ],
                             const SizedBox(height: 6),
-                            _QadaRuleRow(
-                              summary: entry.qadaRuleSummary,
-                            ),
+                            _QadaRuleRow(summary: entry.qadaRuleSummary),
                             const SizedBox(height: 10),
                             _SalahTrackerInlineSection(
                               prayerId: entry.id,
@@ -414,16 +414,20 @@ class _SalahTimesPageState extends ConsumerState<SalahTimesPage> {
                                 );
                               },
                               onOpenDetails: () async {
-                                final result = await showModalBottomSheet<_SalahTrackerSheetResult>(
-                                  context: context,
-                                  backgroundColor: Colors.transparent,
-                                  isScrollControlled: true,
-                                  builder: (context) => _SalahTrackerSheet(
-                                    prayerName: entry.name,
-                                    initialEntry:
-                                        trackerEntry ?? const PrayerTrackerEntry(),
-                                  ),
-                                );
+                                final result =
+                                    await showModalBottomSheet<
+                                      _SalahTrackerSheetResult
+                                    >(
+                                      context: context,
+                                      backgroundColor: Colors.transparent,
+                                      isScrollControlled: true,
+                                      builder: (context) => _SalahTrackerSheet(
+                                        prayerName: entry.name,
+                                        initialEntry:
+                                            trackerEntry ??
+                                            const PrayerTrackerEntry(),
+                                      ),
+                                    );
                                 if (result == null) return;
                                 trackerNotifier.setEntry(
                                   _toPrayerName(entry.id),
@@ -518,6 +522,7 @@ class _SalahSummaryHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final current = schedule
         .where((item) => item.id == scheduleContext.currentPrayerId)
         .firstOrNull;
@@ -545,7 +550,7 @@ class _SalahSummaryHeader extends StatelessWidget {
                   ? null
                   : IconButton(
                       visualDensity: VisualDensity.compact,
-                      tooltip: 'Jump to current salah',
+                      tooltip: l10n.accessibilityJumpToCurrentSalah,
                       onPressed: onJumpToCurrent,
                       icon: Icon(
                         Icons.arrow_downward_rounded,
@@ -784,12 +789,9 @@ class _SalahRakatGuideCard extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 6),
-          const Text(
-            'Use this as a practical daily guide. Protect the fard first, then build sunnah, nafl, and witr with consistency.',
-            style: TextStyle(
-              color: Color(0xFF6B5C4E),
-              fontSize: 12.2,
-            ),
+          Text(
+            AppLocalizations.of(context).salahDailyGuideNote,
+            style: TextStyle(color: Color(0xFF6B5C4E), fontSize: 12.2),
           ),
         ],
       ),
@@ -804,11 +806,12 @@ class _QadaRuleRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Row(
       children: [
-        const Expanded(
+        Expanded(
           child: Text(
-            'Qada rule',
+            l10n.salahQadaRuleTitle,
             style: TextStyle(
               color: Color(0xFF4F4137),
               fontWeight: FontWeight.w600,
@@ -818,7 +821,7 @@ class _QadaRuleRow extends StatelessWidget {
         ),
         IconButton(
           visualDensity: VisualDensity.compact,
-          tooltip: 'Read qada rule',
+          tooltip: l10n.accessibilityReadQadaRule,
           icon: const Icon(
             Icons.help_outline_rounded,
             size: 18,
@@ -838,8 +841,8 @@ class _QadaRuleRow extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
-                          'Qada rule',
+                        Text(
+                          l10n.salahQadaRuleTitle,
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w700,
@@ -859,7 +862,7 @@ class _QadaRuleRow extends StatelessWidget {
                           alignment: Alignment.centerRight,
                           child: TextButton(
                             onPressed: () => Navigator.of(context).pop(),
-                            child: const Text('Close'),
+                            child: Text(l10n.salahCloseAction),
                           ),
                         ),
                       ],
@@ -886,6 +889,7 @@ class _DailySalahProgressStrip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final progress = totalCount <= 0 ? 0.0 : trackedCount / totalCount;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
@@ -898,7 +902,7 @@ class _DailySalahProgressStrip extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            '$trackedCount of $totalCount salah tracked',
+            l10n.salahTrackedProgress('$trackedCount', '$totalCount'),
             style: const TextStyle(
               fontWeight: FontWeight.w700,
               color: Color(0xFF4E4034),
@@ -923,16 +927,14 @@ class _DailySalahProgressStrip extends StatelessWidget {
 }
 
 class _SalahVerseHeader extends StatelessWidget {
-  const _SalahVerseHeader({
-    required this.quote,
-    required this.onOpenQuran,
-  });
+  const _SalahVerseHeader({required this.quote, required this.onOpenQuran});
 
   final QuranQuote quote;
   final VoidCallback onOpenQuran;
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
@@ -947,7 +949,7 @@ class _SalahVerseHeader extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.fromLTRB(12, 12, 12, 0),
             child: Text(
-              'Qur’anic reflection for salah',
+              l10n.salahReflectionHeaderTitle,
               style: const TextStyle(
                 fontSize: 11.5,
                 fontWeight: FontWeight.w700,
@@ -975,19 +977,16 @@ class _SalahVerseHeader extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(12, 8, 12, 12),
             child: Row(
               children: [
-                const Expanded(
+                Expanded(
                   child: Text(
-                    'Pinned as the spiritual header for this section.',
-                    style: TextStyle(
-                      fontSize: 11.5,
-                      color: Color(0xFF6B5C4E),
-                    ),
+                    l10n.salahReflectionHeaderNote,
+                    style: TextStyle(fontSize: 11.5, color: Color(0xFF6B5C4E)),
                   ),
                 ),
                 TextButton.icon(
                   onPressed: onOpenQuran,
                   icon: const Icon(Icons.menu_book_rounded, size: 16),
-                  label: const Text('Open in Quran'),
+                  label: Text(l10n.salahOpenInQuranAction),
                 ),
               ],
             ),
@@ -1015,6 +1014,7 @@ class _SalahTrackerInlineSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final trackerEntry = entry ?? const PrayerTrackerEntry();
     final hasTracked = trackerEntry.status != PrayerStatus.pending;
     return Container(
@@ -1029,23 +1029,22 @@ class _SalahTrackerInlineSection extends StatelessWidget {
         children: [
           Row(
             children: [
-              const Expanded(
+              Expanded(
                 child: Text(
-                  'Track Salah',
+                  l10n.salahTrackSalahTitle,
                   style: TextStyle(
                     fontWeight: FontWeight.w700,
                     color: Color(0xFF3F332C),
                   ),
                 ),
               ),
-              if (hasTracked)
-                _TrackerSummaryPill(entry: trackerEntry),
+              if (hasTracked) _TrackerSummaryPill(entry: trackerEntry),
             ],
           ),
           const SizedBox(height: 8),
           if (isCurrent) ...[
-            const Text(
-              'Quick actions',
+            Text(
+              l10n.salahQuickActionsTitle,
               style: TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.w700,
@@ -1058,19 +1057,19 @@ class _SalahTrackerInlineSection extends StatelessWidget {
               runSpacing: 8,
               children: [
                 _QuickTrackChip(
-                  label: 'On time',
+                  label: l10n.salahQuickTrackOnTime,
                   icon: Icons.schedule_rounded,
                   color: const Color(0xFF5E8D58),
                   onTap: () => onQuickSelect(PrayerOfferTiming.onTime),
                 ),
                 _QuickTrackChip(
-                  label: 'Late',
+                  label: l10n.salahQuickTrackLate,
                   icon: Icons.access_time_filled_rounded,
                   color: const Color(0xFFB58D46),
                   onTap: () => onQuickSelect(PrayerOfferTiming.late),
                 ),
                 _QuickTrackChip(
-                  label: 'Qada',
+                  label: l10n.salahQuickTrackQada,
                   icon: Icons.history_toggle_off_rounded,
                   color: const Color(0xFFC85E34),
                   onTap: () => onQuickSelect(PrayerOfferTiming.qada),
@@ -1084,8 +1083,14 @@ class _SalahTrackerInlineSection extends StatelessWidget {
               Expanded(
                 child: OutlinedButton.icon(
                   onPressed: onOpenDetails,
-                  icon: Icon(isCurrent ? Icons.tune_rounded : Icons.edit_rounded),
-                  label: Text(isCurrent ? 'More options' : 'Track'),
+                  icon: Icon(
+                    isCurrent ? Icons.tune_rounded : Icons.edit_rounded,
+                  ),
+                  label: Text(
+                    isCurrent
+                        ? l10n.salahMoreOptionsAction
+                        : l10n.salahTrackAction,
+                  ),
                 ),
               ),
             ],
@@ -1118,10 +1123,7 @@ class _QuickTrackChip extends StatelessWidget {
       side: BorderSide(color: color.withValues(alpha: 0.25)),
       label: Text(
         label,
-        style: TextStyle(
-          color: color,
-          fontWeight: FontWeight.w700,
-        ),
+        style: TextStyle(color: color, fontWeight: FontWeight.w700),
       ),
     );
   }
@@ -1134,8 +1136,9 @@ class _TrackerSummaryPill extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final parts = <String>[
-      entry.status.label,
+      entry.status.localizedLabel(l10n),
       if (entry.timing != null) _salahTimingLabel(entry.timing!),
       if (entry.place != null) _salahPlaceLabel(entry.place!),
     ];
@@ -1207,6 +1210,7 @@ class _SalahTrackerSheetState extends State<_SalahTrackerSheet> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final canSaveCompleted =
         _status != PrayerStatus.completed ||
         (_timing != null && _place != null);
@@ -1227,8 +1231,8 @@ class _SalahTrackerSheetState extends State<_SalahTrackerSheet> {
                 ),
               ),
               const SizedBox(height: 12),
-              const Text(
-                'Salah status',
+              Text(
+                l10n.salahStatusTitle,
                 style: TextStyle(fontWeight: FontWeight.w700),
               ),
               const SizedBox(height: 8),
@@ -1238,7 +1242,7 @@ class _SalahTrackerSheetState extends State<_SalahTrackerSheet> {
                 children: [
                   for (final status in PrayerStatus.values)
                     ChoiceChip(
-                      label: Text(status.label),
+                      label: Text(status.localizedLabel(l10n)),
                       selected: _status == status,
                       onSelected: (_) {
                         setState(() {
@@ -1258,8 +1262,8 @@ class _SalahTrackerSheetState extends State<_SalahTrackerSheet> {
               ),
               if (_status == PrayerStatus.completed) ...[
                 const SizedBox(height: 14),
-                const Text(
-                  'How was it offered?',
+                Text(
+                  l10n.salahHowOfferedTitle,
                   style: TextStyle(fontWeight: FontWeight.w700),
                 ),
                 const SizedBox(height: 8),
@@ -1276,8 +1280,8 @@ class _SalahTrackerSheetState extends State<_SalahTrackerSheet> {
                   ],
                 ),
                 const SizedBox(height: 14),
-                const Text(
-                  'Where was it offered?',
+                Text(
+                  l10n.salahWhereOfferedTitle,
                   style: TextStyle(fontWeight: FontWeight.w700),
                 ),
                 const SizedBox(height: 8),
@@ -1298,9 +1302,9 @@ class _SalahTrackerSheetState extends State<_SalahTrackerSheet> {
                   controller: _notesController,
                   minLines: 1,
                   maxLines: 2,
-                  decoration: const InputDecoration(
-                    labelText: 'Optional notes',
-                    hintText: 'Travelling, work, jama\'ah...',
+                  decoration: InputDecoration(
+                    labelText: l10n.salahOptionalNotesLabel,
+                    hintText: l10n.salahOptionalNotesHint,
                     border: OutlineInputBorder(),
                     isDense: true,
                   ),
@@ -1312,7 +1316,7 @@ class _SalahTrackerSheetState extends State<_SalahTrackerSheet> {
                   Expanded(
                     child: OutlinedButton(
                       onPressed: () => Navigator.of(context).pop(),
-                      child: const Text('Cancel'),
+                      child: Text(l10n.quranCancel),
                     ),
                   ),
                   const SizedBox(width: 10),
@@ -1334,7 +1338,7 @@ class _SalahTrackerSheetState extends State<_SalahTrackerSheet> {
                                     : null,
                               ),
                             ),
-                      child: const Text('Save'),
+                      child: Text(l10n.quranSave),
                     ),
                   ),
                 ],
@@ -1419,8 +1423,7 @@ QuranQuote _dailySalahQuote(DateTime now) {
     const QuranQuote(
       arabic: 'إِنَّ الصَّلَاةَ تَنْهَىٰ عَنِ الْفَحْشَاءِ وَالْمُنكَرِ',
       transliteration: 'Inna as-salata tanha anil-fahsha-i wal-munkar',
-      translation:
-          'Indeed, prayer restrains from shameful and unjust deeds.',
+      translation: 'Indeed, prayer restrains from shameful and unjust deeds.',
       surah: 29,
       verse: 45,
       locationLabel: 'Qur’an 29:45',
@@ -1428,24 +1431,22 @@ QuranQuote _dailySalahQuote(DateTime now) {
     const QuranQuote(
       arabic: 'وَأَقِيمُوا الصَّلَاةَ وَآتُوا الزَّكَاةَ',
       transliteration: 'Wa aqimu as-salata wa atu az-zakah',
-      translation:
-          'Establish prayer and give zakah.',
+      translation: 'Establish prayer and give zakah.',
       surah: 2,
       verse: 43,
       locationLabel: 'Qur’an 2:43',
     ),
     const QuranQuote(
       arabic: 'حَافِظُوا عَلَى الصَّلَوَاتِ وَالصَّلَاةِ الْوُسْطَىٰ',
-      transliteration:
-          'Hafizu ala as-salawati was-salatil-wusta',
-      translation:
-          'Guard strictly the prayers, especially the middle prayer.',
+      transliteration: 'Hafizu ala as-salawati was-salatil-wusta',
+      translation: 'Guard strictly the prayers, especially the middle prayer.',
       surah: 2,
       verse: 238,
       locationLabel: 'Qur’an 2:238',
     ),
     const QuranQuote(
-      arabic: 'قَدْ أَفْلَحَ الْمُؤْمِنُونَ الَّذِينَ هُمْ فِي صَلَاتِهِمْ خَاشِعُونَ',
+      arabic:
+          'قَدْ أَفْلَحَ الْمُؤْمِنُونَ الَّذِينَ هُمْ فِي صَلَاتِهِمْ خَاشِعُونَ',
       transliteration:
           'Qad aflaha al-mu’minun alladhina hum fi salatihim khashi‘un',
       translation:
@@ -1455,7 +1456,8 @@ QuranQuote _dailySalahQuote(DateTime now) {
       locationLabel: 'Qur’an 23:1-2',
     ),
     const QuranQuote(
-      arabic: 'إِنَّنِي أَنَا اللَّهُ لَا إِلَٰهَ إِلَّا أَنَا فَاعْبُدْنِي وَأَقِمِ الصَّلَاةَ لِذِكْرِي',
+      arabic:
+          'إِنَّنِي أَنَا اللَّهُ لَا إِلَٰهَ إِلَّا أَنَا فَاعْبُدْنِي وَأَقِمِ الصَّلَاةَ لِذِكْرِي',
       transliteration:
           'Innani ana Allahu la ilaha illa ana fa‘budni wa aqimi as-salata lidhikri',
       translation:
@@ -1465,9 +1467,11 @@ QuranQuote _dailySalahQuote(DateTime now) {
       locationLabel: 'Qur’an 20:14',
     ),
   ];
-  final daySeed = DateTime(now.year, now.month, now.day)
-      .difference(DateTime(2024, 1, 1))
-      .inDays;
+  final daySeed = DateTime(
+    now.year,
+    now.month,
+    now.day,
+  ).difference(DateTime(2024, 1, 1)).inDays;
   return quotes[daySeed % quotes.length];
 }
 

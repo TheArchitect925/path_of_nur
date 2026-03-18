@@ -17,7 +17,9 @@ import '../domain/hadith_learning_path.dart';
 enum _HadithTab { themes, collections, saved, daily, review, paths }
 
 class HadithLandingPage extends ConsumerStatefulWidget {
-  const HadithLandingPage({super.key});
+  const HadithLandingPage({super.key, this.initialTabName});
+
+  final String? initialTabName;
 
   @override
   ConsumerState<HadithLandingPage> createState() => _HadithLandingPageState();
@@ -34,6 +36,10 @@ class _HadithLandingPageState extends ConsumerState<HadithLandingPage> {
     // trigger an assignment once after the first frame; the bundle provider no
     // longer performs this side effect itself.
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      final initialTab = _parseInitialTab(widget.initialTabName);
+      if (initialTab != null) {
+        setState(() => _selectedTab = initialTab);
+      }
       final entries = ref.read(hadithEntriesProvider);
       ref
           .read(hadithDailyReflectionControllerProvider.notifier)
@@ -45,6 +51,25 @@ class _HadithLandingPageState extends ConsumerState<HadithLandingPage> {
   void dispose() {
     _searchController.dispose();
     super.dispose();
+  }
+
+  _HadithTab? _parseInitialTab(String? value) {
+    switch (value) {
+      case 'themes':
+        return _HadithTab.themes;
+      case 'collections':
+        return _HadithTab.collections;
+      case 'saved':
+        return _HadithTab.saved;
+      case 'daily':
+        return _HadithTab.daily;
+      case 'review':
+        return _HadithTab.review;
+      case 'paths':
+        return _HadithTab.paths;
+      default:
+        return null;
+    }
   }
 
   @override

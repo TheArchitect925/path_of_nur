@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/reminders/adhan_audio_service.dart';
 import '../../../core/reminders/adhan_options.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../l10n/app_localizations.dart';
 import '../../../shared/widgets/premium_card.dart';
 
 class AdhanOptionPickerSheet extends ConsumerWidget {
@@ -22,6 +23,7 @@ class AdhanOptionPickerSheet extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     final repository = ref.watch(adhanRepositoryProvider);
     final previewState = ref.watch(adhanPreviewControllerProvider);
     final previewController = ref.read(adhanPreviewControllerProvider.notifier);
@@ -39,15 +41,15 @@ class AdhanOptionPickerSheet extends ConsumerWidget {
             children: [
               Text(
                 category == AdhanOptionCategory.fajr
-                    ? 'Choose Fajr Adhan'
-                    : 'Choose Regular Adhan',
+                    ? l10n.settingsAdhanPickerFajrTitle
+                    : l10n.settingsAdhanPickerRegularTitle,
                 style: Theme.of(context).textTheme.titleLarge,
               ),
               const SizedBox(height: 6),
               Text(
                 category == AdhanOptionCategory.fajr
-                    ? 'Used only for Fajr prayer-time playback.'
-                    : 'Used for Dhuhr, Asr, Maghrib, and Isha.',
+                    ? l10n.settingsAdhanPickerFajrSubtitle
+                    : l10n.settingsAdhanPickerRegularSubtitle,
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   color: AppColors.onSurfaceSubtle,
                 ),
@@ -66,9 +68,9 @@ class AdhanOptionPickerSheet extends ConsumerWidget {
                         (previewState.isPlaying || previewState.isBuffering);
                     return ListTile(
                       contentPadding: EdgeInsets.zero,
-                      title: Text(option.title),
+                      title: Text(option.localizedTitle(l10n)),
                       subtitle: Text(
-                        option.subtitle ?? '',
+                        option.localizedSubtitle(l10n) ?? '',
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -81,7 +83,9 @@ class AdhanOptionPickerSheet extends ConsumerWidget {
                             : AppColors.onSurfaceSubtle,
                       ),
                       trailing: IconButton(
-                        tooltip: isPlaying ? 'Stop preview' : 'Play preview',
+                        tooltip: isPlaying
+                            ? l10n.settingsAdhanPreviewStopTooltip
+                            : l10n.settingsAdhanPreviewPlayTooltip,
                         icon: Icon(
                           isPlaying
                               ? Icons.stop_circle_outlined

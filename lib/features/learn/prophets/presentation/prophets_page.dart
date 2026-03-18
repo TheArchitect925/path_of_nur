@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/theme/app_colors.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/segmented_pill_control.dart';
 import '../../presentation/data/learn_icon_registry.dart';
@@ -13,6 +14,7 @@ import '../domain/prophet_entry.dart';
 import '../domain/prophets_tab.dart';
 import 'prophet_detail_page.dart';
 import 'journey_of_revelation_page.dart';
+import 'prophets_metadata_localization.dart';
 import 'prophetic_family_tree_page.dart';
 import 'prophets_map_view.dart';
 import 'prophets_quiz_view.dart';
@@ -79,6 +81,7 @@ class _ProphetsPageState extends ConsumerState<ProphetsPage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final allProphets = ref.watch(prophetsProvider);
     final ui = ref.watch(prophetsUiControllerProvider);
     final controller = ref.read(prophetsUiControllerProvider.notifier);
@@ -99,9 +102,8 @@ class _ProphetsPageState extends ConsumerState<ProphetsPage> {
 
     return LearnHubPageScaffold(
       headerIcon: LearnIconRegistry.iconFor('prophets'),
-      title: 'Stories of the Prophets',
-      subtitle:
-          'Explore prophetic lives through stories, chronology, and carefully labeled regions.',
+      title: l10n.prophetsPageTitle,
+      subtitle: l10n.prophetsPageSubtitle,
       children: [
         if (lastOpened != null && !isQuiz && !isJourney && !isFamilyTree)
           Padding(
@@ -119,13 +121,16 @@ class _ProphetsPageState extends ConsumerState<ProphetsPage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
-                          'Continue where you left of',
+                        Text(
+                          l10n.prophetsContinueLastOpenedTitle,
                           style: TextStyle(fontWeight: FontWeight.w700),
                         ),
                         const SizedBox(height: 2),
                         Text(
-                          '${lastOpened.honoredName} · ${lastOpened.eraTitle}',
+                          l10n.prophetsContinueLastOpenedSubtitle(
+                            lastOpened.honoredName,
+                            localizedProphetEraTitle(l10n, lastOpened.eraGroup),
+                          ),
                           style: Theme.of(context).textTheme.bodySmall
                               ?.copyWith(color: AppColors.onSurfaceSubtle),
                         ),
@@ -134,7 +139,7 @@ class _ProphetsPageState extends ConsumerState<ProphetsPage> {
                   ),
                   TextButton(
                     onPressed: () => _openDetail(lastOpened),
-                    child: const Text('Open'),
+                    child: Text(l10n.prophetsOpenAction),
                   ),
                 ],
               ),
@@ -153,9 +158,9 @@ class _ProphetsPageState extends ConsumerState<ProphetsPage> {
                 TextField(
                   onChanged: controller.setSearchQuery,
                   controller: _searchController,
-                  decoration: const InputDecoration(
-                    hintText: 'Search prophet, Arabic name, era, or region',
-                    prefixIcon: Icon(Icons.search),
+                  decoration: InputDecoration(
+                    hintText: l10n.prophetsSearchHint,
+                    prefixIcon: const Icon(Icons.search),
                   ),
                 ),
                 const SizedBox(height: 10),
@@ -164,14 +169,14 @@ class _ProphetsPageState extends ConsumerState<ProphetsPage> {
                   child: Row(
                     children: [
                       _filterChip(
-                        label: 'All',
+                        label: l10n.prophetsFilterAll,
                         selected: ui.filterScope == ProphetFilterScope.all,
                         onTap: () =>
                             controller.setFilterScope(ProphetFilterScope.all),
                       ),
                       const SizedBox(width: 8),
                       _filterChip(
-                        label: 'Featured',
+                        label: l10n.prophetsFilterFeatured,
                         selected: ui.filterScope == ProphetFilterScope.featured,
                         onTap: () => controller.setFilterScope(
                           ProphetFilterScope.featured,
@@ -179,13 +184,19 @@ class _ProphetsPageState extends ConsumerState<ProphetsPage> {
                       ),
                       const SizedBox(width: 8),
                       _filterChip(
-                        label: 'Era: ${ui.eraFilter?.title ?? 'Any'}',
+                        label: l10n.prophetsFilterEra(
+                          ui.eraFilter == null
+                              ? l10n.prophetsFilterAny
+                              : localizedProphetEraTitle(l10n, ui.eraFilter!),
+                        ),
                         selected: ui.eraFilter != null,
                         onTap: () => _showEraPicker(context, ui.eraFilter),
                       ),
                       const SizedBox(width: 8),
                       _filterChip(
-                        label: 'Region: ${ui.regionFilter ?? 'Any'}',
+                        label: l10n.prophetsFilterRegion(
+                          ui.regionFilter ?? l10n.prophetsFilterAny,
+                        ),
                         selected: ui.regionFilter != null,
                         onTap: () => _showRegionPicker(
                           context,
@@ -196,7 +207,7 @@ class _ProphetsPageState extends ConsumerState<ProphetsPage> {
                       if (ui.eraFilter != null || ui.regionFilter != null) ...[
                         const SizedBox(width: 8),
                         _filterChip(
-                          label: 'Clear',
+                          label: l10n.prophetsFilterClear,
                           selected: false,
                           onTap: controller.clearFilters,
                         ),
@@ -206,7 +217,7 @@ class _ProphetsPageState extends ConsumerState<ProphetsPage> {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  '${filtered.length} prophets',
+                  l10n.prophetsCount(filtered.length),
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: AppColors.onSurfaceSubtle,
                   ),
@@ -214,7 +225,7 @@ class _ProphetsPageState extends ConsumerState<ProphetsPage> {
               ] else if (isQuiz) ...[
                 const SizedBox(height: 8),
                 Text(
-                  'Test stories, timeline, lessons, and references in a calm learning flow.',
+                  l10n.prophetsQuizTabSubtitle,
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: AppColors.onSurfaceSubtle,
                   ),
@@ -222,7 +233,7 @@ class _ProphetsPageState extends ConsumerState<ProphetsPage> {
               ] else if (isFamilyTree) ...[
                 const SizedBox(height: 8),
                 Text(
-                  'Explore major lineage connections with careful, non-speculative family context.',
+                  l10n.prophetsFamilyTreeTabSubtitle,
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: AppColors.onSurfaceSubtle,
                   ),
@@ -230,7 +241,7 @@ class _ProphetsPageState extends ConsumerState<ProphetsPage> {
               ] else ...[
                 const SizedBox(height: 8),
                 Text(
-                  'Follow a guided chronological journey across eras, regions, and core prophetic calls.',
+                  l10n.prophetsJourneyTabSubtitle,
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: AppColors.onSurfaceSubtle,
                   ),
@@ -326,6 +337,7 @@ class _ProphetsPageState extends ConsumerState<ProphetsPage> {
     BuildContext context,
     ProphetEraGroup? selected,
   ) async {
+    final l10n = AppLocalizations.of(context);
     final controller = ref.read(prophetsUiControllerProvider.notifier);
     final result = await showModalBottomSheet<ProphetEraGroup?>(
       context: context,
@@ -336,7 +348,7 @@ class _ProphetsPageState extends ConsumerState<ProphetsPage> {
             shrinkWrap: true,
             children: [
               ListTile(
-                title: const Text('Any Era'),
+                title: Text(l10n.prophetsAnyEra),
                 trailing: selected == null
                     ? const Icon(Icons.check_rounded)
                     : null,
@@ -344,7 +356,7 @@ class _ProphetsPageState extends ConsumerState<ProphetsPage> {
               ),
               ...ProphetEraGroup.values.map(
                 (era) => ListTile(
-                  title: Text(era.title),
+                  title: Text(localizedProphetEraTitle(l10n, era)),
                   trailing: selected == era
                       ? const Icon(Icons.check_rounded)
                       : null,
@@ -364,6 +376,7 @@ class _ProphetsPageState extends ConsumerState<ProphetsPage> {
     List<String> regions,
     String? selected,
   ) async {
+    final l10n = AppLocalizations.of(context);
     final controller = ref.read(prophetsUiControllerProvider.notifier);
     final result = await showModalBottomSheet<String?>(
       context: context,
@@ -374,7 +387,7 @@ class _ProphetsPageState extends ConsumerState<ProphetsPage> {
             shrinkWrap: true,
             children: [
               ListTile(
-                title: const Text('Any Region'),
+                title: Text(l10n.prophetsAnyRegion),
                 trailing: selected == null
                     ? const Icon(Icons.check_rounded)
                     : null,

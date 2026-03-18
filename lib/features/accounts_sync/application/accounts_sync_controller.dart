@@ -13,9 +13,13 @@ const _accountsSyncStorageKey = 'accounts_sync.state.v1';
 const _accountsSyncReservedPrefix = 'accounts_sync.';
 
 enum AccountProviderType { signInWithApple, google, emailMagicLink, localOnly }
+
 enum ProfileKind { adult, youth, child, guest }
+
 enum ProfileExperienceMode { full, simplified, learningFocused, prayerFocused }
+
 enum ProfileSyncMode { pathOfNurCloud, iCloud, localOnly, manualBackupOnly }
+
 enum SyncStateKind {
   allCaughtUp,
   syncing,
@@ -65,10 +69,7 @@ class AuthSession {
 }
 
 class AuthState {
-  const AuthState({
-    required this.status,
-    required this.session,
-  });
+  const AuthState({required this.status, required this.session});
 
   final AuthStatus status;
   final AuthSession? session;
@@ -98,32 +99,34 @@ class AccountRecord {
   final ProfileSyncMode syncMode;
 
   Map<String, dynamic> toJson() => {
-        'accountId': accountId,
-        'provider': provider.name,
-        'identifier': identifier,
-        'displayName': displayName,
-        'createdAtIso': createdAtIso,
-        'lastLoginAtIso': lastLoginAtIso,
-        'lastSyncAtIso': lastSyncAtIso,
-        'connectedDeviceCount': connectedDeviceCount,
-        'syncMode': syncMode.name,
-      };
+    'accountId': accountId,
+    'provider': provider.name,
+    'identifier': identifier,
+    'displayName': displayName,
+    'createdAtIso': createdAtIso,
+    'lastLoginAtIso': lastLoginAtIso,
+    'lastSyncAtIso': lastSyncAtIso,
+    'connectedDeviceCount': connectedDeviceCount,
+    'syncMode': syncMode.name,
+  };
 
   factory AccountRecord.fromJson(Map<String, dynamic> json) => AccountRecord(
-        accountId: json['accountId']?.toString() ?? '',
-        provider: AccountProviderType.values.byName(
-          json['provider']?.toString() ?? AccountProviderType.localOnly.name,
-        ),
-        identifier: json['identifier']?.toString() ?? '',
-        displayName: json['displayName']?.toString() ?? '',
-        createdAtIso: json['createdAtIso']?.toString() ?? DateTime.now().toIso8601String(),
-        lastLoginAtIso: json['lastLoginAtIso']?.toString() ?? DateTime.now().toIso8601String(),
-        lastSyncAtIso: json['lastSyncAtIso']?.toString(),
-        connectedDeviceCount: (json['connectedDeviceCount'] as num?)?.toInt() ?? 1,
-        syncMode: ProfileSyncMode.values.byName(
-          json['syncMode']?.toString() ?? ProfileSyncMode.localOnly.name,
-        ),
-      );
+    accountId: json['accountId']?.toString() ?? '',
+    provider: AccountProviderType.values.byName(
+      json['provider']?.toString() ?? AccountProviderType.localOnly.name,
+    ),
+    identifier: json['identifier']?.toString() ?? '',
+    displayName: json['displayName']?.toString() ?? '',
+    createdAtIso:
+        json['createdAtIso']?.toString() ?? DateTime.now().toIso8601String(),
+    lastLoginAtIso:
+        json['lastLoginAtIso']?.toString() ?? DateTime.now().toIso8601String(),
+    lastSyncAtIso: json['lastSyncAtIso']?.toString(),
+    connectedDeviceCount: (json['connectedDeviceCount'] as num?)?.toInt() ?? 1,
+    syncMode: ProfileSyncMode.values.byName(
+      json['syncMode']?.toString() ?? ProfileSyncMode.localOnly.name,
+    ),
+  );
 }
 
 class ProfileRecord {
@@ -211,57 +214,61 @@ class ProfileRecord {
   }
 
   Map<String, dynamic> toJson() => {
-        'profileId': profileId,
-        'accountId': accountId,
-        'displayName': displayName,
-        'avatar': avatar,
-        'profileType': profileType.name,
-        'experienceMode': experienceMode.name,
-        'createdAtIso': createdAtIso,
-        'updatedAtIso': updatedAtIso,
-        'lastActiveAtIso': lastActiveAtIso,
-        'syncEnabled': syncEnabled,
-        'syncMode': syncMode.name,
-        'pinProtected': pinProtected,
-        'isLocalOnly': isLocalOnly,
-        'isGuest': isGuest,
-        'guardianManaged': guardianManaged,
-        'settingsEditable': settingsEditable,
-        'allowExportImport': allowExportImport,
-        'canLeaveWithoutPin': canLeaveWithoutPin,
-        'visibleSections': visibleSections,
-      };
+    'profileId': profileId,
+    'accountId': accountId,
+    'displayName': displayName,
+    'avatar': avatar,
+    'profileType': profileType.name,
+    'experienceMode': experienceMode.name,
+    'createdAtIso': createdAtIso,
+    'updatedAtIso': updatedAtIso,
+    'lastActiveAtIso': lastActiveAtIso,
+    'syncEnabled': syncEnabled,
+    'syncMode': syncMode.name,
+    'pinProtected': pinProtected,
+    'isLocalOnly': isLocalOnly,
+    'isGuest': isGuest,
+    'guardianManaged': guardianManaged,
+    'settingsEditable': settingsEditable,
+    'allowExportImport': allowExportImport,
+    'canLeaveWithoutPin': canLeaveWithoutPin,
+    'visibleSections': visibleSections,
+  };
 
   factory ProfileRecord.fromJson(Map<String, dynamic> json) => ProfileRecord(
-        profileId: json['profileId']?.toString() ?? '',
-        accountId: json['accountId']?.toString(),
-        displayName: json['displayName']?.toString() ?? '',
-        avatar: json['avatar']?.toString() ?? '✨',
-        profileType: ProfileKind.values.byName(
-          json['profileType']?.toString() ?? ProfileKind.adult.name,
-        ),
-        experienceMode: ProfileExperienceMode.values.byName(
-          json['experienceMode']?.toString() ?? ProfileExperienceMode.full.name,
-        ),
-        createdAtIso: json['createdAtIso']?.toString() ?? DateTime.now().toIso8601String(),
-        updatedAtIso: json['updatedAtIso']?.toString() ?? DateTime.now().toIso8601String(),
-        lastActiveAtIso: json['lastActiveAtIso']?.toString() ?? DateTime.now().toIso8601String(),
-        syncEnabled: json['syncEnabled'] as bool? ?? true,
-        syncMode: ProfileSyncMode.values.byName(
-          json['syncMode']?.toString() ?? ProfileSyncMode.localOnly.name,
-        ),
-        pinProtected: json['pinProtected'] as bool? ?? false,
-        isLocalOnly: json['isLocalOnly'] as bool? ?? false,
-        isGuest: json['isGuest'] as bool? ?? false,
-        guardianManaged: json['guardianManaged'] as bool? ?? false,
-        settingsEditable: json['settingsEditable'] as bool? ?? true,
-        allowExportImport: json['allowExportImport'] as bool? ?? true,
-        canLeaveWithoutPin: json['canLeaveWithoutPin'] as bool? ?? true,
-        visibleSections: (json['visibleSections'] as List?)
-                ?.map((item) => item.toString())
-                .toList() ??
-            const ['home', 'worship', 'learn', 'journey', 'profile'],
-      );
+    profileId: json['profileId']?.toString() ?? '',
+    accountId: json['accountId']?.toString(),
+    displayName: json['displayName']?.toString() ?? '',
+    avatar: json['avatar']?.toString() ?? '✨',
+    profileType: ProfileKind.values.byName(
+      json['profileType']?.toString() ?? ProfileKind.adult.name,
+    ),
+    experienceMode: ProfileExperienceMode.values.byName(
+      json['experienceMode']?.toString() ?? ProfileExperienceMode.full.name,
+    ),
+    createdAtIso:
+        json['createdAtIso']?.toString() ?? DateTime.now().toIso8601String(),
+    updatedAtIso:
+        json['updatedAtIso']?.toString() ?? DateTime.now().toIso8601String(),
+    lastActiveAtIso:
+        json['lastActiveAtIso']?.toString() ?? DateTime.now().toIso8601String(),
+    syncEnabled: json['syncEnabled'] as bool? ?? true,
+    syncMode: ProfileSyncMode.values.byName(
+      json['syncMode']?.toString() ?? ProfileSyncMode.localOnly.name,
+    ),
+    pinProtected: json['pinProtected'] as bool? ?? false,
+    isLocalOnly: json['isLocalOnly'] as bool? ?? false,
+    isGuest: json['isGuest'] as bool? ?? false,
+    guardianManaged: json['guardianManaged'] as bool? ?? false,
+    settingsEditable: json['settingsEditable'] as bool? ?? true,
+    allowExportImport: json['allowExportImport'] as bool? ?? true,
+    canLeaveWithoutPin: json['canLeaveWithoutPin'] as bool? ?? true,
+    visibleSections:
+        (json['visibleSections'] as List?)
+            ?.map((item) => item.toString())
+            .toList() ??
+        const ['home', 'worship', 'learn', 'journey', 'profile'],
+  );
 }
 
 class ConnectedDeviceRecord {
@@ -284,24 +291,25 @@ class ConnectedDeviceRecord {
   final bool isCurrentDevice;
 
   Map<String, dynamic> toJson() => {
-        'deviceId': deviceId,
-        'deviceName': deviceName,
-        'platform': platform.name,
-        'lastActiveAtIso': lastActiveAtIso,
-        'lastSyncAtIso': lastSyncAtIso,
-        'syncState': syncState.name,
-        'isCurrentDevice': isCurrentDevice,
-      };
+    'deviceId': deviceId,
+    'deviceName': deviceName,
+    'platform': platform.name,
+    'lastActiveAtIso': lastActiveAtIso,
+    'lastSyncAtIso': lastSyncAtIso,
+    'syncState': syncState.name,
+    'isCurrentDevice': isCurrentDevice,
+  };
 
   factory ConnectedDeviceRecord.fromJson(Map<String, dynamic> json) =>
       ConnectedDeviceRecord(
         deviceId: json['deviceId']?.toString() ?? '',
-        deviceName: json['deviceName']?.toString() ?? 'This device',
+        deviceName: json['deviceName']?.toString() ?? 'current_device',
         platform: DevicePlatformKind.values.byName(
           json['platform']?.toString() ?? _platformForCurrentDevice().name,
         ),
         lastActiveAtIso:
-            json['lastActiveAtIso']?.toString() ?? DateTime.now().toIso8601String(),
+            json['lastActiveAtIso']?.toString() ??
+            DateTime.now().toIso8601String(),
         lastSyncAtIso: json['lastSyncAtIso']?.toString(),
         syncState: SyncStateKind.values.byName(
           json['syncState']?.toString() ?? SyncStateKind.localOnly.name,
@@ -355,14 +363,14 @@ class SharedDeviceSafetySettings {
   }
 
   Map<String, dynamic> toJson() => {
-        'requireProfileSelectionOnLaunch': requireProfileSelectionOnLaunch,
-        'requirePinForAdultProfiles': requirePinForAdultProfiles,
-        'autoLockAfterInactivity': autoLockAfterInactivity,
-        'restrictChildProfileSettings': restrictChildProfileSettings,
-        'hideAdvancedToolsFromChildProfiles': hideAdvancedToolsFromChildProfiles,
-        'disableEasySwitchingForProtectedProfiles':
-            disableEasySwitchingForProtectedProfiles,
-      };
+    'requireProfileSelectionOnLaunch': requireProfileSelectionOnLaunch,
+    'requirePinForAdultProfiles': requirePinForAdultProfiles,
+    'autoLockAfterInactivity': autoLockAfterInactivity,
+    'restrictChildProfileSettings': restrictChildProfileSettings,
+    'hideAdvancedToolsFromChildProfiles': hideAdvancedToolsFromChildProfiles,
+    'disableEasySwitchingForProtectedProfiles':
+        disableEasySwitchingForProtectedProfiles,
+  };
 
   factory SharedDeviceSafetySettings.fromJson(Map<String, dynamic>? json) =>
       SharedDeviceSafetySettings(
@@ -441,19 +449,19 @@ class SyncStatusSnapshot {
   }
 
   Map<String, dynamic> toJson() => {
-        'syncMode': syncMode.name,
-        'syncState': syncState.name,
-        'lastSyncAtIso': lastSyncAtIso,
-        'pendingChangesCount': pendingChangesCount,
-        'deviceName': deviceName,
-        'healthy': healthy,
-        'recentEvents': recentEvents,
-        'lastFailedSyncAtIso': lastFailedSyncAtIso,
-        'transportLabel': transportLabel,
-        'transportAvailable': transportAvailable,
-        'lastResultSummary': lastResultSummary,
-        'lastErrorSummary': lastErrorSummary,
-      };
+    'syncMode': syncMode.name,
+    'syncState': syncState.name,
+    'lastSyncAtIso': lastSyncAtIso,
+    'pendingChangesCount': pendingChangesCount,
+    'deviceName': deviceName,
+    'healthy': healthy,
+    'recentEvents': recentEvents,
+    'lastFailedSyncAtIso': lastFailedSyncAtIso,
+    'transportLabel': transportLabel,
+    'transportAvailable': transportAvailable,
+    'lastResultSummary': lastResultSummary,
+    'lastErrorSummary': lastErrorSummary,
+  };
 
   factory SyncStatusSnapshot.fromJson(Map<String, dynamic>? json) =>
       SyncStatusSnapshot(
@@ -464,15 +472,18 @@ class SyncStatusSnapshot {
           json?['syncState']?.toString() ?? SyncStateKind.localOnly.name,
         ),
         lastSyncAtIso: json?['lastSyncAtIso']?.toString(),
-        pendingChangesCount: (json?['pendingChangesCount'] as num?)?.toInt() ?? 0,
-        deviceName: json?['deviceName']?.toString() ?? 'This device',
+        pendingChangesCount:
+            (json?['pendingChangesCount'] as num?)?.toInt() ?? 0,
+        deviceName: json?['deviceName']?.toString() ?? 'current_device',
         healthy: json?['healthy'] as bool? ?? true,
-        recentEvents: (json?['recentEvents'] as List?)
+        recentEvents:
+            (json?['recentEvents'] as List?)
                 ?.map((item) => item.toString())
                 .toList() ??
             const [],
         lastFailedSyncAtIso: json?['lastFailedSyncAtIso']?.toString(),
-        transportLabel: json?['transportLabel']?.toString() ?? 'Local storage',
+        transportLabel:
+            json?['transportLabel']?.toString() ?? syncTransportKeyLocalStorage,
         transportAvailable: json?['transportAvailable'] as bool? ?? false,
         lastResultSummary: json?['lastResultSummary']?.toString(),
         lastErrorSummary: json?['lastErrorSummary']?.toString(),
@@ -503,16 +514,16 @@ class BackupRecord {
   }
 
   Map<String, dynamic> toJson() => {
-        'lastExportAtIso': lastExportAtIso,
-        'lastImportAtIso': lastImportAtIso,
-        'lastExportPath': lastExportPath,
-      };
+    'lastExportAtIso': lastExportAtIso,
+    'lastImportAtIso': lastImportAtIso,
+    'lastExportPath': lastExportPath,
+  };
 
   factory BackupRecord.fromJson(Map<String, dynamic>? json) => BackupRecord(
-        lastExportAtIso: json?['lastExportAtIso']?.toString(),
-        lastImportAtIso: json?['lastImportAtIso']?.toString(),
-        lastExportPath: json?['lastExportPath']?.toString(),
-      );
+    lastExportAtIso: json?['lastExportAtIso']?.toString(),
+    lastImportAtIso: json?['lastImportAtIso']?.toString(),
+    lastExportPath: json?['lastExportPath']?.toString(),
+  );
 }
 
 class AccountsSyncState {
@@ -546,12 +557,14 @@ class AccountsSyncState {
   final BackupRecord backupRecord;
   final int scopeVersion;
 
-  ProfileRecord? get activeProfile => profiles.cast<ProfileRecord?>().firstWhere(
+  ProfileRecord? get activeProfile =>
+      profiles.cast<ProfileRecord?>().firstWhere(
         (item) => item?.profileId == activeProfileId,
         orElse: () => null,
       );
 
-  AccountRecord? get activeAccount => accounts.cast<AccountRecord?>().firstWhere(
+  AccountRecord? get activeAccount =>
+      accounts.cast<AccountRecord?>().firstWhere(
         (item) => item?.accountId == activeAccountId,
         orElse: () => null,
       );
@@ -562,7 +575,8 @@ class AccountsSyncState {
         ? null
         : DateTime.tryParse(backupRecord.lastExportAtIso!);
     final stale =
-        lastExport == null || DateTime.now().difference(lastExport).inDays >= 30;
+        lastExport == null ||
+        DateTime.now().difference(lastExport).inDays >= 30;
     return stale &&
         (mode == ProfileSyncMode.localOnly ||
             mode == ProfileSyncMode.manualBackupOnly);
@@ -577,6 +591,7 @@ class AccountsSyncState {
     String? activeAccountId,
     String? activeProfileId,
     String? sessionUnlockedProfileId,
+    bool clearSessionUnlockedProfileId = false,
     bool? sharedDeviceModeEnabled,
     SharedDeviceSafetySettings? sharedDeviceSafety,
     SyncStatusSnapshot? syncStatus,
@@ -591,8 +606,9 @@ class AccountsSyncState {
       connectedDevices: connectedDevices ?? this.connectedDevices,
       activeAccountId: activeAccountId ?? this.activeAccountId,
       activeProfileId: activeProfileId ?? this.activeProfileId,
-      sessionUnlockedProfileId:
-          sessionUnlockedProfileId ?? this.sessionUnlockedProfileId,
+      sessionUnlockedProfileId: clearSessionUnlockedProfileId
+          ? null
+          : sessionUnlockedProfileId ?? this.sessionUnlockedProfileId,
       sharedDeviceModeEnabled:
           sharedDeviceModeEnabled ?? this.sharedDeviceModeEnabled,
       sharedDeviceSafety: sharedDeviceSafety ?? this.sharedDeviceSafety,
@@ -603,20 +619,20 @@ class AccountsSyncState {
   }
 
   Map<String, dynamic> toJson() => {
-        'accounts': accounts.map((item) => item.toJson()).toList(),
-        'profiles': profiles.map((item) => item.toJson()).toList(),
-        'profileSnapshots': profileSnapshots,
-        'profilePins': profilePins,
-        'connectedDevices': connectedDevices.map((item) => item.toJson()).toList(),
-        'activeAccountId': activeAccountId,
-        'activeProfileId': activeProfileId,
-        'sessionUnlockedProfileId': sessionUnlockedProfileId,
-        'sharedDeviceModeEnabled': sharedDeviceModeEnabled,
-        'sharedDeviceSafety': sharedDeviceSafety.toJson(),
-        'syncStatus': syncStatus.toJson(),
-        'backupRecord': backupRecord.toJson(),
-        'scopeVersion': scopeVersion,
-      };
+    'accounts': accounts.map((item) => item.toJson()).toList(),
+    'profiles': profiles.map((item) => item.toJson()).toList(),
+    'profileSnapshots': profileSnapshots,
+    'profilePins': profilePins,
+    'connectedDevices': connectedDevices.map((item) => item.toJson()).toList(),
+    'activeAccountId': activeAccountId,
+    'activeProfileId': activeProfileId,
+    'sessionUnlockedProfileId': sessionUnlockedProfileId,
+    'sharedDeviceModeEnabled': sharedDeviceModeEnabled,
+    'sharedDeviceSafety': sharedDeviceSafety.toJson(),
+    'syncStatus': syncStatus.toJson(),
+    'backupRecord': backupRecord.toJson(),
+    'scopeVersion': scopeVersion,
+  };
 
   factory AccountsSyncState.fromJson(Map<String, dynamic>? json) {
     if (json == null) {
@@ -624,33 +640,46 @@ class AccountsSyncState {
     }
     return AccountsSyncState(
       accounts: ((json['accounts'] as List?) ?? const [])
-          .map((item) => AccountRecord.fromJson(
-                (item as Map).map((key, value) => MapEntry(key.toString(), value)),
-              ))
+          .map(
+            (item) => AccountRecord.fromJson(
+              (item as Map).map(
+                (key, value) => MapEntry(key.toString(), value),
+              ),
+            ),
+          )
           .toList(),
       profiles: ((json['profiles'] as List?) ?? const [])
-          .map((item) => ProfileRecord.fromJson(
-                (item as Map).map((key, value) => MapEntry(key.toString(), value)),
-              ))
-          .toList(),
-      profileSnapshots: ((json['profileSnapshots'] as Map?) ?? const {})
           .map(
-            (key, value) => MapEntry(
-              key.toString(),
-              (value as Map).map((k, v) => MapEntry(k.toString(), v)),
+            (item) => ProfileRecord.fromJson(
+              (item as Map).map(
+                (key, value) => MapEntry(key.toString(), value),
+              ),
             ),
-          ),
-      profilePins: ((json['profilePins'] as Map?) ?? const {})
-          .map((key, value) => MapEntry(key.toString(), value.toString())),
+          )
+          .toList(),
+      profileSnapshots: ((json['profileSnapshots'] as Map?) ?? const {}).map(
+        (key, value) => MapEntry(
+          key.toString(),
+          (value as Map).map((k, v) => MapEntry(k.toString(), v)),
+        ),
+      ),
+      profilePins: ((json['profilePins'] as Map?) ?? const {}).map(
+        (key, value) => MapEntry(key.toString(), value.toString()),
+      ),
       connectedDevices: ((json['connectedDevices'] as List?) ?? const [])
-          .map((item) => ConnectedDeviceRecord.fromJson(
-                (item as Map).map((key, value) => MapEntry(key.toString(), value)),
-              ))
+          .map(
+            (item) => ConnectedDeviceRecord.fromJson(
+              (item as Map).map(
+                (key, value) => MapEntry(key.toString(), value),
+              ),
+            ),
+          )
           .toList(),
       activeAccountId: json['activeAccountId']?.toString(),
       activeProfileId: json['activeProfileId']?.toString(),
       sessionUnlockedProfileId: json['sessionUnlockedProfileId']?.toString(),
-      sharedDeviceModeEnabled: json['sharedDeviceModeEnabled'] as bool? ?? false,
+      sharedDeviceModeEnabled:
+          json['sharedDeviceModeEnabled'] as bool? ?? false,
       sharedDeviceSafety: SharedDeviceSafetySettings.fromJson(
         (json['sharedDeviceSafety'] as Map?)?.map(
           (key, value) => MapEntry(key.toString(), value),
@@ -692,15 +721,13 @@ class AccountsSyncState {
       sessionUnlockedProfileId: null,
       sharedDeviceModeEnabled: false,
       sharedDeviceSafety: SharedDeviceSafetySettings.fromJson(null),
-      syncStatus: SyncStatusSnapshot.fromJson(
-        <String, dynamic>{
-          'deviceName': device.deviceName,
-          'syncState': SyncStateKind.localOnly.name,
-          'transportLabel': 'Local storage',
-          'transportAvailable': false,
-          'lastResultSummary': 'Local-only mode active',
-        },
-      ),
+      syncStatus: SyncStatusSnapshot.fromJson(<String, dynamic>{
+        'deviceName': device.deviceName,
+        'syncState': SyncStateKind.localOnly.name,
+        'transportLabel': 'Local storage',
+        'transportAvailable': false,
+        'lastResultSummary': 'Local-only mode active',
+      }),
       backupRecord: BackupRecord.fromJson(null),
       scopeVersion: 0,
     );
@@ -714,10 +741,10 @@ class AccountsSyncController extends StateNotifier<AccountsSyncState> {
     required String currentDeviceId,
     required String currentDeviceName,
     required DevicePlatformKind currentDevicePlatform,
-  })
-      : super(AccountsSyncState.initial()) {
-    final restored =
-        AccountsSyncState.fromJson(_store.getJsonMap(_accountsSyncStorageKey));
+  }) : super(AccountsSyncState.initial()) {
+    final restored = AccountsSyncState.fromJson(
+      _store.getJsonMap(_accountsSyncStorageKey),
+    );
     state = _normalizeCurrentDevice(
       restored,
       currentDeviceId: currentDeviceId,
@@ -746,17 +773,21 @@ class AccountsSyncController extends StateNotifier<AccountsSyncState> {
     final now = DateTime.now().toIso8601String();
     final others = source.connectedDevices
         .where((item) => item.deviceId != currentDeviceId)
-        .map((item) => ConnectedDeviceRecord(
-              deviceId: item.deviceId,
-              deviceName: item.deviceName,
-              platform: item.platform,
-              lastActiveAtIso: item.lastActiveAtIso,
-              lastSyncAtIso: item.lastSyncAtIso,
-              syncState: item.syncState,
-              isCurrentDevice: false,
-            ))
+        .map(
+          (item) => ConnectedDeviceRecord(
+            deviceId: item.deviceId,
+            deviceName: item.deviceName,
+            platform: item.platform,
+            lastActiveAtIso: item.lastActiveAtIso,
+            lastSyncAtIso: item.lastSyncAtIso,
+            syncState: item.syncState,
+            isCurrentDevice: false,
+          ),
+        )
         .toList(growable: true);
-    final existing = source.connectedDevices.cast<ConnectedDeviceRecord?>().firstWhere(
+    final existing = source.connectedDevices
+        .cast<ConnectedDeviceRecord?>()
+        .firstWhere(
           (item) => item?.deviceId == currentDeviceId,
           orElse: () => null,
         );
@@ -801,7 +832,7 @@ class AccountsSyncController extends StateNotifier<AccountsSyncState> {
     await _persist();
   }
 
-  Future<void> createProfile({
+  Future<String> createProfile({
     required String displayName,
     required ProfileKind kind,
     required ProfileExperienceMode experienceMode,
@@ -810,6 +841,7 @@ class AccountsSyncController extends StateNotifier<AccountsSyncState> {
     bool pinProtected = false,
     String? pin,
     bool guardianManaged = false,
+    bool activateAfterCreate = true,
   }) async {
     final now = DateTime.now().toIso8601String();
     final profileId = 'profile_${DateTime.now().microsecondsSinceEpoch}';
@@ -845,16 +877,68 @@ class AccountsSyncController extends StateNotifier<AccountsSyncState> {
       profilePins: nextPins,
     );
     await _persist();
-    await switchProfile(profileId, bypassPin: true);
+    if (activateAfterCreate) {
+      await switchProfile(profileId, bypassPin: true);
+    }
+    return profileId;
   }
 
-  Future<bool> switchProfile(String profileId, {String? pin, bool bypassPin = false}) async {
-    final target = state.profiles.firstWhere((item) => item.profileId == profileId);
+  Future<void> updateProfilePresentation(
+    String profileId, {
+    String? displayName,
+    String? avatar,
+  }) async {
+    state = state.copyWith(
+      profiles: state.profiles
+          .map(
+            (item) => item.profileId == profileId
+                ? item.copyWith(
+                    displayName: displayName,
+                    avatar: avatar,
+                    updatedAtIso: DateTime.now().toIso8601String(),
+                  )
+                : item,
+          )
+          .toList(growable: false),
+    );
+    await _persist();
+  }
+
+  Future<void> mergeIntoProfileSnapshot(
+    String profileId,
+    Map<String, dynamic> entries,
+  ) async {
+    final existingSnapshot = {
+      ...(state.profileSnapshots[profileId] ?? const <String, dynamic>{}),
+    };
+    existingSnapshot.addAll(entries);
+    state = state.copyWith(
+      profileSnapshots: {
+        ...state.profileSnapshots,
+        profileId: existingSnapshot,
+      },
+    );
+    if (state.activeProfileId == profileId) {
+      await _store.restoreAll(entries);
+      state = state.copyWith(scopeVersion: state.scopeVersion + 1);
+    }
+    await _persist();
+  }
+
+  Future<bool> switchProfile(
+    String profileId, {
+    String? pin,
+    bool bypassPin = false,
+  }) async {
+    final target = state.profiles.firstWhere(
+      (item) => item.profileId == profileId,
+    );
     if (!bypassPin && target.pinProtected && !verifyPin(profileId, pin ?? '')) {
       return false;
     }
     await _captureActiveProfileSnapshot();
-    final targetSnapshot = state.profileSnapshots[profileId] ?? <String, dynamic>{};
+    final targetSnapshot =
+        state.profileSnapshots[profileId] ?? <String, dynamic>{};
     final currentDataKeys = _dataKeysForIsolation();
     await _store.restoreAll(targetSnapshot, replaceKeys: currentDataKeys);
     state = state.copyWith(
@@ -862,12 +946,14 @@ class AccountsSyncController extends StateNotifier<AccountsSyncState> {
       activeAccountId: target.accountId,
       sessionUnlockedProfileId: profileId,
       profiles: state.profiles
-          .map((item) => item.profileId == profileId
-              ? item.copyWith(
-                  lastActiveAtIso: DateTime.now().toIso8601String(),
-                  updatedAtIso: DateTime.now().toIso8601String(),
-                )
-              : item)
+          .map(
+            (item) => item.profileId == profileId
+                ? item.copyWith(
+                    lastActiveAtIso: DateTime.now().toIso8601String(),
+                    updatedAtIso: DateTime.now().toIso8601String(),
+                  )
+                : item,
+          )
           .toList(),
       scopeVersion: state.scopeVersion + 1,
     );
@@ -876,7 +962,7 @@ class AccountsSyncController extends StateNotifier<AccountsSyncState> {
   }
 
   Future<void> lockSharedDevice() async {
-    state = state.copyWith(sessionUnlockedProfileId: null);
+    state = state.copyWith(clearSessionUnlockedProfileId: true);
     await _persist();
   }
 
@@ -884,9 +970,14 @@ class AccountsSyncController extends StateNotifier<AccountsSyncState> {
     state = state.copyWith(
       profilePins: {...state.profilePins, profileId: pin},
       profiles: state.profiles
-          .map((item) => item.profileId == profileId
-              ? item.copyWith(pinProtected: true, updatedAtIso: DateTime.now().toIso8601String())
-              : item)
+          .map(
+            (item) => item.profileId == profileId
+                ? item.copyWith(
+                    pinProtected: true,
+                    updatedAtIso: DateTime.now().toIso8601String(),
+                  )
+                : item,
+          )
           .toList(),
     );
     await _persist();
@@ -897,37 +988,50 @@ class AccountsSyncController extends StateNotifier<AccountsSyncState> {
     state = state.copyWith(
       profilePins: nextPins,
       profiles: state.profiles
-          .map((item) => item.profileId == profileId
-              ? item.copyWith(pinProtected: false, updatedAtIso: DateTime.now().toIso8601String())
-              : item)
+          .map(
+            (item) => item.profileId == profileId
+                ? item.copyWith(
+                    pinProtected: false,
+                    updatedAtIso: DateTime.now().toIso8601String(),
+                  )
+                : item,
+          )
           .toList(),
     );
     await _persist();
   }
 
-  bool verifyPin(String profileId, String pin) => state.profilePins[profileId] == pin;
+  bool verifyPin(String profileId, String pin) =>
+      state.profilePins[profileId] == pin;
 
   Future<void> updateSharedDeviceMode(bool enabled) async {
     state = state.copyWith(sharedDeviceModeEnabled: enabled);
     await _persist();
   }
 
-  Future<void> updateSharedDeviceSafety(SharedDeviceSafetySettings settings) async {
+  Future<void> updateSharedDeviceSafety(
+    SharedDeviceSafetySettings settings,
+  ) async {
     state = state.copyWith(sharedDeviceSafety: settings);
     await _persist();
   }
 
-  Future<void> updateProfileSyncMode(String profileId, ProfileSyncMode mode) async {
+  Future<void> updateProfileSyncMode(
+    String profileId,
+    ProfileSyncMode mode,
+  ) async {
     state = state.copyWith(
       profiles: state.profiles
-          .map((item) => item.profileId == profileId
-              ? item.copyWith(
-                  syncMode: mode,
-                  syncEnabled: mode != ProfileSyncMode.localOnly,
-                  isLocalOnly: mode == ProfileSyncMode.localOnly,
-                  updatedAtIso: DateTime.now().toIso8601String(),
-                )
-              : item)
+          .map(
+            (item) => item.profileId == profileId
+                ? item.copyWith(
+                    syncMode: mode,
+                    syncEnabled: mode != ProfileSyncMode.localOnly,
+                    isLocalOnly: mode == ProfileSyncMode.localOnly,
+                    updatedAtIso: DateTime.now().toIso8601String(),
+                  )
+                : item,
+          )
           .toList(),
       syncStatus: state.syncStatus.copyWith(
         syncMode: mode,
@@ -949,7 +1053,10 @@ class AccountsSyncController extends StateNotifier<AccountsSyncState> {
         syncState: state.activeProfile?.syncMode == ProfileSyncMode.localOnly
             ? SyncStateKind.localOnly
             : SyncStateKind.offlinePending,
-        recentEvents: [description, ...state.syncStatus.recentEvents].take(10).toList(),
+        recentEvents: [
+          description,
+          ...state.syncStatus.recentEvents,
+        ].take(10).toList(),
       ),
     );
     await _persist();
@@ -962,38 +1069,46 @@ class AccountsSyncController extends StateNotifier<AccountsSyncState> {
         syncState: state.activeProfile?.syncMode == ProfileSyncMode.localOnly
             ? SyncStateKind.localOnly
             : SyncStateKind.syncing,
-        recentEvents: ['Sync started', ...state.syncStatus.recentEvents].take(10).toList(),
+        recentEvents: [
+          'Sync started',
+          ...state.syncStatus.recentEvents,
+        ].take(10).toList(),
         healthy: true,
         lastFailedSyncAtIso: state.syncStatus.lastFailedSyncAtIso,
         lastErrorSummary: null,
       ),
       connectedDevices: state.connectedDevices
-          .map((item) => item.isCurrentDevice
-              ? ConnectedDeviceRecord(
-                  deviceId: item.deviceId,
-                  deviceName: item.deviceName,
-                  platform: item.platform,
-                  lastActiveAtIso: now,
-                  lastSyncAtIso: item.lastSyncAtIso,
-                  syncState: SyncStateKind.syncing,
-                  isCurrentDevice: true,
-                )
-              : item)
+          .map(
+            (item) => item.isCurrentDevice
+                ? ConnectedDeviceRecord(
+                    deviceId: item.deviceId,
+                    deviceName: item.deviceName,
+                    platform: item.platform,
+                    lastActiveAtIso: now,
+                    lastSyncAtIso: item.lastSyncAtIso,
+                    syncState: SyncStateKind.syncing,
+                    isCurrentDevice: true,
+                  )
+                : item,
+          )
           .toList(),
     );
     await _persist();
   }
 
-  Future<void> applySyncReport(SyncRunReport report, {required bool reloadScope}) async {
+  Future<void> applySyncReport(
+    SyncRunReport report, {
+    required bool reloadScope,
+  }) async {
     final syncState = !report.online
         ? (state.activeProfile?.syncMode == ProfileSyncMode.localOnly
-            ? SyncStateKind.localOnly
-            : SyncStateKind.offlinePending)
+              ? SyncStateKind.localOnly
+              : SyncStateKind.offlinePending)
         : state.activeProfile?.syncMode == ProfileSyncMode.iCloud
-            ? SyncStateKind.iCloudActive
-            : report.pendingCount == 0
-                ? SyncStateKind.allCaughtUp
-                : SyncStateKind.offlinePending;
+        ? SyncStateKind.iCloudActive
+        : report.pendingCount == 0
+        ? SyncStateKind.allCaughtUp
+        : SyncStateKind.offlinePending;
     state = state.copyWith(
       syncStatus: state.syncStatus.copyWith(
         syncState: syncState,
@@ -1002,43 +1117,54 @@ class AccountsSyncController extends StateNotifier<AccountsSyncState> {
             : state.syncStatus.lastSyncAtIso,
         pendingChangesCount: report.pendingCount,
         healthy: report.errorMessage == null,
-        recentEvents: [...report.recentEvents, ...state.syncStatus.recentEvents]
-            .take(10)
-            .toList(),
-        lastFailedSyncAtIso:
-            report.errorMessage == null ? state.syncStatus.lastFailedSyncAtIso : report.completedAtIso,
+        recentEvents: [
+          ...report.recentEvents,
+          ...state.syncStatus.recentEvents,
+        ].take(10).toList(),
+        lastFailedSyncAtIso: report.errorMessage == null
+            ? state.syncStatus.lastFailedSyncAtIso
+            : report.completedAtIso,
         transportLabel: report.transportLabel,
         transportAvailable: report.transportAvailable,
         lastResultSummary: report.resultSummary,
         lastErrorSummary: report.errorMessage,
       ),
       accounts: state.accounts
-          .map((item) => item.accountId == state.activeAccountId && report.succeeded && report.online
-              ? AccountRecord(
-                  accountId: item.accountId,
-                  provider: item.provider,
-                  identifier: item.identifier,
-                  displayName: item.displayName,
-                  createdAtIso: item.createdAtIso,
-                  lastLoginAtIso: item.lastLoginAtIso,
-                  lastSyncAtIso: report.completedAtIso,
-                  connectedDeviceCount: item.connectedDeviceCount,
-                  syncMode: item.syncMode,
-                )
-              : item)
+          .map(
+            (item) =>
+                item.accountId == state.activeAccountId &&
+                    report.succeeded &&
+                    report.online
+                ? AccountRecord(
+                    accountId: item.accountId,
+                    provider: item.provider,
+                    identifier: item.identifier,
+                    displayName: item.displayName,
+                    createdAtIso: item.createdAtIso,
+                    lastLoginAtIso: item.lastLoginAtIso,
+                    lastSyncAtIso: report.completedAtIso,
+                    connectedDeviceCount: item.connectedDeviceCount,
+                    syncMode: item.syncMode,
+                  )
+                : item,
+          )
           .toList(),
       connectedDevices: state.connectedDevices
-          .map((item) => item.isCurrentDevice
-              ? ConnectedDeviceRecord(
-                  deviceId: item.deviceId,
-                  deviceName: item.deviceName,
-                  platform: item.platform,
-                  lastActiveAtIso: report.completedAtIso,
-                  lastSyncAtIso: report.online ? report.completedAtIso : item.lastSyncAtIso,
-                  syncState: syncState,
-                  isCurrentDevice: true,
-                )
-              : item)
+          .map(
+            (item) => item.isCurrentDevice
+                ? ConnectedDeviceRecord(
+                    deviceId: item.deviceId,
+                    deviceName: item.deviceName,
+                    platform: item.platform,
+                    lastActiveAtIso: report.completedAtIso,
+                    lastSyncAtIso: report.online
+                        ? report.completedAtIso
+                        : item.lastSyncAtIso,
+                    syncState: syncState,
+                    isCurrentDevice: true,
+                  )
+                : item,
+          )
           .toList(),
       scopeVersion: reloadScope ? state.scopeVersion + 1 : state.scopeVersion,
     );
@@ -1080,29 +1206,30 @@ class AccountsSyncController extends StateNotifier<AccountsSyncState> {
       'encrypted': encrypt,
       'accounts': currentProfileOnly
           ? state.accounts
-              .where((item) => item.accountId == state.activeAccountId)
-              .map((item) => item.toJson())
-              .toList()
+                .where((item) => item.accountId == state.activeAccountId)
+                .map((item) => item.toJson())
+                .toList()
           : state.accounts.map((item) => item.toJson()).toList(),
       'profiles': currentProfileOnly
           ? state.profiles
-              .where((item) => item.profileId == state.activeProfileId)
-              .map((item) => item.toJson())
-              .toList()
+                .where((item) => item.profileId == state.activeProfileId)
+                .map((item) => item.toJson())
+                .toList()
           : state.profiles.map((item) => item.toJson()).toList(),
       'profileSnapshots': currentProfileOnly
           ? {
               if (state.activeProfileId != null)
                 state.activeProfileId!:
-                    state.profileSnapshots[state.activeProfileId] ?? const {}
+                    state.profileSnapshots[state.activeProfileId] ?? const {},
             }
           : state.profileSnapshots,
       'structuredDataByProfile': {
-        for (final profile in (currentProfileOnly
-            ? state.profiles
-                .where((item) => item.profileId == state.activeProfileId)
-                .toList(growable: false)
-            : state.profiles))
+        for (final profile
+            in (currentProfileOnly
+                ? state.profiles
+                      .where((item) => item.profileId == state.activeProfileId)
+                      .toList(growable: false)
+                : state.profiles))
           profile.profileId: _database.exportStructuredData(profile.profileId),
       },
       'syncStatus': state.syncStatus.toJson(),
@@ -1127,18 +1254,28 @@ class AccountsSyncController extends StateNotifier<AccountsSyncState> {
       return;
     }
     final importedProfiles = ((map['profiles'] as List?) ?? const [])
-        .map((item) => ProfileRecord.fromJson((item as Map).map((k, v) => MapEntry(k.toString(), v))))
+        .map(
+          (item) => ProfileRecord.fromJson(
+            (item as Map).map((k, v) => MapEntry(k.toString(), v)),
+          ),
+        )
         .toList();
     final importedAccounts = ((map['accounts'] as List?) ?? const [])
-        .map((item) => AccountRecord.fromJson((item as Map).map((k, v) => MapEntry(k.toString(), v))))
+        .map(
+          (item) => AccountRecord.fromJson(
+            (item as Map).map((k, v) => MapEntry(k.toString(), v)),
+          ),
+        )
         .toList();
     final importedSnapshots = ((map['profileSnapshots'] as Map?) ?? const {})
-        .map((key, value) => MapEntry(
-              key.toString(),
-              (value as Map).map((k, v) => MapEntry(k.toString(), v)),
-            ));
-    final importedStructured = ((map['structuredDataByProfile'] as Map?) ?? const {})
         .map(
+          (key, value) => MapEntry(
+            key.toString(),
+            (value as Map).map((k, v) => MapEntry(k.toString(), v)),
+          ),
+        );
+    final importedStructured =
+        ((map['structuredDataByProfile'] as Map?) ?? const {}).map(
           (key, value) => MapEntry(
             key.toString(),
             value is Map
@@ -1147,12 +1284,14 @@ class AccountsSyncController extends StateNotifier<AccountsSyncState> {
           ),
         );
     state = state.copyWith(
-      accounts: replaceExisting ? importedAccounts : [...state.accounts, ...importedAccounts],
+      accounts: replaceExisting
+          ? importedAccounts
+          : [...state.accounts, ...importedAccounts],
       profiles: replaceExisting
           ? importedProfiles
           : createNewProfiles
-              ? [...state.profiles, ...importedProfiles]
-              : _mergeProfiles(state.profiles, importedProfiles),
+          ? [...state.profiles, ...importedProfiles]
+          : _mergeProfiles(state.profiles, importedProfiles),
       profileSnapshots: replaceExisting
           ? importedSnapshots
           : {...state.profileSnapshots, ...importedSnapshots},
@@ -1170,14 +1309,16 @@ class AccountsSyncController extends StateNotifier<AccountsSyncState> {
   Future<void> convertGuestProfile(String profileId, String newName) async {
     state = state.copyWith(
       profiles: state.profiles
-          .map((item) => item.profileId == profileId
-              ? item.copyWith(
-                  displayName: newName,
-                  isGuest: false,
-                  profileType: ProfileKind.adult,
-                  updatedAtIso: DateTime.now().toIso8601String(),
-                )
-              : item)
+          .map(
+            (item) => item.profileId == profileId
+                ? item.copyWith(
+                    displayName: newName,
+                    isGuest: false,
+                    profileType: ProfileKind.adult,
+                    updatedAtIso: DateTime.now().toIso8601String(),
+                  )
+                : item,
+          )
           .toList(),
     );
     await _persist();
@@ -1188,26 +1329,33 @@ class AccountsSyncController extends StateNotifier<AccountsSyncState> {
     final lastExport = state.backupRecord.lastExportAtIso == null
         ? null
         : DateTime.tryParse(state.backupRecord.lastExportAtIso!);
-    final stale = lastExport == null ||
+    final stale =
+        lastExport == null ||
         DateTime.now().difference(lastExport).inDays >= 30;
     return stale &&
-        (mode == ProfileSyncMode.localOnly || mode == ProfileSyncMode.manualBackupOnly);
+        (mode == ProfileSyncMode.localOnly ||
+            mode == ProfileSyncMode.manualBackupOnly);
   }
 
   Future<void> _captureActiveProfileSnapshot() async {
     final activeProfileId = state.activeProfileId;
     if (activeProfileId == null) return;
     final snapshot = _store.dumpAll()
-      ..removeWhere((key, _) => key.startsWith(_accountsSyncReservedPrefix) || key == _accountsSyncStorageKey);
+      ..removeWhere(
+        (key, _) =>
+            key.startsWith(_accountsSyncReservedPrefix) ||
+            key == _accountsSyncStorageKey,
+      );
     state = state.copyWith(
       profileSnapshots: {...state.profileSnapshots, activeProfileId: snapshot},
     );
   }
 
-  Iterable<String> _dataKeysForIsolation() => _store
-      .dumpAll()
-      .keys
-      .where((key) => !key.startsWith(_accountsSyncReservedPrefix) && key != _accountsSyncStorageKey);
+  Iterable<String> _dataKeysForIsolation() => _store.dumpAll().keys.where(
+    (key) =>
+        !key.startsWith(_accountsSyncReservedPrefix) &&
+        key != _accountsSyncStorageKey,
+  );
 
   List<ProfileRecord> _mergeProfiles(
     List<ProfileRecord> existing,
@@ -1238,11 +1386,11 @@ class AccountManager {
     required String displayName,
     required ProfileSyncMode syncMode,
   }) => _controller.addAccount(
-        provider: provider,
-        identifier: identifier,
-        displayName: displayName,
-        syncMode: syncMode,
-      );
+    provider: provider,
+    identifier: identifier,
+    displayName: displayName,
+    syncMode: syncMode,
+  );
 }
 
 class ProfileManager {
@@ -1252,7 +1400,7 @@ class ProfileManager {
   AccountsSyncController get _controller =>
       ref.read(accountsSyncControllerProvider.notifier);
 
-  Future<void> create({
+  Future<String> create({
     required String displayName,
     required ProfileKind kind,
     required ProfileExperienceMode experienceMode,
@@ -1260,23 +1408,24 @@ class ProfileManager {
     required String avatar,
     String? pin,
   }) => _controller.createProfile(
-        displayName: displayName,
-        kind: kind,
-        experienceMode: experienceMode,
-        syncMode: syncMode,
-        avatar: avatar,
-        pinProtected: pin != null && pin.isNotEmpty,
-        pin: pin,
-        guardianManaged: kind == ProfileKind.child,
-      );
+    displayName: displayName,
+    kind: kind,
+    experienceMode: experienceMode,
+    syncMode: syncMode,
+    avatar: avatar,
+    pinProtected: pin != null && pin.isNotEmpty,
+    pin: pin,
+    guardianManaged: kind == ProfileKind.child,
+  );
 }
 
 class DeviceSessionManager {
   const DeviceSessionManager(this.ref);
   final Ref ref;
 
-  Future<bool> switchProfile(String profileId, {String? pin}) =>
-      ref.read(accountsSyncControllerProvider.notifier).switchProfile(profileId, pin: pin);
+  Future<bool> switchProfile(String profileId, {String? pin}) => ref
+      .read(accountsSyncControllerProvider.notifier)
+      .switchProfile(profileId, pin: pin);
 }
 
 class SyncManager {
@@ -1291,16 +1440,17 @@ class SyncManager {
       return;
     }
     await ref.read(accountsSyncControllerProvider.notifier).syncNow();
-    final report = await ref.read(syncEngineProvider).syncScope(
+    final report = await ref
+        .read(syncEngineProvider)
+        .syncScope(
           scopeId: scopeId,
           accountId: state.activeAccountId,
           deviceId: ref.read(deviceIdentityProvider).deviceId,
           syncModeName: activeProfile.syncMode.name,
         );
-    await ref.read(accountsSyncControllerProvider.notifier).applySyncReport(
-          report,
-          reloadScope: report.appliedInboundCount > 0,
-        );
+    await ref
+        .read(accountsSyncControllerProvider.notifier)
+        .applySyncReport(report, reloadScope: report.appliedInboundCount > 0);
   }
 }
 
@@ -1308,8 +1458,9 @@ class CloudSyncService {
   const CloudSyncService(this.ref);
   final Ref ref;
 
-  Future<void> queueEvent(String name) =>
-      ref.read(accountsSyncControllerProvider.notifier).recordPendingChange(name);
+  Future<void> queueEvent(String name) => ref
+      .read(accountsSyncControllerProvider.notifier)
+      .recordPendingChange(name);
 }
 
 class ICloudSyncService {
@@ -1328,10 +1479,9 @@ class BackupManager {
   Future<String> export({
     required bool currentProfileOnly,
     required bool encrypt,
-  }) => ref.read(accountsSyncControllerProvider.notifier).exportBackup(
-        currentProfileOnly: currentProfileOnly,
-        encrypt: encrypt,
-      );
+  }) => ref
+      .read(accountsSyncControllerProvider.notifier)
+      .exportBackup(currentProfileOnly: currentProfileOnly, encrypt: encrypt);
 }
 
 class ImportRestoreService {
@@ -1343,7 +1493,9 @@ class ImportRestoreService {
     required bool encrypted,
     required bool createNewProfiles,
     required bool replaceExisting,
-  }) => ref.read(accountsSyncControllerProvider.notifier).importBackup(
+  }) => ref
+      .read(accountsSyncControllerProvider.notifier)
+      .importBackup(
         payload: payload,
         encrypted: encrypted,
         createNewProfiles: createNewProfiles,
@@ -1355,8 +1507,9 @@ class SharedDeviceModeController {
   const SharedDeviceModeController(this.ref);
   final Ref ref;
 
-  Future<void> setEnabled(bool enabled) =>
-      ref.read(accountsSyncControllerProvider.notifier).updateSharedDeviceMode(enabled);
+  Future<void> setEnabled(bool enabled) => ref
+      .read(accountsSyncControllerProvider.notifier)
+      .updateSharedDeviceMode(enabled);
 
   Future<void> lock() =>
       ref.read(accountsSyncControllerProvider.notifier).lockSharedDevice();
@@ -1366,11 +1519,13 @@ class PinProtectionService {
   const PinProtectionService(this.ref);
   final Ref ref;
 
-  bool verify(String profileId, String pin) =>
-      ref.read(accountsSyncControllerProvider.notifier).verifyPin(profileId, pin);
+  bool verify(String profileId, String pin) => ref
+      .read(accountsSyncControllerProvider.notifier)
+      .verifyPin(profileId, pin);
 
-  Future<void> set(String profileId, String pin) =>
-      ref.read(accountsSyncControllerProvider.notifier).setProfilePin(profileId, pin);
+  Future<void> set(String profileId, String pin) => ref
+      .read(accountsSyncControllerProvider.notifier)
+      .setProfilePin(profileId, pin);
 }
 
 DevicePlatformKind _platformForCurrentDevice() {
@@ -1405,55 +1560,66 @@ DevicePlatformKind _devicePlatformKindFromKey(String platformKey) {
 String _defaultDeviceName() {
   switch (_platformForCurrentDevice()) {
     case DevicePlatformKind.iphone:
-      return 'This iPhone';
+      return 'current_device_iphone';
     case DevicePlatformKind.ipad:
-      return 'This iPad';
+      return 'current_device_ipad';
     case DevicePlatformKind.appleWatch:
-      return 'Apple Watch';
+      return 'current_device_apple_watch';
     case DevicePlatformKind.appleTv:
-      return 'This Apple Device';
+      return 'current_device_apple_tv';
     case DevicePlatformKind.androidPhone:
-      return 'This Android Phone';
+      return 'current_device_android_phone';
     case DevicePlatformKind.androidTablet:
-      return 'This Android Tablet';
+      return 'current_device_android_tablet';
     case DevicePlatformKind.androidWatch:
-      return 'Wear OS Watch';
+      return 'current_device_android_watch';
     case DevicePlatformKind.androidTv:
-      return 'Android TV';
+      return 'current_device_android_tv';
   }
 }
 
 final accountsSyncControllerProvider =
     StateNotifierProvider<AccountsSyncController, AccountsSyncState>((ref) {
-  final deviceIdentity = ref.watch(deviceIdentityProvider);
-  return AccountsSyncController(
-    ref.watch(localStoreProvider),
-    ref.watch(appDatabaseProvider),
-    currentDeviceId: deviceIdentity.deviceId,
-    currentDeviceName: deviceIdentity.deviceName,
-    currentDevicePlatform: _devicePlatformKindFromKey(deviceIdentity.platformKey),
-  );
-});
+      final deviceIdentity = ref.watch(deviceIdentityProvider);
+      return AccountsSyncController(
+        ref.watch(localStoreProvider),
+        ref.watch(appDatabaseProvider),
+        currentDeviceId: deviceIdentity.deviceId,
+        currentDeviceName: deviceIdentity.deviceName,
+        currentDevicePlatform: _devicePlatformKindFromKey(
+          deviceIdentity.platformKey,
+        ),
+      );
+    });
 
 final profileScopeVersionProvider = Provider<int>((ref) {
-  return ref.watch(accountsSyncControllerProvider.select((state) => state.scopeVersion));
+  return ref.watch(
+    accountsSyncControllerProvider.select((state) => state.scopeVersion),
+  );
 });
 
 final accountManagerProvider = Provider<AccountManager>(AccountManager.new);
 final profileManagerProvider = Provider<ProfileManager>(ProfileManager.new);
-final deviceSessionManagerProvider =
-    Provider<DeviceSessionManager>(DeviceSessionManager.new);
+final deviceSessionManagerProvider = Provider<DeviceSessionManager>(
+  DeviceSessionManager.new,
+);
 final syncManagerProvider = Provider<SyncManager>(SyncManager.new);
-final cloudSyncServiceProvider = Provider<CloudSyncService>(CloudSyncService.new);
-final iCloudSyncServiceProvider =
-    Provider<ICloudSyncService>(ICloudSyncService.new);
+final cloudSyncServiceProvider = Provider<CloudSyncService>(
+  CloudSyncService.new,
+);
+final iCloudSyncServiceProvider = Provider<ICloudSyncService>(
+  ICloudSyncService.new,
+);
 final backupManagerProvider = Provider<BackupManager>(BackupManager.new);
-final importRestoreServiceProvider =
-    Provider<ImportRestoreService>(ImportRestoreService.new);
-final sharedDeviceModeControllerProvider =
-    Provider<SharedDeviceModeController>(SharedDeviceModeController.new);
-final pinProtectionServiceProvider =
-    Provider<PinProtectionService>(PinProtectionService.new);
+final importRestoreServiceProvider = Provider<ImportRestoreService>(
+  ImportRestoreService.new,
+);
+final sharedDeviceModeControllerProvider = Provider<SharedDeviceModeController>(
+  SharedDeviceModeController.new,
+);
+final pinProtectionServiceProvider = Provider<PinProtectionService>(
+  PinProtectionService.new,
+);
 
 final authStateProvider = Provider<AuthState>((ref) {
   final state = ref.watch(accountsSyncControllerProvider);

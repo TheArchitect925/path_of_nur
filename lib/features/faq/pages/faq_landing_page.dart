@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/theme/app_colors.dart';
+import '../../../l10n/app_localizations.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../learn/presentation/widgets/learn_hub_page_scaffold.dart';
 import '../models/faq_item.dart';
@@ -34,6 +35,7 @@ class _FaqLandingPageState extends ConsumerState<FaqLandingPage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final query = _searchController.text.trim();
     final datasetAsync = ref.watch(faqDatasetProvider);
     final categoriesAsync = ref.watch(faqCategorySummariesProvider);
@@ -45,16 +47,15 @@ class _FaqLandingPageState extends ConsumerState<FaqLandingPage> {
     return LearnHubPageScaffold(
       quote: null,
       headerIcon: Icons.help_outline_rounded,
-      title: 'Islam FAQ',
-      subtitle:
-          'Clear, gentle answers to common questions about Islam, with calm clarification where misconceptions exist.',
+      title: l10n.batch9FaqTitle,
+      subtitle: l10n.batch9FaqSubtitle,
       children: [
         PremiumCard(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'For deeper study, always ask qualified scholars.',
+                l10n.batch9FaqScholarNote,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: AppColors.onSurfaceSubtle,
                 ),
@@ -80,8 +81,8 @@ class _FaqLandingPageState extends ConsumerState<FaqLandingPage> {
           const SizedBox(height: 12),
           _sectionTitle(
             context,
-            'Featured Questions',
-            'Start with common foundational questions.',
+            l10n.batch9FaqFeaturedTitle,
+            l10n.batch9FaqFeaturedSubtitle,
           ),
           const SizedBox(height: 8),
           featuredAsync.when(
@@ -92,8 +93,8 @@ class _FaqLandingPageState extends ConsumerState<FaqLandingPage> {
           const SizedBox(height: 12),
           _sectionTitle(
             context,
-            'Browse by Category',
-            'Explore questions by theme and level.',
+            l10n.batch9FaqBrowseTitle,
+            l10n.batch9FaqBrowseSubtitle,
           ),
           const SizedBox(height: 8),
           categoriesAsync.when(
@@ -128,6 +129,7 @@ class _FaqLandingPageState extends ConsumerState<FaqLandingPage> {
   }
 
   Widget _searchField(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Row(
       children: [
         Icon(
@@ -139,9 +141,9 @@ class _FaqLandingPageState extends ConsumerState<FaqLandingPage> {
           child: TextField(
             controller: _searchController,
             onChanged: (_) => setState(() {}),
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
               border: InputBorder.none,
-              hintText: 'Search common questions, answers, topics...',
+              hintText: l10n.batch9FaqSearchHint,
               isCollapsed: true,
             ),
           ),
@@ -156,6 +158,7 @@ class _FaqLandingPageState extends ConsumerState<FaqLandingPage> {
   }
 
   Widget _overviewCard(BuildContext context, FaqDataset dataset) {
+    final l10n = AppLocalizations.of(context);
     return PremiumCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -168,7 +171,10 @@ class _FaqLandingPageState extends ConsumerState<FaqLandingPage> {
           ),
           const SizedBox(height: 8),
           Text(
-            '${dataset.items.length} questions across ${dataset.categoryLabels.length} categories.',
+            l10n.batch9FaqOverviewSummary(
+              '${dataset.items.length}',
+              '${dataset.categoryLabels.length}',
+            ),
           ),
         ],
       ),
@@ -176,10 +182,9 @@ class _FaqLandingPageState extends ConsumerState<FaqLandingPage> {
   }
 
   Widget _featuredRow(BuildContext context, List<FaqItem> items) {
+    final l10n = AppLocalizations.of(context);
     if (items.isEmpty) {
-      return PremiumCard(
-        child: const Text('No featured questions available right now.'),
-      );
+      return PremiumCard(child: Text(l10n.batch9FaqFeaturedEmpty));
     }
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,

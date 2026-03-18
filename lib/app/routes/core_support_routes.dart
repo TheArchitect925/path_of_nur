@@ -23,6 +23,23 @@ import '../../features/shared/legal_info_page.dart';
 import '../../features/worship/presentation/khusu_focus_page.dart';
 import '../../features/worship/presentation/qibla_finder_page.dart';
 
+String _redirectWithQuery(String path, GoRouterState state) {
+  return Uri(
+    path: path,
+    queryParameters: state.uri.queryParameters.isEmpty
+        ? null
+        : state.uri.queryParameters,
+  ).toString();
+}
+
+String _redirectWithPathAndQuery(String pathTemplate, GoRouterState state) {
+  var path = pathTemplate;
+  state.pathParameters.forEach((key, value) {
+    path = path.replaceAll(':$key', value);
+  });
+  return _redirectWithQuery(path, state);
+}
+
 List<RouteBase> buildCoreSupportRoutes() {
   return <RouteBase>[
     GoRoute(
@@ -92,43 +109,55 @@ List<RouteBase> buildCoreSupportRoutes() {
           const MaterialPage(child: SyncDetailsPage()),
     ),
     GoRoute(
-      path: '/profile/summary',
+      path: '/settings/summary',
       name: 'profileSummary',
       pageBuilder: (context, state) =>
           const MaterialPage(child: ProfileSummaryPage()),
     ),
     GoRoute(
-      path: '/profile/whats-new',
+      path: '/profile/summary',
+      redirect: (context, state) =>
+          _redirectWithQuery('/settings/summary', state),
+    ),
+    GoRoute(
+      path: '/settings/whats-new',
       name: 'profileWhatsNew',
       pageBuilder: (context, state) =>
           const MaterialPage(child: ProfileWhatsNewPage()),
     ),
     GoRoute(
-      path: '/profile/coming-soon',
+      path: '/profile/whats-new',
+      redirect: (context, state) =>
+          _redirectWithQuery('/settings/whats-new', state),
+    ),
+    GoRoute(
+      path: '/settings/coming-soon',
       name: 'profileComingSoon',
       pageBuilder: (context, state) =>
           const MaterialPage(child: ProfileComingSoonPage()),
     ),
     GoRoute(
+      path: '/profile/coming-soon',
+      redirect: (context, state) =>
+          _redirectWithQuery('/settings/coming-soon', state),
+    ),
+    GoRoute(
       path: '/legal/privacy',
       name: 'privacyPolicy',
-      pageBuilder: (context, state) => const MaterialPage(
-        child: LegalInfoPage(kind: LegalInfoKind.privacy),
-      ),
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: LegalInfoPage(kind: LegalInfoKind.privacy)),
     ),
     GoRoute(
       path: '/legal/terms',
       name: 'termsUsage',
-      pageBuilder: (context, state) => const MaterialPage(
-        child: LegalInfoPage(kind: LegalInfoKind.terms),
-      ),
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: LegalInfoPage(kind: LegalInfoKind.terms)),
     ),
     GoRoute(
       path: '/legal/support',
       name: 'supportInfo',
-      pageBuilder: (context, state) => const MaterialPage(
-        child: LegalInfoPage(kind: LegalInfoKind.support),
-      ),
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: LegalInfoPage(kind: LegalInfoKind.support)),
     ),
     GoRoute(
       path: '/legal/attributions',
@@ -166,19 +195,26 @@ List<RouteBase> buildCoreSupportRoutes() {
       },
     ),
     GoRoute(
-      path: '/learn/quran/explorer',
+      path: '/quran/explorer',
       name: 'quranExplorer',
       pageBuilder: (context, state) =>
           const MaterialPage(child: QuranSurahExplorerPage()),
     ),
     GoRoute(
-      path: '/learn/quran/surah/:surahNumber',
+      path: '/learn/quran/explorer',
+      redirect: (context, state) =>
+          _redirectWithQuery('/quran/explorer', state),
+    ),
+    GoRoute(
+      path: '/quran/surah/:surahNumber',
       name: 'quranReader',
       pageBuilder: (context, state) {
         final surahNumber =
             int.tryParse(state.pathParameters['surahNumber'] ?? '') ?? 1;
         final ayah = int.tryParse(state.uri.queryParameters['ayah'] ?? '');
-        final endAyah = int.tryParse(state.uri.queryParameters['endAyah'] ?? '');
+        final endAyah = int.tryParse(
+          state.uri.queryParameters['endAyah'] ?? '',
+        );
         final autoPlay = switch ((state.uri.queryParameters['autoplay'] ?? '')
             .toLowerCase()) {
           '1' || 'true' || 'yes' => true,
@@ -195,55 +231,95 @@ List<RouteBase> buildCoreSupportRoutes() {
       },
     ),
     GoRoute(
-      path: '/learn/quran/bookmarks',
+      path: '/learn/quran/surah/:surahNumber',
+      redirect: (context, state) =>
+          _redirectWithPathAndQuery('/quran/surah/:surahNumber', state),
+    ),
+    GoRoute(
+      path: '/quran/bookmarks',
       name: 'quranBookmarks',
       pageBuilder: (context, state) =>
           const MaterialPage(child: QuranBookmarksPage()),
     ),
     GoRoute(
-      path: '/learn/quran/notes',
+      path: '/learn/quran/bookmarks',
+      redirect: (context, state) =>
+          _redirectWithQuery('/quran/bookmarks', state),
+    ),
+    GoRoute(
+      path: '/quran/notes',
       name: 'quranNotes',
       pageBuilder: (context, state) =>
           const MaterialPage(child: QuranNotesPage()),
     ),
     GoRoute(
-      path: '/learn/quran/search',
+      path: '/learn/quran/notes',
+      redirect: (context, state) => _redirectWithQuery('/quran/notes', state),
+    ),
+    GoRoute(
+      path: '/quran/search',
       name: 'quranSearch',
       pageBuilder: (context, state) =>
           const MaterialPage(child: QuranSearchPage()),
     ),
     GoRoute(
-      path: '/learn/quran/topics',
+      path: '/learn/quran/search',
+      redirect: (context, state) => _redirectWithQuery('/quran/search', state),
+    ),
+    GoRoute(
+      path: '/quran/topics',
       name: 'quranTopicExplorer',
       pageBuilder: (context, state) =>
           const MaterialPage(child: QuranTopicExplorerPage()),
     ),
     GoRoute(
-      path: '/learn/quran/topics/:topicId',
+      path: '/learn/quran/topics',
+      redirect: (context, state) => _redirectWithQuery('/quran/topics', state),
+    ),
+    GoRoute(
+      path: '/quran/topics/:topicId',
       name: 'quranTopicDetail',
       pageBuilder: (context, state) => MaterialPage(
-        child: QuranTopicExplorerPage(
-          topicId: state.pathParameters['topicId'],
-        ),
+        child: QuranTopicExplorerPage(topicId: state.pathParameters['topicId']),
       ),
     ),
     GoRoute(
-      path: '/learn/quran/names-of-allah',
+      path: '/learn/quran/topics/:topicId',
+      redirect: (context, state) =>
+          _redirectWithPathAndQuery('/quran/topics/:topicId', state),
+    ),
+    GoRoute(
+      path: '/quran/names-of-allah',
       name: 'quranNamesOfAllah',
       pageBuilder: (context, state) =>
           const MaterialPage(child: NamesOfAllahPage()),
     ),
     GoRoute(
-      path: '/learn/quran/top-words',
+      path: '/learn/quran/names-of-allah',
+      redirect: (context, state) =>
+          _redirectWithQuery('/quran/names-of-allah', state),
+    ),
+    GoRoute(
+      path: '/quran/top-words',
       name: 'quranTopWords',
       pageBuilder: (context, state) =>
           const MaterialPage(child: QuranWordsPage()),
     ),
     GoRoute(
-      path: '/learn/quran/word-review',
+      path: '/learn/quran/top-words',
+      redirect: (context, state) =>
+          _redirectWithQuery('/quran/top-words', state),
+    ),
+    GoRoute(
+      path: '/quran/word-review',
       name: 'quranWordReview',
       pageBuilder: (context, state) =>
           const MaterialPage(child: QuranWordReviewPage()),
+    ),
+    GoRoute(
+      path: '/learn/quran/word-review',
+      redirect: (context, state) =>
+          _redirectWithQuery('/quran/word-review', state),
     ),
     GoRoute(
       path: '/journey/ocean',

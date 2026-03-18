@@ -1,8 +1,11 @@
 import 'dart:io';
 
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/localization/locale_provider.dart';
+import '../../l10n/app_localizations.dart';
 import '../prayer/prayer_preferences.dart';
 import 'local_notification_service.dart';
 import '../../features/worship/application/prayer_controller.dart';
@@ -158,6 +161,7 @@ final prayerLiveActivityBootstrapProvider = Provider<void>((ref) {
         fasting: fasting,
         specialMode: specialMode,
         now: now,
+        store: store,
       );
 
       if (fastingPresentation != null) {
@@ -204,13 +208,14 @@ final prayerLiveActivityBootstrapProvider = Provider<void>((ref) {
         nextPrayer: nextPrayer,
         nextStartsIn: nextStartsIn,
         nextTargetTime: nextTargetTime,
-        useStableDynamicIsland:
-            ref.read(prayerSettingsProvider).preferences.useStableDynamicIsland,
-        useStableLockScreenWidget:
-            ref
-                .read(prayerSettingsProvider)
-                .preferences
-                .useStableLockScreenWidget,
+        useStableDynamicIsland: ref
+            .read(prayerSettingsProvider)
+            .preferences
+            .useStableDynamicIsland,
+        useStableLockScreenWidget: ref
+            .read(prayerSettingsProvider)
+            .preferences
+            .useStableLockScreenWidget,
         currentPrayer: currentPrayerToShow,
         currentRemaining: currentRemaining,
       );
@@ -321,12 +326,18 @@ _FastingLivePresentation? _buildFastingPresentation({
   required FastingState fasting,
   required SpecialModeState specialMode,
   required DateTime now,
+  required LocalStore store,
 }) {
+  final l10n = lookupAppLocalizations(
+    resolveStoredAppLocale(store) ??
+        WidgetsBinding.instance.platformDispatcher.locale,
+  );
   final fajr = _findPrayerById(context.items, 'fajr');
   final maghrib = _findPrayerById(context.items, 'maghrib');
   if (fajr == null || maghrib == null) return null;
 
-  final inRamadan = specialMode.isRamadan || specialMode.ramadanDateWindowActive;
+  final inRamadan =
+      specialMode.isRamadan || specialMode.ramadanDateWindowActive;
   final nonRamadanExplicitFast =
       fasting.selectedType != FastingType.ramadan &&
       fasting.todayStatus != FastingStatus.notFasting &&
@@ -338,27 +349,31 @@ _FastingLivePresentation? _buildFastingPresentation({
   final maghribStart = _resolveSameDayTarget(maghrib.offerDateTime, now);
   final beforeFajr = now.isBefore(fajrStart);
   final beforeMaghrib = now.isBefore(maghribStart);
-  final preStartWindow = now.isAfter(fajrStart.subtract(const Duration(minutes: 25)));
-  final preIftarWindow = now.isAfter(maghribStart.subtract(const Duration(minutes: 20)));
-  final postIftarWindow = now.isBefore(maghribStart.add(const Duration(minutes: 20)));
+  final preStartWindow = now.isAfter(
+    fajrStart.subtract(const Duration(minutes: 25)),
+  );
+  final preIftarWindow = now.isAfter(
+    maghribStart.subtract(const Duration(minutes: 20)),
+  );
+  final postIftarWindow = now.isBefore(
+    maghribStart.add(const Duration(minutes: 20)),
+  );
 
   if (beforeFajr && fasting.todayStatus == FastingStatus.intending) {
     return _FastingLivePresentation(
-      title: 'Fast begins',
-      arabicTitle: 'يبدأ الصوم',
-      metricLabel: 'Starts in',
+      title: l10n.notificationsFastingLiveFastBeginsTitle,
+      arabicTitle: l10n.notificationsFastingLiveFastBeginsArabicTitle,
+      metricLabel: l10n.notificationsFastingLiveStartsIn(''),
       remaining: _nonNegative(fajrStart.difference(now)),
       targetTime: fajrStart,
       targetRoute: '/learn/duas/stub_092_special_days_ramadan',
       showDua: preStartWindow,
-      duaTitle: 'Renew your intention',
-      duaArabic: '',
-      duaTranslation:
-          'No fixed spoken dua is established here. Hold the intention for the fast in your heart before Fajr.',
+      duaTitle: l10n.notificationsFastingLiveRenewIntentionTitle,
+      duaArabic: l10n.notificationsFastingLiveRenewIntentionArabic,
+      duaTranslation: l10n.notificationsFastingLiveRenewIntentionTranslation,
       notificationKey: 'fast_start_${LocalStore.todayKey(now)}',
-      notificationTitle: 'Fasting begins now',
-      notificationBody:
-          'Renew your intention for the fast before Fajr. Intention is held in the heart.',
+      notificationTitle: l10n.notificationsFastingBeginsNowTitle,
+      notificationBody: l10n.notificationsFastingBeginsNowBody,
     );
   }
 
@@ -366,41 +381,37 @@ _FastingLivePresentation? _buildFastingPresentation({
       fasting.todayStatus != FastingStatus.notFasting &&
       fasting.todayStatus != FastingStatus.broken) {
     return _FastingLivePresentation(
-      title: 'Fast ends',
-      arabicTitle: 'يفطر الصائم',
-      metricLabel: 'Ends in',
+      title: l10n.notificationsFastingLiveFastEndsTitle,
+      arabicTitle: l10n.notificationsFastingLiveFastEndsArabicTitle,
+      metricLabel: l10n.notificationsFastingLiveEndsIn(''),
       remaining: _nonNegative(maghribStart.difference(now)),
       targetTime: maghribStart,
       targetRoute: '/learn/duas/stub_091_special_days_ramadan',
       showDua: preIftarWindow,
-      duaTitle: 'Dua at iftar',
-      duaArabic: 'ذَهَبَ الظَّمَأُ وَابْتَلَّتِ العُرُوقُ وَثَبَتَ الأَجْرُ إِنْ شَاءَ اللَّهُ',
-      duaTranslation:
-          'The thirst is gone, the veins are moistened, and the reward is confirmed, if Allah wills.',
+      duaTitle: l10n.notificationsFastingLiveIftarDuaTitle,
+      duaArabic: l10n.notificationsFastingLiveIftarDuaArabic,
+      duaTranslation: l10n.notificationsFastingLiveIftarDuaTranslation,
       notificationKey: 'iftar_${LocalStore.todayKey(now)}',
-      notificationTitle: 'It is time to break the fast',
-      notificationBody:
-          'The thirst is gone, the veins are moistened, and the reward is confirmed, if Allah wills.',
+      notificationTitle: l10n.notificationsIftarTimeTitle,
+      notificationBody: l10n.notificationsIftarTimeBody,
     );
   }
 
   if (!beforeMaghrib && postIftarWindow) {
     return _FastingLivePresentation(
-      title: 'Iftar',
-      arabicTitle: 'الإفطار',
-      metricLabel: 'Just entered',
+      title: l10n.notificationsFastingLiveIftarTitle,
+      arabicTitle: l10n.notificationsFastingLiveIftarArabicTitle,
+      metricLabel: l10n.notificationsFastingLiveJustEntered,
       remaining: Duration.zero,
       targetTime: maghribStart,
       targetRoute: '/learn/duas/stub_091_special_days_ramadan',
       showDua: true,
-      duaTitle: 'Dua at iftar',
-      duaArabic: 'ذَهَبَ الظَّمَأُ وَابْتَلَّتِ العُرُوقُ وَثَبَتَ الأَجْرُ إِنْ شَاءَ اللَّهُ',
-      duaTranslation:
-          'The thirst is gone, the veins are moistened, and the reward is confirmed, if Allah wills.',
+      duaTitle: l10n.notificationsFastingLiveIftarDuaTitle,
+      duaArabic: l10n.notificationsFastingLiveIftarDuaArabic,
+      duaTranslation: l10n.notificationsFastingLiveIftarDuaTranslation,
       notificationKey: 'iftar_${LocalStore.todayKey(now)}',
-      notificationTitle: 'It is time to break the fast',
-      notificationBody:
-          'The thirst is gone, the veins are moistened, and the reward is confirmed, if Allah wills.',
+      notificationTitle: l10n.notificationsIftarTimeTitle,
+      notificationBody: l10n.notificationsIftarTimeBody,
     );
   }
 
@@ -413,7 +424,9 @@ Future<void> _maybeNotifyFastingMoment({
   required _FastingLivePresentation presentation,
   required DateTime now,
 }) async {
-  final alreadySent = store.getBool('fasting.notification.${presentation.notificationKey}') ?? false;
+  final alreadySent =
+      store.getBool('fasting.notification.${presentation.notificationKey}') ??
+      false;
   if (alreadySent) return;
   final delta = now.difference(presentation.targetTime).abs();
   if (delta > const Duration(minutes: 1)) return;
@@ -422,5 +435,8 @@ Future<void> _maybeNotifyFastingMoment({
     title: presentation.notificationTitle,
     body: presentation.notificationBody,
   );
-  await store.setBool('fasting.notification.${presentation.notificationKey}', true);
+  await store.setBool(
+    'fasting.notification.${presentation.notificationKey}',
+    true,
+  );
 }

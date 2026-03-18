@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../l10n/app_localizations.dart';
 import '../../application/growth_models.dart';
 
 String growthCategoryLabel(GrowthHabitCategory category) {
@@ -23,12 +24,56 @@ String growthCategoryLabel(GrowthHabitCategory category) {
 }
 
 String growthDifficultyLabel(int level) {
-  if (level >= 3) return 'Deep';
-  if (level == 2) return 'Steady';
-  return 'Foundation';
+  final l10n = _growthL10n();
+  if (level >= 3) return l10n.growthDifficultyDeep;
+  if (level == 2) return l10n.growthDifficultySteady;
+  return l10n.growthDifficultyFoundation;
 }
 
 String growthDateLabel(DateTime date) => DateFormat('EEE, MMM d').format(date);
+
+String growthDateLabelForLocale(DateTime date, String locale) =>
+    DateFormat.MMMEd(locale).format(date);
+
+String growthCategoryLocalizedLabel(
+  GrowthHabitCategory category,
+  AppLocalizations l10n,
+) {
+  switch (category) {
+    case GrowthHabitCategory.dailyWorship:
+      return l10n.growthCategoryDailyWorship;
+    case GrowthHabitCategory.sunnahPractices:
+      return l10n.growthCategorySunnahPractices;
+    case GrowthHabitCategory.character:
+      return l10n.growthCategoryCharacter;
+    case GrowthHabitCategory.knowledge:
+      return l10n.growthCategoryKnowledge;
+    case GrowthHabitCategory.charityService:
+      return l10n.growthCategoryCharityService;
+    case GrowthHabitCategory.healthDiscipline:
+      return l10n.growthCategoryHealthDiscipline;
+    case GrowthHabitCategory.reflectionGratitude:
+      return l10n.growthCategoryReflectionGratitude;
+  }
+}
+
+String growthInternalTabLocalizedLabel(
+  GrowthInternalTab tab,
+  AppLocalizations l10n,
+) {
+  switch (tab) {
+    case GrowthInternalTab.today:
+      return l10n.growthTabToday;
+    case GrowthInternalTab.paths:
+      return l10n.growthTabPaths;
+    case GrowthInternalTab.habits:
+      return l10n.growthTabHabits;
+    case GrowthInternalTab.journey:
+      return l10n.growthTabJourney;
+    case GrowthInternalTab.reflection:
+      return l10n.growthTabReflection;
+  }
+}
 
 IconData growthPathIcon(String icon) {
   switch (icon) {
@@ -54,19 +99,20 @@ IconData growthPathIcon(String icon) {
 }
 
 String growthStatusLabel(GrowthHabitStatus? status) {
+  final l10n = _growthL10n();
   switch (status) {
     case GrowthHabitStatus.completed:
-      return 'Completed';
+      return l10n.growthStatusCompleted;
     case GrowthHabitStatus.partial:
-      return 'In progress';
+      return l10n.growthStatusPartial;
     case GrowthHabitStatus.skipped:
-      return 'Paused for today';
+      return l10n.growthStatusSkipped;
     case GrowthHabitStatus.snoozed:
-      return 'Return later';
+      return l10n.growthStatusSnoozed;
     case GrowthHabitStatus.deferred:
-      return 'Carry forward';
+      return l10n.growthStatusDeferred;
     case null:
-      return 'Due';
+      return l10n.growthStatusDue;
   }
 }
 
@@ -89,18 +135,66 @@ String growthRecurrenceLabel(GrowthHabit habit) {
 }
 
 String growthMoodLabel(GrowthMoodState mood) {
+  final l10n = _growthL10n();
   switch (mood) {
     case GrowthMoodState.calm:
-      return 'Calm';
+      return l10n.growthMoodCalm;
     case GrowthMoodState.grateful:
-      return 'Grateful';
+      return l10n.growthMoodGrateful;
     case GrowthMoodState.hopeful:
-      return 'Hopeful';
+      return l10n.growthMoodHopeful;
     case GrowthMoodState.tired:
-      return 'Tired';
+      return l10n.growthMoodTired;
     case GrowthMoodState.heavy:
-      return 'Heavy';
+      return l10n.growthMoodHeavy;
   }
+}
+
+String growthMoodLocalizedLabel(GrowthMoodState mood, AppLocalizations l10n) {
+  switch (mood) {
+    case GrowthMoodState.calm:
+      return l10n.growthMoodCalm;
+    case GrowthMoodState.grateful:
+      return l10n.growthMoodGrateful;
+    case GrowthMoodState.hopeful:
+      return l10n.growthMoodHopeful;
+    case GrowthMoodState.tired:
+      return l10n.growthMoodTired;
+    case GrowthMoodState.heavy:
+      return l10n.growthMoodHeavy;
+  }
+}
+
+String growthStatusLocalizedLabel(
+  GrowthHabitStatus? status,
+  AppLocalizations l10n,
+) {
+  switch (status) {
+    case GrowthHabitStatus.completed:
+      return l10n.growthStatusCompleted;
+    case GrowthHabitStatus.partial:
+      return l10n.growthStatusPartial;
+    case GrowthHabitStatus.skipped:
+      return l10n.growthStatusSkipped;
+    case GrowthHabitStatus.snoozed:
+      return l10n.growthStatusSnoozed;
+    case GrowthHabitStatus.deferred:
+      return l10n.growthStatusDeferred;
+    case null:
+      return l10n.growthStatusDue;
+  }
+}
+
+AppLocalizations _growthL10n() {
+  final locale = Intl.getCurrentLocale().replaceAll('-', '_').split('_');
+  return lookupAppLocalizations(
+    Locale.fromSubtags(
+      languageCode: locale.isNotEmpty && locale.first.isNotEmpty
+          ? locale.first
+          : 'en',
+      countryCode: locale.length > 1 ? locale.last : null,
+    ),
+  );
 }
 
 String _weekdayShort(int weekday) {

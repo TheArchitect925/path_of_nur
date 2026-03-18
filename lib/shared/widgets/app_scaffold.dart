@@ -68,7 +68,7 @@ class AppShellScaffold extends ConsumerWidget {
           Positioned(
             left: 0,
             right: 0,
-            bottom: 2,
+            bottom: 1,
             child: _buildBottomBar(context, activeTab),
           ),
         ],
@@ -80,9 +80,10 @@ class AppShellScaffold extends ConsumerWidget {
     required BuildContext context,
     required AudioPlayer player,
   }) {
-    final isQuranReaderRoute = currentLocation.startsWith(
-      '/learn/quran/surah/',
-    );
+    final l10n = AppLocalizations.of(context);
+    final isQuranReaderRoute =
+        currentLocation.startsWith('/quran/surah/') ||
+        currentLocation.startsWith('/learn/quran/surah/');
     if (isQuranReaderRoute) return const SizedBox.shrink();
 
     return StreamBuilder<PlayerState>(
@@ -97,29 +98,40 @@ class AppShellScaffold extends ConsumerWidget {
 
         final isPlaying = state.playing;
         return Center(
-          child: Material(
-            color: const Color(0xFFE8D7B8),
-            elevation: 6,
-            shadowColor: const Color(0xFF1D1A17).withValues(alpha: 0.22),
-            shape: const CircleBorder(),
-            child: InkWell(
-              customBorder: const CircleBorder(),
-              onTap: () {
-                if (isPlaying) {
-                  unawaited(player.pause());
-                } else {
-                  unawaited(player.play());
-                }
-              },
-              child: SizedBox(
-                width: 56,
-                height: 56,
-                child: Icon(
-                  isPlaying
-                      ? Icons.pause_circle_filled_rounded
-                      : Icons.play_circle_fill_rounded,
-                  size: 32,
-                  color: const Color(0xFF3A3026),
+          child: Tooltip(
+            message: isPlaying
+                ? l10n.shellQuranPlaybackPauseTooltip
+                : l10n.shellQuranPlaybackResumeTooltip,
+            child: Semantics(
+              button: true,
+              label: isPlaying
+                  ? l10n.shellQuranPlaybackPauseTooltip
+                  : l10n.shellQuranPlaybackResumeTooltip,
+              child: Material(
+                color: const Color(0xFFE8D7B8),
+                elevation: 6,
+                shadowColor: const Color(0xFF1D1A17).withValues(alpha: 0.22),
+                shape: const CircleBorder(),
+                child: InkWell(
+                  customBorder: const CircleBorder(),
+                  onTap: () {
+                    if (isPlaying) {
+                      unawaited(player.pause());
+                    } else {
+                      unawaited(player.play());
+                    }
+                  },
+                  child: SizedBox(
+                    width: 56,
+                    height: 56,
+                    child: Icon(
+                      isPlaying
+                          ? Icons.pause_circle_filled_rounded
+                          : Icons.play_circle_fill_rounded,
+                      size: 32,
+                      color: const Color(0xFF3A3026),
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -139,9 +151,10 @@ class AppShellScaffold extends ConsumerWidget {
         appearance?.glassBorderAlpha ?? AppColors.glassBorderAlpha;
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
+      padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
       child: SafeArea(
         top: false,
+        bottom: false,
         child: SizedBox(
           height: 78,
           child: Stack(
@@ -159,7 +172,7 @@ class AppShellScaffold extends ConsumerWidget {
                       color: accent.withValues(alpha: borderAlpha),
                       width: 1.0,
                     ),
-                    color: surface.withValues(alpha: 0.20),
+                    color: surface.withValues(alpha: 0.80),
                     boxShadow: [
                       BoxShadow(
                         color: const Color(0xFF000000).withValues(alpha: 0.08),
@@ -196,52 +209,65 @@ class AppShellScaffold extends ConsumerWidget {
 
   Widget _tabButton(BuildContext context, NavTab tab, bool active) {
     const bool isHome = false;
+    const iconColor = Color(0xFF1A1A1A);
+    const subtle = Color(0xFF4A4A4A);
     final appearance = Theme.of(context).extension<AppAppearanceTheme>();
-    final iconColor = appearance?.onSurface ?? const Color(0xFF4B4036);
-    final subtle = appearance?.onSurfaceSubtle ?? const Color(0xFF4B4036);
     final textStyle = Theme.of(context).textTheme.labelMedium?.copyWith(
       color: active ? iconColor : subtle,
       fontSize: 12.7,
-      fontWeight: active ? FontWeight.w700 : FontWeight.w500,
+      fontWeight: active ? FontWeight.w800 : FontWeight.w600,
       letterSpacing: 0.2,
       fontFamily: AppFonts.uiArabic,
+      shadows: active
+          ? [
+              Shadow(
+                color: (appearance?.accent ?? const Color(0xFFE5C683))
+                    .withValues(alpha: 0.18),
+                blurRadius: 6,
+                offset: const Offset(0, 0),
+              ),
+            ]
+          : null,
     );
 
     final label = _tabLabel(context, tab);
-    return Semantics(
-      button: true,
-      selected: active,
-      label: label,
-      child: InkWell(
-        onTap: () => context.go(tab.path),
-        borderRadius: BorderRadius.circular(20),
-        child: SizedBox(
-          height: 74,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(
-                width: 56,
-                height: 56,
-                child: Center(
-                  child: _navIcon(
-                    context,
-                    tab.icon,
-                    isHome: isHome,
-                    active: active,
-                    iconColor: iconColor,
+    return Tooltip(
+      message: label,
+      child: Semantics(
+        button: true,
+        selected: active,
+        label: label,
+        child: InkWell(
+          onTap: () => context.go(tab.path),
+          borderRadius: BorderRadius.circular(20),
+          child: SizedBox(
+            height: 74,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  width: 56,
+                  height: 56,
+                  child: Center(
+                    child: _navIcon(
+                      context,
+                      tab.icon,
+                      isHome: isHome,
+                      active: active,
+                      iconColor: active ? iconColor : subtle,
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 4),
-              Flexible(
-                child: FittedBox(
-                  fit: BoxFit.scaleDown,
-                  child: Text(label, style: textStyle),
+                const SizedBox(height: 4),
+                Flexible(
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Text(label, style: textStyle),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
@@ -286,14 +312,14 @@ class AppShellScaffold extends ConsumerWidget {
                 colors: [
                   (appearance?.surfaceSoft ?? const Color(0xFFF4E2C8))
                       .withValues(
-                        alpha: appearance?.isDark == true ? 0.5 : 0.96,
+                        alpha: appearance?.isDark == true ? 0.5 : 0.90,
                       ),
                   (appearance?.accent ?? const Color(0xFFE8CFAB)).withValues(
-                    alpha: appearance?.isDark == true ? 0.35 : 0.78,
+                    alpha: appearance?.isDark == true ? 0.35 : 0.90,
                   ),
                   (appearance?.accentSoft ?? const Color(0xFFD7AE74))
                       .withValues(
-                        alpha: appearance?.isDark == true ? 0.25 : 0.28,
+                        alpha: appearance?.isDark == true ? 0.25 : 0.90,
                       ),
                 ],
               )
@@ -323,8 +349,8 @@ class AppShellScaffold extends ConsumerWidget {
         return l10n.homeTitle;
       case NavTab.journey:
         return l10n.journeyTitle;
-      case NavTab.profile:
-        return l10n.profileTitle;
+      case NavTab.quran:
+        return l10n.quranTitle;
     }
   }
 }

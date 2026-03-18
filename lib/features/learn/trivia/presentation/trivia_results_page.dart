@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../core/theme/app_colors.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/trivia_controller.dart';
 import '../application/trivia_repository.dart';
 import '../domain/trivia_models.dart';
+import 'trivia_ui_localization.dart';
 import 'widgets/trivia_widgets.dart';
 
 class IslamicTriviaResultsPage extends ConsumerWidget {
@@ -15,6 +18,8 @@ class IslamicTriviaResultsPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final numberFormat = NumberFormat.decimalPattern(l10n.localeName);
     final state = ref.watch(triviaControllerProvider);
     final controller = ref.read(triviaControllerProvider.notifier);
     final repository = ref.read(triviaRepositoryProvider);
@@ -26,7 +31,8 @@ class IslamicTriviaResultsPage extends ConsumerWidget {
             padding: EdgeInsets.all(20),
             child: TriviaEmptyStateCard(
               title: 'No recent result',
-              subtitle: 'Complete a trivia session and the result will appear here.',
+              subtitle:
+                  'Complete a trivia session and the result will appear here.',
             ),
           ),
         ),
@@ -38,25 +44,30 @@ class IslamicTriviaResultsPage extends ConsumerWidget {
         .whereType<TriviaQuestion>()
         .toList(growable: false);
     final categoryTitle = result.categoryId == null
-        ? 'Mixed'
-        : repository.categoryById(result.categoryId!)?.title ?? 'Mixed';
-    final resultTitle = result.knowledgeStageTitle ?? result.mode.label;
+        ? l10n.triviaMixedLabel
+        : repository.categoryById(result.categoryId!)?.title ??
+              l10n.triviaMixedLabel;
+    final resultTitle =
+        result.knowledgeStageTitle ?? result.mode.localizedLabel(l10n);
 
     return LearnHubPageScaffold(
       headerIcon: Icons.emoji_events_rounded,
-      title: 'Session Results',
-      subtitle: 'Review what went well and what should return in your next review.',
+      title: l10n.triviaResultsTitle,
+      subtitle: l10n.triviaResultsSubtitle,
       children: [
         Row(
           children: [
             TriviaStatTile(
-              label: 'Score',
-              value: '${result.correctCount}/${result.totalAnswered}',
+              label: l10n.triviaResultsScoreLabel,
+              value:
+                  '${numberFormat.format(result.correctCount)}/${numberFormat.format(result.totalAnswered)}',
             ),
             const SizedBox(width: 10),
             TriviaStatTile(
-              label: 'Accuracy',
-              value: '${(result.accuracy * 100).round()}%',
+              label: l10n.triviaHomeAccuracyLabel,
+              value: l10n.growthPercentValue(
+                numberFormat.format((result.accuracy * 100).round()),
+              ),
               caption: categoryTitle,
             ),
           ],
@@ -65,15 +76,19 @@ class IslamicTriviaResultsPage extends ConsumerWidget {
         Row(
           children: [
             TriviaStatTile(
-              label: 'XP gained',
-              value: '+${result.xpEarned}',
-              caption: result.wasPerfect ? 'Perfect score bonus included' : null,
+              label: l10n.triviaResultsXpGainedLabel,
+              value: '+${numberFormat.format(result.xpEarned)}',
+              caption: result.wasPerfect
+                  ? l10n.triviaResultsPerfectBonusIncluded
+                  : null,
             ),
             const SizedBox(width: 10),
             TriviaStatTile(
-              label: 'Ocean Drops',
-              value: '+${result.oceanDropsEarned}',
-              caption: result.wasDailyReplay ? 'Replay rewards are lighter' : null,
+              label: l10n.triviaHomeOceanDropsLabel,
+              value: '+${numberFormat.format(result.oceanDropsEarned)}',
+              caption: result.wasDailyReplay
+                  ? l10n.triviaResultsReplayRewardsLighter
+                  : null,
             ),
           ],
         ),
@@ -84,20 +99,30 @@ class IslamicTriviaResultsPage extends ConsumerWidget {
             children: [
               Text(
                 resultTitle,
-                style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                  fontWeight: FontWeight.w700,
-                ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
               ),
               const SizedBox(height: 8),
               Text(
-                'Completed in ${result.durationSeconds}s • ${result.incorrectCount} missed',
+                l10n.triviaResultsCompletedSummary(
+                  numberFormat.format(result.durationSeconds),
+                  numberFormat.format(result.incorrectCount),
+                  numberFormat.format(result.totalAnswered),
+                  numberFormat.format(result.correctCount),
+                  numberFormat.format(result.totalAnswered),
+                ),
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: AppColors.onSurfaceSubtle,
                 ),
               ),
               if (result.mode == TriviaMode.survival) ...[
                 const SizedBox(height: 8),
-                Text('Best run in this session: ${result.survivalRun}'),
+                Text(
+                  l10n.triviaResultsBestRunInSession(
+                    numberFormat.format(result.survivalRun),
+                  ),
+                ),
               ],
             ],
           ),
@@ -106,7 +131,9 @@ class IslamicTriviaResultsPage extends ConsumerWidget {
         Row(
           children: [
             Expanded(
-              child: result.knowledgePathId != null && result.knowledgeStageId != null
+              child:
+                  result.knowledgePathId != null &&
+                      result.knowledgeStageId != null
                   ? FilledButton.tonalIcon(
                       onPressed: () {
                         final started = controller.startKnowledgePathStage(
@@ -118,7 +145,7 @@ class IslamicTriviaResultsPage extends ConsumerWidget {
                         }
                       },
                       icon: const Icon(Icons.refresh_rounded),
-                      label: const Text('Retry Stage'),
+                      label: Text(l10n.triviaResultsRetryStageAction),
                     )
                   : FilledButton.tonalIcon(
                       onPressed: () {
@@ -128,7 +155,7 @@ class IslamicTriviaResultsPage extends ConsumerWidget {
                         }
                       },
                       icon: const Icon(Icons.refresh_rounded),
-                      label: const Text('Retry'),
+                      label: Text(l10n.triviaResultsRetryAction),
                     ),
             ),
             const SizedBox(width: 10),
@@ -136,7 +163,7 @@ class IslamicTriviaResultsPage extends ConsumerWidget {
               child: FilledButton.tonalIcon(
                 onPressed: () => context.pushNamed('learnTriviaReview'),
                 icon: const Icon(Icons.replay_circle_filled_rounded),
-                label: const Text('Review Mistakes'),
+                label: Text(l10n.triviaReviewMistakesAction),
               ),
             ),
           ],
@@ -153,7 +180,9 @@ class IslamicTriviaResultsPage extends ConsumerWidget {
                       )
                     : () => context.goNamed('learnIslamicTrivia'),
                 child: Text(
-                  result.knowledgePathId != null ? 'Back to Path' : 'Go Home',
+                  result.knowledgePathId != null
+                      ? l10n.triviaResultsBackToPathAction
+                      : l10n.triviaResultsGoHomeAction,
                 ),
               ),
             ),
@@ -161,21 +190,21 @@ class IslamicTriviaResultsPage extends ConsumerWidget {
             Expanded(
               child: OutlinedButton(
                 onPressed: () => context.pushNamed('learnTriviaStats'),
-                child: const Text('Progress & Stats'),
+                child: Text(l10n.triviaHomeProgressStatsAction),
               ),
             ),
           ],
         ),
         const SizedBox(height: 14),
-        const TriviaSectionHeader(
-          title: 'Missed questions',
-          subtitle: 'These will also feed your review queue for reinforcement.',
+        TriviaSectionHeader(
+          title: l10n.triviaResultsMissedQuestionsTitle,
+          subtitle: l10n.triviaResultsMissedQuestionsSubtitle,
         ),
         const SizedBox(height: 8),
         if (missedQuestions.isEmpty)
-          const TriviaEmptyStateCard(
-            title: 'No missed questions',
-            subtitle: 'This session stayed clean. Your review queue is lighter now.',
+          TriviaEmptyStateCard(
+            title: l10n.triviaResultsNoMissedQuestionsTitle,
+            subtitle: l10n.triviaResultsNoMissedQuestionsSubtitle,
           )
         else
           ...missedQuestions.map((question) {

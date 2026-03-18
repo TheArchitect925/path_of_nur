@@ -1,15 +1,26 @@
 import 'package:flutter/material.dart';
+import '../../../l10n/app_localizations.dart';
 import '../../../shared/theme/islamic_icons.dart';
 
-enum PrayerName {
-  fajr,
-  dhuhr,
-  asr,
-  maghrib,
-  isha,
-}
+enum PrayerName { fajr, dhuhr, asr, maghrib, isha }
 
 extension PrayerNameX on PrayerName {
+  String localizedLabel(AppLocalizations l10n) {
+    switch (this) {
+      case PrayerName.fajr:
+        return l10n.settingsPrayerNameFajr;
+      case PrayerName.dhuhr:
+        return l10n.settingsPrayerNameDhuhr;
+      case PrayerName.asr:
+        return l10n.settingsPrayerNameAsr;
+      case PrayerName.maghrib:
+        return l10n.settingsPrayerNameMaghrib;
+      case PrayerName.isha:
+        return l10n.settingsPrayerNameIsha;
+    }
+  }
+
+  @Deprecated('Use localizedLabel(AppLocalizations) for user-visible text.')
   String get label {
     switch (this) {
       case PrayerName.fajr:

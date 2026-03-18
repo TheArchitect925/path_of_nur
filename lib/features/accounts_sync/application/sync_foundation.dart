@@ -12,6 +12,8 @@ const String syncDomainPrayerLog = 'prayer_log';
 const String syncDomainDhikrState = 'dhikr_state';
 const String syncDomainDhikrSessions = 'dhikr_sessions';
 const String syncDomainOceanEvent = 'ocean_event';
+const String syncTransportKeyLocalStorage = 'local_storage';
+const String syncTransportKeyICloud = 'icloud';
 
 const String _deviceIdStorageKey = 'accounts_sync.device_id.v1';
 
@@ -122,7 +124,9 @@ abstract class SyncTransport {
 }
 
 class UnavailableSyncTransport extends SyncTransport {
-  const UnavailableSyncTransport({this.reason = 'Transport unavailable'});
+  const UnavailableSyncTransport({
+    this.reason = 'sync_error_transport_unavailable',
+  });
 
   final String reason;
 
@@ -155,9 +159,9 @@ class ICloudSyncTransport extends SyncTransport {
         online: false,
         acceptedDedupKeys: <String>[],
         inboundChanges: <SyncInboundChange>[],
-        errorMessage: 'iCloud sync is only available on Apple devices',
+        errorMessage: 'sync_error_icloud_unsupported_platform',
         statusCode: 'unsupported_platform',
-        transportLabel: 'iCloud',
+        transportLabel: syncTransportKeyICloud,
       );
     }
 
@@ -169,9 +173,9 @@ class ICloudSyncTransport extends SyncTransport {
           online: false,
           acceptedDedupKeys: <String>[],
           inboundChanges: <SyncInboundChange>[],
-          errorMessage: 'iCloud is unavailable or not signed in',
+          errorMessage: 'sync_error_icloud_unavailable',
           statusCode: 'icloud_unavailable',
-          transportLabel: 'iCloud',
+          transportLabel: syncTransportKeyICloud,
         );
       }
 
@@ -201,10 +205,9 @@ class ICloudSyncTransport extends SyncTransport {
             online: false,
             acceptedDedupKeys: <String>[],
             inboundChanges: <SyncInboundChange>[],
-            errorMessage:
-                'iCloud write failed. Check signing and ubiquity key-value capability.',
+            errorMessage: 'sync_error_icloud_write_failed',
             statusCode: 'icloud_write_failed',
-            transportLabel: 'iCloud',
+            transportLabel: syncTransportKeyICloud,
           );
         }
       }
@@ -213,8 +216,7 @@ class ICloudSyncTransport extends SyncTransport {
       final inboundChanges = merged.document.changes
           .where(
             (change) =>
-                change.sequence > cursor &&
-                change.deviceId != request.deviceId,
+                change.sequence > cursor && change.deviceId != request.deviceId,
           )
           .map(
             (change) => SyncInboundChange(
@@ -240,26 +242,23 @@ class ICloudSyncTransport extends SyncTransport {
         statusCode: request.outboxEntries.isEmpty && inboundChanges.isEmpty
             ? 'noop'
             : 'ok',
-        transportLabel: 'iCloud',
+        transportLabel: syncTransportKeyICloud,
       );
     } catch (error) {
       return SyncTransportResponse(
         online: false,
         acceptedDedupKeys: const <String>[],
         inboundChanges: const <SyncInboundChange>[],
-        errorMessage: error.toString(),
+        errorMessage: 'sync_error_transport_failure',
         statusCode: 'transport_error',
-        transportLabel: 'iCloud',
+        transportLabel: syncTransportKeyICloud,
       );
     }
   }
 }
 
 class _ICloudScopeDocument {
-  const _ICloudScopeDocument({
-    required this.scopeId,
-    required this.changes,
-  });
+  const _ICloudScopeDocument({required this.scopeId, required this.changes});
 
   final String scopeId;
   final List<_ICloudScopeChange> changes;
@@ -267,8 +266,8 @@ class _ICloudScopeDocument {
   int get maxSequence => changes.isEmpty
       ? 0
       : changes
-          .map((change) => change.sequence)
-          .reduce((value, element) => value > element ? value : element);
+            .map((change) => change.sequence)
+            .reduce((value, element) => value > element ? value : element);
 
   String toJsonString() {
     return jsonEncode(<String, dynamic>{
@@ -318,7 +317,8 @@ class _ICloudScopeDocument {
                   ? payload.map((key, value) => MapEntry(key.toString(), value))
                   : const <String, dynamic>{},
               deviceId: row['deviceId']?.toString() ?? '',
-              changedAtIso: row['changedAtIso']?.toString() ??
+              changedAtIso:
+                  row['changedAtIso']?.toString() ??
                   DateTime.fromMillisecondsSinceEpoch(0).toIso8601String(),
               revision: row['revision']?.toString() ?? '0',
             ),
@@ -351,7 +351,7 @@ class _ICloudScopeDocument {
       final existing = byDedup[entry.dedupKey];
       final existingAt =
           DateTime.tryParse(existing?.changedAtIso ?? '') ??
-              DateTime.fromMillisecondsSinceEpoch(0);
+          DateTime.fromMillisecondsSinceEpoch(0);
       final incomingAt =
           DateTime.tryParse(entry.updatedAtIso) ?? DateTime.now();
       if (existing != null &&
@@ -407,10 +407,7 @@ class _ICloudScopeChange {
 }
 
 class _ICloudMergeResult {
-  const _ICloudMergeResult({
-    required this.document,
-    required this.changed,
-  });
+  const _ICloudMergeResult({required this.document, required this.changed});
 
   final _ICloudScopeDocument document;
   final bool changed;
@@ -535,8 +532,9 @@ class SyncOutboxRepository {
           entityKey: row['entity_key'] as String,
           payload: row['payload_json'] == null
               ? const <String, dynamic>{}
-              : (jsonDecode(row['payload_json'] as String) as Map)
-                  .map((key, value) => MapEntry(key.toString(), value)),
+              : (jsonDecode(row['payload_json'] as String) as Map).map(
+                  (key, value) => MapEntry(key.toString(), value),
+                ),
           deviceId: row['device_id'] as String,
           dedupKey: row['dedup_key'] as String,
           createdAtIso: row['created_at_iso'] as String,
@@ -669,10 +667,7 @@ class SyncMutationRecorder {
       entityKey: 'recent',
       deviceId: _deviceIdentity.deviceId,
       dedupKey: '$scopeId|$syncDomainDhikrSessions|recent',
-      payload: <String, dynamic>{
-        'scopeId': scopeId,
-        'sessions': sessions,
-      },
+      payload: <String, dynamic>{'scopeId': scopeId, 'sessions': sessions},
     );
   }
 
@@ -729,7 +724,8 @@ class SyncConflictResolver {
       if (row is! Map) continue;
       final prayer = row['prayer']?.toString();
       if (prayer == null || prayer.isEmpty) continue;
-      final incomingUpdatedAt = row['updatedAtIso']?.toString() ??
+      final incomingUpdatedAt =
+          row['updatedAtIso']?.toString() ??
           change.payload['updatedAtIso']?.toString() ??
           change.changedAtIso;
       final existing = _database.select(
@@ -743,9 +739,13 @@ class SyncConflictResolver {
       );
       final existingUpdatedAt = existing.isEmpty
           ? null
-          : DateTime.tryParse(existing.first['updated_at_iso']?.toString() ?? '');
+          : DateTime.tryParse(
+              existing.first['updated_at_iso']?.toString() ?? '',
+            );
       final incoming = DateTime.tryParse(incomingUpdatedAt);
-      if (existingUpdatedAt != null && incoming != null && incoming.isBefore(existingUpdatedAt)) {
+      if (existingUpdatedAt != null &&
+          incoming != null &&
+          incoming.isBefore(existingUpdatedAt)) {
         continue;
       }
       _database.execute(
@@ -772,7 +772,8 @@ class SyncConflictResolver {
   }
 
   int _applyDhikrState(SyncInboundChange change) {
-    final incomingUpdatedAt = change.payload['updatedAtIso']?.toString() ?? change.changedAtIso;
+    final incomingUpdatedAt =
+        change.payload['updatedAtIso']?.toString() ?? change.changedAtIso;
     final existing = _database.select(
       'SELECT updated_at_iso FROM dhikr_state WHERE scope_id = ? LIMIT 1;',
       <Object?>[change.scopeId],
@@ -781,7 +782,9 @@ class SyncConflictResolver {
         ? null
         : DateTime.tryParse(existing.first['updated_at_iso']?.toString() ?? '');
     final incoming = DateTime.tryParse(incomingUpdatedAt);
-    if (existingUpdatedAt != null && incoming != null && incoming.isBefore(existingUpdatedAt)) {
+    if (existingUpdatedAt != null &&
+        incoming != null &&
+        incoming.isBefore(existingUpdatedAt)) {
       return 0;
     }
     _database.execute(
@@ -860,7 +863,9 @@ class SyncConflictResolver {
         change.payload['sourceModule']?.toString() ?? '',
         (change.payload['amount'] as num?)?.toInt() ?? 1,
         change.payload['referenceId']?.toString(),
-        change.payload['metadata'] == null ? null : jsonEncode(change.payload['metadata']),
+        change.payload['metadata'] == null
+            ? null
+            : jsonEncode(change.payload['metadata']),
         change.payload['eligibilityKey']?.toString(),
       ],
     );
@@ -901,10 +906,10 @@ class SyncEngine {
         uploadedCount: 0,
         appliedInboundCount: 0,
         completedAtIso: completedAtIso,
-        recentEvents: const <String>['Local-only mode active'],
-        transportLabel: 'Local storage',
+        recentEvents: const <String>['sync_event_local_only_mode_active'],
+        transportLabel: syncTransportKeyLocalStorage,
         transportAvailable: false,
-        resultSummary: 'Local-only mode active',
+        resultSummary: 'sync_result_local_only_mode_active',
         statusCode: 'local_only',
       );
     }
@@ -924,7 +929,7 @@ class SyncEngine {
       if (pending.isNotEmpty) {
         outboxRepository.markFailed(
           pending.map((entry) => entry.dedupKey).toList(growable: false),
-          response.errorMessage ?? 'Offline',
+          response.errorMessage ?? 'sync_error_offline',
         );
       }
       return SyncRunReport(
@@ -934,17 +939,21 @@ class SyncEngine {
         uploadedCount: 0,
         appliedInboundCount: 0,
         completedAtIso: completedAtIso,
-        recentEvents: <String>[response.errorMessage ?? 'Sync unavailable'],
+        recentEvents: <String>[
+          response.errorMessage ?? 'sync_error_sync_unavailable',
+        ],
         errorMessage: response.errorMessage,
         transportLabel: response.transportLabel ?? transportKey,
         transportAvailable: false,
-        resultSummary: response.errorMessage ?? 'Sync unavailable',
+        resultSummary: response.errorMessage ?? 'sync_error_sync_unavailable',
         statusCode: response.statusCode ?? 'transport_unavailable',
       );
     }
 
     outboxRepository.markUploaded(response.acceptedDedupKeys);
-    final appliedInboundCount = conflictResolver.applyInboundChanges(response.inboundChanges);
+    final appliedInboundCount = conflictResolver.applyInboundChanges(
+      response.inboundChanges,
+    );
     outboxRepository.saveCursor(scopeId, transportKey, response.nextCursor);
     return SyncRunReport(
       succeeded: true,
@@ -955,16 +964,18 @@ class SyncEngine {
       completedAtIso: completedAtIso,
       recentEvents: <String>[
         if (response.acceptedDedupKeys.isNotEmpty)
-          'Uploaded ${response.acceptedDedupKeys.length} changes',
-        if (appliedInboundCount > 0) 'Applied $appliedInboundCount inbound changes',
+          'sync_event_uploaded:${response.acceptedDedupKeys.length}',
+        if (appliedInboundCount > 0)
+          'sync_event_applied_inbound:$appliedInboundCount',
         if (response.acceptedDedupKeys.isEmpty && appliedInboundCount == 0)
-          'No changes to sync',
+          'sync_event_no_changes',
       ],
       transportLabel: response.transportLabel ?? transportKey,
       transportAvailable: true,
-      resultSummary: response.acceptedDedupKeys.isEmpty && appliedInboundCount == 0
-          ? 'No changes to sync'
-          : 'Sync completed successfully',
+      resultSummary:
+          response.acceptedDedupKeys.isEmpty && appliedInboundCount == 0
+          ? 'sync_result_no_changes'
+          : 'sync_result_completed_successfully',
       statusCode: response.statusCode ?? 'ok',
     );
   }
@@ -990,24 +1001,25 @@ String _platformKey() {
 String _defaultDeviceName() {
   switch (defaultTargetPlatform) {
     case TargetPlatform.iOS:
-      return 'Apple Device';
+      return 'current_device_apple';
     case TargetPlatform.android:
-      return 'Android Device';
+      return 'current_device_android';
     case TargetPlatform.macOS:
-      return 'Mac';
+      return 'current_device_mac';
     case TargetPlatform.windows:
-      return 'Windows PC';
+      return 'current_device_windows';
     case TargetPlatform.linux:
-      return 'Linux Device';
+      return 'current_device_linux';
     case TargetPlatform.fuchsia:
-      return 'Path of Nur Device';
+      return 'current_device_generic';
   }
 }
 
 final deviceIdentityProvider = Provider<AppDeviceIdentity>((ref) {
   final store = ref.watch(localStoreProvider);
   final existing = store.getString(_deviceIdStorageKey);
-  final deviceId = existing ?? 'device_${DateTime.now().microsecondsSinceEpoch}';
+  final deviceId =
+      existing ?? 'device_${DateTime.now().microsecondsSinceEpoch}';
   if (existing == null) {
     store.setString(_deviceIdStorageKey, deviceId);
   }
@@ -1036,7 +1048,9 @@ final syncConflictResolverProvider = Provider<SyncConflictResolver>((ref) {
 });
 
 final cloudSyncTransportProvider = Provider<SyncTransport>((ref) {
-  return const UnavailableSyncTransport(reason: 'Cloud sync transport not configured');
+  return const UnavailableSyncTransport(
+    reason: 'sync_error_transport_unavailable',
+  );
 });
 
 final iCloudSyncTransportProvider = Provider<SyncTransport>((ref) {

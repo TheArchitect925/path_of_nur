@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../app/app_router.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/quran_reference_block.dart';
@@ -94,36 +95,36 @@ class _LearnQuranHubPageState extends ConsumerState<LearnQuranHubPage> {
 
     return LearnHubPageScaffold(
       headerIcon: Icons.school_rounded,
-      title: 'Qur’an Learning',
+      title: 'Qur’an Study',
       subtitle:
-          'Understanding, reflection, guided paths, memorization, and deeper Qur’an study in one calmer learning space.',
+          'The study-focused layer of the Qur’an experience: understanding, reflection, guided paths, and memorization support.',
       children: [
         PremiumCard(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Reader & Reciter',
+                'Study Mode',
                 style: Theme.of(
                   context,
                 ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
               ),
               const SizedBox(height: 6),
               Text(
-                'Keep your practical reading flow separate from study and reflection.',
+                'Use this when you want to slow down, study meaning, and move through guided Qur’an learning paths.',
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
               const SizedBox(height: 10),
               FilledButton.tonalIcon(
-                onPressed: () => context.pushNamed('learnQuranHub'),
+                onPressed: () => context.go(NavTab.quran.path),
                 icon: const Icon(Icons.menu_book_rounded),
-                label: const Text('Open Holy Qur’an'),
+                label: const Text('Return to Qur’an Home'),
               ),
               const SizedBox(height: 8),
               Align(
                 alignment: Alignment.centerLeft,
                 child: TextButton.icon(
-                  onPressed: () => context.pushNamed('learnQuranArabic'),
+                  onPressed: () => context.pushNamed('quranArabic'),
                   icon: const Icon(Icons.translate_rounded),
                   label: const Text('Open Learn Qur’anic Arabic'),
                 ),

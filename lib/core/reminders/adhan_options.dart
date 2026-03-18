@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import '../../l10n/app_localizations.dart';
 
 /// Tiny internal registry for bundled Adhan assets.
 ///
@@ -36,6 +37,38 @@ class AdhanOption {
   final String iosSoundFileName;
   final bool isDefault;
   final int sortOrder;
+
+  String localizedTitle(AppLocalizations l10n) {
+    switch (id) {
+      case 'makkah_default':
+        return l10n.adhanOptionMakkahDefaultTitle;
+      case 'madinah_soft':
+        return l10n.adhanOptionMadinahSoftTitle;
+      case 'clear_masjid':
+        return l10n.adhanOptionClearMasjidTitle;
+      case 'fajr_default':
+        return l10n.adhanOptionFajrDefaultTitle;
+      case 'fajr_soft':
+        return l10n.adhanOptionFajrSoftTitle;
+    }
+    return title;
+  }
+
+  String? localizedSubtitle(AppLocalizations l10n) {
+    switch (id) {
+      case 'makkah_default':
+        return l10n.adhanOptionMakkahDefaultSubtitle;
+      case 'madinah_soft':
+        return l10n.adhanOptionMadinahSoftSubtitle;
+      case 'clear_masjid':
+        return l10n.adhanOptionClearMasjidSubtitle;
+      case 'fajr_default':
+        return l10n.adhanOptionFajrDefaultSubtitle;
+      case 'fajr_soft':
+        return l10n.adhanOptionFajrSoftSubtitle;
+    }
+    return subtitle;
+  }
 
   bool supportsCategory(AdhanOptionCategory target) {
     if (category == AdhanOptionCategory.both) return true;

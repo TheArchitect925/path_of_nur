@@ -27,11 +27,11 @@ final appQuickActionsBootstrapProvider = Provider<void>((ref) {
     final route = switch (shortcutType) {
       _qaOpenToday => '/journey/growth/today',
       _qaOpenReflection => '/journey/growth/reflection',
-      _qaReadQuran => '/learn/quran/surah/1',
+      _qaReadQuran => NavTab.quran.path,
       _qaMorningAdhkar => '/journey/habit/h_morning_adhkar',
       _qaEveningAdhkar => '/journey/habit/h_evening_adhkar',
       _qaLogGratitude => '/journey/growth/reflection',
-      _qaDailyLearning => '/learn/hub/prophets',
+      _qaDailyLearning => '/learn/prophets',
       _ => null,
     };
     if (route != null) {
@@ -40,33 +40,12 @@ final appQuickActionsBootstrapProvider = Provider<void>((ref) {
   });
 
   quickActions.setShortcutItems(const <ShortcutItem>[
-    ShortcutItem(
-      type: _qaOpenToday,
-      localizedTitle: 'Open Today',
-    ),
-    ShortcutItem(
-      type: _qaOpenReflection,
-      localizedTitle: 'Open Reflection',
-    ),
-    ShortcutItem(
-      type: _qaReadQuran,
-      localizedTitle: 'Read Qur’an',
-    ),
-    ShortcutItem(
-      type: _qaMorningAdhkar,
-      localizedTitle: 'Morning Adhkar',
-    ),
-    ShortcutItem(
-      type: _qaEveningAdhkar,
-      localizedTitle: 'Evening Adhkar',
-    ),
-    ShortcutItem(
-      type: _qaLogGratitude,
-      localizedTitle: 'Log Gratitude',
-    ),
-    ShortcutItem(
-      type: _qaDailyLearning,
-      localizedTitle: 'Daily Learning',
-    ),
+    ShortcutItem(type: _qaOpenToday, localizedTitle: 'Open Today'),
+    ShortcutItem(type: _qaOpenReflection, localizedTitle: 'Open Reflection'),
+    ShortcutItem(type: _qaReadQuran, localizedTitle: 'Read Qur’an'),
+    ShortcutItem(type: _qaMorningAdhkar, localizedTitle: 'Morning Adhkar'),
+    ShortcutItem(type: _qaEveningAdhkar, localizedTitle: 'Evening Adhkar'),
+    ShortcutItem(type: _qaLogGratitude, localizedTitle: 'Log Gratitude'),
+    ShortcutItem(type: _qaDailyLearning, localizedTitle: 'Daily Learning'),
   ]);
 });

@@ -225,8 +225,7 @@ final quranReferenceKnowledgeBundleProvider =
               id: prophet.id,
               title: prophet.name,
               subtitle: prophet.shortSummary,
-              routeName: 'learnSectionHub',
-              pathParameters: {'sectionId': 'prophets'},
+              routeName: 'learnProphetsHub',
               queryParameters: {'prophet': prophet.id},
             ),
           )
@@ -240,7 +239,7 @@ final quranReferenceKnowledgeBundleProvider =
               id: path.id,
               title: path.title,
               subtitle: path.description,
-              routeName: 'learnQuranHub',
+              routeName: 'quran',
             ),
           )
           .toList(growable: false);

@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../features/profile/application/profile_settings_provider.dart';
+import 'kids_ui_theme_provider.dart';
 
 enum AppSpecialMode { none, ramadan, loss, gentle }
 
@@ -27,6 +28,7 @@ class SpecialModeState {
 
 final specialModeProvider = Provider<SpecialModeState>((ref) {
   final settings = ref.watch(profileSettingsProvider);
+  final kidsUi = ref.watch(activeKidsUiThemeProvider);
 
   final activeMode = settings.ramadanModeEnabled
       ? AppSpecialMode.ramadan
@@ -50,7 +52,7 @@ final specialModeProvider = Provider<SpecialModeState>((ref) {
 
   return SpecialModeState(
     activeMode: activeMode,
-    kidsModeEnabled: settings.kidsModeEnabled,
+    kidsModeEnabled: kidsUi.enabled,
     ramadanStart: start,
     ramadanEnd: end,
     ramadanDateWindowActive: inRange,

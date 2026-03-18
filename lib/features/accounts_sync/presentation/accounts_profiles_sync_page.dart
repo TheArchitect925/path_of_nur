@@ -1,41 +1,55 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 
+import '../../../l10n/app_localizations.dart';
 import '../../../shared/widgets/app_page_scaffold.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/section_title.dart';
 import '../application/accounts_sync_controller.dart';
+import '../application/sync_foundation.dart';
 
 class AccountsProfilesSyncPage extends ConsumerWidget {
   const AccountsProfilesSyncPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     final state = ref.watch(accountsSyncControllerProvider);
     final activeProfile = state.activeProfile;
     final activeAccount = state.activeAccount;
     return AppPageScaffold(
       headerIcon: Icons.manage_accounts_rounded,
-      title: 'Accounts, Profiles & Sync',
-      subtitle:
-          'Manage who is using this device, how their journey is protected, and how it is stored.',
+      title: l10n.settingsAccountsSyncTitle,
+      subtitle: l10n.settingsAccountsSyncSubtitle,
       children: [
         SectionTitle(
-          title: 'Current Profile',
-          subtitle: 'See who is active right now and how this profile is protected.',
+          title: l10n.settingsCurrentProfileTitle,
+          subtitle: l10n.accountsSyncCurrentProfileSectionSubtitle,
         ),
         PremiumCard(
           child: Column(
             children: [
               ListTile(
                 contentPadding: EdgeInsets.zero,
-                leading: CircleAvatar(child: Text(activeProfile?.avatar ?? '🌙')),
-                title: Text(activeProfile?.displayName ?? 'No active profile'),
+                leading: CircleAvatar(
+                  child: Text(activeProfile?.avatar ?? '🌙'),
+                ),
+                title: Text(
+                  activeProfile?.displayName ??
+                      l10n.accountsSyncNoActiveProfileTitle,
+                ),
                 subtitle: Text(
                   activeProfile == null
-                      ? 'Choose a profile to begin.'
-                      : '${activeProfile.profileType.name} • ${activeProfile.syncMode.name}',
+                      ? l10n.accountsSyncChooseProfileToBegin
+                      : l10n.accountsSyncProfileStatusSummary(
+                          _profileKindLabel(l10n, activeProfile.profileType),
+                          _syncModeLabel(l10n, activeProfile.syncMode),
+                          _profileKindLabel(l10n, activeProfile.profileType),
+                          activeProfile.displayName,
+                          _syncModeLabel(l10n, activeProfile.syncMode),
+                        ),
                 ),
                 trailing: activeProfile?.pinProtected == true
                     ? const Icon(Icons.lock_outline_rounded)
@@ -43,16 +57,18 @@ class AccountsProfilesSyncPage extends ConsumerWidget {
               ),
               const Divider(height: 1),
               _NavRow(
-                title: 'Switch Profile',
-                subtitle: 'Move between profiles without leaking progress.',
+                title: l10n.accountsSyncSwitchProfileTitle,
+                subtitle: l10n.accountsSyncSwitchProfileSubtitle,
                 onTap: () => context.push('/accounts-sync/profiles'),
               ),
               const Divider(height: 1),
               _NavRow(
-                title: 'Profiles in This Account',
+                title: l10n.accountsSyncProfilesInAccountTitle,
                 subtitle: activeAccount == null
-                    ? 'Create profiles for adults, youth, children, or guests.'
-                    : 'Manage the profiles stored under ${activeAccount.displayName}.',
+                    ? l10n.accountsSyncProfilesInAccountCreateSubtitle
+                    : l10n.accountsSyncProfilesInAccountManageSubtitle(
+                        activeAccount.displayName,
+                      ),
                 onTap: () => context.push('/accounts-sync/profiles'),
               ),
             ],
@@ -60,15 +76,17 @@ class AccountsProfilesSyncPage extends ConsumerWidget {
         ),
         const SizedBox(height: 16),
         SectionTitle(
-          title: 'Accounts on This Device',
-          subtitle: 'Keep multiple signed-in identities separate on one phone or tablet.',
+          title: l10n.accountsSyncAccountsOnDeviceTitle,
+          subtitle: l10n.accountsSyncAccountsOnDeviceSubtitle,
         ),
         PremiumCard(
           child: Column(
             children: [
               _NavRow(
-                title: 'Signed-In Accounts on This Device',
-                subtitle: '${state.accounts.length} account${state.accounts.length == 1 ? '' : 's'} available',
+                title: l10n.accountsSyncSignedInAccountsTitle,
+                subtitle: l10n.accountsSyncAccountsAvailableCount(
+                  state.accounts.length,
+                ),
                 onTap: () => context.push('/accounts-sync/accounts'),
               ),
             ],
@@ -76,37 +94,45 @@ class AccountsProfilesSyncPage extends ConsumerWidget {
         ),
         const SizedBox(height: 16),
         SectionTitle(
-          title: 'Sync Status',
-          subtitle: 'Understand what is stored locally, what is synced, and what needs attention.',
+          title: l10n.settingsSyncStatusTitle,
+          subtitle: l10n.accountsSyncSyncStatusSectionSubtitle,
         ),
         SyncStatusCard(state: state),
         const SizedBox(height: 16),
         SectionTitle(
-          title: 'Connected Devices',
-          subtitle: 'See which phones, tablets, watches, and TVs are linked to this journey.',
+          title: l10n.accountsSyncConnectedDevicesTitle,
+          subtitle: l10n.accountsSyncConnectedDevicesSubtitle,
         ),
         PremiumCard(
           child: _NavRow(
-            title: 'Connected Devices',
-            subtitle: '${state.connectedDevices.length} device${state.connectedDevices.length == 1 ? '' : 's'}',
+            title: l10n.accountsSyncConnectedDevicesTitle,
+            subtitle: l10n.accountsSyncDeviceCount(
+              state.connectedDevices.length,
+            ),
             onTap: () => context.push('/accounts-sync/devices'),
           ),
         ),
         const SizedBox(height: 16),
         SectionTitle(
-          title: 'Backup & Restore',
+          title: l10n.settingsBackupRestoreTitle,
           subtitle: state.backupRecommended
-              ? 'Backup recommended. This journey has not been exported recently.'
-              : 'Export a manual backup or restore from a previous archive.',
+              ? l10n.accountsSyncBackupRestoreSectionSubtitleRecommended
+              : l10n.accountsSyncBackupRestoreSectionSubtitleDefault,
         ),
         PremiumCard(
           child: Column(
             children: [
               _NavRow(
-                title: 'Backup & Restore',
+                title: l10n.settingsBackupRestoreTitle,
                 subtitle: state.backupRecord.lastExportAtIso == null
-                    ? 'No manual backup exported yet.'
-                    : 'Last export ${_formatWhen(state.backupRecord.lastExportAtIso)}',
+                    ? l10n.accountsSyncNoManualBackupExportedYet
+                    : l10n.accountsSyncLastExportLabel(
+                        _formatWhen(
+                          context,
+                          l10n,
+                          state.backupRecord.lastExportAtIso,
+                        ),
+                      ),
                 onTap: () => context.push('/accounts-sync/backup'),
               ),
             ],
@@ -114,27 +140,29 @@ class AccountsProfilesSyncPage extends ConsumerWidget {
         ),
         const SizedBox(height: 16),
         SectionTitle(
-          title: 'Shared Device Safety',
-          subtitle: 'Require profile picking on launch and keep child or adult profiles protected.',
+          title: l10n.accountsSyncSharedDeviceSafetyTitle,
+          subtitle: l10n.accountsSyncSharedDeviceSafetySubtitle,
         ),
         PremiumCard(
           child: Column(
             children: [
               _NavRow(
-                title: 'Shared Device Safety',
+                title: l10n.accountsSyncSharedDeviceSafetyTitle,
                 subtitle: state.sharedDeviceModeEnabled
-                    ? 'Shared Device Mode is active.'
-                    : 'This device currently opens directly into one profile.',
+                    ? l10n.accountsSyncSharedDeviceModeActive
+                    : l10n.accountsSyncSharedDeviceModeDirectOpen,
                 onTap: () => context.push('/accounts-sync/shared-device'),
               ),
               const Divider(height: 1),
               SwitchListTile.adaptive(
                 contentPadding: EdgeInsets.zero,
-                title: const Text('Shared Device Mode'),
-                subtitle: const Text('Show the profile picker on shared tablets and TVs.'),
+                title: Text(l10n.accountsSyncSharedDeviceModeLabel),
+                subtitle: Text(l10n.accountsSyncSharedDeviceModeHelper),
                 value: state.sharedDeviceModeEnabled,
                 onChanged: (value) {
-                  ref.read(sharedDeviceModeControllerProvider).setEnabled(value);
+                  ref
+                      .read(sharedDeviceModeControllerProvider)
+                      .setEnabled(value);
                 },
               ),
             ],
@@ -166,12 +194,12 @@ class _SharedDeviceProfilePickerPageState
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final state = ref.watch(accountsSyncControllerProvider);
     return AppPageScaffold(
       headerIcon: Icons.people_alt_outlined,
-      title: 'Choose a Profile',
-      subtitle:
-          'This device is set up for shared use. Pick the profile you want to continue with.',
+      title: l10n.accountsSyncChooseProfileTitle,
+      subtitle: l10n.accountsSyncChooseProfileSubtitle,
       children: [
         PremiumCard(
           child: Column(
@@ -182,7 +210,11 @@ class _SharedDeviceProfilePickerPageState
                   leading: CircleAvatar(child: Text(profile.avatar)),
                   title: Text(profile.displayName),
                   subtitle: Text(
-                    '${profile.profileType.name} • ${profile.syncMode.name} • Last active ${_formatWhen(profile.lastActiveAtIso)}',
+                    l10n.accountsSyncProfileListSubtitle(
+                      _profileKindLabel(l10n, profile.profileType),
+                      _syncModeLabel(l10n, profile.syncMode),
+                      _formatWhen(context, l10n, profile.lastActiveAtIso),
+                    ),
                   ),
                   trailing: Row(
                     mainAxisSize: MainAxisSize.min,
@@ -193,7 +225,10 @@ class _SharedDeviceProfilePickerPageState
                           child: Icon(Icons.lock_outline_rounded, size: 18),
                         ),
                       if (state.activeProfileId == profile.profileId)
-                        const Icon(Icons.check_circle_outline_rounded, size: 18),
+                        const Icon(
+                          Icons.check_circle_outline_rounded,
+                          size: 18,
+                        ),
                     ],
                   ),
                   onTap: () async {
@@ -219,20 +254,20 @@ class _SharedDeviceProfilePickerPageState
           child: Column(
             children: [
               _NavRow(
-                title: 'Add Profile',
-                subtitle: 'Create an adult, youth, child, or guest profile.',
+                title: l10n.accountsSyncAddProfileTitle,
+                subtitle: l10n.accountsSyncAddProfileSubtitle,
                 onTap: () => context.push('/accounts-sync/profiles'),
               ),
               const Divider(height: 1),
               _NavRow(
-                title: 'Sign In Another Account',
-                subtitle: 'Keep more than one Path of Nūr identity on this device.',
+                title: l10n.accountsSyncSignInAnotherAccountTitle,
+                subtitle: l10n.accountsSyncSignInAnotherAccountSubtitle,
                 onTap: () => context.push('/accounts-sync/accounts'),
               ),
               const Divider(height: 1),
               _NavRow(
-                title: 'Manage Shared-Device Settings',
-                subtitle: 'Adjust launch protection and child restrictions.',
+                title: l10n.accountsSyncManageSharedDeviceSettingsTitle,
+                subtitle: l10n.accountsSyncManageSharedDeviceSettingsSubtitle,
                 onTap: () => context.push('/accounts-sync/shared-device'),
               ),
             ],
@@ -244,14 +279,14 @@ class _SharedDeviceProfilePickerPageState
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text('This profile is protected'),
+                Text(l10n.accountsSyncProtectedProfileTitle),
                 const SizedBox(height: 8),
                 TextField(
                   controller: _pinController,
                   obscureText: true,
                   keyboardType: TextInputType.number,
-                  decoration: const InputDecoration(
-                    hintText: 'Enter PIN',
+                  decoration: InputDecoration(
+                    hintText: l10n.accountsSyncEnterPinHint,
                   ),
                 ),
                 const SizedBox(height: 10),
@@ -263,7 +298,9 @@ class _SharedDeviceProfilePickerPageState
                           setState(() => _profileIdAwaitingPin = null);
                           _pinController.clear();
                         },
-                        child: const Text('Cancel'),
+                        child: Text(
+                          MaterialLocalizations.of(context).cancelButtonLabel,
+                        ),
                       ),
                     ),
                     const SizedBox(width: 10),
@@ -276,17 +313,22 @@ class _SharedDeviceProfilePickerPageState
                           final messenger = ScaffoldMessenger.of(context);
                           final ok = await ref
                               .read(deviceSessionManagerProvider)
-                              .switchProfile(profileId, pin: _pinController.text.trim());
+                              .switchProfile(
+                                profileId,
+                                pin: _pinController.text.trim(),
+                              );
                           if (!mounted) return;
                           if (ok) {
                             router.go('/home');
                           } else {
                             messenger.showSnackBar(
-                              const SnackBar(content: Text('PIN did not match.')),
+                              SnackBar(
+                                content: Text(l10n.accountsSyncPinMismatch),
+                              ),
                             );
                           }
                         },
-                        child: const Text('Open'),
+                        child: Text(l10n.accountsSyncOpenProfileAction),
                       ),
                     ),
                   ],
@@ -304,7 +346,8 @@ class ProfilesInAccountPage extends ConsumerStatefulWidget {
   const ProfilesInAccountPage({super.key});
 
   @override
-  ConsumerState<ProfilesInAccountPage> createState() => _ProfilesInAccountPageState();
+  ConsumerState<ProfilesInAccountPage> createState() =>
+      _ProfilesInAccountPageState();
 }
 
 class _ProfilesInAccountPageState extends ConsumerState<ProfilesInAccountPage> {
@@ -325,25 +368,31 @@ class _ProfilesInAccountPageState extends ConsumerState<ProfilesInAccountPage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final state = ref.watch(accountsSyncControllerProvider);
     return AppPageScaffold(
       headerIcon: Icons.badge_outlined,
-      title: 'Profiles in This Account',
-      subtitle:
-          'Create separate journeys for adults, youth, children, or guests without mixing their data.',
+      title: l10n.accountsSyncProfilesInAccountTitle,
+      subtitle: l10n.accountsSyncProfilesInAccountPageSubtitle,
       children: [
         PremiumCard(
           child: Column(
             children: [
               for (final profile in state.profiles.where(
-                (item) => item.accountId == state.activeAccountId || item.accountId == null,
+                (item) =>
+                    item.accountId == state.activeAccountId ||
+                    item.accountId == null,
               )) ...[
                 ListTile(
                   contentPadding: EdgeInsets.zero,
                   leading: CircleAvatar(child: Text(profile.avatar)),
                   title: Text(profile.displayName),
                   subtitle: Text(
-                    '${profile.profileType.name} • ${profile.syncMode.name} • Last active ${_formatWhen(profile.lastActiveAtIso)}',
+                    l10n.accountsSyncProfileListSubtitle(
+                      _profileKindLabel(l10n, profile.profileType),
+                      _syncModeLabel(l10n, profile.syncMode),
+                      _formatWhen(context, l10n, profile.lastActiveAtIso),
+                    ),
                   ),
                   trailing: Wrap(
                     spacing: 8,
@@ -351,15 +400,26 @@ class _ProfilesInAccountPageState extends ConsumerState<ProfilesInAccountPage> {
                       if (profile.pinProtected)
                         const Icon(Icons.lock_outline_rounded, size: 18),
                       if (state.activeProfileId == profile.profileId)
-                        const Icon(Icons.check_circle_outline_rounded, size: 18),
+                        const Icon(
+                          Icons.check_circle_outline_rounded,
+                          size: 18,
+                        ),
                     ],
                   ),
                   onTap: () async {
                     final messenger = ScaffoldMessenger.of(context);
-                    await ref.read(deviceSessionManagerProvider).switchProfile(profile.profileId, pin: '');
+                    await ref
+                        .read(deviceSessionManagerProvider)
+                        .switchProfile(profile.profileId, pin: '');
                     if (!mounted) return;
                     messenger.showSnackBar(
-                      SnackBar(content: Text('${profile.displayName} is now active.')),
+                      SnackBar(
+                        content: Text(
+                          l10n.accountsSyncProfileActivated(
+                            profile.displayName,
+                          ),
+                        ),
+                      ),
                     );
                   },
                 ),
@@ -370,8 +430,8 @@ class _ProfilesInAccountPageState extends ConsumerState<ProfilesInAccountPage> {
         ),
         const SizedBox(height: 16),
         SectionTitle(
-          title: 'Add Profile',
-          subtitle: 'Choose a profile type, how it should feel, and how its data should be stored.',
+          title: l10n.accountsSyncAddProfileTitle,
+          subtitle: l10n.accountsSyncAddProfileSectionSubtitle,
         ),
         PremiumCard(
           child: Column(
@@ -379,67 +439,85 @@ class _ProfilesInAccountPageState extends ConsumerState<ProfilesInAccountPage> {
             children: [
               TextField(
                 controller: _nameController,
-                decoration: const InputDecoration(labelText: 'Display name'),
+                decoration: InputDecoration(
+                  labelText: l10n.accountsSyncDisplayNameLabel,
+                ),
               ),
               const SizedBox(height: 12),
               TextField(
                 controller: _avatarController,
-                decoration: const InputDecoration(labelText: 'Avatar'),
+                decoration: InputDecoration(
+                  labelText: l10n.accountsSyncAvatarLabel,
+                ),
               ),
               const SizedBox(height: 12),
               DropdownButtonFormField<ProfileKind>(
                 initialValue: _kind,
                 items: ProfileKind.values
-                    .map((item) => DropdownMenuItem(
-                          value: item,
-                          child: Text(_titleFromEnum(item.name)),
-                        ))
+                    .map(
+                      (item) => DropdownMenuItem(
+                        value: item,
+                        child: Text(_profileKindLabel(l10n, item)),
+                      ),
+                    )
                     .toList(),
                 onChanged: (value) => setState(() => _kind = value ?? _kind),
-                decoration: const InputDecoration(labelText: 'Profile type'),
+                decoration: InputDecoration(
+                  labelText: l10n.accountsSyncProfileTypeLabel,
+                ),
               ),
               const SizedBox(height: 12),
               DropdownButtonFormField<ProfileExperienceMode>(
                 initialValue: _experience,
                 items: ProfileExperienceMode.values
-                    .map((item) => DropdownMenuItem(
-                          value: item,
-                          child: Text(_titleFromEnum(item.name)),
-                        ))
+                    .map(
+                      (item) => DropdownMenuItem(
+                        value: item,
+                        child: Text(_profileExperienceLabel(l10n, item)),
+                      ),
+                    )
                     .toList(),
                 onChanged: (value) =>
                     setState(() => _experience = value ?? _experience),
-                decoration: const InputDecoration(labelText: 'Experience mode'),
+                decoration: InputDecoration(
+                  labelText: l10n.accountsSyncExperienceModeLabel,
+                ),
               ),
               const SizedBox(height: 12),
               DropdownButtonFormField<ProfileSyncMode>(
                 initialValue: _syncMode,
                 items: ProfileSyncMode.values
-                    .map((item) => DropdownMenuItem(
-                          value: item,
-                          child: Text(_syncModeLabel(item)),
-                        ))
+                    .map(
+                      (item) => DropdownMenuItem(
+                        value: item,
+                        child: Text(_syncModeLabel(l10n, item)),
+                      ),
+                    )
                     .toList(),
                 onChanged: (value) =>
                     setState(() => _syncMode = value ?? _syncMode),
-                decoration: const InputDecoration(labelText: 'Data mode'),
+                decoration: InputDecoration(
+                  labelText: l10n.accountsSyncDataModeLabel,
+                ),
               ),
               const SizedBox(height: 12),
               TextField(
                 controller: _pinController,
                 obscureText: true,
-                decoration: const InputDecoration(
-                  labelText: 'Optional PIN',
-                  helperText: 'Leave empty if this profile should not be protected.',
+                decoration: InputDecoration(
+                  labelText: l10n.accountsSyncOptionalPinLabel,
+                  helperText: l10n.accountsSyncOptionalPinHelper,
                 ),
               ),
               const SizedBox(height: 14),
               FilledButton.icon(
                 onPressed: () async {
                   final messenger = ScaffoldMessenger.of(context);
-                  await ref.read(profileManagerProvider).create(
+                  await ref
+                      .read(profileManagerProvider)
+                      .create(
                         displayName: _nameController.text.trim().isEmpty
-                            ? 'New Profile'
+                            ? l10n.accountsSyncDefaultNewProfileName
                             : _nameController.text.trim(),
                         kind: _kind,
                         experienceMode: _experience,
@@ -455,11 +533,11 @@ class _ProfilesInAccountPageState extends ConsumerState<ProfilesInAccountPage> {
                   _nameController.clear();
                   _pinController.clear();
                   messenger.showSnackBar(
-                    const SnackBar(content: Text('Profile created')),
+                    SnackBar(content: Text(l10n.accountsSyncProfileCreated)),
                   );
                 },
                 icon: const Icon(Icons.add_circle_outline_rounded),
-                label: const Text('Create Profile'),
+                label: Text(l10n.accountsSyncCreateProfileAction),
               ),
             ],
           ),
@@ -473,7 +551,8 @@ class SignedInAccountsPage extends ConsumerStatefulWidget {
   const SignedInAccountsPage({super.key});
 
   @override
-  ConsumerState<SignedInAccountsPage> createState() => _SignedInAccountsPageState();
+  ConsumerState<SignedInAccountsPage> createState() =>
+      _SignedInAccountsPageState();
 }
 
 class _SignedInAccountsPageState extends ConsumerState<SignedInAccountsPage> {
@@ -491,12 +570,12 @@ class _SignedInAccountsPageState extends ConsumerState<SignedInAccountsPage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final state = ref.watch(accountsSyncControllerProvider);
     return AppPageScaffold(
       headerIcon: Icons.devices_other_rounded,
-      title: 'Signed-In Accounts on This Device',
-      subtitle:
-          'Keep unrelated identities on one device without mixing their journeys.',
+      title: l10n.accountsSyncSignedInAccountsTitle,
+      subtitle: l10n.accountsSyncSignedInAccountsSubtitle,
       children: [
         PremiumCard(
           child: Column(
@@ -506,7 +585,13 @@ class _SignedInAccountsPageState extends ConsumerState<SignedInAccountsPage> {
                   contentPadding: EdgeInsets.zero,
                   title: Text(account.displayName),
                   subtitle: Text(
-                    '${_titleFromEnum(account.provider.name)} • ${account.identifier} • ${account.syncMode.name}',
+                    l10n.accountsSyncAccountSummary(
+                      _accountProviderLabel(l10n, account.provider),
+                      account.identifier,
+                      _syncModeLabel(l10n, account.syncMode),
+                      _accountProviderLabel(l10n, account.provider),
+                      account.identifier,
+                    ),
                   ),
                   trailing: account.accountId == state.activeAccountId
                       ? const Icon(Icons.check_circle_outline_rounded)
@@ -522,65 +607,79 @@ class _SignedInAccountsPageState extends ConsumerState<SignedInAccountsPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Sign In Another Account'),
+              Text(l10n.accountsSyncSignInAnotherAccountTitle),
               const SizedBox(height: 12),
               DropdownButtonFormField<AccountProviderType>(
                 initialValue: _provider,
                 items: AccountProviderType.values
-                    .map((item) => DropdownMenuItem(
-                          value: item,
-                          child: Text(_titleFromEnum(item.name)),
-                        ))
+                    .map(
+                      (item) => DropdownMenuItem(
+                        value: item,
+                        child: Text(_accountProviderLabel(l10n, item)),
+                      ),
+                    )
                     .toList(),
-                onChanged: (value) => setState(() => _provider = value ?? _provider),
-                decoration: const InputDecoration(labelText: 'Sign-in method'),
+                onChanged: (value) =>
+                    setState(() => _provider = value ?? _provider),
+                decoration: InputDecoration(
+                  labelText: l10n.accountsSyncSignInMethodLabel,
+                ),
               ),
               const SizedBox(height: 12),
               TextField(
                 controller: _identifierController,
-                decoration: const InputDecoration(
-                  labelText: 'Email or identifier',
+                decoration: InputDecoration(
+                  labelText: l10n.accountsSyncEmailOrIdentifierLabel,
                 ),
               ),
               const SizedBox(height: 12),
               TextField(
                 controller: _nameController,
-                decoration: const InputDecoration(
-                  labelText: 'Display name',
+                decoration: InputDecoration(
+                  labelText: l10n.accountsSyncDisplayNameLabel,
                 ),
               ),
               const SizedBox(height: 12),
               DropdownButtonFormField<ProfileSyncMode>(
                 initialValue: _syncMode,
                 items: ProfileSyncMode.values
-                    .map((item) => DropdownMenuItem(
-                          value: item,
-                          child: Text(_syncModeLabel(item)),
-                        ))
+                    .map(
+                      (item) => DropdownMenuItem(
+                        value: item,
+                        child: Text(_syncModeLabel(l10n, item)),
+                      ),
+                    )
                     .toList(),
-                onChanged: (value) => setState(() => _syncMode = value ?? _syncMode),
-                decoration: const InputDecoration(labelText: 'Sync mode'),
+                onChanged: (value) =>
+                    setState(() => _syncMode = value ?? _syncMode),
+                decoration: InputDecoration(
+                  labelText: l10n.accountsSyncSyncModeLabel,
+                ),
               ),
               const SizedBox(height: 14),
               FilledButton(
                 onPressed: () async {
                   final messenger = ScaffoldMessenger.of(context);
-                  await ref.read(accountManagerProvider).add(
+                  await ref
+                      .read(accountManagerProvider)
+                      .add(
                         provider: _provider,
                         identifier: _identifierController.text.trim().isEmpty
                             ? _provider.name
                             : _identifierController.text.trim(),
                         displayName: _nameController.text.trim().isEmpty
-                            ? 'Path of Nūr User'
+                            ? l10n.accountsSyncDefaultAccountDisplayName
                             : _nameController.text.trim(),
                         syncMode: _syncMode,
                       );
                   if (!mounted) return;
                   messenger.showSnackBar(
-                    const SnackBar(content: Text('Account added on this device')),
+                    SnackBar(
+                      content: Text(l10n.accountsSyncAccountAddedOnDevice),
+                    ),
                   );
                 },
-                child: const Text('Add Account'),
+                child: Text(l10n.accountsSyncAddAccountAction),
               ),
             ],
           ),
@@ -595,34 +694,40 @@ class SharedDeviceSafetyPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     final state = ref.watch(accountsSyncControllerProvider);
     final settings = state.sharedDeviceSafety;
     return AppPageScaffold(
       headerIcon: Icons.shield_moon_outlined,
-      title: 'Shared Device Safety',
-      subtitle:
-          'Require profile selection on launch, protect adult profiles, and keep child experiences safer.',
+      title: l10n.accountsSyncSharedDeviceSafetyTitle,
+      subtitle: l10n.accountsSyncSharedDeviceSafetyPageSubtitle,
       children: [
         PremiumCard(
           child: Column(
             children: [
               SwitchListTile.adaptive(
                 contentPadding: EdgeInsets.zero,
-                title: const Text('Require profile selection on launch'),
+                title: Text(l10n.accountsSyncRequireProfileSelectionOnLaunch),
                 value: settings.requireProfileSelectionOnLaunch,
                 onChanged: (value) {
-                  ref.read(accountsSyncControllerProvider.notifier).updateSharedDeviceSafety(
-                        settings.copyWith(requireProfileSelectionOnLaunch: value),
+                  ref
+                      .read(accountsSyncControllerProvider.notifier)
+                      .updateSharedDeviceSafety(
+                        settings.copyWith(
+                          requireProfileSelectionOnLaunch: value,
+                        ),
                       );
                 },
               ),
               const Divider(height: 1),
               SwitchListTile.adaptive(
                 contentPadding: EdgeInsets.zero,
-                title: const Text('Require PIN for adult profiles'),
+                title: Text(l10n.accountsSyncRequirePinForAdultProfiles),
                 value: settings.requirePinForAdultProfiles,
                 onChanged: (value) {
-                  ref.read(accountsSyncControllerProvider.notifier).updateSharedDeviceSafety(
+                  ref
+                      .read(accountsSyncControllerProvider.notifier)
+                      .updateSharedDeviceSafety(
                         settings.copyWith(requirePinForAdultProfiles: value),
                       );
                 },
@@ -630,10 +735,12 @@ class SharedDeviceSafetyPage extends ConsumerWidget {
               const Divider(height: 1),
               SwitchListTile.adaptive(
                 contentPadding: EdgeInsets.zero,
-                title: const Text('Auto-lock profile after inactivity'),
+                title: Text(l10n.accountsSyncAutoLockAfterInactivity),
                 value: settings.autoLockAfterInactivity,
                 onChanged: (value) {
-                  ref.read(accountsSyncControllerProvider.notifier).updateSharedDeviceSafety(
+                  ref
+                      .read(accountsSyncControllerProvider.notifier)
+                      .updateSharedDeviceSafety(
                         settings.copyWith(autoLockAfterInactivity: value),
                       );
                 },
@@ -641,10 +748,12 @@ class SharedDeviceSafetyPage extends ConsumerWidget {
               const Divider(height: 1),
               SwitchListTile.adaptive(
                 contentPadding: EdgeInsets.zero,
-                title: const Text('Restrict child profile settings'),
+                title: Text(l10n.accountsSyncRestrictChildProfileSettings),
                 value: settings.restrictChildProfileSettings,
                 onChanged: (value) {
-                  ref.read(accountsSyncControllerProvider.notifier).updateSharedDeviceSafety(
+                  ref
+                      .read(accountsSyncControllerProvider.notifier)
+                      .updateSharedDeviceSafety(
                         settings.copyWith(restrictChildProfileSettings: value),
                       );
                 },
@@ -652,11 +761,17 @@ class SharedDeviceSafetyPage extends ConsumerWidget {
               const Divider(height: 1),
               SwitchListTile.adaptive(
                 contentPadding: EdgeInsets.zero,
-                title: const Text('Hide advanced tools from child profiles'),
+                title: Text(
+                  l10n.accountsSyncHideAdvancedToolsFromChildProfiles,
+                ),
                 value: settings.hideAdvancedToolsFromChildProfiles,
                 onChanged: (value) {
-                  ref.read(accountsSyncControllerProvider.notifier).updateSharedDeviceSafety(
-                        settings.copyWith(hideAdvancedToolsFromChildProfiles: value),
+                  ref
+                      .read(accountsSyncControllerProvider.notifier)
+                      .updateSharedDeviceSafety(
+                        settings.copyWith(
+                          hideAdvancedToolsFromChildProfiles: value,
+                        ),
                       );
                 },
               ),
@@ -673,12 +788,12 @@ class ConnectedDevicesPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     final devices = ref.watch(accountsSyncControllerProvider).connectedDevices;
     return AppPageScaffold(
       headerIcon: Icons.devices_rounded,
-      title: 'Connected Devices',
-      subtitle:
-          'See which phones, tablets, watches, and TVs are linked to this journey.',
+      title: l10n.accountsSyncConnectedDevicesTitle,
+      subtitle: l10n.accountsSyncConnectedDevicesSubtitle,
       children: [
         PremiumCard(
           child: Column(
@@ -686,12 +801,18 @@ class ConnectedDevicesPage extends ConsumerWidget {
               for (final device in devices) ...[
                 ListTile(
                   contentPadding: EdgeInsets.zero,
-                  title: Text(device.deviceName),
+                  title: Text(_deviceNameLabel(l10n, device)),
                   subtitle: Text(
-                    '${_titleFromEnum(device.platform.name)} • Last active ${_formatWhen(device.lastActiveAtIso)}',
+                    l10n.accountsSyncDeviceSummary(
+                      _devicePlatformLabel(l10n, device.platform),
+                      _formatWhen(context, l10n, device.lastActiveAtIso),
+                      _formatWhen(context, l10n, device.lastActiveAtIso),
+                      _devicePlatformLabel(l10n, device.platform),
+                      _formatWhen(context, l10n, device.lastActiveAtIso),
+                    ),
                   ),
                   trailing: device.isCurrentDevice
-                      ? const Chip(label: Text('Current'))
+                      ? Chip(label: Text(l10n.accountsSyncCurrentDeviceChip))
                       : null,
                 ),
                 if (device != devices.last) const Divider(height: 1),
@@ -709,21 +830,19 @@ class BackupRestoreHomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     final state = ref.watch(accountsSyncControllerProvider);
     return AppPageScaffold(
       headerIcon: Icons.backup_outlined,
-      title: 'Backup & Restore',
-      subtitle:
-          'Keep a manual copy of your journey if you prefer local-only or backup-only storage.',
+      title: l10n.settingsBackupRestoreTitle,
+      subtitle: l10n.accountsSyncBackupRestorePageSubtitle,
       children: [
         if (state.backupRecommended)
           PremiumCard(
             child: ListTile(
               contentPadding: EdgeInsets.zero,
-              title: const Text('Backup recommended'),
-              subtitle: const Text(
-                'This profile is stored locally and has not been exported recently.',
-              ),
+              title: Text(l10n.settingsBackupRecommended),
+              subtitle: Text(l10n.accountsSyncBackupRecommendedSubtitle),
             ),
           ),
         const SizedBox(height: 16),
@@ -731,16 +850,22 @@ class BackupRestoreHomePage extends ConsumerWidget {
           child: Column(
             children: [
               _NavRow(
-                title: 'Export Backup',
+                title: l10n.accountsSyncExportBackupTitle,
                 subtitle: state.backupRecord.lastExportAtIso == null
-                    ? 'Export your current profile or account as JSON.'
-                    : 'Last export ${_formatWhen(state.backupRecord.lastExportAtIso)}',
+                    ? l10n.accountsSyncExportBackupSubtitleDefault
+                    : l10n.accountsSyncLastExportLabel(
+                        _formatWhen(
+                          context,
+                          l10n,
+                          state.backupRecord.lastExportAtIso,
+                        ),
+                      ),
                 onTap: () => context.push('/accounts-sync/backup/export'),
               ),
               const Divider(height: 1),
               _NavRow(
-                title: 'Import Backup',
-                subtitle: 'Restore as a new profile, merge, or replace existing data.',
+                title: l10n.accountsSyncImportBackupTitle,
+                subtitle: l10n.accountsSyncImportBackupSubtitle,
                 onTap: () => context.push('/accounts-sync/backup/import'),
               ),
             ],
@@ -755,7 +880,8 @@ class BackupExportFlowPage extends ConsumerStatefulWidget {
   const BackupExportFlowPage({super.key});
 
   @override
-  ConsumerState<BackupExportFlowPage> createState() => _BackupExportFlowPageState();
+  ConsumerState<BackupExportFlowPage> createState() =>
+      _BackupExportFlowPageState();
 }
 
 class _BackupExportFlowPageState extends ConsumerState<BackupExportFlowPage> {
@@ -765,40 +891,43 @@ class _BackupExportFlowPageState extends ConsumerState<BackupExportFlowPage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return AppPageScaffold(
       headerIcon: Icons.ios_share_rounded,
-      title: 'Export Backup',
-      subtitle:
-          'Create a restorable copy of your journey that you can keep locally, move with AirDrop, or store in Files.',
+      title: l10n.accountsSyncExportBackupTitle,
+      subtitle: l10n.accountsSyncExportBackupPageSubtitle,
       children: [
         PremiumCard(
           child: Column(
             children: [
               SwitchListTile.adaptive(
                 contentPadding: EdgeInsets.zero,
-                title: const Text('Current profile only'),
-                subtitle: const Text('Export only the active profile instead of the full local account set.'),
+                title: Text(l10n.accountsSyncCurrentProfileOnlyTitle),
+                subtitle: Text(l10n.accountsSyncCurrentProfileOnlySubtitle),
                 value: _currentProfileOnly,
-                onChanged: (value) => setState(() => _currentProfileOnly = value),
+                onChanged: (value) =>
+                    setState(() => _currentProfileOnly = value),
               ),
               const Divider(height: 1),
               SwitchListTile.adaptive(
                 contentPadding: EdgeInsets.zero,
-                title: const Text('Encrypted export'),
-                subtitle: const Text('Encode the backup payload before writing it to disk.'),
+                title: Text(l10n.accountsSyncEncryptedExportTitle),
+                subtitle: Text(l10n.accountsSyncEncryptedExportSubtitle),
                 value: _encrypt,
                 onChanged: (value) => setState(() => _encrypt = value),
               ),
               const SizedBox(height: 12),
               FilledButton(
                 onPressed: () async {
-                  final path = await ref.read(backupManagerProvider).export(
+                  final path = await ref
+                      .read(backupManagerProvider)
+                      .export(
                         currentProfileOnly: _currentProfileOnly,
                         encrypt: _encrypt,
                       );
                   setState(() => _lastPath = path);
                 },
-                child: const Text('Export Now'),
+                child: Text(l10n.accountsSyncExportNowAction),
               ),
               if (_lastPath != null) ...[
                 const SizedBox(height: 10),
@@ -819,7 +948,8 @@ class BackupImportFlowPage extends ConsumerStatefulWidget {
   const BackupImportFlowPage({super.key});
 
   @override
-  ConsumerState<BackupImportFlowPage> createState() => _BackupImportFlowPageState();
+  ConsumerState<BackupImportFlowPage> createState() =>
+      _BackupImportFlowPageState();
 }
 
 class _BackupImportFlowPageState extends ConsumerState<BackupImportFlowPage> {
@@ -836,11 +966,11 @@ class _BackupImportFlowPageState extends ConsumerState<BackupImportFlowPage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return AppPageScaffold(
       headerIcon: Icons.restore_page_outlined,
-      title: 'Import Backup',
-      subtitle:
-          'Paste an exported backup payload and restore it as new, merge it in, or replace the current local set.',
+      title: l10n.accountsSyncImportBackupTitle,
+      subtitle: l10n.accountsSyncImportBackupPageSubtitle,
       children: [
         PremiumCard(
           child: Column(
@@ -848,29 +978,30 @@ class _BackupImportFlowPageState extends ConsumerState<BackupImportFlowPage> {
               TextField(
                 controller: _payloadController,
                 maxLines: 8,
-                decoration: const InputDecoration(
-                  labelText: 'Backup payload',
-                  hintText: 'Paste the exported JSON or encoded backup here.',
+                decoration: InputDecoration(
+                  labelText: l10n.accountsSyncBackupPayloadLabel,
+                  hintText: l10n.accountsSyncBackupPayloadHint,
                 ),
               ),
               const SizedBox(height: 12),
               SwitchListTile.adaptive(
                 contentPadding: EdgeInsets.zero,
-                title: const Text('Encrypted payload'),
+                title: Text(l10n.accountsSyncEncryptedPayloadTitle),
                 value: _encrypted,
                 onChanged: (value) => setState(() => _encrypted = value),
               ),
               const Divider(height: 1),
               SwitchListTile.adaptive(
                 contentPadding: EdgeInsets.zero,
-                title: const Text('Create new profiles'),
+                title: Text(l10n.accountsSyncCreateNewProfilesTitle),
                 value: _createNewProfiles,
-                onChanged: (value) => setState(() => _createNewProfiles = value),
+                onChanged: (value) =>
+                    setState(() => _createNewProfiles = value),
               ),
               const Divider(height: 1),
               SwitchListTile.adaptive(
                 contentPadding: EdgeInsets.zero,
-                title: const Text('Replace existing local data'),
+                title: Text(l10n.accountsSyncReplaceExistingLocalDataTitle),
                 value: _replaceExisting,
                 onChanged: (value) => setState(() => _replaceExisting = value),
               ),
@@ -878,7 +1009,9 @@ class _BackupImportFlowPageState extends ConsumerState<BackupImportFlowPage> {
               FilledButton(
                 onPressed: () async {
                   final messenger = ScaffoldMessenger.of(context);
-                  await ref.read(importRestoreServiceProvider).import(
+                  await ref
+                      .read(importRestoreServiceProvider)
+                      .import(
                         payload: _payloadController.text.trim(),
                         encrypted: _encrypted,
                         createNewProfiles: _createNewProfiles,
@@ -886,10 +1019,10 @@ class _BackupImportFlowPageState extends ConsumerState<BackupImportFlowPage> {
                       );
                   if (!mounted) return;
                   messenger.showSnackBar(
-                    const SnackBar(content: Text('Backup imported')),
+                    SnackBar(content: Text(l10n.accountsSyncBackupImported)),
                   );
                 },
-                child: const Text('Restore Backup'),
+                child: Text(l10n.accountsSyncRestoreBackupAction),
               ),
             ],
           ),
@@ -904,64 +1037,78 @@ class SyncDetailsPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     final state = ref.watch(accountsSyncControllerProvider);
     final sync = state.syncStatus;
     return AppPageScaffold(
       headerIcon: Icons.sync_alt_rounded,
-      title: 'Sync Details',
-      subtitle:
-          'See pending uploads, recent sync events, and whether this device needs attention.',
+      title: l10n.accountsSyncSyncDetailsTitle,
+      subtitle: l10n.accountsSyncSyncDetailsSubtitle,
       children: [
         PremiumCard(
           child: Column(
             children: [
               ListTile(
                 contentPadding: EdgeInsets.zero,
-                title: const Text('Current provider'),
+                title: Text(l10n.accountsSyncCurrentProviderTitle),
                 subtitle: Text(
-                  '${_syncModeLabel(sync.syncMode)} • ${sync.transportLabel}',
+                  l10n.accountsSyncCurrentProviderSummary(
+                    _syncModeLabel(l10n, sync.syncMode),
+                    _transportLabel(l10n, sync.transportLabel),
+                    _transportLabel(l10n, sync.transportLabel),
+                  ),
                 ),
               ),
               const Divider(height: 1),
               ListTile(
                 contentPadding: EdgeInsets.zero,
-                title: const Text('Current state'),
-                subtitle: Text(_titleFromEnum(sync.syncState.name)),
+                title: Text(l10n.accountsSyncCurrentStateTitle),
+                subtitle: Text(_syncStateTitle(l10n, sync.syncState)),
               ),
               if (sync.lastResultSummary != null) ...[
                 const Divider(height: 1),
                 ListTile(
                   contentPadding: EdgeInsets.zero,
-                  title: const Text('Last result'),
-                  subtitle: Text(sync.lastResultSummary!),
+                  title: Text(l10n.accountsSyncLastResultTitle),
+                  subtitle: Text(
+                    _syncFeedbackLabel(l10n, sync.lastResultSummary!),
+                  ),
                 ),
               ],
               const Divider(height: 1),
               ListTile(
                 contentPadding: EdgeInsets.zero,
-                title: const Text('Pending uploads'),
-                subtitle: Text('${sync.pendingChangesCount} pending changes'),
-              ),
-              const Divider(height: 1),
-              ListTile(
-                contentPadding: EdgeInsets.zero,
-                title: const Text('Last successful sync'),
-                subtitle: Text(_formatWhen(sync.lastSyncAtIso)),
-              ),
-              const Divider(height: 1),
-              ListTile(
-                contentPadding: EdgeInsets.zero,
-                title: const Text('Transport availability'),
+                title: Text(l10n.accountsSyncPendingUploadsTitle),
                 subtitle: Text(
-                  sync.transportAvailable ? 'Available' : 'Unavailable or offline',
+                  l10n.accountsSyncPendingChangesCount(
+                    sync.pendingChangesCount,
+                  ),
+                ),
+              ),
+              const Divider(height: 1),
+              ListTile(
+                contentPadding: EdgeInsets.zero,
+                title: Text(l10n.accountsSyncLastSuccessfulSyncTitle),
+                subtitle: Text(_formatWhen(context, l10n, sync.lastSyncAtIso)),
+              ),
+              const Divider(height: 1),
+              ListTile(
+                contentPadding: EdgeInsets.zero,
+                title: Text(l10n.accountsSyncTransportAvailabilityTitle),
+                subtitle: Text(
+                  sync.transportAvailable
+                      ? l10n.accountsSyncTransportAvailable
+                      : l10n.accountsSyncTransportUnavailableOffline,
                 ),
               ),
               if (sync.lastErrorSummary != null) ...[
                 const Divider(height: 1),
                 ListTile(
                   contentPadding: EdgeInsets.zero,
-                  title: const Text('Last error'),
-                  subtitle: Text(sync.lastErrorSummary!),
+                  title: Text(l10n.accountsSyncLastErrorTitle),
+                  subtitle: Text(
+                    _syncFeedbackLabel(l10n, sync.lastErrorSummary!),
+                  ),
                 ),
               ],
             ],
@@ -972,17 +1119,21 @@ class SyncDetailsPage extends ConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Recent Sync Events'),
+              Text(l10n.accountsSyncRecentSyncEventsTitle),
               const SizedBox(height: 8),
               for (final event in sync.recentEvents)
                 Padding(
                   padding: const EdgeInsets.only(bottom: 6),
-                  child: Text('• $event'),
+                  child: Text(
+                    l10n.accountsSyncRecentSyncEventBullet(
+                      _syncFeedbackLabel(l10n, event),
+                    ),
+                  ),
                 ),
               const SizedBox(height: 12),
               FilledButton(
                 onPressed: () => ref.read(syncManagerProvider).syncNow(),
-                child: const Text('Sync now'),
+                child: Text(l10n.accountsSyncSyncNowAction),
               ),
             ],
           ),
@@ -999,47 +1150,61 @@ class SyncStatusCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     final sync = state.syncStatus;
     return PremiumCard(
       child: Column(
         children: [
           ListTile(
             contentPadding: EdgeInsets.zero,
-            title: Text(_syncStateTitle(sync.syncState)),
+            title: Text(_syncStateTitle(l10n, sync.syncState)),
             subtitle: Text(
-              sync.lastErrorSummary ??
-                  sync.lastResultSummary ??
-                  '${_syncModeLabel(sync.syncMode)} • ${sync.transportLabel}',
+              (sync.lastErrorSummary == null
+                      ? null
+                      : _syncFeedbackLabel(l10n, sync.lastErrorSummary!)) ??
+                  (sync.lastResultSummary == null
+                      ? null
+                      : _syncFeedbackLabel(l10n, sync.lastResultSummary!)) ??
+                  l10n.accountsSyncCurrentProviderSummary(
+                    _syncModeLabel(l10n, sync.syncMode),
+                    _transportLabel(l10n, sync.transportLabel),
+                    _transportLabel(l10n, sync.transportLabel),
+                  ),
             ),
-            trailing: Icon(
-              switch (sync.syncState) {
-                SyncStateKind.allCaughtUp => Icons.cloud_done_outlined,
-                SyncStateKind.syncing => Icons.sync_rounded,
-                SyncStateKind.offlinePending => Icons.cloud_off_outlined,
-                SyncStateKind.needsAttention => Icons.warning_amber_rounded,
-                SyncStateKind.localOnly => Icons.phone_iphone_rounded,
-                SyncStateKind.iCloudActive => Icons.cloud_queue_rounded,
-              },
-            ),
+            trailing: Icon(switch (sync.syncState) {
+              SyncStateKind.allCaughtUp => Icons.cloud_done_outlined,
+              SyncStateKind.syncing => Icons.sync_rounded,
+              SyncStateKind.offlinePending => Icons.cloud_off_outlined,
+              SyncStateKind.needsAttention => Icons.warning_amber_rounded,
+              SyncStateKind.localOnly => Icons.phone_iphone_rounded,
+              SyncStateKind.iCloudActive => Icons.cloud_queue_rounded,
+            }),
           ),
           const Divider(height: 1),
           ListTile(
             contentPadding: EdgeInsets.zero,
-            title: const Text('Last sync'),
-            subtitle: Text(_formatWhen(sync.lastSyncAtIso)),
+            title: Text(l10n.accountsSyncLastSyncTitle),
+            subtitle: Text(_formatWhen(context, l10n, sync.lastSyncAtIso)),
           ),
           const Divider(height: 1),
           ListTile(
             contentPadding: EdgeInsets.zero,
-            title: const Text('Pending changes'),
-            subtitle: Text('${sync.pendingChangesCount} change${sync.pendingChangesCount == 1 ? '' : 's'} waiting'),
-          ),
-          const Divider(height: 1),
-          ListTile(
-            contentPadding: EdgeInsets.zero,
-            title: const Text('Transport'),
+            title: Text(l10n.accountsSyncPendingChangesTitle),
             subtitle: Text(
-              '${sync.transportLabel} • ${sync.transportAvailable ? 'available' : 'unavailable'}',
+              l10n.accountsSyncPendingChangesWaiting(sync.pendingChangesCount),
+            ),
+          ),
+          const Divider(height: 1),
+          ListTile(
+            contentPadding: EdgeInsets.zero,
+            title: Text(l10n.accountsSyncTransportTitle),
+            subtitle: Text(
+              l10n.accountsSyncTransportSummary(
+                _transportLabel(l10n, sync.transportLabel),
+                sync.transportAvailable
+                    ? l10n.accountsSyncTransportAvailable
+                    : l10n.settingsUnavailable,
+              ),
             ),
           ),
           const SizedBox(height: 12),
@@ -1048,14 +1213,14 @@ class SyncStatusCard extends ConsumerWidget {
               Expanded(
                 child: OutlinedButton(
                   onPressed: () => ref.read(syncManagerProvider).syncNow(),
-                  child: const Text('Sync now'),
+                  child: Text(l10n.accountsSyncSyncNowAction),
                 ),
               ),
               const SizedBox(width: 10),
               Expanded(
                 child: FilledButton(
                   onPressed: () => context.push('/accounts-sync/sync-details'),
-                  child: const Text('View details'),
+                  child: Text(l10n.accountsSyncViewDetailsAction),
                 ),
               ),
             ],
@@ -1089,42 +1254,200 @@ class _NavRow extends StatelessWidget {
   }
 }
 
-String _titleFromEnum(String value) {
-  return value
-      .replaceAllMapped(
-        RegExp(r'([A-Z])'),
-        (match) => ' ${match.group(1)}',
-      )
-      .replaceFirstMapped(RegExp(r'^\w'), (match) => match.group(0)!.toUpperCase());
-}
-
-String _syncModeLabel(ProfileSyncMode mode) {
+String _syncModeLabel(AppLocalizations l10n, ProfileSyncMode mode) {
   return switch (mode) {
-    ProfileSyncMode.pathOfNurCloud => 'Path of Nūr Cloud Sync',
-    ProfileSyncMode.iCloud => 'Apple iCloud Sync',
-    ProfileSyncMode.localOnly => 'Local Only',
-    ProfileSyncMode.manualBackupOnly => 'Manual Backup Only',
+    ProfileSyncMode.pathOfNurCloud => l10n.settingsSyncModePathOfNurCloud,
+    ProfileSyncMode.iCloud => l10n.settingsSyncModeICloud,
+    ProfileSyncMode.localOnly => l10n.settingsSyncModeLocalOnly,
+    ProfileSyncMode.manualBackupOnly => l10n.settingsSyncModeManualBackupOnly,
   };
 }
 
-String _syncStateTitle(SyncStateKind state) {
+String _syncStateTitle(AppLocalizations l10n, SyncStateKind state) {
   return switch (state) {
-    SyncStateKind.allCaughtUp => 'All caught up',
-    SyncStateKind.syncing => 'Syncing',
-    SyncStateKind.offlinePending => 'Offline — changes will sync later',
-    SyncStateKind.needsAttention => 'Needs attention',
-    SyncStateKind.localOnly => 'Local only',
-    SyncStateKind.iCloudActive => 'iCloud active',
+    SyncStateKind.allCaughtUp => l10n.settingsSyncStateAllCaughtUp,
+    SyncStateKind.syncing => l10n.settingsSyncStateSyncing,
+    SyncStateKind.offlinePending => l10n.settingsSyncStateOfflinePending,
+    SyncStateKind.needsAttention => l10n.settingsSyncStateNeedsAttention,
+    SyncStateKind.localOnly => l10n.settingsSyncStateLocalOnly,
+    SyncStateKind.iCloudActive => l10n.settingsSyncStateICloudActive,
   };
 }
 
-String _formatWhen(String? iso) {
-  if (iso == null) return 'Not yet';
+String _profileKindLabel(AppLocalizations l10n, ProfileKind kind) {
+  return switch (kind) {
+    ProfileKind.adult => l10n.familyLearningProfileTypeAdult,
+    ProfileKind.youth => l10n.familyLearningProfileTypeYouth,
+    ProfileKind.child => l10n.familyLearningProfileTypeChild,
+    ProfileKind.guest => l10n.familyLearningProfileTypeGuest,
+  };
+}
+
+String _profileExperienceLabel(
+  AppLocalizations l10n,
+  ProfileExperienceMode mode,
+) {
+  return switch (mode) {
+    ProfileExperienceMode.full => l10n.accountsSyncExperienceModeFull,
+    ProfileExperienceMode.simplified =>
+      l10n.accountsSyncExperienceModeSimplified,
+    ProfileExperienceMode.learningFocused =>
+      l10n.accountsSyncExperienceModeLearningFocused,
+    ProfileExperienceMode.prayerFocused =>
+      l10n.accountsSyncExperienceModePrayerFocused,
+  };
+}
+
+String _accountProviderLabel(
+  AppLocalizations l10n,
+  AccountProviderType provider,
+) {
+  return switch (provider) {
+    AccountProviderType.signInWithApple =>
+      l10n.accountsSyncProviderSignInWithApple,
+    AccountProviderType.google => l10n.accountsSyncProviderGoogle,
+    AccountProviderType.emailMagicLink =>
+      l10n.accountsSyncProviderEmailMagicLink,
+    AccountProviderType.localOnly => l10n.accountsSyncProviderLocalOnly,
+  };
+}
+
+String _devicePlatformLabel(
+  AppLocalizations l10n,
+  DevicePlatformKind platform,
+) {
+  return switch (platform) {
+    DevicePlatformKind.iphone => l10n.accountsSyncDevicePlatformIPhone,
+    DevicePlatformKind.ipad => l10n.accountsSyncDevicePlatformIPad,
+    DevicePlatformKind.appleWatch => l10n.accountsSyncDevicePlatformAppleWatch,
+    DevicePlatformKind.appleTv => l10n.accountsSyncDevicePlatformAppleDevice,
+    DevicePlatformKind.androidPhone =>
+      l10n.accountsSyncDevicePlatformAndroidPhone,
+    DevicePlatformKind.androidTablet =>
+      l10n.accountsSyncDevicePlatformAndroidTablet,
+    DevicePlatformKind.androidWatch =>
+      l10n.accountsSyncDevicePlatformWearOsWatch,
+    DevicePlatformKind.androidTv => l10n.accountsSyncDevicePlatformAndroidTv,
+  };
+}
+
+String _transportLabel(AppLocalizations l10n, String transportLabel) {
+  switch (transportLabel) {
+    case 'pathOfNurCloud':
+      return l10n.settingsSyncModePathOfNurCloud;
+    case 'localOnly':
+      return l10n.settingsSyncModeLocalOnly;
+    case 'manualBackupOnly':
+      return l10n.settingsSyncModeManualBackupOnly;
+    case syncTransportKeyLocalStorage:
+    case 'Local storage':
+      return l10n.accountsSyncTransportLocalStorage;
+    case syncTransportKeyICloud:
+    case 'iCloud':
+      return l10n.settingsSyncModeICloud;
+    default:
+      return transportLabel;
+  }
+}
+
+String _deviceNameLabel(AppLocalizations l10n, ConnectedDeviceRecord device) {
+  switch (device.deviceName) {
+    case 'current_device':
+    case 'This device':
+      return l10n.accountsSyncThisDeviceGeneric;
+    case 'current_device_iphone':
+    case 'This iPhone':
+      return l10n.accountsSyncThisDeviceIPhone;
+    case 'current_device_ipad':
+    case 'This iPad':
+      return l10n.accountsSyncThisDeviceIPad;
+    case 'current_device_apple_watch':
+    case 'Apple Watch':
+      return l10n.accountsSyncThisDeviceAppleWatch;
+    case 'current_device_apple_tv':
+    case 'This Apple Device':
+      return l10n.accountsSyncThisDeviceAppleTv;
+    case 'current_device_android_phone':
+    case 'This Android Phone':
+      return l10n.accountsSyncThisDeviceAndroidPhone;
+    case 'current_device_android_tablet':
+    case 'This Android Tablet':
+      return l10n.accountsSyncThisDeviceAndroidTablet;
+    case 'current_device_android_watch':
+    case 'Wear OS Watch':
+      return l10n.accountsSyncThisDeviceAndroidWatch;
+    case 'current_device_android_tv':
+    case 'Android TV':
+      return l10n.accountsSyncThisDeviceAndroidTv;
+    case 'current_device_apple':
+      return l10n.accountsSyncThisDeviceApple;
+    case 'current_device_android':
+      return l10n.accountsSyncThisDeviceAndroid;
+    case 'current_device_mac':
+      return l10n.accountsSyncThisDeviceMac;
+    case 'current_device_windows':
+      return l10n.accountsSyncThisDeviceWindows;
+    case 'current_device_linux':
+      return l10n.accountsSyncThisDeviceLinux;
+    case 'current_device_generic':
+      return l10n.accountsSyncThisDeviceGeneric;
+    default:
+      return device.deviceName;
+  }
+}
+
+String _syncFeedbackLabel(AppLocalizations l10n, String raw) {
+  if (raw == 'sync_result_local_only_mode_active') {
+    return l10n.accountsSyncResultLocalOnlyModeActive;
+  }
+  if (raw == 'sync_result_no_changes') {
+    return l10n.accountsSyncResultNoChanges;
+  }
+  if (raw == 'sync_result_completed_successfully') {
+    return l10n.accountsSyncResultCompletedSuccessfully;
+  }
+  if (raw == 'sync_event_local_only_mode_active') {
+    return l10n.accountsSyncEventLocalOnlyModeActive;
+  }
+  if (raw == 'sync_event_no_changes') {
+    return l10n.accountsSyncEventNoChanges;
+  }
+  if (raw.startsWith('sync_event_uploaded:')) {
+    final count = int.tryParse(raw.split(':').last) ?? 0;
+    return l10n.accountsSyncEventUploadedChanges(count);
+  }
+  if (raw.startsWith('sync_event_applied_inbound:')) {
+    final count = int.tryParse(raw.split(':').last) ?? 0;
+    return l10n.accountsSyncEventAppliedInboundChanges(count);
+  }
+  switch (raw) {
+    case 'sync_error_offline':
+      return l10n.accountsSyncErrorOffline;
+    case 'sync_error_sync_unavailable':
+    case 'sync_error_transport_unavailable':
+      return l10n.accountsSyncErrorSyncUnavailable;
+    case 'sync_error_icloud_unsupported_platform':
+      return l10n.accountsSyncErrorICloudUnsupportedPlatform;
+    case 'sync_error_icloud_unavailable':
+      return l10n.accountsSyncErrorICloudUnavailable;
+    case 'sync_error_icloud_write_failed':
+      return l10n.accountsSyncErrorICloudWriteFailed;
+    case 'sync_error_transport_failure':
+      return l10n.accountsSyncErrorTransportFailure;
+    default:
+      return raw;
+  }
+}
+
+String _formatWhen(BuildContext context, AppLocalizations l10n, String? iso) {
+  if (iso == null) return l10n.accountsSyncTimeNotYet;
   final date = DateTime.tryParse(iso);
-  if (date == null) return 'Unknown';
+  if (date == null) return l10n.accountsSyncTimeUnknown;
   final diff = DateTime.now().difference(date);
-  if (diff.inMinutes < 1) return 'Just now';
-  if (diff.inHours < 1) return '${diff.inMinutes}m ago';
-  if (diff.inDays < 1) return '${diff.inHours}h ago';
-  return '${diff.inDays}d ago';
+  if (diff.inMinutes < 1) return l10n.accountsSyncTimeJustNow;
+  if (diff.inHours < 1) return l10n.accountsSyncTimeMinutesAgo(diff.inMinutes);
+  if (diff.inDays < 1) return l10n.accountsSyncTimeHoursAgo(diff.inHours);
+  if (diff.inDays < 7) return l10n.accountsSyncTimeDaysAgo(diff.inDays);
+  final locale = Localizations.localeOf(context).toLanguageTag();
+  return DateFormat.yMMMd(locale).add_jm().format(date.toLocal());
 }

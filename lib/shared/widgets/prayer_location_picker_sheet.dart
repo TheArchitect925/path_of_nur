@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+import '../../l10n/app_localizations.dart';
 import '../../core/prayer/prayer_location_search_service.dart';
 import 'premium_card.dart';
 
@@ -15,7 +16,8 @@ class PrayerLocationPickerSheet extends StatefulWidget {
 
   final String currentLocationLabel;
   final List<PrayerRecentLocation> recentLocations;
-  final Future<List<PrayerLocationSearchResult>> Function(String query) onSearch;
+  final Future<List<PrayerLocationSearchResult>> Function(String query)
+  onSearch;
 
   @override
   State<PrayerLocationPickerSheet> createState() =>
@@ -62,6 +64,7 @@ class _PrayerLocationPickerSheetState extends State<PrayerLocationPickerSheet> {
 
   Future<void> _submitSearch([String? overrideQuery]) async {
     final query = (overrideQuery ?? _searchController.text).trim();
+    final l10n = AppLocalizations.of(context);
     setState(() {
       _isLoading = true;
       _error = null;
@@ -75,7 +78,7 @@ class _PrayerLocationPickerSheetState extends State<PrayerLocationPickerSheet> {
       if (!mounted) return;
       setState(() {
         _results = const [];
-        _error = 'Unable to find locations right now.';
+        _error = l10n.worshipPrayerLocationSearchUnavailable;
       });
     } finally {
       if (mounted) {
@@ -86,6 +89,7 @@ class _PrayerLocationPickerSheetState extends State<PrayerLocationPickerSheet> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return SafeArea(
       child: FractionallySizedBox(
         heightFactor: 0.78,
@@ -96,8 +100,8 @@ class _PrayerLocationPickerSheetState extends State<PrayerLocationPickerSheet> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'Choose location',
+                Text(
+                  l10n.worshipPrayerChooseLocationTitle,
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w700,
@@ -105,8 +109,8 @@ class _PrayerLocationPickerSheetState extends State<PrayerLocationPickerSheet> {
                   ),
                 ),
                 const SizedBox(height: 8),
-                const Text(
-                  'Use current location',
+                Text(
+                  l10n.worshipPrayerUseCurrentLocationTitle,
                   style: TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w700,
@@ -116,11 +120,11 @@ class _PrayerLocationPickerSheetState extends State<PrayerLocationPickerSheet> {
                 const SizedBox(height: 6),
                 InkWell(
                   borderRadius: BorderRadius.circular(14),
-                  onTap: () => Navigator.of(
-                    context,
-                  ).pop(PrayerLocationPickerSelection.device(
-                    label: widget.currentLocationLabel,
-                  )),
+                  onTap: () => Navigator.of(context).pop(
+                    PrayerLocationPickerSelection.device(
+                      label: widget.currentLocationLabel,
+                    ),
+                  ),
                   child: Container(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 12,
@@ -150,8 +154,8 @@ class _PrayerLocationPickerSheetState extends State<PrayerLocationPickerSheet> {
                           ),
                         ),
                         const SizedBox(width: 8),
-                        const Text(
-                          'Use device',
+                        Text(
+                          l10n.worshipPrayerUseDeviceAction,
                           style: TextStyle(
                             fontSize: 12.5,
                             fontWeight: FontWeight.w700,
@@ -173,7 +177,7 @@ class _PrayerLocationPickerSheetState extends State<PrayerLocationPickerSheet> {
                   onChanged: _onQueryChanged,
                   onSubmitted: (value) => _submitSearch(value),
                   decoration: InputDecoration(
-                    hintText: 'Search for a city or place',
+                    hintText: l10n.worshipPrayerSearchLocationHint,
                     prefixIcon: const Icon(Icons.search_rounded),
                     suffixIcon: _isLoading
                         ? const Padding(
@@ -199,8 +203,8 @@ class _PrayerLocationPickerSheetState extends State<PrayerLocationPickerSheet> {
                 const SizedBox(height: 12),
                 if (widget.recentLocations.isNotEmpty &&
                     _searchController.text.trim().isEmpty) ...[
-                  const Text(
-                    'Recent places',
+                  Text(
+                    l10n.worshipPrayerRecentPlacesTitle,
                     style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w700,
@@ -220,13 +224,13 @@ class _PrayerLocationPickerSheetState extends State<PrayerLocationPickerSheet> {
                         ),
                         title: Text(recent.label),
                         trailing: const Icon(Icons.chevron_right_rounded),
-                        onTap: () => Navigator.of(
-                          context,
-                        ).pop(PrayerLocationPickerSelection.manual(
-                          label: recent.label,
-                          latitude: recent.latitude,
-                          longitude: recent.longitude,
-                        )),
+                        onTap: () => Navigator.of(context).pop(
+                          PrayerLocationPickerSelection.manual(
+                            label: recent.label,
+                            latitude: recent.latitude,
+                            longitude: recent.longitude,
+                          ),
+                        ),
                       ),
                       if (index != widget.recentLocations.length - 1)
                         const Divider(height: 1, color: Color(0x28BFAE98)),
@@ -246,9 +250,9 @@ class _PrayerLocationPickerSheetState extends State<PrayerLocationPickerSheet> {
                           ),
                         )
                       : _results.isEmpty
-                      ? const Center(
+                      ? Center(
                           child: Text(
-                            'Start typing to search for a location.',
+                            l10n.worshipPrayerStartTypingToSearch,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontSize: 13,
@@ -259,21 +263,23 @@ class _PrayerLocationPickerSheetState extends State<PrayerLocationPickerSheet> {
                       : ListView.separated(
                           physics: const BouncingScrollPhysics(),
                           itemCount: _results.length,
-                          separatorBuilder: (context, index) =>
-                              const Divider(height: 1, color: Color(0x28BFAE98)),
+                          separatorBuilder: (context, index) => const Divider(
+                            height: 1,
+                            color: Color(0x28BFAE98),
+                          ),
                           itemBuilder: (context, index) {
                             final result = _results[index];
                             return ListTile(
                               contentPadding: EdgeInsets.zero,
                               title: Text(result.label),
                               trailing: const Icon(Icons.chevron_right_rounded),
-                              onTap: () => Navigator.of(
-                                context,
-                              ).pop(PrayerLocationPickerSelection.manual(
-                                label: result.label,
-                                latitude: result.latitude,
-                                longitude: result.longitude,
-                              )),
+                              onTap: () => Navigator.of(context).pop(
+                                PrayerLocationPickerSelection.manual(
+                                  label: result.label,
+                                  latitude: result.latitude,
+                                  longitude: result.longitude,
+                                ),
+                              ),
                             );
                           },
                         ),
