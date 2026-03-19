@@ -4,9 +4,10 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_surfaces.dart';
 import '../../../l10n/app_localizations.dart';
+import '../../../shared/content/learning_quote.dart';
 import '../../../shared/widgets/premium_card.dart';
-import '../../../shared/widgets/quran_quote_block.dart';
 import 'data/learn_category_catalog.dart';
 import 'models/learn_category_item.dart';
 import '../shared/application/learn_system_engine_provider.dart';
@@ -76,14 +77,19 @@ class _LearnPageState extends ConsumerState<LearnPage> {
       headerIcon: Icons.school_rounded,
       title: l10n.learnHubTitle,
       subtitle: l10n.learnHubSubtitle,
-      quote: QuranQuote(
-        arabic: 'رَبِّ زِدْنِي عِلْمًا',
-        transliteration: 'Rabbi zidni ilma',
-        translation: l10n.learnHubQuoteTranslation,
-        locationLabel: l10n.learnHubQuoteLocation,
-      ),
+      quote: buildLearningCompactQuote(),
+      shortcutActions: summary.continueItem == null
+          ? const <LearnHubShortcutAction>[]
+          : <LearnHubShortcutAction>[
+              LearnHubShortcutAction(
+                label: l10n.learningJourneyCardActionContinue,
+                supportingText: summary.continueItem!.title,
+                icon: Icons.history_edu_rounded,
+                onTap: () => _openItem(context, summary.continueItem!),
+              ),
+            ],
       children: [
-        _buildContinueAndDaily(summary, l10n),
+        _buildDailyLearning(summary, l10n),
         const SizedBox(height: 12),
         _buildSearchFilters(
           context,
@@ -238,92 +244,58 @@ class _LearnPageState extends ConsumerState<LearnPage> {
     );
   }
 
-  Widget _buildContinueAndDaily(
+  Widget _buildDailyLearning(
     LearnUnifiedSummaryV2 summary,
     AppLocalizations l10n,
   ) {
-    return Column(
-      children: [
-        if (summary.continueItem != null)
-          PremiumCard(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  l10n.learnHubContinueWhereYouLeftOff,
-                  style: Theme.of(
-                    context,
-                  ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
-                ),
-                const SizedBox(height: 6),
-                Text(summary.continueItem!.title),
-                const SizedBox(height: 2),
-                Text(
-                  summary.continueItem!.subtitle,
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.onSurfaceSubtle,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                FilledButton.tonalIcon(
-                  onPressed: () => _openItem(context, summary.continueItem!),
-                  icon: const Icon(Icons.play_arrow_rounded),
-                  label: Text(l10n.learnHubResumeAction),
-                ),
-              ],
-            ),
+    return PremiumCard(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            l10n.learnHubDailyLearningTitle,
+            style: Theme.of(
+              context,
+            ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
           ),
-        const SizedBox(height: 10),
-        PremiumCard(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          const SizedBox(height: 4),
+          Text(
+            l10n.learnHubDailyThemeLabel(summary.dailyItem.theme.label),
+            style: Theme.of(
+              context,
+            ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),
+          ),
+          const SizedBox(height: 6),
+          Text(
+            summary.dailyItem.item.title,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+          const SizedBox(height: 2),
+          Text(
+            summary.dailyItem.item.summary,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+          ),
+          const SizedBox(height: 8),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
             children: [
-              Text(
-                l10n.learnHubDailyLearningTitle,
-                style: Theme.of(
-                  context,
-                ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+              FilledButton.tonalIcon(
+                onPressed: () => _openItem(context, summary.dailyItem.item),
+                icon: const Icon(Icons.auto_awesome_rounded),
+                label: Text(l10n.learnHubOpenDailyLearningAction),
               ),
-              const SizedBox(height: 4),
-              Text(
-                l10n.learnHubDailyThemeLabel(summary.dailyItem.theme.label),
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: AppColors.onSurfaceSubtle,
-                ),
-              ),
-              const SizedBox(height: 6),
-              Text(
-                summary.dailyItem.item.title,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-              const SizedBox(height: 2),
-              Text(
-                summary.dailyItem.item.summary,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-              ),
-              const SizedBox(height: 8),
-              Wrap(
-                spacing: 8,
-                runSpacing: 8,
-                children: [
-                  FilledButton.tonalIcon(
-                    onPressed: () => _openItem(context, summary.dailyItem.item),
-                    icon: const Icon(Icons.auto_awesome_rounded),
-                    label: Text(l10n.learnHubOpenDailyReflectionAction),
-                  ),
-                  FilledButton.tonalIcon(
-                    onPressed: () => context.pushNamed('journalCreate'),
-                    icon: const Icon(Icons.edit_note_rounded),
-                    label: Text(l10n.learnHubWriteReflectionAction),
-                  ),
-                ],
+              FilledButton.tonalIcon(
+                onPressed: () => context.pushNamed('journalCreate'),
+                icon: const Icon(Icons.edit_note_rounded),
+                label: Text(l10n.learnHubWriteReflectionAction),
               ),
             ],
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
@@ -334,17 +306,13 @@ class _LearnPageState extends ConsumerState<LearnPage> {
     required List<LearnSharedTheme> themes,
     required List<LearnUnifiedPath> paths,
   }) {
+    final surfaceStyle = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.panel,
+    );
     return Container(
       padding: const EdgeInsets.fromLTRB(12, 10, 12, 8),
-      decoration: BoxDecoration(
-        color: AppColors.surface.withValues(alpha: AppColors.glassSurfaceAlpha),
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: AppColors.accentGold.withValues(
-            alpha: AppColors.glassBorderAlpha,
-          ),
-        ),
-      ),
+      decoration: surfaceStyle.decoration(radius: 16),
       child: Column(
         children: [
           Row(

@@ -1,5 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../journey/drops/application/journey_drops_providers.dart';
+import '../../journey/xp/application/journey_xp_providers.dart';
 import '../../../shared/application/daily_clock_provider.dart';
 import '../../../shared/persistence/local_store.dart';
 import '../domain/daily_fasting_record.dart';
@@ -55,12 +57,15 @@ class FastingState {
 }
 
 class FastingController extends StateNotifier<FastingState> {
-  FastingController(this._store) : super(FastingState.initial()) {
+  FastingController(this._store, this._dropController, this._xpController)
+    : super(FastingState.initial()) {
     _activeDayKey = LocalStore.todayKey();
     _load(_activeDayKey);
   }
 
   final LocalStore _store;
+  final JourneyDropController _dropController;
+  final JourneyXpController _xpController;
   late String _activeDayKey;
 
   void setType(FastingType type) {
@@ -71,8 +76,25 @@ class FastingController extends StateNotifier<FastingState> {
 
   void setStatus(FastingStatus status) {
     _syncDayIfNeeded();
+    final previousStatus = state.todayStatus;
     state = state.copyWith(todayStatus: status);
     _save();
+    if (status == FastingStatus.completed &&
+        previousStatus != FastingStatus.completed) {
+      final occurredAt = DateTime.now();
+      _dropController.awardFastingDrop(
+        sourceRef: 'fasting:$_activeDayKey:${state.selectedType.name}',
+        occurredAt: occurredAt,
+        dayKey: _activeDayKey,
+        metadata: <String, Object?>{'fastingType': state.selectedType.name},
+      );
+      _xpController.awardFastingXp(
+        sourceRef: state.selectedType.name,
+        occurredAt: occurredAt,
+        dayKey: _activeDayKey,
+        metadata: <String, Object?>{'fastingType': state.selectedType.name},
+      );
+    }
   }
 
   void onDayChanged(String dayKey) {
@@ -177,7 +199,11 @@ class FastingController extends StateNotifier<FastingState> {
 
 final fastingControllerProvider =
     StateNotifierProvider<FastingController, FastingState>((ref) {
-      final notifier = FastingController(ref.watch(localStoreProvider));
+      final notifier = FastingController(
+        ref.watch(localStoreProvider),
+        ref.read(journeyDropSummaryProvider.notifier),
+        ref.read(journeyXpSummaryProvider.notifier),
+      );
       ref.listen<String>(dailyKeyProvider, (_, next) {
         notifier.onDayChanged(next);
       });

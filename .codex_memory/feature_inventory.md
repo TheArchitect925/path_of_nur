@@ -1,6 +1,6 @@
 # Feature Inventory
 
-Last updated: 2026-03-17
+Last updated: 2026-03-18
 
 Status legend:
 
@@ -140,10 +140,17 @@ Status legend:
 
 - implemented:
   - watch contract logic and QA/testing docs
-  - native watch/tv folders exist
+  - native Apple Watch V1 companion app integrated into `ios/Runner.xcodeproj`
+  - watch Home, Prayer check-in, Dhikr counter, Progress, and Utility surfaces
+  - watch/iPhone WatchConnectivity bridge with cached snapshot + queued action recovery
+  - complication/widget foundation for next prayer and daily progress
 - partial:
+  - watch real-data behavior still depends on the Flutter snapshot/reconciler bridge being active on the phone
   - release validation is incomplete
-- scaffolded:
-  - tvOS release posture
+- partial:
+  - canonical tvOS native surface in `ios/PathOfNurTV`
+  - mirrored Home prayer and Qur'an V1 shell with seeded data and native playback wiring
 - risky/inconsistent:
   - code presence does not equal release readiness
+  - mirrored Home prayer and Qur'an surfaces should stay in parity review with mobile changes unless platform constraints justify divergence
+  - watch reward projection is intentionally optimistic and must defer final truth to phone-side app logic

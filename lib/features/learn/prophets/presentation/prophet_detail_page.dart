@@ -3,9 +3,9 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/theme/app_colors.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../../../shared/content/learning_quote.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
-import '../../../../shared/widgets/quran_quote_block.dart';
 import '../domain/prophet_detail_content.dart';
 import '../domain/prophet_entry.dart';
 import 'prophets_metadata_localization.dart';
@@ -70,14 +70,7 @@ class _ProphetDetailPageState extends State<ProphetDetailPage> {
       headerIcon: Icons.menu_book_rounded,
       title: widget.content.titledHonoredName,
       subtitle: widget.content.honoredArabicName,
-      quote: QuranQuote(
-        arabic: 'فَاقْصُصِ الْقَصَصَ لَعَلَّهُمْ يَتَفَكَّرُونَ',
-        transliteration: 'Faqsusi al-qasasa la\'allahum yatafakkarun',
-        translation: 'Relate the stories so that they may reflect.',
-        surah: 7,
-        verse: 176,
-        locationLabel: 'Qur’an 7:176',
-      ),
+      quote: buildLearningCompactQuote(),
       children: [
         _heroHeader(context),
         const SizedBox(height: 10),
@@ -419,7 +412,15 @@ class _ProphetDetailPageState extends State<ProphetDetailPage> {
             spacing: 8,
             runSpacing: 8,
             children: widget.content.relatedLifeLessonIds
-                .map((id) => _routeReadyChip(l10n.prophetsLifeChip(id)))
+                .map(
+                  (id) => _routeReadyChip(
+                    l10n.prophetsLifeChip(id),
+                    onTap: () => context.pushNamed(
+                      'lifeLessonDetail',
+                      pathParameters: {'lessonId': id},
+                    ),
+                  ),
+                )
                 .toList(),
           ),
           const SizedBox(height: 12),
@@ -430,7 +431,15 @@ class _ProphetDetailPageState extends State<ProphetDetailPage> {
             spacing: 8,
             runSpacing: 8,
             children: widget.content.relatedGrowthHabitIds
-                .map((id) => _routeReadyChip(l10n.prophetsGrowthChip(id)))
+                .map(
+                  (id) => _routeReadyChip(
+                    l10n.prophetsGrowthChip(id),
+                    onTap: () => context.pushNamed(
+                      'growthHabitDetail',
+                      pathParameters: {'habitId': id},
+                    ),
+                  ),
+                )
                 .toList(),
           ),
           const SizedBox(height: 12),
@@ -441,7 +450,12 @@ class _ProphetDetailPageState extends State<ProphetDetailPage> {
             spacing: 8,
             runSpacing: 8,
             children: quranTopics
-                .map((topic) => _routeReadyChip(l10n.prophetsQuranChip(topic)))
+                .map(
+                  (topic) => _routeReadyChip(
+                    l10n.prophetsQuranChip(topic),
+                    onTap: () => context.pushNamed('quranTopicExplorer'),
+                  ),
+                )
                 .toList(),
           ),
         ],
@@ -531,17 +545,12 @@ class _ProphetDetailPageState extends State<ProphetDetailPage> {
     );
   }
 
-  Widget _routeReadyChip(String text) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(999),
-        color: AppColors.surface.withValues(alpha: 0.26),
-        border: Border.all(
-          color: AppColors.accentGoldSoft.withValues(alpha: 0.30),
-        ),
-      ),
-      child: Text(text, style: const TextStyle(fontSize: 11.5)),
+  Widget _routeReadyChip(String text, {VoidCallback? onTap}) {
+    return ActionChip(
+      label: Text(text, style: const TextStyle(fontSize: 11.5)),
+      onPressed: onTap,
+      backgroundColor: AppColors.surface.withValues(alpha: 0.26),
+      side: BorderSide(color: AppColors.accentGoldSoft.withValues(alpha: 0.30)),
     );
   }
 

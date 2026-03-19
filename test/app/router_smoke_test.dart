@@ -6,16 +6,16 @@ import 'package:path_of_nur/shared/application/daily_clock_provider.dart';
 import 'package:path_of_nur/features/accounts_sync/presentation/accounts_profiles_sync_page.dart';
 import 'package:path_of_nur/features/home/presentation/home_page.dart';
 import 'package:path_of_nur/features/journey/presentation/journey_page.dart';
-import 'package:path_of_nur/features/journey/presentation/growth_entry_page.dart';
-import 'package:path_of_nur/features/learn/journey/presentation/learning_journey_home_page.dart';
+import 'package:path_of_nur/features/journey/presentation/growth_section_pages.dart';
 import 'package:path_of_nur/features/learn/dua/presentation/dua_hub_page.dart';
+import 'package:path_of_nur/features/learn/presentation/pages/learning_section_landing_page.dart';
 import 'package:path_of_nur/features/learn/presentation/pages/learn_quizzes_hub_page.dart';
 import 'package:path_of_nur/features/learn/presentation/learn_page.dart';
 import 'package:path_of_nur/features/learn/presentation/pages/quran_app_hub_page.dart';
 import 'package:path_of_nur/features/learn/prophets/presentation/prophets_page.dart';
 import 'package:path_of_nur/features/learn/quran/presentation/quran_search_page.dart';
 import 'package:path_of_nur/features/learn/quran/presentation/quran_surah_explorer_page.dart';
-import 'package:path_of_nur/features/ocean/presentation/ocean_drops_page.dart';
+import 'package:path_of_nur/features/ocean/presentation/ocean_dashboard_page.dart';
 import 'package:path_of_nur/features/faq/pages/faq_landing_page.dart';
 import 'package:path_of_nur/features/profile/presentation/profile_summary_page.dart';
 import 'package:path_of_nur/features/profile/presentation/settings_page.dart';
@@ -52,7 +52,7 @@ void main() {
 
     final cases = <(String, Type)>[
       ('/worship', WorshipPage),
-      ('/learn', LearningJourneyHomePage),
+      ('/learn', LearningSectionLandingPage),
       ('/home', HomePage),
       ('/journey', JourneyPage),
       ('/quran', QuranAppHubPage),
@@ -63,7 +63,7 @@ void main() {
       ('/accounts-sync/backup', BackupRestoreHomePage),
       ('/profile/summary', ProfileSummaryPage),
       ('/legal/privacy', LegalInfoPage),
-      ('/journey/ocean', OceanDropsPage),
+      ('/journey/ocean', OceanDashboardPage),
     ];
 
     for (final (path, pageType) in cases) {
@@ -125,7 +125,7 @@ void main() {
       ('/learn/section/duas', DuaHubPage),
       ('/learn/section/quizzes', LearnQuizzesHubPage),
       ('/learn/section/faq', FaqLandingPage),
-      ('/growth/today', GrowthEntryPage),
+      ('/growth/today', GrowthTodaySectionPage),
     ];
 
     for (final (path, pageType) in cases) {

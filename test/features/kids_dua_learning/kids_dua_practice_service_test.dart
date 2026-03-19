@@ -7,7 +7,7 @@ void main() {
   const service = KidsDuaPracticeService();
 
   test('returns empty when fewer than two duas are unlocked', () {
-    final state = KidsDuaLearningState(
+    final state = KidsDuaLearningState.initial().copyWith(
       progressByLessonId: {
         'bismillah': const KidsDuaLessonProgress(
           lessonId: 'bismillah',
@@ -16,12 +16,7 @@ void main() {
           startedAtIso: '2026-03-18T10:00:00.000',
         ),
       },
-      unlockedRewardIds: const {},
-      stickerUnlockedAtById: const {},
       recentLessonIds: const ['bismillah'],
-      totalFeatureXpAwarded: 0,
-      totalFeatureDropsAwarded: 0,
-      totalPracticeSessions: 0,
     );
 
     final questions = service.generateQuestions(
@@ -45,7 +40,7 @@ void main() {
         (lesson) => lesson.id == 'saying-thanks',
       ),
     ];
-    final state = KidsDuaLearningState(
+    final state = KidsDuaLearningState.initial().copyWith(
       progressByLessonId: {
         for (final lesson in unlockedLessons)
           lesson.id: KidsDuaLessonProgress(
@@ -55,14 +50,9 @@ void main() {
             startedAtIso: '2026-03-18T10:00:00.000',
           ),
       },
-      unlockedRewardIds: const {},
-      stickerUnlockedAtById: const {},
       recentLessonIds: unlockedLessons
           .map((lesson) => lesson.id)
           .toList(growable: false),
-      totalFeatureXpAwarded: 0,
-      totalFeatureDropsAwarded: 0,
-      totalPracticeSessions: 0,
     );
 
     final questions = service.generateQuestions(
@@ -86,7 +76,7 @@ void main() {
     final bismillah = kidsDuaStarterLessons.firstWhere(
       (lesson) => lesson.id == 'bismillah',
     );
-    final state = KidsDuaLearningState(
+    final state = KidsDuaLearningState.initial().copyWith(
       progressByLessonId: {
         'bismillah': const KidsDuaLessonProgress(
           lessonId: 'bismillah',
@@ -101,12 +91,7 @@ void main() {
           startedAtIso: '2026-03-18T10:00:00.000',
         ),
       },
-      unlockedRewardIds: const {},
-      stickerUnlockedAtById: const {},
       recentLessonIds: const ['after-eating'],
-      totalFeatureXpAwarded: 0,
-      totalFeatureDropsAwarded: 0,
-      totalPracticeSessions: 0,
     );
 
     final questions = service.generateQuestions(

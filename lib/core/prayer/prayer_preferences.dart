@@ -401,6 +401,62 @@ class PrayerScheduleContext {
   final double progressToNext;
 }
 
+PrayerScheduleContext derivePrayerScheduleContext({
+  required List<PrayerScheduleItem> schedule,
+  required DateTime now,
+}) {
+  if (schedule.isEmpty) {
+    return const PrayerScheduleContext(
+      items: [],
+      nextPrayerId: null,
+      currentPrayerId: null,
+      remainingToNext: Duration.zero,
+      progressToNext: 0,
+    );
+  }
+
+  PrayerScheduleItem? current;
+  PrayerScheduleItem? next;
+
+  for (var i = 0; i < schedule.length; i += 1) {
+    final item = schedule[i];
+    if (!now.isBefore(item.windowStartDateTime) &&
+        now.isBefore(item.windowEndDateTime)) {
+      current = item;
+      next = i + 1 < schedule.length ? schedule[i + 1] : null;
+      break;
+    }
+    if (now.isBefore(item.windowStartDateTime)) {
+      next = item;
+      break;
+    }
+  }
+
+  next ??= schedule.first;
+  if (current == null && now.isAfter(schedule.last.windowEndDateTime)) {
+    current = schedule.last;
+  }
+
+  var nextStart = next.windowStartDateTime;
+  if (!nextStart.isAfter(now)) {
+    nextStart = nextStart.add(const Duration(days: 1));
+  }
+
+  final prevAnchor =
+      current?.windowStartDateTime ?? now.subtract(const Duration(hours: 1));
+  final total = math.max(1, nextStart.difference(prevAnchor).inSeconds);
+  final elapsed = now.difference(prevAnchor).inSeconds.clamp(0, total);
+  final progress = (elapsed / total).clamp(0.0, 1.0).toDouble();
+
+  return PrayerScheduleContext(
+    items: schedule,
+    nextPrayerId: next.id,
+    currentPrayerId: current?.id,
+    remainingToNext: nextStart.difference(now),
+    progressToNext: progress,
+  );
+}
+
 class PrayerLocationState {
   const PrayerLocationState({
     required this.latitude,
@@ -1164,51 +1220,9 @@ final prayerBaseScheduleProvider = Provider<List<PrayerScheduleItem>>((ref) {
 final prayerScheduleContextProvider = Provider<PrayerScheduleContext>((ref) {
   final schedule = ref.watch(prayerScheduleProvider);
   final now = ref.watch(dailyNowProvider).value ?? DateTime.now();
-  if (schedule.isEmpty) {
-    return const PrayerScheduleContext(
-      items: [],
-      nextPrayerId: null,
-      currentPrayerId: null,
-      remainingToNext: Duration.zero,
-      progressToNext: 0,
-    );
-  }
-
-  PrayerScheduleItem? current;
-  PrayerScheduleItem? next;
-
-  for (var i = 0; i < schedule.length; i += 1) {
-    final item = schedule[i];
-    if (!now.isBefore(item.windowStartDateTime) &&
-        now.isBefore(item.windowEndDateTime)) {
-      current = item;
-      next = i + 1 < schedule.length ? schedule[i + 1] : null;
-      break;
-    }
-    if (now.isBefore(item.windowStartDateTime)) {
-      next = item;
-      break;
-    }
-  }
-
-  next ??= schedule.first;
-  if (current == null && now.isAfter(schedule.last.windowEndDateTime)) {
-    current = schedule.last;
-  }
-
-  final nextStart = next.windowStartDateTime;
-  final prevAnchor =
-      current?.windowStartDateTime ?? now.subtract(const Duration(hours: 1));
-  final total = math.max(1, nextStart.difference(prevAnchor).inSeconds);
-  final elapsed = now.difference(prevAnchor).inSeconds.clamp(0, total);
-  final progress = (elapsed / total).clamp(0.0, 1.0).toDouble();
-
-  return PrayerScheduleContext(
-    items: schedule,
-    nextPrayerId: next.id,
-    currentPrayerId: current?.id,
-    remainingToNext: nextStart.difference(now),
-    progressToNext: progress,
+  return derivePrayerScheduleContext(
+    schedule: schedule,
+    now: now,
   );
 });
 

@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:just_audio/just_audio.dart';
 
 import '../../../shared/persistence/local_store.dart';
+import '../../learn/quran/application/quran_player_controller.dart';
 import '../../learn/quran/application/quran_providers.dart';
 import 'watch_sync_diagnostics.dart';
 
@@ -53,19 +54,19 @@ class QuranPlaybackSnapshot {
   final DateTime lastUpdatedAt;
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'playbackSessionId': playbackSessionId,
-        'sourceType': sourceType.name,
-        'isPlaying': isPlaying,
-        'surahId': surahId,
-        'surahName': surahName,
-        'reciterId': reciterId,
-        'reciterName': reciterName,
-        'currentAyah': currentAyah,
-        'positionSeconds': positionSeconds,
-        'durationSeconds': durationSeconds,
-        'isBuffering': isBuffering,
-        'lastUpdatedAt': lastUpdatedAt.toIso8601String(),
-      };
+    'playbackSessionId': playbackSessionId,
+    'sourceType': sourceType.name,
+    'isPlaying': isPlaying,
+    'surahId': surahId,
+    'surahName': surahName,
+    'reciterId': reciterId,
+    'reciterName': reciterName,
+    'currentAyah': currentAyah,
+    'positionSeconds': positionSeconds,
+    'durationSeconds': durationSeconds,
+    'isBuffering': isBuffering,
+    'lastUpdatedAt': lastUpdatedAt.toIso8601String(),
+  };
 }
 
 class WatchAudioAvailabilitySnapshot {
@@ -82,11 +83,11 @@ class WatchAudioAvailabilitySnapshot {
   final DateTime lastSyncedAt;
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'watchPlaybackAvailable': watchPlaybackAvailable,
-        'downloadedSurahIds': downloadedSurahIds,
-        'recentPlayableItems': recentPlayableItems,
-        'lastSyncedAt': lastSyncedAt.toIso8601String(),
-      };
+    'watchPlaybackAvailable': watchPlaybackAvailable,
+    'downloadedSurahIds': downloadedSurahIds,
+    'recentPlayableItems': recentPlayableItems,
+    'lastSyncedAt': lastSyncedAt.toIso8601String(),
+  };
 }
 
 class WatchQuranPlaybackSnapshotBuilder {
@@ -125,18 +126,16 @@ class WatchQuranPlaybackSnapshotBuilder {
           ? player.position.inSeconds
           : (session?.positionSeconds ?? 0),
       durationSeconds: player.duration?.inSeconds,
-      isBuffering: player.processingState == ProcessingState.loading ||
+      isBuffering:
+          player.processingState == ProcessingState.loading ||
           player.processingState == ProcessingState.buffering,
       lastUpdatedAt: DateTime.now(),
     );
-    WatchSyncDiagnostics.log(
-      'quran_snapshot_generated',
-      <String, Object?>{
-        'surahId': snapshot.surahId,
-        'sourceType': snapshot.sourceType.name,
-        'isPlaying': snapshot.isPlaying,
-      },
-    );
+    WatchSyncDiagnostics.log('quran_snapshot_generated', <String, Object?>{
+      'surahId': snapshot.surahId,
+      'sourceType': snapshot.sourceType.name,
+      'isPlaying': snapshot.isPlaying,
+    });
     return snapshot;
   }
 }
@@ -154,8 +153,7 @@ class WatchQuranAudioAvailabilityBuilder {
     final candidates = <int>{
       if (session != null) session.surahNumber,
       ...recentReadings.take(4).map((item) => item.surahNumber),
-    }.toList()
-      ..sort();
+    }.toList()..sort();
     final downloaded = <int>[];
     for (final surahId in candidates) {
       if (await audioRepository.isSurahDownloaded(
@@ -171,13 +169,10 @@ class WatchQuranAudioAvailabilityBuilder {
       recentPlayableItems: downloaded.map((id) => 'Surah $id').toList(),
       lastSyncedAt: DateTime.now(),
     );
-    WatchSyncDiagnostics.log(
-      'quran_availability_generated',
-      <String, Object?>{
-        'watchPlaybackAvailable': result.watchPlaybackAvailable,
-        'downloadedCount': downloaded.length,
-      },
-    );
+    WatchSyncDiagnostics.log('quran_availability_generated', <String, Object?>{
+      'watchPlaybackAvailable': result.watchPlaybackAvailable,
+      'downloadedCount': downloaded.length,
+    });
     return result;
   }
 }
@@ -189,20 +184,21 @@ class WatchQuranPlaybackCommandService {
 
   Future<QuranPlaybackSnapshot> send(QuranPlaybackCommand command) async {
     final player = ref.read(quranSharedAudioPlayerProvider);
+    final controller = ref.read(quranPlayerControllerProvider);
     final store = ref.read(localStoreProvider);
     switch (command) {
       case QuranPlaybackCommand.play:
       case QuranPlaybackCommand.resumeLast:
-        if (player.audioSource != null) {
-          await player.play();
-        }
+        await controller.resumeCurrentPlaybackWithBismillah();
         break;
       case QuranPlaybackCommand.pause:
-        await player.pause();
+        await controller.pause();
         break;
       case QuranPlaybackCommand.next:
         if (player.hasNext) {
           await player.seekToNext();
+        } else if (await controller.playAdjacentSurahWithBismillah(1)) {
+          break;
         } else {
           await player.seek(Duration.zero);
         }
@@ -210,6 +206,10 @@ class WatchQuranPlaybackCommandService {
       case QuranPlaybackCommand.previous:
         if (player.hasPrevious) {
           await player.seekToPrevious();
+        } else if (player.position > const Duration(seconds: 3)) {
+          await player.seek(Duration.zero);
+        } else if (await controller.playAdjacentSurahWithBismillah(-1)) {
+          break;
         } else {
           await player.seek(Duration.zero);
         }
@@ -231,10 +231,9 @@ class WatchQuranPlaybackCommandService {
         await player.pause();
         break;
     }
-    WatchSyncDiagnostics.log(
-      'quran_command_applied',
-      <String, Object?>{'command': command.name},
-    );
+    WatchSyncDiagnostics.log('quran_command_applied', <String, Object?>{
+      'command': command.name,
+    });
     return WatchQuranPlaybackSnapshotBuilder(ref).build();
   }
 }
@@ -281,22 +280,21 @@ class WearOsQuranBridgeAdapter {
 
 final watchQuranPlaybackSnapshotBuilderProvider =
     Provider<WatchQuranPlaybackSnapshotBuilder>(
-  WatchQuranPlaybackSnapshotBuilder.new,
-);
+      WatchQuranPlaybackSnapshotBuilder.new,
+    );
 
 final watchQuranAudioAvailabilityBuilderProvider =
     Provider<WatchQuranAudioAvailabilityBuilder>(
-  WatchQuranAudioAvailabilityBuilder.new,
-);
+      WatchQuranAudioAvailabilityBuilder.new,
+    );
 
 final watchQuranPlaybackCommandServiceProvider =
     Provider<WatchQuranPlaybackCommandService>(
-  WatchQuranPlaybackCommandService.new,
-);
+      WatchQuranPlaybackCommandService.new,
+    );
 
-final appleWatchQuranBridgeAdapterProvider = Provider<AppleWatchQuranBridgeAdapter>(
-  AppleWatchQuranBridgeAdapter.new,
-);
+final appleWatchQuranBridgeAdapterProvider =
+    Provider<AppleWatchQuranBridgeAdapter>(AppleWatchQuranBridgeAdapter.new);
 
 final wearOsQuranBridgeAdapterProvider = Provider<WearOsQuranBridgeAdapter>(
   WearOsQuranBridgeAdapter.new,

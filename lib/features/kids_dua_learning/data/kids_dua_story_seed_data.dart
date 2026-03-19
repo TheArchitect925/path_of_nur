@@ -1,51 +1,5 @@
 import '../domain/kids_dua_models.dart';
 
-KidsDuaStory _story({
-  required String id,
-  required String duaId,
-  required String slug,
-  required String title,
-  required String category,
-  required String intro,
-  required String closing,
-  required List<
-    ({String text, String illustration, String mood, String highlight})
-  >
-  scenes,
-}) {
-  return KidsDuaStory(
-    id: id,
-    duaId: duaId,
-    slug: slug,
-    title: title,
-    category: category,
-    ageGroup: '3-6',
-    estimatedDurationSec: scenes.length * 25,
-    introLine: intro,
-    closingLine: closing,
-    narrationText: [
-      intro,
-      ...scenes.map((item) => item.text),
-      closing,
-    ].join(' '),
-    illustrationKeys: scenes
-        .map((item) => item.illustration)
-        .toList(growable: false),
-    scenes: [
-      for (var i = 0; i < scenes.length; i += 1)
-        KidsDuaStoryScene(
-          id: '${id}_scene_${i + 1}',
-          storyId: id,
-          order: i + 1,
-          text: scenes[i].text,
-          illustrationHint: scenes[i].illustration,
-          mood: scenes[i].mood,
-          highlightPhrase: scenes[i].highlight,
-        ),
-    ],
-  );
-}
-
 final kidsDuaStories = <KidsDuaStory>[
   KidsDuaStory(
     id: 'story_bismillah',

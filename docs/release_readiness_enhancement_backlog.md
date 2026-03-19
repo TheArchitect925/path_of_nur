@@ -24,3 +24,19 @@ These items are intentionally not bundled into the current release-readiness pas
 ## Documentation
 
 - Add a submission checklist for extension signing and App Store Connect capability alignment.
+
+- Add CI validation for iOS bundle identifiers, signing placeholders, and a no-codesign release build before each App Store handoff.
+
+- Add a dedicated preflight check for the embedded watch targets so simulator/device iOS builds fail early when watch platform metadata drifts.
+
+- Add a release-signing check that verifies the configured Apple team owns every bundle identifier in the iOS, watchOS, live activity, and tvOS targets before archive.
+
+- Add a bundle-family consistency check to CI so iOS, watch app, watch extension, tests, live activity, and tvOS bundle identifiers stay prefixed correctly.
+- add a post-`flutter run`/post-upgrade project sanity check for Apple target bundle IDs and development teams
+- add a CI assertion that embedded iOS app extensions resolve to bundle IDs prefixed by the main app bundle ID on simulator builds
+## Apple upload hardening follow-ups
+
+- add a signed-archive entitlement inspection step after Organizer export when upload blockers involve provisioning versus source entitlements
+- add watch icon asset completeness checks for all release Apple targets, not just the main watch app
+- add a local one-command pre-upload validator for archive structure, signed entitlements, and bundle metadata
+- keep a dedicated debug-vs-release entitlement doctor in CI so provisioning drift is caught before Xcode signing breaks again

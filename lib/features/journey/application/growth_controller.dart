@@ -262,6 +262,7 @@ class GrowthController extends StateNotifier<GrowthState> {
     required String subtitle,
     required String description,
     required GrowthHabitCategory category,
+    String? customCategoryId,
     required GrowthHabitRecurrenceType recurrenceType,
     required int frequencyTarget,
     required List<int> weekdays,
@@ -333,6 +334,7 @@ class GrowthController extends StateNotifier<GrowthState> {
       quietDelivery: quietDelivery,
       allowSnooze: allowSnooze,
       remindersPaused: remindersPaused,
+      customCategoryId: customCategoryId,
       createdAtEpochMs: nowMs,
       updatedAtEpochMs: nowMs,
     );
@@ -347,6 +349,7 @@ class GrowthController extends StateNotifier<GrowthState> {
     required String subtitle,
     required String description,
     required GrowthHabitCategory category,
+    String? customCategoryId,
     required GrowthHabitRecurrenceType recurrenceType,
     required int frequencyTarget,
     required List<int> weekdays,
@@ -412,6 +415,7 @@ class GrowthController extends StateNotifier<GrowthState> {
       allowSnooze: allowSnooze,
       remindersPaused: remindersPaused,
       linkedPathId: linkedPathId,
+      customCategoryId: customCategoryId,
       updatedAtEpochMs: DateTime.now().millisecondsSinceEpoch,
     );
 
@@ -479,6 +483,7 @@ class GrowthController extends StateNotifier<GrowthState> {
       allowSnooze: original.allowSnooze,
       remindersPaused: false,
       linkedPathId: original.linkedPathId,
+      customCategoryId: original.customCategoryId,
       createdAtEpochMs: nowMs,
       updatedAtEpochMs: nowMs,
     );
@@ -503,6 +508,64 @@ class GrowthController extends StateNotifier<GrowthState> {
       habitOverrides: overrides,
       habitLogsByDay: logs,
       focusHabitId: state.focusHabitId == habitId ? null : state.focusHabitId,
+    );
+    _persist();
+  }
+
+  void addCustomHabitCategory({
+    required String title,
+    required String description,
+  }) {
+    final nowMs = DateTime.now().millisecondsSinceEpoch;
+    final sortBase = state.customHabitCategories.isEmpty
+        ? 1
+        : state.customHabitCategories.map((e) => e.sortOrder).reduce(math.max) +
+            1;
+    final next = GrowthCustomCategory(
+      id: 'category_$nowMs',
+      title: title,
+      description: description,
+      sortOrder: sortBase,
+      createdAtEpochMs: nowMs,
+      updatedAtEpochMs: nowMs,
+    );
+    state = state.copyWith(
+      customHabitCategories: [...state.customHabitCategories, next],
+    );
+    _persist();
+  }
+
+  void updateCustomHabitCategory({
+    required String categoryId,
+    required String title,
+    required String description,
+  }) {
+    final categories = [...state.customHabitCategories];
+    final index = categories.indexWhere((item) => item.id == categoryId);
+    if (index == -1) return;
+    categories[index] = categories[index].copyWith(
+      title: title,
+      description: description,
+      updatedAtEpochMs: DateTime.now().millisecondsSinceEpoch,
+    );
+    state = state.copyWith(customHabitCategories: categories);
+    _persist();
+  }
+
+  void deleteCustomHabitCategory(String categoryId) {
+    final categories = state.customHabitCategories
+        .where((item) => item.id != categoryId)
+        .toList(growable: false);
+    final habits = state.customHabits
+        .map(
+          (habit) => habit.customCategoryId == categoryId
+              ? habit.copyWith(customCategoryId: null)
+              : habit,
+        )
+        .toList(growable: false);
+    state = state.copyWith(
+      customHabitCategories: categories,
+      customHabits: habits,
     );
     _persist();
   }

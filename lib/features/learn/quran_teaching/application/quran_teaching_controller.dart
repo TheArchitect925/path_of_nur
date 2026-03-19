@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../journey/drops/application/journey_drops_providers.dart';
 import '../../../../shared/persistence/local_store.dart';
 import '../data/quran_teaching_seed_data.dart';
 import '../domain/quran_teaching_models.dart';
@@ -10,7 +11,7 @@ const _quranTeachingMistakesKey = 'learn.quran.teaching.mistakes.v1';
 
 class QuranTeachingProgressController
     extends StateNotifier<QuranTeachingProgressState> {
-  QuranTeachingProgressController(this._store)
+  QuranTeachingProgressController(this._store, this._dropController)
     : super(
         QuranTeachingProgressState.fromJson(
           _store.getJsonMap(_quranTeachingProgressKey),
@@ -18,6 +19,7 @@ class QuranTeachingProgressController
       );
 
   final LocalStore _store;
+  final JourneyDropController _dropController;
 
   void _save() {
     _store.setJsonMap(_quranTeachingProgressKey, state.toJson());
@@ -34,7 +36,10 @@ class QuranTeachingProgressController
   }
 
   void markLessonStarted(String lessonId) {
-    final started = {...state.startedLessonIds, lessonId}.toList(growable: false);
+    final started = {
+      ...state.startedLessonIds,
+      lessonId,
+    }.toList(growable: false);
     final recent = _pushRecent(state.recentLessonIds, lessonId);
     state = state.copyWith(
       startedLessonIds: started,
@@ -46,17 +51,35 @@ class QuranTeachingProgressController
   }
 
   void completeLesson(String lessonId) {
-    final completed = {...state.completedLessonIds, lessonId}.toList(growable: false);
-    final started = {...state.startedLessonIds, lessonId}.toList(growable: false);
+    final alreadyCompleted = state.completedLessonIds.contains(lessonId);
+    final completed = {
+      ...state.completedLessonIds,
+      lessonId,
+    }.toList(growable: false);
+    final started = {
+      ...state.startedLessonIds,
+      lessonId,
+    }.toList(growable: false);
+    final occurredAt = DateTime.now();
     final recent = _pushRecent(state.recentLessonIds, lessonId);
     state = state.copyWith(
       completedLessonIds: completed,
       startedLessonIds: started,
       recentLessonIds: recent,
       lastLessonId: lessonId,
-      lastPracticedAt: DateTime.now(),
+      lastPracticedAt: occurredAt,
     );
     _save();
+    if (!alreadyCompleted) {
+      _dropController.awardQuranDrop(
+        sourceRef: 'quran_teaching:$lessonId',
+        occurredAt: occurredAt,
+        metadata: <String, Object?>{
+          'lessonId': lessonId,
+          'timestamp': occurredAt.toIso8601String(),
+        },
+      );
+    }
   }
 
   void toggleReviewLater(String lessonId) {
@@ -97,39 +120,46 @@ final quranTeachingCatalogProvider = Provider<QuranTeachingCatalog>((ref) {
   return quranTeachingCatalog;
 });
 
-final quranTeachingProgressProvider = StateNotifierProvider<
-  QuranTeachingProgressController,
-  QuranTeachingProgressState
->((ref) {
-  return QuranTeachingProgressController(ref.watch(localStoreProvider));
-});
-
-final quranTeachingRecommendedLessonProvider =
-    Provider<QuranTeachingLesson?>((ref) {
-      final catalog = ref.watch(quranTeachingCatalogProvider);
-      final progress = ref.watch(quranTeachingProgressProvider);
-      final completed = progress.completedLessonIds.toSet();
-      final modules = [...catalog.modules]
-        ..sort((a, b) => a.order.compareTo(b.order));
-
-      for (final module in modules) {
-        final lessons = catalog.lessonsForModule(module.id);
-        for (final lesson in lessons) {
-          if (!completed.contains(lesson.id) &&
-              isLessonUnlocked(
-                lesson: lesson,
-                module: module,
-                catalog: catalog,
-                progress: progress,
-              )) {
-            return lesson;
-          }
-        }
-      }
-      return catalog.lessons.isEmpty ? null : catalog.lessons.first;
+final quranTeachingProgressProvider =
+    StateNotifierProvider<
+      QuranTeachingProgressController,
+      QuranTeachingProgressState
+    >((ref) {
+      return QuranTeachingProgressController(
+        ref.watch(localStoreProvider),
+        ref.read(journeyDropSummaryProvider.notifier),
+      );
     });
 
-final quranTeachingWeakLessonsProvider = Provider<List<QuranTeachingLesson>>((ref) {
+final quranTeachingRecommendedLessonProvider = Provider<QuranTeachingLesson?>((
+  ref,
+) {
+  final catalog = ref.watch(quranTeachingCatalogProvider);
+  final progress = ref.watch(quranTeachingProgressProvider);
+  final completed = progress.completedLessonIds.toSet();
+  final modules = [...catalog.modules]
+    ..sort((a, b) => a.order.compareTo(b.order));
+
+  for (final module in modules) {
+    final lessons = catalog.lessonsForModule(module.id);
+    for (final lesson in lessons) {
+      if (!completed.contains(lesson.id) &&
+          isLessonUnlocked(
+            lesson: lesson,
+            module: module,
+            catalog: catalog,
+            progress: progress,
+          )) {
+        return lesson;
+      }
+    }
+  }
+  return catalog.lessons.isEmpty ? null : catalog.lessons.first;
+});
+
+final quranTeachingWeakLessonsProvider = Provider<List<QuranTeachingLesson>>((
+  ref,
+) {
   final catalog = ref.watch(quranTeachingCatalogProvider);
   final progress = ref.watch(quranTeachingProgressProvider);
   final weak = <QuranTeachingLesson>[];
@@ -150,11 +180,11 @@ final quranTeachingWeakLessonsProvider = Provider<List<QuranTeachingLesson>>((re
 class QuranTeachingListenOnlyController
     extends StateNotifier<QuranTeachingListenOnlyState> {
   QuranTeachingListenOnlyController(this._store)
-      : super(
-          QuranTeachingListenOnlyState.fromJson(
-            _store.getJsonMap(_quranTeachingListenOnlyKey),
-          ),
-        );
+    : super(
+        QuranTeachingListenOnlyState.fromJson(
+          _store.getJsonMap(_quranTeachingListenOnlyKey),
+        ),
+      );
 
   final LocalStore _store;
 
@@ -213,7 +243,10 @@ class QuranTeachingListenOnlyController
     final nextIndex = state.shuffle
         ? (current + 1) % itemCount
         : (current + 1).clamp(0, itemCount - 1);
-    state = state.copyWith(currentIndex: nextIndex, lastPlayedAt: DateTime.now());
+    state = state.copyWith(
+      currentIndex: nextIndex,
+      lastPlayedAt: DateTime.now(),
+    );
     _save();
   }
 
@@ -236,7 +269,7 @@ class QuranTeachingListenOnlyController
 class QuranTeachingMistakeReviewController
     extends StateNotifier<Map<String, QuranTeachingMistakeItem>> {
   QuranTeachingMistakeReviewController(this._store)
-      : super(_load(_store.getJsonMap(_quranTeachingMistakesKey)));
+    : super(_load(_store.getJsonMap(_quranTeachingMistakesKey)));
 
   final LocalStore _store;
 
@@ -270,38 +303,41 @@ class QuranTeachingMistakeReviewController
     final existing = state[quiz.id];
     final now = DateTime.now();
     final nextDue = now.add(
-      Duration(hours: existing == null ? 4 : (existing.totalWrongCount + 1) * 3),
+      Duration(
+        hours: existing == null ? 4 : (existing.totalWrongCount + 1) * 3,
+      ),
     );
-    final updated = (existing ??
-            QuranTeachingMistakeItem(
-              quizId: quiz.id,
-              lessonId: lesson.id,
-              moduleId: lesson.moduleId,
-              quizType: quiz.type,
-              prompt: quiz.prompt,
-              promptArabic: quiz.promptArabic,
-              promptSecondary: quiz.promptSecondary,
-              audio: quiz.audio,
-              promptImageAssetPath: quiz.promptImageAssetPath,
-              options: quiz.options,
-              correctOptionIds: quiz.correctOptionIds,
-              buildOrder: quiz.buildOrder,
-              truthAnswer: quiz.truthAnswer,
-              feedbackCorrect: quiz.feedbackCorrect,
-              feedbackIncorrect: quiz.feedbackIncorrect,
+    final updated =
+        (existing ??
+                QuranTeachingMistakeItem(
+                  quizId: quiz.id,
+                  lessonId: lesson.id,
+                  moduleId: lesson.moduleId,
+                  quizType: quiz.type,
+                  prompt: quiz.prompt,
+                  promptArabic: quiz.promptArabic,
+                  promptSecondary: quiz.promptSecondary,
+                  audio: quiz.audio,
+                  promptImageAssetPath: quiz.promptImageAssetPath,
+                  options: quiz.options,
+                  correctOptionIds: quiz.correctOptionIds,
+                  buildOrder: quiz.buildOrder,
+                  truthAnswer: quiz.truthAnswer,
+                  feedbackCorrect: quiz.feedbackCorrect,
+                  feedbackIncorrect: quiz.feedbackIncorrect,
+                  lastWrongAt: now,
+                ))
+            .copyWith(
+              lastSelectedOptionId: selectedOptionId,
+              lastSelectedTokens: selectedTokens,
               lastWrongAt: now,
-            ))
-        .copyWith(
-          lastSelectedOptionId: selectedOptionId,
-          lastSelectedTokens: selectedTokens,
-          lastWrongAt: now,
-          totalWrongCount: (existing?.totalWrongCount ?? 0) + 1,
-          successStreak: 0,
-          state: existing == null
-              ? QuranTeachingMistakeState.newMistake
-              : QuranTeachingMistakeState.dueReview,
-          nextDueAt: nextDue,
-        );
+              totalWrongCount: (existing?.totalWrongCount ?? 0) + 1,
+              successStreak: 0,
+              state: existing == null
+                  ? QuranTeachingMistakeState.newMistake
+                  : QuranTeachingMistakeState.dueReview,
+              nextDueAt: nextDue,
+            );
     state = {...state, quiz.id: updated};
     _save();
   }
@@ -330,47 +366,58 @@ class QuranTeachingMistakeReviewController
     final nextState = nextStreak >= 3
         ? QuranTeachingMistakeState.mastered
         : (nextStreak == 1
-            ? QuranTeachingMistakeState.improving
-            : QuranTeachingMistakeState.dueReview);
+              ? QuranTeachingMistakeState.improving
+              : QuranTeachingMistakeState.dueReview);
     final updated = item.copyWith(
       totalReviewCount: item.totalReviewCount + 1,
       successStreak: nextStreak,
       state: nextState,
-      nextDueAt: nextStreak >= 3 ? now.add(const Duration(days: 30)) : now.add(Duration(hours: 12 * nextStreak)),
+      nextDueAt: nextStreak >= 3
+          ? now.add(const Duration(days: 30))
+          : now.add(Duration(hours: 12 * nextStreak)),
     );
     state = {...state, quizId: updated};
     _save();
   }
 }
 
-final quranTeachingListenOnlyProvider = StateNotifierProvider<
-  QuranTeachingListenOnlyController,
-  QuranTeachingListenOnlyState
->((ref) {
-  return QuranTeachingListenOnlyController(ref.watch(localStoreProvider));
-});
+final quranTeachingListenOnlyProvider =
+    StateNotifierProvider<
+      QuranTeachingListenOnlyController,
+      QuranTeachingListenOnlyState
+    >((ref) {
+      return QuranTeachingListenOnlyController(ref.watch(localStoreProvider));
+    });
 
-final quranTeachingMistakeQueueProvider = StateNotifierProvider<
-  QuranTeachingMistakeReviewController,
-  Map<String, QuranTeachingMistakeItem>
->((ref) {
-  return QuranTeachingMistakeReviewController(ref.watch(localStoreProvider));
-});
+final quranTeachingMistakeQueueProvider =
+    StateNotifierProvider<
+      QuranTeachingMistakeReviewController,
+      Map<String, QuranTeachingMistakeItem>
+    >((ref) {
+      return QuranTeachingMistakeReviewController(
+        ref.watch(localStoreProvider),
+      );
+    });
 
 final quranTeachingActiveMistakesProvider =
     Provider<List<QuranTeachingMistakeItem>>((ref) {
-      final items = ref.watch(quranTeachingMistakeQueueProvider).values.where(
-        (item) => item.state != QuranTeachingMistakeState.mastered,
-      ).toList(growable: true)
-        ..sort((a, b) {
-          final score = b.priorityScore.compareTo(a.priorityScore);
-          if (score != 0) return score;
-          return b.lastWrongAt.compareTo(a.lastWrongAt);
-        });
+      final items =
+          ref
+              .watch(quranTeachingMistakeQueueProvider)
+              .values
+              .where((item) => item.state != QuranTeachingMistakeState.mastered)
+              .toList(growable: true)
+            ..sort((a, b) {
+              final score = b.priorityScore.compareTo(a.priorityScore);
+              if (score != 0) return score;
+              return b.lastWrongAt.compareTo(a.lastWrongAt);
+            });
       return items;
     });
 
-final quranTeachingRecentLessonsProvider = Provider<List<QuranTeachingLesson>>((ref) {
+final quranTeachingRecentLessonsProvider = Provider<List<QuranTeachingLesson>>((
+  ref,
+) {
   final catalog = ref.watch(quranTeachingCatalogProvider);
   final progress = ref.watch(quranTeachingProgressProvider);
   return progress.recentLessonIds
@@ -391,7 +438,9 @@ bool isModuleUnlocked({
       return module.order <= 4 || progress.completedLessonIds.length >= 4;
     case QuranTeachingAccessMode.guided:
       if (module.order == 0) return true;
-      final previousModules = catalog.modules.where((item) => item.order < module.order);
+      final previousModules = catalog.modules.where(
+        (item) => item.order < module.order,
+      );
       for (final previousModule in previousModules) {
         final previousLessons = catalog.lessonsForModule(previousModule.id);
         if (previousLessons.isEmpty) continue;
@@ -420,7 +469,8 @@ bool isLessonUnlocked({
     case QuranTeachingAccessMode.open:
       return true;
     case QuranTeachingAccessMode.broad:
-      return lesson.order <= 1 || progress.completedLessonIds.length >= lesson.order;
+      return lesson.order <= 1 ||
+          progress.completedLessonIds.length >= lesson.order;
     case QuranTeachingAccessMode.guided:
       if (lesson.order == 0) return true;
       final lessons = catalog.lessonsForModule(module.id);

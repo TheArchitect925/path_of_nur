@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../shared/widgets/quran_quote_block.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/application/kids_ui_theme_provider.dart';
+import '../../../../shared/content/learning_quote.dart';
 import '../application/learn_together_provider.dart';
 import '../application/learning_journey_progress_provider.dart';
 import '../application/learning_path_provider.dart';
@@ -180,14 +180,7 @@ class _LearningJourneyStagePageState
       headerIcon: Icons.open_in_new_rounded,
       title: localizedStageTitle(context, stage),
       subtitle: l10n.learningJourneyStageOpeningSubtitle,
-      quote: const QuranQuote(
-        arabic: 'رَبِّ زِدْنِي عِلْمًا',
-        transliteration: 'Rabbi zidni ilma',
-        translation: 'My Lord, increase me in knowledge.',
-        surah: 20,
-        verse: 114,
-        locationLabel: 'Qur’an 20:114',
-      ),
+      quote: buildLearningCompactQuote(),
       children: [
         SizedBox(height: 32),
         Center(child: CircularProgressIndicator()),

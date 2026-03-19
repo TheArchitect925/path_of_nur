@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/application/kids_ui_theme_provider.dart';
-import '../../../../shared/widgets/quran_quote_block.dart';
+import '../../../../shared/content/learning_quote.dart';
 import '../../../accounts_sync/application/accounts_sync_controller.dart';
 import '../application/family_learning_provider.dart';
 import '../application/learn_together_provider.dart';
@@ -120,14 +120,7 @@ class LearningJourneyHomePage extends ConsumerWidget {
       headerIcon: Icons.hub_rounded,
       title: l10n.learningJourneyHomeTitle,
       subtitle: l10n.learningJourneyHomeSubtitle,
-      quote: const QuranQuote(
-        arabic: 'رَبِّ زِدْنِي عِلْمًا',
-        transliteration: 'Rabbi zidni ilma',
-        translation: 'My Lord, increase me in knowledge.',
-        surah: 20,
-        verse: 114,
-        locationLabel: 'Qur’an 20:114',
-      ),
+      quote: buildLearningCompactQuote(),
       children: [
         if (switcherProfiles.length > 1 || guardianChildren.isNotEmpty)
           Padding(
@@ -713,17 +706,6 @@ class LearningJourneyHomePage extends ConsumerWidget {
                 .toList(growable: false),
           ),
           const SizedBox(height: 6),
-        ],
-        if (visibilityPolicy.showBrowseAll && !kidsUi.enabled) ...[
-          LearningJourneyToolCard(
-            title: l10n.learningJourneyHomeBrowseAllTitle,
-            subtitle: familyContext.isChildProfile
-                ? l10n.familyLearningBrowseAllChildSubtitle
-                : l10n.learningJourneyHomeBrowseAllSubtitle,
-            icon: Icons.grid_view_rounded,
-            onTap: () => context.pushNamed('learnJourneyBrowse'),
-          ),
-          const SizedBox(height: 10),
         ],
         if (visibilityPolicy.showLegacyLearning && !kidsUi.enabled)
           LearningJourneyToolCard(

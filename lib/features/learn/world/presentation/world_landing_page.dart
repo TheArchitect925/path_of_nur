@@ -145,46 +145,45 @@ class _WorldLandingPageState extends ConsumerState<WorldLandingPage> {
                   'Move from reading to direct observation with guided prompts, private capture, and reflection.',
                 ),
                 const SizedBox(height: 10),
-                Wrap(
-                  spacing: 8,
-                  runSpacing: 8,
-                  children: [
-                    FilledButton.tonalIcon(
-                      onPressed: () =>
-                          context.pushNamed('creationExplorer'),
-                      icon: const Icon(Icons.travel_explore_rounded),
-                      label: const Text('Explore Creation'),
+                _ExploreActionGrid(
+                  actions: [
+                    _ExploreActionData(
+                      title: 'Explore Creation',
+                      icon: Icons.travel_explore_rounded,
+                      emphasis: _ExploreActionEmphasis.tonal,
+                      onTap: () => context.pushNamed('creationExplorer'),
                     ),
-                    FilledButton.tonalIcon(
-                      onPressed: () => context.pushNamed('creationChallenges'),
-                      icon: const Icon(Icons.flag_circle_rounded),
-                      label: const Text('Creation Challenges'),
+                    _ExploreActionData(
+                      title: 'Creation Challenges',
+                      icon: Icons.flag_circle_rounded,
+                      emphasis: _ExploreActionEmphasis.tonal,
+                      onTap: () => context.pushNamed('creationChallenges'),
                     ),
-                    FilledButton.tonalIcon(
-                      onPressed: () => context.pushNamed('skyExplorer'),
-                      icon: const Icon(Icons.nights_stay_rounded),
-                      label: const Text('Sky Explorer'),
+                    _ExploreActionData(
+                      title: 'Sky Explorer',
+                      icon: Icons.nights_stay_rounded,
+                      emphasis: _ExploreActionEmphasis.tonal,
+                      onTap: () => context.pushNamed('skyExplorer'),
                     ),
-                    OutlinedButton.icon(
-                      onPressed: () => context.pushNamed('worldSignsExplorer'),
-                      icon: const Icon(Icons.hub_outlined),
-                      label: const Text('Signs Explorer'),
+                    _ExploreActionData(
+                      title: 'Signs Explorer',
+                      icon: Icons.hub_outlined,
+                      onTap: () => context.pushNamed('worldSignsExplorer'),
                     ),
-                    OutlinedButton.icon(
-                      onPressed: () => context.pushNamed('worldCosmicScale'),
-                      icon: const Icon(Icons.straighten_rounded),
-                      label: const Text('Cosmic Scale'),
+                    _ExploreActionData(
+                      title: 'Cosmic Scale',
+                      icon: Icons.straighten_rounded,
+                      onTap: () => context.pushNamed('worldCosmicScale'),
                     ),
-                    OutlinedButton.icon(
-                      onPressed: () => context.pushNamed('worldDeepOcean'),
-                      icon: const Icon(Icons.water_rounded),
-                      label: const Text('Deep Ocean'),
+                    _ExploreActionData(
+                      title: 'Deep Ocean',
+                      icon: Icons.water_rounded,
+                      onTap: () => context.pushNamed('worldDeepOcean'),
                     ),
-                    OutlinedButton.icon(
-                      onPressed: () =>
-                          context.pushNamed('worldAtmosphereLayers'),
-                      icon: const Icon(Icons.layers_rounded),
-                      label: const Text('Atmosphere Layers'),
+                    _ExploreActionData(
+                      title: 'Atmosphere Layers',
+                      icon: Icons.layers_rounded,
+                      onTap: () => context.pushNamed('worldAtmosphereLayers'),
                     ),
                   ],
                 ),
@@ -335,6 +334,101 @@ class _WorldLandingPageState extends ConsumerState<WorldLandingPage> {
       case _WorldHubTab.scientists:
         return 'Scientists';
     }
+  }
+}
+
+enum _ExploreActionEmphasis { outlined, tonal }
+
+class _ExploreActionData {
+  const _ExploreActionData({
+    required this.title,
+    required this.icon,
+    required this.onTap,
+    this.emphasis = _ExploreActionEmphasis.outlined,
+  });
+
+  final String title;
+  final IconData icon;
+  final VoidCallback onTap;
+  final _ExploreActionEmphasis emphasis;
+}
+
+class _ExploreActionGrid extends StatelessWidget {
+  const _ExploreActionGrid({required this.actions});
+
+  final List<_ExploreActionData> actions;
+
+  @override
+  Widget build(BuildContext context) {
+    final textScale = MediaQuery.textScalerOf(context).scale(1);
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final useSingleColumn = constraints.maxWidth < 420 || textScale > 1.1;
+        final spacing = useSingleColumn ? 0.0 : 8.0;
+        final itemWidth = useSingleColumn
+            ? constraints.maxWidth
+            : (constraints.maxWidth - spacing) / 2;
+        return Wrap(
+          spacing: spacing,
+          runSpacing: 8,
+          children: actions
+              .map(
+                (action) => SizedBox(
+                  width: itemWidth,
+                  child: _ExploreActionCard(action: action),
+                ),
+              )
+              .toList(growable: false),
+        );
+      },
+    );
+  }
+}
+
+class _ExploreActionCard extends StatelessWidget {
+  const _ExploreActionCard({required this.action});
+
+  final _ExploreActionData action;
+
+  @override
+  Widget build(BuildContext context) {
+    final isTonal = action.emphasis == _ExploreActionEmphasis.tonal;
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: action.onTap,
+        borderRadius: BorderRadius.circular(16),
+        child: Ink(
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+          decoration: BoxDecoration(
+            color: isTonal ? const Color(0xFFF3EEE6) : Colors.transparent,
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(color: const Color(0xFFE3D6C4)),
+          ),
+          child: Row(
+            children: [
+              Icon(
+                action.icon,
+                size: 18,
+                color: const Color(0xFF6A553E),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Text(
+                  action.title,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w600,
+                    height: 1.25,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
 

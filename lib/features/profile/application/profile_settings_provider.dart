@@ -22,6 +22,9 @@ class ProfileSettingsState {
     required this.hideGrowthVisuals,
     required this.reflectionOnlyMode,
     required this.prayerReminders,
+    required this.prayerReminderFollowUpEnabled,
+    required this.prayerReminderFollowUpDelayMinutes,
+    required this.prayerReminderSnoozeMinutes,
     required this.dhikrReminders,
     required this.quranReminders,
     required this.reflectionReminders,
@@ -47,6 +50,9 @@ class ProfileSettingsState {
   final bool hideGrowthVisuals;
   final bool reflectionOnlyMode;
   final bool prayerReminders;
+  final bool prayerReminderFollowUpEnabled;
+  final int prayerReminderFollowUpDelayMinutes;
+  final int prayerReminderSnoozeMinutes;
   final bool dhikrReminders;
   final bool quranReminders;
   final bool reflectionReminders;
@@ -57,10 +63,8 @@ class ProfileSettingsState {
   final String? ramadanStartDateIso;
   final String? ramadanEndDateIso;
 
-  bool get effectiveKidsUiThemeEnabled => resolveKidsUiThemeEnabled(
-        ageRange: ageRange,
-        mode: kidsUiThemeMode,
-      );
+  bool get effectiveKidsUiThemeEnabled =>
+      resolveKidsUiThemeEnabled(ageRange: ageRange, mode: kidsUiThemeMode);
 
   ProfileSettingsState copyWith({
     ProfileThemePreference? themePreference,
@@ -77,6 +81,9 @@ class ProfileSettingsState {
     bool? hideGrowthVisuals,
     bool? reflectionOnlyMode,
     bool? prayerReminders,
+    bool? prayerReminderFollowUpEnabled,
+    int? prayerReminderFollowUpDelayMinutes,
+    int? prayerReminderSnoozeMinutes,
     bool? dhikrReminders,
     bool? quranReminders,
     bool? reflectionReminders,
@@ -102,6 +109,13 @@ class ProfileSettingsState {
       hideGrowthVisuals: hideGrowthVisuals ?? this.hideGrowthVisuals,
       reflectionOnlyMode: reflectionOnlyMode ?? this.reflectionOnlyMode,
       prayerReminders: prayerReminders ?? this.prayerReminders,
+      prayerReminderFollowUpEnabled:
+          prayerReminderFollowUpEnabled ?? this.prayerReminderFollowUpEnabled,
+      prayerReminderFollowUpDelayMinutes:
+          prayerReminderFollowUpDelayMinutes ??
+          this.prayerReminderFollowUpDelayMinutes,
+      prayerReminderSnoozeMinutes:
+          prayerReminderSnoozeMinutes ?? this.prayerReminderSnoozeMinutes,
       dhikrReminders: dhikrReminders ?? this.dhikrReminders,
       quranReminders: quranReminders ?? this.quranReminders,
       reflectionReminders: reflectionReminders ?? this.reflectionReminders,
@@ -134,6 +148,9 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
           hideGrowthVisuals: false,
           reflectionOnlyMode: false,
           prayerReminders: true,
+          prayerReminderFollowUpEnabled: true,
+          prayerReminderFollowUpDelayMinutes: 20,
+          prayerReminderSnoozeMinutes: 10,
           dhikrReminders: true,
           quranReminders: false,
           reflectionReminders: false,
@@ -258,6 +275,23 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
     _save();
   }
 
+  void setPrayerReminderFollowUpEnabled(bool value) {
+    state = state.copyWith(prayerReminderFollowUpEnabled: value);
+    _save();
+  }
+
+  void setPrayerReminderFollowUpDelayMinutes(int value) {
+    state = state.copyWith(
+      prayerReminderFollowUpDelayMinutes: value.clamp(1, 120),
+    );
+    _save();
+  }
+
+  void setPrayerReminderSnoozeMinutes(int value) {
+    state = state.copyWith(prayerReminderSnoozeMinutes: value.clamp(1, 60));
+    _save();
+  }
+
   void setDhikrReminders(bool value) {
     state = state.copyWith(dhikrReminders: value);
     _save();
@@ -345,10 +379,9 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
       }
     }
     if (kidsUiThemeModeName == null && data.containsKey('kidsModeEnabled')) {
-      kidsUiThemeMode =
-          (data['kidsModeEnabled'] as bool? ?? false)
-              ? KidsUiThemeMode.on
-              : KidsUiThemeMode.off;
+      kidsUiThemeMode = (data['kidsModeEnabled'] as bool? ?? false)
+          ? KidsUiThemeMode.on
+          : KidsUiThemeMode.off;
     }
     final resolvedKidsMode = resolveKidsUiThemeEnabled(
       ageRange: ageRange,
@@ -379,6 +412,15 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
           data['reflectionOnlyMode'] as bool? ?? state.reflectionOnlyMode,
       prayerReminders:
           data['prayerReminders'] as bool? ?? state.prayerReminders,
+      prayerReminderFollowUpEnabled:
+          data['prayerReminderFollowUpEnabled'] as bool? ??
+          state.prayerReminderFollowUpEnabled,
+      prayerReminderFollowUpDelayMinutes:
+          (data['prayerReminderFollowUpDelayMinutes'] as num?)?.toInt() ??
+          state.prayerReminderFollowUpDelayMinutes,
+      prayerReminderSnoozeMinutes:
+          (data['prayerReminderSnoozeMinutes'] as num?)?.toInt() ??
+          state.prayerReminderSnoozeMinutes,
       dhikrReminders: data['dhikrReminders'] as bool? ?? state.dhikrReminders,
       quranReminders: data['quranReminders'] as bool? ?? state.quranReminders,
       reflectionReminders:
@@ -414,6 +456,10 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
       'hideGrowthVisuals': state.hideGrowthVisuals,
       'reflectionOnlyMode': state.reflectionOnlyMode,
       'prayerReminders': state.prayerReminders,
+      'prayerReminderFollowUpEnabled': state.prayerReminderFollowUpEnabled,
+      'prayerReminderFollowUpDelayMinutes':
+          state.prayerReminderFollowUpDelayMinutes,
+      'prayerReminderSnoozeMinutes': state.prayerReminderSnoozeMinutes,
       'dhikrReminders': state.dhikrReminders,
       'quranReminders': state.quranReminders,
       'reflectionReminders': state.reflectionReminders,

@@ -10,6 +10,7 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/persistence/local_store.dart';
 import '../../../../shared/state/user_profile_state.dart';
+import '../../../../shared/utils/compact_duration_formatter.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/section_title.dart';
 import '../../data/prayer_log_repository.dart';
@@ -1817,19 +1818,11 @@ String _humanDuration(
   AppLocalizations l10n,
   Duration duration,
 ) {
-  if (duration.isNegative) {
-    return l10n.worshipPrayerDurationMinutes(_formatCount(context, 0));
-  }
-  final hours = duration.inHours;
-  final minutes = duration.inMinutes.remainder(60);
-  if (hours > 0) {
-    return l10n.worshipPrayerDurationHoursMinutes(
-      _formatCount(context, hours),
-      _formatCount(context, minutes),
-    );
-  }
-  return l10n.worshipPrayerDurationMinutes(
-    _formatCount(context, math.max(0, minutes)),
+  return formatCompactDuration(
+    duration,
+    localeName: l10n.localeName,
+    hourSuffix: l10n.durationCompactHourSuffix,
+    minuteSuffix: l10n.durationCompactMinuteSuffix,
   );
 }
 

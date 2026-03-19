@@ -1,5 +1,97 @@
 {
   "images" : [
+    {
+      "size" : "24x24",
+      "idiom" : "watch",
+      "filename" : "watch-notification-48.png",
+      "role" : "notificationCenter",
+      "scale" : "2x",
+      "subtype" : "38mm"
+    },
+    {
+      "size" : "27.5x27.5",
+      "idiom" : "watch",
+      "filename" : "watch-notification-55.png",
+      "role" : "notificationCenter",
+      "scale" : "2x",
+      "subtype" : "42mm"
+    },
+    {
+      "size" : "29x29",
+      "idiom" : "watch",
+      "filename" : "watch-settings-58.png",
+      "role" : "companionSettings",
+      "scale" : "2x"
+    },
+    {
+      "size" : "29x29",
+      "idiom" : "watch",
+      "filename" : "watch-settings-87.png",
+      "role" : "companionSettings",
+      "scale" : "3x"
+    },
+    {
+      "size" : "40x40",
+      "idiom" : "watch",
+      "filename" : "watch-home-80.png",
+      "role" : "appLauncher",
+      "scale" : "2x",
+      "subtype" : "38mm"
+    },
+    {
+      "size" : "44x44",
+      "idiom" : "watch",
+      "filename" : "watch-home-88.png",
+      "role" : "appLauncher",
+      "scale" : "2x",
+      "subtype" : "40mm"
+    },
+    {
+      "size" : "46x46",
+      "idiom" : "watch",
+      "filename" : "watch-home-92.png",
+      "role" : "appLauncher",
+      "scale" : "2x",
+      "subtype" : "41mm"
+    },
+    {
+      "size" : "50x50",
+      "idiom" : "watch",
+      "filename" : "watch-home-100.png",
+      "role" : "appLauncher",
+      "scale" : "2x",
+      "subtype" : "44mm"
+    },
+    {
+      "size" : "86x86",
+      "idiom" : "watch",
+      "filename" : "watch-quicklook-172.png",
+      "role" : "quickLook",
+      "scale" : "2x",
+      "subtype" : "38mm"
+    },
+    {
+      "size" : "98x98",
+      "idiom" : "watch",
+      "filename" : "watch-quicklook-196.png",
+      "role" : "quickLook",
+      "scale" : "2x",
+      "subtype" : "42mm"
+    },
+    {
+      "size" : "108x108",
+      "idiom" : "watch",
+      "filename" : "watch-quicklook-216.png",
+      "role" : "quickLook",
+      "scale" : "2x",
+      "subtype" : "44mm"
+    },
+    {
+      "size" : "1024x1024",
+      "idiom" : "watch-marketing",
+      "filename" : "watch-marketing-1024.png",
+      "scale" : "1x"
+    }
   ],
   "info" : {
     "author" : "xcode",

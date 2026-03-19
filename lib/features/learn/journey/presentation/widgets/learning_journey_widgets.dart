@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../l10n/app_localizations.dart';
+import '../../../../../shared/theme/islamic_icons.dart';
 import '../../data/learning_journey_localized_metadata.dart';
 import '../../domain/learning_journey_models.dart';
 
@@ -105,7 +106,6 @@ class LearningJourneyIslandCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(20),
@@ -146,25 +146,6 @@ class LearningJourneyIslandCard extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
               style: const TextStyle(color: Color(0xFF675B4E), height: 1.35),
             ),
-            const SizedBox(height: 12),
-            Row(
-              children: [
-                Text(
-                  l10n.learningJourneyIslandOpenAction,
-                  style: TextStyle(
-                    fontSize: 12.5,
-                    fontWeight: FontWeight.w700,
-                    color: island.accentColor,
-                  ),
-                ),
-                const Spacer(),
-                Icon(
-                  Icons.arrow_forward_rounded,
-                  size: 18,
-                  color: island.accentColor,
-                ),
-              ],
-            ),
           ],
         ),
       ),
@@ -179,19 +160,19 @@ class LearningJourneyCard extends StatelessWidget {
     required this.stageCount,
     required this.onTap,
     this.progress,
-    this.ctaLabel,
   });
 
   final LearningJourney journey;
   final int stageCount;
   final VoidCallback onTap;
   final double? progress;
-  final String? ctaLabel;
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final effectiveProgress = progress?.clamp(0.0, 1.0);
+    final leadingIcon = _journeyIcon(journey);
+    final leadingColor = _journeyIconColor(journey);
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(18),
@@ -211,7 +192,7 @@ class LearningJourneyCard extends StatelessWidget {
                 color: const Color(0xFFEADCC7),
                 borderRadius: BorderRadius.circular(12),
               ),
-              child: const Icon(Icons.route_rounded, color: Color(0xFF7A6241)),
+              child: Icon(leadingIcon, color: leadingColor),
             ),
             const SizedBox(width: 12),
             Expanded(
@@ -259,28 +240,6 @@ class LearningJourneyCard extends StatelessWidget {
                   ],
                 ],
               ),
-            ),
-            const SizedBox(width: 12),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  ctaLabel ??
-                      ((effectiveProgress != null && effectiveProgress > 0)
-                          ? l10n.learningJourneyCardActionContinue
-                          : l10n.learningJourneyCardActionStart),
-                  style: const TextStyle(
-                    fontSize: 12.2,
-                    fontWeight: FontWeight.w700,
-                    color: Color(0xFF8C7966),
-                  ),
-                ),
-                const SizedBox(height: 4),
-                const Icon(
-                  Icons.chevron_right_rounded,
-                  color: Color(0xFF8C7966),
-                ),
-              ],
             ),
           ],
         ),
@@ -479,8 +438,6 @@ class LearningJourneyStageCard extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(width: 8),
-            const Icon(Icons.chevron_right_rounded, color: Color(0xFF8C7966)),
           ],
         ),
       ),
@@ -552,11 +509,59 @@ class LearningJourneyToolCard extends StatelessWidget {
                 ],
               ),
             ),
-            const Icon(Icons.chevron_right_rounded, color: Color(0xFF8C7966)),
           ],
         ),
       ),
     );
+  }
+}
+
+IconData _journeyIcon(LearningJourney journey) {
+  switch (journey.islandId) {
+    case 'core-knowledge':
+      return IslamicIcons.quran;
+    case 'practice-worship':
+      return IslamicIcons.prayer;
+    case 'understanding-islam':
+      return IslamicIcons.allahText;
+    case 'arabic-learning':
+      return IslamicIcons.lantern;
+    case 'discovery':
+      return IslamicIcons.ninetyNine;
+    case 'kids-learning':
+      return IslamicIcons.family;
+    case 'browse-all':
+      return IslamicIcons.community;
+    case 'tools-other':
+      return IslamicIcons.locationMosque;
+    case 'legacy-learning':
+      return IslamicIcons.kaaba;
+    default:
+      return IslamicIcons.lantern;
+  }
+}
+
+Color _journeyIconColor(LearningJourney journey) {
+  switch (journey.islandId) {
+    case 'practice-worship':
+      return const Color(0xFF5A6C49);
+    case 'understanding-islam':
+      return const Color(0xFF815A3D);
+    case 'arabic-learning':
+      return const Color(0xFF53608D);
+    case 'discovery':
+      return const Color(0xFF755C7C);
+    case 'kids-learning':
+      return const Color(0xFF9A6233);
+    case 'browse-all':
+      return const Color(0xFF4E5B8C);
+    case 'tools-other':
+      return const Color(0xFF45636D);
+    case 'legacy-learning':
+      return const Color(0xFF7D5E43);
+    case 'core-knowledge':
+    default:
+      return const Color(0xFF7A6241);
   }
 }
 

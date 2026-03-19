@@ -19,9 +19,19 @@ final growthControllerProvider =
       return GrowthController(ref.watch(localStoreProvider));
     });
 
-final growthInternalTabProvider = StateProvider<GrowthInternalTab>(
-  (ref) => GrowthInternalTab.today,
-);
+class GrowthHabitSectionData {
+  const GrowthHabitSectionData({
+    required this.id,
+    required this.title,
+    required this.subtitle,
+    required this.habits,
+  });
+
+  final String id;
+  final String title;
+  final String? subtitle;
+  final List<GrowthHabit> habits;
+}
 
 final growthSelectedDateProvider = StateProvider<DateTime>(
   (ref) => DateTime.now(),
@@ -67,6 +77,23 @@ final growthStageContentByNumberProvider =
       final map = <int, GrowthStageContent>{};
       for (final item in ref.watch(growthStageContentProvider)) {
         map[item.stage] = item;
+      }
+      return map;
+    });
+
+final growthCustomHabitCategoriesProvider = Provider<List<GrowthCustomCategory>>((
+  ref,
+) {
+  final categories = [...ref.watch(growthControllerProvider).customHabitCategories];
+  categories.sort((a, b) => a.sortOrder.compareTo(b.sortOrder));
+  return categories;
+});
+
+final growthCustomHabitCategoriesByIdProvider =
+    Provider<Map<String, GrowthCustomCategory>>((ref) {
+      final map = <String, GrowthCustomCategory>{};
+      for (final category in ref.watch(growthCustomHabitCategoriesProvider)) {
+        map[category.id] = category;
       }
       return map;
     });
@@ -225,6 +252,13 @@ final growthHabitsByIdProvider = Provider<Map<String, GrowthHabit>>((ref) {
   return map;
 });
 
+final growthEnabledHabitsProvider = Provider<List<GrowthHabit>>((ref) {
+  return ref
+      .watch(growthAllHabitsProvider)
+      .where((habit) => habit.active && !habit.hidden && !habit.archived)
+      .toList(growable: false);
+});
+
 final growthLogsForSelectedDateProvider = Provider<Map<String, GrowthHabitLog>>(
   (ref) {
     final state = ref.watch(growthControllerProvider);
@@ -265,6 +299,46 @@ final growthDueHabitsByCategoryProvider =
         map[habit.category]!.add(habit);
       }
       return map;
+    });
+
+final growthDueHabitSectionsProvider =
+    Provider<List<GrowthHabitSectionData>>((ref) {
+      final due = ref.watch(growthDueHabitsForSelectedDateProvider);
+      final categoryMeta = ref.watch(growthCategoryContentByTypeProvider);
+      final customCategories = ref.watch(growthCustomHabitCategoriesByIdProvider);
+      final sections = <String, List<GrowthHabit>>{};
+      for (final habit in due) {
+        final key = habit.customCategoryId?.isNotEmpty == true
+            ? 'custom:${habit.customCategoryId}'
+            : 'system:${habit.category.name}';
+        sections.putIfAbsent(key, () => <GrowthHabit>[]);
+        sections[key]!.add(habit);
+      }
+      final result = <GrowthHabitSectionData>[];
+      for (final entry in sections.entries) {
+        entry.value.sort((a, b) => a.sortOrder.compareTo(b.sortOrder));
+        final first = entry.value.first;
+        final customCategory = first.customCategoryId == null
+            ? null
+            : customCategories[first.customCategoryId!];
+        result.add(
+          GrowthHabitSectionData(
+            id: entry.key,
+            title: customCategory?.title ??
+                categoryMeta[first.category]?.title ??
+                first.category.name,
+            subtitle: customCategory?.description ??
+                categoryMeta[first.category]?.subtitle,
+            habits: entry.value,
+          ),
+        );
+      }
+      result.sort((a, b) {
+        final left = a.habits.first.sortOrder;
+        final right = b.habits.first.sortOrder;
+        return left.compareTo(right);
+      });
+      return result;
     });
 
 final growthSeasonalReflectionPromptsProvider = Provider<List<String>>((ref) {

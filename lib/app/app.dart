@@ -17,6 +17,7 @@ import '../features/learn/prophets/application/daily_learning_surfaces.dart';
 import '../features/wallpaper/application/wallpaper_provider.dart';
 import '../features/accounts_sync/application/accounts_sync_controller.dart';
 import '../features/profile/application/profile_settings_provider.dart';
+import '../features/watch_companion/application/apple_watch_runtime_bridge.dart';
 import '../l10n/app_localizations.dart';
 
 class PathOfNurApp extends ConsumerWidget {
@@ -34,6 +35,7 @@ class PathOfNurApp extends ConsumerWidget {
     ref.watch(prophetDailySurfacesBootstrapProvider);
     ref.watch(appQuickActionsBootstrapProvider);
     ref.watch(appNavigationBridgeBootstrapProvider);
+    ref.watch(appleWatchRuntimeBridgeBootstrapProvider);
     ref.watch(journeyProgressAutoSyncProvider);
     ref.watch(wallpaperAutoUnlockProvider);
     ref.watch(prayerLiveActivityBootstrapProvider);
@@ -45,9 +47,7 @@ class PathOfNurApp extends ConsumerWidget {
     );
     final localeTag = locale?.toLanguageTag() ?? 'en';
     return MaterialApp.router(
-      key: ValueKey<String>(
-        'app-$scopeVersion-$localeTag',
-      ),
+      key: ValueKey<String>('app-$scopeVersion-$localeTag'),
       onGenerateTitle: (context) => AppLocalizations.of(context).appTitle,
       debugShowCheckedModeBanner: false,
       theme: theme,

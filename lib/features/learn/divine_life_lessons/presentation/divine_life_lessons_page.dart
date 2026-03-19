@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_surfaces.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/quran_reference_block.dart';
 import '../../../../shared/widgets/segmented_pill_control.dart';
@@ -486,24 +487,32 @@ class _CategoryPill extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final selectedStyle = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.pill,
+      tintColor: AppColors.accentGold,
+    );
+    final defaultStyle = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.pill,
+    );
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(999),
+      splashColor: defaultStyle.splashColor,
+      highlightColor: defaultStyle.highlightColor,
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(999),
           color: selected
-              ? AppColors.accentGold.withValues(alpha: 0.30)
-              : AppColors.surface.withValues(
-                  alpha: AppColors.glassSurfaceAlpha,
-                ),
+              ? selectedStyle.iconBackgroundColor
+              : defaultStyle.backgroundColor,
+          gradient: selected ? selectedStyle.gradient : defaultStyle.gradient,
           border: Border.all(
             color: selected
-                ? AppColors.accentGold.withValues(alpha: 0.70)
-                : AppColors.accentGold.withValues(
-                    alpha: AppColors.glassBorderAlpha,
-                  ),
+                ? selectedStyle.borderColor
+                : defaultStyle.borderColor,
           ),
         ),
         child: Text(
@@ -531,17 +540,13 @@ class _SearchCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final surfaceStyle = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.panel,
+    );
     return Container(
       padding: const EdgeInsets.fromLTRB(12, 10, 12, 8),
-      decoration: BoxDecoration(
-        color: AppColors.surface.withValues(alpha: AppColors.glassSurfaceAlpha),
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: AppColors.accentGold.withValues(
-            alpha: AppColors.glassBorderAlpha,
-          ),
-        ),
-      ),
+      decoration: surfaceStyle.decoration(radius: 16),
       child: Column(
         children: [
           Row(

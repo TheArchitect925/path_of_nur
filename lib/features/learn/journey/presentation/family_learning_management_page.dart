@@ -290,7 +290,7 @@ class _FamilyLearningManagementPageState
                                 if (!context.mounted) {
                                   return;
                                 }
-                                context.go('/learn');
+                                Navigator.of(context).maybePop();
                               },
                               icon: const Icon(Icons.switch_account_rounded),
                               label: Text(

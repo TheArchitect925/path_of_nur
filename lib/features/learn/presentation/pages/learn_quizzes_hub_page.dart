@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_surfaces.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../hadith/data/seeded_hadith_path_quiz_data.dart';
@@ -253,12 +254,13 @@ class _LearnQuizzesHubPageState extends ConsumerState<LearnQuizzesHubPage> {
   }
 
   Widget _chip(String label) {
+    final style = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.pill,
+    );
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-      decoration: BoxDecoration(
-        color: AppColors.surface.withValues(alpha: AppColors.glassSurfaceAlpha),
-        borderRadius: BorderRadius.circular(999),
-      ),
+      decoration: style.decoration(radius: 999),
       child: Text(label),
     );
   }

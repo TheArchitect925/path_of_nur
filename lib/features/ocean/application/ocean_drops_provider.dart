@@ -40,12 +40,12 @@ const String oceanActionCelestialVerseOpened = 'celestial_verse_opened';
 const String oceanActionCelestialObservationSaved =
     'celestial_observation_saved';
 const String oceanActionCreationExplorerOpened = 'creation_explorer_opened';
-const String oceanActionCreationObservationSaved =
-    'creation_observation_saved';
+const String oceanActionCreationObservationSaved = 'creation_observation_saved';
 const String oceanActionCreationReflectionWritten =
     'creation_reflection_written';
 const String oceanActionCreationChallengeCompleted =
     'creation_challenge_completed';
+const String oceanActionJourneyDropAwarded = 'journey_drop_awarded';
 
 const String oceanSourceHome = 'home';
 const String oceanSourcePrayer = 'prayer';
@@ -58,6 +58,7 @@ const String oceanSourceSalahTrainer = 'salah_trainer';
 const String oceanSourceDua = 'dua';
 const String oceanSourceNotes = 'notes';
 const String oceanSourceGrowth = 'growth';
+const String oceanSourceDrops = 'drops';
 const String oceanSourceCelestial = 'celestial';
 const String oceanSourceCreation = 'creation';
 
@@ -85,14 +86,14 @@ class OceanDropEvent {
   String get dateKey => LocalStore.todayKey(timestamp);
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'id': id,
-        'timestamp': timestamp.toIso8601String(),
-        'actionType': actionType,
-        'sourceModule': sourceModule,
-        'amount': amount,
-        'referenceId': referenceId,
-        'metadata': metadata,
-      };
+    'id': id,
+    'timestamp': timestamp.toIso8601String(),
+    'actionType': actionType,
+    'sourceModule': sourceModule,
+    'amount': amount,
+    'referenceId': referenceId,
+    'metadata': metadata,
+  };
 
   static OceanDropEvent? fromJson(dynamic raw) {
     if (raw is! Map) return null;
@@ -107,8 +108,9 @@ class OceanDropEvent {
       return null;
     }
     final metadata = raw['metadata'] is Map
-        ? (raw['metadata'] as Map)
-              .map((key, value) => MapEntry(key.toString(), value))
+        ? (raw['metadata'] as Map).map(
+            (key, value) => MapEntry(key.toString(), value),
+          )
         : null;
     return OceanDropEvent(
       id: id,
@@ -161,13 +163,13 @@ class OceanDropStats {
   }
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'totalDropsLifetime': totalDropsLifetime,
-        'dropsToday': dropsToday,
-        'dropsThisWeek': dropsThisWeek,
-        'dropsThisMonth': dropsThisMonth,
-        'freeDhikrCarryCount': freeDhikrCarryCount,
-        'lastDropAwardedAt': lastDropAwardedAt?.toIso8601String(),
-      };
+    'totalDropsLifetime': totalDropsLifetime,
+    'dropsToday': dropsToday,
+    'dropsThisWeek': dropsThisWeek,
+    'dropsThisMonth': dropsThisMonth,
+    'freeDhikrCarryCount': freeDhikrCarryCount,
+    'lastDropAwardedAt': lastDropAwardedAt?.toIso8601String(),
+  };
 
   static OceanDropStats fromJson(Map<String, dynamic>? json) {
     if (json == null) {
@@ -186,8 +188,9 @@ class OceanDropStats {
       dropsThisWeek: (json['dropsThisWeek'] as num?)?.toInt() ?? 0,
       dropsThisMonth: (json['dropsThisMonth'] as num?)?.toInt() ?? 0,
       freeDhikrCarryCount: (json['freeDhikrCarryCount'] as num?)?.toInt() ?? 0,
-      lastDropAwardedAt:
-          DateTime.tryParse(json['lastDropAwardedAt']?.toString() ?? ''),
+      lastDropAwardedAt: DateTime.tryParse(
+        json['lastDropAwardedAt']?.toString() ?? '',
+      ),
     );
   }
 }
@@ -254,15 +257,15 @@ class OceanDropsState {
   }
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'stats': stats.toJson(),
-        'personalStats': personalStats.toJson(),
-        'communityStats': communityStats.toJson(),
-        'events': events.map((event) => event.toJson()).toList(),
-        'dailyDropHistory': dailyDropHistory,
-        'awardedEligibilityKeys': awardedEligibilityKeys.toList(),
-        'freeDhikrBlocksAwarded': freeDhikrBlocksAwarded,
-        'communityBaselineDrops': communityBaselineDrops.toString(),
-      };
+    'stats': stats.toJson(),
+    'personalStats': personalStats.toJson(),
+    'communityStats': communityStats.toJson(),
+    'events': events.map((event) => event.toJson()).toList(),
+    'dailyDropHistory': dailyDropHistory,
+    'awardedEligibilityKeys': awardedEligibilityKeys.toList(),
+    'freeDhikrBlocksAwarded': freeDhikrBlocksAwarded,
+    'communityBaselineDrops': communityBaselineDrops.toString(),
+  };
 
   static OceanDropsState fromJson(Map<String, dynamic>? json) {
     if (json == null) {
@@ -285,34 +288,42 @@ class OceanDropsState {
       if (parsed != null) events.add(parsed);
     }
     final rawDailyHistory = json['dailyDropHistory'];
-    final dailyHistoryMap =
-        rawDailyHistory is Map ? rawDailyHistory : const <dynamic, dynamic>{};
+    final dailyHistoryMap = rawDailyHistory is Map
+        ? rawDailyHistory
+        : const <dynamic, dynamic>{};
     final rawEligibilityKeys = json['awardedEligibilityKeys'];
     final eligibilityKeyList = rawEligibilityKeys is List
         ? rawEligibilityKeys
         : const <dynamic>[];
     return OceanDropsState(
       stats: OceanDropStats.fromJson(
-        (json['stats'] as Map?)?.map((key, value) => MapEntry(key.toString(), value)),
+        (json['stats'] as Map?)?.map(
+          (key, value) => MapEntry(key.toString(), value),
+        ),
       ),
       personalStats: PersonalWaterStats.fromJson(
-        (json['personalStats'] as Map?)
-            ?.map((key, value) => MapEntry(key.toString(), value)),
+        (json['personalStats'] as Map?)?.map(
+          (key, value) => MapEntry(key.toString(), value),
+        ),
       ),
       communityStats: CommunityOceanStats.fromJson(
-        (json['communityStats'] as Map?)
-            ?.map((key, value) => MapEntry(key.toString(), value)),
+        (json['communityStats'] as Map?)?.map(
+          (key, value) => MapEntry(key.toString(), value),
+        ),
       ),
       events: events,
-      dailyDropHistory: dailyHistoryMap
-          .map((key, value) => MapEntry(key.toString(), (value as num?)?.toInt() ?? 0)),
+      dailyDropHistory: dailyHistoryMap.map(
+        (key, value) => MapEntry(key.toString(), (value as num?)?.toInt() ?? 0),
+      ),
       awardedEligibilityKeys: eligibilityKeyList
           .map((item) => item.toString())
           .toSet(),
       freeDhikrBlocksAwarded:
           (json['freeDhikrBlocksAwarded'] as num?)?.toInt() ?? 0,
-      communityBaselineDrops:
-          parseBigInt(json['communityBaselineDrops'], fallback: BigInt.from(500000)),
+      communityBaselineDrops: parseBigInt(
+        json['communityBaselineDrops'],
+        fallback: BigInt.from(500000),
+      ),
     );
   }
 }
@@ -342,9 +353,9 @@ class OceanDropsRepository {
     required AppDatabase database,
     required LocalStore legacyStore,
     required String scopeId,
-  })  : _database = database,
-        _legacyStore = legacyStore,
-        _scopeId = scopeId;
+  }) : _database = database,
+       _legacyStore = legacyStore,
+       _scopeId = scopeId;
 
   final AppDatabase _database;
   final LocalStore _legacyStore;
@@ -412,7 +423,8 @@ class OceanDropsRepository {
       for (final row in eventRows)
         OceanDropEvent(
           id: row['event_id'] as String,
-          timestamp: DateTime.tryParse(row['timestamp_iso'] as String) ??
+          timestamp:
+              DateTime.tryParse(row['timestamp_iso'] as String) ??
               DateTime.fromMillisecondsSinceEpoch(0),
           actionType: row['action_type'] as String,
           sourceModule: row['source_module'] as String,
@@ -420,15 +432,19 @@ class OceanDropsRepository {
           referenceId: row['reference_id']?.toString(),
           metadata: row['metadata_json'] == null
               ? null
-              : (jsonDecode(row['metadata_json'] as String) as Map)
-                  .map((key, value) => MapEntry(key.toString(), value)),
+              : (jsonDecode(row['metadata_json'] as String) as Map).map(
+                  (key, value) => MapEntry(key.toString(), value),
+                ),
         ),
     ];
     final dailyHistory = <String, int>{};
     final awardedKeys = <String>{};
     for (final event in events) {
-      dailyHistory.update(event.dateKey, (value) => value + event.amount,
-          ifAbsent: () => event.amount);
+      dailyHistory.update(
+        event.dateKey,
+        (value) => value + event.amount,
+        ifAbsent: () => event.amount,
+      );
       final eligibilityKey = _eligibilityKeyFromEvent(event);
       if (eligibilityKey != null) {
         awardedKeys.add(eligibilityKey);
@@ -509,7 +525,8 @@ class OceanDropsRepository {
       return event.id;
     }
     final metadata = event.metadata;
-    final effectiveRef = event.referenceId ??
+    final effectiveRef =
+        event.referenceId ??
         metadata?['referenceId']?.toString() ??
         metadata?['slot']?.toString() ??
         metadata?['page']?.toString();
@@ -578,31 +595,31 @@ class OceanDropService extends StateNotifier<OceanDropsState> {
     CommunityOceanSyncAdapter communitySyncAdapter =
         const LocalCommunityOceanSyncAdapter(),
     SyncMutationRecorder? syncRecorder,
-  })  : _communitySyncAdapter = communitySyncAdapter,
-        _syncRecorder = syncRecorder,
-        super(() {
-          final stored = _repository.load();
-          return OceanDropsState(
-            stats: OceanDropStats(
-              totalDropsLifetime: stored.dailyDropHistory.values.fold<int>(
-                0,
-                (sum, count) => sum + count,
-              ),
-              dropsToday: 0,
-              dropsThisWeek: 0,
-              dropsThisMonth: 0,
-              freeDhikrCarryCount: stored.freeDhikrCarryCount,
-              lastDropAwardedAt: stored.lastDropAwardedAt,
-            ),
-            personalStats: PersonalWaterStats.fromJson(null),
-            communityStats: CommunityOceanStats.fromJson(null),
-            events: stored.events,
-            dailyDropHistory: stored.dailyDropHistory,
-            awardedEligibilityKeys: stored.awardedEligibilityKeys,
-            freeDhikrBlocksAwarded: stored.freeDhikrBlocksAwarded,
-            communityBaselineDrops: stored.communityBaselineDrops,
-          );
-        }()) {
+  }) : _communitySyncAdapter = communitySyncAdapter,
+       _syncRecorder = syncRecorder,
+       super(() {
+         final stored = _repository.load();
+         return OceanDropsState(
+           stats: OceanDropStats(
+             totalDropsLifetime: stored.dailyDropHistory.values.fold<int>(
+               0,
+               (sum, count) => sum + count,
+             ),
+             dropsToday: 0,
+             dropsThisWeek: 0,
+             dropsThisMonth: 0,
+             freeDhikrCarryCount: stored.freeDhikrCarryCount,
+             lastDropAwardedAt: stored.lastDropAwardedAt,
+           ),
+           personalStats: PersonalWaterStats.fromJson(null),
+           communityStats: CommunityOceanStats.fromJson(null),
+           events: stored.events,
+           dailyDropHistory: stored.dailyDropHistory,
+           awardedEligibilityKeys: stored.awardedEligibilityKeys,
+           freeDhikrBlocksAwarded: stored.freeDhikrBlocksAwarded,
+           communityBaselineDrops: stored.communityBaselineDrops,
+         );
+       }()) {
     _refreshStats();
   }
 
@@ -641,7 +658,8 @@ class OceanDropService extends StateNotifier<OceanDropsState> {
     }
 
     final event = OceanDropEvent(
-      id: eligibilityKey ??
+      id:
+          eligibilityKey ??
           '${actionType}_${referenceId ?? sourceModule}_${now.microsecondsSinceEpoch}',
       timestamp: now,
       actionType: actionType,
@@ -671,6 +689,26 @@ class OceanDropService extends StateNotifier<OceanDropsState> {
     _refreshStats();
     _persist();
     return 1;
+  }
+
+  int incrementDrops(
+    int amount, {
+    required String sourceModule,
+    required String referenceId,
+    Map<String, dynamic>? metadata,
+  }) {
+    if (amount <= 0) return 0;
+    var awarded = 0;
+    for (var index = 0; index < amount; index += 1) {
+      final scopedReference = amount == 1 ? referenceId : '$referenceId:$index';
+      awarded += awardDrop(
+        actionType: oceanActionJourneyDropAwarded,
+        sourceModule: sourceModule,
+        referenceId: scopedReference,
+        metadata: metadata,
+      );
+    }
+    return awarded;
   }
 
   int _awardFreeDhikrDrops({
@@ -722,10 +760,7 @@ class OceanDropService extends StateNotifier<OceanDropsState> {
           sourceModule: sourceModule,
           amount: 1,
           referenceId: referenceId,
-          metadata: {
-            ...?metadata,
-            'milestone': blocksAwarded * 100,
-          },
+          metadata: {...?metadata, 'milestone': blocksAwarded * 100},
         ),
       );
       _syncRecorder?.recordOceanEvent(<String, dynamic>{
@@ -736,10 +771,7 @@ class OceanDropService extends StateNotifier<OceanDropsState> {
         'sourceModule': sourceModule,
         'amount': 1,
         'referenceId': referenceId,
-        'metadata': {
-          ...?metadata,
-          'milestone': blocksAwarded * 100,
-        },
+        'metadata': {...?metadata, 'milestone': blocksAwarded * 100},
         'eligibilityKey': milestoneId,
         'scopeId': _repository.scopeId,
       });
@@ -794,16 +826,15 @@ class OceanDropService extends StateNotifier<OceanDropsState> {
     }
 
     final totalPersonalDrops = BigInt.from(
-      state.dailyDropHistory.values.fold<int>(
-        0,
-        (sum, count) => sum + count,
-      ),
+      state.dailyDropHistory.values.fold<int>(0, (sum, count) => sum + count),
     );
     final baseline = _communitySyncAdapter.resolveBaseline(
       state.communityBaselineDrops,
     );
     final totalCommunityDrops = baseline + totalPersonalDrops;
-    final todayCommunityDrops = BigInt.from(state.dailyDropHistory[todayKey] ?? 0);
+    final todayCommunityDrops = BigInt.from(
+      state.dailyDropHistory[todayKey] ?? 0,
+    );
     final weekCommunityDrops = BigInt.from(week);
     final monthCommunityDrops = BigInt.from(month);
 
@@ -851,7 +882,8 @@ class OceanDropService extends StateNotifier<OceanDropsState> {
     required DateTime timestamp,
   }) {
     final scope = _scopeFor(actionType);
-    final effectiveRef = referenceId ??
+    final effectiveRef =
+        referenceId ??
         metadata?['referenceId']?.toString() ??
         metadata?['slot']?.toString() ??
         metadata?['page']?.toString();
@@ -901,7 +933,7 @@ class OceanDropService extends StateNotifier<OceanDropsState> {
       case oceanActionCreationObservationSaved:
       case oceanActionCreationReflectionWritten:
       case oceanActionCreationChallengeCompleted:
-        return _OceanDropScope.perEvent;
+      case oceanActionJourneyDropAwarded:
       case oceanActionDhikrFreeHundredReached:
         return _OceanDropScope.perEvent;
     }
@@ -923,8 +955,9 @@ class OceanDropService extends StateNotifier<OceanDropsState> {
   }
 }
 
-final communityOceanSyncAdapterProvider =
-    Provider<CommunityOceanSyncAdapter>((ref) {
+final communityOceanSyncAdapterProvider = Provider<CommunityOceanSyncAdapter>((
+  ref,
+) {
   return const LocalCommunityOceanSyncAdapter();
 });
 
@@ -956,33 +989,31 @@ final communityOceanStatsProvider = Provider<CommunityOceanStats>((ref) {
 
 final communityOceanStageProgressProvider =
     Provider<StageProgress<CommunityOceanStage>>((ref) {
-  final stats = ref.watch(communityOceanStatsProvider);
-  return CommunityOceanLogic.getCommunityStageProgress(
-    stats.totalCommunityDrops,
-  );
-});
+      final stats = ref.watch(communityOceanStatsProvider);
+      return CommunityOceanLogic.getCommunityStageProgress(
+        stats.totalCommunityDrops,
+      );
+    });
 
 final personalWaterStageProgressProvider =
     Provider<StageProgress<PersonalWaterStage>>((ref) {
-  final stats = ref.watch(personalWaterStatsProvider);
-  return CommunityOceanLogic.getPersonalStageProgress(
-    stats.totalPersonalDrops,
-  );
-});
-
-final oceanGroupedHistoryProvider =
-    Provider<Map<String, Map<String, int>>>((ref) {
-      final state = ref.watch(oceanDropsProvider);
-      final grouped = <String, Map<String, int>>{};
-      for (final event in state.events) {
-        final day = grouped.putIfAbsent(
-          event.dateKey,
-          () => <String, int>{},
-        );
-        day[event.sourceModule] = (day[event.sourceModule] ?? 0) + event.amount;
-      }
-      return grouped;
+      final stats = ref.watch(personalWaterStatsProvider);
+      return CommunityOceanLogic.getPersonalStageProgress(
+        stats.totalPersonalDrops,
+      );
     });
+
+final oceanGroupedHistoryProvider = Provider<Map<String, Map<String, int>>>((
+  ref,
+) {
+  final state = ref.watch(oceanDropsProvider);
+  final grouped = <String, Map<String, int>>{};
+  for (final event in state.events) {
+    final day = grouped.putIfAbsent(event.dateKey, () => <String, int>{});
+    day[event.sourceModule] = (day[event.sourceModule] ?? 0) + event.amount;
+  }
+  return grouped;
+});
 
 final oceanMilestoneThresholdsProvider = Provider<List<int>>((ref) {
   return const <int>[100, 300, 500, 1200, 2500, 5000];

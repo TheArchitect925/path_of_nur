@@ -8,6 +8,9 @@ import '../../../shared/widgets/premium_card.dart';
 import '../application/growth_garden.dart';
 import '../application/growth_models.dart';
 import '../application/growth_providers.dart';
+import '../drops/application/journey_drops_providers.dart';
+import '../drops/presentation/widgets/garden_cards.dart';
+import '../xp/presentation/widgets/journey_xp_progress_card.dart';
 import 'widgets/growth_ui_helpers.dart';
 
 class GrowthJourneyPage extends ConsumerWidget {
@@ -23,6 +26,8 @@ class GrowthJourneyPage extends ConsumerWidget {
     final unlockedRewards = ref.watch(growthUnlockedRewardsProvider);
     final recentUnlocks = ref.watch(growthRecentUnlocksProvider);
     final nextUnlock = ref.watch(growthNextUnlockPreviewProvider);
+    final gardenProgress = ref.watch(gardenProgressSummaryProvider);
+    final nextGardenMilestone = ref.watch(nextGardenMilestoneProvider);
     final unlockedWallpapers = unlockedRewards
         .where((reward) => reward.type == GrowthUnlockableType.wallpaper)
         .toList();
@@ -87,6 +92,14 @@ class GrowthJourneyPage extends ConsumerWidget {
                 ),
             ],
           ),
+        ),
+        const SizedBox(height: 12),
+        const JourneyXpProgressCard(),
+        const SizedBox(height: 12),
+        GardenEntryCard(
+          summary: gardenProgress,
+          nextMilestone: nextGardenMilestone,
+          onTap: () => context.pushNamed('gardenPage'),
         ),
         const SizedBox(height: 12),
         PremiumCard(

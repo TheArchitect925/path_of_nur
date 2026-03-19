@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../shared/content/learning_quote.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/quran_quote_block.dart';
 import 'learning_header.dart';
@@ -30,16 +31,12 @@ class LearningDetailPage extends StatelessWidget {
       headerIcon: headerIcon,
       title: title,
       subtitle: subtitle,
-      quote: quote,
+      quote: quote ?? buildLearningCompactQuote(),
       onQuoteTap: onQuoteTap,
       children: [
-        if (header != null) ...[
-          header!,
-          const SizedBox(height: 10),
-        ],
+        if (header != null) ...[header!, const SizedBox(height: 10)],
         ...sections,
       ],
     );
   }
 }
-

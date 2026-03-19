@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/application/kids_ui_theme_provider.dart';
-import '../../../../shared/widgets/quran_quote_block.dart';
+import '../../../../shared/content/learning_quote.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/family_learning_provider.dart';
 import '../data/learning_journey_registry.dart';
@@ -19,7 +19,9 @@ class LearnBrowseAllPage extends ConsumerWidget {
     final l10n = AppLocalizations.of(context);
     final kidsUi = ref.watch(activeKidsUiThemeProvider);
     final visibilityPolicy = ref.watch(
-      activeFamilyLearningContextProvider.select((value) => value.visibilityPolicy),
+      activeFamilyLearningContextProvider.select(
+        (value) => value.visibilityPolicy,
+      ),
     );
     final islands = [...LearningJourneyRegistry.islands]
       ..sort((a, b) => a.order.compareTo(b.order))
@@ -30,14 +32,7 @@ class LearnBrowseAllPage extends ConsumerWidget {
       headerIcon: Icons.grid_view_rounded,
       title: l10n.learningJourneyBrowseAllTitle,
       subtitle: l10n.learningJourneyBrowseAllSubtitle,
-      quote: const QuranQuote(
-        arabic: 'رَبِّ زِدْنِي عِلْمًا',
-        transliteration: 'Rabbi zidni ilma',
-        translation: 'My Lord, increase me in knowledge.',
-        surah: 20,
-        verse: 114,
-        locationLabel: 'Qur’an 20:114',
-      ),
+      quote: buildLearningCompactQuote(),
       children: [
         if ((visibilityPolicy.isChildProfile || kidsUi.enabled) &&
             !visibilityPolicy.showBrowseAll) ...[
@@ -69,7 +64,8 @@ class LearnBrowseAllPage extends ConsumerWidget {
           ),
         ),
         const SizedBox(height: 8),
-        if ((!visibilityPolicy.isChildProfile || visibilityPolicy.showBrowseAll) &&
+        if ((!visibilityPolicy.isChildProfile ||
+                visibilityPolicy.showBrowseAll) &&
             !kidsUi.enabled) ...[
           JourneyHomeSectionHeader(
             title: l10n.learningJourneyBrowseToolsTitle,
@@ -137,7 +133,8 @@ class LearnBrowseAllPage extends ConsumerWidget {
           if (visibilityPolicy.showDiscovery) ...[
             LearningJourneyToolCard(
               title: l10n.learningJourneyBrowseKnowledgeConstellationTitle,
-              subtitle: l10n.learningJourneyBrowseKnowledgeConstellationSubtitle,
+              subtitle:
+                  l10n.learningJourneyBrowseKnowledgeConstellationSubtitle,
               icon: Icons.hub_outlined,
               onTap: () => context.pushNamed('knowledgeConstellation'),
             ),

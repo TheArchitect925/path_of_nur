@@ -7,24 +7,58 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0250A7A40F6F6616CA4F79C9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6304828976FE70C8A544753 /* Foundation.framework */; };
 		026BC489BF460AB1AEAB6C6B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F59E8094D984697639F96692 /* Foundation.framework */; };
+		0B6D975F2D8A7B02709CE8BF /* WatchRewardProjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BE4651459E50EE88DB232B /* WatchRewardProjection.swift */; };
+		0F694230592403351BBE9496 /* WatchQuickActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920AC05760CC3C8D6F6F57DF /* WatchQuickActionButton.swift */; };
+		108A77590B8D5D2369D8EFDF /* WatchAppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A523682EEF596D8C47EDD7 /* WatchAppModel.swift */; };
 		122C2DA2287486409DBA7444 /* Pods_RunnerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B3782B0BCA473D2B4D0D353 /* Pods_RunnerTests.framework */; };
 		14313B72E1BC82010A2DE69E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF9D3A55EDBA355E583500E /* Foundation.framework */; };
 		1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */; };
 		16EFBD612C35F00FF29572BC /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBB93AA31A0D9272C637B5CD /* SwiftUI.framework */; };
+		1760A1FEFC650C986CDEAD42 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5A7910DCE5C6126D189D0C88 /* Localizable.strings */; };
+		1D05BD4568A9198DF74A7A88 /* DhikrWatchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59E38AD2BACBBB7F511C9B3 /* DhikrWatchScreen.swift */; };
+		2262C6ACF760B860E5CD5893 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAE025D85E6410856CC7017A /* SwiftUI.framework */; };
 		24417355892C175237DA3B89 /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 778B10D10D08024B6E171073 /* Pods_Runner.framework */; };
 		265417A65ACD76550EE40908 /* PathOfNurTVApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B219DA8FE8C4CEEAB3B74AA6 /* PathOfNurTVApp.swift */; };
+		A30000000000000000000001 /* TVHomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000001 /* TVHomeScreen.swift */; };
+		A30000000000000000000002 /* TVQuranScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000002 /* TVQuranScreen.swift */; };
+		A30000000000000000000003 /* TVHeroCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000003 /* TVHeroCard.swift */; };
+		A30000000000000000000004 /* TVActionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000004 /* TVActionCard.swift */; };
+		A30000000000000000000005 /* TVSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000005 /* TVSectionHeader.swift */; };
+		A30000000000000000000006 /* TVShelfCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000006 /* TVShelfCard.swift */; };
+		A30000000000000000000007 /* TVModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000007 /* TVModels.swift */; };
+		A30000000000000000000008 /* TVAppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000008 /* TVAppViewModel.swift */; };
+		A30000000000000000000009 /* TVSeedRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000009 /* TVSeedRepository.swift */; };
+		A3000000000000000000000A /* TVTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000000000000000000000A /* TVTheme.swift */; };
+		A3000000000000000000000B /* TVBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000000000000000000000B /* TVBackgroundView.swift */; };
+		A3000000000000000000000C /* TVFocusableCardModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000000000000000000000C /* TVFocusableCardModifier.swift */; };
+		A3000000000000000000000D /* TVPrayerTimeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000000000000000000000D /* TVPrayerTimeCard.swift */; };
+		A3000000000000000000000E /* TVQuranAyahCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000000000000000000000E /* TVQuranAyahCard.swift */; };
+		A3000000000000000000000F /* TVQuranPlaybackCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000000000000000000000F /* TVQuranPlaybackCard.swift */; };
+		A30000000000000000000010 /* TVQuranSurahRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000010 /* TVQuranSurahRow.swift */; };
+		A30000000000000000000011 /* TVLocalized.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000011 /* TVLocalized.swift */; };
+		A30000000000000000000012 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000012 /* Localizable.strings */; };
 		30D70760E0367FE7B93F0326 /* PathOfNurWatch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 8F8BA9D8D24AE5700811ADBD /* PathOfNurWatch Watch App.app */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		30FC9CAAACED69C5494FA066 /* PrayerLiveActivityWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822E1EF379EB5CEE9B7DA502 /* PrayerLiveActivityWidget.swift */; };
 		331C808B294A63AB00263BE5 /* RunnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C807B294A618700263BE5 /* RunnerTests.swift */; };
 		348E30164463321A939CEE4A /* PrayerLiveActivityExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = B542DFC691245042D44659F8 /* PrayerLiveActivityExtension.appex */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3A4D9018531B29325E0FC649 /* WatchSyncBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410D5841E85F357E3068D498 /* WatchSyncBridge.swift */; };
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
+		3C715B676105D8D91FF1BA3A /* PathOfNurWatchComplications.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99A32E2F83304E8063BB006 /* PathOfNurWatchComplications.swift */; };
+		4001F257E79E5D26DD7365E8 /* WatchMiniProgressRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D75960789ECAB44E9C221F /* WatchMiniProgressRing.swift */; };
+		4BC34AA97688EED7F70BE82B /* WatchRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D259522F71D0B171D98D743 /* WatchRootView.swift */; };
+		4FAFE92CE1E197679C995661 /* WatchHaptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29CAB64B524443BDE199BA7 /* WatchHaptics.swift */; };
 		505BB3BB41AE61E543E9C786 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 682B272818DCEBC3861FEABC /* Assets.xcassets */; };
 		558646F8C8F3B50482A15D5C /* PathOfNurWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F76591B4E595AF6B502F2C /* PathOfNurWatchApp.swift */; };
 		56D6AE0617DB055085A8A3B9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D505D468A0A8074FBCF4C68A /* Foundation.framework */; };
+		5961BCC167FE5E6CEC64A3ED /* WatchSyncService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339F493B3788210385921080 /* WatchSyncService.swift */; };
+		5C58B6F06346510E1784F45B /* WatchSyncStatusBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = E909596CA3AB6B60BCB6AF48 /* WatchSyncStatusBadge.swift */; };
+		6D53C8E9C0F7BA18918C4B97 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC48FFD08BC4ED13CDA05E41 /* WidgetKit.framework */; };
 		74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74858FAE1ED2DC5600515810 /* AppDelegate.swift */; };
 		7884E8682EC3CC0700C636F2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7884E8672EC3CC0400C636F2 /* SceneDelegate.swift */; };
 		7C30D9803F6F3414FD62A3CC /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDA3745C6B179112FBC1EAE2 /* SwiftUI.framework */; };
+		84FE5429EFFEA23E0E05CC2E /* PrayerCheckInScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BEC290A0D9BE08D157931D /* PrayerCheckInScreen.swift */; };
 		8A1C2E3D4F5A6B7C8D9E0F11 /* adhan.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9B2D3E4F5A6B7C8D9E0F1122 /* adhan.caf */; };
 		8A1C2E3D4F5A6B7C8D9E0F12 /* adhan_regular_makkah_default.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9B2D3E4F5A6B7C8D9E0F1123 /* adhan_regular_makkah_default.caf */; };
 		8A1C2E3D4F5A6B7C8D9E0F13 /* adhan_regular_madinah_soft.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9B2D3E4F5A6B7C8D9E0F1124 /* adhan_regular_madinah_soft.caf */; };
@@ -33,13 +67,25 @@
 		8A1C2E3D4F5A6B7C8D9E0F16 /* adhan_fajr_soft.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9B2D3E4F5A6B7C8D9E0F1127 /* adhan_fajr_soft.caf */; };
 		8C14F2D3ACB54615A5B7720F /* WatchHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81298159BA87B231B39343B /* WatchHomeView.swift */; };
 		8C6FB30AAFBD6EBC7C4E09C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC07BAE2FD1FC57FB95BC90C /* Assets.xcassets */; };
+		8EB1AD01550DD2D3C49059E4 /* ProgressWatchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C59B8EA0111E694654E91A /* ProgressWatchScreen.swift */; };
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
+		989E20A4BEBABB43E34239FE /* WatchSharedModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52816380AC61EB1E657DBEF7 /* WatchSharedModels.swift */; };
+		9CFC4793C73EC1A25ED0D317 /* WatchCacheStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E23CB72B8C1C14F09FC4EF /* WatchCacheStore.swift */; };
+		9D9365E90D8C535BBDDE88E6 /* WatchCacheStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E23CB72B8C1C14F09FC4EF /* WatchCacheStore.swift */; };
 		A363E5A80CDC795F50A08433 /* WatchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96F86BD74BDD1F1AAF563FC6 /* WatchKit.framework */; };
+		AA2612948B1D47A3A21231A9 /* WatchStatChip.swift in Sources */ = {isa = PBXBuildFile; fileRef = D615B7BE91472306F2EBD29A /* WatchStatChip.swift */; };
+		AB5CC2B95B3840A21D765075 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5F253D74805B56357ADDF7D /* Localizable.strings */; };
+		B60D2F4FCA276642B09DC336 /* WatchViewStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FAD493261023EE00B7A91F6 /* WatchViewStates.swift */; };
+		B9D5DA39188F5ED42758BF6C /* WatchHeroCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EC9F65AA53EBEA681F48E2 /* WatchHeroCard.swift */; };
 		CF4FAB0A2E2B9726DBBCE16F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D505D468A0A8074FBCF4C68A /* Foundation.framework */; };
-		D07034821A4C6B6179A5D492 /* TVHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18D676885B985047741432C /* TVHomeView.swift */; };
-		FCEE73FB9DA01463475EA819 /* PathOfNurWatch Watch App Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 5E77F35D03CFC4F5B019084B /* PathOfNurWatch Watch App Extension.appex */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D07034821A4C6B6179A5D492 /* TVRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18D676885B985047741432C /* TVRootView.swift */; };
+		DBC968D5C605CB8195435DF1 /* WatchSharedModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52816380AC61EB1E657DBEF7 /* WatchSharedModels.swift */; };
+		EC7EAE389A4A58B4508574BB /* WatchUtilityScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082F37242538FF6A06B401B9 /* WatchUtilityScreen.swift */; };
+		F21825F1731377AF1F1D18B4 /* WatchTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352322E3769973113EF55A45 /* WatchTheme.swift */; };
+		F2252DDF46C4E2BE1B0583DD /* WatchPrayerRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A746F56E8A35A740331F568 /* WatchPrayerRow.swift */; };
+		FCEE73FB9DA01463475EA819 /* PathOfNurWatch Watch App Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 5E77F35D03CFC4F5B019084B /* PathOfNurWatch Watch App Extension.appex */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,13 +102,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 44EBC13A7C2EFBFEF83C8372;
 			remoteInfo = PrayerLiveActivityExtension;
-		};
-		968491BE4C997FCC2D3E3695 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 97C146E61CF9000F007C117D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = AC03585982794548765852A0;
-			remoteInfo = "PathOfNurWatch Watch App";
 		};
 		CB8FDA4D8DF69C8A5CAC8F69 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -104,32 +143,46 @@
 				30D70760E0367FE7B93F0326 /* PathOfNurWatch Watch App.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 		};
-		E20EEA65FE1039F5EB13A819 /* Embed App Extensions */ = {
+		E20EEA65FE1039F5EB13A819 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				FCEE73FB9DA01463475EA819 /* PathOfNurWatch Watch App Extension.appex in Embed App Extensions */,
+				FCEE73FB9DA01463475EA819 /* PathOfNurWatch Watch App Extension.appex in Embed Foundation Extensions */,
 			);
-			name = "Embed App Extensions";
+			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		000E21735A9118F437E3ED34 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = Info.plist; sourceTree = "<group>"; };
 		03B96E21B615785805E99AEA /* Pods-RunnerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.debug.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		082F37242538FF6A06B401B9 /* WatchUtilityScreen.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WatchUtilityScreen.swift; path = WatchUtilityScreen.swift; sourceTree = "<group>"; };
+		0CBC244538E17C0F22B9F21C /* PathOfNurWatchComplications.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; name = PathOfNurWatchComplications.appex; path = PathOfNurWatchComplications.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		1180FB682F6B4750005CD244 /* RunnerDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RunnerDebug.entitlements; sourceTree = "<group>"; };
 		1498D2321E8E86230040F4C2 /* GeneratedPluginRegistrant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeneratedPluginRegistrant.h; sourceTree = "<group>"; };
 		1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedPluginRegistrant.m; sourceTree = "<group>"; };
-		291D8C9464B95237D8D2B70B /* Runner.entitlements */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.entitlements; name = Runner.entitlements; path = Runner/Runner.entitlements; sourceTree = "<group>"; };
+		17A523682EEF596D8C47EDD7 /* WatchAppModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WatchAppModel.swift; path = WatchAppModel.swift; sourceTree = "<group>"; };
+		1D259522F71D0B171D98D743 /* WatchRootView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WatchRootView.swift; path = WatchRootView.swift; sourceTree = "<group>"; };
+		28C59B8EA0111E694654E91A /* ProgressWatchScreen.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProgressWatchScreen.swift; path = ProgressWatchScreen.swift; sourceTree = "<group>"; };
+		291D8C9464B95237D8D2B70B /* Runner.entitlements */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.entitlements; name = Runner.entitlements; path = Runner.entitlements; sourceTree = "<group>"; };
+		2A746F56E8A35A740331F568 /* WatchPrayerRow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WatchPrayerRow.swift; path = WatchPrayerRow.swift; sourceTree = "<group>"; };
 		30482D3F0465882EAF72D48F /* Pods-Runner.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig"; sourceTree = "<group>"; };
 		331C807B294A618700263BE5 /* RunnerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunnerTests.swift; sourceTree = "<group>"; };
 		331C8081294A63A400263BE5 /* RunnerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RunnerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		339F493B3788210385921080 /* WatchSyncService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WatchSyncService.swift; path = WatchSyncService.swift; sourceTree = "<group>"; };
+		352322E3769973113EF55A45 /* WatchTheme.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WatchTheme.swift; path = WatchTheme.swift; sourceTree = "<group>"; };
 		3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppFrameworkInfo.plist; path = Flutter/AppFrameworkInfo.plist; sourceTree = "<group>"; };
 		40CEAD52B5200AE0E4BC5750 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		410D5841E85F357E3068D498 /* WatchSyncBridge.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WatchSyncBridge.swift; path = WatchSyncBridge.swift; sourceTree = "<group>"; };
+		4FAD493261023EE00B7A91F6 /* WatchViewStates.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WatchViewStates.swift; path = WatchViewStates.swift; sourceTree = "<group>"; };
+		52816380AC61EB1E657DBEF7 /* WatchSharedModels.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WatchSharedModels.swift; path = WatchSharedModels.swift; sourceTree = "<group>"; };
 		56278CB5CC1BBA596717D47C /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = PrayerLiveActivityExtension/Info.plist; sourceTree = "<group>"; };
+		5A7910DCE5C6126D189D0C88 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		5E77F35D03CFC4F5B019084B /* PathOfNurWatch Watch App Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "PathOfNurWatch Watch App Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		619A1B30B71E288B847C5D68 /* Pods-RunnerTests.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.profile.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.profile.xcconfig"; sourceTree = "<group>"; };
 		682B272818DCEBC3861FEABC /* Assets.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -140,10 +193,13 @@
 		778B10D10D08024B6E171073 /* Pods_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7884E8672EC3CC0400C636F2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		7AFA3C8E1D35360C0083082E /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Release.xcconfig; path = Flutter/Release.xcconfig; sourceTree = "<group>"; };
+		7AFA3C8E1D35360C0083082F /* Profile.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Profile.xcconfig; path = Flutter/Profile.xcconfig; sourceTree = "<group>"; };
 		822E1EF379EB5CEE9B7DA502 /* PrayerLiveActivityWidget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PrayerLiveActivityWidget.swift; path = PrayerLiveActivityExtension/PrayerLiveActivityWidget.swift; sourceTree = "<group>"; };
+		83EC9F65AA53EBEA681F48E2 /* WatchHeroCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WatchHeroCard.swift; path = WatchHeroCard.swift; sourceTree = "<group>"; };
 		8F8BA9D8D24AE5700811ADBD /* PathOfNurWatch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PathOfNurWatch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		920AC05760CC3C8D6F6F57DF /* WatchQuickActionButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WatchQuickActionButton.swift; path = WatchQuickActionButton.swift; sourceTree = "<group>"; };
 		93AED39D193AA7543FDE3DE0 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		96F86BD74BDD1F1AAF563FC6 /* WatchKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS11.0.sdk/System/Library/Frameworks/WatchKit.framework; sourceTree = DEVELOPER_DIR; };
+		96F86BD74BDD1F1AAF563FC6 /* WatchKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchKit.framework; path = System/Library/Frameworks/WatchKit.framework; sourceTree = SDKROOT; };
 		9740EEB21CF90195004384FC /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Debug.xcconfig; path = Flutter/Debug.xcconfig; sourceTree = "<group>"; };
 		9740EEB31CF90195004384FC /* Generated.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Generated.xcconfig; path = Flutter/Generated.xcconfig; sourceTree = "<group>"; };
 		97C146EE1CF9000F007C117D /* Runner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Runner.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -151,27 +207,60 @@
 		97C146FD1CF9000F007C117D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		97C147001CF9000F007C117D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		97C147021CF9000F007C117D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		99BE4651459E50EE88DB232B /* WatchRewardProjection.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WatchRewardProjection.swift; path = WatchRewardProjection.swift; sourceTree = "<group>"; };
 		9B2D3E4F5A6B7C8D9E0F1122 /* adhan.caf */ = {isa = PBXFileReference; lastKnownFileType = audio.caf; path = adhan.caf; sourceTree = "<group>"; };
 		9B2D3E4F5A6B7C8D9E0F1123 /* adhan_regular_makkah_default.caf */ = {isa = PBXFileReference; lastKnownFileType = audio.caf; path = adhan_regular_makkah_default.caf; sourceTree = "<group>"; };
 		9B2D3E4F5A6B7C8D9E0F1124 /* adhan_regular_madinah_soft.caf */ = {isa = PBXFileReference; lastKnownFileType = audio.caf; path = adhan_regular_madinah_soft.caf; sourceTree = "<group>"; };
 		9B2D3E4F5A6B7C8D9E0F1125 /* adhan_regular_clear_masjid.caf */ = {isa = PBXFileReference; lastKnownFileType = audio.caf; path = adhan_regular_clear_masjid.caf; sourceTree = "<group>"; };
 		9B2D3E4F5A6B7C8D9E0F1126 /* adhan_fajr_default.caf */ = {isa = PBXFileReference; lastKnownFileType = audio.caf; path = adhan_fajr_default.caf; sourceTree = "<group>"; };
 		9B2D3E4F5A6B7C8D9E0F1127 /* adhan_fajr_soft.caf */ = {isa = PBXFileReference; lastKnownFileType = audio.caf; path = adhan_fajr_soft.caf; sourceTree = "<group>"; };
+		A0231788B10550296752F8F4 /* PathOfNurWatchComplications.entitlements */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.entitlements; name = PathOfNurWatchComplications.entitlements; path = PathOfNurWatchComplications.entitlements; sourceTree = "<group>"; };
+		A5F253D74805B56357ADDF7D /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		A6094AF93C5CC29D1F3A5AFC /* Pods-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"; sourceTree = "<group>"; };
 		AC5BB7B6F440215F9AAD026E /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A20000000000000000000001 /* TVHomeScreen.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVHomeScreen.swift; sourceTree = "<group>"; };
+		A20000000000000000000002 /* TVQuranScreen.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVQuranScreen.swift; sourceTree = "<group>"; };
+		A20000000000000000000003 /* TVHeroCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVHeroCard.swift; sourceTree = "<group>"; };
+		A20000000000000000000004 /* TVActionCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVActionCard.swift; sourceTree = "<group>"; };
+		A20000000000000000000005 /* TVSectionHeader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVSectionHeader.swift; sourceTree = "<group>"; };
+		A20000000000000000000006 /* TVShelfCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVShelfCard.swift; sourceTree = "<group>"; };
+		A20000000000000000000007 /* TVModels.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVModels.swift; sourceTree = "<group>"; };
+		A20000000000000000000008 /* TVAppViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVAppViewModel.swift; sourceTree = "<group>"; };
+		A20000000000000000000009 /* TVSeedRepository.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVSeedRepository.swift; sourceTree = "<group>"; };
+		A2000000000000000000000A /* TVTheme.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVTheme.swift; sourceTree = "<group>"; };
+		A2000000000000000000000B /* TVBackgroundView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVBackgroundView.swift; sourceTree = "<group>"; };
+		A2000000000000000000000C /* TVFocusableCardModifier.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVFocusableCardModifier.swift; sourceTree = "<group>"; };
+		A2000000000000000000000D /* TVPrayerTimeCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVPrayerTimeCard.swift; sourceTree = "<group>"; };
+		A2000000000000000000000E /* TVQuranAyahCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVQuranAyahCard.swift; sourceTree = "<group>"; };
+		A2000000000000000000000F /* TVQuranPlaybackCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVQuranPlaybackCard.swift; sourceTree = "<group>"; };
+		A20000000000000000000010 /* TVQuranSurahRow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVQuranSurahRow.swift; sourceTree = "<group>"; };
+		A20000000000000000000011 /* TVLocalized.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVLocalized.swift; sourceTree = "<group>"; };
+		A20000000000000000000012 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		B219DA8FE8C4CEEAB3B74AA6 /* PathOfNurTVApp.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PathOfNurTVApp.swift; sourceTree = "<group>"; };
 		B542DFC691245042D44659F8 /* PrayerLiveActivityExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PrayerLiveActivityExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		B59E38AD2BACBBB7F511C9B3 /* DhikrWatchScreen.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DhikrWatchScreen.swift; path = DhikrWatchScreen.swift; sourceTree = "<group>"; };
+		B7E23CB72B8C1C14F09FC4EF /* WatchCacheStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WatchCacheStore.swift; path = WatchCacheStore.swift; sourceTree = "<group>"; };
 		B81298159BA87B231B39343B /* WatchHomeView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WatchHomeView.swift; sourceTree = "<group>"; };
 		BC07BAE2FD1FC57FB95BC90C /* Assets.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BC48FFD08BC4ED13CDA05E41 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		C0F76591B4E595AF6B502F2C /* PathOfNurWatchApp.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PathOfNurWatchApp.swift; sourceTree = "<group>"; };
-		C18D676885B985047741432C /* TVHomeView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVHomeView.swift; sourceTree = "<group>"; };
+		C18D676885B985047741432C /* TVRootView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVRootView.swift; sourceTree = "<group>"; };
 		C1C7BAD265A8944BEB6203CD /* Pods-RunnerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.release.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.release.xcconfig"; sourceTree = "<group>"; };
+		C29CAB64B524443BDE199BA7 /* WatchHaptics.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WatchHaptics.swift; path = WatchHaptics.swift; sourceTree = "<group>"; };
+		C6304828976FE70C8A544753 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS11.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		C7BEC290A0D9BE08D157931D /* PrayerCheckInScreen.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PrayerCheckInScreen.swift; path = PrayerCheckInScreen.swift; sourceTree = "<group>"; };
 		CBF9D3A55EDBA355E583500E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		D505D468A0A8074FBCF4C68A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS11.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		D505D468A0A8074FBCF4C68A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D615B7BE91472306F2EBD29A /* WatchStatChip.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WatchStatChip.swift; path = WatchStatChip.swift; sourceTree = "<group>"; };
 		D9461539AC06AADB88269AEC /* Pods-Runner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.release.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.release.xcconfig"; sourceTree = "<group>"; };
+		D99A32E2F83304E8063BB006 /* PathOfNurWatchComplications.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PathOfNurWatchComplications.swift; path = PathOfNurWatchComplications.swift; sourceTree = "<group>"; };
 		DBB93AA31A0D9272C637B5CD /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS18.0.sdk/System/Library/Frameworks/SwiftUI.framework; sourceTree = DEVELOPER_DIR; };
-		EDA3745C6B179112FBC1EAE2 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS11.0.sdk/System/Library/Frameworks/SwiftUI.framework; sourceTree = DEVELOPER_DIR; };
+		E3938117F04FEFDE0FE8C3AC /* PathOfNurWatchWatchExtension.entitlements */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.entitlements; name = PathOfNurWatchWatchExtension.entitlements; path = PathOfNurWatchWatchExtension.entitlements; sourceTree = "<group>"; };
+		E909596CA3AB6B60BCB6AF48 /* WatchSyncStatusBadge.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WatchSyncStatusBadge.swift; path = WatchSyncStatusBadge.swift; sourceTree = "<group>"; };
+		EDA3745C6B179112FBC1EAE2 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		F3D75960789ECAB44E9C221F /* WatchMiniProgressRing.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WatchMiniProgressRing.swift; path = WatchMiniProgressRing.swift; sourceTree = "<group>"; };
 		F59E8094D984697639F96692 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		FAE025D85E6410856CC7017A /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,6 +315,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EEE7221402302415F98FF5DE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0250A7A40F6F6616CA4F79C9 /* Foundation.framework in Frameworks */,
+				2262C6ACF760B860E5CD5893 /* SwiftUI.framework in Frameworks */,
+				6D53C8E9C0F7BA18918C4B97 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -235,8 +334,19 @@
 				40CEAD52B5200AE0E4BC5750 /* Info.plist */,
 				682B272818DCEBC3861FEABC /* Assets.xcassets */,
 			);
-			name = "PathOfNurWatch Watch App";
 			path = "PathOfNurWatch Watch App";
+			sourceTree = "<group>";
+		};
+		2F3B84E16D273B64E9BA9F35 /* PathOfNurWatchComplications */ = {
+			isa = PBXGroup;
+			children = (
+				D99A32E2F83304E8063BB006 /* PathOfNurWatchComplications.swift */,
+				000E21735A9118F437E3ED34 /* Info.plist */,
+				A0231788B10550296752F8F4 /* PathOfNurWatchComplications.entitlements */,
+				5A7910DCE5C6126D189D0C88 /* Localizable.strings */,
+			);
+			name = PathOfNurWatchComplications;
+			path = PathOfNurWatchComplications;
 			sourceTree = "<group>";
 		};
 		331C8082294A63A400263BE5 /* RunnerTests */ = {
@@ -268,6 +378,8 @@
 				ED2531C9462F3250066C4F3F /* iOS */,
 				A08A83068867A45C26860A98 /* watchOS */,
 				FADD5E32CEBABE02CF1794AB /* tvOS */,
+				FAE025D85E6410856CC7017A /* SwiftUI.framework */,
+				BC48FFD08BC4ED13CDA05E41 /* WidgetKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -277,6 +389,7 @@
 			children = (
 				3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */,
 				9740EEB21CF90195004384FC /* Debug.xcconfig */,
+				7AFA3C8E1D35360C0083082F /* Profile.xcconfig */,
 				7AFA3C8E1D35360C0083082E /* Release.xcconfig */,
 				9740EEB31CF90195004384FC /* Generated.xcconfig */,
 			);
@@ -296,6 +409,7 @@
 				0CA8A15215098D5B5C9F11D2 /* PathOfNurWatch Watch App */,
 				981FFA59C6D0DAC2167D0613 /* PathOfNurWatch Watch App Extension */,
 				D12B063E6E787A577BE0FABE /* PathOfNurTV */,
+				2F3B84E16D273B64E9BA9F35 /* PathOfNurWatchComplications */,
 			);
 			sourceTree = "<group>";
 		};
@@ -308,6 +422,7 @@
 				8F8BA9D8D24AE5700811ADBD /* PathOfNurWatch Watch App.app */,
 				5E77F35D03CFC4F5B019084B /* PathOfNurWatch Watch App Extension.appex */,
 				69A5A5B0DFB4A3B3950E0F0E /* PathOfNurTV.app */,
+				0CBC244538E17C0F22B9F21C /* PathOfNurWatchComplications.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -315,6 +430,7 @@
 		97C146F01CF9000F007C117D /* Runner */ = {
 			isa = PBXGroup;
 			children = (
+				1180FB682F6B4750005CD244 /* RunnerDebug.entitlements */,
 				97C146FA1CF9000F007C117D /* Main.storyboard */,
 				97C146FD1CF9000F007C117D /* Assets.xcassets */,
 				97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */,
@@ -331,6 +447,7 @@
 				9B2D3E4F5A6B7C8D9E0F1127 /* adhan_fajr_soft.caf */,
 				74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */,
 				291D8C9464B95237D8D2B70B /* Runner.entitlements */,
+				410D5841E85F357E3068D498 /* WatchSyncBridge.swift */,
 			);
 			path = Runner;
 			sourceTree = "<group>";
@@ -341,8 +458,28 @@
 				AC5BB7B6F440215F9AAD026E /* Info.plist */,
 				C0F76591B4E595AF6B502F2C /* PathOfNurWatchApp.swift */,
 				B81298159BA87B231B39343B /* WatchHomeView.swift */,
+				52816380AC61EB1E657DBEF7 /* WatchSharedModels.swift */,
+				4FAD493261023EE00B7A91F6 /* WatchViewStates.swift */,
+				B7E23CB72B8C1C14F09FC4EF /* WatchCacheStore.swift */,
+				99BE4651459E50EE88DB232B /* WatchRewardProjection.swift */,
+				C29CAB64B524443BDE199BA7 /* WatchHaptics.swift */,
+				339F493B3788210385921080 /* WatchSyncService.swift */,
+				352322E3769973113EF55A45 /* WatchTheme.swift */,
+				F3D75960789ECAB44E9C221F /* WatchMiniProgressRing.swift */,
+				83EC9F65AA53EBEA681F48E2 /* WatchHeroCard.swift */,
+				2A746F56E8A35A740331F568 /* WatchPrayerRow.swift */,
+				920AC05760CC3C8D6F6F57DF /* WatchQuickActionButton.swift */,
+				D615B7BE91472306F2EBD29A /* WatchStatChip.swift */,
+				E909596CA3AB6B60BCB6AF48 /* WatchSyncStatusBadge.swift */,
+				17A523682EEF596D8C47EDD7 /* WatchAppModel.swift */,
+				1D259522F71D0B171D98D743 /* WatchRootView.swift */,
+				C7BEC290A0D9BE08D157931D /* PrayerCheckInScreen.swift */,
+				B59E38AD2BACBBB7F511C9B3 /* DhikrWatchScreen.swift */,
+				28C59B8EA0111E694654E91A /* ProgressWatchScreen.swift */,
+				082F37242538FF6A06B401B9 /* WatchUtilityScreen.swift */,
+				A5F253D74805B56357ADDF7D /* Localizable.strings */,
+				E3938117F04FEFDE0FE8C3AC /* PathOfNurWatchWatchExtension.entitlements */,
 			);
-			name = "PathOfNurWatch Watch App Extension";
 			path = "PathOfNurWatch Watch App Extension";
 			sourceTree = "<group>";
 		};
@@ -352,6 +489,7 @@
 				D505D468A0A8074FBCF4C68A /* Foundation.framework */,
 				EDA3745C6B179112FBC1EAE2 /* SwiftUI.framework */,
 				96F86BD74BDD1F1AAF563FC6 /* WatchKit.framework */,
+				C6304828976FE70C8A544753 /* Foundation.framework */,
 			);
 			name = watchOS;
 			sourceTree = "<group>";
@@ -365,15 +503,96 @@
 			name = PrayerLiveActivityExtension;
 			sourceTree = "<group>";
 		};
+		A10000000000000000000001 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				B219DA8FE8C4CEEAB3B74AA6 /* PathOfNurTVApp.swift */,
+				C18D676885B985047741432C /* TVRootView.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		A10000000000000000000002 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				A20000000000000000000001 /* TVHomeScreen.swift */,
+				A20000000000000000000002 /* TVQuranScreen.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		A10000000000000000000003 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				A20000000000000000000004 /* TVActionCard.swift */,
+				A20000000000000000000003 /* TVHeroCard.swift */,
+				A2000000000000000000000D /* TVPrayerTimeCard.swift */,
+				A2000000000000000000000E /* TVQuranAyahCard.swift */,
+				A2000000000000000000000F /* TVQuranPlaybackCard.swift */,
+				A20000000000000000000010 /* TVQuranSurahRow.swift */,
+				A20000000000000000000005 /* TVSectionHeader.swift */,
+				A20000000000000000000006 /* TVShelfCard.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		A10000000000000000000004 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A20000000000000000000007 /* TVModels.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A10000000000000000000005 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				A20000000000000000000008 /* TVAppViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		A10000000000000000000006 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				A20000000000000000000009 /* TVSeedRepository.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		A10000000000000000000007 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				A2000000000000000000000A /* TVTheme.swift */,
+				A2000000000000000000000B /* TVBackgroundView.swift */,
+				A2000000000000000000000C /* TVFocusableCardModifier.swift */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
+		A10000000000000000000008 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				A20000000000000000000011 /* TVLocalized.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
 		D12B063E6E787A577BE0FABE /* PathOfNurTV */ = {
 			isa = PBXGroup;
 			children = (
 				93AED39D193AA7543FDE3DE0 /* Info.plist */,
 				BC07BAE2FD1FC57FB95BC90C /* Assets.xcassets */,
-				B219DA8FE8C4CEEAB3B74AA6 /* PathOfNurTVApp.swift */,
-				C18D676885B985047741432C /* TVHomeView.swift */,
+				A20000000000000000000012 /* Localizable.strings */,
+				A10000000000000000000001 /* App */,
+				A10000000000000000000002 /* Screens */,
+				A10000000000000000000003 /* Components */,
+				A10000000000000000000004 /* Models */,
+				A10000000000000000000005 /* ViewModels */,
+				A10000000000000000000006 /* Data */,
+				A10000000000000000000007 /* Theme */,
+				A10000000000000000000008 /* Support */,
 			);
-			name = PathOfNurTV;
 			path = PathOfNurTV;
 			sourceTree = "<group>";
 		};
@@ -450,6 +669,23 @@
 			productReference = B542DFC691245042D44659F8 /* PrayerLiveActivityExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		94DBBE26C9791120F7AB54BD /* PathOfNurWatchComplications */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6577DC5CD8ACF732ECF9FE6E /* Build configuration list for PBXNativeTarget "PathOfNurWatchComplications" */;
+			buildPhases = (
+				E1150D5A6E1DFC8B1013F50D /* Sources */,
+				EEE7221402302415F98FF5DE /* Frameworks */,
+				88F3AD15F355744FC4028ADD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PathOfNurWatchComplications;
+			productName = PathOfNurWatchComplications;
+			productReference = 0CBC244538E17C0F22B9F21C /* PathOfNurWatchComplications.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		97C146ED1CF9000F007C117D /* Runner */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 97C147051CF9000F007C117D /* Build configuration list for PBXNativeTarget "Runner" */;
@@ -461,16 +697,15 @@
 				97C146EC1CF9000F007C117D /* Resources */,
 				230F5A986B160581DA765EA6 /* Embed Foundation Extensions */,
 				9705A1C41CF9048500538489 /* Embed Frameworks */,
+				B9FFC23F9ADF6C1330998F82 /* Embed Watch Content */,
 				3B06AD1E1E4923F5004D2608 /* Thin Binary */,
 				9D7113B0B27B9DEE2E938332 /* [CP] Copy Pods Resources */,
 				7A3B870D694C87BD05CBA444 /* [CP] Embed Pods Frameworks */,
-				B9FFC23F9ADF6C1330998F82 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				A05FAF5223C482221AD7E7A4 /* PBXTargetDependency */,
-				76254EFCD8DCA330FB16FFD1 /* PBXTargetDependency */,
 			);
 			name = Runner;
 			productName = Runner;
@@ -484,7 +719,7 @@
 				76A254CC4F505B6CAB1CBFC4 /* Sources */,
 				855C44897E01EA5C2B469796 /* Frameworks */,
 				EE3B2F01ED81122C3A0E709F /* Resources */,
-				E20EEA65FE1039F5EB13A819 /* Embed App Extensions */,
+				E20EEA65FE1039F5EB13A819 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
@@ -525,6 +760,8 @@
 				TargetAttributes = {
 					2BE8967712367400A95BCF94 = {
 						CreatedOnToolsVersion = 15.1;
+						DevelopmentTeam = BL333P27N8;
+						ProvisioningStyle = Automatic;
 					};
 					331C8080294A63A400263BE5 = {
 						CreatedOnToolsVersion = 14.0;
@@ -532,16 +769,23 @@
 					};
 					44EBC13A7C2EFBFEF83C8372 = {
 						CreatedOnToolsVersion = 15.0;
+						DevelopmentTeam = BL333P27N8;
+						ProvisioningStyle = Automatic;
 					};
 					97C146ED1CF9000F007C117D = {
 						CreatedOnToolsVersion = 7.3.1;
 						LastSwiftMigration = 1100;
+						ProvisioningStyle = Automatic;
 					};
 					AC03585982794548765852A0 = {
 						CreatedOnToolsVersion = 15.1;
+						DevelopmentTeam = BL333P27N8;
+						ProvisioningStyle = Automatic;
 					};
 					E2EF5A4C5B12A16E1EFA555F = {
 						CreatedOnToolsVersion = 15.1;
+						DevelopmentTeam = BL333P27N8;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -564,6 +808,7 @@
 				AC03585982794548765852A0 /* PathOfNurWatch Watch App */,
 				E2EF5A4C5B12A16E1EFA555F /* PathOfNurWatch Watch App Extension */,
 				2BE8967712367400A95BCF94 /* PathOfNurTV */,
+				94DBBE26C9791120F7AB54BD /* PathOfNurWatchComplications */,
 			);
 		};
 /* End PBXProject section */
@@ -576,14 +821,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		67134699C43D501781BDE6F1 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8C6FB30AAFBD6EBC7C4E09C9 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
+			67134699C43D501781BDE6F1 /* Resources */ = {
+				isa = PBXResourcesBuildPhase;
+				buildActionMask = 2147483647;
+				files = (
+					8C6FB30AAFBD6EBC7C4E09C9 /* Assets.xcassets in Resources */,
+					A30000000000000000000012 /* Localizable.strings in Resources */,
+				);
+				runOnlyForDeploymentPostprocessing = 0;
+			};
 		78AF3F42F786B7303EA6340B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -595,6 +841,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB5CC2B95B3840A21D765075 /* Localizable.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88F3AD15F355744FC4028ADD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1760A1FEFC650C986CDEAD42 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -767,6 +1022,25 @@
 			files = (
 				558646F8C8F3B50482A15D5C /* PathOfNurWatchApp.swift in Sources */,
 				8C14F2D3ACB54615A5B7720F /* WatchHomeView.swift in Sources */,
+				989E20A4BEBABB43E34239FE /* WatchSharedModels.swift in Sources */,
+				B60D2F4FCA276642B09DC336 /* WatchViewStates.swift in Sources */,
+				9CFC4793C73EC1A25ED0D317 /* WatchCacheStore.swift in Sources */,
+				0B6D975F2D8A7B02709CE8BF /* WatchRewardProjection.swift in Sources */,
+				4FAFE92CE1E197679C995661 /* WatchHaptics.swift in Sources */,
+				5961BCC167FE5E6CEC64A3ED /* WatchSyncService.swift in Sources */,
+				F21825F1731377AF1F1D18B4 /* WatchTheme.swift in Sources */,
+				4001F257E79E5D26DD7365E8 /* WatchMiniProgressRing.swift in Sources */,
+				B9D5DA39188F5ED42758BF6C /* WatchHeroCard.swift in Sources */,
+				F2252DDF46C4E2BE1B0583DD /* WatchPrayerRow.swift in Sources */,
+				0F694230592403351BBE9496 /* WatchQuickActionButton.swift in Sources */,
+				AA2612948B1D47A3A21231A9 /* WatchStatChip.swift in Sources */,
+				5C58B6F06346510E1784F45B /* WatchSyncStatusBadge.swift in Sources */,
+				108A77590B8D5D2369D8EFDF /* WatchAppModel.swift in Sources */,
+				4BC34AA97688EED7F70BE82B /* WatchRootView.swift in Sources */,
+				84FE5429EFFEA23E0E05CC2E /* PrayerCheckInScreen.swift in Sources */,
+				1D05BD4568A9198DF74A7A88 /* DhikrWatchScreen.swift in Sources */,
+				8EB1AD01550DD2D3C49059E4 /* ProgressWatchScreen.swift in Sources */,
+				EC7EAE389A4A58B4508574BB /* WatchUtilityScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -777,15 +1051,43 @@
 				74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */,
 				1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */,
 				7884E8682EC3CC0700C636F2 /* SceneDelegate.swift in Sources */,
+				3A4D9018531B29325E0FC649 /* WatchSyncBridge.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		99EEF25AEFDA7FCC36EF881C /* Sources */ = {
+			99EEF25AEFDA7FCC36EF881C /* Sources */ = {
+				isa = PBXSourcesBuildPhase;
+				buildActionMask = 2147483647;
+				files = (
+					265417A65ACD76550EE40908 /* PathOfNurTVApp.swift in Sources */,
+					D07034821A4C6B6179A5D492 /* TVRootView.swift in Sources */,
+					A30000000000000000000001 /* TVHomeScreen.swift in Sources */,
+					A30000000000000000000002 /* TVQuranScreen.swift in Sources */,
+					A30000000000000000000003 /* TVHeroCard.swift in Sources */,
+					A30000000000000000000004 /* TVActionCard.swift in Sources */,
+					A30000000000000000000005 /* TVSectionHeader.swift in Sources */,
+					A30000000000000000000006 /* TVShelfCard.swift in Sources */,
+					A30000000000000000000007 /* TVModels.swift in Sources */,
+					A30000000000000000000008 /* TVAppViewModel.swift in Sources */,
+					A30000000000000000000009 /* TVSeedRepository.swift in Sources */,
+					A3000000000000000000000A /* TVTheme.swift in Sources */,
+					A3000000000000000000000B /* TVBackgroundView.swift in Sources */,
+					A3000000000000000000000C /* TVFocusableCardModifier.swift in Sources */,
+					A3000000000000000000000D /* TVPrayerTimeCard.swift in Sources */,
+					A3000000000000000000000E /* TVQuranAyahCard.swift in Sources */,
+					A3000000000000000000000F /* TVQuranPlaybackCard.swift in Sources */,
+					A30000000000000000000010 /* TVQuranSurahRow.swift in Sources */,
+					A30000000000000000000011 /* TVLocalized.swift in Sources */,
+				);
+				runOnlyForDeploymentPostprocessing = 0;
+			};
+		E1150D5A6E1DFC8B1013F50D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				265417A65ACD76550EE40908 /* PathOfNurTVApp.swift in Sources */,
-				D07034821A4C6B6179A5D492 /* TVHomeView.swift in Sources */,
+				3C715B676105D8D91FF1BA3A /* PathOfNurWatchComplications.swift in Sources */,
+				DBC968D5C605CB8195435DF1 /* WatchSharedModels.swift in Sources */,
+				9D9365E90D8C535BBDDE88E6 /* WatchCacheStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -796,12 +1098,6 @@
 			isa = PBXTargetDependency;
 			target = 97C146ED1CF9000F007C117D /* Runner */;
 			targetProxy = 331C8085294A63A400263BE5 /* PBXContainerItemProxy */;
-		};
-		76254EFCD8DCA330FB16FFD1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "PathOfNurWatch Watch App";
-			target = AC03585982794548765852A0 /* PathOfNurWatch Watch App */;
-			targetProxy = 968491BE4C997FCC2D3E3695 /* PBXContainerItemProxy */;
 		};
 		93F274C6BB599DBB5DFE0795 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -841,9 +1137,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = "PathOfNurWatch Watch App Extension/PathOfNurWatchWatchExtension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
-				DEVELOPMENT_TEAM = "$(APPLE_DEVELOPMENT_TEAM)";
+				CURRENT_PROJECT_VERSION = 21;
+				DEVELOPMENT_TEAM = BL333P27N8;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = "PathOfNurWatch Watch App Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -851,16 +1148,46 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1.4;
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_WATCH_EXTENSION_BUNDLE_ID)";
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=watchos*]" = "$(APP_WATCH_EXTENSION_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchos watchsimulator";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 8.0;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 				WK_APP_BUNDLE_IDENTIFIER = "$(APP_WATCH_APP_BUNDLE_ID)";
+			};
+			name = Debug;
+		};
+		12877D408C8A4A2C58FD7133 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = PathOfNurWatchComplications/PathOfNurWatchComplications.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 21;
+				DEVELOPMENT_TEAM = BL333P27N8;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = PathOfNurWatchComplications/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.2.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_WATCH_EXTENSION_BUNDLE_ID).widgets";
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=watchos*]" = "$(APP_WATCH_EXTENSION_BUNDLE_ID).widgets";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchos watchsimulator";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Debug;
 		};
@@ -868,9 +1195,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = "PathOfNurWatch Watch App Extension/PathOfNurWatchWatchExtension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
-				DEVELOPMENT_TEAM = "$(APPLE_DEVELOPMENT_TEAM)";
+				CURRENT_PROJECT_VERSION = 21;
+				DEVELOPMENT_TEAM = BL333P27N8;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = "PathOfNurWatch Watch App Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -878,16 +1206,18 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1.4;
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_WATCH_EXTENSION_BUNDLE_ID)";
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=watchos*]" = "$(APP_WATCH_EXTENSION_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchos watchsimulator";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 8.0;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 				WK_APP_BUNDLE_IDENTIFIER = "$(APP_WATCH_APP_BUNDLE_ID)";
 			};
 			name = Profile;
@@ -896,8 +1226,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				APPLE_DEVELOPMENT_TEAM = YOURTEAMID;
-				APP_BUNDLE_ID_BASE = com.company.pathofnur;
+				APPLE_DEVELOPMENT_TEAM = BL333P27N8;
+				APP_BUNDLE_ID_BASE = com.shahab.pathOfNur;
 				APP_LIVE_ACTIVITY_BUNDLE_ID = "$(APP_BUNDLE_ID_BASE).prayerliveactivity";
 				APP_TEST_BUNDLE_ID = "$(APP_BUNDLE_ID_BASE).tests";
 				APP_TV_BUNDLE_ID = "$(APP_BUNDLE_ID_BASE).tv";
@@ -933,7 +1263,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "$(APPLE_DEVELOPMENT_TEAM)";
+				DEVELOPMENT_TEAM = BL333P27N8;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
@@ -957,13 +1287,13 @@
 		};
 		249021D4217E4FDB00AE95B9 /* Profile */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7AFA3C8E1D35360C0083082E /* Release.xcconfig */;
+			baseConfigurationReference = 7AFA3C8E1D35360C0083082F /* Profile.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
-				CURRENT_PROJECT_VERSION = 14;
-				DEVELOPMENT_TEAM = "$(APPLE_DEVELOPMENT_TEAM)";
+				CURRENT_PROJECT_VERSION = 21;
+				DEVELOPMENT_TEAM = BL333P27N8;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
@@ -971,11 +1301,12 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.4;
-				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_BUNDLE_ID_BASE)";
+				MARKETING_VERSION = 1.2.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shahab.pathOfNur;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
+				SWIFT_ENABLE_EXPLICIT_MODULES = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -989,8 +1320,8 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
-				DEVELOPMENT_TEAM = "$(APPLE_DEVELOPMENT_TEAM)";
+				CURRENT_PROJECT_VERSION = 21;
+				DEVELOPMENT_TEAM = BL333P27N8;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = PrayerLiveActivityExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
@@ -999,7 +1330,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1.4;
+				MARKETING_VERSION = 1.2.1;
 				NSSUPPORTSLIVEACTIVITIES = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_LIVE_ACTIVITY_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1017,10 +1348,11 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 21;
+				DEVELOPMENT_TEAM = BL333P27N8;
 				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.1.4;
-				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_TEST_BUNDLE_ID)";
+				MARKETING_VERSION = 1.2.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shahab.pathOfNur.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1035,10 +1367,11 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 21;
+				DEVELOPMENT_TEAM = BL333P27N8;
 				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.1.4;
-				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_TEST_BUNDLE_ID)";
+				MARKETING_VERSION = 1.2.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shahab.pathOfNur.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Runner.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Runner";
@@ -1051,10 +1384,11 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 21;
+				DEVELOPMENT_TEAM = BL333P27N8;
 				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.1.4;
-				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_TEST_BUNDLE_ID)";
+				MARKETING_VERSION = 1.2.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shahab.pathOfNur.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Runner.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Runner";
@@ -1065,9 +1399,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = "PathOfNurWatch Watch App Extension/PathOfNurWatchWatchExtension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
-				DEVELOPMENT_TEAM = "$(APPLE_DEVELOPMENT_TEAM)";
+				CURRENT_PROJECT_VERSION = 21;
+				DEVELOPMENT_TEAM = BL333P27N8;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = "PathOfNurWatch Watch App Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1075,16 +1410,18 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1.4;
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_WATCH_EXTENSION_BUNDLE_ID)";
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=watchos*]" = "$(APP_WATCH_EXTENSION_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchos watchsimulator";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 8.0;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 				WK_APP_BUNDLE_IDENTIFIER = "$(APP_WATCH_APP_BUNDLE_ID)";
 			};
 			name = Release;
@@ -1095,8 +1432,8 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
-				DEVELOPMENT_TEAM = "$(APPLE_DEVELOPMENT_TEAM)";
+				CURRENT_PROJECT_VERSION = 21;
+				DEVELOPMENT_TEAM = BL333P27N8;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = PrayerLiveActivityExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
@@ -1105,7 +1442,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1.4;
+				MARKETING_VERSION = 1.2.1;
 				NSSUPPORTSLIVEACTIVITIES = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_LIVE_ACTIVITY_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1122,20 +1459,22 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
-				DEVELOPMENT_TEAM = "$(APPLE_DEVELOPMENT_TEAM)";
+				CURRENT_PROJECT_VERSION = 21;
+				DEVELOPMENT_TEAM = BL333P27N8;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = "PathOfNurWatch Watch App/Info.plist";
-				MARKETING_VERSION = 1.1.4;
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_WATCH_APP_BUNDLE_ID)";
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=watchos*]" = "$(APP_WATCH_APP_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchos watchsimulator";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 8.0;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 				WK_COMPANION_APP_BUNDLE_IDENTIFIER = "$(APP_BUNDLE_ID_BASE)";
 			};
 			name = Release;
@@ -1146,8 +1485,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
-				DEVELOPMENT_TEAM = "$(APPLE_DEVELOPMENT_TEAM)";
+				CURRENT_PROJECT_VERSION = 21;
+				DEVELOPMENT_TEAM = BL333P27N8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = PathOfNurTV/Info.plist;
@@ -1156,7 +1495,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.4;
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_TV_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
@@ -1173,20 +1512,22 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
-				DEVELOPMENT_TEAM = "$(APPLE_DEVELOPMENT_TEAM)";
+				CURRENT_PROJECT_VERSION = 21;
+				DEVELOPMENT_TEAM = BL333P27N8;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = "PathOfNurWatch Watch App/Info.plist";
-				MARKETING_VERSION = 1.1.4;
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_WATCH_APP_BUNDLE_ID)";
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=watchos*]" = "$(APP_WATCH_APP_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchos watchsimulator";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 8.0;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 				WK_COMPANION_APP_BUNDLE_IDENTIFIER = "$(APP_BUNDLE_ID_BASE)";
 			};
 			name = Profile;
@@ -1195,8 +1536,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				APPLE_DEVELOPMENT_TEAM = YOURTEAMID;
-				APP_BUNDLE_ID_BASE = com.company.pathofnur;
+				APPLE_DEVELOPMENT_TEAM = BL333P27N8;
+				APP_BUNDLE_ID_BASE = com.shahab.pathOfNur;
 				APP_LIVE_ACTIVITY_BUNDLE_ID = "$(APP_BUNDLE_ID_BASE).prayerliveactivity";
 				APP_TEST_BUNDLE_ID = "$(APP_BUNDLE_ID_BASE).tests";
 				APP_TV_BUNDLE_ID = "$(APP_BUNDLE_ID_BASE).tv";
@@ -1232,7 +1573,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = "$(APPLE_DEVELOPMENT_TEAM)";
+				DEVELOPMENT_TEAM = BL333P27N8;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
@@ -1263,8 +1604,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				APPLE_DEVELOPMENT_TEAM = YOURTEAMID;
-				APP_BUNDLE_ID_BASE = com.company.pathofnur;
+				APPLE_DEVELOPMENT_TEAM = BL333P27N8;
+				APP_BUNDLE_ID_BASE = com.shahab.pathOfNur;
 				APP_LIVE_ACTIVITY_BUNDLE_ID = "$(APP_BUNDLE_ID_BASE).prayerliveactivity";
 				APP_TEST_BUNDLE_ID = "$(APP_BUNDLE_ID_BASE).tests";
 				APP_TV_BUNDLE_ID = "$(APP_BUNDLE_ID_BASE).tv";
@@ -1300,7 +1641,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "$(APPLE_DEVELOPMENT_TEAM)";
+				DEVELOPMENT_TEAM = BL333P27N8;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
@@ -1330,9 +1671,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
-				CURRENT_PROJECT_VERSION = 14;
-				DEVELOPMENT_TEAM = "$(APPLE_DEVELOPMENT_TEAM)";
+				CODE_SIGN_ENTITLEMENTS = Runner/RunnerDebug.entitlements;
+				CURRENT_PROJECT_VERSION = 21;
+				DEVELOPMENT_TEAM = BL333P27N8;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
@@ -1340,11 +1681,12 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.4;
-				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_BUNDLE_ID_BASE)";
+				MARKETING_VERSION = 1.2.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shahab.pathOfNur;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
+				SWIFT_ENABLE_EXPLICIT_MODULES = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -1360,8 +1702,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
-				CURRENT_PROJECT_VERSION = 14;
-				DEVELOPMENT_TEAM = "$(APPLE_DEVELOPMENT_TEAM)";
+				CURRENT_PROJECT_VERSION = 21;
+				DEVELOPMENT_TEAM = BL333P27N8;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
@@ -1369,15 +1711,45 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.4;
-				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_BUNDLE_ID_BASE)";
+				MARKETING_VERSION = 1.2.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shahab.pathOfNur;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
+				SWIFT_ENABLE_EXPLICIT_MODULES = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
+		9FFB0919F8FD824350EAF53C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = PathOfNurWatchComplications/PathOfNurWatchComplications.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 21;
+				DEVELOPMENT_TEAM = BL333P27N8;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = PathOfNurWatchComplications/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.2.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_WATCH_EXTENSION_BUNDLE_ID).widgets";
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=watchos*]" = "$(APP_WATCH_EXTENSION_BUNDLE_ID).widgets";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchos watchsimulator";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Release;
 		};
@@ -1387,8 +1759,8 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
-				DEVELOPMENT_TEAM = "$(APPLE_DEVELOPMENT_TEAM)";
+				CURRENT_PROJECT_VERSION = 21;
+				DEVELOPMENT_TEAM = BL333P27N8;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = PrayerLiveActivityExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
@@ -1397,7 +1769,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1.4;
+				MARKETING_VERSION = 1.2.1;
 				NSSUPPORTSLIVEACTIVITIES = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_LIVE_ACTIVITY_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1415,8 +1787,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
-				DEVELOPMENT_TEAM = "$(APPLE_DEVELOPMENT_TEAM)";
+				CURRENT_PROJECT_VERSION = 21;
+				DEVELOPMENT_TEAM = BL333P27N8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = PathOfNurTV/Info.plist;
@@ -1425,7 +1797,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.4;
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_TV_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
@@ -1437,24 +1809,55 @@
 			};
 			name = Profile;
 		};
+		C211A3C90438E0334A77AD2A /* Profile */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = PathOfNurWatchComplications/PathOfNurWatchComplications.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 21;
+				DEVELOPMENT_TEAM = BL333P27N8;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = PathOfNurWatchComplications/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.2.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_WATCH_EXTENSION_BUNDLE_ID).widgets";
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=watchos*]" = "$(APP_WATCH_EXTENSION_BUNDLE_ID).widgets";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchos watchsimulator";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Profile;
+		};
 		D40A59549F9E6B7FFC7C5636 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
-				DEVELOPMENT_TEAM = "$(APPLE_DEVELOPMENT_TEAM)";
+				CURRENT_PROJECT_VERSION = 21;
+				DEVELOPMENT_TEAM = BL333P27N8;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = "PathOfNurWatch Watch App/Info.plist";
-				MARKETING_VERSION = 1.1.4;
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_WATCH_APP_BUNDLE_ID)";
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=watchos*]" = "$(APP_WATCH_APP_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchos watchsimulator";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 8.0;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 				WK_COMPANION_APP_BUNDLE_IDENTIFIER = "$(APP_BUNDLE_ID_BASE)";
 			};
 			name = Debug;
@@ -1465,8 +1868,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
-				DEVELOPMENT_TEAM = "$(APPLE_DEVELOPMENT_TEAM)";
+				CURRENT_PROJECT_VERSION = 21;
+				DEVELOPMENT_TEAM = BL333P27N8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = PathOfNurTV/Info.plist;
@@ -1475,7 +1878,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.4;
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_TV_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
@@ -1505,6 +1908,16 @@
 				4EC9DC4617E0DBA96A49F4D4 /* Release */,
 				FC02A2FD8522A9EF148FF657 /* Debug */,
 				BED0E53624517296CE037016 /* Profile */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6577DC5CD8ACF732ECF9FE6E /* Build configuration list for PBXNativeTarget "PathOfNurWatchComplications" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9FFB0919F8FD824350EAF53C /* Release */,
+				12877D408C8A4A2C58FD7133 /* Debug */,
+				C211A3C90438E0334A77AD2A /* Profile */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

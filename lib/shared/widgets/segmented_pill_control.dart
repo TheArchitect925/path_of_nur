@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../core/theme/app_colors.dart';
+import '../../core/theme/app_surfaces.dart';
 import '../../core/theme/app_theme.dart';
 
 class SegmentedPillControl<T> extends StatelessWidget {
@@ -20,22 +21,24 @@ class SegmentedPillControl<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appearance = Theme.of(context).extension<AppAppearanceTheme>();
-    final surface = appearance?.surface ?? AppColors.surface;
-    final accent = appearance?.accent ?? AppColors.accentGold;
     final onSurface = appearance?.onSurface ?? AppColors.onSurface;
     final onSurfaceSubtle =
         appearance?.onSurfaceSubtle ?? AppColors.onSurfaceSubtle;
-    final borderAlpha =
-        appearance?.glassBorderAlpha ?? AppColors.glassBorderAlpha;
-    final surfaceAlpha =
-        appearance?.glassSurfaceAlpha ?? AppColors.glassSurfaceAlpha;
+    final accent = appearance?.accent ?? AppColors.accentGold;
+    final outerStyle = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.pill,
+    );
+    final selectedStyle = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.pill,
+      tintColor: accent,
+      baseColor:
+          appearance?.surfaceSoft ?? appearance?.surface ?? AppColors.surface,
+    );
 
     return Container(
-      decoration: BoxDecoration(
-        color: surface.withValues(alpha: surfaceAlpha),
-        borderRadius: BorderRadius.circular(999),
-        border: Border.all(color: accent.withValues(alpha: borderAlpha)),
-      ),
+      decoration: outerStyle.decoration(radius: 999),
       padding: const EdgeInsets.all(4),
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
@@ -57,10 +60,10 @@ class SegmentedPillControl<T> extends StatelessWidget {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(999),
                         color: selectedItem == item
-                            ? accent.withValues(alpha: 0.28)
+                            ? selectedStyle.iconBackgroundColor
                             : Colors.transparent,
                         border: selectedItem == item
-                            ? Border.all(color: accent.withValues(alpha: 0.55))
+                            ? Border.all(color: selectedStyle.borderColor)
                             : null,
                       ),
                       child: Text(

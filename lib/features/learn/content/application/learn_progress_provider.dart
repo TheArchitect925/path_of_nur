@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../ocean/application/ocean_drops_provider.dart';
+import '../../../journey/drops/application/journey_drops_providers.dart';
 import '../../../../shared/persistence/local_store.dart';
 import '../data/learn_content_catalog.dart';
 import '../domain/learn_topic_category.dart';
@@ -51,16 +51,16 @@ class LearnTopicProgress {
   }
 
   Map<String, dynamic> toJson() => {
-        'topicId': topicId,
-        'category': category.name,
-        'started': started,
-        'completed': completed,
-        'saved': saved,
-        'favorite': favorite,
-        'reflectionProgress': reflectionProgress,
-        'lastOpenedIso': lastOpenedIso,
-        'resumedCount': resumedCount,
-      };
+    'topicId': topicId,
+    'category': category.name,
+    'started': started,
+    'completed': completed,
+    'saved': saved,
+    'favorite': favorite,
+    'reflectionProgress': reflectionProgress,
+    'lastOpenedIso': lastOpenedIso,
+    'resumedCount': resumedCount,
+  };
 
   static LearnTopicProgress? fromJson(dynamic raw) {
     if (raw is! Map) return null;
@@ -104,8 +104,8 @@ class LearnProgressState {
   }
 
   Map<String, dynamic> toJson() => {
-        'items': byTopicId.map((key, value) => MapEntry(key, value.toJson())),
-      };
+    'items': byTopicId.map((key, value) => MapEntry(key, value.toJson())),
+  };
 
   static LearnProgressState fromJson(Map<String, dynamic>? json) {
     if (json == null) return const LearnProgressState(byTopicId: {});
@@ -142,12 +142,12 @@ class LearnProgressSummary {
 }
 
 class LearnProgressNotifier extends StateNotifier<LearnProgressState> {
-  LearnProgressNotifier(this._store, this._oceanDrops)
-      : super(LearnProgressState.fromJson(_store.getJsonMap(_storageKey)));
+  LearnProgressNotifier(this._store, this._dropController)
+    : super(LearnProgressState.fromJson(_store.getJsonMap(_storageKey)));
 
   static const _storageKey = 'learn.progress.v1';
   final LocalStore _store;
-  final OceanDropService _oceanDrops;
+  final JourneyDropController _dropController;
 
   LearnTopicProgress forTopic(LearnTopicCategory category, String topicId) {
     return state.byTopicId[topicId] ??
@@ -166,7 +166,9 @@ class LearnProgressNotifier extends StateNotifier<LearnProgressState> {
 
   void touchTopic(LearnTopicCategory category, String topicId) {
     final current = forTopic(category, topicId);
-    final resumed = current.started ? current.resumedCount + 1 : current.resumedCount;
+    final resumed = current.started
+        ? current.resumedCount + 1
+        : current.resumedCount;
     _set(
       current.copyWith(
         started: true,
@@ -186,11 +188,10 @@ class LearnProgressNotifier extends StateNotifier<LearnProgressState> {
       ),
     );
     if (value && !current.completed) {
-      _oceanDrops.awardDrop(
-        actionType: oceanActionLearningSegmentCompleted,
-        sourceModule: oceanSourceLearn,
-        referenceId: topicId,
-        metadata: {
+      _dropController.awardLearningDrop(
+        sourceRef: 'learning:$topicId',
+        occurredAt: DateTime.now(),
+        metadata: <String, Object?>{
           'timestamp': DateTime.now().toIso8601String(),
           'category': category.name,
         },
@@ -232,11 +233,11 @@ class LearnProgressNotifier extends StateNotifier<LearnProgressState> {
 
 final learnProgressProvider =
     StateNotifierProvider<LearnProgressNotifier, LearnProgressState>(
-  (ref) => LearnProgressNotifier(
-    ref.watch(localStoreProvider),
-    ref.read(oceanDropServiceProvider),
-  ),
-);
+      (ref) => LearnProgressNotifier(
+        ref.watch(localStoreProvider),
+        ref.read(journeyDropSummaryProvider.notifier),
+      ),
+    );
 
 final learnProgressSummaryProvider = Provider<LearnProgressSummary>((ref) {
   final state = ref.watch(learnProgressProvider);
@@ -256,7 +257,8 @@ final learnProgressSummaryProvider = Provider<LearnProgressSummary>((ref) {
     if (item.favorite) favorite += 1;
     totalProgress += item.reflectionProgress;
     final opened = DateTime.tryParse(item.lastOpenedIso ?? '');
-    if (opened != null && (resumedTime == null || opened.isAfter(resumedTime))) {
+    if (opened != null &&
+        (resumedTime == null || opened.isAfter(resumedTime))) {
       resumedTime = opened;
       resumedTopic = item.topicId;
     }

@@ -1,35 +1,107 @@
 import SwiftUI
 
 struct WatchHomeView: View {
+  @EnvironmentObject private var model: WatchAppModel
+
   var body: some View {
     ScrollView {
       VStack(alignment: .leading, spacing: 12) {
-        Text("Path of Nūr")
-          .font(.headline)
-
-        Text("Watch companion scaffold")
-          .font(.subheadline)
-          .foregroundStyle(.secondary)
-
-        Text("This native watch target is intentionally minimal. It is ready to grow into prayer status, dhikr, and quick-action surfaces without overloading the iOS target.")
-          .font(.footnote)
-
-        Divider()
-
-        VStack(alignment: .leading, spacing: 8) {
-          Label("Prayer status", systemImage: "clock")
-          Label("Dhikr shortcuts", systemImage: "hands.sparkles")
-          Label("Quick actions", systemImage: "bolt")
+        HStack {
+          Text(WatchStrings.homeTitle)
+            .font(.system(size: 18, weight: .bold, design: .rounded))
+            .foregroundStyle(.white)
+          Spacer()
+          WatchSyncStatusBadge(state: model.syncBadgeState)
         }
-        .font(.footnote)
-        .foregroundStyle(.secondary)
+        if let dashboard = model.dashboardState {
+          WatchHeroCard(glow: dashboard.allPrayersComplete) {
+            Text(dashboard.allPrayersComplete ? WatchStrings.allPrayersComplete : WatchStrings.nextPrayerTitle)
+              .font(.caption2.weight(.semibold))
+              .foregroundStyle(WatchTheme.secondaryText)
+            Text(dashboard.nextPrayerName)
+              .font(.system(size: 18, weight: .bold, design: .rounded))
+              .foregroundStyle(.white)
+            if let nextPrayerTime = dashboard.nextPrayerTime, !dashboard.allPrayersComplete {
+              VStack(alignment: .leading, spacing: 2) {
+                Text(nextPrayerTime, style: .time)
+                  .font(.headline)
+                  .foregroundStyle(WatchTheme.accentSoft)
+                Text(freshnessLabel(for: dashboard))
+                  .font(.caption2)
+                  .foregroundStyle(dashboard.isStale ? WatchTheme.warning : WatchTheme.secondaryText)
+              }
+            }
+            HStack(spacing: 12) {
+              WatchMiniProgressRing(
+                progress: dashboard.progressValue,
+                label: "\(dashboard.completedPrayerCount)/\(dashboard.totalPrayerCount)"
+              )
+              VStack(alignment: .leading, spacing: 6) {
+                Text(WatchStrings.prayerSummary)
+                  .font(.caption2)
+                  .foregroundStyle(WatchTheme.secondaryText)
+                Text("\(dashboard.completedPrayerCount)/\(dashboard.totalPrayerCount)")
+                  .font(.system(size: 20, weight: .bold, design: .rounded))
+                  .foregroundStyle(.white)
+                Text("\(WatchStrings.streak): \(dashboard.streakDays)")
+                  .font(.caption2)
+                  .foregroundStyle(WatchTheme.accentSoft)
+              }
+            }
+          }
+
+          HStack(spacing: 8) {
+            WatchQuickActionButton(
+              title: WatchStrings.prayerTitle,
+              systemImage: "checkmark.circle"
+            ) {
+              model.selectedTab = .prayer
+            }
+            WatchQuickActionButton(
+              title: WatchStrings.dhikrTitle,
+              systemImage: "hand.tap"
+            ) {
+              model.selectedTab = .dhikr
+            }
+            WatchQuickActionButton(
+              title: WatchStrings.progressTitle,
+              systemImage: "sparkles"
+            ) {
+              model.selectedTab = .progress
+            }
+          }
+        } else {
+          WatchHeroCard {
+            Text(WatchStrings.noSnapshotTitle)
+              .font(.headline)
+              .foregroundStyle(.white)
+            Text(WatchStrings.noSnapshotBody)
+              .font(.caption2)
+              .foregroundStyle(WatchTheme.secondaryText)
+          }
+        }
       }
-      .frame(maxWidth: .infinity, alignment: .leading)
-      .padding()
+      .padding(.horizontal, 12)
+      .padding(.vertical, 10)
     }
+    .containerBackground(WatchTheme.backgroundGradient, for: .navigation)
+  }
+
+  private func freshnessLabel(for dashboard: WatchDashboardState) -> String {
+    guard let lastSyncAt = dashboard.lastSyncAt else {
+      return WatchStrings.freshnessNeedsSync
+    }
+    if dashboard.isStale {
+      return WatchStrings.freshnessNeedsSync
+    }
+    if Date().timeIntervalSince(lastSyncAt) < 60 {
+      return "\(WatchStrings.freshnessUpdated) \(WatchStrings.freshnessJustNow)"
+    }
+    return "\(WatchStrings.freshnessUpdated) \(lastSyncAt.formatted(.relative(presentation: .named)))"
   }
 }
 
 #Preview {
   WatchHomeView()
+    .environmentObject(WatchAppModel())
 }

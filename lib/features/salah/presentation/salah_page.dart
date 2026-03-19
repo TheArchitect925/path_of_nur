@@ -7,6 +7,7 @@ import '../../../core/prayer/prayer_preferences.dart';
 import '../../../core/prayer/prayer_location_search_service.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_text_styles.dart';
+import '../../learn/quran/domain/quran_content_refs.dart';
 import '../../../features/worship/application/prayer_tracker_controller.dart';
 import '../../../features/worship/domain/prayer_name.dart';
 import '../../../features/worship/domain/prayer_tracker_fields.dart';
@@ -1420,52 +1421,11 @@ PrayerName _toPrayerName(String prayerId) {
 
 QuranQuote _dailySalahQuote(DateTime now) {
   final quotes = <QuranQuote>[
-    const QuranQuote(
-      arabic: 'إِنَّ الصَّلَاةَ تَنْهَىٰ عَنِ الْفَحْشَاءِ وَالْمُنكَرِ',
-      transliteration: 'Inna as-salata tanha anil-fahsha-i wal-munkar',
-      translation: 'Indeed, prayer restrains from shameful and unjust deeds.',
-      surah: 29,
-      verse: 45,
-      locationLabel: 'Qur’an 29:45',
-    ),
-    const QuranQuote(
-      arabic: 'وَأَقِيمُوا الصَّلَاةَ وَآتُوا الزَّكَاةَ',
-      transliteration: 'Wa aqimu as-salata wa atu az-zakah',
-      translation: 'Establish prayer and give zakah.',
-      surah: 2,
-      verse: 43,
-      locationLabel: 'Qur’an 2:43',
-    ),
-    const QuranQuote(
-      arabic: 'حَافِظُوا عَلَى الصَّلَوَاتِ وَالصَّلَاةِ الْوُسْطَىٰ',
-      transliteration: 'Hafizu ala as-salawati was-salatil-wusta',
-      translation: 'Guard strictly the prayers, especially the middle prayer.',
-      surah: 2,
-      verse: 238,
-      locationLabel: 'Qur’an 2:238',
-    ),
-    const QuranQuote(
-      arabic:
-          'قَدْ أَفْلَحَ الْمُؤْمِنُونَ الَّذِينَ هُمْ فِي صَلَاتِهِمْ خَاشِعُونَ',
-      transliteration:
-          'Qad aflaha al-mu’minun alladhina hum fi salatihim khashi‘un',
-      translation:
-          'Successful indeed are the believers, those who are humble in their prayer.',
-      surah: 23,
-      verse: 1,
-      locationLabel: 'Qur’an 23:1-2',
-    ),
-    const QuranQuote(
-      arabic:
-          'إِنَّنِي أَنَا اللَّهُ لَا إِلَٰهَ إِلَّا أَنَا فَاعْبُدْنِي وَأَقِمِ الصَّلَاةَ لِذِكْرِي',
-      transliteration:
-          'Innani ana Allahu la ilaha illa ana fa‘budni wa aqimi as-salata lidhikri',
-      translation:
-          'Indeed, I am Allah. There is no deity except Me, so worship Me and establish prayer for My remembrance.',
-      surah: 20,
-      verse: 14,
-      locationLabel: 'Qur’an 20:14',
-    ),
+    const QuranQuote(ref: QuranQuoteRef(surah: 29, ayah: 45)),
+    const QuranQuote(ref: QuranQuoteRef(surah: 2, ayah: 43)),
+    const QuranQuote(ref: QuranQuoteRef(surah: 2, ayah: 238)),
+    const QuranQuote(ref: QuranQuoteRef(surah: 23, ayah: 1, ayahEnd: 2)),
+    const QuranQuote(ref: QuranQuoteRef(surah: 20, ayah: 14)),
   ];
   final daySeed = DateTime(
     now.year,

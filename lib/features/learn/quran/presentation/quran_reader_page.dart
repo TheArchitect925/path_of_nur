@@ -18,12 +18,16 @@ import '../../../../../shared/widgets/premium_card.dart';
 import '../../../../../shared/widgets/quran_text_span.dart';
 import '../../shared/application/learn_unified_provider.dart';
 import '../../shared/domain/learn_unified_models.dart';
+import '../application/quran_playback_orchestrator.dart';
+import '../application/quran_player_controller.dart';
 import '../application/quran_providers.dart';
 import '../application/quran_reference_graph_provider.dart';
 import '../data/quran_audio_repository.dart';
 import '../data/quran_word_glossary.dart';
 import '../data/quran_word_timing_repository.dart';
+import '../domain/bismillah_playback_mode.dart';
 import '../domain/quran_ayah.dart';
+import '../domain/quran_playback_request.dart';
 import 'widgets/quran_reference_viewer.dart';
 
 class QuranReaderPage extends ConsumerStatefulWidget {
@@ -421,7 +425,8 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
                   SwitchListTile.adaptive(
                     contentPadding: EdgeInsets.zero,
                     value: settings.showWordByWord,
-                    title: Text(l10n.quranWordTranslationChip),
+                    title: Text(l10n.quranWordTranslationBetaTitle),
+                    subtitle: Text(l10n.quranWordTranslationBetaSubtitle),
                     onChanged: settingsNotifier.setShowWordByWord,
                   ),
                   SwitchListTile.adaptive(
@@ -1317,6 +1322,112 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
     });
   }
 
+  QuranPlaybackOrchestrator get _playbackOrchestrator =>
+      ref.read(quranPlaybackOrchestratorProvider);
+
+  QuranPlayerController get _playerController =>
+      ref.read(quranPlayerControllerProvider);
+
+  Future<QuranPreparedPlayback> _preparePlayback({
+    required QuranPlaybackRequest request,
+    required List<QuranAyah> ayahs,
+    required String reciterId,
+  }) {
+    return _playbackOrchestrator.preparePlayback(
+      request: request,
+      reciterId: reciterId,
+      ayahNumbers: ayahs.map((item) => item.ayahNumber).toList(growable: false),
+      mode: ref.read(quranDefaultBismillahPlaybackModeProvider),
+    );
+  }
+
+  void _rememberPlaybackSession({
+    required List<QuranAyah> ayahs,
+    required String reciterId,
+    required double playbackSpeed,
+    required bool includeMediaTags,
+    required bool isSurahMode,
+  }) {
+    _playerController.rememberSession(
+      QuranActivePlaybackSession(
+        surahNumber: widget.surahNumber,
+        ayahNumbers: ayahs
+            .map((item) => item.ayahNumber)
+            .toList(growable: false),
+        reciterId: reciterId,
+        playbackSpeed: playbackSpeed,
+        includeMediaTags: includeMediaTags,
+        isSurahMode: isSurahMode,
+        bismillahMode: ref.read(quranDefaultBismillahPlaybackModeProvider),
+      ),
+    );
+  }
+
+  Future<void> _applyPreparedPlayback({
+    required QuranPreparedPlayback prepared,
+    required List<QuranAyah> ayahs,
+    required String reciterId,
+    required double playbackSpeed,
+    required int sessionVersion,
+    required bool isSurahMode,
+    required String? currentAyahKey,
+  }) async {
+    final audioSettings = ref.read(quranAudioSettingsProvider);
+
+    _isSwitchingAyahSource = true;
+    try {
+      await _playerController.startPreparedPlayback(
+        prepared,
+        reciterId: reciterId,
+        playbackSpeed: playbackSpeed,
+        includeMediaTags: audioSettings.backgroundPlaybackEnabled,
+      );
+      if (sessionVersion != _playerSessionVersion) return;
+      _rememberPlaybackSession(
+        ayahs: ayahs,
+        reciterId: reciterId,
+        playbackSpeed: playbackSpeed,
+        includeMediaTags: audioSettings.backgroundPlaybackEnabled,
+        isSurahMode: isSurahMode,
+      );
+      if (mounted) {
+        setState(() {
+          _isSurahPlaybackMode = isSurahMode;
+          _surahPlaybackAyahs = isSurahMode ? ayahs : const [];
+          _currentlyPlayingAyahKey = currentAyahKey;
+          _hasReachedEndOfSurahPlayback = false;
+        });
+      }
+      final targetAyah = ayahs[prepared.initialLogicalIndex];
+      _quranLiveActivityAyah = targetAyah;
+      _lastSentLiveElapsedSecond = -1;
+      if (isSurahMode) {
+        _syncWordHighlightForCurrentTrack(targetAyah);
+      } else {
+        final readerSettings = ref.read(quranReaderSettingsProvider);
+        if (readerSettings.wordSyncHighlightBeta) {
+          final preciseSegments = await ref
+              .read(quranWordTimingRepositoryProvider)
+              .getAyahWordTimings(
+                reciterId: reciterId,
+                surahNumber: targetAyah.surahNumber,
+                ayahNumber: targetAyah.ayahNumber,
+              );
+          _startWordHighlight(
+            targetAyah.arabic,
+            _audioPlayer.duration,
+            preciseSegments: preciseSegments,
+          );
+        } else {
+          _stopWordHighlight();
+        }
+      }
+      await _updateQuranLiveActivity(ayah: targetAyah, force: true);
+    } finally {
+      _isSwitchingAyahSource = false;
+    }
+  }
+
   Future<void> _handleAyahPlay(QuranAyah ayah) async {
     if (!mounted) return;
     final ayahKey = '${ayah.surahNumber}:${ayah.ayahNumber}';
@@ -1327,7 +1438,15 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
         await _audioPlayer.pause();
         _stopWordHighlight();
       } else {
-        unawaited(_audioPlayer.play());
+        await _playAyahAudio(
+          ayah,
+          request: QuranPlaybackRequest(
+            surahNumber: ayah.surahNumber,
+            ayahNumber: ayah.ayahNumber,
+            resumePosition: _audioPlayer.position,
+            playbackReason: QuranPlaybackReason.resume,
+          ),
+        );
       }
       return;
     }
@@ -1336,7 +1455,14 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
       _surahPlaybackAyahs = const [];
       _currentlyPlayingAyahKey = ayahKey;
     });
-    await _playAyahAudio(ayah, includeOpeningBismillah: true);
+    await _playAyahAudio(
+      ayah,
+      request: QuranPlaybackRequest(
+        surahNumber: ayah.surahNumber,
+        ayahNumber: ayah.ayahNumber,
+        playbackReason: QuranPlaybackReason.freshPlay,
+      ),
+    );
   }
 
   Future<void> _toggleCurrentPlayback(List<QuranAyah> ayahs) async {
@@ -1355,10 +1481,18 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
     }
     final currentAyah = _currentAyahFromPlaybackKey(ayahs);
     if (currentAyah != null) {
-      await _playAyahAudio(currentAyah, includeOpeningBismillah: true);
+      await _playAyahAudio(
+        currentAyah,
+        request: QuranPlaybackRequest(
+          surahNumber: currentAyah.surahNumber,
+          ayahNumber: currentAyah.ayahNumber,
+          resumePosition: _audioPlayer.position,
+          playbackReason: QuranPlaybackReason.resume,
+        ),
+      );
       return;
     }
-    unawaited(_audioPlayer.play());
+    await _playerController.resumeCurrentPlaybackWithBismillah();
   }
 
   Future<void> _bootstrapQuranLiveActivity() async {
@@ -1572,15 +1706,11 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
         _surahPlaybackAyahs.isNotEmpty &&
         _surahPlaybackAyahs.first.surahNumber == ayahs.first.surahNumber &&
         _audioPlayer.sequence.length == ayahs.length) {
-      if (_audioPlayer.playing) {
-        await _audioPlayer.seek(Duration.zero, index: targetIndex);
-      } else {
-        await _startSurahPlayback(
-          ayahs: ayahs,
-          initialIndex: targetIndex,
-          scrollBeforePlay: scrollBeforePlay,
-        );
-      }
+      await _startSurahPlayback(
+        ayahs: ayahs,
+        initialIndex: targetIndex,
+        scrollBeforePlay: scrollBeforePlay,
+      );
       return;
     }
 
@@ -1620,69 +1750,44 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
     try {
       final audioSettings = ref.read(quranAudioSettingsProvider);
       final readerSettings = ref.read(quranReaderSettingsProvider);
-      final audioRepository = ref.read(quranAudioRepositoryProvider);
       final playbackSpeed = _effectivePlaybackSpeed(
         configuredSpeed: audioSettings.playbackSpeed,
         lockToWordSync: readerSettings.wordSyncHighlightBeta,
       );
-      final selectedReciter = audioRepository.reciterById(
-        audioSettings.reciterId,
+      final request = QuranPlaybackRequest(
+        surahNumber: widget.surahNumber,
+        ayahNumber: ayahs[safeInitialIndex].ayahNumber,
+        resumePosition: initialPosition > Duration.zero
+            ? initialPosition
+            : null,
+        playbackReason: initialPosition > Duration.zero
+            ? QuranPlaybackReason.resume
+            : safeInitialIndex == 0
+            ? QuranPlaybackReason.freshPlay
+            : QuranPlaybackReason.jump,
+        isSurahEntry: safeInitialIndex == 0,
       );
-      _isSwitchingAyahSource = true;
-      await _playOpeningBismillah(
+      final prepared = await _preparePlayback(
+        request: request,
+        ayahs: ayahs,
+        reciterId: audioSettings.reciterId,
+      );
+      if (sessionVersion != _playerSessionVersion) return;
+      final first = ayahs[safeInitialIndex];
+      await _applyPreparedPlayback(
+        prepared: prepared,
+        ayahs: ayahs,
         reciterId: audioSettings.reciterId,
         playbackSpeed: playbackSpeed,
         sessionVersion: sessionVersion,
+        isSurahMode: true,
+        currentAyahKey: '${first.surahNumber}:${first.ayahNumber}',
       );
-      if (sessionVersion != _playerSessionVersion) return;
-      final sources = <AudioSource>[];
-      for (final ayah in ayahs) {
-        final source = await audioRepository.resolveAyahSource(
-          reciterId: audioSettings.reciterId,
-          surahNumber: ayah.surahNumber,
-          ayahNumber: ayah.ayahNumber,
-        );
-        final tag = _mediaItemForAyah(
-          ayah: ayah,
-          reciterName: selectedReciter.name,
-          includeTag: audioSettings.backgroundPlaybackEnabled,
-        );
-        if (source.startsWith('/')) {
-          sources.add(AudioSource.file(source, tag: tag));
-        } else {
-          sources.add(AudioSource.uri(Uri.parse(source), tag: tag));
-        }
-      }
-      if (sessionVersion != _playerSessionVersion) return;
-      await _audioPlayer.stop();
-      await _audioPlayer.setSpeed(playbackSpeed);
-      await _audioPlayer.setAudioSources(
-        sources,
-        initialIndex: safeInitialIndex,
-      );
-      if (initialPosition > Duration.zero) {
-        await _audioPlayer.seek(initialPosition, index: safeInitialIndex);
-      }
-      final first = ayahs[safeInitialIndex];
-      if (mounted) {
-        setState(() {
-          _isSurahPlaybackMode = true;
-          _surahPlaybackAyahs = ayahs;
-          _currentlyPlayingAyahKey = '${first.surahNumber}:${first.ayahNumber}';
-          _hasReachedEndOfSurahPlayback = false;
-        });
-      }
-      _quranLiveActivityAyah = first;
-      _lastSentLiveElapsedSecond = -1;
-      _syncWordHighlightForCurrentTrack(first);
-      await _updateQuranLiveActivity(ayah: first, force: true);
       if (sessionVersion != _playerSessionVersion) return;
       if (scrollBeforePlay) {
         await _scrollToAyah(first.ayahNumber, retries: 30);
       }
-      unawaited(_audioPlayer.play());
     } finally {
-      _isSwitchingAyahSource = false;
       if (mounted) {
         setState(() => _isPreparingSurahPlayback = false);
       }
@@ -1876,114 +1981,44 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
 
   Future<void> _playAyahAudio(
     QuranAyah ayah, {
-    bool includeOpeningBismillah = false,
-    bool startNewSession = true,
+    required QuranPlaybackRequest request,
+    BismillahPlaybackMode? bismillahMode,
   }) async {
-    final sessionVersion = startNewSession
-        ? ++_playerSessionVersion
-        : _playerSessionVersion;
+    final sessionVersion = ++_playerSessionVersion;
     final settings = ref.read(quranAudioSettingsProvider);
     final readerSettings = ref.read(quranReaderSettingsProvider);
-    final audioRepository = ref.read(quranAudioRepositoryProvider);
-    Future<List<QuranWordTimingSegment>> preciseSegmentsFuture =
-        Future<List<QuranWordTimingSegment>>.value(const []);
-    if (readerSettings.wordSyncHighlightBeta) {
-      final wordTimingRepository = ref.read(quranWordTimingRepositoryProvider);
-      preciseSegmentsFuture = wordTimingRepository.getAyahWordTimings(
-        reciterId: settings.reciterId,
-        surahNumber: ayah.surahNumber,
-        ayahNumber: ayah.ayahNumber,
-      );
-    }
-    _isSwitchingAyahSource = true;
-    try {
-      final playbackSpeed = _effectivePlaybackSpeed(
-        configuredSpeed: settings.playbackSpeed,
-        lockToWordSync: readerSettings.wordSyncHighlightBeta,
-      );
-      if (includeOpeningBismillah) {
-        await _playOpeningBismillah(
+    final effectiveBismillahMode =
+        bismillahMode ?? ref.read(quranDefaultBismillahPlaybackModeProvider);
+    final playbackSpeed = _effectivePlaybackSpeed(
+      configuredSpeed: settings.playbackSpeed,
+      lockToWordSync: readerSettings.wordSyncHighlightBeta,
+    );
+    final prepared =
+        await _preparePlayback(
+          request: request,
+          ayahs: <QuranAyah>[ayah],
           reciterId: settings.reciterId,
-          playbackSpeed: playbackSpeed,
-          sessionVersion: sessionVersion,
-        );
-      }
-      if (sessionVersion != _playerSessionVersion) return;
-      final source = await audioRepository.resolveAyahSource(
-        reciterId: settings.reciterId,
-        surahNumber: ayah.surahNumber,
-        ayahNumber: ayah.ayahNumber,
-      );
-      final selectedReciter = audioRepository.reciterById(settings.reciterId);
-      final tag = _mediaItemForAyah(
-        ayah: ayah,
-        reciterName: selectedReciter.name,
-        includeTag: settings.backgroundPlaybackEnabled,
-      );
-      await _audioPlayer.stop();
-      if (mounted) {
-        setState(
-          () => _currentlyPlayingAyahKey =
-              '${ayah.surahNumber}:${ayah.ayahNumber}',
-        );
-      }
-      _quranLiveActivityAyah = ayah;
-      _lastSentLiveElapsedSecond = -1;
-      await _audioPlayer.setSpeed(playbackSpeed);
-      if (sessionVersion != _playerSessionVersion) return;
-      final duration = source.startsWith('/')
-          ? await _audioPlayer.setFilePath(source, tag: tag)
-          : await _audioPlayer.setUrl(source, tag: tag);
-      if (readerSettings.wordSyncHighlightBeta) {
-        final preciseSegments = await preciseSegmentsFuture;
-        _startWordHighlight(
-          ayah.arabic,
-          duration,
-          preciseSegments: preciseSegments,
-        );
-      } else {
-        _stopWordHighlight();
-      }
-      await _updateQuranLiveActivity(ayah: ayah, force: true);
-      if (sessionVersion != _playerSessionVersion) return;
-      unawaited(_audioPlayer.play());
-    } finally {
-      _isSwitchingAyahSource = false;
-    }
-  }
-
-  Future<void> _playOpeningBismillah({
-    required String reciterId,
-    required double playbackSpeed,
-    required int sessionVersion,
-  }) async {
-    final audioRepository = ref.read(quranAudioRepositoryProvider);
-    try {
-      if (sessionVersion != _playerSessionVersion) return;
-      final source = await audioRepository.resolveAyahSource(
-        reciterId: reciterId,
-        surahNumber: 1,
-        ayahNumber: 1,
-      );
-      if (sessionVersion != _playerSessionVersion) return;
-      await _audioPlayer.stop();
-      await _audioPlayer.setSpeed(playbackSpeed);
-      if (source.startsWith('/')) {
-        await _audioPlayer.setFilePath(source);
-      } else {
-        await _audioPlayer.setUrl(source);
-      }
-      if (sessionVersion != _playerSessionVersion) return;
-      await _audioPlayer.play();
-      await _audioPlayer.processingStateStream.firstWhere(
-        (state) =>
-            state == ProcessingState.completed ||
-            state == ProcessingState.idle ||
-            sessionVersion != _playerSessionVersion,
-      );
-    } catch (_) {
-      // Continue to main playback if bismillah pre-roll fails.
-    }
+        ).then((prepared) {
+          if (effectiveBismillahMode == BismillahPlaybackMode.alwaysPrepend) {
+            return prepared;
+          }
+          return QuranPreparedPlayback(
+            request: prepared.request,
+            entries: prepared.entries,
+            initialLogicalIndex: prepared.initialLogicalIndex,
+            initialPosition: prepared.initialPosition,
+            didPrependBismillah: false,
+          );
+        });
+    await _applyPreparedPlayback(
+      prepared: prepared,
+      ayahs: <QuranAyah>[ayah],
+      reciterId: settings.reciterId,
+      playbackSpeed: playbackSpeed,
+      sessionVersion: sessionVersion,
+      isSurahMode: false,
+      currentAyahKey: '${ayah.surahNumber}:${ayah.ayahNumber}',
+    );
   }
 
   Future<void> _playReciterSample({
@@ -2036,22 +2071,6 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
     required bool lockToWordSync,
   }) {
     return lockToWordSync ? 1.0 : configuredSpeed;
-  }
-
-  MediaItem? _mediaItemForAyah({
-    required QuranAyah ayah,
-    required String reciterName,
-    required bool includeTag,
-  }) {
-    if (!includeTag) return null;
-    final surah = ref.read(quranSurahMapProvider)[ayah.surahNumber];
-    final surahLabel = surah?.transliteratedName ?? 'Surah ${ayah.surahNumber}';
-    return MediaItem(
-      id: 'quran:${ayah.surahNumber}:${ayah.ayahNumber}:$reciterName',
-      album: 'Path of Nur • $surahLabel',
-      title: '$surahLabel ${ayah.surahNumber}:${ayah.ayahNumber}',
-      artist: reciterName,
-    );
   }
 
   void _setWordSyncHighlightBeta(bool value) {
@@ -2302,23 +2321,24 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
     final sessionVersion = ++_playerSessionVersion;
     setState(() => _isLoopRunning = true);
     try {
-      final readerSettings = ref.read(quranReaderSettingsProvider);
-      final playbackSpeed = _effectivePlaybackSpeed(
-        configuredSpeed: audio.playbackSpeed,
-        lockToWordSync: readerSettings.wordSyncHighlightBeta,
-      );
-      await _playOpeningBismillah(
-        reciterId: audio.reciterId,
-        playbackSpeed: playbackSpeed,
-        sessionVersion: sessionVersion,
-      );
-      if (sessionVersion != _playerSessionVersion) return;
       for (var loop = 0; loop < audio.ayahLoopCount; loop += 1) {
         if (sessionVersion != _playerSessionVersion) return;
         for (final ayah in range) {
           if (sessionVersion != _playerSessionVersion) return;
           if (!mounted) return;
-          await _playAyahAudio(ayah, startNewSession: false);
+          await _playAyahAudio(
+            ayah,
+            request: QuranPlaybackRequest(
+              surahNumber: ayah.surahNumber,
+              ayahNumber: ayah.ayahNumber,
+              playbackReason: loop == 0 && ayah == range.first
+                  ? QuranPlaybackReason.freshPlay
+                  : QuranPlaybackReason.jump,
+            ),
+            bismillahMode: loop == 0 && ayah == range.first
+                ? ref.read(quranDefaultBismillahPlaybackModeProvider)
+                : BismillahPlaybackMode.disabled,
+          );
           await Future<void>.delayed(const Duration(milliseconds: 350));
         }
       }

@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../ocean/application/ocean_drops_provider.dart';
+import '../../journey/drops/application/journey_drops_providers.dart';
+import '../../journey/xp/application/journey_xp_providers.dart';
 import '../../../shared/application/daily_clock_provider.dart';
 import '../../../shared/persistence/local_store.dart';
 import '../data/prayer_log_repository.dart';
@@ -10,7 +11,7 @@ import '../domain/prayer_status.dart';
 import '../domain/prayer_summary.dart';
 
 class PrayerController extends StateNotifier<List<DailyPrayerRecord>> {
-  PrayerController(this._repository, this._oceanDrops)
+  PrayerController(this._repository, this._dropController, this._xpController)
     : super(const [
         DailyPrayerRecord(prayer: PrayerName.fajr),
         DailyPrayerRecord(prayer: PrayerName.dhuhr),
@@ -23,7 +24,8 @@ class PrayerController extends StateNotifier<List<DailyPrayerRecord>> {
   }
 
   final PrayerLogRepository _repository;
-  final OceanDropService _oceanDrops;
+  final JourneyDropController _dropController;
+  final JourneyXpController _xpController;
   late String _activeDayKey;
 
   void cycleStatus(PrayerName prayer) {
@@ -48,11 +50,20 @@ class PrayerController extends StateNotifier<List<DailyPrayerRecord>> {
         .toList();
     _saveForDay(_activeDayKey);
     if (nextStatus == PrayerStatus.completed) {
-      _oceanDrops.awardDrop(
-        actionType: oceanActionPrayerCompleted,
-        sourceModule: oceanSourcePrayer,
-        referenceId: prayer.name,
-        metadata: {'timestamp': '${_activeDayKey}T12:00:00'},
+      _dropController.awardPrayerDrop(
+        prayerId: prayer.name,
+        dayKey: _activeDayKey,
+        occurredAt: changedAt,
+        metadata: <String, Object?>{'timestamp': changedAt.toIso8601String()},
+      );
+      _xpController.awardPrayerXp(
+        prayerId: prayer.name,
+        occurredAt: changedAt,
+        sourceRef: 'prayer:$_activeDayKey:${prayer.name}',
+        dayKey: _activeDayKey,
+        allFiveCompleted: state.every(
+          (record) => record.status == PrayerStatus.completed,
+        ),
       );
     }
   }
@@ -77,11 +88,20 @@ class PrayerController extends StateNotifier<List<DailyPrayerRecord>> {
         )
         .toList();
     _saveForDay(_activeDayKey);
-    _oceanDrops.awardDrop(
-      actionType: oceanActionPrayerCompleted,
-      sourceModule: oceanSourcePrayer,
-      referenceId: prayer.name,
-      metadata: {'timestamp': '${_activeDayKey}T12:00:00'},
+    _dropController.awardPrayerDrop(
+      prayerId: prayer.name,
+      dayKey: _activeDayKey,
+      occurredAt: changedAt,
+      metadata: <String, Object?>{'timestamp': changedAt.toIso8601String()},
+    );
+    _xpController.awardPrayerXp(
+      prayerId: prayer.name,
+      occurredAt: changedAt,
+      sourceRef: 'prayer:$_activeDayKey:${prayer.name}',
+      dayKey: _activeDayKey,
+      allFiveCompleted: state.every(
+        (record) => record.status == PrayerStatus.completed,
+      ),
     );
   }
 
@@ -134,7 +154,8 @@ final prayerControllerProvider =
     StateNotifierProvider<PrayerController, List<DailyPrayerRecord>>((ref) {
       final notifier = PrayerController(
         ref.watch(prayerLogRepositoryProvider),
-        ref.read(oceanDropServiceProvider),
+        ref.read(journeyDropSummaryProvider.notifier),
+        ref.read(journeyXpSummaryProvider.notifier),
       );
       ref.listen<String>(dailyKeyProvider, (_, next) {
         notifier.onDayChanged(next);

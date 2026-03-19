@@ -1,153 +1,98 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../l10n/app_localizations.dart';
+import '../../learn/quran/domain/quran_content_refs.dart';
 import '../../../shared/theme/islamic_icons.dart';
-import '../../../shared/widgets/app_page_scaffold.dart';
-import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/quran_navigation.dart';
 import '../../../shared/widgets/quran_quote_block.dart';
-import '../../../shared/application/special_mode_provider.dart';
-import '../application/worship_tab_provider.dart';
-import 'widgets/dhikr_section.dart';
-import 'widgets/fasting_section.dart';
-import 'widgets/khusu_section.dart';
-import 'widgets/prayer_section.dart';
-import 'widgets/worship_segmented_control.dart';
+import '../../../shared/widgets/section_hub_scaffold.dart';
 
-class WorshipPage extends ConsumerWidget {
+class WorshipPage extends StatelessWidget {
   const WorshipPage({super.key});
 
-  Widget _buildSection(WorshipTab tab) {
-    switch (tab) {
-      case WorshipTab.prayer:
-        return const PrayerSection(key: ValueKey('worship-prayer'));
-      case WorshipTab.dhikr:
-        return const DhikrSection(key: ValueKey('worship-dhikr'));
-      case WorshipTab.fasting:
-        return const FastingSection(key: ValueKey('worship-fasting'));
-      case WorshipTab.khusu:
-        return const KhusuSection(key: ValueKey('worship-khusu'));
-    }
-  }
-
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    final WorshipTab activeTab = ref.watch(worshipTabProvider);
-    final mode = ref.watch(specialModeProvider);
-    final quote = switch (activeTab) {
-      WorshipTab.dhikr => quoteFromPoolForToday(dhikrFocusedQuotePool),
-      _ => const QuranQuote(
-        arabic: 'وَاسْتَعِينُوا بِالصَّبْرِ وَالصَّلَاةِ',
-        transliteration: 'Wastaeenoo bis-sabri was-salah',
-        translation: 'Seek help through patience and prayer.',
-        surah: 2,
-        verse: 45,
-        locationLabel: 'Qur’an 2:45',
-      ),
-    };
+    const quote = QuranQuote(ref: QuranQuoteRef(surah: 2, ayah: 45));
 
-    return AppPageScaffold(
+    return SectionHubScaffold(
       headerIcon: IslamicIcons.prayer,
       title: l10n.worshipTitle,
       subtitle: l10n.worshipSubtitle,
       quote: quote,
-      onQuoteTap: (quote) => openQuranQuoteLocation(context, quote),
-      children: [
-        if (mode.isKids)
-          PremiumCard(
-            surfaceAlphaOverride: 0.9,
-            child: Text(
-              l10n.kidsWorshipHint,
-              style: const TextStyle(color: Color(0xFF6A5A4A), height: 1.35),
-            ),
-          ),
-        if (mode.isKids) const SizedBox(height: 12),
-        const _WorshipModeCard(),
-        const SizedBox(height: 12),
-        WorshipSegmentedControl(
-          selected: activeTab,
-          onChanged: (WorshipTab tab) =>
-              ref.read(worshipTabProvider.notifier).state = tab,
+      onQuoteTap: (selectedQuote) =>
+          openQuranQuoteLocation(context, selectedQuote),
+      shortcutOpenLabel: l10n.learnShortcutOpen,
+      shortcutCloseLabel: l10n.learnShortcutClose,
+      shortcutActions: [
+        SectionShortcutAction(
+          label: l10n.worshipPrayerHubTitle,
+          supportingText: l10n.worshipSectionLandingPrayerShortcut,
+          icon: IslamicIcons.prayer,
+          onTap: () => context.pushNamed('worshipPrayerPage'),
         ),
-        const SizedBox(height: 14),
-        AnimatedSwitcher(
-          duration: const Duration(milliseconds: 240),
-          transitionBuilder: (child, animation) =>
-              FadeTransition(opacity: animation, child: child),
-          child: Padding(
-            key: ValueKey(activeTab),
-            padding: const EdgeInsets.only(bottom: 16),
-            child: _buildSection(activeTab),
-          ),
+        SectionShortcutAction(
+          label: l10n.dhikrSectionTitle,
+          supportingText: l10n.worshipSectionLandingDhikrShortcut,
+          icon: IslamicIcons.tasbih,
+          onTap: () => context.pushNamed('worshipDhikrPage'),
         ),
       ],
-    );
-  }
-}
-
-class _WorshipModeCard extends ConsumerWidget {
-  const _WorshipModeCard();
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = AppLocalizations.of(context);
-    final mode = ref.watch(specialModeProvider);
-    if (!mode.isRamadan && !mode.isLoss && !mode.isGentle) {
-      return const SizedBox.shrink();
-    }
-
-    if (mode.isRamadan) {
-      return PremiumCard(
-        surfaceAlphaOverride: 0.9,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              l10n.modeRamadanWorshipTitle,
-              style: const TextStyle(fontWeight: FontWeight.w700),
+      children: [
+        SectionHubActionGrid(
+          actions: [
+            SectionHubAction(
+              title: l10n.worshipSectionLandingPrayerTitle,
+              subtitle: l10n.worshipSectionLandingPrayerSubtitle,
+              icon: IslamicIcons.prayer,
+              color: const Color(0xFFECE5D7),
+              accentColor: const Color(0xFF6F5A3E),
+              onTap: () => context.pushNamed('worshipPrayerPage'),
             ),
-            const SizedBox(height: 6),
-            Text(
-              l10n.modeRamadanWorshipSubtitle,
-              style: const TextStyle(color: Color(0xFF6A5A4A), height: 1.35),
+            SectionHubAction(
+              title: l10n.worshipSectionLandingDhikrTitle,
+              subtitle: l10n.worshipSectionLandingDhikrSubtitle,
+              icon: IslamicIcons.tasbih,
+              color: const Color(0xFFE4ECD9),
+              accentColor: const Color(0xFF597045),
+              onTap: () => context.pushNamed('worshipDhikrPage'),
             ),
-            const SizedBox(height: 10),
-            Wrap(
-              spacing: 8,
-              runSpacing: 8,
-              children: [
-                ActionChip(
-                  label: Text(l10n.modeRamadanActionFasting),
-                  onPressed: () => ref.read(worshipTabProvider.notifier).state =
-                      WorshipTab.fasting,
-                ),
-                ActionChip(
-                  label: Text(l10n.modeRamadanWorshipTaraweeh),
-                  onPressed: () {},
-                ),
-                ActionChip(
-                  label: Text(l10n.modeRamadanWorshipQiyam),
-                  onPressed: () {},
-                ),
-              ],
+            SectionHubAction(
+              title: l10n.worshipSectionLandingDuasTitle,
+              subtitle: l10n.worshipSectionLandingDuasSubtitle,
+              icon: IslamicIcons.lantern,
+              color: const Color(0xFFF0E2D6),
+              accentColor: const Color(0xFF8D6143),
+              onTap: () => context.pushNamed('worshipDuasPage'),
+            ),
+            SectionHubAction(
+              title: l10n.fastingSectionTitle,
+              subtitle: l10n.worshipSectionLandingFastingSubtitle,
+              icon: Icons.fastfood_outlined,
+              color: const Color(0xFFE2E5F3),
+              accentColor: const Color(0xFF545E8D),
+              onTap: () => context.pushNamed('worshipFastingPage'),
+            ),
+            SectionHubAction(
+              title: l10n.worshipTrackingPageTitle,
+              subtitle: l10n.worshipTrackingPageSubtitle,
+              icon: Icons.fact_check_rounded,
+              color: const Color(0xFFEADFEB),
+              accentColor: const Color(0xFF7D5D81),
+              onTap: () => context.pushNamed('worshipTrackingPage'),
+            ),
+            SectionHubAction(
+              title: l10n.worshipRemindersPageTitle,
+              subtitle: l10n.worshipRemindersPageSubtitle,
+              icon: Icons.notifications_active_outlined,
+              color: const Color(0xFFE6EEF1),
+              accentColor: const Color(0xFF45636D),
+              onTap: () => context.pushNamed('worshipRemindersPage'),
             ),
           ],
         ),
-      );
-    }
-
-    if (mode.isLoss) {
-      return PremiumCard(
-        surfaceAlphaOverride: 0.9,
-        child: Text(
-          l10n.modeLossWorshipSubtitle,
-          style: const TextStyle(color: Color(0xFF6A5A4A), height: 1.35),
-        ),
-      );
-    }
-
-    return const SizedBox.shrink();
+      ],
+    );
   }
 }

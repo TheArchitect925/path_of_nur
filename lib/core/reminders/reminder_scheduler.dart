@@ -2,14 +2,17 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../features/profile/application/profile_settings_provider.dart';
 import '../../features/worship/application/sister_cycle_provider.dart';
+import '../../features/worship/application/prayer_controller.dart';
 import '../../shared/state/user_profile_state.dart';
 import '../../shared/application/daily_clock_provider.dart';
 import '../../shared/persistence/local_store.dart';
+import '../../features/worship/domain/prayer_status.dart';
 import '../prayer/prayer_preferences.dart';
 import 'local_notification_service.dart';
 
 enum ReminderKind {
   prayerAtTime,
+  prayerFollowUp,
   prayerBeforeQaza,
   dhikr,
   quran,
@@ -45,6 +48,7 @@ final reminderSchedulerProvider = Provider<ReminderSchedulerState>((ref) {
   final profileSettings = ref.watch(profileSettingsProvider);
   final prayerSettings = ref.watch(prayerSettingsProvider);
   final sisterCycle = ref.watch(sisterCycleProvider);
+  final prayerRecords = ref.watch(prayerControllerProvider);
   final userProfile = ref.watch(userProfileProvider);
   final schedule = ref.watch(prayerScheduleProvider);
   final now = ref.watch(dailyNowProvider).value ?? DateTime.now();
@@ -57,6 +61,15 @@ final reminderSchedulerProvider = Provider<ReminderSchedulerState>((ref) {
       isSisterCycleActive && sisterCycle.autoAdjustReminders;
 
   for (final prayer in schedule) {
+    final isCompleted = prayerRecords.any(
+      (record) =>
+          record.prayer.name == prayer.id &&
+          record.status == PrayerStatus.completed,
+    );
+    if (isCompleted) {
+      continue;
+    }
+
     final mode =
         prayerSettings.notificationModes[prayer.id] ??
         PrayerNotificationMode.none;
@@ -84,6 +97,22 @@ final reminderSchedulerProvider = Provider<ReminderSchedulerState>((ref) {
           notificationMode: mode,
         ),
       );
+
+      if (profileSettings.prayerReminderFollowUpEnabled) {
+        items.add(
+          ReminderPlanItem(
+            id: 'prayer.${prayer.id}.followUp',
+            kind: ReminderKind.prayerFollowUp,
+            prayerId: prayer.id,
+            when: reminderAt.add(
+              Duration(
+                minutes: profileSettings.prayerReminderFollowUpDelayMinutes,
+              ),
+            ),
+            notificationMode: PrayerNotificationMode.notificationOnly,
+          ),
+        );
+      }
     }
 
     if (mode == PrayerNotificationMode.reminderBeforeQaza) {

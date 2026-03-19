@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_text_styles.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/arabic_text_utils.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/quran_reference_block.dart';
@@ -11,6 +12,7 @@ import '../../../../shared/widgets/quran_text_span.dart';
 import '../application/dua_progress_provider.dart';
 import '../application/dua_repository.dart';
 import '../domain/dua_models.dart';
+import 'dua_category_theme.dart';
 
 class DuaDetailPage extends ConsumerStatefulWidget {
   const DuaDetailPage({super.key, required this.duaId});
@@ -37,6 +39,7 @@ class _DuaDetailPageState extends ConsumerState<DuaDetailPage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final itemAsync = ref.watch(duaItemByIdProvider(widget.duaId));
     final saved = ref
         .watch(duaLearningProvider)
@@ -45,7 +48,7 @@ class _DuaDetailPageState extends ConsumerState<DuaDetailPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Dua'),
+        title: Text(l10n.duaDetailAppBarTitle),
         actions: [
           IconButton(
             onPressed: () => ref
@@ -60,7 +63,7 @@ class _DuaDetailPageState extends ConsumerState<DuaDetailPage> {
       body: itemAsync.when(
         data: (item) {
           if (item == null) {
-            return const Center(child: Text('Dua not found.'));
+            return Center(child: Text(l10n.duaDetailNotFound));
           }
           if (item.completionStatus == DuaCompletionStatus.stub ||
               !item.hasContent) {
@@ -90,49 +93,76 @@ class _DuaDetailPageState extends ConsumerState<DuaDetailPage> {
           );
         },
         loading: () => const Center(child: CircularProgressIndicator()),
-        error: (error, _) => Center(child: Text('Unable to load dua. $error')),
+        error: (error, _) =>
+            Center(child: Text(l10n.duaDetailLoadError(error.toString()))),
       ),
     );
   }
 
   Widget _heroCard(BuildContext context, DuaItem item) {
+    final l10n = AppLocalizations.of(context);
+    final colors = DuaCategoryTheme.resolve(context, item.category);
     return PremiumCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      item.title,
-                      style: Theme.of(context).textTheme.headlineSmall
-                          ?.copyWith(fontWeight: FontWeight.w800),
-                    ),
-                    const SizedBox(height: 6),
-                    Text(
-                      item.sourceRef,
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: AppColors.onSurfaceSubtle,
-                      ),
-                    ),
-                  ],
+          Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: colors.surface,
+              borderRadius: BorderRadius.circular(18),
+              border: Border.all(color: colors.border),
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  width: 46,
+                  height: 46,
+                  decoration: BoxDecoration(
+                    color: colors.iconBackground,
+                    borderRadius: BorderRadius.circular(14),
+                  ),
+                  child: Icon(colors.icon, color: colors.accent),
                 ),
-              ),
-              _pill(item.isQuran ? 'Qur’an' : 'Sunnah'),
-            ],
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        item.title,
+                        style: Theme.of(context).textTheme.headlineSmall
+                            ?.copyWith(
+                              fontWeight: FontWeight.w800,
+                              color: colors.accent,
+                            ),
+                      ),
+                      const SizedBox(height: 6),
+                      Text(
+                        item.sourceRef,
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: AppColors.onSurfaceSubtle,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                _pill(
+                  item.isQuran ? l10n.duaSourceQuran : l10n.duaSourceSunnah,
+                  colors,
+                ),
+              ],
+            ),
           ),
           const SizedBox(height: 10),
           Wrap(
             spacing: 8,
             runSpacing: 8,
             children: [
-              _pill(item.subcategoryLabel),
-              _pill(item.difficulty.label),
-              if (item.isCore) _pill('Core verified'),
+              _pill(item.subcategoryLabel, colors),
+              _pill(_difficultyLabel(l10n, item.difficulty), colors),
+              if (item.isCore) _pill(l10n.duaCoreVerified, colors),
             ],
           ),
         ],
@@ -141,12 +171,13 @@ class _DuaDetailPageState extends ConsumerState<DuaDetailPage> {
   }
 
   Widget _duaTextCard(BuildContext context, DuaItem item) {
+    final l10n = AppLocalizations.of(context);
     return PremiumCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Supplication',
+            l10n.duaDetailSupplicationTitle,
             style: Theme.of(
               context,
             ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
@@ -183,12 +214,13 @@ class _DuaDetailPageState extends ConsumerState<DuaDetailPage> {
     DuaItem item,
     (int, int, int?)? quranRef,
   ) {
+    final l10n = AppLocalizations.of(context);
     return PremiumCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'When to say it',
+            l10n.duaDetailWhenToSayTitle,
             style: Theme.of(
               context,
             ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
@@ -205,7 +237,7 @@ class _DuaDetailPageState extends ConsumerState<DuaDetailPage> {
                     .read(duaLearningProvider.notifier)
                     .markReflected(item.id),
                 icon: const Icon(Icons.favorite_border_rounded),
-                label: const Text('Mark reflected'),
+                label: Text(l10n.duaDetailMarkReflected),
               ),
               if (quranRef != null)
                 FilledButton.tonalIcon(
@@ -219,7 +251,7 @@ class _DuaDetailPageState extends ConsumerState<DuaDetailPage> {
                     },
                   ),
                   icon: const Icon(Icons.play_arrow_rounded),
-                  label: const Text('Open in Quran reader'),
+                  label: Text(l10n.duaDetailOpenInQuranReader),
                 ),
             ],
           ),
@@ -229,12 +261,14 @@ class _DuaDetailPageState extends ConsumerState<DuaDetailPage> {
   }
 
   Widget _tagsCard(BuildContext context, DuaItem item) {
+    final l10n = AppLocalizations.of(context);
+    final colors = DuaCategoryTheme.resolve(context, item.category);
     return PremiumCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Tags',
+            l10n.duaDetailTagsTitle,
             style: Theme.of(
               context,
             ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
@@ -243,7 +277,9 @@ class _DuaDetailPageState extends ConsumerState<DuaDetailPage> {
           Wrap(
             spacing: 8,
             runSpacing: 8,
-            children: item.tags.map(_pill).toList(growable: false),
+            children: item.tags
+                .map((tag) => _pill(tag, colors))
+                .toList(growable: false),
           ),
         ],
       ),
@@ -251,6 +287,7 @@ class _DuaDetailPageState extends ConsumerState<DuaDetailPage> {
   }
 
   Widget _plannedState(BuildContext context, DuaItem item) {
+    final l10n = AppLocalizations.of(context);
     return ListView(
       padding: const EdgeInsets.fromLTRB(16, 12, 16, 24),
       children: [
@@ -261,15 +298,13 @@ class _DuaDetailPageState extends ConsumerState<DuaDetailPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Planned content',
+                l10n.duaDetailPlannedTitle,
                 style: Theme.of(
                   context,
                 ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
               ),
               const SizedBox(height: 8),
-              const Text(
-                'This entry exists in the dua scaffold, but the source text and verification details have not been completed yet. It stays tracked so the final dua library can expand without changing the architecture.',
-              ),
+              Text(l10n.duaDetailPlannedBody),
             ],
           ),
         ),
@@ -277,15 +312,27 @@ class _DuaDetailPageState extends ConsumerState<DuaDetailPage> {
     );
   }
 
-  Widget _pill(String label) {
+  Widget _pill(String label, DuaCategoryThemeData colors) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       decoration: BoxDecoration(
-        color: AppColors.accentGold.withValues(alpha: 0.12),
+        color: colors.iconBackground,
         borderRadius: BorderRadius.circular(999),
+        border: Border.all(color: colors.border),
       ),
-      child: Text(label, style: const TextStyle(fontSize: 12)),
+      child: Text(label, style: TextStyle(fontSize: 12, color: colors.accent)),
     );
+  }
+
+  String _difficultyLabel(AppLocalizations l10n, DuaDifficulty difficulty) {
+    switch (difficulty) {
+      case DuaDifficulty.beginner:
+        return l10n.learnTrackBeginner;
+      case DuaDifficulty.intermediate:
+        return l10n.learnHubDifficultyIntermediate;
+      case DuaDifficulty.advanced:
+        return l10n.learnHubDifficultyAdvanced;
+    }
   }
 
   (int, int, int?)? _quranRef(String sourceRef) {

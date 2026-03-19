@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_radii.dart';
-import '../../core/theme/app_theme.dart';
+import '../../core/theme/app_surfaces.dart';
 import '../../features/profile/application/profile_settings_provider.dart';
 
 class PremiumCard extends ConsumerStatefulWidget {
@@ -12,11 +11,15 @@ class PremiumCard extends ConsumerStatefulWidget {
     required this.child,
     this.padding = const EdgeInsets.all(16),
     this.surfaceAlphaOverride,
+    this.surfaceTintColor,
+    this.surfaceVariant = AppSurfaceVariant.card,
   });
 
   final Widget child;
   final EdgeInsetsGeometry padding;
   final double? surfaceAlphaOverride;
+  final Color? surfaceTintColor;
+  final AppSurfaceVariant surfaceVariant;
 
   @override
   ConsumerState<PremiumCard> createState() => _PremiumCardState();
@@ -32,18 +35,15 @@ class _PremiumCardState extends ConsumerState<PremiumCard> {
 
   @override
   Widget build(BuildContext context) {
-    final appearance = Theme.of(context).extension<AppAppearanceTheme>();
     final reduceMotion = ref.watch(
       profileSettingsProvider.select((value) => value.reduceMotion),
     );
-    final surface = appearance?.surface ?? AppColors.surface;
-    final accent = appearance?.accent ?? AppColors.accentGold;
-    final surfaceAlpha =
-        widget.surfaceAlphaOverride ??
-        appearance?.glassSurfaceAlpha ??
-        AppColors.glassSurfaceAlpha;
-    final borderAlpha =
-        appearance?.glassBorderAlpha ?? AppColors.glassBorderAlpha;
+    final surfaceStyle = AppSurfaceTheme.resolve(
+      context,
+      variant: widget.surfaceVariant,
+      tintColor: widget.surfaceTintColor,
+      surfaceAlphaOverride: widget.surfaceAlphaOverride,
+    );
 
     return Listener(
       onPointerDown: (_) => _setPressed(true),
@@ -56,14 +56,7 @@ class _PremiumCardState extends ConsumerState<PremiumCard> {
         child: Container(
           width: double.infinity,
           padding: widget.padding,
-          decoration: BoxDecoration(
-            color: surface.withValues(alpha: surfaceAlpha),
-            borderRadius: BorderRadius.circular(AppRadii.card),
-            border: Border.all(
-              color: accent.withValues(alpha: borderAlpha),
-              width: 1.0,
-            ),
-          ),
+          decoration: surfaceStyle.decoration(radius: AppRadii.card),
           child: widget.child,
         ),
       ),

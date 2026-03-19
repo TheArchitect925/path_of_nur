@@ -262,7 +262,7 @@ class GrowthTodayPage extends ConsumerWidget {
               Text(l10n.growthTodayHabitTrackerSubtitle),
               const SizedBox(height: 10),
               FilledButton.tonal(
-                onPressed: () => context.pushNamed('growthHabitsDeepLink'),
+                onPressed: () => context.pushNamed('growthHabitsPage'),
                 child: Text(l10n.growthTodayOpenHabitTracker),
               ),
             ],

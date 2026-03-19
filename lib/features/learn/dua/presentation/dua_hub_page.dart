@@ -5,17 +5,24 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_surfaces.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/segmented_pill_control.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/dua_progress_provider.dart';
 import '../application/dua_repository.dart';
 import '../domain/dua_models.dart';
+import 'dua_category_theme.dart';
 
 enum DuaHubTab { duas, categories, saved, daily }
 
+enum DuaHubEntryContext { learn, worship }
+
 class DuaHubPage extends ConsumerStatefulWidget {
-  const DuaHubPage({super.key});
+  const DuaHubPage({super.key, this.entryContext = DuaHubEntryContext.learn});
+
+  final DuaHubEntryContext entryContext;
 
   @override
   ConsumerState<DuaHubPage> createState() => _DuaHubPageState();
@@ -40,26 +47,27 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final datasetAsync = ref.watch(duaDatasetProvider);
     final categoriesAsync = ref.watch(duaCategorySummariesProvider);
     final userState = ref.watch(duaLearningProvider);
+    final visibleTabs = _visibleTabs;
 
     return LearnHubPageScaffold(
       headerIcon: Icons.pan_tool_alt_rounded,
-      title: 'Duas',
-      subtitle:
-          'Verified Qur’anic and Prophetic supplications, organized for daily life, worship, family, travel, and hardship.',
+      title: l10n.duaHubTitle,
+      subtitle: l10n.duaHubSubtitle,
       children: [
         PremiumCard(
           child: SegmentedPillControl<DuaHubTab>(
-            items: DuaHubTab.values,
+            items: visibleTabs,
             selectedItem: _tab,
-            labelBuilder: _tabLabel,
+            labelBuilder: (tab) => _tabLabel(l10n, tab),
             onChanged: (tab) => setState(() => _tab = tab),
           ),
         ),
         const SizedBox(height: 10),
-        _searchCard(context),
+        _searchCard(context, l10n),
         const SizedBox(height: 10),
         datasetAsync.when(
           data: (dataset) {
@@ -70,24 +78,27 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
                 .toList(growable: false);
             return Column(
               children: [
-                _overviewCard(context, dataset),
-                const SizedBox(height: 10),
-                categoriesAsync.when(
-                  data: (categories) => _categoryScroller(categories),
-                  loading: () => const SizedBox.shrink(),
-                  error: (_, stackTrace) => const SizedBox.shrink(),
-                ),
+                _overviewCard(context, l10n, dataset),
+                if (_showsCategorySelection) ...[
+                  const SizedBox(height: 10),
+                  categoriesAsync.when(
+                    data: (categories) =>
+                        _categoryScroller(context, l10n, categories),
+                    loading: () => const SizedBox.shrink(),
+                    error: (_, stackTrace) => const SizedBox.shrink(),
+                  ),
+                ],
                 const SizedBox(height: 12),
                 if (_tab == DuaHubTab.duas) ...[
                   if (verified.isEmpty)
-                    _emptyCard('No verified duas match this filter yet.')
+                    _emptyCard(l10n.duaHubEmptyFiltered)
                   else
                     ...verified.map((item) => _duaCard(context, item)),
                 ] else if (_tab == DuaHubTab.categories) ...[
                   categoriesAsync.when(
                     data: (categories) {
                       if (categories.isEmpty) {
-                        return _emptyCard('No dua categories available yet.');
+                        return _emptyCard(l10n.duaHubEmptyCategories);
                       }
                       return Column(
                         children: categories
@@ -101,14 +112,12 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
                   ),
                 ] else if (_tab == DuaHubTab.saved) ...[
                   if (saved.isEmpty)
-                    _emptyCard(
-                      'Save duas here to build your personal collection.',
-                    )
+                    _emptyCard(l10n.duaHubEmptySaved)
                   else
                     ...saved.map((item) => _duaCard(context, item)),
                 ] else ...[
                   if (daily == null)
-                    _emptyCard('No daily dua available right now.')
+                    _emptyCard(l10n.duaHubEmptyDaily)
                   else
                     _dailyCard(context, daily),
                 ],
@@ -122,18 +131,22 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
     );
   }
 
-  Widget _searchCard(BuildContext context) {
+  List<DuaHubTab> get _visibleTabs {
+    if (_showsCategorySelection) return DuaHubTab.values;
+    return const <DuaHubTab>[DuaHubTab.duas, DuaHubTab.saved, DuaHubTab.daily];
+  }
+
+  bool get _showsCategorySelection =>
+      widget.entryContext == DuaHubEntryContext.learn;
+
+  Widget _searchCard(BuildContext context, AppLocalizations l10n) {
+    final surfaceStyle = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.panel,
+    );
     return Container(
       padding: const EdgeInsets.fromLTRB(12, 10, 12, 8),
-      decoration: BoxDecoration(
-        color: AppColors.surface.withValues(alpha: AppColors.glassSurfaceAlpha),
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: AppColors.accentGold.withValues(
-            alpha: AppColors.glassBorderAlpha,
-          ),
-        ),
-      ),
+      decoration: surfaceStyle.decoration(radius: 16),
       child: Row(
         children: [
           Icon(
@@ -146,9 +159,9 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
             child: TextField(
               controller: _searchController,
               onChanged: (_) => setState(() {}),
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 border: InputBorder.none,
-                hintText: 'Search duas, sources, categories, tags...',
+                hintText: l10n.duaHubSearchHint,
                 isCollapsed: true,
               ),
             ),
@@ -163,13 +176,17 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
     );
   }
 
-  Widget _overviewCard(BuildContext context, DuaDataset dataset) {
+  Widget _overviewCard(
+    BuildContext context,
+    AppLocalizations l10n,
+    DuaDataset dataset,
+  ) {
     return PremiumCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Dataset overview',
+            l10n.duaHubOverviewTitle,
             style: Theme.of(
               context,
             ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
@@ -179,14 +196,14 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
             spacing: 8,
             runSpacing: 8,
             children: [
-              _statChip('${dataset.completeItems} verified now'),
-              _statChip('${dataset.stubItems} planned in scaffold'),
-              _statChip('${dataset.totalItems} total tracked'),
+              _statChip(l10n.duaHubOverviewVerifiedNow(dataset.completeItems)),
+              _statChip(l10n.duaHubOverviewPlanned(dataset.stubItems)),
+              _statChip(l10n.duaHubOverviewTracked(dataset.totalItems)),
             ],
           ),
           const SizedBox(height: 8),
           Text(
-            'Only verified entries are surfaced as readable duas right now. The remaining scaffold items stay tracked for later scholarly completion.',
+            l10n.duaHubOverviewBody,
             style: Theme.of(
               context,
             ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),
@@ -196,7 +213,11 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
     );
   }
 
-  Widget _categoryScroller(List<DuaCategorySummary> categories) {
+  Widget _categoryScroller(
+    BuildContext context,
+    AppLocalizations l10n,
+    List<DuaCategorySummary> categories,
+  ) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
@@ -204,7 +225,7 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
           Padding(
             padding: const EdgeInsets.only(right: 8),
             child: ChoiceChip(
-              label: const Text('All categories'),
+              label: Text(l10n.duaHubAllCategories),
               selected: _selectedCategoryId == null,
               onSelected: (_) => setState(() => _selectedCategoryId = null),
             ),
@@ -264,70 +285,53 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
 
   Widget _duaCard(BuildContext context, DuaItem item) {
     final saved = ref.watch(duaLearningProvider).savedIds.contains(item.id);
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 10),
+    final colors = DuaCategoryTheme.resolve(context, item.category);
+    final l10n = AppLocalizations.of(context);
+    return _interactiveCard(
+      onTap: () {
+        context.pushNamed('learnDuaDetail', pathParameters: {'duaId': item.id});
+      },
+      semanticsLabel: l10n.duaHubOpenDuaSemantics(item.title),
       child: PremiumCard(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        item.title,
-                        style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        item.sourceRef,
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: AppColors.onSurfaceSubtle,
-                        ),
-                      ),
-                    ],
-                  ),
+            _cardBanner(
+              context: context,
+              colors: colors,
+              title: item.title,
+              subtitle: item.sourceRef,
+              trailing: IconButton(
+                tooltip: saved ? l10n.duaHubRemoveSaved : l10n.duaHubSave,
+                onPressed: () =>
+                    ref.read(duaLearningProvider.notifier).toggleSaved(item.id),
+                icon: Icon(
+                  saved
+                      ? Icons.bookmark_rounded
+                      : Icons.bookmark_border_rounded,
+                  color: colors.accent,
                 ),
-                IconButton(
-                  onPressed: () => ref
-                      .read(duaLearningProvider.notifier)
-                      .toggleSaved(item.id),
-                  icon: Icon(
-                    saved
-                        ? Icons.bookmark_rounded
-                        : Icons.bookmark_border_rounded,
-                  ),
-                ),
-              ],
+              ),
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 10),
             Text(item.whenToSay),
-            const SizedBox(height: 8),
+            const SizedBox(height: 10),
             Wrap(
               spacing: 8,
               runSpacing: 8,
               children: [
-                _metaChip(item.isQuran ? 'Qur’an' : 'Sunnah'),
-                _metaChip(item.subcategoryLabel),
-                _metaChip(item.difficulty.label),
-                if (item.isCore) _metaChip('Core verified'),
+                _metaChip(
+                  item.isQuran ? l10n.duaSourceQuran : l10n.duaSourceSunnah,
+                  colors: colors,
+                ),
+                _metaChip(item.subcategoryLabel, colors: colors),
+                _metaChip(
+                  _difficultyLabel(l10n, item.difficulty),
+                  colors: colors,
+                ),
+                if (item.isCore)
+                  _metaChip(l10n.duaCoreVerified, colors: colors),
               ],
-            ),
-            const SizedBox(height: 10),
-            FilledButton.tonalIcon(
-              onPressed: () {
-                context.pushNamed(
-                  'learnDuaDetail',
-                  pathParameters: {'duaId': item.id},
-                );
-              },
-              icon: const Icon(Icons.menu_book_rounded),
-              label: const Text('Open dua'),
             ),
           ],
         ),
@@ -336,45 +340,41 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
   }
 
   Widget _categoryCard(BuildContext context, DuaCategorySummary summary) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 10),
+    final colors = DuaCategoryTheme.resolve(context, summary.id);
+    final l10n = AppLocalizations.of(context);
+    return _interactiveCard(
+      onTap: () {
+        setState(() {
+          _selectedCategoryId = summary.id;
+          _tab = DuaHubTab.duas;
+        });
+      },
+      semanticsLabel: l10n.duaHubOpenCategorySemantics(summary.label),
       child: PremiumCard(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    summary.label,
-                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                ),
-                _statChip('${summary.completeCount} ready'),
-                const SizedBox(width: 8),
-                _statChip('${summary.stubCount} planned'),
-              ],
+            _cardBanner(
+              context: context,
+              colors: colors,
+              title: summary.label,
+              subtitle: l10n.duaHubCategorySummary(
+                summary.completeCount,
+                summary.stubCount,
+              ),
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 10),
             Wrap(
               spacing: 8,
               runSpacing: 8,
               children: summary.subcategories.entries
-                  .map((entry) => _metaChip('${entry.key} · ${entry.value}'))
+                  .map(
+                    (entry) => _metaChip(
+                      l10n.duaHubCategoryTag(entry.key, entry.value),
+                      colors: colors,
+                    ),
+                  )
                   .toList(growable: false),
-            ),
-            const SizedBox(height: 10),
-            FilledButton.tonalIcon(
-              onPressed: () {
-                setState(() {
-                  _selectedCategoryId = summary.id;
-                  _tab = DuaHubTab.duas;
-                });
-              },
-              icon: const Icon(Icons.arrow_forward_rounded),
-              label: const Text('View verified duas'),
             ),
           ],
         ),
@@ -383,37 +383,44 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
   }
 
   Widget _dailyCard(BuildContext context, DuaItem item) {
-    return PremiumCard(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Daily dua',
-            style: Theme.of(
-              context,
-            ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
-          ),
-          const SizedBox(height: 6),
-          Text(item.title),
-          const SizedBox(height: 4),
-          Text(
-            item.whenToSay,
-            style: Theme.of(
-              context,
-            ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),
-          ),
-          const SizedBox(height: 10),
-          FilledButton.tonalIcon(
-            onPressed: () {
-              context.pushNamed(
-                'learnDuaDetail',
-                pathParameters: {'duaId': item.id},
-              );
-            },
-            icon: const Icon(Icons.auto_awesome_rounded),
-            label: const Text('Open today\'s dua'),
-          ),
-        ],
+    final colors = DuaCategoryTheme.resolve(context, item.category);
+    final l10n = AppLocalizations.of(context);
+    return _interactiveCard(
+      onTap: () {
+        context.pushNamed('learnDuaDetail', pathParameters: {'duaId': item.id});
+      },
+      semanticsLabel: l10n.duaHubOpenDuaSemantics(item.title),
+      child: PremiumCard(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _cardBanner(
+              context: context,
+              colors: colors,
+              title: l10n.duaHubDailyTitle,
+              subtitle: item.title,
+            ),
+            const SizedBox(height: 10),
+            Text(
+              item.whenToSay,
+              style: Theme.of(
+                context,
+              ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),
+            ),
+            const SizedBox(height: 10),
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: [
+                _metaChip(item.subcategoryLabel, colors: colors),
+                _metaChip(
+                  item.isQuran ? l10n.duaSourceQuran : l10n.duaSourceSunnah,
+                  colors: colors,
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -423,42 +430,132 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
   }
 
   Widget _errorCard(Object error) {
-    return PremiumCard(child: Text('Unable to load duas right now. $error'));
+    final l10n = AppLocalizations.of(context);
+    return PremiumCard(child: Text(l10n.duaHubLoadError(error.toString())));
   }
 
   Widget _statChip(String label) {
+    final style = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.pill,
+      tintColor: AppColors.accentGold,
+    );
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-      decoration: BoxDecoration(
-        color: AppColors.accentGold.withValues(alpha: 0.12),
-        borderRadius: BorderRadius.circular(999),
-        border: Border.all(color: AppColors.accentGold.withValues(alpha: 0.2)),
-      ),
+      decoration: style.decoration(radius: 999),
       child: Text(label),
     );
   }
 
-  Widget _metaChip(String label) {
+  Widget _metaChip(String label, {required DuaCategoryThemeData colors}) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       decoration: BoxDecoration(
-        color: AppColors.surface.withValues(alpha: AppColors.glassSurfaceAlpha),
+        color: colors.iconBackground,
         borderRadius: BorderRadius.circular(999),
+        border: Border.all(color: colors.border),
       ),
-      child: Text(label, style: const TextStyle(fontSize: 12)),
+      child: Text(label, style: TextStyle(fontSize: 12, color: colors.accent)),
     );
   }
 
-  String _tabLabel(DuaHubTab tab) {
+  Widget _interactiveCard({
+    required VoidCallback onTap,
+    required String semanticsLabel,
+    required Widget child,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 10),
+      child: Semantics(
+        button: true,
+        label: semanticsLabel,
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            onTap: onTap,
+            borderRadius: BorderRadius.circular(24),
+            child: child,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _cardBanner({
+    required BuildContext context,
+    required DuaCategoryThemeData colors,
+    required String title,
+    required String subtitle,
+    Widget? trailing,
+  }) {
+    return Container(
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        color: colors.surface,
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: colors.border),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            width: 42,
+            height: 42,
+            decoration: BoxDecoration(
+              color: colors.iconBackground,
+              borderRadius: BorderRadius.circular(14),
+            ),
+            child: Icon(colors.icon, color: colors.accent),
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                    fontWeight: FontWeight.w800,
+                    color: colors.accent,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  subtitle,
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: AppColors.onSurfaceSubtle,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          if (trailing != null) ...[const SizedBox(width: 8), trailing],
+        ],
+      ),
+    );
+  }
+
+  String _difficultyLabel(AppLocalizations l10n, DuaDifficulty difficulty) {
+    switch (difficulty) {
+      case DuaDifficulty.beginner:
+        return l10n.learnTrackBeginner;
+      case DuaDifficulty.intermediate:
+        return l10n.learnHubDifficultyIntermediate;
+      case DuaDifficulty.advanced:
+        return l10n.learnHubDifficultyAdvanced;
+    }
+  }
+
+  String _tabLabel(AppLocalizations l10n, DuaHubTab tab) {
     switch (tab) {
       case DuaHubTab.duas:
-        return 'Learn';
+        return l10n.duaHubTabLearn;
       case DuaHubTab.categories:
-        return 'Categories';
+        return l10n.duaHubTabCategories;
       case DuaHubTab.saved:
-        return 'Saved';
+        return l10n.duaHubTabSaved;
       case DuaHubTab.daily:
-        return 'Daily';
+        return l10n.duaHubTabDaily;
     }
   }
 }

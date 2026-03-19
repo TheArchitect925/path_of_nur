@@ -71,6 +71,10 @@
       }
     }
   },
+  "notificationsPrayerActionMarkPrayed": "Mark as prayed",
+  "notificationsPrayerActionMarkPrayedLate": "Mark as prayed late",
+  "notificationsPrayerActionSnooze": "Snooze",
+  "notificationsPrayerActionOpen": "Open",
   "notificationsPrayerNameTahajjud": "Tahajjud",
   "notificationsGenericPrayerName": "Prayer",
   "notificationsFastingBeginsNowTitle": "Fasting begins now",
@@ -96,7 +100,7 @@
   "navLearning": "Learn",
   "navHome": "Home",
   "navPrayer": "Growth",
-  "navGarden": "Profile",
+  "navGarden": "Garden",
   "greetingArabic": "السلام عليكم ورحمة الله وبركاته",
   "brotherName": "Brother Shahab",
   "peaceUponYou": "Peace be upon you",
@@ -105,6 +109,142 @@
   "ayahTranslation": "Seek help through patience and prayer. (2:45)",
   "quranTitle": "Quran",
   "quranSubtitle": "Read • Search • Notes",
+  "quranHubTitle": "Qur’an",
+  "quranHubSubtitle": "A calm entry for reading, study, memorization, words, topics, and notes.",
+  "quranHubJourneysTitle": "Journeys",
+  "quranHubJourneysSubtitle": "Follow a guided path when you want structure, continuity, and clearer next steps.",
+  "quranHubJourneyOfQuranTitle": "Journey of the Qur’an",
+  "quranHubJourneyOfQuranSubtitle": "Open the Book, navigate it, and build a first relationship.",
+  "quranHubFatihahJourneyTitle": "Understanding Al-Fatihah",
+  "quranHubFatihahJourneySubtitle": "Begin with the surah you recite every day and connect it to salah.",
+  "quranHubShortSurahsJourneyTitle": "Short Surahs",
+  "quranHubShortSurahsJourneySubtitle": "Use the shorter surahs as a bridge between recitation, prayer, and meaning.",
+  "quranHubModesTitle": "Modes",
+  "quranHubModesSubtitle": "Choose the Qur’an mode that fits what you want to do right now.",
+  "quranHubReadTitle": "Read",
+  "quranHubReadSubtitle": "Open the reader from where you last left off or begin a new passage.",
+  "quranHubStudyTitle": "Study",
+  "quranHubStudySubtitle": "Open the study hub for explanation, reflection, and guided learning paths.",
+  "quranHubMemorizeTitle": "Memorize",
+  "quranHubMemorizeSubtitle": "Review and strengthen recall through the current memorization tools.",
+  "quranHubWordsTitle": "Words",
+  "quranHubWordsSubtitle": "Learn recurring Qur’anic vocabulary and build recognition gradually.",
+  "quranHubTopicsTitle": "Topics",
+  "quranHubTopicsSubtitle": "Follow themes and verses without browsing the whole text first.",
+  "quranHubNotesTitle": "Notes",
+  "quranHubNotesSubtitle": "Return to saved reflections, highlights, and verse-linked notes.",
+  "quranHubDailyLightTitle": "Today’s Light",
+  "quranHubOpenVerseAction": "Open Verse",
+  "quranHubRelatedToolsTitle": "Related Tools",
+  "quranHubRelatedToolsSubtitle": "Keep secondary Qur’an tools close without crowding the main flow.",
+  "quranHubUniverseToolTitle": "Universe",
+  "duaHubTitle": "Duas",
+  "duaHubSubtitle": "Verified Qur’anic and Prophetic supplications, organized for daily life, worship, family, travel, and hardship.",
+  "duaHubTabLearn": "Learn",
+  "duaHubTabCategories": "Categories",
+  "duaHubTabSaved": "Saved",
+  "duaHubTabDaily": "Daily",
+  "duaHubSearchHint": "Search duas, sources, categories, tags...",
+  "duaHubOverviewTitle": "Dataset overview",
+  "duaHubOverviewVerifiedNow": "{count} verified now",
+  "@duaHubOverviewVerifiedNow": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "duaHubOverviewPlanned": "{count} planned in scaffold",
+  "@duaHubOverviewPlanned": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "duaHubOverviewTracked": "{count} total tracked",
+  "@duaHubOverviewTracked": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "duaHubOverviewBody": "Only verified entries are surfaced as readable duas right now. The remaining scaffold items stay tracked for later scholarly completion.",
+  "duaHubAllCategories": "All categories",
+  "duaHubEmptyFiltered": "No verified duas match this filter yet.",
+  "duaHubEmptyCategories": "No dua categories available yet.",
+  "duaHubEmptySaved": "Save duas here to build your personal collection.",
+  "duaHubEmptyDaily": "No daily dua available right now.",
+  "duaHubLoadError": "Unable to load duas right now. {error}",
+  "@duaHubLoadError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "duaHubDailyTitle": "Daily dua",
+  "duaHubOpenDuaSemantics": "Open dua: {title}",
+  "@duaHubOpenDuaSemantics": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "duaHubOpenCategorySemantics": "Open dua category: {category}",
+  "@duaHubOpenCategorySemantics": {
+    "placeholders": {
+      "category": {
+        "type": "String"
+      }
+    }
+  },
+  "duaHubCategorySummary": "{readyCount} ready • {plannedCount} planned",
+  "@duaHubCategorySummary": {
+    "placeholders": {
+      "readyCount": {
+        "type": "int"
+      },
+      "plannedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "duaHubCategoryTag": "{name} · {count}",
+  "@duaHubCategoryTag": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "duaHubSave": "Save dua",
+  "duaHubRemoveSaved": "Remove saved dua",
+  "duaSourceQuran": "Qur’an",
+  "duaSourceSunnah": "Sunnah",
+  "duaCoreVerified": "Core verified",
+  "duaDetailAppBarTitle": "Dua",
+  "duaDetailNotFound": "Dua not found.",
+  "duaDetailLoadError": "Unable to load dua. {error}",
+  "@duaDetailLoadError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "duaDetailSupplicationTitle": "Supplication",
+  "duaDetailWhenToSayTitle": "When to say it",
+  "duaDetailMarkReflected": "Mark reflected",
+  "duaDetailOpenInQuranReader": "Open in Quran reader",
+  "duaDetailTagsTitle": "Tags",
+  "duaDetailPlannedTitle": "Planned content",
+  "duaDetailPlannedBody": "This entry exists in the dua scaffold, but the source text and verification details have not been completed yet. It stays tracked so the final dua library can expand without changing the architecture.",
   "nextSalah": "Next Salah",
   "allSalahTimes": "All Salah Times",
   "dhuhr": "Dhuhr",
@@ -660,6 +800,8 @@
       }
     }
   },
+  "durationCompactHourSuffix": "h",
+  "durationCompactMinuteSuffix": "m",
   "homeLearnCategoryFallbackSubtitle": "Learn category • {category}",
   "@homeLearnCategoryFallbackSubtitle": {
     "placeholders": {
@@ -862,6 +1004,110 @@
   "learnCategorySalahTrainerTitle": "Salah Trainer",
   "learnCategoryNotesTitle": "Notes",
   "learnHubTitle": "Learning Hub",
+  "learnShortcutOpen": "Shortcuts",
+  "learnShortcutClose": "Close shortcuts",
+  "learnSectionLandingSubtitle": "Follow a clearer path through foundations, belief, Prophets, Qur''an learning, worship, and character.",
+  "learningSectionLandingShortcutJourneys": "Open journeys",
+  "learningSectionLandingFoundationsTitle": "Foundations",
+  "learningSectionLandingFoundationsSubtitle": "Start with the essential building blocks of Islam.",
+  "learningSectionLandingBeliefTitle": "Who is Allah?",
+  "learningSectionLandingBeliefSubtitle": "Belief basics and the first questions of faith.",
+  "learningSectionLandingProphetsTitle": "Prophets",
+  "learningSectionLandingProphetsSubtitle": "Learn from the lives, tests, and examples of the Prophets.",
+  "learningSectionLandingQuranTitle": "Qur''an Learning",
+  "learningSectionLandingQuranSubtitle": "Study recitation, themes, and Qur''anic understanding.",
+  "learningSectionLandingWorshipTitle": "Worship Learning",
+  "learningSectionLandingWorshipSubtitle": "Learn salah, wudu, dhikr, and practical worship guidance.",
+  "learningSectionLandingCharacterTitle": "Character & Adab",
+  "learningSectionLandingCharacterSubtitle": "Grow mercy, manners, sincerity, and everyday adab.",
+  "learningSectionLandingBrowseAllTitle": "Browse All Knowledge",
+  "learningSectionLandingBrowseAllSubtitle": "Explore every learning island in one place.",
+  "worshipSectionLandingPrayerShortcut": "Times, tracking, and guidance",
+  "worshipSectionLandingDhikrShortcut": "Counter, sessions, and calm remembrance",
+  "worshipSectionLandingPrayerTitle": "Prayer",
+  "worshipSectionLandingPrayerSubtitle": "Prayer times, tracking, qada, and practical guidance.",
+  "worshipSectionLandingDhikrTitle": "Dhikr",
+  "worshipSectionLandingDhikrSubtitle": "Keep remembrance close with guided and manual sessions.",
+  "worshipSectionLandingDuasTitle": "Duas",
+  "worshipSectionLandingDuasSubtitle": "Open the dua collection and find what fits the moment.",
+  "worshipSectionLandingFastingSubtitle": "Review your fasting status, intention, and key moments.",
+  "worshipTrackingPageTitle": "Tracking & History",
+  "worshipTrackingPageSubtitle": "See prayer, dhikr, and fasting records without crowding the main worship hub.",
+  "worshipTrackingPrayerSummary": "{count} prayer entries recorded. Reviewing {date}.",
+  "@worshipTrackingPrayerSummary": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "worshipTrackingDhikrSummary": "{current} of {target} today, with {sessions} recent sessions saved.",
+  "@worshipTrackingDhikrSummary": {
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "target": {
+        "type": "int"
+      },
+      "sessions": {
+        "type": "int"
+      }
+    }
+  },
+  "worshipTrackingFastingSummary": "Today''s fasting status: {status}.",
+  "@worshipTrackingFastingSummary": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "worshipRemindersPageTitle": "Reminders",
+  "worshipRemindersPageSubtitle": "Keep prayer and worship reminders together without overloading the main worship page.",
+  "worshipRemindersPrayerSummary": "{count} prayer reminder types are currently active.",
+  "@worshipRemindersPrayerSummary": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "worshipRemindersGeneralSummary": "Dhikr: {dhikr}, Qur''an: {quran}, Reflection: {reflection}.",
+  "@worshipRemindersGeneralSummary": {
+    "placeholders": {
+      "dhikr": {
+        "type": "String"
+      },
+      "quran": {
+        "type": "String"
+      },
+      "reflection": {
+        "type": "String"
+      }
+    }
+  },
+  "worshipRemindersDevicesSummary": "Manage widget, lock screen, and watch-related worship surfaces.",
+  "settingsReminderStateOn": "On",
+  "settingsReminderStateOff": "Off",
+  "settingsLandingTitle": "Settings",
+  "settingsLandingSubtitle": "Choose a focused settings area instead of browsing one long page.",
+  "settingsCategoryAccountSyncSubtitle": "Profiles, backup, sync status, and account safety.",
+  "settingsCategoryAppearanceSubtitle": "Theme, motion, contrast, and calm reading preferences.",
+  "settingsCategoryPrayerWorshipSubtitle": "Prayer times, adhan, and worship setup.",
+  "settingsCategoryLearningSubtitle": "Learning entry points, family management, and study-related settings.",
+  "settingsCategoryNotificationsSubtitle": "Prayer reminders and general reminder controls.",
+  "settingsCategoryWidgetsWatchTitle": "Widgets, Live Activities & Watch",
+  "settingsCategoryWidgetsWatchSubtitle": "Manage lock screen, Dynamic Island, and connected watch surfaces.",
+  "settingsCategoryLanguageDownloadsSubtitle": "Language choices and download-ready content settings.",
+  "settingsCategoryPrivacyDataSubtitle": "Control tracking visibility, privacy, and sensitive data behavior.",
+  "settingsCategoryKidsFamilyTitle": "Kids & Family",
+  "settingsCategoryKidsFamilySubtitle": "Adjust family learning and kid-friendly presentation settings.",
+  "settingsCategoryAboutSubtitle": "Version notes, support, legal details, and what is coming next.",
+  "settingsLearningHubSubtitle": "Open the learning hub and family learning tools from one focused place.",
   "learnHubSubtitle": "One unified learning experience across Hadith, Prophets, life lessons, guided practice, quizzes, and notes.",
   "learnHubQuoteTranslation": "My Lord, increase me in knowledge.",
   "learnHubQuoteLocation": "Qur’an 20:114",
@@ -1658,6 +1904,8 @@
   "quranShowTransliteration": "Transliteration",
   "quranShowTranslation": "Translation text",
   "quranWordTranslationChip": "Word by Word Translation",
+  "quranWordTranslationBetaTitle": "Word by Word Translation (Beta)",
+  "quranWordTranslationBetaSubtitle": "This feature is currently in Beta and may still be refined.",
   "quranAudioV2Title": "Audio v2",
   "quranRepeatFromLabel": "Repeat from",
   "quranRepeatToLabel": "Repeat to",
@@ -2454,8 +2702,8 @@
   "learningJourneyStageReadingBasicsCheckpointReflection": "Which small reading skill needs another week of focused attention before you move on?",
   "learningJourneyHomeTitle": "Learning",
   "learningJourneyHomeSubtitle": "A calmer learning home built around journeys, today’s guidance, and five clear islands.",
-  "learningJourneyHomeContinueBadge": "Continue",
-  "learningJourneyHomeContinueAction": "Continue",
+  "learningJourneyHomeContinueBadge": "Continue your Journey",
+  "learningJourneyHomeContinueAction": "Continue your Journey",
   "learningJourneyHomeCompletedBadge": "Completed",
   "learningJourneyHomeCompletedSuffix": "completed",
   "learningJourneyHomeCompletedMessage": "Great work—marking your journey complete and ready for what comes next.",
@@ -2576,7 +2824,7 @@
     }
   },
   "learningJourneyCardActionStart": "Start",
-  "learningJourneyCardActionContinue": "Continue",
+  "learningJourneyCardActionContinue": "Continue your Journey",
   "learningJourneyStageCurrentBadge": "Current",
   "learningJourneyStagePreviewBadge": "Preview",
   "learningJourneyStageStatusReady": "Ready",
@@ -2590,7 +2838,7 @@
   "learningJourneyIslandNotFoundSubtitle": "This learning island could not be located.",
   "learningJourneyIslandNotFoundBody": "Return to the Learning Journey home and choose another path.",
   "learningJourneyIslandActionStart": "Start",
-  "learningJourneyIslandActionContinue": "Continue",
+  "learningJourneyIslandActionContinue": "Continue your Journey",
   "learningJourneyIslandJourneysTitle": "Journeys",
   "learningJourneyIslandJourneysSubtitle": "Structured paths come first here. Related tools stay available below when you need them.",
   "learningJourneyIslandRelatedToolsTitle": "Related Tools & Exploration",
@@ -3101,7 +3349,7 @@
   "learningJourneyDetailStagesTitle": "Stages",
   "learningJourneyDetailStagesSubtitle": "Move one stage at a time. Current and completed stages are highlighted gently.",
   "learningJourneyDetailActionStart": "Start Journey",
-  "learningJourneyDetailActionContinue": "Continue",
+  "learningJourneyDetailActionContinue": "Continue your Journey",
   "learningJourneyDetailActionNextLesson": "Next Lesson",
   "learningJourneyDetailMissingTitle": "Journey not found",
   "learningJourneyDetailMissingSubtitle": "This learning journey could not be located.",
@@ -5811,6 +6059,9 @@
   "dhikrSectionSubtitle": "Keep a simple count, finish sessions, and review your recent remembrance.",
   "dhikrTapToCountSemantics": "Tap to count Dhikr",
   "dhikrTapToCount": "Tap to count",
+  "dhikrAntiRushTitle": "Slow down gently",
+  "dhikrAntiRushBody": "Dhikr is not only in number, but in presence. Slow down, breathe, and remember with sincerity.",
+  "dhikrAntiRushAcknowledgeAction": "Continue with presence",
   "dhikrTargetReachedMessage": "Session target reached. Alhamdulillah.",
   "dhikrUndoOneTooltip": "Undo one count",
   "dhikrAddManuallyAction": "Add manually",
@@ -6633,6 +6884,131 @@
   "oceanPersonalStageQuietLakeDescription": "A calmer depth now reflects a longer journey.",
   "oceanPersonalStageFlowingWaterTitle": "Flowing Water",
   "oceanPersonalStageFlowingWaterDescription": "A mature, continuous current shaped by many sincere days.",
+  "gardenGalleryTitle": "Garden Gallery",
+  "gardenGallerySubtitle": "Drops quietly unlock the first garden milestones for Journey and Ocean.",
+  "gardenGalleryTotalDropsValue": "{count} total drops",
+  "@gardenGalleryTotalDropsValue": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "gardenGalleryAllUnlocked": "All ten milestones are unlocked.",
+  "gardenGalleryNextUnlockValue": "Next unlock: {title} at {count} drops",
+  "@gardenGalleryNextUnlockValue": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      },
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "gardenGalleryUnlocked": "Unlocked",
+  "gardenGalleryLockedAtValue": "Unlocks at {count} drops",
+  "@gardenGalleryLockedAtValue": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "gardenGalleryRequiresValue": "Requires {count} drops",
+  "@gardenGalleryRequiresValue": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "gardenGalleryTileProgressValue": "{current} / {required} Drops",
+  "@gardenGalleryTileProgressValue": {
+    "placeholders": {
+      "current": {
+        "type": "String"
+      },
+      "required": {
+        "type": "String"
+      }
+    }
+  },
+  "gardenPageTitle": "Garden",
+  "gardenPageSubtitle": "A quiet gallery of growth shaped by your drops over time.",
+  "gardenPageHeroTitle": "Your Garden",
+  "gardenPageHeroSubtitle": "Each unlocked image reflects steady worship, learning, and return without turning the journey into a game.",
+  "gardenPageTotalDrops": "Total drops",
+  "gardenPageUnlockedImages": "Unlocked",
+  "gardenPageUnlockedCountValue": "{unlocked} / {total} images",
+  "@gardenPageUnlockedCountValue": {
+    "placeholders": {
+      "unlocked": {
+        "type": "String"
+      },
+      "total": {
+        "type": "String"
+      }
+    }
+  },
+  "gardenPageMeaningTitle": "What the garden reflects",
+  "gardenPagePrayerMeaningTitle": "Prayer",
+  "gardenPagePrayerMeaningBody": "Prayer forms the roots and trunk: steady, grounding, and essential.",
+  "gardenPageLearningMeaningTitle": "Learning and wisdom",
+  "gardenPageLearningMeaningBody": "Learning matures into fruit: insight, understanding, and better action.",
+  "gardenPageDropsMeaningTitle": "Drops",
+  "gardenPageDropsMeaningBody": "Drops bring greenery and life, marking sincere acts that nourish the whole garden.",
+  "gardenPageNextUnlockTitle": "Next unlock",
+  "gardenPageAllUnlockedTitle": "Garden gallery complete",
+  "gardenPageAllUnlockedBody": "All ten V1 garden images are unlocked. Future phases can build on this calm foundation without changing your Drops history.",
+  "gardenPageNextUnlockRequiredValue": "Unlocks at {count} drops",
+  "@gardenPageNextUnlockRequiredValue": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "gardenPageDropsRemainingValue": "{count} drops remaining",
+  "@gardenPageDropsRemainingValue": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "gardenPageEntrySubtitle": "{drops} drops gathered. Next image: {title}.",
+  "@gardenPageEntrySubtitle": {
+    "placeholders": {
+      "drops": {
+        "type": "String"
+      },
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "gardenPageEntryHomeSubtitle": "Open your unlocked images, meaning, and next milestone in one calm view.",
+  "gardenMilestoneTitle1": "First Seed",
+  "gardenMilestoneDescription1": "Your first drop plants the earliest sign of steady return.",
+  "gardenMilestoneTitle2": "Gentle Rain",
+  "gardenMilestoneDescription2": "Ten drops bring the first soft rain over the garden.",
+  "gardenMilestoneTitle3": "Olive Shoot",
+  "gardenMilestoneDescription3": "Twenty-five drops reveal a rooted young olive shoot.",
+  "gardenMilestoneTitle4": "Morning Path",
+  "gardenMilestoneDescription4": "Fifty drops open a brighter path through the garden.",
+  "gardenMilestoneTitle5": "Quiet Fountain",
+  "gardenMilestoneDescription5": "One hundred drops uncover a calm fountain of remembrance.",
+  "gardenMilestoneTitle6": "Olive Courtyard",
+  "gardenMilestoneDescription6": "Two hundred drops widen the garden into a shaded courtyard.",
+  "gardenMilestoneTitle7": "Lamp Walk",
+  "gardenMilestoneDescription7": "Three hundred and fifty drops light a gentle walkway for continued worship.",
+  "gardenMilestoneTitle8": "Rain of Mercy",
+  "gardenMilestoneDescription8": "Five hundred drops bring a fuller season of mercy and renewal.",
+  "gardenMilestoneTitle9": "Star Reflection",
+  "gardenMilestoneDescription9": "Seven hundred and fifty drops unveil a reflective night garden under the stars.",
+  "gardenMilestoneTitle10": "Path of Nūr",
+  "gardenMilestoneDescription10": "One thousand drops complete the first garden gallery with a path of light.",
   "learnMetadataDomainQuranSubtitle": "Verses, surahs, and guided reflection from the Qur’an.",
   "learnMetadataDomainHadithSubtitle": "Foundational hadith with practical lessons and reflection.",
   "learnMetadataDomainProphetsSubtitle": "Stories, patterns, and lessons from the prophets.",
@@ -8071,5 +8447,223 @@
       "title": {}
     }
   },
-  "kidsDuaStoriesMyDayDetail": "A calm story for this moment."
+  "kidsDuaStoriesMyDayDetail": "A calm story for this moment.",
+  "xpLevelTitle1": "Niyyah",
+  "xpLevelTitle2": "Bidayah",
+  "xpLevelTitle3": "Yaqzah",
+  "xpLevelTitle4": "Tawbah",
+  "xpLevelTitle5": "Wudu",
+  "xpLevelTitle6": "Salah",
+  "xpLevelTitle7": "Dhikr",
+  "xpLevelTitle8": "Sabr",
+  "xpLevelTitle9": "Shukr",
+  "xpLevelTitle10": "Taqwa",
+  "xpLevelTitle11": "Seeker of Light",
+  "xpLevelTitle12": "Walker of the Path",
+  "xpLevelTitle13": "Keeper of Prayer",
+  "xpLevelTitle14": "Steady in Dhikr",
+  "xpLevelTitle15": "Student of Knowledge",
+  "xpLevelTitle16": "Lover of Qur’an",
+  "xpLevelTitle17": "Guardian of Time",
+  "xpLevelTitle18": "Companion of Sabr",
+  "xpLevelTitle19": "Companion of Shukr",
+  "xpLevelTitle20": "Companion of Taqwa",
+  "xpLevelTitle21": "Dawn Seeker",
+  "xpLevelTitle22": "Fajr Riser",
+  "xpLevelTitle23": "Keeper of Wudu",
+  "xpLevelTitle24": "Heart in Remembrance",
+  "xpLevelTitle25": "Listener of Qur’an",
+  "xpLevelTitle26": "Reader of Signs",
+  "xpLevelTitle27": "Friend of Jumu‘ah",
+  "xpLevelTitle28": "Walker to the Masjid",
+  "xpLevelTitle29": "Keeper of Adab",
+  "xpLevelTitle30": "Builder of Habits",
+  "xpLevelTitle31": "Rooted in Salah",
+  "xpLevelTitle32": "Rooted in Dhikr",
+  "xpLevelTitle33": "Rooted in Qur’an",
+  "xpLevelTitle34": "Rooted in Sabr",
+  "xpLevelTitle35": "Rooted in Shukr",
+  "xpLevelTitle36": "Rooted in Taqwa",
+  "xpLevelTitle37": "Keeper of Amanah",
+  "xpLevelTitle38": "Watcher of the Heart",
+  "xpLevelTitle39": "Servant in Gratitude",
+  "xpLevelTitle40": "Servant in Hope",
+  "xpLevelTitle41": "Light of Consistency",
+  "xpLevelTitle42": "Light of Discipline",
+  "xpLevelTitle43": "Light of Reflection",
+  "xpLevelTitle44": "Light of Presence",
+  "xpLevelTitle45": "Light of Intention",
+  "xpLevelTitle46": "Light of Worship",
+  "xpLevelTitle47": "Light of Restraint",
+  "xpLevelTitle48": "Light of Reliance",
+  "xpLevelTitle49": "Light of Humility",
+  "xpLevelTitle50": "Light of Ihsan",
+  "xpLevelTitle51": "Garden Tender",
+  "xpLevelTitle52": "Garden Keeper",
+  "xpLevelTitle53": "Garden Grower",
+  "xpLevelTitle54": "Bearer of Sabr",
+  "xpLevelTitle55": "Bearer of Shukr",
+  "xpLevelTitle56": "Bearer of Taqwa",
+  "xpLevelTitle57": "Bearer of Adab",
+  "xpLevelTitle58": "Bearer of Rahmah",
+  "xpLevelTitle59": "Bearer of Dhikr",
+  "xpLevelTitle60": "Bearer of Nur",
+  "xpLevelTitle61": "Path Companion",
+  "xpLevelTitle62": "Path Builder",
+  "xpLevelTitle63": "Path Guardian",
+  "xpLevelTitle64": "Path Illuminated",
+  "xpLevelTitle65": "One Who Returns",
+  "xpLevelTitle66": "One Who Remembers",
+  "xpLevelTitle67": "One Who Perseveres",
+  "xpLevelTitle68": "One Who Gives Thanks",
+  "xpLevelTitle69": "One Who Stands in Prayer",
+  "xpLevelTitle70": "One Who Seeks Nearness",
+  "xpLevelTitle71": "Lantern of the Path",
+  "xpLevelTitle72": "Lantern of Dawn",
+  "xpLevelTitle73": "Lantern of Prayer",
+  "xpLevelTitle74": "Lantern of Qur’an",
+  "xpLevelTitle75": "Lantern of Dhikr",
+  "xpLevelTitle76": "Lantern of Patience",
+  "xpLevelTitle77": "Lantern of Gratitude",
+  "xpLevelTitle78": "Lantern of Reflection",
+  "xpLevelTitle79": "Lantern of Mercy",
+  "xpLevelTitle80": "Lantern of Hope",
+  "xpLevelTitle81": "Radiance of Niyyah",
+  "xpLevelTitle82": "Radiance of Salah",
+  "xpLevelTitle83": "Radiance of Dhikr",
+  "xpLevelTitle84": "Radiance of Qur’an",
+  "xpLevelTitle85": "Radiance of Sabr",
+  "xpLevelTitle86": "Radiance of Shukr",
+  "xpLevelTitle87": "Radiance of Taqwa",
+  "xpLevelTitle88": "Radiance of Ihsan",
+  "xpLevelTitle89": "Radiance of Rahmah",
+  "xpLevelTitle90": "Radiance of Nur",
+  "xpLevelTitle91": "The Steadfast",
+  "xpLevelTitle92": "The Grateful",
+  "xpLevelTitle93": "The Remembering",
+  "xpLevelTitle94": "The Reflective",
+  "xpLevelTitle95": "The Worshipful",
+  "xpLevelTitle96": "The Hopeful",
+  "xpLevelTitle97": "The Humble",
+  "xpLevelTitle98": "The Constant",
+  "xpLevelTitle99": "The Illuminated",
+  "xpLevelTitle100": "Path of Nūr",
+  "xpCardTitle": "Path XP",
+  "xpCardLevelValue": "Level {level} · {title}",
+  "@xpCardLevelValue": {
+    "placeholders": {
+      "level": {},
+      "title": {}
+    }
+  },
+  "xpCardTotalXpValue": "{xp} total XP",
+  "@xpCardTotalXpValue": {
+    "placeholders": {
+      "xp": {}
+    }
+  },
+  "xpCardNextLevelValue": "Next: {title}",
+  "@xpCardNextLevelValue": {
+    "placeholders": {
+      "title": {}
+    }
+  },
+  "xpCardRemainingValue": "{xp} XP to go",
+  "@xpCardRemainingValue": {
+    "placeholders": {
+      "xp": {}
+    }
+  },
+  "xpCardMaxLevel": "Path of Nūr",
+  "xpCardMaxLevelReached": "You have reached the current peak of this path.",
+  "growthTrackingOverviewTitle": "Tracking Overview",
+  "growthTrackingOverviewSubtitle": "A cleaner view of your habits, worship, rhythm, and steady progress.",
+  "growthTrackingOverviewTodayTitle": "Today at a glance",
+  "growthTrackingOverviewHabits": "Habits",
+  "growthTrackingOverviewHabitsDetail": "{count} due today",
+  "@growthTrackingOverviewHabitsDetail": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "growthTrackingOverviewPrayerDetail": "Prayer progress for today",
+  "growthTrackingOverviewStreakDetail": "Current steady rhythm",
+  "growthTrackingOverviewXpDetail": "{xp} total XP",
+  "@growthTrackingOverviewXpDetail": {
+    "placeholders": {
+      "xp": {}
+    }
+  },
+  "growthTrackingOverviewDropsDetail": "Drops gathered for Garden and Ocean",
+  "growthTrackingDashboardsTitle": "Open dashboards",
+  "growthTrackingPrayerDashboardSubtitle": "Review prayer and worship tracking in Worship.",
+  "growthTrackingSuggestionsTitle": "Suggested next steps",
+  "growthTrackingSuggestionKidsTitle": "Kids learning rhythm",
+  "growthTrackingSuggestionKidsSubtitle": "Keep habits gentle and connected to the current learning journey.",
+  "growthTrackingSuggestionTeensTitle": "Teen growth focus",
+  "growthTrackingSuggestionTeensSubtitle": "Balance steady habits with a simple review rhythm you can keep.",
+  "growthTrackingSuggestionBeginnerTitle": "New Muslim support",
+  "growthTrackingSuggestionBeginnerSubtitle": "Start with a few steady habits and pair them with your current learning path.",
+  "growthTrackingSuggestionPracticingTitle": "Strengthen your current path",
+  "growthTrackingSuggestionPracticingSubtitle": "Use the habit dashboard to reinforce what you are already learning.",
+  "growthTrackingSuggestionAdvancedTitle": "Review your longer pattern",
+  "growthTrackingSuggestionAdvancedSubtitle": "Use the calendar to notice consistency, missed days, and return points.",
+  "growthTrackingCalendarTitle": "Habit Calendar",
+  "growthTrackingCalendarSubtitle": "Review completed, missed, and due habits over time.",
+  "growthTrackingCalendarNoHabits": "No habits",
+  "growthTrackingCalendarMissedValue": "{count} missed",
+  "@growthTrackingCalendarMissedValue": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "growthOceanDashboardTitle": "Ocean Dashboard",
+  "growthOceanDashboardSubtitle": "One place for your drops, Garden progress, and shared water impact.",
+  "growthOceanDashboardSummary": "You have gathered {drops} drops, contributing to a shared ocean now holding {community} drops.",
+  "@growthOceanDashboardSummary": {
+    "placeholders": {
+      "drops": {},
+      "community": {}
+    }
+  },
+  "growthOceanDashboardYourDrops": "Your drops",
+  "growthOceanDashboardToday": "Today",
+  "growthOceanDashboardCommunity": "Community",
+  "growthOceanDashboardOpenCommunity": "Open full Ocean view",
+  "growthHabitDashboardTitle": "Habit Dashboard",
+  "growthHabitDashboardSubtitle": "Review your enabled habits, custom setup, and today’s rhythm in one place.",
+  "growthHabitDashboardSummaryTitle": "Habit summary",
+  "growthHabitDashboardEnabledHabits": "Enabled",
+  "growthHabitDashboardDueToday": "Due today",
+  "growthHabitDashboardCustomHabits": "Custom habits",
+  "growthHabitDashboardCustomCategories": "Custom categories",
+  "growthHabitDashboardCompletionSummary": "{completed} of {due} completed today",
+  "@growthHabitDashboardCompletionSummary": {
+    "placeholders": {
+      "completed": {},
+      "due": {}
+    }
+  },
+  "growthHabitDashboardActionsTitle": "Open tools",
+  "growthHabitDashboardOpenTracker": "Open Habit Tracker",
+  "growthHabitSettingsTitle": "Habit Settings",
+  "growthHabitSettingsSubtitle": "Choose what stays visible, what gets tracked, and add your own custom habits and categories.",
+  "growthHabitSettingsCustomCategoriesTitle": "Custom categories",
+  "growthHabitSettingsNoCustomCategories": "No custom categories yet.",
+  "growthHabitSettingsAddCategory": "Add Category",
+  "growthHabitSettingsCustomHabitsTitle": "Custom habits",
+  "growthHabitSettingsAddHabit": "Add Custom Habit",
+  "growthHabitSettingsManageHabitsTitle": "Manage tracked habits",
+  "growthHabitSettingsTrackWhenEnabled": "Track this habit in normal flows",
+  "growthHabitSettingsCategoryNameLabel": "Category name",
+  "growthHabitSettingsCategoryDescriptionLabel": "Category description",
+  "growthHabitSettingsHabitNameLabel": "Habit name",
+  "growthHabitSettingsHabitSubtitleLabel": "Short subtitle",
+  "growthHabitSettingsHabitDescriptionLabel": "Description",
+  "growthHabitSettingsBaseCategoryLabel": "Base category",
+  "growthHabitSettingsOptionalCustomCategory": "Custom category",
+  "growthHabitSettingsNoCustomCategory": "No custom category",
+  "growthHabitSettingsCustomHabitFallbackSubtitle": "A custom habit for your journey",
+  "growthHabitSettingsCancelAction": "Cancel",
+  "growthHabitSettingsSaveAction": "Save"
 }

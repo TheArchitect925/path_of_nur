@@ -1,53 +1,56 @@
 # Path of Nūr tvOS Developer Guide
 
-## Why tvOS is native instead of Flutter
+## Canonical ownership
 
-Flutter does not officially support tvOS as a production Apple TV target. Shipping a fake tvOS build path through iOS Flutter plumbing would be brittle and misleading. This companion app is therefore implemented as a native SwiftUI tvOS app foundation inside the same repository.
+The canonical tvOS implementation now lives in:
 
-## Structure
+- `ios/PathOfNurTV`
+- target: `PathOfNurTV` in `ios/Runner.xcodeproj`
 
-- `PathOfNurTV/App`: app entry and navigation shell
-- `PathOfNurTV/Theme`: colors, spacing, focus styling
-- `PathOfNurTV/Models`: tvOS-facing content and state models
-- `PathOfNurTV/Data`: seeded local content for prayer, learning, prophets, audio, and progress
-- `PathOfNurTV/ViewModels`: screen-level state and presentation models
-- `PathOfNurTV/Views/Components`: reusable hero banners, shelves, focusable cards, prayer cards, detail templates, and audio cards
-- `PathOfNurTV/Views/Screens`: Home, Prayer, Learn, Prophets, Library, Progress, Settings, Dhikr
-- `PathOfNurTV/Assets.xcassets`: tvOS-specific icon, top shelf, and color scaffolding
-- `TopShelf`: placeholder for future top shelf extension implementation
+This `apple_tv_app/` directory is archive/reference-only and should not be treated as an active second app path.
 
-## Shared vs duplicated logic
+## Why tvOS remains native instead of Flutter
 
-### Reused conceptually
-- Path of Nūr visual language
-- prayer-focused daily overview
-- learning content categories
-- prophets and reflection philosophy
-- audio/listen-first experience
+Flutter does not officially support tvOS as a production Apple TV target. Path of Nūr therefore keeps tvOS native in SwiftUI rather than pretending the iOS Flutter target is a supported Apple TV product path.
 
-### Ported or mirrored natively
-- tvOS navigation
-- prayer summary data models
-- content shelf structures
-- family-safe ambient display flows
+## What was migrated into the canonical target
 
-### Not directly shared
-- Flutter widgets and routing
-- mobile-only input-heavy workflows
-- Live Activities, mobile notifications, sensors, and touch-first interactions
+The current integrated shell in `ios/PathOfNurTV` adopts the useful foundation from this earlier prototype:
 
-## Current limitations
+- native shell structure
+- calm tvOS theme and background treatment
+- focus-friendly card patterns
+- simple seeded models and placeholder data flow
+- large-screen first typography and spacing
 
-- This commit provides a production-minded tvOS app foundation in SwiftUI, but does not modify the existing Flutter Xcode target graph.
-- Prayer calculation is represented as a native local summary model for tvOS; direct parity with the Dart prayer engine should be added as a dedicated Swift port in a later phase.
-- Content is seeded locally in Swift for now instead of attempting fragile Dart runtime reuse.
-- Top Shelf is scaffolded but not implemented.
-- Asset catalogs are scaffolded and need final branded layered icon artwork.
+## Current implementation status
 
-## Recommended next steps
+The canonical target now provides:
 
-1. Add a real tvOS target and optional Top Shelf extension in Xcode.
-2. Port the required prayer calculation subset to Swift so tvOS prayer state is fully local and deterministic.
-3. Move shared content into platform-neutral bundled assets where appropriate.
-4. Add AVPlayer-backed audio playback and Now Playing support.
-5. Add household ambient mode and resume state persistence.
+- a real native SwiftUI app shell
+- first-phase mirrored surfaces for:
+  - Home
+  - Qur'an
+- a prayer-focused Home experience adapted from the current mobile direction
+- a Qur'an browsing/reader/playback shell adapted from the current mobile direction
+- local seeded content and playback wiring suitable for next-phase feature work
+
+It does not yet provide:
+
+- production prayer calculation logic
+- Top Shelf content
+- sync or persistence
+- release-ready Apple TV assets
+- full mobile-feature parity beyond the current Home + Qur'an scope
+
+## What remains in this archive
+
+This directory still contains earlier exploration code, richer placeholder screens, and a Top Shelf stub. Those files may be consulted for future migration ideas, but active tvOS implementation should continue only in `ios/PathOfNurTV`.
+
+## Recommended next build phases
+
+1. Replace seeded Home prayer data with shared or bridged prayer-state logic that matches the mobile app more closely.
+2. Deepen Qur'an parity around reader state, browsing depth, and playback behavior without forking product direction.
+3. Decide whether Top Shelf is worth integrating into the main project.
+4. Finish release-grade Apple TV icon and Top Shelf artwork.
+5. Add focused Apple TV QA around navigation, playback, and parity with mirrored mobile surfaces.

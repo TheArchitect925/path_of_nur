@@ -13,6 +13,9 @@ List<WatchValidationIssue> validateWatchDailySnapshot(
   if (snapshot.snapshotId.isEmpty) {
     issues.add(const WatchValidationIssue('snapshotId is required'));
   }
+  if (snapshot.schemaVersion <= 0) {
+    issues.add(const WatchValidationIssue('schemaVersion must be positive'));
+  }
   if (snapshot.date.isEmpty) {
     issues.add(const WatchValidationIssue('date is required'));
   }
@@ -43,21 +46,19 @@ List<WatchValidationIssue> validatePrayerStatuses(
   const expected = {'fajr', 'dhuhr', 'asr', 'maghrib', 'isha'};
   for (final prayer in prayers) {
     if (!expected.contains(prayer.prayerId)) {
-      issues.add(
-        WatchValidationIssue('Unknown prayerId ${prayer.prayerId}'),
-      );
+      issues.add(WatchValidationIssue('Unknown prayerId ${prayer.prayerId}'));
     }
     if (!ids.add(prayer.prayerId)) {
-      issues.add(
-        WatchValidationIssue('Duplicate prayerId ${prayer.prayerId}'),
-      );
+      issues.add(WatchValidationIssue('Duplicate prayerId ${prayer.prayerId}'));
     }
     if (prayer.displayName.isEmpty) {
       issues.add(
         WatchValidationIssue('displayName missing for ${prayer.prayerId}'),
       );
     }
-    if (prayer.status != 'pending' && prayer.status != 'completed') {
+    if (prayer.status != 'pending' &&
+        prayer.status != 'completed' &&
+        prayer.status != 'missed') {
       issues.add(
         WatchValidationIssue('Invalid prayer status for ${prayer.prayerId}'),
       );
@@ -80,6 +81,7 @@ List<WatchValidationIssue> validateDhikrSession(
     issues.add(const WatchValidationIssue('targetCount must be positive'));
   }
   if (session.mode != 'preset_33' &&
+      session.mode != 'preset_34' &&
       session.mode != 'preset_99' &&
       session.mode != 'free') {
     issues.add(const WatchValidationIssue('Invalid dhikr mode'));
@@ -100,10 +102,25 @@ List<WatchValidationIssue> validateWatchActionEnvelope(
   switch (action.actionType) {
     case WatchActionType.prayerComplete:
     case WatchActionType.prayerUncomplete:
+    case WatchActionType.prayerStatusUpdated:
       final prayerId = action.payload['prayerId']?.toString();
       if (prayerId == null ||
-          !const {'fajr', 'dhuhr', 'asr', 'maghrib', 'isha'}.contains(prayerId)) {
+          !const {
+            'fajr',
+            'dhuhr',
+            'asr',
+            'maghrib',
+            'isha',
+          }.contains(prayerId)) {
         issues.add(const WatchValidationIssue('payload.prayerId is invalid'));
+      }
+      if (action.actionType == WatchActionType.prayerStatusUpdated) {
+        final status = action.payload['status']?.toString();
+        if (status != 'pending' &&
+            status != 'completed' &&
+            status != 'missed') {
+          issues.add(const WatchValidationIssue('payload.status is invalid'));
+        }
       }
       break;
     case WatchActionType.dhikrSessionStarted:
@@ -113,6 +130,23 @@ List<WatchValidationIssue> validateWatchActionEnvelope(
       final sessionId = action.payload['sessionId']?.toString();
       if (sessionId == null || sessionId.isEmpty) {
         issues.add(const WatchValidationIssue('payload.sessionId is required'));
+      }
+      break;
+    case WatchActionType.postPrayerAdhkarCompleted:
+      final prayerId = action.payload['prayerId']?.toString();
+      if (prayerId == null ||
+          !const {
+            'fajr',
+            'dhuhr',
+            'asr',
+            'maghrib',
+            'isha',
+          }.contains(prayerId)) {
+        issues.add(const WatchValidationIssue('payload.prayerId is invalid'));
+      }
+      final setId = action.payload['setId']?.toString();
+      if (setId == null || setId.isEmpty) {
+        issues.add(const WatchValidationIssue('payload.setId is required'));
       }
       break;
     case WatchActionType.snoozeRequested:
@@ -126,9 +160,15 @@ List<WatchValidationIssue> validateSettingsSnapshot(
   WatchSettingsSnapshot settings,
 ) {
   final issues = <WatchValidationIssue>[];
-  if (settings.enabledPrayerIds.isEmpty) {
+  if (settings.schemaVersion <= 0) {
+    issues.add(const WatchValidationIssue('schemaVersion must be positive'));
+  }
+  if (settings.prayerNotificationsEnabled &&
+      settings.enabledPrayerIds.isEmpty) {
     issues.add(
-      const WatchValidationIssue('enabledPrayerIds must not be empty'),
+      const WatchValidationIssue(
+        'enabledPrayerIds must not be empty when prayer notifications are enabled',
+      ),
     );
   }
   if (settings.followUpDelayMinutes < 0) {
@@ -143,4 +183,3 @@ List<WatchValidationIssue> validateSettingsSnapshot(
   }
   return issues;
 }
-

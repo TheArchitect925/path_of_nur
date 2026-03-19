@@ -1,6 +1,6 @@
 # Platform Inventory
 
-Last updated: 2026-03-17
+Last updated: 2026-03-18
 
 ## iPhone / iPad
 
@@ -19,12 +19,19 @@ Last updated: 2026-03-17
 
 ## Apple Watch
 
-- native companion code exists
+- native companion app, extension, and complication target now exist in the integrated iOS project
 - Flutter-side watch contract logic and tests exist
+- watch simulator build now passes for:
+  - `PathOfNurWatch Watch App`
+  - `PathOfNurWatchComplications`
+- current native watch surface includes:
+  - Home, Prayer, Dhikr, Progress, Utility
+  - post-prayer adhkar mini flow
+  - next prayer + daily progress complications backed by shared watch cache
 - not first-release ready
 - needs:
-  - dedicated build validation
   - real-device QA
+  - entitlement/app-group signing verification
   - notification / sync / rollover verification
 
 ## Wear OS
@@ -35,7 +42,9 @@ Last updated: 2026-03-17
 
 ## tvOS
 
-- scaffolding exists
+- canonical native target exists in `ios/Runner.xcodeproj` as `PathOfNurTV`
+- active source lives in `ios/PathOfNurTV`
+- current V1 scope is Home + Qur'an, aligned to the mobile app direction with tvOS focus adaptations
 - not first-release ready
 - should not be advertised as shipping until release-grade validation is complete
 
@@ -57,6 +66,6 @@ Last updated: 2026-03-17
 - conditional:
   - macOS
 - not ready:
-  - Apple Watch
+  - Apple Watch as a launch-ready surface, despite native V1 scaffolding now compiling
   - tvOS
   - any claimed Path of Nūr production cloud sync

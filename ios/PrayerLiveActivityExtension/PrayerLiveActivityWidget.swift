@@ -720,19 +720,24 @@ private func primaryTargetEpoch(_ state: PrayerCountdownAttributes.ContentState)
 }
 
 private func timeLeftText(_ seconds: Int) -> String {
-  let clamped = max(0, seconds)
-  let hours = clamped / 3600
-  let minutes = (clamped % 3600) / 60
-  if hours > 0 {
-    return "\(hours)h \(minutes)m"
-  }
-  return "\(minutes)m"
+  compactTimeLeft(seconds)
 }
 
 private func compactTimeLeft(_ seconds: Int) -> String {
   let clamped = max(0, seconds)
-  let minutes = clamped / 60
-  return "\(minutes)m"
+  if clamped == 0 {
+    return "0m"
+  }
+
+  let hours = clamped / 3600
+  let minutes = (clamped % 3600) / 60
+  if hours > 0 && minutes > 0 {
+    return "\(hours)h\(String(format: "%02d", minutes))m"
+  }
+  if hours > 0 {
+    return "\(hours)h"
+  }
+  return "\(max(1, minutes))m"
 }
 
 @ViewBuilder
@@ -745,7 +750,6 @@ private func countdownText(
   if let targetEpoch {
     _MinuteCountdownText(
       targetEpoch: targetEpoch,
-      fallbackSeconds: seconds,
       font: font,
       compact: compact
     )
@@ -758,18 +762,16 @@ private func countdownText(
 
 private struct _MinuteCountdownText: View {
   let targetEpoch: Int
-  let fallbackSeconds: Int
   let font: Font
   let compact: Bool
 
   var body: some View {
-    TimelineView(.periodic(from: .now, by: 60)) { timeline in
+    TimelineView(.periodic(from: .now, by: 1)) { timeline in
       let remaining = max(
         0,
         Int(Date(timeIntervalSince1970: TimeInterval(targetEpoch)).timeIntervalSince(timeline.date))
       )
-      let displaySeconds = remaining == 0 ? fallbackSeconds : remaining
-      Text(compact ? compactTimeLeft(displaySeconds) : timeLeftText(displaySeconds))
+      Text(compact ? compactTimeLeft(remaining) : timeLeftText(remaining))
         .font(font)
         .monospacedDigit()
         .multilineTextAlignment(.trailing)

@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_surfaces.dart';
 import '../../../journey/application/journey_progression_provider.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/segmented_pill_control.dart';
@@ -942,17 +943,13 @@ class _SearchCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final surfaceStyle = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.panel,
+    );
     return Container(
       padding: const EdgeInsets.fromLTRB(12, 10, 12, 8),
-      decoration: BoxDecoration(
-        color: AppColors.surface.withValues(alpha: AppColors.glassSurfaceAlpha),
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: AppColors.accentGold.withValues(
-            alpha: AppColors.glassBorderAlpha,
-          ),
-        ),
-      ),
+      decoration: surfaceStyle.decoration(radius: 16),
       child: Column(
         children: [
           Row(

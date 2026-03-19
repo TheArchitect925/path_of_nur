@@ -118,6 +118,18 @@ class AppLocalizationsFa extends AppLocalizations {
   }
 
   @override
+  String get notificationsPrayerActionMarkPrayed => 'Mark as prayed';
+
+  @override
+  String get notificationsPrayerActionMarkPrayedLate => 'Mark as prayed late';
+
+  @override
+  String get notificationsPrayerActionSnooze => 'Snooze';
+
+  @override
+  String get notificationsPrayerActionOpen => 'Open';
+
+  @override
   String get notificationsPrayerNameTahajjud => 'تهجد';
 
   @override
@@ -226,6 +238,242 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get quranSubtitle => 'Read • Search • Notes';
+
+  @override
+  String get quranHubTitle => 'Qur’an';
+
+  @override
+  String get quranHubSubtitle =>
+      'A calm entry for reading, study, memorization, words, topics, and notes.';
+
+  @override
+  String get quranHubJourneysTitle => 'Journeys';
+
+  @override
+  String get quranHubJourneysSubtitle =>
+      'Follow a guided path when you want structure, continuity, and clearer next steps.';
+
+  @override
+  String get quranHubJourneyOfQuranTitle => 'Journey of the Qur’an';
+
+  @override
+  String get quranHubJourneyOfQuranSubtitle =>
+      'Open the Book, navigate it, and build a first relationship.';
+
+  @override
+  String get quranHubFatihahJourneyTitle => 'Understanding Al-Fatihah';
+
+  @override
+  String get quranHubFatihahJourneySubtitle =>
+      'Begin with the surah you recite every day and connect it to salah.';
+
+  @override
+  String get quranHubShortSurahsJourneyTitle => 'Short Surahs';
+
+  @override
+  String get quranHubShortSurahsJourneySubtitle =>
+      'Use the shorter surahs as a bridge between recitation, prayer, and meaning.';
+
+  @override
+  String get quranHubModesTitle => 'Modes';
+
+  @override
+  String get quranHubModesSubtitle =>
+      'Choose the Qur’an mode that fits what you want to do right now.';
+
+  @override
+  String get quranHubReadTitle => 'Read';
+
+  @override
+  String get quranHubReadSubtitle =>
+      'Open the reader from where you last left off or begin a new passage.';
+
+  @override
+  String get quranHubStudyTitle => 'Study';
+
+  @override
+  String get quranHubStudySubtitle =>
+      'Open the study hub for explanation, reflection, and guided learning paths.';
+
+  @override
+  String get quranHubMemorizeTitle => 'Memorize';
+
+  @override
+  String get quranHubMemorizeSubtitle =>
+      'Review and strengthen recall through the current memorization tools.';
+
+  @override
+  String get quranHubWordsTitle => 'Words';
+
+  @override
+  String get quranHubWordsSubtitle =>
+      'Learn recurring Qur’anic vocabulary and build recognition gradually.';
+
+  @override
+  String get quranHubTopicsTitle => 'Topics';
+
+  @override
+  String get quranHubTopicsSubtitle =>
+      'Follow themes and verses without browsing the whole text first.';
+
+  @override
+  String get quranHubNotesTitle => 'Notes';
+
+  @override
+  String get quranHubNotesSubtitle =>
+      'Return to saved reflections, highlights, and verse-linked notes.';
+
+  @override
+  String get quranHubDailyLightTitle => 'Today’s Light';
+
+  @override
+  String get quranHubOpenVerseAction => 'Open Verse';
+
+  @override
+  String get quranHubRelatedToolsTitle => 'Related Tools';
+
+  @override
+  String get quranHubRelatedToolsSubtitle =>
+      'Keep secondary Qur’an tools close without crowding the main flow.';
+
+  @override
+  String get quranHubUniverseToolTitle => 'Universe';
+
+  @override
+  String get duaHubTitle => 'Duas';
+
+  @override
+  String get duaHubSubtitle =>
+      'Verified Qur’anic and Prophetic supplications, organized for daily life, worship, family, travel, and hardship.';
+
+  @override
+  String get duaHubTabLearn => 'Learn';
+
+  @override
+  String get duaHubTabCategories => 'Categories';
+
+  @override
+  String get duaHubTabSaved => 'Saved';
+
+  @override
+  String get duaHubTabDaily => 'Daily';
+
+  @override
+  String get duaHubSearchHint => 'Search duas, sources, categories, tags...';
+
+  @override
+  String get duaHubOverviewTitle => 'Dataset overview';
+
+  @override
+  String duaHubOverviewVerifiedNow(int count) {
+    return '$count verified now';
+  }
+
+  @override
+  String duaHubOverviewPlanned(int count) {
+    return '$count planned in scaffold';
+  }
+
+  @override
+  String duaHubOverviewTracked(int count) {
+    return '$count total tracked';
+  }
+
+  @override
+  String get duaHubOverviewBody =>
+      'Only verified entries are surfaced as readable duas right now. The remaining scaffold items stay tracked for later scholarly completion.';
+
+  @override
+  String get duaHubAllCategories => 'All categories';
+
+  @override
+  String get duaHubEmptyFiltered => 'No verified duas match this filter yet.';
+
+  @override
+  String get duaHubEmptyCategories => 'No dua categories available yet.';
+
+  @override
+  String get duaHubEmptySaved =>
+      'Save duas here to build your personal collection.';
+
+  @override
+  String get duaHubEmptyDaily => 'No daily dua available right now.';
+
+  @override
+  String duaHubLoadError(String error) {
+    return 'Unable to load duas right now. $error';
+  }
+
+  @override
+  String get duaHubDailyTitle => 'Daily dua';
+
+  @override
+  String duaHubOpenDuaSemantics(String title) {
+    return 'Open dua: $title';
+  }
+
+  @override
+  String duaHubOpenCategorySemantics(String category) {
+    return 'Open dua category: $category';
+  }
+
+  @override
+  String duaHubCategorySummary(int readyCount, int plannedCount) {
+    return '$readyCount ready • $plannedCount planned';
+  }
+
+  @override
+  String duaHubCategoryTag(String name, int count) {
+    return '$name · $count';
+  }
+
+  @override
+  String get duaHubSave => 'Save dua';
+
+  @override
+  String get duaHubRemoveSaved => 'Remove saved dua';
+
+  @override
+  String get duaSourceQuran => 'Qur’an';
+
+  @override
+  String get duaSourceSunnah => 'Sunnah';
+
+  @override
+  String get duaCoreVerified => 'Core verified';
+
+  @override
+  String get duaDetailAppBarTitle => 'Dua';
+
+  @override
+  String get duaDetailNotFound => 'Dua not found.';
+
+  @override
+  String duaDetailLoadError(String error) {
+    return 'Unable to load dua. $error';
+  }
+
+  @override
+  String get duaDetailSupplicationTitle => 'Supplication';
+
+  @override
+  String get duaDetailWhenToSayTitle => 'When to say it';
+
+  @override
+  String get duaDetailMarkReflected => 'Mark reflected';
+
+  @override
+  String get duaDetailOpenInQuranReader => 'Open in Quran reader';
+
+  @override
+  String get duaDetailTagsTitle => 'Tags';
+
+  @override
+  String get duaDetailPlannedTitle => 'Planned content';
+
+  @override
+  String get duaDetailPlannedBody =>
+      'This entry exists in the dua scaffold, but the source text and verification details have not been completed yet. It stays tracked so the final dua library can expand without changing the architecture.';
 
   @override
   String get nextSalah => 'Next Salah';
@@ -1118,6 +1366,12 @@ class AppLocalizationsFa extends AppLocalizations {
   }
 
   @override
+  String get durationCompactHourSuffix => 'h';
+
+  @override
+  String get durationCompactMinuteSuffix => 'm';
+
+  @override
   String homeLearnCategoryFallbackSubtitle(String category) {
     return 'یادگیری را با گام‌های کوتاه و روشن ادامه دهید.';
   }
@@ -1704,6 +1958,212 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get learnHubTitle => 'یادگیری';
+
+  @override
+  String get learnShortcutOpen => 'Shortcuts';
+
+  @override
+  String get learnShortcutClose => 'Close shortcuts';
+
+  @override
+  String get learnSectionLandingSubtitle =>
+      'Follow a clearer path through foundations, belief, Prophets, Qur\'an learning, worship, and character.';
+
+  @override
+  String get learningSectionLandingShortcutJourneys => 'Open journeys';
+
+  @override
+  String get learningSectionLandingFoundationsTitle => 'Foundations';
+
+  @override
+  String get learningSectionLandingFoundationsSubtitle =>
+      'Start with the essential building blocks of Islam.';
+
+  @override
+  String get learningSectionLandingBeliefTitle => 'Who is Allah?';
+
+  @override
+  String get learningSectionLandingBeliefSubtitle =>
+      'Belief basics and the first questions of faith.';
+
+  @override
+  String get learningSectionLandingProphetsTitle => 'Prophets';
+
+  @override
+  String get learningSectionLandingProphetsSubtitle =>
+      'Learn from the lives, tests, and examples of the Prophets.';
+
+  @override
+  String get learningSectionLandingQuranTitle => 'Qur\'an Learning';
+
+  @override
+  String get learningSectionLandingQuranSubtitle =>
+      'Study recitation, themes, and Qur\'anic understanding.';
+
+  @override
+  String get learningSectionLandingWorshipTitle => 'Worship Learning';
+
+  @override
+  String get learningSectionLandingWorshipSubtitle =>
+      'Learn salah, wudu, dhikr, and practical worship guidance.';
+
+  @override
+  String get learningSectionLandingCharacterTitle => 'Character & Adab';
+
+  @override
+  String get learningSectionLandingCharacterSubtitle =>
+      'Grow mercy, manners, sincerity, and everyday adab.';
+
+  @override
+  String get learningSectionLandingBrowseAllTitle => 'Browse All Knowledge';
+
+  @override
+  String get learningSectionLandingBrowseAllSubtitle =>
+      'Explore every learning island in one place.';
+
+  @override
+  String get worshipSectionLandingPrayerShortcut =>
+      'Times, tracking, and guidance';
+
+  @override
+  String get worshipSectionLandingDhikrShortcut =>
+      'Counter, sessions, and calm remembrance';
+
+  @override
+  String get worshipSectionLandingPrayerTitle => 'Prayer';
+
+  @override
+  String get worshipSectionLandingPrayerSubtitle =>
+      'Prayer times, tracking, qada, and practical guidance.';
+
+  @override
+  String get worshipSectionLandingDhikrTitle => 'Dhikr';
+
+  @override
+  String get worshipSectionLandingDhikrSubtitle =>
+      'Keep remembrance close with guided and manual sessions.';
+
+  @override
+  String get worshipSectionLandingDuasTitle => 'Duas';
+
+  @override
+  String get worshipSectionLandingDuasSubtitle =>
+      'Open the dua collection and find what fits the moment.';
+
+  @override
+  String get worshipSectionLandingFastingSubtitle =>
+      'Review your fasting status, intention, and key moments.';
+
+  @override
+  String get worshipTrackingPageTitle => 'Tracking & History';
+
+  @override
+  String get worshipTrackingPageSubtitle =>
+      'See prayer, dhikr, and fasting records without crowding the main worship hub.';
+
+  @override
+  String worshipTrackingPrayerSummary(int count, String date) {
+    return '$count prayer entries recorded. Reviewing $date.';
+  }
+
+  @override
+  String worshipTrackingDhikrSummary(int current, int target, int sessions) {
+    return '$current of $target today, with $sessions recent sessions saved.';
+  }
+
+  @override
+  String worshipTrackingFastingSummary(String status) {
+    return 'Today\'s fasting status: $status.';
+  }
+
+  @override
+  String get worshipRemindersPageTitle => 'Reminders';
+
+  @override
+  String get worshipRemindersPageSubtitle =>
+      'Keep prayer and worship reminders together without overloading the main worship page.';
+
+  @override
+  String worshipRemindersPrayerSummary(int count) {
+    return '$count prayer reminder types are currently active.';
+  }
+
+  @override
+  String worshipRemindersGeneralSummary(
+    String dhikr,
+    String quran,
+    String reflection,
+  ) {
+    return 'Dhikr: $dhikr, Qur\'an: $quran, Reflection: $reflection.';
+  }
+
+  @override
+  String get worshipRemindersDevicesSummary =>
+      'Manage widget, lock screen, and watch-related worship surfaces.';
+
+  @override
+  String get settingsReminderStateOn => 'On';
+
+  @override
+  String get settingsReminderStateOff => 'Off';
+
+  @override
+  String get settingsLandingTitle => 'Settings';
+
+  @override
+  String get settingsLandingSubtitle =>
+      'Choose a focused settings area instead of browsing one long page.';
+
+  @override
+  String get settingsCategoryAccountSyncSubtitle =>
+      'Profiles, backup, sync status, and account safety.';
+
+  @override
+  String get settingsCategoryAppearanceSubtitle =>
+      'Theme, motion, contrast, and calm reading preferences.';
+
+  @override
+  String get settingsCategoryPrayerWorshipSubtitle =>
+      'Prayer times, adhan, and worship setup.';
+
+  @override
+  String get settingsCategoryLearningSubtitle =>
+      'Learning entry points, family management, and study-related settings.';
+
+  @override
+  String get settingsCategoryNotificationsSubtitle =>
+      'Prayer reminders and general reminder controls.';
+
+  @override
+  String get settingsCategoryWidgetsWatchTitle =>
+      'Widgets, Live Activities & Watch';
+
+  @override
+  String get settingsCategoryWidgetsWatchSubtitle =>
+      'Manage lock screen, Dynamic Island, and connected watch surfaces.';
+
+  @override
+  String get settingsCategoryLanguageDownloadsSubtitle =>
+      'Language choices and download-ready content settings.';
+
+  @override
+  String get settingsCategoryPrivacyDataSubtitle =>
+      'Control tracking visibility, privacy, and sensitive data behavior.';
+
+  @override
+  String get settingsCategoryKidsFamilyTitle => 'Kids & Family';
+
+  @override
+  String get settingsCategoryKidsFamilySubtitle =>
+      'Adjust family learning and kid-friendly presentation settings.';
+
+  @override
+  String get settingsCategoryAboutSubtitle =>
+      'Version notes, support, legal details, and what is coming next.';
+
+  @override
+  String get settingsLearningHubSubtitle =>
+      'Open the learning hub and family learning tools from one focused place.';
 
   @override
   String get learnHubSubtitle => 'با آرامش و نظم در دانش خود رشد کنید.';
@@ -3473,6 +3933,13 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get quranWordTranslationChip => 'ترجمهٔ کلمه‌به‌کلمه';
+
+  @override
+  String get quranWordTranslationBetaTitle => 'Word by Word Translation (Beta)';
+
+  @override
+  String get quranWordTranslationBetaSubtitle =>
+      'This feature is currently in Beta and may still be refined.';
 
   @override
   String get quranAudioV2Title => 'صدا v2';
@@ -14819,6 +15286,16 @@ class AppLocalizationsFa extends AppLocalizations {
   String get dhikrTapToCount => 'Tap to count';
 
   @override
+  String get dhikrAntiRushTitle => 'Slow down gently';
+
+  @override
+  String get dhikrAntiRushBody =>
+      'Dhikr is not only in number, but in presence. Slow down, breathe, and remember with sincerity.';
+
+  @override
+  String get dhikrAntiRushAcknowledgeAction => 'Continue with presence';
+
+  @override
   String get dhikrTargetReachedMessage =>
       'Session target reached. Alhamdulillah.';
 
@@ -16010,6 +16487,192 @@ class AppLocalizationsFa extends AppLocalizations {
   @override
   String get oceanPersonalStageFlowingWaterDescription =>
       'A mature, continuous current shaped by many sincere days.';
+
+  @override
+  String get gardenGalleryTitle => 'Garden Gallery';
+
+  @override
+  String get gardenGallerySubtitle =>
+      'Drops quietly unlock the first garden milestones for Journey and Ocean.';
+
+  @override
+  String gardenGalleryTotalDropsValue(String count) {
+    return '$count total drops';
+  }
+
+  @override
+  String get gardenGalleryAllUnlocked => 'All ten milestones are unlocked.';
+
+  @override
+  String gardenGalleryNextUnlockValue(String title, String count) {
+    return 'Next unlock: $title at $count drops';
+  }
+
+  @override
+  String get gardenGalleryUnlocked => 'Unlocked';
+
+  @override
+  String gardenGalleryLockedAtValue(String count) {
+    return 'Unlocks at $count drops';
+  }
+
+  @override
+  String gardenGalleryRequiresValue(String count) {
+    return 'Requires $count drops';
+  }
+
+  @override
+  String gardenGalleryTileProgressValue(String current, String required) {
+    return '$current / $required Drops';
+  }
+
+  @override
+  String get gardenPageTitle => 'Garden';
+
+  @override
+  String get gardenPageSubtitle =>
+      'A quiet gallery of growth shaped by your drops over time.';
+
+  @override
+  String get gardenPageHeroTitle => 'Your Garden';
+
+  @override
+  String get gardenPageHeroSubtitle =>
+      'Each unlocked image reflects steady worship, learning, and return without turning the journey into a game.';
+
+  @override
+  String get gardenPageTotalDrops => 'Total drops';
+
+  @override
+  String get gardenPageUnlockedImages => 'Unlocked';
+
+  @override
+  String gardenPageUnlockedCountValue(String unlocked, String total) {
+    return '$unlocked / $total images';
+  }
+
+  @override
+  String get gardenPageMeaningTitle => 'What the garden reflects';
+
+  @override
+  String get gardenPagePrayerMeaningTitle => 'Prayer';
+
+  @override
+  String get gardenPagePrayerMeaningBody =>
+      'Prayer forms the roots and trunk: steady, grounding, and essential.';
+
+  @override
+  String get gardenPageLearningMeaningTitle => 'Learning and wisdom';
+
+  @override
+  String get gardenPageLearningMeaningBody =>
+      'Learning matures into fruit: insight, understanding, and better action.';
+
+  @override
+  String get gardenPageDropsMeaningTitle => 'Drops';
+
+  @override
+  String get gardenPageDropsMeaningBody =>
+      'Drops bring greenery and life, marking sincere acts that nourish the whole garden.';
+
+  @override
+  String get gardenPageNextUnlockTitle => 'Next unlock';
+
+  @override
+  String get gardenPageAllUnlockedTitle => 'Garden gallery complete';
+
+  @override
+  String get gardenPageAllUnlockedBody =>
+      'All ten V1 garden images are unlocked. Future phases can build on this calm foundation without changing your Drops history.';
+
+  @override
+  String gardenPageNextUnlockRequiredValue(String count) {
+    return 'Unlocks at $count drops';
+  }
+
+  @override
+  String gardenPageDropsRemainingValue(String count) {
+    return '$count drops remaining';
+  }
+
+  @override
+  String gardenPageEntrySubtitle(String drops, String title) {
+    return '$drops drops gathered. Next image: $title.';
+  }
+
+  @override
+  String get gardenPageEntryHomeSubtitle =>
+      'Open your unlocked images, meaning, and next milestone in one calm view.';
+
+  @override
+  String get gardenMilestoneTitle1 => 'First Seed';
+
+  @override
+  String get gardenMilestoneDescription1 =>
+      'Your first drop plants the earliest sign of steady return.';
+
+  @override
+  String get gardenMilestoneTitle2 => 'Gentle Rain';
+
+  @override
+  String get gardenMilestoneDescription2 =>
+      'Ten drops bring the first soft rain over the garden.';
+
+  @override
+  String get gardenMilestoneTitle3 => 'Olive Shoot';
+
+  @override
+  String get gardenMilestoneDescription3 =>
+      'Twenty-five drops reveal a rooted young olive shoot.';
+
+  @override
+  String get gardenMilestoneTitle4 => 'Morning Path';
+
+  @override
+  String get gardenMilestoneDescription4 =>
+      'Fifty drops open a brighter path through the garden.';
+
+  @override
+  String get gardenMilestoneTitle5 => 'Quiet Fountain';
+
+  @override
+  String get gardenMilestoneDescription5 =>
+      'One hundred drops uncover a calm fountain of remembrance.';
+
+  @override
+  String get gardenMilestoneTitle6 => 'Olive Courtyard';
+
+  @override
+  String get gardenMilestoneDescription6 =>
+      'Two hundred drops widen the garden into a shaded courtyard.';
+
+  @override
+  String get gardenMilestoneTitle7 => 'Lamp Walk';
+
+  @override
+  String get gardenMilestoneDescription7 =>
+      'Three hundred and fifty drops light a gentle walkway for continued worship.';
+
+  @override
+  String get gardenMilestoneTitle8 => 'Rain of Mercy';
+
+  @override
+  String get gardenMilestoneDescription8 =>
+      'Five hundred drops bring a fuller season of mercy and renewal.';
+
+  @override
+  String get gardenMilestoneTitle9 => 'Star Reflection';
+
+  @override
+  String get gardenMilestoneDescription9 =>
+      'Seven hundred and fifty drops unveil a reflective night garden under the stars.';
+
+  @override
+  String get gardenMilestoneTitle10 => 'Path of Nūr';
+
+  @override
+  String get gardenMilestoneDescription10 =>
+      'One thousand drops complete the first garden gallery with a path of light.';
 
   @override
   String get learnMetadataDomainQuranSubtitle =>
@@ -18860,6 +19523,553 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get kidsDuaStoriesMyDayDetail => 'A calm story for this moment.';
+
+  @override
+  String get xpLevelTitle1 => 'Niyyah';
+
+  @override
+  String get xpLevelTitle2 => 'Bidayah';
+
+  @override
+  String get xpLevelTitle3 => 'Yaqzah';
+
+  @override
+  String get xpLevelTitle4 => 'Tawbah';
+
+  @override
+  String get xpLevelTitle5 => 'Wudu';
+
+  @override
+  String get xpLevelTitle6 => 'Salah';
+
+  @override
+  String get xpLevelTitle7 => 'Dhikr';
+
+  @override
+  String get xpLevelTitle8 => 'Sabr';
+
+  @override
+  String get xpLevelTitle9 => 'Shukr';
+
+  @override
+  String get xpLevelTitle10 => 'Taqwa';
+
+  @override
+  String get xpLevelTitle11 => 'Seeker of Light';
+
+  @override
+  String get xpLevelTitle12 => 'Walker of the Path';
+
+  @override
+  String get xpLevelTitle13 => 'Keeper of Prayer';
+
+  @override
+  String get xpLevelTitle14 => 'Steady in Dhikr';
+
+  @override
+  String get xpLevelTitle15 => 'Student of Knowledge';
+
+  @override
+  String get xpLevelTitle16 => 'Lover of Qur’an';
+
+  @override
+  String get xpLevelTitle17 => 'Guardian of Time';
+
+  @override
+  String get xpLevelTitle18 => 'Companion of Sabr';
+
+  @override
+  String get xpLevelTitle19 => 'Companion of Shukr';
+
+  @override
+  String get xpLevelTitle20 => 'Companion of Taqwa';
+
+  @override
+  String get xpLevelTitle21 => 'Dawn Seeker';
+
+  @override
+  String get xpLevelTitle22 => 'Fajr Riser';
+
+  @override
+  String get xpLevelTitle23 => 'Keeper of Wudu';
+
+  @override
+  String get xpLevelTitle24 => 'Heart in Remembrance';
+
+  @override
+  String get xpLevelTitle25 => 'Listener of Qur’an';
+
+  @override
+  String get xpLevelTitle26 => 'Reader of Signs';
+
+  @override
+  String get xpLevelTitle27 => 'Friend of Jumu‘ah';
+
+  @override
+  String get xpLevelTitle28 => 'Walker to the Masjid';
+
+  @override
+  String get xpLevelTitle29 => 'Keeper of Adab';
+
+  @override
+  String get xpLevelTitle30 => 'Builder of Habits';
+
+  @override
+  String get xpLevelTitle31 => 'Rooted in Salah';
+
+  @override
+  String get xpLevelTitle32 => 'Rooted in Dhikr';
+
+  @override
+  String get xpLevelTitle33 => 'Rooted in Qur’an';
+
+  @override
+  String get xpLevelTitle34 => 'Rooted in Sabr';
+
+  @override
+  String get xpLevelTitle35 => 'Rooted in Shukr';
+
+  @override
+  String get xpLevelTitle36 => 'Rooted in Taqwa';
+
+  @override
+  String get xpLevelTitle37 => 'Keeper of Amanah';
+
+  @override
+  String get xpLevelTitle38 => 'Watcher of the Heart';
+
+  @override
+  String get xpLevelTitle39 => 'Servant in Gratitude';
+
+  @override
+  String get xpLevelTitle40 => 'Servant in Hope';
+
+  @override
+  String get xpLevelTitle41 => 'Light of Consistency';
+
+  @override
+  String get xpLevelTitle42 => 'Light of Discipline';
+
+  @override
+  String get xpLevelTitle43 => 'Light of Reflection';
+
+  @override
+  String get xpLevelTitle44 => 'Light of Presence';
+
+  @override
+  String get xpLevelTitle45 => 'Light of Intention';
+
+  @override
+  String get xpLevelTitle46 => 'Light of Worship';
+
+  @override
+  String get xpLevelTitle47 => 'Light of Restraint';
+
+  @override
+  String get xpLevelTitle48 => 'Light of Reliance';
+
+  @override
+  String get xpLevelTitle49 => 'Light of Humility';
+
+  @override
+  String get xpLevelTitle50 => 'Light of Ihsan';
+
+  @override
+  String get xpLevelTitle51 => 'Garden Tender';
+
+  @override
+  String get xpLevelTitle52 => 'Garden Keeper';
+
+  @override
+  String get xpLevelTitle53 => 'Garden Grower';
+
+  @override
+  String get xpLevelTitle54 => 'Bearer of Sabr';
+
+  @override
+  String get xpLevelTitle55 => 'Bearer of Shukr';
+
+  @override
+  String get xpLevelTitle56 => 'Bearer of Taqwa';
+
+  @override
+  String get xpLevelTitle57 => 'Bearer of Adab';
+
+  @override
+  String get xpLevelTitle58 => 'Bearer of Rahmah';
+
+  @override
+  String get xpLevelTitle59 => 'Bearer of Dhikr';
+
+  @override
+  String get xpLevelTitle60 => 'Bearer of Nur';
+
+  @override
+  String get xpLevelTitle61 => 'Path Companion';
+
+  @override
+  String get xpLevelTitle62 => 'Path Builder';
+
+  @override
+  String get xpLevelTitle63 => 'Path Guardian';
+
+  @override
+  String get xpLevelTitle64 => 'Path Illuminated';
+
+  @override
+  String get xpLevelTitle65 => 'One Who Returns';
+
+  @override
+  String get xpLevelTitle66 => 'One Who Remembers';
+
+  @override
+  String get xpLevelTitle67 => 'One Who Perseveres';
+
+  @override
+  String get xpLevelTitle68 => 'One Who Gives Thanks';
+
+  @override
+  String get xpLevelTitle69 => 'One Who Stands in Prayer';
+
+  @override
+  String get xpLevelTitle70 => 'One Who Seeks Nearness';
+
+  @override
+  String get xpLevelTitle71 => 'Lantern of the Path';
+
+  @override
+  String get xpLevelTitle72 => 'Lantern of Dawn';
+
+  @override
+  String get xpLevelTitle73 => 'Lantern of Prayer';
+
+  @override
+  String get xpLevelTitle74 => 'Lantern of Qur’an';
+
+  @override
+  String get xpLevelTitle75 => 'Lantern of Dhikr';
+
+  @override
+  String get xpLevelTitle76 => 'Lantern of Patience';
+
+  @override
+  String get xpLevelTitle77 => 'Lantern of Gratitude';
+
+  @override
+  String get xpLevelTitle78 => 'Lantern of Reflection';
+
+  @override
+  String get xpLevelTitle79 => 'Lantern of Mercy';
+
+  @override
+  String get xpLevelTitle80 => 'Lantern of Hope';
+
+  @override
+  String get xpLevelTitle81 => 'Radiance of Niyyah';
+
+  @override
+  String get xpLevelTitle82 => 'Radiance of Salah';
+
+  @override
+  String get xpLevelTitle83 => 'Radiance of Dhikr';
+
+  @override
+  String get xpLevelTitle84 => 'Radiance of Qur’an';
+
+  @override
+  String get xpLevelTitle85 => 'Radiance of Sabr';
+
+  @override
+  String get xpLevelTitle86 => 'Radiance of Shukr';
+
+  @override
+  String get xpLevelTitle87 => 'Radiance of Taqwa';
+
+  @override
+  String get xpLevelTitle88 => 'Radiance of Ihsan';
+
+  @override
+  String get xpLevelTitle89 => 'Radiance of Rahmah';
+
+  @override
+  String get xpLevelTitle90 => 'Radiance of Nur';
+
+  @override
+  String get xpLevelTitle91 => 'The Steadfast';
+
+  @override
+  String get xpLevelTitle92 => 'The Grateful';
+
+  @override
+  String get xpLevelTitle93 => 'The Remembering';
+
+  @override
+  String get xpLevelTitle94 => 'The Reflective';
+
+  @override
+  String get xpLevelTitle95 => 'The Worshipful';
+
+  @override
+  String get xpLevelTitle96 => 'The Hopeful';
+
+  @override
+  String get xpLevelTitle97 => 'The Humble';
+
+  @override
+  String get xpLevelTitle98 => 'The Constant';
+
+  @override
+  String get xpLevelTitle99 => 'The Illuminated';
+
+  @override
+  String get xpLevelTitle100 => 'Path of Nūr';
+
+  @override
+  String get xpCardTitle => 'Path XP';
+
+  @override
+  String xpCardLevelValue(Object level, Object title) {
+    return 'Level $level · $title';
+  }
+
+  @override
+  String xpCardTotalXpValue(Object xp) {
+    return '$xp total XP';
+  }
+
+  @override
+  String xpCardNextLevelValue(Object title) {
+    return 'Next: $title';
+  }
+
+  @override
+  String xpCardRemainingValue(Object xp) {
+    return '$xp XP to go';
+  }
+
+  @override
+  String get xpCardMaxLevel => 'Path of Nūr';
+
+  @override
+  String get xpCardMaxLevelReached =>
+      'You have reached the current peak of this path.';
+
+  @override
+  String get growthTrackingOverviewTitle => 'Tracking Overview';
+
+  @override
+  String get growthTrackingOverviewSubtitle =>
+      'A cleaner view of your habits, worship, rhythm, and steady progress.';
+
+  @override
+  String get growthTrackingOverviewTodayTitle => 'Today at a glance';
+
+  @override
+  String get growthTrackingOverviewHabits => 'Habits';
+
+  @override
+  String growthTrackingOverviewHabitsDetail(Object count) {
+    return '$count due today';
+  }
+
+  @override
+  String get growthTrackingOverviewPrayerDetail => 'Prayer progress for today';
+
+  @override
+  String get growthTrackingOverviewStreakDetail => 'Current steady rhythm';
+
+  @override
+  String growthTrackingOverviewXpDetail(Object xp) {
+    return '$xp total XP';
+  }
+
+  @override
+  String get growthTrackingOverviewDropsDetail =>
+      'Drops gathered for Garden and Ocean';
+
+  @override
+  String get growthTrackingDashboardsTitle => 'Open dashboards';
+
+  @override
+  String get growthTrackingPrayerDashboardSubtitle =>
+      'Review prayer and worship tracking in Worship.';
+
+  @override
+  String get growthTrackingSuggestionsTitle => 'Suggested next steps';
+
+  @override
+  String get growthTrackingSuggestionKidsTitle => 'Kids learning rhythm';
+
+  @override
+  String get growthTrackingSuggestionKidsSubtitle =>
+      'Keep habits gentle and connected to the current learning journey.';
+
+  @override
+  String get growthTrackingSuggestionTeensTitle => 'Teen growth focus';
+
+  @override
+  String get growthTrackingSuggestionTeensSubtitle =>
+      'Balance steady habits with a simple review rhythm you can keep.';
+
+  @override
+  String get growthTrackingSuggestionBeginnerTitle => 'New Muslim support';
+
+  @override
+  String get growthTrackingSuggestionBeginnerSubtitle =>
+      'Start with a few steady habits and pair them with your current learning path.';
+
+  @override
+  String get growthTrackingSuggestionPracticingTitle =>
+      'Strengthen your current path';
+
+  @override
+  String get growthTrackingSuggestionPracticingSubtitle =>
+      'Use the habit dashboard to reinforce what you are already learning.';
+
+  @override
+  String get growthTrackingSuggestionAdvancedTitle =>
+      'Review your longer pattern';
+
+  @override
+  String get growthTrackingSuggestionAdvancedSubtitle =>
+      'Use the calendar to notice consistency, missed days, and return points.';
+
+  @override
+  String get growthTrackingCalendarTitle => 'Habit Calendar';
+
+  @override
+  String get growthTrackingCalendarSubtitle =>
+      'Review completed, missed, and due habits over time.';
+
+  @override
+  String get growthTrackingCalendarNoHabits => 'No habits';
+
+  @override
+  String growthTrackingCalendarMissedValue(Object count) {
+    return '$count missed';
+  }
+
+  @override
+  String get growthOceanDashboardTitle => 'Ocean Dashboard';
+
+  @override
+  String get growthOceanDashboardSubtitle =>
+      'One place for your drops, Garden progress, and shared water impact.';
+
+  @override
+  String growthOceanDashboardSummary(Object drops, Object community) {
+    return 'You have gathered $drops drops, contributing to a shared ocean now holding $community drops.';
+  }
+
+  @override
+  String get growthOceanDashboardYourDrops => 'Your drops';
+
+  @override
+  String get growthOceanDashboardToday => 'Today';
+
+  @override
+  String get growthOceanDashboardCommunity => 'Community';
+
+  @override
+  String get growthOceanDashboardOpenCommunity => 'Open full Ocean view';
+
+  @override
+  String get growthHabitDashboardTitle => 'Habit Dashboard';
+
+  @override
+  String get growthHabitDashboardSubtitle =>
+      'Review your enabled habits, custom setup, and today’s rhythm in one place.';
+
+  @override
+  String get growthHabitDashboardSummaryTitle => 'Habit summary';
+
+  @override
+  String get growthHabitDashboardEnabledHabits => 'Enabled';
+
+  @override
+  String get growthHabitDashboardDueToday => 'Due today';
+
+  @override
+  String get growthHabitDashboardCustomHabits => 'Custom habits';
+
+  @override
+  String get growthHabitDashboardCustomCategories => 'Custom categories';
+
+  @override
+  String growthHabitDashboardCompletionSummary(Object completed, Object due) {
+    return '$completed of $due completed today';
+  }
+
+  @override
+  String get growthHabitDashboardActionsTitle => 'Open tools';
+
+  @override
+  String get growthHabitDashboardOpenTracker => 'Open Habit Tracker';
+
+  @override
+  String get growthHabitSettingsTitle => 'Habit Settings';
+
+  @override
+  String get growthHabitSettingsSubtitle =>
+      'Choose what stays visible, what gets tracked, and add your own custom habits and categories.';
+
+  @override
+  String get growthHabitSettingsCustomCategoriesTitle => 'Custom categories';
+
+  @override
+  String get growthHabitSettingsNoCustomCategories =>
+      'No custom categories yet.';
+
+  @override
+  String get growthHabitSettingsAddCategory => 'Add Category';
+
+  @override
+  String get growthHabitSettingsCustomHabitsTitle => 'Custom habits';
+
+  @override
+  String get growthHabitSettingsAddHabit => 'Add Custom Habit';
+
+  @override
+  String get growthHabitSettingsManageHabitsTitle => 'Manage tracked habits';
+
+  @override
+  String get growthHabitSettingsTrackWhenEnabled =>
+      'Track this habit in normal flows';
+
+  @override
+  String get growthHabitSettingsCategoryNameLabel => 'Category name';
+
+  @override
+  String get growthHabitSettingsCategoryDescriptionLabel =>
+      'Category description';
+
+  @override
+  String get growthHabitSettingsHabitNameLabel => 'Habit name';
+
+  @override
+  String get growthHabitSettingsHabitSubtitleLabel => 'Short subtitle';
+
+  @override
+  String get growthHabitSettingsHabitDescriptionLabel => 'Description';
+
+  @override
+  String get growthHabitSettingsBaseCategoryLabel => 'Base category';
+
+  @override
+  String get growthHabitSettingsOptionalCustomCategory => 'Custom category';
+
+  @override
+  String get growthHabitSettingsNoCustomCategory => 'No custom category';
+
+  @override
+  String get growthHabitSettingsCustomHabitFallbackSubtitle =>
+      'A custom habit for your journey';
+
+  @override
+  String get growthHabitSettingsCancelAction => 'Cancel';
+
+  @override
+  String get growthHabitSettingsSaveAction => 'Save';
 }
 
 /// The translations for Persian, as used in Afghanistan (`fa_AF`).

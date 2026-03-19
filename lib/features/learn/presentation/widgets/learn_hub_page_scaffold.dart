@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../../../../shared/widgets/app_page_scaffold.dart';
+import '../../../../l10n/app_localizations.dart';
+import '../../../../shared/content/learning_quote.dart';
 import '../../../../shared/widgets/quran_quote_block.dart';
+import '../../../../shared/widgets/section_hub_scaffold.dart';
+
+typedef LearnHubShortcutAction = SectionShortcutAction;
 
 class LearnHubPageScaffold extends StatelessWidget {
   const LearnHubPageScaffold({
@@ -12,14 +16,9 @@ class LearnHubPageScaffold extends StatelessWidget {
     this.headerIcon,
     this.backgroundAssetPath,
     this.backgroundOverlayColor,
-    this.quote = const QuranQuote(
-      arabic: 'رَبِّ زِدْنِي عِلْمًا',
-      transliteration: 'Rabbi zidni ilma',
-      translation: 'My Lord, increase me in knowledge.',
-      surah: 20,
-      verse: 114,
-      locationLabel: 'Qur’an 20:114',
-    ),
+    this.quote,
+    this.shortcutActions = const <LearnHubShortcutAction>[],
+    this.headerActions,
   });
 
   final String title;
@@ -29,17 +28,24 @@ class LearnHubPageScaffold extends StatelessWidget {
   final Color? backgroundOverlayColor;
   final List<Widget> children;
   final QuranQuote? quote;
+  final List<LearnHubShortcutAction> shortcutActions;
+  final List<Widget>? headerActions;
 
   @override
   Widget build(BuildContext context) {
-    return AppPageScaffold(
+    final l10n = AppLocalizations.of(context);
+    return SectionHubScaffold(
       headerIcon: headerIcon,
       title: title,
       subtitle: subtitle,
+      quote: quote ?? buildLearningCompactQuote(),
+      shortcutOpenLabel: l10n.learnShortcutOpen,
+      shortcutCloseLabel: l10n.learnShortcutClose,
+      shortcutActions: shortcutActions,
+      headerActions: headerActions,
       backgroundAssetPath: backgroundAssetPath,
       backgroundOverlayColor: backgroundOverlayColor,
-      quote: quote,
-      children: [...children, const SizedBox(height: 96)],
+      children: children,
     );
   }
 }

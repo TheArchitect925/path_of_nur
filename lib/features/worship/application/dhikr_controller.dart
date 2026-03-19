@@ -1,6 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../ocean/application/ocean_drops_provider.dart';
+import '../../journey/drops/application/journey_drops_providers.dart';
+import '../../journey/xp/application/journey_xp_providers.dart';
+import 'dhikr_anti_rush_detector.dart';
 import '../data/dhikr_repository.dart';
 import '../domain/dhikr_preset.dart';
 import '../domain/dhikr_session.dart';
@@ -12,12 +14,16 @@ class DhikrSessionState {
     required this.target,
     required this.currentCount,
     required this.recentSessions,
+    this.showAntiRushReminder = false,
+    this.antiRushReminderCount = 0,
   });
 
   final DhikrPreset selectedPreset;
   final int target;
   final int currentCount;
   final List<DhikrSession> recentSessions;
+  final bool showAntiRushReminder;
+  final int antiRushReminderCount;
 
   bool get hasTargetReached => currentCount >= target;
 
@@ -56,12 +62,18 @@ class DhikrSessionState {
     int? target,
     int? currentCount,
     List<DhikrSession>? recentSessions,
+    bool? showAntiRushReminder,
+    int? antiRushReminderCount,
   }) {
     return DhikrSessionState(
       selectedPreset: selectedPreset ?? this.selectedPreset,
       target: target ?? this.target,
       currentCount: currentCount ?? this.currentCount,
       recentSessions: recentSessions ?? this.recentSessions,
+      showAntiRushReminder:
+          showAntiRushReminder ?? this.showAntiRushReminder,
+      antiRushReminderCount:
+          antiRushReminderCount ?? this.antiRushReminderCount,
     );
   }
 
@@ -76,56 +88,56 @@ class DhikrSessionState {
 }
 
 class DhikrController extends StateNotifier<DhikrSessionState> {
-  DhikrController(this._repository, this._oceanDrops)
+  DhikrController(this._repository, this._dropController, this._xpController)
     : super(DhikrSessionState.initial()) {
     _load();
   }
 
   final DhikrRepository _repository;
-  final OceanDropService _oceanDrops;
+  final JourneyDropController _dropController;
+  final JourneyXpController _xpController;
+  final DhikrAntiRushDetector _antiRushDetector = DhikrAntiRushDetector();
 
   void selectPreset(DhikrPreset preset) {
-    state = state.copyWith(selectedPreset: preset);
+    _antiRushDetector.reset();
+    state = state.copyWith(
+      selectedPreset: preset,
+      showAntiRushReminder: false,
+    );
     _save();
   }
 
   void setTarget(int target) {
     if (target <= 0) return;
-    state = state.copyWith(target: target, currentCount: 0);
+    _antiRushDetector.reset();
+    state = state.copyWith(
+      target: target,
+      currentCount: 0,
+      showAntiRushReminder: false,
+    );
     _save();
   }
 
   void increment() {
-    state = state.copyWith(currentCount: state.currentCount + 1);
+    final shouldPrompt = _antiRushDetector.registerTap(DateTime.now());
+    state = state.copyWith(
+      currentCount: state.currentCount + 1,
+      showAntiRushReminder: shouldPrompt,
+      antiRushReminderCount: shouldPrompt
+          ? state.antiRushReminderCount + 1
+          : state.antiRushReminderCount,
+    );
     _save();
-    if (state.target >= 100) {
-      _oceanDrops.awardDrop(
-        actionType: oceanActionDhikrFreeHundredReached,
-        sourceModule: oceanSourceDhikr,
-        referenceId: 'free_dhikr',
-        metadata: {
-          'countDelta': 1,
-          'timestamp': DateTime.now().toIso8601String(),
-        },
-      );
-    }
   }
 
   void addManualCount(int count) {
     if (count <= 0) return;
-    state = state.copyWith(currentCount: state.currentCount + count);
+    _antiRushDetector.reset();
+    state = state.copyWith(
+      currentCount: state.currentCount + count,
+      showAntiRushReminder: false,
+    );
     _save();
-    if (state.target >= 100) {
-      _oceanDrops.awardDrop(
-        actionType: oceanActionDhikrFreeHundredReached,
-        sourceModule: oceanSourceDhikr,
-        referenceId: 'free_dhikr',
-        metadata: {
-          'countDelta': count,
-          'timestamp': DateTime.now().toIso8601String(),
-        },
-      );
-    }
   }
 
   void undo() {
@@ -135,12 +147,19 @@ class DhikrController extends StateNotifier<DhikrSessionState> {
   }
 
   void reset() {
-    state = state.copyWith(currentCount: 0);
+    _antiRushDetector.reset();
+    state = state.copyWith(currentCount: 0, showAntiRushReminder: false);
     _save();
+  }
+
+  void dismissAntiRushReminder() {
+    if (!state.showAntiRushReminder) return;
+    state = state.copyWith(showAntiRushReminder: false);
   }
 
   void finishSession() {
     if (state.currentCount <= 0) return;
+    _antiRushDetector.reset();
 
     final now = DateTime.now();
     final completed = DhikrSession(
@@ -154,23 +173,32 @@ class DhikrController extends StateNotifier<DhikrSessionState> {
     state = state.copyWith(
       currentCount: 0,
       recentSessions: [completed, ...state.recentSessions],
+      showAntiRushReminder: false,
     );
     _save();
-    if (completed.target < 100) {
-      _oceanDrops.awardDrop(
-        actionType: oceanActionDhikrSetCompleted,
-        sourceModule: oceanSourceDhikr,
-        referenceId: completed.finishedAt.toIso8601String(),
-        metadata: {
-          'target': completed.target,
-          'phraseLabel': completed.phraseLabel,
-          'timestamp': completed.finishedAt.toIso8601String(),
-        },
-      );
-    }
+    _dropController.awardDhikrDrop(
+      sourceRef: 'dhikr:${completed.finishedAt.toIso8601String()}',
+      occurredAt: completed.finishedAt,
+      completed: completed.target < 100,
+      metadata: <String, Object?>{
+        'target': completed.target,
+        'phraseLabel': completed.phraseLabel,
+        'timestamp': completed.finishedAt.toIso8601String(),
+      },
+    );
+    _xpController.awardDhikrXp(
+      sourceRef: 'dhikr:${completed.finishedAt.toIso8601String()}',
+      occurredAt: completed.finishedAt,
+      completed: true,
+      metadata: <String, Object?>{
+        'target': completed.target,
+        'phraseLabel': completed.phraseLabel,
+      },
+    );
   }
 
   void reloadFromStorage() {
+    _antiRushDetector.reset();
     state = DhikrSessionState.initial();
     _load();
   }
@@ -208,6 +236,7 @@ final dhikrControllerProvider =
     StateNotifierProvider<DhikrController, DhikrSessionState>(
       (ref) => DhikrController(
         ref.watch(dhikrRepositoryProvider),
-        ref.read(oceanDropServiceProvider),
+        ref.read(journeyDropSummaryProvider.notifier),
+        ref.read(journeyXpSummaryProvider.notifier),
       ),
     );

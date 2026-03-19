@@ -23,7 +23,9 @@ This document is the honest first-release scope, based on the currently validate
   - do not advertise it as shipping until the watch feature set, assets, signing, and paired-device flows are validated end to end
 
 - tvOS
-  - a native tvOS app target now exists, but it is only scaffolded
+  - a canonical native tvOS shell now exists under `ios/PathOfNurTV` in the `PathOfNurTV` target
+  - the current V1 scope is Home + Qur'an, aligned to the mobile app direction as closely as practical
+  - it is still not first-release ready
   - do not include tvOS in the first public release scope until tvOS features, assets, signing, and Apple TV QA are complete
 
 - Path of Nūr Cloud Sync

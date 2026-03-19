@@ -6,7 +6,7 @@ import '../core/diagnostics/app_telemetry.dart';
 import '../features/accounts_sync/application/accounts_sync_controller.dart';
 import '../features/home/presentation/home_page.dart';
 import '../features/journey/presentation/journey_page.dart';
-import '../features/learn/journey/presentation/learning_journey_home_page.dart';
+import '../features/learn/presentation/pages/learning_section_landing_page.dart';
 import '../features/learn/presentation/pages/quran_app_hub_page.dart';
 import '../features/onboarding/application/onboarding_state_provider.dart';
 import '../features/worship/presentation/worship_page.dart';
@@ -19,6 +19,7 @@ import 'routes/journey_routes.dart';
 import 'routes/learn_routes.dart';
 import 'routes/router_deep_links.dart';
 import 'routes/startup_routes.dart';
+import 'routes/worship_routes.dart';
 
 enum NavTab { worship, learn, home, journey, quran }
 
@@ -125,11 +126,12 @@ final appRouterProvider = Provider<GoRouter>((ref) {
           ...buildDiscoveryRoutes(),
           ...buildLearnRoutes(),
           ...buildJourneyRoutes(),
+          ...buildWorshipRoutes(),
           GoRoute(
             path: NavTab.learn.path,
             name: NavTab.learn.name,
             pageBuilder: (context, state) =>
-                const MaterialPage(child: LearningJourneyHomePage()),
+                const MaterialPage(child: LearningSectionLandingPage()),
           ),
           ...NavTab.values
               .map(
@@ -152,7 +154,7 @@ Widget _buildTabPage(NavTab tab) {
     case NavTab.worship:
       return const WorshipPage();
     case NavTab.learn:
-      return const LearningJourneyHomePage();
+      return const LearningSectionLandingPage();
     case NavTab.home:
       return const HomePage();
     case NavTab.journey:

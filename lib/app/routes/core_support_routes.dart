@@ -11,6 +11,7 @@ import '../../features/learn/quran/presentation/quran_surah_explorer_page.dart';
 import '../../features/learn/quran/presentation/quran_topic_explorer_page.dart';
 import '../../features/learn/quran/presentation/quran_word_review_page.dart';
 import '../../features/learn/quran/presentation/quran_words_page.dart';
+import '../../features/ocean/presentation/ocean_dashboard_page.dart';
 import '../../features/ocean/presentation/ocean_drops_page.dart';
 import '../../features/profile/presentation/profile_coming_soon_page.dart';
 import '../../features/profile/presentation/profile_summary_page.dart';
@@ -53,6 +54,76 @@ List<RouteBase> buildCoreSupportRoutes() {
       name: 'settings',
       pageBuilder: (context, state) =>
           const MaterialPage(child: SettingsPage()),
+    ),
+    GoRoute(
+      path: '/settings/account-sync',
+      name: 'settingsAccountSync',
+      pageBuilder: (context, state) => const MaterialPage(
+        child: SettingsPage(category: SettingsCategory.accountSync),
+      ),
+    ),
+    GoRoute(
+      path: '/settings/appearance',
+      name: 'settingsAppearance',
+      pageBuilder: (context, state) => const MaterialPage(
+        child: SettingsPage(category: SettingsCategory.appearance),
+      ),
+    ),
+    GoRoute(
+      path: '/settings/prayer-worship',
+      name: 'settingsPrayerWorship',
+      pageBuilder: (context, state) => const MaterialPage(
+        child: SettingsPage(category: SettingsCategory.prayerWorship),
+      ),
+    ),
+    GoRoute(
+      path: '/settings/learning',
+      name: 'settingsLearning',
+      pageBuilder: (context, state) => const MaterialPage(
+        child: SettingsPage(category: SettingsCategory.learning),
+      ),
+    ),
+    GoRoute(
+      path: '/settings/notifications-reminders',
+      name: 'settingsNotificationsReminders',
+      pageBuilder: (context, state) => const MaterialPage(
+        child: SettingsPage(category: SettingsCategory.notificationsReminders),
+      ),
+    ),
+    GoRoute(
+      path: '/settings/widgets-watch',
+      name: 'settingsWidgetsWatch',
+      pageBuilder: (context, state) => const MaterialPage(
+        child: SettingsPage(category: SettingsCategory.widgetsWatch),
+      ),
+    ),
+    GoRoute(
+      path: '/settings/language-downloads',
+      name: 'settingsLanguageDownloads',
+      pageBuilder: (context, state) => const MaterialPage(
+        child: SettingsPage(category: SettingsCategory.languageDownloads),
+      ),
+    ),
+    GoRoute(
+      path: '/settings/privacy-data',
+      name: 'settingsPrivacyData',
+      pageBuilder: (context, state) => const MaterialPage(
+        child: SettingsPage(category: SettingsCategory.privacyData),
+      ),
+    ),
+    GoRoute(
+      path: '/settings/kids-family',
+      name: 'settingsKidsFamily',
+      pageBuilder: (context, state) => const MaterialPage(
+        child: SettingsPage(category: SettingsCategory.kidsFamily),
+      ),
+    ),
+    GoRoute(
+      path: '/settings/about',
+      name: 'settingsAbout',
+      pageBuilder: (context, state) => const MaterialPage(
+        child: SettingsPage(category: SettingsCategory.about),
+      ),
     ),
     GoRoute(
       path: '/accounts-sync',
@@ -182,14 +253,13 @@ List<RouteBase> buildCoreSupportRoutes() {
       name: 'quranVerse',
       pageBuilder: (context, state) {
         final params = state.uri.queryParameters;
+        final surah = int.tryParse(params['surah'] ?? '') ?? 1;
+        final ayah = int.tryParse(params['ayah'] ?? '') ?? 1;
         return MaterialPage(
           child: QuranVersePage(
-            arabic: params['arabic'] ?? '',
-            transliteration: params['transliteration'] ?? '',
-            translation: params['translation'] ?? '',
-            surah: int.tryParse(params['surah'] ?? ''),
-            ayah: int.tryParse(params['ayah'] ?? ''),
-            locationLabel: params['locationLabel'],
+            surah: surah,
+            ayah: ayah,
+            ayahEnd: int.tryParse(params['ayahEnd'] ?? ''),
           ),
         );
       },
@@ -324,6 +394,12 @@ List<RouteBase> buildCoreSupportRoutes() {
     GoRoute(
       path: '/journey/ocean',
       name: 'oceanDrops',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: OceanDashboardPage()),
+    ),
+    GoRoute(
+      path: '/journey/ocean/community',
+      name: 'oceanCommunityDetails',
       pageBuilder: (context, state) =>
           const MaterialPage(child: OceanDropsPage()),
     ),

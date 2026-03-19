@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
@@ -7,14 +8,22 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_radii.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/application/special_mode_provider.dart';
+import '../../../../shared/utils/compact_duration_formatter.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/section_title.dart';
 import '../../application/dhikr_controller.dart';
 import '../../domain/dhikr_preset.dart';
 import '../../domain/dhikr_session.dart';
 
-class DhikrSection extends ConsumerWidget {
+class DhikrSection extends ConsumerStatefulWidget {
   const DhikrSection({super.key});
+
+  @override
+  ConsumerState<DhikrSection> createState() => _DhikrSectionState();
+}
+
+class _DhikrSectionState extends ConsumerState<DhikrSection> {
+  bool _antiRushDialogVisible = false;
 
   static const _dailyDhikrGoal = 500;
 
@@ -123,7 +132,55 @@ class DhikrSection extends ConsumerWidget {
   }
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  void initState() {
+    super.initState();
+    ref.listenManual<DhikrSessionState>(dhikrControllerProvider, (
+      previous,
+      next,
+    ) {
+      final shouldPrompt =
+          next.showAntiRushReminder &&
+          next.antiRushReminderCount != previous?.antiRushReminderCount;
+      if (!shouldPrompt || _antiRushDialogVisible || !mounted) {
+        return;
+      }
+      _showAntiRushReminder();
+    });
+  }
+
+  Future<void> _showAntiRushReminder() async {
+    _antiRushDialogVisible = true;
+    await HapticFeedback.heavyImpact();
+    if (!mounted) {
+      _antiRushDialogVisible = false;
+      return;
+    }
+    final l10n = AppLocalizations.of(context);
+    await showDialog<void>(
+      context: context,
+      builder: (dialogContext) {
+        return AlertDialog(
+          title: Text(l10n.dhikrAntiRushTitle),
+          content: Text(l10n.dhikrAntiRushBody),
+          actions: [
+            FilledButton(
+              onPressed: () => Navigator.of(dialogContext).pop(),
+              child: Text(l10n.dhikrAntiRushAcknowledgeAction),
+            ),
+          ],
+        );
+      },
+    );
+    if (!mounted) {
+      _antiRushDialogVisible = false;
+      return;
+    }
+    ref.read(dhikrControllerProvider.notifier).dismissAntiRushReminder();
+    _antiRushDialogVisible = false;
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final isKidsMode = ref.watch(
       specialModeProvider.select((mode) => mode.isKids),
@@ -550,7 +607,12 @@ String _formatSessionDuration(
   AppLocalizations l10n,
   DhikrSession session,
 ) {
-  final minutes = session.finishedAt.difference(session.startedAt).inMinutes;
-  if (minutes <= 0) return l10n.dhikrDurationJustNow;
-  return l10n.dhikrDurationMinutes(_formatCount(context, minutes));
+  final duration = session.finishedAt.difference(session.startedAt);
+  if (duration <= Duration.zero) return l10n.dhikrDurationJustNow;
+  return formatCompactDuration(
+    duration,
+    localeName: l10n.localeName,
+    hourSuffix: l10n.durationCompactHourSuffix,
+    minuteSuffix: l10n.durationCompactMinuteSuffix,
+  );
 }

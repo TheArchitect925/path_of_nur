@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/theme/app_radii.dart';
+import '../../../../core/theme/app_surfaces.dart';
 import '../../../../core/theme/app_theme.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../learn_ui_localization.dart';
@@ -37,15 +38,15 @@ class _LearnCategoryCardState extends State<LearnCategoryCard> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final appearance = Theme.of(context).extension<AppAppearanceTheme>();
-    final surface = appearance?.surface ?? AppColors.surface;
     final accent = appearance?.accent ?? AppColors.accentGold;
     final onSurface = appearance?.onSurface ?? const Color(0xFF3D3025);
     final onSurfaceSubtle =
         appearance?.onSurfaceSubtle ?? const Color(0xFF6A563F);
-    final surfaceAlpha =
-        appearance?.glassSurfaceAlpha ?? AppColors.glassSurfaceAlpha;
-    final borderAlpha =
-        appearance?.glassBorderAlpha ?? AppColors.glassBorderAlpha;
+    final surfaceStyle = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.island,
+      tintColor: accent,
+    );
 
     final icon = LearnIconRegistry.iconFor(widget.item.iconKey);
     final iconAsset = LearnIconRegistry.assetFor(widget.item.iconKey);
@@ -59,22 +60,29 @@ class _LearnCategoryCardState extends State<LearnCategoryCard> {
         duration: const Duration(milliseconds: 160),
         curve: Curves.easeOut,
         height: widget.height,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(AppRadii.card),
-          color: surface.withValues(alpha: surfaceAlpha),
-          border: Border.all(
-            color: accent.withValues(alpha: borderAlpha),
-            width: 1.0,
-          ),
-        ),
+        decoration:
+            BoxDecoration(
+              borderRadius: BorderRadius.circular(AppRadii.card),
+            ).copyWith(
+              color: surfaceStyle.backgroundColor,
+              gradient: surfaceStyle.gradient,
+              border: Border.all(color: surfaceStyle.borderColor, width: 1.0),
+              boxShadow: [
+                BoxShadow(
+                  color: surfaceStyle.shadowColor,
+                  blurRadius: 18,
+                  offset: const Offset(0, 8),
+                ),
+              ],
+            ),
         child: Material(
           color: Colors.transparent,
           child: InkWell(
             borderRadius: BorderRadius.circular(AppRadii.card),
             onTap: widget.onTap,
             onHighlightChanged: _setPressed,
-            splashColor: accent.withValues(alpha: 0.14),
-            highlightColor: accent.withValues(alpha: 0.08),
+            splashColor: surfaceStyle.splashColor,
+            highlightColor: surfaceStyle.highlightColor,
             child: Padding(
               padding: const EdgeInsets.fromLTRB(14, 12, 14, 12),
               child: Column(

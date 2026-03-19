@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/services.dart';
@@ -134,6 +135,7 @@ final prayerLiveActivityBootstrapProvider = Provider<void>((ref) {
   final service = ref.read(prayerLiveActivityServiceProvider);
   final store = ref.read(localStoreProvider);
   final notifications = ref.read(localNotificationServiceProvider);
+  Timer? boundaryRefreshTimer;
 
   Future<void> syncLiveActivity({
     required PrayerScheduleContext context,
@@ -142,6 +144,8 @@ final prayerLiveActivityBootstrapProvider = Provider<void>((ref) {
     Future<void>.microtask(() async {
       if (!await service.isSupported()) return;
       if (context.nextPrayerId == null) {
+        boundaryRefreshTimer?.cancel();
+        boundaryRefreshTimer = null;
         await service.endPrayerCountdown();
         await service.endFastingCountdown();
         return;
@@ -149,11 +153,29 @@ final prayerLiveActivityBootstrapProvider = Provider<void>((ref) {
       final now = DateTime.now();
       final nextPrayer = _findPrayerById(context.items, context.nextPrayerId!);
       if (nextPrayer == null) {
+        boundaryRefreshTimer?.cancel();
+        boundaryRefreshTimer = null;
         await service.endPrayerCountdown();
         return;
       }
       final nextTargetTime = _resolveNextPrayerStart(nextPrayer, now);
       final nextStartsIn = _nonNegative(nextTargetTime.difference(now));
+      _scheduleBoundaryRefresh(
+        existingTimer: boundaryRefreshTimer,
+        onScheduled: (timer) => boundaryRefreshTimer = timer,
+        targetTime: nextTargetTime,
+        onBoundary: () {
+          final refreshedContext = derivePrayerScheduleContext(
+            schedule: ref.read(prayerScheduleProvider),
+            now: DateTime.now(),
+          );
+          final refreshedRecords = ref.read(prayerControllerProvider);
+          syncLiveActivity(
+            context: refreshedContext,
+            records: refreshedRecords,
+          );
+        },
+      );
       final specialMode = ref.read(specialModeProvider);
       final fasting = ref.read(fastingControllerProvider);
       final fastingPresentation = _buildFastingPresentation(
@@ -234,7 +256,30 @@ final prayerLiveActivityBootstrapProvider = Provider<void>((ref) {
     final context = ref.read(prayerScheduleContextProvider);
     syncLiveActivity(context: context, records: records);
   }, fireImmediately: true);
+
+  ref.onDispose(() {
+    boundaryRefreshTimer?.cancel();
+  });
 });
+
+void _scheduleBoundaryRefresh({
+  required Timer? existingTimer,
+  required void Function(Timer? timer) onScheduled,
+  required DateTime targetTime,
+  required VoidCallback onBoundary,
+}) {
+  existingTimer?.cancel();
+  final now = DateTime.now();
+  final refreshAt = targetTime.add(const Duration(milliseconds: 250));
+  final delay = refreshAt.isAfter(now)
+      ? refreshAt.difference(now)
+      : const Duration(milliseconds: 50);
+  final timer = Timer(delay, () {
+    onScheduled(null);
+    onBoundary();
+  });
+  onScheduled(timer);
+}
 
 PrayerScheduleItem? _findPrayerById(List<PrayerScheduleItem> items, String id) {
   for (final item in items) {

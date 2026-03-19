@@ -23,6 +23,15 @@ always provide me with enhancement options and save them in another Backlog file
 Do NOT modify global theme or core architecture
 Only change files necessary for the task
 
+tvOS CROSS-PLATFORM PARITY RULE
+For mirrored surfaces, especially the Home prayer section and the Quran page, tvOS is expected to stay aligned with the current mobile/iOS product direction unless a real platform constraint requires a documented divergence.
+
+Requirements:
+- Any future change to UI, behavior, controls, playback, state handling, or content structure on a mirrored mobile/iOS surface must trigger a same-pass tvOS parity review.
+- If a change applies to both mobile/iOS and tvOS, update both in the same pass.
+- If a change intentionally diverges on tvOS, document the reason in the completion notes.
+- Do not evolve mirrored tvOS surfaces into separate product flows without explicit direction.
+
 
 For performance optimization 
 

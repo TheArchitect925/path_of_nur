@@ -1,0 +1,11 @@
+// iOS deployment defaults for Path of Nur.
+// Xcode can override these per developer machine when selecting a signing team.
+
+APPLE_DEVELOPMENT_TEAM = BL333P27N8
+APP_BUNDLE_ID_BASE = com.shahab.pathOfNur
+APP_LIVE_ACTIVITY_BUNDLE_ID = $(APP_BUNDLE_ID_BASE).prayerliveactivity
+APP_TEST_BUNDLE_ID = $(APP_BUNDLE_ID_BASE).tests
+APP_TV_BUNDLE_ID = $(APP_BUNDLE_ID_BASE).tv
+APP_URL_IDENTIFIER = $(APP_BUNDLE_ID_BASE)
+APP_WATCH_APP_BUNDLE_ID = $(APP_BUNDLE_ID_BASE).watchkitapp
+APP_WATCH_EXTENSION_BUNDLE_ID = $(APP_WATCH_APP_BUNDLE_ID).watchkitextension

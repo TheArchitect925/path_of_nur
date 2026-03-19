@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/application/kids_ui_theme_provider.dart';
-import '../../../../shared/widgets/quran_quote_block.dart';
+import '../../../../shared/content/learning_quote.dart';
 import '../application/family_learning_provider.dart';
 import '../application/learn_together_provider.dart';
 import '../application/learning_journey_progress_provider.dart';
@@ -88,14 +88,7 @@ class LearningJourneyDetailPage extends ConsumerWidget {
       headerIcon: island?.icon ?? Icons.route_rounded,
       title: localizedJourneyTitle(context, journey),
       subtitle: localizedJourneySubtitle(context, journey),
-      quote: const QuranQuote(
-        arabic: 'رَبِّ زِدْنِي عِلْمًا',
-        transliteration: 'Rabbi zidni ilma',
-        translation: 'My Lord, increase me in knowledge.',
-        surah: 20,
-        verse: 114,
-        locationLabel: 'Qur’an 20:114',
-      ),
+      quote: buildLearningCompactQuote(),
       children: [
         if (pathState != null && pathState.containsJourney(journey.id)) ...[
           _SectionBlock(

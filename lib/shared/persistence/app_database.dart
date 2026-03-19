@@ -92,6 +92,59 @@ class AppDatabase {
       );
     ''');
     _db.execute('''
+      CREATE TABLE IF NOT EXISTS xp_ledger_entries(
+        scope_id TEXT NOT NULL,
+        entry_id TEXT PRIMARY KEY,
+        event_type TEXT NOT NULL,
+        source_ref TEXT NOT NULL,
+        event_date_key TEXT NOT NULL,
+        source_module TEXT NOT NULL,
+        occurred_at_iso TEXT NOT NULL,
+        base_xp INTEGER NOT NULL,
+        awarded_xp INTEGER NOT NULL,
+        metadata_json TEXT,
+        created_at_iso TEXT NOT NULL
+      );
+    ''');
+    _db.execute('''
+      CREATE TABLE IF NOT EXISTS xp_summary(
+        scope_id TEXT PRIMARY KEY,
+        total_xp INTEGER NOT NULL,
+        today_xp INTEGER NOT NULL,
+        current_level INTEGER NOT NULL,
+        current_title TEXT NOT NULL,
+        next_level INTEGER,
+        next_title TEXT,
+        current_level_start_xp INTEGER NOT NULL,
+        next_level_total_xp INTEGER,
+        xp_into_level INTEGER NOT NULL,
+        xp_required_in_level INTEGER NOT NULL,
+        xp_remaining_to_next INTEGER NOT NULL,
+        progress_percent REAL NOT NULL,
+        updated_at_iso TEXT NOT NULL
+      );
+    ''');
+    _db.execute('''
+      CREATE TABLE IF NOT EXISTS drop_events(
+        scope_id TEXT NOT NULL,
+        event_id TEXT PRIMARY KEY,
+        source_type TEXT NOT NULL,
+        source_ref TEXT NOT NULL,
+        event_date_key TEXT NOT NULL,
+        occurred_at_iso TEXT NOT NULL,
+        metadata_json TEXT,
+        created_at_iso TEXT NOT NULL
+      );
+    ''');
+    _db.execute('''
+      CREATE TABLE IF NOT EXISTS drop_summary(
+        scope_id TEXT PRIMARY KEY,
+        total_drops INTEGER NOT NULL,
+        today_drops INTEGER NOT NULL,
+        updated_at_iso TEXT NOT NULL
+      );
+    ''');
+    _db.execute('''
       CREATE TABLE IF NOT EXISTS device_registry(
         device_id TEXT PRIMARY KEY,
         device_name TEXT NOT NULL,
@@ -137,6 +190,18 @@ class AppDatabase {
     );
     _db.execute(
       'CREATE INDEX IF NOT EXISTS idx_ocean_scope_eligibility ON ocean_events(scope_id, eligibility_key);',
+    );
+    _db.execute(
+      'CREATE INDEX IF NOT EXISTS idx_xp_scope_date ON xp_ledger_entries(scope_id, event_date_key);',
+    );
+    _db.execute(
+      'CREATE UNIQUE INDEX IF NOT EXISTS idx_xp_scope_event_source ON xp_ledger_entries(scope_id, event_type, source_ref);',
+    );
+    _db.execute(
+      'CREATE INDEX IF NOT EXISTS idx_drop_scope_date ON drop_events(scope_id, event_date_key);',
+    );
+    _db.execute(
+      'CREATE UNIQUE INDEX IF NOT EXISTS idx_drop_scope_source ON drop_events(scope_id, source_ref);',
     );
     _db.execute(
       'CREATE INDEX IF NOT EXISTS idx_sync_outbox_scope_status ON sync_outbox(scope_id, status, updated_at_iso);',
@@ -200,11 +265,21 @@ class AppDatabase {
   }
 
   void _deleteScopedDataRows(String scopeId) {
-    execute('DELETE FROM prayer_records WHERE scope_id = ?;', <Object?>[scopeId]);
+    execute('DELETE FROM prayer_records WHERE scope_id = ?;', <Object?>[
+      scopeId,
+    ]);
     execute('DELETE FROM dhikr_state WHERE scope_id = ?;', <Object?>[scopeId]);
-    execute('DELETE FROM dhikr_sessions WHERE scope_id = ?;', <Object?>[scopeId]);
+    execute('DELETE FROM dhikr_sessions WHERE scope_id = ?;', <Object?>[
+      scopeId,
+    ]);
     execute('DELETE FROM ocean_events WHERE scope_id = ?;', <Object?>[scopeId]);
     execute('DELETE FROM ocean_state WHERE scope_id = ?;', <Object?>[scopeId]);
+    execute('DELETE FROM xp_ledger_entries WHERE scope_id = ?;', <Object?>[
+      scopeId,
+    ]);
+    execute('DELETE FROM xp_summary WHERE scope_id = ?;', <Object?>[scopeId]);
+    execute('DELETE FROM drop_events WHERE scope_id = ?;', <Object?>[scopeId]);
+    execute('DELETE FROM drop_summary WHERE scope_id = ?;', <Object?>[scopeId]);
   }
 
   Map<String, dynamic> exportStructuredData(String scopeId) {
@@ -250,6 +325,47 @@ class AppDatabase {
       SELECT free_dhikr_carry_count, free_dhikr_blocks_awarded, community_baseline_drops,
              last_drop_awarded_at_iso
       FROM ocean_state
+      WHERE scope_id = ?
+      LIMIT 1;
+      ''',
+      <Object?>[scopeId],
+    );
+    final xpLedgerRows = select(
+      '''
+      SELECT entry_id, event_type, source_ref, event_date_key, source_module,
+             occurred_at_iso, base_xp, awarded_xp, metadata_json, created_at_iso
+      FROM xp_ledger_entries
+      WHERE scope_id = ?
+      ORDER BY occurred_at_iso DESC, created_at_iso DESC;
+      ''',
+      <Object?>[scopeId],
+    );
+    final xpSummaryRows = select(
+      '''
+      SELECT total_xp, today_xp, current_level, current_title, next_level,
+             next_title, current_level_start_xp, next_level_total_xp,
+             xp_into_level, xp_required_in_level, xp_remaining_to_next,
+             progress_percent, updated_at_iso
+      FROM xp_summary
+      WHERE scope_id = ?
+      LIMIT 1;
+      ''',
+      <Object?>[scopeId],
+    );
+    final dropEventRows = select(
+      '''
+      SELECT event_id, source_type, source_ref, event_date_key,
+             occurred_at_iso, metadata_json, created_at_iso
+      FROM drop_events
+      WHERE scope_id = ?
+      ORDER BY occurred_at_iso DESC, created_at_iso DESC;
+      ''',
+      <Object?>[scopeId],
+    );
+    final dropSummaryRows = select(
+      '''
+      SELECT total_drops, today_drops, updated_at_iso
+      FROM drop_summary
       WHERE scope_id = ?
       LIMIT 1;
       ''',
@@ -317,6 +433,62 @@ class AppDatabase {
             'eligibilityKey': row['eligibility_key'],
           },
       ],
+      'xpLedgerEntries': [
+        for (final row in xpLedgerRows)
+          <String, dynamic>{
+            'entryId': row['entry_id'],
+            'eventType': row['event_type'],
+            'sourceRef': row['source_ref'],
+            'eventDateKey': row['event_date_key'],
+            'sourceModule': row['source_module'],
+            'occurredAtIso': row['occurred_at_iso'],
+            'baseXp': row['base_xp'],
+            'awardedXp': row['awarded_xp'],
+            'metadata': row['metadata_json'] == null
+                ? null
+                : jsonDecode(row['metadata_json'] as String),
+            'createdAtIso': row['created_at_iso'],
+          },
+      ],
+      'xpSummary': xpSummaryRows.isEmpty
+          ? null
+          : <String, dynamic>{
+              'totalXp': xpSummaryRows.first['total_xp'],
+              'todayXp': xpSummaryRows.first['today_xp'],
+              'currentLevel': xpSummaryRows.first['current_level'],
+              'currentTitle': xpSummaryRows.first['current_title'],
+              'nextLevel': xpSummaryRows.first['next_level'],
+              'nextTitle': xpSummaryRows.first['next_title'],
+              'currentLevelStartXp':
+                  xpSummaryRows.first['current_level_start_xp'],
+              'nextLevelTotalXp': xpSummaryRows.first['next_level_total_xp'],
+              'xpIntoLevel': xpSummaryRows.first['xp_into_level'],
+              'xpRequiredInLevel': xpSummaryRows.first['xp_required_in_level'],
+              'xpRemainingToNext': xpSummaryRows.first['xp_remaining_to_next'],
+              'progressPercent': xpSummaryRows.first['progress_percent'],
+              'updatedAtIso': xpSummaryRows.first['updated_at_iso'],
+            },
+      'dropEvents': [
+        for (final row in dropEventRows)
+          <String, dynamic>{
+            'eventId': row['event_id'],
+            'sourceType': row['source_type'],
+            'sourceRef': row['source_ref'],
+            'eventDateKey': row['event_date_key'],
+            'occurredAtIso': row['occurred_at_iso'],
+            'metadata': row['metadata_json'] == null
+                ? null
+                : jsonDecode(row['metadata_json'] as String),
+            'createdAtIso': row['created_at_iso'],
+          },
+      ],
+      'dropSummary': dropSummaryRows.isEmpty
+          ? null
+          : <String, dynamic>{
+              'totalDrops': dropSummaryRows.first['total_drops'],
+              'todayDrops': dropSummaryRows.first['today_drops'],
+              'updatedAtIso': dropSummaryRows.first['updated_at_iso'],
+            },
     };
   }
 
@@ -344,7 +516,8 @@ class AppDatabase {
               row['timing']?.toString(),
               row['place']?.toString(),
               row['notes']?.toString(),
-              row['updatedAtIso']?.toString() ?? DateTime.now().toIso8601String(),
+              row['updatedAtIso']?.toString() ??
+                  DateTime.now().toIso8601String(),
             ],
           );
         }
@@ -363,7 +536,8 @@ class AppDatabase {
             dhikrState['selectedPresetId']?.toString() ?? 'subhanallah',
             (dhikrState['target'] as num?)?.toInt() ?? 33,
             (dhikrState['currentCount'] as num?)?.toInt() ?? 0,
-            dhikrState['updatedAtIso']?.toString() ?? DateTime.now().toIso8601String(),
+            dhikrState['updatedAtIso']?.toString() ??
+                DateTime.now().toIso8601String(),
           ],
         );
       }
@@ -384,8 +558,10 @@ class AppDatabase {
               row['phraseLabel']?.toString() ?? 'Dhikr',
               (row['count'] as num?)?.toInt() ?? 0,
               (row['target'] as num?)?.toInt() ?? 33,
-              row['startedAtIso']?.toString() ?? DateTime.now().toIso8601String(),
-              row['finishedAtIso']?.toString() ?? DateTime.now().toIso8601String(),
+              row['startedAtIso']?.toString() ??
+                  DateTime.now().toIso8601String(),
+              row['finishedAtIso']?.toString() ??
+                  DateTime.now().toIso8601String(),
             ],
           );
         }
@@ -436,6 +612,113 @@ class AppDatabase {
             ],
           );
         }
+      }
+
+      final xpLedgerEntries = payload['xpLedgerEntries'];
+      if (xpLedgerEntries is List) {
+        for (final row in xpLedgerEntries) {
+          if (row is! Map) continue;
+          execute(
+            '''
+            INSERT OR REPLACE INTO xp_ledger_entries(
+              scope_id, entry_id, event_type, source_ref, event_date_key,
+              source_module, occurred_at_iso, base_xp, awarded_xp,
+              metadata_json, created_at_iso
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+            ''',
+            <Object?>[
+              scopeId,
+              row['entryId']?.toString(),
+              row['eventType']?.toString() ?? '',
+              row['sourceRef']?.toString() ?? '',
+              row['eventDateKey']?.toString() ?? '',
+              row['sourceModule']?.toString() ?? '',
+              row['occurredAtIso']?.toString() ??
+                  DateTime.now().toIso8601String(),
+              (row['baseXp'] as num?)?.toInt() ?? 0,
+              (row['awardedXp'] as num?)?.toInt() ?? 0,
+              row['metadata'] == null ? null : jsonEncode(row['metadata']),
+              row['createdAtIso']?.toString() ??
+                  DateTime.now().toIso8601String(),
+            ],
+          );
+        }
+      }
+
+      final xpSummary = payload['xpSummary'];
+      if (xpSummary is Map) {
+        execute(
+          '''
+          INSERT OR REPLACE INTO xp_summary(
+            scope_id, total_xp, today_xp, current_level, current_title,
+            next_level, next_title, current_level_start_xp,
+            next_level_total_xp, xp_into_level, xp_required_in_level,
+            xp_remaining_to_next, progress_percent, updated_at_iso
+          ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+          ''',
+          <Object?>[
+            scopeId,
+            (xpSummary['totalXp'] as num?)?.toInt() ?? 0,
+            (xpSummary['todayXp'] as num?)?.toInt() ?? 0,
+            (xpSummary['currentLevel'] as num?)?.toInt() ?? 1,
+            xpSummary['currentTitle']?.toString() ?? 'Niyyah',
+            (xpSummary['nextLevel'] as num?)?.toInt(),
+            xpSummary['nextTitle']?.toString(),
+            (xpSummary['currentLevelStartXp'] as num?)?.toInt() ?? 0,
+            (xpSummary['nextLevelTotalXp'] as num?)?.toInt(),
+            (xpSummary['xpIntoLevel'] as num?)?.toInt() ?? 0,
+            (xpSummary['xpRequiredInLevel'] as num?)?.toInt() ?? 1,
+            (xpSummary['xpRemainingToNext'] as num?)?.toInt() ?? 0,
+            (xpSummary['progressPercent'] as num?)?.toDouble() ?? 0.0,
+            xpSummary['updatedAtIso']?.toString() ??
+                DateTime.now().toIso8601String(),
+          ],
+        );
+      }
+
+      final dropEvents = payload['dropEvents'];
+      if (dropEvents is List) {
+        for (final row in dropEvents) {
+          if (row is! Map) continue;
+          execute(
+            '''
+            INSERT OR REPLACE INTO drop_events(
+              scope_id, event_id, source_type, source_ref, event_date_key,
+              occurred_at_iso, metadata_json, created_at_iso
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+            ''',
+            <Object?>[
+              scopeId,
+              row['eventId']?.toString(),
+              row['sourceType']?.toString() ?? '',
+              row['sourceRef']?.toString() ?? '',
+              row['eventDateKey']?.toString() ?? '',
+              row['occurredAtIso']?.toString() ??
+                  DateTime.now().toIso8601String(),
+              row['metadata'] == null ? null : jsonEncode(row['metadata']),
+              row['createdAtIso']?.toString() ??
+                  DateTime.now().toIso8601String(),
+            ],
+          );
+        }
+      }
+
+      final dropSummary = payload['dropSummary'];
+      if (dropSummary is Map) {
+        execute(
+          '''
+          INSERT OR REPLACE INTO drop_summary(
+            scope_id, total_drops, today_drops, updated_at_iso
+          ) VALUES (?, ?, ?, ?);
+          ''',
+          <Object?>[
+            scopeId,
+            (dropSummary['totalDrops'] as num?)?.toInt() ?? 0,
+            (dropSummary['todayDrops'] as num?)?.toInt() ?? 0,
+            dropSummary['updatedAtIso']?.toString() ??
+                DateTime.now().toIso8601String(),
+          ],
+        );
       }
     });
   }

@@ -2,12 +2,17 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:just_audio/just_audio.dart';
 
 import '../../../../shared/persistence/local_store.dart';
+import 'quran_playback_orchestrator.dart';
+import 'quran_playback_policy.dart';
 import '../data/quran_audio_repository.dart';
+import '../data/quran_content_repository.dart';
 import '../data/quran_repository.dart';
 import '../data/quran_transliteration_repository.dart';
 import '../data/quran_word_timing_repository.dart';
+import '../domain/bismillah_playback_mode.dart';
 import '../domain/quran_ayah.dart';
 import '../domain/quran_bookmark.dart';
+import '../domain/quran_content_refs.dart';
 import '../domain/quran_daily_verse.dart';
 import '../domain/quran_reference_models.dart';
 import '../domain/quran_note.dart';
@@ -353,7 +358,7 @@ class QuranReaderSettingsNotifier extends StateNotifier<QuranReaderSettings> {
           translationScalePercent: 100,
           transliterationScalePercent: 100,
           cleanReadingMode: false,
-          showWordByWord: true,
+          showWordByWord: false,
           wordSyncHighlightBeta: false,
           redDiacriticsEnabled: true,
         ),
@@ -1021,6 +1026,29 @@ final quranAudioRepositoryProvider = Provider<QuranAudioRepository>((ref) {
   return QuranAudioRepository();
 });
 
+final quranPlaybackPolicyProvider = Provider<QuranPlaybackPolicy>((ref) {
+  return const QuranPlaybackPolicy();
+});
+
+final quranPlaybackOrchestratorProvider = Provider<QuranPlaybackOrchestrator>((
+  ref,
+) {
+  return QuranPlaybackOrchestrator(
+    audioRepository: ref.watch(quranAudioRepositoryProvider),
+    policy: ref.watch(quranPlaybackPolicyProvider),
+  );
+});
+
+final quranContentRepositoryProvider = Provider<QuranContentRepository>((ref) {
+  return DefaultQuranContentRepository(
+    quranRepository: ref.watch(quranRepositoryProvider),
+    audioRepository: ref.watch(quranAudioRepositoryProvider),
+    transliterationRepository: ref.watch(
+      quranTransliterationRepositoryProvider,
+    ),
+  );
+});
+
 final quranSharedAudioPlayerProvider = Provider<AudioPlayer>((ref) {
   final player = AudioPlayer();
   ref.onDispose(player.dispose);
@@ -1037,6 +1065,17 @@ final quranWordTimingRepositoryProvider = Provider<QuranWordTimingRepository>((
 ) {
   return QuranWordTimingRepository();
 });
+
+final quranAlwaysPrependBismillahProvider = Provider<bool>((ref) {
+  return alwaysPrependBismillahAtSurahStart;
+});
+
+final quranDefaultBismillahPlaybackModeProvider =
+    Provider<BismillahPlaybackMode>((ref) {
+      return ref.watch(quranAlwaysPrependBismillahProvider)
+          ? BismillahPlaybackMode.alwaysPrepend
+          : BismillahPlaybackMode.disabled;
+    });
 
 final quranReaderSettingsProvider =
     StateNotifierProvider<QuranReaderSettingsNotifier, QuranReaderSettings>(
@@ -1398,3 +1437,15 @@ final quranSurahAyahsProvider = FutureProvider.family<List<QuranAyah>, int>((
     );
   });
 });
+
+final quranQuoteContentProvider =
+    FutureProvider.family<QuranQuoteContent, QuranQuoteRef>((ref, quoteRef) {
+      final translationCode = ref.watch(
+        quranReaderSettingsProvider.select((state) => state.translationCode),
+      );
+      final repository = ref.watch(quranContentRepositoryProvider);
+      return repository.loadQuoteContent(
+        ref: quoteRef,
+        translationCode: translationCode,
+      );
+    });

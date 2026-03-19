@@ -9,11 +9,10 @@ import '../../../app/app_router.dart';
 import '../../../core/prayer/prayer_preferences.dart';
 import '../../../core/prayer/prayer_location_search_service.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_surfaces.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../features/celestial/presentation/widgets/celestial_cycle_card.dart';
-import '../../../features/worship/domain/fasting_status.dart';
 import '../../../features/worship/application/dhikr_controller.dart';
-import '../../../features/worship/application/worship_tab_provider.dart';
 import '../../../features/worship/application/prayer_controller.dart';
 import '../../../features/worship/domain/prayer_name.dart';
 import '../../../features/worship/domain/prayer_status.dart';
@@ -22,8 +21,6 @@ import '../../../features/learn/prophets/application/daily_learning_service.dart
 import '../../../features/learn/prophets/application/prophets_repository.dart';
 import '../../../features/learn/prophets/presentation/widgets/daily_prophet_quiz_card.dart';
 import '../../../features/learn/prophets/presentation/widgets/daily_revelation_card.dart';
-import '../../../features/journey/application/journey_progression_provider.dart';
-import '../../../features/onboarding/application/onboarding_state_provider.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/application/app_summary_providers.dart';
 import '../../../shared/application/daily_clock_provider.dart';
@@ -36,12 +33,10 @@ import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/prayer_location_picker_sheet.dart';
 import '../../../shared/widgets/arabic_text_utils.dart';
 import '../../../shared/widgets/quran_text_span.dart';
-import '../../../shared/widgets/section_title.dart';
+import '../../../shared/utils/compact_duration_formatter.dart';
 import '../../learn/presentation/data/learn_category_catalog.dart';
 import '../../learn/presentation/models/learn_category_item.dart';
 import '../data/home_verses.dart';
-
-const _reflectionDraftSentinel = '__reflection_draft__';
 
 String _formatLocalizedCount(BuildContext context, num value) {
   return NumberFormat.decimalPattern(
@@ -138,7 +133,7 @@ class _HomePageState extends ConsumerState<HomePage> {
   @override
   void initState() {
     super.initState();
-    _shortcutsExpanded = ValueNotifier<bool>(true);
+    _shortcutsExpanded = ValueNotifier<bool>(false);
   }
 
   @override
@@ -230,28 +225,6 @@ class _HomePageState extends ConsumerState<HomePage> {
                     const CelestialCycleCard(),
                     const SizedBox(height: 12),
                     const _HomeLearningActionsCard(),
-                    const SizedBox(height: 24),
-                    _HomeSummaryShortcutCard(
-                      l10n: l10n,
-                      dailyBundle: ref.watch(todayDailyLearningBundleProvider),
-                    ),
-                    const SizedBox(height: 18),
-                    Align(
-                      alignment: Alignment.center,
-                      child: OutlinedButton.icon(
-                        onPressed: () {
-                          ref
-                              .read(onboardingCompletedProvider.notifier)
-                              .reset();
-                          WidgetsBinding.instance.addPostFrameCallback((_) {
-                            if (!context.mounted) return;
-                            context.goNamed('onboarding');
-                          });
-                        },
-                        icon: const Icon(Icons.slideshow_rounded),
-                        label: Text(l10n.homeStartWelcomeCarousel),
-                      ),
-                    ),
                   ],
                 ),
               ),
@@ -1006,10 +979,7 @@ class _FloatingSalahChip extends ConsumerWidget {
       borderColor: const Color(0xFF9F7A42),
       shadowColor: const Color(0xFF9F7A42),
       gradient: const [Color(0xFFF8E6D2), Color(0xFFE7BE8E)],
-      onTap: () {
-        ref.read(worshipTabProvider.notifier).state = WorshipTab.prayer;
-        goToTab(context, NavTab.worship);
-      },
+      onTap: () => context.pushNamed('worshipPrayerPage'),
     );
   }
 }
@@ -1049,10 +1019,7 @@ class _FloatingDhikrChip extends ConsumerWidget {
       borderColor: const Color(0xFF8F7547),
       shadowColor: const Color(0xFF8F7547),
       gradient: const [Color(0xFFF6EFD8), Color(0xFFE1D0A0)],
-      onTap: () {
-        ref.read(worshipTabProvider.notifier).state = WorshipTab.dhikr;
-        goToTab(context, NavTab.worship);
-      },
+      onTap: () => context.pushNamed('worshipDhikrPage'),
     );
   }
 }
@@ -2087,10 +2054,7 @@ class _SalahSummaryCard extends ConsumerWidget {
                   ? Icons.check_circle_rounded
                   : null,
               trailingIconColor: const Color(0xFF5E8A43),
-              onTap: () {
-                ref.read(worshipTabProvider.notifier).state = WorshipTab.dhikr;
-                goToTab(context, NavTab.worship);
-              },
+              onTap: () => context.pushNamed('worshipDhikrPage'),
             ),
             const Divider(height: 12, color: Color(0x28BFAE98)),
             _StatsLine(label: l10n.salahStreak, value: l10n.homeDaysCount(1)),
@@ -2105,18 +2069,11 @@ class _SalahSummaryCard extends ConsumerWidget {
     AppLocalizations l10n,
     Duration value,
   ) {
-    if (value.isNegative) {
-      return l10n.homeDurationMinutes(_formatLocalizedCount(context, 0));
-    }
-    final totalMinutes = value.inMinutes;
-    final hours = totalMinutes ~/ 60;
-    final minutes = totalMinutes % 60;
-    if (hours <= 0) {
-      return l10n.homeDurationMinutes(_formatLocalizedCount(context, minutes));
-    }
-    return l10n.homeDurationHoursMinutes(
-      _formatLocalizedCount(context, hours),
-      _formatLocalizedCount(context, minutes),
+    return formatCompactDuration(
+      value,
+      localeName: l10n.localeName,
+      hourSuffix: l10n.durationCompactHourSuffix,
+      minuteSuffix: l10n.durationCompactMinuteSuffix,
     );
   }
 
@@ -2236,222 +2193,6 @@ class _StatsLine extends StatelessWidget {
   }
 }
 
-class _DailyBadgeTile extends ConsumerWidget {
-  const _DailyBadgeTile({required this.badge});
-
-  final JourneyDailyBadge badge;
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final spec = _dailyBadgeSpec(badge.id);
-    final active = badge.earnedToday;
-    final isKidsMode = ref.watch(
-      homeDashboardSummaryProvider.select((value) => value.mode.isKidsMode),
-    );
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: () => _openBadgeDestination(context, ref, badge.id),
-        borderRadius: BorderRadius.circular(20),
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 220),
-          width: 124,
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: active
-                  ? [
-                      spec.base.withValues(alpha: 0.28),
-                      spec.accent.withValues(alpha: 0.22),
-                    ]
-                  : [const Color(0xFFF6F0E6), const Color(0xFFE7DCC8)],
-            ),
-            border: Border.all(
-              color: active
-                  ? spec.accent.withValues(alpha: 0.45)
-                  : const Color(0x28BFAE98),
-            ),
-            boxShadow: active
-                ? [
-                    BoxShadow(
-                      color: spec.accent.withValues(alpha: 0.18),
-                      blurRadius: 18,
-                      offset: const Offset(0, 8),
-                    ),
-                  ]
-                : const [],
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  Container(
-                    width: 28,
-                    height: 28,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: active
-                          ? spec.accent.withValues(alpha: 0.18)
-                          : Colors.white.withValues(alpha: 0.75),
-                    ),
-                    child: Icon(
-                      spec.icon,
-                      size: 16,
-                      color: active ? spec.accent : const Color(0xFF7A6858),
-                    ),
-                  ),
-                  const Spacer(),
-                  if (active)
-                    Icon(Icons.verified_rounded, size: 16, color: spec.accent),
-                ],
-              ),
-              const Spacer(),
-              Text(
-                badge.title,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                style: const TextStyle(
-                  fontSize: 12.5,
-                  fontWeight: FontWeight.w700,
-                  color: Color(0xFF352B23),
-                ),
-              ),
-              const SizedBox(height: 4),
-              Text(
-                isKidsMode
-                    ? AppLocalizations.of(context).kidsHomeBadgeEarnedCount(
-                        _formatLocalizedCount(context, badge.earnedCount),
-                      )
-                    : AppLocalizations.of(context).homeBadgeEarnedCount(
-                        _formatLocalizedCount(context, badge.earnedCount),
-                      ),
-                style: TextStyle(
-                  fontSize: 11.5,
-                  fontWeight: FontWeight.w700,
-                  color: active ? spec.accent : const Color(0xFF6F6256),
-                ),
-              ),
-              if (active) ...[
-                const SizedBox(height: 4),
-                Text(
-                  isKidsMode
-                      ? AppLocalizations.of(context).kidsHomeBadgeEarnedToday
-                      : AppLocalizations.of(context).homeBadgeEarnedToday,
-                  style: TextStyle(
-                    fontSize: 10.5,
-                    fontWeight: FontWeight.w700,
-                    color: spec.accent,
-                  ),
-                ),
-              ],
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  _DailyBadgeSpec _dailyBadgeSpec(String id) {
-    switch (id) {
-      case 'all_prayers':
-        return const _DailyBadgeSpec(
-          icon: Icons.task_alt_rounded,
-          base: Color(0xFFE4F2E2),
-          accent: Color(0xFF5E8D58),
-        );
-      case 'daily_dhikr':
-        return const _DailyBadgeSpec(
-          icon: Icons.favorite_rounded,
-          base: Color(0xFFF6EACB),
-          accent: Color(0xFFB98A2F),
-        );
-      case 'quran_return':
-        return const _DailyBadgeSpec(
-          icon: Icons.menu_book_rounded,
-          base: Color(0xFFE2F2E8),
-          accent: Color(0xFF4D8B63),
-        );
-      case 'reflection':
-        return const _DailyBadgeSpec(
-          icon: Icons.edit_note_rounded,
-          base: Color(0xFFECE3F7),
-          accent: Color(0xFF8C6AA8),
-        );
-      case 'perfect_day':
-        return const _DailyBadgeSpec(
-          icon: Icons.workspace_premium_rounded,
-          base: Color(0xFFF7E6C2),
-          accent: Color(0xFFD29B28),
-        );
-      case 'no_missed_prayers':
-        return const _DailyBadgeSpec(
-          icon: Icons.shield_moon_rounded,
-          base: Color(0xFFE4F1EC),
-          accent: Color(0xFF4D7A6B),
-        );
-      case 'before_sunrise_fajr':
-        return const _DailyBadgeSpec(
-          icon: Icons.wb_twilight_rounded,
-          base: Color(0xFFFCE7CD),
-          accent: Color(0xFFC07A1E),
-        );
-      case 'streak_3':
-        return const _DailyBadgeSpec(
-          icon: Icons.local_fire_department_rounded,
-          base: Color(0xFFF8E1D8),
-          accent: Color(0xFFC85E34),
-        );
-      default:
-        return const _DailyBadgeSpec(
-          icon: Icons.emoji_events_rounded,
-          base: Color(0xFFF3ECE2),
-          accent: Color(0xFF8A755A),
-        );
-    }
-  }
-
-  void _openBadgeDestination(BuildContext context, WidgetRef ref, String id) {
-    switch (id) {
-      case 'all_prayers':
-      case 'no_missed_prayers':
-      case 'before_sunrise_fajr':
-        ref.read(worshipTabProvider.notifier).state = WorshipTab.prayer;
-        goToTab(context, NavTab.worship);
-        return;
-      case 'daily_dhikr':
-        ref.read(worshipTabProvider.notifier).state = WorshipTab.dhikr;
-        goToTab(context, NavTab.worship);
-        return;
-      case 'quran_return':
-        context.pushNamed('quranExplorer');
-        return;
-      case 'reflection':
-        context.pushNamed('learnNotesLanding');
-        return;
-      case 'perfect_day':
-      case 'streak_3':
-        context.goNamed('settings');
-        return;
-    }
-  }
-}
-
-class _DailyBadgeSpec {
-  const _DailyBadgeSpec({
-    required this.icon,
-    required this.base,
-    required this.accent,
-  });
-
-  final IconData icon;
-  final Color base;
-  final Color accent;
-}
-
 class _ForbiddenPrayerPeriod {
   const _ForbiddenPrayerPeriod({required this.label, required this.value});
 
@@ -2472,640 +2213,15 @@ class _GlassCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final surfaceStyle = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.card,
+    );
     return Container(
       padding: padding,
-      decoration: BoxDecoration(
-        color: AppColors.surface.withValues(alpha: AppColors.glassSurfaceAlpha),
-        borderRadius: BorderRadius.circular(radius),
-        border: Border.all(
-          color: AppColors.accentGold.withValues(
-            alpha: AppColors.glassBorderAlpha,
-          ),
-          width: 1.0,
-        ),
-      ),
+      decoration: surfaceStyle.decoration(radius: radius),
       child: child,
     );
-  }
-}
-
-// ignore: unused_element
-class _HomeDashboardSections extends StatelessWidget {
-  const _HomeDashboardSections({required this.l10n});
-
-  final AppLocalizations l10n;
-
-  @override
-  Widget build(BuildContext context) {
-    return Consumer(
-      builder: (context, ref, _) {
-        final summary = ref.watch(homeDashboardSummaryProvider);
-        final worship = summary.worship;
-        final learn = summary.learn;
-        final journey = summary.journey;
-        final mode = summary.mode.activeMode;
-        final assistant = summary.assistant;
-        final circles = summary.circles;
-        final ocean = summary.ocean;
-        final journal = summary.journal;
-        final wallpaper = summary.wallpaper;
-        final prayerProgressText =
-            '${worship.prayerCompleted} / ${worship.prayerTotal}';
-        final dhikrProgressText =
-            '${worship.dhikrCount} / ${worship.dhikrTarget}';
-
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            SectionTitle(
-              title: l10n.homeOverviewHeroTitle,
-              subtitle: l10n.homeOverviewHeroSubtitle,
-            ),
-            PremiumCard(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Expanded(
-                        child: _ValueTile(
-                          title: l10n.homePrayerProgressTitle,
-                          value: prayerProgressText,
-                        ),
-                      ),
-                      const SizedBox(width: 12),
-                      Expanded(
-                        child: _ValueTile(
-                          title: l10n.homeDhikrProgressTitle,
-                          value: dhikrProgressText,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 10),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: _ValueTile(
-                          title: l10n.homeCurrentStreakTitle,
-                          value: l10n.homeDaysCount(journey.currentStreakDays),
-                        ),
-                      ),
-                      const SizedBox(width: 12),
-                      Expanded(
-                        child: _ValueTile(
-                          title: l10n.homeXpLevelTitle,
-                          value: l10n.homeLevelValue(
-                            _formatCount(context, journey.level),
-                            _formatCount(context, journey.level),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 12),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(999),
-                    child: LinearProgressIndicator(
-                      value: journey.xpProgress,
-                      minHeight: 8,
-                      backgroundColor: AppColors.surfaceSoft.withValues(
-                        alpha: 0.6,
-                      ),
-                      valueColor: const AlwaysStoppedAnimation<Color>(
-                        AppColors.homeAccent,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    l10n.homeXpToNextLevelValue(
-                      _formatCount(context, journey.nextLevelXpRemaining),
-                      _formatCount(context, journey.nextLevelXpRemaining),
-                    ),
-                    style: Theme.of(context).textTheme.bodySmall,
-                  ),
-                  if (journey.dailyBadges.isNotEmpty) ...[
-                    const SizedBox(height: 14),
-                    Text(
-                      l10n.homeDailyBadgesTitle,
-                      style: TextStyle(
-                        fontSize: 13,
-                        fontWeight: FontWeight.w700,
-                        color: Color(0xFF4D4036),
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    SizedBox(
-                      height: 98,
-                      child: ListView.separated(
-                        scrollDirection: Axis.horizontal,
-                        physics: const BouncingScrollPhysics(),
-                        itemCount: journey.dailyBadges.length,
-                        separatorBuilder: (context, index) =>
-                            const SizedBox(width: 10),
-                        itemBuilder: (context, index) {
-                          final badge = journey.dailyBadges[index];
-                          return _DailyBadgeTile(badge: badge);
-                        },
-                      ),
-                    ),
-                  ],
-                ],
-              ),
-            ),
-            const SizedBox(height: 18),
-            SectionTitle(
-              title: l10n.homeWorshipSummaryTitle,
-              subtitle: l10n.homeWorshipSummarySubtitle,
-            ),
-            PremiumCard(
-              child: Column(
-                children: [
-                  _SummaryRow(
-                    label: l10n.homePrayerProgressTitle,
-                    value: prayerProgressText,
-                    onTap: () => goToTab(context, NavTab.worship),
-                  ),
-                  const Divider(height: 12, color: Color(0x28BFAE98)),
-                  _SummaryRow(
-                    label: l10n.homeDhikrProgressTitle,
-                    value: dhikrProgressText,
-                    onTap: () => goToTab(context, NavTab.worship),
-                  ),
-                  const Divider(height: 12, color: Color(0x28BFAE98)),
-                  _SummaryRow(
-                    label: l10n.homeFastingStatusTitle,
-                    value: _fastingLabel(l10n, worship.fastingStatus),
-                    onTap: () => goToTab(context, NavTab.worship),
-                  ),
-                  const Divider(height: 12, color: Color(0x28BFAE98)),
-                  _SummaryRow(
-                    label: l10n.homeKhusuQuickEntryTitle,
-                    value: l10n.homeKhusuQuickEntryValue,
-                    onTap: () => context.pushNamed('khusuFocus'),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 18),
-            SectionTitle(
-              title: l10n.homeLearnSummaryTitle,
-              subtitle: l10n.homeLearnSummarySubtitle,
-            ),
-            PremiumCard(
-              child: Column(
-                children: [
-                  _SummaryRow(
-                    label: l10n.homeLearnContinueQuran,
-                    value: l10n.homeContinueQuranValue(
-                      learn.continueSurahName,
-                      _formatCount(context, learn.continueAyah),
-                      learn.continueSurahName,
-                      _formatCount(context, learn.continueAyah),
-                    ),
-                    onTap: () => context.pushNamed('quranExplorer'),
-                  ),
-                  const Divider(height: 12, color: Color(0x28BFAE98)),
-                  _SummaryRow(
-                    label: l10n.homeLearnFeaturedLife,
-                    value: _lifeTopicLabel(l10n, learn.featuredLifeTopic),
-                    onTap: () => context.pushNamed('learnLifeLanding'),
-                  ),
-                  const Divider(height: 12, color: Color(0x28BFAE98)),
-                  _SummaryRow(
-                    label: l10n.homeLearnFeaturedWorld,
-                    value: _worldTopicLabel(l10n, learn.featuredWorldTopic),
-                    onTap: () => context.pushNamed('learnWorldLanding'),
-                  ),
-                  const Divider(height: 12, color: Color(0x28BFAE98)),
-                  _SummaryRow(
-                    label: l10n.homeLearnFeaturedHadith,
-                    value: _hadithTopicLabel(l10n, learn.featuredHadithTopic),
-                    onTap: () => context.pushNamed('learnHadithLanding'),
-                  ),
-                  const Divider(height: 12, color: Color(0x28BFAE98)),
-                  _SummaryRow(
-                    label: l10n.homeLearnResumeNotes,
-                    value: learn.resumeNoteTitle == _reflectionDraftSentinel
-                        ? l10n.homeLearnResumeNotesValue
-                        : learn.resumeNoteTitle,
-                    onTap: () => context.pushNamed('learnNotesLanding'),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 18),
-            SectionTitle(
-              title: l10n.homeJourneySummaryTitle,
-              subtitle: l10n.homeJourneySummarySubtitle,
-            ),
-            PremiumCard(
-              child: Column(
-                children: [
-                  _SummaryRow(
-                    label: l10n.homeXpLevelTitle,
-                    value: l10n.homeLevelValue(
-                      _formatCount(context, journey.level),
-                      _formatCount(context, journey.level),
-                    ),
-                    onTap: () => goToTab(context, NavTab.journey),
-                  ),
-                  const Divider(height: 12, color: Color(0x28BFAE98)),
-                  _SummaryRow(
-                    label: l10n.homeJourneyXpProgressTitle,
-                    value: l10n.homeXpValue(
-                      _formatCount(context, journey.xp),
-                      _formatCount(context, journey.xp),
-                    ),
-                    onTap: () => goToTab(context, NavTab.journey),
-                  ),
-                  if (mode != AppSpecialMode.gentle)
-                    const Divider(height: 12, color: Color(0x28BFAE98)),
-                  if (mode != AppSpecialMode.gentle)
-                    _SummaryRow(
-                      label: l10n.homeCurrentStreakTitle,
-                      value: l10n.homeDaysCount(journey.currentStreakDays),
-                      onTap: () => goToTab(context, NavTab.journey),
-                    ),
-                  const Divider(height: 12, color: Color(0x28BFAE98)),
-                  _SummaryRow(
-                    label: l10n.homeJourneyDailyRingsTitle,
-                    value: l10n.homeJourneyRingsValue(
-                      _pct(context, journey.ringPrayer),
-                      _pct(context, journey.ringDhikr),
-                      _pct(context, journey.ringQuran),
-                      _pct(context, journey.ringPrayer),
-                      _pct(context, journey.ringDhikr),
-                      _pct(context, journey.ringQuran),
-                    ),
-                    onTap: () => goToTab(context, NavTab.journey),
-                  ),
-                  const Divider(height: 12, color: Color(0x28BFAE98)),
-                  _SummaryRow(
-                    label: l10n.homeJourneyNextUnlockTitle,
-                    value: _nextUnlockLabel(l10n, journey.nextUnlockPreviewKey),
-                    onTap: () => goToTab(context, NavTab.journey),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 18),
-            SectionTitle(
-              title: l10n.homeQuickActionsTitle,
-              subtitle: l10n.homeQuickActionsSubtitle,
-            ),
-            PremiumCard(
-              child: Row(
-                children: [..._quickActionsPrimary(context, ref, l10n, mode)],
-              ),
-            ),
-            const SizedBox(height: 10),
-            PremiumCard(
-              child: Row(
-                children: [..._quickActionsSecondary(context, l10n, mode)],
-              ),
-            ),
-            const SizedBox(height: 18),
-            SectionTitle(
-              title: l10n.homeEcosystemSummaryTitle,
-              subtitle: l10n.homeEcosystemSummarySubtitle,
-            ),
-            PremiumCard(
-              child: Column(
-                children: [
-                  _SummaryRow(
-                    label: l10n.oceanTitle,
-                    value: _formatCount(context, ocean.totalDrops),
-                    onTap: () => context.pushNamed('oceanDrops'),
-                  ),
-                  const Divider(height: 12, color: Color(0x28BFAE98)),
-                  _SummaryRow(
-                    label: l10n.wallpaperLibraryTitle,
-                    value: l10n.homeCountAndLabel(
-                      _formatCount(context, wallpaper.unlockedCount),
-                      wallpaper.selectedTitle,
-                    ),
-                    onTap: () => context.pushNamed('wallpaperLibrary'),
-                  ),
-                  const Divider(height: 12, color: Color(0x28BFAE98)),
-                  _SummaryRow(
-                    label: l10n.circlesTitle,
-                    value: l10n.homeCountAndLabel(
-                      _formatCount(context, circles.joinedCount),
-                      circles.featuredCircleTitle,
-                    ),
-                    onTap: () => context.pushNamed('circlesDiscovery'),
-                  ),
-                  const Divider(height: 12, color: Color(0x28BFAE98)),
-                  _SummaryRow(
-                    label: l10n.journalTitle,
-                    value: l10n.homeCountAndLabel(
-                      _formatCount(context, journal.entriesCount),
-                      journal.favoriteEntries,
-                    ),
-                    onTap: () => context.pushNamed('journalTimeline'),
-                  ),
-                  const Divider(height: 12, color: Color(0x28BFAE98)),
-                  _SummaryRow(
-                    label: l10n.assistantTitle,
-                    value: l10n.homeCountAndLabel(
-                      _formatCount(context, assistant.recentMessages),
-                      assistant.recentPrompts,
-                    ),
-                    onTap: () => context.pushNamed('assistant'),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 18),
-            SectionTitle(
-              title: l10n.homeReflectionTitle,
-              subtitle: l10n.homeReflectionSubtitle,
-            ),
-            PremiumCard(
-              child: Text(
-                summary.mode.isKidsMode
-                    ? l10n.kidsHomeReflectionHint
-                    : l10n.homeReflectionReminder,
-                style: const TextStyle(
-                  color: AppColors.onSurface,
-                  fontStyle: FontStyle.italic,
-                ),
-              ),
-            ),
-          ],
-        );
-      },
-    );
-  }
-
-  String _formatCount(BuildContext context, num value) {
-    return NumberFormat.decimalPattern(
-      Localizations.localeOf(context).toLanguageTag(),
-    ).format(value);
-  }
-
-  String _pct(BuildContext context, double value) {
-    final percent = (value.clamp(0, 1) * 100).round();
-    return NumberFormat.decimalPattern(
-      Localizations.localeOf(context).toLanguageTag(),
-    ).format(percent);
-  }
-
-  String _lifeTopicLabel(AppLocalizations l10n, LearnLifeTopic topic) {
-    switch (topic) {
-      case LearnLifeTopic.marriage:
-        return l10n.learnLifeMarriage;
-      case LearnLifeTopic.parents:
-        return l10n.learnLifeParents;
-      case LearnLifeTopic.children:
-        return l10n.learnLifeChildren;
-      case LearnLifeTopic.wealth:
-        return l10n.learnLifeWealth;
-      case LearnLifeTopic.patience:
-        return l10n.learnLifePatience;
-      case LearnLifeTopic.justice:
-        return l10n.learnLifeJustice;
-      case LearnLifeTopic.character:
-        return l10n.learnLifeCharacter;
-      case LearnLifeTopic.gratitude:
-        return l10n.learnLifeGratitude;
-    }
-  }
-
-  String _worldTopicLabel(AppLocalizations l10n, LearnWorldTopic topic) {
-    switch (topic) {
-      case LearnWorldTopic.moon:
-        return l10n.learnWorldMoon;
-      case LearnWorldTopic.bees:
-        return l10n.learnWorldBees;
-      case LearnWorldTopic.mountains:
-        return l10n.learnWorldMountains;
-      case LearnWorldTopic.rain:
-        return l10n.learnWorldRain;
-      case LearnWorldTopic.oceans:
-        return l10n.learnWorldOceans;
-      case LearnWorldTopic.animals:
-        return l10n.learnWorldAnimals;
-      case LearnWorldTopic.plants:
-        return l10n.learnWorldPlants;
-      case LearnWorldTopic.nightAndDay:
-        return l10n.learnWorldNightDay;
-    }
-  }
-
-  String _hadithTopicLabel(AppLocalizations l10n, LearnHadithTopic topic) {
-    switch (topic) {
-      case LearnHadithTopic.lifeLessons:
-        return l10n.learnHadithLifeLessonsTitle;
-      case LearnHadithTopic.worldLessons:
-        return l10n.learnHadithWorldLessonsTitle;
-      case LearnHadithTopic.characterAndManners:
-        return l10n.learnHadithCharacterTitle;
-      case LearnHadithTopic.worshipAndIntention:
-        return l10n.learnHadithWorshipTitle;
-      case LearnHadithTopic.familyAndSociety:
-        return l10n.learnHadithFamilyTitle;
-    }
-  }
-
-  String _nextUnlockLabel(AppLocalizations l10n, String unlockKey) {
-    switch (unlockKey) {
-      case 'wallpaper':
-        return l10n.journeyUnlockWallpaper;
-      case 'reflection':
-        return l10n.journeyUnlockReflection;
-      case 'theme':
-        return l10n.journeyUnlockTheme;
-      default:
-        return l10n.journeyUnlockFuture;
-    }
-  }
-
-  String _fastingLabel(AppLocalizations l10n, FastingStatus status) {
-    switch (status) {
-      case FastingStatus.notFasting:
-        return l10n.homeFastingNotFasting;
-      case FastingStatus.intending:
-        return l10n.homeFastingIntending;
-      case FastingStatus.completed:
-        return l10n.homeFastingCompleted;
-      case FastingStatus.broken:
-        return l10n.homeFastingBroken;
-    }
-  }
-
-  List<Widget> _quickActionsPrimary(
-    BuildContext context,
-    WidgetRef ref,
-    AppLocalizations l10n,
-    AppSpecialMode mode,
-  ) {
-    if (mode == AppSpecialMode.ramadan) {
-      return [
-        Expanded(
-          child: _QuickActionButton(
-            icon: Icons.fastfood_outlined,
-            label: l10n.modeRamadanActionFasting,
-            onTap: () {
-              ref.read(worshipTabProvider.notifier).state = WorshipTab.fasting;
-              goToTab(context, NavTab.worship);
-            },
-          ),
-        ),
-        const SizedBox(width: 10),
-        Expanded(
-          child: _QuickActionButton(
-            icon: Icons.menu_book_outlined,
-            label: l10n.modeRamadanActionQuran,
-            onTap: () => context.pushNamed('quranExplorer'),
-          ),
-        ),
-        const SizedBox(width: 10),
-        Expanded(
-          child: _QuickActionButton(
-            icon: Icons.rate_review_outlined,
-            label: l10n.modeRamadanActionReflect,
-            onTap: () => context.pushNamed('learnNotesLanding'),
-          ),
-        ),
-      ];
-    }
-
-    if (mode == AppSpecialMode.loss) {
-      return [
-        Expanded(
-          child: _QuickActionButton(
-            icon: Icons.self_improvement_outlined,
-            label: l10n.modeLossActionDhikr,
-            onTap: () => goToTab(context, NavTab.worship),
-          ),
-        ),
-        const SizedBox(width: 10),
-        Expanded(
-          child: _QuickActionButton(
-            icon: Icons.spa_outlined,
-            label: l10n.modeLossActionKhusu,
-            onTap: () => context.pushNamed('khusuFocus'),
-          ),
-        ),
-        const SizedBox(width: 10),
-        Expanded(
-          child: _QuickActionButton(
-            icon: Icons.menu_book_outlined,
-            label: l10n.modeLossActionMercy,
-            onTap: () => context.pushNamed('quranExplorer'),
-          ),
-        ),
-      ];
-    }
-
-    if (mode == AppSpecialMode.gentle) {
-      return [
-        Expanded(
-          child: _QuickActionButton(
-            icon: Icons.today_outlined,
-            label: l10n.modeGentleActionOneStep,
-            onTap: () => goToTab(context, NavTab.worship),
-          ),
-        ),
-        const SizedBox(width: 10),
-        Expanded(
-          child: _QuickActionButton(
-            icon: Icons.auto_stories_outlined,
-            label: l10n.modeGentleActionReflect,
-            onTap: () => context.pushNamed('learnNotesLanding'),
-          ),
-        ),
-        const SizedBox(width: 10),
-        Expanded(
-          child: _QuickActionButton(
-            icon: Icons.menu_book_outlined,
-            label: l10n.navLearning,
-            onTap: () => goToTab(context, NavTab.learn),
-          ),
-        ),
-      ];
-    }
-
-    return [
-      Expanded(
-        child: _QuickActionButton(
-          icon: Icons.self_improvement_outlined,
-          label: l10n.kidsHomeQuickDhikr,
-          onTap: () => goToTab(context, NavTab.worship),
-        ),
-      ),
-      const SizedBox(width: 10),
-      Expanded(
-        child: _QuickActionButton(
-          icon: Icons.menu_book_outlined,
-          label: l10n.kidsHomeQuickLearning,
-          onTap: () => goToTab(context, NavTab.learn),
-        ),
-      ),
-      const SizedBox(width: 10),
-      Expanded(
-        child: _QuickActionButton(
-          icon: Icons.route_outlined,
-          label: l10n.kidsHomeQuickPrayer,
-          onTap: () => goToTab(context, NavTab.journey),
-        ),
-      ),
-    ];
-  }
-
-  List<Widget> _quickActionsSecondary(
-    BuildContext context,
-    AppLocalizations l10n,
-    AppSpecialMode mode,
-  ) {
-    if (mode == AppSpecialMode.ramadan) {
-      return [
-        Expanded(
-          child: _QuickActionButton(
-            icon: Icons.settings_outlined,
-            label: l10n.profilePrayerSettingsTitle,
-            onTap: () => context.goNamed('settings'),
-          ),
-        ),
-        const SizedBox(width: 10),
-        Expanded(
-          child: _QuickActionButton(
-            icon: Icons.spa_outlined,
-            label: l10n.homeKhusuQuickEntryShort,
-            onTap: () => context.pushNamed('khusuFocus'),
-          ),
-        ),
-      ];
-    }
-
-    return [
-      Expanded(
-        child: _QuickActionButton(
-          icon: Icons.settings_outlined,
-          label: l10n.profilePrayerSettingsTitle,
-          onTap: () => context.goNamed('settings'),
-        ),
-      ),
-      const SizedBox(width: 10),
-      Expanded(
-        child: _QuickActionButton(
-          icon: Icons.smart_toy_outlined,
-          label: l10n.assistantTitle,
-          onTap: () => context.pushNamed('assistant'),
-        ),
-      ),
-      const SizedBox(width: 10),
-      Expanded(
-        child: _QuickActionButton(
-          icon: Icons.spa_outlined,
-          label: l10n.homeKhusuQuickEntryShort,
-          onTap: () => context.pushNamed('khusuFocus'),
-        ),
-      ),
-    ];
   }
 }
 
@@ -3136,10 +2252,7 @@ class _ModeAwareHomeCard extends ConsumerWidget {
           _ModeActionChip(
             icon: Icons.fastfood_outlined,
             label: l10n.modeRamadanActionFasting,
-            onTap: () {
-              ref.read(worshipTabProvider.notifier).state = WorshipTab.fasting;
-              goToTab(context, NavTab.worship);
-            },
+            onTap: () => context.pushNamed('worshipFastingPage'),
           ),
           _ModeActionChip(
             icon: Icons.menu_book_outlined,
@@ -3349,56 +2462,6 @@ class _HomeLearningActionsCard extends ConsumerWidget {
   }
 }
 
-class _HomeSummaryShortcutCard extends StatelessWidget {
-  const _HomeSummaryShortcutCard({
-    required this.l10n,
-    required this.dailyBundle,
-  });
-
-  final AppLocalizations l10n;
-  final DailyLearningBundle dailyBundle;
-
-  @override
-  Widget build(BuildContext context) {
-    return PremiumCard(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            l10n.homeOverviewHeroTitle,
-            style: const TextStyle(fontWeight: FontWeight.w700),
-          ),
-          const SizedBox(height: 6),
-          Text(
-            l10n.homeOverviewHeroSubtitle,
-            style: const TextStyle(color: AppColors.onSurfaceSubtle),
-          ),
-          const SizedBox(height: 12),
-          Row(
-            children: [
-              Expanded(
-                child: FilledButton.tonalIcon(
-                  onPressed: () => context.goNamed('settings'),
-                  icon: const Icon(Icons.summarize_outlined),
-                  label: Text(l10n.profilePrayerSettingsTitle),
-                ),
-              ),
-              const SizedBox(width: 8),
-              Expanded(
-                child: FilledButton.tonalIcon(
-                  onPressed: () => context.goNamed('settings'),
-                  icon: const Icon(Icons.settings_outlined),
-                  label: Text(l10n.profilePrayerSettingsTitle),
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-}
-
 class _ModeActionChip extends StatelessWidget {
   const _ModeActionChip({
     required this.icon,
@@ -3418,58 +2481,6 @@ class _ModeActionChip extends StatelessWidget {
       onPressed: onTap,
       side: BorderSide(color: AppColors.accentGoldSoft.withValues(alpha: 0.35)),
       backgroundColor: AppColors.surface.withValues(alpha: 0.25),
-    );
-  }
-}
-
-class _SummaryRow extends StatelessWidget {
-  const _SummaryRow({
-    required this.label,
-    required this.value,
-    required this.onTap,
-  });
-
-  final String label;
-  final String value;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: Row(
-        children: [
-          Expanded(
-            child: Text(
-              label,
-              style: const TextStyle(
-                color: Color(0xFF4A423A),
-                fontSize: 14.5,
-                fontFamily: 'serif',
-              ),
-            ),
-          ),
-          const SizedBox(width: 10),
-          Flexible(
-            child: Text(
-              value,
-              textAlign: TextAlign.end,
-              style: const TextStyle(
-                color: Color(0xFF2F2923),
-                fontSize: 14,
-                fontWeight: FontWeight.w700,
-                fontFamily: 'serif',
-              ),
-            ),
-          ),
-          const SizedBox(width: 4),
-          const Icon(
-            Icons.chevron_right,
-            size: 18,
-            color: AppColors.onSurfaceSubtle,
-          ),
-        ],
-      ),
     );
   }
 }
@@ -3513,25 +2524,6 @@ class _QuickActionButton extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-class _ValueTile extends StatelessWidget {
-  const _ValueTile({required this.title, required this.value});
-
-  final String title;
-  final String value;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(title, style: Theme.of(context).textTheme.bodySmall),
-        const SizedBox(height: 8),
-        Text(value, style: Theme.of(context).textTheme.titleMedium),
-      ],
     );
   }
 }

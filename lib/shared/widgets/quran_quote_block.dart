@@ -3,149 +3,59 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:quran/quran.dart' as q;
 
 import '../../core/theme/app_colors.dart';
+import '../../core/theme/app_surfaces.dart';
 import '../../core/theme/app_theme.dart';
 import '../../core/theme/app_text_styles.dart';
 import '../../features/learn/quran/application/quran_providers.dart';
-import '../../features/learn/quran/domain/quran_ayah.dart';
+import '../../features/learn/quran/domain/quran_content_refs.dart';
 import 'arabic_text_utils.dart';
 import 'quran_text_span.dart';
 
 class QuranQuote {
-  const QuranQuote({
-    required this.arabic,
-    required this.transliteration,
-    required this.translation,
-    this.surah,
-    this.verse,
-    this.locationLabel,
-  });
+  const QuranQuote({required this.ref});
 
-  final String arabic;
-  final String transliteration;
-  final String translation;
-  final int? surah;
-  final int? verse;
-  final String? locationLabel;
+  final QuranQuoteRef ref;
 
   String get locationText {
-    if (surah != null && verse != null) {
-      final safeSurah = surah!.clamp(1, q.totalSurahCount);
+    if (ref.surah > 0 && ref.ayah > 0) {
+      final safeSurah = ref.surah.clamp(1, q.totalSurahCount);
       final surahName = q.getSurahName(safeSurah);
-      return '$surahName $safeSurah:$verse';
-    }
-    if (locationLabel != null && locationLabel!.isNotEmpty) {
-      return locationLabel!;
+      if (ref.ayahEnd != null && ref.ayahEnd != ref.ayah) {
+        return '$surahName $safeSurah:${ref.ayah}-${ref.ayahEnd}';
+      }
+      return '$surahName $safeSurah:${ref.ayah}';
     }
     return 'Qur’an';
   }
 }
 
-enum QuranQuotePool {
-  quran,
-  dhikr,
-  reflection,
-}
+enum QuranQuotePool { quran, dhikr, reflection }
 
 const List<QuranQuote> quranFocusedQuotePool = <QuranQuote>[
-  QuranQuote(
-    arabic: 'وَقُلْ رَبِّ زِدْنِي عِلْمًا',
-    transliteration: 'Wa qul Rabbi zidni ilma',
-    translation: 'And say: My Lord, increase me in knowledge.',
-    surah: 20,
-    verse: 114,
-    locationLabel: 'Qur’an 20:114',
-  ),
-  QuranQuote(
-    arabic: 'كِتَابٌ أَنْزَلْنَاهُ إِلَيْكَ مُبَارَكٌ لِّيَدَّبَّرُوا آيَاتِهِ',
-    transliteration: 'Kitabun anzalnahu ilayka mubarakun liyaddabbaru ayatihi',
-    translation:
-        'This is a blessed Book which We have revealed to you so that they may reflect upon its verses.',
-    surah: 38,
-    verse: 29,
-    locationLabel: 'Qur’an 38:29',
-  ),
-  QuranQuote(
-    arabic: 'إِنَّ هَٰذَا الْقُرْآنَ يَهْدِي لِلَّتِي هِيَ أَقْوَمُ',
-    transliteration: 'Inna haza al-Qur’ana yahdi lillati hiya aqwam',
-    translation:
-        'Surely this Qur’an guides to what is most upright.',
-    surah: 17,
-    verse: 9,
-    locationLabel: 'Qur’an 17:9',
-  ),
+  QuranQuote(ref: QuranQuoteRef(surah: 20, ayah: 114)),
+  QuranQuote(ref: QuranQuoteRef(surah: 38, ayah: 29)),
+  QuranQuote(ref: QuranQuoteRef(surah: 17, ayah: 9)),
 ];
 
 const List<QuranQuote> dhikrFocusedQuotePool = <QuranQuote>[
-  QuranQuote(
-    arabic: 'أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ',
-    transliteration: 'Ala bidhikrillahi tatmainnul qulub',
-    translation: 'Surely in the remembrance of Allah do hearts find rest.',
-    surah: 13,
-    verse: 28,
-    locationLabel: 'Qur’an 13:28',
-  ),
-  QuranQuote(
-    arabic: 'فَاذْكُرُونِي أَذْكُرْكُمْ',
-    transliteration: 'Fadhkuruni adhkurkum',
-    translation: 'So remember Me; I will remember you.',
-    surah: 2,
-    verse: 152,
-    locationLabel: 'Qur’an 2:152',
-  ),
-  QuranQuote(
-    arabic: 'وَاذْكُرِ اسْمَ رَبِّكَ وَتَبَتَّلْ إِلَيْهِ تَبْتِيلًا',
-    transliteration: 'Wadhkur isma rabbika wa tabattal ilayhi tabtila',
-    translation:
-        'Remember the name of your Lord, and devote yourself to Him fully.',
-    surah: 73,
-    verse: 8,
-    locationLabel: 'Qur’an 73:8',
-  ),
+  QuranQuote(ref: QuranQuoteRef(surah: 13, ayah: 28)),
+  QuranQuote(ref: QuranQuoteRef(surah: 2, ayah: 152)),
+  QuranQuote(ref: QuranQuoteRef(surah: 73, ayah: 8)),
 ];
 
 const List<QuranQuote> reflectionFocusedQuotePool = <QuranQuote>[
-  QuranQuote(
-    arabic: 'أَفَلَا يَتَدَبَّرُونَ الْقُرْآنَ',
-    transliteration: 'Afala yatadabbarunal-Qur’an',
-    translation: 'Will they not then reflect upon the Qur’an?',
-    surah: 4,
-    verse: 82,
-    locationLabel: 'Qur’an 4:82',
-  ),
-  QuranQuote(
-    arabic: 'إِنَّ فِي ذَٰلِكَ لَذِكْرَىٰ لِمَن كَانَ لَهُ قَلْبٌ',
-    transliteration: 'Inna fi dhalika la-dhikra liman kana lahu qalb',
-    translation:
-        'Surely in that is a reminder for whoever has a living heart.',
-    surah: 50,
-    verse: 37,
-    locationLabel: 'Qur’an 50:37',
-  ),
-  QuranQuote(
-    arabic: 'الَّذِينَ يَذْكُرُونَ اللَّهَ قِيَامًا وَقُعُودًا وَيَتَفَكَّرُونَ',
-    transliteration:
-        'Alladhina yadhkurunallaha qiyaman wa quudan wa yatafakkarun',
-    translation:
-        'Those who remember Allah while standing, sitting, and lying down, and reflect deeply.',
-    surah: 3,
-    verse: 191,
-    locationLabel: 'Qur’an 3:191',
-  ),
+  QuranQuote(ref: QuranQuoteRef(surah: 4, ayah: 82)),
+  QuranQuote(ref: QuranQuoteRef(surah: 50, ayah: 37)),
+  QuranQuote(ref: QuranQuoteRef(surah: 3, ayah: 191)),
 ];
 
 QuranQuote quoteFromPoolForToday(List<QuranQuote> pool, {DateTime? date}) {
   if (pool.isEmpty) {
-    return const QuranQuote(
-      arabic: 'رَبِّ زِدْنِي عِلْمًا',
-      transliteration: 'Rabbi zidni ilma',
-      translation: 'My Lord, increase me in knowledge.',
-      surah: 20,
-      verse: 114,
-      locationLabel: 'Qur’an 20:114',
-    );
+    return const QuranQuote(ref: QuranQuoteRef(surah: 20, ayah: 114));
   }
   final now = date ?? DateTime.now();
-  final dayNumber = DateUtils.dateOnly(now).millisecondsSinceEpoch ~/
+  final dayNumber =
+      DateUtils.dateOnly(now).millisecondsSinceEpoch ~/
       Duration.millisecondsPerDay;
   return pool[dayNumber % pool.length];
 }
@@ -166,14 +76,14 @@ class QuranQuoteBlock extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final appearance = Theme.of(context).extension<AppAppearanceTheme>();
     final accent = appearance?.accent ?? AppColors.accentGold;
-    final surface = appearance?.surface ?? AppColors.surface;
-    final borderAlpha =
-        appearance?.glassBorderAlpha ?? AppColors.glassBorderAlpha;
-    final surfaceAlpha =
-        appearance?.glassSurfaceAlpha ?? AppColors.glassSurfaceAlpha;
     final onSurface = appearance?.onSurface ?? const Color(0xFF30231A);
     final onSurfaceSubtle =
         appearance?.onSurfaceSubtle ?? const Color(0xFF564638);
+    final surfaceStyle = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.panel,
+      tintColor: accent,
+    );
 
     final readerSettings = ref.watch(quranReaderSettingsProvider);
     final arabicScale = readerSettings.arabicScalePercent / 100.0;
@@ -187,68 +97,66 @@ class QuranQuoteBlock extends ConsumerWidget {
     final showTransliteration = readerSettings.showTransliteration;
     final showTranslation = readerSettings.showTranslation;
 
-    final ayahsAsync = quote.surah == null
-        ? const AsyncValue<List<QuranAyah>>.data(<QuranAyah>[])
-        : ref.watch(quranSurahAyahsProvider(quote.surah!));
-    final resolvedAyah = (() {
-      final surah = quote.surah;
-      final verse = quote.verse;
-      if (surah == null || verse == null) return null;
-      final ayahs = ayahsAsync.valueOrNull ?? const <QuranAyah>[];
-      for (final ayah in ayahs) {
-        if (ayah.ayahNumber == verse) return ayah;
-      }
-      return null;
-    })();
-    final resolvedArabic = resolvedAyah?.arabic.trim().isNotEmpty == true
-        ? resolvedAyah!.arabic
-        : quote.arabic;
+    final quoteContentAsync = ref.watch(quranQuoteContentProvider(quote.ref));
+    final resolvedArabic = quoteContentAsync.valueOrNull?.arabic ?? '';
     final resolvedTransliteration =
-        resolvedAyah?.transliteration?.trim().isNotEmpty == true
-        ? resolvedAyah!.transliteration!
-        : quote.transliteration;
+        quoteContentAsync.valueOrNull?.transliteration ?? '';
     final resolvedTranslation =
-        resolvedAyah?.translation.trim().isNotEmpty == true
-        ? resolvedAyah!.translation
-        : quote.translation;
+        quoteContentAsync.valueOrNull?.translation ?? '';
+    final contentReady = resolvedArabic.trim().isNotEmpty;
 
     final card = Container(
       width: double.infinity,
       margin: const EdgeInsets.only(bottom: 16),
       padding: EdgeInsets.all(compact ? 12 : 16),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: accent.withValues(alpha: borderAlpha)),
-        color: surface.withValues(alpha: surfaceAlpha),
-      ),
+      decoration: surfaceStyle.decoration(radius: 18),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Builder(
-            builder: (context) {
-              final style =
-                  AppTextStyles.quranVerse(
-                    size: arabicSize,
-                    color: onSurface,
-                  ).copyWith(
-                    height: 1.9,
-                    fontWeight: FontWeight.w500,
-                    letterSpacing: 0.3,
-                  );
-              return Text.rich(
-                buildQuranTextWithColoredHarakat(resolvedArabic, style),
-                textAlign: textAlignForContent(resolvedArabic),
-                textDirection: textDirectionForContent(resolvedArabic),
-                strutStyle: StrutStyle(
-                  fontFamily: style.fontFamily,
-                  fontSize: style.fontSize,
-                  height: style.height,
-                  forceStrutHeight: true,
+          if (contentReady)
+            Builder(
+              builder: (context) {
+                final style =
+                    AppTextStyles.quranVerse(
+                      size: arabicSize,
+                      color: onSurface,
+                    ).copyWith(
+                      height: 1.9,
+                      fontWeight: FontWeight.w500,
+                      letterSpacing: 0.3,
+                    );
+                return Text.rich(
+                  buildQuranTextWithColoredHarakat(resolvedArabic, style),
+                  textAlign: textAlignForContent(resolvedArabic),
+                  textDirection: textDirectionForContent(resolvedArabic),
+                  strutStyle: StrutStyle(
+                    fontFamily: style.fontFamily,
+                    fontSize: style.fontSize,
+                    height: style.height,
+                    forceStrutHeight: true,
+                  ),
+                );
+              },
+            )
+          else
+            SizedBox(
+              height: compact ? 56 : 72,
+              child: Center(
+                child: SizedBox(
+                  width: 18,
+                  height: 18,
+                  child: CircularProgressIndicator(
+                    strokeWidth: 1.8,
+                    valueColor: AlwaysStoppedAnimation<Color>(
+                      accent.withValues(alpha: 0.75),
+                    ),
+                  ),
                 ),
-              );
-            },
-          ),
-          if (showTransliteration) ...[
+              ),
+            ),
+          if (contentReady &&
+              showTransliteration &&
+              resolvedTransliteration.isNotEmpty) ...[
             const SizedBox(height: 8),
             Text(
               resolvedTransliteration,
@@ -261,7 +169,9 @@ class QuranQuoteBlock extends ConsumerWidget {
               ),
             ),
           ],
-          if (showTranslation) ...[
+          if (contentReady &&
+              showTranslation &&
+              resolvedTranslation.isNotEmpty) ...[
             const SizedBox(height: 6),
             Text(
               resolvedTranslation,
@@ -293,7 +203,7 @@ class QuranQuoteBlock extends ConsumerWidget {
     }
     return InkWell(
       borderRadius: BorderRadius.circular(18),
-      onTap: onTap,
+      onTap: contentReady ? onTap : null,
       child: card,
     );
   }

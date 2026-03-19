@@ -30,3 +30,28 @@ jobs:
 
       - name: Test
         run: flutter test
+
+  ios-watchos-preflight:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: iOS + watchOS preflight
+        run: bash scripts/ci_ios_watchos_preflight.sh
+
+      - name: Apple bundle consistency
+        run: bash scripts/ci_apple_bundle_consistency.sh
+
+      - name: Apple signing doctor
+        run: bash scripts/apple_signing_doctor.sh
+
+      - name: Apple archive packaging validation
+        run: bash scripts/validate_apple_archive.sh

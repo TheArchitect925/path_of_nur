@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/application/kids_ui_theme_provider.dart';
-import '../../../../shared/widgets/quran_quote_block.dart';
+import '../../../../shared/content/learning_quote.dart';
 import '../application/family_learning_provider.dart';
 import '../application/learning_journey_progress_provider.dart';
 import '../data/learning_journey_localized_metadata.dart';
@@ -24,11 +24,16 @@ class LearningJourneyIslandPage extends ConsumerWidget {
     final kidsUi = ref.watch(activeKidsUiThemeProvider);
     final island = LearningJourneyRegistry.islandById(islandId);
     final visibilityPolicy = ref.watch(
-      activeFamilyLearningContextProvider.select((value) => value.visibilityPolicy),
+      activeFamilyLearningContextProvider.select(
+        (value) => value.visibilityPolicy,
+      ),
     );
     final relatedTools = _relatedToolsForIsland(islandId);
     final journeys = LearningJourneyRegistry.journeysForIsland(islandId)
-        .where((journey) => learningVisibilityAllowsJourney(visibilityPolicy, journey))
+        .where(
+          (journey) =>
+              learningVisibilityAllowsJourney(visibilityPolicy, journey),
+        )
         .toList(growable: false);
     final progress = ref.watch(learningJourneyProgressProvider);
     if (island == null) {
@@ -42,14 +47,7 @@ class LearningJourneyIslandPage extends ConsumerWidget {
       headerIcon: island.icon,
       title: localizedIslandTitle(context, island),
       subtitle: localizedIslandDescription(context, island),
-      quote: const QuranQuote(
-        arabic: 'رَبِّ زِدْنِي عِلْمًا',
-        transliteration: 'Rabbi zidni ilma',
-        translation: 'My Lord, increase me in knowledge.',
-        surah: 20,
-        verse: 114,
-        locationLabel: 'Qur’an 20:114',
-      ),
+      quote: buildLearningCompactQuote(),
       children: [
         if (visibilityPolicy.isChildProfile && journeys.isEmpty)
           Container(
@@ -92,12 +90,6 @@ class LearningJourneyIslandPage extends ConsumerWidget {
                   .where((id) => journeys.first.stageIds.contains(id))
                   .length,
             ),
-            ctaLabel:
-                progress.completedStageIds.any(
-                  (id) => journeys.first.stageIds.contains(id),
-                )
-                ? l10n.learningJourneyIslandActionContinue
-                : l10n.learningJourneyIslandActionStart,
             onTap: () => context.pushNamed(
               'learnJourneyDetail',
               pathParameters: {'journeyId': journeys.first.id},

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../shared/theme/islamic_icons.dart';
 import '../domain/learning_journey_models.dart';
 
 class LearningJourneyRegistry {
@@ -13,7 +14,7 @@ class LearningJourneyRegistry {
       description:
           'Build your foundations through the core sources and sacred history of Islam.',
       order: 1,
-      icon: Icons.menu_book_rounded,
+      icon: IslamicIcons.quran,
       color: Color(0xFFECE5D7),
       accentColor: Color(0xFF6F5A3E),
     ),
@@ -24,7 +25,7 @@ class LearningJourneyRegistry {
       description:
           'Learn the acts of worship that shape daily rhythm, remembrance, and presence.',
       order: 2,
-      icon: Icons.self_improvement_rounded,
+      icon: IslamicIcons.prayer,
       color: Color(0xFFE3EAD8),
       accentColor: Color(0xFF586C45),
     ),
@@ -35,7 +36,7 @@ class LearningJourneyRegistry {
       description:
           'Understand the essentials of belief, practice, and historical development with clarity.',
       order: 3,
-      icon: Icons.account_balance_rounded,
+      icon: IslamicIcons.mosque,
       color: Color(0xFFF0E4D8),
       accentColor: Color(0xFF835E42),
     ),
@@ -46,7 +47,7 @@ class LearningJourneyRegistry {
       description:
           'Grow from letter recognition toward meaning, recitation, and confident repetition.',
       order: 4,
-      icon: Icons.translate_rounded,
+      icon: IslamicIcons.lantern,
       color: Color(0xFFE2E6F2),
       accentColor: Color(0xFF4F5D88),
     ),
@@ -57,7 +58,7 @@ class LearningJourneyRegistry {
       description:
           'Explore lighter entry points that still lead into real understanding and reflection.',
       order: 5,
-      icon: Icons.explore_rounded,
+      icon: IslamicIcons.ninetyNine,
       color: Color(0xFFE9E0EB),
       accentColor: Color(0xFF755C7C),
     ),
@@ -69,7 +70,7 @@ class LearningJourneyRegistry {
       description:
           'Keep children’s learning in one dedicated island so future kids journeys, tools, and activities have a clear home.',
       order: 6,
-      icon: Icons.child_care_rounded,
+      icon: IslamicIcons.family,
       color: Color(0xFFFFE9CC),
       accentColor: Color(0xFF9A6233),
       relatedTools: [_kidsArabicLettersTool, _kidsDuaLearningTool],
@@ -82,7 +83,7 @@ class LearningJourneyRegistry {
       description:
           'Use one island as the front door to the full learning map when you want everything available in one place.',
       order: 7,
-      icon: Icons.grid_view_rounded,
+      icon: IslamicIcons.community,
       color: Color(0xFFE4E7F5),
       accentColor: Color(0xFF4E5B8C),
       relatedTools: [_browseAllLearningTool],
@@ -94,7 +95,7 @@ class LearningJourneyRegistry {
       description:
           'Keep non-journey utilities and supporting spaces in one dedicated island instead of scattering them across the legacy learning hub.',
       order: 8,
-      icon: Icons.apps_rounded,
+      icon: IslamicIcons.locationMosque,
       color: Color(0xFFE6EEF1),
       accentColor: Color(0xFF45636D),
       relatedTools: [_babyNamesTool],
@@ -107,7 +108,7 @@ class LearningJourneyRegistry {
       description:
           'Keep the legacy learning library in one explicit island while the newer journey structure continues to absorb and replace it over time.',
       order: 9,
-      icon: Icons.inventory_2_rounded,
+      icon: IslamicIcons.kaaba,
       color: Color(0xFFF2E7DB),
       accentColor: Color(0xFF7D5E43),
       relatedTools: [_legacyLearningIslandTool],

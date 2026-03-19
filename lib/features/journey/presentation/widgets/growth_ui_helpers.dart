@@ -57,24 +57,6 @@ String growthCategoryLocalizedLabel(
   }
 }
 
-String growthInternalTabLocalizedLabel(
-  GrowthInternalTab tab,
-  AppLocalizations l10n,
-) {
-  switch (tab) {
-    case GrowthInternalTab.today:
-      return l10n.growthTabToday;
-    case GrowthInternalTab.paths:
-      return l10n.growthTabPaths;
-    case GrowthInternalTab.habits:
-      return l10n.growthTabHabits;
-    case GrowthInternalTab.journey:
-      return l10n.growthTabJourney;
-    case GrowthInternalTab.reflection:
-      return l10n.growthTabReflection;
-  }
-}
-
 IconData growthPathIcon(String icon) {
   switch (icon) {
     case 'spark':

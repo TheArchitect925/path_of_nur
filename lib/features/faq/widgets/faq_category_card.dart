@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_surfaces.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../models/faq_item.dart';
 
@@ -18,10 +19,15 @@ class FaqCategoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final pillStyle = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.pill,
+    );
     return InkWell(
       borderRadius: BorderRadius.circular(24),
       onTap: onTap,
       child: PremiumCard(
+        surfaceVariant: AppSurfaceVariant.island,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -31,8 +37,9 @@ class FaqCategoryCard extends StatelessWidget {
                   width: 42,
                   height: 42,
                   decoration: BoxDecoration(
-                    color: AppColors.accentGold.withValues(alpha: 0.12),
+                    color: pillStyle.iconBackgroundColor,
                     borderRadius: BorderRadius.circular(14),
+                    border: Border.all(color: pillStyle.borderColor),
                   ),
                   child: Icon(icon, color: AppColors.accentGold),
                 ),
@@ -76,12 +83,13 @@ class FaqCategoryCard extends StatelessWidget {
   }
 
   Widget _chip(BuildContext context, String label) {
+    final style = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.pill,
+    );
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-      decoration: BoxDecoration(
-        color: AppColors.surface.withValues(alpha: AppColors.glassSurfaceAlpha),
-        borderRadius: BorderRadius.circular(999),
-      ),
+      decoration: style.decoration(radius: 999),
       child: Text(label, style: Theme.of(context).textTheme.bodySmall),
     );
   }

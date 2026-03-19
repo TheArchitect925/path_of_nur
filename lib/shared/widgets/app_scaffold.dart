@@ -9,6 +9,7 @@ import '../../app/app_router.dart';
 import '../../core/navigation/app_navigation_gesture_config.dart';
 import '../../core/navigation/app_swipe_back_wrapper.dart';
 import '../../features/learn/quran/application/quran_providers.dart';
+import '../../features/learn/quran/application/quran_player_controller.dart';
 import '../../l10n/app_localizations.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_fonts.dart';
@@ -31,6 +32,7 @@ class AppShellScaffold extends ConsumerWidget {
     final activeTab = navTabFromLocation(currentLocation);
     final previousLocation = ref.watch(shellCurrentLocationProvider);
     final quranPlayer = ref.watch(quranSharedAudioPlayerProvider);
+    final quranPlayerController = ref.watch(quranPlayerControllerProvider);
 
     if (previousLocation != currentLocation) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -63,6 +65,7 @@ class AppShellScaffold extends ConsumerWidget {
             child: _buildGlobalQuranPlaybackFab(
               context: context,
               player: quranPlayer,
+              controller: quranPlayerController,
             ),
           ),
           Positioned(
@@ -79,6 +82,7 @@ class AppShellScaffold extends ConsumerWidget {
   Widget _buildGlobalQuranPlaybackFab({
     required BuildContext context,
     required AudioPlayer player,
+    required QuranPlayerController controller,
   }) {
     final l10n = AppLocalizations.of(context);
     final isQuranReaderRoute =
@@ -116,9 +120,11 @@ class AppShellScaffold extends ConsumerWidget {
                   customBorder: const CircleBorder(),
                   onTap: () {
                     if (isPlaying) {
-                      unawaited(player.pause());
+                      unawaited(controller.pause());
                     } else {
-                      unawaited(player.play());
+                      unawaited(
+                        controller.resumeCurrentPlaybackWithBismillah(),
+                      );
                     }
                   },
                   child: SizedBox(

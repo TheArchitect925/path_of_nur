@@ -7,6 +7,7 @@ final watchPrayerFixture = <WatchPrayerStatusContract>[
     scheduledTime: DateTime.parse('2026-03-14T05:10:00'),
     status: 'completed',
     completedAt: DateTime.parse('2026-03-14T05:12:00'),
+    timing: 'on_time',
     source: 'phone',
   ),
   WatchPrayerStatusContract(
@@ -15,6 +16,7 @@ final watchPrayerFixture = <WatchPrayerStatusContract>[
     scheduledTime: DateTime.parse('2026-03-14T13:10:00'),
     status: 'pending',
     completedAt: null,
+    timing: null,
     source: 'phone',
   ),
   WatchPrayerStatusContract(
@@ -23,6 +25,7 @@ final watchPrayerFixture = <WatchPrayerStatusContract>[
     scheduledTime: DateTime.parse('2026-03-14T16:42:00'),
     status: 'pending',
     completedAt: null,
+    timing: null,
     source: 'phone',
   ),
   WatchPrayerStatusContract(
@@ -31,6 +34,7 @@ final watchPrayerFixture = <WatchPrayerStatusContract>[
     scheduledTime: DateTime.parse('2026-03-14T19:18:00'),
     status: 'pending',
     completedAt: null,
+    timing: null,
     source: 'phone',
   ),
   WatchPrayerStatusContract(
@@ -39,12 +43,14 @@ final watchPrayerFixture = <WatchPrayerStatusContract>[
     scheduledTime: DateTime.parse('2026-03-14T20:47:00'),
     status: 'pending',
     completedAt: null,
+    timing: null,
     source: 'phone',
   ),
 ];
 
 WatchDailySnapshot buildWatchSnapshotFixture() {
   return WatchDailySnapshot(
+    schemaVersion: 1,
     snapshotId: 'fixture-snapshot',
     generatedAt: DateTime.parse('2026-03-14T10:00:00'),
     date: '2026-03-14',
@@ -58,6 +64,8 @@ WatchDailySnapshot buildWatchSnapshotFixture() {
     xpToday: 24,
     oceanDropsToday: 1,
     streakDays: 12,
+    currentLevel: 3,
+    growthStageKey: 'stream',
     prayers: watchPrayerFixture,
     activeDhikrSession: WatchDhikrSessionSnapshot(
       sessionId: 'session-1',
@@ -75,8 +83,29 @@ WatchDailySnapshot buildWatchSnapshotFixture() {
   );
 }
 
+WatchActionEnvelope buildPrayerStatusAction({
+  String actionId = 'action-prayer-status-1',
+  String logicalDate = '2026-03-14',
+  String status = 'completed',
+  String? timing = 'late',
+}) {
+  return WatchActionEnvelope(
+    actionId: actionId,
+    deviceType: WatchDeviceType.appleWatch,
+    actionType: WatchActionType.prayerStatusUpdated,
+    createdAt: DateTime.parse('2026-03-14T13:21:00'),
+    logicalDate: logicalDate,
+    payload: <String, dynamic>{
+      'prayerId': 'dhuhr',
+      'status': status,
+      'timing': timing,
+    },
+  );
+}
+
 WatchSettingsSnapshot buildWatchSettingsFixture() {
   return WatchSettingsSnapshot(
+    schemaVersion: 1,
     prayerNotificationsEnabled: true,
     enabledPrayerIds: const ['fajr', 'dhuhr', 'asr', 'maghrib', 'isha'],
     followUpReminderEnabled: true,

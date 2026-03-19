@@ -3,6 +3,7 @@ import Flutter
 import UIKit
 import Vision
 import ImageIO
+import WatchConnectivity
 
 @available(iOS 16.1, *)
 struct PrayerCountdownAttributes: ActivityAttributes {
@@ -72,9 +73,14 @@ struct FastingCountdownAttributes: ActivityAttributes {
   private let iCloudSyncChannelName = "path_of_nur/icloud_sync"
   private let platformRuntimeChannelName = "path_of_nur/platform_runtime"
   private let creationImageLabelingChannelName = "path_of_nur/creation_image_labeling"
+  private let watchSyncChannelName = "path_of_nur/watch_sync"
   private let pendingRouteKey = "path_of_nur.pending_route"
   static weak var shared: AppDelegate?
   private var navigationChannel: FlutterMethodChannel?
+  private let watchPhoneCacheStore = WatchPhoneCacheStore()
+  private lazy var watchConnectivityBridge = WatchPhoneConnectivityBridge(
+    cacheStore: watchPhoneCacheStore
+  )
 
   override func application(
     _ application: UIApplication,
@@ -122,6 +128,15 @@ struct FastingCountdownAttributes: ActivityAttributes {
       creationImageLabelingChannel.setMethodCallHandler { [weak self] call, result in
         self?.handleCreationImageLabelingCall(call: call, result: result)
       }
+
+      let watchSyncChannel = FlutterMethodChannel(
+        name: watchSyncChannelName,
+        binaryMessenger: registrar.messenger()
+      )
+      watchSyncChannel.setMethodCallHandler { [weak self] call, result in
+        self?.handleWatchSyncCall(call: call, result: result)
+      }
+      watchConnectivityBridge.attach(channel: watchSyncChannel)
     }
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
@@ -208,6 +223,41 @@ struct FastingCountdownAttributes: ActivityAttributes {
       #else
         result(false)
       #endif
+    default:
+      result(FlutterMethodNotImplemented)
+    }
+  }
+
+  private func handleWatchSyncCall(call: FlutterMethodCall, result: @escaping FlutterResult) {
+    switch call.method {
+    case "updateWatchSnapshot":
+      guard let payload = call.arguments as? [String: Any] else {
+        result(FlutterError(code: "bad_args", message: "Expected snapshot payload", details: nil))
+        return
+      }
+      watchPhoneCacheStore.saveSnapshot(payload)
+      watchConnectivityBridge.publishLatestContext()
+      result(true)
+    case "updateWatchSettings":
+      guard let payload = call.arguments as? [String: Any] else {
+        result(FlutterError(code: "bad_args", message: "Expected settings payload", details: nil))
+        return
+      }
+      watchPhoneCacheStore.saveSettings(payload)
+      watchConnectivityBridge.publishLatestContext()
+      result(true)
+    case "fetchPendingWatchActions":
+      result(watchPhoneCacheStore.pendingActions())
+    case "acknowledgePendingWatchActions":
+      guard
+        let payload = call.arguments as? [String: Any],
+        let actionIds = payload["actionIds"] as? [String]
+      else {
+        result(FlutterError(code: "bad_args", message: "Expected actionIds", details: nil))
+        return
+      }
+      watchPhoneCacheStore.acknowledgePendingActionIds(actionIds)
+      result(true)
     default:
       result(FlutterMethodNotImplemented)
     }
@@ -596,7 +646,7 @@ struct FastingCountdownAttributes: ActivityAttributes {
 
   func handleIncomingRouteURL(_ url: URL) {
     guard url.scheme == "pathofnur" else { return }
-    let route = url.path.isEmpty ? "/" : url.path
+    let route = url.absoluteString
     UserDefaults.standard.set(route, forKey: pendingRouteKey)
     navigationChannel?.invokeMethod("openRoute", arguments: route)
   }

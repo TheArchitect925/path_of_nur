@@ -59,6 +59,10 @@ import '../../features/learn/life/baby_names/presentation/baby_names_generator_p
 import '../../features/learn/life/baby_names/presentation/baby_names_home_page.dart';
 import '../../features/learn/life/baby_names/presentation/baby_names_meaning_explorer_page.dart';
 import '../../features/learn/presentation/learn_page.dart';
+import '../../features/learn/presentation/data/learn_hub_taxonomy.dart';
+import '../../features/learn/presentation/pages/learning_section_landing_page.dart';
+import '../../features/learn/presentation/pages/learn_category_page.dart';
+import '../../features/learn/presentation/pages/learn_explore_all_knowledge_page.dart';
 import '../../features/learn/presentation/pages/learn_quran_hub_page.dart';
 import '../../features/learn/presentation/pages/learn_quizzes_hub_page.dart';
 import '../../features/learn/presentation/pages/learn_salah_hub_page.dart';
@@ -218,8 +222,44 @@ List<RouteBase> buildLearnRoutes() {
     GoRoute(
       path: '/learn/browse',
       name: 'learnJourneyBrowse',
-      pageBuilder: (context, state) =>
-          const MaterialPage(child: LearnBrowseAllPage()),
+      pageBuilder: (context, state) => MaterialPage(
+        child: LearnExploreAllKnowledgePage(
+          initialCategoryId: LearnHubTaxonomy.categoryFromSlug(
+            state.uri.queryParameters['category'] ?? '',
+          ),
+          initialQuery: state.uri.queryParameters['q'],
+        ),
+      ),
+    ),
+    GoRoute(
+      path: '/learn/explore',
+      name: 'learnExploreAllKnowledge',
+      pageBuilder: (context, state) => MaterialPage(
+        child: LearnExploreAllKnowledgePage(
+          initialCategoryId: LearnHubTaxonomy.categoryFromSlug(
+            state.uri.queryParameters['category'] ?? '',
+          ),
+          initialQuery: state.uri.queryParameters['q'],
+        ),
+      ),
+    ),
+    GoRoute(
+      path: '/learn/category/:categoryId',
+      name: 'learnHubCategory',
+      pageBuilder: (context, state) {
+        final categoryId = LearnHubTaxonomy.categoryFromSlug(
+          state.pathParameters['categoryId'] ?? '',
+        );
+        if (categoryId == null) {
+          return const MaterialPage(child: LearningSectionLandingPage());
+        }
+        return MaterialPage(
+          child: LearnCategoryPage(
+            categoryId: categoryId,
+            initialSubcategoryId: state.uri.queryParameters['sub'],
+          ),
+        );
+      },
     ),
     GoRoute(
       path: '/learn/family',
@@ -427,7 +467,9 @@ List<RouteBase> buildLearnRoutes() {
     GoRoute(
       path: '/learn/duas',
       name: 'learnDuaHub',
-      pageBuilder: (context, state) => const MaterialPage(child: DuaHubPage()),
+      pageBuilder: (context, state) => const MaterialPage(
+        child: DuaHubPage(entryContext: DuaHubEntryContext.learn),
+      ),
     ),
     GoRoute(
       path: '/learn/hub/duas',

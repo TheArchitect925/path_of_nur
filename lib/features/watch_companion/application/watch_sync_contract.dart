@@ -4,7 +4,9 @@ import '../../../core/prayer/prayer_preferences.dart';
 import '../../../shared/application/daily_clock_provider.dart';
 import '../../../shared/persistence/local_store.dart';
 import '../../journey/application/journey_progression_provider.dart';
+import '../../journey/xp/application/journey_xp_providers.dart';
 import '../../ocean/application/ocean_drops_provider.dart';
+import '../../profile/application/profile_settings_provider.dart';
 import '../../worship/application/dhikr_controller.dart';
 import '../../worship/application/prayer_controller.dart';
 import '../../worship/data/dhikr_repository.dart';
@@ -12,21 +14,25 @@ import '../../worship/data/prayer_log_repository.dart';
 import '../../worship/domain/dhikr_session.dart';
 import '../../worship/domain/prayer_name.dart';
 import '../../worship/domain/prayer_status.dart';
+import '../../worship/domain/prayer_tracker_fields.dart';
 import 'watch_sync_diagnostics.dart';
 import 'watch_sync_validation.dart';
 
 const _watchSyncStorageKey = 'watch.sync.contract.v1';
 const _watchSyncSourceVersion = '1';
+const _watchSnapshotSchemaVersion = 1;
 
 enum WatchDeviceType { appleWatch, wearOs }
 
 enum WatchActionType {
+  prayerStatusUpdated,
   prayerComplete,
   prayerUncomplete,
   dhikrSessionStarted,
   dhikrIncrement,
   dhikrReset,
   dhikrSessionCompleted,
+  postPrayerAdhkarCompleted,
   snoozeRequested,
   notificationActionLogged,
 }
@@ -41,6 +47,7 @@ enum WatchAckResultType {
 
 class WatchDailySnapshot {
   const WatchDailySnapshot({
+    required this.schemaVersion,
     required this.snapshotId,
     required this.generatedAt,
     required this.date,
@@ -54,12 +61,15 @@ class WatchDailySnapshot {
     required this.xpToday,
     required this.oceanDropsToday,
     required this.streakDays,
+    required this.currentLevel,
+    required this.growthStageKey,
     required this.prayers,
     required this.activeDhikrSession,
     required this.lastSyncAt,
     required this.sourceVersion,
   });
 
+  final int schemaVersion;
   final String snapshotId;
   final DateTime generatedAt;
   final String date;
@@ -73,30 +83,35 @@ class WatchDailySnapshot {
   final int xpToday;
   final int oceanDropsToday;
   final int streakDays;
+  final int currentLevel;
+  final String growthStageKey;
   final List<WatchPrayerStatusContract> prayers;
   final WatchDhikrSessionSnapshot? activeDhikrSession;
   final DateTime lastSyncAt;
   final String sourceVersion;
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'snapshotId': snapshotId,
-        'generatedAt': generatedAt.toIso8601String(),
-        'date': date,
-        'timezone': timezone,
-        'nextPrayerId': nextPrayerId,
-        'nextPrayerTime': nextPrayerTime?.toIso8601String(),
-        'currentPrayerId': currentPrayerId,
-        'completedPrayerCount': completedPrayerCount,
-        'totalPrayerCount': totalPrayerCount,
-        'dhikrTodayCount': dhikrTodayCount,
-        'xpToday': xpToday,
-        'oceanDropsToday': oceanDropsToday,
-        'streakDays': streakDays,
-        'prayers': prayers.map((item) => item.toJson()).toList(),
-        'activeDhikrSession': activeDhikrSession?.toJson(),
-        'lastSyncAt': lastSyncAt.toIso8601String(),
-        'sourceVersion': sourceVersion,
-      };
+    'schemaVersion': schemaVersion,
+    'snapshotId': snapshotId,
+    'generatedAt': generatedAt.toIso8601String(),
+    'date': date,
+    'timezone': timezone,
+    'nextPrayerId': nextPrayerId,
+    'nextPrayerTime': nextPrayerTime?.toIso8601String(),
+    'currentPrayerId': currentPrayerId,
+    'completedPrayerCount': completedPrayerCount,
+    'totalPrayerCount': totalPrayerCount,
+    'dhikrTodayCount': dhikrTodayCount,
+    'xpToday': xpToday,
+    'oceanDropsToday': oceanDropsToday,
+    'streakDays': streakDays,
+    'currentLevel': currentLevel,
+    'growthStageKey': growthStageKey,
+    'prayers': prayers.map((item) => item.toJson()).toList(),
+    'activeDhikrSession': activeDhikrSession?.toJson(),
+    'lastSyncAt': lastSyncAt.toIso8601String(),
+    'sourceVersion': sourceVersion,
+  };
 }
 
 class WatchPrayerStatusContract {
@@ -106,6 +121,7 @@ class WatchPrayerStatusContract {
     required this.scheduledTime,
     required this.status,
     required this.completedAt,
+    required this.timing,
     required this.source,
   });
 
@@ -114,16 +130,18 @@ class WatchPrayerStatusContract {
   final DateTime scheduledTime;
   final String status;
   final DateTime? completedAt;
+  final String? timing;
   final String source;
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'prayerId': prayerId,
-        'displayName': displayName,
-        'scheduledTime': scheduledTime.toIso8601String(),
-        'status': status,
-        'completedAt': completedAt?.toIso8601String(),
-        'source': source,
-      };
+    'prayerId': prayerId,
+    'displayName': displayName,
+    'scheduledTime': scheduledTime.toIso8601String(),
+    'status': status,
+    'completedAt': completedAt?.toIso8601String(),
+    'timing': timing,
+    'source': source,
+  };
 }
 
 class WatchDhikrSessionSnapshot {
@@ -150,20 +168,21 @@ class WatchDhikrSessionSnapshot {
   final String source;
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'sessionId': sessionId,
-        'mode': mode,
-        'targetCount': targetCount,
-        'currentCount': currentCount,
-        'startedAt': startedAt.toIso8601String(),
-        'updatedAt': updatedAt.toIso8601String(),
-        'completed': completed,
-        'rewardEligible': rewardEligible,
-        'source': source,
-      };
+    'sessionId': sessionId,
+    'mode': mode,
+    'targetCount': targetCount,
+    'currentCount': currentCount,
+    'startedAt': startedAt.toIso8601String(),
+    'updatedAt': updatedAt.toIso8601String(),
+    'completed': completed,
+    'rewardEligible': rewardEligible,
+    'source': source,
+  };
 }
 
 class WatchSettingsSnapshot {
   const WatchSettingsSnapshot({
+    required this.schemaVersion,
     required this.prayerNotificationsEnabled,
     required this.enabledPrayerIds,
     required this.followUpReminderEnabled,
@@ -175,6 +194,7 @@ class WatchSettingsSnapshot {
     required this.lastUpdatedAt,
   });
 
+  final int schemaVersion;
   final bool prayerNotificationsEnabled;
   final List<String> enabledPrayerIds;
   final bool followUpReminderEnabled;
@@ -186,16 +206,17 @@ class WatchSettingsSnapshot {
   final DateTime lastUpdatedAt;
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'prayerNotificationsEnabled': prayerNotificationsEnabled,
-        'enabledPrayerIds': enabledPrayerIds,
-        'followUpReminderEnabled': followUpReminderEnabled,
-        'followUpDelayMinutes': followUpDelayMinutes,
-        'snoozeDurationMinutes': snoozeDurationMinutes,
-        'dhikrReminderEnabled': dhikrReminderEnabled,
-        'quietModeEnabled': quietModeEnabled,
-        'watchThemeMode': watchThemeMode,
-        'lastUpdatedAt': lastUpdatedAt.toIso8601String(),
-      };
+    'schemaVersion': schemaVersion,
+    'prayerNotificationsEnabled': prayerNotificationsEnabled,
+    'enabledPrayerIds': enabledPrayerIds,
+    'followUpReminderEnabled': followUpReminderEnabled,
+    'followUpDelayMinutes': followUpDelayMinutes,
+    'snoozeDurationMinutes': snoozeDurationMinutes,
+    'dhikrReminderEnabled': dhikrReminderEnabled,
+    'quietModeEnabled': quietModeEnabled,
+    'watchThemeMode': watchThemeMode,
+    'lastUpdatedAt': lastUpdatedAt.toIso8601String(),
+  };
 }
 
 class WatchActionEnvelope {
@@ -226,8 +247,9 @@ class WatchActionEnvelope {
     final createdAt = DateTime.tryParse(json['createdAt']?.toString() ?? '');
     final logicalDate = json['logicalDate']?.toString();
     final payload = json['payload'] is Map
-        ? (json['payload'] as Map)
-              .map((key, value) => MapEntry(key.toString(), value))
+        ? (json['payload'] as Map).map(
+            (key, value) => MapEntry(key.toString(), value),
+          )
         : null;
     if (actionId == null ||
         createdAt == null ||
@@ -241,12 +263,15 @@ class WatchActionEnvelope {
       _ => null,
     };
     final actionType = switch (actionTypeRaw) {
+      'prayer_status_updated' => WatchActionType.prayerStatusUpdated,
       'prayer_complete' => WatchActionType.prayerComplete,
       'prayer_uncomplete' => WatchActionType.prayerUncomplete,
       'dhikr_session_started' => WatchActionType.dhikrSessionStarted,
       'dhikr_increment' => WatchActionType.dhikrIncrement,
       'dhikr_reset' => WatchActionType.dhikrReset,
       'dhikr_session_completed' => WatchActionType.dhikrSessionCompleted,
+      'post_prayer_adhkar_completed' =>
+        WatchActionType.postPrayerAdhkarCompleted,
       'snooze_requested' => WatchActionType.snoozeRequested,
       'notification_action_logged' => WatchActionType.notificationActionLogged,
       _ => null,
@@ -265,27 +290,29 @@ class WatchActionEnvelope {
   }
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'actionId': actionId,
-        'deviceType': deviceType == WatchDeviceType.appleWatch
-            ? 'apple_watch'
-            : 'wear_os',
-        'deviceId': deviceId,
-        'actionType': switch (actionType) {
-          WatchActionType.prayerComplete => 'prayer_complete',
-          WatchActionType.prayerUncomplete => 'prayer_uncomplete',
-          WatchActionType.dhikrSessionStarted => 'dhikr_session_started',
-          WatchActionType.dhikrIncrement => 'dhikr_increment',
-          WatchActionType.dhikrReset => 'dhikr_reset',
-          WatchActionType.dhikrSessionCompleted => 'dhikr_session_completed',
-          WatchActionType.snoozeRequested => 'snooze_requested',
-          WatchActionType.notificationActionLogged =>
-            'notification_action_logged',
-        },
-        'createdAt': createdAt.toIso8601String(),
-        'logicalDate': logicalDate,
-        'payload': payload,
-        'sourceVersion': sourceVersion,
-      };
+    'actionId': actionId,
+    'deviceType': deviceType == WatchDeviceType.appleWatch
+        ? 'apple_watch'
+        : 'wear_os',
+    'deviceId': deviceId,
+    'actionType': switch (actionType) {
+      WatchActionType.prayerStatusUpdated => 'prayer_status_updated',
+      WatchActionType.prayerComplete => 'prayer_complete',
+      WatchActionType.prayerUncomplete => 'prayer_uncomplete',
+      WatchActionType.dhikrSessionStarted => 'dhikr_session_started',
+      WatchActionType.dhikrIncrement => 'dhikr_increment',
+      WatchActionType.dhikrReset => 'dhikr_reset',
+      WatchActionType.dhikrSessionCompleted => 'dhikr_session_completed',
+      WatchActionType.postPrayerAdhkarCompleted =>
+        'post_prayer_adhkar_completed',
+      WatchActionType.snoozeRequested => 'snooze_requested',
+      WatchActionType.notificationActionLogged => 'notification_action_logged',
+    },
+    'createdAt': createdAt.toIso8601String(),
+    'logicalDate': logicalDate,
+    'payload': payload,
+    'sourceVersion': sourceVersion,
+  };
 }
 
 class WatchSyncAck {
@@ -306,34 +333,31 @@ class WatchSyncAck {
   final String? notes;
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'actionId': actionId,
-        'processed': processed,
-        'processedAt': processedAt.toIso8601String(),
-        'resultType': switch (resultType) {
-          WatchAckResultType.applied => 'applied',
-          WatchAckResultType.ignoredDuplicate => 'ignored_duplicate',
-          WatchAckResultType.ignoredStale => 'ignored_stale',
-          WatchAckResultType.conflictResolved => 'conflict_resolved',
-          WatchAckResultType.failedValidation => 'failed_validation',
-        },
-        'resultingSnapshotId': resultingSnapshotId,
-        'notes': notes,
-      };
+    'actionId': actionId,
+    'processed': processed,
+    'processedAt': processedAt.toIso8601String(),
+    'resultType': switch (resultType) {
+      WatchAckResultType.applied => 'applied',
+      WatchAckResultType.ignoredDuplicate => 'ignored_duplicate',
+      WatchAckResultType.ignoredStale => 'ignored_stale',
+      WatchAckResultType.conflictResolved => 'conflict_resolved',
+      WatchAckResultType.failedValidation => 'failed_validation',
+    },
+    'resultingSnapshotId': resultingSnapshotId,
+    'notes': notes,
+  };
 }
 
 class WatchActionResponse {
-  const WatchActionResponse({
-    required this.ack,
-    required this.snapshot,
-  });
+  const WatchActionResponse({required this.ack, required this.snapshot});
 
   final WatchSyncAck ack;
   final WatchDailySnapshot snapshot;
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'ack': ack.toJson(),
-        'snapshot': snapshot.toJson(),
-      };
+    'ack': ack.toJson(),
+    'snapshot': snapshot.toJson(),
+  };
 }
 
 class _WatchSyncStoreState {
@@ -350,11 +374,11 @@ class _WatchSyncStoreState {
   final DateTime? lastSyncAt;
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'acks': acks,
-        'dhikrSessions': dhikrSessions,
-        'prayerTargets': prayerTargets,
-        'lastSyncAt': lastSyncAt?.toIso8601String(),
-      };
+    'acks': acks,
+    'dhikrSessions': dhikrSessions,
+    'prayerTargets': prayerTargets,
+    'lastSyncAt': lastSyncAt?.toIso8601String(),
+  };
 
   factory _WatchSyncStoreState.fromJson(Map<String, dynamic>? json) {
     Map<String, Map<String, dynamic>> mapOfMaps(String key) {
@@ -385,9 +409,8 @@ class WatchSyncAckService {
 
   final LocalStore _store;
 
-  _WatchSyncStoreState _state() => _WatchSyncStoreState.fromJson(
-    _store.getJsonMap(_watchSyncStorageKey),
-  );
+  _WatchSyncStoreState _state() =>
+      _WatchSyncStoreState.fromJson(_store.getJsonMap(_watchSyncStorageKey));
 
   Future<void> _save(_WatchSyncStoreState state) {
     return _store.setJsonMap(_watchSyncStorageKey, state.toJson());
@@ -399,7 +422,8 @@ class WatchSyncAckService {
     return WatchSyncAck(
       actionId: actionId,
       processed: row['processed'] == true,
-      processedAt: DateTime.tryParse(row['processedAt']?.toString() ?? '') ??
+      processedAt:
+          DateTime.tryParse(row['processedAt']?.toString() ?? '') ??
           DateTime.now(),
       resultType: switch (row['resultType']?.toString()) {
         'applied' => WatchAckResultType.applied,
@@ -478,13 +502,14 @@ class WatchSyncAckService {
     if (input.length <= maxEntries) return input;
     final entries = input.entries.toList()
       ..sort((a, b) {
-        final left = DateTime.tryParse(a.value['processedAt']?.toString() ?? '') ??
+        final left =
+            DateTime.tryParse(a.value['processedAt']?.toString() ?? '') ??
             DateTime.tryParse(a.value['updatedAt']?.toString() ?? '') ??
             DateTime.fromMillisecondsSinceEpoch(0);
         final right =
             DateTime.tryParse(b.value['processedAt']?.toString() ?? '') ??
-                DateTime.tryParse(b.value['updatedAt']?.toString() ?? '') ??
-                DateTime.fromMillisecondsSinceEpoch(0);
+            DateTime.tryParse(b.value['updatedAt']?.toString() ?? '') ??
+            DateTime.fromMillisecondsSinceEpoch(0);
         return right.compareTo(left);
       });
     return {
@@ -505,20 +530,21 @@ class WatchDailySnapshotBuilder {
     final context = _ref.read(prayerScheduleContextProvider);
     final prayerRecords = _ref.read(prayerControllerProvider);
     final dhikr = _ref.read(dhikrControllerProvider);
+    final xpSummary = _ref.read(journeyXpSummaryProvider);
     final journey = _ref.read(journeyComputedProgressProvider);
     final journeySnapshot = _ref.read(journeyActivitySnapshotProvider);
-    final journeyState = _ref.read(journeyProgressProvider);
     final ackService = _ref.read(watchSyncAckServiceProvider);
     final activeDhikr = _activeDhikrSessionFromStore(
       ackService.dhikrSession('__active__'),
       dhikr,
       now,
     );
-    final xpToday = _xpForToday(journeyState.dayMetricsByKey[todayKey]);
-    final completedPrayerCount =
-        prayerRecords.where((record) => record.status == PrayerStatus.completed).length;
+    final completedPrayerCount = prayerRecords
+        .where((record) => record.status == PrayerStatus.completed)
+        .length;
 
     final snapshot = WatchDailySnapshot(
+      schemaVersion: _watchSnapshotSchemaVersion,
       snapshotId: 'watch_snapshot_${todayKey}_${now.microsecondsSinceEpoch}',
       generatedAt: now,
       date: todayKey,
@@ -529,9 +555,11 @@ class WatchDailySnapshotBuilder {
       completedPrayerCount: completedPrayerCount,
       totalPrayerCount: 5,
       dhikrTodayCount: journeySnapshot.dhikrCountToday,
-      xpToday: xpToday,
+      xpToday: xpSummary.todayXp,
       oceanDropsToday: _ref.read(oceanDropServiceProvider).getDropsToday(),
       streakDays: journey.currentStreakDays,
+      currentLevel: xpSummary.currentLevel,
+      growthStageKey: journey.growthStageKey,
       prayers: [
         for (final item in schedule.where((item) => _isTrackedPrayer(item.id)))
           WatchPrayerStatusContract(
@@ -540,6 +568,7 @@ class WatchDailySnapshotBuilder {
             scheduledTime: item.offerDateTime,
             status: _statusForPrayer(prayerRecords, item.id),
             completedAt: _completedAtForPrayer(prayerRecords, item.id),
+            timing: _timingForPrayer(item.id, todayKey),
             source: 'phone',
           ),
       ],
@@ -571,10 +600,10 @@ class WatchDailySnapshotBuilder {
           mode: stored['mode']?.toString() ?? _modeFromTarget(dhikr.target),
           targetCount: (stored['targetCount'] as num?)?.toInt(),
           currentCount: currentCount,
-          startedAt: DateTime.tryParse(stored['startedAt']?.toString() ?? '') ??
-              now,
-          updatedAt: DateTime.tryParse(stored['updatedAt']?.toString() ?? '') ??
-              now,
+          startedAt:
+              DateTime.tryParse(stored['startedAt']?.toString() ?? '') ?? now,
+          updatedAt:
+              DateTime.tryParse(stored['updatedAt']?.toString() ?? '') ?? now,
           completed: stored['completed'] == true,
           rewardEligible: stored['rewardEligible'] == true,
           source: 'synced',
@@ -585,9 +614,7 @@ class WatchDailySnapshotBuilder {
     return WatchDhikrSessionSnapshot(
       sessionId: 'phone-active-${LocalStore.todayKey(now)}',
       mode: _modeFromTarget(dhikr.target),
-      targetCount: dhikr.target >= 100
-          ? null
-          : dhikr.target,
+      targetCount: dhikr.target >= 100 ? null : dhikr.target,
       currentCount: dhikr.currentCount,
       startedAt: now,
       updatedAt: now,
@@ -595,16 +622,6 @@ class WatchDailySnapshotBuilder {
       rewardEligible: dhikr.hasTargetReached,
       source: 'phone',
     );
-  }
-
-  int _xpForToday(JourneyDayMetrics? metrics) {
-    if (metrics == null) return 0;
-    return (metrics.prayerCompleted * JourneyXpRules.xpPerPrayerCompleted) +
-        (metrics.dhikrSessions * JourneyXpRules.xpPerDhikrSession) +
-        (metrics.fastingCompleted * JourneyXpRules.xpPerFastingCompleted) +
-        (metrics.fastingIntending * JourneyXpRules.xpPerFastingIntending) +
-        (metrics.quranEngagements * JourneyXpRules.xpPerQuranEngagement) +
-        (metrics.reflectionEntries * JourneyXpRules.xpPerReflectionEntry);
   }
 
   DateTime? _nextPrayerTimeFor(
@@ -620,24 +637,36 @@ class WatchDailySnapshotBuilder {
 
   String _modeFromTarget(int target) {
     if (target == 33) return 'preset_33';
+    if (target == 34) return 'preset_34';
     if (target == 99) return 'preset_99';
     return 'free';
   }
 
   bool _isTrackedPrayer(String id) =>
-      id == 'fajr' || id == 'dhuhr' || id == 'asr' || id == 'maghrib' || id == 'isha';
+      id == 'fajr' ||
+      id == 'dhuhr' ||
+      id == 'asr' ||
+      id == 'maghrib' ||
+      id == 'isha';
 
   String _statusForPrayer(List<dynamic> prayerRecords, String prayerId) {
     for (final record in prayerRecords) {
       final recordPrayerId = _prayerIdFromRecord(record);
       if (recordPrayerId == prayerId) {
-        return record.status == PrayerStatus.completed ? 'completed' : 'pending';
+        return switch (record.status as PrayerStatus) {
+          PrayerStatus.completed => 'completed',
+          PrayerStatus.missed => 'missed',
+          PrayerStatus.pending => 'pending',
+        };
       }
     }
     return 'pending';
   }
 
-  DateTime? _completedAtForPrayer(List<dynamic> prayerRecords, String prayerId) {
+  DateTime? _completedAtForPrayer(
+    List<dynamic> prayerRecords,
+    String prayerId,
+  ) {
     for (final record in prayerRecords) {
       final recordPrayerId = _prayerIdFromRecord(record);
       if (recordPrayerId == prayerId) {
@@ -645,6 +674,18 @@ class WatchDailySnapshotBuilder {
       }
     }
     return null;
+  }
+
+  String? _timingForPrayer(String prayerId, String dayKey) {
+    final prayer = PrayerName.values
+        .where((item) => item.name == prayerId)
+        .firstOrNull;
+    if (prayer == null) return null;
+    return _ref
+        .read(prayerLogRepositoryProvider)
+        .readDayEntries(dayKey)[prayer]
+        ?.timing
+        ?.name;
   }
 
   String? _prayerIdFromRecord(dynamic record) {
@@ -662,28 +703,37 @@ class WatchSettingsSnapshotBuilder {
   final Ref _ref;
 
   WatchSettingsSnapshot build() {
-    final settings = _ref.read(prayerSettingsProvider);
-    final enabled = settings.notificationModes.entries
+    final prayerSettings = _ref.read(prayerSettingsProvider);
+    final profileSettings = _ref.read(profileSettingsProvider);
+    final enabledPrayerIds = prayerSettings.notificationModes.entries
         .where((entry) => _isTrackedPrayer(entry.key))
         .where((entry) => entry.value != PrayerNotificationMode.none)
         .map((entry) => entry.key)
         .toList();
-    final enabledPrayerIds = enabled.isEmpty
-        ? const ['fajr', 'dhuhr', 'asr', 'maghrib', 'isha']
-        : enabled;
+    final prayerNotificationsEnabled =
+        profileSettings.prayerReminders && enabledPrayerIds.isNotEmpty;
+    final watchThemeMode = _watchThemeModeForProfile(profileSettings);
     final snapshot = WatchSettingsSnapshot(
-      prayerNotificationsEnabled: true,
+      schemaVersion: _watchSnapshotSchemaVersion,
+      prayerNotificationsEnabled: prayerNotificationsEnabled,
       enabledPrayerIds: enabledPrayerIds,
-      followUpReminderEnabled: true,
-      followUpDelayMinutes: 20,
-      snoozeDurationMinutes: 10,
-      dhikrReminderEnabled: false,
-      quietModeEnabled: false,
-      watchThemeMode: null,
-      lastUpdatedAt: settings.preferences.lastModeSwitchAt ?? DateTime.now(),
+      followUpReminderEnabled:
+          prayerNotificationsEnabled &&
+          profileSettings.prayerReminderFollowUpEnabled,
+      followUpDelayMinutes: profileSettings.prayerReminderFollowUpDelayMinutes,
+      snoozeDurationMinutes: profileSettings.prayerReminderSnoozeMinutes,
+      dhikrReminderEnabled: profileSettings.dhikrReminders,
+      // Gentle mode is the closest persisted phone-side preference today.
+      quietModeEnabled: profileSettings.gentleModeEnabled,
+      watchThemeMode: watchThemeMode,
+      lastUpdatedAt:
+          prayerSettings.preferences.lastModeSwitchAt ?? DateTime.now(),
     );
     WatchSyncDiagnostics.log('settings_snapshot_generated', <String, Object?>{
+      'prayerNotificationsEnabled': snapshot.prayerNotificationsEnabled,
       'enabledPrayerIds': snapshot.enabledPrayerIds.join(','),
+      'dhikrReminderEnabled': snapshot.dhikrReminderEnabled,
+      'watchThemeMode': snapshot.watchThemeMode,
       'followUpDelayMinutes': snapshot.followUpDelayMinutes,
       'snoozeDurationMinutes': snapshot.snoozeDurationMinutes,
       'issues': validateSettingsSnapshot(snapshot).length,
@@ -692,7 +742,15 @@ class WatchSettingsSnapshotBuilder {
   }
 
   bool _isTrackedPrayer(String id) =>
-      id == 'fajr' || id == 'dhuhr' || id == 'asr' || id == 'maghrib' || id == 'isha';
+      id == 'fajr' ||
+      id == 'dhuhr' ||
+      id == 'asr' ||
+      id == 'maghrib' ||
+      id == 'isha';
+
+  String? _watchThemeModeForProfile(ProfileSettingsState profileSettings) {
+    return profileSettings.appThemeMode.name;
+  }
 }
 
 class WatchRewardReconciliationService {
@@ -704,12 +762,14 @@ class WatchRewardReconciliationService {
     required String prayerId,
     required String logicalDate,
   }) {
-    return _ref.read(oceanDropServiceProvider).awardDrop(
-      actionType: oceanActionPrayerCompleted,
-      sourceModule: oceanSourcePrayer,
-      referenceId: prayerId,
-      metadata: <String, dynamic>{'timestamp': '${logicalDate}T12:00:00'},
-    );
+    return _ref
+        .read(oceanDropServiceProvider)
+        .awardDrop(
+          actionType: oceanActionPrayerCompleted,
+          sourceModule: oceanSourcePrayer,
+          referenceId: prayerId,
+          metadata: <String, dynamic>{'timestamp': '${logicalDate}T12:00:00'},
+        );
   }
 
   int applyDhikrReward({
@@ -720,25 +780,29 @@ class WatchRewardReconciliationService {
     required DateTime timestamp,
   }) {
     if (mode == 'free') {
-      return _ref.read(oceanDropServiceProvider).awardDrop(
-        actionType: oceanActionDhikrFreeHundredReached,
-        sourceModule: oceanSourceDhikr,
-        referenceId: sessionId,
-        metadata: <String, dynamic>{
-          'countDelta': countDelta,
-          'timestamp': timestamp.toIso8601String(),
-        },
-      );
+      return _ref
+          .read(oceanDropServiceProvider)
+          .awardDrop(
+            actionType: oceanActionDhikrFreeHundredReached,
+            sourceModule: oceanSourceDhikr,
+            referenceId: sessionId,
+            metadata: <String, dynamic>{
+              'countDelta': countDelta,
+              'timestamp': timestamp.toIso8601String(),
+            },
+          );
     }
-    return _ref.read(oceanDropServiceProvider).awardDrop(
-      actionType: oceanActionDhikrSetCompleted,
-      sourceModule: oceanSourceDhikr,
-      referenceId: sessionId,
-      metadata: <String, dynamic>{
-        'target': targetCount,
-        'timestamp': timestamp.toIso8601String(),
-      },
-    );
+    return _ref
+        .read(oceanDropServiceProvider)
+        .awardDrop(
+          actionType: oceanActionDhikrSetCompleted,
+          sourceModule: oceanSourceDhikr,
+          referenceId: sessionId,
+          metadata: <String, dynamic>{
+            'target': targetCount,
+            'timestamp': timestamp.toIso8601String(),
+          },
+        );
   }
 }
 
@@ -749,7 +813,9 @@ class WatchSummaryRefreshService {
 
   WatchDailySnapshot rebuildSnapshot() {
     final today = LocalStore.todayKey();
-    _ref.read(prayerControllerProvider.notifier).onDayChanged(today, force: true);
+    _ref
+        .read(prayerControllerProvider.notifier)
+        .onDayChanged(today, force: true);
     _ref.read(dhikrControllerProvider.notifier).reloadFromStorage();
     _ref
         .read(journeyProgressProvider.notifier)
@@ -771,11 +837,14 @@ class WatchActionReconciler {
         WatchAckResultType.failedValidation,
         notes: validationIssues.map((issue) => issue.message).join('; '),
       );
-      WatchSyncDiagnostics.log('watch_action_failed_validation', <String, Object?>{
-        'actionId': action.actionId,
-        'actionType': action.actionType.name,
-        'issues': ack.notes,
-      });
+      WatchSyncDiagnostics.log(
+        'watch_action_failed_validation',
+        <String, Object?>{
+          'actionId': action.actionId,
+          'actionType': action.actionType.name,
+          'issues': ack.notes,
+        },
+      );
       return _persistAck(ack);
     }
 
@@ -798,14 +867,36 @@ class WatchActionReconciler {
     });
 
     return switch (action.actionType) {
-      WatchActionType.prayerComplete => _reconcilePrayer(action, complete: true),
-      WatchActionType.prayerUncomplete => _reconcilePrayer(action, complete: false),
+      WatchActionType.prayerStatusUpdated => _reconcilePrayerStatusUpdate(
+        action,
+      ),
+      WatchActionType.prayerComplete => _reconcilePrayer(
+        action,
+        complete: true,
+      ),
+      WatchActionType.prayerUncomplete => _reconcilePrayer(
+        action,
+        complete: false,
+      ),
       WatchActionType.dhikrSessionStarted => _reconcileDhikrStarted(action),
       WatchActionType.dhikrIncrement => _reconcileDhikrIncrement(action),
       WatchActionType.dhikrReset => _reconcileDhikrReset(action),
       WatchActionType.dhikrSessionCompleted => _reconcileDhikrCompleted(action),
-      WatchActionType.snoozeRequested => _simpleAck(action, WatchAckResultType.applied, notes: 'Snooze logged'),
-      WatchActionType.notificationActionLogged => _simpleAck(action, WatchAckResultType.applied, notes: 'Notification action logged'),
+      WatchActionType.postPrayerAdhkarCompleted => _simpleAck(
+        action,
+        WatchAckResultType.applied,
+        notes: 'Post-prayer adhkar completion logged',
+      ),
+      WatchActionType.snoozeRequested => _simpleAck(
+        action,
+        WatchAckResultType.applied,
+        notes: 'Snooze logged',
+      ),
+      WatchActionType.notificationActionLogged => _simpleAck(
+        action,
+        WatchAckResultType.applied,
+        notes: 'Notification action logged',
+      ),
     };
   }
 
@@ -815,16 +906,29 @@ class WatchActionReconciler {
   }) async {
     final prayerId = action.payload['prayerId']?.toString();
     if (!_isTrackedPrayer(prayerId)) {
-      return _persistAck(_simpleAck(action, WatchAckResultType.failedValidation, notes: 'Invalid prayerId'));
+      return _persistAck(
+        _simpleAck(
+          action,
+          WatchAckResultType.failedValidation,
+          notes: 'Invalid prayerId',
+        ),
+      );
     }
     if (DateTime.tryParse('${action.logicalDate}T00:00:00') == null) {
-      return _persistAck(_simpleAck(action, WatchAckResultType.failedValidation, notes: 'Invalid logicalDate'));
+      return _persistAck(
+        _simpleAck(
+          action,
+          WatchAckResultType.failedValidation,
+          notes: 'Invalid logicalDate',
+        ),
+      );
     }
 
     final targetKey = '${action.logicalDate}|$prayerId';
     final ackService = _ref.read(watchSyncAckServiceProvider);
     final previous = ackService.prayerTargetState(targetKey);
-    final currentStatus = _readPrayerStatus(action.logicalDate, prayerId!);
+    final currentState = _readPrayerStatus(action.logicalDate, prayerId!);
+    final currentStatus = currentState.$1;
     if (currentStatus == (complete ? 'completed' : 'pending')) {
       final duplicateAck = _simpleAck(
         action,
@@ -839,7 +943,9 @@ class WatchActionReconciler {
       return _persistAck(duplicateAck);
     }
 
-    final previousAt = DateTime.tryParse(previous?['updatedAt']?.toString() ?? '');
+    final previousAt = DateTime.tryParse(
+      previous?['updatedAt']?.toString() ?? '',
+    );
     if (previousAt != null && action.createdAt.isBefore(previousAt)) {
       final staleAck = _simpleAck(
         action,
@@ -859,6 +965,7 @@ class WatchActionReconciler {
       prayerId: prayerId,
       status: complete ? 'completed' : 'pending',
       completedAt: complete ? action.createdAt : null,
+      timing: complete ? 'on_time' : currentState.$2,
     );
     if (action.logicalDate == LocalStore.todayKey()) {
       _ref
@@ -866,7 +973,9 @@ class WatchActionReconciler {
           .onDayChanged(action.logicalDate, force: true);
     }
     if (complete) {
-      _ref.read(watchRewardReconciliationServiceProvider).applyPrayerReward(
+      _ref
+          .read(watchRewardReconciliationServiceProvider)
+          .applyPrayerReward(
             prayerId: prayerId,
             logicalDate: action.logicalDate,
           );
@@ -879,6 +988,7 @@ class WatchActionReconciler {
     });
     await ackService.persistPrayerTargetState(targetKey, <String, dynamic>{
       'status': complete ? 'completed' : 'pending',
+      'timing': complete ? 'on_time' : currentState.$2,
       'updatedAt': action.createdAt.toIso8601String(),
       'source': action.deviceType == WatchDeviceType.appleWatch
           ? 'apple_watch'
@@ -886,18 +996,143 @@ class WatchActionReconciler {
     });
     final ack = _simpleAck(
       action,
-      previous == null ? WatchAckResultType.applied : WatchAckResultType.conflictResolved,
+      previous == null
+          ? WatchAckResultType.applied
+          : WatchAckResultType.conflictResolved,
     );
     return _persistAck(ack);
   }
 
-  Future<WatchSyncAck> _reconcileDhikrStarted(WatchActionEnvelope action) async {
+  Future<WatchSyncAck> _reconcilePrayerStatusUpdate(
+    WatchActionEnvelope action,
+  ) async {
+    final prayerId = action.payload['prayerId']?.toString();
+    final status = action.payload['status']?.toString();
+    final timing = action.payload['timing']?.toString();
+    if (!_isTrackedPrayer(prayerId)) {
+      return _persistAck(
+        _simpleAck(
+          action,
+          WatchAckResultType.failedValidation,
+          notes: 'Invalid prayerId',
+        ),
+      );
+    }
+    if (status != 'pending' && status != 'completed' && status != 'missed') {
+      return _persistAck(
+        _simpleAck(
+          action,
+          WatchAckResultType.failedValidation,
+          notes: 'Invalid prayer status',
+        ),
+      );
+    }
+    if (DateTime.tryParse('${action.logicalDate}T00:00:00') == null) {
+      return _persistAck(
+        _simpleAck(
+          action,
+          WatchAckResultType.failedValidation,
+          notes: 'Invalid logicalDate',
+        ),
+      );
+    }
+
+    final targetKey = '${action.logicalDate}|$prayerId';
+    final ackService = _ref.read(watchSyncAckServiceProvider);
+    final previous = ackService.prayerTargetState(targetKey);
+    final currentState = _readPrayerStatus(action.logicalDate, prayerId!);
+    if (currentState.$1 == status && currentState.$2 == timing) {
+      WatchSyncDiagnostics.log('prayer_action_duplicate', <String, Object?>{
+        'actionId': action.actionId,
+        'prayerId': prayerId,
+        'logicalDate': action.logicalDate,
+      });
+      return _persistAck(
+        _simpleAck(
+          action,
+          WatchAckResultType.ignoredDuplicate,
+          notes: 'Prayer already in requested state',
+        ),
+      );
+    }
+
+    final previousAt = DateTime.tryParse(
+      previous?['updatedAt']?.toString() ?? '',
+    );
+    if (previousAt != null && action.createdAt.isBefore(previousAt)) {
+      WatchSyncDiagnostics.log('prayer_action_stale', <String, Object?>{
+        'actionId': action.actionId,
+        'prayerId': prayerId,
+        'logicalDate': action.logicalDate,
+      });
+      return _persistAck(
+        _simpleAck(
+          action,
+          WatchAckResultType.ignoredStale,
+          notes: 'Older than current phone state',
+        ),
+      );
+    }
+
+    _writePrayerStatus(
+      dayKey: action.logicalDate,
+      prayerId: prayerId,
+      status: status!,
+      completedAt: status == 'completed' ? action.createdAt : null,
+      timing: timing,
+    );
+    if (action.logicalDate == LocalStore.todayKey()) {
+      _ref
+          .read(prayerControllerProvider.notifier)
+          .onDayChanged(action.logicalDate, force: true);
+    }
+    if (status == 'completed') {
+      _ref
+          .read(watchRewardReconciliationServiceProvider)
+          .applyPrayerReward(
+            prayerId: prayerId,
+            logicalDate: action.logicalDate,
+          );
+    }
+    WatchSyncDiagnostics.log('prayer_action_applied', <String, Object?>{
+      'actionId': action.actionId,
+      'prayerId': prayerId,
+      'logicalDate': action.logicalDate,
+      'status': status,
+      'timing': timing,
+    });
+    await ackService.persistPrayerTargetState(targetKey, <String, dynamic>{
+      'status': status,
+      'timing': timing,
+      'updatedAt': action.createdAt.toIso8601String(),
+      'source': action.deviceType == WatchDeviceType.appleWatch
+          ? 'apple_watch'
+          : 'wear_os',
+    });
+    final ack = _simpleAck(
+      action,
+      previous == null
+          ? WatchAckResultType.applied
+          : WatchAckResultType.conflictResolved,
+    );
+    return _persistAck(ack);
+  }
+
+  Future<WatchSyncAck> _reconcileDhikrStarted(
+    WatchActionEnvelope action,
+  ) async {
     final sessionId = action.payload['sessionId']?.toString();
     if (sessionId == null || sessionId.isEmpty) {
-      return _persistAck(_simpleAck(action, WatchAckResultType.failedValidation, notes: 'Missing sessionId'));
+      return _persistAck(
+        _simpleAck(
+          action,
+          WatchAckResultType.failedValidation,
+          notes: 'Missing sessionId',
+        ),
+      );
     }
     final mode = action.payload['mode']?.toString() ?? 'free';
-    final targetCount = (action.payload['targetCount'] as num?)?.toInt();
+    final targetCount = _payloadInt(action.payload, 'targetCount');
     await _persistDhikrSession(<String, dynamic>{
       'sessionId': sessionId,
       'logicalDate': action.logicalDate,
@@ -916,10 +1151,18 @@ class WatchActionReconciler {
     return _persistAck(_simpleAck(action, WatchAckResultType.applied));
   }
 
-  Future<WatchSyncAck> _reconcileDhikrIncrement(WatchActionEnvelope action) async {
+  Future<WatchSyncAck> _reconcileDhikrIncrement(
+    WatchActionEnvelope action,
+  ) async {
     final sessionId = action.payload['sessionId']?.toString();
     if (sessionId == null || sessionId.isEmpty) {
-      return _persistAck(_simpleAck(action, WatchAckResultType.failedValidation, notes: 'Missing sessionId'));
+      return _persistAck(
+        _simpleAck(
+          action,
+          WatchAckResultType.failedValidation,
+          notes: 'Missing sessionId',
+        ),
+      );
     }
     final ackService = _ref.read(watchSyncAckServiceProvider);
     final session = Map<String, dynamic>.from(
@@ -928,7 +1171,7 @@ class WatchActionReconciler {
             'sessionId': sessionId,
             'logicalDate': action.logicalDate,
             'mode': action.payload['mode']?.toString() ?? 'free',
-            'targetCount': (action.payload['targetCount'] as num?)?.toInt(),
+            'targetCount': _payloadInt(action.payload, 'targetCount'),
             'currentCount': 0,
             'startedAt': action.createdAt.toIso8601String(),
             'updatedAt': action.createdAt.toIso8601String(),
@@ -937,16 +1180,24 @@ class WatchActionReconciler {
           },
     );
     final storedCount = (session['currentCount'] as num?)?.toInt() ?? 0;
-    final incomingCount = (action.payload['count'] as num?)?.toInt();
-    final amount = (action.payload['amount'] as num?)?.toInt() ?? 1;
+    final incomingCount = _payloadInt(action.payload, 'count');
+    final amount = _payloadInt(action.payload, 'amount') ?? 1;
     final nextCount = incomingCount ?? storedCount + amount;
-    final delta = incomingCount != null ? (incomingCount - storedCount) : amount;
+    final delta = incomingCount != null
+        ? (incomingCount - storedCount)
+        : amount;
     if (delta <= 0 || session['completed'] == true) {
       WatchSyncDiagnostics.log('dhikr_increment_duplicate', <String, Object?>{
         'actionId': action.actionId,
         'sessionId': sessionId,
       });
-      return _persistAck(_simpleAck(action, WatchAckResultType.ignoredDuplicate, notes: 'Increment already processed'));
+      return _persistAck(
+        _simpleAck(
+          action,
+          WatchAckResultType.ignoredDuplicate,
+          notes: 'Increment already processed',
+        ),
+      );
     }
 
     session['currentCount'] = nextCount;
@@ -954,11 +1205,14 @@ class WatchActionReconciler {
     await _persistDhikrSession(session);
     _writeDhikrStoreCurrentCount(
       currentCount: nextCount,
-      target: (session['targetCount'] as num?)?.toInt() ??
+      target:
+          (session['targetCount'] as num?)?.toInt() ??
           _targetFromMode(session['mode']?.toString() ?? 'free'),
     );
     if ((session['mode']?.toString() ?? 'free') == 'free') {
-      _ref.read(watchRewardReconciliationServiceProvider).applyDhikrReward(
+      _ref
+          .read(watchRewardReconciliationServiceProvider)
+          .applyDhikrReward(
             sessionId: sessionId,
             mode: 'free',
             countDelta: delta,
@@ -983,7 +1237,9 @@ class WatchActionReconciler {
     );
     final sessionId = action.payload['sessionId']?.toString();
     if (sessionId != null && sessionId.isNotEmpty) {
-      final existing = _ref.read(watchSyncAckServiceProvider).dhikrSession(sessionId);
+      final existing = _ref
+          .read(watchSyncAckServiceProvider)
+          .dhikrSession(sessionId);
       if (existing != null) {
         await _persistDhikrSession({
           ...existing,
@@ -995,10 +1251,18 @@ class WatchActionReconciler {
     return _persistAck(_simpleAck(action, WatchAckResultType.applied));
   }
 
-  Future<WatchSyncAck> _reconcileDhikrCompleted(WatchActionEnvelope action) async {
+  Future<WatchSyncAck> _reconcileDhikrCompleted(
+    WatchActionEnvelope action,
+  ) async {
     final sessionId = action.payload['sessionId']?.toString();
     if (sessionId == null || sessionId.isEmpty) {
-      return _persistAck(_simpleAck(action, WatchAckResultType.failedValidation, notes: 'Missing sessionId'));
+      return _persistAck(
+        _simpleAck(
+          action,
+          WatchAckResultType.failedValidation,
+          notes: 'Missing sessionId',
+        ),
+      );
     }
     final ackService = _ref.read(watchSyncAckServiceProvider);
     final session = Map<String, dynamic>.from(
@@ -1007,9 +1271,10 @@ class WatchActionReconciler {
             'sessionId': sessionId,
             'logicalDate': action.logicalDate,
             'mode': action.payload['mode']?.toString() ?? 'free',
-            'targetCount': (action.payload['targetCount'] as num?)?.toInt(),
-            'currentCount': (action.payload['count'] as num?)?.toInt() ?? 0,
-            'startedAt': action.payload['startedAt']?.toString() ??
+            'targetCount': _payloadInt(action.payload, 'targetCount'),
+            'currentCount': _payloadInt(action.payload, 'count') ?? 0,
+            'startedAt':
+                action.payload['startedAt']?.toString() ??
                 action.createdAt.toIso8601String(),
             'updatedAt': action.createdAt.toIso8601String(),
             'completed': false,
@@ -1021,12 +1286,19 @@ class WatchActionReconciler {
         'actionId': action.actionId,
         'sessionId': sessionId,
       });
-      return _persistAck(_simpleAck(action, WatchAckResultType.ignoredDuplicate, notes: 'Session already completed'));
+      return _persistAck(
+        _simpleAck(
+          action,
+          WatchAckResultType.ignoredDuplicate,
+          notes: 'Session already completed',
+        ),
+      );
     }
     final mode = session['mode']?.toString() ?? 'free';
     final targetCount =
         (session['targetCount'] as num?)?.toInt() ?? _targetFromMode(mode);
-    final count = (action.payload['count'] as num?)?.toInt() ??
+    final count =
+        _payloadInt(action.payload, 'count') ??
         (session['currentCount'] as num?)?.toInt() ??
         0;
     session['completed'] = true;
@@ -1035,7 +1307,9 @@ class WatchActionReconciler {
 
     var rewardApplied = session['rewardApplied'] == true;
     if (!rewardApplied && mode != 'free') {
-      _ref.read(watchRewardReconciliationServiceProvider).applyDhikrReward(
+      _ref
+          .read(watchRewardReconciliationServiceProvider)
+          .applyDhikrReward(
             sessionId: sessionId,
             mode: mode,
             countDelta: count,
@@ -1057,7 +1331,8 @@ class WatchActionReconciler {
       count: count,
       target: targetCount,
       startedAt:
-          DateTime.tryParse(session['startedAt']?.toString() ?? '') ?? action.createdAt,
+          DateTime.tryParse(session['startedAt']?.toString() ?? '') ??
+          action.createdAt,
       finishedAt: action.createdAt,
     );
     return _persistAck(_simpleAck(action, WatchAckResultType.applied));
@@ -1093,11 +1368,20 @@ class WatchActionReconciler {
     }
   }
 
-  String _readPrayerStatus(String dayKey, String prayerId) {
-    final prayer = PrayerName.values.where((item) => item.name == prayerId).firstOrNull;
-    if (prayer == null) return 'pending';
-    final row = _ref.read(prayerLogRepositoryProvider).readDayEntries(dayKey)[prayer];
-    return row?.status == PrayerStatus.completed ? 'completed' : 'pending';
+  (String, String?) _readPrayerStatus(String dayKey, String prayerId) {
+    final prayer = PrayerName.values
+        .where((item) => item.name == prayerId)
+        .firstOrNull;
+    if (prayer == null) return ('pending', null);
+    final row = _ref
+        .read(prayerLogRepositoryProvider)
+        .readDayEntries(dayKey)[prayer];
+    final status = switch (row?.status) {
+      PrayerStatus.completed => 'completed',
+      PrayerStatus.missed => 'missed',
+      _ => 'pending',
+    };
+    return (status, row?.timing?.name);
   }
 
   void _writePrayerStatus({
@@ -1105,8 +1389,11 @@ class WatchActionReconciler {
     required String prayerId,
     required String status,
     required DateTime? completedAt,
+    required String? timing,
   }) {
-    final prayer = PrayerName.values.where((item) => item.name == prayerId).firstOrNull;
+    final prayer = PrayerName.values
+        .where((item) => item.name == prayerId)
+        .firstOrNull;
     if (prayer == null) return;
     final repository = _ref.read(prayerLogRepositoryProvider);
     final next = Map<PrayerName, PrayerLogDayEntry>.from(
@@ -1114,9 +1401,17 @@ class WatchActionReconciler {
     );
     final previous = next[prayer];
     next[prayer] = PrayerLogDayEntry(
-      status: status == 'completed' ? PrayerStatus.completed : PrayerStatus.pending,
-      completedAtIso: status == 'completed' ? completedAt?.toIso8601String() : null,
-      timing: previous?.timing,
+      status: switch (status) {
+        'completed' => PrayerStatus.completed,
+        'missed' => PrayerStatus.missed,
+        _ => PrayerStatus.pending,
+      },
+      completedAtIso: status == 'completed'
+          ? completedAt?.toIso8601String()
+          : null,
+      timing: PrayerOfferTiming.values
+          .where((item) => item.name == timing)
+          .firstOrNull,
       place: previous?.place,
       notes: previous?.notes,
     );
@@ -1177,6 +1472,8 @@ class WatchActionReconciler {
     switch (mode) {
       case 'preset_33':
         return 33;
+      case 'preset_34':
+        return 34;
       case 'preset_99':
         return 99;
       default:
@@ -1188,11 +1485,27 @@ class WatchActionReconciler {
     switch (mode) {
       case 'preset_33':
         return 'SubhanAllah';
+      case 'preset_34':
+        return 'Allahu Akbar';
       case 'preset_99':
         return 'SubhanAllah';
+      case 'auto_subhan_allah':
+        return 'SubhanAllah';
+      case 'auto_alhamdulillah':
+        return 'Alhamdulillah';
+      case 'auto_allahu_akbar':
+        return 'Allahu Akbar';
+      case 'auto_astaghfirullah':
+        return 'Astaghfirullah';
       default:
         return 'Dhikr';
     }
+  }
+
+  int? _payloadInt(Map<String, dynamic> payload, String key) {
+    final value = payload[key];
+    if (value is num) return value.toInt();
+    return int.tryParse(value?.toString() ?? '');
   }
 
   bool _isTrackedPrayer(String? prayerId) =>
@@ -1213,7 +1526,9 @@ class WatchActionIngestionService {
   final Ref _ref;
 
   Future<WatchActionResponse> ingest(WatchActionEnvelope action) async {
-    final ack = await _ref.read(watchActionReconcilerProvider).reconcile(action);
+    final ack = await _ref
+        .read(watchActionReconcilerProvider)
+        .reconcile(action);
     final snapshot = ack.resultType == WatchAckResultType.failedValidation
         ? _fallbackSnapshot()
         : _safeRebuildSnapshot();
@@ -1245,6 +1560,7 @@ class WatchActionIngestionService {
   WatchDailySnapshot _fallbackSnapshot() {
     final now = DateTime.now();
     return WatchDailySnapshot(
+      schemaVersion: _watchSnapshotSchemaVersion,
       snapshotId: 'watch_snapshot_fallback_${now.microsecondsSinceEpoch}',
       generatedAt: now,
       date: LocalStore.todayKey(now),
@@ -1258,6 +1574,8 @@ class WatchActionIngestionService {
       xpToday: 0,
       oceanDropsToday: 0,
       streakDays: 0,
+      currentLevel: 1,
+      growthStageKey: 'spring',
       prayers: const [],
       activeDhikrSession: null,
       lastSyncAt: now,
@@ -1279,7 +1597,9 @@ class AppleWatchBridgeAdapter {
     return _ref.read(watchSettingsSnapshotBuilderProvider).build().toJson();
   }
 
-  Future<Map<String, dynamic>> ingestActionPayload(Map<String, dynamic> payload) async {
+  Future<Map<String, dynamic>> ingestActionPayload(
+    Map<String, dynamic> payload,
+  ) async {
     final envelope = WatchActionEnvelope.fromJson(payload);
     if (envelope == null) {
       return WatchActionResponse(
@@ -1293,7 +1613,9 @@ class AppleWatchBridgeAdapter {
         snapshot: _ref.read(watchDailySnapshotBuilderProvider).build(),
       ).toJson();
     }
-    final response = await _ref.read(watchActionIngestionServiceProvider).ingest(envelope);
+    final response = await _ref
+        .read(watchActionIngestionServiceProvider)
+        .ingest(envelope);
     return response.toJson();
   }
 }
@@ -1327,8 +1649,9 @@ class WearOsBridgeAdapter {
         snapshot: _ref.read(watchDailySnapshotBuilderProvider).build(),
       ).toJson();
     }
-    final response =
-        await _ref.read(watchActionIngestionServiceProvider).ingest(envelope);
+    final response = await _ref
+        .read(watchActionIngestionServiceProvider)
+        .ingest(envelope);
     return response.toJson();
   }
 }
@@ -1337,23 +1660,27 @@ final watchSyncAckServiceProvider = Provider<WatchSyncAckService>((ref) {
   return WatchSyncAckService(ref.watch(localStoreProvider));
 });
 
-final watchDailySnapshotBuilderProvider = Provider<WatchDailySnapshotBuilder>((ref) {
+final watchDailySnapshotBuilderProvider = Provider<WatchDailySnapshotBuilder>((
+  ref,
+) {
   return WatchDailySnapshotBuilder(ref);
 });
 
 final watchSettingsSnapshotBuilderProvider =
     Provider<WatchSettingsSnapshotBuilder>((ref) {
-  return WatchSettingsSnapshotBuilder(ref);
-});
+      return WatchSettingsSnapshotBuilder(ref);
+    });
 
 final watchRewardReconciliationServiceProvider =
     Provider<WatchRewardReconciliationService>((ref) {
-  return WatchRewardReconciliationService(ref);
-});
+      return WatchRewardReconciliationService(ref);
+    });
 
-final watchSummaryRefreshServiceProvider = Provider<WatchSummaryRefreshService>((ref) {
-  return WatchSummaryRefreshService(ref);
-});
+final watchSummaryRefreshServiceProvider = Provider<WatchSummaryRefreshService>(
+  (ref) {
+    return WatchSummaryRefreshService(ref);
+  },
+);
 
 final watchActionReconcilerProvider = Provider<WatchActionReconciler>((ref) {
   return WatchActionReconciler(ref);
@@ -1361,10 +1688,12 @@ final watchActionReconcilerProvider = Provider<WatchActionReconciler>((ref) {
 
 final watchActionIngestionServiceProvider =
     Provider<WatchActionIngestionService>((ref) {
-  return WatchActionIngestionService(ref);
-});
+      return WatchActionIngestionService(ref);
+    });
 
-final appleWatchBridgeAdapterProvider = Provider<AppleWatchBridgeAdapter>((ref) {
+final appleWatchBridgeAdapterProvider = Provider<AppleWatchBridgeAdapter>((
+  ref,
+) {
   return AppleWatchBridgeAdapter(ref);
 });
 

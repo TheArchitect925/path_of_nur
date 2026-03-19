@@ -5,9 +5,14 @@ import '../../../../../l10n/app_localizations.dart';
 import '../../../../../shared/widgets/premium_card.dart';
 
 class RevelationGrowthLinkCard extends StatelessWidget {
-  const RevelationGrowthLinkCard({super.key, required this.habitLabels});
+  const RevelationGrowthLinkCard({
+    super.key,
+    required this.habitLabels,
+    this.onTapHabit,
+  });
 
   final List<String> habitLabels;
+  final ValueChanged<int>? onTapHabit;
 
   @override
   Widget build(BuildContext context) {
@@ -34,24 +39,24 @@ class RevelationGrowthLinkCard extends StatelessWidget {
           Wrap(
             spacing: 8,
             runSpacing: 8,
-            children: habitLabels.map((h) => _chip(h)).toList(),
+            children: [
+              for (var index = 0; index < habitLabels.length; index++)
+                _chip(habitLabels[index], onTap: () => onTapHabit?.call(index)),
+            ],
           ),
         ],
       ),
     );
   }
 
-  Widget _chip(String label) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(999),
-        color: AppColors.surface.withValues(alpha: 0.28),
-        border: Border.all(
-          color: AppColors.accentGoldSoft.withValues(alpha: 0.34),
-        ),
+  Widget _chip(String label, {VoidCallback? onTap}) {
+    return ActionChip(
+      label: Text(label, style: const TextStyle(fontSize: 11.5)),
+      onPressed: onTap,
+      backgroundColor: AppColors.surface.withValues(alpha: 0.28),
+      side: BorderSide(
+        color: AppColors.accentGoldSoft.withValues(alpha: 0.34),
       ),
-      child: Text(label, style: const TextStyle(fontSize: 11.5)),
     );
   }
 }

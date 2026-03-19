@@ -1,15 +1,15 @@
 # Route Map
 
-Last updated: 2026-03-17
+Last updated: 2026-03-18
 
 ## Canonical top-level tabs
 
 - `/worship`
 - `/learn`
-  - current primary destination is `LearningJourneyHomePage`
+  - current primary destination is `LearningSectionLandingPage`
 - `/home`
 - `/journey`
-  - current page is `JourneyPage` -> `GrowthHomePage`
+  - current page is `JourneyPage` -> `GrowthHomePage` section landing
 - `/quran`
   - current page is `QuranAppHubPage`
 
@@ -22,6 +22,16 @@ Last updated: 2026-03-17
 ## Settings / support canonical routes
 
 - `/settings`
+- `/settings/account-sync`
+- `/settings/appearance`
+- `/settings/prayer-worship`
+- `/settings/learning`
+- `/settings/notifications-reminders`
+- `/settings/widgets-watch`
+- `/settings/language-downloads`
+- `/settings/privacy-data`
+- `/settings/kids-family`
+- `/settings/about`
 - `/settings/summary`
 - `/settings/whats-new`
 - `/settings/coming-soon`
@@ -150,12 +160,18 @@ Last updated: 2026-03-17
 ## Journey / growth routes
 
 - `/journey`
+- `/journey/garden`
 - `/journey/ocean`
 - `/journey/wallpapers`
-- `/journey/growth/today`
-- `/journey/growth/reflection`
-- `/journey/growth/journey`
-- `/journey/growth/habits`
+- `/journey/today`
+- `/journey/reflection`
+- `/journey/progress`
+- `/journey/paths`
+- `/journey/habits`
+- `/journey/tracking`
+- `/journey/tracking/habits`
+- `/journey/tracking/habits/settings`
+- `/journey/tracking/habits/calendar`
 - `/journey/path/:pathId`
 - `/journey/habit/:habitId`
 
@@ -171,6 +187,10 @@ Last updated: 2026-03-17
 - `/growth/reflection`
 - `/growth/journey`
 - `/growth/habit/:habitId`
+- `/journey/growth/today`
+- `/journey/growth/reflection`
+- `/journey/growth/journey`
+- `/journey/growth/habits`
   - deep-link aliases for growth
 
 ## Routes that should not be reintroduced as new ownership patterns

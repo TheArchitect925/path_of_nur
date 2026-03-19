@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 
-enum GrowthInternalTab { today, paths, habits, journey, reflection }
+const Object _growthUnset = Object();
 
 enum GrowthHabitCategory {
   dailyWorship,
@@ -107,6 +107,7 @@ class GrowthHabit {
     this.remindersPaused = false,
     this.nextReminderAtEpochMs = 0,
     this.lastReminderSentAtEpochMs = 0,
+    this.customCategoryId,
   });
 
   final String id;
@@ -155,6 +156,7 @@ class GrowthHabit {
   final bool remindersPaused;
   final int nextReminderAtEpochMs;
   final int lastReminderSentAtEpochMs;
+  final String? customCategoryId;
 
   GrowthHabit copyWith({
     String? title,
@@ -197,6 +199,7 @@ class GrowthHabit {
     bool? remindersPaused,
     int? nextReminderAtEpochMs,
     int? lastReminderSentAtEpochMs,
+    Object? customCategoryId = _growthUnset,
   }) {
     return GrowthHabit(
       id: id,
@@ -249,6 +252,9 @@ class GrowthHabit {
           nextReminderAtEpochMs ?? this.nextReminderAtEpochMs,
       lastReminderSentAtEpochMs:
           lastReminderSentAtEpochMs ?? this.lastReminderSentAtEpochMs,
+      customCategoryId: identical(customCategoryId, _growthUnset)
+          ? this.customCategoryId
+          : customCategoryId as String?,
     );
   }
 
@@ -300,6 +306,7 @@ class GrowthHabit {
       'remindersPaused': remindersPaused,
       'nextReminderAtEpochMs': nextReminderAtEpochMs,
       'lastReminderSentAtEpochMs': lastReminderSentAtEpochMs,
+      'customCategoryId': customCategoryId,
     };
   }
 
@@ -387,6 +394,7 @@ class GrowthHabit {
           int.tryParse(json['nextReminderAtEpochMs']?.toString() ?? '') ?? 0,
       lastReminderSentAtEpochMs:
           int.tryParse(json['lastReminderSentAtEpochMs']?.toString() ?? '') ?? 0,
+      customCategoryId: json['customCategoryId']?.toString(),
     );
   }
 }
@@ -440,6 +448,65 @@ class GrowthHabitLog {
       updatedAt: DateTime.tryParse(json['updatedAt']?.toString() ?? '') ??
           DateTime.now(),
       entrusted: json['entrusted'] == true,
+    );
+  }
+}
+
+@immutable
+class GrowthCustomCategory {
+  const GrowthCustomCategory({
+    required this.id,
+    required this.title,
+    required this.description,
+    required this.sortOrder,
+    required this.createdAtEpochMs,
+    required this.updatedAtEpochMs,
+  });
+
+  final String id;
+  final String title;
+  final String description;
+  final int sortOrder;
+  final int createdAtEpochMs;
+  final int updatedAtEpochMs;
+
+  GrowthCustomCategory copyWith({
+    String? title,
+    String? description,
+    int? sortOrder,
+    int? updatedAtEpochMs,
+  }) {
+    return GrowthCustomCategory(
+      id: id,
+      title: title ?? this.title,
+      description: description ?? this.description,
+      sortOrder: sortOrder ?? this.sortOrder,
+      createdAtEpochMs: createdAtEpochMs,
+      updatedAtEpochMs: updatedAtEpochMs ?? this.updatedAtEpochMs,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'title': title,
+      'description': description,
+      'sortOrder': sortOrder,
+      'createdAtEpochMs': createdAtEpochMs,
+      'updatedAtEpochMs': updatedAtEpochMs,
+    };
+  }
+
+  static GrowthCustomCategory fromJson(Map<String, dynamic> json) {
+    return GrowthCustomCategory(
+      id: json['id']?.toString() ?? '',
+      title: json['title']?.toString() ?? '',
+      description: json['description']?.toString() ?? '',
+      sortOrder: int.tryParse(json['sortOrder']?.toString() ?? '') ?? 999,
+      createdAtEpochMs:
+          int.tryParse(json['createdAtEpochMs']?.toString() ?? '') ?? 0,
+      updatedAtEpochMs:
+          int.tryParse(json['updatedAtEpochMs']?.toString() ?? '') ?? 0,
     );
   }
 }
@@ -648,6 +715,7 @@ class GrowthState {
   const GrowthState({
     required this.isReady,
     required this.customHabits,
+    required this.customHabitCategories,
     required this.habitOverrides,
     required this.statusByDay,
     required this.habitLogsByDay,
@@ -671,6 +739,7 @@ class GrowthState {
     return GrowthState(
       isReady: false,
       customHabits: [],
+      customHabitCategories: [],
       habitOverrides: {},
       statusByDay: {},
       habitLogsByDay: {},
@@ -693,6 +762,7 @@ class GrowthState {
 
   final bool isReady;
   final List<GrowthHabit> customHabits;
+  final List<GrowthCustomCategory> customHabitCategories;
   final Map<String, GrowthHabitOverride> habitOverrides;
   final Map<String, Map<String, GrowthHabitStatus>> statusByDay;
   final Map<String, Map<String, GrowthHabitLog>> habitLogsByDay;
@@ -714,6 +784,7 @@ class GrowthState {
   GrowthState copyWith({
     bool? isReady,
     List<GrowthHabit>? customHabits,
+    List<GrowthCustomCategory>? customHabitCategories,
     Map<String, GrowthHabitOverride>? habitOverrides,
     Map<String, Map<String, GrowthHabitStatus>>? statusByDay,
     Map<String, Map<String, GrowthHabitLog>>? habitLogsByDay,
@@ -735,6 +806,8 @@ class GrowthState {
     return GrowthState(
       isReady: isReady ?? this.isReady,
       customHabits: customHabits ?? this.customHabits,
+      customHabitCategories:
+          customHabitCategories ?? this.customHabitCategories,
       habitOverrides: habitOverrides ?? this.habitOverrides,
       statusByDay: statusByDay ?? this.statusByDay,
       habitLogsByDay: habitLogsByDay ?? this.habitLogsByDay,
@@ -761,6 +834,9 @@ class GrowthState {
   Map<String, dynamic> toJson() {
     return {
       'customHabits': customHabits.map((e) => e.toJson()).toList(),
+      'customHabitCategories': customHabitCategories
+          .map((e) => e.toJson())
+          .toList(),
       'habitOverrides': habitOverrides.map(
         (key, value) => MapEntry(key, value.toJson()),
       ),
@@ -797,6 +873,10 @@ class GrowthState {
     if (json == null) return GrowthState.initial().copyWith(isReady: true);
 
     final customHabitsRaw = (json['customHabits'] as List? ?? const [])
+        .whereType<Map>()
+        .map((e) => e.map((k, v) => MapEntry(k.toString(), v)))
+        .toList();
+    final customCategoriesRaw = (json['customHabitCategories'] as List? ?? const [])
         .whereType<Map>()
         .map((e) => e.map((k, v) => MapEntry(k.toString(), v)))
         .toList();
@@ -867,6 +947,9 @@ class GrowthState {
     return GrowthState(
       isReady: true,
       customHabits: customHabitsRaw.map(GrowthHabit.fromJson).toList(),
+      customHabitCategories: customCategoriesRaw
+          .map(GrowthCustomCategory.fromJson)
+          .toList(),
       habitOverrides: habitOverrides,
       statusByDay: statusByDay,
       habitLogsByDay: habitLogsByDay,

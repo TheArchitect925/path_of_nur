@@ -4,10 +4,10 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/application/special_mode_provider.dart';
+import '../../../../shared/content/learning_quote.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/quran_navigation.dart';
-import '../../../../shared/widgets/quran_quote_block.dart';
 import '../../shared/presentation/learning_detail_page.dart';
 import '../../shared/presentation/learning_header.dart';
 import '../../shared/presentation/learning_lessons.dart';
@@ -106,19 +106,15 @@ class _LearnContentDetailPageState
       headerIcon: _headerIcon(widget.category),
       title: topic.title,
       subtitle: topic.subtitle,
-      quote: const QuranQuote(
-        arabic: 'وَقُلْ رَبِّ زِدْنِي عِلْمًا',
-        transliteration: 'Wa qul rabbi zidni ilma',
-        translation: 'My Lord, increase me in knowledge.',
-        surah: 20,
-        verse: 114,
-        locationLabel: 'Taha 20:114',
-      ),
+      quote: buildLearningCompactQuote(),
       onQuoteTap: (quote) => openQuranQuoteLocation(context, quote),
       header: LearningHeader(
         title: topic.title,
         summary: topic.overview,
-        chips: [l10n.learnContentTopicLabel, widget.category.name.toUpperCase()],
+        chips: [
+          l10n.learnContentTopicLabel,
+          widget.category.name.toUpperCase(),
+        ],
       ),
       sections: [
         LearningSection(
@@ -141,9 +137,7 @@ class _LearnContentDetailPageState
         if (catalog != null && catalog.reflectionPrompts.isNotEmpty)
           LearningSection(
             title: l10n.learnContentReflectionIdeasTitle,
-            child: LearningReflection(
-              prompts: catalog.reflectionPrompts,
-            ),
+            child: LearningReflection(prompts: catalog.reflectionPrompts),
           ),
         LearningSection(
           title: l10n.learnContentReferencesTitle,

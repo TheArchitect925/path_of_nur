@@ -254,26 +254,36 @@ class CelestialWidgetBridge {
   static const _iosName = 'PathOfNurCelestialWidget';
 
   Future<void> writeSnapshot(CelestialSnapshot snapshot) async {
-    final payload = CelestialWidgetPayload(
-      locationLabel: snapshot.locationLabel,
-      dateLabel: DateFormat.yMMMMd().format(snapshot.timestamp),
-      sunriseLabel: _formatTime(snapshot.solarData.sunrise),
-      sunsetLabel: _formatTime(snapshot.solarData.sunset),
-      moonriseLabel: _formatOptionalTime(snapshot.lunarData.moonrise),
-      moonsetLabel: _formatOptionalTime(snapshot.lunarData.moonset),
-      moonPhaseLabel:
-          '${snapshot.lunarData.phaseName} • ${snapshot.lunarData.illuminationPercent}%',
-      progressLabel: _progressLabel(snapshot),
-      reflectionLine: snapshot.verseOfMoment.shortReflection,
-    );
-    final json = payload.toJson();
-    for (final entry in json.entries) {
-      await HomeWidget.saveWidgetData<String>(entry.key, '${entry.value}');
+    try {
+      final payload = CelestialWidgetPayload(
+        locationLabel: snapshot.locationLabel,
+        dateLabel: DateFormat.yMMMMd().format(snapshot.timestamp),
+        sunriseLabel: _formatTime(snapshot.solarData.sunrise),
+        sunsetLabel: _formatTime(snapshot.solarData.sunset),
+        moonriseLabel: _formatOptionalTime(snapshot.lunarData.moonrise),
+        moonsetLabel: _formatOptionalTime(snapshot.lunarData.moonset),
+        moonPhaseLabel:
+            '${snapshot.lunarData.phaseName} • ${snapshot.lunarData.illuminationPercent}%',
+        progressLabel: _progressLabel(snapshot),
+        reflectionLine: snapshot.verseOfMoment.shortReflection,
+      );
+      final json = payload.toJson();
+      for (final entry in json.entries) {
+        await HomeWidget.saveWidgetData<String>(entry.key, '${entry.value}');
+      }
+      await HomeWidget.updateWidget(
+        androidName: _androidName,
+        iOSName: _iosName,
+      );
+    } catch (error) {
+      // Widget sync must not block the in-app celestial experience.
+      AppTelemetry.logEvent(
+        'celestial_widget_sync_failed',
+        metadata: <String, Object?>{
+          'error': error.toString(),
+        },
+      );
     }
-    await HomeWidget.updateWidget(
-      androidName: _androidName,
-      iOSName: _iosName,
-    );
   }
 
   static String _progressLabel(CelestialSnapshot snapshot) {

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_surfaces.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/quran_reference_block.dart';
 import '../models/faq_item.dart';
@@ -186,24 +187,26 @@ class FaqDetailPage extends ConsumerWidget {
   }
 
   Widget _chip(BuildContext context, String label) {
+    final style = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.pill,
+    );
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-      decoration: BoxDecoration(
-        color: AppColors.surface.withValues(alpha: AppColors.glassSurfaceAlpha),
-        borderRadius: BorderRadius.circular(999),
-      ),
+      decoration: style.decoration(radius: 999),
       child: Text(label, style: Theme.of(context).textTheme.bodySmall),
     );
   }
 
   Widget _badge(BuildContext context, String label) {
+    final style = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.pill,
+      tintColor: AppColors.accentGold,
+    );
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-      decoration: BoxDecoration(
-        color: AppColors.accentGold.withValues(alpha: 0.14),
-        borderRadius: BorderRadius.circular(999),
-        border: Border.all(color: AppColors.accentGold.withValues(alpha: 0.22)),
-      ),
+      decoration: style.decoration(radius: 999),
       child: Text(
         label,
         style: Theme.of(context).textTheme.bodySmall?.copyWith(

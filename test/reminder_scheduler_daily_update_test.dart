@@ -12,8 +12,8 @@ import 'package:path_of_nur/shared/application/daily_clock_provider.dart';
 import 'package:path_of_nur/shared/persistence/local_store.dart';
 
 class _FakeLocalNotificationService extends LocalNotificationService {
-  _FakeLocalNotificationService(LocalStore store)
-    : super(store, const AdhanRepository());
+  _FakeLocalNotificationService(Ref ref, LocalStore store)
+    : super(ref, store, const AdhanRepository());
 
   ReminderSchedulerState? lastPlan;
   AdhanSettings? lastAdhanSettings;
@@ -161,6 +161,10 @@ void main() {
         isTrue,
       );
       expect(
+        day1Plan.items.any((i) => i.id == 'prayer.dhuhr.followUp'),
+        isTrue,
+      );
+      expect(
         day1Plan.items.any((i) => i.id == 'prayer.asr.beforeQaza'),
         isTrue,
       );
@@ -205,13 +209,16 @@ void main() {
       SharedPreferences.setMockInitialValues({});
       final prefs = await SharedPreferences.getInstance();
       final store = LocalStore(prefs);
-      final fakeService = _FakeLocalNotificationService(store);
       final now = DateTime(2026, 3, 14, 9, 0);
+      late final _FakeLocalNotificationService fakeService;
 
       final container = ProviderContainer(
         overrides: [
           sharedPreferencesProvider.overrideWithValue(prefs),
-          localNotificationServiceProvider.overrideWithValue(fakeService),
+          localNotificationServiceProvider.overrideWith((ref) {
+            fakeService = _FakeLocalNotificationService(ref, store);
+            return fakeService;
+          }),
           dailyNowProvider.overrideWith((ref) => Stream.value(now)),
           prayerScheduleProvider.overrideWithValue(
             const <PrayerScheduleItem>[],
@@ -236,13 +243,16 @@ void main() {
       SharedPreferences.setMockInitialValues({});
       final prefs = await SharedPreferences.getInstance();
       final store = LocalStore(prefs);
-      final fakeService = _FakeLocalNotificationService(store);
       final now = DateTime(2026, 3, 14, 9, 0);
+      late final _FakeLocalNotificationService fakeService;
 
       final container = ProviderContainer(
         overrides: [
           sharedPreferencesProvider.overrideWithValue(prefs),
-          localNotificationServiceProvider.overrideWithValue(fakeService),
+          localNotificationServiceProvider.overrideWith((ref) {
+            fakeService = _FakeLocalNotificationService(ref, store);
+            return fakeService;
+          }),
           dailyNowProvider.overrideWith((ref) => Stream.value(now)),
           prayerScheduleProvider.overrideWithValue(<PrayerScheduleItem>[
             _item(

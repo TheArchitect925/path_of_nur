@@ -3,10 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../l10n/app_localizations.dart';
-import '../../../shared/widgets/app_page_scaffold.dart';
+import '../../../shared/content/learning_quote.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/quran_navigation.dart';
-import '../../../shared/widgets/quran_quote_block.dart';
+import '../../../shared/widgets/section_hub_scaffold.dart';
 import '../application/growth_models.dart';
 import '../application/growth_providers.dart';
 import 'widgets/growth_ui_helpers.dart';
@@ -23,25 +23,39 @@ class GrowthHabitsPage extends ConsumerWidget {
     final quranTracker = ref.watch(growthRamadanQuranTrackerProvider);
     final fastTracking = ref.watch(growthFastTrackingProvider);
     final summary = ref.watch(growthTodaySummaryProvider);
-    final grouped = ref.watch(growthDueHabitsByCategoryProvider);
+    final sections = ref.watch(growthDueHabitSectionsProvider);
     final logs = ref.watch(growthLogsForSelectedDateProvider);
     final endOfDay = ref.watch(growthEndOfDaySummaryProvider);
     final encouragement = ref.watch(growthEncouragementCopyProvider);
-    final categoryMeta = ref.watch(growthCategoryContentByTypeProvider);
 
-    return AppPageScaffold(
+    return SectionHubScaffold(
       headerIcon: Icons.checklist_rtl_rounded,
       title: l10n.growthTodayHabitTrackerTitle,
       subtitle: l10n.growthHabitsPageSubtitle,
-      quote: const QuranQuote(
-        arabic: 'وَقُل رَّبِّ زِدْنِي عِلْمًا',
-        transliteration: 'Wa qul rabbi zidni ilma',
-        translation: 'My Lord, increase me in knowledge.',
-        surah: 20,
-        verse: 114,
-        locationLabel: 'Qur’an 20:114',
-      ),
+      quote: buildLearningCompactQuote(),
       onQuoteTap: (quote) => openQuranQuoteLocation(context, quote),
+      shortcutOpenLabel: l10n.learnShortcutOpen,
+      shortcutCloseLabel: l10n.learnShortcutClose,
+      shortcutActions: [
+        SectionShortcutAction(
+          label: l10n.growthTrackingOverviewTitle,
+          supportingText: l10n.growthTrackingOverviewSubtitle,
+          icon: Icons.dashboard_customize_rounded,
+          onTap: () => context.pushNamed('growthTrackingDashboard'),
+        ),
+        SectionShortcutAction(
+          label: l10n.growthTrackingCalendarTitle,
+          supportingText: l10n.growthTrackingCalendarSubtitle,
+          icon: Icons.calendar_month_rounded,
+          onTap: () => context.pushNamed('growthHabitCalendar'),
+        ),
+        SectionShortcutAction(
+          label: l10n.growthHabitSettingsTitle,
+          supportingText: l10n.growthHabitSettingsSubtitle,
+          icon: Icons.tune_rounded,
+          onTap: () => context.pushNamed('growthHabitSettings'),
+        ),
+      ],
       children: [
         SizedBox(
           height: 56,
@@ -306,25 +320,24 @@ class GrowthHabitsPage extends ConsumerWidget {
           ),
         ),
         const SizedBox(height: 14),
-        if (grouped.isEmpty)
+        if (sections.isEmpty)
           PremiumCard(child: Text(l10n.growthHabitsNoHabitsDue)),
-        ...grouped.entries.map(
-          (entry) => Padding(
+        ...sections.map(
+          (section) => Padding(
             padding: const EdgeInsets.only(bottom: 12),
             child: PremiumCard(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    categoryMeta[entry.key]?.title ??
-                        growthCategoryLabel(entry.key),
+                    section.title,
                     style: const TextStyle(fontWeight: FontWeight.w700),
                   ),
-                  if (categoryMeta[entry.key] != null)
+                  if (section.subtitle != null && section.subtitle!.isNotEmpty)
                     Padding(
                       padding: const EdgeInsets.only(top: 2),
                       child: Text(
-                        categoryMeta[entry.key]!.subtitle,
+                        section.subtitle!,
                         style: const TextStyle(
                           color: Color(0xFF6A5A4A),
                           fontSize: 12.5,
@@ -332,7 +345,7 @@ class GrowthHabitsPage extends ConsumerWidget {
                       ),
                     ),
                   const SizedBox(height: 8),
-                  ...entry.value.map((habit) {
+                  ...section.habits.map((habit) {
                     final log = logs[habit.id];
                     final status = log?.status;
                     final completed = status == GrowthHabitStatus.completed;

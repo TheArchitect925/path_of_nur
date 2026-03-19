@@ -13,8 +13,8 @@ void main() {
     final question = service.questionAfterLesson(
       lesson: lesson,
       lessons: kidsDuaStarterLessons,
-      state: const KidsDuaLearningState(
-        progressByLessonId: <String, KidsDuaLessonProgress>{
+      state: KidsDuaLearningState.initial().copyWith(
+        progressByLessonId: const <String, KidsDuaLessonProgress>{
           'before-sleep': KidsDuaLessonProgress(
             lessonId: 'before-sleep',
             openCount: 1,
@@ -28,12 +28,7 @@ void main() {
             startedAtIso: '2026-03-18T07:00:00',
           ),
         },
-        recentLessonIds: <String>['before-sleep'],
-        unlockedRewardIds: <String>{},
-        stickerUnlockedAtById: <String, String>{},
-        totalPracticeSessions: 0,
-        totalFeatureXpAwarded: 0,
-        totalFeatureDropsAwarded: 0,
+        recentLessonIds: const <String>['before-sleep'],
       ),
     );
 

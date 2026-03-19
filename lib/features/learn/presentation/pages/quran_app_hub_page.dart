@@ -3,8 +3,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/theme/app_colors.dart';
+import '../../../../l10n/app_localizations.dart';
+import '../../../../shared/theme/islamic_icons.dart';
 import '../../../../shared/widgets/premium_card.dart';
+import '../../../../shared/widgets/quran_navigation.dart';
+import '../../../../shared/widgets/quran_quote_block.dart';
+import '../../../../shared/widgets/section_hub_scaffold.dart';
 import '../../quran/application/quran_providers.dart';
+import '../../quran/domain/quran_content_refs.dart';
 import '../widgets/learn_hub_page_scaffold.dart';
 
 class QuranAppHubPage extends ConsumerWidget {
@@ -12,110 +18,102 @@ class QuranAppHubPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     final continueSummary = ref.watch(quranContinueReadingSummaryProvider);
     final dailyVerse = ref.watch(quranDailyVerseProvider);
-    final bookmarks = ref.watch(quranBookmarksProvider);
-    final notes = ref.watch(quranNotesProvider);
+    ref.watch(quranBookmarksProvider);
+    ref.watch(quranNotesProvider);
 
     return LearnHubPageScaffold(
-      headerIcon: Icons.menu_book_rounded,
-      title: 'Qur’an',
-      subtitle:
-          'One calm entry for reading, study, memorization, words, topics, and notes without losing the wider Qur’an tools around it.',
-      quote: null,
+      headerIcon: IslamicIcons.quran,
+      title: l10n.quranHubTitle,
+      subtitle: l10n.quranHubSubtitle,
+      headerActions: [
+        IconButton(
+          onPressed: () => openQuranQuoteLocation(
+            context,
+            QuranQuote(
+              ref: QuranQuoteRef(
+                surah: dailyVerse.surahNumber,
+                ayah: dailyVerse.ayahNumber,
+              ),
+            ),
+          ),
+          icon: const Icon(Icons.auto_stories_rounded),
+          tooltip: l10n.quranReferenceViewerOpenInReader,
+        ),
+      ],
+      shortcutActions: <LearnHubShortcutAction>[
+        LearnHubShortcutAction(
+          label: l10n.learnQuranContinueTitle,
+          supportingText: continueSummary.locationLabel,
+          icon: Icons.play_circle_fill_rounded,
+          onTap: () => context.pushNamed(
+            'quranReader',
+            pathParameters: {
+              'surahNumber': continueSummary.surahNumber.toString(),
+            },
+            queryParameters: {'ayah': continueSummary.ayahNumber.toString()},
+          ),
+        ),
+      ],
       children: [
-        PremiumCard(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Continue with the Qur’an',
-                style: Theme.of(context)
-                    .textTheme
-                    .titleSmall
-                    ?.copyWith(fontWeight: FontWeight.w700),
+        _SectionHeader(
+          title: l10n.quranHubJourneysTitle,
+          subtitle: l10n.quranHubJourneysSubtitle,
+        ),
+        const SizedBox(height: 8),
+        SectionHubActionGrid(
+          actions: [
+            SectionHubAction(
+              title: l10n.quranHubJourneyOfQuranTitle,
+              subtitle: l10n.quranHubJourneyOfQuranSubtitle,
+              icon: Icons.route_rounded,
+              color: const Color(0xFFECE5D7),
+              accentColor: const Color(0xFF6F5A3E),
+              onTap: () => context.pushNamed(
+                'learnJourneyDetail',
+                pathParameters: const {'journeyId': 'journey-quran'},
               ),
-              const SizedBox(height: 6),
-              Text(
-                '${continueSummary.surahName} ${continueSummary.surahNumber}:${continueSummary.ayahNumber}',
+            ),
+            SectionHubAction(
+              title: l10n.quranHubFatihahJourneyTitle,
+              subtitle: l10n.quranHubFatihahJourneySubtitle,
+              icon: Icons.auto_stories_rounded,
+              color: const Color(0xFFE4ECD9),
+              accentColor: const Color(0xFF597045),
+              onTap: () => context.pushNamed(
+                'learnJourneyDetail',
+                pathParameters: const {'journeyId': 'understanding-al-fatihah'},
               ),
-              const SizedBox(height: 4),
-              Text(
-                'Bookmarks ${bookmarks.length} • Notes ${notes.length}',
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: AppColors.onSurfaceSubtle,
-                    ),
+            ),
+            SectionHubAction(
+              title: l10n.quranHubShortSurahsJourneyTitle,
+              subtitle: l10n.quranHubShortSurahsJourneySubtitle,
+              icon: Icons.menu_book_outlined,
+              color: const Color(0xFFE9E0EB),
+              accentColor: const Color(0xFF755C7C),
+              onTap: () => context.pushNamed(
+                'learnJourneyDetail',
+                pathParameters: const {'journeyId': 'short-surahs'},
               ),
-              const SizedBox(height: 10),
-              FilledButton.tonalIcon(
-                onPressed: () => context.pushNamed(
-                  'quranReader',
-                  pathParameters: {
-                    'surahNumber': continueSummary.surahNumber.toString(),
-                  },
-                  queryParameters: {
-                    'ayah': continueSummary.ayahNumber.toString(),
-                  },
-                ),
-                icon: const Icon(Icons.play_circle_fill_rounded),
-                label: const Text('Continue Reading'),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
         const SizedBox(height: 12),
         _SectionHeader(
-          title: 'Journeys',
-          subtitle:
-              'Use the staged paths when you want structure, continuity, and clearer next steps.',
+          title: l10n.quranHubModesTitle,
+          subtitle: l10n.quranHubModesSubtitle,
         ),
         const SizedBox(height: 8),
-        _QuranJourneyCard(
-          title: 'Journey of the Qur’an',
-          subtitle:
-              'Open the Book, navigate it, and build a first relationship.',
-          icon: Icons.route_rounded,
-          onTap: () => context.pushNamed(
-            'learnJourneyDetail',
-            pathParameters: const {'journeyId': 'journey-quran'},
-          ),
-        ),
-        const SizedBox(height: 10),
-        _QuranJourneyCard(
-          title: 'Understanding Al-Fatihah',
-          subtitle:
-              'Begin with the surah you recite every day and connect it to salah.',
-          icon: Icons.auto_stories_rounded,
-          onTap: () => context.pushNamed(
-            'learnJourneyDetail',
-            pathParameters: const {'journeyId': 'understanding-al-fatihah'},
-          ),
-        ),
-        const SizedBox(height: 10),
-        _QuranJourneyCard(
-          title: 'Short Surahs',
-          subtitle:
-              'Use the shorter surahs as a bridge between recitation, prayer, and meaning.',
-          icon: Icons.menu_book_outlined,
-          onTap: () => context.pushNamed(
-            'learnJourneyDetail',
-            pathParameters: const {'journeyId': 'short-surahs'},
-          ),
-        ),
-        const SizedBox(height: 12),
-        _SectionHeader(
-          title: 'Modes',
-          subtitle:
-              'One primary Qur’an space, then simple modes for what you want to do right now.',
-        ),
-        const SizedBox(height: 8),
-        _QuranModeGrid(
-          cards: [
-            _QuranModeCardData(
-              title: 'Read',
-              subtitle:
-                  'Open the reader from where you last left off or begin a new passage.',
+        SectionHubActionGrid(
+          actions: [
+            SectionHubAction(
+              title: l10n.quranHubReadTitle,
+              subtitle: l10n.quranHubReadSubtitle,
               icon: Icons.chrome_reader_mode_rounded,
+              color: const Color(0xFFF0E2D6),
+              accentColor: const Color(0xFF8D6143),
               onTap: () => context.pushNamed(
                 'quranReader',
                 pathParameters: {
@@ -126,39 +124,44 @@ class QuranAppHubPage extends ConsumerWidget {
                 },
               ),
             ),
-            _QuranModeCardData(
-              title: 'Study',
-              subtitle:
-                  'Open the study hub for explanation, reflection, and guided learning paths.',
+            SectionHubAction(
+              title: l10n.quranHubStudyTitle,
+              subtitle: l10n.quranHubStudySubtitle,
               icon: Icons.school_rounded,
+              color: const Color(0xFFE2E5F3),
+              accentColor: const Color(0xFF545E8D),
               onTap: () => context.pushNamed('quranLearningHub'),
             ),
-            _QuranModeCardData(
-              title: 'Memorize',
-              subtitle:
-                  'Review and strengthen recall through the current memorization-oriented tools.',
+            SectionHubAction(
+              title: l10n.quranHubMemorizeTitle,
+              subtitle: l10n.quranHubMemorizeSubtitle,
               icon: Icons.repeat_rounded,
+              color: const Color(0xFFEADFEB),
+              accentColor: const Color(0xFF7D5D81),
               onTap: () => context.pushNamed('quranWordReview'),
             ),
-            _QuranModeCardData(
-              title: 'Words',
-              subtitle:
-                  'Learn recurring Qur’anic vocabulary and build recognition gradually.',
+            SectionHubAction(
+              title: l10n.quranHubWordsTitle,
+              subtitle: l10n.quranHubWordsSubtitle,
               icon: Icons.translate_rounded,
+              color: const Color(0xFFE6EEF1),
+              accentColor: const Color(0xFF45636D),
               onTap: () => context.pushNamed('quranTopWords'),
             ),
-            _QuranModeCardData(
-              title: 'Topics',
-              subtitle:
-                  'Follow themes and verses without needing to browse the whole text first.',
+            SectionHubAction(
+              title: l10n.quranHubTopicsTitle,
+              subtitle: l10n.quranHubTopicsSubtitle,
               icon: Icons.hub_outlined,
+              color: const Color(0xFFE5EFE9),
+              accentColor: const Color(0xFF4F6B59),
               onTap: () => context.pushNamed('quranTopicExplorer'),
             ),
-            _QuranModeCardData(
-              title: 'Notes',
-              subtitle:
-                  'Return to saved reflections, highlights, and verse-linked notes.',
+            SectionHubAction(
+              title: l10n.quranHubNotesTitle,
+              subtitle: l10n.quranHubNotesSubtitle,
               icon: Icons.note_alt_outlined,
+              color: const Color(0xFFEFE7DE),
+              accentColor: const Color(0xFF6D5740),
               onTap: () => context.pushNamed('quranNotes'),
             ),
           ],
@@ -169,11 +172,10 @@ class QuranAppHubPage extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Today’s Light',
-                style: Theme.of(context)
-                    .textTheme
-                    .titleSmall
-                    ?.copyWith(fontWeight: FontWeight.w700),
+                l10n.quranHubDailyLightTitle,
+                style: Theme.of(
+                  context,
+                ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
               ),
               const SizedBox(height: 6),
               Text(dailyVerse.locationLabel),
@@ -181,8 +183,8 @@ class QuranAppHubPage extends ConsumerWidget {
               Text(
                 dailyVerse.translation,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: AppColors.onSurfaceSubtle,
-                    ),
+                  color: AppColors.onSurfaceSubtle,
+                ),
               ),
               const SizedBox(height: 10),
               FilledButton.tonalIcon(
@@ -191,11 +193,10 @@ class QuranAppHubPage extends ConsumerWidget {
                   pathParameters: {
                     'surahNumber': dailyVerse.surahNumber.toString(),
                   },
-                  queryParameters: {
-                    'ayah': dailyVerse.ayahNumber.toString()},
+                  queryParameters: {'ayah': dailyVerse.ayahNumber.toString()},
                 ),
                 icon: const Icon(Icons.auto_stories_rounded),
-                label: const Text('Open Verse'),
+                label: Text(l10n.quranHubOpenVerseAction),
               ),
             ],
           ),
@@ -206,18 +207,17 @@ class QuranAppHubPage extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Related tools',
-                style: Theme.of(context)
-                    .textTheme
-                    .titleSmall
-                    ?.copyWith(fontWeight: FontWeight.w700),
+                l10n.quranHubRelatedToolsTitle,
+                style: Theme.of(
+                  context,
+                ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
               ),
               const SizedBox(height: 6),
               Text(
-                'Secondary paths stay available here without competing with the primary Qur’an flow.',
+                l10n.quranHubRelatedToolsSubtitle,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: AppColors.onSurfaceSubtle,
-                    ),
+                  color: AppColors.onSurfaceSubtle,
+                ),
               ),
               const SizedBox(height: 10),
               Wrap(
@@ -225,22 +225,22 @@ class QuranAppHubPage extends ConsumerWidget {
                 runSpacing: 8,
                 children: [
                   _SecondaryToolChip(
-                    label: 'Search',
+                    label: l10n.quranSearchTitle,
                     icon: Icons.search_rounded,
                     onTap: () => context.pushNamed('quranSearch'),
                   ),
                   _SecondaryToolChip(
-                    label: 'Bookmarks',
+                    label: l10n.learnQuranBookmarksTitle,
                     icon: Icons.bookmark_outline_rounded,
                     onTap: () => context.pushNamed('quranBookmarks'),
                   ),
                   _SecondaryToolChip(
-                    label: 'Qur’anic Arabic',
+                    label: l10n.learnCategoryQuranicArabicTitle,
                     icon: Icons.spellcheck_rounded,
                     onTap: () => context.pushNamed('quranArabic'),
                   ),
                   _SecondaryToolChip(
-                    label: 'Universe',
+                    label: l10n.quranHubUniverseToolTitle,
                     icon: Icons.travel_explore_rounded,
                     onTap: () => context.pushNamed('quranUniverse'),
                   ),
@@ -267,132 +267,18 @@ class _SectionHeader extends StatelessWidget {
       children: [
         Text(
           title,
-          style: Theme.of(context)
-              .textTheme
-              .titleSmall
-              ?.copyWith(fontWeight: FontWeight.w700),
+          style: Theme.of(
+            context,
+          ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
         ),
         const SizedBox(height: 6),
         Text(
           subtitle,
-          style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                color: AppColors.onSurfaceSubtle,
-              ),
+          style: Theme.of(
+            context,
+          ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),
         ),
       ],
-    );
-  }
-}
-
-class _QuranJourneyCard extends StatelessWidget {
-  const _QuranJourneyCard({
-    required this.title,
-    required this.subtitle,
-    required this.icon,
-    required this.onTap,
-  });
-
-  final String title;
-  final String subtitle;
-  final IconData icon;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return PremiumCard(
-      child: ListTile(
-        contentPadding: EdgeInsets.zero,
-        leading: CircleAvatar(
-          backgroundColor: const Color(0xFFEADCC7),
-          child: Icon(icon, color: const Color(0xFF7A6241)),
-        ),
-        title: Text(title),
-        subtitle: Text(subtitle),
-        trailing: const Icon(Icons.chevron_right_rounded),
-        onTap: onTap,
-      ),
-    );
-  }
-}
-
-class _QuranModeGrid extends StatelessWidget {
-  const _QuranModeGrid({required this.cards});
-
-  final List<_QuranModeCardData> cards;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        for (var index = 0; index < cards.length; index += 2) ...[
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(child: _QuranModeCard(data: cards[index])),
-              const SizedBox(width: 10),
-              Expanded(
-                child: index + 1 < cards.length
-                    ? _QuranModeCard(data: cards[index + 1])
-                    : const SizedBox.shrink(),
-              ),
-            ],
-          ),
-          if (index + 2 < cards.length) const SizedBox(height: 10),
-        ],
-      ],
-    );
-  }
-}
-
-class _QuranModeCard extends StatelessWidget {
-  const _QuranModeCard({required this.data});
-
-  final _QuranModeCardData data;
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: data.onTap,
-      borderRadius: BorderRadius.circular(18),
-      child: Container(
-        padding: const EdgeInsets.all(14),
-        decoration: BoxDecoration(
-          color: const Color(0xFFF7F1E8),
-          borderRadius: BorderRadius.circular(18),
-          border: Border.all(color: const Color(0xFFE3D6C4)),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              width: 40,
-              height: 40,
-              decoration: BoxDecoration(
-                color: const Color(0xFFE8DCC8),
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Icon(data.icon, color: const Color(0xFF71593C)),
-            ),
-            const SizedBox(height: 12),
-            Text(
-              data.title,
-              style: const TextStyle(
-                fontWeight: FontWeight.w700,
-                color: Color(0xFF30281F),
-              ),
-            ),
-            const SizedBox(height: 4),
-            Text(
-              data.subtitle,
-              style: const TextStyle(
-                fontSize: 12.6,
-                color: Color(0xFF675B4E),
-                height: 1.35,
-              ),
-            ),
-          ],
-        ),
-      ),
     );
   }
 }
@@ -416,18 +302,4 @@ class _SecondaryToolChip extends StatelessWidget {
       onPressed: onTap,
     );
   }
-}
-
-class _QuranModeCardData {
-  const _QuranModeCardData({
-    required this.title,
-    required this.subtitle,
-    required this.icon,
-    required this.onTap,
-  });
-
-  final String title;
-  final String subtitle;
-  final IconData icon;
-  final VoidCallback onTap;
 }

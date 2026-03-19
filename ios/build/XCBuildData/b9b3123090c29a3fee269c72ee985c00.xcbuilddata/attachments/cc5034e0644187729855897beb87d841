@@ -1,0 +1,159 @@
+{
+  "" : {
+    "diagnostics" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/PathOfNurTV-primary.dia",
+    "emit-module-dependencies" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/PathOfNurTV-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/PathOfNurTV-primary-emit-module.dia",
+    "pch" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/PathOfNurTV-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/PathOfNurTV-primary.swiftdeps"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/App/PathOfNurTVApp.swift" : {
+    "const-values" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/PathOfNurTVApp.swiftconstvalues",
+    "dependencies" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/PathOfNurTVApp.d",
+    "diagnostics" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/PathOfNurTVApp.dia",
+    "index-unit-output-path" : "/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/PathOfNurTVApp.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/PathOfNurTVApp.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/PathOfNurTVApp.o",
+    "swift-dependencies" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/PathOfNurTVApp.swiftdeps",
+    "swiftmodule" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/PathOfNurTVApp~partial.swiftmodule"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/App/TVRootView.swift" : {
+    "const-values" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVRootView.swiftconstvalues",
+    "dependencies" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVRootView.d",
+    "diagnostics" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVRootView.dia",
+    "index-unit-output-path" : "/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVRootView.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVRootView.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVRootView.o",
+    "swift-dependencies" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVRootView.swiftdeps",
+    "swiftmodule" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVRootView~partial.swiftmodule"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Components/TVHeroCard.swift" : {
+    "const-values" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVHeroCard.swiftconstvalues",
+    "dependencies" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVHeroCard.d",
+    "diagnostics" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVHeroCard.dia",
+    "index-unit-output-path" : "/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVHeroCard.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVHeroCard.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVHeroCard.o",
+    "swift-dependencies" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVHeroCard.swiftdeps",
+    "swiftmodule" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVHeroCard~partial.swiftmodule"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Components/TVQuickLinkCard.swift" : {
+    "const-values" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVQuickLinkCard.swiftconstvalues",
+    "dependencies" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVQuickLinkCard.d",
+    "diagnostics" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVQuickLinkCard.dia",
+    "index-unit-output-path" : "/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVQuickLinkCard.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVQuickLinkCard.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVQuickLinkCard.o",
+    "swift-dependencies" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVQuickLinkCard.swiftdeps",
+    "swiftmodule" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVQuickLinkCard~partial.swiftmodule"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Components/TVSectionHeader.swift" : {
+    "const-values" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVSectionHeader.swiftconstvalues",
+    "dependencies" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVSectionHeader.d",
+    "diagnostics" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVSectionHeader.dia",
+    "index-unit-output-path" : "/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVSectionHeader.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVSectionHeader.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVSectionHeader.o",
+    "swift-dependencies" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVSectionHeader.swiftdeps",
+    "swiftmodule" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVSectionHeader~partial.swiftmodule"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Components/TVShelfCard.swift" : {
+    "const-values" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVShelfCard.swiftconstvalues",
+    "dependencies" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVShelfCard.d",
+    "diagnostics" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVShelfCard.dia",
+    "index-unit-output-path" : "/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVShelfCard.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVShelfCard.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVShelfCard.o",
+    "swift-dependencies" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVShelfCard.swiftdeps",
+    "swiftmodule" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVShelfCard~partial.swiftmodule"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Data/TVSeedRepository.swift" : {
+    "const-values" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVSeedRepository.swiftconstvalues",
+    "dependencies" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVSeedRepository.d",
+    "diagnostics" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVSeedRepository.dia",
+    "index-unit-output-path" : "/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVSeedRepository.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVSeedRepository.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVSeedRepository.o",
+    "swift-dependencies" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVSeedRepository.swiftdeps",
+    "swiftmodule" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVSeedRepository~partial.swiftmodule"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Models/TVModels.swift" : {
+    "const-values" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVModels.swiftconstvalues",
+    "dependencies" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVModels.d",
+    "diagnostics" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVModels.dia",
+    "index-unit-output-path" : "/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVModels.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVModels.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVModels.o",
+    "swift-dependencies" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVModels.swiftdeps",
+    "swiftmodule" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVModels~partial.swiftmodule"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Screens/TVHomeScreen.swift" : {
+    "const-values" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVHomeScreen.swiftconstvalues",
+    "dependencies" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVHomeScreen.d",
+    "diagnostics" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVHomeScreen.dia",
+    "index-unit-output-path" : "/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVHomeScreen.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVHomeScreen.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVHomeScreen.o",
+    "swift-dependencies" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVHomeScreen.swiftdeps",
+    "swiftmodule" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVHomeScreen~partial.swiftmodule"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Screens/TVPlaceholderScreen.swift" : {
+    "const-values" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVPlaceholderScreen.swiftconstvalues",
+    "dependencies" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVPlaceholderScreen.d",
+    "diagnostics" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVPlaceholderScreen.dia",
+    "index-unit-output-path" : "/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVPlaceholderScreen.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVPlaceholderScreen.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVPlaceholderScreen.o",
+    "swift-dependencies" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVPlaceholderScreen.swiftdeps",
+    "swiftmodule" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVPlaceholderScreen~partial.swiftmodule"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Theme/TVBackgroundView.swift" : {
+    "const-values" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVBackgroundView.swiftconstvalues",
+    "dependencies" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVBackgroundView.d",
+    "diagnostics" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVBackgroundView.dia",
+    "index-unit-output-path" : "/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVBackgroundView.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVBackgroundView.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVBackgroundView.o",
+    "swift-dependencies" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVBackgroundView.swiftdeps",
+    "swiftmodule" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVBackgroundView~partial.swiftmodule"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Theme/TVFocusableCardModifier.swift" : {
+    "const-values" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVFocusableCardModifier.swiftconstvalues",
+    "dependencies" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVFocusableCardModifier.d",
+    "diagnostics" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVFocusableCardModifier.dia",
+    "index-unit-output-path" : "/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVFocusableCardModifier.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVFocusableCardModifier.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVFocusableCardModifier.o",
+    "swift-dependencies" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVFocusableCardModifier.swiftdeps",
+    "swiftmodule" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVFocusableCardModifier~partial.swiftmodule"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Theme/TVTheme.swift" : {
+    "const-values" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVTheme.swiftconstvalues",
+    "dependencies" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVTheme.d",
+    "diagnostics" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVTheme.dia",
+    "index-unit-output-path" : "/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVTheme.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVTheme.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVTheme.o",
+    "swift-dependencies" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVTheme.swiftdeps",
+    "swiftmodule" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVTheme~partial.swiftmodule"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/ViewModels/TVAppViewModel.swift" : {
+    "const-values" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVAppViewModel.swiftconstvalues",
+    "dependencies" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVAppViewModel.d",
+    "diagnostics" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVAppViewModel.dia",
+    "index-unit-output-path" : "/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVAppViewModel.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVAppViewModel.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVAppViewModel.o",
+    "swift-dependencies" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVAppViewModel.swiftdeps",
+    "swiftmodule" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVAppViewModel~partial.swiftmodule"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/DerivedSources/GeneratedAssetSymbols.swift" : {
+    "const-values" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftconstvalues",
+    "dependencies" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/GeneratedAssetSymbols.d",
+    "diagnostics" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/GeneratedAssetSymbols.dia",
+    "index-unit-output-path" : "/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/GeneratedAssetSymbols.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "swift-dependencies" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftdeps",
+    "swiftmodule" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Debug-appletvos/PathOfNurTV.build/Objects-normal/arm64/GeneratedAssetSymbols~partial.swiftmodule"
+  }
+}

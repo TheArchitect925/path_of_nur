@@ -1,7 +1,14 @@
-# Path of Nūr tvOS Companion
+# Path of Nūr tvOS Reference Archive
 
-This directory contains a native SwiftUI tvOS companion app foundation for Path of Nūr.
+This directory is no longer the canonical tvOS app implementation.
 
-It exists separately from the Flutter mobile app because Flutter does not officially support tvOS as a production target. The tvOS experience is therefore implemented natively and kept focused on large-screen viewing, family-safe browsing, audio, prayer display, and ambient spiritual use.
+The active tvOS source now lives in:
 
-See `TVOS_DEVELOPER_GUIDE.md` for architecture and next steps.
+- `ios/PathOfNurTV`
+- target: `PathOfNurTV` in `ios/Runner.xcodeproj`
+
+`apple_tv_app/` remains in the repository as reference-only material from the earlier native tvOS exploration. It may still contain reusable layout ideas and component patterns, but it should not be advanced as a parallel implementation path.
+
+The current canonical tvOS V1 scope is Home + Qur'an in `ios/PathOfNurTV`.
+
+See `ARCHIVE_REFERENCE_ONLY.md` and `TVOS_DEVELOPER_GUIDE.md` for the current status.
