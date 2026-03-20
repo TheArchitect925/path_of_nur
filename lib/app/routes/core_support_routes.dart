@@ -14,6 +14,8 @@ import '../../features/learn/quran/presentation/quran_words_page.dart';
 import '../../features/ocean/presentation/ocean_dashboard_page.dart';
 import '../../features/ocean/presentation/ocean_drops_page.dart';
 import '../../features/profile/presentation/profile_coming_soon_page.dart';
+import '../../features/profile/presentation/help_guide_detail_page.dart';
+import '../../features/profile/presentation/help_guide_hub_page.dart';
 import '../../features/profile/presentation/profile_summary_page.dart';
 import '../../features/profile/presentation/profile_whats_new_page.dart';
 import '../../features/profile/presentation/settings_page.dart';
@@ -123,6 +125,21 @@ List<RouteBase> buildCoreSupportRoutes() {
       name: 'settingsAbout',
       pageBuilder: (context, state) => const MaterialPage(
         child: SettingsPage(category: SettingsCategory.about),
+      ),
+    ),
+    GoRoute(
+      path: '/settings/help-guide',
+      name: 'settingsHelpGuide',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: HelpGuideHubPage()),
+    ),
+    GoRoute(
+      path: '/settings/help-guide/:guideId',
+      name: 'settingsHelpGuideDetail',
+      pageBuilder: (context, state) => MaterialPage(
+        child: HelpGuideDetailPage(
+          guideId: state.pathParameters['guideId'] ?? '',
+        ),
       ),
     ),
     GoRoute(

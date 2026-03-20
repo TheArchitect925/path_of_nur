@@ -7,7 +7,7 @@ import '../../application/growth_models.dart';
 String growthCategoryLabel(GrowthHabitCategory category) {
   switch (category) {
     case GrowthHabitCategory.dailyWorship:
-      return 'Daily Worship';
+      return 'Daily Ibadah';
     case GrowthHabitCategory.sunnahPractices:
       return 'Sunnah Practices';
     case GrowthHabitCategory.character:

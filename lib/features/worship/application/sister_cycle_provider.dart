@@ -156,8 +156,8 @@ final sisterCycleGuidanceProvider = Provider<SisterCycleGuidance>((ref) {
   return SisterCycleGuidance(
     dayNumber: dayNumber.clamp(1, 99),
     summary: nearingEnd
-        ? 'Near expected end. Prepare to resume regular prayer routine when pure.'
-        : 'Prayer and fasting are paused for this period. Keep worship through alternatives.',
+        ? 'Near expected end. Prepare to resume regular salah routine when pure.'
+        : 'Salah and fasting are paused for this period. Keep ibadah through alternatives.',
     recommendedFocus: const [
       'Morning/evening dhikr',
       'Du\'a and gratitude journaling',

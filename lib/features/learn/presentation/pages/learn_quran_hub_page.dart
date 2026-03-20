@@ -4,8 +4,12 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../app/app_router.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../l10n/app_localizations.dart';
+import '../../../../shared/application/special_mode_provider.dart';
+import '../../../../shared/content/page_description_copy.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/quran_reference_block.dart';
+import '../../../../shared/widgets/quran_verse_content.dart';
 import '../../../../shared/widgets/segmented_pill_control.dart';
 import '../../hadith/application/hadith_foundation_repository.dart';
 import '../../hadith/domain/hadith_foundation_models.dart';
@@ -86,6 +90,10 @@ class _LearnQuranHubPageState extends ConsumerState<LearnQuranHubPage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final isKidsMode = ref.watch(
+      specialModeProvider.select((mode) => mode.isKids),
+    );
     final verses = ref.watch(quranLearningVersesProvider);
     final paths = ref.watch(quranLearningPathsProvider);
     final memorization = ref.watch(quranMemorizationProgressProvider);
@@ -96,8 +104,11 @@ class _LearnQuranHubPageState extends ConsumerState<LearnQuranHubPage> {
     return LearnHubPageScaffold(
       headerIcon: Icons.school_rounded,
       title: 'Qur’an Study',
-      subtitle:
-          'The study-focused layer of the Qur’an experience: understanding, reflection, guided paths, and memorization support.',
+      subtitle: localizedAppPageDescription(
+        context,
+        AppPageDescriptionKey.quranStudyHub,
+        kidsMode: isKidsMode,
+      ),
       children: [
         PremiumCard(
           child: Column(
@@ -176,13 +187,15 @@ class _LearnQuranHubPageState extends ConsumerState<LearnQuranHubPage> {
                   subtitle: Text(verse.translation),
                   children: [
                     const SizedBox(height: 8),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        verse.arabicText,
-                        textDirection: TextDirection.rtl,
-                        style: Theme.of(context).textTheme.titleMedium,
+                    QuranVerseContent(
+                      source: QuranVerseSource(
+                        referenceText: 'Qur’an ${verse.surah}:${verse.ayah}',
+                        arabicText: verse.arabicText,
+                        translation: verse.translation,
                       ),
+                      center: false,
+                      dense: true,
+                      arabicBaseSize: 25,
                     ),
                     const SizedBox(height: 8),
                     Align(
@@ -246,7 +259,7 @@ class _LearnQuranHubPageState extends ConsumerState<LearnQuranHubPage> {
                           queryParameters: {'ayah': '${verse.ayah}'},
                         ),
                         icon: const Icon(Icons.open_in_new_rounded),
-                        label: const Text('Open in Reader'),
+                        label: Text(l10n.learnQuranHubOpenReaderAction),
                       ),
                     ),
                   ],
@@ -261,7 +274,7 @@ class _LearnQuranHubPageState extends ConsumerState<LearnQuranHubPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Daily Reflection',
+                  l10n.learnQuranHubDailyVerseTitle,
                   style: Theme.of(
                     context,
                   ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
@@ -279,7 +292,7 @@ class _LearnQuranHubPageState extends ConsumerState<LearnQuranHubPage> {
                 FilledButton.tonalIcon(
                   onPressed: () => context.pushNamed('journalCreate'),
                   icon: const Icon(Icons.edit_note_rounded),
-                  label: const Text('Write Reflection Journal'),
+                  label: Text(l10n.learnQuranHubWriteJournalAction),
                 ),
               ],
             ),

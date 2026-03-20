@@ -96,7 +96,6 @@ class _PrayerLocationPickerSheetState extends State<PrayerLocationPickerSheet> {
         child: Padding(
           padding: const EdgeInsets.fromLTRB(12, 0, 12, 12),
           child: PremiumCard(
-            surfaceAlphaOverride: 0.96,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

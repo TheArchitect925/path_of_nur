@@ -479,9 +479,9 @@ void main() {
 
     expect(response.online, isFalse);
     expect(response.acceptedDedupKeys, isEmpty);
-    expect(response.errorMessage, contains('iCloud'));
+    expect(response.errorMessage, 'sync_error_icloud_unavailable');
     expect(response.statusCode, 'icloud_unavailable');
-    expect(response.transportLabel, 'iCloud');
+    expect(response.transportLabel, syncTransportKeyICloud);
   });
 
   test('iCloud transport reports write failures with actionable diagnostics', () async {
@@ -531,7 +531,7 @@ void main() {
 
     expect(response.online, isFalse);
     expect(response.statusCode, 'icloud_write_failed');
-    expect(response.errorMessage, contains('ubiquity key-value capability'));
+    expect(response.errorMessage, 'sync_error_icloud_write_failed');
   });
 
   test('iCloud transport reports a no-op sync cleanly', () async {

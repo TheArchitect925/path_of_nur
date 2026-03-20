@@ -15,8 +15,8 @@ class AppColors {
   static const Color homeAccent = Color(0xFFF5D57B);
 
   // Shared glass surface tokens (Qur'an quote style baseline).
-  static const double glassSurfaceAlpha = 0.90;
-  static const double glassBorderAlpha = 0.35;
+  static const double glassSurfaceAlpha = 0.93;
+  static const double glassBorderAlpha = 0.40;
 
   static const Color success = Color(0xFFA8C9A8);
   static const Color caution = Color(0xFFCEB47D);

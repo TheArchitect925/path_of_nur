@@ -70,21 +70,8 @@ class _LifeTab extends StatelessWidget {
           title: l10n.learnLifeSectionTitle,
           subtitle: l10n.learnLifeSectionSubtitle,
           icon: Icons.family_restroom_rounded,
+          showChevron: false,
           onTap: () => context.pushNamed('learnLifeLanding'),
-        ),
-        const SizedBox(height: 12),
-        LearnActionCard(
-          title: l10n.homeSearchGuidanceHubTitle,
-          subtitle: l10n.homeSearchGuidanceHubSubtitle,
-          icon: Icons.library_books_outlined,
-          onTap: () => context.pushNamed('islamicGuides'),
-        ),
-        const SizedBox(height: 12),
-        LearnActionCard(
-          title: l10n.homeSearchQuranLessonsMappingTitle,
-          subtitle: l10n.homeSearchQuranLessonsMappingSubtitle,
-          icon: Icons.fact_check_outlined,
-          onTap: () => context.pushNamed('quranLessonsMapping'),
         ),
         if (unified.continueItem != null) ...[
           const SizedBox(height: 12),
@@ -159,6 +146,7 @@ class _WorldTab extends StatelessWidget {
           title: l10n.learnWorldSectionTitle,
           subtitle: l10n.learnWorldSectionSubtitle,
           icon: Icons.public_rounded,
+          showChevron: false,
           onTap: () => context.pushNamed('learnWorldLanding'),
         ),
         if (unified.suggestedNextItem != null) ...[
@@ -229,6 +217,7 @@ class _HadithTab extends StatelessWidget {
           title: l10n.learnHadithSectionTitle,
           subtitle: l10n.learnHadithSectionSubtitle,
           icon: Icons.menu_book_rounded,
+          showChevron: false,
           onTap: () => context.pushNamed('learnHadithLanding'),
         ),
         if (unified.recentItems.isNotEmpty) ...[
@@ -307,6 +296,7 @@ class _NotesTab extends StatelessWidget {
           title: l10n.learnNotesSectionTitle,
           subtitle: l10n.learnNotesSectionSubtitle,
           icon: Icons.sticky_note_2_outlined,
+          showChevron: false,
           onTap: () => context.pushNamed('learnNotesLanding'),
         ),
         const SizedBox(height: 12),

@@ -424,7 +424,7 @@ const List<_UniverseHadithSeed> _seededUniverseHadithSeeds = [
     id: 'islam_built_on_five_prayer',
     title: 'Islam Is Built on Five',
     reference: 'Sahih al-Bukhari / Sahih Muslim',
-    summary: 'Prayer stands at the foundation of Muslim practice.',
+    summary: 'Salah stands at the foundation of Muslim practice.',
     themeIds: ['tawhid'],
     conceptIds: ['obedience'],
   ),

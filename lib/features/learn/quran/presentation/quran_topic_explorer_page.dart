@@ -4,8 +4,8 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
+import '../../../../shared/widgets/quran_navigation.dart';
 import '../application/quran_reference_graph_provider.dart';
-import 'widgets/quran_reference_viewer.dart';
 
 class QuranTopicExplorerPage extends ConsumerWidget {
   const QuranTopicExplorerPage({super.key, this.topicId});
@@ -103,10 +103,11 @@ class _TopicDetail extends ConsumerWidget {
                 title: Text('Qur’an ${reference.referenceLabel}'),
                 subtitle: Text(reference.contextSummary),
                 trailing: const Icon(Icons.open_in_new_rounded),
-                onTap: () => showQuranReferenceViewer(
+                onTap: () => openQuranAt(
                   context,
-                  ref,
-                  referenceId: reference.id,
+                  surahNumber: reference.surahNumber,
+                  ayahNumber: reference.ayahStart,
+                  endAyahNumber: reference.ayahEnd,
                 ),
               ),
             ),

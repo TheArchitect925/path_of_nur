@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/theme/islamic_icons.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/segmented_pill_control.dart';
@@ -35,6 +36,7 @@ class _LearnSalahHubPageState extends ConsumerState<LearnSalahHubPage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final progress = ref.watch(salahTrainerProgressProvider);
     final guidanceAccepted = ref.watch(salahTrainerGuidanceNoticeProvider);
     final prayers = ref.watch(salahTrainerPrayersProvider);
@@ -70,8 +72,7 @@ class _LearnSalahHubPageState extends ConsumerState<LearnSalahHubPage> {
     return LearnHubPageScaffold(
       headerIcon: IslamicIcons.prayer,
       title: 'Salah Trainer',
-      subtitle:
-          'Learn the structure of prayer, practice with guidance, and build a calm memorization path for surahs and recitations.',
+      subtitle: l10n.learnSalahHubSubtitle,
       children: [
         if (!guidanceAccepted) ...[
           PremiumCard(
@@ -79,23 +80,17 @@ class _LearnSalahHubPageState extends ConsumerState<LearnSalahHubPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Salah Trainer Guidance Notice',
+                  l10n.learnSalahHubGuidanceNoticeTitle,
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.w700,
                   ),
                 ),
                 const SizedBox(height: 10),
-                const Text(
-                  'The Salah Trainer in Path of Nūr is designed to help you learn the structure of prayer and practice the recitations used during Salah.',
-                ),
+                Text(l10n.learnSalahHubGuidanceNoticeBody1),
                 const SizedBox(height: 8),
-                const Text(
-                  'It is intended as a learning aid and guided practice tool. It should not be relied upon as a permanent substitute for memorizing the recitations of prayer.',
-                ),
+                Text(l10n.learnSalahHubGuidanceNoticeBody2),
                 const SizedBox(height: 8),
-                const Text(
-                  'You are encouraged to gradually memorize the Qur’anic verses and supplications used in Salah so that you may perform your prayer independently without relying on the app.',
-                ),
+                Text(l10n.learnSalahHubGuidanceNoticeBody3),
                 const SizedBox(height: 12),
                 Text(
                   'O Allah, make the Qur’an easy for us to learn and remember.',
@@ -113,9 +108,7 @@ class _LearnSalahHubPageState extends ConsumerState<LearnSalahHubPage> {
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
                 const SizedBox(height: 12),
-                const Text(
-                  'By continuing, I acknowledge that this trainer is for guidance and learning, and I intend to memorize the recitations used in Salah.',
-                ),
+                Text(l10n.learnSalahHubGuidanceNoticeAcknowledge),
                 const SizedBox(height: 12),
                 FilledButton.tonal(
                   onPressed: () => ref
@@ -140,7 +133,7 @@ class _LearnSalahHubPageState extends ConsumerState<LearnSalahHubPage> {
             spacing: 8,
             runSpacing: 8,
             children: [
-              _metricPill('Prayers', '${prayers.length}'),
+              _metricPill('Salahs', '${prayers.length}'),
               _metricPill('Unlocked Surahs', '${unlockedSurahIds.length}'),
               _metricPill('Memorized', '$memorizedCount'),
               _metricPill(
@@ -247,6 +240,7 @@ class _LearnTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Column(
       children: prayers
           .map(
@@ -291,7 +285,7 @@ class _LearnTab extends StatelessWidget {
                             'learnSalahPrayerDetail',
                             pathParameters: {'prayerId': prayer.id.name},
                           ),
-                          child: const Text('Learn Prayer Structure'),
+                          child: Text(l10n.learnSalahHubLearnStructureAction),
                         ),
                         OutlinedButton(
                           onPressed: () => context.pushNamed(
@@ -299,14 +293,16 @@ class _LearnTab extends StatelessWidget {
                             pathParameters: {'prayerId': prayer.id.name},
                             queryParameters: {'focus': 'steps'},
                           ),
-                          child: const Text('Step-by-Step Movements'),
+                          child: Text(
+                            l10n.learnSalahHubStepByStepMovementsAction,
+                          ),
                         ),
                         OutlinedButton(
                           onPressed: () => context.pushNamed(
                             'learnSalahGuidedPrayer',
                             pathParameters: {'prayerId': prayer.id.name},
                           ),
-                          child: const Text('Start Guided Prayer'),
+                          child: Text(l10n.learnSalahHubStartGuidedSalahAction),
                         ),
                       ],
                     ),

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/theme/app_colors.dart';
+import '../../../../l10n/app_localizations.dart';
+import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../application/quran_teaching_controller.dart';
 import '../application/quran_teaching_smart_review_controller.dart';
@@ -38,13 +40,12 @@ class _QuranTeachingReviewPageState
     final current = sessionItems.isEmpty || _index >= sessionItems.length
         ? null
         : sessionItems[_index];
+    final l10n = AppLocalizations.of(context);
 
-    return Scaffold(
-      appBar: AppBar(title: const Text('Review Mistakes')),
-      body: SafeArea(
-        child: ListView(
-          padding: const EdgeInsets.fromLTRB(20, 16, 20, 32),
-          children: [
+    return AppPageScaffold(
+      title: l10n.triviaReviewMistakesTitle,
+      subtitle: l10n.triviaReviewMistakesSubtitle,
+      children: [
             PremiumCard(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -237,9 +238,7 @@ class _QuranTeachingReviewPageState
                   ],
                 ),
               ),
-          ],
-        ),
-      ),
+      ],
     );
   }
 

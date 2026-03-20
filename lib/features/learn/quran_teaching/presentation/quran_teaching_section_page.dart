@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
+import '../../presentation/widgets/learn_discovery_search_field.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/quran_teaching_controller.dart';
 import '../application/quran_teaching_smart_review_controller.dart';
@@ -121,6 +122,18 @@ class _QuranTeachingSectionPageState
       subtitle:
           'A calm, visual path for learning letters, sounds, words, and short Qur’anic phrases.',
       children: [
+        PremiumCard(
+          child: LearnDiscoverySearchField(
+            controller: _searchController,
+            hintText: l10n.searchQuranTeachingHint,
+            onChanged: (_) => setState(() {}),
+            onClear: () {
+              _searchController.clear();
+              setState(() {});
+            },
+          ),
+        ),
+        const SizedBox(height: 12),
         PremiumCard(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -421,24 +434,6 @@ class _QuranTeachingSectionPageState
           ),
         ],
         const SizedBox(height: 12),
-        TextField(
-          controller: _searchController,
-          onChanged: (_) => setState(() {}),
-          decoration: InputDecoration(
-            hintText: 'Search letters, rules, words, or surahs',
-            prefixIcon: const Icon(Icons.search_rounded),
-            suffixIcon: _searchController.text.isEmpty
-                ? null
-                : IconButton(
-                    onPressed: () {
-                      _searchController.clear();
-                      setState(() {});
-                    },
-                    icon: const Icon(Icons.close_rounded),
-                  ),
-          ),
-        ),
-        const SizedBox(height: 12),
         if (recentLessons.isNotEmpty) ...[
           PremiumCard(
             child: Column(
@@ -536,7 +531,24 @@ class _QuranTeachingSectionPageState
               .toList(growable: false),
         ),
         const SizedBox(height: 12),
-        ...filteredModules.map((module) {
+        if (filteredModules.isEmpty && query.isNotEmpty)
+          PremiumCard(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  l10n.learnHubSearchEmptyTitle,
+                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                const SizedBox(height: 6),
+                Text(l10n.learnHubSearchEmptySubtitle),
+              ],
+            ),
+          )
+        else
+          ...filteredModules.map((module) {
           final unlocked = isModuleUnlocked(
             module: module,
             catalog: catalog,
@@ -645,7 +657,7 @@ class _QuranTeachingSectionPageState
               ),
             ),
           );
-        }),
+          }),
       ],
     );
   }

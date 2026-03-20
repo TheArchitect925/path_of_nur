@@ -14,6 +14,7 @@ import '../../features/learn/divine_life_lessons/presentation/divine_life_lesson
 import '../../features/learn/divine_life_lessons/presentation/divine_life_reflection_page.dart';
 import '../../features/learn/dua/presentation/dua_detail_page.dart';
 import '../../features/learn/dua/presentation/dua_hub_page.dart';
+import '../../features/learn/glossary/presentation/glossary_page.dart';
 import '../../features/learn/hadith/application/hadith_path_quiz_service.dart';
 import '../../features/learn/hadith/presentation/hadith_landing_page.dart';
 import '../../features/learn/hadith/presentation/hadith_learning_path_page.dart';
@@ -24,7 +25,6 @@ import '../../features/learn/hadith/presentation/hadith_theme_page.dart';
 import '../../features/learn/hadith/presentation/important_hadith_collection_page.dart';
 import '../../features/learn/hadith/presentation/important_hadith_detail_page.dart';
 import '../../features/learn/journey/presentation/family_learning_management_page.dart';
-import '../../features/learn/journey/presentation/learn_browse_all_page.dart';
 import '../../features/learn/journey/presentation/learning_journey_detail_page.dart';
 import '../../features/learn/journey/presentation/learning_journey_home_page.dart';
 import '../../features/learn/journey/presentation/learning_journey_island_page.dart';
@@ -61,6 +61,7 @@ import '../../features/learn/life/baby_names/presentation/baby_names_meaning_exp
 import '../../features/learn/presentation/learn_page.dart';
 import '../../features/learn/presentation/data/learn_hub_taxonomy.dart';
 import '../../features/learn/presentation/pages/learning_section_landing_page.dart';
+import '../../features/learn/presentation/pages/learning_journey_island_hub_page.dart';
 import '../../features/learn/presentation/pages/learn_category_page.dart';
 import '../../features/learn/presentation/pages/learn_explore_all_knowledge_page.dart';
 import '../../features/learn/presentation/pages/learn_quran_hub_page.dart';
@@ -187,6 +188,18 @@ List<RouteBase> buildLearnRoutes() {
       name: 'learnJourneyHome',
       pageBuilder: (context, state) =>
           const MaterialPage(child: LearningJourneyHomePage()),
+    ),
+    GoRoute(
+      path: '/learn/learning-journey',
+      name: 'learnJourneyIslandHub',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: LearningJourneyIslandHubPage()),
+    ),
+    GoRoute(
+      path: '/learn/glossary',
+      name: 'learnGlossary',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: GlossaryPage()),
     ),
     GoRoute(
       path: '/learn/island/:islandId',

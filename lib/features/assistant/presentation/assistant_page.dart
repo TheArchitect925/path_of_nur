@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../l10n/app_localizations.dart';
+import '../../../shared/application/special_mode_provider.dart';
+import '../../../shared/content/page_description_copy.dart';
 import '../../../shared/widgets/app_page_scaffold.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../application/assistant_provider.dart';
@@ -30,11 +32,18 @@ class _AssistantPageState extends ConsumerState<AssistantPage> {
     final notifier = ref.read(assistantProvider.notifier);
     final modePrompts = ref.watch(assistantModeAwarePromptProvider);
     final quickActions = ref.watch(assistantQuickActionsProvider);
+    final isKidsMode = ref.watch(
+      specialModeProvider.select((mode) => mode.isKids),
+    );
 
     return AppPageScaffold(
       headerIcon: Icons.smart_toy_outlined,
       title: l10n.assistantTitle,
-      subtitle: l10n.assistantSubtitle,
+      subtitle: localizedAppPageDescription(
+        context,
+        AppPageDescriptionKey.assistant,
+        kidsMode: isKidsMode,
+      ),
       children: [
         PremiumCard(
           child: Column(

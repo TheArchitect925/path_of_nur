@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/theme/app_colors.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../application/quran_teaching_asset_resolver.dart';
 import '../application/quran_teaching_controller.dart';
@@ -66,12 +67,10 @@ class _QuranTeachingListenOnlyPageState
       });
     }
 
-    return Scaffold(
-      appBar: AppBar(title: Text(l10n.batch9ListenOnlyTitle)),
-      body: SafeArea(
-        child: ListView(
-          padding: const EdgeInsets.fromLTRB(20, 16, 20, 32),
-          children: [
+    return AppPageScaffold(
+      title: l10n.batch9ListenOnlyTitle,
+      subtitle: l10n.quranTeachingListenOnlySubtitle,
+      children: [
             PremiumCard(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -393,8 +392,6 @@ class _QuranTeachingListenOnlyPageState
               ),
             ),
           ],
-        ),
-      ),
     );
   }
 

@@ -72,4 +72,50 @@ void main() {
       expect(shouldPlay, isFalse);
     },
   );
+
+  test('mid-surah playback does not prepend Bismillah', () {
+    final shouldPlay = policy.shouldPlayBismillahBefore(
+      const QuranPlaybackRequest(
+        surahNumber: 2,
+        ayahNumber: 5,
+        playbackReason: QuranPlaybackReason.jump,
+      ),
+      _metadata(sourceContainsBismillahAtStart: false),
+    );
+
+    expect(shouldPlay, isFalse);
+  });
+
+  test('Surah At-Tawbah start does not prepend Bismillah', () {
+    final shouldPlay = policy.shouldPlayBismillahBefore(
+      const QuranPlaybackRequest(
+        surahNumber: 9,
+        ayahNumber: 1,
+        playbackReason: QuranPlaybackReason.freshPlay,
+        isSurahEntry: true,
+      ),
+      const QuranAudioSourceMetadata(
+        surahNumber: 9,
+        ayahNumber: 1,
+        reciterId: 'husary',
+        source: 'https://example.test/009001.mp3',
+        sourceContainsBismillahAtStart: false,
+        sourceId: QuranAudioSourceId('example.husary'),
+        isAyahGranular: true,
+        includesBismillahInFatiha: true,
+        includesBismillahAtSurahStarts: false,
+        hasStandaloneBismillahClip: false,
+        standaloneBismillahRef: QuranAudioRef(
+          surah: 1,
+          ayah: 1,
+          reciterId: 'husary',
+        ),
+        surah9HasNoBismillahIntroInSource: false,
+        confidence: QuranAudioMetadataConfidence.unknownNeedsManualReview,
+        manualReviewNeeded: true,
+      ),
+    );
+
+    expect(shouldPlay, isFalse);
+  });
 }

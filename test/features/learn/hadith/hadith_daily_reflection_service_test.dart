@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:path_of_nur/features/learn/hadith/application/hadith_daily_reflection_service.dart';
 import 'package:path_of_nur/features/learn/hadith/application/hadith_foundation_repository.dart';
 import 'package:path_of_nur/features/learn/hadith/presentation/hadith_landing_page.dart';
+import 'package:path_of_nur/l10n/app_localizations.dart';
 import 'package:path_of_nur/shared/persistence/local_store.dart';
 
 void main() {
@@ -18,9 +19,9 @@ void main() {
   });
 
   ProviderContainer makeContainer() {
-    return ProviderContainer(overrides: [
-      sharedPreferencesProvider.overrideWithValue(prefs),
-    ]);
+    return ProviderContainer(
+      overrides: [sharedPreferencesProvider.overrideWithValue(prefs)],
+    );
   }
 
   test('initial controller state is empty', () {
@@ -35,8 +36,9 @@ void main() {
 
   test('assignTodayEntry picks an entry and persists', () {
     final container = makeContainer();
-    final controller =
-        container.read(hadithDailyReflectionControllerProvider.notifier);
+    final controller = container.read(
+      hadithDailyReflectionControllerProvider.notifier,
+    );
     final entries = container.read(hadithEntriesProvider);
     final now = DateTime(2026, 3, 12);
 
@@ -52,8 +54,9 @@ void main() {
 
   test('completeToday updates streak correctly', () {
     final container = makeContainer();
-    final controller =
-        container.read(hadithDailyReflectionControllerProvider.notifier);
+    final controller = container.read(
+      hadithDailyReflectionControllerProvider.notifier,
+    );
     final entries = container.read(hadithEntriesProvider);
     final now = DateTime(2026, 3, 12);
 
@@ -79,27 +82,32 @@ void main() {
     );
   });
 
-  testWidgets('HadithLandingPage triggers assignment and renders',
-      (tester) async {
+  testWidgets('HadithLandingPage triggers assignment and renders', (
+    tester,
+  ) async {
     final prefs = await SharedPreferences.getInstance();
-    final overrides = [
-      sharedPreferencesProvider.overrideWithValue(prefs),
-    ];
+    final overrides = [sharedPreferencesProvider.overrideWithValue(prefs)];
 
     await tester.pumpWidget(
       ProviderScope(
         overrides: overrides,
-        child: const MaterialApp(
-          home: Scaffold(body: HadithLandingPage()),
+        child: MaterialApp(
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          home: const Scaffold(body: HadithLandingPage()),
         ),
       ),
     );
 
-    // allow post-frame callback to run
-    await tester.pumpAndSettle();
+    // allow the post-frame assignment to run without waiting on unrelated
+    // page animations.
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 200));
 
     // controller state should have been updated by the page
-    final container = ProviderScope.containerOf(tester.element(find.byType(HadithLandingPage)));
+    final container = ProviderScope.containerOf(
+      tester.element(find.byType(HadithLandingPage)),
+    );
     final state = container.read(hadithDailyReflectionControllerProvider);
     expect(state.assignedEntryId, isNotNull);
     expect(find.text('Hadith'), findsOneWidget);

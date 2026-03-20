@@ -12,7 +12,7 @@ final duaCategorySummariesProvider =
       final datasetAsync = ref.watch(duaDatasetProvider);
       return datasetAsync.whenData((dataset) {
         final byCategory = <String, List<DuaItem>>{};
-        for (final item in dataset.items) {
+        for (final item in dataset.verifiedItems) {
           byCategory.putIfAbsent(item.category, () => <DuaItem>[]).add(item);
         }
         final summaries =

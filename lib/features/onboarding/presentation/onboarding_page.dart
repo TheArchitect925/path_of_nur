@@ -509,9 +509,9 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
 
   Widget _prayerMethodPage() {
     return _choicePage<OnboardingPrayerMethodChoice>(
-      title: 'Prayer time calculation method',
+      title: 'Salah time calculation method',
       subtitle:
-          'Choose how prayer times should be calculated for your location.',
+          'Choose how salah times should be calculated for your location.',
       value: _methodChoice,
       options: const {
         OnboardingPrayerMethodChoice.muslimWorldLeague: 'Muslim World League',
@@ -532,7 +532,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
     return _choicePage<PrayerMadhab>(
       title: 'Which Madhab do you follow?',
       subtitle:
-          'This affects how Asr prayer time is calculated. If you are unsure, you can keep the default.',
+          'This affects how Asr salah time is calculated. If you are unsure, you can keep the default.',
       value: _madhab,
       options: const {
         PrayerMadhab.hanafi: 'Hanafi',
@@ -665,14 +665,14 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
     return _stepCard(
       title: 'How would you like to be reminded?',
       subtitle:
-          'Choose your preferred reminders for prayer and daily spiritual routines.',
+          'Choose your preferred reminders for salah and daily spiritual routines.',
       child: ListView(
         children: [
           Row(
             children: [
               const Expanded(
                 child: Text(
-                  'Prayer reminder styles',
+                  'Salah reminder styles',
                   style: TextStyle(fontWeight: FontWeight.w700),
                 ),
               ),
@@ -923,7 +923,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
     if (_prayerReminders.values.any(
       (choice) => choice != OnboardingReminderChoice.notificationOnly,
     )) {
-      focus.add('Prayer reminders');
+      focus.add('Salah reminders');
     }
 
     return PremiumCard(

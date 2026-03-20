@@ -17,6 +17,7 @@ class LearnHubPageScaffold extends StatelessWidget {
     this.backgroundAssetPath,
     this.backgroundOverlayColor,
     this.quote,
+    this.quoteHeader,
     this.shortcutActions = const <LearnHubShortcutAction>[],
     this.headerActions,
   });
@@ -28,6 +29,7 @@ class LearnHubPageScaffold extends StatelessWidget {
   final Color? backgroundOverlayColor;
   final List<Widget> children;
   final QuranQuote? quote;
+  final Widget? quoteHeader;
   final List<LearnHubShortcutAction> shortcutActions;
   final List<Widget>? headerActions;
 
@@ -39,6 +41,7 @@ class LearnHubPageScaffold extends StatelessWidget {
       title: title,
       subtitle: subtitle,
       quote: quote ?? buildLearningCompactQuote(),
+      quoteHeader: quoteHeader,
       shortcutOpenLabel: l10n.learnShortcutOpen,
       shortcutCloseLabel: l10n.learnShortcutClose,
       shortcutActions: shortcutActions,

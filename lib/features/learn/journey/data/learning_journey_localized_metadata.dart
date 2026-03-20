@@ -311,10 +311,13 @@ String localizedIslandSubtitle(
 String localizedIslandDescription(
   BuildContext context,
   LearningJourneyIsland island,
+  {bool kidsMode = false}
 ) {
   final l10n = AppLocalizations.of(context);
   return switch (island.id) {
-    'core-knowledge' => l10n.learningJourneyIslandCoreKnowledgeDescription,
+    'core-knowledge' => kidsMode
+        ? l10n.learningJourneyIslandCoreKnowledgeDescriptionKids
+        : l10n.learningJourneyIslandCoreKnowledgeDescription,
     'practice-worship' => l10n.learningJourneyIslandPracticeWorshipDescription,
     'understanding-islam' =>
       l10n.learningJourneyIslandUnderstandingIslamDescription,

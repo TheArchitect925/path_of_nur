@@ -3,9 +3,9 @@ import 'growth_models.dart';
 const List<GrowthHabit> seededGrowthHabits = [
   GrowthHabit(
     id: 'h_pray_five',
-    title: 'Pray the Five Daily Prayers',
+    title: 'Pray the Five Daily Salahs',
     subtitle: 'Anchor your day with salah.',
-    description: 'Guard each prayer in its time with calm presence.',
+    description: 'Guard each salah in its time with calm presence.',
     category: GrowthHabitCategory.dailyWorship,
     pathIds: ['core-muslim-habits', 'foundations-of-light'],
     recurrenceType: GrowthHabitRecurrenceType.daily,
@@ -15,7 +15,7 @@ const List<GrowthHabit> seededGrowthHabits = [
     lightReward: 20,
     streakEligible: true,
     reminderEnabled: true,
-    reflectionPrompt: 'Which prayer felt most present today?',
+    reflectionPrompt: 'Which salah felt most present today?',
     active: true,
     muted: false,
     hidden: false,
@@ -182,9 +182,9 @@ const List<GrowthHabit> seededGrowthHabits = [
   ),
   GrowthHabit(
     id: 'h_sunnah_prayer',
-    title: 'Pray One Sunnah Prayer',
+    title: 'Pray One Sunnah Salah',
     subtitle: 'Add one voluntary salah.',
-    description: 'Maintain one Sunnah prayer with consistency.',
+    description: 'Maintain one Sunnah salah with consistency.',
     category: GrowthHabitCategory.sunnahPractices,
     pathIds: ['core-muslim-habits', 'strengthening-heart', 'sunnah-revival'],
     recurrenceType: GrowthHabitRecurrenceType.weekdaysOnly,

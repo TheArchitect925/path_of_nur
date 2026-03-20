@@ -229,7 +229,7 @@ class AssistantNotifier extends StateNotifier<AssistantState> {
       );
     }
     return (
-      'I can help you navigate Worship, Learn, Journey, Journal, and Circles. Ask where to go next.',
+      'I can help you navigate Ibadah, Learn, Journey, Journal, and Circles. Ask where to go next.',
       AssistantIntent.appGuide,
     );
   }

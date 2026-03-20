@@ -32,7 +32,7 @@ class GrowthHabitsPage extends ConsumerWidget {
       headerIcon: Icons.checklist_rtl_rounded,
       title: l10n.growthTodayHabitTrackerTitle,
       subtitle: l10n.growthHabitsPageSubtitle,
-      quote: buildLearningCompactQuote(),
+      quote: buildGrowthReflectionQuote(),
       onQuoteTap: (quote) => openQuranQuoteLocation(context, quote),
       shortcutOpenLabel: l10n.learnShortcutOpen,
       shortcutCloseLabel: l10n.learnShortcutClose,

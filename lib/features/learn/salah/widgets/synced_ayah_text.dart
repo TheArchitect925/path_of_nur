@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/theme/app_text_styles.dart';
+import '../../../../shared/widgets/quran_presentation_style.dart';
 import '../models/salah_trainer_models.dart';
 
 class SyncedAyahText extends StatelessWidget {
@@ -44,10 +45,13 @@ class SyncedAyahText extends StatelessWidget {
         words.length != timing.wordTimings.length) {
       arabicSpan = TextSpan(
         text: arabicText,
-        style: AppTextStyles.quranVerse(size: 30).copyWith(
-          backgroundColor: highlightEntireAyah && activeWordIndex >= 0
-              ? activeColor
-              : Colors.transparent,
+        style: QuranPresentationStyle.translucentTextStyle(
+          context,
+          AppTextStyles.quranVerse(size: 30).copyWith(
+            backgroundColor: highlightEntireAyah && activeWordIndex >= 0
+                ? activeColor
+                : Colors.transparent,
+          ),
         ),
       );
     } else {
@@ -62,9 +66,12 @@ class SyncedAyahText extends StatelessWidget {
         spans.add(
           TextSpan(
             text: '${words[i]} ',
-            style: AppTextStyles.quranVerse(
-              size: 30,
-            ).copyWith(backgroundColor: background),
+            style: QuranPresentationStyle.translucentTextStyle(
+              context,
+              AppTextStyles.quranVerse(
+                size: 30,
+              ).copyWith(backgroundColor: background),
+            ),
           ),
         );
       }
@@ -79,14 +86,24 @@ class SyncedAyahText extends StatelessWidget {
           const SizedBox(height: 10),
           Text(
             transliteration,
-            style: Theme.of(
+            style: QuranPresentationStyle.translucentTextStyle(
               context,
-            ).textTheme.bodyLarge?.copyWith(fontStyle: FontStyle.italic),
+              Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    fontStyle: FontStyle.italic,
+                  ) ??
+                  const TextStyle(fontStyle: FontStyle.italic),
+            ),
           ),
         ],
         if (showTranslation && translation.trim().isNotEmpty) ...[
           const SizedBox(height: 10),
-          Text(translation),
+          Text(
+            translation,
+            style: QuranPresentationStyle.translucentTextStyle(
+              context,
+              Theme.of(context).textTheme.bodyMedium ?? const TextStyle(),
+            ),
+          ),
         ],
       ],
     );

@@ -491,7 +491,7 @@ const stagedCircles = <CircleItem>[
   ),
   CircleItem(
     id: 'mosque-buddy',
-    title: 'Mosque Buddy Forum',
+    title: 'Masjid Buddy Forum',
     description:
         'Find local brothers/sisters for masjid prayers, classes, and safe community meetups.',
     category: 'Community',
@@ -660,10 +660,10 @@ const stagedBuddyCandidates = <MosqueBuddyCandidate>[
 const stagedAccountabilityGroups = <AccountabilityGroup>[
   AccountabilityGroup(
     id: 'group-prayer',
-    title: 'Prayer Consistency Circle',
+    title: 'Salah Consistency Circle',
     description: 'Private daily prayer check-ins and gentle encouragement.',
     privateGroup: true,
-    focus: 'Prayer',
+    focus: 'Salah',
     memberCount: 23,
     defaultCadence: 'Daily',
   ),

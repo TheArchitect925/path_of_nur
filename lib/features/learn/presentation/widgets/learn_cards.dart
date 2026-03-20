@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_surfaces.dart';
 import '../../../../shared/widgets/premium_card.dart';
 
 class LearnActionCard extends StatelessWidget {
@@ -10,12 +11,14 @@ class LearnActionCard extends StatelessWidget {
     required this.subtitle,
     required this.icon,
     this.onTap,
+    this.showChevron = true,
   });
 
   final String title;
   final String subtitle;
   final IconData icon;
   final VoidCallback? onTap;
+  final bool showChevron;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +32,12 @@ class LearnActionCard extends StatelessWidget {
               height: 42,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
-                color: AppColors.accentGold.withValues(alpha: 0.22),
+                color: AppSurfaceTheme.adaptiveColor(
+                  context,
+                  AppColors.accentGold,
+                  alpha: 0.22,
+                  solidAlphaWhenDisabled: 0.32,
+                ),
               ),
               child: Icon(icon, color: AppColors.onSurface),
             ),
@@ -57,7 +65,11 @@ class LearnActionCard extends StatelessWidget {
                 ],
               ),
             ),
-            const Icon(Icons.chevron_right, color: AppColors.onSurfaceSubtle),
+            if (showChevron)
+              const Icon(
+                Icons.chevron_right,
+                color: AppColors.onSurfaceSubtle,
+              ),
           ],
         ),
       ),

@@ -41,8 +41,8 @@ const List<LearnSharedTheme> _sharedThemes = [
   ),
   LearnSharedTheme(
     id: 'prayer',
-    label: 'Prayer',
-    summary: 'Salah, humility, and steady worship.',
+    label: 'Salah',
+    summary: 'Salah, humility, and steady ibadah.',
   ),
   LearnSharedTheme(
     id: 'patience',
@@ -491,6 +491,7 @@ final learnUnifiedItemsProvider = Provider<List<LearnUnifiedContentItem>>((
         isFeatured: prophet.isFeatured,
         isDailyEligible: true,
         routeName: 'learnProphetsHub',
+        queryParameters: {'prophet': prophet.id},
       ),
     );
   }

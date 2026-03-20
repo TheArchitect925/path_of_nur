@@ -9,6 +9,7 @@ import '../../../../core/theme/app_surfaces.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/segmented_pill_control.dart';
+import '../../presentation/widgets/learn_discovery_search_field.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/dua_progress_provider.dart';
 import '../application/dua_repository.dart';
@@ -140,38 +141,13 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
       widget.entryContext == DuaHubEntryContext.learn;
 
   Widget _searchCard(BuildContext context, AppLocalizations l10n) {
-    final surfaceStyle = AppSurfaceTheme.resolve(
-      context,
-      variant: AppSurfaceVariant.panel,
-    );
-    return Container(
-      padding: const EdgeInsets.fromLTRB(12, 10, 12, 8),
-      decoration: surfaceStyle.decoration(radius: 16),
-      child: Row(
-        children: [
-          Icon(
-            Icons.search_rounded,
-            size: 24,
-            color: AppColors.onSurface.withValues(alpha: 0.75),
-          ),
-          const SizedBox(width: 10),
-          Expanded(
-            child: TextField(
-              controller: _searchController,
-              onChanged: (_) => setState(() {}),
-              decoration: InputDecoration(
-                border: InputBorder.none,
-                hintText: l10n.duaHubSearchHint,
-                isCollapsed: true,
-              ),
-            ),
-          ),
-          if (_searchController.text.isNotEmpty)
-            IconButton(
-              onPressed: () => setState(() => _searchController.clear()),
-              icon: const Icon(Icons.close_rounded),
-            ),
-        ],
+    return PremiumCard(
+      surfaceVariant: AppSurfaceVariant.panel,
+      child: LearnDiscoverySearchField(
+        controller: _searchController,
+        hintText: l10n.searchDuasHint,
+        onChanged: (_) => setState(() {}),
+        onClear: () => setState(() => _searchController.clear()),
       ),
     );
   }
@@ -197,8 +173,6 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
             runSpacing: 8,
             children: [
               _statChip(l10n.duaHubOverviewVerifiedNow(dataset.completeItems)),
-              _statChip(l10n.duaHubOverviewPlanned(dataset.stubItems)),
-              _statChip(l10n.duaHubOverviewTracked(dataset.totalItems)),
             ],
           ),
           const SizedBox(height: 8),
@@ -258,10 +232,15 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
               if (query.isEmpty) return true;
               final haystack = [
                 item.title,
+                item.arabic,
+                item.transliteration,
+                item.translation,
+                item.sourceType,
                 item.sourceRef,
                 item.whenToSay,
                 item.category,
                 item.subcategory,
+                item.subcategoryLabel,
                 ...item.tags,
               ].join(' ').toLowerCase();
               return haystack.contains(query);
@@ -358,10 +337,7 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
               context: context,
               colors: colors,
               title: summary.label,
-              subtitle: l10n.duaHubCategorySummary(
-                summary.completeCount,
-                summary.stubCount,
-              ),
+              subtitle: l10n.duaHubOverviewVerifiedNow(summary.completeCount),
             ),
             const SizedBox(height: 10),
             Wrap(

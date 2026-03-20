@@ -13,7 +13,7 @@ const List<LevelDefinition> xpLevelDefinitions = <LevelDefinition>[
   LevelDefinition(level: 10, totalXpRequired: 567, title: 'Taqwa'),
   LevelDefinition(level: 11, totalXpRequired: 662, title: 'Seeker of Light'),
   LevelDefinition(level: 12, totalXpRequired: 770, title: 'Walker of the Path'),
-  LevelDefinition(level: 13, totalXpRequired: 891, title: 'Keeper of Prayer'),
+  LevelDefinition(level: 13, totalXpRequired: 891, title: 'Keeper of Salah'),
   LevelDefinition(level: 14, totalXpRequired: 1025, title: 'Steady in Dhikr'),
   LevelDefinition(
     level: 15,
@@ -98,7 +98,7 @@ const List<LevelDefinition> xpLevelDefinitions = <LevelDefinition>[
     totalXpRequired: 13817,
     title: 'Light of Intention',
   ),
-  LevelDefinition(level: 46, totalXpRequired: 14612, title: 'Light of Worship'),
+  LevelDefinition(level: 46, totalXpRequired: 14612, title: 'Light of Ibadah'),
   LevelDefinition(
     level: 47,
     totalXpRequired: 15437,
@@ -148,7 +148,7 @@ const List<LevelDefinition> xpLevelDefinitions = <LevelDefinition>[
   LevelDefinition(
     level: 69,
     totalXpRequired: 42491,
-    title: 'One Who Stands in Prayer',
+    title: 'One Who Stands in Salah',
   ),
   LevelDefinition(
     level: 70,
@@ -164,7 +164,7 @@ const List<LevelDefinition> xpLevelDefinitions = <LevelDefinition>[
   LevelDefinition(
     level: 73,
     totalXpRequired: 49583,
-    title: 'Lantern of Prayer',
+    title: 'Lantern of Salah',
   ),
   LevelDefinition(
     level: 74,

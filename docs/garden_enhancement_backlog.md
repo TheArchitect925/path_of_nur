@@ -5,3 +5,5 @@
 3. Consider a compact Home/Journey summary strip for the Garden once the dedicated page has real production artwork.
 4. Explore V2 dynamic garden rendering that blends prayer, learning, and drops dimensions without replacing the canonical Drops-based milestone gallery.
 5. Add non-English translations for the new Garden page copy and milestone descriptions.
+
+6. Add the remaining Garden level artwork files for levels 2 and 8-10 so the gallery can stop reusing the nearest available `glv` background fallback.

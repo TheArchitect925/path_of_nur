@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/segmented_pill_control.dart';
+import '../../presentation/widgets/learn_discovery_search_field.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/life_progress_provider.dart';
 import '../data/life_curriculum_data.dart';
@@ -63,9 +64,13 @@ class _LifeLandingPageState extends ConsumerState<LifeLandingPage> {
             return false;
           }
           if (query.isEmpty) return true;
-          final haystack =
-              '${lesson.title} ${lesson.subtitle} ${lesson.overview}'
-                  .toLowerCase();
+          final themeTitle = lifeThemeById(lesson.themeId)?.title ?? '';
+          final haystack = [
+            lesson.title,
+            lesson.subtitle,
+            lesson.overview,
+            themeTitle,
+          ].join(' ').toLowerCase();
           return haystack.contains(query);
         })
         .toList(growable: false);
@@ -86,13 +91,14 @@ class _LifeLandingPageState extends ConsumerState<LifeLandingPage> {
                 onChanged: (tab) => setState(() => _tab = tab),
               ),
               const SizedBox(height: 10),
-              TextField(
+              LearnDiscoverySearchField(
                 controller: _searchController,
+                hintText: l10n.searchLifeLessonsHint,
                 onChanged: (_) => setState(() {}),
-                decoration: const InputDecoration(
-                  hintText: 'Search lessons, themes, and topics',
-                  prefixIcon: Icon(Icons.search),
-                ),
+                onClear: () {
+                  _searchController.clear();
+                  setState(() {});
+                },
               ),
               const SizedBox(height: 10),
               SingleChildScrollView(
@@ -186,8 +192,20 @@ class _LifeLandingPageState extends ConsumerState<LifeLandingPage> {
         ],
         if (_tab == _LifeLandingTab.lessons) ...[
           if (filteredLessons.isEmpty)
-            const PremiumCard(
-              child: Text('No lessons match your current search and filters.'),
+            PremiumCard(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    l10n.learnHubSearchEmptyTitle,
+                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  const SizedBox(height: 6),
+                  Text(l10n.learnHubSearchEmptySubtitle),
+                ],
+              ),
             )
           else
             ...filteredLessons.map((lesson) {

@@ -6,6 +6,8 @@ import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/content/learning_quote.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
+import '../../../../shared/widgets/quran_navigation.dart';
+import '../../../../shared/widgets/quran_reference_link.dart';
 import '../domain/prophet_detail_content.dart';
 import '../domain/prophet_entry.dart';
 import 'prophets_metadata_localization.dart';
@@ -70,7 +72,7 @@ class _ProphetDetailPageState extends State<ProphetDetailPage> {
       headerIcon: Icons.menu_book_rounded,
       title: widget.content.titledHonoredName,
       subtitle: widget.content.honoredArabicName,
-      quote: buildLearningCompactQuote(),
+      quote: buildProphetStoriesQuote(),
       children: [
         _heroHeader(context),
         const SizedBox(height: 10),
@@ -566,37 +568,12 @@ class _ProphetDetailPageState extends State<ProphetDetailPage> {
   }
 
   void _openQuranReference(BuildContext context, QuranReferenceItem ref) {
-    final pathParameters = {'surahNumber': '${ref.surahNumber}'};
-    final queryParameters = <String, String>{};
-    final parsed = _parseAyahRange(ref.verseRange);
-    final startAyah = ref.startAyah ?? parsed.$1;
-    final endAyah = parsed.$2;
-    if (startAyah != null && startAyah > 0) {
-      queryParameters['ayah'] = '$startAyah';
-    }
-    if (endAyah != null && endAyah > 0 && endAyah >= (startAyah ?? endAyah)) {
-      queryParameters['endAyah'] = '$endAyah';
-    }
-    context.pushNamed(
-      'quranReader',
-      pathParameters: pathParameters,
-      queryParameters: queryParameters,
+    openQuranReferenceRange(
+      context,
+      surahNumber: ref.surahNumber,
+      verseRange: ref.verseRange,
+      fallbackStartAyah: ref.startAyah,
     );
-  }
-
-  (int?, int?) _parseAyahRange(String range) {
-    final normalized = range.replaceAll('–', '-').replaceAll('—', '-').trim();
-    if (normalized.isEmpty) return (null, null);
-    final firstChunk = normalized.split(',').first.trim();
-    if (firstChunk.isEmpty) return (null, null);
-    if (!firstChunk.contains('-')) {
-      final single = int.tryParse(firstChunk);
-      return (single, single);
-    }
-    final parts = firstChunk.split('-');
-    final start = int.tryParse(parts.first.trim());
-    final end = parts.length > 1 ? int.tryParse(parts[1].trim()) : null;
-    return (start, end ?? start);
   }
 }
 
@@ -608,51 +585,13 @@ class _ReferenceTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 8),
-      child: InkWell(
-        borderRadius: BorderRadius.circular(12),
-        onTap: onTap,
-        child: Container(
-          width: double.infinity,
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
-            color: AppColors.surface.withValues(alpha: 0.25),
-            border: Border.all(
-              color: AppColors.accentGoldSoft.withValues(alpha: 0.28),
-            ),
-          ),
-          child: Row(
-            children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      '${item.surahName} (${item.surahNumber}:${item.verseRange})',
-                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                    if (item.label != null) ...[
-                      const SizedBox(height: 3),
-                      Text(
-                        item.label!,
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: AppColors.onSurfaceSubtle,
-                        ),
-                      ),
-                    ],
-                  ],
-                ),
-              ),
-              const SizedBox(width: 8),
-              const Icon(Icons.open_in_new_rounded, size: 18),
-            ],
-          ),
-        ),
-      ),
+    return QuranReferenceLinkTile(
+      referenceLabel: '${item.surahName} (${item.surahNumber}:${item.verseRange})',
+      surahNumber: item.surahNumber,
+      verseRange: item.verseRange,
+      fallbackStartAyah: item.startAyah,
+      subtitle: item.label,
+      onTapOverride: onTap,
     );
   }
 }

@@ -26,6 +26,17 @@ class AppDatabase {
 
   final Database _db;
 
+  void _ensureColumn({
+    required String table,
+    required String column,
+    required String definition,
+  }) {
+    final rows = _db.select('PRAGMA table_info($table);');
+    final hasColumn = rows.any((row) => row['name']?.toString() == column);
+    if (hasColumn) return;
+    _db.execute('ALTER TABLE $table ADD COLUMN $column $definition;');
+  }
+
   void _initialize() {
     _db.execute('PRAGMA foreign_keys = ON;');
     _db.execute('''
@@ -41,6 +52,7 @@ class AppDatabase {
         prayer TEXT NOT NULL,
         status TEXT NOT NULL,
         completed_at_iso TEXT,
+        post_salah_adhkar_completed_at_iso TEXT,
         timing TEXT,
         place TEXT,
         notes TEXT,
@@ -48,6 +60,11 @@ class AppDatabase {
         PRIMARY KEY(scope_id, day_key, prayer)
       );
     ''');
+    _ensureColumn(
+      table: 'prayer_records',
+      column: 'post_salah_adhkar_completed_at_iso',
+      definition: 'TEXT',
+    );
     _db.execute('''
       CREATE TABLE IF NOT EXISTS dhikr_state(
         scope_id TEXT PRIMARY KEY,
@@ -380,6 +397,8 @@ class AppDatabase {
             'prayer': row['prayer'],
             'status': row['status'],
             'completedAtIso': row['completed_at_iso'],
+            'postSalahAdhkarCompletedAtIso':
+                row['post_salah_adhkar_completed_at_iso'],
             'timing': row['timing'],
             'place': row['place'],
             'notes': row['notes'],
@@ -504,8 +523,8 @@ class AppDatabase {
           execute(
             '''
             INSERT OR REPLACE INTO prayer_records(
-              scope_id, day_key, prayer, status, completed_at_iso, timing, place, notes, updated_at_iso
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+              scope_id, day_key, prayer, status, completed_at_iso, post_salah_adhkar_completed_at_iso, timing, place, notes, updated_at_iso
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
             ''',
             <Object?>[
               scopeId,
@@ -513,6 +532,7 @@ class AppDatabase {
               row['prayer']?.toString(),
               row['status']?.toString() ?? 'pending',
               row['completedAtIso']?.toString(),
+              row['postSalahAdhkarCompletedAtIso']?.toString(),
               row['timing']?.toString(),
               row['place']?.toString(),
               row['notes']?.toString(),

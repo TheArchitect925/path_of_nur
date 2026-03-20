@@ -32,6 +32,76 @@ Requirements:
 - If a change intentionally diverges on tvOS, document the reason in the completion notes.
 - Do not evolve mirrored tvOS surfaces into separate product flows without explicit direction.
 
+## Search and Discoverability
+
+When creating or modifying user-facing content surfaces, consider whether the content should be searchable.
+
+Apply this especially to discovery-heavy areas such as:
+- Learning
+- Qur'an
+- Dua
+- Glossary
+- Quizzes
+- Prophet stories
+- knowledge/topic libraries
+- other browse/search-driven content collections
+
+Rules:
+- Reuse the shared search system and indexing/filtering patterns already present in the codebase.
+- Do not create isolated page-specific search logic if a shared search/indexing path already exists.
+- When adding new searchable content types, expose the useful searchable fields where appropriate, such as title, subtitle, summary/description, tags/keywords, transliteration, and category/topic.
+- Do not add search to calm dashboard or immersive pages unless there is a clear product need.
+- When search is added to a page, make sure empty states exist, filtering is useful beyond title-only when richer metadata is available, and placeholders are page-appropriate.
+- If a new content surface should be discoverable later but full search is not being added now, structure the data model so indexing/search can be added cleanly later.
+- Avoid hardcoded, hidden, or UI-only content structures that are difficult to index later.
+- Prefer centralized indexing/filter metadata over scattered ad hoc matching logic.
+- If a feature introduces new Islamic terminology or curated content, check whether it should also be discoverable from Glossary, Learning search, or other existing search surfaces.
+- In task summaries, mention whether the work affected search/indexing and whether searchable fields were added or reused.
+
+Implementation preference:
+- shared search component
+- shared search/filter helpers
+- reusable searchable metadata
+- no duplicate search systems
+
+Do not overbuild a global search engine unless explicitly requested.
+Default to page-local search with clean reusable indexing/filter fields.
+
+## Qur'anic Verse Interaction
+
+Any structured Qur'anic verse or verse reference shown in the app must be tappable.
+
+Rules:
+- Tapping a Qur'anic verse or verse reference must deep-link into the Qur'an reader at the correct Surah and ayah.
+- Always use the shared verse-link component and shared navigation helpers in `lib/shared/widgets/quran_reference_link.dart` and `lib/shared/widgets/quran_navigation.dart`.
+- Do not create one-off verse tap implementations or page-local Qur'an reader route logic.
+- Do not render structured static Qur'anic references without interaction.
+- If a surface needs extra context beyond the tap action, keep the primary tap deep-link behavior and add any secondary viewer behavior separately.
+- Do not convert arbitrary plain-text mentions into links unless the content is already a structured Qur'anic reference.
+
+## Cleanup Archive Workflow
+
+- Before deleting meaningful files, widgets, routes, feature sections, services, helpers, or other non-trivial code during cleanup work, copy them into the local archive folder:
+  `/Users/shahabmansoor/Developer/Path of Nur Deleted and Cleaned Items`
+- Use a dated, topic-based subfolder:
+  `/Users/shahabmansoor/Developer/Path of Nur Deleted and Cleaned Items/YYYY-MM-DD/<cleanup-topic>/`
+- Preserve original file names and, where practical, original relative paths.
+- Include a short `cleanup_notes.md` file with the date, cleanup topic, original paths, reason for removal, and related task if known.
+- Do not archive trivial edits such as formatting, imports, spacing-only changes, or small text updates.
+- Git remains the primary source of truth; the archive is only a convenience recovery layer.
+
+## Theme and Visual System Rules
+
+- Do not create one-off page-specific themes or visual systems unless explicitly requested and clearly justified.
+- Default to the shared global app shell, background, surface, spacing, and typography systems already used by `AppPageScaffold`, `SectionHubScaffold`, and related shared surface helpers.
+- Visual variation should primarily happen at the section/theme-variant level:
+  - Kids theme
+  - Adult/main theme
+- Reuse shared theme helpers, shared page shells, and shared surfaces instead of inventing local page styling.
+- Any new kids page should follow the shared kids visual family instead of defining its own page-level theme.
+- Any new adult/main page should follow the shared adult/main visual family instead of defining its own page-level theme.
+- Intentional cinematic or immersive exceptions must stay rare and explicit.
+
 
 For performance optimization 
 

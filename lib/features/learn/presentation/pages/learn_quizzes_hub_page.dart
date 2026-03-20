@@ -10,7 +10,9 @@ import '../../../../shared/widgets/premium_card.dart';
 import '../../hadith/data/seeded_hadith_path_quiz_data.dart';
 import '../../prophets/application/prophet_quiz_pool_service.dart';
 import '../../prophets/domain/prophet_quiz.dart';
+import '../widgets/learn_discovery_search_field.dart';
 import '../widgets/learn_hub_page_scaffold.dart';
+import '../widgets/learn_section_header.dart';
 
 enum LearnQuizFilter { all, prophets, hadith, review }
 
@@ -47,6 +49,9 @@ class _LearnQuizzesHubPageState extends ConsumerState<LearnQuizzesHubPage> {
         .where(_matchesFilter)
         .where(_matchesQuery)
         .toList(growable: false);
+    final triviaItems = filtered
+        .where((item) => item.module == 'Trivia' && item.group != 'Review')
+        .toList(growable: false);
     final prophetItems = filtered
         .where((item) => item.module == 'Prophets')
         .toList(growable: false);
@@ -66,14 +71,14 @@ class _LearnQuizzesHubPageState extends ConsumerState<LearnQuizzesHubPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              TextField(
+              LearnDiscoverySearchField(
                 controller: _searchController,
+                hintText: l10n.searchQuizzesHint,
                 onChanged: (_) => setState(() {}),
-                decoration: InputDecoration(
-                  hintText: l10n.learnQuizzesSearchHint,
-                  prefixIcon: const Icon(Icons.search_rounded),
-                  border: InputBorder.none,
-                ),
+                onClear: () {
+                  _searchController.clear();
+                  setState(() {});
+                },
               ),
               const SizedBox(height: 8),
               SingleChildScrollView(
@@ -116,6 +121,16 @@ class _LearnQuizzesHubPageState extends ConsumerState<LearnQuizzesHubPage> {
             ),
           )
         else ...[
+          if (triviaItems.isNotEmpty) ...[
+            _sectionTitle(
+              context,
+              l10n.learnCategoryIslamicTriviaTitle,
+              l10n.learnHubSubcategoryIslamicTriviaSubtitle,
+            ),
+            const SizedBox(height: 8),
+            ...triviaItems.map(_quizCard),
+            const SizedBox(height: 12),
+          ],
           if (prophetItems.isNotEmpty) ...[
             _sectionTitle(
               context,
@@ -179,24 +194,7 @@ class _LearnQuizzesHubPageState extends ConsumerState<LearnQuizzesHubPage> {
   }
 
   Widget _sectionTitle(BuildContext context, String title, String subtitle) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          title,
-          style: Theme.of(
-            context,
-          ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
-        ),
-        const SizedBox(height: 4),
-        Text(
-          subtitle,
-          style: Theme.of(
-            context,
-          ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),
-        ),
-      ],
-    );
+    return LearnSectionHeader(title: title, subtitle: subtitle);
   }
 
   Widget _quizCard(_QuizCatalogItem item) {
@@ -212,8 +210,8 @@ class _LearnQuizzesHubPageState extends ConsumerState<LearnQuizzesHubPage> {
               spacing: 8,
               runSpacing: 8,
               children: [
-                _chip(_moduleLabel(l10n, item.module)),
-                _chip(_groupLabel(l10n, item.group)),
+                _chip(item.moduleLabel ?? _moduleLabel(l10n, item.module)),
+                _chip(item.groupLabel ?? _groupLabel(l10n, item.group)),
                 if (item.questionCount != null)
                   _chip(
                     l10n.triviaQuestionsCount(
@@ -303,7 +301,52 @@ class _LearnQuizzesHubPageState extends ConsumerState<LearnQuizzesHubPage> {
       );
     });
 
+    final triviaItems = [
+      _QuizCatalogItem(
+        id: 'trivia_home',
+        module: 'Trivia',
+        group: 'Mode Quiz',
+        moduleLabel: AppLocalizations.of(context).learnCategoryIslamicTriviaTitle,
+        groupLabel: AppLocalizations.of(context).learnCategoryQuizzesTitle,
+        title: AppLocalizations.of(context).learnCategoryIslamicTriviaTitle,
+        subtitle: AppLocalizations.of(context).triviaHomeSubtitle,
+        routeName: 'learnIslamicTrivia',
+        ctaLabel: AppLocalizations.of(context).learnQuizzesOpenIslamicTrivia,
+      ),
+      _QuizCatalogItem(
+        id: 'trivia_paths',
+        module: 'Trivia',
+        group: 'Mode Quiz',
+        moduleLabel: AppLocalizations.of(context).learnCategoryIslamicTriviaTitle,
+        groupLabel: AppLocalizations.of(context).triviaHomeKnowledgePathsTitle,
+        title: AppLocalizations.of(context).triviaHomeKnowledgePathsTitle,
+        subtitle: AppLocalizations.of(context).triviaKnowledgePathsPageSubtitle,
+        routeName: 'learnTriviaKnowledgePaths',
+        ctaLabel: AppLocalizations.of(context).triviaHomeOpenKnowledgePathsAction,
+      ),
+    ];
+
     final reviewItems = [
+      _QuizCatalogItem(
+        id: 'trivia_review_queue',
+        module: 'Trivia',
+        group: 'Review',
+        moduleLabel: AppLocalizations.of(context).learnCategoryIslamicTriviaTitle,
+        title: AppLocalizations.of(context).triviaReviewMistakesTitle,
+        subtitle: AppLocalizations.of(context).triviaReviewMistakesSubtitle,
+        routeName: 'learnTriviaReview',
+        ctaLabel: AppLocalizations.of(context).triviaReviewMistakesAction,
+      ),
+      _QuizCatalogItem(
+        id: 'trivia_stats',
+        module: 'Trivia',
+        group: 'Review',
+        moduleLabel: AppLocalizations.of(context).learnCategoryIslamicTriviaTitle,
+        title: AppLocalizations.of(context).triviaHomeProgressStatsAction,
+        subtitle: AppLocalizations.of(context).triviaStatsSubtitle,
+        routeName: 'learnTriviaStats',
+        ctaLabel: AppLocalizations.of(context).triviaHomeProgressStatsAction,
+      ),
       _QuizCatalogItem(
         id: 'hadith_review_random',
         module: 'Hadith',
@@ -330,7 +373,7 @@ class _LearnQuizzesHubPageState extends ConsumerState<LearnQuizzesHubPage> {
       ),
     ];
 
-    return [...prophetItems, ...hadithChapterItems, ...reviewItems];
+    return [...triviaItems, ...prophetItems, ...hadithChapterItems, ...reviewItems];
   }
 
   bool _matchesFilter(_QuizCatalogItem item) {
@@ -354,6 +397,10 @@ class _LearnQuizzesHubPageState extends ConsumerState<LearnQuizzesHubPage> {
       item.subtitle,
       item.module,
       item.group,
+      item.moduleLabel ?? '',
+      item.groupLabel ?? '',
+      item.difficultyLabel ?? '',
+      item.ctaLabel,
     ].join(' ').toLowerCase();
     return haystack.contains(query);
   }
@@ -438,6 +485,8 @@ class _QuizCatalogItem {
     required this.subtitle,
     required this.routeName,
     required this.ctaLabel,
+    this.moduleLabel,
+    this.groupLabel,
     this.questionCount,
     this.difficultyLabel,
     this.pathParameters = const <String, String>{},
@@ -449,6 +498,8 @@ class _QuizCatalogItem {
   final String group;
   final String title;
   final String subtitle;
+  final String? moduleLabel;
+  final String? groupLabel;
   final int? questionCount;
   final String? difficultyLabel;
   final String routeName;

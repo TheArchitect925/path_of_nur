@@ -9,7 +9,6 @@ import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/quran_navigation.dart';
 import '../../shared/presentation/learning_detail_page.dart';
-import '../../shared/presentation/learning_header.dart';
 import '../../shared/presentation/learning_lessons.dart';
 import '../../shared/presentation/learning_reflection.dart';
 import '../../shared/presentation/learning_related_content.dart';
@@ -93,14 +92,10 @@ class _LearnContentDetailPageState
           ),
         )
         .toList(growable: false);
-    final referenceItems = topic.referencePlaceholders
-        .map(
-          (item) => LearningReferenceItem(
-            sourceTitle: item,
-            label: l10n.learnContentReferencesTitle,
-          ),
-        )
-        .toList(growable: false);
+    // These generic lesson pages still carry placeholder scaffolding rather
+    // than structured source-backed references. Hide them from v1 until the
+    // content model exposes real references.
+    const referenceItems = <LearningReferenceItem>[];
 
     return LearningDetailPage(
       headerIcon: _headerIcon(widget.category),
@@ -108,14 +103,6 @@ class _LearnContentDetailPageState
       subtitle: topic.subtitle,
       quote: buildLearningCompactQuote(),
       onQuoteTap: (quote) => openQuranQuoteLocation(context, quote),
-      header: LearningHeader(
-        title: topic.title,
-        summary: topic.overview,
-        chips: [
-          l10n.learnContentTopicLabel,
-          widget.category.name.toUpperCase(),
-        ],
-      ),
       sections: [
         LearningSection(
           title: l10n.learnContentOverviewTitle,
@@ -139,10 +126,11 @@ class _LearnContentDetailPageState
             title: l10n.learnContentReflectionIdeasTitle,
             child: LearningReflection(prompts: catalog.reflectionPrompts),
           ),
-        LearningSection(
-          title: l10n.learnContentReferencesTitle,
-          child: LearningReferences(items: referenceItems),
-        ),
+        if (referenceItems.isNotEmpty)
+          LearningSection(
+            title: l10n.learnContentReferencesTitle,
+            child: LearningReferences(items: referenceItems),
+          ),
         LearningSection(
           title: l10n.learnContentReflectionPromptTitle,
           child: LearningReflection(prompts: [topic.reflectionPrompt]),

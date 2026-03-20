@@ -10,7 +10,6 @@ import '../../shared/application/learn_unified_provider.dart';
 import '../../shared/domain/learn_unified_models.dart';
 import '../../shared/presentation/learning_detail_page.dart';
 import '../../shared/presentation/learning_expandable_section.dart';
-import '../../shared/presentation/learning_header.dart';
 import '../../shared/presentation/learning_lessons.dart';
 import '../../shared/presentation/learning_references.dart';
 import '../../shared/presentation/learning_reflection.dart';
@@ -58,9 +57,6 @@ class _WorldLessonPageState extends ConsumerState<WorldLessonPage> {
 
     final notifier = ref.read(worldProgressProvider.notifier);
     final qualityNotifier = ref.read(learnQualityProvider.notifier);
-    final progress = ref
-        .watch(worldProgressProvider)
-        .lessonProgressById[lesson.id];
     final quality = ref.watch(
       learnQualityProvider.select(
         (state) =>
@@ -68,8 +64,6 @@ class _WorldLessonPageState extends ConsumerState<WorldLessonPage> {
             LearnCompletionQuality.notRead,
       ),
     );
-    final sub = worldSubcategoryById(lesson.subcategoryId);
-    final theme = worldThemeById(lesson.themeId);
 
     final related = lesson.relatedLessonIds
         .where((id) => id != lesson.id)
@@ -98,7 +92,6 @@ class _WorldLessonPageState extends ConsumerState<WorldLessonPage> {
       nextLesson = worldLessonById(ordered[currentIndex + 1]);
     }
 
-    final lessonSummary = _firstSentence(lesson.overview);
     final relatedLessonLinks = related
         .map(
           (item) => LearningRelatedLink(
@@ -136,16 +129,6 @@ class _WorldLessonPageState extends ConsumerState<WorldLessonPage> {
       headerIcon: Icons.menu_book_rounded,
       title: lesson.title,
       subtitle: lesson.subtitle,
-      header: LearningHeader(
-        title: lesson.title,
-        chips: [
-          '${l10n.worldThemeLabel}: ${theme?.title ?? ''}',
-          '${l10n.worldSubcategoryLabel}: ${sub?.title ?? ''}',
-          _statusLabel(l10n, progress?.status),
-          l10n.learnQualityLabel(_qualityLabel(l10n, quality)),
-        ],
-        summary: lessonSummary,
-      ),
       sections: [
         LearningSection(
           title: l10n.learnContentOverviewTitle,
@@ -337,15 +320,6 @@ class _WorldLessonPageState extends ConsumerState<WorldLessonPage> {
       ],
     );
   }
-
-  String _firstSentence(String text) {
-    final trimmed = text.trim();
-    if (trimmed.isEmpty) return '';
-    final period = trimmed.indexOf('.');
-    if (period <= 0) return trimmed;
-    return trimmed.substring(0, period + 1);
-  }
-
   String _qualityLabel(AppLocalizations l10n, LearnCompletionQuality quality) {
     switch (quality) {
       case LearnCompletionQuality.notRead:
@@ -359,14 +333,4 @@ class _WorldLessonPageState extends ConsumerState<WorldLessonPage> {
     }
   }
 
-  String _statusLabel(AppLocalizations l10n, WorldLessonStatus? status) {
-    switch (status ?? WorldLessonStatus.notStarted) {
-      case WorldLessonStatus.notStarted:
-        return l10n.worldStatusNotStarted;
-      case WorldLessonStatus.inProgress:
-        return l10n.worldStatusInProgress;
-      case WorldLessonStatus.completed:
-        return l10n.worldStatusCompleted;
-    }
-  }
 }

@@ -7,6 +7,17 @@ class QuranVerseRef {
   final int ayah;
 
   String get id => '$surah:$ayah';
+
+  @override
+  bool operator ==(Object other) {
+    return other.runtimeType == runtimeType &&
+        other is QuranVerseRef &&
+        other.surah == surah &&
+        other.ayah == ayah;
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, surah, ayah);
 }
 
 class QuranQuoteRef extends QuranVerseRef {
@@ -21,6 +32,17 @@ class QuranQuoteRef extends QuranVerseRef {
     }
     return 'Qur’an $surah:$ayah';
   }
+
+  @override
+  bool operator ==(Object other) {
+    return other is QuranQuoteRef &&
+        other.surah == surah &&
+        other.ayah == ayah &&
+        other.ayahEnd == ayahEnd;
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, surah, ayah, ayahEnd);
 }
 
 class QuranAudioRef extends QuranVerseRef {
@@ -31,6 +53,17 @@ class QuranAudioRef extends QuranVerseRef {
   }) : assert(reciterId != '');
 
   final String reciterId;
+
+  @override
+  bool operator ==(Object other) {
+    return other is QuranAudioRef &&
+        other.surah == surah &&
+        other.ayah == ayah &&
+        other.reciterId == reciterId;
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, surah, ayah, reciterId);
 }
 
 class QuranQuoteContent {

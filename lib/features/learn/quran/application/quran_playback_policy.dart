@@ -18,6 +18,7 @@ class QuranPlaybackPolicy {
       metadata,
       mode: mode,
       isSurahTransition: true,
+      isSurahEntry: true,
     );
   }
 
@@ -25,7 +26,14 @@ class QuranPlaybackPolicy {
     QuranAudioSourceMetadata metadata, {
     BismillahPlaybackMode mode = defaultBismillahPlaybackMode,
     bool isSurahTransition = false,
+    bool isSurahEntry = true,
   }) {
+    if (metadata.surahNumber == 9) {
+      return false;
+    }
+    if (!isSurahTransition && !isSurahEntry) {
+      return false;
+    }
     switch (mode) {
       case BismillahPlaybackMode.disabled:
         return false;
@@ -60,6 +68,7 @@ class QuranPlaybackPolicy {
       metadata,
       mode: mode,
       isSurahTransition: request.isSurahTransition,
+      isSurahEntry: request.resolvesToSurahEntry,
     );
   }
 }

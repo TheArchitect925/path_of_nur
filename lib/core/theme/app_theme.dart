@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'app_colors.dart';
 import 'app_spacing.dart';
 import 'app_radii.dart';
 import 'app_fonts.dart';
 
 enum AppThemeMode { defaultMode, calmBeautiful, easyRead, dark }
+
+const double _glassContrastAlphaMin = 0.82;
+const double _glassContrastAlphaMax = 0.95;
+const double _glassContrastFactorMaxBoost = 0.08;
 
 class AppAppearanceTheme extends ThemeExtension<AppAppearanceTheme> {
   const AppAppearanceTheme({
@@ -39,10 +42,55 @@ class AppAppearanceTheme extends ThemeExtension<AppAppearanceTheme> {
 
   bool get isDark => mode == AppThemeMode.dark;
 
+  double get glassContrastProgress {
+    if (disableGlassTransparency) {
+      return 0;
+    }
+    final range = _glassContrastAlphaMax - _glassContrastAlphaMin;
+    if (range <= 0) {
+      return 0;
+    }
+    return ((_glassContrastAlphaMax - glassSurfaceAlpha) / range).clamp(
+      0.0,
+      1.0,
+    );
+  }
+
+  double get glassContrastFactor =>
+      1.0 + (glassContrastProgress * _glassContrastFactorMaxBoost);
+
+  Color get glassOnSurface => _scaledGlassTextColor(onSurface, strength: 0.92);
+
+  Color get glassOnSurfaceSubtle =>
+      _scaledGlassTextColor(onSurfaceSubtle, strength: 0.72);
+
+  Color get glassOnSurfaceCaption => _scaledGlassTextColor(
+    onSurfaceSubtle.withValues(alpha: isDark ? 0.94 : 0.88),
+    strength: 0.56,
+  );
+
+  Color get backgroundForeground =>
+      isDark && !disableBackground ? const Color(0xFF2A231C) : onSurface;
+
+  Color get backgroundForegroundSubtle =>
+      isDark && !disableBackground ? const Color(0xFF4F4438) : onSurfaceSubtle;
+
+  Color _scaledGlassTextColor(Color color, {double strength = 1.0}) {
+    final progress = (glassContrastProgress * strength).clamp(0.0, 1.0);
+    if (progress <= 0) {
+      return color;
+    }
+    final overlay = (isDark ? Colors.white : Colors.black).withValues(
+      alpha: 0.10 * progress,
+    );
+    return Color.alphaBlend(overlay, color);
+  }
+
   static AppAppearanceTheme defaults({
     required AppThemeMode mode,
     required bool disableGlassTransparency,
     required bool disableBackground,
+    required double glassSurfaceAlpha,
   }) {
     switch (mode) {
       case AppThemeMode.defaultMode:
@@ -58,10 +106,8 @@ class AppAppearanceTheme extends ThemeExtension<AppAppearanceTheme> {
           accentSoft: const Color(0xFFB9955E),
           glassSurfaceAlpha: disableGlassTransparency
               ? 0.96
-              : AppColors.glassSurfaceAlpha,
-          glassBorderAlpha: disableGlassTransparency
-              ? 0.42
-              : 0.36,
+              : glassSurfaceAlpha,
+          glassBorderAlpha: disableGlassTransparency ? 0.42 : 0.42,
           disableGlassTransparency: disableGlassTransparency,
           disableBackground: disableBackground,
         );
@@ -78,8 +124,8 @@ class AppAppearanceTheme extends ThemeExtension<AppAppearanceTheme> {
           accentSoft: const Color(0xFFB9955E),
           glassSurfaceAlpha: disableGlassTransparency
               ? 0.96
-              : AppColors.glassSurfaceAlpha,
-          glassBorderAlpha: disableGlassTransparency ? 0.42 : 0.36,
+              : glassSurfaceAlpha,
+          glassBorderAlpha: disableGlassTransparency ? 0.42 : 0.42,
           disableGlassTransparency: disableGlassTransparency,
           disableBackground: disableBackground,
         );
@@ -96,8 +142,8 @@ class AppAppearanceTheme extends ThemeExtension<AppAppearanceTheme> {
           accentSoft: const Color(0xFFA48756),
           glassSurfaceAlpha: disableGlassTransparency
               ? 0.98
-              : AppColors.glassSurfaceAlpha,
-          glassBorderAlpha: disableGlassTransparency ? 0.48 : 0.42,
+              : glassSurfaceAlpha,
+          glassBorderAlpha: disableGlassTransparency ? 0.48 : 0.46,
           disableGlassTransparency: disableGlassTransparency,
           disableBackground: disableBackground,
         );
@@ -114,8 +160,8 @@ class AppAppearanceTheme extends ThemeExtension<AppAppearanceTheme> {
           accentSoft: const Color(0xFF927647),
           glassSurfaceAlpha: disableGlassTransparency
               ? 0.98
-              : AppColors.glassSurfaceAlpha,
-          glassBorderAlpha: disableGlassTransparency ? 0.40 : 0.32,
+              : glassSurfaceAlpha,
+          glassBorderAlpha: disableGlassTransparency ? 0.40 : 0.38,
           disableGlassTransparency: disableGlassTransparency,
           disableBackground: disableBackground,
         );
@@ -195,11 +241,13 @@ class AppTheme {
     required bool disableGlassTransparency,
     required bool disableBackground,
     required bool highContrastText,
+    required double glassSurfaceAlpha,
   }) {
     final appearance = AppAppearanceTheme.defaults(
       mode: mode,
       disableGlassTransparency: disableGlassTransparency,
       disableBackground: disableBackground,
+      glassSurfaceAlpha: glassSurfaceAlpha,
     );
 
     final onSurface = appearance.onSurface;
@@ -225,7 +273,9 @@ class AppTheme {
         onSurface: onSurface,
         onSurfaceVariant: onSurfaceSubtle,
         outline: outlineColor,
-        outlineVariant: outlineColor.withValues(alpha: highContrastText ? 0.4 : 0.24),
+        outlineVariant: outlineColor.withValues(
+          alpha: highContrastText ? 0.4 : 0.24,
+        ),
         surface: appearance.surface,
         surfaceContainerHighest: appearance.surfaceSoft,
       ),
@@ -384,10 +434,7 @@ class AppTheme {
           ),
         ),
       ),
-      dividerTheme: DividerThemeData(
-        color: outlineColor,
-        thickness: 1,
-      ),
+      dividerTheme: DividerThemeData(color: outlineColor, thickness: 1),
       listTileTheme: ListTileThemeData(
         iconColor: mutedIconColor,
         textColor: onSurface,
@@ -487,5 +534,6 @@ class AppTheme {
     disableGlassTransparency: false,
     disableBackground: false,
     highContrastText: false,
+    glassSurfaceAlpha: 0.93,
   );
 }

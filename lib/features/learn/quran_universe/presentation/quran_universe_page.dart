@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/theme/app_colors.dart';
 import '../../../../shared/widgets/premium_card.dart';
+import '../../../../shared/widgets/quran_navigation.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../../prophets/application/prophet_detail_repository.dart';
 import '../../prophets/application/prophets_repository.dart';
@@ -565,14 +566,10 @@ class _QuranUniversePageState extends ConsumerState<QuranUniversePage> {
   }
 
   void _openVerse(QuranUniverseVerseLink link) {
-    final queryParameters = <String, String>{};
-    if (link.startAyah != null) {
-      queryParameters['ayah'] = '${link.startAyah}';
-    }
-    context.pushNamed(
-      'quranReader',
-      pathParameters: {'surahNumber': '${link.surahNumber}'},
-      queryParameters: queryParameters,
+    openQuranReaderLocation(
+      context,
+      surahNumber: link.surahNumber,
+      ayahNumber: link.startAyah,
     );
   }
 
@@ -685,7 +682,7 @@ class _QuranUniversePageState extends ConsumerState<QuranUniversePage> {
       case 'study_islamic_knowledge':
         return 'Study Knowledge';
       case 'pray_one_sunnah_prayer':
-        return 'Sunnah Prayer';
+        return 'Sunnah Salah';
       case 'help_someone':
         return 'Help Someone';
       case 'practice_humility':

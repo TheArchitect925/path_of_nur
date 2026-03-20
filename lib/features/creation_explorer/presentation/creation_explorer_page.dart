@@ -9,8 +9,11 @@ import 'package:intl/intl.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import '../../../l10n/app_localizations.dart';
+import '../../../shared/application/special_mode_provider.dart';
+import '../../../shared/content/page_description_copy.dart';
 import '../../../shared/widgets/app_page_scaffold.dart';
 import '../../../shared/widgets/premium_card.dart';
+import '../../../shared/widgets/quran_verse_content.dart';
 import '../../../shared/widgets/segmented_pill_control.dart';
 import '../../creation_challenges/application/creation_challenge_services.dart';
 import '../../creation_challenges/domain/creation_challenge_models.dart';
@@ -332,24 +335,16 @@ class _CreationExplorerPageState extends ConsumerState<CreationExplorerPage>
                     const SizedBox(height: 12),
                     Text(category.description),
                     const SizedBox(height: 12),
-                    Text(
-                      verse.ayahReference,
-                      style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                        fontWeight: FontWeight.w700,
+                    QuranVerseContent(
+                      source: QuranVerseSource(
+                        referenceText: verse.ayahReference,
+                        arabicText: verse.arabicText,
+                        translation: verse.translation,
                       ),
+                      center: false,
+                      dense: true,
+                      arabicBaseSize: 25,
                     ),
-                    const SizedBox(height: 6),
-                    if (verse.arabicText != null) ...[
-                      Text(
-                        verse.arabicText!,
-                        textAlign: TextAlign.right,
-                        style: Theme.of(
-                          context,
-                        ).textTheme.titleMedium?.copyWith(height: 1.6),
-                      ),
-                      const SizedBox(height: 8),
-                    ],
-                    Text('"${verse.translation}"'),
                     const SizedBox(height: 8),
                     Text(verse.reflection),
                     const SizedBox(height: 12),
@@ -419,6 +414,9 @@ class _CreationExplorerPageState extends ConsumerState<CreationExplorerPage>
 
   @override
   Widget build(BuildContext context) {
+    final isKidsMode = ref.watch(
+      specialModeProvider.select((mode) => mode.isKids),
+    );
     final observations = ref.watch(creationObservationsProvider);
     final challengeSummaries = ref.watch(currentCreationChallengesProvider);
     final dailyChallenge = challengeSummaries.firstWhere(
@@ -428,7 +426,11 @@ class _CreationExplorerPageState extends ConsumerState<CreationExplorerPage>
     return AppPageScaffold(
       headerIcon: Icons.travel_explore_rounded,
       title: AppLocalizations.of(context).creationExplorerTitle,
-      subtitle: AppLocalizations.of(context).creationExplorerSubtitle,
+      subtitle: localizedAppPageDescription(
+        context,
+        AppPageDescriptionKey.creationExplorer,
+        kidsMode: isKidsMode,
+      ),
       children: [
         SegmentedPillControl<_CreationExplorerTab>(
           items: _CreationExplorerTab.values,
@@ -1063,14 +1065,16 @@ class _CreationExplorerPageState extends ConsumerState<CreationExplorerPage>
                       ],
                     ),
                     const SizedBox(height: 10),
-                    Text(
-                      verse.ayahReference,
-                      style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                        fontWeight: FontWeight.w700,
+                    QuranVerseContent(
+                      source: QuranVerseSource(
+                        referenceText: verse.ayahReference,
+                        arabicText: verse.arabicText,
+                        translation: verse.translation,
                       ),
+                      center: false,
+                      dense: true,
+                      arabicBaseSize: 22,
                     ),
-                    const SizedBox(height: 4),
-                    Text('"${verse.translation}"'),
                     const SizedBox(height: 8),
                     Text(verse.reflection),
                     const SizedBox(height: 10),
@@ -1235,14 +1239,16 @@ class _CategoryVerseTile extends StatelessWidget {
               const SizedBox(height: 4),
               Text(category.description),
               const SizedBox(height: 10),
-              Text(
-                verse.ayahReference,
-                style: Theme.of(
-                  context,
-                ).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w700),
+              QuranVerseContent(
+                source: QuranVerseSource(
+                  referenceText: verse.ayahReference,
+                  arabicText: verse.arabicText,
+                  translation: verse.translation,
+                ),
+                center: false,
+                dense: true,
+                arabicBaseSize: 21,
               ),
-              const SizedBox(height: 4),
-              Text('"${verse.translation}"'),
               const SizedBox(height: 6),
               Text(verse.reflection),
             ],

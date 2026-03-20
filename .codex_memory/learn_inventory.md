@@ -1,6 +1,6 @@
 # Learn System Inventory
 
-Last updated: 2026-03-17
+Last updated: 2026-03-19
 
 ## Current reality
 
@@ -14,7 +14,7 @@ The Learn system is not one thing. It is several overlapping systems that curren
 
 ## Learn home ownership
 
-- `/learn` currently lands on `LearningJourneyHomePage`
+- `/learn` currently lands on `LearningSectionLandingPage`
 - `LearnPage` still exists and is reachable through `/learn/legacy`
 - this is intentional transitional state, not clean final IA
 
@@ -62,7 +62,7 @@ Important catalog facts:
 - Salah trainer / wudu / guided prayer
 - FAQ
 - Notes
-- Islamic Guides
+- Islamic Guides remains in the codebase as a compatibility-only legacy route and is no longer part of visible v1 discoverability
 
 ## Data sources / engines already present
 
@@ -105,6 +105,9 @@ Important catalog facts:
 - hidden placeholder-like categories remain in the catalog for future concepts
 - some larger content areas still depend on scaffold or seeded data
 - dua library intentionally tracks many `stub_*` entries not ready as full content
+- v1 discovery now hides stub/planned dua counts and only surfaces verified dua categories/items to users
+- legacy `IslamicGuidesPage` and `QuranLessonsMappingPage` are redirected away from visible v1 navigation because they depend on placeholder-backed content
+- generic learn content pages no longer show placeholder reference sections until structured source-backed references exist
 - older English fallback content still exists in parts of the journey lesson system
 
 ## Major missing pieces

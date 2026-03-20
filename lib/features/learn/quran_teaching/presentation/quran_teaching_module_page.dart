@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/theme/app_colors.dart';
+import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../application/quran_teaching_controller.dart';
 import '../domain/quran_teaching_models.dart';
@@ -38,12 +39,10 @@ class _QuranTeachingModulePageState
       }
     }
 
-    return Scaffold(
-      appBar: AppBar(title: Text(widget.module.title)),
-      body: SafeArea(
-        child: ListView(
-          padding: const EdgeInsets.fromLTRB(20, 16, 20, 32),
-          children: [
+    return AppPageScaffold(
+      title: widget.module.title,
+      subtitle: widget.module.description,
+      children: [
             PremiumCard(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -254,76 +253,76 @@ class _QuranTeachingModulePageState
               ),
             ),
             const SizedBox(height: 10),
-            ...lessons.map((lesson) {
-              final unlocked = isLessonUnlocked(
-                lesson: lesson,
-                module: widget.module,
-                catalog: catalog,
-                progress: progress,
-              );
-              final completed = progress.completedLessonIds.contains(lesson.id);
-              return Padding(
-                padding: const EdgeInsets.only(bottom: 10),
-                child: PremiumCard(
-                  child: InkWell(
-                    borderRadius: BorderRadius.circular(24),
-                    onTap: unlocked
-                        ? () async {
-                            await Navigator.of(context).push(
-                              MaterialPageRoute<bool>(
-                                builder: (_) => QuranTeachingLessonPage(
-                                  lesson: lesson,
-                                  module: widget.module,
-                                ),
-                              ),
-                            );
-                            if (!mounted) return;
-                            setState(() {});
-                          }
-                        : null,
-                    child: Row(
-                      children: [
-                        CircleAvatar(
-                          backgroundColor: completed
-                              ? Colors.green.withValues(alpha: 0.16)
-                              : widget.module.color.withValues(alpha: 0.14),
-                          child: Icon(
-                            completed ? Icons.check_rounded : (unlocked ? Icons.play_arrow_rounded : Icons.lock_rounded),
-                            color: completed ? Colors.green : widget.module.color,
+        ...lessons.map((lesson) {
+          final unlocked = isLessonUnlocked(
+            lesson: lesson,
+            module: widget.module,
+            catalog: catalog,
+            progress: progress,
+          );
+          final completed = progress.completedLessonIds.contains(lesson.id);
+          return Padding(
+            padding: const EdgeInsets.only(bottom: 10),
+            child: PremiumCard(
+              child: InkWell(
+                borderRadius: BorderRadius.circular(24),
+                onTap: unlocked
+                    ? () async {
+                        await Navigator.of(context).push(
+                          MaterialPageRoute<bool>(
+                            builder: (_) => QuranTeachingLessonPage(
+                              lesson: lesson,
+                              module: widget.module,
+                            ),
                           ),
-                        ),
-                        const SizedBox(width: 12),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                lesson.title,
-                                style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                              const SizedBox(height: 4),
-                              Text(lesson.subtitle),
-                              const SizedBox(height: 6),
-                              Text(
-                                '${lesson.estimatedSeconds}s • ${completed ? 'Completed' : (unlocked ? 'Ready now' : 'Locked for guided path')}',
-                                style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                                  color: AppColors.onSurfaceSubtle,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
+                        );
+                        if (!mounted) return;
+                        setState(() {});
+                      }
+                    : null,
+                child: Row(
+                  children: [
+                    CircleAvatar(
+                      backgroundColor: completed
+                          ? Colors.green.withValues(alpha: 0.16)
+                          : widget.module.color.withValues(alpha: 0.14),
+                      child: Icon(
+                        completed
+                            ? Icons.check_rounded
+                            : (unlocked
+                                  ? Icons.play_arrow_rounded
+                                  : Icons.lock_rounded),
+                        color: completed ? Colors.green : widget.module.color,
+                      ),
                     ),
-                  ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            lesson.title,
+                            style: Theme.of(context).textTheme.titleSmall
+                                ?.copyWith(fontWeight: FontWeight.w700),
+                          ),
+                          const SizedBox(height: 4),
+                          Text(lesson.subtitle),
+                          const SizedBox(height: 6),
+                          Text(
+                            '${lesson.estimatedSeconds}s • ${completed ? 'Completed' : (unlocked ? 'Ready now' : 'Locked for guided path')}',
+                            style: Theme.of(context).textTheme.bodySmall
+                                ?.copyWith(color: AppColors.onSurfaceSubtle),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
-              );
-            }),
-          ],
-        ),
-      ),
+              ),
+            ),
+          );
+        }),
+      ],
     );
   }
 }

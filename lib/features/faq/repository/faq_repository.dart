@@ -113,7 +113,7 @@ class FaqRepository {
       case 'foundations_of_islam':
         return 'Core beliefs, identity, and first principles.';
       case 'worship_and_practice':
-        return 'Prayer, fasting, charity, and lived practice.';
+        return 'Salah, fasting, charity, and lived practice.';
       case 'misconceptions_about_islam':
         return 'Calm clarifications on common misunderstandings.';
       case 'women_in_islam':

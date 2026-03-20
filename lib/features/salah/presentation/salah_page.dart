@@ -250,7 +250,6 @@ class _SalahTimesPageState extends ConsumerState<SalahTimesPage> {
                     ),
                     child: PremiumCard(
                       key: _salahCardKeys[entry.id],
-                      surfaceAlphaOverride: 0.9,
                       child: Padding(
                         padding: const EdgeInsets.all(14),
                         child: Column(
@@ -534,7 +533,6 @@ class _SalahSummaryHeader extends StatelessWidget {
     final nextAccent = _nextSalahAccent(next, now);
 
     return PremiumCard(
-      surfaceAlphaOverride: 0.9,
       child: Row(
         children: [
           Flexible(
@@ -671,7 +669,6 @@ class _SalahRakatGuideCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PremiumCard(
-      surfaceAlphaOverride: 0.9,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -837,7 +834,6 @@ class _QadaRuleRow extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
                   child: PremiumCard(
-                    surfaceAlphaOverride: 0.95,
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -1219,7 +1215,6 @@ class _SalahTrackerSheetState extends State<_SalahTrackerSheet> {
       child: Padding(
         padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
         child: PremiumCard(
-          surfaceAlphaOverride: 0.96,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,

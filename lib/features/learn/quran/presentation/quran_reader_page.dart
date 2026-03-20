@@ -15,6 +15,7 @@ import '../../../../../shared/persistence/local_store.dart';
 import '../../../../../shared/widgets/arabic_text_utils.dart';
 import '../../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../../shared/widgets/premium_card.dart';
+import '../../../../../shared/widgets/quran_presentation_style.dart';
 import '../../../../../shared/widgets/quran_text_span.dart';
 import '../../shared/application/learn_unified_provider.dart';
 import '../../shared/domain/learn_unified_models.dart';
@@ -406,6 +407,12 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
                   const SizedBox(height: 6),
                   SwitchListTile.adaptive(
                     contentPadding: EdgeInsets.zero,
+                    value: settings.showArabic,
+                    title: Text(l10n.quranShowArabic),
+                    onChanged: settingsNotifier.setShowArabic,
+                  ),
+                  SwitchListTile.adaptive(
+                    contentPadding: EdgeInsets.zero,
                     value: settings.showTranslation,
                     title: Text(l10n.quranShowTranslation),
                     onChanged: settingsNotifier.setShowTranslation,
@@ -470,7 +477,7 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
                   ),
                   const SizedBox(height: 10),
                   _ScaleControl(
-                    label: 'Transliteration text size',
+                    label: l10n.quranTransliterationTextSize,
                     percent: settings.transliterationScalePercent,
                     onChanged: settingsNotifier.setTransliterationScalePercent,
                   ),
@@ -1036,9 +1043,10 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
                       );
                 },
                 onAddNote: () => _showAddNoteDialog(context, ref, ayah),
+                showArabic: settings.showArabic,
                 showTranslation: settings.showTranslation,
                 showTransliteration: settings.showTransliteration,
-                showWordByWord: settings.showWordByWord,
+                showWordByWord: settings.showArabic && settings.showWordByWord,
                 showActions: !settings.cleanReadingMode,
                 hifzRevealMode: hifzSettings.enabled
                     ? hifzSettings.revealMode
@@ -2266,9 +2274,9 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
               children: [
                 Text(
                   word.arabic,
-                  style: AppTextStyles.quranVerse(
-                    size: 36,
-                    weight: FontWeight.w700,
+                  style: QuranPresentationStyle.translucentTextStyle(
+                    context,
+                    AppTextStyles.quranVerse(size: 36, weight: FontWeight.w700),
                   ),
                 ),
                 const SizedBox(height: 6),
@@ -2803,6 +2811,7 @@ class _AyahCard extends StatefulWidget {
     required this.notesCount,
     required this.onBookmark,
     required this.onAddNote,
+    required this.showArabic,
     required this.showTranslation,
     required this.showTransliteration,
     required this.showWordByWord,
@@ -2827,6 +2836,7 @@ class _AyahCard extends StatefulWidget {
   final int notesCount;
   final VoidCallback onBookmark;
   final VoidCallback onAddNote;
+  final bool showArabic;
   final bool showTranslation;
   final bool showTransliteration;
   final bool showWordByWord;
@@ -2966,14 +2976,16 @@ class _AyahCardState extends State<_AyahCard> {
                       ),
                   ],
                 ),
-                const SizedBox(height: 8),
-                Builder(
-                  builder: (context) {
-                    final visibleArabic = _displayArabicForHifz(
-                      widget.ayah.arabic,
-                      widget.hifzRevealMode,
-                    );
-                    final style =
+                if (widget.showArabic) ...[
+                  const SizedBox(height: 8),
+                  Builder(
+                    builder: (context) {
+                      final visibleArabic = _displayArabicForHifz(
+                        widget.ayah.arabic,
+                        widget.hifzRevealMode,
+                      );
+                      final style = QuranPresentationStyle.translucentTextStyle(
+                        context,
                         AppTextStyles.quranVerse(
                           size: widget.arabicFontSize + 4,
                           color: const Color(0xFF1F1B17),
@@ -2981,35 +2993,42 @@ class _AyahCardState extends State<_AyahCard> {
                           height: 1.9,
                           fontWeight: FontWeight.w500,
                           letterSpacing: 0.3,
-                        );
-                    final canWordHighlight =
-                        widget.hifzRevealMode == HifzRevealMode.full &&
-                        widget.activeWordIndex != null;
+                        ),
+                      );
+                      final canWordHighlight =
+                          widget.hifzRevealMode == HifzRevealMode.full &&
+                          widget.activeWordIndex != null;
 
-                    return Text.rich(
-                      canWordHighlight
-                          ? _buildWordSyncedArabicSpan(
-                              visibleArabic,
-                              style,
-                              widget.activeWordIndex!,
-                              widget.harakatColor,
-                            )
-                          : buildQuranTextWithColoredHarakat(
-                              visibleArabic,
-                              style,
-                              harakatColor: widget.harakatColor,
-                            ),
-                      textAlign: textAlignForContent(visibleArabic),
-                      textDirection: textDirectionForContent(visibleArabic),
-                      strutStyle: StrutStyle(
-                        fontFamily: style.fontFamily,
-                        fontSize: style.fontSize,
-                        height: style.height,
-                        forceStrutHeight: true,
-                      ),
-                    );
-                  },
-                ),
+                      return Text.rich(
+                        canWordHighlight
+                            ? _buildWordSyncedArabicSpan(
+                                context,
+                                visibleArabic,
+                                style,
+                                widget.activeWordIndex!,
+                                widget.harakatColor,
+                              )
+                            : buildQuranTextWithColoredHarakat(
+                                visibleArabic,
+                                style,
+                                harakatColor:
+                                    widget.harakatColor ??
+                                    QuranPresentationStyle.translucentHarakatColor(
+                                      context,
+                                    ),
+                              ),
+                        textAlign: textAlignForContent(visibleArabic),
+                        textDirection: textDirectionForContent(visibleArabic),
+                        strutStyle: StrutStyle(
+                          fontFamily: style.fontFamily,
+                          fontSize: style.fontSize,
+                          height: style.height,
+                          forceStrutHeight: true,
+                        ),
+                      );
+                    },
+                  ),
+                ],
                 if (widget.showWordByWord) ...[
                   const SizedBox(height: 10),
                   Wrap(
@@ -3081,7 +3100,10 @@ class _AyahCardState extends State<_AyahCard> {
                           : 'Transliteration not available for this ayah yet.',
                       baseStyle: TextStyle(
                         fontStyle: FontStyle.italic,
-                        color: const Color(0xFF6A5A4A),
+                        color: QuranPresentationStyle.translucentColor(
+                          context,
+                          const Color(0xFF6A5A4A),
+                        ),
                         height: 1.6,
                         fontSize: widget.transliterationFontSize,
                       ),
@@ -3098,7 +3120,10 @@ class _AyahCardState extends State<_AyahCard> {
                       baseStyle: TextStyle(
                         height: 1.5,
                         fontSize: widget.translationFontSize,
-                        color: const Color(0xFF403429),
+                        color: QuranPresentationStyle.translucentColor(
+                          context,
+                          const Color(0xFF403429),
+                        ),
                       ),
                       sourceWordCount: arabicWordCount,
                       activeSourceIndex: widget.activeWordIndex,
@@ -3156,6 +3181,7 @@ String _displayArabicForHifz(String text, HifzRevealMode mode) {
 }
 
 TextSpan _buildWordSyncedArabicSpan(
+  BuildContext context,
   String arabic,
   TextStyle baseStyle,
   int activeWordIndex,
@@ -3170,7 +3196,9 @@ TextSpan _buildWordSyncedArabicSpan(
     return buildQuranTextWithColoredHarakat(
       arabic,
       baseStyle,
-      harakatColor: harakatColor,
+      harakatColor:
+          harakatColor ??
+          QuranPresentationStyle.translucentHarakatColor(context),
     );
   }
 
@@ -3179,7 +3207,12 @@ TextSpan _buildWordSyncedArabicSpan(
     final isActive = i == activeWordIndex;
     final style = isActive
         ? baseStyle.copyWith(
-            color: const Color(0xFF2F8F5B),
+            color: const Color(0xFF2F8F5B).withValues(
+              alpha:
+                  (const Color(0xFF2F8F5B).a *
+                          QuranPresentationStyle.translucencyFactor(context))
+                      .clamp(0.0, 1.0),
+            ),
             backgroundColor: const Color(0xFFE8D69B).withValues(alpha: 0.80),
             shadows: [
               Shadow(
@@ -3194,7 +3227,9 @@ TextSpan _buildWordSyncedArabicSpan(
       buildQuranTextWithColoredHarakat(
         words[i],
         style,
-        harakatColor: harakatColor,
+        harakatColor:
+            harakatColor ??
+            QuranPresentationStyle.translucentHarakatColor(context),
       ),
     );
     if (i != words.length - 1) {

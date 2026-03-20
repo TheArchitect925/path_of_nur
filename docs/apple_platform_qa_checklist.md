@@ -9,7 +9,7 @@ Short manual smoke checklist for iPhone, Apple Watch, widgets, complications, an
   - `/home`
   - `/worship`
   - `/quran`
-  - `/journey/growth/today`
+  - `/journey/today`
 - Confirm the app lands on the expected screen each time.
 
 ## Notifications
@@ -18,6 +18,7 @@ Short manual smoke checklist for iPhone, Apple Watch, widgets, complications, an
 - Trigger a dhikr reminder and confirm tapping it opens the app to Worship.
 - Trigger a Qur'an reminder and confirm tapping it opens the app to Qur'an.
 - Trigger a reflection reminder and confirm tapping it opens the app to Growth Reflection.
+- Confirm Settings is reached from the Home/settings entry point rather than a bottom-tab Profile destination.
 - Check recovered reminder behavior after reopening the app within the grace window.
 
 ## Apple Watch

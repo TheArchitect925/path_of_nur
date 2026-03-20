@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_spacing.dart';
+import '../../../../core/theme/app_surfaces.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/section_title.dart';
 import '../../application/khusu_settings_controller.dart';
@@ -40,8 +41,9 @@ class KhusuSection extends ConsumerWidget {
         const SizedBox(height: 14),
         _FocusCard(
           icon: Icons.spa_outlined,
-          title: 'Prayer Focus',
-          subtitle: 'A minimal countdown and reminder card for one prayer window.',
+          title: 'Salah Focus',
+          subtitle:
+              'A minimal countdown and reminder card for one prayer window.',
         ),
         const SizedBox(height: 10),
         _FocusCard(
@@ -143,7 +145,12 @@ class _FocusCard extends StatelessWidget {
             height: 40,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(AppSpacing.s),
-              color: AppColors.accentGold.withValues(alpha: 0.18),
+              color: AppSurfaceTheme.adaptiveColor(
+                context,
+                AppColors.accentGold,
+                alpha: 0.18,
+                solidAlphaWhenDisabled: 0.28,
+              ),
             ),
             child: Icon(icon, color: AppColors.onSurface),
           ),
@@ -194,10 +201,7 @@ class _SettingRow extends StatelessWidget {
             style: const TextStyle(color: AppColors.onSurfaceSubtle),
           ),
         ),
-        Switch(
-          value: value,
-          onChanged: onChanged,
-        ),
+        Switch(value: value, onChanged: onChanged),
       ],
     );
   }

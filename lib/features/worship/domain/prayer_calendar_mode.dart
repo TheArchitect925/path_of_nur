@@ -1,0 +1,1 @@
+enum PrayerCalendarMode { gregorian, islamic }

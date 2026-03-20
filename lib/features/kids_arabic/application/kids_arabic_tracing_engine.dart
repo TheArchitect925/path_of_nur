@@ -53,9 +53,10 @@ KidsArabicTraceEvaluation evaluateKidsArabicTrace({
 
   for (var i = 0; i < guide.strokes.length; i += 1) {
     final stroke = guide.strokes[i];
+    final sampledPoints = kidsArabicSampledGuidePoints(stroke);
     var covered = 0;
     var alignmentTotal = 0.0;
-    for (final normalized in stroke.points) {
+    for (final normalized in sampledPoints) {
       final target = Offset(normalized.dx * size.width, normalized.dy * size.height);
       var nearest = double.infinity;
       for (final point in allPoints) {
@@ -69,8 +70,8 @@ KidsArabicTraceEvaluation evaluateKidsArabicTrace({
         alignmentTotal += (1 - (nearest / threshold)).clamp(0.0, 1.0);
       }
     }
-    final progress = stroke.points.isEmpty ? 0.0 : covered / stroke.points.length;
-    final alignment = stroke.points.isEmpty ? 0.0 : alignmentTotal / stroke.points.length;
+    final progress = sampledPoints.isEmpty ? 0.0 : covered / sampledPoints.length;
+    final alignment = sampledPoints.isEmpty ? 0.0 : alignmentTotal / sampledPoints.length;
     strokeProgress.add(progress.clamp(0.0, 1.0));
     strokeAlignment.add(alignment.clamp(0.0, 1.0));
     if (progress >= stroke.completionThreshold) {

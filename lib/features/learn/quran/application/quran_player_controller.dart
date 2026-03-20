@@ -150,10 +150,15 @@ class QuranPlayerController {
     required bool includeMediaTags,
   }) async {
     if (prepared.didPrependBismillah && prepared.preRollSource != null) {
-      await _playSourceOnce(
-        prepared.preRollSource!,
-        playbackSpeed: playbackSpeed,
-      );
+      try {
+        await _playSourceOnce(
+          prepared.preRollSource!,
+          playbackSpeed: playbackSpeed,
+        );
+      } catch (_) {
+        // Bismillah pre-roll should never block the requested Qur'an recitation
+        // target from starting.
+      }
     }
 
     final audioRepository = ref.read(quranAudioRepositoryProvider);

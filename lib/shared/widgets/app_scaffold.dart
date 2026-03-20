@@ -153,6 +153,8 @@ class AppShellScaffold extends ConsumerWidget {
     final appearance = Theme.of(context).extension<AppAppearanceTheme>();
     final surface = appearance?.surface ?? AppColors.surface;
     final accent = appearance?.accent ?? AppColors.accentGold;
+    final surfaceAlpha =
+        appearance?.glassSurfaceAlpha ?? AppColors.glassSurfaceAlpha;
     final borderAlpha =
         appearance?.glassBorderAlpha ?? AppColors.glassBorderAlpha;
 
@@ -178,7 +180,7 @@ class AppShellScaffold extends ConsumerWidget {
                       color: accent.withValues(alpha: borderAlpha),
                       width: 1.0,
                     ),
-                    color: surface.withValues(alpha: 0.80),
+                    color: surface.withValues(alpha: surfaceAlpha),
                     boxShadow: [
                       BoxShadow(
                         color: const Color(0xFF000000).withValues(alpha: 0.08),

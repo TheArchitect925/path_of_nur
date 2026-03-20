@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../../core/theme/app_colors.dart';
+import '../../../../../core/theme/app_surfaces.dart';
 import '../../../../../l10n/app_localizations.dart';
 import '../../../../../shared/widgets/premium_card.dart';
 import '../../domain/trivia_models.dart';
@@ -202,6 +203,13 @@ class TriviaOptionCard extends StatelessWidget {
         : incorrect
         ? AppColors.caution
         : AppColors.surface;
+    final isEmphasized = selected || correct || incorrect;
+    final surfaceStyle = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.panel,
+      tintColor: isEmphasized ? color : AppColors.accentGold,
+      baseColor: isEmphasized ? color : null,
+    );
     return Semantics(
       button: true,
       enabled: !disabled,
@@ -212,16 +220,9 @@ class TriviaOptionCard extends StatelessWidget {
         child: Container(
           width: double.infinity,
           padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: color.withValues(
-              alpha: selected || correct || incorrect ? 0.95 : 0.8,
-            ),
-            borderRadius: BorderRadius.circular(18),
-            border: Border.all(
-              color: selected || correct || incorrect
-                  ? AppColors.accentGoldSoft
-                  : AppColors.accentGold.withValues(alpha: 0.35),
-            ),
+          decoration: surfaceStyle.decoration(
+            radius: 18,
+            borderWidth: isEmphasized ? 1.6 : 1,
           ),
           child: Row(
             children: [
@@ -236,11 +237,14 @@ class TriviaOptionCard extends StatelessWidget {
                 ),
               ),
               if (correct)
-                const Icon(Icons.check_circle_rounded)
+                const Icon(Icons.check_circle_rounded, color: AppColors.success)
               else if (incorrect)
-                const Icon(Icons.cancel_rounded)
+                const Icon(Icons.cancel_rounded, color: AppColors.caution)
               else if (selected)
-                const Icon(Icons.radio_button_checked_rounded)
+                Icon(
+                  Icons.radio_button_checked_rounded,
+                  color: surfaceStyle.borderColor,
+                )
               else
                 const Icon(Icons.radio_button_off_rounded),
             ],
@@ -478,12 +482,13 @@ class TriviaKnowledgeStageTile extends StatelessWidget {
 }
 
 Widget _pill(BuildContext context, String label) {
+  final style = AppSurfaceTheme.resolve(
+    context,
+    variant: AppSurfaceVariant.pill,
+  );
   return Container(
     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-    decoration: BoxDecoration(
-      color: AppColors.surfaceSoft.withValues(alpha: 0.65),
-      borderRadius: BorderRadius.circular(999),
-    ),
+    decoration: style.decoration(radius: 999),
     child: Text(
       label,
       style: Theme.of(

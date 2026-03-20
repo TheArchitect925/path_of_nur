@@ -10,7 +10,6 @@ import '../../shared/application/learn_unified_provider.dart';
 import '../../shared/domain/learn_unified_models.dart';
 import '../../shared/presentation/learning_detail_page.dart';
 import '../../shared/presentation/learning_expandable_section.dart';
-import '../../shared/presentation/learning_header.dart';
 import '../../shared/presentation/learning_lessons.dart';
 import '../../shared/presentation/learning_references.dart';
 import '../../shared/presentation/learning_reflection.dart';
@@ -57,9 +56,6 @@ class _LifeLessonPageState extends ConsumerState<LifeLessonPage> {
 
     final notifier = ref.read(lifeProgressProvider.notifier);
     final qualityNotifier = ref.read(learnQualityProvider.notifier);
-    final progress = ref
-        .watch(lifeProgressProvider)
-        .lessonProgressById[lesson.id];
     final quality = ref.watch(
       learnQualityProvider.select(
         (state) =>
@@ -67,8 +63,6 @@ class _LifeLessonPageState extends ConsumerState<LifeLessonPage> {
             LearnCompletionQuality.notRead,
       ),
     );
-    final sub = lifeSubcategoryById(lesson.subcategoryId);
-    final theme = lifeThemeById(lesson.themeId);
 
     final related = lesson.relatedLessonIds
         .where((id) => id != lesson.id)
@@ -97,7 +91,6 @@ class _LifeLessonPageState extends ConsumerState<LifeLessonPage> {
       nextLesson = lifeLessonById(ordered[currentIndex + 1]);
     }
 
-    final lessonSummary = _firstSentence(lesson.overview);
     final relatedLessonLinks = related
         .map(
           (item) => LearningRelatedLink(
@@ -135,16 +128,6 @@ class _LifeLessonPageState extends ConsumerState<LifeLessonPage> {
       headerIcon: Icons.menu_book_rounded,
       title: lesson.title,
       subtitle: lesson.subtitle,
-      header: LearningHeader(
-        title: lesson.title,
-        chips: [
-          '${l10n.lifeThemeLabel}: ${theme?.title ?? ''}',
-          '${l10n.lifeSubcategoryLabel}: ${sub?.title ?? ''}',
-          _statusLabel(l10n, progress?.status),
-          l10n.learnQualityLabel(_qualityLabel(l10n, quality)),
-        ],
-        summary: lessonSummary,
-      ),
       sections: [
         LearningSection(
           title: l10n.learnContentOverviewTitle,
@@ -315,15 +298,6 @@ class _LifeLessonPageState extends ConsumerState<LifeLessonPage> {
       ],
     );
   }
-
-  String _firstSentence(String text) {
-    final trimmed = text.trim();
-    if (trimmed.isEmpty) return '';
-    final period = trimmed.indexOf('.');
-    if (period <= 0) return trimmed;
-    return trimmed.substring(0, period + 1);
-  }
-
   String _qualityLabel(AppLocalizations l10n, LearnCompletionQuality quality) {
     switch (quality) {
       case LearnCompletionQuality.notRead:
@@ -337,14 +311,4 @@ class _LifeLessonPageState extends ConsumerState<LifeLessonPage> {
     }
   }
 
-  String _statusLabel(AppLocalizations l10n, LifeLessonStatus? status) {
-    switch (status ?? LifeLessonStatus.notStarted) {
-      case LifeLessonStatus.notStarted:
-        return l10n.lifeStatusNotStarted;
-      case LifeLessonStatus.inProgress:
-        return l10n.lifeStatusInProgress;
-      case LifeLessonStatus.completed:
-        return l10n.lifeStatusCompleted;
-    }
-  }
 }

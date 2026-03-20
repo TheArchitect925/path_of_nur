@@ -1,6 +1,6 @@
 # Current Project State
 
-Last updated: 2026-03-18
+Last updated: 2026-03-19
 
 ## A. Project summary
 
@@ -85,7 +85,7 @@ Path of Nur is a Flutter + Riverpod mobile app centered on worship, Qur'an engag
   - several stage chains remain explicitly `partial` or `placeholder`
   - metadata localization scaffolding exists, but larger seeded lesson bodies are still not fully localized
 - Learn information architecture is in transition:
-  - `/learn` is now journey-first, but broad legacy content systems still coexist
+  - `/learn` now separates standard Learn discovery from a dedicated `Learning Journey` island entry, but broad legacy content systems still coexist
   - duplicate or overlapping entry points remain between Learn, Qur'an, and older content hubs
 - Dua dataset is intentionally incomplete:
   - verified entries are live

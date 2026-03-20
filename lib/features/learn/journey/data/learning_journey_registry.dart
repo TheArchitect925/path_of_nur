@@ -12,7 +12,7 @@ class LearningJourneyRegistry {
       title: 'Core Knowledge',
       subtitle: 'Qur’an, Prophets, Seerah, and Hadith.',
       description:
-          'Build your foundations through the core sources and sacred history of Islam.',
+          'Everything begins with knowing Allah. Build the foundation of your faith here.',
       order: 1,
       icon: IslamicIcons.quran,
       color: Color(0xFFECE5D7),
@@ -20,10 +20,10 @@ class LearningJourneyRegistry {
     ),
     LearningJourneyIsland(
       id: 'practice-worship',
-      title: 'Practice & Worship',
+      title: 'Practice & Ibadah',
       subtitle: 'Salah, Dhikr, and Duas for daily life.',
       description:
-          'Learn the acts of worship that shape daily rhythm, remembrance, and presence.',
+          'Learn the acts of ibadah that shape daily rhythm, remembrance, and presence.',
       order: 2,
       icon: IslamicIcons.prayer,
       color: Color(0xFFE3EAD8),
@@ -386,7 +386,7 @@ class LearningJourneyRegistry {
           'Dhikr is one of the gentlest ways to keep the heart alive, but beginners need a simple guided path rather than utilities alone.',
       relatedTools: [_legacyLearnTool],
       mappingNotes:
-          'These stages now open real lesson content, while the Worship dhikr utility remains available as a supporting tool rather than the lesson itself.',
+          'These stages now open real lesson content, while the Ibadah dhikr utility remains available as a supporting tool rather than the lesson itself.',
     ),
     LearningJourney(
       id: 'daily-routines',
@@ -1758,9 +1758,9 @@ class LearningJourneyRegistry {
     LearningJourneyStage(
       id: 'fiqh-prayer-basics',
       journeyId: 'fiqh-basics',
-      title: 'Prayer basics',
+      title: 'Salah basics',
       summary:
-          'Understand the first practical rules around timing, obligation, and prayer readiness.',
+          'Understand the first practical rules around timing, obligation, and salah readiness.',
       order: 3,
       status: LearningJourneyStageStatus.real,
       targetType: LearningJourneyStageTargetType.existingPage,
@@ -2608,8 +2608,8 @@ const _learnSalahHubTool = LearningJourneyToolLink(
 );
 
 const _guidedPrayerTool = LearningJourneyToolLink(
-  title: 'Guided Prayer',
-  subtitle: 'Open a guided prayer flow.',
+  title: 'Guided Salah',
+  subtitle: 'Open a guided salah flow.',
   routeName: 'learnSalahGuidedPrayer',
   pathParameters: {'prayerId': 'fajr'},
 );

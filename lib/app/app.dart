@@ -44,6 +44,7 @@ class PathOfNurApp extends ConsumerWidget {
       disableGlassTransparency: profileSettings.disableGlassTransparency,
       disableBackground: profileSettings.disableBackground,
       highContrastText: profileSettings.highContrastText,
+      glassSurfaceAlpha: profileSettings.glassSurfaceAlpha,
     );
     final localeTag = locale?.toLanguageTag() ?? 'en';
     return MaterialApp.router(

@@ -8,8 +8,9 @@ import 'package:path_of_nur/features/kids_arabic/data/kids_arabic_letters_data.d
 import 'package:path_of_nur/features/kids_arabic/domain/kids_arabic_models.dart';
 
 void main() {
-  test('starter tracing guides exist for the five playable starter letters', () {
-    for (final id in const ['alif', 'ba', 'meem', 'noon', 'seen']) {
+  test('tracing guides exist for every playable Arabic letter', () {
+    for (final letter in kidsArabicLetters) {
+      final id = letter.id;
       final guide = kidsArabicTracingGuideFor(id);
       expect(guide, isNotNull);
       expect(guide!.strokes, isNotEmpty);
@@ -88,6 +89,15 @@ void main() {
       ),
       KidsArabicTraceResult.excellent,
     );
+  });
+
+  test('dot guides sample multiple target points for coverage scoring', () {
+    final guide = kidsArabicTracingGuideFor('ba')!;
+    final dotStroke = guide.strokes.last;
+    final sampled = kidsArabicSampledGuidePoints(dotStroke);
+
+    expect(dotStroke.kind, KidsArabicGuideStrokeKind.dot);
+    expect(sampled.length, greaterThan(6));
   });
 
   test('reward hook scoring still returns a usable result for starter lessons', () {

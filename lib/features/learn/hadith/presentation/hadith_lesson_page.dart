@@ -6,7 +6,6 @@ import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/quran_reference_block.dart';
-import '../../shared/presentation/learning_header.dart';
 import '../../shared/presentation/learning_lessons.dart';
 import '../../shared/presentation/learning_references.dart';
 import '../../shared/presentation/learning_reflection.dart';
@@ -19,6 +18,7 @@ import '../application/hadith_learning_paths_service.dart';
 import '../application/hadith_path_quiz_service.dart';
 import '../../../journey/application/journey_progression_provider.dart';
 import '../domain/hadith_foundation_models.dart';
+import 'widgets/hadith_content_block.dart';
 
 class HadithLessonPage extends ConsumerWidget {
   const HadithLessonPage({super.key, required this.lessonId});
@@ -32,17 +32,13 @@ class HadithLessonPage extends ConsumerWidget {
     if (entry == null) {
       return AppPageScaffold(
         headerIcon: Icons.article_outlined,
-        title: 'Hadith',
-        subtitle: 'Content not found',
-        children: const [
-          PremiumCard(child: Text('The requested hadith could not be found.')),
-        ],
+        title: l10n.hadithPageTitle,
+        subtitle: l10n.hadithLessonNotFoundSubtitle,
+        children: [PremiumCard(child: Text(l10n.hadithLessonNotFoundBody))],
       );
     }
 
     final theme = ref.watch(hadithThemeByIdProvider(entry.themeId));
-    final savedNotifier = ref.read(hadithSavedIdsProvider.notifier);
-    final isSaved = ref.watch(hadithSavedIdsProvider).contains(entry.id);
     final pathsProgress = ref.watch(hadithLearningPathsProgressProvider);
     final isCompletedInPaths = pathsProgress.completedLessonIds.contains(
       entry.id,
@@ -58,52 +54,27 @@ class HadithLessonPage extends ConsumerWidget {
     return AppPageScaffold(
       headerIcon: Icons.menu_book_rounded,
       title: entry.title,
-      subtitle: theme?.title ?? 'Hadith',
+      subtitle: theme?.title ?? l10n.hadithPageTitle,
       children: [
-        LearningHeader(
-          title: entry.title,
-          summary: entry.excerpt,
-          chips: [
-            entry.displaySourceCollection,
-            if (entry.displaySourceReference != null)
-              entry.displaySourceReference!,
-            entry.grading,
-            if (entry.narrator != null) entry.narrator!,
-            if (theme != null) theme.title,
-          ],
-          trailing: IconButton(
-            tooltip: isSaved
-                ? l10n.accessibilityRemoveFromSaved
-                : l10n.accessibilitySaveHadith,
-            onPressed: () => savedNotifier.toggle(entry.id),
-            icon: Icon(
-              isSaved ? Icons.bookmark_rounded : Icons.bookmark_border_rounded,
-            ),
+        LearningSection(
+          title: l10n.hadithSectionText,
+          child: HadithContentBlock(entry: entry),
+        ),
+        LearningSection(title: l10n.hadithSectionMeaning, body: entry.meaning),
+        LearningSection(
+          title: l10n.hadithSectionLessons,
+          child: LearningLessons(
+            items: entry.lessons
+                .map((item) => LearningLessonItem(title: item))
+                .toList(growable: false),
           ),
         ),
-        const SizedBox(height: 10),
         LearningSection(
-          title: 'Hadith Text',
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              if (entry.arabicText != null) ...[
-                Text(entry.arabicText!, textDirection: TextDirection.rtl),
-                const SizedBox(height: 10),
-              ] else ...[
-                Text(
-                  'Arabic matn will be added in a future content pass.',
-                  style: Theme.of(context).textTheme.bodySmall,
-                ),
-                const SizedBox(height: 8),
-              ],
-              Text(entry.displayEnglishText),
-            ],
-          ),
+          title: l10n.hadithSectionReflection,
+          child: LearningReflection(prompts: entry.reflectionPrompts),
         ),
-        LearningSection(title: 'Meaning', body: entry.meaning),
         LearningSection(
-          title: 'Qur’an Connection',
+          title: l10n.hadithSectionQuranConnection,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -156,19 +127,7 @@ class HadithLessonPage extends ConsumerWidget {
           ),
         ),
         LearningSection(
-          title: 'Lessons',
-          child: LearningLessons(
-            items: entry.lessons
-                .map((item) => LearningLessonItem(title: item))
-                .toList(growable: false),
-          ),
-        ),
-        LearningSection(
-          title: 'Reflection',
-          child: LearningReflection(prompts: entry.reflectionPrompts),
-        ),
-        LearningSection(
-          title: 'Practice Action',
+          title: l10n.hadithSectionPracticeAction,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -177,14 +136,14 @@ class HadithLessonPage extends ConsumerWidget {
               FilledButton.tonalIcon(
                 onPressed: () => context.pushNamed('journalCreate'),
                 icon: const Icon(Icons.edit_note_rounded),
-                label: const Text('Add to Reflection Journal'),
+                label: Text(l10n.hadithActionAddToReflectionJournal),
               ),
               const SizedBox(height: 8),
               if (isCompletedInPaths)
                 FilledButton.tonalIcon(
                   onPressed: null,
                   icon: const Icon(Icons.check_circle_rounded),
-                  label: const Text('Lesson Completed'),
+                  label: Text(l10n.hadithActionLessonCompleted),
                 )
               else
                 FilledButton.tonalIcon(
@@ -196,8 +155,8 @@ class HadithLessonPage extends ConsumerWidget {
                     if (!context.mounted) return;
                     final xp = JourneyXpRules.xpPerReflectionEntry;
                     final message = awarded
-                        ? 'Lesson completed • +$xp XP'
-                        : 'Lesson already completed';
+                        ? l10n.hadithLessonCompletedXp(xp)
+                        : l10n.hadithLessonAlreadyCompleted;
                     if (awarded) {
                       ref
                           .read(hadithQuizReviewControllerProvider.notifier)
@@ -208,16 +167,16 @@ class HadithLessonPage extends ConsumerWidget {
                     ).showSnackBar(SnackBar(content: Text(message)));
                   },
                   icon: const Icon(Icons.task_alt_rounded),
-                  label: const Text('Mark Lesson Complete'),
+                  label: Text(l10n.hadithActionMarkLessonComplete),
                 ),
             ],
           ),
         ),
         if (relatedEntries.isNotEmpty)
           LearningSection(
-            title: 'Related Hadith',
+            title: l10n.hadithSectionRelatedTitle,
             child: LearningRelatedContent(
-              title: 'Related Hadith',
+              title: l10n.hadithSectionRelatedTitle,
               items: relatedEntries
                   .map(
                     (related) => LearningRelatedLink(

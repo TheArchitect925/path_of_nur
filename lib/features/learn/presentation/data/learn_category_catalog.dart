@@ -11,6 +11,7 @@ class LearnCategoryCatalog {
   };
 
   static const Set<String> _hiddenItemIds = {
+    'islamic-guidance-hub',
     'baby-names',
     'becoming-muslim',
     'guidance-new-muslims',
@@ -97,7 +98,7 @@ class LearnCategoryCatalog {
       id: 'islamic-trivia',
       title: 'Islamic Trivia',
       iconKey: 'islamic_trivia',
-      routeName: 'learnIslamicTrivia',
+      routeName: 'learnQuizzesHub',
       searchKeywords: [
         'islamic trivia',
         'trivia',
@@ -250,7 +251,7 @@ class LearnCategoryCatalog {
       sectionType: 'hub',
       categoryGroup: 'worship',
       description:
-          'Prayer structure, guided practice, surahs for salah, recitations, and wudu support.',
+          'Salah structure, guided practice, surahs for salah, recitations, and wudu support.',
     ),
     LearnCategoryItem(
       id: 'notes',

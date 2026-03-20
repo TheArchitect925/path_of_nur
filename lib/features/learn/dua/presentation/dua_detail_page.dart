@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/arabic_text_utils.dart';
 import '../../../../shared/widgets/premium_card.dart';
+import '../../../../shared/widgets/quran_navigation.dart';
 import '../../../../shared/widgets/quran_reference_block.dart';
 import '../../../../shared/widgets/quran_text_span.dart';
 import '../application/dua_progress_provider.dart';
@@ -241,14 +241,12 @@ class _DuaDetailPageState extends ConsumerState<DuaDetailPage> {
               ),
               if (quranRef != null)
                 FilledButton.tonalIcon(
-                  onPressed: () => context.pushNamed(
-                    'quranReader',
-                    pathParameters: {'surahNumber': '${quranRef.$1}'},
-                    queryParameters: {
-                      'ayah': '${quranRef.$2}',
-                      if (quranRef.$3 != null) 'endAyah': '${quranRef.$3}',
-                      'autoplay': 'true',
-                    },
+                  onPressed: () => openQuranReaderLocation(
+                    context,
+                    surahNumber: quranRef.$1,
+                    ayahNumber: quranRef.$2,
+                    endAyahNumber: quranRef.$3,
+                    autoplay: true,
                   ),
                   icon: const Icon(Icons.play_arrow_rounded),
                   label: Text(l10n.duaDetailOpenInQuranReader),

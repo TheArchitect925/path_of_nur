@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../../../../shared/content/learning_quote.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/quran_quote_block.dart';
-import 'learning_header.dart';
 
 class LearningDetailPage extends StatelessWidget {
   const LearningDetailPage({
@@ -13,7 +12,6 @@ class LearningDetailPage extends StatelessWidget {
     required this.subtitle,
     this.quote,
     this.onQuoteTap,
-    this.header,
     required this.sections,
   });
 
@@ -22,7 +20,6 @@ class LearningDetailPage extends StatelessWidget {
   final String subtitle;
   final QuranQuote? quote;
   final ValueChanged<QuranQuote>? onQuoteTap;
-  final LearningHeader? header;
   final List<Widget> sections;
 
   @override
@@ -33,10 +30,7 @@ class LearningDetailPage extends StatelessWidget {
       subtitle: subtitle,
       quote: quote ?? buildLearningCompactQuote(),
       onQuoteTap: onQuoteTap,
-      children: [
-        if (header != null) ...[header!, const SizedBox(height: 10)],
-        ...sections,
-      ],
+      children: sections,
     );
   }
 }

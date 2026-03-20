@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 
 import '../../../../core/prayer/prayer_preferences.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_surfaces.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/persistence/local_store.dart';
 import '../../../../shared/state/user_profile_state.dart';
@@ -19,8 +20,7 @@ import '../../application/sister_cycle_provider.dart';
 import '../../domain/prayer_name.dart';
 import '../../domain/prayer_tracker_fields.dart';
 import '../../domain/prayer_status.dart';
-
-const double _prayerSurfaceAlpha = 0.9;
+import '../prayer_date_utils.dart';
 
 class PrayerSection extends ConsumerWidget {
   const PrayerSection({super.key});
@@ -52,11 +52,12 @@ class _PrayerHubTabs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final surfaceStyle = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.panel,
+    );
     return Container(
-      decoration: BoxDecoration(
-        color: AppColors.surfaceSoft.withValues(alpha: 0.9),
-        borderRadius: BorderRadius.circular(14),
-      ),
+      decoration: surfaceStyle.decoration(radius: 14),
       child: TabBar(
         labelColor: AppColors.onSurface,
         unselectedLabelColor: AppColors.onSurfaceSubtle,
@@ -119,7 +120,7 @@ class _PrayerTimesTab extends ConsumerWidget {
     ).where((item) => item.id != 'tahajjud').toList();
     final timingContext = _buildTimingContext(schedule, tracker.selectedDate);
     final moon = _moonPhaseForDate(tracker.selectedDate, l10n);
-    final hijri = _toHijriDate(tracker.selectedDate);
+    final hijri = toHijriDate(tracker.selectedDate);
     final locale = Localizations.localeOf(context).toLanguageTag();
     final dateFormat = DateFormat.yMMMMEEEEd(locale);
     final fajr = schedule.where((item) => item.id == 'fajr').firstOrNull;
@@ -144,7 +145,6 @@ class _PrayerTimesTab extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           PremiumCard(
-            surfaceAlphaOverride: _prayerSurfaceAlpha,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -276,11 +276,18 @@ class _PrayerTimesTab extends ConsumerWidget {
                     Expanded(
                       child: InkWell(
                         borderRadius: BorderRadius.circular(10),
-                        onTap: () => _showDateModeSheet(
-                          context,
-                          ref,
-                          tracker.selectedDate,
-                        ),
+                        onTap: () async {
+                          final picked = await showPrayerDateSelectionSheet(
+                            context: context,
+                            l10n: l10n,
+                            initialDate: tracker.selectedDate,
+                            onCalendarModeChanged:
+                                trackerNotifier.setCalendarMode,
+                          );
+                          if (picked != null) {
+                            trackerNotifier.setSelectedDate(picked);
+                          }
+                        },
                         child: Column(
                           children: [
                             Text(
@@ -294,7 +301,7 @@ class _PrayerTimesTab extends ConsumerWidget {
                             Text(
                               l10n.worshipPrayerHijriDateValue(
                                 _formatCount(context, hijri.day),
-                                _hijriMonthName(l10n, hijri.month),
+                                hijriMonthName(l10n, hijri.month),
                                 _formatCount(context, hijri.year),
                               ),
                               textAlign: TextAlign.center,
@@ -335,7 +342,6 @@ class _PrayerTimesTab extends ConsumerWidget {
           _PrayerHistoryCard(selectedDate: tracker.selectedDate),
           const SizedBox(height: 12),
           PremiumCard(
-            surfaceAlphaOverride: _prayerSurfaceAlpha,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -393,7 +399,6 @@ class _PrayerTrackerTab extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           PremiumCard(
-            surfaceAlphaOverride: _prayerSurfaceAlpha,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -435,7 +440,6 @@ class _PrayerTrackerTab extends ConsumerWidget {
           ),
           const SizedBox(height: 12),
           PremiumCard(
-            surfaceAlphaOverride: _prayerSurfaceAlpha,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -474,7 +478,6 @@ class _PrayerHistoryCard extends ConsumerWidget {
     final timeFormat = DateFormat.jm(locale);
 
     return PremiumCard(
-      surfaceAlphaOverride: _prayerSurfaceAlpha,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -631,12 +634,13 @@ class _StatMiniTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final style = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.pill,
+    );
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-        color: AppColors.surfaceSoft.withValues(alpha: 0.45),
-      ),
+      decoration: style.decoration(radius: 12),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -654,6 +658,29 @@ class _StatMiniTile extends StatelessWidget {
             style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w700),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _PrayerMiniPanel extends StatelessWidget {
+  const _PrayerMiniPanel({required this.label});
+
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    final style = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.pill,
+    );
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+      decoration: style.decoration(radius: 12),
+      child: Text(
+        label,
+        textAlign: TextAlign.center,
+        style: const TextStyle(fontWeight: FontWeight.w600),
       ),
     );
   }
@@ -724,7 +751,6 @@ class _PrayerStatsTab extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           PremiumCard(
-            surfaceAlphaOverride: _prayerSurfaceAlpha,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -808,7 +834,6 @@ class _PrayerStatsTab extends ConsumerWidget {
           ),
           const SizedBox(height: 12),
           PremiumCard(
-            surfaceAlphaOverride: _prayerSurfaceAlpha,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -1000,7 +1025,6 @@ class _QadaPlannerCard extends ConsumerWidget {
     final l10n = AppLocalizations.of(context);
     final notifier = ref.read(prayerTrackerControllerProvider.notifier);
     return PremiumCard(
-      surfaceAlphaOverride: _prayerSurfaceAlpha,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -1124,7 +1148,6 @@ class _TrendChartCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PremiumCard(
-      surfaceAlphaOverride: _prayerSurfaceAlpha,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -1203,7 +1226,6 @@ class _PrayerConsistencyHeatmapCard extends StatelessWidget {
     if (monthRecords.isEmpty) {
       final l10n = AppLocalizations.of(context);
       return PremiumCard(
-        surfaceAlphaOverride: _prayerSurfaceAlpha,
         child: Text(
           l10n.worshipPrayerNoRecordsThisMonth,
           style: TextStyle(color: AppColors.onSurfaceSubtle),
@@ -1213,7 +1235,6 @@ class _PrayerConsistencyHeatmapCard extends StatelessWidget {
     final l10n = AppLocalizations.of(context);
     final days = [...monthRecords.keys]..sort((a, b) => a.compareTo(b));
     return PremiumCard(
-      surfaceAlphaOverride: _prayerSurfaceAlpha,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -1292,7 +1313,6 @@ class _RakatCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     return PremiumCard(
-      surfaceAlphaOverride: _prayerSurfaceAlpha,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -1345,7 +1365,6 @@ class _MoonPhaseCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     return PremiumCard(
-      surfaceAlphaOverride: _prayerSurfaceAlpha,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -1401,44 +1420,14 @@ class _MoonPhaseCard extends StatelessWidget {
           Row(
             children: [
               Expanded(
-                child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 10,
-                    vertical: 8,
-                  ),
-                  decoration: BoxDecoration(
-                    color: AppColors.surfaceSoft.withValues(alpha: 0.4),
-                    borderRadius: BorderRadius.circular(12),
-                    border: Border.all(
-                      color: AppColors.accentGoldSoft.withValues(alpha: 0.35),
-                    ),
-                  ),
-                  child: Text(
-                    l10n.worshipPrayerSunriseValue(sunriseLabel),
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(fontWeight: FontWeight.w600),
-                  ),
+                child: _PrayerMiniPanel(
+                  label: l10n.worshipPrayerSunriseValue(sunriseLabel),
                 ),
               ),
               const SizedBox(width: 8),
               Expanded(
-                child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 10,
-                    vertical: 8,
-                  ),
-                  decoration: BoxDecoration(
-                    color: AppColors.surfaceSoft.withValues(alpha: 0.4),
-                    borderRadius: BorderRadius.circular(12),
-                    border: Border.all(
-                      color: AppColors.accentGoldSoft.withValues(alpha: 0.35),
-                    ),
-                  ),
-                  child: Text(
-                    l10n.worshipPrayerSunsetValue(sunsetLabel),
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(fontWeight: FontWeight.w600),
-                  ),
+                child: _PrayerMiniPanel(
+                  label: l10n.worshipPrayerSunsetValue(sunsetLabel),
                 ),
               ),
             ],
@@ -1447,44 +1436,14 @@ class _MoonPhaseCard extends StatelessWidget {
           Row(
             children: [
               Expanded(
-                child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 10,
-                    vertical: 8,
-                  ),
-                  decoration: BoxDecoration(
-                    color: AppColors.surfaceSoft.withValues(alpha: 0.4),
-                    borderRadius: BorderRadius.circular(12),
-                    border: Border.all(
-                      color: AppColors.accentGoldSoft.withValues(alpha: 0.35),
-                    ),
-                  ),
-                  child: Text(
-                    l10n.worshipPrayerMoonriseValue(moonriseLabel),
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(fontWeight: FontWeight.w600),
-                  ),
+                child: _PrayerMiniPanel(
+                  label: l10n.worshipPrayerMoonriseValue(moonriseLabel),
                 ),
               ),
               const SizedBox(width: 8),
               Expanded(
-                child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 10,
-                    vertical: 8,
-                  ),
-                  decoration: BoxDecoration(
-                    color: AppColors.surfaceSoft.withValues(alpha: 0.4),
-                    borderRadius: BorderRadius.circular(12),
-                    border: Border.all(
-                      color: AppColors.accentGoldSoft.withValues(alpha: 0.35),
-                    ),
-                  ),
-                  child: Text(
-                    l10n.worshipPrayerMoonsetValue(moonsetLabel),
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(fontWeight: FontWeight.w600),
-                  ),
+                child: _PrayerMiniPanel(
+                  label: l10n.worshipPrayerMoonsetValue(moonsetLabel),
                 ),
               ),
             ],
@@ -1606,7 +1565,7 @@ _TimingContext _buildTimingContext(
       progressToNext: 0,
     );
   }
-  final now = _sameDay(selectedDate, DateTime.now())
+  final now = sameDay(selectedDate, DateTime.now())
       ? DateTime.now()
       : DateTime(selectedDate.year, selectedDate.month, selectedDate.day, 12);
 
@@ -1710,58 +1669,6 @@ List<_TrendPoint> _buildMonthlyTrend(
   return points;
 }
 
-Future<void> _showDateModeSheet(
-  BuildContext context,
-  WidgetRef ref,
-  DateTime selected,
-) async {
-  final l10n = AppLocalizations.of(context);
-  final trackerNotifier = ref.read(prayerTrackerControllerProvider.notifier);
-  // Calendar opens in Gregorian by default; users can still switch in-sheet.
-  trackerNotifier.setCalendarMode(PrayerCalendarMode.gregorian);
-  await showModalBottomSheet<void>(
-    context: context,
-    showDragHandle: true,
-    builder: (sheetContext) => SafeArea(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          ListTile(
-            leading: const Icon(Icons.calendar_month_rounded),
-            title: Text(l10n.worshipPrayerGregorianCalendarTitle),
-            onTap: () async {
-              Navigator.of(sheetContext).pop();
-              trackerNotifier.setCalendarMode(PrayerCalendarMode.gregorian);
-              final picked = await showDatePicker(
-                context: context,
-                initialDate: selected,
-                firstDate: DateTime(2010),
-                lastDate: DateTime(2100),
-              );
-              if (picked != null) {
-                trackerNotifier.setSelectedDate(picked);
-              }
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.nights_stay_rounded),
-            title: Text(l10n.worshipPrayerIslamicCalendarTitle),
-            subtitle: Text(l10n.worshipPrayerIslamicCalendarSubtitle),
-            onTap: () {
-              trackerNotifier.setCalendarMode(PrayerCalendarMode.islamic);
-              Navigator.of(sheetContext).pop();
-            },
-          ),
-        ],
-      ),
-    ),
-  );
-}
-
-bool _sameDay(DateTime a, DateTime b) {
-  return a.year == b.year && a.month == b.month && a.day == b.day;
-}
-
 String _formatCount(BuildContext context, Object value) {
   final locale = Localizations.localeOf(context).toLanguageTag();
   if (value is int) {
@@ -1780,37 +1687,6 @@ String _qadaCadenceRecommendation(AppLocalizations l10n, int total) {
   if (total <= 20) return l10n.worshipPrayerCadenceLight;
   if (total <= 60) return l10n.worshipPrayerCadenceSteady;
   return l10n.worshipPrayerCadenceFocused;
-}
-
-String _hijriMonthName(AppLocalizations l10n, int month) {
-  switch (month) {
-    case 1:
-      return l10n.worshipPrayerHijriMonthMuharram;
-    case 2:
-      return l10n.worshipPrayerHijriMonthSafar;
-    case 3:
-      return l10n.worshipPrayerHijriMonthRabiAlAwwal;
-    case 4:
-      return l10n.worshipPrayerHijriMonthRabiAlThani;
-    case 5:
-      return l10n.worshipPrayerHijriMonthJumadaAlAwwal;
-    case 6:
-      return l10n.worshipPrayerHijriMonthJumadaAlThani;
-    case 7:
-      return l10n.worshipPrayerHijriMonthRajab;
-    case 8:
-      return l10n.worshipPrayerHijriMonthShaban;
-    case 9:
-      return l10n.worshipPrayerHijriMonthRamadan;
-    case 10:
-      return l10n.worshipPrayerHijriMonthShawwal;
-    case 11:
-      return l10n.worshipPrayerHijriMonthDhuAlQidah;
-    case 12:
-      return l10n.worshipPrayerHijriMonthDhuAlHijjah;
-    default:
-      return l10n.worshipPrayerHijriMonthMuharram;
-  }
 }
 
 String _humanDuration(
@@ -1908,49 +1784,4 @@ _MoonPhaseData _moonPhaseForDate(DateTime date, AppLocalizations l10n) {
     emoji: '🌑',
     illuminationPercent: illumination,
   );
-}
-
-class _HijriDate {
-  const _HijriDate({
-    required this.year,
-    required this.month,
-    required this.day,
-  });
-
-  final int year;
-  final int month;
-  final int day;
-}
-
-_HijriDate _toHijriDate(DateTime date) {
-  final y = date.year;
-  final m = date.month;
-  final d = date.day;
-  final a = ((14 - m) / 12).floor();
-  final y2 = y + 4800 - a;
-  final m2 = m + 12 * a - 3;
-  final jd =
-      d +
-      ((153 * m2 + 2) / 5).floor() +
-      365 * y2 +
-      (y2 / 4).floor() -
-      (y2 / 100).floor() +
-      (y2 / 400).floor() -
-      32045;
-
-  var l = jd - 1948440 + 10632;
-  final n = ((l - 1) / 10631).floor();
-  l = l - 10631 * n + 354;
-  final j =
-      (((10985 - l) / 5316).floor()) * (((50 * l) / 17719).floor()) +
-      ((l / 5670).floor()) * (((43 * l) / 15238).floor());
-  l =
-      l -
-      (((30 - j) / 15).floor()) * (((17719 * j) / 50).floor()) -
-      ((j / 16).floor()) * (((15238 * j) / 43).floor()) +
-      29;
-  final month = (24 * l / 709).floor();
-  final day = l - (709 * month / 24).floor();
-  final year = 30 * n + j - 30;
-  return _HijriDate(year: year, month: month, day: day);
 }

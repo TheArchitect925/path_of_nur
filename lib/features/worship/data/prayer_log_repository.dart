@@ -14,6 +14,7 @@ class PrayerLogDayEntry {
   const PrayerLogDayEntry({
     required this.status,
     this.completedAtIso,
+    this.postSalahAdhkarCompletedAtIso,
     this.timing,
     this.place,
     this.notes,
@@ -22,6 +23,7 @@ class PrayerLogDayEntry {
 
   final PrayerStatus status;
   final String? completedAtIso;
+  final String? postSalahAdhkarCompletedAtIso;
   final PrayerOfferTiming? timing;
   final PrayerOfferPlace? place;
   final String? notes;
@@ -102,6 +104,9 @@ class PrayerLogRepository {
         entries[prayer] = PrayerLogDayEntry(
           status: status,
           completedAtIso: row is Map ? row['completedAtIso']?.toString() : null,
+          postSalahAdhkarCompletedAtIso: row is Map
+              ? row['postSalahAdhkarCompletedAtIso']?.toString()
+              : null,
           timing: timing,
           place: place,
           notes: row is Map ? row['notes']?.toString() : null,
@@ -126,6 +131,8 @@ class PrayerLogRepository {
             prayer: prayer,
             status: entries[prayer]?.status ?? PrayerStatus.pending,
             completedAtIso: entries[prayer]?.completedAtIso,
+            postSalahAdhkarCompletedAtIso:
+                entries[prayer]?.postSalahAdhkarCompletedAtIso,
           ),
         )
         .toList(growable: false);
@@ -135,7 +142,7 @@ class PrayerLogRepository {
     ensureMigrated();
     final rows = _database.select(
       '''
-      SELECT prayer, status, completed_at_iso, timing, place, notes, updated_at_iso
+      SELECT prayer, status, completed_at_iso, post_salah_adhkar_completed_at_iso, timing, place, notes, updated_at_iso
       FROM prayer_records
       WHERE scope_id = ? AND day_key = ?;
       ''',
@@ -154,6 +161,8 @@ class PrayerLogRepository {
       output[prayer] = PrayerLogDayEntry(
         status: status,
         completedAtIso: row['completed_at_iso']?.toString(),
+        postSalahAdhkarCompletedAtIso: row['post_salah_adhkar_completed_at_iso']
+            ?.toString(),
         timing: PrayerOfferTiming.values
             .where((item) => item.name == timingName)
             .firstOrNull,
@@ -175,6 +184,7 @@ class PrayerLogRepository {
           record.prayer: PrayerLogDayEntry(
             status: record.status,
             completedAtIso: record.completedAtIso,
+            postSalahAdhkarCompletedAtIso: record.postSalahAdhkarCompletedAtIso,
           ),
       },
     );
@@ -194,6 +204,8 @@ class PrayerLogRepository {
             'prayer': prayer.name,
             'status': (entries[prayer]?.status ?? PrayerStatus.pending).name,
             'completedAtIso': entries[prayer]?.completedAtIso,
+            'postSalahAdhkarCompletedAtIso':
+                entries[prayer]?.postSalahAdhkarCompletedAtIso,
             'timing': entries[prayer]?.timing?.name,
             'place': entries[prayer]?.place?.name,
             'notes': entries[prayer]?.notes,
@@ -215,8 +227,8 @@ class PrayerLogRepository {
         _database.execute(
           '''
           INSERT OR REPLACE INTO prayer_records(
-            scope_id, day_key, prayer, status, completed_at_iso, timing, place, notes, updated_at_iso
-          ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+            scope_id, day_key, prayer, status, completed_at_iso, post_salah_adhkar_completed_at_iso, timing, place, notes, updated_at_iso
+          ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
           ''',
           <Object?>[
             _scopeId,
@@ -224,6 +236,9 @@ class PrayerLogRepository {
             prayer.name,
             entry.status.name,
             entry.status == PrayerStatus.completed ? entry.completedAtIso : null,
+            entry.status == PrayerStatus.completed
+                ? entry.postSalahAdhkarCompletedAtIso
+                : null,
             entry.timing?.name,
             entry.place?.name,
             entry.notes,

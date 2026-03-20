@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../core/prayer/prayer_preferences.dart';
 import '../../../l10n/app_localizations.dart';
-import '../../learn/quran/domain/quran_content_refs.dart';
+import '../../../shared/content/contextual_quran_quotes.dart';
 import '../../../shared/theme/islamic_icons.dart';
 import '../../../shared/widgets/quran_quote_block.dart';
 import '../../../shared/widgets/section_hub_scaffold.dart';
@@ -28,7 +28,9 @@ class WorshipPrayerPage extends StatelessWidget {
       headerIcon: IslamicIcons.prayer,
       title: l10n.worshipPrayerHubTitle,
       subtitle: l10n.worshipPrayerHubSubtitle,
-      quote: const QuranQuote(ref: QuranQuoteRef(surah: 2, ayah: 45)),
+      quote: buildContextualQuranQuote(
+        ContextualQuranQuoteKey.worshipPrayer,
+      ),
       child: const PrayerSection(),
     );
   }
@@ -44,7 +46,9 @@ class WorshipDhikrPage extends StatelessWidget {
       headerIcon: IslamicIcons.tasbih,
       title: l10n.dhikrSectionTitle,
       subtitle: l10n.dhikrSectionSubtitle,
-      quote: quoteFromPoolForToday(dhikrFocusedQuotePool),
+      quote: buildContextualQuranQuote(
+        ContextualQuranQuoteKey.worshipDhikr,
+      ),
       child: const DhikrSection(),
     );
   }
@@ -60,7 +64,9 @@ class WorshipFastingPage extends StatelessWidget {
       headerIcon: Icons.fastfood_outlined,
       title: l10n.fastingSectionTitle,
       subtitle: l10n.fastingSectionSubtitle,
-      quote: quoteFromPoolForToday(reflectionFocusedQuotePool),
+      quote: buildContextualQuranQuote(
+        ContextualQuranQuoteKey.worshipFasting,
+      ),
       child: const FastingSection(),
     );
   }
@@ -83,7 +89,9 @@ class WorshipTrackingPage extends ConsumerWidget {
       headerIcon: Icons.fact_check_rounded,
       title: l10n.worshipTrackingPageTitle,
       subtitle: l10n.worshipTrackingPageSubtitle,
-      quote: quoteFromPoolForToday(reflectionFocusedQuotePool),
+      quote: buildContextualQuranQuote(
+        ContextualQuranQuoteKey.worshipTracking,
+      ),
       child: Column(
         children: [
           _TrackingLinkCard(
@@ -139,7 +147,9 @@ class WorshipRemindersPage extends ConsumerWidget {
       headerIcon: Icons.notifications_active_outlined,
       title: l10n.worshipRemindersPageTitle,
       subtitle: l10n.worshipRemindersPageSubtitle,
-      quote: quoteFromPoolForToday(reflectionFocusedQuotePool),
+      quote: buildContextualQuranQuote(
+        ContextualQuranQuoteKey.worshipReminders,
+      ),
       child: Column(
         children: [
           _TrackingLinkCard(

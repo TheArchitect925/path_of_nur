@@ -103,7 +103,9 @@ void main() {
     expect(prepared.preRollSource, isNotNull);
   });
 
-  test('resume of Fatihah after app background prepends Bismillah', () async {
+  test(
+    'resume of Fatihah after app background keeps the target without prepending Bismillah',
+    () async {
     final prepared = await prepare(
       const QuranPlaybackRequest(
         surahNumber: 1,
@@ -114,12 +116,12 @@ void main() {
       ayahs: const <int>[1, 2, 3, 4, 5, 6, 7],
     );
 
-    expect(prepared.didPrependBismillah, isTrue);
+    expect(prepared.didPrependBismillah, isFalse);
     expect(prepared.initialLogicalIndex, 3);
     expect(prepared.initialPosition, const Duration(seconds: 12));
   });
 
-  test('jump within Fatihah prepends Bismillah', () async {
+  test('jump within Fatihah keeps the target without prepending Bismillah', () async {
     final prepared = await prepare(
       const QuranPlaybackRequest(
         surahNumber: 1,
@@ -129,7 +131,7 @@ void main() {
       ayahs: const <int>[1, 2, 3, 4, 5, 6, 7],
     );
 
-    expect(prepared.didPrependBismillah, isTrue);
+    expect(prepared.didPrependBismillah, isFalse);
     expect(prepared.initialLogicalIndex, 5);
   });
 
@@ -146,7 +148,9 @@ void main() {
     expect(prepared.didPrependBismillah, isTrue);
   });
 
-  test('resume of another surah prepends Bismillah', () async {
+  test(
+    'resume of another surah keeps the target without prepending Bismillah',
+    () async {
     final prepared = await prepare(
       const QuranPlaybackRequest(
         surahNumber: 2,
@@ -157,11 +161,13 @@ void main() {
       ayahs: const <int>[1, 2, 3, 4],
     );
 
-    expect(prepared.didPrependBismillah, isTrue);
+    expect(prepared.didPrependBismillah, isFalse);
     expect(prepared.initialLogicalIndex, 2);
   });
 
-  test('jump within another surah prepends Bismillah', () async {
+  test(
+    'jump within another surah keeps the target without prepending Bismillah',
+    () async {
     final prepared = await prepare(
       const QuranPlaybackRequest(
         surahNumber: 36,
@@ -171,11 +177,13 @@ void main() {
       ayahs: const <int>[1, 5, 12, 20],
     );
 
-    expect(prepared.didPrependBismillah, isTrue);
+    expect(prepared.didPrependBismillah, isFalse);
     expect(prepared.initialLogicalIndex, 2);
   });
 
-  test('bookmark deep link and restore requests prepend Bismillah', () async {
+  test(
+    'bookmark deep link and restore requests mid-surah do not prepend Bismillah',
+    () async {
     final bookmarkPrepared = await prepare(
       const QuranPlaybackRequest(
         surahNumber: 18,
@@ -201,9 +209,9 @@ void main() {
       ayahs: const <int>[10, 20, 25, 30],
     );
 
-    expect(bookmarkPrepared.didPrependBismillah, isTrue);
-    expect(deepLinkPrepared.didPrependBismillah, isTrue);
-    expect(restorePrepared.didPrependBismillah, isTrue);
+    expect(bookmarkPrepared.didPrependBismillah, isFalse);
+    expect(deepLinkPrepared.didPrependBismillah, isFalse);
+    expect(restorePrepared.didPrependBismillah, isFalse);
   });
 
   test(
@@ -224,7 +232,9 @@ void main() {
     },
   );
 
-  test('intended target is preserved after Bismillah pre-roll', () async {
+  test(
+    'intended target is preserved without pre-roll for mid-surah bookmarks',
+    () async {
     final prepared = await prepare(
       const QuranPlaybackRequest(
         surahNumber: 18,
@@ -235,15 +245,15 @@ void main() {
       ayahs: const <int>[10, 20, 25, 30],
     );
 
-    expect(prepared.didPrependBismillah, isTrue);
-    expect(prepared.preRollMetadata?.isStandaloneBismillah, isTrue);
+    expect(prepared.didPrependBismillah, isFalse);
+    expect(prepared.preRollMetadata, isNull);
     expect(prepared.request.surahNumber, 18);
     expect(prepared.request.ayahNumber, 25);
     expect(prepared.initialLogicalIndex, 2);
     expect(prepared.initialPosition, const Duration(seconds: 17));
   });
 
-  test('pre-roll metadata does not replace the logical target metadata', () async {
+  test('mid-surah deep links keep the logical target metadata without pre-roll', () async {
     final prepared = await prepare(
       const QuranPlaybackRequest(
         surahNumber: 2,
@@ -253,8 +263,23 @@ void main() {
       ayahs: const <int>[1, 2, 3, 4],
     );
 
-    expect(prepared.preRollMetadata?.isStandaloneBismillah, isTrue);
+    expect(prepared.preRollMetadata, isNull);
     expect(prepared.entries[prepared.initialLogicalIndex].metadata.surahNumber, 2);
     expect(prepared.entries[prepared.initialLogicalIndex].metadata.ayahNumber, 3);
+  });
+
+  test('Surah At-Tawbah start does not prepend Bismillah', () async {
+    final prepared = await prepare(
+      const QuranPlaybackRequest(
+        surahNumber: 9,
+        ayahNumber: 1,
+        playbackReason: QuranPlaybackReason.freshPlay,
+        isSurahEntry: true,
+      ),
+      ayahs: const <int>[1, 2, 3],
+    );
+
+    expect(prepared.didPrependBismillah, isFalse);
+    expect(prepared.preRollSource, isNull);
   });
 }

@@ -25,12 +25,12 @@ final appQuickActionsBootstrapProvider = Provider<void>((ref) {
 
   quickActions.initialize((shortcutType) {
     final route = switch (shortcutType) {
-      _qaOpenToday => '/journey/growth/today',
-      _qaOpenReflection => '/journey/growth/reflection',
+      _qaOpenToday => '/journey/today',
+      _qaOpenReflection => '/journey/reflection',
       _qaReadQuran => NavTab.quran.path,
       _qaMorningAdhkar => '/journey/habit/h_morning_adhkar',
       _qaEveningAdhkar => '/journey/habit/h_evening_adhkar',
-      _qaLogGratitude => '/journey/growth/reflection',
+      _qaLogGratitude => '/journey/reflection',
       _qaDailyLearning => '/learn/prophets',
       _ => null,
     };

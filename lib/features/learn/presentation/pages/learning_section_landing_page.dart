@@ -7,8 +7,6 @@ import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/content/learning_quote.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/section_hub_scaffold.dart';
-import '../../journey/application/learning_journey_progress_provider.dart';
-import '../../journey/data/learning_journey_localized_metadata.dart';
 import '../../shared/application/learn_system_engine_provider.dart';
 import '../../shared/domain/learn_system_models.dart';
 import '../application/learn_hub_providers.dart';
@@ -44,9 +42,6 @@ class _LearningSectionLandingPageState
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    final continueState = ref.watch(learningJourneyContinueProvider);
-    final recommendations = ref.watch(learningJourneyRecommendationsProvider);
-    final journeyProgress = ref.watch(learningJourneyProgressProvider);
     final categories = ref.watch(learnHubCategoriesProvider);
     final searchIndex = ref.watch(learnHubKnowledgeIndexProvider);
     final featuredItems = ref.watch(learnHubFeaturedItemsProvider);
@@ -55,50 +50,22 @@ class _LearningSectionLandingPageState
     final searchResults = filterLearnHubKnowledgeItems(
       items: searchIndex,
       query: _query,
-    ).where((item) => item.contentType != LearnHubContentType.category).take(6).toList(
+    ).where((item) => item.contentType != LearnHubContentType.category)
+        .where((item) => !_isJourneyManagedLearnItem(item, l10n))
+        .take(6).toList(
           growable: false,
         );
+    final suggestedItems = featuredItems
+        .where((item) => !_isJourneyManagedLearnItem(item, l10n))
+        .take(4)
+        .toList(growable: false);
 
     return LearnHubPageScaffold(
       headerIcon: Icons.school_rounded,
       title: l10n.learnHubTitle,
       subtitle: l10n.learnHubLandingSubtitleV3,
-      quote: buildLearningCompactQuote(),
-      shortcutActions: [
-        if (continueState.hasJourney &&
-            continueState.journey != null &&
-            continueState.stage != null)
-          LearnHubShortcutAction(
-            label: l10n.learningJourneyCardActionContinue,
-            supportingText: continueState.stage!.title,
-            icon: Icons.history_edu_rounded,
-            onTap: () => context.pushNamed(
-              'learnJourneyStage',
-              pathParameters: {
-                'journeyId': continueState.journey!.id,
-                'stageId': continueState.stage!.id,
-              },
-            ),
-          ),
-        LearnHubShortcutAction(
-          label: l10n.learnHubExploreAllAction,
-          supportingText: l10n.learnHubCategoryToolsExploreTitle,
-          icon: Icons.travel_explore_rounded,
-          onTap: () => context.pushNamed('learnExploreAllKnowledge'),
-        ),
-      ],
+      quoteHeader: const LearningHubRabbiZidniIlmaHeader(),
       children: [
-        _SectionHeader(
-          title: l10n.learnHubJourneysSectionTitle,
-          subtitle: l10n.learnHubJourneysSectionSubtitle,
-        ),
-        const SizedBox(height: 10),
-        _JourneySection(
-          continueState: continueState,
-          recommendations: recommendations,
-          completedStageIds: journeyProgress.completedStageIds,
-        ),
-        const SizedBox(height: 18),
         _SectionHeader(
           title: l10n.learnHubSearchSectionTitle,
           subtitle: l10n.learnHubSearchSectionSubtitle,
@@ -161,6 +128,14 @@ class _LearningSectionLandingPageState
         const SizedBox(height: 10),
         SectionHubActionGrid(
           actions: [
+            SectionHubAction(
+              title: l10n.learnHubJourneyIslandTitle,
+              subtitle: l10n.learnHubJourneyIslandSubtitle,
+              icon: Icons.route_rounded,
+              color: const Color(0xFFE8E3F3),
+              accentColor: const Color(0xFF6D57A6),
+              onTap: () => context.pushNamed('learnJourneyIslandHub'),
+            ),
             for (final category in categories)
               SectionHubAction(
                 title: category.title,
@@ -182,44 +157,26 @@ class _LearningSectionLandingPageState
           subtitle: l10n.learnHubSuggestedSectionSubtitle,
         ),
         const SizedBox(height: 10),
-        ...featuredItems.take(4).map(
+        ...suggestedItems.map(
           (item) => Padding(
             padding: const EdgeInsets.only(bottom: 10),
             child: _SearchResultTile(item: item),
           ),
         ),
-        const SizedBox(height: 8),
-        InkWell(
-          borderRadius: BorderRadius.circular(20),
-          onTap: () => context.pushNamed('learnExploreAllKnowledge'),
-          child: PremiumCard(
-            surfaceVariant: AppSurfaceVariant.featureTile,
-            child: Row(
-              children: [
-                const Icon(Icons.explore_rounded),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        l10n.learnHubExploreAllAction,
-                        style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                      const SizedBox(height: 4),
-                      Text(l10n.learnHubExploreAllSubtitle),
-                    ],
-                  ),
-                ),
-                const SizedBox(width: 8),
-                const Icon(Icons.chevron_right_rounded),
-              ],
-            ),
-          ),
-        ),
       ],
+    );
+  }
+
+  bool _isJourneyManagedLearnItem(
+    LearnHubKnowledgeItem item,
+    AppLocalizations l10n,
+  ) {
+    if (item.contentType == LearnHubContentType.journey) {
+      return true;
+    }
+    return LearnHubTaxonomy.subcategoryUsesJourneyRoute(
+      l10n,
+      item.subcategoryId,
     );
   }
 }
@@ -243,151 +200,6 @@ class _SectionHeader extends StatelessWidget {
         ),
         const SizedBox(height: 4),
         Text(subtitle),
-      ],
-    );
-  }
-}
-
-class _JourneySection extends StatelessWidget {
-  const _JourneySection({
-    required this.continueState,
-    required this.recommendations,
-    required this.completedStageIds,
-  });
-
-  final LearningJourneyContinueState continueState;
-  final LearningJourneyRecommendationSet recommendations;
-  final Set<String> completedStageIds;
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
-    final currentJourney = continueState.journey;
-    final recommended = recommendations.journeys.isEmpty
-        ? null
-        : recommendations.journeys.first;
-    return Column(
-      children: [
-        if (currentJourney != null)
-          InkWell(
-            borderRadius: BorderRadius.circular(20),
-            onTap: () => context.pushNamed(
-              'learnJourneyDetail',
-              pathParameters: {'journeyId': currentJourney.id},
-            ),
-            child: PremiumCard(
-              surfaceVariant: AppSurfaceVariant.panel,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    l10n.learnHubJourneysCurrentLabel,
-                    style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                  const SizedBox(height: 6),
-                  Text(
-                    localizedJourneyTitle(context, currentJourney),
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(localizedJourneySubtitle(context, currentJourney)),
-                  const SizedBox(height: 12),
-                  LinearProgressIndicator(
-                    value: journeyProgressRatio(
-                      completedStageIds: completedStageIds,
-                      stageIds: currentJourney.stageIds,
-                    ),
-                    minHeight: 8,
-                    borderRadius: BorderRadius.circular(999),
-                  ),
-                  const SizedBox(height: 12),
-                  Wrap(
-                    spacing: 8,
-                    runSpacing: 8,
-                    children: [
-                      FilledButton.tonalIcon(
-                        onPressed: continueState.stage == null
-                            ? null
-                            : () => context.pushNamed(
-                                'learnJourneyStage',
-                                pathParameters: {
-                                  'journeyId': currentJourney.id,
-                                  'stageId': continueState.stage!.id,
-                                },
-                              ),
-                        icon: const Icon(Icons.play_arrow_rounded),
-                        label: Text(l10n.learnHubJourneysContinueAction),
-                      ),
-                      FilledButton.tonalIcon(
-                        onPressed: () => context.pushNamed(
-                          'learnJourneyDetail',
-                          pathParameters: {'journeyId': currentJourney.id},
-                        ),
-                        icon: const Icon(Icons.route_rounded),
-                        label: Text(l10n.learnHubJourneysCurrentAction),
-                      ),
-                      FilledButton.tonalIcon(
-                        onPressed: () => context.pushNamed('learnJourneyHome'),
-                        icon: const Icon(Icons.swap_horiz_rounded),
-                        label: Text(l10n.learnHubJourneysChangeAction),
-                      ),
-                      FilledButton.tonalIcon(
-                        onPressed: () => context.pushNamed('learnJourneyHome'),
-                        icon: const Icon(Icons.grid_view_rounded),
-                        label: Text(l10n.learnHubJourneysBrowseAction),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
-        if (recommended != null) ...[
-          const SizedBox(height: 10),
-          InkWell(
-            borderRadius: BorderRadius.circular(20),
-            onTap: () => context.pushNamed(
-              'learnJourneyDetail',
-              pathParameters: {'journeyId': recommended.id},
-            ),
-            child: PremiumCard(
-              child: Row(
-                children: [
-                  const Icon(Icons.auto_awesome_rounded),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          l10n.learnHubJourneysRecommendedLabel,
-                          style: Theme.of(context).textTheme.labelLarge
-                              ?.copyWith(fontWeight: FontWeight.w700),
-                        ),
-                        const SizedBox(height: 4),
-                        Text(
-                          localizedJourneyTitle(context, recommended),
-                          style: Theme.of(context).textTheme.titleSmall
-                              ?.copyWith(fontWeight: FontWeight.w700),
-                        ),
-                        const SizedBox(height: 2),
-                        Text(
-                          localizedJourneySubtitle(context, recommended),
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
       ],
     );
   }

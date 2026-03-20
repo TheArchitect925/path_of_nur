@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../l10n/app_localizations.dart';
+import '../../../shared/application/special_mode_provider.dart';
+import '../../../shared/content/page_description_copy.dart';
 import '../../../shared/widgets/app_page_scaffold.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../application/journal_provider.dart';
@@ -38,10 +40,17 @@ class _JournalCreatePageState extends ConsumerState<JournalCreatePage> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final isKidsMode = ref.watch(
+      specialModeProvider.select((mode) => mode.isKids),
+    );
     return AppPageScaffold(
       headerIcon: Icons.edit_note,
       title: l10n.journalCreateTitle,
-      subtitle: l10n.journalCreateSubtitle,
+      subtitle: localizedAppPageDescription(
+        context,
+        AppPageDescriptionKey.journalCreate,
+        kidsMode: isKidsMode,
+      ),
       children: [
         PremiumCard(
           child: Column(

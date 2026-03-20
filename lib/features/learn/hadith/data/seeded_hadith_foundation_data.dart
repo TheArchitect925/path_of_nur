@@ -26,8 +26,14 @@ const List<HadithEntry> seededHadithEntries = [
         'Actions are judged by intentions, and each person will have what they intended.',
     hadithText:
         'The Messenger of Allah ﷺ said: Actions are by intentions, and every person shall have what they intended.',
+    englishText:
+        '''I heard Allah's Messenger (ﷺ) saying, "The reward of deeds depends upon the intentions and every person will get the reward according to what he has intended. So whoever emigrated for worldly benefits or for a woman to marry, his emigration was for what he emigrated for."''',
     arabicText:
-        'إِنَّمَا الأَعْمَالُ بِالنِّيَّاتِ، وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى',
+        '''إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ، وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى، فَمَنْ كَانَتْ هِجْرَتُهُ إِلَى دُنْيَا يُصِيبُهَا أَوْ إِلَى امْرَأَةٍ يَنْكِحُهَا، فَهِجْرَتُهُ إِلَى مَا هَاجَرَ إِلَيْهِ "''',
+    sourceUrl: 'https://sunnah.com/bukhari:1',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sahih al-Bukhari',
     sourceReference: '1',
     source: 'Sahih al-Bukhari 1',
@@ -76,8 +82,14 @@ const List<HadithEntry> seededHadithEntries = [
         'Religion is sincerity to Allah, His Book, His Messenger, and the believers.',
     hadithText:
         'The Prophet ﷺ said: Religion is sincerity. We asked, to whom? He said: to Allah, His Book, His Messenger, the leaders of the Muslims, and their common people.',
+    englishText:
+        '''"The Religion is sincerity." We said, "To whom?" He said "To Allah, to His Book, To His Messenger, and to the leaders of the Muslims and their masses."''',
     arabicText:
-        'الدِّينُ النَّصِيحَةُ. قُلْنَا: لِمَنْ؟ قَالَ: لِلَّهِ وَلِكِتَابِهِ وَلِرَسُولِهِ وَلِأَئِمَّةِ الْمُسْلِمِينَ وَعَامَّتِهِمْ',
+        '''حَدَّثَنَا مُحَمَّدُ بْنُ عَبَّادٍ الْمَكِّيُّ، حَدَّثَنَا سُفْيَانُ، قَالَ قُلْتُ لِسُهَيْلٍ إِنَّ عَمْرًا حَدَّثَنَا عَنِ الْقَعْقَاعِ، عَنْ أَبِيكَ، قَالَ وَرَجَوْتُ أَنْ يُسْقِطَ، عَنِّي رَجُلاً قَالَ فَقَالَ سَمِعْتُهُ مِنَ الَّذِي سَمِعَهُ مِنْهُ أَبِي كَانَ صَدِيقًا لَهُ بِالشَّامِ ثُمَّ حَدَّثَنَا سُفْيَانُ عَنْ سُهَيْلٍ عَنْ عَطَاءِ بْنِ يَزِيدَ عَنْ تَمِيمٍ الدَّارِيِّ أَنَّ النَّبِيَّ صلى الله عليه وسلم قَالَ ‏"‏ الدِّينُ النَّصِيحَةُ ‏"‏ قُلْنَا لِمَنْ قَالَ ‏"‏ لِلَّهِ وَلِكِتَابِهِ وَلِرَسُولِهِ وَلأَئِمَّةِ الْمُسْلِمِينَ وَعَامَّتِهِمْ ‏"‏ ‏.‏''',
+    sourceUrl: 'https://sunnah.com/muslim:55',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sahih Muslim',
     sourceReference: '55',
     source: 'Sahih Muslim 55',
@@ -125,6 +137,14 @@ const List<HadithEntry> seededHadithEntries = [
         'Between the clear lawful and clear unlawful are doubtful matters many people do not recognize.',
     hadithText:
         'The Messenger of Allah ﷺ said: The lawful is clear and the unlawful is clear, and between them are doubtful matters unknown to many people. Whoever avoids doubtful matters protects his religion and honor.',
+    englishText:
+        '''I heard Allah's Messenger (ﷺ) saying, 'Both legal and illegal things are evident but in between them there are doubtful (suspicious) things and most of the people have no knowledge about them. So whoever saves himself from these suspicious things saves his religion and his honor. And whoever indulges in these suspicious things is like a shepherd who grazes (his animals) near the Hima (private pasture) of someone else and at any moment he is liable to get in it. (O people!) Beware! Every king has a Hima and the Hima of Allah on the earth is His illegal (forbidden) things. Beware! There is a piece of flesh in the body if it becomes good (reformed) the whole body becomes good but if it gets spoilt the whole body gets spoilt and that is the heart.''',
+    arabicText:
+        '''"‏ الْحَلاَلُ بَيِّنٌ وَالْحَرَامُ بَيِّنٌ، وَبَيْنَهُمَا مُشَبَّهَاتٌ لاَ يَعْلَمُهَا كَثِيرٌ مِنَ النَّاسِ، فَمَنِ اتَّقَى الْمُشَبَّهَاتِ اسْتَبْرَأَ لِدِيِنِهِ وَعِرْضِهِ، وَمَنْ وَقَعَ فِي الشُّبُهَاتِ كَرَاعٍ يَرْعَى حَوْلَ الْحِمَى، يُوشِكُ أَنْ يُوَاقِعَهُ‏.‏ أَلاَ وَإِنَّ لِكُلِّ مَلِكٍ حِمًى، أَلاَ إِنَّ حِمَى اللَّهِ فِي أَرْضِهِ مَحَارِمُهُ، أَلاَ وَإِنَّ فِي الْجَسَدِ مُضْغَةً إِذَا صَلَحَتْ صَلَحَ الْجَسَدُ كُلُّهُ، وَإِذَا فَسَدَتْ فَسَدَ الْجَسَدُ كُلُّهُ‏.‏ أَلاَ وَهِيَ الْقَلْبُ ‏"''',
+    sourceUrl: 'https://sunnah.com/bukhari:52',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sahih al-Bukhari / Sahih Muslim',
     sourceReference: 'Bukhari 52 / Muslim 1599',
     source: 'Sahih al-Bukhari 52 / Sahih Muslim 1599',
@@ -171,6 +191,14 @@ const List<HadithEntry> seededHadithEntries = [
         'Part of the excellence of a person’s Islam is leaving what does not concern him.',
     hadithText:
         'The Prophet ﷺ said: Part of the excellence of a person’s Islam is leaving what does not concern him.',
+    englishText:
+        '''"Indeed among the excellence of a person's Islam is that he leaves what does not concern him."''',
+    arabicText:
+        '''"‏ مِنْ حُسْنِ إِسْلاَمِ الْمَرْءِ تَرْكُهُ مَا لاَ يَعْنِيهِ ‏"''',
+    sourceUrl: 'https://sunnah.com/tirmidhi:2317',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Jami\' al-Tirmidhi',
     sourceReference: '2317',
     source: 'Jami\' al-Tirmidhi 2317',
@@ -216,6 +244,14 @@ const List<HadithEntry> seededHadithEntries = [
         'Faith is not complete until a believer loves for others what he loves for himself.',
     hadithText:
         'The Messenger of Allah ﷺ said: None of you truly believes until he loves for his brother what he loves for himself.',
+    englishText:
+        '''The Prophet (ﷺ) said, "None of you will have faith till he wishes for his (Muslim) brother what he likes for himself."''',
+    arabicText:
+        '''"‏ لا يُؤْمِنُ أَحَدُكُمْ حَتَّى يُحِبَّ لأَخِيهِ مَا يُحِبُّ لِنَفْسِهِ ‏"''',
+    sourceUrl: 'https://sunnah.com/bukhari:13',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sahih al-Bukhari / Sahih Muslim',
     sourceReference: 'Bukhari 13 / Muslim 45',
     source: 'Sahih al-Bukhari 13 / Sahih Muslim 45',
@@ -262,6 +298,14 @@ const List<HadithEntry> seededHadithEntries = [
         'Allah does not look at appearances or wealth, but at hearts and deeds.',
     hadithText:
         'The Prophet ﷺ said: Allah does not look at your bodies nor your appearances, but He looks at your hearts and your deeds.',
+    englishText:
+        '''Don't nurse grudge and don't bid him out for raising the price and don't nurse aversion or enmity and don't enter into a transaction when the others have entered into that transaction and be as fellow-brothers and servants of Allah. A Muslim is the brother of a Muslim. He neither oppresses him nor humiliates him nor looks down upon him. The piety is here, (and while saying so) he pointed towards his chest thrice. It is a serious evil for a Muslim that he should look down upon his brother Muslim. All things of a Muslim are inviolable for his brother in faith: his blood, his wealth and his honour.''',
+    arabicText:
+        '''حَدَّثَنَا عَبْدُ اللَّهِ بْنُ مَسْلَمَةَ بْنِ قَعْنَبٍ، حَدَّثَنَا دَاوُدُ، - يَعْنِي ابْنَ قَيْسٍ - عَنْ أَبِي، سَعِيدٍ مَوْلَى عَامِرِ بْنِ كُرَيْزٍ عَنْ أَبِي هُرَيْرَةَ، قَالَ قَالَ رَسُولُ اللَّهِ صلى الله عليه وسلم ‏"‏ لاَ تَحَاسَدُوا وَلاَ تَنَاجَشُوا وَلاَ تَبَاغَضُوا وَلاَ تَدَابَرُوا وَلاَ يَبِعْ بَعْضُكُمْ عَلَى بَيْعِ بَعْضٍ وَكُونُوا عِبَادَ اللَّهِ إِخْوَانًا ‏.‏ الْمُسْلِمُ أَخُو الْمُسْلِمِ لاَ يَظْلِمُهُ وَلاَ يَخْذُلُهُ وَلاَ يَحْقِرُهُ ‏.‏ التَّقْوَى هَا هُنَا ‏"‏ ‏.‏ وَيُشِيرُ إِلَى صَدْرِهِ ثَلاَثَ مَرَّاتٍ ‏"‏ بِحَسْبِ امْرِئٍ مِنَ الشَّرِّ أَنْ يَحْقِرَ أَخَاهُ الْمُسْلِمَ كُلُّ الْمُسْلِمِ عَلَى الْمُسْلِمِ حَرَامٌ دَمُهُ وَمَالُهُ وَعِرْضُهُ ‏"‏ ‏.‏''',
+    sourceUrl: 'https://sunnah.com/muslim:2564',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sahih Muslim',
     sourceReference: '2564',
     source: 'Sahih Muslim 2564',
@@ -307,6 +351,14 @@ const List<HadithEntry> seededHadithEntries = [
         'The strong believer is better and more beloved to Allah than the weak believer, though both contain good.',
     hadithText:
         'The Messenger of Allah ﷺ said: The strong believer is better and more beloved to Allah than the weak believer, though in both there is good. Be eager for what benefits you, seek help from Allah, and do not give up.',
+    englishText:
+        '''A strong believer is better and is more lovable to Allah than a weak believer, and there is good in everyone, (but) cherish that which gives you benefit (in the Hereafter) and seek help from Allah and do not lose heart, and if anything (in the form of trouble) comes to you, don't say: If I had not done that, it would not have happened so and so, but say: Allah did that what He had ordained to do and your" if" opens the (gate) for the Satan.''',
+    arabicText:
+        '''"‏ الْمُؤْمِنُ الْقَوِيُّ خَيْرٌ وَأَحَبُّ إِلَى اللَّهِ مِنَ الْمُؤْمِنِ الضَّعِيفِ وَفِي كُلٍّ خَيْرٌ احْرِصْ عَلَى مَا يَنْفَعُكَ وَاسْتَعِنْ بِاللَّهِ وَلاَ تَعْجِزْ وَإِنْ أَصَابَكَ شَىْءٌ فَلاَ تَقُلْ لَوْ أَنِّي فَعَلْتُ كَانَ كَذَا وَكَذَا ‏.‏ وَلَكِنْ قُلْ قَدَرُ اللَّهِ وَمَا شَاءَ فَعَلَ فَإِنَّ لَوْ تَفْتَحُ عَمَلَ الشَّيْطَانِ ‏"''',
+    sourceUrl: 'https://sunnah.com/muslim:2664',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sahih Muslim',
     sourceReference: '2664',
     source: 'Sahih Muslim 2664',
@@ -352,6 +404,14 @@ const List<HadithEntry> seededHadithEntries = [
         'Whoever believes in Allah and the Last Day should speak good or remain silent.',
     hadithText:
         'The Messenger of Allah ﷺ said: Whoever believes in Allah and the Last Day, let him speak good or remain silent.',
+    englishText:
+        '''Allah's Messenger (ﷺ) said, "Anybody who believes in Allah and the Last Day should not harm his neighbor, and anybody who believes in Allah and the Last Day should entertain his guest generously and anybody who believes in Allah and the Last Day should talk what is good or keep quiet. (i.e. abstain from all kinds of evil and dirty talk).''',
+    arabicText:
+        '''"‏ مَنْ كَانَ يُؤْمِنُ بِاللَّهِ وَالْيَوْمِ الآخِرِ فَلاَ يُؤْذِ جَارَهُ، وَمَنْ كَانَ يُؤْمِنُ بِاللَّهِ وَالْيَوْمِ الآخِرِ فَلْيُكْرِمْ ضَيْفَهُ، وَمَنْ كَانَ يُؤْمِنُ بِاللَّهِ وَالْيَوْمِ الآخِرِ فَلْيَقُلْ خَيْرًا أَوْ لِيَصْمُتْ ‏"''',
+    sourceUrl: 'https://sunnah.com/bukhari:6018',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sahih al-Bukhari / Sahih Muslim',
     sourceReference: 'Bukhari 6018 / Muslim 47',
     source: 'Sahih al-Bukhari 6018 / Muslim 47',
@@ -398,6 +458,14 @@ const List<HadithEntry> seededHadithEntries = [
         'Salah is one of the five foundational pillars upon which Islam is built.',
     hadithText:
         'The Messenger of Allah ﷺ said: Islam is built on five: testimony that there is no god but Allah and that Muhammad is the Messenger of Allah, establishing prayer, giving zakah, fasting Ramadan, and Hajj for whoever is able.',
+    englishText:
+        '''Allah's Messenger (ﷺ) said: Islam is based on (the following) five (principles): 1. To testify that none has the right to be worshipped but Allah and Muhammad is Allah's Messenger (ﷺ). 2. To offer the (compulsory congregational) prayers dutifully and perfectly. 3. To pay Zakat (i.e. obligatory charity) . 4. To perform Hajj. (i.e. Pilgrimage to Mecca) 5. To observe fast during the month of Ramadan.''',
+    arabicText:
+        '''"‏ بُنِيَ الإِسْلاَمُ عَلَى خَمْسٍ شَهَادَةِ أَنْ لاَ إِلَهَ إِلاَّ اللَّهُ وَأَنَّ مُحَمَّدًا رَسُولُ اللَّهِ، وَإِقَامِ الصَّلاَةِ، وَإِيتَاءِ الزَّكَاةِ، وَالْحَجِّ، وَصَوْمِ رَمَضَانَ ‏"''',
+    sourceUrl: 'https://sunnah.com/bukhari:8',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sahih al-Bukhari / Sahih Muslim',
     sourceReference: 'Bukhari 8 / Muslim 16',
     source: 'Sahih al-Bukhari 8 / Sahih Muslim 16',
@@ -444,6 +512,14 @@ const List<HadithEntry> seededHadithEntries = [
         'Prayer is a defining covenant and boundary marker of Islamic commitment.',
     hadithText:
         'The Prophet ﷺ said: The covenant that stands between us and them is prayer; whoever abandons it has fallen into disbelief.',
+    englishText:
+        '''that the Messenger of Allah (ﷺ) said: "The covenant between us and them is the Salat, so whoever abandons it he has committed disbelief."''',
+    arabicText:
+        '''"‏ الْعَهْدُ الَّذِي بَيْنَنَا وَبَيْنَهُمُ الصَّلاَةُ فَمَنْ تَرَكَهَا فَقَدْ كَفَرَ ‏"''',
+    sourceUrl: 'https://sunnah.com/tirmidhi:2621',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Jami\' al-Tirmidhi',
     sourceReference: '2621',
     source: 'Jami\' al-Tirmidhi 2621',
@@ -490,6 +566,14 @@ const List<HadithEntry> seededHadithEntries = [
     excerpt: 'Prayer will be the first deed examined on the Day of Judgment.',
     hadithText:
         'The Messenger of Allah ﷺ said: The first matter the servant will be brought to account for on the Day of Resurrection is prayer. If it is sound, the rest of his deeds are sound; if it is deficient, the rest of his deeds are deficient.',
+    englishText:
+        '''"I arrived in Al-Madinah and said: 'O Allah! Facilitate me to be in a righteous gathering.'" He said: "I sat with Abu Hurairah and said: 'Indeed I asked Allah to provide me with a righteous gathering. So narrate a hadith to me which you heard from Allah's Messenger (ﷺ) so that perhaps Allah would cause me to benefit from it.' He said: 'I heard Allah's Messenger (ﷺ) say: "Indeed the first deed by which a servant will be called to account on the Day of Resurrection is his Salat. If it is complete, he is successful and saved, but if it is defective, he has failed and lost. So if something is deficient in his obligatory (prayers) then the Lord, Mighty and Sublime says: 'Look! Are there any voluntary (prayers) for my worshipper?' So with them, what was deficient in his obligatory (prayers) will be completed. Then the rest of his deeds will be treated like that."''',
+    arabicText:
+        '''"‏ إِنَّ أَوَّلَ مَا يُحَاسَبُ بِهِ الْعَبْدُ يَوْمَ الْقِيَامَةِ مِنْ عَمَلِهِ صَلاَتُهُ فَإِنْ صَلُحَتْ فَقَدْ أَفْلَحَ وَأَنْجَحَ وَإِنْ فَسَدَتْ فَقَدْ خَابَ وَخَسِرَ فَإِنِ انْتَقَصَ مِنْ فَرِيضَتِهِ شَيْءٌ قَالَ الرَّبُّ عَزَّ وَجَلَّ انْظُرُوا هَلْ لِعَبْدِي مِنْ تَطَوُّعٍ فَيُكَمَّلَ بِهَا مَا انْتَقَصَ مِنَ الْفَرِيضَةِ ثُمَّ يَكُونُ سَائِرُ عَمَلِهِ عَلَى ذَلِكَ ‏"''',
+    sourceUrl: 'https://sunnah.com/tirmidhi:413',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Jami\' al-Tirmidhi',
     sourceReference: '413',
     source: 'Jami\' al-Tirmidhi 413',
@@ -535,6 +619,14 @@ const List<HadithEntry> seededHadithEntries = [
     excerpt:
         'The prophetic method of prayer is the model for the believer’s salah.',
     hadithText: 'The Prophet ﷺ said: Pray as you have seen me pray.',
+    englishText:
+        '''We came to the Prophet (ﷺ) and stayed with him for twenty days and nights. We were all young and of about the same age. The Prophet (ﷺ) was very kind and merciful. When he realized our longing for our families, he asked about our homes and the people there and we told him. Then he asked us to go back to our families and stay with them and teach them (the religion) and to order them to do good things. He also mentioned some other things which I have (remembered or [??] ) forgotten. The Prophet (ﷺ) then added, "Pray as you have seen me praying and when it is the time for the prayer one of you should pronounce the Adhan and the oldest of you should lead the prayer.''',
+    arabicText:
+        '''"‏ ارْجِعُوا إِلَى أَهْلِيكُمْ فَأَقِيمُوا فِيهِمْ وَعَلِّمُوهُمْ وَمُرُوهُمْ ـ وَذَكَرَ أَشْيَاءَ أَحْفَظُهَا أَوْ لاَ أَحْفَظُهَا ـ وَصَلُّوا كَمَا رَأَيْتُمُونِي أُصَلِّي، فَإِذَا حَضَرَتِ الصَّلاَةُ فَلْيُؤَذِّنْ لَكُمْ أَحَدُكُمْ وَلْيَؤُمَّكُمْ أَكْبَرُكُمْ ‏"''',
+    sourceUrl: 'https://sunnah.com/bukhari:631',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sahih al-Bukhari',
     sourceReference: '631',
     source: 'Sahih al-Bukhari 631',
@@ -581,6 +673,14 @@ const List<HadithEntry> seededHadithEntries = [
         'When a believer stands in prayer, he stands in intimate worship before Allah.',
     hadithText:
         'The Prophet ﷺ said: When one of you stands in prayer, he is conversing with his Lord.',
+    englishText:
+        '''The Prophet (ﷺ) saw some sputum in the direction of the Qibla (on the wall of the mosque) and he disliked that and the sign of disgust was apparent from his face. So he got up and scraped it off with his hand and said, "Whenever anyone of you stands for the prayer, he is speaking in private to his Lord or his Lord is between him and his Qibla. So, none of you should spit in the direction of the Qibla but one can spit to the left or under his foot." The Prophet (ﷺ) then took the corner of his sheet and spat in it and folded it and said, "Or you can do this. "''',
+    arabicText:
+        '''حَدَّثَنَا قُتَيْبَةُ، قَالَ حَدَّثَنَا إِسْمَاعِيلُ بْنُ جَعْفَرٍ، عَنْ حُمَيْدٍ، عَنْ أَنَسٍ، أَنَّ النَّبِيَّ صلى الله عليه وسلم رَأَى نُخَامَةً فِي الْقِبْلَةِ، فَشَقَّ ذَلِكَ عَلَيْهِ حَتَّى رُئِيَ فِي وَجْهِهِ، فَقَامَ فَحَكَّهُ بِيَدِهِ فَقَالَ ‏"‏ إِنَّ أَحَدَكُمْ إِذَا قَامَ فِي صَلاَتِهِ، فَإِنَّهُ يُنَاجِي رَبَّهُ ـ أَوْ إِنَّ رَبَّهُ بَيْنَهُ وَبَيْنَ الْقِبْلَةِ ـ فَلاَ يَبْزُقَنَّ أَحَدُكُمْ قِبَلَ قِبْلَتِهِ، وَلَكِنْ عَنْ يَسَارِهِ، أَوْ تَحْتَ قَدَمَيْهِ ‏"‏‏.‏ ثُمَّ أَخَذَ طَرَفَ رِدَائِهِ فَبَصَقَ فِيهِ، ثُمَّ رَدَّ بَعْضَهُ عَلَى بَعْضٍ، فَقَالَ ‏"‏ أَوْ يَفْعَلْ هَكَذَا ‏"‏‏.‏''',
+    sourceUrl: 'https://sunnah.com/bukhari:405',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sahih al-Bukhari',
     sourceReference: '405',
     source: 'Sahih al-Bukhari 405',
@@ -626,6 +726,14 @@ const List<HadithEntry> seededHadithEntries = [
         'Sujud is one of the closest moments between a servant and Allah, so increase supplication in it.',
     hadithText:
         'The Messenger of Allah ﷺ said: The closest a servant comes to his Lord is when he is prostrating, so increase your supplication.',
+    englishText:
+        '''The Messenger of Allah (ﷺ) said: The nearest a servant comes to his Lord is when he is prostrating himself, so make supplication (in this state).''',
+    arabicText:
+        '''"‏ أَقْرَبُ مَا يَكُونُ الْعَبْدُ مِنْ رَبِّهِ وَهُوَ سَاجِدٌ فَأَكْثِرُوا الدُّعَاءَ ‏"''',
+    sourceUrl: 'https://sunnah.com/muslim:482',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sahih Muslim',
     sourceReference: '482',
     source: 'Sahih Muslim 482',
@@ -671,6 +779,14 @@ const List<HadithEntry> seededHadithEntries = [
         'Complete wudu and sincere prayer become a means of forgiveness for past sins.',
     hadithText:
         'The Prophet ﷺ taught that whoever performs wudu well and then prays with presence and humility, his previous sins are forgiven.',
+    englishText:
+        '''This verse is: "Verily, those who conceal the clear signs and the guidance which we have sent down...)" (2:159). I heard the Prophet (ﷺ) saying, 'If a man performs ablution perfectly and then offers the compulsory congregational prayer, Allah will forgive his sins committed between that (prayer) and the (next) prayer till he offers it.''',
+    arabicText:
+        '''وَعَنْ إِبْرَاهِيمَ، قَالَ قَالَ صَالِحُ بْنُ كَيْسَانَ قَالَ ابْنُ شِهَابٍ وَلَكِنْ عُرْوَةُ يُحَدِّثُ عَنْ حُمْرَانَ،، فَلَمَّا تَوَضَّأَ عُثْمَانُ قَالَ أَلاَ أُحَدِّثُكُمْ حَدِيثًا لَوْلاَ آيَةٌ مَا حَدَّثْتُكُمُوهُ، سَمِعْتُ النَّبِيَّ صلى الله عليه وسلم يَقُولُ ‏"‏ لاَ يَتَوَضَّأُ رَجُلٌ فَيُحْسِنُ وُضُوءَهُ، وَيُصَلِّي الصَّلاَةَ إِلاَّ غُفِرَ لَهُ مَا بَيْنَهُ وَبَيْنَ الصَّلاَةِ حَتَّى يُصَلِّيَهَا ‏"‏‏.‏ قَالَ عُرْوَةُ الآيَةُ ‏ {‏إِنَّ الَّذِينَ يَكْتُمُونَ مَا أَنْزَلْنَا مِنَ الْبَيِّنَاتِ‏} ‏‏.‏''',
+    sourceUrl: 'https://sunnah.com/bukhari:160',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sahih al-Bukhari / Sahih Muslim',
     sourceReference: 'Bukhari 160 / Muslim 226',
     source: 'Sahih al-Bukhari 160 / Sahih Muslim 226',
@@ -720,6 +836,14 @@ const List<HadithEntry> seededHadithEntries = [
         'Congregational prayer carries multiplied reward over praying alone.',
     hadithText:
         'The Messenger of Allah ﷺ said: Prayer in congregation is superior to prayer alone by twenty-seven degrees.',
+    englishText:
+        '''Allah's Messenger (ﷺ) said, "The prayer in congregation is twenty seven times superior to the prayer offered by person alone."''',
+    arabicText:
+        '''"‏ صَلاَةُ الْجَمَاعَةِ تَفْضُلُ صَلاَةَ الْفَذِّ بِسَبْعٍ وَعِشْرِينَ دَرَجَةً ‏"''',
+    sourceUrl: 'https://sunnah.com/bukhari:645',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sahih al-Bukhari / Sahih Muslim',
     sourceReference: 'Bukhari 645 / Muslim 650',
     source: 'Sahih al-Bukhari 645 / Sahih Muslim 650',
@@ -766,6 +890,14 @@ const List<HadithEntry> seededHadithEntries = [
         'Whoever believes in Allah and the Last Day should speak good or remain silent.',
     hadithText:
         'The Messenger of Allah ﷺ said: Whoever believes in Allah and the Last Day, let him speak good or remain silent.',
+    englishText:
+        '''Allah's Messenger (ﷺ) said, "Anybody who believes in Allah and the Last Day should not harm his neighbor, and anybody who believes in Allah and the Last Day should entertain his guest generously and anybody who believes in Allah and the Last Day should talk what is good or keep quiet. (i.e. abstain from all kinds of evil and dirty talk).''',
+    arabicText:
+        '''"‏ مَنْ كَانَ يُؤْمِنُ بِاللَّهِ وَالْيَوْمِ الآخِرِ فَلاَ يُؤْذِ جَارَهُ، وَمَنْ كَانَ يُؤْمِنُ بِاللَّهِ وَالْيَوْمِ الآخِرِ فَلْيُكْرِمْ ضَيْفَهُ، وَمَنْ كَانَ يُؤْمِنُ بِاللَّهِ وَالْيَوْمِ الآخِرِ فَلْيَقُلْ خَيْرًا أَوْ لِيَصْمُتْ ‏"''',
+    sourceUrl: 'https://sunnah.com/bukhari:6018',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sahih al-Bukhari / Sahih Muslim',
     sourceReference: 'Bukhari 6018 / Muslim 47',
     source: 'Sahih al-Bukhari 6018 / Muslim 47',
@@ -802,16 +934,24 @@ const List<HadithEntry> seededHadithEntries = [
     id: 'sent_to_perfect_character',
     themeId: _characterThemeId,
     collectionIds: [essentialCollectionId, 'character_builder'],
-    title: 'I Was Sent to Perfect Noble Character',
+    title: 'I Was Sent to Perfect Good Character',
     excerpt:
-        'The Prophet ﷺ described his mission as completing and perfecting noble character.',
+        'The Prophet ﷺ described his mission as completing and perfecting good character.',
     hadithText:
-        'The Messenger of Allah ﷺ said: I was only sent to perfect noble character.',
-    sourceCollection: 'Musnad Ahmad',
-    sourceReference: '8952',
-    source: 'Musnad Ahmad 8952',
-    grading: 'Sahih (authenticated by later scholars)',
-    narrator: 'Abu Hurayrah (ra)',
+        'The Messenger of Allah ﷺ said: I was sent to perfect good character.',
+    englishText:
+        '''Yahya related to me from Malik that he had heard that the Messenger of Allah, may Allah bless him and grant him peace, said, "I was sent to perfect good character."''',
+    arabicText:
+        '''وَحَدَّثَنِي عَنْ مَالِكٍ، أَنَّهُ قَدْ بَلَغَهُ أَنَّ رَسُولَ اللَّهِ صلى الله عليه وسلم قَالَ ‏ "‏ بُعِثْتُ لأُتَمِّمَ حُسْنَ الأَخْلاَقِ ‏" ‏ ‏.‏''',
+    sourceUrl: 'https://sunnah.com/malik/47/8',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
+    sourceCollection: 'Muwatta Malik',
+    sourceReference: 'Book 47, Hadith 8',
+    source: 'Muwatta Malik Book 47, Hadith 8',
+    grading: 'Balagh',
+    narrator: 'Muadh ibn Jabal (ra)',
     tags: ['Character', 'Mission', 'Adab'],
     quranConnections: [
       QuranConnection(
@@ -856,6 +996,13 @@ const List<HadithEntry> seededHadithEntries = [
         'Excellence among believers is measured by noble character and treatment of others.',
     hadithText:
         'The Prophet ﷺ said: The best among you are those who have the best character.',
+    englishText:
+        '''The Prophet (ﷺ) never used bad language neither a "Fahish nor a Mutafahish. He used to say "The best amongst you are those who have the best manners and character." (See Hadith No. 56 (B) Vol. 8)''',
+    arabicText: '''"‏ إِنَّ مِنْ خِيَارِكُمْ أَحْسَنَكُمْ أَخْلاَقًا ‏"''',
+    sourceUrl: 'https://sunnah.com/bukhari:3559',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sahih al-Bukhari',
     sourceReference: '3559',
     source: 'Sahih al-Bukhari 3559',
@@ -901,6 +1048,14 @@ const List<HadithEntry> seededHadithEntries = [
     excerpt: 'Faithful character avoids insult, cursing, and indecent speech.',
     hadithText:
         'The Messenger of Allah ﷺ said: A believer is not one who insults, curses, uses obscene language, or speaks indecently.',
+    englishText:
+        '''"The believer does not insult the honor of others, nor curse, nor commit Fahishah, nor is he foul."''',
+    arabicText:
+        '''"‏ لَيْسَ الْمُؤْمِنُ بِالطَّعَّانِ وَلاَ اللَّعَّانِ وَلاَ الْفَاحِشِ وَلاَ الْبَذِيءِ ‏"''',
+    sourceUrl: 'https://sunnah.com/tirmidhi:1977',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Jami\' al-Tirmidhi',
     sourceReference: '1977',
     source: 'Jami\' al-Tirmidhi 1977',
@@ -945,6 +1100,14 @@ const List<HadithEntry> seededHadithEntries = [
     excerpt: 'Showing mercy to people invites Allah’s mercy upon the believer.',
     hadithText:
         'The Prophet ﷺ said: The merciful are shown mercy by the Most Merciful. Show mercy to those on earth, and the One above the heavens will show mercy to you.',
+    englishText:
+        '''"The merciful are shown mercy by Ar-Rahman. Be merciful on the earth, and you will be shown mercy from Who is above the heavens. The womb is named after Ar-Rahman, so whoever connects it, Allah connects him, and whoever severs it, Allah severs him."''',
+    arabicText:
+        '''"‏ الرَّاحِمُونَ يَرْحَمُهُمُ الرَّحْمَنُ ارْحَمُوا مَنْ فِي الأَرْضِ يَرْحَمْكُمْ مَنْ فِي السَّمَاءِ الرَّحِمُ شُجْنَةٌ مِنَ الرَّحْمَنِ فَمَنْ وَصَلَهَا وَصَلَهُ اللَّهُ وَمَنْ قَطَعَهَا قَطَعَهُ اللَّهُ ‏"''',
+    sourceUrl: 'https://sunnah.com/tirmidhi:1924',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Jami\' al-Tirmidhi',
     sourceReference: '1924',
     source: 'Jami\' al-Tirmidhi 1924',
@@ -991,6 +1154,14 @@ const List<HadithEntry> seededHadithEntries = [
         'True strength is not overpowering others, but mastering oneself at the time of anger.',
     hadithText:
         'The Prophet ﷺ said: The strong one is not the one who overcomes people by force, but the strong one is the one who controls himself while angry.',
+    englishText:
+        '''Allah's Messenger (ﷺ) said, "The strong is not the one who overcomes the people by his strength, but the strong is the one who controls himself while in anger."''',
+    arabicText:
+        '''"‏ لَيْسَ الشَّدِيدُ بِالصُّرَعَةِ، إِنَّمَا الشَّدِيدُ الَّذِي يَمْلِكُ نَفْسَهُ عِنْدَ الْغَضَبِ ‏"''',
+    sourceUrl: 'https://sunnah.com/bukhari:6114',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sahih al-Bukhari / Sahih Muslim',
     sourceReference: 'Bukhari 6114 / Muslim 2609',
     source: 'Sahih al-Bukhari 6114 / Sahih Muslim 2609',
@@ -1037,6 +1208,14 @@ const List<HadithEntry> seededHadithEntries = [
         'A sincere smile is counted as charity and part of prophetic social character.',
     hadithText:
         'The Messenger of Allah ﷺ said: Your smile to your brother is charity.',
+    englishText:
+        '''"Your smiling in the face of your brother is charity, commanding good and forbidding evil is charity, your giving directions to a man lost in the land is charity for you. Your seeing for a man with bad sight is a charity for you, your removal of a rock, a thorn or a bone from the road is charity for you. Your pouring what remains from your bucket into the bucket of your brother is charity for you."''',
+    arabicText:
+        '''"‏ تَبَسُّمُكَ فِي وَجْهِ أَخِيكَ لَكَ صَدَقَةٌ وَأَمْرُكَ بِالْمَعْرُوفِ وَنَهْيُكَ عَنِ الْمُنْكَرِ صَدَقَةٌ وَإِرْشَادُكَ الرَّجُلَ فِي أَرْضِ الضَّلاَلِ لَكَ صَدَقَةٌ وَبَصَرُكَ لِلرَّجُلِ الرَّدِيءِ الْبَصَرِ لَكَ صَدَقَةٌ وَإِمَاطَتُكَ الْحَجَرَ وَالشَّوْكَةَ وَالْعَظْمَ عَنِ الطَّرِيقِ لَكَ صَدَقَةٌ وَإِفْرَاغُكَ مِنْ دَلْوِكَ فِي دَلْوِ أَخِيكَ لَكَ صَدَقَةٌ ‏"''',
+    sourceUrl: 'https://sunnah.com/tirmidhi:1956',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Jami\' al-Tirmidhi',
     sourceReference: '1956',
     source: 'Jami\' al-Tirmidhi 1956',
@@ -1085,6 +1264,14 @@ const List<HadithEntry> seededHadithEntries = [
         'Consistent truthfulness leads to righteousness and ultimately to Paradise.',
     hadithText:
         'The Prophet ﷺ said: Truthfulness leads to righteousness, and righteousness leads to Paradise. A person keeps speaking the truth until he is recorded with Allah as truthful.',
+    englishText:
+        '''The Prophet (ﷺ) said, "Truthfulness leads to righteousness, and righteousness leads to Paradise. And a man keeps on telling the truth until he becomes a truthful person. Falsehood leads to Al-Fajur (i.e. wickedness, evil-doing), and Al-Fajur (wickedness) leads to the (Hell) Fire, and a man may keep on telling lies till he is written before Allah, a liar."''',
+    arabicText:
+        '''"‏ إِنَّ الصِّدْقَ يَهْدِي إِلَى الْبِرِّ، وَإِنَّ الْبِرَّ يَهْدِي إِلَى الْجَنَّةِ، وَإِنَّ الرَّجُلَ لَيَصْدُقُ حَتَّى يَكُونَ صِدِّيقًا، وَإِنَّ الْكَذِبَ يَهْدِي إِلَى الْفُجُورِ، وَإِنَّ الْفُجُورَ يَهْدِي إِلَى النَّارِ، وَإِنَّ الرَّجُلَ لَيَكْذِبُ، حَتَّى يُكْتَبَ عِنْدَ اللَّهِ كَذَّابًا ‏"''',
+    sourceUrl: 'https://sunnah.com/bukhari:6094',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sahih al-Bukhari / Sahih Muslim',
     sourceReference: 'Bukhari 6094 / Muslim 2607',
     source: 'Sahih al-Bukhari 6094 / Sahih Muslim 2607',
@@ -1131,6 +1318,14 @@ const List<HadithEntry> seededHadithEntries = [
         'Those who show mercy to creation are shown mercy by the Most Merciful.',
     hadithText:
         'The Prophet ﷺ said: The merciful are shown mercy by the Most Merciful. Show mercy to those on earth, and the One above the heavens will show mercy to you.',
+    englishText:
+        '''"The merciful are shown mercy by Ar-Rahman. Be merciful on the earth, and you will be shown mercy from Who is above the heavens. The womb is named after Ar-Rahman, so whoever connects it, Allah connects him, and whoever severs it, Allah severs him."''',
+    arabicText:
+        '''"‏ الرَّاحِمُونَ يَرْحَمُهُمُ الرَّحْمَنُ ارْحَمُوا مَنْ فِي الأَرْضِ يَرْحَمْكُمْ مَنْ فِي السَّمَاءِ الرَّحِمُ شُجْنَةٌ مِنَ الرَّحْمَنِ فَمَنْ وَصَلَهَا وَصَلَهُ اللَّهُ وَمَنْ قَطَعَهَا قَطَعَهُ اللَّهُ ‏"''',
+    sourceUrl: 'https://sunnah.com/tirmidhi:1924',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Jami\' al-Tirmidhi',
     sourceReference: '1924',
     source: 'Sunan al-Tirmidhi 1924',
@@ -1169,6 +1364,13 @@ const List<HadithEntry> seededHadithEntries = [
         'A heart that refuses mercy to others closes itself from receiving mercy.',
     hadithText:
         'The Messenger of Allah ﷺ said: Whoever does not show mercy will not be shown mercy.',
+    englishText:
+        '''Allah's Messenger (ﷺ) said, "Allah will not be merciful to those who are not merciful to mankind."''',
+    arabicText: '''"‏ لاَ يَرْحَمُ اللَّهُ مَنْ لاَ يَرْحَمُ النَّاسَ ‏"''',
+    sourceUrl: 'https://sunnah.com/bukhari:7376',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sahih al-Bukhari / Sahih Muslim',
     sourceReference: 'Bukhari 7376 / Muslim 2318',
     source: 'Sahih al-Bukhari 7376 / Sahih Muslim 2318',
@@ -1214,6 +1416,14 @@ const List<HadithEntry> seededHadithEntries = [
         'Allah loves gentleness, and gentleness beautifies actions and relationships.',
     hadithText:
         'The Prophet ﷺ said: Allah is gentle and loves gentleness in all matters.',
+    englishText:
+        '''(the wife of the Prophet) A group of Jews entered upon the Prophet (ﷺ) and said, "As-Samu-Alaikum." (i.e. death be upon you). I understood it and said, "Wa-Alaikum As-Samu wal-la'n. (death and the curse of Allah be Upon you)." Allah's Messenger (ﷺ) said "Be calm, O `Aisha! Allah loves that on, should be kind and lenient in all matters." I said, "O Allah's Messenger (ﷺ)! Haven't you heard what they (the Jews) have said?" Allah's Messenger (ﷺ) said "I have (already) said (to them) "And upon you ! "''',
+    arabicText:
+        '''حَدَّثَنَا عَبْدُ الْعَزِيزِ بْنُ عَبْدِ اللَّهِ، حَدَّثَنَا إِبْرَاهِيمُ بْنُ سَعْدٍ، عَنْ صَالِحٍ، عَنِ ابْنِ شِهَابٍ، عَنْ عُرْوَةَ بْنِ الزُّبَيْرِ، أَنَّ عَائِشَةَ ـ رضى الله عنها ـ زَوْجَ النَّبِيِّ صلى الله عليه وسلم قَالَتْ دَخَلَ رَهْطٌ مِنَ الْيَهُودِ عَلَى رَسُولِ اللَّهِ صلى الله عليه وسلم فَقَالُوا السَّامُ عَلَيْكُمْ‏.‏ قَالَتْ عَائِشَةُ فَفَهِمْتُهَا فَقُلْتُ وَعَلَيْكُمُ السَّامُ وَاللَّعْنَةُ‏.‏ قَالَتْ فَقَالَ رَسُولُ اللَّهِ صلى الله عليه وسلم ‏"‏ مَهْلاً يَا عَائِشَةُ، إِنَّ اللَّهَ يُحِبُّ الرِّفْقَ فِي الأَمْرِ كُلِّهِ ‏"‏‏.‏ فَقُلْتُ يَا رَسُولَ اللَّهِ وَلَمْ تَسْمَعْ مَا قَالُوا قَالَ رَسُولُ اللَّهِ صلى الله عليه وسلم ‏"‏ قَدْ قُلْتُ وَعَلَيْكُمْ ‏"‏‏.‏''',
+    sourceUrl: 'https://sunnah.com/bukhari:6024',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sahih al-Bukhari / Sahih Muslim',
     sourceReference: 'Bukhari 6024 / Muslim 2165',
     source: 'Sahih al-Bukhari 6024 / Sahih Muslim 2165',
@@ -1259,6 +1469,14 @@ const List<HadithEntry> seededHadithEntries = [
         'Cruelty to animals is a moral failure with serious spiritual consequence.',
     hadithText:
         'The Messenger ﷺ informed about a woman who was punished because she confined a cat until it died; she neither fed it nor let it find food.',
+    englishText:
+        '''The Prophet (ﷺ) said, "A woman entered the (Hell) Fire because of a cat which she had tied, neither giving it food nor setting it free to eat from the vermin of the earth. "''',
+    arabicText:
+        '''"‏ دَخَلَتِ امْرَأَةٌ النَّارَ فِي هِرَّةٍ رَبَطَتْهَا، فَلَمْ تُطْعِمْهَا، وَلَمْ تَدَعْهَا تَأْكُلُ مِنْ خِشَاشِ الأَرْضِ ‏"''',
+    sourceUrl: 'https://sunnah.com/bukhari:3318',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sahih al-Bukhari / Sahih Muslim',
     sourceReference: 'Bukhari 3318 / Muslim 2242',
     source: 'Sahih al-Bukhari 3318 / Sahih Muslim 2242',
@@ -1304,6 +1522,14 @@ const List<HadithEntry> seededHadithEntries = [
         'A small sincere act of mercy can become a means of Allah\'s forgiveness.',
     hadithText:
         'The Prophet ﷺ told of a man who saw a thirsty dog, gave it water, and Allah forgave him for that act.',
+    englishText:
+        '''Allah's Messenger (ﷺ) said, "A prostitute was forgiven by Allah, because, passing by a panting dog near a well and seeing that the dog was about to die of thirst, she took off her shoe, and tying it with her head-cover she drew out some water for it. So, Allah forgave her because of that."''',
+    arabicText:
+        '''"‏ غُفِرَ لاِمْرَأَةٍ مُومِسَةٍ مَرَّتْ بِكَلْبٍ عَلَى رَأْسِ رَكِيٍّ يَلْهَثُ، قَالَ كَادَ يَقْتُلُهُ الْعَطَشُ، فَنَزَعَتْ خُفَّهَا، فَأَوْثَقَتْهُ بِخِمَارِهَا، فَنَزَعَتْ لَهُ مِنَ الْمَاءِ، فَغُفِرَ لَهَا بِذَلِكَ ‏"''',
+    sourceUrl: 'https://sunnah.com/bukhari:3321',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sahih al-Bukhari / Sahih Muslim',
     sourceReference: 'Bukhari 3321 / Muslim 2244',
     source: 'Sahih al-Bukhari 3321 / Sahih Muslim 2244',
@@ -1349,6 +1575,13 @@ const List<HadithEntry> seededHadithEntries = [
         'The Prophet ﷺ honored human dignity by standing for a passing funeral procession.',
     hadithText:
         'When a funeral passed by, the Prophet ﷺ stood. When told it was a Jewish funeral, he replied: Is it not a human soul?',
+    englishText:
+        '''Sahl bin Hunaif and Qais bin Sa`d were sitting in the city of Al-Qadisiya. A funeral procession passed in front of them and they stood up. They were told that funeral procession was of one of the inhabitants of the land i.e. of a non-believer, under the protection of Muslims. They said, "A funeral procession passed in front of the Prophet (ﷺ) and he stood up. When he was told that it was the coffin of a Jew, he said, "Is it not a living being (soul)?"''',
+    arabicText: '''"‏ أَلَيْسَتْ نَفْسًا ‏"''',
+    sourceUrl: 'https://sunnah.com/bukhari:1312',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sahih al-Bukhari / Sahih Muslim',
     sourceReference: 'Bukhari 1312 / Muslim 961',
     source: 'Sahih al-Bukhari 1312 / Sahih Muslim 961',
@@ -1394,6 +1627,14 @@ const List<HadithEntry> seededHadithEntries = [
         'The Prophet ﷺ adjusted prayer out of mercy for mothers and families.',
     hadithText:
         'The Prophet ﷺ said that he would begin prayer intending to lengthen it, then hear a child cry and shorten it, knowing the distress of the child\'s mother.',
+    englishText:
+        '''My father said, "The Prophet (ﷺ) said, 'When I stand for prayer, I intend to prolong it but on hearing the cries of a child, I cut it short, as I dislike to trouble the child's mother.' "''',
+    arabicText:
+        '''"‏ إِنِّي لأَقُومُ فِي الصَّلاَةِ أُرِيدُ أَنْ أُطَوِّلَ فِيهَا، فَأَسْمَعُ بُكَاءَ الصَّبِيِّ، فَأَتَجَوَّزُ فِي صَلاَتِي كَرَاهِيَةَ أَنْ أَشُقَّ عَلَى أُمِّهِ ‏"''',
+    sourceUrl: 'https://sunnah.com/bukhari:707',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sahih al-Bukhari',
     sourceReference: '707',
     source: 'Sahih al-Bukhari 707',
@@ -1439,6 +1680,14 @@ const List<HadithEntry> seededHadithEntries = [
         'Relieving others\' hardship is met by Allah relieving one\'s hardship in this life and the next.',
     hadithText:
         'The Messenger of Allah ﷺ said: Whoever relieves a believer of a hardship from the hardships of this world, Allah will relieve him of a hardship from the hardships of the Day of Resurrection.',
+    englishText:
+        '''He who alleviates the suffering of a brother out of the sufferings of the world, Allah would alleviate his suffering from the sufferings of the Day of Resurrection, and he who finds relief for one who is hard-pressed, Allah would make things easy for him in the Hereafter, and he who conceals (the faults) of a Muslim, Allah would conceal his faults in the world and in the Hereafter. Allah is at the back of a servant so long as the servant is at the back of his brother, and he who treads the path in search of knowledge, Allah would make that path easy, leading to Paradise for him and those persons who assemble in the house among the houses of Allah (mosques) and recite the Book of Allah and they learn and teach the Qur'an (among themselves) there would descend upon them tranquility and mercy would cover them and the angels would surround them and Allah mentions them in the presence of those near Him, and he who is slow-paced in doing good deeds, his (high) lineage does not make him go ahead.''',
+    arabicText:
+        '''"‏ مَنْ نَفَّسَ عَنْ مُؤْمِنٍ كُرْبَةً مِنْ كُرَبِ الدُّنْيَا نَفَّسَ اللَّهُ عَنْهُ كُرْبَةً مِنْ كُرَبِ يَوْمِ الْقِيَامَةِ وَمَنْ يَسَّرَ عَلَى مُعْسِرٍ يَسَّرَ اللَّهُ عَلَيْهِ فِي الدُّنْيَا وَالآخِرَةِ وَمَنْ سَتَرَ مُسْلِمًا سَتَرَهُ اللَّهُ فِي الدُّنْيَا وَالآخِرَةِ وَاللَّهُ فِي عَوْنِ الْعَبْدِ مَا كَانَ الْعَبْدُ فِي عَوْنِ أَخِيهِ وَمَنْ سَلَكَ طَرِيقًا يَلْتَمِسُ فِيهِ عِلْمًا سَهَّلَ اللَّهُ لَهُ بِهِ طَرِيقًا إِلَى الْجَنَّةِ وَمَا اجْتَمَعَ قَوْمٌ فِي بَيْتٍ مِنْ بُيُوتِ اللَّهِ يَتْلُونَ كِتَابَ اللَّهِ وَيَتَدَارَسُونَهُ بَيْنَهُمْ إِلاَّ نَزَلَتْ عَلَيْهِمُ السَّكِينَةُ وَغَشِيَتْهُمُ الرَّحْمَةُ وَحَفَّتْهُمُ الْمَلاَئِكَةُ وَذَكَرَهُمُ اللَّهُ فِيمَنْ عِنْدَهُ وَمَنْ بَطَّأَ بِهِ عَمَلُهُ لَمْ يُسْرِعْ بِهِ نَسَبُهُ ‏"''',
+    sourceUrl: 'https://sunnah.com/muslim:2699',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sahih Muslim',
     sourceReference: '2699',
     source: 'Sahih Muslim 2699',
@@ -1485,6 +1734,14 @@ const List<HadithEntry> seededHadithEntries = [
         'Whoever travels a path to seek knowledge, Allah eases for him a path to Paradise.',
     hadithText:
         'The Messenger ﷺ said: Whoever follows a path in pursuit of knowledge, Allah will make easy for him a path to Paradise.',
+    englishText:
+        '''He who alleviates the suffering of a brother out of the sufferings of the world, Allah would alleviate his suffering from the sufferings of the Day of Resurrection, and he who finds relief for one who is hard-pressed, Allah would make things easy for him in the Hereafter, and he who conceals (the faults) of a Muslim, Allah would conceal his faults in the world and in the Hereafter. Allah is at the back of a servant so long as the servant is at the back of his brother, and he who treads the path in search of knowledge, Allah would make that path easy, leading to Paradise for him and those persons who assemble in the house among the houses of Allah (mosques) and recite the Book of Allah and they learn and teach the Qur'an (among themselves) there would descend upon them tranquility and mercy would cover them and the angels would surround them and Allah mentions them in the presence of those near Him, and he who is slow-paced in doing good deeds, his (high) lineage does not make him go ahead.''',
+    arabicText:
+        '''"‏ مَنْ نَفَّسَ عَنْ مُؤْمِنٍ كُرْبَةً مِنْ كُرَبِ الدُّنْيَا نَفَّسَ اللَّهُ عَنْهُ كُرْبَةً مِنْ كُرَبِ يَوْمِ الْقِيَامَةِ وَمَنْ يَسَّرَ عَلَى مُعْسِرٍ يَسَّرَ اللَّهُ عَلَيْهِ فِي الدُّنْيَا وَالآخِرَةِ وَمَنْ سَتَرَ مُسْلِمًا سَتَرَهُ اللَّهُ فِي الدُّنْيَا وَالآخِرَةِ وَاللَّهُ فِي عَوْنِ الْعَبْدِ مَا كَانَ الْعَبْدُ فِي عَوْنِ أَخِيهِ وَمَنْ سَلَكَ طَرِيقًا يَلْتَمِسُ فِيهِ عِلْمًا سَهَّلَ اللَّهُ لَهُ بِهِ طَرِيقًا إِلَى الْجَنَّةِ وَمَا اجْتَمَعَ قَوْمٌ فِي بَيْتٍ مِنْ بُيُوتِ اللَّهِ يَتْلُونَ كِتَابَ اللَّهِ وَيَتَدَارَسُونَهُ بَيْنَهُمْ إِلاَّ نَزَلَتْ عَلَيْهِمُ السَّكِينَةُ وَغَشِيَتْهُمُ الرَّحْمَةُ وَحَفَّتْهُمُ الْمَلاَئِكَةُ وَذَكَرَهُمُ اللَّهُ فِيمَنْ عِنْدَهُ وَمَنْ بَطَّأَ بِهِ عَمَلُهُ لَمْ يُسْرِعْ بِهِ نَسَبُهُ ‏"''',
+    sourceUrl: 'https://sunnah.com/muslim:2699',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sahih Muslim',
     sourceReference: '2699',
     source: 'Sahih Muslim 2699',
@@ -1531,6 +1788,14 @@ const List<HadithEntry> seededHadithEntries = [
         'Seeking beneficial religious knowledge is a duty on every Muslim.',
     hadithText:
         'The Prophet ﷺ said: Seeking knowledge is an obligation upon every Muslim.',
+    englishText:
+        '''"Seeking knowledge is a duty upon every Muslim, and he who imparts knowledge to those who do not deserve it, is like one who puts a necklace of jewels, pearls and gold around the neck of swines." Note: "Seeking knowledge is a duty upon every Muslim" is authentic through many sources, but the remaining text is not acceptable.''',
+    arabicText:
+        '''"‏ طَلَبُ الْعِلْمِ فَرِيضَةٌ عَلَى كُلِّ مُسْلِمٍ وَوَاضِعُ الْعِلْمِ عِنْدَ غَيْرِ أَهْلِهِ كَمُقَلِّدِ الْخَنَازِيرِ الْجَوْهَرَ وَاللُّؤْلُؤَ وَالذَّهَبَ ‏"''',
+    sourceUrl: 'https://sunnah.com/ibnmajah:224',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sunan Ibn Majah',
     sourceReference: '224',
     source: 'Sunan Ibn Majah 224',
@@ -1577,6 +1842,14 @@ const List<HadithEntry> seededHadithEntries = [
         'The prophets leave behind knowledge, and those who inherit it inherit a great share.',
     hadithText:
         'The Messenger ﷺ said: The scholars are the inheritors of the prophets. The prophets do not leave behind dinar or dirham, but they leave knowledge; whoever takes it has taken an abundant share.',
+    englishText:
+        '''Kathir ibn Qays said: I was sitting with AbudDarda' in the mosque of Damascus. A man came to him and said: AbudDarda, I have come to you from the town of the Messenger of Allah (ﷺ) for a tradition that I have heard you relate from the Messenger of Allah (ﷺ). I have come for no other purpose. He said: I heard the Messenger of Allah (ﷺ) say: If anyone travels on a road in search of knowledge, Allah will cause him to travel on one of the roads of Paradise. The angels will lower their wings in their great pleasure with one who seeks knowledge, the inhabitants of the heavens and the Earth and the fish in the deep waters will ask forgiveness for the learned man. The superiority of the learned man over the devout is like that of the moon, on the night when it is full, over the rest of the stars. The learned are the heirs of the Prophets, and the Prophets leave neither dinar nor dirham, leaving only knowledge, and he who takes it takes an abundant portion.''',
+    arabicText:
+        '''"‏ مَنْ سَلَكَ طَرِيقًا يَطْلُبُ فِيهِ عِلْمًا سَلَكَ اللَّهُ بِهِ طَرِيقًا مِنْ طُرُقِ الْجَنَّةِ وَإِنَّ الْمَلاَئِكَةَ لَتَضَعُ أَجْنِحَتَهَا رِضًا لِطَالِبِ الْعِلْمِ وَإِنَّ الْعَالِمَ لَيَسْتَغْفِرُ لَهُ مَنْ فِي السَّمَوَاتِ وَمَنْ فِي الأَرْضِ وَالْحِيتَانُ فِي جَوْفِ الْمَاءِ وَإِنَّ فَضْلَ الْعَالِمِ عَلَى الْعَابِدِ كَفَضْلِ الْقَمَرِ لَيْلَةَ الْبَدْرِ عَلَى سَائِرِ الْكَوَاكِبِ وَإِنَّ الْعُلَمَاءَ وَرَثَةُ الأَنْبِيَاءِ وَإِنَّ الأَنْبِيَاءَ لَمْ يُوَرِّثُوا دِينَارًا وَلاَ دِرْهَمًا وَرَّثُوا الْعِلْمَ فَمَنْ أَخَذَهُ أَخَذَ بِحَظٍّ وَافِرٍ ‏"''',
+    sourceUrl: 'https://sunnah.com/abudawud:3641',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sunan Abi Dawud / Jami\' al-Tirmidhi',
     sourceReference: 'Abu Dawud 3641 / Tirmidhi 2682',
     source: 'Sunan Abi Dawud 3641 / Jami\' al-Tirmidhi 2682',
@@ -1622,6 +1895,14 @@ const List<HadithEntry> seededHadithEntries = [
         'Beneficial learning opens a clearer and easier path toward Paradise.',
     hadithText:
         'The Prophet ﷺ said: Whoever follows a path seeking knowledge, Allah makes easy for him a path to Paradise.',
+    englishText:
+        '''He who alleviates the suffering of a brother out of the sufferings of the world, Allah would alleviate his suffering from the sufferings of the Day of Resurrection, and he who finds relief for one who is hard-pressed, Allah would make things easy for him in the Hereafter, and he who conceals (the faults) of a Muslim, Allah would conceal his faults in the world and in the Hereafter. Allah is at the back of a servant so long as the servant is at the back of his brother, and he who treads the path in search of knowledge, Allah would make that path easy, leading to Paradise for him and those persons who assemble in the house among the houses of Allah (mosques) and recite the Book of Allah and they learn and teach the Qur'an (among themselves) there would descend upon them tranquility and mercy would cover them and the angels would surround them and Allah mentions them in the presence of those near Him, and he who is slow-paced in doing good deeds, his (high) lineage does not make him go ahead.''',
+    arabicText:
+        '''"‏ مَنْ نَفَّسَ عَنْ مُؤْمِنٍ كُرْبَةً مِنْ كُرَبِ الدُّنْيَا نَفَّسَ اللَّهُ عَنْهُ كُرْبَةً مِنْ كُرَبِ يَوْمِ الْقِيَامَةِ وَمَنْ يَسَّرَ عَلَى مُعْسِرٍ يَسَّرَ اللَّهُ عَلَيْهِ فِي الدُّنْيَا وَالآخِرَةِ وَمَنْ سَتَرَ مُسْلِمًا سَتَرَهُ اللَّهُ فِي الدُّنْيَا وَالآخِرَةِ وَاللَّهُ فِي عَوْنِ الْعَبْدِ مَا كَانَ الْعَبْدُ فِي عَوْنِ أَخِيهِ وَمَنْ سَلَكَ طَرِيقًا يَلْتَمِسُ فِيهِ عِلْمًا سَهَّلَ اللَّهُ لَهُ بِهِ طَرِيقًا إِلَى الْجَنَّةِ وَمَا اجْتَمَعَ قَوْمٌ فِي بَيْتٍ مِنْ بُيُوتِ اللَّهِ يَتْلُونَ كِتَابَ اللَّهِ وَيَتَدَارَسُونَهُ بَيْنَهُمْ إِلاَّ نَزَلَتْ عَلَيْهِمُ السَّكِينَةُ وَغَشِيَتْهُمُ الرَّحْمَةُ وَحَفَّتْهُمُ الْمَلاَئِكَةُ وَذَكَرَهُمُ اللَّهُ فِيمَنْ عِنْدَهُ وَمَنْ بَطَّأَ بِهِ عَمَلُهُ لَمْ يُسْرِعْ بِهِ نَسَبُهُ ‏"''',
+    sourceUrl: 'https://sunnah.com/muslim:2699',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sahih Muslim',
     sourceReference: '2699',
     source: 'Sahih Muslim 2699',
@@ -1667,6 +1948,14 @@ const List<HadithEntry> seededHadithEntries = [
         'Concealing beneficial knowledge when needed is a serious moral violation.',
     hadithText:
         'The Messenger ﷺ said: Whoever is asked about knowledge and conceals it will be bridled with a bridle of fire on the Day of Resurrection.',
+    englishText:
+        '''The Prophet (ﷺ) said: He who is asked something he knows and conceals it will have a bridle of fire put on him on the Day of Resurrection.''',
+    arabicText:
+        '''"‏ مَنْ سُئِلَ عَنْ عِلْمٍ فَكَتَمَهُ أَلْجَمَهُ اللَّهُ بِلِجَامٍ مِنْ نَارٍ يَوْمَ الْقِيَامَةِ ‏"''',
+    sourceUrl: 'https://sunnah.com/abudawud:3658',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sunan Abi Dawud / Jami\' al-Tirmidhi',
     sourceReference: 'Abu Dawud 3658 / Tirmidhi 2649',
     source: 'Sunan Abi Dawud 3658 / Jami\' al-Tirmidhi 2649',
@@ -1712,6 +2001,14 @@ const List<HadithEntry> seededHadithEntries = [
         'The one grounded in knowledge has a rank above one who worships without depth.',
     hadithText:
         'The Prophet ﷺ said: The superiority of the learned person over the worshipper is like my superiority over the least of you.',
+    englishText:
+        '''"Two men were mentioned before the Messenger of Allah (ﷺ). One of them a worshiper, and the other a scholar. So the Messenger of Allah (ﷺ) said: 'The superiority of the scholar over the worshiper is like my superiority over the least of you.' Then the Messenger of Allah (ﷺ) said: 'Indeed Allah, His Angels, the inhabitants of the heavens and the earths - even the ant in his hole, even the fish - say Salat upon the one who teaches the people to do good.'"''',
+    arabicText:
+        '''حَدَّثَنَا مُحَمَّدُ بْنُ عَبْدِ الأَعْلَى الصَّنْعَانِيُّ، حَدَّثَنَا سَلَمَةُ بْنُ رَجَاءٍ، حَدَّثَنَا الْوَلِيدُ بْنُ جَمِيلٍ، حَدَّثَنَا الْقَاسِمُ أَبُو عَبْدِ الرَّحْمَنِ، عَنْ أَبِي أُمَامَةَ الْبَاهِلِيِّ، قَالَ ذُكِرَ لِرَسُولِ اللَّهِ صلى الله عليه وسلم رَجُلاَنِ أَحَدُهُمَا عَابِدٌ وَالآخَرُ عَالِمٌ فَقَالَ رَسُولُ اللَّهِ صلى الله عليه وسلم ‏"‏ فَضْلُ الْعَالِمِ عَلَى الْعَابِدِ كَفَضْلِي عَلَى أَدْنَاكُمْ ‏"‏ ‏.‏ ثُمَّ قَالَ رَسُولُ اللَّهِ صلى الله عليه وسلم ‏"‏ إِنَّ اللَّهَ وَمَلاَئِكَتَهُ وَأَهْلَ السَّمَوَاتِ وَالأَرْضِ حَتَّى النَّمْلَةَ فِي جُحْرِهَا وَحَتَّى الْحُوتَ لَيُصَلُّونَ عَلَى مُعَلِّمِ النَّاسِ الْخَيْرَ ‏"‏ ‏.‏ قَالَ أَبُو عِيسَى هَذَا حَدِيثٌ حَسَنٌ صَحِيحٌ غَرِيبٌ ‏.‏ قَالَ سَمِعْتُ أَبَا عَمَّارٍ الْحُسَيْنَ بْنَ حُرَيْثٍ الْخُزَاعِيَّ يَقُولُ سَمِعْتُ الْفُضَيْلَ بْنَ عِيَاضٍ يَقُولُ عَالِمٌ عَامِلٌ مُعَلِّمٌ يُدْعَى كَبِيرًا فِي مَلَكُوتِ السَّمَوَاتِ ‏.‏''',
+    sourceUrl: 'https://sunnah.com/tirmidhi:2685',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Jami\' al-Tirmidhi',
     sourceReference: '2685',
     source: 'Jami\' al-Tirmidhi 2685',
@@ -1757,6 +2054,14 @@ const List<HadithEntry> seededHadithEntries = [
         'A believer seeks wisdom wherever it is found and uses it in obedience to Allah.',
     hadithText:
         'The Prophet ﷺ said: Wisdom is the lost property of the believer; wherever he finds it, he is most deserving of it.',
+    englishText:
+        '''that the Messenger of Allah (ﷺ) said: "The wise statement is the lost property of the believer, so wherever he finds it, then he is more worthy of it."''',
+    arabicText:
+        '''"‏ الْكَلِمَةُ الْحِكْمَةُ ضَالَّةُ الْمُؤْمِنِ فَحَيْثُ وَجَدَهَا فَهُوَ أَحَقُّ بِهَا ‏"''',
+    sourceUrl: 'https://sunnah.com/tirmidhi:2687',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Jami\' al-Tirmidhi',
     sourceReference: '2687',
     source: 'Jami\' al-Tirmidhi 2687',
@@ -1802,6 +2107,13 @@ const List<HadithEntry> seededHadithEntries = [
         'The most excellent believers learn the Qur’an and pass it on with sincerity.',
     hadithText:
         'The Messenger ﷺ said: The best among you are those who learn the Qur’an and teach it.',
+    englishText:
+        '''The Prophet (ﷺ) said, "The best among you (Muslims) are those who learn the Qur'an and teach it."''',
+    arabicText: '''"‏ خَيْرُكُمْ مَنْ تَعَلَّمَ الْقُرْآنَ وَعَلَّمَهُ ‏"''',
+    sourceUrl: 'https://sunnah.com/bukhari:5027',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sahih al-Bukhari',
     sourceReference: '5027',
     source: 'Sahih al-Bukhari 5027',
@@ -1847,7 +2159,13 @@ const List<HadithEntry> seededHadithEntries = [
     excerpt: 'Supplication is the heart of a servant’s turning to Allah.',
     hadithText: 'The Prophet ﷺ said: Du’a is worship.',
     englishText:
-        'The Prophet ﷺ taught that duʿā itself is worship, not only a request list.',
+        '''from the Prophet (ﷺ) regarding Allah's saying: Your Lord said: Invoke Me, I shall respond to you (40:60, it appears that the author intended to apply it to Al-Baqarah 2:186). - he said: "The supplication is the worship." And he recited: 'Your Lord said: Invoke Me, I shall respond to you.' up to His saying: 'in humiliation.'"''',
+    arabicText:
+        '''حَدَّثَنَا هَنَّادٌ، حَدَّثَنَا أَبُو مُعَاوِيَةَ، عَنِ الأَعْمَشِ، عَنْ ذَرٍّ، عَنْ يُسَيْعٍ الْكِنْدِيِّ، عَنِ النُّعْمَانِ بْنِ بَشِيرٍ، عَنِ النَّبِيِّ صلى الله عليه وسلم فِي قَوْلِهِ ‏:‏ ‏ (‏وَقَالَ رَبُّكُمُ ادْعُونِي أَسْتَجِبْ لَكُمْ ‏) ‏ قَالَ ‏"‏ الدُّعَاءُ هُوَ الْعِبَادَةُ ‏"‏ ‏.‏ وَقَرَأَ ‏:‏‏ (‏ وَقَالَ رَبُّكُمُ ادْعُونِي أَسْتَجِبْ لَكُمْ ‏) ‏ إِلَى قَوْلِهِ ‏(‏ دَاخِرِينَ ‏)‏ ‏.‏ قَالَ أَبُو عِيسَى هَذَا حَدِيثٌ حَسَنٌ صَحِيحٌ ‏.‏''',
+    sourceUrl: 'https://sunnah.com/tirmidhi:2969',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Jami\' al-Tirmidhi',
     sourceReference: '2969',
     source: 'Sunan al-Tirmidhi 2969',
@@ -1891,7 +2209,13 @@ const List<HadithEntry> seededHadithEntries = [
     hadithText:
         'The Prophet ﷺ said: The example of the one who remembers his Lord and the one who does not remember his Lord is like the living and the dead.',
     englishText:
-        'Dhikr gives life to the heart; neglect of remembrance leaves it spiritually dry.',
+        '''The Prophet (ﷺ) said, "The example of the one who celebrates the Praises of his Lord (Allah) in comparison to the one who does not celebrate the Praises of his Lord, is that of a living creature compared to a dead one."''',
+    arabicText:
+        '''"‏ مَثَلُ الَّذِي يَذْكُرُ رَبَّهُ وَالَّذِي لاَ يَذْكُرُ مَثَلُ الْحَىِّ وَالْمَيِّتِ ‏"''',
+    sourceUrl: 'https://sunnah.com/bukhari:6407',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sahih al-Bukhari',
     sourceReference: '6407',
     source: 'Sahih al-Bukhari 6407',
@@ -1939,7 +2263,13 @@ const List<HadithEntry> seededHadithEntries = [
     hadithText:
         'The Messenger ﷺ said: The closest a servant is to his Lord is while he is prostrating, so increase supplication.',
     englishText:
-        'Sujud is a privileged moment for heartfelt duʿā and nearness to Allah.',
+        '''The Messenger of Allah (ﷺ) said: The nearest a servant comes to his Lord is when he is prostrating himself, so make supplication (in this state).''',
+    arabicText:
+        '''"‏ أَقْرَبُ مَا يَكُونُ الْعَبْدُ مِنْ رَبِّهِ وَهُوَ سَاجِدٌ فَأَكْثِرُوا الدُّعَاءَ ‏"''',
+    sourceUrl: 'https://sunnah.com/muslim:482',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sahih Muslim',
     sourceReference: '482',
     source: 'Sahih Muslim 482',
@@ -1984,7 +2314,14 @@ const List<HadithEntry> seededHadithEntries = [
     excerpt: 'Two short phrases are beloved to Allah and heavy on the scale.',
     hadithText:
         'The Prophet ﷺ said: Two phrases are light on the tongue, heavy on the scale, and beloved to the Most Merciful: SubhanAllahi wa bihamdihi, SubhanAllahil-\'Azim.',
-    englishText: 'Simple, consistent dhikr can carry immense spiritual weight.',
+    englishText:
+        '''The Prophet (ﷺ) said, "There are two expressions which are very easy for the tongue to say, but they are very heavy in the balance and are very dear to The Beneficent (Allah), and they are, 'Subhan Allah Al- `Azim and 'Subhan Allah wa bihamdihi.'"''',
+    arabicText:
+        '''"‏ كَلِمَتَانِ خَفِيفَتَانِ عَلَى اللِّسَانِ، ثَقِيلَتَانِ فِي الْمِيزَانِ، حَبِيبَتَانِ إِلَى الرَّحْمَنِ، سُبْحَانَ اللَّهِ الْعَظِيمِ، سُبْحَانَ اللَّهِ وَبِحَمْدِهِ ‏"''',
+    sourceUrl: 'https://sunnah.com/bukhari:6406',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sahih al-Bukhari / Sahih Muslim',
     sourceReference: 'Bukhari 6406 / Muslim 2694',
     source: 'Sahih al-Bukhari 6406 / Sahih Muslim 2694',
@@ -2035,7 +2372,13 @@ const List<HadithEntry> seededHadithEntries = [
     hadithText:
         'The Prophet ﷺ said: Whoever says “SubhanAllahi wa bihamdihi” one hundred times in a day, his sins are forgiven even if they were like the foam of the sea.',
     englishText:
-        'Regular tasbih and praise are a means of cleansing sins by Allah\'s mercy.',
+        '''Allah's Messenger (ﷺ) said, "Whoever says, 'Subhan Allah wa bihamdihi,' one hundred times a day, will be forgiven all his sins even if they were as much as the foam of the sea.''',
+    arabicText:
+        '''"‏ مَنْ قَالَ سُبْحَانَ اللَّهِ وَبِحَمْدِهِ‏.‏ فِي يَوْمٍ مِائَةَ مَرَّةٍ حُطَّتْ خَطَايَاهُ، وَإِنْ كَانَتْ مِثْلَ زَبَدِ الْبَحْرِ ‏"''',
+    sourceUrl: 'https://sunnah.com/bukhari:6405',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sahih al-Bukhari / Sahih Muslim',
     sourceReference: 'Bukhari 6405 / Muslim 2691',
     source: 'Sahih al-Bukhari 6405 / Sahih Muslim 2691',
@@ -2083,7 +2426,13 @@ const List<HadithEntry> seededHadithEntries = [
     hadithText:
         'Allah says in a sacred narration: I am as My servant thinks of Me, and I am with him when he remembers Me. If he remembers Me within himself, I remember him within Myself...',
     englishText:
-        'Remembering Allah invites divine nearness, remembrance, and mercy.',
+        '''The Prophet (ﷺ) said, "Allah says: 'I am just as My slave thinks I am, (i.e. I am able to do for him what he thinks I can do for him) and I am with him if He remembers Me. If he remembers Me in himself, I too, remember him in Myself; and if he remembers Me in a group of people, I remember him in a group that is better than they; and if he comes one span nearer to Me, I go one cubit nearer to him; and if he comes one cubit nearer to Me, I go a distance of two outstretched arms nearer to him; and if he comes to Me walking, I go to him running.' "''',
+    arabicText:
+        '''"‏ يَقُولُ اللَّهُ تَعَالَى أَنَا عِنْدَ ظَنِّ عَبْدِي بِي، وَأَنَا مَعَهُ إِذَا ذَكَرَنِي، فَإِنْ ذَكَرَنِي فِي نَفْسِهِ ذَكَرْتُهُ فِي نَفْسِي، وَإِنْ ذَكَرَنِي فِي مَلأٍ ذَكَرْتُهُ فِي مَلأٍ خَيْرٍ مِنْهُمْ، وَإِنْ تَقَرَّبَ إِلَىَّ بِشِبْرٍ تَقَرَّبْتُ إِلَيْهِ ذِرَاعًا، وَإِنْ تَقَرَّبَ إِلَىَّ ذِرَاعًا تَقَرَّبْتُ إِلَيْهِ بَاعًا، وَإِنْ أَتَانِي يَمْشِي أَتَيْتُهُ هَرْوَلَةً ‏"''',
+    sourceUrl: 'https://sunnah.com/bukhari:7405',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sahih al-Bukhari / Sahih Muslim',
     sourceReference: 'Bukhari 7405 / Muslim 2675',
     source: 'Sahih al-Bukhari 7405 / Sahih Muslim 2675',
@@ -2134,7 +2483,13 @@ const List<HadithEntry> seededHadithEntries = [
     hadithText:
         'The Prophet ﷺ said: Allah has forbidden the Fire for the one who says “La ilaha illa Allah,” seeking thereby the Face of Allah.',
     englishText:
-        'Sincere tawhid from the heart is a path to salvation and divine mercy.',
+        '''who was one of the companions of Allah's Messenger (ﷺ) and one of the Ansar's who took part in the battle of Badr: I came to Allah's Messenger (ﷺ) and said, "O Allah's Messenger (ﷺ) I have weak eyesight and I lead my people in prayers. When it rains the water flows in the valley between me and my people so I cannot go to their mosque to lead them in prayer. O Allah's Messenger (ﷺ)! I wish you would come to my house and pray in it so that I could take that place as a Musalla. Allah's Messenger (ﷺ) said. "Allah willing, I will do so." Next day after the sun rose high, Allah's Messenger (ﷺ) and Abu Bakr came and Allah's Messenger (ﷺ) asked for permission to enter. I gave him permission and he did not sit on entering the house but said to me, "Where do you like me to pray?" I pointed to a place in my house. So Allah's Messenger (ﷺ) stood there and said, 'Allahu Akbar', and we all got up and aligned behind him and offered a two-rak`at prayer and ended it with Taslim. We requested him to stay for a meal called "Khazira" which we had prepared for him. Many members of our family gathered in the house and one of them said, "Where is Malik bin Al-Dukhaishin or Ibn Al-Dukhshun?" One of them replied, "He is a hypocrite and does not love Allah and His Apostle." Hearing that, Allah's Messenger (ﷺ) said, "Do not say so. Haven't you seen that he said, 'None has the right to be worshipped but Allah' for Allah's sake only?" He said, "Allah and His Apostle know better. We have seen him helping and advising hypocrites." Allah's Messenger (ﷺ) said, "Allah has forbidden the (Hell) fire for those who say, 'None has the right to be worshipped but Allah' for Allah's sake only."''',
+    arabicText:
+        '''حَدَّثَنَا سَعِيدُ بْنُ عُفَيْرٍ، قَالَ حَدَّثَنِي اللَّيْثُ، قَالَ حَدَّثَنِي عُقَيْلٌ، عَنِ ابْنِ شِهَابٍ، قَالَ أَخْبَرَنِي مَحْمُودُ بْنُ الرَّبِيعِ الأَنْصَارِيُّ، أَنَّ عِتْبَانَ بْنَ مَالِكٍ ـ وَهُوَ مِنْ أَصْحَابِ رَسُولِ اللَّهِ صلى الله عليه وسلم مِمَّنْ شَهِدَ بَدْرًا مِنَ الأَنْصَارِ ـ أَنَّهُ أَتَى رَسُولَ اللَّهِ صلى الله عليه وسلم فَقَالَ يَا رَسُولَ اللَّهِ، قَدْ أَنْكَرْتُ بَصَرِي، وَأَنَا أُصَلِّي لِقَوْمِي، فَإِذَا كَانَتِ الأَمْطَارُ سَالَ الْوَادِي الَّذِي بَيْنِي وَبَيْنَهُمْ، لَمْ أَسْتَطِعْ أَنْ آتِيَ مَسْجِدَهُمْ فَأُصَلِّيَ بِهِمْ، وَوَدِدْتُ يَا رَسُولَ اللَّهِ أَنَّكَ تَأْتِينِي فَتُصَلِّيَ فِي بَيْتِي، فَأَتَّخِذَهُ مُصَلًّى‏.‏ قَالَ فَقَالَ لَهُ رَسُولُ اللَّهِ صلى الله عليه وسلم ‏"‏ سَأَفْعَلُ إِنْ شَاءَ اللَّهُ ‏"‏‏.‏ قَالَ عِتْبَانُ فَغَدَا رَسُولُ اللَّهِ صلى الله عليه وسلم وَأَبُو بَكْرٍ حِينَ ارْتَفَعَ النَّهَارُ، فَاسْتَأْذَنَ رَسُولُ اللَّهِ صلى الله عليه وسلم فَأَذِنْتُ لَهُ، فَلَمْ يَجْلِسْ حَتَّى دَخَلَ الْبَيْتَ ثُمَّ قَالَ ‏"‏ أَيْنَ تُحِبُّ أَنْ أُصَلِّيَ مِنْ بَيْتِكَ ‏"‏‏.‏ قَالَ فَأَشَرْتُ لَهُ إِلَى نَاحِيَةٍ مِنَ الْبَيْتِ، فَقَامَ رَسُولُ اللَّهِ صلى الله عليه وسلم فَكَبَّرَ، فَقُمْنَا فَصَفَّنَا، فَصَلَّى رَكْعَتَيْنِ ثُمَّ سَلَّمَ، قَالَ وَحَبَسْنَاهُ عَلَى خَزِيرَةٍ صَنَعْنَاهَا لَهُ‏.‏ قَالَ فَثَابَ فِي الْبَيْتِ رِجَالٌ مِنْ أَهْلِ الدَّارِ ذَوُو عَدَدٍ فَاجْتَمَعُوا، فَقَالَ قَائِلٌ مِنْهُمْ أَيْنَ مَالِكُ بْنُ الدُّخَيْشِنِ أَوِ ابْنُ الدُّخْشُنِ فَقَالَ بَعْضُهُمْ ذَلِكَ مُنَافِقٌ لاَ يُحِبُّ اللَّهَ وَرَسُولَهُ‏.‏ فَقَالَ رَسُولُ اللَّهِ صلى الله عليه وسلم ‏"‏ لاَ تَقُلْ ذَلِكَ، أَلاَ تَرَاهُ قَدْ قَالَ لاَ إِلَهَ إِلاَّ اللَّهُ‏.‏ يُرِيدُ بِذَلِكَ وَجْهَ اللَّهِ ‏"‏‏.‏ قَالَ اللَّهُ وَرَسُولُهُ أَعْلَمُ‏.‏ قَالَ فَإِنَّا نَرَى وَجْهَهُ وَنَصِيحَتَهُ إِلَى الْمُنَافِقِينَ‏.‏ قَالَ رَسُولُ اللَّهِ صلى الله عليه وسلم ‏"‏ فَإِنَّ اللَّهَ قَدْ حَرَّمَ عَلَى النَّارِ مَنْ قَالَ لاَ إِلَهَ إِلاَّ اللَّهُ‏.‏ يَبْتَغِي بِذَلِكَ وَجْهَ اللَّهِ ‏"‏‏.‏ قَالَ ابْنُ شِهَابٍ ثُمَّ سَأَلْتُ الْحُصَيْنَ بْنَ مُحَمَّدٍ الأَنْصَارِيَّ ـ وَهْوَ أَحَدُ بَنِي سَالِمٍ وَهُوَ مِنْ سَرَاتِهِمْ ـ عَنْ حَدِيثِ مَحْمُودِ بْنِ الرَّبِيعِ، فَصَدَّقَهُ بِذَلِكَ‏.‏''',
+    sourceUrl: 'https://sunnah.com/bukhari:425',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sahih al-Bukhari / Sahih Muslim',
     sourceReference: 'Bukhari 425 / Muslim 33',
     source: 'Sahih al-Bukhari 425 / Sahih Muslim 33',
@@ -2181,7 +2536,13 @@ const List<HadithEntry> seededHadithEntries = [
     hadithText:
         'The Messenger ﷺ said: No people gather in a house of Allah reciting and studying His Book except tranquility descends upon them, mercy envelops them, angels surround them, and Allah mentions them among those with Him.',
     englishText:
-        'Circles of Qur\'an and dhikr are gatherings of mercy and divine mention.',
+        '''He who alleviates the suffering of a brother out of the sufferings of the world, Allah would alleviate his suffering from the sufferings of the Day of Resurrection, and he who finds relief for one who is hard-pressed, Allah would make things easy for him in the Hereafter, and he who conceals (the faults) of a Muslim, Allah would conceal his faults in the world and in the Hereafter. Allah is at the back of a servant so long as the servant is at the back of his brother, and he who treads the path in search of knowledge, Allah would make that path easy, leading to Paradise for him and those persons who assemble in the house among the houses of Allah (mosques) and recite the Book of Allah and they learn and teach the Qur'an (among themselves) there would descend upon them tranquility and mercy would cover them and the angels would surround them and Allah mentions them in the presence of those near Him, and he who is slow-paced in doing good deeds, his (high) lineage does not make him go ahead.''',
+    arabicText:
+        '''"‏ مَنْ نَفَّسَ عَنْ مُؤْمِنٍ كُرْبَةً مِنْ كُرَبِ الدُّنْيَا نَفَّسَ اللَّهُ عَنْهُ كُرْبَةً مِنْ كُرَبِ يَوْمِ الْقِيَامَةِ وَمَنْ يَسَّرَ عَلَى مُعْسِرٍ يَسَّرَ اللَّهُ عَلَيْهِ فِي الدُّنْيَا وَالآخِرَةِ وَمَنْ سَتَرَ مُسْلِمًا سَتَرَهُ اللَّهُ فِي الدُّنْيَا وَالآخِرَةِ وَاللَّهُ فِي عَوْنِ الْعَبْدِ مَا كَانَ الْعَبْدُ فِي عَوْنِ أَخِيهِ وَمَنْ سَلَكَ طَرِيقًا يَلْتَمِسُ فِيهِ عِلْمًا سَهَّلَ اللَّهُ لَهُ بِهِ طَرِيقًا إِلَى الْجَنَّةِ وَمَا اجْتَمَعَ قَوْمٌ فِي بَيْتٍ مِنْ بُيُوتِ اللَّهِ يَتْلُونَ كِتَابَ اللَّهِ وَيَتَدَارَسُونَهُ بَيْنَهُمْ إِلاَّ نَزَلَتْ عَلَيْهِمُ السَّكِينَةُ وَغَشِيَتْهُمُ الرَّحْمَةُ وَحَفَّتْهُمُ الْمَلاَئِكَةُ وَذَكَرَهُمُ اللَّهُ فِيمَنْ عِنْدَهُ وَمَنْ بَطَّأَ بِهِ عَمَلُهُ لَمْ يُسْرِعْ بِهِ نَسَبُهُ ‏"''',
+    sourceUrl: 'https://sunnah.com/muslim:2699',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sahih Muslim',
     sourceReference: '2699',
     source: 'Sahih Muslim 2699',
@@ -2231,7 +2592,13 @@ const List<HadithEntry> seededHadithEntries = [
     hadithText:
         'The Prophet ﷺ said: The best of you are those best to their families, and I am the best of you to my family.',
     englishText:
-        'The best of you are those who are best to their families, and I am the best among you to my family.',
+        '''that the Messenger of Allah (ﷺ) said: "The best of you is the best to his wives, and I am the best of you to my wives, and when your companion dies, leave him alone."''',
+    arabicText:
+        '''"‏ خَيْرُكُمْ خَيْرُكُمْ لأَهْلِهِ وَأَنَا خَيْرُكُمْ لأَهْلِي وَإِذَا مَاتَ صَاحِبُكُمْ فَدَعُوهُ ‏"''',
+    sourceUrl: 'https://sunnah.com/tirmidhi:3895',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Jami\' al-Tirmidhi',
     sourceReference: '3895',
     source: 'Sunan al-Tirmidhi 3895',
@@ -2282,7 +2649,13 @@ const List<HadithEntry> seededHadithEntries = [
     hadithText:
         'A narration from the Prophet ﷺ teaches: Paradise lies at the feet of mothers.',
     englishText:
-        'Serving, honoring, and being dutiful to one\'s mother is a great means to Paradise.',
+        '''"O Messenger of Allah! I want to go out and fight (in Jihad) and I have come to ask your advice." He said: "Do you have a mother?" He said: "Yes." He said: "Then stay with her, for Paradise is beneath her feet."''',
+    arabicText:
+        '''أَخْبَرَنَا عَبْدُ الْوَهَّابِ بْنُ عَبْدِ الْحَكَمِ الْوَرَّاقُ، قَالَ حَدَّثَنَا حَجَّاجٌ، عَنِ ابْنِ جُرَيْجٍ، قَالَ أَخْبَرَنِي مُحَمَّدُ بْنُ طَلْحَةَ، - وَهُوَ ابْنُ عَبْدِ اللَّهِ بْنِ عَبْدِ الرَّحْمَنِ - عَنْ أَبِيهِ، طَلْحَةَ عَنْ مُعَاوِيَةَ بْنِ جَاهِمَةَ السُّلَمِيِّ، أَنَّ جَاهِمَةَ، جَاءَ إِلَى النَّبِيِّ صلى الله عليه وسلم فَقَالَ يَا رَسُولَ اللَّهِ أَرَدْتُ أَنْ أَغْزُوَ وَقَدْ جِئْتُ أَسْتَشِيرُكَ ‏.‏ فَقَالَ ‏"‏ هَلْ لَكَ مِنْ أُمٍّ ‏"‏ ‏.‏ قَالَ نَعَمْ ‏.‏ قَالَ ‏"‏ فَالْزَمْهَا فَإِنَّ الْجَنَّةَ تَحْتَ رِجْلَيْهَا ‏"‏ ‏.‏''',
+    sourceUrl: 'https://sunnah.com/nasai:3104',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sunan al-Nasa\'i',
     sourceReference: '3104',
     source: 'Sunan al-Nasa\'i 3104',
@@ -2329,7 +2702,13 @@ const List<HadithEntry> seededHadithEntries = [
     hadithText:
         'The Prophet ﷺ said: He is not one of us who does not show mercy to our young and recognize the honor of our elders.',
     englishText:
-        'A complete Muslim character includes compassion for children and respect for elders.',
+        '''" He is not one of us who does not have mercy upon our young, respect our elders, and command good and forbid evil."''',
+    arabicText:
+        '''حَدَّثَنَا أَبُو بَكْرٍ، مُحَمَّدُ بْنُ أَبَانَ حَدَّثَنَا يَزِيدُ بْنُ هَارُونَ، عَنْ شَرِيكٍ، عَنْ لَيْثٍ، عَنْ عِكْرِمَةَ، عَنِ ابْنِ عَبَّاسٍ، قَالَ قَالَ رَسُولُ اللَّهِ صلى الله عليه وسلم ‏"‏ لَيْسَ مِنَّا مَنْ لَمْ يَرْحَمْ صَغِيرَنَا وَيُوَقِّرْ كَبِيرَنَا وَيَأْمُرْ بِالْمَعْرُوفِ وَيَنْهَ عَنِ الْمُنْكَرِ ‏"‏ ‏.‏ قَالَ أَبُو عِيسَى هَذَا حَدِيثٌ حَسَنٌ غَرِيبٌ ‏.‏ وَحَدِيثُ مُحَمَّدِ بْنِ إِسْحَاقَ عَنْ عَمْرِو بْنِ شُعَيْبٍ حَدِيثٌ حَسَنٌ صَحِيحٌ وَقَدْ رُوِيَ عَنْ عَبْدِ اللَّهِ بْنِ عَمْرٍو مِنْ غَيْرِ هَذَا الْوَجْهِ أَيْضًا ‏.‏ - قَالَ بَعْضُ أَهْلِ الْعِلْمِ مَعْنَى قَوْلِ النَّبِيِّ صلى الله عليه وسلم ‏"‏ لَيْسَ مِنَّا ‏"‏ ‏.‏ يَقُولُ لَيْسَ مِنْ سُنَّتِنَا يَقُولُ لَيْسَ مِنْ أَدَبِنَا ‏.‏ وَقَالَ عَلِيُّ بْنُ الْمَدِينِيِّ قَالَ يَحْيَى بْنُ سَعِيدٍ كَانَ سُفْيَانُ الثَّوْرِيُّ يُنْكِرُ هَذَا التَّفْسِيرَ لَيْسَ مِنَّا يَقُولُ لَيْسَ مِثْلَنَا ‏.‏''',
+    sourceUrl: 'https://sunnah.com/tirmidhi:1921',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Jami\' al-Tirmidhi',
     sourceReference: '1921',
     source: 'Jami\' al-Tirmidhi 1921',
@@ -2376,7 +2755,13 @@ const List<HadithEntry> seededHadithEntries = [
     hadithText:
         'Aishah (ra) said that the Prophet ﷺ used to serve his family in household matters, then go out for prayer when the time came.',
     englishText:
-        'The Sunnah includes practical service in the home, not distance from household responsibilities.',
+        '''That he asked `Aisha "What did the Prophet (ﷺ) use to do in his house?" She replied, "He used to keep himself busy serving his family and when it was the time for prayer he would go for it."''',
+    arabicText:
+        '''حَدَّثَنَا آدَمُ، قَالَ حَدَّثَنَا شُعْبَةُ، قَالَ حَدَّثَنَا الْحَكَمُ، عَنْ إِبْرَاهِيمَ، عَنِ الأَسْوَدِ، قَالَ سَأَلْتُ عَائِشَةَ مَا كَانَ النَّبِيُّ صلى الله عليه وسلم يَصْنَعُ فِي بَيْتِهِ قَالَتْ كَانَ يَكُونُ فِي مِهْنَةِ أَهْلِهِ ـ تَعْنِي خِدْمَةَ أَهْلِهِ ـ فَإِذَا حَضَرَتِ الصَّلاَةُ خَرَجَ إِلَى الصَّلاَةِ‏.‏''',
+    sourceUrl: 'https://sunnah.com/bukhari:676',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sahih al-Bukhari',
     sourceReference: '676',
     source: 'Sahih al-Bukhari 676',
@@ -2427,7 +2812,13 @@ const List<HadithEntry> seededHadithEntries = [
     hadithText:
         'The Prophet ﷺ said: The most complete of believers in faith are those best in character, and the best among you are those best to their women.',
     englishText:
-        'Faith reaches completion through excellent character and kind treatment of one’s spouse.',
+        '''"The most complete of the believers in faith, is the one with the best character among them. And the best of you are those who are best to your women."''',
+    arabicText:
+        '''"‏ أَكْمَلُ الْمُؤْمِنِينَ إِيمَانًا أَحْسَنُهُمْ خُلُقًا وَخِيَارُكُمْ خِيَارُكُمْ لِنِسَائِهِمْ خُلُقًا ‏"''',
+    sourceUrl: 'https://sunnah.com/tirmidhi:1162',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Jami\' al-Tirmidhi',
     sourceReference: '1162',
     source: 'Jami\' al-Tirmidhi 1162',
@@ -2477,7 +2868,13 @@ const List<HadithEntry> seededHadithEntries = [
     hadithText:
         'The Prophet ﷺ said: No father gives his child anything better than good manners.',
     englishText:
-        'The greatest inheritance for children is righteous character and adab.',
+        '''"There is no gift that a father gives his son more virtuous than good manners."''',
+    arabicText:
+        '''"‏ مَا نَحَلَ وَالِدٌ وَلَدًا مِنْ نَحْلٍ أَفْضَلَ مِنْ أَدَبٍ حَسَنٍ ‏"''',
+    sourceUrl: 'https://sunnah.com/tirmidhi:1952',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Jami\' al-Tirmidhi',
     sourceReference: '1952',
     source: 'Jami\' al-Tirmidhi 1952',
@@ -2527,7 +2924,13 @@ const List<HadithEntry> seededHadithEntries = [
     hadithText:
         'The Prophet ﷺ said: Whoever believes in Allah and the Last Day, let him honor his neighbor.',
     englishText:
-        'Respecting neighbors is a direct sign of faith and social responsibility.',
+        '''My ears heard and my eyes saw the Prophet (ﷺ) when he spoke, "Anybody who believes in Allah and the Last Day, should serve his neighbor generously, and anybody who believes in Allah and the Last Day should serve his guest generously by giving him his reward." It was asked. "What is his reward, O Allah's Messenger (ﷺ)?" He said, "(To be entertained generously) for a day and a night with high quality of food and the guest has the right to be entertained for three days (with ordinary food) and if he stays longer, what he will be provided with will be regarded as Sadaqa (a charitable gift). And anybody who believes in Allah and the Last Day should talk what is good or keep quiet (i.e. abstain from all kinds of dirty and evil talks).''',
+    arabicText:
+        '''حَدَّثَنَا عَبْدُ اللَّهِ بْنُ يُوسُفَ، حَدَّثَنَا اللَّيْثُ، قَالَ حَدَّثَنِي سَعِيدٌ الْمَقْبُرِيُّ، عَنْ أَبِي شُرَيْحٍ الْعَدَوِيِّ، قَالَ سَمِعَتْ أُذُنَاىَ، وَأَبْصَرَتْ، عَيْنَاىَ حِينَ تَكَلَّمَ النَّبِيُّ صلى الله عليه وسلم فَقَالَ ‏"‏ مَنْ كَانَ يُؤْمِنُ بِاللَّهِ وَالْيَوْمِ الآخِرِ فَلْيُكْرِمْ جَارَهُ، وَمَنْ كَانَ يُؤْمِنُ بِاللَّهِ وَالْيَوْمِ الآخِرِ فَلْيُكْرِمْ ضَيْفَهُ جَائِزَتَهُ ‏"‏‏.‏ قَالَ وَمَا جَائِزَتُهُ يَا رَسُولَ اللَّهِ قَالَ ‏"‏ يَوْمٌ وَلَيْلَةٌ وَالضِّيَافَةُ ثَلاَثَةُ أَيَّامٍ، فَمَا كَانَ وَرَاءَ ذَلِكَ فَهْوَ صَدَقَةٌ عَلَيْهِ، وَمَنْ كَانَ يُؤْمِنُ بِاللَّهِ وَالْيَوْمِ الآخِرِ فَلْيَقُلْ خَيْرًا أَوْ لِيَصْمُتْ ‏"‏‏.‏''',
+    sourceUrl: 'https://sunnah.com/bukhari:6019',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sahih al-Bukhari / Sahih Muslim',
     sourceReference: 'Bukhari 6019 / Muslim 47',
     source: 'Sahih al-Bukhari 6019 / Sahih Muslim 47',
@@ -2575,7 +2978,13 @@ const List<HadithEntry> seededHadithEntries = [
     hadithText:
         'The Messenger ﷺ said: Charity given to the poor is one charity, and charity given to a relative is two: charity and maintaining ties of kinship.',
     englishText:
-        'Supporting family in need brings double reward: sadaqah and kinship care.',
+        '''the Prophet said: "When one of you breaks his fast, then let him do so with dried dates, for they are blessed. Whoever does not find dates, then water, for it is purifying." And he said: "Charity given to the needy is (counted as) charity, and if it is given to relatives it is (counted as) two: charity and nurturing (the ties of kinship)."''',
+    arabicText:
+        '''حَدَّثَنَا قُتَيْبَةُ، حَدَّثَنَا سُفْيَانُ بْنُ عُيَيْنَةَ، عَنْ عَاصِمٍ الأَحْوَلِ، عَنْ حَفْصَةَ بِنْتِ سِيرِينَ، عَنِ الرَّبَابِ، عَنْ عَمِّهَا، سَلْمَانَ بْنِ عَامِرٍ يَبْلُغُ بِهِ النَّبِيَّ صلى الله عليه وسلم قَالَ ‏"‏ إِذَا أَفْطَرَ أَحَدُكُمْ فَلْيُفْطِرْ عَلَى تَمْرٍ فَإِنَّهُ بَرَكَةٌ فَإِنْ لَمْ يَجِدْ تَمْرًا فَالْمَاءُ فَإِنَّهُ طَهُورٌ ‏"‏ ‏.‏ وَقَالَ ‏"‏ الصَّدَقَةُ عَلَى الْمِسْكِينِ صَدَقَةٌ وَهِيَ عَلَى ذِي الرَّحِمِ ثِنْتَانِ صَدَقَةٌ وَصِلَةٌ ‏"‏ ‏.‏ قَالَ وَفِي الْبَابِ عَنْ زَيْنَبَ امْرَأَةِ عَبْدِ اللَّهِ بْنِ مَسْعُودٍ وَجَابِرٍ وَأَبِي هُرَيْرَةَ ‏.‏ قَالَ أَبُو عِيسَى حَدِيثُ سَلْمَانَ بْنِ عَامِرٍ حَدِيثٌ حَسَنٌ ‏.‏ وَالرَّبَابُ هِيَ أُمُّ الرَّائِحِ بِنْتُ صُلَيْعٍ ‏.‏ وَهَكَذَا رَوَى سُفْيَانُ الثَّوْرِيُّ عَنْ عَاصِمٍ عَنْ حَفْصَةَ بِنْتِ سِيرِينَ عَنِ الرَّبَابِ عَنْ سَلْمَانَ بْنِ عَامِرٍ عَنِ النَّبِيِّ صلى الله عليه وسلم نَحْوَ هَذَا الْحَدِيثِ ‏.‏ وَرَوَى شُعْبَةُ عَنْ عَاصِمٍ عَنْ حَفْصَةَ بِنْتِ سِيرِينَ عَنْ سَلْمَانَ بْنِ عَامِرٍ ‏.‏ وَلَمْ يَذْكُرْ فِيهِ عَنِ الرَّبَابِ ‏.‏ وَحَدِيثُ سُفْيَانَ الثَّوْرِيِّ وَابْنِ عُيَيْنَةَ أَصَحُّ ‏.‏ وَهَكَذَا رَوَى ابْنُ عَوْنٍ وَهِشَامُ بْنُ حَسَّانَ عَنْ حَفْصَةَ بِنْتِ سِيرِينَ عَنِ الرَّبَابِ عَنْ سَلْمَانَ بْنِ عَامِرٍ ‏.‏''',
+    sourceUrl: 'https://sunnah.com/tirmidhi:658',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Jami\' al-Tirmidhi / Sunan al-Nasa\'i / Ibn Majah',
     sourceReference: 'Tirmidhi 658',
     source: 'Jami\' al-Tirmidhi 658',
@@ -2621,7 +3030,13 @@ const List<HadithEntry> seededHadithEntries = [
     hadithText:
         'The Messenger ﷺ instructed believers to return trusts to their owners and not betray those who betray them.',
     englishText:
-        'Return trusts to those entitled to them, and do not betray trust.',
+        '''I used to write (the account of) the expenditure incurred on orphans who were under the guardianship of so-and-so. They cheated him by one thousand dirhams and he paid these (this amount) to them. I then got double the property which they deserved. I said (to the man: Take one thousand (dirhams) which they have taken from you (by cheating). He said: No, my father has told me that he heard the Messenger of Allah (ﷺ) say: Pay the deposit to him who deposited it with you, and do not betray him who betrays you.''',
+    arabicText:
+        '''"‏ أَدِّ الأَمَانَةَ إِلَى مَنِ ائْتَمَنَكَ وَلاَ تَخُنْ مَنْ خَانَكَ ‏"''',
+    sourceUrl: 'https://sunnah.com/abudawud:3534',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sunan Abi Dawud',
     sourceReference: '3534',
     source: 'Sunan Abi Dawud 3534',
@@ -2668,7 +3083,13 @@ const List<HadithEntry> seededHadithEntries = [
     hadithText:
         'The Prophet ﷺ said: The signs of a hypocrite are three: when he speaks, he lies; when he promises, he breaks it; and when trusted, he betrays.',
     englishText:
-        'Dishonesty in speech, promises, and trust are marks of hypocrisy.',
+        '''The Prophet (ﷺ) said, "The signs of a hypocrite are three: 1. Whenever he speaks, he tells a lie. 2. Whenever he promises, he always breaks it (his promise ). 3. If you trust him, he proves to be dishonest. (If you keep something as a trust with him, he will not return it.)"''',
+    arabicText:
+        '''"‏ آيَةُ الْمُنَافِقِ ثَلاَثٌ إِذَا حَدَّثَ كَذَبَ، وَإِذَا وَعَدَ أَخْلَفَ، وَإِذَا اؤْتُمِنَ خَانَ ‏"''',
+    sourceUrl: 'https://sunnah.com/bukhari:33',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sahih al-Bukhari / Sahih Muslim',
     sourceReference: 'Bukhari 33 / Muslim 59',
     source: 'Sahih al-Bukhari 33 / Sahih Muslim 59',
@@ -2716,7 +3137,13 @@ const List<HadithEntry> seededHadithEntries = [
     hadithText:
         'The Prophet ﷺ said: The truthful and trustworthy merchant will be with the prophets, the truthful, and the martyrs.',
     englishText:
-        'Ethical trade is elevated worship when built on honesty and trust.',
+        '''"The truthful, trustworthy merchant is with the Prophets, the truthful, and the martyrs." [Abu 'Eisa said:] This Hadith is Hasan, we do not know it except from this route, a narration of Ath-Thawri from Abu Hamzah. Abu Hamzah's name is 'Abdullah bin Jabir, and he is a Shaikh from Al-Basrah.''',
+    arabicText:
+        '''"‏ التَّاجِرُ الصَّدُوقُ الأَمِينُ مَعَ النَّبِيِّينَ وَالصِّدِّيقِينَ وَالشُّهَدَاءِ ‏"''',
+    sourceUrl: 'https://sunnah.com/tirmidhi:1209',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Jami\' al-Tirmidhi',
     sourceReference: '1209',
     source: 'Jami\' al-Tirmidhi 1209',
@@ -2763,7 +3190,13 @@ const List<HadithEntry> seededHadithEntries = [
     hadithText:
         'The Messenger ﷺ said: Each of you is a shepherd and each of you is responsible for his flock.',
     englishText:
-        'Leadership and care are trusts; every role carries accountability before Allah.',
+        '''I heard Allah's Messenger (ﷺ) saying, "All of you are Guardians." Yunis said: Ruzaiq bin Hukaim wrote to Ibn Shihab while I was with him at Wadi-al-Qura saying, "Shall I lead the Jumua prayer?" Ruzaiq was working on the land (i.e. farming) and there was a group of Sudanese people and some others with him; Ruzaiq was then the Governor of Aila. Ibn Shihab wrote (to Ruzaiq) ordering him to lead the Jumua prayer and telling him that Salim told him that `Abdullah bin `Umar had said, "I heard Allah's Apostle saying, 'All of you are guardians and responsible for your wards and the things under your care. The Imam (i.e. ruler) is the guardian of his subjects and is responsible for them and a man is the guardian of his family and is responsible for them. A woman is the guardian of her husband's house and is responsible for it. A servant is the guardian of his master's belongings and is responsible for them.' I thought that he also said, 'A man is the guardian of his father's property and is responsible for it. All of you are guardians and responsible for your wards and the things under your care."''',
+    arabicText:
+        '''حَدَّثَنَا بِشْرُ بْنُ مُحَمَّدٍ، قَالَ أَخْبَرَنَا عَبْدُ اللَّهِ، قَالَ أَخْبَرَنَا يُونُسُ، عَنِ الزُّهْرِيِّ، قَالَ أَخْبَرَنَا سَالِمُ بْنُ عَبْدِ اللَّهِ، عَنِ ابْنِ عُمَرَ ـ رضى الله عنهما ـ أَنَّ رَسُولَ اللَّهِ صلى الله عليه وسلم يَقُولُ ‏"‏ كُلُّكُمْ رَاعٍ ‏"‏‏.‏ وَزَادَ اللَّيْثُ قَالَ يُونُسُ كَتَبَ رُزَيْقُ بْنُ حُكَيْمٍ إِلَى ابْنِ شِهَابٍ ـ وَأَنَا مَعَهُ يَوْمَئِذٍ بِوَادِي الْقُرَى ـ هَلْ تَرَى أَنْ أُجَمِّعَ‏.‏ وَرُزَيْقٌ عَامِلٌ عَلَى أَرْضٍ يَعْمَلُهَا، وَفِيهَا جَمَاعَةٌ مِنَ السُّودَانِ وَغَيْرِهِمْ، وَرُزَيْقٌ يَوْمَئِذٍ عَلَى أَيْلَةَ، فَكَتَبَ ابْنُ شِهَابٍ ـ وَأَنَا أَسْمَعُ ـ يَأْمُرُهُ أَنْ يُجَمِّعَ، يُخْبِرُهُ أَنَّ سَالِمًا حَدَّثَهُ أَنَّ عَبْدَ اللَّهِ بْنَ عُمَرَ يَقُولُ سَمِعْتُ رَسُولَ اللَّهِ صلى الله عليه وسلم يَقُولُ ‏"‏ كُلُّكُمْ رَاعٍ، وَكُلُّكُمْ مَسْئُولٌ عَنْ رَعِيَّتِهِ، الإِمَامُ رَاعٍ وَمَسْئُولٌ عَنْ رَعِيَّتِهِ، وَالرَّجُلُ رَاعٍ فِي أَهْلِهِ وَهْوَ مَسْئُولٌ عَنْ رَعِيَّتِهِ، وَالْمَرْأَةُ رَاعِيَةٌ فِي بَيْتِ زَوْجِهَا وَمَسْئُولَةٌ عَنْ رَعِيَّتِهَا، وَالْخَادِمُ رَاعٍ فِي مَالِ سَيِّدِهِ وَمَسْئُولٌ عَنْ رَعِيَّتِهِ ـ قَالَ وَحَسِبْتُ أَنْ قَدْ قَالَ ـ وَالرَّجُلُ رَاعٍ فِي مَالِ أَبِيهِ وَمَسْئُولٌ عَنْ رَعِيَّتِهِ وَكُلُّكُمْ رَاعٍ وَمَسْئُولٌ عَنْ رَعِيَّتِهِ ‏"‏‏.‏''',
+    sourceUrl: 'https://sunnah.com/bukhari:893',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sahih al-Bukhari / Sahih Muslim',
     sourceReference: 'Bukhari 893 / Muslim 1829',
     source: 'Sahih al-Bukhari 893 / Sahih Muslim 1829',
@@ -2811,7 +3244,13 @@ const List<HadithEntry> seededHadithEntries = [
     hadithText:
         'The Prophet ﷺ said: Help your brother whether he is an oppressor or oppressed. They asked: We know helping the oppressed, but how do we help the oppressor? He said: By restraining him from oppression.',
     englishText:
-        'Preventing injustice is itself a form of helping one who commits it.',
+        '''Allah's Messenger (ﷺ) said, "Help your brother, whether he is an oppressor or he is an oppressed one. People asked, "O Allah's Messenger (ﷺ)! It is all right to help him if he is oppressed, but how should we help him if he is an oppressor?" The Prophet (ﷺ) said, "By preventing him from oppressing others."''',
+    arabicText:
+        '''حَدَّثَنَا مُسَدَّدٌ، حَدَّثَنَا مُعْتَمِرٌ، عَنْ حُمَيْدٍ، عَنْ أَنَسٍ ـ رضى الله عنه ـ قَالَ قَالَ رَسُولُ اللَّهِ صلى الله عليه وسلم ‏"‏ انْصُرْ أَخَاكَ ظَالِمًا أَوْ مَظْلُومًا ‏"‏‏.‏ قَالُوا يَا رَسُولَ اللَّهِ هَذَا نَنْصُرُهُ مَظْلُومًا، فَكَيْفَ نَنْصُرُهُ ظَالِمًا قَالَ ‏"‏ تَأْخُذُ فَوْقَ يَدَيْهِ ‏"‏‏.‏''',
+    sourceUrl: 'https://sunnah.com/bukhari:2444',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sahih al-Bukhari',
     sourceReference: '2444',
     source: 'Sahih al-Bukhari 2444',
@@ -2860,7 +3299,13 @@ const List<HadithEntry> seededHadithEntries = [
         'Cheating and deception violate the trust and ethics of the Muslim community.',
     hadithText: 'The Messenger ﷺ said: Whoever cheats us is not among us.',
     englishText:
-        'Deception in dealings, representation, or conduct is contrary to prophetic ethics.',
+        '''He who took up arms against us is not of us and he who acted dishonestly towards us is not of us.''',
+    arabicText:
+        '''"‏ مَنْ حَمَلَ عَلَيْنَا السِّلاَحَ فَلَيْسَ مِنَّا وَمَنْ غَشَّنَا فَلَيْسَ مِنَّا ‏"''',
+    sourceUrl: 'https://sunnah.com/muslim:101',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sahih Muslim',
     sourceReference: '101',
     source: 'Sahih Muslim 101',
@@ -2908,7 +3353,13 @@ const List<HadithEntry> seededHadithEntries = [
     hadithText:
         'The Prophet ﷺ said: The just will be on pulpits of light before Allah — those who are just in their rulings, families, and responsibilities.',
     englishText:
-        'Justice in leadership, family, and decision-making raises a person to great rank in the Hereafter.',
+        '''Behold! the Dispensers of justice will be seated on the pulpits of light beside God, on the right side of the Merciful, Exalted and GlorioUS. Either side of the Being is the right side both being equally mrneritorious. (The Dispensers of justice are) those who do justice in their rules, in matters relating to their families and in all that they undertake to do.''',
+    arabicText:
+        '''"‏ إِنَّ الْمُقْسِطِينَ عِنْدَ اللَّهِ عَلَى مَنَابِرَ مِنْ نُورٍ عَنْ يَمِينِ الرَّحْمَنِ عَزَّ وَجَلَّ وَكِلْتَا يَدَيْهِ يَمِينٌ الَّذِينَ يَعْدِلُونَ فِي حُكْمِهِمْ وَأَهْلِيهِمْ وَمَا وَلُوا ‏"''',
+    sourceUrl: 'https://sunnah.com/muslim:1827',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sahih Muslim',
     sourceReference: '1827',
     source: 'Sahih Muslim 1827',
@@ -2954,7 +3405,14 @@ const List<HadithEntry> seededHadithEntries = [
         'Divine aid accompanies the believer who actively supports others.',
     hadithText:
         'The Messenger ﷺ said: Allah continues to aid the servant as long as the servant aids his brother.',
-    englishText: 'Support for others invites support from Allah in return.',
+    englishText:
+        '''He who alleviates the suffering of a brother out of the sufferings of the world, Allah would alleviate his suffering from the sufferings of the Day of Resurrection, and he who finds relief for one who is hard-pressed, Allah would make things easy for him in the Hereafter, and he who conceals (the faults) of a Muslim, Allah would conceal his faults in the world and in the Hereafter. Allah is at the back of a servant so long as the servant is at the back of his brother, and he who treads the path in search of knowledge, Allah would make that path easy, leading to Paradise for him and those persons who assemble in the house among the houses of Allah (mosques) and recite the Book of Allah and they learn and teach the Qur'an (among themselves) there would descend upon them tranquility and mercy would cover them and the angels would surround them and Allah mentions them in the presence of those near Him, and he who is slow-paced in doing good deeds, his (high) lineage does not make him go ahead.''',
+    arabicText:
+        '''"‏ مَنْ نَفَّسَ عَنْ مُؤْمِنٍ كُرْبَةً مِنْ كُرَبِ الدُّنْيَا نَفَّسَ اللَّهُ عَنْهُ كُرْبَةً مِنْ كُرَبِ يَوْمِ الْقِيَامَةِ وَمَنْ يَسَّرَ عَلَى مُعْسِرٍ يَسَّرَ اللَّهُ عَلَيْهِ فِي الدُّنْيَا وَالآخِرَةِ وَمَنْ سَتَرَ مُسْلِمًا سَتَرَهُ اللَّهُ فِي الدُّنْيَا وَالآخِرَةِ وَاللَّهُ فِي عَوْنِ الْعَبْدِ مَا كَانَ الْعَبْدُ فِي عَوْنِ أَخِيهِ وَمَنْ سَلَكَ طَرِيقًا يَلْتَمِسُ فِيهِ عِلْمًا سَهَّلَ اللَّهُ لَهُ بِهِ طَرِيقًا إِلَى الْجَنَّةِ وَمَا اجْتَمَعَ قَوْمٌ فِي بَيْتٍ مِنْ بُيُوتِ اللَّهِ يَتْلُونَ كِتَابَ اللَّهِ وَيَتَدَارَسُونَهُ بَيْنَهُمْ إِلاَّ نَزَلَتْ عَلَيْهِمُ السَّكِينَةُ وَغَشِيَتْهُمُ الرَّحْمَةُ وَحَفَّتْهُمُ الْمَلاَئِكَةُ وَذَكَرَهُمُ اللَّهُ فِيمَنْ عِنْدَهُ وَمَنْ بَطَّأَ بِهِ عَمَلُهُ لَمْ يُسْرِعْ بِهِ نَسَبُهُ ‏"''',
+    sourceUrl: 'https://sunnah.com/muslim:2699',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sahih Muslim',
     sourceReference: '2699',
     source: 'Sahih Muslim 2699',
@@ -3002,7 +3460,13 @@ const List<HadithEntry> seededHadithEntries = [
     hadithText:
         'The Prophet ﷺ taught that Allah rejoices at the repentance of His servant more than one who, after despair, finds what was lost in the desert.',
     englishText:
-        'Allah is more pleased with the repentance of His servant than a person who finds his lost mount in a barren desert after losing hope.',
+        '''Allah is more pleased with the repentance of a servant as he turns towards Him for repentance than this that one amongst you is upon the camel in a waterless desert and there is upon (that camel) his provision of food and drink also and it is lost by him, and he having lost all hope (to get tbat) lies down in the shadow and is disappointed about his camel and there he finds that camel standing before him. He takes hold of his nosestring and then out of boundless joy says: 0 Lord, Thou art my servant and I am Thine Lord. He commits this mistake out of extreme delight.''',
+    arabicText:
+        '''"‏ لَلَّهُ أَشَدُّ فَرَحًا بِتَوْبَةِ عَبْدِهِ حِينَ يَتُوبُ إِلَيْهِ مِنْ أَحَدِكُمْ كَانَ عَلَى رَاحِلَتِهِ بِأَرْضِ فَلاَةٍ فَانْفَلَتَتْ مِنْهُ وَعَلَيْهَا طَعَامُهُ وَشَرَابُهُ فَأَيِسَ مِنْهَا فَأَتَى شَجَرَةً فَاضْطَجَعَ فِي ظِلِّهَا قَدْ أَيِسَ مِنْ رَاحِلَتِهِ فَبَيْنَا هُوَ كَذَلِكَ إِذَا هُوَ بِهَا قَائِمَةً عِنْدَهُ فَأَخَذَ بِخِطَامِهَا ثُمَّ قَالَ مِنْ شِدَّةِ الْفَرَحِ اللَّهُمَّ أَنْتَ عَبْدِي وَأَنَا رَبُّكَ ‏.‏ أَخْطَأَ مِنْ شِدَّةِ الْفَرَحِ ‏"''',
+    sourceUrl: 'https://sunnah.com/muslim:2747',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sahih Muslim',
     sourceReference: '2747',
     source: 'Sahih Muslim 2747',
@@ -3054,7 +3518,13 @@ const List<HadithEntry> seededHadithEntries = [
     hadithText:
         'The Prophet ﷺ said: Every son of Adam sins, and the best of those who sin are those who repent.',
     englishText:
-        'All children of Adam make mistakes, and the best of those who make mistakes are those who keep repenting.',
+        '''"Every son of Adam sins, and the best of the sinners are the repentant."''',
+    arabicText:
+        '''"‏ كُلُّ ابْنِ آدَمَ خَطَّاءٌ وَخَيْرُ الْخَطَّائِينَ التَّوَّابُونَ ‏"''',
+    sourceUrl: 'https://sunnah.com/tirmidhi:2499',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Jami\' al-Tirmidhi',
     sourceReference: '2499',
     source: 'Jami\' al-Tirmidhi 2499',
@@ -3101,7 +3571,13 @@ const List<HadithEntry> seededHadithEntries = [
     hadithText:
         'The Messenger ﷺ said: Allah stretches out His Hand at night to accept the repentance of the one who sinned by day, and stretches out His Hand by day to accept the repentance of the one who sinned by night.',
     englishText:
-        'Allah keeps accepting repentance by night and by day until the major final signs begin.',
+        '''Abu Musa reported Allah's Messenger (ﷺ) as saying that Allah, the Exalted and Glorious, Stretches out His Hand during the night so that the people may repent for the fault committed from dawn till dusk and He stretches out His Hand during the day so that the people may repent for the fault committed from dusk to dawn. (He would accept repentance) before the sun rises in the west (before the Day of Resurrection). A hadith like this has been narrated on the authority of Shu'ba with the same chain of transmitters.''',
+    arabicText:
+        '''"‏ إِنَّ اللَّهَ عَزَّ وَجَلَّ يَبْسُطُ يَدَهُ بِاللَّيْلِ لِيَتُوبَ مُسِيءُ النَّهَارِ وَيَبْسُطُ يَدَهُ بِالنَّهَارِ لِيَتُوبَ مُسِيءُ اللَّيْلِ حَتَّى تَطْلُعَ الشَّمْسُ مِنْ مَغْرِبِهَا ‏"''',
+    sourceUrl: 'https://sunnah.com/muslim:2759a',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sahih Muslim',
     sourceReference: '2759',
     source: 'Sahih Muslim 2759',
@@ -3149,7 +3625,13 @@ const List<HadithEntry> seededHadithEntries = [
     hadithText:
         'The Prophet ﷺ said that Allah accepts repentance from His servant so long as the sun has not risen from the west.',
     englishText:
-        'Repentance remains accepted until the final cosmic sign when the sun rises from the west.',
+        '''He who seeks repentance (from the Lord) before the rising of the sun from the west (before the Day of Resurrection), Allah turns to him with Mercy.''',
+    arabicText:
+        '''"‏ مَنْ تَابَ قَبْلَ أَنْ تَطْلُعَ الشَّمْسُ مِنْ مَغْرِبِهَا تَابَ اللَّهُ عَلَيْهِ ‏"''',
+    sourceUrl: 'https://sunnah.com/muslim:2703',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sahih Muslim',
     sourceReference: '2703',
     source: 'Sahih Muslim 2703',
@@ -3199,7 +3681,13 @@ const List<HadithEntry> seededHadithEntries = [
     hadithText:
         'The Messenger ﷺ said: By Allah, I seek Allah\'s forgiveness and repent to Him more than seventy times in a day.',
     englishText:
-        'The Prophet ﷺ regularly sought forgiveness many times each day, teaching constant spiritual renewal.',
+        '''I heard Allah's Messenger (ﷺ) saying." By Allah! I ask for forgiveness from Allah and turn to Him in repentance more than seventy times a day."''',
+    arabicText:
+        '''"‏ وَاللَّهِ إِنِّي لأَسْتَغْفِرُ اللَّهَ وَأَتُوبُ إِلَيْهِ فِي الْيَوْمِ أَكْثَرَ مِنْ سَبْعِينَ مَرَّةً ‏"''',
+    sourceUrl: 'https://sunnah.com/bukhari:6307',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sahih al-Bukhari',
     sourceReference: '6307',
     source: 'Sahih al-Bukhari 6307',
@@ -3250,7 +3738,13 @@ const List<HadithEntry> seededHadithEntries = [
     hadithText:
         'In a sacred narration, Allah says about His servant who sins then says: My Lord, I have sinned, so forgive me — and Allah forgives him as long as he keeps returning sincerely.',
     englishText:
-        'A servant repeatedly returning in repentance and acknowledging his sin finds Allah Forgiving and Merciful.',
+        '''I heard the Prophet (ﷺ) saying, "If somebody commits a sin and then says, 'O my Lord! I have sinned, please forgive me!' and his Lord says, 'My slave has known that he has a Lord who forgives sins and punishes for it, I therefore have forgiven my slave (his sins).' Then he remains without committing any sin for a while and then again commits another sin and says, 'O my Lord, I have committed another sin, please forgive me,' and Allah says, 'My slave has known that he has a Lord who forgives sins and punishes for it, I therefore have forgiven my slave (his sin). Then he remains without Committing any another sin for a while and then commits another sin (for the third time) and says, 'O my Lord, I have committed another sin, please forgive me,' and Allah says, 'My slave has known that he has a Lord Who forgives sins and punishes for it I therefore have forgiven My slave (his sin), he can do whatever he likes."''',
+    arabicText:
+        '''"‏ إِنَّ عَبْدًا أَصَابَ ذَنْبًا ـ وَرُبَّمَا قَالَ أَذْنَبَ ذَنْبًا ـ فَقَالَ رَبِّ أَذْنَبْتُ ـ وَرُبَّمَا قَالَ أَصَبْتُ ـ فَاغْفِرْ لِي فَقَالَ رَبُّهُ أَعَلِمَ عَبْدِي أَنَّ لَهُ رَبًّا يَغْفِرُ الذَّنْبَ وَيَأْخُذُ بِهِ غَفَرْتُ لِعَبْدِي‏.‏ ثُمَّ مَكَثَ مَا شَاءَ اللَّهُ، ثُمَّ أَصَابَ ذَنْبًا أَوْ أَذْنَبَ ذَنْبًا، فَقَالَ رَبِّ أَذْنَبْتُ ـ أَوْ أَصَبْتُ ـ آخَرَ فَاغْفِرْهُ‏.‏ فَقَالَ أَعَلِمَ عَبْدِي أَنَّ لَهُ رَبًّا يَغْفِرُ الذَّنْبَ وَيَأْخُذُ بِهِ غَفَرْتُ لِعَبْدِي، ثُمَّ مَكَثَ مَا شَاءَ اللَّهُ ثُمَّ أَذْنَبَ ذَنْبًا ـ وَرُبَّمَا قَالَ أَصَابَ ذَنْبًا ـ قَالَ قَالَ رَبِّ أَصَبْتُ ـ أَوْ أَذْنَبْتُ ـ آخَرَ فَاغْفِرْهُ لِي‏.‏ فَقَالَ أَعَلِمَ عَبْدِي أَنَّ لَهُ رَبًّا يَغْفِرُ الذَّنْبَ وَيَأْخُذُ بِهِ غَفَرْتُ لِعَبْدِي ـ ثَلاَثًا ـ فَلْيَعْمَلْ مَا شَاءَ ‏"''',
+    sourceUrl: 'https://sunnah.com/bukhari:7507',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sahih al-Bukhari / Sahih Muslim',
     sourceReference: 'Bukhari 7507 / Muslim 2758',
     source: 'Sahih al-Bukhari 7507 / Sahih Muslim 2758',
@@ -3297,7 +3791,13 @@ const List<HadithEntry> seededHadithEntries = [
     hadithText:
         'The Prophet ﷺ said: Allah accepts the repentance of the servant so long as the soul has not reached the throat.',
     englishText:
-        'Repentance remains accepted until the final moments before death.',
+        '''"Indeed Allah accepts the repentance of a slave as long as (his soul does not reach his throat)."''',
+    arabicText:
+        '''"‏ إِنَّ اللَّهَ يَقْبَلُ تَوْبَةَ الْعَبْدِ مَا لَمْ يُغَرْغِرْ ‏"''',
+    sourceUrl: 'https://sunnah.com/tirmidhi:3537',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Jami\' al-Tirmidhi',
     sourceReference: '3537',
     source: 'Jami\' al-Tirmidhi 3537',
@@ -3347,7 +3847,13 @@ const List<HadithEntry> seededHadithEntries = [
     hadithText:
         'The Prophet ﷺ said: Whoever constantly seeks forgiveness, Allah will appoint for him a way out from every distress, relief from every worry, and provision from where he does not expect.',
     englishText:
-        'Regular istighfar opens doors of relief and provision by Allah’s mercy.',
+        '''The Prophet (ﷺ) said: If anyone continually asks pardon, Allah will appoint for him a way out of every distress, and a relief from every anxiety, and will provide for him from where he did not reckon.''',
+    arabicText:
+        '''"‏ مَنْ لَزِمَ الاِسْتِغْفَارَ جَعَلَ اللَّهُ لَهُ مِنْ كُلِّ ضِيقٍ مَخْرَجًا وَمِنْ كُلِّ هَمٍّ فَرَجًا وَرَزَقَهُ مِنْ حَيْثُ لاَ يَحْتَسِبُ ‏"''',
+    sourceUrl: 'https://sunnah.com/abudawud:1518',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sunan Abi Dawud',
     sourceReference: '1518',
     source: 'Sunan Abi Dawud 1518',
@@ -3397,6 +3903,14 @@ const List<HadithEntry> seededHadithEntries = [
         'The believer responds to ease with gratitude and to hardship with patience.',
     hadithText:
         'The Prophet ﷺ said: Wondrous is the affair of the believer. If ease comes, he is grateful; if hardship comes, he is patient, and that is good for him.',
+    englishText:
+        '''Strange are the ways of a believer for there is good in every affair of his and this is not the case with anyone else except in the case of a believer for if he has an occasion to feel delight, he thanks (God), thus there is a good for him in it, and if he gets into trouble and shows resignation (and endures it patiently), there is a good for him in it.''',
+    arabicText:
+        '''"‏ عَجَبًا لأَمْرِ الْمُؤْمِنِ إِنَّ أَمْرَهُ كُلَّهُ خَيْرٌ وَلَيْسَ ذَاكَ لأَحَدٍ إِلاَّ لِلْمُؤْمِنِ إِنْ أَصَابَتْهُ سَرَّاءُ شَكَرَ فَكَانَ خَيْرًا لَهُ وَإِنْ أَصَابَتْهُ ضَرَّاءُ صَبَرَ فَكَانَ خَيْرًا لَهُ ‏"''',
+    sourceUrl: 'https://sunnah.com/muslim:2999',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sahih Muslim',
     sourceReference: '2999',
     source: 'Sahih Muslim 2999',
@@ -3442,6 +3956,14 @@ const List<HadithEntry> seededHadithEntries = [
         'The truest patience appears at the first shock of difficulty, not only after time passes.',
     hadithText:
         'The Prophet ﷺ said: Patience is at the first strike of calamity.',
+    englishText:
+        '''The Prophet (ﷺ) passed by a woman who was weeping beside a grave. He told her to fear Allah and be patient. She said to him, "Go away, for you have not been afflicted with a calamity like mine." And she did not recognize him. Then she was informed that he was the Prophet (ﷺ) . so she went to the house of the Prophet (ﷺ) and there she did not find any guard. Then she said to him, "I did not recognize you." He said, "Verily, the patience is at the first stroke of a calamity."''',
+    arabicText:
+        '''حَدَّثَنَا آدَمُ، حَدَّثَنَا شُعْبَةُ، حَدَّثَنَا ثَابِتٌ، عَنْ أَنَسِ بْنِ مَالِكٍ ـ رضى الله عنه ـ قَالَ مَرَّ النَّبِيُّ صلى الله عليه وسلم بِامْرَأَةٍ تَبْكِي عِنْدَ قَبْرٍ فَقَالَ ‏"‏ اتَّقِي اللَّهَ وَاصْبِرِي ‏"‏‏.‏ قَالَتْ إِلَيْكَ عَنِّي، فَإِنَّكَ لَمْ تُصَبْ بِمُصِيبَتِي، وَلَمْ تَعْرِفْهُ‏.‏ فَقِيلَ لَهَا إِنَّهُ النَّبِيُّ صلى الله عليه وسلم‏.‏ فَأَتَتْ باب النَّبِيِّ صلى الله عليه وسلم فَلَمْ تَجِدْ عِنْدَهُ بَوَّابِينَ فَقَالَتْ لَمْ أَعْرِفْكَ‏.‏ فَقَالَ ‏"‏ إِنَّمَا الصَّبْرُ عِنْدَ الصَّدْمَةِ الأُولَى ‏"‏‏.‏''',
+    sourceUrl: 'https://sunnah.com/bukhari:1283',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sahih al-Bukhari / Sahih Muslim',
     sourceReference: 'Bukhari 1283 / Muslim 926',
     source: 'Sahih al-Bukhari 1283 / Sahih Muslim 926',
@@ -3487,6 +4009,14 @@ const List<HadithEntry> seededHadithEntries = [
         'When a believer chooses patience sincerely, Allah strengthens him with patience.',
     hadithText:
         'The Messenger ﷺ said: Whoever seeks to remain patient, Allah will grant him patience.',
+    englishText:
+        '''Some Ansari persons asked for (something) from Allah's Messenger (ﷺ) (p.b.u.h) and he gave them. They again asked him for (something) and he again gave them. And then they asked him and he gave them again till all that was with him finished. And then he said "If I had anything. I would not keep it away from you. (Remember) Whoever abstains from asking others, Allah will make him contented, and whoever tries to make himself self-sufficient, Allah will make him self-sufficient. And whoever remains patient, Allah will make him patient. Nobody can be given a blessing better and greater than patience."''',
+    arabicText:
+        '''"‏ مَا يَكُونُ عِنْدِي مِنْ خَيْرٍ فَلَنْ أَدَّخِرَهُ عَنْكُمْ، وَمَنْ يَسْتَعْفِفْ يُعِفَّهُ اللَّهُ، وَمَنْ يَسْتَغْنِ يُغْنِهِ اللَّهُ، وَمَنْ يَتَصَبَّرْ يُصَبِّرْهُ اللَّهُ، وَمَا أُعْطِيَ أَحَدٌ عَطَاءً خَيْرًا وَأَوْسَعَ مِنَ الصَّبْرِ ‏"''',
+    sourceUrl: 'https://sunnah.com/bukhari:1469',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sahih al-Bukhari / Sahih Muslim',
     sourceReference: 'Bukhari 1469 / Muslim 1053',
     source: 'Sahih al-Bukhari 1469 / Sahih Muslim 1053',
@@ -3532,6 +4062,14 @@ const List<HadithEntry> seededHadithEntries = [
         'The believer is called to beneficial strength with effort, hope, and reliance on Allah.',
     hadithText:
         'The Messenger ﷺ said: The strong believer is better and more beloved to Allah than the weak believer, though in both there is good. Be eager for what benefits you, seek help from Allah, and do not give up.',
+    englishText:
+        '''A strong believer is better and is more lovable to Allah than a weak believer, and there is good in everyone, (but) cherish that which gives you benefit (in the Hereafter) and seek help from Allah and do not lose heart, and if anything (in the form of trouble) comes to you, don't say: If I had not done that, it would not have happened so and so, but say: Allah did that what He had ordained to do and your" if" opens the (gate) for the Satan.''',
+    arabicText:
+        '''"‏ الْمُؤْمِنُ الْقَوِيُّ خَيْرٌ وَأَحَبُّ إِلَى اللَّهِ مِنَ الْمُؤْمِنِ الضَّعِيفِ وَفِي كُلٍّ خَيْرٌ احْرِصْ عَلَى مَا يَنْفَعُكَ وَاسْتَعِنْ بِاللَّهِ وَلاَ تَعْجِزْ وَإِنْ أَصَابَكَ شَىْءٌ فَلاَ تَقُلْ لَوْ أَنِّي فَعَلْتُ كَانَ كَذَا وَكَذَا ‏.‏ وَلَكِنْ قُلْ قَدَرُ اللَّهِ وَمَا شَاءَ فَعَلَ فَإِنَّ لَوْ تَفْتَحُ عَمَلَ الشَّيْطَانِ ‏"''',
+    sourceUrl: 'https://sunnah.com/muslim:2664',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sahih Muslim',
     sourceReference: '2664',
     source: 'Sahih Muslim 2664',
@@ -3578,6 +4116,14 @@ const List<HadithEntry> seededHadithEntries = [
         'In worldly matters, looking at those with less helps preserve gratitude and prevents envy.',
     hadithText:
         'The Prophet ﷺ said: Look to those below you, and do not look to those above you, for that is more likely to keep you from belittling Allah\'s favor upon you.',
+    englishText:
+        '''Allah's Messenger (ﷺ) said, "If anyone of you looked at a person who was made superior to him in property and (in good) appearance, then he should also look at the one who is inferior to him.''',
+    arabicText:
+        '''"‏ إِذَا نَظَرَ أَحَدُكُمْ إِلَى مَنْ فُضِّلَ عَلَيْهِ فِي الْمَالِ وَالْخَلْقِ، فَلْيَنْظُرْ إِلَى مَنْ هُوَ أَسْفَلَ مِنْهُ ‏"''',
+    sourceUrl: 'https://sunnah.com/bukhari:6490',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sahih al-Bukhari / Sahih Muslim',
     sourceReference: 'Bukhari 6490 / Muslim 2963',
     source: 'Sahih al-Bukhari 6490 / Sahih Muslim 2963',
@@ -3626,6 +4172,13 @@ const List<HadithEntry> seededHadithEntries = [
         'The Prophet ﷺ increased worship in gratitude, even though he was forgiven.',
     hadithText:
         'When asked why he stood long in prayer until his feet swelled, the Prophet ﷺ said: Should I not be a grateful servant?',
+    englishText:
+        '''The Prophet (ﷺ) used to stand (in the prayer) or pray till both his feet or legs swelled. He was asked why (he offered such an unbearable prayer) and he said, "should I not be a thankful slave."''',
+    arabicText: '''"‏ أَفَلاَ أَكُونُ عَبْدًا شَكُورًا ‏"''',
+    sourceUrl: 'https://sunnah.com/bukhari:1130',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sahih al-Bukhari / Sahih Muslim',
     sourceReference: 'Bukhari 1130 / Muslim 2819',
     source: 'Sahih al-Bukhari 1130 / Sahih Muslim 2819',
@@ -3672,6 +4225,14 @@ const List<HadithEntry> seededHadithEntries = [
         'No pain or hardship afflicts a believer except that Allah removes sins through it.',
     hadithText:
         'The Prophet ﷺ said: No fatigue, illness, anxiety, sorrow, harm, or distress afflicts a Muslim, even the prick of a thorn, except that Allah expiates some of his sins because of it.',
+    englishText:
+        '''The Prophet (ﷺ) said, "No fatigue, nor disease, nor sorrow, nor sadness, nor hurt, nor distress befalls a Muslim, even if it were the prick he receives from a thorn, but that Allah expiates some of his sins for that."''',
+    arabicText:
+        '''"‏ مَا يُصِيبُ الْمُسْلِمَ مِنْ نَصَبٍ وَلاَ وَصَبٍ وَلاَ هَمٍّ وَلاَ حُزْنٍ وَلاَ أَذًى وَلاَ غَمٍّ حَتَّى الشَّوْكَةِ يُشَاكُهَا، إِلاَّ كَفَّرَ اللَّهُ بِهَا مِنْ خَطَايَاهُ ‏"''',
+    sourceUrl: 'https://sunnah.com/bukhari:5641',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sahih al-Bukhari / Sahih Muslim',
     sourceReference: 'Bukhari 5641-5642 / Muslim 2573',
     source: 'Sahih al-Bukhari 5641-5642 / Sahih Muslim 2573',
@@ -3717,6 +4278,14 @@ const List<HadithEntry> seededHadithEntries = [
     excerpt: 'No one is given a gift better and more expansive than patience.',
     hadithText:
         'The Messenger ﷺ said: No one has been given a gift better and more expansive than patience.',
+    englishText:
+        '''Some Ansari persons asked for (something) from Allah's Messenger (ﷺ) (p.b.u.h) and he gave them. They again asked him for (something) and he again gave them. And then they asked him and he gave them again till all that was with him finished. And then he said "If I had anything. I would not keep it away from you. (Remember) Whoever abstains from asking others, Allah will make him contented, and whoever tries to make himself self-sufficient, Allah will make him self-sufficient. And whoever remains patient, Allah will make him patient. Nobody can be given a blessing better and greater than patience."''',
+    arabicText:
+        '''"‏ مَا يَكُونُ عِنْدِي مِنْ خَيْرٍ فَلَنْ أَدَّخِرَهُ عَنْكُمْ، وَمَنْ يَسْتَعْفِفْ يُعِفَّهُ اللَّهُ، وَمَنْ يَسْتَغْنِ يُغْنِهِ اللَّهُ، وَمَنْ يَتَصَبَّرْ يُصَبِّرْهُ اللَّهُ، وَمَا أُعْطِيَ أَحَدٌ عَطَاءً خَيْرًا وَأَوْسَعَ مِنَ الصَّبْرِ ‏"''',
+    sourceUrl: 'https://sunnah.com/bukhari:1469',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sahih al-Bukhari / Sahih Muslim',
     sourceReference: 'Bukhari 1469 / Muslim 1053',
     source: 'Sahih al-Bukhari 1469 / Sahih Muslim 1053',
@@ -3763,7 +4332,12 @@ const List<HadithEntry> seededHadithEntries = [
     hadithText:
         'The Prophet ﷺ said: Remember often the destroyer of pleasures — death.',
     englishText:
-        'Frequent remembrance of death reorders priorities and softens attachment to dunya.',
+        '''"Increase in remembrance of the severer of pleasures." Meaning death.''',
+    arabicText: '''"‏ أَكْثِرُوا ذِكْرَ هَاذِمِ اللَّذَّاتِ ‏"''',
+    sourceUrl: 'https://sunnah.com/tirmidhi:2307',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Jami\' al-Tirmidhi / Sunan al-Nasa\'i / Ibn Majah',
     sourceReference: 'Tirmidhi 2307',
     source: 'Jami\' al-Tirmidhi 2307',
@@ -3814,7 +4388,13 @@ const List<HadithEntry> seededHadithEntries = [
     hadithText:
         'The Messenger ﷺ said to Ibn Umar: Be in this world as though you were a stranger or a traveler.',
     englishText:
-        'The believer uses dunya responsibly while keeping the heart attached to the hereafter.',
+        '''`Abdullah bin `Umar said, "Allah's Messenger (ﷺ) took hold of my shoulder and said, 'Be in this world as if you were a stranger or a traveler." The sub-narrator added: Ibn `Umar used to say, "If you survive till the evening, do not expect to be alive in the morning, and if you survive till the morning, do not expect to be alive in the evening, and take from your health for your sickness, and (take) from your life for your death."''',
+    arabicText:
+        '''"‏ كُنْ فِي الدُّنْيَا كَأَنَّكَ غَرِيبٌ، أَوْ عَابِرُ سَبِيلٍ ‏"''',
+    sourceUrl: 'https://sunnah.com/bukhari:6416',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sahih al-Bukhari',
     sourceReference: '6416',
     source: 'Sahih al-Bukhari 6416',
@@ -3864,7 +4444,13 @@ const List<HadithEntry> seededHadithEntries = [
     hadithText:
         'The Prophet ﷺ said: The intelligent one is the one who takes himself to account and works for what comes after death.',
     englishText:
-        'Real wisdom is disciplined self-evaluation and preparation for the next life.',
+        '''"The clever person ids the one who subjugates his soul, and works for what is after death. And the incapable is the one who follows his desires and merely hopes in Allah." [He said:] The meaning of his saying: "Who subjugates his soul", is to say the one who reckons with his soul in the world, before he is reckoned with, on the Day of Judgement. It has been related that 'Umar bin Al-Khattäb said: "Reckon with yourselves before you are reckoned with, and prepare for the Greatest Inquisition. The reckoning of the Day of Judgement is only light for the one who reckoned with himself in the world." And, it has been related that Maimun bin Mihran said: "The slave (of Allah) will not be a Taqi until he has reckoned himself, just as he would account for where his business partner got his food and clothing."''',
+    arabicText:
+        '''حَدَّثَنَا سُفْيَانُ بْنُ وَكِيعٍ، حَدَّثَنَا عِيسَى بْنُ يُونُسَ، عَنْ أَبِي بَكْرِ بْنِ أَبِي مَرْيَمَ، ح وَحَدَّثَنَا عَبْدُ اللَّهِ بْنُ عَبْدِ الرَّحْمَنِ، أَخْبَرَنَا عَمْرُو بْنُ عَوْنٍ، أَخْبَرَنَا ابْنُ الْمُبَارَكِ، عَنْ أَبِي بَكْرِ بْنِ أَبِي مَرْيَمَ، عَنْ ضَمْرَةَ بْنِ حَبِيبٍ، عَنْ شَدَّادِ بْنِ أَوْسٍ، عَنِ النَّبِيِّ صلى الله عليه وسلم قَالَ ‏"‏ الْكَيِّسُ مَنْ دَانَ نَفْسَهُ وَعَمِلَ لِمَا بَعْدَ الْمَوْتِ وَالْعَاجِزُ مَنْ أَتْبَعَ نَفْسَهُ هَوَاهَا وَتَمَنَّى عَلَى اللَّهِ ‏"‏ ‏.‏ قَالَ هَذَا حَدِيثٌ حَسَنٌ ‏.‏ قَالَ وَمَعْنَى قَوْلِهِ ‏"‏ مَنْ دَانَ نَفْسَهُ ‏"‏ ‏.‏ يَقُولُ حَاسَبَ نَفْسَهُ فِي الدُّنْيَا قَبْلَ أَنْ يُحَاسَبَ يَوْمَ الْقِيَامَةِ ‏.‏ وَيُرْوَى عَنْ عُمَرَ بْنِ الْخَطَّابِ قَالَ حَاسِبُوا أَنْفُسَكُمْ قَبْلَ أَنْ تُحَاسَبُوا وَتَزَيَّنُوا لِلْعَرْضِ الأَكْبَرِ وَإِنَّمَا يَخِفُّ الْحِسَابُ يَوْمَ الْقِيَامَةِ عَلَى مَنْ حَاسَبَ نَفْسَهُ فِي الدُّنْيَا ‏.‏ وَيُرْوَى عَنْ مَيْمُونِ بْنِ مِهْرَانَ قَالَ لاَ يَكُونُ الْعَبْدُ تَقِيًّا حَتَّى يُحَاسِبَ نَفْسَهُ كَمَا يُحَاسِبُ شَرِيكَهُ مِنْ أَيْنَ مَطْعَمُهُ وَمَلْبَسُهُ ‏.‏''',
+    sourceUrl: 'https://sunnah.com/tirmidhi:2459',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Jami\' al-Tirmidhi',
     sourceReference: '2459',
     source: 'Jami\' al-Tirmidhi 2459',
@@ -3914,7 +4500,13 @@ const List<HadithEntry> seededHadithEntries = [
     hadithText:
         'The Prophet ﷺ taught that the servant’s feet will not move on the Day of Judgment until he is asked about his life, youth, wealth, and knowledge.',
     englishText:
-        'Life, time, wealth, and knowledge are trusts that will be questioned in the hereafter.',
+        '''"The feet of the slave of Allah shall not move [on the Day of Judgement] until he is asked about five things: about his life and what he did with it, about his knowledge and what he did with it, about his wealth and how he earned it and where he spent it on, about his body and for what did he wear it out." [He said:] This Hadith is Hasan Sahih. Sa'eed bin Abdullah bin Juraij (a narrator in the chain) [is from Al-Basrah], and he is the freed slave of Abu Barzah AlAslami, and Abu Barzah AlAslami's name is Nadlah bin 'Ubaid.''',
+    arabicText:
+        '''"‏ لاَ تَزُولُ قَدَمَا عَبْدٍ يَوْمَ الْقِيَامَةِ حَتَّى يُسْأَلَ عَنْ عُمْرِهِ فِيمَا أَفْنَاهُ وَعَنْ عِلْمِهِ فِيمَا فَعَلَ وَعَنْ مَالِهِ مِنْ أَيْنَ اكْتَسَبَهُ وَفِيمَا أَنْفَقَهُ وَعَنْ جِسْمِهِ فِيمَا أَبْلاَهُ ‏"''',
+    sourceUrl: 'https://sunnah.com/tirmidhi:2417',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Jami\' al-Tirmidhi',
     sourceReference: '2417',
     source: 'Jami\' al-Tirmidhi 2417',
@@ -3965,7 +4557,13 @@ const List<HadithEntry> seededHadithEntries = [
     hadithText:
         'The Prophet ﷺ said: I had forbidden you from visiting graves; now visit them, for they remind you of the hereafter.',
     englishText:
-        'Visiting graves with proper manners revives remembrance of death and accountability.',
+        '''I forbade you to visit graves, but you may now visit them; I forbade you to eat the flesh of sacrificial animals after three days, but you way now keep it as along as you feel inclined; and I forbade you nabidh except in a water-skin, you may drink it from all kinds of water-skins, but you must not drink anything intoxicating.''',
+    arabicText:
+        '''"‏ نَهَيْتُكُمْ عَنْ زِيَارَةِ الْقُبُورِ فَزُورُوهَا وَنَهَيْتُكُمْ عَنْ لُحُومِ الأَضَاحِيِّ فَوْقَ ثَلاَثٍ فَأَمْسِكُوا مَا بَدَا لَكُمْ وَنَهَيْتُكُمْ عَنِ النَّبِيذِ إِلاَّ فِي سِقَاءٍ فَاشْرَبُوا فِي الأَسْقِيَةِ كُلِّهَا وَلاَ تَشْرَبُوا مُسْكِرًا ‏"''',
+    sourceUrl: 'https://sunnah.com/muslim:977',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sahih Muslim',
     sourceReference: '977',
     source: 'Sahih Muslim 977',
@@ -4015,7 +4613,12 @@ const List<HadithEntry> seededHadithEntries = [
     hadithText:
         'The Prophet ﷺ said: The world is a prison for the believer and a paradise for the disbeliever.',
     englishText:
-        'A believer does not measure life only by immediate comfort, but by eternal outcome.',
+        '''The world is a prison-house for a believer and Paradise for a non-believer.''',
+    arabicText: '''"‏ الدُّنْيَا سِجْنُ الْمُؤْمِنِ وَجَنَّةُ الْكَافِرِ ‏"''',
+    sourceUrl: 'https://sunnah.com/muslim:2956',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sahih Muslim',
     sourceReference: '2956',
     source: 'Sahih Muslim 2956',
@@ -4062,7 +4665,13 @@ const List<HadithEntry> seededHadithEntries = [
     hadithText:
         'The Messenger ﷺ said: Whoever loves to meet Allah, Allah loves to meet him; and whoever dislikes meeting Allah, Allah dislikes meeting him.',
     englishText:
-        'A believer’s hopeful readiness at life’s end is met by divine welcome and mercy.',
+        '''The Prophet (ﷺ) said, "Who-ever loves to meet Allah, Allah (too) loves to meet him and who-ever hates to meet Allah, Allah (too) hates to meet him". `Aisha, or some of the wives of the Prophet (ﷺ) said, "But we dislike death." He said: It is not like this, but it is meant that when the time of the death of a believer approaches, he receives the good news of Allah's pleasure with him and His blessings upon him, and so at that time nothing is dearer to him than what is in front of him. He therefore loves the meeting with Allah, and Allah (too) loves the meeting with him. But when the time of the death of a disbeliever approaches, he receives the evil news of Allah's torment and His Requital, whereupon nothing is more hateful to him than what is before him. Therefore, he hates the meeting with Allah, and Allah too, hates the meeting with him."''',
+    arabicText:
+        '''حَدَّثَنَا حَجَّاجٌ، حَدَّثَنَا هَمَّامٌ، حَدَّثَنَا قَتَادَةُ، عَنْ أَنَسٍ، عَنْ عُبَادَةَ بْنِ الصَّامِتِ، عَنِ النَّبِيِّ صلى الله عليه وسلم قَالَ ‏"‏ مَنْ أَحَبَّ لِقَاءَ اللَّهِ أَحَبَّ اللَّهُ لِقَاءَهُ، وَمَنْ كَرِهَ لِقَاءَ اللَّهِ كَرِهَ اللَّهُ لِقَاءَهُ ‏"‏‏.‏ قَالَتْ عَائِشَةُ أَوْ بَعْضُ أَزْوَاجِهِ إِنَّا لَنَكْرَهُ الْمَوْتَ‏.‏ قَالَ ‏"‏ لَيْسَ ذَاكَ، وَلَكِنَّ الْمُؤْمِنَ إِذَا حَضَرَهُ الْمَوْتُ بُشِّرَ بِرِضْوَانِ اللَّهِ وَكَرَامَتِهِ، فَلَيْسَ شَىْءٌ أَحَبَّ إِلَيْهِ مِمَّا أَمَامَهُ، فَأَحَبَّ لِقَاءَ اللَّهِ وَأَحَبَّ اللَّهُ لِقَاءَهُ، وَإِنَّ الْكَافِرَ إِذَا حُضِرَ بُشِّرَ بِعَذَابِ اللَّهِ وَعُقُوبَتِهِ، فَلَيْسَ شَىْءٌ أَكْرَهَ إِلَيْهِ مِمَّا أَمَامَهُ، كَرِهَ لِقَاءَ اللَّهِ وَكَرِهَ اللَّهُ لِقَاءَهُ ‏"‏‏.‏ اخْتَصَرَهُ أَبُو دَاوُدَ وَعَمْرٌو عَنْ شُعْبَةَ‏.‏ وَقَالَ سَعِيدٌ عَنْ قَتَادَةَ عَنْ زُرَارَةَ عَنْ سَعْدٍ عَنْ عَائِشَةَ عَنِ النَّبِيِّ صلى الله عليه وسلم‏.‏''',
+    sourceUrl: 'https://sunnah.com/bukhari:6507',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Sahih al-Bukhari / Sahih Muslim',
     sourceReference: 'Bukhari 6507 / Muslim 2683',
     source: 'Sahih al-Bukhari 6507 / Sahih Muslim 2683',
@@ -4112,7 +4721,13 @@ const List<HadithEntry> seededHadithEntries = [
     hadithText:
         'The Prophet ﷺ said: The grave is the first stage of the hereafter; if one is saved from it, what follows is easier, and if not, what follows is harder.',
     englishText:
-        'Awareness of the grave should inspire sincere repentance and preparation before death.',
+        '''When 'Uthman would stop at a grave he would cry until his beard was soaked (in tears). It was said to him: 'The Paradise and the Fire were mentioned and you did not cry, yet you cry because of this?' So he said: 'Indeed the Messenger of Allah said: "Indeed the grave is the first stage among the stages of the Hereafter. So if one is saved from it, then what comes after it is easier than it. And if one is not saved from it, then what comes after it is worse than it." And the Messenger of Allah said: "I have not seen any sight except that the grave is more horrible than it."''',
+    arabicText:
+        '''حَدَّثَنَا هَنَّادٌ، حَدَّثَنَا يَحْيَى بْنُ مَعِينٍ، حَدَّثَنَا هِشَامُ بْنُ يُوسُفَ، حَدَّثَنِي عَبْدُ اللَّهِ بْنُ بَحِيرٍ، أَنَّهُ سَمِعَ هَانِئًا، مَوْلَى عُثْمَانَ قَالَ كَانَ عُثْمَانُ إِذَا وَقَفَ عَلَى قَبْرٍ بَكَى حَتَّى يَبُلَّ لِحْيَتَهُ فَقِيلَ لَهُ تُذْكَرُ الْجَنَّةُ وَالنَّارُ فَلاَ تَبْكِي وَتَبْكِي مِنْ هَذَا فَقَالَ إِنَّ رَسُولَ اللَّهِ صلى الله عليه وسلم قَالَ ‏"‏ إِنَّ الْقَبْرَ أَوَّلُ مَنَازِلِ الآخِرَةِ فَإِنْ نَجَا مِنْهُ فَمَا بَعْدَهُ أَيْسَرُ مِنْهُ وَإِنْ لَمْ يَنْجُ مِنْهُ فَمَا بَعْدَهُ أَشَدُّ مِنْهُ ‏"‏ ‏.‏ قَالَ وَقَالَ رَسُولُ اللَّهِ صلى الله عليه وسلم ‏"‏ مَا رَأَيْتُ مَنْظَرًا قَطُّ إِلاَّ وَالْقَبْرُ أَفْظَعُ مِنْهُ ‏"‏ ‏.‏ قَالَ هَذَا حَدِيثٌ حَسَنٌ غَرِيبٌ لاَ نَعْرِفُهُ إِلاَّ مِنْ حَدِيثِ هِشَامِ بْنِ يُوسُفَ ‏.‏''',
+    sourceUrl: 'https://sunnah.com/tirmidhi:2308',
+    translationSourceVerified: true,
+    arabicMatnSourceVerified: true,
+    transliterationSourceVerified: false,
     sourceCollection: 'Jami\' al-Tirmidhi / Ibn Majah',
     sourceReference: 'Tirmidhi 2308',
     source: 'Jami\' al-Tirmidhi 2308',

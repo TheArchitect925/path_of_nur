@@ -53,6 +53,7 @@ class PrayerLiveActivityService {
         'currentPrayerName': currentPrayer?.name,
         'currentPrayerArabicName': currentPrayer?.arabicName,
         'currentRemainingSeconds': currentRemaining?.inSeconds,
+        'currentPrayerAtIso': currentPrayer?.offerDateTime.toIso8601String(),
         'nextPrayerId': nextPrayer.id,
         'nextPrayerName': nextPrayer.name,
         'nextPrayerArabicName': nextPrayer.arabicName,
@@ -211,20 +212,11 @@ final prayerLiveActivityBootstrapProvider = Provider<void>((ref) {
 
       await service.endFastingCountdown();
 
-      PrayerScheduleItem? currentPrayerToShow;
-      Duration? currentRemaining;
-      final currentPrayerId = context.currentPrayerId;
-      if (currentPrayerId != null) {
-        final currentPrayer = _findPrayerById(context.items, currentPrayerId);
-        if (currentPrayer != null && _isPrayerActive(currentPrayer, now)) {
-          final explicitStatus = _statusForPrayer(records, currentPrayerId);
-          final shouldShowCurrent = explicitStatus != PrayerStatus.completed;
-          if (shouldShowCurrent) {
-            currentPrayerToShow = currentPrayer;
-            currentRemaining = nextStartsIn;
-          }
-        }
-      }
+      final resolvedDisplay = _resolvePrayerLiveDisplay(
+        context: context,
+        records: records,
+        now: now,
+      );
 
       await service.updatePrayerCard(
         nextPrayer: nextPrayer,
@@ -238,8 +230,8 @@ final prayerLiveActivityBootstrapProvider = Provider<void>((ref) {
             .read(prayerSettingsProvider)
             .preferences
             .useStableLockScreenWidget,
-        currentPrayer: currentPrayerToShow,
-        currentRemaining: currentRemaining,
+        currentPrayer: resolvedDisplay.currentPrayer,
+        currentRemaining: resolvedDisplay.currentRemaining,
       );
     });
   }
@@ -301,6 +293,54 @@ PrayerStatus? _statusForPrayer(
 bool _isPrayerActive(PrayerScheduleItem item, DateTime now) {
   return !now.isBefore(item.windowStartDateTime) &&
       now.isBefore(item.windowEndDateTime);
+}
+
+class _ResolvedPrayerLiveDisplay {
+  const _ResolvedPrayerLiveDisplay({
+    this.currentPrayer,
+    this.currentRemaining,
+  });
+
+  final PrayerScheduleItem? currentPrayer;
+  final Duration? currentRemaining;
+}
+
+_ResolvedPrayerLiveDisplay _resolvePrayerLiveDisplay({
+  required PrayerScheduleContext context,
+  required List<DailyPrayerRecord> records,
+  required DateTime now,
+}) {
+  final currentPrayerId = context.currentPrayerId;
+  if (currentPrayerId == null) {
+    return const _ResolvedPrayerLiveDisplay();
+  }
+
+  final currentPrayer = _findPrayerById(context.items, currentPrayerId);
+  if (currentPrayer == null ||
+      !_shouldDisplayCurrentPrayer(
+        prayer: currentPrayer,
+        records: records,
+        now: now,
+      )) {
+    return const _ResolvedPrayerLiveDisplay();
+  }
+
+  return _ResolvedPrayerLiveDisplay(
+    currentPrayer: currentPrayer,
+    currentRemaining: _nonNegative(context.remainingToNext),
+  );
+}
+
+bool _shouldDisplayCurrentPrayer({
+  required PrayerScheduleItem prayer,
+  required List<DailyPrayerRecord> records,
+  required DateTime now,
+}) {
+  if (!_isPrayerActive(prayer, now)) {
+    return false;
+  }
+  final explicitStatus = _statusForPrayer(records, prayer.id);
+  return explicitStatus != PrayerStatus.completed;
 }
 
 DateTime _resolveNextPrayerStart(PrayerScheduleItem nextPrayer, DateTime now) {

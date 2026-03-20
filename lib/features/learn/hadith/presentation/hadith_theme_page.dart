@@ -6,7 +6,6 @@ import '../../../../l10n/app_localizations.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
-import '../../shared/presentation/learning_header.dart';
 import '../../shared/presentation/learning_references.dart';
 import '../../shared/presentation/learning_section.dart';
 import '../application/hadith_foundation_repository.dart';
@@ -18,15 +17,14 @@ class HadithThemePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     final theme = ref.watch(hadithThemeByIdProvider(themeId));
     if (theme == null) {
       return AppPageScaffold(
         headerIcon: Icons.menu_book_rounded,
-        title: 'Hadith',
-        subtitle: 'Theme not found',
-        children: const [
-          PremiumCard(child: Text('The requested theme was not found.')),
-        ],
+        title: l10n.hadithPageTitle,
+        subtitle: l10n.hadithThemeNotFoundSubtitle,
+        children: [PremiumCard(child: Text(l10n.hadithThemeNotFoundBody))],
       );
     }
 
@@ -39,14 +37,8 @@ class HadithThemePage extends ConsumerWidget {
       title: theme.title,
       subtitle: theme.subtitle,
       children: [
-        LearningHeader(
-          title: theme.title,
-          summary: theme.description,
-          chips: ['${entries.length} hadith', 'Theme'],
-        ),
-        const SizedBox(height: 10),
         LearningSection(
-          title: 'Related Qur’an Anchors',
+          title: l10n.hadithSectionRelatedQuranAnchors,
           child: LearningReferences(
             items: theme.quranAnchors
                 .map(
@@ -61,7 +53,7 @@ class HadithThemePage extends ConsumerWidget {
           ),
         ),
         LearningSection(
-          title: 'Hadith in This Theme',
+          title: l10n.hadithSectionThemeEntries,
           child: Column(
             children: entries
                 .map(
@@ -163,7 +155,7 @@ class _HadithPreviewCard extends StatelessWidget {
                 if (sourceReference != null) _badge(sourceReference!),
                 _badge(grading),
                 if (quranConnectionCount > 0)
-                  _badge('Qur’an connections: $quranConnectionCount'),
+                  _badge(l10n.hadithPathQuranConnections(quranConnectionCount)),
                 ...tags.take(3).map(_badge),
               ],
             ),

@@ -4,9 +4,9 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
+import '../../../../shared/widgets/quran_navigation.dart';
 import '../../../../shared/widgets/quran_reference_block.dart';
 import '../../quran/application/quran_reference_graph_provider.dart';
-import '../../quran/presentation/widgets/quran_reference_viewer.dart';
 import '../application/divine_life_lessons_provider.dart';
 import '../data/divine_life_lessons_data.dart';
 import '../domain/divine_life_models.dart';
@@ -98,10 +98,11 @@ class _DivineLifeLessonDetailPageState
                     avatar: const Icon(Icons.play_arrow_rounded, size: 18),
                     onPressed: referenceIds.isEmpty
                         ? null
-                        : () => showQuranReferenceViewer(
+                        : () => openQuranAt(
                             context,
-                            ref,
-                            referenceId: referenceIds.first,
+                            surahNumber: lesson.surahNumber,
+                            ayahNumber: lesson.ayahStart,
+                            endAyahNumber: lesson.ayahEnd,
                           ),
                   ),
                 ],
@@ -115,7 +116,10 @@ class _DivineLifeLessonDetailPageState
                 dense: true,
               ),
               const SizedBox(height: 12),
-              Row(
+              OverflowBar(
+                alignment: MainAxisAlignment.start,
+                spacing: 8,
+                overflowSpacing: 8,
                 children: [
                   FilledButton.tonalIcon(
                     onPressed: () => ref
@@ -128,7 +132,6 @@ class _DivineLifeLessonDetailPageState
                     ),
                     label: Text(bookmarked ? 'Saved' : 'Save lesson'),
                   ),
-                  const SizedBox(width: 8),
                   OutlinedButton.icon(
                     onPressed: () => context.pushNamed(
                       'divineLifeReflection',
@@ -198,7 +201,10 @@ class _DivineLifeLessonDetailPageState
                 ),
               ),
               const SizedBox(height: 8),
-              Row(
+              OverflowBar(
+                alignment: MainAxisAlignment.start,
+                spacing: 8,
+                overflowSpacing: 8,
                 children: [
                   FilledButton.tonal(
                     onPressed: () => ref
@@ -206,7 +212,6 @@ class _DivineLifeLessonDetailPageState
                         .upsertNote(lesson.id, _noteController.text),
                     child: const Text('Save note'),
                   ),
-                  const SizedBox(width: 8),
                   if (note != null)
                     TextButton(
                       onPressed: () {

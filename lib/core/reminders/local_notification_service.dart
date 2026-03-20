@@ -44,12 +44,16 @@ class ReminderNotificationPayload {
     required this.route,
     this.prayerId,
     this.logicalDate,
+    this.reminderKind,
+    this.snoozeCount = 0,
     this.watchRoute,
   });
 
   final String route;
   final String? prayerId;
   final String? logicalDate;
+  final String? reminderKind;
+  final int snoozeCount;
   final String? watchRoute;
 
   bool get isPrayerReminder =>
@@ -59,6 +63,8 @@ class ReminderNotificationPayload {
     'route': route,
     'prayerId': prayerId,
     'logicalDate': logicalDate,
+    'reminderKind': reminderKind,
+    'snoozeCount': snoozeCount,
     'watchRoute': watchRoute,
   });
 
@@ -70,12 +76,16 @@ class ReminderNotificationPayload {
     required String route,
     required String prayerId,
     required String logicalDate,
+    required String reminderKind,
+    int snoozeCount = 0,
     String? watchRoute,
   }) {
     return ReminderNotificationPayload._(
       route: route,
       prayerId: prayerId,
       logicalDate: logicalDate,
+      reminderKind: reminderKind,
+      snoozeCount: snoozeCount,
       watchRoute: watchRoute,
     );
   }
@@ -92,6 +102,8 @@ class ReminderNotificationPayload {
           route: route,
           prayerId: decoded['prayerId']?.toString(),
           logicalDate: decoded['logicalDate']?.toString(),
+          reminderKind: decoded['reminderKind']?.toString(),
+          snoozeCount: (decoded['snoozeCount'] as num?)?.toInt() ?? 0,
           watchRoute: decoded['watchRoute']?.toString(),
         );
       }
@@ -108,10 +120,13 @@ class LocalNotificationService {
   }
 
   static const String prayerReminderCategoryId = 'PRAYER_REMINDER';
+  static const String prayerReminderFinalCategoryId = 'PRAYER_REMINDER_FINAL';
   static const String markPrayedActionId = 'MARK_PRAYED';
   static const String markPrayedLateActionId = 'MARK_PRAYED_LATE';
-  static const String snoozeActionId = 'SNOOZE';
-  static const String openAppActionId = 'OPEN_APP';
+  static const String snooze5ActionId = 'SNOOZE_5';
+  static const String snooze10ActionId = 'SNOOZE_10';
+  static const String dismissActionId = 'DISMISS';
+  static const int _maxPrayerReminderSnoozes = 2;
   static const Color _notificationAccent = Color(0xFFD8C49A);
   static const String _launcherIcon = '@mipmap/ic_launcher';
   final Ref _ref;
@@ -243,7 +258,7 @@ class LocalNotificationService {
         item.body,
         tz.TZDateTime.from(item.when, tz.local),
         _growthNotificationDetails(item.quietDelivery),
-        payload: '/journey/growth/today',
+        payload: '/journey/today',
         androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
         uiLocalNotificationDateInterpretation:
             UILocalNotificationDateInterpretation.absoluteTime,
@@ -338,6 +353,10 @@ class LocalNotificationService {
       colorized: true,
       styleInformation: const BigTextStyleInformation(''),
       playSound: true,
+      actions: _androidPrayerActions(
+        l10n,
+        allowSnooze: _canSnoozeItem(item),
+      ),
     );
 
     final prayerAtTimeAdhanChannel = AndroidNotificationDetails(
@@ -356,6 +375,10 @@ class LocalNotificationService {
       sound: RawResourceAndroidNotificationSound(
         resolvedAdhan.androidRawResourceName,
       ),
+      actions: _androidPrayerActions(
+        l10n,
+        allowSnooze: _canSnoozeItem(item),
+      ),
     );
 
     final prayerBeforeQazaChannel = AndroidNotificationDetails(
@@ -369,6 +392,10 @@ class LocalNotificationService {
       colorized: true,
       styleInformation: const BigTextStyleInformation(''),
       playSound: true,
+      actions: _androidPrayerActions(
+        l10n,
+        allowSnooze: _canSnoozeItem(item),
+      ),
     );
 
     final genericChannel = AndroidNotificationDetails(
@@ -426,11 +453,9 @@ class LocalNotificationService {
       case ReminderKind.prayerAtTime:
         return l10n.notificationsPrayerAtTimeTitle(
           _prayerName(l10n, item.prayerId),
-          _prayerName(l10n, item.prayerId),
         );
       case ReminderKind.prayerFollowUp:
         return l10n.notificationsPrayerAtTimeTitle(
-          _prayerName(l10n, item.prayerId),
           _prayerName(l10n, item.prayerId),
         );
       case ReminderKind.prayerBeforeQaza:
@@ -457,11 +482,9 @@ class LocalNotificationService {
       case ReminderKind.prayerAtTime:
         return l10n.notificationsPrayerAtTimeBody(
           _prayerName(l10n, item.prayerId),
-          _prayerName(l10n, item.prayerId),
         );
       case ReminderKind.prayerFollowUp:
         return l10n.notificationsPrayerAtTimeBody(
-          _prayerName(l10n, item.prayerId),
           _prayerName(l10n, item.prayerId),
         );
       case ReminderKind.prayerBeforeQaza:
@@ -673,11 +696,14 @@ class LocalNotificationService {
           timing: 'late',
         );
         return;
-      case snoozeActionId:
-        await _snoozePrayerReminder(payload);
+      case snooze5ActionId:
+        await _snoozePrayerReminder(payload, minutes: 5);
         return;
-      case openAppActionId:
-        PlatformRouteDispatcher.dispatch(payload.route);
+      case snooze10ActionId:
+        await _snoozePrayerReminder(payload, minutes: 10);
+        return;
+      case dismissActionId:
+        await _dismissPrayerReminder(payload);
         return;
       default:
         PlatformRouteDispatcher.dispatch(payload.route);
@@ -692,6 +718,8 @@ class LocalNotificationService {
         route: '/worship?prayerId=${item.prayerId}',
         prayerId: item.prayerId!,
         logicalDate: logicalDate,
+        reminderKind: item.kind.name,
+        snoozeCount: _snoozeCountForItem(item),
         watchRoute: 'pathofnurwatch://prayer?prayerId=${item.prayerId}',
       ).encode(),
       ReminderKind.dhikr => ReminderNotificationPayload.routeOnly(
@@ -701,7 +729,7 @@ class LocalNotificationService {
         '/quran',
       ).encode(),
       ReminderKind.reflection => ReminderNotificationPayload.routeOnly(
-        '/journey/growth/reflection',
+        '/journey/reflection',
       ).encode(),
       ReminderKind.fasting => ReminderNotificationPayload.routeOnly(
         '/worship',
@@ -714,9 +742,15 @@ class LocalNotificationService {
 
   String? _categoryIdentifierFor(ReminderPlanItem item) {
     return switch (item.kind) {
-      ReminderKind.prayerAtTime => prayerReminderCategoryId,
-      ReminderKind.prayerBeforeQaza => prayerReminderCategoryId,
-      ReminderKind.prayerFollowUp => prayerReminderCategoryId,
+      ReminderKind.prayerAtTime => _canSnoozeItem(item)
+          ? prayerReminderCategoryId
+          : prayerReminderFinalCategoryId,
+      ReminderKind.prayerBeforeQaza => _canSnoozeItem(item)
+          ? prayerReminderCategoryId
+          : prayerReminderFinalCategoryId,
+      ReminderKind.prayerFollowUp => _canSnoozeItem(item)
+          ? prayerReminderCategoryId
+          : prayerReminderFinalCategoryId,
       _ => null,
     };
   }
@@ -725,43 +759,107 @@ class LocalNotificationService {
     AppLocalizations l10n,
   ) {
     return <DarwinNotificationCategory>[
-      DarwinNotificationCategory(
+      _buildDarwinPrayerCategory(
         prayerReminderCategoryId,
-        actions: <DarwinNotificationAction>[
-          DarwinNotificationAction.plain(
-            markPrayedActionId,
-            l10n.notificationsPrayerActionMarkPrayed,
-            options: <DarwinNotificationActionOption>{
-              DarwinNotificationActionOption.foreground,
-            },
-          ),
-          DarwinNotificationAction.plain(
-            markPrayedLateActionId,
-            l10n.notificationsPrayerActionMarkPrayedLate,
-            options: <DarwinNotificationActionOption>{
-              DarwinNotificationActionOption.foreground,
-            },
-          ),
-          DarwinNotificationAction.plain(
-            snoozeActionId,
-            l10n.notificationsPrayerActionSnooze,
-            options: <DarwinNotificationActionOption>{
-              DarwinNotificationActionOption.foreground,
-            },
-          ),
-          DarwinNotificationAction.plain(
-            openAppActionId,
-            l10n.notificationsPrayerActionOpen,
-            options: <DarwinNotificationActionOption>{
-              DarwinNotificationActionOption.foreground,
-            },
-          ),
-        ],
-        options: const <DarwinNotificationCategoryOption>{
-          DarwinNotificationCategoryOption.hiddenPreviewShowTitle,
-        },
+        l10n,
+        allowSnooze: true,
+      ),
+      _buildDarwinPrayerCategory(
+        prayerReminderFinalCategoryId,
+        l10n,
+        allowSnooze: false,
       ),
     ];
+  }
+
+  DarwinNotificationCategory _buildDarwinPrayerCategory(
+    String identifier,
+    AppLocalizations l10n, {
+    required bool allowSnooze,
+  }) {
+    return DarwinNotificationCategory(
+      identifier,
+      actions: <DarwinNotificationAction>[
+        if (allowSnooze)
+          DarwinNotificationAction.plain(
+            snooze5ActionId,
+            l10n.notificationsPrayerActionSnooze5,
+            options: <DarwinNotificationActionOption>{
+              DarwinNotificationActionOption.foreground,
+            },
+          ),
+        if (allowSnooze)
+          DarwinNotificationAction.plain(
+            snooze10ActionId,
+            l10n.notificationsPrayerActionSnooze10,
+            options: <DarwinNotificationActionOption>{
+              DarwinNotificationActionOption.foreground,
+            },
+          ),
+        DarwinNotificationAction.plain(
+          markPrayedActionId,
+          l10n.notificationsPrayerActionMarkOffered,
+          options: <DarwinNotificationActionOption>{
+            DarwinNotificationActionOption.foreground,
+          },
+        ),
+        DarwinNotificationAction.plain(
+          dismissActionId,
+          l10n.notificationsPrayerActionDismiss,
+          options: <DarwinNotificationActionOption>{
+            DarwinNotificationActionOption.foreground,
+          },
+        ),
+      ],
+      options: const <DarwinNotificationCategoryOption>{
+        DarwinNotificationCategoryOption.hiddenPreviewShowTitle,
+      },
+    );
+  }
+
+  List<AndroidNotificationAction> _androidPrayerActions(
+    AppLocalizations l10n, {
+    required bool allowSnooze,
+  }) {
+    return <AndroidNotificationAction>[
+      if (allowSnooze)
+        AndroidNotificationAction(
+          snooze5ActionId,
+          l10n.notificationsPrayerActionSnooze5,
+          showsUserInterface: true,
+        ),
+      if (allowSnooze)
+        AndroidNotificationAction(
+          snooze10ActionId,
+          l10n.notificationsPrayerActionSnooze10,
+          showsUserInterface: true,
+        ),
+      AndroidNotificationAction(
+        markPrayedActionId,
+        l10n.notificationsPrayerActionMarkOffered,
+        showsUserInterface: true,
+      ),
+      AndroidNotificationAction(
+        dismissActionId,
+        l10n.notificationsPrayerActionDismiss,
+        showsUserInterface: true,
+      ),
+    ];
+  }
+
+  bool _canSnoozeItem(ReminderPlanItem item) {
+    if (item.kind != ReminderKind.prayerAtTime &&
+        item.kind != ReminderKind.prayerBeforeQaza &&
+        item.kind != ReminderKind.prayerFollowUp) {
+      return false;
+    }
+    return _snoozeCountForItem(item) < _maxPrayerReminderSnoozes;
+  }
+
+  int _snoozeCountForItem(ReminderPlanItem item) {
+    final match = RegExp(r'\.snooze\.[^.]+\.[^.]+\.(\d+)$').firstMatch(item.id);
+    if (match == null) return 0;
+    return int.tryParse(match.group(1) ?? '') ?? 0;
   }
 
   Future<void> _applyPrayerReminderAction(
@@ -795,32 +893,45 @@ class LocalNotificationService {
     _ref
         .read(prayerControllerProvider.notifier)
         .onDayChanged(logicalDate, force: true);
-    await _cancelPrayerReminderSnooze(prayerId, logicalDate);
+    await _cancelPrayerReminderSnoozes(
+      prayerId,
+      logicalDate,
+      _reminderKindFromPayload(payload),
+    );
     await _cancelPrayerReminderFollowUp(prayerId);
   }
 
   Future<void> _snoozePrayerReminder(
-    ReminderNotificationPayload payload,
+    ReminderNotificationPayload payload, {
+    required int minutes,
+  }
   ) async {
     if (!payload.isPrayerReminder) {
       PlatformRouteDispatcher.dispatch(payload.route);
       return;
     }
 
-    final profileSettings = _ref.read(profileSettingsProvider);
     final prayerId = payload.prayerId!;
     final logicalDate = payload.logicalDate!;
-    final scheduledAt = DateTime.now().add(
-      Duration(minutes: profileSettings.prayerReminderSnoozeMinutes),
-    );
+    final reminderKind = _reminderKindFromPayload(payload);
+    final nextSnoozeCount = payload.snoozeCount + 1;
+    if (nextSnoozeCount > _maxPrayerReminderSnoozes) {
+      return;
+    }
+    final scheduledAt = DateTime.now().add(Duration(minutes: minutes));
     final reminder = ReminderPlanItem(
-      id: _snoozeToken(prayerId, logicalDate),
-      kind: ReminderKind.prayerAtTime,
+      id: _snoozeToken(
+        prayerId,
+        logicalDate,
+        reminderKind,
+        nextSnoozeCount,
+      ),
+      kind: reminderKind,
       prayerId: prayerId,
       when: scheduledAt,
       notificationMode: PrayerNotificationMode.notificationOnly,
     );
-    await _cancelPrayerReminderSnooze(prayerId, logicalDate);
+    await _cancelPrayerReminderSnoozes(prayerId, logicalDate, reminderKind);
     await _plugin.zonedSchedule(
       _notificationId(reminder.id),
       _titleFor(reminder),
@@ -834,6 +945,9 @@ class LocalNotificationService {
         route: payload.route,
         prayerId: prayerId,
         logicalDate: logicalDate,
+        reminderKind: reminderKind.name,
+        snoozeCount: nextSnoozeCount,
+        watchRoute: payload.watchRoute,
       ).encode(),
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
       uiLocalNotificationDateInterpretation:
@@ -851,30 +965,63 @@ class LocalNotificationService {
             logicalDate: logicalDate,
             payload: <String, dynamic>{
               'prayerId': prayerId,
-              'minutes': profileSettings.prayerReminderSnoozeMinutes,
+              'minutes': minutes,
+              'reminderKind': reminderKind.name,
+              'snoozeCount': nextSnoozeCount,
             },
             sourceVersion: '1',
           ),
         );
   }
 
-  Future<void> _cancelPrayerReminderSnooze(
+  Future<void> _dismissPrayerReminder(ReminderNotificationPayload payload) async {
+    if (!payload.isPrayerReminder) return;
+    await _cancelPrayerReminderSnoozes(
+      payload.prayerId!,
+      payload.logicalDate!,
+      _reminderKindFromPayload(payload),
+    );
+  }
+
+  Future<void> _cancelPrayerReminderSnoozes(
     String prayerId,
     String logicalDate,
+    ReminderKind reminderKind,
   ) async {
-    await _plugin.cancel(_notificationId(_snoozeToken(prayerId, logicalDate)));
+    for (var count = 1; count <= _maxPrayerReminderSnoozes; count++) {
+      await _plugin.cancel(
+        _notificationId(
+          _snoozeToken(prayerId, logicalDate, reminderKind, count),
+        ),
+      );
+    }
   }
 
   Future<void> _cancelPrayerReminderFollowUp(String prayerId) async {
     await _plugin.cancel(_notificationId(_followUpToken(prayerId)));
   }
 
-  String _snoozeToken(String prayerId, String logicalDate) {
-    return 'prayer.$prayerId.snooze.$logicalDate';
+  String _snoozeToken(
+    String prayerId,
+    String logicalDate,
+    ReminderKind reminderKind,
+    int snoozeCount,
+  ) {
+    return 'prayer.$prayerId.snooze.$logicalDate.${reminderKind.name}.$snoozeCount';
   }
 
   String _followUpToken(String prayerId) {
     return 'prayer.$prayerId.followUp';
+  }
+
+  ReminderKind _reminderKindFromPayload(ReminderNotificationPayload payload) {
+    final rawKind = payload.reminderKind;
+    if (rawKind != null) {
+      for (final kind in ReminderKind.values) {
+        if (kind.name == rawKind) return kind;
+      }
+    }
+    return ReminderKind.prayerAtTime;
   }
 
   AppLocalizations get _l10n => lookupAppLocalizations(

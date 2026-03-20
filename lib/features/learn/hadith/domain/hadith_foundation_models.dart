@@ -26,6 +26,11 @@ class HadithEntry {
     required this.hadithText,
     this.englishText,
     this.arabicText,
+    this.transliteration,
+    this.sourceUrl,
+    this.translationSourceVerified = false,
+    this.arabicMatnSourceVerified = false,
+    this.transliterationSourceVerified = false,
     required this.source,
     this.sourceCollection,
     this.sourceReference,
@@ -53,6 +58,11 @@ class HadithEntry {
   final String hadithText;
   final String? englishText;
   final String? arabicText;
+  final String? transliteration;
+  final String? sourceUrl;
+  final bool translationSourceVerified;
+  final bool arabicMatnSourceVerified;
+  final bool transliterationSourceVerified;
   final String source;
   final String? sourceCollection;
   final String? sourceReference;
@@ -74,6 +84,31 @@ class HadithEntry {
   String get displaySourceCollection => sourceCollection ?? source;
   String? get displaySourceReference => sourceReference;
   String get displayEnglishText => englishText ?? hadithText;
+  String get translation => displayEnglishText;
+  String? get arabicMatn => arabicText;
+  String? get transliteratedText => transliteration;
+  String get sourceLabel {
+    final parts = <String>[displaySourceCollection];
+    if (displaySourceReference != null &&
+        displaySourceReference!.trim().isNotEmpty) {
+      parts.add(displaySourceReference!.trim());
+    }
+    return parts.join(' • ');
+  }
+
+  bool get hasArabicMatn => (arabicMatn ?? '').trim().isNotEmpty;
+  bool get hasTransliteration => (transliteratedText ?? '').trim().isNotEmpty;
+  bool get hasVerifiedTranslation =>
+      translationSourceVerified && translation.trim().isNotEmpty;
+  bool get hasVerifiedArabicMatn => arabicMatnSourceVerified && hasArabicMatn;
+  bool get hasVerifiedTransliteration =>
+      transliterationSourceVerified && hasTransliteration;
+  bool get isSourceBacked => sourceUrl != null && sourceUrl!.trim().isNotEmpty;
+  bool get isLaunchReady =>
+      hasVerifiedTranslation &&
+      hasVerifiedArabicMatn &&
+      displaySourceReference != null &&
+      displaySourceReference!.trim().isNotEmpty;
 }
 
 class HadithTheme {

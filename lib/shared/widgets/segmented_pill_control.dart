@@ -21,9 +21,9 @@ class SegmentedPillControl<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appearance = Theme.of(context).extension<AppAppearanceTheme>();
-    final onSurface = appearance?.onSurface ?? AppColors.onSurface;
-    final onSurfaceSubtle =
-        appearance?.onSurfaceSubtle ?? AppColors.onSurfaceSubtle;
+    final contentColors = AppSurfaceTheme.contentColors(context);
+    final onSurface = contentColors.foreground;
+    final onSurfaceSubtle = contentColors.subtleForeground;
     final accent = appearance?.accent ?? AppColors.accentGold;
     final outerStyle = AppSurfaceTheme.resolve(
       context,

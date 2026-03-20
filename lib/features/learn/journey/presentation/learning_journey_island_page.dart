@@ -4,7 +4,13 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/application/kids_ui_theme_provider.dart';
+import '../../../../shared/content/contextual_quran_quotes.dart';
+import '../../../../shared/widgets/premium_card.dart';
+import '../../../../shared/widgets/quran_verse_content.dart';
 import '../../../../shared/content/learning_quote.dart';
+import '../../glossary/domain/glossary_models.dart';
+import '../../glossary/presentation/widgets/glossary_widgets.dart';
+import '../../presentation/widgets/learn_cards.dart';
 import '../application/family_learning_provider.dart';
 import '../application/learning_journey_progress_provider.dart';
 import '../data/learning_journey_localized_metadata.dart';
@@ -46,7 +52,11 @@ class LearningJourneyIslandPage extends ConsumerWidget {
     return LearnHubPageScaffold(
       headerIcon: island.icon,
       title: localizedIslandTitle(context, island),
-      subtitle: localizedIslandDescription(context, island),
+      subtitle: localizedIslandDescription(
+        context,
+        island,
+        kidsMode: kidsUi.enabled,
+      ),
       quote: buildLearningCompactQuote(),
       children: [
         if (visibilityPolicy.isChildProfile && journeys.isEmpty)
@@ -62,23 +72,49 @@ class LearningJourneyIslandPage extends ConsumerWidget {
               style: const TextStyle(color: Color(0xFF675B4E), height: 1.35),
             ),
           ),
-        Container(
-          padding: const EdgeInsets.all(14),
-          decoration: BoxDecoration(
-            color: island.color,
-            borderRadius: BorderRadius.circular(18),
-            border: Border.all(
-              color: island.accentColor.withValues(alpha: 0.2),
+        if (island.id != 'core-knowledge')
+          Container(
+            padding: const EdgeInsets.all(14),
+            decoration: BoxDecoration(
+              color: island.color,
+              borderRadius: BorderRadius.circular(18),
+              border: Border.all(
+                color: island.accentColor.withValues(alpha: 0.2),
+              ),
             ),
-          ),
-          child: Text(
-            localizedIslandSubtitle(context, island),
-            style: TextStyle(
-              color: island.accentColor,
-              fontWeight: FontWeight.w700,
+            child: Text(
+              localizedIslandSubtitle(context, island),
+              style: TextStyle(
+                color: island.accentColor,
+                fontWeight: FontWeight.w700,
+              ),
             ),
-          ),
         ),
+        if (island.id == 'core-knowledge') const _FoundationsTawheedBlock(),
+        if (island.id == 'core-knowledge') ...[
+          const SizedBox(height: 14),
+          LearnActionCard(
+            title: l10n.learnGlossaryCardTitle,
+            subtitle: l10n.learnGlossaryCardSubtitle,
+            icon: Icons.menu_book_rounded,
+            onTap: () => context.pushNamed('learnGlossary'),
+          ),
+          const SizedBox(height: 10),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              Text(l10n.learnGlossaryQuickTermsLabel),
+              const GlossaryInlineTerm(entryId: GlossaryEntryId.salah),
+              const Text('•'),
+              const GlossaryInlineTerm(entryId: GlossaryEntryId.ibadah),
+              const Text('•'),
+              const GlossaryInlineTerm(entryId: GlossaryEntryId.dhikr),
+              const Text('•'),
+              const GlossaryInlineTerm(entryId: GlossaryEntryId.quran),
+            ],
+          ),
+        ],
         if (journeys.isNotEmpty) ...[
           const SizedBox(height: 14),
           LearningJourneyCard(
@@ -226,6 +262,25 @@ class LearningJourneyIslandPage extends ConsumerWidget {
       default:
         return null;
     }
+  }
+}
+
+class _FoundationsTawheedBlock extends StatelessWidget {
+  const _FoundationsTawheedBlock();
+
+  @override
+  Widget build(BuildContext context) {
+    return PremiumCard(
+      child: QuranVerseContent(
+        source: QuranVerseSource(
+          ref: buildContextualQuranQuote(
+            ContextualQuranQuoteKey.foundationsTawheed,
+          ).ref,
+        ),
+        center: true,
+        arabicBaseSize: 31,
+      ),
+    );
   }
 }
 

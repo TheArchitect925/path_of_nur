@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/widgets/premium_card.dart';
+import '../../../shared/widgets/section_title.dart';
 import '../../learn/presentation/widgets/learn_hub_page_scaffold.dart';
 import '../models/faq_item.dart';
 import '../providers/faq_providers.dart';
@@ -259,24 +260,7 @@ class _FaqLandingPageState extends ConsumerState<FaqLandingPage> {
   }
 
   Widget _sectionTitle(BuildContext context, String title, String subtitle) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          title,
-          style: Theme.of(
-            context,
-          ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
-        ),
-        const SizedBox(height: 4),
-        Text(
-          subtitle,
-          style: Theme.of(
-            context,
-          ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),
-        ),
-      ],
-    );
+    return SectionTitle(title: title, subtitle: subtitle);
   }
 
   Widget _errorCard(Object error) {

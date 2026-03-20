@@ -7,7 +7,7 @@ const List<TriviaKnowledgePath> triviaKnowledgePaths = [
     id: 'foundations_of_islam',
     title: 'Foundations of Islam',
     description:
-        'A gentle introduction to revelation, worship, prayer, fasting, and daily remembrance.',
+        'A gentle introduction to revelation, ibadah, salah, fasting, and daily remembrance.',
     icon: Icons.foundation_rounded,
     stages: [
       TriviaKnowledgeStage(
@@ -39,9 +39,9 @@ const List<TriviaKnowledgePath> triviaKnowledgePaths = [
       ),
       TriviaKnowledgeStage(
         id: 'prayer_and_worship',
-        title: 'Prayer and Worship',
+        title: 'Salah and Ibadah',
         learningText:
-            'Salah shapes the day and keeps the heart connected to Allah. It is among the clearest daily expressions of worship.',
+            'Salah shapes the day and keeps the heart connected to Allah. It is among the clearest daily expressions of ibadah.',
         reference: 'Qur’an 20:14',
         questionIds: ['salah_easy_001', 'salah_easy_003', 'salah_easy_007'],
         difficulty: TriviaDifficulty.easy,
@@ -177,7 +177,7 @@ const List<TriviaKnowledgePath> triviaKnowledgePaths = [
     stages: [
       TriviaKnowledgeStage(
         id: 'five_daily_prayers',
-        title: 'The Five Daily Prayers',
+        title: 'The Five Daily Salahs',
         learningText:
             'Salah is spread across the day, anchoring a believer in remembrance and worship.',
         reference: 'Qur’an 20:14',
@@ -186,9 +186,9 @@ const List<TriviaKnowledgePath> triviaKnowledgePaths = [
       ),
       TriviaKnowledgeStage(
         id: 'conditions_of_prayer',
-        title: 'Conditions of Prayer',
+        title: 'Conditions of Salah',
         learningText:
-            'Prayer depends on preparation, including purity, facing the qiblah, and praying in the proper time.',
+            'Salah depends on preparation, including purity, facing the qiblah, and praying in the proper time.',
         questionIds: ['salah_easy_011', 'salah_easy_012', 'salah_easy_015'],
         difficulty: TriviaDifficulty.easy,
       ),
@@ -204,15 +204,15 @@ const List<TriviaKnowledgePath> triviaKnowledgePaths = [
         id: 'congregation_and_jummah',
         title: 'Congregation and Jumu‘ah',
         learningText:
-            'Prayer in congregation builds unity, discipline, and shared remembrance, and Friday prayer holds a special place.',
+            'Salah in congregation builds unity, discipline, and shared remembrance, and Friday salah holds a special place.',
         questionIds: ['salah_int_058', 'salah_int_063', 'salah_int_067'],
         difficulty: TriviaDifficulty.medium,
       ),
       TriviaKnowledgeStage(
         id: 'sunnah_and_khushu',
-        title: 'Sunnah Prayer and Khushu',
+        title: 'Sunnah Salah and Khushu',
         learningText:
-            'Beyond obligation, sunnah prayers and inner focus deepen one’s relationship with salah.',
+            'Beyond obligation, sunnah salahs and inner focus deepen one’s relationship with salah.',
         questionIds: ['salah_int_071', 'salah_int_076', 'salah_hard_090'],
         difficulty: TriviaDifficulty.hard,
       ),

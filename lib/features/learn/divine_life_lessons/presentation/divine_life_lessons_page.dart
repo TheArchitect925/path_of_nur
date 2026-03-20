@@ -4,9 +4,11 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_surfaces.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/quran_reference_block.dart';
 import '../../../../shared/widgets/segmented_pill_control.dart';
+import '../../presentation/widgets/learn_discovery_search_field.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/divine_life_lessons_provider.dart';
 import '../data/divine_life_lessons_data.dart';
@@ -63,6 +65,7 @@ class _DivineLifeLessonsPageState extends ConsumerState<DivineLifeLessonsPage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final progress = ref.watch(divineLifeProgressProvider);
     final recent = ref.watch(divineLifeRecentLessonsProvider);
     final bookmarked = ref.watch(divineLifeBookmarkedLessonsProvider);
@@ -86,6 +89,11 @@ class _DivineLifeLessonsPageState extends ConsumerState<DivineLifeLessonsPage> {
             lesson.title,
             lesson.shortSummary,
             lesson.quranReference,
+            lesson.surahName,
+            lesson.translationText ?? '',
+            lesson.reflection,
+            lesson.practicalTakeaway,
+            ...lesson.actionSteps,
             ...lesson.tags,
           ].join(' ').toLowerCase();
           return haystack.contains(query);
@@ -167,10 +175,17 @@ class _DivineLifeLessonsPageState extends ConsumerState<DivineLifeLessonsPage> {
           ),
         ),
         const SizedBox(height: 10),
-        _SearchCard(
-          controller: _searchController,
-          hintText: 'Search lessons, themes, situations...',
-          onChanged: (_) => setState(() {}),
+        PremiumCard(
+          surfaceVariant: AppSurfaceVariant.panel,
+          child: LearnDiscoverySearchField(
+            controller: _searchController,
+            hintText: l10n.searchDivineLessonsHint,
+            onChanged: (_) => setState(() {}),
+            onClear: () {
+              _searchController.clear();
+              setState(() {});
+            },
+          ),
         ),
         const SizedBox(height: 10),
         PremiumCard(
@@ -319,6 +334,8 @@ class _DivineLifeLessonsPageState extends ConsumerState<DivineLifeLessonsPage> {
             featuredLessons: featuredLessons,
             groups: lessonGroups,
             onOpenLesson: (id) => _openLesson(context, id),
+            emptyTitle: l10n.learnHubSearchEmptyTitle,
+            emptySubtitle: l10n.learnHubSearchEmptySubtitle,
           ),
         if (_tab == DivineLifeTab.themes)
           _ThemesTab(
@@ -527,80 +544,40 @@ class _CategoryPill extends StatelessWidget {
   }
 }
 
-class _SearchCard extends StatelessWidget {
-  const _SearchCard({
-    required this.controller,
-    required this.hintText,
-    required this.onChanged,
-  });
-
-  final TextEditingController controller;
-  final String hintText;
-  final ValueChanged<String> onChanged;
-
-  @override
-  Widget build(BuildContext context) {
-    final surfaceStyle = AppSurfaceTheme.resolve(
-      context,
-      variant: AppSurfaceVariant.panel,
-    );
-    return Container(
-      padding: const EdgeInsets.fromLTRB(12, 10, 12, 8),
-      decoration: surfaceStyle.decoration(radius: 16),
-      child: Column(
-        children: [
-          Row(
-            children: [
-              Icon(
-                Icons.search_rounded,
-                size: 32,
-                color: AppColors.onSurface.withValues(alpha: 0.75),
-              ),
-              const SizedBox(width: 10),
-              Expanded(
-                child: TextField(
-                  controller: controller,
-                  onChanged: onChanged,
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: hintText,
-                    isCollapsed: true,
-                  ),
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ),
-            ],
-          ),
-          Container(
-            height: 1,
-            color: AppColors.onSurface.withValues(alpha: 0.55),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
 class _LessonsTab extends StatelessWidget {
   const _LessonsTab({
     required this.lessons,
     required this.featuredLessons,
     required this.groups,
     required this.onOpenLesson,
+    required this.emptyTitle,
+    required this.emptySubtitle,
   });
 
   final List<DivineLifeLesson> lessons;
   final List<DivineLifeLesson> featuredLessons;
   final List<_ThemeLessonGroup> groups;
   final ValueChanged<String> onOpenLesson;
+  final String emptyTitle;
+  final String emptySubtitle;
 
   @override
   Widget build(BuildContext context) {
     if (lessons.isEmpty) {
-      return const PremiumCard(
-        child: Text('No lessons match your current search and filters.'),
+      return PremiumCard(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              emptyTitle,
+              style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+            const SizedBox(height: 6),
+            Text(emptySubtitle),
+          ],
+        ),
       );
     }
 

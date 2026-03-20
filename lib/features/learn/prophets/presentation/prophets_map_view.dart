@@ -38,7 +38,7 @@ class _ProphetsMapViewState extends State<ProphetsMapView> {
       if (focused != null && focused.hasMapLocation) {
         WidgetsBinding.instance.addPostFrameCallback((_) {
           if (!mounted) return;
-          _openPreview(focused);
+          _openPreview(_MapLocationGroup(prophets: [focused]));
         });
       }
     }
@@ -48,6 +48,7 @@ class _ProphetsMapViewState extends State<ProphetsMapView> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final markers = widget.prophets.where((p) => p.hasMapLocation).toList();
+    final locationGroups = _groupLocations(markers);
     final unknown = widget.prophets.where((p) => !p.hasMapLocation).toList();
 
     return Column(
@@ -70,19 +71,21 @@ class _ProphetsMapViewState extends State<ProphetsMapView> {
                       Positioned.fill(
                         child: CustomPaint(painter: _CalmWorldPainter()),
                       ),
-                      ...markers.map((prophet) {
+                      ...locationGroups.map((group) {
                         final point = _latLonToPoint(
-                          prophet.latitude!,
-                          prophet.longitude!,
+                          group.latitude,
+                          group.longitude,
                         );
-                        final focused = widget.focusedProphetId == prophet.id;
+                        final focused = group.prophets.any(
+                          (prophet) => prophet.id == widget.focusedProphetId,
+                        );
                         return Positioned(
-                          left: point.dx - 9,
-                          top: point.dy - 9,
+                          left: point.dx - 34,
+                          top: point.dy - 50,
                           child: _MapMarker(
-                            prophet: prophet,
+                            group: group,
                             focused: focused,
-                            onTap: () => _openPreview(prophet),
+                            onTap: () => _openPreview(group),
                           ),
                         );
                       }),
@@ -200,15 +203,32 @@ class _ProphetsMapViewState extends State<ProphetsMapView> {
     return Offset(x.clamp(0, _mapWidth), y.clamp(0, _mapHeight));
   }
 
-  void _openPreview(ProphetEntry prophet) {
+  List<_MapLocationGroup> _groupLocations(List<ProphetEntry> prophets) {
+    final groups = <String, List<ProphetEntry>>{};
+    for (final prophet in prophets) {
+      final key =
+          '${prophet.latitude!.toStringAsFixed(4)}:${prophet.longitude!.toStringAsFixed(4)}:${prophet.locationLabel ?? prophet.regionLabel}';
+      groups.putIfAbsent(key, () => <ProphetEntry>[]).add(prophet);
+    }
+    return groups.values
+        .map(
+          (entries) => _MapLocationGroup(
+            prophets: [...entries]..sort((a, b) => a.timelineOrder - b.timelineOrder),
+          ),
+        )
+        .toList(growable: false);
+  }
+
+  void _openPreview(_MapLocationGroup group) {
     showModalBottomSheet<void>(
       context: context,
       showDragHandle: true,
       backgroundColor: Colors.transparent,
       builder: (context) {
         return ProphetMapPreviewSheet(
-          prophet: prophet,
-          onOpenDetail: () {
+          prophets: group.prophets,
+          locationLabel: group.locationLabel,
+          onOpenDetail: (prophet) {
             Navigator.of(context).pop();
             widget.onOpenDetail(prophet);
           },
@@ -220,44 +240,122 @@ class _ProphetsMapViewState extends State<ProphetsMapView> {
 
 class _MapMarker extends StatelessWidget {
   const _MapMarker({
-    required this.prophet,
+    required this.group,
     required this.focused,
     required this.onTap,
   });
 
-  final ProphetEntry prophet;
+  final _MapLocationGroup group;
   final bool focused;
   final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final lead = group.prophets.first;
+    final color = focused ? AppColors.accentGold : lead.eraGroup.tint;
+    final label = group.prophets.length == 1
+        ? lead.honoredName
+        : group.locationLabel;
+    final showLabel = focused || group.prophets.length > 1;
     return Tooltip(
       message: l10n.prophetsMapMarkerTooltip(
-        prophet.honoredName,
-        prophet.locationLabel ?? prophet.regionLabel,
+        label,
+        group.locationLabel,
       ),
       child: InkWell(
         onTap: onTap,
-        borderRadius: BorderRadius.circular(20),
-        child: Container(
-          width: 18,
-          height: 18,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: focused ? AppColors.accentGold : prophet.eraGroup.tint,
-            border: Border.all(
-              color: AppColors.accentGold.withValues(alpha: 0.9),
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: (focused ? AppColors.accentGold : prophet.eraGroup.tint)
-                    .withValues(alpha: 0.45),
-                blurRadius: focused ? 14 : 10,
-                spreadRadius: focused ? 2 : 1,
+        borderRadius: BorderRadius.circular(22),
+        child: Column(
+          children: [
+            if (showLabel)
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(14),
+                  color: const Color(0xCC10202A),
+                  border: Border.all(color: color.withValues(alpha: 0.55)),
+                ),
+                child: Text(
+                  label,
+                  style: const TextStyle(
+                    fontSize: 11,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                  ),
+                ),
               ),
-            ],
-          ),
+            if (showLabel) const SizedBox(height: 6),
+            Stack(
+              clipBehavior: Clip.none,
+              alignment: Alignment.center,
+              children: [
+                Container(
+                  width: 22,
+                  height: 22,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: color,
+                    border: Border.all(color: AppColors.accentGoldSoft, width: 1.4),
+                    boxShadow: [
+                      BoxShadow(
+                        color: color.withValues(alpha: 0.28),
+                        blurRadius: focused ? 10 : 7,
+                        spreadRadius: focused ? 1 : 0,
+                      ),
+                    ],
+                  ),
+                ),
+                Positioned(
+                  bottom: -7,
+                  child: Container(
+                    width: 10,
+                    height: 10,
+                    decoration: BoxDecoration(
+                      color: color,
+                      border: Border(
+                        right: BorderSide(
+                          color: AppColors.accentGoldSoft,
+                          width: 1.1,
+                        ),
+                        bottom: BorderSide(
+                          color: AppColors.accentGoldSoft,
+                          width: 1.1,
+                        ),
+                      ),
+                    ),
+                    transform: Matrix4.rotationZ(0.78),
+                  ),
+                ),
+                if (group.prophets.length > 1)
+                  Positioned(
+                    right: -9,
+                    top: -8,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 5,
+                        vertical: 2,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(999),
+                        border: Border.all(
+                          color: color.withValues(alpha: 0.35),
+                        ),
+                      ),
+                      child: Text(
+                        '${group.prophets.length}',
+                        style: TextStyle(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w800,
+                          color: color,
+                        ),
+                      ),
+                    ),
+                  ),
+              ],
+            ),
+          ],
         ),
       ),
     );
@@ -291,65 +389,120 @@ class _CalmWorldPainter extends CustomPainter {
     }
 
     final land = Paint()
-      ..color = const Color(0xFF8E9C88).withValues(alpha: 0.42);
-    final accent = Paint()..color = const Color(0x33E6D1AC);
+      ..color = const Color(0xFF8E9C88).withValues(alpha: 0.46)
+      ..style = PaintingStyle.fill;
+    final coast = Paint()
+      ..color = const Color(0x66E6D1AC)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 2;
+    final focusBand = Paint()
+      ..color = const Color(0x22E8D5B5)
+      ..style = PaintingStyle.fill;
 
-    final continents = <Rect>[
-      Rect.fromLTWH(
-        size.width * 0.08,
-        size.height * 0.22,
-        size.width * 0.19,
-        size.height * 0.36,
-      ),
-      Rect.fromLTWH(
-        size.width * 0.29,
-        size.height * 0.16,
-        size.width * 0.22,
+    final propheticBelt = RRect.fromRectAndRadius(
+      Rect.fromLTWH(size.width * 0.50, size.height * 0.16, size.width * 0.22, size.height * 0.34),
+      const Radius.circular(36),
+    );
+    canvas.drawRRect(propheticBelt, focusBand);
+
+    final africa = Path()
+      ..moveTo(size.width * 0.43, size.height * 0.21)
+      ..quadraticBezierTo(
+        size.width * 0.38,
+        size.height * 0.31,
+        size.width * 0.41,
+        size.height * 0.49,
+      )
+      ..quadraticBezierTo(
+        size.width * 0.45,
+        size.height * 0.64,
+        size.width * 0.50,
+        size.height * 0.70,
+      )
+      ..quadraticBezierTo(
+        size.width * 0.57,
+        size.height * 0.59,
+        size.width * 0.56,
+        size.height * 0.42,
+      )
+      ..quadraticBezierTo(
+        size.width * 0.54,
+        size.height * 0.28,
+        size.width * 0.48,
+        size.height * 0.21,
+      )
+      ..close();
+
+    final arabia = Path()
+      ..moveTo(size.width * 0.55, size.height * 0.30)
+      ..quadraticBezierTo(
+        size.width * 0.60,
+        size.height * 0.33,
+        size.width * 0.61,
+        size.height * 0.44,
+      )
+      ..quadraticBezierTo(
+        size.width * 0.58,
+        size.height * 0.54,
+        size.width * 0.54,
+        size.height * 0.50,
+      )
+      ..quadraticBezierTo(
+        size.width * 0.52,
+        size.height * 0.39,
+        size.width * 0.55,
+        size.height * 0.30,
+      )
+      ..close();
+
+    final levantAndMesopotamia = Path()
+      ..moveTo(size.width * 0.55, size.height * 0.22)
+      ..quadraticBezierTo(
+        size.width * 0.60,
+        size.height * 0.20,
+        size.width * 0.64,
+        size.height * 0.24,
+      )
+      ..quadraticBezierTo(
+        size.width * 0.67,
+        size.height * 0.30,
+        size.width * 0.66,
         size.height * 0.38,
-      ),
-      Rect.fromLTWH(
+      )
+      ..quadraticBezierTo(
+        size.width * 0.61,
+        size.height * 0.37,
+        size.width * 0.58,
+        size.height * 0.34,
+      )
+      ..quadraticBezierTo(
+        size.width * 0.55,
+        size.height * 0.31,
+        size.width * 0.55,
+        size.height * 0.22,
+      )
+      ..close();
+
+    final europe = Path()
+      ..moveTo(size.width * 0.48, size.height * 0.16)
+      ..quadraticBezierTo(
+        size.width * 0.53,
+        size.height * 0.12,
+        size.width * 0.58,
+        size.height * 0.15,
+      )
+      ..quadraticBezierTo(
+        size.width * 0.56,
+        size.height * 0.20,
         size.width * 0.50,
         size.height * 0.20,
-        size.width * 0.18,
-        size.height * 0.28,
-      ),
-      Rect.fromLTWH(
-        size.width * 0.66,
-        size.height * 0.26,
-        size.width * 0.24,
-        size.height * 0.34,
-      ),
-    ];
+      )
+      ..close();
 
-    for (final rect in continents) {
-      canvas.drawRRect(
-        RRect.fromRectAndRadius(rect, const Radius.circular(120)),
-        land,
-      );
-      canvas.drawRRect(
-        RRect.fromRectAndRadius(
-          Rect.fromCenter(
-            center: rect.center,
-            width: rect.width * 0.72,
-            height: rect.height * 0.66,
-          ),
-          const Radius.circular(100),
-        ),
-        accent,
-      );
+    for (final shape in [africa, arabia, levantAndMesopotamia, europe]) {
+      canvas.drawPath(shape, land);
+      canvas.drawPath(shape, coast);
     }
-
-    final glow = Paint()
-      ..shader =
-          RadialGradient(
-            colors: [const Color(0x44E8D5B5), Colors.transparent],
-          ).createShader(
-            Rect.fromCircle(
-              center: Offset(size.width * 0.58, size.height * 0.46),
-              radius: 160,
-            ),
-          );
-    canvas.drawCircle(Offset(size.width * 0.58, size.height * 0.46), 160, glow);
   }
 
   @override
@@ -362,4 +515,15 @@ extension<T> on Iterable<T> {
     if (!iterator.moveNext()) return null;
     return iterator.current;
   }
+}
+
+class _MapLocationGroup {
+  const _MapLocationGroup({required this.prophets});
+
+  final List<ProphetEntry> prophets;
+
+  double get latitude => prophets.first.latitude!;
+  double get longitude => prophets.first.longitude!;
+  String get locationLabel =>
+      prophets.first.locationLabel ?? prophets.first.regionLabel;
 }

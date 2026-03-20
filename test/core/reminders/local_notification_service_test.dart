@@ -8,6 +8,7 @@ void main() {
       route: '/worship?prayerId=dhuhr',
       prayerId: 'dhuhr',
       logicalDate: '2026-03-18',
+      reminderKind: 'at_time',
       watchRoute: 'pathofnurwatch://prayer?prayerId=dhuhr',
     );
 

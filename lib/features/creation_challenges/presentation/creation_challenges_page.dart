@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../l10n/app_localizations.dart';
+import '../../../shared/application/special_mode_provider.dart';
+import '../../../shared/content/page_description_copy.dart';
 import '../../../shared/widgets/app_page_scaffold.dart';
 import '../../../shared/widgets/premium_card.dart';
+import '../../../shared/widgets/quran_verse_content.dart';
 import '../../../shared/widgets/segmented_pill_control.dart';
 import '../../creation_explorer/data/creation_explorer_catalog.dart';
 import '../application/creation_challenge_services.dart';
@@ -32,18 +36,29 @@ class _CreationChallengesPageState extends ConsumerState<CreationChallengesPage>
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final isKidsMode = ref.watch(
+      specialModeProvider.select((mode) => mode.isKids),
+    );
     final summaries = ref.watch(currentCreationChallengesProvider);
     final streak = ref.watch(creationChallengeStreakProvider);
     final state = ref.watch(creationChallengeServiceProvider);
     return AppPageScaffold(
       headerIcon: Icons.flag_circle_rounded,
       title: 'Creation Challenges',
-      subtitle: 'Quiet prompts that help you notice creation with more intention.',
+      subtitle: localizedAppPageDescription(
+        context,
+        AppPageDescriptionKey.creationChallenges,
+        kidsMode: isKidsMode,
+      ),
       children: [
         SegmentedPillControl<_CreationChallengeTab>(
           items: _CreationChallengeTab.values,
           selectedItem: _tab,
-          labelBuilder: (tab) => tab == _CreationChallengeTab.today ? 'Today' : 'History',
+          labelBuilder: (tab) =>
+              tab == _CreationChallengeTab.today
+                  ? l10n.commonToday
+                  : l10n.commonHistory,
           onChanged: (value) => setState(() => _tab = value),
         ),
         const SizedBox(height: 10),
@@ -150,9 +165,16 @@ class _ChallengeCard extends ConsumerWidget {
           Text(challenge.description),
           if (verse != null) ...[
             const SizedBox(height: 10),
-            Text(verse.ayahReference, style: Theme.of(context).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w700)),
-            const SizedBox(height: 4),
-            Text('"${verse.translation}"'),
+            QuranVerseContent(
+              source: QuranVerseSource(
+                referenceText: verse.ayahReference,
+                arabicText: verse.arabicText,
+                translation: verse.translation,
+              ),
+              center: false,
+              dense: true,
+              arabicBaseSize: 24,
+            ),
           ],
           if (challenge.reflectionPrompt != null) ...[
             const SizedBox(height: 10),

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_surfaces.dart';
 import 'app_page_scaffold.dart';
 import 'quran_quote_block.dart';
+import 'shortcut_dock.dart';
 
 class SectionShortcutAction {
   const SectionShortcutAction({
@@ -45,6 +45,7 @@ class SectionHubScaffold extends StatefulWidget {
     required this.children,
     this.headerIcon,
     this.quote,
+    this.quoteHeader,
     this.onQuoteTap,
     this.headerActions,
     this.shortcutActions = const <SectionShortcutAction>[],
@@ -58,6 +59,7 @@ class SectionHubScaffold extends StatefulWidget {
   final String subtitle;
   final IconData? headerIcon;
   final QuranQuote? quote;
+  final Widget? quoteHeader;
   final ValueChanged<QuranQuote>? onQuoteTap;
   final List<Widget>? headerActions;
   final List<Widget> children;
@@ -81,6 +83,7 @@ class _SectionHubScaffoldState extends State<SectionHubScaffold> {
       title: widget.title,
       subtitle: widget.subtitle,
       quote: widget.quote,
+      quoteHeader: widget.quoteHeader,
       onQuoteTap: widget.onQuoteTap,
       headerActions: widget.headerActions,
       backgroundAssetPath: widget.backgroundAssetPath,
@@ -149,6 +152,7 @@ class SectionHubActionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final contentColors = AppSurfaceTheme.contentColors(context);
     final surfaceStyle = AppSurfaceTheme.resolve(
       context,
       variant: AppSurfaceVariant.island,
@@ -194,8 +198,8 @@ class SectionHubActionCard extends StatelessWidget {
                 action.subtitle,
                 maxLines: 3,
                 overflow: TextOverflow.ellipsis,
-                style: const TextStyle(
-                  color: AppColors.onSurfaceSubtle,
+                style: TextStyle(
+                  color: contentColors.subtleForeground,
                   height: 1.35,
                 ),
               ),
@@ -224,165 +228,22 @@ class _SectionShortcutDock extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.end,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        AnimatedSwitcher(
-          duration: const Duration(milliseconds: 220),
-          switchInCurve: Curves.easeOutCubic,
-          switchOutCurve: Curves.easeInCubic,
-          transitionBuilder: (child, animation) {
-            return FadeTransition(
-              opacity: animation,
-              child: SizeTransition(
-                sizeFactor: animation,
-                axisAlignment: 1,
-                child: child,
-              ),
-            );
-          },
-          child: !expanded
-              ? const SizedBox.shrink()
-              : Column(
-                  key: const ValueKey('section-shortcuts-expanded'),
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    for (final action in actions) ...[
-                      _SectionShortcutChip(action: action),
-                      const SizedBox(height: 10),
-                    ],
-                  ],
-                ),
-        ),
-        _SectionShortcutToggleChip(
-          expanded: expanded,
-          openLabel: openLabel,
-          closeLabel: closeLabel,
-          onTap: onToggle,
-        ),
-      ],
-    );
-  }
-}
-
-class _SectionShortcutChip extends StatelessWidget {
-  const _SectionShortcutChip({required this.action});
-
-  final SectionShortcutAction action;
-
-  @override
-  Widget build(BuildContext context) {
-    final surfaceStyle = AppSurfaceTheme.resolve(
-      context,
-      variant: AppSurfaceVariant.pill,
-    );
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        borderRadius: BorderRadius.circular(999),
-        onTap: action.onTap,
-        splashColor: surfaceStyle.splashColor,
-        highlightColor: surfaceStyle.highlightColor,
-        child: Ink(
-          decoration: surfaceStyle.decoration(radius: 999, includeShadow: true),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(action.icon, size: 18, color: AppColors.onSurface),
-                const SizedBox(width: 8),
-                ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 196),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        action.label,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.w700,
-                          color: AppColors.onSurface,
-                        ),
-                      ),
-                      if (action.supportingText case final supporting?)
-                        Text(
-                          supporting,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                            fontSize: 11.8,
-                            color: AppColors.onSurfaceSubtle,
-                          ),
-                        ),
-                    ],
-                  ),
-                ),
-              ],
+    return ShortcutDock(
+      expanded: expanded,
+      openLabel: openLabel,
+      closeLabel: closeLabel,
+      onToggle: onToggle,
+      actions: actions
+          .map(
+            (action) => ShortcutDockAction(
+              label: action.label,
+              supportingText: action.supportingText,
+              icon: action.icon,
+              onTap: action.onTap,
+              palette: ShortcutDockPalette.defaultWarm,
             ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _SectionShortcutToggleChip extends StatelessWidget {
-  const _SectionShortcutToggleChip({
-    required this.expanded,
-    required this.openLabel,
-    required this.closeLabel,
-    required this.onTap,
-  });
-
-  final bool expanded;
-  final String openLabel;
-  final String closeLabel;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    final surfaceStyle = AppSurfaceTheme.resolve(
-      context,
-      variant: AppSurfaceVariant.pill,
-    );
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        borderRadius: BorderRadius.circular(999),
-        onTap: onTap,
-        splashColor: surfaceStyle.splashColor,
-        highlightColor: surfaceStyle.highlightColor,
-        child: Ink(
-          decoration: surfaceStyle.decoration(radius: 999, includeShadow: true),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(
-                  expanded ? Icons.close_rounded : Icons.apps_rounded,
-                  size: 18,
-                  color: AppColors.onSurface,
-                ),
-                const SizedBox(width: 8),
-                Text(
-                  expanded ? closeLabel : openLabel,
-                  style: const TextStyle(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w700,
-                    color: AppColors.onSurface,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
+          )
+          .toList(growable: false),
     );
   }
 }

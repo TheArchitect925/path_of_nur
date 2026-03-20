@@ -671,38 +671,38 @@ final salahRecitations = <RecitationModel>[
 final salahEssentials = <SalahEssentialTopic>[
   const SalahEssentialTopic(
     id: 'conditions',
-    title: 'Conditions of prayer',
+    title: 'Conditions of salah',
     summary: 'Before salah begins, the foundations around it must be in place.',
     bullets: [
-      'Prayer time must have entered.',
-      'The body, clothing, and place of prayer should be clean.',
+      'Salah time must have entered.',
+      'The body, clothing, and place of salah should be clean.',
       'Awrah should be covered appropriately.',
       'Face the qiblah as best as you can.',
-      'Make the intention in the heart for the prayer you are offering.',
+      'Make the intention in the heart for the salah you are offering.',
     ],
   ),
   const SalahEssentialTopic(
     id: 'invalidators',
-    title: 'What invalidates prayer',
+    title: 'What invalidates salah',
     summary: 'Some things break salah and require starting again.',
     bullets: [
-      'Breaking wudu invalidates the prayer.',
-      'Intentional speaking unrelated to prayer invalidates it.',
+      'Breaking wudu invalidates the salah.',
+      'Intentional speaking unrelated to salah invalidates it.',
       'Large unnecessary movements break the calmness and can invalidate salah.',
-      'Intentionally eating or drinking invalidates prayer.',
-      'Losing awareness of the prayer entirely or deliberately turning away from the qiblah invalidates it.',
+      'Intentionally eating or drinking invalidates salah.',
+      'Losing awareness of the salah entirely or deliberately turning away from the qiblah invalidates it.',
     ],
   ),
   const SalahEssentialTopic(
     id: 'loud_silent',
-    title: 'Loud vs silent prayers',
+    title: 'Loud vs silent salahs',
     summary:
-        'Some prayers are recited aloud in the fard prayer and others silently.',
+        'Some salahs are recited aloud in the fard salah and others silently.',
     bullets: [
       'Fajr is recited aloud.',
       'Maghrib and Isha are recited aloud in the first two rakahs.',
       'Dhuhr and Asr are recited silently.',
-      'A person praying alone may still follow the normal style of the prayer.',
+      'A person praying alone may still follow the normal style of the salah.',
     ],
   ),
   const SalahEssentialTopic(
@@ -715,13 +715,13 @@ final salahEssentials = <SalahEssentialTopic>[
       'Not standing fully after ruku before going down to sujud.',
       'Forgetting that al-Fatihah is recited in every rakah.',
       'Confusing the final sitting with the middle sitting in 3- and 4-rakah prayers.',
-      'Letting worry about perfection remove the calmness of prayer.',
+      'Letting worry about perfection remove the calmness of salah.',
     ],
   ),
   const SalahEssentialTopic(
     id: 'intention_timing',
-    title: 'Intention and prayer timing',
-    summary: 'Prayer is strongest when offered on time with presence.',
+    title: 'Intention and salah timing',
+    summary: 'Salah is strongest when offered on time with presence.',
     bullets: [
       'Intention is a quiet inward act, not a required spoken formula.',
       'Try to pray early in the prayer window when possible.',
@@ -924,7 +924,7 @@ final salahSurahs = <SurahModel>[
     summary:
         'A warning against neglecting prayer and withholding small acts of care.',
     reflection:
-        'Prayer without mercy and sincerity becomes hollow. This surah keeps worship tied to character.',
+        'Salah without mercy and sincerity becomes hollow. This surah keeps ibadah tied to character.',
     verses: const [
       (
         1,
@@ -976,9 +976,9 @@ final salahSurahs = <SurahModel>[
     name: 'Al-Kawthar',
     arabicName: 'الكوثر',
     summary:
-        'A short surah of abundance, prayer, and sacrifice for Allah alone.',
+        'A short surah of abundance, salah, and sacrifice for Allah alone.',
     reflection:
-        'This surah teaches the heart to answer blessing with prayer and sincere devotion.',
+        'This surah teaches the heart to answer blessing with salah and sincere devotion.',
     verses: const [
       (
         1,
@@ -1006,9 +1006,9 @@ final salahSurahs = <SurahModel>[
     name: 'Al-Kafirun',
     arabicName: 'الكافرون',
     summary:
-        'A clear declaration of worshiping Allah alone without compromise.',
+        'A clear declaration of worshipping Allah alone without compromise.',
     reflection:
-        'This surah steadies intention. Worship belongs to Allah alone, without negotiation or blending.',
+        'This surah steadies intention. Ibadah belongs to Allah alone, without negotiation or blending.',
     verses: const [
       (
         1,

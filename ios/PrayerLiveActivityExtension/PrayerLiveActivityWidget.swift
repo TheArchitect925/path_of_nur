@@ -9,6 +9,7 @@ struct PrayerCountdownAttributes: ActivityAttributes {
     var currentPrayerName: String?
     var currentPrayerArabicName: String?
     var currentRemainingSeconds: Int?
+    var currentPrayerAtEpoch: Int?
     var showRamadanCountdown: Bool
     var ramadanPrayerId: String?
     var ramadanPrayerName: String?
@@ -67,13 +68,14 @@ struct PrayerLiveActivityWidget: Widget {
         .activityBackgroundTint(Color(hex: 0x0D2030, alpha: 0.92))
         .activitySystemActionForegroundColor(Color(hex: 0xD8C49A))
     } dynamicIsland: { context in
-      DynamicIsland {
+      let primary = resolvePrimaryPrayerPresentation(context.state)
+      return DynamicIsland {
         DynamicIslandExpandedRegion(.leading) {
           VStack(alignment: .leading, spacing: 2) {
-            Text(primaryPrayerLabel(context.state))
+            Text(primary.compactLabel)
               .font(.caption2)
               .foregroundStyle(Color(hex: 0xA7B9C4))
-            Text(primaryPrayerName(context.state))
+            Text(primary.name)
               .font(.headline)
               .foregroundStyle(Color(hex: 0xF3EEE5))
               .lineLimit(1)
@@ -83,8 +85,8 @@ struct PrayerLiveActivityWidget: Widget {
         }
         DynamicIslandExpandedRegion(.trailing) {
           countdownText(
-            seconds: primaryRemainingSeconds(context.state),
-            targetEpoch: primaryTargetEpoch(context.state),
+            seconds: primary.seconds,
+            targetEpoch: primary.targetEpoch,
             font: .headline
           )
             .foregroundStyle(Color(hex: 0xF3EEE5))
@@ -92,52 +94,25 @@ struct PrayerLiveActivityWidget: Widget {
         }
         DynamicIslandExpandedRegion(.bottom) {
           if !context.state.useStableDynamicIsland {
-            HStack(alignment: .top, spacing: 10) {
-              if context.state.showRamadanCountdown,
-                 let ramadanName = context.state.ramadanPrayerName,
-                 let ramadanArabic = context.state.ramadanPrayerArabicName,
-                 let ramadanRemaining = context.state.ramadanRemainingSeconds {
-                _DynamicRow(
-                  label: "Ramadan",
-                  name: "Open Fast",
-                  arabicName: ramadanArabic.isEmpty ? ramadanName : ramadanArabic,
-                  valueLabel: "Iftar in",
-                  seconds: ramadanRemaining,
-                  targetEpoch: context.state.ramadanTargetAtEpoch
-                )
-              } else if context.state.showCurrentPrayer,
-                        let currentName = context.state.currentPrayerName,
-                        let currentArabic = context.state.currentPrayerArabicName,
-                        let currentRemaining = context.state.currentRemainingSeconds {
-                _DynamicRow(
-                  label: "Current",
-                  name: currentName,
-                  arabicName: currentArabic,
-                  valueLabel: "Ends in",
-                  seconds: currentRemaining,
-                  targetEpoch: context.state.nextTargetAtEpoch
-                )
-              }
-              _DynamicRow(
-                label: "Next",
-                name: context.state.nextPrayerName,
-                arabicName: context.state.nextPrayerArabicName,
-                valueLabel: "Starts in",
-                seconds: context.state.nextRemainingSeconds,
-                targetEpoch: context.state.nextTargetAtEpoch
-              )
-            }
-            .fixedSize(horizontal: true, vertical: true)
+            _DynamicRow(
+              label: primary.compactLabel,
+              name: primary.name,
+              arabicName: primary.arabicName,
+              valueLabel: primary.metricLabel,
+              seconds: primary.seconds,
+              targetEpoch: primary.targetEpoch
+            )
+              .fixedSize(horizontal: true, vertical: true)
           }
         }
       } compactLeading: {
-        Text(shortPrayerLabel(primaryPrayerName(context.state)))
+        Text(shortPrayerLabel(primary.name))
           .font(.caption2)
           .foregroundStyle(Color(hex: 0xE8D9C0))
       } compactTrailing: {
         countdownText(
-          seconds: primaryRemainingSeconds(context.state),
-          targetEpoch: primaryTargetEpoch(context.state),
+          seconds: primary.seconds,
+          targetEpoch: primary.targetEpoch,
           font: .caption2,
           compact: true
         )
@@ -154,65 +129,32 @@ private struct PrayerLiveLockscreenCard: View {
   let state: PrayerCountdownAttributes.ContentState
 
   var body: some View {
+    let primary = resolvePrimaryPrayerPresentation(state)
     Group {
       if state.useStableLockScreenWidget {
-        compactLayout
+        compactLayout(primary: primary)
       } else {
         ViewThatFits(in: .vertical) {
-          fullLayout
-          compactLayout
+          fullLayout(primary: primary)
+          compactLayout(primary: primary)
         }
       }
     }
   }
 
-  private var fullLayout: some View {
+  private func fullLayout(primary: PrayerPrimaryPresentation) -> some View {
     ZStack {
       cardBackground
       VStack(spacing: 10) {
-        if state.showRamadanCountdown,
-           let ramadanName = state.ramadanPrayerName,
-           let ramadanArabic = state.ramadanPrayerArabicName,
-           let ramadanRemaining = state.ramadanRemainingSeconds {
-          _PrayerSection(
-            sectionLabel: "Ramadan",
-            prayerName: "Open Fast",
-            prayerArabicName: ramadanArabic.isEmpty ? ramadanName : ramadanArabic,
-            metricLabel: "Time to iftar",
-            seconds: ramadanRemaining,
-            targetEpoch: state.ramadanTargetAtEpoch,
-            prominent: true
-          )
-          Divider()
-            .overlay(Color.white.opacity(0.14))
-            .padding(.horizontal, 8)
-        }
-        if state.showCurrentPrayer,
-           let currentName = state.currentPrayerName,
-           let currentArabic = state.currentPrayerArabicName,
-           let currentRemaining = state.currentRemainingSeconds {
-          _PrayerSection(
-            sectionLabel: "Current Prayer",
-            prayerName: currentName,
-            prayerArabicName: currentArabic,
-            metricLabel: "Remaining time",
-            seconds: currentRemaining,
-            targetEpoch: state.nextTargetAtEpoch,
-            prominent: true
-          )
-          Divider()
-            .overlay(Color.white.opacity(0.14))
-            .padding(.horizontal, 8)
-        }
-
         _PrayerSection(
-          sectionLabel: "Next Prayer",
-          prayerName: state.nextPrayerName,
-          prayerArabicName: state.nextPrayerArabicName,
-          metricLabel: "Starts in",
-          seconds: state.nextRemainingSeconds,
-          targetEpoch: state.nextTargetAtEpoch,
-          prominent: false
+          sectionLabel: primary.sectionLabel,
+          prayerName: primary.name,
+          prayerArabicName: primary.arabicName,
+          metricLabel: primary.metricLabel,
+          seconds: primary.seconds,
+          scheduledEpoch: primary.scheduledEpoch,
+          targetEpoch: primary.targetEpoch,
+          prominent: true
         )
       }
       .padding(.vertical, 10)
@@ -220,48 +162,18 @@ private struct PrayerLiveLockscreenCard: View {
     }
   }
 
-  private var compactLayout: some View {
+  private func compactLayout(primary: PrayerPrimaryPresentation) -> some View {
     ZStack {
       cardBackground
       VStack(spacing: 6) {
-        if state.showRamadanCountdown,
-           let ramadanName = state.ramadanPrayerName,
-           let ramadanArabic = state.ramadanPrayerArabicName,
-           let ramadanRemaining = state.ramadanRemainingSeconds {
-          _PrayerSection(
-            sectionLabel: "Ramadan",
-            prayerName: "Open Fast",
-            prayerArabicName: ramadanArabic.isEmpty ? ramadanName : ramadanArabic,
-            metricLabel: "Time to iftar",
-            seconds: ramadanRemaining,
-            targetEpoch: state.ramadanTargetAtEpoch,
-            prominent: true,
-            compact: true
-          )
-        }
-        if state.showCurrentPrayer,
-           let currentName = state.currentPrayerName,
-           let currentArabic = state.currentPrayerArabicName,
-           let currentRemaining = state.currentRemainingSeconds {
-          _PrayerSection(
-            sectionLabel: "Current Prayer",
-            prayerName: currentName,
-            prayerArabicName: currentArabic,
-            metricLabel: "Remaining time",
-            seconds: currentRemaining,
-            targetEpoch: state.nextTargetAtEpoch,
-            prominent: false,
-            compact: true
-          )
-        }
-
         _PrayerSection(
-          sectionLabel: "Next Prayer",
-          prayerName: state.nextPrayerName,
-          prayerArabicName: state.nextPrayerArabicName,
-          metricLabel: "Starts in",
-          seconds: state.nextRemainingSeconds,
-          targetEpoch: state.nextTargetAtEpoch,
+          sectionLabel: primary.sectionLabel,
+          prayerName: primary.name,
+          prayerArabicName: primary.arabicName,
+          metricLabel: primary.metricLabel,
+          seconds: primary.seconds,
+          scheduledEpoch: primary.scheduledEpoch,
+          targetEpoch: primary.targetEpoch,
           prominent: false,
           compact: true
         )
@@ -297,6 +209,7 @@ private struct _PrayerSection: View {
   let prayerArabicName: String
   let metricLabel: String
   let seconds: Int
+  let scheduledEpoch: Int?
   let targetEpoch: Int?
   let prominent: Bool
   let compact: Bool
@@ -307,6 +220,7 @@ private struct _PrayerSection: View {
     prayerArabicName: String,
     metricLabel: String,
     seconds: Int,
+    scheduledEpoch: Int? = nil,
     targetEpoch: Int? = nil,
     prominent: Bool,
     compact: Bool = false
@@ -316,13 +230,14 @@ private struct _PrayerSection: View {
     self.prayerArabicName = prayerArabicName
     self.metricLabel = metricLabel
     self.seconds = seconds
+    self.scheduledEpoch = scheduledEpoch
     self.targetEpoch = targetEpoch
     self.prominent = prominent
     self.compact = compact
   }
 
   var body: some View {
-    VStack(spacing: compact ? 1 : 3) {
+    VStack(spacing: compact ? 2 : 4) {
       Text(sectionLabel)
         .font(.caption2)
         .foregroundStyle(Color(hex: 0xA7B9C4))
@@ -348,6 +263,12 @@ private struct _PrayerSection: View {
           font: compact ? .caption.weight(.semibold) : .subheadline.weight(.semibold)
         )
           .foregroundStyle(Color(hex: 0xE8D9C0))
+      }
+      if let scheduledEpoch {
+        Text(formattedPrayerTime(epoch: scheduledEpoch))
+          .font(compact ? .caption2.weight(.medium) : .caption.weight(.medium))
+          .foregroundStyle(Color(hex: 0xD8E6EA))
+          .lineLimit(1)
       }
     }
     .multilineTextAlignment(.center)
@@ -382,16 +303,6 @@ private struct _DynamicRow: View {
     .fixedSize(horizontal: true, vertical: true)
     .multilineTextAlignment(.center)
   }
-}
-
-private func primaryPrayerLabel(_ state: PrayerCountdownAttributes.ContentState) -> String {
-  if state.showRamadanCountdown {
-    return "Ramadan"
-  }
-  if state.showCurrentPrayer {
-    return "Current Prayer"
-  }
-  return "Next Prayer"
 }
 
 @main
@@ -692,31 +603,67 @@ private struct _QuranControlPill: View {
   }
 }
 
-private func primaryPrayerName(_ state: PrayerCountdownAttributes.ContentState) -> String {
-  if state.showRamadanCountdown {
-    return "Iftar"
-  }
-  if state.showCurrentPrayer, let current = state.currentPrayerName, !current.isEmpty {
-    return current
-  }
-  return state.nextPrayerName
+private struct PrayerPrimaryPresentation {
+  let compactLabel: String
+  let sectionLabel: String
+  let name: String
+  let arabicName: String
+  let metricLabel: String
+  let seconds: Int
+  let scheduledEpoch: Int?
+  let targetEpoch: Int?
 }
 
-private func primaryRemainingSeconds(_ state: PrayerCountdownAttributes.ContentState) -> Int {
-  if state.showRamadanCountdown, let ramadanSeconds = state.ramadanRemainingSeconds {
-    return max(0, ramadanSeconds)
+private func resolvePrimaryPrayerPresentation(
+  _ state: PrayerCountdownAttributes.ContentState
+) -> PrayerPrimaryPresentation {
+  if state.showRamadanCountdown,
+     let ramadanName = state.ramadanPrayerName,
+     let ramadanSeconds = state.ramadanRemainingSeconds {
+    let ramadanArabic = state.ramadanPrayerArabicName ?? ""
+    return PrayerPrimaryPresentation(
+      compactLabel: "Ramadan",
+      sectionLabel: "Ramadan",
+      name: "Iftar",
+      arabicName: ramadanArabic.isEmpty ? ramadanName : ramadanArabic,
+      metricLabel: "Iftar in",
+      seconds: max(0, ramadanSeconds),
+      scheduledEpoch: state.ramadanTargetAtEpoch,
+      targetEpoch: state.ramadanTargetAtEpoch
+    )
   }
-  if state.showCurrentPrayer, let currentSeconds = state.currentRemainingSeconds {
-    return max(0, currentSeconds)
+
+  if state.showCurrentPrayer,
+     let currentName = state.currentPrayerName,
+     !currentName.isEmpty,
+     let currentSeconds = state.currentRemainingSeconds {
+    return PrayerPrimaryPresentation(
+      compactLabel: "Current",
+      sectionLabel: "Current Salah",
+      name: currentName,
+      arabicName: state.currentPrayerArabicName ?? "",
+      metricLabel: "Ends in",
+      seconds: max(0, currentSeconds),
+      scheduledEpoch: state.currentPrayerAtEpoch,
+      targetEpoch: state.nextTargetAtEpoch
+    )
   }
-  return max(0, state.nextRemainingSeconds)
+
+  return PrayerPrimaryPresentation(
+    compactLabel: "Next",
+    sectionLabel: "Next Salah",
+    name: state.nextPrayerName,
+    arabicName: state.nextPrayerArabicName,
+    metricLabel: "Starts in",
+    seconds: max(0, state.nextRemainingSeconds),
+    scheduledEpoch: state.nextTargetAtEpoch,
+    targetEpoch: state.nextTargetAtEpoch
+  )
 }
 
-private func primaryTargetEpoch(_ state: PrayerCountdownAttributes.ContentState) -> Int? {
-  if state.showRamadanCountdown {
-    return state.ramadanTargetAtEpoch
-  }
-  return state.nextTargetAtEpoch
+private func formattedPrayerTime(epoch: Int) -> String {
+  Date(timeIntervalSince1970: TimeInterval(epoch))
+    .formatted(date: .omitted, time: .shortened)
 }
 
 private func timeLeftText(_ seconds: Int) -> String {

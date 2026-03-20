@@ -13,6 +13,7 @@ class AppPageScaffold extends ConsumerWidget {
     required this.title,
     required this.subtitle,
     this.quote,
+    this.quoteHeader,
     this.quotePool,
     this.headerIcon,
     this.onQuoteTap,
@@ -27,6 +28,7 @@ class AppPageScaffold extends ConsumerWidget {
   final String title;
   final String subtitle;
   final QuranQuote? quote;
+  final Widget? quoteHeader;
   final List<QuranQuote>? quotePool;
   final IconData? headerIcon;
   final ValueChanged<QuranQuote>? onQuoteTap;
@@ -41,7 +43,10 @@ class AppPageScaffold extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final canPop = Navigator.canPop(context);
     final appearance = Theme.of(context).extension<AppAppearanceTheme>();
-    final foreground = appearance?.onSurface ?? const Color(0xFF3A3026);
+    final foreground =
+        appearance?.backgroundForeground ?? const Color(0xFF3A3026);
+    final subtleForeground =
+        appearance?.backgroundForegroundSubtle ?? const Color(0xFF5D4F44);
     final resolvedQuote =
         quote ?? (quotePool == null ? null : quoteFromPoolForToday(quotePool!));
     final reduceMotion = ref.watch(
@@ -86,12 +91,14 @@ class AppPageScaffold extends ConsumerWidget {
                             children: [
                               Text(
                                 title,
-                                style: Theme.of(context).textTheme.titleLarge,
+                                style: Theme.of(context).textTheme.titleLarge
+                                    ?.copyWith(color: foreground),
                               ),
                               const SizedBox(height: 6),
                               Text(
                                 subtitle,
-                                style: Theme.of(context).textTheme.bodyMedium,
+                                style: Theme.of(context).textTheme.bodyMedium
+                                    ?.copyWith(color: subtleForeground),
                               ),
                             ],
                           ),
@@ -108,17 +115,26 @@ class AppPageScaffold extends ConsumerWidget {
                       children: [
                         Text(
                           title,
-                          style: Theme.of(context).textTheme.titleLarge,
+                          style: Theme.of(
+                            context,
+                          ).textTheme.titleLarge?.copyWith(color: foreground),
                         ),
                         const SizedBox(height: 6),
                         Text(
                           subtitle,
-                          style: Theme.of(context).textTheme.bodyMedium,
+                          style: Theme.of(context).textTheme.bodyMedium
+                              ?.copyWith(color: subtleForeground),
                         ),
                       ],
                     ),
                   const SizedBox(height: 12),
-                  if (resolvedQuote != null) ...[
+                  if (quoteHeader != null) ...[
+                    const SizedBox(height: 12),
+                    _AnimatedQuoteHeader(
+                      reduceMotion: reduceMotion,
+                      child: quoteHeader!,
+                    ),
+                  ] else if (resolvedQuote != null) ...[
                     const SizedBox(height: 12),
                     _AnimatedQuoteHeader(
                       reduceMotion: reduceMotion,

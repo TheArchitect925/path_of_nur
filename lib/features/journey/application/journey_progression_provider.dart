@@ -1022,7 +1022,7 @@ List<JourneyMonthlyBadge> _buildMonthlyBadges(
   return [
     buildBadge(
       id: 'prayer_guardian',
-      title: 'Prayer Guardian',
+      title: 'Salah Guardian',
       description: 'Offer prayers consistently through the month.',
       current: prayers,
       target: prayerTarget,
@@ -1103,8 +1103,8 @@ List<JourneyDailyBadge> _buildDailyBadges(
   return [
     JourneyDailyBadge(
       id: 'all_prayers',
-      title: 'All Prayers',
-      description: 'Completed all 5 daily prayers.',
+      title: 'All Salahs',
+      description: 'Completed all 5 daily salahs.',
       earnedToday: today.prayerCompleted >= 5,
       earnedCount: achievedDays((metrics) => metrics.prayerCompleted >= 5),
     ),
@@ -1132,7 +1132,7 @@ List<JourneyDailyBadge> _buildDailyBadges(
     JourneyDailyBadge(
       id: 'perfect_day',
       title: 'Perfect Day',
-      description: 'Prayers, dhikr, Qur\'an, and reflection all completed.',
+      description: 'Salah, dhikr, Qur\'an, and reflection all completed.',
       earnedToday: today.prayerCompleted >= 5 &&
           today.dhikrCount >= dailyDhikrGoal &&
           today.quranEngagements >= 1 &&
@@ -1147,7 +1147,7 @@ List<JourneyDailyBadge> _buildDailyBadges(
     ),
     JourneyDailyBadge(
       id: 'no_missed_prayers',
-      title: 'No Missed Prayers',
+      title: 'No Missed Salahs',
       description: 'Completed the day without marking any salah as missed.',
       earnedToday: today.prayerCompleted >= 5 && today.prayerMissed == 0,
       earnedCount: achievedDays(

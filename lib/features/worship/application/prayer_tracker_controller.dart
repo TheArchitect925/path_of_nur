@@ -6,11 +6,10 @@ import '../../ocean/application/ocean_drops_provider.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/persistence/local_store.dart';
 import '../data/prayer_log_repository.dart';
+import '../domain/prayer_calendar_mode.dart';
 import '../domain/prayer_name.dart';
 import '../domain/prayer_status.dart';
 import '../domain/prayer_tracker_fields.dart';
-
-enum PrayerCalendarMode { gregorian, islamic }
 
 class PrayerTrackerEntry {
   const PrayerTrackerEntry({

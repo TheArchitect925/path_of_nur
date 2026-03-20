@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../l10n/app_localizations.dart';
 import '../../../../core/prayer/prayer_location_search_service.dart';
 import '../../../../core/prayer/prayer_preferences.dart';
 import '../../../../core/theme/app_colors.dart';
@@ -12,6 +13,7 @@ import '../../../../features/profile/application/profile_settings_provider.dart'
 import '../../../../shared/state/location_permission_state.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/prayer_location_picker_sheet.dart';
+import '../../../../shared/widgets/quran_verse_content.dart';
 import '../../application/celestial_services.dart';
 import '../../domain/celestial_models.dart';
 
@@ -68,10 +70,9 @@ class _CelestialCycleCardState extends ConsumerState<CelestialCycleCard> {
     final reduceMotion = ref.watch(
       profileSettingsProvider.select((value) => value.reduceMotion),
     );
-    final hintDismissed = ref.watch(celestialHintDismissedProvider);
-    final permission = ref.watch(locationPermissionProvider);
     final prefs = ref.watch(prayerSettingsProvider).preferences;
     final displayLocation = ref.watch(prayerLocationDisplayLabelProvider).value ?? prefs.location;
+    final l10n = AppLocalizations.of(context);
 
     return PremiumCard(
       padding: const EdgeInsets.all(0),
@@ -116,34 +117,16 @@ class _CelestialCycleCardState extends ConsumerState<CelestialCycleCard> {
                           ],
                         ),
                       ),
-                      const SizedBox(width: 12),
+                      const SizedBox(width: 8),
+                      IconButton(
+                        onPressed: () => _showLocationPicker(context, displayLocation),
+                        tooltip: l10n.worshipPrayerChooseLocationTitle,
+                        splashRadius: 20,
+                        icon: const Icon(Icons.location_on_outlined),
+                      ),
                       _SkyStateChip(state: snapshot.solarData.state),
                     ],
                   ),
-                  if (!hintDismissed) ...[
-                    const SizedBox(height: 12),
-                    _HintBanner(
-                      onDismiss: () {
-                        ref.read(celestialActionServiceProvider).dismissHomeHint();
-                        ref.read(celestialHintDismissedProvider.notifier).state = true;
-                      },
-                    ),
-                  ],
-                  if (prefs.useDeviceLocation && !permission.isGranted) ...[
-                    const SizedBox(height: 12),
-                    _PermissionBanner(
-                      onUseSavedLocation: () {
-                        _showLocationPicker(context, displayLocation);
-                      },
-                      onEnable: () {
-                        if (permission.isPermanentlyDenied) {
-                          ref.read(locationPermissionProvider.notifier).openSystemSettings();
-                        } else {
-                          ref.read(locationPermissionProvider.notifier).requestWhileUsingApp();
-                        }
-                      },
-                    ),
-                  ],
                   const SizedBox(height: 18),
                   _HorizonProgress(
                     snapshot: snapshot,
@@ -224,11 +207,15 @@ class _CelestialCycleCardState extends ConsumerState<CelestialCycleCard> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          snapshot.verseOfMoment.ayahReference,
-                          style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                                color: AppColors.onSurfaceSubtle,
-                              ),
+                        QuranVerseContent(
+                          source: QuranVerseSource(
+                            referenceText: snapshot.verseOfMoment.ayahReference,
+                            arabicText: snapshot.verseOfMoment.arabicText,
+                            translation: snapshot.verseOfMoment.translation,
+                          ),
+                          center: false,
+                          dense: true,
+                          arabicBaseSize: 24,
                         ),
                         const SizedBox(height: 6),
                         Text(
@@ -276,90 +263,6 @@ class _SkyStateChip extends StatelessWidget {
       child: Text(
         label,
         style: Theme.of(context).textTheme.labelMedium?.copyWith(color: color),
-      ),
-    );
-  }
-}
-
-class _HintBanner extends StatelessWidget {
-  const _HintBanner({required this.onDismiss});
-
-  final VoidCallback onDismiss;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: const Color(0xFF1C2B48).withValues(alpha: 0.45),
-        borderRadius: BorderRadius.circular(18),
-      ),
-      child: Row(
-        children: [
-          const Icon(Icons.wb_twilight_rounded, size: 18, color: Color(0xFFFFD5A3)),
-          const SizedBox(width: 10),
-          const Expanded(
-            child: Text(
-              'A gentle sky summary for prayer rhythms, reflection, and moon awareness.',
-            ),
-          ),
-          IconButton(
-            onPressed: onDismiss,
-            icon: const Icon(Icons.close_rounded, size: 18),
-            splashRadius: 18,
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _PermissionBanner extends StatelessWidget {
-  const _PermissionBanner({
-    required this.onUseSavedLocation,
-    required this.onEnable,
-  });
-
-  final VoidCallback onUseSavedLocation;
-  final VoidCallback onEnable;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: Colors.white.withValues(alpha: 0.04),
-        borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: Colors.white.withValues(alpha: 0.08)),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Location improves celestial accuracy',
-            style: Theme.of(context).textTheme.titleSmall,
-          ),
-          const SizedBox(height: 4),
-          Text(
-            'You can keep using a saved city, or allow location for better rise and set times.',
-            style: Theme.of(context).textTheme.bodySmall,
-          ),
-          const SizedBox(height: 10),
-          Wrap(
-            spacing: 8,
-            runSpacing: 8,
-            children: [
-              OutlinedButton(
-                onPressed: onUseSavedLocation,
-                child: const Text('Choose city'),
-              ),
-              FilledButton(
-                onPressed: onEnable,
-                child: const Text('Enable location'),
-              ),
-            ],
-          ),
-        ],
       ),
     );
   }

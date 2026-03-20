@@ -6,6 +6,7 @@ import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/segmented_pill_control.dart';
 import '../../presentation/data/learn_icon_registry.dart';
+import '../../presentation/widgets/learn_discovery_search_field.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/prophet_detail_repository.dart';
 import '../application/prophets_repository.dart';
@@ -155,13 +156,14 @@ class _ProphetsPageState extends ConsumerState<ProphetsPage> {
               ),
               const SizedBox(height: 10),
               if (!isQuiz && !isJourney && !isFamilyTree) ...[
-                TextField(
-                  onChanged: controller.setSearchQuery,
+                LearnDiscoverySearchField(
                   controller: _searchController,
-                  decoration: InputDecoration(
-                    hintText: l10n.prophetsSearchHint,
-                    prefixIcon: const Icon(Icons.search),
-                  ),
+                  hintText: l10n.searchProphetsHint,
+                  onChanged: controller.setSearchQuery,
+                  onClear: () {
+                    _searchController.clear();
+                    controller.setSearchQuery('');
+                  },
                 ),
                 const SizedBox(height: 10),
                 SingleChildScrollView(

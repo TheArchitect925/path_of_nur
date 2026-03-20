@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../core/theme/app_colors.dart';
+import '../../../l10n/app_localizations.dart';
+import '../../../shared/widgets/app_page_scaffold.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../models/faq_item.dart';
 import '../providers/faq_providers.dart';
@@ -26,79 +27,77 @@ class _FaqCategoryPageState extends ConsumerState<FaqCategoryPage> {
   Widget build(BuildContext context) {
     final datasetAsync = ref.watch(faqDatasetProvider);
     final itemsAsync = ref.watch(faqByCategoryProvider(widget.categoryId));
+    final l10n = AppLocalizations.of(context);
 
-    return Scaffold(
-      appBar: AppBar(),
-      body: datasetAsync.when(
-        data: (dataset) => itemsAsync.when(
-          data: (items) {
-            final title = dataset.categoryLabel(widget.categoryId);
-            final filtered = _applyFilter(items);
-            return ListView(
-              padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
-              children: [
-                Text(
-                  title,
-                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                    fontWeight: FontWeight.w800,
-                  ),
+    return datasetAsync.when(
+      data: (dataset) => itemsAsync.when(
+        data: (items) {
+          final title = dataset.categoryLabel(widget.categoryId);
+          final filtered = _applyFilter(items);
+          return AppPageScaffold(
+            title: title,
+            subtitle: l10n.batch9FaqBrowseSubtitle,
+            children: [
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: FaqCategoryFilter.values
+                      .map((filter) {
+                        return Padding(
+                          padding: const EdgeInsets.only(right: 8),
+                          child: ChoiceChip(
+                            label: Text(_filterLabel(filter)),
+                            selected: _filter == filter,
+                            onSelected: (_) => setState(() => _filter = filter),
+                          ),
+                        );
+                      })
+                      .toList(growable: false),
                 ),
-                const SizedBox(height: 6),
-                Text(
-                  'Browse common questions in this area with gentle, beginner-friendly answers.',
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: AppColors.onSurfaceSubtle,
+              ),
+              const SizedBox(height: 12),
+              if (filtered.isEmpty)
+                const PremiumCard(
+                  child: Text(
+                    'No questions match this filter right now.',
                   ),
-                ),
-                const SizedBox(height: 12),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: FaqCategoryFilter.values
-                        .map((filter) {
-                          return Padding(
-                            padding: const EdgeInsets.only(right: 8),
-                            child: ChoiceChip(
-                              label: Text(_filterLabel(filter)),
-                              selected: _filter == filter,
-                              onSelected: (_) =>
-                                  setState(() => _filter = filter),
-                            ),
-                          );
-                        })
-                        .toList(growable: false),
-                  ),
-                ),
-                const SizedBox(height: 12),
-                if (filtered.isEmpty)
-                  PremiumCard(
-                    child: const Text(
-                      'No questions match this filter right now.',
-                    ),
-                  )
-                else
-                  ...filtered.map(
-                    (item) => Padding(
-                      padding: const EdgeInsets.only(bottom: 10),
-                      child: FaqQuestionTile(
-                        item: item,
-                        onTap: () => context.pushNamed(
-                          'faqDetail',
-                          pathParameters: {'faqId': item.id},
-                        ),
+                )
+              else
+                ...filtered.map(
+                  (item) => Padding(
+                    padding: const EdgeInsets.only(bottom: 10),
+                    child: FaqQuestionTile(
+                      item: item,
+                      onTap: () => context.pushNamed(
+                        'faqDetail',
+                        pathParameters: {'faqId': item.id},
                       ),
                     ),
                   ),
-              ],
-            );
-          },
-          loading: () => const Center(child: CircularProgressIndicator()),
-          error: (error, _) =>
-              Center(child: Text('Unable to load category. $error')),
+                ),
+            ],
+          );
+        },
+        loading: () => AppPageScaffold(
+          title: l10n.batch9FaqTitle,
+          subtitle: l10n.batch9FaqBrowseSubtitle,
+          children: const [Center(child: CircularProgressIndicator())],
         ),
-        loading: () => const Center(child: CircularProgressIndicator()),
-        error: (error, _) =>
-            Center(child: Text('Unable to load category. $error')),
+        error: (error, _) => AppPageScaffold(
+          title: l10n.batch9FaqTitle,
+          subtitle: l10n.batch9FaqBrowseSubtitle,
+          children: [Center(child: Text('Unable to load category. $error'))],
+        ),
+      ),
+      loading: () => AppPageScaffold(
+        title: l10n.batch9FaqTitle,
+        subtitle: l10n.batch9FaqBrowseSubtitle,
+        children: const [Center(child: CircularProgressIndicator())],
+      ),
+      error: (error, _) => AppPageScaffold(
+        title: l10n.batch9FaqTitle,
+        subtitle: l10n.batch9FaqBrowseSubtitle,
+        children: [Center(child: Text('Unable to load category. $error'))],
       ),
     );
   }

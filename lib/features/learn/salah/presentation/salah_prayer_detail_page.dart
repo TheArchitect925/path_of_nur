@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/prayer/prayer_preferences.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/salah_trainer_provider.dart';
@@ -20,10 +21,11 @@ class SalahPrayerDetailPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     final prayer = ref.watch(salahTrainerPrayerByIdProvider(prayerId));
     final settings = ref.watch(prayerSettingsProvider);
     if (prayer == null) {
-      return const Scaffold(body: Center(child: Text('Prayer not found.')));
+      return Scaffold(body: Center(child: Text(l10n.salahPrayerDetailNotFound)));
     }
     final madhhabLabel =
         prayerMadhabKey[settings.preferences.madhab] ?? "Shafi'i";
@@ -67,7 +69,7 @@ class SalahPrayerDetailPage extends ConsumerWidget {
                   pathParameters: {'prayerId': prayer.id.name},
                 ),
                 icon: const Icon(Icons.play_arrow_rounded),
-                label: const Text('Start Guided Prayer'),
+                label: Text(l10n.learnSalahHubStartGuidedSalahAction),
               ),
             ],
           ),

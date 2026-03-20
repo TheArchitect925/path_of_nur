@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_radii.dart';
+import '../../../../core/theme/app_surfaces.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/section_title.dart';
@@ -81,12 +82,27 @@ class FastingSection extends ConsumerWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(AppRadii.pill),
                     color: isSelected
-                        ? AppColors.accentGold.withValues(alpha: 0.18)
-                        : AppColors.surface.withValues(alpha: 0.4),
+                        ? AppSurfaceTheme.adaptiveColor(
+                            context,
+                            AppColors.accentGold,
+                            alpha: 0.18,
+                            solidAlphaWhenDisabled: 0.28,
+                          )
+                        : AppSurfaceTheme.adaptiveColor(
+                            context,
+                            AppColors.surface,
+                            alpha: 0.4,
+                            solidAlphaWhenDisabled: 0.96,
+                          ),
                     border: Border.all(
                       color: isSelected
                           ? AppColors.accentGold
-                          : AppColors.accentGoldSoft.withValues(alpha: 0.45),
+                          : AppSurfaceTheme.adaptiveColor(
+                              context,
+                              AppColors.accentGoldSoft,
+                              alpha: 0.45,
+                              solidAlphaWhenDisabled: 0.55,
+                            ),
                     ),
                   ),
                   child: Text(
@@ -125,12 +141,27 @@ class FastingSection extends ConsumerWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(AppRadii.pill),
                     color: selected
-                        ? AppColors.accentGold.withValues(alpha: 0.2)
-                        : AppColors.surfaceSoft.withValues(alpha: 0.45),
+                        ? AppSurfaceTheme.adaptiveColor(
+                            context,
+                            AppColors.accentGold,
+                            alpha: 0.2,
+                            solidAlphaWhenDisabled: 0.30,
+                          )
+                        : AppSurfaceTheme.adaptiveColor(
+                            context,
+                            AppColors.surfaceSoft,
+                            alpha: 0.45,
+                            solidAlphaWhenDisabled: 0.96,
+                          ),
                     border: Border.all(
                       color: selected
                           ? AppColors.accentGold
-                          : AppColors.accentGoldSoft.withValues(alpha: 0.45),
+                          : AppSurfaceTheme.adaptiveColor(
+                              context,
+                              AppColors.accentGoldSoft,
+                              alpha: 0.45,
+                              solidAlphaWhenDisabled: 0.55,
+                            ),
                     ),
                   ),
                   child: Text(

@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:intl/intl.dart';
+import 'package:intl/intl.dart' as intl;
 
 import '../../../../core/theme/app_spacing.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_surfaces.dart';
+import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/theme/app_radii.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/application/special_mode_provider.dart';
 import '../../../../shared/utils/compact_duration_formatter.dart';
 import '../../../../shared/widgets/premium_card.dart';
+import '../../../../shared/widgets/quran_presentation_style.dart';
 import '../../../../shared/widgets/section_title.dart';
 import '../../application/dhikr_controller.dart';
 import '../../domain/dhikr_preset.dart';
@@ -156,18 +159,141 @@ class _DhikrSectionState extends ConsumerState<DhikrSection> {
       return;
     }
     final l10n = AppLocalizations.of(context);
+    final presetLabel = ref.read(
+      dhikrControllerProvider.select((state) => state.selectedPreset.label),
+    );
+    final theme = Theme.of(context);
     await showDialog<void>(
       context: context,
+      barrierDismissible: false,
       builder: (dialogContext) {
-        return AlertDialog(
-          title: Text(l10n.dhikrAntiRushTitle),
-          content: Text(l10n.dhikrAntiRushBody),
-          actions: [
-            FilledButton(
-              onPressed: () => Navigator.of(dialogContext).pop(),
-              child: Text(l10n.dhikrAntiRushAcknowledgeAction),
+        return Dialog(
+          backgroundColor: Colors.transparent,
+          insetPadding: const EdgeInsets.symmetric(
+            horizontal: 20,
+            vertical: 24,
+          ),
+          child: Container(
+            constraints: const BoxConstraints(maxWidth: 520),
+            decoration: BoxDecoration(
+              color: const Color(0xFFF6E7C8),
+              borderRadius: BorderRadius.circular(32),
+              border: Border.all(color: const Color(0x26B79661), width: 1.2),
+              boxShadow: const [
+                BoxShadow(
+                  color: Color(0x3320120B),
+                  blurRadius: 28,
+                  offset: Offset(0, 18),
+                ),
+              ],
             ),
-          ],
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.fromLTRB(28, 24, 28, 28),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Center(
+                    child: Text(
+                      presetLabel,
+                      textAlign: TextAlign.center,
+                      style: theme.textTheme.titleLarge?.copyWith(
+                        color: AppColors.onSurface,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 22),
+                  Text(
+                    l10n.dhikrAntiRushTitle,
+                    style: theme.textTheme.headlineMedium?.copyWith(
+                      color: AppColors.onSurface,
+                      fontWeight: FontWeight.w800,
+                      height: 1.05,
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+                  Directionality(
+                    textDirection: TextDirection.rtl,
+                    child: Text(
+                      l10n.dhikrAntiRushVerseArabic,
+                      style: QuranPresentationStyle.translucentTextStyle(
+                        context,
+                        AppTextStyles.quranVerse(
+                          size: 28,
+                          color: const Color(0xFF261A12),
+                          weight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    l10n.dhikrAntiRushVerseTransliteration,
+                    style: QuranPresentationStyle.translucentTextStyle(
+                      context,
+                      theme.textTheme.titleLarge?.copyWith(
+                            color: const Color(0xFF7A654C),
+                            fontStyle: FontStyle.italic,
+                            fontWeight: FontWeight.w600,
+                            height: 1.2,
+                          ) ??
+                          const TextStyle(
+                            color: Color(0xFF7A654C),
+                            fontStyle: FontStyle.italic,
+                            fontWeight: FontWeight.w600,
+                            height: 1.2,
+                          ),
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    l10n.dhikrAntiRushVerseTranslation,
+                    style: QuranPresentationStyle.translucentTextStyle(
+                      context,
+                      theme.textTheme.headlineSmall?.copyWith(
+                            color: AppColors.onSurface,
+                            fontWeight: FontWeight.w500,
+                            height: 1.25,
+                          ) ??
+                          const TextStyle(
+                            color: AppColors.onSurface,
+                            fontWeight: FontWeight.w500,
+                            height: 1.25,
+                          ),
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+                  Text(
+                    l10n.dhikrAntiRushBody,
+                    style: theme.textTheme.headlineSmall?.copyWith(
+                      color: AppColors.onSurfaceSubtle,
+                      fontWeight: FontWeight.w500,
+                      height: 1.35,
+                    ),
+                  ),
+                  const SizedBox(height: 28),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: TextButton(
+                      style: TextButton.styleFrom(
+                        foregroundColor: const Color(0xFF8A6430),
+                        textStyle: theme.textTheme.headlineSmall?.copyWith(
+                          fontWeight: FontWeight.w700,
+                        ),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 10,
+                        ),
+                      ),
+                      onPressed: () => Navigator.of(dialogContext).pop(),
+                      child: Text(l10n.dhikrAntiRushAcknowledgeAction),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
         );
       },
     );
@@ -259,9 +385,19 @@ class _DhikrSectionState extends ConsumerState<DhikrSection> {
                       width: 96,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: AppColors.homeAccent.withValues(alpha: 0.22),
+                        color: AppSurfaceTheme.adaptiveColor(
+                          context,
+                          AppColors.homeAccent,
+                          alpha: 0.22,
+                          solidAlphaWhenDisabled: 0.30,
+                        ),
                         border: Border.all(
-                          color: AppColors.homeAccent.withValues(alpha: 0.7),
+                          color: AppSurfaceTheme.adaptiveColor(
+                            context,
+                            AppColors.homeAccent,
+                            alpha: 0.7,
+                            solidAlphaWhenDisabled: 0.78,
+                          ),
                         ),
                       ),
                       alignment: Alignment.center,
@@ -354,11 +490,26 @@ class _DhikrSectionState extends ConsumerState<DhikrSection> {
                     border: Border.all(
                       color: isSelected
                           ? AppColors.accentGold
-                          : AppColors.accentGoldSoft.withValues(alpha: 0.45),
+                          : AppSurfaceTheme.adaptiveColor(
+                              context,
+                              AppColors.accentGoldSoft,
+                              alpha: 0.45,
+                              solidAlphaWhenDisabled: 0.55,
+                            ),
                     ),
                     color: isSelected
-                        ? AppColors.accentGold.withValues(alpha: 0.16)
-                        : AppColors.surfaceSoft.withValues(alpha: 0.35),
+                        ? AppSurfaceTheme.adaptiveColor(
+                            context,
+                            AppColors.accentGold,
+                            alpha: 0.16,
+                            solidAlphaWhenDisabled: 0.26,
+                          )
+                        : AppSurfaceTheme.adaptiveColor(
+                            context,
+                            AppColors.surfaceSoft,
+                            alpha: 0.35,
+                            solidAlphaWhenDisabled: 0.96,
+                          ),
                   ),
                   child: Text(
                     preset.label,
@@ -517,12 +668,27 @@ class _TargetChip extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(18),
           color: isSelected
-              ? AppColors.accentGold.withValues(alpha: 0.18)
-              : AppColors.surface.withValues(alpha: 0.45),
+              ? AppSurfaceTheme.adaptiveColor(
+                  context,
+                  AppColors.accentGold,
+                  alpha: 0.18,
+                  solidAlphaWhenDisabled: 0.28,
+                )
+              : AppSurfaceTheme.adaptiveColor(
+                  context,
+                  AppColors.surface,
+                  alpha: 0.45,
+                  solidAlphaWhenDisabled: 0.96,
+                ),
           border: Border.all(
             color: isSelected
                 ? AppColors.accentGold
-                : AppColors.accentGoldSoft.withValues(alpha: 0.45),
+                : AppSurfaceTheme.adaptiveColor(
+                    context,
+                    AppColors.accentGoldSoft,
+                    alpha: 0.45,
+                    solidAlphaWhenDisabled: 0.55,
+                  ),
           ),
         ),
         child: Text(
@@ -585,7 +751,7 @@ class _RecentDhikrSessionCard extends StatelessWidget {
           ),
           const SizedBox(width: 8),
           Text(
-            DateFormat.jm(
+            intl.DateFormat.jm(
               Localizations.localeOf(context).toLanguageTag(),
             ).format(session.finishedAt),
             style: const TextStyle(color: AppColors.onSurfaceSubtle),
@@ -597,7 +763,7 @@ class _RecentDhikrSessionCard extends StatelessWidget {
 }
 
 String _formatCount(BuildContext context, num value) {
-  return NumberFormat.decimalPattern(
+  return intl.NumberFormat.decimalPattern(
     Localizations.localeOf(context).toLanguageTag(),
   ).format(value);
 }

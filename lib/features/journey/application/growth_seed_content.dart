@@ -127,10 +127,10 @@ const List<GrowthCategoryContent> seededGrowthCategories = [
   GrowthCategoryContent(
     id: 'cat_daily_worship',
     category: GrowthHabitCategory.dailyWorship,
-    title: 'Daily Worship',
+    title: 'Daily Ibadah',
     subtitle: 'The daily anchors of faith',
     description:
-        'Core acts of remembrance and worship that structure the day around Allah.',
+        'Core acts of remembrance and ibadah that structure the day around Allah.',
     iconKey: 'prayer_beads',
     sortOrder: 1,
   ),
@@ -180,7 +180,7 @@ const List<GrowthCategoryContent> seededGrowthCategories = [
     title: 'Health & Discipline',
     subtitle: 'Caring for the vessel entrusted to you',
     description:
-        'Physical discipline, routine, moderation, and healthy structure that support worship.',
+        'Physical discipline, routine, moderation, and healthy structure that support ibadah.',
     iconKey: 'mountain',
     sortOrder: 6,
   ),
@@ -227,7 +227,7 @@ const List<GrowthStageContent> seededGrowthStages = [
     title: 'Path of Excellence',
     subtitle: 'Refine intention and presence',
     description:
-        'Advance with ihsan through disciplined worship, reflection, and character refinement.',
+        'Advance with ihsan through disciplined ibadah, reflection, and character refinement.',
     introductionCopy:
         'Return gently to what elevates your soul, one sincere act at a time.',
     unlockCopy:
@@ -236,21 +236,21 @@ const List<GrowthStageContent> seededGrowthStages = [
 ];
 
 const List<GrowthHabitContent> seededGrowthHabitContent = [
-  GrowthHabitContent(habitId: 'h_pray_five', suggestedRecurrence: 'Daily at prayer times', reminderCopy: 'Prayer time is near. Continue your path with presence.'),
+  GrowthHabitContent(habitId: 'h_pray_five', suggestedRecurrence: 'Daily at salah times', reminderCopy: 'Salah time is near. Continue your path with presence.'),
   GrowthHabitContent(habitId: 'h_read_quran', suggestedRecurrence: 'Daily, even a few ayat', reminderCopy: 'Open the Qur’an for a few moments. Small steps matter.'),
   GrowthHabitContent(habitId: 'h_morning_adhkar', suggestedRecurrence: 'Each morning', reminderCopy: 'Begin again this morning with remembrance.'),
   GrowthHabitContent(habitId: 'h_evening_adhkar', suggestedRecurrence: 'Each evening', reminderCopy: 'Return gently this evening with adhkar.'),
   GrowthHabitContent(habitId: 'h_make_dua', suggestedRecurrence: 'Daily, after salah or quiet moments', reminderCopy: 'Raise one sincere du’a before Allah.'),
   GrowthHabitContent(habitId: 'h_gratitude', suggestedRecurrence: 'Daily', reminderCopy: 'Name one blessing. Consistency grows over time.'),
   GrowthHabitContent(habitId: 'h_harmful_speech', suggestedRecurrence: 'Daily awareness', reminderCopy: 'Pause gently before speaking.'),
-  GrowthHabitContent(habitId: 'h_sunnah_prayer', suggestedRecurrence: 'Most weekdays', reminderCopy: 'Add one Sunnah prayer today if you can.'),
+  GrowthHabitContent(habitId: 'h_sunnah_prayer', suggestedRecurrence: 'Most weekdays', reminderCopy: 'Add one Sunnah salah today if you can.'),
   GrowthHabitContent(habitId: 'h_salawat', suggestedRecurrence: 'Daily', reminderCopy: 'Send salawat with love and calmness.'),
   GrowthHabitContent(habitId: 'h_istighfar', suggestedRecurrence: 'Daily, in short moments', reminderCopy: 'Return with istighfar. Begin again today.'),
   GrowthHabitContent(habitId: 'h_study_knowledge', suggestedRecurrence: '3-4 times weekly', reminderCopy: 'Take one short knowledge step today.'),
   GrowthHabitContent(habitId: 'h_help_someone', suggestedRecurrence: 'Several times weekly', reminderCopy: 'Offer one quiet act of help today.'),
   GrowthHabitContent(habitId: 'h_give_charity', suggestedRecurrence: '1-2 times weekly', reminderCopy: 'Give even a little. Small steps matter.'),
   GrowthHabitContent(habitId: 'h_patience_anger', suggestedRecurrence: 'Daily awareness', reminderCopy: 'When tested, return gently to patience.'),
-  GrowthHabitContent(habitId: 'h_tahajjud', suggestedRecurrence: 'Occasional weekly', reminderCopy: 'If possible tonight, stand briefly in prayer.'),
+  GrowthHabitContent(habitId: 'h_tahajjud', suggestedRecurrence: 'Occasional weekly', reminderCopy: 'If possible tonight, stand briefly in salah.'),
   GrowthHabitContent(habitId: 'h_sunnah_fasts', suggestedRecurrence: 'Weekly or bi-weekly', reminderCopy: 'Prepare for your next Sunnah fast with intention.'),
   GrowthHabitContent(habitId: 'h_memorize_quran', suggestedRecurrence: 'Several times weekly', reminderCopy: 'Review one ayah. Consistency grows over time.'),
   GrowthHabitContent(habitId: 'h_reflect_verse', suggestedRecurrence: 'Daily', reminderCopy: 'Choose one verse and live it today.'),
@@ -268,7 +268,7 @@ const List<GrowthPathContent> seededGrowthPathContent = [
   ),
   GrowthPathContent(
     pathId: 'foundations-of-light',
-    whyItMatters: 'Strong foundations reduce overwhelm and keep worship steady.',
+    whyItMatters: 'Strong foundations reduce overwhelm and keep ibadah steady.',
     stageLabel: 'Foundations of Light',
     milestoneNames: ['First Light', 'Growth Beginnings'],
   ),
@@ -357,7 +357,7 @@ const List<GrowthPromptGroup> seededGrowthPromptGroups = [
   ),
   GrowthPromptGroup(
     id: 'worship',
-    title: 'Worship',
+    title: 'Ibadah',
     prompts: [
       'Which act of worship felt most alive today?',
       'What drew you closer to Allah today?',

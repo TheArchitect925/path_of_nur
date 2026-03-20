@@ -27,21 +27,35 @@ class LearnCategoryPage extends ConsumerWidget {
     final categories = ref.watch(learnHubCategoriesProvider);
     final category = categories.firstWhere((item) => item.id == categoryId);
     final style = LearnHubTaxonomy.styleFor(categoryId);
+    final knowledgeItems = ref.watch(learnHubKnowledgeIndexProvider);
     final subcategories = ref
         .watch(learnHubSubcategoriesProvider)
         .where((item) => item.categoryId == categoryId)
         .toList(growable: false);
-    final filteredItems = ref
-        .watch(learnHubKnowledgeIndexProvider)
+    final selectedSubcategory = _selectedSubcategory(subcategories);
+    final shouldUseDedicatedRouteForSelection =
+        selectedSubcategory != null &&
+        _shouldOpenDedicatedRoute(
+          selectedSubcategory,
+          knowledgeItems,
+        );
+    final filteredItems = knowledgeItems
         .where((item) => item.categoryId == categoryId)
         .where((item) => item.contentType != LearnHubContentType.category)
         .where((item) => item.contentType != LearnHubContentType.subcategory)
+        .where(
+          (item) => !LearnHubTaxonomy.subcategoryUsesJourneyRoute(
+            l10n,
+            item.subcategoryId,
+          ),
+        )
         .where(
           (item) =>
               initialSubcategoryId == null ||
               initialSubcategoryId!.isEmpty ||
               item.subcategoryId == initialSubcategoryId,
         )
+        .where((_) => !shouldUseDedicatedRouteForSelection)
         .take(16)
         .toList(growable: false);
 
@@ -50,44 +64,6 @@ class LearnCategoryPage extends ConsumerWidget {
       title: category.title,
       subtitle: category.subtitle,
       children: [
-        PremiumCard(
-          surfaceTintColor: style.accentColor,
-          surfaceVariant: AppSurfaceVariant.panel,
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                width: 46,
-                height: 46,
-                decoration: BoxDecoration(
-                  color: style.accentColor.withValues(alpha: 0.14),
-                  borderRadius: BorderRadius.circular(14),
-                ),
-                child: Icon(style.icon, color: style.accentColor),
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      l10n.learnHubCategoryOverviewTitle,
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                    const SizedBox(height: 6),
-                    Text(
-                      _selectedSubcategory(subcategories)?.subtitle ??
-                          category.subtitle,
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(height: 16),
         if (subcategories.isNotEmpty) ...[
           _LearnSectionHeader(
             title: l10n.learnHubSubcategoriesSectionTitle,
@@ -103,12 +79,10 @@ class LearnCategoryPage extends ConsumerWidget {
                   icon: style.icon,
                   color: style.baseColor,
                   accentColor: style.accentColor,
-                  onTap: () => context.pushNamed(
-                    'learnHubCategory',
-                    pathParameters: {
-                      'categoryId': LearnHubTaxonomy.categorySlug(categoryId),
-                    },
-                    queryParameters: {'sub': subcategory.id},
+                  onTap: () => _openSubcategory(
+                    context,
+                    subcategory: subcategory,
+                    knowledgeItems: knowledgeItems,
                   ),
                 ),
             ],
@@ -121,10 +95,19 @@ class LearnCategoryPage extends ConsumerWidget {
         ),
         const SizedBox(height: 10),
         if (filteredItems.isEmpty)
-          PremiumCard(
-            surfaceTintColor: style.accentColor,
-            child: Text(l10n.learnHubCategoryEmptyState),
-          )
+          selectedSubcategory != null &&
+                  !_hasListableItemsForSubcategory(
+                    knowledgeItems,
+                    selectedSubcategory.id,
+                  )
+              ? _DedicatedSubcategoryCard(
+                  subcategory: selectedSubcategory,
+                  accentColor: style.accentColor,
+                )
+              : PremiumCard(
+                  surfaceTintColor: style.accentColor,
+                  child: Text(l10n.learnHubCategoryEmptyState),
+                )
         else
           ...filteredItems.map(
             (item) => Padding(
@@ -149,6 +132,62 @@ class LearnCategoryPage extends ConsumerWidget {
       }
     }
     return null;
+  }
+
+  bool _hasListableItemsForSubcategory(
+    List<LearnHubKnowledgeItem> items,
+    String subcategoryId,
+  ) {
+    return items.any(
+      (item) =>
+          item.categoryId == categoryId &&
+          item.subcategoryId == subcategoryId &&
+          switch (item.contentType) {
+            LearnHubContentType.lesson ||
+            LearnHubContentType.story ||
+            LearnHubContentType.quiz ||
+            LearnHubContentType.challenge ||
+            LearnHubContentType.note ||
+            LearnHubContentType.faq => true,
+            LearnHubContentType.category ||
+            LearnHubContentType.subcategory ||
+            LearnHubContentType.tool ||
+            LearnHubContentType.journey => false,
+          },
+    );
+  }
+
+  void _openSubcategory(
+    BuildContext context, {
+    required LearnHubSubcategoryDescriptor subcategory,
+    required List<LearnHubKnowledgeItem> knowledgeItems,
+  }) {
+    if (!_shouldOpenDedicatedRoute(subcategory, knowledgeItems)) {
+      context.pushNamed(
+        'learnHubCategory',
+        pathParameters: {
+          'categoryId': LearnHubTaxonomy.categorySlug(categoryId),
+        },
+        queryParameters: {'sub': subcategory.id},
+      );
+      return;
+    }
+
+    context.pushNamed(
+      subcategory.routeTarget.routeName,
+      pathParameters: subcategory.routeTarget.pathParameters,
+      queryParameters: subcategory.routeTarget.queryParameters,
+    );
+  }
+
+  bool _shouldOpenDedicatedRoute(
+    LearnHubSubcategoryDescriptor subcategory,
+    List<LearnHubKnowledgeItem> knowledgeItems,
+  ) {
+    if (LearnHubTaxonomy.isJourneyRouteTarget(subcategory.routeTarget)) {
+      return true;
+    }
+    return !_hasListableItemsForSubcategory(knowledgeItems, subcategory.id);
   }
 }
 
@@ -307,6 +346,63 @@ class _BadgeChip extends StatelessWidget {
         style: Theme.of(context).textTheme.labelSmall?.copyWith(
           color: accentColor,
           fontWeight: FontWeight.w700,
+        ),
+      ),
+    );
+  }
+}
+
+class _DedicatedSubcategoryCard extends StatelessWidget {
+  const _DedicatedSubcategoryCard({
+    required this.subcategory,
+    required this.accentColor,
+  });
+
+  final LearnHubSubcategoryDescriptor subcategory;
+  final Color accentColor;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      borderRadius: BorderRadius.circular(20),
+      onTap: () => context.pushNamed(
+        subcategory.routeTarget.routeName,
+        pathParameters: subcategory.routeTarget.pathParameters,
+        queryParameters: subcategory.routeTarget.queryParameters,
+      ),
+      child: PremiumCard(
+        surfaceTintColor: accentColor,
+        surfaceVariant: AppSurfaceVariant.card,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              width: 10,
+              height: 56,
+              decoration: BoxDecoration(
+                color: accentColor.withValues(alpha: 0.85),
+                borderRadius: BorderRadius.circular(999),
+              ),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    subcategory.title,
+                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  const SizedBox(height: 6),
+                  Text(subcategory.subtitle),
+                ],
+              ),
+            ),
+            const SizedBox(width: 8),
+            Icon(Icons.chevron_right_rounded, color: accentColor),
+          ],
         ),
       ),
     );

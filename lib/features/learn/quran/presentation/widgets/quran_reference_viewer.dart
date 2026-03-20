@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../l10n/app_localizations.dart';
+import '../../../../../shared/widgets/quran_navigation.dart';
 import '../../application/quran_reference_graph_provider.dart';
 
 Future<void> showQuranReferenceViewer(
@@ -36,13 +37,21 @@ class QuranReferenceChip extends ConsumerWidget {
     final l10n = AppLocalizations.of(context);
     final reference = ref.watch(quranReferenceByIdProvider(referenceId));
     if (reference == null) return const SizedBox.shrink();
-    return ActionChip(
-      avatar: leading,
-      label: Text(
-        l10n.quranReferenceViewerReferenceLabel(reference.referenceLabel),
-      ),
-      onPressed: () =>
+    return GestureDetector(
+      onLongPress: () =>
           showQuranReferenceViewer(context, ref, referenceId: referenceId),
+      child: ActionChip(
+        avatar: leading,
+        label: Text(
+          l10n.quranReferenceViewerReferenceLabel(reference.referenceLabel),
+        ),
+        onPressed: () => openQuranAt(
+          context,
+          surahNumber: reference.surahNumber,
+          ayahNumber: reference.ayahStart,
+          endAyahNumber: reference.ayahEnd,
+        ),
+      ),
     );
   }
 }
@@ -102,14 +111,11 @@ class _QuranReferenceViewer extends ConsumerWidget {
             FilledButton.tonalIcon(
               onPressed: () {
                 Navigator.of(context).pop();
-                context.pushNamed(
-                  'quranReader',
-                  pathParameters: {'surahNumber': '${reference.surahNumber}'},
-                  queryParameters: {
-                    'ayah': '${reference.ayahStart}',
-                    'endAyah': '${reference.ayahEnd}',
-                    'autoplay': 'true',
-                  },
+                openQuranAt(
+                  context,
+                  surahNumber: reference.surahNumber,
+                  ayahNumber: reference.ayahStart,
+                  endAyahNumber: reference.ayahEnd,
                 );
               },
               icon: const Icon(Icons.play_arrow_rounded),

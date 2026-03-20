@@ -5,11 +5,8 @@ import 'package:quran/quran.dart' as q;
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_surfaces.dart';
 import '../../core/theme/app_theme.dart';
-import '../../core/theme/app_text_styles.dart';
-import '../../features/learn/quran/application/quran_providers.dart';
 import '../../features/learn/quran/domain/quran_content_refs.dart';
-import 'arabic_text_utils.dart';
-import 'quran_text_span.dart';
+import 'quran_verse_content.dart';
 
 class QuranQuote {
   const QuranQuote({required this.ref});
@@ -66,135 +63,49 @@ class QuranQuoteBlock extends ConsumerWidget {
     required this.quote,
     this.compact = false,
     this.onTap,
+    this.showReference = true,
+    this.arabicTransform,
+    this.transliterationTransform,
+    this.translationTransform,
   });
 
   final QuranQuote quote;
   final bool compact;
   final VoidCallback? onTap;
+  final bool showReference;
+  final String Function(String arabic)? arabicTransform;
+  final String Function(String transliteration)? transliterationTransform;
+  final String Function(String translation)? translationTransform;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final appearance = Theme.of(context).extension<AppAppearanceTheme>();
     final accent = appearance?.accent ?? AppColors.accentGold;
-    final onSurface = appearance?.onSurface ?? const Color(0xFF30231A);
-    final onSurfaceSubtle =
-        appearance?.onSurfaceSubtle ?? const Color(0xFF564638);
     final surfaceStyle = AppSurfaceTheme.resolve(
       context,
       variant: AppSurfaceVariant.panel,
       tintColor: accent,
     );
 
-    final readerSettings = ref.watch(quranReaderSettingsProvider);
-    final arabicScale = readerSettings.arabicScalePercent / 100.0;
-    final transliterationScale =
-        readerSettings.transliterationScalePercent / 100.0;
-    final translationScale = readerSettings.translationScalePercent / 100.0;
-
-    final arabicSize = (compact ? 30.0 : 32.0) * arabicScale;
-    final transliterationSize = 13.5 * transliterationScale;
-    final translationSize = 12.8 * translationScale;
-    final showTransliteration = readerSettings.showTransliteration;
-    final showTranslation = readerSettings.showTranslation;
-
-    final quoteContentAsync = ref.watch(quranQuoteContentProvider(quote.ref));
-    final resolvedArabic = quoteContentAsync.valueOrNull?.arabic ?? '';
-    final resolvedTransliteration =
-        quoteContentAsync.valueOrNull?.transliteration ?? '';
-    final resolvedTranslation =
-        quoteContentAsync.valueOrNull?.translation ?? '';
-    final contentReady = resolvedArabic.trim().isNotEmpty;
-
     final card = Container(
       width: double.infinity,
       margin: const EdgeInsets.only(bottom: 16),
       padding: EdgeInsets.all(compact ? 12 : 16),
       decoration: surfaceStyle.decoration(radius: 18),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          if (contentReady)
-            Builder(
-              builder: (context) {
-                final style =
-                    AppTextStyles.quranVerse(
-                      size: arabicSize,
-                      color: onSurface,
-                    ).copyWith(
-                      height: 1.9,
-                      fontWeight: FontWeight.w500,
-                      letterSpacing: 0.3,
-                    );
-                return Text.rich(
-                  buildQuranTextWithColoredHarakat(resolvedArabic, style),
-                  textAlign: textAlignForContent(resolvedArabic),
-                  textDirection: textDirectionForContent(resolvedArabic),
-                  strutStyle: StrutStyle(
-                    fontFamily: style.fontFamily,
-                    fontSize: style.fontSize,
-                    height: style.height,
-                    forceStrutHeight: true,
-                  ),
-                );
-              },
-            )
-          else
-            SizedBox(
-              height: compact ? 56 : 72,
-              child: Center(
-                child: SizedBox(
-                  width: 18,
-                  height: 18,
-                  child: CircularProgressIndicator(
-                    strokeWidth: 1.8,
-                    valueColor: AlwaysStoppedAnimation<Color>(
-                      accent.withValues(alpha: 0.75),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          if (contentReady &&
-              showTransliteration &&
-              resolvedTransliteration.isNotEmpty) ...[
-            const SizedBox(height: 8),
-            Text(
-              resolvedTransliteration,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: onSurfaceSubtle,
-                fontFamily: 'serif',
-                fontSize: transliterationSize,
-                fontStyle: FontStyle.italic,
-              ),
-            ),
-          ],
-          if (contentReady &&
-              showTranslation &&
-              resolvedTranslation.isNotEmpty) ...[
-            const SizedBox(height: 6),
-            Text(
-              resolvedTranslation,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: onSurfaceSubtle,
-                fontSize: translationSize,
-                height: 1.35,
-              ),
-            ),
-          ],
-          if (!compact) const SizedBox(height: 8),
-          if (!compact)
-            Text(
-              quote.locationText,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: onSurfaceSubtle,
-                fontSize: 11.5,
-                fontStyle: FontStyle.italic,
-              ),
-            ),
-        ],
+      child: QuranVerseContent(
+        source: QuranVerseSource(
+          ref: quote.ref,
+          referenceText: quote.locationText,
+        ),
+        dense: compact,
+        center: true,
+        showReference: showReference,
+        arabicBaseSize: compact ? 30 : 32,
+        transliterationBaseSize: 13.5,
+        translationBaseSize: 12.8,
+        arabicTransform: arabicTransform,
+        transliterationTransform: transliterationTransform,
+        translationTransform: translationTransform,
       ),
     );
 
@@ -203,7 +114,7 @@ class QuranQuoteBlock extends ConsumerWidget {
     }
     return InkWell(
       borderRadius: BorderRadius.circular(18),
-      onTap: contentReady ? onTap : null,
+      onTap: onTap,
       child: card,
     );
   }

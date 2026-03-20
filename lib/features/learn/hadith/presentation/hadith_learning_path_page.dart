@@ -3,9 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/theme/app_colors.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
-import '../../shared/presentation/learning_header.dart';
 import '../../shared/presentation/learning_section.dart';
 import '../application/hadith_learning_paths_service.dart';
 import '../application/hadith_path_quiz_service.dart';
@@ -19,17 +19,14 @@ class HadithLearningPathPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     final path = ref.watch(hadithLearningPathByIdProvider(pathId));
     if (path == null) {
       return AppPageScaffold(
         headerIcon: Icons.route_rounded,
-        title: 'Hadith Paths',
-        subtitle: 'Path not found',
-        children: const [
-          PremiumCard(
-            child: Text('The requested learning path was not found.'),
-          ),
-        ],
+        title: l10n.hadithPathPageTitle,
+        subtitle: l10n.hadithPathNotFoundSubtitle,
+        children: [PremiumCard(child: Text(l10n.hadithPathNotFoundBody))],
       );
     }
 
@@ -41,28 +38,18 @@ class HadithLearningPathPage extends ConsumerWidget {
     return AppPageScaffold(
       headerIcon: Icons.route_rounded,
       title: path.title,
-      subtitle: path.subtitle ?? 'Hadith Learning Path',
+      subtitle: path.subtitle ?? l10n.hadithPathDefaultSubtitle,
       children: [
-        LearningHeader(
-          title: path.title,
-          summary: [
-            if (path.subtitle != null && path.subtitle!.trim().isNotEmpty)
-              path.subtitle!.trim(),
-            path.description,
-          ].join('\n\n'),
-          chips: [
-            '${entries.length} lessons',
-            '${summary?.completedLessons ?? 0} completed',
-          ],
-        ),
-        const SizedBox(height: 10),
         LearningSection(
-          title: 'Progress',
+          title: l10n.hadithPathProgressTitle,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                '${summary?.completedLessons ?? 0} / ${summary?.totalLessons ?? entries.length} completed',
+                l10n.hadithPathProgressSummary(
+                  summary?.completedLessons ?? 0,
+                  summary?.totalLessons ?? entries.length,
+                ),
               ),
               const SizedBox(height: 8),
               ClipRRect(
@@ -81,7 +68,7 @@ class HadithLearningPathPage extends ConsumerWidget {
         ),
         if (milestones.isNotEmpty)
           LearningSection(
-            title: 'Milestones',
+            title: l10n.hadithPathMilestonesTitle,
             child: Wrap(
               spacing: 8,
               runSpacing: 8,
@@ -122,7 +109,9 @@ class HadithLearningPathPage extends ConsumerWidget {
             ),
           ),
         LearningSection(
-          title: path.chapters.isEmpty ? 'Lessons' : 'Chapters',
+          title: path.chapters.isEmpty
+              ? l10n.hadithPathLessonsTitle
+              : l10n.hadithPathChaptersTitle,
           child: path.chapters.isEmpty
               ? _lessonList(
                   context: context,
@@ -151,6 +140,7 @@ class HadithLearningPathPage extends ConsumerWidget {
     required HadithLearningPathProgressSummary? summary,
     required HadithLearningPathsProgressState progressState,
   }) {
+    final l10n = AppLocalizations.of(context);
     final entryById = {for (final entry in entries) entry.id: entry};
     return Column(
       children: path.chapters
@@ -194,7 +184,10 @@ class HadithLearningPathPage extends ConsumerWidget {
                     Text(chapter.intro),
                     const SizedBox(height: 8),
                     Text(
-                      '$completedInChapter / ${chapter.lessonIds.length} lessons',
+                      l10n.hadithPathLessonCount(
+                        completedInChapter,
+                        chapter.lessonIds.length,
+                      ),
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: AppColors.onSurfaceSubtle,
                       ),
@@ -264,15 +257,16 @@ class HadithLearningPathPage extends ConsumerWidget {
                             return OutlinedButton.icon(
                               onPressed: null,
                               icon: const Icon(Icons.lock_outline_rounded),
-                              label: const Text(
-                                'Complete all chapter lessons to unlock quiz',
-                              ),
+                              label: Text(l10n.hadithActionUnlockQuiz),
                             );
                           }
 
                           final scoreText = status.lastScore == null
                               ? ''
-                              : ' • Last score: ${status.lastScore}/${status.quiz!.questions.length}';
+                              : l10n.hadithPathLastScore(
+                                  status.lastScore!,
+                                  status.quiz!.questions.length,
+                                );
 
                           return FilledButton.tonalIcon(
                             onPressed: () => context.pushNamed(
@@ -289,8 +283,8 @@ class HadithLearningPathPage extends ConsumerWidget {
                             ),
                             label: Text(
                               status.completed
-                                  ? 'Retake Chapter Quiz$scoreText'
-                                  : 'Start Chapter Quiz',
+                                  ? '${l10n.hadithActionRetakeChapterQuiz}$scoreText'
+                                  : l10n.hadithActionStartChapterQuiz,
                             ),
                           );
                         },
@@ -348,14 +342,15 @@ class HadithLearningPathPage extends ConsumerWidget {
     required bool unlocked,
     required String? nextTeaser,
   }) {
+    final l10n = AppLocalizations.of(context);
     return PremiumCard(
       child: ListTile(
         contentPadding: EdgeInsets.zero,
         title: Text(entry.title),
         subtitle: Text(
           '${entry.displaySourceCollection} • ${entry.grading}\n'
-          'Qur’an connections: ${entry.quranConnections.length}'
-          '${nextTeaser == null ? '' : '\nNext: $nextTeaser'}',
+          '${l10n.hadithPathQuranConnections(entry.quranConnections.length)}'
+          '${nextTeaser == null ? '' : '\n${l10n.hadithPathNextLesson(nextTeaser)}'}',
         ),
         trailing: Icon(
           completed

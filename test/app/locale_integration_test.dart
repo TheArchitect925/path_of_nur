@@ -4,8 +4,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:path_of_nur/core/localization/locale_provider.dart';
 import 'package:path_of_nur/features/home/presentation/home_page.dart';
 import 'package:path_of_nur/features/journey/presentation/journey_page.dart';
-import 'package:path_of_nur/features/learn/journey/presentation/learning_journey_home_page.dart';
 import 'package:path_of_nur/features/learn/presentation/learn_page.dart';
+import 'package:path_of_nur/features/learn/presentation/pages/learning_section_landing_page.dart';
 import 'package:path_of_nur/features/learn/presentation/pages/quran_app_hub_page.dart';
 import 'package:path_of_nur/features/profile/presentation/settings_page.dart';
 import 'package:path_of_nur/features/worship/presentation/worship_page.dart';
@@ -106,7 +106,7 @@ void main() {
     final expectedPrimaryType = <String, Type>{
       '/home': HomePage,
       '/worship': WorshipPage,
-      '/learn': LearningJourneyHomePage,
+      '/learn': LearningSectionLandingPage,
       '/learn/legacy': LearnPage,
       '/journey': JourneyPage,
       '/quran': QuranAppHubPage,

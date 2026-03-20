@@ -10,6 +10,7 @@ import '../../../../shared/widgets/premium_card.dart';
 import '../application/learn_hub_providers.dart';
 import '../data/learn_hub_taxonomy.dart';
 import '../models/learn_hub_models.dart';
+import '../widgets/learn_discovery_search_field.dart';
 import '../widgets/learn_hub_page_scaffold.dart';
 
 class LearnExploreAllKnowledgePage extends ConsumerStatefulWidget {
@@ -56,15 +57,17 @@ class _LearnExploreAllKnowledgePageState
     final index = ref.watch(learnHubKnowledgeIndexProvider);
     final filtered = sortLearnHubKnowledgeItems(
       filterLearnHubKnowledgeItems(
-        items: index,
-        query: _query,
-        categoryId: _selectedCategory,
-      ).where((item) {
-        if (_selectedType == null) {
-          return item.contentType != LearnHubContentType.category;
-        }
-        return item.contentType == _selectedType;
-      }).toList(growable: false),
+            items: index,
+            query: _query,
+            categoryId: _selectedCategory,
+          )
+          .where((item) {
+            if (_selectedType == null) {
+              return item.contentType != LearnHubContentType.category;
+            }
+            return item.contentType == _selectedType;
+          })
+          .toList(growable: false),
       alphabetical: _alphabetical,
     );
 
@@ -78,40 +81,53 @@ class _LearnExploreAllKnowledgePageState
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              TextField(
+              LearnDiscoverySearchField(
                 controller: _searchController,
+                hintText: l10n.learnDiscoverySearchLessonsHint,
                 onChanged: (value) => setState(() => _query = value),
-                decoration: InputDecoration(
-                  hintText: l10n.learnHubSearchHint,
-                  prefixIcon: const Icon(Icons.search_rounded),
-                  suffixIcon: _query.trim().isEmpty
-                      ? null
-                      : IconButton(
-                          onPressed: () {
-                            _searchController.clear();
-                            setState(() => _query = '');
-                          },
-                          icon: const Icon(Icons.close_rounded),
-                        ),
-                  border: InputBorder.none,
-                ),
+                onClear: () {
+                  _searchController.clear();
+                  setState(() => _query = '');
+                },
               ),
               const SizedBox(height: 8),
-              Row(
-                children: [
-                  Text(
+              LayoutBuilder(
+                builder: (context, constraints) {
+                  final useStackedLayout =
+                      constraints.maxWidth < 360 ||
+                      MediaQuery.textScalerOf(context).scale(1) > 1.15;
+                  final helperText = Text(
                     l10n.learnHubExploreSearchHelper,
                     style: Theme.of(context).textTheme.bodySmall,
-                  ),
-                  const Spacer(),
-                  FilterChip(
+                  );
+                  final sortChip = FilterChip(
                     selected: _alphabetical,
                     onSelected: (value) {
                       setState(() => _alphabetical = value);
                     },
                     label: Text(l10n.learnHubSortAlphabetical),
-                  ),
-                ],
+                  );
+
+                  if (useStackedLayout) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        helperText,
+                        const SizedBox(height: 8),
+                        sortChip,
+                      ],
+                    );
+                  }
+
+                  return Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(child: helperText),
+                      const SizedBox(width: 12),
+                      sortChip,
+                    ],
+                  );
+                },
               ),
             ],
           ),
@@ -122,8 +138,9 @@ class _LearnExploreAllKnowledgePageState
           selectedCategory: _selectedCategory,
           onCategorySelected: (category) {
             setState(() {
-              _selectedCategory =
-                  _selectedCategory == category ? null : category;
+              _selectedCategory = _selectedCategory == category
+                  ? null
+                  : category;
             });
           },
         ),
@@ -267,9 +284,12 @@ class _CategoryWheel extends StatelessWidget {
                         height: size * 0.34,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: Theme.of(
+                          color: AppSurfaceTheme.adaptiveColor(
                             context,
-                          ).colorScheme.surface.withValues(alpha: 0.55),
+                            Theme.of(context).colorScheme.surface,
+                            alpha: 0.55,
+                            solidAlphaWhenDisabled: 0.96,
+                          ),
                           border: Border.all(
                             color: Theme.of(context).dividerColor,
                           ),
@@ -286,7 +306,8 @@ class _CategoryWheel extends StatelessWidget {
                     for (var i = 0; i < categories.length; i += 1)
                       Builder(
                         builder: (context) {
-                          final angle = (-math.pi / 2) +
+                          final angle =
+                              (-math.pi / 2) +
                               (2 * math.pi * i / categories.length);
                           final dx = center + radius * math.cos(angle) - 42;
                           final dy = center + radius * math.sin(angle) - 42;
@@ -497,9 +518,21 @@ class _ExploreBadge extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
-        color: accentColor.withValues(alpha: 0.12),
+        color: AppSurfaceTheme.adaptiveColor(
+          context,
+          accentColor,
+          alpha: 0.12,
+          solidAlphaWhenDisabled: 0.20,
+        ),
         borderRadius: BorderRadius.circular(999),
-        border: Border.all(color: accentColor.withValues(alpha: 0.25)),
+        border: Border.all(
+          color: AppSurfaceTheme.adaptiveColor(
+            context,
+            accentColor,
+            alpha: 0.25,
+            solidAlphaWhenDisabled: 0.34,
+          ),
+        ),
       ),
       child: Text(
         label,

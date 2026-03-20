@@ -6,14 +6,18 @@ import 'package:intl/intl.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_surfaces.dart';
 import '../../../l10n/app_localizations.dart';
+import '../../../shared/application/special_mode_provider.dart';
 import '../../../shared/content/learning_quote.dart';
+import '../../../shared/content/page_description_copy.dart';
 import '../../../shared/widgets/premium_card.dart';
 import 'data/learn_category_catalog.dart';
 import 'models/learn_category_item.dart';
 import '../shared/application/learn_system_engine_provider.dart';
 import '../shared/domain/learn_system_models.dart';
 import 'widgets/learn_category_grid.dart';
+import 'widgets/learn_discovery_search_field.dart';
 import 'widgets/learn_hub_page_scaffold.dart';
+import 'widgets/learn_section_header.dart';
 
 class LearnPage extends ConsumerStatefulWidget {
   const LearnPage({super.key});
@@ -50,6 +54,9 @@ class _LearnPageState extends ConsumerState<LearnPage> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final isKidsMode = ref.watch(
+      specialModeProvider.select((mode) => mode.isKids),
+    );
     final numberFormat = NumberFormat.decimalPattern(l10n.localeName);
     final summary = ref.watch(learnUnifiedSummaryV2Provider);
     final themes = ref.watch(learnSharedThemesProvider);
@@ -76,8 +83,12 @@ class _LearnPageState extends ConsumerState<LearnPage> {
     return LearnHubPageScaffold(
       headerIcon: Icons.school_rounded,
       title: l10n.learnHubTitle,
-      subtitle: l10n.learnHubSubtitle,
-      quote: buildLearningCompactQuote(),
+      subtitle: localizedAppPageDescription(
+        context,
+        AppPageDescriptionKey.learnHub,
+        kidsMode: isKidsMode,
+      ),
+      quoteHeader: const LearningHubRabbiZidniIlmaHeader(),
       shortcutActions: summary.continueItem == null
           ? const <LearnHubShortcutAction>[]
           : <LearnHubShortcutAction>[
@@ -315,38 +326,12 @@ class _LearnPageState extends ConsumerState<LearnPage> {
       decoration: surfaceStyle.decoration(radius: 16),
       child: Column(
         children: [
-          Row(
-            children: [
-              Icon(
-                Icons.search_rounded,
-                size: 34,
-                color: AppColors.onSurface.withValues(alpha: 0.75),
-              ),
-              const SizedBox(width: 10),
-              Expanded(
-                child: TextField(
-                  controller: _searchController,
-                  onChanged: (value) => ref
-                      .read(learnUnifiedSearchProvider.notifier)
-                      .setQuery(value),
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: l10n.learnHubSearchHint,
-                    isCollapsed: true,
-                  ),
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ),
-              if (searchFilters.query.isNotEmpty)
-                IconButton(
-                  onPressed: () =>
-                      ref.read(learnUnifiedSearchProvider.notifier).clear(),
-                  tooltip: l10n.learnHubClearSearchTooltip,
-                  icon: const Icon(Icons.close_rounded),
-                ),
-            ],
+          LearnDiscoverySearchField(
+            controller: _searchController,
+            hintText: l10n.learnDiscoverySearchLessonsHint,
+            onChanged: (value) =>
+                ref.read(learnUnifiedSearchProvider.notifier).setQuery(value),
+            onClear: () => ref.read(learnUnifiedSearchProvider.notifier).clear(),
           ),
           Container(
             height: 1,
@@ -648,24 +633,7 @@ class _LearnPageState extends ConsumerState<LearnPage> {
   }
 
   Widget _sectionTitle(BuildContext context, String title, String subtitle) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          title,
-          style: Theme.of(
-            context,
-          ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
-        ),
-        const SizedBox(height: 4),
-        Text(
-          subtitle,
-          style: Theme.of(
-            context,
-          ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),
-        ),
-      ],
-    );
+    return LearnSectionHeader(title: title, subtitle: subtitle);
   }
 
   void _openItem(BuildContext context, LearnUnifiedContentItem item) {

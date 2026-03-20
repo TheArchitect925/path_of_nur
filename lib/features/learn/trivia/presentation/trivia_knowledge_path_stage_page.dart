@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_surfaces.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../application/trivia_controller.dart';
@@ -175,12 +176,13 @@ class IslamicTriviaKnowledgePathStagePage extends ConsumerWidget {
   }
 
   Widget _chip(BuildContext context, String label) {
+    final style = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.pill,
+    );
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-      decoration: BoxDecoration(
-        color: AppColors.surfaceSoft.withValues(alpha: 0.7),
-        borderRadius: BorderRadius.circular(999),
-      ),
+      decoration: style.decoration(radius: 999),
       child: Text(
         label,
         style: Theme.of(

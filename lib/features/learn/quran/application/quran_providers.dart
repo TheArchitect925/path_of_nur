@@ -26,6 +26,7 @@ const _notesKey = 'learn.quran.notes';
 const _recentSearchesKey = 'learn.quran.recentSearches';
 const _recentReadingsKey = 'learn.quran.recentReadings';
 const _translationCodeKey = 'learn.quran.translationCode';
+const _showArabicKey = 'learn.quran.showArabic';
 const _showTransliterationKey = 'learn.quran.showTransliteration';
 const _showTranslationKey = 'learn.quran.showTranslation';
 const _arabicScalePercentKey = 'learn.quran.arabicScalePercent';
@@ -57,6 +58,7 @@ const quranTranslationCodes = <String>[
 class QuranReaderSettings {
   const QuranReaderSettings({
     required this.translationCode,
+    required this.showArabic,
     required this.showTransliteration,
     required this.showTranslation,
     required this.arabicScalePercent,
@@ -69,6 +71,7 @@ class QuranReaderSettings {
   });
 
   final String translationCode;
+  final bool showArabic;
   final bool showTransliteration;
   final bool showTranslation;
   final int arabicScalePercent;
@@ -81,6 +84,7 @@ class QuranReaderSettings {
 
   QuranReaderSettings copyWith({
     String? translationCode,
+    bool? showArabic,
     bool? showTransliteration,
     bool? showTranslation,
     int? arabicScalePercent,
@@ -93,6 +97,7 @@ class QuranReaderSettings {
   }) {
     return QuranReaderSettings(
       translationCode: translationCode ?? this.translationCode,
+      showArabic: showArabic ?? this.showArabic,
       showTransliteration: showTransliteration ?? this.showTransliteration,
       showTranslation: showTranslation ?? this.showTranslation,
       arabicScalePercent: arabicScalePercent ?? this.arabicScalePercent,
@@ -352,6 +357,7 @@ class QuranReaderSettingsNotifier extends StateNotifier<QuranReaderSettings> {
     : super(
         const QuranReaderSettings(
           translationCode: 'en.sahih',
+          showArabic: true,
           showTransliteration: true,
           showTranslation: true,
           arabicScalePercent: 100,
@@ -372,6 +378,11 @@ class QuranReaderSettingsNotifier extends StateNotifier<QuranReaderSettings> {
     if (!quranTranslationCodes.contains(code)) return;
     state = state.copyWith(translationCode: code);
     _store.setString(_translationCodeKey, code);
+  }
+
+  void setShowArabic(bool value) {
+    state = state.copyWith(showArabic: value);
+    _store.setBool(_showArabicKey, value);
   }
 
   void setShowTransliteration(bool value) {
@@ -424,6 +435,7 @@ class QuranReaderSettingsNotifier extends StateNotifier<QuranReaderSettings> {
 
   void _load() {
     final code = _store.getString(_translationCodeKey);
+    final showArabic = _store.getBool(_showArabicKey);
     final showTransliteration = _store.getBool(_showTransliterationKey);
     final showTranslation = _store.getBool(_showTranslationKey);
     final arabicScalePercent = _store.getInt(_arabicScalePercentKey);
@@ -440,6 +452,7 @@ class QuranReaderSettingsNotifier extends StateNotifier<QuranReaderSettings> {
       translationCode: (code != null && quranTranslationCodes.contains(code))
           ? code
           : state.translationCode,
+      showArabic: showArabic ?? state.showArabic,
       showTransliteration: showTransliteration ?? state.showTransliteration,
       showTranslation: showTranslation ?? state.showTranslation,
       arabicScalePercent: arabicScalePercent ?? state.arabicScalePercent,

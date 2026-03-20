@@ -5,7 +5,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
+import '../../../shared/application/special_mode_provider.dart';
+import '../../../shared/content/page_description_copy.dart';
 import '../../../shared/widgets/premium_card.dart';
+import '../../../shared/widgets/quran_verse_content.dart';
 import '../../creation_challenges/application/creation_challenge_services.dart';
 import '../../creation_challenges/domain/creation_challenge_models.dart';
 import '../application/celestial_services.dart';
@@ -45,6 +48,9 @@ class _CelestialExplorerPageState extends ConsumerState<CelestialExplorerPage> {
 
   @override
   Widget build(BuildContext context) {
+    final isKidsMode = ref.watch(
+      specialModeProvider.select((mode) => mode.isKids),
+    );
     final snapshotAsync = ref.watch(celestialSnapshotProvider);
     final observations = ref.watch(celestialObservationsProvider);
 
@@ -82,7 +88,11 @@ class _CelestialExplorerPageState extends ConsumerState<CelestialExplorerPage> {
                                   ),
                             ),
                             Text(
-                              'A sign in the sky, a reminder for the heart.',
+                              localizedAppPageDescription(
+                                context,
+                                AppPageDescriptionKey.celestialExplorer,
+                                kidsMode: isKidsMode,
+                              ),
                               style: Theme.of(context).textTheme.bodySmall?.copyWith(
                                     color: Colors.white70,
                                   ),
@@ -213,26 +223,15 @@ class _OverviewTab extends ConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                snapshot.verseOfMoment.ayahReference,
-                style: Theme.of(context).textTheme.labelLarge?.copyWith(color: Colors.white70),
-              ),
-              if (snapshot.verseOfMoment.arabicText != null) ...[
-                const SizedBox(height: 10),
-                Text(
-                  snapshot.verseOfMoment.arabicText!,
-                  textAlign: TextAlign.right,
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        color: Colors.white,
-                        height: 1.7,
-                        fontFamily: 'Amiri Quran',
-                      ),
+              QuranVerseContent(
+                source: QuranVerseSource(
+                  referenceText: snapshot.verseOfMoment.ayahReference,
+                  arabicText: snapshot.verseOfMoment.arabicText,
+                  translation: snapshot.verseOfMoment.translation,
                 ),
-              ],
-              const SizedBox(height: 12),
-              Text(
-                snapshot.verseOfMoment.translation,
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.white),
+                center: false,
+                dense: true,
+                arabicBaseSize: 27,
               ),
               const SizedBox(height: 10),
               Text(

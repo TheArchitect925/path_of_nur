@@ -11,9 +11,11 @@ import '../../../core/reminders/adhan_audio_service.dart';
 import '../../../core/reminders/adhan_options.dart';
 import '../../../core/reminders/reminder_scheduler.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_surfaces.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/application/app_summary_providers.dart';
 import '../../../shared/application/special_mode_provider.dart';
+import '../../../shared/content/page_description_copy.dart';
 import '../../../shared/state/location_permission_state.dart';
 import '../../../shared/state/user_profile_state.dart';
 import '../../../shared/theme/islamic_icons.dart';
@@ -24,8 +26,10 @@ import '../../../shared/widgets/quran_quote_block.dart';
 import '../../../shared/widgets/section_hub_scaffold.dart';
 import '../../../shared/widgets/section_title.dart';
 import '../../accounts_sync/application/accounts_sync_controller.dart';
+import '../../learn/quran/application/quran_providers.dart';
 import '../../profile/application/profile_settings_provider.dart';
 import '../../profile/domain/profile_age_preferences.dart';
+import '../../worship/domain/prayer_calendar_mode.dart';
 import 'adhan_option_picker_sheet.dart';
 
 enum SettingsCategory {
@@ -51,6 +55,10 @@ class SettingsPage extends ConsumerWidget {
     final l10n = AppLocalizations.of(context);
     final prayerState = ref.watch(prayerSettingsProvider);
     final prayerNotifier = ref.read(prayerSettingsProvider.notifier);
+    final quranReaderSettings = ref.watch(quranReaderSettingsProvider);
+    final quranReaderSettingsNotifier = ref.read(
+      quranReaderSettingsProvider.notifier,
+    );
     final locationState = ref.watch(locationPermissionProvider);
     final locationNotifier = ref.read(locationPermissionProvider.notifier);
     final userProfile = ref.watch(userProfileProvider);
@@ -67,6 +75,7 @@ class SettingsPage extends ConsumerWidget {
     );
     final displayLocation = ref.watch(prayerLocationDisplayLabelProvider);
     final accountsSync = ref.watch(accountsSyncControllerProvider);
+    final isKidsMode = specialMode.isKids;
     final locationLabel =
         displayLocation.valueOrNull ??
         (prayerState.preferences.useDeviceLocation
@@ -76,7 +85,11 @@ class SettingsPage extends ConsumerWidget {
       return SectionHubScaffold(
         headerIcon: Icons.settings_outlined,
         title: l10n.settingsLandingTitle,
-        subtitle: l10n.settingsLandingSubtitle,
+        subtitle: localizedAppPageDescription(
+          context,
+          AppPageDescriptionKey.settingsLanding,
+          kidsMode: isKidsMode,
+        ),
         quote: quoteFromPoolForToday(reflectionFocusedQuotePool),
         shortcutOpenLabel: l10n.learnShortcutOpen,
         shortcutCloseLabel: l10n.learnShortcutClose,
@@ -121,7 +134,8 @@ class SettingsPage extends ConsumerWidget {
                 icon: Icons.notifications_active_outlined,
                 color: const Color(0xFFE6EEF1),
                 accentColor: const Color(0xFF45636D),
-                onTap: () => context.pushNamed('settingsNotificationsReminders'),
+                onTap: () =>
+                    context.pushNamed('settingsNotificationsReminders'),
               ),
               SectionHubAction(
                 title: l10n.settingsCategoryWidgetsWatchTitle,
@@ -154,6 +168,14 @@ class SettingsPage extends ConsumerWidget {
                 color: const Color(0xFFEDE3D8),
                 accentColor: const Color(0xFF7A6047),
                 onTap: () => context.pushNamed('settingsKidsFamily'),
+              ),
+              SectionHubAction(
+                title: l10n.settingsHelpGuideTitle,
+                subtitle: l10n.settingsCategoryHelpGuideSubtitle,
+                icon: Icons.help_center_outlined,
+                color: const Color(0xFFE6ECEB),
+                accentColor: const Color(0xFF4E6C67),
+                onTap: () => context.pushNamed('settingsHelpGuide'),
               ),
               SectionHubAction(
                 title: l10n.profileAboutTitle,
@@ -359,7 +381,8 @@ class SettingsPage extends ConsumerWidget {
             ),
             if (accountsSync.activeProfile != null &&
                 accountsSync.activeProfile!.profileType != ProfileKind.child &&
-                accountsSync.activeProfile!.profileType != ProfileKind.guest) ...[
+                accountsSync.activeProfile!.profileType !=
+                    ProfileKind.guest) ...[
               const Divider(height: 1),
               ListTile(
                 contentPadding: EdgeInsets.zero,
@@ -448,7 +471,10 @@ class SettingsPage extends ConsumerWidget {
               contentPadding: EdgeInsets.zero,
               title: Text(l10n.settingsRegularAdhanTitle),
               subtitle: Text(
-                adhanRepository.resolveRegular(prayerState.adhanSettings).option.title,
+                adhanRepository
+                    .resolveRegular(prayerState.adhanSettings)
+                    .option
+                    .title,
               ),
               trailing: const Icon(Icons.chevron_right_rounded),
               onTap: () async {
@@ -458,7 +484,8 @@ class SettingsPage extends ConsumerWidget {
                   isScrollControlled: true,
                   builder: (context) => AdhanOptionPickerSheet(
                     category: AdhanOptionCategory.regular,
-                    selectedId: prayerState.adhanSettings.selectedRegularAdhanId,
+                    selectedId:
+                        prayerState.adhanSettings.selectedRegularAdhanId,
                     settings: prayerState.adhanSettings,
                     onSelected: prayerNotifier.selectRegularAdhan,
                   ),
@@ -470,7 +497,10 @@ class SettingsPage extends ConsumerWidget {
               contentPadding: EdgeInsets.zero,
               title: Text(l10n.settingsFajrAdhanTitle),
               subtitle: Text(
-                adhanRepository.resolveFajr(prayerState.adhanSettings).option.title,
+                adhanRepository
+                    .resolveFajr(prayerState.adhanSettings)
+                    .option
+                    .title,
               ),
               trailing: const Icon(Icons.chevron_right_rounded),
               onTap: () async {
@@ -510,8 +540,11 @@ class SettingsPage extends ConsumerWidget {
                         },
                         icon: Icon(
                           adhanPreview.playingOptionId ==
-                                      prayerState.adhanSettings.selectedRegularAdhanId &&
-                                  (adhanPreview.isPlaying || adhanPreview.isBuffering)
+                                      prayerState
+                                          .adhanSettings
+                                          .selectedRegularAdhanId &&
+                                  (adhanPreview.isPlaying ||
+                                      adhanPreview.isBuffering)
                               ? Icons.stop_circle_outlined
                               : Icons.play_circle_outline_rounded,
                         ),
@@ -525,8 +558,11 @@ class SettingsPage extends ConsumerWidget {
                         },
                         icon: Icon(
                           adhanPreview.playingOptionId ==
-                                      prayerState.adhanSettings.selectedFajrAdhanId &&
-                                  (adhanPreview.isPlaying || adhanPreview.isBuffering)
+                                      prayerState
+                                          .adhanSettings
+                                          .selectedFajrAdhanId &&
+                                  (adhanPreview.isPlaying ||
+                                      adhanPreview.isBuffering)
                               ? Icons.stop_circle_outlined
                               : Icons.play_circle_outline_rounded,
                         ),
@@ -616,13 +652,15 @@ class SettingsPage extends ConsumerWidget {
                 if (selection.latitude == null || selection.longitude == null) {
                   return;
                 }
-                await ref.read(prayerRecentLocationsStoreProvider).save(
-                  PrayerRecentLocation(
-                    label: selection.label,
-                    latitude: selection.latitude!,
-                    longitude: selection.longitude!,
-                  ),
-                );
+                await ref
+                    .read(prayerRecentLocationsStoreProvider)
+                    .save(
+                      PrayerRecentLocation(
+                        label: selection.label,
+                        latitude: selection.latitude!,
+                        longitude: selection.longitude!,
+                      ),
+                    );
                 prayerNotifier.setManualLocation(
                   label: selection.label,
                   latitude: selection.latitude!,
@@ -660,6 +698,31 @@ class SettingsPage extends ConsumerWidget {
               onChanged: (value) {
                 if (value != null) prayerNotifier.updateMethod(value);
               },
+            ),
+            const Divider(height: 1),
+            _PreferenceDropdown<PrayerCalendarMode>(
+              label: l10n.settingsPrayerCalendarDisplayTitle,
+              value: profileSettings.prayerCalendarMode,
+              entries: const {
+                PrayerCalendarMode.gregorian: '',
+                PrayerCalendarMode.islamic: '',
+              },
+              entryBuilder: (value) => _prayerCalendarModeLabel(value, l10n),
+              onChanged: (value) {
+                if (value != null) {
+                  profileSettingsNotifier.setPrayerCalendarMode(value);
+                }
+              },
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  l10n.settingsPrayerCalendarDisplaySubtitle,
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
+              ),
             ),
             const Divider(height: 1),
             Padding(
@@ -719,9 +782,12 @@ class SettingsPage extends ConsumerWidget {
               children: [
                 _ThemeChoiceChip(
                   label: l10n.settingsThemeChoiceDefault,
-                  selected: profileSettings.appThemeMode == AppThemeMode.defaultMode,
+                  selected:
+                      profileSettings.appThemeMode == AppThemeMode.defaultMode,
                   onSelected: () {
-                    profileSettingsNotifier.setAppThemeMode(AppThemeMode.defaultMode);
+                    profileSettingsNotifier.setAppThemeMode(
+                      AppThemeMode.defaultMode,
+                    );
                     _showAppearanceSnack(
                       context,
                       l10n.settingsThemeChangedSuccessfully,
@@ -730,9 +796,12 @@ class SettingsPage extends ConsumerWidget {
                 ),
                 _ThemeChoiceChip(
                   label: l10n.settingsThemeChoiceEasyRead,
-                  selected: profileSettings.appThemeMode == AppThemeMode.easyRead,
+                  selected:
+                      profileSettings.appThemeMode == AppThemeMode.easyRead,
                   onSelected: () {
-                    profileSettingsNotifier.setAppThemeMode(AppThemeMode.easyRead);
+                    profileSettingsNotifier.setAppThemeMode(
+                      AppThemeMode.easyRead,
+                    );
                     _showAppearanceSnack(
                       context,
                       l10n.settingsThemeChangedSuccessfully,
@@ -775,6 +844,40 @@ class SettingsPage extends ConsumerWidget {
                 );
               },
             ),
+            AnimatedOpacity(
+              duration: const Duration(milliseconds: 180),
+              opacity: profileSettings.disableGlassTransparency ? 0.45 : 1,
+              child: IgnorePointer(
+                ignoring: profileSettings.disableGlassTransparency,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 4, 0, 10),
+                  child: _SettingsSliderRow(
+                    label: l10n.settingsGlassTransparencyTitle,
+                    subtitle: profileSettings.disableGlassTransparency
+                        ? l10n.settingsGlassTransparencyDisabledSubtitle
+                        : l10n.settingsGlassTransparencySubtitle,
+                    valueLabel: l10n.settingsPercentValue(
+                      _formatCount(
+                        context,
+                        profileSettings.glassTransparencyPercent,
+                      ),
+                    ),
+                    value: profileSettings.glassTransparencyLevel,
+                    min: kGlassTransparencyLevelMin,
+                    max: kGlassTransparencyLevelMax,
+                    divisions: 100,
+                    onChanged:
+                        profileSettingsNotifier.setGlassTransparencyLevel,
+                    onChangeEnd: (_) {
+                      _showAppearanceSnack(
+                        context,
+                        l10n.settingsVisualPreferenceUpdated,
+                      );
+                    },
+                  ),
+                ),
+              ),
+            ),
             const Divider(height: 1),
             _SettingsToggleRow(
               label: l10n.settingsDisableBackgroundTitle,
@@ -795,6 +898,8 @@ class SettingsPage extends ConsumerWidget {
             ),
             if (profileSettings.appThemeMode == AppThemeMode.defaultMode &&
                 !profileSettings.disableGlassTransparency &&
+                profileSettings.glassTransparencyLevel ==
+                    kGlassTransparencyLevelDefault &&
                 !profileSettings.disableBackground) ...[
               const SizedBox(height: 6),
               Text(
@@ -1014,28 +1119,122 @@ class SettingsPage extends ConsumerWidget {
     final learningSection = wrapSection(
       title: l10n.learnHubTitle,
       subtitle: l10n.settingsCategoryLearningSubtitle,
-      child: PremiumCard(
-        child: Column(
-          children: [
-            ListTile(
-              contentPadding: EdgeInsets.zero,
-              leading: const Icon(Icons.school_outlined),
-              title: Text(l10n.learnHubTitle),
-              subtitle: Text(l10n.settingsLearningHubSubtitle),
-              trailing: const Icon(Icons.chevron_right_rounded),
-              onTap: () => context.push('/learn'),
+      child: Column(
+        children: [
+          PremiumCard(
+            child: Column(
+              children: [
+                ListTile(
+                  contentPadding: EdgeInsets.zero,
+                  leading: const Icon(Icons.school_outlined),
+                  title: Text(l10n.learnHubTitle),
+                  subtitle: Text(l10n.settingsLearningHubSubtitle),
+                  trailing: const Icon(Icons.chevron_right_rounded),
+                  onTap: () => context.push('/learn'),
+                ),
+                const Divider(height: 1),
+                ListTile(
+                  contentPadding: EdgeInsets.zero,
+                  leading: const Icon(IslamicIcons.family),
+                  title: Text(l10n.familyLearningSettingsTitle),
+                  subtitle: Text(l10n.familyLearningSettingsSubtitle),
+                  trailing: const Icon(Icons.chevron_right_rounded),
+                  onTap: () => context.pushNamed('learnFamilyManagement'),
+                ),
+              ],
             ),
-            const Divider(height: 1),
-            ListTile(
-              contentPadding: EdgeInsets.zero,
-              leading: const Icon(IslamicIcons.family),
-              title: Text(l10n.familyLearningSettingsTitle),
-              subtitle: Text(l10n.familyLearningSettingsSubtitle),
-              trailing: const Icon(Icons.chevron_right_rounded),
-              onTap: () => context.pushNamed('learnFamilyManagement'),
+          ),
+          const SizedBox(height: 12),
+          PremiumCard(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  l10n.settingsLearningQuranArabicTitle,
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+                const SizedBox(height: 6),
+                Text(
+                  l10n.settingsLearningQuranArabicSubtitle,
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
+                const SizedBox(height: 10),
+                _SettingsToggleRow(
+                  label: l10n.quranShowArabic,
+                  subtitle: l10n.settingsQuranShowArabicSubtitle,
+                  value: quranReaderSettings.showArabic,
+                  onChanged: quranReaderSettingsNotifier.setShowArabic,
+                ),
+                const Divider(height: 1),
+                _SettingsToggleRow(
+                  label: l10n.quranShowTransliteration,
+                  subtitle: l10n.settingsQuranShowTransliterationSubtitle,
+                  value: quranReaderSettings.showTransliteration,
+                  onChanged: quranReaderSettingsNotifier.setShowTransliteration,
+                ),
+                const Divider(height: 1),
+                _SettingsToggleRow(
+                  label: l10n.quranShowTranslation,
+                  subtitle: l10n.settingsQuranShowTranslationSubtitle,
+                  value: quranReaderSettings.showTranslation,
+                  onChanged: quranReaderSettingsNotifier.setShowTranslation,
+                ),
+                const SizedBox(height: 10),
+                _SettingsSliderRow(
+                  label: l10n.quranArabicTextSize,
+                  subtitle: l10n.settingsQuranArabicTextSizeSubtitle,
+                  valueLabel: l10n.settingsPercentValue(
+                    _formatCount(
+                      context,
+                      quranReaderSettings.arabicScalePercent,
+                    ),
+                  ),
+                  value: quranReaderSettings.arabicScalePercent.toDouble(),
+                  min: 85,
+                  max: 140,
+                  divisions: 11,
+                  onChanged: (value) => quranReaderSettingsNotifier
+                      .setArabicScalePercent(value.round()),
+                ),
+                const SizedBox(height: 10),
+                _SettingsSliderRow(
+                  label: l10n.quranTransliterationTextSize,
+                  subtitle: l10n.settingsQuranTransliterationTextSizeSubtitle,
+                  valueLabel: l10n.settingsPercentValue(
+                    _formatCount(
+                      context,
+                      quranReaderSettings.transliterationScalePercent,
+                    ),
+                  ),
+                  value: quranReaderSettings.transliterationScalePercent
+                      .toDouble(),
+                  min: 85,
+                  max: 140,
+                  divisions: 11,
+                  onChanged: (value) => quranReaderSettingsNotifier
+                      .setTransliterationScalePercent(value.round()),
+                ),
+                const SizedBox(height: 10),
+                _SettingsSliderRow(
+                  label: l10n.quranTranslationTextSize,
+                  subtitle: l10n.settingsQuranTranslationTextSizeSubtitle,
+                  valueLabel: l10n.settingsPercentValue(
+                    _formatCount(
+                      context,
+                      quranReaderSettings.translationScalePercent,
+                    ),
+                  ),
+                  value: quranReaderSettings.translationScalePercent.toDouble(),
+                  min: 85,
+                  max: 140,
+                  divisions: 11,
+                  onChanged: (value) => quranReaderSettingsNotifier
+                      .setTranslationScalePercent(value.round()),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
 
@@ -1132,7 +1331,11 @@ class SettingsPage extends ConsumerWidget {
     return AppPageScaffold(
       headerIcon: _settingsCategoryIcon(currentCategory),
       title: _settingsCategoryTitle(currentCategory, l10n),
-      subtitle: _settingsCategorySubtitle(currentCategory, l10n),
+      subtitle: _settingsCategorySubtitle(
+        context,
+        currentCategory,
+        kidsMode: isKidsMode,
+      ),
       quote: quoteFromPoolForToday(reflectionFocusedQuotePool),
       children: sectionMap[currentCategory] ?? const <Widget>[],
     );
@@ -1164,7 +1367,10 @@ IconData _settingsCategoryIcon(SettingsCategory category) {
   }
 }
 
-String _settingsCategoryTitle(SettingsCategory category, AppLocalizations l10n) {
+String _settingsCategoryTitle(
+  SettingsCategory category,
+  AppLocalizations l10n,
+) {
   switch (category) {
     case SettingsCategory.accountSync:
       return l10n.settingsAccountsSyncTitle;
@@ -1190,30 +1396,71 @@ String _settingsCategoryTitle(SettingsCategory category, AppLocalizations l10n) 
 }
 
 String _settingsCategorySubtitle(
-  SettingsCategory category,
-  AppLocalizations l10n,
-) {
+  BuildContext context,
+  SettingsCategory category, {
+  required bool kidsMode,
+}) {
   switch (category) {
     case SettingsCategory.accountSync:
-      return l10n.settingsCategoryAccountSyncSubtitle;
+      return localizedSettingsPageDescription(
+        context,
+        SettingsPageDescriptionKey.accountSync,
+        kidsMode: kidsMode,
+      );
     case SettingsCategory.appearance:
-      return l10n.settingsCategoryAppearanceSubtitle;
+      return localizedSettingsPageDescription(
+        context,
+        SettingsPageDescriptionKey.appearance,
+        kidsMode: kidsMode,
+      );
     case SettingsCategory.prayerWorship:
-      return l10n.settingsCategoryPrayerWorshipSubtitle;
+      return localizedSettingsPageDescription(
+        context,
+        SettingsPageDescriptionKey.prayerWorship,
+        kidsMode: kidsMode,
+      );
     case SettingsCategory.learning:
-      return l10n.settingsCategoryLearningSubtitle;
+      return localizedSettingsPageDescription(
+        context,
+        SettingsPageDescriptionKey.learning,
+        kidsMode: kidsMode,
+      );
     case SettingsCategory.notificationsReminders:
-      return l10n.settingsCategoryNotificationsSubtitle;
+      return localizedSettingsPageDescription(
+        context,
+        SettingsPageDescriptionKey.notifications,
+        kidsMode: kidsMode,
+      );
     case SettingsCategory.widgetsWatch:
-      return l10n.settingsCategoryWidgetsWatchSubtitle;
+      return localizedSettingsPageDescription(
+        context,
+        SettingsPageDescriptionKey.widgetsWatch,
+        kidsMode: kidsMode,
+      );
     case SettingsCategory.languageDownloads:
-      return l10n.settingsCategoryLanguageDownloadsSubtitle;
+      return localizedSettingsPageDescription(
+        context,
+        SettingsPageDescriptionKey.language,
+        kidsMode: kidsMode,
+      );
     case SettingsCategory.privacyData:
-      return l10n.settingsCategoryPrivacyDataSubtitle;
+      return localizedSettingsPageDescription(
+        context,
+        SettingsPageDescriptionKey.privacy,
+        kidsMode: kidsMode,
+      );
     case SettingsCategory.kidsFamily:
-      return l10n.settingsCategoryKidsFamilySubtitle;
+      return localizedSettingsPageDescription(
+        context,
+        SettingsPageDescriptionKey.kidsFamily,
+        kidsMode: kidsMode,
+      );
     case SettingsCategory.about:
-      return l10n.settingsCategoryAboutSubtitle;
+      return localizedSettingsPageDescription(
+        context,
+        SettingsPageDescriptionKey.about,
+        kidsMode: kidsMode,
+      );
   }
 }
 
@@ -1271,6 +1518,18 @@ String _calculationMethodLabel(
       return l10n.settingsCalculationMethodKarachi;
     case PrayerCalculationMethod.ummAlQura:
       return l10n.settingsCalculationMethodUmmAlQura;
+  }
+}
+
+String _prayerCalendarModeLabel(
+  PrayerCalendarMode value,
+  AppLocalizations l10n,
+) {
+  switch (value) {
+    case PrayerCalendarMode.gregorian:
+      return l10n.worshipPrayerGregorianCalendarTitle;
+    case PrayerCalendarMode.islamic:
+      return l10n.worshipPrayerIslamicCalendarTitle;
   }
 }
 
@@ -1489,23 +1748,23 @@ class _PrayerTimeModeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final surfaceStyle = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.panel,
+      tintColor: selected ? Theme.of(context).colorScheme.primary : null,
+    );
+    final badgeStyle = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.pill,
+      tintColor: Theme.of(context).colorScheme.primary,
+    );
     return InkWell(
       borderRadius: BorderRadius.circular(18),
       onTap: onTap,
       child: Container(
         width: double.infinity,
         padding: const EdgeInsets.all(14),
-        decoration: BoxDecoration(
-          color: selected
-              ? Theme.of(context).colorScheme.primary.withValues(alpha: 0.08)
-              : Theme.of(context).colorScheme.surface.withValues(alpha: 0.35),
-          borderRadius: BorderRadius.circular(18),
-          border: Border.all(
-            color: selected
-                ? Theme.of(context).colorScheme.primary.withValues(alpha: 0.35)
-                : Theme.of(context).colorScheme.outline.withValues(alpha: 0.18),
-          ),
-        ),
+        decoration: surfaceStyle.decoration(radius: 18),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -1523,12 +1782,7 @@ class _PrayerTimeModeCard extends StatelessWidget {
                       horizontal: 8,
                       vertical: 4,
                     ),
-                    decoration: BoxDecoration(
-                      color: Theme.of(
-                        context,
-                      ).colorScheme.primary.withValues(alpha: 0.12),
-                      borderRadius: BorderRadius.circular(999),
-                    ),
+                    decoration: badgeStyle.decoration(radius: 999),
                     child: Text(
                       l10n.settingsRecommendedBadge,
                       style: Theme.of(context).textTheme.labelSmall,
@@ -1763,17 +2017,10 @@ class _ManualPrayerTimesContent extends StatelessWidget {
               child: Container(
                 width: double.infinity,
                 padding: const EdgeInsets.all(14),
-                decoration: BoxDecoration(
-                  color: Theme.of(
-                    context,
-                  ).colorScheme.surface.withValues(alpha: 0.45),
-                  borderRadius: BorderRadius.circular(18),
-                  border: Border.all(
-                    color: Theme.of(
-                      context,
-                    ).colorScheme.outline.withValues(alpha: 0.2),
-                  ),
-                ),
+                decoration: AppSurfaceTheme.resolve(
+                  context,
+                  variant: AppSurfaceVariant.panel,
+                ).decoration(radius: 18),
                 child: Row(
                   children: [
                     Expanded(
@@ -1911,17 +2158,10 @@ class _MosqueComparisonSection extends StatelessWidget {
               child: Container(
                 width: double.infinity,
                 padding: const EdgeInsets.all(14),
-                decoration: BoxDecoration(
-                  color: Theme.of(
-                    context,
-                  ).colorScheme.surface.withValues(alpha: 0.42),
-                  borderRadius: BorderRadius.circular(18),
-                  border: Border.all(
-                    color: Theme.of(
-                      context,
-                    ).colorScheme.outline.withValues(alpha: 0.18),
-                  ),
-                ),
+                decoration: AppSurfaceTheme.resolve(
+                  context,
+                  variant: AppSurfaceVariant.panel,
+                ).decoration(radius: 18),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -2103,19 +2343,22 @@ class _PrayerAdjustmentRow extends StatelessWidget {
     final adjustmentLabel = adjustmentMinutes == 0
         ? l10n.settingsNoChange
         : _formatAdjustmentLabel(adjustmentMinutes, l10n, context);
+    final surfaceStyle = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.panel,
+    );
+    final modifiedStyle = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.pill,
+      tintColor: Theme.of(context).colorScheme.primary,
+    );
     return InkWell(
       borderRadius: BorderRadius.circular(18),
       onTap: onTap,
       child: Container(
         width: double.infinity,
         padding: const EdgeInsets.all(14),
-        decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.surface.withValues(alpha: 0.45),
-          borderRadius: BorderRadius.circular(18),
-          border: Border.all(
-            color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.2),
-          ),
-        ),
+        decoration: surfaceStyle.decoration(radius: 18),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -2133,12 +2376,7 @@ class _PrayerAdjustmentRow extends StatelessWidget {
                       horizontal: 8,
                       vertical: 4,
                     ),
-                    decoration: BoxDecoration(
-                      color: Theme.of(
-                        context,
-                      ).colorScheme.primary.withValues(alpha: 0.08),
-                      borderRadius: BorderRadius.circular(999),
-                    ),
+                    decoration: modifiedStyle.decoration(radius: 999),
                     child: Text(
                       l10n.settingsModified,
                       style: Theme.of(context).textTheme.labelSmall,
@@ -2709,6 +2947,57 @@ class _SettingsToggleRow extends StatelessWidget {
       subtitle: subtitle == null ? null : Text(subtitle!),
       value: value,
       onChanged: onChanged,
+    );
+  }
+}
+
+class _SettingsSliderRow extends StatelessWidget {
+  const _SettingsSliderRow({
+    required this.label,
+    required this.subtitle,
+    required this.valueLabel,
+    required this.value,
+    required this.min,
+    required this.max,
+    required this.divisions,
+    required this.onChanged,
+    this.onChangeEnd,
+  });
+
+  final String label;
+  final String subtitle;
+  final String valueLabel;
+  final double value;
+  final double min;
+  final double max;
+  final int divisions;
+  final ValueChanged<double> onChanged;
+  final ValueChanged<double>? onChangeEnd;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        ListTile(
+          contentPadding: EdgeInsets.zero,
+          title: Text(label),
+          subtitle: Text(subtitle),
+          trailing: Text(
+            valueLabel,
+            style: Theme.of(context).textTheme.labelLarge,
+          ),
+        ),
+        Slider(
+          value: value,
+          min: min,
+          max: max,
+          divisions: divisions,
+          label: valueLabel,
+          onChanged: onChanged,
+          onChangeEnd: onChangeEnd,
+        ),
+      ],
     );
   }
 }

@@ -178,7 +178,7 @@ class IslamicTriviaResultsPage extends ConsumerWidget {
                         'learnTriviaKnowledgePathDetail',
                         pathParameters: {'pathId': result.knowledgePathId!},
                       )
-                    : () => context.goNamed('learnIslamicTrivia'),
+                    : () => context.goNamed('learnQuizzesHub'),
                 child: Text(
                   result.knowledgePathId != null
                       ? l10n.triviaResultsBackToPathAction

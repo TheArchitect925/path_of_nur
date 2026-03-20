@@ -1,10 +1,30 @@
+import 'dart:math' as math;
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/theme/app_theme.dart';
+import '../../worship/domain/prayer_calendar_mode.dart';
 import '../domain/profile_age_preferences.dart';
 import '../../../shared/persistence/local_store.dart';
 
 enum ProfileThemePreference { system, dark, light }
+
+const double kGlassTransparencyLevelMin = 0.0;
+const double kGlassTransparencyLevelMax = 1.0;
+const double kGlassTransparencyLevelDefault = 0.145;
+const double kGlassSurfaceAlphaMin = 0.82;
+const double kGlassSurfaceAlphaMax = 0.95;
+
+double glassSurfaceAlphaFromLevel(double level) {
+  final clamped = normalizedGlassTransparencyLevel(level);
+  final eased = 1 - math.pow(1 - clamped, 2).toDouble();
+  return kGlassSurfaceAlphaMax -
+      ((kGlassSurfaceAlphaMax - kGlassSurfaceAlphaMin) * eased);
+}
+
+double normalizedGlassTransparencyLevel(double level) {
+  return level.clamp(kGlassTransparencyLevelMin, kGlassTransparencyLevelMax);
+}
 
 class ProfileSettingsState {
   const ProfileSettingsState({
@@ -30,7 +50,9 @@ class ProfileSettingsState {
     required this.reflectionReminders,
     required this.fastingReminders,
     required this.appThemeMode,
+    required this.prayerCalendarMode,
     required this.disableGlassTransparency,
+    required this.glassTransparencyLevel,
     required this.disableBackground,
     this.ramadanStartDateIso,
     this.ramadanEndDateIso,
@@ -58,13 +80,21 @@ class ProfileSettingsState {
   final bool reflectionReminders;
   final bool fastingReminders;
   final AppThemeMode appThemeMode;
+  final PrayerCalendarMode prayerCalendarMode;
   final bool disableGlassTransparency;
+  final double glassTransparencyLevel;
   final bool disableBackground;
   final String? ramadanStartDateIso;
   final String? ramadanEndDateIso;
 
   bool get effectiveKidsUiThemeEnabled =>
       resolveKidsUiThemeEnabled(ageRange: ageRange, mode: kidsUiThemeMode);
+
+  double get glassSurfaceAlpha =>
+      glassSurfaceAlphaFromLevel(glassTransparencyLevel);
+
+  int get glassTransparencyPercent =>
+      (glassTransparencyLevel * 100).round().clamp(0, 100);
 
   ProfileSettingsState copyWith({
     ProfileThemePreference? themePreference,
@@ -89,7 +119,9 @@ class ProfileSettingsState {
     bool? reflectionReminders,
     bool? fastingReminders,
     AppThemeMode? appThemeMode,
+    PrayerCalendarMode? prayerCalendarMode,
     bool? disableGlassTransparency,
+    double? glassTransparencyLevel,
     bool? disableBackground,
     String? ramadanStartDateIso,
     String? ramadanEndDateIso,
@@ -121,8 +153,12 @@ class ProfileSettingsState {
       reflectionReminders: reflectionReminders ?? this.reflectionReminders,
       fastingReminders: fastingReminders ?? this.fastingReminders,
       appThemeMode: appThemeMode ?? this.appThemeMode,
+      prayerCalendarMode: prayerCalendarMode ?? this.prayerCalendarMode,
       disableGlassTransparency:
           disableGlassTransparency ?? this.disableGlassTransparency,
+      glassTransparencyLevel: glassTransparencyLevel == null
+          ? this.glassTransparencyLevel
+          : normalizedGlassTransparencyLevel(glassTransparencyLevel),
       disableBackground: disableBackground ?? this.disableBackground,
       ramadanStartDateIso: ramadanStartDateIso ?? this.ramadanStartDateIso,
       ramadanEndDateIso: ramadanEndDateIso ?? this.ramadanEndDateIso,
@@ -156,7 +192,9 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
           reflectionReminders: false,
           fastingReminders: false,
           appThemeMode: AppThemeMode.defaultMode,
+          prayerCalendarMode: PrayerCalendarMode.gregorian,
           disableGlassTransparency: false,
+          glassTransparencyLevel: kGlassTransparencyLevelDefault,
           disableBackground: false,
         ),
       ) {
@@ -317,8 +355,18 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
     _save();
   }
 
+  void setPrayerCalendarMode(PrayerCalendarMode mode) {
+    state = state.copyWith(prayerCalendarMode: mode);
+    _save();
+  }
+
   void setDisableGlassTransparency(bool value) {
     state = state.copyWith(disableGlassTransparency: value);
+    _save();
+  }
+
+  void setGlassTransparencyLevel(double value) {
+    state = state.copyWith(glassTransparencyLevel: value);
     _save();
   }
 
@@ -331,6 +379,7 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
     state = state.copyWith(
       appThemeMode: AppThemeMode.defaultMode,
       disableGlassTransparency: false,
+      glassTransparencyLevel: kGlassTransparencyLevelDefault,
       disableBackground: false,
     );
     _save();
@@ -359,6 +408,15 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
     }
     if (appThemeMode == AppThemeMode.calmBeautiful) {
       appThemeMode = AppThemeMode.defaultMode;
+    }
+
+    PrayerCalendarMode prayerCalendarMode = state.prayerCalendarMode;
+    final prayerCalendarModeName = data['prayerCalendarMode'] as String?;
+    for (final item in PrayerCalendarMode.values) {
+      if (item.name == prayerCalendarModeName) {
+        prayerCalendarMode = item;
+        break;
+      }
     }
 
     ProfileAgeRange ageRange = state.ageRange;
@@ -428,9 +486,14 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
       fastingReminders:
           data['fastingReminders'] as bool? ?? state.fastingReminders,
       appThemeMode: appThemeMode,
+      prayerCalendarMode: prayerCalendarMode,
       disableGlassTransparency:
           data['disableGlassTransparency'] as bool? ??
           state.disableGlassTransparency,
+      glassTransparencyLevel: normalizedGlassTransparencyLevel(
+        (data['glassTransparencyLevel'] as num?)?.toDouble() ??
+            kGlassTransparencyLevelDefault,
+      ),
       disableBackground:
           data['disableBackground'] as bool? ?? state.disableBackground,
       ramadanStartDateIso:
@@ -465,7 +528,9 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
       'reflectionReminders': state.reflectionReminders,
       'fastingReminders': state.fastingReminders,
       'appThemeMode': state.appThemeMode.name,
+      'prayerCalendarMode': state.prayerCalendarMode.name,
       'disableGlassTransparency': state.disableGlassTransparency,
+      'glassTransparencyLevel': state.glassTransparencyLevel,
       'disableBackground': state.disableBackground,
       'ramadanStartDateIso': state.ramadanStartDateIso,
       'ramadanEndDateIso': state.ramadanEndDateIso,

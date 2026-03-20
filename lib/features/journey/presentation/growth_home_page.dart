@@ -13,7 +13,7 @@ class GrowthHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    final quote = buildLearningCompactQuote();
+    final quote = buildGrowthReflectionQuote();
 
     return SectionHubScaffold(
       headerIcon: IslamicIcons.tasbih,

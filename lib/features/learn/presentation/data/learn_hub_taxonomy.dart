@@ -327,10 +327,7 @@ class LearnHubTaxonomy {
         title: l10n.learnHubSubcategoryCharacterAdabTitle,
         subtitle: l10n.learnHubSubcategoryCharacterAdabSubtitle,
         categoryId: LearnHubCategoryId.characterAdab,
-        routeTarget: const LearnHubRouteTarget(
-          routeName: 'learnHubCategory',
-          pathParameters: {'categoryId': 'character-adab'},
-        ),
+        routeTarget: const LearnHubRouteTarget(routeName: 'learnLifeLanding'),
       ),
       LearnHubSubcategoryDescriptor(
         id: 'arabic-learning',
@@ -423,5 +420,43 @@ class LearnHubTaxonomy {
         routeTarget: const LearnHubRouteTarget(routeName: 'learnJourneyHome'),
       ),
     ];
+  }
+
+  static LearnHubSubcategoryDescriptor? subcategoryById(
+    AppLocalizations l10n,
+    String id,
+  ) {
+    for (final subcategory in subcategories(l10n)) {
+      if (subcategory.id == id) {
+        return subcategory;
+      }
+    }
+    return null;
+  }
+
+  static bool isJourneyRouteTarget(LearnHubRouteTarget routeTarget) {
+    switch (routeTarget.routeName) {
+      case 'learnJourneyHome':
+      case 'learnJourneyIsland':
+      case 'learnJourneyDetail':
+      case 'learnJourneyStage':
+        return true;
+      default:
+        return false;
+    }
+  }
+
+  static bool subcategoryUsesJourneyRoute(
+    AppLocalizations l10n,
+    String? subcategoryId,
+  ) {
+    if (subcategoryId == null || subcategoryId.isEmpty) {
+      return false;
+    }
+    final subcategory = subcategoryById(l10n, subcategoryId);
+    if (subcategory == null) {
+      return false;
+    }
+    return isJourneyRouteTarget(subcategory.routeTarget);
   }
 }

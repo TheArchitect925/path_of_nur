@@ -10,12 +10,18 @@ import '../../../core/prayer/prayer_preferences.dart';
 import '../../../core/prayer/prayer_location_search_service.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_surfaces.dart';
-import '../../../core/theme/app_text_styles.dart';
+import '../../../core/theme/app_theme.dart';
 import '../../../features/celestial/presentation/widgets/celestial_cycle_card.dart';
+import '../application/home_calendar_progress_provider.dart';
+import '../../../shared/content/contextual_quran_quotes.dart';
+import '../../../features/profile/application/profile_settings_provider.dart';
 import '../../../features/worship/application/dhikr_controller.dart';
 import '../../../features/worship/application/prayer_controller.dart';
+import '../../../features/worship/data/prayer_log_repository.dart';
 import '../../../features/worship/domain/prayer_name.dart';
 import '../../../features/worship/domain/prayer_status.dart';
+import '../../../features/worship/domain/prayer_tracker_fields.dart';
+import '../../../features/worship/presentation/prayer_date_utils.dart';
 import '../../../features/learn/quran/application/quran_providers.dart';
 import '../../../features/learn/prophets/application/daily_learning_service.dart';
 import '../../../features/learn/prophets/application/prophets_repository.dart';
@@ -24,19 +30,21 @@ import '../../../features/learn/prophets/presentation/widgets/daily_revelation_c
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/application/app_summary_providers.dart';
 import '../../../shared/application/daily_clock_provider.dart';
+import '../../../shared/persistence/local_store.dart';
 import '../../../shared/application/special_mode_provider.dart';
 import '../../../shared/state/location_permission_state.dart';
 import '../../../shared/state/shell_state.dart';
 import '../../../shared/state/user_profile_state.dart';
 import '../../../shared/theme/islamic_icons.dart';
+import '../../../shared/widgets/arabic_text_utils.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/prayer_location_picker_sheet.dart';
-import '../../../shared/widgets/arabic_text_utils.dart';
-import '../../../shared/widgets/quran_text_span.dart';
+import '../../../shared/widgets/quran_quote_block.dart';
+import '../../../shared/widgets/quran_verse_content.dart';
+import '../../../shared/widgets/shortcut_dock.dart';
 import '../../../shared/utils/compact_duration_formatter.dart';
 import '../../learn/presentation/data/learn_category_catalog.dart';
 import '../../learn/presentation/models/learn_category_item.dart';
-import '../data/home_verses.dart';
 
 String _formatLocalizedCount(BuildContext context, num value) {
   return NumberFormat.decimalPattern(
@@ -48,80 +56,6 @@ class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
 
   static final math.Random _verseRandom = math.Random();
-
-  static const List<String> _homeVerseLocationLabels = [
-    'Al-Fajr 89:1',
-    'Al-Inshirah 94:5-6',
-    'Al-Ankabut 29:69',
-    'Al-Baqarah 2:152',
-    'Al-Baqarah 2:45',
-    'Az-Zumar 39:53',
-    'Al-Baqarah 2:261',
-    'Al-Ikhlas 112:1',
-    'Al-Qalam 68:1',
-    'Al-Ahzab 33:56',
-    'Al-Insan 76:1',
-    'At-Tawba 9:40',
-    'Al-Baqarah 2:186',
-    'Al-Anbiya 21:74',
-    'Al-Fatihah 1:5',
-    'Al-Fatihah 1:5',
-    'Al-Baqarah 2:255',
-    'Al-Fajr 89:2',
-    'Al-Baqarah 2:286',
-    'Al-Ahzab 33:43',
-    'Yunus 10:49',
-    'Ar-Rahman 55:28',
-    'Al-Baqarah 2:286',
-    'Al-Ahzab 33:43',
-    'Al-Baqarah 2:186',
-    'Al-Baqarah 2:286',
-    'Al-Baqarah 2:286',
-    'Al-Baqarah 2:286',
-    'Al-Fatihah 1:1',
-    'Al-Baqarah 2:286',
-    'Al-Hujurat 49:13',
-    'Al-Baqarah 2:286',
-    'Al-Ma’idah 5:32',
-    'Al-Isra 17:82',
-    'Al-Tawba 9:51',
-    'Al-Qiyamah 75:12',
-    'An-Nisa 4:35',
-    'Al-Baqarah 2:286',
-    'An-Nisa 4:36',
-    'Ar-Rum 30:54',
-    'At-Tawba 9:40',
-    'Al-Ikhlas 112:2',
-    'An-Nisa 4:36',
-    'Al-Baqarah 2:255',
-    'Al-Anfal 8:2',
-    'Al-Ma’idah 5:8',
-    'Al-Baqarah 2:186',
-    'Al-Imran 3:26',
-    'Al-Ahzab 33:70',
-    'Al-Baqarah 2:286',
-    'Al-Baqarah 2:186',
-    'Al-Mujadila 58:1',
-    'Al-Hashr 59:23',
-    'Al-Muzzammil 73:8',
-    'An-Naziat 79:10',
-    'Fatir 35:3',
-    'Al-Mujadila 58:22',
-    'Al-Baqarah 2:286',
-    'Al-Baqarah 2:286',
-    'Al-Baqarah 2:286',
-    'Al-Fajr 89:27',
-    'Al-Nasr 110:1',
-    'Ad-Duha 93:3',
-    'Al-Fajr 89:27',
-    'Al-Hadid 57:24',
-    'Al-Hadid 57:28',
-    'Al-Mulk 67:15',
-    'Qadr 97:5',
-    'Al-Qalam 68:4',
-    'Al-Mursalat 77:1',
-    'Adh-Dhariyat 51:30',
-  ];
 
   @override
   ConsumerState<HomePage> createState() => _HomePageState();
@@ -152,21 +86,9 @@ class _HomePageState extends ConsumerState<HomePage> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final userProfile = ref.watch(userProfileProvider);
-    final quranReaderSettings = ref.watch(quranReaderSettingsProvider);
     final verseVersion = ref.watch(homeVerseVersionProvider);
-    final verseIndex = verseVersion % homeQuranVerses.length;
-    final verse = homeQuranVerses[verseIndex];
-    final displayVerse = HomeVerse(
-      arabic: verse.arabic,
-      transliteration: verse.transliteration,
-      translation: verse.translation,
-      surah: verse.surah,
-      verse: verse.verse,
-      locationLabel:
-          verse.locationLabel ??
-          HomePage._homeVerseLocationLabels[verseIndex %
-              HomePage._homeVerseLocationLabels.length],
-    );
+    final displayVerse =
+        homeContextualQuotePool[verseVersion % homeContextualQuotePool.length];
 
     return Stack(
       children: [
@@ -194,25 +116,20 @@ class _HomePageState extends ConsumerState<HomePage> {
                     const _ModeAwareHomeCard(),
                     const SizedBox(height: 10),
                     _AyahCard(
-                      l10n: l10n,
                       verse: displayVerse,
-                      arabicScalePercent:
-                          quranReaderSettings.arabicScalePercent,
-                      transliterationScalePercent:
-                          quranReaderSettings.transliterationScalePercent,
-                      translationScalePercent:
-                          quranReaderSettings.translationScalePercent,
                       onTap: () => ref
                           .read(homeVerseVersionProvider.notifier)
                           .update((state) {
-                            final length = homeQuranVerses.length;
-                            if (length <= 1) {
+                            final poolLength = homeContextualQuotePool.length;
+                            if (poolLength <= 1) {
                               return state;
                             }
-                            var next = HomePage._verseRandom.nextInt(length);
-                            final current = state % length;
+                            var next = HomePage._verseRandom.nextInt(
+                              poolLength,
+                            );
+                            final current = state % poolLength;
                             while (next == current) {
-                              next = HomePage._verseRandom.nextInt(length);
+                              next = HomePage._verseRandom.nextInt(poolLength);
                             }
                             return next;
                           }),
@@ -241,100 +158,52 @@ class _HomePageState extends ConsumerState<HomePage> {
   }
 }
 
-class _FloatingQuranChip extends ConsumerWidget {
-  const _FloatingQuranChip();
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = AppLocalizations.of(context);
-    final progress = ref.watch(quranReadingProgressProvider);
-    final recitationSession = ref.watch(quranRecitationSessionProvider);
-    final surahMap = ref.watch(quranSurahMapProvider);
-    final fallbackSurah = surahMap[1];
-    final currentSurah = surahMap[progress.surahNumber] ?? fallbackSurah;
-    final sessionSurah = recitationSession == null
-        ? null
-        : surahMap[recitationSession.surahNumber];
-    final activeSurah = sessionSurah ?? currentSurah ?? fallbackSurah;
-    final surahNumber = activeSurah?.number ?? 1;
-    final ayahCount = activeSurah?.verseCount ?? 1;
-    final initialAyahFromSession = recitationSession?.ayahNumber;
-    final progressAyah = progress.ayahNumber;
-    final ayahNumber = ayahCount > 0
-        ? ((initialAyahFromSession ?? progressAyah).clamp(1, ayahCount))
-        : 1;
-
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: () => context.pushNamed(
-          'quranReader',
-          pathParameters: {'surahNumber': surahNumber.toString()},
-          queryParameters: {'ayah': ayahNumber.toString()},
-        ),
-        borderRadius: BorderRadius.circular(999),
-        child: Ink(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(999),
-            gradient: const LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [Color(0xFFEAF9EB), Color(0xFFBDE0C5)],
-            ),
-            border: Border.all(
-              color: const Color(0xFF4D8B63).withValues(alpha: 0.35),
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: const Color(0xFF4D8B63).withValues(alpha: 0.18),
-                blurRadius: 14,
-                offset: const Offset(0, 8),
-              ),
-            ],
-          ),
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(
-                  Icons.menu_book_rounded,
-                  size: 18,
-                  color: Color(0xFF2D5E45),
-                ),
-                SizedBox(width: 8),
-                Text(
-                  l10n.quranTitle,
-                  style: TextStyle(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w700,
-                    color: Color(0xFF2D5E45),
-                    letterSpacing: 0.2,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
 class _DailySalahTimingsCard extends ConsumerWidget {
   const _DailySalahTimingsCard();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final scheduleContext = ref.watch(prayerScheduleContextProvider);
-    final prayerRecords = ref.watch(prayerControllerProvider);
-    final currentPrayerId = scheduleContext.currentPrayerId;
-    final nextPrayerId = scheduleContext.nextPrayerId;
-    final statusByPrayer = {
-      for (final record in prayerRecords) record.prayer: record.status,
-    };
+    final l10n = AppLocalizations.of(context);
+    final selectedDate = ref.watch(homePrayerSelectedDateProvider);
+    ref.watch(homePrayerHistoryEditVersionProvider);
+    final now = ref.watch(dailyNowProvider).value ?? DateTime.now();
+    final today = DateTime(now.year, now.month, now.day);
+    final isToday = sameDay(selectedDate, today);
+    final isFutureDay = selectedDate.isAfter(today);
+    final profileSettings = ref.watch(profileSettingsProvider);
+    final prayerState = ref.watch(prayerSettingsProvider);
+    final location = ref.watch(prayerLocationProvider);
+    final schedule = buildPrayerScheduleForDate(
+      date: selectedDate,
+      latitude: location.latitude,
+      longitude: location.longitude,
+      settings: prayerState.preferences,
+    ).where((item) => item.id != 'tahajjud').toList();
+    final scheduleContext = isToday
+        ? ref.watch(prayerScheduleContextProvider)
+        : null;
+    final dayKey = LocalStore.todayKey(selectedDate);
+    final dayEntries = ref
+        .watch(prayerLogRepositoryProvider)
+        .readDayEntries(dayKey);
+    ref.watch(prayerControllerProvider);
+    final completedCount = dayEntries.values
+        .where((entry) => entry.status == PrayerStatus.completed)
+        .length;
+    final locale = Localizations.localeOf(context).toLanguageTag();
+    final timeFormat = DateFormat.jm(locale);
+    final dateLabel = formatPrayerDateLabel(
+      context: context,
+      l10n: l10n,
+      selectedDate: selectedDate,
+      calendarMode: profileSettings.prayerCalendarMode,
+      todayLabel: l10n.homePrayerDateToday,
+      yesterdayLabel: l10n.homePrayerDateYesterday,
+      tomorrowLabel: l10n.homePrayerDateTomorrow,
+      relativeTo: today,
+    );
 
-    if (scheduleContext.items.isEmpty) {
+    if (schedule.isEmpty) {
       return const SizedBox.shrink();
     }
 
@@ -346,22 +215,103 @@ class _DailySalahTimingsCard extends ConsumerWidget {
         children: [
           Row(
             children: [
-              const Icon(
-                IslamicIcons.prayer,
-                size: 18,
-                color: Color(0xFF7A5A33),
+              IconButton(
+                onPressed: () {
+                  ref.read(homePrayerSelectedDateProvider.notifier).state =
+                      selectedDate.subtract(const Duration(days: 1));
+                },
+                icon: const Icon(
+                  Icons.chevron_left_rounded,
+                  color: Color(0xFF7A5A33),
+                ),
+                tooltip: l10n.homePrayerPreviousDayTooltip,
               ),
-              const SizedBox(width: 8),
-              const Expanded(
-                child: Text(
-                  'Today\'s Salah',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700,
-                    color: Color(0xFF25221E),
-                    fontFamily: 'serif',
+              Expanded(
+                child: Material(
+                  color: Colors.transparent,
+                  child: InkWell(
+                    borderRadius: BorderRadius.circular(12),
+                    onTap: () async {
+                      final picked = await _showHomePrayerCalendarSheet(
+                        context: context,
+                        initialDate: selectedDate,
+                      );
+                      if (picked != null) {
+                        ref
+                            .read(homePrayerSelectedDateProvider.notifier)
+                            .state = DateTime(
+                          picked.year,
+                          picked.month,
+                          picked.day,
+                        );
+                      }
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 8,
+                        vertical: 4,
+                      ),
+                      child: Column(
+                        children: [
+                          Text(
+                            l10n.homePrayerSectionTitle,
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w700,
+                              color: Color(0xFF25221E),
+                              fontFamily: 'serif',
+                            ),
+                          ),
+                          const SizedBox(height: 4),
+                          Text(
+                            dateLabel,
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              fontSize: 12.5,
+                              fontWeight: FontWeight.w600,
+                              color: Color(0xFF6E5D4C),
+                              fontFamily: 'serif',
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ),
+              ),
+              IconButton(
+                onPressed: () {
+                  ref.read(homePrayerSelectedDateProvider.notifier).state =
+                      selectedDate.add(const Duration(days: 1));
+                },
+                icon: const Icon(
+                  Icons.chevron_right_rounded,
+                  color: Color(0xFF7A5A33),
+                ),
+                tooltip: l10n.homePrayerNextDayTooltip,
+              ),
+            ],
+          ),
+          const SizedBox(height: 6),
+          Row(
+            children: [
+              const SizedBox(width: 8),
+              Expanded(
+                child: isFutureDay
+                    ? const SizedBox.shrink()
+                    : Text(
+                        l10n.homePrayerCompletedCountValue(
+                          _formatLocalizedCount(context, completedCount),
+                          _formatLocalizedCount(context, schedule.length),
+                        ),
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          fontSize: 12.5,
+                          color: Color(0xFF766656),
+                          height: 1.3,
+                        ),
+                      ),
               ),
               IconButton(
                 onPressed: () => context.goNamed('settings'),
@@ -375,7 +325,11 @@ class _DailySalahTimingsCard extends ConsumerWidget {
               ),
             ],
           ),
-          const SizedBox(height: 8),
+          if (!isFutureDay) ...[
+            const SizedBox(height: 8),
+          ] else ...[
+            const SizedBox(height: 2),
+          ],
           LayoutBuilder(
             builder: (context, constraints) {
               final itemWidth = (constraints.maxWidth - 10) / 2;
@@ -383,26 +337,48 @@ class _DailySalahTimingsCard extends ConsumerWidget {
                 spacing: 10,
                 runSpacing: 10,
                 children: [
-                  for (final item in scheduleContext.items)
+                  for (final item in schedule)
                     SizedBox(
                       width: itemWidth,
-                      child: _PrayerTimingPill(
-                        prayer: _prayerNameFromScheduleId(item.id),
-                        name: item.name,
-                        arabicName: item.arabicName,
-                        time: item.offerTime,
-                        status:
-                            statusByPrayer[_prayerNameFromScheduleId(
-                              item.id,
-                            )] ??
-                            PrayerStatus.pending,
-                        isCurrent: item.id == currentPrayerId,
-                        isNext: item.id == nextPrayerId,
-                        onToggleOffered: () => ref
-                            .read(prayerControllerProvider.notifier)
-                            .toggleCompleted(
-                              _prayerNameFromScheduleId(item.id),
-                            ),
+                      child: Builder(
+                        builder: (context) {
+                          final prayer = _prayerNameFromScheduleId(item.id);
+                          final entry = dayEntries[prayer];
+                          final completedAt = entry?.completedAtIso == null
+                              ? null
+                              : DateTime.tryParse(entry!.completedAtIso!);
+                          return _PrayerTimingPill(
+                            prayer: prayer,
+                            name: item.name,
+                            arabicName: item.arabicName,
+                            time: item.offerTime,
+                            status: entry?.status ?? PrayerStatus.pending,
+                            completionDetail: completedAt == null
+                                ? null
+                                : l10n.worshipPrayerCompletedAt(
+                                    timeFormat.format(completedAt),
+                                  ),
+                            isCurrent:
+                                isToday &&
+                                item.id == scheduleContext?.currentPrayerId,
+                            isNext:
+                                isToday &&
+                                item.id == scheduleContext?.nextPrayerId,
+                            onToggleOffered: isFutureDay
+                                ? null
+                                : isToday
+                                ? () => ref
+                                      .read(prayerControllerProvider.notifier)
+                                      .toggleCompleted(prayer)
+                                : () => _toggleHistoricalPrayerCompletion(
+                                    ref,
+                                    dayKey: dayKey,
+                                    prayer: prayer,
+                                    existingEntry: entry,
+                                    completedAt: item.offerDateTime,
+                                  ),
+                          );
+                        },
                       ),
                     ),
                 ],
@@ -410,6 +386,367 @@ class _DailySalahTimingsCard extends ConsumerWidget {
             },
           ),
         ],
+      ),
+    );
+  }
+}
+
+void _toggleHistoricalPrayerCompletion(
+  WidgetRef ref, {
+  required String dayKey,
+  required PrayerName prayer,
+  required PrayerLogDayEntry? existingEntry,
+  required DateTime completedAt,
+}) {
+  final repository = ref.read(prayerLogRepositoryProvider);
+  final entries = Map<PrayerName, PrayerLogDayEntry>.from(
+    repository.readDayEntries(dayKey),
+  );
+  final current = existingEntry ?? entries[prayer];
+  final isCompleted = current?.status == PrayerStatus.completed;
+
+  entries[prayer] = isCompleted
+      ? const PrayerLogDayEntry(status: PrayerStatus.pending)
+      : PrayerLogDayEntry(
+          status: PrayerStatus.completed,
+          completedAtIso: completedAt.toIso8601String(),
+          postSalahAdhkarCompletedAtIso: null,
+          timing: PrayerOfferTiming.onTime,
+          place: PrayerOfferPlace.alone,
+        );
+  repository.saveDayEntries(dayKey, entries);
+  ref
+      .read(homePrayerHistoryEditVersionProvider.notifier)
+      .update((value) => value + 1);
+}
+
+Future<DateTime?> _showHomePrayerCalendarSheet({
+  required BuildContext context,
+  required DateTime initialDate,
+}) {
+  return showModalBottomSheet<DateTime>(
+    context: context,
+    showDragHandle: true,
+    builder: (_) => _HomePrayerCalendarSheet(initialDate: initialDate),
+  );
+}
+
+class _HomePrayerCalendarSheet extends ConsumerStatefulWidget {
+  const _HomePrayerCalendarSheet({required this.initialDate});
+
+  final DateTime initialDate;
+
+  @override
+  ConsumerState<_HomePrayerCalendarSheet> createState() =>
+      _HomePrayerCalendarSheetState();
+}
+
+class _HomePrayerCalendarSheetState
+    extends ConsumerState<_HomePrayerCalendarSheet> {
+  late DateTime _visibleMonth;
+
+  @override
+  void initState() {
+    super.initState();
+    _visibleMonth = DateTime(
+      widget.initialDate.year,
+      widget.initialDate.month,
+      1,
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final locale = Localizations.localeOf(context).toLanguageTag();
+    final progressByDay = ref.watch(
+      homeCalendarMonthProgressProvider(_visibleMonth),
+    );
+    final firstDay = DateTime(_visibleMonth.year, _visibleMonth.month, 1);
+    final nextMonth = DateTime(_visibleMonth.year, _visibleMonth.month + 1, 1);
+    final dayCount = nextMonth.difference(firstDay).inDays;
+    final firstWeekdayOffset = firstDay.weekday % 7;
+    final totalCells = (((firstWeekdayOffset + dayCount) / 7).ceil()) * 7;
+    final today = DateTime.now();
+
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(16, 4, 16, 16),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              children: [
+                IconButton(
+                  onPressed: () {
+                    setState(() {
+                      _visibleMonth = DateTime(
+                        _visibleMonth.year,
+                        _visibleMonth.month - 1,
+                        1,
+                      );
+                    });
+                  },
+                  icon: const Icon(Icons.chevron_left_rounded),
+                ),
+                Expanded(
+                  child: Text(
+                    DateFormat.yMMMM(locale).format(_visibleMonth),
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                      fontFamily: 'serif',
+                    ),
+                  ),
+                ),
+                IconButton(
+                  onPressed: () {
+                    setState(() {
+                      _visibleMonth = DateTime(
+                        _visibleMonth.year,
+                        _visibleMonth.month + 1,
+                        1,
+                      );
+                    });
+                  },
+                  icon: const Icon(Icons.chevron_right_rounded),
+                ),
+              ],
+            ),
+            const SizedBox(height: 6),
+            Wrap(
+              alignment: WrapAlignment.center,
+              spacing: 10,
+              runSpacing: 6,
+              children: [
+                _CalendarLegendItem(
+                  label: l10n.homeShortcutSalahLabel,
+                  color: AppColors.accentGoldSoft,
+                ),
+                _CalendarLegendItem(
+                  label: l10n.homeShortcutDhikrLabel,
+                  color: AppColors.success,
+                ),
+                _CalendarLegendItem(
+                  label: l10n.quranTitle,
+                  color: AppColors.caution,
+                ),
+                _CalendarLegendItem(
+                  label: l10n.learnTitle,
+                  color: AppColors.onSurfaceSubtle,
+                ),
+              ],
+            ),
+            const SizedBox(height: 12),
+            Row(
+              children: MaterialLocalizations.of(context).narrowWeekdays
+                  .map(
+                    (day) => Expanded(
+                      child: Text(
+                        day,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          fontSize: 11,
+                          color: AppColors.onSurfaceSubtle,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                  )
+                  .toList(growable: false),
+            ),
+            const SizedBox(height: 8),
+            for (var row = 0; row < totalCells ~/ 7; row += 1)
+              Padding(
+                padding: const EdgeInsets.only(bottom: 8),
+                child: Row(
+                  children: List.generate(7, (column) {
+                    final index = row * 7 + column;
+                    final dayNumber = index - firstWeekdayOffset + 1;
+                    if (dayNumber < 1 || dayNumber > dayCount) {
+                      return const Expanded(child: SizedBox(height: 48));
+                    }
+                    final date = DateTime(
+                      _visibleMonth.year,
+                      _visibleMonth.month,
+                      dayNumber,
+                    );
+                    final summary = progressByDay[date];
+                    return Expanded(
+                      child: _CalendarDayCell(
+                        date: date,
+                        isToday: sameDay(date, today),
+                        isSelected: sameDay(date, widget.initialDate),
+                        summary: summary,
+                        onTap: () => Navigator.of(context).pop(date),
+                      ),
+                    );
+                  }),
+                ),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _CalendarLegendItem extends StatelessWidget {
+  const _CalendarLegendItem({required this.label, required this.color});
+
+  final String label;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          width: 7,
+          height: 7,
+          decoration: BoxDecoration(color: color, shape: BoxShape.circle),
+        ),
+        const SizedBox(width: 4),
+        Text(
+          label,
+          style: const TextStyle(
+            fontSize: 11.5,
+            color: AppColors.onSurfaceSubtle,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _CalendarDayCell extends StatelessWidget {
+  const _CalendarDayCell({
+    required this.date,
+    required this.isToday,
+    required this.isSelected,
+    required this.summary,
+    required this.onTap,
+  });
+
+  final DateTime date;
+  final bool isToday;
+  final bool isSelected;
+  final HomeDayProgressSummary? summary;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final selectedStyle = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.pill,
+      tintColor: AppColors.accentGold,
+    );
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 2),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(14),
+          onTap: onTap,
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 160),
+            padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 6),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(14),
+              color: isSelected ? selectedStyle.backgroundColor : null,
+              border: Border.all(
+                color: isSelected
+                    ? selectedStyle.borderColor
+                    : isToday
+                    ? AppColors.accentGoldSoft.withValues(alpha: 0.34)
+                    : Colors.transparent,
+              ),
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  date.day.toString(),
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: isSelected || isToday
+                        ? FontWeight.w700
+                        : FontWeight.w500,
+                    color: AppColors.onSurface,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                _CalendarDayProgressRow(summary: summary),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _CalendarDayProgressRow extends StatelessWidget {
+  const _CalendarDayProgressRow({required this.summary});
+
+  final HomeDayProgressSummary? summary;
+
+  @override
+  Widget build(BuildContext context) {
+    final effective =
+        summary ??
+        const HomeDayProgressSummary(
+          salah: HomeDayProgressLevel.empty,
+          dhikr: HomeDayProgressLevel.empty,
+          reading: HomeDayProgressLevel.empty,
+          learning: HomeDayProgressLevel.empty,
+        );
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        _CalendarProgressDot(
+          level: effective.salah,
+          color: AppColors.accentGoldSoft,
+        ),
+        const SizedBox(width: 2),
+        _CalendarProgressDot(level: effective.dhikr, color: AppColors.success),
+        const SizedBox(width: 2),
+        _CalendarProgressDot(
+          level: effective.reading,
+          color: AppColors.caution,
+        ),
+        const SizedBox(width: 2),
+        _CalendarProgressDot(
+          level: effective.learning,
+          color: AppColors.onSurfaceSubtle,
+        ),
+      ],
+    );
+  }
+}
+
+class _CalendarProgressDot extends StatelessWidget {
+  const _CalendarProgressDot({required this.level, required this.color});
+
+  final HomeDayProgressLevel level;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    final alpha = switch (level) {
+      HomeDayProgressLevel.empty => 0.14,
+      HomeDayProgressLevel.partial => 0.48,
+      HomeDayProgressLevel.complete => 0.92,
+    };
+    return Container(
+      width: 8,
+      height: 4,
+      decoration: BoxDecoration(
+        color: color.withValues(alpha: alpha),
+        borderRadius: BorderRadius.circular(999),
       ),
     );
   }
@@ -435,6 +772,11 @@ class _TopGreetingBlock extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appearance = Theme.of(context).extension<AppAppearanceTheme>();
+    final foreground =
+        appearance?.backgroundForeground ?? const Color(0xFF3C2F25);
+    final subtleForeground =
+        appearance?.backgroundForegroundSubtle ?? const Color(0xFF5D4F44);
     return Column(
       children: [
         Row(
@@ -450,10 +792,10 @@ class _TopGreetingBlock extends StatelessWidget {
                 const SizedBox(width: 8),
                 Text(
                   l10n.navHome,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 17,
                     fontWeight: FontWeight.w700,
-                    color: Color(0xFF44352A),
+                    color: foreground,
                     fontFamily: 'serif',
                   ),
                 ),
@@ -492,9 +834,9 @@ class _TopGreetingBlock extends StatelessWidget {
           l10n.greetingArabic,
           textAlign: textAlignForContent(l10n.greetingArabic),
           textDirection: textDirectionForContent(l10n.greetingArabic),
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 20,
-            color: Color(0xFF23201C),
+            color: foreground,
             height: 1.15,
             fontFamily: 'serif',
           ),
@@ -511,10 +853,10 @@ class _TopGreetingBlock extends StatelessWidget {
                 children: [
                   Text(
                     '$_address ${userProfile.name}',
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 21,
                       fontWeight: FontWeight.w700,
-                      color: Color(0xFF3C2F25),
+                      color: foreground,
                       letterSpacing: 0.2,
                       fontFamily: 'serif',
                     ),
@@ -522,9 +864,9 @@ class _TopGreetingBlock extends StatelessWidget {
                   const SizedBox(height: 4),
                   Text(
                     l10n.peaceUponYou,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 15,
-                      color: Color(0xFF5D4F44),
+                      color: subtleForeground,
                       fontFamily: 'serif',
                     ),
                   ),
@@ -547,65 +889,6 @@ class _TopGreetingBlock extends StatelessWidget {
   }
 }
 
-class _FloatingQiblaChip extends StatelessWidget {
-  const _FloatingQiblaChip();
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: () => context.pushNamed('qiblaFinder'),
-        borderRadius: BorderRadius.circular(999),
-        child: Ink(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(999),
-            gradient: const LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [Color(0xFFF5E6C7), Color(0xFFE1C48F)],
-            ),
-            border: Border.all(
-              color: const Color(0xFF8A6A3D).withValues(alpha: 0.3),
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: const Color(0xFF8A6A3D).withValues(alpha: 0.18),
-                blurRadius: 14,
-                offset: const Offset(0, 8),
-              ),
-            ],
-          ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const Icon(
-                  IslamicIcons.qibla,
-                  size: 18,
-                  color: Color(0xFF5C4325),
-                ),
-                const SizedBox(width: 8),
-                Text(
-                  l10n.homeShortcutQiblaLabel,
-                  style: const TextStyle(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w700,
-                    color: Color(0xFF5C4325),
-                    letterSpacing: 0.2,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
 class _PrayerTimingPill extends StatelessWidget {
   const _PrayerTimingPill({
     required this.prayer,
@@ -615,6 +898,7 @@ class _PrayerTimingPill extends StatelessWidget {
     required this.status,
     required this.isCurrent,
     required this.isNext,
+    this.completionDetail,
     required this.onToggleOffered,
   });
 
@@ -625,7 +909,8 @@ class _PrayerTimingPill extends StatelessWidget {
   final PrayerStatus status;
   final bool isCurrent;
   final bool isNext;
-  final VoidCallback onToggleOffered;
+  final String? completionDetail;
+  final VoidCallback? onToggleOffered;
 
   @override
   Widget build(BuildContext context) {
@@ -637,9 +922,19 @@ class _PrayerTimingPill extends StatelessWidget {
         ? palette.base
         : palette.muted;
     final background = isCurrent
-        ? palette.base.withValues(alpha: 0.34)
+        ? AppSurfaceTheme.adaptiveColor(
+            context,
+            palette.base,
+            alpha: 0.34,
+            solidAlphaWhenDisabled: 0.44,
+          )
         : isNext
-        ? palette.base.withValues(alpha: 0.26)
+        ? AppSurfaceTheme.adaptiveColor(
+            context,
+            palette.base,
+            alpha: 0.26,
+            solidAlphaWhenDisabled: 0.38,
+          )
         : palette.soft;
     final isCompleted = status == PrayerStatus.completed;
 
@@ -648,7 +943,14 @@ class _PrayerTimingPill extends StatelessWidget {
       decoration: BoxDecoration(
         color: background,
         borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: accent.withValues(alpha: 0.22)),
+        border: Border.all(
+          color: AppSurfaceTheme.adaptiveColor(
+            context,
+            accent,
+            alpha: 0.22,
+            solidAlphaWhenDisabled: 0.34,
+          ),
+        ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -681,6 +983,8 @@ class _PrayerTimingPill extends StatelessWidget {
                     shape: BoxShape.circle,
                     color: isCompleted
                         ? const Color(0xFF5E8A43).withValues(alpha: 0.14)
+                        : onToggleOffered == null
+                        ? const Color(0xFFF1ECE4)
                         : const Color(0xFFF7F1E8),
                   ),
                   child: Icon(
@@ -690,6 +994,8 @@ class _PrayerTimingPill extends StatelessWidget {
                     size: 18,
                     color: isCompleted
                         ? const Color(0xFF5E8A43)
+                        : onToggleOffered == null
+                        ? const Color(0xFFB4A594)
                         : const Color(0xFF7D705F),
                   ),
                 ),
@@ -723,7 +1029,7 @@ class _PrayerTimingPill extends StatelessWidget {
           if (isCompleted) ...[
             const SizedBox(height: 4),
             Text(
-              l10n.homePrayerOfferedStatus,
+              completionDetail ?? l10n.homePrayerOfferedStatus,
               style: TextStyle(
                 fontSize: 11.5,
                 fontWeight: FontWeight.w700,
@@ -818,10 +1124,26 @@ class _FloatingShortcutDock extends ConsumerWidget {
     final isKidsMode = ref.watch(
       specialModeProvider.select((mode) => mode.isKids),
     );
+    final progress = ref.watch(quranReadingProgressProvider);
+    final recitationSession = ref.watch(quranRecitationSessionProvider);
+    final surahMap = ref.watch(quranSurahMapProvider);
     final worship = ref.watch(worshipSummaryProvider);
     final prayerRecords = ref.watch(prayerControllerProvider);
     final scheduleContext = ref.watch(prayerScheduleContextProvider);
     final now = ref.watch(dailyNowProvider).value ?? DateTime.now();
+    final fallbackSurah = surahMap[1];
+    final currentSurah = surahMap[progress.surahNumber] ?? fallbackSurah;
+    final sessionSurah = recitationSession == null
+        ? null
+        : surahMap[recitationSession.surahNumber];
+    final activeSurah = sessionSurah ?? currentSurah ?? fallbackSurah;
+    final surahNumber = activeSurah?.number ?? 1;
+    final ayahCount = activeSurah?.verseCount ?? 1;
+    final initialAyahFromSession = recitationSession?.ayahNumber;
+    final progressAyah = progress.ayahNumber;
+    final ayahNumber = ayahCount > 0
+        ? ((initialAyahFromSession ?? progressAyah).clamp(1, ayahCount))
+        : 1;
     final dhikrDailyGoal = math.max(worship.dhikrTarget, 500);
     final missedCount = prayerRecords
         .where((record) => record.status.name == 'missed')
@@ -837,11 +1159,38 @@ class _FloatingShortcutDock extends ConsumerWidget {
         (!scheduleContext.remainingToNext.isNegative &&
             scheduleContext.remainingToNext <= const Duration(minutes: 30));
 
-    final shortcutItems = <_ShortcutDockItem>[
-      const _ShortcutDockItem(keyName: 'quran', child: _FloatingQuranChip()),
-      _ShortcutDockItem(
+    final shortcutItems = <({String keyName, ShortcutDockAction action})>[
+      (
+        keyName: 'quran',
+        action: _buildHomeShortcutAction(
+          label: l10n.quranTitle,
+          icon: Icons.menu_book_rounded,
+          palette: const ShortcutDockPalette(
+            textColor: Color(0xFF2D5E45),
+            borderColor: Color(0xFF4D8B63),
+            shadowColor: Color(0xFF4D8B63),
+            gradient: [Color(0xFFEAF9EB), Color(0xFFBDE0C5)],
+          ),
+          onTap: () => context.pushNamed(
+            'quranReader',
+            pathParameters: {'surahNumber': surahNumber.toString()},
+            queryParameters: {'ayah': ayahNumber.toString()},
+          ),
+        ),
+      ),
+      (
         keyName: 'salah',
-        child: _FloatingSalahChip(
+        action: _buildHomeShortcutAction(
+          label: isKidsMode
+              ? l10n.kidsHomeShortcutSalahLabel
+              : l10n.homeShortcutSalahLabel,
+          icon: Icons.checklist_rounded,
+          palette: const ShortcutDockPalette(
+            textColor: Color(0xFF69411A),
+            borderColor: Color(0xFF9F7A42),
+            shadowColor: Color(0xFF9F7A42),
+            gradient: [Color(0xFFF8E6D2), Color(0xFFE7BE8E)],
+          ),
           statusText: l10n.homeFractionValue(
             _formatLocalizedCount(context, worship.prayerCompleted),
             _formatLocalizedCount(context, worship.prayerTotal),
@@ -853,11 +1202,22 @@ class _FloatingShortcutDock extends ConsumerWidget {
                     ? l10n.kidsHomeShortcutMissedCount(missedCount)
                     : l10n.homeShortcutMissedCount(missedCount))
               : null,
+          onTap: () => context.pushNamed('worshipPrayerPage'),
         ),
       ),
-      _ShortcutDockItem(
+      (
         keyName: 'dhikr',
-        child: _FloatingDhikrChip(
+        action: _buildHomeShortcutAction(
+          label: isKidsMode
+              ? l10n.kidsHomeShortcutDhikrLabel
+              : l10n.homeShortcutDhikrLabel,
+          icon: Icons.favorite_outline_rounded,
+          palette: const ShortcutDockPalette(
+            textColor: Color(0xFF5D4520),
+            borderColor: Color(0xFF8F7547),
+            shadowColor: Color(0xFF8F7547),
+            gradient: [Color(0xFFF6EFD8), Color(0xFFE1D0A0)],
+          ),
           statusText: l10n.homeFractionValue(
             _formatLocalizedCount(context, worship.dhikrCount),
             _formatLocalizedCount(context, dhikrDailyGoal),
@@ -875,9 +1235,23 @@ class _FloatingShortcutDock extends ConsumerWidget {
                     ? l10n.kidsHomeShortcutDailyDhikrGoalReached
                     : l10n.homeShortcutDailyDhikrGoalReached)
               : null,
+          onTap: () => context.pushNamed('worshipDhikrPage'),
         ),
       ),
-      const _ShortcutDockItem(keyName: 'qibla', child: _FloatingQiblaChip()),
+      (
+        keyName: 'qibla',
+        action: _buildHomeShortcutAction(
+          label: l10n.homeShortcutQiblaLabel,
+          icon: IslamicIcons.qibla,
+          palette: const ShortcutDockPalette(
+            textColor: Color(0xFF5C4325),
+            borderColor: Color(0xFF8A6A3D),
+            shadowColor: Color(0xFF8A6A3D),
+            gradient: [Color(0xFFF5E6C7), Color(0xFFE1C48F)],
+          ),
+          onTap: () => context.pushNamed('qiblaFinder'),
+        ),
+      ),
     ];
 
     shortcutItems.sort((a, b) {
@@ -894,271 +1268,46 @@ class _FloatingShortcutDock extends ConsumerWidget {
     return ValueListenableBuilder<bool>(
       valueListenable: expandedListenable,
       builder: (context, expanded, child) {
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            AnimatedSwitcher(
-              duration: const Duration(milliseconds: 220),
-              switchInCurve: Curves.easeOutCubic,
-              switchOutCurve: Curves.easeInCubic,
-              transitionBuilder: (child, animation) {
-                return FadeTransition(
-                  opacity: animation,
-                  child: SizeTransition(
-                    sizeFactor: animation,
-                    axisAlignment: 1,
-                    child: child,
-                  ),
-                );
-              },
-              child: !expanded
-                  ? const SizedBox.shrink()
-                  : Column(
-                      key: const ValueKey('expanded-shortcuts'),
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        for (final item in shortcutItems) ...[
-                          item.child,
-                          const SizedBox(height: 10),
-                        ],
-                      ],
-                    ),
-            ),
-            _FloatingShortcutChip(
-              label: expanded
-                  ? (isKidsMode
-                        ? l10n.kidsHomeShortcutClose
-                        : l10n.homeShortcutClose)
-                  : (isKidsMode
-                        ? l10n.kidsHomeShortcutOpen
-                        : l10n.homeShortcutOpen),
-              icon: expanded ? Icons.close_rounded : Icons.apps_rounded,
-              textColor: const Color(0xFF4E4034),
-              borderColor: const Color(0xFF8C775D),
-              shadowColor: const Color(0xFF8C775D),
-              gradient: const [Color(0xFFF7F0E1), Color(0xFFE3D2B4)],
-              onTap: () => expandedListenable.value = !expanded,
-            ),
-          ],
+        return ShortcutDock(
+          expanded: expanded,
+          openLabel: isKidsMode
+              ? l10n.kidsHomeShortcutOpen
+              : l10n.homeShortcutOpen,
+          closeLabel: isKidsMode
+              ? l10n.kidsHomeShortcutClose
+              : l10n.homeShortcutClose,
+          onToggle: () => expandedListenable.value = !expanded,
+          actions: shortcutItems.map((item) => item.action).toList(growable: false),
         );
       },
     );
   }
 }
 
-class _FloatingSalahChip extends ConsumerWidget {
-  const _FloatingSalahChip({
-    this.statusText,
-    this.badgeIcon,
-    this.badgeColor,
-    this.badgeTooltip,
-  });
-
-  final String? statusText;
-  final IconData? badgeIcon;
-  final Color? badgeColor;
-  final String? badgeTooltip;
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = AppLocalizations.of(context);
-    final isKidsMode = ref.watch(
-      specialModeProvider.select((mode) => mode.isKids),
-    );
-    return _FloatingShortcutChip(
-      label: isKidsMode
-          ? l10n.kidsHomeShortcutSalahLabel
-          : l10n.homeShortcutSalahLabel,
-      statusText: statusText,
-      badgeIcon: badgeIcon,
-      badgeColor: badgeColor,
-      badgeTooltip: badgeTooltip,
-      icon: Icons.checklist_rounded,
-      textColor: const Color(0xFF69411A),
-      borderColor: const Color(0xFF9F7A42),
-      shadowColor: const Color(0xFF9F7A42),
-      gradient: const [Color(0xFFF8E6D2), Color(0xFFE7BE8E)],
-      onTap: () => context.pushNamed('worshipPrayerPage'),
-    );
-  }
-}
-
-class _FloatingDhikrChip extends ConsumerWidget {
-  const _FloatingDhikrChip({
-    this.statusText,
-    this.statusCaption,
-    this.badgeIcon,
-    this.badgeColor,
-    this.badgeTooltip,
-  });
-
-  final String? statusText;
-  final String? statusCaption;
-  final IconData? badgeIcon;
-  final Color? badgeColor;
-  final String? badgeTooltip;
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = AppLocalizations.of(context);
-    final isKidsMode = ref.watch(
-      specialModeProvider.select((mode) => mode.isKids),
-    );
-    return _FloatingShortcutChip(
-      label: isKidsMode
-          ? l10n.kidsHomeShortcutDhikrLabel
-          : l10n.homeShortcutDhikrLabel,
-      statusText: statusText,
-      statusCaption: statusCaption,
-      badgeIcon: badgeIcon,
-      badgeColor: badgeColor,
-      badgeTooltip: badgeTooltip,
-      icon: Icons.favorite_outline_rounded,
-      textColor: const Color(0xFF5D4520),
-      borderColor: const Color(0xFF8F7547),
-      shadowColor: const Color(0xFF8F7547),
-      gradient: const [Color(0xFFF6EFD8), Color(0xFFE1D0A0)],
-      onTap: () => context.pushNamed('worshipDhikrPage'),
-    );
-  }
-}
-
-class _FloatingShortcutChip extends StatelessWidget {
-  const _FloatingShortcutChip({
-    required this.label,
-    required this.icon,
-    required this.textColor,
-    required this.borderColor,
-    required this.shadowColor,
-    required this.gradient,
-    required this.onTap,
-    this.statusText,
-    this.statusCaption,
-    this.badgeIcon,
-    this.badgeColor,
-    this.badgeTooltip,
-  });
-
-  final String label;
-  final IconData icon;
-  final Color textColor;
-  final Color borderColor;
-  final Color shadowColor;
-  final List<Color> gradient;
-  final VoidCallback onTap;
-  final String? statusText;
-  final String? statusCaption;
-  final IconData? badgeIcon;
-  final Color? badgeColor;
-  final String? badgeTooltip;
-
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(999),
-        child: Ink(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(999),
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: gradient,
-            ),
-            border: Border.all(color: borderColor.withValues(alpha: 0.32)),
-            boxShadow: [
-              BoxShadow(
-                color: shadowColor.withValues(alpha: 0.18),
-                blurRadius: 14,
-                offset: const Offset(0, 8),
-              ),
-            ],
-          ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(icon, size: 18, color: textColor),
-                const SizedBox(width: 8),
-                Text(
-                  label,
-                  style: TextStyle(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w700,
-                    color: textColor,
-                    letterSpacing: 0.2,
-                  ),
-                ),
-                if (statusText != null && statusText!.isNotEmpty) ...[
-                  const SizedBox(width: 8),
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 8,
-                      vertical: 4,
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(999),
-                      color: Colors.white.withValues(alpha: 0.34),
-                    ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        if (statusCaption != null &&
-                            statusCaption!.isNotEmpty) ...[
-                          Text(
-                            statusCaption!,
-                            style: TextStyle(
-                              fontSize: 9.5,
-                              fontWeight: FontWeight.w700,
-                              color: textColor.withValues(alpha: 0.78),
-                              height: 1,
-                            ),
-                          ),
-                          const SizedBox(height: 2),
-                        ],
-                        Text(
-                          statusText!,
-                          style: TextStyle(
-                            fontSize: 11.5,
-                            fontWeight: FontWeight.w700,
-                            color: textColor,
-                            height: 1,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-                if (badgeIcon != null) ...[
-                  const SizedBox(width: 6),
-                  Tooltip(
-                    message: badgeTooltip ?? '',
-                    child: Icon(
-                      badgeIcon,
-                      size: 16,
-                      color: badgeColor ?? textColor,
-                    ),
-                  ),
-                ],
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _ShortcutDockItem {
-  const _ShortcutDockItem({required this.keyName, required this.child});
-
-  final String keyName;
-  final Widget child;
+ShortcutDockAction _buildHomeShortcutAction({
+  required String label,
+  required IconData icon,
+  required ShortcutDockPalette palette,
+  required VoidCallback onTap,
+  String? supportingText,
+  String? statusText,
+  String? statusCaption,
+  IconData? badgeIcon,
+  Color? badgeColor,
+  String? badgeTooltip,
+}) {
+  return ShortcutDockAction(
+    label: label,
+    icon: icon,
+    onTap: onTap,
+    palette: palette,
+    supportingText: supportingText,
+    statusText: statusText,
+    statusCaption: statusCaption,
+    badgeIcon: badgeIcon,
+    badgeColor: badgeColor,
+    badgeTooltip: badgeTooltip,
+  );
 }
 
 class _HomeSearchDestination {
@@ -1251,31 +1400,6 @@ List<_HomeSearchDestination> _buildHomeSearchDestinations(
       subtitle: l10n.learnLifeSectionSubtitle,
       keywords: ['life', 'family', 'character'],
       onSelected: (context) => context.pushNamed('learnLifeLanding'),
-    ),
-    _HomeSearchDestination(
-      title: l10n.homeSearchGuidanceHubTitle,
-      subtitle: l10n.homeSearchGuidanceHubSubtitle,
-      keywords: [
-        'hajj',
-        'umrah',
-        'new muslim',
-        'revert',
-        'itikaf',
-        'dos and donts',
-        'sisters',
-      ],
-      onSelected: (context) => context.pushNamed('islamicGuides'),
-    ),
-    _HomeSearchDestination(
-      title: l10n.homeSearchQuranLessonsMappingTitle,
-      subtitle: l10n.homeSearchQuranLessonsMappingSubtitle,
-      keywords: [
-        '50 lessons',
-        'quran lessons',
-        'source mapping',
-        'yaqeen books',
-      ],
-      onSelected: (context) => context.pushNamed('quranLessonsMapping'),
     ),
     _HomeSearchDestination(
       title: l10n.babyNamesTitle,
@@ -1679,86 +1803,28 @@ class _AvatarHaloSection extends StatelessWidget {
 }
 
 class _AyahCard extends StatelessWidget {
-  const _AyahCard({
-    required this.l10n,
-    required this.verse,
-    required this.arabicScalePercent,
-    required this.transliterationScalePercent,
-    required this.translationScalePercent,
-    required this.onTap,
-  });
+  const _AyahCard({required this.verse, required this.onTap});
 
-  final AppLocalizations l10n;
-  final HomeVerse verse;
-  final int arabicScalePercent;
-  final int transliterationScalePercent;
-  final int translationScalePercent;
+  final QuranQuote verse;
   final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
-    final effectiveArabicSize = 34 * (arabicScalePercent / 100.0);
-    final effectiveTransliterationSize =
-        16 * (transliterationScalePercent / 100.0);
-    final effectiveTranslationSize = 15.5 * (translationScalePercent / 100.0);
-    final baseArabicStyle = AppTextStyles.quranVerse(
-      size: effectiveArabicSize,
-      color: const Color(0xFF1E1B18),
-    ).copyWith(fontWeight: FontWeight.w500, letterSpacing: 0.3, height: 1.9);
-
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(30),
       child: _GlassCard(
         radius: 30,
         padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 24),
-        child: Column(
-          children: [
-            Text.rich(
-              buildQuranTextWithColoredHarakat(verse.arabic, baseArabicStyle),
-              textAlign: textAlignForContent(verse.arabic),
-              textDirection: textDirectionForContent(verse.arabic),
-              strutStyle: StrutStyle(
-                fontFamily: baseArabicStyle.fontFamily,
-                fontSize: baseArabicStyle.fontSize,
-                height: baseArabicStyle.height,
-                forceStrutHeight: true,
-              ),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              verse.transliteration,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: effectiveTransliterationSize,
-                color: const Color(0xFF5C5046),
-                fontStyle: FontStyle.italic,
-                fontFamily: 'serif',
-              ),
-            ),
-            const SizedBox(height: 12),
-            Text(
-              verse.translation,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: effectiveTranslationSize,
-                color: const Color(0xFF42362D),
-                fontFamily: 'serif',
-                height: 1.3,
-              ),
-            ),
-            const SizedBox(height: 12),
-            Text(
-              verse.locationText,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontSize: 11.5,
-                color: Color(0xFF6D5A4C),
-                fontFamily: 'serif',
-                letterSpacing: 0.15,
-              ),
-            ),
-          ],
+        child: QuranVerseContent(
+          source: QuranVerseSource(
+            ref: verse.ref,
+            referenceText: verse.locationText,
+          ),
+          center: true,
+          arabicBaseSize: 34,
+          transliterationBaseSize: 16,
+          translationBaseSize: 15.5,
         ),
       ),
     );
@@ -1878,11 +1944,7 @@ class _SalahSummaryCard extends ConsumerWidget {
               const SizedBox(height: 10),
             ] else if (current != null) ...[
               _StatsLine(
-                label: l10n.homeTimeRemainingToOffer(
-                  current.name,
-                  currentEndsIn ?? current.overdueAt,
-                  current.name,
-                ),
+                label: l10n.homeTimeRemainingToOffer(current.name),
                 value: currentEndsIn ?? current.overdueAt,
               ),
               if (current.hasDelayedMakeUpWindow) ...[
@@ -2153,31 +2215,73 @@ class _StatsLine extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final content = Row(
-      children: [
-        Text(
-          label,
-          style: TextStyle(
-            color: labelColor,
-            fontSize: 14.5,
-            fontFamily: 'serif',
-          ),
-        ),
-        const Spacer(),
-        Text(
-          value,
-          style: TextStyle(
-            color: valueColor,
-            fontSize: 14.5,
-            fontWeight: FontWeight.w700,
-            fontFamily: 'serif',
-          ),
-        ),
-        if (trailingIcon != null) ...[
-          const SizedBox(width: 6),
-          Icon(trailingIcon, size: 16, color: trailingIconColor ?? valueColor),
-        ],
-      ],
+    final content = LayoutBuilder(
+      builder: (context, constraints) {
+        final valueRow = Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Flexible(
+              child: Text(
+                value,
+                textAlign: TextAlign.right,
+                softWrap: true,
+                style: TextStyle(
+                  color: valueColor,
+                  fontSize: 14.5,
+                  fontWeight: FontWeight.w700,
+                  fontFamily: 'serif',
+                ),
+              ),
+            ),
+            if (trailingIcon != null) ...[
+              const SizedBox(width: 6),
+              Icon(
+                trailingIcon,
+                size: 16,
+                color: trailingIconColor ?? valueColor,
+              ),
+            ],
+          ],
+        );
+
+        if (constraints.maxWidth < 320) {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                label,
+                softWrap: true,
+                style: TextStyle(
+                  color: labelColor,
+                  fontSize: 14.5,
+                  fontFamily: 'serif',
+                ),
+              ),
+              const SizedBox(height: 4),
+              Align(alignment: Alignment.centerRight, child: valueRow),
+            ],
+          );
+        }
+
+        return Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: Text(
+                label,
+                softWrap: true,
+                style: TextStyle(
+                  color: labelColor,
+                  fontSize: 14.5,
+                  fontFamily: 'serif',
+                ),
+              ),
+            ),
+            const SizedBox(width: 10),
+            Flexible(child: valueRow),
+          ],
+        );
+      },
     );
 
     if (onTap == null) return content;
@@ -2403,7 +2507,7 @@ class _HomeLearningActionsCard extends ConsumerWidget {
                   context.go('/journey/habit/$habitId');
                   return;
                 }
-                context.go('/journey/growth/habits');
+                context.go('/journey/habits');
               },
             ),
             const SizedBox(height: 10),
@@ -2441,7 +2545,7 @@ class _HomeLearningActionsCard extends ConsumerWidget {
                 _QuickActionButton(
                   icon: Icons.quiz_rounded,
                   label: l10n.homeDailyLearningIslamicTrivia,
-                  onTap: () => context.pushNamed('learnIslamicTrivia'),
+                  onTap: () => context.pushNamed('learnQuizzesHub'),
                 ),
                 _QuickActionButton(
                   icon: Icons.route_rounded,
@@ -2475,12 +2579,27 @@ class _ModeActionChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final style = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.pill,
+      tintColor: AppColors.accentGold,
+    );
     return ActionChip(
       avatar: Icon(icon, size: 16, color: AppColors.onSurface),
-      label: Text(label),
+      label: Text(
+        label,
+        style: Theme.of(context).textTheme.bodyMedium,
+        overflow: TextOverflow.ellipsis,
+      ),
       onPressed: onTap,
-      side: BorderSide(color: AppColors.accentGoldSoft.withValues(alpha: 0.35)),
-      backgroundColor: AppColors.surface.withValues(alpha: 0.25),
+      side: BorderSide(color: style.borderColor),
+      backgroundColor: style.backgroundColor,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+      visualDensity: VisualDensity.compact,
+      elevation: 0,
+      pressElevation: 0,
     );
   }
 }
@@ -2498,17 +2617,16 @@ class _QuickActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final style = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.pill,
+      tintColor: AppColors.accentGold,
+    );
     return InkWell(
       onTap: onTap,
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-        decoration: BoxDecoration(
-          color: AppColors.surface.withValues(alpha: 0.2),
-          borderRadius: BorderRadius.circular(14),
-          border: Border.all(
-            color: AppColors.accentGoldSoft.withValues(alpha: 0.4),
-          ),
-        ),
+        decoration: style.decoration(radius: 14),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

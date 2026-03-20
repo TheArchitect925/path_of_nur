@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_surfaces.dart';
+import '../../../l10n/app_localizations.dart';
+import '../../../shared/widgets/app_page_scaffold.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/quran_reference_block.dart';
 import '../models/faq_item.dart';
@@ -17,143 +19,154 @@ class FaqDetailPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final itemAsync = ref.watch(faqItemByIdProvider(faqId));
     final datasetAsync = ref.watch(faqDatasetProvider);
+    final l10n = AppLocalizations.of(context);
 
-    return Scaffold(
-      appBar: AppBar(),
-      body: itemAsync.when(
-        data: (item) {
-          if (item == null) {
-            return const Center(child: Text('FAQ item not found.'));
-          }
-          return datasetAsync.when(
-            data: (dataset) {
-              final categoryTitle = dataset.categoryLabel(item.category);
-              return ListView(
-                padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
-                children: [
-                  Text(
-                    item.question,
-                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                      fontWeight: FontWeight.w800,
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  Wrap(
-                    spacing: 8,
-                    runSpacing: 8,
+    return itemAsync.when(
+      data: (item) {
+        if (item == null) {
+          return AppPageScaffold(
+            title: l10n.batch9FaqTitle,
+            subtitle: l10n.batch9FaqSubtitle,
+            children: const [Center(child: Text('FAQ item not found.'))],
+          );
+        }
+        return datasetAsync.when(
+          data: (dataset) {
+            final categoryTitle = dataset.categoryLabel(item.category);
+            return AppPageScaffold(
+              title: item.question,
+              subtitle: categoryTitle,
+              children: [
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: [
+                    _chip(context, categoryTitle),
+                    _chip(context, item.difficulty.label),
+                    if (item.misconceptionTag != null)
+                      _badge(
+                        context,
+                        item.category == 'misconceptions_about_islam'
+                            ? 'Clarification'
+                            : 'Misconception',
+                      ),
+                  ],
+                ),
+                const SizedBox(height: 12),
+                PremiumCard(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      _chip(context, categoryTitle),
-                      _chip(context, item.difficulty.label),
-                      if (item.misconceptionTag != null)
-                        _badge(
-                          context,
-                          item.category == 'misconceptions_about_islam'
-                              ? 'Clarification'
-                              : 'Misconception',
-                        ),
+                      Text(
+                        'Short answer',
+                        style: Theme.of(context).textTheme.titleSmall
+                            ?.copyWith(fontWeight: FontWeight.w700),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(item.shortAnswer),
                     ],
                   ),
+                ),
+                const SizedBox(height: 12),
+                PremiumCard(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Answer',
+                        style: Theme.of(context).textTheme.titleSmall
+                            ?.copyWith(fontWeight: FontWeight.w700),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(item.answer),
+                    ],
+                  ),
+                ),
+                if (item.quranRefs.isNotEmpty) ...[
                   const SizedBox(height: 12),
-                  PremiumCard(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Short answer',
-                          style: Theme.of(context).textTheme.titleSmall
-                              ?.copyWith(fontWeight: FontWeight.w700),
-                        ),
-                        const SizedBox(height: 8),
-                        Text(item.shortAnswer),
-                      ],
+                  Text(
+                    'Qur’an references',
+                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                      fontWeight: FontWeight.w700,
                     ),
                   ),
-                  const SizedBox(height: 12),
-                  PremiumCard(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Answer',
-                          style: Theme.of(context).textTheme.titleSmall
-                              ?.copyWith(fontWeight: FontWeight.w700),
-                        ),
-                        const SizedBox(height: 8),
-                        Text(item.answer),
-                      ],
+                  const SizedBox(height: 8),
+                  ...item.quranRefs.map(
+                    (refText) => Padding(
+                      padding: const EdgeInsets.only(bottom: 10),
+                      child: _quranReferenceCard(context, refText),
                     ),
                   ),
-                  if (item.quranRefs.isNotEmpty) ...[
-                    const SizedBox(height: 12),
-                    Text(
-                      'Qur’an references',
-                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    ...item.quranRefs.map(
-                      (refText) => Padding(
-                        padding: const EdgeInsets.only(bottom: 10),
-                        child: _quranReferenceCard(context, refText),
-                      ),
-                    ),
-                  ],
-                  if (item.hadithRefs.isNotEmpty) ...[
-                    const SizedBox(height: 12),
-                    PremiumCard(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Hadith references',
-                            style: Theme.of(context).textTheme.titleSmall
-                                ?.copyWith(fontWeight: FontWeight.w700),
-                          ),
-                          const SizedBox(height: 8),
-                          ...item.hadithRefs.map(
-                            (refText) => Padding(
-                              padding: const EdgeInsets.only(bottom: 6),
-                              child: Text(refText),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                  if (item.relatedTopics.isNotEmpty) ...[
-                    const SizedBox(height: 12),
-                    PremiumCard(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Related topics',
-                            style: Theme.of(context).textTheme.titleSmall
-                                ?.copyWith(fontWeight: FontWeight.w700),
-                          ),
-                          const SizedBox(height: 8),
-                          Wrap(
-                            spacing: 8,
-                            runSpacing: 8,
-                            children: item.relatedTopics
-                                .map((topic) => _chip(context, topic))
-                                .toList(growable: false),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
                 ],
-              );
-            },
-            loading: () => const Center(child: CircularProgressIndicator()),
-            error: (error, _) =>
-                Center(child: Text('Unable to load FAQ. $error')),
-          );
-        },
-        loading: () => const Center(child: CircularProgressIndicator()),
-        error: (error, _) => Center(child: Text('Unable to load FAQ. $error')),
+                if (item.hadithRefs.isNotEmpty) ...[
+                  const SizedBox(height: 12),
+                  PremiumCard(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Hadith references',
+                          style: Theme.of(context).textTheme.titleSmall
+                              ?.copyWith(fontWeight: FontWeight.w700),
+                        ),
+                        const SizedBox(height: 8),
+                        ...item.hadithRefs.map(
+                          (refText) => Padding(
+                            padding: const EdgeInsets.only(bottom: 6),
+                            child: Text(refText),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+                if (item.relatedTopics.isNotEmpty) ...[
+                  const SizedBox(height: 12),
+                  PremiumCard(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Related topics',
+                          style: Theme.of(context).textTheme.titleSmall
+                              ?.copyWith(fontWeight: FontWeight.w700),
+                        ),
+                        const SizedBox(height: 8),
+                        Wrap(
+                          spacing: 8,
+                          runSpacing: 8,
+                          children: item.relatedTopics
+                              .map((topic) => _chip(context, topic))
+                              .toList(growable: false),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ],
+            );
+          },
+          loading: () => AppPageScaffold(
+            title: l10n.batch9FaqTitle,
+            subtitle: l10n.batch9FaqSubtitle,
+            children: const [Center(child: CircularProgressIndicator())],
+          ),
+          error: (error, _) => AppPageScaffold(
+            title: l10n.batch9FaqTitle,
+            subtitle: l10n.batch9FaqSubtitle,
+            children: [Center(child: Text('Unable to load FAQ. $error'))],
+          ),
+        );
+      },
+      loading: () => AppPageScaffold(
+        title: l10n.batch9FaqTitle,
+        subtitle: l10n.batch9FaqSubtitle,
+        children: const [Center(child: CircularProgressIndicator())],
+      ),
+      error: (error, _) => AppPageScaffold(
+        title: l10n.batch9FaqTitle,
+        subtitle: l10n.batch9FaqSubtitle,
+        children: [Center(child: Text('Unable to load FAQ. $error'))],
       ),
     );
   }

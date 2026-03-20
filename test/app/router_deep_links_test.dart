@@ -6,19 +6,19 @@ void main() {
   test('growth deep links map to canonical journey routes', () {
     expect(
       mapAppDeepLink(Uri.parse('pathofnur://growth/today')),
-      '/journey/growth/today',
+      '/journey/today',
     );
     expect(
       mapAppDeepLink(Uri.parse('pathofnur://growth/reflection')),
-      '/journey/growth/reflection',
+      '/journey/reflection',
     );
     expect(
       mapAppDeepLink(Uri.parse('pathofnur://growth/journey')),
-      '/journey/growth/journey',
+      '/journey/progress',
     );
     expect(
       mapAppDeepLink(Uri.parse('pathofnur://growth/habits')),
-      '/journey/growth/habits',
+      '/journey/habits',
     );
     expect(
       mapAppDeepLink(Uri.parse('pathofnur://growth/habit/h_morning_adhkar')),

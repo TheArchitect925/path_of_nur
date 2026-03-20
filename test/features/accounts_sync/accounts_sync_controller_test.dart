@@ -278,7 +278,7 @@ void main() {
     expect(importedProfile.displayName, 'Profile A');
     expect(importedPrayer?.status, PrayerStatus.completed);
     expect(importedDhikr.currentCount, 11);
-    expect(importedOcean.stats.dropsToday, 1);
+    expect(importedOcean.totalLocalDrops, 1);
     expect(pendingOutbox, 0);
   });
 
@@ -350,7 +350,7 @@ void main() {
       PrayerStatus.completed,
     );
     expect(container.read(dhikrRepositoryProvider).load().currentCount, 21);
-    expect(container.read(oceanDropsProvider).stats.dropsToday, 1);
+    expect(container.read(oceanDropsProvider).totalLocalDrops, 1);
     expect(container.read(syncOutboxRepositoryProvider).pendingCount(profileA), greaterThan(0));
   });
 }

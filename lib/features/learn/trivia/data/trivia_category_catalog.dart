@@ -49,7 +49,7 @@ const List<TriviaCategory> triviaCategoryCatalog = [
   TriviaCategory(
     id: 'salah',
     title: 'Salah',
-    subtitle: 'Prayer timings, structure, and preparation.',
+    subtitle: 'Salah timings, structure, and preparation.',
     iconKey: 'salah',
     displayOrder: 6,
     learningPathId: 'salah',

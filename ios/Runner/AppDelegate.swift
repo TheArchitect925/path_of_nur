@@ -13,6 +13,7 @@ struct PrayerCountdownAttributes: ActivityAttributes {
     var currentPrayerName: String?
     var currentPrayerArabicName: String?
     var currentRemainingSeconds: Int?
+    var currentPrayerAtEpoch: Int?
     var showRamadanCountdown: Bool
     var ramadanPrayerId: String?
     var ramadanPrayerName: String?
@@ -445,6 +446,9 @@ struct FastingCountdownAttributes: ActivityAttributes {
     let currentRemainingSeconds = rawCurrentRemaining == nil
       ? nil
       : max(0, rawCurrentRemaining ?? 0)
+    let currentPrayerAtIso = args["currentPrayerAtIso"] as? String
+    let currentPrayerAt = currentPrayerAtIso.flatMap { ISO8601DateFormatter().date(from: $0) }
+    let currentPrayerAtEpoch = currentPrayerAt.map { Int($0.timeIntervalSince1970) }
     let showRamadanCountdown = (args["showRamadanCountdown"] as? Bool) ?? false
     let ramadanPrayerId = args["ramadanPrayerId"] as? String
     let ramadanPrayerName = args["ramadanPrayerName"] as? String
@@ -474,6 +478,7 @@ struct FastingCountdownAttributes: ActivityAttributes {
       currentPrayerName: currentPrayerName,
       currentPrayerArabicName: currentPrayerArabicName,
       currentRemainingSeconds: currentRemainingSeconds,
+      currentPrayerAtEpoch: currentPrayerAtEpoch,
       showRamadanCountdown: showRamadanCountdown,
       ramadanPrayerId: ramadanPrayerId,
       ramadanPrayerName: ramadanPrayerName,

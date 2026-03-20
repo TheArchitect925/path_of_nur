@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
-import '../../shared/presentation/learning_header.dart';
 import '../../shared/presentation/learning_references.dart';
 import '../../shared/presentation/learning_section.dart';
 import '../application/hadith_foundation_repository.dart';
@@ -16,17 +16,20 @@ class HadithSubcategoryPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     final collection = ref.watch(hadithCollectionByIdProvider(subcategoryId));
     if (collection == null) {
       return AppPageScaffold(
         headerIcon: Icons.collections_bookmark_rounded,
-        title: 'Collections',
-        subtitle: 'Collection not found',
-        children: const [PremiumCard(child: Text('The requested collection was not found.'))],
+        title: l10n.hadithCollectionPageTitle,
+        subtitle: l10n.hadithCollectionNotFoundSubtitle,
+        children: [PremiumCard(child: Text(l10n.hadithCollectionNotFoundBody))],
       );
     }
 
-    final entries = ref.watch(hadithEntriesForCollectionProvider(collection.id));
+    final entries = ref.watch(
+      hadithEntriesForCollectionProvider(collection.id),
+    );
     final quranAnchors = entries
         .expand((entry) => entry.quranConnections)
         .take(4)
@@ -37,15 +40,9 @@ class HadithSubcategoryPage extends ConsumerWidget {
       title: collection.title,
       subtitle: collection.subtitle,
       children: [
-        LearningHeader(
-          title: collection.title,
-          summary: collection.description,
-          chips: ['${entries.length} hadith', 'Collection'],
-        ),
-        const SizedBox(height: 10),
         if (quranAnchors.isNotEmpty)
           LearningSection(
-            title: 'Related Verses',
+            title: l10n.hadithSectionRelatedVerses,
             child: LearningReferences(
               items: quranAnchors
                   .map(
@@ -60,7 +57,7 @@ class HadithSubcategoryPage extends ConsumerWidget {
             ),
           ),
         LearningSection(
-          title: 'Hadith in This Collection',
+          title: l10n.hadithSectionCollectionEntries,
           child: Column(
             children: entries
                 .map(
@@ -70,7 +67,12 @@ class HadithSubcategoryPage extends ConsumerWidget {
                       child: ListTile(
                         contentPadding: EdgeInsets.zero,
                         title: Text(entry.title),
-                        subtitle: Text('${entry.source} • ${entry.grading}'),
+                        subtitle: Text(
+                          l10n.hadithCollectionEntrySubtitle(
+                            entry.source,
+                            entry.grading,
+                          ),
+                        ),
                         trailing: const Icon(Icons.chevron_right_rounded),
                         onTap: () => context.pushNamed(
                           'hadithLessonDetail',

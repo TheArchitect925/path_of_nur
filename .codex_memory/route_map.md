@@ -74,11 +74,16 @@ Last updated: 2026-03-18
 
 ### Journey-first learn surfaces
 
+- `/learn/learning-journey`
+  - lightweight Learning Journey island page that now owns the Learn-hub journey summary block
 - `/learn/journey-home`
 - `/learn/island/:islandId`
 - `/learn/journey/:journeyId`
 - `/learn/journey/:journeyId/stage/:stageId`
 - `/learn/browse`
+  - now renders the new Explore All Knowledge surface for compatibility
+- `/learn/explore`
+- `/learn/category/:categoryId`
 - `/learn/family`
 
 ### Legacy or secondary learn hubs still wired
@@ -186,6 +191,7 @@ Last updated: 2026-03-18
 - `/growth/today`
 - `/growth/reflection`
 - `/growth/journey`
+- `/growth/habits`
 - `/growth/habit/:habitId`
 - `/journey/growth/today`
 - `/journey/growth/reflection`

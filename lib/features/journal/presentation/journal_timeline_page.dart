@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../l10n/app_localizations.dart';
+import '../../../shared/application/special_mode_provider.dart';
+import '../../../shared/content/page_description_copy.dart';
 import '../../../shared/widgets/app_page_scaffold.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../application/journal_provider.dart';
@@ -30,11 +32,18 @@ class _JournalTimelinePageState extends ConsumerState<JournalTimelinePage> {
     final notifier = ref.read(journalProvider.notifier);
     final memory = ref.watch(journalMemoryPreviewProvider);
     final grouped = ref.watch(journalTimelineGroupedProvider);
+    final isKidsMode = ref.watch(
+      specialModeProvider.select((mode) => mode.isKids),
+    );
 
     return AppPageScaffold(
       headerIcon: Icons.auto_stories_outlined,
       title: l10n.journalTitle,
-      subtitle: l10n.journalSubtitle,
+      subtitle: localizedAppPageDescription(
+        context,
+        AppPageDescriptionKey.journalTimeline,
+        kidsMode: isKidsMode,
+      ),
       children: [
         PremiumCard(
           child: Row(

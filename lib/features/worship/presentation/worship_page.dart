@@ -1,25 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../l10n/app_localizations.dart';
+import '../../../shared/application/special_mode_provider.dart';
+import '../../../shared/content/page_description_copy.dart';
 import '../../learn/quran/domain/quran_content_refs.dart';
 import '../../../shared/theme/islamic_icons.dart';
 import '../../../shared/widgets/quran_navigation.dart';
 import '../../../shared/widgets/quran_quote_block.dart';
 import '../../../shared/widgets/section_hub_scaffold.dart';
 
-class WorshipPage extends StatelessWidget {
+class WorshipPage extends ConsumerWidget {
   const WorshipPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
+    final isKidsMode = ref.watch(
+      specialModeProvider.select((mode) => mode.isKids),
+    );
     const quote = QuranQuote(ref: QuranQuoteRef(surah: 2, ayah: 45));
 
     return SectionHubScaffold(
       headerIcon: IslamicIcons.prayer,
       title: l10n.worshipTitle,
-      subtitle: l10n.worshipSubtitle,
+      subtitle: localizedAppPageDescription(
+        context,
+        AppPageDescriptionKey.worshipHub,
+        kidsMode: isKidsMode,
+      ),
       quote: quote,
       onQuoteTap: (selectedQuote) =>
           openQuranQuoteLocation(context, selectedQuote),

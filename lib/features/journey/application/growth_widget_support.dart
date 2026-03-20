@@ -123,7 +123,7 @@ final growthTodayProgressWidgetDataProvider = Provider<GrowthTodayProgressWidget
     dueCount: snapshot.todayDueCount,
     progressPercent: snapshot.todayProgressPercent,
     lightEarnedToday: snapshot.lightEarnedToday,
-    deepLinkPath: '/journey/growth/today',
+    deepLinkPath: '/journey/today',
     title: snapshot.privateModeEnabled ? 'Today\'s Path' : 'Today Progress',
   );
 });
@@ -138,7 +138,7 @@ final growthFocusHabitWidgetDataProvider = Provider<GrowthFocusHabitWidgetData>(
         ? 'Quiet progress for today.'
         : 'Return gently to this habit.',
     deepLinkPath: snapshot.selectedFocusHabitId == null
-        ? '/journey/growth/today'
+        ? '/journey/today'
         : '/journey/habit/${snapshot.selectedFocusHabitId}',
   );
 });
@@ -147,7 +147,7 @@ final growthReflectionWidgetDataProvider = Provider<GrowthReflectionWidgetData>(
   final snapshot = ref.watch(growthWidgetSnapshotProvider);
   return GrowthReflectionWidgetData(
     prompt: snapshot.reflectionPromptPreview,
-    deepLinkPath: '/journey/growth/reflection',
+    deepLinkPath: '/journey/reflection',
   );
 });
 
@@ -158,7 +158,7 @@ final growthJourneyWidgetDataProvider = Provider<GrowthJourneyWidgetData>((ref) 
     currentStreak: snapshot.currentStreak,
     visibleLight: journey.visibleLight,
     level: journey.level,
-    deepLinkPath: '/journey/growth/journey',
+    deepLinkPath: '/journey/progress',
     title: snapshot.privateModeEnabled ? 'Quiet Progress' : 'Journey',
   );
 });
@@ -171,12 +171,12 @@ final growthWidgetBootstrapProvider = Provider<void>((ref) {
     Future<void>.microtask(() async {
       await store.setJsonMap('growth.widget.snapshot.v1', snapshot.toJson());
       await store.setJsonMap('growth.widget.deeplinks.v1', {
-        'today': '/journey/growth/today',
+        'today': '/journey/today',
         'focusHabit': snapshot.selectedFocusHabitId == null
-            ? '/journey/growth/today'
+            ? '/journey/today'
             : '/journey/habit/${snapshot.selectedFocusHabitId}',
-        'reflection': '/journey/growth/reflection',
-        'journey': '/journey/growth/journey',
+        'reflection': '/journey/reflection',
+        'journey': '/journey/progress',
       });
       await adapter.syncWidgetState(ref.read(growthControllerProvider));
     });

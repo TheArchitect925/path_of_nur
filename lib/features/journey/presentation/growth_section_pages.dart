@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../l10n/app_localizations.dart';
+import '../../../shared/application/special_mode_provider.dart';
 import '../../../shared/content/learning_quote.dart';
+import '../../../shared/content/page_description_copy.dart';
 import '../../../shared/theme/islamic_icons.dart';
 import '../../../shared/widgets/quran_navigation.dart';
 import '../../../shared/widgets/section_hub_scaffold.dart';
@@ -19,7 +22,7 @@ class GrowthTodaySectionPage extends StatelessWidget {
     final l10n = AppLocalizations.of(context);
     return _GrowthSectionScaffold(
       title: l10n.growthTabToday,
-      subtitle: l10n.growthHomeTodaySubtitle,
+      descriptionKey: AppPageDescriptionKey.growthToday,
       child: const GrowthTodayPage(),
     );
   }
@@ -33,7 +36,7 @@ class GrowthPathsSectionPage extends StatelessWidget {
     final l10n = AppLocalizations.of(context);
     return _GrowthSectionScaffold(
       title: l10n.growthTabPaths,
-      subtitle: l10n.growthHomePathsSubtitle,
+      descriptionKey: AppPageDescriptionKey.growthPaths,
       child: const GrowthPathsPage(),
     );
   }
@@ -47,7 +50,7 @@ class GrowthJourneySectionPage extends StatelessWidget {
     final l10n = AppLocalizations.of(context);
     return _GrowthSectionScaffold(
       title: l10n.growthTabJourney,
-      subtitle: l10n.growthHomeJourneySubtitle,
+      descriptionKey: AppPageDescriptionKey.growthJourney,
       shortcutActions: [
         SectionShortcutAction(
           label: l10n.gardenPageTitle,
@@ -69,7 +72,7 @@ class GrowthReflectionSectionPage extends StatelessWidget {
     final l10n = AppLocalizations.of(context);
     return _GrowthSectionScaffold(
       title: l10n.growthTabReflection,
-      subtitle: l10n.growthHomeReflectionSubtitle,
+      descriptionKey: AppPageDescriptionKey.growthReflection,
       child: const GrowthReflectionPage(),
     );
   }
@@ -78,32 +81,43 @@ class GrowthReflectionSectionPage extends StatelessWidget {
 class _GrowthSectionScaffold extends StatelessWidget {
   const _GrowthSectionScaffold({
     required this.title,
-    required this.subtitle,
+    required this.descriptionKey,
     required this.child,
     this.shortcutActions = const <SectionShortcutAction>[],
   });
 
   final String title;
-  final String subtitle;
+  final AppPageDescriptionKey descriptionKey;
   final Widget child;
   final List<SectionShortcutAction> shortcutActions;
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
-    final quote = buildLearningCompactQuote();
+    return Consumer(
+      builder: (context, ref, _) {
+        final l10n = AppLocalizations.of(context);
+        final isKidsMode = ref.watch(
+          specialModeProvider.select((mode) => mode.isKids),
+        );
+        final quote = buildGrowthReflectionQuote();
 
-    return SectionHubScaffold(
-      headerIcon: IslamicIcons.tasbih,
-      title: title,
-      subtitle: subtitle,
-      quote: quote,
-      onQuoteTap: (selectedQuote) =>
-          openQuranQuoteLocation(context, selectedQuote),
-      shortcutOpenLabel: l10n.learnShortcutOpen,
-      shortcutCloseLabel: l10n.learnShortcutClose,
-      shortcutActions: shortcutActions,
-      children: [child],
+        return SectionHubScaffold(
+          headerIcon: IslamicIcons.tasbih,
+          title: title,
+          subtitle: localizedAppPageDescription(
+            context,
+            descriptionKey,
+            kidsMode: isKidsMode,
+          ),
+          quote: quote,
+          onQuoteTap: (selectedQuote) =>
+              openQuranQuoteLocation(context, selectedQuote),
+          shortcutOpenLabel: l10n.learnShortcutOpen,
+          shortcutCloseLabel: l10n.learnShortcutClose,
+          shortcutActions: shortcutActions,
+          children: [child],
+        );
+      },
     );
   }
 }

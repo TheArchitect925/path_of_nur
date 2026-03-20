@@ -31,16 +31,11 @@ final celestialObservationRepositoryProvider = Provider<CelestialObservationRepo
   (ref) => CelestialObservationRepository(ref.watch(localStoreProvider)),
 );
 
-final celestialHintRepositoryProvider = Provider<CelestialHintRepository>(
-  (ref) => CelestialHintRepository(ref.watch(localStoreProvider)),
-);
-
 final celestialActionServiceProvider = Provider<CelestialActionService>(
   (ref) => CelestialActionService(
     store: ref.watch(localStoreProvider),
     oceanDrops: ref.watch(oceanDropsProvider.notifier),
     observations: ref.watch(celestialObservationRepositoryProvider),
-    hints: ref.watch(celestialHintRepositoryProvider),
   ),
 );
 
@@ -59,10 +54,6 @@ final celestialObservationsProvider =
         ref.watch(celestialObservationRepositoryProvider),
       );
     });
-
-final celestialHintDismissedProvider = StateProvider<bool>((ref) {
-  return ref.watch(celestialHintRepositoryProvider).isHomeHintDismissed();
-});
 
 final celestialSnapshotProvider = FutureProvider<CelestialSnapshot>((ref) async {
   final prefs = ref.watch(prayerSettingsProvider).preferences;
@@ -118,17 +109,6 @@ class CelestialObservationsController extends StateNotifier<List<CelestialObserv
   }
 }
 
-class CelestialHintRepository {
-  const CelestialHintRepository(this._store);
-
-  final LocalStore _store;
-  static const _homeHintKey = 'celestial.homeHintDismissed';
-
-  bool isHomeHintDismissed() => _store.getBool(_homeHintKey) ?? false;
-
-  Future<void> dismissHomeHint() => _store.setBool(_homeHintKey, true);
-}
-
 class CelestialObservationRepository {
   const CelestialObservationRepository(this._store);
 
@@ -163,16 +143,13 @@ class CelestialActionService {
     required LocalStore store,
     required OceanDropService oceanDrops,
     required CelestialObservationRepository observations,
-    required CelestialHintRepository hints,
   }) : _store = store,
        _oceanDrops = oceanDrops,
-       _observations = observations,
-       _hints = hints;
+       _observations = observations;
 
   final LocalStore _store;
   final OceanDropService _oceanDrops;
   final CelestialObservationRepository _observations;
-  final CelestialHintRepository _hints;
 
   Future<void> markCardOpened() async {
     final key = 'celestial.cardOpened.${LocalStore.todayKey()}';
@@ -243,8 +220,6 @@ class CelestialActionService {
       metadata: <String, Object?>{'phase': snapshot.lunarData.phaseName},
     );
   }
-
-  Future<void> dismissHomeHint() => _hints.dismissHomeHint();
 }
 
 class CelestialWidgetBridge {

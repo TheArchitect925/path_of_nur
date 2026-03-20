@@ -38,12 +38,15 @@ class _PremiumCardState extends ConsumerState<PremiumCard> {
     final reduceMotion = ref.watch(
       profileSettingsProvider.select((value) => value.reduceMotion),
     );
+    final theme = Theme.of(context);
+    final contentColors = AppSurfaceTheme.contentColors(context);
     final surfaceStyle = AppSurfaceTheme.resolve(
       context,
       variant: widget.surfaceVariant,
       tintColor: widget.surfaceTintColor,
       surfaceAlphaOverride: widget.surfaceAlphaOverride,
     );
+    final surfaceTextTheme = contentColors.applyTo(theme.textTheme);
 
     return Listener(
       onPointerDown: (_) => _setPressed(true),
@@ -57,7 +60,25 @@ class _PremiumCardState extends ConsumerState<PremiumCard> {
           width: double.infinity,
           padding: widget.padding,
           decoration: surfaceStyle.decoration(radius: AppRadii.card),
-          child: widget.child,
+          child: Theme(
+            data: theme.copyWith(
+              textTheme: surfaceTextTheme,
+              iconTheme: theme.iconTheme.copyWith(color: contentColors.iconColor),
+              listTileTheme: theme.listTileTheme.copyWith(
+                iconColor: contentColors.iconColor,
+                textColor: contentColors.foreground,
+              ),
+            ),
+            child: IconTheme.merge(
+              data: IconThemeData(color: contentColors.iconColor),
+              child: DefaultTextStyle.merge(
+                style:
+                    surfaceTextTheme.bodyMedium ??
+                    TextStyle(color: contentColors.subtleForeground),
+                child: widget.child,
+              ),
+            ),
+          ),
         ),
       ),
     );

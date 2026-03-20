@@ -63,6 +63,28 @@ class _KidsArabicLessonPageState extends ConsumerState<KidsArabicLessonPage> {
       _metrics,
       liveResult,
     );
+    final tracingColors = <KidsArabicTracingColorOption>[
+      KidsArabicTracingColorOption(
+        id: 'gold',
+        color: const Color(0xFFB9864E),
+        label: l10n.kidsArabicTraceColorGold,
+      ),
+      KidsArabicTracingColorOption(
+        id: 'mint',
+        color: const Color(0xFF6AA97A),
+        label: l10n.kidsArabicTraceColorMint,
+      ),
+      KidsArabicTracingColorOption(
+        id: 'sky',
+        color: const Color(0xFF5D8FD6),
+        label: l10n.kidsArabicTraceColorSky,
+      ),
+      KidsArabicTracingColorOption(
+        id: 'plum',
+        color: const Color(0xFF9368B8),
+        label: l10n.kidsArabicTraceColorPlum,
+      ),
+    ];
     if (parentPreferences.audioAutoplay &&
         _lastAutoPlayedLetterId != letter.id) {
       _lastAutoPlayedLetterId = letter.id;
@@ -128,6 +150,9 @@ class _KidsArabicLessonPageState extends ConsumerState<KidsArabicLessonPage> {
                 glyph: letter.glyph,
                 guide: guide,
                 clearActionLabel: l10n.kidsArabicClearTraceAction,
+                traceColorLabel: l10n.kidsArabicTraceColorLabel,
+                readyBadgeLabel: l10n.kidsArabicTraceReadyBadge,
+                colorOptions: tracingColors,
                 onMetricsChanged: (metrics) {
                   setState(() {
                     _metrics = metrics;
