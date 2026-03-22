@@ -41,6 +41,10 @@ class LearningJourneyIslandPage extends ConsumerWidget {
               learningVisibilityAllowsJourney(visibilityPolicy, journey),
         )
         .toList(growable: false);
+    final spotlightJourney = journeys.isEmpty ? null : journeys.first;
+    final remainingJourneys = journeys.length > 1
+        ? journeys.skip(1).toList(growable: false)
+        : const <LearningJourney>[];
     final progress = ref.watch(learningJourneyProgressProvider);
     if (island == null) {
       return _LearningJourneyMissingPage(
@@ -115,36 +119,38 @@ class LearningJourneyIslandPage extends ConsumerWidget {
             ],
           ),
         ],
-        if (journeys.isNotEmpty) ...[
+        if (spotlightJourney != null) ...[
           const SizedBox(height: 14),
           LearningJourneyCard(
-            journey: journeys.first,
-            stageCount: journeys.first.stageIds.length,
+            journey: spotlightJourney,
+            stageCount: spotlightJourney.stageIds.length,
+            showFeaturedBadge: true,
             progress: _journeyProgressValue(
-              journeys.first.stageIds.length,
+              spotlightJourney.stageIds.length,
               progress.completedStageIds
-                  .where((id) => journeys.first.stageIds.contains(id))
+                  .where((id) => spotlightJourney.stageIds.contains(id))
                   .length,
             ),
             onTap: () => context.pushNamed(
               'learnJourneyDetail',
-              pathParameters: {'journeyId': journeys.first.id},
+              pathParameters: {'journeyId': spotlightJourney.id},
             ),
           ),
         ],
-        if (journeys.isNotEmpty) ...[
+        if (remainingJourneys.isNotEmpty) ...[
           const SizedBox(height: 14),
           JourneyHomeSectionHeader(
             title: l10n.learningJourneyIslandJourneysTitle,
             subtitle: l10n.learningJourneyIslandJourneysSubtitle,
           ),
           const SizedBox(height: 12),
-          ...journeys.map(
+          ...remainingJourneys.map(
             (journey) => Padding(
               padding: const EdgeInsets.only(bottom: 10),
               child: LearningJourneyCard(
                 journey: journey,
                 stageCount: journey.stageIds.length,
+                showFeaturedBadge: true,
                 progress: _journeyProgressValue(
                   journey.stageIds.length,
                   progress.completedStageIds

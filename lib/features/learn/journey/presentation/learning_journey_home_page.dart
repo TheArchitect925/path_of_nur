@@ -94,6 +94,11 @@ class LearningJourneyHomePage extends ConsumerWidget {
             )
             .toList(growable: false) ??
         const <LearningJourney>[];
+    final starterJourney = _resolveStarterJourney(
+      visibilityPolicy: visibilityPolicy,
+      displayRecommendations: displayRecommendations,
+      fallbackJourneys: fallbackJourneys,
+    );
     final safeTodayJourney = _resolveSafeTodayJourney(
       visibilityPolicy,
       personalizedTodayJourney,
@@ -186,10 +191,12 @@ class LearningJourneyHomePage extends ConsumerWidget {
               progressLabel: null,
               progress: null,
               ctaLabel: _journeyHomeExploreJourneys(l10n, kidsUi.enabled),
-              onTap: () => context.pushNamed(
-                'learnJourneyDetail',
-                pathParameters: {'journeyId': 'prophets-journey'},
-              ),
+              onTap: starterJourney == null
+                  ? () => context.pushNamed('learnExploreAllKnowledge')
+                  : () => context.pushNamed(
+                      'learnJourneyDetail',
+                      pathParameters: {'journeyId': starterJourney.id},
+                    ),
             ),
           ),
         const SizedBox(height: 14),
@@ -757,6 +764,37 @@ LearningJourney? _resolveSafeTodayJourney(
   for (final item in candidates) {
     if (learningVisibilityAllowsJourney(policy, item)) {
       return item;
+    }
+  }
+  return null;
+}
+
+LearningJourney? _resolveStarterJourney({
+  required FamilyLearningVisibilityPolicy visibilityPolicy,
+  required List<LearningJourney> displayRecommendations,
+  required List<LearningJourney> fallbackJourneys,
+}) {
+  final candidates = <LearningJourney>[
+    ...displayRecommendations.where((journey) => journey.isFeatured),
+    ...displayRecommendations,
+    ...fallbackJourneys.where((journey) => journey.isFeatured),
+    ...fallbackJourneys,
+    ...LearningJourneyRegistry.journeys.where(
+      (journey) =>
+          journey.isFeatured &&
+          journey.isPublished &&
+          learningVisibilityAllowsJourney(visibilityPolicy, journey),
+    ),
+    ...LearningJourneyRegistry.journeys.where(
+      (journey) =>
+          journey.isPublished &&
+          learningVisibilityAllowsJourney(visibilityPolicy, journey),
+    ),
+  ];
+  final seen = <String>{};
+  for (final journey in candidates) {
+    if (seen.add(journey.id)) {
+      return journey;
     }
   }
   return null;

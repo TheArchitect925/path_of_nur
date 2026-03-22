@@ -189,7 +189,7 @@ class WatchQuranPlaybackCommandService {
     switch (command) {
       case QuranPlaybackCommand.play:
       case QuranPlaybackCommand.resumeLast:
-        await controller.resumeCurrentPlaybackWithBismillah();
+        await controller.resumeCurrentPlayback();
         break;
       case QuranPlaybackCommand.pause:
         await controller.pause();
@@ -197,7 +197,7 @@ class WatchQuranPlaybackCommandService {
       case QuranPlaybackCommand.next:
         if (player.hasNext) {
           await player.seekToNext();
-        } else if (await controller.playAdjacentSurahWithBismillah(1)) {
+        } else if (await controller.playAdjacentSurah(1)) {
           break;
         } else {
           await player.seek(Duration.zero);
@@ -208,7 +208,7 @@ class WatchQuranPlaybackCommandService {
           await player.seekToPrevious();
         } else if (player.position > const Duration(seconds: 3)) {
           await player.seek(Duration.zero);
-        } else if (await controller.playAdjacentSurahWithBismillah(-1)) {
+        } else if (await controller.playAdjacentSurah(-1)) {
           break;
         } else {
           await player.seek(Duration.zero);

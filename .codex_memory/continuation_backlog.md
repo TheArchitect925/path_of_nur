@@ -1,6 +1,11 @@
 # Continuation Backlog
 
-Last updated: 2026-03-18
+Last updated: 2026-03-22
+
+Master consolidation reference:
+
+- Use `docs/master_execution_roadmap_2026-03-22.md` as the current top-level execution view for recent kids-system, progression, Learn routing, worship/date, and regression-hardening work.
+- Keep this backlog as the rolling engineering queue, but prefer the master roadmap when deciding phase order or explaining overall project state.
 
 ## Top 10 immediate engineering continuation items
 
@@ -77,3 +82,6 @@ Last updated: 2026-03-18
 9. Creation Explorer camera/native bridge behavior on iOS simulator and device.
 10. Any user-facing content path that still relies on scaffold-only or placeholder references in active flows.
 11. Feature-owned Arabic verse catalogs outside the canonical Qur’an repository path, especially tvOS, celestial, creation explorer, and onboarding/manual-content surfaces.
+12. Add widget tests for the crossword puzzle screen, especially clue solve detection, reward dedupe, and completion-state rendering.
+13. Decide whether child profiles should receive a kids-only daily crossword instead of the current adult-owned daily mode being hidden from child mode.
+14. Expand crossword clue sourcing from history, glossary, and character/adab content if the engine becomes a long-term discovery surface.

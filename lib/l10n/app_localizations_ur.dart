@@ -87,8 +87,19 @@ class AppLocalizationsUr extends AppLocalizations {
   String get notificationsCycleCheckTitle => 'آج کی حالت چیک کریں';
 
   @override
+  String get notificationsMoonriseTitle => 'Moonrise';
+
+  @override
+  String get notificationsMoonsetTitle => 'Moonset';
+
+  @override
   String notificationsPrayerAtTimeBody(String prayerName) {
     return 'It is time for $prayerName Salah. Stay connected with your salah.';
+  }
+
+  @override
+  String notificationsPrayerAtTimeFajrBody(String prayerName) {
+    return 'It is time for $prayerName Salah.\nالصَّلاةُ خَيْرٌ مِنَ النَّوْمِ';
   }
 
   @override
@@ -112,6 +123,12 @@ class AppLocalizationsUr extends AppLocalizations {
   @override
   String get notificationsCycleCheckBody =>
       'اگر ضرورت ہو تو اپنی موجودہ حالت اپ ڈیٹ کریں۔';
+
+  @override
+  String get notificationsMoonriseBody => 'The moon is rising now.';
+
+  @override
+  String get notificationsMoonsetBody => 'The moon is setting now.';
 
   @override
   String notificationsRecoveredReminderBody(String body) {
@@ -142,6 +159,15 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get notificationsPrayerActionOpen => 'Open';
+
+  @override
+  String get notificationsReflectionActionWrite => 'Write Reflection';
+
+  @override
+  String get notificationsReflectionActionRemind10 => 'Remind me in 10 min';
+
+  @override
+  String get notificationsReflectionActionDismiss => 'Dismiss';
 
   @override
   String get notificationsPrayerNameTahajjud => 'تہجد';
@@ -213,6 +239,219 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get notificationsFastingLiveJustEntered => 'ابھی داخل ہوا';
+
+  @override
+  String get historyAdditionalMatchesTitle => 'More moments for today';
+
+  @override
+  String get historyArchiveAllCategories => 'All categories';
+
+  @override
+  String get historyArchiveAllGregorianMonths => 'All Gregorian months';
+
+  @override
+  String get historyArchiveAllHijriMonths => 'All Hijri months';
+
+  @override
+  String get historyArchiveCategoryLabel => 'Category';
+
+  @override
+  String get historyArchiveEmptyFilters =>
+      'No historical events match these filters yet.';
+
+  @override
+  String get historyArchiveFiltersTitle => 'Browse the archive';
+
+  @override
+  String get historyArchiveGregorianMonthLabel => 'Gregorian month';
+
+  @override
+  String get historyArchiveHijriMonthLabel => 'Hijri month';
+
+  @override
+  String get historyArchiveLoadError =>
+      'Historical events could not be loaded right now.';
+
+  @override
+  String historyArchiveResultsCount(int count) {
+    return '$count events';
+  }
+
+  @override
+  String get historyArchiveSubtitle =>
+      'Browse curated Islamic historical moments by date and category.';
+
+  @override
+  String get historyArchiveTitle => 'Historical Calendar';
+
+  @override
+  String get historyCategoryBattles => 'Battles';
+
+  @override
+  String get historyCategoryBirths => 'Births';
+
+  @override
+  String get historyCategoryDeaths => 'Deaths';
+
+  @override
+  String get historyCategoryIslamicHistory => 'Islamic History';
+
+  @override
+  String get historyCategoryKhulafa => 'Khulafa';
+
+  @override
+  String get historyCategoryProphets => 'Prophets';
+
+  @override
+  String get historyCategoryRevelation => 'Revelation';
+
+  @override
+  String get historyCategorySacredPlaces => 'Sacred Places';
+
+  @override
+  String get historyCategoryScholars => 'Scholars';
+
+  @override
+  String get historyCategorySeerah => 'Seerah';
+
+  @override
+  String get historyCategoryWorldHistory => 'World History';
+
+  @override
+  String get historyDateConfidenceApproximate => 'Approximate date';
+
+  @override
+  String get historyDateConfidenceDisputed => 'Date differs across sources';
+
+  @override
+  String get historyDateConfidenceExact => 'Widely cited date';
+
+  @override
+  String get historyDateUnavailable => 'Not available in this V1 record';
+
+  @override
+  String get historyDateUnknown => 'Date not available';
+
+  @override
+  String get historyDetailLoadingSubtitle =>
+      'Loading the historical event details.';
+
+  @override
+  String get historyDetailLoadingTitle => 'Historical Event';
+
+  @override
+  String get historyDetailNotFoundSubtitle =>
+      'This historical event could not be found.';
+
+  @override
+  String get historyDetailNotFoundTitle => 'Event not found';
+
+  @override
+  String get historyGregorianDateLabel => 'Gregorian date';
+
+  @override
+  String historyGregorianDateValue(String day, String month, String year) {
+    return '$day $month $year CE';
+  }
+
+  @override
+  String get historyHijriDateLabel => 'Hijri date';
+
+  @override
+  String historyHijriDateValue(String day, String month, String year) {
+    return '$day $month $year AH';
+  }
+
+  @override
+  String get historyLearnIslandSubtitle =>
+      'On this day moments and a browsable archive of Islamic history.';
+
+  @override
+  String get historyLessonsTitle => 'Lessons & Reflection';
+
+  @override
+  String get historyLocationLabel => 'Location';
+
+  @override
+  String get historyMatchBadgeBoth => 'Gregorian and Hijri match';
+
+  @override
+  String get historyMatchBadgeGregorian => 'Gregorian today';
+
+  @override
+  String get historyMatchBadgeHijri => 'Hijri today';
+
+  @override
+  String get historyOnThisDayMatchesSubtitle =>
+      'See the historical moments that match today’s Gregorian and Hijri anniversaries.';
+
+  @override
+  String get historyOnThisDayMatchesTitle => 'On This Day';
+
+  @override
+  String get historyOnThisDaySubtitle =>
+      'A gentle historical reflection for today’s Gregorian and Hijri dates.';
+
+  @override
+  String get historyOnThisDayTitle => 'On This Day';
+
+  @override
+  String get historyOpenArchiveAction => 'Open archive';
+
+  @override
+  String get historyOverviewTitle => 'Overview';
+
+  @override
+  String get contextualLinksRelatedTitle => 'Related';
+
+  @override
+  String get contextualLinksTypeEvent => 'Event';
+
+  @override
+  String get contextualLinksTypeHadith => 'Hadith';
+
+  @override
+  String get contextualLinksTypeJourney => 'Journey';
+
+  @override
+  String get contextualLinksTypeLearn => 'Learn';
+
+  @override
+  String get historyRelatedContentTitle => 'Related learning';
+
+  @override
+  String get historyRelatedPeopleTitle => 'Related people & entities';
+
+  @override
+  String get historySignificanceTitle => 'Why it matters';
+
+  @override
+  String get historySourcesTitle => 'Sources';
+
+  @override
+  String historyTodayGregorianValue(String day, String month, String year) {
+    return '$day $month $year';
+  }
+
+  @override
+  String historyTodayHijriValue(String day, String month, String year) {
+    return '$day $month $year AH';
+  }
+
+  @override
+  String get historyTodayShortcutAction => 'Today’s matches';
+
+  @override
+  String get historyEmptyTodaySubtitle =>
+      'Historical moments for this day are still being added. You can still browse the archive.';
+
+  @override
+  String get historyEmptyTodayTitle => 'More moments are on the way';
+
+  @override
+  String historyViewAllCount(int count) {
+    return 'View all ($count)';
+  }
 
   @override
   String get navDhikr => 'Ibadah';
@@ -2048,6 +2287,20 @@ class AppLocalizationsUr extends AppLocalizations {
   String get profileFastingReminders => 'Fasting reminders';
 
   @override
+  String get profileMoonriseReminders => 'Moonrise notifications';
+
+  @override
+  String get profileMoonriseRemindersSubtitle =>
+      'Notify me when the moon is rising.';
+
+  @override
+  String get profileMoonsetReminders => 'Moonset notifications';
+
+  @override
+  String get profileMoonsetRemindersSubtitle =>
+      'Notify me when the moon is setting.';
+
+  @override
   String get profileLanguageExpandTitle => 'Language options';
 
   @override
@@ -3116,7 +3369,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get learnHubCategoryToolsExploreSubtitle =>
-      'Search utilities, discovery helpers, and Explore All Knowledge stay together here.';
+      'Search utilities, discovery helpers, and journey tools stay together here.';
 
   @override
   String get learnHubSubcategoryWhoIsAllahTitle => 'Who is Allah?';
@@ -3484,6 +3737,582 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get quranReferenceViewerRelatedJourneys => 'متعلقہ سفر';
+
+  @override
+  String get quranLearnMoreSectionTitle => 'Learn More';
+
+  @override
+  String get quranLearnMoreInsightsTitle => 'Ayah Insights';
+
+  @override
+  String get quranAyahInsightsDomainSignsInCreation => 'Signs in Creation';
+
+  @override
+  String get quranAyahInsightsDomainWorshipRemembrance =>
+      'Worship & Remembrance';
+
+  @override
+  String get quranAyahInsightsDomainCharacterAdab => 'Character & Adab';
+
+  @override
+  String get quranAyahInsightsDomainTawhidBelief => 'Tawhid & Belief';
+
+  @override
+  String get quranAyahInsightsDomainAkhirahAccountability =>
+      'Akhirah & Accountability';
+
+  @override
+  String get quranAyahInsightsDomainProphetsLessons => 'Prophets & Lessons';
+
+  @override
+  String get quranAyahInsightsDomainGuidanceDailyLife =>
+      'Guidance & Reflection';
+
+  @override
+  String get quranAyahInsightsTypeHadithReference => 'Hadith Reference';
+
+  @override
+  String get quranAyahInsightsTypeAyahInsight => 'Ayah Insight';
+
+  @override
+  String get quranAyahInsightsTypeSignsInCreation => 'Signs in Creation';
+
+  @override
+  String get quranAyahInsightsTypeScientificReflection => 'Creation Reflection';
+
+  @override
+  String get quranAyahInsightsTypeWorldCreationLesson => 'World & Creation';
+
+  @override
+  String get quranAyahInsightsTypeWorshipLesson => 'Worship Lesson';
+
+  @override
+  String get quranAyahInsightsTypeCharacterLesson => 'Character Lesson';
+
+  @override
+  String get quranAyahInsightsTypeProphetConnection => 'Prophet Lesson';
+
+  @override
+  String get quranAyahInsightsTypeRelatedAyah => 'Related Ayah';
+
+  @override
+  String get quranAyahInsightsTypeReflectionPrompt => 'Reflection Prompt';
+
+  @override
+  String get quranAyahInsightsTypeInterpretationNote => 'Interpretation Note';
+
+  @override
+  String get quranAyahInsightsCautionLabel => 'Read with care';
+
+  @override
+  String get quranAyahInsightsRelatedAyahsTitle => 'Related Ayahs';
+
+  @override
+  String get quranAyahInsightsRelatedTypeSameTheme => 'Same theme';
+
+  @override
+  String get quranAyahInsightsRelatedTypeSupportingInsight =>
+      'Supporting insight';
+
+  @override
+  String get quranAyahInsightsRelatedTypeContinuation => 'Continue this lesson';
+
+  @override
+  String get quranAyahInsightsRelatedTypeContrast => 'Helpful contrast';
+
+  @override
+  String get quranAyahInsightsRelatedTypeWorshipConnection =>
+      'Worship connection';
+
+  @override
+  String get quranAyahInsightsRelatedTypeCharacterConnection =>
+      'Character connection';
+
+  @override
+  String get quranAyahInsightsRelatedTypeCreationConnection =>
+      'Creation connection';
+
+  @override
+  String get quranAyahInsightsRelatedTypeProphetConnection =>
+      'Prophet connection';
+
+  @override
+  String get quranAyahInsightsBrowseTitle => 'Browse Ayah Insights';
+
+  @override
+  String get quranAyahInsightsBrowseSubtitle =>
+      'Explore Qur\'anic insights by theme and follow them back into the reader.';
+
+  @override
+  String get quranAyahInsightsBrowseEmpty =>
+      'Ayah Insights categories will appear here as enrichment content grows.';
+
+  @override
+  String get quranAyahInsightsBrowseHubAction => 'Open Qur\'an Study';
+
+  @override
+  String get quranAyahInsightsHubEntryTitle => 'Browse Ayah Insights';
+
+  @override
+  String get quranAyahInsightsHubEntrySubtitle =>
+      'Explore enriched ayah lessons by domain, from creation and worship to character, belief, and accountability.';
+
+  @override
+  String get quranAyahInsightsBrowseAction => 'Browse insights';
+
+  @override
+  String get quranAyahInsightsBrowseSubtitleSignsInCreation =>
+      'Creation, nature, and signs that call the heart to reflection.';
+
+  @override
+  String get quranAyahInsightsBrowseSubtitleWorshipRemembrance =>
+      'Prayer, dhikr, du\'a, sincerity, and practical worshipful life.';
+
+  @override
+  String get quranAyahInsightsBrowseSubtitleCharacterAdab =>
+      'Conduct, restraint, mercy, justice, and daily adab.';
+
+  @override
+  String get quranAyahInsightsBrowseSubtitleTawhidBelief =>
+      'Foundational belief, Tawhid, trust, and awareness of Allah.';
+
+  @override
+  String get quranAyahInsightsBrowseSubtitleAkhirahAccountability =>
+      'Judgment, deeds, resurrection, and preparing for the Hereafter.';
+
+  @override
+  String get quranAyahInsightsBrowseSubtitleProphetsLessons =>
+      'Focused lessons drawn from Qur\'anic examples of the prophets.';
+
+  @override
+  String get quranAyahInsightsBrowseSubtitleGuidanceDailyLife =>
+      'General guidance entries that still support daily reflection and action.';
+
+  @override
+  String get quranAyahInsightsDomainEmptyTitle => 'No ayah insights here yet';
+
+  @override
+  String get quranAyahInsightsDomainEmptySubtitle =>
+      'This category is ready for future enrichment, but it does not have browseable entries yet.';
+
+  @override
+  String get quranAyahInsightsBrowseLessonTypeCoreLesson => 'Core lesson';
+
+  @override
+  String get quranAyahInsightsBrowseLessonTypeReflection => 'Reflection';
+
+  @override
+  String get quranAyahInsightsBrowseLessonTypePracticalTakeaway =>
+      'Practical takeaway';
+
+  @override
+  String get quranAyahInsightsBrowseLessonTypeWarning => 'Warning';
+
+  @override
+  String get quranAyahInsightsBrowseLessonTypeReminder => 'Reminder';
+
+  @override
+  String get quranAyahInsightsBrowseLessonTypeConnection => 'Connection';
+
+  @override
+  String get quranAyahInsightsBrowseFilterDomains => 'Domains';
+
+  @override
+  String get quranAyahInsightsBrowseFilterTags => 'Tags';
+
+  @override
+  String get quranAyahInsightsBrowseFilterLessonType => 'Lesson type';
+
+  @override
+  String get quranAyahInsightsBrowseFilterAll => 'All';
+
+  @override
+  String get quranAyahInsightsBrowseFilterClear => 'Clear filters';
+
+  @override
+  String get quranAyahInsightsBrowseNoResultsTitle =>
+      'No matching insights yet';
+
+  @override
+  String get quranAyahInsightsBrowseNoResultsSubtitle =>
+      'Try clearing a filter or choosing a broader theme.';
+
+  @override
+  String get quranAyahInsightsBrowseTagSabr => 'Patience';
+
+  @override
+  String get quranAyahInsightsBrowseTagShukr => 'Gratitude';
+
+  @override
+  String get quranAyahInsightsBrowseTagTawakkul => 'Reliance';
+
+  @override
+  String get quranAyahInsightsBrowseTagMercy => 'Mercy';
+
+  @override
+  String get quranAyahInsightsBrowseTagRepentance => 'Repentance';
+
+  @override
+  String get quranAyahInsightsBrowseTagJustice => 'Justice';
+
+  @override
+  String get quranAyahInsightsBrowseTagSincerity => 'Sincerity';
+
+  @override
+  String get quranAyahInsightsBrowseTagGuidance => 'Guidance';
+
+  @override
+  String get quranAyahInsightsBrowseTagSigns => 'Signs';
+
+  @override
+  String get quranAyahInsightsBrowseTagCreation => 'Creation';
+
+  @override
+  String get quranAyahInsightsBrowseTagProphets => 'Prophets';
+
+  @override
+  String get quranAyahInsightsBrowseTagWorship => 'Worship';
+
+  @override
+  String get quranKnowledgeSearchEntryTitle => 'Search Qur\'an knowledge';
+
+  @override
+  String get quranKnowledgeSearchEntrySubtitle =>
+      'Search Ayah Insights, guided paths, and surah pages from one calm surface.';
+
+  @override
+  String get quranKnowledgeSearchAction => 'Open knowledge search';
+
+  @override
+  String get quranKnowledgeSearchTitle => 'Qur\'an Knowledge Search';
+
+  @override
+  String get quranKnowledgeSearchSubtitle =>
+      'Search across Ayah Insights, guided paths, and surah insight pages by topic, tag, title, ayah reference, or surah name.';
+
+  @override
+  String get quranKnowledgeSearchHint =>
+      'Search topics, tags, ayahs, paths, or surahs...';
+
+  @override
+  String get quranKnowledgeSearchEmptyTitle =>
+      'Start with a theme, tag, ayah reference, or surah';
+
+  @override
+  String get quranKnowledgeSearchEmptySubtitle =>
+      'Search across Ayah Insights, guided paths, and surah pages, or browse one of the curated collections below.';
+
+  @override
+  String get quranKnowledgeSearchNoResultsTitle =>
+      'No Qur\'an knowledge matches yet';
+
+  @override
+  String get quranKnowledgeSearchNoResultsSubtitle =>
+      'Try a broader topic, a shorter ayah reference, or browse one of the collections below.';
+
+  @override
+  String get quranKnowledgeSearchSectionAyahInsights => 'Ayah Insights';
+
+  @override
+  String get quranKnowledgeSearchSectionPaths => 'Learning Paths';
+
+  @override
+  String get quranKnowledgeSearchSectionSurahInsights => 'Surah Insights';
+
+  @override
+  String get quranKnowledgeSearchTypeAyahInsight => 'Ayah insight';
+
+  @override
+  String get quranKnowledgeSearchTypePath => 'Learning path';
+
+  @override
+  String get quranKnowledgeSearchTypeSurahInsight => 'Surah insight';
+
+  @override
+  String get quranAyahInsightPathsEntryTitle => 'Follow guided paths';
+
+  @override
+  String get quranAyahInsightPathsEntrySubtitle =>
+      'Move through a small curated sequence of ayah insights instead of opening entries one by one.';
+
+  @override
+  String get quranAyahInsightPathsAction => 'Open guided paths';
+
+  @override
+  String get quranAyahInsightPathsTitle => 'Ayah Insight Paths';
+
+  @override
+  String get quranAyahInsightPathsSubtitle =>
+      'Follow short, curated Qur\'anic learning sequences built from the existing Ayah Insights content.';
+
+  @override
+  String get quranAyahInsightPathsEmpty =>
+      'Guided paths will appear here as curated Ayah Insights sequences expand.';
+
+  @override
+  String get quranAyahInsightPathsReflectionFocusTitle => 'Reflection focus';
+
+  @override
+  String get quranAyahInsightPathsStartAction => 'Start with the first ayah';
+
+  @override
+  String quranAyahInsightPathsCount(int count) {
+    return '$count ayahs';
+  }
+
+  @override
+  String get quranAyahInsightPathTitleSignsInCreationStarter =>
+      'Signs in Creation Starter';
+
+  @override
+  String get quranAyahInsightPathDescriptionSignsInCreationStarter =>
+      'A calm introduction to the sky, time, rain, and living signs that call the heart to reflection.';
+
+  @override
+  String get quranAyahInsightPathReflectionSignsInCreationStarter =>
+      'Notice how repeated signs in the created world invite both wonder and gratitude instead of passing attention.';
+
+  @override
+  String get quranAyahInsightPathTitleWorshipRemembranceStarter =>
+      'Worship & Remembrance Starter';
+
+  @override
+  String get quranAyahInsightPathDescriptionWorshipRemembranceStarter =>
+      'A practical sequence on prayer, dhikr, du\'a, sincerity, and reliance on Allah.';
+
+  @override
+  String get quranAyahInsightPathReflectionWorshipRemembranceStarter =>
+      'Move through these ayahs by asking how remembrance should shape your actual day, not only your thoughts.';
+
+  @override
+  String get quranAyahInsightPathTitleCharacterAdabStarter =>
+      'Character & Adab Starter';
+
+  @override
+  String get quranAyahInsightPathDescriptionCharacterAdabStarter =>
+      'A guided sequence on patience, mercy, justice, forgiveness, and good conduct with people.';
+
+  @override
+  String get quranAyahInsightPathReflectionCharacterAdabStarter =>
+      'Read each step as a behavior check: what should change in speech, restraint, fairness, or treatment of others?';
+
+  @override
+  String get quranAyahInsightPathTitleTawhidBeliefStarter =>
+      'Tawhid & Belief Starter';
+
+  @override
+  String get quranAyahInsightPathDescriptionTawhidBeliefStarter =>
+      'A foundational path through oneness, signs, trust, rejection of shirk, and living with taqwa.';
+
+  @override
+  String get quranAyahInsightPathReflectionTawhidBeliefStarter =>
+      'Keep asking how sound belief changes reliance, sincerity, and the way you read the signs around you.';
+
+  @override
+  String get quranAyahInsightPathTitleAkhirahAccountabilityStarter =>
+      'Akhirah & Accountability Starter';
+
+  @override
+  String get quranAyahInsightPathDescriptionAkhirahAccountabilityStarter =>
+      'A balanced path through judgment, deeds, resurrection, urgency, and hope in the Hereafter.';
+
+  @override
+  String get quranAyahInsightPathReflectionAkhirahAccountabilityStarter =>
+      'Let each ayah move you toward preparation, not fear alone: deeds, honesty, urgency, and hope all belong here.';
+
+  @override
+  String get quranAyahInsightPathTitleProphetsLessonsStarter =>
+      'Prophets & Lessons Starter';
+
+  @override
+  String get quranAyahInsightPathDescriptionProphetsLessonsStarter =>
+      'A focused path through prophetic patience, reliance, submission, da\'wah, and just leadership.';
+
+  @override
+  String get quranAyahInsightPathReflectionProphetsLessonsStarter =>
+      'Watch how prophetic examples turn abstract values into lived responses under trial, calling, and responsibility.';
+
+  @override
+  String get quranSurahInsightsEntryTitle => 'Surah themes & insights';
+
+  @override
+  String get quranSurahInsightsEntrySubtitle =>
+      'See the main themes, lessons, and strongest Ayah Insights clusters for this surah.';
+
+  @override
+  String get quranSurahInsightsEntryAction => 'Open surah insights';
+
+  @override
+  String get quranSurahInsightsBrowseAction => 'Browse surah insights';
+
+  @override
+  String get quranSurahInsightsBrowseTitle => 'Surah Themes & Insights';
+
+  @override
+  String get quranSurahInsightsBrowseSubtitle =>
+      'Explore concise surah-level themes, lessons, and linked Ayah Insights clusters.';
+
+  @override
+  String get quranSurahInsightsEmpty =>
+      'Surah insight pages will appear here as curated surah summaries expand.';
+
+  @override
+  String get quranSurahInsightsOverviewTitle => 'Overview';
+
+  @override
+  String get quranSurahInsightsLessonsTitle => 'Key lessons';
+
+  @override
+  String get quranSurahInsightsClustersTitle => 'Insight clusters';
+
+  @override
+  String get quranSurahInsightsSuggestedPathsTitle => 'Suggested paths';
+
+  @override
+  String quranSurahInsightsClusterCount(int count) {
+    return '$count clusters';
+  }
+
+  @override
+  String get quranSurahInsightDescriptionAlBaqarah =>
+      'A surah of guidance, worship, covenant, and patient trust, teaching how belief becomes a lived community ethic.';
+
+  @override
+  String get quranSurahInsightDescriptionAliImran =>
+      'A surah that joins belief, reflection, restraint, and steadfastness, especially when the heart is tested.';
+
+  @override
+  String get quranSurahInsightDescriptionTaHa =>
+      'A surah that keeps revelation close to worship, remembrance, and humble seeking of knowledge.';
+
+  @override
+  String get quranSurahInsightDescriptionAlFurqan =>
+      'A surah of discernment that contrasts empty rejection with the quiet conduct of the servants of the Most Merciful.';
+
+  @override
+  String get quranSurahInsightDescriptionLuqman =>
+      'A surah that joins wisdom, gratitude, Tawhid, family counsel, and humble conduct in one moral frame.';
+
+  @override
+  String get quranSurahInsightThemeGuidanceAndDevotion =>
+      'Guidance and devotion';
+
+  @override
+  String get quranSurahInsightThemePatienceAndReliance =>
+      'Patience and reliance';
+
+  @override
+  String get quranSurahInsightThemeSupplicationAndResponse =>
+      'Supplication and response';
+
+  @override
+  String get quranSurahInsightThemeSteadfastBelief => 'Steadfast belief';
+
+  @override
+  String get quranSurahInsightThemeCharacterUnderPressure =>
+      'Character under pressure';
+
+  @override
+  String get quranSurahInsightThemeReflectingOnSigns => 'Reflecting on signs';
+
+  @override
+  String get quranSurahInsightThemeRevelationAndRemembrance =>
+      'Revelation and remembrance';
+
+  @override
+  String get quranSurahInsightThemeSeekingKnowledge => 'Seeking knowledge';
+
+  @override
+  String get quranSurahInsightThemeWorshipWithPresence =>
+      'Worship with presence';
+
+  @override
+  String get quranSurahInsightThemeDiscernmentAndReflection =>
+      'Discernment and reflection';
+
+  @override
+  String get quranSurahInsightThemeHumbleServanthood => 'Humble servanthood';
+
+  @override
+  String get quranSurahInsightThemeSignsInTimeAndCreation =>
+      'Signs in time and creation';
+
+  @override
+  String get quranSurahInsightThemeGratitudeAndWisdom => 'Gratitude and wisdom';
+
+  @override
+  String get quranSurahInsightThemeTawhidInFamilyGuidance =>
+      'Tawhid in family guidance';
+
+  @override
+  String get quranSurahInsightThemeHumilityAndGoodConduct =>
+      'Humility and good conduct';
+
+  @override
+  String get quranSurahInsightLessonSteadfastWorshipNeedsHelp =>
+      'Steadfast worship is not self-powered; it asks Allah for help and keeps returning to Him.';
+
+  @override
+  String get quranSurahInsightLessonRememberingAllahReshapesTheHeart =>
+      'Remembering Allah is not decorative spirituality; it reforms the heart and steadies the believer.';
+
+  @override
+  String get quranSurahInsightLessonDuaIsPartOfLivedFaith =>
+      'Du\'a belongs inside faith and worship, not outside them, because nearness to Allah should produce calling upon Him.';
+
+  @override
+  String get quranSurahInsightLessonTaqwaAndReflectionBelongTogether =>
+      'Taqwa deepens when the believer reflects on signs instead of passing over them distracted.';
+
+  @override
+  String get quranSurahInsightLessonMercyAndRestraintAreStrengths =>
+      'Mercy, self-restraint, and gentleness are strengths that preserve a believing community under strain.';
+
+  @override
+  String
+  get quranSurahInsightLessonSteadfastnessBuiltThroughBeliefAndCharacter =>
+      'Steadfastness grows from sound belief together with disciplined character, not from emotion alone.';
+
+  @override
+  String get quranSurahInsightLessonPrayerKeepsRevelationConnectedToLife =>
+      'Prayer keeps revelation connected to daily life by turning remembrance into a repeated act of devotion.';
+
+  @override
+  String get quranSurahInsightLessonSincereLearningBeginsWithHumility =>
+      'Seeking knowledge begins with humility before Allah, not with self-satisfaction.';
+
+  @override
+  String get quranSurahInsightLessonRemembranceShapesAction =>
+      'Remembrance is meant to shape what a person does, not merely what a person feels for a moment.';
+
+  @override
+  String get quranSurahInsightLessonServantsOfMercifulKnownByConduct =>
+      'The servants of the Most Merciful are recognized by steady conduct before they are recognized by claims.';
+
+  @override
+  String get quranSurahInsightLessonSignsLeadToRemembrance =>
+      'Signs in creation are meant to awaken remembrance, gratitude, and moral clarity.';
+
+  @override
+  String get quranSurahInsightLessonGuidanceVisibleInConduct =>
+      'Guidance becomes visible in how a person walks, speaks, and answers harm with dignity.';
+
+  @override
+  String get quranSurahInsightLessonGratitudeIsWorship =>
+      'Gratitude is a form of worship that acknowledges Allah\'s favor with the heart, tongue, and life.';
+
+  @override
+  String get quranSurahInsightLessonBeliefAndCharacterTogether =>
+      'Belief and character are taught together because Tawhid should shape counsel, family life, and conduct.';
+
+  @override
+  String get quranSurahInsightLessonWisdomShowsInHumility =>
+      'Wisdom appears in humility before Allah and in refusing arrogance toward people.';
+
+  @override
+  String quranAyahInsightsBrowseCount(int count) {
+    return '$count insights';
+  }
 
   @override
   String get triviaModeQuickChallenge => 'فوری چیلنج';
@@ -5006,6 +5835,13 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get quranShowTranslation => 'Translation text';
+
+  @override
+  String get quranShowLearnMore => 'Learn More';
+
+  @override
+  String get quranShowLearnMoreSubtitle =>
+      'Show related learning links and knowledge around the current ayah.';
 
   @override
   String get quranWordTranslationChip => 'لفظ بہ لفظ ترجمہ';
@@ -16069,6 +16905,13 @@ class AppLocalizationsUr extends AppLocalizations {
       'Use solid surfaces instead of translucent glass.';
 
   @override
+  String get settingsDisableColoredGlassTitle => 'Disable Colored Glass';
+
+  @override
+  String get settingsDisableColoredGlassSubtitle =>
+      'Keep glass surfaces while removing the tinted color treatment.';
+
+  @override
   String get settingsGlassTransparencyTitle => 'Glass Transparency';
 
   @override
@@ -16261,6 +17104,9 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get settingsPrayerNameFajr => 'Fajr';
+
+  @override
+  String get settingsPrayerNameJumuah => 'Jumu‘ah';
 
   @override
   String get settingsPrayerNameDhuhr => 'Dhuhr';
@@ -17778,6 +18624,234 @@ class AppLocalizationsUr extends AppLocalizations {
       'Open your unlocked images, meaning, and next milestone in one calm view.';
 
   @override
+  String get gardenPageLearnerSectionTitle => 'Child profile';
+
+  @override
+  String get gardenPageHeroBody =>
+      'Your learning, remembrance, and steady good habits shape this garden over time.';
+
+  @override
+  String get gardenPageLevelLabel => 'Level';
+
+  @override
+  String get gardenPageXpLabel => 'XP';
+
+  @override
+  String get gardenPageMaturityLabel => 'Garden maturity';
+
+  @override
+  String gardenPageMaturityValue(Object percent) {
+    return '$percent%';
+  }
+
+  @override
+  String get gardenPageNextGrowthTitle => 'Next growth';
+
+  @override
+  String gardenPageNextGrowthValue(Object title) {
+    return 'Next stage: $title';
+  }
+
+  @override
+  String get gardenPageNextGrowthSubtitle =>
+      'Steady worship, learning, remembrance, and good routines all continue shaping the next growth.';
+
+  @override
+  String get gardenPageBreakdownTitle => 'What is growing';
+
+  @override
+  String get gardenPageInsightTitle => 'What helped it grow';
+
+  @override
+  String get gardenPageRecentGrowthTitle => 'Recent growth';
+
+  @override
+  String get gardenPageRecentGrowthEmpty =>
+      'Recent garden growth will appear after the next meaningful learning step.';
+
+  @override
+  String get gardenPageMilestonesTitle => 'Garden gallery';
+
+  @override
+  String get gardenPageHowItWorksTitle => 'How growth works';
+
+  @override
+  String gardenPageDimensionStrengthValue(Object percent) {
+    return '$percent% grown';
+  }
+
+  @override
+  String get gardenPageRecentGrowthJustNow => 'Just now';
+
+  @override
+  String gardenPageRecentGrowthRewardValue(Object xp, Object drops) {
+    return '$xp XP • $drops drop';
+  }
+
+  @override
+  String gardenPageRecentGrowthXpValue(Object xp) {
+    return '$xp XP';
+  }
+
+  @override
+  String get gardenAmbientQuietDawn => 'Quiet dawn';
+
+  @override
+  String get gardenAmbientGentleMorning => 'Gentle morning';
+
+  @override
+  String get gardenAmbientWarmLight => 'Warm light';
+
+  @override
+  String get gardenAmbientEveningGlow => 'Evening glow';
+
+  @override
+  String get gardenStageSeed => 'Seed in the soil';
+
+  @override
+  String get gardenStageSprout => 'Early sprout';
+
+  @override
+  String get gardenStageRoots => 'Small roots';
+
+  @override
+  String get gardenStageStem => 'Young stem';
+
+  @override
+  String get gardenStageYoungTree => 'Young tree';
+
+  @override
+  String get gardenStageTrunk => 'Strengthening trunk';
+
+  @override
+  String get gardenStageBranches => 'Branch growth';
+
+  @override
+  String get gardenStageLeaves => 'Leaf growth';
+
+  @override
+  String get gardenStageFruit => 'Fruit beginning';
+
+  @override
+  String get gardenStageFlourishing => 'Flourishing tree';
+
+  @override
+  String get gardenDimensionPrayerTitle => 'Roots of prayer';
+
+  @override
+  String get gardenDimensionPrayerBody =>
+      'Steady worship and grounding habits strengthen the garden from below.';
+
+  @override
+  String get gardenDimensionLearningTitle => 'Branches of knowledge';
+
+  @override
+  String get gardenDimensionLearningBody =>
+      'Stories, Seerah, and thoughtful learning widen the garden reach.';
+
+  @override
+  String get gardenDimensionLightTitle => 'Light of remembrance';
+
+  @override
+  String get gardenDimensionLightBody =>
+      'Dua and remembrance brighten the garden with calm light.';
+
+  @override
+  String get gardenDimensionWaterTitle => 'Water of good deeds';
+
+  @override
+  String get gardenDimensionWaterBody =>
+      'Ocean Drops nourish the garden with life, greenery, and freshness.';
+
+  @override
+  String get gardenDimensionFruitTitle => 'Fruits of wisdom';
+
+  @override
+  String get gardenDimensionFruitBody =>
+      'Badges, milestones, and maturity reveal the fruit of learning.';
+
+  @override
+  String get gardenDimensionConsistencyTitle => 'Bloom of consistency';
+
+  @override
+  String get gardenDimensionConsistencyBody =>
+      'Regular learning and bedtime rhythm help the whole garden stay alive.';
+
+  @override
+  String get gardenInsightPrayer =>
+      'Your recent steady rhythm is strengthening the roots and giving the garden a firmer foundation.';
+
+  @override
+  String get gardenInsightLearning =>
+      'Stories, Seerah, and learning moments are helping the branches grow wider.';
+
+  @override
+  String get gardenInsightLight =>
+      'Dua and remembrance are bringing more light into the garden.';
+
+  @override
+  String get gardenInsightWater =>
+      'Ocean Drops are bringing water, greenery, and new life into the garden.';
+
+  @override
+  String get gardenInsightFruit =>
+      'Milestones and maturity are beginning to show as fruit and wisdom in bloom.';
+
+  @override
+  String get gardenInsightConsistency =>
+      'Your recent consistency is helping the whole garden stay healthy and full.';
+
+  @override
+  String get gardenRecentStory => 'Story completed';
+
+  @override
+  String get gardenRecentQuiz => 'Quiz completed';
+
+  @override
+  String get gardenRecentMemory => 'Memory cards completed';
+
+  @override
+  String get gardenRecentDuaLesson => 'Dua lesson completed';
+
+  @override
+  String get gardenRecentDuaPractice => 'Dua practiced';
+
+  @override
+  String get gardenRecentDuaDay => 'My Day with Duas completed';
+
+  @override
+  String get gardenRecentRoutine => 'Bedtime routine completed';
+
+  @override
+  String get gardenRecentSeerahNode => 'Seerah step completed';
+
+  @override
+  String get gardenRecentSeerahStage => 'Seerah stage completed';
+
+  @override
+  String get gardenRecentSeerahJourney => 'Seerah journey completed';
+
+  @override
+  String get gardenRecentKidsArabicLesson => 'Arabic letter lesson completed';
+
+  @override
+  String get gardenRecentKidsArabicDaily => 'Arabic daily mission completed';
+
+  @override
+  String get gardenPageLightMeaningTitle => 'Light through remembrance';
+
+  @override
+  String get gardenPageLightMeaningBody =>
+      'Dua and dhikr bring brightness, warmth, and calm atmosphere into the garden.';
+
+  @override
+  String get gardenPageFruitMeaningTitle => 'Wisdom in bloom';
+
+  @override
+  String get gardenPageFruitMeaningBody =>
+      'Milestones and maturity appear as fruit, showing learning that has taken root.';
+
+  @override
   String get gardenMilestoneTitle1 => 'First Seed';
 
   @override
@@ -19142,12 +20216,78 @@ class AppLocalizationsUr extends AppLocalizations {
   }
 
   @override
-  String batch9QuranWordsFlashCard(String transliteration, String meaning) {
-    return 'فلیش کارڈ';
+  String get batch9QuranWordsEmpty => 'کوئی لفظ دکھانے کے لیے نہیں';
+
+  @override
+  String batch9QuranWordsOccurrenceCount(String count) {
+    return '$count times';
   }
 
   @override
-  String get batch9QuranWordsEmpty => 'کوئی لفظ دکھانے کے لیے نہیں';
+  String get batch9QuranWordsExampleAyahTitle => 'Example ayah';
+
+  @override
+  String get batch9QuranWordsNoUsageAvailable =>
+      'No example ayah is available for this word yet.';
+
+  @override
+  String batch9QuranWordsViewOccurrences(int count) {
+    return 'See all ayahs ($count)';
+  }
+
+  @override
+  String get batch9QuranWordsAyahListTitle => 'Ayah usages';
+
+  @override
+  String batch9QuranWordsAyahListSubtitle(String word, int count) {
+    return '$word appears in $count ayahs.';
+  }
+
+  @override
+  String get batch9QuranWordsMarkLearned => 'Mark learned';
+
+  @override
+  String get batch9QuranWordsLearned => 'Learned';
+
+  @override
+  String get batch9QuranWordsOpenStudy => 'Open study';
+
+  @override
+  String get batch9QuranWordsStudyPageTitle => 'Word Study';
+
+  @override
+  String get batch9QuranWordsProgressFilterTitle => 'Progress';
+
+  @override
+  String get batch9QuranWordsFilterAll => 'All';
+
+  @override
+  String get batch9QuranWordsFilterLearned => 'Learned';
+
+  @override
+  String get batch9QuranWordsFilterNotLearned => 'Not learned';
+
+  @override
+  String get batch9QuranWordsAllAyahsTitle =>
+      'All ayahs where this word appears';
+
+  @override
+  String batch9QuranWordsAllAyahsSubtitle(Object word) {
+    return 'Open the full ayah list for $word and continue into the Qur\'an reader from any reference.';
+  }
+
+  @override
+  String get batch9QuranWordsRootLettersTitle => 'Root letters';
+
+  @override
+  String get batch9QuranWordsMeaningExpansionTitle => 'Meaning';
+
+  @override
+  String get batch9QuranWordsDetailNotFoundTitle => 'Word not found';
+
+  @override
+  String get batch9QuranWordsDetailNotFoundSubtitle =>
+      'This word study entry is no longer available.';
 
   @override
   String batch9QuranWordsOccurrenceSummary(String meaning, String count) {
@@ -19198,6 +20338,13 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get batch9FaqBrowseSubtitle => 'Explore questions by theme and level.';
+
+  @override
+  String get batch9FaqBrowseAllAction => 'Browse All';
+
+  @override
+  String get batch9FaqBrowseAllSubtitle =>
+      'Open the full FAQ collection for broader browsing and discovery.';
 
   @override
   String get batch9FaqSearchHint =>
@@ -21036,11 +22183,11 @@ class AppLocalizationsUr extends AppLocalizations {
       'You have reached the current peak of this path.';
 
   @override
-  String get growthTrackingOverviewTitle => 'Tracking Overview';
+  String get growthTrackingOverviewTitle => 'Journey Stats';
 
   @override
   String get growthTrackingOverviewSubtitle =>
-      'A cleaner view of your habits, worship, rhythm, and steady progress.';
+      'One place for your core worship, learning, reading, and consistency metrics.';
 
   @override
   String get growthTrackingOverviewTodayTitle => 'Today at a glance';
@@ -21074,6 +22221,175 @@ class AppLocalizationsUr extends AppLocalizations {
   @override
   String get growthTrackingPrayerDashboardSubtitle =>
       'Review salah and ibadah tracking in Ibadah.';
+
+  @override
+  String growthHomeQuranTrackerSubtitle(Object duration) {
+    return 'Today: $duration';
+  }
+
+  @override
+  String growthHomeQuranListeningTrackerSubtitle(Object total, Object today) {
+    return 'Listening: $total total • $today today';
+  }
+
+  @override
+  String get growthHomePostSalahAdhkarSubtitle =>
+      'Completed after-prayer adhkar recorded in your prayer log.';
+
+  @override
+  String growthHomeTotalAdhkarCompletedSubtitle(
+    Object postSalah,
+    Object sessions,
+  ) {
+    return '$postSalah post-Salah completions • $sessions dhikr sessions';
+  }
+
+  @override
+  String growthHomeDhikrTimeSubtitle(Object duration) {
+    return 'Time in dhikr: $duration';
+  }
+
+  @override
+  String growthHomeTimeReflectionSubtitle(Object elapsed, Object share) {
+    return 'Since $elapsed, tracked worship and growth time is $share.';
+  }
+
+  @override
+  String get journeyStatsQuranReadingTitle => 'Qur\'an Reading';
+
+  @override
+  String journeyStatsQuranReadingSubtitle(Object today, Object sessions) {
+    return '$today today • $sessions sessions tracked';
+  }
+
+  @override
+  String journeyStatsQuranListeningSubtitle(Object today, Object sessions) {
+    return 'Listening: $today today • $sessions sessions tracked';
+  }
+
+  @override
+  String get journeyStatsMetricsTitle => 'Core metrics';
+
+  @override
+  String get journeyStatsTimeReflectionTitle => 'Time & Reflection';
+
+  @override
+  String get journeyStatsTimeReflectionSubtitle =>
+      'A quiet view of the time this app can honestly track in your journey.';
+
+  @override
+  String get journeyStatsTimeSinceInstallTitle =>
+      'Time Since You Began This Journey';
+
+  @override
+  String get journeyStatsTimeSinceInstallSubtitle =>
+      'Measured from your first launch on this device';
+
+  @override
+  String get journeyStatsWorshipGrowthTimeTitle => 'Worship & Growth Time';
+
+  @override
+  String get journeyStatsWorshipGrowthTimeSubtitle =>
+      'Trustworthy time tracked in reading, listening, and dhikr';
+
+  @override
+  String get journeyStatsTrackedShareTitle => 'Share of Time Since Install';
+
+  @override
+  String get journeyStatsTrackedShareSubtitle =>
+      'The portion represented by tracked in-app worship and growth';
+
+  @override
+  String get journeyStatsOtherTimeTitle => 'Other Time Since Install';
+
+  @override
+  String get journeyStatsOtherTimeSubtitle =>
+      'The remaining time this app does not try to define';
+
+  @override
+  String get journeyStatsTimeReflectionHelper =>
+      'This is for reflection, not judgment. It only measures time the app actually tracked.';
+
+  @override
+  String get journeyStatsSalahOfferedTitle => 'Total Salah Offered';
+
+  @override
+  String get journeyStatsSalahOfferedSubtitle => 'Completed prayers logged';
+
+  @override
+  String get journeyStatsTotalAdhkarCompletedTitle => 'Total Adhkar Completed';
+
+  @override
+  String get journeyStatsTotalAdhkarCompletedSubtitle =>
+      'Tracked dhikr sessions and post-prayer adhkar completions';
+
+  @override
+  String get journeyStatsPostSalahAdhkarTitle => 'Post-Salah Adhkar Completed';
+
+  @override
+  String get journeyStatsPostSalahAdhkarSubtitle =>
+      'Recorded after-prayer adhkar completions';
+
+  @override
+  String get journeyStatsQuranTimeTitle => 'Qur\'an Time Read';
+
+  @override
+  String get journeyStatsQuranTimeSubtitle => 'Tracked from reading sessions';
+
+  @override
+  String get journeyStatsQuranListeningTimeTitle => 'Qur\'an Listening Time';
+
+  @override
+  String get journeyStatsQuranListeningTimeSubtitle =>
+      'Tracked from active playback';
+
+  @override
+  String get journeyStatsDhikrCompletedTitle => 'Dhikr Completed';
+
+  @override
+  String get journeyStatsDhikrCompletedSubtitle => 'Completed sessions tracked';
+
+  @override
+  String get journeyStatsDhikrTimeTitle => 'Total Time in Dhikr';
+
+  @override
+  String get journeyStatsDhikrTimeSubtitle =>
+      'Summed from tracked session duration';
+
+  @override
+  String get journeyStatsLessonsCompletedTitle => 'Lessons Completed';
+
+  @override
+  String get journeyStatsLessonsCompletedSubtitle =>
+      'Finished lesson and topic progress';
+
+  @override
+  String get journeyStatsActiveDaysTitle => 'Active Days';
+
+  @override
+  String get journeyStatsActiveDaysSubtitle => 'Days with recorded progress';
+
+  @override
+  String get journeyStatsCurrentStreakTitle => 'Current Streak';
+
+  @override
+  String get journeyStatsCurrentStreakSubtitle => 'Your current steady rhythm';
+
+  @override
+  String get journeyStatsBestStreakTitle => 'Best Streak';
+
+  @override
+  String get journeyStatsBestStreakSubtitle => 'Your strongest recorded run';
+
+  @override
+  String journeyStatsMinutesValue(Object minutes) {
+    return '${minutes}m';
+  }
+
+  @override
+  String journeyStatsDaysHoursValue(Object days, Object hours) {
+    return '${days}d ${hours}h';
+  }
 
   @override
   String get growthTrackingSuggestionsTitle => 'Suggested next steps';
@@ -21655,4 +22971,4768 @@ class AppLocalizationsUr extends AppLocalizations {
   @override
   String get glossaryEntrySunnahKidsExpanded =>
       'Sunnah is the example and way of Prophet Muhammad ﷺ. Muslims follow his good character, actions, and teachings to live in a way that pleases Allah.';
+
+  @override
+  String get learningJourneyDifficultyBeginner => 'Beginner';
+
+  @override
+  String get learningJourneyDifficultyIntermediate => 'Intermediate';
+
+  @override
+  String get learningJourneyDifficultyAdvanced => 'Advanced';
+
+  @override
+  String learningJourneyDurationMinutes(int minutes) {
+    return '$minutes min';
+  }
+
+  @override
+  String get learningJourneyFeaturedBadge => 'Featured';
+
+  @override
+  String get learningJourneyStageLockedBadge => 'Locked';
+
+  @override
+  String learningJourneyStageReward(int xp, int drops) {
+    return '+$xp XP • +$drops drop';
+  }
+
+  @override
+  String learningJourneyDetailLessonCount(int count) {
+    return '$count lessons';
+  }
+
+  @override
+  String get learningJourneyLessonSectionRewardsTitle => 'Rewards';
+
+  @override
+  String learningJourneyLessonSectionRewardsSubtitle(int xp, int drops) {
+    return 'Complete this lesson to earn $xp XP and $drops drop.';
+  }
+
+  @override
+  String learningJourneyFeedbackXpAwarded(int xp) {
+    return '+$xp XP added';
+  }
+
+  @override
+  String get learningJourneyStageLockedRedirectSubtitle =>
+      'Opening the next available lesson';
+
+  @override
+  String get learningJourneyStageLockedRedirectBody =>
+      'This lesson will open after the previous step is completed. Taking you to the next available lesson now.';
+
+  @override
+  String get learningJourneyBrowseFeaturedTitle => 'Featured journeys';
+
+  @override
+  String get learningJourneyBrowseFeaturedSubtitle =>
+      'Start with the guided paths most suited for steady progress.';
+
+  @override
+  String get learningJourneyBrowseAllJourneysTitle => 'All journeys';
+
+  @override
+  String get learningJourneyBrowseAllJourneysSubtitle =>
+      'Browse every guided path and continue where you left off.';
+
+  @override
+  String get crosswordHomeTitle => 'Crossword Puzzles';
+
+  @override
+  String get crosswordHomeSubtitle =>
+      'Calm knowledge games built from the learning content already in Path of Nūr.';
+
+  @override
+  String get crosswordLoadErrorTitle => 'Crossword puzzles could not be loaded';
+
+  @override
+  String get crosswordLoadErrorSubtitle =>
+      'Try reopening this section in a moment.';
+
+  @override
+  String get crosswordKidsModeTitle => 'Kids mode';
+
+  @override
+  String get crosswordKidsModeSubtitle =>
+      'Small grids with simple words from letters, worship, and early learning.';
+
+  @override
+  String get crosswordAdultModeTitle => 'Adult mode';
+
+  @override
+  String get crosswordAdultModeSubtitle =>
+      'Knowledge-based grids across prophets, hadith, Qur’an, and duas.';
+
+  @override
+  String get crosswordDailyModeTitle => 'Daily crossword';
+
+  @override
+  String get crosswordDailyModeSubtitle =>
+      'A themed puzzle that rotates through the week.';
+
+  @override
+  String crosswordDailyThemeLabel(Object theme) {
+    return 'Today’s theme: $theme';
+  }
+
+  @override
+  String crosswordPuzzleCountLabel(Object count) {
+    return '$count puzzles live';
+  }
+
+  @override
+  String crosswordCompletedCountLabel(Object count) {
+    return '$count completed';
+  }
+
+  @override
+  String crosswordTodayXpLabel(Object xp) {
+    return '$xp XP today';
+  }
+
+  @override
+  String crosswordTodayDropsLabel(Object drops) {
+    return '$drops drops today';
+  }
+
+  @override
+  String get crosswordKidsSectionTitle => 'Kids puzzles';
+
+  @override
+  String get crosswordKidsSectionSubtitle =>
+      'Gentle letter-and-word boards for younger learners.';
+
+  @override
+  String get crosswordAdultSectionTitle => 'Adult puzzles';
+
+  @override
+  String get crosswordAdultSectionSubtitle =>
+      'Reflective knowledge grids drawn from prophets, hadith, Qur’an, and duas.';
+
+  @override
+  String crosswordGridSizeLabel(Object size) {
+    return '$size×$size grid';
+  }
+
+  @override
+  String get crosswordPerfectBadge => 'Perfect';
+
+  @override
+  String crosswordClueCountSubtitle(Object total, Object solved) {
+    return '$solved of $total clues solved';
+  }
+
+  @override
+  String get crosswordReplayAction => 'Play again';
+
+  @override
+  String get crosswordContinueAction => 'Continue puzzle';
+
+  @override
+  String get crosswordStartAction => 'Start puzzle';
+
+  @override
+  String crosswordPuzzleTitleKids(Object category) {
+    return 'Kids $category puzzle';
+  }
+
+  @override
+  String crosswordPuzzleTitleAdult(Object category) {
+    return '$category crossword';
+  }
+
+  @override
+  String get crosswordDifficultyBeginner => 'Gentle';
+
+  @override
+  String get crosswordDifficultySteady => 'Steady';
+
+  @override
+  String get crosswordDifficultyReflective => 'Reflective';
+
+  @override
+  String get crosswordDifficultyDeep => 'Deep';
+
+  @override
+  String get crosswordCategoryLetters => 'Letters';
+
+  @override
+  String get crosswordCategoryWorship => 'Worship';
+
+  @override
+  String get crosswordCategoryCharacter => 'Character';
+
+  @override
+  String get crosswordCategoryFaith => 'Faith';
+
+  @override
+  String get crosswordCategoryQuran => 'Qur’an';
+
+  @override
+  String get crosswordCategoryHadith => 'Hadith';
+
+  @override
+  String get crosswordCategoryProphets => 'Prophets';
+
+  @override
+  String get crosswordCategoryDuas => 'Duas';
+
+  @override
+  String get crosswordCategoryJummah => 'Jumu‘ah';
+
+  @override
+  String get crosswordCategoryMixed => 'Mixed';
+
+  @override
+  String get learnQuizzesCrosswordSectionTitle => 'Crossword puzzles';
+
+  @override
+  String get learnQuizzesCrosswordSectionSubtitle =>
+      'Knowledge games that reuse the app’s learning content in a calm puzzle format.';
+
+  @override
+  String get learnQuizzesOpenCrossword => 'Open crossword';
+
+  @override
+  String get crosswordLoadingSubtitle => 'Preparing the current puzzle.';
+
+  @override
+  String get crosswordNotFoundTitle => 'Puzzle not found';
+
+  @override
+  String get crosswordNotFoundSubtitle => 'This crossword could not be opened.';
+
+  @override
+  String get crosswordKidsOnlyTitle =>
+      'This puzzle is reserved for the adult learning space.';
+
+  @override
+  String crosswordDailyPuzzleSubtitle(Object category) {
+    return 'Today’s guided puzzle centers on $category.';
+  }
+
+  @override
+  String crosswordPuzzleSubtitle(Object category, Object gridSize) {
+    return '$category • $gridSize grid';
+  }
+
+  @override
+  String get crosswordAcrossLabel => 'Across';
+
+  @override
+  String get crosswordDownLabel => 'Down';
+
+  @override
+  String crosswordSolvedCountLabel(Object solved, Object total) {
+    return '$solved/$total solved';
+  }
+
+  @override
+  String get crosswordGridSectionTitle => 'Puzzle grid';
+
+  @override
+  String get crosswordCluesSectionTitle => 'Clues';
+
+  @override
+  String get crosswordCurrentClueTitle => 'Current clue';
+
+  @override
+  String crosswordClueMetaLabel(Object length, Object direction) {
+    return '$length letters • $direction';
+  }
+
+  @override
+  String get crosswordCompletionTitle => 'Puzzle complete';
+
+  @override
+  String get crosswordCompletionSubtitle =>
+      'You completed the puzzle and collected the learning rewards.';
+
+  @override
+  String get crosswordPerfectSubtitle =>
+      'You completed the puzzle cleanly and earned the perfect bonus too.';
+
+  @override
+  String get crosswordCompletionXpReward => '+ XP on first completion';
+
+  @override
+  String get crosswordWordDropReward => '+1 drop for each solved word';
+
+  @override
+  String get crosswordPerfectBonusReward => '+ bonus XP for a perfect solve';
+
+  @override
+  String get crosswordHintFutureSubtitle =>
+      'Hints can be added later without changing the puzzle structure.';
+
+  @override
+  String crosswordRevealLetterAction(Object remaining) {
+    return 'Reveal letter ($remaining left)';
+  }
+
+  @override
+  String crosswordRevealWordAction(Object remaining) {
+    return 'Reveal word ($remaining left)';
+  }
+
+  @override
+  String crosswordExtraHintAction(Object remaining) {
+    return 'Extra hint ($remaining left)';
+  }
+
+  @override
+  String get crosswordExtraHintViewedAction => 'Extra hint viewed';
+
+  @override
+  String get crosswordResumeTitle => 'Progress saved';
+
+  @override
+  String get crosswordResumeSubtitle =>
+      'Your filled letters and solved words stay here when you leave and come back.';
+
+  @override
+  String get crosswordProgressSavedSubtitle =>
+      'Your progress saves as you solve.';
+
+  @override
+  String get crosswordContinueSectionTitle => 'Continue solving';
+
+  @override
+  String get crosswordContinueSectionSubtitle =>
+      'Pick up the puzzle you were working through most recently.';
+
+  @override
+  String get crosswordOverviewTitle => 'Progress overview';
+
+  @override
+  String get crosswordOverviewSubtitle =>
+      'A calm snapshot of how your kids and adult crossword sets are moving.';
+
+  @override
+  String crosswordPerfectCountLabel(Object count) {
+    return '$count perfect solves';
+  }
+
+  @override
+  String crosswordResumeSectionCount(Object count) {
+    return '$count in progress';
+  }
+
+  @override
+  String get crosswordSolvedClueBadge => 'Solved';
+
+  @override
+  String get crosswordSelectedClueBadge => 'Selected clue';
+
+  @override
+  String crosswordClueSemanticsLabel(
+    Object clue,
+    Object length,
+    Object direction,
+  ) {
+    return '$clue. $length letters. $direction.';
+  }
+
+  @override
+  String crosswordCellSemanticsLabel(Object row, Object col, Object value) {
+    return 'Row $row, column $col. Current value $value.';
+  }
+
+  @override
+  String get crosswordCellEmptyValue => 'empty';
+
+  @override
+  String get crosswordCellCurrentWordHint => 'Part of the current clue';
+
+  @override
+  String crosswordDailyStreakLabel(Object count) {
+    return '$count-day streak';
+  }
+
+  @override
+  String get crosswordDailyCompleteBadge => 'Daily puzzle complete';
+
+  @override
+  String crosswordDailyBonusAchievedLabel(Object count) {
+    return '$count bonus goals';
+  }
+
+  @override
+  String crosswordDailyCompletedSubtitle(Object theme) {
+    return 'Today’s $theme puzzle is complete.';
+  }
+
+  @override
+  String get crosswordDailyChallengeTitle => 'Today’s challenge';
+
+  @override
+  String crosswordDailyChallengeSubtitle(Object theme) {
+    return 'A daily crossword shaped around $theme.';
+  }
+
+  @override
+  String crosswordDailyTargetDifficultyLabel(Object difficulty) {
+    return 'Target difficulty $difficulty';
+  }
+
+  @override
+  String crosswordDailyTimeTakenLabel(Object duration) {
+    return 'Time: $duration';
+  }
+
+  @override
+  String get crosswordDailyObjectivePerfectTitle => 'Complete perfectly';
+
+  @override
+  String get crosswordDailyObjectivePerfectSubtitle =>
+      'Finish without entering a wrong answer.';
+
+  @override
+  String get crosswordDailyObjectiveHintFreeTitle => 'Keep it hint-free';
+
+  @override
+  String get crosswordDailyObjectiveHintFreeSubtitle =>
+      'Solve without revealing letters, words, or extra hints.';
+
+  @override
+  String get crosswordDailyObjectiveQuickSolveTitle => 'Finish with focus';
+
+  @override
+  String crosswordDailyObjectiveQuickSolveSubtitle(Object duration) {
+    return 'Complete within $duration.';
+  }
+
+  @override
+  String crosswordDailyDropsContributionLabel(Object count) {
+    return '$count drops today';
+  }
+
+  @override
+  String crosswordDailyOceanSummary(Object count) {
+    return 'Today your crossword added $count drops to the ocean.';
+  }
+
+  @override
+  String get crosswordDailyHistoryTitle => 'Recent daily history';
+
+  @override
+  String get crosswordDailyHistorySubtitle =>
+      'A gentle look back at your recent crossword challenges.';
+
+  @override
+  String get crosswordOpenTodayAction => 'Open today’s puzzle';
+
+  @override
+  String get crosswordResumeBadge => 'In progress';
+
+  @override
+  String get crosswordFeaturedPacksTitle => 'Featured packs';
+
+  @override
+  String get crosswordFeaturedPacksSubtitle =>
+      'Guided crossword sets built around the strongest learning themes.';
+
+  @override
+  String get crosswordThemesTitle => 'Browse by theme';
+
+  @override
+  String get crosswordThemesSubtitle =>
+      'Open a focused set of puzzles by category and difficulty band.';
+
+  @override
+  String get crosswordOpenPackAction => 'Open pack';
+
+  @override
+  String get crosswordContinuePackAction => 'Continue pack';
+
+  @override
+  String get crosswordRecommendedAction => 'Open recommended puzzle';
+
+  @override
+  String get crosswordAssembledBadge => 'Curated mix';
+
+  @override
+  String get crosswordNextPuzzleAction => 'Next puzzle';
+
+  @override
+  String get crosswordReturnToPackAction => 'Return to pack';
+
+  @override
+  String crosswordPackProgressLabel(Object completed, Object total) {
+    return '$completed of $total complete';
+  }
+
+  @override
+  String crosswordPackPerfectLabel(Object count) {
+    return '$count perfect';
+  }
+
+  @override
+  String crosswordPackDifficultyLabel(Object min, Object max) {
+    return 'Levels $min–$max';
+  }
+
+  @override
+  String get crosswordPackKidsBasicsTitle => 'Kids basics';
+
+  @override
+  String get crosswordPackKidsBasicsSubtitle =>
+      'Gentle starter packs around letters, worship words, and early Islamic vocabulary.';
+
+  @override
+  String get crosswordPackAdultFoundationsTitle => 'Adult foundations';
+
+  @override
+  String get crosswordPackAdultFoundationsSubtitle =>
+      'A wider pack of reflective puzzles across the core knowledge themes.';
+
+  @override
+  String get crosswordPackDailyTitle => 'Daily rotation';
+
+  @override
+  String get crosswordPackDailySubtitle =>
+      'The full pool of weekday-ready crossword boards used for the rotating daily puzzle.';
+
+  @override
+  String get crosswordPackQuranTitle => 'Qur’an reflection';
+
+  @override
+  String get crosswordPackQuranSubtitle =>
+      'Puzzles built from Qur’anic words, guidance, mercy, and reflection themes.';
+
+  @override
+  String get crosswordPackHadithTitle => 'Hadith reflection';
+
+  @override
+  String get crosswordPackHadithSubtitle =>
+      'Clue sets centered on hadith foundations, sincerity, halal, and ihsan.';
+
+  @override
+  String get crosswordPackProphetsTitle => 'Prophet stories';
+
+  @override
+  String get crosswordPackProphetsSubtitle =>
+      'Crossword boards drawn from prophet names, lessons, and story cues.';
+
+  @override
+  String get crosswordPackDuasTitle => 'Dua words';
+
+  @override
+  String get crosswordPackDuasSubtitle =>
+      'Supplication-focused puzzles using Qur’anic dua language and family themes.';
+
+  @override
+  String get crosswordPackWorshipTitle => 'Worship and practice';
+
+  @override
+  String get crosswordPackWorshipSubtitle =>
+      'Prayer, guidance, Jumu‘ah, and worship vocabulary in one focused collection.';
+
+  @override
+  String get crosswordPackCharacterTitle => 'Character and adab';
+
+  @override
+  String get crosswordPackCharacterSubtitle =>
+      'A lighter character-focused set built from halal, ihsan, and adab-aligned learning cues.';
+
+  @override
+  String get crosswordPackMixedTitle => 'Mixed challenge';
+
+  @override
+  String get crosswordPackMixedSubtitle =>
+      'A deeper mixed set that combines history, revelation, and broader knowledge words.';
+
+  @override
+  String get wordSearchHomeTitle => 'Word Search';
+
+  @override
+  String get wordSearchHomeSubtitle =>
+      'Find meaningful Islamic words through calm daily play.';
+
+  @override
+  String get wordSearchLoadErrorTitle => 'Word Search could not load';
+
+  @override
+  String get wordSearchLoadErrorSubtitle =>
+      'Try opening the puzzle again in a moment.';
+
+  @override
+  String get wordSearchKidsModeTitle => 'Kids Word Search';
+
+  @override
+  String get wordSearchKidsModeSubtitle =>
+      'Shorter words, gentler grids, and a guided first step.';
+
+  @override
+  String get wordSearchAdultModeTitle => 'Adult Word Search';
+
+  @override
+  String get wordSearchAdultModeSubtitle =>
+      'Deeper themes, denser boards, and reflective practice.';
+
+  @override
+  String get wordSearchDailyModeTitle => 'Daily Word Search';
+
+  @override
+  String get wordSearchDailyModeSubtitle =>
+      'Return each day for a steady themed challenge.';
+
+  @override
+  String wordSearchDailyCompletedSubtitle(Object theme) {
+    return 'Today\'s $theme word search is complete.';
+  }
+
+  @override
+  String wordSearchDailyThemeLabel(Object theme) {
+    return 'Today\'s theme: $theme';
+  }
+
+  @override
+  String wordSearchDailyStreakLabel(Object count) {
+    return '$count-day streak';
+  }
+
+  @override
+  String get wordSearchDailyCompleteBadge => 'Daily complete';
+
+  @override
+  String get wordSearchResumeBadge => 'Resume';
+
+  @override
+  String get wordSearchOpenTodayAction => 'Open today\'s puzzle';
+
+  @override
+  String get wordSearchContinueAction => 'Continue';
+
+  @override
+  String get wordSearchStartAction => 'Start puzzle';
+
+  @override
+  String wordSearchPuzzleCountLabel(Object count) {
+    return '$count puzzles';
+  }
+
+  @override
+  String wordSearchCompletedCountLabel(Object count) {
+    return '$count completed';
+  }
+
+  @override
+  String wordSearchXpLabel(Object count) {
+    return '$count XP';
+  }
+
+  @override
+  String wordSearchDropsLabel(Object count) {
+    return '$count drops';
+  }
+
+  @override
+  String get wordSearchContinueSectionTitle => 'Continue solving';
+
+  @override
+  String get wordSearchContinueSectionSubtitle =>
+      'Pick up your most recent unfinished puzzle.';
+
+  @override
+  String get wordSearchDailyHistoryTitle => 'Recent daily puzzles';
+
+  @override
+  String get wordSearchDailyHistorySubtitle =>
+      'A simple view of your latest daily completions.';
+
+  @override
+  String get wordSearchFeaturedPacksTitle => 'Featured packs';
+
+  @override
+  String get wordSearchFeaturedPacksSubtitle =>
+      'Start with calm, well-shaped packs for each mode.';
+
+  @override
+  String get wordSearchThemesTitle => 'Themes';
+
+  @override
+  String get wordSearchThemesSubtitle =>
+      'Browse by worship, prophets, Qur\'an themes, and more.';
+
+  @override
+  String get wordSearchLoadingSubtitle => 'Loading word search';
+
+  @override
+  String get wordSearchNotFoundTitle => 'Puzzle not found';
+
+  @override
+  String get wordSearchNotFoundSubtitle =>
+      'This word search is not available right now.';
+
+  @override
+  String get wordSearchKidsOnlyTitle =>
+      'This puzzle is not available in the current child profile.';
+
+  @override
+  String wordSearchPackDifficultyLabel(Object min, Object max) {
+    return 'Difficulty $min-$max';
+  }
+
+  @override
+  String wordSearchPackProgressLabel(Object completed, Object total) {
+    return '$completed/$total complete';
+  }
+
+  @override
+  String wordSearchPackPerfectLabel(Object count) {
+    return '$count perfect';
+  }
+
+  @override
+  String get wordSearchRecommendedAction => 'Recommended next puzzle';
+
+  @override
+  String get wordSearchPerfectBadge => 'Perfect';
+
+  @override
+  String get wordSearchReplayAction => 'Replay';
+
+  @override
+  String wordSearchGridSizeLabel(Object size) {
+    return '${size}x$size grid';
+  }
+
+  @override
+  String wordSearchFoundCountLabel(Object found, Object total) {
+    return '$found/$total words found';
+  }
+
+  @override
+  String wordSearchPuzzleTitleKids(Object category) {
+    return '$category Finder';
+  }
+
+  @override
+  String wordSearchPuzzleTitleAdult(Object category) {
+    return '$category Search';
+  }
+
+  @override
+  String wordSearchPuzzleSubtitle(Object category, Object size) {
+    return '$category • ${size}x$size board';
+  }
+
+  @override
+  String wordSearchDailyPuzzleSubtitle(Object theme) {
+    return 'Daily $theme word search';
+  }
+
+  @override
+  String get wordSearchCategoryKids => 'Kids';
+
+  @override
+  String get wordSearchCategoryLetters => 'Letters';
+
+  @override
+  String get wordSearchCategoryQuran => 'Qur\'an';
+
+  @override
+  String get wordSearchCategoryHadith => 'Hadith';
+
+  @override
+  String get wordSearchCategoryProphets => 'Prophets';
+
+  @override
+  String get wordSearchCategoryDuas => 'Duas';
+
+  @override
+  String get wordSearchCategoryWorship => 'Worship';
+
+  @override
+  String get wordSearchCategoryCharacter => 'Character';
+
+  @override
+  String get wordSearchCategoryHistory => 'History';
+
+  @override
+  String get wordSearchCategoryMixed => 'Mixed';
+
+  @override
+  String get wordSearchDifficultyGentle => 'Gentle';
+
+  @override
+  String get wordSearchDifficultySteady => 'Steady';
+
+  @override
+  String get wordSearchDifficultyFocused => 'Focused';
+
+  @override
+  String get wordSearchDifficultyDeep => 'Deep';
+
+  @override
+  String get wordSearchOpenPackAction => 'Open pack';
+
+  @override
+  String get wordSearchHintSectionTitle => 'Hints';
+
+  @override
+  String get wordSearchHintRevealLetter => 'Reveal first letter';
+
+  @override
+  String get wordSearchHintHighlightWord => 'Highlight a word';
+
+  @override
+  String wordSearchHintUsageLabel(Object letters, Object highlights) {
+    return 'Hints used: $letters letters, $highlights highlights';
+  }
+
+  @override
+  String get wordSearchGridSectionTitle => 'Letter grid';
+
+  @override
+  String get wordSearchSelectionHint =>
+      'Drag or tap a straight path to find a word.';
+
+  @override
+  String get wordSearchSelectionReady =>
+      'Selections save automatically as you play.';
+
+  @override
+  String get wordSearchWordListTitle => 'Words to find';
+
+  @override
+  String get wordSearchFoundBadge => 'Found';
+
+  @override
+  String wordSearchRevealedLetterBadge(Object letter) {
+    return 'First letter: $letter';
+  }
+
+  @override
+  String get wordSearchHighlightedBadge => 'Highlighted';
+
+  @override
+  String wordSearchExtraHint(Object hint) {
+    return 'Hint: $hint';
+  }
+
+  @override
+  String get wordSearchCompletionTitle => 'Puzzle complete';
+
+  @override
+  String get wordSearchCompletionSubtitle =>
+      'You found every word in the grid.';
+
+  @override
+  String get wordSearchPerfectSubtitle =>
+      'You found every word with a perfect finish.';
+
+  @override
+  String get wordSearchCompletionXpReward => 'Completion XP granted';
+
+  @override
+  String get wordSearchWordDropReward => 'Each found word added drops';
+
+  @override
+  String get wordSearchPerfectBonusReward => 'Perfect solve bonus XP';
+
+  @override
+  String get wordSearchNextPuzzleAction => 'Next puzzle';
+
+  @override
+  String get wordSearchReturnToPackAction => 'Return to pack';
+
+  @override
+  String get wordSearchBackHomeAction => 'Back home';
+
+  @override
+  String wordSearchCellSemanticsLabel(
+    Object row,
+    Object column,
+    Object letter,
+  ) {
+    return 'Row $row, column $column, letter $letter';
+  }
+
+  @override
+  String get wordSearchPackKidsStarterTitle => 'Kids Starter Words';
+
+  @override
+  String get wordSearchPackKidsStarterSubtitle =>
+      'A calm first pack for familiar Islamic words.';
+
+  @override
+  String get wordSearchPackLettersTitle => 'Arabic Letter Finder';
+
+  @override
+  String get wordSearchPackLettersSubtitle =>
+      'Find simple words linked to early Arabic learning.';
+
+  @override
+  String get wordSearchPackPrayerTitle => 'Prayer Words';
+
+  @override
+  String get wordSearchPackPrayerSubtitle =>
+      'Words connected to salah, wudu, and sacred practice.';
+
+  @override
+  String get wordSearchPackAdultTitle => 'Adult Foundations';
+
+  @override
+  String get wordSearchPackAdultSubtitle =>
+      'A grounded starting pack for older learners.';
+
+  @override
+  String get wordSearchPackQuranTitle => 'Qur\'an Themes';
+
+  @override
+  String get wordSearchPackQuranSubtitle =>
+      'Words tied to guidance, mercy, and revelation.';
+
+  @override
+  String get wordSearchPackHadithTitle => 'Hadith Keywords';
+
+  @override
+  String get wordSearchPackHadithSubtitle =>
+      'Search for words that reinforce prophetic teachings.';
+
+  @override
+  String get wordSearchPackProphetsTitle => 'Prophets & Places';
+
+  @override
+  String get wordSearchPackProphetsSubtitle =>
+      'Names and places from prophetic history.';
+
+  @override
+  String get wordSearchPackDuaTitle => 'Duas & Meanings';
+
+  @override
+  String get wordSearchPackDuaSubtitle =>
+      'Words shaped by supplication, mercy, and repentance.';
+
+  @override
+  String get wordSearchPackCharacterTitle => 'Character & Adab';
+
+  @override
+  String get wordSearchPackCharacterSubtitle =>
+      'Search for qualities that refine the soul.';
+
+  @override
+  String get wordSearchPackDailyTitle => 'Daily Mixed';
+
+  @override
+  String get wordSearchPackDailySubtitle =>
+      'A rotating pack that supports the daily challenge.';
+
+  @override
+  String get learnQuizzesWordSearchSectionTitle => 'Word Search';
+
+  @override
+  String get learnQuizzesWordSearchSectionSubtitle =>
+      'Find meaningful Islamic words in themed grids.';
+
+  @override
+  String get learnQuizzesOpenWordSearch => 'Open Word Search';
+
+  @override
+  String get matchingHomeTitle => 'Matching Game';
+
+  @override
+  String get matchingHomeSubtitle =>
+      'Match pairs of meaningful Islamic words, ideas, and lessons.';
+
+  @override
+  String get matchingLoadErrorTitle => 'Matching could not load right now.';
+
+  @override
+  String get matchingLoadErrorSubtitle =>
+      'Try again in a moment. Your saved progress is still safe.';
+
+  @override
+  String get matchingLoadingSubtitle => 'Preparing your next matching session.';
+
+  @override
+  String get matchingNotFoundTitle =>
+      'That matching puzzle could not be found.';
+
+  @override
+  String get matchingNotFoundSubtitle =>
+      'Try another puzzle or return to the matching home.';
+
+  @override
+  String get matchingKidsOnlyTitle =>
+      'This matching set is reserved for the adult learning path.';
+
+  @override
+  String get matchingKidsModeTitle => 'Kids Matching';
+
+  @override
+  String get matchingKidsModeSubtitle =>
+      'Gentle matching for early Islamic words and ideas.';
+
+  @override
+  String get matchingAdultModeTitle => 'Adult Matching';
+
+  @override
+  String get matchingAdultModeSubtitle =>
+      'Reflective pairings for concepts, meanings, and lessons.';
+
+  @override
+  String get matchingDailyModeTitle => 'Daily Matching';
+
+  @override
+  String get matchingDailyModeSubtitle =>
+      'One themed matching challenge that refreshes each day.';
+
+  @override
+  String matchingDailyCompletedSubtitle(Object theme) {
+    return 'Today\'s matching theme, $theme, is complete.';
+  }
+
+  @override
+  String matchingDailyThemeLabel(Object theme) {
+    return 'Today\'s theme: $theme';
+  }
+
+  @override
+  String matchingDailyPuzzleSubtitle(Object theme) {
+    return 'Daily matching · $theme';
+  }
+
+  @override
+  String matchingPuzzleSubtitle(Object category, Object count) {
+    return '$category · $count pairs';
+  }
+
+  @override
+  String matchingPuzzleCountLabel(Object count) {
+    return '$count puzzles live';
+  }
+
+  @override
+  String matchingCompletedCountLabel(Object count) {
+    return '$count completed';
+  }
+
+  @override
+  String matchingXpLabel(Object count) {
+    return '$count XP earned';
+  }
+
+  @override
+  String matchingDropsLabel(Object count) {
+    return '$count drops earned';
+  }
+
+  @override
+  String matchingDailyStreakLabel(Object count) {
+    return '$count-day streak';
+  }
+
+  @override
+  String get matchingDailyCompleteBadge => 'Daily complete';
+
+  @override
+  String get matchingResumeBadge => 'Resume';
+
+  @override
+  String get matchingOpenTodayAction => 'Open today\'s puzzle';
+
+  @override
+  String get matchingContinueAction => 'Continue';
+
+  @override
+  String get matchingStartAction => 'Start';
+
+  @override
+  String get matchingContinueSectionTitle => 'Continue matching';
+
+  @override
+  String get matchingContinueSectionSubtitle =>
+      'Pick up the last puzzle you started.';
+
+  @override
+  String get matchingDailyHistoryTitle => 'Recent daily history';
+
+  @override
+  String get matchingDailyHistorySubtitle =>
+      'Your last few daily matching sessions.';
+
+  @override
+  String get matchingFeaturedPacksTitle => 'Featured packs';
+
+  @override
+  String get matchingFeaturedPacksSubtitle =>
+      'Good places to start or continue.';
+
+  @override
+  String get matchingThemesTitle => 'Themes';
+
+  @override
+  String get matchingThemesSubtitle =>
+      'Browse matching packs by topic and audience.';
+
+  @override
+  String get matchingOpenPackAction => 'Open pack';
+
+  @override
+  String get matchingRecommendedAction => 'Recommended next';
+
+  @override
+  String get matchingReplayAction => 'Replay';
+
+  @override
+  String matchingPairCountLabel(Object count) {
+    return '$count pairs';
+  }
+
+  @override
+  String matchingFoundCountLabel(Object found, Object total) {
+    return '$found of $total pairs matched';
+  }
+
+  @override
+  String get matchingPerfectBadge => 'Perfect';
+
+  @override
+  String matchingPuzzleTitleKids(Object category) {
+    return '$category matching';
+  }
+
+  @override
+  String matchingPuzzleTitleAdult(Object category) {
+    return '$category matching';
+  }
+
+  @override
+  String get matchingDifficultyGentle => 'Gentle';
+
+  @override
+  String get matchingDifficultySteady => 'Steady';
+
+  @override
+  String get matchingDifficultyFocused => 'Focused';
+
+  @override
+  String get matchingDifficultyDeep => 'Deep';
+
+  @override
+  String get matchingCategoryKids => 'Kids';
+
+  @override
+  String get matchingCategoryLetters => 'Arabic letters';
+
+  @override
+  String get matchingCategoryQuran => 'Qur\'an';
+
+  @override
+  String get matchingCategoryHadith => 'Hadith';
+
+  @override
+  String get matchingCategoryProphets => 'Prophets';
+
+  @override
+  String get matchingCategoryDuas => 'Duas';
+
+  @override
+  String get matchingCategoryWorship => 'Worship';
+
+  @override
+  String get matchingCategoryCharacter => 'Character & Adab';
+
+  @override
+  String get matchingCategoryMixed => 'Mixed';
+
+  @override
+  String get matchingHintSectionTitle => 'Hints';
+
+  @override
+  String get matchingHintRevealPair => 'Reveal one pair';
+
+  @override
+  String get matchingHintRemoveOption => 'Remove one option';
+
+  @override
+  String matchingHintUsageLabel(Object revealUses, Object removeUses) {
+    return 'Reveal pair: $revealUses · Remove option: $removeUses';
+  }
+
+  @override
+  String get matchingLeftColumnTitle => 'Left side';
+
+  @override
+  String get matchingRightColumnTitle => 'Right side';
+
+  @override
+  String get matchingFoundBadge => 'Matched';
+
+  @override
+  String get matchingSelectedBadge => 'Selected';
+
+  @override
+  String get matchingRevealedBadge => 'Hint used';
+
+  @override
+  String matchingCardSemanticsLabel(Object label, Object state) {
+    return '$label $state';
+  }
+
+  @override
+  String get matchingCompletionTitle => 'Matching complete';
+
+  @override
+  String get matchingCompletionSubtitle =>
+      'You matched every pair in this puzzle.';
+
+  @override
+  String get matchingPerfectSubtitle => 'You matched every pair perfectly.';
+
+  @override
+  String get matchingCompletionXpReward => 'Completion XP granted';
+
+  @override
+  String get matchingPairDropReward => 'Each correct pair added drops';
+
+  @override
+  String get matchingPerfectBonusReward => 'Perfect matching bonus XP';
+
+  @override
+  String get matchingNextPuzzleAction => 'Next puzzle';
+
+  @override
+  String get matchingReturnToPackAction => 'Return to pack';
+
+  @override
+  String get matchingBackHomeAction => 'Back home';
+
+  @override
+  String matchingPackDifficultyLabel(Object min, Object max) {
+    return 'Difficulty $min–$max';
+  }
+
+  @override
+  String matchingPackProgressLabel(Object completed, Object total) {
+    return '$completed of $total puzzles completed';
+  }
+
+  @override
+  String matchingPackPerfectLabel(Object count) {
+    return '$count perfect';
+  }
+
+  @override
+  String get matchingPackKidsBasicsTitle => 'Kids Matching Basics';
+
+  @override
+  String get matchingPackKidsBasicsSubtitle =>
+      'Simple pairs for early Islamic learning.';
+
+  @override
+  String get matchingPackArabicTitle => 'Arabic Learning';
+
+  @override
+  String get matchingPackArabicSubtitle =>
+      'Letter and word connections for young learners.';
+
+  @override
+  String get matchingPackQuranTitle => 'Qur\'an Concepts';
+
+  @override
+  String get matchingPackQuranSubtitle =>
+      'Match Qur\'anic ideas and familiar meanings.';
+
+  @override
+  String get matchingPackHadithTitle => 'Hadith Teachings';
+
+  @override
+  String get matchingPackHadithSubtitle =>
+      'Pair prophetic terms with their teachings.';
+
+  @override
+  String get matchingPackProphetsTitle => 'Prophets';
+
+  @override
+  String get matchingPackProphetsSubtitle =>
+      'Match prophetic names with defining lessons and places.';
+
+  @override
+  String get matchingPackDuaTitle => 'Duas';
+
+  @override
+  String get matchingPackDuaSubtitle => 'Connect supplications and meanings.';
+
+  @override
+  String get matchingPackAdabTitle => 'Character & Adab';
+
+  @override
+  String get matchingPackAdabSubtitle =>
+      'Pair manners and character traits with clear reminders.';
+
+  @override
+  String get matchingPackDailyTitle => 'Daily Mixed';
+
+  @override
+  String get matchingPackDailySubtitle =>
+      'A rotating pack that supports the daily matching challenge.';
+
+  @override
+  String get learnQuizzesMatchingSectionTitle => 'Matching Game';
+
+  @override
+  String get learnQuizzesMatchingSectionSubtitle =>
+      'Match words, meanings, and lessons in calm study sets.';
+
+  @override
+  String get learnQuizzesOpenMatching => 'Open Matching Game';
+
+  @override
+  String get ayahCompletionHomeTitle => 'Ayah Completion';
+
+  @override
+  String get ayahCompletionHomeSubtitle =>
+      'Complete missing words from verified Qur\'an ayahs in a calm memorization flow.';
+
+  @override
+  String get ayahCompletionLoadErrorTitle =>
+      'Unable to load ayah completion right now.';
+
+  @override
+  String get ayahCompletionLoadErrorSubtitle =>
+      'Try again in a moment. Your saved progress will remain here.';
+
+  @override
+  String get ayahCompletionLoadingSubtitle =>
+      'Preparing today\'s ayahs and memorization sets.';
+
+  @override
+  String get ayahCompletionNotFoundTitle => 'Ayah puzzle not found.';
+
+  @override
+  String get ayahCompletionNotFoundSubtitle =>
+      'This ayah set is unavailable right now.';
+
+  @override
+  String get ayahCompletionKidsOnlyTitle =>
+      'This ayah set is not available in the child profile.';
+
+  @override
+  String get ayahCompletionKidsModeTitle => 'Kids Ayahs';
+
+  @override
+  String get ayahCompletionKidsModeSubtitle =>
+      'Short ayahs with one missing word and gentle guidance.';
+
+  @override
+  String get ayahCompletionAdultModeTitle => 'Adult Ayahs';
+
+  @override
+  String get ayahCompletionAdultModeSubtitle =>
+      'Reflective ayahs with multiple blanks for steadier memorization.';
+
+  @override
+  String get ayahCompletionDailyModeTitle => 'Daily Ayah';
+
+  @override
+  String get ayahCompletionDailyModeSubtitle =>
+      'One ayah for today with calm repetition and a light daily reward.';
+
+  @override
+  String ayahCompletionDailyCompletedSubtitle(Object theme) {
+    return 'Today\'s $theme ayah is complete.';
+  }
+
+  @override
+  String ayahCompletionDailyThemeLabel(Object theme) {
+    return 'Today\'s focus: $theme';
+  }
+
+  @override
+  String ayahCompletionDailyPuzzleSubtitle(Object theme) {
+    return 'Daily ayah • $theme';
+  }
+
+  @override
+  String get ayahCompletionDailyHistoryTitle => 'Recent daily ayahs';
+
+  @override
+  String get ayahCompletionDailyHistorySubtitle =>
+      'A quiet look at your recent Qur\'an completion practice.';
+
+  @override
+  String ayahCompletionDailyStreakLabel(Object count) {
+    return 'Daily streak $count';
+  }
+
+  @override
+  String get ayahCompletionDailyCompleteBadge => 'Daily complete';
+
+  @override
+  String ayahCompletionPuzzleCountLabel(Object count) {
+    return '$count ayah puzzles';
+  }
+
+  @override
+  String ayahCompletionCompletedCountLabel(Object count) {
+    return '$count completed';
+  }
+
+  @override
+  String ayahCompletionXpLabel(Object count) {
+    return '$count XP';
+  }
+
+  @override
+  String ayahCompletionDropsLabel(Object count) {
+    return '$count Ocean Drops';
+  }
+
+  @override
+  String get ayahCompletionContinueSectionTitle => 'Continue memorization';
+
+  @override
+  String get ayahCompletionContinueSectionSubtitle =>
+      'Return to the ayah you last opened and keep the rhythm steady.';
+
+  @override
+  String get ayahCompletionFeaturedPacksTitle => 'Featured ayah sets';
+
+  @override
+  String get ayahCompletionFeaturedPacksSubtitle =>
+      'Begin with short, steady sets for memorization and reflection.';
+
+  @override
+  String get ayahCompletionThemesTitle => 'Themes and sets';
+
+  @override
+  String get ayahCompletionThemesSubtitle =>
+      'Browse ayahs by theme, memorization need, and daily use.';
+
+  @override
+  String ayahCompletionProgressCountLabel(Object done, Object total) {
+    return '$done of $total blanks complete';
+  }
+
+  @override
+  String ayahCompletionReferenceLabel(Object reference) {
+    return '$reference';
+  }
+
+  @override
+  String get ayahCompletionReferenceSubtitle =>
+      'Open this ayah in the Qur\'an reader';
+
+  @override
+  String get ayahCompletionOpenPackAction => 'Open Set';
+
+  @override
+  String get ayahCompletionContinueAction => 'Continue';
+
+  @override
+  String get ayahCompletionRecommendedAction => 'Recommended Next';
+
+  @override
+  String get ayahCompletionReplayAction => 'Review Again';
+
+  @override
+  String get ayahCompletionStartAction => 'Start';
+
+  @override
+  String get ayahCompletionPlayAyahAction => 'Play ayah';
+
+  @override
+  String get ayahCompletionPerfectBadge => 'Perfect';
+
+  @override
+  String ayahCompletionPackProgressLabel(Object completed, Object total) {
+    return '$completed of $total complete';
+  }
+
+  @override
+  String ayahCompletionPackPerfectLabel(Object count) {
+    return '$count perfect';
+  }
+
+  @override
+  String ayahCompletionPackDifficultyLabel(Object min, Object max) {
+    return 'Difficulty $min-$max';
+  }
+
+  @override
+  String ayahCompletionPuzzleTitleKids(Object surah, Object ayah) {
+    return 'Kids Ayah $surah:$ayah';
+  }
+
+  @override
+  String ayahCompletionPuzzleTitleAdult(Object surah, Object ayah) {
+    return 'Ayah Practice $surah:$ayah';
+  }
+
+  @override
+  String ayahCompletionPuzzleSubtitle(Object category, Object count) {
+    return '$category • $count blanks';
+  }
+
+  @override
+  String get ayahCompletionVerseSectionTitle => 'Ayah';
+
+  @override
+  String get ayahCompletionHintSectionTitle => 'Hint';
+
+  @override
+  String get ayahCompletionRevealBlankAction => 'Reveal one blank';
+
+  @override
+  String ayahCompletionHintUsageLabel(Object count) {
+    return 'Reveal used $count times';
+  }
+
+  @override
+  String get ayahCompletionBlankSectionTitle => 'Fill the blanks';
+
+  @override
+  String get ayahCompletionBlankPrompt => 'Choose a blank to continue.';
+
+  @override
+  String ayahCompletionBlankSelectedLabel(Object index) {
+    return 'Blank $index selected';
+  }
+
+  @override
+  String ayahCompletionBlankChipLabel(Object index) {
+    return 'Blank $index';
+  }
+
+  @override
+  String ayahCompletionBlankPlaceholder(Object index) {
+    return 'Blank $index';
+  }
+
+  @override
+  String get ayahCompletionCompletionTitle => 'Ayah complete';
+
+  @override
+  String get ayahCompletionCompletionSubtitle =>
+      'The full ayah is now restored. Revisit it once more and keep it close.';
+
+  @override
+  String get ayahCompletionPerfectSubtitle =>
+      'Completed without mistakes or hints.';
+
+  @override
+  String get ayahCompletionCompletionXpReward => 'Completion XP awarded';
+
+  @override
+  String get ayahCompletionBlankDropReward =>
+      'Correct blanks added Ocean Drops';
+
+  @override
+  String get ayahCompletionPerfectBonusReward =>
+      'Perfect completion bonus awarded';
+
+  @override
+  String get ayahCompletionNextPuzzleAction => 'Next Ayah';
+
+  @override
+  String get ayahCompletionReturnToPackAction => 'Back to Set';
+
+  @override
+  String get ayahCompletionBackHomeAction => 'Back Home';
+
+  @override
+  String get ayahCompletionCategoryShortSurahs => 'Short Surahs';
+
+  @override
+  String get ayahCompletionCategoryDailyDuaAyahs => 'Daily Dua Ayahs';
+
+  @override
+  String get ayahCompletionCategoryMercy => 'Mercy';
+
+  @override
+  String get ayahCompletionCategoryPatience => 'Patience';
+
+  @override
+  String get ayahCompletionCategoryGratitude => 'Gratitude';
+
+  @override
+  String get ayahCompletionCategoryMemorization => 'Memorization';
+
+  @override
+  String get ayahCompletionCategoryQuran => 'Qur\'an';
+
+  @override
+  String get ayahCompletionCategoryMixed => 'Mixed';
+
+  @override
+  String get ayahCompletionDifficultyGentle => 'Gentle';
+
+  @override
+  String get ayahCompletionDifficultySteady => 'Steady';
+
+  @override
+  String get ayahCompletionDifficultyReflective => 'Reflective';
+
+  @override
+  String get ayahCompletionDifficultyDeep => 'Deep';
+
+  @override
+  String get ayahCompletionPackKidsShortSurahsTitle => 'Kids Short Surahs';
+
+  @override
+  String get ayahCompletionPackKidsShortSurahsSubtitle =>
+      'Early memorization ayahs with one clear blank at a time.';
+
+  @override
+  String get ayahCompletionPackKidsMemorizationTitle => 'Kids Memorization';
+
+  @override
+  String get ayahCompletionPackKidsMemorizationSubtitle =>
+      'A small set for repeating familiar ayahs calmly.';
+
+  @override
+  String get ayahCompletionPackAdultShortSurahsTitle => 'Adult Short Surahs';
+
+  @override
+  String get ayahCompletionPackAdultShortSurahsSubtitle =>
+      'Short ayahs with slightly deeper recall and reflection.';
+
+  @override
+  String get ayahCompletionPackAdultDailyDuasTitle => 'Daily Dua Ayahs';
+
+  @override
+  String get ayahCompletionPackAdultDailyDuasSubtitle =>
+      'Ayahs often revisited in dua, hope, and personal turning to Allah.';
+
+  @override
+  String get ayahCompletionPackAdultMercyTitle => 'Mercy Ayahs';
+
+  @override
+  String get ayahCompletionPackAdultMercySubtitle =>
+      'Verses that draw the heart back to Allah\'s mercy and hope.';
+
+  @override
+  String get ayahCompletionPackAdultPatienceTitle => 'Patience Ayahs';
+
+  @override
+  String get ayahCompletionPackAdultPatienceSubtitle =>
+      'Ayahs for sabr, steadiness, and trust through difficulty.';
+
+  @override
+  String get ayahCompletionPackAdultGratitudeTitle => 'Gratitude Ayahs';
+
+  @override
+  String get ayahCompletionPackAdultGratitudeSubtitle =>
+      'Verses that reinforce shukr, remembrance, and thankful living.';
+
+  @override
+  String get ayahCompletionPackAdultMemorizationTitle => 'Memorization Set';
+
+  @override
+  String get ayahCompletionPackAdultMemorizationSubtitle =>
+      'Foundational ayahs for steady review and recitation confidence.';
+
+  @override
+  String get ayahCompletionPackDailyMixedTitle => 'Daily Mixed';
+
+  @override
+  String get ayahCompletionPackDailyMixedSubtitle =>
+      'A rotating pool prepared for daily ayah practice.';
+
+  @override
+  String get learnQuizzesAyahCompletionSectionTitle => 'Ayah Completion';
+
+  @override
+  String get learnQuizzesAyahCompletionSectionSubtitle =>
+      'Fill missing Qur\'an words using the app\'s verified verse text.';
+
+  @override
+  String get learnQuizzesOpenAyahCompletion => 'Open Ayah Completion';
+
+  @override
+  String get hadithReflectionHomeTitle => 'Hadith Reflection';
+
+  @override
+  String get hadithReflectionHomeSubtitle =>
+      'Reflect on authentic Hadith teachings through gentle real-life decisions.';
+
+  @override
+  String get hadithReflectionLoadErrorTitle =>
+      'Hadith reflections could not load';
+
+  @override
+  String get hadithReflectionLoadErrorSubtitle =>
+      'Try again in a moment. The local reflection library should remain available offline.';
+
+  @override
+  String get hadithReflectionLoadingSubtitle =>
+      'Preparing reflection prompts and scenario sets.';
+
+  @override
+  String get hadithReflectionNotFoundTitle => 'Reflection not found';
+
+  @override
+  String get hadithReflectionNotFoundSubtitle =>
+      'This reflection could not be found in the current set.';
+
+  @override
+  String get hadithReflectionKidsOnlyTitle =>
+      'This reflection is not available in the current kids profile.';
+
+  @override
+  String get hadithReflectionDailyModeTitle => 'Daily Hadith Reflection';
+
+  @override
+  String get hadithReflectionDailyModeSubtitle =>
+      'One grounded Hadith scenario each day, with a calm reflection flow.';
+
+  @override
+  String hadithReflectionDailyThemeLabel(Object theme) {
+    return 'Today\'s theme: $theme';
+  }
+
+  @override
+  String get hadithReflectionDailyCompleteBadge => 'Daily reflection completed';
+
+  @override
+  String get hadithReflectionKidsModeTitle => 'Kids Reflection';
+
+  @override
+  String get hadithReflectionKidsModeSubtitle =>
+      'Shorter scenarios about kindness, honesty, patience, and respect.';
+
+  @override
+  String get hadithReflectionAdultModeTitle => 'Adult Reflection';
+
+  @override
+  String get hadithReflectionAdultModeSubtitle =>
+      'More nuanced scenarios about intention, speech, accountability, and service.';
+
+  @override
+  String hadithReflectionPuzzleCountLabel(Object count) {
+    return '$count reflections';
+  }
+
+  @override
+  String hadithReflectionCompletedCountLabel(Object count) {
+    return '$count completed';
+  }
+
+  @override
+  String hadithReflectionBestChoiceCountLabel(Object count) {
+    return '$count best-aligned choices';
+  }
+
+  @override
+  String hadithReflectionXpLabel(Object count) {
+    return '$count XP';
+  }
+
+  @override
+  String hadithReflectionDropsLabel(Object count) {
+    return '$count drops';
+  }
+
+  @override
+  String hadithReflectionDailyStreakLabel(Object count) {
+    return '$count-day streak';
+  }
+
+  @override
+  String get hadithReflectionContinueSectionTitle => 'Continue reflecting';
+
+  @override
+  String get hadithReflectionContinueSectionSubtitle =>
+      'Resume the most recent scenario you started.';
+
+  @override
+  String get hadithReflectionDailyHistoryTitle => 'Recent daily reflections';
+
+  @override
+  String get hadithReflectionDailyHistorySubtitle =>
+      'A short look back at the reflections you opened this week.';
+
+  @override
+  String get hadithReflectionFeaturedPacksTitle => 'Featured packs';
+
+  @override
+  String get hadithReflectionFeaturedPacksSubtitle =>
+      'Curated reflection sets for character, adab, and daily life.';
+
+  @override
+  String get hadithReflectionThemesTitle => 'Themes';
+
+  @override
+  String get hadithReflectionThemesSubtitle =>
+      'Browse reflections by the teaching being practiced.';
+
+  @override
+  String hadithReflectionPackDifficultyLabel(Object min, Object max) {
+    return 'Difficulty $min–$max';
+  }
+
+  @override
+  String hadithReflectionPackProgressLabel(Object completed, Object total) {
+    return '$completed of $total completed';
+  }
+
+  @override
+  String hadithReflectionPackBestChoiceLabel(Object count) {
+    return '$count best-aligned';
+  }
+
+  @override
+  String get hadithReflectionContinueAction => 'Continue reflection';
+
+  @override
+  String get hadithReflectionRecommendedAction => 'Recommended next reflection';
+
+  @override
+  String get hadithReflectionResumeBadge => 'Resume';
+
+  @override
+  String get hadithReflectionBestChoiceBadge => 'Best aligned';
+
+  @override
+  String get hadithReflectionCompletedBadge => 'Completed';
+
+  @override
+  String get hadithReflectionPuzzleTitleKids => 'Kids Hadith Reflection';
+
+  @override
+  String get hadithReflectionPuzzleTitleAdult => 'Hadith Reflection';
+
+  @override
+  String hadithReflectionDailyPuzzleSubtitle(Object category) {
+    return 'Daily reflection for $category';
+  }
+
+  @override
+  String hadithReflectionPuzzleSubtitle(Object category) {
+    return 'Scenario practice in $category';
+  }
+
+  @override
+  String get hadithReflectionScenarioTitle => 'Scenario';
+
+  @override
+  String get hadithReflectionTeachingSummaryTitle => 'Teaching summary';
+
+  @override
+  String get hadithReflectionReflectionPromptTitle => 'Reflection prompt';
+
+  @override
+  String get hadithReflectionHelpAction => 'View help';
+
+  @override
+  String get hadithReflectionHelpViewedAction => 'Help viewed';
+
+  @override
+  String get hadithReflectionHelpDialogTitle => 'Helpful reminder';
+
+  @override
+  String get hadithReflectionChoiceSectionTitle => 'What would you do?';
+
+  @override
+  String get hadithReflectionOutcomeBest => 'Best aligned';
+
+  @override
+  String get hadithReflectionOutcomeAcceptable =>
+      'Acceptable, but not strongest';
+
+  @override
+  String get hadithReflectionOutcomeNeedsReflection => 'Needs reflection';
+
+  @override
+  String get hadithReflectionFeedbackTitle => 'Feedback';
+
+  @override
+  String get hadithReflectionCompletionTitle => 'Reflection complete';
+
+  @override
+  String get hadithReflectionCompletionSubtitle =>
+      'You completed this reflection and reviewed its teaching.';
+
+  @override
+  String get hadithReflectionCompletionBestSubtitle =>
+      'You chose the response most closely aligned with the Hadith\'s teaching.';
+
+  @override
+  String get hadithReflectionTakeawayTitle => 'Takeaway';
+
+  @override
+  String hadithReflectionCompletionXpReward(Object count) {
+    return '+$count XP awarded';
+  }
+
+  @override
+  String hadithReflectionCompletionDropReward(Object count) {
+    return 'This reflection added $count Ocean Drop';
+  }
+
+  @override
+  String hadithReflectionBestChoiceReward(Object count) {
+    return 'Best-choice bonus +$count XP';
+  }
+
+  @override
+  String get hadithReflectionNextPuzzleAction => 'Next reflection';
+
+  @override
+  String get hadithReflectionReturnToPackAction => 'Back to pack';
+
+  @override
+  String get hadithReflectionBackHomeAction => 'Back home';
+
+  @override
+  String get hadithReflectionDifficultyGentle => 'Gentle';
+
+  @override
+  String get hadithReflectionDifficultySteady => 'Steady';
+
+  @override
+  String get hadithReflectionDifficultyReflective => 'Reflective';
+
+  @override
+  String get hadithReflectionDifficultyDeep => 'Deep';
+
+  @override
+  String get hadithReflectionCategoryKindness => 'Kindness';
+
+  @override
+  String get hadithReflectionCategoryHonesty => 'Honesty';
+
+  @override
+  String get hadithReflectionCategoryPatience => 'Patience';
+
+  @override
+  String get hadithReflectionCategoryAnger => 'Anger control';
+
+  @override
+  String get hadithReflectionCategoryFamily => 'Family';
+
+  @override
+  String get hadithReflectionCategoryCommunity => 'Community';
+
+  @override
+  String get hadithReflectionCategoryRepentance => 'Repentance';
+
+  @override
+  String get hadithReflectionCategorySpeech => 'Adab in speech';
+
+  @override
+  String get hadithReflectionCategorySincerity => 'Sincerity';
+
+  @override
+  String get hadithReflectionCategoryRespect => 'Respect';
+
+  @override
+  String get hadithReflectionCategoryJustice => 'Justice';
+
+  @override
+  String get hadithReflectionCategoryAccountability => 'Accountability';
+
+  @override
+  String get hadithReflectionCategoryIntegrity => 'Integrity';
+
+  @override
+  String get hadithReflectionCategoryService => 'Service';
+
+  @override
+  String get hadithReflectionCategoryFocus => 'Focus';
+
+  @override
+  String get hadithReflectionCategoryResilience => 'Resilience';
+
+  @override
+  String get hadithReflectionCategoryMixed => 'Mixed';
+
+  @override
+  String get hadithReflectionPackKidsKindnessTitle => 'Kids Kindness Basics';
+
+  @override
+  String get hadithReflectionPackKidsKindnessSubtitle =>
+      'Simple reflection scenarios for kindness, sharing, and warm adab.';
+
+  @override
+  String get hadithReflectionPackHonestyTitle => 'Honesty & Trust';
+
+  @override
+  String get hadithReflectionPackHonestySubtitle =>
+      'Scenarios about truthfulness, amanah, and integrity in daily choices.';
+
+  @override
+  String get hadithReflectionPackPatienceTitle => 'Patience & Resilience';
+
+  @override
+  String get hadithReflectionPackPatienceSubtitle =>
+      'Reflect on sabr, self-control, and staying steady when tested.';
+
+  @override
+  String get hadithReflectionPackAngerTitle => 'Anger Control';
+
+  @override
+  String get hadithReflectionPackAngerSubtitle =>
+      'Practice calmer decisions when frustration and sharp speech appear.';
+
+  @override
+  String get hadithReflectionPackFamilyTitle => 'Family & Respect';
+
+  @override
+  String get hadithReflectionPackFamilySubtitle =>
+      'Serving family, honoring trust, and carrying home responsibilities well.';
+
+  @override
+  String get hadithReflectionPackCommunityTitle => 'Community & Service';
+
+  @override
+  String get hadithReflectionPackCommunitySubtitle =>
+      'Advice, service, and helping others with sincerity and benefit.';
+
+  @override
+  String get hadithReflectionPackRepentanceTitle => 'Repentance & Hope';
+
+  @override
+  String get hadithReflectionPackRepentanceSubtitle =>
+      'Scenarios that keep the heart open to tawbah, mercy, and return.';
+
+  @override
+  String get hadithReflectionPackSpeechTitle => 'Adab in Speech';
+
+  @override
+  String get hadithReflectionPackSpeechSubtitle =>
+      'Choose words with restraint, gentleness, and beneficial intention.';
+
+  @override
+  String get hadithReflectionPackDailyTitle => 'Daily Mixed Reflections';
+
+  @override
+  String get hadithReflectionPackDailySubtitle =>
+      'A rotating pool prepared for daily Hadith reflection.';
+
+  @override
+  String get learnQuizzesHadithReflectionSectionTitle => 'Hadith Reflection';
+
+  @override
+  String get learnQuizzesHadithReflectionSectionSubtitle =>
+      'Reflect on authentic Hadith teachings through practical scenario decisions.';
+
+  @override
+  String get learnQuizzesOpenHadithReflection => 'Open Hadith Reflection';
+
+  @override
+  String get dailyKnowledgeHubTitle => 'Daily Knowledge Challenge';
+
+  @override
+  String get dailyKnowledgeHubSubtitle =>
+      'A balanced daily journey across the app’s knowledge games.';
+
+  @override
+  String get dailyKnowledgeHubLoadErrorTitle =>
+      'Daily challenge could not load';
+
+  @override
+  String get dailyKnowledgeHubLoadErrorSubtitle =>
+      'Try again in a moment. The daily bundle should remain available offline.';
+
+  @override
+  String dailyKnowledgeHubDateLabel(Object date) {
+    return 'Today: $date';
+  }
+
+  @override
+  String dailyKnowledgeHubProgressLabel(Object completed, Object total) {
+    return '$completed of $total completed';
+  }
+
+  @override
+  String dailyKnowledgeHubStreakLabel(Object count) {
+    return '$count-day bundle streak';
+  }
+
+  @override
+  String get dailyKnowledgeHubCompletedBadge => 'Bundle complete';
+
+  @override
+  String get dailyKnowledgeHubJourneySummary =>
+      'Move through knowledge, recognition, connection, memorization, and action in one calm daily path.';
+
+  @override
+  String get dailyKnowledgeHubTodayTitle => 'Today’s journey';
+
+  @override
+  String get dailyKnowledgeHubTodaySubtitle =>
+      'Complete the five daily challenges in any order.';
+
+  @override
+  String dailyKnowledgeHubDifficultyLabel(Object count) {
+    return 'Difficulty $count';
+  }
+
+  @override
+  String get dailyKnowledgeHubGameDone => 'Completed';
+
+  @override
+  String get dailyKnowledgeHubGameOpen => 'Open challenge';
+
+  @override
+  String get dailyKnowledgeHubGameSubtitleCrossword =>
+      'Quick recall through clues and connected concepts.';
+
+  @override
+  String get dailyKnowledgeHubGameSubtitleWordSearch =>
+      'Recognition practice through themed letter grids.';
+
+  @override
+  String get dailyKnowledgeHubGameSubtitleMatching =>
+      'Strengthen associations between terms, meanings, and ideas.';
+
+  @override
+  String get dailyKnowledgeHubGameSubtitleAyahCompletion =>
+      'Review memorization through verified Qur’an word recall.';
+
+  @override
+  String get dailyKnowledgeHubGameSubtitleHadithReflection =>
+      'Apply Hadith guidance through practical scenario reflection.';
+
+  @override
+  String get dailyKnowledgeHubCompletionTitle => 'Daily journey complete';
+
+  @override
+  String get dailyKnowledgeHubCompletionSubtitle =>
+      'You completed the full daily knowledge bundle for today.';
+
+  @override
+  String dailyKnowledgeHubBonusXpReward(Object count) {
+    return 'Daily bundle bonus +$count XP';
+  }
+
+  @override
+  String dailyKnowledgeHubBonusDropReward(Object count) {
+    return 'Daily bundle bonus +$count Ocean Drop';
+  }
+
+  @override
+  String get dailyKnowledgeHubHistoryTitle => 'Recent bundle history';
+
+  @override
+  String get dailyKnowledgeHubHistorySubtitle =>
+      'A lightweight view of your recent daily bundle completions.';
+
+  @override
+  String dailyKnowledgeHubHistoryDone(Object date) {
+    return '$date completed';
+  }
+
+  @override
+  String dailyKnowledgeHubHistoryOpen(Object date) {
+    return '$date started';
+  }
+
+  @override
+  String get dailyKnowledgeHubAdaptiveTitle => 'Adaptive guidance';
+
+  @override
+  String get dailyKnowledgeHubAdaptiveSubtitle =>
+      'Today’s bundle is gently adjusted around your stronger and weaker game patterns.';
+
+  @override
+  String dailyKnowledgeHubAdaptiveSupportLabel(Object game) {
+    return 'Extra support: $game';
+  }
+
+  @override
+  String dailyKnowledgeHubAdaptiveChallengeLabel(Object game) {
+    return 'Slight stretch: $game';
+  }
+
+  @override
+  String get dailyKnowledgeHubAdaptiveGameCrossword => 'Crossword';
+
+  @override
+  String get dailyKnowledgeHubAdaptiveGameWordSearch => 'Word Search';
+
+  @override
+  String get dailyKnowledgeHubAdaptiveGameMatching => 'Matching';
+
+  @override
+  String get dailyKnowledgeHubAdaptiveGameAyahCompletion => 'Ayah Completion';
+
+  @override
+  String get dailyKnowledgeHubAdaptiveGameHadithReflection =>
+      'Hadith Reflection';
+
+  @override
+  String get spiritualGrowthTitle => 'Spiritual Growth';
+
+  @override
+  String get spiritualGrowthSubtitle =>
+      'A calm layer for turning knowledge into intention, action, and gentle reflection.';
+
+  @override
+  String get spiritualGrowthShortcutSubtitle =>
+      'Set one intention, notice meaningful actions, and reflect without noise.';
+
+  @override
+  String get spiritualGrowthChooseIntentionAction => 'Choose intention';
+
+  @override
+  String get spiritualGrowthChooseIntentionSubtitle =>
+      'Pick a small focus for today.';
+
+  @override
+  String get spiritualGrowthChooseIntentionPageSubtitle =>
+      'Accept today’s suggestion or choose a different gentle focus.';
+
+  @override
+  String get spiritualGrowthReflectionAction => 'Evening reflection';
+
+  @override
+  String get spiritualGrowthReflectionEntrySubtitle =>
+      'A short end-of-day check-in to carry meaning into tomorrow.';
+
+  @override
+  String get spiritualGrowthReflectionCompletedSubtitle =>
+      'Today’s reflection has been saved gently.';
+
+  @override
+  String get spiritualGrowthTodayIntentionTitle => 'Today’s intention';
+
+  @override
+  String get spiritualGrowthSuggestedIntentionTitle => 'Suggested intention';
+
+  @override
+  String get spiritualGrowthAcceptIntentionAction => 'Accept intention';
+
+  @override
+  String spiritualGrowthEffortLabel(Object count) {
+    return 'Effort $count';
+  }
+
+  @override
+  String spiritualGrowthReflectionStreakLabel(Object count) {
+    return '$count-day reflection streak';
+  }
+
+  @override
+  String get spiritualGrowthDailyActionsTitle => 'Meaningful actions';
+
+  @override
+  String get spiritualGrowthDailyActionsSubtitle =>
+      'These come from your existing worship, learning, and daily challenge activity.';
+
+  @override
+  String get spiritualGrowthRealLifeActionsTitle => 'Real-life acknowledgments';
+
+  @override
+  String get spiritualGrowthRealLifeActionsSubtitle =>
+      'Mark a few small acts without turning them into performance.';
+
+  @override
+  String get spiritualGrowthReflectionTitle => 'Daily reflection';
+
+  @override
+  String get spiritualGrowthReflectionPageSubtitle =>
+      'A short, respectful review of what you carried into the day.';
+
+  @override
+  String get spiritualGrowthReflectionSavedBadge => 'Reflection saved';
+
+  @override
+  String get spiritualGrowthMoodTitle => 'How did your heart feel today?';
+
+  @override
+  String get spiritualGrowthCompletedActionsTitle => 'Completed actions';
+
+  @override
+  String get spiritualGrowthOptionalNoteTitle => 'Optional note';
+
+  @override
+  String get spiritualGrowthOptionalNoteHint =>
+      'A short private note, if helpful.';
+
+  @override
+  String get spiritualGrowthSaveReflectionAction => 'Save reflection';
+
+  @override
+  String get spiritualGrowthReflectionSavedSnack =>
+      'Reflection saved for today.';
+
+  @override
+  String get spiritualGrowthThemeSummaryTitle => 'Theme focus';
+
+  @override
+  String get spiritualGrowthThemeSummarySubtitle =>
+      'A gentle view of the themes you have been acting on lately.';
+
+  @override
+  String get spiritualGrowthThemeSummaryEmpty =>
+      'Theme insights will appear after a few days of intentions and reflection.';
+
+  @override
+  String spiritualGrowthThemeCountLabel(Object actions, Object days) {
+    return '$actions actions across $days days';
+  }
+
+  @override
+  String get spiritualGrowthViewThemesAction => 'View theme progress';
+
+  @override
+  String get spiritualGrowthThemePageSubtitle =>
+      'A calm summary of the themes your recent actions have touched most.';
+
+  @override
+  String get spiritualGrowthThemeInsightTitle => 'Current insight';
+
+  @override
+  String spiritualGrowthStrongestThemeLabel(Object theme) {
+    return 'Strongest recent theme: $theme';
+  }
+
+  @override
+  String spiritualGrowthRecommendedThemeLabel(Object theme) {
+    return 'Gentle area to revisit: $theme';
+  }
+
+  @override
+  String get spiritualGrowthTodaySummaryTitle => 'Today at a glance';
+
+  @override
+  String spiritualGrowthPrayerSummaryLabel(Object count) {
+    return '$count prayers completed';
+  }
+
+  @override
+  String spiritualGrowthDhikrSummaryLabel(Object count) {
+    return '$count dhikr sessions';
+  }
+
+  @override
+  String spiritualGrowthLearningSummaryLabel(Object count) {
+    return '$count learning completions';
+  }
+
+  @override
+  String spiritualGrowthBundleSummaryLabel(Object status) {
+    return 'Daily bundle: $status';
+  }
+
+  @override
+  String get spiritualGrowthBundleDone => 'complete';
+
+  @override
+  String get spiritualGrowthBundleOpen => 'in progress';
+
+  @override
+  String get spiritualGrowthThemeSincerity => 'Sincerity';
+
+  @override
+  String get spiritualGrowthThemePatience => 'Patience';
+
+  @override
+  String get spiritualGrowthThemeGratitude => 'Gratitude';
+
+  @override
+  String get spiritualGrowthThemeHonesty => 'Honesty';
+
+  @override
+  String get spiritualGrowthThemeKindness => 'Kindness';
+
+  @override
+  String get spiritualGrowthThemeHumility => 'Humility';
+
+  @override
+  String get spiritualGrowthThemeForgiveness => 'Forgiveness';
+
+  @override
+  String get spiritualGrowthThemeDiscipline => 'Discipline';
+
+  @override
+  String get spiritualGrowthThemeAdab => 'Adab';
+
+  @override
+  String get spiritualGrowthThemeTrustInAllah => 'Trust in Allah';
+
+  @override
+  String get spiritualGrowthIntentionPresencePrayerTitle =>
+      'Pray with more presence today';
+
+  @override
+  String get spiritualGrowthIntentionPresencePrayerSubtitle =>
+      'Slow down a little before one prayer and return your heart gently to it.';
+
+  @override
+  String get spiritualGrowthIntentionGentleSpeechTitle =>
+      'Speak more gently today';
+
+  @override
+  String get spiritualGrowthIntentionGentleSpeechSubtitle =>
+      'Let one difficult conversation be softer than usual.';
+
+  @override
+  String get spiritualGrowthIntentionPatientMomentTitle =>
+      'Be patient in one hard moment';
+
+  @override
+  String get spiritualGrowthIntentionPatientMomentSubtitle =>
+      'Pause once before reacting and choose steadiness.';
+
+  @override
+  String get spiritualGrowthIntentionQuietHelpTitle => 'Help someone quietly';
+
+  @override
+  String get spiritualGrowthIntentionQuietHelpSubtitle =>
+      'Do one good deed without needing it to be seen.';
+
+  @override
+  String get spiritualGrowthIntentionPostPrayerDhikrTitle =>
+      'Keep dhikr after prayer';
+
+  @override
+  String get spiritualGrowthIntentionPostPrayerDhikrSubtitle =>
+      'Stay for a little remembrance after one or more prayers today.';
+
+  @override
+  String get spiritualGrowthIntentionTruthfulWordsTitle =>
+      'Choose truthful words';
+
+  @override
+  String get spiritualGrowthIntentionTruthfulWordsSubtitle =>
+      'Be honest and clear, even in small moments.';
+
+  @override
+  String get spiritualGrowthIntentionFamilyRespectTitle =>
+      'Show extra respect at home';
+
+  @override
+  String get spiritualGrowthIntentionFamilyRespectSubtitle =>
+      'Let your tone and actions carry more adab with family today.';
+
+  @override
+  String get spiritualGrowthIntentionSincereDuaTitle =>
+      'Make one sincere du\'a';
+
+  @override
+  String get spiritualGrowthIntentionSincereDuaSubtitle =>
+      'Turn to Allah with honesty, even if only for a minute.';
+
+  @override
+  String get spiritualGrowthIntentionControlAngerTitle =>
+      'Control anger more gently';
+
+  @override
+  String get spiritualGrowthIntentionControlAngerSubtitle =>
+      'If irritation rises, lower the reaction before it grows.';
+
+  @override
+  String get spiritualGrowthIntentionNoticeBlessingsTitle =>
+      'Notice your blessings today';
+
+  @override
+  String get spiritualGrowthIntentionNoticeBlessingsSubtitle =>
+      'Name one thing you are grateful for before the day ends.';
+
+  @override
+  String get spiritualGrowthActionSalahTitle => 'Salah offered';
+
+  @override
+  String get spiritualGrowthActionSalahSubtitle =>
+      'Prayer activity from today is already helping shape your discipline.';
+
+  @override
+  String get spiritualGrowthActionDhikrTitle => 'Dhikr remembered';
+
+  @override
+  String get spiritualGrowthActionDhikrSubtitle =>
+      'Remembrance completed today strengthens gratitude and return.';
+
+  @override
+  String get spiritualGrowthActionQuranTitle => 'Qur\'an connection';
+
+  @override
+  String get spiritualGrowthActionQuranSubtitle =>
+      'Your Qur\'an engagement today supports remembrance and trust.';
+
+  @override
+  String get spiritualGrowthActionLearningTitle => 'Learning carried forward';
+
+  @override
+  String get spiritualGrowthActionLearningSubtitle =>
+      'Lessons and games completed today count as steady growth work.';
+
+  @override
+  String get spiritualGrowthActionDailyBundleTitle => 'Daily knowledge journey';
+
+  @override
+  String get spiritualGrowthActionDailyBundleSubtitle =>
+      'Completing the full daily bundle reinforces consistency and discipline.';
+
+  @override
+  String get spiritualGrowthManualActionKindnessTitle =>
+      'I helped someone today';
+
+  @override
+  String get spiritualGrowthManualActionKindnessSubtitle =>
+      'A small act of service or kindness.';
+
+  @override
+  String get spiritualGrowthManualActionSpeechTitle => 'I spoke kindly today';
+
+  @override
+  String get spiritualGrowthManualActionSpeechSubtitle =>
+      'A moment of gentleness in speech.';
+
+  @override
+  String get spiritualGrowthManualActionAngerTitle =>
+      'I controlled my anger today';
+
+  @override
+  String get spiritualGrowthManualActionAngerSubtitle =>
+      'A difficult moment handled with more restraint.';
+
+  @override
+  String get spiritualGrowthManualActionGossipTitle => 'I avoided gossip today';
+
+  @override
+  String get spiritualGrowthManualActionGossipSubtitle =>
+      'A quiet choice to guard the tongue.';
+
+  @override
+  String get spiritualGrowthManualActionDuaTitle =>
+      'I made sincere du\'a today';
+
+  @override
+  String get spiritualGrowthManualActionDuaSubtitle =>
+      'A personal turning back to Allah.';
+
+  @override
+  String get spiritualGrowthManualActionGratitudeTitle =>
+      'I noticed a blessing today';
+
+  @override
+  String get spiritualGrowthManualActionGratitudeSubtitle =>
+      'A moment of real gratitude during the day.';
+
+  @override
+  String get spiritualGrowthReflectionPromptStrongestTitle =>
+      'What spiritual action felt strongest today?';
+
+  @override
+  String get spiritualGrowthReflectionPromptStrongestSubtitle =>
+      'Choose the one that felt most alive, even if it was small.';
+
+  @override
+  String get spiritualGrowthReflectionPromptIntentionTitle =>
+      'Did you live your intention today?';
+
+  @override
+  String get spiritualGrowthReflectionPromptIntentionSubtitle =>
+      'Be honest and gentle with yourself.';
+
+  @override
+  String get spiritualGrowthReflectionPromptGratitudeTitle =>
+      'What are you grateful for tonight?';
+
+  @override
+  String get spiritualGrowthReflectionPromptGratitudeSubtitle =>
+      'Look for one blessing that softened the day.';
+
+  @override
+  String get spiritualGrowthReflectionPromptPatienceTitle =>
+      'What tested your patience today?';
+
+  @override
+  String get spiritualGrowthReflectionPromptPatienceSubtitle =>
+      'Notice the moment without judging yourself harshly.';
+
+  @override
+  String get spiritualGrowthReflectionPromptGentleTitle =>
+      'Where can you be gentler tomorrow?';
+
+  @override
+  String get spiritualGrowthReflectionPromptGentleSubtitle =>
+      'Pick one small place to improve calmly.';
+
+  @override
+  String get spiritualGrowthReflectionResponseStrongestPrayer =>
+      'One prayer felt more present';
+
+  @override
+  String get spiritualGrowthReflectionResponseStrongestKindness =>
+      'A kind act stayed with me';
+
+  @override
+  String get spiritualGrowthReflectionResponseStrongestReturned =>
+      'I kept returning after slipping';
+
+  @override
+  String get spiritualGrowthReflectionResponseIntentionWell =>
+      'I carried it fairly well';
+
+  @override
+  String get spiritualGrowthReflectionResponseIntentionPartly =>
+      'I remembered it sometimes';
+
+  @override
+  String get spiritualGrowthReflectionResponseIntentionTomorrow =>
+      'I want to return to it tomorrow';
+
+  @override
+  String get spiritualGrowthReflectionResponseGratitudeWorship =>
+      'For worship I was able to do';
+
+  @override
+  String get spiritualGrowthReflectionResponseGratitudePeople =>
+      'For people who made the day easier';
+
+  @override
+  String get spiritualGrowthReflectionResponseGratitudeGuidance =>
+      'For guidance and reminders';
+
+  @override
+  String get spiritualGrowthReflectionResponsePatienceBetter =>
+      'I responded a little better than before';
+
+  @override
+  String get spiritualGrowthReflectionResponsePatiencePause =>
+      'I needed more pause than I gave';
+
+  @override
+  String get spiritualGrowthReflectionResponsePatienceTomorrow =>
+      'I want to handle it better tomorrow';
+
+  @override
+  String get spiritualGrowthReflectionResponseGentleHome =>
+      'At home and with family';
+
+  @override
+  String get spiritualGrowthReflectionResponseGentleSpeech =>
+      'In the way I spoke';
+
+  @override
+  String get spiritualGrowthReflectionResponseGentleHelp =>
+      'In how I helped others';
+
+  @override
+  String get learnQuizzesDailyKnowledgeSectionTitle =>
+      'Daily Knowledge Challenge';
+
+  @override
+  String get learnQuizzesDailyKnowledgeSectionSubtitle =>
+      'A single daily hub that ties together all five knowledge game experiences.';
+
+  @override
+  String get learnQuizzesOpenDailyKnowledge => 'Open daily challenge';
+
+  @override
+  String get learnHubSubcategoryKidsGamesTitle => 'Kids Games';
+
+  @override
+  String get learnHubSubcategoryKidsGamesSubtitle =>
+      'Mini crossword, word search, matching, and other game-style practice for younger learners.';
+
+  @override
+  String get learnHubSubcategoryKidsArabicLearningTitle => 'Arabic Learning';
+
+  @override
+  String get learnHubSubcategoryKidsArabicLearningSubtitle =>
+      'Letters, review, and early Arabic learning stay grouped here for children.';
+
+  @override
+  String get learnHubSubcategoryKidsFunLearningTitle => 'Fun Learning';
+
+  @override
+  String get learnHubSubcategoryKidsFunLearningSubtitle =>
+      'Stories, coloring, daily routines, and lighter practice stay together here.';
+
+  @override
+  String get learnGamesIslandTitle => 'Games';
+
+  @override
+  String get learnGamesIslandSubtitle =>
+      'A calm discovery island for daily challenges, knowledge games, Qur’an games, reflection, and pack-based play.';
+
+  @override
+  String get learnGamesIslandLandingCardSubtitle =>
+      'Open the main non-kids games island without replacing the existing quiz and game routes.';
+
+  @override
+  String get learnGamesIslandTodayBadge => 'Today';
+
+  @override
+  String get learnGamesIslandSectionsTitle => 'Browse Games';
+
+  @override
+  String get learnGamesIslandSectionsSubtitle =>
+      'Open one section at a time or scan the full island to find the right challenge.';
+
+  @override
+  String get learnGamesIslandSectionDailyTitle => 'Daily Challenges';
+
+  @override
+  String get learnGamesIslandSectionDailySubtitle =>
+      'Today’s bundle, current progress, and a stable daily route stay together here.';
+
+  @override
+  String get learnGamesIslandSectionKnowledgeTitle => 'Knowledge Games';
+
+  @override
+  String get learnGamesIslandSectionKnowledgeSubtitle =>
+      'Crossword, Word Search, and Matching remain the core discovery layer for general knowledge play.';
+
+  @override
+  String get learnGamesIslandSectionQuranTitle => 'Qur’an Games';
+
+  @override
+  String get learnGamesIslandSectionQuranSubtitle =>
+      'Ayah-focused memorization and verse-completion play stays in one dedicated Qur’an lane.';
+
+  @override
+  String get learnGamesIslandSectionHadithTitle => 'Hadith & Reflection';
+
+  @override
+  String get learnGamesIslandSectionHadithSubtitle =>
+      'Scenario-based Hadith reflection and character-focused decisions stay grouped here.';
+
+  @override
+  String get learnGamesIslandSectionModesTitle => 'Challenge Modes';
+
+  @override
+  String get learnGamesIslandSectionModesSubtitle =>
+      'Supported daily, review, and challenge-style variations are surfaced here without inventing new engines.';
+
+  @override
+  String get learnGamesIslandSectionGrowthTitle => 'Growth & Spiritual';
+
+  @override
+  String get learnGamesIslandSectionGrowthSubtitle =>
+      'Game-linked spiritual intentions, reflections, and growth summaries stay calm and separate from puzzle lists.';
+
+  @override
+  String get learnGamesIslandSectionPacksTitle => 'Game Packs';
+
+  @override
+  String get learnGamesIslandSectionPacksSubtitle =>
+      'Open themed pack routes that already exist across the current knowledge games catalog.';
+
+  @override
+  String get learnGamesIslandModeDailyRunTitle => 'Daily Run';
+
+  @override
+  String get learnGamesIslandModeDailyRunSubtitle =>
+      'Open today’s full Daily Knowledge Challenge bundle.';
+
+  @override
+  String get learnGamesIslandModeReviewTitle => 'Review Mode';
+
+  @override
+  String get learnGamesIslandModeReviewSubtitle =>
+      'Return to review-style quiz flows without digging through the broader quiz hub.';
+
+  @override
+  String get learnGamesIslandModeTriviaTitle => 'Trivia Challenge';
+
+  @override
+  String get learnGamesIslandModeTriviaSubtitle =>
+      'Open challenge-first trivia routes already supported by the current quiz system.';
+
+  @override
+  String get learnGamesIslandKidsEntryTitle => 'Kids Games Stay Separate';
+
+  @override
+  String get learnGamesIslandKidsEntrySubtitle =>
+      'Kids-only discovery remains inside Kids Learning instead of mixing into the main games island.';
+
+  @override
+  String get learnGamesIslandKidsEntryAction => 'Explore Kids Games';
+
+  @override
+  String get learnGamesIslandKidsEntryActionSubtitle =>
+      'Open the child-friendly games grouping inside Kids Learning.';
+
+  @override
+  String get learnGamesIslandDailyHeroTitle => 'Today’s Games Journey';
+
+  @override
+  String get learnGamesIslandDailyHeroSubtitle =>
+      'Start the daily bundle or return later without losing the existing per-game progress.';
+
+  @override
+  String get learnGamesIslandDailyHeroCompletedSubtitle =>
+      'Today’s bundle is complete. You can revisit the hub or keep exploring other game sections.';
+
+  @override
+  String learnGamesIslandDailyHeroInProgressSubtitle(
+    Object completed,
+    Object total,
+  ) {
+    return '$completed of $total daily games complete. Continue from where you left off.';
+  }
+
+  @override
+  String learnGamesIslandDailyProgressLabel(Object completed, Object total) {
+    return '$completed/$total complete';
+  }
+
+  @override
+  String learnGamesIslandDailyStreakLabel(Object count) {
+    return '$count-day streak';
+  }
+
+  @override
+  String learnGamesIslandDailyHistoryLabel(Object count) {
+    return '$count recent days tracked';
+  }
+
+  @override
+  String get learnGamesIslandInProgressBadge => 'In progress';
+
+  @override
+  String get learnGamesIslandContinueDailyAction =>
+      'Continue today’s challenge';
+
+  @override
+  String get learnGamesIslandOpenDailyAction => 'Open daily challenge';
+
+  @override
+  String get learnGamesIslandLoadingSubtitle =>
+      'Loading today’s game bundle and section discovery.';
+
+  @override
+  String get learnGamesIslandDailyFallbackSubtitle =>
+      'Open the daily hub directly if the bundle preview is unavailable right now.';
+
+  @override
+  String get learnGamesIslandKidsRedirectTitle =>
+      'Kids profiles use Kids Learning';
+
+  @override
+  String get learnGamesIslandKidsRedirectSubtitle =>
+      'Child-friendly game discovery stays under Kids Learning → Games, Arabic Learning, and Fun Learning.';
+
+  @override
+  String get gameVariationStandard => 'Standard';
+
+  @override
+  String get gameVariationTimed => 'Timed';
+
+  @override
+  String get gameVariationMemory => 'Memory';
+
+  @override
+  String get gameVariationSequential => 'Sequential';
+
+  @override
+  String get gameVariationReflection => 'Reflection';
+
+  @override
+  String get gameVariationAudio => 'Audio';
+
+  @override
+  String get gameVariationChallenge => 'Challenge';
+
+  @override
+  String get gameVariationFog => 'Fog';
+
+  @override
+  String get gameVariationNoClue => 'No Clue';
+
+  @override
+  String get gameVariationReverse => 'Reverse';
+
+  @override
+  String get gameVariationHintDisabled => 'Hints disabled';
+
+  @override
+  String gameVariationTimeRemaining(Object time) {
+    return 'Time left: $time';
+  }
+
+  @override
+  String get gameVariationNoClueActiveSubtitle =>
+      'No Clue mode hides the clue list, so this board relies on crossings and category knowledge.';
+
+  @override
+  String get gameVariationFogActiveSubtitle =>
+      'Fog mode softens the word list so you lean more on the grid and your memory.';
+
+  @override
+  String get gameVariationMemoryActiveSubtitle =>
+      'Memory mode keeps the support text lighter until you make progress.';
+
+  @override
+  String get gameVariationSequentialActiveSubtitle =>
+      'Sequential mode guides you through the remaining targets in order.';
+
+  @override
+  String get gameVariationAudioActiveSubtitle =>
+      'Audio mode encourages listening before you complete the ayah.';
+
+  @override
+  String get gameVariationReflectionFollowUpTitle => 'Carry It Forward';
+
+  @override
+  String get contentBuilderTitle => 'Internal Content Builder';
+
+  @override
+  String get contentBuilderSubtitle =>
+      'Normalize, validate, preview, and export internal content drafts without changing the live game catalog.';
+
+  @override
+  String get contentBuilderCatalogTitle => 'Current content snapshot';
+
+  @override
+  String contentBuilderCatalogCount(Object type, Object count) {
+    return '$type: $count';
+  }
+
+  @override
+  String get contentBuilderTypeCrossword => 'Crossword';
+
+  @override
+  String get contentBuilderTypeWordSearch => 'Word Search';
+
+  @override
+  String get contentBuilderTypeMatching => 'Matching';
+
+  @override
+  String get contentBuilderTypeAyah => 'Ayah Completion';
+
+  @override
+  String get contentBuilderTypeHadith => 'Hadith Reflection';
+
+  @override
+  String get contentBuilderTypeGrowth => 'Spiritual Growth';
+
+  @override
+  String get contentBuilderTypePack => 'Pack';
+
+  @override
+  String get contentBuilderTypeVariationProfile => 'Variation Profile';
+
+  @override
+  String get contentBuilderValidationErrorsTitle => 'Validation issues found';
+
+  @override
+  String get contentBuilderValidationCleanTitle => 'Validation is clean';
+
+  @override
+  String contentBuilderValidationIssueCount(Object count) {
+    return '$count issues in the current snapshot';
+  }
+
+  @override
+  String get contentBuilderDraftTitle => 'Draft content item';
+
+  @override
+  String get contentBuilderTypeLabel => 'Content type';
+
+  @override
+  String get contentBuilderIdLabel => 'Content id';
+
+  @override
+  String get contentBuilderCategoryLabel => 'Category';
+
+  @override
+  String get contentBuilderDifficultyLabel => 'Difficulty';
+
+  @override
+  String get contentBuilderAudienceLabel => 'Audience';
+
+  @override
+  String get contentBuilderAudienceKids => 'Kids';
+
+  @override
+  String get contentBuilderAudienceAdult => 'Adult';
+
+  @override
+  String get contentBuilderAudienceMixed => 'Mixed';
+
+  @override
+  String get contentBuilderTagsLabel => 'Tags (comma separated)';
+
+  @override
+  String get contentBuilderPackIdsLabel => 'Pack ids (comma separated)';
+
+  @override
+  String get contentBuilderSourceTypeLabel => 'Source type';
+
+  @override
+  String get contentBuilderSourceReferenceLabel => 'Source reference';
+
+  @override
+  String get contentBuilderDailyEligibleLabel => 'Daily eligible';
+
+  @override
+  String get contentBuilderVariationsLabel => 'Supported variations';
+
+  @override
+  String get contentBuilderPayloadLabel => 'Type-specific payload (JSON)';
+
+  @override
+  String get contentBuilderValidateAction => 'Validate draft';
+
+  @override
+  String get contentBuilderResetTemplateAction => 'Reset template';
+
+  @override
+  String get contentBuilderExportAction => 'Export JSON';
+
+  @override
+  String get contentBuilderDraftInvalidTitle => 'Draft needs fixes';
+
+  @override
+  String get contentBuilderDraftValidTitle => 'Draft is ready';
+
+  @override
+  String get contentBuilderDraftValidSubtitle =>
+      'No blocking validation errors were found for this draft.';
+
+  @override
+  String get contentBuilderPreviewTitle => 'Preview';
+
+  @override
+  String get contentBuilderExportTitle => 'Export JSON';
+
+  @override
+  String get contentBuilderPreviewMissingId => 'Missing id';
+
+  @override
+  String get contentBuilderPreviewMissingCategory => 'Missing category';
+
+  @override
+  String contentBuilderPreviewDifficulty(Object difficulty) {
+    return 'Difficulty $difficulty';
+  }
+
+  @override
+  String contentBuilderPreviewCrossword(Object gridSize, Object placements) {
+    return '${gridSize}x$gridSize grid with $placements placements';
+  }
+
+  @override
+  String contentBuilderPreviewWordSearch(Object gridSize, Object entries) {
+    return '${gridSize}x$gridSize grid with $entries target words';
+  }
+
+  @override
+  String contentBuilderPreviewMatching(Object pairs) {
+    return '$pairs matching pairs';
+  }
+
+  @override
+  String contentBuilderPreviewAyah(Object surah, Object ayah) {
+    return 'Surah $surah, ayah $ayah';
+  }
+
+  @override
+  String contentBuilderPreviewHadith(Object choices) {
+    return '$choices scenario choices';
+  }
+
+  @override
+  String contentBuilderPreviewGrowth(Object subtype) {
+    return 'Growth subtype: $subtype';
+  }
+
+  @override
+  String contentBuilderPreviewPack(Object count) {
+    return '$count linked content items';
+  }
+
+  @override
+  String contentBuilderPreviewVariationProfile(Object gameType) {
+    return 'Variation profile for $gameType';
+  }
+
+  @override
+  String get contentBuilderPayloadInvalid => 'The JSON payload is invalid.';
+
+  @override
+  String get contentBuilderStorageTitle => 'Canonical storage structure';
+
+  @override
+  String get contentBuilderStorageSubtitle =>
+      'Use the shared /content layout for future imports and exports, even while current runtime seeds still load from Dart.';
+
+  @override
+  String get bedtimeStoriesTitle => 'Bedtime Stories';
+
+  @override
+  String get bedtimeStoriesSubtitle =>
+      'Calm prophet stories for winding down, listening together, and remembering Allah before sleep.';
+
+  @override
+  String get bedtimeStoriesHeroTitle => 'Prophet stories for quiet nights';
+
+  @override
+  String get bedtimeStoriesHeroSubtitle =>
+      'A gentle library of prophet bedtime stories with transcript-ready reading, future audio support, and simple progress tracking.';
+
+  @override
+  String bedtimeStoriesCountLabel(int count) {
+    return '$count stories prepared';
+  }
+
+  @override
+  String get bedtimeStoriesTonightTitle => 'Tonight\'s story';
+
+  @override
+  String get bedtimeStoriesTonightAction => 'Start tonight\'s story';
+
+  @override
+  String get bedtimeStoriesContinueTitle => 'Continue listening';
+
+  @override
+  String get bedtimeStoriesContinueAction => 'Continue story';
+
+  @override
+  String get bedtimeStoriesFeaturedTitle => 'Featured bedtime story';
+
+  @override
+  String get bedtimeStoriesOpenAction => 'Open story';
+
+  @override
+  String get bedtimeStoriesAllStoriesTitle => 'All bedtime stories';
+
+  @override
+  String get bedtimeStoriesAllStoriesSubtitle =>
+      'Browse every prophet story and pick what feels right for tonight.';
+
+  @override
+  String bedtimeStoriesDurationMinutesLabel(int minutes) {
+    return '$minutes min';
+  }
+
+  @override
+  String bedtimeStoriesPartLabel(int part, int total) {
+    return 'Part $part of $total';
+  }
+
+  @override
+  String get bedtimeStoriesAgeGroupKidsEarly => 'Early kids';
+
+  @override
+  String get bedtimeStoriesAgeGroupKids => 'Kids';
+
+  @override
+  String get bedtimeStoriesAgeGroupKidsPlus => 'Kids+';
+
+  @override
+  String get bedtimeStoriesStatusNotStarted => 'Not started';
+
+  @override
+  String get bedtimeStoriesStatusInProgress => 'In progress';
+
+  @override
+  String get bedtimeStoriesStatusCompleted => 'Completed';
+
+  @override
+  String get bedtimeStoriesLessonSectionTitle => 'Tonight\'s lesson';
+
+  @override
+  String get bedtimeStoriesQuranQuoteSectionTitle => 'Qur\'an connection';
+
+  @override
+  String get bedtimeStoriesQuranTapSubtitle =>
+      'Tap to open the verse in the Qur\'an reader.';
+
+  @override
+  String get bedtimeStoriesAudioCheckingLabel =>
+      'Checking audio availability...';
+
+  @override
+  String get bedtimeStoriesAudioUnavailableTitle => 'Transcript ready';
+
+  @override
+  String get bedtimeStoriesAudioUnavailableSubtitle =>
+      'Audio is not bundled yet for this story. You can still read along and complete it gently.';
+
+  @override
+  String get bedtimeStoriesAudioReadyBadge => 'Audio ready';
+
+  @override
+  String get bedtimeStoriesReadAlongBadge => 'Read along';
+
+  @override
+  String get bedtimeStoriesIncludedOfflineBadge => 'Included offline';
+
+  @override
+  String get bedtimeStoriesDownloadedBadge => 'Downloaded';
+
+  @override
+  String get bedtimeStoriesArtComingSoonBadge => 'Art coming soon';
+
+  @override
+  String get bedtimeStoriesMediaLoadingLabel => 'Preparing story media...';
+
+  @override
+  String get bedtimeStoriesReadTonightAction => 'Read tonight';
+
+  @override
+  String get bedtimeStoriesStartReadingAction => 'Start reading';
+
+  @override
+  String get bedtimeStoriesReadAlongPrimaryTitle => 'Read along tonight';
+
+  @override
+  String get bedtimeStoriesArtOnlyTitle => 'Artwork is ready';
+
+  @override
+  String get bedtimeStoriesArtOnlySubtitle =>
+      'Illustrations are available now, and narration can be added later without changing your story progress.';
+
+  @override
+  String get bedtimeStoriesTranscriptSubtitle =>
+      'Take your time, follow the gentle pauses, and read together at a calm bedtime pace.';
+
+  @override
+  String bedtimeStoriesNarratedByLabel(String name) {
+    return 'Narrated by $name';
+  }
+
+  @override
+  String get bedtimeStoriesOpenPlayerAction => 'Open player';
+
+  @override
+  String get bedtimeStoriesPreviousAction => 'Previous';
+
+  @override
+  String get bedtimeStoriesBackShortAction => 'Back 10';
+
+  @override
+  String get bedtimeStoriesForwardShortAction => 'Forward 10';
+
+  @override
+  String get bedtimeStoriesNextPartAction => 'Next part';
+
+  @override
+  String get bedtimeStoriesNextStoryAction => 'Next story';
+
+  @override
+  String get bedtimeStoriesStoryCompleteTitle => 'Story complete';
+
+  @override
+  String get bedtimeStoriesStoryCompleteSubtitle =>
+      'A calm finish for tonight. You can replay the story or rest here.';
+
+  @override
+  String bedtimeStoriesStoryCompleteWithNextSubtitle(String title) {
+    return 'You can rest here, or continue with $title next.';
+  }
+
+  @override
+  String get bedtimeStoriesReplayAction => 'Replay';
+
+  @override
+  String get bedtimeStoriesAutoplayOnLabel => 'Autoplay on';
+
+  @override
+  String get bedtimeStoriesAutoplayOffLabel => 'Autoplay off';
+
+  @override
+  String get bedtimeStoriesAutoplayEnableAction => 'Enable autoplay';
+
+  @override
+  String get bedtimeStoriesAutoplayDisableAction => 'Disable autoplay';
+
+  @override
+  String get bedtimeStoriesSleepTimerAction => 'Sleep timer';
+
+  @override
+  String get bedtimeStoriesSleepTimerTitle => 'Sleep timer';
+
+  @override
+  String bedtimeStoriesSleepTimerMinutes(int minutes) {
+    return '$minutes minutes';
+  }
+
+  @override
+  String get bedtimeStoriesSleepTimerEndOfStory => 'End of story';
+
+  @override
+  String get bedtimeStoriesSleepTimerOff => 'Timer off';
+
+  @override
+  String bedtimeStoriesSleepTimerRemaining(String time) {
+    return 'Timer: $time';
+  }
+
+  @override
+  String bedtimeStoriesContinueSeriesLabel(int part, int total) {
+    return 'Series part $part of $total';
+  }
+
+  @override
+  String get bedtimeStoriesMiniPlayerTapToExpand => 'Tap to expand player';
+
+  @override
+  String get bedtimeStoriesTonightQueueTitle => 'Tonight\'s queue';
+
+  @override
+  String bedtimeStoriesTonightQueueSubtitle(String title, int count) {
+    return 'Starting with $title • $count stories queued';
+  }
+
+  @override
+  String get bedtimeStoriesSeriesProgressTitle => 'Series progress';
+
+  @override
+  String get bedtimeStoriesSeriesCompletedLabel => 'All parts completed';
+
+  @override
+  String bedtimeStoriesSeriesProgressLabel(int completed, int total) {
+    return '$completed of $total parts completed';
+  }
+
+  @override
+  String get bedtimeStoriesTranscriptSectionTitle => 'Read along';
+
+  @override
+  String get bedtimeStoriesCompletedAction => 'Story completed';
+
+  @override
+  String get bedtimeStoriesMarkCompleteAction => 'Mark story complete';
+
+  @override
+  String get bedtimeStoriesRelatedStoriesTitle => 'Related stories';
+
+  @override
+  String bedtimeStoriesCompletionSnack(int xp, int drops) {
+    return 'Story completed: +$xp XP and +$drops Ocean Drop';
+  }
+
+  @override
+  String get bedtimeStoriesPlayerReady => 'Audio player';
+
+  @override
+  String get bedtimeStoriesPauseAction => 'Pause';
+
+  @override
+  String get bedtimeStoriesResumeAction => 'Resume';
+
+  @override
+  String get bedtimeStoriesPlayAction => 'Play';
+
+  @override
+  String get bedtimeStoriesRestartAction => 'Restart';
+
+  @override
+  String bedtimeStoriesPlaybackProgressLabel(Object current, Object total) {
+    return '$current / $total';
+  }
+
+  @override
+  String get bedtimeStoryLearningLoopTitle => 'Continue learning';
+
+  @override
+  String get bedtimeStoryLearningLoopSubtitle =>
+      'After listening or reading, try one gentle activity to remember the story and its lesson.';
+
+  @override
+  String get bedtimeStoryLearningNotStarted => 'Not started';
+
+  @override
+  String get bedtimeStoryLearningInProgress => 'In progress';
+
+  @override
+  String get bedtimeStoryLearningCompleted => 'Completed';
+
+  @override
+  String get bedtimeStoryLearningContinueQuizPrompt =>
+      'You can keep going with the story quiz next.';
+
+  @override
+  String get bedtimeStoryLearningContinueMemoryPrompt =>
+      'You can keep going with the memory cards next.';
+
+  @override
+  String get bedtimeStoryLearningUnavailableTitle =>
+      'Learning activity coming soon';
+
+  @override
+  String get bedtimeStoryContinueLearningTitle => 'Continue learning';
+
+  @override
+  String get bedtimeStoryTonightQuestionTitle => 'Tonight\'s question';
+
+  @override
+  String bedtimeStoryLearningCompletionSnack(int xp) {
+    return 'Learning complete: +$xp XP';
+  }
+
+  @override
+  String get bedtimeStoryQuizTitle => 'Story quiz';
+
+  @override
+  String get bedtimeStoryQuizUnavailableSubtitle =>
+      'This story does not have quiz questions ready yet, but you can still enjoy the story and read along.';
+
+  @override
+  String bedtimeStoryQuizProgressLabel(int current, int total) {
+    return 'Question $current of $total';
+  }
+
+  @override
+  String get bedtimeStoryQuizCorrectTitle => 'That\'s right';
+
+  @override
+  String get bedtimeStoryQuizTryAgainTitle => 'Nice try';
+
+  @override
+  String bedtimeStoryQuizHintLabel(String hint) {
+    return 'Hint: $hint';
+  }
+
+  @override
+  String get bedtimeStoryQuizNextAction => 'Next question';
+
+  @override
+  String get bedtimeStoryQuizFinishAction => 'Finish quiz';
+
+  @override
+  String get bedtimeStoryQuizCompleteTitle => 'Quiz complete';
+
+  @override
+  String get bedtimeStoryQuizCompleteSubtitle =>
+      'You remembered the story well. You can return to the story whenever you like.';
+
+  @override
+  String get bedtimeStoryQuizCompleteWithNextSubtitle =>
+      'You remembered the story well. Memory cards are ready if you want one more calm activity.';
+
+  @override
+  String get bedtimeStoryQuizStartAction => 'Start quiz';
+
+  @override
+  String get bedtimeStoryQuizReviewAction => 'Review quiz';
+
+  @override
+  String get bedtimeStoryMemoryTitle => 'Memory cards';
+
+  @override
+  String get bedtimeStoryMemoryUnavailableSubtitle =>
+      'This story does not have memory cards ready yet, but the story itself is still fully available.';
+
+  @override
+  String bedtimeStoryMemoryProgressLabel(int completed, int total) {
+    return '$completed of $total matches';
+  }
+
+  @override
+  String get bedtimeStoryMemoryPromptLabel => 'Choose the story clue';
+
+  @override
+  String get bedtimeStoryMemoryAnswerLabel => 'Choose the matching answer';
+
+  @override
+  String get bedtimeStoryMemoryMatchCorrect =>
+      'Great remembering. That match is correct.';
+
+  @override
+  String get bedtimeStoryMemoryMatchTryAgain =>
+      'Nice try. Let\'s think together and choose the matching pair.';
+
+  @override
+  String get bedtimeStoryMemoryCompleteTitle => 'Memory cards complete';
+
+  @override
+  String get bedtimeStoryMemoryCompleteSubtitle =>
+      'You matched the story clues well. The bedtime story is always here when you want to revisit it.';
+
+  @override
+  String get bedtimeStoryMemoryStartAction => 'Start memory cards';
+
+  @override
+  String get bedtimeStoryMemoryPlayAgainAction => 'Play again';
+
+  @override
+  String get bedtimeStoryMemoryCardsAction => 'Memory cards';
+
+  @override
+  String get bedtimeStoryBackToStoryAction => 'Back to story';
+
+  @override
+  String get kidsStoryLibraryTitle => 'Kids Stories';
+
+  @override
+  String get kidsStoryLibrarySubtitle =>
+      'Browse prophets, good manners, daily-life, and seasonal Islamic stories in one calm library.';
+
+  @override
+  String get kidsStoryLibraryHeroTitle =>
+      'A growing library of Islamic stories';
+
+  @override
+  String get kidsStoryLibraryHeroSubtitle =>
+      'Prophet stories stay here, and now they are joined by gentle stories about adab, daily life, kindness, patience, gratitude, Ramadan, and Eid.';
+
+  @override
+  String get kidsStoryLibraryAction => 'Open stories';
+
+  @override
+  String get kidsStoryContinueTitle => 'Continue story';
+
+  @override
+  String get kidsStoryContinueSubtitle =>
+      'Pick up where this learner last paused.';
+
+  @override
+  String get kidsStoryFeaturedTitle => 'Featured story';
+
+  @override
+  String get kidsStoryFeaturedSubtitle => 'A calm story to open next.';
+
+  @override
+  String get kidsStoryBrowseCollectionsTitle => 'Browse by collection';
+
+  @override
+  String get kidsStoryBrowseCollectionsSubtitle =>
+      'Choose a familiar path or explore a new lesson.';
+
+  @override
+  String get kidsStoryCollectionProphets => 'Prophets';
+
+  @override
+  String get kidsStoryCollectionProphetsSubtitle =>
+      'The bedtime prophet collection and longer faith-filled story journeys.';
+
+  @override
+  String get kidsStoryCollectionCompanions => 'Companions';
+
+  @override
+  String get kidsStoryCollectionCompanionsSubtitle =>
+      'Gentle stories of loyalty, support, patience, and faith from the Prophet’s ﷺ companions.';
+
+  @override
+  String get kidsStoryCollectionCharacterAdab => 'Character & Adab';
+
+  @override
+  String get kidsStoryCollectionCharacterAdabSubtitle =>
+      'Gentle stories about honesty, patience, apology, and kindness.';
+
+  @override
+  String get kidsStoryCollectionDailyLife => 'Daily Life & Duas';
+
+  @override
+  String get kidsStoryCollectionDailyLifeSubtitle =>
+      'Simple Islamic moments around food, home, routines, and the masjid.';
+
+  @override
+  String get kidsStoryCollectionRamadanEid => 'Ramadan & Eid';
+
+  @override
+  String get kidsStoryCollectionRamadanEidSubtitle =>
+      'Seasonal stories about gratitude, generosity, and joyful worship.';
+
+  @override
+  String get kidsStoryCollectionFamilyKindness => 'Family & Kindness';
+
+  @override
+  String get kidsStoryCollectionFamilyKindnessSubtitle =>
+      'Warm stories about helping, sharing, caring, and soft hearts.';
+
+  @override
+  String get kidsStoryBedtimeEligibleTitle => 'Bedtime-friendly stories';
+
+  @override
+  String get kidsStoryBedtimeEligibleSubtitle =>
+      'Quiet stories that can also fit gently into bedtime.';
+
+  @override
+  String get kidsStoryFeaturedStoriesTitle => 'More featured stories';
+
+  @override
+  String get kidsStoryFeaturedStoriesSubtitle =>
+      'A mix of prophet and non-prophet stories ready to open.';
+
+  @override
+  String get kidsStoryOpenAction => 'Open story';
+
+  @override
+  String get kidsStoryBedtimeChip => 'Bedtime';
+
+  @override
+  String get kidsStoryLessonSectionTitle => 'Story lesson';
+
+  @override
+  String get kidsStoryHadithSectionTitle => 'Hadith connection';
+
+  @override
+  String get kidsStorySourceNoteSectionTitle => 'Source note';
+
+  @override
+  String get kidsStoryAudioUnavailableSubtitle =>
+      'Audio is not bundled yet for this story, but you can still read it calmly and continue learning.';
+
+  @override
+  String get kidsStoryReadAlongPrimaryTitle => 'Read the story';
+
+  @override
+  String get kidsStoryReadStoryAction => 'Read story';
+
+  @override
+  String get kidsStoryScenesSectionTitle => 'Story scenes';
+
+  @override
+  String get kidsStoryTranscriptSectionTitle => 'Story text';
+
+  @override
+  String get kidsSeerahJourneysTitle => 'Seerah Journeys';
+
+  @override
+  String get kidsSeerahJourneysSubtitle =>
+      'Follow a calm, child-friendly path through key moments in the life of Prophet Muhammad ﷺ and a few beloved companions.';
+
+  @override
+  String get kidsSeerahJourneysHeroTitle => 'A guided Seerah path for children';
+
+  @override
+  String get kidsSeerahJourneysHeroSubtitle =>
+      'Move through key moments with simple stages, story nodes, companion stories, and gentle reflection.';
+
+  @override
+  String get kidsSeerahContinueJourneyTitle => 'Continue Seerah Journey';
+
+  @override
+  String get kidsSeerahContinueJourneySubtitle =>
+      'Pick up from the last open stage and keep the learning path moving gently.';
+
+  @override
+  String get kidsSeerahFeaturedJourneyTitle => 'Featured Seerah Journey';
+
+  @override
+  String get kidsSeerahFeaturedJourneySubtitle =>
+      'Start a structured story path through the Seerah with calm stages and clear next steps.';
+
+  @override
+  String get kidsSeerahStagesPreviewTitle => 'Journey story path';
+
+  @override
+  String kidsSeerahStagesPreviewSubtitle(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'The journey currently follows # main story parts.',
+      one: 'The journey currently follows # main story part.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get kidsSeerahCompanionStoriesTitle => 'Companion stories';
+
+  @override
+  String get kidsSeerahCompanionStoriesSubtitle =>
+      'Meet a few companions whose loyalty, patience, and support helped light the Seerah.';
+
+  @override
+  String get kidsSeerahJourneysAllTitle => 'All Seerah paths';
+
+  @override
+  String get kidsSeerahJourneysAllSubtitle =>
+      'Begin with one polished journey now, with room to grow later.';
+
+  @override
+  String get kidsSeerahJourneyUnavailableSubtitle =>
+      'This Seerah journey is not ready yet.';
+
+  @override
+  String get kidsSeerahOpenJourneyAction => 'Open journey';
+
+  @override
+  String get kidsSeerahTimelineTitle => 'Timeline path';
+
+  @override
+  String kidsSeerahJourneyProgressLabel(int completed, int total) {
+    return '$completed of $total stages complete';
+  }
+
+  @override
+  String get kidsSeerahContinueNodeSubtitle =>
+      'Open the next unlocked node to keep this journey moving.';
+
+  @override
+  String get kidsSeerahContinueNodeAction => 'Continue';
+
+  @override
+  String get kidsSeerahJourneyCompleteTitle => 'Journey complete';
+
+  @override
+  String get kidsSeerahJourneyCompleteSubtitle =>
+      'You reached the end of this Seerah path with stories, reflection, and a gentle review.';
+
+  @override
+  String get kidsSeerahStageCompletedBadge => 'Complete';
+
+  @override
+  String get kidsSeerahStageInProgressBadge => 'Open';
+
+  @override
+  String get kidsSeerahStageLockedBadge => 'Locked';
+
+  @override
+  String kidsSeerahStageProgressLabel(int completed, int total) {
+    return '$completed of $total nodes complete';
+  }
+
+  @override
+  String get kidsSeerahNodeCompletedBadge => 'Node complete';
+
+  @override
+  String get kidsSeerahNodeReadyBadge => 'Ready now';
+
+  @override
+  String kidsSeerahNextNodeLabel(Object title) {
+    return 'Next node: $title';
+  }
+
+  @override
+  String get kidsSeerahNextNodeAction => 'Next node';
+
+  @override
+  String get kidsSeerahOpenStoryAction => 'Open story';
+
+  @override
+  String get kidsSeerahOpenQuizAction => 'Open quiz';
+
+  @override
+  String kidsSeerahRewardSnack(int xp) {
+    return '+$xp XP for this journey step';
+  }
+
+  @override
+  String get kidsSeerahNodeCompletedSnack => 'This journey step is complete.';
+
+  @override
+  String get kidsSeerahMarkMilestoneAction => 'Mark milestone complete';
+
+  @override
+  String get kidsSeerahMarkReflectionAction => 'Mark reflection complete';
+
+  @override
+  String get bedtimeParentEntryTitle => 'For parents';
+
+  @override
+  String get bedtimeParentEntrySubtitle =>
+      'View a calm bedtime learning summary, recent activity, and what can come next.';
+
+  @override
+  String get bedtimeParentEntryAction => 'Open parent view';
+
+  @override
+  String get bedtimeFamilyModeTitle => 'Family Mode';
+
+  @override
+  String get bedtimeFamilyModeSubtitle =>
+      'Keep bedtime stories, quizzes, and rewards safely separated for each child learner.';
+
+  @override
+  String get bedtimeFamilyModeHeaderAction => 'Family mode';
+
+  @override
+  String get bedtimeFamilyModeEntryTitle => 'Family mode';
+
+  @override
+  String bedtimeFamilyModeEntrySubtitle(String learnerName) {
+    return 'Active learner: $learnerName';
+  }
+
+  @override
+  String get bedtimeFamilyModeActiveLearnerTitle => 'Active learner';
+
+  @override
+  String get bedtimeFamilyModeFallbackTitle =>
+      'Using one shared bedtime learner';
+
+  @override
+  String get bedtimeFamilyModeFallbackSubtitle =>
+      'Create a child profile when you are ready, and bedtime stories will stay separate for each learner from that point on.';
+
+  @override
+  String get bedtimeFamilyModeAddChildAction => 'Add child';
+
+  @override
+  String get bedtimeFamilyModeParentDashboardAction => 'Parent dashboard';
+
+  @override
+  String get bedtimeFamilyModeProfilesTitle => 'Child profiles';
+
+  @override
+  String get bedtimeFamilyModeProfilesEmpty =>
+      'No child profiles yet. Add one to keep each child\'s bedtime progress and rewards separate.';
+
+  @override
+  String get bedtimeFamilyModeArchivedTitle => 'Archived profiles';
+
+  @override
+  String get bedtimeFamilyModeFallbackBadge => 'Shared bedtime learner';
+
+  @override
+  String get bedtimeFamilyModeCurrentLearnerBadge => 'Current learner';
+
+  @override
+  String get bedtimeFamilyModeSwitchAction => 'Switch';
+
+  @override
+  String get bedtimeFamilyModeEditAction => 'Edit';
+
+  @override
+  String get bedtimeFamilyModeArchiveAction => 'Archive';
+
+  @override
+  String get bedtimeFamilyModeRestoreAction => 'Restore';
+
+  @override
+  String get bedtimeFamilyModeCreateChildSubmit => 'Create child profile';
+
+  @override
+  String bedtimeFamilyModeEditTitle(String name) {
+    return 'Edit $name';
+  }
+
+  @override
+  String get bedtimeFamilyModeNameLabel => 'Name';
+
+  @override
+  String get bedtimeFamilyModeNicknameLabel => 'Bedtime nickname';
+
+  @override
+  String get bedtimeFamilyModeNicknameHelper =>
+      'Optional. This can make bedtime cards feel a little more personal.';
+
+  @override
+  String get bedtimeFamilyModeAgeGroupLabel => 'Age group';
+
+  @override
+  String get bedtimeFamilyModeAvatarLabel => 'Avatar';
+
+  @override
+  String get bedtimeFamilyModeSaveAction => 'Save changes';
+
+  @override
+  String get bedtimeFamilyModeSwitchTitle => 'View progress for';
+
+  @override
+  String get bedtimeParentDashboardTitle => 'Kids learning summary for parents';
+
+  @override
+  String get bedtimeParentDashboardSubtitle =>
+      'A calm summary across stories, Seerah, duas, Arabic learning, and bedtime rhythm.';
+
+  @override
+  String get bedtimeParentWelcomeTitle => 'A calm view of bedtime learning';
+
+  @override
+  String get bedtimeParentWelcomeSubtitle =>
+      'A lovely rhythm can grow one story, one lesson, and one gentle activity at a time.';
+
+  @override
+  String bedtimeParentWelcomeSubtitleWithName(String name) {
+    return 'A lovely rhythm can grow for $name one story, one lesson, and one gentle activity at a time.';
+  }
+
+  @override
+  String bedtimeParentStreakBadge(int days) {
+    return '$days-day bedtime rhythm';
+  }
+
+  @override
+  String get bedtimeParentReadyTonightBadge => 'Ready for tonight\'s story';
+
+  @override
+  String get bedtimeParentOverviewSectionTitle => 'Overview';
+
+  @override
+  String get bedtimeParentContinueLearningSectionTitle => 'Continue learning';
+
+  @override
+  String get bedtimeParentContinueLearningEmpty =>
+      'Learning suggestions will appear here after the first story, dua, Seerah step, or Arabic lesson.';
+
+  @override
+  String get bedtimeParentContinueStoryAction => 'Open story';
+
+  @override
+  String get bedtimeParentContinueSeerahAction => 'Open Seerah';
+
+  @override
+  String get bedtimeParentContinueDuaAction => 'Open dua';
+
+  @override
+  String get bedtimeParentContinueArabicAction => 'Open Arabic';
+
+  @override
+  String get bedtimeParentStoriesCompletedLabel => 'Stories completed';
+
+  @override
+  String get bedtimeParentStoryPartsCompletedLabel => 'Story parts completed';
+
+  @override
+  String get bedtimeParentQuizzesCompletedLabel => 'Quizzes done';
+
+  @override
+  String get bedtimeParentMemoryCompletedLabel => 'Memory cards finished';
+
+  @override
+  String get bedtimeParentProphetsExploredLabel => 'Prophets explored';
+
+  @override
+  String get bedtimeParentCurrentStreakLabel => 'Current streak';
+
+  @override
+  String get bedtimeParentXpEarnedLabel => 'XP earned';
+
+  @override
+  String get bedtimeParentDropsEarnedLabel => 'Ocean Drops earned';
+
+  @override
+  String get bedtimeParentOverallStoriesLabel => 'Stories completed';
+
+  @override
+  String get bedtimeParentOverallSeerahLabel => 'Seerah stages';
+
+  @override
+  String get bedtimeParentOverallDuasLabel => 'Duas learned';
+
+  @override
+  String get bedtimeParentOverallArabicLabel => 'Arabic letters';
+
+  @override
+  String get bedtimeParentOverallXpLabel => 'XP across kids learning';
+
+  @override
+  String get bedtimeParentOverallDropsLabel =>
+      'Ocean Drops across kids learning';
+
+  @override
+  String get bedtimeParentLearningAreasSectionTitle => 'Learning areas';
+
+  @override
+  String get bedtimeParentLearningAreasEmpty =>
+      'Learning areas will fill in as each part of the kids journey begins.';
+
+  @override
+  String get bedtimeParentLearningAreaStoriesTitle => 'Stories';
+
+  @override
+  String get bedtimeParentLearningAreaSeerahTitle => 'Seerah';
+
+  @override
+  String get bedtimeParentLearningAreaDuasTitle => 'Duas';
+
+  @override
+  String get bedtimeParentLearningAreaArabicTitle => 'Arabic';
+
+  @override
+  String bedtimeParentLearningAreaStoriesProgress(int completed, int total) {
+    return '$completed of $total stories completed';
+  }
+
+  @override
+  String bedtimeParentLearningAreaSeerahProgress(int completed, int total) {
+    return '$completed of $total stages completed';
+  }
+
+  @override
+  String bedtimeParentLearningAreaDuasProgress(int completed, int total) {
+    return '$completed of $total duas learned';
+  }
+
+  @override
+  String bedtimeParentLearningAreaArabicProgress(int completed, int total) {
+    return '$completed of $total letters completed';
+  }
+
+  @override
+  String bedtimeParentLearningAreaStoriesSecondary(int count) {
+    return '$count stories started';
+  }
+
+  @override
+  String bedtimeParentLearningAreaSeerahSecondary(int count) {
+    return '$count journeys completed';
+  }
+
+  @override
+  String bedtimeParentLearningAreaDuasSecondary(int count) {
+    return '$count-day light streak';
+  }
+
+  @override
+  String bedtimeParentLearningAreaArabicSecondary(int count) {
+    return '$count review letters';
+  }
+
+  @override
+  String bedtimeParentAreaLastActive(String date) {
+    return 'Last active $date';
+  }
+
+  @override
+  String get bedtimeParentHabitSectionTitle => 'Bedtime rhythm';
+
+  @override
+  String bedtimeParentHabitCurrentStreak(int days) {
+    return 'Current streak: $days';
+  }
+
+  @override
+  String bedtimeParentHabitLongestStreak(int days) {
+    return 'Longest streak: $days';
+  }
+
+  @override
+  String bedtimeParentHabitWeekDays(int days) {
+    return 'Active this week: $days days';
+  }
+
+  @override
+  String bedtimeParentHabitMonthDays(int days) {
+    return 'Active this month: $days days';
+  }
+
+  @override
+  String get bedtimeParentHabitEncouragingCopy =>
+      'A lovely rhythm is forming. Gentle bedtime learning is building over time.';
+
+  @override
+  String get bedtimeParentHabitGentleRestartCopy =>
+      'The next quiet story can begin tonight whenever you are ready.';
+
+  @override
+  String bedtimeParentLastSessionLabel(String date) {
+    return 'Last bedtime session: $date';
+  }
+
+  @override
+  String get bedtimeParentProphetProgressSectionTitle => 'Prophets explored';
+
+  @override
+  String get bedtimeParentProphetCompletedLabel => 'Completed';
+
+  @override
+  String get bedtimeParentProphetStartedLabel => 'Started';
+
+  @override
+  String get bedtimeParentProphetNotStartedLabel => 'Not started';
+
+  @override
+  String bedtimeParentProphetStoryPartsLabel(int completed, int total) {
+    return '$completed of $total parts';
+  }
+
+  @override
+  String get bedtimeParentQuizDoneLabel => 'Quiz done';
+
+  @override
+  String get bedtimeParentQuizPendingLabel => 'Quiz to try';
+
+  @override
+  String get bedtimeParentMemoryDoneLabel => 'Memory done';
+
+  @override
+  String get bedtimeParentMemoryPendingLabel => 'Memory to try';
+
+  @override
+  String get bedtimeParentContinueAction => 'Continue';
+
+  @override
+  String get bedtimeParentLessonsLearnedSectionTitle => 'Lessons learned';
+
+  @override
+  String get bedtimeParentLessonsEmpty =>
+      'Lessons will gather here as bedtime stories are completed.';
+
+  @override
+  String get bedtimeParentLearningRecentActivitySectionTitle =>
+      'Recent learning activity';
+
+  @override
+  String get bedtimeParentLearningRecentActivityEmpty =>
+      'Recent learning across stories, duas, Seerah, and Arabic will appear here.';
+
+  @override
+  String get bedtimeParentBedtimeActivitySectionTitle =>
+      'Recent bedtime activity';
+
+  @override
+  String get bedtimeParentRecentActivitySectionTitle =>
+      'Recent bedtime activity';
+
+  @override
+  String get bedtimeParentRecentActivityEmpty =>
+      'Recent bedtime activity will appear here once stories and learning activities begin.';
+
+  @override
+  String get bedtimeParentRecentStoryTitle => 'Story';
+
+  @override
+  String get bedtimeParentRecentQuizTitle => 'Story quiz';
+
+  @override
+  String get bedtimeParentRecentMemoryTitle => 'Memory cards';
+
+  @override
+  String get bedtimeParentRecentDuaLessonTitle => 'Dua lesson';
+
+  @override
+  String get bedtimeParentRecentDuaPracticeTitle => 'Dua practice';
+
+  @override
+  String get bedtimeParentRecentDuaDayTitle => 'My Day with Duas';
+
+  @override
+  String get bedtimeParentRecentSeerahNodeTitle => 'Seerah step';
+
+  @override
+  String get bedtimeParentRecentSeerahStageTitle => 'Seerah stage';
+
+  @override
+  String get bedtimeParentRecentSeerahJourneyTitle => 'Seerah journey';
+
+  @override
+  String get bedtimeParentRecentArabicLessonTitle => 'Arabic lesson';
+
+  @override
+  String get bedtimeParentRecentArabicDailyTitle => 'Arabic daily mission';
+
+  @override
+  String get bedtimeParentRecentBedtimeRoutineTitle => 'Bedtime companion';
+
+  @override
+  String bedtimeParentLearningActivityStory(String date) {
+    return 'Story completed on $date';
+  }
+
+  @override
+  String bedtimeParentLearningActivityQuiz(String date) {
+    return 'Quiz completed on $date';
+  }
+
+  @override
+  String bedtimeParentLearningActivityMemory(String date) {
+    return 'Memory activity completed on $date';
+  }
+
+  @override
+  String bedtimeParentLearningActivityDuaLesson(String date) {
+    return 'Dua learned on $date';
+  }
+
+  @override
+  String bedtimeParentLearningActivityDuaPractice(String date) {
+    return 'Dua practiced on $date';
+  }
+
+  @override
+  String bedtimeParentLearningActivityDuaMyDay(String date) {
+    return 'My Day with Duas completed on $date';
+  }
+
+  @override
+  String bedtimeParentLearningActivitySeerahNode(String date) {
+    return 'Seerah step completed on $date';
+  }
+
+  @override
+  String bedtimeParentLearningActivitySeerahStage(String date) {
+    return 'Seerah stage completed on $date';
+  }
+
+  @override
+  String bedtimeParentLearningActivitySeerahJourney(String date) {
+    return 'Seerah journey completed on $date';
+  }
+
+  @override
+  String bedtimeParentLearningActivityArabicLesson(String date) {
+    return 'Arabic lesson completed on $date';
+  }
+
+  @override
+  String bedtimeParentLearningActivityArabicDaily(String date) {
+    return 'Arabic daily mission completed on $date';
+  }
+
+  @override
+  String bedtimeParentLearningActivityBedtimeRoutine(String date) {
+    return 'Bedtime routine completed on $date';
+  }
+
+  @override
+  String bedtimeParentActivityStarted(String date) {
+    return 'Story opened on $date';
+  }
+
+  @override
+  String bedtimeParentActivityListened(String date) {
+    return 'Listened on $date';
+  }
+
+  @override
+  String bedtimeParentActivityCompleted(String date) {
+    return 'Story completed on $date';
+  }
+
+  @override
+  String bedtimeParentActivityQuizCompleted(String date) {
+    return 'Quiz completed on $date';
+  }
+
+  @override
+  String bedtimeParentActivityMemoryCompleted(String date) {
+    return 'Memory cards completed on $date';
+  }
+
+  @override
+  String get bedtimeParentRecommendationsSectionTitle => 'Suggested next steps';
+
+  @override
+  String get bedtimeParentRecommendationContinueStory => 'Continue story';
+
+  @override
+  String get bedtimeParentRecommendationOpenQuiz => 'Open quiz';
+
+  @override
+  String get bedtimeParentRecommendationOpenMemory => 'Open memory';
+
+  @override
+  String get bedtimeParentRecommendationOpenStory => 'Open story';
+
+  @override
+  String get bedtimeParentRecommendationTonightStory => 'Tonight\'s story';
+
+  @override
+  String get kidsDuaLearningModesTitle => 'Choose a learning mode';
+
+  @override
+  String get kidsDuaModeListen => 'Listen';
+
+  @override
+  String get kidsDuaModeReadAlong => 'Read Along';
+
+  @override
+  String get kidsDuaModeTapRepeat => 'Tap to Repeat';
+
+  @override
+  String get kidsDuaModeGentlePractice => 'Gentle Practice';
+
+  @override
+  String get kidsDuaPracticeSavedSnack => 'Practice saved for this dua.';
+
+  @override
+  String get kidsDuaGentlePracticeTitle => 'Gentle practice';
+
+  @override
+  String get kidsDuaGentlePracticeSubtitle =>
+      'Listen, read, and repeat at a calm pace. There is no rush.';
+
+  @override
+  String get kidsDuaListenThenReadAction => 'Listen then read';
+
+  @override
+  String get kidsDuaTapRepeatAction => 'Tap to repeat';
+
+  @override
+  String get kidsDuaMarkPracticedAction => 'I practiced this';
+
+  @override
+  String get kidsDuaLearningBuddyLabel => 'little learner';
+
+  @override
+  String kidsDuaLessonHeroSubtitle(String learnerName, String category) {
+    return '$learnerName is learning a $category dua gently tonight.';
+  }
+
+  @override
+  String get kidsDuaAudioUnavailableTitle => 'Read along is ready';
+
+  @override
+  String get kidsDuaAudioUnavailableSubtitle =>
+      'Audio is not available for this dua yet, but the Arabic, transliteration, and meaning are all ready to learn with.';
+
+  @override
+  String get kidsDuaAudioSectionTitle => 'Listen to the dua';
+
+  @override
+  String get kidsDuaAudioSectionSubtitle =>
+      'Hear the dua calmly, then read or repeat it together.';
+
+  @override
+  String get kidsDuaPauseAction => 'Pause';
+
+  @override
+  String get kidsDuaResumeAction => 'Resume';
+
+  @override
+  String get kidsDuaPlayWholeAction => 'Play full dua';
+
+  @override
+  String get kidsDuaRestartAction => 'Restart';
+
+  @override
+  String get kidsDuaRepeatWholeAction => 'Repeat whole dua';
+
+  @override
+  String kidsDuaPlaybackProgressLabel(String current, String total) {
+    return '$current / $total';
+  }
+
+  @override
+  String get kidsDuaAudioLoadingLabel => 'Checking audio...';
+
+  @override
+  String get kidsDuaReadAlongModeTitle => 'Read-along view';
+
+  @override
+  String get kidsDuaReadAlongArabicOnly => 'Arabic';
+
+  @override
+  String get kidsDuaReadAlongArabicTransliteration =>
+      'Arabic + Transliteration';
+
+  @override
+  String get kidsDuaReadAlongFullView => 'Full View';
+
+  @override
+  String get kidsDuaReadAlongSectionTitle => 'Read along';
+
+  @override
+  String get kidsDuaTapRepeatSectionTitle => 'Tap to repeat';
+
+  @override
+  String get kidsDuaTapRepeatBody =>
+      'Tap any line to hear it again and practice it slowly.';
+
+  @override
+  String get kidsDuaTapRepeatFallbackWholeAudio =>
+      'Tap any line to focus it. Full-dua audio will replay until segment audio is ready.';
+
+  @override
+  String get kidsDuaTapRepeatNoAudioBody =>
+      'Tap any line to focus on reading it slowly. Audio is not ready for this dua yet.';
+
+  @override
+  String get kidsDuaBedtimeLinkTitle => 'Works beautifully at bedtime';
+
+  @override
+  String get kidsDuaBedtimeLinkSubtitle =>
+      'This dua is already part of the bedtime companion flow, so you can revisit it there tonight.';
+
+  @override
+  String get kidsDuaBedtimeLinkAction => 'Open bedtime companion';
+
+  @override
+  String get kidsDuaLearningProgressTitle => 'Learning progress';
+
+  @override
+  String get kidsDuaListenCountLabel => 'Listens';
+
+  @override
+  String get kidsDuaRepeatCountLabel => 'Line repeats';
+
+  @override
+  String get kidsDuaViewsCountLabel => 'Views';
+
+  @override
+  String get kidsDuaSourceTapSubtitle => 'Tap to open in the Qur\'an reader';
+
+  @override
+  String get bedtimeCompanionEntryTitle => 'Bedtime companion';
+
+  @override
+  String get bedtimeCompanionEntrySubtitle =>
+      'Move through a gentle bedtime rhythm with tonight\'s dua, story, and a quiet ending.';
+
+  @override
+  String get bedtimeCompanionEntryAction => 'Open bedtime time';
+
+  @override
+  String get bedtimeCompanionTitle => 'Bedtime Time';
+
+  @override
+  String get bedtimeCompanionSubtitle =>
+      'A gentle bedtime rhythm with duas, stories, and a quiet close.';
+
+  @override
+  String bedtimeCompanionHeroTitle(String learnerName) {
+    return 'Good evening, $learnerName';
+  }
+
+  @override
+  String get bedtimeCompanionHeroSubtitle =>
+      'Take one calm step at a time, remember Allah, and end the night gently.';
+
+  @override
+  String get bedtimeCompanionRoutineTitle => 'Tonight\'s routine';
+
+  @override
+  String bedtimeCompanionRoutineProgress(int completed, int total) {
+    return '$completed of $total bedtime steps complete';
+  }
+
+  @override
+  String get bedtimeCompanionTonightDuaTitle => 'Tonight\'s dua';
+
+  @override
+  String get bedtimeCompanionTonightDuaSubtitle =>
+      'A short bedtime remembrance to help the night feel calm and blessed.';
+
+  @override
+  String get bedtimeCompanionTonightStoryTitle => 'Tonight\'s story';
+
+  @override
+  String get bedtimeCompanionTonightStorySubtitle =>
+      'Listen or read gently, then return whenever you are ready for the next bedtime step.';
+
+  @override
+  String get bedtimeCompanionReflectionTitle => 'Quiet reflection';
+
+  @override
+  String get bedtimeCompanionReflectionSubtitle =>
+      'Choose one soft thought to carry into the night.';
+
+  @override
+  String get bedtimeCompanionReflectionPrompt =>
+      'What would you like to remember tonight?';
+
+  @override
+  String get bedtimeCompanionReflectionChoiceFamily =>
+      'Alhamdulillah for my family';
+
+  @override
+  String get bedtimeCompanionReflectionChoiceLesson =>
+      'I want to remember tonight\'s lesson';
+
+  @override
+  String get bedtimeCompanionReflectionChoiceRest => 'Alhamdulillah for rest';
+
+  @override
+  String get bedtimeCompanionSleepReadyTitle => 'Ready for sleep';
+
+  @override
+  String get bedtimeCompanionSleepReadySubtitle =>
+      'You can close the night gently now. Allah hears every quiet remembrance.';
+
+  @override
+  String get bedtimeCompanionSleepReadyDoneTitle => 'Ready for sleep';
+
+  @override
+  String get bedtimeCompanionSleepReadyDoneSubtitle =>
+      'Tonight\'s bedtime rhythm is complete. Good night, and may your rest be peaceful.';
+
+  @override
+  String get bedtimeCompanionRecommendationResumeTitle =>
+      'Continue last night\'s story';
+
+  @override
+  String get bedtimeCompanionRecommendationDuaTitle =>
+      'Begin with tonight\'s dua';
+
+  @override
+  String get bedtimeCompanionRecommendationStoryTitle =>
+      'Tonight\'s story is ready';
+
+  @override
+  String get bedtimeCompanionRecommendationReflectionTitle =>
+      'Take a quiet reflection moment';
+
+  @override
+  String get bedtimeCompanionPlayStoryAction => 'Play story';
+
+  @override
+  String get bedtimeCompanionReadStoryAction => 'Read story';
+
+  @override
+  String get bedtimeCompanionStoryDetailsAction => 'Story details';
+
+  @override
+  String get bedtimeCompanionSourceLabel => 'Source';
+
+  @override
+  String get bedtimeCompanionExtraDhikrTitle => 'Gentle extra dhikr';
+
+  @override
+  String get bedtimeCompanionDuaDoneAction => 'Dua done';
+
+  @override
+  String get bedtimeCompanionReadyForSleepAction => 'Ready for sleep';
+
+  @override
+  String get bedtimeCompanionGoodNightAction => 'Good night';
+
+  @override
+  String get bedtimeCompanionMarkReadyAction => 'Mark ready';
+
+  @override
+  String get bedtimeCompanionOpenDuaAction => 'Open dua';
+
+  @override
+  String get bedtimeCompanionOpenStoryAction => 'Open story';
+
+  @override
+  String get bedtimeCompanionOpenReflectionAction => 'Open reflection';
+
+  @override
+  String get bedtimeCompanionStepCompleted => 'Completed';
+
+  @override
+  String get bedtimeCompanionStepInProgress => 'In progress';
+
+  @override
+  String get bedtimeCompanionStepOptionalDone => 'Optional done';
+
+  @override
+  String get bedtimeCompanionStepNotStarted => 'Not started';
+
+  @override
+  String get bedtimeRoutineDefaultPlanTitle => 'Gentle bedtime routine';
+
+  @override
+  String get bedtimeRoutineStepGetReadyTitle => 'Get ready for bed';
+
+  @override
+  String get bedtimeRoutineStepGetReadySubtitle =>
+      'Settle in, get comfortable, and prepare for a calm night.';
+
+  @override
+  String get bedtimeRoutineStepDuaTitle => 'Bedtime dua';
+
+  @override
+  String get bedtimeRoutineStepDuaSubtitle =>
+      'Read or hear a short dua before sleep.';
+
+  @override
+  String get bedtimeRoutineStepStoryTitle => 'Story time';
+
+  @override
+  String get bedtimeRoutineStepStorySubtitle =>
+      'Listen to or read tonight\'s prophet story.';
+
+  @override
+  String get bedtimeRoutineStepReflectionTitle => 'Quiet reflection';
+
+  @override
+  String get bedtimeRoutineStepReflectionSubtitle =>
+      'Choose one kind lesson or gratitude thought to keep close.';
+
+  @override
+  String get bedtimeRoutineStepSleepReadyTitle => 'Sleep-ready finish';
+
+  @override
+  String get bedtimeRoutineStepSleepReadySubtitle =>
+      'End gently and rest peacefully.';
+
+  @override
+  String get progressionPageTitle => 'Progress & badges';
+
+  @override
+  String get progressionPageSubtitle =>
+      'A calm view of long-term learning growth.';
+
+  @override
+  String get progressionPageLearnerSectionTitle => 'Child profile';
+
+  @override
+  String progressionPageHeroTitle(Object name) {
+    return '$name\'s progress';
+  }
+
+  @override
+  String get progressionPageHeroSubtitle =>
+      'Levels, badges, and milestones grow through steady learning.';
+
+  @override
+  String get progressionPageOpenAction => 'Open progress';
+
+  @override
+  String get progressionPageOverviewTitle => 'Overview';
+
+  @override
+  String get progressionPageGardenTitle => 'Garden';
+
+  @override
+  String get progressionPageGardenCardTitle => 'See how learning is growing';
+
+  @override
+  String get progressionPageGardenCardSubtitle =>
+      'Open the symbolic garden shaped by prayerful rhythm, learning, remembrance, and drops.';
+
+  @override
+  String get progressionPageGardenAction => 'Open garden';
+
+  @override
+  String get progressionPageMilestonesTitle => 'Milestones';
+
+  @override
+  String get progressionPageMilestonesEmpty =>
+      'Milestones will appear as learning grows.';
+
+  @override
+  String get progressionPageBadgesTitle => 'Badges';
+
+  @override
+  String get progressionPageBadgesEmpty =>
+      'Badges will appear after the first meaningful completions.';
+
+  @override
+  String progressionPageLevelValue(Object level, Object title) {
+    return 'Level $level • $title';
+  }
+
+  @override
+  String progressionPageXpValue(Object xp) {
+    return '$xp XP';
+  }
+
+  @override
+  String progressionPageNextLevelValue(Object title) {
+    return 'Next level: $title';
+  }
+
+  @override
+  String get progressionPageMaxLevel => 'Maximum level reached';
+
+  @override
+  String get progressionOverviewStoriesLabel => 'Stories completed';
+
+  @override
+  String get progressionOverviewQuizzesLabel => 'Quizzes completed';
+
+  @override
+  String get progressionOverviewDuasLabel => 'Duas learned';
+
+  @override
+  String get progressionOverviewRoutinesLabel => 'Bedtime routines';
+
+  @override
+  String get progressionOverviewDropsLabel => 'Ocean Drops';
+
+  @override
+  String get progressionOverviewBadgesLabel => 'Badges earned';
+
+  @override
+  String get progressionOverviewLevelLabel => 'Current level';
+
+  @override
+  String progressionParentRemainingValue(Object xp) {
+    return '$xp XP to the next level';
+  }
+
+  @override
+  String get progressionBadgeFirstStoryTitle => 'First story';
+
+  @override
+  String get progressionBadgeFirstStoryDescription =>
+      'Completed the first meaningful story.';
+
+  @override
+  String get progressionBadgeFirstQuizTitle => 'First quiz';
+
+  @override
+  String get progressionBadgeFirstQuizDescription =>
+      'Finished the first story quiz.';
+
+  @override
+  String get progressionBadgeFirstMemoryTitle => 'First memory cards';
+
+  @override
+  String get progressionBadgeFirstMemoryDescription =>
+      'Completed the first memory-card activity.';
+
+  @override
+  String get progressionBadgeFirstDuaTitle => 'First dua learned';
+
+  @override
+  String get progressionBadgeFirstDuaDescription =>
+      'Learned the first dua with calm practice.';
+
+  @override
+  String get progressionBadgeFirstSeerahStageTitle => 'First Seerah step';
+
+  @override
+  String get progressionBadgeFirstSeerahStageDescription =>
+      'Completed the first Seerah journey stage.';
+
+  @override
+  String get progressionBadgeFirstRoutineTitle => 'Bedtime rhythm';
+
+  @override
+  String get progressionBadgeFirstRoutineDescription =>
+      'Finished the first bedtime routine.';
+
+  @override
+  String get progressionBadgeBedtimeWeekTitle => 'Week of bedtime care';
+
+  @override
+  String get progressionBadgeBedtimeWeekDescription =>
+      'Completed seven bedtime routines.';
+
+  @override
+  String get progressionBadgeStoriesTenTitle => 'Story explorer';
+
+  @override
+  String get progressionBadgeStoriesTenDescription =>
+      'Completed ten meaningful stories.';
+
+  @override
+  String get progressionBadgeJourneyCompleteTitle => 'Seerah journey complete';
+
+  @override
+  String get progressionBadgeJourneyCompleteDescription =>
+      'Completed a full kids Seerah journey.';
+
+  @override
+  String get progressionMilestoneStoriesTenTitle => '10 stories completed';
+
+  @override
+  String get progressionMilestoneStoriesTenDescription =>
+      'A steady beginning in story learning.';
+
+  @override
+  String get progressionMilestoneStoriesFiftyTitle => '50 stories completed';
+
+  @override
+  String get progressionMilestoneStoriesFiftyDescription =>
+      'A deep and growing rhythm of story learning.';
+
+  @override
+  String get progressionMilestoneQuizzesTenTitle => '10 quizzes completed';
+
+  @override
+  String get progressionMilestoneQuizzesTenDescription =>
+      'Reflection and recall are becoming a habit.';
+
+  @override
+  String get progressionMilestoneDuasTenTitle => '10 duas learned';
+
+  @override
+  String get progressionMilestoneDuasTenDescription =>
+      'A growing collection of daily remembrance.';
+
+  @override
+  String get progressionMilestoneSeerahStageTitle => 'First Seerah stage';
+
+  @override
+  String get progressionMilestoneSeerahStageDescription =>
+      'The Seerah journey has begun.';
+
+  @override
+  String get progressionMilestoneSeerahJourneyTitle =>
+      'First Seerah journey complete';
+
+  @override
+  String get progressionMilestoneSeerahJourneyDescription =>
+      'A full guided Seerah path was completed.';
+
+  @override
+  String get progressionMilestoneBedtimeWeekTitle => '7 bedtime routines';
+
+  @override
+  String get progressionMilestoneBedtimeWeekDescription =>
+      'A lovely bedtime rhythm is forming.';
+
+  @override
+  String get progressionMilestoneLearningMonthTitle => '30-day learning streak';
+
+  @override
+  String get progressionMilestoneLearningMonthDescription =>
+      'Consistency is becoming part of the journey.';
 }

@@ -1,0 +1,2213 @@
+[
+  {
+    "id": "birth_of_prophet_muhammad_570",
+    "slug": "birth-of-prophet-muhammad",
+    "title": "Birth of Prophet Muhammad ﷺ",
+    "summaryShort": "The birth of the final Messenger ﷺ marked the beginning of the life through which the final revelation would reach humanity.",
+    "summaryLong": "The birth of Prophet Muhammad ﷺ in Makkah is remembered as one of the most significant moments in sacred history. While exact date conversion between calendars is discussed in historical works, the event itself remains central to the Seerah and to the mercy Allah sent for the worlds.",
+    "categories": ["seerah", "prophets", "births", "islamic_history"],
+    "tags": ["prophet muhammad", "makkah", "birth", "seerah"],
+    "gregorian": { "year": 570, "month": 4, "day": 20 },
+    "hijri": { "month": 3, "day": 12 },
+    "location": { "name": "Makkah, Arabia" },
+    "significance": [
+      "It marks the birth of the final Prophet ﷺ.",
+      "His life would become the lived model of the Qur’an and the final message."
+    ],
+    "lessons": [
+      "Allah raises guidance in the world through revelation and prophetic example."
+    ],
+    "relatedEntities": ["Prophet Muhammad ﷺ", "Aminah bint Wahb"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 95,
+    "sources": [
+      { "label": "Classical Seerah works", "note": "Primary biographical works discuss the event and the differing date details." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "disputed",
+    "alternateDates": [],
+    "sourceNotes": "The birth is certain. Exact day conversion is discussed differently across sources."
+  },
+  {
+    "id": "rebuilding_of_kaabah_605",
+    "slug": "rebuilding-of-the-kaabah",
+    "title": "Rebuilding of the Kaʿbah and Placement of the Black Stone",
+    "summaryShort": "Before prophethood, Muhammad ﷺ was entrusted to help resolve the dispute over who would place the Black Stone.",
+    "summaryLong": "When the Kaʿbah was rebuilt in Makkah, a dispute arose over the honor of placing the Black Stone. Muhammad ﷺ proposed a just solution that preserved peace among the clans and showed the wisdom, trustworthiness, and character for which he was already known.",
+    "categories": ["seerah", "sacred_places", "islamic_history"],
+    "tags": ["kaabah", "black stone", "makkah", "trustworthiness"],
+    "gregorian": { "year": 605 },
+    "hijri": {},
+    "location": { "name": "Makkah, Arabia" },
+    "significance": [
+      "It showed the trust the people of Makkah already placed in him before revelation.",
+      "It preserved peace around the Sacred House."
+    ],
+    "lessons": [
+      "Wisdom can prevent conflict before it deepens."
+    ],
+    "relatedEntities": ["Prophet Muhammad ﷺ", "Quraysh"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 70,
+    "sources": [
+      { "label": "Classical Seerah works", "note": "Widely narrated in the standard biographies." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "approximate",
+    "alternateDates": []
+  },
+  {
+    "id": "first_revelation_610",
+    "slug": "first-revelation",
+    "title": "First Revelation",
+    "summaryShort": "The first revelation in the cave of Hira opened the final chapter of divine guidance for humanity.",
+    "summaryLong": "The first revelation descended upon the Prophet Muhammad ﷺ while he was in the cave of Hira. The opening command to read in the name of the Lord began the mission of prophethood and the final revelation given for humanity.",
+    "categories": ["seerah", "revelation", "prophets", "islamic_history"],
+    "tags": ["revelation", "quran", "hira", "iqra"],
+    "gregorian": { "year": 610, "month": 8, "day": 10 },
+    "hijri": {},
+    "location": { "name": "Cave of Hira, near Makkah", "latitude": 21.4588, "longitude": 39.8576 },
+    "significance": [
+      "It began the final revelation sent to humanity.",
+      "It opened the mission of Prophet Muhammad ﷺ."
+    ],
+    "lessons": [
+      "Revelation joins knowledge, worship, and responsibility."
+    ],
+    "relatedEntities": ["Prophet Muhammad ﷺ", "Jibril عليه السلام"],
+    "relatedContentIds": ["journey-quran", "foundations-of-faith", "seerah-journey"],
+    "relatedContentHooks": [
+      {
+        "label": "Open Journey of the Qur’an",
+        "routeName": "learnJourneyDetail",
+        "pathParameters": { "journeyId": "journey-quran" }
+      },
+      {
+        "label": "Open Foundations of Faith",
+        "routeName": "learnJourneyDetail",
+        "pathParameters": { "journeyId": "foundations-of-faith" }
+      }
+    ],
+    "featuredPriority": 100,
+    "sources": [
+      { "label": "Qur’an 96:1-5", "note": "The opening verses commonly linked to the first revelation." },
+      { "label": "Sahih al-Bukhari", "note": "The Book of Revelation contains the foundational narration." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "approximate",
+    "alternateDates": [
+      { "calendar": "gregorian", "year": 610, "month": 8, "day": 11, "note": "Some modern summaries vary by a day." }
+    ],
+    "sourceNotes": "The event is certain. Exact Gregorian conversion is treated cautiously."
+  },
+  {
+    "id": "public_call_in_makkah_613",
+    "slug": "public-call-in-makkah",
+    "title": "Public Call to Islam in Makkah",
+    "summaryShort": "The message of Islam moved from private early teaching into public calling in Makkah.",
+    "summaryLong": "After the earliest private phase of daʿwah, the Prophet ﷺ openly called the people of Makkah to worship Allah alone. This marked the beginning of a new phase of patient public witness, opposition, and steady proclamation of truth.",
+    "categories": ["seerah", "prophets", "islamic_history"],
+    "tags": ["dawah", "makkah", "public call", "patience"],
+    "gregorian": { "year": 613 },
+    "hijri": {},
+    "location": { "name": "Makkah, Arabia" },
+    "significance": [
+      "It marked the beginning of open proclamation in Makkah.",
+      "It exposed the small early community to a long period of trial."
+    ],
+    "lessons": [
+      "Truth may need patience before it sees wide acceptance."
+    ],
+    "relatedEntities": ["Prophet Muhammad ﷺ", "Early Muslims"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 82,
+    "sources": [
+      { "label": "Classical Seerah works", "note": "The shift from private to public daʿwah is a standard seerah milestone." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "approximate",
+    "alternateDates": []
+  },
+  {
+    "id": "isra_and_miraj_621",
+    "slug": "isra-and-miraj",
+    "title": "Isra and Miʿraj",
+    "summaryShort": "The Night Journey and Ascension remain among the most awe-filled moments of the Prophetic mission.",
+    "summaryLong": "The Isra and Miʿraj brought together sacred travel, divine signs, and the gift of the daily prayers. Historical works differ on exact dating, but the event is one of the most spiritually significant moments in the Seerah.",
+    "categories": ["seerah", "prophets", "revelation", "islamic_history"],
+    "tags": ["isra", "miraj", "masjid al-aqsa", "salah"],
+    "gregorian": { "year": 621 },
+    "hijri": { "month": 7, "day": 27 },
+    "location": { "name": "Makkah to Bayt al-Maqdis and the heavens" },
+    "significance": [
+      "It affirmed the honor of the Prophet ﷺ and the reality of Allah’s signs.",
+      "It is closely linked in Muslim memory with the obligation of the daily prayers."
+    ],
+    "lessons": [
+      "After hardship, Allah opens doors of strength and nearness."
+    ],
+    "relatedEntities": ["Prophet Muhammad ﷺ", "Jibril عليه السلام"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 90,
+    "sources": [
+      { "label": "Qur’an 17:1", "note": "The Night Journey is explicitly referenced." },
+      { "label": "Major hadith collections", "note": "Detailed reports preserve the broad event sequence." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "disputed",
+    "alternateDates": []
+  },
+  {
+    "id": "first_pledge_of_aqabah_621",
+    "slug": "first-pledge-of-aqabah",
+    "title": "First Pledge of al-ʿAqabah",
+    "summaryShort": "A small group from Yathrib pledged faith and loyalty, opening a new path for the future Muslim community.",
+    "summaryLong": "The first pledge of al-ʿAqabah brought the Prophet ﷺ into a new relationship with believers from Yathrib. It was an early sign that Allah was preparing a place where Islam could grow into a community with greater stability and protection.",
+    "categories": ["seerah", "islamic_history"],
+    "tags": ["aqabah", "yathrib", "pledge", "hijrah"],
+    "gregorian": { "year": 621 },
+    "hijri": { "month": 12 },
+    "location": { "name": "al-ʿAqabah, near Makkah" },
+    "significance": [
+      "It opened the path toward the Hijrah and the later Madinan community.",
+      "It showed that hearts were opening beyond Makkah."
+    ],
+    "lessons": [
+      "Allah prepares support in places the believer may not yet expect."
+    ],
+    "relatedEntities": ["Prophet Muhammad ﷺ", "Believers from Yathrib"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 78,
+    "sources": [
+      { "label": "Classical Seerah works", "note": "The pledges of al-ʿAqabah are standard milestones in the Hijrah sequence." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "approximate",
+    "alternateDates": []
+  },
+  {
+    "id": "second_pledge_of_aqabah_622",
+    "slug": "second-pledge-of-aqabah",
+    "title": "Second Pledge of al-ʿAqabah",
+    "summaryShort": "The second pledge committed the believers of Yathrib to protection and support, preparing the way for the Hijrah.",
+    "summaryLong": "The second pledge of al-ʿAqabah was a decisive turning point before the Hijrah. It gave the Prophet ﷺ a community willing to receive him, protect him, and build a shared life of worship and responsibility.",
+    "categories": ["seerah", "islamic_history"],
+    "tags": ["aqabah", "pledge", "hijrah", "madinah"],
+    "gregorian": { "year": 622 },
+    "hijri": { "month": 12, "day": 13 },
+    "location": { "name": "al-ʿAqabah, near Makkah" },
+    "significance": [
+      "It directly prepared the way for the migration to Madinah.",
+      "It linked faith with communal covenant and protection."
+    ],
+    "lessons": [
+      "A strong believing community is built through covenant and sacrifice."
+    ],
+    "relatedEntities": ["Prophet Muhammad ﷺ", "The Ansar"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 84,
+    "sources": [
+      { "label": "Classical Seerah works", "note": "The second pledge is described as a direct prelude to the Hijrah." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "approximate",
+    "alternateDates": []
+  },
+  {
+    "id": "departure_for_hijrah_622",
+    "slug": "departure-for-hijrah",
+    "title": "Departure for the Hijrah",
+    "summaryShort": "The Prophet ﷺ left Makkah for the Hijrah, trusting Allah while taking every careful worldly means.",
+    "summaryLong": "When the Prophet ﷺ departed Makkah for Madinah, the Hijrah entered its most dramatic stage. The migration brought together planning, concealment, companionship, and complete tawakkul upon Allah in a moment that would reshape Islamic history.",
+    "categories": ["seerah", "islamic_history"],
+    "tags": ["hijrah", "makkah", "thawr", "tawakkul"],
+    "gregorian": { "year": 622, "month": 9, "day": 13 },
+    "hijri": { "year": 1, "month": 3, "day": 1 },
+    "location": { "name": "Makkah and Cave of Thawr" },
+    "significance": [
+      "It marks the departure point of the Hijrah.",
+      "It remains a model of planning joined with trust in Allah."
+    ],
+    "lessons": [
+      "Taking the means and trusting Allah belong together."
+    ],
+    "relatedEntities": ["Prophet Muhammad ﷺ", "Abu Bakr رضي الله عنه"],
+    "relatedContentIds": ["seerah-journey", "islam-foundations"],
+    "relatedContentHooks": [
+      {
+        "label": "Open Seerah Basics",
+        "routeName": "learnJourneyDetail",
+        "pathParameters": { "journeyId": "seerah-journey" }
+      }
+    ],
+    "featuredPriority": 98,
+    "sources": [
+      { "label": "Qur’an 9:40", "note": "This verse recalls the journey and Allah’s protection." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "exact",
+    "alternateDates": []
+  },
+  {
+    "id": "arrival_in_quba_622",
+    "slug": "arrival-in-quba",
+    "title": "Arrival in Quba",
+    "summaryShort": "The Prophet ﷺ reached Quba near Madinah, bringing the Hijrah to its first point of safety.",
+    "summaryLong": "The arrival in Quba marked the first settled stage of the Hijrah journey. It was a moment of safety, joy, and preparation before the final entry into Madinah itself, and it remains connected in Muslim memory with the first mosque built upon taqwa.",
+    "categories": ["seerah", "islamic_history", "sacred_places"],
+    "tags": ["quba", "hijrah", "madinah", "mosque"],
+    "gregorian": { "year": 622, "month": 9, "day": 23 },
+    "hijri": { "year": 1, "month": 3, "day": 8 },
+    "location": { "name": "Quba, near Madinah" },
+    "significance": [
+      "It marked the first secure arrival after leaving Makkah.",
+      "It is associated with the earliest mosque of Islam."
+    ],
+    "lessons": [
+      "Sacred spaces are often born alongside sacrifice and migration."
+    ],
+    "relatedEntities": ["Prophet Muhammad ﷺ", "The people of Quba"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 88,
+    "sources": [
+      { "label": "Classical Seerah works", "note": "The arrival at Quba is a standard Hijrah milestone." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "exact",
+    "alternateDates": []
+  },
+  {
+    "id": "arrival_in_madinah_622",
+    "slug": "arrival-in-madinah",
+    "title": "Arrival in Madinah",
+    "summaryShort": "The Hijrah became a turning point in which faith moved from survival under pressure into community, worship, and public responsibility.",
+    "summaryLong": "The arrival of the Prophet ﷺ in Madinah marked a decisive transition in the history of Islam. The Hijrah was not simply travel from one city to another. It opened the door to a believing community that could establish prayer, brotherhood, worship, and public justice more fully.",
+    "categories": ["seerah", "islamic_history"],
+    "tags": ["hijrah", "madinah", "migration", "community"],
+    "gregorian": { "year": 622, "month": 9, "day": 24 },
+    "hijri": { "year": 1, "month": 3, "day": 12 },
+    "location": { "name": "Madinah, Arabia", "latitude": 24.5247, "longitude": 39.5692 },
+    "significance": [
+      "The Hijrah marks the beginning of the Hijri era.",
+      "It opened the phase of community-building, masjid life, and brotherhood between Muhajirun and Ansar."
+    ],
+    "lessons": [
+      "Migration for Allah can become the beginning of stability and blessing.",
+      "A believing society needs worship, service, brotherhood, and covenant."
+    ],
+    "relatedEntities": ["Prophet Muhammad ﷺ", "Abu Bakr رضي الله عنه", "The Ansar"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 99,
+    "sources": [
+      { "label": "Qur’an 9:40", "note": "A verse recalling the Hijrah journey and Allah’s protection." },
+      { "label": "Sahih al-Bukhari", "note": "Contains narrations connected to the Hijrah journey and arrival." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "exact",
+    "alternateDates": []
+  },
+  {
+    "id": "foundation_of_masjid_nabawi_622",
+    "slug": "foundation-of-masjid-nabawi",
+    "title": "Foundation of Masjid al-Nabawi",
+    "summaryShort": "Masjid al-Nabawi was founded as the spiritual and communal heart of the new Muslim society in Madinah.",
+    "summaryLong": "Soon after arriving in Madinah, the Prophet ﷺ oversaw the building of Masjid al-Nabawi. It became a place of prayer, teaching, consultation, worship, and community life, showing how a masjid stands at the center of a healthy believing society.",
+    "categories": ["seerah", "sacred_places", "islamic_history"],
+    "tags": ["masjid nabawi", "madinah", "mosque", "community"],
+    "gregorian": { "year": 622 },
+    "hijri": { "year": 1, "month": 3 },
+    "location": { "name": "Madinah, Arabia" },
+    "significance": [
+      "It became the central masjid of the Prophet’s city.",
+      "It joined worship, teaching, service, and leadership in one place."
+    ],
+    "lessons": [
+      "The masjid anchors both personal devotion and communal life."
+    ],
+    "relatedEntities": ["Prophet Muhammad ﷺ", "The Muhajirun", "The Ansar"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 86,
+    "sources": [
+      { "label": "Classical Seerah works", "note": "The building of Masjid al-Nabawi is preserved throughout the early biographies." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "approximate",
+    "alternateDates": []
+  },
+  {
+    "id": "adhan_established_623",
+    "slug": "adhan-established",
+    "title": "Adhan Established in Madinah",
+    "summaryShort": "The call to prayer was established in Madinah as a public sign of worship and communal rhythm.",
+    "summaryLong": "The adhan became the formal call to the daily prayers in Madinah. It gave the Muslim community a living public rhythm of worship and remains one of the most recognizable signs of devotion in Islam.",
+    "categories": ["islamic_history", "revelation"],
+    "tags": ["adhan", "prayer", "madinah", "worship history"],
+    "gregorian": { "year": 623 },
+    "hijri": { "year": 1, "month": 1 },
+    "location": { "name": "Madinah, Arabia" },
+    "significance": [
+      "It made the rhythm of prayer audible in public life.",
+      "It strengthened the communal structure of worship."
+    ],
+    "lessons": [
+      "Worship in Islam shapes both the heart and the public rhythm of life."
+    ],
+    "relatedEntities": ["Bilal ibn Rabah رضي الله عنه", "Prophet Muhammad ﷺ"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 72,
+    "sources": [
+      { "label": "Sunan collections and Seerah works", "note": "The adhan’s establishment is widely narrated." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "approximate",
+    "alternateDates": []
+  },
+  {
+    "id": "change_of_qiblah_624",
+    "slug": "change-of-qiblah",
+    "title": "Change of the Qiblah",
+    "summaryShort": "The qiblah was changed toward the Kaʿbah, giving the Muslim community a distinct direction in worship.",
+    "summaryLong": "The change of the qiblah redirected the believers toward the Kaʿbah in Makkah. It was a major turning point in worship and identity, and it demonstrated that the believing community follows revelation with readiness and trust.",
+    "categories": ["revelation", "islamic_history", "sacred_places"],
+    "tags": ["qiblah", "kaabah", "prayer", "madinah"],
+    "gregorian": { "year": 624, "month": 2 },
+    "hijri": { "year": 2, "month": 8 },
+    "location": { "name": "Madinah, Arabia" },
+    "significance": [
+      "It gave the Ummah its permanent direction in prayer.",
+      "It highlighted immediate obedience to revelation."
+    ],
+    "lessons": [
+      "The believer’s direction is ultimately set by Allah’s command."
+    ],
+    "relatedEntities": ["Prophet Muhammad ﷺ", "The believers in Madinah"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 83,
+    "sources": [
+      { "label": "Qur’an 2:142-150", "note": "The qiblah change is directly addressed in these verses." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "approximate",
+    "alternateDates": []
+  },
+  {
+    "id": "first_ramadan_fast_624",
+    "slug": "first-ramadan-fast",
+    "title": "First Ramadan Fast of the Muslim Community",
+    "summaryShort": "The obligation of fasting in Ramadan became part of the worship rhythm of the Muslim community in Madinah.",
+    "summaryLong": "In Madinah, fasting in Ramadan became an established obligation for the Muslim community. This moment belongs especially to the Hijri rhythm of worship, reflection, and taqwa, and is remembered best through its Hijri anniversary.",
+    "categories": ["islamic_history", "revelation"],
+    "tags": ["ramadan", "fasting", "worship history"],
+    "gregorian": { "year": 624 },
+    "hijri": { "year": 2, "month": 9, "day": 1 },
+    "location": { "name": "Madinah, Arabia" },
+    "significance": [
+      "It anchored Ramadan as a communal act of worship and taqwa.",
+      "It tied law, devotion, and sacred yearly rhythm together."
+    ],
+    "lessons": [
+      "Islamic history includes the unfolding of worship, not only politics and conflict."
+    ],
+    "relatedEntities": ["The Muslim community in Madinah"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 84,
+    "sources": [
+      { "label": "Qur’an 2:183-185", "note": "These verses establish fasting in Ramadan." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "approximate",
+    "alternateDates": []
+  },
+  {
+    "id": "battle_of_badr_624",
+    "slug": "battle-of-badr",
+    "title": "Battle of Badr",
+    "summaryShort": "The first major battle in early Islamic history became a lasting sign of trust in Allah and steadfastness under pressure.",
+    "summaryLong": "The Battle of Badr took place when the Muslim community in Madinah faced the Quraysh of Makkah in its first major armed confrontation. Though the Muslims were fewer in number and resources, the day became a decisive moment in the Seerah and a source of reflection on sincerity, discipline, dua, and reliance upon Allah.",
+    "categories": ["seerah", "battles", "islamic_history"],
+    "tags": ["badr", "ramadan", "battle", "trust_in_allah", "madinah"],
+    "gregorian": { "year": 624, "month": 3, "day": 13 },
+    "hijri": { "year": 2, "month": 9, "day": 17 },
+    "location": { "name": "Badr, Hejaz, Arabia", "latitude": 23.7833, "longitude": 38.7833 },
+    "significance": [
+      "It was the first major battle between the Muslims and Quraysh.",
+      "It strengthened the Muslim community in Madinah at a vulnerable stage."
+    ],
+    "lessons": [
+      "Victory is not tied only to numbers or material strength."
+    ],
+    "relatedEntities": ["Prophet Muhammad ﷺ", "The Muhajirun", "The Ansar"],
+    "relatedContentIds": ["seerah-journey", "beautiful-character"],
+    "relatedContentHooks": [
+      {
+        "label": "Open Seerah Basics",
+        "routeName": "learnJourneyDetail",
+        "pathParameters": { "journeyId": "seerah-journey" }
+      },
+      {
+        "label": "Open Character & Adab",
+        "routeName": "learnJourneyDetail",
+        "pathParameters": { "journeyId": "beautiful-character" }
+      }
+    ],
+    "featuredPriority": 100,
+    "sources": [
+      { "label": "Qur’an 3:123-125", "note": "Verses recalling Allah’s support at Badr." },
+      { "label": "Qur’an 8:5-19", "note": "Verses connected to the events and lessons of Badr." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "exact",
+    "alternateDates": []
+  },
+  {
+    "id": "battle_of_uhud_625",
+    "slug": "battle-of-uhud",
+    "title": "Battle of Uhud",
+    "summaryShort": "Uhud remains one of the clearest historical lessons on obedience, patience, and how a believing community learns through trial.",
+    "summaryLong": "The Battle of Uhud came one year after Badr and tested the Muslim community in a different way. Early gains shifted after a key instruction was not fully maintained, leaving the believers with painful lessons in discipline, repentance, courage, and loyalty to the Prophet ﷺ.",
+    "categories": ["seerah", "battles", "islamic_history"],
+    "tags": ["uhud", "battle", "obedience", "patience"],
+    "gregorian": { "year": 625, "month": 3, "day": 23 },
+    "hijri": { "year": 3, "month": 10, "day": 7 },
+    "location": { "name": "Mount Uhud, Madinah", "latitude": 24.5019, "longitude": 39.6156 },
+    "significance": [
+      "It taught the Muslims that discipline must remain steady even when momentum seems favorable.",
+      "It revealed the depth of sacrifice shown by the companions around the Prophet ﷺ."
+    ],
+    "lessons": [
+      "Trials can purify hearts and deepen sincerity."
+    ],
+    "relatedEntities": ["Prophet Muhammad ﷺ", "Hamzah ibn Abd al-Muttalib رضي الله عنه"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 95,
+    "sources": [
+      { "label": "Qur’an 3:121-180", "note": "Verses reflecting on Uhud, patience, and steadfastness." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "exact",
+    "alternateDates": []
+  },
+  {
+    "id": "battle_of_khandaq_627",
+    "slug": "battle-of-khandaq",
+    "title": "Battle of the Trench",
+    "summaryShort": "The digging of the trench and the defense of Madinah became a lasting lesson in consultation, strategy, and steadfastness.",
+    "summaryLong": "When a broad coalition moved against Madinah, the Muslims defended the city with a trench strategy that had not been common in Arabia. The campaign became a lesson in patience under siege, collective effort, and trusting Allah through prolonged difficulty.",
+    "categories": ["seerah", "battles", "islamic_history"],
+    "tags": ["khandaq", "trench", "madinah", "consultation"],
+    "gregorian": { "year": 627, "month": 3 },
+    "hijri": { "year": 5, "month": 10 },
+    "location": { "name": "Madinah, Arabia" },
+    "significance": [
+      "It preserved Madinah in a moment of broad external pressure.",
+      "It showed how consultation and strategy serve the cause of truth."
+    ],
+    "lessons": [
+      "Patience in a prolonged trial is often different from patience in a single moment."
+    ],
+    "relatedEntities": ["Prophet Muhammad ﷺ", "Salman al-Farisi رضي الله عنه"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 92,
+    "sources": [
+      { "label": "Qur’an 33:9-27", "note": "These verses reflect on the coalition and the siege of Madinah." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "approximate",
+    "alternateDates": []
+  },
+  {
+    "id": "treaty_of_hudaybiyyah_628",
+    "slug": "treaty-of-hudaybiyyah",
+    "title": "Treaty of Hudaybiyyah",
+    "summaryShort": "What first seemed difficult became one of the clearest strategic openings in the Seerah.",
+    "summaryLong": "The Treaty of Hudaybiyyah was concluded when the Prophet ﷺ and the believers set out for ʿUmrah but were prevented from entering Makkah. Though some companions found the terms difficult, the treaty became a clear opening that stabilized conditions for daʿwah and future growth.",
+    "categories": ["seerah", "islamic_history"],
+    "tags": ["hudaybiyyah", "treaty", "umrah", "opening"],
+    "gregorian": { "year": 628, "month": 3 },
+    "hijri": { "year": 6, "month": 11 },
+    "location": { "name": "Hudaybiyyah, near Makkah" },
+    "significance": [
+      "It created space for Islam to spread in calmer conditions.",
+      "It taught the community that short-term difficulty can hide long-term good."
+    ],
+    "lessons": [
+      "A believer may not immediately see the wisdom in Allah’s decree."
+    ],
+    "relatedEntities": ["Prophet Muhammad ﷺ", "The Companions"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 90,
+    "sources": [
+      { "label": "Qur’an 48:1-3", "note": "These verses describe the treaty as a clear opening." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "approximate",
+    "alternateDates": []
+  },
+  {
+    "id": "battle_of_khaybar_628",
+    "slug": "battle-of-khaybar",
+    "title": "Battle of Khaybar",
+    "summaryShort": "Khaybar became a major turning point in regional security and the strength of the Muslim community.",
+    "summaryLong": "The campaign of Khaybar came after Hudaybiyyah and shifted the political and strategic position of the Muslim community in the region. It remains remembered for courage, leadership, and the consolidation of Muslim stability.",
+    "categories": ["seerah", "battles", "islamic_history"],
+    "tags": ["khaybar", "battle", "security", "strength"],
+    "gregorian": { "year": 628, "month": 5 },
+    "hijri": { "year": 7, "month": 1 },
+    "location": { "name": "Khaybar, Arabia" },
+    "significance": [
+      "It strengthened the position of the Muslim community after Hudaybiyyah.",
+      "It reduced a major source of regional threat."
+    ],
+    "lessons": [
+      "Periods of calm can be followed by moments that reshape the wider landscape."
+    ],
+    "relatedEntities": ["Prophet Muhammad ﷺ", "Ali ibn Abi Talib رضي الله عنه"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 84,
+    "sources": [
+      { "label": "Classical Seerah works", "note": "Khaybar is preserved as a major post-Hudaybiyyah campaign." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "approximate",
+    "alternateDates": []
+  },
+  {
+    "id": "compensatory_umrah_629",
+    "slug": "compensatory-umrah",
+    "title": "Compensatory ʿUmrah",
+    "summaryShort": "The believers returned to Makkah for the compensatory ʿUmrah after Hudaybiyyah, showing how patience can lead to honorable fulfillment.",
+    "summaryLong": "The compensatory ʿUmrah took place after the treaty terms of Hudaybiyyah allowed the Muslims to return the following year. It demonstrated that patient endurance can be followed by dignified fulfillment without abandoning principle.",
+    "categories": ["seerah", "islamic_history", "sacred_places"],
+    "tags": ["umrah", "hudaybiyyah", "makkah", "patience"],
+    "gregorian": { "year": 629, "month": 3 },
+    "hijri": { "year": 7, "month": 12 },
+    "location": { "name": "Makkah, Arabia" },
+    "significance": [
+      "It fulfilled the delayed pilgrimage linked to Hudaybiyyah.",
+      "It showed the Muslims entering Makkah with calm dignity."
+    ],
+    "lessons": [
+      "Delayed obedience can still arrive beautifully when Allah opens the way."
+    ],
+    "relatedEntities": ["Prophet Muhammad ﷺ", "The Companions"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 76,
+    "sources": [
+      { "label": "Classical Seerah works", "note": "The compensatory ʿUmrah is described in the standard seerah sequence." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "approximate",
+    "alternateDates": []
+  },
+  {
+    "id": "battle_of_mutah_629",
+    "slug": "battle-of-mutah",
+    "title": "Battle of Muʿtah",
+    "summaryShort": "Muʿtah is remembered for courage, sacrifice, and leadership under severe pressure.",
+    "summaryLong": "The Battle of Muʿtah brought the Muslim army into a difficult confrontation beyond Arabia. It is remembered especially for the sacrifice of major companions and for the courage shown when leadership passed from one commander to another in rapid succession.",
+    "categories": ["battles", "islamic_history"],
+    "tags": ["mutah", "battle", "leadership", "sacrifice"],
+    "gregorian": { "year": 629, "month": 9 },
+    "hijri": { "year": 8, "month": 5 },
+    "location": { "name": "Muʿtah, near al-Karak" },
+    "significance": [
+      "It extended the Muslim military horizon beyond Arabia.",
+      "It remains a defining lesson in leadership and sacrifice."
+    ],
+    "lessons": [
+      "Faithful courage can remain steady even when the outward conditions are severe."
+    ],
+    "relatedEntities": ["Zayd ibn Harithah رضي الله عنه", "Jaʿfar ibn Abi Talib رضي الله عنه", "Abdullah ibn Rawahah رضي الله عنه"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 80,
+    "sources": [
+      { "label": "Sahih al-Bukhari and Seerah works", "note": "Muʿtah is preserved in hadith and early biographies." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "approximate",
+    "alternateDates": [
+      { "calendar": "gregorian", "year": 629, "month": 8, "note": "Some summaries shift the Gregorian conversion by roughly a month." }
+    ]
+  },
+  {
+    "id": "conquest_of_makkah_630",
+    "slug": "conquest-of-makkah",
+    "title": "Conquest of Makkah",
+    "summaryShort": "The opening of Makkah showed the triumph of tawhid with mercy, restraint, and the clearing of idols from the Sacred Sanctuary.",
+    "summaryLong": "When the Prophet ﷺ entered Makkah with the believers, the moment was not one of revenge but of tawhid, humility, and mercy. Idols were removed from the Kaʿbah, the Sacred City returned to open worship of Allah alone, and many people entered Islam after witnessing the Prophet’s conduct.",
+    "categories": ["seerah", "islamic_history", "sacred_places"],
+    "tags": ["makkah", "fath", "kaabah", "tawhid"],
+    "gregorian": { "year": 630, "month": 1, "day": 11 },
+    "hijri": { "year": 8, "month": 9, "day": 20 },
+    "location": { "name": "Makkah, Arabia", "latitude": 21.3891, "longitude": 39.8579 },
+    "significance": [
+      "The Kaʿbah was cleansed of idols and openly restored to worship of Allah alone.",
+      "The opening of Makkah changed the direction of Arabian history and the spread of Islam."
+    ],
+    "lessons": [
+      "Strength is most beautiful when joined with mercy and humility."
+    ],
+    "relatedEntities": ["Prophet Muhammad ﷺ", "The people of Makkah"],
+    "relatedContentIds": ["seerah-journey", "beautiful-character"],
+    "relatedContentHooks": [
+      {
+        "label": "Open Seerah Basics",
+        "routeName": "learnJourneyDetail",
+        "pathParameters": { "journeyId": "seerah-journey" }
+      },
+      {
+        "label": "Open Character & Adab",
+        "routeName": "learnJourneyDetail",
+        "pathParameters": { "journeyId": "beautiful-character" }
+      }
+    ],
+    "featuredPriority": 98,
+    "sources": [
+      { "label": "Qur’an 110:1-3", "note": "Surah al-Nasr is commonly linked to the opening of Makkah." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "exact",
+    "alternateDates": []
+  },
+  {
+    "id": "battle_of_hunayn_630",
+    "slug": "battle-of-hunayn",
+    "title": "Battle of Hunayn",
+    "summaryShort": "Hunayn reminds the believer that numbers alone never guarantee steadiness or victory.",
+    "summaryLong": "Soon after the opening of Makkah, the Muslims faced the Battle of Hunayn. The campaign became a lasting reminder that confidence must rest in Allah rather than numbers, and that apparent strength can still be tested.",
+    "categories": ["seerah", "battles", "islamic_history"],
+    "tags": ["hunayn", "battle", "tawakkul", "makkah"],
+    "gregorian": { "year": 630, "month": 1 },
+    "hijri": { "year": 8, "month": 10, "day": 10 },
+    "location": { "name": "Hunayn Valley, near Makkah" },
+    "significance": [
+      "It corrected false confidence after a moment of rapid expansion.",
+      "It deepened the community’s sense of dependence on Allah."
+    ],
+    "lessons": [
+      "Outward strength must not replace inner humility."
+    ],
+    "relatedEntities": ["Prophet Muhammad ﷺ", "The believers"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 82,
+    "sources": [
+      { "label": "Qur’an 9:25-27", "note": "These verses reflect on Hunayn and its lessons." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "approximate",
+    "alternateDates": []
+  },
+  {
+    "id": "siege_of_taif_630",
+    "slug": "siege-of-taif",
+    "title": "Siege of Ta’if",
+    "summaryShort": "The campaign at Ta’if followed Hunayn and remains a reminder that not every opening arrives immediately.",
+    "summaryLong": "The campaign at Ta’if came in the aftermath of Hunayn and showed that progress is not always immediate or linear. The siege is remembered as a moment in which patience, restraint, and long-term perspective were required.",
+    "categories": ["seerah", "battles", "islamic_history"],
+    "tags": ["taif", "siege", "patience", "after hunayn"],
+    "gregorian": { "year": 630 },
+    "hijri": { "year": 8, "month": 10 },
+    "location": { "name": "Ta’if, Arabia" },
+    "significance": [
+      "It showed that not every campaign ends with immediate visible success.",
+      "It formed part of the wider consolidation after the opening of Makkah."
+    ],
+    "lessons": [
+      "A believer measures success by obedience and wisdom, not only immediate outcomes."
+    ],
+    "relatedEntities": ["Prophet Muhammad ﷺ"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 64,
+    "sources": [
+      { "label": "Classical Seerah works", "note": "Ta’if is narrated as part of the post-Hunayn sequence." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "approximate",
+    "alternateDates": []
+  },
+  {
+    "id": "expedition_of_tabuk_630",
+    "slug": "expedition-of-tabuk",
+    "title": "Expedition of Tabuk",
+    "summaryShort": "Tabuk tested sincerity, sacrifice, and the readiness of the community in a season of distance and hardship.",
+    "summaryLong": "The Expedition of Tabuk stands out in the Seerah as a campaign of heat, distance, preparation, and exposed sincerity. Even before battle itself, Tabuk became a major moment of testing around sacrifice, honesty, and the cost of commitment.",
+    "categories": ["seerah", "islamic_history"],
+    "tags": ["tabuk", "expedition", "sincerity", "sacrifice"],
+    "gregorian": { "year": 630, "month": 10 },
+    "hijri": { "year": 9, "month": 7 },
+    "location": { "name": "Tabuk region" },
+    "significance": [
+      "It revealed sincerity and hesitation within the broader community.",
+      "It became one of the last major campaigns of the Prophetic era."
+    ],
+    "lessons": [
+      "Hardship can reveal the true quality of commitment."
+    ],
+    "relatedEntities": ["Prophet Muhammad ﷺ", "The believers in Madinah"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 80,
+    "sources": [
+      { "label": "Qur’an 9", "note": "Surah al-Tawbah reflects on themes connected to Tabuk." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "approximate",
+    "alternateDates": []
+  },
+  {
+    "id": "farewell_sermon_632",
+    "slug": "farewell-sermon",
+    "title": "Farewell Sermon",
+    "summaryShort": "During the Farewell Hajj, the Prophet ﷺ reminded the believers of sacred trust, justice, and responsibility before Allah.",
+    "summaryLong": "In the Farewell Hajj, the Prophet ﷺ addressed the believers with foundational reminders about sanctity, trust, rights, justice, and the finality of the message conveyed. The sermon remains one of the most widely remembered summary moments of prophetic guidance near the end of his earthly life.",
+    "categories": ["seerah", "islamic_history", "sacred_places"],
+    "tags": ["farewell hajj", "arafah", "sermon", "amanah"],
+    "gregorian": { "year": 632, "month": 3, "day": 6 },
+    "hijri": { "year": 10, "month": 12, "day": 9 },
+    "location": { "name": "Arafah, near Makkah", "latitude": 21.3541, "longitude": 39.9847 },
+    "significance": [
+      "It gathered essential prophetic reminders in a moment of wide public witness.",
+      "It reinforced the sacredness of life, property, trust, and accountability."
+    ],
+    "lessons": [
+      "Spiritual leadership includes clarity, mercy, and public responsibility."
+    ],
+    "relatedEntities": ["Prophet Muhammad ﷺ"],
+    "relatedContentIds": ["beautiful-character", "hadith-essentials"],
+    "relatedContentHooks": [
+      {
+        "label": "Open Character & Adab",
+        "routeName": "learnJourneyDetail",
+        "pathParameters": { "journeyId": "beautiful-character" }
+      },
+      {
+        "label": "Open Hadith Essentials",
+        "routeName": "learnJourneyDetail",
+        "pathParameters": { "journeyId": "hadith-essentials" }
+      }
+    ],
+    "featuredPriority": 94,
+    "sources": [
+      { "label": "Major hadith collections", "note": "The broad sermon themes are preserved across multiple narrations." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "exact",
+    "alternateDates": []
+  },
+  {
+    "id": "passing_of_prophet_632",
+    "slug": "passing-of-the-prophet",
+    "title": "Passing of Prophet Muhammad ﷺ",
+    "summaryShort": "The passing of the Prophet ﷺ was one of the deepest moments of grief in the early Muslim community and a defining test of faith and steadiness.",
+    "summaryLong": "When the Prophet Muhammad ﷺ returned to his Lord, the Muslim community faced one of its greatest moments of grief. The day tested hearts, but it also clarified that the religion belongs to Allah, revelation had been completed, and the believers must continue upon truth with steadiness.",
+    "categories": ["seerah", "prophets", "deaths", "islamic_history"],
+    "tags": ["prophet", "death", "madinah", "steadfastness"],
+    "gregorian": { "year": 632, "month": 6, "day": 8 },
+    "hijri": { "year": 11, "month": 3, "day": 12 },
+    "location": { "name": "Madinah, Arabia" },
+    "significance": [
+      "It marked the end of prophethood and the completion of the Messenger’s earthly mission.",
+      "The companions were called to remain firm upon worship of Allah alone."
+    ],
+    "lessons": [
+      "Faith is anchored in Allah, who never dies."
+    ],
+    "relatedEntities": ["Prophet Muhammad ﷺ", "Abu Bakr رضي الله عنه"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 99,
+    "sources": [
+      { "label": "Qur’an 3:144", "note": "A verse remembered in the moment of the Prophet’s passing." },
+      { "label": "Sahih al-Bukhari", "note": "Contains reports of the final illness and the community response." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "exact",
+    "alternateDates": []
+  },
+  {
+    "id": "abu_bakr_begins_caliphate_632",
+    "slug": "abu-bakr-begins-caliphate",
+    "title": "Abu Bakr Begins the Caliphate",
+    "summaryShort": "The leadership of Abu Bakr رضي الله عنه began in a moment of grief and urgent responsibility after the Prophet’s passing.",
+    "summaryLong": "After the passing of the Prophet ﷺ, Abu Bakr رضي الله عنه assumed leadership of the Muslim community. His caliphate began at a moment that demanded calm, clarity, and firm commitment to preserving unity and the obligations of faith.",
+    "categories": ["khulafa", "islamic_history"],
+    "tags": ["abu bakr", "caliphate", "leadership", "unity"],
+    "gregorian": { "year": 632, "month": 6, "day": 8 },
+    "hijri": { "year": 11, "month": 3, "day": 12 },
+    "location": { "name": "Madinah, Arabia" },
+    "significance": [
+      "It began the era of the Rightly Guided Caliphs.",
+      "It protected the community from fragmentation in a vulnerable moment."
+    ],
+    "lessons": [
+      "Leadership after loss requires calm clarity and service to principle."
+    ],
+    "relatedEntities": ["Abu Bakr al-Siddiq رضي الله عنه"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 88,
+    "sources": [
+      { "label": "Early Islamic history works", "note": "The succession process is discussed across the major early histories." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "exact",
+    "alternateDates": []
+  },
+  {
+    "id": "battle_of_yamama_633",
+    "slug": "battle-of-yamama",
+    "title": "Battle of Yamamah",
+    "summaryShort": "Yamamah became one of the most consequential battles of the early caliphate and shaped later efforts to preserve the Qur’an in written form.",
+    "summaryLong": "The Battle of Yamamah took place during the caliphate of Abu Bakr رضي الله عنه and was one of the defining confrontations of the Ridda wars. The heavy loss of Qur’an memorizers contributed to the later push to collect the Qur’an in a compiled written form.",
+    "categories": ["battles", "khulafa", "revelation", "islamic_history"],
+    "tags": ["yamamah", "ridda", "quran preservation", "abu bakr"],
+    "gregorian": { "year": 633 },
+    "hijri": { "year": 11, "month": 12 },
+    "location": { "name": "Yamamah, Arabia" },
+    "significance": [
+      "It was a major battle in stabilizing the Muslim polity after the Prophet’s passing.",
+      "It influenced the decision to compile the Qur’an in written form."
+    ],
+    "lessons": [
+      "Preserving revelation requires both living memorization and careful worldly means."
+    ],
+    "relatedEntities": ["Abu Bakr al-Siddiq رضي الله عنه", "Zayd ibn Thabit رضي الله عنه"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 76,
+    "sources": [
+      { "label": "Sahih al-Bukhari", "note": "Contains the well-known report linking Yamamah to the written compilation effort." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "approximate",
+    "alternateDates": []
+  },
+  {
+    "id": "compilation_of_quran_under_abu_bakr_633",
+    "slug": "compilation-of-quran-under-abu-bakr",
+    "title": "Compilation of the Qur’an Under Abu Bakr",
+    "summaryShort": "The first written compilation of the Qur’an after the Prophet’s passing preserved revelation with great care and verification.",
+    "summaryLong": "After the losses at Yamamah, Abu Bakr رضي الله عنه agreed to a careful written compilation of the Qur’an under the supervision of Zayd ibn Thabit رضي الله عنه. This effort preserved the Qur’an with caution, verification, and deep awareness of its sacred trust.",
+    "categories": ["revelation", "khulafa", "islamic_history"],
+    "tags": ["quran", "compilation", "abu bakr", "zayd ibn thabit"],
+    "gregorian": { "year": 633 },
+    "hijri": { "year": 12 },
+    "location": { "name": "Madinah, Arabia" },
+    "significance": [
+      "It was the first major written compilation effort after the Prophet ﷺ.",
+      "It preserved the revealed text with great caution and cross-checking."
+    ],
+    "lessons": [
+      "Sacred trust can require careful administration as well as devotion."
+    ],
+    "relatedEntities": ["Abu Bakr al-Siddiq رضي الله عنه", "Umar ibn al-Khattab رضي الله عنه", "Zayd ibn Thabit رضي الله عنه"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 86,
+    "sources": [
+      { "label": "Sahih al-Bukhari", "note": "Contains the principal report of the compilation effort." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "approximate",
+    "alternateDates": []
+  },
+  {
+    "id": "umar_begins_caliphate_634",
+    "slug": "umar-begins-caliphate",
+    "title": "Umar ibn al-Khattab Begins the Caliphate",
+    "summaryShort": "The caliphate of Umar رضي الله عنه opened a period of justice, administrative strength, and major historical expansion.",
+    "summaryLong": "When Umar ibn al-Khattab رضي الله عنه began the caliphate, the Muslim community entered a period remembered for justice, disciplined governance, and major historical growth. His era remains central to Muslim memory of leadership and public accountability.",
+    "categories": ["khulafa", "islamic_history"],
+    "tags": ["umar", "caliphate", "justice", "leadership"],
+    "gregorian": { "year": 634, "month": 8, "day": 23 },
+    "hijri": { "year": 13, "month": 6, "day": 22 },
+    "location": { "name": "Madinah, Arabia" },
+    "significance": [
+      "It opened one of the most formative periods in early Islamic governance.",
+      "Umar’s era became closely associated with justice and accountability."
+    ],
+    "lessons": [
+      "Strength in leadership must remain tied to taqwa and justice."
+    ],
+    "relatedEntities": ["Umar ibn al-Khattab رضي الله عنه"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 84,
+    "sources": [
+      { "label": "Early Islamic history works", "note": "The succession and beginning of Umar’s caliphate are widely documented." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "exact",
+    "alternateDates": []
+  },
+  {
+    "id": "formalization_of_hijri_calendar_638",
+    "slug": "formalization-of-hijri-calendar",
+    "title": "Formalization of the Hijri Calendar",
+    "summaryShort": "The Hijri calendar was formally adopted during the caliphate of Umar رضي الله عنه, anchoring Muslim public life to the Hijrah.",
+    "summaryLong": "During the caliphate of Umar رضي الله عنه, the Muslim community adopted the Hijrah as the epoch of its formal calendar. This choice tied public record-keeping, administration, and historical memory to migration, sacrifice, and the birth of the Muslim community in Madinah.",
+    "categories": ["khulafa", "islamic_history"],
+    "tags": ["hijri calendar", "umar", "hijrah", "calendar"],
+    "gregorian": { "year": 638 },
+    "hijri": { "year": 17, "month": 1, "day": 1 },
+    "location": { "name": "Madinah, Arabia" },
+    "significance": [
+      "It made the Hijrah the reference point of Muslim historical memory.",
+      "It shaped administration and dating across the Muslim world."
+    ],
+    "lessons": [
+      "A community’s calendar reflects what it chooses to remember and honor."
+    ],
+    "relatedEntities": ["Umar ibn al-Khattab رضي الله عنه"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 82,
+    "sources": [
+      { "label": "Early Islamic history works", "note": "The adoption of the Hijri calendar is linked to Umar’s caliphate." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "approximate",
+    "alternateDates": []
+  },
+  {
+    "id": "entry_into_jerusalem_under_umar_638",
+    "slug": "entry-into-jerusalem-under-umar",
+    "title": "Jerusalem Entered During the Caliphate of Umar",
+    "summaryShort": "The peaceful receiving of Jerusalem during Umar’s caliphate became one of the most memorable episodes of early Islamic history.",
+    "summaryLong": "The entry into Jerusalem during the caliphate of Umar رضي الله عنه is remembered as a moment of humility, public responsibility, and respect for sacred trust. The event occupies a major place in Islamic historical memory connected to Bayt al-Maqdis and the wider early expansion of Muslim rule.",
+    "categories": ["khulafa", "islamic_history", "sacred_places"],
+    "tags": ["jerusalem", "bayt al-maqdis", "umar", "sacred places"],
+    "gregorian": { "year": 638 },
+    "hijri": { "year": 16 },
+    "location": { "name": "Jerusalem" },
+    "significance": [
+      "It connected early Islamic governance to one of the holiest cities in the region.",
+      "It remains associated with humility and public trust."
+    ],
+    "lessons": [
+      "Great historical victories can still be marked by humility rather than pride."
+    ],
+    "relatedEntities": ["Umar ibn al-Khattab رضي الله عنه"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 80,
+    "sources": [
+      { "label": "Early Islamic history works", "note": "Narratives differ slightly in dating, but the event is well established." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "disputed",
+    "alternateDates": []
+  },
+  {
+    "id": "uthman_begins_caliphate_644",
+    "slug": "uthman-begins-caliphate",
+    "title": "Uthman ibn Affan Begins the Caliphate",
+    "summaryShort": "The caliphate of Uthman رضي الله عنه opened another major phase in early Islamic history and expansion.",
+    "summaryLong": "Uthman ibn Affan رضي الله عنه began the caliphate after Umar. His era would include continued expansion, growing administrative complexity, and one of the most historically significant service efforts to the Qur’an: the standardization of the written codex tradition.",
+    "categories": ["khulafa", "islamic_history"],
+    "tags": ["uthman", "caliphate", "leadership", "quran history"],
+    "gregorian": { "year": 644, "month": 11 },
+    "hijri": { "year": 24, "month": 1 },
+    "location": { "name": "Madinah, Arabia" },
+    "significance": [
+      "It opened a major new phase in the era of the Rightly Guided Caliphs.",
+      "It prepared the setting for the standardization of the mushaf tradition."
+    ],
+    "lessons": [
+      "Historical responsibility can grow as a community widens in reach and complexity."
+    ],
+    "relatedEntities": ["Uthman ibn Affan رضي الله عنه"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 78,
+    "sources": [
+      { "label": "Early Islamic history works", "note": "The beginning of Uthman’s caliphate is widely documented." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "approximate",
+    "alternateDates": []
+  },
+  {
+    "id": "standardization_of_mushaf_650",
+    "slug": "standardization-of-the-mushaf",
+    "title": "Standardization of the Mushaf Under Uthman",
+    "summaryShort": "The standardization of the mushaf copies under Uthman رضي الله عنه preserved the unity of Qur’anic recitation across a widening Muslim world.",
+    "summaryLong": "As Islam spread into wider lands, Uthman رضي الله عنه oversaw the production of standardized mushaf copies based on the earlier compilation. This service protected the unity of the Qur’anic text and remains one of the most important milestones in Qur’an history.",
+    "categories": ["revelation", "khulafa", "islamic_history"],
+    "tags": ["quran", "mushaf", "uthman", "standardization"],
+    "gregorian": { "year": 650 },
+    "hijri": { "year": 25 },
+    "location": { "name": "Madinah, Arabia" },
+    "significance": [
+      "It preserved the unity of the written Qur’anic text across regions.",
+      "It extended the earlier preservation effort begun under Abu Bakr."
+    ],
+    "lessons": [
+      "Preserving revelation can require institutional wisdom as a community expands."
+    ],
+    "relatedEntities": ["Uthman ibn Affan رضي الله عنه", "Zayd ibn Thabit رضي الله عنه"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 88,
+    "sources": [
+      { "label": "Sahih al-Bukhari and early history works", "note": "The broad standardization narrative is well known in classical sources." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "approximate",
+    "alternateDates": []
+  },
+  {
+    "id": "ali_begins_caliphate_656",
+    "slug": "ali-begins-caliphate",
+    "title": "Ali ibn Abi Talib Begins the Caliphate",
+    "summaryShort": "The caliphate of Ali رضي الله عنه began in one of the most difficult political moments of early Islamic history.",
+    "summaryLong": "Ali ibn Abi Talib رضي الله عنه began the caliphate during a period of serious internal strain in the Muslim community. His era remains deeply significant for its lessons on justice, fitnah, loyalty to truth, and the cost of internal division.",
+    "categories": ["khulafa", "islamic_history"],
+    "tags": ["ali", "caliphate", "fitnah", "justice"],
+    "gregorian": { "year": 656, "month": 6 },
+    "hijri": { "year": 35, "month": 12 },
+    "location": { "name": "Madinah, Arabia" },
+    "significance": [
+      "It opened a difficult and formative phase of early Muslim political history.",
+      "Ali’s leadership remains central to Muslim memory of courage and knowledge."
+    ],
+    "lessons": [
+      "A community can remain tested even after periods of great growth."
+    ],
+    "relatedEntities": ["Ali ibn Abi Talib رضي الله عنه"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 76,
+    "sources": [
+      { "label": "Early Islamic history works", "note": "The start of Ali’s caliphate is narrated across the major histories." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "approximate",
+    "alternateDates": []
+  },
+  {
+    "id": "year_of_unity_661",
+    "slug": "year-of-unity",
+    "title": "Year of Unity",
+    "summaryShort": "The Year of Unity is remembered for the ending of a major political division within the Muslim community.",
+    "summaryLong": "The Year of Unity refers to the year in which al-Hasan ibn Ali رضي الله عنهما yielded the caliphate in order to prevent further bloodshed and division. It remains a major historical moment of peacemaking, sacrifice, and prioritizing the welfare of the Ummah.",
+    "categories": ["islamic_history", "khulafa"],
+    "tags": ["year of unity", "hasan ibn ali", "peace", "unity"],
+    "gregorian": { "year": 661 },
+    "hijri": { "year": 41 },
+    "location": { "name": "Kufah and the wider Muslim polity" },
+    "significance": [
+      "It reduced one of the major political fractures of the early community.",
+      "It is remembered as a moment of principled sacrifice for unity."
+    ],
+    "lessons": [
+      "Not every victory is found in holding power; some victories lie in preventing greater harm."
+    ],
+    "relatedEntities": ["Al-Hasan ibn Ali رضي الله عنهما"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 74,
+    "sources": [
+      { "label": "Early Islamic history works", "note": "The term ʿAm al-Jamaʿah is widely used for this settlement." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "approximate",
+    "alternateDates": []
+  },
+  {
+    "id": "foundation_of_kairouan_670",
+    "slug": "foundation-of-kairouan",
+    "title": "Foundation of Kairouan",
+    "summaryShort": "The founding of Kairouan became one of the major urban and scholarly milestones in the spread of Islam across North Africa.",
+    "summaryLong": "Kairouan grew into one of the great early cities of Islamic civilization in North Africa. Its founding is remembered as part of the widening civilizational reach of Islam through settlement, scholarship, worship, and public institutions.",
+    "categories": ["islamic_history", "sacred_places"],
+    "tags": ["kairouan", "north africa", "city", "civilization"],
+    "gregorian": { "year": 670 },
+    "hijri": { "year": 50 },
+    "location": { "name": "Kairouan, Ifriqiya" },
+    "significance": [
+      "It became one of the great cities of early Muslim North Africa.",
+      "It linked Islamic expansion with urban and scholarly development."
+    ],
+    "lessons": [
+      "Islamic history includes building cities, institutions, and learning centers."
+    ],
+    "relatedEntities": ["Uqbah ibn Nafiʿ رضي الله عنه"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 58,
+    "sources": [
+      { "label": "Classical Islamic history works", "note": "Kairouan’s founding is a standard North African milestone." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "approximate",
+    "alternateDates": []
+  },
+  {
+    "id": "completion_of_dome_of_the_rock_691",
+    "slug": "completion-of-dome-of-the-rock",
+    "title": "Completion of the Dome of the Rock",
+    "summaryShort": "The Dome of the Rock became one of the earliest and most recognizable monumental expressions of Islamic sacred architecture.",
+    "summaryLong": "The completion of the Dome of the Rock in Jerusalem marked a major moment in early Islamic sacred architecture and public presence. It remains one of the most recognizable sites connected to Bayt al-Maqdis in the history of Islam.",
+    "categories": ["islamic_history", "sacred_places"],
+    "tags": ["jerusalem", "dome of the rock", "architecture", "bayt al-maqdis"],
+    "gregorian": { "year": 691 },
+    "hijri": { "year": 72 },
+    "location": { "name": "Jerusalem" },
+    "significance": [
+      "It became one of the earliest major monuments of Islamic sacred architecture.",
+      "It reinforced the visibility of Islam in Jerusalem."
+    ],
+    "lessons": [
+      "Architecture can also carry historical memory, devotion, and civilizational presence."
+    ],
+    "relatedEntities": [],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 52,
+    "sources": [
+      { "label": "Classical and modern historical works", "note": "The completion is associated with the Umayyad period." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "approximate",
+    "alternateDates": []
+  },
+  {
+    "id": "birth_of_abu_hanifa_699",
+    "slug": "birth-of-abu-hanifa",
+    "title": "Birth of Imam Abu Hanifah",
+    "summaryShort": "The birth of Imam Abu Hanifah marks the beginning of one of the greatest legal and scholarly legacies in Islamic history.",
+    "summaryLong": "Imam Abu Hanifah رحمه الله would become one of the most influential jurists in Islam. His birth is remembered as part of the later unfolding of scholarship, fiqh, and disciplined reasoning in service to revelation.",
+    "categories": ["scholars", "births", "islamic_history"],
+    "tags": ["abu hanifa", "fiqh", "scholarship", "birth"],
+    "gregorian": { "year": 699 },
+    "hijri": { "year": 80 },
+    "location": { "name": "Kufah" },
+    "significance": [
+      "It marks the birth of one of Islam’s most influential jurists.",
+      "His later work would shape legal reasoning for generations."
+    ],
+    "lessons": [
+      "Service to revelation can take the form of deep disciplined scholarship."
+    ],
+    "relatedEntities": ["Imam Abu Hanifah رحمه الله"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 52,
+    "sources": [
+      { "label": "Classical biographical works", "note": "The broad birth year is widely cited in tabaqat literature." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "approximate",
+    "alternateDates": []
+  },
+  {
+    "id": "birth_of_imam_malik_711",
+    "slug": "birth-of-imam-malik",
+    "title": "Birth of Imam Malik",
+    "summaryShort": "The birth of Imam Malik marks the beginning of one of the greatest Madinan scholarly legacies in Islam.",
+    "summaryLong": "Imam Malik رحمه الله would become one of the greatest scholars of Madinah and one of the most influential jurists in Islamic history. His life became closely connected to hadith, fiqh, and the living scholarly tradition of the Prophetic city.",
+    "categories": ["scholars", "births", "islamic_history"],
+    "tags": ["imam malik", "madinah", "fiqh", "hadith"],
+    "gregorian": { "year": 711 },
+    "hijri": { "year": 93 },
+    "location": { "name": "Madinah" },
+    "significance": [
+      "He became one of the most important scholars of Madinah.",
+      "His legal and hadith legacy shaped generations of Muslim learning."
+    ],
+    "lessons": [
+      "Sacred cities can remain sources of living scholarship long after the earliest generations."
+    ],
+    "relatedEntities": ["Imam Malik رحمه الله"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 50,
+    "sources": [
+      { "label": "Classical biographical works", "note": "The broad birth year is widely cited." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "approximate",
+    "alternateDates": []
+  },
+  {
+    "id": "death_of_abu_hanifa_767",
+    "slug": "death-of-abu-hanifa",
+    "title": "Death of Imam Abu Hanifah",
+    "summaryShort": "The passing of Imam Abu Hanifah closed one of the most formative scholarly lives in Islamic legal history.",
+    "summaryLong": "The death of Imam Abu Hanifah رحمه الله marked the passing of one of Islam’s most influential jurists. His legacy in fiqh, reasoning, and legal transmission continued through students and later generations across the Muslim world.",
+    "categories": ["scholars", "deaths", "islamic_history"],
+    "tags": ["abu hanifa", "death", "fiqh", "scholarship"],
+    "gregorian": { "year": 767 },
+    "hijri": { "year": 150 },
+    "location": { "name": "Baghdad" },
+    "significance": [
+      "His passing marked the end of one of the foundational scholarly lives in Islamic legal history.",
+      "His school continued through dedicated students and transmission."
+    ],
+    "lessons": [
+      "A scholar’s life can continue bearing fruit long after death."
+    ],
+    "relatedEntities": ["Imam Abu Hanifah رحمه الله"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 46,
+    "sources": [
+      { "label": "Classical biographical works", "note": "The death year is well known in biographical literature." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "approximate",
+    "alternateDates": []
+  },
+  {
+    "id": "birth_of_imam_shafii_767",
+    "slug": "birth-of-imam-shafii",
+    "title": "Birth of Imam al-Shafiʿi",
+    "summaryShort": "The birth of Imam al-Shafiʿi marks the beginning of one of the greatest syntheses of hadith, fiqh, and legal method in Islam.",
+    "summaryLong": "Imam al-Shafiʿi رحمه الله would become one of the most influential jurists and legal theorists in Islamic history. His life is remembered for scholarship that joined hadith, fiqh, and a disciplined approach to legal principles.",
+    "categories": ["scholars", "births", "islamic_history"],
+    "tags": ["shafii", "fiqh", "usul", "birth"],
+    "gregorian": { "year": 767 },
+    "hijri": { "year": 150 },
+    "location": { "name": "Gaza" },
+    "significance": [
+      "He became one of the great imams of fiqh and legal theory.",
+      "His work helped shape later systematic discussion of legal method."
+    ],
+    "lessons": [
+      "Clear principles help preserve coherence in sacred learning."
+    ],
+    "relatedEntities": ["Imam al-Shafiʿi رحمه الله"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 48,
+    "sources": [
+      { "label": "Classical biographical works", "note": "The broad dating is well established." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "approximate",
+    "alternateDates": []
+  },
+  {
+    "id": "great_mosque_of_cordoba_begins_785",
+    "slug": "great-mosque-of-cordoba-begins",
+    "title": "Great Mosque of Cordoba Begins",
+    "summaryShort": "The Great Mosque of Cordoba became one of the best-known symbols of Islamic civilization in al-Andalus.",
+    "summaryLong": "The beginning of the Great Mosque of Cordoba marks one of the most visible sacred and civilizational milestones of Muslim Spain. The site later grew into one of the most recognized expressions of Islamic architecture, learning, and public worship in al-Andalus.",
+    "categories": ["islamic_history", "sacred_places"],
+    "tags": ["cordoba", "andalus", "mosque", "architecture"],
+    "gregorian": { "year": 785 },
+    "hijri": { "year": 169 },
+    "location": { "name": "Cordoba, al-Andalus" },
+    "significance": [
+      "It became one of the most recognizable sacred spaces of al-Andalus.",
+      "It reflects the civilizational breadth of Muslim history beyond Arabia."
+    ],
+    "lessons": [
+      "Islamic history includes the building of beauty, worship, and learning across many lands."
+    ],
+    "relatedEntities": [],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 44,
+    "sources": [
+      { "label": "Islamic history works", "note": "The mosque’s early foundation is well known in Andalusi historical timelines." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "approximate",
+    "alternateDates": []
+  },
+  {
+    "id": "birth_of_ahmad_ibn_hanbal_780",
+    "slug": "birth-of-ahmad-ibn-hanbal",
+    "title": "Birth of Ahmad ibn Hanbal",
+    "summaryShort": "The birth of Ahmad ibn Hanbal marks the beginning of one of the most influential lives of hadith devotion, scholarship, and perseverance.",
+    "summaryLong": "Ahmad ibn Hanbal رحمه الله would become one of the great imams of hadith and fiqh. His legacy is remembered not only for knowledge but also for steadfastness under trial and devotion to preserving the transmitted teachings with care.",
+    "categories": ["scholars", "births", "islamic_history"],
+    "tags": ["ahmad ibn hanbal", "hadith", "fiqh", "steadfastness"],
+    "gregorian": { "year": 780 },
+    "hijri": { "year": 164 },
+    "location": { "name": "Baghdad" },
+    "significance": [
+      "He became one of the most influential imams of hadith and fiqh.",
+      "His life later became a symbol of scholarly steadfastness."
+    ],
+    "lessons": [
+      "Knowledge and patience often appear together in the lives of the great scholars."
+    ],
+    "relatedEntities": ["Ahmad ibn Hanbal رحمه الله"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 48,
+    "sources": [
+      { "label": "Classical biographical works", "note": "The broad dating is widely cited." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "approximate",
+    "alternateDates": []
+  },
+  {
+    "id": "al_azhar_founded_970",
+    "slug": "al-azhar-founded",
+    "title": "al-Azhar Founded",
+    "summaryShort": "Al-Azhar became one of the longest-standing centers of Islamic learning in the Muslim world.",
+    "summaryLong": "The founding of al-Azhar marks the beginning of one of the most enduring institutions of Islamic scholarship. Across centuries, it became associated with learning, transmission, and the continuity of religious education in the Muslim world.",
+    "categories": ["scholars", "islamic_history", "sacred_places"],
+    "tags": ["al-azhar", "learning", "cairo", "institution"],
+    "gregorian": { "year": 970 },
+    "hijri": { "year": 359 },
+    "location": { "name": "Cairo" },
+    "significance": [
+      "It became one of the most influential centers of Islamic learning.",
+      "It linked sacred knowledge with institutional continuity."
+    ],
+    "lessons": [
+      "Long-term institutions help preserve and carry knowledge across generations."
+    ],
+    "relatedEntities": [],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 56,
+    "sources": [
+      { "label": "Islamic history works", "note": "The founding of al-Azhar is a standard institutional milestone." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "approximate",
+    "alternateDates": []
+  },
+  {
+    "id": "recapture_of_jerusalem_1187",
+    "slug": "recapture-of-jerusalem",
+    "title": "Jerusalem Recaptured by Salah al-Din",
+    "summaryShort": "The recapture of Jerusalem under Salah al-Din became one of the most remembered sacred-place milestones in later Islamic history.",
+    "summaryLong": "The return of Jerusalem to Muslim rule under Salah al-Din remains one of the most memorable events in later Islamic historical memory. It combined military success with the recovery of a sacred place deeply loved across the Muslim world.",
+    "categories": ["islamic_history", "sacred_places"],
+    "tags": ["jerusalem", "salahuddin", "bayt al-maqdis", "sacred places"],
+    "gregorian": { "year": 1187, "month": 10, "day": 2 },
+    "hijri": { "year": 583, "month": 7, "day": 27 },
+    "location": { "name": "Jerusalem" },
+    "significance": [
+      "It restored Muslim rule over one of the most sacred cities of the region.",
+      "It became one of the most famous events of later Islamic military history."
+    ],
+    "lessons": [
+      "Sacred places remain tied to memory, longing, and historical responsibility."
+    ],
+    "relatedEntities": ["Salah al-Din al-Ayyubi رحمه الله"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 74,
+    "sources": [
+      { "label": "Islamic history works", "note": "The recapture of Jerusalem is one of the best-known events of the Ayyubid era." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "exact",
+    "alternateDates": []
+  },
+  {
+    "id": "birth_of_imam_bukhari_810",
+    "slug": "birth-of-imam-bukhari",
+    "title": "Birth of Imam al-Bukhari",
+    "summaryShort": "The birth of Imam al-Bukhari reminds the believer that preservation of sacred knowledge is also part of the Ummah’s history.",
+    "summaryLong": "Imam al-Bukhari رحمه الله would later become one of the greatest scholars of hadith preservation in Islamic history. His birth is remembered here as a milestone in the later unfolding of knowledge, scholarship, verification, and service to the Sunnah.",
+    "categories": ["scholars", "births", "islamic_history"],
+    "tags": ["bukhari", "hadith", "scholarship", "knowledge"],
+    "gregorian": { "year": 810, "month": 7, "day": 20 },
+    "hijri": { "year": 194, "month": 10, "day": 13 },
+    "location": { "name": "Bukhara" },
+    "significance": [
+      "It points to the Ummah’s later age of hadith scholarship and preservation.",
+      "It reminds learners that verification and precision are acts of devotion."
+    ],
+    "lessons": [
+      "Great service often begins quietly long before a person becomes widely known."
+    ],
+    "relatedEntities": ["Imam al-Bukhari رحمه الله"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 60,
+    "sources": [
+      { "label": "Classical biographical works", "note": "Widely cited in tabaqat and biographical dictionaries." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "exact",
+    "alternateDates": []
+  },
+  {
+    "id": "death_of_imam_shafii_820",
+    "slug": "death-of-imam-shafii",
+    "title": "Death of Imam al-Shafiʿi",
+    "summaryShort": "The passing of Imam al-Shafiʿi marked the end of one of the greatest scholarly lives in the history of fiqh and legal method.",
+    "summaryLong": "The death of Imam al-Shafiʿi رحمه الله closed a life of profound influence in hadith, fiqh, and legal method. His legacy shaped both scholarly reasoning and the practical transmission of juristic thought across the Muslim world.",
+    "categories": ["scholars", "deaths", "islamic_history"],
+    "tags": ["shafii", "death", "fiqh", "usul"],
+    "gregorian": { "year": 820, "month": 1, "day": 20 },
+    "hijri": { "year": 204, "month": 7 },
+    "location": { "name": "Cairo" },
+    "significance": [
+      "His passing marked the close of one of the foundational scholarly lives in Islam.",
+      "His school and method remained active through generations after him."
+    ],
+    "lessons": [
+      "A scholar’s true longevity is often found in transmitted benefit."
+    ],
+    "relatedEntities": ["Imam al-Shafiʿi رحمه الله"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 46,
+    "sources": [
+      { "label": "Classical biographical works", "note": "The death date is broadly cited in scholarly biographies." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "approximate",
+    "alternateDates": []
+  },
+  {
+    "id": "death_of_ahmad_ibn_hanbal_855",
+    "slug": "death-of-ahmad-ibn-hanbal",
+    "title": "Death of Ahmad ibn Hanbal",
+    "summaryShort": "The death of Ahmad ibn Hanbal marked the passing of one of the most revered imams of hadith, law, and steadfastness.",
+    "summaryLong": "The death of Ahmad ibn Hanbal رحمه الله closed a life remembered for immense hadith knowledge, legal influence, and perseverance in times of difficulty. His legacy remained strong through students, transmitted works, and the moral memory of steadfastness.",
+    "categories": ["scholars", "deaths", "islamic_history"],
+    "tags": ["ahmad ibn hanbal", "death", "hadith", "steadfastness"],
+    "gregorian": { "year": 855, "month": 8, "day": 2 },
+    "hijri": { "year": 241, "month": 3 },
+    "location": { "name": "Baghdad" },
+    "significance": [
+      "It marked the passing of one of the most revered imams of hadith and fiqh.",
+      "His memory remained tied to both scholarship and steadfastness under trial."
+    ],
+    "lessons": [
+      "Truthful perseverance can become part of a scholar’s enduring legacy."
+    ],
+    "relatedEntities": ["Ahmad ibn Hanbal رحمه الله"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 44,
+    "sources": [
+      { "label": "Classical biographical works", "note": "The death date is widely cited." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "approximate",
+    "alternateDates": []
+  },
+  {
+    "id": "death_of_imam_bukhari_870",
+    "slug": "death-of-imam-bukhari",
+    "title": "Death of Imam al-Bukhari",
+    "summaryShort": "The death of Imam al-Bukhari marked the passing of one of the greatest preservers of the Sunnah in Islamic history.",
+    "summaryLong": "The death of Imam al-Bukhari رحمه الله closed a life of immense service to hadith preservation and verification. His work remained one of the most influential parts of Sunni hadith tradition and one of the clearest examples of disciplined sacred scholarship.",
+    "categories": ["scholars", "deaths", "islamic_history"],
+    "tags": ["bukhari", "death", "hadith", "verification"],
+    "gregorian": { "year": 870, "month": 9, "day": 1 },
+    "hijri": { "year": 256, "month": 10, "day": 1 },
+    "location": { "name": "Khartank, near Samarqand" },
+    "significance": [
+      "It marked the passing of one of the most influential hadith scholars in Islam.",
+      "His legacy continued through the transmission of his great collection and method."
+    ],
+    "lessons": [
+      "Precision in religion can be a profound act of devotion."
+    ],
+    "relatedEntities": ["Imam al-Bukhari رحمه الله"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 48,
+    "sources": [
+      { "label": "Classical biographical works", "note": "His death year and broad dating are widely cited." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "exact",
+    "alternateDates": []
+  },
+  {
+    "id": "birth_of_imam_nawawi_1233",
+    "slug": "birth-of-imam-nawawi",
+    "title": "Birth of Imam al-Nawawi",
+    "summaryShort": "The birth of Imam al-Nawawi marks the beginning of one of the most beloved scholarly lives in hadith, fiqh, and spiritual counsel.",
+    "summaryLong": "Imam al-Nawawi رحمه الله became one of the most widely read scholars in Islamic history. His work in hadith, fiqh, and concise beneficial writing made him one of the later scholars whose legacy continues in homes, masajid, and classrooms across the world.",
+    "categories": ["scholars", "births", "islamic_history"],
+    "tags": ["nawawi", "hadith", "fiqh", "birth"],
+    "gregorian": { "year": 1233 },
+    "hijri": { "year": 631 },
+    "location": { "name": "Nawa, Syria" },
+    "significance": [
+      "He became one of the most widely read scholars of the later centuries.",
+      "His concise works continue to shape study, remembrance, and practice."
+    ],
+    "lessons": [
+      "Small books with sincerity can carry benefit across centuries."
+    ],
+    "relatedEntities": ["Imam al-Nawawi رحمه الله"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 42,
+    "sources": [
+      { "label": "Classical biographical works", "note": "The broad birth year is standard in later biographies." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "approximate",
+    "alternateDates": []
+  },
+  {
+    "id": "death_of_imam_nawawi_1277",
+    "slug": "death-of-imam-nawawi",
+    "title": "Death of Imam al-Nawawi",
+    "summaryShort": "The death of Imam al-Nawawi marked the passing of one of the most widely read scholars in later Islamic history.",
+    "summaryLong": "The death of Imam al-Nawawi رحمه الله closed a life of scholarship, worship, and beneficial writing. His works remained among the most beloved and widely read texts in hadith, fiqh, and moral instruction.",
+    "categories": ["scholars", "deaths", "islamic_history"],
+    "tags": ["nawawi", "death", "hadith", "beneficial writing"],
+    "gregorian": { "year": 1277, "month": 12 },
+    "hijri": { "year": 676, "month": 7 },
+    "location": { "name": "Nawa, Syria" },
+    "significance": [
+      "It marked the passing of one of the most influential later Sunni scholars.",
+      "His texts continued to serve students and worshippers long after his death."
+    ],
+    "lessons": [
+      "A life of sincere beneficial writing can outlive its author by centuries."
+    ],
+    "relatedEntities": ["Imam al-Nawawi رحمه الله"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 42,
+    "sources": [
+      { "label": "Classical biographical works", "note": "The broad death dating is standard in scholarly biographies." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "approximate",
+    "alternateDates": []
+  },
+  {
+    "id": "first_hijrah_to_abyssinia_615",
+    "slug": "first-hijrah-to-abyssinia",
+    "title": "First Hijrah to Abyssinia",
+    "summaryShort": "A small group of early Muslims migrated to Abyssinia to protect their faith from persecution in Makkah.",
+    "summaryLong": "The first migration to Abyssinia was one of the earliest communal acts of sacrifice in Islam. The Prophet Muhammad ﷺ permitted a small group of believers to seek safety under the just rule of al-Najashi, showing that preserving faith can require movement, patience, and trust in Allah.",
+    "categories": ["seerah", "islamic_history"],
+    "tags": ["abyssinia", "migration", "najashi", "persecution"],
+    "gregorian": { "year": 615 },
+    "hijri": {},
+    "location": { "name": "Abyssinia" },
+    "significance": [
+      "It showed that early Muslims were willing to leave home in order to safeguard their religion.",
+      "It linked the early Muslim story with a just non-Muslim ruler who offered protection."
+    ],
+    "lessons": [
+      "Protecting faith can require sacrifice long before outward strength appears."
+    ],
+    "relatedEntities": ["Prophet Muhammad ﷺ", "Jaʿfar ibn Abi Talib رضي الله عنه", "al-Najashi رحمه الله"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 78,
+    "sources": [
+      { "label": "Classical Seerah works", "note": "The migration to Abyssinia is a standard early milestone in the Seerah." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "approximate",
+    "alternateDates": []
+  },
+  {
+    "id": "death_of_khadijah_619",
+    "slug": "death-of-khadijah",
+    "title": "Death of Khadijah bint Khuwaylid رضي الله عنها",
+    "summaryShort": "The passing of Khadijah رضي الله عنها marked one of the heaviest personal losses in the Makkan period.",
+    "summaryLong": "The death of Khadijah رضي الله عنها came after years of steadfast support, sacrifice, and comfort for the Prophet Muhammad ﷺ. Her passing is remembered as one of the defining sorrows of the Makkan period and as a reminder of her unmatched place among the earliest believers.",
+    "categories": ["seerah", "deaths", "islamic_history"],
+    "tags": ["khadijah", "makkah", "year of sorrow", "family"],
+    "gregorian": { "year": 619 },
+    "hijri": { "month": 10 },
+    "location": { "name": "Makkah, Arabia" },
+    "significance": [
+      "It marked the loss of the Prophet’s closest household support in the Makkan years.",
+      "It highlights the foundational role Khadijah رضي الله عنها played in the earliest days of Islam."
+    ],
+    "lessons": [
+      "Great support for truth is often quiet, loyal, and deeply sacrificial."
+    ],
+    "relatedEntities": ["Khadijah bint Khuwaylid رضي الله عنها", "Prophet Muhammad ﷺ"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 82,
+    "sources": [
+      { "label": "Sahih al-Bukhari", "note": "Her virtues and status are preserved in authentic hadith." },
+      { "label": "Classical Seerah works", "note": "The broad timing of her passing is treated within the Makkan sequence." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "approximate",
+    "alternateDates": []
+  },
+  {
+    "id": "death_of_abu_talib_619",
+    "slug": "death-of-abu-talib",
+    "title": "Death of Abu Talib",
+    "summaryShort": "The death of Abu Talib removed a major source of clan protection for the Prophet ﷺ in Makkah.",
+    "summaryLong": "The death of Abu Talib marked a major turning point in the Makkan phase of the Seerah. Though he did not embrace Islam, his protection had shielded the Prophet Muhammad ﷺ from some of the harshest attacks of Quraysh, and his death intensified the difficulty of the period that followed.",
+    "categories": ["seerah", "deaths", "islamic_history"],
+    "tags": ["abu talib", "makkah", "protection", "quraysh"],
+    "gregorian": { "year": 619 },
+    "hijri": { "month": 10 },
+    "location": { "name": "Makkah, Arabia" },
+    "significance": [
+      "It removed a major worldly protection around the Prophet ﷺ in Makkah.",
+      "It intensified the vulnerability of the Muslim community before the Hijrah."
+    ],
+    "lessons": [
+      "The loss of outward support can become part of Allah’s path toward a greater opening."
+    ],
+    "relatedEntities": ["Abu Talib", "Prophet Muhammad ﷺ"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 76,
+    "sources": [
+      { "label": "Classical Seerah works", "note": "The passing of Abu Talib is treated as a major pre-Hijrah turning point." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "approximate",
+    "alternateDates": []
+  },
+  {
+    "id": "constitution_of_madinah_622",
+    "slug": "constitution-of-madinah",
+    "title": "Constitution of Madinah",
+    "summaryShort": "The early Madinan charter established principles for communal life, mutual responsibility, and ordered security.",
+    "summaryLong": "Soon after the Hijrah, the Prophet Muhammad ﷺ oversaw a charter in Madinah that organized relations among the city’s communities and clarified mutual obligations. The Constitution of Madinah is remembered as an early example of principled communal order built around justice, accountability, and the public good.",
+    "categories": ["seerah", "islamic_history"],
+    "tags": ["madinah", "charter", "community", "justice"],
+    "gregorian": { "year": 622 },
+    "hijri": { "year": 1, "month": 4 },
+    "location": { "name": "Madinah, Arabia" },
+    "significance": [
+      "It helped shape the first Muslim-led civic order in Madinah.",
+      "It linked faith with responsibility, covenant, and public justice."
+    ],
+    "lessons": [
+      "A believing community needs principled structure as well as spiritual sincerity."
+    ],
+    "relatedEntities": ["Prophet Muhammad ﷺ", "The Muhajirun", "The Ansar"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 86,
+    "sources": [
+      { "label": "Classical Seerah works", "note": "The Madinan charter is widely preserved in early historical sources." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "approximate",
+    "alternateDates": []
+  },
+  {
+    "id": "pledge_of_ridwan_628",
+    "slug": "pledge-of-ridwan",
+    "title": "Pledge of al-Ridwan",
+    "summaryShort": "At Hudaybiyyah, the believers pledged firm loyalty beneath the tree in a moment of testing and resolve.",
+    "summaryLong": "The Pledge of al-Ridwan took place when the Muslims, halted near Makkah, pledged their steadfast loyalty to the Prophet ﷺ beneath the tree. The moment is remembered for sincerity, readiness, and divine praise recorded in the Qur’an.",
+    "categories": ["seerah", "islamic_history"],
+    "tags": ["ridwan", "hudaybiyyah", "pledge", "steadfastness"],
+    "gregorian": { "year": 628, "month": 3 },
+    "hijri": { "year": 6, "month": 11 },
+    "location": { "name": "Hudaybiyyah, near Makkah" },
+    "significance": [
+      "It showed the companions’ readiness to stand firm around the Prophet ﷺ.",
+      "It is directly honored in the Qur’an."
+    ],
+    "lessons": [
+      "Quiet sincerity in a moment of tension can carry immense weight with Allah."
+    ],
+    "relatedEntities": ["Prophet Muhammad ﷺ", "The Companions"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 88,
+    "sources": [
+      { "label": "Qur’an 48:18", "note": "Allah’s pleasure with the people of the pledge is explicitly mentioned." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "approximate",
+    "alternateDates": []
+  },
+  {
+    "id": "letters_to_world_rulers_628",
+    "slug": "letters-to-world-rulers",
+    "title": "Letters Sent to Regional Rulers",
+    "summaryShort": "After Hudaybiyyah, the Prophet ﷺ sent letters inviting neighboring rulers to Islam.",
+    "summaryLong": "In the period after Hudaybiyyah, the Prophet Muhammad ﷺ sent letters beyond Arabia to major rulers and governors. These letters reflected the widening horizon of the Islamic message and the confidence of a mission no longer confined to local survival in Makkah.",
+    "categories": ["seerah", "islamic_history"],
+    "tags": ["letters", "heraclius", "najashi", "daʿwah"],
+    "gregorian": { "year": 628 },
+    "hijri": { "year": 7, "month": 1 },
+    "location": { "name": "Madinah, Arabia" },
+    "significance": [
+      "It marked a public widening of the Prophetic call beyond Arabia.",
+      "It showed that Islam had entered a new phase of confidence and outward invitation."
+    ],
+    "lessons": [
+      "The message of tawhid is for peoples and rulers, not for one tribe alone."
+    ],
+    "relatedEntities": ["Prophet Muhammad ﷺ", "Heraclius", "al-Najashi", "al-Muqawqis"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 74,
+    "sources": [
+      { "label": "Sahih al-Bukhari", "note": "The letter to Heraclius is among the most well-known reports." },
+      { "label": "Classical Seerah works", "note": "The wider letter campaign is preserved in the seerah sequence." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "approximate",
+    "alternateDates": []
+  },
+  {
+    "id": "year_of_delegations_631",
+    "slug": "year-of-delegations",
+    "title": "Year of Delegations",
+    "summaryShort": "After the opening of Makkah and Tabuk, delegations from across Arabia came to Madinah in growing numbers.",
+    "summaryLong": "The Year of Delegations describes the period in which tribes and representatives from across Arabia came to Madinah to meet the Prophet ﷺ, enter Islam, and establish new relationships with the Muslim community. It reflected how quickly the social landscape changed once the major barriers to Islam had fallen.",
+    "categories": ["seerah", "islamic_history"],
+    "tags": ["delegations", "madinah", "arabia", "expansion"],
+    "gregorian": { "year": 631 },
+    "hijri": { "year": 9 },
+    "location": { "name": "Madinah, Arabia" },
+    "significance": [
+      "It showed the broad spread of Islam through Arabia in the later Madinan period.",
+      "It marked a transition from vulnerable minority community to recognized leadership."
+    ],
+    "lessons": [
+      "Openings can come after long patience in ways that transform the wider landscape."
+    ],
+    "relatedEntities": ["Prophet Muhammad ﷺ", "Delegations from across Arabia"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 79,
+    "sources": [
+      { "label": "Classical Seerah works", "note": "The ninth Hijri year is widely described as the Year of Delegations." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "approximate",
+    "alternateDates": []
+  },
+  {
+    "id": "hajj_led_by_abu_bakr_631",
+    "slug": "hajj-led-by-abu-bakr",
+    "title": "Hajj Led by Abu Bakr رضي الله عنه",
+    "summaryShort": "Abu Bakr رضي الله عنه led the Hajj in the ninth year, marking an important public turning point before the Farewell Hajj.",
+    "summaryLong": "In the ninth Hijri year, Abu Bakr رضي الله عنه led the Hajj on behalf of the Prophet ﷺ. This pilgrimage came in the period in which the public order of Arabia was being clarified after the opening of Makkah, and it formed an important prelude to the Farewell Hajj.",
+    "categories": ["seerah", "islamic_history", "sacred_places"],
+    "tags": ["hajj", "abu bakr", "makkah", "baraah"],
+    "gregorian": { "year": 631 },
+    "hijri": { "year": 9, "month": 12 },
+    "location": { "name": "Makkah, Arabia" },
+    "significance": [
+      "It marked an important public moment before the Farewell Hajj.",
+      "It clarified the changing religious order of pilgrimage in Arabia."
+    ],
+    "lessons": [
+      "Leadership in sacred service requires trust, clarity, and responsibility."
+    ],
+    "relatedEntities": ["Abu Bakr رضي الله عنه", "Prophet Muhammad ﷺ", "Ali ibn Abi Talib رضي الله عنه"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 75,
+    "sources": [
+      { "label": "Qur’an 9:3", "note": "The public proclamation associated with Hajj is referenced in this verse." },
+      { "label": "Sahih al-Bukhari", "note": "Reports preserve the leadership of Abu Bakr in that Hajj." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "approximate",
+    "alternateDates": []
+  },
+  {
+    "id": "battle_of_yarmuk_636",
+    "slug": "battle-of-yarmuk",
+    "title": "Battle of Yarmuk",
+    "summaryShort": "Yarmuk became one of the major military turning points in the early expansion of Muslim rule.",
+    "summaryLong": "The Battle of Yarmuk stands among the defining military engagements of the early caliphate. It reshaped the balance of power in the Levant and became one of the major turning points in the political history of the region during the era of the Rightly Guided Caliphs.",
+    "categories": ["battles", "khulafa", "islamic_history"],
+    "tags": ["yarmuk", "levant", "early caliphate", "military history"],
+    "gregorian": { "year": 636, "month": 8 },
+    "hijri": { "year": 15, "month": 6 },
+    "location": { "name": "Yarmuk Valley" },
+    "significance": [
+      "It was a major turning point in the history of Bilad al-Sham.",
+      "It belongs to the formative period of the early caliphate."
+    ],
+    "lessons": [
+      "History can change through moments that require discipline, courage, and endurance."
+    ],
+    "relatedEntities": ["Umar ibn al-Khattab رضي الله عنه", "Khalid ibn al-Walid رضي الله عنه"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 72,
+    "sources": [
+      { "label": "Classical historical works", "note": "Yarmuk is preserved as a major battle of the early conquests." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "approximate",
+    "alternateDates": []
+  },
+  {
+    "id": "battle_of_qadisiyyah_636",
+    "slug": "battle-of-qadisiyyah",
+    "title": "Battle of al-Qadisiyyah",
+    "summaryShort": "Al-Qadisiyyah marked a major turning point in the Muslim encounter with the Sasanian Empire.",
+    "summaryLong": "The Battle of al-Qadisiyyah stands among the major military turning points of the early caliphate. It opened the way for profound changes in Iraq and the wider eastern lands and remains one of the best known battles of the era of Umar رضي الله عنه.",
+    "categories": ["battles", "khulafa", "islamic_history"],
+    "tags": ["qadisiyyah", "iraq", "sasanian", "early caliphate"],
+    "gregorian": { "year": 636, "month": 11 },
+    "hijri": { "year": 15, "month": 8 },
+    "location": { "name": "al-Qadisiyyah, Iraq" },
+    "significance": [
+      "It reshaped the political future of Iraq and the eastern front of the caliphate.",
+      "It stands among the major battles of the era of Umar رضي الله عنه."
+    ],
+    "lessons": [
+      "Large historical shifts can begin from disciplined effort in a single decisive moment."
+    ],
+    "relatedEntities": ["Umar ibn al-Khattab رضي الله عنه", "Saʿd ibn Abi Waqqas رضي الله عنه"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 70,
+    "sources": [
+      { "label": "Classical historical works", "note": "Al-Qadisiyyah is consistently treated as a major battle of the early caliphate." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "approximate",
+    "alternateDates": []
+  },
+  {
+    "id": "birth_of_imam_muslim_821",
+    "slug": "birth-of-imam-muslim",
+    "title": "Birth of Imam Muslim",
+    "summaryShort": "The birth of Imam Muslim marks the beginning of the life of one of the greatest hadith compilers in Islam.",
+    "summaryLong": "Imam Muslim رحمه الله became one of the most important hadith scholars in Islamic history. His careful method and his celebrated collection placed him among the central preservers of Prophetic narrations for later generations.",
+    "categories": ["scholars", "births", "islamic_history"],
+    "tags": ["muslim", "hadith", "birth", "naysabur"],
+    "gregorian": { "year": 821 },
+    "hijri": { "year": 206 },
+    "location": { "name": "Naysabur" },
+    "significance": [
+      "He became one of the leading imams of hadith transmission and verification.",
+      "His collection remained among the most relied upon books in Sunni Islam."
+    ],
+    "lessons": [
+      "Careful transmission of knowledge is a service to generations not yet born."
+    ],
+    "relatedEntities": ["Imam Muslim رحمه الله"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 44,
+    "sources": [
+      { "label": "Classical biographical works", "note": "His broad birth year is standard in scholarly biographies." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "approximate",
+    "alternateDates": []
+  },
+  {
+    "id": "death_of_imam_muslim_875",
+    "slug": "death-of-imam-muslim",
+    "title": "Death of Imam Muslim",
+    "summaryShort": "The death of Imam Muslim marked the passing of one of the greatest preservers of Prophetic hadith.",
+    "summaryLong": "The death of Imam Muslim رحمه الله marked the end of a life devoted to hadith learning, travel, and careful compilation. His legacy continued through one of the most trusted collections in Islam and through the scholarly discipline he helped embody.",
+    "categories": ["scholars", "deaths", "islamic_history"],
+    "tags": ["muslim", "hadith", "death", "sahih muslim"],
+    "gregorian": { "year": 875, "month": 5, "day": 8 },
+    "hijri": { "year": 261, "month": 7, "day": 25 },
+    "location": { "name": "Naysabur" },
+    "significance": [
+      "It marked the passing of one of Islam’s central hadith compilers.",
+      "His contribution remained foundational to later hadith study."
+    ],
+    "lessons": [
+      "The discipline of preserving knowledge can become a lasting form of worship."
+    ],
+    "relatedEntities": ["Imam Muslim رحمه الله"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 44,
+    "sources": [
+      { "label": "Classical biographical works", "note": "His death date is commonly cited in the later biographical tradition." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "exact",
+    "alternateDates": []
+  },
+  {
+    "id": "birth_of_abu_dawud_817",
+    "slug": "birth-of-abu-dawud",
+    "title": "Birth of Abu Dawud",
+    "summaryShort": "The birth of Abu Dawud marks the beginning of the life of one of the great compilers of the Sunan tradition.",
+    "summaryLong": "Abu Dawud رحمه الله became one of the great hadith scholars of Islam and one of the major compilers of the Sunan collections. His work played a central role in preserving narrations especially important to law and practice.",
+    "categories": ["scholars", "births", "islamic_history"],
+    "tags": ["abu dawud", "hadith", "sunan", "birth"],
+    "gregorian": { "year": 817 },
+    "hijri": { "year": 202 },
+    "location": { "name": "Sijistan" },
+    "significance": [
+      "He became one of the major imams of hadith and Sunan literature.",
+      "His collection remained central to juristic and hadith study."
+    ],
+    "lessons": [
+      "Careful service to Sunnah can nourish practice across centuries."
+    ],
+    "relatedEntities": ["Abu Dawud رحمه الله"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 43,
+    "sources": [
+      { "label": "Classical biographical works", "note": "The broad birth year is standard in later biographies." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "approximate",
+    "alternateDates": []
+  },
+  {
+    "id": "death_of_abu_dawud_889",
+    "slug": "death-of-abu-dawud",
+    "title": "Death of Abu Dawud",
+    "summaryShort": "The death of Abu Dawud marked the passing of one of the leading hadith scholars of the Sunan tradition.",
+    "summaryLong": "The death of Abu Dawud رحمه الله closed a life of hadith scholarship, travel, and preservation. His work remained deeply influential in the study of narrations connected to worship, law, and Prophetic guidance.",
+    "categories": ["scholars", "deaths", "islamic_history"],
+    "tags": ["abu dawud", "death", "sunan", "hadith"],
+    "gregorian": { "year": 889, "month": 2, "day": 16 },
+    "hijri": { "year": 275, "month": 10, "day": 16 },
+    "location": { "name": "Basra, Iraq" },
+    "significance": [
+      "It marked the passing of one of the major hadith compilers in Islam.",
+      "His Sunan remained a major reference for later jurists and students."
+    ],
+    "lessons": [
+      "Dedicated preservation of Sunnah becomes a trust carried beyond one lifetime."
+    ],
+    "relatedEntities": ["Abu Dawud رحمه الله"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 43,
+    "sources": [
+      { "label": "Classical biographical works", "note": "The death date is commonly cited in standard biographies." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "exact",
+    "alternateDates": []
+  },
+  {
+    "id": "birth_of_al_tirmidhi_824",
+    "slug": "birth-of-al-tirmidhi",
+    "title": "Birth of Imam al-Tirmidhi",
+    "summaryShort": "The birth of Imam al-Tirmidhi marks the beginning of the life of one of the most influential hadith scholars and compilers.",
+    "summaryLong": "Imam al-Tirmidhi رحمه الله became one of the great hadith scholars whose work served both narration and understanding. His collection is especially valued for pairing hadith transmission with juristic and scholarly commentary.",
+    "categories": ["scholars", "births", "islamic_history"],
+    "tags": ["tirmidhi", "hadith", "birth", "jami"],
+    "gregorian": { "year": 824 },
+    "hijri": { "year": 209 },
+    "location": { "name": "Tirmidh" },
+    "significance": [
+      "He became one of the central hadith compilers in Sunni Islam.",
+      "His collection helped students connect transmission with scholarly understanding."
+    ],
+    "lessons": [
+      "Knowledge is strengthened when careful transmission is joined with thoughtful explanation."
+    ],
+    "relatedEntities": ["Imam al-Tirmidhi رحمه الله"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 43,
+    "sources": [
+      { "label": "Classical biographical works", "note": "The broad birth year is standard in later biographies." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "approximate",
+    "alternateDates": []
+  },
+  {
+    "id": "death_of_al_tirmidhi_892",
+    "slug": "death-of-al-tirmidhi",
+    "title": "Death of Imam al-Tirmidhi",
+    "summaryShort": "The death of Imam al-Tirmidhi marked the passing of a major hadith scholar whose work joined narration and explanation.",
+    "summaryLong": "The death of Imam al-Tirmidhi رحمه الله marked the passing of one of the major hadith scholars of Islam. His legacy remained through a collection valued not only for its narrations but also for the clarity with which it reflected juristic usage and scholarly assessment.",
+    "categories": ["scholars", "deaths", "islamic_history"],
+    "tags": ["tirmidhi", "death", "hadith", "jami"],
+    "gregorian": { "year": 892, "month": 10, "day": 9 },
+    "hijri": { "year": 279, "month": 7, "day": 13 },
+    "location": { "name": "Tirmidh" },
+    "significance": [
+      "It marked the passing of one of the major hadith compilers of Islam.",
+      "His work continued to guide students in both narration and legal understanding."
+    ],
+    "lessons": [
+      "Useful scholarship often endures because it serves both memory and understanding."
+    ],
+    "relatedEntities": ["Imam al-Tirmidhi رحمه الله"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 43,
+    "sources": [
+      { "label": "Classical biographical works", "note": "Later biographies preserve his broad death dating." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "approximate",
+    "alternateDates": []
+  },
+  {
+    "id": "foundation_of_al_qarawiyyin_859",
+    "slug": "foundation-of-al-qarawiyyin",
+    "title": "Foundation of al-Qarawiyyin",
+    "summaryShort": "The founding of al-Qarawiyyin became part of the long story of Islamic learning and sacred institutional life.",
+    "summaryLong": "The foundation of al-Qarawiyyin in Fez became one of the major institutional landmarks in the history of Islamic learning. It reflects how worship, charity, and scholarship often grew together through endowed sacred spaces that served communities over generations.",
+    "categories": ["islamic_history", "sacred_places", "scholars"],
+    "tags": ["al-qarawiyyin", "fez", "learning", "mosque"],
+    "gregorian": { "year": 859 },
+    "hijri": { "year": 245 },
+    "location": { "name": "Fez, Morocco" },
+    "significance": [
+      "It became one of the great institutions of learning in Islamic civilization.",
+      "It shows how masajid and scholarship often grew through sustained public service."
+    ],
+    "lessons": [
+      "Building institutions for knowledge can benefit people far beyond one generation."
+    ],
+    "relatedEntities": ["Fatimah al-Fihriyyah رحمه الله"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 55,
+    "sources": [
+      { "label": "Historical works on Fez and al-Qarawiyyin", "note": "The foundation year is widely cited in educational histories." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "approximate",
+    "alternateDates": []
+  },
+  {
+    "id": "birth_of_ibn_taymiyyah_1263",
+    "slug": "birth-of-ibn-taymiyyah",
+    "title": "Birth of Ibn Taymiyyah",
+    "summaryShort": "The birth of Ibn Taymiyyah marks the beginning of one of the most discussed scholarly lives of the later Islamic centuries.",
+    "summaryLong": "Ibn Taymiyyah رحمه الله became one of the most influential and widely discussed scholars of the later centuries. His writings on creed, worship, law, and reform left a deep mark on later scholarly conversations across the Muslim world.",
+    "categories": ["scholars", "births", "islamic_history"],
+    "tags": ["ibn taymiyyah", "scholar", "birth", "damascus"],
+    "gregorian": { "year": 1263, "month": 1, "day": 22 },
+    "hijri": { "year": 661, "month": 10, "day": 10 },
+    "location": { "name": "Harran" },
+    "significance": [
+      "He became one of the most influential later scholars in creed and legal thought.",
+      "His works continued to shape major scholarly debates long after his lifetime."
+    ],
+    "lessons": [
+      "Strong scholarship can leave a long legacy of debate, benefit, and reform."
+    ],
+    "relatedEntities": ["Ibn Taymiyyah رحمه الله"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 45,
+    "sources": [
+      { "label": "Classical biographical works", "note": "His birth date is commonly cited in later biographies." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "exact",
+    "alternateDates": []
+  },
+  {
+    "id": "death_of_ibn_taymiyyah_1328",
+    "slug": "death-of-ibn-taymiyyah",
+    "title": "Death of Ibn Taymiyyah",
+    "summaryShort": "The death of Ibn Taymiyyah marked the passing of a scholar whose works continued to shape later Islamic discourse.",
+    "summaryLong": "The death of Ibn Taymiyyah رحمه الله closed a life of teaching, writing, debate, and reform. His influence remained strong through his many writings and through the students and later scholars who transmitted and discussed his legacy.",
+    "categories": ["scholars", "deaths", "islamic_history"],
+    "tags": ["ibn taymiyyah", "death", "scholar", "damascus"],
+    "gregorian": { "year": 1328, "month": 9, "day": 26 },
+    "hijri": { "year": 728, "month": 11, "day": 20 },
+    "location": { "name": "Damascus" },
+    "significance": [
+      "It marked the passing of one of the most influential later scholars of Islam.",
+      "His writings remained central in many later theological and legal discussions."
+    ],
+    "lessons": [
+      "A scholar’s influence can continue long after his voice falls silent."
+    ],
+    "relatedEntities": ["Ibn Taymiyyah رحمه الله"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 45,
+    "sources": [
+      { "label": "Classical biographical works", "note": "His death date is widely cited in the later biographical tradition." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "exact",
+    "alternateDates": []
+  },
+  {
+    "id": "birth_of_ibn_kathir_1301",
+    "slug": "birth-of-ibn-kathir",
+    "title": "Birth of Ibn Kathir",
+    "summaryShort": "The birth of Ibn Kathir marks the beginning of the life of one of the most widely read later scholars of tafsir and history.",
+    "summaryLong": "Ibn Kathir رحمه الله became one of the most widely read later scholars of tafsir, hadith, and history. His writings, especially in Qur’an commentary and prophetic history, remained standard references for students across generations.",
+    "categories": ["scholars", "births", "islamic_history", "revelation"],
+    "tags": ["ibn kathir", "tafsir", "history", "birth"],
+    "gregorian": { "year": 1301 },
+    "hijri": { "year": 701 },
+    "location": { "name": "Busra, Syria" },
+    "significance": [
+      "He became one of the most widely read later scholars of tafsir and Islamic history.",
+      "His works helped connect hadith, tafsir, and historical memory."
+    ],
+    "lessons": [
+      "Careful explanation of revelation can serve generations of readers and students."
+    ],
+    "relatedEntities": ["Ibn Kathir رحمه الله"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 44,
+    "sources": [
+      { "label": "Classical biographical works", "note": "The broad birth year is standard in the later biographical record." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "approximate",
+    "alternateDates": []
+  },
+  {
+    "id": "death_of_ibn_kathir_1373",
+    "slug": "death-of-ibn-kathir",
+    "title": "Death of Ibn Kathir",
+    "summaryShort": "The death of Ibn Kathir marked the passing of one of the most influential later scholars of tafsir and sacred history.",
+    "summaryLong": "The death of Ibn Kathir رحمه الله marked the passing of a scholar whose works remained deeply influential in tafsir, hadith, and history. His writings continued to help later Muslims study revelation alongside the Prophetic and historical record.",
+    "categories": ["scholars", "deaths", "islamic_history", "revelation"],
+    "tags": ["ibn kathir", "death", "tafsir", "history"],
+    "gregorian": { "year": 1373, "month": 2, "day": 18 },
+    "hijri": { "year": 774, "month": 2, "day": 26 },
+    "location": { "name": "Damascus" },
+    "significance": [
+      "It marked the passing of one of the most influential later scholars of tafsir and sacred history.",
+      "His works continued to guide students of Qur’an and Prophetic history."
+    ],
+    "lessons": [
+      "Beneficial scholarship can continue teaching long after its author has died."
+    ],
+    "relatedEntities": ["Ibn Kathir رحمه الله"],
+    "relatedContentIds": [],
+    "relatedContentHooks": [],
+    "featuredPriority": 44,
+    "sources": [
+      { "label": "Classical biographical works", "note": "His death date is commonly cited in later biographies." }
+    ],
+    "isPublished": true,
+    "dateConfidence": "exact",
+    "alternateDates": []
+  }
+]

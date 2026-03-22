@@ -99,6 +99,7 @@ class LearnCategoryCatalog {
       title: 'Islamic Trivia',
       iconKey: 'islamic_trivia',
       routeName: 'learnQuizzesHub',
+      queryParameters: {'filter': 'trivia'},
       searchKeywords: [
         'islamic trivia',
         'trivia',
@@ -186,6 +187,7 @@ class LearnCategoryCatalog {
       title: 'Stories of the Prophets',
       iconKey: 'prophets',
       routeName: 'learnProphetsHub',
+      queryParameters: {'tab': 'stories'},
       searchKeywords: ['prophets', 'stories', 'anbiya', 'seerah'],
       tags: ['stories', 'history'],
       sectionType: 'hub',

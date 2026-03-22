@@ -1,6 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:path_of_nur/features/journey/application/journey_progression_provider.dart';
+import 'package:path_of_nur/features/kids/activity/application/kids_activity_log_service.dart';
+import 'package:path_of_nur/features/kids/activity/domain/kids_activity_models.dart';
 import 'package:path_of_nur/features/kids_dua_learning/application/kids_dua_my_day_provider.dart';
 import 'package:path_of_nur/features/kids_dua_learning/application/kids_dua_progress_provider.dart';
 import 'package:path_of_nur/features/worship/domain/fasting_status.dart';
@@ -81,6 +83,33 @@ void main() {
 
     expect(state.currentSuggestedDuaId, 'after-waking-up');
     expect(state.nextSuggestedDuaId, 'rabbi-zidnee-ilma');
+  });
+
+  test('my day completion logs canonical learner activity once', () async {
+    final container = await makeTestContainer(
+      overrides: [
+        kidsDuaNowProvider.overrideWithValue(() => DateTime(2026, 3, 18, 21)),
+        _journeySnapshotOverride(),
+      ],
+    );
+    addTearDown(container.dispose);
+
+    final notifier = container.read(kidsDuaMyDayProvider.notifier);
+    notifier.completeDuaForToday('after-waking-up');
+    notifier.completeDuaForToday('rabbi-zidnee-ilma');
+    notifier.completeDuaForToday('before-eating');
+    notifier.completeDuaForToday('after-eating');
+    notifier.completeDuaForToday('leaving-home');
+    notifier.completeDuaForToday('before-sleep');
+    notifier.completeDuaForToday('astaghfirullah');
+    notifier.completeDuaForToday('astaghfirullah');
+
+    final activities = container
+        .read(kidsActivityLogProvider.notifier)
+        .recentActivities(types: const {KidsActivityType.duaMyDayCompleted});
+
+    expect(activities, hasLength(1));
+    expect(activities.first.contentId, 'astaghfirullah');
   });
 }
 

@@ -76,7 +76,43 @@ class _LearningJourneyStagePageState
       );
     }
 
-    if (!_trackingStarted) {
+    final completedStageIds = ref.watch(
+      learningJourneyProgressProvider.select((state) => state.completedStageIds),
+    );
+    final stageUnlocked =
+        completedStageIds.contains(stage.id) ||
+        isLearningJourneyStageUnlocked(
+          journey: journey,
+          stageId: stage.id,
+          completedStageIds: completedStageIds,
+        );
+    final accessibleStageId = resolveAccessibleLearningJourneyStageId(
+      journey: journey,
+      preferredStageId: stage.id,
+      completedStageIds: completedStageIds,
+    );
+
+    if (!stageUnlocked && accessibleStageId != null && !_redirectStarted) {
+      _redirectStarted = true;
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+        context.replaceNamed(
+          'learnJourneyStage',
+          pathParameters: {
+            'journeyId': journey.id,
+            'stageId': accessibleStageId,
+          },
+          queryParameters: widget.learnTogetherChildProfileId == null
+              ? const <String, String>{}
+              : {
+                  'learnTogetherChildProfileId':
+                      widget.learnTogetherChildProfileId!,
+                },
+        );
+      });
+    }
+
+    if (stageUnlocked && !_trackingStarted) {
       _trackingStarted = true;
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (!mounted) return;
@@ -179,7 +215,9 @@ class _LearningJourneyStagePageState
     return LearnHubPageScaffold(
       headerIcon: Icons.open_in_new_rounded,
       title: localizedStageTitle(context, stage),
-      subtitle: l10n.learningJourneyStageOpeningSubtitle,
+      subtitle: stageUnlocked
+          ? l10n.learningJourneyStageOpeningSubtitle
+          : l10n.learningJourneyStageLockedRedirectSubtitle,
       quote: buildLearningCompactQuote(),
       children: [
         SizedBox(height: 32),
@@ -187,7 +225,9 @@ class _LearningJourneyStagePageState
         SizedBox(height: 14),
         Center(
           child: Text(
-            l10n.learningJourneyStageLaunchingBody,
+            stageUnlocked
+                ? l10n.learningJourneyStageLaunchingBody
+                : l10n.learningJourneyStageLockedRedirectBody,
             style: TextStyle(color: Color(0xFF675B4E)),
           ),
         ),

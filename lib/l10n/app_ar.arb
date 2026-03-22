@@ -87,9 +87,9 @@
   "babyNamesSortQuranicPriority": "Qur’anic priority",
   "babyNamesSortShortest": "Shortest",
   "babyNamesStyleTags": "Style Tags",
-  "babyNamesSubtitle": "A calm family naming library with meaning, context, and guidance.",
+  "babyNamesSubtitle": "مكتبة هادئة لأسماء المواليد بمعانيها وسياقها وإرشاداتها.",
   "babyNamesSuggestionsLabel": "suggestions",
-  "babyNamesTitle": "Muslim Baby Names",
+  "babyNamesTitle": "أسماء المواليد المسلمين",
   "babyNamesUnisexLabel": "Unisex",
   "babyNamesVariantsTitle": "Variants & Spellings",
   "brotherName": "Brother Shahab",
@@ -555,6 +555,136 @@
   "modeRamadanWorshipSubtitle": "Fasting and nightly ibadah are highlighted for this season.",
   "modeRamadanWorshipTaraweeh": "Taraweeh",
   "modeRamadanWorshipTitle": "Ramadan Ibadah Focus",
+  "historyAdditionalMatchesTitle": "لحظات أخرى لهذا اليوم",
+  "historyArchiveAllCategories": "كل الفئات",
+  "historyArchiveAllGregorianMonths": "كل الأشهر الميلادية",
+  "historyArchiveAllHijriMonths": "كل الأشهر الهجرية",
+  "historyArchiveCategoryLabel": "الفئة",
+  "historyArchiveEmptyFilters": "لا توجد أحداث تاريخية تطابق هذه المرشحات بعد.",
+  "historyArchiveFiltersTitle": "تصفّح الأرشيف",
+  "historyArchiveGregorianMonthLabel": "الشهر الميلادي",
+  "historyArchiveHijriMonthLabel": "الشهر الهجري",
+  "historyArchiveLoadError": "تعذر تحميل الأحداث التاريخية الآن.",
+  "historyArchiveResultsCount": "{count} حدث",
+  "@historyArchiveResultsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "historyArchiveSubtitle": "تصفّح لحظات تاريخية إسلامية منتقاة بحسب التاريخ والفئة.",
+  "historyArchiveTitle": "التقويم التاريخي",
+  "historyCategoryBattles": "المعارك",
+  "historyCategoryBirths": "المواليد",
+  "historyCategoryDeaths": "الوفيات",
+  "historyCategoryIslamicHistory": "التاريخ الإسلامي",
+  "historyCategoryKhulafa": "الخلفاء",
+  "historyCategoryProphets": "الأنبياء",
+  "historyCategoryRevelation": "الوحي",
+  "historyCategorySacredPlaces": "الأماكن المقدسة",
+  "historyCategoryScholars": "العلماء",
+  "historyCategorySeerah": "السيرة",
+  "historyCategoryWorldHistory": "تاريخ العالم",
+  "historyDateConfidenceApproximate": "تاريخ تقريبي",
+  "historyDateConfidenceDisputed": "التاريخ يختلف بين المصادر",
+  "historyDateConfidenceExact": "تاريخ مشهور في المصادر",
+  "historyDateUnavailable": "غير متاح في سجل الإصدار الأول",
+  "historyDateUnknown": "التاريخ غير متاح",
+  "historyDetailLoadingSubtitle": "جار تحميل تفاصيل الحدث التاريخي.",
+  "historyDetailLoadingTitle": "حدث تاريخي",
+  "historyDetailNotFoundSubtitle": "تعذر العثور على هذا الحدث التاريخي.",
+  "historyDetailNotFoundTitle": "الحدث غير موجود",
+  "historyGregorianDateLabel": "التاريخ الميلادي",
+  "historyGregorianDateValue": "{day} {month} {year} م",
+  "@historyGregorianDateValue": {
+    "placeholders": {
+      "day": {
+        "type": "String"
+      },
+      "month": {
+        "type": "String"
+      },
+      "year": {
+        "type": "String"
+      }
+    }
+  },
+  "historyHijriDateLabel": "التاريخ الهجري",
+  "historyHijriDateValue": "{day} {month} {year} هـ",
+  "@historyHijriDateValue": {
+    "placeholders": {
+      "day": {
+        "type": "String"
+      },
+      "month": {
+        "type": "String"
+      },
+      "year": {
+        "type": "String"
+      }
+    }
+  },
+  "historyLearnIslandSubtitle": "لحظات هذا اليوم وأرشيف قابل للتصفح من التاريخ الإسلامي.",
+  "historyLessonsTitle": "الدروس والتأملات",
+  "historyLocationLabel": "الموقع",
+  "historyMatchBadgeBoth": "يطابق الميلادي والهجري",
+  "historyMatchBadgeGregorian": "يطابق اليوم الميلادي",
+  "historyMatchBadgeHijri": "يطابق اليوم الهجري",
+  "historyOnThisDayMatchesSubtitle": "شاهد اللحظات التاريخية التي توافق تاريخ اليوم الميلادي والهجري.",
+  "historyOnThisDayMatchesTitle": "في مثل هذا اليوم",
+  "historyOnThisDaySubtitle": "تأمل تاريخي هادئ لتاريخ اليوم الميلادي والهجري.",
+  "historyOnThisDayTitle": "في مثل هذا اليوم",
+  "historyOpenArchiveAction": "افتح الأرشيف",
+  "historyOverviewTitle": "نظرة عامة",
+  "contextualLinksRelatedTitle": "مرتبط",
+  "contextualLinksTypeEvent": "حدث",
+  "contextualLinksTypeHadith": "حديث",
+  "contextualLinksTypeJourney": "رحلة",
+  "contextualLinksTypeLearn": "تعلّم",
+  "historyRelatedContentTitle": "تعلم مرتبط",
+  "historyRelatedPeopleTitle": "شخصيات وجهات مرتبطة",
+  "historySignificanceTitle": "لماذا يهم",
+  "historySourcesTitle": "المصادر",
+  "historyTodayGregorianValue": "{day} {month} {year}",
+  "@historyTodayGregorianValue": {
+    "placeholders": {
+      "day": {
+        "type": "String"
+      },
+      "month": {
+        "type": "String"
+      },
+      "year": {
+        "type": "String"
+      }
+    }
+  },
+  "historyTodayHijriValue": "{day} {month} {year} هـ",
+  "@historyTodayHijriValue": {
+    "placeholders": {
+      "day": {
+        "type": "String"
+      },
+      "month": {
+        "type": "String"
+      },
+      "year": {
+        "type": "String"
+      }
+    }
+  },
+  "historyTodayShortcutAction": "مطابقات اليوم",
+  "historyEmptyTodaySubtitle": "ما زلنا نضيف لحظات تاريخية لهذا اليوم. ويمكنك مع ذلك تصفح الأرشيف.",
+  "historyEmptyTodayTitle": "ستضاف لحظات أخرى قريبًا",
+  "historyViewAllCount": "عرض الكل ({count})",
+  "@historyViewAllCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "navDhikr": "Ibadah",
   "navGarden": "Profile",
   "navHome": "Home",
@@ -630,6 +760,10 @@
   "profileOpenSettings": "Open settings",
   "profilePlannedRemindersToday": "{count} planned reminders today",
   "profilePrayerReminders": "Salah reminders",
+  "profileMoonriseReminders": "تنبيهات طلوع القمر",
+  "profileMoonriseRemindersSubtitle": "أبلغني عندما يبدأ القمر في الطلوع.",
+  "profileMoonsetReminders": "تنبيهات غروب القمر",
+  "profileMoonsetRemindersSubtitle": "أبلغني عندما يبدأ القمر في الغروب.",
   "profilePrayerSettingsSubtitle": "Set location and calculation preferences for salah.",
   "profilePrayerSettingsTitle": "Salah & Salah Time Settings",
   "profilePrivateTrackingModeSubtitle": "Keep progress visible only on this device.",
@@ -724,6 +858,8 @@
   "quranSetContinueReading": "Set as continue reading",
   "quranShowTranslation": "Translation text",
   "quranShowTransliteration": "Transliteration",
+  "quranShowLearnMore": "اعرف المزيد",
+  "quranShowLearnMoreSubtitle": "أظهر الروابط التعليمية والمعرفة المرتبطة بالآية الحالية.",
   "quranSubtitle": "Read • Search • Notes",
   "quranTapToResume": "Tap to resume",
   "quranTitle": "Quran",
@@ -1545,6 +1681,10 @@
   "learningJourneySeerahHijrahBullet3": "Major transitions can open entirely new doors of good.",
   "learnHubJourneyIslandTitle": "رحلة التعلّم",
   "learnHubJourneyIslandSubtitle": "تابع المسارات الموجّهة أو بدّلها أو استعرضها من مساحة مستقلة داخل التعلّم.",
+  "learnHubExploreAllTitle": "استكشف كل المعرفة",
+  "learnHubExploreAllAction": "استكشف كل المعرفة",
+  "learnHubExploreAllSubtitle": "اعرض مكتبة التعلّم الكاملة مع فلاتر الفئات والبحث والبطاقات الملوّنة.",
+  "learnHubCategoryToolsExploreSubtitle": "تظل أدوات البحث ومساعدات الاكتشاف وأدوات الرحلة مجتمعة هنا.",
   "learningJourneySeerahHijrahTakeaway1": "Hijrah joined courage with careful preparation.",
   "learningJourneySeerahHijrahTakeaway2": "Faithfulness sometimes requires hard transitions.",
   "learningJourneySeerahHijrahTakeaway3": "Tawakkul means trust plus effort.",
@@ -2092,6 +2232,8 @@
   "settingsVisualPreferencesTitle": "Visual Preferences",
   "settingsDisableGlassTransparencyTitle": "Disable Glass Transparency",
   "settingsDisableGlassTransparencySubtitle": "Use solid surfaces instead of translucent glass.",
+  "settingsDisableColoredGlassTitle": "تعطيل الزجاج الملوّن",
+  "settingsDisableColoredGlassSubtitle": "أبقِ الأسطح الزجاجية مع إزالة المعالجة اللونية الملوّنة.",
   "settingsVisualPreferenceUpdated": "Visual preference updated",
   "settingsDisableBackgroundTitle": "Disable Background",
   "settingsDisableBackgroundSubtitle": "Hide decorative background imagery for a cleaner view.",
@@ -2145,6 +2287,7 @@
   "settingsFridayReminderModeNormalDhuhr": "Normal Dhuhr timing",
   "settingsFridayReminderModeCustomJumuah": "Custom Jumu''ah time",
   "settingsPrayerNameFajr": "Fajr",
+  "settingsPrayerNameJumuah": "الجمعة",
   "settingsPrayerNameDhuhr": "Dhuhr",
   "settingsPrayerNameAsr": "Asr",
   "settingsPrayerNameMaghrib": "Maghrib",
@@ -2511,6 +2654,10 @@
   "notificationsDailyRemindersChannelName": "التذكيرات اليومية",
   "notificationsDhikrBody": "خذي لحظة هادئة للذكر.",
   "notificationsDhikrTitle": "تذكير بالذكر",
+  "notificationsMoonriseTitle": "طلوع القمر",
+  "notificationsMoonriseBody": "القمر يطلع الآن.",
+  "notificationsMoonsetTitle": "غروب القمر",
+  "notificationsMoonsetBody": "القمر يغرب الآن.",
   "notificationsFastingBeginsNowBody": "جددي نية الصيام قبل الفجر. النية محلها القلب.",
   "notificationsFastingBeginsNowTitle": "يبدأ الصيام الآن",
   "notificationsFastingBody": "استعد لنية الصيام اليوم.",
@@ -2541,6 +2688,7 @@
   "notificationsPrayerAdhanChannelDescription": "Salah reminder notifications with adhan audio",
   "notificationsPrayerAdhanChannelName": "Salah Reminders ({adhanTitle})",
   "notificationsPrayerAtTimeBody": "It is time for {prayerName} Salah. Stay connected with your salah.",
+  "notificationsPrayerAtTimeFajrBody": "حان وقت صلاة {prayerName}.\nالصَّلاةُ خَيْرٌ مِنَ النَّوْمِ",
   "notificationsPrayerAtTimeTitle": "{prayerName} Salah",
   "notificationsPrayerBeforeQazaBody": "يوشك وقت {prayerName} على الانتهاء. أدّها قبل أن تصبح قضاء.",
   "notificationsPrayerBeforeQazaChannelDescription": "Salah reminder notifications before qada",
@@ -2554,6 +2702,9 @@
   "notificationsRecoveredReminderBody": "فاتك هذا التذكير في وقت سابق. {body}",
   "notificationsReflectionBody": "دوّن تأملًا قصيرًا قبل أن ينتهي يومك.",
   "notificationsReflectionTitle": "تأمل يومي",
+  "notificationsReflectionActionDismiss": "إغلاق",
+  "notificationsReflectionActionRemind10": "ذكّرني بعد 10 دقائق",
+  "notificationsReflectionActionWrite": "اكتب التأمل",
   "prayerCadenceFocused": "وتيرة مركزة: 3 صلوات قضاء يوميًا في دفعات صغيرة مع الثبات.",
   "prayerCadenceLight": "وتيرة خفيفة: صلاة قضاء إضافية واحدة بعد الفجر أو العشاء.",
   "prayerCadenceQueueClear": "قائمة القضاء فارغة. حافظ على الصلوات في وقتها.",
@@ -2683,15 +2834,34 @@
   "batch9QuranReflectionVerseTitle": "آية للتأمل القرآني",
   "batch9QuranWordsAllLoaded": "تم تحميل الكل",
   "batch9QuranWordsEmpty": "لا توجد كلمات تطابق هذا المرشح بعد.",
-  "batch9QuranWordsFlashCard": "بطاقة تعليمية: {transliteration} • {meaning}",
   "batch9QuranWordsLoadError": "تعذر تحميل كلمات القرآن: {error}",
   "batch9QuranWordsMasteredSummary": "{mastered} / {total} تم إتقانها",
+  "batch9QuranWordsOccurrenceCount": "{count} مرة",
+  "batch9QuranWordsExampleAyahTitle": "آية مثال",
+  "batch9QuranWordsNoUsageAvailable": "لا توجد آية مثال متاحة لهذه الكلمة بعد.",
+  "batch9QuranWordsViewOccurrences": "عرض جميع الآيات ({count})",
+  "batch9QuranWordsAyahListTitle": "مواضع الآيات",
+  "batch9QuranWordsAyahListSubtitle": "تظهر {word} في {count} آيات.",
+  "batch9QuranWordsMarkLearned": "علّمها كمُتقنة",
+  "batch9QuranWordsLearned": "مُتقنة",
+  "batch9QuranWordsOpenStudy": "افتح الدراسة",
+  "batch9QuranWordsStudyPageTitle": "دراسة الكلمة",
+  "batch9QuranWordsProgressFilterTitle": "التقدّم",
+  "batch9QuranWordsFilterAll": "الكل",
+  "batch9QuranWordsFilterLearned": "المُتقنة",
+  "batch9QuranWordsFilterNotLearned": "غير المُتقنة",
+  "batch9QuranWordsAllAyahsTitle": "جميع الآيات التي تظهر فيها هذه الكلمة",
+  "batch9QuranWordsAllAyahsSubtitle": "افتح قائمة الآيات الكاملة لـ {word} وانتقل إلى قارئ القرآن من أي مرجع.",
+  "batch9QuranWordsRootLettersTitle": "الحروف الأصلية",
+  "batch9QuranWordsMeaningExpansionTitle": "المعنى",
+  "batch9QuranWordsDetailNotFoundTitle": "الكلمة غير موجودة",
+  "batch9QuranWordsDetailNotFoundSubtitle": "لم تعد بطاقة دراسة هذه الكلمة متاحة.",
   "batch9QuranWordsOccurrenceSummary": "{meaning} • وردت {count} مرة في القرآن",
-  "batch9QuranWordsSearchHint": "ابحث في النطق أو المعنى",
+  "batch9QuranWordsSearchHint": "ابحث في العربية أو النطق أو الترجمة",
   "batch9QuranWordsSortMostFrequent": "الأكثر تكرارًا",
   "batch9QuranWordsSortRank": "ترتيب القائمة العليا",
   "batch9QuranWordsStudyBands": "مستويات الدراسة",
-  "batch9QuranWordsSubtitle": "تعلّم الكلمات القرآنية عالية التكرار من قائمة الكلمات الأساسية المحمّلة.",
+  "batch9QuranWordsSubtitle": "ادرس كلمات القرآن المتكررة بالعربية مع النطق والترجمة.",
   "batch9QuranWordsTop100": "أفضل 100",
   "batch9QuranWordsTop25": "أفضل 25",
   "batch9QuranWordsTop50": "أفضل 50",
@@ -2789,6 +2959,189 @@
   "quranReferenceViewerRelatedJourneys": "رحلات مرتبطة",
   "quranReferenceViewerRelatedLifeLessons": "دروس حياتية مرتبطة",
   "quranReferenceViewerRelatedProphets": "أنبياء مرتبطون",
+  "quranLearnMoreSectionTitle": "اعرف المزيد",
+  "quranLearnMoreInsightsTitle": "فوائد الآية",
+  "quranAyahInsightsDomainSignsInCreation": "آيات الخلق",
+  "quranAyahInsightsDomainWorshipRemembrance": "العبادة والذكر",
+  "quranAyahInsightsDomainCharacterAdab": "الأخلاق والآداب",
+  "quranAyahInsightsDomainTawhidBelief": "التوحيد والإيمان",
+  "quranAyahInsightsDomainAkhirahAccountability": "الآخرة والمسؤولية",
+  "quranAyahInsightsDomainProphetsLessons": "دروس الأنبياء",
+  "quranAyahInsightsDomainGuidanceDailyLife": "الهداية والتأمل",
+  "quranAyahInsightsTypeHadithReference": "مرجع حديث",
+  "quranAyahInsightsTypeAyahInsight": "فائدة قرآنية",
+  "quranAyahInsightsTypeSignsInCreation": "آية من آيات الخلق",
+  "quranAyahInsightsTypeScientificReflection": "تأمل في الخلق",
+  "quranAyahInsightsTypeWorldCreationLesson": "درس في الكون والخلق",
+  "quranAyahInsightsTypeWorshipLesson": "درس تعبدي",
+  "quranAyahInsightsTypeCharacterLesson": "درس أخلاقي",
+  "quranAyahInsightsTypeProphetConnection": "درس من الأنبياء",
+  "quranAyahInsightsTypeRelatedAyah": "آية مرتبطة",
+  "quranAyahInsightsTypeReflectionPrompt": "سؤال للتأمل",
+  "quranAyahInsightsTypeInterpretationNote": "ملاحظة تفسيرية",
+  "quranAyahInsightsCautionLabel": "يُقرأ بتأنٍّ",
+  "quranAyahInsightsRelatedAyahsTitle": "آيات مرتبطة",
+  "quranAyahInsightsRelatedTypeSameTheme": "الموضوع نفسه",
+  "quranAyahInsightsRelatedTypeSupportingInsight": "فائدة داعمة",
+  "quranAyahInsightsRelatedTypeContinuation": "أكمل هذا المعنى",
+  "quranAyahInsightsRelatedTypeContrast": "مقابلة نافعة",
+  "quranAyahInsightsRelatedTypeWorshipConnection": "صلة بالعبادة",
+  "quranAyahInsightsRelatedTypeCharacterConnection": "صلة بالأخلاق",
+  "quranAyahInsightsRelatedTypeCreationConnection": "صلة بالخلق",
+  "quranAyahInsightsRelatedTypeProphetConnection": "صلة نبوية",
+  "quranAyahInsightsBrowseTitle": "تصفّح فوائد الآيات",
+  "quranAyahInsightsBrowseSubtitle": "استكشف الفوائد القرآنية بحسب الموضوع ثم ارجع إلى موضع الآية في القارئ.",
+  "quranAyahInsightsBrowseEmpty": "ستظهر فئات فوائد الآيات هنا مع توسّع المحتوى المرتبط بها.",
+  "quranAyahInsightsBrowseHubAction": "افتح دراسة القرآن",
+  "quranAyahInsightsHubEntryTitle": "تصفّح فوائد الآيات",
+  "quranAyahInsightsHubEntrySubtitle": "استكشف الدروس المرتبطة بالآيات بحسب المجال، من الخلق والعبادة إلى الأخلاق والإيمان والآخرة.",
+  "quranAyahInsightsBrowseAction": "تصفّح الفوائد",
+  "quranAyahInsightsBrowseSubtitleSignsInCreation": "الخلق والطبيعة والآيات التي تدعو القلب إلى التفكر.",
+  "quranAyahInsightsBrowseSubtitleWorshipRemembrance": "الصلاة والذكر والدعاء والإخلاص والحياة التعبدية العملية.",
+  "quranAyahInsightsBrowseSubtitleCharacterAdab": "السلوك والتهذيب والرحمة والعدل وآداب الحياة اليومية.",
+  "quranAyahInsightsBrowseSubtitleTawhidBelief": "أصول الإيمان والتوحيد والتوكل ومراقبة الله.",
+  "quranAyahInsightsBrowseSubtitleAkhirahAccountability": "الحساب والأعمال والبعث والاستعداد للآخرة.",
+  "quranAyahInsightsBrowseSubtitleProphetsLessons": "دروس مركزة مستفادة من أمثلة الأنبياء في القرآن.",
+  "quranAyahInsightsBrowseSubtitleGuidanceDailyLife": "فوائد عامة تساعد على التأمل والعمل في الحياة اليومية.",
+  "quranAyahInsightsDomainEmptyTitle": "لا توجد فوائد هنا بعد",
+  "quranAyahInsightsDomainEmptySubtitle": "هذه الفئة مهيأة للتوسعة القادمة، لكنها لا تحتوي بعد على عناصر قابلة للتصفح.",
+  "quranAyahInsightsBrowseLessonTypeCoreLesson": "درس أساسي",
+  "quranAyahInsightsBrowseLessonTypeReflection": "تأمل",
+  "quranAyahInsightsBrowseLessonTypePracticalTakeaway": "فائدة عملية",
+  "quranAyahInsightsBrowseLessonTypeWarning": "تحذير",
+  "quranAyahInsightsBrowseLessonTypeReminder": "تذكير",
+  "quranAyahInsightsBrowseLessonTypeConnection": "ربط",
+  "quranAyahInsightsBrowseFilterDomains": "المجالات",
+  "quranAyahInsightsBrowseFilterTags": "الوسوم",
+  "quranAyahInsightsBrowseFilterLessonType": "نوع الفائدة",
+  "quranAyahInsightsBrowseFilterAll": "الكل",
+  "quranAyahInsightsBrowseFilterClear": "مسح التصفية",
+  "quranAyahInsightsBrowseNoResultsTitle": "لا توجد فوائد مطابقة بعد",
+  "quranAyahInsightsBrowseNoResultsSubtitle": "جرّب مسح أحد المرشحات أو اختيار موضوع أوسع.",
+  "quranAyahInsightsBrowseTagSabr": "الصبر",
+  "quranAyahInsightsBrowseTagShukr": "الشكر",
+  "quranAyahInsightsBrowseTagTawakkul": "التوكل",
+  "quranAyahInsightsBrowseTagMercy": "الرحمة",
+  "quranAyahInsightsBrowseTagRepentance": "التوبة",
+  "quranAyahInsightsBrowseTagJustice": "العدل",
+  "quranAyahInsightsBrowseTagSincerity": "الإخلاص",
+  "quranAyahInsightsBrowseTagGuidance": "الهداية",
+  "quranAyahInsightsBrowseTagSigns": "الآيات",
+  "quranAyahInsightsBrowseTagCreation": "الخلق",
+  "quranAyahInsightsBrowseTagProphets": "الأنبياء",
+  "quranAyahInsightsBrowseTagWorship": "العبادة",
+  "quranKnowledgeSearchEntryTitle": "ابحث في المعرفة القرآنية",
+  "quranKnowledgeSearchEntrySubtitle": "ابحث في فوائد الآيات والمسارات الموجّهة وصفحات السور من سطح واحد هادئ.",
+  "quranKnowledgeSearchAction": "افتح البحث المعرفي",
+  "quranKnowledgeSearchTitle": "البحث في المعرفة القرآنية",
+  "quranKnowledgeSearchSubtitle": "ابحث في فوائد الآيات والمسارات الموجّهة وصفحات فوائد السور بحسب الموضوع أو الوسم أو العنوان أو مرجع الآية أو اسم السورة.",
+  "quranKnowledgeSearchHint": "ابحث في الموضوعات أو الوسوم أو الآيات أو المسارات أو السور...",
+  "quranKnowledgeSearchEmptyTitle": "ابدأ بموضوع أو وسم أو مرجع آية أو سورة",
+  "quranKnowledgeSearchEmptySubtitle": "ابحث في فوائد الآيات والمسارات الموجّهة وصفحات السور، أو تصفّح إحدى المجموعات المختارة أدناه.",
+  "quranKnowledgeSearchNoResultsTitle": "لا توجد نتائج مطابقة بعد",
+  "quranKnowledgeSearchNoResultsSubtitle": "جرّب موضوعًا أوسع أو مرجع آية أقصر، أو تصفّح إحدى المجموعات أدناه.",
+  "quranKnowledgeSearchSectionAyahInsights": "فوائد الآيات",
+  "quranKnowledgeSearchSectionPaths": "المسارات التعليمية",
+  "quranKnowledgeSearchSectionSurahInsights": "فوائد السور",
+  "quranKnowledgeSearchTypeAyahInsight": "فائدة آية",
+  "quranKnowledgeSearchTypePath": "مسار تعليمي",
+  "quranKnowledgeSearchTypeSurahInsight": "فائدة سورة",
+  "quranAyahInsightPathsEntryTitle": "اتبع المسارات الموجّهة",
+  "quranAyahInsightPathsEntrySubtitle": "انتقل عبر تسلسل صغير من فوائد الآيات المختارة بدل فتح العناصر واحدًا واحدًا.",
+  "quranAyahInsightPathsAction": "افتح المسارات الموجّهة",
+  "quranAyahInsightPathsTitle": "مسارات فوائد الآيات",
+  "quranAyahInsightPathsSubtitle": "اتبع تسلسلات قرآنية قصيرة ومختارة مبنية على محتوى فوائد الآيات الحالي.",
+  "quranAyahInsightPathsEmpty": "ستظهر المسارات الموجّهة هنا مع توسّع التسلسلات المختارة من فوائد الآيات.",
+  "quranAyahInsightPathsReflectionFocusTitle": "محور التأمل",
+  "quranAyahInsightPathsStartAction": "ابدأ بالآية الأولى",
+  "quranAyahInsightPathsCount": "{count} آيات",
+  "@quranAyahInsightPathsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "quranAyahInsightPathTitleSignsInCreationStarter": "مسار تمهيدي في آيات الخلق",
+  "quranAyahInsightPathDescriptionSignsInCreationStarter": "مدخل هادئ إلى السماء والزمن والمطر والآيات الحية التي تدعو القلب إلى التفكر.",
+  "quranAyahInsightPathReflectionSignsInCreationStarter": "تأمل كيف تدعو العلامات المتكررة في الخلق إلى العجب والشكر بدل المرور العابر.",
+  "quranAyahInsightPathTitleWorshipRemembranceStarter": "مسار تمهيدي في العبادة والذكر",
+  "quranAyahInsightPathDescriptionWorshipRemembranceStarter": "تسلسل عملي عن الصلاة والذكر والدعاء والإخلاص والتوكل على الله.",
+  "quranAyahInsightPathReflectionWorshipRemembranceStarter": "مرّ بهذه الآيات وأنت تسأل كيف ينبغي للذكر أن يغيّر يومك الفعلي لا مجرد أفكارك.",
+  "quranAyahInsightPathTitleCharacterAdabStarter": "مسار تمهيدي في الأخلاق والآداب",
+  "quranAyahInsightPathDescriptionCharacterAdabStarter": "تسلسل موجّه عن الصبر والرحمة والعدل والعفو وحسن التعامل مع الناس.",
+  "quranAyahInsightPathReflectionCharacterAdabStarter": "اقرأ كل خطوة كميزان سلوك: ما الذي ينبغي أن يتغير في الكلام أو الكف أو العدل أو معاملة الآخرين؟",
+  "quranAyahInsightPathTitleTawhidBeliefStarter": "مسار تمهيدي في التوحيد والإيمان",
+  "quranAyahInsightPathDescriptionTawhidBeliefStarter": "مسار تأسيسي يمرّ بوحدانية الله والآيات الدالة عليه والتوكل ونبذ الشرك والعيش بالتقوى.",
+  "quranAyahInsightPathReflectionTawhidBeliefStarter": "اسأل نفسك مع كل آية كيف يغيّر الإيمان الصحيح التوكل والإخلاص وطريقة قراءة الآيات من حولك.",
+  "quranAyahInsightPathTitleAkhirahAccountabilityStarter": "مسار تمهيدي في الآخرة والمسؤولية",
+  "quranAyahInsightPathDescriptionAkhirahAccountabilityStarter": "مسار متوازن في الحساب والأعمال والبعث والمسارعة والرجاء في الآخرة.",
+  "quranAyahInsightPathReflectionAkhirahAccountabilityStarter": "دع كل آية تدفعك إلى الاستعداد لا إلى الخوف وحده: الأعمال والصدق والمسارعة والرجاء كلها حاضرة هنا.",
+  "quranAyahInsightPathTitleProphetsLessonsStarter": "مسار تمهيدي في دروس الأنبياء",
+  "quranAyahInsightPathDescriptionProphetsLessonsStarter": "مسار مركّز في صبر الأنبياء وتوكلهم وتسليمهم ودعوتهم وقيادتهم العادلة.",
+  "quranAyahInsightPathReflectionProphetsLessonsStarter": "لاحظ كيف تحوّل أمثلة الأنبياء القيم المجرّدة إلى مواقف معيشة عند الابتلاء والدعوة وتحمل المسؤولية.",
+  "quranSurahInsightsEntryTitle": "موضوعات السورة وفوائدها",
+  "quranSurahInsightsEntrySubtitle": "اطّلع على أبرز الموضوعات والدروس وأقوى مجموعات فوائد الآيات في هذه السورة.",
+  "quranSurahInsightsEntryAction": "افتح فوائد السورة",
+  "quranSurahInsightsBrowseAction": "تصفّح فوائد السور",
+  "quranSurahInsightsBrowseTitle": "موضوعات السور وفوائدها",
+  "quranSurahInsightsBrowseSubtitle": "استكشف موضوعات السور بإيجاز ودروسها ومجموعات فوائد الآيات المرتبطة بها.",
+  "quranSurahInsightsEmpty": "ستظهر صفحات فوائد السور هنا مع توسّع الملخصات المختارة للسور.",
+  "quranSurahInsightsOverviewTitle": "نظرة عامة",
+  "quranSurahInsightsLessonsTitle": "دروس أساسية",
+  "quranSurahInsightsClustersTitle": "مجموعات الفوائد",
+  "quranSurahInsightsSuggestedPathsTitle": "مسارات مقترحة",
+  "quranSurahInsightsClusterCount": "{count} مجموعات",
+  "@quranSurahInsightsClusterCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "quranSurahInsightDescriptionAlBaqarah": "سورة في الهداية والعبادة والعهد والصبر والثقة بالله، تعلّم كيف يتحول الإيمان إلى خُلق جماعي معيش.",
+  "quranSurahInsightDescriptionAliImran": "سورة تجمع بين الإيمان والتفكر وضبط النفس والثبات، خاصة حين يُمتحن القلب.",
+  "quranSurahInsightDescriptionTaHa": "سورة تُبقي الوحي قريبًا من العبادة والذكر وطلب العلم بتواضع.",
+  "quranSurahInsightDescriptionAlFurqan": "سورة في التمييز بين الحق والباطل، وتقابل بين الجحود وبين هدوء سلوك عباد الرحمن.",
+  "quranSurahInsightDescriptionLuqman": "سورة تجمع الحكمة والشكر والتوحيد والنصح الأسري والتواضع وحسن السلوك في إطار واحد.",
+  "quranSurahInsightThemeGuidanceAndDevotion": "الهداية والعبادة",
+  "quranSurahInsightThemePatienceAndReliance": "الصبر والتوكل",
+  "quranSurahInsightThemeSupplicationAndResponse": "الدعاء والإجابة",
+  "quranSurahInsightThemeSteadfastBelief": "ثبات الإيمان",
+  "quranSurahInsightThemeCharacterUnderPressure": "الأخلاق عند الشدة",
+  "quranSurahInsightThemeReflectingOnSigns": "التفكر في الآيات",
+  "quranSurahInsightThemeRevelationAndRemembrance": "الوحي والذكر",
+  "quranSurahInsightThemeSeekingKnowledge": "طلب العلم",
+  "quranSurahInsightThemeWorshipWithPresence": "العبادة بحضور",
+  "quranSurahInsightThemeDiscernmentAndReflection": "التمييز والتأمل",
+  "quranSurahInsightThemeHumbleServanthood": "العبودية المتواضعة",
+  "quranSurahInsightThemeSignsInTimeAndCreation": "آيات الزمن والخلق",
+  "quranSurahInsightThemeGratitudeAndWisdom": "الشكر والحكمة",
+  "quranSurahInsightThemeTawhidInFamilyGuidance": "التوحيد في التوجيه الأسري",
+  "quranSurahInsightThemeHumilityAndGoodConduct": "التواضع وحسن الخلق",
+  "quranSurahInsightLessonSteadfastWorshipNeedsHelp": "الثبات على العبادة لا يقوم على النفس وحدها، بل يطلب العون من الله ويعود إليه دائمًا.",
+  "quranSurahInsightLessonRememberingAllahReshapesTheHeart": "ذكر الله ليس زينة روحية عابرة، بل يعيد تشكيل القلب ويثبّت المؤمن.",
+  "quranSurahInsightLessonDuaIsPartOfLivedFaith": "الدعاء جزء من الإيمان والعبادة، لأن القرب من الله ينبغي أن يقود إلى دعائه.",
+  "quranSurahInsightLessonTaqwaAndReflectionBelongTogether": "التقوى تعظم حين يتفكر المؤمن في الآيات ولا يمر عليها غافلًا.",
+  "quranSurahInsightLessonMercyAndRestraintAreStrengths": "الرحمة وكظم النفس واللين قوى تحفظ جماعة المؤمنين عند الشدة.",
+  "quranSurahInsightLessonSteadfastnessBuiltThroughBeliefAndCharacter": "الثبات يُبنى بإيمان صحيح مع أخلاق منضبطة، لا بالعاطفة وحدها.",
+  "quranSurahInsightLessonPrayerKeepsRevelationConnectedToLife": "الصلاة تبقي الوحي متصلًا بالحياة اليومية حين تجعل الذكر عبادة متكررة.",
+  "quranSurahInsightLessonSincereLearningBeginsWithHumility": "طلب العلم الصادق يبدأ بالتواضع لله لا بالإعجاب بالنفس.",
+  "quranSurahInsightLessonRemembranceShapesAction": "الذكر مقصوده أن يغيّر العمل، لا أن يبقى مجرد شعور لحظي.",
+  "quranSurahInsightLessonServantsOfMercifulKnownByConduct": "عباد الرحمن يُعرفون بثبات السلوك قبل أن يُعرفوا بالدعاوى.",
+  "quranSurahInsightLessonSignsLeadToRemembrance": "آيات الخلق مقصودها أن توقظ الذكر والشكر ووضوح البصيرة.",
+  "quranSurahInsightLessonGuidanceVisibleInConduct": "الهداية تظهر في المشي والكلام ودفع الأذى بكرامة.",
+  "quranSurahInsightLessonGratitudeIsWorship": "الشكر عبادة تُظهر الاعتراف بنعمة الله بالقلب واللسان والحياة.",
+  "quranSurahInsightLessonBeliefAndCharacterTogether": "الإيمان والخلق يُعلَّمان معًا، لأن التوحيد ينبغي أن يشكّل النصح والحياة الأسرية والسلوك.",
+  "quranSurahInsightLessonWisdomShowsInHumility": "الحكمة تظهر في التواضع لله وترك الاستعلاء على الناس.",
+  "quranAyahInsightsBrowseCount": "{count} فوائد",
+  "@quranAyahInsightsBrowseCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "triviaAvailableLabel": "متاح",
   "triviaCategoryAkhlaqSubtitle": "الآداب، والإخلاص، والصبر، والرحمة، وحسن السلوك.",
   "triviaCategoryAkhlaqTitle": "الأخلاق",
@@ -4011,5 +4364,2634 @@
       "title": {}
     }
   },
-  "kidsDuaStoriesMyDayDetail": "قصة هادئة لهذه اللحظة."
+  "kidsDuaStoriesMyDayDetail": "قصة هادئة لهذه اللحظة.",
+  "batch9FaqBrowseAllAction": "تصفّح الكل",
+  "batch9FaqBrowseAllSubtitle": "افتح مجموعة الأسئلة الكاملة للتصفّح الأوسع والاستكشاف.",
+  "learningJourneyDifficultyBeginner": "مبتدئ",
+  "learningJourneyDifficultyIntermediate": "متوسط",
+  "learningJourneyDifficultyAdvanced": "متقدم",
+  "@learningJourneyDurationMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "learningJourneyDurationMinutes": "{minutes} دقيقة",
+  "learningJourneyFeaturedBadge": "مميز",
+  "learningJourneyStageLockedBadge": "مقفل",
+  "@learningJourneyStageReward": {
+    "placeholders": {
+      "xp": {
+        "type": "int"
+      },
+      "drops": {
+        "type": "int"
+      }
+    }
+  },
+  "learningJourneyStageReward": "+{xp} خبرة • +{drops} قطرة",
+  "@learningJourneyDetailLessonCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "learningJourneyDetailLessonCount": "{count} دروس",
+  "learningJourneyLessonSectionRewardsTitle": "المكافآت",
+  "@learningJourneyLessonSectionRewardsSubtitle": {
+    "placeholders": {
+      "xp": {
+        "type": "int"
+      },
+      "drops": {
+        "type": "int"
+      }
+    }
+  },
+  "learningJourneyLessonSectionRewardsSubtitle": "أكمل هذا الدرس لتحصل على {xp} خبرة و{drops} قطرة.",
+  "@learningJourneyFeedbackXpAwarded": {
+    "placeholders": {
+      "xp": {
+        "type": "int"
+      }
+    }
+  },
+  "learningJourneyFeedbackXpAwarded": "تمت إضافة +{xp} خبرة",
+  "learningJourneyStageLockedRedirectSubtitle": "جارٍ فتح الدرس المتاح التالي",
+  "learningJourneyStageLockedRedirectBody": "سيفتح هذا الدرس بعد إكمال الخطوة السابقة. ننقلك الآن إلى الدرس المتاح التالي.",
+  "learningJourneyBrowseFeaturedTitle": "الرحلات المميزة",
+  "learningJourneyBrowseFeaturedSubtitle": "ابدأ بالمسارات الموجَّهة الأنسب للتقدّم الهادئ والثابت.",
+  "learningJourneyBrowseAllJourneysTitle": "كل الرحلات",
+  "learningJourneyBrowseAllJourneysSubtitle": "تصفّح جميع المسارات الموجَّهة وتابع من حيث توقفت.",
+  "crosswordHomeTitle": "ألغاز الكلمات المتقاطعة",
+  "crosswordHomeSubtitle": "ألعاب معرفية هادئة مبنية على محتوى التعلّم الموجود بالفعل في Path of Nūr.",
+  "crosswordLoadErrorTitle": "تعذّر تحميل ألغاز الكلمات المتقاطعة",
+  "crosswordLoadErrorSubtitle": "حاول فتح هذا القسم مرة أخرى بعد قليل.",
+  "crosswordKidsModeTitle": "وضع الأطفال",
+  "crosswordKidsModeSubtitle": "شبكات صغيرة بكلمات بسيطة من الحروف والعبادة والتعلّم المبكر.",
+  "crosswordAdultModeTitle": "وضع الكبار",
+  "crosswordAdultModeSubtitle": "شبكات معرفية عبر الأنبياء والحديث والقرآن والأدعية.",
+  "crosswordDailyModeTitle": "لغز اليوم",
+  "crosswordDailyModeSubtitle": "لغز موضوعي يتغيّر خلال أيام الأسبوع.",
+  "@crosswordDailyThemeLabel": {
+    "placeholders": {
+      "theme": {}
+    }
+  },
+  "crosswordDailyThemeLabel": "موضوع اليوم: {theme}",
+  "@crosswordPuzzleCountLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "crosswordPuzzleCountLabel": "{count} ألغاز متاحة",
+  "@crosswordCompletedCountLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "crosswordCompletedCountLabel": "{count} مكتملة",
+  "@crosswordTodayXpLabel": {
+    "placeholders": {
+      "xp": {}
+    }
+  },
+  "crosswordTodayXpLabel": "{xp} خبرة اليوم",
+  "@crosswordTodayDropsLabel": {
+    "placeholders": {
+      "drops": {}
+    }
+  },
+  "crosswordTodayDropsLabel": "{drops} قطرة اليوم",
+  "crosswordKidsSectionTitle": "ألغاز الأطفال",
+  "crosswordKidsSectionSubtitle": "ألواح حروف وكلمات لطيفة للمتعلمين الصغار.",
+  "crosswordAdultSectionTitle": "ألغاز الكبار",
+  "crosswordAdultSectionSubtitle": "شبكات معرفية تأملية مستمدة من الأنبياء والحديث والقرآن والأدعية.",
+  "@crosswordGridSizeLabel": {
+    "placeholders": {
+      "size": {}
+    }
+  },
+  "crosswordGridSizeLabel": "شبكة {size}×{size}",
+  "crosswordPerfectBadge": "مثالي",
+  "@crosswordClueCountSubtitle": {
+    "placeholders": {
+      "total": {},
+      "solved": {}
+    }
+  },
+  "crosswordClueCountSubtitle": "تم حل {solved} من {total} تلميحات",
+  "crosswordReplayAction": "أعد اللعب",
+  "crosswordContinueAction": "تابع اللغز",
+  "crosswordStartAction": "ابدأ اللغز",
+  "@crosswordPuzzleTitleKids": {
+    "placeholders": {
+      "category": {}
+    }
+  },
+  "crosswordPuzzleTitleKids": "لغز أطفال: {category}",
+  "@crosswordPuzzleTitleAdult": {
+    "placeholders": {
+      "category": {}
+    }
+  },
+  "crosswordPuzzleTitleAdult": "كلمات متقاطعة: {category}",
+  "crosswordDifficultyBeginner": "هادئ",
+  "crosswordDifficultySteady": "ثابت",
+  "crosswordDifficultyReflective": "تأملي",
+  "crosswordDifficultyDeep": "عميق",
+  "crosswordCategoryLetters": "الحروف",
+  "crosswordCategoryWorship": "العبادة",
+  "crosswordCategoryCharacter": "الأدب",
+  "crosswordCategoryFaith": "الإيمان",
+  "crosswordCategoryQuran": "القرآن",
+  "crosswordCategoryHadith": "الحديث",
+  "crosswordCategoryProphets": "الأنبياء",
+  "crosswordCategoryDuas": "الأدعية",
+  "crosswordCategoryJummah": "الجمعة",
+  "crosswordCategoryMixed": "متنوع",
+  "learnQuizzesCrosswordSectionTitle": "ألغاز الكلمات المتقاطعة",
+  "learnQuizzesCrosswordSectionSubtitle": "ألعاب معرفية تعيد استخدام محتوى التعلّم في التطبيق بصيغة هادئة.",
+  "learnQuizzesOpenCrossword": "افتح الكلمات المتقاطعة",
+  "crosswordLoadingSubtitle": "جارٍ تجهيز اللغز الحالي.",
+  "crosswordNotFoundTitle": "اللغز غير موجود",
+  "crosswordNotFoundSubtitle": "تعذّر فتح هذا اللغز.",
+  "crosswordKidsOnlyTitle": "هذا اللغز مخصص لمساحة التعلّم للكبار.",
+  "@crosswordDailyPuzzleSubtitle": {
+    "placeholders": {
+      "category": {}
+    }
+  },
+  "crosswordDailyPuzzleSubtitle": "يركّز لغز اليوم على {category}.",
+  "@crosswordPuzzleSubtitle": {
+    "placeholders": {
+      "category": {},
+      "gridSize": {}
+    }
+  },
+  "crosswordPuzzleSubtitle": "{category} • شبكة {gridSize}",
+  "crosswordAcrossLabel": "أفقي",
+  "crosswordDownLabel": "عمودي",
+  "@crosswordSolvedCountLabel": {
+    "placeholders": {
+      "solved": {},
+      "total": {}
+    }
+  },
+  "crosswordSolvedCountLabel": "{solved}/{total} محلولة",
+  "crosswordGridSectionTitle": "شبكة اللغز",
+  "crosswordCluesSectionTitle": "التلميحات",
+  "crosswordCurrentClueTitle": "التلميح الحالي",
+  "@crosswordClueMetaLabel": {
+    "placeholders": {
+      "length": {},
+      "direction": {}
+    }
+  },
+  "crosswordClueMetaLabel": "{length} أحرف • {direction}",
+  "crosswordCompletionTitle": "اكتمل اللغز",
+  "crosswordCompletionSubtitle": "أكملت اللغز وجمعت مكافآت التعلّم.",
+  "crosswordPerfectSubtitle": "أكملت اللغز بإتقان ونلت مكافأة الكمال أيضاً.",
+  "crosswordCompletionXpReward": "+ خبرة عند الإكمال الأول",
+  "crosswordWordDropReward": "+1 قطرة لكل كلمة محلولة",
+  "crosswordPerfectBonusReward": "+ خبرة إضافية للحل المثالي",
+  "crosswordHintFutureSubtitle": "يمكن إضافة التلميحات لاحقاً دون تغيير بنية اللغز.",
+  "@crosswordRevealLetterAction": {
+    "placeholders": {
+      "remaining": {}
+    }
+  },
+  "crosswordRevealLetterAction": "اكشف حرفاً ({remaining} متبقية)",
+  "@crosswordRevealWordAction": {
+    "placeholders": {
+      "remaining": {}
+    }
+  },
+  "crosswordRevealWordAction": "اكشف الكلمة ({remaining} متبقية)",
+  "@crosswordExtraHintAction": {
+    "placeholders": {
+      "remaining": {}
+    }
+  },
+  "crosswordExtraHintAction": "تلميح إضافي ({remaining} متبقية)",
+  "crosswordExtraHintViewedAction": "تم عرض التلميح الإضافي",
+  "crosswordResumeTitle": "تم حفظ التقدّم",
+  "crosswordResumeSubtitle": "تبقى الحروف التي أدخلتها والكلمات التي حللتها محفوظة عند المغادرة والعودة.",
+  "crosswordProgressSavedSubtitle": "يُحفَظ تقدّمك أثناء الحل.",
+  "crosswordContinueSectionTitle": "تابع الحل",
+  "crosswordContinueSectionSubtitle": "ارجع إلى اللغز الذي كنت تعمل عليه مؤخراً.",
+  "crosswordOverviewTitle": "نظرة على التقدّم",
+  "crosswordOverviewSubtitle": "ملخص هادئ لتقدّم مجموعات الكلمات المتقاطعة للأطفال وللكبار.",
+  "@crosswordPerfectCountLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "crosswordPerfectCountLabel": "{count} حلول مثالية",
+  "@crosswordResumeSectionCount": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "crosswordResumeSectionCount": "{count} قيد التقدّم",
+  "crosswordSolvedClueBadge": "تم الحل",
+  "crosswordSelectedClueBadge": "الدليل المحدد",
+  "@crosswordClueSemanticsLabel": {
+    "placeholders": {
+      "clue": {},
+      "length": {},
+      "direction": {}
+    }
+  },
+  "crosswordClueSemanticsLabel": "{clue}. {length} أحرف. {direction}.",
+  "@crosswordCellSemanticsLabel": {
+    "placeholders": {
+      "row": {},
+      "col": {},
+      "value": {}
+    }
+  },
+  "crosswordCellSemanticsLabel": "الصف {row}، العمود {col}. القيمة الحالية {value}.",
+  "crosswordCellEmptyValue": "فارغ",
+  "crosswordCellCurrentWordHint": "جزء من الدليل الحالي",
+  "@crosswordDailyStreakLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "crosswordDailyStreakLabel": "سلسلة {count} أيام",
+  "crosswordDailyCompleteBadge": "اكتمل لغز اليوم",
+  "@crosswordDailyBonusAchievedLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "crosswordDailyBonusAchievedLabel": "{count} أهداف إضافية",
+  "@crosswordDailyCompletedSubtitle": {
+    "placeholders": {
+      "theme": {}
+    }
+  },
+  "crosswordDailyCompletedSubtitle": "اكتمل لغز {theme} لليوم.",
+  "crosswordDailyChallengeTitle": "تحدي اليوم",
+  "@crosswordDailyChallengeSubtitle": {
+    "placeholders": {
+      "theme": {}
+    }
+  },
+  "crosswordDailyChallengeSubtitle": "كلمات متقاطعة يومية تتمحور حول {theme}.",
+  "@crosswordDailyTargetDifficultyLabel": {
+    "placeholders": {
+      "difficulty": {}
+    }
+  },
+  "crosswordDailyTargetDifficultyLabel": "الدرجة المستهدفة {difficulty}",
+  "@crosswordDailyTimeTakenLabel": {
+    "placeholders": {
+      "duration": {}
+    }
+  },
+  "crosswordDailyTimeTakenLabel": "الوقت: {duration}",
+  "crosswordDailyObjectivePerfectTitle": "أكمله بإتقان",
+  "crosswordDailyObjectivePerfectSubtitle": "أنهِه دون إدخال إجابة خاطئة.",
+  "crosswordDailyObjectiveHintFreeTitle": "بدون تلميحات",
+  "crosswordDailyObjectiveHintFreeSubtitle": "حلّه دون كشف حرف أو كلمة أو تلميح إضافي.",
+  "crosswordDailyObjectiveQuickSolveTitle": "إنجاز مركّز",
+  "@crosswordDailyObjectiveQuickSolveSubtitle": {
+    "placeholders": {
+      "duration": {}
+    }
+  },
+  "crosswordDailyObjectiveQuickSolveSubtitle": "أكمله خلال {duration}.",
+  "@crosswordDailyDropsContributionLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "crosswordDailyDropsContributionLabel": "{count} قطرات اليوم",
+  "@crosswordDailyOceanSummary": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "crosswordDailyOceanSummary": "أضافت كلمات اليوم المتقاطعة {count} قطرات إلى المحيط اليوم.",
+  "crosswordDailyHistoryTitle": "سجل الأيام الأخيرة",
+  "crosswordDailyHistorySubtitle": "نظرة هادئة على تحديات الكلمات المتقاطعة الأخيرة.",
+  "crosswordOpenTodayAction": "افتح لغز اليوم",
+  "crosswordResumeBadge": "قيد التقدّم",
+  "crosswordFeaturedPacksTitle": "الباقات المميزة",
+  "crosswordFeaturedPacksSubtitle": "مجموعات كلمات متقاطعة موجّهة مبنية على أقوى موضوعات التعلّم.",
+  "crosswordThemesTitle": "تصفّح حسب الموضوع",
+  "crosswordThemesSubtitle": "افتح مجموعة مركزة من الألغاز حسب الفئة ومستوى الصعوبة.",
+  "crosswordOpenPackAction": "افتح الباقة",
+  "crosswordContinuePackAction": "تابع الباقة",
+  "crosswordRecommendedAction": "افتح اللغز المقترح",
+  "crosswordAssembledBadge": "مزيج منسّق",
+  "crosswordNextPuzzleAction": "اللغز التالي",
+  "crosswordReturnToPackAction": "العودة إلى الباقة",
+  "@crosswordPackProgressLabel": {
+    "placeholders": {
+      "completed": {},
+      "total": {}
+    }
+  },
+  "crosswordPackProgressLabel": "اكتمل {completed} من {total}",
+  "@crosswordPackPerfectLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "crosswordPackPerfectLabel": "{count} مثالي",
+  "@crosswordPackDifficultyLabel": {
+    "placeholders": {
+      "min": {},
+      "max": {}
+    }
+  },
+  "crosswordPackDifficultyLabel": "المستويات {min}–{max}",
+  "crosswordPackKidsBasicsTitle": "أساسيات الأطفال",
+  "crosswordPackKidsBasicsSubtitle": "باقات افتتاحية لطيفة حول الحروف وكلمات العبادة والمفردات الإسلامية المبكرة.",
+  "crosswordPackAdultFoundationsTitle": "أساسيات الكبار",
+  "crosswordPackAdultFoundationsSubtitle": "باقة أوسع من الألغاز التأملية عبر موضوعات المعرفة الأساسية.",
+  "crosswordPackDailyTitle": "دورة اليوم",
+  "crosswordPackDailySubtitle": "المجموعة الكاملة من ألغاز الأيام الجاهزة المستخدمة في لغز اليوم المتبدّل.",
+  "crosswordPackQuranTitle": "تأملات قرآنية",
+  "crosswordPackQuranSubtitle": "ألغاز مبنية على الكلمات القرآنية والهداية والرحمة وموضوعات التأمل.",
+  "crosswordPackHadithTitle": "تأملات الحديث",
+  "crosswordPackHadithSubtitle": "مجموعات تلميحات تتمحور حول أساسيات الحديث والإخلاص والحلال والإحسان.",
+  "crosswordPackProphetsTitle": "قصص الأنبياء",
+  "crosswordPackProphetsSubtitle": "ألواح كلمات متقاطعة مستمدة من أسماء الأنبياء ودروسهم وإشارات قصصهم.",
+  "crosswordPackDuasTitle": "كلمات الأدعية",
+  "crosswordPackDuasSubtitle": "ألغاز تركّز على الدعاء باستخدام لغة الأدعية القرآنية وموضوعات الأسرة.",
+  "crosswordPackWorshipTitle": "العبادة والممارسة",
+  "crosswordPackWorshipSubtitle": "الصلاة والهداية والجمعة ومفردات العبادة في مجموعة مركزة واحدة.",
+  "crosswordPackCharacterTitle": "الخلق والأدب",
+  "crosswordPackCharacterSubtitle": "مجموعة أخف تركيزاً على الخلق مبنية على الحلال والإحسان وإشارات التعلّم المرتبطة بالأدب.",
+  "crosswordPackMixedTitle": "التحدي المتنوع",
+  "crosswordPackMixedSubtitle": "مجموعة أعمق ومتنوعة تجمع التاريخ والوحي وكلمات المعرفة الأوسع.",
+  "wordSearchHomeTitle": "بحث الكلمات",
+  "wordSearchHomeSubtitle": "ابحث عن كلمات إسلامية ذات معنى في تجربة يومية هادئة.",
+  "wordSearchLoadErrorTitle": "تعذّر تحميل بحث الكلمات",
+  "wordSearchLoadErrorSubtitle": "جرّب فتح اللغز مرة أخرى بعد قليل.",
+  "wordSearchKidsModeTitle": "بحث الكلمات للأطفال",
+  "wordSearchKidsModeSubtitle": "كلمات أقصر وشبكات ألطف وبداية موجهة.",
+  "wordSearchAdultModeTitle": "بحث الكلمات للكبار",
+  "wordSearchAdultModeSubtitle": "موضوعات أعمق ولوحات أكثف وممارسة تأملية.",
+  "wordSearchDailyModeTitle": "بحث الكلمات اليومي",
+  "wordSearchDailyModeSubtitle": "عد كل يوم لتحدٍّ ثابت بموضوع متجدّد.",
+  "wordSearchDailyCompletedSubtitle": "اكتمل بحث كلمات {theme} لليوم.",
+  "@wordSearchDailyCompletedSubtitle": {
+    "placeholders": {
+      "theme": {}
+    }
+  },
+  "wordSearchDailyThemeLabel": "موضوع اليوم: {theme}",
+  "@wordSearchDailyThemeLabel": {
+    "placeholders": {
+      "theme": {}
+    }
+  },
+  "wordSearchDailyStreakLabel": "سلسلة {count} أيام",
+  "@wordSearchDailyStreakLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "wordSearchDailyCompleteBadge": "اكتمل اليوم",
+  "wordSearchResumeBadge": "استئناف",
+  "wordSearchOpenTodayAction": "افتح لغز اليوم",
+  "wordSearchContinueAction": "متابعة",
+  "wordSearchStartAction": "ابدأ اللغز",
+  "wordSearchPuzzleCountLabel": "{count} ألغاز",
+  "@wordSearchPuzzleCountLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "wordSearchCompletedCountLabel": "{count} مكتملة",
+  "@wordSearchCompletedCountLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "wordSearchXpLabel": "{count} خبرة",
+  "@wordSearchXpLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "wordSearchDropsLabel": "{count} قطرة",
+  "@wordSearchDropsLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "wordSearchContinueSectionTitle": "واصل الحل",
+  "wordSearchContinueSectionSubtitle": "ارجع إلى آخر لغز غير مكتمل.",
+  "wordSearchDailyHistoryTitle": "ألغاز الأيام الأخيرة",
+  "wordSearchDailyHistorySubtitle": "عرض بسيط لأحدث إنجازاتك اليومية.",
+  "wordSearchFeaturedPacksTitle": "باقات مميزة",
+  "wordSearchFeaturedPacksSubtitle": "ابدأ بباقات هادئة ومختارة لكل نمط.",
+  "wordSearchThemesTitle": "الموضوعات",
+  "wordSearchThemesSubtitle": "تصفّح بحسب العبادة والأنبياء وموضوعات القرآن وغيرها.",
+  "wordSearchLoadingSubtitle": "جاري تحميل بحث الكلمات",
+  "wordSearchNotFoundTitle": "اللغز غير موجود",
+  "wordSearchNotFoundSubtitle": "هذا اللغز غير متاح الآن.",
+  "wordSearchKidsOnlyTitle": "هذا اللغز غير متاح في ملف الطفل الحالي.",
+  "wordSearchPackDifficultyLabel": "الصعوبة {min}-{max}",
+  "@wordSearchPackDifficultyLabel": {
+    "placeholders": {
+      "min": {},
+      "max": {}
+    }
+  },
+  "wordSearchPackProgressLabel": "{completed}/{total} مكتمل",
+  "@wordSearchPackProgressLabel": {
+    "placeholders": {
+      "completed": {},
+      "total": {}
+    }
+  },
+  "wordSearchPackPerfectLabel": "{count} مثالي",
+  "@wordSearchPackPerfectLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "wordSearchRecommendedAction": "اللغز المقترح التالي",
+  "wordSearchPerfectBadge": "مثالي",
+  "wordSearchReplayAction": "إعادة",
+  "wordSearchGridSizeLabel": "شبكة {size}x{size}",
+  "@wordSearchGridSizeLabel": {
+    "placeholders": {
+      "size": {}
+    }
+  },
+  "wordSearchFoundCountLabel": "تم العثور على {found}/{total} كلمة",
+  "@wordSearchFoundCountLabel": {
+    "placeholders": {
+      "found": {},
+      "total": {}
+    }
+  },
+  "wordSearchPuzzleTitleKids": "مكتشف {category}",
+  "@wordSearchPuzzleTitleKids": {
+    "placeholders": {
+      "category": {}
+    }
+  },
+  "wordSearchPuzzleTitleAdult": "بحث {category}",
+  "@wordSearchPuzzleTitleAdult": {
+    "placeholders": {
+      "category": {}
+    }
+  },
+  "wordSearchPuzzleSubtitle": "{category} • لوحة {size}x{size}",
+  "@wordSearchPuzzleSubtitle": {
+    "placeholders": {
+      "category": {},
+      "size": {}
+    }
+  },
+  "wordSearchDailyPuzzleSubtitle": "بحث كلمات {theme} اليومي",
+  "@wordSearchDailyPuzzleSubtitle": {
+    "placeholders": {
+      "theme": {}
+    }
+  },
+  "wordSearchCategoryKids": "أطفال",
+  "wordSearchCategoryLetters": "حروف",
+  "wordSearchCategoryQuran": "القرآن",
+  "wordSearchCategoryHadith": "الحديث",
+  "wordSearchCategoryProphets": "الأنبياء",
+  "wordSearchCategoryDuas": "الأدعية",
+  "wordSearchCategoryWorship": "العبادة",
+  "wordSearchCategoryCharacter": "الخلق",
+  "wordSearchCategoryHistory": "التاريخ",
+  "wordSearchCategoryMixed": "متنوع",
+  "wordSearchDifficultyGentle": "هادئ",
+  "wordSearchDifficultySteady": "متدرج",
+  "wordSearchDifficultyFocused": "مركز",
+  "wordSearchDifficultyDeep": "عميق",
+  "wordSearchOpenPackAction": "افتح الباقة",
+  "wordSearchHintSectionTitle": "التلميحات",
+  "wordSearchHintRevealLetter": "اكشف الحرف الأول",
+  "wordSearchHintHighlightWord": "أبرز كلمة",
+  "wordSearchHintUsageLabel": "التلميحات المستخدمة: {letters} أحرف، {highlights} إبرازات",
+  "@wordSearchHintUsageLabel": {
+    "placeholders": {
+      "letters": {},
+      "highlights": {}
+    }
+  },
+  "wordSearchGridSectionTitle": "شبكة الحروف",
+  "wordSearchSelectionHint": "اسحب أو اضغط على مسار مستقيم للعثور على كلمة.",
+  "wordSearchSelectionReady": "يتم حفظ الاختيارات تلقائياً أثناء اللعب.",
+  "wordSearchWordListTitle": "الكلمات المطلوب العثور عليها",
+  "wordSearchFoundBadge": "تم العثور",
+  "wordSearchRevealedLetterBadge": "الحرف الأول: {letter}",
+  "@wordSearchRevealedLetterBadge": {
+    "placeholders": {
+      "letter": {}
+    }
+  },
+  "wordSearchHighlightedBadge": "مُبرز",
+  "wordSearchExtraHint": "تلميح: {hint}",
+  "@wordSearchExtraHint": {
+    "placeholders": {
+      "hint": {}
+    }
+  },
+  "wordSearchCompletionTitle": "اكتمل اللغز",
+  "wordSearchCompletionSubtitle": "لقد عثرت على جميع الكلمات في الشبكة.",
+  "wordSearchPerfectSubtitle": "لقد عثرت على جميع الكلمات بإكمال مثالي.",
+  "wordSearchCompletionXpReward": "تم منح خبرة الإكمال",
+  "wordSearchWordDropReward": "كل كلمة عُثر عليها أضافت قطرات",
+  "wordSearchPerfectBonusReward": "مكافأة خبرة للحل المثالي",
+  "wordSearchNextPuzzleAction": "اللغز التالي",
+  "wordSearchReturnToPackAction": "العودة إلى الباقة",
+  "wordSearchBackHomeAction": "العودة للرئيسية",
+  "wordSearchCellSemanticsLabel": "الصف {row}، العمود {column}، الحرف {letter}",
+  "@wordSearchCellSemanticsLabel": {
+    "placeholders": {
+      "row": {},
+      "column": {},
+      "letter": {}
+    }
+  },
+  "wordSearchPackKidsStarterTitle": "كلمات البداية للأطفال",
+  "wordSearchPackKidsStarterSubtitle": "باقة افتتاحية هادئة لكلمات إسلامية مألوفة.",
+  "wordSearchPackLettersTitle": "مكتشف الحروف العربية",
+  "wordSearchPackLettersSubtitle": "اعثر على كلمات بسيطة مرتبطة بتعلم العربية المبكر.",
+  "wordSearchPackPrayerTitle": "كلمات الصلاة",
+  "wordSearchPackPrayerSubtitle": "كلمات تتصل بالصلاة والوضوء والممارسة المباركة.",
+  "wordSearchPackAdultTitle": "أساسيات الكبار",
+  "wordSearchPackAdultSubtitle": "باقة افتتاحية راسخة للمتعلمين الأكبر سناً.",
+  "wordSearchPackQuranTitle": "موضوعات قرآنية",
+  "wordSearchPackQuranSubtitle": "كلمات مرتبطة بالهداية والرحمة والوحي.",
+  "wordSearchPackHadithTitle": "كلمات الحديث",
+  "wordSearchPackHadithSubtitle": "ابحث عن كلمات تعزز المعاني النبوية.",
+  "wordSearchPackProphetsTitle": "الأنبياء والأماكن",
+  "wordSearchPackProphetsSubtitle": "أسماء وأماكن من التاريخ النبوي.",
+  "wordSearchPackDuaTitle": "الأدعية والمعاني",
+  "wordSearchPackDuaSubtitle": "كلمات تشكلها الدعاء والرحمة والتوبة.",
+  "wordSearchPackCharacterTitle": "الخلق والأدب",
+  "wordSearchPackCharacterSubtitle": "ابحث عن صفات تزكي النفس.",
+  "wordSearchPackDailyTitle": "متنوع يومي",
+  "wordSearchPackDailySubtitle": "باقة متبدلة تدعم التحدي اليومي.",
+  "learnQuizzesWordSearchSectionTitle": "بحث الكلمات",
+  "learnQuizzesWordSearchSectionSubtitle": "اعثر على كلمات إسلامية ذات معنى داخل شبكات موضوعية.",
+  "learnQuizzesOpenWordSearch": "افتح بحث الكلمات",
+  "matchingHomeTitle": "لعبة المطابقة",
+  "matchingHomeSubtitle": "طابق بين الكلمات والمعاني والدروس الإسلامية الهادفة.",
+  "matchingLoadErrorTitle": "تعذر تحميل لعبة المطابقة الآن.",
+  "matchingLoadErrorSubtitle": "حاول مرة أخرى بعد قليل. تقدمك المحفوظ ما زال آمناً.",
+  "matchingLoadingSubtitle": "يتم تجهيز جلسة المطابقة التالية.",
+  "matchingNotFoundTitle": "تعذر العثور على لغز المطابقة هذا.",
+  "matchingNotFoundSubtitle": "جرّب لغزاً آخر أو عد إلى صفحة المطابقة الرئيسية.",
+  "matchingKidsOnlyTitle": "هذه المجموعة مخصصة لمسار التعلم للكبار.",
+  "matchingKidsModeTitle": "مطابقة الأطفال",
+  "matchingKidsModeSubtitle": "مطابقة هادئة لكلمات وأفكار إسلامية مبسطة.",
+  "matchingAdultModeTitle": "مطابقة الكبار",
+  "matchingAdultModeSubtitle": "مطابقات أعمق للمعاني والمفاهيم والدروس.",
+  "matchingDailyModeTitle": "مطابقة اليوم",
+  "matchingDailyModeSubtitle": "تحدي مطابقة موضوعي يتجدد كل يوم.",
+  "matchingDailyCompletedSubtitle": "تم إكمال موضوع المطابقة اليوم: {theme}.",
+  "@matchingDailyCompletedSubtitle": {
+    "placeholders": {
+      "theme": {}
+    }
+  },
+  "matchingDailyThemeLabel": "موضوع اليوم: {theme}",
+  "@matchingDailyThemeLabel": {
+    "placeholders": {
+      "theme": {}
+    }
+  },
+  "matchingDailyPuzzleSubtitle": "مطابقة يومية · {theme}",
+  "@matchingDailyPuzzleSubtitle": {
+    "placeholders": {
+      "theme": {}
+    }
+  },
+  "matchingPuzzleSubtitle": "{category} · {count} أزواج",
+  "@matchingPuzzleSubtitle": {
+    "placeholders": {
+      "category": {},
+      "count": {}
+    }
+  },
+  "matchingPuzzleCountLabel": "{count} ألغاز متاحة",
+  "@matchingPuzzleCountLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "matchingCompletedCountLabel": "اكتمل {count}",
+  "@matchingCompletedCountLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "matchingXpLabel": "{count} خبرة مكتسبة",
+  "@matchingXpLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "matchingDropsLabel": "{count} قطرات مكتسبة",
+  "@matchingDropsLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "matchingDailyStreakLabel": "سلسلة {count} أيام",
+  "@matchingDailyStreakLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "matchingDailyCompleteBadge": "اكتمل اليومي",
+  "matchingResumeBadge": "استئناف",
+  "matchingOpenTodayAction": "افتح لغز اليوم",
+  "matchingContinueAction": "متابعة",
+  "matchingStartAction": "ابدأ",
+  "matchingContinueSectionTitle": "أكمل المطابقة",
+  "matchingContinueSectionSubtitle": "تابع آخر لغز بدأته.",
+  "matchingDailyHistoryTitle": "السجل اليومي الأخير",
+  "matchingDailyHistorySubtitle": "آخر جلسات المطابقة اليومية لديك.",
+  "matchingFeaturedPacksTitle": "باقات مميزة",
+  "matchingFeaturedPacksSubtitle": "أماكن مناسبة للبدء أو المتابعة.",
+  "matchingThemesTitle": "الموضوعات",
+  "matchingThemesSubtitle": "تصفح باقات المطابقة حسب الموضوع والفئة.",
+  "matchingOpenPackAction": "افتح الباقة",
+  "matchingRecommendedAction": "المقترح التالي",
+  "matchingReplayAction": "إعادة",
+  "matchingPairCountLabel": "{count} أزواج",
+  "@matchingPairCountLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "matchingFoundCountLabel": "تمت مطابقة {found} من {total}",
+  "@matchingFoundCountLabel": {
+    "placeholders": {
+      "found": {},
+      "total": {}
+    }
+  },
+  "matchingPerfectBadge": "مثالي",
+  "matchingPuzzleTitleKids": "مطابقة {category}",
+  "@matchingPuzzleTitleKids": {
+    "placeholders": {
+      "category": {}
+    }
+  },
+  "matchingPuzzleTitleAdult": "مطابقة {category}",
+  "@matchingPuzzleTitleAdult": {
+    "placeholders": {
+      "category": {}
+    }
+  },
+  "matchingDifficultyGentle": "لطيف",
+  "matchingDifficultySteady": "ثابت",
+  "matchingDifficultyFocused": "مركّز",
+  "matchingDifficultyDeep": "عميق",
+  "matchingCategoryKids": "الأطفال",
+  "matchingCategoryLetters": "الحروف العربية",
+  "matchingCategoryQuran": "القرآن",
+  "matchingCategoryHadith": "الحديث",
+  "matchingCategoryProphets": "الأنبياء",
+  "matchingCategoryDuas": "الأدعية",
+  "matchingCategoryWorship": "العبادة",
+  "matchingCategoryCharacter": "الأخلاق والأدب",
+  "matchingCategoryMixed": "متنوع",
+  "matchingHintSectionTitle": "التلميحات",
+  "matchingHintRevealPair": "اكشف زوجاً",
+  "matchingHintRemoveOption": "أزل خياراً",
+  "matchingHintUsageLabel": "كشف زوج: {revealUses} · إزالة خيار: {removeUses}",
+  "@matchingHintUsageLabel": {
+    "placeholders": {
+      "revealUses": {},
+      "removeUses": {}
+    }
+  },
+  "matchingLeftColumnTitle": "الجانب الأيسر",
+  "matchingRightColumnTitle": "الجانب الأيمن",
+  "matchingFoundBadge": "تمت المطابقة",
+  "matchingSelectedBadge": "محدد",
+  "matchingRevealedBadge": "استُخدم تلميح",
+  "matchingCardSemanticsLabel": "{label} {state}",
+  "@matchingCardSemanticsLabel": {
+    "placeholders": {
+      "label": {},
+      "state": {}
+    }
+  },
+  "matchingCompletionTitle": "اكتملت المطابقة",
+  "matchingCompletionSubtitle": "لقد طابقت جميع الأزواج في هذا اللغز.",
+  "matchingPerfectSubtitle": "لقد طابقت جميع الأزواج بشكل مثالي.",
+  "matchingCompletionXpReward": "تم منح خبرة الإكمال",
+  "matchingPairDropReward": "كل زوج صحيح أضاف قطرات",
+  "matchingPerfectBonusReward": "مكافأة خبرة للمطابقة المثالية",
+  "matchingNextPuzzleAction": "اللغز التالي",
+  "matchingReturnToPackAction": "العودة إلى الباقة",
+  "matchingBackHomeAction": "العودة للرئيسية",
+  "matchingPackDifficultyLabel": "الصعوبة {min}–{max}",
+  "@matchingPackDifficultyLabel": {
+    "placeholders": {
+      "min": {},
+      "max": {}
+    }
+  },
+  "matchingPackProgressLabel": "اكتمل {completed} من {total}",
+  "@matchingPackProgressLabel": {
+    "placeholders": {
+      "completed": {},
+      "total": {}
+    }
+  },
+  "matchingPackPerfectLabel": "{count} مثالي",
+  "@matchingPackPerfectLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "matchingPackKidsBasicsTitle": "أساسيات المطابقة للأطفال",
+  "matchingPackKidsBasicsSubtitle": "أزواج بسيطة لبدايات التعلم الإسلامي.",
+  "matchingPackArabicTitle": "تعلم العربية",
+  "matchingPackArabicSubtitle": "روابط بين الحروف والكلمات للمتعلمين الصغار.",
+  "matchingPackQuranTitle": "مفاهيم قرآنية",
+  "matchingPackQuranSubtitle": "طابق بين الأفكار القرآنية ومعانيها المألوفة.",
+  "matchingPackHadithTitle": "تعاليم الحديث",
+  "matchingPackHadithSubtitle": "اربط المصطلحات النبوية بمعانيها وتعاليمها.",
+  "matchingPackProphetsTitle": "الأنبياء",
+  "matchingPackProphetsSubtitle": "طابق أسماء الأنبياء مع دروسهم وأماكنهم.",
+  "matchingPackDuaTitle": "الأدعية",
+  "matchingPackDuaSubtitle": "اربط بين الأدعية ومعانيها.",
+  "matchingPackAdabTitle": "الأخلاق والأدب",
+  "matchingPackAdabSubtitle": "اربط صفات الأخلاق والآداب بتذكيرات واضحة.",
+  "matchingPackDailyTitle": "متنوع يومي",
+  "matchingPackDailySubtitle": "باقة متبدلة تدعم تحدي المطابقة اليومي.",
+  "learnQuizzesMatchingSectionTitle": "لعبة المطابقة",
+  "learnQuizzesMatchingSectionSubtitle": "طابق بين الكلمات والمعاني والدروس في مجموعات هادئة.",
+  "learnQuizzesOpenMatching": "افتح لعبة المطابقة",
+  "ayahCompletionHomeTitle": "إكمال الآية",
+  "ayahCompletionHomeSubtitle": "أكمل الكلمات الناقصة من آيات موثقة في تجربة هادئة للمراجعة والحفظ.",
+  "ayahCompletionLoadErrorTitle": "تعذّر تحميل إكمال الآية الآن.",
+  "ayahCompletionLoadErrorSubtitle": "حاول مرة أخرى بعد قليل. سيبقى تقدمك محفوظًا.",
+  "ayahCompletionLoadingSubtitle": "يتم تجهيز آيات اليوم ومجموعات الحفظ.",
+  "ayahCompletionNotFoundTitle": "لم يتم العثور على هذا التمرين.",
+  "ayahCompletionNotFoundSubtitle": "هذه المجموعة غير متاحة الآن.",
+  "ayahCompletionKidsOnlyTitle": "هذه المجموعة غير متاحة في ملف الطفل.",
+  "ayahCompletionKidsModeTitle": "آيات الأطفال",
+  "ayahCompletionKidsModeSubtitle": "آيات قصيرة مع كلمة ناقصة واحدة وإرشاد لطيف.",
+  "ayahCompletionAdultModeTitle": "آيات الكبار",
+  "ayahCompletionAdultModeSubtitle": "آيات تأملية مع أكثر من فراغ لمراجعة أرسخ.",
+  "ayahCompletionDailyModeTitle": "آية اليوم",
+  "ayahCompletionDailyModeSubtitle": "آية واحدة لليوم مع تكرار هادئ ومكافأة يومية خفيفة.",
+  "ayahCompletionDailyCompletedSubtitle": "اكتملت آية {theme} لليوم.",
+  "@ayahCompletionDailyCompletedSubtitle": {
+    "placeholders": {
+      "theme": {}
+    }
+  },
+  "ayahCompletionDailyThemeLabel": "تركيز اليوم: {theme}",
+  "@ayahCompletionDailyThemeLabel": {
+    "placeholders": {
+      "theme": {}
+    }
+  },
+  "ayahCompletionDailyPuzzleSubtitle": "آية اليوم • {theme}",
+  "@ayahCompletionDailyPuzzleSubtitle": {
+    "placeholders": {
+      "theme": {}
+    }
+  },
+  "ayahCompletionDailyHistoryTitle": "آيات الأيام الأخيرة",
+  "ayahCompletionDailyHistorySubtitle": "نظرة هادئة على مراجعتك القرآنية الأخيرة.",
+  "ayahCompletionDailyStreakLabel": "سلسلة يومية {count}",
+  "@ayahCompletionDailyStreakLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "ayahCompletionDailyCompleteBadge": "اكتمل اليوم",
+  "ayahCompletionPuzzleCountLabel": "{count} تمارين آيات",
+  "@ayahCompletionPuzzleCountLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "ayahCompletionCompletedCountLabel": "{count} مكتمل",
+  "@ayahCompletionCompletedCountLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "ayahCompletionXpLabel": "{count} نقطة XP",
+  "@ayahCompletionXpLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "ayahCompletionDropsLabel": "{count} قطرات المحيط",
+  "@ayahCompletionDropsLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "ayahCompletionContinueSectionTitle": "تابع الحفظ",
+  "ayahCompletionContinueSectionSubtitle": "ارجع إلى آخر آية فتحتها وحافظ على الوتيرة.",
+  "ayahCompletionFeaturedPacksTitle": "مجموعات آيات مميزة",
+  "ayahCompletionFeaturedPacksSubtitle": "ابدأ بمجموعات قصيرة وثابتة للحفظ والتأمل.",
+  "ayahCompletionThemesTitle": "الموضوعات والمجموعات",
+  "ayahCompletionThemesSubtitle": "تصفح الآيات حسب الموضوع والحفظ والاستخدام اليومي.",
+  "ayahCompletionProgressCountLabel": "{done} من {total} فراغات مكتملة",
+  "@ayahCompletionProgressCountLabel": {
+    "placeholders": {
+      "done": {},
+      "total": {}
+    }
+  },
+  "ayahCompletionReferenceLabel": "{reference}",
+  "@ayahCompletionReferenceLabel": {
+    "placeholders": {
+      "reference": {}
+    }
+  },
+  "ayahCompletionReferenceSubtitle": "افتح هذه الآية في قارئ القرآن",
+  "ayahCompletionOpenPackAction": "افتح المجموعة",
+  "ayahCompletionContinueAction": "تابع",
+  "ayahCompletionRecommendedAction": "الموصى به",
+  "ayahCompletionReplayAction": "راجع مرة أخرى",
+  "ayahCompletionStartAction": "ابدأ",
+  "ayahCompletionPlayAyahAction": "شغّل الآية",
+  "ayahCompletionPerfectBadge": "مثالي",
+  "ayahCompletionPackProgressLabel": "{completed} من {total} مكتمل",
+  "@ayahCompletionPackProgressLabel": {
+    "placeholders": {
+      "completed": {},
+      "total": {}
+    }
+  },
+  "ayahCompletionPackPerfectLabel": "{count} مثالي",
+  "@ayahCompletionPackPerfectLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "ayahCompletionPackDifficultyLabel": "الصعوبة {min}-{max}",
+  "@ayahCompletionPackDifficultyLabel": {
+    "placeholders": {
+      "min": {},
+      "max": {}
+    }
+  },
+  "ayahCompletionPuzzleTitleKids": "آية أطفال {surah}:{ayah}",
+  "@ayahCompletionPuzzleTitleKids": {
+    "placeholders": {
+      "surah": {},
+      "ayah": {}
+    }
+  },
+  "ayahCompletionPuzzleTitleAdult": "تدريب آية {surah}:{ayah}",
+  "@ayahCompletionPuzzleTitleAdult": {
+    "placeholders": {
+      "surah": {},
+      "ayah": {}
+    }
+  },
+  "ayahCompletionPuzzleSubtitle": "{category} • {count} فراغات",
+  "@ayahCompletionPuzzleSubtitle": {
+    "placeholders": {
+      "category": {},
+      "count": {}
+    }
+  },
+  "ayahCompletionVerseSectionTitle": "الآية",
+  "ayahCompletionHintSectionTitle": "تلميح",
+  "ayahCompletionRevealBlankAction": "اكشف فراغًا واحدًا",
+  "ayahCompletionHintUsageLabel": "تم استخدام الكشف {count} مرة",
+  "@ayahCompletionHintUsageLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "ayahCompletionBlankSectionTitle": "أكمل الفراغات",
+  "ayahCompletionBlankPrompt": "اختر فراغًا للمتابعة.",
+  "ayahCompletionBlankSelectedLabel": "تم اختيار الفراغ {index}",
+  "@ayahCompletionBlankSelectedLabel": {
+    "placeholders": {
+      "index": {}
+    }
+  },
+  "ayahCompletionBlankChipLabel": "الفراغ {index}",
+  "@ayahCompletionBlankChipLabel": {
+    "placeholders": {
+      "index": {}
+    }
+  },
+  "ayahCompletionBlankPlaceholder": "الفراغ {index}",
+  "@ayahCompletionBlankPlaceholder": {
+    "placeholders": {
+      "index": {}
+    }
+  },
+  "ayahCompletionCompletionTitle": "اكتملت الآية",
+  "ayahCompletionCompletionSubtitle": "ظهرت الآية كاملة الآن. أعد قراءتها مرة أخرى واحتفظ بها قريبًا من قلبك.",
+  "ayahCompletionPerfectSubtitle": "اكتملت بلا أخطاء ولا تلميحات.",
+  "ayahCompletionCompletionXpReward": "تم منح XP للإكمال",
+  "ayahCompletionBlankDropReward": "أضافت الكلمات الصحيحة قطرات إلى المحيط",
+  "ayahCompletionPerfectBonusReward": "تم منح مكافأة الإكمال المثالي",
+  "ayahCompletionNextPuzzleAction": "الآية التالية",
+  "ayahCompletionReturnToPackAction": "العودة إلى المجموعة",
+  "ayahCompletionBackHomeAction": "العودة للرئيسية",
+  "ayahCompletionCategoryShortSurahs": "السور القصيرة",
+  "ayahCompletionCategoryDailyDuaAyahs": "آيات الدعاء اليومية",
+  "ayahCompletionCategoryMercy": "الرحمة",
+  "ayahCompletionCategoryPatience": "الصبر",
+  "ayahCompletionCategoryGratitude": "الشكر",
+  "ayahCompletionCategoryMemorization": "الحفظ",
+  "ayahCompletionCategoryQuran": "القرآن",
+  "ayahCompletionCategoryMixed": "متنوع",
+  "ayahCompletionDifficultyGentle": "لطيف",
+  "ayahCompletionDifficultySteady": "ثابت",
+  "ayahCompletionDifficultyReflective": "تأملي",
+  "ayahCompletionDifficultyDeep": "عميق",
+  "ayahCompletionPackKidsShortSurahsTitle": "سور قصيرة للأطفال",
+  "ayahCompletionPackKidsShortSurahsSubtitle": "آيات حفظ مبكرة مع فراغ واحد واضح في كل مرة.",
+  "ayahCompletionPackKidsMemorizationTitle": "حفظ الأطفال",
+  "ayahCompletionPackKidsMemorizationSubtitle": "مجموعة صغيرة لتكرار الآيات المألوفة بهدوء.",
+  "ayahCompletionPackAdultShortSurahsTitle": "السور القصيرة للكبار",
+  "ayahCompletionPackAdultShortSurahsSubtitle": "آيات قصيرة مع استدعاء أعمق قليلًا وتأمل أهدأ.",
+  "ayahCompletionPackAdultDailyDuasTitle": "آيات الدعاء اليومية",
+  "ayahCompletionPackAdultDailyDuasSubtitle": "آيات تتكرر في الدعاء والرجاء والرجوع إلى الله.",
+  "ayahCompletionPackAdultMercyTitle": "آيات الرحمة",
+  "ayahCompletionPackAdultMercySubtitle": "آيات تعيد القلب إلى رحمة الله والرجاء فيه.",
+  "ayahCompletionPackAdultPatienceTitle": "آيات الصبر",
+  "ayahCompletionPackAdultPatienceSubtitle": "آيات للصبر والثبات والتوكل عند الشدة.",
+  "ayahCompletionPackAdultGratitudeTitle": "آيات الشكر",
+  "ayahCompletionPackAdultGratitudeSubtitle": "آيات تعزز الشكر والذكر والحياة الممتنة.",
+  "ayahCompletionPackAdultMemorizationTitle": "مجموعة الحفظ",
+  "ayahCompletionPackAdultMemorizationSubtitle": "آيات أساسية للمراجعة الثابتة والثقة في التلاوة.",
+  "ayahCompletionPackDailyMixedTitle": "اليومي المتنوع",
+  "ayahCompletionPackDailyMixedSubtitle": "مجموعة متداولة مهيأة لمراجعة آية اليوم.",
+  "learnQuizzesAyahCompletionSectionTitle": "إكمال الآية",
+  "learnQuizzesAyahCompletionSectionSubtitle": "املأ الكلمات القرآنية الناقصة باستخدام نص الآية الموثق في التطبيق.",
+  "learnQuizzesOpenAyahCompletion": "افتح إكمال الآية",
+  "hadithReflectionHomeTitle": "تأمل الحديث",
+  "hadithReflectionHomeSubtitle": "تأمل في الأحاديث الصحيحة من خلال مواقف حياتية هادئة وعملية.",
+  "hadithReflectionLoadErrorTitle": "تعذّر تحميل تأملات الحديث",
+  "hadithReflectionLoadErrorSubtitle": "حاول مرة أخرى بعد قليل. يفترض أن تبقى مكتبة التأملات المحلية متاحة دون اتصال.",
+  "hadithReflectionLoadingSubtitle": "جارٍ تجهيز أسئلة التأمل ومجموعات المواقف.",
+  "hadithReflectionNotFoundTitle": "لم يتم العثور على التأمل",
+  "hadithReflectionNotFoundSubtitle": "لم يتم العثور على هذا التأمل في المجموعة الحالية.",
+  "hadithReflectionKidsOnlyTitle": "هذا التأمل غير متاح في ملف الأطفال الحالي.",
+  "hadithReflectionDailyModeTitle": "تأمل الحديث اليومي",
+  "hadithReflectionDailyModeSubtitle": "موقف حديثي واحد كل يوم مع مسار تأمل هادئ.",
+  "hadithReflectionDailyThemeLabel": "موضوع اليوم: {theme}",
+  "@hadithReflectionDailyThemeLabel": {"placeholders": {"theme": {}}},
+  "hadithReflectionDailyCompleteBadge": "اكتمل التأمل اليومي",
+  "hadithReflectionKidsModeTitle": "تأمل الأطفال",
+  "hadithReflectionKidsModeSubtitle": "مواقف أقصر عن اللطف والصدق والصبر والاحترام.",
+  "hadithReflectionAdultModeTitle": "تأمل الكبار",
+  "hadithReflectionAdultModeSubtitle": "مواقف أعمق عن النية والكلام والمحاسبة والخدمة.",
+  "hadithReflectionPuzzleCountLabel": "{count} تأملات",
+  "@hadithReflectionPuzzleCountLabel": {"placeholders": {"count": {}}},
+  "hadithReflectionCompletedCountLabel": "{count} مكتملة",
+  "@hadithReflectionCompletedCountLabel": {"placeholders": {"count": {}}},
+  "hadithReflectionBestChoiceCountLabel": "{count} اختيارات أكثر موافقة",
+  "@hadithReflectionBestChoiceCountLabel": {"placeholders": {"count": {}}},
+  "hadithReflectionXpLabel": "{count} XP",
+  "@hadithReflectionXpLabel": {"placeholders": {"count": {}}},
+  "hadithReflectionDropsLabel": "{count} قطرات",
+  "@hadithReflectionDropsLabel": {"placeholders": {"count": {}}},
+  "hadithReflectionDailyStreakLabel": "سلسلة {count} أيام",
+  "@hadithReflectionDailyStreakLabel": {"placeholders": {"count": {}}},
+  "hadithReflectionContinueSectionTitle": "أكمل التأمل",
+  "hadithReflectionContinueSectionSubtitle": "استأنف آخر موقف بدأت به.",
+  "hadithReflectionDailyHistoryTitle": "التأملات اليومية الأخيرة",
+  "hadithReflectionDailyHistorySubtitle": "نظرة سريعة على التأملات التي فتحتها هذا الأسبوع.",
+  "hadithReflectionFeaturedPacksTitle": "مجموعات مميزة",
+  "hadithReflectionFeaturedPacksSubtitle": "مجموعات تأمل منتقاة للأخلاق والأدب والحياة اليومية.",
+  "hadithReflectionThemesTitle": "الموضوعات",
+  "hadithReflectionThemesSubtitle": "تصفّح التأملات بحسب الخلق أو المعنى العملي المقصود.",
+  "hadithReflectionPackDifficultyLabel": "الصعوبة {min}–{max}",
+  "@hadithReflectionPackDifficultyLabel": {"placeholders": {"min": {}, "max": {}}},
+  "hadithReflectionPackProgressLabel": "{completed} من {total} مكتملة",
+  "@hadithReflectionPackProgressLabel": {"placeholders": {"completed": {}, "total": {}}},
+  "hadithReflectionPackBestChoiceLabel": "{count} أكثر موافقة",
+  "@hadithReflectionPackBestChoiceLabel": {"placeholders": {"count": {}}},
+  "hadithReflectionContinueAction": "أكمل التأمل",
+  "hadithReflectionRecommendedAction": "التأمل الموصى به",
+  "hadithReflectionResumeBadge": "استئناف",
+  "hadithReflectionBestChoiceBadge": "الأكثر موافقة",
+  "hadithReflectionCompletedBadge": "مكتمل",
+  "hadithReflectionPuzzleTitleKids": "تأمل الحديث للأطفال",
+  "hadithReflectionPuzzleTitleAdult": "تأمل الحديث",
+  "hadithReflectionDailyPuzzleSubtitle": "تأمل اليوم في {category}",
+  "@hadithReflectionDailyPuzzleSubtitle": {"placeholders": {"category": {}}},
+  "hadithReflectionPuzzleSubtitle": "موقف عملي في {category}",
+  "@hadithReflectionPuzzleSubtitle": {"placeholders": {"category": {}}},
+  "hadithReflectionScenarioTitle": "الموقف",
+  "hadithReflectionTeachingSummaryTitle": "خلاصة المعنى",
+  "hadithReflectionReflectionPromptTitle": "سؤال التأمل",
+  "hadithReflectionHelpAction": "عرض المساعدة",
+  "hadithReflectionHelpViewedAction": "تم عرض المساعدة",
+  "hadithReflectionHelpDialogTitle": "تذكير مساعد",
+  "hadithReflectionChoiceSectionTitle": "ماذا ستفعل؟",
+  "hadithReflectionOutcomeBest": "الأكثر موافقة",
+  "hadithReflectionOutcomeAcceptable": "مقبول لكنه ليس الأقوى",
+  "hadithReflectionOutcomeNeedsReflection": "يحتاج إلى تأمل",
+  "hadithReflectionFeedbackTitle": "التغذية الراجعة",
+  "hadithReflectionCompletionTitle": "اكتمل التأمل",
+  "hadithReflectionCompletionSubtitle": "أكملت هذا التأمل وراجعت معناه.",
+  "hadithReflectionCompletionBestSubtitle": "اخترت الجواب الأقرب إلى توجيه الحديث.",
+  "hadithReflectionTakeawayTitle": "الخلاصة",
+  "hadithReflectionCompletionXpReward": "تم منح +{count} XP",
+  "@hadithReflectionCompletionXpReward": {"placeholders": {"count": {}}},
+  "hadithReflectionCompletionDropReward": "أضاف هذا التأمل {count} قطرة إلى المحيط",
+  "@hadithReflectionCompletionDropReward": {"placeholders": {"count": {}}},
+  "hadithReflectionBestChoiceReward": "مكافأة الخيار الأفضل +{count} XP",
+  "@hadithReflectionBestChoiceReward": {"placeholders": {"count": {}}},
+  "hadithReflectionNextPuzzleAction": "التأمل التالي",
+  "hadithReflectionReturnToPackAction": "العودة إلى المجموعة",
+  "hadithReflectionBackHomeAction": "العودة للرئيسية",
+  "hadithReflectionDifficultyGentle": "لطيف",
+  "hadithReflectionDifficultySteady": "ثابت",
+  "hadithReflectionDifficultyReflective": "تأملي",
+  "hadithReflectionDifficultyDeep": "عميق",
+  "hadithReflectionCategoryKindness": "اللطف",
+  "hadithReflectionCategoryHonesty": "الصدق",
+  "hadithReflectionCategoryPatience": "الصبر",
+  "hadithReflectionCategoryAnger": "ضبط الغضب",
+  "hadithReflectionCategoryFamily": "الأسرة",
+  "hadithReflectionCategoryCommunity": "المجتمع",
+  "hadithReflectionCategoryRepentance": "التوبة",
+  "hadithReflectionCategorySpeech": "أدب الكلام",
+  "hadithReflectionCategorySincerity": "الإخلاص",
+  "hadithReflectionCategoryRespect": "الاحترام",
+  "hadithReflectionCategoryJustice": "العدل",
+  "hadithReflectionCategoryAccountability": "المحاسبة",
+  "hadithReflectionCategoryIntegrity": "الاستقامة",
+  "hadithReflectionCategoryService": "الخدمة",
+  "hadithReflectionCategoryFocus": "حسن الانشغال",
+  "hadithReflectionCategoryResilience": "الثبات",
+  "hadithReflectionCategoryMixed": "متنوع",
+  "hadithReflectionPackKidsKindnessTitle": "أساسيات اللطف للأطفال",
+  "hadithReflectionPackKidsKindnessSubtitle": "مواقف بسيطة عن اللطف والمشاركة وحسن الأدب.",
+  "hadithReflectionPackHonestyTitle": "الصدق والأمانة",
+  "hadithReflectionPackHonestySubtitle": "مواقف عن الصدق وحفظ الأمانة والاستقامة في القرار اليومي.",
+  "hadithReflectionPackPatienceTitle": "الصبر والثبات",
+  "hadithReflectionPackPatienceSubtitle": "تأملات في الصبر وضبط النفس والثبات عند الابتلاء.",
+  "hadithReflectionPackAngerTitle": "ضبط الغضب",
+  "hadithReflectionPackAngerSubtitle": "تدرّب على قرارات أهدأ عند الغضب وحدّة الكلام.",
+  "hadithReflectionPackFamilyTitle": "الأسرة والاحترام",
+  "hadithReflectionPackFamilySubtitle": "خدمة الأسرة وحفظ المسؤولية وأداء الحقوق داخل البيت.",
+  "hadithReflectionPackCommunityTitle": "المجتمع والخدمة",
+  "hadithReflectionPackCommunitySubtitle": "النصح والخدمة ومساندة الآخرين بإخلاص ونفع.",
+  "hadithReflectionPackRepentanceTitle": "التوبة والرجاء",
+  "hadithReflectionPackRepentanceSubtitle": "مواقف تُبقي القلب مفتوحًا للتوبة والرحمة والرجوع إلى الله.",
+  "hadithReflectionPackSpeechTitle": "أدب الكلام",
+  "hadithReflectionPackSpeechSubtitle": "اختر كلماتك بلطف وضبط ونية نافعة.",
+  "hadithReflectionPackDailyTitle": "تأملات يومية متنوعة",
+  "hadithReflectionPackDailySubtitle": "مجموعة متداولة معدّة لتأمل الحديث اليومي.",
+  "learnQuizzesHadithReflectionSectionTitle": "تأمل الحديث",
+  "learnQuizzesHadithReflectionSectionSubtitle": "تأمل في الأحاديث الصحيحة من خلال قرارات عملية مرتبطة بالمواقف.",
+  "learnQuizzesOpenHadithReflection": "افتح تأمل الحديث",
+  "dailyKnowledgeHubTitle": "تحدي المعرفة اليومي",
+  "dailyKnowledgeHubSubtitle": "رحلة يومية متوازنة تجمع ألعاب المعرفة في التطبيق.",
+  "dailyKnowledgeHubLoadErrorTitle": "تعذّر تحميل التحدي اليومي",
+  "dailyKnowledgeHubLoadErrorSubtitle": "حاول مرة أخرى بعد قليل. يفترض أن تبقى الحزمة اليومية متاحة دون اتصال.",
+  "dailyKnowledgeHubDateLabel": "اليوم: {date}",
+  "@dailyKnowledgeHubDateLabel": {"placeholders": {"date": {}}},
+  "dailyKnowledgeHubProgressLabel": "{completed} من {total} مكتمل",
+  "@dailyKnowledgeHubProgressLabel": {"placeholders": {"completed": {}, "total": {}}},
+  "dailyKnowledgeHubStreakLabel": "سلسلة حزمة {count} أيام",
+  "@dailyKnowledgeHubStreakLabel": {"placeholders": {"count": {}}},
+  "dailyKnowledgeHubCompletedBadge": "اكتملت الحزمة",
+  "dailyKnowledgeHubJourneySummary": "مرّ عبر المعرفة والتعرّف والربط والحفظ والتطبيق في مسار يومي هادئ واحد.",
+  "dailyKnowledgeHubTodayTitle": "رحلة اليوم",
+  "dailyKnowledgeHubTodaySubtitle": "أكمل التحديات اليومية الخمسة بأي ترتيب يناسبك.",
+  "dailyKnowledgeHubDifficultyLabel": "الصعوبة {count}",
+  "@dailyKnowledgeHubDifficultyLabel": {"placeholders": {"count": {}}},
+  "dailyKnowledgeHubGameDone": "مكتمل",
+  "dailyKnowledgeHubGameOpen": "افتح التحدي",
+  "dailyKnowledgeHubGameSubtitleCrossword": "استدعاء سريع عبر القرائن والمفاهيم المرتبطة.",
+  "dailyKnowledgeHubGameSubtitleWordSearch": "تدريب على التعرّف من خلال شبكات كلمات ذات موضوعات.",
+  "dailyKnowledgeHubGameSubtitleMatching": "قوِّ الربط بين المصطلحات والمعاني والأفكار.",
+  "dailyKnowledgeHubGameSubtitleAyahCompletion": "راجع الحفظ من خلال استدعاء كلمات القرآن الموثقة.",
+  "dailyKnowledgeHubGameSubtitleHadithReflection": "طبّق توجيه الحديث من خلال تأمل عملي في المواقف.",
+  "dailyKnowledgeHubCompletionTitle": "اكتملت الرحلة اليومية",
+  "dailyKnowledgeHubCompletionSubtitle": "أكملت حزمة المعرفة اليومية الكاملة لهذا اليوم.",
+  "dailyKnowledgeHubBonusXpReward": "مكافأة الحزمة اليومية +{count} XP",
+  "@dailyKnowledgeHubBonusXpReward": {"placeholders": {"count": {}}},
+  "dailyKnowledgeHubBonusDropReward": "مكافأة الحزمة اليومية +{count} قطرة محيط",
+  "@dailyKnowledgeHubBonusDropReward": {"placeholders": {"count": {}}},
+  "dailyKnowledgeHubHistoryTitle": "سجل الحزم الأخير",
+  "dailyKnowledgeHubHistorySubtitle": "عرض خفيف لاكتمالات الحزمة اليومية الأخيرة.",
+  "dailyKnowledgeHubHistoryDone": "{date} مكتمل",
+  "@dailyKnowledgeHubHistoryDone": {"placeholders": {"date": {}}},
+  "dailyKnowledgeHubHistoryOpen": "{date} مفتوح",
+  "@dailyKnowledgeHubHistoryOpen": {"placeholders": {"date": {}}},
+  "dailyKnowledgeHubAdaptiveTitle": "توجيه متكيّف",
+  "dailyKnowledgeHubAdaptiveSubtitle": "حزمة اليوم تتكيّف بلطف مع الألعاب التي تحتاج دعماً أكبر والألعاب التي أصبحت أقوى فيها.",
+  "dailyKnowledgeHubAdaptiveSupportLabel": "دعم إضافي: {game}",
+  "@dailyKnowledgeHubAdaptiveSupportLabel": {"placeholders": {"game": {}}},
+  "dailyKnowledgeHubAdaptiveChallengeLabel": "تحدٍ أخف: {game}",
+  "@dailyKnowledgeHubAdaptiveChallengeLabel": {"placeholders": {"game": {}}},
+  "dailyKnowledgeHubAdaptiveGameCrossword": "الكلمات المتقاطعة",
+  "dailyKnowledgeHubAdaptiveGameWordSearch": "البحث عن الكلمات",
+  "dailyKnowledgeHubAdaptiveGameMatching": "المطابقة",
+  "dailyKnowledgeHubAdaptiveGameAyahCompletion": "إكمال الآية",
+  "dailyKnowledgeHubAdaptiveGameHadithReflection": "تأمل الحديث",
+  "spiritualGrowthTitle": "النمو الروحي",
+  "spiritualGrowthSubtitle": "طبقة هادئة تساعد على تحويل المعرفة إلى نية وعمل ومراجعة لطيفة.",
+  "spiritualGrowthShortcutSubtitle": "ضع نية واحدة، ولاحظ الأعمال ذات المعنى، ثم راجع يومك بهدوء.",
+  "spiritualGrowthChooseIntentionAction": "اختر نية",
+  "spiritualGrowthChooseIntentionSubtitle": "اختر تركيزًا صغيرًا لهذا اليوم.",
+  "spiritualGrowthChooseIntentionPageSubtitle": "اقبل اقتراح اليوم أو اختر تركيزًا لطيفًا آخر.",
+  "spiritualGrowthReflectionAction": "مراجعة المساء",
+  "spiritualGrowthReflectionEntrySubtitle": "مراجعة قصيرة في نهاية اليوم تحمل المعنى إلى الغد.",
+  "spiritualGrowthReflectionCompletedSubtitle": "تم حفظ مراجعة اليوم بلطف.",
+  "spiritualGrowthTodayIntentionTitle": "نية اليوم",
+  "spiritualGrowthSuggestedIntentionTitle": "النية المقترحة",
+  "spiritualGrowthAcceptIntentionAction": "اعتمد النية",
+  "spiritualGrowthEffortLabel": "الجهد {count}",
+  "@spiritualGrowthEffortLabel": {"placeholders": {"count": {}}},
+  "spiritualGrowthReflectionStreakLabel": "سلسلة مراجعة {count} أيام",
+  "@spiritualGrowthReflectionStreakLabel": {"placeholders": {"count": {}}},
+  "spiritualGrowthDailyActionsTitle": "أعمال ذات معنى",
+  "spiritualGrowthDailyActionsSubtitle": "تُقرأ هذه من عبادتك الحالية وتعلّمك وتقدّم التحدي اليومي.",
+  "spiritualGrowthRealLifeActionsTitle": "إشارات من الواقع",
+  "spiritualGrowthRealLifeActionsSubtitle": "سجّل بعض الأعمال الصغيرة دون تحويلها إلى استعراض.",
+  "spiritualGrowthReflectionTitle": "المراجعة اليومية",
+  "spiritualGrowthReflectionPageSubtitle": "مراجعة قصيرة ومحترمة لما حملته معك في يومك.",
+  "spiritualGrowthReflectionSavedBadge": "تم حفظ المراجعة",
+  "spiritualGrowthMoodTitle": "كيف كان قلبك اليوم؟",
+  "spiritualGrowthCompletedActionsTitle": "الأعمال المكتملة",
+  "spiritualGrowthOptionalNoteTitle": "ملاحظة اختيارية",
+  "spiritualGrowthOptionalNoteHint": "ملاحظة قصيرة خاصة إذا كانت نافعة.",
+  "spiritualGrowthSaveReflectionAction": "احفظ المراجعة",
+  "spiritualGrowthReflectionSavedSnack": "تم حفظ مراجعة اليوم.",
+  "spiritualGrowthThemeSummaryTitle": "محاور التركيز",
+  "spiritualGrowthThemeSummarySubtitle": "عرض لطيف للمعاني التي عملت عليها مؤخرًا.",
+  "spiritualGrowthThemeSummaryEmpty": "ستظهر لمحات المحاور بعد بضعة أيام من النية والمراجعة.",
+  "spiritualGrowthThemeCountLabel": "{actions} أعمال عبر {days} أيام",
+  "@spiritualGrowthThemeCountLabel": {"placeholders": {"actions": {}, "days": {}}},
+  "spiritualGrowthViewThemesAction": "اعرض تقدّم المحاور",
+  "spiritualGrowthThemePageSubtitle": "ملخص هادئ للمحاور التي لامستها أعمالك الأخيرة أكثر من غيرها.",
+  "spiritualGrowthThemeInsightTitle": "لمحة حالية",
+  "spiritualGrowthStrongestThemeLabel": "أقوى محور مؤخرًا: {theme}",
+  "@spiritualGrowthStrongestThemeLabel": {"placeholders": {"theme": {}}},
+  "spiritualGrowthRecommendedThemeLabel": "محور لطيف يستحق المراجعة: {theme}",
+  "@spiritualGrowthRecommendedThemeLabel": {"placeholders": {"theme": {}}},
+  "spiritualGrowthTodaySummaryTitle": "لمحة اليوم",
+  "spiritualGrowthPrayerSummaryLabel": "{count} صلوات مكتملة",
+  "@spiritualGrowthPrayerSummaryLabel": {"placeholders": {"count": {}}},
+  "spiritualGrowthDhikrSummaryLabel": "{count} جلسات ذكر",
+  "@spiritualGrowthDhikrSummaryLabel": {"placeholders": {"count": {}}},
+  "spiritualGrowthLearningSummaryLabel": "{count} إكمالات تعلم",
+  "@spiritualGrowthLearningSummaryLabel": {"placeholders": {"count": {}}},
+  "spiritualGrowthBundleSummaryLabel": "الحزمة اليومية: {status}",
+  "@spiritualGrowthBundleSummaryLabel": {"placeholders": {"status": {}}},
+  "spiritualGrowthBundleDone": "مكتملة",
+  "spiritualGrowthBundleOpen": "قيد التقدّم",
+  "spiritualGrowthThemeSincerity": "الإخلاص",
+  "spiritualGrowthThemePatience": "الصبر",
+  "spiritualGrowthThemeGratitude": "الشكر",
+  "spiritualGrowthThemeHonesty": "الصدق",
+  "spiritualGrowthThemeKindness": "اللطف",
+  "spiritualGrowthThemeHumility": "التواضع",
+  "spiritualGrowthThemeForgiveness": "العفو",
+  "spiritualGrowthThemeDiscipline": "الانضباط",
+  "spiritualGrowthThemeAdab": "الأدب",
+  "spiritualGrowthThemeTrustInAllah": "التوكل على الله",
+  "spiritualGrowthIntentionPresencePrayerTitle": "صلِّ بحضور قلب أكبر اليوم",
+  "spiritualGrowthIntentionPresencePrayerSubtitle": "اهدأ قليلًا قبل صلاة واحدة على الأقل وأعد قلبك إليها بلطف.",
+  "spiritualGrowthIntentionGentleSpeechTitle": "تكلّم بلطف أكثر اليوم",
+  "spiritualGrowthIntentionGentleSpeechSubtitle": "اجعل حديثًا صعبًا واحدًا أهدأ من المعتاد.",
+  "spiritualGrowthIntentionPatientMomentTitle": "اصبر في موقف صعب واحد",
+  "spiritualGrowthIntentionPatientMomentSubtitle": "توقف مرة قبل رد الفعل واختر الثبات.",
+  "spiritualGrowthIntentionQuietHelpTitle": "ساعد أحدًا في هدوء",
+  "spiritualGrowthIntentionQuietHelpSubtitle": "افعل خيرًا واحدًا دون حاجة لأن يراه الناس.",
+  "spiritualGrowthIntentionPostPrayerDhikrTitle": "حافظ على الذكر بعد الصلاة",
+  "spiritualGrowthIntentionPostPrayerDhikrSubtitle": "ابقَ قليلًا في الذكر بعد صلاة واحدة أو أكثر اليوم.",
+  "spiritualGrowthIntentionTruthfulWordsTitle": "اختر الكلمات الصادقة",
+  "spiritualGrowthIntentionTruthfulWordsSubtitle": "كن صادقًا وواضحًا حتى في المواقف الصغيرة.",
+  "spiritualGrowthIntentionFamilyRespectTitle": "أظهر احترامًا أكبر في البيت",
+  "spiritualGrowthIntentionFamilyRespectSubtitle": "ليكن في نبرة صوتك وأفعالك أدب أكثر مع أهلك اليوم.",
+  "spiritualGrowthIntentionSincereDuaTitle": "ادعُ دعاءً صادقًا واحدًا",
+  "spiritualGrowthIntentionSincereDuaSubtitle": "توجّه إلى الله بصدق ولو لدقيقة واحدة.",
+  "spiritualGrowthIntentionControlAngerTitle": "خفّف الغضب بلطف أكبر",
+  "spiritualGrowthIntentionControlAngerSubtitle": "إذا ارتفع الضيق فاخفض رد الفعل قبل أن يكبر.",
+  "spiritualGrowthIntentionNoticeBlessingsTitle": "لاحظ نعم الله اليوم",
+  "spiritualGrowthIntentionNoticeBlessingsSubtitle": "سمِّ نعمة واحدة تشكر الله عليها قبل نهاية اليوم.",
+  "spiritualGrowthActionSalahTitle": "أُديت الصلاة",
+  "spiritualGrowthActionSalahSubtitle": "نشاط الصلاة اليوم يساهم بالفعل في بناء الانضباط.",
+  "spiritualGrowthActionDhikrTitle": "تم الذكر",
+  "spiritualGrowthActionDhikrSubtitle": "الذكر الذي أتممته اليوم يقوّي الشكر والرجوع.",
+  "spiritualGrowthActionQuranTitle": "صلة بالقرآن",
+  "spiritualGrowthActionQuranSubtitle": "تفاعلك مع القرآن اليوم يدعم الذكر والتوكل.",
+  "spiritualGrowthActionLearningTitle": "تعلم حُمِل إلى العمل",
+  "spiritualGrowthActionLearningSubtitle": "الدروس والألعاب التي أكملتها اليوم تُحسب نموًا ثابتًا.",
+  "spiritualGrowthActionDailyBundleTitle": "رحلة المعرفة اليومية",
+  "spiritualGrowthActionDailyBundleSubtitle": "إكمال الحزمة اليومية كاملة يعزز الثبات والانضباط.",
+  "spiritualGrowthManualActionKindnessTitle": "لقد ساعدت أحدًا اليوم",
+  "spiritualGrowthManualActionKindnessSubtitle": "عمل صغير من الخدمة أو اللطف.",
+  "spiritualGrowthManualActionSpeechTitle": "لقد تحدثت بلطف اليوم",
+  "spiritualGrowthManualActionSpeechSubtitle": "لحظة من اللين في الكلام.",
+  "spiritualGrowthManualActionAngerTitle": "لقد ضبطت غضبي اليوم",
+  "spiritualGrowthManualActionAngerSubtitle": "موقف صعب تم التعامل معه بضبط أكبر.",
+  "spiritualGrowthManualActionGossipTitle": "لقد تجنبت الغيبة اليوم",
+  "spiritualGrowthManualActionGossipSubtitle": "اختيار هادئ لحفظ اللسان.",
+  "spiritualGrowthManualActionDuaTitle": "لقد دعوت بصدق اليوم",
+  "spiritualGrowthManualActionDuaSubtitle": "رجوع شخصي إلى الله.",
+  "spiritualGrowthManualActionGratitudeTitle": "لقد لاحظت نعمة اليوم",
+  "spiritualGrowthManualActionGratitudeSubtitle": "لحظة شكر حقيقية أثناء اليوم.",
+  "spiritualGrowthReflectionPromptStrongestTitle": "ما العمل الإيماني الذي كان أقوى اليوم؟",
+  "spiritualGrowthReflectionPromptStrongestSubtitle": "اختر ما كان حيًا في قلبك ولو كان صغيرًا.",
+  "spiritualGrowthReflectionPromptIntentionTitle": "هل عشت نيتك اليوم؟",
+  "spiritualGrowthReflectionPromptIntentionSubtitle": "كن صادقًا ولطيفًا مع نفسك.",
+  "spiritualGrowthReflectionPromptGratitudeTitle": "على ماذا تشكر الله هذه الليلة؟",
+  "spiritualGrowthReflectionPromptGratitudeSubtitle": "ابحث عن نعمة واحدة لطّفت يومك.",
+  "spiritualGrowthReflectionPromptPatienceTitle": "ما الذي اختبر صبرك اليوم؟",
+  "spiritualGrowthReflectionPromptPatienceSubtitle": "لاحظ الموقف دون قسوة على نفسك.",
+  "spiritualGrowthReflectionPromptGentleTitle": "أين تستطيع أن تكون ألطف غدًا؟",
+  "spiritualGrowthReflectionPromptGentleSubtitle": "اختر موضعًا صغيرًا للتحسن بهدوء.",
+  "spiritualGrowthReflectionResponseStrongestPrayer": "صلاة واحدة كانت أكثر حضورًا",
+  "spiritualGrowthReflectionResponseStrongestKindness": "بقي معي أثر عمل لطيف",
+  "spiritualGrowthReflectionResponseStrongestReturned": "كنت أعود بعد التقصير",
+  "spiritualGrowthReflectionResponseIntentionWell": "حملت النية بشكل جيد نسبيًا",
+  "spiritualGrowthReflectionResponseIntentionPartly": "تذكرتها أحيانًا",
+  "spiritualGrowthReflectionResponseIntentionTomorrow": "أريد أن أعود إليها غدًا",
+  "spiritualGrowthReflectionResponseGratitudeWorship": "على عبادة استطعت القيام بها",
+  "spiritualGrowthReflectionResponseGratitudePeople": "على أشخاص سهّلوا اليوم",
+  "spiritualGrowthReflectionResponseGratitudeGuidance": "على الهداية والتذكير",
+  "spiritualGrowthReflectionResponsePatienceBetter": "كان ردّي أفضل قليلًا من قبل",
+  "spiritualGrowthReflectionResponsePatiencePause": "كنت أحتاج إلى توقف أكثر",
+  "spiritualGrowthReflectionResponsePatienceTomorrow": "أريد أن أتعامل معه أفضل غدًا",
+  "spiritualGrowthReflectionResponseGentleHome": "في البيت ومع الأهل",
+  "spiritualGrowthReflectionResponseGentleSpeech": "في طريقة كلامي",
+  "spiritualGrowthReflectionResponseGentleHelp": "في طريقة مساعدتي للآخرين",
+  "learnQuizzesDailyKnowledgeSectionTitle": "تحدي المعرفة اليومي",
+  "learnQuizzesDailyKnowledgeSectionSubtitle": "مركز يومي واحد يجمع تجارب ألعاب المعرفة الخمس.",
+  "learnQuizzesOpenDailyKnowledge": "افتح التحدي اليومي",
+  "learnHubSubcategoryKidsGamesTitle": "ألعاب الأطفال",
+  "learnHubSubcategoryKidsGamesSubtitle": "الكلمات المتقاطعة والبحث عن الكلمات والمطابقة وغيرها من الألعاب التعليمية المخصصة للصغار.",
+  "learnHubSubcategoryKidsArabicLearningTitle": "تعلم العربية",
+  "learnHubSubcategoryKidsArabicLearningSubtitle": "الحروف والمراجعة وبدايات تعلم العربية تبقى مجمعة هنا للأطفال.",
+  "learnHubSubcategoryKidsFunLearningTitle": "تعلم ممتع",
+  "learnHubSubcategoryKidsFunLearningSubtitle": "القصص والتلوين والروتين اليومي والتدريب الخفيف تبقى معًا هنا.",
+  "learnGamesIslandTitle": "الألعاب",
+  "learnGamesIslandSubtitle": "جزيرة هادئة لاكتشاف التحديات اليومية وألعاب المعرفة وألعاب القرآن والتأمل والحزم.",
+  "learnGamesIslandLandingCardSubtitle": "افتح جزيرة الألعاب الرئيسية لغير الأطفال دون تغيير مسارات الاختبارات والألعاب الحالية.",
+  "learnGamesIslandTodayBadge": "اليوم",
+  "learnGamesIslandSectionsTitle": "تصفح الألعاب",
+  "learnGamesIslandSectionsSubtitle": "افتح قسمًا واحدًا في كل مرة أو استعرض الجزيرة كاملة لاختيار التحدي المناسب.",
+  "learnGamesIslandSectionDailyTitle": "التحديات اليومية",
+  "learnGamesIslandSectionDailySubtitle": "حزمة اليوم والتقدم الحالي والمسار اليومي الثابت تبقى هنا معًا.",
+  "learnGamesIslandSectionKnowledgeTitle": "ألعاب المعرفة",
+  "learnGamesIslandSectionKnowledgeSubtitle": "الكلمات المتقاطعة والبحث عن الكلمات والمطابقة تبقى الطبقة الأساسية لاكتشاف ألعاب المعرفة.",
+  "learnGamesIslandSectionQuranTitle": "ألعاب القرآن",
+  "learnGamesIslandSectionQuranSubtitle": "حفظ الآيات وإكمالها يبقى في مسار قرآني مخصص وواضح.",
+  "learnGamesIslandSectionHadithTitle": "الحديث والتأمل",
+  "learnGamesIslandSectionHadithSubtitle": "التأمل القائم على المواقف والقرارات المرتبطة بالخلق يبقى مجمعًا هنا.",
+  "learnGamesIslandSectionModesTitle": "أنماط التحدي",
+  "learnGamesIslandSectionModesSubtitle": "الأنماط المدعومة حاليًا مثل اليومي والمراجعة تظهر هنا دون إنشاء محركات جديدة.",
+  "learnGamesIslandSectionGrowthTitle": "النمو والروحانية",
+  "learnGamesIslandSectionGrowthSubtitle": "النيات والتأملات والملخصات الروحية المرتبطة بالألعاب تبقى هادئة ومنفصلة عن قوائم الألغاز.",
+  "learnGamesIslandSectionPacksTitle": "حزم الألعاب",
+  "learnGamesIslandSectionPacksSubtitle": "افتح مسارات الحزم الموضوعية الموجودة فعلًا عبر مكتبة ألعاب المعرفة الحالية.",
+  "learnGamesIslandModeDailyRunTitle": "المسار اليومي",
+  "learnGamesIslandModeDailyRunSubtitle": "افتح حزمة تحدي المعرفة اليومية كاملة.",
+  "learnGamesIslandModeReviewTitle": "وضع المراجعة",
+  "learnGamesIslandModeReviewSubtitle": "ارجع إلى مسارات المراجعة الحالية دون البحث داخل مركز الاختبارات الأوسع.",
+  "learnGamesIslandModeTriviaTitle": "تحدي المعرفة",
+  "learnGamesIslandModeTriviaSubtitle": "افتح مسارات التحدي المعرفي الموجودة بالفعل في نظام الاختبارات الحالي.",
+  "learnGamesIslandKidsEntryTitle": "ألعاب الأطفال تبقى منفصلة",
+  "learnGamesIslandKidsEntrySubtitle": "اكتشاف ألعاب الأطفال يبقى داخل تعلم الأطفال بدل خلطه في جزيرة الألعاب الرئيسية.",
+  "learnGamesIslandKidsEntryAction": "استكشف ألعاب الأطفال",
+  "learnGamesIslandKidsEntryActionSubtitle": "افتح تجميع الألعاب المناسب للأطفال داخل قسم تعلم الأطفال.",
+  "learnGamesIslandDailyHeroTitle": "رحلة ألعاب اليوم",
+  "learnGamesIslandDailyHeroSubtitle": "ابدأ الحزمة اليومية أو عد إليها لاحقًا دون فقدان التقدم الحالي داخل كل لعبة.",
+  "learnGamesIslandDailyHeroCompletedSubtitle": "اكتملت حزمة اليوم. يمكنك العودة إلى المركز أو متابعة استكشاف الأقسام الأخرى.",
+  "learnGamesIslandDailyHeroInProgressSubtitle": "اكتمل {completed} من أصل {total} من ألعاب اليوم. واصل من حيث توقفت.",
+  "@learnGamesIslandDailyHeroInProgressSubtitle": {
+    "placeholders": {
+      "completed": {},
+      "total": {}
+    }
+  },
+  "learnGamesIslandDailyProgressLabel": "{completed}/{total} مكتمل",
+  "@learnGamesIslandDailyProgressLabel": {
+    "placeholders": {
+      "completed": {},
+      "total": {}
+    }
+  },
+  "learnGamesIslandDailyStreakLabel": "سلسلة {count} أيام",
+  "@learnGamesIslandDailyStreakLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "learnGamesIslandDailyHistoryLabel": "تم تتبع {count} أيام أخيرة",
+  "@learnGamesIslandDailyHistoryLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "learnGamesIslandInProgressBadge": "قيد التقدم",
+  "learnGamesIslandContinueDailyAction": "واصل تحدي اليوم",
+  "learnGamesIslandOpenDailyAction": "افتح التحدي اليومي",
+  "learnGamesIslandLoadingSubtitle": "جارٍ تحميل حزمة ألعاب اليوم ومسارات الاكتشاف.",
+  "learnGamesIslandDailyFallbackSubtitle": "افتح المركز اليومي مباشرة إذا لم تكن معاينة الحزمة متاحة الآن.",
+  "learnGamesIslandKidsRedirectTitle": "ملفات الأطفال تستخدم تعلم الأطفال",
+  "learnGamesIslandKidsRedirectSubtitle": "اكتشاف الألعاب المناسب للأطفال يبقى تحت تعلم الأطفال ← الألعاب، تعلم العربية، والتعلم الممتع.",
+  "gameVariationStandard": "قياسي",
+  "gameVariationTimed": "موقّت",
+  "gameVariationMemory": "ذاكرة",
+  "gameVariationSequential": "متسلسل",
+  "gameVariationReflection": "تأمل",
+  "gameVariationAudio": "صوتي",
+  "gameVariationChallenge": "تحدٍّ",
+  "gameVariationFog": "ضباب",
+  "gameVariationNoClue": "بلا تلميح",
+  "gameVariationReverse": "معكوس",
+  "gameVariationHintDisabled": "التلميحات معطلة",
+  "gameVariationTimeRemaining": "الوقت المتبقي: {time}",
+  "@gameVariationTimeRemaining": {
+    "placeholders": {
+      "time": {}
+    }
+  },
+  "gameVariationNoClueActiveSubtitle": "وضع بلا تلميح يخفي قائمة الأدلة، لذلك يعتمد هذا اللوح على التقاطعات ومعرفة الموضوع.",
+  "gameVariationFogActiveSubtitle": "وضع الضباب يخفف وضوح قائمة الكلمات حتى تعتمد أكثر على الشبكة والذاكرة.",
+  "gameVariationMemoryActiveSubtitle": "وضع الذاكرة يجعل النصوص المساندة أخف حتى تبدأ في التقدم.",
+  "gameVariationSequentialActiveSubtitle": "الوضع المتسلسل يوجّهك عبر الأهداف المتبقية بالترتيب.",
+  "gameVariationAudioActiveSubtitle": "الوضع الصوتي يشجع على الاستماع قبل إكمال الآية.",
+  "gameVariationReflectionFollowUpTitle": "احمله معك",
+  "contentBuilderTitle": "منشئ المحتوى الداخلي",
+  "contentBuilderSubtitle": "طَبِّع مسودات المحتوى الداخلية وتحقق منها واعرضها وصدّرها دون تغيير مكتبة الألعاب الحية.",
+  "contentBuilderCatalogTitle": "لقطة المحتوى الحالية",
+  "contentBuilderCatalogCount": "{type}: {count}",
+  "@contentBuilderCatalogCount": {
+    "placeholders": {
+      "type": {},
+      "count": {}
+    }
+  },
+  "contentBuilderTypeCrossword": "الكلمات المتقاطعة",
+  "contentBuilderTypeWordSearch": "البحث عن الكلمات",
+  "contentBuilderTypeMatching": "المطابقة",
+  "contentBuilderTypeAyah": "إكمال الآية",
+  "contentBuilderTypeHadith": "تأمل الحديث",
+  "contentBuilderTypeGrowth": "النمو الروحي",
+  "contentBuilderTypePack": "حزمة",
+  "contentBuilderTypeVariationProfile": "ملف التنويعات",
+  "contentBuilderValidationErrorsTitle": "تم العثور على مشكلات تحقق",
+  "contentBuilderValidationCleanTitle": "التحقق سليم",
+  "contentBuilderValidationIssueCount": "{count} مشكلات في اللقطة الحالية",
+  "@contentBuilderValidationIssueCount": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "contentBuilderDraftTitle": "مسودة عنصر محتوى",
+  "contentBuilderTypeLabel": "نوع المحتوى",
+  "contentBuilderIdLabel": "معرّف المحتوى",
+  "contentBuilderCategoryLabel": "الفئة",
+  "contentBuilderDifficultyLabel": "الصعوبة",
+  "contentBuilderAudienceLabel": "الجمهور",
+  "contentBuilderAudienceKids": "الأطفال",
+  "contentBuilderAudienceAdult": "البالغون",
+  "contentBuilderAudienceMixed": "مختلط",
+  "contentBuilderTagsLabel": "الوسوم (مفصولة بفواصل)",
+  "contentBuilderPackIdsLabel": "معرّفات الحزم (مفصولة بفواصل)",
+  "contentBuilderSourceTypeLabel": "نوع المصدر",
+  "contentBuilderSourceReferenceLabel": "مرجع المصدر",
+  "contentBuilderDailyEligibleLabel": "مؤهل لليومي",
+  "contentBuilderVariationsLabel": "التنويعات المدعومة",
+  "contentBuilderPayloadLabel": "الحمولة الخاصة بالنوع (JSON)",
+  "contentBuilderValidateAction": "تحقق من المسودة",
+  "contentBuilderResetTemplateAction": "إعادة ضبط القالب",
+  "contentBuilderExportAction": "تصدير JSON",
+  "contentBuilderDraftInvalidTitle": "المسودة تحتاج إلى إصلاح",
+  "contentBuilderDraftValidTitle": "المسودة جاهزة",
+  "contentBuilderDraftValidSubtitle": "لم يتم العثور على أخطاء تحقق مانعة لهذه المسودة.",
+  "contentBuilderPreviewTitle": "معاينة",
+  "contentBuilderExportTitle": "تصدير JSON",
+  "contentBuilderPreviewMissingId": "المعرّف مفقود",
+  "contentBuilderPreviewMissingCategory": "الفئة مفقودة",
+  "contentBuilderPreviewDifficulty": "الصعوبة {difficulty}",
+  "@contentBuilderPreviewDifficulty": {
+    "placeholders": {
+      "difficulty": {}
+    }
+  },
+  "contentBuilderPreviewCrossword": "شبكة {gridSize}×{gridSize} مع {placements} مواضع",
+  "@contentBuilderPreviewCrossword": {
+    "placeholders": {
+      "gridSize": {},
+      "placements": {}
+    }
+  },
+  "contentBuilderPreviewWordSearch": "شبكة {gridSize}×{gridSize} مع {entries} كلمات مستهدفة",
+  "@contentBuilderPreviewWordSearch": {
+    "placeholders": {
+      "gridSize": {},
+      "entries": {}
+    }
+  },
+  "contentBuilderPreviewMatching": "{pairs} أزواج مطابقة",
+  "@contentBuilderPreviewMatching": {
+    "placeholders": {
+      "pairs": {}
+    }
+  },
+  "contentBuilderPreviewAyah": "السورة {surah}، الآية {ayah}",
+  "@contentBuilderPreviewAyah": {
+    "placeholders": {
+      "surah": {},
+      "ayah": {}
+    }
+  },
+  "contentBuilderPreviewHadith": "{choices} خيارات للموقف",
+  "@contentBuilderPreviewHadith": {
+    "placeholders": {
+      "choices": {}
+    }
+  },
+  "contentBuilderPreviewGrowth": "نوع النمو: {subtype}",
+  "@contentBuilderPreviewGrowth": {
+    "placeholders": {
+      "subtype": {}
+    }
+  },
+  "contentBuilderPreviewPack": "{count} عناصر محتوى مرتبطة",
+  "@contentBuilderPreviewPack": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "contentBuilderPreviewVariationProfile": "ملف التنويعات للعبة {gameType}",
+  "@contentBuilderPreviewVariationProfile": {
+    "placeholders": {
+      "gameType": {}
+    }
+  },
+  "contentBuilderPayloadInvalid": "حمولة JSON غير صالحة.",
+  "contentBuilderStorageTitle": "بنية التخزين القياسية",
+  "contentBuilderStorageSubtitle": "استخدم تخطيط /content المشترك لعمليات الاستيراد والتصدير القادمة، حتى مع بقاء البذور الحالية محمّلة من Dart.",
+  "bedtimeStoriesTitle": "قصص ما قبل النوم",
+  "bedtimeStoriesSubtitle": "قصص هادئة عن الأنبياء تساعد على الاسترخاء والاستماع معًا وتذكر الله قبل النوم.",
+  "bedtimeStoriesHeroTitle": "قصص الأنبياء لليالٍ هادئة",
+  "bedtimeStoriesHeroSubtitle": "مكتبة لطيفة من قصص الأنبياء قبل النوم مع قراءة متزامنة ودعم صوتي مستقبلي وتتبع تقدّم بسيط.",
+  "bedtimeStoriesCountLabel": "{count} قصة جاهزة",
+  "@bedtimeStoriesCountLabel": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "bedtimeStoriesTonightTitle": "قصة الليلة",
+  "bedtimeStoriesTonightAction": "ابدأ قصة الليلة",
+  "bedtimeStoriesContinueTitle": "متابعة الاستماع",
+  "bedtimeStoriesContinueAction": "تابع القصة",
+  "bedtimeStoriesFeaturedTitle": "قصة مميزة لوقت النوم",
+  "bedtimeStoriesOpenAction": "افتح القصة",
+  "bedtimeStoriesAllStoriesTitle": "كل قصص وقت النوم",
+  "bedtimeStoriesAllStoriesSubtitle": "تصفّح جميع قصص الأنبياء واختر ما يناسب هذه الليلة.",
+  "bedtimeStoriesDurationMinutesLabel": "{minutes} دقيقة",
+  "@bedtimeStoriesDurationMinutesLabel": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "bedtimeStoriesPartLabel": "الجزء {part} من {total}",
+  "@bedtimeStoriesPartLabel": {
+    "placeholders": {
+      "part": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "bedtimeStoriesAgeGroupKidsEarly": "الأطفال الصغار",
+  "bedtimeStoriesAgeGroupKids": "الأطفال",
+  "bedtimeStoriesAgeGroupKidsPlus": "الأطفال+",
+  "bedtimeStoriesStatusNotStarted": "لم تبدأ",
+  "bedtimeStoriesStatusInProgress": "قيد التقدم",
+  "bedtimeStoriesStatusCompleted": "مكتملة",
+  "bedtimeStoriesLessonSectionTitle": "درس الليلة",
+  "bedtimeStoriesQuranQuoteSectionTitle": "صلة بالقرآن",
+  "bedtimeStoriesQuranTapSubtitle": "اضغط لفتح الآية في قارئ القرآن.",
+  "bedtimeStoriesAudioCheckingLabel": "جارٍ التحقق من توفر الصوت...",
+  "bedtimeStoriesAudioUnavailableTitle": "النص جاهز",
+  "bedtimeStoriesAudioUnavailableSubtitle": "الصوت غير مرفق بعد لهذه القصة. لا يزال بإمكانك القراءة معها وإكمالها بهدوء.",
+  "bedtimeStoriesAudioReadyBadge": "الصوت جاهز",
+  "bedtimeStoriesReadAlongBadge": "اقرأ مع القصة",
+  "bedtimeStoriesIncludedOfflineBadge": "مضمّنة دون اتصال",
+  "bedtimeStoriesDownloadedBadge": "تم التنزيل",
+  "bedtimeStoriesArtComingSoonBadge": "الرسوم قريبًا",
+  "bedtimeStoriesMediaLoadingLabel": "جارٍ تجهيز وسائط القصة...",
+  "bedtimeStoriesReadTonightAction": "اقرأ الليلة",
+  "bedtimeStoriesStartReadingAction": "ابدأ القراءة",
+  "bedtimeStoriesReadAlongPrimaryTitle": "اقرأ مع القصة الليلة",
+  "bedtimeStoriesArtOnlyTitle": "الرسوم جاهزة",
+  "bedtimeStoriesArtOnlySubtitle": "الرسومات متوفرة الآن، ويمكن إضافة السرد الصوتي لاحقًا دون تغيير تقدّمك في القصة.",
+  "bedtimeStoriesTranscriptSubtitle": "خذ وقتك واتبع الوقفات الهادئة واقرأوا معًا بإيقاع مريح قبل النوم.",
+  "bedtimeStoriesNarratedByLabel": "بصوت {name}",
+  "@bedtimeStoriesNarratedByLabel": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "bedtimeStoriesOpenPlayerAction": "افتح المشغل",
+  "bedtimeStoriesPreviousAction": "السابق",
+  "bedtimeStoriesBackShortAction": "رجوع 10",
+  "bedtimeStoriesForwardShortAction": "تقديم 10",
+  "bedtimeStoriesNextPartAction": "الجزء التالي",
+  "bedtimeStoriesNextStoryAction": "القصة التالية",
+  "bedtimeStoriesStoryCompleteTitle": "اكتملت القصة",
+  "bedtimeStoriesStoryCompleteSubtitle": "نهاية هادئة لهذه الليلة. يمكنك إعادة القصة أو التوقف هنا.",
+  "bedtimeStoriesStoryCompleteWithNextSubtitle": "يمكنك التوقف هنا أو متابعة {title} بعد ذلك.",
+  "@bedtimeStoriesStoryCompleteWithNextSubtitle": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "bedtimeStoriesReplayAction": "إعادة",
+  "bedtimeStoriesAutoplayOnLabel": "التشغيل التلقائي مفعّل",
+  "bedtimeStoriesAutoplayOffLabel": "التشغيل التلقائي متوقف",
+  "bedtimeStoriesAutoplayEnableAction": "تفعيل التشغيل التلقائي",
+  "bedtimeStoriesAutoplayDisableAction": "إيقاف التشغيل التلقائي",
+  "bedtimeStoriesSleepTimerAction": "مؤقت النوم",
+  "bedtimeStoriesSleepTimerTitle": "مؤقت النوم",
+  "bedtimeStoriesSleepTimerMinutes": "{minutes} دقائق",
+  "@bedtimeStoriesSleepTimerMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "bedtimeStoriesSleepTimerEndOfStory": "عند نهاية القصة",
+  "bedtimeStoriesSleepTimerOff": "إيقاف المؤقت",
+  "bedtimeStoriesSleepTimerRemaining": "المؤقت: {time}",
+  "@bedtimeStoriesSleepTimerRemaining": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "bedtimeStoriesContinueSeriesLabel": "جزء من السلسلة {part} من {total}",
+  "@bedtimeStoriesContinueSeriesLabel": {
+    "placeholders": {
+      "part": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "bedtimeStoriesMiniPlayerTapToExpand": "اضغط لتوسيع المشغل",
+  "bedtimeStoriesTonightQueueTitle": "قائمة الليلة",
+  "bedtimeStoriesTonightQueueSubtitle": "تبدأ بـ {title} • {count} قصص في القائمة",
+  "@bedtimeStoriesTonightQueueSubtitle": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "bedtimeStoriesSeriesProgressTitle": "تقدّم السلسلة",
+  "bedtimeStoriesSeriesCompletedLabel": "اكتملت جميع الأجزاء",
+  "bedtimeStoriesSeriesProgressLabel": "اكتمل {completed} من {total} أجزاء",
+  "@bedtimeStoriesSeriesProgressLabel": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "bedtimeStoriesTranscriptSectionTitle": "اقرأ مع القصة",
+  "bedtimeStoriesCompletedAction": "القصة مكتملة",
+  "bedtimeStoriesMarkCompleteAction": "تحديد القصة كمكتملة",
+  "bedtimeStoriesRelatedStoriesTitle": "قصص مرتبطة",
+  "bedtimeStoriesCompletionSnack": "اكتملت القصة: +{xp} نقاط خبرة و +{drops} قطرة محيط",
+  "@bedtimeStoriesCompletionSnack": {
+    "placeholders": {
+      "xp": {
+        "type": "int"
+      },
+      "drops": {
+        "type": "int"
+      }
+    }
+  },
+  "bedtimeStoriesPlayerReady": "مشغل الصوت",
+  "bedtimeStoriesPauseAction": "إيقاف مؤقت",
+  "bedtimeStoriesResumeAction": "استئناف",
+  "bedtimeStoriesPlayAction": "تشغيل",
+  "bedtimeStoriesRestartAction": "إعادة",
+  "bedtimeStoriesPlaybackProgressLabel": "{current} / {total}",
+  "@bedtimeStoriesPlaybackProgressLabel": {
+    "placeholders": {
+      "current": {},
+      "total": {}
+    }
+  },
+  "bedtimeStoryLearningLoopTitle": "أكمل التعلّم",
+  "bedtimeStoryLearningLoopSubtitle": "بعد الاستماع أو القراءة، جرّب نشاطًا هادئًا لتتذكر القصة ودرسها.",
+  "bedtimeStoryLearningNotStarted": "لم يبدأ",
+  "bedtimeStoryLearningInProgress": "قيد التقدّم",
+  "bedtimeStoryLearningCompleted": "مكتمل",
+  "bedtimeStoryLearningContinueQuizPrompt": "يمكنك متابعة اختبار القصة بعد ذلك.",
+  "bedtimeStoryLearningContinueMemoryPrompt": "يمكنك متابعة بطاقات التذكر بعد ذلك.",
+  "bedtimeStoryLearningUnavailableTitle": "نشاط التعلّم سيأتي قريبًا",
+  "bedtimeStoryContinueLearningTitle": "أكمل التعلّم",
+  "bedtimeStoryTonightQuestionTitle": "سؤال الليلة",
+  "bedtimeStoryLearningCompletionSnack": "اكتمل التعلّم: +{xp} نقاط خبرة",
+  "@bedtimeStoryLearningCompletionSnack": {
+    "placeholders": {
+      "xp": {
+        "type": "int"
+      }
+    }
+  },
+  "bedtimeStoryQuizTitle": "اختبار القصة",
+  "bedtimeStoryQuizUnavailableSubtitle": "أسئلة هذا الاختبار ليست جاهزة بعد، لكن ما زال بإمكانك الاستمتاع بالقصة وقراءتها.",
+  "bedtimeStoryQuizProgressLabel": "السؤال {current} من {total}",
+  "@bedtimeStoryQuizProgressLabel": {
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "bedtimeStoryQuizCorrectTitle": "إجابة صحيحة",
+  "bedtimeStoryQuizTryAgainTitle": "محاولة جميلة",
+  "bedtimeStoryQuizHintLabel": "تلميح: {hint}",
+  "@bedtimeStoryQuizHintLabel": {
+    "placeholders": {
+      "hint": {
+        "type": "String"
+      }
+    }
+  },
+  "bedtimeStoryQuizNextAction": "السؤال التالي",
+  "bedtimeStoryQuizFinishAction": "إنهاء الاختبار",
+  "bedtimeStoryQuizCompleteTitle": "اكتمل الاختبار",
+  "bedtimeStoryQuizCompleteSubtitle": "لقد تذكّرت القصة جيدًا. يمكنك العودة إلى القصة متى شئت.",
+  "bedtimeStoryQuizCompleteWithNextSubtitle": "لقد تذكّرت القصة جيدًا. بطاقات التذكر جاهزة إذا رغبت في نشاط هادئ آخر.",
+  "bedtimeStoryQuizStartAction": "ابدأ الاختبار",
+  "bedtimeStoryQuizReviewAction": "راجع الاختبار",
+  "bedtimeStoryMemoryTitle": "بطاقات التذكر",
+  "bedtimeStoryMemoryUnavailableSubtitle": "بطاقات التذكر لهذه القصة ليست جاهزة بعد، لكن القصة نفسها متاحة بالكامل.",
+  "bedtimeStoryMemoryProgressLabel": "{completed} من {total} مطابقة",
+  "@bedtimeStoryMemoryProgressLabel": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "bedtimeStoryMemoryPromptLabel": "اختر تلميح القصة",
+  "bedtimeStoryMemoryAnswerLabel": "اختر الإجابة المطابقة",
+  "bedtimeStoryMemoryMatchCorrect": "تذكّر رائع. هذه المطابقة صحيحة.",
+  "bedtimeStoryMemoryMatchTryAgain": "محاولة جميلة. لنتأمل معًا ونختار الزوج المطابق.",
+  "bedtimeStoryMemoryCompleteTitle": "اكتملت بطاقات التذكر",
+  "bedtimeStoryMemoryCompleteSubtitle": "لقد طابقت تلميحات القصة جيدًا. ستبقى قصة ما قبل النوم هنا متى أردت العودة إليها.",
+  "bedtimeStoryMemoryStartAction": "ابدأ بطاقات التذكر",
+  "bedtimeStoryMemoryPlayAgainAction": "العب مرة أخرى",
+  "bedtimeStoryMemoryCardsAction": "بطاقات التذكر",
+  "bedtimeStoryBackToStoryAction": "العودة إلى القصة",
+  "kidsStoryLibraryTitle": "قصص الأطفال",
+  "kidsStoryLibrarySubtitle": "تصفّح قصص الأنبياء والآداب والحياة اليومية والقصص الموسمية في مكتبة هادئة واحدة.",
+  "kidsStoryLibraryHeroTitle": "مكتبة متنامية من القصص الإسلامية",
+  "kidsStoryLibraryHeroSubtitle": "ما زالت قصص الأنبياء هنا، وانضمّت إليها الآن قصص لطيفة عن الأدب والحياة اليومية واللطف والصبر والشكر ورمضان والعيد.",
+  "kidsStoryLibraryAction": "افتح القصص",
+  "kidsStoryContinueTitle": "أكمل القصة",
+  "kidsStoryContinueSubtitle": "تابع من حيث توقّف هذا المتعلّم آخر مرة.",
+  "kidsStoryFeaturedTitle": "قصة مميزة",
+  "kidsStoryFeaturedSubtitle": "قصة هادئة لتبدأ بها الآن.",
+  "kidsStoryBrowseCollectionsTitle": "تصفّح حسب المجموعة",
+  "kidsStoryBrowseCollectionsSubtitle": "اختر مسارًا مألوفًا أو استكشف درسًا جديدًا.",
+  "kidsStoryCollectionProphets": "الأنبياء",
+  "kidsStoryCollectionProphetsSubtitle": "مجموعة قصص الأنبياء لوقت النوم ورحلات قصصية إيمانية أطول.",
+  "kidsStoryCollectionCompanions": "الصحابة",
+  "kidsStoryCollectionCompanionsSubtitle": "قصص لطيفة عن الوفاء والدعم والصبر والإيمان من صحابة النبي ﷺ.",
+  "kidsStoryCollectionCharacterAdab": "الشخصية والآداب",
+  "kidsStoryCollectionCharacterAdabSubtitle": "قصص لطيفة عن الصدق والصبر والاعتذار واللطف.",
+  "kidsStoryCollectionDailyLife": "الحياة اليومية والأدعية",
+  "kidsStoryCollectionDailyLifeSubtitle": "مواقف إسلامية بسيطة حول الطعام والبيت والروتين والمسجد.",
+  "kidsStoryCollectionRamadanEid": "رمضان والعيد",
+  "kidsStoryCollectionRamadanEidSubtitle": "قصص موسمية عن الشكر والكرم وفرحة العبادة.",
+  "kidsStoryCollectionFamilyKindness": "العائلة واللطف",
+  "kidsStoryCollectionFamilyKindnessSubtitle": "قصص دافئة عن المساعدة والمشاركة والرعاية ولين القلب.",
+  "kidsStoryBedtimeEligibleTitle": "قصص مناسبة لوقت النوم",
+  "kidsStoryBedtimeEligibleSubtitle": "قصص هادئة يمكن أن تنسجم بلطف مع وقت النوم.",
+  "kidsStoryFeaturedStoriesTitle": "قصص مميزة أخرى",
+  "kidsStoryFeaturedStoriesSubtitle": "مزيج من قصص الأنبياء وغيرها جاهز للفتح.",
+  "kidsStoryOpenAction": "افتح القصة",
+  "kidsStoryBedtimeChip": "وقت النوم",
+  "kidsStoryLessonSectionTitle": "درس القصة",
+  "kidsStoryHadithSectionTitle": "صلة بالحديث",
+  "kidsStorySourceNoteSectionTitle": "ملاحظة المصدر",
+  "kidsStoryAudioUnavailableSubtitle": "الصوت غير مضمَّن لهذه القصة بعد، لكن يمكنكم قراءتها بهدوء ومتابعة التعلّم.",
+  "kidsStoryReadAlongPrimaryTitle": "اقرأ القصة",
+  "kidsStoryReadStoryAction": "اقرأ القصة",
+  "kidsStoryScenesSectionTitle": "مشاهد القصة",
+  "kidsStoryTranscriptSectionTitle": "نص القصة",
+  "kidsSeerahJourneysTitle": "رحلات السيرة",
+  "kidsSeerahJourneysSubtitle": "اتبع مسارًا هادئًا ومناسبًا للأطفال عبر لحظات مهمة من سيرة النبي محمد ﷺ ومع بعض قصص الصحابة الأحبّة.",
+  "kidsSeerahJourneysHeroTitle": "مسار سيرة موجّه للأطفال",
+  "kidsSeerahJourneysHeroSubtitle": "تحرّك عبر لحظات مهمّة بمراحل بسيطة وعُقد قصصية وقصص صحابة وتأملات لطيفة.",
+  "kidsSeerahContinueJourneyTitle": "تابع رحلة السيرة",
+  "kidsSeerahContinueJourneySubtitle": "أكمل من آخر مرحلة مفتوحة وواصل هذا المسار التعليمي بهدوء.",
+  "kidsSeerahFeaturedJourneyTitle": "رحلة السيرة المميّزة",
+  "kidsSeerahFeaturedJourneySubtitle": "ابدأ مسارًا قصصيًا منظّمًا في السيرة بمراحل هادئة وخطوات واضحة.",
+  "kidsSeerahStagesPreviewTitle": "مسار قصص الرحلة",
+  "kidsSeerahStagesPreviewSubtitle": "{count, plural, one {تتبع هذه الرحلة الآن جزءًا قصصيًا رئيسيًا واحدًا.} other {تتبع هذه الرحلة الآن # أجزاء قصصية رئيسية.}}",
+  "@kidsSeerahStagesPreviewSubtitle": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "kidsSeerahCompanionStoriesTitle": "قصص الصحابة",
+  "kidsSeerahCompanionStoriesSubtitle": "تعرّف إلى بعض الصحابة الذين أضاءت وفاؤهم وصبرهم ودعمهم دروب السيرة.",
+  "kidsSeerahJourneysAllTitle": "كل مسارات السيرة",
+  "kidsSeerahJourneysAllSubtitle": "ابدأ الآن برحلة متقنة واحدة مع استعداد للمزيد لاحقًا.",
+  "kidsSeerahJourneyUnavailableSubtitle": "رحلة السيرة هذه غير جاهزة بعد.",
+  "kidsSeerahOpenJourneyAction": "افتح الرحلة",
+  "kidsSeerahTimelineTitle": "مسار زمني",
+  "kidsSeerahJourneyProgressLabel": "اكتمل {completed} من {total} مراحل",
+  "@kidsSeerahJourneyProgressLabel": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "kidsSeerahContinueNodeSubtitle": "افتح العقدة التالية المتاحة ليستمر هذا المسار بلطف.",
+  "kidsSeerahContinueNodeAction": "تابع",
+  "kidsSeerahJourneyCompleteTitle": "اكتملت الرحلة",
+  "kidsSeerahJourneyCompleteSubtitle": "وصلت إلى نهاية هذا المسار من السيرة بالقصص والتأمل والمراجعة الهادئة.",
+  "kidsSeerahStageCompletedBadge": "مكتملة",
+  "kidsSeerahStageInProgressBadge": "مفتوحة",
+  "kidsSeerahStageLockedBadge": "مقفلة",
+  "kidsSeerahStageProgressLabel": "اكتمل {completed} من {total} عُقد",
+  "@kidsSeerahStageProgressLabel": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "kidsSeerahNodeCompletedBadge": "العقدة مكتملة",
+  "kidsSeerahNodeReadyBadge": "جاهزة الآن",
+  "kidsSeerahNextNodeLabel": "العقدة التالية: {title}",
+  "@kidsSeerahNextNodeLabel": {
+    "placeholders": {
+      "title": {}
+    }
+  },
+  "kidsSeerahNextNodeAction": "العقدة التالية",
+  "kidsSeerahOpenStoryAction": "افتح القصة",
+  "kidsSeerahOpenQuizAction": "افتح الاختبار",
+  "kidsSeerahRewardSnack": "+{xp} نقطة خبرة لهذه الخطوة",
+  "@kidsSeerahRewardSnack": {
+    "placeholders": {
+      "xp": {
+        "type": "int"
+      }
+    }
+  },
+  "kidsSeerahNodeCompletedSnack": "اكتملت هذه الخطوة من الرحلة.",
+  "kidsSeerahMarkMilestoneAction": "علّم المحطة كمكتملة",
+  "kidsSeerahMarkReflectionAction": "علّم التأمل كمكتمل",
+  "bedtimeParentEntryTitle": "للآباء والأمهات",
+  "bedtimeParentEntrySubtitle": "اعرض ملخصًا هادئًا لتعلّم وقت النوم، والأنشطة الأخيرة، وما يمكن فعله بعد ذلك.",
+  "bedtimeParentEntryAction": "افتح عرض الوالدين",
+  "bedtimeFamilyModeTitle": "وضع العائلة",
+  "bedtimeFamilyModeSubtitle": "أبقِ قصص وقت النوم والاختبارات والمكافآت منفصلة بأمان لكل طفل.",
+  "bedtimeFamilyModeHeaderAction": "وضع العائلة",
+  "bedtimeFamilyModeEntryTitle": "وضع العائلة",
+  "bedtimeFamilyModeEntrySubtitle": "المتعلم النشط: {learnerName}",
+  "@bedtimeFamilyModeEntrySubtitle": {
+    "placeholders": {
+      "learnerName": {
+        "type": "String"
+      }
+    }
+  },
+  "bedtimeFamilyModeActiveLearnerTitle": "المتعلم النشط",
+  "bedtimeFamilyModeFallbackTitle": "استخدام متعلم واحد مشترك لوقت النوم",
+  "bedtimeFamilyModeFallbackSubtitle": "أنشئ ملفًا لطفل عندما تكون جاهزًا، وستبقى قصص وقت النوم منفصلة لكل متعلم بعد ذلك.",
+  "bedtimeFamilyModeAddChildAction": "أضف طفلًا",
+  "bedtimeFamilyModeParentDashboardAction": "لوحة الوالدين",
+  "bedtimeFamilyModeProfilesTitle": "ملفات الأطفال",
+  "bedtimeFamilyModeProfilesEmpty": "لا توجد ملفات أطفال بعد. أضف ملفًا ليبقى تقدّم كل طفل ومكافآته منفصلين.",
+  "bedtimeFamilyModeArchivedTitle": "الملفات المؤرشفة",
+  "bedtimeFamilyModeFallbackBadge": "متعلم وقت نوم مشترك",
+  "bedtimeFamilyModeCurrentLearnerBadge": "المتعلم الحالي",
+  "bedtimeFamilyModeSwitchAction": "تبديل",
+  "bedtimeFamilyModeEditAction": "تعديل",
+  "bedtimeFamilyModeArchiveAction": "أرشفة",
+  "bedtimeFamilyModeRestoreAction": "استعادة",
+  "bedtimeFamilyModeCreateChildSubmit": "أنشئ ملف الطفل",
+  "bedtimeFamilyModeEditTitle": "تعديل {name}",
+  "@bedtimeFamilyModeEditTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "bedtimeFamilyModeNameLabel": "الاسم",
+  "bedtimeFamilyModeNicknameLabel": "اسم لطيف لوقت النوم",
+  "bedtimeFamilyModeNicknameHelper": "اختياري. يمكن أن يجعل بطاقات وقت النوم أكثر خصوصية.",
+  "bedtimeFamilyModeAgeGroupLabel": "الفئة العمرية",
+  "bedtimeFamilyModeAvatarLabel": "الصورة الرمزية",
+  "bedtimeFamilyModeSaveAction": "احفظ التغييرات",
+  "bedtimeFamilyModeSwitchTitle": "اعرض التقدم لـ",
+  "bedtimeParentDashboardTitle": "ملخص تعلّم الأطفال للوالدين",
+  "bedtimeParentDashboardSubtitle": "ملخص هادئ عبر القصص والسيرة والأدعية وتعلّم العربية وإيقاع وقت النوم.",
+  "bedtimeParentWelcomeTitle": "نظرة هادئة على تعلّم وقت النوم",
+  "bedtimeParentWelcomeSubtitle": "يمكن أن ينمو إيقاع جميل قصةً بعد قصة، ودرسًا بعد درس، ونشاطًا لطيفًا بعد نشاط.",
+  "bedtimeParentWelcomeSubtitleWithName": "يمكن أن ينمو إيقاع جميل لـ {name} قصةً بعد قصة، ودرسًا بعد درس، ونشاطًا لطيفًا بعد نشاط.",
+  "@bedtimeParentWelcomeSubtitleWithName": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "bedtimeParentStreakBadge": "إيقاع وقت النوم {days} أيام",
+  "@bedtimeParentStreakBadge": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "bedtimeParentReadyTonightBadge": "جاهز لقصة الليلة",
+  "bedtimeParentOverviewSectionTitle": "نظرة عامة",
+  "bedtimeParentContinueLearningSectionTitle": "واصل التعلّم",
+  "bedtimeParentContinueLearningEmpty": "ستظهر اقتراحات التعلّم هنا بعد أول قصة أو دعاء أو خطوة من السيرة أو درس عربي.",
+  "bedtimeParentContinueStoryAction": "افتح القصة",
+  "bedtimeParentContinueSeerahAction": "افتح السيرة",
+  "bedtimeParentContinueDuaAction": "افتح الدعاء",
+  "bedtimeParentContinueArabicAction": "افتح العربية",
+  "bedtimeParentStoriesCompletedLabel": "القصص المكتملة",
+  "bedtimeParentStoryPartsCompletedLabel": "أجزاء القصص المكتملة",
+  "bedtimeParentQuizzesCompletedLabel": "الاختبارات المنجزة",
+  "bedtimeParentMemoryCompletedLabel": "بطاقات التذكر المكتملة",
+  "bedtimeParentProphetsExploredLabel": "الأنبياء الذين تم استكشافهم",
+  "bedtimeParentCurrentStreakLabel": "السلسلة الحالية",
+  "bedtimeParentXpEarnedLabel": "نقاط الخبرة المكتسبة",
+  "bedtimeParentDropsEarnedLabel": "قطرات المحيط المكتسبة",
+  "bedtimeParentOverallStoriesLabel": "القصص المكتملة",
+  "bedtimeParentOverallSeerahLabel": "مراحل السيرة",
+  "bedtimeParentOverallDuasLabel": "الأدعية المتعلَّمة",
+  "bedtimeParentOverallArabicLabel": "الحروف العربية",
+  "bedtimeParentOverallXpLabel": "نقاط الخبرة عبر تعلّم الأطفال",
+  "bedtimeParentOverallDropsLabel": "قطرات المحيط عبر تعلّم الأطفال",
+  "bedtimeParentLearningAreasSectionTitle": "مجالات التعلّم",
+  "bedtimeParentLearningAreasEmpty": "ستمتلئ مجالات التعلّم مع بدء كل جزء من رحلة الأطفال.",
+  "bedtimeParentLearningAreaStoriesTitle": "القصص",
+  "bedtimeParentLearningAreaSeerahTitle": "السيرة",
+  "bedtimeParentLearningAreaDuasTitle": "الأدعية",
+  "bedtimeParentLearningAreaArabicTitle": "العربية",
+  "bedtimeParentLearningAreaStoriesProgress": "اكتمل {completed} من {total} قصص",
+  "@bedtimeParentLearningAreaStoriesProgress": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "bedtimeParentLearningAreaSeerahProgress": "اكتمل {completed} من {total} مراحل",
+  "@bedtimeParentLearningAreaSeerahProgress": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "bedtimeParentLearningAreaDuasProgress": "تعلّم {completed} من {total} أدعية",
+  "@bedtimeParentLearningAreaDuasProgress": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "bedtimeParentLearningAreaArabicProgress": "أكمل {completed} من {total} حروف",
+  "@bedtimeParentLearningAreaArabicProgress": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "bedtimeParentLearningAreaStoriesSecondary": "بدأ {count} قصص",
+  "@bedtimeParentLearningAreaStoriesSecondary": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "bedtimeParentLearningAreaSeerahSecondary": "اكتملت {count} رحلات",
+  "@bedtimeParentLearningAreaSeerahSecondary": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "bedtimeParentLearningAreaDuasSecondary": "سلسلة نور لمدة {count} أيام",
+  "@bedtimeParentLearningAreaDuasSecondary": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "bedtimeParentLearningAreaArabicSecondary": "عدد حروف المراجعة {count}",
+  "@bedtimeParentLearningAreaArabicSecondary": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "bedtimeParentAreaLastActive": "آخر نشاط {date}",
+  "@bedtimeParentAreaLastActive": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "bedtimeParentHabitSectionTitle": "إيقاع وقت النوم",
+  "bedtimeParentHabitCurrentStreak": "السلسلة الحالية: {days}",
+  "@bedtimeParentHabitCurrentStreak": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "bedtimeParentHabitLongestStreak": "أطول سلسلة: {days}",
+  "@bedtimeParentHabitLongestStreak": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "bedtimeParentHabitWeekDays": "النشاط هذا الأسبوع: {days} أيام",
+  "@bedtimeParentHabitWeekDays": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "bedtimeParentHabitMonthDays": "النشاط هذا الشهر: {days} أيام",
+  "@bedtimeParentHabitMonthDays": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "bedtimeParentHabitEncouragingCopy": "يتكوّن إيقاع جميل. تعلّم وقت النوم اللطيف يتراكم مع الوقت.",
+  "bedtimeParentHabitGentleRestartCopy": "يمكن أن تبدأ القصة الهادئة التالية الليلة متى ما كنتم مستعدين.",
+  "bedtimeParentLastSessionLabel": "آخر جلسة لوقت النوم: {date}",
+  "@bedtimeParentLastSessionLabel": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "bedtimeParentProphetProgressSectionTitle": "الأنبياء الذين تم استكشافهم",
+  "bedtimeParentProphetCompletedLabel": "مكتمل",
+  "bedtimeParentProphetStartedLabel": "بدأ",
+  "bedtimeParentProphetNotStartedLabel": "لم يبدأ",
+  "bedtimeParentProphetStoryPartsLabel": "{completed} من {total} أجزاء",
+  "@bedtimeParentProphetStoryPartsLabel": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "bedtimeParentQuizDoneLabel": "تم الاختبار",
+  "bedtimeParentQuizPendingLabel": "اختبار لتجربته",
+  "bedtimeParentMemoryDoneLabel": "تمت بطاقات التذكر",
+  "bedtimeParentMemoryPendingLabel": "بطاقات تذكر لتجربتها",
+  "bedtimeParentContinueAction": "متابعة",
+  "bedtimeParentLessonsLearnedSectionTitle": "الدروس المتعلّمة",
+  "bedtimeParentLessonsEmpty": "ستتجمع الدروس هنا مع اكتمال قصص وقت النوم.",
+  "bedtimeParentLearningRecentActivitySectionTitle": "نشاط التعلّم الأخير",
+  "bedtimeParentLearningRecentActivityEmpty": "سيظهر هنا آخر تعلّم عبر القصص والأدعية والسيرة والعربية.",
+  "bedtimeParentBedtimeActivitySectionTitle": "نشاط وقت النوم الأخير",
+  "bedtimeParentRecentActivitySectionTitle": "نشاط وقت النوم الأخير",
+  "bedtimeParentRecentActivityEmpty": "سيظهر نشاط وقت النوم الأخير هنا عند بدء القصص وأنشطة التعلّم.",
+  "bedtimeParentRecentStoryTitle": "قصة",
+  "bedtimeParentRecentQuizTitle": "اختبار قصة",
+  "bedtimeParentRecentMemoryTitle": "بطاقات التذكّر",
+  "bedtimeParentRecentDuaLessonTitle": "درس دعاء",
+  "bedtimeParentRecentDuaPracticeTitle": "ممارسة دعاء",
+  "bedtimeParentRecentDuaDayTitle": "يومي مع الأدعية",
+  "bedtimeParentRecentSeerahNodeTitle": "خطوة من السيرة",
+  "bedtimeParentRecentSeerahStageTitle": "مرحلة من السيرة",
+  "bedtimeParentRecentSeerahJourneyTitle": "رحلة سيرة",
+  "bedtimeParentRecentArabicLessonTitle": "درس عربي",
+  "bedtimeParentRecentArabicDailyTitle": "مهمة العربية اليومية",
+  "bedtimeParentRecentBedtimeRoutineTitle": "رفيق وقت النوم",
+  "bedtimeParentLearningActivityStory": "اكتملت القصة في {date}",
+  "@bedtimeParentLearningActivityStory": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "bedtimeParentLearningActivityQuiz": "اكتمل الاختبار في {date}",
+  "@bedtimeParentLearningActivityQuiz": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "bedtimeParentLearningActivityMemory": "اكتمل نشاط الذاكرة في {date}",
+  "@bedtimeParentLearningActivityMemory": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "bedtimeParentLearningActivityDuaLesson": "تعلّم دعاء في {date}",
+  "@bedtimeParentLearningActivityDuaLesson": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "bedtimeParentLearningActivityDuaPractice": "تمت ممارسة الدعاء في {date}",
+  "@bedtimeParentLearningActivityDuaPractice": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "bedtimeParentLearningActivityDuaMyDay": "اكتمل يومي مع الأدعية في {date}",
+  "@bedtimeParentLearningActivityDuaMyDay": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "bedtimeParentLearningActivitySeerahNode": "اكتملت خطوة من السيرة في {date}",
+  "@bedtimeParentLearningActivitySeerahNode": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "bedtimeParentLearningActivitySeerahStage": "اكتملت مرحلة من السيرة في {date}",
+  "@bedtimeParentLearningActivitySeerahStage": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "bedtimeParentLearningActivitySeerahJourney": "اكتملت رحلة السيرة في {date}",
+  "@bedtimeParentLearningActivitySeerahJourney": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "bedtimeParentLearningActivityArabicLesson": "اكتمل درس العربية في {date}",
+  "@bedtimeParentLearningActivityArabicLesson": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "bedtimeParentLearningActivityArabicDaily": "اكتملت مهمة العربية اليومية في {date}",
+  "@bedtimeParentLearningActivityArabicDaily": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "bedtimeParentLearningActivityBedtimeRoutine": "اكتمل روتين وقت النوم في {date}",
+  "@bedtimeParentLearningActivityBedtimeRoutine": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "bedtimeParentActivityStarted": "فُتحت القصة في {date}",
+  "@bedtimeParentActivityStarted": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "bedtimeParentActivityListened": "تم الاستماع في {date}",
+  "@bedtimeParentActivityListened": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "bedtimeParentActivityCompleted": "اكتملت القصة في {date}",
+  "@bedtimeParentActivityCompleted": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "bedtimeParentActivityQuizCompleted": "اكتمل الاختبار في {date}",
+  "@bedtimeParentActivityQuizCompleted": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "bedtimeParentActivityMemoryCompleted": "اكتملت بطاقات التذكر في {date}",
+  "@bedtimeParentActivityMemoryCompleted": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "bedtimeParentRecommendationsSectionTitle": "الخطوات المقترحة التالية",
+  "bedtimeParentRecommendationContinueStory": "متابعة القصة",
+  "bedtimeParentRecommendationOpenQuiz": "افتح الاختبار",
+  "bedtimeParentRecommendationOpenMemory": "افتح بطاقات التذكر",
+  "bedtimeParentRecommendationOpenStory": "افتح القصة",
+  "bedtimeParentRecommendationTonightStory": "قصة الليلة",
+  "kidsDuaLearningModesTitle": "اختر وضع التعلّم",
+  "kidsDuaModeListen": "استمع",
+  "kidsDuaModeReadAlong": "اقرأ مع الترديد",
+  "kidsDuaModeTapRepeat": "اضغط للتكرار",
+  "kidsDuaModeGentlePractice": "تدرّب بلطف",
+  "kidsDuaPracticeSavedSnack": "تم حفظ التدرّب لهذا الدعاء.",
+  "kidsDuaGentlePracticeTitle": "تدرّب بلطف",
+  "kidsDuaGentlePracticeSubtitle": "استمع، واقرأ، وكرّر بهدوء. لا حاجة للاستعجال.",
+  "kidsDuaListenThenReadAction": "استمع ثم اقرأ",
+  "kidsDuaTapRepeatAction": "اضغط للتكرار",
+  "kidsDuaMarkPracticedAction": "تدرّبت على هذا",
+  "kidsDuaLearningBuddyLabel": "المتعلّم الصغير",
+  "kidsDuaLessonHeroSubtitle": "يتعلّم {learnerName} دعاءً من فئة {category} بهدوء الليلة.",
+  "@kidsDuaLessonHeroSubtitle": {
+    "placeholders": {
+      "learnerName": {
+        "type": "String"
+      },
+      "category": {
+        "type": "String"
+      }
+    }
+  },
+  "kidsDuaAudioUnavailableTitle": "القراءة مع الترديد جاهزة",
+  "kidsDuaAudioUnavailableSubtitle": "الصوت غير متوفر لهذا الدعاء بعد، لكن العربية والنطق والمعنى كلها جاهزة للتعلّم.",
+  "kidsDuaAudioSectionTitle": "استمع إلى الدعاء",
+  "kidsDuaAudioSectionSubtitle": "استمع إلى الدعاء بهدوء، ثم اقرأه أو كرّره معًا.",
+  "kidsDuaPauseAction": "إيقاف مؤقت",
+  "kidsDuaResumeAction": "استئناف",
+  "kidsDuaPlayWholeAction": "شغّل الدعاء كاملًا",
+  "kidsDuaRestartAction": "إعادة",
+  "kidsDuaRepeatWholeAction": "كرّر الدعاء كاملًا",
+  "kidsDuaPlaybackProgressLabel": "{current} / {total}",
+  "@kidsDuaPlaybackProgressLabel": {
+    "placeholders": {
+      "current": {
+        "type": "String"
+      },
+      "total": {
+        "type": "String"
+      }
+    }
+  },
+  "kidsDuaAudioLoadingLabel": "جارٍ التحقق من الصوت...",
+  "kidsDuaReadAlongModeTitle": "عرض القراءة مع الترديد",
+  "kidsDuaReadAlongArabicOnly": "العربية",
+  "kidsDuaReadAlongArabicTransliteration": "العربية + النطق",
+  "kidsDuaReadAlongFullView": "العرض الكامل",
+  "kidsDuaReadAlongSectionTitle": "اقرأ مع الترديد",
+  "kidsDuaTapRepeatSectionTitle": "اضغط للتكرار",
+  "kidsDuaTapRepeatBody": "اضغط على أي سطر لسماعه مرة أخرى والتدرّب عليه ببطء.",
+  "kidsDuaTapRepeatFallbackWholeAudio": "اضغط على أي سطر للتركيز عليه. سيعاد تشغيل صوت الدعاء كاملًا حتى يصبح صوت المقاطع جاهزًا.",
+  "kidsDuaTapRepeatNoAudioBody": "اضغط على أي سطر للتركيز على قراءته ببطء. الصوت غير جاهز لهذا الدعاء بعد.",
+  "kidsDuaBedtimeLinkTitle": "يناسب وقت النوم جميلًا",
+  "kidsDuaBedtimeLinkSubtitle": "هذا الدعاء جزء من رفيق وقت النوم بالفعل، لذلك يمكنكم العودة إليه هناك الليلة.",
+  "kidsDuaBedtimeLinkAction": "افتح رفيق وقت النوم",
+  "kidsDuaLearningProgressTitle": "تقدّم التعلّم",
+  "kidsDuaListenCountLabel": "مرات الاستماع",
+  "kidsDuaRepeatCountLabel": "تكرار السطور",
+  "kidsDuaViewsCountLabel": "مرات العرض",
+  "kidsDuaSourceTapSubtitle": "اضغط لفتحه في قارئ القرآن",
+  "bedtimeCompanionEntryTitle": "رفيق وقت النوم",
+  "bedtimeCompanionEntrySubtitle": "مرّوا بإيقاع هادئ لوقت النوم مع دعاء الليلة والقصة وختام لطيف.",
+  "bedtimeCompanionEntryAction": "افتح وقت النوم",
+  "bedtimeCompanionTitle": "وقت النوم",
+  "bedtimeCompanionSubtitle": "إيقاع هادئ لوقت النوم مع الأدعية والقصص وختام مطمئن.",
+  "bedtimeCompanionHeroTitle": "مساء الخير يا {learnerName}",
+  "@bedtimeCompanionHeroTitle": {
+    "placeholders": {
+      "learnerName": {
+        "type": "String"
+      }
+    }
+  },
+  "bedtimeCompanionHeroSubtitle": "تقدّموا بخطوات هادئة، واذكروا الله، وأنهِوا الليلة بلطف.",
+  "bedtimeCompanionRoutineTitle": "روتين الليلة",
+  "bedtimeCompanionRoutineProgress": "اكتمل {completed} من {total} خطوات لوقت النوم",
+  "@bedtimeCompanionRoutineProgress": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "bedtimeCompanionTonightDuaTitle": "دعاء الليلة",
+  "bedtimeCompanionTonightDuaSubtitle": "ذكر قصير قبل النوم ليجعل الليل هادئًا ومباركًا.",
+  "bedtimeCompanionTonightStoryTitle": "قصة الليلة",
+  "bedtimeCompanionTonightStorySubtitle": "استمعوا أو اقرأوا بهدوء، ثم عودوا متى ما كنتم جاهزين للخطوة التالية.",
+  "bedtimeCompanionReflectionTitle": "تأمل هادئ",
+  "bedtimeCompanionReflectionSubtitle": "اختاروا فكرة لطيفة تحملونها معكم إلى الليل.",
+  "bedtimeCompanionReflectionPrompt": "ما الذي تحب أن تتذكره الليلة؟",
+  "bedtimeCompanionReflectionChoiceFamily": "الحمد لله على عائلتي",
+  "bedtimeCompanionReflectionChoiceLesson": "أريد أن أتذكر درس الليلة",
+  "bedtimeCompanionReflectionChoiceRest": "الحمد لله على الراحة",
+  "bedtimeCompanionSleepReadyTitle": "جاهز للنوم",
+  "bedtimeCompanionSleepReadySubtitle": "يمكنكم إنهاء الليلة بلطف الآن. الله يسمع كل ذكر هادئ.",
+  "bedtimeCompanionSleepReadyDoneTitle": "جاهز للنوم",
+  "bedtimeCompanionSleepReadyDoneSubtitle": "اكتمل إيقاع وقت النوم لهذه الليلة. تصبحون على خير، ولتكن راحتكم هانئة.",
+  "bedtimeCompanionRecommendationResumeTitle": "أكملوا قصة الليلة الماضية",
+  "bedtimeCompanionRecommendationDuaTitle": "ابدأوا بدعاء الليلة",
+  "bedtimeCompanionRecommendationStoryTitle": "قصة الليلة جاهزة",
+  "bedtimeCompanionRecommendationReflectionTitle": "خذوا لحظة تأمل هادئة",
+  "bedtimeCompanionPlayStoryAction": "شغّل القصة",
+  "bedtimeCompanionReadStoryAction": "اقرأ القصة",
+  "bedtimeCompanionStoryDetailsAction": "تفاصيل القصة",
+  "bedtimeCompanionSourceLabel": "المصدر",
+  "bedtimeCompanionExtraDhikrTitle": "ذكر لطيف إضافي",
+  "bedtimeCompanionDuaDoneAction": "تم الدعاء",
+  "bedtimeCompanionReadyForSleepAction": "جاهز للنوم",
+  "bedtimeCompanionGoodNightAction": "تصبح على خير",
+  "bedtimeCompanionMarkReadyAction": "حدّد أنه جاهز",
+  "bedtimeCompanionOpenDuaAction": "افتح الدعاء",
+  "bedtimeCompanionOpenStoryAction": "افتح القصة",
+  "bedtimeCompanionOpenReflectionAction": "افتح التأمل",
+  "bedtimeCompanionStepCompleted": "مكتمل",
+  "bedtimeCompanionStepInProgress": "قيد التقدم",
+  "bedtimeCompanionStepOptionalDone": "اختياري مكتمل",
+  "bedtimeCompanionStepNotStarted": "لم يبدأ",
+  "bedtimeRoutineDefaultPlanTitle": "روتين هادئ لوقت النوم",
+  "bedtimeRoutineStepGetReadyTitle": "استعد للنوم",
+  "bedtimeRoutineStepGetReadySubtitle": "اهدأ، وخذ راحتك، واستعد لليلة هادئة.",
+  "bedtimeRoutineStepDuaTitle": "دعاء قبل النوم",
+  "bedtimeRoutineStepDuaSubtitle": "اقرأ أو استمع إلى دعاء قصير قبل النوم.",
+  "bedtimeRoutineStepStoryTitle": "وقت القصة",
+  "bedtimeRoutineStepStorySubtitle": "استمع أو اقرأ قصة النبي لليلة.",
+  "bedtimeRoutineStepReflectionTitle": "تأمل هادئ",
+  "bedtimeRoutineStepReflectionSubtitle": "اختر درسًا لطيفًا أو فكرة شكر لتبقى قريبة من قلبك.",
+  "bedtimeRoutineStepSleepReadyTitle": "ختام مهيّئ للنوم",
+  "bedtimeRoutineStepSleepReadySubtitle": "اختم بلطف واسترح بسلام.",
+  "progressionPageTitle": "التقدّم والشارات",
+  "progressionPageSubtitle": "عرض هادئ للنمو التعليمي على المدى الطويل.",
+  "progressionPageLearnerSectionTitle": "ملف الطفل",
+  "progressionPageHeroTitle": "تقدّم {name}",
+  "@progressionPageHeroTitle": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "progressionPageHeroSubtitle": "تنمو المستويات والشارات والمحطات مع التعلّم الثابت.",
+  "progressionPageOpenAction": "افتح التقدّم",
+  "progressionPageOverviewTitle": "نظرة عامة",
+  "progressionPageGardenTitle": "الحديقة",
+  "progressionPageGardenCardTitle": "شاهِد كيف ينمو التعلّم",
+  "progressionPageGardenCardSubtitle": "افتح الحديقة الرمزية التي تُشكّلها وتيرة العبادة والتعلّم والذكر والقطرات.",
+  "progressionPageGardenAction": "افتح الحديقة",
+  "progressionPageMilestonesTitle": "المحطات",
+  "progressionPageMilestonesEmpty": "ستظهر المحطات مع نموّ التعلّم.",
+  "progressionPageBadgesTitle": "الشارات",
+  "progressionPageBadgesEmpty": "ستظهر الشارات بعد أولى الإنجازات المهمة.",
+  "progressionPageLevelValue": "المستوى {level} • {title}",
+  "@progressionPageLevelValue": {
+    "placeholders": {
+      "level": {},
+      "title": {}
+    }
+  },
+  "progressionPageXpValue": "{xp} نقطة خبرة",
+  "@progressionPageXpValue": {
+    "placeholders": {
+      "xp": {}
+    }
+  },
+  "progressionPageNextLevelValue": "المستوى التالي: {title}",
+  "@progressionPageNextLevelValue": {
+    "placeholders": {
+      "title": {}
+    }
+  },
+  "progressionPageMaxLevel": "تم الوصول إلى أعلى مستوى",
+  "progressionOverviewStoriesLabel": "القصص المكتملة",
+  "progressionOverviewQuizzesLabel": "الاختبارات المكتملة",
+  "progressionOverviewDuasLabel": "الأدعية المتعلَّمة",
+  "progressionOverviewRoutinesLabel": "روتينات النوم",
+  "progressionOverviewDropsLabel": "قطرات المحيط",
+  "progressionOverviewBadgesLabel": "الشارات المكتسبة",
+  "progressionOverviewLevelLabel": "المستوى الحالي",
+  "gardenPageTitle": "الحديقة",
+  "gardenPageSubtitle": "عرض هادئ للنمو الرمزي الذي يتشكل مع الوقت.",
+  "gardenPageHeroTitle": "حديقتك",
+  "gardenPageHeroSubtitle": "كل مرحلة في الحديقة تعكس التعلّم الثابت والذكر والعادات الطيبة دون أن تتحول الرحلة إلى لعبة.",
+  "gardenPageTotalDrops": "إجمالي القطرات",
+  "gardenPageUnlockedImages": "الصور المفتوحة",
+  "gardenPageUnlockedCountValue": "{unlocked} من {total} صور",
+  "@gardenPageUnlockedCountValue": {
+    "placeholders": {
+      "unlocked": {
+        "type": "String"
+      },
+      "total": {
+        "type": "String"
+      }
+    }
+  },
+  "gardenPageMeaningTitle": "ما الذي تعكسه الحديقة",
+  "gardenPagePrayerMeaningTitle": "الصلاة",
+  "gardenPagePrayerMeaningBody": "الصلاة تصنع الجذور والجذع: ثابتة، مطمئنة، وأساسية.",
+  "gardenPageLearningMeaningTitle": "التعلّم والحكمة",
+  "gardenPageLearningMeaningBody": "التعلّم ينضج ليصبح ثمراً: فهمًا وبصيرةً وعملًا أفضل.",
+  "gardenPageDropsMeaningTitle": "القطرات",
+  "gardenPageDropsMeaningBody": "القطرات تجلب الخضرة والحياة، وتُظهر الأعمال الصادقة التي تُغذّي الحديقة كلها.",
+  "gardenPageNextUnlockTitle": "المشهد التالي",
+  "gardenPageAllUnlockedTitle": "اكتمل معرض الحديقة",
+  "gardenPageAllUnlockedBody": "كل مشاهد الحديقة الأساسية مفتوحة الآن. ويمكن للمراحل القادمة أن تبني على هذا الأساس الهادئ.",
+  "gardenPageNextUnlockRequiredValue": "يُفتح عند {count} قطرة",
+  "@gardenPageNextUnlockRequiredValue": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "gardenPageDropsRemainingValue": "متبقي {count} قطرة",
+  "@gardenPageDropsRemainingValue": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "gardenPageEntrySubtitle": "تم جمع {drops} قطرة. المشهد التالي: {title}.",
+  "@gardenPageEntrySubtitle": {
+    "placeholders": {
+      "drops": {
+        "type": "String"
+      },
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "gardenPageEntryHomeSubtitle": "افتح مشاهدك المفتوحة ومعناها والمحطة التالية في عرض هادئ واحد.",
+  "gardenPageLearnerSectionTitle": "ملف الطفل",
+  "gardenPageHeroBody": "التعلّم والذِّكر والعادات الطيبة الثابتة تُشكّل هذه الحديقة مع الوقت.",
+  "gardenPageLevelLabel": "المستوى",
+  "gardenPageXpLabel": "نقاط الخبرة",
+  "gardenPageMaturityLabel": "نضج الحديقة",
+  "gardenPageMaturityValue": "{percent}%",
+  "@gardenPageMaturityValue": {
+    "placeholders": {
+      "percent": {}
+    }
+  },
+  "gardenPageNextGrowthTitle": "النمو التالي",
+  "gardenPageNextGrowthValue": "المرحلة التالية: {title}",
+  "@gardenPageNextGrowthValue": {
+    "placeholders": {
+      "title": {}
+    }
+  },
+  "gardenPageNextGrowthSubtitle": "العبادة الثابتة والتعلّم والذِّكر والروتين الطيب كلها تواصل تشكيل النمو التالي.",
+  "gardenPageBreakdownTitle": "ما الذي ينمو",
+  "gardenPageInsightTitle": "ما الذي ساعدها على النمو",
+  "gardenPageRecentGrowthTitle": "النمو الأخير",
+  "gardenPageRecentGrowthEmpty": "سيظهر نمو الحديقة بعد الخطوة التعليمية المهمة التالية.",
+  "gardenPageMilestonesTitle": "معرض الحديقة",
+  "gardenPageHowItWorksTitle": "كيف يعمل النمو",
+  "gardenPageDimensionStrengthValue": "نسبة النمو {percent}٪",
+  "@gardenPageDimensionStrengthValue": {
+    "placeholders": {
+      "percent": {}
+    }
+  },
+  "gardenPageRecentGrowthJustNow": "الآن",
+  "gardenPageRecentGrowthRewardValue": "{xp} نقطة خبرة • {drops} قطرة",
+  "@gardenPageRecentGrowthRewardValue": {
+    "placeholders": {
+      "xp": {},
+      "drops": {}
+    }
+  },
+  "gardenPageRecentGrowthXpValue": "{xp} نقطة خبرة",
+  "@gardenPageRecentGrowthXpValue": {
+    "placeholders": {
+      "xp": {}
+    }
+  },
+  "gardenAmbientQuietDawn": "فجر هادئ",
+  "gardenAmbientGentleMorning": "صباح لطيف",
+  "gardenAmbientWarmLight": "نور دافئ",
+  "gardenAmbientEveningGlow": "وهج المساء",
+  "gardenStageSeed": "بذرة في التربة",
+  "gardenStageSprout": "برعم مبكر",
+  "gardenStageRoots": "جذور صغيرة",
+  "gardenStageStem": "ساق يافعة",
+  "gardenStageYoungTree": "شجرة يافعة",
+  "gardenStageTrunk": "جذع يزداد قوة",
+  "gardenStageBranches": "نمو الأغصان",
+  "gardenStageLeaves": "نمو الأوراق",
+  "gardenStageFruit": "بداية الثمر",
+  "gardenStageFlourishing": "شجرة مزدهرة",
+  "gardenDimensionPrayerTitle": "جذور الصلاة",
+  "gardenDimensionPrayerBody": "العبادة الثابتة والعادات المطمئنة تقوي الحديقة من أصلها.",
+  "gardenDimensionLearningTitle": "أغصان العلم",
+  "gardenDimensionLearningBody": "القصص والسيرة والتعلّم الهادئ توسّع مدى الحديقة.",
+  "gardenDimensionLightTitle": "نور الذكر",
+  "gardenDimensionLightBody": "الدعاء والذكر يملآن الحديقة نورًا وسكينة.",
+  "gardenDimensionWaterTitle": "ماء الأعمال الطيبة",
+  "gardenDimensionWaterBody": "قطرات المحيط تُغذّي الحديقة بالحياة والخضرة والانتعاش.",
+  "gardenDimensionFruitTitle": "ثمار الحكمة",
+  "gardenDimensionFruitBody": "الشارات والمحطات والنضج تُظهر ثمار التعلّم.",
+  "gardenDimensionConsistencyTitle": "ازدهار الثبات",
+  "gardenDimensionConsistencyBody": "التعلّم المنتظم وروتين النوم يساعدان الحديقة كلها على البقاء حيّة.",
+  "gardenInsightPrayer": "إيقاعك الثابت مؤخرًا يقوّي الجذور ويمنح الحديقة أساسًا أرسخ.",
+  "gardenInsightLearning": "القصص والسيرة ولحظات التعلّم تساعد الأغصان على الاتساع.",
+  "gardenInsightLight": "الدعاء والذكر يجلبان مزيدًا من النور إلى الحديقة.",
+  "gardenInsightWater": "قطرات المحيط تجلب الماء والخضرة وحياة جديدة إلى الحديقة.",
+  "gardenInsightFruit": "المحطات والنضج بدأا يظهران كثمرٍ وحكمةٍ مزهرة.",
+  "gardenInsightConsistency": "ثباتك الأخير يساعد الحديقة كلها على البقاء صحيّة وممتلئة.",
+  "gardenRecentStory": "اكتملت قصة",
+  "gardenRecentQuiz": "اكتمل اختبار",
+  "gardenRecentMemory": "اكتملت بطاقات الذاكرة",
+  "gardenRecentDuaLesson": "اكتمل درس دعاء",
+  "gardenRecentDuaPractice": "تمت ممارسة الدعاء",
+  "gardenRecentDuaDay": "اكتمل يومي مع الأدعية",
+  "gardenRecentRoutine": "اكتمل روتين النوم",
+  "gardenRecentSeerahNode": "اكتملت خطوة من السيرة",
+  "gardenRecentSeerahStage": "اكتملت مرحلة من السيرة",
+  "gardenRecentSeerahJourney": "اكتملت رحلة السيرة",
+  "gardenRecentKidsArabicLesson": "اكتمل درس حرف عربي",
+  "gardenRecentKidsArabicDaily": "اكتملت مهمة العربية اليومية",
+  "gardenPageLightMeaningTitle": "نور من الذكر",
+  "gardenPageLightMeaningBody": "الدعاء والذكر يجلبان إلى الحديقة إشراقًا ودفئًا وسكينة.",
+  "gardenPageFruitMeaningTitle": "حكمة مزهرة",
+  "gardenPageFruitMeaningBody": "المحطات والنضج يظهران كثمرٍ يدلّ على تعلّمٍ ترسّخ.",
+  "gardenMilestoneTitle1": "البذرة الأولى",
+  "gardenMilestoneDescription1": "أول قطرة تغرس أول علامة على العودة الثابتة.",
+  "gardenMilestoneTitle2": "مطر لطيف",
+  "gardenMilestoneDescription2": "عشر قطرات تجلب أول مطرٍ لطيف على الحديقة.",
+  "gardenMilestoneTitle3": "غصن زيتون صغير",
+  "gardenMilestoneDescription3": "خمس وعشرون قطرة تكشف غصن زيتون صغيرًا ثابت الجذور.",
+  "gardenMilestoneTitle4": "ممر الصباح",
+  "gardenMilestoneDescription4": "خمسون قطرة تفتح طريقًا أكثر إشراقًا داخل الحديقة.",
+  "gardenMilestoneTitle5": "نافورة هادئة",
+  "gardenMilestoneDescription5": "مئة قطرة تكشف نافورة هادئة من الذكر.",
+  "gardenMilestoneTitle6": "باحة الزيتون",
+  "gardenMilestoneDescription6": "مئتا قطرة توسّع الحديقة إلى باحة ظليلة.",
+  "gardenMilestoneTitle7": "ممر المصابيح",
+  "gardenMilestoneDescription7": "ثلاثمئة وخمسون قطرة تضيء ممرًا لطيفًا لمواصلة العبادة.",
+  "gardenMilestoneTitle8": "مطر الرحمة",
+  "gardenMilestoneDescription8": "خمسمئة قطرة تجلب موسمًا أوسع من الرحمة والتجدد.",
+  "gardenMilestoneTitle9": "انعكاس النجوم",
+  "gardenMilestoneDescription9": "سبعمئة وخمسون قطرة تكشف حديقة ليلية متأملة تحت النجوم.",
+  "gardenMilestoneTitle10": "طريق النور",
+  "gardenMilestoneDescription10": "ألف قطرة تُكمل معرض الحديقة الأول بطريق من النور.",
+  "progressionParentRemainingValue": "{xp} نقطة خبرة للمستوى التالي",
+  "@progressionParentRemainingValue": {
+    "placeholders": {
+      "xp": {}
+    }
+  },
+  "progressionBadgeFirstStoryTitle": "أول قصة",
+  "progressionBadgeFirstStoryDescription": "أكمل أول قصة ذات معنى.",
+  "progressionBadgeFirstQuizTitle": "أول اختبار",
+  "progressionBadgeFirstQuizDescription": "أنهى أول اختبار قصة.",
+  "progressionBadgeFirstMemoryTitle": "أول بطاقات ذاكرة",
+  "progressionBadgeFirstMemoryDescription": "أكمل أول نشاط لبطاقات الذاكرة.",
+  "progressionBadgeFirstDuaTitle": "أول دعاء تم تعلّمه",
+  "progressionBadgeFirstDuaDescription": "تعلّم أول دعاء بممارسة هادئة.",
+  "progressionBadgeFirstSeerahStageTitle": "أول مرحلة من السيرة",
+  "progressionBadgeFirstSeerahStageDescription": "أكمل أول مرحلة من رحلة السيرة.",
+  "progressionBadgeFirstRoutineTitle": "إيقاع وقت النوم",
+  "progressionBadgeFirstRoutineDescription": "أنهى أول روتين لوقت النوم.",
+  "progressionBadgeBedtimeWeekTitle": "أسبوع من عناية وقت النوم",
+  "progressionBadgeBedtimeWeekDescription": "أكمل سبعة روتينات لوقت النوم.",
+  "progressionBadgeStoriesTenTitle": "مستكشف القصص",
+  "progressionBadgeStoriesTenDescription": "أكمل عشر قصص ذات معنى.",
+  "progressionBadgeJourneyCompleteTitle": "اكتملت رحلة السيرة",
+  "progressionBadgeJourneyCompleteDescription": "أكمل رحلة سيرة كاملة للأطفال.",
+  "progressionMilestoneStoriesTenTitle": "إكمال 10 قصص",
+  "progressionMilestoneStoriesTenDescription": "بداية ثابتة في تعلّم القصص.",
+  "progressionMilestoneStoriesFiftyTitle": "إكمال 50 قصة",
+  "progressionMilestoneStoriesFiftyDescription": "إيقاع عميق ومتنامٍ في تعلّم القصص.",
+  "progressionMilestoneQuizzesTenTitle": "إكمال 10 اختبارات",
+  "progressionMilestoneQuizzesTenDescription": "أصبح التأمل والتذكّر عادة.",
+  "progressionMilestoneDuasTenTitle": "تعلّم 10 أدعية",
+  "progressionMilestoneDuasTenDescription": "مجموعة متنامية من الذكر اليومي.",
+  "progressionMilestoneSeerahStageTitle": "أول مرحلة من السيرة",
+  "progressionMilestoneSeerahStageDescription": "بدأت رحلة السيرة.",
+  "progressionMilestoneSeerahJourneyTitle": "أول رحلة سيرة مكتملة",
+  "progressionMilestoneSeerahJourneyDescription": "اكتمل مسار سيرة موجّه كامل.",
+  "progressionMilestoneBedtimeWeekTitle": "7 روتينات لوقت النوم",
+  "progressionMilestoneBedtimeWeekDescription": "يتكوّن إيقاع جميل لوقت النوم.",
+  "progressionMilestoneLearningMonthTitle": "سلسلة تعلّم لمدة 30 يومًا",
+  "progressionMilestoneLearningMonthDescription": "أصبح الثبات جزءًا من الرحلة."
 }

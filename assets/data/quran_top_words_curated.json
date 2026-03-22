@@ -1,1082 +1,1269 @@
 [
   {
     "rank": 1,
-    "transliteration": "Hatha",
-    "meaning": "This",
-    "occurrences": 182
+    "arabic": "مِن",
+    "transliteration": "min",
+    "meaning": "from",
+    "occurrences": 2762
   },
   {
     "rank": 2,
-    "transliteration": "Thalika",
-    "meaning": "That",
-    "occurrences": 461
+    "arabic": "ٱللَّهِ",
+    "transliteration": "l-lahi",
+    "meaning": "Allah",
+    "occurrences": 1892
   },
   {
     "rank": 3,
-    "transliteration": "Hathihee",
-    "meaning": "This",
-    "occurrences": 46
+    "arabic": "إِنَّ",
+    "transliteration": "inna",
+    "meaning": "Indeed",
+    "occurrences": 1591
   },
   {
     "rank": 4,
-    "transliteration": "tilka",
-    "meaning": "That",
-    "occurrences": 28
+    "arabic": "فِى",
+    "transliteration": "fī",
+    "meaning": "in",
+    "occurrences": 1185
   },
   {
     "rank": 5,
-    "transliteration": "hawula'",
-    "meaning": "These",
-    "occurrences": 40
+    "arabic": "مَا",
+    "transliteration": "mā",
+    "meaning": "what",
+    "occurrences": 1008
   },
   {
     "rank": 6,
-    "transliteration": "Ulaeeka",
-    "meaning": "Those",
-    "occurrences": 130
+    "arabic": "ٱلَّذِينَ",
+    "transliteration": "alladhīna",
+    "meaning": "those who",
+    "occurrences": 811
   },
   {
     "rank": 7,
-    "transliteration": "Al lathee",
-    "meaning": "He/ Who",
-    "occurrences": 258
+    "arabic": "لَا",
+    "transliteration": "lā",
+    "meaning": "not",
+    "occurrences": 810
   },
   {
     "rank": 8,
-    "transliteration": "Al-LAEE",
-    "meaning": "She/Who",
-    "occurrences": 56
+    "arabic": "إِلَّا",
+    "transliteration": "illā",
+    "meaning": "except",
+    "occurrences": 763
   },
   {
     "rank": 9,
-    "transliteration": "Al-latheena",
-    "meaning": "Those/",
-    "occurrences": 738
+    "arabic": "عَلَىٰ",
+    "transliteration": "ʿalā",
+    "meaning": "on",
+    "occurrences": 684
   },
   {
     "rank": 10,
-    "transliteration": "Hathihee",
-    "meaning": "These",
-    "occurrences": 45
+    "arabic": "وَلَا",
+    "transliteration": "walā",
+    "meaning": "and not",
+    "occurrences": 657
   },
   {
     "rank": 11,
-    "transliteration": "Tilka",
-    "meaning": "Those",
-    "occurrences": 28
+    "arabic": "وَمَا",
+    "transliteration": "wamā",
+    "meaning": "And not",
+    "occurrences": 640
   },
   {
     "rank": 12,
-    "transliteration": "Allatee",
-    "meaning": "That",
-    "occurrences": 56
+    "arabic": "إِلَىٰ",
+    "transliteration": "ilā",
+    "meaning": "to",
+    "occurrences": 429
   },
   {
     "rank": 13,
-    "transliteration": "La ila ha",
-    "meaning": "(There is)",
-    "occurrences": 36
+    "arabic": "قَالَ",
+    "transliteration": "qāla",
+    "meaning": "He said",
+    "occurrences": 407
   },
   {
     "rank": 14,
-    "transliteration": "'ill الله",
-    "meaning": "Except",
-    "occurrences": 19
+    "arabic": "لَهُمْ",
+    "transliteration": "lahum",
+    "meaning": "for them",
+    "occurrences": 349
   },
   {
     "rank": 15,
-    "transliteration": "Kalla",
-    "meaning": "NO/CERTAINLY",
-    "occurrences": 38
+    "arabic": "ثُمَّ",
+    "transliteration": "thumma",
+    "meaning": "then",
+    "occurrences": 340
   },
   {
     "rank": 16,
-    "transliteration": "lan",
-    "meaning": "Not (for",
-    "occurrences": 59
+    "arabic": "وَمَن",
+    "transliteration": "waman",
+    "meaning": "And whoever",
+    "occurrences": 337
   },
   {
     "rank": 17,
-    "transliteration": "Lam",
-    "meaning": "Not (for",
-    "occurrences": 172
+    "arabic": "كَانَ",
+    "transliteration": "kāna",
+    "meaning": "is",
+    "occurrences": 333
   },
   {
     "rank": 18,
-    "transliteration": "Ma",
-    "meaning": "Not",
-    "occurrences": 890
+    "arabic": "وَإِن",
+    "transliteration": "wa-in",
+    "meaning": "And indeed",
+    "occurrences": 318
   },
   {
     "rank": 19,
-    "transliteration": "laysa",
-    "meaning": "Not",
-    "occurrences": 45
+    "arabic": "بِمَا",
+    "transliteration": "bimā",
+    "meaning": "of what",
+    "occurrences": 296
   },
   {
     "rank": 20,
-    "transliteration": "balaa",
-    "meaning": "Yes",
-    "occurrences": 22
+    "arabic": "لَكُمْ",
+    "transliteration": "lakum",
+    "meaning": "for you",
+    "occurrences": 295
   },
   {
     "rank": 21,
-    "transliteration": "ghayr",
-    "meaning": "Not,Other",
-    "occurrences": 69
+    "arabic": "قُلْ",
+    "transliteration": "qul",
+    "meaning": "Say",
+    "occurrences": 288
   },
   {
     "rank": 22,
-    "transliteration": "Douna",
-    "meaning": "Besides,",
-    "occurrences": 90
+    "arabic": "أَوْ",
+    "transliteration": "aw",
+    "meaning": "or",
+    "occurrences": 280
   },
   {
     "rank": 23,
-    "transliteration": "'illa",
-    "meaning": "Except,",
-    "occurrences": 680
+    "arabic": "بِهِۦ",
+    "transliteration": "bihi",
+    "meaning": "with it",
+    "occurrences": 279
   },
   {
     "rank": 24,
-    "transliteration": "Na`am",
-    "meaning": "YES",
-    "occurrences": 9
+    "arabic": "ذَٰلِكَ",
+    "transliteration": "dhālika",
+    "meaning": "that",
+    "occurrences": 268
   },
   {
     "rank": 25,
-    "transliteration": "ho",
-    "meaning": "HIS",
-    "occurrences": 4906
+    "arabic": "ٱلَّذِى",
+    "transliteration": "alladhī",
+    "meaning": "(is) the One Who",
+    "occurrences": 268
   },
   {
     "rank": 26,
-    "transliteration": "Hom",
-    "meaning": "They’re",
-    "occurrences": 257
+    "arabic": "هُمْ",
+    "transliteration": "hum",
+    "meaning": "they",
+    "occurrences": 260
   },
   {
     "rank": 27,
-    "transliteration": "Kom",
-    "meaning": "Yours",
-    "occurrences": 12
+    "arabic": "ٱللَّهِ ۚ",
+    "transliteration": "l-lahi",
+    "meaning": "Allah",
+    "occurrences": 258
   },
   {
     "rank": 28,
-    "transliteration": "e(nee)",
-    "meaning": "My (Me)",
-    "occurrences": 24
+    "arabic": "لَهُۥ",
+    "transliteration": "lahu",
+    "meaning": "for him",
+    "occurrences": 258
   },
   {
     "rank": 29,
-    "transliteration": "Na",
-    "meaning": "Our",
-    "occurrences": 2145
+    "arabic": "ءَامَنُوا۟",
+    "transliteration": "āmanū",
+    "meaning": "believe",
+    "occurrences": 255
   },
   {
     "rank": 30,
-    "transliteration": "ha",
-    "meaning": "Her",
-    "occurrences": 4
+    "arabic": "ٱلْأَرْضِ",
+    "transliteration": "l-arḍi",
+    "meaning": "the earth",
+    "occurrences": 246
   },
   {
     "rank": 31,
-    "transliteration": "honna",
-    "meaning": "They are",
-    "occurrences": 6
+    "arabic": "قَالُوا۟",
+    "transliteration": "qālū",
+    "meaning": "They said",
+    "occurrences": 246
   },
   {
     "rank": 32,
-    "transliteration": "Ke",
-    "meaning": "Yours",
-    "occurrences": 0
-  },
-  {
-    "rank": 34,
-    "transliteration": "Homa",
-    "meaning": "They(two)",
-    "occurrences": 116
-  },
-  {
-    "rank": 35,
-    "transliteration": "Koma",
-    "meaning": "Yours(two)",
-    "occurrences": 58
-  },
-  {
-    "rank": 36,
-    "transliteration": "howa",
-    "meaning": "HE",
+    "arabic": "كُلِّ",
+    "transliteration": "kulli",
+    "meaning": "every",
     "occurrences": 244
   },
   {
+    "rank": 33,
+    "arabic": "وَٱللَّهُ",
+    "transliteration": "wal-lahu",
+    "meaning": "And Allah",
+    "occurrences": 240
+  },
+  {
+    "rank": 34,
+    "arabic": "هُوَ",
+    "transliteration": "huwa",
+    "meaning": "He",
+    "occurrences": 239
+  },
+  {
+    "rank": 35,
+    "arabic": "كَانُوا۟",
+    "transliteration": "kānū",
+    "meaning": "they used to",
+    "occurrences": 228
+  },
+  {
+    "rank": 36,
+    "arabic": "عَن",
+    "transliteration": "ʿan",
+    "meaning": "from",
+    "occurrences": 223
+  },
+  {
     "rank": 37,
-    "transliteration": "'anta",
-    "meaning": "YOU",
-    "occurrences": 55
+    "arabic": "إِنَّا",
+    "transliteration": "innā",
+    "meaning": "Indeed, We",
+    "occurrences": 221
   },
   {
     "rank": 38,
-    "transliteration": "'antom",
-    "meaning": "You All",
-    "occurrences": 78
+    "arabic": "إِذَا",
+    "transliteration": "idhā",
+    "meaning": "when",
+    "occurrences": 221
   },
   {
     "rank": 39,
-    "transliteration": "Ana",
-    "meaning": "I",
-    "occurrences": 430
-  },
-  {
-    "rank": 40,
-    "transliteration": "nahno",
-    "meaning": "We",
-    "occurrences": 62
-  },
-  {
-    "rank": 41,
-    "transliteration": "Heya",
-    "meaning": "She",
-    "occurrences": 47
-  },
-  {
-    "rank": 42,
-    "transliteration": "honna",
-    "meaning": "They",
-    "occurrences": 6
-  },
-  {
-    "rank": 43,
-    "transliteration": "antee",
-    "meaning": "YOU (f)",
-    "occurrences": 55
-  },
-  {
-    "rank": 44,
-    "transliteration": "Heya",
-    "meaning": "It is/ They",
-    "occurrences": 47
-  },
-  {
-    "rank": 45,
-    "transliteration": "Homa",
-    "meaning": "Those",
-    "occurrences": 1
-  },
-  {
-    "rank": 46,
-    "transliteration": "Antoma",
-    "meaning": "You",
-    "occurrences": 1
-  },
-  {
-    "rank": 47,
-    "transliteration": "Fawqa",
-    "meaning": "Above/",
-    "occurrences": 15
-  },
-  {
-    "rank": 48,
-    "transliteration": "Tahta",
-    "meaning": "Under",
-    "occurrences": 7
-  },
-  {
-    "rank": 49,
-    "transliteration": "Bayna Yaday",
-    "meaning": "Infront",
-    "occurrences": 9
-  },
-  {
-    "rank": 50,
-    "transliteration": "khalfa",
-    "meaning": "Back",
-    "occurrences": 2
-  },
-  {
-    "rank": 51,
-    "transliteration": "Amama",
-    "meaning": "In front",
-    "occurrences": 1
-  },
-  {
-    "rank": 52,
-    "transliteration": "Wara`a",
-    "meaning": "Behind",
-    "occurrences": 12
-  },
-  {
-    "rank": 53,
-    "transliteration": "Yameen",
-    "meaning": "Right;",
-    "occurrences": 3
-  },
-  {
-    "rank": 54,
-    "transliteration": "Sheemal",
-    "meaning": "Left",
-    "occurrences": 7
-  },
-  {
-    "rank": 55,
-    "transliteration": "bayna",
-    "meaning": "Between",
-    "occurrences": 76
-  },
-  {
-    "rank": 56,
-    "transliteration": "Hawla",
-    "meaning": "Around",
-    "occurrences": 2
-  },
-  {
-    "rank": 57,
-    "transliteration": "haytho",
-    "meaning": "Wherever",
-    "occurrences": 28
-  },
-  {
-    "rank": 58,
-    "transliteration": "Aynama",
-    "meaning": "Wherever",
-    "occurrences": 3
-  },
-  {
-    "rank": 59,
-    "transliteration": "Ma",
-    "meaning": "What?",
-    "occurrences": 890
-  },
-  {
-    "rank": 60,
-    "transliteration": "Man",
-    "meaning": "Who?,The",
-    "occurrences": 2023
-  },
-  {
-    "rank": 61,
-    "transliteration": "Mata",
-    "meaning": "When? The",
-    "occurrences": 9
-  },
-  {
-    "rank": 62,
-    "transliteration": "Ayna",
-    "meaning": "Where?",
-    "occurrences": 14
-  },
-  {
-    "rank": 63,
-    "transliteration": "Kayfa",
-    "meaning": "How",
-    "occurrences": 62
-  },
-  {
-    "rank": 64,
-    "transliteration": "Kam",
-    "meaning": "How",
-    "occurrences": 12
-  },
-  {
-    "rank": 65,
-    "transliteration": "Ayyo",
-    "meaning": "Which",
-    "occurrences": 7
-  },
-  {
-    "rank": 66,
-    "transliteration": "Anni",
-    "meaning": "Where",
-    "occurrences": 15
-  },
-  {
-    "rank": 67,
-    "transliteration": "A,Hal",
-    "meaning": "Is?Am?Are?",
-    "occurrences": 64
-  },
-  {
-    "rank": 68,
-    "transliteration": "Matha",
-    "meaning": "What",
-    "occurrences": 22
-  },
-  {
-    "rank": 69,
-    "transliteration": "Lima ,",
-    "meaning": "WHY",
-    "occurrences": 172
-  },
-  {
-    "rank": 70,
-    "transliteration": "Lawla",
-    "meaning": "If not,Why",
-    "occurrences": 38
-  },
-  {
-    "rank": 71,
-    "transliteration": "Thoo,Tha,thee",
-    "meaning": "have-has",
-    "occurrences": 25
-  },
-  {
-    "rank": 72,
-    "transliteration": "Thata",
-    "meaning": "endowed",
-    "occurrences": 16
-  },
-  {
-    "rank": 73,
-    "transliteration": "Uloo ,ulee",
-    "meaning": "people of",
-    "occurrences": 38
-  },
-  {
-    "rank": 74,
-    "transliteration": "Ahl",
-    "meaning": "People of;",
-    "occurrences": 56
-  },
-  {
-    "rank": 75,
-    "transliteration": "Aal",
-    "meaning": "Family,",
-    "occurrences": 22
-  },
-  {
-    "rank": 76,
-    "transliteration": "Ala",
-    "meaning": "Do not",
-    "occurrences": 680
-  },
-  {
-    "rank": 77,
-    "transliteration": "Ni `ma",
-    "meaning": "what an",
-    "occurrences": 9
-  },
-  {
-    "rank": 78,
-    "transliteration": "Bi `sa",
-    "meaning": "What an",
-    "occurrences": 5
-  },
-  {
-    "rank": 79,
-    "transliteration": "Bi `sama",
-    "meaning": "evil is that",
-    "occurrences": 3
-  },
-  {
-    "rank": 80,
-    "transliteration": "Mithlo",
-    "meaning": "The same/",
-    "occurrences": 46
-  },
-  {
-    "rank": 81,
-    "transliteration": "Mathal",
-    "meaning": "lesson",
-    "occurrences": 46
-  },
-  {
-    "rank": 82,
-    "transliteration": "Mimman",
-    "meaning": "Than the one who;",
-    "occurrences": 31
-  },
-  {
-    "rank": 83,
-    "transliteration": "Qabla",
-    "meaning": "Before",
-    "occurrences": 118
-  },
-  {
-    "rank": 84,
-    "transliteration": "Ba`d",
-    "meaning": "After",
-    "occurrences": 114
-  },
-  {
-    "rank": 85,
-    "transliteration": "Heena",
-    "meaning": "Time period",
-    "occurrences": 15
-  },
-  {
-    "rank": 86,
-    "transliteration": "for past",
-    "meaning": "When",
-    "occurrences": 156
-  },
-  {
-    "rank": 87,
-    "transliteration": "for اَذِإ اَذِإ",
-    "meaning": "When",
-    "occurrences": 210
-  },
-  {
-    "rank": 88,
-    "transliteration": "Thomma",
-    "meaning": "Then",
-    "occurrences": 300
-  },
-  {
-    "rank": 89,
-    "transliteration": "Fa",
-    "meaning": "Then ,Thus",
-    "occurrences": 0
-  },
-  {
-    "rank": 90,
-    "transliteration": "Bal",
-    "meaning": "However,",
-    "occurrences": 121
-  },
-  {
-    "rank": 91,
-    "transliteration": "E`enda,Laday,",
-    "meaning": "Near",
-    "occurrences": 144
-  },
-  {
-    "rank": 92,
-    "transliteration": "Inn..illa",
-    "meaning": "nothing",
-    "occurrences": 1351
-  },
-  {
-    "rank": 93,
-    "transliteration": "Maa...illa",
-    "meaning": "Nothing",
-    "occurrences": 890
-  },
-  {
-    "rank": 94,
-    "transliteration": "Alla",
-    "meaning": "That...not",
-    "occurrences": 680
-  },
-  {
-    "rank": 95,
-    "transliteration": "Bima",
-    "meaning": "with what",
-    "occurrences": 282
-  },
-  {
-    "rank": 96,
-    "transliteration": "a`amma",
-    "meaning": "About",
-    "occurrences": 46
-  },
-  {
-    "rank": 97,
-    "transliteration": "Fima",
-    "meaning": "In what",
-    "occurrences": 23
-  },
-  {
-    "rank": 98,
-    "transliteration": "Kama",
-    "meaning": "as,just as",
-    "occurrences": 58
-  },
-  {
-    "rank": 99,
-    "transliteration": "Leema",
-    "meaning": "For What/",
-    "occurrences": 69
-  },
-  {
-    "rank": 100,
-    "transliteration": "Meemma",
-    "meaning": "Out Of",
-    "occurrences": 46
-  },
-  {
-    "rank": 101,
-    "transliteration": "Ka",
-    "meaning": "Your",
-    "occurrences": 4397
-  },
-  {
-    "rank": 102,
-    "transliteration": "Hom",
-    "meaning": "Them",
-    "occurrences": 257
-  },
-  {
-    "rank": 103,
-    "transliteration": "Amma",
-    "meaning": "As to",
-    "occurrences": 17
-  },
-  {
-    "rank": 104,
-    "transliteration": "eemma",
-    "meaning": "If ; Either",
-    "occurrences": 17
-  },
-  {
-    "rank": 105,
-    "transliteration": "Annama",
-    "meaning": "That",
-    "occurrences": 125
-  },
-  {
-    "rank": 106,
-    "transliteration": "Eennama",
-    "meaning": "Verily;",
-    "occurrences": 125
-  },
-  {
-    "rank": 107,
-    "transliteration": "Ka`annama",
-    "meaning": "As if",
-    "occurrences": 3
-  },
-  {
-    "rank": 108,
-    "transliteration": "Kollama",
-    "meaning": "Whenever",
-    "occurrences": 12
-  },
-  {
-    "rank": 109,
-    "transliteration": "Bi",
-    "meaning": "With,in,",
-    "occurrences": 0
-  },
-  {
-    "rank": 110,
-    "transliteration": "A`an",
-    "meaning": "About",
-    "occurrences": 212
-  },
-  {
-    "rank": 111,
-    "transliteration": "Fee",
-    "meaning": "IN",
-    "occurrences": 1005
-  },
-  {
-    "rank": 112,
-    "transliteration": "Kaa",
-    "meaning": "As, Like",
-    "occurrences": 4397
-  },
-  {
-    "rank": 113,
-    "transliteration": "lee Laa",
-    "meaning": "For",
-    "occurrences": 5951
-  },
-  {
-    "rank": 114,
-    "transliteration": "Min",
-    "meaning": "From",
-    "occurrences": 2023
-  },
-  {
-    "rank": 115,
-    "transliteration": "Eela",
-    "meaning": "Towards",
-    "occurrences": 382
-  },
-  {
-    "rank": 116,
-    "transliteration": "Taa",
-    "meaning": "by",
-    "occurrences": 4331
-  },
-  {
-    "rank": 117,
-    "transliteration": "Hatta",
-    "meaning": "Until",
-    "occurrences": 138
-  },
-  {
-    "rank": 118,
-    "transliteration": "Aa`la",
-    "meaning": "ON",
-    "occurrences": 592
-  },
-  {
-    "rank": 119,
-    "transliteration": "Ma`a",
-    "meaning": "With",
-    "occurrences": 57
-  },
-  {
-    "rank": 120,
-    "transliteration": "wa",
-    "meaning": "and : by",
-    "occurrences": 5658
-  },
-  {
-    "rank": 121,
-    "transliteration": "Qadd",
-    "meaning": "Surly (with the",
-    "occurrences": 122
-  },
-  {
-    "rank": 122,
-    "transliteration": "((verb+)+)",
-    "meaning": "will(for",
-    "occurrences": 3424
-  },
-  {
-    "rank": 123,
-    "transliteration": "Sawfa",
-    "meaning": "will (for",
-    "occurrences": 7
-  },
-  {
-    "rank": 124,
-    "transliteration": "La+verb+nna",
-    "meaning": "Will surely",
-    "occurrences": 0
-  },
-  {
-    "rank": 125,
-    "transliteration": "Laqad",
-    "meaning": "indeed",
-    "occurrences": 54
-  },
-  {
-    "rank": 126,
-    "transliteration": "La",
-    "meaning": "indeed,",
-    "occurrences": 0
-  },
-  {
-    "rank": 127,
-    "transliteration": "Le L",
-    "meaning": "Somebody does",
-    "occurrences": 0
-  },
-  {
-    "rank": 128,
-    "transliteration": "Al",
-    "meaning": "The",
-    "occurrences": 5153
-  },
-  {
-    "rank": 129,
-    "transliteration": "Am",
-    "meaning": "Or?",
-    "occurrences": 1373
-  },
-  {
-    "rank": 130,
-    "transliteration": "Aw",
-    "meaning": "Or",
+    "arabic": "يَوْمَ",
+    "transliteration": "yawma",
+    "meaning": "(on the) Day",
     "occurrences": 213
   },
   {
-    "rank": 131,
-    "transliteration": "Ba`dth",
-    "meaning": "Some of",
-    "occurrences": 58
+    "rank": 40,
+    "arabic": "فِيهَا",
+    "transliteration": "fīhā",
+    "meaning": "therein",
+    "occurrences": 207
   },
   {
-    "rank": 132,
-    "transliteration": "Kolla",
-    "meaning": "Everyone",
-    "occurrences": 54
+    "rank": 41,
+    "arabic": "عَلَيْهِمْ",
+    "transliteration": "ʿalayhim",
+    "meaning": "to them",
+    "occurrences": 193
   },
   {
-    "rank": 133,
-    "transliteration": "inna",
-    "meaning": "Verily,",
-    "occurrences": 1351
+    "rank": 42,
+    "arabic": "رَبِّكَ",
+    "transliteration": "rabbika",
+    "meaning": "your Lord",
+    "occurrences": 193
   },
   {
-    "rank": 134,
-    "transliteration": "Anna",
-    "meaning": "That",
-    "occurrences": 1351
+    "rank": 43,
+    "arabic": "كُنتُمْ",
+    "transliteration": "kuntum",
+    "meaning": "you are",
+    "occurrences": 186
   },
   {
-    "rank": 135,
-    "transliteration": "Ka`anna",
-    "meaning": "as if",
-    "occurrences": 306
+    "rank": 44,
+    "arabic": "ٱلسَّمَـٰوَٰتِ",
+    "transliteration": "l-samāwāti",
+    "meaning": "the heavens",
+    "occurrences": 181
   },
   {
-    "rank": 136,
-    "transliteration": "lakinna",
-    "meaning": "But",
+    "rank": 45,
+    "arabic": "كَفَرُوا۟",
+    "transliteration": "kafarū",
+    "meaning": "disbelieved",
+    "occurrences": 178
+  },
+  {
+    "rank": 46,
+    "arabic": "لَمْ",
+    "transliteration": "lam",
+    "meaning": "not",
+    "occurrences": 178
+  },
+  {
+    "rank": 47,
+    "arabic": "هَـٰذَا",
+    "transliteration": "hādhā",
+    "meaning": "this",
+    "occurrences": 177
+  },
+  {
+    "rank": 48,
+    "arabic": "ٱلنَّاسِ",
+    "transliteration": "l-nāsi",
+    "meaning": "the people",
+    "occurrences": 173
+  },
+  {
+    "rank": 49,
+    "arabic": "فَإِنَّ",
+    "transliteration": "fa-in",
+    "meaning": "then indeed",
     "occurrences": 171
   },
   {
-    "rank": 137,
-    "transliteration": "La`alla",
-    "meaning": "Perhaps",
-    "occurrences": 3
+    "rank": 50,
+    "arabic": "إِنَّهُۥ",
+    "transliteration": "innahu",
+    "meaning": "Indeed, He",
+    "occurrences": 170
   },
   {
-    "rank": 138,
-    "transliteration": "An",
-    "meaning": "That",
-    "occurrences": 1351
+    "rank": 51,
+    "arabic": "وَهُوَ",
+    "transliteration": "wahuwa",
+    "meaning": "And He",
+    "occurrences": 169
   },
   {
-    "rank": 139,
-    "transliteration": "Inn",
-    "meaning": "if",
-    "occurrences": 1351
+    "rank": 52,
+    "arabic": "وَٱلَّذِينَ",
+    "transliteration": "wa-alladhīna",
+    "meaning": "And those who",
+    "occurrences": 164
   },
   {
-    "rank": 140,
-    "transliteration": "Iyya",
-    "meaning": "Alone",
-    "occurrences": 0
+    "rank": 53,
+    "arabic": "شَىْءٍۢ",
+    "transliteration": "shayin",
+    "meaning": "thing",
+    "occurrences": 164
   },
   {
-    "rank": 141,
-    "transliteration": "A`asa",
-    "meaning": "Possibly",
-    "occurrences": 54
+    "rank": 54,
+    "arabic": "إِذْ",
+    "transliteration": "idh",
+    "meaning": "when",
+    "occurrences": 164
   },
   {
-    "rank": 142,
-    "transliteration": "Lamma",
-    "meaning": "When",
-    "occurrences": 54
+    "rank": 55,
+    "arabic": "إِنِّى",
+    "transliteration": "innī",
+    "meaning": "Indeed, I",
+    "occurrences": 161
   },
   {
-    "rank": 143,
-    "transliteration": "Law",
-    "meaning": "IF",
-    "occurrences": 78
+    "rank": 56,
+    "arabic": "ٱلْكِتَـٰبَ",
+    "transliteration": "l-kitāba",
+    "meaning": "the Book",
+    "occurrences": 155
   },
   {
-    "rank": 144,
-    "transliteration": "Ya,Ya",
-    "meaning": "O!",
-    "occurrences": 145
+    "rank": 57,
+    "arabic": "فَلَا",
+    "transliteration": "falā",
+    "meaning": "So (do) not",
+    "occurrences": 155
   },
   {
-    "rank": 145,
-    "transliteration": "Khabeer",
-    "meaning": "knowing",
-    "occurrences": 10
+    "rank": 58,
+    "arabic": "عَذَابٌ",
+    "transliteration": "ʿadhābun",
+    "meaning": "(is) a punishment",
+    "occurrences": 150
   },
   {
-    "rank": 146,
-    "transliteration": "Lord",
-    "meaning": "Lord",
+    "rank": 59,
+    "arabic": "عَلَيْكُمْ",
+    "transliteration": "ʿalaykum",
+    "meaning": "upon you",
+    "occurrences": 150
+  },
+  {
+    "rank": 60,
+    "arabic": "بَعْدِ",
+    "transliteration": "baʿdi",
+    "meaning": "after",
+    "occurrences": 146
+  },
+  {
+    "rank": 61,
+    "arabic": "حَتَّىٰ",
+    "transliteration": "ḥattā",
+    "meaning": "until",
+    "occurrences": 142
+  },
+  {
+    "rank": 62,
+    "arabic": "وَهُمْ",
+    "transliteration": "wahum",
+    "meaning": "while they",
+    "occurrences": 137
+  },
+  {
+    "rank": 63,
+    "arabic": "يَـٰٓأَيُّهَا",
+    "transliteration": "yāayyuhā",
+    "meaning": "O you",
+    "occurrences": 134
+  },
+  {
+    "rank": 64,
+    "arabic": "مِنْهُمْ",
+    "transliteration": "min'hum",
+    "meaning": "among them",
+    "occurrences": 134
+  },
+  {
+    "rank": 65,
+    "arabic": "عَلَيْهِ",
+    "transliteration": "ʿalayhi",
+    "meaning": "to him",
+    "occurrences": 134
+  },
+  {
+    "rank": 66,
+    "arabic": "أُو۟لَـٰٓئِكَ",
+    "transliteration": "ulāika",
+    "meaning": "Those",
+    "occurrences": 133
+  },
+  {
+    "rank": 67,
+    "arabic": "أَمْ",
+    "transliteration": "am",
+    "meaning": "Or",
+    "occurrences": 130
+  },
+  {
+    "rank": 68,
+    "arabic": "وَإِذَا",
+    "transliteration": "wa-idhā",
+    "meaning": "And when",
+    "occurrences": 130
+  },
+  {
+    "rank": 69,
+    "arabic": "إِنَّمَا",
+    "transliteration": "innamā",
+    "meaning": "Only",
+    "occurrences": 129
+  },
+  {
+    "rank": 70,
+    "arabic": "بِٱللَّهِ",
+    "transliteration": "bil-lahi",
+    "meaning": "in Allah",
+    "occurrences": 128
+  },
+  {
+    "rank": 71,
+    "arabic": "رَبِّ",
+    "transliteration": "rabbi",
+    "meaning": "My Lord",
+    "occurrences": 127
+  },
+  {
+    "rank": 72,
+    "arabic": "بَلْ",
+    "transliteration": "bal",
+    "meaning": "Nay",
     "occurrences": 126
   },
   {
-    "rank": 147,
-    "transliteration": "Rahman",
-    "meaning": "Compassionate",
-    "occurrences": 64
+    "rank": 73,
+    "arabic": "قَدْ",
+    "transliteration": "qad",
+    "meaning": "Verily",
+    "occurrences": 125
   },
   {
-    "rank": 148,
-    "transliteration": "salam",
-    "meaning": "Peace",
-    "occurrences": 47
+    "rank": 74,
+    "arabic": "وَلَقَدْ",
+    "transliteration": "walaqad",
+    "meaning": "And certainly",
+    "occurrences": 122
   },
   {
-    "rank": 149,
-    "transliteration": "Samee",
-    "meaning": "One Who",
-    "occurrences": 47
+    "rank": 75,
+    "arabic": "عِندَ",
+    "transliteration": "ʿinda",
+    "meaning": "near",
+    "occurrences": 119
   },
   {
-    "rank": 150,
-    "transliteration": "Shakur",
-    "meaning": "grateful",
-    "occurrences": 14
+    "rank": 76,
+    "arabic": "وَلَـٰكِنَّ",
+    "transliteration": "walākin",
+    "meaning": "but",
+    "occurrences": 112
   },
   {
-    "rank": 151,
-    "transliteration": "A`azeez",
-    "meaning": "Mighty",
+    "rank": 77,
+    "arabic": "مِمَّا",
+    "transliteration": "mimmā",
+    "meaning": "of what",
+    "occurrences": 111
+  },
+  {
+    "rank": 78,
+    "arabic": "خَيْرٌۭ",
+    "transliteration": "khayrun",
+    "meaning": "(is) better",
+    "occurrences": 108
+  },
+  {
+    "rank": 79,
+    "arabic": "وَلَوْ",
+    "transliteration": "walaw",
+    "meaning": "And if",
+    "occurrences": 106
+  },
+  {
+    "rank": 80,
+    "arabic": "عَلِيمٌۭ",
+    "transliteration": "ʿalīmun",
+    "meaning": "(is) All-Knower",
+    "occurrences": 106
+  },
+  {
+    "rank": 81,
+    "arabic": "إِنَّهُمْ",
+    "transliteration": "innahum",
+    "meaning": "Indeed, they",
+    "occurrences": 104
+  },
+  {
+    "rank": 82,
+    "arabic": "وَٱلْأَرْضِ",
+    "transliteration": "wal-arḍi",
+    "meaning": "and the earth",
+    "occurrences": 104
+  },
+  {
+    "rank": 83,
+    "arabic": "مُوسَىٰ",
+    "transliteration": "mūsā",
+    "meaning": "Musa",
+    "occurrences": 103
+  },
+  {
+    "rank": 84,
+    "arabic": "ٱلسَّمَآءِ",
+    "transliteration": "l-samāi",
+    "meaning": "the sky",
+    "occurrences": 102
+  },
+  {
+    "rank": 85,
+    "arabic": "رَبَّنَا",
+    "transliteration": "rabbanā",
+    "meaning": "Our Lord",
+    "occurrences": 101
+  },
+  {
+    "rank": 86,
+    "arabic": "فَلَمَّا",
+    "transliteration": "falammā",
+    "meaning": "But when",
     "occurrences": 99
   },
   {
-    "rank": 152,
-    "transliteration": "ghafoor",
-    "meaning": "Most",
+    "rank": 87,
+    "arabic": "لِلَّهِ",
+    "transliteration": "lillahi",
+    "meaning": "to Allah",
+    "occurrences": 98
+  },
+  {
+    "rank": 88,
+    "arabic": "فِيهِ",
+    "transliteration": "fīhi",
+    "meaning": "in it",
+    "occurrences": 98
+  },
+  {
+    "rank": 89,
+    "arabic": "أَنزَلَ",
+    "transliteration": "anzala",
+    "meaning": "was revealed",
+    "occurrences": 95
+  },
+  {
+    "rank": 90,
+    "arabic": "مِنكُمْ",
+    "transliteration": "minkum",
+    "meaning": "among you",
+    "occurrences": 94
+  },
+  {
+    "rank": 91,
+    "arabic": "لِمَن",
+    "transliteration": "liman",
+    "meaning": "for whom",
+    "occurrences": 94
+  },
+  {
+    "rank": 92,
+    "arabic": "ٱلدُّنْيَا",
+    "transliteration": "l-dun'yā",
+    "meaning": "(of) the world",
+    "occurrences": 92
+  },
+  {
+    "rank": 93,
+    "arabic": "قَبْلُ",
+    "transliteration": "qablu",
+    "meaning": "before",
+    "occurrences": 92
+  },
+  {
+    "rank": 94,
+    "arabic": "دُونِ",
+    "transliteration": "dūni",
+    "meaning": "besides",
     "occurrences": 91
   },
   {
+    "rank": 95,
+    "arabic": "خَلَقَ",
+    "transliteration": "khalaqa",
+    "meaning": "created",
+    "occurrences": 91
+  },
+  {
+    "rank": 96,
+    "arabic": "فَمَن",
+    "transliteration": "faman",
+    "meaning": "Then whoever",
+    "occurrences": 89
+  },
+  {
+    "rank": 97,
+    "arabic": "رَبِّهِمْ",
+    "transliteration": "rabbihim",
+    "meaning": "their Lord",
+    "occurrences": 89
+  },
+  {
+    "rank": 98,
+    "arabic": "فَإِذَا",
+    "transliteration": "fa-idhā",
+    "meaning": "Then when",
+    "occurrences": 87
+  },
+  {
+    "rank": 99,
+    "arabic": "يُؤْمِنُونَ",
+    "transliteration": "yu'minūna",
+    "meaning": "believe",
+    "occurrences": 86
+  },
+  {
+    "rank": 100,
+    "arabic": "سَبِيلِ",
+    "transliteration": "sabīli",
+    "meaning": "(the) way",
+    "occurrences": 86
+  },
+  {
+    "rank": 101,
+    "arabic": "فَمَا",
+    "transliteration": "famā",
+    "meaning": "then not",
+    "occurrences": 84
+  },
+  {
+    "rank": 102,
+    "arabic": "وَكَانَ",
+    "transliteration": "wakāna",
+    "meaning": "And is",
+    "occurrences": 84
+  },
+  {
+    "rank": 103,
+    "arabic": "كَذَٰلِكَ",
+    "transliteration": "kadhālika",
+    "meaning": "Thus",
+    "occurrences": 84
+  },
+  {
+    "rank": 104,
+    "arabic": "مُّبِينٌۭ",
+    "transliteration": "mubīnun",
+    "meaning": "clear",
+    "occurrences": 84
+  },
+  {
+    "rank": 105,
+    "arabic": "تَعْمَلُونَ",
+    "transliteration": "taʿmalūna",
+    "meaning": "you do",
+    "occurrences": 82
+  },
+  {
+    "rank": 106,
+    "arabic": "رَبِّى",
+    "transliteration": "rabbī",
+    "meaning": "my Lord",
+    "occurrences": 82
+  },
+  {
+    "rank": 107,
+    "arabic": "يَعْلَمُونَ",
+    "transliteration": "yaʿlamūna",
+    "meaning": "know",
+    "occurrences": 81
+  },
+  {
+    "rank": 108,
+    "arabic": "رَّبِّكُمْ",
+    "transliteration": "rabbikum",
+    "meaning": "your Lord",
+    "occurrences": 81
+  },
+  {
+    "rank": 109,
+    "arabic": "ٱلْحَقُّ",
+    "transliteration": "l-ḥaqu",
+    "meaning": "the truth",
+    "occurrences": 81
+  },
+  {
+    "rank": 110,
+    "arabic": "وَقَالَ",
+    "transliteration": "waqāla",
+    "meaning": "And said",
+    "occurrences": 81
+  },
+  {
+    "rank": 111,
+    "arabic": "بَيْنَ",
+    "transliteration": "bayna",
+    "meaning": "between",
+    "occurrences": 79
+  },
+  {
+    "rank": 112,
+    "arabic": "لِلَّذِينَ",
+    "transliteration": "lilladhīna",
+    "meaning": "to those who",
+    "occurrences": 79
+  },
+  {
+    "rank": 113,
+    "arabic": "لَوْ",
+    "transliteration": "law",
+    "meaning": "If",
+    "occurrences": 79
+  },
+  {
+    "rank": 114,
+    "arabic": "قَوْمٌۭ",
+    "transliteration": "qawmun",
+    "meaning": "(are) a people",
+    "occurrences": 79
+  },
+  {
+    "rank": 115,
+    "arabic": "أَلَمْ",
+    "transliteration": "alam",
+    "meaning": "Do not",
+    "occurrences": 78
+  },
+  {
+    "rank": 116,
+    "arabic": "ٱلنَّارِ",
+    "transliteration": "l-nāri",
+    "meaning": "the Fire",
+    "occurrences": 76
+  },
+  {
+    "rank": 117,
+    "arabic": "لَنَا",
+    "transliteration": "lanā",
+    "meaning": "for us",
+    "occurrences": 76
+  },
+  {
+    "rank": 118,
+    "arabic": "أَنتُمْ",
+    "transliteration": "antum",
+    "meaning": "you",
+    "occurrences": 76
+  },
+  {
+    "rank": 119,
+    "arabic": "لَمَّا",
+    "transliteration": "limā",
+    "meaning": "when",
+    "occurrences": 74
+  },
+  {
+    "rank": 120,
+    "arabic": "مِنْهَا",
+    "transliteration": "min'hā",
+    "meaning": "from it",
+    "occurrences": 72
+  },
+  {
+    "rank": 121,
+    "arabic": "ٱلْعَذَابِ",
+    "transliteration": "l-ʿadhābi",
+    "meaning": "the punishment",
+    "occurrences": 72
+  },
+  {
+    "rank": 122,
+    "arabic": "مِنْهُ",
+    "transliteration": "min'hu",
+    "meaning": "from it",
+    "occurrences": 72
+  },
+  {
+    "rank": 123,
+    "arabic": "يَعْلَمُ",
+    "transliteration": "yaʿlamu",
+    "meaning": "knows",
+    "occurrences": 71
+  },
+  {
+    "rank": 124,
+    "arabic": "إِلَـٰهَ",
+    "transliteration": "ilāha",
+    "meaning": "god",
+    "occurrences": 71
+  },
+  {
+    "rank": 125,
+    "arabic": "ٱلْمُؤْمِنِينَ",
+    "transliteration": "l-mu'minīna",
+    "meaning": "the believers",
+    "occurrences": 70
+  },
+  {
+    "rank": 126,
+    "arabic": "غَيْرَ",
+    "transliteration": "ghayra",
+    "meaning": "not",
+    "occurrences": 69
+  },
+  {
+    "rank": 127,
+    "arabic": "وَإِذْ",
+    "transliteration": "wa-idh",
+    "meaning": "And when",
+    "occurrences": 68
+  },
+  {
+    "rank": 128,
+    "arabic": "لَكَ",
+    "transliteration": "laka",
+    "meaning": "for you",
+    "occurrences": 67
+  },
+  {
+    "rank": 129,
+    "arabic": "عَنْهُمْ",
+    "transliteration": "ʿanhum",
+    "meaning": "from them",
+    "occurrences": 67
+  },
+  {
+    "rank": 130,
+    "arabic": "هَلْ",
+    "transliteration": "hal",
+    "meaning": "Is",
+    "occurrences": 67
+  },
+  {
+    "rank": 131,
+    "arabic": "إِلَيْهِ",
+    "transliteration": "ilayhi",
+    "meaning": "to Him",
+    "occurrences": 66
+  },
+  {
+    "rank": 132,
+    "arabic": "نَحْنُ",
+    "transliteration": "naḥnu",
+    "meaning": "We",
+    "occurrences": 65
+  },
+  {
+    "rank": 133,
+    "arabic": "ٱلَّتِى",
+    "transliteration": "allatī",
+    "meaning": "which",
+    "occurrences": 65
+  },
+  {
+    "rank": 134,
+    "arabic": "يَشَآءُ",
+    "transliteration": "yashāu",
+    "meaning": "He wills",
+    "occurrences": 64
+  },
+  {
+    "rank": 135,
+    "arabic": "ٱلْعَزِيزُ",
+    "transliteration": "l-ʿazīzu",
+    "meaning": "(is) the All-Mighty",
+    "occurrences": 64
+  },
+  {
+    "rank": 136,
+    "arabic": "يَوْمَئِذٍۢ",
+    "transliteration": "yawma-idhin",
+    "meaning": "that Day",
+    "occurrences": 64
+  },
+  {
+    "rank": 137,
+    "arabic": "ٱلظَّـٰلِمِينَ",
+    "transliteration": "l-ẓālimīna",
+    "meaning": "the wrongdoers",
+    "occurrences": 63
+  },
+  {
+    "rank": 138,
+    "arabic": "ٱلْحَيَوٰةِ",
+    "transliteration": "l-ḥayati",
+    "meaning": "the life",
+    "occurrences": 63
+  },
+  {
+    "rank": 139,
+    "arabic": "كُتِبَ",
+    "transliteration": "kitābun",
+    "meaning": "(the) Book",
+    "occurrences": 63
+  },
+  {
+    "rank": 140,
+    "arabic": "كُنَّا",
+    "transliteration": "kunnā",
+    "meaning": "we were",
+    "occurrences": 63
+  },
+  {
+    "rank": 141,
+    "arabic": "جَنَّـٰتٍۢ",
+    "transliteration": "jannātin",
+    "meaning": "Gardens",
+    "occurrences": 62
+  },
+  {
+    "rank": 142,
+    "arabic": "كَيْفَ",
+    "transliteration": "kayfa",
+    "meaning": "how",
+    "occurrences": 62
+  },
+  {
+    "rank": 143,
+    "arabic": "أَصْحَـٰبُ",
+    "transliteration": "aṣḥābu",
+    "meaning": "(are the) companions",
+    "occurrences": 62
+  },
+  {
+    "rank": 144,
+    "arabic": "ٱلْعَـٰلَمِينَ",
+    "transliteration": "l-ʿālamīna",
+    "meaning": "(of) the worlds",
+    "occurrences": 61
+  },
+  {
+    "rank": 145,
+    "arabic": "إِلَيْكَ",
+    "transliteration": "ilayka",
+    "meaning": "to you",
+    "occurrences": 61
+  },
+  {
+    "rank": 146,
+    "arabic": "عِلْمٍۢ",
+    "transliteration": "ʿil'min",
+    "meaning": "knowledge",
+    "occurrences": 61
+  },
+  {
+    "rank": 147,
+    "arabic": "وَقَالُوا۟",
+    "transliteration": "waqālū",
+    "meaning": "And they say",
+    "occurrences": 61
+  },
+  {
+    "rank": 148,
+    "arabic": "بِهَا",
+    "transliteration": "bihā",
+    "meaning": "with it",
+    "occurrences": 61
+  },
+  {
+    "rank": 149,
+    "arabic": "رَّحِيمٌۭ",
+    "transliteration": "raḥīmun",
+    "meaning": "Most Merciful",
+    "occurrences": 61
+  },
+  {
+    "rank": 150,
+    "arabic": "لِى",
+    "transliteration": "lī",
+    "meaning": "for me",
+    "occurrences": 61
+  },
+  {
+    "rank": 151,
+    "arabic": "ٱلْقَوْمِ",
+    "transliteration": "l-qawmi",
+    "meaning": "the people",
+    "occurrences": 61
+  },
+  {
+    "rank": 152,
+    "arabic": "أَنفُسَهُمْ",
+    "transliteration": "anfusahum",
+    "meaning": "themselves",
+    "occurrences": 60
+  },
+  {
     "rank": 153,
-    "transliteration": "Qadeer",
-    "meaning": "All :",
-    "occurrences": 50
+    "arabic": "أَلِيمٌۭ",
+    "transliteration": "alīmun",
+    "meaning": "painful",
+    "occurrences": 59
   },
   {
     "rank": 154,
-    "transliteration": "Natheer",
-    "meaning": "Warner",
-    "occurrences": 41
+    "arabic": "كَمَا",
+    "transliteration": "kamā",
+    "meaning": "as",
+    "occurrences": 59
   },
   {
     "rank": 155,
-    "transliteration": "Naseer",
-    "meaning": "Strong",
-    "occurrences": 24
+    "arabic": "لَعَلَّكُمْ",
+    "transliteration": "laʿallakum",
+    "meaning": "so that you may",
+    "occurrences": 59
   },
   {
     "rank": 156,
-    "transliteration": "wakeel",
-    "meaning": "One who takes",
-    "occurrences": 24
+    "arabic": "فِرْعَوْنَ",
+    "transliteration": "fir'ʿawna",
+    "meaning": "Firaun",
+    "occurrences": 59
   },
   {
     "rank": 157,
-    "transliteration": "Awwal",
-    "meaning": "First",
-    "occurrences": 20
+    "arabic": "لَن",
+    "transliteration": "lan",
+    "meaning": "never",
+    "occurrences": 59
   },
   {
     "rank": 158,
-    "transliteration": "Akhar",
-    "meaning": "Another",
-    "occurrences": 12
+    "arabic": "وَإِنَّا",
+    "transliteration": "wa-innā",
+    "meaning": "and indeed, we",
+    "occurrences": 59
   },
   {
     "rank": 159,
-    "transliteration": "Akhar",
-    "meaning": "Hereafter",
-    "occurrences": 12
+    "arabic": "ٱلصَّـٰلِحَـٰتِ",
+    "transliteration": "l-ṣāliḥāti",
+    "meaning": "righteous deeds",
+    "occurrences": 58
   },
   {
     "rank": 160,
-    "transliteration": "Ameen",
-    "meaning": "Trustworthy",
-    "occurrences": 19
+    "arabic": "مَعَ",
+    "transliteration": "maʿa",
+    "meaning": "with",
+    "occurrences": 58
   },
   {
     "rank": 161,
-    "transliteration": "Baseer",
-    "meaning": "One who",
-    "occurrences": 53
+    "arabic": "ٱلْـَٔاخِرَةِ",
+    "transliteration": "l-ākhirati",
+    "meaning": "the Hereafter",
+    "occurrences": 58
   },
   {
     "rank": 162,
-    "transliteration": "Ba`eed",
-    "meaning": "FAR",
-    "occurrences": 25
+    "arabic": "فَقَدْ",
+    "transliteration": "faqad",
+    "meaning": "then surely",
+    "occurrences": 57
   },
   {
     "rank": 163,
-    "transliteration": "Tawwab",
-    "meaning": "Most",
-    "occurrences": 12
+    "arabic": "ٱلْإِنسَـٰنَ",
+    "transliteration": "l-insāna",
+    "meaning": "man",
+    "occurrences": 57
   },
   {
     "rank": 164,
-    "transliteration": "Hafeeth",
-    "meaning": "Protector",
-    "occurrences": 11
+    "arabic": "جَآءَ",
+    "transliteration": "jāa",
+    "meaning": "came",
+    "occurrences": 57
   },
   {
     "rank": 165,
-    "transliteration": "Hakeem",
-    "meaning": "Wise",
-    "occurrences": 97
+    "arabic": "يَعْمَلُونَ",
+    "transliteration": "yaʿmalūna",
+    "meaning": "do",
+    "occurrences": 56
   },
   {
     "rank": 166,
-    "transliteration": "Haleem",
-    "meaning": "Forbearing",
-    "occurrences": 15
+    "arabic": "تَعْلَمُونَ",
+    "transliteration": "taʿlamūna",
+    "meaning": "know",
+    "occurrences": 55
   },
   {
     "rank": 167,
-    "transliteration": "Hameed",
-    "meaning": "Praiseworthy",
-    "occurrences": 17
+    "arabic": "أَعْلَمُ",
+    "transliteration": "aʿlamu",
+    "meaning": "(is) most knowing",
+    "occurrences": 55
   },
   {
     "rank": 168,
-    "transliteration": "Hameem",
-    "meaning": "warm(friend)",
-    "occurrences": 19
+    "arabic": "أَنتَ",
+    "transliteration": "anta",
+    "meaning": "you",
+    "occurrences": 55
   },
   {
     "rank": 169,
-    "transliteration": "Ash `had",
-    "meaning": "Most severe",
-    "occurrences": 41
+    "arabic": "شَآءَ",
+    "transliteration": "shāa",
+    "meaning": "wills",
+    "occurrences": 54
   },
   {
     "rank": 170,
-    "transliteration": "Aa laa",
-    "meaning": "Higher",
-    "occurrences": 9
+    "arabic": "رَبِّهِۦ",
+    "transliteration": "rabbihi",
+    "meaning": "his Lord",
+    "occurrences": 54
   },
   {
     "rank": 171,
-    "transliteration": "Aalam",
-    "meaning": "Better knowing",
-    "occurrences": 49
+    "arabic": "ٱلَّيْلَ",
+    "transliteration": "al-layla",
+    "meaning": "the night",
+    "occurrences": 54
   },
   {
     "rank": 172,
-    "transliteration": "Akrab",
-    "meaning": "Nearer",
-    "occurrences": 18
+    "arabic": "جَهَنَّمَ",
+    "transliteration": "jahannama",
+    "meaning": "Hell",
+    "occurrences": 54
   },
   {
     "rank": 173,
-    "transliteration": "Akbar",
-    "meaning": "Bigger",
-    "occurrences": 22
+    "arabic": "وَعَمِلُوا۟",
+    "transliteration": "waʿamilū",
+    "meaning": "and do",
+    "occurrences": 53
   },
   {
     "rank": 174,
-    "transliteration": "Akthar",
-    "meaning": "More,",
-    "occurrences": 80
+    "arabic": "إِنَّكَ",
+    "transliteration": "innaka",
+    "meaning": "Indeed, you",
+    "occurrences": 53
   },
   {
     "rank": 175,
-    "transliteration": "Ahsan",
-    "meaning": "Better",
-    "occurrences": 32
+    "arabic": "ٱلشَّيْطَـٰنُ",
+    "transliteration": "l-shayṭānu",
+    "meaning": "the Shaitaan",
+    "occurrences": 53
   },
   {
     "rank": 176,
-    "transliteration": "Ahaqq",
-    "meaning": "More entitled",
-    "occurrences": 11
+    "arabic": "وَٱلْأَرْضِ ۚ",
+    "transliteration": "wal-arḍi",
+    "meaning": "and the earth",
+    "occurrences": 53
   },
   {
     "rank": 177,
-    "transliteration": "Adna",
-    "meaning": "Nearer:More",
-    "occurrences": 8
+    "arabic": "ٱلصَّلَوٰةَ",
+    "transliteration": "l-ṣalata",
+    "meaning": "the prayer",
+    "occurrences": 52
   },
   {
     "rank": 178,
-    "transliteration": "Adthlam",
-    "meaning": "More",
-    "occurrences": 17
+    "arabic": "ٱلْكَـٰفِرِينَ",
+    "transliteration": "l-kāfirīna",
+    "meaning": "the disbelievers",
+    "occurrences": 52
   },
   {
     "rank": 179,
-    "transliteration": "Ahda",
-    "meaning": "Better",
-    "occurrences": 6
+    "arabic": "ءَايَـٰتِ",
+    "transliteration": "āyāti",
+    "meaning": "(the) Verses",
+    "occurrences": 52
   },
   {
     "rank": 180,
-    "transliteration": "Awla",
-    "meaning": "Nearer",
-    "occurrences": 7
+    "arabic": "يَشَآءُ ۚ",
+    "transliteration": "yashāu",
+    "meaning": "He wills",
+    "occurrences": 52
   },
   {
     "rank": 181,
-    "transliteration": "Shadeed",
-    "meaning": "Severe",
-    "occurrences": 28
+    "arabic": "غَفُورٌۭ",
+    "transliteration": "ghafūrun",
+    "meaning": "(is) Oft-Forgiving",
+    "occurrences": 52
   }
 ]

@@ -23,6 +23,22 @@ always provide me with enhancement options and save them in another Backlog file
 Do NOT modify global theme or core architecture
 Only change files necessary for the task
 
+## Prompt Archive Workflow
+
+- For every substantial feature, bugfix, audit, cleanup pass, or product-change prompt, save the source user prompt into the local folder:
+  `/Users/shahabmansoor/Developer/path_of_nur/codex prompts`
+- Organize saved prompts by feature area using a clear subfolder name, for example:
+  - `/Users/shahabmansoor/Developer/path_of_nur/codex prompts/quran-reader/`
+  - `/Users/shahabmansoor/Developer/path_of_nur/codex prompts/journeys/`
+  - `/Users/shahabmansoor/Developer/path_of_nur/codex prompts/history-on-this-day/`
+- Use descriptive file names with the date and a short task label, for example:
+  - `2026-03-21-playback-recovery.md`
+  - `2026-03-21-learn-more-toggle.md`
+- Store the prompt text in a plain Markdown file.
+- Prefer extending an existing feature folder instead of creating many near-duplicate folders.
+- If a task spans multiple systems, save it under the most relevant primary feature area rather than duplicating the same prompt in multiple folders.
+- This prompt-archive workflow is for future implementation history and review; do not use it as a substitute for backlog notes or code documentation.
+
 tvOS CROSS-PLATFORM PARITY RULE
 For mirrored surfaces, especially the Home prayer section and the Quran page, tvOS is expected to stay aligned with the current mobile/iOS product direction unless a real platform constraint requires a documented divergence.
 

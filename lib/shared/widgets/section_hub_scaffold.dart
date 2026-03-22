@@ -53,6 +53,7 @@ class SectionHubScaffold extends StatefulWidget {
     required this.shortcutCloseLabel,
     this.backgroundAssetPath,
     this.backgroundOverlayColor,
+    this.floatingBottom,
   });
 
   final String title;
@@ -68,6 +69,7 @@ class SectionHubScaffold extends StatefulWidget {
   final String shortcutCloseLabel;
   final String? backgroundAssetPath;
   final Color? backgroundOverlayColor;
+  final Widget? floatingBottom;
 
   @override
   State<SectionHubScaffold> createState() => _SectionHubScaffoldState();
@@ -88,9 +90,14 @@ class _SectionHubScaffoldState extends State<SectionHubScaffold> {
       headerActions: widget.headerActions,
       backgroundAssetPath: widget.backgroundAssetPath,
       backgroundOverlayColor: widget.backgroundOverlayColor,
-      floatingBottom: widget.shortcutActions.isEmpty
-          ? null
-          : Align(
+      floatingBottom: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (widget.floatingBottom != null) widget.floatingBottom!,
+          if (widget.floatingBottom != null && widget.shortcutActions.isNotEmpty)
+            const SizedBox(height: 10),
+          if (widget.shortcutActions.isNotEmpty)
+            Align(
               alignment: Alignment.bottomRight,
               child: _SectionShortcutDock(
                 actions: widget.shortcutActions,
@@ -102,8 +109,11 @@ class _SectionHubScaffoldState extends State<SectionHubScaffold> {
                 },
               ),
             ),
+        ],
+      ),
       children: [
         ...widget.children,
+        if (widget.floatingBottom != null) const SizedBox(height: 108),
         if (widget.shortcutActions.isNotEmpty) const SizedBox(height: 96),
       ],
     );

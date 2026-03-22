@@ -12,6 +12,7 @@ class DhikrStoredState {
     required this.selectedPresetId,
     required this.target,
     required this.currentCount,
+    required this.currentSessionStartedAt,
     required this.recentSessions,
     required this.updatedAtIso,
   });
@@ -19,6 +20,7 @@ class DhikrStoredState {
   final String selectedPresetId;
   final int target;
   final int currentCount;
+  final DateTime? currentSessionStartedAt;
   final List<DhikrSession> recentSessions;
   final String updatedAtIso;
 }
@@ -69,6 +71,7 @@ class DhikrRepository {
         selectedPresetId: selectedPresetId,
         target: target,
         currentCount: currentCount,
+        currentSessionStartedAtIso: null,
         updatedAtIso: DateTime.now().toIso8601String(),
       );
 
@@ -111,6 +114,7 @@ class DhikrRepository {
     final stateRows = _database.select(
       '''
       SELECT selected_preset_id, target, current_count, updated_at_iso
+             , current_session_started_at_iso
       FROM dhikr_state
       WHERE scope_id = ?
       LIMIT 1;
@@ -135,6 +139,11 @@ class DhikrRepository {
       currentCount: stateRows.isEmpty
           ? 0
           : (stateRows.first['current_count'] as int),
+      currentSessionStartedAt: stateRows.isEmpty
+          ? null
+          : DateTime.tryParse(
+              stateRows.first['current_session_started_at_iso'] as String? ?? '',
+            ),
       updatedAtIso: stateRows.isEmpty
           ? DateTime.fromMillisecondsSinceEpoch(0).toIso8601String()
           : stateRows.first['updated_at_iso'] as String,
@@ -157,6 +166,7 @@ class DhikrRepository {
     required String selectedPresetId,
     required int target,
     required int currentCount,
+    DateTime? currentSessionStartedAt,
   }) {
     ensureMigrated();
     final updatedAtIso = DateTime.now().toIso8601String();
@@ -164,6 +174,7 @@ class DhikrRepository {
       selectedPresetId: selectedPresetId,
       target: target,
       currentCount: currentCount,
+      currentSessionStartedAtIso: currentSessionStartedAt?.toIso8601String(),
       updatedAtIso: updatedAtIso,
     );
     _syncRecorder?.recordDhikrStateWrite(
@@ -179,19 +190,22 @@ class DhikrRepository {
     required String selectedPresetId,
     required int target,
     required int currentCount,
+    required String? currentSessionStartedAtIso,
     required String updatedAtIso,
   }) {
     _database.execute(
       '''
       INSERT OR REPLACE INTO dhikr_state(
-        scope_id, selected_preset_id, target, current_count, updated_at_iso
-      ) VALUES (?, ?, ?, ?, ?);
+        scope_id, selected_preset_id, target, current_count,
+        current_session_started_at_iso, updated_at_iso
+      ) VALUES (?, ?, ?, ?, ?, ?);
       ''',
       <Object?>[
         _scopeId,
         selectedPresetId,
         target,
         currentCount,
+        currentSessionStartedAtIso,
         updatedAtIso,
       ],
     );

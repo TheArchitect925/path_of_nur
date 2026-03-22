@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:just_audio/just_audio.dart';
 
@@ -21,6 +23,8 @@ import '../domain/quran_surah.dart';
 import 'quran_reference_graph_provider.dart';
 
 const _progressKey = 'learn.quran.readingProgress';
+const _readingStatsKey = 'learn.quran.readingStats';
+const _listeningStatsKey = 'learn.quran.listeningStats';
 const _bookmarksKey = 'learn.quran.bookmarks';
 const _notesKey = 'learn.quran.notes';
 const _recentSearchesKey = 'learn.quran.recentSearches';
@@ -37,6 +41,7 @@ const _cleanReadingModeKey = 'learn.quran.cleanReadingMode';
 const _showWordByWordKey = 'learn.quran.showWordByWord';
 const _wordSyncHighlightBetaKey = 'learn.quran.wordSyncHighlightBeta';
 const _redDiacriticsKey = 'learn.quran.redDiacriticsEnabled';
+const _showLearnMoreKey = 'learn.quran.showLearnMore';
 const _wordFavoritesKey = 'learn.quran.wordFavorites';
 const _wordReviewProgressKey = 'learn.quran.wordReviewProgress';
 const _audioSettingsKey = 'learn.quran.audioSettings';
@@ -68,6 +73,7 @@ class QuranReaderSettings {
     required this.showWordByWord,
     required this.wordSyncHighlightBeta,
     required this.redDiacriticsEnabled,
+    required this.showLearnMore,
   });
 
   final String translationCode;
@@ -81,6 +87,7 @@ class QuranReaderSettings {
   final bool showWordByWord;
   final bool wordSyncHighlightBeta;
   final bool redDiacriticsEnabled;
+  final bool showLearnMore;
 
   QuranReaderSettings copyWith({
     String? translationCode,
@@ -94,6 +101,7 @@ class QuranReaderSettings {
     bool? showWordByWord,
     bool? wordSyncHighlightBeta,
     bool? redDiacriticsEnabled,
+    bool? showLearnMore,
   }) {
     return QuranReaderSettings(
       translationCode: translationCode ?? this.translationCode,
@@ -110,6 +118,7 @@ class QuranReaderSettings {
       wordSyncHighlightBeta:
           wordSyncHighlightBeta ?? this.wordSyncHighlightBeta,
       redDiacriticsEnabled: redDiacriticsEnabled ?? this.redDiacriticsEnabled,
+      showLearnMore: showLearnMore ?? this.showLearnMore,
     );
   }
 }
@@ -367,6 +376,7 @@ class QuranReaderSettingsNotifier extends StateNotifier<QuranReaderSettings> {
           showWordByWord: false,
           wordSyncHighlightBeta: false,
           redDiacriticsEnabled: true,
+          showLearnMore: true,
         ),
       ) {
     _load();
@@ -433,6 +443,11 @@ class QuranReaderSettingsNotifier extends StateNotifier<QuranReaderSettings> {
     _store.setBool(_redDiacriticsKey, value);
   }
 
+  void setShowLearnMore(bool value) {
+    state = state.copyWith(showLearnMore: value);
+    _store.setBool(_showLearnMoreKey, value);
+  }
+
   void _load() {
     final code = _store.getString(_translationCodeKey);
     final showArabic = _store.getBool(_showArabicKey);
@@ -447,6 +462,7 @@ class QuranReaderSettingsNotifier extends StateNotifier<QuranReaderSettings> {
     final showWordByWord = _store.getBool(_showWordByWordKey);
     final wordSyncHighlightBeta = _store.getBool(_wordSyncHighlightBetaKey);
     final redDiacriticsEnabled = _store.getBool(_redDiacriticsKey);
+    final showLearnMore = _store.getBool(_showLearnMoreKey);
 
     state = state.copyWith(
       translationCode: (code != null && quranTranslationCodes.contains(code))
@@ -465,6 +481,7 @@ class QuranReaderSettingsNotifier extends StateNotifier<QuranReaderSettings> {
       wordSyncHighlightBeta:
           wordSyncHighlightBeta ?? state.wordSyncHighlightBeta,
       redDiacriticsEnabled: redDiacriticsEnabled ?? state.redDiacriticsEnabled,
+      showLearnMore: showLearnMore ?? state.showLearnMore,
     );
   }
 }
@@ -532,6 +549,133 @@ class QuranReadingProgressNotifier extends StateNotifier<QuranReadingProgress> {
       _recentReadingsKey,
       merged.map((item) => item.toJson()).toList(),
     );
+  }
+}
+
+class QuranReadingStatsNotifier extends StateNotifier<QuranReadingStats> {
+  QuranReadingStatsNotifier(this._store)
+    : super(QuranReadingStats.fromJson(_store.getJsonMap(_readingStatsKey)));
+
+  final LocalStore _store;
+
+  void logReadingSession({
+    required Duration duration,
+    DateTime? completedAt,
+  }) {
+    final safeDuration = duration.isNegative ? Duration.zero : duration;
+    final seconds = safeDuration.inSeconds;
+    if (seconds < 15) return;
+
+    final endedAt = completedAt ?? DateTime.now();
+    final dayKey = LocalStore.todayKey(endedAt);
+    final nextByDay = Map<String, int>.from(state.secondsByDayKey);
+    nextByDay.update(dayKey, (value) => value + seconds, ifAbsent: () => seconds);
+    state = state.copyWith(
+      totalReadingSeconds: state.totalReadingSeconds + seconds,
+      totalSessions: state.totalSessions + 1,
+      secondsByDayKey: nextByDay,
+      lastSessionEndedAtIso: endedAt.toIso8601String(),
+    );
+    _store.setJsonMap(_readingStatsKey, state.toJson());
+  }
+}
+
+class QuranListeningStatsNotifier extends StateNotifier<QuranListeningStats> {
+  QuranListeningStatsNotifier(this._store)
+    : super(QuranListeningStats.fromJson(_store.getJsonMap(_listeningStatsKey)));
+
+  final LocalStore _store;
+  AudioPlayer? _boundPlayer;
+  StreamSubscription<PlayerState>? _playerStateSubscription;
+  StreamSubscription<Duration>? _positionSubscription;
+  Duration _lastPosition = Duration.zero;
+  Duration _sessionAccumulated = Duration.zero;
+  bool _sessionActive = false;
+
+  void bindPlayer(AudioPlayer player) {
+    if (identical(_boundPlayer, player)) return;
+    _disposeSubscriptions();
+    _boundPlayer = player;
+    _playerStateSubscription = player.playerStateStream.listen(_handlePlayerState);
+    _positionSubscription = player.positionStream.listen(_handlePosition);
+  }
+
+  void disposeTracker() {
+    _finalizeSession();
+    _disposeSubscriptions();
+  }
+
+  void _disposeSubscriptions() {
+    _playerStateSubscription?.cancel();
+    _positionSubscription?.cancel();
+    _playerStateSubscription = null;
+    _positionSubscription = null;
+    _boundPlayer = null;
+    _sessionActive = false;
+    _lastPosition = Duration.zero;
+    _sessionAccumulated = Duration.zero;
+  }
+
+  void _handlePlayerState(PlayerState playerState) {
+    final shouldTrack =
+        playerState.playing &&
+        playerState.processingState != ProcessingState.idle &&
+        playerState.processingState != ProcessingState.completed;
+    if (shouldTrack) {
+      if (!_sessionActive) {
+        _sessionActive = true;
+        _sessionAccumulated = Duration.zero;
+        _lastPosition = _boundPlayer?.position ?? Duration.zero;
+      }
+      return;
+    }
+    _finalizeSession();
+  }
+
+  void _handlePosition(Duration position) {
+    if (!_sessionActive) return;
+    final delta = position - _lastPosition;
+    _lastPosition = position;
+    if (delta <= Duration.zero || delta > const Duration(seconds: 5)) {
+      return;
+    }
+    _sessionAccumulated += delta;
+  }
+
+  void _finalizeSession() {
+    if (!_sessionActive) return;
+    _sessionActive = false;
+    final duration = _sessionAccumulated;
+    _sessionAccumulated = Duration.zero;
+    _lastPosition = Duration.zero;
+    logListeningSession(duration: duration);
+  }
+
+  void logListeningSession({
+    required Duration duration,
+    DateTime? completedAt,
+  }) {
+    final safeDuration = duration.isNegative ? Duration.zero : duration;
+    final seconds = safeDuration.inSeconds;
+    if (seconds < 15) return;
+
+    final endedAt = completedAt ?? DateTime.now();
+    final dayKey = LocalStore.todayKey(endedAt);
+    final nextByDay = Map<String, int>.from(state.secondsByDayKey);
+    nextByDay.update(dayKey, (value) => value + seconds, ifAbsent: () => seconds);
+    state = state.copyWith(
+      totalListeningSeconds: state.totalListeningSeconds + seconds,
+      totalSessions: state.totalSessions + 1,
+      secondsByDayKey: nextByDay,
+      lastSessionEndedAtIso: endedAt.toIso8601String(),
+    );
+    _store.setJsonMap(_listeningStatsKey, state.toJson());
+  }
+
+  @override
+  void dispose() {
+    disposeTracker();
+    super.dispose();
   }
 }
 
@@ -1064,7 +1208,11 @@ final quranContentRepositoryProvider = Provider<QuranContentRepository>((ref) {
 
 final quranSharedAudioPlayerProvider = Provider<AudioPlayer>((ref) {
   final player = AudioPlayer();
-  ref.onDispose(player.dispose);
+  ref.read(quranListeningStatsProvider.notifier).bindPlayer(player);
+  ref.onDispose(() {
+    ref.read(quranListeningStatsProvider.notifier).disposeTracker();
+    player.dispose();
+  });
   return player;
 });
 
@@ -1098,6 +1246,16 @@ final quranReaderSettingsProvider =
 final quranReadingProgressProvider =
     StateNotifierProvider<QuranReadingProgressNotifier, QuranReadingProgress>(
       (ref) => QuranReadingProgressNotifier(ref.watch(localStoreProvider)),
+    );
+
+final quranReadingStatsProvider =
+    StateNotifierProvider<QuranReadingStatsNotifier, QuranReadingStats>(
+      (ref) => QuranReadingStatsNotifier(ref.watch(localStoreProvider)),
+    );
+
+final quranListeningStatsProvider =
+    StateNotifierProvider<QuranListeningStatsNotifier, QuranListeningStats>(
+      (ref) => QuranListeningStatsNotifier(ref.watch(localStoreProvider)),
     );
 
 final quranBookmarksProvider =
@@ -1199,6 +1357,18 @@ final quranContinueReadingSummaryProvider =
     });
 
 final quranReadingStreakProvider = Provider<int>((ref) {
+  final stats = ref.watch(quranReadingStatsProvider);
+  if (stats.secondsByDayKey.isNotEmpty) {
+    var streak = 0;
+    var cursor = DateTime.now();
+    while (true) {
+      final dayKey = LocalStore.todayKey(cursor);
+      if ((stats.secondsByDayKey[dayKey] ?? 0) <= 0) break;
+      streak += 1;
+      cursor = cursor.subtract(const Duration(days: 1));
+    }
+    if (streak > 0) return streak;
+  }
   final progress = ref.watch(quranReadingProgressProvider);
   final updated = DateTime.tryParse(progress.updatedAtIso);
   if (updated == null) return 0;
@@ -1206,6 +1376,16 @@ final quranReadingStreakProvider = Provider<int>((ref) {
   if (days <= 1) return 3;
   if (days <= 3) return 2;
   return 1;
+});
+
+final quranReadingTimeTodaySecondsProvider = Provider<int>((ref) {
+  final stats = ref.watch(quranReadingStatsProvider);
+  return stats.secondsForDay(LocalStore.todayKey());
+});
+
+final quranListeningTimeTodaySecondsProvider = Provider<int>((ref) {
+  final stats = ref.watch(quranListeningStatsProvider);
+  return stats.secondsForDay(LocalStore.todayKey());
 });
 
 final quranProgressRatioProvider = Provider<double>((ref) {

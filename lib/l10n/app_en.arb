@@ -42,8 +42,18 @@
   "notificationsReflectionTitle": "Daily reflection",
   "notificationsFastingTitle": "Fasting reminder",
   "notificationsCycleCheckTitle": "Cycle check-in",
+  "notificationsMoonriseTitle": "Moonrise",
+  "notificationsMoonsetTitle": "Moonset",
   "notificationsPrayerAtTimeBody": "It is time for {prayerName} Salah. Stay connected with your salah.",
   "@notificationsPrayerAtTimeBody": {
+    "placeholders": {
+      "prayerName": {
+        "type": "String"
+      }
+    }
+  },
+  "notificationsPrayerAtTimeFajrBody": "It is time for {prayerName} Salah.\nالصَّلاةُ خَيْرٌ مِنَ النَّوْمِ",
+  "@notificationsPrayerAtTimeFajrBody": {
     "placeholders": {
       "prayerName": {
         "type": "String"
@@ -63,6 +73,8 @@
   "notificationsReflectionBody": "Capture a brief reflection before your day ends.",
   "notificationsFastingBody": "Prepare your intention for fasting today.",
   "notificationsCycleCheckBody": "Review your status and resume prayer reminders when ready.",
+  "notificationsMoonriseBody": "The moon is rising now.",
+  "notificationsMoonsetBody": "The moon is setting now.",
   "notificationsRecoveredReminderBody": "You missed this reminder earlier. {body}",
   "@notificationsRecoveredReminderBody": {
     "placeholders": {
@@ -79,6 +91,9 @@
   "notificationsPrayerActionMarkOffered": "Mark Salah as offered",
   "notificationsPrayerActionDismiss": "Dismiss",
   "notificationsPrayerActionOpen": "Open",
+  "notificationsReflectionActionWrite": "Write Reflection",
+  "notificationsReflectionActionRemind10": "Remind me in 10 min",
+  "notificationsReflectionActionDismiss": "Dismiss",
   "notificationsPrayerNameTahajjud": "Tahajjud",
   "notificationsGenericPrayerName": "Salah",
   "notificationsFastingBeginsNowTitle": "Fasting begins now",
@@ -100,6 +115,136 @@
   "notificationsFastingLiveIftarTitle": "Iftar",
   "notificationsFastingLiveIftarArabicTitle": "الإفطار",
   "notificationsFastingLiveJustEntered": "Just entered",
+  "historyAdditionalMatchesTitle": "More moments for today",
+  "historyArchiveAllCategories": "All categories",
+  "historyArchiveAllGregorianMonths": "All Gregorian months",
+  "historyArchiveAllHijriMonths": "All Hijri months",
+  "historyArchiveCategoryLabel": "Category",
+  "historyArchiveEmptyFilters": "No historical events match these filters yet.",
+  "historyArchiveFiltersTitle": "Browse the archive",
+  "historyArchiveGregorianMonthLabel": "Gregorian month",
+  "historyArchiveHijriMonthLabel": "Hijri month",
+  "historyArchiveLoadError": "Historical events could not be loaded right now.",
+  "historyArchiveResultsCount": "{count} events",
+  "@historyArchiveResultsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "historyArchiveSubtitle": "Browse curated Islamic historical moments by date and category.",
+  "historyArchiveTitle": "Historical Calendar",
+  "historyCategoryBattles": "Battles",
+  "historyCategoryBirths": "Births",
+  "historyCategoryDeaths": "Deaths",
+  "historyCategoryIslamicHistory": "Islamic History",
+  "historyCategoryKhulafa": "Khulafa",
+  "historyCategoryProphets": "Prophets",
+  "historyCategoryRevelation": "Revelation",
+  "historyCategorySacredPlaces": "Sacred Places",
+  "historyCategoryScholars": "Scholars",
+  "historyCategorySeerah": "Seerah",
+  "historyCategoryWorldHistory": "World History",
+  "historyDateConfidenceApproximate": "Approximate date",
+  "historyDateConfidenceDisputed": "Date differs across sources",
+  "historyDateConfidenceExact": "Widely cited date",
+  "historyDateUnavailable": "Not available in this V1 record",
+  "historyDateUnknown": "Date not available",
+  "historyDetailLoadingSubtitle": "Loading the historical event details.",
+  "historyDetailLoadingTitle": "Historical Event",
+  "historyDetailNotFoundSubtitle": "This historical event could not be found.",
+  "historyDetailNotFoundTitle": "Event not found",
+  "historyGregorianDateLabel": "Gregorian date",
+  "historyGregorianDateValue": "{day} {month} {year} CE",
+  "@historyGregorianDateValue": {
+    "placeholders": {
+      "day": {
+        "type": "String"
+      },
+      "month": {
+        "type": "String"
+      },
+      "year": {
+        "type": "String"
+      }
+    }
+  },
+  "historyHijriDateLabel": "Hijri date",
+  "historyHijriDateValue": "{day} {month} {year} AH",
+  "@historyHijriDateValue": {
+    "placeholders": {
+      "day": {
+        "type": "String"
+      },
+      "month": {
+        "type": "String"
+      },
+      "year": {
+        "type": "String"
+      }
+    }
+  },
+  "historyLearnIslandSubtitle": "On this day moments and a browsable archive of Islamic history.",
+  "historyLessonsTitle": "Lessons & Reflection",
+  "historyLocationLabel": "Location",
+  "historyMatchBadgeBoth": "Gregorian and Hijri match",
+  "historyMatchBadgeGregorian": "Gregorian today",
+  "historyMatchBadgeHijri": "Hijri today",
+  "historyOnThisDayMatchesSubtitle": "See the historical moments that match today’s Gregorian and Hijri anniversaries.",
+  "historyOnThisDayMatchesTitle": "On This Day",
+  "historyOnThisDaySubtitle": "A gentle historical reflection for today’s Gregorian and Hijri dates.",
+  "historyOnThisDayTitle": "On This Day",
+  "historyOpenArchiveAction": "Open archive",
+  "historyOverviewTitle": "Overview",
+  "contextualLinksRelatedTitle": "Related",
+  "contextualLinksTypeEvent": "Event",
+  "contextualLinksTypeHadith": "Hadith",
+  "contextualLinksTypeJourney": "Journey",
+  "contextualLinksTypeLearn": "Learn",
+  "historyRelatedContentTitle": "Related learning",
+  "historyRelatedPeopleTitle": "Related people & entities",
+  "historySignificanceTitle": "Why it matters",
+  "historySourcesTitle": "Sources",
+  "historyTodayGregorianValue": "{day} {month} {year}",
+  "@historyTodayGregorianValue": {
+    "placeholders": {
+      "day": {
+        "type": "String"
+      },
+      "month": {
+        "type": "String"
+      },
+      "year": {
+        "type": "String"
+      }
+    }
+  },
+  "historyTodayHijriValue": "{day} {month} {year} AH",
+  "@historyTodayHijriValue": {
+    "placeholders": {
+      "day": {
+        "type": "String"
+      },
+      "month": {
+        "type": "String"
+      },
+      "year": {
+        "type": "String"
+      }
+    }
+  },
+  "historyTodayShortcutAction": "Today’s matches",
+  "historyEmptyTodaySubtitle": "Historical moments for this day are still being added. You can still browse the archive.",
+  "historyEmptyTodayTitle": "More moments are on the way",
+  "historyViewAllCount": "View all ({count})",
+  "@historyViewAllCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "navDhikr": "Ibadah",
   "navLearning": "Learn",
   "navHome": "Home",
@@ -1209,6 +1354,10 @@
   "profileQuranReminders": "Qur''an reminders",
   "profileReflectionReminders": "Reflection reminders",
   "profileFastingReminders": "Fasting reminders",
+  "profileMoonriseReminders": "Moonrise notifications",
+  "profileMoonriseRemindersSubtitle": "Notify me when the moon is rising.",
+  "profileMoonsetReminders": "Moonset notifications",
+  "profileMoonsetRemindersSubtitle": "Notify me when the moon is setting.",
   "profileLanguageExpandTitle": "Language options",
   "profileLanguageExpandSubtitle": "Select language below",
   "profileAboutTitle": "About",
@@ -1594,7 +1743,7 @@
   "learnHubCategoryNotesTitle": "Notes",
   "learnHubCategoryNotesSubtitle": "Your learning notes remain easy to revisit from a dedicated top-level section.",
   "learnHubCategoryToolsExploreTitle": "Tools & Explore",
-  "learnHubCategoryToolsExploreSubtitle": "Search utilities, discovery helpers, and Explore All Knowledge stay together here.",
+  "learnHubCategoryToolsExploreSubtitle": "Search utilities, discovery helpers, and journey tools stay together here.",
   "learnHubSubcategoryWhoIsAllahTitle": "Who is Allah?",
   "learnHubSubcategoryWhoIsAllahSubtitle": "Belief basics and the first questions of faith.",
   "learnHubSubcategoryCoreKnowledgeTitle": "Core Knowledge",
@@ -1738,6 +1887,189 @@
   "quranReferenceViewerRelatedHadith": "Related Hadith",
   "quranReferenceViewerRelatedProphets": "Related Prophets",
   "quranReferenceViewerRelatedJourneys": "Related Journeys",
+  "quranLearnMoreSectionTitle": "Learn More",
+  "quranLearnMoreInsightsTitle": "Ayah Insights",
+  "quranAyahInsightsDomainSignsInCreation": "Signs in Creation",
+  "quranAyahInsightsDomainWorshipRemembrance": "Worship & Remembrance",
+  "quranAyahInsightsDomainCharacterAdab": "Character & Adab",
+  "quranAyahInsightsDomainTawhidBelief": "Tawhid & Belief",
+  "quranAyahInsightsDomainAkhirahAccountability": "Akhirah & Accountability",
+  "quranAyahInsightsDomainProphetsLessons": "Prophets & Lessons",
+  "quranAyahInsightsDomainGuidanceDailyLife": "Guidance & Reflection",
+  "quranAyahInsightsTypeHadithReference": "Hadith Reference",
+  "quranAyahInsightsTypeAyahInsight": "Ayah Insight",
+  "quranAyahInsightsTypeSignsInCreation": "Signs in Creation",
+  "quranAyahInsightsTypeScientificReflection": "Creation Reflection",
+  "quranAyahInsightsTypeWorldCreationLesson": "World & Creation",
+  "quranAyahInsightsTypeWorshipLesson": "Worship Lesson",
+  "quranAyahInsightsTypeCharacterLesson": "Character Lesson",
+  "quranAyahInsightsTypeProphetConnection": "Prophet Lesson",
+  "quranAyahInsightsTypeRelatedAyah": "Related Ayah",
+  "quranAyahInsightsTypeReflectionPrompt": "Reflection Prompt",
+  "quranAyahInsightsTypeInterpretationNote": "Interpretation Note",
+  "quranAyahInsightsCautionLabel": "Read with care",
+  "quranAyahInsightsRelatedAyahsTitle": "Related Ayahs",
+  "quranAyahInsightsRelatedTypeSameTheme": "Same theme",
+  "quranAyahInsightsRelatedTypeSupportingInsight": "Supporting insight",
+  "quranAyahInsightsRelatedTypeContinuation": "Continue this lesson",
+  "quranAyahInsightsRelatedTypeContrast": "Helpful contrast",
+  "quranAyahInsightsRelatedTypeWorshipConnection": "Worship connection",
+  "quranAyahInsightsRelatedTypeCharacterConnection": "Character connection",
+  "quranAyahInsightsRelatedTypeCreationConnection": "Creation connection",
+  "quranAyahInsightsRelatedTypeProphetConnection": "Prophet connection",
+  "quranAyahInsightsBrowseTitle": "Browse Ayah Insights",
+  "quranAyahInsightsBrowseSubtitle": "Explore Qur''anic insights by theme and follow them back into the reader.",
+  "quranAyahInsightsBrowseEmpty": "Ayah Insights categories will appear here as enrichment content grows.",
+  "quranAyahInsightsBrowseHubAction": "Open Qur''an Study",
+  "quranAyahInsightsHubEntryTitle": "Browse Ayah Insights",
+  "quranAyahInsightsHubEntrySubtitle": "Explore enriched ayah lessons by domain, from creation and worship to character, belief, and accountability.",
+  "quranAyahInsightsBrowseAction": "Browse insights",
+  "quranAyahInsightsBrowseSubtitleSignsInCreation": "Creation, nature, and signs that call the heart to reflection.",
+  "quranAyahInsightsBrowseSubtitleWorshipRemembrance": "Prayer, dhikr, du''a, sincerity, and practical worshipful life.",
+  "quranAyahInsightsBrowseSubtitleCharacterAdab": "Conduct, restraint, mercy, justice, and daily adab.",
+  "quranAyahInsightsBrowseSubtitleTawhidBelief": "Foundational belief, Tawhid, trust, and awareness of Allah.",
+  "quranAyahInsightsBrowseSubtitleAkhirahAccountability": "Judgment, deeds, resurrection, and preparing for the Hereafter.",
+  "quranAyahInsightsBrowseSubtitleProphetsLessons": "Focused lessons drawn from Qur''anic examples of the prophets.",
+  "quranAyahInsightsBrowseSubtitleGuidanceDailyLife": "General guidance entries that still support daily reflection and action.",
+  "quranAyahInsightsDomainEmptyTitle": "No ayah insights here yet",
+  "quranAyahInsightsDomainEmptySubtitle": "This category is ready for future enrichment, but it does not have browseable entries yet.",
+  "quranAyahInsightsBrowseLessonTypeCoreLesson": "Core lesson",
+  "quranAyahInsightsBrowseLessonTypeReflection": "Reflection",
+  "quranAyahInsightsBrowseLessonTypePracticalTakeaway": "Practical takeaway",
+  "quranAyahInsightsBrowseLessonTypeWarning": "Warning",
+  "quranAyahInsightsBrowseLessonTypeReminder": "Reminder",
+  "quranAyahInsightsBrowseLessonTypeConnection": "Connection",
+  "quranAyahInsightsBrowseFilterDomains": "Domains",
+  "quranAyahInsightsBrowseFilterTags": "Tags",
+  "quranAyahInsightsBrowseFilterLessonType": "Lesson type",
+  "quranAyahInsightsBrowseFilterAll": "All",
+  "quranAyahInsightsBrowseFilterClear": "Clear filters",
+  "quranAyahInsightsBrowseNoResultsTitle": "No matching insights yet",
+  "quranAyahInsightsBrowseNoResultsSubtitle": "Try clearing a filter or choosing a broader theme.",
+  "quranAyahInsightsBrowseTagSabr": "Patience",
+  "quranAyahInsightsBrowseTagShukr": "Gratitude",
+  "quranAyahInsightsBrowseTagTawakkul": "Reliance",
+  "quranAyahInsightsBrowseTagMercy": "Mercy",
+  "quranAyahInsightsBrowseTagRepentance": "Repentance",
+  "quranAyahInsightsBrowseTagJustice": "Justice",
+  "quranAyahInsightsBrowseTagSincerity": "Sincerity",
+  "quranAyahInsightsBrowseTagGuidance": "Guidance",
+  "quranAyahInsightsBrowseTagSigns": "Signs",
+  "quranAyahInsightsBrowseTagCreation": "Creation",
+  "quranAyahInsightsBrowseTagProphets": "Prophets",
+  "quranAyahInsightsBrowseTagWorship": "Worship",
+  "quranKnowledgeSearchEntryTitle": "Search Qur''an knowledge",
+  "quranKnowledgeSearchEntrySubtitle": "Search Ayah Insights, guided paths, and surah pages from one calm surface.",
+  "quranKnowledgeSearchAction": "Open knowledge search",
+  "quranKnowledgeSearchTitle": "Qur''an Knowledge Search",
+  "quranKnowledgeSearchSubtitle": "Search across Ayah Insights, guided paths, and surah insight pages by topic, tag, title, ayah reference, or surah name.",
+  "quranKnowledgeSearchHint": "Search topics, tags, ayahs, paths, or surahs...",
+  "quranKnowledgeSearchEmptyTitle": "Start with a theme, tag, ayah reference, or surah",
+  "quranKnowledgeSearchEmptySubtitle": "Search across Ayah Insights, guided paths, and surah pages, or browse one of the curated collections below.",
+  "quranKnowledgeSearchNoResultsTitle": "No Qur''an knowledge matches yet",
+  "quranKnowledgeSearchNoResultsSubtitle": "Try a broader topic, a shorter ayah reference, or browse one of the collections below.",
+  "quranKnowledgeSearchSectionAyahInsights": "Ayah Insights",
+  "quranKnowledgeSearchSectionPaths": "Learning Paths",
+  "quranKnowledgeSearchSectionSurahInsights": "Surah Insights",
+  "quranKnowledgeSearchTypeAyahInsight": "Ayah insight",
+  "quranKnowledgeSearchTypePath": "Learning path",
+  "quranKnowledgeSearchTypeSurahInsight": "Surah insight",
+  "quranAyahInsightPathsEntryTitle": "Follow guided paths",
+  "quranAyahInsightPathsEntrySubtitle": "Move through a small curated sequence of ayah insights instead of opening entries one by one.",
+  "quranAyahInsightPathsAction": "Open guided paths",
+  "quranAyahInsightPathsTitle": "Ayah Insight Paths",
+  "quranAyahInsightPathsSubtitle": "Follow short, curated Qur''anic learning sequences built from the existing Ayah Insights content.",
+  "quranAyahInsightPathsEmpty": "Guided paths will appear here as curated Ayah Insights sequences expand.",
+  "quranAyahInsightPathsReflectionFocusTitle": "Reflection focus",
+  "quranAyahInsightPathsStartAction": "Start with the first ayah",
+  "quranAyahInsightPathsCount": "{count} ayahs",
+  "@quranAyahInsightPathsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "quranAyahInsightPathTitleSignsInCreationStarter": "Signs in Creation Starter",
+  "quranAyahInsightPathDescriptionSignsInCreationStarter": "A calm introduction to the sky, time, rain, and living signs that call the heart to reflection.",
+  "quranAyahInsightPathReflectionSignsInCreationStarter": "Notice how repeated signs in the created world invite both wonder and gratitude instead of passing attention.",
+  "quranAyahInsightPathTitleWorshipRemembranceStarter": "Worship & Remembrance Starter",
+  "quranAyahInsightPathDescriptionWorshipRemembranceStarter": "A practical sequence on prayer, dhikr, du''a, sincerity, and reliance on Allah.",
+  "quranAyahInsightPathReflectionWorshipRemembranceStarter": "Move through these ayahs by asking how remembrance should shape your actual day, not only your thoughts.",
+  "quranAyahInsightPathTitleCharacterAdabStarter": "Character & Adab Starter",
+  "quranAyahInsightPathDescriptionCharacterAdabStarter": "A guided sequence on patience, mercy, justice, forgiveness, and good conduct with people.",
+  "quranAyahInsightPathReflectionCharacterAdabStarter": "Read each step as a behavior check: what should change in speech, restraint, fairness, or treatment of others?",
+  "quranAyahInsightPathTitleTawhidBeliefStarter": "Tawhid & Belief Starter",
+  "quranAyahInsightPathDescriptionTawhidBeliefStarter": "A foundational path through oneness, signs, trust, rejection of shirk, and living with taqwa.",
+  "quranAyahInsightPathReflectionTawhidBeliefStarter": "Keep asking how sound belief changes reliance, sincerity, and the way you read the signs around you.",
+  "quranAyahInsightPathTitleAkhirahAccountabilityStarter": "Akhirah & Accountability Starter",
+  "quranAyahInsightPathDescriptionAkhirahAccountabilityStarter": "A balanced path through judgment, deeds, resurrection, urgency, and hope in the Hereafter.",
+  "quranAyahInsightPathReflectionAkhirahAccountabilityStarter": "Let each ayah move you toward preparation, not fear alone: deeds, honesty, urgency, and hope all belong here.",
+  "quranAyahInsightPathTitleProphetsLessonsStarter": "Prophets & Lessons Starter",
+  "quranAyahInsightPathDescriptionProphetsLessonsStarter": "A focused path through prophetic patience, reliance, submission, da''wah, and just leadership.",
+  "quranAyahInsightPathReflectionProphetsLessonsStarter": "Watch how prophetic examples turn abstract values into lived responses under trial, calling, and responsibility.",
+  "quranSurahInsightsEntryTitle": "Surah themes & insights",
+  "quranSurahInsightsEntrySubtitle": "See the main themes, lessons, and strongest Ayah Insights clusters for this surah.",
+  "quranSurahInsightsEntryAction": "Open surah insights",
+  "quranSurahInsightsBrowseAction": "Browse surah insights",
+  "quranSurahInsightsBrowseTitle": "Surah Themes & Insights",
+  "quranSurahInsightsBrowseSubtitle": "Explore concise surah-level themes, lessons, and linked Ayah Insights clusters.",
+  "quranSurahInsightsEmpty": "Surah insight pages will appear here as curated surah summaries expand.",
+  "quranSurahInsightsOverviewTitle": "Overview",
+  "quranSurahInsightsLessonsTitle": "Key lessons",
+  "quranSurahInsightsClustersTitle": "Insight clusters",
+  "quranSurahInsightsSuggestedPathsTitle": "Suggested paths",
+  "quranSurahInsightsClusterCount": "{count} clusters",
+  "@quranSurahInsightsClusterCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "quranSurahInsightDescriptionAlBaqarah": "A surah of guidance, worship, covenant, and patient trust, teaching how belief becomes a lived community ethic.",
+  "quranSurahInsightDescriptionAliImran": "A surah that joins belief, reflection, restraint, and steadfastness, especially when the heart is tested.",
+  "quranSurahInsightDescriptionTaHa": "A surah that keeps revelation close to worship, remembrance, and humble seeking of knowledge.",
+  "quranSurahInsightDescriptionAlFurqan": "A surah of discernment that contrasts empty rejection with the quiet conduct of the servants of the Most Merciful.",
+  "quranSurahInsightDescriptionLuqman": "A surah that joins wisdom, gratitude, Tawhid, family counsel, and humble conduct in one moral frame.",
+  "quranSurahInsightThemeGuidanceAndDevotion": "Guidance and devotion",
+  "quranSurahInsightThemePatienceAndReliance": "Patience and reliance",
+  "quranSurahInsightThemeSupplicationAndResponse": "Supplication and response",
+  "quranSurahInsightThemeSteadfastBelief": "Steadfast belief",
+  "quranSurahInsightThemeCharacterUnderPressure": "Character under pressure",
+  "quranSurahInsightThemeReflectingOnSigns": "Reflecting on signs",
+  "quranSurahInsightThemeRevelationAndRemembrance": "Revelation and remembrance",
+  "quranSurahInsightThemeSeekingKnowledge": "Seeking knowledge",
+  "quranSurahInsightThemeWorshipWithPresence": "Worship with presence",
+  "quranSurahInsightThemeDiscernmentAndReflection": "Discernment and reflection",
+  "quranSurahInsightThemeHumbleServanthood": "Humble servanthood",
+  "quranSurahInsightThemeSignsInTimeAndCreation": "Signs in time and creation",
+  "quranSurahInsightThemeGratitudeAndWisdom": "Gratitude and wisdom",
+  "quranSurahInsightThemeTawhidInFamilyGuidance": "Tawhid in family guidance",
+  "quranSurahInsightThemeHumilityAndGoodConduct": "Humility and good conduct",
+  "quranSurahInsightLessonSteadfastWorshipNeedsHelp": "Steadfast worship is not self-powered; it asks Allah for help and keeps returning to Him.",
+  "quranSurahInsightLessonRememberingAllahReshapesTheHeart": "Remembering Allah is not decorative spirituality; it reforms the heart and steadies the believer.",
+  "quranSurahInsightLessonDuaIsPartOfLivedFaith": "Du''a belongs inside faith and worship, not outside them, because nearness to Allah should produce calling upon Him.",
+  "quranSurahInsightLessonTaqwaAndReflectionBelongTogether": "Taqwa deepens when the believer reflects on signs instead of passing over them distracted.",
+  "quranSurahInsightLessonMercyAndRestraintAreStrengths": "Mercy, self-restraint, and gentleness are strengths that preserve a believing community under strain.",
+  "quranSurahInsightLessonSteadfastnessBuiltThroughBeliefAndCharacter": "Steadfastness grows from sound belief together with disciplined character, not from emotion alone.",
+  "quranSurahInsightLessonPrayerKeepsRevelationConnectedToLife": "Prayer keeps revelation connected to daily life by turning remembrance into a repeated act of devotion.",
+  "quranSurahInsightLessonSincereLearningBeginsWithHumility": "Seeking knowledge begins with humility before Allah, not with self-satisfaction.",
+  "quranSurahInsightLessonRemembranceShapesAction": "Remembrance is meant to shape what a person does, not merely what a person feels for a moment.",
+  "quranSurahInsightLessonServantsOfMercifulKnownByConduct": "The servants of the Most Merciful are recognized by steady conduct before they are recognized by claims.",
+  "quranSurahInsightLessonSignsLeadToRemembrance": "Signs in creation are meant to awaken remembrance, gratitude, and moral clarity.",
+  "quranSurahInsightLessonGuidanceVisibleInConduct": "Guidance becomes visible in how a person walks, speaks, and answers harm with dignity.",
+  "quranSurahInsightLessonGratitudeIsWorship": "Gratitude is a form of worship that acknowledges Allah''s favor with the heart, tongue, and life.",
+  "quranSurahInsightLessonBeliefAndCharacterTogether": "Belief and character are taught together because Tawhid should shape counsel, family life, and conduct.",
+  "quranSurahInsightLessonWisdomShowsInHumility": "Wisdom appears in humility before Allah and in refusing arrogance toward people.",
+  "quranAyahInsightsBrowseCount": "{count} insights",
+  "@quranAyahInsightsBrowseCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "triviaModeQuickChallenge": "Quick Challenge",
   "triviaModeQuickChallengeSubtitle": "A short mixed session for steady practice.",
   "triviaModeDeepDive": "Deep Dive",
@@ -2403,6 +2735,8 @@
   "quranShowArabic": "Arabic text",
   "quranShowTransliteration": "Transliteration",
   "quranShowTranslation": "Translation text",
+  "quranShowLearnMore": "Learn More",
+  "quranShowLearnMoreSubtitle": "Show related learning links and knowledge around the current ayah.",
   "quranWordTranslationChip": "Word by Word Translation",
   "quranWordTranslationBetaTitle": "Word by Word Translation (Beta)",
   "quranWordTranslationBetaSubtitle": "This feature is currently in Beta and may still be refined.",
@@ -6368,6 +6702,8 @@
   "settingsVisualPreferencesTitle": "Visual Preferences",
   "settingsDisableGlassTransparencyTitle": "Disable Glass Transparency",
   "settingsDisableGlassTransparencySubtitle": "Use solid surfaces instead of translucent glass.",
+  "settingsDisableColoredGlassTitle": "Disable Colored Glass",
+  "settingsDisableColoredGlassSubtitle": "Keep glass surfaces while removing the tinted color treatment.",
   "settingsGlassTransparencyTitle": "Glass Transparency",
   "settingsGlassTransparencySubtitle": "Adjust how translucent glass cards, islands, pills, and panels appear across the app.",
   "settingsGlassTransparencyDisabledSubtitle": "Turn glass back on to adjust transparency again.",
@@ -6424,6 +6760,7 @@
   "settingsFridayReminderModeNormalDhuhr": "Normal Dhuhr timing",
   "settingsFridayReminderModeCustomJumuah": "Custom Jumu''ah time",
   "settingsPrayerNameFajr": "Fajr",
+  "settingsPrayerNameJumuah": "Jumu‘ah",
   "settingsPrayerNameDhuhr": "Dhuhr",
   "settingsPrayerNameAsr": "Asr",
   "settingsPrayerNameMaghrib": "Maghrib",
@@ -7515,6 +7852,99 @@
     }
   },
   "gardenPageEntryHomeSubtitle": "Open your unlocked images, meaning, and next milestone in one calm view.",
+  "gardenPageLearnerSectionTitle": "Child profile",
+  "gardenPageHeroBody": "Your learning, remembrance, and steady good habits shape this garden over time.",
+  "gardenPageLevelLabel": "Level",
+  "gardenPageXpLabel": "XP",
+  "gardenPageMaturityLabel": "Garden maturity",
+  "gardenPageMaturityValue": "{percent}%",
+  "@gardenPageMaturityValue": {
+    "placeholders": {
+      "percent": {}
+    }
+  },
+  "gardenPageNextGrowthTitle": "Next growth",
+  "gardenPageNextGrowthValue": "Next stage: {title}",
+  "@gardenPageNextGrowthValue": {
+    "placeholders": {
+      "title": {}
+    }
+  },
+  "gardenPageNextGrowthSubtitle": "Steady worship, learning, remembrance, and good routines all continue shaping the next growth.",
+  "gardenPageBreakdownTitle": "What is growing",
+  "gardenPageInsightTitle": "What helped it grow",
+  "gardenPageRecentGrowthTitle": "Recent growth",
+  "gardenPageRecentGrowthEmpty": "Recent garden growth will appear after the next meaningful learning step.",
+  "gardenPageMilestonesTitle": "Garden gallery",
+  "gardenPageHowItWorksTitle": "How growth works",
+  "gardenPageDimensionStrengthValue": "{percent}% grown",
+  "@gardenPageDimensionStrengthValue": {
+    "placeholders": {
+      "percent": {}
+    }
+  },
+  "gardenPageRecentGrowthJustNow": "Just now",
+  "gardenPageRecentGrowthRewardValue": "{xp} XP • {drops} drop",
+  "@gardenPageRecentGrowthRewardValue": {
+    "placeholders": {
+      "xp": {},
+      "drops": {}
+    }
+  },
+  "gardenPageRecentGrowthXpValue": "{xp} XP",
+  "@gardenPageRecentGrowthXpValue": {
+    "placeholders": {
+      "xp": {}
+    }
+  },
+  "gardenAmbientQuietDawn": "Quiet dawn",
+  "gardenAmbientGentleMorning": "Gentle morning",
+  "gardenAmbientWarmLight": "Warm light",
+  "gardenAmbientEveningGlow": "Evening glow",
+  "gardenStageSeed": "Seed in the soil",
+  "gardenStageSprout": "Early sprout",
+  "gardenStageRoots": "Small roots",
+  "gardenStageStem": "Young stem",
+  "gardenStageYoungTree": "Young tree",
+  "gardenStageTrunk": "Strengthening trunk",
+  "gardenStageBranches": "Branch growth",
+  "gardenStageLeaves": "Leaf growth",
+  "gardenStageFruit": "Fruit beginning",
+  "gardenStageFlourishing": "Flourishing tree",
+  "gardenDimensionPrayerTitle": "Roots of prayer",
+  "gardenDimensionPrayerBody": "Steady worship and grounding habits strengthen the garden from below.",
+  "gardenDimensionLearningTitle": "Branches of knowledge",
+  "gardenDimensionLearningBody": "Stories, Seerah, and thoughtful learning widen the garden reach.",
+  "gardenDimensionLightTitle": "Light of remembrance",
+  "gardenDimensionLightBody": "Dua and remembrance brighten the garden with calm light.",
+  "gardenDimensionWaterTitle": "Water of good deeds",
+  "gardenDimensionWaterBody": "Ocean Drops nourish the garden with life, greenery, and freshness.",
+  "gardenDimensionFruitTitle": "Fruits of wisdom",
+  "gardenDimensionFruitBody": "Badges, milestones, and maturity reveal the fruit of learning.",
+  "gardenDimensionConsistencyTitle": "Bloom of consistency",
+  "gardenDimensionConsistencyBody": "Regular learning and bedtime rhythm help the whole garden stay alive.",
+  "gardenInsightPrayer": "Your recent steady rhythm is strengthening the roots and giving the garden a firmer foundation.",
+  "gardenInsightLearning": "Stories, Seerah, and learning moments are helping the branches grow wider.",
+  "gardenInsightLight": "Dua and remembrance are bringing more light into the garden.",
+  "gardenInsightWater": "Ocean Drops are bringing water, greenery, and new life into the garden.",
+  "gardenInsightFruit": "Milestones and maturity are beginning to show as fruit and wisdom in bloom.",
+  "gardenInsightConsistency": "Your recent consistency is helping the whole garden stay healthy and full.",
+  "gardenRecentStory": "Story completed",
+  "gardenRecentQuiz": "Quiz completed",
+  "gardenRecentMemory": "Memory cards completed",
+  "gardenRecentDuaLesson": "Dua lesson completed",
+  "gardenRecentDuaPractice": "Dua practiced",
+  "gardenRecentDuaDay": "My Day with Duas completed",
+  "gardenRecentRoutine": "Bedtime routine completed",
+  "gardenRecentSeerahNode": "Seerah step completed",
+  "gardenRecentSeerahStage": "Seerah stage completed",
+  "gardenRecentSeerahJourney": "Seerah journey completed",
+  "gardenRecentKidsArabicLesson": "Arabic letter lesson completed",
+  "gardenRecentKidsArabicDaily": "Arabic daily mission completed",
+  "gardenPageLightMeaningTitle": "Light through remembrance",
+  "gardenPageLightMeaningBody": "Dua and dhikr bring brightness, warmth, and calm atmosphere into the garden.",
+  "gardenPageFruitMeaningTitle": "Wisdom in bloom",
+  "gardenPageFruitMeaningBody": "Milestones and maturity appear as fruit, showing learning that has taken root.",
   "gardenMilestoneTitle1": "First Seed",
   "gardenMilestoneDescription1": "Your first drop plants the earliest sign of steady return.",
   "gardenMilestoneTitle2": "Gentle Rain",
@@ -8279,7 +8709,7 @@
       }
     }
   },
-  "batch9QuranWordsSubtitle": "Learn high-frequency Quran words from the loaded core-word list.",
+  "batch9QuranWordsSubtitle": "Study frequent Qur’an words in Arabic with transliteration and translation.",
   "batch9QuranWordsStudyBands": "Study Bands",
   "batch9QuranWordsTop25": "Top 25",
   "batch9QuranWordsTop50": "Top 50",
@@ -8287,7 +8717,7 @@
   "batch9QuranWordsAllLoaded": "All Loaded",
   "batch9QuranWordsSortMostFrequent": "Most frequent",
   "batch9QuranWordsSortRank": "Top list rank",
-  "batch9QuranWordsSearchHint": "Search transliteration or meaning",
+  "batch9QuranWordsSearchHint": "Search Arabic, transliteration, or translation",
   "batch9QuranWordsMasteredSummary": "{mastered} / {total} mastered",
   "@batch9QuranWordsMasteredSummary": {
     "placeholders": {
@@ -8299,18 +8729,56 @@
       }
     }
   },
-  "batch9QuranWordsFlashCard": "Flash card: {transliteration} • {meaning}",
-  "@batch9QuranWordsFlashCard": {
+  "batch9QuranWordsEmpty": "No words match this filter yet.",
+  "batch9QuranWordsOccurrenceCount": "{count} times",
+  "@batch9QuranWordsOccurrenceCount": {
     "placeholders": {
-      "transliteration": {
-        "type": "String"
-      },
-      "meaning": {
+      "count": {
         "type": "String"
       }
     }
   },
-  "batch9QuranWordsEmpty": "No words match this filter yet.",
+  "batch9QuranWordsExampleAyahTitle": "Example ayah",
+  "batch9QuranWordsNoUsageAvailable": "No example ayah is available for this word yet.",
+  "batch9QuranWordsViewOccurrences": "See all ayahs ({count})",
+  "@batch9QuranWordsViewOccurrences": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "batch9QuranWordsAyahListTitle": "Ayah usages",
+  "batch9QuranWordsAyahListSubtitle": "{word} appears in {count} ayahs.",
+  "@batch9QuranWordsAyahListSubtitle": {
+    "placeholders": {
+      "word": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "batch9QuranWordsMarkLearned": "Mark learned",
+  "batch9QuranWordsLearned": "Learned",
+  "batch9QuranWordsOpenStudy": "Open study",
+  "batch9QuranWordsStudyPageTitle": "Word Study",
+  "batch9QuranWordsProgressFilterTitle": "Progress",
+  "batch9QuranWordsFilterAll": "All",
+  "batch9QuranWordsFilterLearned": "Learned",
+  "batch9QuranWordsFilterNotLearned": "Not learned",
+  "batch9QuranWordsAllAyahsTitle": "All ayahs where this word appears",
+  "batch9QuranWordsAllAyahsSubtitle": "Open the full ayah list for {word} and continue into the Qur''an reader from any reference.",
+  "@batch9QuranWordsAllAyahsSubtitle": {
+    "placeholders": {
+      "word": {}
+    }
+  },
+  "batch9QuranWordsRootLettersTitle": "Root letters",
+  "batch9QuranWordsMeaningExpansionTitle": "Meaning",
+  "batch9QuranWordsDetailNotFoundTitle": "Word not found",
+  "batch9QuranWordsDetailNotFoundSubtitle": "This word study entry is no longer available.",
   "batch9QuranWordsOccurrenceSummary": "{meaning} • {count} times in Qur’an",
   "@batch9QuranWordsOccurrenceSummary": {
     "placeholders": {
@@ -8351,6 +8819,8 @@
   "batch9FaqFeaturedSubtitle": "Start with common foundational questions.",
   "batch9FaqBrowseTitle": "Browse by Category",
   "batch9FaqBrowseSubtitle": "Explore questions by theme and level.",
+  "batch9FaqBrowseAllAction": "Browse All",
+  "batch9FaqBrowseAllSubtitle": "Open the full FAQ collection for broader browsing and discovery.",
   "batch9FaqSearchHint": "Search common questions, answers, topics...",
   "batch9FaqOverviewSummary": "{questions} questions across {categories} categories.",
   "@batch9FaqOverviewSummary": {
@@ -9104,8 +9574,8 @@
   },
   "xpCardMaxLevel": "Path of Nūr",
   "xpCardMaxLevelReached": "You have reached the current peak of this path.",
-  "growthTrackingOverviewTitle": "Tracking Overview",
-  "growthTrackingOverviewSubtitle": "A cleaner view of your habits, worship, rhythm, and steady progress.",
+  "growthTrackingOverviewTitle": "Journey Stats",
+  "growthTrackingOverviewSubtitle": "One place for your core worship, learning, reading, and consistency metrics.",
   "growthTrackingOverviewTodayTitle": "Today at a glance",
   "growthTrackingOverviewHabits": "Habits",
   "growthTrackingOverviewHabitsDetail": "{count} due today",
@@ -9125,6 +9595,102 @@
   "growthTrackingOverviewDropsDetail": "Drops gathered for Garden and Ocean",
   "growthTrackingDashboardsTitle": "Open dashboards",
   "growthTrackingPrayerDashboardSubtitle": "Review salah and ibadah tracking in Ibadah.",
+  "growthHomeQuranTrackerSubtitle": "Today: {duration}",
+  "@growthHomeQuranTrackerSubtitle": {
+    "placeholders": {
+      "duration": {}
+    }
+  },
+  "growthHomeQuranListeningTrackerSubtitle": "Listening: {total} total • {today} today",
+  "@growthHomeQuranListeningTrackerSubtitle": {
+    "placeholders": {
+      "total": {},
+      "today": {}
+    }
+  },
+  "growthHomePostSalahAdhkarSubtitle": "Completed after-prayer adhkar recorded in your prayer log.",
+  "growthHomeTotalAdhkarCompletedSubtitle": "{postSalah} post-Salah completions • {sessions} dhikr sessions",
+  "@growthHomeTotalAdhkarCompletedSubtitle": {
+    "placeholders": {
+      "postSalah": {},
+      "sessions": {}
+    }
+  },
+  "growthHomeDhikrTimeSubtitle": "Time in dhikr: {duration}",
+  "@growthHomeDhikrTimeSubtitle": {
+    "placeholders": {
+      "duration": {}
+    }
+  },
+  "growthHomeTimeReflectionSubtitle": "Since {elapsed}, tracked worship and growth time is {share}.",
+  "@growthHomeTimeReflectionSubtitle": {
+    "placeholders": {
+      "elapsed": {},
+      "share": {}
+    }
+  },
+  "journeyStatsQuranReadingTitle": "Qur''an Reading",
+  "journeyStatsQuranReadingSubtitle": "{today} today • {sessions} sessions tracked",
+  "@journeyStatsQuranReadingSubtitle": {
+    "placeholders": {
+      "today": {},
+      "sessions": {}
+    }
+  },
+  "journeyStatsQuranListeningSubtitle": "Listening: {today} today • {sessions} sessions tracked",
+  "@journeyStatsQuranListeningSubtitle": {
+    "placeholders": {
+      "today": {},
+      "sessions": {}
+    }
+  },
+  "journeyStatsMetricsTitle": "Core metrics",
+  "journeyStatsTimeReflectionTitle": "Time & Reflection",
+  "journeyStatsTimeReflectionSubtitle": "A quiet view of the time this app can honestly track in your journey.",
+  "journeyStatsTimeSinceInstallTitle": "Time Since You Began This Journey",
+  "journeyStatsTimeSinceInstallSubtitle": "Measured from your first launch on this device",
+  "journeyStatsWorshipGrowthTimeTitle": "Worship & Growth Time",
+  "journeyStatsWorshipGrowthTimeSubtitle": "Trustworthy time tracked in reading, listening, and dhikr",
+  "journeyStatsTrackedShareTitle": "Share of Time Since Install",
+  "journeyStatsTrackedShareSubtitle": "The portion represented by tracked in-app worship and growth",
+  "journeyStatsOtherTimeTitle": "Other Time Since Install",
+  "journeyStatsOtherTimeSubtitle": "The remaining time this app does not try to define",
+  "journeyStatsTimeReflectionHelper": "This is for reflection, not judgment. It only measures time the app actually tracked.",
+  "journeyStatsSalahOfferedTitle": "Total Salah Offered",
+  "journeyStatsSalahOfferedSubtitle": "Completed prayers logged",
+  "journeyStatsTotalAdhkarCompletedTitle": "Total Adhkar Completed",
+  "journeyStatsTotalAdhkarCompletedSubtitle": "Tracked dhikr sessions and post-prayer adhkar completions",
+  "journeyStatsPostSalahAdhkarTitle": "Post-Salah Adhkar Completed",
+  "journeyStatsPostSalahAdhkarSubtitle": "Recorded after-prayer adhkar completions",
+  "journeyStatsQuranTimeTitle": "Qur''an Time Read",
+  "journeyStatsQuranTimeSubtitle": "Tracked from reading sessions",
+  "journeyStatsQuranListeningTimeTitle": "Qur''an Listening Time",
+  "journeyStatsQuranListeningTimeSubtitle": "Tracked from active playback",
+  "journeyStatsDhikrCompletedTitle": "Dhikr Completed",
+  "journeyStatsDhikrCompletedSubtitle": "Completed sessions tracked",
+  "journeyStatsDhikrTimeTitle": "Total Time in Dhikr",
+  "journeyStatsDhikrTimeSubtitle": "Summed from tracked session duration",
+  "journeyStatsLessonsCompletedTitle": "Lessons Completed",
+  "journeyStatsLessonsCompletedSubtitle": "Finished lesson and topic progress",
+  "journeyStatsActiveDaysTitle": "Active Days",
+  "journeyStatsActiveDaysSubtitle": "Days with recorded progress",
+  "journeyStatsCurrentStreakTitle": "Current Streak",
+  "journeyStatsCurrentStreakSubtitle": "Your current steady rhythm",
+  "journeyStatsBestStreakTitle": "Best Streak",
+  "journeyStatsBestStreakSubtitle": "Your strongest recorded run",
+  "journeyStatsMinutesValue": "{minutes}m",
+  "@journeyStatsMinutesValue": {
+    "placeholders": {
+      "minutes": {}
+    }
+  },
+  "journeyStatsDaysHoursValue": "{days}d {hours}h",
+  "@journeyStatsDaysHoursValue": {
+    "placeholders": {
+      "days": {},
+      "hours": {}
+    }
+  },
   "growthTrackingSuggestionsTitle": "Suggested next steps",
   "growthTrackingSuggestionKidsTitle": "Kids learning rhythm",
   "growthTrackingSuggestionKidsSubtitle": "Keep habits gentle and connected to the current learning journey.",
@@ -9300,5 +9866,2464 @@
   "glossaryEntrySunnahShort": "The prophetic way shown through the teachings and example of Prophet Muhammad ﷺ.",
   "glossaryEntrySunnahExpanded": "Sunnah is the prophetic model found in the Prophet’s words, actions, character, and guidance. Muslims look to the Sunnah to learn how the teachings of Islam are lived in daily life.",
   "glossaryEntrySunnahKidsShort": "The way the Prophet Muhammad ﷺ taught us to live.",
-  "glossaryEntrySunnahKidsExpanded": "Sunnah is the example and way of Prophet Muhammad ﷺ. Muslims follow his good character, actions, and teachings to live in a way that pleases Allah."
+  "glossaryEntrySunnahKidsExpanded": "Sunnah is the example and way of Prophet Muhammad ﷺ. Muslims follow his good character, actions, and teachings to live in a way that pleases Allah.",
+  "learningJourneyDifficultyBeginner": "Beginner",
+  "learningJourneyDifficultyIntermediate": "Intermediate",
+  "learningJourneyDifficultyAdvanced": "Advanced",
+  "@learningJourneyDurationMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "learningJourneyDurationMinutes": "{minutes} min",
+  "learningJourneyFeaturedBadge": "Featured",
+  "learningJourneyStageLockedBadge": "Locked",
+  "@learningJourneyStageReward": {
+    "placeholders": {
+      "xp": {
+        "type": "int"
+      },
+      "drops": {
+        "type": "int"
+      }
+    }
+  },
+  "learningJourneyStageReward": "+{xp} XP • +{drops} drop",
+  "@learningJourneyDetailLessonCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "learningJourneyDetailLessonCount": "{count} lessons",
+  "learningJourneyLessonSectionRewardsTitle": "Rewards",
+  "@learningJourneyLessonSectionRewardsSubtitle": {
+    "placeholders": {
+      "xp": {
+        "type": "int"
+      },
+      "drops": {
+        "type": "int"
+      }
+    }
+  },
+  "learningJourneyLessonSectionRewardsSubtitle": "Complete this lesson to earn {xp} XP and {drops} drop.",
+  "@learningJourneyFeedbackXpAwarded": {
+    "placeholders": {
+      "xp": {
+        "type": "int"
+      }
+    }
+  },
+  "learningJourneyFeedbackXpAwarded": "+{xp} XP added",
+  "learningJourneyStageLockedRedirectSubtitle": "Opening the next available lesson",
+  "learningJourneyStageLockedRedirectBody": "This lesson will open after the previous step is completed. Taking you to the next available lesson now.",
+  "learningJourneyBrowseFeaturedTitle": "Featured journeys",
+  "learningJourneyBrowseFeaturedSubtitle": "Start with the guided paths most suited for steady progress.",
+  "learningJourneyBrowseAllJourneysTitle": "All journeys",
+  "learningJourneyBrowseAllJourneysSubtitle": "Browse every guided path and continue where you left off.",
+  "crosswordHomeTitle": "Crossword Puzzles",
+  "crosswordHomeSubtitle": "Calm knowledge games built from the learning content already in Path of Nūr.",
+  "crosswordLoadErrorTitle": "Crossword puzzles could not be loaded",
+  "crosswordLoadErrorSubtitle": "Try reopening this section in a moment.",
+  "crosswordKidsModeTitle": "Kids mode",
+  "crosswordKidsModeSubtitle": "Small grids with simple words from letters, worship, and early learning.",
+  "crosswordAdultModeTitle": "Adult mode",
+  "crosswordAdultModeSubtitle": "Knowledge-based grids across prophets, hadith, Qur’an, and duas.",
+  "crosswordDailyModeTitle": "Daily crossword",
+  "crosswordDailyModeSubtitle": "A themed puzzle that rotates through the week.",
+  "@crosswordDailyThemeLabel": {
+    "placeholders": {
+      "theme": {}
+    }
+  },
+  "crosswordDailyThemeLabel": "Today’s theme: {theme}",
+  "@crosswordPuzzleCountLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "crosswordPuzzleCountLabel": "{count} puzzles live",
+  "@crosswordCompletedCountLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "crosswordCompletedCountLabel": "{count} completed",
+  "@crosswordTodayXpLabel": {
+    "placeholders": {
+      "xp": {}
+    }
+  },
+  "crosswordTodayXpLabel": "{xp} XP today",
+  "@crosswordTodayDropsLabel": {
+    "placeholders": {
+      "drops": {}
+    }
+  },
+  "crosswordTodayDropsLabel": "{drops} drops today",
+  "crosswordKidsSectionTitle": "Kids puzzles",
+  "crosswordKidsSectionSubtitle": "Gentle letter-and-word boards for younger learners.",
+  "crosswordAdultSectionTitle": "Adult puzzles",
+  "crosswordAdultSectionSubtitle": "Reflective knowledge grids drawn from prophets, hadith, Qur’an, and duas.",
+  "@crosswordGridSizeLabel": {
+    "placeholders": {
+      "size": {}
+    }
+  },
+  "crosswordGridSizeLabel": "{size}×{size} grid",
+  "crosswordPerfectBadge": "Perfect",
+  "@crosswordClueCountSubtitle": {
+    "placeholders": {
+      "total": {},
+      "solved": {}
+    }
+  },
+  "crosswordClueCountSubtitle": "{solved} of {total} clues solved",
+  "crosswordReplayAction": "Play again",
+  "crosswordContinueAction": "Continue puzzle",
+  "crosswordStartAction": "Start puzzle",
+  "@crosswordPuzzleTitleKids": {
+    "placeholders": {
+      "category": {}
+    }
+  },
+  "crosswordPuzzleTitleKids": "Kids {category} puzzle",
+  "@crosswordPuzzleTitleAdult": {
+    "placeholders": {
+      "category": {}
+    }
+  },
+  "crosswordPuzzleTitleAdult": "{category} crossword",
+  "crosswordDifficultyBeginner": "Gentle",
+  "crosswordDifficultySteady": "Steady",
+  "crosswordDifficultyReflective": "Reflective",
+  "crosswordDifficultyDeep": "Deep",
+  "crosswordCategoryLetters": "Letters",
+  "crosswordCategoryWorship": "Worship",
+  "crosswordCategoryCharacter": "Character",
+  "crosswordCategoryFaith": "Faith",
+  "crosswordCategoryQuran": "Qur’an",
+  "crosswordCategoryHadith": "Hadith",
+  "crosswordCategoryProphets": "Prophets",
+  "crosswordCategoryDuas": "Duas",
+  "crosswordCategoryJummah": "Jumu‘ah",
+  "crosswordCategoryMixed": "Mixed",
+  "learnQuizzesCrosswordSectionTitle": "Crossword puzzles",
+  "learnQuizzesCrosswordSectionSubtitle": "Knowledge games that reuse the app’s learning content in a calm puzzle format.",
+  "learnQuizzesOpenCrossword": "Open crossword",
+  "crosswordLoadingSubtitle": "Preparing the current puzzle.",
+  "crosswordNotFoundTitle": "Puzzle not found",
+  "crosswordNotFoundSubtitle": "This crossword could not be opened.",
+  "crosswordKidsOnlyTitle": "This puzzle is reserved for the adult learning space.",
+  "@crosswordDailyPuzzleSubtitle": {
+    "placeholders": {
+      "category": {}
+    }
+  },
+  "crosswordDailyPuzzleSubtitle": "Today’s guided puzzle centers on {category}.",
+  "@crosswordPuzzleSubtitle": {
+    "placeholders": {
+      "category": {},
+      "gridSize": {}
+    }
+  },
+  "crosswordPuzzleSubtitle": "{category} • {gridSize} grid",
+  "crosswordAcrossLabel": "Across",
+  "crosswordDownLabel": "Down",
+  "@crosswordSolvedCountLabel": {
+    "placeholders": {
+      "solved": {},
+      "total": {}
+    }
+  },
+  "crosswordSolvedCountLabel": "{solved}/{total} solved",
+  "crosswordGridSectionTitle": "Puzzle grid",
+  "crosswordCluesSectionTitle": "Clues",
+  "crosswordCurrentClueTitle": "Current clue",
+  "@crosswordClueMetaLabel": {
+    "placeholders": {
+      "length": {},
+      "direction": {}
+    }
+  },
+  "crosswordClueMetaLabel": "{length} letters • {direction}",
+  "crosswordCompletionTitle": "Puzzle complete",
+  "crosswordCompletionSubtitle": "You completed the puzzle and collected the learning rewards.",
+  "crosswordPerfectSubtitle": "You completed the puzzle cleanly and earned the perfect bonus too.",
+  "crosswordCompletionXpReward": "+ XP on first completion",
+  "crosswordWordDropReward": "+1 drop for each solved word",
+  "crosswordPerfectBonusReward": "+ bonus XP for a perfect solve",
+  "crosswordHintFutureSubtitle": "Hints can be added later without changing the puzzle structure.",
+  "@crosswordRevealLetterAction": {
+    "placeholders": {
+      "remaining": {}
+    }
+  },
+  "crosswordRevealLetterAction": "Reveal letter ({remaining} left)",
+  "@crosswordRevealWordAction": {
+    "placeholders": {
+      "remaining": {}
+    }
+  },
+  "crosswordRevealWordAction": "Reveal word ({remaining} left)",
+  "@crosswordExtraHintAction": {
+    "placeholders": {
+      "remaining": {}
+    }
+  },
+  "crosswordExtraHintAction": "Extra hint ({remaining} left)",
+  "crosswordExtraHintViewedAction": "Extra hint viewed",
+  "crosswordResumeTitle": "Progress saved",
+  "crosswordResumeSubtitle": "Your filled letters and solved words stay here when you leave and come back.",
+  "crosswordProgressSavedSubtitle": "Your progress saves as you solve.",
+  "crosswordContinueSectionTitle": "Continue solving",
+  "crosswordContinueSectionSubtitle": "Pick up the puzzle you were working through most recently.",
+  "crosswordOverviewTitle": "Progress overview",
+  "crosswordOverviewSubtitle": "A calm snapshot of how your kids and adult crossword sets are moving.",
+  "@crosswordPerfectCountLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "crosswordPerfectCountLabel": "{count} perfect solves",
+  "@crosswordResumeSectionCount": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "crosswordResumeSectionCount": "{count} in progress",
+  "crosswordSolvedClueBadge": "Solved",
+  "crosswordSelectedClueBadge": "Selected clue",
+  "@crosswordClueSemanticsLabel": {
+    "placeholders": {
+      "clue": {},
+      "length": {},
+      "direction": {}
+    }
+  },
+  "crosswordClueSemanticsLabel": "{clue}. {length} letters. {direction}.",
+  "@crosswordCellSemanticsLabel": {
+    "placeholders": {
+      "row": {},
+      "col": {},
+      "value": {}
+    }
+  },
+  "crosswordCellSemanticsLabel": "Row {row}, column {col}. Current value {value}.",
+  "crosswordCellEmptyValue": "empty",
+  "crosswordCellCurrentWordHint": "Part of the current clue",
+  "@crosswordDailyStreakLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "crosswordDailyStreakLabel": "{count}-day streak",
+  "crosswordDailyCompleteBadge": "Daily puzzle complete",
+  "@crosswordDailyBonusAchievedLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "crosswordDailyBonusAchievedLabel": "{count} bonus goals",
+  "@crosswordDailyCompletedSubtitle": {
+    "placeholders": {
+      "theme": {}
+    }
+  },
+  "crosswordDailyCompletedSubtitle": "Today’s {theme} puzzle is complete.",
+  "crosswordDailyChallengeTitle": "Today’s challenge",
+  "@crosswordDailyChallengeSubtitle": {
+    "placeholders": {
+      "theme": {}
+    }
+  },
+  "crosswordDailyChallengeSubtitle": "A daily crossword shaped around {theme}.",
+  "@crosswordDailyTargetDifficultyLabel": {
+    "placeholders": {
+      "difficulty": {}
+    }
+  },
+  "crosswordDailyTargetDifficultyLabel": "Target difficulty {difficulty}",
+  "@crosswordDailyTimeTakenLabel": {
+    "placeholders": {
+      "duration": {}
+    }
+  },
+  "crosswordDailyTimeTakenLabel": "Time: {duration}",
+  "crosswordDailyObjectivePerfectTitle": "Complete perfectly",
+  "crosswordDailyObjectivePerfectSubtitle": "Finish without entering a wrong answer.",
+  "crosswordDailyObjectiveHintFreeTitle": "Keep it hint-free",
+  "crosswordDailyObjectiveHintFreeSubtitle": "Solve without revealing letters, words, or extra hints.",
+  "crosswordDailyObjectiveQuickSolveTitle": "Finish with focus",
+  "@crosswordDailyObjectiveQuickSolveSubtitle": {
+    "placeholders": {
+      "duration": {}
+    }
+  },
+  "crosswordDailyObjectiveQuickSolveSubtitle": "Complete within {duration}.",
+  "@crosswordDailyDropsContributionLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "crosswordDailyDropsContributionLabel": "{count} drops today",
+  "@crosswordDailyOceanSummary": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "crosswordDailyOceanSummary": "Today your crossword added {count} drops to the ocean.",
+  "crosswordDailyHistoryTitle": "Recent daily history",
+  "crosswordDailyHistorySubtitle": "A gentle look back at your recent crossword challenges.",
+  "crosswordOpenTodayAction": "Open today’s puzzle",
+  "crosswordResumeBadge": "In progress",
+  "crosswordFeaturedPacksTitle": "Featured packs",
+  "crosswordFeaturedPacksSubtitle": "Guided crossword sets built around the strongest learning themes.",
+  "crosswordThemesTitle": "Browse by theme",
+  "crosswordThemesSubtitle": "Open a focused set of puzzles by category and difficulty band.",
+  "crosswordOpenPackAction": "Open pack",
+  "crosswordContinuePackAction": "Continue pack",
+  "crosswordRecommendedAction": "Open recommended puzzle",
+  "crosswordAssembledBadge": "Curated mix",
+  "crosswordNextPuzzleAction": "Next puzzle",
+  "crosswordReturnToPackAction": "Return to pack",
+  "@crosswordPackProgressLabel": {
+    "placeholders": {
+      "completed": {},
+      "total": {}
+    }
+  },
+  "crosswordPackProgressLabel": "{completed} of {total} complete",
+  "@crosswordPackPerfectLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "crosswordPackPerfectLabel": "{count} perfect",
+  "@crosswordPackDifficultyLabel": {
+    "placeholders": {
+      "min": {},
+      "max": {}
+    }
+  },
+  "crosswordPackDifficultyLabel": "Levels {min}–{max}",
+  "crosswordPackKidsBasicsTitle": "Kids basics",
+  "crosswordPackKidsBasicsSubtitle": "Gentle starter packs around letters, worship words, and early Islamic vocabulary.",
+  "crosswordPackAdultFoundationsTitle": "Adult foundations",
+  "crosswordPackAdultFoundationsSubtitle": "A wider pack of reflective puzzles across the core knowledge themes.",
+  "crosswordPackDailyTitle": "Daily rotation",
+  "crosswordPackDailySubtitle": "The full pool of weekday-ready crossword boards used for the rotating daily puzzle.",
+  "crosswordPackQuranTitle": "Qur’an reflection",
+  "crosswordPackQuranSubtitle": "Puzzles built from Qur’anic words, guidance, mercy, and reflection themes.",
+  "crosswordPackHadithTitle": "Hadith reflection",
+  "crosswordPackHadithSubtitle": "Clue sets centered on hadith foundations, sincerity, halal, and ihsan.",
+  "crosswordPackProphetsTitle": "Prophet stories",
+  "crosswordPackProphetsSubtitle": "Crossword boards drawn from prophet names, lessons, and story cues.",
+  "crosswordPackDuasTitle": "Dua words",
+  "crosswordPackDuasSubtitle": "Supplication-focused puzzles using Qur’anic dua language and family themes.",
+  "crosswordPackWorshipTitle": "Worship and practice",
+  "crosswordPackWorshipSubtitle": "Prayer, guidance, Jumu‘ah, and worship vocabulary in one focused collection.",
+  "crosswordPackCharacterTitle": "Character and adab",
+  "crosswordPackCharacterSubtitle": "A lighter character-focused set built from halal, ihsan, and adab-aligned learning cues.",
+  "crosswordPackMixedTitle": "Mixed challenge",
+  "crosswordPackMixedSubtitle": "A deeper mixed set that combines history, revelation, and broader knowledge words.",
+  "wordSearchHomeTitle": "Word Search",
+  "wordSearchHomeSubtitle": "Find meaningful Islamic words through calm daily play.",
+  "wordSearchLoadErrorTitle": "Word Search could not load",
+  "wordSearchLoadErrorSubtitle": "Try opening the puzzle again in a moment.",
+  "wordSearchKidsModeTitle": "Kids Word Search",
+  "wordSearchKidsModeSubtitle": "Shorter words, gentler grids, and a guided first step.",
+  "wordSearchAdultModeTitle": "Adult Word Search",
+  "wordSearchAdultModeSubtitle": "Deeper themes, denser boards, and reflective practice.",
+  "wordSearchDailyModeTitle": "Daily Word Search",
+  "wordSearchDailyModeSubtitle": "Return each day for a steady themed challenge.",
+  "wordSearchDailyCompletedSubtitle": "Today''s {theme} word search is complete.",
+  "@wordSearchDailyCompletedSubtitle": {
+    "placeholders": {
+      "theme": {}
+    }
+  },
+  "wordSearchDailyThemeLabel": "Today''s theme: {theme}",
+  "@wordSearchDailyThemeLabel": {
+    "placeholders": {
+      "theme": {}
+    }
+  },
+  "wordSearchDailyStreakLabel": "{count}-day streak",
+  "@wordSearchDailyStreakLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "wordSearchDailyCompleteBadge": "Daily complete",
+  "wordSearchResumeBadge": "Resume",
+  "wordSearchOpenTodayAction": "Open today''s puzzle",
+  "wordSearchContinueAction": "Continue",
+  "wordSearchStartAction": "Start puzzle",
+  "wordSearchPuzzleCountLabel": "{count} puzzles",
+  "@wordSearchPuzzleCountLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "wordSearchCompletedCountLabel": "{count} completed",
+  "@wordSearchCompletedCountLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "wordSearchXpLabel": "{count} XP",
+  "@wordSearchXpLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "wordSearchDropsLabel": "{count} drops",
+  "@wordSearchDropsLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "wordSearchContinueSectionTitle": "Continue solving",
+  "wordSearchContinueSectionSubtitle": "Pick up your most recent unfinished puzzle.",
+  "wordSearchDailyHistoryTitle": "Recent daily puzzles",
+  "wordSearchDailyHistorySubtitle": "A simple view of your latest daily completions.",
+  "wordSearchFeaturedPacksTitle": "Featured packs",
+  "wordSearchFeaturedPacksSubtitle": "Start with calm, well-shaped packs for each mode.",
+  "wordSearchThemesTitle": "Themes",
+  "wordSearchThemesSubtitle": "Browse by worship, prophets, Qur''an themes, and more.",
+  "wordSearchLoadingSubtitle": "Loading word search",
+  "wordSearchNotFoundTitle": "Puzzle not found",
+  "wordSearchNotFoundSubtitle": "This word search is not available right now.",
+  "wordSearchKidsOnlyTitle": "This puzzle is not available in the current child profile.",
+  "wordSearchPackDifficultyLabel": "Difficulty {min}-{max}",
+  "@wordSearchPackDifficultyLabel": {
+    "placeholders": {
+      "min": {},
+      "max": {}
+    }
+  },
+  "wordSearchPackProgressLabel": "{completed}/{total} complete",
+  "@wordSearchPackProgressLabel": {
+    "placeholders": {
+      "completed": {},
+      "total": {}
+    }
+  },
+  "wordSearchPackPerfectLabel": "{count} perfect",
+  "@wordSearchPackPerfectLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "wordSearchRecommendedAction": "Recommended next puzzle",
+  "wordSearchPerfectBadge": "Perfect",
+  "wordSearchReplayAction": "Replay",
+  "wordSearchGridSizeLabel": "{size}x{size} grid",
+  "@wordSearchGridSizeLabel": {
+    "placeholders": {
+      "size": {}
+    }
+  },
+  "wordSearchFoundCountLabel": "{found}/{total} words found",
+  "@wordSearchFoundCountLabel": {
+    "placeholders": {
+      "found": {},
+      "total": {}
+    }
+  },
+  "wordSearchPuzzleTitleKids": "{category} Finder",
+  "@wordSearchPuzzleTitleKids": {
+    "placeholders": {
+      "category": {}
+    }
+  },
+  "wordSearchPuzzleTitleAdult": "{category} Search",
+  "@wordSearchPuzzleTitleAdult": {
+    "placeholders": {
+      "category": {}
+    }
+  },
+  "wordSearchPuzzleSubtitle": "{category} • {size}x{size} board",
+  "@wordSearchPuzzleSubtitle": {
+    "placeholders": {
+      "category": {},
+      "size": {}
+    }
+  },
+  "wordSearchDailyPuzzleSubtitle": "Daily {theme} word search",
+  "@wordSearchDailyPuzzleSubtitle": {
+    "placeholders": {
+      "theme": {}
+    }
+  },
+  "wordSearchCategoryKids": "Kids",
+  "wordSearchCategoryLetters": "Letters",
+  "wordSearchCategoryQuran": "Qur''an",
+  "wordSearchCategoryHadith": "Hadith",
+  "wordSearchCategoryProphets": "Prophets",
+  "wordSearchCategoryDuas": "Duas",
+  "wordSearchCategoryWorship": "Worship",
+  "wordSearchCategoryCharacter": "Character",
+  "wordSearchCategoryHistory": "History",
+  "wordSearchCategoryMixed": "Mixed",
+  "wordSearchDifficultyGentle": "Gentle",
+  "wordSearchDifficultySteady": "Steady",
+  "wordSearchDifficultyFocused": "Focused",
+  "wordSearchDifficultyDeep": "Deep",
+  "wordSearchOpenPackAction": "Open pack",
+  "wordSearchHintSectionTitle": "Hints",
+  "wordSearchHintRevealLetter": "Reveal first letter",
+  "wordSearchHintHighlightWord": "Highlight a word",
+  "wordSearchHintUsageLabel": "Hints used: {letters} letters, {highlights} highlights",
+  "@wordSearchHintUsageLabel": {
+    "placeholders": {
+      "letters": {},
+      "highlights": {}
+    }
+  },
+  "wordSearchGridSectionTitle": "Letter grid",
+  "wordSearchSelectionHint": "Drag or tap a straight path to find a word.",
+  "wordSearchSelectionReady": "Selections save automatically as you play.",
+  "wordSearchWordListTitle": "Words to find",
+  "wordSearchFoundBadge": "Found",
+  "wordSearchRevealedLetterBadge": "First letter: {letter}",
+  "@wordSearchRevealedLetterBadge": {
+    "placeholders": {
+      "letter": {}
+    }
+  },
+  "wordSearchHighlightedBadge": "Highlighted",
+  "wordSearchExtraHint": "Hint: {hint}",
+  "@wordSearchExtraHint": {
+    "placeholders": {
+      "hint": {}
+    }
+  },
+  "wordSearchCompletionTitle": "Puzzle complete",
+  "wordSearchCompletionSubtitle": "You found every word in the grid.",
+  "wordSearchPerfectSubtitle": "You found every word with a perfect finish.",
+  "wordSearchCompletionXpReward": "Completion XP granted",
+  "wordSearchWordDropReward": "Each found word added drops",
+  "wordSearchPerfectBonusReward": "Perfect solve bonus XP",
+  "wordSearchNextPuzzleAction": "Next puzzle",
+  "wordSearchReturnToPackAction": "Return to pack",
+  "wordSearchBackHomeAction": "Back home",
+  "wordSearchCellSemanticsLabel": "Row {row}, column {column}, letter {letter}",
+  "@wordSearchCellSemanticsLabel": {
+    "placeholders": {
+      "row": {},
+      "column": {},
+      "letter": {}
+    }
+  },
+  "wordSearchPackKidsStarterTitle": "Kids Starter Words",
+  "wordSearchPackKidsStarterSubtitle": "A calm first pack for familiar Islamic words.",
+  "wordSearchPackLettersTitle": "Arabic Letter Finder",
+  "wordSearchPackLettersSubtitle": "Find simple words linked to early Arabic learning.",
+  "wordSearchPackPrayerTitle": "Prayer Words",
+  "wordSearchPackPrayerSubtitle": "Words connected to salah, wudu, and sacred practice.",
+  "wordSearchPackAdultTitle": "Adult Foundations",
+  "wordSearchPackAdultSubtitle": "A grounded starting pack for older learners.",
+  "wordSearchPackQuranTitle": "Qur''an Themes",
+  "wordSearchPackQuranSubtitle": "Words tied to guidance, mercy, and revelation.",
+  "wordSearchPackHadithTitle": "Hadith Keywords",
+  "wordSearchPackHadithSubtitle": "Search for words that reinforce prophetic teachings.",
+  "wordSearchPackProphetsTitle": "Prophets & Places",
+  "wordSearchPackProphetsSubtitle": "Names and places from prophetic history.",
+  "wordSearchPackDuaTitle": "Duas & Meanings",
+  "wordSearchPackDuaSubtitle": "Words shaped by supplication, mercy, and repentance.",
+  "wordSearchPackCharacterTitle": "Character & Adab",
+  "wordSearchPackCharacterSubtitle": "Search for qualities that refine the soul.",
+  "wordSearchPackDailyTitle": "Daily Mixed",
+  "wordSearchPackDailySubtitle": "A rotating pack that supports the daily challenge.",
+  "learnQuizzesWordSearchSectionTitle": "Word Search",
+  "learnQuizzesWordSearchSectionSubtitle": "Find meaningful Islamic words in themed grids.",
+  "learnQuizzesOpenWordSearch": "Open Word Search",
+  "matchingHomeTitle": "Matching Game",
+  "matchingHomeSubtitle": "Match pairs of meaningful Islamic words, ideas, and lessons.",
+  "matchingLoadErrorTitle": "Matching could not load right now.",
+  "matchingLoadErrorSubtitle": "Try again in a moment. Your saved progress is still safe.",
+  "matchingLoadingSubtitle": "Preparing your next matching session.",
+  "matchingNotFoundTitle": "That matching puzzle could not be found.",
+  "matchingNotFoundSubtitle": "Try another puzzle or return to the matching home.",
+  "matchingKidsOnlyTitle": "This matching set is reserved for the adult learning path.",
+  "matchingKidsModeTitle": "Kids Matching",
+  "matchingKidsModeSubtitle": "Gentle matching for early Islamic words and ideas.",
+  "matchingAdultModeTitle": "Adult Matching",
+  "matchingAdultModeSubtitle": "Reflective pairings for concepts, meanings, and lessons.",
+  "matchingDailyModeTitle": "Daily Matching",
+  "matchingDailyModeSubtitle": "One themed matching challenge that refreshes each day.",
+  "matchingDailyCompletedSubtitle": "Today''s matching theme, {theme}, is complete.",
+  "@matchingDailyCompletedSubtitle": {
+    "placeholders": {
+      "theme": {}
+    }
+  },
+  "matchingDailyThemeLabel": "Today''s theme: {theme}",
+  "@matchingDailyThemeLabel": {
+    "placeholders": {
+      "theme": {}
+    }
+  },
+  "matchingDailyPuzzleSubtitle": "Daily matching · {theme}",
+  "@matchingDailyPuzzleSubtitle": {
+    "placeholders": {
+      "theme": {}
+    }
+  },
+  "matchingPuzzleSubtitle": "{category} · {count} pairs",
+  "@matchingPuzzleSubtitle": {
+    "placeholders": {
+      "category": {},
+      "count": {}
+    }
+  },
+  "matchingPuzzleCountLabel": "{count} puzzles live",
+  "@matchingPuzzleCountLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "matchingCompletedCountLabel": "{count} completed",
+  "@matchingCompletedCountLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "matchingXpLabel": "{count} XP earned",
+  "@matchingXpLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "matchingDropsLabel": "{count} drops earned",
+  "@matchingDropsLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "matchingDailyStreakLabel": "{count}-day streak",
+  "@matchingDailyStreakLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "matchingDailyCompleteBadge": "Daily complete",
+  "matchingResumeBadge": "Resume",
+  "matchingOpenTodayAction": "Open today''s puzzle",
+  "matchingContinueAction": "Continue",
+  "matchingStartAction": "Start",
+  "matchingContinueSectionTitle": "Continue matching",
+  "matchingContinueSectionSubtitle": "Pick up the last puzzle you started.",
+  "matchingDailyHistoryTitle": "Recent daily history",
+  "matchingDailyHistorySubtitle": "Your last few daily matching sessions.",
+  "matchingFeaturedPacksTitle": "Featured packs",
+  "matchingFeaturedPacksSubtitle": "Good places to start or continue.",
+  "matchingThemesTitle": "Themes",
+  "matchingThemesSubtitle": "Browse matching packs by topic and audience.",
+  "matchingOpenPackAction": "Open pack",
+  "matchingRecommendedAction": "Recommended next",
+  "matchingReplayAction": "Replay",
+  "matchingPairCountLabel": "{count} pairs",
+  "@matchingPairCountLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "matchingFoundCountLabel": "{found} of {total} pairs matched",
+  "@matchingFoundCountLabel": {
+    "placeholders": {
+      "found": {},
+      "total": {}
+    }
+  },
+  "matchingPerfectBadge": "Perfect",
+  "matchingPuzzleTitleKids": "{category} matching",
+  "@matchingPuzzleTitleKids": {
+    "placeholders": {
+      "category": {}
+    }
+  },
+  "matchingPuzzleTitleAdult": "{category} matching",
+  "@matchingPuzzleTitleAdult": {
+    "placeholders": {
+      "category": {}
+    }
+  },
+  "matchingDifficultyGentle": "Gentle",
+  "matchingDifficultySteady": "Steady",
+  "matchingDifficultyFocused": "Focused",
+  "matchingDifficultyDeep": "Deep",
+  "matchingCategoryKids": "Kids",
+  "matchingCategoryLetters": "Arabic letters",
+  "matchingCategoryQuran": "Qur''an",
+  "matchingCategoryHadith": "Hadith",
+  "matchingCategoryProphets": "Prophets",
+  "matchingCategoryDuas": "Duas",
+  "matchingCategoryWorship": "Worship",
+  "matchingCategoryCharacter": "Character & Adab",
+  "matchingCategoryMixed": "Mixed",
+  "matchingHintSectionTitle": "Hints",
+  "matchingHintRevealPair": "Reveal one pair",
+  "matchingHintRemoveOption": "Remove one option",
+  "matchingHintUsageLabel": "Reveal pair: {revealUses} · Remove option: {removeUses}",
+  "@matchingHintUsageLabel": {
+    "placeholders": {
+      "revealUses": {},
+      "removeUses": {}
+    }
+  },
+  "matchingLeftColumnTitle": "Left side",
+  "matchingRightColumnTitle": "Right side",
+  "matchingFoundBadge": "Matched",
+  "matchingSelectedBadge": "Selected",
+  "matchingRevealedBadge": "Hint used",
+  "matchingCardSemanticsLabel": "{label} {state}",
+  "@matchingCardSemanticsLabel": {
+    "placeholders": {
+      "label": {},
+      "state": {}
+    }
+  },
+  "matchingCompletionTitle": "Matching complete",
+  "matchingCompletionSubtitle": "You matched every pair in this puzzle.",
+  "matchingPerfectSubtitle": "You matched every pair perfectly.",
+  "matchingCompletionXpReward": "Completion XP granted",
+  "matchingPairDropReward": "Each correct pair added drops",
+  "matchingPerfectBonusReward": "Perfect matching bonus XP",
+  "matchingNextPuzzleAction": "Next puzzle",
+  "matchingReturnToPackAction": "Return to pack",
+  "matchingBackHomeAction": "Back home",
+  "matchingPackDifficultyLabel": "Difficulty {min}–{max}",
+  "@matchingPackDifficultyLabel": {
+    "placeholders": {
+      "min": {},
+      "max": {}
+    }
+  },
+  "matchingPackProgressLabel": "{completed} of {total} puzzles completed",
+  "@matchingPackProgressLabel": {
+    "placeholders": {
+      "completed": {},
+      "total": {}
+    }
+  },
+  "matchingPackPerfectLabel": "{count} perfect",
+  "@matchingPackPerfectLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "matchingPackKidsBasicsTitle": "Kids Matching Basics",
+  "matchingPackKidsBasicsSubtitle": "Simple pairs for early Islamic learning.",
+  "matchingPackArabicTitle": "Arabic Learning",
+  "matchingPackArabicSubtitle": "Letter and word connections for young learners.",
+  "matchingPackQuranTitle": "Qur''an Concepts",
+  "matchingPackQuranSubtitle": "Match Qur''anic ideas and familiar meanings.",
+  "matchingPackHadithTitle": "Hadith Teachings",
+  "matchingPackHadithSubtitle": "Pair prophetic terms with their teachings.",
+  "matchingPackProphetsTitle": "Prophets",
+  "matchingPackProphetsSubtitle": "Match prophetic names with defining lessons and places.",
+  "matchingPackDuaTitle": "Duas",
+  "matchingPackDuaSubtitle": "Connect supplications and meanings.",
+  "matchingPackAdabTitle": "Character & Adab",
+  "matchingPackAdabSubtitle": "Pair manners and character traits with clear reminders.",
+  "matchingPackDailyTitle": "Daily Mixed",
+  "matchingPackDailySubtitle": "A rotating pack that supports the daily matching challenge.",
+  "learnQuizzesMatchingSectionTitle": "Matching Game",
+  "learnQuizzesMatchingSectionSubtitle": "Match words, meanings, and lessons in calm study sets.",
+  "learnQuizzesOpenMatching": "Open Matching Game",
+  "ayahCompletionHomeTitle": "Ayah Completion",
+  "ayahCompletionHomeSubtitle": "Complete missing words from verified Qur''an ayahs in a calm memorization flow.",
+  "ayahCompletionLoadErrorTitle": "Unable to load ayah completion right now.",
+  "ayahCompletionLoadErrorSubtitle": "Try again in a moment. Your saved progress will remain here.",
+  "ayahCompletionLoadingSubtitle": "Preparing today''s ayahs and memorization sets.",
+  "ayahCompletionNotFoundTitle": "Ayah puzzle not found.",
+  "ayahCompletionNotFoundSubtitle": "This ayah set is unavailable right now.",
+  "ayahCompletionKidsOnlyTitle": "This ayah set is not available in the child profile.",
+  "ayahCompletionKidsModeTitle": "Kids Ayahs",
+  "ayahCompletionKidsModeSubtitle": "Short ayahs with one missing word and gentle guidance.",
+  "ayahCompletionAdultModeTitle": "Adult Ayahs",
+  "ayahCompletionAdultModeSubtitle": "Reflective ayahs with multiple blanks for steadier memorization.",
+  "ayahCompletionDailyModeTitle": "Daily Ayah",
+  "ayahCompletionDailyModeSubtitle": "One ayah for today with calm repetition and a light daily reward.",
+  "ayahCompletionDailyCompletedSubtitle": "Today''s {theme} ayah is complete.",
+  "@ayahCompletionDailyCompletedSubtitle": {
+    "placeholders": {
+      "theme": {}
+    }
+  },
+  "ayahCompletionDailyThemeLabel": "Today''s focus: {theme}",
+  "@ayahCompletionDailyThemeLabel": {
+    "placeholders": {
+      "theme": {}
+    }
+  },
+  "ayahCompletionDailyPuzzleSubtitle": "Daily ayah • {theme}",
+  "@ayahCompletionDailyPuzzleSubtitle": {
+    "placeholders": {
+      "theme": {}
+    }
+  },
+  "ayahCompletionDailyHistoryTitle": "Recent daily ayahs",
+  "ayahCompletionDailyHistorySubtitle": "A quiet look at your recent Qur''an completion practice.",
+  "ayahCompletionDailyStreakLabel": "Daily streak {count}",
+  "@ayahCompletionDailyStreakLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "ayahCompletionDailyCompleteBadge": "Daily complete",
+  "ayahCompletionPuzzleCountLabel": "{count} ayah puzzles",
+  "@ayahCompletionPuzzleCountLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "ayahCompletionCompletedCountLabel": "{count} completed",
+  "@ayahCompletionCompletedCountLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "ayahCompletionXpLabel": "{count} XP",
+  "@ayahCompletionXpLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "ayahCompletionDropsLabel": "{count} Ocean Drops",
+  "@ayahCompletionDropsLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "ayahCompletionContinueSectionTitle": "Continue memorization",
+  "ayahCompletionContinueSectionSubtitle": "Return to the ayah you last opened and keep the rhythm steady.",
+  "ayahCompletionFeaturedPacksTitle": "Featured ayah sets",
+  "ayahCompletionFeaturedPacksSubtitle": "Begin with short, steady sets for memorization and reflection.",
+  "ayahCompletionThemesTitle": "Themes and sets",
+  "ayahCompletionThemesSubtitle": "Browse ayahs by theme, memorization need, and daily use.",
+  "ayahCompletionProgressCountLabel": "{done} of {total} blanks complete",
+  "@ayahCompletionProgressCountLabel": {
+    "placeholders": {
+      "done": {},
+      "total": {}
+    }
+  },
+  "ayahCompletionReferenceLabel": "{reference}",
+  "@ayahCompletionReferenceLabel": {
+    "placeholders": {
+      "reference": {}
+    }
+  },
+  "ayahCompletionReferenceSubtitle": "Open this ayah in the Qur''an reader",
+  "ayahCompletionOpenPackAction": "Open Set",
+  "ayahCompletionContinueAction": "Continue",
+  "ayahCompletionRecommendedAction": "Recommended Next",
+  "ayahCompletionReplayAction": "Review Again",
+  "ayahCompletionStartAction": "Start",
+  "ayahCompletionPlayAyahAction": "Play ayah",
+  "ayahCompletionPerfectBadge": "Perfect",
+  "ayahCompletionPackProgressLabel": "{completed} of {total} complete",
+  "@ayahCompletionPackProgressLabel": {
+    "placeholders": {
+      "completed": {},
+      "total": {}
+    }
+  },
+  "ayahCompletionPackPerfectLabel": "{count} perfect",
+  "@ayahCompletionPackPerfectLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "ayahCompletionPackDifficultyLabel": "Difficulty {min}-{max}",
+  "@ayahCompletionPackDifficultyLabel": {
+    "placeholders": {
+      "min": {},
+      "max": {}
+    }
+  },
+  "ayahCompletionPuzzleTitleKids": "Kids Ayah {surah}:{ayah}",
+  "@ayahCompletionPuzzleTitleKids": {
+    "placeholders": {
+      "surah": {},
+      "ayah": {}
+    }
+  },
+  "ayahCompletionPuzzleTitleAdult": "Ayah Practice {surah}:{ayah}",
+  "@ayahCompletionPuzzleTitleAdult": {
+    "placeholders": {
+      "surah": {},
+      "ayah": {}
+    }
+  },
+  "ayahCompletionPuzzleSubtitle": "{category} • {count} blanks",
+  "@ayahCompletionPuzzleSubtitle": {
+    "placeholders": {
+      "category": {},
+      "count": {}
+    }
+  },
+  "ayahCompletionVerseSectionTitle": "Ayah",
+  "ayahCompletionHintSectionTitle": "Hint",
+  "ayahCompletionRevealBlankAction": "Reveal one blank",
+  "ayahCompletionHintUsageLabel": "Reveal used {count} times",
+  "@ayahCompletionHintUsageLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "ayahCompletionBlankSectionTitle": "Fill the blanks",
+  "ayahCompletionBlankPrompt": "Choose a blank to continue.",
+  "ayahCompletionBlankSelectedLabel": "Blank {index} selected",
+  "@ayahCompletionBlankSelectedLabel": {
+    "placeholders": {
+      "index": {}
+    }
+  },
+  "ayahCompletionBlankChipLabel": "Blank {index}",
+  "@ayahCompletionBlankChipLabel": {
+    "placeholders": {
+      "index": {}
+    }
+  },
+  "ayahCompletionBlankPlaceholder": "Blank {index}",
+  "@ayahCompletionBlankPlaceholder": {
+    "placeholders": {
+      "index": {}
+    }
+  },
+  "ayahCompletionCompletionTitle": "Ayah complete",
+  "ayahCompletionCompletionSubtitle": "The full ayah is now restored. Revisit it once more and keep it close.",
+  "ayahCompletionPerfectSubtitle": "Completed without mistakes or hints.",
+  "ayahCompletionCompletionXpReward": "Completion XP awarded",
+  "ayahCompletionBlankDropReward": "Correct blanks added Ocean Drops",
+  "ayahCompletionPerfectBonusReward": "Perfect completion bonus awarded",
+  "ayahCompletionNextPuzzleAction": "Next Ayah",
+  "ayahCompletionReturnToPackAction": "Back to Set",
+  "ayahCompletionBackHomeAction": "Back Home",
+  "ayahCompletionCategoryShortSurahs": "Short Surahs",
+  "ayahCompletionCategoryDailyDuaAyahs": "Daily Dua Ayahs",
+  "ayahCompletionCategoryMercy": "Mercy",
+  "ayahCompletionCategoryPatience": "Patience",
+  "ayahCompletionCategoryGratitude": "Gratitude",
+  "ayahCompletionCategoryMemorization": "Memorization",
+  "ayahCompletionCategoryQuran": "Qur''an",
+  "ayahCompletionCategoryMixed": "Mixed",
+  "ayahCompletionDifficultyGentle": "Gentle",
+  "ayahCompletionDifficultySteady": "Steady",
+  "ayahCompletionDifficultyReflective": "Reflective",
+  "ayahCompletionDifficultyDeep": "Deep",
+  "ayahCompletionPackKidsShortSurahsTitle": "Kids Short Surahs",
+  "ayahCompletionPackKidsShortSurahsSubtitle": "Early memorization ayahs with one clear blank at a time.",
+  "ayahCompletionPackKidsMemorizationTitle": "Kids Memorization",
+  "ayahCompletionPackKidsMemorizationSubtitle": "A small set for repeating familiar ayahs calmly.",
+  "ayahCompletionPackAdultShortSurahsTitle": "Adult Short Surahs",
+  "ayahCompletionPackAdultShortSurahsSubtitle": "Short ayahs with slightly deeper recall and reflection.",
+  "ayahCompletionPackAdultDailyDuasTitle": "Daily Dua Ayahs",
+  "ayahCompletionPackAdultDailyDuasSubtitle": "Ayahs often revisited in dua, hope, and personal turning to Allah.",
+  "ayahCompletionPackAdultMercyTitle": "Mercy Ayahs",
+  "ayahCompletionPackAdultMercySubtitle": "Verses that draw the heart back to Allah''s mercy and hope.",
+  "ayahCompletionPackAdultPatienceTitle": "Patience Ayahs",
+  "ayahCompletionPackAdultPatienceSubtitle": "Ayahs for sabr, steadiness, and trust through difficulty.",
+  "ayahCompletionPackAdultGratitudeTitle": "Gratitude Ayahs",
+  "ayahCompletionPackAdultGratitudeSubtitle": "Verses that reinforce shukr, remembrance, and thankful living.",
+  "ayahCompletionPackAdultMemorizationTitle": "Memorization Set",
+  "ayahCompletionPackAdultMemorizationSubtitle": "Foundational ayahs for steady review and recitation confidence.",
+  "ayahCompletionPackDailyMixedTitle": "Daily Mixed",
+  "ayahCompletionPackDailyMixedSubtitle": "A rotating pool prepared for daily ayah practice.",
+  "learnQuizzesAyahCompletionSectionTitle": "Ayah Completion",
+  "learnQuizzesAyahCompletionSectionSubtitle": "Fill missing Qur''an words using the app''s verified verse text.",
+  "learnQuizzesOpenAyahCompletion": "Open Ayah Completion",
+  "hadithReflectionHomeTitle": "Hadith Reflection",
+  "hadithReflectionHomeSubtitle": "Reflect on authentic Hadith teachings through gentle real-life decisions.",
+  "hadithReflectionLoadErrorTitle": "Hadith reflections could not load",
+  "hadithReflectionLoadErrorSubtitle": "Try again in a moment. The local reflection library should remain available offline.",
+  "hadithReflectionLoadingSubtitle": "Preparing reflection prompts and scenario sets.",
+  "hadithReflectionNotFoundTitle": "Reflection not found",
+  "hadithReflectionNotFoundSubtitle": "This reflection could not be found in the current set.",
+  "hadithReflectionKidsOnlyTitle": "This reflection is not available in the current kids profile.",
+  "hadithReflectionDailyModeTitle": "Daily Hadith Reflection",
+  "hadithReflectionDailyModeSubtitle": "One grounded Hadith scenario each day, with a calm reflection flow.",
+  "hadithReflectionDailyThemeLabel": "Today''s theme: {theme}",
+  "@hadithReflectionDailyThemeLabel": {"placeholders": {"theme": {}}},
+  "hadithReflectionDailyCompleteBadge": "Daily reflection completed",
+  "hadithReflectionKidsModeTitle": "Kids Reflection",
+  "hadithReflectionKidsModeSubtitle": "Shorter scenarios about kindness, honesty, patience, and respect.",
+  "hadithReflectionAdultModeTitle": "Adult Reflection",
+  "hadithReflectionAdultModeSubtitle": "More nuanced scenarios about intention, speech, accountability, and service.",
+  "hadithReflectionPuzzleCountLabel": "{count} reflections",
+  "@hadithReflectionPuzzleCountLabel": {"placeholders": {"count": {}}},
+  "hadithReflectionCompletedCountLabel": "{count} completed",
+  "@hadithReflectionCompletedCountLabel": {"placeholders": {"count": {}}},
+  "hadithReflectionBestChoiceCountLabel": "{count} best-aligned choices",
+  "@hadithReflectionBestChoiceCountLabel": {"placeholders": {"count": {}}},
+  "hadithReflectionXpLabel": "{count} XP",
+  "@hadithReflectionXpLabel": {"placeholders": {"count": {}}},
+  "hadithReflectionDropsLabel": "{count} drops",
+  "@hadithReflectionDropsLabel": {"placeholders": {"count": {}}},
+  "hadithReflectionDailyStreakLabel": "{count}-day streak",
+  "@hadithReflectionDailyStreakLabel": {"placeholders": {"count": {}}},
+  "hadithReflectionContinueSectionTitle": "Continue reflecting",
+  "hadithReflectionContinueSectionSubtitle": "Resume the most recent scenario you started.",
+  "hadithReflectionDailyHistoryTitle": "Recent daily reflections",
+  "hadithReflectionDailyHistorySubtitle": "A short look back at the reflections you opened this week.",
+  "hadithReflectionFeaturedPacksTitle": "Featured packs",
+  "hadithReflectionFeaturedPacksSubtitle": "Curated reflection sets for character, adab, and daily life.",
+  "hadithReflectionThemesTitle": "Themes",
+  "hadithReflectionThemesSubtitle": "Browse reflections by the teaching being practiced.",
+  "hadithReflectionPackDifficultyLabel": "Difficulty {min}–{max}",
+  "@hadithReflectionPackDifficultyLabel": {"placeholders": {"min": {}, "max": {}}},
+  "hadithReflectionPackProgressLabel": "{completed} of {total} completed",
+  "@hadithReflectionPackProgressLabel": {"placeholders": {"completed": {}, "total": {}}},
+  "hadithReflectionPackBestChoiceLabel": "{count} best-aligned",
+  "@hadithReflectionPackBestChoiceLabel": {"placeholders": {"count": {}}},
+  "hadithReflectionContinueAction": "Continue reflection",
+  "hadithReflectionRecommendedAction": "Recommended next reflection",
+  "hadithReflectionResumeBadge": "Resume",
+  "hadithReflectionBestChoiceBadge": "Best aligned",
+  "hadithReflectionCompletedBadge": "Completed",
+  "hadithReflectionPuzzleTitleKids": "Kids Hadith Reflection",
+  "hadithReflectionPuzzleTitleAdult": "Hadith Reflection",
+  "hadithReflectionDailyPuzzleSubtitle": "Daily reflection for {category}",
+  "@hadithReflectionDailyPuzzleSubtitle": {"placeholders": {"category": {}}},
+  "hadithReflectionPuzzleSubtitle": "Scenario practice in {category}",
+  "@hadithReflectionPuzzleSubtitle": {"placeholders": {"category": {}}},
+  "hadithReflectionScenarioTitle": "Scenario",
+  "hadithReflectionTeachingSummaryTitle": "Teaching summary",
+  "hadithReflectionReflectionPromptTitle": "Reflection prompt",
+  "hadithReflectionHelpAction": "View help",
+  "hadithReflectionHelpViewedAction": "Help viewed",
+  "hadithReflectionHelpDialogTitle": "Helpful reminder",
+  "hadithReflectionChoiceSectionTitle": "What would you do?",
+  "hadithReflectionOutcomeBest": "Best aligned",
+  "hadithReflectionOutcomeAcceptable": "Acceptable, but not strongest",
+  "hadithReflectionOutcomeNeedsReflection": "Needs reflection",
+  "hadithReflectionFeedbackTitle": "Feedback",
+  "hadithReflectionCompletionTitle": "Reflection complete",
+  "hadithReflectionCompletionSubtitle": "You completed this reflection and reviewed its teaching.",
+  "hadithReflectionCompletionBestSubtitle": "You chose the response most closely aligned with the Hadith''s teaching.",
+  "hadithReflectionTakeawayTitle": "Takeaway",
+  "hadithReflectionCompletionXpReward": "+{count} XP awarded",
+  "@hadithReflectionCompletionXpReward": {"placeholders": {"count": {}}},
+  "hadithReflectionCompletionDropReward": "This reflection added {count} Ocean Drop",
+  "@hadithReflectionCompletionDropReward": {"placeholders": {"count": {}}},
+  "hadithReflectionBestChoiceReward": "Best-choice bonus +{count} XP",
+  "@hadithReflectionBestChoiceReward": {"placeholders": {"count": {}}},
+  "hadithReflectionNextPuzzleAction": "Next reflection",
+  "hadithReflectionReturnToPackAction": "Back to pack",
+  "hadithReflectionBackHomeAction": "Back home",
+  "hadithReflectionDifficultyGentle": "Gentle",
+  "hadithReflectionDifficultySteady": "Steady",
+  "hadithReflectionDifficultyReflective": "Reflective",
+  "hadithReflectionDifficultyDeep": "Deep",
+  "hadithReflectionCategoryKindness": "Kindness",
+  "hadithReflectionCategoryHonesty": "Honesty",
+  "hadithReflectionCategoryPatience": "Patience",
+  "hadithReflectionCategoryAnger": "Anger control",
+  "hadithReflectionCategoryFamily": "Family",
+  "hadithReflectionCategoryCommunity": "Community",
+  "hadithReflectionCategoryRepentance": "Repentance",
+  "hadithReflectionCategorySpeech": "Adab in speech",
+  "hadithReflectionCategorySincerity": "Sincerity",
+  "hadithReflectionCategoryRespect": "Respect",
+  "hadithReflectionCategoryJustice": "Justice",
+  "hadithReflectionCategoryAccountability": "Accountability",
+  "hadithReflectionCategoryIntegrity": "Integrity",
+  "hadithReflectionCategoryService": "Service",
+  "hadithReflectionCategoryFocus": "Focus",
+  "hadithReflectionCategoryResilience": "Resilience",
+  "hadithReflectionCategoryMixed": "Mixed",
+  "hadithReflectionPackKidsKindnessTitle": "Kids Kindness Basics",
+  "hadithReflectionPackKidsKindnessSubtitle": "Simple reflection scenarios for kindness, sharing, and warm adab.",
+  "hadithReflectionPackHonestyTitle": "Honesty & Trust",
+  "hadithReflectionPackHonestySubtitle": "Scenarios about truthfulness, amanah, and integrity in daily choices.",
+  "hadithReflectionPackPatienceTitle": "Patience & Resilience",
+  "hadithReflectionPackPatienceSubtitle": "Reflect on sabr, self-control, and staying steady when tested.",
+  "hadithReflectionPackAngerTitle": "Anger Control",
+  "hadithReflectionPackAngerSubtitle": "Practice calmer decisions when frustration and sharp speech appear.",
+  "hadithReflectionPackFamilyTitle": "Family & Respect",
+  "hadithReflectionPackFamilySubtitle": "Serving family, honoring trust, and carrying home responsibilities well.",
+  "hadithReflectionPackCommunityTitle": "Community & Service",
+  "hadithReflectionPackCommunitySubtitle": "Advice, service, and helping others with sincerity and benefit.",
+  "hadithReflectionPackRepentanceTitle": "Repentance & Hope",
+  "hadithReflectionPackRepentanceSubtitle": "Scenarios that keep the heart open to tawbah, mercy, and return.",
+  "hadithReflectionPackSpeechTitle": "Adab in Speech",
+  "hadithReflectionPackSpeechSubtitle": "Choose words with restraint, gentleness, and beneficial intention.",
+  "hadithReflectionPackDailyTitle": "Daily Mixed Reflections",
+  "hadithReflectionPackDailySubtitle": "A rotating pool prepared for daily Hadith reflection.",
+  "learnQuizzesHadithReflectionSectionTitle": "Hadith Reflection",
+  "learnQuizzesHadithReflectionSectionSubtitle": "Reflect on authentic Hadith teachings through practical scenario decisions.",
+  "learnQuizzesOpenHadithReflection": "Open Hadith Reflection",
+  "dailyKnowledgeHubTitle": "Daily Knowledge Challenge",
+  "dailyKnowledgeHubSubtitle": "A balanced daily journey across the app’s knowledge games.",
+  "dailyKnowledgeHubLoadErrorTitle": "Daily challenge could not load",
+  "dailyKnowledgeHubLoadErrorSubtitle": "Try again in a moment. The daily bundle should remain available offline.",
+  "dailyKnowledgeHubDateLabel": "Today: {date}",
+  "@dailyKnowledgeHubDateLabel": {"placeholders": {"date": {}}},
+  "dailyKnowledgeHubProgressLabel": "{completed} of {total} completed",
+  "@dailyKnowledgeHubProgressLabel": {"placeholders": {"completed": {}, "total": {}}},
+  "dailyKnowledgeHubStreakLabel": "{count}-day bundle streak",
+  "@dailyKnowledgeHubStreakLabel": {"placeholders": {"count": {}}},
+  "dailyKnowledgeHubCompletedBadge": "Bundle complete",
+  "dailyKnowledgeHubJourneySummary": "Move through knowledge, recognition, connection, memorization, and action in one calm daily path.",
+  "dailyKnowledgeHubTodayTitle": "Today’s journey",
+  "dailyKnowledgeHubTodaySubtitle": "Complete the five daily challenges in any order.",
+  "dailyKnowledgeHubDifficultyLabel": "Difficulty {count}",
+  "@dailyKnowledgeHubDifficultyLabel": {"placeholders": {"count": {}}},
+  "dailyKnowledgeHubGameDone": "Completed",
+  "dailyKnowledgeHubGameOpen": "Open challenge",
+  "dailyKnowledgeHubGameSubtitleCrossword": "Quick recall through clues and connected concepts.",
+  "dailyKnowledgeHubGameSubtitleWordSearch": "Recognition practice through themed letter grids.",
+  "dailyKnowledgeHubGameSubtitleMatching": "Strengthen associations between terms, meanings, and ideas.",
+  "dailyKnowledgeHubGameSubtitleAyahCompletion": "Review memorization through verified Qur’an word recall.",
+  "dailyKnowledgeHubGameSubtitleHadithReflection": "Apply Hadith guidance through practical scenario reflection.",
+  "dailyKnowledgeHubCompletionTitle": "Daily journey complete",
+  "dailyKnowledgeHubCompletionSubtitle": "You completed the full daily knowledge bundle for today.",
+  "dailyKnowledgeHubBonusXpReward": "Daily bundle bonus +{count} XP",
+  "@dailyKnowledgeHubBonusXpReward": {"placeholders": {"count": {}}},
+  "dailyKnowledgeHubBonusDropReward": "Daily bundle bonus +{count} Ocean Drop",
+  "@dailyKnowledgeHubBonusDropReward": {"placeholders": {"count": {}}},
+  "dailyKnowledgeHubHistoryTitle": "Recent bundle history",
+  "dailyKnowledgeHubHistorySubtitle": "A lightweight view of your recent daily bundle completions.",
+  "dailyKnowledgeHubHistoryDone": "{date} completed",
+  "@dailyKnowledgeHubHistoryDone": {"placeholders": {"date": {}}},
+  "dailyKnowledgeHubHistoryOpen": "{date} started",
+  "@dailyKnowledgeHubHistoryOpen": {"placeholders": {"date": {}}},
+  "dailyKnowledgeHubAdaptiveTitle": "Adaptive guidance",
+  "dailyKnowledgeHubAdaptiveSubtitle": "Today’s bundle is gently adjusted around your stronger and weaker game patterns.",
+  "dailyKnowledgeHubAdaptiveSupportLabel": "Extra support: {game}",
+  "@dailyKnowledgeHubAdaptiveSupportLabel": {"placeholders": {"game": {}}},
+  "dailyKnowledgeHubAdaptiveChallengeLabel": "Slight stretch: {game}",
+  "@dailyKnowledgeHubAdaptiveChallengeLabel": {"placeholders": {"game": {}}},
+  "dailyKnowledgeHubAdaptiveGameCrossword": "Crossword",
+  "dailyKnowledgeHubAdaptiveGameWordSearch": "Word Search",
+  "dailyKnowledgeHubAdaptiveGameMatching": "Matching",
+  "dailyKnowledgeHubAdaptiveGameAyahCompletion": "Ayah Completion",
+  "dailyKnowledgeHubAdaptiveGameHadithReflection": "Hadith Reflection",
+  "spiritualGrowthTitle": "Spiritual Growth",
+  "spiritualGrowthSubtitle": "A calm layer for turning knowledge into intention, action, and gentle reflection.",
+  "spiritualGrowthShortcutSubtitle": "Set one intention, notice meaningful actions, and reflect without noise.",
+  "spiritualGrowthChooseIntentionAction": "Choose intention",
+  "spiritualGrowthChooseIntentionSubtitle": "Pick a small focus for today.",
+  "spiritualGrowthChooseIntentionPageSubtitle": "Accept today’s suggestion or choose a different gentle focus.",
+  "spiritualGrowthReflectionAction": "Evening reflection",
+  "spiritualGrowthReflectionEntrySubtitle": "A short end-of-day check-in to carry meaning into tomorrow.",
+  "spiritualGrowthReflectionCompletedSubtitle": "Today’s reflection has been saved gently.",
+  "spiritualGrowthTodayIntentionTitle": "Today’s intention",
+  "spiritualGrowthSuggestedIntentionTitle": "Suggested intention",
+  "spiritualGrowthAcceptIntentionAction": "Accept intention",
+  "spiritualGrowthEffortLabel": "Effort {count}",
+  "@spiritualGrowthEffortLabel": {"placeholders": {"count": {}}},
+  "spiritualGrowthReflectionStreakLabel": "{count}-day reflection streak",
+  "@spiritualGrowthReflectionStreakLabel": {"placeholders": {"count": {}}},
+  "spiritualGrowthDailyActionsTitle": "Meaningful actions",
+  "spiritualGrowthDailyActionsSubtitle": "These come from your existing worship, learning, and daily challenge activity.",
+  "spiritualGrowthRealLifeActionsTitle": "Real-life acknowledgments",
+  "spiritualGrowthRealLifeActionsSubtitle": "Mark a few small acts without turning them into performance.",
+  "spiritualGrowthReflectionTitle": "Daily reflection",
+  "spiritualGrowthReflectionPageSubtitle": "A short, respectful review of what you carried into the day.",
+  "spiritualGrowthReflectionSavedBadge": "Reflection saved",
+  "spiritualGrowthMoodTitle": "How did your heart feel today?",
+  "spiritualGrowthCompletedActionsTitle": "Completed actions",
+  "spiritualGrowthOptionalNoteTitle": "Optional note",
+  "spiritualGrowthOptionalNoteHint": "A short private note, if helpful.",
+  "spiritualGrowthSaveReflectionAction": "Save reflection",
+  "spiritualGrowthReflectionSavedSnack": "Reflection saved for today.",
+  "spiritualGrowthThemeSummaryTitle": "Theme focus",
+  "spiritualGrowthThemeSummarySubtitle": "A gentle view of the themes you have been acting on lately.",
+  "spiritualGrowthThemeSummaryEmpty": "Theme insights will appear after a few days of intentions and reflection.",
+  "spiritualGrowthThemeCountLabel": "{actions} actions across {days} days",
+  "@spiritualGrowthThemeCountLabel": {"placeholders": {"actions": {}, "days": {}}},
+  "spiritualGrowthViewThemesAction": "View theme progress",
+  "spiritualGrowthThemePageSubtitle": "A calm summary of the themes your recent actions have touched most.",
+  "spiritualGrowthThemeInsightTitle": "Current insight",
+  "spiritualGrowthStrongestThemeLabel": "Strongest recent theme: {theme}",
+  "@spiritualGrowthStrongestThemeLabel": {"placeholders": {"theme": {}}},
+  "spiritualGrowthRecommendedThemeLabel": "Gentle area to revisit: {theme}",
+  "@spiritualGrowthRecommendedThemeLabel": {"placeholders": {"theme": {}}},
+  "spiritualGrowthTodaySummaryTitle": "Today at a glance",
+  "spiritualGrowthPrayerSummaryLabel": "{count} prayers completed",
+  "@spiritualGrowthPrayerSummaryLabel": {"placeholders": {"count": {}}},
+  "spiritualGrowthDhikrSummaryLabel": "{count} dhikr sessions",
+  "@spiritualGrowthDhikrSummaryLabel": {"placeholders": {"count": {}}},
+  "spiritualGrowthLearningSummaryLabel": "{count} learning completions",
+  "@spiritualGrowthLearningSummaryLabel": {"placeholders": {"count": {}}},
+  "spiritualGrowthBundleSummaryLabel": "Daily bundle: {status}",
+  "@spiritualGrowthBundleSummaryLabel": {"placeholders": {"status": {}}},
+  "spiritualGrowthBundleDone": "complete",
+  "spiritualGrowthBundleOpen": "in progress",
+  "spiritualGrowthThemeSincerity": "Sincerity",
+  "spiritualGrowthThemePatience": "Patience",
+  "spiritualGrowthThemeGratitude": "Gratitude",
+  "spiritualGrowthThemeHonesty": "Honesty",
+  "spiritualGrowthThemeKindness": "Kindness",
+  "spiritualGrowthThemeHumility": "Humility",
+  "spiritualGrowthThemeForgiveness": "Forgiveness",
+  "spiritualGrowthThemeDiscipline": "Discipline",
+  "spiritualGrowthThemeAdab": "Adab",
+  "spiritualGrowthThemeTrustInAllah": "Trust in Allah",
+  "spiritualGrowthIntentionPresencePrayerTitle": "Pray with more presence today",
+  "spiritualGrowthIntentionPresencePrayerSubtitle": "Slow down a little before one prayer and return your heart gently to it.",
+  "spiritualGrowthIntentionGentleSpeechTitle": "Speak more gently today",
+  "spiritualGrowthIntentionGentleSpeechSubtitle": "Let one difficult conversation be softer than usual.",
+  "spiritualGrowthIntentionPatientMomentTitle": "Be patient in one hard moment",
+  "spiritualGrowthIntentionPatientMomentSubtitle": "Pause once before reacting and choose steadiness.",
+  "spiritualGrowthIntentionQuietHelpTitle": "Help someone quietly",
+  "spiritualGrowthIntentionQuietHelpSubtitle": "Do one good deed without needing it to be seen.",
+  "spiritualGrowthIntentionPostPrayerDhikrTitle": "Keep dhikr after prayer",
+  "spiritualGrowthIntentionPostPrayerDhikrSubtitle": "Stay for a little remembrance after one or more prayers today.",
+  "spiritualGrowthIntentionTruthfulWordsTitle": "Choose truthful words",
+  "spiritualGrowthIntentionTruthfulWordsSubtitle": "Be honest and clear, even in small moments.",
+  "spiritualGrowthIntentionFamilyRespectTitle": "Show extra respect at home",
+  "spiritualGrowthIntentionFamilyRespectSubtitle": "Let your tone and actions carry more adab with family today.",
+  "spiritualGrowthIntentionSincereDuaTitle": "Make one sincere du''a",
+  "spiritualGrowthIntentionSincereDuaSubtitle": "Turn to Allah with honesty, even if only for a minute.",
+  "spiritualGrowthIntentionControlAngerTitle": "Control anger more gently",
+  "spiritualGrowthIntentionControlAngerSubtitle": "If irritation rises, lower the reaction before it grows.",
+  "spiritualGrowthIntentionNoticeBlessingsTitle": "Notice your blessings today",
+  "spiritualGrowthIntentionNoticeBlessingsSubtitle": "Name one thing you are grateful for before the day ends.",
+  "spiritualGrowthActionSalahTitle": "Salah offered",
+  "spiritualGrowthActionSalahSubtitle": "Prayer activity from today is already helping shape your discipline.",
+  "spiritualGrowthActionDhikrTitle": "Dhikr remembered",
+  "spiritualGrowthActionDhikrSubtitle": "Remembrance completed today strengthens gratitude and return.",
+  "spiritualGrowthActionQuranTitle": "Qur''an connection",
+  "spiritualGrowthActionQuranSubtitle": "Your Qur''an engagement today supports remembrance and trust.",
+  "spiritualGrowthActionLearningTitle": "Learning carried forward",
+  "spiritualGrowthActionLearningSubtitle": "Lessons and games completed today count as steady growth work.",
+  "spiritualGrowthActionDailyBundleTitle": "Daily knowledge journey",
+  "spiritualGrowthActionDailyBundleSubtitle": "Completing the full daily bundle reinforces consistency and discipline.",
+  "spiritualGrowthManualActionKindnessTitle": "I helped someone today",
+  "spiritualGrowthManualActionKindnessSubtitle": "A small act of service or kindness.",
+  "spiritualGrowthManualActionSpeechTitle": "I spoke kindly today",
+  "spiritualGrowthManualActionSpeechSubtitle": "A moment of gentleness in speech.",
+  "spiritualGrowthManualActionAngerTitle": "I controlled my anger today",
+  "spiritualGrowthManualActionAngerSubtitle": "A difficult moment handled with more restraint.",
+  "spiritualGrowthManualActionGossipTitle": "I avoided gossip today",
+  "spiritualGrowthManualActionGossipSubtitle": "A quiet choice to guard the tongue.",
+  "spiritualGrowthManualActionDuaTitle": "I made sincere du''a today",
+  "spiritualGrowthManualActionDuaSubtitle": "A personal turning back to Allah.",
+  "spiritualGrowthManualActionGratitudeTitle": "I noticed a blessing today",
+  "spiritualGrowthManualActionGratitudeSubtitle": "A moment of real gratitude during the day.",
+  "spiritualGrowthReflectionPromptStrongestTitle": "What spiritual action felt strongest today?",
+  "spiritualGrowthReflectionPromptStrongestSubtitle": "Choose the one that felt most alive, even if it was small.",
+  "spiritualGrowthReflectionPromptIntentionTitle": "Did you live your intention today?",
+  "spiritualGrowthReflectionPromptIntentionSubtitle": "Be honest and gentle with yourself.",
+  "spiritualGrowthReflectionPromptGratitudeTitle": "What are you grateful for tonight?",
+  "spiritualGrowthReflectionPromptGratitudeSubtitle": "Look for one blessing that softened the day.",
+  "spiritualGrowthReflectionPromptPatienceTitle": "What tested your patience today?",
+  "spiritualGrowthReflectionPromptPatienceSubtitle": "Notice the moment without judging yourself harshly.",
+  "spiritualGrowthReflectionPromptGentleTitle": "Where can you be gentler tomorrow?",
+  "spiritualGrowthReflectionPromptGentleSubtitle": "Pick one small place to improve calmly.",
+  "spiritualGrowthReflectionResponseStrongestPrayer": "One prayer felt more present",
+  "spiritualGrowthReflectionResponseStrongestKindness": "A kind act stayed with me",
+  "spiritualGrowthReflectionResponseStrongestReturned": "I kept returning after slipping",
+  "spiritualGrowthReflectionResponseIntentionWell": "I carried it fairly well",
+  "spiritualGrowthReflectionResponseIntentionPartly": "I remembered it sometimes",
+  "spiritualGrowthReflectionResponseIntentionTomorrow": "I want to return to it tomorrow",
+  "spiritualGrowthReflectionResponseGratitudeWorship": "For worship I was able to do",
+  "spiritualGrowthReflectionResponseGratitudePeople": "For people who made the day easier",
+  "spiritualGrowthReflectionResponseGratitudeGuidance": "For guidance and reminders",
+  "spiritualGrowthReflectionResponsePatienceBetter": "I responded a little better than before",
+  "spiritualGrowthReflectionResponsePatiencePause": "I needed more pause than I gave",
+  "spiritualGrowthReflectionResponsePatienceTomorrow": "I want to handle it better tomorrow",
+  "spiritualGrowthReflectionResponseGentleHome": "At home and with family",
+  "spiritualGrowthReflectionResponseGentleSpeech": "In the way I spoke",
+  "spiritualGrowthReflectionResponseGentleHelp": "In how I helped others",
+  "learnQuizzesDailyKnowledgeSectionTitle": "Daily Knowledge Challenge",
+  "learnQuizzesDailyKnowledgeSectionSubtitle": "A single daily hub that ties together all five knowledge game experiences.",
+  "learnQuizzesOpenDailyKnowledge": "Open daily challenge",
+  "learnHubSubcategoryKidsGamesTitle": "Kids Games",
+  "learnHubSubcategoryKidsGamesSubtitle": "Mini crossword, word search, matching, and other game-style practice for younger learners.",
+  "learnHubSubcategoryKidsArabicLearningTitle": "Arabic Learning",
+  "learnHubSubcategoryKidsArabicLearningSubtitle": "Letters, review, and early Arabic learning stay grouped here for children.",
+  "learnHubSubcategoryKidsFunLearningTitle": "Fun Learning",
+  "learnHubSubcategoryKidsFunLearningSubtitle": "Stories, coloring, daily routines, and lighter practice stay together here.",
+  "learnGamesIslandTitle": "Games",
+  "learnGamesIslandSubtitle": "A calm discovery island for daily challenges, knowledge games, Qur’an games, reflection, and pack-based play.",
+  "learnGamesIslandLandingCardSubtitle": "Open the main non-kids games island without replacing the existing quiz and game routes.",
+  "learnGamesIslandTodayBadge": "Today",
+  "learnGamesIslandSectionsTitle": "Browse Games",
+  "learnGamesIslandSectionsSubtitle": "Open one section at a time or scan the full island to find the right challenge.",
+  "learnGamesIslandSectionDailyTitle": "Daily Challenges",
+  "learnGamesIslandSectionDailySubtitle": "Today’s bundle, current progress, and a stable daily route stay together here.",
+  "learnGamesIslandSectionKnowledgeTitle": "Knowledge Games",
+  "learnGamesIslandSectionKnowledgeSubtitle": "Crossword, Word Search, and Matching remain the core discovery layer for general knowledge play.",
+  "learnGamesIslandSectionQuranTitle": "Qur’an Games",
+  "learnGamesIslandSectionQuranSubtitle": "Ayah-focused memorization and verse-completion play stays in one dedicated Qur’an lane.",
+  "learnGamesIslandSectionHadithTitle": "Hadith & Reflection",
+  "learnGamesIslandSectionHadithSubtitle": "Scenario-based Hadith reflection and character-focused decisions stay grouped here.",
+  "learnGamesIslandSectionModesTitle": "Challenge Modes",
+  "learnGamesIslandSectionModesSubtitle": "Supported daily, review, and challenge-style variations are surfaced here without inventing new engines.",
+  "learnGamesIslandSectionGrowthTitle": "Growth & Spiritual",
+  "learnGamesIslandSectionGrowthSubtitle": "Game-linked spiritual intentions, reflections, and growth summaries stay calm and separate from puzzle lists.",
+  "learnGamesIslandSectionPacksTitle": "Game Packs",
+  "learnGamesIslandSectionPacksSubtitle": "Open themed pack routes that already exist across the current knowledge games catalog.",
+  "learnGamesIslandModeDailyRunTitle": "Daily Run",
+  "learnGamesIslandModeDailyRunSubtitle": "Open today’s full Daily Knowledge Challenge bundle.",
+  "learnGamesIslandModeReviewTitle": "Review Mode",
+  "learnGamesIslandModeReviewSubtitle": "Return to review-style quiz flows without digging through the broader quiz hub.",
+  "learnGamesIslandModeTriviaTitle": "Trivia Challenge",
+  "learnGamesIslandModeTriviaSubtitle": "Open challenge-first trivia routes already supported by the current quiz system.",
+  "learnGamesIslandKidsEntryTitle": "Kids Games Stay Separate",
+  "learnGamesIslandKidsEntrySubtitle": "Kids-only discovery remains inside Kids Learning instead of mixing into the main games island.",
+  "learnGamesIslandKidsEntryAction": "Explore Kids Games",
+  "learnGamesIslandKidsEntryActionSubtitle": "Open the child-friendly games grouping inside Kids Learning.",
+  "learnGamesIslandDailyHeroTitle": "Today’s Games Journey",
+  "learnGamesIslandDailyHeroSubtitle": "Start the daily bundle or return later without losing the existing per-game progress.",
+  "learnGamesIslandDailyHeroCompletedSubtitle": "Today’s bundle is complete. You can revisit the hub or keep exploring other game sections.",
+  "learnGamesIslandDailyHeroInProgressSubtitle": "{completed} of {total} daily games complete. Continue from where you left off.",
+  "@learnGamesIslandDailyHeroInProgressSubtitle": {
+    "placeholders": {
+      "completed": {},
+      "total": {}
+    }
+  },
+  "learnGamesIslandDailyProgressLabel": "{completed}/{total} complete",
+  "@learnGamesIslandDailyProgressLabel": {
+    "placeholders": {
+      "completed": {},
+      "total": {}
+    }
+  },
+  "learnGamesIslandDailyStreakLabel": "{count}-day streak",
+  "@learnGamesIslandDailyStreakLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "learnGamesIslandDailyHistoryLabel": "{count} recent days tracked",
+  "@learnGamesIslandDailyHistoryLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "learnGamesIslandInProgressBadge": "In progress",
+  "learnGamesIslandContinueDailyAction": "Continue today’s challenge",
+  "learnGamesIslandOpenDailyAction": "Open daily challenge",
+  "learnGamesIslandLoadingSubtitle": "Loading today’s game bundle and section discovery.",
+  "learnGamesIslandDailyFallbackSubtitle": "Open the daily hub directly if the bundle preview is unavailable right now.",
+  "learnGamesIslandKidsRedirectTitle": "Kids profiles use Kids Learning",
+  "learnGamesIslandKidsRedirectSubtitle": "Child-friendly game discovery stays under Kids Learning → Games, Arabic Learning, and Fun Learning.",
+  "gameVariationStandard": "Standard",
+  "gameVariationTimed": "Timed",
+  "gameVariationMemory": "Memory",
+  "gameVariationSequential": "Sequential",
+  "gameVariationReflection": "Reflection",
+  "gameVariationAudio": "Audio",
+  "gameVariationChallenge": "Challenge",
+  "gameVariationFog": "Fog",
+  "gameVariationNoClue": "No Clue",
+  "gameVariationReverse": "Reverse",
+  "gameVariationHintDisabled": "Hints disabled",
+  "gameVariationTimeRemaining": "Time left: {time}",
+  "@gameVariationTimeRemaining": {
+    "placeholders": {
+      "time": {}
+    }
+  },
+  "gameVariationNoClueActiveSubtitle": "No Clue mode hides the clue list, so this board relies on crossings and category knowledge.",
+  "gameVariationFogActiveSubtitle": "Fog mode softens the word list so you lean more on the grid and your memory.",
+  "gameVariationMemoryActiveSubtitle": "Memory mode keeps the support text lighter until you make progress.",
+  "gameVariationSequentialActiveSubtitle": "Sequential mode guides you through the remaining targets in order.",
+  "gameVariationAudioActiveSubtitle": "Audio mode encourages listening before you complete the ayah.",
+  "gameVariationReflectionFollowUpTitle": "Carry It Forward",
+  "contentBuilderTitle": "Internal Content Builder",
+  "contentBuilderSubtitle": "Normalize, validate, preview, and export internal content drafts without changing the live game catalog.",
+  "contentBuilderCatalogTitle": "Current content snapshot",
+  "contentBuilderCatalogCount": "{type}: {count}",
+  "@contentBuilderCatalogCount": {
+    "placeholders": {
+      "type": {},
+      "count": {}
+    }
+  },
+  "contentBuilderTypeCrossword": "Crossword",
+  "contentBuilderTypeWordSearch": "Word Search",
+  "contentBuilderTypeMatching": "Matching",
+  "contentBuilderTypeAyah": "Ayah Completion",
+  "contentBuilderTypeHadith": "Hadith Reflection",
+  "contentBuilderTypeGrowth": "Spiritual Growth",
+  "contentBuilderTypePack": "Pack",
+  "contentBuilderTypeVariationProfile": "Variation Profile",
+  "contentBuilderValidationErrorsTitle": "Validation issues found",
+  "contentBuilderValidationCleanTitle": "Validation is clean",
+  "contentBuilderValidationIssueCount": "{count} issues in the current snapshot",
+  "@contentBuilderValidationIssueCount": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "contentBuilderDraftTitle": "Draft content item",
+  "contentBuilderTypeLabel": "Content type",
+  "contentBuilderIdLabel": "Content id",
+  "contentBuilderCategoryLabel": "Category",
+  "contentBuilderDifficultyLabel": "Difficulty",
+  "contentBuilderAudienceLabel": "Audience",
+  "contentBuilderAudienceKids": "Kids",
+  "contentBuilderAudienceAdult": "Adult",
+  "contentBuilderAudienceMixed": "Mixed",
+  "contentBuilderTagsLabel": "Tags (comma separated)",
+  "contentBuilderPackIdsLabel": "Pack ids (comma separated)",
+  "contentBuilderSourceTypeLabel": "Source type",
+  "contentBuilderSourceReferenceLabel": "Source reference",
+  "contentBuilderDailyEligibleLabel": "Daily eligible",
+  "contentBuilderVariationsLabel": "Supported variations",
+  "contentBuilderPayloadLabel": "Type-specific payload (JSON)",
+  "contentBuilderValidateAction": "Validate draft",
+  "contentBuilderResetTemplateAction": "Reset template",
+  "contentBuilderExportAction": "Export JSON",
+  "contentBuilderDraftInvalidTitle": "Draft needs fixes",
+  "contentBuilderDraftValidTitle": "Draft is ready",
+  "contentBuilderDraftValidSubtitle": "No blocking validation errors were found for this draft.",
+  "contentBuilderPreviewTitle": "Preview",
+  "contentBuilderExportTitle": "Export JSON",
+  "contentBuilderPreviewMissingId": "Missing id",
+  "contentBuilderPreviewMissingCategory": "Missing category",
+  "contentBuilderPreviewDifficulty": "Difficulty {difficulty}",
+  "@contentBuilderPreviewDifficulty": {
+    "placeholders": {
+      "difficulty": {}
+    }
+  },
+  "contentBuilderPreviewCrossword": "{gridSize}x{gridSize} grid with {placements} placements",
+  "@contentBuilderPreviewCrossword": {
+    "placeholders": {
+      "gridSize": {},
+      "placements": {}
+    }
+  },
+  "contentBuilderPreviewWordSearch": "{gridSize}x{gridSize} grid with {entries} target words",
+  "@contentBuilderPreviewWordSearch": {
+    "placeholders": {
+      "gridSize": {},
+      "entries": {}
+    }
+  },
+  "contentBuilderPreviewMatching": "{pairs} matching pairs",
+  "@contentBuilderPreviewMatching": {
+    "placeholders": {
+      "pairs": {}
+    }
+  },
+  "contentBuilderPreviewAyah": "Surah {surah}, ayah {ayah}",
+  "@contentBuilderPreviewAyah": {
+    "placeholders": {
+      "surah": {},
+      "ayah": {}
+    }
+  },
+  "contentBuilderPreviewHadith": "{choices} scenario choices",
+  "@contentBuilderPreviewHadith": {
+    "placeholders": {
+      "choices": {}
+    }
+  },
+  "contentBuilderPreviewGrowth": "Growth subtype: {subtype}",
+  "@contentBuilderPreviewGrowth": {
+    "placeholders": {
+      "subtype": {}
+    }
+  },
+  "contentBuilderPreviewPack": "{count} linked content items",
+  "@contentBuilderPreviewPack": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "contentBuilderPreviewVariationProfile": "Variation profile for {gameType}",
+  "@contentBuilderPreviewVariationProfile": {
+    "placeholders": {
+      "gameType": {}
+    }
+  },
+  "contentBuilderPayloadInvalid": "The JSON payload is invalid.",
+  "contentBuilderStorageTitle": "Canonical storage structure",
+  "contentBuilderStorageSubtitle": "Use the shared /content layout for future imports and exports, even while current runtime seeds still load from Dart.",
+  "bedtimeStoriesTitle": "Bedtime Stories",
+  "bedtimeStoriesSubtitle": "Calm prophet stories for winding down, listening together, and remembering Allah before sleep.",
+  "bedtimeStoriesHeroTitle": "Prophet stories for quiet nights",
+  "bedtimeStoriesHeroSubtitle": "A gentle library of prophet bedtime stories with transcript-ready reading, future audio support, and simple progress tracking.",
+  "bedtimeStoriesCountLabel": "{count} stories prepared",
+  "@bedtimeStoriesCountLabel": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "bedtimeStoriesTonightTitle": "Tonight''s story",
+  "bedtimeStoriesTonightAction": "Start tonight''s story",
+  "bedtimeStoriesContinueTitle": "Continue listening",
+  "bedtimeStoriesContinueAction": "Continue story",
+  "bedtimeStoriesFeaturedTitle": "Featured bedtime story",
+  "bedtimeStoriesOpenAction": "Open story",
+  "bedtimeStoriesAllStoriesTitle": "All bedtime stories",
+  "bedtimeStoriesAllStoriesSubtitle": "Browse every prophet story and pick what feels right for tonight.",
+  "bedtimeStoriesDurationMinutesLabel": "{minutes} min",
+  "@bedtimeStoriesDurationMinutesLabel": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "bedtimeStoriesPartLabel": "Part {part} of {total}",
+  "@bedtimeStoriesPartLabel": {
+    "placeholders": {
+      "part": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "bedtimeStoriesAgeGroupKidsEarly": "Early kids",
+  "bedtimeStoriesAgeGroupKids": "Kids",
+  "bedtimeStoriesAgeGroupKidsPlus": "Kids+",
+  "bedtimeStoriesStatusNotStarted": "Not started",
+  "bedtimeStoriesStatusInProgress": "In progress",
+  "bedtimeStoriesStatusCompleted": "Completed",
+  "bedtimeStoriesLessonSectionTitle": "Tonight''s lesson",
+  "bedtimeStoriesQuranQuoteSectionTitle": "Qur''an connection",
+  "bedtimeStoriesQuranTapSubtitle": "Tap to open the verse in the Qur''an reader.",
+  "bedtimeStoriesAudioCheckingLabel": "Checking audio availability...",
+  "bedtimeStoriesAudioUnavailableTitle": "Transcript ready",
+  "bedtimeStoriesAudioUnavailableSubtitle": "Audio is not bundled yet for this story. You can still read along and complete it gently.",
+  "bedtimeStoriesAudioReadyBadge": "Audio ready",
+  "bedtimeStoriesReadAlongBadge": "Read along",
+  "bedtimeStoriesIncludedOfflineBadge": "Included offline",
+  "bedtimeStoriesDownloadedBadge": "Downloaded",
+  "bedtimeStoriesArtComingSoonBadge": "Art coming soon",
+  "bedtimeStoriesMediaLoadingLabel": "Preparing story media...",
+  "bedtimeStoriesReadTonightAction": "Read tonight",
+  "bedtimeStoriesStartReadingAction": "Start reading",
+  "bedtimeStoriesReadAlongPrimaryTitle": "Read along tonight",
+  "bedtimeStoriesArtOnlyTitle": "Artwork is ready",
+  "bedtimeStoriesArtOnlySubtitle": "Illustrations are available now, and narration can be added later without changing your story progress.",
+  "bedtimeStoriesTranscriptSubtitle": "Take your time, follow the gentle pauses, and read together at a calm bedtime pace.",
+  "bedtimeStoriesNarratedByLabel": "Narrated by {name}",
+  "@bedtimeStoriesNarratedByLabel": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "bedtimeStoriesOpenPlayerAction": "Open player",
+  "bedtimeStoriesPreviousAction": "Previous",
+  "bedtimeStoriesBackShortAction": "Back 10",
+  "bedtimeStoriesForwardShortAction": "Forward 10",
+  "bedtimeStoriesNextPartAction": "Next part",
+  "bedtimeStoriesNextStoryAction": "Next story",
+  "bedtimeStoriesStoryCompleteTitle": "Story complete",
+  "bedtimeStoriesStoryCompleteSubtitle": "A calm finish for tonight. You can replay the story or rest here.",
+  "bedtimeStoriesStoryCompleteWithNextSubtitle": "You can rest here, or continue with {title} next.",
+  "@bedtimeStoriesStoryCompleteWithNextSubtitle": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "bedtimeStoriesReplayAction": "Replay",
+  "bedtimeStoriesAutoplayOnLabel": "Autoplay on",
+  "bedtimeStoriesAutoplayOffLabel": "Autoplay off",
+  "bedtimeStoriesAutoplayEnableAction": "Enable autoplay",
+  "bedtimeStoriesAutoplayDisableAction": "Disable autoplay",
+  "bedtimeStoriesSleepTimerAction": "Sleep timer",
+  "bedtimeStoriesSleepTimerTitle": "Sleep timer",
+  "bedtimeStoriesSleepTimerMinutes": "{minutes} minutes",
+  "@bedtimeStoriesSleepTimerMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "bedtimeStoriesSleepTimerEndOfStory": "End of story",
+  "bedtimeStoriesSleepTimerOff": "Timer off",
+  "bedtimeStoriesSleepTimerRemaining": "Timer: {time}",
+  "@bedtimeStoriesSleepTimerRemaining": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "bedtimeStoriesContinueSeriesLabel": "Series part {part} of {total}",
+  "@bedtimeStoriesContinueSeriesLabel": {
+    "placeholders": {
+      "part": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "bedtimeStoriesMiniPlayerTapToExpand": "Tap to expand player",
+  "bedtimeStoriesTonightQueueTitle": "Tonight''s queue",
+  "bedtimeStoriesTonightQueueSubtitle": "Starting with {title} • {count} stories queued",
+  "@bedtimeStoriesTonightQueueSubtitle": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "bedtimeStoriesSeriesProgressTitle": "Series progress",
+  "bedtimeStoriesSeriesCompletedLabel": "All parts completed",
+  "bedtimeStoriesSeriesProgressLabel": "{completed} of {total} parts completed",
+  "@bedtimeStoriesSeriesProgressLabel": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "bedtimeStoriesTranscriptSectionTitle": "Read along",
+  "bedtimeStoriesCompletedAction": "Story completed",
+  "bedtimeStoriesMarkCompleteAction": "Mark story complete",
+  "bedtimeStoriesRelatedStoriesTitle": "Related stories",
+  "bedtimeStoriesCompletionSnack": "Story completed: +{xp} XP and +{drops} Ocean Drop",
+  "@bedtimeStoriesCompletionSnack": {
+    "placeholders": {
+      "xp": {
+        "type": "int"
+      },
+      "drops": {
+        "type": "int"
+      }
+    }
+  },
+  "bedtimeStoriesPlayerReady": "Audio player",
+  "bedtimeStoriesPauseAction": "Pause",
+  "bedtimeStoriesResumeAction": "Resume",
+  "bedtimeStoriesPlayAction": "Play",
+  "bedtimeStoriesRestartAction": "Restart",
+  "bedtimeStoriesPlaybackProgressLabel": "{current} / {total}",
+  "@bedtimeStoriesPlaybackProgressLabel": {
+    "placeholders": {
+      "current": {},
+      "total": {}
+    }
+  },
+  "bedtimeStoryLearningLoopTitle": "Continue learning",
+  "bedtimeStoryLearningLoopSubtitle": "After listening or reading, try one gentle activity to remember the story and its lesson.",
+  "bedtimeStoryLearningNotStarted": "Not started",
+  "bedtimeStoryLearningInProgress": "In progress",
+  "bedtimeStoryLearningCompleted": "Completed",
+  "bedtimeStoryLearningContinueQuizPrompt": "You can keep going with the story quiz next.",
+  "bedtimeStoryLearningContinueMemoryPrompt": "You can keep going with the memory cards next.",
+  "bedtimeStoryLearningUnavailableTitle": "Learning activity coming soon",
+  "bedtimeStoryContinueLearningTitle": "Continue learning",
+  "bedtimeStoryTonightQuestionTitle": "Tonight''s question",
+  "bedtimeStoryLearningCompletionSnack": "Learning complete: +{xp} XP",
+  "@bedtimeStoryLearningCompletionSnack": {
+    "placeholders": {
+      "xp": {
+        "type": "int"
+      }
+    }
+  },
+  "bedtimeStoryQuizTitle": "Story quiz",
+  "bedtimeStoryQuizUnavailableSubtitle": "This story does not have quiz questions ready yet, but you can still enjoy the story and read along.",
+  "bedtimeStoryQuizProgressLabel": "Question {current} of {total}",
+  "@bedtimeStoryQuizProgressLabel": {
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "bedtimeStoryQuizCorrectTitle": "That''s right",
+  "bedtimeStoryQuizTryAgainTitle": "Nice try",
+  "bedtimeStoryQuizHintLabel": "Hint: {hint}",
+  "@bedtimeStoryQuizHintLabel": {
+    "placeholders": {
+      "hint": {
+        "type": "String"
+      }
+    }
+  },
+  "bedtimeStoryQuizNextAction": "Next question",
+  "bedtimeStoryQuizFinishAction": "Finish quiz",
+  "bedtimeStoryQuizCompleteTitle": "Quiz complete",
+  "bedtimeStoryQuizCompleteSubtitle": "You remembered the story well. You can return to the story whenever you like.",
+  "bedtimeStoryQuizCompleteWithNextSubtitle": "You remembered the story well. Memory cards are ready if you want one more calm activity.",
+  "bedtimeStoryQuizStartAction": "Start quiz",
+  "bedtimeStoryQuizReviewAction": "Review quiz",
+  "bedtimeStoryMemoryTitle": "Memory cards",
+  "bedtimeStoryMemoryUnavailableSubtitle": "This story does not have memory cards ready yet, but the story itself is still fully available.",
+  "bedtimeStoryMemoryProgressLabel": "{completed} of {total} matches",
+  "@bedtimeStoryMemoryProgressLabel": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "bedtimeStoryMemoryPromptLabel": "Choose the story clue",
+  "bedtimeStoryMemoryAnswerLabel": "Choose the matching answer",
+  "bedtimeStoryMemoryMatchCorrect": "Great remembering. That match is correct.",
+  "bedtimeStoryMemoryMatchTryAgain": "Nice try. Let''s think together and choose the matching pair.",
+  "bedtimeStoryMemoryCompleteTitle": "Memory cards complete",
+  "bedtimeStoryMemoryCompleteSubtitle": "You matched the story clues well. The bedtime story is always here when you want to revisit it.",
+  "bedtimeStoryMemoryStartAction": "Start memory cards",
+  "bedtimeStoryMemoryPlayAgainAction": "Play again",
+  "bedtimeStoryMemoryCardsAction": "Memory cards",
+  "bedtimeStoryBackToStoryAction": "Back to story",
+  "kidsStoryLibraryTitle": "Kids Stories",
+  "kidsStoryLibrarySubtitle": "Browse prophets, good manners, daily-life, and seasonal Islamic stories in one calm library.",
+  "kidsStoryLibraryHeroTitle": "A growing library of Islamic stories",
+  "kidsStoryLibraryHeroSubtitle": "Prophet stories stay here, and now they are joined by gentle stories about adab, daily life, kindness, patience, gratitude, Ramadan, and Eid.",
+  "kidsStoryLibraryAction": "Open stories",
+  "kidsStoryContinueTitle": "Continue story",
+  "kidsStoryContinueSubtitle": "Pick up where this learner last paused.",
+  "kidsStoryFeaturedTitle": "Featured story",
+  "kidsStoryFeaturedSubtitle": "A calm story to open next.",
+  "kidsStoryBrowseCollectionsTitle": "Browse by collection",
+  "kidsStoryBrowseCollectionsSubtitle": "Choose a familiar path or explore a new lesson.",
+  "kidsStoryCollectionProphets": "Prophets",
+  "kidsStoryCollectionProphetsSubtitle": "The bedtime prophet collection and longer faith-filled story journeys.",
+  "kidsStoryCollectionCompanions": "Companions",
+  "kidsStoryCollectionCompanionsSubtitle": "Gentle stories of loyalty, support, patience, and faith from the Prophet’s ﷺ companions.",
+  "kidsStoryCollectionCharacterAdab": "Character & Adab",
+  "kidsStoryCollectionCharacterAdabSubtitle": "Gentle stories about honesty, patience, apology, and kindness.",
+  "kidsStoryCollectionDailyLife": "Daily Life & Duas",
+  "kidsStoryCollectionDailyLifeSubtitle": "Simple Islamic moments around food, home, routines, and the masjid.",
+  "kidsStoryCollectionRamadanEid": "Ramadan & Eid",
+  "kidsStoryCollectionRamadanEidSubtitle": "Seasonal stories about gratitude, generosity, and joyful worship.",
+  "kidsStoryCollectionFamilyKindness": "Family & Kindness",
+  "kidsStoryCollectionFamilyKindnessSubtitle": "Warm stories about helping, sharing, caring, and soft hearts.",
+  "kidsStoryBedtimeEligibleTitle": "Bedtime-friendly stories",
+  "kidsStoryBedtimeEligibleSubtitle": "Quiet stories that can also fit gently into bedtime.",
+  "kidsStoryFeaturedStoriesTitle": "More featured stories",
+  "kidsStoryFeaturedStoriesSubtitle": "A mix of prophet and non-prophet stories ready to open.",
+  "kidsStoryOpenAction": "Open story",
+  "kidsStoryBedtimeChip": "Bedtime",
+  "kidsStoryLessonSectionTitle": "Story lesson",
+  "kidsStoryHadithSectionTitle": "Hadith connection",
+  "kidsStorySourceNoteSectionTitle": "Source note",
+  "kidsStoryAudioUnavailableSubtitle": "Audio is not bundled yet for this story, but you can still read it calmly and continue learning.",
+  "kidsStoryReadAlongPrimaryTitle": "Read the story",
+  "kidsStoryReadStoryAction": "Read story",
+  "kidsStoryScenesSectionTitle": "Story scenes",
+  "kidsStoryTranscriptSectionTitle": "Story text",
+  "kidsSeerahJourneysTitle": "Seerah Journeys",
+  "kidsSeerahJourneysSubtitle": "Follow a calm, child-friendly path through key moments in the life of Prophet Muhammad ﷺ and a few beloved companions.",
+  "kidsSeerahJourneysHeroTitle": "A guided Seerah path for children",
+  "kidsSeerahJourneysHeroSubtitle": "Move through key moments with simple stages, story nodes, companion stories, and gentle reflection.",
+  "kidsSeerahContinueJourneyTitle": "Continue Seerah Journey",
+  "kidsSeerahContinueJourneySubtitle": "Pick up from the last open stage and keep the learning path moving gently.",
+  "kidsSeerahFeaturedJourneyTitle": "Featured Seerah Journey",
+  "kidsSeerahFeaturedJourneySubtitle": "Start a structured story path through the Seerah with calm stages and clear next steps.",
+  "kidsSeerahStagesPreviewTitle": "Journey story path",
+  "kidsSeerahStagesPreviewSubtitle": "{count, plural, one {The journey currently follows # main story part.} other {The journey currently follows # main story parts.}}",
+  "@kidsSeerahStagesPreviewSubtitle": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "kidsSeerahCompanionStoriesTitle": "Companion stories",
+  "kidsSeerahCompanionStoriesSubtitle": "Meet a few companions whose loyalty, patience, and support helped light the Seerah.",
+  "kidsSeerahJourneysAllTitle": "All Seerah paths",
+  "kidsSeerahJourneysAllSubtitle": "Begin with one polished journey now, with room to grow later.",
+  "kidsSeerahJourneyUnavailableSubtitle": "This Seerah journey is not ready yet.",
+  "kidsSeerahOpenJourneyAction": "Open journey",
+  "kidsSeerahTimelineTitle": "Timeline path",
+  "kidsSeerahJourneyProgressLabel": "{completed} of {total} stages complete",
+  "@kidsSeerahJourneyProgressLabel": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "kidsSeerahContinueNodeSubtitle": "Open the next unlocked node to keep this journey moving.",
+  "kidsSeerahContinueNodeAction": "Continue",
+  "kidsSeerahJourneyCompleteTitle": "Journey complete",
+  "kidsSeerahJourneyCompleteSubtitle": "You reached the end of this Seerah path with stories, reflection, and a gentle review.",
+  "kidsSeerahStageCompletedBadge": "Complete",
+  "kidsSeerahStageInProgressBadge": "Open",
+  "kidsSeerahStageLockedBadge": "Locked",
+  "kidsSeerahStageProgressLabel": "{completed} of {total} nodes complete",
+  "@kidsSeerahStageProgressLabel": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "kidsSeerahNodeCompletedBadge": "Node complete",
+  "kidsSeerahNodeReadyBadge": "Ready now",
+  "kidsSeerahNextNodeLabel": "Next node: {title}",
+  "@kidsSeerahNextNodeLabel": {
+    "placeholders": {
+      "title": {}
+    }
+  },
+  "kidsSeerahNextNodeAction": "Next node",
+  "kidsSeerahOpenStoryAction": "Open story",
+  "kidsSeerahOpenQuizAction": "Open quiz",
+  "kidsSeerahRewardSnack": "+{xp} XP for this journey step",
+  "@kidsSeerahRewardSnack": {
+    "placeholders": {
+      "xp": {
+        "type": "int"
+      }
+    }
+  },
+  "kidsSeerahNodeCompletedSnack": "This journey step is complete.",
+  "kidsSeerahMarkMilestoneAction": "Mark milestone complete",
+  "kidsSeerahMarkReflectionAction": "Mark reflection complete",
+  "bedtimeParentEntryTitle": "For parents",
+  "bedtimeParentEntrySubtitle": "View a calm bedtime learning summary, recent activity, and what can come next.",
+  "bedtimeParentEntryAction": "Open parent view",
+  "bedtimeFamilyModeTitle": "Family Mode",
+  "bedtimeFamilyModeSubtitle": "Keep bedtime stories, quizzes, and rewards safely separated for each child learner.",
+  "bedtimeFamilyModeHeaderAction": "Family mode",
+  "bedtimeFamilyModeEntryTitle": "Family mode",
+  "bedtimeFamilyModeEntrySubtitle": "Active learner: {learnerName}",
+  "@bedtimeFamilyModeEntrySubtitle": {
+    "placeholders": {
+      "learnerName": {
+        "type": "String"
+      }
+    }
+  },
+  "bedtimeFamilyModeActiveLearnerTitle": "Active learner",
+  "bedtimeFamilyModeFallbackTitle": "Using one shared bedtime learner",
+  "bedtimeFamilyModeFallbackSubtitle": "Create a child profile when you are ready, and bedtime stories will stay separate for each learner from that point on.",
+  "bedtimeFamilyModeAddChildAction": "Add child",
+  "bedtimeFamilyModeParentDashboardAction": "Parent dashboard",
+  "bedtimeFamilyModeProfilesTitle": "Child profiles",
+  "bedtimeFamilyModeProfilesEmpty": "No child profiles yet. Add one to keep each child''s bedtime progress and rewards separate.",
+  "bedtimeFamilyModeArchivedTitle": "Archived profiles",
+  "bedtimeFamilyModeFallbackBadge": "Shared bedtime learner",
+  "bedtimeFamilyModeCurrentLearnerBadge": "Current learner",
+  "bedtimeFamilyModeSwitchAction": "Switch",
+  "bedtimeFamilyModeEditAction": "Edit",
+  "bedtimeFamilyModeArchiveAction": "Archive",
+  "bedtimeFamilyModeRestoreAction": "Restore",
+  "bedtimeFamilyModeCreateChildSubmit": "Create child profile",
+  "bedtimeFamilyModeEditTitle": "Edit {name}",
+  "@bedtimeFamilyModeEditTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "bedtimeFamilyModeNameLabel": "Name",
+  "bedtimeFamilyModeNicknameLabel": "Bedtime nickname",
+  "bedtimeFamilyModeNicknameHelper": "Optional. This can make bedtime cards feel a little more personal.",
+  "bedtimeFamilyModeAgeGroupLabel": "Age group",
+  "bedtimeFamilyModeAvatarLabel": "Avatar",
+  "bedtimeFamilyModeSaveAction": "Save changes",
+  "bedtimeFamilyModeSwitchTitle": "View progress for",
+  "bedtimeParentDashboardTitle": "Kids learning summary for parents",
+  "bedtimeParentDashboardSubtitle": "A calm summary across stories, Seerah, duas, Arabic learning, and bedtime rhythm.",
+  "bedtimeParentWelcomeTitle": "A calm view of bedtime learning",
+  "bedtimeParentWelcomeSubtitle": "A lovely rhythm can grow one story, one lesson, and one gentle activity at a time.",
+  "bedtimeParentWelcomeSubtitleWithName": "A lovely rhythm can grow for {name} one story, one lesson, and one gentle activity at a time.",
+  "@bedtimeParentWelcomeSubtitleWithName": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "bedtimeParentStreakBadge": "{days}-day bedtime rhythm",
+  "@bedtimeParentStreakBadge": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "bedtimeParentReadyTonightBadge": "Ready for tonight''s story",
+  "bedtimeParentOverviewSectionTitle": "Overview",
+  "bedtimeParentContinueLearningSectionTitle": "Continue learning",
+  "bedtimeParentContinueLearningEmpty": "Learning suggestions will appear here after the first story, dua, Seerah step, or Arabic lesson.",
+  "bedtimeParentContinueStoryAction": "Open story",
+  "bedtimeParentContinueSeerahAction": "Open Seerah",
+  "bedtimeParentContinueDuaAction": "Open dua",
+  "bedtimeParentContinueArabicAction": "Open Arabic",
+  "bedtimeParentStoriesCompletedLabel": "Stories completed",
+  "bedtimeParentStoryPartsCompletedLabel": "Story parts completed",
+  "bedtimeParentQuizzesCompletedLabel": "Quizzes done",
+  "bedtimeParentMemoryCompletedLabel": "Memory cards finished",
+  "bedtimeParentProphetsExploredLabel": "Prophets explored",
+  "bedtimeParentCurrentStreakLabel": "Current streak",
+  "bedtimeParentXpEarnedLabel": "XP earned",
+  "bedtimeParentDropsEarnedLabel": "Ocean Drops earned",
+  "bedtimeParentOverallStoriesLabel": "Stories completed",
+  "bedtimeParentOverallSeerahLabel": "Seerah stages",
+  "bedtimeParentOverallDuasLabel": "Duas learned",
+  "bedtimeParentOverallArabicLabel": "Arabic letters",
+  "bedtimeParentOverallXpLabel": "XP across kids learning",
+  "bedtimeParentOverallDropsLabel": "Ocean Drops across kids learning",
+  "bedtimeParentLearningAreasSectionTitle": "Learning areas",
+  "bedtimeParentLearningAreasEmpty": "Learning areas will fill in as each part of the kids journey begins.",
+  "bedtimeParentLearningAreaStoriesTitle": "Stories",
+  "bedtimeParentLearningAreaSeerahTitle": "Seerah",
+  "bedtimeParentLearningAreaDuasTitle": "Duas",
+  "bedtimeParentLearningAreaArabicTitle": "Arabic",
+  "bedtimeParentLearningAreaStoriesProgress": "{completed} of {total} stories completed",
+  "@bedtimeParentLearningAreaStoriesProgress": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "bedtimeParentLearningAreaSeerahProgress": "{completed} of {total} stages completed",
+  "@bedtimeParentLearningAreaSeerahProgress": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "bedtimeParentLearningAreaDuasProgress": "{completed} of {total} duas learned",
+  "@bedtimeParentLearningAreaDuasProgress": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "bedtimeParentLearningAreaArabicProgress": "{completed} of {total} letters completed",
+  "@bedtimeParentLearningAreaArabicProgress": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "bedtimeParentLearningAreaStoriesSecondary": "{count} stories started",
+  "@bedtimeParentLearningAreaStoriesSecondary": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "bedtimeParentLearningAreaSeerahSecondary": "{count} journeys completed",
+  "@bedtimeParentLearningAreaSeerahSecondary": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "bedtimeParentLearningAreaDuasSecondary": "{count}-day light streak",
+  "@bedtimeParentLearningAreaDuasSecondary": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "bedtimeParentLearningAreaArabicSecondary": "{count} review letters",
+  "@bedtimeParentLearningAreaArabicSecondary": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "bedtimeParentAreaLastActive": "Last active {date}",
+  "@bedtimeParentAreaLastActive": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "bedtimeParentHabitSectionTitle": "Bedtime rhythm",
+  "bedtimeParentHabitCurrentStreak": "Current streak: {days}",
+  "@bedtimeParentHabitCurrentStreak": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "bedtimeParentHabitLongestStreak": "Longest streak: {days}",
+  "@bedtimeParentHabitLongestStreak": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "bedtimeParentHabitWeekDays": "Active this week: {days} days",
+  "@bedtimeParentHabitWeekDays": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "bedtimeParentHabitMonthDays": "Active this month: {days} days",
+  "@bedtimeParentHabitMonthDays": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "bedtimeParentHabitEncouragingCopy": "A lovely rhythm is forming. Gentle bedtime learning is building over time.",
+  "bedtimeParentHabitGentleRestartCopy": "The next quiet story can begin tonight whenever you are ready.",
+  "bedtimeParentLastSessionLabel": "Last bedtime session: {date}",
+  "@bedtimeParentLastSessionLabel": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "bedtimeParentProphetProgressSectionTitle": "Prophets explored",
+  "bedtimeParentProphetCompletedLabel": "Completed",
+  "bedtimeParentProphetStartedLabel": "Started",
+  "bedtimeParentProphetNotStartedLabel": "Not started",
+  "bedtimeParentProphetStoryPartsLabel": "{completed} of {total} parts",
+  "@bedtimeParentProphetStoryPartsLabel": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "bedtimeParentQuizDoneLabel": "Quiz done",
+  "bedtimeParentQuizPendingLabel": "Quiz to try",
+  "bedtimeParentMemoryDoneLabel": "Memory done",
+  "bedtimeParentMemoryPendingLabel": "Memory to try",
+  "bedtimeParentContinueAction": "Continue",
+  "bedtimeParentLessonsLearnedSectionTitle": "Lessons learned",
+  "bedtimeParentLessonsEmpty": "Lessons will gather here as bedtime stories are completed.",
+  "bedtimeParentLearningRecentActivitySectionTitle": "Recent learning activity",
+  "bedtimeParentLearningRecentActivityEmpty": "Recent learning across stories, duas, Seerah, and Arabic will appear here.",
+  "bedtimeParentBedtimeActivitySectionTitle": "Recent bedtime activity",
+  "bedtimeParentRecentActivitySectionTitle": "Recent bedtime activity",
+  "bedtimeParentRecentActivityEmpty": "Recent bedtime activity will appear here once stories and learning activities begin.",
+  "bedtimeParentRecentStoryTitle": "Story",
+  "bedtimeParentRecentQuizTitle": "Story quiz",
+  "bedtimeParentRecentMemoryTitle": "Memory cards",
+  "bedtimeParentRecentDuaLessonTitle": "Dua lesson",
+  "bedtimeParentRecentDuaPracticeTitle": "Dua practice",
+  "bedtimeParentRecentDuaDayTitle": "My Day with Duas",
+  "bedtimeParentRecentSeerahNodeTitle": "Seerah step",
+  "bedtimeParentRecentSeerahStageTitle": "Seerah stage",
+  "bedtimeParentRecentSeerahJourneyTitle": "Seerah journey",
+  "bedtimeParentRecentArabicLessonTitle": "Arabic lesson",
+  "bedtimeParentRecentArabicDailyTitle": "Arabic daily mission",
+  "bedtimeParentRecentBedtimeRoutineTitle": "Bedtime companion",
+  "bedtimeParentLearningActivityStory": "Story completed on {date}",
+  "@bedtimeParentLearningActivityStory": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "bedtimeParentLearningActivityQuiz": "Quiz completed on {date}",
+  "@bedtimeParentLearningActivityQuiz": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "bedtimeParentLearningActivityMemory": "Memory activity completed on {date}",
+  "@bedtimeParentLearningActivityMemory": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "bedtimeParentLearningActivityDuaLesson": "Dua learned on {date}",
+  "@bedtimeParentLearningActivityDuaLesson": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "bedtimeParentLearningActivityDuaPractice": "Dua practiced on {date}",
+  "@bedtimeParentLearningActivityDuaPractice": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "bedtimeParentLearningActivityDuaMyDay": "My Day with Duas completed on {date}",
+  "@bedtimeParentLearningActivityDuaMyDay": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "bedtimeParentLearningActivitySeerahNode": "Seerah step completed on {date}",
+  "@bedtimeParentLearningActivitySeerahNode": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "bedtimeParentLearningActivitySeerahStage": "Seerah stage completed on {date}",
+  "@bedtimeParentLearningActivitySeerahStage": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "bedtimeParentLearningActivitySeerahJourney": "Seerah journey completed on {date}",
+  "@bedtimeParentLearningActivitySeerahJourney": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "bedtimeParentLearningActivityArabicLesson": "Arabic lesson completed on {date}",
+  "@bedtimeParentLearningActivityArabicLesson": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "bedtimeParentLearningActivityArabicDaily": "Arabic daily mission completed on {date}",
+  "@bedtimeParentLearningActivityArabicDaily": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "bedtimeParentLearningActivityBedtimeRoutine": "Bedtime routine completed on {date}",
+  "@bedtimeParentLearningActivityBedtimeRoutine": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "bedtimeParentActivityStarted": "Story opened on {date}",
+  "@bedtimeParentActivityStarted": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "bedtimeParentActivityListened": "Listened on {date}",
+  "@bedtimeParentActivityListened": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "bedtimeParentActivityCompleted": "Story completed on {date}",
+  "@bedtimeParentActivityCompleted": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "bedtimeParentActivityQuizCompleted": "Quiz completed on {date}",
+  "@bedtimeParentActivityQuizCompleted": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "bedtimeParentActivityMemoryCompleted": "Memory cards completed on {date}",
+  "@bedtimeParentActivityMemoryCompleted": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "bedtimeParentRecommendationsSectionTitle": "Suggested next steps",
+  "bedtimeParentRecommendationContinueStory": "Continue story",
+  "bedtimeParentRecommendationOpenQuiz": "Open quiz",
+  "bedtimeParentRecommendationOpenMemory": "Open memory",
+  "bedtimeParentRecommendationOpenStory": "Open story",
+  "bedtimeParentRecommendationTonightStory": "Tonight''s story",
+  "kidsDuaLearningModesTitle": "Choose a learning mode",
+  "kidsDuaModeListen": "Listen",
+  "kidsDuaModeReadAlong": "Read Along",
+  "kidsDuaModeTapRepeat": "Tap to Repeat",
+  "kidsDuaModeGentlePractice": "Gentle Practice",
+  "kidsDuaPracticeSavedSnack": "Practice saved for this dua.",
+  "kidsDuaGentlePracticeTitle": "Gentle practice",
+  "kidsDuaGentlePracticeSubtitle": "Listen, read, and repeat at a calm pace. There is no rush.",
+  "kidsDuaListenThenReadAction": "Listen then read",
+  "kidsDuaTapRepeatAction": "Tap to repeat",
+  "kidsDuaMarkPracticedAction": "I practiced this",
+  "kidsDuaLearningBuddyLabel": "little learner",
+  "kidsDuaLessonHeroSubtitle": "{learnerName} is learning a {category} dua gently tonight.",
+  "@kidsDuaLessonHeroSubtitle": {
+    "placeholders": {
+      "learnerName": {
+        "type": "String"
+      },
+      "category": {
+        "type": "String"
+      }
+    }
+  },
+  "kidsDuaAudioUnavailableTitle": "Read along is ready",
+  "kidsDuaAudioUnavailableSubtitle": "Audio is not available for this dua yet, but the Arabic, transliteration, and meaning are all ready to learn with.",
+  "kidsDuaAudioSectionTitle": "Listen to the dua",
+  "kidsDuaAudioSectionSubtitle": "Hear the dua calmly, then read or repeat it together.",
+  "kidsDuaPauseAction": "Pause",
+  "kidsDuaResumeAction": "Resume",
+  "kidsDuaPlayWholeAction": "Play full dua",
+  "kidsDuaRestartAction": "Restart",
+  "kidsDuaRepeatWholeAction": "Repeat whole dua",
+  "kidsDuaPlaybackProgressLabel": "{current} / {total}",
+  "@kidsDuaPlaybackProgressLabel": {
+    "placeholders": {
+      "current": {
+        "type": "String"
+      },
+      "total": {
+        "type": "String"
+      }
+    }
+  },
+  "kidsDuaAudioLoadingLabel": "Checking audio...",
+  "kidsDuaReadAlongModeTitle": "Read-along view",
+  "kidsDuaReadAlongArabicOnly": "Arabic",
+  "kidsDuaReadAlongArabicTransliteration": "Arabic + Transliteration",
+  "kidsDuaReadAlongFullView": "Full View",
+  "kidsDuaReadAlongSectionTitle": "Read along",
+  "kidsDuaTapRepeatSectionTitle": "Tap to repeat",
+  "kidsDuaTapRepeatBody": "Tap any line to hear it again and practice it slowly.",
+  "kidsDuaTapRepeatFallbackWholeAudio": "Tap any line to focus it. Full-dua audio will replay until segment audio is ready.",
+  "kidsDuaTapRepeatNoAudioBody": "Tap any line to focus on reading it slowly. Audio is not ready for this dua yet.",
+  "kidsDuaBedtimeLinkTitle": "Works beautifully at bedtime",
+  "kidsDuaBedtimeLinkSubtitle": "This dua is already part of the bedtime companion flow, so you can revisit it there tonight.",
+  "kidsDuaBedtimeLinkAction": "Open bedtime companion",
+  "kidsDuaLearningProgressTitle": "Learning progress",
+  "kidsDuaListenCountLabel": "Listens",
+  "kidsDuaRepeatCountLabel": "Line repeats",
+  "kidsDuaViewsCountLabel": "Views",
+  "kidsDuaSourceTapSubtitle": "Tap to open in the Qur''an reader",
+  "bedtimeCompanionEntryTitle": "Bedtime companion",
+  "bedtimeCompanionEntrySubtitle": "Move through a gentle bedtime rhythm with tonight''s dua, story, and a quiet ending.",
+  "bedtimeCompanionEntryAction": "Open bedtime time",
+  "bedtimeCompanionTitle": "Bedtime Time",
+  "bedtimeCompanionSubtitle": "A gentle bedtime rhythm with duas, stories, and a quiet close.",
+  "bedtimeCompanionHeroTitle": "Good evening, {learnerName}",
+  "@bedtimeCompanionHeroTitle": {
+    "placeholders": {
+      "learnerName": {
+        "type": "String"
+      }
+    }
+  },
+  "bedtimeCompanionHeroSubtitle": "Take one calm step at a time, remember Allah, and end the night gently.",
+  "bedtimeCompanionRoutineTitle": "Tonight''s routine",
+  "bedtimeCompanionRoutineProgress": "{completed} of {total} bedtime steps complete",
+  "@bedtimeCompanionRoutineProgress": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "bedtimeCompanionTonightDuaTitle": "Tonight''s dua",
+  "bedtimeCompanionTonightDuaSubtitle": "A short bedtime remembrance to help the night feel calm and blessed.",
+  "bedtimeCompanionTonightStoryTitle": "Tonight''s story",
+  "bedtimeCompanionTonightStorySubtitle": "Listen or read gently, then return whenever you are ready for the next bedtime step.",
+  "bedtimeCompanionReflectionTitle": "Quiet reflection",
+  "bedtimeCompanionReflectionSubtitle": "Choose one soft thought to carry into the night.",
+  "bedtimeCompanionReflectionPrompt": "What would you like to remember tonight?",
+  "bedtimeCompanionReflectionChoiceFamily": "Alhamdulillah for my family",
+  "bedtimeCompanionReflectionChoiceLesson": "I want to remember tonight''s lesson",
+  "bedtimeCompanionReflectionChoiceRest": "Alhamdulillah for rest",
+  "bedtimeCompanionSleepReadyTitle": "Ready for sleep",
+  "bedtimeCompanionSleepReadySubtitle": "You can close the night gently now. Allah hears every quiet remembrance.",
+  "bedtimeCompanionSleepReadyDoneTitle": "Ready for sleep",
+  "bedtimeCompanionSleepReadyDoneSubtitle": "Tonight''s bedtime rhythm is complete. Good night, and may your rest be peaceful.",
+  "bedtimeCompanionRecommendationResumeTitle": "Continue last night''s story",
+  "bedtimeCompanionRecommendationDuaTitle": "Begin with tonight''s dua",
+  "bedtimeCompanionRecommendationStoryTitle": "Tonight''s story is ready",
+  "bedtimeCompanionRecommendationReflectionTitle": "Take a quiet reflection moment",
+  "bedtimeCompanionPlayStoryAction": "Play story",
+  "bedtimeCompanionReadStoryAction": "Read story",
+  "bedtimeCompanionStoryDetailsAction": "Story details",
+  "bedtimeCompanionSourceLabel": "Source",
+  "bedtimeCompanionExtraDhikrTitle": "Gentle extra dhikr",
+  "bedtimeCompanionDuaDoneAction": "Dua done",
+  "bedtimeCompanionReadyForSleepAction": "Ready for sleep",
+  "bedtimeCompanionGoodNightAction": "Good night",
+  "bedtimeCompanionMarkReadyAction": "Mark ready",
+  "bedtimeCompanionOpenDuaAction": "Open dua",
+  "bedtimeCompanionOpenStoryAction": "Open story",
+  "bedtimeCompanionOpenReflectionAction": "Open reflection",
+  "bedtimeCompanionStepCompleted": "Completed",
+  "bedtimeCompanionStepInProgress": "In progress",
+  "bedtimeCompanionStepOptionalDone": "Optional done",
+  "bedtimeCompanionStepNotStarted": "Not started",
+  "bedtimeRoutineDefaultPlanTitle": "Gentle bedtime routine",
+  "bedtimeRoutineStepGetReadyTitle": "Get ready for bed",
+  "bedtimeRoutineStepGetReadySubtitle": "Settle in, get comfortable, and prepare for a calm night.",
+  "bedtimeRoutineStepDuaTitle": "Bedtime dua",
+  "bedtimeRoutineStepDuaSubtitle": "Read or hear a short dua before sleep.",
+  "bedtimeRoutineStepStoryTitle": "Story time",
+  "bedtimeRoutineStepStorySubtitle": "Listen to or read tonight''s prophet story.",
+  "bedtimeRoutineStepReflectionTitle": "Quiet reflection",
+  "bedtimeRoutineStepReflectionSubtitle": "Choose one kind lesson or gratitude thought to keep close.",
+  "bedtimeRoutineStepSleepReadyTitle": "Sleep-ready finish",
+  "bedtimeRoutineStepSleepReadySubtitle": "End gently and rest peacefully.",
+  "progressionPageTitle": "Progress & badges",
+  "progressionPageSubtitle": "A calm view of long-term learning growth.",
+  "progressionPageLearnerSectionTitle": "Child profile",
+  "progressionPageHeroTitle": "{name}''s progress",
+  "@progressionPageHeroTitle": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "progressionPageHeroSubtitle": "Levels, badges, and milestones grow through steady learning.",
+  "progressionPageOpenAction": "Open progress",
+  "progressionPageOverviewTitle": "Overview",
+  "progressionPageGardenTitle": "Garden",
+  "progressionPageGardenCardTitle": "See how learning is growing",
+  "progressionPageGardenCardSubtitle": "Open the symbolic garden shaped by prayerful rhythm, learning, remembrance, and drops.",
+  "progressionPageGardenAction": "Open garden",
+  "progressionPageMilestonesTitle": "Milestones",
+  "progressionPageMilestonesEmpty": "Milestones will appear as learning grows.",
+  "progressionPageBadgesTitle": "Badges",
+  "progressionPageBadgesEmpty": "Badges will appear after the first meaningful completions.",
+  "progressionPageLevelValue": "Level {level} • {title}",
+  "@progressionPageLevelValue": {
+    "placeholders": {
+      "level": {},
+      "title": {}
+    }
+  },
+  "progressionPageXpValue": "{xp} XP",
+  "@progressionPageXpValue": {
+    "placeholders": {
+      "xp": {}
+    }
+  },
+  "progressionPageNextLevelValue": "Next level: {title}",
+  "@progressionPageNextLevelValue": {
+    "placeholders": {
+      "title": {}
+    }
+  },
+  "progressionPageMaxLevel": "Maximum level reached",
+  "progressionOverviewStoriesLabel": "Stories completed",
+  "progressionOverviewQuizzesLabel": "Quizzes completed",
+  "progressionOverviewDuasLabel": "Duas learned",
+  "progressionOverviewRoutinesLabel": "Bedtime routines",
+  "progressionOverviewDropsLabel": "Ocean Drops",
+  "progressionOverviewBadgesLabel": "Badges earned",
+  "progressionOverviewLevelLabel": "Current level",
+  "progressionParentRemainingValue": "{xp} XP to the next level",
+  "@progressionParentRemainingValue": {
+    "placeholders": {
+      "xp": {}
+    }
+  },
+  "progressionBadgeFirstStoryTitle": "First story",
+  "progressionBadgeFirstStoryDescription": "Completed the first meaningful story.",
+  "progressionBadgeFirstQuizTitle": "First quiz",
+  "progressionBadgeFirstQuizDescription": "Finished the first story quiz.",
+  "progressionBadgeFirstMemoryTitle": "First memory cards",
+  "progressionBadgeFirstMemoryDescription": "Completed the first memory-card activity.",
+  "progressionBadgeFirstDuaTitle": "First dua learned",
+  "progressionBadgeFirstDuaDescription": "Learned the first dua with calm practice.",
+  "progressionBadgeFirstSeerahStageTitle": "First Seerah step",
+  "progressionBadgeFirstSeerahStageDescription": "Completed the first Seerah journey stage.",
+  "progressionBadgeFirstRoutineTitle": "Bedtime rhythm",
+  "progressionBadgeFirstRoutineDescription": "Finished the first bedtime routine.",
+  "progressionBadgeBedtimeWeekTitle": "Week of bedtime care",
+  "progressionBadgeBedtimeWeekDescription": "Completed seven bedtime routines.",
+  "progressionBadgeStoriesTenTitle": "Story explorer",
+  "progressionBadgeStoriesTenDescription": "Completed ten meaningful stories.",
+  "progressionBadgeJourneyCompleteTitle": "Seerah journey complete",
+  "progressionBadgeJourneyCompleteDescription": "Completed a full kids Seerah journey.",
+  "progressionMilestoneStoriesTenTitle": "10 stories completed",
+  "progressionMilestoneStoriesTenDescription": "A steady beginning in story learning.",
+  "progressionMilestoneStoriesFiftyTitle": "50 stories completed",
+  "progressionMilestoneStoriesFiftyDescription": "A deep and growing rhythm of story learning.",
+  "progressionMilestoneQuizzesTenTitle": "10 quizzes completed",
+  "progressionMilestoneQuizzesTenDescription": "Reflection and recall are becoming a habit.",
+  "progressionMilestoneDuasTenTitle": "10 duas learned",
+  "progressionMilestoneDuasTenDescription": "A growing collection of daily remembrance.",
+  "progressionMilestoneSeerahStageTitle": "First Seerah stage",
+  "progressionMilestoneSeerahStageDescription": "The Seerah journey has begun.",
+  "progressionMilestoneSeerahJourneyTitle": "First Seerah journey complete",
+  "progressionMilestoneSeerahJourneyDescription": "A full guided Seerah path was completed.",
+  "progressionMilestoneBedtimeWeekTitle": "7 bedtime routines",
+  "progressionMilestoneBedtimeWeekDescription": "A lovely bedtime rhythm is forming.",
+  "progressionMilestoneLearningMonthTitle": "30-day learning streak",
+  "progressionMilestoneLearningMonthDescription": "Consistency is becoming part of the journey."
 }

@@ -365,6 +365,7 @@ class LearningJourneyLocalizedLessonContentRegistry {
               title: l10n.learningJourneyToolProphetsTitle,
               subtitle: l10n.learningJourneyToolProphetsSubtitle,
               routeName: 'learnProphetsHub',
+              queryParameters: const {'tab': 'stories'},
             ),
           ],
           continueJourneyIds: const ['prophets-journey'],

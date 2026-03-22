@@ -160,12 +160,14 @@ class LearningJourneyCard extends StatelessWidget {
     required this.stageCount,
     required this.onTap,
     this.progress,
+    this.showFeaturedBadge = false,
   });
 
   final LearningJourney journey;
   final int stageCount;
   final VoidCallback onTap;
   final double? progress;
+  final bool showFeaturedBadge;
 
   @override
   Widget build(BuildContext context) {
@@ -220,13 +222,34 @@ class LearningJourneyCard extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                   ),
                   const SizedBox(height: 8),
-                  Text(
-                    l10n.learningJourneyCardStageCount(stageCount),
-                    style: const TextStyle(
-                      fontSize: 12.2,
-                      fontWeight: FontWeight.w700,
-                      color: Color(0xFF866A49),
-                    ),
+                  Wrap(
+                    spacing: 8,
+                    runSpacing: 8,
+                    children: [
+                      _MetaPill(
+                        label: _difficultyLabel(journey.difficulty, l10n),
+                        color: const Color(0xFFEADCC7),
+                        textColor: const Color(0xFF755937),
+                      ),
+                      _MetaPill(
+                        label: l10n.learningJourneyDurationMinutes(
+                          journey.estimatedDurationMinutes,
+                        ),
+                        color: const Color(0xFFF1E7D9),
+                        textColor: const Color(0xFF7A6243),
+                      ),
+                      _MetaPill(
+                        label: l10n.learningJourneyCardStageCount(stageCount),
+                        color: const Color(0xFFF4EBDE),
+                        textColor: const Color(0xFF866A49),
+                      ),
+                      if (showFeaturedBadge && journey.isFeatured)
+                        _MetaPill(
+                          label: l10n.learningJourneyFeaturedBadge,
+                          color: const Color(0xFFE5EADF),
+                          textColor: const Color(0xFF587047),
+                        ),
+                    ],
                   ),
                   if (effectiveProgress != null) ...[
                     const SizedBox(height: 10),
@@ -237,6 +260,17 @@ class LearningJourneyCard extends StatelessWidget {
                         stageCount,
                       ),
                     ),
+                    if (effectiveProgress > 0 && effectiveProgress < 1) ...[
+                      const SizedBox(height: 6),
+                      Text(
+                        l10n.learningJourneyCardActionContinue,
+                        style: const TextStyle(
+                          fontSize: 12.2,
+                          fontWeight: FontWeight.w700,
+                          color: Color(0xFF7A6650),
+                        ),
+                      ),
+                    ],
                   ],
                 ],
               ),
@@ -254,13 +288,15 @@ class LearningJourneyStageCard extends StatelessWidget {
     required this.stage,
     required this.isCurrent,
     required this.isCompleted,
+    required this.isLocked,
     required this.onTap,
   });
 
   final LearningJourneyStage stage;
   final bool isCurrent;
   final bool isCompleted;
-  final VoidCallback onTap;
+  final bool isLocked;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -284,14 +320,18 @@ class LearningJourneyStageCard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(15),
         decoration: BoxDecoration(
-          color: isCurrent
+          color: isLocked
+              ? const Color(0xFFF4F0EA)
+              : isCurrent
               ? const Color(0xFFF4EBDD)
               : isCompleted
               ? const Color(0xFFF2F5EF)
               : const Color(0xFFF8F3EB),
           borderRadius: BorderRadius.circular(18),
           border: Border.all(
-            color: isCurrent
+            color: isLocked
+                ? const Color(0xFFE3D8CB)
+                : isCurrent
                 ? const Color(0xFFDDBF92)
                 : isCompleted
                 ? const Color(0xFFC9D7BF)
@@ -306,14 +346,22 @@ class LearningJourneyStageCard extends StatelessWidget {
               height: 32,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                color: isCompleted
+                color: isLocked
+                    ? const Color(0xFFE9E0D3)
+                    : isCompleted
                     ? const Color(0xFFDDE9D6)
                     : isCurrent
                     ? const Color(0xFFF0DEC4)
                     : const Color(0xFFEADCC7),
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: isCompleted
+              child: isLocked
+                  ? const Icon(
+                      Icons.lock_outline_rounded,
+                      size: 16,
+                      color: Color(0xFF7A6A57),
+                    )
+                  : isCompleted
                   ? const Icon(
                       Icons.check_rounded,
                       size: 18,
@@ -329,7 +377,9 @@ class LearningJourneyStageCard extends StatelessWidget {
                       '${stage.order}',
                       style: TextStyle(
                         fontWeight: FontWeight.w700,
-                        color: isCurrent
+                        color: isLocked
+                            ? const Color(0xFF7A6A57)
+                            : isCurrent
                             ? const Color(0xFF6B4E2D)
                             : const Color(0xFF71593C),
                       ),
@@ -342,6 +392,8 @@ class LearningJourneyStageCard extends StatelessWidget {
               decoration: BoxDecoration(
                 color: isCompleted
                     ? const Color(0xFFAFC3A0)
+                    : isLocked
+                    ? const Color(0xFFE0D5C6)
                     : isCurrent
                     ? const Color(0xFFD9B888)
                     : const Color(0xFFE6DDD1),
@@ -405,6 +457,25 @@ class LearningJourneyStageCard extends StatelessWidget {
                             ),
                           ),
                         ),
+                      if (isLocked)
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 8,
+                            vertical: 4,
+                          ),
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFF0EBE3),
+                            borderRadius: BorderRadius.circular(999),
+                          ),
+                          child: Text(
+                            l10n.learningJourneyStageLockedBadge,
+                            style: const TextStyle(
+                              fontSize: 11.5,
+                              fontWeight: FontWeight.w700,
+                              color: Color(0xFF756857),
+                            ),
+                          ),
+                        ),
                       Container(
                         padding: const EdgeInsets.symmetric(
                           horizontal: 8,
@@ -435,10 +506,63 @@ class LearningJourneyStageCard extends StatelessWidget {
                       height: 1.35,
                     ),
                   ),
+                  const SizedBox(height: 8),
+                  Wrap(
+                    spacing: 8,
+                    runSpacing: 8,
+                    children: [
+                      _MetaPill(
+                        label: l10n.learningJourneyDurationMinutes(
+                          stage.durationEstimateMinutes,
+                        ),
+                        color: const Color(0xFFF2E8D9),
+                        textColor: const Color(0xFF725C42),
+                      ),
+                      _MetaPill(
+                        label: l10n.learningJourneyStageReward(
+                          stage.xpReward,
+                          stage.dropReward,
+                        ),
+                        color: const Color(0xFFE7EEE1),
+                        textColor: const Color(0xFF4C6540),
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class _MetaPill extends StatelessWidget {
+  const _MetaPill({
+    required this.label,
+    required this.color,
+    required this.textColor,
+  });
+
+  final String label;
+  final Color color;
+  final Color textColor;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
+      decoration: BoxDecoration(
+        color: color,
+        borderRadius: BorderRadius.circular(999),
+      ),
+      child: Text(
+        label,
+        style: TextStyle(
+          fontSize: 11.8,
+          fontWeight: FontWeight.w700,
+          color: textColor,
         ),
       ),
     );
@@ -775,6 +899,18 @@ String _statusLabel(LearningJourneyStageStatus status, AppLocalizations l10n) {
     case LearningJourneyStageStatus.placeholder:
       return l10n.learningJourneyStageStatusPlanned;
   }
+}
+
+String _difficultyLabel(
+  LearningJourneyDifficulty difficulty,
+  AppLocalizations l10n,
+) {
+  return switch (difficulty) {
+    LearningJourneyDifficulty.beginner => l10n.learningJourneyDifficultyBeginner,
+    LearningJourneyDifficulty.intermediate =>
+      l10n.learningJourneyDifficultyIntermediate,
+    LearningJourneyDifficulty.advanced => l10n.learningJourneyDifficultyAdvanced,
+  };
 }
 
 String _localizedToolTitle(

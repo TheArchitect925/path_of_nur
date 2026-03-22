@@ -20,6 +20,7 @@ class LearnHubPageScaffold extends StatelessWidget {
     this.quoteHeader,
     this.shortcutActions = const <LearnHubShortcutAction>[],
     this.headerActions,
+    this.floatingBottom,
   });
 
   final String title;
@@ -32,6 +33,7 @@ class LearnHubPageScaffold extends StatelessWidget {
   final Widget? quoteHeader;
   final List<LearnHubShortcutAction> shortcutActions;
   final List<Widget>? headerActions;
+  final Widget? floatingBottom;
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +48,7 @@ class LearnHubPageScaffold extends StatelessWidget {
       shortcutCloseLabel: l10n.learnShortcutClose,
       shortcutActions: shortcutActions,
       headerActions: headerActions,
+      floatingBottom: floatingBottom,
       backgroundAssetPath: backgroundAssetPath,
       backgroundOverlayColor: backgroundOverlayColor,
       children: children,

@@ -5,15 +5,23 @@ import '../domain/kids_arabic_models.dart';
 import 'kids_arabic_progress_provider.dart';
 import 'kids_arabic_progression.dart';
 
-const kidsArabicParentPreferencesStorageKey =
+const legacyKidsArabicParentPreferencesStorageKey =
     'kids.arabic.parent.preferences.v1';
+
+String kidsArabicParentPreferencesStorageKeyForLearner(String learnerId) =>
+    'kids.arabic.parent.preferences.v2.$learnerId';
 
 final kidsArabicParentPreferencesProvider =
     StateNotifierProvider<
       KidsArabicParentPreferencesNotifier,
       KidsArabicParentPreferences
     >((ref) {
-      return KidsArabicParentPreferencesNotifier(ref);
+      final notifier = KidsArabicParentPreferencesNotifier(ref);
+      ref.listen<String>(
+        kidsArabicActiveLearnerProvider.select((value) => value.learnerId),
+        (_, nextLearnerId) => notifier.updateActiveLearner(nextLearnerId),
+      );
+      return notifier;
     });
 
 final kidsArabicParentAvailableFocusLettersProvider =
@@ -164,20 +172,56 @@ class KidsArabicParentPreferencesNotifier
     extends StateNotifier<KidsArabicParentPreferences> {
   KidsArabicParentPreferencesNotifier(Ref ref)
     : _store = ref.read(localStoreProvider),
-      super(KidsArabicParentPreferences.initial()) {
-    _load();
+      _activeLearnerId = ref.read(kidsArabicActiveLearnerProvider).learnerId,
+      super(
+        KidsArabicParentPreferences.fromJson(
+          ref.read(localStoreProvider).getJsonMap(
+                kidsArabicParentPreferencesStorageKeyForLearner(
+                  ref.read(kidsArabicActiveLearnerProvider).learnerId,
+                ),
+              ),
+        ),
+      ) {
+    _migrateLegacyPreferencesIfNeeded();
   }
 
   final LocalStore _store;
+  String _activeLearnerId;
 
-  void _load() {
-    state = KidsArabicParentPreferences.fromJson(
-      _store.getJsonMap(kidsArabicParentPreferencesStorageKey),
+  void _save() {
+    _store.setJsonMap(
+      kidsArabicParentPreferencesStorageKeyForLearner(_activeLearnerId),
+      state.toJson(),
     );
   }
 
-  void _save() {
-    _store.setJsonMap(kidsArabicParentPreferencesStorageKey, state.toJson());
+  void updateActiveLearner(String learnerId) {
+    if (_activeLearnerId == learnerId) {
+      return;
+    }
+    _activeLearnerId = learnerId;
+    _migrateLegacyPreferencesIfNeeded();
+  }
+
+  void _migrateLegacyPreferencesIfNeeded() {
+    final scopedKey = kidsArabicParentPreferencesStorageKeyForLearner(
+      _activeLearnerId,
+    );
+    final scoped = _store.getJsonMap(scopedKey) ?? <String, dynamic>{};
+    if (scoped.isNotEmpty) {
+      state = KidsArabicParentPreferences.fromJson(scoped);
+      return;
+    }
+    final legacy =
+        _store.getJsonMap(legacyKidsArabicParentPreferencesStorageKey) ??
+        <String, dynamic>{};
+    if (legacy.isEmpty) {
+      state = KidsArabicParentPreferences.initial();
+      return;
+    }
+    state = KidsArabicParentPreferences.fromJson(legacy);
+    _store.setJsonMap(scopedKey, state.toJson());
+    _store.remove(legacyKidsArabicParentPreferencesStorageKey);
   }
 
   void setGuidedProgressionEnabled(bool value) {

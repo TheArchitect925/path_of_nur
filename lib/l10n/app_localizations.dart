@@ -251,11 +251,29 @@ abstract class AppLocalizations {
   /// **'Cycle check-in'**
   String get notificationsCycleCheckTitle;
 
+  /// No description provided for @notificationsMoonriseTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Moonrise'**
+  String get notificationsMoonriseTitle;
+
+  /// No description provided for @notificationsMoonsetTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Moonset'**
+  String get notificationsMoonsetTitle;
+
   /// No description provided for @notificationsPrayerAtTimeBody.
   ///
   /// In en, this message translates to:
   /// **'It is time for {prayerName} Salah. Stay connected with your salah.'**
   String notificationsPrayerAtTimeBody(String prayerName);
+
+  /// No description provided for @notificationsPrayerAtTimeFajrBody.
+  ///
+  /// In en, this message translates to:
+  /// **'It is time for {prayerName} Salah.\nالصَّلاةُ خَيْرٌ مِنَ النَّوْمِ'**
+  String notificationsPrayerAtTimeFajrBody(String prayerName);
 
   /// No description provided for @notificationsPrayerBeforeQazaBody.
   ///
@@ -292,6 +310,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Review your status and resume prayer reminders when ready.'**
   String get notificationsCycleCheckBody;
+
+  /// No description provided for @notificationsMoonriseBody.
+  ///
+  /// In en, this message translates to:
+  /// **'The moon is rising now.'**
+  String get notificationsMoonriseBody;
+
+  /// No description provided for @notificationsMoonsetBody.
+  ///
+  /// In en, this message translates to:
+  /// **'The moon is setting now.'**
+  String get notificationsMoonsetBody;
 
   /// No description provided for @notificationsRecoveredReminderBody.
   ///
@@ -346,6 +376,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Open'**
   String get notificationsPrayerActionOpen;
+
+  /// No description provided for @notificationsReflectionActionWrite.
+  ///
+  /// In en, this message translates to:
+  /// **'Write Reflection'**
+  String get notificationsReflectionActionWrite;
+
+  /// No description provided for @notificationsReflectionActionRemind10.
+  ///
+  /// In en, this message translates to:
+  /// **'Remind me in 10 min'**
+  String get notificationsReflectionActionRemind10;
+
+  /// No description provided for @notificationsReflectionActionDismiss.
+  ///
+  /// In en, this message translates to:
+  /// **'Dismiss'**
+  String get notificationsReflectionActionDismiss;
 
   /// No description provided for @notificationsPrayerNameTahajjud.
   ///
@@ -472,6 +520,390 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Just entered'**
   String get notificationsFastingLiveJustEntered;
+
+  /// No description provided for @historyAdditionalMatchesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'More moments for today'**
+  String get historyAdditionalMatchesTitle;
+
+  /// No description provided for @historyArchiveAllCategories.
+  ///
+  /// In en, this message translates to:
+  /// **'All categories'**
+  String get historyArchiveAllCategories;
+
+  /// No description provided for @historyArchiveAllGregorianMonths.
+  ///
+  /// In en, this message translates to:
+  /// **'All Gregorian months'**
+  String get historyArchiveAllGregorianMonths;
+
+  /// No description provided for @historyArchiveAllHijriMonths.
+  ///
+  /// In en, this message translates to:
+  /// **'All Hijri months'**
+  String get historyArchiveAllHijriMonths;
+
+  /// No description provided for @historyArchiveCategoryLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Category'**
+  String get historyArchiveCategoryLabel;
+
+  /// No description provided for @historyArchiveEmptyFilters.
+  ///
+  /// In en, this message translates to:
+  /// **'No historical events match these filters yet.'**
+  String get historyArchiveEmptyFilters;
+
+  /// No description provided for @historyArchiveFiltersTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Browse the archive'**
+  String get historyArchiveFiltersTitle;
+
+  /// No description provided for @historyArchiveGregorianMonthLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Gregorian month'**
+  String get historyArchiveGregorianMonthLabel;
+
+  /// No description provided for @historyArchiveHijriMonthLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Hijri month'**
+  String get historyArchiveHijriMonthLabel;
+
+  /// No description provided for @historyArchiveLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Historical events could not be loaded right now.'**
+  String get historyArchiveLoadError;
+
+  /// No description provided for @historyArchiveResultsCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} events'**
+  String historyArchiveResultsCount(int count);
+
+  /// No description provided for @historyArchiveSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Browse curated Islamic historical moments by date and category.'**
+  String get historyArchiveSubtitle;
+
+  /// No description provided for @historyArchiveTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Historical Calendar'**
+  String get historyArchiveTitle;
+
+  /// No description provided for @historyCategoryBattles.
+  ///
+  /// In en, this message translates to:
+  /// **'Battles'**
+  String get historyCategoryBattles;
+
+  /// No description provided for @historyCategoryBirths.
+  ///
+  /// In en, this message translates to:
+  /// **'Births'**
+  String get historyCategoryBirths;
+
+  /// No description provided for @historyCategoryDeaths.
+  ///
+  /// In en, this message translates to:
+  /// **'Deaths'**
+  String get historyCategoryDeaths;
+
+  /// No description provided for @historyCategoryIslamicHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'Islamic History'**
+  String get historyCategoryIslamicHistory;
+
+  /// No description provided for @historyCategoryKhulafa.
+  ///
+  /// In en, this message translates to:
+  /// **'Khulafa'**
+  String get historyCategoryKhulafa;
+
+  /// No description provided for @historyCategoryProphets.
+  ///
+  /// In en, this message translates to:
+  /// **'Prophets'**
+  String get historyCategoryProphets;
+
+  /// No description provided for @historyCategoryRevelation.
+  ///
+  /// In en, this message translates to:
+  /// **'Revelation'**
+  String get historyCategoryRevelation;
+
+  /// No description provided for @historyCategorySacredPlaces.
+  ///
+  /// In en, this message translates to:
+  /// **'Sacred Places'**
+  String get historyCategorySacredPlaces;
+
+  /// No description provided for @historyCategoryScholars.
+  ///
+  /// In en, this message translates to:
+  /// **'Scholars'**
+  String get historyCategoryScholars;
+
+  /// No description provided for @historyCategorySeerah.
+  ///
+  /// In en, this message translates to:
+  /// **'Seerah'**
+  String get historyCategorySeerah;
+
+  /// No description provided for @historyCategoryWorldHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'World History'**
+  String get historyCategoryWorldHistory;
+
+  /// No description provided for @historyDateConfidenceApproximate.
+  ///
+  /// In en, this message translates to:
+  /// **'Approximate date'**
+  String get historyDateConfidenceApproximate;
+
+  /// No description provided for @historyDateConfidenceDisputed.
+  ///
+  /// In en, this message translates to:
+  /// **'Date differs across sources'**
+  String get historyDateConfidenceDisputed;
+
+  /// No description provided for @historyDateConfidenceExact.
+  ///
+  /// In en, this message translates to:
+  /// **'Widely cited date'**
+  String get historyDateConfidenceExact;
+
+  /// No description provided for @historyDateUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Not available in this V1 record'**
+  String get historyDateUnavailable;
+
+  /// No description provided for @historyDateUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Date not available'**
+  String get historyDateUnknown;
+
+  /// No description provided for @historyDetailLoadingSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading the historical event details.'**
+  String get historyDetailLoadingSubtitle;
+
+  /// No description provided for @historyDetailLoadingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Historical Event'**
+  String get historyDetailLoadingTitle;
+
+  /// No description provided for @historyDetailNotFoundSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'This historical event could not be found.'**
+  String get historyDetailNotFoundSubtitle;
+
+  /// No description provided for @historyDetailNotFoundTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Event not found'**
+  String get historyDetailNotFoundTitle;
+
+  /// No description provided for @historyGregorianDateLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Gregorian date'**
+  String get historyGregorianDateLabel;
+
+  /// No description provided for @historyGregorianDateValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{day} {month} {year} CE'**
+  String historyGregorianDateValue(String day, String month, String year);
+
+  /// No description provided for @historyHijriDateLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Hijri date'**
+  String get historyHijriDateLabel;
+
+  /// No description provided for @historyHijriDateValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{day} {month} {year} AH'**
+  String historyHijriDateValue(String day, String month, String year);
+
+  /// No description provided for @historyLearnIslandSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'On this day moments and a browsable archive of Islamic history.'**
+  String get historyLearnIslandSubtitle;
+
+  /// No description provided for @historyLessonsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Lessons & Reflection'**
+  String get historyLessonsTitle;
+
+  /// No description provided for @historyLocationLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Location'**
+  String get historyLocationLabel;
+
+  /// No description provided for @historyMatchBadgeBoth.
+  ///
+  /// In en, this message translates to:
+  /// **'Gregorian and Hijri match'**
+  String get historyMatchBadgeBoth;
+
+  /// No description provided for @historyMatchBadgeGregorian.
+  ///
+  /// In en, this message translates to:
+  /// **'Gregorian today'**
+  String get historyMatchBadgeGregorian;
+
+  /// No description provided for @historyMatchBadgeHijri.
+  ///
+  /// In en, this message translates to:
+  /// **'Hijri today'**
+  String get historyMatchBadgeHijri;
+
+  /// No description provided for @historyOnThisDayMatchesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'See the historical moments that match today’s Gregorian and Hijri anniversaries.'**
+  String get historyOnThisDayMatchesSubtitle;
+
+  /// No description provided for @historyOnThisDayMatchesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'On This Day'**
+  String get historyOnThisDayMatchesTitle;
+
+  /// No description provided for @historyOnThisDaySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A gentle historical reflection for today’s Gregorian and Hijri dates.'**
+  String get historyOnThisDaySubtitle;
+
+  /// No description provided for @historyOnThisDayTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'On This Day'**
+  String get historyOnThisDayTitle;
+
+  /// No description provided for @historyOpenArchiveAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open archive'**
+  String get historyOpenArchiveAction;
+
+  /// No description provided for @historyOverviewTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Overview'**
+  String get historyOverviewTitle;
+
+  /// No description provided for @contextualLinksRelatedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Related'**
+  String get contextualLinksRelatedTitle;
+
+  /// No description provided for @contextualLinksTypeEvent.
+  ///
+  /// In en, this message translates to:
+  /// **'Event'**
+  String get contextualLinksTypeEvent;
+
+  /// No description provided for @contextualLinksTypeHadith.
+  ///
+  /// In en, this message translates to:
+  /// **'Hadith'**
+  String get contextualLinksTypeHadith;
+
+  /// No description provided for @contextualLinksTypeJourney.
+  ///
+  /// In en, this message translates to:
+  /// **'Journey'**
+  String get contextualLinksTypeJourney;
+
+  /// No description provided for @contextualLinksTypeLearn.
+  ///
+  /// In en, this message translates to:
+  /// **'Learn'**
+  String get contextualLinksTypeLearn;
+
+  /// No description provided for @historyRelatedContentTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Related learning'**
+  String get historyRelatedContentTitle;
+
+  /// No description provided for @historyRelatedPeopleTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Related people & entities'**
+  String get historyRelatedPeopleTitle;
+
+  /// No description provided for @historySignificanceTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Why it matters'**
+  String get historySignificanceTitle;
+
+  /// No description provided for @historySourcesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sources'**
+  String get historySourcesTitle;
+
+  /// No description provided for @historyTodayGregorianValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{day} {month} {year}'**
+  String historyTodayGregorianValue(String day, String month, String year);
+
+  /// No description provided for @historyTodayHijriValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{day} {month} {year} AH'**
+  String historyTodayHijriValue(String day, String month, String year);
+
+  /// No description provided for @historyTodayShortcutAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Today’s matches'**
+  String get historyTodayShortcutAction;
+
+  /// No description provided for @historyEmptyTodaySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Historical moments for this day are still being added. You can still browse the archive.'**
+  String get historyEmptyTodaySubtitle;
+
+  /// No description provided for @historyEmptyTodayTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'More moments are on the way'**
+  String get historyEmptyTodayTitle;
+
+  /// No description provided for @historyViewAllCount.
+  ///
+  /// In en, this message translates to:
+  /// **'View all ({count})'**
+  String historyViewAllCount(int count);
 
   /// No description provided for @navDhikr.
   ///
@@ -3598,6 +4030,30 @@ abstract class AppLocalizations {
   /// **'Fasting reminders'**
   String get profileFastingReminders;
 
+  /// No description provided for @profileMoonriseReminders.
+  ///
+  /// In en, this message translates to:
+  /// **'Moonrise notifications'**
+  String get profileMoonriseReminders;
+
+  /// No description provided for @profileMoonriseRemindersSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Notify me when the moon is rising.'**
+  String get profileMoonriseRemindersSubtitle;
+
+  /// No description provided for @profileMoonsetReminders.
+  ///
+  /// In en, this message translates to:
+  /// **'Moonset notifications'**
+  String get profileMoonsetReminders;
+
+  /// No description provided for @profileMoonsetRemindersSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Notify me when the moon is setting.'**
+  String get profileMoonsetRemindersSubtitle;
+
   /// No description provided for @profileLanguageExpandTitle.
   ///
   /// In en, this message translates to:
@@ -5453,7 +5909,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnHubCategoryToolsExploreSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Search utilities, discovery helpers, and Explore All Knowledge stay together here.'**
+  /// **'Search utilities, discovery helpers, and journey tools stay together here.'**
   String get learnHubCategoryToolsExploreSubtitle;
 
   /// No description provided for @learnHubSubcategoryWhoIsAllahTitle.
@@ -6090,6 +6546,978 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Related Journeys'**
   String get quranReferenceViewerRelatedJourneys;
+
+  /// No description provided for @quranLearnMoreSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Learn More'**
+  String get quranLearnMoreSectionTitle;
+
+  /// No description provided for @quranLearnMoreInsightsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Ayah Insights'**
+  String get quranLearnMoreInsightsTitle;
+
+  /// No description provided for @quranAyahInsightsDomainSignsInCreation.
+  ///
+  /// In en, this message translates to:
+  /// **'Signs in Creation'**
+  String get quranAyahInsightsDomainSignsInCreation;
+
+  /// No description provided for @quranAyahInsightsDomainWorshipRemembrance.
+  ///
+  /// In en, this message translates to:
+  /// **'Worship & Remembrance'**
+  String get quranAyahInsightsDomainWorshipRemembrance;
+
+  /// No description provided for @quranAyahInsightsDomainCharacterAdab.
+  ///
+  /// In en, this message translates to:
+  /// **'Character & Adab'**
+  String get quranAyahInsightsDomainCharacterAdab;
+
+  /// No description provided for @quranAyahInsightsDomainTawhidBelief.
+  ///
+  /// In en, this message translates to:
+  /// **'Tawhid & Belief'**
+  String get quranAyahInsightsDomainTawhidBelief;
+
+  /// No description provided for @quranAyahInsightsDomainAkhirahAccountability.
+  ///
+  /// In en, this message translates to:
+  /// **'Akhirah & Accountability'**
+  String get quranAyahInsightsDomainAkhirahAccountability;
+
+  /// No description provided for @quranAyahInsightsDomainProphetsLessons.
+  ///
+  /// In en, this message translates to:
+  /// **'Prophets & Lessons'**
+  String get quranAyahInsightsDomainProphetsLessons;
+
+  /// No description provided for @quranAyahInsightsDomainGuidanceDailyLife.
+  ///
+  /// In en, this message translates to:
+  /// **'Guidance & Reflection'**
+  String get quranAyahInsightsDomainGuidanceDailyLife;
+
+  /// No description provided for @quranAyahInsightsTypeHadithReference.
+  ///
+  /// In en, this message translates to:
+  /// **'Hadith Reference'**
+  String get quranAyahInsightsTypeHadithReference;
+
+  /// No description provided for @quranAyahInsightsTypeAyahInsight.
+  ///
+  /// In en, this message translates to:
+  /// **'Ayah Insight'**
+  String get quranAyahInsightsTypeAyahInsight;
+
+  /// No description provided for @quranAyahInsightsTypeSignsInCreation.
+  ///
+  /// In en, this message translates to:
+  /// **'Signs in Creation'**
+  String get quranAyahInsightsTypeSignsInCreation;
+
+  /// No description provided for @quranAyahInsightsTypeScientificReflection.
+  ///
+  /// In en, this message translates to:
+  /// **'Creation Reflection'**
+  String get quranAyahInsightsTypeScientificReflection;
+
+  /// No description provided for @quranAyahInsightsTypeWorldCreationLesson.
+  ///
+  /// In en, this message translates to:
+  /// **'World & Creation'**
+  String get quranAyahInsightsTypeWorldCreationLesson;
+
+  /// No description provided for @quranAyahInsightsTypeWorshipLesson.
+  ///
+  /// In en, this message translates to:
+  /// **'Worship Lesson'**
+  String get quranAyahInsightsTypeWorshipLesson;
+
+  /// No description provided for @quranAyahInsightsTypeCharacterLesson.
+  ///
+  /// In en, this message translates to:
+  /// **'Character Lesson'**
+  String get quranAyahInsightsTypeCharacterLesson;
+
+  /// No description provided for @quranAyahInsightsTypeProphetConnection.
+  ///
+  /// In en, this message translates to:
+  /// **'Prophet Lesson'**
+  String get quranAyahInsightsTypeProphetConnection;
+
+  /// No description provided for @quranAyahInsightsTypeRelatedAyah.
+  ///
+  /// In en, this message translates to:
+  /// **'Related Ayah'**
+  String get quranAyahInsightsTypeRelatedAyah;
+
+  /// No description provided for @quranAyahInsightsTypeReflectionPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Reflection Prompt'**
+  String get quranAyahInsightsTypeReflectionPrompt;
+
+  /// No description provided for @quranAyahInsightsTypeInterpretationNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Interpretation Note'**
+  String get quranAyahInsightsTypeInterpretationNote;
+
+  /// No description provided for @quranAyahInsightsCautionLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Read with care'**
+  String get quranAyahInsightsCautionLabel;
+
+  /// No description provided for @quranAyahInsightsRelatedAyahsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Related Ayahs'**
+  String get quranAyahInsightsRelatedAyahsTitle;
+
+  /// No description provided for @quranAyahInsightsRelatedTypeSameTheme.
+  ///
+  /// In en, this message translates to:
+  /// **'Same theme'**
+  String get quranAyahInsightsRelatedTypeSameTheme;
+
+  /// No description provided for @quranAyahInsightsRelatedTypeSupportingInsight.
+  ///
+  /// In en, this message translates to:
+  /// **'Supporting insight'**
+  String get quranAyahInsightsRelatedTypeSupportingInsight;
+
+  /// No description provided for @quranAyahInsightsRelatedTypeContinuation.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue this lesson'**
+  String get quranAyahInsightsRelatedTypeContinuation;
+
+  /// No description provided for @quranAyahInsightsRelatedTypeContrast.
+  ///
+  /// In en, this message translates to:
+  /// **'Helpful contrast'**
+  String get quranAyahInsightsRelatedTypeContrast;
+
+  /// No description provided for @quranAyahInsightsRelatedTypeWorshipConnection.
+  ///
+  /// In en, this message translates to:
+  /// **'Worship connection'**
+  String get quranAyahInsightsRelatedTypeWorshipConnection;
+
+  /// No description provided for @quranAyahInsightsRelatedTypeCharacterConnection.
+  ///
+  /// In en, this message translates to:
+  /// **'Character connection'**
+  String get quranAyahInsightsRelatedTypeCharacterConnection;
+
+  /// No description provided for @quranAyahInsightsRelatedTypeCreationConnection.
+  ///
+  /// In en, this message translates to:
+  /// **'Creation connection'**
+  String get quranAyahInsightsRelatedTypeCreationConnection;
+
+  /// No description provided for @quranAyahInsightsRelatedTypeProphetConnection.
+  ///
+  /// In en, this message translates to:
+  /// **'Prophet connection'**
+  String get quranAyahInsightsRelatedTypeProphetConnection;
+
+  /// No description provided for @quranAyahInsightsBrowseTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Browse Ayah Insights'**
+  String get quranAyahInsightsBrowseTitle;
+
+  /// No description provided for @quranAyahInsightsBrowseSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore Qur\'\'anic insights by theme and follow them back into the reader.'**
+  String get quranAyahInsightsBrowseSubtitle;
+
+  /// No description provided for @quranAyahInsightsBrowseEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Ayah Insights categories will appear here as enrichment content grows.'**
+  String get quranAyahInsightsBrowseEmpty;
+
+  /// No description provided for @quranAyahInsightsBrowseHubAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open Qur\'\'an Study'**
+  String get quranAyahInsightsBrowseHubAction;
+
+  /// No description provided for @quranAyahInsightsHubEntryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Browse Ayah Insights'**
+  String get quranAyahInsightsHubEntryTitle;
+
+  /// No description provided for @quranAyahInsightsHubEntrySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore enriched ayah lessons by domain, from creation and worship to character, belief, and accountability.'**
+  String get quranAyahInsightsHubEntrySubtitle;
+
+  /// No description provided for @quranAyahInsightsBrowseAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Browse insights'**
+  String get quranAyahInsightsBrowseAction;
+
+  /// No description provided for @quranAyahInsightsBrowseSubtitleSignsInCreation.
+  ///
+  /// In en, this message translates to:
+  /// **'Creation, nature, and signs that call the heart to reflection.'**
+  String get quranAyahInsightsBrowseSubtitleSignsInCreation;
+
+  /// No description provided for @quranAyahInsightsBrowseSubtitleWorshipRemembrance.
+  ///
+  /// In en, this message translates to:
+  /// **'Prayer, dhikr, du\'\'a, sincerity, and practical worshipful life.'**
+  String get quranAyahInsightsBrowseSubtitleWorshipRemembrance;
+
+  /// No description provided for @quranAyahInsightsBrowseSubtitleCharacterAdab.
+  ///
+  /// In en, this message translates to:
+  /// **'Conduct, restraint, mercy, justice, and daily adab.'**
+  String get quranAyahInsightsBrowseSubtitleCharacterAdab;
+
+  /// No description provided for @quranAyahInsightsBrowseSubtitleTawhidBelief.
+  ///
+  /// In en, this message translates to:
+  /// **'Foundational belief, Tawhid, trust, and awareness of Allah.'**
+  String get quranAyahInsightsBrowseSubtitleTawhidBelief;
+
+  /// No description provided for @quranAyahInsightsBrowseSubtitleAkhirahAccountability.
+  ///
+  /// In en, this message translates to:
+  /// **'Judgment, deeds, resurrection, and preparing for the Hereafter.'**
+  String get quranAyahInsightsBrowseSubtitleAkhirahAccountability;
+
+  /// No description provided for @quranAyahInsightsBrowseSubtitleProphetsLessons.
+  ///
+  /// In en, this message translates to:
+  /// **'Focused lessons drawn from Qur\'\'anic examples of the prophets.'**
+  String get quranAyahInsightsBrowseSubtitleProphetsLessons;
+
+  /// No description provided for @quranAyahInsightsBrowseSubtitleGuidanceDailyLife.
+  ///
+  /// In en, this message translates to:
+  /// **'General guidance entries that still support daily reflection and action.'**
+  String get quranAyahInsightsBrowseSubtitleGuidanceDailyLife;
+
+  /// No description provided for @quranAyahInsightsDomainEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No ayah insights here yet'**
+  String get quranAyahInsightsDomainEmptyTitle;
+
+  /// No description provided for @quranAyahInsightsDomainEmptySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'This category is ready for future enrichment, but it does not have browseable entries yet.'**
+  String get quranAyahInsightsDomainEmptySubtitle;
+
+  /// No description provided for @quranAyahInsightsBrowseLessonTypeCoreLesson.
+  ///
+  /// In en, this message translates to:
+  /// **'Core lesson'**
+  String get quranAyahInsightsBrowseLessonTypeCoreLesson;
+
+  /// No description provided for @quranAyahInsightsBrowseLessonTypeReflection.
+  ///
+  /// In en, this message translates to:
+  /// **'Reflection'**
+  String get quranAyahInsightsBrowseLessonTypeReflection;
+
+  /// No description provided for @quranAyahInsightsBrowseLessonTypePracticalTakeaway.
+  ///
+  /// In en, this message translates to:
+  /// **'Practical takeaway'**
+  String get quranAyahInsightsBrowseLessonTypePracticalTakeaway;
+
+  /// No description provided for @quranAyahInsightsBrowseLessonTypeWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'Warning'**
+  String get quranAyahInsightsBrowseLessonTypeWarning;
+
+  /// No description provided for @quranAyahInsightsBrowseLessonTypeReminder.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminder'**
+  String get quranAyahInsightsBrowseLessonTypeReminder;
+
+  /// No description provided for @quranAyahInsightsBrowseLessonTypeConnection.
+  ///
+  /// In en, this message translates to:
+  /// **'Connection'**
+  String get quranAyahInsightsBrowseLessonTypeConnection;
+
+  /// No description provided for @quranAyahInsightsBrowseFilterDomains.
+  ///
+  /// In en, this message translates to:
+  /// **'Domains'**
+  String get quranAyahInsightsBrowseFilterDomains;
+
+  /// No description provided for @quranAyahInsightsBrowseFilterTags.
+  ///
+  /// In en, this message translates to:
+  /// **'Tags'**
+  String get quranAyahInsightsBrowseFilterTags;
+
+  /// No description provided for @quranAyahInsightsBrowseFilterLessonType.
+  ///
+  /// In en, this message translates to:
+  /// **'Lesson type'**
+  String get quranAyahInsightsBrowseFilterLessonType;
+
+  /// No description provided for @quranAyahInsightsBrowseFilterAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get quranAyahInsightsBrowseFilterAll;
+
+  /// No description provided for @quranAyahInsightsBrowseFilterClear.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear filters'**
+  String get quranAyahInsightsBrowseFilterClear;
+
+  /// No description provided for @quranAyahInsightsBrowseNoResultsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No matching insights yet'**
+  String get quranAyahInsightsBrowseNoResultsTitle;
+
+  /// No description provided for @quranAyahInsightsBrowseNoResultsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Try clearing a filter or choosing a broader theme.'**
+  String get quranAyahInsightsBrowseNoResultsSubtitle;
+
+  /// No description provided for @quranAyahInsightsBrowseTagSabr.
+  ///
+  /// In en, this message translates to:
+  /// **'Patience'**
+  String get quranAyahInsightsBrowseTagSabr;
+
+  /// No description provided for @quranAyahInsightsBrowseTagShukr.
+  ///
+  /// In en, this message translates to:
+  /// **'Gratitude'**
+  String get quranAyahInsightsBrowseTagShukr;
+
+  /// No description provided for @quranAyahInsightsBrowseTagTawakkul.
+  ///
+  /// In en, this message translates to:
+  /// **'Reliance'**
+  String get quranAyahInsightsBrowseTagTawakkul;
+
+  /// No description provided for @quranAyahInsightsBrowseTagMercy.
+  ///
+  /// In en, this message translates to:
+  /// **'Mercy'**
+  String get quranAyahInsightsBrowseTagMercy;
+
+  /// No description provided for @quranAyahInsightsBrowseTagRepentance.
+  ///
+  /// In en, this message translates to:
+  /// **'Repentance'**
+  String get quranAyahInsightsBrowseTagRepentance;
+
+  /// No description provided for @quranAyahInsightsBrowseTagJustice.
+  ///
+  /// In en, this message translates to:
+  /// **'Justice'**
+  String get quranAyahInsightsBrowseTagJustice;
+
+  /// No description provided for @quranAyahInsightsBrowseTagSincerity.
+  ///
+  /// In en, this message translates to:
+  /// **'Sincerity'**
+  String get quranAyahInsightsBrowseTagSincerity;
+
+  /// No description provided for @quranAyahInsightsBrowseTagGuidance.
+  ///
+  /// In en, this message translates to:
+  /// **'Guidance'**
+  String get quranAyahInsightsBrowseTagGuidance;
+
+  /// No description provided for @quranAyahInsightsBrowseTagSigns.
+  ///
+  /// In en, this message translates to:
+  /// **'Signs'**
+  String get quranAyahInsightsBrowseTagSigns;
+
+  /// No description provided for @quranAyahInsightsBrowseTagCreation.
+  ///
+  /// In en, this message translates to:
+  /// **'Creation'**
+  String get quranAyahInsightsBrowseTagCreation;
+
+  /// No description provided for @quranAyahInsightsBrowseTagProphets.
+  ///
+  /// In en, this message translates to:
+  /// **'Prophets'**
+  String get quranAyahInsightsBrowseTagProphets;
+
+  /// No description provided for @quranAyahInsightsBrowseTagWorship.
+  ///
+  /// In en, this message translates to:
+  /// **'Worship'**
+  String get quranAyahInsightsBrowseTagWorship;
+
+  /// No description provided for @quranKnowledgeSearchEntryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Search Qur\'\'an knowledge'**
+  String get quranKnowledgeSearchEntryTitle;
+
+  /// No description provided for @quranKnowledgeSearchEntrySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Search Ayah Insights, guided paths, and surah pages from one calm surface.'**
+  String get quranKnowledgeSearchEntrySubtitle;
+
+  /// No description provided for @quranKnowledgeSearchAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open knowledge search'**
+  String get quranKnowledgeSearchAction;
+
+  /// No description provided for @quranKnowledgeSearchTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Qur\'\'an Knowledge Search'**
+  String get quranKnowledgeSearchTitle;
+
+  /// No description provided for @quranKnowledgeSearchSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Search across Ayah Insights, guided paths, and surah insight pages by topic, tag, title, ayah reference, or surah name.'**
+  String get quranKnowledgeSearchSubtitle;
+
+  /// No description provided for @quranKnowledgeSearchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search topics, tags, ayahs, paths, or surahs...'**
+  String get quranKnowledgeSearchHint;
+
+  /// No description provided for @quranKnowledgeSearchEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Start with a theme, tag, ayah reference, or surah'**
+  String get quranKnowledgeSearchEmptyTitle;
+
+  /// No description provided for @quranKnowledgeSearchEmptySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Search across Ayah Insights, guided paths, and surah pages, or browse one of the curated collections below.'**
+  String get quranKnowledgeSearchEmptySubtitle;
+
+  /// No description provided for @quranKnowledgeSearchNoResultsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No Qur\'\'an knowledge matches yet'**
+  String get quranKnowledgeSearchNoResultsTitle;
+
+  /// No description provided for @quranKnowledgeSearchNoResultsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Try a broader topic, a shorter ayah reference, or browse one of the collections below.'**
+  String get quranKnowledgeSearchNoResultsSubtitle;
+
+  /// No description provided for @quranKnowledgeSearchSectionAyahInsights.
+  ///
+  /// In en, this message translates to:
+  /// **'Ayah Insights'**
+  String get quranKnowledgeSearchSectionAyahInsights;
+
+  /// No description provided for @quranKnowledgeSearchSectionPaths.
+  ///
+  /// In en, this message translates to:
+  /// **'Learning Paths'**
+  String get quranKnowledgeSearchSectionPaths;
+
+  /// No description provided for @quranKnowledgeSearchSectionSurahInsights.
+  ///
+  /// In en, this message translates to:
+  /// **'Surah Insights'**
+  String get quranKnowledgeSearchSectionSurahInsights;
+
+  /// No description provided for @quranKnowledgeSearchTypeAyahInsight.
+  ///
+  /// In en, this message translates to:
+  /// **'Ayah insight'**
+  String get quranKnowledgeSearchTypeAyahInsight;
+
+  /// No description provided for @quranKnowledgeSearchTypePath.
+  ///
+  /// In en, this message translates to:
+  /// **'Learning path'**
+  String get quranKnowledgeSearchTypePath;
+
+  /// No description provided for @quranKnowledgeSearchTypeSurahInsight.
+  ///
+  /// In en, this message translates to:
+  /// **'Surah insight'**
+  String get quranKnowledgeSearchTypeSurahInsight;
+
+  /// No description provided for @quranAyahInsightPathsEntryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Follow guided paths'**
+  String get quranAyahInsightPathsEntryTitle;
+
+  /// No description provided for @quranAyahInsightPathsEntrySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Move through a small curated sequence of ayah insights instead of opening entries one by one.'**
+  String get quranAyahInsightPathsEntrySubtitle;
+
+  /// No description provided for @quranAyahInsightPathsAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open guided paths'**
+  String get quranAyahInsightPathsAction;
+
+  /// No description provided for @quranAyahInsightPathsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Ayah Insight Paths'**
+  String get quranAyahInsightPathsTitle;
+
+  /// No description provided for @quranAyahInsightPathsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Follow short, curated Qur\'\'anic learning sequences built from the existing Ayah Insights content.'**
+  String get quranAyahInsightPathsSubtitle;
+
+  /// No description provided for @quranAyahInsightPathsEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Guided paths will appear here as curated Ayah Insights sequences expand.'**
+  String get quranAyahInsightPathsEmpty;
+
+  /// No description provided for @quranAyahInsightPathsReflectionFocusTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reflection focus'**
+  String get quranAyahInsightPathsReflectionFocusTitle;
+
+  /// No description provided for @quranAyahInsightPathsStartAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Start with the first ayah'**
+  String get quranAyahInsightPathsStartAction;
+
+  /// No description provided for @quranAyahInsightPathsCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} ayahs'**
+  String quranAyahInsightPathsCount(int count);
+
+  /// No description provided for @quranAyahInsightPathTitleSignsInCreationStarter.
+  ///
+  /// In en, this message translates to:
+  /// **'Signs in Creation Starter'**
+  String get quranAyahInsightPathTitleSignsInCreationStarter;
+
+  /// No description provided for @quranAyahInsightPathDescriptionSignsInCreationStarter.
+  ///
+  /// In en, this message translates to:
+  /// **'A calm introduction to the sky, time, rain, and living signs that call the heart to reflection.'**
+  String get quranAyahInsightPathDescriptionSignsInCreationStarter;
+
+  /// No description provided for @quranAyahInsightPathReflectionSignsInCreationStarter.
+  ///
+  /// In en, this message translates to:
+  /// **'Notice how repeated signs in the created world invite both wonder and gratitude instead of passing attention.'**
+  String get quranAyahInsightPathReflectionSignsInCreationStarter;
+
+  /// No description provided for @quranAyahInsightPathTitleWorshipRemembranceStarter.
+  ///
+  /// In en, this message translates to:
+  /// **'Worship & Remembrance Starter'**
+  String get quranAyahInsightPathTitleWorshipRemembranceStarter;
+
+  /// No description provided for @quranAyahInsightPathDescriptionWorshipRemembranceStarter.
+  ///
+  /// In en, this message translates to:
+  /// **'A practical sequence on prayer, dhikr, du\'\'a, sincerity, and reliance on Allah.'**
+  String get quranAyahInsightPathDescriptionWorshipRemembranceStarter;
+
+  /// No description provided for @quranAyahInsightPathReflectionWorshipRemembranceStarter.
+  ///
+  /// In en, this message translates to:
+  /// **'Move through these ayahs by asking how remembrance should shape your actual day, not only your thoughts.'**
+  String get quranAyahInsightPathReflectionWorshipRemembranceStarter;
+
+  /// No description provided for @quranAyahInsightPathTitleCharacterAdabStarter.
+  ///
+  /// In en, this message translates to:
+  /// **'Character & Adab Starter'**
+  String get quranAyahInsightPathTitleCharacterAdabStarter;
+
+  /// No description provided for @quranAyahInsightPathDescriptionCharacterAdabStarter.
+  ///
+  /// In en, this message translates to:
+  /// **'A guided sequence on patience, mercy, justice, forgiveness, and good conduct with people.'**
+  String get quranAyahInsightPathDescriptionCharacterAdabStarter;
+
+  /// No description provided for @quranAyahInsightPathReflectionCharacterAdabStarter.
+  ///
+  /// In en, this message translates to:
+  /// **'Read each step as a behavior check: what should change in speech, restraint, fairness, or treatment of others?'**
+  String get quranAyahInsightPathReflectionCharacterAdabStarter;
+
+  /// No description provided for @quranAyahInsightPathTitleTawhidBeliefStarter.
+  ///
+  /// In en, this message translates to:
+  /// **'Tawhid & Belief Starter'**
+  String get quranAyahInsightPathTitleTawhidBeliefStarter;
+
+  /// No description provided for @quranAyahInsightPathDescriptionTawhidBeliefStarter.
+  ///
+  /// In en, this message translates to:
+  /// **'A foundational path through oneness, signs, trust, rejection of shirk, and living with taqwa.'**
+  String get quranAyahInsightPathDescriptionTawhidBeliefStarter;
+
+  /// No description provided for @quranAyahInsightPathReflectionTawhidBeliefStarter.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep asking how sound belief changes reliance, sincerity, and the way you read the signs around you.'**
+  String get quranAyahInsightPathReflectionTawhidBeliefStarter;
+
+  /// No description provided for @quranAyahInsightPathTitleAkhirahAccountabilityStarter.
+  ///
+  /// In en, this message translates to:
+  /// **'Akhirah & Accountability Starter'**
+  String get quranAyahInsightPathTitleAkhirahAccountabilityStarter;
+
+  /// No description provided for @quranAyahInsightPathDescriptionAkhirahAccountabilityStarter.
+  ///
+  /// In en, this message translates to:
+  /// **'A balanced path through judgment, deeds, resurrection, urgency, and hope in the Hereafter.'**
+  String get quranAyahInsightPathDescriptionAkhirahAccountabilityStarter;
+
+  /// No description provided for @quranAyahInsightPathReflectionAkhirahAccountabilityStarter.
+  ///
+  /// In en, this message translates to:
+  /// **'Let each ayah move you toward preparation, not fear alone: deeds, honesty, urgency, and hope all belong here.'**
+  String get quranAyahInsightPathReflectionAkhirahAccountabilityStarter;
+
+  /// No description provided for @quranAyahInsightPathTitleProphetsLessonsStarter.
+  ///
+  /// In en, this message translates to:
+  /// **'Prophets & Lessons Starter'**
+  String get quranAyahInsightPathTitleProphetsLessonsStarter;
+
+  /// No description provided for @quranAyahInsightPathDescriptionProphetsLessonsStarter.
+  ///
+  /// In en, this message translates to:
+  /// **'A focused path through prophetic patience, reliance, submission, da\'\'wah, and just leadership.'**
+  String get quranAyahInsightPathDescriptionProphetsLessonsStarter;
+
+  /// No description provided for @quranAyahInsightPathReflectionProphetsLessonsStarter.
+  ///
+  /// In en, this message translates to:
+  /// **'Watch how prophetic examples turn abstract values into lived responses under trial, calling, and responsibility.'**
+  String get quranAyahInsightPathReflectionProphetsLessonsStarter;
+
+  /// No description provided for @quranSurahInsightsEntryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Surah themes & insights'**
+  String get quranSurahInsightsEntryTitle;
+
+  /// No description provided for @quranSurahInsightsEntrySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'See the main themes, lessons, and strongest Ayah Insights clusters for this surah.'**
+  String get quranSurahInsightsEntrySubtitle;
+
+  /// No description provided for @quranSurahInsightsEntryAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open surah insights'**
+  String get quranSurahInsightsEntryAction;
+
+  /// No description provided for @quranSurahInsightsBrowseAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Browse surah insights'**
+  String get quranSurahInsightsBrowseAction;
+
+  /// No description provided for @quranSurahInsightsBrowseTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Surah Themes & Insights'**
+  String get quranSurahInsightsBrowseTitle;
+
+  /// No description provided for @quranSurahInsightsBrowseSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore concise surah-level themes, lessons, and linked Ayah Insights clusters.'**
+  String get quranSurahInsightsBrowseSubtitle;
+
+  /// No description provided for @quranSurahInsightsEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Surah insight pages will appear here as curated surah summaries expand.'**
+  String get quranSurahInsightsEmpty;
+
+  /// No description provided for @quranSurahInsightsOverviewTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Overview'**
+  String get quranSurahInsightsOverviewTitle;
+
+  /// No description provided for @quranSurahInsightsLessonsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Key lessons'**
+  String get quranSurahInsightsLessonsTitle;
+
+  /// No description provided for @quranSurahInsightsClustersTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Insight clusters'**
+  String get quranSurahInsightsClustersTitle;
+
+  /// No description provided for @quranSurahInsightsSuggestedPathsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Suggested paths'**
+  String get quranSurahInsightsSuggestedPathsTitle;
+
+  /// No description provided for @quranSurahInsightsClusterCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} clusters'**
+  String quranSurahInsightsClusterCount(int count);
+
+  /// No description provided for @quranSurahInsightDescriptionAlBaqarah.
+  ///
+  /// In en, this message translates to:
+  /// **'A surah of guidance, worship, covenant, and patient trust, teaching how belief becomes a lived community ethic.'**
+  String get quranSurahInsightDescriptionAlBaqarah;
+
+  /// No description provided for @quranSurahInsightDescriptionAliImran.
+  ///
+  /// In en, this message translates to:
+  /// **'A surah that joins belief, reflection, restraint, and steadfastness, especially when the heart is tested.'**
+  String get quranSurahInsightDescriptionAliImran;
+
+  /// No description provided for @quranSurahInsightDescriptionTaHa.
+  ///
+  /// In en, this message translates to:
+  /// **'A surah that keeps revelation close to worship, remembrance, and humble seeking of knowledge.'**
+  String get quranSurahInsightDescriptionTaHa;
+
+  /// No description provided for @quranSurahInsightDescriptionAlFurqan.
+  ///
+  /// In en, this message translates to:
+  /// **'A surah of discernment that contrasts empty rejection with the quiet conduct of the servants of the Most Merciful.'**
+  String get quranSurahInsightDescriptionAlFurqan;
+
+  /// No description provided for @quranSurahInsightDescriptionLuqman.
+  ///
+  /// In en, this message translates to:
+  /// **'A surah that joins wisdom, gratitude, Tawhid, family counsel, and humble conduct in one moral frame.'**
+  String get quranSurahInsightDescriptionLuqman;
+
+  /// No description provided for @quranSurahInsightThemeGuidanceAndDevotion.
+  ///
+  /// In en, this message translates to:
+  /// **'Guidance and devotion'**
+  String get quranSurahInsightThemeGuidanceAndDevotion;
+
+  /// No description provided for @quranSurahInsightThemePatienceAndReliance.
+  ///
+  /// In en, this message translates to:
+  /// **'Patience and reliance'**
+  String get quranSurahInsightThemePatienceAndReliance;
+
+  /// No description provided for @quranSurahInsightThemeSupplicationAndResponse.
+  ///
+  /// In en, this message translates to:
+  /// **'Supplication and response'**
+  String get quranSurahInsightThemeSupplicationAndResponse;
+
+  /// No description provided for @quranSurahInsightThemeSteadfastBelief.
+  ///
+  /// In en, this message translates to:
+  /// **'Steadfast belief'**
+  String get quranSurahInsightThemeSteadfastBelief;
+
+  /// No description provided for @quranSurahInsightThemeCharacterUnderPressure.
+  ///
+  /// In en, this message translates to:
+  /// **'Character under pressure'**
+  String get quranSurahInsightThemeCharacterUnderPressure;
+
+  /// No description provided for @quranSurahInsightThemeReflectingOnSigns.
+  ///
+  /// In en, this message translates to:
+  /// **'Reflecting on signs'**
+  String get quranSurahInsightThemeReflectingOnSigns;
+
+  /// No description provided for @quranSurahInsightThemeRevelationAndRemembrance.
+  ///
+  /// In en, this message translates to:
+  /// **'Revelation and remembrance'**
+  String get quranSurahInsightThemeRevelationAndRemembrance;
+
+  /// No description provided for @quranSurahInsightThemeSeekingKnowledge.
+  ///
+  /// In en, this message translates to:
+  /// **'Seeking knowledge'**
+  String get quranSurahInsightThemeSeekingKnowledge;
+
+  /// No description provided for @quranSurahInsightThemeWorshipWithPresence.
+  ///
+  /// In en, this message translates to:
+  /// **'Worship with presence'**
+  String get quranSurahInsightThemeWorshipWithPresence;
+
+  /// No description provided for @quranSurahInsightThemeDiscernmentAndReflection.
+  ///
+  /// In en, this message translates to:
+  /// **'Discernment and reflection'**
+  String get quranSurahInsightThemeDiscernmentAndReflection;
+
+  /// No description provided for @quranSurahInsightThemeHumbleServanthood.
+  ///
+  /// In en, this message translates to:
+  /// **'Humble servanthood'**
+  String get quranSurahInsightThemeHumbleServanthood;
+
+  /// No description provided for @quranSurahInsightThemeSignsInTimeAndCreation.
+  ///
+  /// In en, this message translates to:
+  /// **'Signs in time and creation'**
+  String get quranSurahInsightThemeSignsInTimeAndCreation;
+
+  /// No description provided for @quranSurahInsightThemeGratitudeAndWisdom.
+  ///
+  /// In en, this message translates to:
+  /// **'Gratitude and wisdom'**
+  String get quranSurahInsightThemeGratitudeAndWisdom;
+
+  /// No description provided for @quranSurahInsightThemeTawhidInFamilyGuidance.
+  ///
+  /// In en, this message translates to:
+  /// **'Tawhid in family guidance'**
+  String get quranSurahInsightThemeTawhidInFamilyGuidance;
+
+  /// No description provided for @quranSurahInsightThemeHumilityAndGoodConduct.
+  ///
+  /// In en, this message translates to:
+  /// **'Humility and good conduct'**
+  String get quranSurahInsightThemeHumilityAndGoodConduct;
+
+  /// No description provided for @quranSurahInsightLessonSteadfastWorshipNeedsHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Steadfast worship is not self-powered; it asks Allah for help and keeps returning to Him.'**
+  String get quranSurahInsightLessonSteadfastWorshipNeedsHelp;
+
+  /// No description provided for @quranSurahInsightLessonRememberingAllahReshapesTheHeart.
+  ///
+  /// In en, this message translates to:
+  /// **'Remembering Allah is not decorative spirituality; it reforms the heart and steadies the believer.'**
+  String get quranSurahInsightLessonRememberingAllahReshapesTheHeart;
+
+  /// No description provided for @quranSurahInsightLessonDuaIsPartOfLivedFaith.
+  ///
+  /// In en, this message translates to:
+  /// **'Du\'\'a belongs inside faith and worship, not outside them, because nearness to Allah should produce calling upon Him.'**
+  String get quranSurahInsightLessonDuaIsPartOfLivedFaith;
+
+  /// No description provided for @quranSurahInsightLessonTaqwaAndReflectionBelongTogether.
+  ///
+  /// In en, this message translates to:
+  /// **'Taqwa deepens when the believer reflects on signs instead of passing over them distracted.'**
+  String get quranSurahInsightLessonTaqwaAndReflectionBelongTogether;
+
+  /// No description provided for @quranSurahInsightLessonMercyAndRestraintAreStrengths.
+  ///
+  /// In en, this message translates to:
+  /// **'Mercy, self-restraint, and gentleness are strengths that preserve a believing community under strain.'**
+  String get quranSurahInsightLessonMercyAndRestraintAreStrengths;
+
+  /// No description provided for @quranSurahInsightLessonSteadfastnessBuiltThroughBeliefAndCharacter.
+  ///
+  /// In en, this message translates to:
+  /// **'Steadfastness grows from sound belief together with disciplined character, not from emotion alone.'**
+  String get quranSurahInsightLessonSteadfastnessBuiltThroughBeliefAndCharacter;
+
+  /// No description provided for @quranSurahInsightLessonPrayerKeepsRevelationConnectedToLife.
+  ///
+  /// In en, this message translates to:
+  /// **'Prayer keeps revelation connected to daily life by turning remembrance into a repeated act of devotion.'**
+  String get quranSurahInsightLessonPrayerKeepsRevelationConnectedToLife;
+
+  /// No description provided for @quranSurahInsightLessonSincereLearningBeginsWithHumility.
+  ///
+  /// In en, this message translates to:
+  /// **'Seeking knowledge begins with humility before Allah, not with self-satisfaction.'**
+  String get quranSurahInsightLessonSincereLearningBeginsWithHumility;
+
+  /// No description provided for @quranSurahInsightLessonRemembranceShapesAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Remembrance is meant to shape what a person does, not merely what a person feels for a moment.'**
+  String get quranSurahInsightLessonRemembranceShapesAction;
+
+  /// No description provided for @quranSurahInsightLessonServantsOfMercifulKnownByConduct.
+  ///
+  /// In en, this message translates to:
+  /// **'The servants of the Most Merciful are recognized by steady conduct before they are recognized by claims.'**
+  String get quranSurahInsightLessonServantsOfMercifulKnownByConduct;
+
+  /// No description provided for @quranSurahInsightLessonSignsLeadToRemembrance.
+  ///
+  /// In en, this message translates to:
+  /// **'Signs in creation are meant to awaken remembrance, gratitude, and moral clarity.'**
+  String get quranSurahInsightLessonSignsLeadToRemembrance;
+
+  /// No description provided for @quranSurahInsightLessonGuidanceVisibleInConduct.
+  ///
+  /// In en, this message translates to:
+  /// **'Guidance becomes visible in how a person walks, speaks, and answers harm with dignity.'**
+  String get quranSurahInsightLessonGuidanceVisibleInConduct;
+
+  /// No description provided for @quranSurahInsightLessonGratitudeIsWorship.
+  ///
+  /// In en, this message translates to:
+  /// **'Gratitude is a form of worship that acknowledges Allah\'\'s favor with the heart, tongue, and life.'**
+  String get quranSurahInsightLessonGratitudeIsWorship;
+
+  /// No description provided for @quranSurahInsightLessonBeliefAndCharacterTogether.
+  ///
+  /// In en, this message translates to:
+  /// **'Belief and character are taught together because Tawhid should shape counsel, family life, and conduct.'**
+  String get quranSurahInsightLessonBeliefAndCharacterTogether;
+
+  /// No description provided for @quranSurahInsightLessonWisdomShowsInHumility.
+  ///
+  /// In en, this message translates to:
+  /// **'Wisdom appears in humility before Allah and in refusing arrogance toward people.'**
+  String get quranSurahInsightLessonWisdomShowsInHumility;
+
+  /// No description provided for @quranAyahInsightsBrowseCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} insights'**
+  String quranAyahInsightsBrowseCount(int count);
 
   /// No description provided for @triviaModeQuickChallenge.
   ///
@@ -8827,6 +10255,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Translation text'**
   String get quranShowTranslation;
+
+  /// No description provided for @quranShowLearnMore.
+  ///
+  /// In en, this message translates to:
+  /// **'Learn More'**
+  String get quranShowLearnMore;
+
+  /// No description provided for @quranShowLearnMoreSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Show related learning links and knowledge around the current ayah.'**
+  String get quranShowLearnMoreSubtitle;
 
   /// No description provided for @quranWordTranslationChip.
   ///
@@ -26466,6 +27906,18 @@ abstract class AppLocalizations {
   /// **'Use solid surfaces instead of translucent glass.'**
   String get settingsDisableGlassTransparencySubtitle;
 
+  /// No description provided for @settingsDisableColoredGlassTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Disable Colored Glass'**
+  String get settingsDisableColoredGlassTitle;
+
+  /// No description provided for @settingsDisableColoredGlassSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep glass surfaces while removing the tinted color treatment.'**
+  String get settingsDisableColoredGlassSubtitle;
+
   /// No description provided for @settingsGlassTransparencyTitle.
   ///
   /// In en, this message translates to:
@@ -26801,6 +28253,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Fajr'**
   String get settingsPrayerNameFajr;
+
+  /// No description provided for @settingsPrayerNameJumuah.
+  ///
+  /// In en, this message translates to:
+  /// **'Jumu‘ah'**
+  String get settingsPrayerNameJumuah;
 
   /// No description provided for @settingsPrayerNameDhuhr.
   ///
@@ -29222,6 +30680,408 @@ abstract class AppLocalizations {
   /// **'Open your unlocked images, meaning, and next milestone in one calm view.'**
   String get gardenPageEntryHomeSubtitle;
 
+  /// No description provided for @gardenPageLearnerSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Child profile'**
+  String get gardenPageLearnerSectionTitle;
+
+  /// No description provided for @gardenPageHeroBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Your learning, remembrance, and steady good habits shape this garden over time.'**
+  String get gardenPageHeroBody;
+
+  /// No description provided for @gardenPageLevelLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Level'**
+  String get gardenPageLevelLabel;
+
+  /// No description provided for @gardenPageXpLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'XP'**
+  String get gardenPageXpLabel;
+
+  /// No description provided for @gardenPageMaturityLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Garden maturity'**
+  String get gardenPageMaturityLabel;
+
+  /// No description provided for @gardenPageMaturityValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{percent}%'**
+  String gardenPageMaturityValue(Object percent);
+
+  /// No description provided for @gardenPageNextGrowthTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Next growth'**
+  String get gardenPageNextGrowthTitle;
+
+  /// No description provided for @gardenPageNextGrowthValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Next stage: {title}'**
+  String gardenPageNextGrowthValue(Object title);
+
+  /// No description provided for @gardenPageNextGrowthSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Steady worship, learning, remembrance, and good routines all continue shaping the next growth.'**
+  String get gardenPageNextGrowthSubtitle;
+
+  /// No description provided for @gardenPageBreakdownTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'What is growing'**
+  String get gardenPageBreakdownTitle;
+
+  /// No description provided for @gardenPageInsightTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'What helped it grow'**
+  String get gardenPageInsightTitle;
+
+  /// No description provided for @gardenPageRecentGrowthTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent growth'**
+  String get gardenPageRecentGrowthTitle;
+
+  /// No description provided for @gardenPageRecentGrowthEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent garden growth will appear after the next meaningful learning step.'**
+  String get gardenPageRecentGrowthEmpty;
+
+  /// No description provided for @gardenPageMilestonesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Garden gallery'**
+  String get gardenPageMilestonesTitle;
+
+  /// No description provided for @gardenPageHowItWorksTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'How growth works'**
+  String get gardenPageHowItWorksTitle;
+
+  /// No description provided for @gardenPageDimensionStrengthValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{percent}% grown'**
+  String gardenPageDimensionStrengthValue(Object percent);
+
+  /// No description provided for @gardenPageRecentGrowthJustNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Just now'**
+  String get gardenPageRecentGrowthJustNow;
+
+  /// No description provided for @gardenPageRecentGrowthRewardValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{xp} XP • {drops} drop'**
+  String gardenPageRecentGrowthRewardValue(Object xp, Object drops);
+
+  /// No description provided for @gardenPageRecentGrowthXpValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{xp} XP'**
+  String gardenPageRecentGrowthXpValue(Object xp);
+
+  /// No description provided for @gardenAmbientQuietDawn.
+  ///
+  /// In en, this message translates to:
+  /// **'Quiet dawn'**
+  String get gardenAmbientQuietDawn;
+
+  /// No description provided for @gardenAmbientGentleMorning.
+  ///
+  /// In en, this message translates to:
+  /// **'Gentle morning'**
+  String get gardenAmbientGentleMorning;
+
+  /// No description provided for @gardenAmbientWarmLight.
+  ///
+  /// In en, this message translates to:
+  /// **'Warm light'**
+  String get gardenAmbientWarmLight;
+
+  /// No description provided for @gardenAmbientEveningGlow.
+  ///
+  /// In en, this message translates to:
+  /// **'Evening glow'**
+  String get gardenAmbientEveningGlow;
+
+  /// No description provided for @gardenStageSeed.
+  ///
+  /// In en, this message translates to:
+  /// **'Seed in the soil'**
+  String get gardenStageSeed;
+
+  /// No description provided for @gardenStageSprout.
+  ///
+  /// In en, this message translates to:
+  /// **'Early sprout'**
+  String get gardenStageSprout;
+
+  /// No description provided for @gardenStageRoots.
+  ///
+  /// In en, this message translates to:
+  /// **'Small roots'**
+  String get gardenStageRoots;
+
+  /// No description provided for @gardenStageStem.
+  ///
+  /// In en, this message translates to:
+  /// **'Young stem'**
+  String get gardenStageStem;
+
+  /// No description provided for @gardenStageYoungTree.
+  ///
+  /// In en, this message translates to:
+  /// **'Young tree'**
+  String get gardenStageYoungTree;
+
+  /// No description provided for @gardenStageTrunk.
+  ///
+  /// In en, this message translates to:
+  /// **'Strengthening trunk'**
+  String get gardenStageTrunk;
+
+  /// No description provided for @gardenStageBranches.
+  ///
+  /// In en, this message translates to:
+  /// **'Branch growth'**
+  String get gardenStageBranches;
+
+  /// No description provided for @gardenStageLeaves.
+  ///
+  /// In en, this message translates to:
+  /// **'Leaf growth'**
+  String get gardenStageLeaves;
+
+  /// No description provided for @gardenStageFruit.
+  ///
+  /// In en, this message translates to:
+  /// **'Fruit beginning'**
+  String get gardenStageFruit;
+
+  /// No description provided for @gardenStageFlourishing.
+  ///
+  /// In en, this message translates to:
+  /// **'Flourishing tree'**
+  String get gardenStageFlourishing;
+
+  /// No description provided for @gardenDimensionPrayerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Roots of prayer'**
+  String get gardenDimensionPrayerTitle;
+
+  /// No description provided for @gardenDimensionPrayerBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Steady worship and grounding habits strengthen the garden from below.'**
+  String get gardenDimensionPrayerBody;
+
+  /// No description provided for @gardenDimensionLearningTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Branches of knowledge'**
+  String get gardenDimensionLearningTitle;
+
+  /// No description provided for @gardenDimensionLearningBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Stories, Seerah, and thoughtful learning widen the garden reach.'**
+  String get gardenDimensionLearningBody;
+
+  /// No description provided for @gardenDimensionLightTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Light of remembrance'**
+  String get gardenDimensionLightTitle;
+
+  /// No description provided for @gardenDimensionLightBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Dua and remembrance brighten the garden with calm light.'**
+  String get gardenDimensionLightBody;
+
+  /// No description provided for @gardenDimensionWaterTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Water of good deeds'**
+  String get gardenDimensionWaterTitle;
+
+  /// No description provided for @gardenDimensionWaterBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Ocean Drops nourish the garden with life, greenery, and freshness.'**
+  String get gardenDimensionWaterBody;
+
+  /// No description provided for @gardenDimensionFruitTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Fruits of wisdom'**
+  String get gardenDimensionFruitTitle;
+
+  /// No description provided for @gardenDimensionFruitBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Badges, milestones, and maturity reveal the fruit of learning.'**
+  String get gardenDimensionFruitBody;
+
+  /// No description provided for @gardenDimensionConsistencyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Bloom of consistency'**
+  String get gardenDimensionConsistencyTitle;
+
+  /// No description provided for @gardenDimensionConsistencyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Regular learning and bedtime rhythm help the whole garden stay alive.'**
+  String get gardenDimensionConsistencyBody;
+
+  /// No description provided for @gardenInsightPrayer.
+  ///
+  /// In en, this message translates to:
+  /// **'Your recent steady rhythm is strengthening the roots and giving the garden a firmer foundation.'**
+  String get gardenInsightPrayer;
+
+  /// No description provided for @gardenInsightLearning.
+  ///
+  /// In en, this message translates to:
+  /// **'Stories, Seerah, and learning moments are helping the branches grow wider.'**
+  String get gardenInsightLearning;
+
+  /// No description provided for @gardenInsightLight.
+  ///
+  /// In en, this message translates to:
+  /// **'Dua and remembrance are bringing more light into the garden.'**
+  String get gardenInsightLight;
+
+  /// No description provided for @gardenInsightWater.
+  ///
+  /// In en, this message translates to:
+  /// **'Ocean Drops are bringing water, greenery, and new life into the garden.'**
+  String get gardenInsightWater;
+
+  /// No description provided for @gardenInsightFruit.
+  ///
+  /// In en, this message translates to:
+  /// **'Milestones and maturity are beginning to show as fruit and wisdom in bloom.'**
+  String get gardenInsightFruit;
+
+  /// No description provided for @gardenInsightConsistency.
+  ///
+  /// In en, this message translates to:
+  /// **'Your recent consistency is helping the whole garden stay healthy and full.'**
+  String get gardenInsightConsistency;
+
+  /// No description provided for @gardenRecentStory.
+  ///
+  /// In en, this message translates to:
+  /// **'Story completed'**
+  String get gardenRecentStory;
+
+  /// No description provided for @gardenRecentQuiz.
+  ///
+  /// In en, this message translates to:
+  /// **'Quiz completed'**
+  String get gardenRecentQuiz;
+
+  /// No description provided for @gardenRecentMemory.
+  ///
+  /// In en, this message translates to:
+  /// **'Memory cards completed'**
+  String get gardenRecentMemory;
+
+  /// No description provided for @gardenRecentDuaLesson.
+  ///
+  /// In en, this message translates to:
+  /// **'Dua lesson completed'**
+  String get gardenRecentDuaLesson;
+
+  /// No description provided for @gardenRecentDuaPractice.
+  ///
+  /// In en, this message translates to:
+  /// **'Dua practiced'**
+  String get gardenRecentDuaPractice;
+
+  /// No description provided for @gardenRecentDuaDay.
+  ///
+  /// In en, this message translates to:
+  /// **'My Day with Duas completed'**
+  String get gardenRecentDuaDay;
+
+  /// No description provided for @gardenRecentRoutine.
+  ///
+  /// In en, this message translates to:
+  /// **'Bedtime routine completed'**
+  String get gardenRecentRoutine;
+
+  /// No description provided for @gardenRecentSeerahNode.
+  ///
+  /// In en, this message translates to:
+  /// **'Seerah step completed'**
+  String get gardenRecentSeerahNode;
+
+  /// No description provided for @gardenRecentSeerahStage.
+  ///
+  /// In en, this message translates to:
+  /// **'Seerah stage completed'**
+  String get gardenRecentSeerahStage;
+
+  /// No description provided for @gardenRecentSeerahJourney.
+  ///
+  /// In en, this message translates to:
+  /// **'Seerah journey completed'**
+  String get gardenRecentSeerahJourney;
+
+  /// No description provided for @gardenRecentKidsArabicLesson.
+  ///
+  /// In en, this message translates to:
+  /// **'Arabic letter lesson completed'**
+  String get gardenRecentKidsArabicLesson;
+
+  /// No description provided for @gardenRecentKidsArabicDaily.
+  ///
+  /// In en, this message translates to:
+  /// **'Arabic daily mission completed'**
+  String get gardenRecentKidsArabicDaily;
+
+  /// No description provided for @gardenPageLightMeaningTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Light through remembrance'**
+  String get gardenPageLightMeaningTitle;
+
+  /// No description provided for @gardenPageLightMeaningBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Dua and dhikr bring brightness, warmth, and calm atmosphere into the garden.'**
+  String get gardenPageLightMeaningBody;
+
+  /// No description provided for @gardenPageFruitMeaningTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Wisdom in bloom'**
+  String get gardenPageFruitMeaningTitle;
+
+  /// No description provided for @gardenPageFruitMeaningBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Milestones and maturity appear as fruit, showing learning that has taken root.'**
+  String get gardenPageFruitMeaningBody;
+
   /// No description provided for @gardenMilestoneTitle1.
   ///
   /// In en, this message translates to:
@@ -31456,7 +33316,7 @@ abstract class AppLocalizations {
   /// No description provided for @batch9QuranWordsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Learn high-frequency Quran words from the loaded core-word list.'**
+  /// **'Study frequent Qur’an words in Arabic with transliteration and translation.'**
   String get batch9QuranWordsSubtitle;
 
   /// No description provided for @batch9QuranWordsStudyBands.
@@ -31504,7 +33364,7 @@ abstract class AppLocalizations {
   /// No description provided for @batch9QuranWordsSearchHint.
   ///
   /// In en, this message translates to:
-  /// **'Search transliteration or meaning'**
+  /// **'Search Arabic, transliteration, or translation'**
   String get batch9QuranWordsSearchHint;
 
   /// No description provided for @batch9QuranWordsMasteredSummary.
@@ -31517,17 +33377,131 @@ abstract class AppLocalizations {
     Object count,
   );
 
-  /// No description provided for @batch9QuranWordsFlashCard.
-  ///
-  /// In en, this message translates to:
-  /// **'Flash card: {transliteration} • {meaning}'**
-  String batch9QuranWordsFlashCard(String transliteration, String meaning);
-
   /// No description provided for @batch9QuranWordsEmpty.
   ///
   /// In en, this message translates to:
   /// **'No words match this filter yet.'**
   String get batch9QuranWordsEmpty;
+
+  /// No description provided for @batch9QuranWordsOccurrenceCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} times'**
+  String batch9QuranWordsOccurrenceCount(String count);
+
+  /// No description provided for @batch9QuranWordsExampleAyahTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Example ayah'**
+  String get batch9QuranWordsExampleAyahTitle;
+
+  /// No description provided for @batch9QuranWordsNoUsageAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'No example ayah is available for this word yet.'**
+  String get batch9QuranWordsNoUsageAvailable;
+
+  /// No description provided for @batch9QuranWordsViewOccurrences.
+  ///
+  /// In en, this message translates to:
+  /// **'See all ayahs ({count})'**
+  String batch9QuranWordsViewOccurrences(int count);
+
+  /// No description provided for @batch9QuranWordsAyahListTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Ayah usages'**
+  String get batch9QuranWordsAyahListTitle;
+
+  /// No description provided for @batch9QuranWordsAyahListSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{word} appears in {count} ayahs.'**
+  String batch9QuranWordsAyahListSubtitle(String word, int count);
+
+  /// No description provided for @batch9QuranWordsMarkLearned.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark learned'**
+  String get batch9QuranWordsMarkLearned;
+
+  /// No description provided for @batch9QuranWordsLearned.
+  ///
+  /// In en, this message translates to:
+  /// **'Learned'**
+  String get batch9QuranWordsLearned;
+
+  /// No description provided for @batch9QuranWordsOpenStudy.
+  ///
+  /// In en, this message translates to:
+  /// **'Open study'**
+  String get batch9QuranWordsOpenStudy;
+
+  /// No description provided for @batch9QuranWordsStudyPageTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Word Study'**
+  String get batch9QuranWordsStudyPageTitle;
+
+  /// No description provided for @batch9QuranWordsProgressFilterTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Progress'**
+  String get batch9QuranWordsProgressFilterTitle;
+
+  /// No description provided for @batch9QuranWordsFilterAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get batch9QuranWordsFilterAll;
+
+  /// No description provided for @batch9QuranWordsFilterLearned.
+  ///
+  /// In en, this message translates to:
+  /// **'Learned'**
+  String get batch9QuranWordsFilterLearned;
+
+  /// No description provided for @batch9QuranWordsFilterNotLearned.
+  ///
+  /// In en, this message translates to:
+  /// **'Not learned'**
+  String get batch9QuranWordsFilterNotLearned;
+
+  /// No description provided for @batch9QuranWordsAllAyahsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'All ayahs where this word appears'**
+  String get batch9QuranWordsAllAyahsTitle;
+
+  /// No description provided for @batch9QuranWordsAllAyahsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Open the full ayah list for {word} and continue into the Qur\'\'an reader from any reference.'**
+  String batch9QuranWordsAllAyahsSubtitle(Object word);
+
+  /// No description provided for @batch9QuranWordsRootLettersTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Root letters'**
+  String get batch9QuranWordsRootLettersTitle;
+
+  /// No description provided for @batch9QuranWordsMeaningExpansionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Meaning'**
+  String get batch9QuranWordsMeaningExpansionTitle;
+
+  /// No description provided for @batch9QuranWordsDetailNotFoundTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Word not found'**
+  String get batch9QuranWordsDetailNotFoundTitle;
+
+  /// No description provided for @batch9QuranWordsDetailNotFoundSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'This word study entry is no longer available.'**
+  String get batch9QuranWordsDetailNotFoundSubtitle;
 
   /// No description provided for @batch9QuranWordsOccurrenceSummary.
   ///
@@ -31606,6 +33580,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Explore questions by theme and level.'**
   String get batch9FaqBrowseSubtitle;
+
+  /// No description provided for @batch9FaqBrowseAllAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Browse All'**
+  String get batch9FaqBrowseAllAction;
+
+  /// No description provided for @batch9FaqBrowseAllSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Open the full FAQ collection for broader browsing and discovery.'**
+  String get batch9FaqBrowseAllSubtitle;
 
   /// No description provided for @batch9FaqSearchHint.
   ///
@@ -34911,13 +36897,13 @@ abstract class AppLocalizations {
   /// No description provided for @growthTrackingOverviewTitle.
   ///
   /// In en, this message translates to:
-  /// **'Tracking Overview'**
+  /// **'Journey Stats'**
   String get growthTrackingOverviewTitle;
 
   /// No description provided for @growthTrackingOverviewSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'A cleaner view of your habits, worship, rhythm, and steady progress.'**
+  /// **'One place for your core worship, learning, reading, and consistency metrics.'**
   String get growthTrackingOverviewSubtitle;
 
   /// No description provided for @growthTrackingOverviewTodayTitle.
@@ -34973,6 +36959,279 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Review salah and ibadah tracking in Ibadah.'**
   String get growthTrackingPrayerDashboardSubtitle;
+
+  /// No description provided for @growthHomeQuranTrackerSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Today: {duration}'**
+  String growthHomeQuranTrackerSubtitle(Object duration);
+
+  /// No description provided for @growthHomeQuranListeningTrackerSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Listening: {total} total • {today} today'**
+  String growthHomeQuranListeningTrackerSubtitle(Object total, Object today);
+
+  /// No description provided for @growthHomePostSalahAdhkarSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed after-prayer adhkar recorded in your prayer log.'**
+  String get growthHomePostSalahAdhkarSubtitle;
+
+  /// No description provided for @growthHomeTotalAdhkarCompletedSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{postSalah} post-Salah completions • {sessions} dhikr sessions'**
+  String growthHomeTotalAdhkarCompletedSubtitle(
+    Object postSalah,
+    Object sessions,
+  );
+
+  /// No description provided for @growthHomeDhikrTimeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Time in dhikr: {duration}'**
+  String growthHomeDhikrTimeSubtitle(Object duration);
+
+  /// No description provided for @growthHomeTimeReflectionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Since {elapsed}, tracked worship and growth time is {share}.'**
+  String growthHomeTimeReflectionSubtitle(Object elapsed, Object share);
+
+  /// No description provided for @journeyStatsQuranReadingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Qur\'\'an Reading'**
+  String get journeyStatsQuranReadingTitle;
+
+  /// No description provided for @journeyStatsQuranReadingSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{today} today • {sessions} sessions tracked'**
+  String journeyStatsQuranReadingSubtitle(Object today, Object sessions);
+
+  /// No description provided for @journeyStatsQuranListeningSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Listening: {today} today • {sessions} sessions tracked'**
+  String journeyStatsQuranListeningSubtitle(Object today, Object sessions);
+
+  /// No description provided for @journeyStatsMetricsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Core metrics'**
+  String get journeyStatsMetricsTitle;
+
+  /// No description provided for @journeyStatsTimeReflectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Time & Reflection'**
+  String get journeyStatsTimeReflectionTitle;
+
+  /// No description provided for @journeyStatsTimeReflectionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A quiet view of the time this app can honestly track in your journey.'**
+  String get journeyStatsTimeReflectionSubtitle;
+
+  /// No description provided for @journeyStatsTimeSinceInstallTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Time Since You Began This Journey'**
+  String get journeyStatsTimeSinceInstallTitle;
+
+  /// No description provided for @journeyStatsTimeSinceInstallSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Measured from your first launch on this device'**
+  String get journeyStatsTimeSinceInstallSubtitle;
+
+  /// No description provided for @journeyStatsWorshipGrowthTimeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Worship & Growth Time'**
+  String get journeyStatsWorshipGrowthTimeTitle;
+
+  /// No description provided for @journeyStatsWorshipGrowthTimeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Trustworthy time tracked in reading, listening, and dhikr'**
+  String get journeyStatsWorshipGrowthTimeSubtitle;
+
+  /// No description provided for @journeyStatsTrackedShareTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Share of Time Since Install'**
+  String get journeyStatsTrackedShareTitle;
+
+  /// No description provided for @journeyStatsTrackedShareSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'The portion represented by tracked in-app worship and growth'**
+  String get journeyStatsTrackedShareSubtitle;
+
+  /// No description provided for @journeyStatsOtherTimeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Other Time Since Install'**
+  String get journeyStatsOtherTimeTitle;
+
+  /// No description provided for @journeyStatsOtherTimeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'The remaining time this app does not try to define'**
+  String get journeyStatsOtherTimeSubtitle;
+
+  /// No description provided for @journeyStatsTimeReflectionHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'This is for reflection, not judgment. It only measures time the app actually tracked.'**
+  String get journeyStatsTimeReflectionHelper;
+
+  /// No description provided for @journeyStatsSalahOfferedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Salah Offered'**
+  String get journeyStatsSalahOfferedTitle;
+
+  /// No description provided for @journeyStatsSalahOfferedSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed prayers logged'**
+  String get journeyStatsSalahOfferedSubtitle;
+
+  /// No description provided for @journeyStatsTotalAdhkarCompletedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Adhkar Completed'**
+  String get journeyStatsTotalAdhkarCompletedTitle;
+
+  /// No description provided for @journeyStatsTotalAdhkarCompletedSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Tracked dhikr sessions and post-prayer adhkar completions'**
+  String get journeyStatsTotalAdhkarCompletedSubtitle;
+
+  /// No description provided for @journeyStatsPostSalahAdhkarTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Post-Salah Adhkar Completed'**
+  String get journeyStatsPostSalahAdhkarTitle;
+
+  /// No description provided for @journeyStatsPostSalahAdhkarSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Recorded after-prayer adhkar completions'**
+  String get journeyStatsPostSalahAdhkarSubtitle;
+
+  /// No description provided for @journeyStatsQuranTimeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Qur\'\'an Time Read'**
+  String get journeyStatsQuranTimeTitle;
+
+  /// No description provided for @journeyStatsQuranTimeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Tracked from reading sessions'**
+  String get journeyStatsQuranTimeSubtitle;
+
+  /// No description provided for @journeyStatsQuranListeningTimeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Qur\'\'an Listening Time'**
+  String get journeyStatsQuranListeningTimeTitle;
+
+  /// No description provided for @journeyStatsQuranListeningTimeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Tracked from active playback'**
+  String get journeyStatsQuranListeningTimeSubtitle;
+
+  /// No description provided for @journeyStatsDhikrCompletedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Dhikr Completed'**
+  String get journeyStatsDhikrCompletedTitle;
+
+  /// No description provided for @journeyStatsDhikrCompletedSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed sessions tracked'**
+  String get journeyStatsDhikrCompletedSubtitle;
+
+  /// No description provided for @journeyStatsDhikrTimeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Time in Dhikr'**
+  String get journeyStatsDhikrTimeTitle;
+
+  /// No description provided for @journeyStatsDhikrTimeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Summed from tracked session duration'**
+  String get journeyStatsDhikrTimeSubtitle;
+
+  /// No description provided for @journeyStatsLessonsCompletedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Lessons Completed'**
+  String get journeyStatsLessonsCompletedTitle;
+
+  /// No description provided for @journeyStatsLessonsCompletedSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Finished lesson and topic progress'**
+  String get journeyStatsLessonsCompletedSubtitle;
+
+  /// No description provided for @journeyStatsActiveDaysTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Active Days'**
+  String get journeyStatsActiveDaysTitle;
+
+  /// No description provided for @journeyStatsActiveDaysSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Days with recorded progress'**
+  String get journeyStatsActiveDaysSubtitle;
+
+  /// No description provided for @journeyStatsCurrentStreakTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Current Streak'**
+  String get journeyStatsCurrentStreakTitle;
+
+  /// No description provided for @journeyStatsCurrentStreakSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your current steady rhythm'**
+  String get journeyStatsCurrentStreakSubtitle;
+
+  /// No description provided for @journeyStatsBestStreakTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Best Streak'**
+  String get journeyStatsBestStreakTitle;
+
+  /// No description provided for @journeyStatsBestStreakSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your strongest recorded run'**
+  String get journeyStatsBestStreakSubtitle;
+
+  /// No description provided for @journeyStatsMinutesValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{minutes}m'**
+  String journeyStatsMinutesValue(Object minutes);
+
+  /// No description provided for @journeyStatsDaysHoursValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{days}d {hours}h'**
+  String journeyStatsDaysHoursValue(Object days, Object hours);
 
   /// No description provided for @growthTrackingSuggestionsTitle.
   ///
@@ -35927,6 +38186,7921 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Sunnah is the example and way of Prophet Muhammad ﷺ. Muslims follow his good character, actions, and teachings to live in a way that pleases Allah.'**
   String get glossaryEntrySunnahKidsExpanded;
+
+  /// No description provided for @learningJourneyDifficultyBeginner.
+  ///
+  /// In en, this message translates to:
+  /// **'Beginner'**
+  String get learningJourneyDifficultyBeginner;
+
+  /// No description provided for @learningJourneyDifficultyIntermediate.
+  ///
+  /// In en, this message translates to:
+  /// **'Intermediate'**
+  String get learningJourneyDifficultyIntermediate;
+
+  /// No description provided for @learningJourneyDifficultyAdvanced.
+  ///
+  /// In en, this message translates to:
+  /// **'Advanced'**
+  String get learningJourneyDifficultyAdvanced;
+
+  /// No description provided for @learningJourneyDurationMinutes.
+  ///
+  /// In en, this message translates to:
+  /// **'{minutes} min'**
+  String learningJourneyDurationMinutes(int minutes);
+
+  /// No description provided for @learningJourneyFeaturedBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Featured'**
+  String get learningJourneyFeaturedBadge;
+
+  /// No description provided for @learningJourneyStageLockedBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Locked'**
+  String get learningJourneyStageLockedBadge;
+
+  /// No description provided for @learningJourneyStageReward.
+  ///
+  /// In en, this message translates to:
+  /// **'+{xp} XP • +{drops} drop'**
+  String learningJourneyStageReward(int xp, int drops);
+
+  /// No description provided for @learningJourneyDetailLessonCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} lessons'**
+  String learningJourneyDetailLessonCount(int count);
+
+  /// No description provided for @learningJourneyLessonSectionRewardsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Rewards'**
+  String get learningJourneyLessonSectionRewardsTitle;
+
+  /// No description provided for @learningJourneyLessonSectionRewardsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete this lesson to earn {xp} XP and {drops} drop.'**
+  String learningJourneyLessonSectionRewardsSubtitle(int xp, int drops);
+
+  /// No description provided for @learningJourneyFeedbackXpAwarded.
+  ///
+  /// In en, this message translates to:
+  /// **'+{xp} XP added'**
+  String learningJourneyFeedbackXpAwarded(int xp);
+
+  /// No description provided for @learningJourneyStageLockedRedirectSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Opening the next available lesson'**
+  String get learningJourneyStageLockedRedirectSubtitle;
+
+  /// No description provided for @learningJourneyStageLockedRedirectBody.
+  ///
+  /// In en, this message translates to:
+  /// **'This lesson will open after the previous step is completed. Taking you to the next available lesson now.'**
+  String get learningJourneyStageLockedRedirectBody;
+
+  /// No description provided for @learningJourneyBrowseFeaturedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Featured journeys'**
+  String get learningJourneyBrowseFeaturedTitle;
+
+  /// No description provided for @learningJourneyBrowseFeaturedSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Start with the guided paths most suited for steady progress.'**
+  String get learningJourneyBrowseFeaturedSubtitle;
+
+  /// No description provided for @learningJourneyBrowseAllJourneysTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'All journeys'**
+  String get learningJourneyBrowseAllJourneysTitle;
+
+  /// No description provided for @learningJourneyBrowseAllJourneysSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Browse every guided path and continue where you left off.'**
+  String get learningJourneyBrowseAllJourneysSubtitle;
+
+  /// No description provided for @crosswordHomeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Crossword Puzzles'**
+  String get crosswordHomeTitle;
+
+  /// No description provided for @crosswordHomeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Calm knowledge games built from the learning content already in Path of Nūr.'**
+  String get crosswordHomeSubtitle;
+
+  /// No description provided for @crosswordLoadErrorTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Crossword puzzles could not be loaded'**
+  String get crosswordLoadErrorTitle;
+
+  /// No description provided for @crosswordLoadErrorSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Try reopening this section in a moment.'**
+  String get crosswordLoadErrorSubtitle;
+
+  /// No description provided for @crosswordKidsModeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Kids mode'**
+  String get crosswordKidsModeTitle;
+
+  /// No description provided for @crosswordKidsModeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Small grids with simple words from letters, worship, and early learning.'**
+  String get crosswordKidsModeSubtitle;
+
+  /// No description provided for @crosswordAdultModeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Adult mode'**
+  String get crosswordAdultModeTitle;
+
+  /// No description provided for @crosswordAdultModeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Knowledge-based grids across prophets, hadith, Qur’an, and duas.'**
+  String get crosswordAdultModeSubtitle;
+
+  /// No description provided for @crosswordDailyModeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily crossword'**
+  String get crosswordDailyModeTitle;
+
+  /// No description provided for @crosswordDailyModeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A themed puzzle that rotates through the week.'**
+  String get crosswordDailyModeSubtitle;
+
+  /// No description provided for @crosswordDailyThemeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Today’s theme: {theme}'**
+  String crosswordDailyThemeLabel(Object theme);
+
+  /// No description provided for @crosswordPuzzleCountLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} puzzles live'**
+  String crosswordPuzzleCountLabel(Object count);
+
+  /// No description provided for @crosswordCompletedCountLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} completed'**
+  String crosswordCompletedCountLabel(Object count);
+
+  /// No description provided for @crosswordTodayXpLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{xp} XP today'**
+  String crosswordTodayXpLabel(Object xp);
+
+  /// No description provided for @crosswordTodayDropsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{drops} drops today'**
+  String crosswordTodayDropsLabel(Object drops);
+
+  /// No description provided for @crosswordKidsSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Kids puzzles'**
+  String get crosswordKidsSectionTitle;
+
+  /// No description provided for @crosswordKidsSectionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Gentle letter-and-word boards for younger learners.'**
+  String get crosswordKidsSectionSubtitle;
+
+  /// No description provided for @crosswordAdultSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Adult puzzles'**
+  String get crosswordAdultSectionTitle;
+
+  /// No description provided for @crosswordAdultSectionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reflective knowledge grids drawn from prophets, hadith, Qur’an, and duas.'**
+  String get crosswordAdultSectionSubtitle;
+
+  /// No description provided for @crosswordGridSizeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{size}×{size} grid'**
+  String crosswordGridSizeLabel(Object size);
+
+  /// No description provided for @crosswordPerfectBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Perfect'**
+  String get crosswordPerfectBadge;
+
+  /// No description provided for @crosswordClueCountSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{solved} of {total} clues solved'**
+  String crosswordClueCountSubtitle(Object total, Object solved);
+
+  /// No description provided for @crosswordReplayAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Play again'**
+  String get crosswordReplayAction;
+
+  /// No description provided for @crosswordContinueAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue puzzle'**
+  String get crosswordContinueAction;
+
+  /// No description provided for @crosswordStartAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Start puzzle'**
+  String get crosswordStartAction;
+
+  /// No description provided for @crosswordPuzzleTitleKids.
+  ///
+  /// In en, this message translates to:
+  /// **'Kids {category} puzzle'**
+  String crosswordPuzzleTitleKids(Object category);
+
+  /// No description provided for @crosswordPuzzleTitleAdult.
+  ///
+  /// In en, this message translates to:
+  /// **'{category} crossword'**
+  String crosswordPuzzleTitleAdult(Object category);
+
+  /// No description provided for @crosswordDifficultyBeginner.
+  ///
+  /// In en, this message translates to:
+  /// **'Gentle'**
+  String get crosswordDifficultyBeginner;
+
+  /// No description provided for @crosswordDifficultySteady.
+  ///
+  /// In en, this message translates to:
+  /// **'Steady'**
+  String get crosswordDifficultySteady;
+
+  /// No description provided for @crosswordDifficultyReflective.
+  ///
+  /// In en, this message translates to:
+  /// **'Reflective'**
+  String get crosswordDifficultyReflective;
+
+  /// No description provided for @crosswordDifficultyDeep.
+  ///
+  /// In en, this message translates to:
+  /// **'Deep'**
+  String get crosswordDifficultyDeep;
+
+  /// No description provided for @crosswordCategoryLetters.
+  ///
+  /// In en, this message translates to:
+  /// **'Letters'**
+  String get crosswordCategoryLetters;
+
+  /// No description provided for @crosswordCategoryWorship.
+  ///
+  /// In en, this message translates to:
+  /// **'Worship'**
+  String get crosswordCategoryWorship;
+
+  /// No description provided for @crosswordCategoryCharacter.
+  ///
+  /// In en, this message translates to:
+  /// **'Character'**
+  String get crosswordCategoryCharacter;
+
+  /// No description provided for @crosswordCategoryFaith.
+  ///
+  /// In en, this message translates to:
+  /// **'Faith'**
+  String get crosswordCategoryFaith;
+
+  /// No description provided for @crosswordCategoryQuran.
+  ///
+  /// In en, this message translates to:
+  /// **'Qur’an'**
+  String get crosswordCategoryQuran;
+
+  /// No description provided for @crosswordCategoryHadith.
+  ///
+  /// In en, this message translates to:
+  /// **'Hadith'**
+  String get crosswordCategoryHadith;
+
+  /// No description provided for @crosswordCategoryProphets.
+  ///
+  /// In en, this message translates to:
+  /// **'Prophets'**
+  String get crosswordCategoryProphets;
+
+  /// No description provided for @crosswordCategoryDuas.
+  ///
+  /// In en, this message translates to:
+  /// **'Duas'**
+  String get crosswordCategoryDuas;
+
+  /// No description provided for @crosswordCategoryJummah.
+  ///
+  /// In en, this message translates to:
+  /// **'Jumu‘ah'**
+  String get crosswordCategoryJummah;
+
+  /// No description provided for @crosswordCategoryMixed.
+  ///
+  /// In en, this message translates to:
+  /// **'Mixed'**
+  String get crosswordCategoryMixed;
+
+  /// No description provided for @learnQuizzesCrosswordSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Crossword puzzles'**
+  String get learnQuizzesCrosswordSectionTitle;
+
+  /// No description provided for @learnQuizzesCrosswordSectionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Knowledge games that reuse the app’s learning content in a calm puzzle format.'**
+  String get learnQuizzesCrosswordSectionSubtitle;
+
+  /// No description provided for @learnQuizzesOpenCrossword.
+  ///
+  /// In en, this message translates to:
+  /// **'Open crossword'**
+  String get learnQuizzesOpenCrossword;
+
+  /// No description provided for @crosswordLoadingSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Preparing the current puzzle.'**
+  String get crosswordLoadingSubtitle;
+
+  /// No description provided for @crosswordNotFoundTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Puzzle not found'**
+  String get crosswordNotFoundTitle;
+
+  /// No description provided for @crosswordNotFoundSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'This crossword could not be opened.'**
+  String get crosswordNotFoundSubtitle;
+
+  /// No description provided for @crosswordKidsOnlyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'This puzzle is reserved for the adult learning space.'**
+  String get crosswordKidsOnlyTitle;
+
+  /// No description provided for @crosswordDailyPuzzleSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Today’s guided puzzle centers on {category}.'**
+  String crosswordDailyPuzzleSubtitle(Object category);
+
+  /// No description provided for @crosswordPuzzleSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{category} • {gridSize} grid'**
+  String crosswordPuzzleSubtitle(Object category, Object gridSize);
+
+  /// No description provided for @crosswordAcrossLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Across'**
+  String get crosswordAcrossLabel;
+
+  /// No description provided for @crosswordDownLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Down'**
+  String get crosswordDownLabel;
+
+  /// No description provided for @crosswordSolvedCountLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{solved}/{total} solved'**
+  String crosswordSolvedCountLabel(Object solved, Object total);
+
+  /// No description provided for @crosswordGridSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Puzzle grid'**
+  String get crosswordGridSectionTitle;
+
+  /// No description provided for @crosswordCluesSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Clues'**
+  String get crosswordCluesSectionTitle;
+
+  /// No description provided for @crosswordCurrentClueTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Current clue'**
+  String get crosswordCurrentClueTitle;
+
+  /// No description provided for @crosswordClueMetaLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{length} letters • {direction}'**
+  String crosswordClueMetaLabel(Object length, Object direction);
+
+  /// No description provided for @crosswordCompletionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Puzzle complete'**
+  String get crosswordCompletionTitle;
+
+  /// No description provided for @crosswordCompletionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You completed the puzzle and collected the learning rewards.'**
+  String get crosswordCompletionSubtitle;
+
+  /// No description provided for @crosswordPerfectSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You completed the puzzle cleanly and earned the perfect bonus too.'**
+  String get crosswordPerfectSubtitle;
+
+  /// No description provided for @crosswordCompletionXpReward.
+  ///
+  /// In en, this message translates to:
+  /// **'+ XP on first completion'**
+  String get crosswordCompletionXpReward;
+
+  /// No description provided for @crosswordWordDropReward.
+  ///
+  /// In en, this message translates to:
+  /// **'+1 drop for each solved word'**
+  String get crosswordWordDropReward;
+
+  /// No description provided for @crosswordPerfectBonusReward.
+  ///
+  /// In en, this message translates to:
+  /// **'+ bonus XP for a perfect solve'**
+  String get crosswordPerfectBonusReward;
+
+  /// No description provided for @crosswordHintFutureSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Hints can be added later without changing the puzzle structure.'**
+  String get crosswordHintFutureSubtitle;
+
+  /// No description provided for @crosswordRevealLetterAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Reveal letter ({remaining} left)'**
+  String crosswordRevealLetterAction(Object remaining);
+
+  /// No description provided for @crosswordRevealWordAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Reveal word ({remaining} left)'**
+  String crosswordRevealWordAction(Object remaining);
+
+  /// No description provided for @crosswordExtraHintAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Extra hint ({remaining} left)'**
+  String crosswordExtraHintAction(Object remaining);
+
+  /// No description provided for @crosswordExtraHintViewedAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Extra hint viewed'**
+  String get crosswordExtraHintViewedAction;
+
+  /// No description provided for @crosswordResumeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Progress saved'**
+  String get crosswordResumeTitle;
+
+  /// No description provided for @crosswordResumeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your filled letters and solved words stay here when you leave and come back.'**
+  String get crosswordResumeSubtitle;
+
+  /// No description provided for @crosswordProgressSavedSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your progress saves as you solve.'**
+  String get crosswordProgressSavedSubtitle;
+
+  /// No description provided for @crosswordContinueSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue solving'**
+  String get crosswordContinueSectionTitle;
+
+  /// No description provided for @crosswordContinueSectionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick up the puzzle you were working through most recently.'**
+  String get crosswordContinueSectionSubtitle;
+
+  /// No description provided for @crosswordOverviewTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Progress overview'**
+  String get crosswordOverviewTitle;
+
+  /// No description provided for @crosswordOverviewSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A calm snapshot of how your kids and adult crossword sets are moving.'**
+  String get crosswordOverviewSubtitle;
+
+  /// No description provided for @crosswordPerfectCountLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} perfect solves'**
+  String crosswordPerfectCountLabel(Object count);
+
+  /// No description provided for @crosswordResumeSectionCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} in progress'**
+  String crosswordResumeSectionCount(Object count);
+
+  /// No description provided for @crosswordSolvedClueBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Solved'**
+  String get crosswordSolvedClueBadge;
+
+  /// No description provided for @crosswordSelectedClueBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Selected clue'**
+  String get crosswordSelectedClueBadge;
+
+  /// No description provided for @crosswordClueSemanticsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{clue}. {length} letters. {direction}.'**
+  String crosswordClueSemanticsLabel(
+    Object clue,
+    Object length,
+    Object direction,
+  );
+
+  /// No description provided for @crosswordCellSemanticsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Row {row}, column {col}. Current value {value}.'**
+  String crosswordCellSemanticsLabel(Object row, Object col, Object value);
+
+  /// No description provided for @crosswordCellEmptyValue.
+  ///
+  /// In en, this message translates to:
+  /// **'empty'**
+  String get crosswordCellEmptyValue;
+
+  /// No description provided for @crosswordCellCurrentWordHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Part of the current clue'**
+  String get crosswordCellCurrentWordHint;
+
+  /// No description provided for @crosswordDailyStreakLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{count}-day streak'**
+  String crosswordDailyStreakLabel(Object count);
+
+  /// No description provided for @crosswordDailyCompleteBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily puzzle complete'**
+  String get crosswordDailyCompleteBadge;
+
+  /// No description provided for @crosswordDailyBonusAchievedLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} bonus goals'**
+  String crosswordDailyBonusAchievedLabel(Object count);
+
+  /// No description provided for @crosswordDailyCompletedSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Today’s {theme} puzzle is complete.'**
+  String crosswordDailyCompletedSubtitle(Object theme);
+
+  /// No description provided for @crosswordDailyChallengeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Today’s challenge'**
+  String get crosswordDailyChallengeTitle;
+
+  /// No description provided for @crosswordDailyChallengeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A daily crossword shaped around {theme}.'**
+  String crosswordDailyChallengeSubtitle(Object theme);
+
+  /// No description provided for @crosswordDailyTargetDifficultyLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Target difficulty {difficulty}'**
+  String crosswordDailyTargetDifficultyLabel(Object difficulty);
+
+  /// No description provided for @crosswordDailyTimeTakenLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Time: {duration}'**
+  String crosswordDailyTimeTakenLabel(Object duration);
+
+  /// No description provided for @crosswordDailyObjectivePerfectTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete perfectly'**
+  String get crosswordDailyObjectivePerfectTitle;
+
+  /// No description provided for @crosswordDailyObjectivePerfectSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish without entering a wrong answer.'**
+  String get crosswordDailyObjectivePerfectSubtitle;
+
+  /// No description provided for @crosswordDailyObjectiveHintFreeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep it hint-free'**
+  String get crosswordDailyObjectiveHintFreeTitle;
+
+  /// No description provided for @crosswordDailyObjectiveHintFreeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Solve without revealing letters, words, or extra hints.'**
+  String get crosswordDailyObjectiveHintFreeSubtitle;
+
+  /// No description provided for @crosswordDailyObjectiveQuickSolveTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish with focus'**
+  String get crosswordDailyObjectiveQuickSolveTitle;
+
+  /// No description provided for @crosswordDailyObjectiveQuickSolveSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete within {duration}.'**
+  String crosswordDailyObjectiveQuickSolveSubtitle(Object duration);
+
+  /// No description provided for @crosswordDailyDropsContributionLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} drops today'**
+  String crosswordDailyDropsContributionLabel(Object count);
+
+  /// No description provided for @crosswordDailyOceanSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'Today your crossword added {count} drops to the ocean.'**
+  String crosswordDailyOceanSummary(Object count);
+
+  /// No description provided for @crosswordDailyHistoryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent daily history'**
+  String get crosswordDailyHistoryTitle;
+
+  /// No description provided for @crosswordDailyHistorySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A gentle look back at your recent crossword challenges.'**
+  String get crosswordDailyHistorySubtitle;
+
+  /// No description provided for @crosswordOpenTodayAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open today’s puzzle'**
+  String get crosswordOpenTodayAction;
+
+  /// No description provided for @crosswordResumeBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'In progress'**
+  String get crosswordResumeBadge;
+
+  /// No description provided for @crosswordFeaturedPacksTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Featured packs'**
+  String get crosswordFeaturedPacksTitle;
+
+  /// No description provided for @crosswordFeaturedPacksSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Guided crossword sets built around the strongest learning themes.'**
+  String get crosswordFeaturedPacksSubtitle;
+
+  /// No description provided for @crosswordThemesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Browse by theme'**
+  String get crosswordThemesTitle;
+
+  /// No description provided for @crosswordThemesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Open a focused set of puzzles by category and difficulty band.'**
+  String get crosswordThemesSubtitle;
+
+  /// No description provided for @crosswordOpenPackAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open pack'**
+  String get crosswordOpenPackAction;
+
+  /// No description provided for @crosswordContinuePackAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue pack'**
+  String get crosswordContinuePackAction;
+
+  /// No description provided for @crosswordRecommendedAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open recommended puzzle'**
+  String get crosswordRecommendedAction;
+
+  /// No description provided for @crosswordAssembledBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Curated mix'**
+  String get crosswordAssembledBadge;
+
+  /// No description provided for @crosswordNextPuzzleAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Next puzzle'**
+  String get crosswordNextPuzzleAction;
+
+  /// No description provided for @crosswordReturnToPackAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Return to pack'**
+  String get crosswordReturnToPackAction;
+
+  /// No description provided for @crosswordPackProgressLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{completed} of {total} complete'**
+  String crosswordPackProgressLabel(Object completed, Object total);
+
+  /// No description provided for @crosswordPackPerfectLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} perfect'**
+  String crosswordPackPerfectLabel(Object count);
+
+  /// No description provided for @crosswordPackDifficultyLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Levels {min}–{max}'**
+  String crosswordPackDifficultyLabel(Object min, Object max);
+
+  /// No description provided for @crosswordPackKidsBasicsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Kids basics'**
+  String get crosswordPackKidsBasicsTitle;
+
+  /// No description provided for @crosswordPackKidsBasicsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Gentle starter packs around letters, worship words, and early Islamic vocabulary.'**
+  String get crosswordPackKidsBasicsSubtitle;
+
+  /// No description provided for @crosswordPackAdultFoundationsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Adult foundations'**
+  String get crosswordPackAdultFoundationsTitle;
+
+  /// No description provided for @crosswordPackAdultFoundationsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A wider pack of reflective puzzles across the core knowledge themes.'**
+  String get crosswordPackAdultFoundationsSubtitle;
+
+  /// No description provided for @crosswordPackDailyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily rotation'**
+  String get crosswordPackDailyTitle;
+
+  /// No description provided for @crosswordPackDailySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'The full pool of weekday-ready crossword boards used for the rotating daily puzzle.'**
+  String get crosswordPackDailySubtitle;
+
+  /// No description provided for @crosswordPackQuranTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Qur’an reflection'**
+  String get crosswordPackQuranTitle;
+
+  /// No description provided for @crosswordPackQuranSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Puzzles built from Qur’anic words, guidance, mercy, and reflection themes.'**
+  String get crosswordPackQuranSubtitle;
+
+  /// No description provided for @crosswordPackHadithTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Hadith reflection'**
+  String get crosswordPackHadithTitle;
+
+  /// No description provided for @crosswordPackHadithSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Clue sets centered on hadith foundations, sincerity, halal, and ihsan.'**
+  String get crosswordPackHadithSubtitle;
+
+  /// No description provided for @crosswordPackProphetsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Prophet stories'**
+  String get crosswordPackProphetsTitle;
+
+  /// No description provided for @crosswordPackProphetsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Crossword boards drawn from prophet names, lessons, and story cues.'**
+  String get crosswordPackProphetsSubtitle;
+
+  /// No description provided for @crosswordPackDuasTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Dua words'**
+  String get crosswordPackDuasTitle;
+
+  /// No description provided for @crosswordPackDuasSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Supplication-focused puzzles using Qur’anic dua language and family themes.'**
+  String get crosswordPackDuasSubtitle;
+
+  /// No description provided for @crosswordPackWorshipTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Worship and practice'**
+  String get crosswordPackWorshipTitle;
+
+  /// No description provided for @crosswordPackWorshipSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Prayer, guidance, Jumu‘ah, and worship vocabulary in one focused collection.'**
+  String get crosswordPackWorshipSubtitle;
+
+  /// No description provided for @crosswordPackCharacterTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Character and adab'**
+  String get crosswordPackCharacterTitle;
+
+  /// No description provided for @crosswordPackCharacterSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A lighter character-focused set built from halal, ihsan, and adab-aligned learning cues.'**
+  String get crosswordPackCharacterSubtitle;
+
+  /// No description provided for @crosswordPackMixedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Mixed challenge'**
+  String get crosswordPackMixedTitle;
+
+  /// No description provided for @crosswordPackMixedSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A deeper mixed set that combines history, revelation, and broader knowledge words.'**
+  String get crosswordPackMixedSubtitle;
+
+  /// No description provided for @wordSearchHomeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Word Search'**
+  String get wordSearchHomeTitle;
+
+  /// No description provided for @wordSearchHomeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Find meaningful Islamic words through calm daily play.'**
+  String get wordSearchHomeSubtitle;
+
+  /// No description provided for @wordSearchLoadErrorTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Word Search could not load'**
+  String get wordSearchLoadErrorTitle;
+
+  /// No description provided for @wordSearchLoadErrorSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Try opening the puzzle again in a moment.'**
+  String get wordSearchLoadErrorSubtitle;
+
+  /// No description provided for @wordSearchKidsModeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Kids Word Search'**
+  String get wordSearchKidsModeTitle;
+
+  /// No description provided for @wordSearchKidsModeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Shorter words, gentler grids, and a guided first step.'**
+  String get wordSearchKidsModeSubtitle;
+
+  /// No description provided for @wordSearchAdultModeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Adult Word Search'**
+  String get wordSearchAdultModeTitle;
+
+  /// No description provided for @wordSearchAdultModeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Deeper themes, denser boards, and reflective practice.'**
+  String get wordSearchAdultModeSubtitle;
+
+  /// No description provided for @wordSearchDailyModeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily Word Search'**
+  String get wordSearchDailyModeTitle;
+
+  /// No description provided for @wordSearchDailyModeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Return each day for a steady themed challenge.'**
+  String get wordSearchDailyModeSubtitle;
+
+  /// No description provided for @wordSearchDailyCompletedSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Today\'\'s {theme} word search is complete.'**
+  String wordSearchDailyCompletedSubtitle(Object theme);
+
+  /// No description provided for @wordSearchDailyThemeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Today\'\'s theme: {theme}'**
+  String wordSearchDailyThemeLabel(Object theme);
+
+  /// No description provided for @wordSearchDailyStreakLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{count}-day streak'**
+  String wordSearchDailyStreakLabel(Object count);
+
+  /// No description provided for @wordSearchDailyCompleteBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily complete'**
+  String get wordSearchDailyCompleteBadge;
+
+  /// No description provided for @wordSearchResumeBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Resume'**
+  String get wordSearchResumeBadge;
+
+  /// No description provided for @wordSearchOpenTodayAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open today\'\'s puzzle'**
+  String get wordSearchOpenTodayAction;
+
+  /// No description provided for @wordSearchContinueAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get wordSearchContinueAction;
+
+  /// No description provided for @wordSearchStartAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Start puzzle'**
+  String get wordSearchStartAction;
+
+  /// No description provided for @wordSearchPuzzleCountLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} puzzles'**
+  String wordSearchPuzzleCountLabel(Object count);
+
+  /// No description provided for @wordSearchCompletedCountLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} completed'**
+  String wordSearchCompletedCountLabel(Object count);
+
+  /// No description provided for @wordSearchXpLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} XP'**
+  String wordSearchXpLabel(Object count);
+
+  /// No description provided for @wordSearchDropsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} drops'**
+  String wordSearchDropsLabel(Object count);
+
+  /// No description provided for @wordSearchContinueSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue solving'**
+  String get wordSearchContinueSectionTitle;
+
+  /// No description provided for @wordSearchContinueSectionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick up your most recent unfinished puzzle.'**
+  String get wordSearchContinueSectionSubtitle;
+
+  /// No description provided for @wordSearchDailyHistoryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent daily puzzles'**
+  String get wordSearchDailyHistoryTitle;
+
+  /// No description provided for @wordSearchDailyHistorySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A simple view of your latest daily completions.'**
+  String get wordSearchDailyHistorySubtitle;
+
+  /// No description provided for @wordSearchFeaturedPacksTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Featured packs'**
+  String get wordSearchFeaturedPacksTitle;
+
+  /// No description provided for @wordSearchFeaturedPacksSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Start with calm, well-shaped packs for each mode.'**
+  String get wordSearchFeaturedPacksSubtitle;
+
+  /// No description provided for @wordSearchThemesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Themes'**
+  String get wordSearchThemesTitle;
+
+  /// No description provided for @wordSearchThemesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Browse by worship, prophets, Qur\'\'an themes, and more.'**
+  String get wordSearchThemesSubtitle;
+
+  /// No description provided for @wordSearchLoadingSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading word search'**
+  String get wordSearchLoadingSubtitle;
+
+  /// No description provided for @wordSearchNotFoundTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Puzzle not found'**
+  String get wordSearchNotFoundTitle;
+
+  /// No description provided for @wordSearchNotFoundSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'This word search is not available right now.'**
+  String get wordSearchNotFoundSubtitle;
+
+  /// No description provided for @wordSearchKidsOnlyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'This puzzle is not available in the current child profile.'**
+  String get wordSearchKidsOnlyTitle;
+
+  /// No description provided for @wordSearchPackDifficultyLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Difficulty {min}-{max}'**
+  String wordSearchPackDifficultyLabel(Object min, Object max);
+
+  /// No description provided for @wordSearchPackProgressLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{completed}/{total} complete'**
+  String wordSearchPackProgressLabel(Object completed, Object total);
+
+  /// No description provided for @wordSearchPackPerfectLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} perfect'**
+  String wordSearchPackPerfectLabel(Object count);
+
+  /// No description provided for @wordSearchRecommendedAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Recommended next puzzle'**
+  String get wordSearchRecommendedAction;
+
+  /// No description provided for @wordSearchPerfectBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Perfect'**
+  String get wordSearchPerfectBadge;
+
+  /// No description provided for @wordSearchReplayAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Replay'**
+  String get wordSearchReplayAction;
+
+  /// No description provided for @wordSearchGridSizeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{size}x{size} grid'**
+  String wordSearchGridSizeLabel(Object size);
+
+  /// No description provided for @wordSearchFoundCountLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{found}/{total} words found'**
+  String wordSearchFoundCountLabel(Object found, Object total);
+
+  /// No description provided for @wordSearchPuzzleTitleKids.
+  ///
+  /// In en, this message translates to:
+  /// **'{category} Finder'**
+  String wordSearchPuzzleTitleKids(Object category);
+
+  /// No description provided for @wordSearchPuzzleTitleAdult.
+  ///
+  /// In en, this message translates to:
+  /// **'{category} Search'**
+  String wordSearchPuzzleTitleAdult(Object category);
+
+  /// No description provided for @wordSearchPuzzleSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{category} • {size}x{size} board'**
+  String wordSearchPuzzleSubtitle(Object category, Object size);
+
+  /// No description provided for @wordSearchDailyPuzzleSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily {theme} word search'**
+  String wordSearchDailyPuzzleSubtitle(Object theme);
+
+  /// No description provided for @wordSearchCategoryKids.
+  ///
+  /// In en, this message translates to:
+  /// **'Kids'**
+  String get wordSearchCategoryKids;
+
+  /// No description provided for @wordSearchCategoryLetters.
+  ///
+  /// In en, this message translates to:
+  /// **'Letters'**
+  String get wordSearchCategoryLetters;
+
+  /// No description provided for @wordSearchCategoryQuran.
+  ///
+  /// In en, this message translates to:
+  /// **'Qur\'\'an'**
+  String get wordSearchCategoryQuran;
+
+  /// No description provided for @wordSearchCategoryHadith.
+  ///
+  /// In en, this message translates to:
+  /// **'Hadith'**
+  String get wordSearchCategoryHadith;
+
+  /// No description provided for @wordSearchCategoryProphets.
+  ///
+  /// In en, this message translates to:
+  /// **'Prophets'**
+  String get wordSearchCategoryProphets;
+
+  /// No description provided for @wordSearchCategoryDuas.
+  ///
+  /// In en, this message translates to:
+  /// **'Duas'**
+  String get wordSearchCategoryDuas;
+
+  /// No description provided for @wordSearchCategoryWorship.
+  ///
+  /// In en, this message translates to:
+  /// **'Worship'**
+  String get wordSearchCategoryWorship;
+
+  /// No description provided for @wordSearchCategoryCharacter.
+  ///
+  /// In en, this message translates to:
+  /// **'Character'**
+  String get wordSearchCategoryCharacter;
+
+  /// No description provided for @wordSearchCategoryHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'History'**
+  String get wordSearchCategoryHistory;
+
+  /// No description provided for @wordSearchCategoryMixed.
+  ///
+  /// In en, this message translates to:
+  /// **'Mixed'**
+  String get wordSearchCategoryMixed;
+
+  /// No description provided for @wordSearchDifficultyGentle.
+  ///
+  /// In en, this message translates to:
+  /// **'Gentle'**
+  String get wordSearchDifficultyGentle;
+
+  /// No description provided for @wordSearchDifficultySteady.
+  ///
+  /// In en, this message translates to:
+  /// **'Steady'**
+  String get wordSearchDifficultySteady;
+
+  /// No description provided for @wordSearchDifficultyFocused.
+  ///
+  /// In en, this message translates to:
+  /// **'Focused'**
+  String get wordSearchDifficultyFocused;
+
+  /// No description provided for @wordSearchDifficultyDeep.
+  ///
+  /// In en, this message translates to:
+  /// **'Deep'**
+  String get wordSearchDifficultyDeep;
+
+  /// No description provided for @wordSearchOpenPackAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open pack'**
+  String get wordSearchOpenPackAction;
+
+  /// No description provided for @wordSearchHintSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Hints'**
+  String get wordSearchHintSectionTitle;
+
+  /// No description provided for @wordSearchHintRevealLetter.
+  ///
+  /// In en, this message translates to:
+  /// **'Reveal first letter'**
+  String get wordSearchHintRevealLetter;
+
+  /// No description provided for @wordSearchHintHighlightWord.
+  ///
+  /// In en, this message translates to:
+  /// **'Highlight a word'**
+  String get wordSearchHintHighlightWord;
+
+  /// No description provided for @wordSearchHintUsageLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Hints used: {letters} letters, {highlights} highlights'**
+  String wordSearchHintUsageLabel(Object letters, Object highlights);
+
+  /// No description provided for @wordSearchGridSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Letter grid'**
+  String get wordSearchGridSectionTitle;
+
+  /// No description provided for @wordSearchSelectionHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Drag or tap a straight path to find a word.'**
+  String get wordSearchSelectionHint;
+
+  /// No description provided for @wordSearchSelectionReady.
+  ///
+  /// In en, this message translates to:
+  /// **'Selections save automatically as you play.'**
+  String get wordSearchSelectionReady;
+
+  /// No description provided for @wordSearchWordListTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Words to find'**
+  String get wordSearchWordListTitle;
+
+  /// No description provided for @wordSearchFoundBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Found'**
+  String get wordSearchFoundBadge;
+
+  /// No description provided for @wordSearchRevealedLetterBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'First letter: {letter}'**
+  String wordSearchRevealedLetterBadge(Object letter);
+
+  /// No description provided for @wordSearchHighlightedBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Highlighted'**
+  String get wordSearchHighlightedBadge;
+
+  /// No description provided for @wordSearchExtraHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Hint: {hint}'**
+  String wordSearchExtraHint(Object hint);
+
+  /// No description provided for @wordSearchCompletionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Puzzle complete'**
+  String get wordSearchCompletionTitle;
+
+  /// No description provided for @wordSearchCompletionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You found every word in the grid.'**
+  String get wordSearchCompletionSubtitle;
+
+  /// No description provided for @wordSearchPerfectSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You found every word with a perfect finish.'**
+  String get wordSearchPerfectSubtitle;
+
+  /// No description provided for @wordSearchCompletionXpReward.
+  ///
+  /// In en, this message translates to:
+  /// **'Completion XP granted'**
+  String get wordSearchCompletionXpReward;
+
+  /// No description provided for @wordSearchWordDropReward.
+  ///
+  /// In en, this message translates to:
+  /// **'Each found word added drops'**
+  String get wordSearchWordDropReward;
+
+  /// No description provided for @wordSearchPerfectBonusReward.
+  ///
+  /// In en, this message translates to:
+  /// **'Perfect solve bonus XP'**
+  String get wordSearchPerfectBonusReward;
+
+  /// No description provided for @wordSearchNextPuzzleAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Next puzzle'**
+  String get wordSearchNextPuzzleAction;
+
+  /// No description provided for @wordSearchReturnToPackAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Return to pack'**
+  String get wordSearchReturnToPackAction;
+
+  /// No description provided for @wordSearchBackHomeAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Back home'**
+  String get wordSearchBackHomeAction;
+
+  /// No description provided for @wordSearchCellSemanticsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Row {row}, column {column}, letter {letter}'**
+  String wordSearchCellSemanticsLabel(Object row, Object column, Object letter);
+
+  /// No description provided for @wordSearchPackKidsStarterTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Kids Starter Words'**
+  String get wordSearchPackKidsStarterTitle;
+
+  /// No description provided for @wordSearchPackKidsStarterSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A calm first pack for familiar Islamic words.'**
+  String get wordSearchPackKidsStarterSubtitle;
+
+  /// No description provided for @wordSearchPackLettersTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Arabic Letter Finder'**
+  String get wordSearchPackLettersTitle;
+
+  /// No description provided for @wordSearchPackLettersSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Find simple words linked to early Arabic learning.'**
+  String get wordSearchPackLettersSubtitle;
+
+  /// No description provided for @wordSearchPackPrayerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Prayer Words'**
+  String get wordSearchPackPrayerTitle;
+
+  /// No description provided for @wordSearchPackPrayerSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Words connected to salah, wudu, and sacred practice.'**
+  String get wordSearchPackPrayerSubtitle;
+
+  /// No description provided for @wordSearchPackAdultTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Adult Foundations'**
+  String get wordSearchPackAdultTitle;
+
+  /// No description provided for @wordSearchPackAdultSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A grounded starting pack for older learners.'**
+  String get wordSearchPackAdultSubtitle;
+
+  /// No description provided for @wordSearchPackQuranTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Qur\'\'an Themes'**
+  String get wordSearchPackQuranTitle;
+
+  /// No description provided for @wordSearchPackQuranSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Words tied to guidance, mercy, and revelation.'**
+  String get wordSearchPackQuranSubtitle;
+
+  /// No description provided for @wordSearchPackHadithTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Hadith Keywords'**
+  String get wordSearchPackHadithTitle;
+
+  /// No description provided for @wordSearchPackHadithSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Search for words that reinforce prophetic teachings.'**
+  String get wordSearchPackHadithSubtitle;
+
+  /// No description provided for @wordSearchPackProphetsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Prophets & Places'**
+  String get wordSearchPackProphetsTitle;
+
+  /// No description provided for @wordSearchPackProphetsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Names and places from prophetic history.'**
+  String get wordSearchPackProphetsSubtitle;
+
+  /// No description provided for @wordSearchPackDuaTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Duas & Meanings'**
+  String get wordSearchPackDuaTitle;
+
+  /// No description provided for @wordSearchPackDuaSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Words shaped by supplication, mercy, and repentance.'**
+  String get wordSearchPackDuaSubtitle;
+
+  /// No description provided for @wordSearchPackCharacterTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Character & Adab'**
+  String get wordSearchPackCharacterTitle;
+
+  /// No description provided for @wordSearchPackCharacterSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Search for qualities that refine the soul.'**
+  String get wordSearchPackCharacterSubtitle;
+
+  /// No description provided for @wordSearchPackDailyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily Mixed'**
+  String get wordSearchPackDailyTitle;
+
+  /// No description provided for @wordSearchPackDailySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A rotating pack that supports the daily challenge.'**
+  String get wordSearchPackDailySubtitle;
+
+  /// No description provided for @learnQuizzesWordSearchSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Word Search'**
+  String get learnQuizzesWordSearchSectionTitle;
+
+  /// No description provided for @learnQuizzesWordSearchSectionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Find meaningful Islamic words in themed grids.'**
+  String get learnQuizzesWordSearchSectionSubtitle;
+
+  /// No description provided for @learnQuizzesOpenWordSearch.
+  ///
+  /// In en, this message translates to:
+  /// **'Open Word Search'**
+  String get learnQuizzesOpenWordSearch;
+
+  /// No description provided for @matchingHomeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Matching Game'**
+  String get matchingHomeTitle;
+
+  /// No description provided for @matchingHomeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Match pairs of meaningful Islamic words, ideas, and lessons.'**
+  String get matchingHomeSubtitle;
+
+  /// No description provided for @matchingLoadErrorTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Matching could not load right now.'**
+  String get matchingLoadErrorTitle;
+
+  /// No description provided for @matchingLoadErrorSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again in a moment. Your saved progress is still safe.'**
+  String get matchingLoadErrorSubtitle;
+
+  /// No description provided for @matchingLoadingSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Preparing your next matching session.'**
+  String get matchingLoadingSubtitle;
+
+  /// No description provided for @matchingNotFoundTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'That matching puzzle could not be found.'**
+  String get matchingNotFoundTitle;
+
+  /// No description provided for @matchingNotFoundSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Try another puzzle or return to the matching home.'**
+  String get matchingNotFoundSubtitle;
+
+  /// No description provided for @matchingKidsOnlyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'This matching set is reserved for the adult learning path.'**
+  String get matchingKidsOnlyTitle;
+
+  /// No description provided for @matchingKidsModeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Kids Matching'**
+  String get matchingKidsModeTitle;
+
+  /// No description provided for @matchingKidsModeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Gentle matching for early Islamic words and ideas.'**
+  String get matchingKidsModeSubtitle;
+
+  /// No description provided for @matchingAdultModeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Adult Matching'**
+  String get matchingAdultModeTitle;
+
+  /// No description provided for @matchingAdultModeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reflective pairings for concepts, meanings, and lessons.'**
+  String get matchingAdultModeSubtitle;
+
+  /// No description provided for @matchingDailyModeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily Matching'**
+  String get matchingDailyModeTitle;
+
+  /// No description provided for @matchingDailyModeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'One themed matching challenge that refreshes each day.'**
+  String get matchingDailyModeSubtitle;
+
+  /// No description provided for @matchingDailyCompletedSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Today\'\'s matching theme, {theme}, is complete.'**
+  String matchingDailyCompletedSubtitle(Object theme);
+
+  /// No description provided for @matchingDailyThemeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Today\'\'s theme: {theme}'**
+  String matchingDailyThemeLabel(Object theme);
+
+  /// No description provided for @matchingDailyPuzzleSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily matching · {theme}'**
+  String matchingDailyPuzzleSubtitle(Object theme);
+
+  /// No description provided for @matchingPuzzleSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{category} · {count} pairs'**
+  String matchingPuzzleSubtitle(Object category, Object count);
+
+  /// No description provided for @matchingPuzzleCountLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} puzzles live'**
+  String matchingPuzzleCountLabel(Object count);
+
+  /// No description provided for @matchingCompletedCountLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} completed'**
+  String matchingCompletedCountLabel(Object count);
+
+  /// No description provided for @matchingXpLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} XP earned'**
+  String matchingXpLabel(Object count);
+
+  /// No description provided for @matchingDropsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} drops earned'**
+  String matchingDropsLabel(Object count);
+
+  /// No description provided for @matchingDailyStreakLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{count}-day streak'**
+  String matchingDailyStreakLabel(Object count);
+
+  /// No description provided for @matchingDailyCompleteBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily complete'**
+  String get matchingDailyCompleteBadge;
+
+  /// No description provided for @matchingResumeBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Resume'**
+  String get matchingResumeBadge;
+
+  /// No description provided for @matchingOpenTodayAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open today\'\'s puzzle'**
+  String get matchingOpenTodayAction;
+
+  /// No description provided for @matchingContinueAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get matchingContinueAction;
+
+  /// No description provided for @matchingStartAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Start'**
+  String get matchingStartAction;
+
+  /// No description provided for @matchingContinueSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue matching'**
+  String get matchingContinueSectionTitle;
+
+  /// No description provided for @matchingContinueSectionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick up the last puzzle you started.'**
+  String get matchingContinueSectionSubtitle;
+
+  /// No description provided for @matchingDailyHistoryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent daily history'**
+  String get matchingDailyHistoryTitle;
+
+  /// No description provided for @matchingDailyHistorySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your last few daily matching sessions.'**
+  String get matchingDailyHistorySubtitle;
+
+  /// No description provided for @matchingFeaturedPacksTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Featured packs'**
+  String get matchingFeaturedPacksTitle;
+
+  /// No description provided for @matchingFeaturedPacksSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Good places to start or continue.'**
+  String get matchingFeaturedPacksSubtitle;
+
+  /// No description provided for @matchingThemesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Themes'**
+  String get matchingThemesTitle;
+
+  /// No description provided for @matchingThemesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Browse matching packs by topic and audience.'**
+  String get matchingThemesSubtitle;
+
+  /// No description provided for @matchingOpenPackAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open pack'**
+  String get matchingOpenPackAction;
+
+  /// No description provided for @matchingRecommendedAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Recommended next'**
+  String get matchingRecommendedAction;
+
+  /// No description provided for @matchingReplayAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Replay'**
+  String get matchingReplayAction;
+
+  /// No description provided for @matchingPairCountLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} pairs'**
+  String matchingPairCountLabel(Object count);
+
+  /// No description provided for @matchingFoundCountLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{found} of {total} pairs matched'**
+  String matchingFoundCountLabel(Object found, Object total);
+
+  /// No description provided for @matchingPerfectBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Perfect'**
+  String get matchingPerfectBadge;
+
+  /// No description provided for @matchingPuzzleTitleKids.
+  ///
+  /// In en, this message translates to:
+  /// **'{category} matching'**
+  String matchingPuzzleTitleKids(Object category);
+
+  /// No description provided for @matchingPuzzleTitleAdult.
+  ///
+  /// In en, this message translates to:
+  /// **'{category} matching'**
+  String matchingPuzzleTitleAdult(Object category);
+
+  /// No description provided for @matchingDifficultyGentle.
+  ///
+  /// In en, this message translates to:
+  /// **'Gentle'**
+  String get matchingDifficultyGentle;
+
+  /// No description provided for @matchingDifficultySteady.
+  ///
+  /// In en, this message translates to:
+  /// **'Steady'**
+  String get matchingDifficultySteady;
+
+  /// No description provided for @matchingDifficultyFocused.
+  ///
+  /// In en, this message translates to:
+  /// **'Focused'**
+  String get matchingDifficultyFocused;
+
+  /// No description provided for @matchingDifficultyDeep.
+  ///
+  /// In en, this message translates to:
+  /// **'Deep'**
+  String get matchingDifficultyDeep;
+
+  /// No description provided for @matchingCategoryKids.
+  ///
+  /// In en, this message translates to:
+  /// **'Kids'**
+  String get matchingCategoryKids;
+
+  /// No description provided for @matchingCategoryLetters.
+  ///
+  /// In en, this message translates to:
+  /// **'Arabic letters'**
+  String get matchingCategoryLetters;
+
+  /// No description provided for @matchingCategoryQuran.
+  ///
+  /// In en, this message translates to:
+  /// **'Qur\'\'an'**
+  String get matchingCategoryQuran;
+
+  /// No description provided for @matchingCategoryHadith.
+  ///
+  /// In en, this message translates to:
+  /// **'Hadith'**
+  String get matchingCategoryHadith;
+
+  /// No description provided for @matchingCategoryProphets.
+  ///
+  /// In en, this message translates to:
+  /// **'Prophets'**
+  String get matchingCategoryProphets;
+
+  /// No description provided for @matchingCategoryDuas.
+  ///
+  /// In en, this message translates to:
+  /// **'Duas'**
+  String get matchingCategoryDuas;
+
+  /// No description provided for @matchingCategoryWorship.
+  ///
+  /// In en, this message translates to:
+  /// **'Worship'**
+  String get matchingCategoryWorship;
+
+  /// No description provided for @matchingCategoryCharacter.
+  ///
+  /// In en, this message translates to:
+  /// **'Character & Adab'**
+  String get matchingCategoryCharacter;
+
+  /// No description provided for @matchingCategoryMixed.
+  ///
+  /// In en, this message translates to:
+  /// **'Mixed'**
+  String get matchingCategoryMixed;
+
+  /// No description provided for @matchingHintSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Hints'**
+  String get matchingHintSectionTitle;
+
+  /// No description provided for @matchingHintRevealPair.
+  ///
+  /// In en, this message translates to:
+  /// **'Reveal one pair'**
+  String get matchingHintRevealPair;
+
+  /// No description provided for @matchingHintRemoveOption.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove one option'**
+  String get matchingHintRemoveOption;
+
+  /// No description provided for @matchingHintUsageLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Reveal pair: {revealUses} · Remove option: {removeUses}'**
+  String matchingHintUsageLabel(Object revealUses, Object removeUses);
+
+  /// No description provided for @matchingLeftColumnTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Left side'**
+  String get matchingLeftColumnTitle;
+
+  /// No description provided for @matchingRightColumnTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Right side'**
+  String get matchingRightColumnTitle;
+
+  /// No description provided for @matchingFoundBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Matched'**
+  String get matchingFoundBadge;
+
+  /// No description provided for @matchingSelectedBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Selected'**
+  String get matchingSelectedBadge;
+
+  /// No description provided for @matchingRevealedBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Hint used'**
+  String get matchingRevealedBadge;
+
+  /// No description provided for @matchingCardSemanticsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{label} {state}'**
+  String matchingCardSemanticsLabel(Object label, Object state);
+
+  /// No description provided for @matchingCompletionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Matching complete'**
+  String get matchingCompletionTitle;
+
+  /// No description provided for @matchingCompletionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You matched every pair in this puzzle.'**
+  String get matchingCompletionSubtitle;
+
+  /// No description provided for @matchingPerfectSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You matched every pair perfectly.'**
+  String get matchingPerfectSubtitle;
+
+  /// No description provided for @matchingCompletionXpReward.
+  ///
+  /// In en, this message translates to:
+  /// **'Completion XP granted'**
+  String get matchingCompletionXpReward;
+
+  /// No description provided for @matchingPairDropReward.
+  ///
+  /// In en, this message translates to:
+  /// **'Each correct pair added drops'**
+  String get matchingPairDropReward;
+
+  /// No description provided for @matchingPerfectBonusReward.
+  ///
+  /// In en, this message translates to:
+  /// **'Perfect matching bonus XP'**
+  String get matchingPerfectBonusReward;
+
+  /// No description provided for @matchingNextPuzzleAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Next puzzle'**
+  String get matchingNextPuzzleAction;
+
+  /// No description provided for @matchingReturnToPackAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Return to pack'**
+  String get matchingReturnToPackAction;
+
+  /// No description provided for @matchingBackHomeAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Back home'**
+  String get matchingBackHomeAction;
+
+  /// No description provided for @matchingPackDifficultyLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Difficulty {min}–{max}'**
+  String matchingPackDifficultyLabel(Object min, Object max);
+
+  /// No description provided for @matchingPackProgressLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{completed} of {total} puzzles completed'**
+  String matchingPackProgressLabel(Object completed, Object total);
+
+  /// No description provided for @matchingPackPerfectLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} perfect'**
+  String matchingPackPerfectLabel(Object count);
+
+  /// No description provided for @matchingPackKidsBasicsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Kids Matching Basics'**
+  String get matchingPackKidsBasicsTitle;
+
+  /// No description provided for @matchingPackKidsBasicsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Simple pairs for early Islamic learning.'**
+  String get matchingPackKidsBasicsSubtitle;
+
+  /// No description provided for @matchingPackArabicTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Arabic Learning'**
+  String get matchingPackArabicTitle;
+
+  /// No description provided for @matchingPackArabicSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Letter and word connections for young learners.'**
+  String get matchingPackArabicSubtitle;
+
+  /// No description provided for @matchingPackQuranTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Qur\'\'an Concepts'**
+  String get matchingPackQuranTitle;
+
+  /// No description provided for @matchingPackQuranSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Match Qur\'\'anic ideas and familiar meanings.'**
+  String get matchingPackQuranSubtitle;
+
+  /// No description provided for @matchingPackHadithTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Hadith Teachings'**
+  String get matchingPackHadithTitle;
+
+  /// No description provided for @matchingPackHadithSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Pair prophetic terms with their teachings.'**
+  String get matchingPackHadithSubtitle;
+
+  /// No description provided for @matchingPackProphetsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Prophets'**
+  String get matchingPackProphetsTitle;
+
+  /// No description provided for @matchingPackProphetsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Match prophetic names with defining lessons and places.'**
+  String get matchingPackProphetsSubtitle;
+
+  /// No description provided for @matchingPackDuaTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Duas'**
+  String get matchingPackDuaTitle;
+
+  /// No description provided for @matchingPackDuaSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect supplications and meanings.'**
+  String get matchingPackDuaSubtitle;
+
+  /// No description provided for @matchingPackAdabTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Character & Adab'**
+  String get matchingPackAdabTitle;
+
+  /// No description provided for @matchingPackAdabSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Pair manners and character traits with clear reminders.'**
+  String get matchingPackAdabSubtitle;
+
+  /// No description provided for @matchingPackDailyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily Mixed'**
+  String get matchingPackDailyTitle;
+
+  /// No description provided for @matchingPackDailySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A rotating pack that supports the daily matching challenge.'**
+  String get matchingPackDailySubtitle;
+
+  /// No description provided for @learnQuizzesMatchingSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Matching Game'**
+  String get learnQuizzesMatchingSectionTitle;
+
+  /// No description provided for @learnQuizzesMatchingSectionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Match words, meanings, and lessons in calm study sets.'**
+  String get learnQuizzesMatchingSectionSubtitle;
+
+  /// No description provided for @learnQuizzesOpenMatching.
+  ///
+  /// In en, this message translates to:
+  /// **'Open Matching Game'**
+  String get learnQuizzesOpenMatching;
+
+  /// No description provided for @ayahCompletionHomeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Ayah Completion'**
+  String get ayahCompletionHomeTitle;
+
+  /// No description provided for @ayahCompletionHomeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete missing words from verified Qur\'\'an ayahs in a calm memorization flow.'**
+  String get ayahCompletionHomeSubtitle;
+
+  /// No description provided for @ayahCompletionLoadErrorTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to load ayah completion right now.'**
+  String get ayahCompletionLoadErrorTitle;
+
+  /// No description provided for @ayahCompletionLoadErrorSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again in a moment. Your saved progress will remain here.'**
+  String get ayahCompletionLoadErrorSubtitle;
+
+  /// No description provided for @ayahCompletionLoadingSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Preparing today\'\'s ayahs and memorization sets.'**
+  String get ayahCompletionLoadingSubtitle;
+
+  /// No description provided for @ayahCompletionNotFoundTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Ayah puzzle not found.'**
+  String get ayahCompletionNotFoundTitle;
+
+  /// No description provided for @ayahCompletionNotFoundSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'This ayah set is unavailable right now.'**
+  String get ayahCompletionNotFoundSubtitle;
+
+  /// No description provided for @ayahCompletionKidsOnlyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'This ayah set is not available in the child profile.'**
+  String get ayahCompletionKidsOnlyTitle;
+
+  /// No description provided for @ayahCompletionKidsModeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Kids Ayahs'**
+  String get ayahCompletionKidsModeTitle;
+
+  /// No description provided for @ayahCompletionKidsModeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Short ayahs with one missing word and gentle guidance.'**
+  String get ayahCompletionKidsModeSubtitle;
+
+  /// No description provided for @ayahCompletionAdultModeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Adult Ayahs'**
+  String get ayahCompletionAdultModeTitle;
+
+  /// No description provided for @ayahCompletionAdultModeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reflective ayahs with multiple blanks for steadier memorization.'**
+  String get ayahCompletionAdultModeSubtitle;
+
+  /// No description provided for @ayahCompletionDailyModeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily Ayah'**
+  String get ayahCompletionDailyModeTitle;
+
+  /// No description provided for @ayahCompletionDailyModeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'One ayah for today with calm repetition and a light daily reward.'**
+  String get ayahCompletionDailyModeSubtitle;
+
+  /// No description provided for @ayahCompletionDailyCompletedSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Today\'\'s {theme} ayah is complete.'**
+  String ayahCompletionDailyCompletedSubtitle(Object theme);
+
+  /// No description provided for @ayahCompletionDailyThemeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Today\'\'s focus: {theme}'**
+  String ayahCompletionDailyThemeLabel(Object theme);
+
+  /// No description provided for @ayahCompletionDailyPuzzleSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily ayah • {theme}'**
+  String ayahCompletionDailyPuzzleSubtitle(Object theme);
+
+  /// No description provided for @ayahCompletionDailyHistoryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent daily ayahs'**
+  String get ayahCompletionDailyHistoryTitle;
+
+  /// No description provided for @ayahCompletionDailyHistorySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A quiet look at your recent Qur\'\'an completion practice.'**
+  String get ayahCompletionDailyHistorySubtitle;
+
+  /// No description provided for @ayahCompletionDailyStreakLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily streak {count}'**
+  String ayahCompletionDailyStreakLabel(Object count);
+
+  /// No description provided for @ayahCompletionDailyCompleteBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily complete'**
+  String get ayahCompletionDailyCompleteBadge;
+
+  /// No description provided for @ayahCompletionPuzzleCountLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} ayah puzzles'**
+  String ayahCompletionPuzzleCountLabel(Object count);
+
+  /// No description provided for @ayahCompletionCompletedCountLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} completed'**
+  String ayahCompletionCompletedCountLabel(Object count);
+
+  /// No description provided for @ayahCompletionXpLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} XP'**
+  String ayahCompletionXpLabel(Object count);
+
+  /// No description provided for @ayahCompletionDropsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} Ocean Drops'**
+  String ayahCompletionDropsLabel(Object count);
+
+  /// No description provided for @ayahCompletionContinueSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue memorization'**
+  String get ayahCompletionContinueSectionTitle;
+
+  /// No description provided for @ayahCompletionContinueSectionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Return to the ayah you last opened and keep the rhythm steady.'**
+  String get ayahCompletionContinueSectionSubtitle;
+
+  /// No description provided for @ayahCompletionFeaturedPacksTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Featured ayah sets'**
+  String get ayahCompletionFeaturedPacksTitle;
+
+  /// No description provided for @ayahCompletionFeaturedPacksSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Begin with short, steady sets for memorization and reflection.'**
+  String get ayahCompletionFeaturedPacksSubtitle;
+
+  /// No description provided for @ayahCompletionThemesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Themes and sets'**
+  String get ayahCompletionThemesTitle;
+
+  /// No description provided for @ayahCompletionThemesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Browse ayahs by theme, memorization need, and daily use.'**
+  String get ayahCompletionThemesSubtitle;
+
+  /// No description provided for @ayahCompletionProgressCountLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{done} of {total} blanks complete'**
+  String ayahCompletionProgressCountLabel(Object done, Object total);
+
+  /// No description provided for @ayahCompletionReferenceLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{reference}'**
+  String ayahCompletionReferenceLabel(Object reference);
+
+  /// No description provided for @ayahCompletionReferenceSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Open this ayah in the Qur\'\'an reader'**
+  String get ayahCompletionReferenceSubtitle;
+
+  /// No description provided for @ayahCompletionOpenPackAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open Set'**
+  String get ayahCompletionOpenPackAction;
+
+  /// No description provided for @ayahCompletionContinueAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get ayahCompletionContinueAction;
+
+  /// No description provided for @ayahCompletionRecommendedAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Recommended Next'**
+  String get ayahCompletionRecommendedAction;
+
+  /// No description provided for @ayahCompletionReplayAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Review Again'**
+  String get ayahCompletionReplayAction;
+
+  /// No description provided for @ayahCompletionStartAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Start'**
+  String get ayahCompletionStartAction;
+
+  /// No description provided for @ayahCompletionPlayAyahAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Play ayah'**
+  String get ayahCompletionPlayAyahAction;
+
+  /// No description provided for @ayahCompletionPerfectBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Perfect'**
+  String get ayahCompletionPerfectBadge;
+
+  /// No description provided for @ayahCompletionPackProgressLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{completed} of {total} complete'**
+  String ayahCompletionPackProgressLabel(Object completed, Object total);
+
+  /// No description provided for @ayahCompletionPackPerfectLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} perfect'**
+  String ayahCompletionPackPerfectLabel(Object count);
+
+  /// No description provided for @ayahCompletionPackDifficultyLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Difficulty {min}-{max}'**
+  String ayahCompletionPackDifficultyLabel(Object min, Object max);
+
+  /// No description provided for @ayahCompletionPuzzleTitleKids.
+  ///
+  /// In en, this message translates to:
+  /// **'Kids Ayah {surah}:{ayah}'**
+  String ayahCompletionPuzzleTitleKids(Object surah, Object ayah);
+
+  /// No description provided for @ayahCompletionPuzzleTitleAdult.
+  ///
+  /// In en, this message translates to:
+  /// **'Ayah Practice {surah}:{ayah}'**
+  String ayahCompletionPuzzleTitleAdult(Object surah, Object ayah);
+
+  /// No description provided for @ayahCompletionPuzzleSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{category} • {count} blanks'**
+  String ayahCompletionPuzzleSubtitle(Object category, Object count);
+
+  /// No description provided for @ayahCompletionVerseSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Ayah'**
+  String get ayahCompletionVerseSectionTitle;
+
+  /// No description provided for @ayahCompletionHintSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Hint'**
+  String get ayahCompletionHintSectionTitle;
+
+  /// No description provided for @ayahCompletionRevealBlankAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Reveal one blank'**
+  String get ayahCompletionRevealBlankAction;
+
+  /// No description provided for @ayahCompletionHintUsageLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Reveal used {count} times'**
+  String ayahCompletionHintUsageLabel(Object count);
+
+  /// No description provided for @ayahCompletionBlankSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Fill the blanks'**
+  String get ayahCompletionBlankSectionTitle;
+
+  /// No description provided for @ayahCompletionBlankPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a blank to continue.'**
+  String get ayahCompletionBlankPrompt;
+
+  /// No description provided for @ayahCompletionBlankSelectedLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Blank {index} selected'**
+  String ayahCompletionBlankSelectedLabel(Object index);
+
+  /// No description provided for @ayahCompletionBlankChipLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Blank {index}'**
+  String ayahCompletionBlankChipLabel(Object index);
+
+  /// No description provided for @ayahCompletionBlankPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Blank {index}'**
+  String ayahCompletionBlankPlaceholder(Object index);
+
+  /// No description provided for @ayahCompletionCompletionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Ayah complete'**
+  String get ayahCompletionCompletionTitle;
+
+  /// No description provided for @ayahCompletionCompletionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'The full ayah is now restored. Revisit it once more and keep it close.'**
+  String get ayahCompletionCompletionSubtitle;
+
+  /// No description provided for @ayahCompletionPerfectSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed without mistakes or hints.'**
+  String get ayahCompletionPerfectSubtitle;
+
+  /// No description provided for @ayahCompletionCompletionXpReward.
+  ///
+  /// In en, this message translates to:
+  /// **'Completion XP awarded'**
+  String get ayahCompletionCompletionXpReward;
+
+  /// No description provided for @ayahCompletionBlankDropReward.
+  ///
+  /// In en, this message translates to:
+  /// **'Correct blanks added Ocean Drops'**
+  String get ayahCompletionBlankDropReward;
+
+  /// No description provided for @ayahCompletionPerfectBonusReward.
+  ///
+  /// In en, this message translates to:
+  /// **'Perfect completion bonus awarded'**
+  String get ayahCompletionPerfectBonusReward;
+
+  /// No description provided for @ayahCompletionNextPuzzleAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Next Ayah'**
+  String get ayahCompletionNextPuzzleAction;
+
+  /// No description provided for @ayahCompletionReturnToPackAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to Set'**
+  String get ayahCompletionReturnToPackAction;
+
+  /// No description provided for @ayahCompletionBackHomeAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Back Home'**
+  String get ayahCompletionBackHomeAction;
+
+  /// No description provided for @ayahCompletionCategoryShortSurahs.
+  ///
+  /// In en, this message translates to:
+  /// **'Short Surahs'**
+  String get ayahCompletionCategoryShortSurahs;
+
+  /// No description provided for @ayahCompletionCategoryDailyDuaAyahs.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily Dua Ayahs'**
+  String get ayahCompletionCategoryDailyDuaAyahs;
+
+  /// No description provided for @ayahCompletionCategoryMercy.
+  ///
+  /// In en, this message translates to:
+  /// **'Mercy'**
+  String get ayahCompletionCategoryMercy;
+
+  /// No description provided for @ayahCompletionCategoryPatience.
+  ///
+  /// In en, this message translates to:
+  /// **'Patience'**
+  String get ayahCompletionCategoryPatience;
+
+  /// No description provided for @ayahCompletionCategoryGratitude.
+  ///
+  /// In en, this message translates to:
+  /// **'Gratitude'**
+  String get ayahCompletionCategoryGratitude;
+
+  /// No description provided for @ayahCompletionCategoryMemorization.
+  ///
+  /// In en, this message translates to:
+  /// **'Memorization'**
+  String get ayahCompletionCategoryMemorization;
+
+  /// No description provided for @ayahCompletionCategoryQuran.
+  ///
+  /// In en, this message translates to:
+  /// **'Qur\'\'an'**
+  String get ayahCompletionCategoryQuran;
+
+  /// No description provided for @ayahCompletionCategoryMixed.
+  ///
+  /// In en, this message translates to:
+  /// **'Mixed'**
+  String get ayahCompletionCategoryMixed;
+
+  /// No description provided for @ayahCompletionDifficultyGentle.
+  ///
+  /// In en, this message translates to:
+  /// **'Gentle'**
+  String get ayahCompletionDifficultyGentle;
+
+  /// No description provided for @ayahCompletionDifficultySteady.
+  ///
+  /// In en, this message translates to:
+  /// **'Steady'**
+  String get ayahCompletionDifficultySteady;
+
+  /// No description provided for @ayahCompletionDifficultyReflective.
+  ///
+  /// In en, this message translates to:
+  /// **'Reflective'**
+  String get ayahCompletionDifficultyReflective;
+
+  /// No description provided for @ayahCompletionDifficultyDeep.
+  ///
+  /// In en, this message translates to:
+  /// **'Deep'**
+  String get ayahCompletionDifficultyDeep;
+
+  /// No description provided for @ayahCompletionPackKidsShortSurahsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Kids Short Surahs'**
+  String get ayahCompletionPackKidsShortSurahsTitle;
+
+  /// No description provided for @ayahCompletionPackKidsShortSurahsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Early memorization ayahs with one clear blank at a time.'**
+  String get ayahCompletionPackKidsShortSurahsSubtitle;
+
+  /// No description provided for @ayahCompletionPackKidsMemorizationTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Kids Memorization'**
+  String get ayahCompletionPackKidsMemorizationTitle;
+
+  /// No description provided for @ayahCompletionPackKidsMemorizationSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A small set for repeating familiar ayahs calmly.'**
+  String get ayahCompletionPackKidsMemorizationSubtitle;
+
+  /// No description provided for @ayahCompletionPackAdultShortSurahsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Adult Short Surahs'**
+  String get ayahCompletionPackAdultShortSurahsTitle;
+
+  /// No description provided for @ayahCompletionPackAdultShortSurahsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Short ayahs with slightly deeper recall and reflection.'**
+  String get ayahCompletionPackAdultShortSurahsSubtitle;
+
+  /// No description provided for @ayahCompletionPackAdultDailyDuasTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily Dua Ayahs'**
+  String get ayahCompletionPackAdultDailyDuasTitle;
+
+  /// No description provided for @ayahCompletionPackAdultDailyDuasSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Ayahs often revisited in dua, hope, and personal turning to Allah.'**
+  String get ayahCompletionPackAdultDailyDuasSubtitle;
+
+  /// No description provided for @ayahCompletionPackAdultMercyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Mercy Ayahs'**
+  String get ayahCompletionPackAdultMercyTitle;
+
+  /// No description provided for @ayahCompletionPackAdultMercySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Verses that draw the heart back to Allah\'\'s mercy and hope.'**
+  String get ayahCompletionPackAdultMercySubtitle;
+
+  /// No description provided for @ayahCompletionPackAdultPatienceTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Patience Ayahs'**
+  String get ayahCompletionPackAdultPatienceTitle;
+
+  /// No description provided for @ayahCompletionPackAdultPatienceSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Ayahs for sabr, steadiness, and trust through difficulty.'**
+  String get ayahCompletionPackAdultPatienceSubtitle;
+
+  /// No description provided for @ayahCompletionPackAdultGratitudeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Gratitude Ayahs'**
+  String get ayahCompletionPackAdultGratitudeTitle;
+
+  /// No description provided for @ayahCompletionPackAdultGratitudeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Verses that reinforce shukr, remembrance, and thankful living.'**
+  String get ayahCompletionPackAdultGratitudeSubtitle;
+
+  /// No description provided for @ayahCompletionPackAdultMemorizationTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Memorization Set'**
+  String get ayahCompletionPackAdultMemorizationTitle;
+
+  /// No description provided for @ayahCompletionPackAdultMemorizationSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Foundational ayahs for steady review and recitation confidence.'**
+  String get ayahCompletionPackAdultMemorizationSubtitle;
+
+  /// No description provided for @ayahCompletionPackDailyMixedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily Mixed'**
+  String get ayahCompletionPackDailyMixedTitle;
+
+  /// No description provided for @ayahCompletionPackDailyMixedSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A rotating pool prepared for daily ayah practice.'**
+  String get ayahCompletionPackDailyMixedSubtitle;
+
+  /// No description provided for @learnQuizzesAyahCompletionSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Ayah Completion'**
+  String get learnQuizzesAyahCompletionSectionTitle;
+
+  /// No description provided for @learnQuizzesAyahCompletionSectionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Fill missing Qur\'\'an words using the app\'\'s verified verse text.'**
+  String get learnQuizzesAyahCompletionSectionSubtitle;
+
+  /// No description provided for @learnQuizzesOpenAyahCompletion.
+  ///
+  /// In en, this message translates to:
+  /// **'Open Ayah Completion'**
+  String get learnQuizzesOpenAyahCompletion;
+
+  /// No description provided for @hadithReflectionHomeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Hadith Reflection'**
+  String get hadithReflectionHomeTitle;
+
+  /// No description provided for @hadithReflectionHomeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reflect on authentic Hadith teachings through gentle real-life decisions.'**
+  String get hadithReflectionHomeSubtitle;
+
+  /// No description provided for @hadithReflectionLoadErrorTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Hadith reflections could not load'**
+  String get hadithReflectionLoadErrorTitle;
+
+  /// No description provided for @hadithReflectionLoadErrorSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again in a moment. The local reflection library should remain available offline.'**
+  String get hadithReflectionLoadErrorSubtitle;
+
+  /// No description provided for @hadithReflectionLoadingSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Preparing reflection prompts and scenario sets.'**
+  String get hadithReflectionLoadingSubtitle;
+
+  /// No description provided for @hadithReflectionNotFoundTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reflection not found'**
+  String get hadithReflectionNotFoundTitle;
+
+  /// No description provided for @hadithReflectionNotFoundSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'This reflection could not be found in the current set.'**
+  String get hadithReflectionNotFoundSubtitle;
+
+  /// No description provided for @hadithReflectionKidsOnlyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'This reflection is not available in the current kids profile.'**
+  String get hadithReflectionKidsOnlyTitle;
+
+  /// No description provided for @hadithReflectionDailyModeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily Hadith Reflection'**
+  String get hadithReflectionDailyModeTitle;
+
+  /// No description provided for @hadithReflectionDailyModeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'One grounded Hadith scenario each day, with a calm reflection flow.'**
+  String get hadithReflectionDailyModeSubtitle;
+
+  /// No description provided for @hadithReflectionDailyThemeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Today\'\'s theme: {theme}'**
+  String hadithReflectionDailyThemeLabel(Object theme);
+
+  /// No description provided for @hadithReflectionDailyCompleteBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily reflection completed'**
+  String get hadithReflectionDailyCompleteBadge;
+
+  /// No description provided for @hadithReflectionKidsModeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Kids Reflection'**
+  String get hadithReflectionKidsModeTitle;
+
+  /// No description provided for @hadithReflectionKidsModeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Shorter scenarios about kindness, honesty, patience, and respect.'**
+  String get hadithReflectionKidsModeSubtitle;
+
+  /// No description provided for @hadithReflectionAdultModeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Adult Reflection'**
+  String get hadithReflectionAdultModeTitle;
+
+  /// No description provided for @hadithReflectionAdultModeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'More nuanced scenarios about intention, speech, accountability, and service.'**
+  String get hadithReflectionAdultModeSubtitle;
+
+  /// No description provided for @hadithReflectionPuzzleCountLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} reflections'**
+  String hadithReflectionPuzzleCountLabel(Object count);
+
+  /// No description provided for @hadithReflectionCompletedCountLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} completed'**
+  String hadithReflectionCompletedCountLabel(Object count);
+
+  /// No description provided for @hadithReflectionBestChoiceCountLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} best-aligned choices'**
+  String hadithReflectionBestChoiceCountLabel(Object count);
+
+  /// No description provided for @hadithReflectionXpLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} XP'**
+  String hadithReflectionXpLabel(Object count);
+
+  /// No description provided for @hadithReflectionDropsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} drops'**
+  String hadithReflectionDropsLabel(Object count);
+
+  /// No description provided for @hadithReflectionDailyStreakLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{count}-day streak'**
+  String hadithReflectionDailyStreakLabel(Object count);
+
+  /// No description provided for @hadithReflectionContinueSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue reflecting'**
+  String get hadithReflectionContinueSectionTitle;
+
+  /// No description provided for @hadithReflectionContinueSectionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Resume the most recent scenario you started.'**
+  String get hadithReflectionContinueSectionSubtitle;
+
+  /// No description provided for @hadithReflectionDailyHistoryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent daily reflections'**
+  String get hadithReflectionDailyHistoryTitle;
+
+  /// No description provided for @hadithReflectionDailyHistorySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A short look back at the reflections you opened this week.'**
+  String get hadithReflectionDailyHistorySubtitle;
+
+  /// No description provided for @hadithReflectionFeaturedPacksTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Featured packs'**
+  String get hadithReflectionFeaturedPacksTitle;
+
+  /// No description provided for @hadithReflectionFeaturedPacksSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Curated reflection sets for character, adab, and daily life.'**
+  String get hadithReflectionFeaturedPacksSubtitle;
+
+  /// No description provided for @hadithReflectionThemesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Themes'**
+  String get hadithReflectionThemesTitle;
+
+  /// No description provided for @hadithReflectionThemesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Browse reflections by the teaching being practiced.'**
+  String get hadithReflectionThemesSubtitle;
+
+  /// No description provided for @hadithReflectionPackDifficultyLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Difficulty {min}–{max}'**
+  String hadithReflectionPackDifficultyLabel(Object min, Object max);
+
+  /// No description provided for @hadithReflectionPackProgressLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{completed} of {total} completed'**
+  String hadithReflectionPackProgressLabel(Object completed, Object total);
+
+  /// No description provided for @hadithReflectionPackBestChoiceLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} best-aligned'**
+  String hadithReflectionPackBestChoiceLabel(Object count);
+
+  /// No description provided for @hadithReflectionContinueAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue reflection'**
+  String get hadithReflectionContinueAction;
+
+  /// No description provided for @hadithReflectionRecommendedAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Recommended next reflection'**
+  String get hadithReflectionRecommendedAction;
+
+  /// No description provided for @hadithReflectionResumeBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Resume'**
+  String get hadithReflectionResumeBadge;
+
+  /// No description provided for @hadithReflectionBestChoiceBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Best aligned'**
+  String get hadithReflectionBestChoiceBadge;
+
+  /// No description provided for @hadithReflectionCompletedBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get hadithReflectionCompletedBadge;
+
+  /// No description provided for @hadithReflectionPuzzleTitleKids.
+  ///
+  /// In en, this message translates to:
+  /// **'Kids Hadith Reflection'**
+  String get hadithReflectionPuzzleTitleKids;
+
+  /// No description provided for @hadithReflectionPuzzleTitleAdult.
+  ///
+  /// In en, this message translates to:
+  /// **'Hadith Reflection'**
+  String get hadithReflectionPuzzleTitleAdult;
+
+  /// No description provided for @hadithReflectionDailyPuzzleSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily reflection for {category}'**
+  String hadithReflectionDailyPuzzleSubtitle(Object category);
+
+  /// No description provided for @hadithReflectionPuzzleSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Scenario practice in {category}'**
+  String hadithReflectionPuzzleSubtitle(Object category);
+
+  /// No description provided for @hadithReflectionScenarioTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Scenario'**
+  String get hadithReflectionScenarioTitle;
+
+  /// No description provided for @hadithReflectionTeachingSummaryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Teaching summary'**
+  String get hadithReflectionTeachingSummaryTitle;
+
+  /// No description provided for @hadithReflectionReflectionPromptTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reflection prompt'**
+  String get hadithReflectionReflectionPromptTitle;
+
+  /// No description provided for @hadithReflectionHelpAction.
+  ///
+  /// In en, this message translates to:
+  /// **'View help'**
+  String get hadithReflectionHelpAction;
+
+  /// No description provided for @hadithReflectionHelpViewedAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Help viewed'**
+  String get hadithReflectionHelpViewedAction;
+
+  /// No description provided for @hadithReflectionHelpDialogTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Helpful reminder'**
+  String get hadithReflectionHelpDialogTitle;
+
+  /// No description provided for @hadithReflectionChoiceSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'What would you do?'**
+  String get hadithReflectionChoiceSectionTitle;
+
+  /// No description provided for @hadithReflectionOutcomeBest.
+  ///
+  /// In en, this message translates to:
+  /// **'Best aligned'**
+  String get hadithReflectionOutcomeBest;
+
+  /// No description provided for @hadithReflectionOutcomeAcceptable.
+  ///
+  /// In en, this message translates to:
+  /// **'Acceptable, but not strongest'**
+  String get hadithReflectionOutcomeAcceptable;
+
+  /// No description provided for @hadithReflectionOutcomeNeedsReflection.
+  ///
+  /// In en, this message translates to:
+  /// **'Needs reflection'**
+  String get hadithReflectionOutcomeNeedsReflection;
+
+  /// No description provided for @hadithReflectionFeedbackTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Feedback'**
+  String get hadithReflectionFeedbackTitle;
+
+  /// No description provided for @hadithReflectionCompletionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reflection complete'**
+  String get hadithReflectionCompletionTitle;
+
+  /// No description provided for @hadithReflectionCompletionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You completed this reflection and reviewed its teaching.'**
+  String get hadithReflectionCompletionSubtitle;
+
+  /// No description provided for @hadithReflectionCompletionBestSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You chose the response most closely aligned with the Hadith\'\'s teaching.'**
+  String get hadithReflectionCompletionBestSubtitle;
+
+  /// No description provided for @hadithReflectionTakeawayTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Takeaway'**
+  String get hadithReflectionTakeawayTitle;
+
+  /// No description provided for @hadithReflectionCompletionXpReward.
+  ///
+  /// In en, this message translates to:
+  /// **'+{count} XP awarded'**
+  String hadithReflectionCompletionXpReward(Object count);
+
+  /// No description provided for @hadithReflectionCompletionDropReward.
+  ///
+  /// In en, this message translates to:
+  /// **'This reflection added {count} Ocean Drop'**
+  String hadithReflectionCompletionDropReward(Object count);
+
+  /// No description provided for @hadithReflectionBestChoiceReward.
+  ///
+  /// In en, this message translates to:
+  /// **'Best-choice bonus +{count} XP'**
+  String hadithReflectionBestChoiceReward(Object count);
+
+  /// No description provided for @hadithReflectionNextPuzzleAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Next reflection'**
+  String get hadithReflectionNextPuzzleAction;
+
+  /// No description provided for @hadithReflectionReturnToPackAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to pack'**
+  String get hadithReflectionReturnToPackAction;
+
+  /// No description provided for @hadithReflectionBackHomeAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Back home'**
+  String get hadithReflectionBackHomeAction;
+
+  /// No description provided for @hadithReflectionDifficultyGentle.
+  ///
+  /// In en, this message translates to:
+  /// **'Gentle'**
+  String get hadithReflectionDifficultyGentle;
+
+  /// No description provided for @hadithReflectionDifficultySteady.
+  ///
+  /// In en, this message translates to:
+  /// **'Steady'**
+  String get hadithReflectionDifficultySteady;
+
+  /// No description provided for @hadithReflectionDifficultyReflective.
+  ///
+  /// In en, this message translates to:
+  /// **'Reflective'**
+  String get hadithReflectionDifficultyReflective;
+
+  /// No description provided for @hadithReflectionDifficultyDeep.
+  ///
+  /// In en, this message translates to:
+  /// **'Deep'**
+  String get hadithReflectionDifficultyDeep;
+
+  /// No description provided for @hadithReflectionCategoryKindness.
+  ///
+  /// In en, this message translates to:
+  /// **'Kindness'**
+  String get hadithReflectionCategoryKindness;
+
+  /// No description provided for @hadithReflectionCategoryHonesty.
+  ///
+  /// In en, this message translates to:
+  /// **'Honesty'**
+  String get hadithReflectionCategoryHonesty;
+
+  /// No description provided for @hadithReflectionCategoryPatience.
+  ///
+  /// In en, this message translates to:
+  /// **'Patience'**
+  String get hadithReflectionCategoryPatience;
+
+  /// No description provided for @hadithReflectionCategoryAnger.
+  ///
+  /// In en, this message translates to:
+  /// **'Anger control'**
+  String get hadithReflectionCategoryAnger;
+
+  /// No description provided for @hadithReflectionCategoryFamily.
+  ///
+  /// In en, this message translates to:
+  /// **'Family'**
+  String get hadithReflectionCategoryFamily;
+
+  /// No description provided for @hadithReflectionCategoryCommunity.
+  ///
+  /// In en, this message translates to:
+  /// **'Community'**
+  String get hadithReflectionCategoryCommunity;
+
+  /// No description provided for @hadithReflectionCategoryRepentance.
+  ///
+  /// In en, this message translates to:
+  /// **'Repentance'**
+  String get hadithReflectionCategoryRepentance;
+
+  /// No description provided for @hadithReflectionCategorySpeech.
+  ///
+  /// In en, this message translates to:
+  /// **'Adab in speech'**
+  String get hadithReflectionCategorySpeech;
+
+  /// No description provided for @hadithReflectionCategorySincerity.
+  ///
+  /// In en, this message translates to:
+  /// **'Sincerity'**
+  String get hadithReflectionCategorySincerity;
+
+  /// No description provided for @hadithReflectionCategoryRespect.
+  ///
+  /// In en, this message translates to:
+  /// **'Respect'**
+  String get hadithReflectionCategoryRespect;
+
+  /// No description provided for @hadithReflectionCategoryJustice.
+  ///
+  /// In en, this message translates to:
+  /// **'Justice'**
+  String get hadithReflectionCategoryJustice;
+
+  /// No description provided for @hadithReflectionCategoryAccountability.
+  ///
+  /// In en, this message translates to:
+  /// **'Accountability'**
+  String get hadithReflectionCategoryAccountability;
+
+  /// No description provided for @hadithReflectionCategoryIntegrity.
+  ///
+  /// In en, this message translates to:
+  /// **'Integrity'**
+  String get hadithReflectionCategoryIntegrity;
+
+  /// No description provided for @hadithReflectionCategoryService.
+  ///
+  /// In en, this message translates to:
+  /// **'Service'**
+  String get hadithReflectionCategoryService;
+
+  /// No description provided for @hadithReflectionCategoryFocus.
+  ///
+  /// In en, this message translates to:
+  /// **'Focus'**
+  String get hadithReflectionCategoryFocus;
+
+  /// No description provided for @hadithReflectionCategoryResilience.
+  ///
+  /// In en, this message translates to:
+  /// **'Resilience'**
+  String get hadithReflectionCategoryResilience;
+
+  /// No description provided for @hadithReflectionCategoryMixed.
+  ///
+  /// In en, this message translates to:
+  /// **'Mixed'**
+  String get hadithReflectionCategoryMixed;
+
+  /// No description provided for @hadithReflectionPackKidsKindnessTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Kids Kindness Basics'**
+  String get hadithReflectionPackKidsKindnessTitle;
+
+  /// No description provided for @hadithReflectionPackKidsKindnessSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Simple reflection scenarios for kindness, sharing, and warm adab.'**
+  String get hadithReflectionPackKidsKindnessSubtitle;
+
+  /// No description provided for @hadithReflectionPackHonestyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Honesty & Trust'**
+  String get hadithReflectionPackHonestyTitle;
+
+  /// No description provided for @hadithReflectionPackHonestySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Scenarios about truthfulness, amanah, and integrity in daily choices.'**
+  String get hadithReflectionPackHonestySubtitle;
+
+  /// No description provided for @hadithReflectionPackPatienceTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Patience & Resilience'**
+  String get hadithReflectionPackPatienceTitle;
+
+  /// No description provided for @hadithReflectionPackPatienceSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reflect on sabr, self-control, and staying steady when tested.'**
+  String get hadithReflectionPackPatienceSubtitle;
+
+  /// No description provided for @hadithReflectionPackAngerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Anger Control'**
+  String get hadithReflectionPackAngerTitle;
+
+  /// No description provided for @hadithReflectionPackAngerSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Practice calmer decisions when frustration and sharp speech appear.'**
+  String get hadithReflectionPackAngerSubtitle;
+
+  /// No description provided for @hadithReflectionPackFamilyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Family & Respect'**
+  String get hadithReflectionPackFamilyTitle;
+
+  /// No description provided for @hadithReflectionPackFamilySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Serving family, honoring trust, and carrying home responsibilities well.'**
+  String get hadithReflectionPackFamilySubtitle;
+
+  /// No description provided for @hadithReflectionPackCommunityTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Community & Service'**
+  String get hadithReflectionPackCommunityTitle;
+
+  /// No description provided for @hadithReflectionPackCommunitySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Advice, service, and helping others with sincerity and benefit.'**
+  String get hadithReflectionPackCommunitySubtitle;
+
+  /// No description provided for @hadithReflectionPackRepentanceTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Repentance & Hope'**
+  String get hadithReflectionPackRepentanceTitle;
+
+  /// No description provided for @hadithReflectionPackRepentanceSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Scenarios that keep the heart open to tawbah, mercy, and return.'**
+  String get hadithReflectionPackRepentanceSubtitle;
+
+  /// No description provided for @hadithReflectionPackSpeechTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Adab in Speech'**
+  String get hadithReflectionPackSpeechTitle;
+
+  /// No description provided for @hadithReflectionPackSpeechSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose words with restraint, gentleness, and beneficial intention.'**
+  String get hadithReflectionPackSpeechSubtitle;
+
+  /// No description provided for @hadithReflectionPackDailyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily Mixed Reflections'**
+  String get hadithReflectionPackDailyTitle;
+
+  /// No description provided for @hadithReflectionPackDailySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A rotating pool prepared for daily Hadith reflection.'**
+  String get hadithReflectionPackDailySubtitle;
+
+  /// No description provided for @learnQuizzesHadithReflectionSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Hadith Reflection'**
+  String get learnQuizzesHadithReflectionSectionTitle;
+
+  /// No description provided for @learnQuizzesHadithReflectionSectionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reflect on authentic Hadith teachings through practical scenario decisions.'**
+  String get learnQuizzesHadithReflectionSectionSubtitle;
+
+  /// No description provided for @learnQuizzesOpenHadithReflection.
+  ///
+  /// In en, this message translates to:
+  /// **'Open Hadith Reflection'**
+  String get learnQuizzesOpenHadithReflection;
+
+  /// No description provided for @dailyKnowledgeHubTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily Knowledge Challenge'**
+  String get dailyKnowledgeHubTitle;
+
+  /// No description provided for @dailyKnowledgeHubSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A balanced daily journey across the app’s knowledge games.'**
+  String get dailyKnowledgeHubSubtitle;
+
+  /// No description provided for @dailyKnowledgeHubLoadErrorTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily challenge could not load'**
+  String get dailyKnowledgeHubLoadErrorTitle;
+
+  /// No description provided for @dailyKnowledgeHubLoadErrorSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again in a moment. The daily bundle should remain available offline.'**
+  String get dailyKnowledgeHubLoadErrorSubtitle;
+
+  /// No description provided for @dailyKnowledgeHubDateLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Today: {date}'**
+  String dailyKnowledgeHubDateLabel(Object date);
+
+  /// No description provided for @dailyKnowledgeHubProgressLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{completed} of {total} completed'**
+  String dailyKnowledgeHubProgressLabel(Object completed, Object total);
+
+  /// No description provided for @dailyKnowledgeHubStreakLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{count}-day bundle streak'**
+  String dailyKnowledgeHubStreakLabel(Object count);
+
+  /// No description provided for @dailyKnowledgeHubCompletedBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Bundle complete'**
+  String get dailyKnowledgeHubCompletedBadge;
+
+  /// No description provided for @dailyKnowledgeHubJourneySummary.
+  ///
+  /// In en, this message translates to:
+  /// **'Move through knowledge, recognition, connection, memorization, and action in one calm daily path.'**
+  String get dailyKnowledgeHubJourneySummary;
+
+  /// No description provided for @dailyKnowledgeHubTodayTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Today’s journey'**
+  String get dailyKnowledgeHubTodayTitle;
+
+  /// No description provided for @dailyKnowledgeHubTodaySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete the five daily challenges in any order.'**
+  String get dailyKnowledgeHubTodaySubtitle;
+
+  /// No description provided for @dailyKnowledgeHubDifficultyLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Difficulty {count}'**
+  String dailyKnowledgeHubDifficultyLabel(Object count);
+
+  /// No description provided for @dailyKnowledgeHubGameDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get dailyKnowledgeHubGameDone;
+
+  /// No description provided for @dailyKnowledgeHubGameOpen.
+  ///
+  /// In en, this message translates to:
+  /// **'Open challenge'**
+  String get dailyKnowledgeHubGameOpen;
+
+  /// No description provided for @dailyKnowledgeHubGameSubtitleCrossword.
+  ///
+  /// In en, this message translates to:
+  /// **'Quick recall through clues and connected concepts.'**
+  String get dailyKnowledgeHubGameSubtitleCrossword;
+
+  /// No description provided for @dailyKnowledgeHubGameSubtitleWordSearch.
+  ///
+  /// In en, this message translates to:
+  /// **'Recognition practice through themed letter grids.'**
+  String get dailyKnowledgeHubGameSubtitleWordSearch;
+
+  /// No description provided for @dailyKnowledgeHubGameSubtitleMatching.
+  ///
+  /// In en, this message translates to:
+  /// **'Strengthen associations between terms, meanings, and ideas.'**
+  String get dailyKnowledgeHubGameSubtitleMatching;
+
+  /// No description provided for @dailyKnowledgeHubGameSubtitleAyahCompletion.
+  ///
+  /// In en, this message translates to:
+  /// **'Review memorization through verified Qur’an word recall.'**
+  String get dailyKnowledgeHubGameSubtitleAyahCompletion;
+
+  /// No description provided for @dailyKnowledgeHubGameSubtitleHadithReflection.
+  ///
+  /// In en, this message translates to:
+  /// **'Apply Hadith guidance through practical scenario reflection.'**
+  String get dailyKnowledgeHubGameSubtitleHadithReflection;
+
+  /// No description provided for @dailyKnowledgeHubCompletionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily journey complete'**
+  String get dailyKnowledgeHubCompletionTitle;
+
+  /// No description provided for @dailyKnowledgeHubCompletionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You completed the full daily knowledge bundle for today.'**
+  String get dailyKnowledgeHubCompletionSubtitle;
+
+  /// No description provided for @dailyKnowledgeHubBonusXpReward.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily bundle bonus +{count} XP'**
+  String dailyKnowledgeHubBonusXpReward(Object count);
+
+  /// No description provided for @dailyKnowledgeHubBonusDropReward.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily bundle bonus +{count} Ocean Drop'**
+  String dailyKnowledgeHubBonusDropReward(Object count);
+
+  /// No description provided for @dailyKnowledgeHubHistoryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent bundle history'**
+  String get dailyKnowledgeHubHistoryTitle;
+
+  /// No description provided for @dailyKnowledgeHubHistorySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A lightweight view of your recent daily bundle completions.'**
+  String get dailyKnowledgeHubHistorySubtitle;
+
+  /// No description provided for @dailyKnowledgeHubHistoryDone.
+  ///
+  /// In en, this message translates to:
+  /// **'{date} completed'**
+  String dailyKnowledgeHubHistoryDone(Object date);
+
+  /// No description provided for @dailyKnowledgeHubHistoryOpen.
+  ///
+  /// In en, this message translates to:
+  /// **'{date} started'**
+  String dailyKnowledgeHubHistoryOpen(Object date);
+
+  /// No description provided for @dailyKnowledgeHubAdaptiveTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Adaptive guidance'**
+  String get dailyKnowledgeHubAdaptiveTitle;
+
+  /// No description provided for @dailyKnowledgeHubAdaptiveSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Today’s bundle is gently adjusted around your stronger and weaker game patterns.'**
+  String get dailyKnowledgeHubAdaptiveSubtitle;
+
+  /// No description provided for @dailyKnowledgeHubAdaptiveSupportLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Extra support: {game}'**
+  String dailyKnowledgeHubAdaptiveSupportLabel(Object game);
+
+  /// No description provided for @dailyKnowledgeHubAdaptiveChallengeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Slight stretch: {game}'**
+  String dailyKnowledgeHubAdaptiveChallengeLabel(Object game);
+
+  /// No description provided for @dailyKnowledgeHubAdaptiveGameCrossword.
+  ///
+  /// In en, this message translates to:
+  /// **'Crossword'**
+  String get dailyKnowledgeHubAdaptiveGameCrossword;
+
+  /// No description provided for @dailyKnowledgeHubAdaptiveGameWordSearch.
+  ///
+  /// In en, this message translates to:
+  /// **'Word Search'**
+  String get dailyKnowledgeHubAdaptiveGameWordSearch;
+
+  /// No description provided for @dailyKnowledgeHubAdaptiveGameMatching.
+  ///
+  /// In en, this message translates to:
+  /// **'Matching'**
+  String get dailyKnowledgeHubAdaptiveGameMatching;
+
+  /// No description provided for @dailyKnowledgeHubAdaptiveGameAyahCompletion.
+  ///
+  /// In en, this message translates to:
+  /// **'Ayah Completion'**
+  String get dailyKnowledgeHubAdaptiveGameAyahCompletion;
+
+  /// No description provided for @dailyKnowledgeHubAdaptiveGameHadithReflection.
+  ///
+  /// In en, this message translates to:
+  /// **'Hadith Reflection'**
+  String get dailyKnowledgeHubAdaptiveGameHadithReflection;
+
+  /// No description provided for @spiritualGrowthTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Spiritual Growth'**
+  String get spiritualGrowthTitle;
+
+  /// No description provided for @spiritualGrowthSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A calm layer for turning knowledge into intention, action, and gentle reflection.'**
+  String get spiritualGrowthSubtitle;
+
+  /// No description provided for @spiritualGrowthShortcutSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Set one intention, notice meaningful actions, and reflect without noise.'**
+  String get spiritualGrowthShortcutSubtitle;
+
+  /// No description provided for @spiritualGrowthChooseIntentionAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose intention'**
+  String get spiritualGrowthChooseIntentionAction;
+
+  /// No description provided for @spiritualGrowthChooseIntentionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick a small focus for today.'**
+  String get spiritualGrowthChooseIntentionSubtitle;
+
+  /// No description provided for @spiritualGrowthChooseIntentionPageSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Accept today’s suggestion or choose a different gentle focus.'**
+  String get spiritualGrowthChooseIntentionPageSubtitle;
+
+  /// No description provided for @spiritualGrowthReflectionAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Evening reflection'**
+  String get spiritualGrowthReflectionAction;
+
+  /// No description provided for @spiritualGrowthReflectionEntrySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A short end-of-day check-in to carry meaning into tomorrow.'**
+  String get spiritualGrowthReflectionEntrySubtitle;
+
+  /// No description provided for @spiritualGrowthReflectionCompletedSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Today’s reflection has been saved gently.'**
+  String get spiritualGrowthReflectionCompletedSubtitle;
+
+  /// No description provided for @spiritualGrowthTodayIntentionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Today’s intention'**
+  String get spiritualGrowthTodayIntentionTitle;
+
+  /// No description provided for @spiritualGrowthSuggestedIntentionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Suggested intention'**
+  String get spiritualGrowthSuggestedIntentionTitle;
+
+  /// No description provided for @spiritualGrowthAcceptIntentionAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Accept intention'**
+  String get spiritualGrowthAcceptIntentionAction;
+
+  /// No description provided for @spiritualGrowthEffortLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Effort {count}'**
+  String spiritualGrowthEffortLabel(Object count);
+
+  /// No description provided for @spiritualGrowthReflectionStreakLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{count}-day reflection streak'**
+  String spiritualGrowthReflectionStreakLabel(Object count);
+
+  /// No description provided for @spiritualGrowthDailyActionsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Meaningful actions'**
+  String get spiritualGrowthDailyActionsTitle;
+
+  /// No description provided for @spiritualGrowthDailyActionsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'These come from your existing worship, learning, and daily challenge activity.'**
+  String get spiritualGrowthDailyActionsSubtitle;
+
+  /// No description provided for @spiritualGrowthRealLifeActionsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Real-life acknowledgments'**
+  String get spiritualGrowthRealLifeActionsTitle;
+
+  /// No description provided for @spiritualGrowthRealLifeActionsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark a few small acts without turning them into performance.'**
+  String get spiritualGrowthRealLifeActionsSubtitle;
+
+  /// No description provided for @spiritualGrowthReflectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily reflection'**
+  String get spiritualGrowthReflectionTitle;
+
+  /// No description provided for @spiritualGrowthReflectionPageSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A short, respectful review of what you carried into the day.'**
+  String get spiritualGrowthReflectionPageSubtitle;
+
+  /// No description provided for @spiritualGrowthReflectionSavedBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Reflection saved'**
+  String get spiritualGrowthReflectionSavedBadge;
+
+  /// No description provided for @spiritualGrowthMoodTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'How did your heart feel today?'**
+  String get spiritualGrowthMoodTitle;
+
+  /// No description provided for @spiritualGrowthCompletedActionsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed actions'**
+  String get spiritualGrowthCompletedActionsTitle;
+
+  /// No description provided for @spiritualGrowthOptionalNoteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Optional note'**
+  String get spiritualGrowthOptionalNoteTitle;
+
+  /// No description provided for @spiritualGrowthOptionalNoteHint.
+  ///
+  /// In en, this message translates to:
+  /// **'A short private note, if helpful.'**
+  String get spiritualGrowthOptionalNoteHint;
+
+  /// No description provided for @spiritualGrowthSaveReflectionAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Save reflection'**
+  String get spiritualGrowthSaveReflectionAction;
+
+  /// No description provided for @spiritualGrowthReflectionSavedSnack.
+  ///
+  /// In en, this message translates to:
+  /// **'Reflection saved for today.'**
+  String get spiritualGrowthReflectionSavedSnack;
+
+  /// No description provided for @spiritualGrowthThemeSummaryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Theme focus'**
+  String get spiritualGrowthThemeSummaryTitle;
+
+  /// No description provided for @spiritualGrowthThemeSummarySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A gentle view of the themes you have been acting on lately.'**
+  String get spiritualGrowthThemeSummarySubtitle;
+
+  /// No description provided for @spiritualGrowthThemeSummaryEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Theme insights will appear after a few days of intentions and reflection.'**
+  String get spiritualGrowthThemeSummaryEmpty;
+
+  /// No description provided for @spiritualGrowthThemeCountLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{actions} actions across {days} days'**
+  String spiritualGrowthThemeCountLabel(Object actions, Object days);
+
+  /// No description provided for @spiritualGrowthViewThemesAction.
+  ///
+  /// In en, this message translates to:
+  /// **'View theme progress'**
+  String get spiritualGrowthViewThemesAction;
+
+  /// No description provided for @spiritualGrowthThemePageSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A calm summary of the themes your recent actions have touched most.'**
+  String get spiritualGrowthThemePageSubtitle;
+
+  /// No description provided for @spiritualGrowthThemeInsightTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Current insight'**
+  String get spiritualGrowthThemeInsightTitle;
+
+  /// No description provided for @spiritualGrowthStrongestThemeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Strongest recent theme: {theme}'**
+  String spiritualGrowthStrongestThemeLabel(Object theme);
+
+  /// No description provided for @spiritualGrowthRecommendedThemeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Gentle area to revisit: {theme}'**
+  String spiritualGrowthRecommendedThemeLabel(Object theme);
+
+  /// No description provided for @spiritualGrowthTodaySummaryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Today at a glance'**
+  String get spiritualGrowthTodaySummaryTitle;
+
+  /// No description provided for @spiritualGrowthPrayerSummaryLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} prayers completed'**
+  String spiritualGrowthPrayerSummaryLabel(Object count);
+
+  /// No description provided for @spiritualGrowthDhikrSummaryLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} dhikr sessions'**
+  String spiritualGrowthDhikrSummaryLabel(Object count);
+
+  /// No description provided for @spiritualGrowthLearningSummaryLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} learning completions'**
+  String spiritualGrowthLearningSummaryLabel(Object count);
+
+  /// No description provided for @spiritualGrowthBundleSummaryLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily bundle: {status}'**
+  String spiritualGrowthBundleSummaryLabel(Object status);
+
+  /// No description provided for @spiritualGrowthBundleDone.
+  ///
+  /// In en, this message translates to:
+  /// **'complete'**
+  String get spiritualGrowthBundleDone;
+
+  /// No description provided for @spiritualGrowthBundleOpen.
+  ///
+  /// In en, this message translates to:
+  /// **'in progress'**
+  String get spiritualGrowthBundleOpen;
+
+  /// No description provided for @spiritualGrowthThemeSincerity.
+  ///
+  /// In en, this message translates to:
+  /// **'Sincerity'**
+  String get spiritualGrowthThemeSincerity;
+
+  /// No description provided for @spiritualGrowthThemePatience.
+  ///
+  /// In en, this message translates to:
+  /// **'Patience'**
+  String get spiritualGrowthThemePatience;
+
+  /// No description provided for @spiritualGrowthThemeGratitude.
+  ///
+  /// In en, this message translates to:
+  /// **'Gratitude'**
+  String get spiritualGrowthThemeGratitude;
+
+  /// No description provided for @spiritualGrowthThemeHonesty.
+  ///
+  /// In en, this message translates to:
+  /// **'Honesty'**
+  String get spiritualGrowthThemeHonesty;
+
+  /// No description provided for @spiritualGrowthThemeKindness.
+  ///
+  /// In en, this message translates to:
+  /// **'Kindness'**
+  String get spiritualGrowthThemeKindness;
+
+  /// No description provided for @spiritualGrowthThemeHumility.
+  ///
+  /// In en, this message translates to:
+  /// **'Humility'**
+  String get spiritualGrowthThemeHumility;
+
+  /// No description provided for @spiritualGrowthThemeForgiveness.
+  ///
+  /// In en, this message translates to:
+  /// **'Forgiveness'**
+  String get spiritualGrowthThemeForgiveness;
+
+  /// No description provided for @spiritualGrowthThemeDiscipline.
+  ///
+  /// In en, this message translates to:
+  /// **'Discipline'**
+  String get spiritualGrowthThemeDiscipline;
+
+  /// No description provided for @spiritualGrowthThemeAdab.
+  ///
+  /// In en, this message translates to:
+  /// **'Adab'**
+  String get spiritualGrowthThemeAdab;
+
+  /// No description provided for @spiritualGrowthThemeTrustInAllah.
+  ///
+  /// In en, this message translates to:
+  /// **'Trust in Allah'**
+  String get spiritualGrowthThemeTrustInAllah;
+
+  /// No description provided for @spiritualGrowthIntentionPresencePrayerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Pray with more presence today'**
+  String get spiritualGrowthIntentionPresencePrayerTitle;
+
+  /// No description provided for @spiritualGrowthIntentionPresencePrayerSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Slow down a little before one prayer and return your heart gently to it.'**
+  String get spiritualGrowthIntentionPresencePrayerSubtitle;
+
+  /// No description provided for @spiritualGrowthIntentionGentleSpeechTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Speak more gently today'**
+  String get spiritualGrowthIntentionGentleSpeechTitle;
+
+  /// No description provided for @spiritualGrowthIntentionGentleSpeechSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Let one difficult conversation be softer than usual.'**
+  String get spiritualGrowthIntentionGentleSpeechSubtitle;
+
+  /// No description provided for @spiritualGrowthIntentionPatientMomentTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Be patient in one hard moment'**
+  String get spiritualGrowthIntentionPatientMomentTitle;
+
+  /// No description provided for @spiritualGrowthIntentionPatientMomentSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Pause once before reacting and choose steadiness.'**
+  String get spiritualGrowthIntentionPatientMomentSubtitle;
+
+  /// No description provided for @spiritualGrowthIntentionQuietHelpTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Help someone quietly'**
+  String get spiritualGrowthIntentionQuietHelpTitle;
+
+  /// No description provided for @spiritualGrowthIntentionQuietHelpSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Do one good deed without needing it to be seen.'**
+  String get spiritualGrowthIntentionQuietHelpSubtitle;
+
+  /// No description provided for @spiritualGrowthIntentionPostPrayerDhikrTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep dhikr after prayer'**
+  String get spiritualGrowthIntentionPostPrayerDhikrTitle;
+
+  /// No description provided for @spiritualGrowthIntentionPostPrayerDhikrSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Stay for a little remembrance after one or more prayers today.'**
+  String get spiritualGrowthIntentionPostPrayerDhikrSubtitle;
+
+  /// No description provided for @spiritualGrowthIntentionTruthfulWordsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose truthful words'**
+  String get spiritualGrowthIntentionTruthfulWordsTitle;
+
+  /// No description provided for @spiritualGrowthIntentionTruthfulWordsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Be honest and clear, even in small moments.'**
+  String get spiritualGrowthIntentionTruthfulWordsSubtitle;
+
+  /// No description provided for @spiritualGrowthIntentionFamilyRespectTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Show extra respect at home'**
+  String get spiritualGrowthIntentionFamilyRespectTitle;
+
+  /// No description provided for @spiritualGrowthIntentionFamilyRespectSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Let your tone and actions carry more adab with family today.'**
+  String get spiritualGrowthIntentionFamilyRespectSubtitle;
+
+  /// No description provided for @spiritualGrowthIntentionSincereDuaTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Make one sincere du\'\'a'**
+  String get spiritualGrowthIntentionSincereDuaTitle;
+
+  /// No description provided for @spiritualGrowthIntentionSincereDuaSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn to Allah with honesty, even if only for a minute.'**
+  String get spiritualGrowthIntentionSincereDuaSubtitle;
+
+  /// No description provided for @spiritualGrowthIntentionControlAngerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Control anger more gently'**
+  String get spiritualGrowthIntentionControlAngerTitle;
+
+  /// No description provided for @spiritualGrowthIntentionControlAngerSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'If irritation rises, lower the reaction before it grows.'**
+  String get spiritualGrowthIntentionControlAngerSubtitle;
+
+  /// No description provided for @spiritualGrowthIntentionNoticeBlessingsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Notice your blessings today'**
+  String get spiritualGrowthIntentionNoticeBlessingsTitle;
+
+  /// No description provided for @spiritualGrowthIntentionNoticeBlessingsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Name one thing you are grateful for before the day ends.'**
+  String get spiritualGrowthIntentionNoticeBlessingsSubtitle;
+
+  /// No description provided for @spiritualGrowthActionSalahTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Salah offered'**
+  String get spiritualGrowthActionSalahTitle;
+
+  /// No description provided for @spiritualGrowthActionSalahSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Prayer activity from today is already helping shape your discipline.'**
+  String get spiritualGrowthActionSalahSubtitle;
+
+  /// No description provided for @spiritualGrowthActionDhikrTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Dhikr remembered'**
+  String get spiritualGrowthActionDhikrTitle;
+
+  /// No description provided for @spiritualGrowthActionDhikrSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Remembrance completed today strengthens gratitude and return.'**
+  String get spiritualGrowthActionDhikrSubtitle;
+
+  /// No description provided for @spiritualGrowthActionQuranTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Qur\'\'an connection'**
+  String get spiritualGrowthActionQuranTitle;
+
+  /// No description provided for @spiritualGrowthActionQuranSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Qur\'\'an engagement today supports remembrance and trust.'**
+  String get spiritualGrowthActionQuranSubtitle;
+
+  /// No description provided for @spiritualGrowthActionLearningTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Learning carried forward'**
+  String get spiritualGrowthActionLearningTitle;
+
+  /// No description provided for @spiritualGrowthActionLearningSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Lessons and games completed today count as steady growth work.'**
+  String get spiritualGrowthActionLearningSubtitle;
+
+  /// No description provided for @spiritualGrowthActionDailyBundleTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily knowledge journey'**
+  String get spiritualGrowthActionDailyBundleTitle;
+
+  /// No description provided for @spiritualGrowthActionDailyBundleSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Completing the full daily bundle reinforces consistency and discipline.'**
+  String get spiritualGrowthActionDailyBundleSubtitle;
+
+  /// No description provided for @spiritualGrowthManualActionKindnessTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'I helped someone today'**
+  String get spiritualGrowthManualActionKindnessTitle;
+
+  /// No description provided for @spiritualGrowthManualActionKindnessSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A small act of service or kindness.'**
+  String get spiritualGrowthManualActionKindnessSubtitle;
+
+  /// No description provided for @spiritualGrowthManualActionSpeechTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'I spoke kindly today'**
+  String get spiritualGrowthManualActionSpeechTitle;
+
+  /// No description provided for @spiritualGrowthManualActionSpeechSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A moment of gentleness in speech.'**
+  String get spiritualGrowthManualActionSpeechSubtitle;
+
+  /// No description provided for @spiritualGrowthManualActionAngerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'I controlled my anger today'**
+  String get spiritualGrowthManualActionAngerTitle;
+
+  /// No description provided for @spiritualGrowthManualActionAngerSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A difficult moment handled with more restraint.'**
+  String get spiritualGrowthManualActionAngerSubtitle;
+
+  /// No description provided for @spiritualGrowthManualActionGossipTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'I avoided gossip today'**
+  String get spiritualGrowthManualActionGossipTitle;
+
+  /// No description provided for @spiritualGrowthManualActionGossipSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A quiet choice to guard the tongue.'**
+  String get spiritualGrowthManualActionGossipSubtitle;
+
+  /// No description provided for @spiritualGrowthManualActionDuaTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'I made sincere du\'\'a today'**
+  String get spiritualGrowthManualActionDuaTitle;
+
+  /// No description provided for @spiritualGrowthManualActionDuaSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A personal turning back to Allah.'**
+  String get spiritualGrowthManualActionDuaSubtitle;
+
+  /// No description provided for @spiritualGrowthManualActionGratitudeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'I noticed a blessing today'**
+  String get spiritualGrowthManualActionGratitudeTitle;
+
+  /// No description provided for @spiritualGrowthManualActionGratitudeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A moment of real gratitude during the day.'**
+  String get spiritualGrowthManualActionGratitudeSubtitle;
+
+  /// No description provided for @spiritualGrowthReflectionPromptStrongestTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'What spiritual action felt strongest today?'**
+  String get spiritualGrowthReflectionPromptStrongestTitle;
+
+  /// No description provided for @spiritualGrowthReflectionPromptStrongestSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose the one that felt most alive, even if it was small.'**
+  String get spiritualGrowthReflectionPromptStrongestSubtitle;
+
+  /// No description provided for @spiritualGrowthReflectionPromptIntentionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Did you live your intention today?'**
+  String get spiritualGrowthReflectionPromptIntentionTitle;
+
+  /// No description provided for @spiritualGrowthReflectionPromptIntentionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Be honest and gentle with yourself.'**
+  String get spiritualGrowthReflectionPromptIntentionSubtitle;
+
+  /// No description provided for @spiritualGrowthReflectionPromptGratitudeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'What are you grateful for tonight?'**
+  String get spiritualGrowthReflectionPromptGratitudeTitle;
+
+  /// No description provided for @spiritualGrowthReflectionPromptGratitudeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Look for one blessing that softened the day.'**
+  String get spiritualGrowthReflectionPromptGratitudeSubtitle;
+
+  /// No description provided for @spiritualGrowthReflectionPromptPatienceTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'What tested your patience today?'**
+  String get spiritualGrowthReflectionPromptPatienceTitle;
+
+  /// No description provided for @spiritualGrowthReflectionPromptPatienceSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Notice the moment without judging yourself harshly.'**
+  String get spiritualGrowthReflectionPromptPatienceSubtitle;
+
+  /// No description provided for @spiritualGrowthReflectionPromptGentleTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Where can you be gentler tomorrow?'**
+  String get spiritualGrowthReflectionPromptGentleTitle;
+
+  /// No description provided for @spiritualGrowthReflectionPromptGentleSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick one small place to improve calmly.'**
+  String get spiritualGrowthReflectionPromptGentleSubtitle;
+
+  /// No description provided for @spiritualGrowthReflectionResponseStrongestPrayer.
+  ///
+  /// In en, this message translates to:
+  /// **'One prayer felt more present'**
+  String get spiritualGrowthReflectionResponseStrongestPrayer;
+
+  /// No description provided for @spiritualGrowthReflectionResponseStrongestKindness.
+  ///
+  /// In en, this message translates to:
+  /// **'A kind act stayed with me'**
+  String get spiritualGrowthReflectionResponseStrongestKindness;
+
+  /// No description provided for @spiritualGrowthReflectionResponseStrongestReturned.
+  ///
+  /// In en, this message translates to:
+  /// **'I kept returning after slipping'**
+  String get spiritualGrowthReflectionResponseStrongestReturned;
+
+  /// No description provided for @spiritualGrowthReflectionResponseIntentionWell.
+  ///
+  /// In en, this message translates to:
+  /// **'I carried it fairly well'**
+  String get spiritualGrowthReflectionResponseIntentionWell;
+
+  /// No description provided for @spiritualGrowthReflectionResponseIntentionPartly.
+  ///
+  /// In en, this message translates to:
+  /// **'I remembered it sometimes'**
+  String get spiritualGrowthReflectionResponseIntentionPartly;
+
+  /// No description provided for @spiritualGrowthReflectionResponseIntentionTomorrow.
+  ///
+  /// In en, this message translates to:
+  /// **'I want to return to it tomorrow'**
+  String get spiritualGrowthReflectionResponseIntentionTomorrow;
+
+  /// No description provided for @spiritualGrowthReflectionResponseGratitudeWorship.
+  ///
+  /// In en, this message translates to:
+  /// **'For worship I was able to do'**
+  String get spiritualGrowthReflectionResponseGratitudeWorship;
+
+  /// No description provided for @spiritualGrowthReflectionResponseGratitudePeople.
+  ///
+  /// In en, this message translates to:
+  /// **'For people who made the day easier'**
+  String get spiritualGrowthReflectionResponseGratitudePeople;
+
+  /// No description provided for @spiritualGrowthReflectionResponseGratitudeGuidance.
+  ///
+  /// In en, this message translates to:
+  /// **'For guidance and reminders'**
+  String get spiritualGrowthReflectionResponseGratitudeGuidance;
+
+  /// No description provided for @spiritualGrowthReflectionResponsePatienceBetter.
+  ///
+  /// In en, this message translates to:
+  /// **'I responded a little better than before'**
+  String get spiritualGrowthReflectionResponsePatienceBetter;
+
+  /// No description provided for @spiritualGrowthReflectionResponsePatiencePause.
+  ///
+  /// In en, this message translates to:
+  /// **'I needed more pause than I gave'**
+  String get spiritualGrowthReflectionResponsePatiencePause;
+
+  /// No description provided for @spiritualGrowthReflectionResponsePatienceTomorrow.
+  ///
+  /// In en, this message translates to:
+  /// **'I want to handle it better tomorrow'**
+  String get spiritualGrowthReflectionResponsePatienceTomorrow;
+
+  /// No description provided for @spiritualGrowthReflectionResponseGentleHome.
+  ///
+  /// In en, this message translates to:
+  /// **'At home and with family'**
+  String get spiritualGrowthReflectionResponseGentleHome;
+
+  /// No description provided for @spiritualGrowthReflectionResponseGentleSpeech.
+  ///
+  /// In en, this message translates to:
+  /// **'In the way I spoke'**
+  String get spiritualGrowthReflectionResponseGentleSpeech;
+
+  /// No description provided for @spiritualGrowthReflectionResponseGentleHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'In how I helped others'**
+  String get spiritualGrowthReflectionResponseGentleHelp;
+
+  /// No description provided for @learnQuizzesDailyKnowledgeSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily Knowledge Challenge'**
+  String get learnQuizzesDailyKnowledgeSectionTitle;
+
+  /// No description provided for @learnQuizzesDailyKnowledgeSectionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A single daily hub that ties together all five knowledge game experiences.'**
+  String get learnQuizzesDailyKnowledgeSectionSubtitle;
+
+  /// No description provided for @learnQuizzesOpenDailyKnowledge.
+  ///
+  /// In en, this message translates to:
+  /// **'Open daily challenge'**
+  String get learnQuizzesOpenDailyKnowledge;
+
+  /// No description provided for @learnHubSubcategoryKidsGamesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Kids Games'**
+  String get learnHubSubcategoryKidsGamesTitle;
+
+  /// No description provided for @learnHubSubcategoryKidsGamesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Mini crossword, word search, matching, and other game-style practice for younger learners.'**
+  String get learnHubSubcategoryKidsGamesSubtitle;
+
+  /// No description provided for @learnHubSubcategoryKidsArabicLearningTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Arabic Learning'**
+  String get learnHubSubcategoryKidsArabicLearningTitle;
+
+  /// No description provided for @learnHubSubcategoryKidsArabicLearningSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Letters, review, and early Arabic learning stay grouped here for children.'**
+  String get learnHubSubcategoryKidsArabicLearningSubtitle;
+
+  /// No description provided for @learnHubSubcategoryKidsFunLearningTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Fun Learning'**
+  String get learnHubSubcategoryKidsFunLearningTitle;
+
+  /// No description provided for @learnHubSubcategoryKidsFunLearningSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Stories, coloring, daily routines, and lighter practice stay together here.'**
+  String get learnHubSubcategoryKidsFunLearningSubtitle;
+
+  /// No description provided for @learnGamesIslandTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Games'**
+  String get learnGamesIslandTitle;
+
+  /// No description provided for @learnGamesIslandSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A calm discovery island for daily challenges, knowledge games, Qur’an games, reflection, and pack-based play.'**
+  String get learnGamesIslandSubtitle;
+
+  /// No description provided for @learnGamesIslandLandingCardSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Open the main non-kids games island without replacing the existing quiz and game routes.'**
+  String get learnGamesIslandLandingCardSubtitle;
+
+  /// No description provided for @learnGamesIslandTodayBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get learnGamesIslandTodayBadge;
+
+  /// No description provided for @learnGamesIslandSectionsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Browse Games'**
+  String get learnGamesIslandSectionsTitle;
+
+  /// No description provided for @learnGamesIslandSectionsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Open one section at a time or scan the full island to find the right challenge.'**
+  String get learnGamesIslandSectionsSubtitle;
+
+  /// No description provided for @learnGamesIslandSectionDailyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily Challenges'**
+  String get learnGamesIslandSectionDailyTitle;
+
+  /// No description provided for @learnGamesIslandSectionDailySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Today’s bundle, current progress, and a stable daily route stay together here.'**
+  String get learnGamesIslandSectionDailySubtitle;
+
+  /// No description provided for @learnGamesIslandSectionKnowledgeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Knowledge Games'**
+  String get learnGamesIslandSectionKnowledgeTitle;
+
+  /// No description provided for @learnGamesIslandSectionKnowledgeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Crossword, Word Search, and Matching remain the core discovery layer for general knowledge play.'**
+  String get learnGamesIslandSectionKnowledgeSubtitle;
+
+  /// No description provided for @learnGamesIslandSectionQuranTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Qur’an Games'**
+  String get learnGamesIslandSectionQuranTitle;
+
+  /// No description provided for @learnGamesIslandSectionQuranSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Ayah-focused memorization and verse-completion play stays in one dedicated Qur’an lane.'**
+  String get learnGamesIslandSectionQuranSubtitle;
+
+  /// No description provided for @learnGamesIslandSectionHadithTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Hadith & Reflection'**
+  String get learnGamesIslandSectionHadithTitle;
+
+  /// No description provided for @learnGamesIslandSectionHadithSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Scenario-based Hadith reflection and character-focused decisions stay grouped here.'**
+  String get learnGamesIslandSectionHadithSubtitle;
+
+  /// No description provided for @learnGamesIslandSectionModesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Challenge Modes'**
+  String get learnGamesIslandSectionModesTitle;
+
+  /// No description provided for @learnGamesIslandSectionModesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Supported daily, review, and challenge-style variations are surfaced here without inventing new engines.'**
+  String get learnGamesIslandSectionModesSubtitle;
+
+  /// No description provided for @learnGamesIslandSectionGrowthTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Growth & Spiritual'**
+  String get learnGamesIslandSectionGrowthTitle;
+
+  /// No description provided for @learnGamesIslandSectionGrowthSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Game-linked spiritual intentions, reflections, and growth summaries stay calm and separate from puzzle lists.'**
+  String get learnGamesIslandSectionGrowthSubtitle;
+
+  /// No description provided for @learnGamesIslandSectionPacksTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Game Packs'**
+  String get learnGamesIslandSectionPacksTitle;
+
+  /// No description provided for @learnGamesIslandSectionPacksSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Open themed pack routes that already exist across the current knowledge games catalog.'**
+  String get learnGamesIslandSectionPacksSubtitle;
+
+  /// No description provided for @learnGamesIslandModeDailyRunTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily Run'**
+  String get learnGamesIslandModeDailyRunTitle;
+
+  /// No description provided for @learnGamesIslandModeDailyRunSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Open today’s full Daily Knowledge Challenge bundle.'**
+  String get learnGamesIslandModeDailyRunSubtitle;
+
+  /// No description provided for @learnGamesIslandModeReviewTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Review Mode'**
+  String get learnGamesIslandModeReviewTitle;
+
+  /// No description provided for @learnGamesIslandModeReviewSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Return to review-style quiz flows without digging through the broader quiz hub.'**
+  String get learnGamesIslandModeReviewSubtitle;
+
+  /// No description provided for @learnGamesIslandModeTriviaTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Trivia Challenge'**
+  String get learnGamesIslandModeTriviaTitle;
+
+  /// No description provided for @learnGamesIslandModeTriviaSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Open challenge-first trivia routes already supported by the current quiz system.'**
+  String get learnGamesIslandModeTriviaSubtitle;
+
+  /// No description provided for @learnGamesIslandKidsEntryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Kids Games Stay Separate'**
+  String get learnGamesIslandKidsEntryTitle;
+
+  /// No description provided for @learnGamesIslandKidsEntrySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Kids-only discovery remains inside Kids Learning instead of mixing into the main games island.'**
+  String get learnGamesIslandKidsEntrySubtitle;
+
+  /// No description provided for @learnGamesIslandKidsEntryAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore Kids Games'**
+  String get learnGamesIslandKidsEntryAction;
+
+  /// No description provided for @learnGamesIslandKidsEntryActionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Open the child-friendly games grouping inside Kids Learning.'**
+  String get learnGamesIslandKidsEntryActionSubtitle;
+
+  /// No description provided for @learnGamesIslandDailyHeroTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Today’s Games Journey'**
+  String get learnGamesIslandDailyHeroTitle;
+
+  /// No description provided for @learnGamesIslandDailyHeroSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Start the daily bundle or return later without losing the existing per-game progress.'**
+  String get learnGamesIslandDailyHeroSubtitle;
+
+  /// No description provided for @learnGamesIslandDailyHeroCompletedSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Today’s bundle is complete. You can revisit the hub or keep exploring other game sections.'**
+  String get learnGamesIslandDailyHeroCompletedSubtitle;
+
+  /// No description provided for @learnGamesIslandDailyHeroInProgressSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{completed} of {total} daily games complete. Continue from where you left off.'**
+  String learnGamesIslandDailyHeroInProgressSubtitle(
+    Object completed,
+    Object total,
+  );
+
+  /// No description provided for @learnGamesIslandDailyProgressLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{completed}/{total} complete'**
+  String learnGamesIslandDailyProgressLabel(Object completed, Object total);
+
+  /// No description provided for @learnGamesIslandDailyStreakLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{count}-day streak'**
+  String learnGamesIslandDailyStreakLabel(Object count);
+
+  /// No description provided for @learnGamesIslandDailyHistoryLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} recent days tracked'**
+  String learnGamesIslandDailyHistoryLabel(Object count);
+
+  /// No description provided for @learnGamesIslandInProgressBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'In progress'**
+  String get learnGamesIslandInProgressBadge;
+
+  /// No description provided for @learnGamesIslandContinueDailyAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue today’s challenge'**
+  String get learnGamesIslandContinueDailyAction;
+
+  /// No description provided for @learnGamesIslandOpenDailyAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open daily challenge'**
+  String get learnGamesIslandOpenDailyAction;
+
+  /// No description provided for @learnGamesIslandLoadingSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading today’s game bundle and section discovery.'**
+  String get learnGamesIslandLoadingSubtitle;
+
+  /// No description provided for @learnGamesIslandDailyFallbackSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Open the daily hub directly if the bundle preview is unavailable right now.'**
+  String get learnGamesIslandDailyFallbackSubtitle;
+
+  /// No description provided for @learnGamesIslandKidsRedirectTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Kids profiles use Kids Learning'**
+  String get learnGamesIslandKidsRedirectTitle;
+
+  /// No description provided for @learnGamesIslandKidsRedirectSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Child-friendly game discovery stays under Kids Learning → Games, Arabic Learning, and Fun Learning.'**
+  String get learnGamesIslandKidsRedirectSubtitle;
+
+  /// No description provided for @gameVariationStandard.
+  ///
+  /// In en, this message translates to:
+  /// **'Standard'**
+  String get gameVariationStandard;
+
+  /// No description provided for @gameVariationTimed.
+  ///
+  /// In en, this message translates to:
+  /// **'Timed'**
+  String get gameVariationTimed;
+
+  /// No description provided for @gameVariationMemory.
+  ///
+  /// In en, this message translates to:
+  /// **'Memory'**
+  String get gameVariationMemory;
+
+  /// No description provided for @gameVariationSequential.
+  ///
+  /// In en, this message translates to:
+  /// **'Sequential'**
+  String get gameVariationSequential;
+
+  /// No description provided for @gameVariationReflection.
+  ///
+  /// In en, this message translates to:
+  /// **'Reflection'**
+  String get gameVariationReflection;
+
+  /// No description provided for @gameVariationAudio.
+  ///
+  /// In en, this message translates to:
+  /// **'Audio'**
+  String get gameVariationAudio;
+
+  /// No description provided for @gameVariationChallenge.
+  ///
+  /// In en, this message translates to:
+  /// **'Challenge'**
+  String get gameVariationChallenge;
+
+  /// No description provided for @gameVariationFog.
+  ///
+  /// In en, this message translates to:
+  /// **'Fog'**
+  String get gameVariationFog;
+
+  /// No description provided for @gameVariationNoClue.
+  ///
+  /// In en, this message translates to:
+  /// **'No Clue'**
+  String get gameVariationNoClue;
+
+  /// No description provided for @gameVariationReverse.
+  ///
+  /// In en, this message translates to:
+  /// **'Reverse'**
+  String get gameVariationReverse;
+
+  /// No description provided for @gameVariationHintDisabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Hints disabled'**
+  String get gameVariationHintDisabled;
+
+  /// No description provided for @gameVariationTimeRemaining.
+  ///
+  /// In en, this message translates to:
+  /// **'Time left: {time}'**
+  String gameVariationTimeRemaining(Object time);
+
+  /// No description provided for @gameVariationNoClueActiveSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No Clue mode hides the clue list, so this board relies on crossings and category knowledge.'**
+  String get gameVariationNoClueActiveSubtitle;
+
+  /// No description provided for @gameVariationFogActiveSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Fog mode softens the word list so you lean more on the grid and your memory.'**
+  String get gameVariationFogActiveSubtitle;
+
+  /// No description provided for @gameVariationMemoryActiveSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Memory mode keeps the support text lighter until you make progress.'**
+  String get gameVariationMemoryActiveSubtitle;
+
+  /// No description provided for @gameVariationSequentialActiveSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sequential mode guides you through the remaining targets in order.'**
+  String get gameVariationSequentialActiveSubtitle;
+
+  /// No description provided for @gameVariationAudioActiveSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Audio mode encourages listening before you complete the ayah.'**
+  String get gameVariationAudioActiveSubtitle;
+
+  /// No description provided for @gameVariationReflectionFollowUpTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Carry It Forward'**
+  String get gameVariationReflectionFollowUpTitle;
+
+  /// No description provided for @contentBuilderTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Internal Content Builder'**
+  String get contentBuilderTitle;
+
+  /// No description provided for @contentBuilderSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Normalize, validate, preview, and export internal content drafts without changing the live game catalog.'**
+  String get contentBuilderSubtitle;
+
+  /// No description provided for @contentBuilderCatalogTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Current content snapshot'**
+  String get contentBuilderCatalogTitle;
+
+  /// No description provided for @contentBuilderCatalogCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{type}: {count}'**
+  String contentBuilderCatalogCount(Object type, Object count);
+
+  /// No description provided for @contentBuilderTypeCrossword.
+  ///
+  /// In en, this message translates to:
+  /// **'Crossword'**
+  String get contentBuilderTypeCrossword;
+
+  /// No description provided for @contentBuilderTypeWordSearch.
+  ///
+  /// In en, this message translates to:
+  /// **'Word Search'**
+  String get contentBuilderTypeWordSearch;
+
+  /// No description provided for @contentBuilderTypeMatching.
+  ///
+  /// In en, this message translates to:
+  /// **'Matching'**
+  String get contentBuilderTypeMatching;
+
+  /// No description provided for @contentBuilderTypeAyah.
+  ///
+  /// In en, this message translates to:
+  /// **'Ayah Completion'**
+  String get contentBuilderTypeAyah;
+
+  /// No description provided for @contentBuilderTypeHadith.
+  ///
+  /// In en, this message translates to:
+  /// **'Hadith Reflection'**
+  String get contentBuilderTypeHadith;
+
+  /// No description provided for @contentBuilderTypeGrowth.
+  ///
+  /// In en, this message translates to:
+  /// **'Spiritual Growth'**
+  String get contentBuilderTypeGrowth;
+
+  /// No description provided for @contentBuilderTypePack.
+  ///
+  /// In en, this message translates to:
+  /// **'Pack'**
+  String get contentBuilderTypePack;
+
+  /// No description provided for @contentBuilderTypeVariationProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Variation Profile'**
+  String get contentBuilderTypeVariationProfile;
+
+  /// No description provided for @contentBuilderValidationErrorsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Validation issues found'**
+  String get contentBuilderValidationErrorsTitle;
+
+  /// No description provided for @contentBuilderValidationCleanTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Validation is clean'**
+  String get contentBuilderValidationCleanTitle;
+
+  /// No description provided for @contentBuilderValidationIssueCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} issues in the current snapshot'**
+  String contentBuilderValidationIssueCount(Object count);
+
+  /// No description provided for @contentBuilderDraftTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Draft content item'**
+  String get contentBuilderDraftTitle;
+
+  /// No description provided for @contentBuilderTypeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Content type'**
+  String get contentBuilderTypeLabel;
+
+  /// No description provided for @contentBuilderIdLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Content id'**
+  String get contentBuilderIdLabel;
+
+  /// No description provided for @contentBuilderCategoryLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Category'**
+  String get contentBuilderCategoryLabel;
+
+  /// No description provided for @contentBuilderDifficultyLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Difficulty'**
+  String get contentBuilderDifficultyLabel;
+
+  /// No description provided for @contentBuilderAudienceLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Audience'**
+  String get contentBuilderAudienceLabel;
+
+  /// No description provided for @contentBuilderAudienceKids.
+  ///
+  /// In en, this message translates to:
+  /// **'Kids'**
+  String get contentBuilderAudienceKids;
+
+  /// No description provided for @contentBuilderAudienceAdult.
+  ///
+  /// In en, this message translates to:
+  /// **'Adult'**
+  String get contentBuilderAudienceAdult;
+
+  /// No description provided for @contentBuilderAudienceMixed.
+  ///
+  /// In en, this message translates to:
+  /// **'Mixed'**
+  String get contentBuilderAudienceMixed;
+
+  /// No description provided for @contentBuilderTagsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Tags (comma separated)'**
+  String get contentBuilderTagsLabel;
+
+  /// No description provided for @contentBuilderPackIdsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Pack ids (comma separated)'**
+  String get contentBuilderPackIdsLabel;
+
+  /// No description provided for @contentBuilderSourceTypeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Source type'**
+  String get contentBuilderSourceTypeLabel;
+
+  /// No description provided for @contentBuilderSourceReferenceLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Source reference'**
+  String get contentBuilderSourceReferenceLabel;
+
+  /// No description provided for @contentBuilderDailyEligibleLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily eligible'**
+  String get contentBuilderDailyEligibleLabel;
+
+  /// No description provided for @contentBuilderVariationsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Supported variations'**
+  String get contentBuilderVariationsLabel;
+
+  /// No description provided for @contentBuilderPayloadLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Type-specific payload (JSON)'**
+  String get contentBuilderPayloadLabel;
+
+  /// No description provided for @contentBuilderValidateAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Validate draft'**
+  String get contentBuilderValidateAction;
+
+  /// No description provided for @contentBuilderResetTemplateAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset template'**
+  String get contentBuilderResetTemplateAction;
+
+  /// No description provided for @contentBuilderExportAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Export JSON'**
+  String get contentBuilderExportAction;
+
+  /// No description provided for @contentBuilderDraftInvalidTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Draft needs fixes'**
+  String get contentBuilderDraftInvalidTitle;
+
+  /// No description provided for @contentBuilderDraftValidTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Draft is ready'**
+  String get contentBuilderDraftValidTitle;
+
+  /// No description provided for @contentBuilderDraftValidSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No blocking validation errors were found for this draft.'**
+  String get contentBuilderDraftValidSubtitle;
+
+  /// No description provided for @contentBuilderPreviewTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Preview'**
+  String get contentBuilderPreviewTitle;
+
+  /// No description provided for @contentBuilderExportTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Export JSON'**
+  String get contentBuilderExportTitle;
+
+  /// No description provided for @contentBuilderPreviewMissingId.
+  ///
+  /// In en, this message translates to:
+  /// **'Missing id'**
+  String get contentBuilderPreviewMissingId;
+
+  /// No description provided for @contentBuilderPreviewMissingCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Missing category'**
+  String get contentBuilderPreviewMissingCategory;
+
+  /// No description provided for @contentBuilderPreviewDifficulty.
+  ///
+  /// In en, this message translates to:
+  /// **'Difficulty {difficulty}'**
+  String contentBuilderPreviewDifficulty(Object difficulty);
+
+  /// No description provided for @contentBuilderPreviewCrossword.
+  ///
+  /// In en, this message translates to:
+  /// **'{gridSize}x{gridSize} grid with {placements} placements'**
+  String contentBuilderPreviewCrossword(Object gridSize, Object placements);
+
+  /// No description provided for @contentBuilderPreviewWordSearch.
+  ///
+  /// In en, this message translates to:
+  /// **'{gridSize}x{gridSize} grid with {entries} target words'**
+  String contentBuilderPreviewWordSearch(Object gridSize, Object entries);
+
+  /// No description provided for @contentBuilderPreviewMatching.
+  ///
+  /// In en, this message translates to:
+  /// **'{pairs} matching pairs'**
+  String contentBuilderPreviewMatching(Object pairs);
+
+  /// No description provided for @contentBuilderPreviewAyah.
+  ///
+  /// In en, this message translates to:
+  /// **'Surah {surah}, ayah {ayah}'**
+  String contentBuilderPreviewAyah(Object surah, Object ayah);
+
+  /// No description provided for @contentBuilderPreviewHadith.
+  ///
+  /// In en, this message translates to:
+  /// **'{choices} scenario choices'**
+  String contentBuilderPreviewHadith(Object choices);
+
+  /// No description provided for @contentBuilderPreviewGrowth.
+  ///
+  /// In en, this message translates to:
+  /// **'Growth subtype: {subtype}'**
+  String contentBuilderPreviewGrowth(Object subtype);
+
+  /// No description provided for @contentBuilderPreviewPack.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} linked content items'**
+  String contentBuilderPreviewPack(Object count);
+
+  /// No description provided for @contentBuilderPreviewVariationProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Variation profile for {gameType}'**
+  String contentBuilderPreviewVariationProfile(Object gameType);
+
+  /// No description provided for @contentBuilderPayloadInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'The JSON payload is invalid.'**
+  String get contentBuilderPayloadInvalid;
+
+  /// No description provided for @contentBuilderStorageTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Canonical storage structure'**
+  String get contentBuilderStorageTitle;
+
+  /// No description provided for @contentBuilderStorageSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Use the shared /content layout for future imports and exports, even while current runtime seeds still load from Dart.'**
+  String get contentBuilderStorageSubtitle;
+
+  /// No description provided for @bedtimeStoriesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Bedtime Stories'**
+  String get bedtimeStoriesTitle;
+
+  /// No description provided for @bedtimeStoriesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Calm prophet stories for winding down, listening together, and remembering Allah before sleep.'**
+  String get bedtimeStoriesSubtitle;
+
+  /// No description provided for @bedtimeStoriesHeroTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Prophet stories for quiet nights'**
+  String get bedtimeStoriesHeroTitle;
+
+  /// No description provided for @bedtimeStoriesHeroSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A gentle library of prophet bedtime stories with transcript-ready reading, future audio support, and simple progress tracking.'**
+  String get bedtimeStoriesHeroSubtitle;
+
+  /// No description provided for @bedtimeStoriesCountLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} stories prepared'**
+  String bedtimeStoriesCountLabel(int count);
+
+  /// No description provided for @bedtimeStoriesTonightTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Tonight\'\'s story'**
+  String get bedtimeStoriesTonightTitle;
+
+  /// No description provided for @bedtimeStoriesTonightAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Start tonight\'\'s story'**
+  String get bedtimeStoriesTonightAction;
+
+  /// No description provided for @bedtimeStoriesContinueTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue listening'**
+  String get bedtimeStoriesContinueTitle;
+
+  /// No description provided for @bedtimeStoriesContinueAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue story'**
+  String get bedtimeStoriesContinueAction;
+
+  /// No description provided for @bedtimeStoriesFeaturedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Featured bedtime story'**
+  String get bedtimeStoriesFeaturedTitle;
+
+  /// No description provided for @bedtimeStoriesOpenAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open story'**
+  String get bedtimeStoriesOpenAction;
+
+  /// No description provided for @bedtimeStoriesAllStoriesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'All bedtime stories'**
+  String get bedtimeStoriesAllStoriesTitle;
+
+  /// No description provided for @bedtimeStoriesAllStoriesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Browse every prophet story and pick what feels right for tonight.'**
+  String get bedtimeStoriesAllStoriesSubtitle;
+
+  /// No description provided for @bedtimeStoriesDurationMinutesLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{minutes} min'**
+  String bedtimeStoriesDurationMinutesLabel(int minutes);
+
+  /// No description provided for @bedtimeStoriesPartLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Part {part} of {total}'**
+  String bedtimeStoriesPartLabel(int part, int total);
+
+  /// No description provided for @bedtimeStoriesAgeGroupKidsEarly.
+  ///
+  /// In en, this message translates to:
+  /// **'Early kids'**
+  String get bedtimeStoriesAgeGroupKidsEarly;
+
+  /// No description provided for @bedtimeStoriesAgeGroupKids.
+  ///
+  /// In en, this message translates to:
+  /// **'Kids'**
+  String get bedtimeStoriesAgeGroupKids;
+
+  /// No description provided for @bedtimeStoriesAgeGroupKidsPlus.
+  ///
+  /// In en, this message translates to:
+  /// **'Kids+'**
+  String get bedtimeStoriesAgeGroupKidsPlus;
+
+  /// No description provided for @bedtimeStoriesStatusNotStarted.
+  ///
+  /// In en, this message translates to:
+  /// **'Not started'**
+  String get bedtimeStoriesStatusNotStarted;
+
+  /// No description provided for @bedtimeStoriesStatusInProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'In progress'**
+  String get bedtimeStoriesStatusInProgress;
+
+  /// No description provided for @bedtimeStoriesStatusCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get bedtimeStoriesStatusCompleted;
+
+  /// No description provided for @bedtimeStoriesLessonSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Tonight\'\'s lesson'**
+  String get bedtimeStoriesLessonSectionTitle;
+
+  /// No description provided for @bedtimeStoriesQuranQuoteSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Qur\'\'an connection'**
+  String get bedtimeStoriesQuranQuoteSectionTitle;
+
+  /// No description provided for @bedtimeStoriesQuranTapSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to open the verse in the Qur\'\'an reader.'**
+  String get bedtimeStoriesQuranTapSubtitle;
+
+  /// No description provided for @bedtimeStoriesAudioCheckingLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking audio availability...'**
+  String get bedtimeStoriesAudioCheckingLabel;
+
+  /// No description provided for @bedtimeStoriesAudioUnavailableTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Transcript ready'**
+  String get bedtimeStoriesAudioUnavailableTitle;
+
+  /// No description provided for @bedtimeStoriesAudioUnavailableSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Audio is not bundled yet for this story. You can still read along and complete it gently.'**
+  String get bedtimeStoriesAudioUnavailableSubtitle;
+
+  /// No description provided for @bedtimeStoriesAudioReadyBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Audio ready'**
+  String get bedtimeStoriesAudioReadyBadge;
+
+  /// No description provided for @bedtimeStoriesReadAlongBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Read along'**
+  String get bedtimeStoriesReadAlongBadge;
+
+  /// No description provided for @bedtimeStoriesIncludedOfflineBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Included offline'**
+  String get bedtimeStoriesIncludedOfflineBadge;
+
+  /// No description provided for @bedtimeStoriesDownloadedBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Downloaded'**
+  String get bedtimeStoriesDownloadedBadge;
+
+  /// No description provided for @bedtimeStoriesArtComingSoonBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Art coming soon'**
+  String get bedtimeStoriesArtComingSoonBadge;
+
+  /// No description provided for @bedtimeStoriesMediaLoadingLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Preparing story media...'**
+  String get bedtimeStoriesMediaLoadingLabel;
+
+  /// No description provided for @bedtimeStoriesReadTonightAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Read tonight'**
+  String get bedtimeStoriesReadTonightAction;
+
+  /// No description provided for @bedtimeStoriesStartReadingAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Start reading'**
+  String get bedtimeStoriesStartReadingAction;
+
+  /// No description provided for @bedtimeStoriesReadAlongPrimaryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Read along tonight'**
+  String get bedtimeStoriesReadAlongPrimaryTitle;
+
+  /// No description provided for @bedtimeStoriesArtOnlyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Artwork is ready'**
+  String get bedtimeStoriesArtOnlyTitle;
+
+  /// No description provided for @bedtimeStoriesArtOnlySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Illustrations are available now, and narration can be added later without changing your story progress.'**
+  String get bedtimeStoriesArtOnlySubtitle;
+
+  /// No description provided for @bedtimeStoriesTranscriptSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Take your time, follow the gentle pauses, and read together at a calm bedtime pace.'**
+  String get bedtimeStoriesTranscriptSubtitle;
+
+  /// No description provided for @bedtimeStoriesNarratedByLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Narrated by {name}'**
+  String bedtimeStoriesNarratedByLabel(String name);
+
+  /// No description provided for @bedtimeStoriesOpenPlayerAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open player'**
+  String get bedtimeStoriesOpenPlayerAction;
+
+  /// No description provided for @bedtimeStoriesPreviousAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Previous'**
+  String get bedtimeStoriesPreviousAction;
+
+  /// No description provided for @bedtimeStoriesBackShortAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Back 10'**
+  String get bedtimeStoriesBackShortAction;
+
+  /// No description provided for @bedtimeStoriesForwardShortAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Forward 10'**
+  String get bedtimeStoriesForwardShortAction;
+
+  /// No description provided for @bedtimeStoriesNextPartAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Next part'**
+  String get bedtimeStoriesNextPartAction;
+
+  /// No description provided for @bedtimeStoriesNextStoryAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Next story'**
+  String get bedtimeStoriesNextStoryAction;
+
+  /// No description provided for @bedtimeStoriesStoryCompleteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Story complete'**
+  String get bedtimeStoriesStoryCompleteTitle;
+
+  /// No description provided for @bedtimeStoriesStoryCompleteSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A calm finish for tonight. You can replay the story or rest here.'**
+  String get bedtimeStoriesStoryCompleteSubtitle;
+
+  /// No description provided for @bedtimeStoriesStoryCompleteWithNextSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You can rest here, or continue with {title} next.'**
+  String bedtimeStoriesStoryCompleteWithNextSubtitle(String title);
+
+  /// No description provided for @bedtimeStoriesReplayAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Replay'**
+  String get bedtimeStoriesReplayAction;
+
+  /// No description provided for @bedtimeStoriesAutoplayOnLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Autoplay on'**
+  String get bedtimeStoriesAutoplayOnLabel;
+
+  /// No description provided for @bedtimeStoriesAutoplayOffLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Autoplay off'**
+  String get bedtimeStoriesAutoplayOffLabel;
+
+  /// No description provided for @bedtimeStoriesAutoplayEnableAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable autoplay'**
+  String get bedtimeStoriesAutoplayEnableAction;
+
+  /// No description provided for @bedtimeStoriesAutoplayDisableAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Disable autoplay'**
+  String get bedtimeStoriesAutoplayDisableAction;
+
+  /// No description provided for @bedtimeStoriesSleepTimerAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Sleep timer'**
+  String get bedtimeStoriesSleepTimerAction;
+
+  /// No description provided for @bedtimeStoriesSleepTimerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sleep timer'**
+  String get bedtimeStoriesSleepTimerTitle;
+
+  /// No description provided for @bedtimeStoriesSleepTimerMinutes.
+  ///
+  /// In en, this message translates to:
+  /// **'{minutes} minutes'**
+  String bedtimeStoriesSleepTimerMinutes(int minutes);
+
+  /// No description provided for @bedtimeStoriesSleepTimerEndOfStory.
+  ///
+  /// In en, this message translates to:
+  /// **'End of story'**
+  String get bedtimeStoriesSleepTimerEndOfStory;
+
+  /// No description provided for @bedtimeStoriesSleepTimerOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Timer off'**
+  String get bedtimeStoriesSleepTimerOff;
+
+  /// No description provided for @bedtimeStoriesSleepTimerRemaining.
+  ///
+  /// In en, this message translates to:
+  /// **'Timer: {time}'**
+  String bedtimeStoriesSleepTimerRemaining(String time);
+
+  /// No description provided for @bedtimeStoriesContinueSeriesLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Series part {part} of {total}'**
+  String bedtimeStoriesContinueSeriesLabel(int part, int total);
+
+  /// No description provided for @bedtimeStoriesMiniPlayerTapToExpand.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to expand player'**
+  String get bedtimeStoriesMiniPlayerTapToExpand;
+
+  /// No description provided for @bedtimeStoriesTonightQueueTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Tonight\'\'s queue'**
+  String get bedtimeStoriesTonightQueueTitle;
+
+  /// No description provided for @bedtimeStoriesTonightQueueSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Starting with {title} • {count} stories queued'**
+  String bedtimeStoriesTonightQueueSubtitle(String title, int count);
+
+  /// No description provided for @bedtimeStoriesSeriesProgressTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Series progress'**
+  String get bedtimeStoriesSeriesProgressTitle;
+
+  /// No description provided for @bedtimeStoriesSeriesCompletedLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'All parts completed'**
+  String get bedtimeStoriesSeriesCompletedLabel;
+
+  /// No description provided for @bedtimeStoriesSeriesProgressLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{completed} of {total} parts completed'**
+  String bedtimeStoriesSeriesProgressLabel(int completed, int total);
+
+  /// No description provided for @bedtimeStoriesTranscriptSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Read along'**
+  String get bedtimeStoriesTranscriptSectionTitle;
+
+  /// No description provided for @bedtimeStoriesCompletedAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Story completed'**
+  String get bedtimeStoriesCompletedAction;
+
+  /// No description provided for @bedtimeStoriesMarkCompleteAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark story complete'**
+  String get bedtimeStoriesMarkCompleteAction;
+
+  /// No description provided for @bedtimeStoriesRelatedStoriesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Related stories'**
+  String get bedtimeStoriesRelatedStoriesTitle;
+
+  /// No description provided for @bedtimeStoriesCompletionSnack.
+  ///
+  /// In en, this message translates to:
+  /// **'Story completed: +{xp} XP and +{drops} Ocean Drop'**
+  String bedtimeStoriesCompletionSnack(int xp, int drops);
+
+  /// No description provided for @bedtimeStoriesPlayerReady.
+  ///
+  /// In en, this message translates to:
+  /// **'Audio player'**
+  String get bedtimeStoriesPlayerReady;
+
+  /// No description provided for @bedtimeStoriesPauseAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Pause'**
+  String get bedtimeStoriesPauseAction;
+
+  /// No description provided for @bedtimeStoriesResumeAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Resume'**
+  String get bedtimeStoriesResumeAction;
+
+  /// No description provided for @bedtimeStoriesPlayAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Play'**
+  String get bedtimeStoriesPlayAction;
+
+  /// No description provided for @bedtimeStoriesRestartAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Restart'**
+  String get bedtimeStoriesRestartAction;
+
+  /// No description provided for @bedtimeStoriesPlaybackProgressLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{current} / {total}'**
+  String bedtimeStoriesPlaybackProgressLabel(Object current, Object total);
+
+  /// No description provided for @bedtimeStoryLearningLoopTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue learning'**
+  String get bedtimeStoryLearningLoopTitle;
+
+  /// No description provided for @bedtimeStoryLearningLoopSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'After listening or reading, try one gentle activity to remember the story and its lesson.'**
+  String get bedtimeStoryLearningLoopSubtitle;
+
+  /// No description provided for @bedtimeStoryLearningNotStarted.
+  ///
+  /// In en, this message translates to:
+  /// **'Not started'**
+  String get bedtimeStoryLearningNotStarted;
+
+  /// No description provided for @bedtimeStoryLearningInProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'In progress'**
+  String get bedtimeStoryLearningInProgress;
+
+  /// No description provided for @bedtimeStoryLearningCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get bedtimeStoryLearningCompleted;
+
+  /// No description provided for @bedtimeStoryLearningContinueQuizPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'You can keep going with the story quiz next.'**
+  String get bedtimeStoryLearningContinueQuizPrompt;
+
+  /// No description provided for @bedtimeStoryLearningContinueMemoryPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'You can keep going with the memory cards next.'**
+  String get bedtimeStoryLearningContinueMemoryPrompt;
+
+  /// No description provided for @bedtimeStoryLearningUnavailableTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Learning activity coming soon'**
+  String get bedtimeStoryLearningUnavailableTitle;
+
+  /// No description provided for @bedtimeStoryContinueLearningTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue learning'**
+  String get bedtimeStoryContinueLearningTitle;
+
+  /// No description provided for @bedtimeStoryTonightQuestionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Tonight\'\'s question'**
+  String get bedtimeStoryTonightQuestionTitle;
+
+  /// No description provided for @bedtimeStoryLearningCompletionSnack.
+  ///
+  /// In en, this message translates to:
+  /// **'Learning complete: +{xp} XP'**
+  String bedtimeStoryLearningCompletionSnack(int xp);
+
+  /// No description provided for @bedtimeStoryQuizTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Story quiz'**
+  String get bedtimeStoryQuizTitle;
+
+  /// No description provided for @bedtimeStoryQuizUnavailableSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'This story does not have quiz questions ready yet, but you can still enjoy the story and read along.'**
+  String get bedtimeStoryQuizUnavailableSubtitle;
+
+  /// No description provided for @bedtimeStoryQuizProgressLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Question {current} of {total}'**
+  String bedtimeStoryQuizProgressLabel(int current, int total);
+
+  /// No description provided for @bedtimeStoryQuizCorrectTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'That\'\'s right'**
+  String get bedtimeStoryQuizCorrectTitle;
+
+  /// No description provided for @bedtimeStoryQuizTryAgainTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Nice try'**
+  String get bedtimeStoryQuizTryAgainTitle;
+
+  /// No description provided for @bedtimeStoryQuizHintLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Hint: {hint}'**
+  String bedtimeStoryQuizHintLabel(String hint);
+
+  /// No description provided for @bedtimeStoryQuizNextAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Next question'**
+  String get bedtimeStoryQuizNextAction;
+
+  /// No description provided for @bedtimeStoryQuizFinishAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish quiz'**
+  String get bedtimeStoryQuizFinishAction;
+
+  /// No description provided for @bedtimeStoryQuizCompleteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Quiz complete'**
+  String get bedtimeStoryQuizCompleteTitle;
+
+  /// No description provided for @bedtimeStoryQuizCompleteSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You remembered the story well. You can return to the story whenever you like.'**
+  String get bedtimeStoryQuizCompleteSubtitle;
+
+  /// No description provided for @bedtimeStoryQuizCompleteWithNextSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You remembered the story well. Memory cards are ready if you want one more calm activity.'**
+  String get bedtimeStoryQuizCompleteWithNextSubtitle;
+
+  /// No description provided for @bedtimeStoryQuizStartAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Start quiz'**
+  String get bedtimeStoryQuizStartAction;
+
+  /// No description provided for @bedtimeStoryQuizReviewAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Review quiz'**
+  String get bedtimeStoryQuizReviewAction;
+
+  /// No description provided for @bedtimeStoryMemoryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Memory cards'**
+  String get bedtimeStoryMemoryTitle;
+
+  /// No description provided for @bedtimeStoryMemoryUnavailableSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'This story does not have memory cards ready yet, but the story itself is still fully available.'**
+  String get bedtimeStoryMemoryUnavailableSubtitle;
+
+  /// No description provided for @bedtimeStoryMemoryProgressLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{completed} of {total} matches'**
+  String bedtimeStoryMemoryProgressLabel(int completed, int total);
+
+  /// No description provided for @bedtimeStoryMemoryPromptLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose the story clue'**
+  String get bedtimeStoryMemoryPromptLabel;
+
+  /// No description provided for @bedtimeStoryMemoryAnswerLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose the matching answer'**
+  String get bedtimeStoryMemoryAnswerLabel;
+
+  /// No description provided for @bedtimeStoryMemoryMatchCorrect.
+  ///
+  /// In en, this message translates to:
+  /// **'Great remembering. That match is correct.'**
+  String get bedtimeStoryMemoryMatchCorrect;
+
+  /// No description provided for @bedtimeStoryMemoryMatchTryAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Nice try. Let\'\'s think together and choose the matching pair.'**
+  String get bedtimeStoryMemoryMatchTryAgain;
+
+  /// No description provided for @bedtimeStoryMemoryCompleteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Memory cards complete'**
+  String get bedtimeStoryMemoryCompleteTitle;
+
+  /// No description provided for @bedtimeStoryMemoryCompleteSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You matched the story clues well. The bedtime story is always here when you want to revisit it.'**
+  String get bedtimeStoryMemoryCompleteSubtitle;
+
+  /// No description provided for @bedtimeStoryMemoryStartAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Start memory cards'**
+  String get bedtimeStoryMemoryStartAction;
+
+  /// No description provided for @bedtimeStoryMemoryPlayAgainAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Play again'**
+  String get bedtimeStoryMemoryPlayAgainAction;
+
+  /// No description provided for @bedtimeStoryMemoryCardsAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Memory cards'**
+  String get bedtimeStoryMemoryCardsAction;
+
+  /// No description provided for @bedtimeStoryBackToStoryAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to story'**
+  String get bedtimeStoryBackToStoryAction;
+
+  /// No description provided for @kidsStoryLibraryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Kids Stories'**
+  String get kidsStoryLibraryTitle;
+
+  /// No description provided for @kidsStoryLibrarySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Browse prophets, good manners, daily-life, and seasonal Islamic stories in one calm library.'**
+  String get kidsStoryLibrarySubtitle;
+
+  /// No description provided for @kidsStoryLibraryHeroTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A growing library of Islamic stories'**
+  String get kidsStoryLibraryHeroTitle;
+
+  /// No description provided for @kidsStoryLibraryHeroSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Prophet stories stay here, and now they are joined by gentle stories about adab, daily life, kindness, patience, gratitude, Ramadan, and Eid.'**
+  String get kidsStoryLibraryHeroSubtitle;
+
+  /// No description provided for @kidsStoryLibraryAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open stories'**
+  String get kidsStoryLibraryAction;
+
+  /// No description provided for @kidsStoryContinueTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue story'**
+  String get kidsStoryContinueTitle;
+
+  /// No description provided for @kidsStoryContinueSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick up where this learner last paused.'**
+  String get kidsStoryContinueSubtitle;
+
+  /// No description provided for @kidsStoryFeaturedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Featured story'**
+  String get kidsStoryFeaturedTitle;
+
+  /// No description provided for @kidsStoryFeaturedSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A calm story to open next.'**
+  String get kidsStoryFeaturedSubtitle;
+
+  /// No description provided for @kidsStoryBrowseCollectionsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Browse by collection'**
+  String get kidsStoryBrowseCollectionsTitle;
+
+  /// No description provided for @kidsStoryBrowseCollectionsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a familiar path or explore a new lesson.'**
+  String get kidsStoryBrowseCollectionsSubtitle;
+
+  /// No description provided for @kidsStoryCollectionProphets.
+  ///
+  /// In en, this message translates to:
+  /// **'Prophets'**
+  String get kidsStoryCollectionProphets;
+
+  /// No description provided for @kidsStoryCollectionProphetsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'The bedtime prophet collection and longer faith-filled story journeys.'**
+  String get kidsStoryCollectionProphetsSubtitle;
+
+  /// No description provided for @kidsStoryCollectionCompanions.
+  ///
+  /// In en, this message translates to:
+  /// **'Companions'**
+  String get kidsStoryCollectionCompanions;
+
+  /// No description provided for @kidsStoryCollectionCompanionsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Gentle stories of loyalty, support, patience, and faith from the Prophet’s ﷺ companions.'**
+  String get kidsStoryCollectionCompanionsSubtitle;
+
+  /// No description provided for @kidsStoryCollectionCharacterAdab.
+  ///
+  /// In en, this message translates to:
+  /// **'Character & Adab'**
+  String get kidsStoryCollectionCharacterAdab;
+
+  /// No description provided for @kidsStoryCollectionCharacterAdabSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Gentle stories about honesty, patience, apology, and kindness.'**
+  String get kidsStoryCollectionCharacterAdabSubtitle;
+
+  /// No description provided for @kidsStoryCollectionDailyLife.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily Life & Duas'**
+  String get kidsStoryCollectionDailyLife;
+
+  /// No description provided for @kidsStoryCollectionDailyLifeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Simple Islamic moments around food, home, routines, and the masjid.'**
+  String get kidsStoryCollectionDailyLifeSubtitle;
+
+  /// No description provided for @kidsStoryCollectionRamadanEid.
+  ///
+  /// In en, this message translates to:
+  /// **'Ramadan & Eid'**
+  String get kidsStoryCollectionRamadanEid;
+
+  /// No description provided for @kidsStoryCollectionRamadanEidSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Seasonal stories about gratitude, generosity, and joyful worship.'**
+  String get kidsStoryCollectionRamadanEidSubtitle;
+
+  /// No description provided for @kidsStoryCollectionFamilyKindness.
+  ///
+  /// In en, this message translates to:
+  /// **'Family & Kindness'**
+  String get kidsStoryCollectionFamilyKindness;
+
+  /// No description provided for @kidsStoryCollectionFamilyKindnessSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Warm stories about helping, sharing, caring, and soft hearts.'**
+  String get kidsStoryCollectionFamilyKindnessSubtitle;
+
+  /// No description provided for @kidsStoryBedtimeEligibleTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Bedtime-friendly stories'**
+  String get kidsStoryBedtimeEligibleTitle;
+
+  /// No description provided for @kidsStoryBedtimeEligibleSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Quiet stories that can also fit gently into bedtime.'**
+  String get kidsStoryBedtimeEligibleSubtitle;
+
+  /// No description provided for @kidsStoryFeaturedStoriesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'More featured stories'**
+  String get kidsStoryFeaturedStoriesTitle;
+
+  /// No description provided for @kidsStoryFeaturedStoriesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A mix of prophet and non-prophet stories ready to open.'**
+  String get kidsStoryFeaturedStoriesSubtitle;
+
+  /// No description provided for @kidsStoryOpenAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open story'**
+  String get kidsStoryOpenAction;
+
+  /// No description provided for @kidsStoryBedtimeChip.
+  ///
+  /// In en, this message translates to:
+  /// **'Bedtime'**
+  String get kidsStoryBedtimeChip;
+
+  /// No description provided for @kidsStoryLessonSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Story lesson'**
+  String get kidsStoryLessonSectionTitle;
+
+  /// No description provided for @kidsStoryHadithSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Hadith connection'**
+  String get kidsStoryHadithSectionTitle;
+
+  /// No description provided for @kidsStorySourceNoteSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Source note'**
+  String get kidsStorySourceNoteSectionTitle;
+
+  /// No description provided for @kidsStoryAudioUnavailableSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Audio is not bundled yet for this story, but you can still read it calmly and continue learning.'**
+  String get kidsStoryAudioUnavailableSubtitle;
+
+  /// No description provided for @kidsStoryReadAlongPrimaryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Read the story'**
+  String get kidsStoryReadAlongPrimaryTitle;
+
+  /// No description provided for @kidsStoryReadStoryAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Read story'**
+  String get kidsStoryReadStoryAction;
+
+  /// No description provided for @kidsStoryScenesSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Story scenes'**
+  String get kidsStoryScenesSectionTitle;
+
+  /// No description provided for @kidsStoryTranscriptSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Story text'**
+  String get kidsStoryTranscriptSectionTitle;
+
+  /// No description provided for @kidsSeerahJourneysTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Seerah Journeys'**
+  String get kidsSeerahJourneysTitle;
+
+  /// No description provided for @kidsSeerahJourneysSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Follow a calm, child-friendly path through key moments in the life of Prophet Muhammad ﷺ and a few beloved companions.'**
+  String get kidsSeerahJourneysSubtitle;
+
+  /// No description provided for @kidsSeerahJourneysHeroTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A guided Seerah path for children'**
+  String get kidsSeerahJourneysHeroTitle;
+
+  /// No description provided for @kidsSeerahJourneysHeroSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Move through key moments with simple stages, story nodes, companion stories, and gentle reflection.'**
+  String get kidsSeerahJourneysHeroSubtitle;
+
+  /// No description provided for @kidsSeerahContinueJourneyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue Seerah Journey'**
+  String get kidsSeerahContinueJourneyTitle;
+
+  /// No description provided for @kidsSeerahContinueJourneySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick up from the last open stage and keep the learning path moving gently.'**
+  String get kidsSeerahContinueJourneySubtitle;
+
+  /// No description provided for @kidsSeerahFeaturedJourneyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Featured Seerah Journey'**
+  String get kidsSeerahFeaturedJourneyTitle;
+
+  /// No description provided for @kidsSeerahFeaturedJourneySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Start a structured story path through the Seerah with calm stages and clear next steps.'**
+  String get kidsSeerahFeaturedJourneySubtitle;
+
+  /// No description provided for @kidsSeerahStagesPreviewTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Journey story path'**
+  String get kidsSeerahStagesPreviewTitle;
+
+  /// No description provided for @kidsSeerahStagesPreviewSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, one {The journey currently follows # main story part.} other {The journey currently follows # main story parts.}}'**
+  String kidsSeerahStagesPreviewSubtitle(int count);
+
+  /// No description provided for @kidsSeerahCompanionStoriesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Companion stories'**
+  String get kidsSeerahCompanionStoriesTitle;
+
+  /// No description provided for @kidsSeerahCompanionStoriesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Meet a few companions whose loyalty, patience, and support helped light the Seerah.'**
+  String get kidsSeerahCompanionStoriesSubtitle;
+
+  /// No description provided for @kidsSeerahJourneysAllTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'All Seerah paths'**
+  String get kidsSeerahJourneysAllTitle;
+
+  /// No description provided for @kidsSeerahJourneysAllSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Begin with one polished journey now, with room to grow later.'**
+  String get kidsSeerahJourneysAllSubtitle;
+
+  /// No description provided for @kidsSeerahJourneyUnavailableSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'This Seerah journey is not ready yet.'**
+  String get kidsSeerahJourneyUnavailableSubtitle;
+
+  /// No description provided for @kidsSeerahOpenJourneyAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open journey'**
+  String get kidsSeerahOpenJourneyAction;
+
+  /// No description provided for @kidsSeerahTimelineTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Timeline path'**
+  String get kidsSeerahTimelineTitle;
+
+  /// No description provided for @kidsSeerahJourneyProgressLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{completed} of {total} stages complete'**
+  String kidsSeerahJourneyProgressLabel(int completed, int total);
+
+  /// No description provided for @kidsSeerahContinueNodeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Open the next unlocked node to keep this journey moving.'**
+  String get kidsSeerahContinueNodeSubtitle;
+
+  /// No description provided for @kidsSeerahContinueNodeAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get kidsSeerahContinueNodeAction;
+
+  /// No description provided for @kidsSeerahJourneyCompleteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Journey complete'**
+  String get kidsSeerahJourneyCompleteTitle;
+
+  /// No description provided for @kidsSeerahJourneyCompleteSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You reached the end of this Seerah path with stories, reflection, and a gentle review.'**
+  String get kidsSeerahJourneyCompleteSubtitle;
+
+  /// No description provided for @kidsSeerahStageCompletedBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete'**
+  String get kidsSeerahStageCompletedBadge;
+
+  /// No description provided for @kidsSeerahStageInProgressBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Open'**
+  String get kidsSeerahStageInProgressBadge;
+
+  /// No description provided for @kidsSeerahStageLockedBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Locked'**
+  String get kidsSeerahStageLockedBadge;
+
+  /// No description provided for @kidsSeerahStageProgressLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{completed} of {total} nodes complete'**
+  String kidsSeerahStageProgressLabel(int completed, int total);
+
+  /// No description provided for @kidsSeerahNodeCompletedBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Node complete'**
+  String get kidsSeerahNodeCompletedBadge;
+
+  /// No description provided for @kidsSeerahNodeReadyBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Ready now'**
+  String get kidsSeerahNodeReadyBadge;
+
+  /// No description provided for @kidsSeerahNextNodeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Next node: {title}'**
+  String kidsSeerahNextNodeLabel(Object title);
+
+  /// No description provided for @kidsSeerahNextNodeAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Next node'**
+  String get kidsSeerahNextNodeAction;
+
+  /// No description provided for @kidsSeerahOpenStoryAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open story'**
+  String get kidsSeerahOpenStoryAction;
+
+  /// No description provided for @kidsSeerahOpenQuizAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open quiz'**
+  String get kidsSeerahOpenQuizAction;
+
+  /// No description provided for @kidsSeerahRewardSnack.
+  ///
+  /// In en, this message translates to:
+  /// **'+{xp} XP for this journey step'**
+  String kidsSeerahRewardSnack(int xp);
+
+  /// No description provided for @kidsSeerahNodeCompletedSnack.
+  ///
+  /// In en, this message translates to:
+  /// **'This journey step is complete.'**
+  String get kidsSeerahNodeCompletedSnack;
+
+  /// No description provided for @kidsSeerahMarkMilestoneAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark milestone complete'**
+  String get kidsSeerahMarkMilestoneAction;
+
+  /// No description provided for @kidsSeerahMarkReflectionAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark reflection complete'**
+  String get kidsSeerahMarkReflectionAction;
+
+  /// No description provided for @bedtimeParentEntryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'For parents'**
+  String get bedtimeParentEntryTitle;
+
+  /// No description provided for @bedtimeParentEntrySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'View a calm bedtime learning summary, recent activity, and what can come next.'**
+  String get bedtimeParentEntrySubtitle;
+
+  /// No description provided for @bedtimeParentEntryAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open parent view'**
+  String get bedtimeParentEntryAction;
+
+  /// No description provided for @bedtimeFamilyModeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Family Mode'**
+  String get bedtimeFamilyModeTitle;
+
+  /// No description provided for @bedtimeFamilyModeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep bedtime stories, quizzes, and rewards safely separated for each child learner.'**
+  String get bedtimeFamilyModeSubtitle;
+
+  /// No description provided for @bedtimeFamilyModeHeaderAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Family mode'**
+  String get bedtimeFamilyModeHeaderAction;
+
+  /// No description provided for @bedtimeFamilyModeEntryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Family mode'**
+  String get bedtimeFamilyModeEntryTitle;
+
+  /// No description provided for @bedtimeFamilyModeEntrySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Active learner: {learnerName}'**
+  String bedtimeFamilyModeEntrySubtitle(String learnerName);
+
+  /// No description provided for @bedtimeFamilyModeActiveLearnerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Active learner'**
+  String get bedtimeFamilyModeActiveLearnerTitle;
+
+  /// No description provided for @bedtimeFamilyModeFallbackTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Using one shared bedtime learner'**
+  String get bedtimeFamilyModeFallbackTitle;
+
+  /// No description provided for @bedtimeFamilyModeFallbackSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Create a child profile when you are ready, and bedtime stories will stay separate for each learner from that point on.'**
+  String get bedtimeFamilyModeFallbackSubtitle;
+
+  /// No description provided for @bedtimeFamilyModeAddChildAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Add child'**
+  String get bedtimeFamilyModeAddChildAction;
+
+  /// No description provided for @bedtimeFamilyModeParentDashboardAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Parent dashboard'**
+  String get bedtimeFamilyModeParentDashboardAction;
+
+  /// No description provided for @bedtimeFamilyModeProfilesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Child profiles'**
+  String get bedtimeFamilyModeProfilesTitle;
+
+  /// No description provided for @bedtimeFamilyModeProfilesEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No child profiles yet. Add one to keep each child\'\'s bedtime progress and rewards separate.'**
+  String get bedtimeFamilyModeProfilesEmpty;
+
+  /// No description provided for @bedtimeFamilyModeArchivedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Archived profiles'**
+  String get bedtimeFamilyModeArchivedTitle;
+
+  /// No description provided for @bedtimeFamilyModeFallbackBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Shared bedtime learner'**
+  String get bedtimeFamilyModeFallbackBadge;
+
+  /// No description provided for @bedtimeFamilyModeCurrentLearnerBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Current learner'**
+  String get bedtimeFamilyModeCurrentLearnerBadge;
+
+  /// No description provided for @bedtimeFamilyModeSwitchAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Switch'**
+  String get bedtimeFamilyModeSwitchAction;
+
+  /// No description provided for @bedtimeFamilyModeEditAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get bedtimeFamilyModeEditAction;
+
+  /// No description provided for @bedtimeFamilyModeArchiveAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Archive'**
+  String get bedtimeFamilyModeArchiveAction;
+
+  /// No description provided for @bedtimeFamilyModeRestoreAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Restore'**
+  String get bedtimeFamilyModeRestoreAction;
+
+  /// No description provided for @bedtimeFamilyModeCreateChildSubmit.
+  ///
+  /// In en, this message translates to:
+  /// **'Create child profile'**
+  String get bedtimeFamilyModeCreateChildSubmit;
+
+  /// No description provided for @bedtimeFamilyModeEditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit {name}'**
+  String bedtimeFamilyModeEditTitle(String name);
+
+  /// No description provided for @bedtimeFamilyModeNameLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get bedtimeFamilyModeNameLabel;
+
+  /// No description provided for @bedtimeFamilyModeNicknameLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Bedtime nickname'**
+  String get bedtimeFamilyModeNicknameLabel;
+
+  /// No description provided for @bedtimeFamilyModeNicknameHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'Optional. This can make bedtime cards feel a little more personal.'**
+  String get bedtimeFamilyModeNicknameHelper;
+
+  /// No description provided for @bedtimeFamilyModeAgeGroupLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Age group'**
+  String get bedtimeFamilyModeAgeGroupLabel;
+
+  /// No description provided for @bedtimeFamilyModeAvatarLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Avatar'**
+  String get bedtimeFamilyModeAvatarLabel;
+
+  /// No description provided for @bedtimeFamilyModeSaveAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Save changes'**
+  String get bedtimeFamilyModeSaveAction;
+
+  /// No description provided for @bedtimeFamilyModeSwitchTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'View progress for'**
+  String get bedtimeFamilyModeSwitchTitle;
+
+  /// No description provided for @bedtimeParentDashboardTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Kids learning summary for parents'**
+  String get bedtimeParentDashboardTitle;
+
+  /// No description provided for @bedtimeParentDashboardSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A calm summary across stories, Seerah, duas, Arabic learning, and bedtime rhythm.'**
+  String get bedtimeParentDashboardSubtitle;
+
+  /// No description provided for @bedtimeParentWelcomeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A calm view of bedtime learning'**
+  String get bedtimeParentWelcomeTitle;
+
+  /// No description provided for @bedtimeParentWelcomeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A lovely rhythm can grow one story, one lesson, and one gentle activity at a time.'**
+  String get bedtimeParentWelcomeSubtitle;
+
+  /// No description provided for @bedtimeParentWelcomeSubtitleWithName.
+  ///
+  /// In en, this message translates to:
+  /// **'A lovely rhythm can grow for {name} one story, one lesson, and one gentle activity at a time.'**
+  String bedtimeParentWelcomeSubtitleWithName(String name);
+
+  /// No description provided for @bedtimeParentStreakBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'{days}-day bedtime rhythm'**
+  String bedtimeParentStreakBadge(int days);
+
+  /// No description provided for @bedtimeParentReadyTonightBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Ready for tonight\'\'s story'**
+  String get bedtimeParentReadyTonightBadge;
+
+  /// No description provided for @bedtimeParentOverviewSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Overview'**
+  String get bedtimeParentOverviewSectionTitle;
+
+  /// No description provided for @bedtimeParentContinueLearningSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue learning'**
+  String get bedtimeParentContinueLearningSectionTitle;
+
+  /// No description provided for @bedtimeParentContinueLearningEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Learning suggestions will appear here after the first story, dua, Seerah step, or Arabic lesson.'**
+  String get bedtimeParentContinueLearningEmpty;
+
+  /// No description provided for @bedtimeParentContinueStoryAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open story'**
+  String get bedtimeParentContinueStoryAction;
+
+  /// No description provided for @bedtimeParentContinueSeerahAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open Seerah'**
+  String get bedtimeParentContinueSeerahAction;
+
+  /// No description provided for @bedtimeParentContinueDuaAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open dua'**
+  String get bedtimeParentContinueDuaAction;
+
+  /// No description provided for @bedtimeParentContinueArabicAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open Arabic'**
+  String get bedtimeParentContinueArabicAction;
+
+  /// No description provided for @bedtimeParentStoriesCompletedLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Stories completed'**
+  String get bedtimeParentStoriesCompletedLabel;
+
+  /// No description provided for @bedtimeParentStoryPartsCompletedLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Story parts completed'**
+  String get bedtimeParentStoryPartsCompletedLabel;
+
+  /// No description provided for @bedtimeParentQuizzesCompletedLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Quizzes done'**
+  String get bedtimeParentQuizzesCompletedLabel;
+
+  /// No description provided for @bedtimeParentMemoryCompletedLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Memory cards finished'**
+  String get bedtimeParentMemoryCompletedLabel;
+
+  /// No description provided for @bedtimeParentProphetsExploredLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Prophets explored'**
+  String get bedtimeParentProphetsExploredLabel;
+
+  /// No description provided for @bedtimeParentCurrentStreakLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Current streak'**
+  String get bedtimeParentCurrentStreakLabel;
+
+  /// No description provided for @bedtimeParentXpEarnedLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'XP earned'**
+  String get bedtimeParentXpEarnedLabel;
+
+  /// No description provided for @bedtimeParentDropsEarnedLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Ocean Drops earned'**
+  String get bedtimeParentDropsEarnedLabel;
+
+  /// No description provided for @bedtimeParentOverallStoriesLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Stories completed'**
+  String get bedtimeParentOverallStoriesLabel;
+
+  /// No description provided for @bedtimeParentOverallSeerahLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Seerah stages'**
+  String get bedtimeParentOverallSeerahLabel;
+
+  /// No description provided for @bedtimeParentOverallDuasLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Duas learned'**
+  String get bedtimeParentOverallDuasLabel;
+
+  /// No description provided for @bedtimeParentOverallArabicLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Arabic letters'**
+  String get bedtimeParentOverallArabicLabel;
+
+  /// No description provided for @bedtimeParentOverallXpLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'XP across kids learning'**
+  String get bedtimeParentOverallXpLabel;
+
+  /// No description provided for @bedtimeParentOverallDropsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Ocean Drops across kids learning'**
+  String get bedtimeParentOverallDropsLabel;
+
+  /// No description provided for @bedtimeParentLearningAreasSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Learning areas'**
+  String get bedtimeParentLearningAreasSectionTitle;
+
+  /// No description provided for @bedtimeParentLearningAreasEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Learning areas will fill in as each part of the kids journey begins.'**
+  String get bedtimeParentLearningAreasEmpty;
+
+  /// No description provided for @bedtimeParentLearningAreaStoriesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Stories'**
+  String get bedtimeParentLearningAreaStoriesTitle;
+
+  /// No description provided for @bedtimeParentLearningAreaSeerahTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Seerah'**
+  String get bedtimeParentLearningAreaSeerahTitle;
+
+  /// No description provided for @bedtimeParentLearningAreaDuasTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Duas'**
+  String get bedtimeParentLearningAreaDuasTitle;
+
+  /// No description provided for @bedtimeParentLearningAreaArabicTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Arabic'**
+  String get bedtimeParentLearningAreaArabicTitle;
+
+  /// No description provided for @bedtimeParentLearningAreaStoriesProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'{completed} of {total} stories completed'**
+  String bedtimeParentLearningAreaStoriesProgress(int completed, int total);
+
+  /// No description provided for @bedtimeParentLearningAreaSeerahProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'{completed} of {total} stages completed'**
+  String bedtimeParentLearningAreaSeerahProgress(int completed, int total);
+
+  /// No description provided for @bedtimeParentLearningAreaDuasProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'{completed} of {total} duas learned'**
+  String bedtimeParentLearningAreaDuasProgress(int completed, int total);
+
+  /// No description provided for @bedtimeParentLearningAreaArabicProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'{completed} of {total} letters completed'**
+  String bedtimeParentLearningAreaArabicProgress(int completed, int total);
+
+  /// No description provided for @bedtimeParentLearningAreaStoriesSecondary.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} stories started'**
+  String bedtimeParentLearningAreaStoriesSecondary(int count);
+
+  /// No description provided for @bedtimeParentLearningAreaSeerahSecondary.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} journeys completed'**
+  String bedtimeParentLearningAreaSeerahSecondary(int count);
+
+  /// No description provided for @bedtimeParentLearningAreaDuasSecondary.
+  ///
+  /// In en, this message translates to:
+  /// **'{count}-day light streak'**
+  String bedtimeParentLearningAreaDuasSecondary(int count);
+
+  /// No description provided for @bedtimeParentLearningAreaArabicSecondary.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} review letters'**
+  String bedtimeParentLearningAreaArabicSecondary(int count);
+
+  /// No description provided for @bedtimeParentAreaLastActive.
+  ///
+  /// In en, this message translates to:
+  /// **'Last active {date}'**
+  String bedtimeParentAreaLastActive(String date);
+
+  /// No description provided for @bedtimeParentHabitSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Bedtime rhythm'**
+  String get bedtimeParentHabitSectionTitle;
+
+  /// No description provided for @bedtimeParentHabitCurrentStreak.
+  ///
+  /// In en, this message translates to:
+  /// **'Current streak: {days}'**
+  String bedtimeParentHabitCurrentStreak(int days);
+
+  /// No description provided for @bedtimeParentHabitLongestStreak.
+  ///
+  /// In en, this message translates to:
+  /// **'Longest streak: {days}'**
+  String bedtimeParentHabitLongestStreak(int days);
+
+  /// No description provided for @bedtimeParentHabitWeekDays.
+  ///
+  /// In en, this message translates to:
+  /// **'Active this week: {days} days'**
+  String bedtimeParentHabitWeekDays(int days);
+
+  /// No description provided for @bedtimeParentHabitMonthDays.
+  ///
+  /// In en, this message translates to:
+  /// **'Active this month: {days} days'**
+  String bedtimeParentHabitMonthDays(int days);
+
+  /// No description provided for @bedtimeParentHabitEncouragingCopy.
+  ///
+  /// In en, this message translates to:
+  /// **'A lovely rhythm is forming. Gentle bedtime learning is building over time.'**
+  String get bedtimeParentHabitEncouragingCopy;
+
+  /// No description provided for @bedtimeParentHabitGentleRestartCopy.
+  ///
+  /// In en, this message translates to:
+  /// **'The next quiet story can begin tonight whenever you are ready.'**
+  String get bedtimeParentHabitGentleRestartCopy;
+
+  /// No description provided for @bedtimeParentLastSessionLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Last bedtime session: {date}'**
+  String bedtimeParentLastSessionLabel(String date);
+
+  /// No description provided for @bedtimeParentProphetProgressSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Prophets explored'**
+  String get bedtimeParentProphetProgressSectionTitle;
+
+  /// No description provided for @bedtimeParentProphetCompletedLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get bedtimeParentProphetCompletedLabel;
+
+  /// No description provided for @bedtimeParentProphetStartedLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Started'**
+  String get bedtimeParentProphetStartedLabel;
+
+  /// No description provided for @bedtimeParentProphetNotStartedLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Not started'**
+  String get bedtimeParentProphetNotStartedLabel;
+
+  /// No description provided for @bedtimeParentProphetStoryPartsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{completed} of {total} parts'**
+  String bedtimeParentProphetStoryPartsLabel(int completed, int total);
+
+  /// No description provided for @bedtimeParentQuizDoneLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Quiz done'**
+  String get bedtimeParentQuizDoneLabel;
+
+  /// No description provided for @bedtimeParentQuizPendingLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Quiz to try'**
+  String get bedtimeParentQuizPendingLabel;
+
+  /// No description provided for @bedtimeParentMemoryDoneLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Memory done'**
+  String get bedtimeParentMemoryDoneLabel;
+
+  /// No description provided for @bedtimeParentMemoryPendingLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Memory to try'**
+  String get bedtimeParentMemoryPendingLabel;
+
+  /// No description provided for @bedtimeParentContinueAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get bedtimeParentContinueAction;
+
+  /// No description provided for @bedtimeParentLessonsLearnedSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Lessons learned'**
+  String get bedtimeParentLessonsLearnedSectionTitle;
+
+  /// No description provided for @bedtimeParentLessonsEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Lessons will gather here as bedtime stories are completed.'**
+  String get bedtimeParentLessonsEmpty;
+
+  /// No description provided for @bedtimeParentLearningRecentActivitySectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent learning activity'**
+  String get bedtimeParentLearningRecentActivitySectionTitle;
+
+  /// No description provided for @bedtimeParentLearningRecentActivityEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent learning across stories, duas, Seerah, and Arabic will appear here.'**
+  String get bedtimeParentLearningRecentActivityEmpty;
+
+  /// No description provided for @bedtimeParentBedtimeActivitySectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent bedtime activity'**
+  String get bedtimeParentBedtimeActivitySectionTitle;
+
+  /// No description provided for @bedtimeParentRecentActivitySectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent bedtime activity'**
+  String get bedtimeParentRecentActivitySectionTitle;
+
+  /// No description provided for @bedtimeParentRecentActivityEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent bedtime activity will appear here once stories and learning activities begin.'**
+  String get bedtimeParentRecentActivityEmpty;
+
+  /// No description provided for @bedtimeParentRecentStoryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Story'**
+  String get bedtimeParentRecentStoryTitle;
+
+  /// No description provided for @bedtimeParentRecentQuizTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Story quiz'**
+  String get bedtimeParentRecentQuizTitle;
+
+  /// No description provided for @bedtimeParentRecentMemoryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Memory cards'**
+  String get bedtimeParentRecentMemoryTitle;
+
+  /// No description provided for @bedtimeParentRecentDuaLessonTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Dua lesson'**
+  String get bedtimeParentRecentDuaLessonTitle;
+
+  /// No description provided for @bedtimeParentRecentDuaPracticeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Dua practice'**
+  String get bedtimeParentRecentDuaPracticeTitle;
+
+  /// No description provided for @bedtimeParentRecentDuaDayTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'My Day with Duas'**
+  String get bedtimeParentRecentDuaDayTitle;
+
+  /// No description provided for @bedtimeParentRecentSeerahNodeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Seerah step'**
+  String get bedtimeParentRecentSeerahNodeTitle;
+
+  /// No description provided for @bedtimeParentRecentSeerahStageTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Seerah stage'**
+  String get bedtimeParentRecentSeerahStageTitle;
+
+  /// No description provided for @bedtimeParentRecentSeerahJourneyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Seerah journey'**
+  String get bedtimeParentRecentSeerahJourneyTitle;
+
+  /// No description provided for @bedtimeParentRecentArabicLessonTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Arabic lesson'**
+  String get bedtimeParentRecentArabicLessonTitle;
+
+  /// No description provided for @bedtimeParentRecentArabicDailyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Arabic daily mission'**
+  String get bedtimeParentRecentArabicDailyTitle;
+
+  /// No description provided for @bedtimeParentRecentBedtimeRoutineTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Bedtime companion'**
+  String get bedtimeParentRecentBedtimeRoutineTitle;
+
+  /// No description provided for @bedtimeParentLearningActivityStory.
+  ///
+  /// In en, this message translates to:
+  /// **'Story completed on {date}'**
+  String bedtimeParentLearningActivityStory(String date);
+
+  /// No description provided for @bedtimeParentLearningActivityQuiz.
+  ///
+  /// In en, this message translates to:
+  /// **'Quiz completed on {date}'**
+  String bedtimeParentLearningActivityQuiz(String date);
+
+  /// No description provided for @bedtimeParentLearningActivityMemory.
+  ///
+  /// In en, this message translates to:
+  /// **'Memory activity completed on {date}'**
+  String bedtimeParentLearningActivityMemory(String date);
+
+  /// No description provided for @bedtimeParentLearningActivityDuaLesson.
+  ///
+  /// In en, this message translates to:
+  /// **'Dua learned on {date}'**
+  String bedtimeParentLearningActivityDuaLesson(String date);
+
+  /// No description provided for @bedtimeParentLearningActivityDuaPractice.
+  ///
+  /// In en, this message translates to:
+  /// **'Dua practiced on {date}'**
+  String bedtimeParentLearningActivityDuaPractice(String date);
+
+  /// No description provided for @bedtimeParentLearningActivityDuaMyDay.
+  ///
+  /// In en, this message translates to:
+  /// **'My Day with Duas completed on {date}'**
+  String bedtimeParentLearningActivityDuaMyDay(String date);
+
+  /// No description provided for @bedtimeParentLearningActivitySeerahNode.
+  ///
+  /// In en, this message translates to:
+  /// **'Seerah step completed on {date}'**
+  String bedtimeParentLearningActivitySeerahNode(String date);
+
+  /// No description provided for @bedtimeParentLearningActivitySeerahStage.
+  ///
+  /// In en, this message translates to:
+  /// **'Seerah stage completed on {date}'**
+  String bedtimeParentLearningActivitySeerahStage(String date);
+
+  /// No description provided for @bedtimeParentLearningActivitySeerahJourney.
+  ///
+  /// In en, this message translates to:
+  /// **'Seerah journey completed on {date}'**
+  String bedtimeParentLearningActivitySeerahJourney(String date);
+
+  /// No description provided for @bedtimeParentLearningActivityArabicLesson.
+  ///
+  /// In en, this message translates to:
+  /// **'Arabic lesson completed on {date}'**
+  String bedtimeParentLearningActivityArabicLesson(String date);
+
+  /// No description provided for @bedtimeParentLearningActivityArabicDaily.
+  ///
+  /// In en, this message translates to:
+  /// **'Arabic daily mission completed on {date}'**
+  String bedtimeParentLearningActivityArabicDaily(String date);
+
+  /// No description provided for @bedtimeParentLearningActivityBedtimeRoutine.
+  ///
+  /// In en, this message translates to:
+  /// **'Bedtime routine completed on {date}'**
+  String bedtimeParentLearningActivityBedtimeRoutine(String date);
+
+  /// No description provided for @bedtimeParentActivityStarted.
+  ///
+  /// In en, this message translates to:
+  /// **'Story opened on {date}'**
+  String bedtimeParentActivityStarted(String date);
+
+  /// No description provided for @bedtimeParentActivityListened.
+  ///
+  /// In en, this message translates to:
+  /// **'Listened on {date}'**
+  String bedtimeParentActivityListened(String date);
+
+  /// No description provided for @bedtimeParentActivityCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Story completed on {date}'**
+  String bedtimeParentActivityCompleted(String date);
+
+  /// No description provided for @bedtimeParentActivityQuizCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Quiz completed on {date}'**
+  String bedtimeParentActivityQuizCompleted(String date);
+
+  /// No description provided for @bedtimeParentActivityMemoryCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Memory cards completed on {date}'**
+  String bedtimeParentActivityMemoryCompleted(String date);
+
+  /// No description provided for @bedtimeParentRecommendationsSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Suggested next steps'**
+  String get bedtimeParentRecommendationsSectionTitle;
+
+  /// No description provided for @bedtimeParentRecommendationContinueStory.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue story'**
+  String get bedtimeParentRecommendationContinueStory;
+
+  /// No description provided for @bedtimeParentRecommendationOpenQuiz.
+  ///
+  /// In en, this message translates to:
+  /// **'Open quiz'**
+  String get bedtimeParentRecommendationOpenQuiz;
+
+  /// No description provided for @bedtimeParentRecommendationOpenMemory.
+  ///
+  /// In en, this message translates to:
+  /// **'Open memory'**
+  String get bedtimeParentRecommendationOpenMemory;
+
+  /// No description provided for @bedtimeParentRecommendationOpenStory.
+  ///
+  /// In en, this message translates to:
+  /// **'Open story'**
+  String get bedtimeParentRecommendationOpenStory;
+
+  /// No description provided for @bedtimeParentRecommendationTonightStory.
+  ///
+  /// In en, this message translates to:
+  /// **'Tonight\'\'s story'**
+  String get bedtimeParentRecommendationTonightStory;
+
+  /// No description provided for @kidsDuaLearningModesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a learning mode'**
+  String get kidsDuaLearningModesTitle;
+
+  /// No description provided for @kidsDuaModeListen.
+  ///
+  /// In en, this message translates to:
+  /// **'Listen'**
+  String get kidsDuaModeListen;
+
+  /// No description provided for @kidsDuaModeReadAlong.
+  ///
+  /// In en, this message translates to:
+  /// **'Read Along'**
+  String get kidsDuaModeReadAlong;
+
+  /// No description provided for @kidsDuaModeTapRepeat.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to Repeat'**
+  String get kidsDuaModeTapRepeat;
+
+  /// No description provided for @kidsDuaModeGentlePractice.
+  ///
+  /// In en, this message translates to:
+  /// **'Gentle Practice'**
+  String get kidsDuaModeGentlePractice;
+
+  /// No description provided for @kidsDuaPracticeSavedSnack.
+  ///
+  /// In en, this message translates to:
+  /// **'Practice saved for this dua.'**
+  String get kidsDuaPracticeSavedSnack;
+
+  /// No description provided for @kidsDuaGentlePracticeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Gentle practice'**
+  String get kidsDuaGentlePracticeTitle;
+
+  /// No description provided for @kidsDuaGentlePracticeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Listen, read, and repeat at a calm pace. There is no rush.'**
+  String get kidsDuaGentlePracticeSubtitle;
+
+  /// No description provided for @kidsDuaListenThenReadAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Listen then read'**
+  String get kidsDuaListenThenReadAction;
+
+  /// No description provided for @kidsDuaTapRepeatAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to repeat'**
+  String get kidsDuaTapRepeatAction;
+
+  /// No description provided for @kidsDuaMarkPracticedAction.
+  ///
+  /// In en, this message translates to:
+  /// **'I practiced this'**
+  String get kidsDuaMarkPracticedAction;
+
+  /// No description provided for @kidsDuaLearningBuddyLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'little learner'**
+  String get kidsDuaLearningBuddyLabel;
+
+  /// No description provided for @kidsDuaLessonHeroSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{learnerName} is learning a {category} dua gently tonight.'**
+  String kidsDuaLessonHeroSubtitle(String learnerName, String category);
+
+  /// No description provided for @kidsDuaAudioUnavailableTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Read along is ready'**
+  String get kidsDuaAudioUnavailableTitle;
+
+  /// No description provided for @kidsDuaAudioUnavailableSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Audio is not available for this dua yet, but the Arabic, transliteration, and meaning are all ready to learn with.'**
+  String get kidsDuaAudioUnavailableSubtitle;
+
+  /// No description provided for @kidsDuaAudioSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Listen to the dua'**
+  String get kidsDuaAudioSectionTitle;
+
+  /// No description provided for @kidsDuaAudioSectionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Hear the dua calmly, then read or repeat it together.'**
+  String get kidsDuaAudioSectionSubtitle;
+
+  /// No description provided for @kidsDuaPauseAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Pause'**
+  String get kidsDuaPauseAction;
+
+  /// No description provided for @kidsDuaResumeAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Resume'**
+  String get kidsDuaResumeAction;
+
+  /// No description provided for @kidsDuaPlayWholeAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Play full dua'**
+  String get kidsDuaPlayWholeAction;
+
+  /// No description provided for @kidsDuaRestartAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Restart'**
+  String get kidsDuaRestartAction;
+
+  /// No description provided for @kidsDuaRepeatWholeAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Repeat whole dua'**
+  String get kidsDuaRepeatWholeAction;
+
+  /// No description provided for @kidsDuaPlaybackProgressLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{current} / {total}'**
+  String kidsDuaPlaybackProgressLabel(String current, String total);
+
+  /// No description provided for @kidsDuaAudioLoadingLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking audio...'**
+  String get kidsDuaAudioLoadingLabel;
+
+  /// No description provided for @kidsDuaReadAlongModeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Read-along view'**
+  String get kidsDuaReadAlongModeTitle;
+
+  /// No description provided for @kidsDuaReadAlongArabicOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Arabic'**
+  String get kidsDuaReadAlongArabicOnly;
+
+  /// No description provided for @kidsDuaReadAlongArabicTransliteration.
+  ///
+  /// In en, this message translates to:
+  /// **'Arabic + Transliteration'**
+  String get kidsDuaReadAlongArabicTransliteration;
+
+  /// No description provided for @kidsDuaReadAlongFullView.
+  ///
+  /// In en, this message translates to:
+  /// **'Full View'**
+  String get kidsDuaReadAlongFullView;
+
+  /// No description provided for @kidsDuaReadAlongSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Read along'**
+  String get kidsDuaReadAlongSectionTitle;
+
+  /// No description provided for @kidsDuaTapRepeatSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to repeat'**
+  String get kidsDuaTapRepeatSectionTitle;
+
+  /// No description provided for @kidsDuaTapRepeatBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap any line to hear it again and practice it slowly.'**
+  String get kidsDuaTapRepeatBody;
+
+  /// No description provided for @kidsDuaTapRepeatFallbackWholeAudio.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap any line to focus it. Full-dua audio will replay until segment audio is ready.'**
+  String get kidsDuaTapRepeatFallbackWholeAudio;
+
+  /// No description provided for @kidsDuaTapRepeatNoAudioBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap any line to focus on reading it slowly. Audio is not ready for this dua yet.'**
+  String get kidsDuaTapRepeatNoAudioBody;
+
+  /// No description provided for @kidsDuaBedtimeLinkTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Works beautifully at bedtime'**
+  String get kidsDuaBedtimeLinkTitle;
+
+  /// No description provided for @kidsDuaBedtimeLinkSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'This dua is already part of the bedtime companion flow, so you can revisit it there tonight.'**
+  String get kidsDuaBedtimeLinkSubtitle;
+
+  /// No description provided for @kidsDuaBedtimeLinkAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open bedtime companion'**
+  String get kidsDuaBedtimeLinkAction;
+
+  /// No description provided for @kidsDuaLearningProgressTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Learning progress'**
+  String get kidsDuaLearningProgressTitle;
+
+  /// No description provided for @kidsDuaListenCountLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Listens'**
+  String get kidsDuaListenCountLabel;
+
+  /// No description provided for @kidsDuaRepeatCountLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Line repeats'**
+  String get kidsDuaRepeatCountLabel;
+
+  /// No description provided for @kidsDuaViewsCountLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Views'**
+  String get kidsDuaViewsCountLabel;
+
+  /// No description provided for @kidsDuaSourceTapSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to open in the Qur\'\'an reader'**
+  String get kidsDuaSourceTapSubtitle;
+
+  /// No description provided for @bedtimeCompanionEntryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Bedtime companion'**
+  String get bedtimeCompanionEntryTitle;
+
+  /// No description provided for @bedtimeCompanionEntrySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Move through a gentle bedtime rhythm with tonight\'\'s dua, story, and a quiet ending.'**
+  String get bedtimeCompanionEntrySubtitle;
+
+  /// No description provided for @bedtimeCompanionEntryAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open bedtime time'**
+  String get bedtimeCompanionEntryAction;
+
+  /// No description provided for @bedtimeCompanionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Bedtime Time'**
+  String get bedtimeCompanionTitle;
+
+  /// No description provided for @bedtimeCompanionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A gentle bedtime rhythm with duas, stories, and a quiet close.'**
+  String get bedtimeCompanionSubtitle;
+
+  /// No description provided for @bedtimeCompanionHeroTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Good evening, {learnerName}'**
+  String bedtimeCompanionHeroTitle(String learnerName);
+
+  /// No description provided for @bedtimeCompanionHeroSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Take one calm step at a time, remember Allah, and end the night gently.'**
+  String get bedtimeCompanionHeroSubtitle;
+
+  /// No description provided for @bedtimeCompanionRoutineTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Tonight\'\'s routine'**
+  String get bedtimeCompanionRoutineTitle;
+
+  /// No description provided for @bedtimeCompanionRoutineProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'{completed} of {total} bedtime steps complete'**
+  String bedtimeCompanionRoutineProgress(int completed, int total);
+
+  /// No description provided for @bedtimeCompanionTonightDuaTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Tonight\'\'s dua'**
+  String get bedtimeCompanionTonightDuaTitle;
+
+  /// No description provided for @bedtimeCompanionTonightDuaSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A short bedtime remembrance to help the night feel calm and blessed.'**
+  String get bedtimeCompanionTonightDuaSubtitle;
+
+  /// No description provided for @bedtimeCompanionTonightStoryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Tonight\'\'s story'**
+  String get bedtimeCompanionTonightStoryTitle;
+
+  /// No description provided for @bedtimeCompanionTonightStorySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Listen or read gently, then return whenever you are ready for the next bedtime step.'**
+  String get bedtimeCompanionTonightStorySubtitle;
+
+  /// No description provided for @bedtimeCompanionReflectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Quiet reflection'**
+  String get bedtimeCompanionReflectionTitle;
+
+  /// No description provided for @bedtimeCompanionReflectionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose one soft thought to carry into the night.'**
+  String get bedtimeCompanionReflectionSubtitle;
+
+  /// No description provided for @bedtimeCompanionReflectionPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'What would you like to remember tonight?'**
+  String get bedtimeCompanionReflectionPrompt;
+
+  /// No description provided for @bedtimeCompanionReflectionChoiceFamily.
+  ///
+  /// In en, this message translates to:
+  /// **'Alhamdulillah for my family'**
+  String get bedtimeCompanionReflectionChoiceFamily;
+
+  /// No description provided for @bedtimeCompanionReflectionChoiceLesson.
+  ///
+  /// In en, this message translates to:
+  /// **'I want to remember tonight\'\'s lesson'**
+  String get bedtimeCompanionReflectionChoiceLesson;
+
+  /// No description provided for @bedtimeCompanionReflectionChoiceRest.
+  ///
+  /// In en, this message translates to:
+  /// **'Alhamdulillah for rest'**
+  String get bedtimeCompanionReflectionChoiceRest;
+
+  /// No description provided for @bedtimeCompanionSleepReadyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Ready for sleep'**
+  String get bedtimeCompanionSleepReadyTitle;
+
+  /// No description provided for @bedtimeCompanionSleepReadySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You can close the night gently now. Allah hears every quiet remembrance.'**
+  String get bedtimeCompanionSleepReadySubtitle;
+
+  /// No description provided for @bedtimeCompanionSleepReadyDoneTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Ready for sleep'**
+  String get bedtimeCompanionSleepReadyDoneTitle;
+
+  /// No description provided for @bedtimeCompanionSleepReadyDoneSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Tonight\'\'s bedtime rhythm is complete. Good night, and may your rest be peaceful.'**
+  String get bedtimeCompanionSleepReadyDoneSubtitle;
+
+  /// No description provided for @bedtimeCompanionRecommendationResumeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue last night\'\'s story'**
+  String get bedtimeCompanionRecommendationResumeTitle;
+
+  /// No description provided for @bedtimeCompanionRecommendationDuaTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Begin with tonight\'\'s dua'**
+  String get bedtimeCompanionRecommendationDuaTitle;
+
+  /// No description provided for @bedtimeCompanionRecommendationStoryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Tonight\'\'s story is ready'**
+  String get bedtimeCompanionRecommendationStoryTitle;
+
+  /// No description provided for @bedtimeCompanionRecommendationReflectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Take a quiet reflection moment'**
+  String get bedtimeCompanionRecommendationReflectionTitle;
+
+  /// No description provided for @bedtimeCompanionPlayStoryAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Play story'**
+  String get bedtimeCompanionPlayStoryAction;
+
+  /// No description provided for @bedtimeCompanionReadStoryAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Read story'**
+  String get bedtimeCompanionReadStoryAction;
+
+  /// No description provided for @bedtimeCompanionStoryDetailsAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Story details'**
+  String get bedtimeCompanionStoryDetailsAction;
+
+  /// No description provided for @bedtimeCompanionSourceLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Source'**
+  String get bedtimeCompanionSourceLabel;
+
+  /// No description provided for @bedtimeCompanionExtraDhikrTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Gentle extra dhikr'**
+  String get bedtimeCompanionExtraDhikrTitle;
+
+  /// No description provided for @bedtimeCompanionDuaDoneAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Dua done'**
+  String get bedtimeCompanionDuaDoneAction;
+
+  /// No description provided for @bedtimeCompanionReadyForSleepAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Ready for sleep'**
+  String get bedtimeCompanionReadyForSleepAction;
+
+  /// No description provided for @bedtimeCompanionGoodNightAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Good night'**
+  String get bedtimeCompanionGoodNightAction;
+
+  /// No description provided for @bedtimeCompanionMarkReadyAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark ready'**
+  String get bedtimeCompanionMarkReadyAction;
+
+  /// No description provided for @bedtimeCompanionOpenDuaAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open dua'**
+  String get bedtimeCompanionOpenDuaAction;
+
+  /// No description provided for @bedtimeCompanionOpenStoryAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open story'**
+  String get bedtimeCompanionOpenStoryAction;
+
+  /// No description provided for @bedtimeCompanionOpenReflectionAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open reflection'**
+  String get bedtimeCompanionOpenReflectionAction;
+
+  /// No description provided for @bedtimeCompanionStepCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get bedtimeCompanionStepCompleted;
+
+  /// No description provided for @bedtimeCompanionStepInProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'In progress'**
+  String get bedtimeCompanionStepInProgress;
+
+  /// No description provided for @bedtimeCompanionStepOptionalDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Optional done'**
+  String get bedtimeCompanionStepOptionalDone;
+
+  /// No description provided for @bedtimeCompanionStepNotStarted.
+  ///
+  /// In en, this message translates to:
+  /// **'Not started'**
+  String get bedtimeCompanionStepNotStarted;
+
+  /// No description provided for @bedtimeRoutineDefaultPlanTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Gentle bedtime routine'**
+  String get bedtimeRoutineDefaultPlanTitle;
+
+  /// No description provided for @bedtimeRoutineStepGetReadyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Get ready for bed'**
+  String get bedtimeRoutineStepGetReadyTitle;
+
+  /// No description provided for @bedtimeRoutineStepGetReadySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Settle in, get comfortable, and prepare for a calm night.'**
+  String get bedtimeRoutineStepGetReadySubtitle;
+
+  /// No description provided for @bedtimeRoutineStepDuaTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Bedtime dua'**
+  String get bedtimeRoutineStepDuaTitle;
+
+  /// No description provided for @bedtimeRoutineStepDuaSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Read or hear a short dua before sleep.'**
+  String get bedtimeRoutineStepDuaSubtitle;
+
+  /// No description provided for @bedtimeRoutineStepStoryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Story time'**
+  String get bedtimeRoutineStepStoryTitle;
+
+  /// No description provided for @bedtimeRoutineStepStorySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Listen to or read tonight\'\'s prophet story.'**
+  String get bedtimeRoutineStepStorySubtitle;
+
+  /// No description provided for @bedtimeRoutineStepReflectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Quiet reflection'**
+  String get bedtimeRoutineStepReflectionTitle;
+
+  /// No description provided for @bedtimeRoutineStepReflectionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose one kind lesson or gratitude thought to keep close.'**
+  String get bedtimeRoutineStepReflectionSubtitle;
+
+  /// No description provided for @bedtimeRoutineStepSleepReadyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sleep-ready finish'**
+  String get bedtimeRoutineStepSleepReadyTitle;
+
+  /// No description provided for @bedtimeRoutineStepSleepReadySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'End gently and rest peacefully.'**
+  String get bedtimeRoutineStepSleepReadySubtitle;
+
+  /// No description provided for @progressionPageTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Progress & badges'**
+  String get progressionPageTitle;
+
+  /// No description provided for @progressionPageSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A calm view of long-term learning growth.'**
+  String get progressionPageSubtitle;
+
+  /// No description provided for @progressionPageLearnerSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Child profile'**
+  String get progressionPageLearnerSectionTitle;
+
+  /// No description provided for @progressionPageHeroTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{name}\'\'s progress'**
+  String progressionPageHeroTitle(Object name);
+
+  /// No description provided for @progressionPageHeroSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Levels, badges, and milestones grow through steady learning.'**
+  String get progressionPageHeroSubtitle;
+
+  /// No description provided for @progressionPageOpenAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open progress'**
+  String get progressionPageOpenAction;
+
+  /// No description provided for @progressionPageOverviewTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Overview'**
+  String get progressionPageOverviewTitle;
+
+  /// No description provided for @progressionPageGardenTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Garden'**
+  String get progressionPageGardenTitle;
+
+  /// No description provided for @progressionPageGardenCardTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'See how learning is growing'**
+  String get progressionPageGardenCardTitle;
+
+  /// No description provided for @progressionPageGardenCardSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Open the symbolic garden shaped by prayerful rhythm, learning, remembrance, and drops.'**
+  String get progressionPageGardenCardSubtitle;
+
+  /// No description provided for @progressionPageGardenAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open garden'**
+  String get progressionPageGardenAction;
+
+  /// No description provided for @progressionPageMilestonesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Milestones'**
+  String get progressionPageMilestonesTitle;
+
+  /// No description provided for @progressionPageMilestonesEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Milestones will appear as learning grows.'**
+  String get progressionPageMilestonesEmpty;
+
+  /// No description provided for @progressionPageBadgesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Badges'**
+  String get progressionPageBadgesTitle;
+
+  /// No description provided for @progressionPageBadgesEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Badges will appear after the first meaningful completions.'**
+  String get progressionPageBadgesEmpty;
+
+  /// No description provided for @progressionPageLevelValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Level {level} • {title}'**
+  String progressionPageLevelValue(Object level, Object title);
+
+  /// No description provided for @progressionPageXpValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{xp} XP'**
+  String progressionPageXpValue(Object xp);
+
+  /// No description provided for @progressionPageNextLevelValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Next level: {title}'**
+  String progressionPageNextLevelValue(Object title);
+
+  /// No description provided for @progressionPageMaxLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'Maximum level reached'**
+  String get progressionPageMaxLevel;
+
+  /// No description provided for @progressionOverviewStoriesLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Stories completed'**
+  String get progressionOverviewStoriesLabel;
+
+  /// No description provided for @progressionOverviewQuizzesLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Quizzes completed'**
+  String get progressionOverviewQuizzesLabel;
+
+  /// No description provided for @progressionOverviewDuasLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Duas learned'**
+  String get progressionOverviewDuasLabel;
+
+  /// No description provided for @progressionOverviewRoutinesLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Bedtime routines'**
+  String get progressionOverviewRoutinesLabel;
+
+  /// No description provided for @progressionOverviewDropsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Ocean Drops'**
+  String get progressionOverviewDropsLabel;
+
+  /// No description provided for @progressionOverviewBadgesLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Badges earned'**
+  String get progressionOverviewBadgesLabel;
+
+  /// No description provided for @progressionOverviewLevelLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Current level'**
+  String get progressionOverviewLevelLabel;
+
+  /// No description provided for @progressionParentRemainingValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{xp} XP to the next level'**
+  String progressionParentRemainingValue(Object xp);
+
+  /// No description provided for @progressionBadgeFirstStoryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'First story'**
+  String get progressionBadgeFirstStoryTitle;
+
+  /// No description provided for @progressionBadgeFirstStoryDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed the first meaningful story.'**
+  String get progressionBadgeFirstStoryDescription;
+
+  /// No description provided for @progressionBadgeFirstQuizTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'First quiz'**
+  String get progressionBadgeFirstQuizTitle;
+
+  /// No description provided for @progressionBadgeFirstQuizDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Finished the first story quiz.'**
+  String get progressionBadgeFirstQuizDescription;
+
+  /// No description provided for @progressionBadgeFirstMemoryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'First memory cards'**
+  String get progressionBadgeFirstMemoryTitle;
+
+  /// No description provided for @progressionBadgeFirstMemoryDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed the first memory-card activity.'**
+  String get progressionBadgeFirstMemoryDescription;
+
+  /// No description provided for @progressionBadgeFirstDuaTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'First dua learned'**
+  String get progressionBadgeFirstDuaTitle;
+
+  /// No description provided for @progressionBadgeFirstDuaDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Learned the first dua with calm practice.'**
+  String get progressionBadgeFirstDuaDescription;
+
+  /// No description provided for @progressionBadgeFirstSeerahStageTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'First Seerah step'**
+  String get progressionBadgeFirstSeerahStageTitle;
+
+  /// No description provided for @progressionBadgeFirstSeerahStageDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed the first Seerah journey stage.'**
+  String get progressionBadgeFirstSeerahStageDescription;
+
+  /// No description provided for @progressionBadgeFirstRoutineTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Bedtime rhythm'**
+  String get progressionBadgeFirstRoutineTitle;
+
+  /// No description provided for @progressionBadgeFirstRoutineDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Finished the first bedtime routine.'**
+  String get progressionBadgeFirstRoutineDescription;
+
+  /// No description provided for @progressionBadgeBedtimeWeekTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Week of bedtime care'**
+  String get progressionBadgeBedtimeWeekTitle;
+
+  /// No description provided for @progressionBadgeBedtimeWeekDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed seven bedtime routines.'**
+  String get progressionBadgeBedtimeWeekDescription;
+
+  /// No description provided for @progressionBadgeStoriesTenTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Story explorer'**
+  String get progressionBadgeStoriesTenTitle;
+
+  /// No description provided for @progressionBadgeStoriesTenDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed ten meaningful stories.'**
+  String get progressionBadgeStoriesTenDescription;
+
+  /// No description provided for @progressionBadgeJourneyCompleteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Seerah journey complete'**
+  String get progressionBadgeJourneyCompleteTitle;
+
+  /// No description provided for @progressionBadgeJourneyCompleteDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed a full kids Seerah journey.'**
+  String get progressionBadgeJourneyCompleteDescription;
+
+  /// No description provided for @progressionMilestoneStoriesTenTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'10 stories completed'**
+  String get progressionMilestoneStoriesTenTitle;
+
+  /// No description provided for @progressionMilestoneStoriesTenDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'A steady beginning in story learning.'**
+  String get progressionMilestoneStoriesTenDescription;
+
+  /// No description provided for @progressionMilestoneStoriesFiftyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'50 stories completed'**
+  String get progressionMilestoneStoriesFiftyTitle;
+
+  /// No description provided for @progressionMilestoneStoriesFiftyDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'A deep and growing rhythm of story learning.'**
+  String get progressionMilestoneStoriesFiftyDescription;
+
+  /// No description provided for @progressionMilestoneQuizzesTenTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'10 quizzes completed'**
+  String get progressionMilestoneQuizzesTenTitle;
+
+  /// No description provided for @progressionMilestoneQuizzesTenDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Reflection and recall are becoming a habit.'**
+  String get progressionMilestoneQuizzesTenDescription;
+
+  /// No description provided for @progressionMilestoneDuasTenTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'10 duas learned'**
+  String get progressionMilestoneDuasTenTitle;
+
+  /// No description provided for @progressionMilestoneDuasTenDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'A growing collection of daily remembrance.'**
+  String get progressionMilestoneDuasTenDescription;
+
+  /// No description provided for @progressionMilestoneSeerahStageTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'First Seerah stage'**
+  String get progressionMilestoneSeerahStageTitle;
+
+  /// No description provided for @progressionMilestoneSeerahStageDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'The Seerah journey has begun.'**
+  String get progressionMilestoneSeerahStageDescription;
+
+  /// No description provided for @progressionMilestoneSeerahJourneyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'First Seerah journey complete'**
+  String get progressionMilestoneSeerahJourneyTitle;
+
+  /// No description provided for @progressionMilestoneSeerahJourneyDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'A full guided Seerah path was completed.'**
+  String get progressionMilestoneSeerahJourneyDescription;
+
+  /// No description provided for @progressionMilestoneBedtimeWeekTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'7 bedtime routines'**
+  String get progressionMilestoneBedtimeWeekTitle;
+
+  /// No description provided for @progressionMilestoneBedtimeWeekDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'A lovely bedtime rhythm is forming.'**
+  String get progressionMilestoneBedtimeWeekDescription;
+
+  /// No description provided for @progressionMilestoneLearningMonthTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'30-day learning streak'**
+  String get progressionMilestoneLearningMonthTitle;
+
+  /// No description provided for @progressionMilestoneLearningMonthDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Consistency is becoming part of the journey.'**
+  String get progressionMilestoneLearningMonthDescription;
 }
 
 class _AppLocalizationsDelegate

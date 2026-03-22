@@ -6,10 +6,13 @@ import '../../hadith/application/hadith_foundation_repository.dart';
 import '../../hadith/domain/hadith_foundation_models.dart';
 import '../../prophets/application/prophets_repository.dart';
 import '../../prophets/domain/prophet_entry.dart';
+import '../domain/quran_ayah_enrichment_models.dart';
+import '../domain/quran_content_refs.dart';
 import '../data/quran_reference_graph_data.dart';
 import '../data/seeded_quran_learning_data.dart';
 import '../domain/quran_learning_models.dart';
 import '../domain/quran_reference_models.dart';
+import 'quran_ayah_enrichment_provider.dart';
 
 class QuranReferenceSearchHit {
   const QuranReferenceSearchHit({
@@ -44,6 +47,8 @@ class QuranRelatedKnowledgeLink {
 class QuranReferenceKnowledgeBundle {
   const QuranReferenceKnowledgeBundle({
     required this.references,
+    required this.enrichmentEntries,
+    required this.displayItems,
     required this.lifeLessons,
     required this.hadithEntries,
     required this.prophets,
@@ -51,6 +56,8 @@ class QuranReferenceKnowledgeBundle {
   });
 
   final List<QuranReference> references;
+  final List<QuranAyahEnrichmentEntry> enrichmentEntries;
+  final List<QuranAyahDisplayItem> displayItems;
   final List<QuranRelatedKnowledgeLink> lifeLessons;
   final List<QuranRelatedKnowledgeLink> hadithEntries;
   final List<QuranRelatedKnowledgeLink> prophets;
@@ -172,6 +179,8 @@ final quranReferenceKnowledgeBundleProvider =
       if (reference == null) {
         return const QuranReferenceKnowledgeBundle(
           references: <QuranReference>[],
+          enrichmentEntries: <QuranAyahEnrichmentEntry>[],
+          displayItems: <QuranAyahDisplayItem>[],
           lifeLessons: <QuranRelatedKnowledgeLink>[],
           hadithEntries: <QuranRelatedKnowledgeLink>[],
           prophets: <QuranRelatedKnowledgeLink>[],
@@ -188,6 +197,25 @@ final quranReferenceKnowledgeBundleProvider =
       final journeyById = {
         for (final path in seededQuranLearningPaths) path.id: path,
       };
+
+      final enrichmentEntries = ref.watch(
+        quranAyahEnrichmentForRangeProvider(
+          QuranQuoteRef(
+            surah: reference.surahNumber,
+            ayah: reference.ayahStart,
+            ayahEnd: reference.ayahEnd,
+          ),
+        ),
+      );
+      final displayItems = ref.watch(
+        quranAyahDisplayItemsForRangeProvider(
+          QuranQuoteRef(
+            surah: reference.surahNumber,
+            ayah: reference.ayahStart,
+            ayahEnd: reference.ayahEnd,
+          ),
+        ),
+      );
 
       final lifeLessons = reference.relatedLessonIds
           .map(divineLifeLessonById)
@@ -226,7 +254,7 @@ final quranReferenceKnowledgeBundleProvider =
               title: prophet.name,
               subtitle: prophet.shortSummary,
               routeName: 'learnProphetsHub',
-              queryParameters: {'prophet': prophet.id},
+              queryParameters: {'tab': 'stories', 'prophet': prophet.id},
             ),
           )
           .toList(growable: false);
@@ -246,6 +274,8 @@ final quranReferenceKnowledgeBundleProvider =
 
       return QuranReferenceKnowledgeBundle(
         references: [reference],
+        enrichmentEntries: enrichmentEntries,
+        displayItems: displayItems,
         lifeLessons: lifeLessons,
         hadithEntries: hadithEntries,
         prophets: prophets,
@@ -262,6 +292,8 @@ final quranKnowledgeForVerseProvider =
       if (refs.isEmpty) {
         return const QuranReferenceKnowledgeBundle(
           references: <QuranReference>[],
+          enrichmentEntries: <QuranAyahEnrichmentEntry>[],
+          displayItems: <QuranAyahDisplayItem>[],
           lifeLessons: <QuranRelatedKnowledgeLink>[],
           hadithEntries: <QuranRelatedKnowledgeLink>[],
           prophets: <QuranRelatedKnowledgeLink>[],
@@ -269,6 +301,12 @@ final quranKnowledgeForVerseProvider =
         );
       }
 
+      final enrichmentEntries = ref.watch(
+        quranAyahEnrichmentForVerseProvider((input.$1, input.$2)),
+      );
+      final displayItems = ref.watch(
+        quranAyahDisplayItemsForVerseProvider((input.$1, input.$2)),
+      );
       final aggregatedLife = <QuranRelatedKnowledgeLink>[];
       final aggregatedHadith = <QuranRelatedKnowledgeLink>[];
       final aggregatedProphets = <QuranRelatedKnowledgeLink>[];
@@ -298,6 +336,8 @@ final quranKnowledgeForVerseProvider =
 
       return QuranReferenceKnowledgeBundle(
         references: refs,
+        enrichmentEntries: enrichmentEntries,
+        displayItems: displayItems,
         lifeLessons: aggregatedLife,
         hadithEntries: aggregatedHadith,
         prophets: aggregatedProphets,

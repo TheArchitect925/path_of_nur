@@ -13,6 +13,7 @@ class DhikrSessionState {
     required this.selectedPreset,
     required this.target,
     required this.currentCount,
+    required this.currentSessionStartedAt,
     required this.recentSessions,
     this.showAntiRushReminder = false,
     this.antiRushReminderCount = 0,
@@ -21,6 +22,7 @@ class DhikrSessionState {
   final DhikrPreset selectedPreset;
   final int target;
   final int currentCount;
+  final DateTime? currentSessionStartedAt;
   final List<DhikrSession> recentSessions;
   final bool showAntiRushReminder;
   final int antiRushReminderCount;
@@ -61,6 +63,8 @@ class DhikrSessionState {
     DhikrPreset? selectedPreset,
     int? target,
     int? currentCount,
+    DateTime? currentSessionStartedAt,
+    bool clearCurrentSessionStartedAt = false,
     List<DhikrSession>? recentSessions,
     bool? showAntiRushReminder,
     int? antiRushReminderCount,
@@ -69,6 +73,9 @@ class DhikrSessionState {
       selectedPreset: selectedPreset ?? this.selectedPreset,
       target: target ?? this.target,
       currentCount: currentCount ?? this.currentCount,
+      currentSessionStartedAt: clearCurrentSessionStartedAt
+          ? null
+          : currentSessionStartedAt ?? this.currentSessionStartedAt,
       recentSessions: recentSessions ?? this.recentSessions,
       showAntiRushReminder:
           showAntiRushReminder ?? this.showAntiRushReminder,
@@ -82,6 +89,7 @@ class DhikrSessionState {
       selectedPreset: DhikrPreset.defaults.first,
       target: 33,
       currentCount: 0,
+      currentSessionStartedAt: null,
       recentSessions: const [],
     );
   }
@@ -103,6 +111,8 @@ class DhikrController extends StateNotifier<DhikrSessionState> {
     state = state.copyWith(
       selectedPreset: preset,
       showAntiRushReminder: false,
+      currentCount: 0,
+      clearCurrentSessionStartedAt: true,
     );
     _save();
   }
@@ -114,14 +124,17 @@ class DhikrController extends StateNotifier<DhikrSessionState> {
       target: target,
       currentCount: 0,
       showAntiRushReminder: false,
+      clearCurrentSessionStartedAt: true,
     );
     _save();
   }
 
   void increment() {
     final shouldPrompt = _antiRushDetector.registerTap(DateTime.now());
+    final startedAt = state.currentSessionStartedAt ?? DateTime.now();
     state = state.copyWith(
       currentCount: state.currentCount + 1,
+      currentSessionStartedAt: startedAt,
       showAntiRushReminder: shouldPrompt,
       antiRushReminderCount: shouldPrompt
           ? state.antiRushReminderCount + 1
@@ -133,8 +146,10 @@ class DhikrController extends StateNotifier<DhikrSessionState> {
   void addManualCount(int count) {
     if (count <= 0) return;
     _antiRushDetector.reset();
+    final startedAt = state.currentSessionStartedAt ?? DateTime.now();
     state = state.copyWith(
       currentCount: state.currentCount + count,
+      currentSessionStartedAt: startedAt,
       showAntiRushReminder: false,
     );
     _save();
@@ -142,13 +157,21 @@ class DhikrController extends StateNotifier<DhikrSessionState> {
 
   void undo() {
     if (state.currentCount <= 0) return;
-    state = state.copyWith(currentCount: state.currentCount - 1);
+    final nextCount = state.currentCount - 1;
+    state = state.copyWith(
+      currentCount: nextCount,
+      clearCurrentSessionStartedAt: nextCount <= 0,
+    );
     _save();
   }
 
   void reset() {
     _antiRushDetector.reset();
-    state = state.copyWith(currentCount: 0, showAntiRushReminder: false);
+    state = state.copyWith(
+      currentCount: 0,
+      showAntiRushReminder: false,
+      clearCurrentSessionStartedAt: true,
+    );
     _save();
   }
 
@@ -162,16 +185,18 @@ class DhikrController extends StateNotifier<DhikrSessionState> {
     _antiRushDetector.reset();
 
     final now = DateTime.now();
+    final startedAt = state.currentSessionStartedAt ?? now;
     final completed = DhikrSession(
       phraseLabel: state.selectedPreset.label,
       count: state.currentCount,
       target: state.target,
-      startedAt: now.subtract(Duration(seconds: state.currentCount)),
+      startedAt: startedAt.isAfter(now) ? now : startedAt,
       finishedAt: now,
     );
 
     state = state.copyWith(
       currentCount: 0,
+      clearCurrentSessionStartedAt: true,
       recentSessions: [completed, ...state.recentSessions],
       showAntiRushReminder: false,
     );
@@ -218,6 +243,7 @@ class DhikrController extends StateNotifier<DhikrSessionState> {
       selectedPreset: preset ?? state.selectedPreset,
       target: data.target,
       currentCount: data.currentCount,
+      currentSessionStartedAt: data.currentSessionStartedAt,
       recentSessions: data.recentSessions,
     );
   }
@@ -227,6 +253,7 @@ class DhikrController extends StateNotifier<DhikrSessionState> {
       selectedPresetId: state.selectedPreset.id,
       target: state.target,
       currentCount: state.currentCount,
+      currentSessionStartedAt: state.currentSessionStartedAt,
     );
     _repository.replaceRecentSessions(state.recentSessions);
   }

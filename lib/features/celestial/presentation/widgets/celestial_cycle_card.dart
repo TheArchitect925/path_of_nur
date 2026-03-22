@@ -9,8 +9,10 @@ import '../../../../l10n/app_localizations.dart';
 import '../../../../core/prayer/prayer_location_search_service.dart';
 import '../../../../core/prayer/prayer_preferences.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_surfaces.dart';
 import '../../../../features/profile/application/profile_settings_provider.dart';
 import '../../../../shared/state/location_permission_state.dart';
+import '../../../../shared/widgets/moon_phase_visual.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/prayer_location_picker_sheet.dart';
 import '../../../../shared/widgets/quran_verse_content.dart';
@@ -93,6 +95,7 @@ class _CelestialCycleCardState extends ConsumerState<CelestialCycleCard> {
                   ref.read(celestialActionServiceProvider).markCardOpened();
                 });
               }
+              final moonVisual = moonPhaseVisualForDate(snapshot.timestamp, l10n);
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -139,6 +142,11 @@ class _CelestialCycleCardState extends ConsumerState<CelestialCycleCard> {
                         child: _InfoPill(
                           label: 'Sunrise',
                           value: DateFormat.jm().format(snapshot.solarData.sunrise),
+                          tint: _resolveSolarTint(
+                            kind: _SolarPillKind.sunrise,
+                            now: snapshot.timestamp,
+                            eventTime: snapshot.solarData.sunrise,
+                          ),
                         ),
                       ),
                       const SizedBox(width: 10),
@@ -146,6 +154,11 @@ class _CelestialCycleCardState extends ConsumerState<CelestialCycleCard> {
                         child: _InfoPill(
                           label: 'Sunset',
                           value: DateFormat.jm().format(snapshot.solarData.sunset),
+                          tint: _resolveSolarTint(
+                            kind: _SolarPillKind.sunset,
+                            now: snapshot.timestamp,
+                            eventTime: snapshot.solarData.sunset,
+                          ),
                         ),
                       ),
                     ],
@@ -193,6 +206,26 @@ class _CelestialCycleCardState extends ConsumerState<CelestialCycleCard> {
                         ),
                       ),
                     ],
+                  ),
+                  const SizedBox(height: 12),
+                  Center(
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 18,
+                        vertical: 10,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.white.withValues(alpha: 0.025),
+                        borderRadius: BorderRadius.circular(22),
+                        border: Border.all(
+                          color: Colors.white.withValues(alpha: 0.06),
+                        ),
+                      ),
+                      child: MoonPhaseVisual(
+                        moon: moonVisual,
+                        size: 68,
+                      ),
+                    ),
                   ),
                   const SizedBox(height: 14),
                   Container(
@@ -268,46 +301,143 @@ class _SkyStateChip extends StatelessWidget {
   }
 }
 
+enum _SolarPillKind { sunrise, sunset }
+
+class _SolarPillTint {
+  const _SolarPillTint({
+    required this.surfaceTint,
+    required this.gradientColors,
+  });
+
+  final Color surfaceTint;
+  final List<Color> gradientColors;
+}
+
+_SolarPillTint _resolveSolarTint({
+  required _SolarPillKind kind,
+  required DateTime now,
+  required DateTime eventTime,
+}) {
+  final minutesFromEvent = now.difference(eventTime).inMinutes;
+
+  return switch (kind) {
+    _SolarPillKind.sunrise => _resolveSunriseTint(minutesFromEvent),
+    _SolarPillKind.sunset => _resolveSunsetTint(minutesFromEvent),
+  };
+}
+
+_SolarPillTint _resolveSunriseTint(int minutesFromEvent) {
+  if (minutesFromEvent < -70) {
+    return const _SolarPillTint(
+      surfaceTint: Color(0xFFC7D7F3),
+      gradientColors: <Color>[
+        Color(0x26AFC4EE),
+        Color(0x18E7C4A1),
+      ],
+    );
+  }
+  if (minutesFromEvent <= 45) {
+    return const _SolarPillTint(
+      surfaceTint: Color(0xFFF0C987),
+      gradientColors: <Color>[
+        Color(0x30F8D4A2),
+        Color(0x1EF4B78A),
+      ],
+    );
+  }
+  return const _SolarPillTint(
+    surfaceTint: Color(0xFFE6C37D),
+    gradientColors: <Color>[
+      Color(0x24F5D89C),
+      Color(0x18FFE9BE),
+    ],
+  );
+}
+
+_SolarPillTint _resolveSunsetTint(int minutesFromEvent) {
+  if (minutesFromEvent < -90) {
+    return const _SolarPillTint(
+      surfaceTint: Color(0xFFE0AE70),
+      gradientColors: <Color>[
+        Color(0x22F0C07D),
+        Color(0x12F4D4A0),
+      ],
+    );
+  }
+  if (minutesFromEvent <= 50) {
+    return const _SolarPillTint(
+      surfaceTint: Color(0xFFD89563),
+      gradientColors: <Color>[
+        Color(0x30EAA17B),
+        Color(0x1ECA7C78),
+      ],
+    );
+  }
+  return const _SolarPillTint(
+    surfaceTint: Color(0xFFB87F6A),
+    gradientColors: <Color>[
+      Color(0x248C667D),
+      Color(0x186D5E88),
+    ],
+  );
+}
+
 class _InfoPill extends StatelessWidget {
   const _InfoPill({
     required this.label,
     required this.value,
     this.footnote,
+    this.tint,
   });
 
   final String label;
   final String value;
   final String? footnote;
+  final _SolarPillTint? tint;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    final overlayGradient = tint == null
+        ? null
+        : LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: tint!.gradientColors,
+          );
+    return PremiumCard(
       padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: Colors.white.withValues(alpha: 0.03),
-        borderRadius: BorderRadius.circular(18),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            label,
-            style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                  color: AppColors.onSurfaceSubtle,
+      surfaceVariant: AppSurfaceVariant.pill,
+      surfaceTintColor: tint?.surfaceTint,
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          gradient: overlayGradient,
+          borderRadius: BorderRadius.circular(14),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(2),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                label,
+                style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                      color: AppColors.onSurfaceSubtle,
+                    ),
+              ),
+              const SizedBox(height: 4),
+              Text(value, style: Theme.of(context).textTheme.titleSmall),
+              if (footnote != null) ...[
+                const SizedBox(height: 2),
+                Text(
+                  footnote!,
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: AppColors.onSurfaceSubtle,
+                      ),
                 ),
+              ],
+            ],
           ),
-          const SizedBox(height: 4),
-          Text(value, style: Theme.of(context).textTheme.titleSmall),
-          if (footnote != null) ...[
-            const SizedBox(height: 2),
-            Text(
-              footnote!,
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.onSurfaceSubtle,
-                  ),
-            ),
-          ],
-        ],
+        ),
       ),
     );
   }

@@ -4,6 +4,8 @@ enum LearningJourneyStageStatus { real, partial, placeholder }
 
 enum LearningJourneyStageTargetType { existingRoute, existingPage, placeholder }
 
+enum LearningJourneyDifficulty { beginner, intermediate, advanced }
+
 class LearningJourneyIsland {
   const LearningJourneyIsland({
     required this.id,
@@ -38,6 +40,11 @@ class LearningJourney {
     required this.order,
     required this.stageIds,
     required this.learningOutcomes,
+    this.difficulty = LearningJourneyDifficulty.beginner,
+    this.estimatedDurationMinutes = 20,
+    this.tags = const <String>[],
+    this.isFeatured = false,
+    this.isPublished = true,
     this.whyThisMatters,
     this.relatedTools = const <LearningJourneyToolLink>[],
     this.mappingNotes,
@@ -51,9 +58,16 @@ class LearningJourney {
   final int order;
   final List<String> stageIds;
   final List<String> learningOutcomes;
+  final LearningJourneyDifficulty difficulty;
+  final int estimatedDurationMinutes;
+  final List<String> tags;
+  final bool isFeatured;
+  final bool isPublished;
   final String? whyThisMatters;
   final List<LearningJourneyToolLink> relatedTools;
   final String? mappingNotes;
+
+  int get totalLessons => stageIds.length;
 }
 
 class LearningJourneyToolLink {
@@ -81,6 +95,10 @@ class LearningJourneyStage {
     required this.order,
     required this.status,
     required this.targetType,
+    this.durationEstimateMinutes = 5,
+    this.tags = const <String>[],
+    this.xpReward = 8,
+    this.dropReward = 1,
     this.targetReference,
     this.pathParameters = const <String, String>{},
     this.queryParameters = const <String, String>{},
@@ -96,6 +114,10 @@ class LearningJourneyStage {
   final int order;
   final LearningJourneyStageStatus status;
   final LearningJourneyStageTargetType targetType;
+  final int durationEstimateMinutes;
+  final List<String> tags;
+  final int xpReward;
+  final int dropReward;
   final String? targetReference;
   final Map<String, String> pathParameters;
   final Map<String, String> queryParameters;

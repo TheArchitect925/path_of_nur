@@ -6,6 +6,7 @@ import '../core/diagnostics/app_telemetry.dart';
 import '../features/accounts_sync/application/accounts_sync_controller.dart';
 import '../features/home/presentation/home_page.dart';
 import '../features/journey/presentation/journey_page.dart';
+import '../features/learn/journey/application/family_learning_provider.dart';
 import '../features/learn/presentation/pages/learning_section_landing_page.dart';
 import '../features/learn/presentation/pages/quran_app_hub_page.dart';
 import '../features/onboarding/application/onboarding_state_provider.dart';
@@ -58,6 +59,7 @@ extension NavTabExt on NavTab {
 final appRouterProvider = Provider<GoRouter>((ref) {
   final onboardingCompleted = ref.watch(onboardingCompletedProvider);
   final accountsSyncState = ref.watch(accountsSyncControllerProvider);
+  final familyLearningContext = ref.watch(activeFamilyLearningContextProvider);
   final initial = onboardingCompleted ? NavTab.home.path : '/onboarding';
   final shellNavigatorKey = GlobalKey<NavigatorState>();
 
@@ -87,26 +89,42 @@ final appRouterProvider = Provider<GoRouter>((ref) {
           !state.matchedLocation.startsWith('/accounts-sync')) {
         return '/profiles/launch';
       }
+      final childLearningRedirect = _redirectChildLearningLocation(
+        matchedLocation: state.matchedLocation,
+        isChildProfile: familyLearningContext.visibilityPolicy.isChildProfile,
+      );
+      if (childLearningRedirect != null) {
+        return childLearningRedirect;
+      }
       return null;
     },
     errorBuilder: (context, state) => Scaffold(
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Icon(Icons.error_outline_rounded, size: 30),
-              const SizedBox(height: 12),
-              Text(
-                AppLocalizations.of(context).routerNotFoundTitle,
-                style: Theme.of(context).textTheme.titleMedium,
+      body: Builder(
+        builder: (context) {
+          AppTelemetry.logError(
+            'router_error',
+            metadata: {'location': state.uri.toString()},
+            error: state.error,
+          );
+          return Center(
+            child: Padding(
+              padding: const EdgeInsets.all(24),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Icon(Icons.error_outline_rounded, size: 30),
+                  const SizedBox(height: 12),
+                  Text(
+                    AppLocalizations.of(context).routerNotFoundTitle,
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                  const SizedBox(height: 8),
+                  Text(state.uri.toString(), textAlign: TextAlign.center),
+                ],
               ),
-              const SizedBox(height: 8),
-              Text(state.uri.toString(), textAlign: TextAlign.center),
-            ],
-          ),
-        ),
+            ),
+          );
+        },
       ),
     ),
     routes: [
@@ -148,6 +166,34 @@ final appRouterProvider = Provider<GoRouter>((ref) {
     ],
   );
 });
+
+String? _redirectChildLearningLocation({
+  required String matchedLocation,
+  required bool isChildProfile,
+}) {
+  if (!isChildProfile || !matchedLocation.startsWith('/learn')) {
+    return null;
+  }
+  if (_isKidsLearningLocationAllowed(matchedLocation)) {
+    if (matchedLocation == '/learn') {
+      return '/learn/category/kids-learning';
+    }
+    return null;
+  }
+  return '/learn/category/kids-learning';
+}
+
+bool _isKidsLearningLocationAllowed(String matchedLocation) {
+  return matchedLocation == '/learn' ||
+      matchedLocation == '/learn/category/kids-learning' ||
+      matchedLocation.startsWith('/learn/kids/') ||
+      matchedLocation.startsWith('/learn/quizzes/crossword') ||
+      matchedLocation.startsWith('/learn/quizzes/word-search') ||
+      matchedLocation.startsWith('/learn/quizzes/matching') ||
+      matchedLocation.startsWith('/learn/quizzes/ayah-completion') ||
+      matchedLocation.startsWith('/learn/quizzes/hadith-reflection') ||
+      matchedLocation.startsWith('/learn/quizzes/daily-challenge');
+}
 
 Widget _buildTabPage(NavTab tab) {
   switch (tab) {

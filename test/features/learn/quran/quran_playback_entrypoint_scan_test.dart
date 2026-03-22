@@ -13,8 +13,8 @@ void main() {
         'lib/features/watch_companion/application/watch_quran_audio_contract.dart',
       ).readAsStringSync();
 
-      expect(shell.contains('resumeCurrentPlaybackWithBismillah'), isTrue);
-      expect(watch.contains('resumeCurrentPlaybackWithBismillah'), isTrue);
+      expect(shell.contains('resumeCurrentPlayback()'), isTrue);
+      expect(watch.contains('resumeCurrentPlayback()'), isTrue);
       expect(shell.contains('player.play()'), isFalse);
       expect(watch.contains('player.play()'), isFalse);
     },
@@ -41,8 +41,8 @@ void main() {
       'lib/features/learn/quran/application/quran_player_controller.dart',
     ).readAsStringSync();
 
-    expect(watch.contains('playAdjacentSurahWithBismillah(1)'), isTrue);
-    expect(watch.contains('playAdjacentSurahWithBismillah(-1)'), isTrue);
+    expect(watch.contains('playAdjacentSurah(1)'), isTrue);
+    expect(watch.contains('playAdjacentSurah(-1)'), isTrue);
     expect(controller.contains('quranRecitationSessionProvider'), isTrue);
     expect(controller.contains('_restoreSessionFromStoredProgress'), isTrue);
   });

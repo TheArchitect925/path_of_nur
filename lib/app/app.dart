@@ -42,6 +42,7 @@ class PathOfNurApp extends ConsumerWidget {
     final theme = AppTheme.themeFor(
       mode: profileSettings.appThemeMode,
       disableGlassTransparency: profileSettings.disableGlassTransparency,
+      disableColoredGlass: profileSettings.disableColoredGlass,
       disableBackground: profileSettings.disableBackground,
       highContrastText: profileSettings.highContrastText,
       glassSurfaceAlpha: profileSettings.glassSurfaceAlpha,

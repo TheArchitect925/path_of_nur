@@ -7,7 +7,9 @@ import '../../features/learn/quran/presentation/quran_bookmarks_page.dart';
 import '../../features/learn/quran/presentation/quran_notes_page.dart';
 import '../../features/learn/quran/presentation/quran_reader_page.dart';
 import '../../features/learn/quran/presentation/quran_search_page.dart';
+import '../../features/learn/quran/presentation/quran_surah_insight_page.dart';
 import '../../features/learn/quran/presentation/quran_surah_explorer_page.dart';
+import '../../features/learn/quran/presentation/quran_word_detail_page.dart';
 import '../../features/learn/quran/presentation/quran_topic_explorer_page.dart';
 import '../../features/learn/quran/presentation/quran_word_review_page.dart';
 import '../../features/learn/quran/presentation/quran_words_page.dart';
@@ -293,6 +295,23 @@ List<RouteBase> buildCoreSupportRoutes() {
           _redirectWithQuery('/quran/explorer', state),
     ),
     GoRoute(
+      path: '/quran/surah-insights',
+      name: 'quranSurahInsightsBrowse',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: QuranSurahInsightsBrowsePage()),
+    ),
+    GoRoute(
+      path: '/quran/surah/:surahNumber/insights',
+      name: 'quranSurahInsights',
+      pageBuilder: (context, state) {
+        final surahNumber =
+            int.tryParse(state.pathParameters['surahNumber'] ?? '') ?? 1;
+        return MaterialPage(
+          child: QuranSurahInsightPage(surahNumber: surahNumber),
+        );
+      },
+    ),
+    GoRoute(
       path: '/quran/surah/:surahNumber',
       name: 'quranReader',
       pageBuilder: (context, state) {
@@ -396,6 +415,20 @@ List<RouteBase> buildCoreSupportRoutes() {
       path: '/learn/quran/top-words',
       redirect: (context, state) =>
           _redirectWithQuery('/quran/top-words', state),
+    ),
+    GoRoute(
+      path: '/quran/top-words/:rank',
+      name: 'quranTopWordDetail',
+      pageBuilder: (context, state) => MaterialPage(
+        child: QuranWordDetailPage(
+          rank: int.tryParse(state.pathParameters['rank'] ?? '') ?? 0,
+        ),
+      ),
+    ),
+    GoRoute(
+      path: '/learn/quran/top-words/:rank',
+      redirect: (context, state) =>
+          _redirectWithPathAndQuery('/quran/top-words/:rank', state),
     ),
     GoRoute(
       path: '/quran/word-review',

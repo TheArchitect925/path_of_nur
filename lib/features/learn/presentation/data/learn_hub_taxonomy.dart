@@ -128,6 +128,28 @@ class LearnHubTaxonomy {
     return null;
   }
 
+  static LearnHubRouteTarget categoryRouteTarget(LearnHubCategoryId id) {
+    switch (id) {
+      case LearnHubCategoryId.characterAdab:
+        return const LearnHubRouteTarget(routeName: 'learnLifeLanding');
+      case LearnHubCategoryId.faq:
+        return const LearnHubRouteTarget(routeName: 'faqLanding');
+      case LearnHubCategoryId.foundations:
+      case LearnHubCategoryId.quranHadith:
+      case LearnHubCategoryId.prophetsStories:
+      case LearnHubCategoryId.worshipPractice:
+      case LearnHubCategoryId.arabicLanguage:
+      case LearnHubCategoryId.kidsLearning:
+      case LearnHubCategoryId.quizzesChallenges:
+      case LearnHubCategoryId.notes:
+      case LearnHubCategoryId.toolsExplore:
+        return LearnHubRouteTarget(
+          routeName: 'learnHubCategory',
+          pathParameters: {'categoryId': categorySlug(id)},
+        );
+    }
+  }
+
   static String categoryTitle(AppLocalizations l10n, LearnHubCategoryId id) {
     switch (id) {
       case LearnHubCategoryId.foundations:
@@ -263,7 +285,10 @@ class LearnHubTaxonomy {
         title: l10n.learnCategoryStoriesOfProphetsTitle,
         subtitle: l10n.learnHubSubcategoryProphetsSubtitle,
         categoryId: LearnHubCategoryId.prophetsStories,
-        routeTarget: const LearnHubRouteTarget(routeName: 'learnProphetsHub'),
+        routeTarget: const LearnHubRouteTarget(
+          routeName: 'learnProphetsHub',
+          queryParameters: {'tab': 'stories'},
+        ),
       ),
       LearnHubSubcategoryDescriptor(
         id: 'discovery',
@@ -319,7 +344,8 @@ class LearnHubTaxonomy {
         subtitle: l10n.learnHubSubcategoryIslamicTriviaSubtitle,
         categoryId: LearnHubCategoryId.worshipPractice,
         routeTarget: const LearnHubRouteTarget(
-          routeName: 'learnIslamicTrivia',
+          routeName: 'learnQuizzesHub',
+          queryParameters: {'filter': 'trivia'},
         ),
       ),
       LearnHubSubcategoryDescriptor(
@@ -337,32 +363,34 @@ class LearnHubTaxonomy {
         routeTarget: const LearnHubRouteTarget(routeName: 'quranArabic'),
       ),
       LearnHubSubcategoryDescriptor(
-        id: 'kids-learning',
-        title: l10n.learnHubSubcategoryKidsLearningTitle,
-        subtitle: l10n.learnHubSubcategoryKidsLearningSubtitle,
+        id: 'kids-games',
+        title: l10n.learnHubSubcategoryKidsGamesTitle,
+        subtitle: l10n.learnHubSubcategoryKidsGamesSubtitle,
         categoryId: LearnHubCategoryId.kidsLearning,
-        routeTarget: const LearnHubRouteTarget(routeName: 'kidsDuaLanding'),
+        routeTarget: const LearnHubRouteTarget(routeName: 'learnKidsGames'),
       ),
       LearnHubSubcategoryDescriptor(
-        id: 'kids-arabic',
-        title: l10n.learnHubSubcategoryKidsArabicTitle,
-        subtitle: l10n.learnHubSubcategoryKidsArabicSubtitle,
+        id: 'kids-arabic-learning',
+        title: l10n.learnHubSubcategoryKidsArabicLearningTitle,
+        subtitle: l10n.learnHubSubcategoryKidsArabicLearningSubtitle,
         categoryId: LearnHubCategoryId.kidsLearning,
-        routeTarget: const LearnHubRouteTarget(routeName: 'kidsArabicHome'),
+        routeTarget: const LearnHubRouteTarget(
+          routeName: 'learnKidsArabicLearning',
+        ),
       ),
       LearnHubSubcategoryDescriptor(
-        id: 'kids-stories',
-        title: l10n.learnHubSubcategoryKidsStoriesTitle,
-        subtitle: l10n.learnHubSubcategoryKidsStoriesSubtitle,
+        id: 'kids-fun-learning',
+        title: l10n.learnHubSubcategoryKidsFunLearningTitle,
+        subtitle: l10n.learnHubSubcategoryKidsFunLearningSubtitle,
         categoryId: LearnHubCategoryId.kidsLearning,
-        routeTarget: const LearnHubRouteTarget(routeName: 'kidsDuaStories'),
+        routeTarget: const LearnHubRouteTarget(routeName: 'learnKidsFunLearning'),
       ),
       LearnHubSubcategoryDescriptor(
-        id: 'kids-salah',
-        title: l10n.learnHubSubcategoryKidsSalahTitle,
-        subtitle: l10n.learnHubSubcategoryKidsSalahSubtitle,
-        categoryId: LearnHubCategoryId.kidsLearning,
-        routeTarget: const LearnHubRouteTarget(routeName: 'kidsDuaMyDay'),
+        id: 'games-island',
+        title: l10n.learnGamesIslandTitle,
+        subtitle: l10n.learnGamesIslandSubtitle,
+        categoryId: LearnHubCategoryId.quizzesChallenges,
+        routeTarget: const LearnHubRouteTarget(routeName: 'learnGamesIsland'),
       ),
       LearnHubSubcategoryDescriptor(
         id: 'quizzes',
@@ -377,7 +405,8 @@ class LearnHubTaxonomy {
         subtitle: l10n.learnHubSubcategoryChallengesSubtitle,
         categoryId: LearnHubCategoryId.quizzesChallenges,
         routeTarget: const LearnHubRouteTarget(
-          routeName: 'learnIslamicTrivia',
+          routeName: 'learnQuizzesHub',
+          queryParameters: {'filter': 'trivia'},
         ),
       ),
       LearnHubSubcategoryDescriptor(
@@ -395,15 +424,6 @@ class LearnHubTaxonomy {
         routeTarget: const LearnHubRouteTarget(routeName: 'learnNotesLanding'),
       ),
       LearnHubSubcategoryDescriptor(
-        id: 'explore-all',
-        title: l10n.learnHubExploreAllAction,
-        subtitle: l10n.learnHubSubcategoryExploreAllSubtitle,
-        categoryId: LearnHubCategoryId.toolsExplore,
-        routeTarget: const LearnHubRouteTarget(
-          routeName: 'learnExploreAllKnowledge',
-        ),
-      ),
-      LearnHubSubcategoryDescriptor(
         id: 'search-tools',
         title: l10n.learnHubSubcategorySearchToolsTitle,
         subtitle: l10n.learnHubSubcategorySearchToolsSubtitle,
@@ -411,6 +431,19 @@ class LearnHubTaxonomy {
         routeTarget: const LearnHubRouteTarget(
           routeName: 'learnExploreAllKnowledge',
         ),
+      ),
+      LearnHubSubcategoryDescriptor(
+        id: 'baby-names',
+        title: l10n.babyNamesTitle,
+        subtitle: l10n.babyNamesSubtitle,
+        categoryId: LearnHubCategoryId.toolsExplore,
+        routeTarget: const LearnHubRouteTarget(routeName: 'babyNamesHome'),
+        searchKeywords: const [
+          'baby names',
+          'muslim names',
+          'family names',
+          'name finder',
+        ],
       ),
       LearnHubSubcategoryDescriptor(
         id: 'journey-tools',
@@ -444,6 +477,27 @@ class LearnHubTaxonomy {
       default:
         return false;
     }
+  }
+
+  static bool isCanonicalHubRouteTarget(LearnHubRouteTarget routeTarget) {
+    switch (routeTarget.routeName) {
+      case 'learnDuaHub':
+      case 'learnQuizzesHub':
+      case 'learnGamesIsland':
+      case 'learnKidsGames':
+      case 'learnKidsArabicLearning':
+      case 'learnKidsFunLearning':
+        return true;
+      default:
+        return false;
+    }
+  }
+
+  static bool shouldPreferDedicatedRouteTarget(
+    LearnHubRouteTarget routeTarget,
+  ) {
+    return isJourneyRouteTarget(routeTarget) ||
+        isCanonicalHubRouteTarget(routeTarget);
   }
 
   static bool subcategoryUsesJourneyRoute(

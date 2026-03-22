@@ -49,9 +49,12 @@ class ProfileSettingsState {
     required this.quranReminders,
     required this.reflectionReminders,
     required this.fastingReminders,
+    required this.moonriseReminders,
+    required this.moonsetReminders,
     required this.appThemeMode,
     required this.prayerCalendarMode,
     required this.disableGlassTransparency,
+    required this.disableColoredGlass,
     required this.glassTransparencyLevel,
     required this.disableBackground,
     this.ramadanStartDateIso,
@@ -79,9 +82,12 @@ class ProfileSettingsState {
   final bool quranReminders;
   final bool reflectionReminders;
   final bool fastingReminders;
+  final bool moonriseReminders;
+  final bool moonsetReminders;
   final AppThemeMode appThemeMode;
   final PrayerCalendarMode prayerCalendarMode;
   final bool disableGlassTransparency;
+  final bool disableColoredGlass;
   final double glassTransparencyLevel;
   final bool disableBackground;
   final String? ramadanStartDateIso;
@@ -118,9 +124,12 @@ class ProfileSettingsState {
     bool? quranReminders,
     bool? reflectionReminders,
     bool? fastingReminders,
+    bool? moonriseReminders,
+    bool? moonsetReminders,
     AppThemeMode? appThemeMode,
     PrayerCalendarMode? prayerCalendarMode,
     bool? disableGlassTransparency,
+    bool? disableColoredGlass,
     double? glassTransparencyLevel,
     bool? disableBackground,
     String? ramadanStartDateIso,
@@ -152,10 +161,13 @@ class ProfileSettingsState {
       quranReminders: quranReminders ?? this.quranReminders,
       reflectionReminders: reflectionReminders ?? this.reflectionReminders,
       fastingReminders: fastingReminders ?? this.fastingReminders,
+      moonriseReminders: moonriseReminders ?? this.moonriseReminders,
+      moonsetReminders: moonsetReminders ?? this.moonsetReminders,
       appThemeMode: appThemeMode ?? this.appThemeMode,
       prayerCalendarMode: prayerCalendarMode ?? this.prayerCalendarMode,
       disableGlassTransparency:
           disableGlassTransparency ?? this.disableGlassTransparency,
+      disableColoredGlass: disableColoredGlass ?? this.disableColoredGlass,
       glassTransparencyLevel: glassTransparencyLevel == null
           ? this.glassTransparencyLevel
           : normalizedGlassTransparencyLevel(glassTransparencyLevel),
@@ -191,9 +203,12 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
           quranReminders: false,
           reflectionReminders: false,
           fastingReminders: false,
+          moonriseReminders: true,
+          moonsetReminders: true,
           appThemeMode: AppThemeMode.defaultMode,
           prayerCalendarMode: PrayerCalendarMode.gregorian,
           disableGlassTransparency: false,
+          disableColoredGlass: false,
           glassTransparencyLevel: kGlassTransparencyLevelDefault,
           disableBackground: false,
         ),
@@ -350,6 +365,16 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
     _save();
   }
 
+  void setMoonriseReminders(bool value) {
+    state = state.copyWith(moonriseReminders: value);
+    _save();
+  }
+
+  void setMoonsetReminders(bool value) {
+    state = state.copyWith(moonsetReminders: value);
+    _save();
+  }
+
   void setAppThemeMode(AppThemeMode mode) {
     state = state.copyWith(appThemeMode: mode);
     _save();
@@ -362,6 +387,11 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
 
   void setDisableGlassTransparency(bool value) {
     state = state.copyWith(disableGlassTransparency: value);
+    _save();
+  }
+
+  void setDisableColoredGlass(bool value) {
+    state = state.copyWith(disableColoredGlass: value);
     _save();
   }
 
@@ -379,6 +409,7 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
     state = state.copyWith(
       appThemeMode: AppThemeMode.defaultMode,
       disableGlassTransparency: false,
+      disableColoredGlass: false,
       glassTransparencyLevel: kGlassTransparencyLevelDefault,
       disableBackground: false,
     );
@@ -485,11 +516,17 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
           data['reflectionReminders'] as bool? ?? state.reflectionReminders,
       fastingReminders:
           data['fastingReminders'] as bool? ?? state.fastingReminders,
+      moonriseReminders:
+          data['moonriseReminders'] as bool? ?? state.moonriseReminders,
+      moonsetReminders:
+          data['moonsetReminders'] as bool? ?? state.moonsetReminders,
       appThemeMode: appThemeMode,
       prayerCalendarMode: prayerCalendarMode,
       disableGlassTransparency:
           data['disableGlassTransparency'] as bool? ??
           state.disableGlassTransparency,
+      disableColoredGlass:
+          data['disableColoredGlass'] as bool? ?? state.disableColoredGlass,
       glassTransparencyLevel: normalizedGlassTransparencyLevel(
         (data['glassTransparencyLevel'] as num?)?.toDouble() ??
             kGlassTransparencyLevelDefault,
@@ -527,9 +564,12 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
       'quranReminders': state.quranReminders,
       'reflectionReminders': state.reflectionReminders,
       'fastingReminders': state.fastingReminders,
+      'moonriseReminders': state.moonriseReminders,
+      'moonsetReminders': state.moonsetReminders,
       'appThemeMode': state.appThemeMode.name,
       'prayerCalendarMode': state.prayerCalendarMode.name,
       'disableGlassTransparency': state.disableGlassTransparency,
+      'disableColoredGlass': state.disableColoredGlass,
       'glassTransparencyLevel': state.glassTransparencyLevel,
       'disableBackground': state.disableBackground,
       'ramadanStartDateIso': state.ramadanStartDateIso,

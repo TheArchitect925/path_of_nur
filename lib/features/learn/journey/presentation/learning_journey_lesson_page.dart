@@ -5,6 +5,8 @@ import 'package:go_router/go_router.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/application/kids_ui_theme_provider.dart';
 import '../../../../shared/content/learning_quote.dart';
+import '../../../content_linking/application/contextual_linking_providers.dart';
+import '../../../content_linking/presentation/contextual_related_content_section.dart';
 import '../application/family_learning_provider.dart';
 import '../application/learn_together_provider.dart';
 import '../application/learning_journey_progress_provider.dart';
@@ -74,9 +76,18 @@ class LearningJourneyLessonPage extends ConsumerWidget {
         .toList(growable: false);
     final stages = LearningJourneyRegistry.stagesForJourney(journey.id);
     final stageIndex = stages.indexWhere((item) => item.id == stage.id);
-    final nextStage = stageIndex >= 0 && stageIndex + 1 < stages.length
-        ? stages[stageIndex + 1]
+    final nextStageId = stageIndex >= 0 && stageIndex + 1 < stages.length
+        ? stages[stageIndex + 1].id
         : null;
+    final nextStage = nextStageId == null
+        ? null
+        : LearningJourneyRegistry.stageById(nextStageId);
+    final contextualRelatedAsync = ref.watch(
+      contextualLinksForLearningJourneyStageProvider((
+        journeyId: journey.id,
+        stageId: stage.id,
+      )),
+    );
 
     return LearnHubPageScaffold(
       headerIcon: Icons.menu_book_rounded,
@@ -402,6 +413,14 @@ class LearningJourneyLessonPage extends ConsumerWidget {
             ),
           ),
         ],
+        if (contextualRelatedAsync case AsyncData(:final value)
+            when value.isNotEmpty) ...[
+          const SizedBox(height: 14),
+          _SectionCard(
+            title: l10n.contextualLinksRelatedTitle,
+            child: ContextualRelatedContentSection(items: value),
+          ),
+        ],
         if ((!kidsUi.enabled && lesson.relatedTools.isNotEmpty) ||
             lesson.showDhikrCounterAction) ...[
           const SizedBox(height: 14),
@@ -446,6 +465,19 @@ class LearningJourneyLessonPage extends ConsumerWidget {
           ),
         ],
         const SizedBox(height: 16),
+        if (!completed) ...[
+          _SectionCard(
+            title: l10n.learningJourneyLessonSectionRewardsTitle,
+            child: Text(
+              l10n.learningJourneyLessonSectionRewardsSubtitle(
+                stage.xpReward,
+                stage.dropReward,
+              ),
+              style: const TextStyle(color: Color(0xFF675B4E), height: 1.4),
+            ),
+          ),
+          const SizedBox(height: 14),
+        ],
         FilledButton.icon(
           onPressed: completed
               ? (nextStage == null
@@ -454,9 +486,9 @@ class LearningJourneyLessonPage extends ConsumerWidget {
                         'learnJourneyStage',
                         pathParameters: {
                           'journeyId': journey.id,
-                          'stageId': nextStage.id,
-                        },
-                      ))
+                        'stageId': nextStage.id,
+                      },
+                    ))
               : () {
                   final result = ref
                       .read(learningJourneyProgressProvider.notifier)
@@ -487,6 +519,10 @@ class LearningJourneyLessonPage extends ConsumerWidget {
                             l10n.learningJourneyFeedbackStageCompleted(
                               result.currentStreakDays,
                             ),
+                            if (result.xpAwarded > 0)
+                              l10n.learningJourneyFeedbackXpAwarded(
+                                result.xpAwarded,
+                              ),
                             if (result.oceanDropsAwarded > 0)
                               result.learnedTogether
                                   ? (kidsUi.enabled

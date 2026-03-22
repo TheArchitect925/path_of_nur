@@ -4,7 +4,11 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../../l10n/app_localizations.dart';
 import '../../../../../shared/widgets/quran_navigation.dart';
+import '../../application/quran_ayah_enrichment_provider.dart';
+import '../../domain/quran_ayah_enrichment_models.dart';
+import '../../domain/quran_content_refs.dart';
 import '../../application/quran_reference_graph_provider.dart';
+import 'ayah_insights_section.dart';
 
 Future<void> showQuranReferenceViewer(
   BuildContext context,
@@ -68,6 +72,17 @@ class _QuranReferenceViewer extends ConsumerWidget {
     final bundle = ref.watch(
       quranReferenceKnowledgeBundleProvider(referenceId),
     );
+    final enrichmentEntries = reference == null
+        ? const <QuranAyahEnrichmentEntry>[]
+        : ref.watch(
+            quranAyahEnrichmentForRangeProvider(
+              QuranQuoteRef(
+                surah: reference.surahNumber,
+                ayah: reference.ayahStart,
+                ayahEnd: reference.ayahEnd,
+              ),
+            ),
+          );
 
     if (reference == null) {
       return SafeArea(
@@ -121,6 +136,28 @@ class _QuranReferenceViewer extends ConsumerWidget {
               icon: const Icon(Icons.play_arrow_rounded),
               label: Text(l10n.quranReferenceViewerOpenInReader),
             ),
+            if (bundle.displayItems.isNotEmpty) ...[
+              const SizedBox(height: 14),
+              AyahInsightsSection(
+                title: l10n.quranLearnMoreInsightsTitle,
+                entries: enrichmentEntries,
+                items: bundle.displayItems,
+                onOpenItem: (item) {
+                  Navigator.of(context).pop();
+                  if (item.sourceRouteName != null) {
+                    context.pushNamed(
+                      item.sourceRouteName!,
+                      pathParameters: item.pathParameters,
+                      queryParameters: item.queryParameters,
+                    );
+                    return;
+                  }
+                  if (item.relatedRef != null) {
+                    openQuranReferenceLocation(context, ref: item.relatedRef!);
+                  }
+                },
+              ),
+            ],
             if (bundle.lifeLessons.isNotEmpty) ...[
               const SizedBox(height: 14),
               _section(

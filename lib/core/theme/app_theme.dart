@@ -23,6 +23,7 @@ class AppAppearanceTheme extends ThemeExtension<AppAppearanceTheme> {
     required this.glassSurfaceAlpha,
     required this.glassBorderAlpha,
     required this.disableGlassTransparency,
+    required this.disableColoredGlass,
     required this.disableBackground,
   });
 
@@ -38,6 +39,7 @@ class AppAppearanceTheme extends ThemeExtension<AppAppearanceTheme> {
   final double glassSurfaceAlpha;
   final double glassBorderAlpha;
   final bool disableGlassTransparency;
+  final bool disableColoredGlass;
   final bool disableBackground;
 
   bool get isDark => mode == AppThemeMode.dark;
@@ -89,6 +91,7 @@ class AppAppearanceTheme extends ThemeExtension<AppAppearanceTheme> {
   static AppAppearanceTheme defaults({
     required AppThemeMode mode,
     required bool disableGlassTransparency,
+    required bool disableColoredGlass,
     required bool disableBackground,
     required double glassSurfaceAlpha,
   }) {
@@ -109,6 +112,7 @@ class AppAppearanceTheme extends ThemeExtension<AppAppearanceTheme> {
               : glassSurfaceAlpha,
           glassBorderAlpha: disableGlassTransparency ? 0.42 : 0.42,
           disableGlassTransparency: disableGlassTransparency,
+          disableColoredGlass: disableColoredGlass,
           disableBackground: disableBackground,
         );
       case AppThemeMode.calmBeautiful:
@@ -127,6 +131,7 @@ class AppAppearanceTheme extends ThemeExtension<AppAppearanceTheme> {
               : glassSurfaceAlpha,
           glassBorderAlpha: disableGlassTransparency ? 0.42 : 0.42,
           disableGlassTransparency: disableGlassTransparency,
+          disableColoredGlass: disableColoredGlass,
           disableBackground: disableBackground,
         );
       case AppThemeMode.easyRead:
@@ -145,6 +150,7 @@ class AppAppearanceTheme extends ThemeExtension<AppAppearanceTheme> {
               : glassSurfaceAlpha,
           glassBorderAlpha: disableGlassTransparency ? 0.48 : 0.46,
           disableGlassTransparency: disableGlassTransparency,
+          disableColoredGlass: disableColoredGlass,
           disableBackground: disableBackground,
         );
       case AppThemeMode.dark:
@@ -163,6 +169,7 @@ class AppAppearanceTheme extends ThemeExtension<AppAppearanceTheme> {
               : glassSurfaceAlpha,
           glassBorderAlpha: disableGlassTransparency ? 0.40 : 0.38,
           disableGlassTransparency: disableGlassTransparency,
+          disableColoredGlass: disableColoredGlass,
           disableBackground: disableBackground,
         );
     }
@@ -182,6 +189,7 @@ class AppAppearanceTheme extends ThemeExtension<AppAppearanceTheme> {
     double? glassSurfaceAlpha,
     double? glassBorderAlpha,
     bool? disableGlassTransparency,
+    bool? disableColoredGlass,
     bool? disableBackground,
   }) {
     return AppAppearanceTheme(
@@ -198,6 +206,7 @@ class AppAppearanceTheme extends ThemeExtension<AppAppearanceTheme> {
       glassBorderAlpha: glassBorderAlpha ?? this.glassBorderAlpha,
       disableGlassTransparency:
           disableGlassTransparency ?? this.disableGlassTransparency,
+      disableColoredGlass: disableColoredGlass ?? this.disableColoredGlass,
       disableBackground: disableBackground ?? this.disableBackground,
     );
   }
@@ -228,6 +237,9 @@ class AppAppearanceTheme extends ThemeExtension<AppAppearanceTheme> {
       disableGlassTransparency: t < 0.5
           ? disableGlassTransparency
           : other.disableGlassTransparency,
+      disableColoredGlass: t < 0.5
+          ? disableColoredGlass
+          : other.disableColoredGlass,
       disableBackground: t < 0.5 ? disableBackground : other.disableBackground,
     );
   }
@@ -239,6 +251,7 @@ class AppTheme {
   static ThemeData themeFor({
     required AppThemeMode mode,
     required bool disableGlassTransparency,
+    required bool disableColoredGlass,
     required bool disableBackground,
     required bool highContrastText,
     required double glassSurfaceAlpha,
@@ -246,6 +259,7 @@ class AppTheme {
     final appearance = AppAppearanceTheme.defaults(
       mode: mode,
       disableGlassTransparency: disableGlassTransparency,
+      disableColoredGlass: disableColoredGlass,
       disableBackground: disableBackground,
       glassSurfaceAlpha: glassSurfaceAlpha,
     );
@@ -532,6 +546,7 @@ class AppTheme {
   static final ThemeData darkTheme = themeFor(
     mode: AppThemeMode.dark,
     disableGlassTransparency: false,
+    disableColoredGlass: false,
     disableBackground: false,
     highContrastText: false,
     glassSurfaceAlpha: 0.93,

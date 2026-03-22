@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -9,12 +10,30 @@ import '../../features/learn/content/presentation/islamic_guides_page.dart';
 import '../../features/learn/content/presentation/learn_content_detail_page.dart';
 import '../../features/learn/content/presentation/learn_notes_landing_page.dart';
 import '../../features/learn/content/presentation/quran_lessons_mapping_page.dart';
+import '../../features/learn/ayah_completion/presentation/ayah_completion_home_page.dart';
+import '../../features/learn/ayah_completion/presentation/ayah_completion_pack_page.dart';
+import '../../features/learn/ayah_completion/presentation/ayah_completion_puzzle_page.dart';
+import '../../features/learn/crossword/presentation/crossword_home_page.dart';
+import '../../features/learn/crossword/presentation/crossword_pack_page.dart';
+import '../../features/learn/crossword/presentation/crossword_puzzle_page.dart';
+import '../../features/learn/hadith_reflection/presentation/hadith_reflection_home_page.dart';
+import '../../features/learn/hadith_reflection/presentation/hadith_reflection_pack_page.dart';
+import '../../features/learn/hadith_reflection/presentation/hadith_reflection_puzzle_page.dart';
+import '../../features/learn/matching/presentation/matching_home_page.dart';
+import '../../features/learn/matching/presentation/matching_pack_page.dart';
+import '../../features/learn/matching/presentation/matching_puzzle_page.dart';
+import '../../features/learn/word_search/presentation/word_search_home_page.dart';
+import '../../features/learn/word_search/presentation/word_search_pack_page.dart';
+import '../../features/learn/word_search/presentation/word_search_puzzle_page.dart';
 import '../../features/learn/divine_life_lessons/presentation/divine_life_lesson_detail_page.dart';
 import '../../features/learn/divine_life_lessons/presentation/divine_life_lessons_page.dart';
 import '../../features/learn/divine_life_lessons/presentation/divine_life_reflection_page.dart';
 import '../../features/learn/dua/presentation/dua_detail_page.dart';
 import '../../features/learn/dua/presentation/dua_hub_page.dart';
 import '../../features/learn/glossary/presentation/glossary_page.dart';
+import '../../features/history/presentation/history_archive_page.dart';
+import '../../features/history/presentation/history_event_detail_page.dart';
+import '../../features/history/presentation/on_this_day_matches_page.dart';
 import '../../features/learn/hadith/application/hadith_path_quiz_service.dart';
 import '../../features/learn/hadith/presentation/hadith_landing_page.dart';
 import '../../features/learn/hadith/presentation/hadith_learning_path_page.dart';
@@ -24,6 +43,8 @@ import '../../features/learn/hadith/presentation/hadith_subcategory_page.dart';
 import '../../features/learn/hadith/presentation/hadith_theme_page.dart';
 import '../../features/learn/hadith/presentation/important_hadith_collection_page.dart';
 import '../../features/learn/hadith/presentation/important_hadith_detail_page.dart';
+import '../../features/learn/knowledge_games/daily/presentation/daily_knowledge_challenge_hub_page.dart';
+import '../../features/learn/knowledge_games/content_expansion/presentation/internal_content_builder_page.dart';
 import '../../features/learn/journey/presentation/family_learning_management_page.dart';
 import '../../features/learn/journey/presentation/learning_journey_detail_page.dart';
 import '../../features/learn/journey/presentation/learning_journey_home_page.dart';
@@ -37,6 +58,18 @@ import '../../features/kids_arabic/presentation/kids_arabic_coloring_pages_page.
 import '../../features/kids_arabic/presentation/kids_arabic_coloring_viewer_page.dart';
 import '../../features/kids_arabic/presentation/kids_arabic_review_page.dart';
 import '../../features/kids_arabic/presentation/kids_arabic_rewards_page.dart';
+import '../../features/kids/bedtime_stories/presentation/bedtime_story_detail_page.dart';
+import '../../features/kids/bedtime_stories/presentation/bedtime_story_family_mode_page.dart';
+import '../../features/kids/bedtime_stories/presentation/bedtime_story_memory_cards_page.dart';
+import '../../features/kids/bedtime_stories/presentation/bedtime_story_parent_dashboard_page.dart';
+import '../../features/kids/bedtime_stories/presentation/bedtime_story_quiz_page.dart';
+import '../../features/kids/bedtime_stories/presentation/bedtime_stories_page.dart';
+import '../../features/kids/bedtime_stories/presentation/kids_story_library_page.dart';
+import '../../features/kids/bedtime_routines/presentation/bedtime_companion_page.dart';
+import '../../features/kids/seerah/presentation/seerah_journey_page.dart';
+import '../../features/kids/seerah/presentation/seerah_journeys_page.dart';
+import '../../features/kids/seerah/presentation/seerah_node_page.dart';
+import '../../features/progression/presentation/learner_progression_page.dart';
 import '../../features/kids_dua_learning/presentation/kids_dua_category_page.dart';
 import '../../features/kids_dua_learning/presentation/kids_dua_drawing_page.dart';
 import '../../features/kids_dua_learning/presentation/kids_dua_drawing_view_page.dart';
@@ -60,6 +93,8 @@ import '../../features/learn/life/baby_names/presentation/baby_names_home_page.d
 import '../../features/learn/life/baby_names/presentation/baby_names_meaning_explorer_page.dart';
 import '../../features/learn/presentation/learn_page.dart';
 import '../../features/learn/presentation/data/learn_hub_taxonomy.dart';
+import '../../features/learn/presentation/models/learn_hub_models.dart';
+import '../../features/learn/presentation/pages/games_island_page.dart';
 import '../../features/learn/presentation/pages/learning_section_landing_page.dart';
 import '../../features/learn/presentation/pages/learning_journey_island_hub_page.dart';
 import '../../features/learn/presentation/pages/learn_category_page.dart';
@@ -68,6 +103,9 @@ import '../../features/learn/presentation/pages/learn_quran_hub_page.dart';
 import '../../features/learn/presentation/pages/learn_quizzes_hub_page.dart';
 import '../../features/learn/presentation/pages/learn_salah_hub_page.dart';
 import '../../features/learn/presentation/pages/quran_app_hub_page.dart';
+import '../../features/learn/quran/presentation/quran_ayah_insights_browse_page.dart';
+import '../../features/learn/quran/presentation/quran_ayah_insights_paths_page.dart';
+import '../../features/learn/quran/presentation/quran_knowledge_search_page.dart';
 import '../../features/learn/prophets/domain/prophets_tab.dart';
 import '../../features/learn/prophets/presentation/prophets_page.dart';
 import '../../features/learn/quran_teaching/presentation/quran_teaching_section_page.dart';
@@ -166,11 +204,49 @@ SalahPrayerId _parsePrayerId(String value) {
 
 List<RouteBase> buildLearnRoutes() {
   return <RouteBase>[
+    // Canonical Qur'an-owned routes live under `/quran*`. The Learn-owned
+    // `/learn/hub/quran*` entries below remain compatibility aliases only.
     GoRoute(
       path: '/quran/learning',
       name: 'quranLearningHub',
       pageBuilder: (context, state) =>
           const MaterialPage(child: LearnQuranHubPage()),
+    ),
+    GoRoute(
+      path: '/quran/insights',
+      name: 'quranAyahInsightsBrowse',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: QuranAyahInsightsBrowsePage()),
+    ),
+    GoRoute(
+      path: '/quran/knowledge-search',
+      name: 'quranKnowledgeSearch',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: QuranKnowledgeSearchPage()),
+    ),
+    GoRoute(
+      path: '/quran/insights/paths',
+      name: 'quranAyahInsightsPaths',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: QuranAyahInsightPathsPage()),
+    ),
+    GoRoute(
+      path: '/quran/insights/paths/:pathId',
+      name: 'quranAyahInsightsPathDetail',
+      pageBuilder: (context, state) => MaterialPage(
+        child: QuranAyahInsightPathDetailPage(
+          pathId: state.pathParameters['pathId'] ?? '',
+        ),
+      ),
+    ),
+    GoRoute(
+      path: '/quran/insights/:domainId',
+      name: 'quranAyahInsightsDomain',
+      pageBuilder: (context, state) => MaterialPage(
+        child: QuranAyahInsightsDomainPage(
+          domainId: state.pathParameters['domainId'] ?? '',
+        ),
+      ),
     ),
     GoRoute(
       path: '/quran/arabic',
@@ -232,6 +308,9 @@ List<RouteBase> buildLearnRoutes() {
         ),
       ),
     ),
+    // Canonical Explore All destination is `/learn/explore`.
+    // Keep `/learn/browse` as a compatibility alias because older journey/tool
+    // links still resolve through it.
     GoRoute(
       path: '/learn/browse',
       name: 'learnJourneyBrowse',
@@ -253,6 +332,77 @@ List<RouteBase> buildLearnRoutes() {
             state.uri.queryParameters['category'] ?? '',
           ),
           initialQuery: state.uri.queryParameters['q'],
+        ),
+      ),
+    ),
+    GoRoute(
+      path: '/learn/history',
+      name: 'learnHistoryArchive',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: HistoryArchivePage()),
+    ),
+    GoRoute(
+      path: '/learn/history/today',
+      name: 'learnOnThisDayMatches',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: OnThisDayMatchesPage()),
+    ),
+    GoRoute(
+      path: '/learn/history/event/:slug',
+      name: 'learnHistoricalEventDetail',
+      pageBuilder: (context, state) => MaterialPage(
+        child: HistoryEventDetailPage(slug: state.pathParameters['slug'] ?? ''),
+      ),
+    ),
+    GoRoute(
+      path: '/learn/games',
+      name: 'learnGamesIsland',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: GamesIslandPage()),
+    ),
+    GoRoute(
+      path: '/learn/games/:sectionId',
+      name: 'learnGamesSection',
+      pageBuilder: (context, state) => MaterialPage(
+        child: GamesIslandPage(
+          initialSectionId: state.pathParameters['sectionId'],
+        ),
+      ),
+    ),
+    if (kDebugMode)
+      GoRoute(
+        path: '/learn/games/internal/content-builder',
+        name: 'learnInternalContentBuilder',
+        pageBuilder: (context, state) =>
+            const MaterialPage(child: InternalContentBuilderPage()),
+      ),
+    GoRoute(
+      path: '/learn/kids/games',
+      name: 'learnKidsGames',
+      pageBuilder: (context, state) => const MaterialPage(
+        child: LearnCategoryPage(
+          categoryId: LearnHubCategoryId.kidsLearning,
+          initialSubcategoryId: 'kids-games',
+        ),
+      ),
+    ),
+    GoRoute(
+      path: '/learn/kids/arabic-learning',
+      name: 'learnKidsArabicLearning',
+      pageBuilder: (context, state) => const MaterialPage(
+        child: LearnCategoryPage(
+          categoryId: LearnHubCategoryId.kidsLearning,
+          initialSubcategoryId: 'kids-arabic-learning',
+        ),
+      ),
+    ),
+    GoRoute(
+      path: '/learn/kids/fun-learning',
+      name: 'learnKidsFunLearning',
+      pageBuilder: (context, state) => const MaterialPage(
+        child: LearnCategoryPage(
+          categoryId: LearnHubCategoryId.kidsLearning,
+          initialSubcategoryId: 'kids-fun-learning',
         ),
       ),
     ),
@@ -331,6 +481,121 @@ List<RouteBase> buildLearnRoutes() {
       pageBuilder: (context, state) => MaterialPage(
         child: KidsArabicColoringViewerPage(
           pageId: state.pathParameters['pageId'] ?? '',
+        ),
+      ),
+    ),
+    GoRoute(
+      path: '/learn/kids/bedtime-stories',
+      name: 'kidsBedtimeStories',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: BedtimeStoriesPage()),
+    ),
+    GoRoute(
+      path: '/learn/kids/seerah',
+      name: 'kidsSeerahJourneys',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: KidsSeerahJourneysPage()),
+    ),
+    GoRoute(
+      path: '/learn/kids/seerah/:journeyId',
+      name: 'kidsSeerahJourney',
+      pageBuilder: (context, state) => MaterialPage(
+        child: KidsSeerahJourneyPage(
+          journeyId: state.pathParameters['journeyId'] ?? '',
+        ),
+      ),
+    ),
+    GoRoute(
+      path: '/learn/kids/seerah/:journeyId/node/:nodeId',
+      name: 'kidsSeerahNode',
+      pageBuilder: (context, state) => MaterialPage(
+        child: KidsSeerahNodePage(
+          journeyId: state.pathParameters['journeyId'] ?? '',
+          nodeId: state.pathParameters['nodeId'] ?? '',
+        ),
+      ),
+    ),
+    GoRoute(
+      path: '/learn/kids/stories',
+      name: 'kidsStoryLibrary',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: KidsStoryLibraryPage()),
+    ),
+    GoRoute(
+      path: '/learn/kids/bedtime-stories/parents',
+      name: 'kidsBedtimeStoriesParentDashboard',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: BedtimeStoryParentDashboardPage()),
+    ),
+    GoRoute(
+      path: '/learn/kids/progression',
+      name: 'kidsLearnerProgression',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: LearnerProgressionPage()),
+    ),
+    GoRoute(
+      path: '/learn/kids/bedtime-stories/family',
+      name: 'kidsBedtimeStoriesFamilyMode',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: BedtimeStoryFamilyModePage()),
+    ),
+    GoRoute(
+      path: '/learn/kids/bedtime-stories/companion',
+      name: 'kidsBedtimeCompanion',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: BedtimeCompanionPage()),
+    ),
+    GoRoute(
+      path: '/learn/kids/bedtime-stories/:storyId',
+      name: 'kidsBedtimeStoryDetail',
+      pageBuilder: (context, state) => MaterialPage(
+        child: BedtimeStoryDetailPage(
+          storyId: state.pathParameters['storyId'] ?? '',
+        ),
+      ),
+    ),
+    GoRoute(
+      path: '/learn/kids/stories/:storyId',
+      name: 'kidsStoryDetail',
+      pageBuilder: (context, state) => MaterialPage(
+        child: BedtimeStoryDetailPage(
+          storyId: state.pathParameters['storyId'] ?? '',
+        ),
+      ),
+    ),
+    GoRoute(
+      path: '/learn/kids/bedtime-stories/:storyId/quiz',
+      name: 'kidsBedtimeStoryQuiz',
+      pageBuilder: (context, state) => MaterialPage(
+        child: BedtimeStoryQuizPage(
+          storyId: state.pathParameters['storyId'] ?? '',
+        ),
+      ),
+    ),
+    GoRoute(
+      path: '/learn/kids/stories/:storyId/quiz',
+      name: 'kidsStoryQuiz',
+      pageBuilder: (context, state) => MaterialPage(
+        child: BedtimeStoryQuizPage(
+          storyId: state.pathParameters['storyId'] ?? '',
+        ),
+      ),
+    ),
+    GoRoute(
+      path: '/learn/kids/bedtime-stories/:storyId/memory',
+      name: 'kidsBedtimeStoryMemory',
+      pageBuilder: (context, state) => MaterialPage(
+        child: BedtimeStoryMemoryCardsPage(
+          storyId: state.pathParameters['storyId'] ?? '',
+        ),
+      ),
+    ),
+    GoRoute(
+      path: '/learn/kids/stories/:storyId/memory',
+      name: 'kidsStoryMemory',
+      pageBuilder: (context, state) => MaterialPage(
+        child: BedtimeStoryMemoryCardsPage(
+          storyId: state.pathParameters['storyId'] ?? '',
         ),
       ),
     ),
@@ -430,6 +695,7 @@ List<RouteBase> buildLearnRoutes() {
       pageBuilder: (context, state) =>
           const MaterialPage(child: KidsDuaParentDashboardPage()),
     ),
+    // Compatibility Learn-owned Qur'an aliases. Prefer `/quran*` in new work.
     GoRoute(
       path: '/learn/hub/quran',
       name: 'learnQuranHub',
@@ -448,6 +714,7 @@ List<RouteBase> buildLearnRoutes() {
       pageBuilder: (context, state) =>
           const MaterialPage(child: QuranTeachingSectionPage()),
     ),
+    // Canonical Prophets hub route plus compatibility aliases.
     GoRoute(
       path: '/learn/prophets',
       name: 'learnProphetsHub',
@@ -463,11 +730,179 @@ List<RouteBase> buildLearnRoutes() {
       redirect: (context, state) =>
           _redirectWithQuery('/learn/prophets', state),
     ),
+    // Canonical Quizzes hub route plus compatibility aliases.
     GoRoute(
       path: '/learn/quizzes',
       name: 'learnQuizzesHub',
+      pageBuilder: (context, state) => MaterialPage(
+        child: LearnQuizzesHubPage(
+          initialFilter: learnQuizFilterFromQuery(
+            state.uri.queryParameters['filter'],
+          ),
+        ),
+      ),
+    ),
+    GoRoute(
+      path: '/learn/quizzes/trivia',
+      name: 'learnQuizzesTriviaHome',
       pageBuilder: (context, state) =>
-          const MaterialPage(child: LearnQuizzesHubPage()),
+          const MaterialPage(child: IslamicTriviaHomePage()),
+    ),
+    GoRoute(
+      path: '/learn/quizzes/daily-challenge',
+      name: 'learnDailyKnowledgeHub',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: DailyKnowledgeChallengeHubPage()),
+    ),
+    GoRoute(
+      path: '/learn/quizzes/crossword',
+      name: 'learnCrosswordHome',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: CrosswordHomePage()),
+    ),
+    GoRoute(
+      path: '/learn/quizzes/crossword/pack/:packId',
+      name: 'learnCrosswordPack',
+      pageBuilder: (context, state) => MaterialPage(
+        child: CrosswordPackPage(packId: state.pathParameters['packId'] ?? ''),
+      ),
+    ),
+    GoRoute(
+      path: '/learn/quizzes/crossword/daily',
+      name: 'learnCrosswordDaily',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: CrosswordPuzzlePage(dailyMode: true)),
+    ),
+    GoRoute(
+      path: '/learn/quizzes/crossword/puzzle/:puzzleId',
+      name: 'learnCrosswordPuzzle',
+      pageBuilder: (context, state) => MaterialPage(
+        child: CrosswordPuzzlePage(
+          puzzleId: state.pathParameters['puzzleId'] ?? '',
+          packId: state.uri.queryParameters['pack'],
+        ),
+      ),
+    ),
+    GoRoute(
+      path: '/learn/quizzes/word-search',
+      name: 'learnWordSearchHome',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: WordSearchHomePage()),
+    ),
+    GoRoute(
+      path: '/learn/quizzes/word-search/pack/:packId',
+      name: 'learnWordSearchPack',
+      pageBuilder: (context, state) => MaterialPage(
+        child: WordSearchPackPage(packId: state.pathParameters['packId'] ?? ''),
+      ),
+    ),
+    GoRoute(
+      path: '/learn/quizzes/word-search/daily',
+      name: 'learnWordSearchDaily',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: WordSearchPuzzlePage(dailyMode: true)),
+    ),
+    GoRoute(
+      path: '/learn/quizzes/word-search/puzzle/:puzzleId',
+      name: 'learnWordSearchPuzzle',
+      pageBuilder: (context, state) => MaterialPage(
+        child: WordSearchPuzzlePage(
+          puzzleId: state.pathParameters['puzzleId'] ?? '',
+          packId: state.uri.queryParameters['pack'],
+        ),
+      ),
+    ),
+    GoRoute(
+      path: '/learn/quizzes/matching',
+      name: 'learnMatchingHome',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: MatchingHomePage()),
+    ),
+    GoRoute(
+      path: '/learn/quizzes/matching/pack/:packId',
+      name: 'learnMatchingPack',
+      pageBuilder: (context, state) => MaterialPage(
+        child: MatchingPackPage(packId: state.pathParameters['packId'] ?? ''),
+      ),
+    ),
+    GoRoute(
+      path: '/learn/quizzes/matching/daily',
+      name: 'learnMatchingDaily',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: MatchingPuzzlePage(dailyMode: true)),
+    ),
+    GoRoute(
+      path: '/learn/quizzes/matching/puzzle/:puzzleId',
+      name: 'learnMatchingPuzzle',
+      pageBuilder: (context, state) => MaterialPage(
+        child: MatchingPuzzlePage(
+          puzzleId: state.pathParameters['puzzleId'] ?? '',
+          packId: state.uri.queryParameters['pack'],
+        ),
+      ),
+    ),
+    GoRoute(
+      path: '/learn/quizzes/ayah-completion',
+      name: 'learnAyahCompletionHome',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: AyahCompletionHomePage()),
+    ),
+    GoRoute(
+      path: '/learn/quizzes/ayah-completion/pack/:packId',
+      name: 'learnAyahCompletionPack',
+      pageBuilder: (context, state) => MaterialPage(
+        child: AyahCompletionPackPage(
+          packId: state.pathParameters['packId'] ?? '',
+        ),
+      ),
+    ),
+    GoRoute(
+      path: '/learn/quizzes/ayah-completion/daily',
+      name: 'learnAyahCompletionDaily',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: AyahCompletionPuzzlePage(dailyMode: true)),
+    ),
+    GoRoute(
+      path: '/learn/quizzes/ayah-completion/puzzle/:puzzleId',
+      name: 'learnAyahCompletionPuzzle',
+      pageBuilder: (context, state) => MaterialPage(
+        child: AyahCompletionPuzzlePage(
+          puzzleId: state.pathParameters['puzzleId'] ?? '',
+          packId: state.uri.queryParameters['pack'],
+        ),
+      ),
+    ),
+    GoRoute(
+      path: '/learn/quizzes/hadith-reflection',
+      name: 'learnHadithReflectionHome',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: HadithReflectionHomePage()),
+    ),
+    GoRoute(
+      path: '/learn/quizzes/hadith-reflection/pack/:packId',
+      name: 'learnHadithReflectionPack',
+      pageBuilder: (context, state) => MaterialPage(
+        child: HadithReflectionPackPage(
+          packId: state.pathParameters['packId'] ?? '',
+        ),
+      ),
+    ),
+    GoRoute(
+      path: '/learn/quizzes/hadith-reflection/daily',
+      name: 'learnHadithReflectionDaily',
+      pageBuilder: (context, state) => const MaterialPage(
+        child: HadithReflectionPuzzlePage(dailyMode: true),
+      ),
+    ),
+    GoRoute(
+      path: '/learn/quizzes/hadith-reflection/puzzle/:puzzleId',
+      name: 'learnHadithReflectionPuzzle',
+      pageBuilder: (context, state) => MaterialPage(
+        child: HadithReflectionPuzzlePage(
+          puzzleId: state.pathParameters['puzzleId'] ?? '',
+          packId: state.uri.queryParameters['pack'],
+        ),
+      ),
     ),
     GoRoute(
       path: '/learn/hub/quizzes',
@@ -477,6 +912,7 @@ List<RouteBase> buildLearnRoutes() {
       path: '/learn/section/quizzes',
       redirect: (context, state) => _redirectWithQuery('/learn/quizzes', state),
     ),
+    // Canonical Dua hub route plus compatibility aliases.
     GoRoute(
       path: '/learn/duas',
       name: 'learnDuaHub',
@@ -492,11 +928,13 @@ List<RouteBase> buildLearnRoutes() {
       path: '/learn/section/duas',
       redirect: (context, state) => _redirectWithQuery('/learn/duas', state),
     ),
+    // Trivia path/session routes are still Learn-owned under `/learn/hub/trivia`
+    // for compatibility. The public quizzes landing is `/learn/quizzes`.
     GoRoute(
       path: '/learn/hub/trivia',
       name: 'learnIslamicTrivia',
-      pageBuilder: (context, state) =>
-          const MaterialPage(child: IslamicTriviaHomePage()),
+      redirect: (context, state) =>
+          _redirectWithQuery('/learn/quizzes/trivia', state),
     ),
     GoRoute(
       path: '/learn/hub/trivia/paths',

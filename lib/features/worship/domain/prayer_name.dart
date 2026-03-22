@@ -6,11 +6,17 @@ enum PrayerName { fajr, dhuhr, asr, maghrib, isha }
 
 extension PrayerNameX on PrayerName {
   String localizedLabel(AppLocalizations l10n) {
+    return localizedLabelForDate(l10n, DateTime.now());
+  }
+
+  String localizedLabelForDate(AppLocalizations l10n, DateTime date) {
     switch (this) {
       case PrayerName.fajr:
         return l10n.settingsPrayerNameFajr;
       case PrayerName.dhuhr:
-        return l10n.settingsPrayerNameDhuhr;
+        return date.weekday == DateTime.friday
+            ? l10n.settingsPrayerNameJumuah
+            : l10n.settingsPrayerNameDhuhr;
       case PrayerName.asr:
         return l10n.settingsPrayerNameAsr;
       case PrayerName.maghrib:
@@ -37,11 +43,15 @@ extension PrayerNameX on PrayerName {
   }
 
   String get arabic {
+    return arabicForDate(DateTime.now());
+  }
+
+  String arabicForDate(DateTime date) {
     switch (this) {
       case PrayerName.fajr:
         return 'الفجر';
       case PrayerName.dhuhr:
-        return 'الظهر';
+        return date.weekday == DateTime.friday ? 'الجمعة' : 'الظهر';
       case PrayerName.asr:
         return 'العصر';
       case PrayerName.maghrib:

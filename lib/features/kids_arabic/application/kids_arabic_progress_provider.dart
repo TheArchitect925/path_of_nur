@@ -1,9 +1,13 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../features/journey/application/journey_progression_provider.dart';
-import '../../../features/learn/journey/application/learning_journey_progress_provider.dart';
-import '../../../features/ocean/application/ocean_drops_provider.dart';
+import '../../../features/accounts_sync/application/accounts_sync_controller.dart';
+import '../../../features/kids/activity/application/kids_activity_log_service.dart';
+import '../../../features/kids/activity/domain/kids_activity_models.dart';
+import '../../../features/progression/application/learner_progression_service.dart';
+import '../../../features/progression/domain/learner_progression_models.dart';
 import '../../../shared/persistence/local_store.dart';
+import '../../kids/bedtime_stories/application/bedtime_active_learner_service.dart';
+import '../../kids/bedtime_stories/domain/bedtime_family_models.dart';
 import 'kids_arabic_daily_mission_service.dart';
 import 'kids_arabic_progression.dart';
 import 'kids_arabic_starter_tracing.dart';
@@ -11,7 +15,14 @@ import 'kids_arabic_tracing_engine.dart';
 import '../data/kids_arabic_letters_data.dart';
 import '../domain/kids_arabic_models.dart';
 
-const kidsArabicProgressStorageKey = 'kids.arabic.progress.v1';
+const legacyKidsArabicProgressStorageKey = 'kids.arabic.progress.v1';
+
+String kidsArabicProgressStorageKeyForLearner(String learnerId) =>
+    'kids.arabic.progress.v2.$learnerId';
+
+final kidsArabicActiveLearnerProvider = Provider<BedtimeLearnerIdentity>((ref) {
+  return ref.watch(bedtimeActiveLearnerProvider);
+});
 
 final kidsArabicNowProvider = Provider<DateTime Function()>((ref) {
   return DateTime.now;
@@ -59,7 +70,12 @@ final kidsArabicProgressProvider =
     StateNotifierProvider<KidsArabicProgressNotifier, KidsArabicProgressState>((
       ref,
     ) {
-      return KidsArabicProgressNotifier(ref);
+      final notifier = KidsArabicProgressNotifier(ref);
+      ref.listen<String>(
+        kidsArabicActiveLearnerProvider.select((value) => value.learnerId),
+        (_, nextLearnerId) => notifier.updateActiveLearner(nextLearnerId),
+      );
+      return notifier;
     });
 
 final kidsArabicWeakLettersProvider = Provider<List<KidsArabicLetter>>((ref) {
@@ -73,24 +89,59 @@ class KidsArabicProgressNotifier
     extends StateNotifier<KidsArabicProgressState> {
   KidsArabicProgressNotifier(this._ref)
     : _store = _ref.read(localStoreProvider),
-      super(KidsArabicProgressState.initial()) {
-    _load();
+      _activeLearnerId = _ref.read(kidsArabicActiveLearnerProvider).learnerId,
+      super(
+        KidsArabicProgressState.fromJson(
+          _ref.read(localStoreProvider).getJsonMap(
+                kidsArabicProgressStorageKeyForLearner(
+                  _ref.read(kidsArabicActiveLearnerProvider).learnerId,
+                ),
+              ),
+        ),
+      ) {
+    _migrateLegacyProgressIfNeeded();
     ensureDailyMission();
   }
 
   final Ref _ref;
   final LocalStore _store;
+  String _activeLearnerId;
   KidsArabicDailyMissionService get _dailyMissionService =>
       _ref.read(kidsArabicDailyMissionServiceProvider);
 
-  void _load() {
-    state = KidsArabicProgressState.fromJson(
-      _store.getJsonMap(kidsArabicProgressStorageKey),
+  void _save() {
+    _store.setJsonMap(
+      kidsArabicProgressStorageKeyForLearner(_activeLearnerId),
+      state.toJson(),
     );
   }
 
-  void _save() {
-    _store.setJsonMap(kidsArabicProgressStorageKey, state.toJson());
+  void updateActiveLearner(String learnerId) {
+    if (_activeLearnerId == learnerId) {
+      return;
+    }
+    _activeLearnerId = learnerId;
+    _migrateLegacyProgressIfNeeded();
+    ensureDailyMission();
+  }
+
+  void _migrateLegacyProgressIfNeeded() {
+    final scopedKey = kidsArabicProgressStorageKeyForLearner(_activeLearnerId);
+    final scoped = _store.getJsonMap(scopedKey) ?? <String, dynamic>{};
+    if (scoped.isNotEmpty) {
+      state = KidsArabicProgressState.fromJson(scoped);
+      return;
+    }
+    final legacy =
+        _store.getJsonMap(legacyKidsArabicProgressStorageKey) ??
+        <String, dynamic>{};
+    if (legacy.isEmpty) {
+      state = KidsArabicProgressState.initial();
+      return;
+    }
+    state = KidsArabicProgressState.fromJson(legacy);
+    _store.setJsonMap(scopedKey, state.toJson());
+    _store.remove(legacyKidsArabicProgressStorageKey);
   }
 
   KidsArabicLetter? letterById(String id) {
@@ -162,33 +213,58 @@ class KidsArabicProgressNotifier
       state.earnedStickerIds,
     );
     final streak = _nextStreak(dayKey);
-
-    _ref
-        .read(journeyProgressUpdateHelperProvider)
-        .addLearningStageCompletions(1);
-    _ref.read(learningJourneyProgressProvider.notifier).recordActiveDay();
-    final oceanDropsAwarded = _ref
-        .read(oceanDropServiceProvider)
-        .awardDrop(
-          actionType: oceanActionLessonCompleted,
-          sourceModule: oceanSourceLearn,
-          referenceId: 'kids_arabic_${letter.id}',
-          metadata: <String, dynamic>{
-            'timestamp': now.toIso8601String(),
-            'feature': 'kids_arabic_letters',
-            'traceResult': traceResult.name,
-          },
-        );
+    final reward = firstMeaningfulCompletion
+        ? _ref
+              .read(learnerProgressionControllerProvider(_activeLearnerId).notifier)
+              .award(
+                sourceRef: 'kids_arabic_lesson:${letter.id}:complete',
+                activityType:
+                    LearnerProgressionActivityType.kidsArabicLessonCompletion,
+                sourceModule: 'kids_arabic',
+                xp: letter.rewardXp,
+                drops: letter.rewardDrops,
+                occurredAt: now,
+                metadata: <String, Object?>{
+                  'feature': 'kids_arabic',
+                  'letterId': letter.id,
+                  'traceResult': traceResult.name,
+                },
+                mirrorToJourney: _shouldMirrorRewardsToJourney(),
+                incrementLearningStageCompletion: _shouldMirrorRewardsToJourney(),
+              )
+        : const LearnerProgressionAwardResult(
+            awardedXp: 0,
+            awardedDrops: 0,
+            wasDuplicate: false,
+            newBadgeIds: <String>[],
+            newMilestoneIds: <String>[],
+            leveledUp: false,
+          );
+    if (firstMeaningfulCompletion) {
+      _ref.read(kidsActivityLogProvider.notifier).log(
+        type: KidsActivityType.arabicLetterCompleted,
+        domain: KidsActivityDomain.arabic,
+        sourceRef: 'kids_arabic_lesson_complete:${letter.id}',
+        contentId: letter.id,
+        titleSnapshot: letter.nameEn,
+        subtitleSnapshot: letter.childFriendlyLine,
+        occurredAt: now,
+        metadata: <String, Object?>{
+          'feature': 'kids_arabic',
+          'letterId': letter.id,
+          'traceResult': traceResult.name,
+        },
+      );
+    }
 
     state = state.copyWith(
       progressByLetterId: nextProgressMap,
       reviewNeededLetterIds: nextReviewNeeded,
       earnedStickerIds: nextStickers.all,
       totalLessonsDone: state.totalLessonsDone + 1,
-      totalFeatureXpAwarded: state.totalFeatureXpAwarded + letter.rewardXp,
+      totalFeatureXpAwarded: state.totalFeatureXpAwarded + reward.awardedXp,
       totalFeatureDropsAwarded:
-          state.totalFeatureDropsAwarded +
-          (oceanDropsAwarded > 0 ? letter.rewardDrops : 0),
+          state.totalFeatureDropsAwarded + reward.awardedDrops,
       localCurrentStreakDays: streak.current,
       localBestStreakDays: streak.best,
       lastLessonLetterId: letter.id,
@@ -204,8 +280,8 @@ class KidsArabicProgressNotifier
 
     return KidsArabicCompletionResult(
       traceResult: traceResult,
-      xpAwarded: letter.rewardXp,
-      oceanDropsAwarded: oceanDropsAwarded > 0 ? letter.rewardDrops : 0,
+      xpAwarded: reward.awardedXp,
+      oceanDropsAwarded: reward.awardedDrops,
       newStickerIds: nextStickers.newlyUnlocked,
       localStreakDays: streak.current,
       firstMeaningfulCompletion: firstMeaningfulCompletion,
@@ -252,6 +328,24 @@ class KidsArabicProgressNotifier
       type: KidsArabicDailyMissionType.review,
       targetLetterId: targetLetterId,
     );
+    if (result != null) {
+      final letter = letterById(targetLetterId);
+      _ref.read(kidsActivityLogProvider.notifier).log(
+        type: KidsActivityType.arabicReviewCompleted,
+        domain: KidsActivityDomain.arabic,
+        sourceRef:
+            'kids_arabic_review:${LocalStore.todayKey(_ref.read(kidsArabicNowProvider)())}:$targetLetterId',
+        contentId: targetLetterId,
+        titleSnapshot: letter?.nameEn,
+        subtitleSnapshot: letter?.childFriendlyLine,
+        occurredAt: _ref.read(kidsArabicNowProvider)(),
+        dedupeWindow: const Duration(minutes: 1),
+        metadata: <String, Object?>{
+          'feature': 'kids_arabic_review',
+          'letterId': targetLetterId,
+        },
+      );
+    }
     if (result != null) {
       _save();
     }
@@ -352,34 +446,52 @@ class KidsArabicProgressNotifier
       return null;
     }
 
-    final dailyDropsAwarded = _ref
-        .read(oceanDropServiceProvider)
-        .awardDrop(
-          actionType: oceanActionLearningDailyLightCompleted,
-          sourceModule: oceanSourceLearn,
-          referenceId: 'kids_arabic_daily_$dayKey',
-          metadata: <String, dynamic>{
-            'timestamp': now.toIso8601String(),
-            'feature': 'kids_arabic_letters_daily',
+    final reward = _ref
+        .read(learnerProgressionControllerProvider(_activeLearnerId).notifier)
+        .award(
+          sourceRef: 'kids_arabic_daily:$dayKey',
+          activityType:
+              LearnerProgressionActivityType.kidsArabicDailyMissionCompletion,
+          sourceModule: 'kids_arabic',
+          xp: kidsArabicDailyBonusXp,
+          drops: kidsArabicDailyBonusDrops,
+          occurredAt: now,
+          metadata: <String, Object?>{
+            'feature': 'kids_arabic_daily',
             'missionId': mission.id,
             'missionType': mission.type.name,
             'targetLetterId': mission.targetLetterId,
           },
+          mirrorToJourney: _shouldMirrorRewardsToJourney(),
         );
-    _ref.read(learningJourneyProgressProvider.notifier).recordActiveDay();
 
     final completedMission = mission.copyWith(
       isCompleted: true,
       completedAt: now.toIso8601String(),
     );
+    _ref.read(kidsActivityLogProvider.notifier).log(
+      type: KidsActivityType.arabicDailyMissionCompleted,
+      domain: KidsActivityDomain.arabic,
+      sourceRef: 'kids_arabic_daily:${mission.id}',
+      contentId: mission.targetLetterId,
+      titleSnapshot: letterById(mission.targetLetterId)?.nameEn,
+      subtitleSnapshot:
+          letterById(mission.targetLetterId)?.childFriendlyLine,
+      occurredAt: now,
+      metadata: <String, Object?>{
+        'feature': 'kids_arabic_daily',
+        'missionId': mission.id,
+        'missionType': mission.type.name,
+        'targetLetterId': mission.targetLetterId,
+      },
+    );
     state = state.copyWith(
       dailyMission: completedMission,
       dailyProgress: update.progress,
       totalFeatureXpAwarded:
-          state.totalFeatureXpAwarded + kidsArabicDailyBonusXp,
+          state.totalFeatureXpAwarded + reward.awardedXp,
       totalFeatureDropsAwarded:
-          state.totalFeatureDropsAwarded +
-          (dailyDropsAwarded > 0 ? kidsArabicDailyBonusDrops : 0),
+          state.totalFeatureDropsAwarded + reward.awardedDrops,
     );
     return KidsArabicDailyMissionCompletionResult(
       missionId: mission.id,
@@ -388,9 +500,16 @@ class KidsArabicProgressNotifier
       totalActiveDays: update.progress.totalActiveDays,
       weeklyCompletions: update.progress.weeklyCompletions,
       graceUsed: update.graceUsed,
-      xpAwarded: kidsArabicDailyBonusXp,
-      oceanDropsAwarded: dailyDropsAwarded > 0 ? kidsArabicDailyBonusDrops : 0,
+      xpAwarded: reward.awardedXp,
+      oceanDropsAwarded: reward.awardedDrops,
     );
+  }
+
+  bool _shouldMirrorRewardsToJourney() {
+    final accounts = _ref.read(accountsSyncControllerProvider);
+    final learner = _ref.read(kidsArabicActiveLearnerProvider);
+    return !learner.isFallbackLearner &&
+        accounts.activeProfileId == learner.learnerId;
   }
 }
 

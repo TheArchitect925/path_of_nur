@@ -1,6 +1,6 @@
 # Route Map
 
-Last updated: 2026-03-18
+Last updated: 2026-03-21
 
 ## Canonical top-level tabs
 
@@ -57,6 +57,13 @@ Last updated: 2026-03-18
 
 - `/quran`
 - `/quran/learning`
+- `/quran/knowledge-search`
+- `/quran/insights`
+- `/quran/insights/paths`
+- `/quran/insights/paths/:pathId`
+- `/quran/insights/:domainId`
+- `/quran/surah-insights`
+- `/quran/surah/:surahNumber/insights`
 - `/quran/arabic`
 - `/quran/explorer`
 - `/quran/surah/:surahNumber`
@@ -77,21 +84,46 @@ Last updated: 2026-03-18
 - `/learn/learning-journey`
   - lightweight Learning Journey island page that now owns the Learn-hub journey summary block
 - `/learn/journey-home`
+  - still active, but not the preferred default for new “explore all” or broad discovery entry points
 - `/learn/island/:islandId`
 - `/learn/journey/:journeyId`
 - `/learn/journey/:journeyId/stage/:stageId`
-- `/learn/browse`
-  - now renders the new Explore All Knowledge surface for compatibility
 - `/learn/explore`
+  - canonical Explore All Knowledge route
+- `/learn/browse`
+  - compatibility alias for `/learn/explore`; keep for older tool links only
+- `/learn/games`
+- `/learn/games/:sectionId`
 - `/learn/category/:categoryId`
 - `/learn/family`
+- `/learn/kids/games`
+- `/learn/kids/arabic-learning`
+- `/learn/kids/fun-learning`
+  - `/learn/kids/stories`
+  - `/learn/kids/stories/:storyId`
+  - `/learn/kids/stories/:storyId/quiz`
+  - `/learn/kids/stories/:storyId/memory`
+  - `/learn/kids/progression`
+  - `/learn/kids/seerah`
+  - `/learn/kids/seerah/:journeyId`
+  - `/learn/kids/seerah/:journeyId/node/:nodeId`
+  - `/learn/kids/bedtime-stories`
+  - `/learn/kids/bedtime-stories/companion`
+  - `/learn/kids/bedtime-stories/family`
+  - `/learn/kids/bedtime-stories/parents`
+  - `/learn/kids/bedtime-stories/:storyId`
+  - `/learn/kids/bedtime-stories/:storyId/quiz`
+  - `/learn/kids/bedtime-stories/:storyId/memory`
 
 ### Legacy or secondary learn hubs still wired
 
 - `/learn/legacy`
 - `/learn/hub/quran`
+  - compatibility alias for Qur'an-owned `/quran`
 - `/learn/hub/quran/learning`
+  - compatibility alias for `/quran/learning`
 - `/learn/hub/quranic-arabic`
+  - compatibility alias for `/quran/arabic`
 - `/learn/hub/trivia`
 - `/learn/hub/trivia/paths`
 - `/learn/hub/trivia/paths/:pathId`
@@ -101,12 +133,29 @@ Last updated: 2026-03-18
 - `/learn/hub/trivia/review`
 - `/learn/hub/trivia/stats`
 - `/learn/hub/salah`
+- `/learn/quizzes/crossword`
+- `/learn/quizzes/crossword/pack/:packId`
+- `/learn/quizzes/crossword/daily`
+- `/learn/quizzes/crossword/puzzle/:puzzleId`
+- `/learn/quizzes/word-search`
+- `/learn/quizzes/word-search/pack/:packId`
+- `/learn/quizzes/word-search/daily`
+- `/learn/quizzes/word-search/puzzle/:puzzleId`
+- `/learn/quizzes/matching`
+- `/learn/quizzes/matching/pack/:packId`
+- `/learn/quizzes/matching/daily`
+- `/learn/quizzes/matching/puzzle/:puzzleId`
+- `/learn/quizzes/ayah-completion`
+- `/learn/quizzes/ayah-completion/pack/:packId`
+- `/learn/quizzes/ayah-completion/daily`
+- `/learn/quizzes/ayah-completion/puzzle/:puzzleId`
 - `/learn/hub/:sectionId`
   - supported hubs currently include:
     - `prophets`
     - `duas`
     - `faq`
     - `quizzes`
+  - crossword, word search, matching, and ayah completion now live under the Quizzes section rather than as separate top-level Learn hubs
 
 ### Learn domain routes
 
@@ -123,6 +172,10 @@ Last updated: 2026-03-18
   - `/learn/faq`
   - `/learn/faq/category/:categoryId`
   - `/learn/faq/item/:faqId`
+- History:
+  - `/learn/history`
+  - `/learn/history/today`
+  - `/learn/history/event/:slug`
 - Duas:
   - `/learn/duas/:duaId`
 - Life:
@@ -161,11 +214,38 @@ Last updated: 2026-03-18
   - `/learn/guides`
   - `/learn/guides/quran-lessons-mapping`
   - `/learn/content/:category/:topicId`
+- Quizzes / knowledge games:
+  - `/learn/quizzes`
+  - `/learn/quizzes/trivia`
+  - `/learn/quizzes/daily-challenge`
+  - `/learn/games/internal/content-builder`
+    - hidden debug-only internal tooling route for normalized content authoring; do not surface in public discovery
+  - `/learn/quizzes/crossword`
+  - `/learn/quizzes/crossword/pack/:packId`
+  - `/learn/quizzes/crossword/daily`
+  - `/learn/quizzes/crossword/puzzle/:puzzleId`
+  - `/learn/quizzes/word-search`
+  - `/learn/quizzes/word-search/pack/:packId`
+  - `/learn/quizzes/word-search/daily`
+  - `/learn/quizzes/word-search/puzzle/:puzzleId`
+  - `/learn/quizzes/matching`
+  - `/learn/quizzes/matching/pack/:packId`
+  - `/learn/quizzes/matching/daily`
+  - `/learn/quizzes/matching/puzzle/:puzzleId`
+  - `/learn/quizzes/ayah-completion`
+  - `/learn/quizzes/ayah-completion/pack/:packId`
+  - `/learn/quizzes/ayah-completion/daily`
+  - `/learn/quizzes/ayah-completion/puzzle/:puzzleId`
+  - `/learn/quizzes/hadith-reflection`
+  - `/learn/quizzes/hadith-reflection/pack/:packId`
+  - `/learn/quizzes/hadith-reflection/daily`
+  - `/learn/quizzes/hadith-reflection/puzzle/:puzzleId`
 
 ## Journey / growth routes
 
 - `/journey`
 - `/journey/garden`
+  - canonical garden route; now owned by `lib/features/garden/` while reusing Journey garden milestone assets/catalog
 - `/journey/ocean`
 - `/journey/wallpapers`
 - `/journey/today`
@@ -177,6 +257,10 @@ Last updated: 2026-03-18
 - `/journey/tracking/habits`
 - `/journey/tracking/habits/settings`
 - `/journey/tracking/habits/calendar`
+- `/journey/spiritual-growth`
+- `/journey/spiritual-growth/intentions`
+- `/journey/spiritual-growth/reflection`
+- `/journey/spiritual-growth/themes`
 - `/journey/path/:pathId`
 - `/journey/habit/:habitId`
 
@@ -186,6 +270,21 @@ Last updated: 2026-03-18
 - `/profile/whats-new`
 - `/profile/coming-soon`
   - keep as compatibility aliases only; new work should target `/settings/*`
+- `/learn/browse`
+  - use `/learn/explore` in new work
+- `/learn/hub/quran`
+- `/learn/hub/quran/learning`
+- `/learn/hub/quranic-arabic`
+  - use `/quran*` ownership in new work
+- `/learn/hub/prophets`
+- `/learn/section/prophets`
+  - use `/learn/prophets` in new work
+- `/learn/hub/quizzes`
+- `/learn/section/quizzes`
+  - use `/learn/quizzes` in new work
+- `/learn/hub/duas`
+- `/learn/section/duas`
+  - use `/learn/duas` in new work
 - `/learn/quran/*`
   - compatibility aliases for older Learn-owned Qur'an paths
 - `/growth/today`

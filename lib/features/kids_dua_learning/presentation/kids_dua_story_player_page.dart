@@ -245,47 +245,73 @@ class _KidsDuaStoryPlayerPageState
     ref.read(kidsDuaLearningProvider.notifier).completeStory(widget.storyId);
     showModalBottomSheet<void>(
       context: context,
+      isScrollControlled: true,
+      useSafeArea: true,
       showDragHandle: true,
       builder: (context) {
         final l10n = AppLocalizations.of(context);
+        final mediaQuery = MediaQuery.of(context);
+        final maxHeight = mediaQuery.size.height * 0.82;
         return Padding(
-          padding: const EdgeInsets.fromLTRB(20, 8, 20, 24),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                l10n.kidsDuaStoriesCompleteTitle,
-                style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w800,
+          padding: EdgeInsets.fromLTRB(
+            20,
+            8,
+            20,
+            24 + mediaQuery.viewInsets.bottom,
+          ),
+          child: ConstrainedBox(
+            constraints: BoxConstraints(maxHeight: maxHeight),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Flexible(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          l10n.kidsDuaStoriesCompleteTitle,
+                          style: const TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w800,
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        Text(
+                          ref
+                              .read(kidsDuaStoryByIdProvider(widget.storyId))!
+                              .closingLine,
+                          style: const TextStyle(
+                            color: Color(0xFF675B4E),
+                            height: 1.4,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-              ),
-              const SizedBox(height: 8),
-              Text(
-                ref.read(kidsDuaStoryByIdProvider(widget.storyId))!.closingLine,
-                style: const TextStyle(color: Color(0xFF675B4E), height: 1.4),
-              ),
-              const SizedBox(height: 16),
-              FilledButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                  context.pushNamed(
-                    'kidsDuaLesson',
-                    pathParameters: {'lessonId': duaId},
-                  );
-                },
-                child: Text(l10n.kidsDuaStoriesSayDuaAction),
-              ),
-              const SizedBox(height: 8),
-              OutlinedButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                  this.context.pop();
-                },
-                child: Text(l10n.kidsDuaStoriesBackToStoriesAction),
-              ),
-            ],
+                const SizedBox(height: 16),
+                FilledButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    context.pushNamed(
+                      'kidsDuaLesson',
+                      pathParameters: {'lessonId': duaId},
+                    );
+                  },
+                  child: Text(l10n.kidsDuaStoriesSayDuaAction),
+                ),
+                const SizedBox(height: 8),
+                OutlinedButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    this.context.pop();
+                  },
+                  child: Text(l10n.kidsDuaStoriesBackToStoriesAction),
+                ),
+              ],
+            ),
           ),
         );
       },

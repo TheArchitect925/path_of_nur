@@ -13,12 +13,19 @@ class DhikrSession {
   final DateTime startedAt;
   final DateTime finishedAt;
 
+  Duration get duration {
+    final difference = finishedAt.difference(startedAt);
+    if (difference.isNegative) {
+      return Duration.zero;
+    }
+    return difference;
+  }
+
   String get durationLabel {
-    final minutes = finishedAt.difference(startedAt).inMinutes;
+    final minutes = duration.inMinutes;
     if (minutes <= 0) {
       return 'just now';
     }
     return '$minutes min';
   }
 }
-

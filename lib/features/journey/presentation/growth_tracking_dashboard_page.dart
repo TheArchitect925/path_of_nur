@@ -5,14 +5,9 @@ import 'package:intl/intl.dart';
 
 import '../../../app/app_router.dart';
 import '../../../l10n/app_localizations.dart';
-import '../../../shared/application/app_summary_providers.dart';
 import '../../../shared/widgets/app_page_scaffold.dart';
 import '../../../shared/widgets/premium_card.dart';
-import '../../learn/journey/application/learning_path_provider.dart';
-import '../../learn/journey/domain/learning_path_models.dart';
-import '../application/growth_providers.dart';
-import '../drops/application/journey_drops_providers.dart';
-import '../xp/application/journey_xp_providers.dart';
+import '../application/journey_stats_provider.dart';
 
 class GrowthTrackingDashboardPage extends ConsumerWidget {
   const GrowthTrackingDashboardPage({super.key});
@@ -22,14 +17,14 @@ class GrowthTrackingDashboardPage extends ConsumerWidget {
     final l10n = AppLocalizations.of(context);
     final locale = Localizations.localeOf(context).toLanguageTag();
     final countFormat = NumberFormat.decimalPattern(locale);
-    final summary = ref.watch(homeDashboardSummaryProvider);
-    final today = ref.watch(growthTodaySummaryProvider);
-    final xp = ref.watch(journeyXpSummaryProvider);
-    final drops = ref.watch(journeyDropSummaryProvider);
-    final suggestions = _buildSuggestions(context, ref);
+    final percentFormat = NumberFormat.decimalPercentPattern(
+      locale: locale,
+      decimalDigits: 1,
+    );
+    final stats = ref.watch(journeyStatsSummaryProvider);
 
     return AppPageScaffold(
-      headerIcon: Icons.dashboard_customize_rounded,
+      headerIcon: Icons.query_stats_rounded,
       title: l10n.growthTrackingOverviewTitle,
       subtitle: l10n.growthTrackingOverviewSubtitle,
       children: [
@@ -38,7 +33,116 @@ class GrowthTrackingDashboardPage extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                l10n.growthTrackingOverviewTodayTitle,
+                l10n.journeyStatsQuranReadingTitle,
+                style: const TextStyle(fontWeight: FontWeight.w700),
+              ),
+              const SizedBox(height: 6),
+              Text(
+                _formatReadingDuration(
+                  l10n,
+                  countFormat,
+                  Duration(seconds: stats.totalQuranReadingSeconds),
+                ),
+                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                l10n.journeyStatsQuranReadingSubtitle(
+                  _formatReadingDuration(
+                    l10n,
+                    countFormat,
+                    Duration(seconds: stats.todayQuranReadingSeconds),
+                  ),
+                  countFormat.format(stats.totalQuranReadingSessions),
+                ),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                l10n.journeyStatsQuranListeningSubtitle(
+                  _formatReadingDuration(
+                    l10n,
+                    countFormat,
+                    Duration(seconds: stats.todayQuranListeningSeconds),
+                  ),
+                  countFormat.format(stats.totalQuranListeningSessions),
+                ),
+                style: const TextStyle(fontSize: 12, color: Color(0xFF6A5A4A)),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 14),
+        PremiumCard(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                l10n.journeyStatsTimeReflectionTitle,
+                style: const TextStyle(fontWeight: FontWeight.w700),
+              ),
+              const SizedBox(height: 6),
+              Text(
+                l10n.journeyStatsTimeReflectionSubtitle,
+                style: const TextStyle(color: Color(0xFF6A5A4A)),
+              ),
+              const SizedBox(height: 10),
+              Wrap(
+                spacing: 10,
+                runSpacing: 10,
+                children: [
+                  _OverviewMetric(
+                    label: l10n.journeyStatsTimeSinceInstallTitle,
+                    value: _formatReflectionDuration(
+                      l10n,
+                      countFormat,
+                      Duration(seconds: stats.timeSinceInstallSeconds),
+                    ),
+                    detail: l10n.journeyStatsTimeSinceInstallSubtitle,
+                  ),
+                  _OverviewMetric(
+                    label: l10n.journeyStatsWorshipGrowthTimeTitle,
+                    value: _formatReflectionDuration(
+                      l10n,
+                      countFormat,
+                      Duration(
+                        seconds: stats.totalTrackedWorshipGrowthSeconds,
+                      ),
+                    ),
+                    detail: l10n.journeyStatsWorshipGrowthTimeSubtitle,
+                  ),
+                  _OverviewMetric(
+                    label: l10n.journeyStatsTrackedShareTitle,
+                    value: percentFormat.format(stats.trackedShareOfInstallTime),
+                    detail: l10n.journeyStatsTrackedShareSubtitle,
+                  ),
+                  _OverviewMetric(
+                    label: l10n.journeyStatsOtherTimeTitle,
+                    value: _formatReflectionDuration(
+                      l10n,
+                      countFormat,
+                      Duration(seconds: stats.otherUntrackedSeconds),
+                    ),
+                    detail: l10n.journeyStatsOtherTimeSubtitle,
+                  ),
+                ],
+              ),
+              const SizedBox(height: 8),
+              Text(
+                l10n.journeyStatsTimeReflectionHelper,
+                style: const TextStyle(fontSize: 12, color: Color(0xFF6A5A4A)),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 14),
+        PremiumCard(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                l10n.journeyStatsMetricsTitle,
                 style: const TextStyle(fontWeight: FontWeight.w700),
               ),
               const SizedBox(height: 10),
@@ -47,39 +151,73 @@ class GrowthTrackingDashboardPage extends ConsumerWidget {
                 runSpacing: 10,
                 children: [
                   _OverviewMetric(
-                    label: l10n.growthTrackingOverviewHabits,
-                    value: countFormat.format(today.completedCount),
-                    detail: l10n.growthTrackingOverviewHabitsDetail(
-                      countFormat.format(today.dueCount),
-                    ),
+                    label: l10n.journeyStatsSalahOfferedTitle,
+                    value: countFormat.format(stats.totalSalahOffered),
+                    detail: l10n.journeyStatsSalahOfferedSubtitle,
                   ),
                   _OverviewMetric(
-                    label: l10n.homePrayerProgressTitle,
-                    value: l10n.homeFractionValue(
-                      countFormat.format(summary.worship.prayerCompleted),
-                      countFormat.format(summary.worship.prayerTotal),
-                    ),
-                    detail: l10n.growthTrackingOverviewPrayerDetail,
+                    label: l10n.journeyStatsTotalAdhkarCompletedTitle,
+                    value: countFormat.format(stats.totalAdhkarCompletedLifetime),
+                    detail: l10n.journeyStatsTotalAdhkarCompletedSubtitle,
                   ),
                   _OverviewMetric(
-                    label: l10n.homeCurrentStreakTitle,
-                    value: l10n.homeDaysCount(summary.journey.currentStreakDays),
-                    detail: l10n.growthTrackingOverviewStreakDetail,
+                    label: l10n.journeyStatsPostSalahAdhkarTitle,
+                    value: countFormat.format(
+                      stats.totalPostSalahAdhkarCompleted,
+                    ),
+                    detail: l10n.journeyStatsPostSalahAdhkarSubtitle,
                   ),
                   _OverviewMetric(
-                    label: l10n.homeXpLevelTitle,
-                    value: l10n.homeLevelValue(
-                      countFormat.format(xp.currentLevel),
-                      countFormat.format(xp.currentLevel),
+                    label: l10n.journeyStatsQuranTimeTitle,
+                    value: _formatReadingDuration(
+                      l10n,
+                      countFormat,
+                      Duration(seconds: stats.totalQuranReadingSeconds),
                     ),
-                    detail: l10n.growthTrackingOverviewXpDetail(
-                      countFormat.format(xp.totalXp),
-                    ),
+                    detail: l10n.journeyStatsQuranTimeSubtitle,
                   ),
                   _OverviewMetric(
-                    label: l10n.oceanTitle,
-                    value: countFormat.format(drops.totalDrops),
-                    detail: l10n.growthTrackingOverviewDropsDetail,
+                    label: l10n.journeyStatsQuranListeningTimeTitle,
+                    value: _formatReadingDuration(
+                      l10n,
+                      countFormat,
+                      Duration(seconds: stats.totalQuranListeningSeconds),
+                    ),
+                    detail: l10n.journeyStatsQuranListeningTimeSubtitle,
+                  ),
+                  _OverviewMetric(
+                    label: l10n.journeyStatsDhikrCompletedTitle,
+                    value: countFormat.format(stats.dhikrCompletedSessions),
+                    detail: l10n.journeyStatsDhikrCompletedSubtitle,
+                  ),
+                  _OverviewMetric(
+                    label: l10n.journeyStatsDhikrTimeTitle,
+                    value: _formatReadingDuration(
+                      l10n,
+                      countFormat,
+                      Duration(seconds: stats.totalDhikrSeconds),
+                    ),
+                    detail: l10n.journeyStatsDhikrTimeSubtitle,
+                  ),
+                  _OverviewMetric(
+                    label: l10n.journeyStatsLessonsCompletedTitle,
+                    value: countFormat.format(stats.lessonsCompleted),
+                    detail: l10n.journeyStatsLessonsCompletedSubtitle,
+                  ),
+                  _OverviewMetric(
+                    label: l10n.journeyStatsActiveDaysTitle,
+                    value: countFormat.format(stats.activeDays),
+                    detail: l10n.journeyStatsActiveDaysSubtitle,
+                  ),
+                  _OverviewMetric(
+                    label: l10n.journeyStatsCurrentStreakTitle,
+                    value: l10n.homeDaysCount(stats.currentStreakDays),
+                    detail: l10n.journeyStatsCurrentStreakSubtitle,
+                  ),
+                  _OverviewMetric(
+                    label: l10n.journeyStatsBestStreakTitle,
+                    value: l10n.homeDaysCount(stats.bestStreakDays),
+                    detail: l10n.journeyStatsBestStreakSubtitle,
                   ),
                 ],
               ),
@@ -87,32 +225,6 @@ class GrowthTrackingDashboardPage extends ConsumerWidget {
           ),
         ),
         const SizedBox(height: 14),
-        if (suggestions.isNotEmpty)
-          PremiumCard(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  l10n.growthTrackingSuggestionsTitle,
-                  style: const TextStyle(fontWeight: FontWeight.w700),
-                ),
-                const SizedBox(height: 8),
-                ...suggestions.map(
-                  (suggestion) => Padding(
-                    padding: const EdgeInsets.only(bottom: 10),
-                    child: ListTile(
-                      contentPadding: EdgeInsets.zero,
-                      title: Text(suggestion.title),
-                      subtitle: Text(suggestion.subtitle),
-                      trailing: const Icon(Icons.chevron_right_rounded),
-                      onTap: suggestion.onTap,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        if (suggestions.isNotEmpty) const SizedBox(height: 14),
         PremiumCard(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -146,61 +258,40 @@ class GrowthTrackingDashboardPage extends ConsumerWidget {
     );
   }
 
-  List<_SuggestionItem> _buildSuggestions(BuildContext context, WidgetRef ref) {
-    final l10n = AppLocalizations.of(context);
-    final pathState = ref.watch(learningPathStateProvider);
-    final suggestions = <_SuggestionItem>[];
-    if (pathState == null) return suggestions;
-
-    if (pathState.ageGroup == LearningAgeGroup.kids) {
-      suggestions.add(
-        _SuggestionItem(
-          title: l10n.growthTrackingSuggestionKidsTitle,
-          subtitle: l10n.growthTrackingSuggestionKidsSubtitle,
-          onTap: () => context.pushNamed('learnJourneyHome'),
-        ),
-      );
-    } else if (pathState.ageGroup == LearningAgeGroup.teens) {
-      suggestions.add(
-        _SuggestionItem(
-          title: l10n.growthTrackingSuggestionTeensTitle,
-          subtitle: l10n.growthTrackingSuggestionTeensSubtitle,
-          onTap: () => context.pushNamed('growthHabitDashboard'),
-        ),
+  String _formatReadingDuration(
+    AppLocalizations l10n,
+    NumberFormat countFormat,
+    Duration duration,
+  ) {
+    final safeDuration = duration.isNegative ? Duration.zero : duration;
+    final hours = safeDuration.inHours;
+    final minutes = safeDuration.inMinutes.remainder(60);
+    if (hours > 0) {
+      return l10n.homeDurationHoursMinutes(
+        countFormat.format(hours),
+        countFormat.format(minutes),
       );
     }
+    return l10n.journeyStatsMinutesValue(
+      countFormat.format(safeDuration.inMinutes == 0 ? 0 : safeDuration.inMinutes),
+    );
+  }
 
-    switch (pathState.path.level) {
-      case LearningPathLevel.beginner:
-        suggestions.add(
-          _SuggestionItem(
-            title: l10n.growthTrackingSuggestionBeginnerTitle,
-            subtitle: l10n.growthTrackingSuggestionBeginnerSubtitle,
-            onTap: () => context.pushNamed('learnJourneyHome'),
-          ),
-        );
-        break;
-      case LearningPathLevel.practicing:
-        suggestions.add(
-          _SuggestionItem(
-            title: l10n.growthTrackingSuggestionPracticingTitle,
-            subtitle: l10n.growthTrackingSuggestionPracticingSubtitle,
-            onTap: () => context.pushNamed('growthHabitDashboard'),
-          ),
-        );
-        break;
-      case LearningPathLevel.seeker:
-      case LearningPathLevel.advanced:
-        suggestions.add(
-          _SuggestionItem(
-            title: l10n.growthTrackingSuggestionAdvancedTitle,
-            subtitle: l10n.growthTrackingSuggestionAdvancedSubtitle,
-            onTap: () => context.pushNamed('growthHabitCalendar'),
-          ),
-        );
-        break;
+  String _formatReflectionDuration(
+    AppLocalizations l10n,
+    NumberFormat countFormat,
+    Duration duration,
+  ) {
+    final safeDuration = duration.isNegative ? Duration.zero : duration;
+    final days = safeDuration.inDays;
+    if (days > 0) {
+      final hours = safeDuration.inHours.remainder(24);
+      return l10n.journeyStatsDaysHoursValue(
+        countFormat.format(days),
+        countFormat.format(hours),
+      );
     }
-    return suggestions;
+    return _formatReadingDuration(l10n, countFormat, safeDuration);
   }
 }
 
@@ -218,7 +309,7 @@ class _OverviewMetric extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: const BoxConstraints(minWidth: 130),
+      constraints: const BoxConstraints(minWidth: 140, maxWidth: 220),
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: const Color(0xFFF5EEE3),
@@ -265,16 +356,4 @@ class _DashboardLink extends StatelessWidget {
       onTap: onTap,
     );
   }
-}
-
-class _SuggestionItem {
-  const _SuggestionItem({
-    required this.title,
-    required this.subtitle,
-    required this.onTap,
-  });
-
-  final String title;
-  final String subtitle;
-  final VoidCallback onTap;
 }

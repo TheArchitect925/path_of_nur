@@ -7,17 +7,17 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   group('QuranReaderSettingsNotifier', () {
-    test('defaults product playback setting to always prepend Bismillah', () {
+    test('defaults product playback setting to disabled during recovery', () {
       final container = ProviderContainer();
       addTearDown(container.dispose);
 
-      expect(container.read(quranAlwaysPrependBismillahProvider), isTrue);
-      expect(alwaysPrependBismillahAtSurahStart, isTrue);
+      expect(container.read(quranAlwaysPrependBismillahProvider), isFalse);
+      expect(alwaysPrependBismillahAtSurahStart, isFalse);
       expect(
         container.read(quranDefaultBismillahPlaybackModeProvider),
         defaultBismillahPlaybackMode,
       );
-      expect(defaultBismillahPlaybackMode, BismillahPlaybackMode.alwaysPrepend);
+      expect(defaultBismillahPlaybackMode, BismillahPlaybackMode.disabled);
     });
 
     test('defaults word by word translation to disabled', () async {
@@ -39,6 +39,26 @@ void main() {
       final notifier = QuranReaderSettingsNotifier(store);
 
       expect(notifier.state.showWordByWord, isTrue);
+    });
+
+    test('defaults Learn More to enabled', () async {
+      SharedPreferences.setMockInitialValues(const {});
+      final prefs = await SharedPreferences.getInstance();
+      final store = LocalStore(prefs);
+      final notifier = QuranReaderSettingsNotifier(store);
+
+      expect(notifier.state.showLearnMore, isTrue);
+    });
+
+    test('respects previously saved Learn More preference', () async {
+      SharedPreferences.setMockInitialValues(const {
+        'learn.quran.showLearnMore': false,
+      });
+      final prefs = await SharedPreferences.getInstance();
+      final store = LocalStore(prefs);
+      final notifier = QuranReaderSettingsNotifier(store);
+
+      expect(notifier.state.showLearnMore, isFalse);
     });
   });
 }

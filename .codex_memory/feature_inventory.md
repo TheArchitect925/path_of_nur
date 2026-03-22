@@ -1,6 +1,6 @@
 # Feature Inventory
 
-Last updated: 2026-03-18
+Last updated: 2026-03-21
 
 Status legend:
 
@@ -26,6 +26,7 @@ Status legend:
 - implemented:
   - main dashboard
   - daily overview and prayer-facing summary
+  - On This Day historical reflection card driven by the shared history archive dataset
 - partial:
   - still carries localization debt in active surfaces
 - risky/inconsistent:
@@ -49,36 +50,69 @@ Status legend:
 - implemented:
   - top-level Qur'an tab
   - reader, explorer, search, bookmarks, notes
+  - persisted reading-time totals and per-day reading sessions for Growth/Journey stats
+  - persisted listening-time totals and per-day listening sessions from shared playback state
   - topics, names of Allah, top words, word review
   - Qur'an learning and Qur'anic Arabic entrypoints
+  - shared ayah-enrichment provider now aggregates starter educational metadata from Qur'an Study seeds, Divine Life Lessons, and World & Creation, and surfaces that through the reader `Learn More` section and `QuranReferenceViewer`
+  - ayah enrichment now uses a stricter canonical contract for domains, lesson types, normalized tags, link strength, caution levels, and typed mixed display items so future ayah-detail content can expand without page-local display rules
+  - Ayah Insights now also has a Qur'an-owned browse/discovery layer at `/quran/insights` with per-domain listings that deep-link back into the reader at the relevant ayah
+  - Ayah Insights now also has a lightweight guided-path layer at `/quran/insights/paths` with curated domain-specific starter journeys that reuse existing enrichment entries instead of creating a second content system
+  - Surah-level insight pages now also exist under `/quran/surah-insights` and `/quran/surah/:surahNumber/insights`, using a small curated surah-summary dataset plus existing Ayah Insight clusters rather than a tafsir-style parallel content system
+  - Qur'an learning now also has a lightweight global knowledge search route at `/quran/knowledge-search`, with grouped local search across Ayah Insights, guided paths, and surah-insight pages using the existing structured content instead of a separate backend/indexing stack
 - risky/inconsistent:
   - old Learn-owned aliases still exist and can confuse ownership
   - new work should prefer Qur'an-owned routes and avoid duplicating reader/study entrypoints
+  - Qur'an educational content is still split across multiple source datasets, so future expansion should extend the shared ayah-enrichment layer instead of adding another page-local ayah lesson list
 
 ## Learn
 
 - implemented:
   - journey-first `/learn`
   - large set of existing learn domains and shared tools
+  - kids Seerah journeys now layer on top of the shared kids story engine with a learner-scoped journey progress service, stage/node timeline flow, companion-story reuse, existing Muhammad ﷺ story-part reuse, short reflection nodes, quiz-node reuse, and shared Learn search/discovery exposure
+  - kids dua learning now reuses the existing lesson routes with a richer production flow: canonical bundled dua audio resolution, read-along modes, tap-to-repeat segments, gentle-practice actions, learner-scoped progress/My Day storage, bedtime companion linkage, and Qur’anic source deep links on structured references
+  - Kids Dua fallback learner identity now aligns with the bedtime-family fallback identity, so no-child-profile households no longer split dua progress, My Day state, creative state, and canonical activity across separate fallback learner IDs
+  - Kids Dua creative drawings and parent-view preferences now also persist per learner, with safe migration from the legacy global creative key and the older kids-dua-only fallback learner scope
+  - Kids Dua My Day completion now emits a canonical learner-scoped kids activity entry in addition to its shared progression award, so parent summaries can read a stable recent-activity source instead of relying only on progression-derived fallback signals
+  - kids stories now extend the bedtime-story engine into a broader mixed library with `/learn/kids/stories`, non-prophet Islamic story seeding, collection-based discovery, optional quiz/memory reuse, and bedtime-eligibility filtering layered over the same canonical story progress/media stack
+  - kids bedtime prophet stories with seeded metadata, transcript-first fallback, local progress persistence, first-completion XP / Ocean Drops hooks, media-aware asset resolution for narration and artwork, a dedicated bedtime player session layer with queue, multipart continuation, full/mini player surfaces, sleep timer support, story-linked quizzes, memory cards, a calm bedtime learning-loop handoff, a bedtime companion routine flow with suggested duas and sleep-ready completion, and a parent-facing bedtime progress dashboard
+  - Kids Arabic tracing and review progress now scope to the active learner instead of one global store, with one-time migration from the legacy global Kids Arabic progress/preferences keys
+  - Kids Arabic lesson completion and daily mission rewards now flow through the shared learner progression service rather than direct Journey/Ocean reward writes
+  - Kids Arabic no longer writes into the older global Learning Journey active-day compatibility layer, so its remaining learner-facing progress, rewards, and activity signals now stay inside the shared learner progression + canonical kids activity architecture
+  - dedicated Learn-owned Games Island discovery layer for non-kids game discovery, with sectioned access to daily challenges, knowledge games, Qur'an games, Hadith reflection, challenge modes, growth-linked experiences, and existing pack routes
+  - history archive entry with seeded On This Day / archive / detail routing
+  - crossword puzzle engine under Quizzes with kids mode, adult mode, deterministic daily rotation, bonus objectives, recent-repeat avoidance, local daily history, pack browsing, semi-dynamic template-backed assembly with fallback, documented seed/content pipeline metadata, deterministic validation, persisted cell/direction resume state, progress overviews, and shared XP / Drops / progression hooks
+  - word search game under Quizzes with kids mode, adult mode, profile-aware daily puzzle routing, shared Knowledge Games shell/adapter integration, pack browsing, deterministic seeded placement with validation, local progress persistence, hint actions, and shared XP / Drops / progression hooks
+  - matching game under Quizzes with kids mode, adult mode, offline daily puzzle routing, themed packs, hint actions, local progress persistence, and shared XP / Drops / progression hooks
+  - ayah completion game under Quizzes with kids mode, adult mode, canonical Qur'an reference-driven seed data, profile-aware daily ayah routing, tappable verse references into the reader, optional shared ayah playback, local progress persistence, and shared XP / Drops / progression hooks
+  - foundational Knowledge Games layer with shared game/session/result abstractions, generic recommendation helpers, reusable game shell, and crossword / word-search / matching adapters as the first live game-type integrations
   - legacy Learn hub still available at `/learn/legacy`
 - partial:
+  - kids Seerah journeys currently ship as one polished journey pack with three companion stories; broader Seerah stage coverage and additional companion content remain expansion work
   - multiple systems overlap:
     - learning journey
     - legacy Learn hub
     - hub-by-section routes
     - dedicated domain routes
+  - Quizzes and Games discovery now coexist intentionally: Quizzes remains the legacy/secondary hub, while the Games Island is the new non-kids discovery entry layered on top of the existing routes
 - risky/inconsistent:
   - strongest architectural seam in the repo
   - easiest place for duplicate work
+  - crossword, word search, matching, and ayah completion are intentionally Quizzes-owned; future knowledge-games work should extend that ownership instead of creating another parallel game hub
+  - kids-only games should continue to route through Kids Learning wrappers rather than being surfaced directly in the main Games Island
 
 ## Journey / growth
 
 - implemented:
   - growth home/today/reflection/journey/habits
+  - unified Journey Stats page and Growth-level Qur'an reading tracker
   - path detail and habit detail
   - Ocean drops and wallpaper unlock integration
+  - Spiritual Growth Layer with seeded daily intentions, recognized action summaries, manual real-life acknowledgments, respectful reflection prompts, theme summaries, and shared Journey reward/progression integration
 - partial:
   - some richer node-detail ideas were removed and not yet replaced with real surfaces
+  - spiritual growth currently adds lightweight notes and manual acknowledgments, but does not yet include a deeper weekly review or richer recommendation handoff
 - deprecated/removed:
   - `journey_legacy_page.dart`
   - `journey_widgets.dart`
@@ -133,8 +167,68 @@ Status legend:
   - just_audio + background audio for Qur'an
   - adhan audio assets and preview
   - Qur'anic Arabic teaching audio assets
+  - bedtime story audio/image manifest + resolver layer with canonical bundled path conventions, legacy compatibility fallbacks, and graceful transcript-first degradation when media is missing
+  - bedtime story queue/player/session state is now learner-scoped through the bedtime family-mode layer, so bedtime playback state no longer assumes one global child
 - risky/inconsistent:
   - avoid new media flows that bypass existing audio providers/repositories
+
+## Kids / bedtime family mode
+
+- implemented:
+  - bedtime stories now reuse the shared Family Learning child-profile system instead of introducing a second identity stack
+  - canonical kids activity logging now lives under `lib/features/kids/activity/` as a learner-scoped local ledger for meaningful cross-feature recent activity events
+  - bedtime family mode route and UI exist under `/learn/kids/bedtime-stories/family`
+  - bedtime companion route and UI exist under `/learn/kids/bedtime-stories/companion`
+  - learner progression route now exists under `/learn/kids/progression`
+  - bedtime story progress, bedtime learning progress, bedtime recommendations, bedtime queue state, and the bedtime parent dashboard are learner-scoped
+  - bedtime companion sessions and bedtime routine recommendations are learner-scoped
+  - kids Seerah journey progress is also learner-scoped through the same bedtime-family child context so journey stages/nodes do not leak across child profiles
+  - legacy single-learner bedtime progress migrates once into the currently active bedtime learner scope
+- partial:
+  - bedtime fallback learner still supports legacy single-learner households that have not created a child profile yet
+  - not every kids feature event is logged yet; the canonical ledger currently focuses on meaningful open/completion actions for bedtime stories, story learning, dua learning, Arabic, Seerah, and bedtime routines
+  - guardian-mode bedtime rewards are derived safely per learner, but global Journey XP/Drops are only mirrored when the active app profile is the same child profile
+  - archiving exists for bedtime-family selection, but shared non-bedtime family management has not adopted the same archive semantics yet
+  - bedtime companion currently reuses learner-scoped session state and existing dua content, but it does not yet write to a dedicated bedtime activity log for parent summaries
+  - bedtime parent dashboard now uses learner progression totals when available, but falls back to inferred bedtime totals for older data that predates the progression ledger
+- risky/inconsistent:
+  - avoid writing bedtime rewards directly into app-wide ledgers from guardian context until a canonical multi-learner reward architecture exists
+
+## Progression / levels / badges
+
+- implemented:
+  - canonical Journey XP level definitions still live under `lib/features/journey/xp/` and remain the source for titles and thresholds
+  - learner-scoped progression models, catalog, service, route, and tests now live under `lib/features/progression/`
+  - learner-scoped garden models, stage catalog, service, route-backed page, and tests now live under `lib/features/garden/`
+  - `/journey/garden` now derives visual growth from learner progression totals, dimension mapping, existing garden milestone thresholds, and safe Journey fallback data for non-child mode
+  - kids bedtime stories, bedtime learning, bedtime routines, Seerah rewards, kids dua lessons, kids dua practice, and kids dua My Day now award through the shared learner progression service
+  - Kids Arabic lesson and daily mission rewards now also award through the shared learner progression service, with progression metrics for Kids Arabic completions available to downstream summaries such as Garden
+  - learner progression supports child-scoped XP totals, Ocean Drops totals, badges, milestones, and calm long-term summaries
+  - Journey learning XP now accepts custom XP amounts so mirrored global Journey totals stay aligned with actual balanced award values
+- partial:
+  - adult/global Journey pages still primarily surface the app-wide profile ledger, while the learner-specific progression UI currently lives on the kids route and bedtime parent summary
+  - child prayer-specific garden contributions still use a consistency/routine proxy until learner-scoped prayer tracking becomes canonical
+  - badge coverage is intentionally limited to first completions and milestone-style badges in V1
+
+## Knowledge games / quizzes
+
+- implemented:
+  - crossword, word search, matching, ayah completion, and hadith reflection all live under Quizzes using the shared Knowledge Games layer
+  - shared game abstractions, adapter pattern, game shell, daily challenge posture, pack metadata, reward integration, and local persistence patterns
+  - shared game variations now extend the existing game types through `KnowledgeGameConfig`, deterministic daily assignment, shell-level timer/badge UI, and low-risk game-specific hooks instead of separate mode engines
+  - shared internal content-expansion models, validator, and repository now normalize the current game + spiritual-growth seed content into one authoring snapshot
+  - hidden debug-only internal builder route now supports draft create/preview/validate/export flows for normalized content items
+  - Hadith Reflection specifically reuses `HadithEntry` content and `HadithContentBlock` rather than duplicating source text
+  - Daily Knowledge Challenge Hub now orchestrates the five game types into one daily bundle using their existing daily resolvers rather than replacing them
+  - adaptive learning now derives a local user-learning profile from existing game progress and uses it to personalize daily target difficulty and puzzle/category ordering across the shared game stack
+- partial:
+  - most games have focused repository/progress/adapter tests, but widget-level interaction coverage is still thin
+  - daily archive/history surfaces are still inconsistent across game types
+  - adaptive personalization currently derives from persisted progress snapshots rather than live per-session adapter callbacks
+  - variations are currently introduced through daily configs and shell/game hooks; non-daily pack browsing does not yet expose a broader variation catalog
+  - crossword pack metadata is still assembled in the runtime repository, so the content-expansion snapshot does not yet normalize crossword packs through the same pack source path
+- risky/inconsistent:
+  - avoid creating new game types outside the shared Knowledge Games path unless there is a strong reason
 
 ## Watch / TV / platform-specific surfaces
 

@@ -136,6 +136,10 @@ class LearningJourneyRegistry {
         'See the five pillars as a lived structure rather than a list',
         'Leave with a calm first plan for daily Muslim life',
       ],
+      difficulty: LearningJourneyDifficulty.beginner,
+      estimatedDurationMinutes: 35,
+      tags: ['islam', 'foundations', 'who is allah', 'pillars', 'beginner'],
+      isFeatured: true,
       whyThisMatters:
           'Beginners need one clear first path before they are exposed to the rest of the learning library.',
       relatedTools: [_quranReaderTool, _learnSalahHubTool, _hadithLandingTool],
@@ -271,6 +275,10 @@ class LearningJourneyRegistry {
         'Understand the turning points of prophethood and community building',
         'Connect the life of the Prophet ﷺ to character, worship, and leadership',
       ],
+      difficulty: LearningJourneyDifficulty.beginner,
+      estimatedDurationMinutes: 45,
+      tags: ['seerah', 'prophet muhammad', 'messenger', 'madinah', 'makkah'],
+      isFeatured: true,
       whyThisMatters:
           'Seerah gives emotional and historical context to Qur’an, Hadith, and Muslim life.',
       relatedTools: [_legacyLearnTool, _prophetsTool, _hadithLandingTool],
@@ -327,6 +335,10 @@ class LearningJourneyRegistry {
         'Prepare for prayer with wudu, intention, and calm',
         'Connect movements, words, meaning, and consistency',
       ],
+      difficulty: LearningJourneyDifficulty.beginner,
+      estimatedDurationMinutes: 40,
+      tags: ['salah', 'prayer', 'worship', 'daily worship', 'beginner'],
+      isFeatured: true,
       whyThisMatters:
           'Salah is a daily pillar, so even a small increase in clarity changes lived practice quickly.',
       relatedTools: [_learnSalahHubTool, _guidedPrayerTool, _wuduGuideTool],
@@ -409,6 +421,10 @@ class LearningJourneyRegistry {
         'Use salah as the anchor for Qur’an, dhikr, and duas',
         'Build habits through small, repeatable actions',
       ],
+      difficulty: LearningJourneyDifficulty.beginner,
+      estimatedDurationMinutes: 30,
+      tags: ['daily worship', 'routine', 'quran', 'dhikr', 'duas'],
+      isFeatured: true,
       whyThisMatters:
           'Many users do not need more information first. They need a realistic structure they can actually live.',
       relatedTools: [_learnSalahHubTool, _duaHubTool, _quranReaderTool],
@@ -496,6 +512,10 @@ class LearningJourneyRegistry {
         'Build a reverent and non-speculative frame for aqeedah',
         'Connect belief to worship, conduct, and hope in Allah',
       ],
+      difficulty: LearningJourneyDifficulty.beginner,
+      estimatedDurationMinutes: 50,
+      tags: ['aqeedah', 'who is allah', 'names of allah', 'faith', 'belief'],
+      isFeatured: true,
       whyThisMatters:
           'Belief gives coherence to all other learning, but it needs careful ownership and clear guardrails.',
       relatedTools: [_namesOfAllahTool, _prophetsTool],
@@ -583,6 +603,10 @@ class LearningJourneyRegistry {
         'Connect character to worship, relationships, and daily choices',
         'Leave with one clear next step for personal growth',
       ],
+      difficulty: LearningJourneyDifficulty.beginner,
+      estimatedDurationMinutes: 45,
+      tags: ['character', 'adab', 'sabr', 'shukr', 'ihsan'],
+      isFeatured: true,
       whyThisMatters:
           'Knowledge becomes lived Islam when it shapes character, speech, reactions, and service to others.',
       relatedTools: [_hadithLandingTool, _prophetsTool, _legacyLearnTool],
@@ -2554,6 +2578,7 @@ const _prophetsTool = LearningJourneyToolLink(
   title: 'Prophets',
   subtitle: 'Open the current Prophets system.',
   routeName: 'learnProphetsHub',
+  queryParameters: {'tab': 'stories'},
 );
 
 const _prophetsTimelineTool = LearningJourneyToolLink(
@@ -2684,7 +2709,7 @@ const _browseAllLearningTool = LearningJourneyToolLink(
   title: 'Browse All Knowledge',
   subtitle:
       'Open the wider map of islands, tools, collections, and exploration.',
-  routeName: 'learnJourneyBrowse',
+  routeName: 'learnExploreAllKnowledge',
 );
 
 const _kidsArabicLettersTool = LearningJourneyToolLink(

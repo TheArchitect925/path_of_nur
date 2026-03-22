@@ -24,6 +24,22 @@ class AppTelemetry {
     logEvent('screen_view', metadata: {'screen': name});
   }
 
+  static void logError(
+    String name, {
+    Object? error,
+    StackTrace? stackTrace,
+    Map<String, Object?> metadata = const {},
+  }) {
+    logEvent(
+      name,
+      metadata: <String, Object?>{
+        ...metadata,
+        if (error != null) 'error': error.toString(),
+        if (stackTrace != null) 'stack': stackTrace.toString(),
+      },
+    );
+  }
+
   static void logEvent(
     String name, {
     Map<String, Object?> metadata = const {},

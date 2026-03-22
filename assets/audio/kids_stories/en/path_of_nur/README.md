@@ -1,0 +1,17 @@
+Kids non-prophet story audio should live in this folder.
+
+Canonical path:
+- `assets/audio/kids_stories/en/path_of_nur/`
+
+Recommended filename convention:
+- `<story_slug>_kids_story_en_v1.mp3`
+
+Examples:
+- `sharing_with_others_kids_story_en_v1.mp3`
+- `telling_the_truth_kids_story_en_v1.mp3`
+- `ramadan_kindness_kids_story_en_v1.mp3`
+
+Notes:
+- Prophet bedtime stories still keep their existing bedtime-story audio path.
+- The broader kids story library uses this folder for non-prophet story narration.
+- If a file is missing, the story still works in transcript/read mode without broken playback UI.

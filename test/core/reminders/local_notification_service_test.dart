@@ -31,4 +31,23 @@ void main() {
     expect(decoded.logicalDate, isNull);
     expect(decoded.isPrayerReminder, isFalse);
   });
+
+  test('reflection reminder payload encodes deep-link reminder metadata', () {
+    final payload = ReminderNotificationPayload.routeReminder(
+      route: '/journey/reflection',
+      logicalDate: '2026-03-20',
+      reminderKind: 'reflection',
+      snoozeCount: 1,
+    );
+
+    final decoded = ReminderNotificationPayload.decode(payload.encode());
+
+    expect(decoded, isNotNull);
+    expect(decoded!.route, '/journey/reflection');
+    expect(decoded.prayerId, isNull);
+    expect(decoded.logicalDate, '2026-03-20');
+    expect(decoded.reminderKind, 'reflection');
+    expect(decoded.snoozeCount, 1);
+    expect(decoded.isPrayerReminder, isFalse);
+  });
 }

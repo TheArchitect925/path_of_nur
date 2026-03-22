@@ -160,15 +160,25 @@ class KidsDuaLessonProgress {
     required this.lessonId,
     required this.openCount,
     required this.timesPracticed,
+    this.listenCount = 0,
+    this.segmentRepeatCount = 0,
     this.startedAtIso,
     this.completedAtIso,
+    this.readAlongCompletedAtIso,
+    this.lastPracticedAtIso,
+    this.lastLearningMode,
   });
 
   final String lessonId;
   final int openCount;
   final int timesPracticed;
+  final int listenCount;
+  final int segmentRepeatCount;
   final String? startedAtIso;
   final String? completedAtIso;
+  final String? readAlongCompletedAtIso;
+  final String? lastPracticedAtIso;
+  final String? lastLearningMode;
 
   KidsDuaLessonStatus get status {
     if (completedAtIso != null && completedAtIso!.isNotEmpty) {
@@ -183,18 +193,37 @@ class KidsDuaLessonProgress {
   KidsDuaLessonProgress copyWith({
     int? openCount,
     int? timesPracticed,
+    int? listenCount,
+    int? segmentRepeatCount,
     String? startedAtIso,
     String? completedAtIso,
+    String? readAlongCompletedAtIso,
+    String? lastPracticedAtIso,
+    String? lastLearningMode,
     bool clearCompletedAtIso = false,
+    bool clearReadAlongCompletedAtIso = false,
+    bool clearLastPracticedAtIso = false,
+    bool clearLastLearningMode = false,
   }) {
     return KidsDuaLessonProgress(
       lessonId: lessonId,
       openCount: openCount ?? this.openCount,
       timesPracticed: timesPracticed ?? this.timesPracticed,
+      listenCount: listenCount ?? this.listenCount,
+      segmentRepeatCount: segmentRepeatCount ?? this.segmentRepeatCount,
       startedAtIso: startedAtIso ?? this.startedAtIso,
       completedAtIso: clearCompletedAtIso
           ? null
           : (completedAtIso ?? this.completedAtIso),
+      readAlongCompletedAtIso: clearReadAlongCompletedAtIso
+          ? null
+          : (readAlongCompletedAtIso ?? this.readAlongCompletedAtIso),
+      lastPracticedAtIso: clearLastPracticedAtIso
+          ? null
+          : (lastPracticedAtIso ?? this.lastPracticedAtIso),
+      lastLearningMode: clearLastLearningMode
+          ? null
+          : (lastLearningMode ?? this.lastLearningMode),
     );
   }
 
@@ -202,8 +231,13 @@ class KidsDuaLessonProgress {
     'lessonId': lessonId,
     'openCount': openCount,
     'timesPracticed': timesPracticed,
+    'listenCount': listenCount,
+    'segmentRepeatCount': segmentRepeatCount,
     'startedAtIso': startedAtIso,
     'completedAtIso': completedAtIso,
+    'readAlongCompletedAtIso': readAlongCompletedAtIso,
+    'lastPracticedAtIso': lastPracticedAtIso,
+    'lastLearningMode': lastLearningMode,
   };
 
   static KidsDuaLessonProgress fromJson(Map<String, dynamic> json) {
@@ -211,8 +245,13 @@ class KidsDuaLessonProgress {
       lessonId: json['lessonId']?.toString() ?? '',
       openCount: (json['openCount'] as num?)?.toInt() ?? 0,
       timesPracticed: (json['timesPracticed'] as num?)?.toInt() ?? 0,
+      listenCount: (json['listenCount'] as num?)?.toInt() ?? 0,
+      segmentRepeatCount: (json['segmentRepeatCount'] as num?)?.toInt() ?? 0,
       startedAtIso: json['startedAtIso']?.toString(),
       completedAtIso: json['completedAtIso']?.toString(),
+      readAlongCompletedAtIso: json['readAlongCompletedAtIso']?.toString(),
+      lastPracticedAtIso: json['lastPracticedAtIso']?.toString(),
+      lastLearningMode: json['lastLearningMode']?.toString(),
     );
   }
 }

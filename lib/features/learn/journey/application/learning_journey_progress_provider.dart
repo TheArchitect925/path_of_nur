@@ -26,6 +26,10 @@ class LearningJourneyProgressState {
     required this.startedJourneyIds,
     required this.completedStageIds,
     required this.completedStageDateKeys,
+    required this.startedAtIsoByJourney,
+    required this.lastAccessedAtIsoByJourney,
+    required this.completedAtIsoByJourney,
+    required this.lastCompletedStageIdByJourney,
     required this.lastOpenedJourneyId,
     required this.lastOpenedStageId,
     required this.activeDayKeys,
@@ -37,6 +41,10 @@ class LearningJourneyProgressState {
   final Set<String> startedJourneyIds;
   final Set<String> completedStageIds;
   final Map<String, String> completedStageDateKeys;
+  final Map<String, String> startedAtIsoByJourney;
+  final Map<String, String> lastAccessedAtIsoByJourney;
+  final Map<String, String> completedAtIsoByJourney;
+  final Map<String, String> lastCompletedStageIdByJourney;
   final String? lastOpenedJourneyId;
   final String? lastOpenedStageId;
   final Set<String> activeDayKeys;
@@ -48,6 +56,10 @@ class LearningJourneyProgressState {
     Set<String>? startedJourneyIds,
     Set<String>? completedStageIds,
     Map<String, String>? completedStageDateKeys,
+    Map<String, String>? startedAtIsoByJourney,
+    Map<String, String>? lastAccessedAtIsoByJourney,
+    Map<String, String>? completedAtIsoByJourney,
+    Map<String, String>? lastCompletedStageIdByJourney,
     String? lastOpenedJourneyId,
     String? lastOpenedStageId,
     bool clearLastOpenedJourneyId = false,
@@ -62,6 +74,14 @@ class LearningJourneyProgressState {
       completedStageIds: completedStageIds ?? this.completedStageIds,
       completedStageDateKeys:
           completedStageDateKeys ?? this.completedStageDateKeys,
+      startedAtIsoByJourney:
+          startedAtIsoByJourney ?? this.startedAtIsoByJourney,
+      lastAccessedAtIsoByJourney:
+          lastAccessedAtIsoByJourney ?? this.lastAccessedAtIsoByJourney,
+      completedAtIsoByJourney:
+          completedAtIsoByJourney ?? this.completedAtIsoByJourney,
+      lastCompletedStageIdByJourney:
+          lastCompletedStageIdByJourney ?? this.lastCompletedStageIdByJourney,
       lastOpenedJourneyId: clearLastOpenedJourneyId
           ? null
           : (lastOpenedJourneyId ?? this.lastOpenedJourneyId),
@@ -81,6 +101,10 @@ class LearningJourneyProgressState {
       startedJourneyIds: <String>{},
       completedStageIds: <String>{},
       completedStageDateKeys: <String, String>{},
+      startedAtIsoByJourney: <String, String>{},
+      lastAccessedAtIsoByJourney: <String, String>{},
+      completedAtIsoByJourney: <String, String>{},
+      lastCompletedStageIdByJourney: <String, String>{},
       lastOpenedJourneyId: null,
       lastOpenedStageId: null,
       activeDayKeys: <String>{},
@@ -95,6 +119,10 @@ class LearningJourneyProgressState {
       'startedJourneyIds': startedJourneyIds.toList(growable: false),
       'completedStageIds': completedStageIds.toList(growable: false),
       'completedStageDateKeys': completedStageDateKeys,
+      'startedAtIsoByJourney': startedAtIsoByJourney,
+      'lastAccessedAtIsoByJourney': lastAccessedAtIsoByJourney,
+      'completedAtIsoByJourney': completedAtIsoByJourney,
+      'lastCompletedStageIdByJourney': lastCompletedStageIdByJourney,
       'lastOpenedJourneyId': lastOpenedJourneyId,
       'lastOpenedStageId': lastOpenedStageId,
       'activeDayKeys': activeDayKeys.toList(growable: false),
@@ -112,6 +140,14 @@ class LearningJourneyProgressState {
       startedJourneyIds: _asStringSet(json['startedJourneyIds']),
       completedStageIds: _asStringSet(json['completedStageIds']),
       completedStageDateKeys: _asStringMap(json['completedStageDateKeys']),
+      startedAtIsoByJourney: _asStringMap(json['startedAtIsoByJourney']),
+      lastAccessedAtIsoByJourney: _asStringMap(
+        json['lastAccessedAtIsoByJourney'],
+      ),
+      completedAtIsoByJourney: _asStringMap(json['completedAtIsoByJourney']),
+      lastCompletedStageIdByJourney: _asStringMap(
+        json['lastCompletedStageIdByJourney'],
+      ),
       lastOpenedJourneyId: json['lastOpenedJourneyId']?.toString(),
       lastOpenedStageId: json['lastOpenedStageId']?.toString(),
       activeDayKeys: _asStringSet(json['activeDayKeys']),
@@ -144,6 +180,7 @@ class LearningJourneyCompletionResult {
     required this.journeyCompleted,
     required this.phaseCompleted,
     required this.learnedTogether,
+    required this.xpAwarded,
     required this.oceanDropsAwarded,
     required this.currentStreakDays,
     this.completedPhase,
@@ -153,6 +190,7 @@ class LearningJourneyCompletionResult {
   final bool journeyCompleted;
   final bool phaseCompleted;
   final bool learnedTogether;
+  final int xpAwarded;
   final int oceanDropsAwarded;
   final int currentStreakDays;
   final LearningPathPhase? completedPhase;
@@ -225,10 +263,18 @@ class LearningJourneyProgressNotifier
   }
 
   void recordStageOpened({required String journeyId, required String stageId}) {
+    final timestamp = DateTime.now().toIso8601String();
     final nextStarted = Set<String>.from(state.startedJourneyIds)
       ..add(journeyId);
+    final nextStartedAt = Map<String, String>.from(state.startedAtIsoByJourney);
+    nextStartedAt.putIfAbsent(journeyId, () => timestamp);
+    final nextLastAccessed = Map<String, String>.from(
+      state.lastAccessedAtIsoByJourney,
+    )..[journeyId] = timestamp;
     state = state.copyWith(
       startedJourneyIds: nextStarted,
+      startedAtIsoByJourney: nextStartedAt,
+      lastAccessedAtIsoByJourney: nextLastAccessed,
       lastOpenedJourneyId: journeyId,
       lastOpenedStageId: stageId,
     );
@@ -257,12 +303,14 @@ class LearningJourneyProgressNotifier
         ),
         phaseCompleted: false,
         learnedTogether: learnedTogether,
+        xpAwarded: 0,
         oceanDropsAwarded: 0,
         currentStreakDays: state.currentStreakDays,
       );
     }
 
     final todayKey = LocalStore.todayKey();
+    final timestamp = DateTime.now().toIso8601String();
     final nextCompleted = Set<String>.from(state.completedStageIds)
       ..add(stageId);
     final nextCompletedDates = Map<String, String>.from(
@@ -270,14 +318,34 @@ class LearningJourneyProgressNotifier
     )..[stageId] = todayKey;
     final nextStarted = Set<String>.from(state.startedJourneyIds)
       ..add(journeyId);
+    final nextStartedAt = Map<String, String>.from(state.startedAtIsoByJourney);
+    nextStartedAt.putIfAbsent(journeyId, () => timestamp);
+    final nextLastAccessed = Map<String, String>.from(
+      state.lastAccessedAtIsoByJourney,
+    )..[journeyId] = timestamp;
+    final nextLastCompleted = Map<String, String>.from(
+      state.lastCompletedStageIdByJourney,
+    )..[journeyId] = stageId;
     final streakState = _applyActiveDay(
       activeDayKeys: Set<String>.from(state.activeDayKeys)..add(todayKey),
     );
+
+    final journeyCompleted = _isJourneyCompleted(journeyId, nextCompleted);
+    final nextCompletedAt = Map<String, String>.from(
+      state.completedAtIsoByJourney,
+    );
+    if (journeyCompleted) {
+      nextCompletedAt[journeyId] = timestamp;
+    }
 
     state = state.copyWith(
       startedJourneyIds: nextStarted,
       completedStageIds: nextCompleted,
       completedStageDateKeys: nextCompletedDates,
+      startedAtIsoByJourney: nextStartedAt,
+      lastAccessedAtIsoByJourney: nextLastAccessed,
+      completedAtIsoByJourney: nextCompletedAt,
+      lastCompletedStageIdByJourney: nextLastCompleted,
       lastOpenedJourneyId: journeyId,
       lastOpenedStageId: stageId,
       activeDayKeys: streakState.activeDayKeys,
@@ -287,13 +355,12 @@ class LearningJourneyProgressNotifier
     _save();
 
     final completedJourneyIds = _completedJourneyIds(nextCompleted);
-    final journeyCompleted = _isJourneyCompleted(journeyId, nextCompleted);
     final completedPhase = _completedPathPhase(
       journeyId: journeyId,
       completedJourneyIds: completedJourneyIds,
     );
-    final timestamp = DateTime.now().toIso8601String();
     var awardedDrops = 0;
+    final xpAwarded = JourneyXpRules.xpPerLearningStageCompletion;
 
     awardedDrops += _ref
         .read(oceanDropsProvider.notifier)
@@ -362,6 +429,7 @@ class LearningJourneyProgressNotifier
       journeyCompleted: journeyCompleted,
       phaseCompleted: completedPhase != null,
       learnedTogether: learnedTogether,
+      xpAwarded: xpAwarded,
       oceanDropsAwarded: awardedDrops,
       currentStreakDays: streakState.currentStreakDays,
       completedPhase: completedPhase,
@@ -813,8 +881,8 @@ final learningJourneyTodayLightProvider = Provider<LearningJourneyTodayLight>((
         badge: '',
         routeName: 'learnProphetsHub',
         queryParameters: prophetDaily.item.linkedProphetId == null
-            ? const <String, String>{}
-            : {'prophet': prophetDaily.item.linkedProphetId!},
+            ? const <String, String>{'tab': 'stories'}
+            : {'tab': 'stories', 'prophet': prophetDaily.item.linkedProphetId!},
       );
     case TodayLightKind.hadith:
       light = LearningJourneyTodayLight(
@@ -882,6 +950,65 @@ bool _isJourneyCompleted(
   return _journeyCompletionRatio(journey, completedStageIds) >= 1.0;
 }
 
+bool isLearningJourneyStageUnlocked({
+  required LearningJourney journey,
+  required String stageId,
+  required Set<String> completedStageIds,
+}) {
+  final stageIndex = journey.stageIds.indexOf(stageId);
+  if (stageIndex < 0) {
+    return false;
+  }
+  if (stageIndex == 0) {
+    return true;
+  }
+  final previousStageId = journey.stageIds[stageIndex - 1];
+  return completedStageIds.contains(previousStageId);
+}
+
+String? firstUnlockedIncompleteLearningJourneyStageId(
+  LearningJourney journey,
+  Set<String> completedStageIds,
+) {
+  for (final stageId in journey.stageIds) {
+    final isCompleted = completedStageIds.contains(stageId);
+    if (!isCompleted &&
+        isLearningJourneyStageUnlocked(
+          journey: journey,
+          stageId: stageId,
+          completedStageIds: completedStageIds,
+        )) {
+      return stageId;
+    }
+  }
+  return null;
+}
+
+String? resolveAccessibleLearningJourneyStageId({
+  required LearningJourney journey,
+  required String? preferredStageId,
+  required Set<String> completedStageIds,
+}) {
+  if (preferredStageId != null &&
+      completedStageIds.contains(preferredStageId) &&
+      journey.stageIds.contains(preferredStageId)) {
+    return preferredStageId;
+  }
+  if (preferredStageId != null &&
+      isLearningJourneyStageUnlocked(
+        journey: journey,
+        stageId: preferredStageId,
+        completedStageIds: completedStageIds,
+      )) {
+    return preferredStageId;
+  }
+  return firstUnlockedIncompleteLearningJourneyStageId(
+        journey,
+        completedStageIds,
+      ) ??
+      journey.stageIds.firstOrNull;
+}
+
 bool _isJourneyInProgress(
   LearningJourney journey,
   Set<String> completedStageIds,
@@ -893,15 +1020,15 @@ LearningJourneyStage? _firstIncompleteStageForJourney(
   LearningJourney journey,
   Set<String> completedStageIds,
 ) {
-  for (final stageId in journey.stageIds) {
-    if (!completedStageIds.contains(stageId)) {
-      return LearningJourneyRegistry.stageById(stageId);
-    }
+  final stageId = firstUnlockedIncompleteLearningJourneyStageId(
+        journey,
+        completedStageIds,
+      ) ??
+      journey.stageIds.lastOrNull;
+  if (stageId == null) {
+    return null;
   }
-  if (journey.stageIds.isNotEmpty) {
-    return LearningJourneyRegistry.stageById(journey.stageIds.last);
-  }
-  return null;
+  return LearningJourneyRegistry.stageById(stageId);
 }
 
 double _journeyCompletionRatio(
@@ -932,6 +1059,28 @@ LearningJourneyProgressState _sanitizeProgressState(
     completedStageDateKeys: Map<String, String>.fromEntries(
       state.completedStageDateKeys.entries.where(
         (entry) => validStageIds.contains(entry.key),
+      ),
+    ),
+    startedAtIsoByJourney: Map<String, String>.fromEntries(
+      state.startedAtIsoByJourney.entries.where(
+        (entry) => validJourneyIds.contains(entry.key),
+      ),
+    ),
+    lastAccessedAtIsoByJourney: Map<String, String>.fromEntries(
+      state.lastAccessedAtIsoByJourney.entries.where(
+        (entry) => validJourneyIds.contains(entry.key),
+      ),
+    ),
+    completedAtIsoByJourney: Map<String, String>.fromEntries(
+      state.completedAtIsoByJourney.entries.where(
+        (entry) => validJourneyIds.contains(entry.key),
+      ),
+    ),
+    lastCompletedStageIdByJourney: Map<String, String>.fromEntries(
+      state.lastCompletedStageIdByJourney.entries.where(
+        (entry) =>
+            validJourneyIds.contains(entry.key) &&
+            validStageIds.contains(entry.value),
       ),
     ),
     lastOpenedJourneyId: validJourneyIds.contains(state.lastOpenedJourneyId)

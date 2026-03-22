@@ -48,7 +48,7 @@ class QuranPlayerController {
     ref.read(quranActivePlaybackSessionProvider.notifier).state = null;
   }
 
-  Future<bool> resumeCurrentPlaybackWithBismillah() async {
+  Future<bool> resumeCurrentPlayback() async {
     final session =
         ref.read(quranActivePlaybackSessionProvider) ??
         await _restoreSessionFromStoredProgress();
@@ -103,7 +103,12 @@ class QuranPlayerController {
     return true;
   }
 
-  Future<bool> playAdjacentSurahWithBismillah(int offset) async {
+  @Deprecated('Auto-Bismillah is temporarily disabled. Use resumeCurrentPlayback.')
+  Future<bool> resumeCurrentPlaybackWithBismillah() {
+    return resumeCurrentPlayback();
+  }
+
+  Future<bool> playAdjacentSurah(int offset) async {
     final activeSession = ref.read(quranActivePlaybackSessionProvider);
     final persistedSession = ref.read(quranRecitationSessionProvider);
     final currentSurah =
@@ -286,6 +291,11 @@ class QuranPlayerController {
       ),
     );
     return true;
+  }
+
+  @Deprecated('Auto-Bismillah is temporarily disabled. Use playAdjacentSurah.')
+  Future<bool> playAdjacentSurahWithBismillah(int offset) {
+    return playAdjacentSurah(offset);
   }
 
   Future<void> _playSourceOnce(

@@ -6,6 +6,8 @@ import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/quran_reference_block.dart';
+import '../../../content_linking/application/contextual_linking_providers.dart';
+import '../../../content_linking/presentation/contextual_related_content_section.dart';
 import '../../shared/presentation/learning_lessons.dart';
 import '../../shared/presentation/learning_references.dart';
 import '../../shared/presentation/learning_reflection.dart';
@@ -49,6 +51,9 @@ class HadithLessonPage extends ConsumerWidget {
         .toList(growable: false);
     final quranReferenceIds = ref.watch(
       quranReferenceIdsForHadithProvider(entry.id),
+    );
+    final contextualRelatedAsync = ref.watch(
+      contextualLinksForHadithEntryProvider(entry.id),
     );
 
     return AppPageScaffold(
@@ -189,6 +194,12 @@ class HadithLessonPage extends ConsumerWidget {
                   )
                   .toList(growable: false),
             ),
+          ),
+        if (contextualRelatedAsync case AsyncData(:final value)
+            when value.isNotEmpty)
+          LearningSection(
+            title: l10n.contextualLinksRelatedTitle,
+            child: ContextualRelatedContentSection(items: value),
           ),
       ],
     );

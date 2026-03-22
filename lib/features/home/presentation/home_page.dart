@@ -12,6 +12,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_surfaces.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../features/celestial/presentation/widgets/celestial_cycle_card.dart';
+import '../../../features/history/presentation/widgets/on_this_day_home_card.dart';
 import '../application/home_calendar_progress_provider.dart';
 import '../../../shared/content/contextual_quran_quotes.dart';
 import '../../../features/profile/application/profile_settings_provider.dart';
@@ -140,6 +141,8 @@ class _HomePageState extends ConsumerState<HomePage> {
                     const _DailySalahTimingsCard(),
                     const SizedBox(height: 12),
                     const CelestialCycleCard(),
+                    const SizedBox(height: 12),
+                    const OnThisDayHomeCard(),
                     const SizedBox(height: 12),
                     const _HomeLearningActionsCard(),
                   ],
@@ -349,8 +352,15 @@ class _DailySalahTimingsCard extends ConsumerWidget {
                               : DateTime.tryParse(entry!.completedAtIso!);
                           return _PrayerTimingPill(
                             prayer: prayer,
-                            name: item.name,
-                            arabicName: item.arabicName,
+                            name: localizedPrayerNameForDate(
+                              prayerId: item.id,
+                              l10n: l10n,
+                              date: selectedDate,
+                            ),
+                            arabicName: arabicPrayerNameForDate(
+                              prayerId: item.id,
+                              date: selectedDate,
+                            ),
                             time: item.offerTime,
                             status: entry?.status ?? PrayerStatus.pending,
                             completionDetail: completedAt == null
@@ -1396,6 +1406,17 @@ List<_HomeSearchDestination> _buildHomeSearchDestinations(
       onSelected: (context) => context.pushNamed('quranNamesOfAllah'),
     ),
     _HomeSearchDestination(
+      title: l10n.historyArchiveTitle,
+      subtitle: l10n.historyArchiveSubtitle,
+      keywords: [
+        'on this day',
+        'history archive',
+        'historical calendar',
+        'islamic history',
+      ],
+      onSelected: (context) => context.pushNamed('learnHistoryArchive'),
+    ),
+    _HomeSearchDestination(
       title: l10n.learnLifeSectionTitle,
       subtitle: l10n.learnLifeSectionSubtitle,
       keywords: ['life', 'family', 'character'],
@@ -1901,8 +1922,16 @@ class _SalahSummaryCard extends ConsumerWidget {
       now,
     );
 
-    final nextName = next?.name ?? l10n.dhuhr;
-    final nextArabic = next?.arabicName ?? l10n.dhuhrArabic;
+    final nextName = next == null
+        ? localizedPrayerNameForDate(prayerId: 'dhuhr', l10n: l10n, date: now)
+        : localizedPrayerNameForDate(
+            prayerId: next.id,
+            l10n: l10n,
+            date: now,
+          );
+    final nextArabic = next == null
+        ? arabicPrayerNameForDate(prayerId: 'dhuhr', date: now)
+        : arabicPrayerNameForDate(prayerId: next.id, date: now);
     final nextAt = next?.offerTime ?? l10n.atTime.replaceFirst('at ', '');
     final currentEndsIn = current == null
         ? null
@@ -2476,7 +2505,10 @@ class _HomeLearningActionsCard extends ConsumerWidget {
         openProphetById(linkedProphetId);
         return;
       }
-      context.pushNamed('learnProphetsHub');
+      context.pushNamed(
+        'learnProphetsHub',
+        queryParameters: const {'tab': 'stories'},
+      );
     }
 
     return PremiumCard(
@@ -2545,7 +2577,10 @@ class _HomeLearningActionsCard extends ConsumerWidget {
                 _QuickActionButton(
                   icon: Icons.quiz_rounded,
                   label: l10n.homeDailyLearningIslamicTrivia,
-                  onTap: () => context.pushNamed('learnQuizzesHub'),
+                  onTap: () => context.pushNamed(
+                    'learnQuizzesHub',
+                    queryParameters: {'filter': 'trivia'},
+                  ),
                 ),
                 _QuickActionButton(
                   icon: Icons.route_rounded,

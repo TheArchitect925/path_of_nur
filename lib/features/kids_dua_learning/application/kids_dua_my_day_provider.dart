@@ -1,13 +1,17 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../features/ocean/application/ocean_drops_provider.dart';
+import '../../../features/accounts_sync/application/accounts_sync_controller.dart';
+import '../../../features/kids/activity/application/kids_activity_log_service.dart';
+import '../../../features/kids/activity/domain/kids_activity_models.dart';
+import '../../../features/progression/application/learner_progression_service.dart';
+import '../../../features/progression/domain/learner_progression_models.dart';
 import '../../../shared/persistence/local_store.dart';
 import '../domain/kids_dua_models.dart';
+import 'kids_dua_active_learner_service.dart';
 import 'kids_dua_my_day_service.dart';
 import 'kids_dua_progress_provider.dart';
 import 'kids_dua_repository.dart';
 
-const _kidsDuaMyDayStateKey = 'kids.dua.my_day.v1';
 const int kidsDuaMyDayXpBonus = 5;
 const int kidsDuaMyDayDropsBonus = 1;
 
@@ -17,7 +21,12 @@ final kidsDuaMyDayServiceProvider = Provider<KidsDuaMyDayService>(
 
 final kidsDuaMyDayProvider =
     StateNotifierProvider<KidsDuaMyDayNotifier, DailyUsageState>((ref) {
-      return KidsDuaMyDayNotifier(ref);
+      final controller = KidsDuaMyDayNotifier(ref);
+      ref.listen<String>(
+        kidsDuaActiveLearnerProvider.select((value) => value.learnerId),
+        (_, nextLearnerId) => controller.updateActiveLearner(nextLearnerId),
+      );
+      return controller;
     });
 
 final kidsDuaMyDaySectionsProvider = Provider<List<KidsDuaDaySection>>((ref) {
@@ -45,17 +54,23 @@ final kidsDuaMyDayNextSectionProvider = Provider<KidsDuaDaySection?>((ref) {
 class KidsDuaMyDayNotifier extends StateNotifier<DailyUsageState> {
   KidsDuaMyDayNotifier(this._ref)
     : _store = _ref.read(localStoreProvider),
+      _activeLearnerId = _ref.read(kidsDuaActiveLearnerProvider).learnerId,
       super(
         _syncGuidance(
           _ref,
           DailyUsageState.fromJson(
-            _ref.read(localStoreProvider).getJsonMap(_kidsDuaMyDayStateKey),
+            _ref.read(localStoreProvider).getJsonMap(
+              kidsDuaMyDayStorageKeyForLearner(
+                _ref.read(kidsDuaActiveLearnerProvider).learnerId,
+              ),
+            ),
             _ref
                 .read(kidsDuaMyDayServiceProvider)
                 .todayKey(_ref.read(kidsDuaNowProvider)()),
           ),
         ),
       ) {
+    _migrateLegacyStateIfNeeded();
     state = _syncGuidance(
       _ref,
       _ref
@@ -66,6 +81,7 @@ class KidsDuaMyDayNotifier extends StateNotifier<DailyUsageState> {
 
   final Ref _ref;
   final LocalStore _store;
+  String _activeLearnerId;
 
   KidsDuaMyDayCompletionResult completeDuaForToday(String duaId) {
     final service = _ref.read(kidsDuaMyDayServiceProvider);
@@ -87,25 +103,49 @@ class KidsDuaMyDayNotifier extends StateNotifier<DailyUsageState> {
         type: KidsDuaActivityLogType.myDayCompleted,
         duaId: duaId,
       );
-      final oceanDropsAwarded = _ref
-          .read(oceanDropServiceProvider)
-          .awardDrop(
-            actionType: oceanActionLessonCompleted,
-            sourceModule: oceanSourceLearn,
-            referenceId: 'kids_dua_my_day_${service.todayKey(now)}',
-            metadata: <String, dynamic>{
-              'timestamp': now.toIso8601String(),
+      final reward = _ref
+          .read(
+            learnerProgressionControllerProvider(_activeLearnerId).notifier,
+          )
+          .award(
+            sourceRef: 'kids_dua_my_day:${service.todayKey(now)}',
+            activityType: LearnerProgressionActivityType.duaMyDayCompletion,
+            sourceModule: 'kids_dua_learning',
+            xp: kidsDuaMyDayXpBonus,
+            drops: kidsDuaMyDayDropsBonus,
+            occurredAt: now,
+            metadata: <String, Object?>{
               'feature': 'kids_dua_my_day',
+              'dateKey': service.todayKey(now),
             },
+            mirrorToJourney: _shouldMirrorRewardsToJourney(_ref),
           );
       _ref
           .read(kidsDuaLearningProvider.notifier)
           .awardMyDayBonus(
-            xp: kidsDuaMyDayXpBonus,
-            drops: oceanDropsAwarded > 0 ? kidsDuaMyDayDropsBonus : 0,
+            xp: reward.awardedXp,
+            drops: reward.awardedDrops,
           );
-      xpAwarded = kidsDuaMyDayXpBonus;
-      dropsAwarded = oceanDropsAwarded > 0 ? kidsDuaMyDayDropsBonus : 0;
+      final lesson = _ref
+          .read(kidsDuaLessonsProvider)
+          .where((item) => item.id == duaId)
+          .firstOrNull;
+      _ref.read(kidsActivityLogProvider.notifier).log(
+        type: KidsActivityType.duaMyDayCompleted,
+        domain: KidsActivityDomain.duas,
+        sourceRef: 'kids_dua_my_day_complete:${service.todayKey(now)}',
+        contentId: duaId,
+        titleSnapshot: lesson?.title,
+        subtitleSnapshot: lesson?.miniLesson,
+        occurredAt: now,
+        metadata: <String, Object?>{
+          'feature': 'kids_dua_my_day',
+          'dateKey': service.todayKey(now),
+          'duaId': duaId,
+        },
+      );
+      xpAwarded = reward.awardedXp;
+      dropsAwarded = reward.awardedDrops;
       state = next.copyWith(dayCompletionRewarded: true);
     } else {
       if (next.completedSectionIds.length >
@@ -144,9 +184,92 @@ class KidsDuaMyDayNotifier extends StateNotifier<DailyUsageState> {
     _persist();
   }
 
-  void _persist() {
-    _store.setJsonMap(_kidsDuaMyDayStateKey, state.toJson());
+  void updateActiveLearner(String learnerId) {
+    if (learnerId == _activeLearnerId) {
+      return;
+    }
+    _activeLearnerId = learnerId;
+    state = _syncGuidance(
+      _ref,
+      DailyUsageState.fromJson(
+        _store.getJsonMap(kidsDuaMyDayStorageKeyForLearner(learnerId)),
+        _ref
+            .read(kidsDuaMyDayServiceProvider)
+            .todayKey(_ref.read(kidsDuaNowProvider)()),
+      ),
+    );
+    _migrateLegacyStateIfNeeded();
+    resetIfNeeded();
   }
+
+  void _persist() {
+    _store.setJsonMap(
+      kidsDuaMyDayStorageKeyForLearner(_activeLearnerId),
+      state.toJson(),
+    );
+  }
+
+  void _migrateLegacyStateIfNeeded() {
+    final scopedKey = kidsDuaMyDayStorageKeyForLearner(_activeLearnerId);
+    final scoped = _store.getJsonMap(scopedKey);
+    if (scoped != null) {
+      state = _syncGuidance(
+        _ref,
+        DailyUsageState.fromJson(
+          scoped,
+          _ref
+              .read(kidsDuaMyDayServiceProvider)
+              .todayKey(_ref.read(kidsDuaNowProvider)()),
+        ),
+      );
+      return;
+    }
+    final legacy = _store.getJsonMap(legacyKidsDuaMyDayStateKey);
+    if (legacy != null) {
+      state = _syncGuidance(
+        _ref,
+        DailyUsageState.fromJson(
+          legacy,
+          _ref
+              .read(kidsDuaMyDayServiceProvider)
+              .todayKey(_ref.read(kidsDuaNowProvider)()),
+        ),
+      );
+      _store.setJsonMap(scopedKey, state.toJson());
+      _store.remove(legacyKidsDuaMyDayStateKey);
+      return;
+    }
+
+    final legacyScopedLearnerId = legacyKidsDuaScopedLearnerIdForCurrent(
+      _activeLearnerId,
+    );
+    if (legacyScopedLearnerId == null) {
+      return;
+    }
+    final legacyScoped = _store.getJsonMap(
+      kidsDuaMyDayStorageKeyForLearner(legacyScopedLearnerId),
+    );
+    if (legacyScoped == null) {
+      return;
+    }
+    state = _syncGuidance(
+      _ref,
+      DailyUsageState.fromJson(
+        legacyScoped,
+        _ref
+            .read(kidsDuaMyDayServiceProvider)
+            .todayKey(_ref.read(kidsDuaNowProvider)()),
+      ),
+    );
+    _store.setJsonMap(scopedKey, state.toJson());
+    _store.remove(kidsDuaMyDayStorageKeyForLearner(legacyScopedLearnerId));
+  }
+}
+
+bool _shouldMirrorRewardsToJourney(Ref ref) {
+  final accounts = ref.read(accountsSyncControllerProvider);
+  final learner = ref.read(kidsDuaActiveLearnerProvider);
+  return learner.isChildProfile && accounts.activeProfileId == learner.learnerId;
 }
 
 DailyUsageState _syncGuidance(Ref ref, DailyUsageState value) {

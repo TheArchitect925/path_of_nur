@@ -122,9 +122,7 @@ class AppShellScaffold extends ConsumerWidget {
                     if (isPlaying) {
                       unawaited(controller.pause());
                     } else {
-                      unawaited(
-                        controller.resumeCurrentPlaybackWithBismillah(),
-                      );
+                      unawaited(controller.resumeCurrentPlayback());
                     }
                   },
                   child: SizedBox(

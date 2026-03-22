@@ -54,15 +54,17 @@ class LearningJourneyDetailPage extends ConsumerWidget {
     final completedStageIds = progress.completedStageIds
         .where((stageId) => stages.any((stage) => stage.id == stageId))
         .toSet();
-    final activeStageId =
+    final preferredStageId =
         currentStageId ??
         (progress.lastOpenedJourneyId == journey.id
             ? progress.lastOpenedStageId
-            : null) ??
-        stages
-            .where((item) => !completedStageIds.contains(item.id))
-            .map((item) => item.id)
-            .firstOrNull ??
+            : null);
+    final activeStageId =
+        resolveAccessibleLearningJourneyStageId(
+          journey: journey,
+          preferredStageId: preferredStageId,
+          completedStageIds: completedStageIds,
+        ) ??
         stages.first.id;
     final progressValue = stages.isEmpty
         ? 0.0
@@ -128,6 +130,38 @@ class LearningJourneyDetailPage extends ConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: [
+                  _ProgressChip(
+                    label: _difficultyLabel(journey.difficulty, l10n),
+                    color: const Color(0xFFEADCC7),
+                    textColor: const Color(0xFF755937),
+                  ),
+                  _ProgressChip(
+                    label: l10n.learningJourneyDurationMinutes(
+                      journey.estimatedDurationMinutes,
+                    ),
+                    color: const Color(0xFFF1E7D9),
+                    textColor: const Color(0xFF7A6243),
+                  ),
+                  _ProgressChip(
+                    label: l10n.learningJourneyDetailLessonCount(
+                      journey.totalLessons,
+                    ),
+                    color: const Color(0xFFF4EBDE),
+                    textColor: const Color(0xFF866A49),
+                  ),
+                  if (journey.isFeatured)
+                    _ProgressChip(
+                      label: l10n.learningJourneyFeaturedBadge,
+                      color: const Color(0xFFE7EEE1),
+                      textColor: const Color(0xFF4C6540),
+                    ),
+                ],
+              ),
+              const SizedBox(height: 12),
               Text(
                 localizedJourneyDescription(context, journey),
                 style: const TextStyle(color: Color(0xFF675B4E), height: 1.35),
@@ -218,20 +252,22 @@ class LearningJourneyDetailPage extends ConsumerWidget {
                       color: const Color(0xFFE2ECDD),
                       textColor: const Color(0xFF4E7241),
                     ),
-                    _ProgressChip(
-                      label: l10n.learningJourneyDetailPartialChip(
-                        partialCount,
+                    if (partialCount > 0)
+                      _ProgressChip(
+                        label: l10n.learningJourneyDetailPartialChip(
+                          partialCount,
+                        ),
+                        color: const Color(0xFFF3E8D9),
+                        textColor: const Color(0xFF8B653A),
                       ),
-                      color: const Color(0xFFF3E8D9),
-                      textColor: const Color(0xFF8B653A),
-                    ),
-                    _ProgressChip(
-                      label: l10n.learningJourneyDetailPlannedChip(
-                        plannedCount,
+                    if (plannedCount > 0)
+                      _ProgressChip(
+                        label: l10n.learningJourneyDetailPlannedChip(
+                          plannedCount,
+                        ),
+                        color: const Color(0xFFEAE5E0),
+                        textColor: const Color(0xFF6C6257),
                       ),
-                      color: const Color(0xFFEAE5E0),
-                      textColor: const Color(0xFF6C6257),
-                    ),
                   ],
                 ),
               ],
@@ -365,10 +401,26 @@ class LearningJourneyDetailPage extends ConsumerWidget {
               stage: stage,
               isCurrent: stage.id == activeStageId,
               isCompleted: completedStageIds.contains(stage.id),
-              onTap: () => context.pushNamed(
-                'learnJourneyStage',
-                pathParameters: {'journeyId': journey.id, 'stageId': stage.id},
-              ),
+              isLocked: !completedStageIds.contains(stage.id) &&
+                  !isLearningJourneyStageUnlocked(
+                    journey: journey,
+                    stageId: stage.id,
+                    completedStageIds: completedStageIds,
+                  ),
+              onTap: completedStageIds.contains(stage.id) ||
+                      isLearningJourneyStageUnlocked(
+                        journey: journey,
+                        stageId: stage.id,
+                        completedStageIds: completedStageIds,
+                      )
+                  ? () => context.pushNamed(
+                      'learnJourneyStage',
+                      pathParameters: {
+                        'journeyId': journey.id,
+                        'stageId': stage.id,
+                      },
+                    )
+                  : null,
             ),
           ),
         ),
@@ -386,7 +438,7 @@ class LearningJourneyDetailPage extends ConsumerWidget {
               'learnJourneyStage',
               pathParameters: {
                 'journeyId': journey.id,
-                'stageId': isComplete ? stages.last.id : primaryStage.id,
+                'stageId': isComplete ? stages.last.id : activeStageId,
               },
             );
           },
@@ -412,6 +464,18 @@ class LearningJourneyDetailPage extends ConsumerWidget {
       ],
     );
   }
+}
+
+String _difficultyLabel(
+  LearningJourneyDifficulty difficulty,
+  AppLocalizations l10n,
+) {
+  return switch (difficulty) {
+    LearningJourneyDifficulty.beginner => l10n.learningJourneyDifficultyBeginner,
+    LearningJourneyDifficulty.intermediate =>
+      l10n.learningJourneyDifficultyIntermediate,
+    LearningJourneyDifficulty.advanced => l10n.learningJourneyDifficultyAdvanced,
+  };
 }
 
 class _SectionBlock extends StatelessWidget {

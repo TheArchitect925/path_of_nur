@@ -5,7 +5,9 @@ import 'package:path_of_nur/features/kids_arabic/application/kids_arabic_parent_
 import 'package:path_of_nur/features/kids_arabic/application/kids_arabic_progress_provider.dart';
 import 'package:path_of_nur/features/kids_arabic/data/kids_arabic_letters_data.dart';
 import 'package:path_of_nur/features/kids_arabic/domain/kids_arabic_models.dart';
+import 'package:path_of_nur/features/kids/bedtime_stories/domain/bedtime_family_models.dart';
 import 'package:path_of_nur/features/journey/application/journey_progression_provider.dart';
+import 'package:path_of_nur/features/learn/journey/domain/learning_path_models.dart';
 import 'package:path_of_nur/features/worship/domain/fasting_status.dart';
 import 'package:path_of_nur/shared/persistence/local_store.dart';
 
@@ -15,7 +17,9 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   test('parent preferences persist and reload', () async {
-    final first = await makeTestContainer();
+    final first = await makeTestContainer(
+      overrides: _kidsArabicLearnerOverrides('child_a'),
+    );
     addTearDown(first.dispose);
 
     final notifier = first.read(kidsArabicParentPreferencesProvider.notifier);
@@ -32,7 +36,10 @@ void main() {
         .read(localStoreProvider)
         .dumpAll()
         .map((key, value) => MapEntry(key, value as Object));
-    final second = await makeTestContainer(seed: seed);
+    final second = await makeTestContainer(
+      seed: seed,
+      overrides: _kidsArabicLearnerOverrides('child_a'),
+    );
     addTearDown(second.dispose);
 
     final reloaded = second.read(kidsArabicParentPreferencesProvider);
@@ -51,6 +58,7 @@ void main() {
       overrides: [
         kidsArabicNowProvider.overrideWithValue(() => DateTime(2026, 3, 18, 9)),
         _journeySnapshotOverride(),
+        ..._kidsArabicLearnerOverrides('child_a'),
       ],
     );
     addTearDown(container.dispose);
@@ -71,7 +79,9 @@ void main() {
   });
 
   test('parent assigned focus overrides next recommendation', () async {
-    final container = await makeTestContainer();
+    final container = await makeTestContainer(
+      overrides: _kidsArabicLearnerOverrides('child_a'),
+    );
     addTearDown(container.dispose);
 
     final notifier = container.read(
@@ -92,7 +102,9 @@ void main() {
   test(
     'parent assigned review affects review recommendation when enabled',
     () async {
-      final container = await makeTestContainer();
+      final container = await makeTestContainer(
+        overrides: _kidsArabicLearnerOverrides('child_a'),
+      );
       addTearDown(container.dispose);
 
       container
@@ -119,6 +131,22 @@ void main() {
       expect(target?.opensReview, isTrue);
     },
   );
+}
+
+List<Override> _kidsArabicLearnerOverrides(String learnerId) {
+  final learner = BedtimeLearnerIdentity(
+    learnerId: learnerId,
+    linkedChildProfileId: learnerId,
+    displayName: learnerId,
+    avatarReference: 'moon',
+    ageGroup: LearningAgeGroup.kids,
+    guardianProfileId: 'guardian_1',
+    isFallbackLearner: false,
+    preferences: const BedtimeLearnerPreferences(),
+  );
+  return <Override>[
+    kidsArabicActiveLearnerProvider.overrideWithValue(learner),
+  ];
 }
 
 Override _journeySnapshotOverride() {

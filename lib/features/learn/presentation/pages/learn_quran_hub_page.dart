@@ -274,6 +274,47 @@ class _LearnQuranHubPageState extends ConsumerState<LearnQuranHubPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
+                  l10n.quranAyahInsightsHubEntryTitle,
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+                ),
+                const SizedBox(height: 6),
+                Text(l10n.quranAyahInsightsHubEntrySubtitle),
+                const SizedBox(height: 10),
+                FilledButton.tonalIcon(
+                  onPressed: () => context.pushNamed('quranAyahInsightsBrowse'),
+                  icon: const Icon(Icons.auto_awesome_outlined),
+                  label: Text(l10n.quranAyahInsightsBrowseAction),
+                ),
+                const SizedBox(height: 8),
+                FilledButton.tonalIcon(
+                  onPressed: () => context.pushNamed('quranAyahInsightsPaths'),
+                  icon: const Icon(Icons.route_rounded),
+                  label: Text(l10n.quranAyahInsightPathsAction),
+                ),
+                const SizedBox(height: 8),
+                FilledButton.tonalIcon(
+                  onPressed: () => context.pushNamed('quranKnowledgeSearch'),
+                  icon: const Icon(Icons.manage_search_rounded),
+                  label: Text(l10n.quranKnowledgeSearchAction),
+                ),
+                const SizedBox(height: 8),
+                FilledButton.tonalIcon(
+                  onPressed: () =>
+                      context.pushNamed('quranSurahInsightsBrowse'),
+                  icon: const Icon(Icons.layers_outlined),
+                  label: Text(l10n.quranSurahInsightsBrowseAction),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 10),
+          PremiumCard(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
                   l10n.learnQuranHubDailyVerseTitle,
                   style: Theme.of(
                     context,

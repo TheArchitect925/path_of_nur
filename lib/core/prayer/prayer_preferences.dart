@@ -35,6 +35,8 @@ enum PrayerTimeMode { calculatedAdjusted, manual }
 
 enum FridayReminderMode { normalDhuhr, customJumuah }
 
+const int defaultJumuahDisplayMinutes = 13 * 60 + 30;
+
 class PrayerClockTimes {
   const PrayerClockTimes({
     this.fajrMinutes,
@@ -1250,6 +1252,8 @@ List<PrayerScheduleItem> buildPrayerScheduleForDate({
       longitude: longitude,
       settings: settings,
       baseSchedule: baseSchedule,
+    ).map((item) => _applyFridayJumuahDisplayOverride(item, date)).toList(
+      growable: false,
     );
   }
   return applyCalculatedPrayerAdjustments(
@@ -1258,6 +1262,8 @@ List<PrayerScheduleItem> buildPrayerScheduleForDate({
     longitude: longitude,
     settings: settings,
     baseSchedule: baseSchedule,
+  ).map((item) => _applyFridayJumuahDisplayOverride(item, date)).toList(
+    growable: false,
   );
 }
 
@@ -1650,6 +1656,29 @@ AppLocalizations _prayerL10n() {
 }
 
 String _localizedPrayerName(String prayerId, AppLocalizations l10n) {
+  return localizedPrayerNameForDate(prayerId: prayerId, l10n: l10n);
+}
+
+bool isJumuahDate(DateTime date) => date.weekday == DateTime.friday;
+
+DateTime jumuahDisplayDateTimeFor(DateTime date) {
+  return DateTime(
+    date.year,
+    date.month,
+    date.day,
+    defaultJumuahDisplayMinutes ~/ 60,
+    defaultJumuahDisplayMinutes % 60,
+  );
+}
+
+String localizedPrayerNameForDate({
+  required String prayerId,
+  required AppLocalizations l10n,
+  DateTime? date,
+}) {
+  if (prayerId == 'dhuhr' && date != null && isJumuahDate(date)) {
+    return l10n.settingsPrayerNameJumuah;
+  }
   switch (prayerId) {
     case 'fajr':
       return l10n.settingsPrayerNameFajr;
@@ -1664,6 +1693,51 @@ String _localizedPrayerName(String prayerId, AppLocalizations l10n) {
     default:
       return prayerId;
   }
+}
+
+String arabicPrayerNameForDate({required String prayerId, DateTime? date}) {
+  if (prayerId == 'dhuhr' && date != null && isJumuahDate(date)) {
+    return 'الجمعة';
+  }
+  switch (prayerId) {
+    case 'fajr':
+      return 'الفجر';
+    case 'dhuhr':
+      return 'الظهر';
+    case 'asr':
+      return 'العصر';
+    case 'maghrib':
+      return 'المغرب';
+    case 'isha':
+      return 'العشاء';
+    case 'tahajjud':
+      return 'التهجد';
+    default:
+      return prayerId;
+  }
+}
+
+PrayerScheduleItem _applyFridayJumuahDisplayOverride(
+  PrayerScheduleItem item,
+  DateTime date,
+) {
+  if (item.id != 'dhuhr' || !isJumuahDate(date)) {
+    return item;
+  }
+  final jumuahTime = jumuahDisplayDateTimeFor(date);
+  return PrayerScheduleItem(
+    id: item.id,
+    name: item.name,
+    arabicName: item.arabicName,
+    category: item.category,
+    offerDateTime: jumuahTime,
+    windowStartDateTime: jumuahTime,
+    windowEndDateTime: item.windowEndDateTime,
+    qazaDateTime: item.qazaDateTime,
+    overdueAtDateTime: item.overdueAtDateTime,
+    makeUpAvailableDateTime: item.makeUpAvailableDateTime,
+    totalRakats: 2,
+  );
 }
 
 DateTime _dateWithMinutes(DateTime date, int minutes) {

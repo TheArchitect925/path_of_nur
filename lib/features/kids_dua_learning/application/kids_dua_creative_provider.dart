@@ -6,14 +6,16 @@ import 'package:path_provider/path_provider.dart';
 
 import '../../../shared/persistence/local_store.dart';
 import '../domain/kids_dua_models.dart';
+import 'kids_dua_active_learner_service.dart';
 import 'kids_dua_experience_provider.dart';
 import 'kids_dua_progress_provider.dart';
 
-const _kidsDuaCreativeStateKey = 'kids.dua.creative.v1';
-
 final kidsDuaDrawingDirectoryProvider = FutureProvider<Directory>((ref) async {
   final base = await getApplicationDocumentsDirectory();
-  final dir = Directory('${base.path}/kids_dua_drawings');
+  final learnerId = ref.watch(
+    kidsDuaActiveLearnerProvider.select((value) => value.learnerId),
+  );
+  final dir = Directory('${base.path}/kids_dua_drawings/$learnerId');
   if (!dir.existsSync()) {
     await dir.create(recursive: true);
   }
@@ -22,7 +24,12 @@ final kidsDuaDrawingDirectoryProvider = FutureProvider<Directory>((ref) async {
 
 final kidsDuaCreativeProvider =
     StateNotifierProvider<KidsDuaCreativeNotifier, KidsDuaCreativeState>((ref) {
-      return KidsDuaCreativeNotifier(ref);
+      final controller = KidsDuaCreativeNotifier(ref);
+      ref.listen<String>(
+        kidsDuaActiveLearnerProvider.select((value) => value.learnerId),
+        (_, nextLearnerId) => controller.updateActiveLearner(nextLearnerId),
+      );
+      return controller;
     });
 
 final kidsDuaDrawingsProvider = Provider<List<KidsDuaDrawing>>((ref) {
@@ -77,14 +84,22 @@ final kidsDuaParentDashboardProvider = Provider<KidsDuaParentDashboard>((ref) {
 class KidsDuaCreativeNotifier extends StateNotifier<KidsDuaCreativeState> {
   KidsDuaCreativeNotifier(this._ref)
     : _store = _ref.read(localStoreProvider),
+      _activeLearnerId = _ref.read(kidsDuaActiveLearnerProvider).learnerId,
       super(
         KidsDuaCreativeState.fromJson(
-          _ref.read(localStoreProvider).getJsonMap(_kidsDuaCreativeStateKey),
+          _ref.read(localStoreProvider).getJsonMap(
+            kidsDuaCreativeStorageKeyForLearner(
+              _ref.read(kidsDuaActiveLearnerProvider).learnerId,
+            ),
+          ),
         ),
-      );
+      ) {
+    _migrateLegacyStateIfNeeded();
+  }
 
   final Ref _ref;
   final LocalStore _store;
+  String _activeLearnerId;
 
   Future<KidsDuaDrawing> saveDrawing({
     required String duaId,
@@ -142,7 +157,54 @@ class KidsDuaCreativeNotifier extends StateNotifier<KidsDuaCreativeState> {
     _persist();
   }
 
+  void updateActiveLearner(String learnerId) {
+    if (learnerId == _activeLearnerId) {
+      return;
+    }
+    _activeLearnerId = learnerId;
+    state = KidsDuaCreativeState.fromJson(
+      _store.getJsonMap(kidsDuaCreativeStorageKeyForLearner(learnerId)),
+    );
+    _migrateLegacyStateIfNeeded();
+  }
+
   void _persist() {
-    _store.setJsonMap(_kidsDuaCreativeStateKey, state.toJson());
+    _store.setJsonMap(
+      kidsDuaCreativeStorageKeyForLearner(_activeLearnerId),
+      state.toJson(),
+    );
+  }
+
+  void _migrateLegacyStateIfNeeded() {
+    final scopedKey = kidsDuaCreativeStorageKeyForLearner(_activeLearnerId);
+    final scoped = _store.getJsonMap(scopedKey);
+    if (scoped != null) {
+      state = KidsDuaCreativeState.fromJson(scoped);
+      return;
+    }
+
+    final legacyScopedLearnerId = legacyKidsDuaScopedLearnerIdForCurrent(
+      _activeLearnerId,
+    );
+    if (legacyScopedLearnerId != null) {
+      final legacyScopedKey = kidsDuaCreativeStorageKeyForLearner(
+        legacyScopedLearnerId,
+      );
+      final legacyScoped = _store.getJsonMap(legacyScopedKey);
+      if (legacyScoped != null) {
+        state = KidsDuaCreativeState.fromJson(legacyScoped);
+        _store.setJsonMap(scopedKey, state.toJson());
+        _store.remove(legacyScopedKey);
+        return;
+      }
+    }
+
+    final legacy = _store.getJsonMap(legacyKidsDuaCreativeStateKey);
+    if (legacy == null) {
+      return;
+    }
+    state = KidsDuaCreativeState.fromJson(legacy);
+    _store.setJsonMap(scopedKey, state.toJson());
+    _store.remove(legacyKidsDuaCreativeStateKey);
   }
 }

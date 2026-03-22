@@ -153,9 +153,9 @@ class _QuranAppHubPageState extends ConsumerState<QuranAppHubPage> {
                 children: [
                   Text(
                     l10n.quranHubDailyLightTitle,
-                    style: Theme.of(
-                      context,
-                    ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
                   const SizedBox(height: 6),
                   Text(dailyVerse.locationLabel),
@@ -192,9 +192,9 @@ class _QuranAppHubPageState extends ConsumerState<QuranAppHubPage> {
                 children: [
                   Text(
                     l10n.quranHubRelatedToolsTitle,
-                    style: Theme.of(
-                      context,
-                    ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
                   const SizedBox(height: 6),
                   Text(
@@ -351,6 +351,18 @@ class _QuranAppHubPageState extends ConsumerState<QuranAppHubPage> {
         icon: Icons.travel_explore_rounded,
         onTap: () => context.pushNamed('quranUniverse'),
       ),
+      _QuranToolAction(
+        title: l10n.quranAyahInsightsHubEntryTitle,
+        subtitle: l10n.quranAyahInsightsHubEntrySubtitle,
+        icon: Icons.auto_awesome_outlined,
+        onTap: () => context.pushNamed('quranAyahInsightsBrowse'),
+      ),
+      _QuranToolAction(
+        title: l10n.quranKnowledgeSearchEntryTitle,
+        subtitle: l10n.quranKnowledgeSearchEntrySubtitle,
+        icon: Icons.manage_search_rounded,
+        onTap: () => context.pushNamed('quranKnowledgeSearch'),
+      ),
     ];
   }
 
@@ -359,10 +371,12 @@ class _QuranAppHubPageState extends ConsumerState<QuranAppHubPage> {
     String query,
   ) {
     if (query.isEmpty) return actions;
-    return actions.where((action) {
-      final haystack = '${action.title} ${action.subtitle}'.toLowerCase();
-      return haystack.contains(query);
-    }).toList(growable: false);
+    return actions
+        .where((action) {
+          final haystack = '${action.title} ${action.subtitle}'.toLowerCase();
+          return haystack.contains(query);
+        })
+        .toList(growable: false);
   }
 
   List<_QuranToolAction> _filterToolActions(
@@ -370,10 +384,12 @@ class _QuranAppHubPageState extends ConsumerState<QuranAppHubPage> {
     String query,
   ) {
     if (query.isEmpty) return actions;
-    return actions.where((action) {
-      final haystack = '${action.title} ${action.subtitle}'.toLowerCase();
-      return haystack.contains(query);
-    }).toList(growable: false);
+    return actions
+        .where((action) {
+          final haystack = '${action.title} ${action.subtitle}'.toLowerCase();
+          return haystack.contains(query);
+        })
+        .toList(growable: false);
   }
 }
 

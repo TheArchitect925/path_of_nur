@@ -184,7 +184,9 @@ class LearnCategoryPage extends ConsumerWidget {
     LearnHubSubcategoryDescriptor subcategory,
     List<LearnHubKnowledgeItem> knowledgeItems,
   ) {
-    if (LearnHubTaxonomy.isJourneyRouteTarget(subcategory.routeTarget)) {
+    if (LearnHubTaxonomy.shouldPreferDedicatedRouteTarget(
+      subcategory.routeTarget,
+    )) {
       return true;
     }
     return !_hasListableItemsForSubcategory(knowledgeItems, subcategory.id);

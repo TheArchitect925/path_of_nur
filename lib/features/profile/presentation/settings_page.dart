@@ -844,6 +844,19 @@ class SettingsPage extends ConsumerWidget {
                 );
               },
             ),
+            const Divider(height: 1),
+            _SettingsToggleRow(
+              label: l10n.settingsDisableColoredGlassTitle,
+              subtitle: l10n.settingsDisableColoredGlassSubtitle,
+              value: profileSettings.disableColoredGlass,
+              onChanged: (value) {
+                profileSettingsNotifier.setDisableColoredGlass(value);
+                _showAppearanceSnack(
+                  context,
+                  l10n.settingsVisualPreferenceUpdated,
+                );
+              },
+            ),
             AnimatedOpacity(
               duration: const Duration(milliseconds: 180),
               opacity: profileSettings.disableGlassTransparency ? 0.45 : 1,
@@ -898,6 +911,7 @@ class SettingsPage extends ConsumerWidget {
             ),
             if (profileSettings.appThemeMode == AppThemeMode.defaultMode &&
                 !profileSettings.disableGlassTransparency &&
+                !profileSettings.disableColoredGlass &&
                 profileSettings.glassTransparencyLevel ==
                     kGlassTransparencyLevelDefault &&
                 !profileSettings.disableBackground) ...[
@@ -1077,6 +1091,20 @@ class SettingsPage extends ConsumerWidget {
               label: l10n.profileFastingReminders,
               value: profileSettings.fastingReminders,
               onChanged: profileSettingsNotifier.setFastingReminders,
+            ),
+            const Divider(height: 1),
+            _SettingsToggleRow(
+              label: l10n.profileMoonriseReminders,
+              subtitle: l10n.profileMoonriseRemindersSubtitle,
+              value: profileSettings.moonriseReminders,
+              onChanged: profileSettingsNotifier.setMoonriseReminders,
+            ),
+            const Divider(height: 1),
+            _SettingsToggleRow(
+              label: l10n.profileMoonsetReminders,
+              subtitle: l10n.profileMoonsetRemindersSubtitle,
+              value: profileSettings.moonsetReminders,
+              onChanged: profileSettingsNotifier.setMoonsetReminders,
             ),
           ],
         ),

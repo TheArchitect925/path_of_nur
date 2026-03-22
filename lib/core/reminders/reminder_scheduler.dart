@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../features/profile/application/profile_settings_provider.dart';
+import '../../features/celestial/application/celestial_services.dart';
 import '../../features/worship/application/sister_cycle_provider.dart';
 import '../../features/worship/application/prayer_controller.dart';
 import '../../shared/state/user_profile_state.dart';
@@ -19,6 +20,8 @@ enum ReminderKind {
   reflection,
   fasting,
   cycleCheck,
+  moonrise,
+  moonset,
 }
 
 class ReminderPlanItem {
@@ -51,6 +54,9 @@ final reminderSchedulerProvider = Provider<ReminderSchedulerState>((ref) {
   final prayerRecords = ref.watch(prayerControllerProvider);
   final userProfile = ref.watch(userProfileProvider);
   final schedule = ref.watch(prayerScheduleProvider);
+  final prayerLocation = ref.watch(prayerLocationProvider);
+  final celestialCalculator = ref.watch(celestialCalculationServiceProvider);
+  final celestialVerseSelector = ref.watch(celestialVerseSelectorProvider);
   final now = ref.watch(dailyNowProvider).value ?? DateTime.now();
   final dayKey = LocalStore.todayKey(now);
 
@@ -219,6 +225,41 @@ final reminderSchedulerProvider = Provider<ReminderSchedulerState>((ref) {
           kind: ReminderKind.cycleCheck,
           prayerId: null,
           when: checkAt,
+          notificationMode: null,
+        ),
+      );
+    }
+  }
+
+  if (profileSettings.moonriseReminders || profileSettings.moonsetReminders) {
+    final celestialSnapshot = celestialCalculator.buildSnapshot(
+      timestamp: now,
+      latitude: prayerLocation.latitude,
+      longitude: prayerLocation.longitude,
+      locationLabel: prayerSettings.preferences.location,
+      timezoneLabel: now.timeZoneName,
+      verseSelector: celestialVerseSelector,
+    );
+    if (profileSettings.moonriseReminders &&
+        celestialSnapshot.lunarData.moonrise != null) {
+      items.add(
+        ReminderPlanItem(
+          id: 'celestial.moonrise',
+          kind: ReminderKind.moonrise,
+          prayerId: null,
+          when: celestialSnapshot.lunarData.moonrise!,
+          notificationMode: null,
+        ),
+      );
+    }
+    if (profileSettings.moonsetReminders &&
+        celestialSnapshot.lunarData.moonset != null) {
+      items.add(
+        ReminderPlanItem(
+          id: 'celestial.moonset',
+          kind: ReminderKind.moonset,
+          prayerId: null,
+          when: celestialSnapshot.lunarData.moonset!,
           notificationMode: null,
         ),
       );

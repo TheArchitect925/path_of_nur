@@ -11,17 +11,36 @@ import 'shared/persistence/local_store.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await JustAudioBackground.init(
-    androidNotificationChannelId: 'com.shahab.path_of_nur.quran_audio',
-    androidNotificationChannelName: 'Quran Audio Playback',
-    androidNotificationOngoing: true,
-  );
   final prefs = await SharedPreferences.getInstance();
-  final documentsDirectory = await getApplicationDocumentsDirectory();
-  final appDatabase = AppDatabase.openFile(
-    '${documentsDirectory.path}/path_of_nur.sqlite3',
-  );
   AppTelemetry.bootstrap(prefs);
+  try {
+    await JustAudioBackground.init(
+      androidNotificationChannelId: 'com.shahab.path_of_nur.quran_audio',
+      androidNotificationChannelName: 'Quran Audio Playback',
+      androidNotificationOngoing: true,
+    );
+  } catch (error, stackTrace) {
+    AppTelemetry.logError(
+      'audio_background_init_failed',
+      error: error,
+      stackTrace: stackTrace,
+    );
+  }
+
+  AppDatabase appDatabase;
+  try {
+    final documentsDirectory = await getApplicationDocumentsDirectory();
+    appDatabase = AppDatabase.openFile(
+      '${documentsDirectory.path}/path_of_nur.sqlite3',
+    );
+  } catch (error, stackTrace) {
+    AppTelemetry.logError(
+      'app_database_open_failed',
+      error: error,
+      stackTrace: stackTrace,
+    );
+    appDatabase = AppDatabase.inMemory();
+  }
 
   runApp(
     ProviderScope(

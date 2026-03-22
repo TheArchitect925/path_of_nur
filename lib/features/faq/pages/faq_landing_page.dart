@@ -80,6 +80,44 @@ class _FaqLandingPageState extends ConsumerState<FaqLandingPage> {
             error: (error, _) => _errorCard(error),
           ),
           const SizedBox(height: 12),
+          PremiumCard(
+            child: Row(
+              children: [
+                const Icon(Icons.travel_explore_rounded),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        l10n.batch9FaqBrowseAllAction,
+                        style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        l10n.batch9FaqBrowseAllSubtitle,
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: AppColors.onSurfaceSubtle,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(width: 12),
+                FilledButton.tonalIcon(
+                  onPressed: () => context.pushNamed(
+                    'learnExploreAllKnowledge',
+                    queryParameters: const {'category': 'faq'},
+                  ),
+                  icon: const Icon(Icons.open_in_new_rounded),
+                  label: Text(l10n.batch9FaqBrowseAllAction),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 12),
           _sectionTitle(
             context,
             l10n.batch9FaqFeaturedTitle,

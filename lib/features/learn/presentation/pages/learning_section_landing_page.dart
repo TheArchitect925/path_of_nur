@@ -7,6 +7,7 @@ import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/content/learning_quote.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/section_hub_scaffold.dart';
+import '../../journey/application/family_learning_provider.dart';
 import '../../shared/application/learn_system_engine_provider.dart';
 import '../../shared/domain/learn_system_models.dart';
 import '../application/learn_hub_providers.dart';
@@ -46,6 +47,9 @@ class _LearningSectionLandingPageState
     final searchIndex = ref.watch(learnHubKnowledgeIndexProvider);
     final featuredItems = ref.watch(learnHubFeaturedItemsProvider);
     final summary = ref.watch(learnUnifiedSummaryV2Provider);
+    final visibilityPolicy = ref.watch(
+      activeFamilyLearningContextProvider.select((value) => value.visibilityPolicy),
+    );
 
     final searchResults = filterLearnHubKnowledgeItems(
       items: searchIndex,
@@ -135,6 +139,32 @@ class _LearningSectionLandingPageState
               color: const Color(0xFFE8E3F3),
               accentColor: const Color(0xFF6D57A6),
               onTap: () => context.pushNamed('learnJourneyIslandHub'),
+            ),
+            SectionHubAction(
+              title: l10n.learnHubExploreAllTitle,
+              subtitle: l10n.learnHubExploreAllSubtitle,
+              icon: Icons.travel_explore_rounded,
+              color: const Color(0xFFE0EEF0),
+              accentColor: const Color(0xFF2E7380),
+              onTap: () => context.pushNamed('learnExploreAllKnowledge'),
+            ),
+            SectionHubAction(
+              title: l10n.learnGamesIslandTitle,
+              subtitle: l10n.learnGamesIslandLandingCardSubtitle,
+              icon: Icons.sports_esports_rounded,
+              color: const Color(0xFFF3E7D5),
+              accentColor: const Color(0xFFB56C17),
+              onTap: visibilityPolicy.isChildProfile
+                  ? () => context.pushNamed('learnKidsGames')
+                  : () => context.pushNamed('learnGamesIsland'),
+            ),
+            SectionHubAction(
+              title: l10n.historyArchiveTitle,
+              subtitle: l10n.historyLearnIslandSubtitle,
+              icon: Icons.history_edu_rounded,
+              color: const Color(0xFFECE6D9),
+              accentColor: const Color(0xFF7C5F3C),
+              onTap: () => context.pushNamed('learnHistoryArchive'),
             ),
             for (final category in categories)
               SectionHubAction(

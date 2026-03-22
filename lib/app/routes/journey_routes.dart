@@ -9,7 +9,11 @@ import '../../features/journey/presentation/growth_habit_settings_page.dart';
 import '../../features/journey/presentation/growth_path_detail_page.dart';
 import '../../features/journey/presentation/growth_section_pages.dart';
 import '../../features/journey/presentation/growth_tracking_dashboard_page.dart';
-import '../../features/journey/drops/presentation/garden_page.dart';
+import '../../features/journey/spiritual_growth/presentation/spiritual_growth_intention_picker_page.dart';
+import '../../features/journey/spiritual_growth/presentation/spiritual_growth_page.dart';
+import '../../features/journey/spiritual_growth/presentation/spiritual_growth_reflection_page.dart';
+import '../../features/journey/spiritual_growth/presentation/spiritual_growth_themes_page.dart';
+import '../../features/garden/presentation/garden_page.dart';
 import '../../features/wallpaper/presentation/wallpaper_library_page.dart';
 
 String _redirectWithQuery(String path, GoRouterState state) {
@@ -23,6 +27,30 @@ String _redirectWithQuery(String path, GoRouterState state) {
 
 List<RouteBase> buildJourneyRoutes() {
   return <RouteBase>[
+    GoRoute(
+      path: '/journey/spiritual-growth',
+      name: 'spiritualGrowthPage',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: SpiritualGrowthPage()),
+    ),
+    GoRoute(
+      path: '/journey/spiritual-growth/intentions',
+      name: 'spiritualGrowthIntentions',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: SpiritualGrowthIntentionPickerPage()),
+    ),
+    GoRoute(
+      path: '/journey/spiritual-growth/reflection',
+      name: 'spiritualGrowthReflection',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: SpiritualGrowthReflectionPage()),
+    ),
+    GoRoute(
+      path: '/journey/spiritual-growth/themes',
+      name: 'spiritualGrowthThemes',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: SpiritualGrowthThemesPage()),
+    ),
     GoRoute(
       path: '/journey/wallpapers',
       name: 'wallpaperLibrary',

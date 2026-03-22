@@ -5,6 +5,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/localization/locale_provider.dart';
 import '../../../../features/faq/data/faq_seed_data.dart';
+import '../../../../features/kids/bedtime_stories/domain/bedtime_story_models.dart';
+import '../../../../features/kids/bedtime_stories/application/bedtime_story_repository.dart';
+import '../../../../features/kids/seerah/application/seerah_journey_repository.dart';
 import '../../../../features/kids_arabic/data/kids_arabic_letters_data.dart';
 import '../../../../features/kids_dua_learning/application/kids_dua_repository.dart';
 import '../../../../features/kids_dua_learning/application/kids_dua_story_repository.dart';
@@ -12,6 +15,7 @@ import '../../../../features/kids_dua_learning/application/kids_dua_my_day_servi
 import '../../../../features/kids_dua_learning/domain/kids_dua_models.dart';
 import '../../../../features/kids_dua_learning/presentation/kids_dua_localized_content.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../journey/application/family_learning_provider.dart';
 import '../../dua/data/dua_seed_data.dart';
 import '../../shared/application/learn_system_engine_provider.dart';
 import '../../shared/domain/learn_system_models.dart';
@@ -26,28 +30,45 @@ final learnHubCategoriesProvider = Provider<List<LearnHubCategoryDescriptor>>((
 ) {
   final locale = ref.watch(appLocaleProvider) ?? const Locale('en');
   final l10n = lookupAppLocalizations(locale);
-  return LearnHubTaxonomy.orderedCategories
+  final visibilityPolicy = ref.watch(
+    activeFamilyLearningContextProvider.select(
+      (value) => value.visibilityPolicy,
+    ),
+  );
+  final categories = LearnHubTaxonomy.orderedCategories
+      .where(
+        (category) =>
+            !visibilityPolicy.isChildProfile ||
+            category == LearnHubCategoryId.kidsLearning,
+      )
       .map(
         (category) => LearnHubCategoryDescriptor(
           id: category,
           title: LearnHubTaxonomy.categoryTitle(l10n, category),
           subtitle: LearnHubTaxonomy.categorySubtitle(l10n, category),
-          routeTarget: LearnHubRouteTarget(
-            routeName: 'learnHubCategory',
-            pathParameters: {
-              'categoryId': LearnHubTaxonomy.categorySlug(category),
-            },
-          ),
+          routeTarget: LearnHubTaxonomy.categoryRouteTarget(category),
         ),
       )
       .toList(growable: false);
+  return categories;
 });
 
 final learnHubSubcategoriesProvider =
     Provider<List<LearnHubSubcategoryDescriptor>>((ref) {
       final locale = ref.watch(appLocaleProvider) ?? const Locale('en');
       final l10n = lookupAppLocalizations(locale);
-      return LearnHubTaxonomy.subcategories(l10n);
+      final visibilityPolicy = ref.watch(
+        activeFamilyLearningContextProvider.select(
+          (value) => value.visibilityPolicy,
+        ),
+      );
+      return LearnHubTaxonomy.subcategories(l10n)
+          .where(
+            (subcategory) =>
+                !visibilityPolicy.isChildProfile ||
+                subcategory.categoryId == LearnHubCategoryId.kidsLearning,
+          )
+          .toList(growable: false);
     });
 
 final learnHubKnowledgeIndexProvider = Provider<List<LearnHubKnowledgeItem>>((
@@ -61,6 +82,13 @@ final learnHubKnowledgeIndexProvider = Provider<List<LearnHubKnowledgeItem>>((
   final kidsDuaCategories = ref.watch(kidsDuaCategoriesProvider);
   final kidsDuaLessons = ref.watch(kidsDuaLessonsProvider);
   final kidsDuaStories = ref.watch(kidsDuaStoriesProvider);
+  final kidsStories = ref.watch(kidsIslamicStoriesProvider);
+  final seerahJourneys = ref.watch(kidsSeerahJourneysProvider);
+  final visibilityPolicy = ref.watch(
+    activeFamilyLearningContextProvider.select(
+      (value) => value.visibilityPolicy,
+    ),
+  );
 
   final results = <LearnHubKnowledgeItem>[
     for (final category in categories)
@@ -105,14 +133,24 @@ final learnHubKnowledgeIndexProvider = Provider<List<LearnHubKnowledgeItem>>((
     ..._kidsArabicKnowledgeEntries(l10n),
     ..._kidsArabicHubEntries(l10n),
     ..._kidsStoryHubEntries(l10n),
+    ..._kidsStoryLibraryHubEntries(l10n),
+    ..._kidsSeerahJourneyHubEntries(l10n),
+    ..._kidsBedtimeStoryHubEntries(l10n),
     ..._kidsStoriesKnowledgeEntries(l10n, kidsDuaLessons, kidsDuaStories),
+    ..._kidsBedtimeStoriesKnowledgeEntries(l10n, kidsStories),
+    ..._kidsSeerahJourneyKnowledgeEntries(l10n, seerahJourneys),
     ..._kidsSalahKnowledgeEntries(l10n, kidsDuaLessons),
     ..._triviaKnowledgePathHubEntries(l10n),
     ..._triviaChallengeKnowledgeEntries(l10n),
     ..._faqKnowledgeEntries(l10n),
   ];
+  final scopedResults = visibilityPolicy.isChildProfile
+      ? results
+            .where((item) => item.categoryId == LearnHubCategoryId.kidsLearning)
+            .toList(growable: false)
+      : results;
 
-  results.sort((a, b) {
+  scopedResults.sort((a, b) {
     final categoryCompare = LearnHubTaxonomy.categoryTitle(
       l10n,
       a.categoryId,
@@ -122,7 +160,7 @@ final learnHubKnowledgeIndexProvider = Provider<List<LearnHubKnowledgeItem>>((
     }
     return a.title.compareTo(b.title);
   });
-  return results;
+  return scopedResults;
 });
 
 final learnHubFeaturedItemsProvider = Provider<List<LearnHubKnowledgeItem>>((
@@ -150,22 +188,24 @@ List<LearnHubKnowledgeItem> filterLearnHubKnowledgeItems({
   LearnHubCategoryId? categoryId,
 }) {
   final normalized = query.trim().toLowerCase();
-  return items.where((item) {
-    if (categoryId != null && item.categoryId != categoryId) {
-      return false;
-    }
-    if (normalized.isEmpty) {
-      return true;
-    }
-    final haystack = <String>[
-      item.title,
-      item.subtitle,
-      item.summary,
-      if (item.subcategoryTitle != null) item.subcategoryTitle!,
-      ...item.searchKeywords,
-    ].join(' ').toLowerCase();
-    return haystack.contains(normalized);
-  }).toList(growable: false);
+  return items
+      .where((item) {
+        if (categoryId != null && item.categoryId != categoryId) {
+          return false;
+        }
+        if (normalized.isEmpty) {
+          return true;
+        }
+        final haystack = <String>[
+          item.title,
+          item.subtitle,
+          item.summary,
+          if (item.subcategoryTitle != null) item.subcategoryTitle!,
+          ...item.searchKeywords,
+        ].join(' ').toLowerCase();
+        return haystack.contains(normalized);
+      })
+      .toList(growable: false);
 }
 
 List<LearnHubKnowledgeItem> sortLearnHubKnowledgeItems(
@@ -178,9 +218,9 @@ List<LearnHubKnowledgeItem> sortLearnHubKnowledgeItems(
     return sorted;
   }
   sorted.sort((a, b) {
-    final typePriority = _contentTypePriority(a.contentType).compareTo(
-      _contentTypePriority(b.contentType),
-    );
+    final typePriority = _contentTypePriority(
+      a.contentType,
+    ).compareTo(_contentTypePriority(b.contentType));
     if (typePriority != 0) {
       return typePriority;
     }
@@ -218,6 +258,61 @@ int _contentTypePriority(LearnHubContentType type) {
 List<LearnHubKnowledgeItem> _staticKnowledgeEntries(AppLocalizations l10n) {
   return [
     LearnHubKnowledgeItem(
+      id: 'games_island:home',
+      title: l10n.learnGamesIslandTitle,
+      subtitle: l10n.learnHubCategoryQuizzesChallengesTitle,
+      summary: l10n.learnGamesIslandSubtitle,
+      categoryId: LearnHubCategoryId.quizzesChallenges,
+      subcategoryId: 'games-island',
+      subcategoryTitle: l10n.learnGamesIslandTitle,
+      contentType: LearnHubContentType.tool,
+      routeTarget: const LearnHubRouteTarget(routeName: 'learnGamesIsland'),
+      searchKeywords: const [
+        'games island',
+        'knowledge games',
+        'daily challenge',
+        'word games',
+      ],
+    ),
+    LearnHubKnowledgeItem(
+      id: 'kids_games:hub',
+      title: l10n.learnHubSubcategoryKidsGamesTitle,
+      subtitle: l10n.learnHubCategoryKidsLearningTitle,
+      summary: l10n.learnHubSubcategoryKidsGamesSubtitle,
+      categoryId: LearnHubCategoryId.kidsLearning,
+      subcategoryId: 'kids-games',
+      subcategoryTitle: l10n.learnHubSubcategoryKidsGamesTitle,
+      contentType: LearnHubContentType.tool,
+      routeTarget: const LearnHubRouteTarget(routeName: 'learnKidsGames'),
+      searchKeywords: const ['kids games', 'kids puzzles', 'kids quiz games'],
+    ),
+    LearnHubKnowledgeItem(
+      id: 'kids_arabic_learning:hub',
+      title: l10n.learnHubSubcategoryKidsArabicLearningTitle,
+      subtitle: l10n.learnHubCategoryKidsLearningTitle,
+      summary: l10n.learnHubSubcategoryKidsArabicLearningSubtitle,
+      categoryId: LearnHubCategoryId.kidsLearning,
+      subcategoryId: 'kids-arabic-learning',
+      subcategoryTitle: l10n.learnHubSubcategoryKidsArabicLearningTitle,
+      contentType: LearnHubContentType.tool,
+      routeTarget: const LearnHubRouteTarget(
+        routeName: 'learnKidsArabicLearning',
+      ),
+      searchKeywords: const ['kids arabic learning', 'letters', 'arabic review'],
+    ),
+    LearnHubKnowledgeItem(
+      id: 'kids_fun_learning:hub',
+      title: l10n.learnHubSubcategoryKidsFunLearningTitle,
+      subtitle: l10n.learnHubCategoryKidsLearningTitle,
+      summary: l10n.learnHubSubcategoryKidsFunLearningSubtitle,
+      categoryId: LearnHubCategoryId.kidsLearning,
+      subcategoryId: 'kids-fun-learning',
+      subcategoryTitle: l10n.learnHubSubcategoryKidsFunLearningTitle,
+      contentType: LearnHubContentType.tool,
+      routeTarget: const LearnHubRouteTarget(routeName: 'learnKidsFunLearning'),
+      searchKeywords: const ['kids fun learning', 'stories', 'coloring'],
+    ),
+    LearnHubKnowledgeItem(
       id: 'journey:home',
       title: l10n.learningJourneyHomeTitle,
       subtitle: l10n.learnHubJourneysBrowseAction,
@@ -228,13 +323,224 @@ List<LearnHubKnowledgeItem> _staticKnowledgeEntries(AppLocalizations l10n) {
       searchKeywords: const ['journeys', 'learning journey', 'browse journeys'],
     ),
     LearnHubKnowledgeItem(
+      id: 'history:archive',
+      title: l10n.historyArchiveTitle,
+      subtitle: l10n.historyLearnIslandSubtitle,
+      summary: l10n.historyOnThisDaySubtitle,
+      categoryId: LearnHubCategoryId.toolsExplore,
+      contentType: LearnHubContentType.tool,
+      routeTarget: const LearnHubRouteTarget(routeName: 'learnHistoryArchive'),
+      searchKeywords: const [
+        'on this day',
+        'history archive',
+        'historical calendar',
+        'islamic history',
+      ],
+    ),
+    LearnHubKnowledgeItem(
+      id: 'daily_knowledge:home',
+      title: l10n.dailyKnowledgeHubTitle,
+      subtitle: l10n.learnCategoryQuizzesTitle,
+      summary: l10n.dailyKnowledgeHubSubtitle,
+      categoryId: LearnHubCategoryId.quizzesChallenges,
+      subcategoryId: 'quizzes',
+      subcategoryTitle: l10n.learnCategoryQuizzesTitle,
+      contentType: LearnHubContentType.challenge,
+      routeTarget: const LearnHubRouteTarget(routeName: 'learnDailyKnowledgeHub'),
+      searchKeywords: const [
+        'daily knowledge challenge',
+        'daily games',
+        'knowledge journey',
+        'daily learning bundle',
+      ],
+    ),
+    LearnHubKnowledgeItem(
+      id: 'crossword:home',
+      title: l10n.crosswordHomeTitle,
+      subtitle: l10n.learnCategoryQuizzesTitle,
+      summary: l10n.crosswordHomeSubtitle,
+      categoryId: LearnHubCategoryId.quizzesChallenges,
+      subcategoryId: 'quizzes',
+      subcategoryTitle: l10n.learnCategoryQuizzesTitle,
+      contentType: LearnHubContentType.challenge,
+      routeTarget: const LearnHubRouteTarget(routeName: 'learnCrosswordHome'),
+      searchKeywords: const [
+        'crossword',
+        'crossword puzzle',
+        'word game',
+        'knowledge game',
+        'daily puzzle',
+      ],
+    ),
+    LearnHubKnowledgeItem(
+      id: 'crossword:kids',
+      title: l10n.crosswordKidsModeTitle,
+      subtitle: l10n.learnHubCategoryKidsLearningTitle,
+      summary: l10n.crosswordKidsModeSubtitle,
+      categoryId: LearnHubCategoryId.kidsLearning,
+      subcategoryId: 'kids-games',
+      subcategoryTitle: l10n.learnHubSubcategoryKidsGamesTitle,
+      contentType: LearnHubContentType.challenge,
+      routeTarget: const LearnHubRouteTarget(routeName: 'learnCrosswordHome'),
+      searchKeywords: const [
+        'kids crossword',
+        'kids puzzle',
+        'letters game',
+        'word game',
+      ],
+    ),
+    LearnHubKnowledgeItem(
+      id: 'word_search:home',
+      title: l10n.wordSearchHomeTitle,
+      subtitle: l10n.learnCategoryQuizzesTitle,
+      summary: l10n.wordSearchHomeSubtitle,
+      categoryId: LearnHubCategoryId.quizzesChallenges,
+      subcategoryId: 'quizzes',
+      subcategoryTitle: l10n.learnCategoryQuizzesTitle,
+      contentType: LearnHubContentType.challenge,
+      routeTarget: const LearnHubRouteTarget(routeName: 'learnWordSearchHome'),
+      searchKeywords: const [
+        'word search',
+        'find words',
+        'knowledge game',
+        'daily word search',
+      ],
+    ),
+    LearnHubKnowledgeItem(
+      id: 'word_search:kids',
+      title: l10n.wordSearchKidsModeTitle,
+      subtitle: l10n.learnHubCategoryKidsLearningTitle,
+      summary: l10n.wordSearchKidsModeSubtitle,
+      categoryId: LearnHubCategoryId.kidsLearning,
+      subcategoryId: 'kids-games',
+      subcategoryTitle: l10n.learnHubSubcategoryKidsGamesTitle,
+      contentType: LearnHubContentType.challenge,
+      routeTarget: const LearnHubRouteTarget(routeName: 'learnWordSearchHome'),
+      searchKeywords: const [
+        'kids word search',
+        'letters finder',
+        'find words',
+        'kids puzzle',
+      ],
+    ),
+    LearnHubKnowledgeItem(
+      id: 'matching:home',
+      title: l10n.matchingHomeTitle,
+      subtitle: l10n.learnCategoryQuizzesTitle,
+      summary: l10n.matchingHomeSubtitle,
+      categoryId: LearnHubCategoryId.quizzesChallenges,
+      subcategoryId: 'quizzes',
+      subcategoryTitle: l10n.learnCategoryQuizzesTitle,
+      contentType: LearnHubContentType.challenge,
+      routeTarget: const LearnHubRouteTarget(routeName: 'learnMatchingHome'),
+      searchKeywords: const [
+        'matching game',
+        'match pairs',
+        'knowledge game',
+        'daily matching',
+      ],
+    ),
+    LearnHubKnowledgeItem(
+      id: 'matching:kids',
+      title: l10n.matchingKidsModeTitle,
+      subtitle: l10n.learnHubCategoryKidsLearningTitle,
+      summary: l10n.matchingKidsModeSubtitle,
+      categoryId: LearnHubCategoryId.kidsLearning,
+      subcategoryId: 'kids-games',
+      subcategoryTitle: l10n.learnHubSubcategoryKidsGamesTitle,
+      contentType: LearnHubContentType.challenge,
+      routeTarget: const LearnHubRouteTarget(routeName: 'learnMatchingHome'),
+      searchKeywords: const [
+        'kids matching',
+        'pair game',
+        'kids puzzle',
+        'matching cards',
+      ],
+    ),
+    LearnHubKnowledgeItem(
+      id: 'ayah_completion:home',
+      title: l10n.ayahCompletionHomeTitle,
+      subtitle: l10n.learnCategoryQuizzesTitle,
+      summary: l10n.ayahCompletionHomeSubtitle,
+      categoryId: LearnHubCategoryId.quizzesChallenges,
+      subcategoryId: 'quizzes',
+      subcategoryTitle: l10n.learnCategoryQuizzesTitle,
+      contentType: LearnHubContentType.challenge,
+      routeTarget: const LearnHubRouteTarget(
+        routeName: 'learnAyahCompletionHome',
+      ),
+      searchKeywords: const [
+        'ayah completion',
+        'fill in the blanks',
+        'quran memorization',
+        'daily ayah',
+      ],
+    ),
+    LearnHubKnowledgeItem(
+      id: 'ayah_completion:kids',
+      title: l10n.ayahCompletionKidsModeTitle,
+      subtitle: l10n.learnHubCategoryKidsLearningTitle,
+      summary: l10n.ayahCompletionKidsModeSubtitle,
+      categoryId: LearnHubCategoryId.kidsLearning,
+      subcategoryId: 'kids-games',
+      subcategoryTitle: l10n.learnHubSubcategoryKidsGamesTitle,
+      contentType: LearnHubContentType.challenge,
+      routeTarget: const LearnHubRouteTarget(
+        routeName: 'learnAyahCompletionHome',
+      ),
+      searchKeywords: const [
+        'kids quran game',
+        'ayah blanks',
+        'memorization practice',
+        'quran puzzle',
+      ],
+    ),
+    LearnHubKnowledgeItem(
+      id: 'hadith_reflection:home',
+      title: l10n.hadithReflectionHomeTitle,
+      subtitle: l10n.learnCategoryQuizzesTitle,
+      summary: l10n.hadithReflectionHomeSubtitle,
+      categoryId: LearnHubCategoryId.quizzesChallenges,
+      subcategoryId: 'quizzes',
+      subcategoryTitle: l10n.learnCategoryQuizzesTitle,
+      contentType: LearnHubContentType.challenge,
+      routeTarget: const LearnHubRouteTarget(
+        routeName: 'learnHadithReflectionHome',
+      ),
+      searchKeywords: const [
+        'hadith reflection',
+        'scenario decisions',
+        'hadith scenario',
+        'daily hadith reflection',
+      ],
+    ),
+    LearnHubKnowledgeItem(
+      id: 'hadith_reflection:kids',
+      title: l10n.hadithReflectionKidsModeTitle,
+      subtitle: l10n.learnHubCategoryKidsLearningTitle,
+      summary: l10n.hadithReflectionKidsModeSubtitle,
+      categoryId: LearnHubCategoryId.kidsLearning,
+      subcategoryId: 'kids-games',
+      subcategoryTitle: l10n.learnHubSubcategoryKidsGamesTitle,
+      contentType: LearnHubContentType.challenge,
+      routeTarget: const LearnHubRouteTarget(
+        routeName: 'learnHadithReflectionHome',
+      ),
+      searchKeywords: const [
+        'kids hadith reflection',
+        'kindness scenarios',
+        'honesty choices',
+        'character game',
+      ],
+    ),
+    LearnHubKnowledgeItem(
       id: 'kids:practice',
       title: l10n.learnHubKidsPracticeTitle,
       subtitle: l10n.learnHubCategoryKidsLearningTitle,
       summary: l10n.learnHubKidsPracticeSubtitle,
       categoryId: LearnHubCategoryId.kidsLearning,
-      subcategoryId: 'kids-learning',
-      subcategoryTitle: l10n.learnHubSubcategoryKidsLearningTitle,
+      subcategoryId: 'kids-fun-learning',
+      subcategoryTitle: l10n.learnHubSubcategoryKidsFunLearningTitle,
       contentType: LearnHubContentType.challenge,
       routeTarget: const LearnHubRouteTarget(routeName: 'kidsDuaPractice'),
       searchKeywords: const ['kids practice', 'kids duas', 'practice'],
@@ -245,8 +551,8 @@ List<LearnHubKnowledgeItem> _staticKnowledgeEntries(AppLocalizations l10n) {
       subtitle: l10n.learnHubCategoryKidsLearningTitle,
       summary: l10n.learnHubKidsRewardsSubtitle,
       categoryId: LearnHubCategoryId.kidsLearning,
-      subcategoryId: 'kids-learning',
-      subcategoryTitle: l10n.learnHubSubcategoryKidsLearningTitle,
+      subcategoryId: 'kids-fun-learning',
+      subcategoryTitle: l10n.learnHubSubcategoryKidsFunLearningTitle,
       contentType: LearnHubContentType.tool,
       routeTarget: const LearnHubRouteTarget(routeName: 'kidsDuaRewards'),
       searchKeywords: const ['kids rewards', 'kids stars', 'motivation'],
@@ -257,60 +563,47 @@ List<LearnHubKnowledgeItem> _staticKnowledgeEntries(AppLocalizations l10n) {
       subtitle: l10n.learnHubCategoryKidsLearningTitle,
       summary: l10n.learnHubKidsColoringSubtitle,
       categoryId: LearnHubCategoryId.kidsLearning,
-      subcategoryId: 'kids-arabic',
-      subcategoryTitle: l10n.learnHubSubcategoryKidsArabicTitle,
+      subcategoryId: 'kids-fun-learning',
+      subcategoryTitle: l10n.learnHubSubcategoryKidsFunLearningTitle,
       contentType: LearnHubContentType.tool,
       routeTarget: const LearnHubRouteTarget(
         routeName: 'kidsArabicColoringPages',
       ),
       searchKeywords: const ['coloring', 'kids arabic', 'letters'],
     ),
-    LearnHubKnowledgeItem(
-      id: 'tools:explore',
-      title: l10n.learnHubExploreAllAction,
-      subtitle: l10n.learnHubCategoryToolsExploreTitle,
-      summary: l10n.learnHubExploreAllSubtitle,
-      categoryId: LearnHubCategoryId.toolsExplore,
-      subcategoryId: 'explore-all',
-      subcategoryTitle: l10n.learnHubExploreAllAction,
-      contentType: LearnHubContentType.tool,
-      routeTarget: const LearnHubRouteTarget(
-        routeName: 'learnExploreAllKnowledge',
-      ),
-      badgeLabel: l10n.learnHubBadgeExplore,
-      searchKeywords: const ['explore all knowledge', 'search all', 'browse all'],
-    ),
   ];
 }
 
 List<LearnHubKnowledgeItem> _duaKnowledgeEntries(AppLocalizations l10n) {
-  return duaSeedDataset.verifiedItems.map((dua) {
-    final subtitleParts = <String>[
-      duaSeedDataset.categoryLabel(dua.category),
-      if (dua.whenToSay.trim().isNotEmpty) dua.whenToSay.trim(),
-    ];
-    return LearnHubKnowledgeItem(
-      id: 'dua:${dua.id}',
-      title: dua.title,
-      subtitle: subtitleParts.join(' • '),
-      summary: dua.translation,
-      categoryId: LearnHubCategoryId.worshipPractice,
-      subcategoryId: 'duas',
-      subcategoryTitle: l10n.learnCategoryDuasTitle,
-      contentType: LearnHubContentType.lesson,
-      routeTarget: LearnHubRouteTarget(
-        routeName: 'learnDuaDetail',
-        pathParameters: {'duaId': dua.id},
-      ),
-      searchKeywords: [
-        dua.category,
-        dua.subcategory,
-        dua.sourceType,
-        dua.sourceRef,
-        ...dua.tags,
-      ],
-    );
-  }).toList(growable: false);
+  return duaSeedDataset.verifiedItems
+      .map((dua) {
+        final subtitleParts = <String>[
+          duaSeedDataset.categoryLabel(dua.category),
+          if (dua.whenToSay.trim().isNotEmpty) dua.whenToSay.trim(),
+        ];
+        return LearnHubKnowledgeItem(
+          id: 'dua:${dua.id}',
+          title: dua.title,
+          subtitle: subtitleParts.join(' • '),
+          summary: dua.translation,
+          categoryId: LearnHubCategoryId.worshipPractice,
+          subcategoryId: 'duas',
+          subcategoryTitle: l10n.learnCategoryDuasTitle,
+          contentType: LearnHubContentType.lesson,
+          routeTarget: LearnHubRouteTarget(
+            routeName: 'learnDuaDetail',
+            pathParameters: {'duaId': dua.id},
+          ),
+          searchKeywords: [
+            dua.category,
+            dua.subcategory,
+            dua.sourceType,
+            dua.sourceRef,
+            ...dua.tags,
+          ],
+        );
+      })
+      .toList(growable: false);
 }
 
 List<LearnHubKnowledgeItem> _babyNamesHubEntries(AppLocalizations l10n) {
@@ -318,11 +611,11 @@ List<LearnHubKnowledgeItem> _babyNamesHubEntries(AppLocalizations l10n) {
     LearnHubKnowledgeItem(
       id: 'baby-names:home',
       title: l10n.babyNamesTitle,
-      subtitle: l10n.learnHubSubcategoryJourneyToolsTitle,
+      subtitle: l10n.learnHubCategoryToolsExploreTitle,
       summary: l10n.babyNamesSubtitle,
       categoryId: LearnHubCategoryId.toolsExplore,
-      subcategoryId: 'journey-tools',
-      subcategoryTitle: l10n.learnHubSubcategoryJourneyToolsTitle,
+      subcategoryId: 'baby-names',
+      subcategoryTitle: l10n.babyNamesTitle,
       contentType: LearnHubContentType.tool,
       routeTarget: const LearnHubRouteTarget(routeName: 'babyNamesHome'),
       searchKeywords: const [
@@ -330,6 +623,8 @@ List<LearnHubKnowledgeItem> _babyNamesHubEntries(AppLocalizations l10n) {
         'muslim names',
         'name finder',
         'family tools',
+        'browse names',
+        'name meanings',
       ],
     ),
   ];
@@ -338,28 +633,30 @@ List<LearnHubKnowledgeItem> _babyNamesHubEntries(AppLocalizations l10n) {
 List<LearnHubKnowledgeItem> _worldCreationCategoryEntries(
   AppLocalizations l10n,
 ) {
-  return worldCreationCategories.map((category) {
-    return LearnHubKnowledgeItem(
-      id: 'world-category:${category.id.name}',
-      title: category.title,
-      subtitle: l10n.learnCategoryWorldCreationTitle,
-      summary: category.description,
-      categoryId: LearnHubCategoryId.quranHadith,
-      subcategoryId: 'world-creation',
-      subcategoryTitle: l10n.learnCategoryWorldCreationTitle,
-      contentType: LearnHubContentType.tool,
-      routeTarget: LearnHubRouteTarget(
-        routeName: 'worldCreationCategory',
-        pathParameters: {'categoryName': category.id.name},
-      ),
-      searchKeywords: [
-        category.id.name,
-        category.featuredVerse.surahName,
-        category.featuredVerse.referenceLabel,
-        ...category.lessonIds,
-      ],
-    );
-  }).toList(growable: false);
+  return worldCreationCategories
+      .map((category) {
+        return LearnHubKnowledgeItem(
+          id: 'world-category:${category.id.name}',
+          title: category.title,
+          subtitle: l10n.learnCategoryWorldCreationTitle,
+          summary: category.description,
+          categoryId: LearnHubCategoryId.quranHadith,
+          subcategoryId: 'world-creation',
+          subcategoryTitle: l10n.learnCategoryWorldCreationTitle,
+          contentType: LearnHubContentType.tool,
+          routeTarget: LearnHubRouteTarget(
+            routeName: 'worldCreationCategory',
+            pathParameters: {'categoryName': category.id.name},
+          ),
+          searchKeywords: [
+            category.id.name,
+            category.featuredVerse.surahName,
+            category.featuredVerse.referenceLabel,
+            ...category.lessonIds,
+          ],
+        );
+      })
+      .toList(growable: false);
 }
 
 List<LearnHubKnowledgeItem> _worldKnowledgeEntries(AppLocalizations l10n) {
@@ -371,83 +668,89 @@ List<LearnHubKnowledgeItem> _worldKnowledgeEntries(AppLocalizations l10n) {
       subcategory.id: subcategory,
   };
 
-  return worldCurriculum.lessons.map((lesson) {
-    final theme = themeById[lesson.themeId];
-    final subcategory = subcategoryById[lesson.subcategoryId];
-    return LearnHubKnowledgeItem(
-      id: 'world:${lesson.id}',
-      title: lesson.title,
-      subtitle: subcategory?.title ?? theme?.title ?? lesson.subtitle,
-      summary: lesson.overview,
-      categoryId: LearnHubCategoryId.quranHadith,
-      subcategoryId: 'world-creation',
-      subcategoryTitle: l10n.learnCategoryWorldCreationTitle,
-      contentType: LearnHubContentType.lesson,
-      routeTarget: LearnHubRouteTarget(
-        routeName: 'worldLessonDetail',
-        pathParameters: {'lessonId': lesson.id},
-      ),
-      searchKeywords: [
-        lesson.subtitle,
-        lesson.quranicPerspective,
-        lesson.reflectiveTakeaway,
-        if (theme != null) theme.title,
-        if (subcategory != null) subcategory.title,
-        ...lesson.keyConcepts,
-      ],
-    );
-  }).toList(growable: false);
+  return worldCurriculum.lessons
+      .map((lesson) {
+        final theme = themeById[lesson.themeId];
+        final subcategory = subcategoryById[lesson.subcategoryId];
+        return LearnHubKnowledgeItem(
+          id: 'world:${lesson.id}',
+          title: lesson.title,
+          subtitle: subcategory?.title ?? theme?.title ?? lesson.subtitle,
+          summary: lesson.overview,
+          categoryId: LearnHubCategoryId.quranHadith,
+          subcategoryId: 'world-creation',
+          subcategoryTitle: l10n.learnCategoryWorldCreationTitle,
+          contentType: LearnHubContentType.lesson,
+          routeTarget: LearnHubRouteTarget(
+            routeName: 'worldLessonDetail',
+            pathParameters: {'lessonId': lesson.id},
+          ),
+          searchKeywords: [
+            lesson.subtitle,
+            lesson.quranicPerspective,
+            lesson.reflectiveTakeaway,
+            if (theme != null) theme.title,
+            if (subcategory != null) subcategory.title,
+            ...lesson.keyConcepts,
+          ],
+        );
+      })
+      .toList(growable: false);
 }
 
 List<LearnHubKnowledgeItem> _kidsDuaCategoryEntries(
   AppLocalizations l10n,
   List<KidsDuaCategory> categories,
 ) {
-  return categories.map((category) {
-    return LearnHubKnowledgeItem(
-      id: 'kids-dua-category:${category.id}',
-      title: category.title,
-      subtitle: l10n.learnHubSubcategoryKidsLearningTitle,
-      summary: category.subtitle,
-      categoryId: LearnHubCategoryId.kidsLearning,
-      subcategoryId: 'kids-learning',
-      subcategoryTitle: l10n.learnHubSubcategoryKidsLearningTitle,
-      contentType: LearnHubContentType.lesson,
-      routeTarget: LearnHubRouteTarget(
-        routeName: 'kidsDuaCategory',
-        pathParameters: {'categoryId': category.id},
-      ),
-      searchKeywords: [category.id, category.title, category.subtitle],
-    );
-  }).toList(growable: false);
+  return categories
+      .map((category) {
+        return LearnHubKnowledgeItem(
+          id: 'kids-dua-category:${category.id}',
+          title: category.title,
+          subtitle: l10n.learnHubSubcategoryKidsLearningTitle,
+          summary: category.subtitle,
+          categoryId: LearnHubCategoryId.kidsLearning,
+          subcategoryId: 'kids-fun-learning',
+          subcategoryTitle: l10n.learnHubSubcategoryKidsFunLearningTitle,
+          contentType: LearnHubContentType.lesson,
+          routeTarget: LearnHubRouteTarget(
+            routeName: 'kidsDuaCategory',
+            pathParameters: {'categoryId': category.id},
+          ),
+          searchKeywords: [category.id, category.title, category.subtitle],
+        );
+      })
+      .toList(growable: false);
 }
 
 List<LearnHubKnowledgeItem> _kidsArabicKnowledgeEntries(AppLocalizations l10n) {
-  return kidsArabicLetters.map((letter) {
-    return LearnHubKnowledgeItem(
-      id: 'kids-arabic:${letter.id}',
-      title: letter.nameEn,
-      subtitle: '${letter.glyph} • ${letter.exampleWordEn}',
-      summary: letter.childFriendlyLine,
-      categoryId: LearnHubCategoryId.kidsLearning,
-      subcategoryId: 'kids-arabic',
-      subcategoryTitle: l10n.learnHubSubcategoryKidsArabicTitle,
-      contentType: LearnHubContentType.lesson,
-      routeTarget: LearnHubRouteTarget(
-        routeName: 'kidsArabicLesson',
-        pathParameters: {'letterId': letter.id},
-      ),
-      searchKeywords: [
-        letter.glyph,
-        letter.nameAr,
-        letter.transliteration,
-        letter.soundHint,
-        letter.exampleWord,
-        letter.exampleWordAr,
-        letter.exampleWordEn,
-      ],
-    );
-  }).toList(growable: false);
+  return kidsArabicLetters
+      .map((letter) {
+        return LearnHubKnowledgeItem(
+          id: 'kids-arabic:${letter.id}',
+          title: letter.nameEn,
+          subtitle: '${letter.glyph} • ${letter.exampleWordEn}',
+          summary: letter.childFriendlyLine,
+          categoryId: LearnHubCategoryId.kidsLearning,
+          subcategoryId: 'kids-arabic-learning',
+          subcategoryTitle: l10n.learnHubSubcategoryKidsArabicLearningTitle,
+          contentType: LearnHubContentType.lesson,
+          routeTarget: LearnHubRouteTarget(
+            routeName: 'kidsArabicLesson',
+            pathParameters: {'letterId': letter.id},
+          ),
+          searchKeywords: [
+            letter.glyph,
+            letter.nameAr,
+            letter.transliteration,
+            letter.soundHint,
+            letter.exampleWord,
+            letter.exampleWordAr,
+            letter.exampleWordEn,
+          ],
+        );
+      })
+      .toList(growable: false);
 }
 
 List<LearnHubKnowledgeItem> _kidsArabicHubEntries(AppLocalizations l10n) {
@@ -455,11 +758,11 @@ List<LearnHubKnowledgeItem> _kidsArabicHubEntries(AppLocalizations l10n) {
     LearnHubKnowledgeItem(
       id: 'kids-arabic:review',
       title: l10n.kidsArabicReviewTitle,
-      subtitle: l10n.learnHubSubcategoryKidsArabicTitle,
+      subtitle: l10n.learnHubSubcategoryKidsArabicLearningTitle,
       summary: l10n.kidsArabicReviewSubtitle,
       categoryId: LearnHubCategoryId.kidsLearning,
-      subcategoryId: 'kids-arabic',
-      subcategoryTitle: l10n.learnHubSubcategoryKidsArabicTitle,
+      subcategoryId: 'kids-arabic-learning',
+      subcategoryTitle: l10n.learnHubSubcategoryKidsArabicLearningTitle,
       contentType: LearnHubContentType.challenge,
       routeTarget: const LearnHubRouteTarget(routeName: 'kidsArabicReview'),
       searchKeywords: const [
@@ -471,11 +774,11 @@ List<LearnHubKnowledgeItem> _kidsArabicHubEntries(AppLocalizations l10n) {
     LearnHubKnowledgeItem(
       id: 'kids-arabic:rewards',
       title: l10n.kidsArabicRewardsTitle,
-      subtitle: l10n.learnHubSubcategoryKidsArabicTitle,
+      subtitle: l10n.learnHubSubcategoryKidsArabicLearningTitle,
       summary: l10n.kidsArabicRewardsSubtitle,
       categoryId: LearnHubCategoryId.kidsLearning,
-      subcategoryId: 'kids-arabic',
-      subcategoryTitle: l10n.learnHubSubcategoryKidsArabicTitle,
+      subcategoryId: 'kids-arabic-learning',
+      subcategoryTitle: l10n.learnHubSubcategoryKidsArabicLearningTitle,
       contentType: LearnHubContentType.tool,
       routeTarget: const LearnHubRouteTarget(routeName: 'kidsArabicRewards'),
       searchKeywords: const [
@@ -492,11 +795,11 @@ List<LearnHubKnowledgeItem> _kidsStoryHubEntries(AppLocalizations l10n) {
     LearnHubKnowledgeItem(
       id: 'kids-stories:hub',
       title: l10n.kidsDuaStoriesTitle,
-      subtitle: l10n.learnHubSubcategoryKidsStoriesTitle,
+      subtitle: l10n.learnHubSubcategoryKidsFunLearningTitle,
       summary: l10n.kidsDuaStoriesSubtitle,
       categoryId: LearnHubCategoryId.kidsLearning,
-      subcategoryId: 'kids-stories',
-      subcategoryTitle: l10n.learnHubSubcategoryKidsStoriesTitle,
+      subcategoryId: 'kids-fun-learning',
+      subcategoryTitle: l10n.learnHubSubcategoryKidsFunLearningTitle,
       contentType: LearnHubContentType.story,
       routeTarget: const LearnHubRouteTarget(routeName: 'kidsDuaStories'),
       searchKeywords: const ['kids stories', 'dua stories', 'story time'],
@@ -504,19 +807,91 @@ List<LearnHubKnowledgeItem> _kidsStoryHubEntries(AppLocalizations l10n) {
     LearnHubKnowledgeItem(
       id: 'kids-stories:browse',
       title: l10n.kidsDuaStoriesBrowseAllTitle,
-      subtitle: l10n.learnHubSubcategoryKidsStoriesTitle,
+      subtitle: l10n.learnHubSubcategoryKidsFunLearningTitle,
       summary: l10n.kidsDuaStoriesBrowseTitle,
       categoryId: LearnHubCategoryId.kidsLearning,
-      subcategoryId: 'kids-stories',
-      subcategoryTitle: l10n.learnHubSubcategoryKidsStoriesTitle,
+      subcategoryId: 'kids-fun-learning',
+      subcategoryTitle: l10n.learnHubSubcategoryKidsFunLearningTitle,
       contentType: LearnHubContentType.story,
-      routeTarget: const LearnHubRouteTarget(
-        routeName: 'kidsDuaStoriesBrowse',
-      ),
+      routeTarget: const LearnHubRouteTarget(routeName: 'kidsDuaStoriesBrowse'),
       searchKeywords: const [
         'browse stories',
         'kids stories',
         'dua story categories',
+      ],
+    ),
+  ];
+}
+
+List<LearnHubKnowledgeItem> _kidsBedtimeStoryHubEntries(
+  AppLocalizations l10n,
+) {
+  return [
+    LearnHubKnowledgeItem(
+      id: 'kids-bedtime-stories:hub',
+      title: l10n.bedtimeStoriesTitle,
+      subtitle: l10n.learnHubSubcategoryKidsFunLearningTitle,
+      summary: l10n.bedtimeStoriesSubtitle,
+      categoryId: LearnHubCategoryId.kidsLearning,
+      subcategoryId: 'kids-fun-learning',
+      subcategoryTitle: l10n.learnHubSubcategoryKidsFunLearningTitle,
+      contentType: LearnHubContentType.story,
+      routeTarget: const LearnHubRouteTarget(routeName: 'kidsBedtimeStories'),
+      searchKeywords: const [
+        'bedtime stories',
+        'prophet bedtime stories',
+        'kids prophet stories',
+        'sleep stories',
+      ],
+    ),
+  ];
+}
+
+List<LearnHubKnowledgeItem> _kidsStoryLibraryHubEntries(
+  AppLocalizations l10n,
+) {
+  return [
+    LearnHubKnowledgeItem(
+      id: 'kids-stories:hub',
+      title: l10n.kidsStoryLibraryTitle,
+      subtitle: l10n.learnHubSubcategoryKidsFunLearningTitle,
+      summary: l10n.kidsStoryLibrarySubtitle,
+      categoryId: LearnHubCategoryId.kidsLearning,
+      subcategoryId: 'kids-fun-learning',
+      subcategoryTitle: l10n.learnHubSubcategoryKidsFunLearningTitle,
+      contentType: LearnHubContentType.story,
+      routeTarget: const LearnHubRouteTarget(routeName: 'kidsStoryLibrary'),
+      searchKeywords: const [
+        'kids stories',
+        'islamic stories',
+        'good manners stories',
+        'daily life stories',
+        'ramadan stories',
+      ],
+    ),
+  ];
+}
+
+List<LearnHubKnowledgeItem> _kidsSeerahJourneyHubEntries(
+  AppLocalizations l10n,
+) {
+  return [
+    LearnHubKnowledgeItem(
+      id: 'kids-seerah:hub',
+      title: l10n.kidsSeerahJourneysTitle,
+      subtitle: l10n.learnHubSubcategoryKidsFunLearningTitle,
+      summary: l10n.kidsSeerahJourneysSubtitle,
+      categoryId: LearnHubCategoryId.kidsLearning,
+      subcategoryId: 'kids-fun-learning',
+      subcategoryTitle: l10n.learnHubSubcategoryKidsFunLearningTitle,
+      contentType: LearnHubContentType.journey,
+      routeTarget: const LearnHubRouteTarget(routeName: 'kidsSeerahJourneys'),
+      searchKeywords: const [
+        'seerah',
+        'prophet muhammad journey',
+        'companions',
+        'timeline',
+        'kids seerah',
       ],
     ),
   ];
@@ -527,42 +902,103 @@ List<LearnHubKnowledgeItem> _kidsStoriesKnowledgeEntries(
   List<KidsDuaLessonContent> kidsDuaLessons,
   List<KidsDuaStory> kidsDuaStories,
 ) {
-  final lessonById = {
-    for (final lesson in kidsDuaLessons) lesson.id: lesson,
-  };
-  return kidsDuaStories.map((story) {
-    final lesson = lessonById[story.duaId];
-    return LearnHubKnowledgeItem(
-      id: 'kids-story:${story.id}',
-      title: story.title,
-      subtitle: lesson?.title ?? story.category,
-      summary: story.introLine,
-      categoryId: LearnHubCategoryId.kidsLearning,
-      subcategoryId: 'kids-stories',
-      subcategoryTitle: l10n.learnHubSubcategoryKidsStoriesTitle,
-      contentType: LearnHubContentType.story,
-      routeTarget: LearnHubRouteTarget(
-        routeName: 'kidsDuaStoryPlayer',
-        pathParameters: {'storyId': story.id},
-      ),
-      searchKeywords: [
-        story.category,
-        story.ageGroup,
-        story.duaId,
-        story.slug,
-        if (lesson != null) lesson.title,
-      ],
-    );
-  }).toList(growable: false);
+  final lessonById = {for (final lesson in kidsDuaLessons) lesson.id: lesson};
+  return kidsDuaStories
+      .map((story) {
+        final lesson = lessonById[story.duaId];
+        return LearnHubKnowledgeItem(
+          id: 'kids-story:${story.id}',
+          title: story.title,
+          subtitle: lesson?.title ?? story.category,
+          summary: story.introLine,
+          categoryId: LearnHubCategoryId.kidsLearning,
+          subcategoryId: 'kids-fun-learning',
+          subcategoryTitle: l10n.learnHubSubcategoryKidsFunLearningTitle,
+          contentType: LearnHubContentType.story,
+          routeTarget: LearnHubRouteTarget(
+            routeName: 'kidsDuaStoryPlayer',
+            pathParameters: {'storyId': story.id},
+          ),
+          searchKeywords: [
+            story.category,
+            story.ageGroup,
+            story.duaId,
+            story.slug,
+            if (lesson != null) lesson.title,
+          ],
+        );
+      })
+      .toList(growable: false);
+}
+
+List<LearnHubKnowledgeItem> _kidsBedtimeStoriesKnowledgeEntries(
+  AppLocalizations l10n,
+  List<BedtimeStorySeed> stories,
+) {
+  return stories
+      .map((story) => LearnHubKnowledgeItem(
+            id: 'kids-story-library:${story.id}',
+            title: story.title,
+            subtitle: story.summary.isNotEmpty ? story.summary : story.lesson,
+            summary: story.lesson,
+            categoryId: LearnHubCategoryId.kidsLearning,
+            subcategoryId: 'kids-fun-learning',
+            subcategoryTitle: l10n.learnHubSubcategoryKidsFunLearningTitle,
+            contentType: LearnHubContentType.story,
+            routeTarget: LearnHubRouteTarget(
+              routeName: 'kidsStoryDetail',
+              pathParameters: {'storyId': story.id},
+            ),
+            searchKeywords: [
+              story.prophetId,
+              story.effectiveStoryFamilyId,
+              story.shortTitle,
+              story.quranReference ?? '',
+              story.hadithReference ?? '',
+              story.collectionType.name,
+              story.storyType.name,
+              ...story.tags,
+              ...story.themes.map((theme) => theme.name),
+            ],
+          ))
+      .toList(growable: false);
+}
+
+List<LearnHubKnowledgeItem> _kidsSeerahJourneyKnowledgeEntries(
+  AppLocalizations l10n,
+  List journeys,
+) {
+  return journeys
+      .whereType<dynamic>()
+      .map(
+        (journey) => LearnHubKnowledgeItem(
+          id: 'kids-seerah-journey:${journey.journeyId}',
+          title: journey.title,
+          subtitle: l10n.kidsSeerahJourneysTitle,
+          summary: journey.description,
+          categoryId: LearnHubCategoryId.kidsLearning,
+          subcategoryId: 'kids-fun-learning',
+          subcategoryTitle: l10n.learnHubSubcategoryKidsFunLearningTitle,
+          contentType: LearnHubContentType.journey,
+          routeTarget: LearnHubRouteTarget(
+            routeName: 'kidsSeerahJourney',
+            pathParameters: {'journeyId': journey.journeyId},
+          ),
+          searchKeywords: [
+            journey.title,
+            journey.description,
+            ...journey.tags,
+          ],
+        ),
+      )
+      .toList(growable: false);
 }
 
 List<LearnHubKnowledgeItem> _kidsSalahKnowledgeEntries(
   AppLocalizations l10n,
   List<KidsDuaLessonContent> kidsDuaLessons,
 ) {
-  final lessonById = {
-    for (final lesson in kidsDuaLessons) lesson.id: lesson,
-  };
+  final lessonById = {for (final lesson in kidsDuaLessons) lesson.id: lesson};
   final sectionTitleByDuaId = <String, String>{};
   for (final section in kidsDuaMyDaySections) {
     final sectionTitle = localizedKidsDuaRewardTitle(l10n, section.titleKey);
@@ -584,8 +1020,8 @@ List<LearnHubKnowledgeItem> _kidsSalahKnowledgeEntries(
         subtitle: sectionTitleByDuaId[lesson.id] ?? l10n.kidsDuaMyDayTitle,
         summary: lesson.whenToSay,
         categoryId: LearnHubCategoryId.kidsLearning,
-        subcategoryId: 'kids-salah',
-        subcategoryTitle: l10n.learnHubSubcategoryKidsSalahTitle,
+        subcategoryId: 'kids-fun-learning',
+        subcategoryTitle: l10n.learnHubSubcategoryKidsFunLearningTitle,
         contentType: LearnHubContentType.lesson,
         routeTarget: LearnHubRouteTarget(
           routeName: 'kidsDuaLesson',
@@ -684,25 +1120,28 @@ List<LearnHubKnowledgeItem> _mapUnifiedItems(
   AppLocalizations l10n,
   List<LearnUnifiedContentItem> items,
 ) {
-  return items.map((item) {
-    final mapped = _mapUnifiedItemCategory(l10n, item);
-    return LearnHubKnowledgeItem(
-      id: item.id,
-      title: item.title,
-      subtitle: item.subtitle,
-      summary: item.summary,
-      categoryId: mapped.$1,
-      subcategoryId: mapped.$2,
-      subcategoryTitle: mapped.$3,
-      contentType: _mapContentType(item.type),
-      routeTarget: LearnHubRouteTarget(
-        routeName: item.routeName ?? 'learn',
-        pathParameters: item.pathParameters,
-        queryParameters: item.queryParameters,
-      ),
-      searchKeywords: item.tags,
-    );
-  }).where((item) => item.routeTarget.routeName != 'learn').toList(growable: false);
+  return items
+      .map((item) {
+        final mapped = _mapUnifiedItemCategory(l10n, item);
+        return LearnHubKnowledgeItem(
+          id: item.id,
+          title: item.title,
+          subtitle: item.subtitle,
+          summary: item.summary,
+          categoryId: mapped.$1,
+          subcategoryId: mapped.$2,
+          subcategoryTitle: mapped.$3,
+          contentType: _mapContentType(item.type),
+          routeTarget: LearnHubRouteTarget(
+            routeName: item.routeName ?? 'learn',
+            pathParameters: item.pathParameters,
+            queryParameters: item.queryParameters,
+          ),
+          searchKeywords: item.tags,
+        );
+      })
+      .where((item) => item.routeTarget.routeName != 'learn')
+      .toList(growable: false);
 }
 
 (LearnHubCategoryId, String?, String?) _mapUnifiedItemCategory(
@@ -759,11 +1198,7 @@ List<LearnHubKnowledgeItem> _mapUnifiedItems(
         l10n.learnCategoryQuizzesTitle,
       );
     case LearnUnifiedDomain.notes:
-      return (
-        LearnHubCategoryId.notes,
-        'notes',
-        l10n.learnCategoryNotesTitle,
-      );
+      return (LearnHubCategoryId.notes, 'notes', l10n.learnCategoryNotesTitle);
   }
 }
 

@@ -3,13 +3,22 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../l10n/app_localizations.dart';
+import '../../../shared/widgets/quran_reference_link.dart';
+import '../../learn/presentation/widgets/learn_hub_page_scaffold.dart';
+import '../../learn/quran/domain/quran_content_refs.dart';
+import '../application/kids_dua_active_learner_service.dart';
+import '../application/kids_dua_audio_service.dart';
 import '../application/kids_dua_experience_provider.dart';
-import '../application/kids_dua_my_day_provider.dart';
+import '../application/kids_dua_learning_repository.dart';
 import '../application/kids_dua_my_day_practice_service.dart';
+import '../application/kids_dua_my_day_provider.dart';
 import '../application/kids_dua_progress_provider.dart';
 import '../application/kids_dua_repository.dart';
 import '../application/kids_dua_story_repository.dart';
+import '../domain/kids_dua_learning_models.dart';
 import '../domain/kids_dua_models.dart';
+import 'kids_dua_read_along_view.dart';
+import 'kids_dua_tap_repeat_view.dart';
 
 class KidsDuaLessonPage extends ConsumerStatefulWidget {
   const KidsDuaLessonPage({super.key, required this.lessonId});
@@ -21,6 +30,11 @@ class KidsDuaLessonPage extends ConsumerStatefulWidget {
 }
 
 class _KidsDuaLessonPageState extends ConsumerState<KidsDuaLessonPage> {
+  KidsDuaRepeatMode _mode = KidsDuaRepeatMode.listen;
+  KidsDuaReadAlongMode _readAlongMode = KidsDuaReadAlongMode.full;
+  String? _selectedSegmentId;
+  bool _repeatWhole = false;
+
   @override
   void initState() {
     super.initState();
@@ -33,88 +47,347 @@ class _KidsDuaLessonPageState extends ConsumerState<KidsDuaLessonPage> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final lesson = ref.watch(kidsDuaLessonByIdProvider(widget.lessonId));
-    final nextLesson = ref.watch(
-      kidsDuaNextLessonByIdProvider(widget.lessonId),
-    );
+    final learningItem = ref.watch(kidsDuaLearningItemByIdProvider(widget.lessonId));
+    final nextLesson = ref.watch(kidsDuaNextLessonByIdProvider(widget.lessonId));
     final stories = ref.watch(kidsDuaStoriesForLessonProvider(widget.lessonId));
     final progress = ref
         .watch(kidsDuaLearningProvider)
         .progressByLessonId[widget.lessonId];
+    final audioState = ref.watch(kidsDuaAudioControllerProvider);
+    final learner = ref.watch(kidsDuaActiveLearnerProvider);
+
     if (lesson == null) {
       return Scaffold(
         appBar: AppBar(),
         body: Center(child: Text(l10n.routerNotFoundTitle)),
       );
     }
-    return Scaffold(
-      appBar: AppBar(title: Text(lesson.title)),
-      body: ListView(
-        padding: const EdgeInsets.fromLTRB(16, 12, 16, 96),
-        children: [
-          _HeroCard(lesson: lesson),
-          const SizedBox(height: 12),
-          _InfoCard(title: l10n.kidsDuaMeaningSection, body: lesson.meaning),
-          const SizedBox(height: 12),
-          _InfoCard(
-            title: l10n.kidsDuaMiniLessonSection,
-            body: lesson.miniLesson,
+
+    final audioVariant = learningItem?.audioVariants.firstOrNull;
+    final audioAvailable = audioVariant == null
+        ? const AsyncValue<bool>.data(false)
+        : ref.watch(kidsDuaAudioAvailabilityProvider(audioVariant));
+    final isCurrentAudio = audioState.currentDuaId == lesson.id;
+    final activeSegmentId = audioState.activeSegmentId ?? _selectedSegmentId;
+
+    return LearnHubPageScaffold(
+      headerIcon: lesson.icon,
+      title: lesson.title,
+      subtitle: lesson.whenToSay,
+      children: [
+        _HeroCard(
+          lesson: lesson,
+          learnerName: learner.displayName,
+          categoryTitle:
+              ref.watch(kidsDuaCategoryByIdProvider(lesson.categoryId))?.title ??
+              '',
+        ),
+        const SizedBox(height: 12),
+        _Frame(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                l10n.kidsDuaLearningModesTitle,
+                style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w800),
+              ),
+              const SizedBox(height: 10),
+              SegmentedButton<KidsDuaRepeatMode>(
+                segments: <ButtonSegment<KidsDuaRepeatMode>>[
+                  ButtonSegment<KidsDuaRepeatMode>(
+                    value: KidsDuaRepeatMode.listen,
+                    label: Text(l10n.kidsDuaModeListen),
+                    icon: const Icon(Icons.volume_up_rounded),
+                  ),
+                  ButtonSegment<KidsDuaRepeatMode>(
+                    value: KidsDuaRepeatMode.readAlong,
+                    label: Text(l10n.kidsDuaModeReadAlong),
+                    icon: const Icon(Icons.chrome_reader_mode_rounded),
+                  ),
+                  ButtonSegment<KidsDuaRepeatMode>(
+                    value: KidsDuaRepeatMode.tapToRepeat,
+                    label: Text(l10n.kidsDuaModeTapRepeat),
+                    icon: const Icon(Icons.touch_app_rounded),
+                  ),
+                  ButtonSegment<KidsDuaRepeatMode>(
+                    value: KidsDuaRepeatMode.gentlePractice,
+                    label: Text(l10n.kidsDuaModeGentlePractice),
+                    icon: const Icon(Icons.self_improvement_rounded),
+                  ),
+                ],
+                selected: <KidsDuaRepeatMode>{_mode},
+                onSelectionChanged: (selection) {
+                  setState(() {
+                    _mode = selection.first;
+                  });
+                },
+              ),
+            ],
           ),
+        ),
+        const SizedBox(height: 12),
+        _AudioCard(
+          audioAvailable: audioAvailable,
+          isCurrentAudio: isCurrentAudio,
+          audioState: audioState,
+          repeatWhole: _repeatWhole,
+          onPlayPause: () => _handlePrimaryAudioAction(
+            lessonId: lesson.id,
+            audioVariant: audioVariant,
+          ),
+          onRestart: () => _handleRestart(
+            lessonId: lesson.id,
+            audioVariant: audioVariant,
+          ),
+          onRepeatWholeChanged: (value) async {
+            setState(() {
+              _repeatWhole = value;
+            });
+            await ref.read(kidsDuaAudioControllerProvider.notifier).setRepeatWhole(value);
+          },
+        ),
+        const SizedBox(height: 12),
+        if (learningItem != null &&
+            (_mode == KidsDuaRepeatMode.listen ||
+                _mode == KidsDuaRepeatMode.readAlong ||
+                _mode == KidsDuaRepeatMode.gentlePractice)) ...[
+          _ReadAlongControls(
+            mode: _readAlongMode,
+            onChanged: (mode) {
+              setState(() {
+                _readAlongMode = mode;
+              });
+            },
+          ),
+          const SizedBox(height: 10),
+          KidsDuaReadAlongView(
+            item: learningItem,
+            readAlongMode: _readAlongMode,
+            activeSegmentId: activeSegmentId,
+          ),
+          const SizedBox(height: 10),
+          if (_mode != KidsDuaRepeatMode.listen)
+            Align(
+              alignment: Alignment.centerLeft,
+              child: FilledButton.tonalIcon(
+                onPressed: () {
+                  ref.read(kidsDuaLearningProvider.notifier).recordReadAlongComplete(
+                        lesson.id,
+                        mode: _mode,
+                      );
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text(l10n.kidsDuaPracticeSavedSnack)),
+                  );
+                },
+                icon: const Icon(Icons.check_circle_outline_rounded),
+                label: Text(l10n.kidsDuaMarkPracticedAction),
+              ),
+            ),
+        ],
+        if (learningItem != null && _mode == KidsDuaRepeatMode.tapToRepeat) ...[
+          KidsDuaTapRepeatView(
+            item: learningItem,
+            activeSegmentId: activeSegmentId,
+            hasAudio: audioAvailable.valueOrNull ?? false,
+            isSegmentFallback: audioState.isSegmentFallback,
+            onTapSegment: (segment) => _handleTapSegment(
+              segment: segment,
+              lessonId: lesson.id,
+              audioVariant: audioVariant,
+            ),
+          ),
+        ],
+        if (learningItem != null && _mode == KidsDuaRepeatMode.gentlePractice) ...[
           const SizedBox(height: 12),
-          _InfoCard(title: l10n.kidsDuaWhenSection, body: lesson.whenToSay),
-          const SizedBox(height: 12),
-          _ChunksCard(lesson: lesson),
-          const SizedBox(height: 12),
-          _ActionCard(
-            lesson: lesson,
-            isLearned: progress?.status == KidsDuaLessonStatus.learned,
-            hasStory: stories.isNotEmpty,
-            onPractice: () => context.pushNamed('kidsDuaPractice'),
-            onStory: stories.isEmpty
-                ? null
-                : () => context.pushNamed(
+          _Frame(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  l10n.kidsDuaGentlePracticeTitle,
+                  style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w800),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  l10n.kidsDuaGentlePracticeSubtitle,
+                  style: const TextStyle(color: Color(0xFF655A4C), height: 1.4),
+                ),
+                const SizedBox(height: 12),
+                Wrap(
+                  spacing: 10,
+                  runSpacing: 10,
+                  children: [
+                    FilledButton.tonalIcon(
+                      onPressed: () => _handlePrimaryAudioAction(
+                        lessonId: lesson.id,
+                        audioVariant: audioVariant,
+                      ),
+                      icon: const Icon(Icons.headphones_rounded),
+                      label: Text(l10n.kidsDuaListenThenReadAction),
+                    ),
+                    FilledButton.tonalIcon(
+                      onPressed: () => setState(() {
+                        _mode = KidsDuaRepeatMode.tapToRepeat;
+                      }),
+                      icon: const Icon(Icons.touch_app_rounded),
+                      label: Text(l10n.kidsDuaTapRepeatAction),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ],
+        const SizedBox(height: 12),
+        _ActionCard(
+          lesson: lesson,
+          isLearned: progress?.status == KidsDuaLessonStatus.learned,
+          hasStory: stories.isNotEmpty,
+          onPractice: () => context.pushNamed('kidsDuaPractice'),
+          onStory: stories.isEmpty
+              ? null
+              : () => context.pushNamed(
                     'kidsDuaStoryPlayer',
                     pathParameters: {'storyId': stories.first.id},
                   ),
-            onDraw: () => context.pushNamed(
-              'kidsDuaDrawing',
-              pathParameters: {'lessonId': lesson.id},
-            ),
-            onComplete: () {
-              final result = ref
-                  .read(kidsDuaLearningProvider.notifier)
-                  .completeLesson(lesson.id);
-              final myDayResult = ref
-                  .read(kidsDuaMyDayProvider.notifier)
-                  .completeDuaForToday(lesson.id);
-              showModalBottomSheet<void>(
-                context: context,
-                showDragHandle: true,
-                builder: (context) => _CompletionSheet(
-                  lesson: lesson,
-                  nextLesson: nextLesson,
-                  result: result,
-                  myDayResult: myDayResult,
-                ),
-              );
-            },
+          onDraw: () => context.pushNamed(
+            'kidsDuaDrawing',
+            pathParameters: {'lessonId': lesson.id},
           ),
-          const SizedBox(height: 12),
-          _SourceCard(lesson: lesson),
-          const SizedBox(height: 12),
-          if (progress != null) _ProgressCard(progress: progress),
-        ],
-      ),
+          onComplete: () {
+            final result = ref
+                .read(kidsDuaLearningProvider.notifier)
+                .completeLesson(lesson.id);
+            final myDayResult = ref
+                .read(kidsDuaMyDayProvider.notifier)
+                .completeDuaForToday(lesson.id);
+            showModalBottomSheet<void>(
+              context: context,
+              showDragHandle: true,
+              builder: (context) => _CompletionSheet(
+                lesson: lesson,
+                nextLesson: nextLesson,
+                result: result,
+                myDayResult: myDayResult,
+              ),
+            );
+          },
+        ),
+        const SizedBox(height: 12),
+        _InfoCard(title: l10n.kidsDuaMeaningSection, body: lesson.meaning),
+        const SizedBox(height: 12),
+        _InfoCard(
+          title: l10n.kidsDuaMiniLessonSection,
+          body: lesson.miniLesson,
+        ),
+        const SizedBox(height: 12),
+        _InfoCard(title: l10n.kidsDuaWhenSection, body: lesson.whenToSay),
+        const SizedBox(height: 12),
+        if (learningItem?.bedtimeRelevance ?? false)
+          _BedtimeIntegrationCard(
+            onOpenCompanion: () => context.pushNamed('kidsBedtimeCompanion'),
+          ),
+        if (learningItem?.bedtimeRelevance ?? false) const SizedBox(height: 12),
+        _SourceCard(lesson: lesson),
+        const SizedBox(height: 12),
+        if (progress != null) _ProgressCard(progress: progress),
+      ],
     );
+  }
+
+  Future<void> _handlePrimaryAudioAction({
+    required String lessonId,
+    required KidsDuaAudioVariant? audioVariant,
+  }) async {
+    final controller = ref.read(kidsDuaAudioControllerProvider.notifier);
+    final audioState = ref.read(kidsDuaAudioControllerProvider);
+    if (audioVariant == null) {
+      return;
+    }
+    if (audioState.currentDuaId == lessonId && audioState.isPlaying) {
+      await controller.pause();
+      return;
+    }
+    if (audioState.currentDuaId == lessonId &&
+        !audioState.isPlaying &&
+        audioState.isAudioAvailable) {
+      await controller.resume();
+      return;
+    }
+    final played = await controller.playVariant(
+      audioVariant,
+      duaId: lessonId,
+    );
+    if (played) {
+      ref.read(kidsDuaLearningProvider.notifier).recordAudioListen(lessonId);
+    }
+  }
+
+  Future<void> _handleRestart({
+    required String lessonId,
+    required KidsDuaAudioVariant? audioVariant,
+  }) async {
+    final controller = ref.read(kidsDuaAudioControllerProvider.notifier);
+    final audioState = ref.read(kidsDuaAudioControllerProvider);
+    if (audioState.currentDuaId == lessonId && audioState.isAudioAvailable) {
+      await controller.restart();
+      return;
+    }
+    if (audioVariant == null) {
+      return;
+    }
+    final played = await controller.playVariant(
+      audioVariant,
+      duaId: lessonId,
+    );
+    if (played) {
+      ref.read(kidsDuaLearningProvider.notifier).recordAudioListen(lessonId);
+    }
+  }
+
+  Future<void> _handleTapSegment({
+    required KidsDuaSegment segment,
+    required String lessonId,
+    required KidsDuaAudioVariant? audioVariant,
+  }) async {
+    setState(() {
+      _selectedSegmentId = segment.segmentId;
+    });
+    ref.read(kidsDuaLearningProvider.notifier).recordSegmentRepeat(
+          lessonId: lessonId,
+          segmentId: segment.segmentId,
+        );
+    if (audioVariant == null) {
+      return;
+    }
+    final played = await ref.read(kidsDuaAudioControllerProvider.notifier).playVariant(
+          audioVariant,
+          duaId: lessonId,
+          activeSegmentId: segment.segmentId,
+          isSegmentFallback: true,
+        );
+    if (!played && mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(AppLocalizations.of(context).kidsDuaTapRepeatNoAudioBody)),
+      );
+    }
   }
 }
 
 class _HeroCard extends StatelessWidget {
-  const _HeroCard({required this.lesson});
+  const _HeroCard({
+    required this.lesson,
+    required this.learnerName,
+    required this.categoryTitle,
+  });
 
   final KidsDuaLessonContent lesson;
+  final String learnerName;
+  final String categoryTitle;
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Container(
       padding: const EdgeInsets.all(18),
       decoration: BoxDecoration(
@@ -138,12 +411,25 @@ class _HeroCard extends StatelessWidget {
               ),
               const SizedBox(width: 12),
               Expanded(
-                child: Text(
-                  lesson.title,
-                  style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w800,
-                  ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      lesson.title,
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      l10n.kidsDuaLessonHeroSubtitle(
+                        learnerName.isEmpty ? l10n.kidsDuaLearningBuddyLabel : learnerName,
+                        categoryTitle,
+                      ),
+                      style: const TextStyle(color: Color(0xFF675B4E)),
+                    ),
+                  ],
                 ),
               ),
             ],
@@ -165,6 +451,150 @@ class _HeroCard extends StatelessWidget {
           Text(
             lesson.transliteration,
             style: const TextStyle(fontSize: 16, color: Color(0xFF655A4C)),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _AudioCard extends StatelessWidget {
+  const _AudioCard({
+    required this.audioAvailable,
+    required this.isCurrentAudio,
+    required this.audioState,
+    required this.repeatWhole,
+    required this.onPlayPause,
+    required this.onRestart,
+    required this.onRepeatWholeChanged,
+  });
+
+  final AsyncValue<bool> audioAvailable;
+  final bool isCurrentAudio;
+  final KidsDuaAudioState audioState;
+  final bool repeatWhole;
+  final VoidCallback onPlayPause;
+  final VoidCallback onRestart;
+  final ValueChanged<bool> onRepeatWholeChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return _Frame(
+      child: audioAvailable.when(
+        data: (hasAudio) {
+          final primaryLabel = !hasAudio
+              ? l10n.kidsDuaAudioUnavailableTitle
+              : (isCurrentAudio && audioState.isPlaying
+                    ? l10n.kidsDuaPauseAction
+                    : (isCurrentAudio && audioState.isAudioAvailable
+                          ? l10n.kidsDuaResumeAction
+                          : l10n.kidsDuaPlayWholeAction));
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                l10n.kidsDuaAudioSectionTitle,
+                style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w800),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                hasAudio
+                    ? l10n.kidsDuaAudioSectionSubtitle
+                    : l10n.kidsDuaAudioUnavailableSubtitle,
+                style: const TextStyle(color: Color(0xFF655A4C), height: 1.4),
+              ),
+              const SizedBox(height: 12),
+              Wrap(
+                spacing: 10,
+                runSpacing: 10,
+                children: [
+                  FilledButton.icon(
+                    onPressed: hasAudio ? onPlayPause : null,
+                    icon: Icon(
+                      isCurrentAudio && audioState.isPlaying
+                          ? Icons.pause_rounded
+                          : Icons.play_arrow_rounded,
+                    ),
+                    label: Text(primaryLabel),
+                  ),
+                  OutlinedButton.icon(
+                    onPressed: hasAudio ? onRestart : null,
+                    icon: const Icon(Icons.restart_alt_rounded),
+                    label: Text(l10n.kidsDuaRestartAction),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 10),
+              FilterChip(
+                label: Text(l10n.kidsDuaRepeatWholeAction),
+                selected: repeatWhole,
+                onSelected: hasAudio ? onRepeatWholeChanged : null,
+              ),
+              if (isCurrentAudio && hasAudio) ...[
+                const SizedBox(height: 10),
+                Text(
+                  l10n.kidsDuaPlaybackProgressLabel(
+                    _format(audioState.currentPosition),
+                    _format(audioState.totalDuration),
+                  ),
+                  style: const TextStyle(color: Color(0xFF6D6255)),
+                ),
+              ],
+            ],
+          );
+        },
+        loading: () => Text(l10n.kidsDuaAudioLoadingLabel),
+        error: (error, stackTrace) => Text(l10n.kidsDuaAudioUnavailableSubtitle),
+      ),
+    );
+  }
+
+  String _format(Duration duration) {
+    final minutes = duration.inMinutes.remainder(60).toString().padLeft(2, '0');
+    final seconds = duration.inSeconds.remainder(60).toString().padLeft(2, '0');
+    return '$minutes:$seconds';
+  }
+}
+
+class _ReadAlongControls extends StatelessWidget {
+  const _ReadAlongControls({
+    required this.mode,
+    required this.onChanged,
+  });
+
+  final KidsDuaReadAlongMode mode;
+  final ValueChanged<KidsDuaReadAlongMode> onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return _Frame(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            l10n.kidsDuaReadAlongModeTitle,
+            style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w800),
+          ),
+          const SizedBox(height: 10),
+          SegmentedButton<KidsDuaReadAlongMode>(
+            segments: <ButtonSegment<KidsDuaReadAlongMode>>[
+              ButtonSegment<KidsDuaReadAlongMode>(
+                value: KidsDuaReadAlongMode.arabicOnly,
+                label: Text(l10n.kidsDuaReadAlongArabicOnly),
+              ),
+              ButtonSegment<KidsDuaReadAlongMode>(
+                value: KidsDuaReadAlongMode.arabicTransliteration,
+                label: Text(l10n.kidsDuaReadAlongArabicTransliteration),
+              ),
+              ButtonSegment<KidsDuaReadAlongMode>(
+                value: KidsDuaReadAlongMode.full,
+                label: Text(l10n.kidsDuaReadAlongFullView),
+              ),
+            ],
+            selected: <KidsDuaReadAlongMode>{mode},
+            onSelectionChanged: (selection) => onChanged(selection.first),
           ),
         ],
       ),
@@ -207,21 +637,17 @@ class _ActionCard extends StatelessWidget {
             children: [
               Expanded(
                 child: OutlinedButton.icon(
-                  onPressed: lesson.audioAssetPath.isNotEmpty ? () {} : null,
-                  icon: const Icon(Icons.volume_up_rounded),
-                  label: Text(
-                    lesson.audioAssetPath.isNotEmpty
-                        ? l10n.kidsDuaPlayAudioAction
-                        : l10n.kidsDuaAudioComingSoon,
-                  ),
+                  onPressed: onPractice,
+                  icon: const Icon(Icons.quiz_rounded),
+                  label: Text(l10n.kidsDuaPracticeTitle),
                 ),
               ),
               const SizedBox(width: 10),
               Expanded(
                 child: OutlinedButton.icon(
-                  onPressed: onPractice,
-                  icon: const Icon(Icons.quiz_rounded),
-                  label: Text(l10n.kidsDuaPracticeTitle),
+                  onPressed: onDraw,
+                  icon: const Icon(Icons.brush_rounded),
+                  label: Text(l10n.kidsDuaDrawAction),
                 ),
               ),
             ],
@@ -237,15 +663,6 @@ class _ActionCard extends StatelessWidget {
               ),
             ),
           ],
-          const SizedBox(height: 10),
-          SizedBox(
-            width: double.infinity,
-            child: OutlinedButton.icon(
-              onPressed: onDraw,
-              icon: const Icon(Icons.brush_rounded),
-              label: Text(l10n.kidsDuaDrawAction),
-            ),
-          ),
           const SizedBox(height: 12),
           SizedBox(
             width: double.infinity,
@@ -255,61 +672,6 @@ class _ActionCard extends StatelessWidget {
                 isLearned
                     ? l10n.kidsDuaCompleteAgainAction
                     : l10n.kidsDuaCompleteLessonAction,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _ChunksCard extends StatelessWidget {
-  const _ChunksCard({required this.lesson});
-
-  final KidsDuaLessonContent lesson;
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
-    return _Frame(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            l10n.kidsDuaRepeatAfterMeSection,
-            style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w800),
-          ),
-          const SizedBox(height: 10),
-          ...lesson.phraseChunks.map(
-            (chunk) => Container(
-              width: double.infinity,
-              margin: const EdgeInsets.only(bottom: 8),
-              padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                color: const Color(0xFFFFF8EF),
-                borderRadius: BorderRadius.circular(18),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Directionality(
-                    textDirection: TextDirection.rtl,
-                    child: Text(
-                      chunk.arabic,
-                      textAlign: TextAlign.right,
-                      style: const TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 6),
-                  Text(
-                    chunk.transliteration,
-                    style: const TextStyle(color: Color(0xFF655A4C)),
-                  ),
-                ],
               ),
             ),
           ),
@@ -350,6 +712,39 @@ class _InfoCard extends StatelessWidget {
   }
 }
 
+class _BedtimeIntegrationCard extends StatelessWidget {
+  const _BedtimeIntegrationCard({required this.onOpenCompanion});
+
+  final VoidCallback onOpenCompanion;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return _Frame(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            l10n.kidsDuaBedtimeLinkTitle,
+            style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w800),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            l10n.kidsDuaBedtimeLinkSubtitle,
+            style: const TextStyle(color: Color(0xFF655A4C), height: 1.4),
+          ),
+          const SizedBox(height: 12),
+          FilledButton.tonalIcon(
+            onPressed: onOpenCompanion,
+            icon: const Icon(Icons.bedtime_rounded),
+            label: Text(l10n.kidsDuaBedtimeLinkAction),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class _ProgressCard extends StatelessWidget {
   const _ProgressCard({required this.progress});
 
@@ -359,20 +754,48 @@ class _ProgressCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     return _Frame(
-      child: Row(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Expanded(
-            child: _MiniStat(
-              label: l10n.kidsDuaStatusInProgress,
-              value: '${progress.openCount}',
-            ),
+          Text(
+            l10n.kidsDuaLearningProgressTitle,
+            style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w800),
           ),
-          const SizedBox(width: 10),
-          Expanded(
-            child: _MiniStat(
-              label: l10n.kidsDuaPracticeTitle,
-              value: '${progress.timesPracticed}',
-            ),
+          const SizedBox(height: 12),
+          Row(
+            children: [
+              Expanded(
+                child: _MiniStat(
+                  label: l10n.kidsDuaListenCountLabel,
+                  value: '${progress.listenCount}',
+                ),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: _MiniStat(
+                  label: l10n.kidsDuaPracticeTitle,
+                  value: '${progress.timesPracticed}',
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          Row(
+            children: [
+              Expanded(
+                child: _MiniStat(
+                  label: l10n.kidsDuaRepeatCountLabel,
+                  value: '${progress.segmentRepeatCount}',
+                ),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: _MiniStat(
+                  label: l10n.kidsDuaViewsCountLabel,
+                  value: '${progress.openCount}',
+                ),
+              ),
+            ],
           ),
         ],
       ),
@@ -417,6 +840,7 @@ class _SourceCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final quranRef = _quranRefForLesson(lesson.id);
     return _Frame(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -427,9 +851,21 @@ class _SourceCard extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            '${lesson.sourceType} • ${lesson.sourceReference}',
+            lesson.sourceType,
             style: const TextStyle(color: Color(0xFF655A4C)),
           ),
+          const SizedBox(height: 8),
+          if (quranRef != null)
+            QuranReferenceLinkTile.forRef(
+              referenceLabel: lesson.sourceReference,
+              ref: quranRef,
+              subtitle: l10n.kidsDuaSourceTapSubtitle,
+            )
+          else
+            Text(
+              lesson.sourceReference,
+              style: const TextStyle(color: Color(0xFF655A4C)),
+            ),
         ],
       ),
     );
@@ -452,6 +888,17 @@ class _Frame extends StatelessWidget {
       ),
       child: child,
     );
+  }
+}
+
+QuranQuoteRef? _quranRefForLesson(String lessonId) {
+  switch (lessonId) {
+    case 'rabbi-zidnee-ilma':
+      return const QuranQuoteRef(surah: 20, ayah: 114);
+    case 'dua-for-parents':
+      return const QuranQuoteRef(surah: 17, ayah: 24);
+    default:
+      return null;
   }
 }
 

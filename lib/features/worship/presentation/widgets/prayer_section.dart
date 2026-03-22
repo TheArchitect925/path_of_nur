@@ -12,6 +12,8 @@ import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/persistence/local_store.dart';
 import '../../../../shared/state/user_profile_state.dart';
 import '../../../../shared/utils/compact_duration_formatter.dart';
+import '../../../../shared/utils/hijri_date_utils.dart';
+import '../../../../shared/widgets/moon_phase_visual.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/section_title.dart';
 import '../../data/prayer_log_repository.dart';
@@ -118,8 +120,12 @@ class _PrayerTimesTab extends ConsumerWidget {
       longitude: location.longitude,
       settings: settings,
     ).where((item) => item.id != 'tahajjud').toList();
-    final timingContext = _buildTimingContext(schedule, tracker.selectedDate);
-    final moon = _moonPhaseForDate(tracker.selectedDate, l10n);
+    final timingContext = _buildTimingContext(
+      schedule,
+      tracker.selectedDate,
+      l10n,
+    );
+    final moon = moonPhaseVisualForDate(tracker.selectedDate, l10n);
     final hijri = toHijriDate(tracker.selectedDate);
     final locale = Localizations.localeOf(context).toLanguageTag();
     final dateFormat = DateFormat.yMMMMEEEEd(locale);
@@ -357,7 +363,9 @@ class _PrayerTimesTab extends ConsumerWidget {
                       dense: true,
                       contentPadding: EdgeInsets.zero,
                       onTap: () => context.pushNamed('salahTimes'),
-                      title: Text('${item.name} • ${item.arabicName}'),
+                      title: Text(
+                        '${localizedPrayerNameForDate(prayerId: item.id, l10n: l10n, date: tracker.selectedDate)} • ${arabicPrayerNameForDate(prayerId: item.id, date: tracker.selectedDate)}',
+                      ),
                       subtitle: Text(
                         l10n.worshipPrayerSalahWindowValue(
                           item.offerTime,
@@ -538,7 +546,7 @@ class _PrayerHistoryCard extends ConsumerWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            prayer.localizedLabel(l10n),
+                            prayer.localizedLabelForDate(l10n, selectedDate),
                             style: const TextStyle(fontWeight: FontWeight.w700),
                           ),
                           const SizedBox(height: 2),
@@ -1117,6 +1125,7 @@ class _QadaPlannerCard extends ConsumerWidget {
                     (prayer) => Chip(
                       visualDensity: VisualDensity.compact,
                       label: Text(prayer.localizedLabel(l10n)),
+                      
                     ),
                   )
                   .toList(),
@@ -1352,7 +1361,7 @@ class _MoonPhaseCard extends StatelessWidget {
     required this.moonsetLabel,
   });
 
-  final _MoonPhaseData moon;
+  final MoonPhaseVisualData moon;
   final List<PrayerScheduleItem> prayerSchedule;
   final String? nextPrayerName;
   final Duration remaining;
@@ -1409,7 +1418,7 @@ class _MoonPhaseCard extends StatelessWidget {
                   Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text(moon.emoji, style: const TextStyle(fontSize: 136)),
+                      MoonPhaseVisual(moon: moon),
                     ],
                   ),
                 ],
@@ -1491,7 +1500,11 @@ class _PrayerTimesOverlay extends StatelessWidget {
             );
             final item = schedule[i];
             final label = l10n.worshipPrayerOverlayLabel(
-              item.name,
+              localizedPrayerNameForDate(
+                prayerId: item.id,
+                l10n: l10n,
+                date: item.offerDateTime,
+              ),
               item.offerTime,
             );
             return Positioned(
@@ -1557,6 +1570,7 @@ class _TimingContext {
 _TimingContext _buildTimingContext(
   List<PrayerScheduleItem> schedule,
   DateTime selectedDate,
+  AppLocalizations l10n,
 ) {
   if (schedule.isEmpty) {
     return const _TimingContext(
@@ -1593,7 +1607,11 @@ _TimingContext _buildTimingContext(
   );
   final elapsed = now.difference(previousAnchor).inSeconds.clamp(0, total);
   return _TimingContext(
-    nextPrayerName: next.name,
+    nextPrayerName: localizedPrayerNameForDate(
+      prayerId: next.id,
+      l10n: l10n,
+      date: selectedDate,
+    ),
     remainingToNext: next.windowStartDateTime.difference(now),
     progressToNext: (elapsed / total).clamp(0.0, 1.0),
   );
@@ -1699,89 +1717,5 @@ String _humanDuration(
     localeName: l10n.localeName,
     hourSuffix: l10n.durationCompactHourSuffix,
     minuteSuffix: l10n.durationCompactMinuteSuffix,
-  );
-}
-
-class _MoonPhaseData {
-  const _MoonPhaseData({
-    required this.label,
-    required this.emoji,
-    required this.illuminationPercent,
-  });
-
-  final String label;
-  final String emoji;
-  final int illuminationPercent;
-}
-
-_MoonPhaseData _moonPhaseForDate(DateTime date, AppLocalizations l10n) {
-  final normalized = DateTime(date.year, date.month, date.day);
-  final epoch = DateTime.utc(2000, 1, 6);
-  final days = normalized.toUtc().difference(epoch).inHours / 24;
-  const synodic = 29.53058867;
-  final age = (days % synodic + synodic) % synodic;
-  final illumination = ((1 - math.cos((2 * math.pi * age) / synodic)) / 2 * 100)
-      .round()
-      .clamp(0, 100);
-  if (age < 1.84566) {
-    return _MoonPhaseData(
-      label: l10n.worshipPrayerMoonPhaseNewMoon,
-      emoji: '🌑',
-      illuminationPercent: illumination,
-    );
-  }
-  if (age < 5.53699) {
-    return _MoonPhaseData(
-      label: l10n.worshipPrayerMoonPhaseWaxingCrescent,
-      emoji: '🌒',
-      illuminationPercent: illumination,
-    );
-  }
-  if (age < 9.22831) {
-    return _MoonPhaseData(
-      label: l10n.worshipPrayerMoonPhaseFirstQuarter,
-      emoji: '🌓',
-      illuminationPercent: illumination,
-    );
-  }
-  if (age < 12.91963) {
-    return _MoonPhaseData(
-      label: l10n.worshipPrayerMoonPhaseWaxingGibbous,
-      emoji: '🌔',
-      illuminationPercent: illumination,
-    );
-  }
-  if (age < 16.61096) {
-    return _MoonPhaseData(
-      label: l10n.worshipPrayerMoonPhaseFullMoon,
-      emoji: '🌕',
-      illuminationPercent: illumination,
-    );
-  }
-  if (age < 20.30228) {
-    return _MoonPhaseData(
-      label: l10n.worshipPrayerMoonPhaseWaningGibbous,
-      emoji: '🌖',
-      illuminationPercent: illumination,
-    );
-  }
-  if (age < 23.99361) {
-    return _MoonPhaseData(
-      label: l10n.worshipPrayerMoonPhaseLastQuarter,
-      emoji: '🌗',
-      illuminationPercent: illumination,
-    );
-  }
-  if (age < 27.68493) {
-    return _MoonPhaseData(
-      label: l10n.worshipPrayerMoonPhaseWaningCrescent,
-      emoji: '🌘',
-      illuminationPercent: illumination,
-    );
-  }
-  return _MoonPhaseData(
-    label: l10n.worshipPrayerMoonPhaseNewMoon,
-    emoji: '🌑',
-    illuminationPercent: illumination,
   );
 }

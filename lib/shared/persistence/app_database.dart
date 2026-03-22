@@ -39,6 +39,10 @@ class AppDatabase {
 
   void _initialize() {
     _db.execute('PRAGMA foreign_keys = ON;');
+    _db.execute('PRAGMA busy_timeout = 5000;');
+    _db.execute('PRAGMA temp_store = MEMORY;');
+    _db.execute('PRAGMA journal_mode = WAL;');
+    _db.execute('PRAGMA synchronous = NORMAL;');
     _db.execute('''
       CREATE TABLE IF NOT EXISTS app_meta(
         key TEXT PRIMARY KEY,
@@ -71,9 +75,15 @@ class AppDatabase {
         selected_preset_id TEXT NOT NULL,
         target INTEGER NOT NULL,
         current_count INTEGER NOT NULL,
+        current_session_started_at_iso TEXT,
         updated_at_iso TEXT NOT NULL
       );
     ''');
+    _ensureColumn(
+      table: 'dhikr_state',
+      column: 'current_session_started_at_iso',
+      definition: 'TEXT',
+    );
     _db.execute('''
       CREATE TABLE IF NOT EXISTS dhikr_sessions(
         scope_id TEXT NOT NULL,

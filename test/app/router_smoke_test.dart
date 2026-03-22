@@ -8,6 +8,7 @@ import 'package:path_of_nur/features/home/presentation/home_page.dart';
 import 'package:path_of_nur/features/journey/presentation/journey_page.dart';
 import 'package:path_of_nur/features/journey/presentation/growth_section_pages.dart';
 import 'package:path_of_nur/features/learn/dua/presentation/dua_hub_page.dart';
+import 'package:path_of_nur/features/learn/presentation/pages/learn_explore_all_knowledge_page.dart';
 import 'package:path_of_nur/features/learn/presentation/pages/learning_section_landing_page.dart';
 import 'package:path_of_nur/features/learn/presentation/pages/learn_quizzes_hub_page.dart';
 import 'package:path_of_nur/features/learn/presentation/learn_page.dart';
@@ -43,7 +44,6 @@ void main() {
         ),
       ],
     );
-    addTearDown(container.dispose);
     final router = container.read(appRouterProvider);
 
     await tester.pumpWidget(buildRouterTestApp(container));
@@ -83,7 +83,6 @@ void main() {
         ),
       ],
     );
-    addTearDown(container.dispose);
     final router = container.read(appRouterProvider);
 
     await tester.pumpWidget(buildRouterTestApp(container));
@@ -114,7 +113,6 @@ void main() {
         ),
       ],
     );
-    addTearDown(container.dispose);
     final router = container.read(appRouterProvider);
 
     await tester.pumpWidget(buildRouterTestApp(container));
@@ -136,6 +134,38 @@ void main() {
     }
   });
 
+  testWidgets(
+    'canonical and compatibility learn discovery routes stay aligned',
+    (tester) async {
+      final container = await makeTestContainer(
+        overrides: <Override>[
+          dailyNowProvider.overrideWith(
+            (ref) =>
+                Stream<DateTime>.value(DateTime.parse('2026-03-14T12:00:00')),
+          ),
+        ],
+      );
+      final router = container.read(appRouterProvider);
+
+      await tester.pumpWidget(buildRouterTestApp(container));
+      await pumpRouteFrames(tester);
+
+      final cases = <(String, Type)>[
+        ('/learn/explore', LearnExploreAllKnowledgePage),
+        ('/learn/browse', LearnExploreAllKnowledgePage),
+        ('/learn/prophets', ProphetsPage),
+        ('/learn/hub/prophets', ProphetsPage),
+      ];
+
+      for (final (path, pageType) in cases) {
+        router.go(path);
+        await pumpRouteFrames(tester);
+        expect(find.byType(pageType), findsOneWidget, reason: path);
+        expect(tester.takeException(), isNull, reason: path);
+      }
+    },
+  );
+
   testWidgets('onboarding redirect remains stable before first completion', (
     tester,
   ) async {
@@ -148,7 +178,6 @@ void main() {
         ),
       ],
     );
-    addTearDown(container.dispose);
 
     await tester.pumpWidget(buildRouterTestApp(container));
     await pumpRouteFrames(tester);
@@ -169,7 +198,6 @@ void main() {
           ),
         ],
       );
-      addTearDown(container.dispose);
       final router = container.read(appRouterProvider);
 
       await tester.pumpWidget(buildRouterTestApp(container));

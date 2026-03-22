@@ -491,7 +491,7 @@ final learnUnifiedItemsProvider = Provider<List<LearnUnifiedContentItem>>((
         isFeatured: prophet.isFeatured,
         isDailyEligible: true,
         routeName: 'learnProphetsHub',
-        queryParameters: {'prophet': prophet.id},
+        queryParameters: {'tab': 'stories', 'prophet': prophet.id},
       ),
     );
   }

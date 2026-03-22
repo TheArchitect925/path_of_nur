@@ -130,10 +130,13 @@ class JourneyXpService {
     return entries;
   }
 
-  List<XpLedgerEntry> awardLearningXp({required XpContext context}) {
+  List<XpLedgerEntry> awardLearningXp({
+    required XpContext context,
+    int? xp,
+  }) {
     final entries = _awardSingle(
       eventType: XpEventType.learningCompleted,
-      xp: _config.learningCompleted,
+      xp: xp ?? _config.learningCompleted,
       context: context,
     );
     if (entries.isNotEmpty) {

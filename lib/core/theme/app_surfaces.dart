@@ -129,7 +129,13 @@ class AppSurfaceTheme {
     final isDark = appearance?.isDark ?? false;
     final disableGlass = appearance?.disableGlassTransparency ?? false;
     final surface = baseColor ?? appearance?.surface ?? AppColors.surface;
-    final accent = tintColor ?? appearance?.accent ?? AppColors.accentGold;
+    final disableColoredGlass = appearance?.disableColoredGlass ?? false;
+    final accent = resolveTintColor(
+      appearance: appearance,
+      tintColor: tintColor,
+      surface: surface,
+      disableColoredGlass: disableColoredGlass,
+    );
 
     final resolvedSurfaceAlpha = _surfaceAlpha(
       appearance: appearance,
@@ -240,6 +246,19 @@ class AppSurfaceTheme {
     );
   }
 
+  static Color resolveTintColor({
+    required AppAppearanceTheme? appearance,
+    required Color? tintColor,
+    required Color surface,
+    required bool disableColoredGlass,
+  }) {
+    if (!disableColoredGlass) {
+      return tintColor ?? appearance?.accent ?? AppColors.accentGold;
+    }
+    final neutralBase = appearance?.surfaceSoft ?? surface;
+    return Color.lerp(surface, neutralBase, 0.78) ?? neutralBase;
+  }
+
   static double _surfaceAlpha({
     required AppAppearanceTheme? appearance,
     required AppSurfaceVariant variant,
@@ -282,6 +301,7 @@ class AppSurfaceTheme {
     final appearance = AppAppearanceTheme.defaults(
       mode: AppThemeMode.defaultMode,
       disableGlassTransparency: disableGlass,
+      disableColoredGlass: false,
       disableBackground: false,
       glassSurfaceAlpha: baseAlpha,
     );

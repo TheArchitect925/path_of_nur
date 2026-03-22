@@ -7,8 +7,10 @@ import '../../../../shared/application/kids_ui_theme_provider.dart';
 import '../../../../shared/content/learning_quote.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/family_learning_provider.dart';
+import '../application/learning_journey_progress_provider.dart';
 import '../data/learning_journey_registry.dart';
 import '../data/learning_journey_localized_metadata.dart';
+import '../domain/learning_journey_models.dart';
 import 'widgets/learning_journey_widgets.dart';
 
 class LearnBrowseAllPage extends ConsumerWidget {
@@ -23,11 +25,22 @@ class LearnBrowseAllPage extends ConsumerWidget {
         (value) => value.visibilityPolicy,
       ),
     );
+    final progress = ref.watch(learningJourneyProgressProvider);
     final islands = [...LearningJourneyRegistry.islands]
       ..sort((a, b) => a.order.compareTo(b.order))
       ..removeWhere(
         (island) => !learningVisibilityAllowsIsland(visibilityPolicy, island),
       );
+    final visibleJourneys = LearningJourneyRegistry.journeys
+        .where(
+          (journey) =>
+              journey.isPublished &&
+              learningVisibilityAllowsJourney(visibilityPolicy, journey),
+        )
+        .toList(growable: false);
+    final featuredJourneys = visibleJourneys
+        .where((journey) => journey.isFeatured)
+        .toList(growable: false);
     return LearnHubPageScaffold(
       headerIcon: Icons.grid_view_rounded,
       title: l10n.learningJourneyBrowseAllTitle,
@@ -43,6 +56,57 @@ class LearnBrowseAllPage extends ConsumerWidget {
             onTap: () => context.pop(),
           ),
           const SizedBox(height: 12),
+        ],
+        if (featuredJourneys.isNotEmpty) ...[
+          JourneyHomeSectionHeader(
+            title: l10n.learningJourneyBrowseFeaturedTitle,
+            subtitle: l10n.learningJourneyBrowseFeaturedSubtitle,
+          ),
+          const SizedBox(height: 8),
+          ...featuredJourneys.map(
+            (journey) => Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: LearningJourneyCard(
+                journey: journey,
+                stageCount: journey.totalLessons,
+                showFeaturedBadge: true,
+                progress: _journeyProgressValue(
+                  journey,
+                  progress.completedStageIds,
+                ),
+                onTap: () => context.pushNamed(
+                  'learnJourneyDetail',
+                  pathParameters: {'journeyId': journey.id},
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 8),
+        ],
+        if (visibleJourneys.isNotEmpty) ...[
+          JourneyHomeSectionHeader(
+            title: l10n.learningJourneyBrowseAllJourneysTitle,
+            subtitle: l10n.learningJourneyBrowseAllJourneysSubtitle,
+          ),
+          const SizedBox(height: 8),
+          ...visibleJourneys.map(
+            (journey) => Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: LearningJourneyCard(
+                journey: journey,
+                stageCount: journey.totalLessons,
+                progress: _journeyProgressValue(
+                  journey,
+                  progress.completedStageIds,
+                ),
+                onTap: () => context.pushNamed(
+                  'learnJourneyDetail',
+                  pathParameters: {'journeyId': journey.id},
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 8),
         ],
         JourneyHomeSectionHeader(
           title: l10n.learningJourneyBrowseIslandsTitle,
@@ -151,4 +215,17 @@ class LearnBrowseAllPage extends ConsumerWidget {
       ],
     );
   }
+}
+
+double? _journeyProgressValue(
+  LearningJourney journey,
+  Set<String> completedStageIds,
+) {
+  if (journey.stageIds.isEmpty) {
+    return null;
+  }
+  final completedCount = journey.stageIds
+      .where(completedStageIds.contains)
+      .length;
+  return (completedCount / journey.stageIds.length).clamp(0.0, 1.0);
 }

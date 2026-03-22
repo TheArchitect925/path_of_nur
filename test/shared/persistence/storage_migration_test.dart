@@ -62,6 +62,7 @@ void main() {
       selectedPresetId: initial.selectedPresetId,
       target: initial.target,
       currentCount: 18,
+      currentSessionStartedAt: DateTime.parse('2026-03-14T09:05:00'),
     );
     final reloaded = repository.load();
 
@@ -69,6 +70,10 @@ void main() {
     expect(initial.currentCount, 17);
     expect(initial.recentSessions, hasLength(1));
     expect(reloaded.currentCount, 18);
+    expect(
+      reloaded.currentSessionStartedAt,
+      DateTime.parse('2026-03-14T09:05:00'),
+    );
     expect(database.meta('migration.dhikr.v1.profile-a'), 'done');
   });
 

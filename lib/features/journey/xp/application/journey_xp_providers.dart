@@ -90,6 +90,7 @@ class JourneyXpController extends StateNotifier<XpSummary> {
     required DateTime occurredAt,
     String sourceModule = 'learn',
     String? dayKey,
+    int? xp,
     bool eligibleForLaylatAlQadrMultiplier = false,
     Map<String, Object?> metadata = const <String, Object?>{},
   }) {
@@ -102,6 +103,7 @@ class JourneyXpController extends StateNotifier<XpSummary> {
         metadata: metadata,
         eligibleForLaylatAlQadrMultiplier: eligibleForLaylatAlQadrMultiplier,
       ),
+      xp: xp,
     );
     if (entries.isNotEmpty) refresh();
     return entries;
