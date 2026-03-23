@@ -39,37 +39,57 @@ void main() {
         ),
       ),
     );
-    await tester.pumpAndSettle();
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 400));
     return container;
   }
 
-  testWidgets('home page shows active daily journey state before completion', (
+  testWidgets('home page shows practice and mastery entry cards', (
     tester,
   ) async {
     await pumpHome(tester);
 
-    expect(find.text('Daily Journey'), findsOneWidget);
-    expect(find.text('Continue Journey'), findsOneWidget);
+    await tester.scrollUntilVisible(
+      find.text('Open progress map'),
+      300,
+      scrollable: find.byType(Scrollable).first,
+    );
+    await tester.scrollUntilVisible(
+      find.text('Open practice'),
+      300,
+      scrollable: find.byType(Scrollable).first,
+    );
+
+    expect(find.text('Practice & Review'), findsOneWidget);
+    expect(find.text('Progress map'), findsOneWidget);
+    expect(find.text('Open practice'), findsOneWidget);
   });
 
-  testWidgets(
-    'home page shows completed daily journey state after mission completion',
-    (tester) async {
-      final container = await pumpHome(tester);
-      final letter = kidsArabicLetters.firstWhere((item) => item.id == 'alif');
-      container
-          .read(kidsArabicProgressProvider.notifier)
-          .completeLesson(
-            letter: letter,
-            traceResult: KidsArabicTraceResult.good,
-          );
-      await tester.pumpAndSettle();
+  testWidgets('home page shows practiced today state after mission completion', (
+    tester,
+  ) async {
+    final container = await pumpHome(tester);
+    final letter = kidsArabicLetters.firstWhere((item) => item.id == 'alif');
+    container
+        .read(kidsArabicProgressProvider.notifier)
+        .completeLesson(
+          letter: letter,
+          traceResult: KidsArabicTraceResult.good,
+        );
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 400));
 
-      expect(find.text('Today’s mission is complete.'), findsOneWidget);
-      expect(
-        find.text('Come back tomorrow for a new small step.'),
-        findsOneWidget,
-      );
-    },
-  );
+    await tester.scrollUntilVisible(
+      find.text('Practiced today'),
+      300,
+      scrollable: find.byType(Scrollable).first,
+    );
+    expect(find.text('Practiced today'), findsOneWidget);
+    expect(
+      find.text(
+        'You practiced today already. You can still continue or review calmly whenever you want.',
+      ),
+      findsOneWidget,
+    );
+  });
 }

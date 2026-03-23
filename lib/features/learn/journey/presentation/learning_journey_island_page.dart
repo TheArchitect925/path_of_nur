@@ -11,11 +11,14 @@ import '../../../../shared/content/learning_quote.dart';
 import '../../glossary/domain/glossary_models.dart';
 import '../../glossary/presentation/widgets/glossary_widgets.dart';
 import '../../presentation/widgets/learn_cards.dart';
+import '../../presentation/widgets/learn_contained_state_page.dart';
+import '../../presentation/widgets/learn_contained_state_localizations.dart';
 import '../application/family_learning_provider.dart';
 import '../application/learning_journey_progress_provider.dart';
 import '../data/learning_journey_localized_metadata.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../data/learning_journey_registry.dart';
+import '../../shared/application/learn_release_gate.dart';
 import '../domain/learning_journey_models.dart';
 import 'widgets/learning_journey_widgets.dart';
 
@@ -38,7 +41,8 @@ class LearningJourneyIslandPage extends ConsumerWidget {
     final journeys = LearningJourneyRegistry.journeysForIsland(islandId)
         .where(
           (journey) =>
-              learningVisibilityAllowsJourney(visibilityPolicy, journey),
+              learningVisibilityAllowsJourney(visibilityPolicy, journey) &&
+              isProductionSafeLearningJourney(journey),
         )
         .toList(growable: false);
     final spotlightJourney = journeys.isEmpty ? null : journeys.first;
@@ -51,6 +55,18 @@ class LearningJourneyIslandPage extends ConsumerWidget {
         title: l10n.learningJourneyIslandNotFoundTitle,
         subtitle: l10n.learningJourneyIslandNotFoundSubtitle,
         body: l10n.learningJourneyIslandNotFoundBody,
+      );
+    }
+    if (!isProductionSafeLearningJourneyIsland(island)) {
+      return LearnContainedStatePage(
+        headerIcon: island.icon,
+        title: localizedIslandTitle(context, island),
+        subtitle: l10n.learnContainedStateIslandSubtitle,
+        body: l10n.learnContainedStateBody,
+        primaryActionLabel: l10n.learnContainedStateBackToLearnAction,
+        onPrimaryAction: () => context.go('/learn'),
+        secondaryActionLabel: l10n.learnContainedStateBrowseKnowledgeAction,
+        onSecondaryAction: () => context.pushNamed('learnExploreAllKnowledge'),
       );
     }
     return LearnHubPageScaffold(
@@ -93,7 +109,7 @@ class LearningJourneyIslandPage extends ConsumerWidget {
                 fontWeight: FontWeight.w700,
               ),
             ),
-        ),
+          ),
         if (island.id == 'core-knowledge') const _FoundationsTawheedBlock(),
         if (island.id == 'core-knowledge') ...[
           const SizedBox(height: 14),
@@ -117,6 +133,15 @@ class LearningJourneyIslandPage extends ConsumerWidget {
               const Text('•'),
               const GlossaryInlineTerm(entryId: GlossaryEntryId.quran),
             ],
+          ),
+        ],
+        if (island.id == 'practice-worship') ...[
+          const SizedBox(height: 14),
+          LearnActionCard(
+            title: l10n.wuduPracticeCardTitle,
+            subtitle: l10n.wuduPracticeCardSubtitle,
+            icon: Icons.water_drop_outlined,
+            onTap: () => context.pushNamed('learnWuduTrainer'),
           ),
         ],
         if (spotlightJourney != null) ...[

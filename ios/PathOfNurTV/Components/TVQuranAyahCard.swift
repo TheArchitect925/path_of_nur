@@ -44,6 +44,21 @@ struct TVQuranAyahCard: View {
       RoundedRectangle(cornerRadius: TVTheme.cardRadius, style: .continuous)
         .fill(isSelected ? TVTheme.surfaceElevated : TVTheme.surface)
     )
+    .overlay(
+      RoundedRectangle(cornerRadius: TVTheme.cardRadius, style: .continuous)
+        .stroke(
+          isPlaying
+            ? TVTheme.accentStrong
+            : (isSelected ? TVTheme.accentSoft : .clear),
+          lineWidth: isPlaying ? 3 : (isSelected ? 1.5 : 0)
+        )
+    )
+    .shadow(
+      color: isPlaying ? TVTheme.accentStrong.opacity(0.28) : .clear,
+      radius: isPlaying ? 18 : 0,
+      x: 0,
+      y: 6
+    )
     .tvFocusableCard()
   }
 }

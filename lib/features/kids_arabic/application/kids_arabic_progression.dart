@@ -22,8 +22,12 @@ final List<KidsArabicLetter> kidsArabicProgressionLetters =
         .whereType<KidsArabicLetter>()
         .toList(growable: false);
 
-List<KidsArabicLetter> kidsArabicOrderedLetters(Iterable<KidsArabicLetter> letters) {
-  final byId = <String, KidsArabicLetter>{for (final letter in letters) letter.id: letter};
+List<KidsArabicLetter> kidsArabicOrderedLetters(
+  Iterable<KidsArabicLetter> letters,
+) {
+  final byId = <String, KidsArabicLetter>{
+    for (final letter in letters) letter.id: letter,
+  };
   return kidsArabicProgressionOrderIds
       .map((id) => byId[id])
       .whereType<KidsArabicLetter>()
@@ -54,6 +58,14 @@ KidsArabicLetter? nextKidsArabicLetter(String currentId) {
     return null;
   }
   return _letterById(kidsArabicProgressionOrderIds[index + 1]);
+}
+
+KidsArabicLetter? previousKidsArabicLetter(String currentId) {
+  final index = kidsArabicProgressionOrderIds.indexOf(currentId);
+  if (index <= 0) {
+    return null;
+  }
+  return _letterById(kidsArabicProgressionOrderIds[index - 1]);
 }
 
 KidsArabicLetter? _letterById(String id) {

@@ -7,6 +7,7 @@ class QuranNote {
     required this.createdAtIso,
     this.tags = const [],
     this.folder = 'General',
+    this.categoryId,
     this.isHighlight = false,
     this.highlightLabel,
   });
@@ -18,6 +19,7 @@ class QuranNote {
   final String createdAtIso;
   final List<String> tags;
   final String folder;
+  final String? categoryId;
   final bool isHighlight;
   final String? highlightLabel;
 
@@ -29,6 +31,7 @@ class QuranNote {
     'createdAtIso': createdAtIso,
     'tags': tags,
     'folder': folder,
+    'categoryId': categoryId,
     'isHighlight': isHighlight,
     'highlightLabel': highlightLabel,
   };
@@ -64,6 +67,7 @@ class QuranNote {
       folder: json['folder']?.toString().trim().isNotEmpty == true
           ? json['folder'].toString().trim()
           : 'General',
+      categoryId: json['categoryId']?.toString(),
       isHighlight: json['isHighlight'] == true,
       highlightLabel: json['highlightLabel']?.toString(),
     );

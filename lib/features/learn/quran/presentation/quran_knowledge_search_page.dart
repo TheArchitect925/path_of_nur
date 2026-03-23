@@ -15,7 +15,9 @@ import '../domain/quran_surah.dart';
 import '../domain/quran_surah_insight_models.dart';
 
 class QuranKnowledgeSearchPage extends ConsumerStatefulWidget {
-  const QuranKnowledgeSearchPage({super.key});
+  const QuranKnowledgeSearchPage({super.key, this.initialQuery = ''});
+
+  final String initialQuery;
 
   @override
   ConsumerState<QuranKnowledgeSearchPage> createState() =>
@@ -30,7 +32,8 @@ class _QuranKnowledgeSearchPageState
   @override
   void initState() {
     super.initState();
-    _searchController = TextEditingController();
+    _query = widget.initialQuery;
+    _searchController = TextEditingController(text: widget.initialQuery);
   }
 
   @override
@@ -42,7 +45,10 @@ class _QuranKnowledgeSearchPageState
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    final entries = ref.watch(quranAyahEnrichmentEntriesProvider);
+    final languageCode = Localizations.localeOf(context).languageCode;
+    final entries = ref.watch(
+      quranAyahEnrichmentEntriesForLanguageProvider(languageCode),
+    );
     final paths = ref.watch(quranAyahInsightResolvedPathsProvider);
     final surahInsights = ref.watch(quranSurahInsightsBrowseProvider);
     final surahMap = ref.watch(quranSurahMapProvider);
@@ -215,7 +221,6 @@ class _SearchResultSection extends StatelessWidget {
                 '${result.typeLabel} • ${result.supportingLabel}\n${result.summary}',
               ),
               isThreeLine: true,
-              trailing: const Icon(Icons.chevron_right_rounded),
               onTap: () => result.open(context),
             ),
           ),

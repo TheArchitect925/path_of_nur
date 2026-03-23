@@ -20,7 +20,7 @@ class GamesIslandCatalog {
         cards: [
           GameDiscoveryCard(
             id: 'daily-knowledge',
-            title: l10n.dailyKnowledgeHubTitle,
+            title: l10n.learnGamesDailyKnowledgeTodayTitleText,
             subtitle: l10n.dailyKnowledgeHubSubtitle,
             icon: Icons.bolt_rounded,
             baseColor: const Color(0xFFE7F3EE),
@@ -29,6 +29,7 @@ class GamesIslandCatalog {
               routeName: 'learnDailyKnowledgeHub',
             ),
             badgeLabel: l10n.learnGamesIslandTodayBadge,
+            searchKeywords: const ['daily challenge', 'today', 'daily knowledge'],
           ),
         ],
       ),
@@ -42,7 +43,7 @@ class GamesIslandCatalog {
         cards: [
           GameDiscoveryCard(
             id: 'crossword',
-            title: l10n.crosswordHomeTitle,
+            title: l10n.learnGamesKnowledgeCrosswordTitleText,
             subtitle: l10n.learnQuizzesCrosswordSectionSubtitle,
             icon: Icons.grid_on_rounded,
             baseColor: const Color(0xFFF7E8D8),
@@ -50,10 +51,11 @@ class GamesIslandCatalog {
             routeTarget: const LearnHubRouteTarget(
               routeName: 'learnCrosswordHome',
             ),
+            searchKeywords: const ['crossword', 'puzzles', 'knowledge games'],
           ),
           GameDiscoveryCard(
             id: 'word-search',
-            title: l10n.wordSearchHomeTitle,
+            title: l10n.learnGamesKnowledgeWordSearchTitleText,
             subtitle: l10n.learnQuizzesWordSearchSectionSubtitle,
             icon: Icons.search_rounded,
             baseColor: const Color(0xFFF2E6D7),
@@ -61,10 +63,11 @@ class GamesIslandCatalog {
             routeTarget: const LearnHubRouteTarget(
               routeName: 'learnWordSearchHome',
             ),
+            searchKeywords: const ['word search', 'knowledge games'],
           ),
           GameDiscoveryCard(
             id: 'matching',
-            title: l10n.matchingHomeTitle,
+            title: l10n.learnGamesKnowledgeMatchingTitleText,
             subtitle: l10n.learnQuizzesMatchingSectionSubtitle,
             icon: Icons.flip_to_front_rounded,
             baseColor: const Color(0xFFF6EBDD),
@@ -72,6 +75,7 @@ class GamesIslandCatalog {
             routeTarget: const LearnHubRouteTarget(
               routeName: 'learnMatchingHome',
             ),
+            searchKeywords: const ['matching games', 'matching', 'knowledge games'],
           ),
         ],
       ),
@@ -85,7 +89,7 @@ class GamesIslandCatalog {
         cards: [
           GameDiscoveryCard(
             id: 'ayah-completion',
-            title: l10n.ayahCompletionHomeTitle,
+            title: l10n.learnGamesQuranAyahCompletionTitleText,
             subtitle: l10n.learnQuizzesAyahCompletionSectionSubtitle,
             icon: Icons.menu_book_rounded,
             baseColor: const Color(0xFFE5F2E4),
@@ -93,10 +97,11 @@ class GamesIslandCatalog {
             routeTarget: const LearnHubRouteTarget(
               routeName: 'learnAyahCompletionHome',
             ),
+            searchKeywords: const ['ayah completion', 'quran games'],
           ),
           GameDiscoveryCard(
             id: 'ayah-short-surahs',
-            title: l10n.ayahCompletionPackAdultShortSurahsTitle,
+            title: l10n.learnGamesQuranAdultShortSurahsTitleText,
             subtitle: l10n.ayahCompletionPackAdultShortSurahsSubtitle,
             icon: Icons.auto_stories_rounded,
             baseColor: const Color(0xFFE9F4E5),
@@ -105,10 +110,11 @@ class GamesIslandCatalog {
               routeName: 'learnAyahCompletionPack',
               pathParameters: {'packId': 'ayah_adult_short_surahs'},
             ),
+            searchKeywords: const ['adult short surahs', 'short surahs'],
           ),
           GameDiscoveryCard(
             id: 'ayah-memorization',
-            title: l10n.ayahCompletionPackAdultMemorizationTitle,
+            title: l10n.learnGamesQuranMemorizationSetTitleText,
             subtitle: l10n.ayahCompletionPackAdultMemorizationSubtitle,
             icon: Icons.school_rounded,
             baseColor: const Color(0xFFEAF4E8),
@@ -117,10 +123,11 @@ class GamesIslandCatalog {
               routeName: 'learnAyahCompletionPack',
               pathParameters: {'packId': 'ayah_adult_memorization'},
             ),
+            searchKeywords: const ['memorization set', 'memorization'],
           ),
           GameDiscoveryCard(
             id: 'daily-ayah',
-            title: l10n.ayahCompletionDailyModeTitle,
+            title: l10n.learnGamesQuranDailyAyahTitleText,
             subtitle: l10n.ayahCompletionDailyModeSubtitle,
             icon: Icons.today_rounded,
             baseColor: const Color(0xFFE8F3E4),
@@ -129,6 +136,7 @@ class GamesIslandCatalog {
               routeName: 'learnAyahCompletionDaily',
             ),
             badgeLabel: l10n.learnGamesIslandTodayBadge,
+            searchKeywords: const ['daily ayah', 'today'],
           ),
         ],
       ),
@@ -142,7 +150,7 @@ class GamesIslandCatalog {
         cards: [
           GameDiscoveryCard(
             id: 'hadith-home',
-            title: l10n.hadithReflectionHomeTitle,
+            title: l10n.learnGamesHadithReflectionHomeTitleText,
             subtitle: l10n.learnQuizzesHadithReflectionSectionSubtitle,
             icon: Icons.record_voice_over_rounded,
             baseColor: const Color(0xFFE7EDF6),
@@ -150,10 +158,11 @@ class GamesIslandCatalog {
             routeTarget: const LearnHubRouteTarget(
               routeName: 'learnHadithReflectionHome',
             ),
+            searchKeywords: const ['hadith reflection'],
           ),
           GameDiscoveryCard(
             id: 'hadith-patience',
-            title: l10n.hadithReflectionPackPatienceTitle,
+            title: l10n.learnGamesHadithPatienceTitleText,
             subtitle: l10n.hadithReflectionPackPatienceSubtitle,
             icon: Icons.self_improvement_rounded,
             baseColor: const Color(0xFFE8EEF7),
@@ -164,10 +173,11 @@ class GamesIslandCatalog {
                 'packId': 'hadith_reflection_patience_gratitude',
               },
             ),
+            searchKeywords: const ['patience', 'resilience'],
           ),
           GameDiscoveryCard(
             id: 'hadith-anger',
-            title: l10n.hadithReflectionPackAngerTitle,
+            title: l10n.learnGamesHadithAngerTitleText,
             subtitle: l10n.hadithReflectionPackAngerSubtitle,
             icon: Icons.favorite_outline_rounded,
             baseColor: const Color(0xFFE9EEF8),
@@ -176,10 +186,11 @@ class GamesIslandCatalog {
               routeName: 'learnHadithReflectionPack',
               pathParameters: {'packId': 'hadith_reflection_anger_control'},
             ),
+            searchKeywords: const ['anger control', 'anger'],
           ),
           GameDiscoveryCard(
             id: 'hadith-family',
-            title: l10n.hadithReflectionPackFamilyTitle,
+            title: l10n.learnGamesHadithFamilyTitleText,
             subtitle: l10n.hadithReflectionPackFamilySubtitle,
             icon: Icons.family_restroom_rounded,
             baseColor: const Color(0xFFE6EDF7),
@@ -188,6 +199,7 @@ class GamesIslandCatalog {
               routeName: 'learnHadithReflectionPack',
               pathParameters: {'packId': 'hadith_reflection_family_respect'},
             ),
+            searchKeywords: const ['family respect', 'family'],
           ),
         ],
       ),
@@ -201,7 +213,7 @@ class GamesIslandCatalog {
         cards: [
           GameDiscoveryCard(
             id: 'challenge-daily-run',
-            title: l10n.learnGamesIslandModeDailyRunTitle,
+            title: l10n.learnGamesChallengeDailyRunTitleText,
             subtitle: l10n.learnGamesIslandModeDailyRunSubtitle,
             icon: Icons.flag_rounded,
             baseColor: const Color(0xFFF5E8D5),
@@ -209,10 +221,11 @@ class GamesIslandCatalog {
             routeTarget: const LearnHubRouteTarget(
               routeName: 'learnDailyKnowledgeHub',
             ),
+            searchKeywords: const ['daily run'],
           ),
           GameDiscoveryCard(
             id: 'challenge-review',
-            title: l10n.learnGamesIslandModeReviewTitle,
+            title: l10n.learnGamesChallengeReviewModeTitleText,
             subtitle: l10n.learnGamesIslandModeReviewSubtitle,
             icon: Icons.restart_alt_rounded,
             baseColor: const Color(0xFFF6E9D8),
@@ -221,10 +234,11 @@ class GamesIslandCatalog {
               routeName: 'learnQuizzesHub',
               queryParameters: {'filter': 'review'},
             ),
+            searchKeywords: const ['review mode', 'review'],
           ),
           GameDiscoveryCard(
             id: 'challenge-trivia',
-            title: l10n.learnGamesIslandModeTriviaTitle,
+            title: l10n.learnGamesChallengeTriviaTitleText,
             subtitle: l10n.learnGamesIslandModeTriviaSubtitle,
             icon: Icons.bolt_rounded,
             baseColor: const Color(0xFFF7EBDD),
@@ -233,6 +247,7 @@ class GamesIslandCatalog {
               routeName: 'learnQuizzesHub',
               queryParameters: {'filter': 'trivia'},
             ),
+            searchKeywords: const ['trivia challenge', 'trivia'],
           ),
         ],
       ),
@@ -246,7 +261,7 @@ class GamesIslandCatalog {
         cards: [
           GameDiscoveryCard(
             id: 'spiritual-growth',
-            title: l10n.spiritualGrowthTitle,
+            title: l10n.learnGamesGrowthSpiritualTitleText,
             subtitle: l10n.spiritualGrowthSubtitle,
             icon: Icons.wb_twilight_rounded,
             baseColor: const Color(0xFFECE1F3),
@@ -254,10 +269,11 @@ class GamesIslandCatalog {
             routeTarget: const LearnHubRouteTarget(
               routeName: 'spiritualGrowthPage',
             ),
+            searchKeywords: const ['spiritual growth'],
           ),
           GameDiscoveryCard(
             id: 'spiritual-intentions',
-            title: l10n.spiritualGrowthChooseIntentionAction,
+            title: l10n.learnGamesGrowthChooseIntentionTitleText,
             subtitle: l10n.spiritualGrowthChooseIntentionSubtitle,
             icon: Icons.flag_outlined,
             baseColor: const Color(0xFFF0E8F6),
@@ -265,10 +281,11 @@ class GamesIslandCatalog {
             routeTarget: const LearnHubRouteTarget(
               routeName: 'spiritualGrowthIntentions',
             ),
+            searchKeywords: const ['choose intention', 'intentions'],
           ),
           GameDiscoveryCard(
             id: 'spiritual-reflection',
-            title: l10n.spiritualGrowthReflectionTitle,
+            title: l10n.learnGamesGrowthDailyReflectionTitleText,
             subtitle: l10n.spiritualGrowthReflectionEntrySubtitle,
             icon: Icons.nights_stay_rounded,
             baseColor: const Color(0xFFEFE5F5),
@@ -276,10 +293,11 @@ class GamesIslandCatalog {
             routeTarget: const LearnHubRouteTarget(
               routeName: 'spiritualGrowthReflection',
             ),
+            searchKeywords: const ['daily reflection', 'reflection'],
           ),
           GameDiscoveryCard(
             id: 'spiritual-themes',
-            title: l10n.spiritualGrowthThemeSummaryTitle,
+            title: l10n.learnGamesGrowthThemeFocusTitleText,
             subtitle: l10n.spiritualGrowthThemeSummarySubtitle,
             icon: Icons.insights_rounded,
             baseColor: const Color(0xFFF0E7F6),
@@ -287,6 +305,7 @@ class GamesIslandCatalog {
             routeTarget: const LearnHubRouteTarget(
               routeName: 'spiritualGrowthThemes',
             ),
+            searchKeywords: const ['theme focus', 'themes'],
           ),
         ],
       ),
@@ -300,7 +319,7 @@ class GamesIslandCatalog {
         cards: [
           GameDiscoveryCard(
             id: 'pack-beginner',
-            title: l10n.crosswordPackAdultFoundationsTitle,
+            title: l10n.learnGamesPackAdultFoundationsTitleText,
             subtitle: l10n.crosswordPackAdultFoundationsSubtitle,
             icon: Icons.start_rounded,
             baseColor: const Color(0xFFE1EEF0),
@@ -309,10 +328,11 @@ class GamesIslandCatalog {
               routeName: 'learnCrosswordPack',
               pathParameters: {'packId': 'adult_foundations'},
             ),
+            searchKeywords: const ['adult foundations'],
           ),
           GameDiscoveryCard(
             id: 'pack-prophets',
-            title: l10n.matchingPackProphetsTitle,
+            title: l10n.learnGamesPackProphetsTitleText,
             subtitle: l10n.matchingPackProphetsSubtitle,
             icon: IslamicIcons.lantern,
             baseColor: const Color(0xFFE6F0F1),
@@ -321,10 +341,11 @@ class GamesIslandCatalog {
               routeName: 'learnMatchingPack',
               pathParameters: {'packId': 'matching_prophets'},
             ),
+            searchKeywords: const ['prophets'],
           ),
           GameDiscoveryCard(
             id: 'pack-duas',
-            title: l10n.wordSearchPackDuaTitle,
+            title: l10n.learnGamesPackDuasTitleText,
             subtitle: l10n.wordSearchPackDuaSubtitle,
             icon: Icons.volunteer_activism_rounded,
             baseColor: const Color(0xFFE4EFF0),
@@ -333,10 +354,11 @@ class GamesIslandCatalog {
               routeName: 'learnWordSearchPack',
               pathParameters: {'packId': 'dua_pack'},
             ),
+            searchKeywords: const ['duas meanings', 'duas'],
           ),
           GameDiscoveryCard(
             id: 'pack-seven-day',
-            title: l10n.crosswordPackDailyTitle,
+            title: l10n.learnGamesPackDailyRotationTitleText,
             subtitle: l10n.crosswordPackDailySubtitle,
             icon: Icons.calendar_view_week_rounded,
             baseColor: const Color(0xFFE7F0F1),
@@ -345,9 +367,20 @@ class GamesIslandCatalog {
               routeName: 'learnCrosswordPack',
               pathParameters: {'packId': 'daily_rotation'},
             ),
+            searchKeywords: const ['daily rotation'],
           ),
         ],
       ),
+    ];
+  }
+
+  static List<({GameDiscoverySection section, GameDiscoveryCard card})> entries(
+    AppLocalizations l10n,
+  ) {
+    final sections = GamesIslandCatalog.sections(l10n);
+    return [
+      for (final section in sections)
+        for (final card in section.cards) (section: section, card: card),
     ];
   }
 }

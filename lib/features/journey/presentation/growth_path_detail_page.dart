@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../l10n/app_localizations.dart';
 import '../../../shared/widgets/app_page_scaffold.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../application/growth_providers.dart';
@@ -17,6 +18,7 @@ class GrowthPathDetailPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     final all = ref.watch(growthPathProgressProvider);
     GrowthPathProgress? progress;
     for (final item in all) {
@@ -27,8 +29,13 @@ class GrowthPathDetailPage extends ConsumerWidget {
     }
 
     if (progress == null) {
-      return const Scaffold(
-        body: Center(child: Text('This path is not available yet. Return gently and try again.')),
+      return AppPageScaffold(
+        headerIcon: Icons.alt_route_rounded,
+        title: l10n.growthPathDetailPageTitle,
+        subtitle: l10n.growthPathUnavailableMessage,
+        children: [
+          PremiumCard(child: Text(l10n.growthPathUnavailableMessage)),
+        ],
       );
     }
     final p = progress;
@@ -55,21 +62,38 @@ class GrowthPathDetailPage extends ConsumerWidget {
                 spacing: 8,
                 runSpacing: 8,
                 children: [
-                  _Pill(label: 'Difficulty: ${p.path.difficulty.name}'),
-                  _Pill(label: 'Commitment: ${p.path.estimatedCommitment}'),
-                  _Pill(label: '${p.completedHabits}/${p.path.totalHabits} done'),
+                  _Pill(
+                    label: l10n.growthPathDifficultyValue(
+                      p.path.difficulty.name,
+                    ),
+                  ),
+                  _Pill(
+                    label: l10n.growthPathCommitmentValue(
+                      p.path.estimatedCommitment,
+                    ),
+                  ),
+                  _Pill(
+                    label: l10n.growthPathCompletedHabitsValue(
+                      '${p.completedHabits}',
+                      '${p.path.totalHabits}',
+                    ),
+                  ),
                   _Pill(
                     label: pathCopy?.stageLabel ??
                         stageCopy?.title ??
-                        'Stage ${p.path.stage}',
+                        l10n.growthStageValue('${p.path.stage}'),
                   ),
-                  _Pill(label: 'Current streak ${journey.currentStreakDays} days'),
+                  _Pill(
+                    label: l10n.growthPathCurrentStreakValue(
+                      l10n.homeDaysCount(journey.currentStreakDays),
+                    ),
+                  ),
                 ],
               ),
               const SizedBox(height: 8),
               Text(
                 pathCopy?.whyItMatters ??
-                    'Small steps matter. Continue your path with steadiness.',
+                    l10n.growthPathWhyItMattersFallback,
                 style: const TextStyle(color: Color(0xFF6A5A4A)),
               ),
               if ((pathCopy?.milestoneNames ?? const []).isNotEmpty) ...[
@@ -101,7 +125,7 @@ class GrowthPathDetailPage extends ConsumerWidget {
                         onPressed: () => ref
                             .read(growthControllerProvider.notifier)
                             .markPathCelebrated(pathId),
-                        child: const Text('Acknowledge completion'),
+                        child: Text(l10n.growthPathAcknowledgeCompletionAction),
                       ),
                     ),
                   ],
@@ -128,10 +152,10 @@ class GrowthPathDetailPage extends ConsumerWidget {
                             },
                       child: Text(
                         !p.started
-                            ? 'Start Path'
+                            ? l10n.growthPathStartAction
                             : p.paused
-                            ? 'Resume Path'
-                            : 'Pause Path',
+                            ? l10n.growthPathResumeAction
+                            : l10n.growthPathPauseAction,
                       ),
                     ),
                   ),
@@ -145,7 +169,10 @@ class GrowthPathDetailPage extends ConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Habits in this path', style: TextStyle(fontWeight: FontWeight.w700)),
+              Text(
+                l10n.growthPathHabitsInThisPathTitle,
+                style: const TextStyle(fontWeight: FontWeight.w700),
+              ),
               const SizedBox(height: 8),
               ...habits.map(
                 (habit) => ListTile(

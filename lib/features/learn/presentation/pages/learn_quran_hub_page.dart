@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../app/app_router.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/application/special_mode_provider.dart';
@@ -15,78 +14,30 @@ import '../../hadith/application/hadith_foundation_repository.dart';
 import '../../hadith/domain/hadith_foundation_models.dart';
 import '../../quran/application/quran_learning_system_service.dart';
 import '../../quran/domain/quran_learning_models.dart';
+import '../../quran/presentation/widgets/quran_learning_personalization_section.dart';
 import '../models/learn_category_item.dart';
 import '../widgets/learn_category_grid.dart';
 import '../widgets/learn_hub_page_scaffold.dart';
 
-enum _QuranLearningTab { understand, reflect, paths, memorize }
+enum LearnQuranHubTab { understand, reflect, paths, memorize }
 
 class LearnQuranHubPage extends ConsumerStatefulWidget {
-  const LearnQuranHubPage({super.key});
+  const LearnQuranHubPage({super.key, this.initialTab});
+
+  final LearnQuranHubTab? initialTab;
 
   @override
   ConsumerState<LearnQuranHubPage> createState() => _LearnQuranHubPageState();
 }
 
 class _LearnQuranHubPageState extends ConsumerState<LearnQuranHubPage> {
-  _QuranLearningTab _tab = _QuranLearningTab.understand;
+  late LearnQuranHubTab _tab;
 
-  static const List<LearnCategoryItem> _quranTools = [
-    LearnCategoryItem(
-      id: 'quran-top-words',
-      title: 'Top Quran Words',
-      iconKey: 'top_words',
-      routeName: 'quranTopWords',
-      searchKeywords: ['words', 'vocabulary'],
-      tags: ['quran'],
-      sectionType: 'module',
-    ),
-    LearnCategoryItem(
-      id: 'quran-word-review',
-      title: 'Word Review',
-      iconKey: 'word_review',
-      routeName: 'quranWordReview',
-      searchKeywords: ['word review', 'flashcards'],
-      tags: ['quran'],
-      sectionType: 'module',
-    ),
-    LearnCategoryItem(
-      id: 'quran-universe',
-      title: 'Qur’an Universe',
-      iconKey: 'quran_universe',
-      routeName: 'quranUniverse',
-      searchKeywords: ['quran universe', 'connections', 'themes', 'locations'],
-      tags: ['quran', 'exploration'],
-      sectionType: 'module',
-    ),
-    LearnCategoryItem(
-      id: 'quran-topics',
-      title: 'Qur’an Topics',
-      iconKey: 'quran_universe',
-      routeName: 'quranTopicExplorer',
-      searchKeywords: ['topics', 'patience', 'mercy', 'justice', 'guidance'],
-      tags: ['quran', 'knowledge graph'],
-      sectionType: 'module',
-    ),
-    LearnCategoryItem(
-      id: 'quran-notes',
-      title: 'Quran Notes',
-      iconKey: 'notes',
-      routeName: 'quranNotes',
-      searchKeywords: ['notes', 'reflection'],
-      tags: ['quran'],
-      sectionType: 'module',
-    ),
-    LearnCategoryItem(
-      id: 'quran-names-of-allah',
-      title: '99 Names of Allah',
-      iconKey: 'allah_names',
-      routeName: 'quranNamesOfAllah',
-      searchKeywords: ['99 names', 'asma ul husna', 'allah names'],
-      tags: ['quran', 'reflection'],
-      sectionType: 'module',
-    ),
-  ];
+  @override
+  void initState() {
+    super.initState();
+    _tab = widget.initialTab ?? LearnQuranHubTab.understand;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -100,10 +51,12 @@ class _LearnQuranHubPageState extends ConsumerState<LearnQuranHubPage> {
     final dueReviews = ref.watch(quranMemorizationDueProvider);
     final memorizationCoverage = ref.watch(quranMemorizationCoverageProvider);
     final dailyVerse = ref.watch(quranDailyReflectionVerseProvider);
+    final quranTools = _quranTools(l10n);
 
     return LearnHubPageScaffold(
+      showDefaultQuote: false,
       headerIcon: Icons.school_rounded,
-      title: 'Qur’an Study',
+      title: l10n.learnCategoryQuranLearningTitle,
       subtitle: localizedAppPageDescription(
         context,
         AppPageDescriptionKey.quranStudyHub,
@@ -114,22 +67,16 @@ class _LearnQuranHubPageState extends ConsumerState<LearnQuranHubPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'Study Mode',
+                Text(
+                  l10n.quranHubStudyTitle,
                 style: Theme.of(
                   context,
                 ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
               ),
               const SizedBox(height: 6),
               Text(
-                'Use this when you want to slow down, study meaning, and move through guided Qur’an learning paths.',
+                l10n.quranHubStudySubtitle,
                 style: Theme.of(context).textTheme.bodyMedium,
-              ),
-              const SizedBox(height: 10),
-              FilledButton.tonalIcon(
-                onPressed: () => context.go(NavTab.quran.path),
-                icon: const Icon(Icons.menu_book_rounded),
-                label: const Text('Return to Qur’an Home'),
               ),
               const SizedBox(height: 8),
               Align(
@@ -137,34 +84,36 @@ class _LearnQuranHubPageState extends ConsumerState<LearnQuranHubPage> {
                 child: TextButton.icon(
                   onPressed: () => context.pushNamed('quranArabic'),
                   icon: const Icon(Icons.translate_rounded),
-                  label: const Text('Open Learn Qur’anic Arabic'),
+                  label: Text(l10n.learningJourneyToolQuranArabicTitle),
                 ),
               ),
             ],
           ),
         ),
         const SizedBox(height: 10),
-        SegmentedPillControl<_QuranLearningTab>(
-          items: _QuranLearningTab.values,
+        const QuranLearningPersonalizationSection(),
+        const SizedBox(height: 10),
+        SegmentedPillControl<LearnQuranHubTab>(
+          items: LearnQuranHubTab.values,
           selectedItem: _tab,
           labelBuilder: _tabLabel,
           onChanged: (value) => setState(() => _tab = value),
         ),
         const SizedBox(height: 12),
-        if (_tab == _QuranLearningTab.understand) ...[
+        if (_tab == LearnQuranHubTab.understand) ...[
           PremiumCard(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Understand',
+                  l10n.learnQuranHubTabUnderstand,
                   style: Theme.of(
                     context,
                   ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
                 ),
                 const SizedBox(height: 6),
                 Text(
-                  'Study explanation, related hadith, and concise lessons from selected verses.',
+                  l10n.learnQuranHubUnderstandSubtitle,
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
               ],
@@ -183,13 +132,19 @@ class _LearnQuranHubPageState extends ConsumerState<LearnQuranHubPage> {
                 child: ExpansionTile(
                   tilePadding: EdgeInsets.zero,
                   childrenPadding: EdgeInsets.zero,
-                  title: Text('Qur’an ${verse.surah}:${verse.ayah}'),
+                  title: Text(
+                    l10n.quranReferenceViewerReferenceLabel(
+                      '${verse.surah}:${verse.ayah}',
+                    ),
+                  ),
                   subtitle: Text(verse.translation),
                   children: [
                     const SizedBox(height: 8),
                     QuranVerseContent(
                       source: QuranVerseSource(
-                        referenceText: 'Qur’an ${verse.surah}:${verse.ayah}',
+                        referenceText: l10n.quranReferenceViewerReferenceLabel(
+                          '${verse.surah}:${verse.ayah}',
+                        ),
                         arabicText: verse.arabicText,
                         translation: verse.translation,
                       ),
@@ -206,7 +161,7 @@ class _LearnQuranHubPageState extends ConsumerState<LearnQuranHubPage> {
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        'Key Lessons',
+                        l10n.learnQuranHubKeyLessonsTitle,
                         style: Theme.of(context).textTheme.titleSmall?.copyWith(
                           fontWeight: FontWeight.w700,
                         ),
@@ -227,7 +182,7 @@ class _LearnQuranHubPageState extends ConsumerState<LearnQuranHubPage> {
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          'Related Hadith',
+                          l10n.quranReferenceViewerRelatedHadith,
                           style: Theme.of(context).textTheme.titleSmall
                               ?.copyWith(fontWeight: FontWeight.w700),
                         ),
@@ -268,7 +223,7 @@ class _LearnQuranHubPageState extends ConsumerState<LearnQuranHubPage> {
             );
           }),
         ],
-        if (_tab == _QuranLearningTab.reflect) ...[
+        if (_tab == LearnQuranHubTab.reflect) ...[
           PremiumCard(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -305,6 +260,12 @@ class _LearnQuranHubPageState extends ConsumerState<LearnQuranHubPage> {
                       context.pushNamed('quranSurahInsightsBrowse'),
                   icon: const Icon(Icons.layers_outlined),
                   label: Text(l10n.quranSurahInsightsBrowseAction),
+                ),
+                const SizedBox(height: 8),
+                FilledButton.tonalIcon(
+                  onPressed: () => context.pushNamed('quranReflections'),
+                  icon: const Icon(Icons.bookmark_added_outlined),
+                  label: Text(l10n.quranReflectionsHubEntryTitle),
                 ),
               ],
             ),
@@ -344,7 +305,7 @@ class _LearnQuranHubPageState extends ConsumerState<LearnQuranHubPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Reflection Prompts',
+                  l10n.learnQuranHubReflectionPromptsTitle,
                   style: Theme.of(
                     context,
                   ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
@@ -364,26 +325,26 @@ class _LearnQuranHubPageState extends ConsumerState<LearnQuranHubPage> {
                     queryParameters: {'ayah': '${dailyVerse.ayah}'},
                   ),
                   icon: const Icon(Icons.menu_book_rounded),
-                  label: const Text('Read Full Context'),
+                  label: Text(l10n.learnQuranHubReadFullContextAction),
                 ),
               ],
             ),
           ),
         ],
-        if (_tab == _QuranLearningTab.paths) ...[
+        if (_tab == LearnQuranHubTab.paths) ...[
           PremiumCard(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Guided Paths',
+                  l10n.learnQuranHubTabPaths,
                   style: Theme.of(
                     context,
                   ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
                 ),
                 const SizedBox(height: 6),
                 Text(
-                  'Follow thematic pathways for focused Qur’an learning.',
+                  l10n.learnQuranHubPathsSubtitle,
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
               ],
@@ -420,7 +381,10 @@ class _LearnQuranHubPageState extends ConsumerState<LearnQuranHubPage> {
                         Text(path.description),
                         const SizedBox(height: 8),
                         Text(
-                          '$completed / ${path.verseIds.length} mastered',
+                          l10n.learnQuranHubPathProgress(
+                            completed,
+                            path.verseIds.length,
+                          ),
                           style: Theme.of(context).textTheme.bodySmall
                               ?.copyWith(color: AppColors.onSurfaceSubtle),
                         ),
@@ -446,25 +410,28 @@ class _LearnQuranHubPageState extends ConsumerState<LearnQuranHubPage> {
             );
           }),
         ],
-        if (_tab == _QuranLearningTab.memorize) ...[
+        if (_tab == LearnQuranHubTab.memorize) ...[
           PremiumCard(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Memorize',
+                  l10n.learnQuranHubTabMemorize,
                   style: Theme.of(
                     context,
                   ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
                 ),
                 const SizedBox(height: 6),
                 Text(
-                  'Use repetition, phrase practice, hidden recall, and spaced review to strengthen memorization.',
+                  l10n.learnQuranHubMemorizeSubtitle,
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
                 const SizedBox(height: 10),
                 Text(
-                  'Coverage: ${(memorizationCoverage * 100).round()}% • Due today: ${dueReviews.length}',
+                  l10n.learnQuranHubMemorizeCoverageSummary(
+                    (memorizationCoverage * 100).round(),
+                    dueReviews.length,
+                  ),
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: AppColors.onSurfaceSubtle,
                   ),
@@ -479,7 +446,7 @@ class _LearnQuranHubPageState extends ConsumerState<LearnQuranHubPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Spaced Repetition Review',
+                    l10n.learnQuranHubSpacedReviewTitle,
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       fontWeight: FontWeight.w700,
                     ),
@@ -506,10 +473,17 @@ class _LearnQuranHubPageState extends ConsumerState<LearnQuranHubPage> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('Qur’an ${verse.surah}:${verse.ayah}'),
+                            Text(
+                              l10n.quranReferenceViewerReferenceLabel(
+                                '${verse.surah}:${verse.ayah}',
+                              ),
+                            ),
                             const SizedBox(height: 4),
                             Text(
-                              'Stage: ${_stageLabel(item.stage)} • Next: ${_dateLabel(item.nextReview)}',
+                              l10n.learnQuranHubStageAndNext(
+                                _stageLabel(l10n, item.stage),
+                                _dateLabel(context, item.nextReview),
+                              ),
                               style: Theme.of(context).textTheme.bodySmall,
                             ),
                             const SizedBox(height: 8),
@@ -527,7 +501,9 @@ class _LearnQuranHubPageState extends ConsumerState<LearnQuranHubPage> {
                                         item.verseId,
                                         success: true,
                                       ),
-                                  child: const Text('Reviewed Well'),
+                                  child: Text(
+                                    l10n.learnQuranHubReviewedWellAction,
+                                  ),
                                 ),
                                 FilledButton.tonal(
                                   onPressed: () => ref
@@ -541,7 +517,9 @@ class _LearnQuranHubPageState extends ConsumerState<LearnQuranHubPage> {
                                         targetStage:
                                             MemorizationStage.repeating,
                                       ),
-                                  child: const Text('Needs Repetition'),
+                                  child: Text(
+                                    l10n.learnQuranHubNeedsRepetitionAction,
+                                  ),
                                 ),
                                 FilledButton.tonalIcon(
                                   onPressed: () => context.pushNamed(
@@ -552,7 +530,9 @@ class _LearnQuranHubPageState extends ConsumerState<LearnQuranHubPage> {
                                     queryParameters: {'ayah': '${verse.ayah}'},
                                   ),
                                   icon: const Icon(Icons.play_arrow_rounded),
-                                  label: const Text('Recite Verse'),
+                                  label: Text(
+                                    l10n.learnQuranHubReciteVerseAction,
+                                  ),
                                 ),
                               ],
                             ),
@@ -572,13 +552,19 @@ class _LearnQuranHubPageState extends ConsumerState<LearnQuranHubPage> {
               child: PremiumCard(
                 child: ListTile(
                   contentPadding: EdgeInsets.zero,
-                  title: Text('Qur’an ${verse.surah}:${verse.ayah}'),
+                  title: Text(
+                    l10n.quranReferenceViewerReferenceLabel(
+                      '${verse.surah}:${verse.ayah}',
+                    ),
+                  ),
                   subtitle: Text(
                     item == null
-                        ? 'Not started'
-                        : '${_stageLabel(item.stage)} • Next review ${_dateLabel(item.nextReview)}',
+                        ? l10n.learnQuranHubNotStarted
+                        : l10n.learnQuranHubNextReviewSummary(
+                            _stageLabel(l10n, item.stage),
+                            _dateLabel(context, item.nextReview),
+                          ),
                   ),
-                  trailing: const Icon(Icons.chevron_right_rounded),
                   onTap: () {
                     ref
                         .read(quranMemorizationProgressProvider.notifier)
@@ -600,14 +586,14 @@ class _LearnQuranHubPageState extends ConsumerState<LearnQuranHubPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Qur’an Tools',
+                l10n.learnQuranHubQuranToolsTitle,
                 style: Theme.of(
                   context,
                 ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
               ),
               const SizedBox(height: 8),
               LearnCategoryGrid(
-                items: _quranTools,
+                items: quranTools,
                 onTap: (item) => context.pushNamed(
                   item.routeName,
                   pathParameters: item.pathParameters,
@@ -621,37 +607,97 @@ class _LearnQuranHubPageState extends ConsumerState<LearnQuranHubPage> {
     );
   }
 
-  String _tabLabel(_QuranLearningTab tab) {
+  List<LearnCategoryItem> _quranTools(AppLocalizations l10n) {
+    return [
+      LearnCategoryItem(
+        id: 'quran-top-words',
+        title: l10n.quranTopWordsTitle,
+        iconKey: 'top_words',
+        routeName: 'quranTopWords',
+        searchKeywords: ['words', 'vocabulary'],
+        tags: ['quran'],
+        sectionType: 'module',
+      ),
+      LearnCategoryItem(
+        id: 'quran-word-review',
+        title: l10n.learningJourneyToolWordReviewTitle,
+        iconKey: 'word_review',
+        routeName: 'quranWordReview',
+        searchKeywords: ['word review', 'flashcards'],
+        tags: ['quran'],
+        sectionType: 'module',
+      ),
+      LearnCategoryItem(
+        id: 'quran-universe',
+        title: l10n.learningJourneyBrowseQuranUniverseTitle,
+        iconKey: 'quran_universe',
+        routeName: 'quranUniverse',
+        searchKeywords: ['quran universe', 'connections', 'themes', 'locations'],
+        tags: ['quran', 'exploration'],
+        sectionType: 'module',
+      ),
+      LearnCategoryItem(
+        id: 'quran-topics',
+        title: l10n.quranTopicsTitle,
+        iconKey: 'quran_universe',
+        routeName: 'quranTopicExplorer',
+        searchKeywords: ['topics', 'patience', 'mercy', 'justice', 'guidance'],
+        tags: ['quran', 'knowledge graph'],
+        sectionType: 'module',
+      ),
+      LearnCategoryItem(
+        id: 'quran-notes',
+        title: l10n.quranNotesTitle,
+        iconKey: 'notes',
+        routeName: 'quranNotes',
+        searchKeywords: ['notes', 'reflection'],
+        tags: ['quran'],
+        sectionType: 'module',
+      ),
+      LearnCategoryItem(
+        id: 'quran-names-of-allah',
+        title: l10n.batch9NamesOfAllahTitle,
+        iconKey: 'allah_names',
+        routeName: 'quranNamesOfAllah',
+        searchKeywords: ['99 names', 'asma ul husna', 'allah names'],
+        tags: ['quran', 'reflection'],
+        sectionType: 'module',
+      ),
+    ];
+  }
+
+  String _tabLabel(LearnQuranHubTab tab) {
+    final l10n = AppLocalizations.of(context);
     switch (tab) {
-      case _QuranLearningTab.understand:
-        return 'Understand';
-      case _QuranLearningTab.reflect:
-        return 'Reflect';
-      case _QuranLearningTab.paths:
-        return 'Paths';
-      case _QuranLearningTab.memorize:
-        return 'Memorize';
+      case LearnQuranHubTab.understand:
+        return l10n.learnQuranHubTabUnderstand;
+      case LearnQuranHubTab.reflect:
+        return l10n.learnQuranHubTabReflect;
+      case LearnQuranHubTab.paths:
+        return l10n.learnQuranHubTabPaths;
+      case LearnQuranHubTab.memorize:
+        return l10n.learnQuranHubTabMemorize;
     }
   }
 
-  String _stageLabel(MemorizationStage stage) {
+  String _stageLabel(AppLocalizations l10n, MemorizationStage stage) {
     switch (stage) {
       case MemorizationStage.newVerse:
-        return 'New Verse';
+        return l10n.learnQuranHubStageNewVerse;
       case MemorizationStage.repeating:
-        return 'Repeating';
+        return l10n.learnQuranHubStageRepeating;
       case MemorizationStage.phrasePractice:
-        return 'Phrase Practice';
+        return l10n.learnQuranHubStagePhrasePractice;
       case MemorizationStage.hiddenRecall:
-        return 'Hidden Recall';
+        return l10n.learnQuranHubStageHiddenRecall;
       case MemorizationStage.mastered:
-        return 'Mastered';
+        return l10n.learnQuranHubStageMastered;
     }
   }
 
-  String _dateLabel(DateTime date) {
+  String _dateLabel(BuildContext context, DateTime date) {
     final value = DateTime(date.year, date.month, date.day);
-    return '${value.year}-${value.month.toString().padLeft(2, '0')}-${value.day.toString().padLeft(2, '0')}';
+    return MaterialLocalizations.of(context).formatMediumDate(value);
   }
 
   Future<void> _openPathSheet(
@@ -679,9 +725,14 @@ class _LearnQuranHubPageState extends ConsumerState<LearnQuranHubPage> {
               ...verses.map(
                 (verse) => ListTile(
                   contentPadding: EdgeInsets.zero,
-                  title: Text('Qur’an ${verse.surah}:${verse.ayah}'),
+                  title: Text(
+                    AppLocalizations.of(
+                      context,
+                    ).quranReferenceViewerReferenceLabel(
+                      '${verse.surah}:${verse.ayah}',
+                    ),
+                  ),
                   subtitle: Text(verse.translation),
-                  trailing: const Icon(Icons.chevron_right_rounded),
                   onTap: () {
                     Navigator.of(sheetContext).pop();
                     context.pushNamed(

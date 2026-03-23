@@ -77,8 +77,7 @@ class DhikrSessionState {
           ? null
           : currentSessionStartedAt ?? this.currentSessionStartedAt,
       recentSessions: recentSessions ?? this.recentSessions,
-      showAntiRushReminder:
-          showAntiRushReminder ?? this.showAntiRushReminder,
+      showAntiRushReminder: showAntiRushReminder ?? this.showAntiRushReminder,
       antiRushReminderCount:
           antiRushReminderCount ?? this.antiRushReminderCount,
     );
@@ -219,6 +218,64 @@ class DhikrController extends StateNotifier<DhikrSessionState> {
         'target': completed.target,
         'phraseLabel': completed.phraseLabel,
       },
+    );
+  }
+
+  bool logLinkedSession({
+    required String phraseLabel,
+    required int count,
+    required int target,
+    required String sourceRef,
+    required DateTime occurredAt,
+    Duration duration = const Duration(seconds: 60),
+  }) {
+    if (count <= 0 || target <= 0) return false;
+
+    final safeDuration = duration.isNegative ? Duration.zero : duration;
+    final startedAt = occurredAt.subtract(safeDuration);
+    final completed = DhikrSession(
+      phraseLabel: phraseLabel,
+      count: count,
+      target: target,
+      startedAt: startedAt,
+      finishedAt: occurredAt,
+    );
+
+    state = state.copyWith(
+      recentSessions: [completed, ...state.recentSessions],
+      showAntiRushReminder: false,
+    );
+    _save();
+    _dropController.awardDhikrDrop(
+      sourceRef: sourceRef,
+      occurredAt: occurredAt,
+      completed: true,
+      metadata: <String, Object?>{
+        'target': target,
+        'phraseLabel': phraseLabel,
+        'timestamp': occurredAt.toIso8601String(),
+      },
+    );
+    _xpController.awardDhikrXp(
+      sourceRef: sourceRef,
+      occurredAt: occurredAt,
+      completed: true,
+      metadata: <String, Object?>{'target': target, 'phraseLabel': phraseLabel},
+    );
+    return true;
+  }
+
+  bool logPostSalahDhikrBundle({
+    required String sourceRef,
+    required DateTime occurredAt,
+  }) {
+    return logLinkedSession(
+      phraseLabel: 'Post-Salah Dhikr',
+      count: 100,
+      target: 100,
+      sourceRef: sourceRef,
+      occurredAt: occurredAt,
+      duration: const Duration(minutes: 2),
     );
   }
 

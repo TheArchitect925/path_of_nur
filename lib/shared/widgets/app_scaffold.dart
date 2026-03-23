@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../app/app_router.dart';
+import '../../app/nav_tabs.dart';
 import '../../core/navigation/app_navigation_gesture_config.dart';
 import '../../core/navigation/app_swipe_back_wrapper.dart';
 import '../../features/learn/quran/application/quran_providers.dart';
@@ -218,12 +219,15 @@ class AppShellScaffold extends ConsumerWidget {
     const iconColor = Color(0xFF1A1A1A);
     const subtle = Color(0xFF4A4A4A);
     final appearance = Theme.of(context).extension<AppAppearanceTheme>();
+    final localeUiFont = AppFonts.uiFontFamilyForLocale(
+      Localizations.localeOf(context),
+    );
     final textStyle = Theme.of(context).textTheme.labelMedium?.copyWith(
       color: active ? iconColor : subtle,
       fontSize: 12.7,
       fontWeight: active ? FontWeight.w800 : FontWeight.w600,
       letterSpacing: 0.2,
-      fontFamily: AppFonts.uiArabic,
+      fontFamily: localeUiFont,
       shadows: active
           ? [
               Shadow(
@@ -269,7 +273,13 @@ class AppShellScaffold extends ConsumerWidget {
                 Flexible(
                   child: FittedBox(
                     fit: BoxFit.scaleDown,
-                    child: Text(label, style: textStyle),
+                    child: Text(
+                      label,
+                      style: textStyle,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      softWrap: false,
+                    ),
                   ),
                 ),
               ],

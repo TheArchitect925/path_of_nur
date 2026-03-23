@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 
 import '../domain/kids_arabic_models.dart';
+import '../domain/kids_arabic_word_models.dart';
 
 class KidsArabicAudioService {
   KidsArabicAudioService() : _tts = FlutterTts();
@@ -19,8 +20,16 @@ class KidsArabicAudioService {
   }
 
   Future<void> speakLetter(KidsArabicLetter letter) async {
+    await speakText(letter.nameAr);
+  }
+
+  Future<void> speakWord(KidsArabicBeginnerWord word) async {
+    await speakText(word.wordAr);
+  }
+
+  Future<void> speakText(String text) async {
     await _tts.stop();
-    await _tts.speak(letter.nameAr);
+    await _tts.speak(text);
   }
 
   Future<void> dispose() async {

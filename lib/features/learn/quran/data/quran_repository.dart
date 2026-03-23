@@ -118,6 +118,8 @@ class QuranRepository {
             surah: surah,
             ayahNumber: null,
             matchText: '${surah.transliteratedName} • ${surah.englishName}',
+            arabicText: null,
+            translationText: null,
             score: score,
           ),
         );
@@ -142,6 +144,8 @@ class QuranRepository {
             surah: surah,
             ayahNumber: row.ayahNumber,
             matchText: row.translation,
+            arabicText: row.arabic,
+            translationText: row.translation,
             score: score,
           ),
         );
@@ -180,6 +184,7 @@ class QuranRepository {
           _VerseSearchRow(
             surahNumber: surah,
             ayahNumber: ayah,
+            arabic: arabic,
             translation: translated,
             searchBlob:
                 '${_normalizeForSearch(q.getSurahName(surah))} '
@@ -307,12 +312,16 @@ class QuranSearchResultData {
     required this.surah,
     required this.ayahNumber,
     required this.matchText,
+    required this.arabicText,
+    required this.translationText,
     required this.score,
   });
 
   final QuranSurah surah;
   final int? ayahNumber;
   final String matchText;
+  final String? arabicText;
+  final String? translationText;
   final int score;
 }
 
@@ -320,6 +329,7 @@ class _VerseSearchRow {
   const _VerseSearchRow({
     required this.surahNumber,
     required this.ayahNumber,
+    required this.arabic,
     required this.translation,
     required this.searchBlob,
     required this.normalizedArabic,
@@ -328,6 +338,7 @@ class _VerseSearchRow {
 
   final int surahNumber;
   final int ayahNumber;
+  final String arabic;
   final String translation;
   final String searchBlob;
   final String normalizedArabic;

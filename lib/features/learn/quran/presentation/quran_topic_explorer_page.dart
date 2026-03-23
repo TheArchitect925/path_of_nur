@@ -36,7 +36,6 @@ class QuranTopicExplorerPage extends ConsumerWidget {
                   subtitle: Text(
                     '${topic.description}\n${topic.verseReferences.length} references',
                   ),
-                  trailing: const Icon(Icons.chevron_right_rounded),
                   onTap: () => context.pushNamed(
                     'quranTopicDetail',
                     pathParameters: {'topicId': topic.id},
@@ -102,7 +101,6 @@ class _TopicDetail extends ConsumerWidget {
                 contentPadding: EdgeInsets.zero,
                 title: Text('Qur’an ${reference.referenceLabel}'),
                 subtitle: Text(reference.contextSummary),
-                trailing: const Icon(Icons.open_in_new_rounded),
                 onTap: () => openQuranAt(
                   context,
                   surahNumber: reference.surahNumber,

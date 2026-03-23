@@ -12,6 +12,8 @@ Last updated: 2026-03-17
   - `GrowthHomePage`
 - additional routes:
   - growth today/reflection/journey/habits
+  - growth statistics
+  - growth browse all
   - path detail
   - habit detail
   - ocean drops

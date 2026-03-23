@@ -16,11 +16,46 @@ import 'bedtime_story_cover_card.dart';
 import 'bedtime_story_mini_player.dart';
 
 class KidsStoryLibraryPage extends ConsumerWidget {
-  const KidsStoryLibraryPage({super.key});
+  const KidsStoryLibraryPage({super.key, this.initialCollectionId});
+
+  final String? initialCollectionId;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
+    final selectedCollection = _collectionFromId(initialCollectionId);
+    if (selectedCollection != null) {
+      final stories = ref.watch(kidsStoriesByCollectionProvider(selectedCollection));
+      final seerahJourney = ref.watch(featuredKidsSeerahJourneyProvider);
+      return LearnHubPageScaffold(
+        headerIcon: Icons.auto_stories_rounded,
+        title: _collectionTitle(l10n, selectedCollection),
+        subtitle: _collectionSubtitle(l10n, selectedCollection),
+        floatingBottom: const BedtimeStoryMiniPlayer(),
+        children: [
+          _HeroCard(
+            title: _collectionTitle(l10n, selectedCollection),
+            subtitle: _collectionSubtitle(l10n, selectedCollection),
+          ),
+          if (selectedCollection == KidsIslamicStoryCollectionType.prophets &&
+              seerahJourney != null) ...[
+            const SizedBox(height: 12),
+            _JourneyCard(
+              title: l10n.kidsSeerahFeaturedJourneyTitle,
+              subtitle: l10n.kidsSeerahFeaturedJourneySubtitle,
+              journeyId: seerahJourney.journeyId,
+            ),
+          ],
+          const SizedBox(height: 18),
+          ...stories.map(
+            (story) => Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: _StoryListTile(story: story),
+            ),
+          ),
+        ],
+      );
+    }
     final featured = ref.watch(featuredKidsStoryProvider);
     final continueStory = ref.watch(continueKidsStoryProvider);
     final bedtimeStories = ref.watch(bedtimeEligibleStoriesProvider);
@@ -137,6 +172,69 @@ class KidsStoryLibraryPage extends ConsumerWidget {
         ),
       ],
     );
+  }
+
+  KidsIslamicStoryCollectionType? _collectionFromId(String? value) {
+    switch (value) {
+      case 'prophets':
+        return KidsIslamicStoryCollectionType.prophets;
+      case 'companions':
+        return KidsIslamicStoryCollectionType.companions;
+      case 'character-adab':
+        return KidsIslamicStoryCollectionType.characterAdab;
+      case 'daily-life-duas':
+        return KidsIslamicStoryCollectionType.dailyLifeDuas;
+      case 'ramadan-eid':
+        return KidsIslamicStoryCollectionType.ramadanEid;
+      case 'family-kindness':
+        return KidsIslamicStoryCollectionType.familyKindness;
+      default:
+        return null;
+    }
+  }
+
+  String _collectionTitle(
+    AppLocalizations l10n,
+    KidsIslamicStoryCollectionType type,
+  ) {
+    switch (type) {
+      case KidsIslamicStoryCollectionType.prophets:
+        return l10n.kidsStoryCollectionProphets;
+      case KidsIslamicStoryCollectionType.companions:
+        return l10n.kidsStoryCollectionCompanions;
+      case KidsIslamicStoryCollectionType.characterAdab:
+        return l10n.kidsStoryCollectionCharacterAdab;
+      case KidsIslamicStoryCollectionType.dailyLifeDuas:
+        return l10n.kidsStoryCollectionDailyLife;
+      case KidsIslamicStoryCollectionType.ramadanEid:
+        return l10n.kidsStoryCollectionRamadanEid;
+      case KidsIslamicStoryCollectionType.familyKindness:
+        return l10n.kidsStoryCollectionFamilyKindness;
+      case KidsIslamicStoryCollectionType.bedtime:
+        return l10n.kidsStoryBedtimeEligibleTitle;
+    }
+  }
+
+  String _collectionSubtitle(
+    AppLocalizations l10n,
+    KidsIslamicStoryCollectionType type,
+  ) {
+    switch (type) {
+      case KidsIslamicStoryCollectionType.prophets:
+        return l10n.kidsStoryCollectionProphetsSubtitle;
+      case KidsIslamicStoryCollectionType.companions:
+        return l10n.kidsStoryCollectionCompanionsSubtitle;
+      case KidsIslamicStoryCollectionType.characterAdab:
+        return l10n.kidsStoryCollectionCharacterAdabSubtitle;
+      case KidsIslamicStoryCollectionType.dailyLifeDuas:
+        return l10n.kidsStoryCollectionDailyLifeSubtitle;
+      case KidsIslamicStoryCollectionType.ramadanEid:
+        return l10n.kidsStoryCollectionRamadanEidSubtitle;
+      case KidsIslamicStoryCollectionType.familyKindness:
+        return l10n.kidsStoryCollectionFamilyKindnessSubtitle;
+      case KidsIslamicStoryCollectionType.bedtime:
+        return l10n.kidsStoryBedtimeEligibleSubtitle;
+    }
   }
 }
 

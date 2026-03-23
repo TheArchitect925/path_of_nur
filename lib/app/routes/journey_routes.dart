@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../features/journey/presentation/growth_habit_calendar_page.dart';
 import '../../features/journey/presentation/growth_habit_dashboard_page.dart';
+import '../../features/journey/presentation/growth_browse_all_page.dart';
 import '../../features/journey/presentation/growth_habit_detail_page.dart';
 import '../../features/journey/presentation/growth_habits_page.dart';
 import '../../features/journey/presentation/growth_habit_settings_page.dart';
@@ -88,10 +89,22 @@ List<RouteBase> buildJourneyRoutes() {
           const MaterialPage(child: GrowthHabitsPage()),
     ),
     GoRoute(
-      path: '/journey/tracking',
-      name: 'growthTrackingDashboard',
+      path: '/journey/statistics',
+      name: 'growthStatisticsPage',
       pageBuilder: (context, state) =>
           const MaterialPage(child: GrowthTrackingDashboardPage()),
+    ),
+    GoRoute(
+      path: '/journey/tracking',
+      name: 'growthTrackingDashboard',
+      redirect: (context, state) =>
+          _redirectWithQuery('/journey/statistics', state),
+    ),
+    GoRoute(
+      path: '/journey/browse',
+      name: 'growthBrowseAllPage',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: GrowthBrowseAllPage()),
     ),
     GoRoute(
       path: '/journey/tracking/habits',
@@ -114,14 +127,12 @@ List<RouteBase> buildJourneyRoutes() {
     GoRoute(
       path: '/journey/garden',
       name: 'gardenPage',
-      pageBuilder: (context, state) =>
-          const MaterialPage(child: GardenPage()),
+      pageBuilder: (context, state) => const MaterialPage(child: GardenPage()),
     ),
     GoRoute(
       path: '/growth/today',
       name: 'growthTodayAlias',
-      redirect: (context, state) =>
-          _redirectWithQuery('/journey/today', state),
+      redirect: (context, state) => _redirectWithQuery('/journey/today', state),
     ),
     GoRoute(
       path: '/growth/reflection',
@@ -157,12 +168,10 @@ List<RouteBase> buildJourneyRoutes() {
     GoRoute(
       path: '/growth/habit/:habitId',
       name: 'growthHabitAlias',
-      pageBuilder: (context, state) {
-        final habitId = state.pathParameters['habitId'] ?? '';
-        return MaterialPage(
-          child: GrowthHabitDetailPage(habitId: habitId),
-        );
-      },
+      redirect: (context, state) => _redirectWithQuery(
+        '/journey/habit/${state.pathParameters['habitId'] ?? ''}',
+        state,
+      ),
     ),
     GoRoute(
       path: '/journey/path/:pathId',

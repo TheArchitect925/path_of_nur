@@ -7,7 +7,9 @@ import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/quran_navigation.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../application/quran_ayah_enrichment_provider.dart';
+import '../application/quran_learning_personalization_provider.dart';
 import '../domain/quran_ayah_enrichment_models.dart';
+import 'widgets/quran_learning_personalization_section.dart';
 
 class QuranAyahInsightsBrowsePage extends ConsumerStatefulWidget {
   const QuranAyahInsightsBrowsePage({super.key});
@@ -26,7 +28,10 @@ class _QuranAyahInsightsBrowsePageState
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    final categories = ref.watch(quranAyahEnrichmentBrowseCategoriesProvider);
+    final languageCode = Localizations.localeOf(context).languageCode;
+    final categories = ref.watch(
+      quranAyahEnrichmentBrowseCategoriesForLanguageProvider(languageCode),
+    );
     final availableTags = ref.watch(quranAyahEnrichmentBrowseTagsProvider);
     final filteredCategories = categories
         .where((category) {
@@ -66,6 +71,8 @@ class _QuranAyahInsightsBrowsePageState
         if (categories.isEmpty)
           PremiumCard(child: Text(l10n.quranAyahInsightsBrowseEmpty))
         else ...[
+          const QuranLearningPersonalizationSection(),
+          const SizedBox(height: 10),
           PremiumCard(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -199,16 +206,22 @@ class _QuranAyahInsightsBrowsePageState
                     subtitle: Text(
                       '${_subtitleForCategory(l10n, category.id)}\n${l10n.quranAyahInsightsBrowseCount(category.count)}',
                     ),
-                    trailing: const Icon(Icons.chevron_right_rounded),
-                    onTap: () => context.pushNamed(
-                      'quranAyahInsightsDomain',
-                      pathParameters: {'domainId': category.id},
-                      queryParameters: {
-                        if (_selectedTag != null) 'tag': _selectedTag!.name,
-                        if (_selectedLessonType != null)
-                          'lessonType': _selectedLessonType!.name,
-                      },
-                    ),
+                    onTap: () {
+                      ref
+                          .read(
+                            quranLearningPersonalizationStateProvider.notifier,
+                          )
+                          .markDomainOpened(category.id);
+                      context.pushNamed(
+                        'quranAyahInsightsDomain',
+                        pathParameters: {'domainId': category.id},
+                        queryParameters: {
+                          if (_selectedTag != null) 'tag': _selectedTag!.name,
+                          if (_selectedLessonType != null)
+                            'lessonType': _selectedLessonType!.name,
+                        },
+                      );
+                    },
                   ),
                 ),
               ),
@@ -227,8 +240,12 @@ class QuranAyahInsightsDomainPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
+    final languageCode = Localizations.localeOf(context).languageCode;
     final category = ref.watch(
-      quranAyahEnrichmentBrowseCategoryProvider(domainId),
+      quranAyahEnrichmentBrowseCategoryForLanguageProvider((
+        domainId,
+        languageCode,
+      )),
     );
 
     if (category == null) {
@@ -323,8 +340,14 @@ class QuranAyahInsightsDomainPage extends ConsumerWidget {
                   trailing: entry.cautionLevel != QuranAyahCautionLevel.none
                       ? const Icon(Icons.info_outline_rounded)
                       : const Icon(Icons.chevron_right_rounded),
-                  onTap: () =>
-                      openQuranReferenceLocation(context, ref: entry.ref),
+                  onTap: () {
+                    ref
+                        .read(
+                          quranLearningPersonalizationStateProvider.notifier,
+                        )
+                        .markDomainOpened(category.id);
+                    openQuranReferenceLocation(context, ref: entry.ref);
+                  },
                 ),
               ),
             ),

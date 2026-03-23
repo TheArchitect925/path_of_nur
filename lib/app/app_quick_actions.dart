@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:quick_actions/quick_actions.dart';
 
 import 'app_router.dart';
+import 'nav_tabs.dart';
 
 const _qaOpenToday = 'growth.open_today';
 const _qaOpenReflection = 'growth.open_reflection';

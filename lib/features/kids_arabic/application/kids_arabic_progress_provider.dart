@@ -12,6 +12,7 @@ import 'kids_arabic_daily_mission_service.dart';
 import 'kids_arabic_progression.dart';
 import 'kids_arabic_starter_tracing.dart';
 import 'kids_arabic_tracing_engine.dart';
+import 'kids_arabic_vector_tracing.dart';
 import '../data/kids_arabic_letters_data.dart';
 import '../domain/kids_arabic_models.dart';
 
@@ -92,7 +93,9 @@ class KidsArabicProgressNotifier
       _activeLearnerId = _ref.read(kidsArabicActiveLearnerProvider).learnerId,
       super(
         KidsArabicProgressState.fromJson(
-          _ref.read(localStoreProvider).getJsonMap(
+          _ref
+              .read(localStoreProvider)
+              .getJsonMap(
                 kidsArabicProgressStorageKeyForLearner(
                   _ref.read(kidsArabicActiveLearnerProvider).learnerId,
                 ),
@@ -215,7 +218,9 @@ class KidsArabicProgressNotifier
     final streak = _nextStreak(dayKey);
     final reward = firstMeaningfulCompletion
         ? _ref
-              .read(learnerProgressionControllerProvider(_activeLearnerId).notifier)
+              .read(
+                learnerProgressionControllerProvider(_activeLearnerId).notifier,
+              )
               .award(
                 sourceRef: 'kids_arabic_lesson:${letter.id}:complete',
                 activityType:
@@ -230,7 +235,8 @@ class KidsArabicProgressNotifier
                   'traceResult': traceResult.name,
                 },
                 mirrorToJourney: _shouldMirrorRewardsToJourney(),
-                incrementLearningStageCompletion: _shouldMirrorRewardsToJourney(),
+                incrementLearningStageCompletion:
+                    _shouldMirrorRewardsToJourney(),
               )
         : const LearnerProgressionAwardResult(
             awardedXp: 0,
@@ -241,20 +247,22 @@ class KidsArabicProgressNotifier
             leveledUp: false,
           );
     if (firstMeaningfulCompletion) {
-      _ref.read(kidsActivityLogProvider.notifier).log(
-        type: KidsActivityType.arabicLetterCompleted,
-        domain: KidsActivityDomain.arabic,
-        sourceRef: 'kids_arabic_lesson_complete:${letter.id}',
-        contentId: letter.id,
-        titleSnapshot: letter.nameEn,
-        subtitleSnapshot: letter.childFriendlyLine,
-        occurredAt: now,
-        metadata: <String, Object?>{
-          'feature': 'kids_arabic',
-          'letterId': letter.id,
-          'traceResult': traceResult.name,
-        },
-      );
+      _ref
+          .read(kidsActivityLogProvider.notifier)
+          .log(
+            type: KidsActivityType.arabicLetterCompleted,
+            domain: KidsActivityDomain.arabic,
+            sourceRef: 'kids_arabic_lesson_complete:${letter.id}',
+            contentId: letter.id,
+            titleSnapshot: letter.nameEn,
+            subtitleSnapshot: letter.childFriendlyLine,
+            occurredAt: now,
+            metadata: <String, Object?>{
+              'feature': 'kids_arabic',
+              'letterId': letter.id,
+              'traceResult': traceResult.name,
+            },
+          );
     }
 
     state = state.copyWith(
@@ -330,21 +338,23 @@ class KidsArabicProgressNotifier
     );
     if (result != null) {
       final letter = letterById(targetLetterId);
-      _ref.read(kidsActivityLogProvider.notifier).log(
-        type: KidsActivityType.arabicReviewCompleted,
-        domain: KidsActivityDomain.arabic,
-        sourceRef:
-            'kids_arabic_review:${LocalStore.todayKey(_ref.read(kidsArabicNowProvider)())}:$targetLetterId',
-        contentId: targetLetterId,
-        titleSnapshot: letter?.nameEn,
-        subtitleSnapshot: letter?.childFriendlyLine,
-        occurredAt: _ref.read(kidsArabicNowProvider)(),
-        dedupeWindow: const Duration(minutes: 1),
-        metadata: <String, Object?>{
-          'feature': 'kids_arabic_review',
-          'letterId': targetLetterId,
-        },
-      );
+      _ref
+          .read(kidsActivityLogProvider.notifier)
+          .log(
+            type: KidsActivityType.arabicReviewCompleted,
+            domain: KidsActivityDomain.arabic,
+            sourceRef:
+                'kids_arabic_review:${LocalStore.todayKey(_ref.read(kidsArabicNowProvider)())}:$targetLetterId',
+            contentId: targetLetterId,
+            titleSnapshot: letter?.nameEn,
+            subtitleSnapshot: letter?.childFriendlyLine,
+            occurredAt: _ref.read(kidsArabicNowProvider)(),
+            dedupeWindow: const Duration(minutes: 1),
+            metadata: <String, Object?>{
+              'feature': 'kids_arabic_review',
+              'letterId': targetLetterId,
+            },
+          );
     }
     if (result != null) {
       _save();
@@ -469,27 +479,29 @@ class KidsArabicProgressNotifier
       isCompleted: true,
       completedAt: now.toIso8601String(),
     );
-    _ref.read(kidsActivityLogProvider.notifier).log(
-      type: KidsActivityType.arabicDailyMissionCompleted,
-      domain: KidsActivityDomain.arabic,
-      sourceRef: 'kids_arabic_daily:${mission.id}',
-      contentId: mission.targetLetterId,
-      titleSnapshot: letterById(mission.targetLetterId)?.nameEn,
-      subtitleSnapshot:
-          letterById(mission.targetLetterId)?.childFriendlyLine,
-      occurredAt: now,
-      metadata: <String, Object?>{
-        'feature': 'kids_arabic_daily',
-        'missionId': mission.id,
-        'missionType': mission.type.name,
-        'targetLetterId': mission.targetLetterId,
-      },
-    );
+    _ref
+        .read(kidsActivityLogProvider.notifier)
+        .log(
+          type: KidsActivityType.arabicDailyMissionCompleted,
+          domain: KidsActivityDomain.arabic,
+          sourceRef: 'kids_arabic_daily:${mission.id}',
+          contentId: mission.targetLetterId,
+          titleSnapshot: letterById(mission.targetLetterId)?.nameEn,
+          subtitleSnapshot: letterById(
+            mission.targetLetterId,
+          )?.childFriendlyLine,
+          occurredAt: now,
+          metadata: <String, Object?>{
+            'feature': 'kids_arabic_daily',
+            'missionId': mission.id,
+            'missionType': mission.type.name,
+            'targetLetterId': mission.targetLetterId,
+          },
+        );
     state = state.copyWith(
       dailyMission: completedMission,
       dailyProgress: update.progress,
-      totalFeatureXpAwarded:
-          state.totalFeatureXpAwarded + reward.awardedXp,
+      totalFeatureXpAwarded: state.totalFeatureXpAwarded + reward.awardedXp,
       totalFeatureDropsAwarded:
           state.totalFeatureDropsAwarded + reward.awardedDrops,
     );
@@ -517,6 +529,15 @@ KidsArabicTraceResult scoreKidsArabicTrace({
   required KidsArabicLetter letter,
   required KidsArabicTraceMetrics metrics,
 }) {
+  if (kidsArabicSupportsVectorTracing(letter.id)) {
+    final vectorLetter = kidsArabicVectorTraceLetterFor(letter.id);
+    if (vectorLetter != null) {
+      return scoreKidsArabicTraceWithVectorLetter(
+        metrics: metrics,
+        letter: vectorLetter,
+      );
+    }
+  }
   return scoreKidsArabicTraceWithGuide(
     metrics: metrics,
     guide: kidsArabicTracingGuideFor(letter.id),

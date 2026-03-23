@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 
 import '../../../../l10n/app_localizations.dart';
+import 'learning_journey_runtime_localizations.dart';
 import '../domain/learning_journey_models.dart';
 import 'learning_journey_lesson_content.dart';
 
@@ -35,6 +36,7 @@ String localizedJourneyTitle(BuildContext context, LearningJourney journey) {
     'ramadan-foundations' => l10n.learningJourneyRamadanFoundationsTitle,
     'arabic-alphabet' => l10n.learningJourneyArabicAlphabetTitle,
     'reading-basics' => l10n.learningJourneyReadingBasicsTitle,
+    'tajweed-basics' => l10n.learningJourneyTajweedBasicsTitle,
     'trivia-knowledge-paths' => l10n.learningJourneyTriviaPathsTitle,
     'beautiful-character' => l10n.learningJourneyBeautifulCharacterTitle,
     _ => journey.title,
@@ -64,6 +66,7 @@ String localizedJourneySubtitle(BuildContext context, LearningJourney journey) {
     'ramadan-foundations' => l10n.learningJourneyRamadanFoundationsSubtitle,
     'arabic-alphabet' => l10n.learningJourneyArabicAlphabetSubtitle,
     'reading-basics' => l10n.learningJourneyReadingBasicsSubtitle,
+    'tajweed-basics' => l10n.learningJourneyTajweedBasicsSubtitle,
     'trivia-knowledge-paths' => l10n.learningJourneyTriviaPathsSubtitle,
     'beautiful-character' => l10n.learningJourneyBeautifulCharacterSubtitle,
     _ => journey.subtitle,
@@ -96,6 +99,7 @@ String localizedJourneyDescription(
     'ramadan-foundations' => l10n.learningJourneyRamadanFoundationsDescription,
     'arabic-alphabet' => l10n.learningJourneyArabicAlphabetDescription,
     'reading-basics' => l10n.learningJourneyReadingBasicsDescription,
+    'tajweed-basics' => l10n.learningJourneyTajweedBasicsDescription,
     'trivia-knowledge-paths' => l10n.learningJourneyTriviaPathsDescription,
     'beautiful-character' => l10n.learningJourneyBeautifulCharacterDescription,
     _ => journey.description,
@@ -195,6 +199,11 @@ List<String> localizedJourneyLearningOutcomes(
       l10n.learningJourneyReadingBasicsOutcome2,
       l10n.learningJourneyReadingBasicsOutcome3,
     ],
+    'tajweed-basics' => <String>[
+      l10n.learningJourneyTajweedBasicsOutcome1,
+      l10n.learningJourneyTajweedBasicsOutcome2,
+      l10n.learningJourneyTajweedBasicsOutcome3,
+    ],
     'trivia-knowledge-paths' => <String>[
       l10n.learningJourneyTriviaPathsOutcome1,
       l10n.learningJourneyTriviaPathsOutcome2,
@@ -233,6 +242,7 @@ String? localizedJourneyWhyThisMatters(
       l10n.learningJourneyRamadanFoundationsWhyThisMatters,
     'arabic-alphabet' => l10n.learningJourneyArabicAlphabetWhyThisMatters,
     'reading-basics' => l10n.learningJourneyReadingBasicsWhyThisMatters,
+    'tajweed-basics' => l10n.learningJourneyTajweedBasicsWhyThisMatters,
     'trivia-knowledge-paths' => l10n.learningJourneyTriviaPathsWhyThisMatters,
     'beautiful-character' =>
       l10n.learningJourneyBeautifulCharacterWhyThisMatters,
@@ -310,14 +320,15 @@ String localizedIslandSubtitle(
 
 String localizedIslandDescription(
   BuildContext context,
-  LearningJourneyIsland island,
-  {bool kidsMode = false}
-) {
+  LearningJourneyIsland island, {
+  bool kidsMode = false,
+}) {
   final l10n = AppLocalizations.of(context);
   return switch (island.id) {
-    'core-knowledge' => kidsMode
-        ? l10n.learningJourneyIslandCoreKnowledgeDescriptionKids
-        : l10n.learningJourneyIslandCoreKnowledgeDescription,
+    'core-knowledge' =>
+      kidsMode
+          ? l10n.learningJourneyIslandCoreKnowledgeDescriptionKids
+          : l10n.learningJourneyIslandCoreKnowledgeDescription,
     'practice-worship' => l10n.learningJourneyIslandPracticeWorshipDescription,
     'understanding-islam' =>
       l10n.learningJourneyIslandUnderstandingIslamDescription,
@@ -431,6 +442,9 @@ String localizedStageTitle(BuildContext context, LearningJourneyStage stage) {
       l10n.learningJourneyStageReadingJoiningLettersTitle,
     'reading-basics-checkpoint' =>
       l10n.learningJourneyStageReadingCheckpointTitle,
+    'tajweed-intro' => l10n.learningJourneyStageTajweedIntroTitle,
+    'tajweed-makharij' => l10n.learningJourneyStageTajweedMakharijTitle,
+    'tajweed-application' => l10n.learningJourneyStageTajweedApplicationTitle,
     'trivia-paths' => l10n.learningJourneyStageTriviaPathsTitle,
     'trivia-session' => l10n.learningJourneyStageTriviaSessionTitle,
     'trivia-review' => l10n.learningJourneyStageTriviaReviewTitle,
@@ -551,6 +565,9 @@ String localizedStageSummary(BuildContext context, LearningJourneyStage stage) {
       l10n.learningJourneyStageReadingJoiningLettersSummary,
     'reading-basics-checkpoint' =>
       l10n.learningJourneyStageReadingCheckpointSummary,
+    'tajweed-intro' => l10n.learningJourneyStageTajweedIntroSummary,
+    'tajweed-makharij' => l10n.learningJourneyStageTajweedMakharijSummary,
+    'tajweed-application' => l10n.learningJourneyStageTajweedApplicationSummary,
     'trivia-paths' => l10n.learningJourneyStageTriviaPathsSummary,
     'trivia-session' => l10n.learningJourneyStageTriviaSessionSummary,
     'trivia-review' => l10n.learningJourneyStageTriviaReviewSummary,

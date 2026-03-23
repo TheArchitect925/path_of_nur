@@ -42,6 +42,7 @@ class JourneyXpController extends StateNotifier<XpSummary> {
     bool onTime = false,
     bool allFiveCompleted = false,
     bool inCongregation = false,
+    bool inMasjid = false,
     bool isJumuah = false,
     bool eligibleForLaylatAlQadrMultiplier = false,
   }) {
@@ -57,6 +58,7 @@ class JourneyXpController extends StateNotifier<XpSummary> {
       onTime: onTime,
       allFiveCompleted: allFiveCompleted,
       inCongregation: inCongregation,
+      inMasjid: inMasjid,
       isJumuah: isJumuah,
     );
     if (entries.isNotEmpty) refresh();

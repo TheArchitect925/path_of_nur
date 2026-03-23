@@ -4,11 +4,16 @@ import 'package:go_router/go_router.dart';
 
 import '../../../l10n/app_localizations.dart';
 import '../../learn/presentation/widgets/learn_hub_page_scaffold.dart';
+import '../application/kids_arabic_achievements_provider.dart';
+import '../application/kids_arabic_mastery_provider.dart';
+import '../application/kids_arabic_practice_provider.dart';
 import '../application/kids_arabic_progression.dart';
+import '../application/kids_arabic_words_provider.dart';
 import '../application/kids_arabic_coloring_provider.dart';
 import '../application/kids_arabic_parent_provider.dart';
 import '../application/kids_arabic_progress_provider.dart';
 import '../application/kids_arabic_daily_mission_service.dart';
+import '../domain/kids_arabic_achievement_models.dart';
 import '../domain/kids_arabic_models.dart';
 import 'kids_arabic_localized_content.dart';
 
@@ -32,6 +37,16 @@ class KidsArabicHomePage extends ConsumerWidget {
     final unlockedLetterIds = ref.watch(kidsArabicUnlockedLetterIdsProvider);
     final unlockedColoringPages = ref.watch(
       kidsArabicUnlockedColoringPagesCountProvider,
+    );
+    final masterySummary = ref.watch(kidsArabicMasterySummaryProvider);
+    final masteryRecommendation = ref.watch(
+      kidsArabicMasteryRecommendationProvider,
+    );
+    final achievementSummary = ref.watch(kidsArabicAchievementSummaryProvider);
+    final practicePlan = ref.watch(kidsArabicPracticePlanProvider);
+    final nextWord = ref.watch(kidsArabicNextRecommendedWordProvider);
+    final completedWordsCount = ref.watch(
+      kidsArabicCompletedWordsCountProvider,
     );
     final notifier = ref.read(kidsArabicProgressProvider.notifier);
     final guidedLetter = parentActivity == null
@@ -74,6 +89,24 @@ class KidsArabicHomePage extends ConsumerWidget {
           const SizedBox(height: 12),
         ],
         _KidsArabicSummaryCard(progress: progress),
+        const SizedBox(height: 12),
+        _PracticeLoopCard(plan: practicePlan),
+        const SizedBox(height: 12),
+        _MasterySnapshotCard(
+          summary: masterySummary,
+          recommendation: masteryRecommendation,
+        ),
+        const SizedBox(height: 12),
+        _AchievementsCard(
+          summary: achievementSummary,
+          recommendation: masteryRecommendation,
+        ),
+        const SizedBox(height: 12),
+        _BeginnerWordsCard(
+          nextWordId: nextWord?.id,
+          nextWordAr: nextWord?.wordAr,
+          completedWordsCount: completedWordsCount,
+        ),
         const SizedBox(height: 12),
         if (progress.totalLessonsDone > 0) ...[
           _FamilySummaryCard(summary: parentSummary),
@@ -145,6 +178,9 @@ class KidsArabicHomePage extends ConsumerWidget {
               .map(
                 (letter) => _GlyphButton(
                   letter: letter,
+                  practicing:
+                      unlockedLetterIds.contains(letter.id) &&
+                      !progress.completedLetterIds.contains(letter.id),
                   completed:
                       (progress
                               .progressByLetterId[letter.id]
@@ -536,6 +572,412 @@ class _ActionRowItem {
   final VoidCallback onTap;
 }
 
+class _AchievementsCard extends StatelessWidget {
+  const _AchievementsCard({
+    required this.summary,
+    required this.recommendation,
+  });
+
+  final KidsArabicAchievementSummary summary;
+  final KidsArabicMasteryRecommendation? recommendation;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final latest = summary.latestAchievement;
+    final nextStep = switch (recommendation?.type) {
+      KidsArabicMasteryRecommendationType.reviewLetter =>
+        l10n.kidsArabicMasteryReviewLetterTitle(recommendation!.letter.nameAr),
+      KidsArabicMasteryRecommendationType.continueSequence =>
+        l10n.kidsArabicMasteryContinueLetterTitle(
+          recommendation!.letter.nameAr,
+        ),
+      KidsArabicMasteryRecommendationType.celebrateProgress =>
+        l10n.kidsArabicMasteryCelebrateTitle,
+      null => l10n.kidsArabicPracticeTitle,
+    };
+    return InkWell(
+      onTap: () => context.pushNamed('kidsArabicRewards'),
+      borderRadius: BorderRadius.circular(22),
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: const Color(0xFFFFF4EA),
+          borderRadius: BorderRadius.circular(22),
+          border: Border.all(color: const Color(0xFFE7D6C0)),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              l10n.kidsArabicAchievementsHomeTitle,
+              style: const TextStyle(
+                fontWeight: FontWeight.w700,
+                color: Color(0xFF2E261F),
+              ),
+            ),
+            const SizedBox(height: 6),
+            Text(
+              latest == null
+                  ? l10n.kidsArabicAchievementsHomeEmptyTitle
+                  : localizedKidsArabicAchievementTitle(l10n, latest),
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w700,
+                color: Color(0xFF8A6C49),
+              ),
+            ),
+            const SizedBox(height: 6),
+            Text(
+              latest == null
+                  ? l10n.kidsArabicAchievementsHomeEmptySubtitle
+                  : localizedKidsArabicAchievementSubtitle(l10n, latest),
+              style: const TextStyle(color: Color(0xFF675B4E), height: 1.35),
+            ),
+            const SizedBox(height: 12),
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: [
+                _SummaryPill(
+                  label: l10n.kidsArabicBadgesUnlockedValue(
+                    summary.badgesUnlocked,
+                  ),
+                ),
+                _SummaryPill(
+                  label: l10n.kidsArabicMilestonesUnlockedValue(
+                    summary.milestonesUnlocked,
+                  ),
+                ),
+                _SummaryPill(
+                  label: l10n.kidsArabicWordsCompletedValue(
+                    summary.wordsCompleted,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 12),
+            Text(
+              l10n.kidsArabicAchievementsNextStepLabel(nextStep),
+              style: const TextStyle(
+                fontWeight: FontWeight.w700,
+                color: Color(0xFF5D4A36),
+              ),
+            ),
+            const SizedBox(height: 8),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: TextButton(
+                onPressed: () => context.pushNamed('kidsArabicRewards'),
+                child: Text(l10n.kidsArabicAchievementsOpenAction),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _MasterySnapshotCard extends StatelessWidget {
+  const _MasterySnapshotCard({
+    required this.summary,
+    required this.recommendation,
+  });
+
+  final KidsArabicMasterySummary summary;
+  final KidsArabicMasteryRecommendation? recommendation;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final title = switch (recommendation?.type) {
+      KidsArabicMasteryRecommendationType.reviewLetter =>
+        l10n.kidsArabicMasteryReviewLetterTitle(recommendation!.letter.nameAr),
+      KidsArabicMasteryRecommendationType.continueSequence =>
+        l10n.kidsArabicMasteryContinueLetterTitle(
+          recommendation!.letter.nameAr,
+        ),
+      KidsArabicMasteryRecommendationType.celebrateProgress =>
+        l10n.kidsArabicMasteryCelebrateTitle,
+      null => l10n.kidsArabicMasteryMapTitle,
+    };
+    final subtitle = switch (recommendation?.type) {
+      KidsArabicMasteryRecommendationType.reviewLetter =>
+        l10n.kidsArabicMasteryReviewLetterBody,
+      KidsArabicMasteryRecommendationType.continueSequence =>
+        l10n.kidsArabicMasteryContinueLetterBody,
+      KidsArabicMasteryRecommendationType.celebrateProgress =>
+        l10n.kidsArabicMasteryCelebrateBody(recommendation!.letter.nameAr),
+      null => l10n.kidsArabicMasteryHomeSubtitle,
+    };
+    return InkWell(
+      onTap: () => context.pushNamed('kidsArabicProgressMap'),
+      borderRadius: BorderRadius.circular(22),
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: const Color(0xFFF1F8EF),
+          borderRadius: BorderRadius.circular(22),
+          border: Border.all(color: const Color(0xFFD5E6CF)),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              l10n.kidsArabicMasteryHomeTitle,
+              style: const TextStyle(
+                fontWeight: FontWeight.w700,
+                color: Color(0xFF2E261F),
+              ),
+            ),
+            const SizedBox(height: 6),
+            Text(
+              title,
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w700,
+                color: Color(0xFF52713A),
+              ),
+            ),
+            const SizedBox(height: 6),
+            Text(
+              subtitle,
+              style: const TextStyle(color: Color(0xFF5A6A4A), height: 1.35),
+            ),
+            const SizedBox(height: 12),
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: [
+                _SummaryPill(
+                  label: l10n.kidsArabicLettersCompletedValue(
+                    summary.completedCount,
+                  ),
+                ),
+                _SummaryPill(
+                  label: l10n.kidsArabicMasteryPracticingCountValue(
+                    summary.practicingCount,
+                  ),
+                ),
+                _SummaryPill(
+                  label: l10n.kidsArabicMasteryReviewCountValue(
+                    summary.reviewCount,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 12),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: TextButton(
+                onPressed: () => context.pushNamed('kidsArabicProgressMap'),
+                child: Text(l10n.kidsArabicMasteryOpenMapAction),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _PracticeLoopCard extends StatelessWidget {
+  const _PracticeLoopCard({required this.plan});
+
+  final KidsArabicPracticePlan plan;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final title = switch (plan.primaryFocus?.type) {
+      KidsArabicPracticeFocusType.dailyNewLetter =>
+        l10n.kidsArabicPracticeDailyNewLetterTitle(
+          plan.primaryFocus!.letter!.nameAr,
+        ),
+      KidsArabicPracticeFocusType.dailyReviewLetter =>
+        l10n.kidsArabicPracticeDailyReviewTitle(
+          plan.primaryFocus!.letter!.nameAr,
+        ),
+      KidsArabicPracticeFocusType.dailyTraceLetter =>
+        l10n.kidsArabicPracticeDailyTraceTitle(
+          plan.primaryFocus!.letter!.nameAr,
+        ),
+      KidsArabicPracticeFocusType.continueLetter =>
+        l10n.kidsArabicPracticeContinueLetterTitle(
+          plan.primaryFocus!.letter!.nameAr,
+        ),
+      KidsArabicPracticeFocusType.continueWord =>
+        l10n.kidsArabicPracticeContinueWordTitle(
+          plan.primaryFocus!.word!.wordAr,
+        ),
+      KidsArabicPracticeFocusType.reviewLetter =>
+        l10n.kidsArabicPracticeReviewLetterTitle(
+          plan.primaryFocus!.letter!.nameAr,
+        ),
+      KidsArabicPracticeFocusType.reviewWord =>
+        l10n.kidsArabicPracticeReviewWordTitle(plan.primaryFocus!.word!.wordAr),
+      null => l10n.kidsArabicPracticeTitle,
+    };
+    final subtitle = plan.practicedToday
+        ? l10n.kidsArabicPracticeTodayDoneBody
+        : l10n.kidsArabicPracticeHomeSubtitle;
+    return InkWell(
+      onTap: () => context.pushNamed('kidsArabicPractice'),
+      borderRadius: BorderRadius.circular(22),
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: const Color(0xFFEFF6E6),
+          borderRadius: BorderRadius.circular(22),
+          border: Border.all(color: const Color(0xFFD4E4C0)),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              l10n.kidsArabicPracticeTitle,
+              style: const TextStyle(
+                fontWeight: FontWeight.w700,
+                color: Color(0xFF2E261F),
+              ),
+            ),
+            const SizedBox(height: 6),
+            Text(
+              title,
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w700,
+                color: Color(0xFF52713A),
+              ),
+            ),
+            const SizedBox(height: 6),
+            Text(
+              subtitle,
+              style: const TextStyle(color: Color(0xFF5A6A4A), height: 1.35),
+            ),
+            const SizedBox(height: 12),
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: [
+                _SummaryPill(
+                  label: l10n.kidsArabicLettersCompletedValue(
+                    plan.completedLettersCount,
+                  ),
+                ),
+                _SummaryPill(
+                  label: l10n.kidsArabicWordsCompletedValue(
+                    plan.completedWordsCount,
+                  ),
+                ),
+                if (plan.practicedToday)
+                  _SummaryPill(label: l10n.kidsArabicPracticeTodayDoneBadge),
+              ],
+            ),
+            const SizedBox(height: 12),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: TextButton(
+                onPressed: () => context.pushNamed('kidsArabicPractice'),
+                child: Text(l10n.kidsArabicPracticeOpenAction),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _BeginnerWordsCard extends StatelessWidget {
+  const _BeginnerWordsCard({
+    required this.nextWordId,
+    required this.nextWordAr,
+    required this.completedWordsCount,
+  });
+
+  final String? nextWordId;
+  final String? nextWordAr;
+  final int completedWordsCount;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return InkWell(
+      onTap: () => context.pushNamed('kidsArabicWordsHome'),
+      borderRadius: BorderRadius.circular(22),
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: const Color(0xFFEFF4FF),
+          borderRadius: BorderRadius.circular(22),
+          border: Border.all(color: const Color(0xFFD5DEF6)),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              l10n.kidsArabicWordsTitle,
+              style: const TextStyle(
+                fontWeight: FontWeight.w700,
+                color: Color(0xFF24324A),
+              ),
+            ),
+            const SizedBox(height: 6),
+            Text(
+              nextWordAr == null
+                  ? l10n.kidsArabicWordsHomeSubtitle
+                  : l10n.kidsArabicWordsNextSubtitle(nextWordAr!),
+              textDirection: nextWordAr == null
+                  ? Directionality.of(context)
+                  : TextDirection.rtl,
+              style: const TextStyle(color: Color(0xFF4A5870), height: 1.35),
+            ),
+            const SizedBox(height: 12),
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: [
+                _SummaryPill(
+                  label: l10n.kidsArabicWordsCompletedValue(
+                    completedWordsCount,
+                  ),
+                ),
+                if (nextWordId != null)
+                  _SummaryPill(label: l10n.kidsArabicWordsContinueAction),
+              ],
+            ),
+            const SizedBox(height: 12),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: [
+                  TextButton(
+                    onPressed: () => context.pushNamed('kidsArabicWordsHome'),
+                    child: Text(l10n.kidsArabicWordsOpenAction),
+                  ),
+                  TextButton(
+                    onPressed: () => context.pushNamed(
+                      'kidsArabicReadingMode',
+                      queryParameters: nextWordId == null
+                          ? <String, String>{}
+                          : {'word': nextWordId!},
+                    ),
+                    child: Text(l10n.kidsArabicReadingModeOpenAction),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class _LetterCard extends StatelessWidget {
   const _LetterCard({
     required this.letter,
@@ -789,6 +1231,7 @@ class _FamilySummaryCard extends StatelessWidget {
 class _GlyphButton extends StatelessWidget {
   const _GlyphButton({
     required this.letter,
+    required this.practicing,
     required this.completed,
     required this.needsReview,
     required this.locked,
@@ -796,6 +1239,7 @@ class _GlyphButton extends StatelessWidget {
   });
 
   final KidsArabicLetter letter;
+  final bool practicing;
   final bool completed;
   final bool needsReview;
   final bool locked;
@@ -807,6 +1251,8 @@ class _GlyphButton extends StatelessWidget {
         ? const Color(0xFFF2EEE7)
         : needsReview
         ? const Color(0xFFFFF0DC)
+        : practicing
+        ? const Color(0xFFFFF4DF)
         : completed
         ? const Color(0xFFE9F4DF)
         : const Color(0xFFF8F2E8);
@@ -814,6 +1260,8 @@ class _GlyphButton extends StatelessWidget {
         ? const Color(0xFFD8CFC2)
         : needsReview
         ? const Color(0xFFE5B77B)
+        : practicing
+        ? const Color(0xFFE6C485)
         : completed
         ? const Color(0xFFC4DAA9)
         : const Color(0xFFE5D5C1);

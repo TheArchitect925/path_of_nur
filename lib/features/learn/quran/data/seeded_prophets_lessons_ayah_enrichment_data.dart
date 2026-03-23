@@ -78,7 +78,7 @@ seededProphetsLessonsAyahEnrichmentEntries = [
     summary:
         'Through Nuh عليه السلام, these ayahs show sustained calling despite long resistance from his people.',
     body:
-        'The lesson is that truthful calling is measured by faithfulness, not only by immediate response. Perseverance in دعوت does not mean changing the message to gain acceptance, but continuing sincerely through disappointment.',
+        'The lesson is that truthful calling is measured by faithfulness, not only by immediate response. Perseverance in calling others to truth does not mean changing the message to gain acceptance, but continuing sincerely through disappointment.',
     tags: [QuranAyahEnrichmentTag.prophets, QuranAyahEnrichmentTag.guidance],
     relatedRefs: [QuranQuoteRef(surah: 16, ayah: 125)],
     reflectionPrompts: [

@@ -45,6 +45,10 @@ final featuredKidsStoriesProvider = Provider<List<BedtimeStorySeed>>((ref) {
   return ref.watch(bedtimeStoryRepositoryProvider).featuredLibraryStories();
 });
 
+final kidsHadithStoriesProvider = Provider<List<BedtimeStorySeed>>((ref) {
+  return ref.watch(bedtimeStoryRepositoryProvider).hadithStories;
+});
+
 final bedtimeStoryByIdProvider = Provider.family<BedtimeStorySeed?, String>((
   ref,
   storyId,
@@ -61,7 +65,9 @@ final tonightBedtimeStoryProvider = Provider<BedtimeStorySeed?>((ref) {
 });
 
 final continueBedtimeStoryProvider = Provider<BedtimeStorySeed?>((ref) {
-  return ref.watch(bedtimeStoryRepositoryProvider).continueStory(bedtimeOnly: true);
+  return ref
+      .watch(bedtimeStoryRepositoryProvider)
+      .continueStory(bedtimeOnly: true);
 });
 
 final relatedBedtimeStoriesProvider =
@@ -71,17 +77,17 @@ final relatedBedtimeStoriesProvider =
 
 final bedtimeStorySeriesProvider =
     Provider.family<List<BedtimeStorySeed>, String>((ref, prophetId) {
-      return ref.watch(bedtimeStoryRepositoryProvider).storiesForProphet(
-        prophetId,
-      );
+      return ref
+          .watch(bedtimeStoryRepositoryProvider)
+          .storiesForProphet(prophetId);
     });
 
-final bedtimeStorySeriesCompletionProvider =
-    Provider.family<bool, String>((ref, prophetId) {
-      return ref.watch(bedtimeStoryRepositoryProvider).isSeriesCompleted(
-        prophetId,
-      );
-    });
+final bedtimeStorySeriesCompletionProvider = Provider.family<bool, String>((
+  ref,
+  prophetId,
+) {
+  return ref.watch(bedtimeStoryRepositoryProvider).isSeriesCompleted(prophetId);
+});
 
 class BedtimeStoryRepository {
   BedtimeStoryRepository(this._ref);
@@ -96,10 +102,18 @@ class BedtimeStoryRepository {
 
   List<BedtimeStorySeed> get bedtimeStories => bedtimeEligibleStories;
 
-  List<BedtimeStorySeed> get bedtimeEligibleStories => allStories
-      .where((story) => story.bedtimeEligible)
-      .toList(growable: false)
-    ..sort((a, b) => a.sortOrder.compareTo(b.sortOrder));
+  List<BedtimeStorySeed> get hadithStories =>
+      allStories
+          .where(
+            (story) =>
+                story.sourceCategory == KidsIslamicStorySourceCategory.hadith,
+          )
+          .toList(growable: false)
+        ..sort((a, b) => a.sortOrder.compareTo(b.sortOrder));
+
+  List<BedtimeStorySeed> get bedtimeEligibleStories =>
+      allStories.where((story) => story.bedtimeEligible).toList(growable: false)
+        ..sort((a, b) => a.sortOrder.compareTo(b.sortOrder));
 
   List<BedtimeStorySeed> get stories => bedtimeStories;
 
@@ -144,7 +158,10 @@ class BedtimeStoryRepository {
   }
 
   List<BedtimeStorySeed> featuredLibraryStories() {
-    return allStories.where((story) => story.isFeatured).take(8).toList(growable: false);
+    return allStories
+        .where((story) => story.isFeatured)
+        .take(8)
+        .toList(growable: false);
   }
 
   BedtimeStorySeed? tonightStory() {
@@ -226,7 +243,8 @@ class BedtimeStoryRepository {
     }
     final progressState = _ref.watch(bedtimeStoryProgressProvider);
     return seriesStories.every(
-      (story) => progressState.storyProgressById[story.id]?.isCompleted ?? false,
+      (story) =>
+          progressState.storyProgressById[story.id]?.isCompleted ?? false,
     );
   }
 

@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../app/nav_tabs.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/application/kids_ui_theme_provider.dart';
 import '../../../../shared/content/learning_quote.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
+import '../../shared/application/learn_release_gate.dart';
 import '../application/family_learning_provider.dart';
 import '../application/learning_journey_progress_provider.dart';
 import '../data/learning_journey_registry.dart';
@@ -29,13 +31,16 @@ class LearnBrowseAllPage extends ConsumerWidget {
     final islands = [...LearningJourneyRegistry.islands]
       ..sort((a, b) => a.order.compareTo(b.order))
       ..removeWhere(
-        (island) => !learningVisibilityAllowsIsland(visibilityPolicy, island),
+        (island) =>
+            !learningVisibilityAllowsIsland(visibilityPolicy, island) ||
+            !isProductionSafeLearningJourneyIsland(island),
       );
     final visibleJourneys = LearningJourneyRegistry.journeys
         .where(
           (journey) =>
               journey.isPublished &&
-              learningVisibilityAllowsJourney(visibilityPolicy, journey),
+              learningVisibilityAllowsJourney(visibilityPolicy, journey) &&
+              isProductionSafeLearningJourney(journey),
         )
         .toList(growable: false);
     final featuredJourneys = visibleJourneys
@@ -140,7 +145,7 @@ class LearnBrowseAllPage extends ConsumerWidget {
             title: l10n.learningJourneyBrowseQuranTitle,
             subtitle: l10n.learningJourneyBrowseQuranSubtitle,
             icon: Icons.menu_book_rounded,
-            onTap: () => context.pushNamed('learnQuranHub'),
+            onTap: () => context.push(NavTab.quran.path),
           ),
           const SizedBox(height: 10),
           LearningJourneyToolCard(
@@ -204,13 +209,6 @@ class LearnBrowseAllPage extends ConsumerWidget {
             ),
             const SizedBox(height: 10),
           ],
-          if (visibilityPolicy.showLegacyLearning)
-            LearningJourneyToolCard(
-              title: l10n.learningJourneyHomeLegacyTitle,
-              subtitle: l10n.learningJourneyBrowseLegacySubtitle,
-              icon: Icons.inventory_2_outlined,
-              onTap: () => context.pushNamed('learnLegacy'),
-            ),
         ],
       ],
     );

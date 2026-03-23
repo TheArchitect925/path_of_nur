@@ -12,11 +12,14 @@ import '../application/learning_journey_progress_provider.dart';
 import '../application/learning_path_provider.dart';
 import '../../dua/presentation/dua_hub_page.dart';
 import '../../hadith/presentation/hadith_landing_page.dart';
+import '../../presentation/widgets/learn_contained_state_localizations.dart';
+import '../../presentation/widgets/learn_contained_state_page.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../../prophets/domain/prophets_tab.dart';
 import '../../prophets/presentation/prophets_page.dart';
 import '../../quran_teaching/presentation/quran_teaching_listen_only_page.dart';
 import '../../quran_teaching/presentation/quran_teaching_review_page.dart';
+import '../../shared/application/learn_release_gate.dart';
 import '../data/learning_journey_lesson_content.dart';
 import '../data/learning_journey_registry.dart';
 import '../data/learning_journey_localized_metadata.dart';
@@ -73,6 +76,22 @@ class _LearningJourneyStagePageState
             style: TextStyle(color: Color(0xFF675B4E)),
           ),
         ],
+      );
+    }
+    if (!isProductionSafeLearningJourney(journey)) {
+      return LearnContainedStatePage(
+        headerIcon: Icons.auto_stories_rounded,
+        title: localizedStageTitle(context, stage),
+        subtitle: l10n.learnContainedStateJourneySubtitle,
+        body: l10n.learnContainedStateBody,
+        primaryActionLabel: l10n.learningJourneyStageUnavailableFallbackTitle,
+        onPrimaryAction: () => context.goNamed(
+          'learnJourneyDetail',
+          pathParameters: {'journeyId': journey.id},
+        ),
+        secondaryActionLabel:
+            l10n.learnContainedStateOpenQuranLearningAction,
+        onSecondaryAction: () => context.pushNamed('quranLearningHub'),
       );
     }
 

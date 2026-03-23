@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/theme/islamic_icons.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/wudu_trainer_controller.dart';
 import '../data/wudu_content.dart';
+import '../models/wudu_models.dart';
 import '../widgets/wudu_trainer_widgets.dart';
 
 class WuduTrainerPage extends ConsumerWidget {
@@ -13,42 +16,91 @@ class WuduTrainerPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final content = buildWuduContent(l10n);
     final state = ref.watch(wuduTrainerControllerProvider);
     final controller = ref.read(wuduTrainerControllerProvider.notifier);
 
     return LearnHubPageScaffold(
       headerIcon: IslamicIcons.wudhu,
-      title: 'Wudu Trainer',
-      subtitle: 'Interactive guided practice for purification before prayer.',
+      title: content.heroTitle,
+      subtitle: content.heroSubtitle,
       children: [
         PremiumCard(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'For learning and practice',
+                content.introTitle,
                 style: Theme.of(
                   context,
                 ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
               ),
               const SizedBox(height: 6),
               Text(
-                'Learn with calmness and consistency.',
+                content.introSubtitle,
                 style: Theme.of(context).textTheme.bodyLarge,
               ),
               const SizedBox(height: 6),
               Text(
-                'Be mindful, not obsessive.',
-                style: Theme.of(context).textTheme.bodyMedium,
-              ),
-              const SizedBox(height: 6),
-              Text(
-                wuduContent.learningNote,
+                content.learningNote,
                 style: Theme.of(context).textTheme.bodySmall,
               ),
             ],
           ),
         ),
+        if (state.completedOnce) ...[
+          const SizedBox(height: 10),
+          WuduTrainerCompletionStatusCard(
+            summary: content.reviewSummary,
+            isReviewing: state.mode == WuduTrainerMode.checklist,
+            onReviewSteps: controller.openReviewAllSteps,
+            onRestart: controller.restartGuided,
+            onTakeQuiz: () => context.pushNamed('learnWuduQuiz'),
+            onViewSummary: state.mode == WuduTrainerMode.checklist
+                ? controller.showCompletionSummary
+                : null,
+          ),
+        ],
+        if (state.shouldOfferResume) ...[
+          const SizedBox(height: 10),
+          PremiumCard(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  l10n.wuduTrainerResumeTitle,
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                const SizedBox(height: 6),
+                Text(
+                  l10n.wuduTrainerResumeSubtitle(
+                    state.resumeStepNumber,
+                    state.totalSteps,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: [
+                    FilledButton.tonal(
+                      onPressed: () =>
+                          controller.jumpToStepIndex(state.resumeStepIndex),
+                      child: Text(l10n.wuduTrainerResumeAction),
+                    ),
+                    OutlinedButton(
+                      onPressed: controller.restartGuided,
+                      child: Text(l10n.wuduTrainerStartAgainActionText),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ],
         const SizedBox(height: 10),
         WuduTrainerModeSelector(
           mode: state.mode,
@@ -56,34 +108,33 @@ class WuduTrainerPage extends ConsumerWidget {
         ),
         const SizedBox(height: 10),
         if (state.mode == WuduTrainerMode.guided)
-          _GuidedModeSection(state: state)
-        else if (state.mode == WuduTrainerMode.checklist)
-          _ChecklistModeSection(state: state)
+          _GuidedModeSection(state: state, content: content)
         else
-          const PremiumCard(
-            child: Text(
-              'Kids Mode will be added in a future update. Trainer logic is already prepared for it.',
-            ),
-          ),
+          _ChecklistModeSection(state: state, content: content),
       ],
     );
   }
 }
 
 class _GuidedModeSection extends ConsumerWidget {
-  const _GuidedModeSection({required this.state});
+  const _GuidedModeSection({required this.state, required this.content});
 
   final WuduTrainerState state;
+  final WuduContent content;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     final controller = ref.read(wuduTrainerControllerProvider.notifier);
-    final steps = wuduContent.steps;
+    final steps = content.steps;
 
     if (state.guidedFinished) {
       return WuduTrainerCompletionCard(
-        dua: wuduContent.afterWuduDua,
+        dua: content.afterWuduDua,
+        rewardSummary: state.rewardSummary,
+        onReviewSteps: controller.openReviewAllSteps,
         onRestart: controller.restartGuided,
+        onTakeQuiz: () => context.pushNamed('learnWuduQuiz'),
         onReturn: () => Navigator.of(context).maybePop(),
       );
     }
@@ -98,13 +149,12 @@ class _GuidedModeSection extends ConsumerWidget {
           currentStep: state.currentStepNumber,
           totalSteps: state.totalSteps,
           completedCount: state.completedStepNumbers.length,
-          skippedCount: state.skippedStepNumbers.length,
         ),
         const SizedBox(height: 10),
         AnimatedSwitcher(
           duration: const Duration(milliseconds: 220),
           child: WuduGuidedStepCard(
-            key: ValueKey(step.number),
+            key: ValueKey(step.id),
             step: step,
             isCompleted: state.isCompleted(step.number),
             isSkipped: state.isSkipped(step.number),
@@ -118,7 +168,7 @@ class _GuidedModeSection extends ConsumerWidget {
               Row(
                 children: [
                   Text(
-                    'Review mode',
+                    l10n.wuduTrainerReviewModeTitle,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                       fontWeight: FontWeight.w600,
                     ),
@@ -130,7 +180,12 @@ class _GuidedModeSection extends ConsumerWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: 6),
+              Text(
+                l10n.wuduTrainerReviewModeSubtitle,
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+              const SizedBox(height: 10),
               Row(
                 children: [
                   Expanded(
@@ -138,14 +193,7 @@ class _GuidedModeSection extends ConsumerWidget {
                       onPressed: state.currentStepIndex > 0
                           ? controller.goPrevious
                           : null,
-                      child: const Text('Previous'),
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: OutlinedButton(
-                      onPressed: controller.skipCurrentStep,
-                      child: const Text('Skip'),
+                      child: Text(l10n.wuduTrainerPreviousAction),
                     ),
                   ),
                   const SizedBox(width: 8),
@@ -156,8 +204,8 @@ class _GuidedModeSection extends ConsumerWidget {
                           : controller.completeCurrentStep,
                       child: Text(
                         state.isProcessed(step.number)
-                            ? 'Next'
-                            : 'Complete Step',
+                            ? l10n.wuduTrainerNextAction
+                            : l10n.wuduTrainerCompleteStepAction,
                       ),
                     ),
                   ),
@@ -172,14 +220,15 @@ class _GuidedModeSection extends ConsumerWidget {
 }
 
 class _ChecklistModeSection extends ConsumerWidget {
-  const _ChecklistModeSection({required this.state});
+  const _ChecklistModeSection({required this.state, required this.content});
 
   final WuduTrainerState state;
+  final WuduContent content;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = ref.read(wuduTrainerControllerProvider.notifier);
-    final steps = wuduContent.steps;
+    final steps = content.steps;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -189,14 +238,14 @@ class _ChecklistModeSection extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Checklist Mode',
+                content.checklistTitle,
                 style: Theme.of(
                   context,
                 ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
               ),
               const SizedBox(height: 6),
               Text(
-                'Wudu should be performed in sequence from start to finish.',
+                content.checklistSubtitle,
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
             ],
@@ -209,7 +258,6 @@ class _ChecklistModeSection extends ConsumerWidget {
             child: WuduChecklistItem(
               step: step,
               isCompleted: state.isCompleted(step.number),
-              isSkipped: state.isSkipped(step.number),
               isCurrent: state.currentStepNumber == step.number,
               showOrderHint: state.lastOutOfOrderStepNumber == step.number,
               onToggle: () => controller.toggleChecklistStep(step.number),
@@ -219,8 +267,11 @@ class _ChecklistModeSection extends ConsumerWidget {
         ),
         if (state.completedStepNumbers.length == state.totalSteps)
           WuduTrainerCompletionCard(
-            dua: wuduContent.afterWuduDua,
+            dua: content.afterWuduDua,
+            rewardSummary: state.rewardSummary,
+            onReviewSteps: controller.showCompletionSummary,
             onRestart: controller.resetProgress,
+            onTakeQuiz: () => context.pushNamed('learnWuduQuiz'),
             onReturn: () => Navigator.of(context).maybePop(),
           ),
       ],

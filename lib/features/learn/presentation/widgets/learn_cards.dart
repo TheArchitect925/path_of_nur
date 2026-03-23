@@ -11,7 +11,7 @@ class LearnActionCard extends StatelessWidget {
     required this.subtitle,
     required this.icon,
     this.onTap,
-    this.showChevron = true,
+    this.showChevron = false,
   });
 
   final String title;
@@ -23,54 +23,57 @@ class LearnActionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PremiumCard(
-      child: InkWell(
-        onTap: onTap,
-        child: Row(
-          children: [
-            Container(
-              width: 42,
-              height: 42,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                color: AppSurfaceTheme.adaptiveColor(
-                  context,
-                  AppColors.accentGold,
-                  alpha: 0.22,
-                  solidAlphaWhenDisabled: 0.32,
+      child: Material(
+        type: MaterialType.transparency,
+        child: InkWell(
+          onTap: onTap,
+          child: Row(
+            children: [
+              Container(
+                width: 42,
+                height: 42,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  color: AppSurfaceTheme.adaptiveColor(
+                    context,
+                    AppColors.accentGold,
+                    alpha: 0.22,
+                    solidAlphaWhenDisabled: 0.32,
+                  ),
+                ),
+                child: Icon(icon, color: AppColors.onSurface),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(fontWeight: FontWeight.w700),
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      subtitle,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        color: AppColors.onSurfaceSubtle,
+                        height: 1.35,
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              child: Icon(icon, color: AppColors.onSurface),
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    title,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(fontWeight: FontWeight.w700),
-                  ),
-                  const SizedBox(height: 2),
-                  Text(
-                    subtitle,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      color: AppColors.onSurfaceSubtle,
-                      height: 1.35,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            if (showChevron)
-              const Icon(
-                Icons.chevron_right,
-                color: AppColors.onSurfaceSubtle,
-              ),
-          ],
+              if (showChevron)
+                const Icon(
+                  Icons.chevron_right,
+                  color: AppColors.onSurfaceSubtle,
+                ),
+            ],
+          ),
         ),
       ),
     );
@@ -97,21 +100,24 @@ class LearnTopicGrid extends StatelessWidget {
                   horizontal: 12,
                   vertical: 14,
                 ),
-                child: InkWell(
-                  onTap: onTopicTap == null ? null : () => onTopicTap!(topic),
-                  child: Row(
-                    children: [
-                      const Icon(Icons.auto_stories_outlined, size: 18),
-                      const SizedBox(width: 8),
-                      Expanded(
-                        child: Text(
-                          topic,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(fontWeight: FontWeight.w600),
+                child: Material(
+                  type: MaterialType.transparency,
+                  child: InkWell(
+                    onTap: onTopicTap == null ? null : () => onTopicTap!(topic),
+                    child: Row(
+                      children: [
+                        const Icon(Icons.auto_stories_outlined, size: 18),
+                        const SizedBox(width: 8),
+                        Expanded(
+                          child: Text(
+                            topic,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(fontWeight: FontWeight.w600),
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),

@@ -1,5 +1,8 @@
 import '../../../l10n/app_localizations.dart';
+import '../data/kids_arabic_letters_data.dart';
+import '../domain/kids_arabic_achievement_models.dart';
 import '../domain/kids_arabic_models.dart';
+import '../domain/kids_arabic_word_models.dart';
 
 String localizedKidsArabicChildLine(AppLocalizations l10n, String letterId) {
   switch (letterId) {
@@ -126,6 +129,58 @@ String localizedKidsArabicStickerSubtitle(AppLocalizations l10n, String id) {
   }
 }
 
+String localizedKidsArabicAchievementTitle(
+  AppLocalizations l10n,
+  KidsArabicAchievementDefinition definition,
+) {
+  switch (definition.id) {
+    case 'first-letter':
+      return l10n.kidsArabicStickerFirstLetterTitle;
+    case 'first-five':
+      return l10n.kidsArabicStickerFirstFiveTitle;
+    case 'ten-letters':
+      return l10n.kidsArabicStickerTenLettersTitle;
+    case 'full-alphabet':
+      return l10n.kidsArabicStickerFullAlphabetTitle;
+    case 'three-letters':
+      return l10n.kidsArabicMilestoneThreeLettersTitle;
+    case 'first-word':
+      return l10n.kidsArabicMilestoneFirstWordTitle;
+    case 'first-review':
+      return l10n.kidsArabicMilestoneFirstReviewTitle;
+    case 'beginner-word-set':
+      return l10n.kidsArabicMilestoneBeginnerSetTitle;
+    default:
+      return definition.id;
+  }
+}
+
+String localizedKidsArabicAchievementSubtitle(
+  AppLocalizations l10n,
+  KidsArabicAchievementDefinition definition,
+) {
+  switch (definition.id) {
+    case 'first-letter':
+      return l10n.kidsArabicStickerFirstLetterSubtitle;
+    case 'first-five':
+      return l10n.kidsArabicStickerFirstFiveSubtitle;
+    case 'ten-letters':
+      return l10n.kidsArabicStickerTenLettersSubtitle;
+    case 'full-alphabet':
+      return l10n.kidsArabicStickerFullAlphabetSubtitle;
+    case 'three-letters':
+      return l10n.kidsArabicMilestoneThreeLettersSubtitle;
+    case 'first-word':
+      return l10n.kidsArabicMilestoneFirstWordSubtitle;
+    case 'first-review':
+      return l10n.kidsArabicMilestoneFirstReviewSubtitle;
+    case 'beginner-word-set':
+      return l10n.kidsArabicMilestoneBeginnerSetSubtitle;
+    default:
+      return '';
+  }
+}
+
 String localizedKidsArabicColoringTitle(AppLocalizations l10n, String key) {
   switch (key) {
     case 'kidsArabicColoringPageAlifTitle':
@@ -171,4 +226,53 @@ String localizedKidsArabicDailyMissionDescription(
     case KidsArabicDailyMissionType.tracePractice:
       return l10n.kidsArabicDailyMissionTraceDescription(letter.nameAr);
   }
+}
+
+String localizedKidsArabicWordMeaning(AppLocalizations l10n, String wordId) {
+  switch (wordId) {
+    case 'bab':
+      return l10n.kidsArabicWordBabMeaning;
+    case 'noor':
+      return l10n.kidsArabicWordNoorMeaning;
+    case 'qalam':
+      return l10n.kidsArabicWordQalamMeaning;
+    default:
+      return '';
+  }
+}
+
+String localizedKidsArabicWordSummary(AppLocalizations l10n, String wordId) {
+  switch (wordId) {
+    case 'bab':
+      return l10n.kidsArabicWordBabSummary;
+    case 'noor':
+      return l10n.kidsArabicWordNoorSummary;
+    case 'qalam':
+      return l10n.kidsArabicWordQalamSummary;
+    default:
+      return '';
+  }
+}
+
+String localizedKidsArabicJoiningLetterName(
+  AppLocalizations l10n,
+  String letterId,
+) {
+  for (final letter in kidsArabicLetters) {
+    if (letter.id == letterId) {
+      return letter.nameAr;
+    }
+  }
+  return letterId;
+}
+
+String localizedKidsArabicRequiredLettersLabel(
+  AppLocalizations l10n,
+  List<KidsArabicJoiningExample> joiningExamples,
+) {
+  final names = joiningExamples
+      .map((item) => localizedKidsArabicJoiningLetterName(l10n, item.letterId))
+      .toSet()
+      .join(', ');
+  return l10n.kidsArabicWordsRequiredLettersValue(names);
 }

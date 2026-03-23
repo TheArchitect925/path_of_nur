@@ -125,7 +125,7 @@ class _PropheticFamilyGroupCardState extends State<PropheticFamilyGroupCard> {
     final focused = node.prophetId == widget.focusedProphetId;
 
     return Padding(
-      padding: EdgeInsets.only(left: depth * 14.0, bottom: 8),
+      padding: EdgeInsetsDirectional.only(start: depth * 14.0, bottom: 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -154,7 +154,7 @@ class _PropheticFamilyGroupCardState extends State<PropheticFamilyGroupCard> {
           ),
           if (children.isNotEmpty)
             Padding(
-              padding: const EdgeInsets.only(top: 4, left: 8),
+              padding: const EdgeInsetsDirectional.only(top: 4, start: 8),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: List.generate(children.length, (index) {

@@ -47,32 +47,36 @@ class SegmentedPillControl<T> extends StatelessWidget {
               .map(
                 (item) => Padding(
                   padding: const EdgeInsets.only(right: 4),
-                  child: InkWell(
-                    onTap: () => onChanged(item),
-                    borderRadius: BorderRadius.circular(999),
-                    child: AnimatedContainer(
-                      duration: const Duration(milliseconds: 170),
-                      curve: Curves.easeOut,
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 10,
-                        horizontal: 14,
-                      ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(999),
-                        color: selectedItem == item
-                            ? selectedStyle.iconBackgroundColor
-                            : Colors.transparent,
-                        border: selectedItem == item
-                            ? Border.all(color: selectedStyle.borderColor)
-                            : null,
-                      ),
-                      child: Text(
-                        labelBuilder(item),
-                        style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                          fontSize: 13,
+                  child: Material(
+                    type: MaterialType.transparency,
+                    child: InkWell(
+                      onTap: () => onChanged(item),
+                      borderRadius: BorderRadius.circular(999),
+                      child: AnimatedContainer(
+                        duration: const Duration(milliseconds: 170),
+                        curve: Curves.easeOut,
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 10,
+                          horizontal: 14,
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(999),
                           color: selectedItem == item
-                              ? onSurface
-                              : onSurfaceSubtle,
+                              ? selectedStyle.iconBackgroundColor
+                              : Colors.transparent,
+                          border: selectedItem == item
+                              ? Border.all(color: selectedStyle.borderColor)
+                              : null,
+                        ),
+                        child: Text(
+                          labelBuilder(item),
+                          style: Theme.of(context).textTheme.labelLarge
+                              ?.copyWith(
+                                fontSize: 13,
+                                color: selectedItem == item
+                                    ? onSurface
+                                    : onSurfaceSubtle,
+                              ),
                         ),
                       ),
                     ),

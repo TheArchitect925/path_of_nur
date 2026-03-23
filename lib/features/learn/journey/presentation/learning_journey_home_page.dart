@@ -10,6 +10,7 @@ import '../application/family_learning_provider.dart';
 import '../application/learn_together_provider.dart';
 import '../application/learning_journey_progress_provider.dart';
 import '../application/learning_path_provider.dart';
+import '../../shared/application/learn_release_gate.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../data/learning_journey_localized_metadata.dart';
 import '../data/learning_journey_registry.dart';
@@ -39,7 +40,9 @@ class LearningJourneyHomePage extends ConsumerWidget {
     final islands = [...LearningJourneyRegistry.islands]
       ..sort((a, b) => a.order.compareTo(b.order))
       ..removeWhere(
-        (island) => !learningVisibilityAllowsIsland(visibilityPolicy, island),
+        (island) =>
+            !learningVisibilityAllowsIsland(visibilityPolicy, island) ||
+            !isProductionSafeLearningJourneyIsland(island),
       );
     final continueState = ref.watch(learningJourneyContinueProvider);
     final todayLight = ref.watch(learningJourneyTodayLightProvider);
@@ -68,7 +71,8 @@ class LearningJourneyHomePage extends ConsumerWidget {
     final displayRecommendations = rawRecommendations
         .where(
           (journey) =>
-              learningVisibilityAllowsJourney(visibilityPolicy, journey),
+              learningVisibilityAllowsJourney(visibilityPolicy, journey) &&
+              isProductionSafeLearningJourney(journey),
         )
         .take(
           kidsUi.enabled
@@ -81,16 +85,18 @@ class LearningJourneyHomePage extends ConsumerWidget {
     final fallbackJourneys =
         adaptiveGuidance?.fallbackJourneys
             .where(
-              (journey) =>
-                  learningVisibilityAllowsJourney(visibilityPolicy, journey),
+                (journey) =>
+                  learningVisibilityAllowsJourney(visibilityPolicy, journey) &&
+                  isProductionSafeLearningJourney(journey),
             )
             .toList(growable: false) ??
         const <LearningJourney>[];
     final secondaryJourneys =
         adaptiveGuidance?.secondaryJourneys
             .where(
-              (journey) =>
-                  learningVisibilityAllowsJourney(visibilityPolicy, journey),
+                (journey) =>
+                  learningVisibilityAllowsJourney(visibilityPolicy, journey) &&
+                  isProductionSafeLearningJourney(journey),
             )
             .toList(growable: false) ??
         const <LearningJourney>[];
@@ -714,13 +720,6 @@ class LearningJourneyHomePage extends ConsumerWidget {
           ),
           const SizedBox(height: 6),
         ],
-        if (visibilityPolicy.showLegacyLearning && !kidsUi.enabled)
-          LearningJourneyToolCard(
-            title: l10n.learningJourneyHomeLegacyTitle,
-            subtitle: l10n.learningJourneyHomeLegacySubtitle,
-            icon: Icons.inventory_2_outlined,
-            onTap: () => context.pushNamed('learnLegacy'),
-          ),
       ],
     );
   }
@@ -753,7 +752,8 @@ LearningJourney? _resolveSafeTodayJourney(
   List<LearningJourney> fallbackJourneys,
 ) {
   if (personalizedTodayJourney != null &&
-      learningVisibilityAllowsJourney(policy, personalizedTodayJourney)) {
+      learningVisibilityAllowsJourney(policy, personalizedTodayJourney) &&
+      isProductionSafeLearningJourney(personalizedTodayJourney)) {
     return personalizedTodayJourney;
   }
   final candidates = <LearningJourney>[
@@ -762,7 +762,8 @@ LearningJourney? _resolveSafeTodayJourney(
     ...fallbackJourneys,
   ];
   for (final item in candidates) {
-    if (learningVisibilityAllowsJourney(policy, item)) {
+    if (learningVisibilityAllowsJourney(policy, item) &&
+        isProductionSafeLearningJourney(item)) {
       return item;
     }
   }
@@ -783,12 +784,14 @@ LearningJourney? _resolveStarterJourney({
       (journey) =>
           journey.isFeatured &&
           journey.isPublished &&
-          learningVisibilityAllowsJourney(visibilityPolicy, journey),
+          learningVisibilityAllowsJourney(visibilityPolicy, journey) &&
+          isProductionSafeLearningJourney(journey),
     ),
     ...LearningJourneyRegistry.journeys.where(
       (journey) =>
           journey.isPublished &&
-          learningVisibilityAllowsJourney(visibilityPolicy, journey),
+          learningVisibilityAllowsJourney(visibilityPolicy, journey) &&
+          isProductionSafeLearningJourney(journey),
     ),
   ];
   final seen = <String>{};

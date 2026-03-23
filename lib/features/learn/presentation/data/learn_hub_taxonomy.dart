@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/theme/islamic_icons.dart';
+import '../kids_learning_localizations.dart';
 import '../models/learn_hub_models.dart';
 
 class LearnHubTaxonomy {
@@ -132,13 +133,14 @@ class LearnHubTaxonomy {
     switch (id) {
       case LearnHubCategoryId.characterAdab:
         return const LearnHubRouteTarget(routeName: 'learnLifeLanding');
+      case LearnHubCategoryId.arabicLanguage:
+        return const LearnHubRouteTarget(routeName: 'quranArabic');
       case LearnHubCategoryId.faq:
         return const LearnHubRouteTarget(routeName: 'faqLanding');
       case LearnHubCategoryId.foundations:
       case LearnHubCategoryId.quranHadith:
       case LearnHubCategoryId.prophetsStories:
       case LearnHubCategoryId.worshipPractice:
-      case LearnHubCategoryId.arabicLanguage:
       case LearnHubCategoryId.kidsLearning:
       case LearnHubCategoryId.quizzesChallenges:
       case LearnHubCategoryId.notes:
@@ -167,7 +169,7 @@ class LearnHubTaxonomy {
       case LearnHubCategoryId.kidsLearning:
         return l10n.learnHubCategoryKidsLearningTitle;
       case LearnHubCategoryId.quizzesChallenges:
-        return l10n.learnHubCategoryQuizzesChallengesTitle;
+        return l10n.learnHubCategoryQuizzesGamesTitleText;
       case LearnHubCategoryId.faq:
         return l10n.learnHubCategoryFaqTitle;
       case LearnHubCategoryId.notes:
@@ -379,16 +381,71 @@ class LearnHubTaxonomy {
         ),
       ),
       LearnHubSubcategoryDescriptor(
+        id: 'kids-quran',
+        title: l10n.learnHubSubcategoryKidsQuranTitleText,
+        subtitle: l10n.learnHubSubcategoryKidsQuranSubtitleText,
+        categoryId: LearnHubCategoryId.kidsLearning,
+        routeTarget: const LearnHubRouteTarget(routeName: 'learnKidsQuran'),
+      ),
+      LearnHubSubcategoryDescriptor(
+        id: 'kids-hadith',
+        title: l10n.learnHubSubcategoryKidsHadithTitleText,
+        subtitle: l10n.learnHubSubcategoryKidsHadithSubtitleText,
+        categoryId: LearnHubCategoryId.kidsLearning,
+        routeTarget: const LearnHubRouteTarget(routeName: 'learnKidsHadith'),
+      ),
+      LearnHubSubcategoryDescriptor(
+        id: 'kids-hadith-stories',
+        title: l10n.learnHubSubcategoryKidsHadithStoriesTitleText,
+        subtitle: l10n.learnHubSubcategoryKidsHadithStoriesSubtitleText,
+        categoryId: LearnHubCategoryId.kidsLearning,
+        routeTarget: const LearnHubRouteTarget(
+          routeName: 'learnKidsHadithStories',
+        ),
+      ),
+      LearnHubSubcategoryDescriptor(
+        id: 'kids-prophet-stories',
+        title: l10n.kidsStoryCollectionProphets,
+        subtitle: l10n.kidsStoryCollectionProphetsSubtitle,
+        categoryId: LearnHubCategoryId.kidsLearning,
+        routeTarget: const LearnHubRouteTarget(
+          routeName: 'learnKidsProphetStories',
+        ),
+      ),
+      LearnHubSubcategoryDescriptor(
+        id: 'kids-stories',
+        title: l10n.learnHubSubcategoryKidsStoriesTitle,
+        subtitle: l10n.learnHubSubcategoryKidsStoriesSubtitle,
+        categoryId: LearnHubCategoryId.kidsLearning,
+        routeTarget: const LearnHubRouteTarget(routeName: 'kidsStoryLibrary'),
+      ),
+      LearnHubSubcategoryDescriptor(
+        id: 'kids-dua-learning',
+        title: l10n.kidsDuaLandingTitle,
+        subtitle: l10n.kidsDuaLandingSubtitle,
+        categoryId: LearnHubCategoryId.kidsLearning,
+        routeTarget: const LearnHubRouteTarget(routeName: 'kidsDuaLanding'),
+      ),
+      LearnHubSubcategoryDescriptor(
+        id: 'kids-seerah-journeys',
+        title: l10n.kidsSeerahJourneysTitle,
+        subtitle: l10n.kidsSeerahJourneysSubtitle,
+        categoryId: LearnHubCategoryId.kidsLearning,
+        routeTarget: const LearnHubRouteTarget(routeName: 'kidsSeerahJourneys'),
+      ),
+      LearnHubSubcategoryDescriptor(
         id: 'kids-fun-learning',
         title: l10n.learnHubSubcategoryKidsFunLearningTitle,
         subtitle: l10n.learnHubSubcategoryKidsFunLearningSubtitle,
         categoryId: LearnHubCategoryId.kidsLearning,
-        routeTarget: const LearnHubRouteTarget(routeName: 'learnKidsFunLearning'),
+        routeTarget: const LearnHubRouteTarget(
+          routeName: 'learnKidsFunLearning',
+        ),
       ),
       LearnHubSubcategoryDescriptor(
         id: 'games-island',
-        title: l10n.learnGamesIslandTitle,
-        subtitle: l10n.learnGamesIslandSubtitle,
+        title: l10n.learnGamesHubTitleText,
+        subtitle: l10n.learnGamesHubSubtitleText,
         categoryId: LearnHubCategoryId.quizzesChallenges,
         routeTarget: const LearnHubRouteTarget(routeName: 'learnGamesIsland'),
       ),
@@ -452,6 +509,19 @@ class LearnHubTaxonomy {
         categoryId: LearnHubCategoryId.toolsExplore,
         routeTarget: const LearnHubRouteTarget(routeName: 'learnJourneyHome'),
       ),
+      LearnHubSubcategoryDescriptor(
+        id: 'historical-calendar',
+        title: l10n.historyArchiveTitle,
+        subtitle: l10n.historyLearnIslandSubtitle,
+        categoryId: LearnHubCategoryId.toolsExplore,
+        routeTarget: const LearnHubRouteTarget(routeName: 'learnHistoryArchive'),
+        searchKeywords: const [
+          'historical calendar',
+          'history archive',
+          'on this day',
+          'islamic history',
+        ],
+      ),
     ];
   }
 
@@ -481,11 +551,25 @@ class LearnHubTaxonomy {
 
   static bool isCanonicalHubRouteTarget(LearnHubRouteTarget routeTarget) {
     switch (routeTarget.routeName) {
+      case 'quranLearningHub':
+      case 'learnHadithLanding':
+      case 'learnLifeLanding':
+      case 'learnWorldLanding':
+      case 'learnProphetsHub':
+      case 'learnHistoryArchive':
+      case 'quranArabic':
       case 'learnDuaHub':
       case 'learnQuizzesHub':
       case 'learnGamesIsland':
       case 'learnKidsGames':
       case 'learnKidsArabicLearning':
+      case 'learnKidsQuran':
+      case 'learnKidsHadith':
+      case 'learnKidsHadithStories':
+      case 'learnKidsProphetStories':
+      case 'kidsStoryLibrary':
+      case 'kidsDuaLanding':
+      case 'kidsSeerahJourneys':
       case 'learnKidsFunLearning':
         return true;
       default:

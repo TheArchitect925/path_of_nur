@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/theme/islamic_icons.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
@@ -13,7 +14,8 @@ class WuduGuidePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final content = wuduContent;
+    final l10n = AppLocalizations.of(context);
+    final content = buildWuduContent(l10n);
 
     return LearnHubPageScaffold(
       headerIcon: IslamicIcons.wudhu,
@@ -31,14 +33,13 @@ class WuduGuidePage extends StatelessWidget {
           child: FilledButton.icon(
             onPressed: () => context.pushNamed('learnWuduTrainer'),
             icon: const Icon(Icons.play_circle_fill_rounded),
-            label: const Text('Start Wudu Trainer'),
+            label: Text(l10n.wuduGuideStartTrainerAction),
           ),
         ),
         const SizedBox(height: 12),
-        const LearnSectionHeader(
-          title: 'Why Wudu matters',
-          subtitle:
-              'Purification before prayer is both spiritual preparation and physical cleanliness.',
+        LearnSectionHeader(
+          title: l10n.wuduGuideWhyTitle,
+          subtitle: l10n.wuduGuideWhySubtitle,
         ),
         const SizedBox(height: 10),
         PremiumCard(
@@ -51,13 +52,16 @@ class WuduGuidePage extends StatelessWidget {
         ),
         const SizedBox(height: 12),
         WuduVerseCard(
+          title: l10n.wuduGuideQuranBasisTitle,
           verse: content.quranVerse,
           reference: content.quranReference,
+          referenceLabel: content.quranReferenceLabel,
+          referenceSubtitle: content.quranReferenceSubtitle,
         ),
         const SizedBox(height: 14),
-        const LearnSectionHeader(
-          title: 'Step-by-step guide',
-          subtitle: 'Expand each step to review the sequence clearly.',
+        LearnSectionHeader(
+          title: content.stepsTitle,
+          subtitle: content.stepsSubtitle,
         ),
         const SizedBox(height: 10),
         ...content.steps.map(
@@ -71,25 +75,12 @@ class WuduGuidePage extends StatelessWidget {
           height: 20,
           color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.2),
         ),
-        const LearnSectionHeader(
-          title: 'Common mistakes / reminders',
-          subtitle:
-              'Required essentials, sunnah details, and practical checks.',
-        ),
-        const SizedBox(height: 10),
-        WuduReminderCard(
-          requiredEssentials: content.requiredEssentials,
-          sunnahEnhancements: content.sunnahEnhancements,
-          reminders: content.reminders,
-        ),
-        const SizedBox(height: 10),
-        Divider(
-          height: 20,
-          color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.2),
-        ),
         WuduDuaCard(dua: content.afterWuduDua),
         const SizedBox(height: 10),
-        const WuduCompletionCard(),
+        WuduCompletionCard(
+          title: l10n.wuduGuideCompletionTitle,
+          body: l10n.wuduGuideCompletionBody,
+        ),
       ],
     );
   }

@@ -1,7 +1,11 @@
+import 'dart:async';
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 
 import '../application/kids_arabic_starter_tracing.dart';
 import '../application/kids_arabic_tracing_engine.dart';
+import '../application/kids_arabic_vector_tracing.dart';
 import '../domain/kids_arabic_models.dart';
 
 class KidsArabicTracingColorOption {
@@ -19,45 +23,56 @@ class KidsArabicTracingColorOption {
 class KidsArabicTracingPad extends StatefulWidget {
   const KidsArabicTracingPad({
     super.key,
-    required this.glyph,
+    required this.letterId,
     required this.clearActionLabel,
     required this.traceColorLabel,
     required this.readyBadgeLabel,
     required this.colorOptions,
     required this.onMetricsChanged,
     this.guide,
+    this.ghostPreviewDelay = const Duration(milliseconds: 1100),
   });
 
-  final String glyph;
+  final String letterId;
   final String clearActionLabel;
   final String traceColorLabel;
   final String readyBadgeLabel;
   final List<KidsArabicTracingColorOption> colorOptions;
   final KidsArabicTracingGuide? guide;
   final ValueChanged<KidsArabicTraceMetrics> onMetricsChanged;
+  final Duration ghostPreviewDelay;
 
   @override
   State<KidsArabicTracingPad> createState() => KidsArabicTracingPadState();
 }
 
 class KidsArabicTracingPadState extends State<KidsArabicTracingPad>
-    with SingleTickerProviderStateMixin {
+    with TickerProviderStateMixin {
   final List<List<Offset>> _strokes = <List<Offset>>[];
   Size _lastSize = const Size.square(320);
   late final AnimationController _successController = AnimationController(
     vsync: this,
     duration: const Duration(milliseconds: 560),
   );
+  late final AnimationController _ghostPreviewController = AnimationController(
+    vsync: this,
+    duration: const Duration(milliseconds: 2400),
+  );
   late Color _selectedColor;
   KidsArabicTraceMetrics _metrics = const KidsArabicTraceMetrics(
     strokeCount: 0,
     pointCount: 0,
   );
+  Timer? _ghostPreviewTimer;
+  bool _showGhostPreview = false;
+
+  bool get isGhostPreviewVisible => _showGhostPreview;
 
   @override
   void initState() {
     super.initState();
     _selectedColor = widget.colorOptions.first.color;
+    _scheduleGhostPreview();
   }
 
   @override
@@ -66,40 +81,117 @@ class KidsArabicTracingPadState extends State<KidsArabicTracingPad>
     if (!widget.colorOptions.any((option) => option.color == _selectedColor)) {
       _selectedColor = widget.colorOptions.first.color;
     }
+    if (oldWidget.letterId != widget.letterId) {
+      _hideGhostPreview();
+      _scheduleGhostPreview();
+    }
   }
 
   @override
   void dispose() {
+    _ghostPreviewTimer?.cancel();
+    _ghostPreviewController.dispose();
     _successController.dispose();
     super.dispose();
   }
 
   void clear() {
+    _ghostPreviewTimer?.cancel();
     setState(_strokes.clear);
     _successController.reset();
+    _hideGhostPreview();
     _metrics = const KidsArabicTraceMetrics(strokeCount: 0, pointCount: 0);
     widget.onMetricsChanged(_metrics);
+    _scheduleGhostPreview();
+  }
+
+  void _hideGhostPreview() {
+    if (_showGhostPreview) {
+      setState(() {
+        _showGhostPreview = false;
+      });
+    }
+    _ghostPreviewTimer?.cancel();
+    _ghostPreviewController
+      ..stop()
+      ..reset();
+  }
+
+  void _scheduleGhostPreview() {
+    _ghostPreviewTimer?.cancel();
+    if (_metrics.successPulse || _strokes.any((stroke) => stroke.isNotEmpty)) {
+      return;
+    }
+    _ghostPreviewTimer = Timer(widget.ghostPreviewDelay, () {
+      if (!mounted ||
+          _metrics.successPulse ||
+          _strokes.any((stroke) => stroke.isNotEmpty)) {
+        return;
+      }
+      setState(() {
+        _showGhostPreview = true;
+      });
+      _ghostPreviewController
+        ..reset()
+        ..repeat();
+    });
   }
 
   void _notify() {
-    final pointCount = _strokes.fold<int>(0, (sum, stroke) => sum + stroke.length);
-    final evaluation = evaluateKidsArabicTrace(
-      userStrokes: _strokes,
-      size: _lastSize,
-      guide: widget.guide,
+    final pointCount = _strokes.fold<int>(
+      0,
+      (sum, stroke) => sum + stroke.length,
     );
+    final usesVectorTracing = kidsArabicSupportsVectorTracing(widget.letterId);
+    final vectorLetter = usesVectorTracing
+        ? kidsArabicVectorTraceLetterFor(widget.letterId)
+        : null;
+    final evaluationFields = !usesVectorTracing || vectorLetter == null
+        ? (() {
+            final evaluation = evaluateKidsArabicTrace(
+              userStrokes: _strokes,
+              size: _lastSize,
+              guide: widget.guide,
+            );
+            return (
+              guidedProgress: evaluation.guidedProgress,
+              alignmentScore: evaluation.alignmentScore,
+              completedStrokeCount: evaluation.completedStrokeCount,
+              totalStrokeCount: evaluation.totalStrokeCount,
+              activeStrokeIndex: evaluation.activeStrokeIndex,
+              minimumEffortMet: evaluation.minimumEffortMet,
+              successPulse: evaluation.successPulse,
+            );
+          })()
+        : (() {
+            final evaluation = evaluateKidsArabicVectorTrace(
+              userStrokes: _strokes,
+              size: _lastSize,
+              letter: vectorLetter,
+            );
+            return (
+              guidedProgress: evaluation.guidedProgress,
+              alignmentScore: evaluation.alignmentScore,
+              completedStrokeCount: evaluation.completedStrokeCount,
+              totalStrokeCount: evaluation.totalStrokeCount,
+              activeStrokeIndex: evaluation.activeStrokeIndex,
+              minimumEffortMet: evaluation.minimumEffortMet,
+              successPulse: evaluation.successPulse,
+            );
+          })();
     final nextMetrics = KidsArabicTraceMetrics(
       strokeCount: _strokes.length,
       pointCount: pointCount,
-      guidedProgress: evaluation.guidedProgress,
-      alignmentScore: evaluation.alignmentScore,
-      completedGuideStrokes: evaluation.completedStrokeCount,
-      totalGuideStrokes: evaluation.totalStrokeCount,
-      activeGuideStrokeIndex: evaluation.activeStrokeIndex,
-      minimumEffortMet: evaluation.minimumEffortMet,
-      successPulse: evaluation.successPulse,
+      guidedProgress: evaluationFields.guidedProgress,
+      alignmentScore: evaluationFields.alignmentScore,
+      completedGuideStrokes: evaluationFields.completedStrokeCount,
+      totalGuideStrokes: evaluationFields.totalStrokeCount,
+      activeGuideStrokeIndex: evaluationFields.activeStrokeIndex,
+      minimumEffortMet: evaluationFields.minimumEffortMet,
+      successPulse: evaluationFields.successPulse,
     );
     if (nextMetrics.successPulse && !_metrics.successPulse) {
+      _hideGhostPreview();
       _successController
         ..reset()
         ..forward();
@@ -109,6 +201,7 @@ class KidsArabicTracingPadState extends State<KidsArabicTracingPad>
   }
 
   void _startStroke(Offset position) {
+    _hideGhostPreview();
     setState(() {
       _strokes.add(<Offset>[position]);
     });
@@ -150,24 +243,93 @@ class KidsArabicTracingPadState extends State<KidsArabicTracingPad>
                     builder: (context, _) {
                       return CustomPaint(
                         painter: _TracingPadPainter(
-                          glyph: widget.glyph,
+                          letterId: widget.letterId,
                           strokes: _strokes,
                           guide: widget.guide,
                           metrics: _metrics,
                           selectedColor: _selectedColor,
                           successT: _successController.value,
+                          ghostT: _ghostPreviewController.value,
+                          showGhostPreview:
+                              _showGhostPreview &&
+                              !ready &&
+                              _strokes.every((stroke) => stroke.isEmpty),
                         ),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: const Color(0xFFFFFBF5),
-                            borderRadius: BorderRadius.circular(24),
-                            border: Border.all(
-                              color: ready
-                                  ? const Color(0xFFD5E6B7)
-                                  : const Color(0xFFE5D6C3),
-                              width: 1.4,
+                        child: Stack(
+                          fit: StackFit.expand,
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                color: const Color(0xFFFFFBF5),
+                                borderRadius: BorderRadius.circular(24),
+                                border: Border.all(
+                                  color: ready
+                                      ? const Color(0xFFD5E6B7)
+                                      : const Color(0xFFE5D6C3),
+                                  width: 1.4,
+                                ),
+                              ),
                             ),
-                          ),
+                            IgnorePointer(
+                              child: AnimatedOpacity(
+                                opacity: _successController.value > 0 || ready
+                                    ? 1
+                                    : 0,
+                                duration: const Duration(milliseconds: 180),
+                                child: Align(
+                                  alignment: Alignment.topCenter,
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(top: 14),
+                                    child: Transform.scale(
+                                      scale:
+                                          0.92 +
+                                          (_successController.value * 0.12),
+                                      child: Container(
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 12,
+                                          vertical: 8,
+                                        ),
+                                        decoration: BoxDecoration(
+                                          color: const Color(0xFFEAF5D6),
+                                          borderRadius: BorderRadius.circular(
+                                            999,
+                                          ),
+                                          border: Border.all(
+                                            color: const Color(0xFFC7DBA0),
+                                          ),
+                                          boxShadow: const [
+                                            BoxShadow(
+                                              color: Color(0x14000000),
+                                              blurRadius: 12,
+                                              offset: Offset(0, 6),
+                                            ),
+                                          ],
+                                        ),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            const Icon(
+                                              Icons.celebration_rounded,
+                                              size: 16,
+                                              color: Color(0xFF64873B),
+                                            ),
+                                            const SizedBox(width: 6),
+                                            Text(
+                                              widget.readyBadgeLabel,
+                                              style: const TextStyle(
+                                                fontWeight: FontWeight.w700,
+                                                color: Color(0xFF557131),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       );
                     },
@@ -203,7 +365,10 @@ class KidsArabicTracingPadState extends State<KidsArabicTracingPad>
             ),
             if (ready)
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 6,
+                ),
                 decoration: BoxDecoration(
                   color: const Color(0xFFEAF5D6),
                   borderRadius: BorderRadius.circular(999),
@@ -271,7 +436,9 @@ class _TracingColorChip extends StatelessWidget {
             color: isSelected ? const Color(0xFFFFF7EC) : Colors.transparent,
             borderRadius: BorderRadius.circular(999),
             border: Border.all(
-              color: isSelected ? const Color(0xFFB99365) : const Color(0xFFDCCBB3),
+              color: isSelected
+                  ? const Color(0xFFB99365)
+                  : const Color(0xFFDCCBB3),
             ),
           ),
           child: Container(
@@ -290,20 +457,24 @@ class _TracingColorChip extends StatelessWidget {
 
 class _TracingPadPainter extends CustomPainter {
   const _TracingPadPainter({
-    required this.glyph,
+    required this.letterId,
     required this.strokes,
     required this.guide,
     required this.metrics,
     required this.selectedColor,
     required this.successT,
+    required this.ghostT,
+    required this.showGhostPreview,
   });
 
-  final String glyph;
+  final String letterId;
   final List<List<Offset>> strokes;
   final KidsArabicTracingGuide? guide;
   final KidsArabicTraceMetrics metrics;
   final Color selectedColor;
   final double successT;
+  final double ghostT;
+  final bool showGhostPreview;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -315,46 +486,184 @@ class _TracingPadPainter extends CustomPainter {
       background,
     );
 
-    final guideLinePaint = Paint()
-      ..color = const Color(0xFFF0E5D6)
-      ..strokeWidth = 1.2;
-    canvas.drawLine(
-      Offset(size.width / 2, 18),
-      Offset(size.width / 2, size.height - 18),
-      guideLinePaint,
-    );
-    canvas.drawLine(
-      Offset(18, size.height / 2),
-      Offset(size.width - 18, size.height / 2),
-      guideLinePaint,
-    );
-
-    _paintGlyphEcho(canvas, size);
-    _paintGuide(canvas, size);
+    _paintTracingTarget(canvas, size);
+    _paintGhostPreview(canvas, size);
     _paintUserTrace(canvas);
     _paintCompletionGlow(canvas, size);
   }
 
-  void _paintGlyphEcho(Canvas canvas, Size size) {
-    final textPainter = TextPainter(
-      text: TextSpan(
-        text: glyph,
-        style: TextStyle(
-          fontSize: size.width * 0.34,
-          color: const Color(0x11B58D61),
-          fontFamily: 'Noto Naskh Arabic',
-          fontWeight: FontWeight.w700,
-        ),
-      ),
-      textDirection: TextDirection.rtl,
-    )..layout(maxWidth: size.width);
-    textPainter.paint(
-      canvas,
-      Offset(
-        (size.width - textPainter.width) / 2,
-        (size.height - textPainter.height) / 2 - 4,
-      ),
-    );
+  void _paintGhostPreview(Canvas canvas, Size size) {
+    if (!showGhostPreview) return;
+    final usesVectorTracing = kidsArabicSupportsVectorTracing(letterId);
+    final vectorLetter = usesVectorTracing
+        ? kidsArabicVectorTraceLetterFor(letterId)
+        : null;
+    if (usesVectorTracing && vectorLetter != null) {
+      _paintVectorGhostPreview(canvas, size, vectorLetter);
+      return;
+    }
+    if (guide != null) {
+      _paintGuideGhostPreview(canvas, size, guide!);
+    }
+  }
+
+  void _paintVectorGhostPreview(
+    Canvas canvas,
+    Size size,
+    KidsArabicVectorTraceLetter vectorLetter,
+  ) {
+    for (var i = 0; i < vectorLetter.strokes.length; i += 1) {
+      final strokeProgress = _strokePreviewProgress(
+        ghostT,
+        i,
+        vectorLetter.strokes.length,
+      );
+      if (strokeProgress <= 0) continue;
+      final path = vectorLetter.strokes[i].pathBuilder(size);
+      _paintAnimatedPreviewPath(
+        canvas,
+        path,
+        strokeProgress,
+        strokeWidth: size.shortestSide * 0.05,
+      );
+    }
+  }
+
+  void _paintGuideGhostPreview(
+    Canvas canvas,
+    Size size,
+    KidsArabicTracingGuide guide,
+  ) {
+    for (var i = 0; i < guide.strokes.length; i += 1) {
+      final stroke = guide.strokes[i];
+      final strokeProgress = _strokePreviewProgress(
+        ghostT,
+        i,
+        guide.strokes.length,
+      );
+      if (strokeProgress <= 0) continue;
+      if (stroke.kind == KidsArabicGuideStrokeKind.dot) {
+        final center = Offset(
+          stroke.center!.dx * size.width,
+          stroke.center!.dy * size.height,
+        );
+        final paint = Paint()
+          ..color = const Color(0x66A0C9F0)
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 3;
+        canvas.drawCircle(
+          center,
+          (size.shortestSide * stroke.dotRadius) *
+              (0.8 + (strokeProgress * 0.3)),
+          paint,
+        );
+        continue;
+      }
+      final path = kidsArabicGuideStrokePath(stroke, size);
+      _paintAnimatedPreviewPath(canvas, path, strokeProgress, strokeWidth: 7);
+    }
+  }
+
+  void _paintAnimatedPreviewPath(
+    Canvas canvas,
+    Path path,
+    double progress, {
+    required double strokeWidth,
+  }) {
+    final previewGlowPaint = Paint()
+      ..color = const Color(0x2299C8F2)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = strokeWidth + 6
+      ..strokeCap = StrokeCap.round
+      ..strokeJoin = StrokeJoin.round
+      ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 8);
+    final previewPaint = Paint()
+      ..color = const Color(0x8899C8F2)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = strokeWidth
+      ..strokeCap = StrokeCap.round
+      ..strokeJoin = StrokeJoin.round;
+
+    for (final metric in path.computeMetrics()) {
+      final segment = metric.extractPath(
+        0,
+        metric.length * Curves.easeInOut.transform(progress),
+      );
+      canvas.drawPath(segment, previewGlowPaint);
+      canvas.drawPath(segment, previewPaint);
+    }
+  }
+
+  double _strokePreviewProgress(double t, int index, int total) {
+    if (total <= 0) return 0;
+    final segment = 1 / total;
+    final start = segment * index;
+    final end = start + segment;
+    if (t <= start) return 0;
+    if (t >= end) return 1;
+    return (t - start) / segment;
+  }
+
+  void _paintTracingTarget(Canvas canvas, Size size) {
+    final usesVectorTracing = kidsArabicSupportsVectorTracing(letterId);
+    final vectorLetter = usesVectorTracing
+        ? kidsArabicVectorTraceLetterFor(letterId)
+        : null;
+    if (usesVectorTracing && vectorLetter != null) {
+      _paintVectorLetter(canvas, size, vectorLetter);
+      return;
+    }
+    _paintGuide(canvas, size);
+  }
+
+  void _paintVectorLetter(
+    Canvas canvas,
+    Size size,
+    KidsArabicVectorTraceLetter vectorLetter,
+  ) {
+    final outlinePaint = Paint()
+      ..color = const Color(0xFFE4D4BE)
+      ..strokeWidth = size.shortestSide * 0.11
+      ..strokeCap = StrokeCap.round
+      ..strokeJoin = StrokeJoin.round
+      ..style = PaintingStyle.stroke;
+    final completedPaint = Paint()
+      ..color = const Color(0xFFCFE7B6)
+      ..strokeWidth = size.shortestSide * 0.11
+      ..strokeCap = StrokeCap.round
+      ..strokeJoin = StrokeJoin.round
+      ..style = PaintingStyle.stroke;
+    final activeGlowPaint = Paint()
+      ..color = const Color(0x446FC08A)
+      ..strokeWidth = size.shortestSide * 0.16
+      ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 12)
+      ..strokeCap = StrokeCap.round
+      ..strokeJoin = StrokeJoin.round
+      ..style = PaintingStyle.stroke;
+    final activePaint = Paint()
+      ..color = const Color(0xFF8FC870)
+      ..strokeWidth = size.shortestSide * 0.08
+      ..strokeCap = StrokeCap.round
+      ..strokeJoin = StrokeJoin.round
+      ..style = PaintingStyle.stroke;
+
+    canvas.drawPath(vectorLetter.outlineBuilder(size), outlinePaint);
+
+    for (var i = 0; i < vectorLetter.strokes.length; i += 1) {
+      final stroke = vectorLetter.strokes[i];
+      final path = stroke.pathBuilder(size);
+      final isCompleted = i < metrics.completedGuideStrokes;
+      final isActive = i == metrics.activeGuideStrokeIndex;
+
+      if (isCompleted) {
+        canvas.drawPath(path, completedPaint);
+      } else if (isActive) {
+        canvas.drawPath(path, activeGlowPaint);
+        canvas.drawPath(path, activePaint);
+      }
+
+      _paintVectorStartHint(canvas, path, isCompleted);
+    }
   }
 
   void _paintGuide(Canvas canvas, Size size) {
@@ -418,11 +727,11 @@ class _TracingPadPainter extends CustomPainter {
         }
       }
 
-      _paintStartHint(canvas, size, stroke, isCompleted);
+      _paintGuideStartHint(canvas, size, stroke, isCompleted);
     }
   }
 
-  void _paintStartHint(
+  void _paintGuideStartHint(
     Canvas canvas,
     Size size,
     KidsArabicGuideStroke stroke,
@@ -435,15 +744,34 @@ class _TracingPadPainter extends CustomPainter {
     final startPoint = stroke.kind == KidsArabicGuideStrokeKind.dot
         ? stroke.center!
         : stroke.points.first;
-    final start = Offset(startPoint.dx * size.width, startPoint.dy * size.height);
+    final start = Offset(
+      startPoint.dx * size.width,
+      startPoint.dy * size.height,
+    );
     canvas.drawCircle(start, 10, Paint()..color = const Color(0xFFFFE1AA));
     canvas.drawCircle(start, 5, Paint()..color = const Color(0xFF9E7448));
-    if (stroke.kind == KidsArabicGuideStrokeKind.path && stroke.points.length >= 2) {
+    if (stroke.kind == KidsArabicGuideStrokeKind.path &&
+        stroke.points.length >= 2) {
       final next = Offset(
         stroke.points[1].dx * size.width,
         stroke.points[1].dy * size.height,
       );
       _paintArrow(canvas, start, next);
+    }
+  }
+
+  void _paintVectorStartHint(Canvas canvas, Path path, bool isCompleted) {
+    if (isCompleted) return;
+    final metric = path.computeMetrics().firstOrNull;
+    if (metric == null) return;
+    final startTangent = metric.getTangentForOffset(0);
+    final nextTangent = metric.getTangentForOffset(math.min(metric.length, 18));
+    if (startTangent == null) return;
+    final start = startTangent.position;
+    canvas.drawCircle(start, 10, Paint()..color = const Color(0xFFFFE1AA));
+    canvas.drawCircle(start, 5, Paint()..color = const Color(0xFF9E7448));
+    if (nextTangent != null) {
+      _paintArrow(canvas, start, nextTangent.position);
     }
   }
 
@@ -473,7 +801,11 @@ class _TracingPadPainter extends CustomPainter {
     for (final stroke in strokes) {
       if (stroke.length < 2) {
         if (stroke.isNotEmpty) {
-          canvas.drawCircle(stroke.first, 5, tracePaint..style = PaintingStyle.fill);
+          canvas.drawCircle(
+            stroke.first,
+            5,
+            tracePaint..style = PaintingStyle.fill,
+          );
           tracePaint.style = PaintingStyle.stroke;
         }
         continue;
@@ -486,7 +818,12 @@ class _TracingPadPainter extends CustomPainter {
           (current.dx + previous.dx) / 2,
           (current.dy + previous.dy) / 2,
         );
-        path.quadraticBezierTo(previous.dx, previous.dy, midPoint.dx, midPoint.dy);
+        path.quadraticBezierTo(
+          previous.dx,
+          previous.dy,
+          midPoint.dx,
+          midPoint.dy,
+        );
       }
       path.lineTo(stroke.last.dx, stroke.last.dy);
       canvas.drawPath(path, tracePaint);
@@ -506,15 +843,47 @@ class _TracingPadPainter extends CustomPainter {
       RRect.fromRectAndRadius(Offset.zero & size, const Radius.circular(24)),
       glowPaint,
     );
+    final center = Offset(size.width / 2, size.height / 2);
+    final haloPaint = Paint()
+      ..color = Color.lerp(
+        const Color(0x00CDEFBF),
+        const Color(0x55CDEFBF),
+        (1 - successT).clamp(0.0, 1.0),
+      )!
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 8 * (1 - successT).clamp(0.2, 1.0);
+    canvas.drawCircle(
+      center,
+      size.shortestSide * (0.22 + (successT * 0.18)),
+      haloPaint,
+    );
+    canvas.drawCircle(
+      center,
+      size.shortestSide * (0.32 + (successT * 0.12)),
+      haloPaint,
+    );
+    final sparklePaint = Paint()
+      ..color = const Color(0x88FFF3C0)
+      ..style = PaintingStyle.fill;
+    for (final point in <Offset>[
+      Offset(size.width * 0.28, size.height * 0.24),
+      Offset(size.width * 0.74, size.height * 0.30),
+      Offset(size.width * 0.66, size.height * 0.74),
+    ]) {
+      final radius = 2.2 + ((1 - successT) * 2.4);
+      canvas.drawCircle(point, radius, sparklePaint);
+    }
   }
 
   @override
   bool shouldRepaint(covariant _TracingPadPainter oldDelegate) {
-    return oldDelegate.glyph != glyph ||
+    return oldDelegate.letterId != letterId ||
         oldDelegate.strokes != strokes ||
         oldDelegate.guide != guide ||
         oldDelegate.metrics != metrics ||
         oldDelegate.selectedColor != selectedColor ||
-        oldDelegate.successT != successT;
+        oldDelegate.successT != successT ||
+        oldDelegate.ghostT != ghostT ||
+        oldDelegate.showGhostPreview != showGhostPreview;
   }
 }

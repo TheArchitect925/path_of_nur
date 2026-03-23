@@ -16,10 +16,14 @@ class LearnCategoryPage extends ConsumerWidget {
     super.key,
     required this.categoryId,
     this.initialSubcategoryId,
+    this.useSelectedSubcategoryHeader = false,
+    this.showSiblingSubcategories = true,
   });
 
   final LearnHubCategoryId categoryId;
   final String? initialSubcategoryId;
+  final bool useSelectedSubcategoryHeader;
+  final bool showSiblingSubcategories;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -33,12 +37,20 @@ class LearnCategoryPage extends ConsumerWidget {
         .where((item) => item.categoryId == categoryId)
         .toList(growable: false);
     final selectedSubcategory = _selectedSubcategory(subcategories);
+    final pageTitle =
+        useSelectedSubcategoryHeader && selectedSubcategory != null
+        ? selectedSubcategory.title
+        : category.title;
+    final pageSubtitle =
+        useSelectedSubcategoryHeader && selectedSubcategory != null
+        ? selectedSubcategory.subtitle
+        : category.subtitle;
     final shouldUseDedicatedRouteForSelection =
         selectedSubcategory != null &&
-        _shouldOpenDedicatedRoute(
-          selectedSubcategory,
-          knowledgeItems,
-        );
+        _shouldOpenDedicatedRoute(selectedSubcategory, knowledgeItems);
+    final showKnowledgeSection =
+        categoryId != LearnHubCategoryId.foundations ||
+        (initialSubcategoryId != null && initialSubcategoryId!.isNotEmpty);
     final filteredItems = knowledgeItems
         .where((item) => item.categoryId == categoryId)
         .where((item) => item.contentType != LearnHubContentType.category)
@@ -61,10 +73,10 @@ class LearnCategoryPage extends ConsumerWidget {
 
     return LearnHubPageScaffold(
       headerIcon: style.icon,
-      title: category.title,
-      subtitle: category.subtitle,
+      title: pageTitle,
+      subtitle: pageSubtitle,
       children: [
-        if (subcategories.isNotEmpty) ...[
+        if (showSiblingSubcategories && subcategories.isNotEmpty) ...[
           _LearnSectionHeader(
             title: l10n.learnHubSubcategoriesSectionTitle,
             subtitle: l10n.learnHubSubcategoriesSectionSubtitle,
@@ -89,32 +101,34 @@ class LearnCategoryPage extends ConsumerWidget {
           ),
           const SizedBox(height: 18),
         ],
-        _LearnSectionHeader(
-          title: l10n.learnHubKnowledgeSectionTitle,
-          subtitle: l10n.learnHubKnowledgeSectionSubtitle,
-        ),
-        const SizedBox(height: 10),
-        if (filteredItems.isEmpty)
-          selectedSubcategory != null &&
-                  !_hasListableItemsForSubcategory(
-                    knowledgeItems,
-                    selectedSubcategory.id,
-                  )
-              ? _DedicatedSubcategoryCard(
-                  subcategory: selectedSubcategory,
-                  accentColor: style.accentColor,
-                )
-              : PremiumCard(
-                  surfaceTintColor: style.accentColor,
-                  child: Text(l10n.learnHubCategoryEmptyState),
-                )
-        else
-          ...filteredItems.map(
-            (item) => Padding(
-              padding: const EdgeInsets.only(bottom: 10),
-              child: _KnowledgeListCard(item: item),
-            ),
+        if (showKnowledgeSection) ...[
+          _LearnSectionHeader(
+            title: l10n.learnHubKnowledgeSectionTitle,
+            subtitle: l10n.learnHubKnowledgeSectionSubtitle,
           ),
+          const SizedBox(height: 10),
+          if (filteredItems.isEmpty)
+            selectedSubcategory != null &&
+                    !_hasListableItemsForSubcategory(
+                      knowledgeItems,
+                      selectedSubcategory.id,
+                    )
+                ? _DedicatedSubcategoryCard(
+                    subcategory: selectedSubcategory,
+                    accentColor: style.accentColor,
+                  )
+                : PremiumCard(
+                    surfaceTintColor: style.accentColor,
+                    child: Text(l10n.learnHubCategoryEmptyState),
+                  )
+          else
+            ...filteredItems.map(
+              (item) => Padding(
+                padding: const EdgeInsets.only(bottom: 10),
+                child: _KnowledgeListCard(item: item),
+              ),
+            ),
+        ],
       ],
     );
   }
@@ -274,7 +288,10 @@ class _KnowledgeListCard extends StatelessWidget {
                     const SizedBox(height: 4),
                     Text(
                       item.subcategoryTitle == null
-                          ? LearnHubTaxonomy.categoryTitle(l10n, item.categoryId)
+                          ? LearnHubTaxonomy.categoryTitle(
+                              l10n,
+                              item.categoryId,
+                            )
                           : '${LearnHubTaxonomy.categoryTitle(l10n, item.categoryId)} • ${item.subcategoryTitle}',
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: style.accentColor,
@@ -290,8 +307,6 @@ class _KnowledgeListCard extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(width: 8),
-              Icon(Icons.chevron_right_rounded, color: style.accentColor),
             ],
           ),
         ),
@@ -402,8 +417,6 @@ class _DedicatedSubcategoryCard extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(width: 8),
-            Icon(Icons.chevron_right_rounded, color: accentColor),
           ],
         ),
       ),

@@ -574,7 +574,10 @@ class _QuranUniversePageState extends ConsumerState<QuranUniversePage> {
   }
 
   void _openGrowthHabit(String habitId) {
-    context.pushNamed('growthHabitAlias', pathParameters: {'habitId': habitId});
+    context.pushNamed(
+      'growthHabitDetail',
+      pathParameters: {'habitId': habitId},
+    );
   }
 
   void _openJourney() {

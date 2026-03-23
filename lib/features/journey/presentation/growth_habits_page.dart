@@ -41,7 +41,7 @@ class GrowthHabitsPage extends ConsumerWidget {
           label: l10n.growthTrackingOverviewTitle,
           supportingText: l10n.growthTrackingOverviewSubtitle,
           icon: Icons.dashboard_customize_rounded,
-          onTap: () => context.pushNamed('growthTrackingDashboard'),
+          onTap: () => context.pushNamed('growthStatisticsPage'),
         ),
         SectionShortcutAction(
           label: l10n.growthTrackingCalendarTitle,
@@ -459,22 +459,30 @@ class GrowthHabitsPage extends ConsumerWidget {
                                         }
                                       },
                                       itemBuilder: (context) => [
-                                        const PopupMenuItem(
+                                        PopupMenuItem(
                                           value: 'skip',
-                                          child: Text('Pause for today'),
+                                          child: Text(
+                                            l10n.growthHabitPauseTodayAction,
+                                          ),
                                         ),
-                                        const PopupMenuItem(
+                                        PopupMenuItem(
                                           value: 'snooze',
-                                          child: Text('Return later today'),
+                                          child: Text(
+                                            l10n.growthHabitReturnLaterTodayAction,
+                                          ),
                                         ),
-                                        const PopupMenuItem(
+                                        PopupMenuItem(
                                           value: 'defer',
-                                          child: Text('Carry to tomorrow'),
+                                          child: Text(
+                                            l10n.growthHabitCarryToTomorrowAction,
+                                          ),
                                         ),
                                         if (habit.allowPartial)
-                                          const PopupMenuItem(
+                                          PopupMenuItem(
                                             value: 'partial',
-                                            child: Text('Partial completion'),
+                                            child: Text(
+                                              l10n.growthHabitPartialCompletionAction,
+                                            ),
                                           ),
                                       ],
                                       child: Container(

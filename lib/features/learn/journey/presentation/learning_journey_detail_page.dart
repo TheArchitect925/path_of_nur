@@ -9,7 +9,10 @@ import '../application/family_learning_provider.dart';
 import '../application/learn_together_provider.dart';
 import '../application/learning_journey_progress_provider.dart';
 import '../application/learning_path_provider.dart';
+import '../../presentation/widgets/learn_contained_state_localizations.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
+import '../../presentation/widgets/learn_contained_state_page.dart';
+import '../../shared/application/learn_release_gate.dart';
 import '../data/learning_journey_localized_metadata.dart';
 import '../data/learning_journey_registry.dart';
 import '../data/learning_path_registry.dart';
@@ -33,6 +36,18 @@ class LearningJourneyDetailPage extends ConsumerWidget {
     final journey = LearningJourneyRegistry.journeyById(journeyId);
     if (journey == null) {
       return _LearningJourneyDetailMissingPage(l10n: l10n);
+    }
+    if (!isProductionSafeLearningJourney(journey)) {
+      return LearnContainedStatePage(
+        headerIcon: Icons.route_rounded,
+        title: localizedJourneyTitle(context, journey),
+        subtitle: l10n.learnContainedStateJourneySubtitle,
+        body: l10n.learnContainedStateBody,
+        primaryActionLabel: l10n.learnContainedStateBackToLearnAction,
+        onPrimaryAction: () => context.go('/learn'),
+        secondaryActionLabel: l10n.learnContainedStateOpenQuranLearningAction,
+        onSecondaryAction: () => context.pushNamed('quranLearningHub'),
+      );
     }
     final island = LearningJourneyRegistry.islandById(journey.islandId);
     final stages = LearningJourneyRegistry.stagesForJourney(journey.id);

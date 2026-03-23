@@ -149,7 +149,7 @@ class _LearningSectionLandingPageState
               onTap: () => context.pushNamed('learnExploreAllKnowledge'),
             ),
             SectionHubAction(
-              title: l10n.learnGamesIslandTitle,
+              title: l10n.learnGamesHubTitleText,
               subtitle: l10n.learnGamesIslandLandingCardSubtitle,
               icon: Icons.sports_esports_rounded,
               color: const Color(0xFFF3E7D5),
@@ -157,14 +157,6 @@ class _LearningSectionLandingPageState
               onTap: visibilityPolicy.isChildProfile
                   ? () => context.pushNamed('learnKidsGames')
                   : () => context.pushNamed('learnGamesIsland'),
-            ),
-            SectionHubAction(
-              title: l10n.historyArchiveTitle,
-              subtitle: l10n.historyLearnIslandSubtitle,
-              icon: Icons.history_edu_rounded,
-              color: const Color(0xFFECE6D9),
-              accentColor: const Color(0xFF7C5F3C),
-              onTap: () => context.pushNamed('learnHistoryArchive'),
             ),
             for (final category in categories)
               SectionHubAction(

@@ -68,6 +68,7 @@ class _QuranReferenceViewer extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
+    final languageCode = Localizations.localeOf(context).languageCode;
     final reference = ref.watch(quranReferenceByIdProvider(referenceId));
     final bundle = ref.watch(
       quranReferenceKnowledgeBundleProvider(referenceId),
@@ -75,13 +76,26 @@ class _QuranReferenceViewer extends ConsumerWidget {
     final enrichmentEntries = reference == null
         ? const <QuranAyahEnrichmentEntry>[]
         : ref.watch(
-            quranAyahEnrichmentForRangeProvider(
+            quranAyahEnrichmentForRangeLocalizedProvider((
               QuranQuoteRef(
                 surah: reference.surahNumber,
                 ayah: reference.ayahStart,
                 ayahEnd: reference.ayahEnd,
               ),
-            ),
+              languageCode,
+            )),
+          );
+    final localizedDisplayItems = reference == null
+        ? const <QuranAyahDisplayItem>[]
+        : ref.watch(
+            quranAyahDisplayItemsForRangeLocalizedProvider((
+              QuranQuoteRef(
+                surah: reference.surahNumber,
+                ayah: reference.ayahStart,
+                ayahEnd: reference.ayahEnd,
+              ),
+              languageCode,
+            )),
           );
 
     if (reference == null) {
@@ -136,12 +150,12 @@ class _QuranReferenceViewer extends ConsumerWidget {
               icon: const Icon(Icons.play_arrow_rounded),
               label: Text(l10n.quranReferenceViewerOpenInReader),
             ),
-            if (bundle.displayItems.isNotEmpty) ...[
+            if (localizedDisplayItems.isNotEmpty) ...[
               const SizedBox(height: 14),
               AyahInsightsSection(
                 title: l10n.quranLearnMoreInsightsTitle,
                 entries: enrichmentEntries,
-                items: bundle.displayItems,
+                items: localizedDisplayItems,
                 onOpenItem: (item) {
                   Navigator.of(context).pop();
                   if (item.sourceRouteName != null) {
@@ -214,7 +228,6 @@ class _QuranReferenceViewer extends ConsumerWidget {
                 contentPadding: EdgeInsets.zero,
                 title: Text(item.title),
                 subtitle: Text(item.subtitle),
-                trailing: const Icon(Icons.chevron_right_rounded),
                 onTap: () {
                   Navigator.of(context).pop();
                   context.pushNamed(

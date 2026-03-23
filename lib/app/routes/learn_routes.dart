@@ -7,6 +7,7 @@ import '../../features/faq/pages/faq_detail_page.dart';
 import '../../features/faq/pages/faq_landing_page.dart';
 import '../../features/learn/content/domain/learn_topic_category.dart';
 import '../../features/learn/content/presentation/islamic_guides_page.dart';
+import '../../features/learn/content/presentation/learn_notes_browse_page.dart';
 import '../../features/learn/content/presentation/learn_content_detail_page.dart';
 import '../../features/learn/content/presentation/learn_notes_landing_page.dart';
 import '../../features/learn/content/presentation/quran_lessons_mapping_page.dart';
@@ -38,6 +39,7 @@ import '../../features/learn/hadith/application/hadith_path_quiz_service.dart';
 import '../../features/learn/hadith/presentation/hadith_landing_page.dart';
 import '../../features/learn/hadith/presentation/hadith_learning_path_page.dart';
 import '../../features/learn/hadith/presentation/hadith_lesson_page.dart';
+import '../../features/learn/hadith/presentation/kids_hadith_page.dart';
 import '../../features/learn/hadith/presentation/hadith_quiz_session_page.dart';
 import '../../features/learn/hadith/presentation/hadith_subcategory_page.dart';
 import '../../features/learn/hadith/presentation/hadith_theme_page.dart';
@@ -52,6 +54,11 @@ import '../../features/learn/journey/presentation/learning_journey_island_page.d
 import '../../features/learn/journey/presentation/learning_journey_stage_page.dart';
 import '../../features/kids_arabic/presentation/kids_arabic_home_page.dart';
 import '../../features/kids_arabic/presentation/kids_arabic_lesson_page.dart';
+import '../../features/kids_arabic/presentation/kids_arabic_practice_page.dart';
+import '../../features/kids_arabic/presentation/kids_arabic_progress_map_page.dart';
+import '../../features/kids_arabic/presentation/kids_arabic_reading_mode_page.dart';
+import '../../features/kids_arabic/presentation/kids_arabic_word_lesson_page.dart';
+import '../../features/kids_arabic/presentation/kids_arabic_words_page.dart';
 import '../../features/kids_arabic/presentation/kids_arabic_parent_dashboard_page.dart';
 import '../../features/kids_arabic/presentation/kids_arabic_parent_settings_page.dart';
 import '../../features/kids_arabic/presentation/kids_arabic_coloring_pages_page.dart';
@@ -64,6 +71,7 @@ import '../../features/kids/bedtime_stories/presentation/bedtime_story_memory_ca
 import '../../features/kids/bedtime_stories/presentation/bedtime_story_parent_dashboard_page.dart';
 import '../../features/kids/bedtime_stories/presentation/bedtime_story_quiz_page.dart';
 import '../../features/kids/bedtime_stories/presentation/bedtime_stories_page.dart';
+import '../../features/kids/bedtime_stories/presentation/kids_hadith_stories_page.dart';
 import '../../features/kids/bedtime_stories/presentation/kids_story_library_page.dart';
 import '../../features/kids/bedtime_routines/presentation/bedtime_companion_page.dart';
 import '../../features/kids/seerah/presentation/seerah_journey_page.dart';
@@ -93,18 +101,22 @@ import '../../features/learn/life/baby_names/presentation/baby_names_home_page.d
 import '../../features/learn/life/baby_names/presentation/baby_names_meaning_explorer_page.dart';
 import '../../features/learn/presentation/learn_page.dart';
 import '../../features/learn/presentation/data/learn_hub_taxonomy.dart';
-import '../../features/learn/presentation/models/learn_hub_models.dart';
 import '../../features/learn/presentation/pages/games_island_page.dart';
 import '../../features/learn/presentation/pages/learning_section_landing_page.dart';
 import '../../features/learn/presentation/pages/learning_journey_island_hub_page.dart';
 import '../../features/learn/presentation/pages/learn_category_page.dart';
 import '../../features/learn/presentation/pages/learn_explore_all_knowledge_page.dart';
+import '../../features/learn/presentation/pages/learn_games_browse_all_page.dart';
+import '../../features/learn/presentation/pages/learn_kids_fun_learning_page.dart';
+import '../../features/learn/presentation/pages/learn_kids_games_page.dart';
 import '../../features/learn/presentation/pages/learn_quran_hub_page.dart';
 import '../../features/learn/presentation/pages/learn_quizzes_hub_page.dart';
 import '../../features/learn/presentation/pages/learn_salah_hub_page.dart';
-import '../../features/learn/presentation/pages/quran_app_hub_page.dart';
 import '../../features/learn/quran/presentation/quran_ayah_insights_browse_page.dart';
 import '../../features/learn/quran/presentation/quran_ayah_insights_paths_page.dart';
+import '../../features/learn/quran/presentation/kids_quran_page.dart';
+import '../../features/learn/quran/presentation/kids_quran_surah_page.dart';
+import '../../features/learn/quran/presentation/quran_kids_ayah_insights_page.dart';
 import '../../features/learn/quran/presentation/quran_knowledge_search_page.dart';
 import '../../features/learn/prophets/domain/prophets_tab.dart';
 import '../../features/learn/prophets/presentation/prophets_page.dart';
@@ -116,6 +128,7 @@ import '../../features/learn/salah/presentation/salah_guided_prayer_page.dart';
 import '../../features/learn/salah/presentation/salah_prayer_detail_page.dart';
 import '../../features/learn/salah/presentation/salah_surah_detail_page.dart';
 import '../../features/learn/salah/presentation/wudu_guide_page.dart';
+import '../../features/learn/salah/presentation/wudu_quiz_page.dart';
 import '../../features/learn/salah/presentation/wudu_trainer_page.dart';
 import '../../features/learn/trivia/presentation/trivia_home_page.dart';
 import '../../features/learn/trivia/presentation/trivia_knowledge_path_detail_page.dart';
@@ -209,8 +222,16 @@ List<RouteBase> buildLearnRoutes() {
     GoRoute(
       path: '/quran/learning',
       name: 'quranLearningHub',
-      pageBuilder: (context, state) =>
-          const MaterialPage(child: LearnQuranHubPage()),
+      pageBuilder: (context, state) => MaterialPage(
+        child: LearnQuranHubPage(
+          initialTab: switch (state.uri.queryParameters['tab']) {
+            'reflect' => LearnQuranHubTab.reflect,
+            'paths' => LearnQuranHubTab.paths,
+            'memorize' => LearnQuranHubTab.memorize,
+            _ => LearnQuranHubTab.understand,
+          },
+        ),
+      ),
     ),
     GoRoute(
       path: '/quran/insights',
@@ -221,8 +242,11 @@ List<RouteBase> buildLearnRoutes() {
     GoRoute(
       path: '/quran/knowledge-search',
       name: 'quranKnowledgeSearch',
-      pageBuilder: (context, state) =>
-          const MaterialPage(child: QuranKnowledgeSearchPage()),
+      pageBuilder: (context, state) => MaterialPage(
+        child: QuranKnowledgeSearchPage(
+          initialQuery: state.uri.queryParameters['q'] ?? '',
+        ),
+      ),
     ),
     GoRoute(
       path: '/quran/insights/paths',
@@ -314,14 +338,7 @@ List<RouteBase> buildLearnRoutes() {
     GoRoute(
       path: '/learn/browse',
       name: 'learnJourneyBrowse',
-      pageBuilder: (context, state) => MaterialPage(
-        child: LearnExploreAllKnowledgePage(
-          initialCategoryId: LearnHubTaxonomy.categoryFromSlug(
-            state.uri.queryParameters['category'] ?? '',
-          ),
-          initialQuery: state.uri.queryParameters['q'],
-        ),
-      ),
+      redirect: (context, state) => _redirectWithQuery('/learn/explore', state),
     ),
     GoRoute(
       path: '/learn/explore',
@@ -361,6 +378,15 @@ List<RouteBase> buildLearnRoutes() {
           const MaterialPage(child: GamesIslandPage()),
     ),
     GoRoute(
+      path: '/learn/games/browse',
+      name: 'learnGamesBrowseAll',
+      pageBuilder: (context, state) => MaterialPage(
+        child: LearnGamesBrowseAllPage(
+          initialQuery: state.uri.queryParameters['q'],
+        ),
+      ),
+    ),
+    GoRoute(
       path: '/learn/games/:sectionId',
       name: 'learnGamesSection',
       pageBuilder: (context, state) => MaterialPage(
@@ -379,32 +405,61 @@ List<RouteBase> buildLearnRoutes() {
     GoRoute(
       path: '/learn/kids/games',
       name: 'learnKidsGames',
-      pageBuilder: (context, state) => const MaterialPage(
-        child: LearnCategoryPage(
-          categoryId: LearnHubCategoryId.kidsLearning,
-          initialSubcategoryId: 'kids-games',
-        ),
-      ),
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: LearnKidsGamesPage()),
     ),
     GoRoute(
       path: '/learn/kids/arabic-learning',
       name: 'learnKidsArabicLearning',
-      pageBuilder: (context, state) => const MaterialPage(
-        child: LearnCategoryPage(
-          categoryId: LearnHubCategoryId.kidsLearning,
-          initialSubcategoryId: 'kids-arabic-learning',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: KidsArabicHomePage()),
+    ),
+    GoRoute(
+      path: '/learn/kids/quran',
+      name: 'learnKidsQuran',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: KidsQuranPage()),
+    ),
+    GoRoute(
+      path: '/learn/kids/quran/surah/:surahNumber',
+      name: 'learnKidsQuranSurah',
+      pageBuilder: (context, state) => MaterialPage(
+        child: KidsQuranSurahPage(
+          surahNumber:
+              int.tryParse(state.pathParameters['surahNumber'] ?? '') ?? 1,
         ),
+      ),
+    ),
+    GoRoute(
+      path: '/learn/kids/hadith',
+      name: 'learnKidsHadith',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: KidsHadithPage()),
+    ),
+    GoRoute(
+      path: '/learn/kids/hadith-stories',
+      name: 'learnKidsHadithStories',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: KidsHadithStoriesPage()),
+    ),
+    GoRoute(
+      path: '/learn/kids/prophet-stories',
+      name: 'learnKidsProphetStories',
+      pageBuilder: (context, state) => const MaterialPage(
+        child: KidsStoryLibraryPage(initialCollectionId: 'prophets'),
       ),
     ),
     GoRoute(
       path: '/learn/kids/fun-learning',
       name: 'learnKidsFunLearning',
-      pageBuilder: (context, state) => const MaterialPage(
-        child: LearnCategoryPage(
-          categoryId: LearnHubCategoryId.kidsLearning,
-          initialSubcategoryId: 'kids-fun-learning',
-        ),
-      ),
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: LearnKidsFunLearningPage()),
+    ),
+    GoRoute(
+      path: '/learn/kids/quran-insights',
+      name: 'kidsQuranAyahInsights',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: QuranKidsAyahInsightsPage()),
     ),
     GoRoute(
       path: '/learn/category/:categoryId',
@@ -442,6 +497,42 @@ List<RouteBase> buildLearnRoutes() {
       pageBuilder: (context, state) => MaterialPage(
         child: KidsArabicLessonPage(
           letterId: state.pathParameters['letterId'] ?? '',
+        ),
+      ),
+    ),
+    GoRoute(
+      path: '/learn/kids/arabic/progress',
+      name: 'kidsArabicProgressMap',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: KidsArabicProgressMapPage()),
+    ),
+    GoRoute(
+      path: '/learn/kids/arabic/practice',
+      name: 'kidsArabicPractice',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: KidsArabicPracticePage()),
+    ),
+    GoRoute(
+      path: '/learn/kids/arabic/words',
+      name: 'kidsArabicWordsHome',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: KidsArabicWordsPage()),
+    ),
+    GoRoute(
+      path: '/learn/kids/arabic/words/reading',
+      name: 'kidsArabicReadingMode',
+      pageBuilder: (context, state) => MaterialPage(
+        child: KidsArabicReadingModePage(
+          initialWordId: state.uri.queryParameters['word'],
+        ),
+      ),
+    ),
+    GoRoute(
+      path: '/learn/kids/arabic/words/:wordId',
+      name: 'kidsArabicWordLesson',
+      pageBuilder: (context, state) => MaterialPage(
+        child: KidsArabicWordLessonPage(
+          wordId: state.pathParameters['wordId'] ?? '',
         ),
       ),
     ),
@@ -518,8 +609,11 @@ List<RouteBase> buildLearnRoutes() {
     GoRoute(
       path: '/learn/kids/stories',
       name: 'kidsStoryLibrary',
-      pageBuilder: (context, state) =>
-          const MaterialPage(child: KidsStoryLibraryPage()),
+      pageBuilder: (context, state) => MaterialPage(
+        child: KidsStoryLibraryPage(
+          initialCollectionId: state.uri.queryParameters['collection'],
+        ),
+      ),
     ),
     GoRoute(
       path: '/learn/kids/bedtime-stories/parents',
@@ -557,6 +651,15 @@ List<RouteBase> buildLearnRoutes() {
     GoRoute(
       path: '/learn/kids/stories/:storyId',
       name: 'kidsStoryDetail',
+      pageBuilder: (context, state) => MaterialPage(
+        child: BedtimeStoryDetailPage(
+          storyId: state.pathParameters['storyId'] ?? '',
+        ),
+      ),
+    ),
+    GoRoute(
+      path: '/learn/kids/hadith-stories/:storyId',
+      name: 'learnKidsHadithStoriesDetail',
       pageBuilder: (context, state) => MaterialPage(
         child: BedtimeStoryDetailPage(
           storyId: state.pathParameters['storyId'] ?? '',
@@ -699,20 +802,19 @@ List<RouteBase> buildLearnRoutes() {
     GoRoute(
       path: '/learn/hub/quran',
       name: 'learnQuranHub',
-      pageBuilder: (context, state) =>
-          const MaterialPage(child: QuranAppHubPage()),
+      redirect: (context, state) => _redirectWithQuery('/quran', state),
     ),
     GoRoute(
       path: '/learn/hub/quran/learning',
       name: 'learnQuranLearning',
-      pageBuilder: (context, state) =>
-          const MaterialPage(child: LearnQuranHubPage()),
+      redirect: (context, state) =>
+          _redirectWithQuery('/quran/learning', state),
     ),
     GoRoute(
       path: '/learn/hub/quranic-arabic',
       name: 'learnQuranArabic',
-      pageBuilder: (context, state) =>
-          const MaterialPage(child: QuranTeachingSectionPage()),
+      redirect: (context, state) =>
+          _redirectWithQuery('/quran/arabic', state),
     ),
     // Canonical Prophets hub route plus compatibility aliases.
     GoRoute(
@@ -1044,6 +1146,12 @@ List<RouteBase> buildLearnRoutes() {
       name: 'learnWuduTrainer',
       pageBuilder: (context, state) =>
           const MaterialPage(child: WuduTrainerPage()),
+    ),
+    GoRoute(
+      path: '/learn/salah/wudu/quiz',
+      name: 'learnWuduQuiz',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: WuduQuizPage()),
     ),
     GoRoute(
       path: '/learn/faq',
@@ -1413,6 +1521,12 @@ List<RouteBase> buildLearnRoutes() {
       name: 'learnNotesLanding',
       pageBuilder: (context, state) =>
           const MaterialPage(child: LearnNotesLandingPage()),
+    ),
+    GoRoute(
+      path: '/learn/notes/browse',
+      name: 'learnNotesBrowseAll',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: LearnNotesBrowsePage()),
     ),
     GoRoute(
       path: '/learn/guides',

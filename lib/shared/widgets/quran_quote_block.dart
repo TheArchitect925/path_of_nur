@@ -112,10 +112,13 @@ class QuranQuoteBlock extends ConsumerWidget {
     if (onTap == null) {
       return card;
     }
-    return InkWell(
-      borderRadius: BorderRadius.circular(18),
-      onTap: onTap,
-      child: card,
+    return Material(
+      type: MaterialType.transparency,
+      child: InkWell(
+        borderRadius: BorderRadius.circular(18),
+        onTap: onTap,
+        child: card,
+      ),
     );
   }
 }

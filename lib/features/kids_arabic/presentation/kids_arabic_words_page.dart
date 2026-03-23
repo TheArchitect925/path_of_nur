@@ -1,0 +1,442 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../../l10n/app_localizations.dart';
+import '../../learn/presentation/widgets/learn_hub_page_scaffold.dart';
+import '../application/kids_arabic_audio_service.dart';
+import '../application/kids_arabic_words_provider.dart';
+import '../widgets/kids_arabic_audio_learning_widgets.dart';
+import 'kids_arabic_localized_content.dart';
+
+class KidsArabicWordsPage extends ConsumerWidget {
+  const KidsArabicWordsPage({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final statuses = ref.watch(kidsArabicWordStatusesProvider);
+    final completedCount = ref.watch(kidsArabicCompletedWordsCountProvider);
+    final nextWord = ref.watch(kidsArabicNextRecommendedWordProvider);
+    final readingWord = ref.watch(kidsArabicReadingRecommendedWordProvider);
+    final readyCount = statuses.where((item) => item.unlocked).length;
+
+    return LearnHubPageScaffold(
+      headerIcon: Icons.abc_rounded,
+      title: l10n.kidsArabicWordsTitle,
+      subtitle: l10n.kidsArabicWordsSubtitle,
+      children: [
+        Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: const Color(0xFFFFF5E7),
+            borderRadius: BorderRadius.circular(22),
+            border: Border.all(color: const Color(0xFFE8D8BE)),
+          ),
+          child: Wrap(
+            spacing: 10,
+            runSpacing: 10,
+            children: [
+              _SummaryPill(
+                label: l10n.kidsArabicWordsCompletedValue(completedCount),
+              ),
+              _SummaryPill(label: l10n.kidsArabicWordsReadyValue(readyCount)),
+            ],
+          ),
+        ),
+        const SizedBox(height: 12),
+        if (nextWord != null)
+          _NextWordCard(wordId: nextWord.id, wordAr: nextWord.wordAr),
+        if (nextWord != null) const SizedBox(height: 12),
+        _ReadingModeCard(initialWordId: readingWord?.id),
+        const SizedBox(height: 12),
+        _SectionHeader(
+          title: l10n.kidsArabicWordsJoiningTitle,
+          subtitle: l10n.kidsArabicWordsJoiningSubtitle,
+        ),
+        const SizedBox(height: 10),
+        Wrap(
+          spacing: 10,
+          runSpacing: 10,
+          children: statuses
+              .take(3)
+              .expand(
+                (status) => status.word.joiningExamples
+                    .take(1)
+                    .map(
+                      (example) => _JoiningCard(
+                        letterName: localizedKidsArabicJoiningLetterName(
+                          l10n,
+                          example.letterId,
+                        ),
+                        standaloneGlyph: example.standaloneGlyph,
+                        joinedGlyph: example.joinedGlyph,
+                      ),
+                    ),
+              )
+              .toList(growable: false),
+        ),
+        const SizedBox(height: 18),
+        _SectionHeader(
+          title: l10n.kidsArabicWordsStartSetTitle,
+          subtitle: l10n.kidsArabicWordsStartSetSubtitle,
+        ),
+        const SizedBox(height: 10),
+        ...statuses.map(
+          (status) => Padding(
+            padding: const EdgeInsets.only(bottom: 10),
+            child: _WordCard(status: status),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _NextWordCard extends StatelessWidget {
+  const _NextWordCard({required this.wordId, required this.wordAr});
+
+  final String wordId;
+  final String wordAr;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return Container(
+      padding: const EdgeInsets.all(18),
+      decoration: BoxDecoration(
+        color: const Color(0xFFEFF6E6),
+        borderRadius: BorderRadius.circular(24),
+        border: Border.all(color: const Color(0xFFD4E4C0)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            l10n.kidsArabicWordsNextTitle,
+            style: const TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w700,
+              color: Color(0xFF2E261F),
+            ),
+          ),
+          const SizedBox(height: 6),
+          Text(
+            l10n.kidsArabicWordsNextSubtitle(wordAr),
+            textDirection: TextDirection.rtl,
+            style: const TextStyle(color: Color(0xFF5A6A4A), height: 1.35),
+          ),
+          const SizedBox(height: 12),
+          FilledButton(
+            onPressed: () => context.pushNamed(
+              'kidsArabicWordLesson',
+              pathParameters: {'wordId': wordId},
+            ),
+            child: Text(l10n.kidsArabicWordsContinueAction),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _ReadingModeCard extends StatelessWidget {
+  const _ReadingModeCard({required this.initialWordId});
+
+  final String? initialWordId;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return Container(
+      padding: const EdgeInsets.all(18),
+      decoration: BoxDecoration(
+        color: const Color(0xFFEAF4FF),
+        borderRadius: BorderRadius.circular(24),
+        border: Border.all(color: const Color(0xFFD1E2F4)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            l10n.kidsArabicReadingModeTitle,
+            style: const TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w700,
+              color: Color(0xFF24324A),
+            ),
+          ),
+          const SizedBox(height: 6),
+          Text(
+            l10n.kidsArabicReadingModeHomeSubtitle,
+            style: const TextStyle(color: Color(0xFF4A5870), height: 1.35),
+          ),
+          const SizedBox(height: 12),
+          FilledButton.tonal(
+            onPressed: () => context.pushNamed(
+              'kidsArabicReadingMode',
+              queryParameters: initialWordId == null
+                  ? <String, String>{}
+                  : {'word': initialWordId!},
+            ),
+            child: Text(l10n.kidsArabicReadingModeOpenAction),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _WordCard extends ConsumerWidget {
+  const _WordCard({required this.status});
+
+  final KidsArabicWordStatus status;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final body = status.unlocked
+        ? localizedKidsArabicWordSummary(l10n, status.word.id)
+        : localizedKidsArabicRequiredLettersLabel(
+            l10n,
+            status.word.joiningExamples,
+          );
+    final actionLabel = status.unlocked
+        ? status.completed
+              ? l10n.kidsArabicWordsPracticeAgainAction
+              : l10n.kidsArabicWordsStartAction
+        : l10n.kidsArabicWordsLockedLabel;
+    return InkWell(
+      onTap: status.unlocked
+          ? () => context.pushNamed(
+              'kidsArabicWordLesson',
+              pathParameters: {'wordId': status.word.id},
+            )
+          : null,
+      borderRadius: BorderRadius.circular(22),
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: status.unlocked
+              ? const Color(0xFFF8F2E8)
+              : const Color(0xFFF2EEE7),
+          borderRadius: BorderRadius.circular(22),
+          border: Border.all(
+            color: status.completed
+                ? const Color(0xFFC4DAA9)
+                : status.unlocked
+                ? const Color(0xFFE5D5C1)
+                : const Color(0xFFD8CFC2),
+          ),
+        ),
+        child: Row(
+          children: [
+            Container(
+              width: 84,
+              height: 84,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(18),
+              ),
+              child: Text(
+                status.word.wordAr,
+                textDirection: TextDirection.rtl,
+                style: const TextStyle(
+                  fontSize: 32,
+                  fontFamily: 'Noto Naskh Arabic',
+                  fontWeight: FontWeight.w700,
+                  color: Color(0xFF5E462A),
+                ),
+              ),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    status.word.transliteration,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w700,
+                      color: Color(0xFF2E261F),
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    localizedKidsArabicWordMeaning(l10n, status.word.id),
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w700,
+                      color: Color(0xFF8A6C49),
+                    ),
+                  ),
+                  const SizedBox(height: 6),
+                  Text(
+                    body,
+                    style: const TextStyle(
+                      color: Color(0xFF675B4E),
+                      height: 1.35,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Wrap(
+                    spacing: 8,
+                    runSpacing: 8,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    children: [
+                      Text(
+                        actionLabel,
+                        style: const TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w700,
+                          color: Color(0xFF8A6C49),
+                        ),
+                      ),
+                      if (status.unlocked)
+                        KidsArabicAudioChipButton(
+                          label: l10n.kidsArabicWordsListenAction,
+                          onPlay: () => ref
+                              .read(kidsArabicAudioServiceProvider)
+                              .speakWord(status.word),
+                        ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _JoiningCard extends StatelessWidget {
+  const _JoiningCard({
+    required this.letterName,
+    required this.standaloneGlyph,
+    required this.joinedGlyph,
+  });
+
+  final String letterName;
+  final String standaloneGlyph;
+  final String joinedGlyph;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return Container(
+      width: 160,
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        color: const Color(0xFFF7F0E6),
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: const Color(0xFFE6D7C5)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            letterName,
+            style: const TextStyle(
+              fontWeight: FontWeight.w700,
+              color: Color(0xFF2E261F),
+            ),
+          ),
+          const SizedBox(height: 10),
+          Text(
+            l10n.kidsArabicWordsAloneLabel,
+            style: const TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w700,
+              color: Color(0xFF8A6C49),
+            ),
+          ),
+          Text(
+            standaloneGlyph,
+            textDirection: TextDirection.rtl,
+            style: const TextStyle(
+              fontSize: 28,
+              fontFamily: 'Noto Naskh Arabic',
+              fontWeight: FontWeight.w700,
+              color: Color(0xFF5E462A),
+            ),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            l10n.kidsArabicWordsInWordLabel,
+            style: const TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w700,
+              color: Color(0xFF8A6C49),
+            ),
+          ),
+          Text(
+            joinedGlyph,
+            textDirection: TextDirection.rtl,
+            style: const TextStyle(
+              fontSize: 28,
+              fontFamily: 'Noto Naskh Arabic',
+              fontWeight: FontWeight.w700,
+              color: Color(0xFF5E462A),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _SectionHeader extends StatelessWidget {
+  const _SectionHeader({required this.title, required this.subtitle});
+
+  final String title;
+  final String subtitle;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          title,
+          style: const TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.w700,
+            color: Color(0xFF2E261F),
+          ),
+        ),
+        const SizedBox(height: 6),
+        Text(
+          subtitle,
+          style: const TextStyle(color: Color(0xFF675B4E), height: 1.35),
+        ),
+      ],
+    );
+  }
+}
+
+class _SummaryPill extends StatelessWidget {
+  const _SummaryPill({required this.label});
+
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(999),
+        border: Border.all(color: const Color(0xFFE2D2BC)),
+      ),
+      child: Text(
+        label,
+        style: const TextStyle(
+          fontWeight: FontWeight.w700,
+          color: Color(0xFF6B583F),
+        ),
+      ),
+    );
+  }
+}

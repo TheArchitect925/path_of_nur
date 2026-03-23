@@ -6,7 +6,10 @@ import 'package:path_of_nur/shared/application/daily_clock_provider.dart';
 import 'package:path_of_nur/features/accounts_sync/presentation/accounts_profiles_sync_page.dart';
 import 'package:path_of_nur/features/home/presentation/home_page.dart';
 import 'package:path_of_nur/features/journey/presentation/journey_page.dart';
+import 'package:path_of_nur/features/journey/presentation/growth_browse_all_page.dart';
+import 'package:path_of_nur/features/journey/presentation/growth_habit_detail_page.dart';
 import 'package:path_of_nur/features/journey/presentation/growth_section_pages.dart';
+import 'package:path_of_nur/features/journey/presentation/growth_tracking_dashboard_page.dart';
 import 'package:path_of_nur/features/learn/dua/presentation/dua_hub_page.dart';
 import 'package:path_of_nur/features/learn/presentation/pages/learn_explore_all_knowledge_page.dart';
 import 'package:path_of_nur/features/learn/presentation/pages/learning_section_landing_page.dart';
@@ -14,6 +17,7 @@ import 'package:path_of_nur/features/learn/presentation/pages/learn_quizzes_hub_
 import 'package:path_of_nur/features/learn/presentation/learn_page.dart';
 import 'package:path_of_nur/features/learn/presentation/pages/quran_app_hub_page.dart';
 import 'package:path_of_nur/features/learn/prophets/presentation/prophets_page.dart';
+import 'package:path_of_nur/features/learn/quran/presentation/quran_reflections_page.dart';
 import 'package:path_of_nur/features/learn/quran/presentation/quran_search_page.dart';
 import 'package:path_of_nur/features/learn/quran/presentation/quran_surah_explorer_page.dart';
 import 'package:path_of_nur/features/ocean/presentation/ocean_dashboard_page.dart';
@@ -23,6 +27,9 @@ import 'package:path_of_nur/features/profile/presentation/settings_page.dart';
 import 'package:path_of_nur/features/worship/presentation/worship_page.dart';
 import 'package:path_of_nur/features/onboarding/presentation/onboarding_page.dart';
 import 'package:path_of_nur/features/shared/legal_info_page.dart';
+import 'package:path_of_nur/features/kids_arabic/presentation/kids_arabic_practice_page.dart';
+import 'package:path_of_nur/features/kids_arabic/presentation/kids_arabic_reading_mode_page.dart';
+import 'package:path_of_nur/features/kids_arabic/presentation/kids_arabic_words_page.dart';
 
 import '../test_helpers/app_test_harness.dart';
 
@@ -64,6 +71,11 @@ void main() {
       ('/profile/summary', ProfileSummaryPage),
       ('/legal/privacy', LegalInfoPage),
       ('/journey/ocean', OceanDashboardPage),
+      ('/journey/statistics', GrowthTrackingDashboardPage),
+      ('/journey/browse', GrowthBrowseAllPage),
+      ('/learn/kids/arabic/practice', KidsArabicPracticePage),
+      ('/learn/kids/arabic/words', KidsArabicWordsPage),
+      ('/learn/kids/arabic/words/reading', KidsArabicReadingModePage),
     ];
 
     for (final (path, pageType) in cases) {
@@ -91,7 +103,9 @@ void main() {
     final cases = <(String, Type)>[
       ('/learn/hub/quran', QuranAppHubPage),
       ('/learn/quran/explorer', QuranSurahExplorerPage),
+      ('/learn/quran/reflections', QuranReflectionsPage),
       ('/learn/quran/search', QuranSearchPage),
+      ('/quran/reflections', QuranReflectionsPage),
     ];
 
     for (final (path, pageType) in cases) {
@@ -124,6 +138,9 @@ void main() {
       ('/learn/section/quizzes', LearnQuizzesHubPage),
       ('/learn/section/faq', FaqLandingPage),
       ('/growth/today', GrowthTodaySectionPage),
+      ('/growth/habit/h_morning_adhkar', GrowthHabitDetailPage),
+      ('/journey/tracking', GrowthTrackingDashboardPage),
+      ('/learn/kids/arabic/words/reading', KidsArabicReadingModePage),
     ];
 
     for (final (path, pageType) in cases) {

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
+import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../application/wudu_trainer_controller.dart';
 import '../models/wudu_models.dart';
+import '../presentation/wudu_localizations.dart';
 import 'wudu_cards.dart';
 
 class WuduTrainerModeSelector extends StatelessWidget {
@@ -17,12 +19,13 @@ class WuduTrainerModeSelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return PremiumCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Trainer Mode',
+            l10n.wuduTrainerModeTitle,
             style: Theme.of(
               context,
             ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
@@ -30,16 +33,16 @@ class WuduTrainerModeSelector extends StatelessWidget {
           const SizedBox(height: 10),
           SegmentedButton<WuduTrainerMode>(
             showSelectedIcon: false,
-            segments: const [
+            segments: [
               ButtonSegment(
                 value: WuduTrainerMode.guided,
-                label: Text('Guided'),
-                icon: Icon(Icons.directions_walk_rounded),
+                label: Text(l10n.wuduTrainerModeGuided),
+                icon: const Icon(Icons.directions_walk_rounded),
               ),
               ButtonSegment(
                 value: WuduTrainerMode.checklist,
-                label: Text('Checklist'),
-                icon: Icon(Icons.checklist_rounded),
+                label: Text(l10n.wuduTrainerModeChecklist),
+                icon: const Icon(Icons.checklist_rounded),
               ),
             ],
             selected: {mode},
@@ -60,19 +63,16 @@ class WuduProgressHeader extends StatelessWidget {
     required this.currentStep,
     required this.totalSteps,
     required this.completedCount,
-    required this.skippedCount,
   });
 
   final int currentStep;
   final int totalSteps;
   final int completedCount;
-  final int skippedCount;
 
   @override
   Widget build(BuildContext context) {
-    final progress = totalSteps == 0
-        ? 0.0
-        : (completedCount + skippedCount) / totalSteps;
+    final l10n = AppLocalizations.of(context);
+    final progress = totalSteps == 0 ? 0.0 : completedCount / totalSteps;
 
     return PremiumCard(
       child: Column(
@@ -81,14 +81,14 @@ class WuduProgressHeader extends StatelessWidget {
           Row(
             children: [
               Text(
-                'Step $currentStep of $totalSteps',
+                l10n.wuduTrainerProgressOf(currentStep, totalSteps),
                 style: Theme.of(
                   context,
                 ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
               ),
               const Spacer(),
               Text(
-                '$completedCount done · $skippedCount skipped',
+                l10n.wuduTrainerProgressCounts(completedCount, totalSteps),
                 style: Theme.of(context).textTheme.bodySmall,
               ),
             ],
@@ -100,6 +100,82 @@ class WuduProgressHeader extends StatelessWidget {
               minHeight: 10,
               value: progress.clamp(0.0, 1.0),
             ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class WuduTrainerCompletionStatusCard extends StatelessWidget {
+  const WuduTrainerCompletionStatusCard({
+    super.key,
+    required this.summary,
+    required this.isReviewing,
+    required this.onReviewSteps,
+    required this.onRestart,
+    this.onViewSummary,
+    this.onTakeQuiz,
+  });
+
+  final String summary;
+  final bool isReviewing;
+  final VoidCallback onReviewSteps;
+  final VoidCallback onRestart;
+  final VoidCallback? onViewSummary;
+  final VoidCallback? onTakeQuiz;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return PremiumCard(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Icon(
+                Icons.verified_rounded,
+                color: Theme.of(context).colorScheme.primary,
+              ),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Text(
+                  l10n.wuduTrainerCompletedStateTitleText,
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 8),
+          Text(summary, style: Theme.of(context).textTheme.bodyMedium),
+          const SizedBox(height: 10),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              if (!isReviewing)
+                FilledButton.tonal(
+                  onPressed: onReviewSteps,
+                  child: Text(l10n.wuduTrainerReviewStepsActionText),
+                ),
+              if (isReviewing && onViewSummary != null)
+                FilledButton.tonal(
+                  onPressed: onViewSummary,
+                  child: Text(l10n.wuduTrainerViewCompletionSummaryActionText),
+                ),
+              if (onTakeQuiz != null)
+                FilledButton.tonal(
+                  onPressed: onTakeQuiz,
+                  child: Text(l10n.wuduQuizStartAction),
+                ),
+              OutlinedButton(
+                onPressed: onRestart,
+                child: Text(l10n.wuduTrainerStartAgainActionText),
+              ),
+            ],
           ),
         ],
       ),
@@ -121,39 +197,18 @@ class WuduGuidedStepCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WuduIllustratedStepCard(
-      step: step,
-      isCompleted: isCompleted,
-      isSkipped: isSkipped,
-    );
-  }
-}
-
-class WuduIllustratedStepCard extends StatelessWidget {
-  const WuduIllustratedStepCard({
-    super.key,
-    required this.step,
-    required this.isCompleted,
-    required this.isSkipped,
-  });
-
-  final WuduStep step;
-  final bool isCompleted;
-  final bool isSkipped;
-
-  @override
-  Widget build(BuildContext context) {
-    Color? stateColor;
+    final l10n = AppLocalizations.of(context);
     String? stateLabel;
+    Color? stateColor;
     IconData? stateIcon;
 
     if (isCompleted) {
+      stateLabel = l10n.wuduTrainerStatusCompleted;
       stateColor = const Color(0xFF4F7E54);
-      stateLabel = 'Completed';
       stateIcon = Icons.check_rounded;
     } else if (isSkipped) {
+      stateLabel = l10n.wuduTrainerStatusSkipped;
       stateColor = const Color(0xFFA8773A);
-      stateLabel = 'Skipped';
       stateIcon = Icons.fast_forward_rounded;
     }
 
@@ -163,16 +218,11 @@ class WuduIllustratedStepCard extends StatelessWidget {
         children: [
           Row(
             children: [
-              Container(
-                width: 34,
-                height: 34,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Theme.of(
-                    context,
-                  ).colorScheme.primary.withValues(alpha: 0.18),
-                ),
+              CircleAvatar(
+                radius: 18,
+                backgroundColor: Theme.of(
+                  context,
+                ).colorScheme.primary.withValues(alpha: 0.16),
                 child: Text(
                   '${step.number}',
                   style: const TextStyle(fontWeight: FontWeight.w700),
@@ -196,8 +246,10 @@ class WuduIllustratedStepCard extends StatelessWidget {
                   ),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(999),
-                    color: stateColor!.withValues(alpha: 0.14),
-                    border: Border.all(color: stateColor),
+                    color: stateColor!.withValues(alpha: 0.12),
+                    border: Border.all(
+                      color: stateColor.withValues(alpha: 0.5),
+                    ),
                   ),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
@@ -206,8 +258,7 @@ class WuduIllustratedStepCard extends StatelessWidget {
                       const SizedBox(width: 4),
                       Text(
                         stateLabel,
-                        style: TextStyle(
-                          fontSize: 11.5,
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
                           color: stateColor,
                           fontWeight: FontWeight.w700,
                         ),
@@ -218,133 +269,54 @@ class WuduIllustratedStepCard extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 12),
-          WuduStepIllustration(step: step),
+          _WuduStepIllustration(step: step),
           const SizedBox(height: 12),
           Text(
-            step.description,
+            step.subtitle,
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(height: 1.4),
           ),
-          if (step.trainerNote != null) ...[
-            const SizedBox(height: 8),
-            Text(
-              step.trainerNote!,
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: Theme.of(context).colorScheme.onSurfaceVariant,
-              ),
-            ),
-          ],
           const SizedBox(height: 8),
           Wrap(
             spacing: 8,
             runSpacing: 8,
             children: [
-              if (step.repeatCount == 3)
-                _BadgePill(label: 'Repeat 3x', icon: Icons.repeat_rounded),
               _BadgePill(
-                label: 'Be mindful, not obsessive.',
+                label: l10n.wuduTrainerStepRepeatBadge,
+                icon: Icons.repeat_rounded,
+              ),
+              _BadgePill(
+                label: l10n.wuduTrainerStepCalmBadge,
                 icon: Icons.spa_outlined,
               ),
             ],
           ),
-          if (step.whyItMatters != null) ...[
+          if (step.teachingNote != null) ...[
             const SizedBox(height: 10),
-            WuduWhyItMattersPanel(text: step.whyItMatters!),
+            ExpansionTile(
+              tilePadding: EdgeInsets.zero,
+              childrenPadding: EdgeInsets.zero,
+              title: Text(
+                l10n.wuduTrainerStepMattersTitle,
+                style: Theme.of(
+                  context,
+                ).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w700),
+              ),
+              children: [
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    step.teachingNote!,
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      height: 1.4,
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ],
         ],
       ),
-    );
-  }
-}
-
-class WuduStepIllustration extends StatelessWidget {
-  const WuduStepIllustration({super.key, required this.step});
-
-  final WuduStep step;
-
-  @override
-  Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-    final resolver = WuduStepAssetResolver(step: step);
-
-    return Semantics(
-      label: 'Illustration for ${step.title}',
-      child: Container(
-        width: double.infinity,
-        constraints: const BoxConstraints(minHeight: 168),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(18),
-          border: Border.all(
-            color: colorScheme.primary.withValues(alpha: 0.18),
-          ),
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              colorScheme.surface.withValues(alpha: 0.92),
-              colorScheme.surfaceContainerHigh.withValues(alpha: 0.85),
-            ],
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: colorScheme.primary.withValues(alpha: 0.08),
-              blurRadius: 20,
-              spreadRadius: 1,
-            ),
-          ],
-        ),
-        child: AspectRatio(
-          aspectRatio: 16 / 9,
-          child: Center(
-            child: Padding(
-              padding: const EdgeInsets.all(18),
-              child: Image.asset(
-                resolver.assetPath,
-                fit: BoxFit.contain,
-                filterQuality: FilterQuality.medium,
-                errorBuilder: (context, error, stackTrace) {
-                  return _IllustrationFallback(
-                    icon: resolver.fallbackIcon,
-                    stepNumber: step.number,
-                    label: resolver.placeholderLabel,
-                  );
-                },
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class WuduWhyItMattersPanel extends StatelessWidget {
-  const WuduWhyItMattersPanel({super.key, required this.text});
-
-  final String text;
-
-  @override
-  Widget build(BuildContext context) {
-    return ExpansionTile(
-      tilePadding: EdgeInsets.zero,
-      childrenPadding: EdgeInsets.zero,
-      title: Text(
-        'Why this step matters',
-        style: Theme.of(
-          context,
-        ).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w700),
-      ),
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(bottom: 4),
-          child: Text(
-            text,
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              height: 1.4,
-              color: Theme.of(context).colorScheme.onSurfaceVariant,
-            ),
-          ),
-        ),
-      ],
     );
   }
 }
@@ -354,7 +326,6 @@ class WuduChecklistItem extends StatelessWidget {
     super.key,
     required this.step,
     required this.isCompleted,
-    required this.isSkipped,
     required this.isCurrent,
     required this.showOrderHint,
     required this.onToggle,
@@ -363,7 +334,6 @@ class WuduChecklistItem extends StatelessWidget {
 
   final WuduStep step;
   final bool isCompleted;
-  final bool isSkipped;
   final bool isCurrent;
   final bool showOrderHint;
   final VoidCallback onToggle;
@@ -371,10 +341,14 @@ class WuduChecklistItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final status = _statusForStep();
+    final l10n = AppLocalizations.of(context);
+    final status = isCompleted
+        ? l10n.wuduTrainerStatusCompleted
+        : (isCurrent
+              ? l10n.wuduTrainerStatusCurrent
+              : l10n.wuduTrainerStatusPending);
 
     return PremiumCard(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -394,12 +368,6 @@ class WuduChecklistItem extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 10),
-              Icon(
-                WuduStepAssetResolver(step: step).fallbackIcon,
-                size: 18,
-                color: Theme.of(context).colorScheme.onSurfaceVariant,
-              ),
-              const SizedBox(width: 8),
               Expanded(
                 child: Text(
                   step.title,
@@ -411,38 +379,30 @@ class WuduChecklistItem extends StatelessWidget {
               Checkbox(value: isCompleted, onChanged: (_) => onToggle()),
             ],
           ),
-          const SizedBox(height: 4),
+          const SizedBox(height: 6),
+          Text(step.subtitle),
+          const SizedBox(height: 8),
           Row(
             children: [
-              _StatusPill(status: status),
+              _BadgePill(label: status, icon: Icons.checklist_rtl_rounded),
               const SizedBox(width: 8),
               TextButton.icon(
                 onPressed: onOpenGuided,
                 icon: const Icon(Icons.open_in_new_rounded, size: 16),
-                label: const Text('Open in guided'),
+                label: Text(l10n.wuduTrainerChecklistOpenGuidedAction),
               ),
             ],
           ),
           if (showOrderHint)
-            Padding(
-              padding: const EdgeInsets.only(top: 2),
-              child: Text(
-                'Recommended order: complete earlier steps first.',
-                style: Theme.of(
-                  context,
-                ).textTheme.bodySmall?.copyWith(color: const Color(0xFF8A6734)),
-              ),
+            Text(
+              l10n.wuduTrainerOrderHint,
+              style: Theme.of(
+                context,
+              ).textTheme.bodySmall?.copyWith(color: const Color(0xFF8A6734)),
             ),
         ],
       ),
     );
-  }
-
-  _ChecklistStepStatus _statusForStep() {
-    if (isCompleted) return _ChecklistStepStatus.completed;
-    if (isSkipped) return _ChecklistStepStatus.skipped;
-    if (isCurrent) return _ChecklistStepStatus.current;
-    return _ChecklistStepStatus.pending;
   }
 }
 
@@ -450,20 +410,112 @@ class WuduTrainerCompletionCard extends StatelessWidget {
   const WuduTrainerCompletionCard({
     super.key,
     required this.dua,
+    required this.onReviewSteps,
     required this.onRestart,
     required this.onReturn,
+    this.onTakeQuiz,
+    this.rewardSummary,
   });
 
   final WuduDua dua;
+  final VoidCallback onReviewSteps;
   final VoidCallback onRestart;
   final VoidCallback onReturn;
+  final VoidCallback? onTakeQuiz;
+  final WuduTrainerRewardSummary? rewardSummary;
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        WuduCompletionGlowCard(onRestart: onRestart, onReturn: onReturn),
+        PremiumCard(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Icon(
+                    Icons.check_circle_rounded,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      l10n.wuduTrainerCompletionTitle,
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 8),
+              Text(
+                l10n.wuduTrainerCompletionBody,
+                style: Theme.of(
+                  context,
+                ).textTheme.bodyLarge?.copyWith(height: 1.4),
+              ),
+              const SizedBox(height: 6),
+              Text(
+                l10n.wuduTrainerCompletionNote,
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+                ),
+              ),
+              if (rewardSummary != null) ...[
+                const SizedBox(height: 10),
+                Text(
+                  [
+                    l10n.wuduTrainerCompletionFeedback,
+                    l10n.wuduTrainerRewardFeedbackText(
+                      rewardSummary!.xpAwarded,
+                      rewardSummary!.oceanDropsAwarded,
+                    ),
+                  ].join('\n'),
+                ),
+              ],
+              const SizedBox(height: 12),
+              SizedBox(
+                width: double.infinity,
+                child: FilledButton.tonal(
+                  onPressed: onReviewSteps,
+                  child: Text(l10n.wuduTrainerReviewStepsActionText),
+                ),
+              ),
+              if (onTakeQuiz != null) ...[
+                const SizedBox(height: 10),
+                SizedBox(
+                  width: double.infinity,
+                  child: OutlinedButton(
+                    onPressed: onTakeQuiz,
+                    child: Text(l10n.wuduQuizStartAction),
+                  ),
+                ),
+              ],
+              const SizedBox(height: 10),
+              Row(
+                children: [
+                  Expanded(
+                    child: OutlinedButton(
+                      onPressed: onRestart,
+                      child: Text(l10n.wuduTrainerStartAgainActionText),
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: FilledButton(
+                      onPressed: onReturn,
+                      child: Text(l10n.wuduTrainerReturnToGuideAction),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
         const SizedBox(height: 10),
         WuduDuaCard(dua: dua),
       ],
@@ -471,125 +523,40 @@ class WuduTrainerCompletionCard extends StatelessWidget {
   }
 }
 
-class WuduCompletionGlowCard extends StatelessWidget {
-  const WuduCompletionGlowCard({
-    super.key,
-    required this.onRestart,
-    required this.onReturn,
-  });
-
-  final VoidCallback onRestart;
-  final VoidCallback onReturn;
-
-  @override
-  Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            colorScheme.primary.withValues(alpha: 0.14),
-            colorScheme.surface.withValues(alpha: 0.95),
-          ],
-        ),
-      ),
-      child: PremiumCard(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Icon(Icons.check_circle_rounded, color: colorScheme.primary),
-                const SizedBox(width: 8),
-                Text(
-                  'Wudu Complete',
-                  style: Theme.of(
-                    context,
-                  ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700),
-                ),
-              ],
-            ),
-            const SizedBox(height: 8),
-            Text(
-              'You are prepared for prayer with calm focus and intention.',
-              style: Theme.of(
-                context,
-              ).textTheme.bodyLarge?.copyWith(height: 1.4),
-            ),
-            const SizedBox(height: 6),
-            Text(
-              'May this purification bring steadiness and presence in worship.',
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                color: colorScheme.onSurfaceVariant,
-              ),
-            ),
-            const SizedBox(height: 10),
-            Row(
-              children: [
-                Expanded(
-                  child: OutlinedButton(
-                    onPressed: onRestart,
-                    child: const Text('Restart Trainer'),
-                  ),
-                ),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: FilledButton(
-                    onPressed: onReturn,
-                    child: const Text('Return to Guide'),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class WuduStepAssetResolver {
-  const WuduStepAssetResolver({required this.step});
+class _WuduStepIllustration extends StatelessWidget {
+  const _WuduStepIllustration({required this.step});
 
   final WuduStep step;
 
-  String get assetPath => 'assets/images/wudu/${step.illustrationAssetKey}.png';
-
-  String get placeholderLabel => 'Step ${step.number} visual placeholder';
-
-  IconData get fallbackIcon => _iconFor(step.iconKey);
-
-  static IconData _iconFor(String key) {
-    switch (key) {
-      case 'intention':
-        return Icons.favorite_outline_rounded;
-      case 'bismillah':
-        return Icons.record_voice_over_rounded;
-      case 'hands':
-        return Icons.front_hand_outlined;
-      case 'mouth':
-        return Icons.mood_rounded;
-      case 'nose':
-        return Icons.air_rounded;
-      case 'face':
-        return Icons.face_retouching_natural_rounded;
-      case 'arm_right':
-      case 'arm_left':
-        return Icons.accessibility_new_rounded;
-      case 'head':
-        return Icons.self_improvement_rounded;
-      case 'ears':
-        return Icons.hearing_rounded;
-      case 'foot_right':
-      case 'foot_left':
-        return Icons.directions_walk_rounded;
-      default:
-        return Icons.water_drop_outlined;
-    }
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      constraints: const BoxConstraints(minHeight: 168),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(
+          color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.18),
+        ),
+      ),
+      child: AspectRatio(
+        aspectRatio: 16 / 9,
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Image.asset(
+            step.imageAssetPath,
+            fit: BoxFit.contain,
+            errorBuilder: (context, error, stackTrace) => Center(
+              child: Icon(
+                _fallbackIconFor(step.iconKey),
+                size: 40,
+                color: Theme.of(context).colorScheme.primary,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
 
@@ -624,109 +591,35 @@ class _BadgePill extends StatelessWidget {
   }
 }
 
-class _IllustrationFallback extends StatelessWidget {
-  const _IllustrationFallback({
-    required this.icon,
-    required this.stepNumber,
-    required this.label,
-  });
-
-  final IconData icon;
-  final int stepNumber;
-  final String label;
-
-  @override
-  Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Container(
-          width: 64,
-          height: 64,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: colorScheme.primary.withValues(alpha: 0.14),
-            border: Border.all(
-              color: colorScheme.primary.withValues(alpha: 0.24),
-            ),
-          ),
-          child: Icon(icon, size: 30, color: colorScheme.primary),
-        ),
-        const SizedBox(height: 10),
-        Text(
-          'Step $stepNumber',
-          style: Theme.of(
-            context,
-          ).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w700),
-        ),
-        const SizedBox(height: 2),
-        Text(
-          label,
-          style: Theme.of(
-            context,
-          ).textTheme.bodySmall?.copyWith(color: colorScheme.onSurfaceVariant),
-          textAlign: TextAlign.center,
-        ),
-      ],
-    );
-  }
-}
-
-enum _ChecklistStepStatus { completed, skipped, current, pending }
-
-class _StatusPill extends StatelessWidget {
-  const _StatusPill({required this.status});
-
-  final _ChecklistStepStatus status;
-
-  @override
-  Widget build(BuildContext context) {
-    final style = switch (status) {
-      _ChecklistStepStatus.completed => (
-        label: 'Completed',
-        color: const Color(0xFF4F7E54),
-        icon: Icons.check_rounded,
-      ),
-      _ChecklistStepStatus.skipped => (
-        label: 'Skipped',
-        color: const Color(0xFFA8773A),
-        icon: Icons.fast_forward_rounded,
-      ),
-      _ChecklistStepStatus.current => (
-        label: 'Current',
-        color: Theme.of(context).colorScheme.primary,
-        icon: Icons.play_arrow_rounded,
-      ),
-      _ChecklistStepStatus.pending => (
-        label: 'Pending',
-        color: Theme.of(context).colorScheme.onSurfaceVariant,
-        icon: Icons.schedule_rounded,
-      ),
-    };
-
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(999),
-        border: Border.all(color: style.color.withValues(alpha: 0.4)),
-        color: style.color.withValues(alpha: 0.12),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(style.icon, size: 13, color: style.color),
-          const SizedBox(width: 4),
-          Text(
-            style.label,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: style.color,
-              fontWeight: FontWeight.w700,
-            ),
-          ),
-        ],
-      ),
-    );
+IconData _fallbackIconFor(String key) {
+  switch (key) {
+    case 'intention':
+      return Icons.favorite_outline_rounded;
+    case 'water':
+      return Icons.water_drop_outlined;
+    case 'bismillah':
+      return Icons.record_voice_over_rounded;
+    case 'hands':
+      return Icons.front_hand_outlined;
+    case 'mouth':
+      return Icons.mood_rounded;
+    case 'nose':
+      return Icons.air_rounded;
+    case 'face':
+      return Icons.face_retouching_natural_rounded;
+    case 'arm_right':
+      return Icons.accessibility_new_rounded;
+    case 'head':
+      return Icons.self_improvement_rounded;
+    case 'foot_right':
+      return Icons.directions_walk_rounded;
+    case 'shahada':
+      return Icons.mosque_rounded;
+    case 'dua':
+      return Icons.volunteer_activism_outlined;
+    case 'cleanup':
+      return Icons.clean_hands_outlined;
+    default:
+      return Icons.water_drop_outlined;
   }
 }

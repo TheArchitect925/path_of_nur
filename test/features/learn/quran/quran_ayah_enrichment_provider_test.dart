@@ -483,4 +483,53 @@ void main() {
     expect(path.entries[1].id, 'belief_signs_3_190_191');
     expect(path.entries.last.id, 'belief_taqwa_3_102');
   });
+
+  test(
+    'localized enrichment returns Arabic copy when a curated translation exists',
+    () {
+      final container = ProviderContainer();
+      addTearDown(container.dispose);
+
+      final entries = container.read(
+        quranAyahEnrichmentForRangeLocalizedProvider((
+          const QuranQuoteRef(surah: 112, ayah: 1, ayahEnd: 4),
+          'ar',
+        )),
+      );
+
+      final entry = entries.firstWhere(
+        (item) => item.id == 'belief_tawhid_112_1_4',
+      );
+
+      expect(entry.title, contains('الله'));
+      expect(entry.summary, contains('الله'));
+      expect(entry.reflectionPrompts.first, contains('كيف'));
+    },
+  );
+
+  test(
+    'localized enrichment falls back to English when no translated copy exists',
+    () {
+      final container = ProviderContainer();
+      addTearDown(container.dispose);
+
+      final localizedEntries = container.read(
+        quranAyahEnrichmentForVerseLocalizedProvider((2, 186, 'ar-CA')),
+      );
+      final baselineEntries = container.read(
+        quranAyahEnrichmentForVerseProvider((2, 186)),
+      );
+
+      final localizedEntry = localizedEntries.firstWhere(
+        (item) => item.id == 'worship_dua_2_186',
+      );
+      final baselineEntry = baselineEntries.firstWhere(
+        (item) => item.id == 'worship_dua_2_186',
+      );
+
+      expect(localizedEntry.title, baselineEntry.title);
+      expect(localizedEntry.summary, baselineEntry.summary);
+      expect(localizedEntry.reflectionPrompts, baselineEntry.reflectionPrompts);
+    },
+  );
 }

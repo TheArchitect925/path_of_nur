@@ -64,6 +64,49 @@ enum QuranAyahDisplayItemType {
 
 enum QuranAyahCautionLevel { none, interpretationSensitive, scientificCare }
 
+class QuranAyahLocalizedContent {
+  const QuranAyahLocalizedContent({
+    this.titlesByLanguageCode = const <String, String>{},
+    this.summariesByLanguageCode = const <String, String>{},
+    this.bodiesByLanguageCode = const <String, String>{},
+    this.reflectionPromptsByLanguageCode = const <String, List<String>>{},
+  });
+
+  final Map<String, String> titlesByLanguageCode;
+  final Map<String, String> summariesByLanguageCode;
+  final Map<String, String> bodiesByLanguageCode;
+  final Map<String, List<String>> reflectionPromptsByLanguageCode;
+
+  String titleForLanguage(String languageCode, String fallback) {
+    return _localizedValue(titlesByLanguageCode, languageCode: languageCode) ??
+        fallback;
+  }
+
+  String summaryForLanguage(String languageCode, String fallback) {
+    return _localizedValue(
+          summariesByLanguageCode,
+          languageCode: languageCode,
+        ) ??
+        fallback;
+  }
+
+  String bodyForLanguage(String languageCode, String fallback) {
+    return _localizedValue(bodiesByLanguageCode, languageCode: languageCode) ??
+        fallback;
+  }
+
+  List<String> reflectionPromptsForLanguage(
+    String languageCode,
+    List<String> fallback,
+  ) {
+    return _localizedListValue(
+          reflectionPromptsByLanguageCode,
+          languageCode: languageCode,
+        ) ??
+        fallback;
+  }
+}
+
 class QuranAyahEnrichmentEntry {
   const QuranAyahEnrichmentEntry({
     required this.id,
@@ -86,6 +129,7 @@ class QuranAyahEnrichmentEntry {
     this.cautionLevel = QuranAyahCautionLevel.none,
     this.displayType,
     this.displayPriority = 100,
+    this.localizedContent = const QuranAyahLocalizedContent(),
   });
 
   final String id;
@@ -108,6 +152,7 @@ class QuranAyahEnrichmentEntry {
   final QuranAyahCautionLevel cautionLevel;
   final QuranAyahDisplayItemType? displayType;
   final int displayPriority;
+  final QuranAyahLocalizedContent localizedContent;
 
   bool get hasAction => sourceRouteName != null;
 
@@ -115,6 +160,37 @@ class QuranAyahEnrichmentEntry {
     if (ref.surah != surahNumber) return false;
     final endAyah = ref.ayahEnd ?? ref.ayah;
     return ayahNumber >= ref.ayah && ayahNumber <= endAyah;
+  }
+
+  QuranAyahEnrichmentEntry localizedCopy(String languageCode) {
+    final normalized = _normalizedLanguageCode(languageCode);
+    if (normalized == 'en') return this;
+    return QuranAyahEnrichmentEntry(
+      id: id,
+      ref: ref,
+      domain: domain,
+      lessonType: lessonType,
+      linkStrength: linkStrength,
+      title: localizedContent.titleForLanguage(normalized, title),
+      summary: localizedContent.summaryForLanguage(normalized, summary),
+      body: localizedContent.bodyForLanguage(normalized, body),
+      tags: tags,
+      relatedRefs: relatedRefs,
+      relatedAyahs: relatedAyahs,
+      reflectionPrompts: localizedContent.reflectionPromptsForLanguage(
+        normalized,
+        reflectionPrompts,
+      ),
+      sourceRouteName: sourceRouteName,
+      pathParameters: pathParameters,
+      queryParameters: queryParameters,
+      interpretationNote: interpretationNote,
+      cautionNote: cautionNote,
+      cautionLevel: cautionLevel,
+      displayType: displayType,
+      displayPriority: displayPriority,
+      localizedContent: localizedContent,
+    );
   }
 }
 
@@ -222,4 +298,37 @@ extension QuranAyahLinkStrengthPriority on QuranAyahLinkStrength {
       QuranAyahLinkStrength.contextual => 2,
     };
   }
+}
+
+String _normalizedLanguageCode(String languageCode) {
+  final normalized = languageCode.trim().toLowerCase();
+  if (normalized.contains('-')) {
+    return normalized.split('-').first;
+  }
+  if (normalized.contains('_')) {
+    return normalized.split('_').first;
+  }
+  return normalized;
+}
+
+String? _localizedValue(
+  Map<String, String> values, {
+  required String languageCode,
+}) {
+  final normalized = _normalizedLanguageCode(languageCode);
+  return values[languageCode] ??
+      values[normalized] ??
+      values[languageCode.toLowerCase()] ??
+      values[_normalizedLanguageCode(languageCode.toLowerCase())];
+}
+
+List<String>? _localizedListValue(
+  Map<String, List<String>> values, {
+  required String languageCode,
+}) {
+  final normalized = _normalizedLanguageCode(languageCode);
+  return values[languageCode] ??
+      values[normalized] ??
+      values[languageCode.toLowerCase()] ??
+      values[_normalizedLanguageCode(languageCode.toLowerCase())];
 }

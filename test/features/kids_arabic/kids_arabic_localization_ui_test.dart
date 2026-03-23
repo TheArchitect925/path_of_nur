@@ -39,7 +39,9 @@ void main() {
         ),
       ),
     );
-    await tester.pumpAndSettle();
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 300));
+    await tester.pump(const Duration(milliseconds: 300));
   }
 
   testWidgets('kids Arabic home page loads in English, Arabic, and German', (

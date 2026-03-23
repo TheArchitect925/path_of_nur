@@ -7,6 +7,8 @@ import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/quran_navigation.dart';
 import '../application/quran_ayah_enrichment_provider.dart';
+import '../application/quran_learning_progression_provider.dart';
+import '../application/quran_learning_personalization_provider.dart';
 import '../domain/quran_ayah_enrichment_models.dart';
 
 class QuranAyahInsightPathsPage extends ConsumerWidget {
@@ -25,26 +27,33 @@ class QuranAyahInsightPathsPage extends ConsumerWidget {
         if (paths.isEmpty)
           PremiumCard(child: Text(l10n.quranAyahInsightPathsEmpty))
         else
-          ...paths.map(
-            (path) => Padding(
+          ...paths.map((path) {
+            final progress = ref.watch(
+              quranAyahInsightPathProgressProvider(path.id),
+            );
+            return Padding(
               padding: const EdgeInsets.only(bottom: 10),
               child: PremiumCard(
                 child: ListTile(
                   contentPadding: EdgeInsets.zero,
                   title: Text(_pathTitle(l10n, path.id)),
                   subtitle: Text(
-                    '${_domainTitle(l10n, path.domain)} • ${l10n.quranAyahInsightPathsCount(path.count)}\n${_pathDescription(l10n, path.id)}',
+                    '${_domainTitle(l10n, path.domain)} • ${l10n.quranAyahInsightPathsCount(path.count)}\n${_pathDescription(l10n, path.id)}${progress == null ? '' : '\n${l10n.quranAyahInsightPathsCompletedCount(progress.completedCount, progress.totalCount)}'}',
                   ),
-                  isThreeLine: true,
-                  trailing: const Icon(Icons.chevron_right_rounded),
+                  isThreeLine: progress == null,
+                  trailing: Icon(
+                    progress?.isCompleted ?? false
+                        ? Icons.check_circle_rounded
+                        : Icons.chevron_right_rounded,
+                  ),
                   onTap: () => context.pushNamed(
                     'quranAyahInsightsPathDetail',
                     pathParameters: {'pathId': path.id},
                   ),
                 ),
               ),
-            ),
-          ),
+            );
+          }),
       ],
     );
   }
@@ -59,6 +68,7 @@ class QuranAyahInsightPathDetailPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
     final resolvedPath = ref.watch(quranAyahInsightPathProvider(pathId));
+    final progress = ref.watch(quranAyahInsightPathProgressProvider(pathId));
 
     if (resolvedPath == null) {
       return AppPageScaffold(
@@ -85,6 +95,16 @@ class QuranAyahInsightPathDetailPage extends ConsumerWidget {
                 '${_domainTitle(l10n, path.domain)} • ${l10n.quranAyahInsightPathsCount(resolvedPath.count)}',
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
+              if (progress != null) ...[
+                const SizedBox(height: 6),
+                Text(
+                  l10n.quranAyahInsightPathsCompletedCount(
+                    progress.completedCount,
+                    progress.totalCount,
+                  ),
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
+              ],
               if (path.reflectionFocusKey != null) ...[
                 const SizedBox(height: 10),
                 Text(
@@ -98,11 +118,22 @@ class QuranAyahInsightPathDetailPage extends ConsumerWidget {
               ],
               const SizedBox(height: 12),
               FilledButton.tonalIcon(
-                onPressed: () =>
-                    openQuranReferenceLocation(context, ref: firstEntry.ref),
+                onPressed: () {
+                  ref
+                      .read(quranLearningPersonalizationStateProvider.notifier)
+                      .markPathOpened(pathId: path.id, entryId: firstEntry.id);
+                  openQuranReferenceLocation(context, ref: firstEntry.ref);
+                },
                 icon: const Icon(Icons.play_arrow_rounded),
                 label: Text(l10n.quranAyahInsightPathsStartAction),
               ),
+              if (progress?.isCompleted ?? false) ...[
+                const SizedBox(height: 8),
+                Chip(
+                  label: Text(l10n.quranAyahInsightPathCompletedLabel),
+                  visualDensity: VisualDensity.compact,
+                ),
+              ],
             ],
           ),
         ),
@@ -110,19 +141,68 @@ class QuranAyahInsightPathDetailPage extends ConsumerWidget {
         ...resolvedPath.entries.asMap().entries.map((entry) {
           final index = entry.key;
           final item = entry.value;
+          final isCompleted = ref.watch(
+            quranLearningEntryCompletedProvider(item.id),
+          );
           return Padding(
             padding: const EdgeInsets.only(bottom: 10),
             child: PremiumCard(
-              child: ListTile(
-                contentPadding: EdgeInsets.zero,
-                leading: CircleAvatar(radius: 16, child: Text('${index + 1}')),
-                title: Text(item.title),
-                subtitle: Text(
-                  '${l10n.quranReferenceViewerReferenceLabel(item.ref.locationLabel)} • ${_lessonTypeLabel(l10n, item.lessonType)}\n${item.summary}',
-                ),
-                isThreeLine: true,
-                trailing: const Icon(Icons.chevron_right_rounded),
-                onTap: () => openQuranReferenceLocation(context, ref: item.ref),
+              child: Column(
+                children: [
+                  ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    leading: CircleAvatar(
+                      radius: 16,
+                      child: Text('${index + 1}'),
+                    ),
+                    title: Text(item.title),
+                    subtitle: Text(
+                      '${l10n.quranReferenceViewerReferenceLabel(item.ref.locationLabel)} • ${_lessonTypeLabel(l10n, item.lessonType)}\n${item.summary}',
+                    ),
+                    isThreeLine: true,
+                    trailing: Icon(
+                      isCompleted
+                          ? Icons.check_circle_rounded
+                          : Icons.chevron_right_rounded,
+                    ),
+                    onTap: () {
+                      ref
+                          .read(
+                            quranLearningPersonalizationStateProvider.notifier,
+                          )
+                          .markPathOpened(pathId: path.id, entryId: item.id);
+                      openQuranReferenceLocation(context, ref: item.ref);
+                    },
+                  ),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: FilledButton.tonalIcon(
+                      onPressed: isCompleted
+                          ? null
+                          : () {
+                              ref
+                                  .read(
+                                    quranLearningProgressStateProvider.notifier,
+                                  )
+                                  .completeEntry(
+                                    entry: item,
+                                    sourcePathId: path.id,
+                                    sourceSurface: 'path_detail',
+                                  );
+                            },
+                      icon: Icon(
+                        isCompleted
+                            ? Icons.check_circle_rounded
+                            : Icons.task_alt_rounded,
+                      ),
+                      label: Text(
+                        isCompleted
+                            ? l10n.quranLearningStudiedAction
+                            : l10n.quranAyahInsightPathCompleteStepAction,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           );

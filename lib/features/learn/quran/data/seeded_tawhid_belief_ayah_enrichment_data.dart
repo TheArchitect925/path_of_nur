@@ -8,7 +8,7 @@ const List<QuranAyahEnrichmentEntry> seededTawhidBeliefAyahEnrichmentEntries = [
     domain: QuranAyahEnrichmentDomain.tawhidBelief,
     lessonType: QuranAyahEnrichmentLessonType.coreLesson,
     linkStrength: QuranAyahLinkStrength.direct,
-    title: 'Allah is One, perfect, and unlike His creation',
+    title: 'Allah is One and unlike His creation',
     summary:
         'These ayahs give a clear foundation of Tawhid by affirming Allah’s oneness, self-sufficiency, and uniqueness.',
     body:

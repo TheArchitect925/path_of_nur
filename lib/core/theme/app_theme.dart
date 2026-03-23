@@ -255,6 +255,7 @@ class AppTheme {
     required bool disableBackground,
     required bool highContrastText,
     required double glassSurfaceAlpha,
+    Locale? locale,
   }) {
     final appearance = AppAppearanceTheme.defaults(
       mode: mode,
@@ -273,6 +274,9 @@ class AppTheme {
         : appearance.accentSoft.withValues(alpha: 0.24);
     final mutedIconColor = highContrastText ? onSurface : onSurfaceSubtle;
     final brightness = appearance.isDark ? Brightness.dark : Brightness.light;
+    final localeUiFont = AppFonts.uiFontFamilyForLocale(locale);
+    final localeUsesRtlUiFont = AppFonts.usesRtlUiFont(locale);
+    final serifOrLocaleUi = localeUsesRtlUiFont ? localeUiFont : 'serif';
 
     return ThemeData(
       useMaterial3: true,
@@ -305,48 +309,48 @@ class AppTheme {
           fontSize: 25,
           fontWeight: FontWeight.w700,
           letterSpacing: 0.2,
-          fontFamily: 'serif',
+          fontFamily: serifOrLocaleUi,
         ),
         titleMedium: TextStyle(
           color: onSurface,
           fontSize: 19,
           fontWeight: FontWeight.w600,
-          fontFamily: 'serif',
+          fontFamily: serifOrLocaleUi,
         ),
         titleSmall: TextStyle(
           color: onSurface,
           fontSize: 17,
           fontWeight: FontWeight.w600,
-          fontFamily: 'serif',
+          fontFamily: serifOrLocaleUi,
         ),
         bodyLarge: TextStyle(
           color: onSurface,
           fontSize: 15,
           fontWeight: FontWeight.w500,
           height: 1.45,
-          fontFamily: 'serif',
+          fontFamily: serifOrLocaleUi,
         ),
         bodyMedium: TextStyle(
           color: onSurfaceSubtle,
           fontSize: 14,
           height: 1.45,
-          fontFamily: 'serif',
+          fontFamily: serifOrLocaleUi,
         ),
         bodySmall: TextStyle(
           color: onSurfaceSubtle,
           fontSize: 13,
-          fontFamily: 'serif',
+          fontFamily: serifOrLocaleUi,
         ),
         labelLarge: TextStyle(
           color: onSurface,
           fontWeight: FontWeight.w700,
           fontSize: 14,
-          fontFamily: AppFonts.uiArabic,
+          fontFamily: localeUiFont,
         ),
         labelMedium: TextStyle(
           color: onSurface,
           fontSize: 12,
-          fontFamily: AppFonts.uiArabic,
+          fontFamily: localeUiFont,
         ),
       ),
       appBarTheme: AppBarTheme(
@@ -384,13 +388,13 @@ class AppTheme {
             return TextStyle(
               color: onSurface,
               fontWeight: FontWeight.w600,
-              fontFamily: AppFonts.uiArabic,
+              fontFamily: localeUiFont,
             );
           }
           return TextStyle(
             color: mutedIconColor,
             fontWeight: FontWeight.w500,
-            fontFamily: AppFonts.uiArabic,
+            fontFamily: localeUiFont,
           );
         }),
       ),
@@ -398,22 +402,19 @@ class AppTheme {
         labelColor: onSurface,
         unselectedLabelColor: onSurfaceSubtle,
         labelStyle: TextStyle(
-          fontFamily: AppFonts.uiArabic,
+          fontFamily: localeUiFont,
           fontWeight: FontWeight.w600,
         ),
         unselectedLabelStyle: TextStyle(
-          fontFamily: AppFonts.uiArabic,
+          fontFamily: localeUiFont,
           fontWeight: FontWeight.w500,
         ),
       ),
       segmentedButtonTheme: SegmentedButtonThemeData(
         style: ButtonStyle(
           foregroundColor: WidgetStatePropertyAll(onSurface),
-          textStyle: const WidgetStatePropertyAll(
-            TextStyle(
-              fontFamily: AppFonts.uiArabic,
-              fontWeight: FontWeight.w600,
-            ),
+          textStyle: WidgetStatePropertyAll(
+            TextStyle(fontWeight: FontWeight.w600, fontFamily: localeUiFont),
           ),
           iconColor: WidgetStateProperty.resolveWith((states) {
             if (states.contains(WidgetState.disabled)) {
@@ -429,7 +430,7 @@ class AppTheme {
           fontSize: 15,
           fontWeight: FontWeight.w500,
           height: 1.35,
-          fontFamily: 'serif',
+          fontFamily: serifOrLocaleUi,
         ),
         inputDecorationTheme: InputDecorationTheme(
           isDense: true,
@@ -458,20 +459,20 @@ class AppTheme {
         labelStyle: TextStyle(
           color: onSurface,
           fontWeight: highContrastText ? FontWeight.w600 : FontWeight.w500,
-          fontFamily: AppFonts.uiArabic,
+          fontFamily: localeUiFont,
         ),
         hintStyle: TextStyle(
           color: onSurfaceSubtle,
           fontWeight: highContrastText ? FontWeight.w500 : FontWeight.w400,
-          fontFamily: AppFonts.uiArabic,
+          fontFamily: localeUiFont,
         ),
         helperStyle: TextStyle(
           color: onSurfaceSubtle,
-          fontFamily: AppFonts.uiArabic,
+          fontFamily: localeUiFont,
         ),
         counterStyle: TextStyle(
           color: onSurfaceSubtle,
-          fontFamily: AppFonts.uiArabic,
+          fontFamily: localeUiFont,
         ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(AppRadii.button),
@@ -496,10 +497,10 @@ class AppTheme {
         ),
         side: BorderSide(color: appearance.accentSoft),
         showCheckmark: false,
-        labelStyle: TextStyle(color: onSurface, fontFamily: AppFonts.uiArabic),
+        labelStyle: TextStyle(color: onSurface, fontFamily: localeUiFont),
         secondaryLabelStyle: TextStyle(
           color: onSurface,
-          fontFamily: AppFonts.uiArabic,
+          fontFamily: localeUiFont,
         ),
         padding: EdgeInsets.symmetric(
           horizontal: AppSpacing.s,
@@ -509,33 +510,24 @@ class AppTheme {
       textButtonTheme: TextButtonThemeData(
         style: ButtonStyle(
           foregroundColor: WidgetStatePropertyAll(onSurface),
-          textStyle: const WidgetStatePropertyAll(
-            TextStyle(
-              fontFamily: AppFonts.uiArabic,
-              fontWeight: FontWeight.w600,
-            ),
+          textStyle: WidgetStatePropertyAll(
+            TextStyle(fontWeight: FontWeight.w600, fontFamily: localeUiFont),
           ),
         ),
       ),
       filledButtonTheme: FilledButtonThemeData(
         style: ButtonStyle(
           foregroundColor: WidgetStatePropertyAll(onSurface),
-          textStyle: const WidgetStatePropertyAll(
-            TextStyle(
-              fontFamily: AppFonts.uiArabic,
-              fontWeight: FontWeight.w700,
-            ),
+          textStyle: WidgetStatePropertyAll(
+            TextStyle(fontWeight: FontWeight.w700, fontFamily: localeUiFont),
           ),
         ),
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: ButtonStyle(
           foregroundColor: WidgetStatePropertyAll(onSurface),
-          textStyle: const WidgetStatePropertyAll(
-            TextStyle(
-              fontFamily: AppFonts.uiArabic,
-              fontWeight: FontWeight.w600,
-            ),
+          textStyle: WidgetStatePropertyAll(
+            TextStyle(fontWeight: FontWeight.w600, fontFamily: localeUiFont),
           ),
         ),
       ),

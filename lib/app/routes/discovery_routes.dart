@@ -15,6 +15,7 @@ import '../../features/circles/presentation/nearby_mosques_page.dart';
 import '../../features/creation_challenges/presentation/creation_challenges_page.dart';
 import '../../features/creation_explorer/presentation/creation_explorer_page.dart';
 import '../../features/journal/presentation/journal_create_page.dart';
+import '../../features/journal/presentation/journal_entry_detail_page.dart';
 import '../../features/journal/presentation/journal_timeline_page.dart';
 
 List<RouteBase> buildDiscoveryRoutes() {
@@ -108,6 +109,14 @@ List<RouteBase> buildDiscoveryRoutes() {
       name: 'journalCreate',
       pageBuilder: (context, state) =>
           const MaterialPage(child: JournalCreatePage()),
+    ),
+    GoRoute(
+      path: '/journal/entry/:entryId',
+      name: 'journalEntryDetail',
+      pageBuilder: (context, state) {
+        final entryId = state.pathParameters['entryId'] ?? '';
+        return MaterialPage(child: JournalEntryDetailPage(entryId: entryId));
+      },
     ),
   ];
 }

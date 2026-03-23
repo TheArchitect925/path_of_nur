@@ -18,6 +18,7 @@ class LearnHubPageScaffold extends StatelessWidget {
     this.backgroundOverlayColor,
     this.quote,
     this.quoteHeader,
+    this.showDefaultQuote = true,
     this.shortcutActions = const <LearnHubShortcutAction>[],
     this.headerActions,
     this.floatingBottom,
@@ -31,6 +32,7 @@ class LearnHubPageScaffold extends StatelessWidget {
   final List<Widget> children;
   final QuranQuote? quote;
   final Widget? quoteHeader;
+  final bool showDefaultQuote;
   final List<LearnHubShortcutAction> shortcutActions;
   final List<Widget>? headerActions;
   final Widget? floatingBottom;
@@ -42,7 +44,7 @@ class LearnHubPageScaffold extends StatelessWidget {
       headerIcon: headerIcon,
       title: title,
       subtitle: subtitle,
-      quote: quote ?? buildLearningCompactQuote(),
+      quote: showDefaultQuote ? (quote ?? buildLearningCompactQuote()) : quote,
       quoteHeader: quoteHeader,
       shortcutOpenLabel: l10n.learnShortcutOpen,
       shortcutCloseLabel: l10n.learnShortcutClose,

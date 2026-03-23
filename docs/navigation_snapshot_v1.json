@@ -1,0 +1,193 @@
+{
+  "snapshot_version": "v1",
+  "snapshot_date": "2026-03-22",
+  "top_level_tabs": [
+    "/worship",
+    "/learn",
+    "/home",
+    "/journey",
+    "/quran"
+  ],
+  "startup_routes": [
+    "/onboarding",
+    "/profiles/launch"
+  ],
+  "guard_snapshot": {
+    "onboarding_guard": true,
+    "shared_profile_launch_guard": true,
+    "child_learn_redirect": "/learn/category/kids-learning"
+  },
+  "deep_link_snapshot": {
+    "scheme": "pathofnur",
+    "examples": {
+      "/home": "/home",
+      "/worship": "/worship",
+      "/prayer": "/worship",
+      "/dhikr": "/worship",
+      "/growth/today": "/journey/today",
+      "/growth/reflection": "/journey/reflection",
+      "/growth/journey": "/journey/progress",
+      "/growth/habits": "/journey/habits",
+      "/ocean": "/journey/ocean",
+      "/garden": "/journey/garden",
+      "/tracking": "/journey/tracking",
+      "/quran/read": "/quran/surah/1"
+    }
+  },
+  "major_hub_links": {
+    "home_page": {
+      "route_names": [
+        "settings",
+        "worshipPrayerPage",
+        "worshipDhikrPage",
+        "qiblaFinder",
+        "salahTimes",
+        "quranExplorer",
+        "quranSearch",
+        "quranTopWords",
+        "quranNamesOfAllah",
+        "learnHistoryArchive",
+        "learnLifeLanding",
+        "babyNamesHome",
+        "learnWorldLanding",
+        "learnHadithLanding",
+        "learnHadithImportant",
+        "learnNotesLanding",
+        "assistant",
+        "circlesDiscovery",
+        "journalTimeline",
+        "oceanDrops",
+        "wallpaperLibrary",
+        "khusuFocus",
+        "learnTriviaKnowledgePaths",
+        "learnTriviaReview"
+      ],
+      "path_calls": [
+        "/journey/habit/$habitId",
+        "/journey/habits"
+      ]
+    },
+    "worship_page": {
+      "route_names": [
+        "worshipPrayerPage",
+        "worshipDhikrPage",
+        "worshipDuasPage",
+        "worshipFastingPage",
+        "worshipTrackingPage",
+        "worshipRemindersPage"
+      ]
+    },
+    "growth_home_page": {
+      "route_names": [
+        "growthTrackingDashboard",
+        "gardenPage",
+        "oceanDrops",
+        "spiritualGrowthPage",
+        "growthTodayPage",
+        "growthPathsPage",
+        "growthHabitsPage",
+        "growthJourneyPage",
+        "growthReflectionPage"
+      ]
+    },
+    "learning_section_landing_page": {
+      "route_names": [
+        "learnJourneyIslandHub",
+        "learnExploreAllKnowledge",
+        "learnKidsGames",
+        "learnGamesIsland",
+        "learnHistoryArchive"
+      ]
+    },
+    "quran_app_hub_page": {
+      "route_names": [
+        "quranLearningHub",
+        "quranWordReview",
+        "quranTopWords",
+        "quranTopicExplorer",
+        "quranNotes",
+        "quranReflections",
+        "quranSearch",
+        "quranBookmarks",
+        "quranArabic",
+        "quranUniverse",
+        "quranAyahInsightsBrowse",
+        "quranKnowledgeSearch"
+      ]
+    },
+    "learning_journey_island_hub_page": {
+      "route_names": [
+        "learnJourneyHome"
+      ]
+    },
+    "learning_journey_home_page": {
+      "route_names": [
+        "learnFamilyManagement",
+        "learnExploreAllKnowledge",
+        "learnLegacy"
+      ]
+    },
+    "learning_journey_island_page": {
+      "route_names": [
+        "learnGlossary"
+      ]
+    },
+    "bedtime_stories_page": {
+      "route_names": [
+        "kidsStoryLibrary",
+        "kidsBedtimeStoriesFamilyMode",
+        "kidsBedtimeStoriesParentDashboard",
+        "kidsLearnerProgression",
+        "kidsBedtimeCompanion",
+        "kidsSeerahJourneys"
+      ]
+    }
+  },
+  "route_inventory": {
+    "total_routes": 269,
+    "notable_routes": [
+      {
+        "path": "/quran/reflections",
+        "name": "quranReflections",
+        "kind": "page",
+        "file": "lib/app/routes/core_support_routes.dart"
+      },
+      {
+        "path": "/learn/quran/reflections",
+        "name": null,
+        "kind": "redirect",
+        "file": "lib/app/routes/core_support_routes.dart"
+      },
+      {
+        "path": "/learn",
+        "name": "learn",
+        "kind": "shell-tab",
+        "file": "lib/app/app_router.dart"
+      },
+      {
+        "path": "/home",
+        "name": "home",
+        "kind": "shell-tab",
+        "file": "lib/app/app_router.dart"
+      },
+      {
+        "path": "/journey",
+        "name": "journey",
+        "kind": "shell-tab",
+        "file": "lib/app/app_router.dart"
+      },
+      {
+        "path": "/quran",
+        "name": "quran",
+        "kind": "shell-tab",
+        "file": "lib/app/app_router.dart"
+      },
+      {
+        "path": "/worship",
+        "name": "worship",
+        "kind": "shell-tab",
+        "file": "lib/app/app_router.dart"
+      }
+    ]
+  }
+}

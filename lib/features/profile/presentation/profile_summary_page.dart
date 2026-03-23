@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
-import '../../../app/app_router.dart';
+import '../../../app/nav_tabs.dart';
 import '../../../features/worship/domain/fasting_status.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/application/app_summary_providers.dart';

@@ -6,6 +6,7 @@ import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/quran_navigation.dart';
+import '../application/quran_learning_share_service.dart';
 import '../application/quran_surah_insights_provider.dart';
 import '../domain/quran_ayah_enrichment_models.dart';
 import '../domain/quran_surah_insight_models.dart';
@@ -39,7 +40,6 @@ class QuranSurahInsightsBrowsePage extends ConsumerWidget {
                     '${insight.surah.englishName} • ${l10n.quranSurahInsightsClusterCount(insight.clusters.length)}\n${_surahDescription(l10n, insight.definition.descriptionId)}',
                   ),
                   isThreeLine: true,
-                  trailing: const Icon(Icons.chevron_right_rounded),
                   onTap: () => context.pushNamed(
                     'quranSurahInsights',
                     pathParameters: {
@@ -84,6 +84,36 @@ class QuranSurahInsightPage extends ConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Align(
+                alignment: Alignment.centerRight,
+                child: OutlinedButton.icon(
+                  onPressed: () {
+                    final text =
+                        QuranLearningShareService.buildSurahInsightShareText(
+                          insight: insight,
+                          description: _surahDescription(
+                            l10n,
+                            insight.definition.descriptionId,
+                          ),
+                          themes: _surahThemes(
+                            l10n,
+                            insight.definition.themeIds,
+                          ),
+                          lessons: _surahLessons(
+                            l10n,
+                            insight.definition.lessonIds,
+                          ),
+                          attribution: l10n.quranLearningShareAttribution,
+                          themesLabel: l10n.quranLearningShareThemesLabel,
+                          lessonsLabel: l10n.quranLearningShareLessonsLabel,
+                        );
+                    QuranLearningShareService.shareText(text);
+                  },
+                  icon: const Icon(Icons.ios_share_rounded),
+                  label: Text(l10n.quranLearningShareAction),
+                ),
+              ),
+              const SizedBox(height: 4),
               Text(
                 l10n.quranSurahInsightsOverviewTitle,
                 style: Theme.of(
@@ -197,6 +227,7 @@ class _SurahInsightClusterCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
+    final languageCode = Localizations.localeOf(context).languageCode;
 
     return DecoratedBox(
       decoration: BoxDecoration(
@@ -217,19 +248,22 @@ class _SurahInsightClusterCard extends ConsumerWidget {
               ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
             ),
             const SizedBox(height: 8),
-            ...cluster.entries.map(
-              (entry) => ListTile(
+            ...cluster.entries.map((entry) {
+              final localizedEntry = entry.localizedCopy(languageCode);
+              return ListTile(
                 contentPadding: EdgeInsets.zero,
-                title: Text(entry.title),
+                title: Text(localizedEntry.title),
                 subtitle: Text(
-                  '${l10n.quranReferenceViewerReferenceLabel(entry.ref.locationLabel)}\n${entry.summary}',
+                  '${l10n.quranReferenceViewerReferenceLabel(localizedEntry.ref.locationLabel)}\n${localizedEntry.summary}',
                 ),
                 isThreeLine: true,
                 trailing: const Icon(Icons.chevron_right_rounded),
-                onTap: () =>
-                    openQuranReferenceLocation(context, ref: entry.ref),
-              ),
-            ),
+                onTap: () => openQuranReferenceLocation(
+                  context,
+                  ref: localizedEntry.ref,
+                ),
+              );
+            }),
           ],
         ),
       ),

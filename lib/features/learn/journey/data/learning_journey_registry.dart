@@ -716,21 +716,21 @@ class LearningJourneyRegistry {
       id: 'tajweed-basics',
       islandId: 'arabic-learning',
       title: 'Tajweed Basics',
-      subtitle: 'A future path for pronunciation and recitation rules.',
+      subtitle: 'A calm first path for careful Qur’an recitation.',
       description:
-          'This journey will later provide a beginner-first tajweed sequence with clear practice stages.',
+          'Begin with what tajweed is, how articulation shapes sound, and how to carry careful recitation back into short surahs.',
       order: 5,
       stageIds: ['tajweed-intro', 'tajweed-makharij', 'tajweed-application'],
       learningOutcomes: [
-        'Understand what tajweed is',
-        'Learn first articulation concepts',
-        'Apply rules inside simple recitation',
+        'Understand what tajweed is and why it matters',
+        'Notice core articulation differences between letters',
+        'Practice one calm correction at a time in real recitation',
       ],
       whyThisMatters:
-          'Tajweed needs a staged, beginner-safe path rather than being implied inside broader Arabic learning.',
+          'Tajweed becomes sustainable when beginners learn it through clear listening, measured practice, and real Qur’an recitation.',
       relatedTools: [_quranArabicTool, _quranLearningHubTool],
       mappingNotes:
-          'All stages remain placeholder-backed because current Arabic tools do not yet provide a true tajweed progression.',
+          'This journey now uses lesson-backed stages so Tajweed can sit inside Learn as a real beginner path instead of a contained placeholder.',
     ),
     LearningJourney(
       id: 'trivia-knowledge-paths',
@@ -2221,7 +2221,7 @@ class LearningJourneyRegistry {
       journeyId: 'tajweed-basics',
       title: 'What tajweed is',
       summary:
-          'A future introduction to why tajweed matters and how to begin without overwhelm.',
+          'Begin with what tajweed means, why careful recitation matters, and how to start without overwhelm.',
       order: 1,
       status: LearningJourneyStageStatus.real,
       targetType: LearningJourneyStageTargetType.existingPage,
@@ -2231,7 +2231,8 @@ class LearningJourneyRegistry {
       id: 'tajweed-makharij',
       journeyId: 'tajweed-basics',
       title: 'Sounds and articulation',
-      summary: 'A future stage for makharij and sound placement.',
+      summary:
+          'Learn how articulation points shape sound and how slow listening helps correct common mistakes.',
       order: 2,
       status: LearningJourneyStageStatus.real,
       targetType: LearningJourneyStageTargetType.existingPage,
@@ -2242,7 +2243,7 @@ class LearningJourneyRegistry {
       journeyId: 'tajweed-basics',
       title: 'Apply tajweed in recitation',
       summary:
-          'A later application stage for taking rules back into actual recitation.',
+          'Take basic tajweed awareness back into short surahs with listening comparison and one-step practice.',
       order: 3,
       status: LearningJourneyStageStatus.real,
       targetType: LearningJourneyStageTargetType.existingPage,

@@ -162,7 +162,6 @@ class _QuranSurahExplorerPageState
                           ],
                         ),
                       ),
-                      const Icon(Icons.chevron_right),
                     ],
                   ),
                 ),

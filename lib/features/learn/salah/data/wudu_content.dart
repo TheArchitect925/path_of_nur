@@ -1,166 +1,329 @@
+import '../../../../l10n/app_localizations.dart';
 import '../models/wudu_models.dart';
 
-const WuduContent wuduContent = WuduContent(
-  heroTitle: 'Wudu (Ablution)',
-  heroSubtitle: 'Step-by-step purification before prayer',
-  whyWuduMatters:
-      'Wudu prepares both body and heart before salah. It brings focus, cleanliness, and readiness to stand before الله with presence and humility.',
-  quranVerse:
-      '“O believers! When you rise up for prayer, wash your faces and your hands up to the elbows, wipe your heads, and wash your feet to the ankles.”',
-  quranReference: 'Surah Al-Ma\'idah 5:6',
-  steps: [
+const int wuduTrainerStepCount = 14;
+
+List<WuduStep> buildWuduStepContent(AppLocalizations l10n) {
+  return <WuduStep>[
     WuduStep(
+      id: 'niyyah',
       number: 1,
-      title: 'Make intention (niyyah) in the heart',
-      description:
-          'Begin with a sincere intention for purification before prayer.',
+      title: l10n.wuduTrainerStep1Title,
+      subtitle: l10n.wuduTrainerStep1Subtitle,
+      teachingNote: l10n.wuduTrainerStep1Note,
       iconKey: 'intention',
-      illustrationAssetKey: 'wudu_step_01_intention',
-      instructionAudioKey: 'wudu_step_01_instruction',
-      trainerNote: 'Pause briefly and set your intention before starting.',
-      whyItMatters:
-          'Niyyah aligns your action with worship so Wudu is done consciously for prayer.',
+      imageAssetPath: 'assets/images/wudu/step_01_niyyah.png',
+      quizKeywords: const <String>['niyyah', 'intention', 'beginning'],
     ),
     WuduStep(
+      id: 'prepare_water',
       number: 2,
-      title: 'Say “Bismillah”',
-      description: 'Start in the name of الله before washing.',
-      iconKey: 'bismillah',
-      illustrationAssetKey: 'wudu_step_02_bismillah',
-      instructionAudioKey: 'wudu_step_02_instruction',
-      pronunciationAudioKey: 'wudu_step_02_pronunciation',
-      whyItMatters:
-          'Beginning with the name of الله turns a routine action into remembrance.',
+      title: l10n.wuduTrainerStep2Title,
+      subtitle: l10n.wuduTrainerStep2Subtitle,
+      iconKey: 'water',
+      imageAssetPath: 'assets/images/wudu/step_02_prepare_water.png',
+      quizKeywords: const <String>['water', 'clean', 'prepare'],
     ),
     WuduStep(
+      id: 'bismillah',
       number: 3,
-      title: 'Wash both hands up to the wrists three times',
-      description:
-          'Ensure both hands are fully washed, including between fingers.',
-      iconKey: 'hands',
-      illustrationAssetKey: 'wudu_step_03_hands',
-      repeatCount: 3,
-      instructionAudioKey: 'wudu_step_03_instruction',
-      trainerNote: 'Use enough water to cover both hands fully each time.',
+      title: l10n.wuduTrainerStep3Title,
+      subtitle: l10n.wuduTrainerStep3Subtitle,
+      iconKey: 'bismillah',
+      imageAssetPath: 'assets/images/wudu/step_03_bismillah.png',
+      quizKeywords: const <String>['bismillah', 'start', 'name of Allah'],
     ),
     WuduStep(
+      id: 'wash_hands',
       number: 4,
-      title: 'Rinse the mouth three times',
-      description: 'Take water in gently and rinse thoroughly.',
-      iconKey: 'mouth',
-      illustrationAssetKey: 'wudu_step_04_mouth',
-      repeatCount: 3,
-      instructionAudioKey: 'wudu_step_04_instruction',
+      title: l10n.wuduTrainerStep4Title,
+      subtitle: l10n.wuduTrainerStep4Subtitle,
+      iconKey: 'hands',
+      imageAssetPath: 'assets/images/wudu/step_04_wash_hands.png',
+      quizKeywords: const <String>['hands', 'wash'],
     ),
     WuduStep(
+      id: 'rinse_mouth',
       number: 5,
-      title: 'Rinse the nose three times',
-      description: 'Draw water lightly into the nose and expel it.',
-      iconKey: 'nose',
-      illustrationAssetKey: 'wudu_step_05_nose',
-      repeatCount: 3,
-      instructionAudioKey: 'wudu_step_05_instruction',
+      title: l10n.wuduTrainerStep5Title,
+      subtitle: l10n.wuduTrainerStep5Subtitle,
+      iconKey: 'mouth',
+      imageAssetPath: 'assets/images/wudu/step_05_rinse_mouth_card.png',
+      quizKeywords: const <String>['mouth', 'rinse'],
     ),
     WuduStep(
+      id: 'sniff_water',
       number: 6,
-      title: 'Wash the face three times',
-      description:
-          'Cover the full face area from forehead to chin and side to side.',
-      iconKey: 'face',
-      illustrationAssetKey: 'wudu_step_06_face',
-      repeatCount: 3,
-      instructionAudioKey: 'wudu_step_06_instruction',
-      whyItMatters:
-          'The face is a required area. Full coverage is essential for valid Wudu.',
+      title: l10n.wuduTrainerStep6Title,
+      subtitle: l10n.wuduTrainerStep6Subtitle,
+      iconKey: 'nose',
+      imageAssetPath: 'assets/images/wudu/step_06_sniff_nose_card.png',
+      quizKeywords: const <String>['nose', 'sniff', 'nostrils'],
     ),
     WuduStep(
+      id: 'blow_nose',
       number: 7,
-      title: 'Wash the right arm including elbow three times',
-      description: 'Wash from fingertips up to and including the elbow.',
-      iconKey: 'arm_right',
-      illustrationAssetKey: 'wudu_step_07_arm_right',
-      repeatCount: 3,
-      instructionAudioKey: 'wudu_step_07_instruction',
+      title: l10n.wuduTrainerStep7Title,
+      subtitle: l10n.wuduTrainerStep7Subtitle,
+      iconKey: 'nose',
+      imageAssetPath: 'assets/images/wudu/step_07_blow_nose_card.png',
+      quizKeywords: const <String>['nose', 'blow'],
     ),
     WuduStep(
+      id: 'wash_face',
       number: 8,
-      title: 'Wash the left arm including elbow three times',
-      description: 'Wash completely with attention to the elbow area.',
-      iconKey: 'arm_left',
-      illustrationAssetKey: 'wudu_step_08_arm_left',
-      repeatCount: 3,
-      instructionAudioKey: 'wudu_step_08_instruction',
+      title: l10n.wuduTrainerStep8Title,
+      subtitle: l10n.wuduTrainerStep8Subtitle,
+      iconKey: 'face',
+      imageAssetPath: 'assets/images/wudu/step_08_wash_face_card.png',
+      quizKeywords: const <String>['face', 'wash'],
     ),
     WuduStep(
+      id: 'wash_arms',
       number: 9,
-      title: 'Wipe the head once',
-      description: 'Moisten hands and wipe over the head one time.',
-      iconKey: 'head',
-      illustrationAssetKey: 'wudu_step_09_head',
-      instructionAudioKey: 'wudu_step_09_instruction',
-      trainerNote: 'This step is performed once, not three times.',
+      title: l10n.wuduTrainerStep9Title,
+      subtitle: l10n.wuduTrainerStep9Subtitle,
+      iconKey: 'arm_right',
+      imageAssetPath: 'assets/images/wudu/step_09_wash_arms.png',
+      quizKeywords: const <String>['arms', 'elbows', 'wash'],
     ),
     WuduStep(
+      id: 'wipe_head',
       number: 10,
-      title: 'Wipe the ears once',
-      description: 'Wipe the inner and outer parts of both ears.',
-      iconKey: 'ears',
-      illustrationAssetKey: 'wudu_step_10_ears',
-      instructionAudioKey: 'wudu_step_10_instruction',
+      title: l10n.wuduTrainerStep10Title,
+      subtitle: l10n.wuduTrainerStep10Subtitle,
+      iconKey: 'head',
+      imageAssetPath: 'assets/images/wudu/step_10_wipe_head.png',
+      quizKeywords: const <String>['head', 'wipe'],
     ),
     WuduStep(
+      id: 'wash_feet',
       number: 11,
-      title: 'Wash the right foot up to the ankle three times',
-      description:
-          'Wash thoroughly, including between the toes and around the ankle.',
+      title: l10n.wuduTrainerStep11Title,
+      subtitle: l10n.wuduTrainerStep11Subtitle,
       iconKey: 'foot_right',
-      illustrationAssetKey: 'wudu_step_11_foot_right',
-      repeatCount: 3,
-      instructionAudioKey: 'wudu_step_11_instruction',
-      whyItMatters:
-          'Feet are often missed around toes and ankles, so wash this area carefully.',
+      imageAssetPath: 'assets/images/wudu/step_11_wash_feet_card.png',
+      quizKeywords: const <String>['feet', 'ankles', 'toes'],
     ),
     WuduStep(
+      id: 'shahada',
       number: 12,
-      title: 'Wash the left foot up to the ankle three times',
-      description:
-          'Complete the left foot the same way, including between toes.',
-      iconKey: 'foot_left',
-      illustrationAssetKey: 'wudu_step_12_foot_left',
-      repeatCount: 3,
-      instructionAudioKey: 'wudu_step_12_instruction',
+      title: l10n.wuduTrainerStep12Title,
+      subtitle: l10n.wuduTrainerStep12Subtitle,
+      iconKey: 'shahada',
+      imageAssetPath: 'assets/images/wudu/step_12_shahada_card.png',
+      quizKeywords: const <String>['shahada', 'testimony'],
     ),
-  ],
-  requiredEssentials: [
-    'Wash face',
-    'Wash arms to elbows',
-    'Wipe head',
-    'Wash feet to ankles',
-    'Keep correct order',
-    'Perform continuously',
-  ],
-  sunnahEnhancements: [
-    'Saying Bismillah',
-    'Washing three times',
-    'Starting with right side',
-    'Wiping ears',
-    'After-wudu dua',
-  ],
-  reminders: [
-    'Water must reach every required area',
-    'Do not miss between fingers and toes',
-    'Remove anything that blocks water',
-    'Keep order from start to finish',
-    'Be mindful but not obsessive',
-  ],
-  afterWuduDua: WuduDua(
-    arabic:
-        'أَشْهَدُ أَنْ لَا إِلٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ',
-    transliteration:
-        'Ashhadu an lā ilāha illa-llāh waḥdahu lā sharīka lah, wa ashhadu anna Muḥammadan ʿabduhu wa rasūluh.',
-    translation:
-        'I bear witness that none has the right to be worshipped except Allah alone with no partner, and I bear witness that Muhammad is His servant and messenger.',
-  ),
-  learningNote:
-      'For learning purposes. A reviewed/verified badge will be added after full religious content review.',
-);
+    WuduStep(
+      id: 'dua',
+      number: 13,
+      title: l10n.wuduTrainerStep13Title,
+      subtitle: l10n.wuduTrainerStep13Subtitle,
+      iconKey: 'dua',
+      imageAssetPath: 'assets/images/wudu/step_13_dua.png',
+      quizKeywords: const <String>['dua', 'supplication'],
+    ),
+    WuduStep(
+      id: 'cleanup',
+      number: 14,
+      title: l10n.wuduTrainerStep14Title,
+      subtitle: l10n.wuduTrainerStep14Subtitle,
+      iconKey: 'cleanup',
+      imageAssetPath: 'assets/images/wudu/step_14_cleanup_card.png',
+      quizKeywords: const <String>['cleanup', 'water', 'tidy'],
+    ),
+  ];
+}
+
+WuduContent buildWuduContent(AppLocalizations l10n) {
+  final steps = buildWuduStepContent(l10n);
+
+  return WuduContent(
+    heroTitle: l10n.wuduTrainerPageTitle,
+    heroSubtitle: l10n.wuduTrainerPageSubtitle,
+    introTitle: l10n.wuduTrainerIntroTitle,
+    introSubtitle: l10n.wuduTrainerIntroSubtitle,
+    whyWuduMatters: l10n.wuduGuideWhyBody,
+    quranVerse: l10n.wuduGuideQuranVerseTranslation,
+    quranReference: l10n.wuduGuideQuranReference,
+    quranReferenceLabel: l10n.wuduTrainerQuranReferenceLabel,
+    quranReferenceSubtitle: l10n.wuduTrainerQuranReferenceSubtitle,
+    stepsTitle: l10n.wuduGuideStepsTitle,
+    stepsSubtitle: l10n.wuduGuideStepsSubtitle,
+    checklistTitle: l10n.wuduTrainerChecklistTitle,
+    checklistSubtitle: l10n.wuduTrainerChecklistSubtitle,
+    completionTitle: l10n.wuduTrainerCompletionTitle,
+    completionBody: l10n.wuduTrainerCompletionBody,
+    completionNote: l10n.wuduTrainerCompletionNote,
+    reviewSummary: l10n.wuduTrainerReviewSummaryText,
+    steps: steps,
+    quizSeeds: buildWuduQuizSeeds(steps),
+    quizContent: buildWuduQuizContent(l10n, steps),
+    afterWuduDua: WuduDua(
+      arabic:
+          'أَشْهَدُ أَنْ لَا إِلٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ',
+      transliteration:
+          'Ashhadu an la ilaha illa Allah wahdahu la sharika lah, wa ashhadu anna Muhammadan abduhu wa rasuluh.',
+      translation: l10n.wuduAfterWuduDuaTranslation,
+    ),
+    learningNote: l10n.wuduTrainerLearningNote,
+  );
+}
+
+List<WuduQuizSeed> buildWuduQuizSeeds(List<WuduStep> steps) {
+  final seeds = <WuduQuizSeed>[];
+  for (var index = 0; index < steps.length; index += 1) {
+    final step = steps[index];
+    final previous = index > 0 ? steps[index - 1] : null;
+    final next = index < steps.length - 1 ? steps[index + 1] : null;
+
+    seeds.add(
+      WuduQuizSeed(
+        id: 'identify-${step.id}',
+        type: WuduQuizPromptType.identifyStep,
+        targetStepId: step.id,
+        relatedStepIds: <String>[
+          if (previous != null) previous.id,
+          step.id,
+          if (next != null) next.id,
+        ],
+      ),
+    );
+
+    if (next != null) {
+      seeds.add(
+        WuduQuizSeed(
+          id: 'next-after-${step.id}',
+          type: WuduQuizPromptType.whatComesNext,
+          targetStepId: next.id,
+          relatedStepIds: <String>[step.id, next.id],
+        ),
+      );
+    }
+
+    seeds.add(
+      WuduQuizSeed(
+        id: 'order-${step.id}',
+        type: WuduQuizPromptType.orderStep,
+        targetStepId: step.id,
+        relatedStepIds: <String>[
+          if (previous != null) previous.id,
+          step.id,
+          if (next != null) next.id,
+        ],
+      ),
+    );
+  }
+  return seeds;
+}
+
+WuduQuizContent buildWuduQuizContent(
+  AppLocalizations l10n,
+  List<WuduStep> steps,
+) {
+  final stepById = <String, WuduStep>{for (final step in steps) step.id: step};
+
+  return WuduQuizContent(
+    title: l10n.wuduQuizPageTitle,
+    subtitle: l10n.wuduQuizPageSubtitle,
+    introTitle: l10n.wuduQuizIntroTitle,
+    introSubtitle: l10n.wuduQuizIntroSubtitle,
+    summaryTitle: l10n.wuduQuizSummaryTitle,
+    summarySubtitle: l10n.wuduQuizSummarySubtitle,
+    questions: <WuduQuizQuestion>[
+      WuduQuizQuestion(
+        id: 'step-order-core-sequence',
+        type: WuduQuizQuestionType.stepOrder,
+        questionText: l10n.wuduQuizStepOrderQuestion,
+        options: <WuduQuizOption>[
+          WuduQuizOption(
+            id: 'correct',
+            label: l10n.wuduQuizStepOrderOptionCorrect(
+              stepById['wash_hands']!.title,
+              stepById['rinse_mouth']!.title,
+              stepById['wash_face']!.title,
+            ),
+          ),
+          WuduQuizOption(
+            id: 'mouth-first',
+            label: l10n.wuduQuizStepOrderOption(
+              stepById['rinse_mouth']!.title,
+              stepById['wash_hands']!.title,
+              stepById['wash_face']!.title,
+            ),
+          ),
+          WuduQuizOption(
+            id: 'face-first',
+            label: l10n.wuduQuizStepOrderOption(
+              stepById['wash_face']!.title,
+              stepById['wash_hands']!.title,
+              stepById['rinse_mouth']!.title,
+            ),
+          ),
+        ],
+        correctOptionId: 'correct',
+        explanation: l10n.wuduQuizStepOrderExplanation,
+      ),
+      WuduQuizQuestion(
+        id: 'what-comes-next-after-hands',
+        type: WuduQuizQuestionType.whatComesNext,
+        questionText: l10n.wuduQuizWhatComesNextQuestion(
+          stepById['wash_hands']!.title,
+        ),
+        options: <WuduQuizOption>[
+          WuduQuizOption(
+            id: 'rinse_mouth',
+            label: stepById['rinse_mouth']!.title,
+          ),
+          WuduQuizOption(id: 'wash_face', label: stepById['wash_face']!.title),
+          WuduQuizOption(id: 'wash_feet', label: stepById['wash_feet']!.title),
+        ],
+        correctOptionId: 'rinse_mouth',
+        explanation: l10n.wuduQuizWhatComesNextExplanation,
+      ),
+      WuduQuizQuestion(
+        id: 'identify-valid-step',
+        type: WuduQuizQuestionType.identifyValidStep,
+        questionText: l10n.wuduQuizIdentifyValidStepQuestion,
+        options: <WuduQuizOption>[
+          WuduQuizOption(id: 'wipe_head', label: stepById['wipe_head']!.title),
+          WuduQuizOption(
+            id: 'clap_hands',
+            label: l10n.wuduQuizDistractorClapHands,
+          ),
+          WuduQuizOption(
+            id: 'turn_around',
+            label: l10n.wuduQuizDistractorTurnAround,
+          ),
+          WuduQuizOption(
+            id: 'close_eyes',
+            label: l10n.wuduQuizDistractorCloseEyes,
+          ),
+        ],
+        correctOptionId: 'wipe_head',
+        explanation: l10n.wuduQuizIdentifyValidStepExplanation,
+      ),
+      WuduQuizQuestion(
+        id: 'adab-clean-up',
+        type: WuduQuizQuestionType.adab,
+        questionText: l10n.wuduQuizAdabQuestion,
+        options: <WuduQuizOption>[
+          WuduQuizOption(
+            id: 'clean_up',
+            label: l10n.wuduQuizAdabOptionCleanUp,
+          ),
+          WuduQuizOption(
+            id: 'waste_water',
+            label: l10n.wuduQuizAdabOptionWasteWater,
+          ),
+          WuduQuizOption(
+            id: 'leave_mess',
+            label: l10n.wuduQuizAdabOptionLeaveMess,
+          ),
+        ],
+        correctOptionId: 'clean_up',
+        explanation: l10n.wuduQuizAdabExplanation,
+      ),
+    ],
+  );
+}

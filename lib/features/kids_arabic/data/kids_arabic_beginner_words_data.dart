@@ -1,0 +1,186 @@
+import 'package:flutter/material.dart';
+
+import '../application/kids_arabic_starter_tracing.dart';
+import '../domain/kids_arabic_word_models.dart';
+
+const kidsArabicBeginnerWordOrderIds = <String>['bab', 'noor', 'qalam'];
+
+final List<KidsArabicBeginnerWord> kidsArabicBeginnerWords =
+    <KidsArabicBeginnerWord>[
+      KidsArabicBeginnerWord(
+        id: 'bab',
+        wordAr: 'باب',
+        transliteration: 'baab',
+        letterIds: const <String>['ba', 'alif', 'ba'],
+        requiredCompletedLetterIds: const <String>{'ba', 'alif'},
+        guide: const KidsArabicTracingGuide(
+          letterId: 'bab',
+          minimumEffortPoints: 52,
+          completedThreshold: 0.44,
+          goodThreshold: 0.66,
+          excellentThreshold: 0.84,
+          proximityThreshold: 0.12,
+          strokes: <KidsArabicGuideStroke>[
+            KidsArabicGuideStroke.path(
+              points: <Offset>[
+                Offset(0.82, 0.44),
+                Offset(0.76, 0.50),
+                Offset(0.70, 0.58),
+                Offset(0.64, 0.64),
+                Offset(0.60, 0.64),
+                Offset(0.58, 0.52),
+                Offset(0.57, 0.38),
+                Offset(0.56, 0.24),
+                Offset(0.55, 0.18),
+                Offset(0.54, 0.34),
+                Offset(0.52, 0.54),
+                Offset(0.48, 0.68),
+                Offset(0.42, 0.70),
+                Offset(0.36, 0.70),
+                Offset(0.30, 0.66),
+                Offset(0.24, 0.60),
+                Offset(0.18, 0.52),
+              ],
+            ),
+            KidsArabicGuideStroke.dot(center: Offset(0.73, 0.78)),
+            KidsArabicGuideStroke.dot(center: Offset(0.27, 0.78)),
+          ],
+        ),
+        joiningExamples: const <KidsArabicJoiningExample>[
+          KidsArabicJoiningExample(
+            letterId: 'ba',
+            standaloneGlyph: 'ب',
+            joinedGlyph: 'بـ',
+          ),
+          KidsArabicJoiningExample(
+            letterId: 'alif',
+            standaloneGlyph: 'ا',
+            joinedGlyph: 'ـا',
+          ),
+          KidsArabicJoiningExample(
+            letterId: 'ba',
+            standaloneGlyph: 'ب',
+            joinedGlyph: 'ـب',
+          ),
+        ],
+      ),
+      KidsArabicBeginnerWord(
+        id: 'noor',
+        wordAr: 'نور',
+        transliteration: 'noor',
+        letterIds: const <String>['noon', 'waw', 'ra'],
+        requiredCompletedLetterIds: const <String>{'noon'},
+        guide: const KidsArabicTracingGuide(
+          letterId: 'noor',
+          minimumEffortPoints: 46,
+          completedThreshold: 0.44,
+          goodThreshold: 0.66,
+          excellentThreshold: 0.84,
+          proximityThreshold: 0.12,
+          strokes: <KidsArabicGuideStroke>[
+            KidsArabicGuideStroke.path(
+              points: <Offset>[
+                Offset(0.80, 0.40),
+                Offset(0.74, 0.46),
+                Offset(0.66, 0.54),
+                Offset(0.58, 0.58),
+                Offset(0.50, 0.56),
+                Offset(0.46, 0.48),
+                Offset(0.44, 0.40),
+                Offset(0.46, 0.48),
+                Offset(0.50, 0.58),
+                Offset(0.46, 0.64),
+                Offset(0.38, 0.66),
+                Offset(0.30, 0.62),
+                Offset(0.22, 0.56),
+                Offset(0.16, 0.50),
+              ],
+            ),
+            KidsArabicGuideStroke.dot(center: Offset(0.70, 0.26)),
+          ],
+        ),
+        joiningExamples: const <KidsArabicJoiningExample>[
+          KidsArabicJoiningExample(
+            letterId: 'noon',
+            standaloneGlyph: 'ن',
+            joinedGlyph: 'نـ',
+          ),
+          KidsArabicJoiningExample(
+            letterId: 'waw',
+            standaloneGlyph: 'و',
+            joinedGlyph: 'و',
+          ),
+          KidsArabicJoiningExample(
+            letterId: 'ra',
+            standaloneGlyph: 'ر',
+            joinedGlyph: 'ر',
+          ),
+        ],
+      ),
+      KidsArabicBeginnerWord(
+        id: 'qalam',
+        wordAr: 'قلم',
+        transliteration: 'qalam',
+        letterIds: const <String>['qaf', 'lam', 'meem'],
+        requiredCompletedLetterIds: const <String>{'lam', 'meem'},
+        guide: const KidsArabicTracingGuide(
+          letterId: 'qalam',
+          minimumEffortPoints: 58,
+          completedThreshold: 0.44,
+          goodThreshold: 0.66,
+          excellentThreshold: 0.84,
+          proximityThreshold: 0.12,
+          strokes: <KidsArabicGuideStroke>[
+            KidsArabicGuideStroke.path(
+              points: <Offset>[
+                Offset(0.82, 0.40),
+                Offset(0.76, 0.34),
+                Offset(0.68, 0.34),
+                Offset(0.60, 0.40),
+                Offset(0.56, 0.50),
+                Offset(0.58, 0.62),
+                Offset(0.60, 0.50),
+                Offset(0.60, 0.34),
+                Offset(0.56, 0.20),
+                Offset(0.52, 0.34),
+                Offset(0.48, 0.54),
+                Offset(0.42, 0.70),
+                Offset(0.36, 0.72),
+                Offset(0.30, 0.70),
+                Offset(0.24, 0.66),
+                Offset(0.18, 0.60),
+                Offset(0.14, 0.52),
+              ],
+            ),
+            KidsArabicGuideStroke.dot(center: Offset(0.74, 0.18)),
+            KidsArabicGuideStroke.dot(center: Offset(0.64, 0.16)),
+          ],
+        ),
+        joiningExamples: const <KidsArabicJoiningExample>[
+          KidsArabicJoiningExample(
+            letterId: 'qaf',
+            standaloneGlyph: 'ق',
+            joinedGlyph: 'قـ',
+          ),
+          KidsArabicJoiningExample(
+            letterId: 'lam',
+            standaloneGlyph: 'ل',
+            joinedGlyph: 'ـلـ',
+          ),
+          KidsArabicJoiningExample(
+            letterId: 'meem',
+            standaloneGlyph: 'م',
+            joinedGlyph: 'ـم',
+          ),
+        ],
+      ),
+    ];
+
+KidsArabicBeginnerWord? kidsArabicBeginnerWordById(String id) {
+  for (final word in kidsArabicBeginnerWords) {
+    if (word.id == id) {
+      return word;
+    }
+  }
+  return null;
+}

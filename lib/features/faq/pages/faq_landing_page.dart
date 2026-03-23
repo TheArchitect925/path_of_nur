@@ -47,6 +47,7 @@ class _FaqLandingPageState extends ConsumerState<FaqLandingPage> {
 
     return LearnHubPageScaffold(
       quote: null,
+      showDefaultQuote: false,
       headerIcon: Icons.help_outline_rounded,
       title: l10n.batch9FaqTitle,
       subtitle: l10n.batch9FaqSubtitle,

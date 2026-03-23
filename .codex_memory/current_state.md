@@ -1,6 +1,6 @@
 # Current Project State
 
-Last updated: 2026-03-22
+Last updated: 2026-03-23
 
 ## A. Project summary
 
@@ -23,6 +23,32 @@ Path of Nur is a Flutter + Riverpod mobile app centered on worship, Qur'an engag
   - settings/profile support pages were moved under settings-oriented routes
   - many legacy aliases still exist for compatibility
 
+## B1. Most recent stabilization update
+
+- Phase 25B regression hardening is complete:
+  - `flutter analyze` is green
+  - router smoke/deep-link tests are green
+  - the previously red focused regression slice for Qur'an route integrity, Growth home IA, Wudu trainer, and Learn placeholder containment is now green
+- Live localization debt was reduced on user-facing Qur'an, Growth, Games, Wudu, and Kids Arabic surfaces by moving a large set of strings into generated ARB-backed localization.
+- Runtime localization shim files still exist for some compatibility/bridge cases, but their live-surface footprint is smaller than it was on 2026-03-22.
+- Phase 25C completed the next localization chunk:
+  - the old live-surface bridge files for Qur'an, Growth, and Games were removed
+  - non-English locale resource coverage was expanded for the targeted live-surface keys
+  - Wudu and Kids Arabic still kept narrower bridge layers for remaining formatted/helper strings
+- Phase 25D completed the next safe localization slice:
+  - the old live Kids Arabic bridge file was removed and live Kids Arabic pages now read generated `AppLocalizations` directly
+  - Wudu live strings moved to generated ARB-backed localization, with the bridge narrowed to reward-feedback formatting helpers only
+  - targeted Wudu and Kids Arabic keys were propagated into non-English ARB files, but many entries still need real translation instead of English fallback text
+- Phase 25E completed the next ownership cleanup slice:
+  - `/quran*` discovery now more clearly owns Qur'an learning entry from the canonical Qur'an home
+  - the old Learn-owned Qur'an aliases `/learn/hub/quran`, `/learn/hub/quran/learning`, and `/learn/hub/quranic-arabic` now behave as compatibility redirects instead of co-equal routed owners
+  - `LearnQuranHubPage` remains as the scoped `/quran/learning` surface, but its top-level framing was reduced so it no longer reads like a second Qur'an home
+- Phase 25G completed a narrow Learn / Journey alias cleanup slice:
+  - visible Journey discovery now prefers canonical `growthStatisticsPage` instead of the compatibility `growthTrackingDashboard` alias route name
+  - the remaining `/growth/habit/:habitId` alias now redirects to canonical `/journey/habit/:habitId` instead of behaving like a co-equal page owner
+  - deep-link normalization for `/tracking` now resolves directly to canonical `/journey/statistics`
+  - no Learn route families were removed; hidden/transitional `learnLegacy` references remain compatibility debt until a dedicated Learn-legacy cleanup pass
+
 ## C. Implemented features
 
 - Onboarding flow with prayer reminder choices and first-run routing.
@@ -43,8 +69,9 @@ Path of Nur is a Flutter + Riverpod mobile app centered on worship, Qur'an engag
   - canonical ledger-backed Drops V1 architecture with summary, service hooks, and Garden milestone gallery
   - dedicated Garden route at `/journey/garden` now resolves to a learner-scoped visual growth page built on the shared progression ledger, existing garden milestone gallery, and safe Journey fallback for non-child mode
   - unified tracking/dashboard structure for habits, Ocean, and cross-feature summaries
-  - unified Journey Stats page at `/journey/tracking` for core progress metrics
-  - Growth home Qur'an reading tracker card that opens Journey Stats
+  - unified Journey Stats data page now has the canonical route `/journey/statistics`, with `/journey/tracking` preserved as a compatibility alias
+  - Growth home is now a cleaner island launcher for Today, Paths, Habits, Journey, Reflection, Spiritual Growth, Statistics, Garden, and Browse All
+  - dedicated Growth browse route at `/journey/browse` now acts as a structured explorer across the Growth system
   - Journey Stats now also surfaces total post-Salah adhkar completions from stored prayer-log timestamps
   - Journey Stats and Growth now also surface lifetime adhkar totals and total time in dhikr, with new dhikr sessions recording a real active-session start timestamp instead of inferring duration from count
   - Journey Stats now also includes a Time & Reflection section driven by a persisted first-launch timestamp plus trustworthy tracked app time (Qur'an reading, Qur'an listening, dhikr), with the remainder labeled honestly as other/untracked time
@@ -73,6 +100,12 @@ Path of Nur is a Flutter + Riverpod mobile app centered on worship, Qur'an engag
     - calm domain cards for Signs in Creation, Worship & Remembrance, Character & Adab, Tawhid & Belief, Akhirah & Accountability, Prophets & Lessons, and Guidance & Reflection when available
     - per-domain lists that deep-link into the Qur'an reader at the exact ayah instead of introducing a dead-end detail page
     - a local grouped knowledge search that reuses existing Ayah Insights, guided paths, and surah-insight data rather than adding a second search/indexing engine
+    - lightweight personalization now reuses recent Qur'an reading state plus the last Ayah Insights path/domain interactions to surface Continue Learning and Suggested for You on the Qur'an hub, Qur'an Learning reflect tab, and Ayah Insights browse page
+    - a lightweight Daily Ayah Reflection loop now reuses the Ayah Insights corpus for one deterministic ayah per day, with Home + Qur'an hub cards, a calm completion action, once-per-day Qur'an XP/drop hooks, and a persisted consistency streak without introducing a separate journaling or notification system
+    - a lightweight private Saved Reflections layer now lives at `/quran/reflections`, with local ayah/insight saves, optional short private notes, Daily Ayah + Ayah Insights save actions, and a dedicated review hub instead of overloading the older generic Qur'an Notes model
+    - Qur'an learning progression now also routes meaningful completion events through the shared Journey XP / Drops gateway with deduped source refs: Daily Ayah completion marks the entry complete without double-awarding, Ayah Insight entry completion rewards once per entry, path steps roll up into one-time full-path completion rewards, and the first non-empty private reflection note awards once lifetime
+    - a lightweight sharing/export layer now allows Daily Ayah, Ayah Insights, saved reflections, related ayahs, and surah insights to share respectful plain-text excerpts through the native share sheet, with saved reflection notes remaining private by default and only short note excerpts included when the user explicitly chooses that option
+    - a kids-safe Ayah Insights layer now lives at `/learn/kids/quran-insights`, reusing a small reviewed subset of canonical Ayah Insights entries through a filtered adapter with simplified localized summaries, calm cards, shared Qur'an deep links, and optional one-tap studied completion through the same shared Qur'an progression bridge
   - Ayah Insights now also has a lightweight learning-path layer:
     - path browse route at `/quran/insights/paths`
     - path detail route at `/quran/insights/paths/:pathId`
@@ -159,7 +192,16 @@ Path of Nur is a Flutter + Riverpod mobile app centered on worship, Qur'an engag
     - media-aware canonical asset manifest/resolver for future multilingual narration and illustration expansion
     - bedtime queue/session controller with single-story, tonight, and multipart-series playback flow plus in-session sleep timer handling
     - floating mini player on bedtime surfaces and a full-player sheet with next/previous, seek, autoplay toggle, and calm completion state
-  - New learning journey domain with islands, journey home, stage detail, browse-all, lesson wrappers, localized metadata layer, and route adapters into existing tools
+  - Learn production-safety containment pass:
+    - live Learn journey discovery now suppresses the `legacy-learning` island and no longer surfaces the placeholder-backed `tajweed-basics` journey
+    - direct routes for `/learn/guides`, `/learn/guides/quran-lessons-mapping`, and `tajweed-basics` journey/stage pages now show a calm contained-state page instead of presenting those legacy/planning surfaces as finished content
+    - the old `/learn/legacy` route remains reachable for compatibility but is no longer surfaced from the active journey discovery pages
+  - Wudu learning now also has a real guided trainer at `/learn/salah/wudu/trainer`, using the shipped 14-step asset-backed sequence, lightweight persisted progress, explicit resume/start-again/completed re-entry states, normalized persisted-state fallback for invalid or stale stored indexes, a review/checklist mode, one-time Learn journey completion rewards routed through the existing `journey-of-wudu` stage completion hook, and a linked Wudu quiz at `/learn/salah/wudu/quiz` with one-question-per-screen reinforcement, persisted quiz progress, completion summary, and one-time XP/Ocean Drop rewards
+  - Tajweed learning replacement pass:
+    - `tajweed-basics` now resolves to a real production-safe beginner Tajweed journey again instead of the contained fallback
+    - the existing lesson-backed stages `tajweed-intro`, `tajweed-makharij`, and `tajweed-application` are now surfaced through Learn discovery and direct route entry
+    - Tajweed journey/stage metadata is now localized and production-safe, while the legacy guide and mapping routes remain contained
+- New learning journey domain with islands, journey home, stage detail, browse-all, lesson wrappers, localized metadata layer, and route adapters into existing tools
 - Accounts/profiles/sync foundations:
   - local profile/account model
   - sync/outbox/cursor schema
@@ -191,6 +233,8 @@ Path of Nur is a Flutter + Riverpod mobile app centered on worship, Qur'an engag
 - Learn information architecture is in transition:
   - `/learn` now separates standard Learn discovery from a dedicated `Learning Journey` island entry, but broad legacy content systems still coexist
   - duplicate or overlapping entry points remain between Learn, Qur'an, and older content hubs
+  - Learn placeholder infrastructure still exists in code, but the live placeholder lesson route path appears dormant today because the current registry no longer declares `targetType.placeholder` stages
+  - Tajweed is no longer part of the contained placeholder set; only the legacy guide/mapping routes remain actively contained from the earlier Learn containment pass
 - Dua dataset is intentionally incomplete:
   - verified entries are live
   - many scaffold-only `stub_*` entries remain tracked but not fully authored
@@ -221,6 +265,51 @@ Path of Nur is a Flutter + Riverpod mobile app centered on worship, Qur'an engag
 - Kids Arabic tracing/review progress and parent preferences are now learner-scoped through the shared child-profile context, with one-time migration from legacy global Kids Arabic storage into the active learner scope.
 - Kids Arabic lesson and daily-mission rewards now route through the shared learner progression ledger instead of writing directly into Journey XP / Ocean Drops services, reducing cross-profile leakage risk while preserving the existing tracing UX.
 - Kids Arabic no longer emits the older global Learning Journey active-day compatibility writes, so its remaining meaningful progress and reward events now stay inside learner-scoped progression plus canonical kids activity logging.
+- Kids Arabic tracing now has a real vector-tracing V1 for Alif, Ba, Meem, Noon, Seen, Laam, Kaaf, and Haa (`ha2`):
+  - the live tracing target and completion logic now share the same vector-path source of truth instead of mixing a font glyph echo with a separate sampled guide model
+  - the next rollout batch added curved and multi-part templates for Noon, Seen, Laam, Kaaf, and Haa on the same registry/evaluation model, with per-letter completion thresholds kept forgiving for kids
+  - the tracing pad keeps the existing kid-friendly color picker, reset action, learner-safe reward flow, and simple completion threshold
+  - the lesson page now also has a guided completion state with calm success copy, trace-again action, next-letter handoff, optional previous-letter return, and safe reuse of the existing deduped XP/drop award path
+  - older guide-based tracing remains as a fallback for the rest of the alphabet until more vector templates are added
+- Kids Arabic tracing now supports the full Arabic alphabet end-to-end through a stable mixed system:
+  - all 28 Arabic letters remain reachable in one canonical progression order with no dead ends
+  - vector coverage now also includes Ta, Tha, Jeem, Hha (`ha`), Kha, Dal, Dhal, Ra, and Zay on top of the earlier Alif/Ba/Meem/Noon/Seen/Laam/Kaaf/Haa set
+  - the central `kidsArabicSupportsVectorTracing(...)` predicate is now reused by the lesson page, tracing pad, and scoring path so vector-vs-fallback behavior stays consistent
+  - fallback tracing remains active for the remaining letters until later rollout packs replace them
+- Kids Arabic tracing now also has a lightweight delight layer on top of the stable tracing/reward flow:
+  - the tracing pad auto-shows a soft ghost-stroke preview after brief idle time, using the same live vector or fallback path source rather than a second demo-only shape system
+  - success now adds a calmer expanding halo/sparkle animation without changing trace thresholds or XP rules
+  - lesson completion actions are now revealed after a short delay so the celebration moment lands before buttons appear
+  - optional completion audio reuses the existing Kids Arabic pronunciation service and only fires once per successful attempt when audio autoplay is enabled
+- Kids Arabic now also has a simple mastery layer on top of the tracing/progression flow:
+  - a dedicated progress map route at `/learn/kids/arabic/progress` shows the full alphabet in order with `not started`, `practicing`, and `completed` states derived from the existing learner-scoped progress model
+  - the current unlocked frontier is treated as `practicing`, while the existing `reviewNeededLetterIds` set now drives gentle review recommendations without introducing strict mastery scoring or a new persistence model
+  - the home page now surfaces a progress-map summary card with the next recommended action, and the progress map can deep-link back into either the next lesson or the existing review route
+- Kids Arabic now also includes a beginner-words bridge at `/learn/kids/arabic/words`:
+  - a learner-scoped word-progress store tracks completed beginner words separately from letter mastery, so the new feature does not change or reinterpret existing letter completion data
+  - the first curated word set is `باب`, `نور`, and `قلم`, chosen to stay short, child-friendly, and visually useful for introducing basic joining awareness
+  - each word lesson reuses the existing real tracing pad with a custom word guide as the display-and-evaluation source of truth, plus optional tap-to-hear pronunciation through the existing Kids Arabic audio service
+  - a dedicated reading mode now also lives at `/learn/kids/arabic/words/reading`, reusing the same curated word set for large calm word cards, tap-to-hear pronunciation, simple previous/next navigation across unlocked words, and a light handoff back into word tracing when the child wants to practice writing again
+- Kids Arabic now also has a dedicated review/practice loop at `/learn/kids/arabic/practice`:
+  - the practice page derives one primary `today` focus, a continue letter suggestion, a continue word suggestion, and gentle review sections from the existing learner-scoped daily mission, mastery, and word-progress state instead of adding a second scheduler or grading system
+  - unfinished continuity stays intentionally simple: letters use the practicing frontier, while words use the current unlocked incomplete-word heuristic plus existing `lastWordId` continuity where available
+  - the Kids Arabic home page now surfaces a direct Practice & Review entry card so repeat practice feels like a first-class habit loop rather than a hidden subpage
+- Kids Arabic now also has a shared audio-learning layer:
+  - letter lessons and word lessons reuse one shared repeat-after-me card, keeping autoplay and replay behavior consistent without changing tracing, XP, or completion rules
+  - letter hero cards, word lesson headers, reading-mode word cards, and unlocked word cards now all support tap-to-hear pronunciation through the existing Kids Arabic TTS service
+  - reading mode now also autoplay-speaks newly opened unlocked words when `audioAutoplay` is enabled, then settles into the same calm repeat-after-me guidance instead of creating a second audio flow
+- Kids Arabic now also has a lightweight achievements layer:
+  - badges continue to derive from the existing sticker unlock path, while new milestones derive from trustworthy learner-scoped letter, word, and review progress thresholds instead of a second reward ledger
+  - home, progress-map, and rewards surfaces now expose a parent-friendly latest-achievement snapshot plus badge/milestone counts without turning Kids Arabic into a dense analytics dashboard
+  - lesson and word completion sheets now show calm one-time achievement reveal cards, with learner-scoped seen-celebration state preventing duplicate milestone celebration spam
+- Kids Learning routing now also distinguishes its surfaced child subcategory wrappers correctly:
+  - `/learn/kids/arabic-learning` now opens the real `KidsArabicHomePage` instead of another generic Kids Learning category scaffold
+  - `/learn/kids/games` and `/learn/kids/fun-learning` still reuse the existing scoped Kids Learning content lists, but now render with subcategory-specific headers so they no longer appear to bounce back to the parent Kids Learning hub
+- Kids Learning now also has dedicated kids-only Qur’an and Hadith access routes:
+  - `/learn/kids/quran` provides a simplified full-surah browse flow and `/learn/kids/quran/surah/:surahNumber` provides the stripped-down ayah reading view
+  - `/learn/kids/hadith` provides a short curated hadith set for younger learners
+  - `/learn/kids/hadith-stories` now reuses the existing hadith-backed kids story seeds as their own destination instead of leaving those stories buried inside the broader mixed kids story library
+- FAQ landing now disables the default shared Learn quote so the FAQ hub no longer shows a duplicate generic Qur’anic quote banner from the shared Learn scaffold.
 - Kids Dua fallback learner identity now matches the bedtime-family fallback learner identity, preventing no-child-profile households from splitting dua progress, My Day state, creative state, and canonical kids activity across separate fallback learner IDs.
 - Kids Dua creative drawings and parent-view preferences are now learner-scoped with one-time migration from the old global creative key and the older kids-dua-only fallback scope.
 - Kids Dua My Day completion now writes a canonical kids activity entry, so parent summaries no longer need to rely only on progression-derived fallback signals for that flow.
@@ -357,6 +446,25 @@ Path of Nur is a Flutter + Riverpod mobile app centered on worship, Qur'an engag
   - Journey/global XP and Drops are only mirrored from learner progression when the active app profile matches the linked child profile, so guardian-mode browsing does not leak rewards across profiles
   - a new kids progression route exists at `/learn/kids/progression`
   - the bedtime parent dashboard now reads bedtime XP/drop totals from the learner progression ledger, with a safe fallback to legacy inferred totals when historical progression entries do not exist yet
+- Growth Statistics now has a centralized aggregation layer under `lib/features/journey/application/growth_statistics_provider.dart`:
+  - weekly and monthly summaries derive from existing prayer, dhikr, Qur’an, XP, drops, and Journey day-metric history without migrations
+  - the Statistics page now surfaces calm Summary, Trends, Insights, and Reports/Share sections above the existing Qur’an, overview, metrics, and Ocean blocks
+  - weekly trends use the last 7 daily buckets, monthly trends use four 7-day buckets across the last 28 days, and both are rendered with lightweight local chart widgets instead of a new chart package
+  - “Your best day” is now grounded in the existing central `journeyProgress.dayScoreByKey`, with XP and drops as tie-breakers rather than a separate UI-only scoring model
+  - export/share is text-based via `share_plus` and intentionally avoids raw file export or image rendering in V1
+- The writing system is now more coherent without changing underlying storage models:
+  - Learn Notes remains the broader notes/discovery surface, but now explicitly separates Qur’an Reflections from Journal instead of labeling Journal as a generic reflections bucket
+  - Qur’an Reflections now includes direct onward actions back to Learn Notes and Journal so the three writing surfaces feel intentionally related rather than isolated
+  - Journal timeline entries now open a real detail route at `/journal/entry/:entryId`
+  - journal detail supports safe in-place editing over the existing `journalProvider` persistence model, including linked topic / Qur’an ref / hadith ref / tags / photo reference updates without migrations
+  - Learn Notes browse now opens journal-backed results directly into the specific journal entry instead of dumping users back at the generic timeline
+- RTL and localization UI readiness improved in shared app layers:
+  - `PathOfNurApp` now passes the active locale into `AppTheme.themeFor(...)`, allowing the theme to choose Arabic/Urdu UI fonts without forcing Arabic UI typography onto English/German
+  - `AppPageScaffold` now uses `BackButtonIcon`, so shared back affordances mirror correctly in RTL
+  - bottom-nav labels now use locale-aware UI fonts and single-line overflow protection
+  - the prophetic family tree card now uses directional padding instead of LTR-only indentation
+  - locale integration coverage now verifies Urdu RTL routing plus theme-level font selection for `en`, `ar`, and `ur`
+  - `quranSharedAudioPlayerProvider` teardown no longer reads another provider during `onDispose`, removing a provider-disposal hazard exposed by widget tests
 
 ## H. Recommended next steps in priority order
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../l10n/app_localizations.dart';
 import '../../../shared/widgets/app_page_scaffold.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../application/growth_models.dart';
@@ -25,9 +26,17 @@ class _GrowthHabitDetailPageState extends ConsumerState<GrowthHabitDetailPage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final habit = ref.watch(growthHabitsByIdProvider)[widget.habitId];
     if (habit == null) {
-      return const Scaffold(body: Center(child: Text('This habit is not available right now.')));
+      return AppPageScaffold(
+        headerIcon: Icons.track_changes_rounded,
+        title: l10n.growthHabitDetailPageTitle,
+        subtitle: l10n.growthHabitUnavailableMessage,
+        children: [
+          PremiumCard(child: Text(l10n.growthHabitUnavailableMessage)),
+        ],
+      );
     }
 
     final selectedDate = ref.watch(growthSelectedDateProvider);
@@ -51,9 +60,17 @@ class _GrowthHabitDetailPageState extends ConsumerState<GrowthHabitDetailPage> {
                 runSpacing: 8,
                 children: [
                   _Pill(label: growthCategoryLabel(habit.category)),
-                  _Pill(label: stageContent?.title ?? 'Stage ${habit.stage}'),
+                  _Pill(
+                    label:
+                        stageContent?.title ??
+                        l10n.growthStageValue('${habit.stage}'),
+                  ),
                   _Pill(label: growthDifficultyLabel(habit.difficulty)),
-                  _Pill(label: 'Light +${habit.lightReward}'),
+                  _Pill(
+                    label: l10n.growthHabitLightRewardValue(
+                      '${habit.lightReward}',
+                    ),
+                  ),
                   _Pill(
                     label: habitContent?.suggestedRecurrence ??
                         growthRecurrenceLabel(habit),
@@ -70,13 +87,19 @@ class _GrowthHabitDetailPageState extends ConsumerState<GrowthHabitDetailPage> {
               if (habitContent != null) ...[
                 const SizedBox(height: 8),
                 Text(
-                  'Gentle reminder: ${habitContent.reminderCopy}',
+                  l10n.growthHabitGentleReminderValue(
+                    habitContent.reminderCopy,
+                  ),
                   style: const TextStyle(color: Color(0xFF6A5A4A)),
                 ),
               ],
               if (habit.reflectionPrompt != null) ...[
                 const SizedBox(height: 10),
-                Text('Reflection prompt: ${habit.reflectionPrompt!}'),
+                Text(
+                  l10n.growthHabitReflectionPromptValue(
+                    habit.reflectionPrompt!,
+                  ),
+                ),
               ],
             ],
           ),
@@ -86,7 +109,10 @@ class _GrowthHabitDetailPageState extends ConsumerState<GrowthHabitDetailPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Today Actions', style: TextStyle(fontWeight: FontWeight.w700)),
+              Text(
+                l10n.growthHabitTodayActionsTitle,
+                style: const TextStyle(fontWeight: FontWeight.w700),
+              ),
               const SizedBox(height: 8),
               Wrap(
                 spacing: 8,
@@ -99,7 +125,7 @@ class _GrowthHabitDetailPageState extends ConsumerState<GrowthHabitDetailPage> {
                           status: GrowthHabitStatus.completed,
                         ),
                     icon: const Icon(Icons.check_circle_outline),
-                    label: const Text('Complete'),
+                    label: Text(l10n.growthHabitCompleteAction),
                   ),
                   FilledButton.tonal(
                     onPressed: () => ref.read(growthControllerProvider.notifier).setHabitStatus(
@@ -107,7 +133,7 @@ class _GrowthHabitDetailPageState extends ConsumerState<GrowthHabitDetailPage> {
                           habitId: habit.id,
                           status: GrowthHabitStatus.snoozed,
                         ),
-                    child: const Text('Return later'),
+                    child: Text(l10n.growthHabitReturnLaterAction),
                   ),
                   FilledButton.tonal(
                     onPressed: () => ref.read(growthControllerProvider.notifier).setHabitStatus(
@@ -115,7 +141,7 @@ class _GrowthHabitDetailPageState extends ConsumerState<GrowthHabitDetailPage> {
                           habitId: habit.id,
                           status: GrowthHabitStatus.deferred,
                         ),
-                    child: const Text('Carry forward'),
+                    child: Text(l10n.growthHabitCarryForwardAction),
                   ),
                   FilledButton.tonal(
                     onPressed: () => ref.read(growthControllerProvider.notifier).setHabitStatus(
@@ -123,13 +149,13 @@ class _GrowthHabitDetailPageState extends ConsumerState<GrowthHabitDetailPage> {
                           habitId: habit.id,
                           status: GrowthHabitStatus.skipped,
                         ),
-                    child: const Text('Pause today'),
+                    child: Text(l10n.growthHabitPauseTodayAction),
                   ),
                 ],
               ),
               if (habit.allowPartial) ...[
                 const SizedBox(height: 10),
-                const Text('Partial completion'),
+                Text(l10n.growthHabitPartialCompletionTitle),
                 Slider(
                   value: _partialValue,
                   min: 0.1,
@@ -145,13 +171,21 @@ class _GrowthHabitDetailPageState extends ConsumerState<GrowthHabitDetailPage> {
                         progress: _partialValue,
                         entrusted: habit.entrustToAllah || habit.privateTracking,
                       ),
-                  child: const Text('Save partial progress'),
+                  child: Text(l10n.growthHabitSavePartialProgressAction),
                 ),
               ],
               const SizedBox(height: 8),
-              Text('Current status: ${growthStatusLabel(log?.status)}'),
+              Text(
+                l10n.growthHabitCurrentStatusValue(
+                  growthStatusLabel(log?.status),
+                ),
+              ),
               if (habit.allowPartial)
-                Text('Progress: ${((log?.progress ?? 0) * 100).round()}%'),
+                Text(
+                  l10n.growthHabitProgressValue(
+                    '${((log?.progress ?? 0) * 100).round()}',
+                  ),
+                ),
             ],
           ),
         ),
@@ -160,14 +194,17 @@ class _GrowthHabitDetailPageState extends ConsumerState<GrowthHabitDetailPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Habit Settings', style: TextStyle(fontWeight: FontWeight.w700)),
+              Text(
+                l10n.growthHabitSettingsSectionTitle,
+                style: const TextStyle(fontWeight: FontWeight.w700),
+              ),
               SwitchListTile(
                 contentPadding: EdgeInsets.zero,
                 value: habit.active,
                 onChanged: (v) => ref
                     .read(growthControllerProvider.notifier)
                     .updateHabitOverride(habit.id, active: v),
-                title: const Text('Active'),
+                title: Text(l10n.growthHabitSettingActive),
               ),
               SwitchListTile(
                 contentPadding: EdgeInsets.zero,
@@ -175,7 +212,7 @@ class _GrowthHabitDetailPageState extends ConsumerState<GrowthHabitDetailPage> {
                 onChanged: (v) => ref
                     .read(growthControllerProvider.notifier)
                     .updateHabitOverride(habit.id, paused: v),
-                title: const Text('Paused'),
+                title: Text(l10n.growthHabitSettingPaused),
               ),
               SwitchListTile(
                 contentPadding: EdgeInsets.zero,
@@ -183,7 +220,7 @@ class _GrowthHabitDetailPageState extends ConsumerState<GrowthHabitDetailPage> {
                 onChanged: (v) => ref
                     .read(growthControllerProvider.notifier)
                     .updateHabitOverride(habit.id, showInToday: v),
-                title: const Text('Show in Today when due'),
+                title: Text(l10n.growthHabitSettingShowInTodayWhenDue),
               ),
               SwitchListTile(
                 contentPadding: EdgeInsets.zero,
@@ -191,7 +228,7 @@ class _GrowthHabitDetailPageState extends ConsumerState<GrowthHabitDetailPage> {
                 onChanged: (v) => ref
                     .read(growthControllerProvider.notifier)
                     .updateHabitOverride(habit.id, muted: v),
-                title: const Text('Mute from Today view'),
+                title: Text(l10n.growthHabitSettingMuteFromTodayView),
               ),
               SwitchListTile(
                 contentPadding: EdgeInsets.zero,
@@ -199,7 +236,7 @@ class _GrowthHabitDetailPageState extends ConsumerState<GrowthHabitDetailPage> {
                 onChanged: (v) => ref
                     .read(growthControllerProvider.notifier)
                     .updateHabitOverride(habit.id, hidden: v),
-                title: const Text('Hide habit'),
+                title: Text(l10n.growthHabitSettingHideHabit),
               ),
               SwitchListTile(
                 contentPadding: EdgeInsets.zero,
@@ -207,7 +244,7 @@ class _GrowthHabitDetailPageState extends ConsumerState<GrowthHabitDetailPage> {
                 onChanged: (v) => ref
                     .read(growthControllerProvider.notifier)
                     .updateHabitOverride(habit.id, archived: v),
-                title: const Text('Archive habit'),
+                title: Text(l10n.growthHabitSettingArchiveHabit),
               ),
               SwitchListTile(
                 contentPadding: EdgeInsets.zero,
@@ -215,7 +252,7 @@ class _GrowthHabitDetailPageState extends ConsumerState<GrowthHabitDetailPage> {
                 onChanged: (v) => ref
                     .read(growthControllerProvider.notifier)
                     .updateHabitOverride(habit.id, reminderEnabled: v),
-                title: const Text('Reminder enabled (ready for scheduler wiring)'),
+                title: Text(l10n.growthHabitSettingReminderEnabled),
               ),
               if (habit.entrustable)
                 SwitchListTile(
@@ -224,7 +261,7 @@ class _GrowthHabitDetailPageState extends ConsumerState<GrowthHabitDetailPage> {
                   onChanged: (v) => ref
                       .read(growthControllerProvider.notifier)
                       .updateHabitOverride(habit.id, entrustToAllah: v),
-                  title: const Text('Entrust deeds to Allah (quiet tracking)'),
+                  title: Text(l10n.growthHabitSettingEntrustQuietTracking),
                 ),
               SwitchListTile(
                 contentPadding: EdgeInsets.zero,
@@ -232,7 +269,7 @@ class _GrowthHabitDetailPageState extends ConsumerState<GrowthHabitDetailPage> {
                 onChanged: (v) => ref
                     .read(growthControllerProvider.notifier)
                     .updateHabitOverride(habit.id, privateTracking: v),
-                title: const Text('Private tracking by default'),
+                title: Text(l10n.growthHabitSettingPrivateTracking),
               ),
             ],
           ),

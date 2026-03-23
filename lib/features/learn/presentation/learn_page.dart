@@ -214,7 +214,6 @@ class _LearnPageState extends ConsumerState<LearnPage> {
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
-                          const Icon(Icons.chevron_right_rounded, size: 16),
                         ],
                       ),
                     ),
@@ -331,7 +330,8 @@ class _LearnPageState extends ConsumerState<LearnPage> {
             hintText: l10n.learnDiscoverySearchLessonsHint,
             onChanged: (value) =>
                 ref.read(learnUnifiedSearchProvider.notifier).setQuery(value),
-            onClear: () => ref.read(learnUnifiedSearchProvider.notifier).clear(),
+            onClear: () =>
+                ref.read(learnUnifiedSearchProvider.notifier).clear(),
           ),
           Container(
             height: 1,
@@ -505,7 +505,6 @@ class _LearnPageState extends ConsumerState<LearnPage> {
                               ],
                             ),
                           ),
-                          const Icon(Icons.chevron_right_rounded),
                         ],
                       ),
                     ),

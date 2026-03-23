@@ -144,7 +144,7 @@ seededCharacterAdabAyahEnrichmentEntries = [
     linkStrength: QuranAyahLinkStrength.direct,
     title: 'Self-restraint protects the soul from unchecked desire',
     summary:
-        'These ayahs link fear of standing before Allah with restraining the soul from destructive impulses.',
+        'These ayahs link fear of standing before Allah with restraining the soul from unchecked desire.',
     body:
         'The passage teaches that self-restraint is an act of faith. A believer remembers accountability and learns to refuse every impulse that demands immediate satisfaction. Moral discipline grows when desire is governed instead of obeyed blindly.',
     tags: [QuranAyahEnrichmentTag.sabr, QuranAyahEnrichmentTag.guidance],

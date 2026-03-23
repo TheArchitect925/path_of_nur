@@ -6,8 +6,12 @@ String? mapAppDeepLink(Uri uri) {
 
   if (path.startsWith('/home')) return '/home';
   if (path.startsWith('/worship')) return '/worship';
-  if (path == '/prayer' || path.startsWith('/prayer/')) return '/worship';
-  if (path == '/dhikr' || path.startsWith('/dhikr/')) return '/worship';
+  if (path == '/prayer' || path.startsWith('/prayer/')) {
+    return '/worship/prayer';
+  }
+  if (path == '/dhikr' || path.startsWith('/dhikr/')) {
+    return '/worship/dhikr';
+  }
 
   if (host == 'growth' || path.startsWith('/growth')) {
     final growthPath = host == 'growth'
@@ -31,7 +35,7 @@ String? mapAppDeepLink(Uri uri) {
   if (path.startsWith('/learn')) return path;
   if (path.startsWith('/ocean')) return '/journey/ocean';
   if (path.startsWith('/garden')) return '/journey/garden';
-  if (path.startsWith('/tracking')) return '/journey/tracking';
+  if (path.startsWith('/tracking')) return '/journey/statistics';
 
   if (host == 'quran' && uri.path == '/read') {
     return '/quran/surah/1';

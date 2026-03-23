@@ -5,6 +5,7 @@ enum XpEventType {
   prayerOnTimeBonus,
   allFivePrayersBonus,
   congregationPrayerBonus,
+  masjidPrayerBonus,
   jumuahBonus,
   quranRead,
   learningCompleted,

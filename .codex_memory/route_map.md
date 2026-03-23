@@ -1,6 +1,6 @@
 # Route Map
 
-Last updated: 2026-03-21
+Last updated: 2026-03-22
 
 ## Canonical top-level tabs
 
@@ -69,6 +69,7 @@ Last updated: 2026-03-21
 - `/quran/surah/:surahNumber`
 - `/quran/bookmarks`
 - `/quran/notes`
+- `/quran/reflections`
 - `/quran/search`
 - `/quran/topics`
 - `/quran/topics/:topicId`
@@ -97,8 +98,28 @@ Last updated: 2026-03-21
 - `/learn/category/:categoryId`
 - `/learn/family`
 - `/learn/kids/games`
+- `/learn/kids/arabic`
+- `/learn/kids/arabic/progress`
+- `/learn/kids/arabic/practice`
+- `/learn/kids/arabic/words`
+- `/learn/kids/arabic/words/reading`
+- `/learn/kids/arabic/words/:wordId`
+- `/learn/kids/arabic/lesson/:letterId`
+- `/learn/kids/arabic/review`
+- `/learn/kids/arabic/rewards`
+- `/learn/kids/arabic/parent`
+- `/learn/kids/arabic/parent/settings`
+- `/learn/kids/arabic/coloring`
+- `/learn/kids/arabic/coloring/:pageId`
 - `/learn/kids/arabic-learning`
+- `/learn/kids/quran`
+- `/learn/kids/quran/surah/:surahNumber`
+- `/learn/kids/hadith`
+- `/learn/kids/hadith-stories`
+- `/learn/kids/hadith-stories/:storyId`
+- `/learn/kids/prophet-stories`
 - `/learn/kids/fun-learning`
+  - `/learn/kids/quran-insights`
   - `/learn/kids/stories`
   - `/learn/kids/stories/:storyId`
   - `/learn/kids/stories/:storyId/quiz`
@@ -118,12 +139,18 @@ Last updated: 2026-03-21
 ### Legacy or secondary learn hubs still wired
 
 - `/learn/legacy`
+- `/learn/notes`
+- `/learn/notes/browse`
+- `/journal`
+- `/journal/create`
+- `/journal/entry/:entryId`
+  - canonical personal writing routes; Learn Notes and Journal timeline should open specific journal items through `/journal/entry/:entryId`
 - `/learn/hub/quran`
-  - compatibility alias for Qur'an-owned `/quran`
+  - compatibility redirect for Qur'an-owned `/quran`
 - `/learn/hub/quran/learning`
-  - compatibility alias for `/quran/learning`
+  - compatibility redirect for `/quran/learning`
 - `/learn/hub/quranic-arabic`
-  - compatibility alias for `/quran/arabic`
+  - compatibility redirect for `/quran/arabic`
 - `/learn/hub/trivia`
 - `/learn/hub/trivia/paths`
 - `/learn/hub/trivia/paths/:pathId`
@@ -165,6 +192,7 @@ Last updated: 2026-03-21
   - `/learn/salah/surah/:surahId`
   - `/learn/salah/wudu`
   - `/learn/salah/wudu/trainer`
+  - `/learn/salah/wudu/quiz`
 - Qur'an-adjacent:
   - `/learn/quran/universe`
   - `/learn/quran/constellation`
@@ -253,7 +281,11 @@ Last updated: 2026-03-21
 - `/journey/progress`
 - `/journey/paths`
 - `/journey/habits`
+- `/journey/statistics`
+  - canonical Journey stats/tracking destination; prefer this over `/journey/tracking` and `/growth/*` in all visible discovery
+- `/journey/browse`
 - `/journey/tracking`
+  - compatibility alias redirect to `/journey/statistics`
 - `/journey/tracking/habits`
 - `/journey/tracking/habits/settings`
 - `/journey/tracking/habits/calendar`
@@ -292,6 +324,7 @@ Last updated: 2026-03-21
 - `/growth/journey`
 - `/growth/habits`
 - `/growth/habit/:habitId`
+  - compatibility alias redirect to `/journey/habit/:habitId`
 - `/journey/growth/today`
 - `/journey/growth/reflection`
 - `/journey/growth/journey`

@@ -31,7 +31,7 @@ seededWorshipRemembranceAyahEnrichmentEntries = [
     domain: QuranAyahEnrichmentDomain.worshipRemembrance,
     lessonType: QuranAyahEnrichmentLessonType.reminder,
     linkStrength: QuranAyahLinkStrength.direct,
-    title: 'Remember Allah and do not forget gratitude',
+    title: 'Remember Allah and respond with gratitude',
     summary:
         'The ayah joins remembrance and gratitude, teaching that a remembering heart is not heedless or ungrateful.',
     body:

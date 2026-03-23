@@ -5,21 +5,22 @@ import '../../../../l10n/app_localizations.dart';
 import '../../application/growth_models.dart';
 
 String growthCategoryLabel(GrowthHabitCategory category) {
+  final l10n = _growthL10n();
   switch (category) {
     case GrowthHabitCategory.dailyWorship:
-      return 'Daily Ibadah';
+      return l10n.growthCategoryDailyWorship;
     case GrowthHabitCategory.sunnahPractices:
-      return 'Sunnah Practices';
+      return l10n.growthCategorySunnahPractices;
     case GrowthHabitCategory.character:
-      return 'Character';
+      return l10n.growthCategoryCharacter;
     case GrowthHabitCategory.knowledge:
-      return 'Knowledge';
+      return l10n.growthCategoryKnowledge;
     case GrowthHabitCategory.charityService:
-      return 'Charity & Service';
+      return l10n.growthCategoryCharityService;
     case GrowthHabitCategory.healthDiscipline:
-      return 'Health & Discipline';
+      return l10n.growthCategoryHealthDiscipline;
     case GrowthHabitCategory.reflectionGratitude:
-      return 'Reflection & Gratitude';
+      return l10n.growthCategoryReflectionGratitude;
   }
 }
 
@@ -99,20 +100,23 @@ String growthStatusLabel(GrowthHabitStatus? status) {
 }
 
 String growthRecurrenceLabel(GrowthHabit habit) {
+  final l10n = _growthL10n();
   switch (habit.recurrenceType) {
     case GrowthHabitRecurrenceType.daily:
-      return 'Daily';
+      return l10n.growthRecurrenceDaily;
     case GrowthHabitRecurrenceType.weekdaysOnly:
-      return 'Weekdays';
+      return l10n.growthRecurrenceWeekdays;
     case GrowthHabitRecurrenceType.customWeekdays:
-      if (habit.weekdays.isEmpty) return 'Selected weekdays';
-      return 'Weekdays: ${habit.weekdays.map(_weekdayShort).join(', ')}';
+      if (habit.weekdays.isEmpty) return l10n.growthRecurrenceSelectedWeekdays;
+      return l10n.growthRecurrenceWeekdaysValue(
+        habit.weekdays.map(_weekdayShort).join(', '),
+      );
     case GrowthHabitRecurrenceType.weeklyTarget:
-      return '${habit.frequencyTarget} times/week';
+      return l10n.growthRecurrenceTimesPerWeek('${habit.frequencyTarget}');
     case GrowthHabitRecurrenceType.occasional:
-      return 'Occasional';
+      return l10n.growthRecurrenceOccasional;
     case GrowthHabitRecurrenceType.customFrequency:
-      return 'Every ${habit.customIntervalDays} day(s)';
+      return l10n.growthRecurrenceEveryDays('${habit.customIntervalDays}');
   }
 }
 
@@ -180,21 +184,22 @@ AppLocalizations _growthL10n() {
 }
 
 String _weekdayShort(int weekday) {
+  final l10n = _growthL10n();
   switch (weekday) {
     case DateTime.monday:
-      return 'Mon';
+      return l10n.growthWeekdayMon;
     case DateTime.tuesday:
-      return 'Tue';
+      return l10n.growthWeekdayTue;
     case DateTime.wednesday:
-      return 'Wed';
+      return l10n.growthWeekdayWed;
     case DateTime.thursday:
-      return 'Thu';
+      return l10n.growthWeekdayThu;
     case DateTime.friday:
-      return 'Fri';
+      return l10n.growthWeekdayFri;
     case DateTime.saturday:
-      return 'Sat';
+      return l10n.growthWeekdaySat;
     case DateTime.sunday:
-      return 'Sun';
+      return l10n.growthWeekdaySun;
     default:
       return '-';
   }

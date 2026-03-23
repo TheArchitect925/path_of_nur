@@ -16,6 +16,8 @@ enum JournalFilter {
 }
 
 class JournalEntry {
+  static const _unset = Object();
+
   const JournalEntry({
     required this.id,
     required this.title,
@@ -48,10 +50,10 @@ class JournalEntry {
     JournalEntryType? type,
     bool? favorite,
     List<String>? tags,
-    String? linkedTopic,
-    String? linkedQuranRef,
-    String? linkedHadithRef,
-    String? photoPath,
+    Object? linkedTopic = _unset,
+    Object? linkedQuranRef = _unset,
+    Object? linkedHadithRef = _unset,
+    Object? photoPath = _unset,
   }) {
     return JournalEntry(
       id: id,
@@ -61,26 +63,34 @@ class JournalEntry {
       createdAtIso: createdAtIso,
       favorite: favorite ?? this.favorite,
       tags: tags ?? this.tags,
-      linkedTopic: linkedTopic ?? this.linkedTopic,
-      linkedQuranRef: linkedQuranRef ?? this.linkedQuranRef,
-      linkedHadithRef: linkedHadithRef ?? this.linkedHadithRef,
-      photoPath: photoPath ?? this.photoPath,
+      linkedTopic: identical(linkedTopic, _unset)
+          ? this.linkedTopic
+          : linkedTopic as String?,
+      linkedQuranRef: identical(linkedQuranRef, _unset)
+          ? this.linkedQuranRef
+          : linkedQuranRef as String?,
+      linkedHadithRef: identical(linkedHadithRef, _unset)
+          ? this.linkedHadithRef
+          : linkedHadithRef as String?,
+      photoPath: identical(photoPath, _unset)
+          ? this.photoPath
+          : photoPath as String?,
     );
   }
 
   Map<String, dynamic> toJson() => {
-        'id': id,
-        'title': title,
-        'body': body,
-        'type': type.name,
-        'createdAtIso': createdAtIso,
-        'favorite': favorite,
-        'tags': tags,
-        'linkedTopic': linkedTopic,
-        'linkedQuranRef': linkedQuranRef,
-        'linkedHadithRef': linkedHadithRef,
-        'photoPath': photoPath,
-      };
+    'id': id,
+    'title': title,
+    'body': body,
+    'type': type.name,
+    'createdAtIso': createdAtIso,
+    'favorite': favorite,
+    'tags': tags,
+    'linkedTopic': linkedTopic,
+    'linkedQuranRef': linkedQuranRef,
+    'linkedHadithRef': linkedHadithRef,
+    'photoPath': photoPath,
+  };
 
   static JournalEntry? fromJson(dynamic raw) {
     if (raw is! Map) return null;
@@ -89,7 +99,10 @@ class JournalEntry {
     final body = raw['body']?.toString();
     final typeName = raw['type']?.toString();
     final createdAtIso = raw['createdAtIso']?.toString();
-    if (id == null || body == null || typeName == null || createdAtIso == null) {
+    if (id == null ||
+        body == null ||
+        typeName == null ||
+        createdAtIso == null) {
       return null;
     }
 
@@ -154,11 +167,11 @@ class JournalState {
   }
 
   Map<String, dynamic> toJson() => {
-        'entries': entries.map((e) => e.toJson()).toList(),
-        'selectedFilter': selectedFilter.name,
-        'searchQuery': searchQuery,
-        'searchHistory': searchHistory,
-      };
+    'entries': entries.map((e) => e.toJson()).toList(),
+    'selectedFilter': selectedFilter.name,
+    'searchQuery': searchQuery,
+    'searchHistory': searchHistory,
+  };
 
   static JournalState fromJson(Map<String, dynamic>? json) {
     if (json == null) {
@@ -210,7 +223,7 @@ class JournalState {
 
 class JournalNotifier extends StateNotifier<JournalState> {
   JournalNotifier(this._store, this._oceanDrops)
-      : super(JournalState.fromJson(_store.getJsonMap(_key)));
+    : super(JournalState.fromJson(_store.getJsonMap(_key)));
 
   static const _key = 'journal.entries';
   final LocalStore _store;
@@ -236,7 +249,10 @@ class JournalNotifier extends StateNotifier<JournalState> {
       type: type,
       createdAtIso: DateTime.now().toIso8601String(),
       favorite: false,
-      tags: tags.where((item) => item.trim().isNotEmpty).map((e) => e.trim()).toList(),
+      tags: tags
+          .where((item) => item.trim().isNotEmpty)
+          .map((e) => e.trim())
+          .toList(),
       linkedTopic: linkedTopic,
       linkedQuranRef: linkedQuranRef,
       linkedHadithRef: linkedHadithRef,
@@ -250,8 +266,7 @@ class JournalNotifier extends StateNotifier<JournalState> {
       final actionType = switch (type) {
         JournalEntryType.reflection ||
         JournalEntryType.gratitude ||
-        JournalEntryType.observation =>
-          oceanActionReflectionCompleted,
+        JournalEntryType.observation => oceanActionReflectionCompleted,
         _ => oceanActionJournalEntryCompleted,
       };
       _oceanDrops.awardDrop(
@@ -265,8 +280,64 @@ class JournalNotifier extends StateNotifier<JournalState> {
 
   void toggleFavorite(String entryId) {
     final next = state.entries
-        .map((item) => item.id == entryId ? item.copyWith(favorite: !item.favorite) : item)
+        .map(
+          (item) => item.id == entryId
+              ? item.copyWith(favorite: !item.favorite)
+              : item,
+        )
         .toList();
+    state = state.copyWith(entries: next);
+    _save();
+  }
+
+  void updateEntry({
+    required String entryId,
+    required String title,
+    required String body,
+    required JournalEntryType type,
+    String? linkedTopic,
+    String? linkedQuranRef,
+    String? linkedHadithRef,
+    String? photoPath,
+    List<String> tags = const [],
+  }) {
+    final cleanBody = body.trim();
+    if (cleanBody.isEmpty) return;
+
+    final normalizedLinkedTopic = linkedTopic?.trim();
+    final normalizedLinkedQuranRef = linkedQuranRef?.trim();
+    final normalizedLinkedHadithRef = linkedHadithRef?.trim();
+    final normalizedPhotoPath = photoPath?.trim();
+    final normalizedTags = tags
+        .map((item) => item.trim())
+        .where((item) => item.isNotEmpty)
+        .toList(growable: false);
+
+    final next = state.entries
+        .map((item) {
+          if (item.id != entryId) {
+            return item;
+          }
+          return item.copyWith(
+            title: title.trim(),
+            body: cleanBody,
+            type: type,
+            tags: normalizedTags,
+            linkedTopic: (normalizedLinkedTopic?.isEmpty ?? true)
+                ? null
+                : normalizedLinkedTopic,
+            linkedQuranRef: (normalizedLinkedQuranRef?.isEmpty ?? true)
+                ? null
+                : normalizedLinkedQuranRef,
+            linkedHadithRef: (normalizedLinkedHadithRef?.isEmpty ?? true)
+                ? null
+                : normalizedLinkedHadithRef,
+            photoPath: (normalizedPhotoPath?.isEmpty ?? true)
+                ? null
+                : normalizedPhotoPath,
+          );
+        })
+        .toList(growable: false);
     state = state.copyWith(entries: next);
     _save();
   }
@@ -300,7 +371,9 @@ class JournalNotifier extends StateNotifier<JournalState> {
     for (final entry in state.entries) {
       final date = DateTime.tryParse(entry.createdAtIso);
       if (date == null) continue;
-      if (date.month == now.month && date.day == now.day && date.year <= now.year - 1) {
+      if (date.month == now.month &&
+          date.day == now.day &&
+          date.year <= now.year - 1) {
         return entry;
       }
     }
@@ -312,8 +385,7 @@ class JournalNotifier extends StateNotifier<JournalState> {
   }
 }
 
-final journalProvider =
-    StateNotifierProvider<JournalNotifier, JournalState>(
+final journalProvider = StateNotifierProvider<JournalNotifier, JournalState>(
   (ref) => JournalNotifier(
     ref.watch(localStoreProvider),
     ref.read(oceanDropServiceProvider),
@@ -356,19 +428,22 @@ final journalFilteredEntriesProvider = Provider<List<JournalEntry>>((ref) {
     return haystack.contains(query);
   }
 
-  return state.entries.where((entry) => matchesFilter(entry) && matchesQuery(entry)).toList();
+  return state.entries
+      .where((entry) => matchesFilter(entry) && matchesQuery(entry))
+      .toList();
 });
 
-final journalTimelineGroupedProvider = Provider<Map<String, List<JournalEntry>>>((ref) {
-  final items = ref.watch(journalFilteredEntriesProvider);
-  final out = <String, List<JournalEntry>>{};
-  for (final entry in items) {
-    final date = DateTime.tryParse(entry.createdAtIso) ?? DateTime.now();
-    final key = '${date.year}-${date.month.toString().padLeft(2, '0')}';
-    out.putIfAbsent(key, () => []).add(entry);
-  }
-  return out;
-});
+final journalTimelineGroupedProvider =
+    Provider<Map<String, List<JournalEntry>>>((ref) {
+      final items = ref.watch(journalFilteredEntriesProvider);
+      final out = <String, List<JournalEntry>>{};
+      for (final entry in items) {
+        final date = DateTime.tryParse(entry.createdAtIso) ?? DateTime.now();
+        final key = '${date.year}-${date.month.toString().padLeft(2, '0')}';
+        out.putIfAbsent(key, () => []).add(entry);
+      }
+      return out;
+    });
 
 final journalMemoryPreviewProvider = Provider<JournalEntry?>((ref) {
   final entries = ref.watch(journalProvider).entries;
@@ -376,7 +451,9 @@ final journalMemoryPreviewProvider = Provider<JournalEntry?>((ref) {
   for (final entry in entries) {
     final date = DateTime.tryParse(entry.createdAtIso);
     if (date == null) continue;
-    if (date.month == now.month && date.day == now.day && date.year <= now.year - 1) {
+    if (date.month == now.month &&
+        date.day == now.day &&
+        date.year <= now.year - 1) {
       return entry;
     }
   }
@@ -386,9 +463,25 @@ final journalMemoryPreviewProvider = Provider<JournalEntry?>((ref) {
 final journalRecentMemoryListProvider = Provider<List<JournalEntry>>((ref) {
   final entries = ref.watch(journalProvider).entries;
   final now = DateTime.now();
-  return entries.where((entry) {
-    final date = DateTime.tryParse(entry.createdAtIso);
-    if (date == null) return false;
-    return date.month == now.month && date.year <= now.year - 1;
-  }).take(5).toList();
+  return entries
+      .where((entry) {
+        final date = DateTime.tryParse(entry.createdAtIso);
+        if (date == null) return false;
+        return date.month == now.month && date.year <= now.year - 1;
+      })
+      .take(5)
+      .toList();
+});
+
+final journalEntryByIdProvider = Provider.family<JournalEntry?, String>((
+  ref,
+  entryId,
+) {
+  final entries = ref.watch(journalProvider).entries;
+  for (final entry in entries) {
+    if (entry.id == entryId) {
+      return entry;
+    }
+  }
+  return null;
 });

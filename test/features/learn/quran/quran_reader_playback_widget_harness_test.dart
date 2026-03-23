@@ -1,0 +1,172 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:path_of_nur/features/learn/quran/application/quran_providers.dart';
+import 'package:path_of_nur/features/learn/quran/domain/quran_ayah.dart';
+import 'package:path_of_nur/features/learn/quran/presentation/quran_reader_page.dart';
+import 'package:path_of_nur/l10n/app_localizations.dart';
+import 'package:path_of_nur/shared/persistence/local_store.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+void main() {
+  Future<Widget> wrapHarness(Widget child) async {
+    SharedPreferences.setMockInitialValues(const <String, Object>{});
+    final prefs = await SharedPreferences.getInstance();
+    return ProviderScope(
+      overrides: [sharedPreferencesProvider.overrideWithValue(prefs)],
+      child: MaterialApp(
+        localizationsDelegates: const <LocalizationsDelegate<dynamic>>[
+          AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: AppLocalizations.supportedLocales,
+        home: Scaffold(body: child),
+      ),
+    );
+  }
+
+  TextStyle? firstHighlightedSpanStyle(InlineSpan span) {
+    if (span is TextSpan) {
+      final style = span.style;
+      if (style?.backgroundColor != null) {
+        return style;
+      }
+      for (final child in span.children ?? const <InlineSpan>[]) {
+        final match = firstHighlightedSpanStyle(child);
+        if (match != null) return match;
+      }
+    }
+    return null;
+  }
+
+  testWidgets('playback controls harness reflects pause and resume cycles', (
+    tester,
+  ) async {
+    var isPlaying = true;
+    var followModeEnabled = true;
+    var previousCount = 0;
+    var restartCount = 0;
+    var nextCount = 0;
+
+    await tester.pumpWidget(
+      await wrapHarness(
+        StatefulBuilder(
+          builder: (context, setState) {
+            return QuranReaderPlaybackControlsCard(
+              isPreparing: false,
+              hasPlayback: true,
+              isPlaying: isPlaying,
+              currentPosition: const Duration(seconds: 12),
+              totalDuration: const Duration(seconds: 90),
+              nowRecitingLabel: 'Recitation Al-Fatihah • Verse 1:2',
+              sliderMax: 90,
+              sliderValue: 12,
+              onClose: () {},
+              onBack15: () {},
+              onTogglePlayback: () => setState(() => isPlaying = !isPlaying),
+              onForward15: () {},
+              canGoPreviousAyah: true,
+              canRestartAyah: true,
+              canGoNextAyah: true,
+              followModeEnabled: followModeEnabled,
+              onPreviousAyah: () => previousCount += 1,
+              onRestartAyah: () => restartCount += 1,
+              onNextAyah: () => nextCount += 1,
+              onToggleFollowMode: () =>
+                  setState(() => followModeEnabled = !followModeEnabled),
+              onSeek: (_) {},
+            );
+          },
+        ),
+      ),
+    );
+
+    expect(find.byIcon(Icons.pause_circle_filled_rounded), findsOneWidget);
+    expect(find.textContaining('Recitation Al-Fatihah'), findsOneWidget);
+
+    await tester.tap(
+      find.byKey(const ValueKey('quran-reader-play-pause-button')),
+    );
+    await tester.pumpAndSettle();
+    expect(find.byIcon(Icons.play_circle_fill_rounded), findsOneWidget);
+
+    await tester.tap(
+      find.byKey(const ValueKey('quran-reader-play-pause-button')),
+    );
+    await tester.pumpAndSettle();
+    expect(find.byIcon(Icons.pause_circle_filled_rounded), findsOneWidget);
+
+    await tester.tap(find.byKey(const ValueKey('quran-reader-previous-ayah')));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const ValueKey('quran-reader-restart-ayah')));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const ValueKey('quran-reader-next-ayah')));
+    await tester.pumpAndSettle();
+    expect(previousCount, 1);
+    expect(restartCount, 1);
+    expect(nextCount, 1);
+
+    expect(find.text('Follow mode'), findsOneWidget);
+    await tester.tap(find.byKey(const ValueKey('quran-reader-follow-toggle')));
+    await tester.pumpAndSettle();
+    expect(find.byIcon(Icons.location_searching_rounded), findsOneWidget);
+  });
+
+  testWidgets('ayah card harness exposes active recitation highlight styling', (
+    tester,
+  ) async {
+    const ayah = QuranAyah(
+      surahNumber: 1,
+      ayahNumber: 2,
+      arabic: 'الْحَمْدُ لِلّٰهِ رَبِّ الْعَالَمِينَ',
+      transliteration: 'Alhamdu lillahi rabbil alamin',
+      translation: 'All praise is due to Allah, Lord of all worlds.',
+    );
+
+    await tester.pumpWidget(
+      await wrapHarness(
+        QuranAyahCard(
+          ayah: ayah,
+          isHighlighted: false,
+          isNowPlaying: true,
+          activeWordIndex: 1,
+          isBookmarked: false,
+          notesCount: 0,
+          onBookmark: () {},
+          onAddNote: () {},
+          showArabic: true,
+          showTranslation: true,
+          showTransliteration: true,
+          showWordByWord: false,
+          showActions: false,
+          hifzRevealMode: HifzRevealMode.full,
+          arabicFontSize: 24,
+          transliterationFontSize: 15,
+          translationFontSize: 14,
+          harakatColor: null,
+          contextualLinks: const [],
+          onTap: () {},
+          onPlayAyah: () {},
+          onPlayWord: (_) async {},
+          onMistakeCheckpoint: () {},
+        ),
+      ),
+    );
+
+    expect(find.byIcon(Icons.play_arrow_rounded), findsOneWidget);
+
+    final richTexts = tester.widgetList<RichText>(
+      find.descendant(
+        of: find.byType(QuranAyahCard),
+        matching: find.byType(RichText),
+      ),
+    );
+    final hasHighlightedSpan = richTexts.any(
+      (widget) => firstHighlightedSpanStyle(widget.text) != null,
+    );
+    expect(hasHighlightedSpan, isTrue);
+  });
+}

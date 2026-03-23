@@ -28,6 +28,38 @@ class PrayerLogDayEntry {
   final PrayerOfferPlace? place;
   final String? notes;
   final String? updatedAtIso;
+
+  PrayerLogDayEntry copyWith({
+    PrayerStatus? status,
+    String? completedAtIso,
+    String? postSalahAdhkarCompletedAtIso,
+    PrayerOfferTiming? timing,
+    PrayerOfferPlace? place,
+    String? notes,
+    String? updatedAtIso,
+    bool clearCompletedAtIso = false,
+    bool clearPostSalahAdhkarCompletedAtIso = false,
+    bool clearTiming = false,
+    bool clearPlace = false,
+    bool clearNotes = false,
+    bool clearUpdatedAtIso = false,
+  }) {
+    return PrayerLogDayEntry(
+      status: status ?? this.status,
+      completedAtIso: clearCompletedAtIso
+          ? null
+          : completedAtIso ?? this.completedAtIso,
+      postSalahAdhkarCompletedAtIso: clearPostSalahAdhkarCompletedAtIso
+          ? null
+          : postSalahAdhkarCompletedAtIso ?? this.postSalahAdhkarCompletedAtIso,
+      timing: clearTiming ? null : timing ?? this.timing,
+      place: clearPlace ? null : place ?? this.place,
+      notes: clearNotes ? null : notes ?? this.notes,
+      updatedAtIso: clearUpdatedAtIso
+          ? null
+          : updatedAtIso ?? this.updatedAtIso,
+    );
+  }
 }
 
 class PrayerLogRepository {
@@ -36,10 +68,10 @@ class PrayerLogRepository {
     required LocalStore legacyStore,
     required String scopeId,
     SyncMutationRecorder? syncRecorder,
-  })  : _database = database,
-        _legacyStore = legacyStore,
-        _scopeId = scopeId,
-        _syncRecorder = syncRecorder;
+  }) : _database = database,
+       _legacyStore = legacyStore,
+       _scopeId = scopeId,
+       _syncRecorder = syncRecorder;
 
   final AppDatabase _database;
   final LocalStore _legacyStore;
@@ -64,7 +96,10 @@ class PrayerLogRepository {
     _database.setMeta(_migrationKey, 'running');
     final snapshot = _legacyStore.dumpAll();
     final prayerKeys = snapshot.keys
-        .where((key) => key.startsWith('worship.prayer.') && key != 'worship.prayer.qada')
+        .where(
+          (key) =>
+              key.startsWith('worship.prayer.') && key != 'worship.prayer.qada',
+        )
         .toList(growable: false);
     for (final key in prayerKeys) {
       final dayKey = key.replaceFirst('worship.prayer.', '');
@@ -78,8 +113,8 @@ class PrayerLogRepository {
         final statusName = row is String
             ? row
             : row is Map
-                ? row['status']?.toString()
-                : null;
+            ? row['status']?.toString()
+            : null;
         PrayerStatus status = PrayerStatus.pending;
         for (final item in PrayerStatus.values) {
           if (item.name == statusName) {
@@ -151,10 +186,15 @@ class PrayerLogRepository {
     final output = <PrayerName, PrayerLogDayEntry>{};
     for (final row in rows) {
       final prayerName = row['prayer']?.toString();
-      final prayer = PrayerName.values.where((item) => item.name == prayerName).firstOrNull;
+      final prayer = PrayerName.values
+          .where((item) => item.name == prayerName)
+          .firstOrNull;
       if (prayer == null) continue;
       final statusName = row['status']?.toString();
-      final status = PrayerStatus.values.where((item) => item.name == statusName).firstOrNull ??
+      final status =
+          PrayerStatus.values
+              .where((item) => item.name == statusName)
+              .firstOrNull ??
           PrayerStatus.pending;
       final timingName = row['timing']?.toString();
       final placeName = row['place']?.toString();
@@ -177,20 +217,20 @@ class PrayerLogRepository {
   }
 
   void saveDailyRecords(String dayKey, List<DailyPrayerRecord> records) {
-    saveDayEntries(
-      dayKey,
-      <PrayerName, PrayerLogDayEntry>{
-        for (final record in records)
-          record.prayer: PrayerLogDayEntry(
-            status: record.status,
-            completedAtIso: record.completedAtIso,
-            postSalahAdhkarCompletedAtIso: record.postSalahAdhkarCompletedAtIso,
-          ),
-      },
-    );
+    saveDayEntries(dayKey, <PrayerName, PrayerLogDayEntry>{
+      for (final record in records)
+        record.prayer: PrayerLogDayEntry(
+          status: record.status,
+          completedAtIso: record.completedAtIso,
+          postSalahAdhkarCompletedAtIso: record.postSalahAdhkarCompletedAtIso,
+        ),
+    });
   }
 
-  void saveDayEntries(String dayKey, Map<PrayerName, PrayerLogDayEntry> entries) {
+  void saveDayEntries(
+    String dayKey,
+    Map<PrayerName, PrayerLogDayEntry> entries,
+  ) {
     ensureMigrated();
     final updatedAtIso = DateTime.now().toIso8601String();
     _writeDayEntries(dayKey, entries, updatedAtIso: updatedAtIso);
@@ -217,12 +257,13 @@ class PrayerLogRepository {
 
   void _writeDayEntries(
     String dayKey,
-    Map<PrayerName, PrayerLogDayEntry> entries,
-    {required String updatedAtIso}
-  ) {
+    Map<PrayerName, PrayerLogDayEntry> entries, {
+    required String updatedAtIso,
+  }) {
     _database.transaction<void>(() {
       for (final prayer in PrayerName.values) {
-        final entry = entries[prayer] ??
+        final entry =
+            entries[prayer] ??
             const PrayerLogDayEntry(status: PrayerStatus.pending);
         _database.execute(
           '''
@@ -235,7 +276,9 @@ class PrayerLogRepository {
             dayKey,
             prayer.name,
             entry.status.name,
-            entry.status == PrayerStatus.completed ? entry.completedAtIso : null,
+            entry.status == PrayerStatus.completed
+                ? entry.completedAtIso
+                : null,
             entry.status == PrayerStatus.completed
                 ? entry.postSalahAdhkarCompletedAtIso
                 : null,

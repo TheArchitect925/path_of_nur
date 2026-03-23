@@ -5,6 +5,7 @@ import '../../features/accounts_sync/presentation/accounts_profiles_sync_page.da
 import '../../features/learn/quran/presentation/names_of_allah_page.dart';
 import '../../features/learn/quran/presentation/quran_bookmarks_page.dart';
 import '../../features/learn/quran/presentation/quran_notes_page.dart';
+import '../../features/learn/quran/presentation/quran_reflections_page.dart';
 import '../../features/learn/quran/presentation/quran_reader_page.dart';
 import '../../features/learn/quran/presentation/quran_search_page.dart';
 import '../../features/learn/quran/presentation/quran_surah_insight_page.dart';
@@ -361,6 +362,17 @@ List<RouteBase> buildCoreSupportRoutes() {
     GoRoute(
       path: '/learn/quran/notes',
       redirect: (context, state) => _redirectWithQuery('/quran/notes', state),
+    ),
+    GoRoute(
+      path: '/quran/reflections',
+      name: 'quranReflections',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: QuranReflectionsPage()),
+    ),
+    GoRoute(
+      path: '/learn/quran/reflections',
+      redirect: (context, state) =>
+          _redirectWithQuery('/quran/reflections', state),
     ),
     GoRoute(
       path: '/quran/search',

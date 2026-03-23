@@ -111,3 +111,9 @@ Date: 2026-03-22
 
 33. Consider a very small recent-search or suggested-query layer only if real usage shows the empty state needs more guidance.
     - Why: the V1 search is intentionally calm and local-first, but repeated Qur'an study flows may benefit from one additional lightweight discovery aid later.
+
+34. Add focused widget tests for the new Qur'an personalization cards on `/quran`, `/quran/learning`, and `/quran/insights`.
+    - Why: the continue-learning and suggestion surfaces now depend on derived recent-reading plus path/domain state and should be protected against quiet regression.
+
+35. Consider tracking last-opened surah-insight pages only if real usage shows surah-level resume is a clear gap.
+    - Why: the current personalization layer stays intentionally lean and path/domain-focused, but surah-insight resume may become useful once the surah catalog grows.

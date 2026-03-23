@@ -13,6 +13,7 @@ class JourneyXpRuleConfig {
     this.prayerOnTimeBonus = 4,
     this.allFivePrayersBonus = 15,
     this.congregationPrayerBonus = 6,
+    this.masjidPrayerBonus = 4,
     this.jumuahBonus = 12,
     this.quranRead = 5,
     this.learningCompleted = 10,
@@ -28,6 +29,7 @@ class JourneyXpRuleConfig {
   final int prayerOnTimeBonus;
   final int allFivePrayersBonus;
   final int congregationPrayerBonus;
+  final int masjidPrayerBonus;
   final int jumuahBonus;
   final int quranRead;
   final int learningCompleted;
@@ -54,6 +56,7 @@ class JourneyXpService {
     bool onTime = false,
     bool allFiveCompleted = false,
     bool inCongregation = false,
+    bool inMasjid = false,
     bool isJumuah = false,
   }) {
     final entries = <XpLedgerEntry>[];
@@ -83,6 +86,16 @@ class JourneyXpService {
         _awardSingle(
           eventType: XpEventType.congregationPrayerBonus,
           xp: _config.congregationPrayerBonus,
+          context: context,
+          metadata: <String, Object?>{'prayerId': prayerId},
+        ),
+      );
+    }
+    if (inMasjid) {
+      entries.addAll(
+        _awardSingle(
+          eventType: XpEventType.masjidPrayerBonus,
+          xp: _config.masjidPrayerBonus,
           context: context,
           metadata: <String, Object?>{'prayerId': prayerId},
         ),

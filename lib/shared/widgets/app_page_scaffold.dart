@@ -77,7 +77,7 @@ class AppPageScaffold extends ConsumerWidget {
                             tooltip: MaterialLocalizations.of(
                               context,
                             ).backButtonTooltip,
-                            icon: const Icon(Icons.chevron_left),
+                            icon: const BackButtonIcon(),
                             color: foreground,
                           ),
                         if (canPop && headerIcon != null)

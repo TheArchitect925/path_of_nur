@@ -175,17 +175,19 @@ class LearningJourneyCard extends StatelessWidget {
     final effectiveProgress = progress?.clamp(0.0, 1.0);
     final leadingIcon = _journeyIcon(journey);
     final leadingColor = _journeyIconColor(journey);
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(18),
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: const Color(0xFFF7F1E8),
-          borderRadius: BorderRadius.circular(18),
-          border: Border.all(color: const Color(0xFFE0CEB4)),
-        ),
-        child: Row(
+    return Material(
+      type: MaterialType.transparency,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(18),
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: const Color(0xFFF7F1E8),
+            borderRadius: BorderRadius.circular(18),
+            border: Border.all(color: const Color(0xFFE0CEB4)),
+          ),
+          child: Row(
           children: [
             Container(
               width: 42,
@@ -276,6 +278,7 @@ class LearningJourneyCard extends StatelessWidget {
               ),
             ),
           ],
+          ),
         ),
       ),
     );

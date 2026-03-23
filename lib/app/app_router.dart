@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../core/diagnostics/app_telemetry.dart';
+import 'nav_tabs.dart';
 import '../features/accounts_sync/application/accounts_sync_controller.dart';
 import '../features/home/presentation/home_page.dart';
 import '../features/journey/presentation/journey_page.dart';
@@ -12,7 +13,6 @@ import '../features/learn/presentation/pages/quran_app_hub_page.dart';
 import '../features/onboarding/application/onboarding_state_provider.dart';
 import '../features/worship/presentation/worship_page.dart';
 import '../l10n/app_localizations.dart';
-import '../shared/theme/islamic_icons.dart';
 import '../shared/widgets/app_scaffold.dart';
 import 'routes/core_support_routes.dart';
 import 'routes/discovery_routes.dart';
@@ -21,40 +21,6 @@ import 'routes/learn_routes.dart';
 import 'routes/router_deep_links.dart';
 import 'routes/startup_routes.dart';
 import 'routes/worship_routes.dart';
-
-enum NavTab { worship, learn, home, journey, quran }
-
-extension NavTabExt on NavTab {
-  String get path {
-    switch (this) {
-      case NavTab.worship:
-        return '/worship';
-      case NavTab.learn:
-        return '/learn';
-      case NavTab.home:
-        return '/home';
-      case NavTab.journey:
-        return '/journey';
-      case NavTab.quran:
-        return '/quran';
-    }
-  }
-
-  IconData get icon {
-    switch (this) {
-      case NavTab.worship:
-        return IslamicIcons.prayer;
-      case NavTab.learn:
-        return Icons.school_rounded;
-      case NavTab.home:
-        return IslamicIcons.mosque;
-      case NavTab.journey:
-        return Icons.auto_graph_rounded;
-      case NavTab.quran:
-        return IslamicIcons.quran;
-    }
-  }
-}
 
 final appRouterProvider = Provider<GoRouter>((ref) {
   final onboardingCompleted = ref.watch(onboardingCompletedProvider);
@@ -207,13 +173,6 @@ Widget _buildTabPage(NavTab tab) {
       return const JourneyPage();
     case NavTab.quran:
       return const QuranAppHubPage();
-  }
-}
-
-void goToTab(BuildContext context, NavTab tab) {
-  final current = GoRouterState.of(context).uri.toString();
-  if (current != tab.path) {
-    context.go(tab.path);
   }
 }
 

@@ -56,26 +56,31 @@ class _PremiumCardState extends ConsumerState<PremiumCard> {
         scale: reduceMotion ? 1 : (_pressed ? 0.992 : 1),
         duration: Duration(milliseconds: reduceMotion ? 0 : 140),
         curve: Curves.easeOutCubic,
-        child: Container(
-          width: double.infinity,
-          padding: widget.padding,
-          decoration: surfaceStyle.decoration(radius: AppRadii.card),
-          child: Theme(
-            data: theme.copyWith(
-              textTheme: surfaceTextTheme,
-              iconTheme: theme.iconTheme.copyWith(color: contentColors.iconColor),
-              listTileTheme: theme.listTileTheme.copyWith(
-                iconColor: contentColors.iconColor,
-                textColor: contentColors.foreground,
+        child: Material(
+          type: MaterialType.transparency,
+          child: Container(
+            width: double.infinity,
+            padding: widget.padding,
+            decoration: surfaceStyle.decoration(radius: AppRadii.card),
+            child: Theme(
+              data: theme.copyWith(
+                textTheme: surfaceTextTheme,
+                iconTheme: theme.iconTheme.copyWith(
+                  color: contentColors.iconColor,
+                ),
+                listTileTheme: theme.listTileTheme.copyWith(
+                  iconColor: contentColors.iconColor,
+                  textColor: contentColors.foreground,
+                ),
               ),
-            ),
-            child: IconTheme.merge(
-              data: IconThemeData(color: contentColors.iconColor),
-              child: DefaultTextStyle.merge(
-                style:
-                    surfaceTextTheme.bodyMedium ??
-                    TextStyle(color: contentColors.subtleForeground),
-                child: widget.child,
+              child: IconTheme.merge(
+                data: IconThemeData(color: contentColors.iconColor),
+                child: DefaultTextStyle.merge(
+                  style:
+                      surfaceTextTheme.bodyMedium ??
+                      TextStyle(color: contentColors.subtleForeground),
+                  child: widget.child,
+                ),
               ),
             ),
           ),

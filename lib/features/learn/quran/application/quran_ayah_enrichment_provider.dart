@@ -104,9 +104,22 @@ final quranAyahEnrichmentEntriesProvider =
       entries.addAll(seededAkhirahAccountabilityAyahEnrichmentEntries);
       entries.addAll(seededProphetsLessonsAyahEnrichmentEntries);
 
-      final enrichedEntries = _attachCuratedRelatedAyahs(entries);
+      final enrichedEntries = _attachLocalizedContent(
+        _attachCuratedRelatedAyahs(entries),
+      );
       enrichedEntries.sort(_compareEnrichmentEntries);
       return enrichedEntries;
+    });
+
+final quranAyahEnrichmentEntriesForLanguageProvider =
+    Provider.family<List<QuranAyahEnrichmentEntry>, String>((
+      ref,
+      languageCode,
+    ) {
+      final entries = ref.watch(quranAyahEnrichmentEntriesProvider);
+      return entries
+          .map((entry) => entry.localizedCopy(languageCode))
+          .toList(growable: false);
     });
 
 final quranAyahEnrichmentForVerseProvider =
@@ -115,6 +128,23 @@ final quranAyahEnrichmentForVerseProvider =
       input,
     ) {
       final entries = ref.watch(quranAyahEnrichmentEntriesProvider);
+      return entries
+          .where((entry) => entry.containsVerse(input.$1, input.$2))
+          .where(
+            (entry) => entry.linkStrength != QuranAyahLinkStrength.contextual,
+          )
+          .toList(growable: false)
+        ..sort(_compareEnrichmentEntries);
+    });
+
+final quranAyahEnrichmentForVerseLocalizedProvider =
+    Provider.family<
+      List<QuranAyahEnrichmentEntry>,
+      (int surah, int ayah, String languageCode)
+    >((ref, input) {
+      final entries = ref.watch(
+        quranAyahEnrichmentEntriesForLanguageProvider(input.$3),
+      );
       return entries
           .where((entry) => entry.containsVerse(input.$1, input.$2))
           .where(
@@ -141,6 +171,26 @@ final quranAyahEnrichmentForRangeProvider =
         ..sort(_compareEnrichmentEntries);
     });
 
+final quranAyahEnrichmentForRangeLocalizedProvider =
+    Provider.family<List<QuranAyahEnrichmentEntry>, (QuranQuoteRef, String)>((
+      ref,
+      input,
+    ) {
+      final entries = ref.watch(
+        quranAyahEnrichmentEntriesForLanguageProvider(input.$2),
+      );
+      final range = input.$1;
+      final rangeEnd = range.ayahEnd ?? range.ayah;
+      return entries
+          .where((entry) {
+            if (entry.ref.surah != range.surah) return false;
+            final entryEnd = entry.ref.ayahEnd ?? entry.ref.ayah;
+            return entry.ref.ayah <= rangeEnd && entryEnd >= range.ayah;
+          })
+          .toList(growable: false)
+        ..sort(_compareEnrichmentEntries);
+    });
+
 final quranAyahDisplayItemsForVerseProvider =
     Provider.family<List<QuranAyahDisplayItem>, (int surah, int ayah)>((
       ref,
@@ -150,9 +200,31 @@ final quranAyahDisplayItemsForVerseProvider =
       return _buildDisplayItems(entries);
     });
 
+final quranAyahDisplayItemsForVerseLocalizedProvider =
+    Provider.family<
+      List<QuranAyahDisplayItem>,
+      (int surah, int ayah, String languageCode)
+    >((ref, input) {
+      final entries = ref.watch(
+        quranAyahEnrichmentForVerseLocalizedProvider(input),
+      );
+      return _buildDisplayItems(entries);
+    });
+
 final quranAyahDisplayItemsForRangeProvider =
     Provider.family<List<QuranAyahDisplayItem>, QuranQuoteRef>((ref, range) {
       final entries = ref.watch(quranAyahEnrichmentForRangeProvider(range));
+      return _buildDisplayItems(entries);
+    });
+
+final quranAyahDisplayItemsForRangeLocalizedProvider =
+    Provider.family<List<QuranAyahDisplayItem>, (QuranQuoteRef, String)>((
+      ref,
+      input,
+    ) {
+      final entries = ref.watch(
+        quranAyahEnrichmentForRangeLocalizedProvider(input),
+      );
       return _buildDisplayItems(entries);
     });
 
@@ -162,11 +234,36 @@ final quranAyahEnrichmentBrowseCategoriesProvider =
       return _buildBrowseCategories(entries);
     });
 
+final quranAyahEnrichmentBrowseCategoriesForLanguageProvider =
+    Provider.family<List<QuranAyahEnrichmentBrowseCategory>, String>((
+      ref,
+      languageCode,
+    ) {
+      final entries = ref.watch(
+        quranAyahEnrichmentEntriesForLanguageProvider(languageCode),
+      );
+      return _buildBrowseCategories(entries);
+    });
+
 final quranAyahEnrichmentBrowseCategoryProvider =
     Provider.family<QuranAyahEnrichmentBrowseCategory?, String>((ref, id) {
       final categories = ref.watch(quranAyahEnrichmentBrowseCategoriesProvider);
       for (final category in categories) {
         if (category.id == id) return category;
+      }
+      return null;
+    });
+
+final quranAyahEnrichmentBrowseCategoryForLanguageProvider =
+    Provider.family<QuranAyahEnrichmentBrowseCategory?, (String, String)>((
+      ref,
+      input,
+    ) {
+      final categories = ref.watch(
+        quranAyahEnrichmentBrowseCategoriesForLanguageProvider(input.$2),
+      );
+      for (final category in categories) {
+        if (category.id == input.$1) return category;
       }
       return null;
     });
@@ -582,10 +679,106 @@ List<QuranAyahEnrichmentEntry> _attachCuratedRelatedAyahs(
           cautionLevel: entry.cautionLevel,
           displayType: entry.displayType,
           displayPriority: entry.displayPriority,
+          localizedContent: entry.localizedContent,
         );
       })
       .toList(growable: false);
 }
+
+List<QuranAyahEnrichmentEntry> _attachLocalizedContent(
+  List<QuranAyahEnrichmentEntry> entries,
+) {
+  return entries
+      .map((entry) {
+        final localizedContent = _localizedContentByEntryId[entry.id];
+        if (localizedContent == null) return entry;
+        return QuranAyahEnrichmentEntry(
+          id: entry.id,
+          ref: entry.ref,
+          domain: entry.domain,
+          lessonType: entry.lessonType,
+          linkStrength: entry.linkStrength,
+          title: entry.title,
+          summary: entry.summary,
+          body: entry.body,
+          tags: entry.tags,
+          relatedRefs: entry.relatedRefs,
+          relatedAyahs: entry.relatedAyahs,
+          reflectionPrompts: entry.reflectionPrompts,
+          sourceRouteName: entry.sourceRouteName,
+          pathParameters: entry.pathParameters,
+          queryParameters: entry.queryParameters,
+          interpretationNote: entry.interpretationNote,
+          cautionNote: entry.cautionNote,
+          cautionLevel: entry.cautionLevel,
+          displayType: entry.displayType,
+          displayPriority: entry.displayPriority,
+          localizedContent: localizedContent,
+        );
+      })
+      .toList(growable: false);
+}
+
+const _localizedContentByEntryId = <String, QuranAyahLocalizedContent>{
+  'signs_sun_moon_10_5': QuranAyahLocalizedContent(
+    titlesByLanguageCode: {'ar': 'الشمس والقمر بحساب'},
+    summariesByLanguageCode: {
+      'ar':
+          'تذكّر هذه الآية أن الله جعل الشمس والقمر بعلم ونظام، ليكون ذلك من آيات قدرته وحكمته.',
+    },
+    bodiesByLanguageCode: {
+      'ar':
+          'ترتيب الشمس والقمر ليس أمرًا عشوائيًا، بل علامة تدعو القلب إلى التأمل في دقة خلق الله ورحمته بعباده.',
+    },
+    reflectionPromptsByLanguageCode: {
+      'ar': ['كيف يساعدك النظر إلى تعاقب الشمس والقمر على تذكّر عظمة الله؟'],
+    },
+  ),
+  'worship_salah_20_14': QuranAyahLocalizedContent(
+    titlesByLanguageCode: {'ar': 'أقم الصلاة لذكر الله'},
+    summariesByLanguageCode: {
+      'ar':
+          'تربط هذه الآية الصلاة بذكر الله، فتبيّن أن الصلاة حضورٌ للقلب قبل أن تكون حركاتٍ ظاهرة.',
+    },
+    bodiesByLanguageCode: {
+      'ar':
+          'حين يقيم المسلم الصلاة وهو يستحضر ذكر الله، تتحول الصلاة إلى صلةٍ حيّةٍ بالله وراحةٍ للقلب.',
+    },
+    reflectionPromptsByLanguageCode: {
+      'ar': ['كيف يمكن أن تجعل صلاتك اليوم أقرب إلى ذكر الله بخشوع؟'],
+    },
+  ),
+  'character_parents_17_23_24': QuranAyahLocalizedContent(
+    titlesByLanguageCode: {'ar': 'الإحسان إلى الوالدين بلطف ورحمة'},
+    summariesByLanguageCode: {
+      'ar':
+          'توجّه هذه الآية إلى برّ الوالدين بالكلام اللين والرحمة والدعاء، لا بمجرد الطاعة الظاهرة فقط.',
+    },
+    bodiesByLanguageCode: {
+      'ar':
+          'حسن الأدب مع الوالدين يظهر في نبرة الصوت، والكلمة الطيبة، والرحمة التي يتعامل بها الابن أو الابنة معهما.',
+    },
+    reflectionPromptsByLanguageCode: {
+      'ar': ['ما صورة اللطف أو الخدمة التي يمكنك أن تقدمها لوالديك اليوم؟'],
+    },
+  ),
+  'belief_tawhid_112_1_4': QuranAyahLocalizedContent(
+    titlesByLanguageCode: {'ar': 'الله واحد لا يشبه خلقه'},
+    summariesByLanguageCode: {
+      'ar':
+          'تلخّص هذه السورة توحيد الله وكماله، وتغرس في القلب أن العبادة لا تكون إلا له وحده.',
+    },
+    bodiesByLanguageCode: {
+      'ar':
+          'معرفة أن الله أحدٌ صمد، ليس كمثله شيء، تمنح القلب وضوحًا في الإيمان وتوجّه العبادة والرجاء إليه وحده.',
+    },
+    reflectionPromptsByLanguageCode: {
+      'ar': [
+        'كيف يزيدك هذا المعنى يقينًا بأن قلبك وعبادتك يجب أن يتوجها إلى الله وحده؟',
+      ],
+    },
+  ),
+};
 
 int _compareEnrichmentEntries(
   QuranAyahEnrichmentEntry a,

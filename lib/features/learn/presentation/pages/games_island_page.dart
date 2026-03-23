@@ -10,15 +10,35 @@ import '../../journey/application/family_learning_provider.dart';
 import '../../knowledge_games/daily/application/daily_knowledge_challenge_hub_provider.dart';
 import '../data/games_island_catalog.dart';
 import '../models/game_discovery_models.dart';
+import '../widgets/learn_discovery_search_field.dart';
 import '../widgets/learn_hub_page_scaffold.dart';
 
-class GamesIslandPage extends ConsumerWidget {
+class GamesIslandPage extends ConsumerStatefulWidget {
   const GamesIslandPage({super.key, this.initialSectionId});
 
   final String? initialSectionId;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<GamesIslandPage> createState() => _GamesIslandPageState();
+}
+
+class _GamesIslandPageState extends ConsumerState<GamesIslandPage> {
+  late final TextEditingController _searchController;
+
+  @override
+  void initState() {
+    super.initState();
+    _searchController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final visibilityPolicy = ref.watch(
       activeFamilyLearningContextProvider.select(
@@ -27,49 +47,71 @@ class GamesIslandPage extends ConsumerWidget {
     );
     final sections = GamesIslandCatalog.sections(l10n);
     GameDiscoverySection? selectedSection;
-    if (initialSectionId != null) {
+    if (widget.initialSectionId != null) {
       for (final section in sections) {
-        if (section.id == initialSectionId) {
+        if (section.id == widget.initialSectionId) {
           selectedSection = section;
           break;
         }
       }
     }
-    final visibleSections = selectedSection == null
-        ? sections
-        : [selectedSection];
+    final visibleSections = _visibleSections(
+      sections,
+      _searchController.text,
+      selectedSection,
+    );
+    final searchMatches = _searchMatches(sections, _searchController.text);
 
     return LearnHubPageScaffold(
       headerIcon: Icons.sports_esports_rounded,
-      title: l10n.learnGamesIslandTitle,
-      subtitle: l10n.learnGamesIslandSubtitle,
+      title: l10n.learnGamesHubTitleText,
+      subtitle: l10n.learnGamesHubSubtitleText,
       children: [
         if (visibilityPolicy.isChildProfile)
           const _KidsRedirectCard()
         else ...[
           const _DailyHeroCard(),
           const SizedBox(height: 18),
-          _SectionHeader(
-            title: l10n.learnGamesIslandSectionsTitle,
-            subtitle: l10n.learnGamesIslandSectionsSubtitle,
+          LearnDiscoverySearchField(
+            controller: _searchController,
+            hintText: l10n.learnGamesSearchHintText,
+            onChanged: (_) => setState(() {}),
+            onClear: () {
+              _searchController.clear();
+              setState(() {});
+            },
           ),
           const SizedBox(height: 10),
-          SectionHubActionGrid(
-            actions: [
-              for (final section in sections)
-                SectionHubAction(
-                  title: section.title,
-                  subtitle: section.subtitle,
-                  icon: section.icon,
-                  color: section.baseColor,
-                  accentColor: section.accentColor,
-                  onTap: () => context.pushNamed(
-                    'learnGamesSection',
-                    pathParameters: {'sectionId': section.id},
+          _BrowseAllCard(resultCount: searchMatches.length),
+          if (_searchController.text.trim().isNotEmpty) ...[
+            const SizedBox(height: 18),
+            _SectionHeader(
+              title: l10n.learnGamesSearchResultsTitleText,
+              subtitle: l10n.learnGamesSearchResultsCountText(
+                searchMatches.length,
+              ),
+            ),
+            const SizedBox(height: 10),
+            SectionHubActionGrid(
+              actions: [
+                for (final entry in searchMatches)
+                  SectionHubAction(
+                    title: entry.card.badgeLabel == null
+                        ? entry.card.title
+                        : '${entry.card.title} • ${entry.card.badgeLabel}',
+                    subtitle: '${entry.section.title} • ${entry.card.subtitle}',
+                    icon: entry.card.icon,
+                    color: entry.card.baseColor,
+                    accentColor: entry.card.accentColor,
+                    onTap: () => context.pushNamed(
+                      entry.card.routeTarget.routeName,
+                      pathParameters: entry.card.routeTarget.pathParameters,
+                      queryParameters: entry.card.routeTarget.queryParameters,
+                    ),
                   ),
-                ),
-            ],
-          ),
+              ],
+            ),
+          ],
           for (final section in visibleSections) ...[
             const SizedBox(height: 18),
             _SectionHeader(title: section.title, subtitle: section.subtitle),
@@ -114,6 +156,114 @@ class GamesIslandPage extends ConsumerWidget {
           ),
         ],
       ],
+    );
+  }
+
+  List<GameDiscoverySection> _visibleSections(
+    List<GameDiscoverySection> sections,
+    String query,
+    GameDiscoverySection? selectedSection,
+  ) {
+    final base = selectedSection == null ? sections : [selectedSection];
+    final normalized = query.trim().toLowerCase();
+    if (normalized.isEmpty) {
+      return base;
+    }
+    final filtered = <GameDiscoverySection>[];
+    for (final section in base) {
+      final cards = section.cards.where((card) {
+        final haystack = [
+          section.title,
+          section.subtitle,
+          card.title,
+          card.subtitle,
+          card.badgeLabel ?? '',
+          ...card.searchKeywords,
+        ].join(' ').toLowerCase();
+        return haystack.contains(normalized);
+      }).toList(growable: false);
+      if (cards.isEmpty) {
+        continue;
+      }
+      filtered.add(
+        GameDiscoverySection(
+          id: section.id,
+          title: section.title,
+          subtitle: section.subtitle,
+          icon: section.icon,
+          baseColor: section.baseColor,
+          accentColor: section.accentColor,
+          cards: cards,
+        ),
+      );
+    }
+    return filtered;
+  }
+
+  List<({GameDiscoverySection section, GameDiscoveryCard card})> _searchMatches(
+    List<GameDiscoverySection> sections,
+    String query,
+  ) {
+    final normalized = query.trim().toLowerCase();
+    if (normalized.isEmpty) {
+      return const [];
+    }
+    return [
+      for (final section in sections)
+        for (final card in section.cards)
+          if ([
+            section.title,
+            section.subtitle,
+            card.title,
+            card.subtitle,
+            card.badgeLabel ?? '',
+            ...card.searchKeywords,
+          ].join(' ').toLowerCase().contains(normalized))
+            (section: section, card: card),
+    ];
+  }
+}
+
+class _BrowseAllCard extends StatelessWidget {
+  const _BrowseAllCard({required this.resultCount});
+
+  final int resultCount;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return PremiumCard(
+      surfaceVariant: AppSurfaceVariant.panel,
+      child: Row(
+        children: [
+          const Icon(Icons.travel_explore_rounded),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  l10n.learnGamesBrowseAllTitleText,
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  resultCount > 0
+                      ? l10n.learnGamesSearchResultsCountText(resultCount)
+                      : l10n.learnGamesBrowseAllSubtitleText,
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(width: 12),
+          FilledButton.tonal(
+            onPressed: () => context.pushNamed('learnGamesBrowseAll'),
+            child: Text(l10n.learnGamesBrowseAllActionText),
+          ),
+        ],
+      ),
     );
   }
 }

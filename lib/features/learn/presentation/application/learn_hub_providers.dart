@@ -15,6 +15,8 @@ import '../../../../features/kids_dua_learning/application/kids_dua_my_day_servi
 import '../../../../features/kids_dua_learning/domain/kids_dua_models.dart';
 import '../../../../features/kids_dua_learning/presentation/kids_dua_localized_content.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../hadith/application/kids_hadith_provider.dart';
+import '../../hadith/domain/hadith_foundation_models.dart';
 import '../../journey/application/family_learning_provider.dart';
 import '../../dua/data/dua_seed_data.dart';
 import '../../shared/application/learn_system_engine_provider.dart';
@@ -22,6 +24,7 @@ import '../../shared/domain/learn_system_models.dart';
 import '../../trivia/data/trivia_knowledge_paths.dart';
 import '../../world/data/world_creation_data.dart';
 import '../../world/data/world_curriculum_data.dart';
+import '../kids_learning_localizations.dart';
 import '../data/learn_hub_taxonomy.dart';
 import '../models/learn_hub_models.dart';
 
@@ -83,6 +86,7 @@ final learnHubKnowledgeIndexProvider = Provider<List<LearnHubKnowledgeItem>>((
   final kidsDuaLessons = ref.watch(kidsDuaLessonsProvider);
   final kidsDuaStories = ref.watch(kidsDuaStoriesProvider);
   final kidsStories = ref.watch(kidsIslamicStoriesProvider);
+  final kidsHadithEntries = ref.watch(kidsHadithEntriesProvider);
   final seerahJourneys = ref.watch(kidsSeerahJourneysProvider);
   final visibilityPolicy = ref.watch(
     activeFamilyLearningContextProvider.select(
@@ -132,6 +136,7 @@ final learnHubKnowledgeIndexProvider = Provider<List<LearnHubKnowledgeItem>>((
     ..._kidsDuaCategoryEntries(l10n, kidsDuaCategories),
     ..._kidsArabicKnowledgeEntries(l10n),
     ..._kidsArabicHubEntries(l10n),
+    ..._kidsQuranHadithHubEntries(l10n, kidsHadithEntries),
     ..._kidsStoryHubEntries(l10n),
     ..._kidsStoryLibraryHubEntries(l10n),
     ..._kidsSeerahJourneyHubEntries(l10n),
@@ -259,12 +264,12 @@ List<LearnHubKnowledgeItem> _staticKnowledgeEntries(AppLocalizations l10n) {
   return [
     LearnHubKnowledgeItem(
       id: 'games_island:home',
-      title: l10n.learnGamesIslandTitle,
-      subtitle: l10n.learnHubCategoryQuizzesChallengesTitle,
-      summary: l10n.learnGamesIslandSubtitle,
+      title: l10n.learnGamesHubTitleText,
+      subtitle: l10n.learnHubCategoryQuizzesGamesTitleText,
+      summary: l10n.learnGamesHubSubtitleText,
       categoryId: LearnHubCategoryId.quizzesChallenges,
       subcategoryId: 'games-island',
-      subcategoryTitle: l10n.learnGamesIslandTitle,
+      subcategoryTitle: l10n.learnGamesHubTitleText,
       contentType: LearnHubContentType.tool,
       routeTarget: const LearnHubRouteTarget(routeName: 'learnGamesIsland'),
       searchKeywords: const [
@@ -298,7 +303,11 @@ List<LearnHubKnowledgeItem> _staticKnowledgeEntries(AppLocalizations l10n) {
       routeTarget: const LearnHubRouteTarget(
         routeName: 'learnKidsArabicLearning',
       ),
-      searchKeywords: const ['kids arabic learning', 'letters', 'arabic review'],
+      searchKeywords: const [
+        'kids arabic learning',
+        'letters',
+        'arabic review',
+      ],
     ),
     LearnHubKnowledgeItem(
       id: 'kids_fun_learning:hub',
@@ -346,7 +355,9 @@ List<LearnHubKnowledgeItem> _staticKnowledgeEntries(AppLocalizations l10n) {
       subcategoryId: 'quizzes',
       subcategoryTitle: l10n.learnCategoryQuizzesTitle,
       contentType: LearnHubContentType.challenge,
-      routeTarget: const LearnHubRouteTarget(routeName: 'learnDailyKnowledgeHub'),
+      routeTarget: const LearnHubRouteTarget(
+        routeName: 'learnDailyKnowledgeHub',
+      ),
       searchKeywords: const [
         'daily knowledge challenge',
         'daily games',
@@ -707,11 +718,11 @@ List<LearnHubKnowledgeItem> _kidsDuaCategoryEntries(
         return LearnHubKnowledgeItem(
           id: 'kids-dua-category:${category.id}',
           title: category.title,
-          subtitle: l10n.learnHubSubcategoryKidsLearningTitle,
+          subtitle: l10n.kidsDuaLandingTitle,
           summary: category.subtitle,
           categoryId: LearnHubCategoryId.kidsLearning,
-          subcategoryId: 'kids-fun-learning',
-          subcategoryTitle: l10n.learnHubSubcategoryKidsFunLearningTitle,
+          subcategoryId: 'kids-dua-learning',
+          subcategoryTitle: l10n.kidsDuaLandingTitle,
           contentType: LearnHubContentType.lesson,
           routeTarget: LearnHubRouteTarget(
             routeName: 'kidsDuaCategory',
@@ -790,16 +801,75 @@ List<LearnHubKnowledgeItem> _kidsArabicHubEntries(AppLocalizations l10n) {
   ];
 }
 
+List<LearnHubKnowledgeItem> _kidsQuranHadithHubEntries(
+  AppLocalizations l10n,
+  List<HadithEntry> kidsHadithEntries,
+) {
+  return [
+    LearnHubKnowledgeItem(
+      id: 'kids-quran:hub',
+      title: l10n.kidsQuranPageTitleText,
+      subtitle: l10n.learnHubSubcategoryKidsQuranTitleText,
+      summary: l10n.kidsQuranPageSubtitleText,
+      categoryId: LearnHubCategoryId.kidsLearning,
+      subcategoryId: 'kids-quran',
+      subcategoryTitle: l10n.learnHubSubcategoryKidsQuranTitleText,
+      contentType: LearnHubContentType.lesson,
+      routeTarget: const LearnHubRouteTarget(routeName: 'learnKidsQuran'),
+      searchKeywords: const [
+        'kids quran',
+        'quran for kids',
+        'surah list',
+        'ayah browsing',
+      ],
+    ),
+    LearnHubKnowledgeItem(
+      id: 'kids-hadith:hub',
+      title: l10n.kidsHadithPageTitleText,
+      subtitle: l10n.learnHubSubcategoryKidsHadithTitleText,
+      summary: l10n.kidsHadithPageSubtitleText,
+      categoryId: LearnHubCategoryId.kidsLearning,
+      subcategoryId: 'kids-hadith',
+      subcategoryTitle: l10n.learnHubSubcategoryKidsHadithTitleText,
+      contentType: LearnHubContentType.lesson,
+      routeTarget: const LearnHubRouteTarget(routeName: 'learnKidsHadith'),
+      searchKeywords: [
+        'kids hadith',
+        'hadith for kids',
+        for (final entry in kidsHadithEntries) entry.title,
+      ],
+    ),
+    LearnHubKnowledgeItem(
+      id: 'kids-hadith-stories:hub',
+      title: l10n.kidsHadithStoriesPageTitleText,
+      subtitle: l10n.learnHubSubcategoryKidsHadithStoriesTitleText,
+      summary: l10n.kidsHadithStoriesPageSubtitleText,
+      categoryId: LearnHubCategoryId.kidsLearning,
+      subcategoryId: 'kids-hadith-stories',
+      subcategoryTitle: l10n.learnHubSubcategoryKidsHadithStoriesTitleText,
+      contentType: LearnHubContentType.story,
+      routeTarget: const LearnHubRouteTarget(
+        routeName: 'learnKidsHadithStories',
+      ),
+      searchKeywords: const [
+        'hadith stories',
+        'kids hadith stories',
+        'stories from hadith',
+      ],
+    ),
+  ];
+}
+
 List<LearnHubKnowledgeItem> _kidsStoryHubEntries(AppLocalizations l10n) {
   return [
     LearnHubKnowledgeItem(
       id: 'kids-stories:hub',
       title: l10n.kidsDuaStoriesTitle,
-      subtitle: l10n.learnHubSubcategoryKidsFunLearningTitle,
+      subtitle: l10n.kidsDuaLandingTitle,
       summary: l10n.kidsDuaStoriesSubtitle,
       categoryId: LearnHubCategoryId.kidsLearning,
-      subcategoryId: 'kids-fun-learning',
-      subcategoryTitle: l10n.learnHubSubcategoryKidsFunLearningTitle,
+      subcategoryId: 'kids-dua-learning',
+      subcategoryTitle: l10n.kidsDuaLandingTitle,
       contentType: LearnHubContentType.story,
       routeTarget: const LearnHubRouteTarget(routeName: 'kidsDuaStories'),
       searchKeywords: const ['kids stories', 'dua stories', 'story time'],
@@ -807,11 +877,11 @@ List<LearnHubKnowledgeItem> _kidsStoryHubEntries(AppLocalizations l10n) {
     LearnHubKnowledgeItem(
       id: 'kids-stories:browse',
       title: l10n.kidsDuaStoriesBrowseAllTitle,
-      subtitle: l10n.learnHubSubcategoryKidsFunLearningTitle,
+      subtitle: l10n.kidsDuaLandingTitle,
       summary: l10n.kidsDuaStoriesBrowseTitle,
       categoryId: LearnHubCategoryId.kidsLearning,
-      subcategoryId: 'kids-fun-learning',
-      subcategoryTitle: l10n.learnHubSubcategoryKidsFunLearningTitle,
+      subcategoryId: 'kids-dua-learning',
+      subcategoryTitle: l10n.kidsDuaLandingTitle,
       contentType: LearnHubContentType.story,
       routeTarget: const LearnHubRouteTarget(routeName: 'kidsDuaStoriesBrowse'),
       searchKeywords: const [
@@ -823,18 +893,16 @@ List<LearnHubKnowledgeItem> _kidsStoryHubEntries(AppLocalizations l10n) {
   ];
 }
 
-List<LearnHubKnowledgeItem> _kidsBedtimeStoryHubEntries(
-  AppLocalizations l10n,
-) {
+List<LearnHubKnowledgeItem> _kidsBedtimeStoryHubEntries(AppLocalizations l10n) {
   return [
     LearnHubKnowledgeItem(
       id: 'kids-bedtime-stories:hub',
       title: l10n.bedtimeStoriesTitle,
-      subtitle: l10n.learnHubSubcategoryKidsFunLearningTitle,
+      subtitle: l10n.kidsStoryCollectionProphets,
       summary: l10n.bedtimeStoriesSubtitle,
       categoryId: LearnHubCategoryId.kidsLearning,
-      subcategoryId: 'kids-fun-learning',
-      subcategoryTitle: l10n.learnHubSubcategoryKidsFunLearningTitle,
+      subcategoryId: 'kids-prophet-stories',
+      subcategoryTitle: l10n.kidsStoryCollectionProphets,
       contentType: LearnHubContentType.story,
       routeTarget: const LearnHubRouteTarget(routeName: 'kidsBedtimeStories'),
       searchKeywords: const [
@@ -847,18 +915,16 @@ List<LearnHubKnowledgeItem> _kidsBedtimeStoryHubEntries(
   ];
 }
 
-List<LearnHubKnowledgeItem> _kidsStoryLibraryHubEntries(
-  AppLocalizations l10n,
-) {
+List<LearnHubKnowledgeItem> _kidsStoryLibraryHubEntries(AppLocalizations l10n) {
   return [
     LearnHubKnowledgeItem(
       id: 'kids-stories:hub',
       title: l10n.kidsStoryLibraryTitle,
-      subtitle: l10n.learnHubSubcategoryKidsFunLearningTitle,
+      subtitle: l10n.learnHubSubcategoryKidsStoriesTitle,
       summary: l10n.kidsStoryLibrarySubtitle,
       categoryId: LearnHubCategoryId.kidsLearning,
-      subcategoryId: 'kids-fun-learning',
-      subcategoryTitle: l10n.learnHubSubcategoryKidsFunLearningTitle,
+      subcategoryId: 'kids-stories',
+      subcategoryTitle: l10n.learnHubSubcategoryKidsStoriesTitle,
       contentType: LearnHubContentType.story,
       routeTarget: const LearnHubRouteTarget(routeName: 'kidsStoryLibrary'),
       searchKeywords: const [
@@ -879,11 +945,11 @@ List<LearnHubKnowledgeItem> _kidsSeerahJourneyHubEntries(
     LearnHubKnowledgeItem(
       id: 'kids-seerah:hub',
       title: l10n.kidsSeerahJourneysTitle,
-      subtitle: l10n.learnHubSubcategoryKidsFunLearningTitle,
+      subtitle: l10n.kidsSeerahJourneysTitle,
       summary: l10n.kidsSeerahJourneysSubtitle,
       categoryId: LearnHubCategoryId.kidsLearning,
-      subcategoryId: 'kids-fun-learning',
-      subcategoryTitle: l10n.learnHubSubcategoryKidsFunLearningTitle,
+      subcategoryId: 'kids-seerah-journeys',
+      subcategoryTitle: l10n.kidsSeerahJourneysTitle,
       contentType: LearnHubContentType.journey,
       routeTarget: const LearnHubRouteTarget(routeName: 'kidsSeerahJourneys'),
       searchKeywords: const [
@@ -936,31 +1002,51 @@ List<LearnHubKnowledgeItem> _kidsBedtimeStoriesKnowledgeEntries(
   List<BedtimeStorySeed> stories,
 ) {
   return stories
-      .map((story) => LearnHubKnowledgeItem(
-            id: 'kids-story-library:${story.id}',
-            title: story.title,
-            subtitle: story.summary.isNotEmpty ? story.summary : story.lesson,
-            summary: story.lesson,
-            categoryId: LearnHubCategoryId.kidsLearning,
-            subcategoryId: 'kids-fun-learning',
-            subcategoryTitle: l10n.learnHubSubcategoryKidsFunLearningTitle,
-            contentType: LearnHubContentType.story,
-            routeTarget: LearnHubRouteTarget(
-              routeName: 'kidsStoryDetail',
-              pathParameters: {'storyId': story.id},
-            ),
-            searchKeywords: [
-              story.prophetId,
-              story.effectiveStoryFamilyId,
-              story.shortTitle,
-              story.quranReference ?? '',
-              story.hadithReference ?? '',
-              story.collectionType.name,
-              story.storyType.name,
-              ...story.tags,
-              ...story.themes.map((theme) => theme.name),
-            ],
-          ))
+      .map((story) {
+        final subcategoryId = switch (story.sourceCategory) {
+          KidsIslamicStorySourceCategory.hadith => 'kids-hadith-stories',
+          _
+              when story.collectionType ==
+                  KidsIslamicStoryCollectionType.prophets =>
+            'kids-prophet-stories',
+          _ => 'kids-stories',
+        };
+        final subcategoryTitle = switch (subcategoryId) {
+          'kids-hadith-stories' =>
+            l10n.learnHubSubcategoryKidsHadithStoriesTitleText,
+          'kids-prophet-stories' => l10n.kidsStoryCollectionProphets,
+          _ => l10n.learnHubSubcategoryKidsStoriesTitle,
+        };
+        final routeName =
+            story.sourceCategory == KidsIslamicStorySourceCategory.hadith
+            ? 'learnKidsHadithStoriesDetail'
+            : 'kidsStoryDetail';
+        return LearnHubKnowledgeItem(
+          id: 'kids-story-library:${story.id}',
+          title: story.title,
+          subtitle: story.summary.isNotEmpty ? story.summary : story.lesson,
+          summary: story.lesson,
+          categoryId: LearnHubCategoryId.kidsLearning,
+          subcategoryId: subcategoryId,
+          subcategoryTitle: subcategoryTitle,
+          contentType: LearnHubContentType.story,
+          routeTarget: LearnHubRouteTarget(
+            routeName: routeName,
+            pathParameters: {'storyId': story.id},
+          ),
+          searchKeywords: [
+            story.prophetId,
+            story.effectiveStoryFamilyId,
+            story.shortTitle,
+            story.quranReference ?? '',
+            story.hadithReference ?? '',
+            story.collectionType.name,
+            story.storyType.name,
+            ...story.tags,
+            ...story.themes.map((theme) => theme.name),
+          ],
+        );
+      })
       .toList(growable: false);
 }
 
@@ -984,11 +1070,7 @@ List<LearnHubKnowledgeItem> _kidsSeerahJourneyKnowledgeEntries(
             routeName: 'kidsSeerahJourney',
             pathParameters: {'journeyId': journey.journeyId},
           ),
-          searchKeywords: [
-            journey.title,
-            journey.description,
-            ...journey.tags,
-          ],
+          searchKeywords: [journey.title, journey.description, ...journey.tags],
         ),
       )
       .toList(growable: false);

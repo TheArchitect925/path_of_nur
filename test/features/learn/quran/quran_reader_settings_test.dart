@@ -41,6 +41,26 @@ void main() {
       expect(notifier.state.showWordByWord, isTrue);
     });
 
+    test('defaults follow mode to enabled', () async {
+      SharedPreferences.setMockInitialValues(const {});
+      final prefs = await SharedPreferences.getInstance();
+      final store = LocalStore(prefs);
+      final notifier = QuranReaderSettingsNotifier(store);
+
+      expect(notifier.state.followPlayback, isTrue);
+    });
+
+    test('respects previously saved follow mode preference', () async {
+      SharedPreferences.setMockInitialValues(const {
+        'learn.quran.followPlayback': false,
+      });
+      final prefs = await SharedPreferences.getInstance();
+      final store = LocalStore(prefs);
+      final notifier = QuranReaderSettingsNotifier(store);
+
+      expect(notifier.state.followPlayback, isFalse);
+    });
+
     test('defaults Learn More to enabled', () async {
       SharedPreferences.setMockInitialValues(const {});
       final prefs = await SharedPreferences.getInstance();

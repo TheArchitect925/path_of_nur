@@ -32,6 +32,7 @@ class GameDiscoveryCard {
     required this.accentColor,
     required this.routeTarget,
     this.badgeLabel,
+    this.searchKeywords = const <String>[],
   });
 
   final String id;
@@ -42,4 +43,5 @@ class GameDiscoveryCard {
   final Color accentColor;
   final LearnHubRouteTarget routeTarget;
   final String? badgeLabel;
+  final List<String> searchKeywords;
 }

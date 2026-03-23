@@ -13,7 +13,8 @@ class JournalTimelinePage extends ConsumerStatefulWidget {
   const JournalTimelinePage({super.key});
 
   @override
-  ConsumerState<JournalTimelinePage> createState() => _JournalTimelinePageState();
+  ConsumerState<JournalTimelinePage> createState() =>
+      _JournalTimelinePageState();
 }
 
 class _JournalTimelinePageState extends ConsumerState<JournalTimelinePage> {
@@ -46,12 +47,24 @@ class _JournalTimelinePageState extends ConsumerState<JournalTimelinePage> {
       ),
       children: [
         PremiumCard(
-          child: Row(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Expanded(child: Text(l10n.journalTimelineIntro)),
-              FilledButton.tonal(
-                onPressed: () => context.pushNamed('journalCreate'),
-                child: Text(l10n.journalCreateAction),
+              Text(l10n.journalTimelineIntro),
+              const SizedBox(height: 10),
+              Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: [
+                  TextButton(
+                    onPressed: () => context.pushNamed('quranReflections'),
+                    child: Text(l10n.quranReflectionsTitle),
+                  ),
+                  FilledButton.tonal(
+                    onPressed: () => context.pushNamed('journalCreate'),
+                    child: Text(l10n.journalCreateAction),
+                  ),
+                ],
               ),
             ],
           ),
@@ -127,7 +140,26 @@ class _JournalTimelinePageState extends ConsumerState<JournalTimelinePage> {
           ),
         if (memory != null) const SizedBox(height: 12),
         if (grouped.isEmpty)
-          PremiumCard(child: Text(l10n.journalEmptyState))
+          PremiumCard(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  l10n.journalEmptyStateTitle,
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+                ),
+                const SizedBox(height: 6),
+                Text(l10n.journalEmptyStateSubtitle),
+                const SizedBox(height: 10),
+                FilledButton.tonal(
+                  onPressed: () => context.pushNamed('journalCreate'),
+                  child: Text(l10n.journalCreateAction),
+                ),
+              ],
+            ),
+          )
         else
           ...grouped.entries.map(
             (group) => Padding(
@@ -146,7 +178,10 @@ class _JournalTimelinePageState extends ConsumerState<JournalTimelinePage> {
                         padding: const EdgeInsets.only(bottom: 8),
                         child: InkWell(
                           borderRadius: BorderRadius.circular(10),
-                          onTap: () {},
+                          onTap: () => context.pushNamed(
+                            'journalEntryDetail',
+                            pathParameters: {'entryId': entry.id},
+                          ),
                           child: Padding(
                             padding: const EdgeInsets.symmetric(vertical: 4),
                             child: Row(
@@ -154,7 +189,8 @@ class _JournalTimelinePageState extends ConsumerState<JournalTimelinePage> {
                               children: [
                                 Expanded(
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         entry.title.isEmpty
@@ -175,20 +211,25 @@ class _JournalTimelinePageState extends ConsumerState<JournalTimelinePage> {
                                         spacing: 6,
                                         runSpacing: 6,
                                         children: [
-                                          _tinyChip(_typeLabel(l10n, entry.type)),
+                                          _tinyChip(
+                                            _typeLabel(l10n, entry.type),
+                                          ),
                                           if (entry.linkedTopic != null &&
                                               entry.linkedTopic!.isNotEmpty)
                                             _tinyChip(entry.linkedTopic!),
                                           if (entry.photoPath != null &&
                                               entry.photoPath!.isNotEmpty)
-                                            _tinyChip(l10n.journalPhotoAttached),
+                                            _tinyChip(
+                                              l10n.journalPhotoAttached,
+                                            ),
                                         ],
                                       ),
                                     ],
                                   ),
                                 ),
                                 IconButton(
-                                  onPressed: () => notifier.toggleFavorite(entry.id),
+                                  onPressed: () =>
+                                      notifier.toggleFavorite(entry.id),
                                   icon: Icon(
                                     entry.favorite
                                         ? Icons.favorite
