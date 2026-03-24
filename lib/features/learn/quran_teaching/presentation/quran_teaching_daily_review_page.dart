@@ -5,6 +5,7 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
+import '../application/quran_teaching_audio_playback_service.dart';
 import '../application/quran_teaching_controller.dart';
 import '../application/quran_teaching_smart_review_controller.dart';
 import '../domain/quran_teaching_models.dart';
@@ -231,11 +232,17 @@ class _QuranTeachingDailyReviewPageState
     return null;
   }
 
-  void _playAudio(QuranAudioCue audio) {
+  Future<void> _playAudio(QuranAudioCue audio) async {
     final l10n = AppLocalizations.of(context);
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(SnackBar(content: Text(l10n.batch9AudioReady(audio.label))));
+    final played = await ref
+        .read(quranTeachingAudioPlaybackServiceProvider)
+        .playCue(audio);
+    if (!mounted || played) {
+      return;
+    }
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(l10n.batch9AudioNotAddedYet(audio.label))),
+    );
   }
 
   void _submitSelfCheck(QuranTeachingReviewRecord record, bool correct) {

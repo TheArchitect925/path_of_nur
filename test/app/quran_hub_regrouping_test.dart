@@ -4,9 +4,16 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:path_of_nur/app/app_router.dart';
 import 'package:path_of_nur/features/learn/presentation/pages/quran_app_hub_page.dart';
 import 'package:path_of_nur/features/learn/presentation/pages/learn_quran_hub_page.dart';
+import 'package:path_of_nur/features/learn/quran/presentation/quran_knowledge_search_page.dart';
+import 'package:path_of_nur/features/learn/quran/presentation/quran_learning_paths_page.dart';
+import 'package:path_of_nur/features/learn/quran/presentation/quran_memorization_review_page.dart';
 import 'package:path_of_nur/features/learn/quran/presentation/quran_search_page.dart';
 import 'package:path_of_nur/features/learn/quran/presentation/quran_surah_explorer_page.dart';
+import 'package:path_of_nur/features/learn/quran/presentation/quran_surah_insight_page.dart';
+import 'package:path_of_nur/features/learn/quran/presentation/quran_topic_explorer_page.dart';
 import 'package:path_of_nur/features/learn/quran/presentation/quran_reader_page.dart';
+import 'package:path_of_nur/features/learn/quran/presentation/quran_word_review_page.dart';
+import 'package:path_of_nur/features/learn/quran/presentation/quran_words_page.dart';
 import 'package:path_of_nur/features/learn/quran/presentation/widgets/quran_learning_personalization_section.dart';
 import 'package:path_of_nur/l10n/app_localizations.dart';
 import 'package:path_of_nur/shared/application/daily_clock_provider.dart';
@@ -84,16 +91,21 @@ void main() {
     expect(find.textContaining('Continue Learning'), findsNothing);
     expect(find.textContaining('Journey of the Qur'), findsNothing);
     expect(find.textContaining('Understanding Surah'), findsNothing);
-    expect(find.textContaining('Qur’an Learning'), findsNothing);
     expect(find.textContaining('Short Surahs'), findsNothing);
-    expect(find.textContaining('Study'), findsNothing);
     expect(find.textContaining('Memorize'), findsNothing);
 
     for (final label in <String>[
-      l10n.quranHubReadQuranSectionTitle,
-      l10n.quranHubContinueSectionTitle,
-      l10n.quranHubDailyLightTitle,
+      l10n.quranHubRecommendationsTitle,
+      l10n.quranHubStudyToolsTitle,
+      l10n.quranHubWordToolsTitle,
+      l10n.quranKnowledgeSearchTitle,
+      l10n.quranSurahInsightsBrowseTitle,
+      l10n.quranLearningPathsTitle,
+      l10n.quranTopicsTitle,
+      l10n.quranTopWordsTitle,
+      l10n.quranWordReviewTitle,
       l10n.quranNotesTitle,
+      l10n.quranHubMemorizeTitle,
       l10n.learnCategoryQuranLearningTitle,
     ]) {
       await scrollToLabel(tester, pageFinder, label);
@@ -154,11 +166,38 @@ void main() {
     expect(find.text(l10n.learnQuranHubTabMemorize), findsWidgets);
   });
 
-  testWidgets('quran home routes quran learning through the canonical quran owner', (
+  testWidgets(
+    'quran home routes quran learning through the canonical quran owner',
+    (tester) async {
+      final container = await makeContainer();
+      final router = container.read(appRouterProvider);
+
+      await tester.pumpWidget(buildRouterTestApp(container));
+      await pumpRouteFrames(tester);
+
+      router.go('/quran');
+      await pumpRouteFrames(tester);
+      expect(find.byType(QuranAppHubPage), findsOneWidget);
+
+      await scrollToLabel(
+        tester,
+        find.byType(QuranAppHubPage),
+        'Qur’an Learning',
+      );
+      await tester.tap(find.textContaining('Qur’an Learning').last);
+      await pumpRouteFrames(tester);
+
+      expect(find.byType(LearnQuranHubPage), findsOneWidget);
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets('quran home surfaces deeper study tools with working routes', (
     tester,
   ) async {
     final container = await makeContainer();
     final router = container.read(appRouterProvider);
+    final l10n = await AppLocalizations.delegate.load(const Locale('en'));
 
     await tester.pumpWidget(buildRouterTestApp(container));
     await pumpRouteFrames(tester);
@@ -167,11 +206,66 @@ void main() {
     await pumpRouteFrames(tester);
     expect(find.byType(QuranAppHubPage), findsOneWidget);
 
-    await scrollToLabel(tester, find.byType(QuranAppHubPage), 'Qur’an Learning');
-    await tester.tap(find.textContaining('Qur’an Learning').last);
-    await pumpRouteFrames(tester);
+    await tapHubActionLabel(
+      tester,
+      find.byType(QuranAppHubPage),
+      l10n.quranKnowledgeSearchTitle,
+    );
+    expect(find.byType(QuranKnowledgeSearchPage), findsOneWidget);
 
-    expect(find.byType(LearnQuranHubPage), findsOneWidget);
+    router.go('/quran');
+    await pumpRouteFrames(tester);
+    await tapHubActionLabel(
+      tester,
+      find.byType(QuranAppHubPage),
+      l10n.quranHubMemorizeTitle,
+    );
+    expect(find.byType(QuranMemorizationReviewPage), findsOneWidget);
+
+    router.go('/quran');
+    await pumpRouteFrames(tester);
+    await tapHubActionLabel(
+      tester,
+      find.byType(QuranAppHubPage),
+      l10n.quranSurahInsightsBrowseTitle,
+    );
+    expect(find.byType(QuranSurahInsightsBrowsePage), findsOneWidget);
+
+    router.go('/quran');
+    await pumpRouteFrames(tester);
+    await tapHubActionLabel(
+      tester,
+      find.byType(QuranAppHubPage),
+      l10n.quranLearningPathsTitle,
+    );
+    expect(find.byType(QuranLearningPathsPage), findsOneWidget);
+
+    router.go('/quran');
+    await pumpRouteFrames(tester);
+    await tapHubActionLabel(
+      tester,
+      find.byType(QuranAppHubPage),
+      l10n.quranTopicsTitle,
+    );
+    expect(find.byType(QuranTopicExplorerPage), findsOneWidget);
+
+    router.go('/quran');
+    await pumpRouteFrames(tester);
+    await tapHubActionLabel(
+      tester,
+      find.byType(QuranAppHubPage),
+      l10n.quranTopWordsTitle,
+    );
+    expect(find.byType(QuranWordsPage), findsOneWidget);
+
+    router.go('/quran');
+    await pumpRouteFrames(tester);
+    await tapHubActionLabel(
+      tester,
+      find.byType(QuranAppHubPage),
+      l10n.quranWordReviewTitle,
+    );
+    expect(find.byType(QuranWordReviewPage), findsOneWidget);
     expect(tester.takeException(), isNull);
   });
 }

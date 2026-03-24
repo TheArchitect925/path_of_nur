@@ -1,7 +1,5 @@
-import 'dart:convert';
-
-import 'package:flutter/services.dart';
-
+import '../../../arabic/application/arabic_learning_asset_bundle.dart';
+import '../../../arabic/data/arabic_audio_manifest.dart';
 import '../data/quran_teacher_audio_manifest.dart';
 import '../data/quran_teacher_listen_only_manifest.dart';
 import '../data/quran_teacher_visual_manifest.dart';
@@ -16,19 +14,20 @@ class QuranTeachingAssetResolver {
   }
 
   static Future<Set<String>> _loadAssetKeys() async {
-    final raw = await rootBundle.loadString('AssetManifest.json');
-    final decoded = json.decode(raw);
-    if (decoded is! Map<String, dynamic>) return <String>{};
-    return decoded.keys.toSet();
+    return ArabicLearningAssetManifest.assetKeys();
   }
 
   static Future<String?> resolveAudioPath(QuranAudioCue? cue) async {
     if (cue == null) return null;
     final keys = await _assetKeys();
     final manifest = quranTeacherAudioManifest[cue.id];
+    final sharedLetterManifest = arabicLetterAudioByAnyId(cue.id);
     final candidates = <String>[
       if (cue.assetPath != null) cue.assetPath!,
       ...cue.alternateAudioAssetPaths,
+      if (sharedLetterManifest != null) sharedLetterManifest.assetPath,
+      if (sharedLetterManifest != null)
+        ...sharedLetterManifest.alternateAssetPaths,
       if (manifest != null) manifest.assetPath,
       if (manifest != null) ...manifest.alternatePaths,
     ];
@@ -69,7 +68,8 @@ class QuranTeachingAssetResolver {
   }
 
   static String? fallbackAudioPathForId(String id) {
-    return quranTeacherAudioManifest[id]?.assetPath;
+    return arabicLetterAudioPrimaryAssetPath(id) ??
+        quranTeacherAudioManifest[id]?.assetPath;
   }
 
   static String? fallbackVisualPathForId(String id) {

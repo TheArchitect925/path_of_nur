@@ -6,6 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:path_of_nur/features/kids_arabic/application/kids_arabic_audio_service.dart';
 import 'package:path_of_nur/features/kids_arabic/application/kids_arabic_parent_provider.dart';
 import 'package:path_of_nur/features/kids_arabic/application/kids_arabic_progress_provider.dart';
+import 'package:path_of_nur/features/kids_arabic/data/kids_arabic_beginner_words_data.dart';
 import 'package:path_of_nur/features/kids_arabic/data/kids_arabic_letters_data.dart';
 import 'package:path_of_nur/features/kids_arabic/domain/kids_arabic_models.dart';
 import 'package:path_of_nur/features/kids_arabic/presentation/kids_arabic_reading_mode_page.dart';
@@ -89,34 +90,42 @@ void main() {
       final l10n = AppLocalizations.of(
         tester.element(find.byType(KidsArabicReadingModePage)),
       );
+      final bab = kidsArabicBeginnerWordById('bab')!;
+      final noor = kidsArabicBeginnerWordById('noor')!;
 
       expect(find.text(l10n.kidsArabicReadingModeTitle), findsOneWidget);
-      expect(find.text('باب'), findsOneWidget);
+      expect(find.text(bab.wordAr), findsOneWidget);
       expect(find.text('baab'), findsOneWidget);
-      expect(audio.spokenTexts, contains('باب'));
+      expect(audio.spokenTexts, contains(bab.wordAr));
 
-      await tester.tap(find.text('باب'));
+      await tester.tap(find.text(bab.wordAr));
       await tester.pump();
-      expect(audio.spokenTexts, contains('باب'));
+      expect(audio.spokenTexts, contains(bab.wordAr));
       expect(find.text(l10n.kidsArabicRepeatAfterMePrompt), findsOneWidget);
 
       await tester.scrollUntilVisible(
-        find.byIcon(Icons.arrow_forward_rounded),
+        find.text(l10n.kidsArabicReadingModeNextAction),
         300,
         scrollable: find.byType(Scrollable).first,
       );
-      await tester.tap(find.byIcon(Icons.arrow_forward_rounded).first);
+      final nextButton = tester.widget<FilledButton>(
+        find.byKey(const Key('kidsArabicReadingModeNextButton')),
+      );
+      nextButton.onPressed!.call();
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 250));
 
-      expect(find.text('نور'), findsOneWidget);
+      expect(find.text(noor.wordAr), findsOneWidget);
       expect(find.text('noor'), findsOneWidget);
 
-      await tester.tap(find.byIcon(Icons.arrow_back_rounded).first);
+      final previousButton = tester.widget<FilledButton>(
+        find.byKey(const Key('kidsArabicReadingModePreviousButton')),
+      );
+      previousButton.onPressed!.call();
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 250));
 
-      expect(find.text('باب'), findsOneWidget);
+      expect(find.text(bab.wordAr), findsOneWidget);
     },
   );
 

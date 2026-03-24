@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../l10n/app_localizations.dart';
+import '../../arabic/presentation/widgets/arabic_learning_playback_speed_toggle.dart';
 import '../../learn/presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/kids_arabic_achievements_provider.dart';
 import '../application/kids_arabic_audio_service.dart';
@@ -177,6 +178,10 @@ class _KidsArabicWordLessonPageState
         localizedKidsArabicWordMeaning(l10n, word.id),
       ),
       children: [
+        const ArabicLearningPlaybackSpeedToggle(
+          variant: ArabicLearningPlaybackToggleVariant.kids,
+        ),
+        const SizedBox(height: 12),
         InkWell(
           onTap: () => ref.read(kidsArabicAudioServiceProvider).speakWord(word),
           borderRadius: BorderRadius.circular(22),

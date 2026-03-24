@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:just_audio/just_audio.dart';
 
+import '../../../../shared/application/daily_clock_provider.dart';
 import '../../../../shared/persistence/local_store.dart';
 import 'quran_playback_orchestrator.dart';
 import 'quran_playback_policy.dart';
@@ -1372,10 +1373,8 @@ final quranDailyVerseProvider = Provider<QuranDailyVerse>((ref) {
   final translationCode = ref.watch(
     quranReaderSettingsProvider.select((state) => state.translationCode),
   );
-  return repository.getDailyVerse(
-    date: DateTime.now(),
-    translationCode: translationCode,
-  );
+  final now = ref.watch(dailyNowProvider).value ?? DateTime.now();
+  return repository.getDailyVerse(date: now, translationCode: translationCode);
 });
 
 final quranContinueReadingSummaryProvider =
@@ -1734,6 +1733,20 @@ final quranSurahAyahsProvider = FutureProvider.family<List<QuranAyah>, int>((
     );
   });
 });
+
+final quranAyahByReferenceProvider =
+    FutureProvider.family<QuranAyah?, (int surahNumber, int ayahNumber)>((
+      ref,
+      reference,
+    ) async {
+      final ayahs = await ref.watch(
+        quranSurahAyahsProvider(reference.$1).future,
+      );
+      for (final ayah in ayahs) {
+        if (ayah.ayahNumber == reference.$2) return ayah;
+      }
+      return null;
+    });
 
 final quranQuoteContentProvider =
     FutureProvider.family<QuranQuoteContent, QuranQuoteRef>((ref, quoteRef) {

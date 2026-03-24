@@ -7,6 +7,7 @@ import '../../../../../shared/widgets/section_title.dart';
 import '../../presentation/widgets/learn_cards.dart';
 import '../../shared/application/learn_unified_provider.dart';
 import '../../shared/domain/learn_unified_models.dart';
+import '../application/quran_learning_system_service.dart';
 import '../application/quran_providers.dart';
 
 class QuranHubSection extends ConsumerWidget {
@@ -21,6 +22,8 @@ class QuranHubSection extends ConsumerWidget {
     final notes = ref.watch(quranNotesProvider);
     final wordFavorites = ref.watch(quranWordFavoritesProvider);
     final streak = ref.watch(quranReadingStreakProvider);
+    final memorizationCount = ref.watch(quranMemorizationStartedCountProvider);
+    final dueMemorization = ref.watch(quranMemorizationDueProvider);
     final unified = ref.watch(learnUnifiedSummaryProvider);
 
     return Column(
@@ -56,14 +59,11 @@ class QuranHubSection extends ConsumerWidget {
         ],
         const SizedBox(height: 12),
         LearnActionCard(
-          title: l10n.learnQuranDailyVerseTitle,
-          subtitle: '${dailyVerse.locationLabel} • ${dailyVerse.translation}',
+          title: l10n.quranDailyCompanionTitle,
+          subtitle:
+              '${dailyVerse.locationLabel} • ${l10n.quranDailyCompanionCardSubtitle}',
           icon: Icons.lightbulb_outline_rounded,
-          onTap: () => context.pushNamed(
-            'quranReader',
-            pathParameters: {'surahNumber': dailyVerse.surahNumber.toString()},
-            queryParameters: {'ayah': dailyVerse.ayahNumber.toString()},
-          ),
+          onTap: () => context.pushNamed('quranDailyCompanion'),
         ),
         const SizedBox(height: 12),
         LearnActionCard(
@@ -81,11 +81,20 @@ class QuranHubSection extends ConsumerWidget {
         ),
         const SizedBox(height: 12),
         LearnActionCard(
-          title: 'Qur’an Topics',
-          subtitle:
-              'Browse guidance by themes like patience, mercy, and justice.',
+          title: l10n.quranTopicsTitle,
+          subtitle: l10n.quranHubTopicsSubtitle,
           icon: Icons.account_tree_outlined,
           onTap: () => context.pushNamed('quranTopicExplorer'),
+        ),
+        const SizedBox(height: 12),
+        LearnActionCard(
+          title: l10n.quranHubMemorizeTitle,
+          subtitle: l10n.quranMemorizationReviewSummary(
+            memorizationCount,
+            dueMemorization.length,
+          ),
+          icon: Icons.repeat_rounded,
+          onTap: () => context.pushNamed('quranMemorizationReview'),
         ),
         const SizedBox(height: 12),
         LearnActionCard(

@@ -46,7 +46,11 @@ enum QuranTeachingQuizType {
   trueFalse,
 }
 
-enum QuranTeachingTextVisibility { arabicOnly, arabicWithTransliteration, hidden }
+enum QuranTeachingTextVisibility {
+  arabicOnly,
+  arabicWithTransliteration,
+  hidden,
+}
 
 enum QuranTeachingAudioPackCategory {
   alphabet,
@@ -250,6 +254,8 @@ class QuranWordEntry {
     this.commonSurahs = const <String>[],
     this.imageAssetPath,
     this.categoryTag,
+    this.sharedBeginnerWordId,
+    this.letterIds = const <String>[],
   });
 
   final String id;
@@ -263,6 +269,8 @@ class QuranWordEntry {
   final List<String> commonSurahs;
   final String? imageAssetPath;
   final String? categoryTag;
+  final String? sharedBeginnerWordId;
+  final List<String> letterIds;
 }
 
 class QuranWordGroup {
@@ -472,8 +480,7 @@ class QuranTeachingProgressState {
       visualModeEnabled: visualModeEnabled ?? this.visualModeEnabled,
       completedLessonIds: completedLessonIds ?? this.completedLessonIds,
       startedLessonIds: startedLessonIds ?? this.startedLessonIds,
-      reviewLaterLessonIds:
-          reviewLaterLessonIds ?? this.reviewLaterLessonIds,
+      reviewLaterLessonIds: reviewLaterLessonIds ?? this.reviewLaterLessonIds,
       recentLessonIds: recentLessonIds ?? this.recentLessonIds,
       quizBestScores: quizBestScores ?? this.quizBestScores,
       lastLessonId: clearLastLesson ? null : lastLessonId ?? this.lastLessonId,
@@ -534,6 +541,44 @@ class QuranTeachingProgressState {
       lastPracticedAt: DateTime.tryParse(
         json['lastPracticedAt']?.toString() ?? '',
       ),
+    );
+  }
+}
+
+class QuranTeachingBeginnerWordsProgressState {
+  const QuranTeachingBeginnerWordsProgressState({
+    this.lastWordId,
+    this.lastOpenedAt,
+  });
+
+  final String? lastWordId;
+  final DateTime? lastOpenedAt;
+
+  QuranTeachingBeginnerWordsProgressState copyWith({
+    String? lastWordId,
+    DateTime? lastOpenedAt,
+    bool clearLastWord = false,
+  }) {
+    return QuranTeachingBeginnerWordsProgressState(
+      lastWordId: clearLastWord ? null : (lastWordId ?? this.lastWordId),
+      lastOpenedAt: lastOpenedAt ?? this.lastOpenedAt,
+    );
+  }
+
+  Map<String, dynamic> toJson() => <String, dynamic>{
+    'lastWordId': lastWordId,
+    'lastOpenedAt': lastOpenedAt?.toIso8601String(),
+  };
+
+  static QuranTeachingBeginnerWordsProgressState fromJson(
+    Map<String, dynamic>? json,
+  ) {
+    if (json == null) {
+      return const QuranTeachingBeginnerWordsProgressState();
+    }
+    return QuranTeachingBeginnerWordsProgressState(
+      lastWordId: json['lastWordId']?.toString(),
+      lastOpenedAt: DateTime.tryParse(json['lastOpenedAt']?.toString() ?? ''),
     );
   }
 }
@@ -681,8 +726,13 @@ class QuranTeachingMistakeItem {
   final DateTime? nextDueAt;
 
   double get priorityScore {
-    final due = nextDueAt == null || !nextDueAt!.isAfter(DateTime.now()) ? 1.0 : 0.0;
-    return totalWrongCount * 1.6 + (3 - successStreak) + due + (totalReviewCount == 0 ? 1 : 0);
+    final due = nextDueAt == null || !nextDueAt!.isAfter(DateTime.now())
+        ? 1.0
+        : 0.0;
+    return totalWrongCount * 1.6 +
+        (3 - successStreak) +
+        due +
+        (totalReviewCount == 0 ? 1 : 0);
   }
 
   QuranTeachingMistakeItem copyWith({
@@ -874,8 +924,7 @@ class QuranTeachingMistakeItem {
           int.tryParse(json['totalWrongCount']?.toString() ?? '') ?? 1,
       totalReviewCount:
           int.tryParse(json['totalReviewCount']?.toString() ?? '') ?? 0,
-      successStreak:
-          int.tryParse(json['successStreak']?.toString() ?? '') ?? 0,
+      successStreak: int.tryParse(json['successStreak']?.toString() ?? '') ?? 0,
       state: state,
       nextDueAt: DateTime.tryParse(json['nextDueAt']?.toString() ?? ''),
     );

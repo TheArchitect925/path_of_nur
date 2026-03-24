@@ -67,6 +67,34 @@ class KidsArabicVectorTraceEvaluation {
   final bool successPulse;
 }
 
+KidsArabicVectorTraceLetter _guideBackedVectorLetter({
+  required String id,
+  required String name,
+}) {
+  final guide = kidsArabicTracingGuideFor(id)!;
+  return KidsArabicVectorTraceLetter(
+    id: id,
+    name: name,
+    minimumEffortPoints: guide.minimumEffortPoints,
+    completedThreshold: guide.completedThreshold,
+    goodThreshold: guide.goodThreshold,
+    excellentThreshold: guide.excellentThreshold,
+    goodAlignmentThreshold: guide.goodAlignmentThreshold,
+    excellentAlignmentThreshold: guide.excellentAlignmentThreshold,
+    proximityThreshold: guide.proximityThreshold,
+    outlineBuilder: (size) => _buildGuideOutlinePath(id, size),
+    strokes: List<KidsArabicVectorTraceStroke>.generate(
+      guide.strokes.length,
+      (index) => KidsArabicVectorTraceStroke(
+        id: '$id-$index',
+        pathBuilder: (size) => _buildGuideStrokePath(id, index, size),
+        completionThreshold: guide.strokes[index].completionThreshold,
+      ),
+      growable: false,
+    ),
+  );
+}
+
 final Map<String, KidsArabicVectorTraceLetter> kidsArabicVectorTraceLetters =
     <String, KidsArabicVectorTraceLetter>{
       'alif': KidsArabicVectorTraceLetter(
@@ -370,6 +398,15 @@ final Map<String, KidsArabicVectorTraceLetter> kidsArabicVectorTraceLetters =
           ),
         ],
       ),
+      'sheen': _guideBackedVectorLetter(id: 'sheen', name: 'Sheen'),
+      'sad': _guideBackedVectorLetter(id: 'sad', name: 'Sad'),
+      'dad': _guideBackedVectorLetter(id: 'dad', name: 'Dad'),
+      'taa': _guideBackedVectorLetter(id: 'taa', name: 'Taa'),
+      'zaa': _guideBackedVectorLetter(id: 'zaa', name: 'Zaa'),
+      'ain': _guideBackedVectorLetter(id: 'ain', name: 'Ain'),
+      'ghain': _guideBackedVectorLetter(id: 'ghain', name: 'Ghain'),
+      'fa': _guideBackedVectorLetter(id: 'fa', name: 'Fa'),
+      'qaf': _guideBackedVectorLetter(id: 'qaf', name: 'Qaf'),
       'lam': KidsArabicVectorTraceLetter(
         id: 'lam',
         name: 'Laam',
@@ -438,6 +475,8 @@ final Map<String, KidsArabicVectorTraceLetter> kidsArabicVectorTraceLetters =
           ),
         ],
       ),
+      'waw': _guideBackedVectorLetter(id: 'waw', name: 'Waw'),
+      'ya': _guideBackedVectorLetter(id: 'ya', name: 'Ya'),
     };
 
 bool kidsArabicSupportsVectorTracing(String letterId) {

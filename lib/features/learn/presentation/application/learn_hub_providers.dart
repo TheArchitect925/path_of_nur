@@ -172,6 +172,11 @@ final learnHubFeaturedItemsProvider = Provider<List<LearnHubKnowledgeItem>>((
   ref,
 ) {
   final items = ref.watch(learnHubKnowledgeIndexProvider);
+  const preferredRouteOrder = <String>[
+    'learnSeerahCompanion',
+    'learnCharacterCompanion',
+    'learnDailyWisdomCompanion',
+  ];
   final allowed = {
     LearnHubContentType.lesson,
     LearnHubContentType.story,
@@ -180,11 +185,21 @@ final learnHubFeaturedItemsProvider = Provider<List<LearnHubKnowledgeItem>>((
     LearnHubContentType.note,
     LearnHubContentType.faq,
   };
+  final preferred = <LearnHubKnowledgeItem>[
+    for (final routeName in preferredRouteOrder)
+      ...items.where(
+        (item) =>
+            item.routeTarget.routeName == routeName &&
+            item.contentType == LearnHubContentType.subcategory,
+      ),
+  ];
+  final preferredIds = preferred.map((item) => item.id).toSet();
   final filtered = items
       .where((item) => allowed.contains(item.contentType))
+      .where((item) => !preferredIds.contains(item.id))
       .take(12)
       .toList(growable: false);
-  return filtered;
+  return [...preferred, ...filtered].take(12).toList(growable: false);
 });
 
 List<LearnHubKnowledgeItem> filterLearnHubKnowledgeItems({

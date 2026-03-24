@@ -10,6 +10,7 @@ import '../application/quran_learning_share_service.dart';
 import '../application/quran_surah_insights_provider.dart';
 import '../domain/quran_ayah_enrichment_models.dart';
 import '../domain/quran_surah_insight_models.dart';
+import 'quran_theme_copy.dart';
 
 class QuranSurahInsightsBrowsePage extends ConsumerWidget {
   const QuranSurahInsightsBrowsePage({super.key});
@@ -139,6 +140,89 @@ class QuranSurahInsightPage extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
+                l10n.quranSurahInsightsWhyItMattersTitle,
+                style: Theme.of(
+                  context,
+                ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+              ),
+              const SizedBox(height: 6),
+              Text(_surahSignificance(l10n, insight.definition.significanceId)),
+            ],
+          ),
+        ),
+        if (insight.definition.studyPromptIds.isNotEmpty) ...[
+          const SizedBox(height: 10),
+          PremiumCard(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  l10n.quranSurahInsightsReflectionPromptsTitle,
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+                ),
+                const SizedBox(height: 8),
+                ...insight.definition.studyPromptIds.map(
+                  (promptId) => Padding(
+                    padding: const EdgeInsets.only(bottom: 8),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.only(top: 6),
+                          child: Icon(Icons.circle, size: 8),
+                        ),
+                        const SizedBox(width: 10),
+                        Expanded(
+                          child: Text(_studyPromptLabel(l10n, promptId)),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+        if (insight.definition.relatedTopicIds.isNotEmpty) ...[
+          const SizedBox(height: 10),
+          PremiumCard(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  l10n.quranSurahInsightsThemesAcrossQuranTitle,
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+                ),
+                const SizedBox(height: 8),
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: insight.definition.relatedTopicIds
+                      .map(
+                        (topicId) => ActionChip(
+                          label: Text(localizedQuranTopicTitle(l10n, topicId)),
+                          onPressed: () => context.pushNamed(
+                            'quranTopicDetail',
+                            pathParameters: {'topicId': topicId},
+                          ),
+                        ),
+                      )
+                      .toList(growable: false),
+                ),
+              ],
+            ),
+          ),
+        ],
+        const SizedBox(height: 10),
+        PremiumCard(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
                 l10n.quranSurahInsightsLessonsTitle,
                 style: Theme.of(
                   context,
@@ -207,6 +291,38 @@ class QuranSurahInsightPage extends ConsumerWidget {
                     onTap: () => context.pushNamed(
                       'quranAyahInsightsPathDetail',
                       pathParameters: {'pathId': path.id},
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+        if (insight.definition.relatedRoutes.isNotEmpty) ...[
+          const SizedBox(height: 10),
+          PremiumCard(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  l10n.quranSurahInsightsRelatedLearningTitle,
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+                ),
+                const SizedBox(height: 8),
+                ...insight.definition.relatedRoutes.map(
+                  (route) => ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    title: Text(localizedQuranTopicRouteTitle(l10n, route)),
+                    subtitle: Text(
+                      localizedQuranTopicRouteSubtitle(l10n, route),
+                    ),
+                    trailing: const Icon(Icons.chevron_right_rounded),
+                    onTap: () => context.pushNamed(
+                      route.routeName,
+                      pathParameters: route.pathParameters,
+                      queryParameters: route.queryParameters,
                     ),
                   ),
                 ),
@@ -426,5 +542,49 @@ String _pathDescription(AppLocalizations l10n, String pathId) {
       return l10n.quranAyahInsightPathDescriptionProphetsLessonsStarter;
     default:
       return l10n.quranAyahInsightPathsSubtitle;
+  }
+}
+
+String _surahSignificance(AppLocalizations l10n, String id) {
+  switch (id) {
+    case 'al_baqarah':
+      return l10n.quranSurahInsightWhyItMattersAlBaqarah;
+    case 'ali_imran':
+      return l10n.quranSurahInsightWhyItMattersAliImran;
+    case 'ta_ha':
+      return l10n.quranSurahInsightWhyItMattersTaHa;
+    case 'al_furqan':
+      return l10n.quranSurahInsightWhyItMattersAlFurqan;
+    case 'luqman':
+      return l10n.quranSurahInsightWhyItMattersLuqman;
+    default:
+      return l10n.quranSurahInsightsBrowseSubtitle;
+  }
+}
+
+String _studyPromptLabel(AppLocalizations l10n, String id) {
+  switch (id) {
+    case 'al_baqarah_worship_and_help':
+      return l10n.quranSurahInsightPromptAlBaqarahWorshipAndHelp;
+    case 'al_baqarah_dua_and_response':
+      return l10n.quranSurahInsightPromptAlBaqarahDuaAndResponse;
+    case 'ali_imran_pressure_and_character':
+      return l10n.quranSurahInsightPromptAliImranPressureAndCharacter;
+    case 'ali_imran_signs_and_belief':
+      return l10n.quranSurahInsightPromptAliImranSignsAndBelief;
+    case 'ta_ha_revelation_and_presence':
+      return l10n.quranSurahInsightPromptTaHaRevelationAndPresence;
+    case 'ta_ha_knowledge_and_humility':
+      return l10n.quranSurahInsightPromptTaHaKnowledgeAndHumility;
+    case 'al_furqan_conduct_and_discernment':
+      return l10n.quranSurahInsightPromptAlFurqanConductAndDiscernment;
+    case 'al_furqan_time_and_signs':
+      return l10n.quranSurahInsightPromptAlFurqanTimeAndSigns;
+    case 'luqman_family_and_tawhid':
+      return l10n.quranSurahInsightPromptLuqmanFamilyAndTawhid;
+    case 'luqman_gratitude_and_humility':
+      return l10n.quranSurahInsightPromptLuqmanGratitudeAndHumility;
+    default:
+      return id;
   }
 }

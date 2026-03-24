@@ -41,7 +41,8 @@ void main() {
         ),
       ),
     );
-    await tester.pumpAndSettle();
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 400));
     return container;
   }
 
@@ -52,7 +53,8 @@ void main() {
     );
     notifier.setAllowParentAssignedFocus(true);
     notifier.assignFocusLetter('alif', validLetterIds: {'alif'});
-    await tester.pumpAndSettle();
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 400));
 
     expect(find.text('Today’s focus'), findsOneWidget);
   });
@@ -70,8 +72,9 @@ void main() {
               .firstWhere((item) => item.id == 'alif'),
           traceResult: KidsArabicTraceResult.good,
         );
-    await tester.pumpAndSettle();
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 400));
 
-    expect(find.text('Parent Settings'), findsOneWidget);
+    expect(find.text('Arabic learning is moving gently'), findsOneWidget);
   });
 }

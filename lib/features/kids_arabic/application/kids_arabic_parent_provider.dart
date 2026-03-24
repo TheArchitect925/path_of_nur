@@ -1,7 +1,11 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../arabic/application/arabic_learning_progress_provider.dart';
+import '../../arabic/domain/arabic_learning_continuity_models.dart';
 import '../../../shared/persistence/local_store.dart';
 import '../domain/kids_arabic_models.dart';
+import '../domain/kids_arabic_parent_overview_models.dart';
+import 'kids_arabic_achievements_provider.dart';
 import 'kids_arabic_progress_provider.dart';
 import 'kids_arabic_progression.dart';
 
@@ -167,6 +171,32 @@ final kidsArabicParentReviewLetterProvider = Provider<KidsArabicLetter?>((ref) {
   }
   return null;
 });
+
+final kidsArabicParentOverviewSummaryProvider =
+    Provider<KidsArabicParentOverviewSummary>((ref) {
+      final progressSummary = ref.watch(
+        arabicLearningProgressSummaryProvider(ArabicLearningAudience.kids),
+      );
+      final parentSummary = ref.watch(kidsArabicParentSummaryProvider);
+      final achievement = ref.watch(kidsArabicLatestAchievementProvider);
+      final now = ref.watch(kidsArabicNowProvider)();
+
+      return KidsArabicParentOverviewSummary(
+        hasStarted: progressSummary.hasStarted,
+        lettersLearned: progressSummary.engagedLetters,
+        wordsPracticed: progressSummary.engagedWords,
+        phrasesHeard: progressSummary.engagedPhrases,
+        practicedToday: ref
+            .watch(kidsArabicDailyProgressProvider)
+            .completedOnDay(LocalStore.todayKey(now)),
+        reviewNeededCount: parentSummary.reviewNeededLetterIds.length,
+        continuation: progressSummary.continuation,
+        recentActivity: progressSummary.recentActivity,
+        reviewSuggestion: progressSummary.reviewSuggestion,
+        latestAchievementId: achievement?.id,
+        latestCompletedLetterId: parentSummary.latestCompletedLetterId,
+      );
+    });
 
 class KidsArabicParentPreferencesNotifier
     extends StateNotifier<KidsArabicParentPreferences> {

@@ -224,7 +224,11 @@ class LearningJourneyRegistry {
       ],
       whyThisMatters:
           'Short surahs are the easiest place to connect memorization, recitation, and meaning.',
-      relatedTools: [_quranExplorerTool, _learnSalahHubTool, _legacyLearnTool],
+      relatedTools: [
+        _quranExplorerTool,
+        _learnSalahHubTool,
+        _quranLearningHubTool,
+      ],
       mappingNotes:
           'This journey now treats the short surahs as the primary guided path, with Qur’an tools and salah tools acting as reinforcement.',
     ),
@@ -281,7 +285,7 @@ class LearningJourneyRegistry {
       isFeatured: true,
       whyThisMatters:
           'Seerah gives emotional and historical context to Qur’an, Hadith, and Muslim life.',
-      relatedTools: [_legacyLearnTool, _prophetsTool, _hadithLandingTool],
+      relatedTools: [_seerahCompanionTool, _prophetsTool, _hadithLandingTool],
       mappingNotes:
           'These stages now open real in-app Seerah lessons while still pointing users toward the existing Prophets and Hadith systems for adjacent exploration.',
     ),
@@ -396,7 +400,7 @@ class LearningJourneyRegistry {
       ],
       whyThisMatters:
           'Dhikr is one of the gentlest ways to keep the heart alive, but beginners need a simple guided path rather than utilities alone.',
-      relatedTools: [_legacyLearnTool],
+      relatedTools: [_dhikrCounterTool],
       mappingNotes:
           'These stages now open real lesson content, while the Ibadah dhikr utility remains available as a supporting tool rather than the lesson itself.',
     ),
@@ -575,7 +579,7 @@ class LearningJourneyRegistry {
       ],
       whyThisMatters:
           'Timeline context stops knowledge from feeling fragmented and isolated.',
-      relatedTools: [_prophetsTimelineTool, _legacyLearnTool],
+      relatedTools: [_prophetsTimelineTool, _historyArchiveTool],
       mappingNotes:
           'The timeline now teaches broad historical sequence through guided lessons even though a dedicated visual timeline system does not yet exist.',
     ),
@@ -609,7 +613,11 @@ class LearningJourneyRegistry {
       isFeatured: true,
       whyThisMatters:
           'Knowledge becomes lived Islam when it shapes character, speech, reactions, and service to others.',
-      relatedTools: [_hadithLandingTool, _prophetsTool, _legacyLearnTool],
+      relatedTools: [
+        _hadithLandingTool,
+        _prophetsTool,
+        _characterCompanionTool,
+      ],
       mappingNotes:
           'This journey is lesson-backed and cross-links to Hadith, Seerah, and Daily Wisdom so character formation feels integrated rather than isolated.',
     ),
@@ -773,10 +781,10 @@ class LearningJourneyRegistry {
       whyThisMatters:
           'Short daily wisdom can keep the learning system alive between deeper sessions.',
       relatedTools: [
+        _dailyWisdomCompanionTool,
         _hadithLandingTool,
         _quranReaderTool,
         _prophetsTool,
-        _reflectionModeTool,
       ],
       mappingNotes:
           'This journey now serves as the unified daily layer so one item can lead cleanly into deeper journeys without duplication.',
@@ -2563,10 +2571,38 @@ const _duaHubTool = LearningJourneyToolLink(
   routeName: 'learnDuaHub',
 );
 
+const _dhikrCounterTool = LearningJourneyToolLink(
+  title: 'Dhikr Counter',
+  subtitle: 'Open the live dhikr practice surface.',
+  routeName: 'worshipDhikrPage',
+);
+
 const _legacyLearnTool = LearningJourneyToolLink(
   title: 'Legacy Learning Material',
   subtitle: 'Explore the original learning library during migration.',
+  // Retained as a broad fallback for older journey metadata where there is
+  // not yet a one-to-one canonical destination.
   routeName: 'learnLegacy',
+);
+
+const _seerahCompanionTool = LearningJourneyToolLink(
+  title: 'Seerah Companion',
+  subtitle: 'Open the dedicated Seerah companion surface.',
+  routeName: 'learnSeerahCompanion',
+);
+
+const _characterCompanionTool = LearningJourneyToolLink(
+  title: 'Character Companion',
+  subtitle: 'Open the focused character and adab companion surface.',
+  routeName: 'learnCharacterCompanion',
+  queryParameters: {'focus': 'ikhlas'},
+);
+
+const _dailyWisdomCompanionTool = LearningJourneyToolLink(
+  title: 'Daily Wisdom',
+  subtitle: 'Open the owned daily wisdom and reflection surface.',
+  routeName: 'learnDailyWisdomCompanion',
+  queryParameters: {'focus': 'gratitude'},
 );
 
 const _namesOfAllahTool = LearningJourneyToolLink(
@@ -2700,6 +2736,12 @@ const _learnNotesTool = LearningJourneyToolLink(
   routeName: 'learnNotesLanding',
 );
 
+const _historyArchiveTool = LearningJourneyToolLink(
+  title: 'History Archive',
+  subtitle: 'Open the main historical archive and timeline surface.',
+  routeName: 'learnHistoryArchive',
+);
+
 const _knowledgeConstellationTool = LearningJourneyToolLink(
   title: 'Knowledge Constellation',
   subtitle: 'See learning connections across domains.',
@@ -2729,6 +2771,8 @@ const _babyNamesTool = LearningJourneyToolLink(
 const _legacyLearningIslandTool = LearningJourneyToolLink(
   title: 'Legacy Learning Material',
   subtitle: 'Open the original learning library and older migrated sections.',
+  // The hidden legacy-learning island still points at the compatibility
+  // library because its migrated sections do not yet have one replacement.
   routeName: 'learnLegacy',
 );
 

@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../l10n/app_localizations.dart';
+import '../../arabic/presentation/widgets/arabic_learning_playback_speed_toggle.dart';
 import '../../learn/presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/kids_arabic_audio_service.dart';
 import '../application/kids_arabic_parent_provider.dart';
@@ -183,6 +184,10 @@ class _KidsArabicReadingModePageState
               _SummaryPill(label: l10n.kidsArabicReadingModeCompletedBadge),
           ],
         ),
+        const SizedBox(height: 12),
+        const ArabicLearningPlaybackSpeedToggle(
+          variant: ArabicLearningPlaybackToggleVariant.kids,
+        ),
         const SizedBox(height: 14),
         AnimatedContainer(
           duration: const Duration(milliseconds: 220),
@@ -306,6 +311,7 @@ class _KidsArabicReadingModePageState
           children: [
             Expanded(
               child: FilledButton.tonalIcon(
+                key: const Key('kidsArabicReadingModePreviousButton'),
                 onPressed: previousWord == null
                     ? null
                     : () => _selectWord(previousWord.id),
@@ -316,6 +322,7 @@ class _KidsArabicReadingModePageState
             const SizedBox(width: 10),
             Expanded(
               child: FilledButton.icon(
+                key: const Key('kidsArabicReadingModeNextButton'),
                 onPressed: nextWord == null
                     ? null
                     : () => _selectWord(nextWord.id),

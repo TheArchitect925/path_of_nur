@@ -45,4 +45,32 @@ void main() {
       isTrue,
     );
   });
+
+  test(
+    'surah insight metadata carries study structure and related learning',
+    () {
+      final container = ProviderContainer();
+      addTearDown(container.dispose);
+
+      final insight = container.read(quranSurahInsightProvider(2));
+
+      expect(insight, isNotNull);
+      expect(insight!.definition.significanceId, 'al_baqarah');
+      expect(
+        insight.definition.studyPromptIds,
+        containsAll(<String>[
+          'al_baqarah_worship_and_help',
+          'al_baqarah_dua_and_response',
+        ]),
+      );
+      expect(insight.definition.relatedTopicIds, contains('prayer'));
+      expect(insight.definition.relatedRoutes, isNotEmpty);
+      expect(
+        insight.definition.relatedRoutes.any(
+          (route) => route.routeName == 'quranTopicDetail',
+        ),
+        isTrue,
+      );
+    },
+  );
 }

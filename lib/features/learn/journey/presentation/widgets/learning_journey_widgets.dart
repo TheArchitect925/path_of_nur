@@ -969,6 +969,12 @@ String _localizedToolTitle(
       return l10n.learningJourneyToolReflectionModeTitle;
     case 'learnNotesLanding':
       return l10n.learningJourneyToolLearnNotesTitle;
+    case 'learnSeerahCompanion':
+      return l10n.learningJourneySeerahJourneyTitle;
+    case 'learnCharacterCompanion':
+      return l10n.learningJourneyBeautifulCharacterTitle;
+    case 'learnDailyWisdomCompanion':
+      return l10n.learningJourneyDailyWisdomTitle;
     case 'knowledgeConstellation':
       return l10n.learningJourneyToolKnowledgeConstellationTitle;
     case 'learnLegacy':

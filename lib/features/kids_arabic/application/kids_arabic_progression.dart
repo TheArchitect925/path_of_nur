@@ -1,5 +1,6 @@
-import '../data/kids_arabic_letters_data.dart';
 import '../domain/kids_arabic_models.dart';
+import '../../arabic/data/arabic_alphabet_catalog.dart';
+import '../data/kids_arabic_letters_data.dart';
 
 const kidsArabicStarterReleaseOrderIds = <String>[
   'alif',
@@ -11,9 +12,9 @@ const kidsArabicStarterReleaseOrderIds = <String>[
 
 final List<String> kidsArabicProgressionOrderIds = <String>[
   ...kidsArabicStarterReleaseOrderIds,
-  ...kidsArabicLetters
-      .map((letter) => letter.id)
-      .where((id) => !kidsArabicStarterReleaseOrderIds.contains(id)),
+  ...arabicAlphabetLetterIds.where(
+    (id) => !kidsArabicStarterReleaseOrderIds.contains(id),
+  ),
 ];
 
 final List<KidsArabicLetter> kidsArabicProgressionLetters =

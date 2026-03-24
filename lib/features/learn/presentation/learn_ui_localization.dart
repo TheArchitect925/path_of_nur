@@ -22,6 +22,10 @@ extension LearnCategoryItemLocalization on LearnCategoryItem {
         return l10n.learningJourneyBrowseKnowledgeConstellationTitle;
       case 'prophets':
         return l10n.learnCategoryStoriesOfProphetsTitle;
+      case 'seerah-companion':
+        return l10n.learningJourneySeerahJourneyTitle;
+      case 'glossary':
+        return l10n.learnGlossaryTitle;
       case 'baby-names':
         return l10n.learnCategoryBabyNamesTitle;
       case 'allah-names':
@@ -34,10 +38,33 @@ extension LearnCategoryItemLocalization on LearnCategoryItem {
         return l10n.learnCategorySalahTrainerTitle;
       case 'notes':
         return l10n.learnCategoryNotesTitle;
+      case 'character-companion':
+        return l10n.learnHubSubcategoryCharacterAdabTitle;
+      case 'daily-wisdom-companion':
+        return l10n.learningJourneyDailyWisdomTitle;
       case 'islamic-guidance-hub':
         return l10n.homeSearchGuidanceHubTitle;
       default:
         return title;
+    }
+  }
+
+  String? localizedDescription(AppLocalizations l10n) {
+    if (description != null && description!.trim().isNotEmpty) {
+      return description;
+    }
+
+    switch (id) {
+      case 'seerah-companion':
+        return l10n.learningJourneySeerahJourneySubtitle;
+      case 'character-companion':
+        return l10n.learnHubSubcategoryCharacterAdabSubtitle;
+      case 'daily-wisdom-companion':
+        return l10n.learningJourneyDailyWisdomSubtitle;
+      case 'glossary':
+        return l10n.learnGlossaryCardSubtitle;
+      default:
+        return null;
     }
   }
 

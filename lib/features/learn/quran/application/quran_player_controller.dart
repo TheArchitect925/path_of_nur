@@ -2,6 +2,7 @@ import 'package:audio_service/audio_service.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:just_audio/just_audio.dart';
 
+import '../data/quran_audio_repository.dart';
 import '../domain/bismillah_playback_mode.dart';
 import '../domain/quran_playback_request.dart';
 import 'quran_playback_orchestrator.dart';
@@ -39,6 +40,89 @@ class QuranPlayerController {
   AudioPlayer get player => _player;
 
   Future<void> pause() => _player.pause();
+
+  Future<bool> switchReciter(String reciterId) async {
+    final exists = QuranAudioRepository.reciters.any((item) => item.id == reciterId);
+    if (!exists) {
+      return false;
+    }
+
+    final currentSettings = ref.read(quranAudioSettingsProvider);
+    if (currentSettings.reciterId == reciterId) {
+      return true;
+    }
+
+    final activeSession = ref.read(quranActivePlaybackSessionProvider);
+    final storedSession = ref.read(quranRecitationSessionProvider);
+    final hasRestorablePlayback =
+        activeSession != null &&
+        activeSession.ayahNumbers.isNotEmpty &&
+        (_player.audioSource != null ||
+            (storedSession?.surahNumber == activeSession.surahNumber));
+
+    if (!hasRestorablePlayback) {
+      ref.read(quranAudioSettingsProvider.notifier).setReciterId(reciterId);
+      return true;
+    }
+
+    final session = activeSession;
+    final wasPlaying = _player.playing;
+    final currentIndex = (_player.currentIndex ?? 0).clamp(
+      0,
+      session.ayahNumbers.length - 1,
+    );
+    final targetAyah = session.ayahNumbers[currentIndex];
+    final resumePosition = _player.position;
+    final request = QuranPlaybackRequest(
+      surahNumber: session.surahNumber,
+      ayahNumber: targetAyah,
+      resumePosition: resumePosition > Duration.zero ? resumePosition : null,
+      playbackReason: QuranPlaybackReason.resume,
+      isSurahEntry: targetAyah == 1,
+    );
+
+    try {
+      final prepared = await ref
+          .read(quranPlaybackOrchestratorProvider)
+          .preparePlayback(
+            request: request,
+            reciterId: reciterId,
+            ayahNumbers: session.ayahNumbers,
+            mode: session.bismillahMode,
+          );
+      await _executePreparedPlayback(
+        prepared,
+        reciterId: reciterId,
+        playbackSpeed: session.playbackSpeed,
+        includeMediaTags: session.includeMediaTags,
+      );
+      rememberSession(
+        QuranActivePlaybackSession(
+          surahNumber: session.surahNumber,
+          ayahNumbers: session.ayahNumbers,
+          reciterId: reciterId,
+          playbackSpeed: session.playbackSpeed,
+          includeMediaTags: session.includeMediaTags,
+          isSurahMode: session.isSurahMode,
+          bismillahMode: session.bismillahMode,
+        ),
+      );
+      ref.read(quranAudioSettingsProvider.notifier).setReciterId(reciterId);
+      ref
+          .read(quranRecitationSessionProvider.notifier)
+          .save(
+            surahNumber: session.surahNumber,
+            ayahNumber: targetAyah,
+            positionSeconds: _player.position.inSeconds,
+          );
+      if (!wasPlaying) {
+        await _player.pause();
+      }
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
 
   void rememberSession(QuranActivePlaybackSession session) {
     ref.read(quranActivePlaybackSessionProvider.notifier).state = session;

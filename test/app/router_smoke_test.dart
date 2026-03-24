@@ -28,6 +28,7 @@ import 'package:path_of_nur/features/worship/presentation/worship_page.dart';
 import 'package:path_of_nur/features/onboarding/presentation/onboarding_page.dart';
 import 'package:path_of_nur/features/shared/legal_info_page.dart';
 import 'package:path_of_nur/features/kids_arabic/presentation/kids_arabic_practice_page.dart';
+import 'package:path_of_nur/features/kids_arabic/presentation/kids_arabic_mini_phrases_page.dart';
 import 'package:path_of_nur/features/kids_arabic/presentation/kids_arabic_reading_mode_page.dart';
 import 'package:path_of_nur/features/kids_arabic/presentation/kids_arabic_words_page.dart';
 
@@ -75,6 +76,7 @@ void main() {
       ('/journey/browse', GrowthBrowseAllPage),
       ('/learn/kids/arabic/practice', KidsArabicPracticePage),
       ('/learn/kids/arabic/words', KidsArabicWordsPage),
+      ('/learn/kids/arabic/phrases', KidsArabicMiniPhrasesPage),
       ('/learn/kids/arabic/words/reading', KidsArabicReadingModePage),
     ];
 

@@ -467,6 +467,20 @@ class LearningJourneyLocalizedLessonContentRegistry {
           ],
           reflectionPrompt: l10n.learningJourneySeerahHijrahReflection,
           quranReferences: const ['Qur’an 9:40'],
+          relatedTools: [
+            _tool(
+              title: l10n.learningJourneySeerahJourneyTitle,
+              subtitle: l10n.learningJourneySeerahJourneySubtitle,
+              routeName: 'learnSeerahCompanion',
+              queryParameters: const {'focus': 'hijrah'},
+            ),
+            _tool(
+              title: l10n.learningJourneyToolProphetsTitle,
+              subtitle: l10n.learningJourneyToolProphetsSubtitle,
+              routeName: 'learnProphetsHub',
+              queryParameters: const {'tab': 'stories'},
+            ),
+          ],
           continueJourneyIds: const ['foundations-of-faith'],
           relatedJourneyIds: const ['beautiful-character'],
         );
@@ -497,6 +511,19 @@ class LearningJourneyLocalizedLessonContentRegistry {
           ],
           reflectionPrompt: l10n.learningJourneySeerahMadinahReflection,
           quranReferences: const ['Qur’an 49:10', 'Qur’an 3:103'],
+          relatedTools: [
+            _tool(
+              title: l10n.learningJourneySeerahJourneyTitle,
+              subtitle: l10n.learningJourneySeerahJourneySubtitle,
+              routeName: 'learnSeerahCompanion',
+              queryParameters: const {'focus': 'madinah-society'},
+            ),
+            _tool(
+              title: l10n.learningJourneyToolHadithHubTitle,
+              subtitle: l10n.learningJourneyToolHadithHubSubtitle,
+              routeName: 'learnHadithLanding',
+            ),
+          ],
           continueJourneyIds: const ['beautiful-character'],
           relatedJourneyIds: const ['hadith-essentials'],
         );
@@ -1017,6 +1044,19 @@ class LearningJourneyLocalizedLessonContentRegistry {
             l10n.learningJourneyWisdomDailyQuoteTakeaway3,
           ],
           reflectionPrompt: l10n.learningJourneyWisdomDailyQuoteReflection,
+          relatedTools: [
+            _tool(
+              title: l10n.learningJourneyDailyWisdomTitle,
+              subtitle: l10n.learningJourneyDailyWisdomSubtitle,
+              routeName: 'learnDailyWisdomCompanion',
+              queryParameters: const {'focus': 'gratitude'},
+            ),
+            _tool(
+              title: l10n.learningJourneyToolLearnNotesTitle,
+              subtitle: l10n.learnNotesSectionSubtitle,
+              routeName: 'learnNotesLanding',
+            ),
+          ],
           continueJourneyIds: const ['journey-quran', 'hadith-essentials'],
           relatedJourneyIds: const [
             'seerah-journey',
@@ -1937,6 +1977,18 @@ LearningJourneyLessonContent _timelineLesson(
         takeaway2: l10n.learningJourneyTimelineKhulafaTakeaway2,
         takeaway3: l10n.learningJourneyTimelineKhulafaTakeaway3,
         reflection: l10n.learningJourneyTimelineKhulafaReflection,
+        relatedTools: [
+          _tool(
+            title: l10n.learningJourneyToolProphetsTitle,
+            subtitle: l10n.learningJourneyToolProphetsSubtitle,
+            routeName: 'learnProphetsHub',
+          ),
+          _tool(
+            title: l10n.historyArchiveTitle,
+            subtitle: l10n.historyArchiveSubtitle,
+            routeName: 'learnHistoryArchive',
+          ),
+        ],
       );
     case 'timeline-expansion':
       return _compactLesson(
@@ -1951,6 +2003,18 @@ LearningJourneyLessonContent _timelineLesson(
         takeaway2: l10n.learningJourneyTimelineExpansionTakeaway2,
         takeaway3: l10n.learningJourneyTimelineExpansionTakeaway3,
         reflection: l10n.learningJourneyTimelineExpansionReflection,
+        relatedTools: [
+          _tool(
+            title: l10n.historyArchiveTitle,
+            subtitle: l10n.historyArchiveSubtitle,
+            routeName: 'learnHistoryArchive',
+          ),
+          _tool(
+            title: l10n.learningJourneyToolHadithHubTitle,
+            subtitle: l10n.learningJourneyToolHadithHubSubtitle,
+            routeName: 'hadithHub',
+          ),
+        ],
       );
     case 'timeline-golden-age':
       return _compactLesson(

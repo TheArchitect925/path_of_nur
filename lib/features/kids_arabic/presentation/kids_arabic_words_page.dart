@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../learn/presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/kids_arabic_audio_service.dart';
+import '../application/kids_arabic_phrases_provider.dart';
 import '../application/kids_arabic_words_provider.dart';
 import '../widgets/kids_arabic_audio_learning_widgets.dart';
 import 'kids_arabic_localized_content.dart';
@@ -19,6 +20,8 @@ class KidsArabicWordsPage extends ConsumerWidget {
     final completedCount = ref.watch(kidsArabicCompletedWordsCountProvider);
     final nextWord = ref.watch(kidsArabicNextRecommendedWordProvider);
     final readingWord = ref.watch(kidsArabicReadingRecommendedWordProvider);
+    final phrase = ref.watch(kidsArabicMiniPhraseRecommendedProvider);
+    final heardPhrases = ref.watch(kidsArabicMiniPhraseHeardCountProvider);
     final readyCount = statuses.where((item) => item.unlocked).length;
 
     return LearnHubPageScaffold(
@@ -49,6 +52,11 @@ class KidsArabicWordsPage extends ConsumerWidget {
           _NextWordCard(wordId: nextWord.id, wordAr: nextWord.wordAr),
         if (nextWord != null) const SizedBox(height: 12),
         _ReadingModeCard(initialWordId: readingWord?.id),
+        const SizedBox(height: 12),
+        _MiniPhrasesCard(
+          initialPhraseId: phrase?.id,
+          heardCount: heardPhrases,
+        ),
         const SizedBox(height: 12),
         _SectionHeader(
           title: l10n.kidsArabicWordsJoiningTitle,
@@ -306,6 +314,57 @@ class _WordCard extends ConsumerWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _MiniPhrasesCard extends StatelessWidget {
+  const _MiniPhrasesCard({
+    required this.initialPhraseId,
+    required this.heardCount,
+  });
+
+  final String? initialPhraseId;
+  final int heardCount;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return Container(
+      padding: const EdgeInsets.all(18),
+      decoration: BoxDecoration(
+        color: const Color(0xFFF1F7EE),
+        borderRadius: BorderRadius.circular(24),
+        border: Border.all(color: const Color(0xFFD6E3CC)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            l10n.kidsArabicMiniPhrasesTitle,
+            style: const TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w700,
+              color: Color(0xFF264032),
+            ),
+          ),
+          const SizedBox(height: 6),
+          Text(
+            l10n.kidsArabicMiniPhrasesWordsCardSubtitle(heardCount),
+            style: const TextStyle(color: Color(0xFF4A6456), height: 1.35),
+          ),
+          const SizedBox(height: 12),
+          FilledButton.tonal(
+            onPressed: () => context.pushNamed(
+              'kidsArabicMiniPhrases',
+              queryParameters: initialPhraseId == null
+                  ? <String, String>{}
+                  : {'phrase': initialPhraseId!},
+            ),
+            child: Text(l10n.kidsArabicMiniPhrasesOpenAction),
+          ),
+        ],
       ),
     );
   }

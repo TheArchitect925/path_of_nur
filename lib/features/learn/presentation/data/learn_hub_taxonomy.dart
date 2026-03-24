@@ -132,7 +132,7 @@ class LearnHubTaxonomy {
   static LearnHubRouteTarget categoryRouteTarget(LearnHubCategoryId id) {
     switch (id) {
       case LearnHubCategoryId.characterAdab:
-        return const LearnHubRouteTarget(routeName: 'learnLifeLanding');
+        return const LearnHubRouteTarget(routeName: 'learnCharacterCompanion');
       case LearnHubCategoryId.arabicLanguage:
         return const LearnHubRouteTarget(routeName: 'quranArabic');
       case LearnHubCategoryId.faq:
@@ -293,6 +293,25 @@ class LearnHubTaxonomy {
         ),
       ),
       LearnHubSubcategoryDescriptor(
+        id: 'seerah-journey',
+        title: l10n.learningJourneySeerahJourneyTitle,
+        subtitle: l10n.learningJourneySeerahJourneySubtitle,
+        categoryId: LearnHubCategoryId.prophetsStories,
+        routeTarget: const LearnHubRouteTarget(
+          routeName: 'learnSeerahCompanion',
+        ),
+        searchKeywords: const [
+          'seerah',
+          'seerah companion',
+          'life of the prophet',
+          'prophet muhammad',
+          'makkah',
+          'hijrah',
+          'madinah',
+          'final sermon',
+        ],
+      ),
+      LearnHubSubcategoryDescriptor(
         id: 'discovery',
         title: l10n.learningJourneyIslandDiscoveryTitle,
         subtitle: l10n.learnHubSubcategoryDiscoverySubtitle,
@@ -355,7 +374,20 @@ class LearnHubTaxonomy {
         title: l10n.learnHubSubcategoryCharacterAdabTitle,
         subtitle: l10n.learnHubSubcategoryCharacterAdabSubtitle,
         categoryId: LearnHubCategoryId.characterAdab,
-        routeTarget: const LearnHubRouteTarget(routeName: 'learnLifeLanding'),
+        routeTarget: const LearnHubRouteTarget(
+          routeName: 'learnCharacterCompanion',
+        ),
+        searchKeywords: const [
+          'character',
+          'adab',
+          'manners',
+          'ikhlas',
+          'sabr',
+          'shukr',
+          'humility',
+          'anger',
+          'kindness',
+        ],
       ),
       LearnHubSubcategoryDescriptor(
         id: 'arabic-learning',
@@ -510,16 +542,53 @@ class LearnHubTaxonomy {
         routeTarget: const LearnHubRouteTarget(routeName: 'learnJourneyHome'),
       ),
       LearnHubSubcategoryDescriptor(
+        id: 'glossary',
+        title: l10n.learnGlossaryTitle,
+        subtitle: l10n.learnGlossaryCardSubtitle,
+        categoryId: LearnHubCategoryId.toolsExplore,
+        routeTarget: const LearnHubRouteTarget(routeName: 'learnGlossary'),
+        searchKeywords: const [
+          'glossary',
+          'terms',
+          'islamic terms',
+          'definitions',
+          'salah',
+          'dhikr',
+          'sunnah',
+        ],
+      ),
+      LearnHubSubcategoryDescriptor(
         id: 'historical-calendar',
         title: l10n.historyArchiveTitle,
         subtitle: l10n.historyLearnIslandSubtitle,
         categoryId: LearnHubCategoryId.toolsExplore,
-        routeTarget: const LearnHubRouteTarget(routeName: 'learnHistoryArchive'),
+        routeTarget: const LearnHubRouteTarget(
+          routeName: 'learnHistoryArchive',
+        ),
         searchKeywords: const [
           'historical calendar',
           'history archive',
           'on this day',
           'islamic history',
+        ],
+      ),
+      LearnHubSubcategoryDescriptor(
+        id: 'daily-wisdom',
+        title: l10n.learningJourneyDailyWisdomTitle,
+        subtitle: l10n.learningJourneyDailyWisdomSubtitle,
+        categoryId: LearnHubCategoryId.toolsExplore,
+        routeTarget: const LearnHubRouteTarget(
+          routeName: 'learnDailyWisdomCompanion',
+        ),
+        searchKeywords: const [
+          'daily wisdom',
+          'reflection',
+          'daily reminder',
+          'quote',
+          'gratitude',
+          'mercy',
+          'hope',
+          'remembrance',
         ],
       ),
     ];
@@ -554,6 +623,9 @@ class LearnHubTaxonomy {
       case 'quranLearningHub':
       case 'learnHadithLanding':
       case 'learnLifeLanding':
+      case 'learnSeerahCompanion':
+      case 'learnCharacterCompanion':
+      case 'learnDailyWisdomCompanion':
       case 'learnWorldLanding':
       case 'learnProphetsHub':
       case 'learnHistoryArchive':
@@ -561,6 +633,7 @@ class LearnHubTaxonomy {
       case 'learnDuaHub':
       case 'learnQuizzesHub':
       case 'learnGamesIsland':
+      case 'learnGlossary':
       case 'learnKidsGames':
       case 'learnKidsArabicLearning':
       case 'learnKidsQuran':

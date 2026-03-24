@@ -5,6 +5,7 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
+import '../application/quran_teaching_audio_playback_service.dart';
 import '../application/quran_teaching_controller.dart';
 import '../application/quran_teaching_smart_review_controller.dart';
 import '../domain/quran_teaching_models.dart';
@@ -41,6 +42,7 @@ class _QuranTeachingReviewPageState
         ? null
         : sessionItems[_index];
     final l10n = AppLocalizations.of(context);
+    final messenger = ScaffoldMessenger.of(context);
 
     return AppPageScaffold(
       title: l10n.triviaReviewMistakesTitle,
@@ -51,7 +53,7 @@ class _QuranTeachingReviewPageState
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'A few items need another pass.',
+                    l10n.quranTeachingReviewPageIntroTitle,
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.w700,
                     ),
@@ -59,8 +61,10 @@ class _QuranTeachingReviewPageState
                   const SizedBox(height: 6),
                   Text(
                     mistakes.isEmpty
-                        ? 'No review items right now. Your recent practice is looking good.'
-                        : '${mistakes.length} items waiting across your recent quizzes.',
+                        ? l10n.quranTeachingReviewPageEmptyBody
+                        : l10n.quranTeachingReviewPageCountBody(
+                            mistakes.length,
+                          ),
                   ),
                 ],
               ),
@@ -71,29 +75,29 @@ class _QuranTeachingReviewPageState
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Review session',
+                    l10n.quranTeachingReviewPageSessionTitle,
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       fontWeight: FontWeight.w700,
                     ),
                   ),
                   const SizedBox(height: 10),
                   SegmentedButton<_ReviewSessionFilter>(
-                    segments: const [
+                    segments: [
                       ButtonSegment(
                         value: _ReviewSessionFilter.all,
-                        label: Text('Review all'),
+                        label: Text(l10n.quranTeachingReviewPageFilterAll),
                       ),
                       ButtonSegment(
                         value: _ReviewSessionFilter.quick,
-                        label: Text('Quick 5'),
+                        label: Text(l10n.quranTeachingReviewPageFilterQuick),
                       ),
                       ButtonSegment(
                         value: _ReviewSessionFilter.recent,
-                        label: Text('Recent'),
+                        label: Text(l10n.quranTeachingReviewPageFilterRecent),
                       ),
                       ButtonSegment(
                         value: _ReviewSessionFilter.hardest,
-                        label: Text('Hardest'),
+                        label: Text(l10n.quranTeachingReviewPageFilterHardest),
                       ),
                     ],
                     selected: <_ReviewSessionFilter>{_filter},
@@ -112,8 +116,8 @@ class _QuranTeachingReviewPageState
                       onPressed: () => setState(() => _sessionStarted = true),
                       child: Text(
                         _filter == _ReviewSessionFilter.quick
-                            ? 'Start quick review'
-                            : 'Start review',
+                            ? l10n.quranTeachingReviewPageStartQuickAction
+                            : l10n.quranTeachingReviewPageStartAction,
                       ),
                     ),
                   ],
@@ -124,7 +128,7 @@ class _QuranTeachingReviewPageState
             if (!_sessionStarted && sessionItems.isEmpty)
               PremiumCard(
                 child: Text(
-                  'No items match this review filter right now.',
+                  l10n.quranTeachingReviewPageFilterEmpty,
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
               ),
@@ -134,7 +138,10 @@ class _QuranTeachingReviewPageState
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Text(
-                      'Item ${_index + 1} of ${sessionItems.length}',
+                      l10n.quranTeachingReviewPageItemCounter(
+                        _index + 1,
+                        sessionItems.length,
+                      ),
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: AppColors.onSurfaceSubtle,
                       ),
@@ -170,12 +177,20 @@ class _QuranTeachingReviewPageState
                       QuranTeachingAudioIconButton(
                         audio: current.audio,
                         availableIcon: Icons.volume_up_rounded,
-                        label: 'Replay audio',
-                        onAvailablePressed: () {
-                          ScaffoldMessenger.of(context).showSnackBar(
+                        label: l10n.quranTeachingReviewPageReplayAudioAction,
+                        onAvailablePressed: () async {
+                          final played = await ref
+                              .read(quranTeachingAudioPlaybackServiceProvider)
+                              .playCue(current.audio!);
+                          if (!mounted || played) {
+                            return;
+                          }
+                          messenger.showSnackBar(
                             SnackBar(
                               content: Text(
-                                'Audio ready for ${current.audio!.label}.',
+                                l10n.batch9AudioNotAddedYet(
+                                  current.audio!.label,
+                                ),
                               ),
                             ),
                           );
@@ -202,7 +217,9 @@ class _QuranTeachingReviewPageState
                           ? () => _submit(current)
                           : () => _advance(sessionItems),
                       child: Text(
-                        _feedback == null ? 'Check answer' : 'Next review item',
+                        _feedback == null
+                            ? l10n.quranTeachingReviewPageCheckAnswerAction
+                            : l10n.quranTeachingReviewPageNextItemAction,
                       ),
                     ),
                   ],
@@ -214,14 +231,22 @@ class _QuranTeachingReviewPageState
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Review complete',
+                      l10n.quranTeachingReviewPageCompleteTitle,
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.w700,
                       ),
                     ),
                     const SizedBox(height: 8),
-                    Text('Items improved: $_improvedCount'),
-                    Text('Still need another pass: $_stillNeedsCount'),
+                    Text(
+                      l10n.quranTeachingReviewPageImprovedCount(
+                        _improvedCount,
+                      ),
+                    ),
+                    Text(
+                      l10n.quranTeachingReviewPageStillNeedsCount(
+                        _stillNeedsCount,
+                      ),
+                    ),
                     const SizedBox(height: 12),
                     FilledButton(
                       onPressed: () {
@@ -233,7 +258,9 @@ class _QuranTeachingReviewPageState
                           _stillNeedsCount = 0;
                         });
                       },
-                      child: const Text('Start another review'),
+                      child: Text(
+                        l10n.quranTeachingReviewPageStartAnotherAction,
+                      ),
                     ),
                   ],
                 ),
@@ -270,7 +297,10 @@ class _QuranTeachingReviewPageState
           children: [
             Expanded(
               child: ChoiceChip(
-                label: const Text('True'),
+                label: Text(
+                  AppLocalizations.of(context)
+                      .quranTeachingReviewPageTrueAction,
+                ),
                 selected: _selectedTrueFalse == true,
                 onSelected: (_) => setState(() => _selectedTrueFalse = true),
               ),
@@ -278,7 +308,10 @@ class _QuranTeachingReviewPageState
             const SizedBox(width: 10),
             Expanded(
               child: ChoiceChip(
-                label: const Text('False'),
+                label: Text(
+                  AppLocalizations.of(context)
+                      .quranTeachingReviewPageFalseAction,
+                ),
                 selected: _selectedTrueFalse == false,
                 onSelected: (_) => setState(() => _selectedTrueFalse = false),
               ),

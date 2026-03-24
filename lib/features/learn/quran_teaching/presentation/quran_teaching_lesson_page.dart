@@ -4,7 +4,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
-import '../application/quran_teaching_asset_resolver.dart';
+import '../../../arabic/data/arabic_alphabet_catalog.dart';
+import '../../../arabic/domain/arabic_alphabet_models.dart';
+import '../../../arabic/presentation/widgets/arabic_learning_playback_speed_toggle.dart';
+import '../application/quran_teaching_audio_playback_service.dart';
 import '../application/quran_teaching_controller.dart';
 import '../application/quran_teaching_smart_review_controller.dart';
 import '../domain/quran_teaching_models.dart';
@@ -57,11 +60,16 @@ class _QuranTeachingLessonPageState
     final reviewLater = progress.reviewLaterLessonIds.contains(
       widget.lesson.id,
     );
+    final catalog = ref.watch(quranTeachingCatalogProvider);
     final totalPages =
         widget.lesson.steps.length + widget.lesson.quizzes.length;
     final currentPage = _inQuiz
         ? widget.lesson.steps.length + _quizIndex + 1
         : _stepIndex + 1;
+    final nextStepTitle =
+        !_inQuiz && _stepIndex + 1 < widget.lesson.steps.length
+        ? widget.lesson.steps[_stepIndex + 1].title
+        : null;
 
     return Scaffold(
       appBar: AppBar(
@@ -69,7 +77,6 @@ class _QuranTeachingLessonPageState
         actions: [
           IconButton(
             onPressed: () {
-              final catalog = ref.read(quranTeachingCatalogProvider);
               final fallbackPack = _firstAudioPackForModule(
                 catalog,
                 widget.module.id,
@@ -104,6 +111,8 @@ class _QuranTeachingLessonPageState
         child: ListView(
           padding: const EdgeInsets.fromLTRB(20, 16, 20, 32),
           children: [
+            const ArabicLearningPlaybackSpeedToggle(),
+            const SizedBox(height: 12),
             Row(
               children: [
                 Expanded(
@@ -159,6 +168,16 @@ class _QuranTeachingLessonPageState
                       onPlayAudio: _playAudio,
                     ),
             ),
+            if (!_inQuiz && nextStepTitle != null) ...[
+              const SizedBox(height: 12),
+              Text(
+                l10n.quranTeachingLessonUpNext(nextStepTitle),
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  color: AppColors.onSurfaceSubtle,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ],
             const SizedBox(height: 16),
             if (!_inQuiz)
               FilledButton(
@@ -193,15 +212,14 @@ class _QuranTeachingLessonPageState
 
   void _playAudio(QuranAudioCue audio) {
     final l10n = AppLocalizations.of(context);
-    QuranTeachingAssetResolver.resolveAudioPath(audio).then((path) {
-      if (!mounted) return;
+    ref
+        .read(quranTeachingAudioPlaybackServiceProvider)
+        .playCue(audio)
+        .then((played) {
+      if (!mounted || played) return;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(
-            path == null
-                ? l10n.batch9AudioNotAddedYet(audio.label)
-                : l10n.batch9AudioReady(audio.label),
-          ),
+          content: Text(l10n.batch9AudioNotAddedYet(audio.label)),
         ),
       );
     });
@@ -274,6 +292,12 @@ class _QuranTeachingLessonPageState
   }
 
   void _finishLesson() {
+    final catalog = ref.read(quranTeachingCatalogProvider);
+    final nextLesson = _nextLessonInModule(
+      catalog,
+      widget.module,
+      widget.lesson,
+    );
     var score = 1.0;
     if (widget.lesson.quizzes.isNotEmpty) {
       final correct = _quizAnsweredCorrectly.values
@@ -301,6 +325,7 @@ class _QuranTeachingLessonPageState
       context: context,
       isScrollControlled: true,
       builder: (context) {
+        final l10n = AppLocalizations.of(context);
         return Padding(
           padding: const EdgeInsets.fromLTRB(20, 20, 20, 28),
           child: Column(
@@ -308,26 +333,51 @@ class _QuranTeachingLessonPageState
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Lesson complete',
+                l10n.quranTeachingLessonCompleteTitle,
                 style: Theme.of(
                   context,
                 ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700),
               ),
               const SizedBox(height: 8),
-              Text(widget.lesson.title),
-              const SizedBox(height: 12),
               Text(
-                widget.lesson.quizzes.isEmpty
-                    ? 'You finished the lesson. The next one is ready when you are.'
-                    : 'Quiz score: ${(score * 100).round()}%',
+                nextLesson == null
+                    ? l10n.quranTeachingLessonCompleteSubtitle(
+                        widget.lesson.title,
+                      )
+                    : l10n.quranTeachingLessonCompleteNextSubtitle(
+                        widget.lesson.title,
+                        nextLesson.title,
+                      ),
               ),
+              const SizedBox(height: 12),
+              if (widget.lesson.quizzes.isNotEmpty)
+                Text(l10n.quranTeachingLessonQuizScore((score * 100).round())),
               const SizedBox(height: 16),
-              FilledButton(
+              if (nextLesson != null) ...[
+                FilledButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    Navigator.of(this.context).pushReplacement(
+                      MaterialPageRoute<void>(
+                        builder: (_) => QuranTeachingLessonPage(
+                          lesson: nextLesson,
+                          module: widget.module,
+                        ),
+                      ),
+                    );
+                  },
+                  child: Text(
+                    l10n.quranTeachingLessonNextLesson(nextLesson.title),
+                  ),
+                ),
+                const SizedBox(height: 10),
+              ],
+              FilledButton.tonal(
                 onPressed: () {
                   Navigator.of(context).pop();
                   Navigator.of(this.context).pop(true);
                 },
-                child: const Text('Back to module'),
+                child: Text(l10n.quranTeachingLessonBackToModule),
               ),
             ],
           ),
@@ -360,6 +410,8 @@ class _LessonStepBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final sharedLetter = _sharedLetterForStep(step);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -401,10 +453,14 @@ class _LessonStepBody extends StatelessWidget {
         ),
         const SizedBox(height: 16),
         Text(step.explanation),
+        if (sharedLetter != null) ...[
+          const SizedBox(height: 16),
+          _SharedLetterSupportCard(letter: sharedLetter),
+        ],
         if (step.sourceReference != null) ...[
           const SizedBox(height: 8),
           Text(
-            'Source: ${step.sourceReference}',
+            l10n.quranTeachingLessonSourceLabel(step.sourceReference!),
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
               color: AppColors.onSurfaceSubtle,
               fontWeight: FontWeight.w600,
@@ -429,7 +485,7 @@ class _LessonStepBody extends StatelessWidget {
               QuranTeachingAudioIconButton(
                 audio: step.audio,
                 availableIcon: Icons.volume_up_rounded,
-                label: 'Hear this',
+                label: l10n.quranTeachingLessonHearThis,
                 onAvailablePressed: () => onPlayAudio(step.audio!),
               ),
             if (visualModeEnabled && step.visualAnchor != null)
@@ -444,7 +500,7 @@ class _LessonStepBody extends StatelessWidget {
         if (step.examples.isNotEmpty) ...[
           const SizedBox(height: 18),
           Text(
-            'Examples',
+            l10n.quranTeachingLessonExamplesTitle,
             style: Theme.of(
               context,
             ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
@@ -489,7 +545,9 @@ class _LessonStepBody extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.only(top: 4),
                                 child: Text(
-                                  'Source: ${example.verseReference}',
+                                  l10n.quranTeachingLessonSourceLabel(
+                                    example.verseReference!,
+                                  ),
                                   style: Theme.of(context).textTheme.bodySmall
                                       ?.copyWith(
                                         color: AppColors.onSurfaceSubtle,
@@ -557,11 +615,12 @@ class _QuizBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Text(
-          'Quick quiz',
+          l10n.quranTeachingLessonQuickQuizTitle,
           style: Theme.of(
             context,
           ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
@@ -591,7 +650,7 @@ class _QuizBody extends StatelessWidget {
           FilledButton.tonalIcon(
             onPressed: () => onPlayAudio(quiz.audio!),
             icon: const Icon(Icons.volume_up_rounded),
-            label: const Text('Hear audio'),
+            label: Text(l10n.quranTeachingLessonHearAudio),
           ),
         ],
         const SizedBox(height: 16),
@@ -618,7 +677,7 @@ class _QuizBody extends StatelessWidget {
             ),
             child: Text(
               buildSelection.isEmpty
-                  ? 'Tap the pieces in order.'
+                  ? l10n.quranTeachingLessonTapPiecesHint
                   : buildSelection.join('  '),
               textAlign: TextAlign.center,
               style: const TextStyle(fontSize: 30, fontFamily: 'AmiriQuran'),
@@ -629,7 +688,7 @@ class _QuizBody extends StatelessWidget {
             children: [
               Expanded(
                 child: ChoiceChip(
-                  label: const Text('True'),
+                  label: Text(l10n.quranTeachingDailyReviewTrue),
                   selected: selectedTrueFalse == true,
                   onSelected: (_) => onSelectTrueFalse(true),
                 ),
@@ -637,7 +696,7 @@ class _QuizBody extends StatelessWidget {
               const SizedBox(width: 12),
               Expanded(
                 child: ChoiceChip(
-                  label: const Text('False'),
+                  label: Text(l10n.quranTeachingDailyReviewFalse),
                   selected: selectedTrueFalse == false,
                   onSelected: (_) => onSelectTrueFalse(false),
                 ),
@@ -709,6 +768,163 @@ class _QuizBody extends StatelessWidget {
           ),
         ],
       ],
+    );
+  }
+}
+
+QuranTeachingLesson? _nextLessonInModule(
+  QuranTeachingCatalog catalog,
+  QuranTeachingModule module,
+  QuranTeachingLesson lesson,
+) {
+  final lessons = catalog.lessonsForModule(module.id);
+  final index = lessons.indexWhere((item) => item.id == lesson.id);
+  if (index < 0 || index + 1 >= lessons.length) {
+    return null;
+  }
+  return lessons[index + 1];
+}
+
+ArabicAlphabetLetter? _sharedLetterForStep(QuranTeachingStep step) {
+  switch (step.type) {
+    case QuranTeachingStepType.letterIntroduction:
+      return arabicAlphabetLetterByQuranTeachingSeedId(step.id);
+    case QuranTeachingStepType.letterShapes:
+      if (step.id.startsWith('shape_')) {
+        return arabicAlphabetLetterById(step.id.substring('shape_'.length));
+      }
+      return null;
+    case QuranTeachingStepType.harakat:
+    case QuranTeachingStepType.wordFormation:
+    case QuranTeachingStepType.rule:
+    case QuranTeachingStepType.phrase:
+      return null;
+  }
+}
+
+class _SharedLetterSupportCard extends StatelessWidget {
+  const _SharedLetterSupportCard({required this.letter});
+
+  final ArabicAlphabetLetter letter;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return Container(
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(18),
+        color: AppColors.surfaceSoft.withValues(alpha: 0.45),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            l10n.quranTeachingLessonLetterProfileTitle,
+            style: Theme.of(
+              context,
+            ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+          ),
+          const SizedBox(height: 10),
+          Text(
+            '${letter.nameAr} • ${letter.adultNameEn}',
+            style: Theme.of(
+              context,
+            ).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w700),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            l10n.quranTeachingLessonSoundHintLabel(letter.soundHint),
+            style: Theme.of(context).textTheme.bodyMedium,
+          ),
+          const SizedBox(height: 12),
+          Text(
+            l10n.quranTeachingLessonFormsTitle,
+            style: Theme.of(
+              context,
+            ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+          ),
+          const SizedBox(height: 8),
+          GridView.count(
+            crossAxisCount: 2,
+            mainAxisSpacing: 8,
+            crossAxisSpacing: 8,
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            childAspectRatio: 2.1,
+            children: [
+              _LetterFormTile(
+                label: l10n.quranTeachingLessonFormIsolated,
+                glyph: letter.positionalForms.isolated,
+              ),
+              _LetterFormTile(
+                label: l10n.quranTeachingLessonFormInitial,
+                glyph:
+                    letter.positionalForms.initial ??
+                    l10n.quranTeachingLessonFormUnavailable,
+              ),
+              _LetterFormTile(
+                label: l10n.quranTeachingLessonFormMedial,
+                glyph:
+                    letter.positionalForms.medial ??
+                    l10n.quranTeachingLessonFormUnavailable,
+              ),
+              _LetterFormTile(
+                label: l10n.quranTeachingLessonFormFinal,
+                glyph:
+                    letter.positionalForms.finalForm ??
+                    l10n.quranTeachingLessonFormUnavailable,
+              ),
+            ],
+          ),
+          if (!letter.joiningBehavior.joinsToNext) ...[
+            const SizedBox(height: 10),
+            Text(
+              l10n.quranTeachingLessonNoForwardJoinHint,
+              style: Theme.of(
+                context,
+              ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+}
+
+class _LetterFormTile extends StatelessWidget {
+  const _LetterFormTile({required this.label, required this.glyph});
+
+  final String label;
+  final String glyph;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(color: AppColors.surfaceSoft),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            label,
+            style: Theme.of(context).textTheme.labelMedium?.copyWith(
+              color: AppColors.onSurfaceSubtle,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            glyph,
+            textDirection: TextDirection.rtl,
+            style: const TextStyle(fontSize: 26, fontFamily: 'AmiriQuran'),
+          ),
+        ],
+      ),
     );
   }
 }

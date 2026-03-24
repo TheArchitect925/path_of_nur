@@ -12,7 +12,10 @@ import '../application/learn_together_provider.dart';
 import '../application/learning_journey_progress_provider.dart';
 import '../application/learning_path_provider.dart';
 import '../data/learning_journey_localized_metadata.dart';
+import '../data/learning_journey_quran_integration.dart';
 import '../data/learning_journey_registry.dart';
+import '../../quran/application/quran_user_intent_provider.dart';
+import '../../quran/domain/quran_user_intent_models.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../domain/learning_journey_lesson_models.dart';
 import '../domain/learning_journey_models.dart';
@@ -63,6 +66,30 @@ class LearningJourneyLessonPage extends ConsumerWidget {
       ...lesson.quranReferences,
       ...lesson.sourceReferences,
     ];
+    final quranContextEntry = learningJourneyQuranContextForStage(stage.id);
+    final quranReaderQueryParameters = quranContextEntry == null
+        ? const <String, String>{}
+        : <String, String>{...quranContextEntry.toReaderQueryParameters()};
+    final selectedIntent = ref.watch(quranSelectedUserIntentProvider);
+    if (quranContextEntry != null &&
+        !quranReaderQueryParameters.containsKey('mode') &&
+        selectedIntent != null) {
+      quranReaderQueryParameters['mode'] = quranPreferredReaderModeForIntent(
+        selectedIntent,
+        hasHighlightedTopic: quranContextEntry.topicId?.trim().isNotEmpty ??
+            false,
+      ).wireName;
+    }
+    final filteredRelatedTools = quranContextEntry == null
+        ? lesson.relatedTools
+        : lesson.relatedTools
+              .where(
+                (tool) =>
+                    !(tool.routeName == 'quranReader' &&
+                        tool.pathParameters['surahNumber'] == '1' &&
+                        tool.queryParameters.isEmpty),
+              )
+              .toList(growable: false);
     final continueJourneys = lesson.continueJourneyIds
         .map(LearningJourneyRegistry.journeyById)
         .whereType<LearningJourney>()
@@ -413,15 +440,17 @@ class LearningJourneyLessonPage extends ConsumerWidget {
             ),
           ),
         ],
-        if (contextualRelatedAsync case AsyncData(:final value)
-            when value.isNotEmpty) ...[
+        if (contextualRelatedAsync case AsyncData(
+          :final value,
+        ) when value.isNotEmpty) ...[
           const SizedBox(height: 14),
           _SectionCard(
             title: l10n.contextualLinksRelatedTitle,
             child: ContextualRelatedContentSection(items: value),
           ),
         ],
-        if ((!kidsUi.enabled && lesson.relatedTools.isNotEmpty) ||
+        if ((!kidsUi.enabled && filteredRelatedTools.isNotEmpty) ||
+            quranContextEntry != null ||
             lesson.showDhikrCounterAction) ...[
           const SizedBox(height: 14),
           Text(
@@ -445,10 +474,31 @@ class LearningJourneyLessonPage extends ConsumerWidget {
             ),
             const SizedBox(height: 10),
           ],
+          if (quranContextEntry != null) ...[
+            FilledButton.tonalIcon(
+              onPressed: () => context.pushNamed(
+                'quranReader',
+                pathParameters: {
+                  'surahNumber': quranContextEntry.surahNumber.toString(),
+                },
+                queryParameters: quranReaderQueryParameters,
+              ),
+              icon: const Icon(Icons.menu_book_rounded),
+              label: Text(l10n.learningJourneyLessonActionStudyInQuran),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              l10n.learningJourneyLessonActionStudyInQuranSubtitle(
+                quranContextEntry.referenceLabel,
+              ),
+              style: const TextStyle(color: Color(0xFF675B4E), height: 1.35),
+            ),
+            if (filteredRelatedTools.isNotEmpty) const SizedBox(height: 10),
+          ],
           Wrap(
             spacing: 10,
             runSpacing: 10,
-            children: lesson.relatedTools
+            children: filteredRelatedTools
                 .map((tool) => LearningJourneyToolLinkButton(tool: tool))
                 .toList(growable: false),
           ),
@@ -486,9 +536,9 @@ class LearningJourneyLessonPage extends ConsumerWidget {
                         'learnJourneyStage',
                         pathParameters: {
                           'journeyId': journey.id,
-                        'stageId': nextStage.id,
-                      },
-                    ))
+                          'stageId': nextStage.id,
+                        },
+                      ))
               : () {
                   final result = ref
                       .read(learningJourneyProgressProvider.notifier)

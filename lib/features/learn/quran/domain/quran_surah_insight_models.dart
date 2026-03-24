@@ -1,22 +1,31 @@
 import 'quran_ayah_enrichment_models.dart';
 import 'quran_content_refs.dart';
+import 'quran_reference_models.dart';
 import 'quran_surah.dart';
 
 class QuranSurahInsightDefinition {
   const QuranSurahInsightDefinition({
     required this.surahNumber,
     required this.descriptionId,
+    required this.significanceId,
     required this.themeIds,
     required this.lessonIds,
     required this.clusters,
+    this.studyPromptIds = const <String>[],
+    this.relatedRoutes = const <QuranTopicRouteTarget>[],
+    this.relatedTopicIds = const <String>[],
     this.suggestedPathIds = const <String>[],
   });
 
   final int surahNumber;
   final String descriptionId;
+  final String significanceId;
   final List<String> themeIds;
   final List<String> lessonIds;
   final List<QuranSurahInsightClusterDefinition> clusters;
+  final List<String> studyPromptIds;
+  final List<QuranTopicRouteTarget> relatedRoutes;
+  final List<String> relatedTopicIds;
   final List<String> suggestedPathIds;
 }
 

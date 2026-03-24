@@ -34,6 +34,7 @@ import '../../../l10n/home_prayer_localizations.dart';
 import '../../../shared/application/app_summary_providers.dart';
 import '../../../shared/application/daily_clock_provider.dart';
 import '../../../shared/persistence/local_store.dart';
+import '../../../shared/profile/profile_logo_assets.dart';
 import '../../../shared/application/special_mode_provider.dart';
 import '../../../shared/state/location_permission_state.dart';
 import '../../../shared/state/shell_state.dart';
@@ -47,6 +48,7 @@ import '../../../shared/widgets/quran_verse_content.dart';
 import '../../../shared/widgets/shortcut_dock.dart';
 import '../../../shared/utils/compact_duration_formatter.dart';
 import '../../learn/presentation/data/learn_category_catalog.dart';
+import '../../learn/presentation/learn_ui_localization.dart';
 import '../../learn/presentation/models/learn_category_item.dart';
 
 String _formatLocalizedCount(BuildContext context, num value) {
@@ -116,7 +118,10 @@ class _HomePageState extends ConsumerState<HomePage> {
                   children: [
                     _TopGreetingBlock(l10n: l10n, userProfile: userProfile),
                     const SizedBox(height: 12),
-                    const QuranDailyReflectionCard(compact: true),
+                    const QuranDailyReflectionCard(
+                      compact: true,
+                      showSecondaryActions: false,
+                    ),
                     const SizedBox(height: 12),
                     const _ModeAwareHomeCard(),
                     const SizedBox(height: 10),
@@ -990,9 +995,7 @@ class _TopGreetingBlock extends StatelessWidget {
   }
 
   String get _profileLogoAsset {
-    return userProfile.sex == UserSex.brother
-        ? 'assets/icons/brotherlogo.PNG'
-        : 'assets/icons/sisterlogo.PNG';
+    return resolveProfileLogoAsset(userProfile.sex);
   }
 
   @override
@@ -1102,7 +1105,11 @@ class _TopGreetingBlock extends StatelessWidget {
                     height: 112,
                     fit: BoxFit.contain,
                     errorBuilder: (context, error, stackTrace) =>
-                        const SizedBox(width: 112, height: 112),
+                        const SizedBox(
+                          width: 112,
+                          height: 112,
+                          child: Icon(Icons.account_circle_rounded, size: 64),
+                        ),
                   ),
                 ],
               ),
@@ -1774,9 +1781,9 @@ List<_HomeSearchDestination> _learnCategorySearchDestinations(
   _HomeSearchDestination destinationForCategory(LearnCategoryItem item) {
     final categoryLabel = item.sectionType.replaceAll('-', ' ');
     return _HomeSearchDestination(
-      title: item.title,
+      title: item.localizedTitle(l10n),
       subtitle:
-          item.description ??
+          item.localizedDescription(l10n) ??
           l10n.homeLearnCategoryFallbackSubtitle(categoryLabel),
       keywords: [...item.searchKeywords, ...item.tags, item.sectionType],
       onSelected: (context) => context.pushNamed(

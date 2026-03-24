@@ -254,6 +254,50 @@ String localizedKidsArabicWordSummary(AppLocalizations l10n, String wordId) {
   }
 }
 
+String localizedKidsArabicMiniPhraseMeaning(
+  AppLocalizations l10n,
+  String phraseId,
+) {
+  switch (phraseId) {
+    case 'bismillah':
+      return l10n.kidsArabicMiniPhraseBismillahMeaning;
+    case 'alhamdulillah':
+      return l10n.kidsArabicMiniPhraseAlhamdulillahMeaning;
+    case 'subhanallah':
+      return l10n.kidsArabicMiniPhraseSubhanallahMeaning;
+    case 'allahu-akbar':
+      return l10n.kidsArabicMiniPhraseAllahuAkbarMeaning;
+    case 'assalamu-alaikum':
+      return l10n.kidsArabicMiniPhraseAssalamuAlaikumMeaning;
+    case 'inshaallah':
+      return l10n.kidsArabicMiniPhraseInshaAllahMeaning;
+    default:
+      return '';
+  }
+}
+
+String localizedKidsArabicMiniPhraseSummary(
+  AppLocalizations l10n,
+  String phraseId,
+) {
+  switch (phraseId) {
+    case 'bismillah':
+      return l10n.kidsArabicMiniPhraseBismillahSummary;
+    case 'alhamdulillah':
+      return l10n.kidsArabicMiniPhraseAlhamdulillahSummary;
+    case 'subhanallah':
+      return l10n.kidsArabicMiniPhraseSubhanallahSummary;
+    case 'allahu-akbar':
+      return l10n.kidsArabicMiniPhraseAllahuAkbarSummary;
+    case 'assalamu-alaikum':
+      return l10n.kidsArabicMiniPhraseAssalamuAlaikumSummary;
+    case 'inshaallah':
+      return l10n.kidsArabicMiniPhraseInshaAllahSummary;
+    default:
+      return '';
+  }
+}
+
 String localizedKidsArabicJoiningLetterName(
   AppLocalizations l10n,
   String letterId,

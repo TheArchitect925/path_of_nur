@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../arabic/data/arabic_beginner_content_catalog.dart';
 import '../../../journey/drops/application/journey_drops_providers.dart';
 import '../../../../shared/persistence/local_store.dart';
 import '../data/quran_teaching_seed_data.dart';
@@ -8,6 +9,8 @@ import '../domain/quran_teaching_models.dart';
 const _quranTeachingProgressKey = 'learn.quran.teaching.progress.v1';
 const _quranTeachingListenOnlyKey = 'learn.quran.teaching.listen_only.v1';
 const _quranTeachingMistakesKey = 'learn.quran.teaching.mistakes.v1';
+const _quranTeachingBeginnerWordsProgressKey =
+    'learn.quran.teaching.beginner_words.v1';
 
 class QuranTeachingProgressController
     extends StateNotifier<QuranTeachingProgressState> {
@@ -128,6 +131,37 @@ final quranTeachingProgressProvider =
       return QuranTeachingProgressController(
         ref.watch(localStoreProvider),
         ref.read(journeyDropSummaryProvider.notifier),
+      );
+    });
+
+class QuranTeachingBeginnerWordsProgressController
+    extends StateNotifier<QuranTeachingBeginnerWordsProgressState> {
+  QuranTeachingBeginnerWordsProgressController(this._store)
+    : super(
+        QuranTeachingBeginnerWordsProgressState.fromJson(
+          _store.getJsonMap(_quranTeachingBeginnerWordsProgressKey),
+        ),
+      );
+
+  final LocalStore _store;
+
+  void _save() {
+    _store.setJsonMap(_quranTeachingBeginnerWordsProgressKey, state.toJson());
+  }
+
+  void recordWordOpened(String wordId) {
+    state = state.copyWith(lastWordId: wordId, lastOpenedAt: DateTime.now());
+    _save();
+  }
+}
+
+final quranTeachingBeginnerWordsProgressProvider =
+    StateNotifierProvider<
+      QuranTeachingBeginnerWordsProgressController,
+      QuranTeachingBeginnerWordsProgressState
+    >((ref) {
+      return QuranTeachingBeginnerWordsProgressController(
+        ref.watch(localStoreProvider),
       );
     });
 
@@ -423,6 +457,52 @@ final quranTeachingRecentLessonsProvider = Provider<List<QuranTeachingLesson>>((
   return progress.recentLessonIds
       .map(catalog.lessonById)
       .whereType<QuranTeachingLesson>()
+      .toList(growable: false);
+});
+
+final quranTeachingBeginnerWordsProvider = Provider<List<QuranWordEntry>>((
+  ref,
+) {
+  final catalog = ref.watch(quranTeachingCatalogProvider);
+  final module = catalog.moduleById('recognize_words');
+  final adultWordsBySharedId = <String, QuranWordEntry>{};
+  if (module != null) {
+    for (final group in module.wordGroups) {
+      for (final word in group.words) {
+        if (word.sharedBeginnerWordId != null) {
+          adultWordsBySharedId[word.sharedBeginnerWordId!] = word;
+        }
+      }
+    }
+  }
+
+  return arabicSharedBeginnerWordOrderIds
+      .map((sharedId) {
+        final shared = arabicSharedBeginnerWordById(sharedId)!;
+        final existing = adultWordsBySharedId[sharedId];
+        if (existing != null) {
+          return existing;
+        }
+        return QuranWordEntry(
+          id: 'shared_$sharedId',
+          arabic: shared.arabicText,
+          transliteration:
+              '${shared.transliteration[0].toUpperCase()}${shared.transliteration.substring(1)}',
+          meaning: shared.simpleMeaning,
+          frequencyLabel: 'Beginner word',
+          audio: QuranAudioCue(
+            id: shared.audioLookupId ?? 'shared_$sharedId',
+            label:
+                '${shared.transliteration[0].toUpperCase()}${shared.transliteration.substring(1)}',
+            assetPath: shared.audioAssetPath,
+            fallbackTextLabel: shared.arabicText,
+          ),
+          exampleReference: shared.sourceReference,
+          categoryTag: shared.categoryTag,
+          sharedBeginnerWordId: shared.id,
+          letterIds: shared.letterIds,
+        );
+      })
       .toList(growable: false);
 });
 

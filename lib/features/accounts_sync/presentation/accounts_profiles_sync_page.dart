@@ -8,7 +8,12 @@ import '../../../shared/widgets/app_page_scaffold.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/section_title.dart';
 import '../application/accounts_sync_controller.dart';
+import '../application/auto_backup_engine.dart';
+import '../application/remote_backup_transport.dart';
+import '../application/accounts_sync_services.dart';
+import '../application/sync_scope_support.dart';
 import '../application/sync_foundation.dart';
+import '../domain/accounts_sync_models.dart';
 
 class AccountsProfilesSyncPage extends ConsumerWidget {
   const AccountsProfilesSyncPage({super.key});
@@ -17,6 +22,7 @@ class AccountsProfilesSyncPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
     final state = ref.watch(accountsSyncControllerProvider);
+    final accountStatus = ref.watch(accountsSyncStatusProvider);
     final activeProfile = state.activeProfile;
     final activeAccount = state.activeAccount;
     return AppPageScaffold(
@@ -24,6 +30,65 @@ class AccountsProfilesSyncPage extends ConsumerWidget {
       title: l10n.settingsAccountsSyncTitle,
       subtitle: l10n.settingsAccountsSyncSubtitle,
       children: [
+        PremiumCard(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                l10n.accountsSyncStatusCardTitle,
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              const SizedBox(height: 6),
+              Text(
+                _connectionModeBody(
+                  l10n,
+                  accountStatus.mode,
+                  accountStatus.accountLabel,
+                ),
+              ),
+              const SizedBox(height: 12),
+              Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: [
+                  Chip(
+                    label: Text(
+                      l10n.accountsSyncCurrentModeValue(
+                        _connectionModeLabel(l10n, accountStatus.mode),
+                      ),
+                    ),
+                  ),
+                  Chip(
+                    label: Text(
+                      l10n.accountsSyncProviderValue(
+                        accountStatus.providerLabel == null
+                            ? l10n.accountsSyncProviderNone
+                            : _accountProviderNameFromKey(
+                                l10n,
+                                accountStatus.providerLabel!,
+                              ),
+                      ),
+                    ),
+                  ),
+                  Chip(
+                    label: Text(
+                      accountStatus.lastBackupAtIso == null
+                          ? l10n.accountsSyncBackupNeverBackedUp
+                          : l10n.accountsSyncLastBackupValue(
+                              _formatWhen(
+                                context,
+                                l10n,
+                                accountStatus.lastBackupAtIso,
+                              ),
+                            ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 16),
         SectionTitle(
           title: l10n.settingsCurrentProfileTitle,
           subtitle: l10n.accountsSyncCurrentProfileSectionSubtitle,
@@ -556,22 +621,14 @@ class SignedInAccountsPage extends ConsumerStatefulWidget {
 }
 
 class _SignedInAccountsPageState extends ConsumerState<SignedInAccountsPage> {
-  AccountProviderType _provider = AccountProviderType.localOnly;
-  ProfileSyncMode _syncMode = ProfileSyncMode.localOnly;
-  final _identifierController = TextEditingController();
-  final _nameController = TextEditingController();
-
-  @override
-  void dispose() {
-    _identifierController.dispose();
-    _nameController.dispose();
-    super.dispose();
-  }
+  bool _authBusy = false;
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final state = ref.watch(accountsSyncControllerProvider);
+    final authState = ref.watch(authStateProvider);
+    final status = ref.watch(accountsSyncStatusProvider);
     return AppPageScaffold(
       headerIcon: Icons.devices_other_rounded,
       title: l10n.accountsSyncSignedInAccountsTitle,
@@ -607,85 +664,149 @@ class _SignedInAccountsPageState extends ConsumerState<SignedInAccountsPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(l10n.accountsSyncSignInAnotherAccountTitle),
-              const SizedBox(height: 12),
-              DropdownButtonFormField<AccountProviderType>(
-                initialValue: _provider,
-                items: AccountProviderType.values
-                    .map(
-                      (item) => DropdownMenuItem(
-                        value: item,
-                        child: Text(_accountProviderLabel(l10n, item)),
-                      ),
-                    )
-                    .toList(),
-                onChanged: (value) =>
-                    setState(() => _provider = value ?? _provider),
-                decoration: InputDecoration(
-                  labelText: l10n.accountsSyncSignInMethodLabel,
-                ),
+              Text(
+                l10n.accountsSyncAccountSectionTitle,
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              const SizedBox(height: 6),
+              Text(
+                authState.status == AuthStatus.authenticated
+                    ? l10n.accountsSyncConnectedAccountBody(
+                        state.authenticatedAccount?.displayName ??
+                            l10n.accountsSyncProviderNone,
+                      )
+                    : l10n.accountsSyncLocalOnlyBody,
               ),
               const SizedBox(height: 12),
-              TextField(
-                controller: _identifierController,
-                decoration: InputDecoration(
-                  labelText: l10n.accountsSyncEmailOrIdentifierLabel,
+              ListTile(
+                contentPadding: EdgeInsets.zero,
+                title: Text(l10n.accountsSyncCurrentModeLabel),
+                subtitle: Text(_connectionModeLabel(l10n, status.mode)),
+              ),
+              ListTile(
+                contentPadding: EdgeInsets.zero,
+                title: Text(l10n.accountsSyncBackupStatusTitle),
+                subtitle: Text(
+                  status.lastBackupAtIso == null
+                      ? l10n.accountsSyncBackupNeverBackedUp
+                      : l10n.accountsSyncLastBackupValue(
+                          _formatWhen(
+                            context,
+                            l10n,
+                            status.lastBackupAtIso,
+                          ),
+                        ),
                 ),
+              ),
+              const Divider(height: 24),
+              FilledButton.icon(
+                onPressed: _authBusy
+                    ? null
+                    : () => _handleAuthAction(
+                          context,
+                          () => ref
+                              .read(accountsAuthRepositoryProvider)
+                              .signInWithApple(),
+                        ),
+                icon: const Icon(Icons.apple_rounded),
+                label: Text(l10n.accountsSyncContinueWithAppleAction),
               ),
               const SizedBox(height: 12),
-              TextField(
-                controller: _nameController,
-                decoration: InputDecoration(
-                  labelText: l10n.accountsSyncDisplayNameLabel,
-                ),
+              FilledButton.icon(
+                onPressed: _authBusy
+                    ? null
+                    : () => _handleAuthAction(
+                          context,
+                          () => ref
+                              .read(accountsAuthRepositoryProvider)
+                              .signInWithGoogle(),
+                        ),
+                icon: const Icon(Icons.account_circle_outlined),
+                label: Text(l10n.accountsSyncContinueWithGoogleAction),
               ),
               const SizedBox(height: 12),
-              DropdownButtonFormField<ProfileSyncMode>(
-                initialValue: _syncMode,
-                items: ProfileSyncMode.values
-                    .map(
-                      (item) => DropdownMenuItem(
-                        value: item,
-                        child: Text(_syncModeLabel(l10n, item)),
-                      ),
-                    )
-                    .toList(),
-                onChanged: (value) =>
-                    setState(() => _syncMode = value ?? _syncMode),
-                decoration: InputDecoration(
-                  labelText: l10n.accountsSyncSyncModeLabel,
+              OutlinedButton.icon(
+                onPressed: _authBusy
+                    ? null
+                    : () => _handleAuthAction(
+                          context,
+                          () => ref
+                              .read(accountsAuthRepositoryProvider)
+                              .signInWithEmail(),
+                        ),
+                icon: const Icon(Icons.email_outlined),
+                label: Text(l10n.accountsSyncContinueWithEmailAction),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                l10n.accountsSyncEmailComingNextBody,
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+              const SizedBox(height: 12),
+              OutlinedButton(
+                onPressed: _authBusy
+                    ? null
+                    : () async {
+                        final messenger = ScaffoldMessenger.of(context);
+                        await ref
+                            .read(accountsAuthRepositoryProvider)
+                            .signOut();
+                        if (!mounted) return;
+                        messenger.showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              l10n.accountsSyncContinueLocalOnlyResult,
+                            ),
+                          ),
+                        );
+                      },
+                child: Text(l10n.accountsSyncContinueLocalOnlyAction),
+              ),
+              if (authState.status == AuthStatus.authenticated) ...[
+                const SizedBox(height: 12),
+                TextButton(
+                  onPressed: _authBusy
+                      ? null
+                      : () async {
+                          final messenger = ScaffoldMessenger.of(context);
+                          await ref.read(accountsAuthRepositoryProvider).signOut();
+                          if (!mounted) return;
+                          messenger.showSnackBar(
+                            SnackBar(
+                              content: Text(l10n.accountsSyncSignedOutResult),
+                            ),
+                          );
+                        },
+                  child: Text(l10n.accountsSyncSignOutAction),
                 ),
-              ),
-              const SizedBox(height: 14),
-              FilledButton(
-                onPressed: () async {
-                  final messenger = ScaffoldMessenger.of(context);
-                  await ref
-                      .read(accountManagerProvider)
-                      .add(
-                        provider: _provider,
-                        identifier: _identifierController.text.trim().isEmpty
-                            ? _provider.name
-                            : _identifierController.text.trim(),
-                        displayName: _nameController.text.trim().isEmpty
-                            ? l10n.accountsSyncDefaultAccountDisplayName
-                            : _nameController.text.trim(),
-                        syncMode: _syncMode,
-                      );
-                  if (!mounted) return;
-                  messenger.showSnackBar(
-                    SnackBar(
-                      content: Text(l10n.accountsSyncAccountAddedOnDevice),
-                    ),
-                  );
-                },
-                child: Text(l10n.accountsSyncAddAccountAction),
-              ),
+              ],
             ],
           ),
         ),
       ],
     );
+  }
+
+  Future<void> _handleAuthAction(
+    BuildContext context,
+    Future<AuthActionResult> Function() action,
+  ) async {
+    setState(() => _authBusy = true);
+    final l10n = AppLocalizations.of(context);
+    final messenger = ScaffoldMessenger.of(context);
+    final result = await action();
+    if (!mounted) return;
+    setState(() => _authBusy = false);
+    final message = switch (result.status) {
+      AuthActionStatus.success => l10n.accountsSyncAccountConnectedResult(
+          result.identity?.displayName ?? l10n.accountsSyncDefaultAccountDisplayName,
+        ),
+      AuthActionStatus.cancelled => l10n.accountsSyncAuthCancelledResult,
+      AuthActionStatus.unavailable => l10n.accountsSyncAuthUnavailableResult,
+      AuthActionStatus.notConfigured => l10n.accountsSyncAuthNotConfiguredResult,
+      AuthActionStatus.error => l10n.accountsSyncAuthFailedResult,
+    };
+    messenger.showSnackBar(SnackBar(content: Text(message)));
   }
 }
 
@@ -832,11 +953,435 @@ class BackupRestoreHomePage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
     final state = ref.watch(accountsSyncControllerProvider);
+    final prefs = ref.watch(syncPreferencesProvider);
+    final accountStatus = ref.watch(accountsSyncStatusProvider);
+    final autoBackup = ref.watch(autoBackupStatusProvider);
+    final syncScopePreferences = ref.watch(syncScopePreferencesProvider);
+    final syncScopeSummary = buildBackupScopeSummary(syncScopePreferences);
     return AppPageScaffold(
       headerIcon: Icons.backup_outlined,
       title: l10n.settingsBackupRestoreTitle,
       subtitle: l10n.accountsSyncBackupRestorePageSubtitle,
       children: [
+        PremiumCard(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                l10n.accountsSyncRemoteBackupSectionTitle,
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              const SizedBox(height: 8),
+              Text(
+                accountStatus.remoteBackupConfigured
+                    ? l10n.accountsSyncRemoteBackupReadyBody
+                    : l10n.accountsSyncRemoteBackupUnavailableBody,
+              ),
+              const SizedBox(height: 12),
+              ListTile(
+                contentPadding: EdgeInsets.zero,
+                title: Text(l10n.accountsSyncRemoteProviderTitle),
+                subtitle: Text(
+                  accountStatus.remoteProviderLabel == null
+                      ? l10n.accountsSyncProviderNone
+                      : _remoteProviderLabel(
+                          l10n,
+                          accountStatus.remoteProviderLabel!,
+                        ),
+                ),
+              ),
+              ListTile(
+                contentPadding: EdgeInsets.zero,
+                title: Text(l10n.accountsSyncRemoteLastBackupTitle),
+                subtitle: Text(
+                  accountStatus.lastRemoteBackupAtIso == null
+                      ? l10n.accountsSyncBackupNeverBackedUp
+                      : l10n.accountsSyncLastBackupValue(
+                          _formatWhen(
+                            context,
+                            l10n,
+                            accountStatus.lastRemoteBackupAtIso,
+                          ),
+                        ),
+                ),
+              ),
+              if (accountStatus.remoteErrorCode != null)
+                ListTile(
+                  contentPadding: EdgeInsets.zero,
+                  title: Text(l10n.accountsSyncRemoteStatusIssueTitle),
+                  subtitle: Text(
+                    _remoteErrorLabel(l10n, accountStatus.remoteErrorCode!),
+                  ),
+                ),
+              const SizedBox(height: 12),
+              Row(
+                children: [
+                  Expanded(
+                    child: FilledButton(
+                      onPressed: () async {
+                        final messenger = ScaffoldMessenger.of(context);
+                        final result = await ref
+                            .read(remoteBackupRepositoryProvider)
+                            .backupNow();
+                        if (!context.mounted) return;
+                        messenger.showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              result.success
+                                  ? l10n.accountsSyncRemoteBackupSuccessResult
+                                  : _remoteResultLabel(
+                                      l10n,
+                                      result.messageCode,
+                                    ),
+                            ),
+                          ),
+                        );
+                      },
+                      child: Text(l10n.accountsSyncBackUpNowAction),
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: OutlinedButton(
+                      onPressed: () async {
+                        final messenger = ScaffoldMessenger.of(context);
+                        final metadata = await ref
+                            .read(remoteBackupRepositoryProvider)
+                            .fetchRemoteMetadata();
+                        if (!context.mounted) return;
+                        messenger.showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              metadata == null
+                                  ? l10n.accountsSyncNoRemoteBackupFound
+                                  : l10n.accountsSyncRemoteBackupFoundResult,
+                            ),
+                          ),
+                        );
+                      },
+                      child: Text(l10n.accountsSyncCheckBackupStatusAction),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 10),
+              OutlinedButton(
+                onPressed: () async {
+                  final messenger = ScaffoldMessenger.of(context);
+                  final preview = await ref
+                      .read(remoteBackupRepositoryProvider)
+                      .prepareRestorePreview();
+                  if (!context.mounted) return;
+                  if (preview == null) {
+                    messenger.showSnackBar(
+                          SnackBar(
+                            content: Text(l10n.accountsSyncNoRemoteBackupFound),
+                          ),
+                    );
+                    return;
+                  }
+                  context.push(
+                    '/accounts-sync/backup/remote-restore',
+                    extra: preview,
+                  );
+                },
+                child: Text(l10n.accountsSyncRestoreFromRemoteAction),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 16),
+        PremiumCard(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                l10n.accountsSyncAutoBackupSectionTitle,
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              const SizedBox(height: 8),
+              Text(l10n.accountsSyncAutoBackupSectionSubtitle),
+              const SizedBox(height: 12),
+              SwitchListTile.adaptive(
+                contentPadding: EdgeInsets.zero,
+                value: autoBackup.preferences.enabled,
+                title: Text(l10n.accountsSyncAutoBackupEnabledTitle),
+                subtitle: Text(
+                  autoBackup.preferences.enabled
+                      ? l10n.accountsSyncAutoBackupOnBody
+                      : l10n.accountsSyncAutoBackupOffBody,
+                ),
+                onChanged: (value) {
+                  ref.read(autoBackupControllerProvider).updatePreferences(
+                        autoBackup.preferences.copyWith(enabled: value),
+                      );
+                },
+              ),
+              const Divider(height: 1),
+              ListTile(
+                contentPadding: EdgeInsets.zero,
+                title: Text(l10n.accountsSyncAutoBackupFrequencyTitle),
+                subtitle: Text(
+                  _autoBackupFrequencyLabel(
+                    l10n,
+                    autoBackup.preferences.frequency,
+                  ),
+                ),
+                trailing: DropdownButton<AutoBackupFrequency>(
+                  value: autoBackup.preferences.frequency,
+                  onChanged: (value) {
+                    if (value == null) return;
+                    ref.read(autoBackupControllerProvider).updatePreferences(
+                          autoBackup.preferences.copyWith(frequency: value),
+                        );
+                  },
+                  items: AutoBackupFrequency.values
+                      .map(
+                        (value) => DropdownMenuItem<AutoBackupFrequency>(
+                          value: value,
+                          child: Text(_autoBackupFrequencyLabel(l10n, value)),
+                        ),
+                      )
+                      .toList(growable: false),
+                ),
+              ),
+              const Divider(height: 1),
+              SwitchListTile.adaptive(
+                contentPadding: EdgeInsets.zero,
+                value: autoBackup.preferences.backupOnMeaningfulProgressChange,
+                title: Text(l10n.accountsSyncAutoBackupMeaningfulChangeTitle),
+                onChanged: (value) {
+                  ref.read(autoBackupControllerProvider).updatePreferences(
+                        autoBackup.preferences.copyWith(
+                          backupOnMeaningfulProgressChange: value,
+                        ),
+                      );
+                },
+              ),
+              const Divider(height: 1),
+              SwitchListTile.adaptive(
+                contentPadding: EdgeInsets.zero,
+                value: autoBackup.preferences.backupOnBackground,
+                title: Text(l10n.accountsSyncAutoBackupBackgroundTitle),
+                onChanged: (value) {
+                  ref.read(autoBackupControllerProvider).updatePreferences(
+                        autoBackup.preferences.copyWith(
+                          backupOnBackground: value,
+                        ),
+                      );
+                },
+              ),
+              const SizedBox(height: 12),
+              ListTile(
+                contentPadding: EdgeInsets.zero,
+                title: Text(l10n.accountsSyncAutoBackupStatusTitle),
+                subtitle: Text(
+                  _autoBackupStatusBody(l10n, autoBackup),
+                ),
+              ),
+              if (autoBackup.lastAttemptAtIso != null)
+                ListTile(
+                  contentPadding: EdgeInsets.zero,
+                  title: Text(l10n.accountsSyncAutoBackupLastAttemptTitle),
+                  subtitle: Text(
+                    _formatWhen(context, l10n, autoBackup.lastAttemptAtIso),
+                  ),
+                ),
+              if (autoBackup.lastSuccessAtIso != null)
+                ListTile(
+                  contentPadding: EdgeInsets.zero,
+                  title: Text(l10n.accountsSyncAutoBackupLastSuccessTitle),
+                  subtitle: Text(
+                    _formatWhen(context, l10n, autoBackup.lastSuccessAtIso),
+                  ),
+                ),
+              if (autoBackup.lastFailureCode != null)
+                ListTile(
+                  contentPadding: EdgeInsets.zero,
+                  title: Text(l10n.accountsSyncAutoBackupFailureTitle),
+                  subtitle: Text(
+                    _remoteErrorLabel(l10n, autoBackup.lastFailureCode!),
+                  ),
+                ),
+              if (autoBackup.pendingReasons.isNotEmpty)
+                Padding(
+                  padding: const EdgeInsets.only(top: 8),
+                  child: Wrap(
+                    spacing: 8,
+                    runSpacing: 8,
+                    children: autoBackup.pendingReasons
+                        .map(
+                          (item) => Chip(
+                            label: Text(
+                              _pendingBackupReasonLabel(l10n, item),
+                            ),
+                          ),
+                        )
+                        .toList(growable: false),
+                  ),
+                ),
+              const SizedBox(height: 10),
+              OutlinedButton(
+                onPressed: autoBackup.inProgress
+                    ? null
+                    : () async {
+                        final messenger = ScaffoldMessenger.of(context);
+                        final result = await ref
+                            .read(autoBackupControllerProvider)
+                            .runIfEligible(
+                              trigger: AutoBackupTrigger.manualRetry,
+                              force: true,
+                            );
+                        if (!context.mounted) return;
+                        messenger.showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              result.success == true
+                                  ? l10n.accountsSyncRemoteBackupSuccessResult
+                                  : _autoBackupEligibilityLabel(
+                                      l10n,
+                                      result.eligibility,
+                                    ),
+                            ),
+                          ),
+                        );
+                      },
+                child: Text(l10n.accountsSyncAutoBackupRetryAction),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 16),
+        PremiumCard(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                l10n.accountsSyncScopeSectionTitle,
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              const SizedBox(height: 8),
+              Text(l10n.accountsSyncScopeSectionSubtitle),
+              const SizedBox(height: 12),
+              ListTile(
+                contentPadding: EdgeInsets.zero,
+                title: Text(l10n.accountsSyncScopeCurrentSummaryTitle),
+                subtitle: Text(_syncScopeSummaryBody(l10n, syncScopeSummary)),
+              ),
+              const Divider(height: 1),
+              ListTile(
+                contentPadding: EdgeInsets.zero,
+                title: Text(l10n.accountsSyncScopeEssentialTitle),
+                subtitle: Text(l10n.accountsSyncScopeEssentialSubtitle),
+              ),
+              const SizedBox(height: 8),
+              Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: kRequiredSyncDomains
+                    .map(
+                      (domain) => Chip(
+                        label: Text(_syncScopeDomainLabel(l10n, domain)),
+                      ),
+                    )
+                    .toList(growable: false),
+              ),
+              const SizedBox(height: 12),
+              const Divider(height: 1),
+              ListTile(
+                contentPadding: EdgeInsets.zero,
+                title: Text(l10n.accountsSyncScopeOptionalTitle),
+                subtitle: Text(l10n.accountsSyncScopeOptionalSubtitle),
+              ),
+              for (final domain in kOptionalSyncDomains) ...[
+                SwitchListTile.adaptive(
+                  contentPadding: EdgeInsets.zero,
+                  title: Text(_syncScopeDomainLabel(l10n, domain)),
+                  subtitle: Text(_syncScopeDomainSubtitle(l10n, domain)),
+                  value: isDomainIncludedInBackup(syncScopePreferences, domain),
+                  onChanged: (value) async {
+                    final validation = buildScopeValidationResult(
+                      syncScopePreferences,
+                      domain,
+                    );
+                    if (!validation.canToggle) {
+                      return;
+                    }
+                    if (!value &&
+                        validation.impactPreview?.requiresConfirmation == true) {
+                      final confirmed = await showDialog<bool>(
+                        context: context,
+                        builder: (dialogContext) => AlertDialog(
+                          title: Text(l10n.accountsSyncScopeConfirmTitle),
+                          content: Text(
+                            _scopeImpactBody(
+                              l10n,
+                              domain,
+                              includeInBackup: value,
+                            ),
+                          ),
+                          actions: [
+                            TextButton(
+                              onPressed: () => Navigator.of(dialogContext).pop(false),
+                              child: Text(
+                                MaterialLocalizations.of(
+                                  dialogContext,
+                                ).cancelButtonLabel,
+                              ),
+                            ),
+                            FilledButton(
+                              onPressed: () => Navigator.of(dialogContext).pop(true),
+                              child: Text(l10n.accountsSyncScopeConfirmAction),
+                            ),
+                          ],
+                        ),
+                      );
+                      if (confirmed != true) {
+                        return;
+                      }
+                    }
+                    final nextPreferences = updateSyncScopePreference(
+                      syncScopePreferences,
+                      domain: domain,
+                      includeInBackup: value,
+                    );
+                    await ref
+                        .read(accountsSyncControllerProvider.notifier)
+                        .updateSyncScopePreferences(nextPreferences);
+                    await ref
+                        .read(autoBackupControllerProvider)
+                        .evaluateEligibility(trigger: AutoBackupTrigger.appResumed);
+                  },
+                ),
+                if (domain != kOptionalSyncDomains.last) const Divider(height: 1),
+              ],
+              const SizedBox(height: 12),
+              Text(
+                l10n.accountsSyncScopeManualExportNote,
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+              if (syncScopeSummary.isPartial) ...[
+                const SizedBox(height: 12),
+                OutlinedButton(
+                  onPressed: () async {
+                    await ref
+                        .read(accountsSyncControllerProvider.notifier)
+                        .updateSyncScopePreferences(
+                          const SyncScopePreferences(
+                            excludedOptionalDomainNames: <String>[],
+                          ),
+                        );
+                    await ref
+                        .read(autoBackupControllerProvider)
+                        .evaluateEligibility(trigger: AutoBackupTrigger.appResumed);
+                  },
+                  child: Text(l10n.accountsSyncScopeRestoreDefaultsAction),
+                ),
+              ],
+            ],
+          ),
+        ),
+        const SizedBox(height: 16),
         if (state.backupRecommended)
           PremiumCard(
             child: ListTile(
@@ -871,8 +1416,322 @@ class BackupRestoreHomePage extends ConsumerWidget {
             ],
           ),
         ),
+        const SizedBox(height: 16),
+        PremiumCard(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                l10n.accountsSyncSyncPreferencesTitle,
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              const SizedBox(height: 8),
+              SwitchListTile.adaptive(
+                contentPadding: EdgeInsets.zero,
+                value: prefs.preferManualBackup,
+                title: Text(l10n.accountsSyncPreferManualBackupTitle),
+                onChanged: (value) {
+                  ref.read(syncPreferencesProvider.notifier).state = prefs.copyWith(
+                        preferManualBackup: value,
+                      );
+                },
+              ),
+              const Divider(height: 1),
+              SwitchListTile.adaptive(
+                contentPadding: EdgeInsets.zero,
+                value: prefs.allowRestoreSuggestions,
+                title: Text(l10n.accountsSyncAllowRestoreSuggestionsTitle),
+                onChanged: (value) {
+                  ref.read(syncPreferencesProvider.notifier).state = prefs.copyWith(
+                        allowRestoreSuggestions: value,
+                      );
+                },
+              ),
+              const SizedBox(height: 8),
+              Text(
+                l10n.accountsSyncRemoteBackupNotConfiguredBody,
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+            ],
+          ),
+        ),
       ],
     );
+  }
+}
+
+class RemoteRestorePreviewPage extends ConsumerStatefulWidget {
+  const RemoteRestorePreviewPage({
+    required this.preview,
+    super.key,
+  });
+
+  final RestorePreview preview;
+
+  @override
+  ConsumerState<RemoteRestorePreviewPage> createState() =>
+      _RemoteRestorePreviewPageState();
+}
+
+class _RemoteRestorePreviewPageState
+    extends ConsumerState<RemoteRestorePreviewPage> {
+  bool _running = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final preview = widget.preview;
+    final summary = preview.comparisonSummary;
+    final state = ref.watch(accountsSyncControllerProvider);
+    final remoteScope = preview.importPreview.metadata.scopeSummary;
+    final currentScope = buildBackupScopeSummary(state.syncScopePreferences);
+    return AppPageScaffold(
+      headerIcon: Icons.compare_arrows_rounded,
+      title: l10n.accountsSyncRemoteRestorePreviewTitle,
+      subtitle: l10n.accountsSyncRemoteRestorePreviewSubtitle,
+      children: [
+        PremiumCard(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                l10n.accountsSyncRemoteRestoreTitle,
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              const SizedBox(height: 8),
+              Text(
+                _restoreSummaryBody(l10n, preview),
+              ),
+              const SizedBox(height: 12),
+              Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: [
+                  Chip(
+                    label: Text(
+                      l10n.accountsSyncCurrentProviderSummary(
+                        state.authenticatedAccount?.displayName ??
+                            l10n.accountsSyncProviderNone,
+                        _remoteProviderLabel(
+                          l10n,
+                          preview.remoteMetadata.provider.name,
+                        ),
+                        _remoteProviderLabel(
+                          l10n,
+                          preview.remoteMetadata.provider.name,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Chip(
+                    label: Text(
+                      l10n.accountsSyncLastBackupValue(
+                        _formatWhen(
+                          context,
+                          l10n,
+                          preview.remoteMetadata.updatedAtIso,
+                        ),
+                      ),
+                    ),
+                  ),
+                  if (summary.localOverallUpdatedAtIso != null)
+                    Chip(
+                      label: Text(
+                        l10n.accountsSyncRemotePreviewLocalUpdatedValue(
+                          _formatWhen(
+                            context,
+                            l10n,
+                            summary.localOverallUpdatedAtIso,
+                          ),
+                        ),
+                      ),
+                    ),
+                ],
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 16),
+        PremiumCard(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                l10n.accountsSyncScopePreviewTitle,
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              const SizedBox(height: 8),
+              Text(
+                l10n.accountsSyncScopePreviewRemoteValue(
+                  _syncScopeSummaryBody(l10n, remoteScope),
+                ),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                l10n.accountsSyncScopePreviewCurrentValue(
+                  _syncScopeSummaryBody(l10n, currentScope),
+                ),
+              ),
+              if (remoteScope.excludedDomainNames.isNotEmpty) ...[
+                const SizedBox(height: 12),
+                for (final key in remoteScope.excludedDomainNames)
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 6),
+                    child: Text(
+                      l10n.accountsSyncScopePreviewExcludedDomain(
+                        _syncScopeDomainLabelFromKey(l10n, key),
+                      ),
+                    ),
+                  ),
+              ],
+              ..._buildScopeMismatchLines(
+                l10n,
+                remoteScope: remoteScope,
+                currentScope: currentScope,
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 16),
+        PremiumCard(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                l10n.accountsSyncRemotePreviewComparisonTitle,
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              const SizedBox(height: 10),
+              for (final comparison in summary.domainComparisons) ...[
+                _DomainComparisonTile(comparison: comparison),
+                if (comparison != summary.domainComparisons.last)
+                  const Divider(height: 1),
+              ],
+            ],
+          ),
+        ),
+        const SizedBox(height: 16),
+        PremiumCard(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                l10n.accountsSyncRemotePreviewWarningsTitle,
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              const SizedBox(height: 8),
+              if (summary.warningCodes.isEmpty)
+                Text(l10n.accountsSyncRemotePreviewNoWarnings)
+              else
+                for (final warning in summary.warningCodes)
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 8),
+                    child: Text(_restoreWarningLabel(l10n, warning)),
+                  ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 16),
+        PremiumCard(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                l10n.accountsSyncRemotePreviewActionsTitle,
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              const SizedBox(height: 12),
+              FilledButton(
+                onPressed: _running
+                    ? null
+                    : () => _runRestore(RestoreDecisionMode.replaceLocalWithRemote),
+                child: Text(l10n.accountsSyncRemotePreviewReplaceAction),
+              ),
+              const SizedBox(height: 10),
+              if (summary.canMergeSafeDomains)
+                OutlinedButton(
+                  onPressed: _running
+                      ? null
+                      : () => _runRestore(RestoreDecisionMode.mergeSafeDomains),
+                  child: Text(l10n.accountsSyncRemotePreviewMergeAction),
+                ),
+              if (summary.canMergeSafeDomains) const SizedBox(height: 10),
+              TextButton(
+                onPressed: _running ? null : () => context.pop(),
+                child: Text(l10n.accountsSyncRemotePreviewKeepLocalAction),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Future<void> _runRestore(RestoreDecisionMode mode) async {
+    final l10n = AppLocalizations.of(context);
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: Text(
+          mode == RestoreDecisionMode.mergeSafeDomains
+              ? l10n.accountsSyncRemotePreviewMergeAction
+              : l10n.accountsSyncRemotePreviewReplaceAction,
+        ),
+        content: Text(
+          mode == RestoreDecisionMode.mergeSafeDomains
+              ? l10n.accountsSyncRemotePreviewMergeConfirmBody
+              : l10n.accountsSyncRemotePreviewReplaceConfirmBody,
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(dialogContext).pop(false),
+            child: Text(MaterialLocalizations.of(dialogContext).cancelButtonLabel),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.of(dialogContext).pop(true),
+            child: Text(
+              mode == RestoreDecisionMode.mergeSafeDomains
+                  ? l10n.accountsSyncRemotePreviewMergeAction
+                  : l10n.accountsSyncRemotePreviewReplaceAction,
+            ),
+          ),
+        ],
+      ),
+    );
+    if (confirmed != true || !mounted) {
+      return;
+    }
+    setState(() => _running = true);
+    final result = await ref
+        .read(remoteBackupRepositoryProvider)
+        .restoreRemote(mode: mode);
+    if (!mounted) {
+      return;
+    }
+    setState(() => _running = false);
+    await showDialog<void>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: Text(
+          result.applied
+              ? l10n.accountsSyncRemotePreviewResultTitle
+              : l10n.accountsSyncImportFailedResult,
+        ),
+        content: Text(_restoreResultLabel(l10n, result)),
+        actions: [
+          FilledButton(
+            onPressed: () => Navigator.of(dialogContext).pop(),
+            child: Text(MaterialLocalizations.of(dialogContext).okButtonLabel),
+          ),
+        ],
+      ),
+    );
+    if (!mounted) {
+      return;
+    }
+    if (result.applied) {
+      context.pop();
+    }
   }
 }
 
@@ -887,7 +1746,8 @@ class BackupExportFlowPage extends ConsumerStatefulWidget {
 class _BackupExportFlowPageState extends ConsumerState<BackupExportFlowPage> {
   bool _currentProfileOnly = true;
   bool _encrypt = true;
-  String? _lastPath;
+  BackupExportResult? _lastExport;
+  bool _busy = false;
 
   @override
   Widget build(BuildContext context) {
@@ -918,22 +1778,51 @@ class _BackupExportFlowPageState extends ConsumerState<BackupExportFlowPage> {
               ),
               const SizedBox(height: 12),
               FilledButton(
-                onPressed: () async {
-                  final path = await ref
-                      .read(backupManagerProvider)
-                      .export(
-                        currentProfileOnly: _currentProfileOnly,
-                        encrypt: _encrypt,
-                      );
-                  setState(() => _lastPath = path);
-                },
+                onPressed: _busy
+                    ? null
+                    : () async {
+                        final messenger = ScaffoldMessenger.of(context);
+                        setState(() => _busy = true);
+                        final export = await ref
+                            .read(backupRepositoryProvider)
+                            .export(
+                              BackupExportOptions(
+                                currentProfileOnly: _currentProfileOnly,
+                                encrypted: _encrypt,
+                              ),
+                            );
+                        if (!mounted) return;
+                        setState(() {
+                          _busy = false;
+                          _lastExport = export;
+                        });
+                        messenger.showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              l10n.accountsSyncExportCreatedResult,
+                            ),
+                          ),
+                        );
+                      },
                 child: Text(l10n.accountsSyncExportNowAction),
               ),
-              if (_lastPath != null) ...[
+              if (_lastExport != null) ...[
                 const SizedBox(height: 10),
-                SelectableText(
-                  _lastPath!,
+                Text(
+                  l10n.accountsSyncExportReadyBody,
                   style: Theme.of(context).textTheme.bodySmall,
+                ),
+                const SizedBox(height: 8),
+                SelectableText(
+                  _lastExport!.filePath,
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
+                const SizedBox(height: 12),
+                OutlinedButton(
+                  onPressed: () => ref
+                      .read(backupRepositoryProvider)
+                      .shareExport(_lastExport!.filePath),
+                  child: Text(l10n.accountsSyncShareBackupAction),
                 ),
               ],
             ],
@@ -954,15 +1843,10 @@ class BackupImportFlowPage extends ConsumerStatefulWidget {
 
 class _BackupImportFlowPageState extends ConsumerState<BackupImportFlowPage> {
   bool _encrypted = true;
-  bool _createNewProfiles = true;
-  bool _replaceExisting = false;
-  final _payloadController = TextEditingController();
-
-  @override
-  void dispose() {
-    _payloadController.dispose();
-    super.dispose();
-  }
+  bool _busy = false;
+  ImportValidationResult? _validationResult;
+  ImportConflictMode _mode = ImportConflictMode.merge;
+  String? _selectedPayload;
 
   @override
   Widget build(BuildContext context) {
@@ -975,13 +1859,44 @@ class _BackupImportFlowPageState extends ConsumerState<BackupImportFlowPage> {
         PremiumCard(
           child: Column(
             children: [
-              TextField(
-                controller: _payloadController,
-                maxLines: 8,
-                decoration: InputDecoration(
-                  labelText: l10n.accountsSyncBackupPayloadLabel,
-                  hintText: l10n.accountsSyncBackupPayloadHint,
+              ListTile(
+                contentPadding: EdgeInsets.zero,
+                title: Text(l10n.accountsSyncImportChooseFileTitle),
+                subtitle: Text(
+                  _selectedPayload == null
+                      ? l10n.accountsSyncImportChooseFileSubtitle
+                      : l10n.accountsSyncImportFileLoadedSubtitle,
                 ),
+              ),
+              const SizedBox(height: 12),
+              FilledButton.icon(
+                onPressed: _busy
+                    ? null
+                    : () async {
+                        setState(() => _busy = true);
+                        final payload = await ref
+                            .read(backupRepositoryProvider)
+                            .pickImportPayload();
+                        if (!mounted) return;
+                        if (payload == null) {
+                          setState(() => _busy = false);
+                          return;
+                        }
+                        final result = await ref
+                            .read(backupRepositoryProvider)
+                            .validateImportPayload(
+                              payload: payload,
+                              encrypted: _encrypted,
+                            );
+                        if (!mounted) return;
+                        setState(() {
+                          _busy = false;
+                          _selectedPayload = payload;
+                          _validationResult = result;
+                        });
+                      },
+                icon: const Icon(Icons.file_open_outlined),
+                label: Text(l10n.accountsSyncChooseBackupFileAction),
               ),
               const SizedBox(height: 12),
               SwitchListTile.adaptive(
@@ -991,43 +1906,94 @@ class _BackupImportFlowPageState extends ConsumerState<BackupImportFlowPage> {
                 onChanged: (value) => setState(() => _encrypted = value),
               ),
               const Divider(height: 1),
-              SwitchListTile.adaptive(
-                contentPadding: EdgeInsets.zero,
-                title: Text(l10n.accountsSyncCreateNewProfilesTitle),
-                value: _createNewProfiles,
-                onChanged: (value) =>
-                    setState(() => _createNewProfiles = value),
-              ),
-              const Divider(height: 1),
-              SwitchListTile.adaptive(
-                contentPadding: EdgeInsets.zero,
-                title: Text(l10n.accountsSyncReplaceExistingLocalDataTitle),
-                value: _replaceExisting,
-                onChanged: (value) => setState(() => _replaceExisting = value),
-              ),
-              const SizedBox(height: 12),
-              FilledButton(
-                onPressed: () async {
-                  final messenger = ScaffoldMessenger.of(context);
-                  await ref
-                      .read(importRestoreServiceProvider)
-                      .import(
-                        payload: _payloadController.text.trim(),
-                        encrypted: _encrypted,
-                        createNewProfiles: _createNewProfiles,
-                        replaceExisting: _replaceExisting,
-                      );
-                  if (!mounted) return;
-                  messenger.showSnackBar(
-                    SnackBar(content: Text(l10n.accountsSyncBackupImported)),
-                  );
+              SegmentedButton<ImportConflictMode>(
+                segments: <ButtonSegment<ImportConflictMode>>[
+                  ButtonSegment<ImportConflictMode>(
+                    value: ImportConflictMode.merge,
+                    label: Text(l10n.accountsSyncImportModeMerge),
+                  ),
+                  ButtonSegment<ImportConflictMode>(
+                    value: ImportConflictMode.replace,
+                    label: Text(l10n.accountsSyncImportModeReplace),
+                  ),
+                ],
+                selected: <ImportConflictMode>{_mode},
+                onSelectionChanged: (selection) {
+                  setState(() => _mode = selection.first);
                 },
-                child: Text(l10n.accountsSyncRestoreBackupAction),
               ),
+              if (_validationResult?.preview != null) ...[
+                const SizedBox(height: 16),
+                _ImportPreviewCard(
+                  preview: _validationResult!.preview!,
+                  mode: _mode,
+                ),
+                const SizedBox(height: 12),
+                FilledButton(
+                  onPressed: _busy
+                      ? null
+                      : () => _confirmAndApply(context, _validationResult!.preview!),
+                  child: Text(l10n.accountsSyncRestoreBackupAction),
+                ),
+              ] else if (_validationResult?.errorMessage != null) ...[
+                const SizedBox(height: 12),
+                Text(
+                  _validationMessage(l10n, _validationResult!.errorMessage!),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodySmall?.copyWith(color: Theme.of(context).colorScheme.error),
+                ),
+              ],
             ],
           ),
         ),
       ],
+    );
+  }
+
+  Future<void> _confirmAndApply(
+    BuildContext context,
+    ImportPackagePreview preview,
+  ) async {
+    final l10n = AppLocalizations.of(context);
+    final messenger = ScaffoldMessenger.of(context);
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(l10n.accountsSyncImportConfirmTitle),
+        content: Text(
+          _mode == ImportConflictMode.replace
+              ? l10n.accountsSyncImportConfirmReplaceBody
+              : l10n.accountsSyncImportConfirmMergeBody,
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: Text(MaterialLocalizations.of(context).cancelButtonLabel),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.of(context).pop(true),
+            child: Text(l10n.accountsSyncRestoreBackupAction),
+          ),
+        ],
+      ),
+    );
+    if (confirmed != true) return;
+    setState(() => _busy = true);
+    final result = await ref.read(backupRepositoryProvider).applyImport(
+          preview: preview,
+          mode: _mode,
+        );
+    if (!mounted) return;
+    setState(() => _busy = false);
+    messenger.showSnackBar(
+      SnackBar(
+        content: Text(
+          result.applied
+              ? l10n.accountsSyncBackupImported
+              : l10n.accountsSyncImportFailedResult,
+        ),
+      ),
     );
   }
 }
@@ -1248,10 +2214,464 @@ class _NavRow extends StatelessWidget {
       contentPadding: EdgeInsets.zero,
       title: Text(title),
       subtitle: Text(subtitle),
-      trailing: const Icon(Icons.chevron_right_rounded),
       onTap: onTap,
     );
   }
+}
+
+class _ImportPreviewCard extends StatelessWidget {
+  const _ImportPreviewCard({
+    required this.preview,
+    required this.mode,
+  });
+
+  final ImportPackagePreview preview;
+  final ImportConflictMode mode;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          l10n.accountsSyncImportPreviewTitle,
+          style: Theme.of(context).textTheme.titleMedium,
+        ),
+        const SizedBox(height: 8),
+        Text(
+          l10n.accountsSyncImportPreviewSummary(
+            preview.profileCount,
+            preview.accountCount,
+          ),
+        ),
+        const SizedBox(height: 8),
+        Text(
+          l10n.accountsSyncImportPreviewModeValue(
+            mode == ImportConflictMode.replace
+                ? l10n.accountsSyncImportModeReplace
+                : l10n.accountsSyncImportModeMerge,
+          ),
+        ),
+        const SizedBox(height: 8),
+        Text(
+          l10n.accountsSyncImportPreviewExportedAtValue(
+            _formatWhen(context, l10n, preview.metadata.exportedAtIso),
+          ),
+        ),
+        const SizedBox(height: 8),
+        Text(
+          l10n.accountsSyncScopePreviewValue(
+            _syncScopeSummaryBody(l10n, preview.metadata.scopeSummary),
+          ),
+        ),
+        if (preview.profileNames.isNotEmpty) ...[
+          const SizedBox(height: 8),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: preview.profileNames
+                .map((name) => Chip(label: Text(name)))
+                .toList(growable: false),
+          ),
+        ],
+        if (preview.warnings.isNotEmpty) ...[
+          const SizedBox(height: 8),
+          for (final warning in preview.warnings)
+            Padding(
+              padding: const EdgeInsets.only(bottom: 4),
+              child: Text(_warningLabel(l10n, warning)),
+            ),
+        ],
+      ],
+    );
+  }
+}
+
+class _DomainComparisonTile extends StatelessWidget {
+  const _DomainComparisonTile({
+    required this.comparison,
+  });
+
+  final RestoreDomainComparison comparison;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return ListTile(
+      contentPadding: EdgeInsets.zero,
+      title: Text(_restoreDomainLabel(l10n, comparison.domainId)),
+      subtitle: Text(
+        l10n.accountsSyncRemotePreviewDomainSummary(
+          _restoreConflictLabel(l10n, comparison.conflictType),
+          comparison.localItemCount,
+          comparison.remoteItemCount,
+          _mergeEligibilityLabel(l10n, comparison.mergeEligibility),
+        ),
+      ),
+      isThreeLine: true,
+    );
+  }
+}
+
+String _connectionModeLabel(
+  AppLocalizations l10n,
+  AccountsSyncConnectionMode mode,
+) {
+  return switch (mode) {
+    AccountsSyncConnectionMode.localOnly => l10n.accountsSyncModeLocalOnly,
+    AccountsSyncConnectionMode.signedInNoBackup =>
+      l10n.accountsSyncModeSignedInNoBackup,
+    AccountsSyncConnectionMode.backupAvailable =>
+      l10n.accountsSyncModeBackupAvailable,
+    AccountsSyncConnectionMode.backupInProgress =>
+      l10n.accountsSyncModeBackupInProgress,
+    AccountsSyncConnectionMode.restoreAvailable =>
+      l10n.accountsSyncModeRestoreAvailable,
+    AccountsSyncConnectionMode.syncError => l10n.accountsSyncModeSyncError,
+  };
+}
+
+String _restoreSummaryBody(AppLocalizations l10n, RestorePreview preview) {
+  if (preview.comparisonSummary.hasSchemaMismatch) {
+    return l10n.accountsSyncRemotePreviewSchemaMismatchBody;
+  }
+  if (preview.comparisonSummary.hasProviderMismatch) {
+    return l10n.accountsSyncRemotePreviewProviderMismatchBody;
+  }
+  if (preview.comparisonSummary.hasAccountMismatch) {
+    return l10n.accountsSyncRemotePreviewAccountMismatchBody;
+  }
+  if (preview.remoteNewerThanLocal) {
+    return l10n.accountsSyncRemoteRestoreNewerBody;
+  }
+  if (preview.remoteOlderThanLocal) {
+    return l10n.accountsSyncRemoteRestoreOlderBody;
+  }
+  return l10n.accountsSyncRemoteRestoreEqualBody;
+}
+
+String _restoreDomainLabel(AppLocalizations l10n, String domainId) {
+  return switch (domainId) {
+    'profile_basics' => l10n.accountsSyncRemoteDomainProfileBasics,
+    'settings_preferences' => l10n.accountsSyncRemoteDomainSettings,
+    'prayer_tracking' => l10n.accountsSyncRemoteDomainPrayer,
+    'dhikr_progress' => l10n.accountsSyncRemoteDomainDhikr,
+    'quran_progress' => l10n.accountsSyncRemoteDomainQuran,
+    'xp_drops_ocean' => l10n.accountsSyncRemoteDomainGrowth,
+    'learning_progress' => l10n.accountsSyncRemoteDomainLearning,
+    'journal_notes' => l10n.accountsSyncRemoteDomainJournal,
+    'reminders_preferences' => l10n.accountsSyncRemoteDomainReminders,
+    'theme_accessibility' => l10n.accountsSyncRemoteDomainTheme,
+    _ => domainId,
+  };
+}
+
+String _syncScopeDomainLabel(
+  AppLocalizations l10n,
+  SyncableDomain domain,
+) {
+  return switch (domain) {
+    SyncableDomain.profileBasics => l10n.accountsSyncRemoteDomainProfileBasics,
+    SyncableDomain.settingsPreferences => l10n.accountsSyncRemoteDomainSettings,
+    SyncableDomain.prayerTracking => l10n.accountsSyncRemoteDomainPrayer,
+    SyncableDomain.dhikrProgress => l10n.accountsSyncRemoteDomainDhikr,
+    SyncableDomain.quranProgress => l10n.accountsSyncRemoteDomainQuran,
+    SyncableDomain.growthProgress => l10n.accountsSyncRemoteDomainGrowth,
+    SyncableDomain.learningProgress => l10n.accountsSyncRemoteDomainLearning,
+    SyncableDomain.journalNotes => l10n.accountsSyncRemoteDomainJournal,
+    SyncableDomain.remindersPreferences => l10n.accountsSyncRemoteDomainReminders,
+    SyncableDomain.themeAccessibility => l10n.accountsSyncRemoteDomainTheme,
+  };
+}
+
+String _syncScopeDomainLabelFromKey(AppLocalizations l10n, String key) {
+  final domain = syncableDomainFromKey(key);
+  return domain == null ? key : _syncScopeDomainLabel(l10n, domain);
+}
+
+String _syncScopeDomainSubtitle(
+  AppLocalizations l10n,
+  SyncableDomain domain,
+) {
+  return switch (domain) {
+    SyncableDomain.settingsPreferences =>
+      l10n.accountsSyncScopeSettingsDescription,
+    SyncableDomain.journalNotes => l10n.accountsSyncScopeJournalDescription,
+    SyncableDomain.remindersPreferences =>
+      l10n.accountsSyncScopeRemindersDescription,
+    SyncableDomain.themeAccessibility =>
+      l10n.accountsSyncScopeThemeDescription,
+    _ => '',
+  };
+}
+
+String _syncScopeSummaryBody(
+  AppLocalizations l10n,
+  BackupScopeSummary summary,
+) {
+  if (!summary.isPartial) {
+    return l10n.accountsSyncScopeSummaryFull;
+  }
+  final excluded = summary.excludedDomainNames
+      .map((key) => _syncScopeDomainLabelFromKey(l10n, key))
+      .join(', ');
+  return l10n.accountsSyncScopeSummaryPartial(excluded);
+}
+
+String _scopeImpactBody(
+  AppLocalizations l10n,
+  SyncableDomain domain, {
+  required bool includeInBackup,
+}) {
+  final label = _syncScopeDomainLabel(l10n, domain);
+  if (includeInBackup) {
+    return l10n.accountsSyncScopeIncludeImpactBody(label);
+  }
+  return l10n.accountsSyncScopeExcludeImpactBody(label);
+}
+
+List<Widget> _buildScopeMismatchLines(
+  AppLocalizations l10n, {
+  required BackupScopeSummary remoteScope,
+  required BackupScopeSummary currentScope,
+}) {
+  final lines = <Widget>[];
+  final remoteExcluded = remoteScope.excludedDomainNames.toSet();
+  final currentIncluded = currentScope.includedDomainNames.toSet();
+  final mismatch = currentIncluded.intersection(remoteExcluded);
+  if (mismatch.isNotEmpty) {
+    lines.add(const SizedBox(height: 12));
+    for (final key in mismatch) {
+      lines.add(
+        Padding(
+          padding: const EdgeInsets.only(bottom: 6),
+          child: Text(
+            l10n.accountsSyncScopePreviewMismatchDomain(
+              _syncScopeDomainLabelFromKey(l10n, key),
+            ),
+          ),
+        ),
+      );
+    }
+  }
+  return lines;
+}
+
+String _restoreConflictLabel(
+  AppLocalizations l10n,
+  RestoreConflictType type,
+) {
+  return switch (type) {
+    RestoreConflictType.identical => l10n.accountsSyncRemoteConflictIdentical,
+    RestoreConflictType.remoteNewer => l10n.accountsSyncRemoteConflictRemoteNewer,
+    RestoreConflictType.localNewer => l10n.accountsSyncRemoteConflictLocalNewer,
+    RestoreConflictType.remoteOnlyData => l10n.accountsSyncRemoteConflictRemoteOnly,
+    RestoreConflictType.localOnlyData => l10n.accountsSyncRemoteConflictLocalOnly,
+    RestoreConflictType.incompatibleSchema => l10n.accountsSyncRemoteConflictSchema,
+    RestoreConflictType.uncertainDifference => l10n.accountsSyncRemoteConflictUncertain,
+    RestoreConflictType.accountMismatch => l10n.accountsSyncRemoteConflictAccountMismatch,
+    RestoreConflictType.providerMismatch => l10n.accountsSyncRemoteConflictProviderMismatch,
+  };
+}
+
+String _mergeEligibilityLabel(
+  AppLocalizations l10n,
+  MergeEligibilityResult result,
+) {
+  return switch (result) {
+    MergeEligibilityResult.safeToMerge => l10n.accountsSyncRemoteMergeSafe,
+    MergeEligibilityResult.replaceOnly => l10n.accountsSyncRemoteMergeReplaceOnly,
+    MergeEligibilityResult.unsafe => l10n.accountsSyncRemoteMergeUnsafe,
+    MergeEligibilityResult.unsupported => l10n.accountsSyncRemoteMergeUnsupported,
+  };
+}
+
+String _restoreWarningLabel(AppLocalizations l10n, String code) {
+  return switch (code) {
+    'provider_mismatch' => l10n.accountsSyncRemotePreviewProviderMismatchBody,
+    'account_mismatch' => l10n.accountsSyncRemotePreviewAccountMismatchBody,
+    'incompatible_schema' => l10n.accountsSyncRemotePreviewSchemaMismatchBody,
+    'local_newer_progress' => l10n.accountsSyncRemoteRestoreOlderBody,
+    'remote_newer_progress' => l10n.accountsSyncRemoteRestoreNewerBody,
+    'local_only_data' => l10n.accountsSyncRemotePreviewLocalOnlyWarning,
+    'remote_only_data' => l10n.accountsSyncRemotePreviewRemoteOnlyWarning,
+    'uncertain_difference' => l10n.accountsSyncRemotePreviewUncertainWarning,
+    _ => code,
+  };
+}
+
+String _restoreResultLabel(AppLocalizations l10n, RestoreResult result) {
+  if (!result.applied) {
+    return l10n.accountsSyncImportFailedResult;
+  }
+  final summary = result.conflictSummary;
+  final merged = summary.mergedDomains.isEmpty
+      ? l10n.accountsSyncRemotePreviewNoMergedDomains
+      : summary.mergedDomains
+            .map((id) => _restoreDomainLabel(l10n, id))
+            .join(', ');
+  final replaced = summary.replacedDomains.isEmpty
+      ? l10n.accountsSyncRemotePreviewNoReplacedDomains
+      : summary.replacedDomains
+            .map((id) => _restoreDomainLabel(l10n, id))
+            .join(', ');
+  return l10n.accountsSyncRemotePreviewResultBody(
+    summary.decisionMode == RestoreDecisionMode.mergeSafeDomains
+        ? l10n.accountsSyncRemotePreviewMergeAction
+        : l10n.accountsSyncRemotePreviewReplaceAction,
+    merged,
+    replaced,
+    result.safetySnapshotPath == null
+        ? l10n.accountsSyncBackupNeverBackedUp
+        : result.safetySnapshotPath!,
+  );
+}
+
+String _autoBackupFrequencyLabel(
+  AppLocalizations l10n,
+  AutoBackupFrequency frequency,
+) {
+  return switch (frequency) {
+    AutoBackupFrequency.smart => l10n.accountsSyncAutoBackupFrequencySmart,
+    AutoBackupFrequency.daily => l10n.accountsSyncAutoBackupFrequencyDaily,
+    AutoBackupFrequency.weekly => l10n.accountsSyncAutoBackupFrequencyWeekly,
+    AutoBackupFrequency.manualOnly => l10n.accountsSyncAutoBackupFrequencyManual,
+  };
+}
+
+String _autoBackupStatusBody(
+  AppLocalizations l10n,
+  AutoBackupStatusViewModel state,
+) {
+  if (!state.preferences.enabled) {
+    return l10n.accountsSyncAutoBackupStatusOff;
+  }
+  if (state.inProgress) {
+    return l10n.accountsSyncAutoBackupStatusRunning;
+  }
+  if (state.lastFailureCode != null) {
+    return l10n.accountsSyncAutoBackupStatusFailed;
+  }
+  if (state.dirty) {
+    return l10n.accountsSyncAutoBackupStatusPending;
+  }
+  if (state.lastSuccessAtIso != null) {
+    return l10n.accountsSyncAutoBackupStatusReady;
+  }
+  return l10n.accountsSyncAutoBackupStatusWaiting;
+}
+
+String _pendingBackupReasonLabel(
+  AppLocalizations l10n,
+  PendingBackupReason reason,
+) {
+  return switch (reason) {
+    PendingBackupReason.meaningfulProgressChanged =>
+      l10n.accountsSyncAutoBackupReasonMeaningfulChange,
+    PendingBackupReason.backupOverdue =>
+      l10n.accountsSyncAutoBackupReasonOverdue,
+    PendingBackupReason.signedIn => l10n.accountsSyncAutoBackupReasonSignedIn,
+    PendingBackupReason.manualRetry => l10n.accountsSyncAutoBackupReasonManualRetry,
+  };
+}
+
+String _autoBackupEligibilityLabel(
+  AppLocalizations l10n,
+  AutoBackupEligibilityResult result,
+) {
+  return switch (result) {
+    AutoBackupEligibilityResult.eligibleNow =>
+      l10n.accountsSyncAutoBackupEligibilityReady,
+    AutoBackupEligibilityResult.disabled =>
+      l10n.accountsSyncAutoBackupEligibilityDisabled,
+    AutoBackupEligibilityResult.manualOnly =>
+      l10n.accountsSyncAutoBackupEligibilityManualOnly,
+    AutoBackupEligibilityResult.notSignedIn =>
+      l10n.accountsSyncAutoBackupEligibilitySignInRequired,
+    AutoBackupEligibilityResult.providerUnavailable =>
+      l10n.accountsSyncAutoBackupEligibilityProviderUnavailable,
+    AutoBackupEligibilityResult.noMeaningfulChanges =>
+      l10n.accountsSyncAutoBackupEligibilityNoChanges,
+    AutoBackupEligibilityResult.throttled =>
+      l10n.accountsSyncAutoBackupEligibilityThrottled,
+    AutoBackupEligibilityResult.backupAlreadyRunning =>
+      l10n.accountsSyncAutoBackupEligibilityRunning,
+    AutoBackupEligibilityResult.waitingForSchedule =>
+      l10n.accountsSyncAutoBackupEligibilityWaiting,
+  };
+}
+
+String _connectionModeBody(
+  AppLocalizations l10n,
+  AccountsSyncConnectionMode mode,
+  String? accountLabel,
+) {
+  return switch (mode) {
+    AccountsSyncConnectionMode.localOnly => l10n.accountsSyncStatusCardLocalOnlyBody,
+    AccountsSyncConnectionMode.signedInNoBackup =>
+      l10n.accountsSyncStatusCardSignedInBody(
+        accountLabel ?? l10n.accountsSyncProviderNone,
+      ),
+    AccountsSyncConnectionMode.backupAvailable =>
+      l10n.accountsSyncStatusCardBackupReadyBody,
+    AccountsSyncConnectionMode.backupInProgress =>
+      l10n.accountsSyncStatusCardBackupRunningBody,
+    AccountsSyncConnectionMode.restoreAvailable =>
+      l10n.accountsSyncStatusCardRestoreReadyBody,
+    AccountsSyncConnectionMode.syncError => l10n.accountsSyncStatusCardSyncErrorBody,
+  };
+}
+
+String _accountProviderNameFromKey(AppLocalizations l10n, String key) {
+  return switch (key) {
+    'signInWithApple' => l10n.accountsSyncProviderSignInWithApple,
+    'google' => l10n.accountsSyncProviderGoogle,
+    'emailMagicLink' => l10n.accountsSyncProviderEmailMagicLink,
+    'localOnly' => l10n.accountsSyncProviderLocalOnly,
+    _ => key,
+  };
+}
+
+String _validationMessage(AppLocalizations l10n, String code) {
+  return switch (code) {
+    'empty_payload' => l10n.accountsSyncImportErrorEmpty,
+    'future_schema' => l10n.accountsSyncImportErrorFutureSchema,
+    _ => l10n.accountsSyncImportErrorInvalid,
+  };
+}
+
+String _warningLabel(AppLocalizations l10n, String code) {
+  return switch (code) {
+    'structured_data_missing' => l10n.accountsSyncImportWarningStructuredDataMissing,
+    _ => code,
+  };
+}
+
+String _remoteProviderLabel(AppLocalizations l10n, String key) {
+  return switch (key) {
+    'apple' => l10n.accountsSyncProviderSignInWithApple,
+    'google' => l10n.accountsSyncProviderGoogle,
+    'email' => l10n.accountsSyncContinueWithEmailAction,
+    _ => l10n.accountsSyncProviderNone,
+  };
+}
+
+String _remoteErrorLabel(AppLocalizations l10n, String code) {
+  return switch (code) {
+    'providerNotConfigured' => l10n.accountsSyncRemoteProviderNeedsSetupBody,
+    'authExpired' => l10n.accountsSyncRemoteAuthExpiredBody,
+    'icloud_unavailable' => l10n.accountsSyncRemoteICloudUnavailableBody,
+    'google_auth_expired' => l10n.accountsSyncRemoteAuthExpiredBody,
+    'google_drive_upload_failed' => l10n.accountsSyncRemoteBackupFailedBody,
+    'email_backup_not_configured' => l10n.accountsSyncRemoteEmailUnavailableBody,
+    _ => l10n.accountsSyncRemoteBackupFailedBody,
+  };
+}
+
+String _remoteResultLabel(AppLocalizations l10n, String? code) {
+  if (code == null) return l10n.accountsSyncRemoteBackupFailedBody;
+  return _remoteErrorLabel(l10n, code);
 }
 
 String _syncModeLabel(AppLocalizations l10n, ProfileSyncMode mode) {

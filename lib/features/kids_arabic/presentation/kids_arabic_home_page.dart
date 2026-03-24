@@ -3,10 +3,30 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../l10n/app_localizations.dart';
+import '../../../shared/widgets/premium_card.dart';
 import '../../learn/presentation/widgets/learn_hub_page_scaffold.dart';
+import '../../arabic/application/arabic_learning_asset_bundle.dart';
+import '../../arabic/application/arabic_learning_assessment_provider.dart';
+import '../../arabic/application/arabic_learning_lesson_packs_provider.dart';
+import '../../arabic/application/arabic_learning_progress_provider.dart';
+import '../../arabic/application/arabic_learning_quick_resume_provider.dart';
+import '../../arabic/application/arabic_learning_search_provider.dart';
+import '../../arabic/domain/arabic_learning_continuity_models.dart';
+import '../../arabic/domain/arabic_learning_search_models.dart';
+import '../../arabic/presentation/arabic_learning_route_target_navigation.dart';
+import '../../arabic/presentation/widgets/arabic_learning_discovery_search_section.dart';
+import '../../arabic/presentation/widgets/arabic_learning_lesson_packs_section.dart';
+import '../../arabic/presentation/widgets/arabic_learning_progress_dashboard_card.dart';
+import '../../arabic/presentation/widgets/arabic_learning_quick_resume_section.dart';
+import '../../learn/quran/application/quran_readiness_bridge_provider.dart';
+import '../../learn/quran/application/quran_guided_passage_readiness_provider.dart';
+import '../../learn/quran/application/quran_short_surah_readiness_provider.dart';
+import '../../learn/quran/domain/quran_guided_passage_readiness_models.dart';
+import '../../learn/quran/domain/quran_readiness_bridge_models.dart';
+import '../../learn/quran/domain/quran_short_surah_readiness_models.dart';
 import '../application/kids_arabic_achievements_provider.dart';
 import '../application/kids_arabic_mastery_provider.dart';
-import '../application/kids_arabic_practice_provider.dart';
+import '../application/kids_arabic_phrases_provider.dart';
 import '../application/kids_arabic_progression.dart';
 import '../application/kids_arabic_words_provider.dart';
 import '../application/kids_arabic_coloring_provider.dart';
@@ -17,11 +37,28 @@ import '../domain/kids_arabic_achievement_models.dart';
 import '../domain/kids_arabic_models.dart';
 import 'kids_arabic_localized_content.dart';
 
-class KidsArabicHomePage extends ConsumerWidget {
+class KidsArabicHomePage extends ConsumerStatefulWidget {
   const KidsArabicHomePage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<KidsArabicHomePage> createState() => _KidsArabicHomePageState();
+}
+
+class _KidsArabicHomePageState extends ConsumerState<KidsArabicHomePage> {
+  final TextEditingController _searchController = TextEditingController();
+  final Set<ArabicLearningSearchFilter> _selectedFilters =
+      <ArabicLearningSearchFilter>{};
+  bool _offlineWarmupQueued = false;
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final ref = this.ref;
     final l10n = AppLocalizations.of(context);
     final progress = ref.watch(kidsArabicProgressProvider);
     final dailyMission = ref.watch(kidsArabicDailyMissionProvider);
@@ -43,10 +80,41 @@ class KidsArabicHomePage extends ConsumerWidget {
       kidsArabicMasteryRecommendationProvider,
     );
     final achievementSummary = ref.watch(kidsArabicAchievementSummaryProvider);
-    final practicePlan = ref.watch(kidsArabicPracticePlanProvider);
+    final progressSummary = ref.watch(
+      arabicLearningProgressSummaryProvider(ArabicLearningAudience.kids),
+    );
+    final quickResume = ref.watch(
+      arabicLearningQuickResumeSummaryProvider(ArabicLearningAudience.kids),
+    );
+    final miniAssessment = ref.watch(
+      arabicLearningMiniAssessmentSessionProvider(ArabicLearningAudience.kids),
+    );
+    final lessonPacks = ref.watch(
+      arabicLearningLessonPacksProvider(ArabicLearningAudience.kids),
+    );
     final nextWord = ref.watch(kidsArabicNextRecommendedWordProvider);
     final completedWordsCount = ref.watch(
       kidsArabicCompletedWordsCountProvider,
+    );
+    final phrase = ref.watch(kidsArabicMiniPhraseRecommendedProvider);
+    final heardPhrases = ref.watch(kidsArabicMiniPhraseHeardCountProvider);
+    final quranReadiness = ref.watch(
+      quranReadinessBridgeSummaryProvider(ArabicLearningAudience.kids),
+    );
+    final shortSurahs = ref.watch(
+      quranShortSurahReadinessSummaryProvider(ArabicLearningAudience.kids),
+    );
+    final guidedPassages = ref.watch(
+      quranGuidedPassageReadinessSummaryProvider(ArabicLearningAudience.kids),
+    );
+    final searchResults = ref.watch(
+      arabicLearningSearchResultsProvider(
+        ArabicLearningSearchQuery(
+          audience: ArabicLearningAudience.kids,
+          query: _searchController.text,
+          filters: _selectedFilters,
+        ),
+      ),
     );
     final notifier = ref.read(kidsArabicProgressProvider.notifier);
     final guidedLetter = parentActivity == null
@@ -58,6 +126,21 @@ class KidsArabicHomePage extends ConsumerWidget {
               .where((letter) => unlockedLetterIds.contains(letter.id))
               .take(5)
               .toList(growable: false);
+
+    if (!_offlineWarmupQueued) {
+      _offlineWarmupQueued = true;
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) {
+          return;
+        }
+        final warmer = ref.read(arabicLearningOfflineWarmupProvider);
+        warmer.prewarmContinuationTarget(
+          audience: ArabicLearningAudience.kids,
+          continuation: progressSummary.continuation,
+        );
+        warmer.prewarmAudienceStartBundle(ArabicLearningAudience.kids);
+      });
+    }
 
     return LearnHubPageScaffold(
       headerIcon: Icons.text_fields_rounded,
@@ -88,9 +171,74 @@ class KidsArabicHomePage extends ConsumerWidget {
           ),
           const SizedBox(height: 12),
         ],
-        _KidsArabicSummaryCard(progress: progress),
+        ArabicLearningProgressDashboardCard(
+          variant: ArabicLearningProgressDashboardVariant.kids,
+          summary: progressSummary,
+          kidsHighlight: achievementSummary.latestAchievement == null
+              ? null
+              : localizedKidsArabicAchievementTitle(
+                  l10n,
+                  achievementSummary.latestAchievement!,
+                ),
+          onPrimaryTap: () => openArabicLearningRouteTarget(
+            context,
+            target: progressSummary.continuation.primaryTarget,
+          ),
+          onSecondaryTap: progressSummary.reviewSuggestion == null
+              ? null
+              : () => openArabicLearningRouteTarget(
+                  context,
+                  target: progressSummary.reviewSuggestion!.target,
+                ),
+        ),
         const SizedBox(height: 12),
-        _PracticeLoopCard(plan: practicePlan),
+        ArabicLearningQuickResumeSection(
+          variant: ArabicLearningQuickResumeSectionVariant.kids,
+          summary: quickResume,
+          onPrimaryTap: () => openArabicLearningRouteTarget(
+            context,
+            target: quickResume.primaryTarget,
+          ),
+          onReviewTap: !quickResume.hasReviewAction
+              ? null
+              : () => openArabicLearningRouteTarget(
+                  context,
+                  target: quickResume.reviewTarget!,
+                ),
+        ),
+        const SizedBox(height: 12),
+        _QuickPracticeCard(questionCount: miniAssessment.questions.length),
+        const SizedBox(height: 12),
+        ArabicLearningDiscoverySearchSection(
+          variant: ArabicLearningDiscoveryVariant.kids,
+          controller: _searchController,
+          selectedFilters: _selectedFilters,
+          results: searchResults,
+          onChanged: (_) => setState(() {}),
+          onClear: () {
+            _searchController.clear();
+            setState(() {});
+          },
+          onToggleFilter: (filter) {
+            setState(() {
+              if (!_selectedFilters.add(filter)) {
+                _selectedFilters.remove(filter);
+              }
+            });
+          },
+          onOpenResult: (item) {
+            openArabicLearningRouteTarget(context, target: item.target);
+          },
+        ),
+        const SizedBox(height: 12),
+        ArabicLearningLessonPacksSection(
+          variant: ArabicLearningLessonPacksVariant.kids,
+          packs: lessonPacks,
+          onOpenPack: (pack) => openArabicLearningRouteTarget(
+            context,
+            target: pack.primaryTarget,
+          ),
+        ),
         const SizedBox(height: 12),
         _MasterySnapshotCard(
           summary: masterySummary,
@@ -107,6 +255,14 @@ class KidsArabicHomePage extends ConsumerWidget {
           nextWordAr: nextWord?.wordAr,
           completedWordsCount: completedWordsCount,
         ),
+        const SizedBox(height: 12),
+        _MiniPhrasesCard(initialPhraseId: phrase?.id, heardCount: heardPhrases),
+        const SizedBox(height: 12),
+        _QuranReadinessCard(summary: quranReadiness),
+        const SizedBox(height: 12),
+        _ShortSurahsCard(summary: shortSurahs),
+        const SizedBox(height: 12),
+        _GuidedPassagesCard(summary: guidedPassages),
         const SizedBox(height: 12),
         if (progress.totalLessonsDone > 0) ...[
           _FamilySummaryCard(summary: parentSummary),
@@ -206,6 +362,254 @@ class KidsArabicHomePage extends ConsumerWidget {
   }
 }
 
+class _ShortSurahsCard extends StatelessWidget {
+  const _ShortSurahsCard({required this.summary});
+
+  final QuranShortSurahReadinessSummary summary;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+
+    return PremiumCard(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            l10n.quranShortSurahsKidsCardTitle,
+            style: Theme.of(
+              context,
+            ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
+          ),
+          const SizedBox(height: 6),
+          Text(
+            summary.hasSnippetBridgeStarted
+                ? l10n.quranShortSurahsKidsCardSubtitle(
+                    summary.surah.surahTransliteratedName,
+                  )
+                : l10n.quranShortSurahsKidsCardStartSubtitle,
+          ),
+          const SizedBox(height: 12),
+          Text(
+            summary.surah.surahArabicName,
+            textDirection: TextDirection.rtl,
+            style: const TextStyle(
+              fontSize: 30,
+              fontFamily: 'AmiriQuran',
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          const SizedBox(height: 10),
+          Text(
+            l10n.quranShortSurahsSurahMeta(
+              summary.surah.surahTransliteratedName,
+              summary.surah.ayahCount,
+            ),
+            style: Theme.of(context).textTheme.bodySmall,
+          ),
+          const SizedBox(height: 12),
+          FilledButton.tonalIcon(
+            onPressed: () => context.pushNamed(
+              summary.routeName,
+              queryParameters: <String, String>{
+                'surah': summary.surah.surahNumber.toString(),
+              },
+            ),
+            icon: const Icon(Icons.auto_stories_rounded),
+            label: Text(switch (summary.intent) {
+              ArabicLearningContinuationIntent.review =>
+                l10n.quranShortSurahsKidsReviewAction,
+              ArabicLearningContinuationIntent.continueForward =>
+                l10n.quranShortSurahsKidsContinueAction,
+              _ => l10n.quranShortSurahsKidsStartAction,
+            }),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _QuickPracticeCard extends StatelessWidget {
+  const _QuickPracticeCard({required this.questionCount});
+
+  final int questionCount;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return Container(
+      padding: const EdgeInsets.all(18),
+      decoration: BoxDecoration(
+        color: const Color(0xFFFDF6EA),
+        borderRadius: BorderRadius.circular(24),
+        border: Border.all(color: const Color(0xFFE7D6B8)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            l10n.kidsArabicMiniAssessmentCardTitle,
+            style: const TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w700,
+              color: Color(0xFF2E261F),
+            ),
+          ),
+          const SizedBox(height: 6),
+          Text(l10n.kidsArabicMiniAssessmentCardSubtitle(questionCount)),
+          const SizedBox(height: 12),
+          FilledButton.tonalIcon(
+            onPressed: () => context.pushNamed('kidsArabicMiniAssessment'),
+            icon: const Icon(Icons.self_improvement_rounded),
+            label: Text(l10n.kidsArabicMiniAssessmentCardAction),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _QuranReadinessCard extends StatelessWidget {
+  const _QuranReadinessCard({required this.summary});
+
+  final QuranReadinessBridgeSummary summary;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return InkWell(
+      onTap: () => context.pushNamed(
+        summary.routeName,
+        queryParameters: <String, String>{'snippet': summary.snippet.id},
+      ),
+      borderRadius: BorderRadius.circular(24),
+      child: Container(
+        padding: const EdgeInsets.all(18),
+        decoration: BoxDecoration(
+          color: const Color(0xFFFFF8EA),
+          borderRadius: BorderRadius.circular(24),
+          border: Border.all(color: const Color(0xFFE7D9B6)),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              l10n.quranReadinessKidsCardTitle,
+              style: const TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w700,
+                color: Color(0xFF2E261F),
+              ),
+            ),
+            const SizedBox(height: 6),
+            Text(
+              summary.hasArabicFoundationStarted
+                  ? l10n.quranReadinessKidsCardSubtitle(
+                      summary.snippet.snippetArabic,
+                    )
+                  : l10n.quranReadinessKidsCardStartSubtitle,
+              style: const TextStyle(color: Color(0xFF665744), height: 1.35),
+            ),
+            const SizedBox(height: 12),
+            Text(
+              summary.snippet.snippetArabic,
+              textDirection: TextDirection.rtl,
+              style: const TextStyle(
+                fontSize: 30,
+                fontFamily: 'AmiriQuran',
+                fontWeight: FontWeight.w700,
+                color: Color(0xFF7A5622),
+              ),
+            ),
+            const SizedBox(height: 12),
+            FilledButton.tonal(
+              onPressed: () => context.pushNamed(
+                summary.routeName,
+                queryParameters: <String, String>{
+                  'snippet': summary.snippet.id,
+                },
+              ),
+              child: Text(switch (summary.intent) {
+                ArabicLearningContinuationIntent.review =>
+                  l10n.quranReadinessKidsReviewAction,
+                ArabicLearningContinuationIntent.continueForward =>
+                  l10n.quranReadinessKidsContinueAction,
+                _ => l10n.quranReadinessKidsStartAction,
+              }),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _GuidedPassagesCard extends StatelessWidget {
+  const _GuidedPassagesCard({required this.summary});
+
+  final QuranGuidedPassageReadinessSummary summary;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final actionLabel = switch (summary.intent) {
+      ArabicLearningContinuationIntent.start =>
+        l10n.quranGuidedPassagesKidsStartAction,
+      ArabicLearningContinuationIntent.review =>
+        l10n.quranGuidedPassagesKidsReviewAction,
+      ArabicLearningContinuationIntent.resume ||
+      ArabicLearningContinuationIntent.continueForward =>
+        l10n.quranGuidedPassagesKidsContinueAction,
+    };
+
+    return PremiumCard(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            l10n.quranGuidedPassagesKidsCardTitle,
+            style: const TextStyle(
+              fontWeight: FontWeight.w700,
+              color: Color(0xFF2E261F),
+            ),
+          ),
+          const SizedBox(height: 6),
+          Text(
+            summary.openedCount > 0
+                ? l10n.quranGuidedPassagesKidsCardSubtitle(
+                    _guidedPassageTitle(l10n, summary.passage.id),
+                  )
+                : l10n.quranGuidedPassagesKidsCardStartSubtitle,
+            style: const TextStyle(color: Color(0xFF5D4A36), height: 1.35),
+          ),
+          const SizedBox(height: 12),
+          FilledButton.tonalIcon(
+            onPressed: () => context.pushNamed(
+              summary.routeName,
+              queryParameters: <String, String>{'passage': summary.passage.id},
+            ),
+            icon: const Icon(Icons.menu_book_rounded),
+            label: Text(actionLabel),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+String _guidedPassageTitle(AppLocalizations l10n, String passageId) {
+  switch (passageId) {
+    case 'fatihah_opening_passage':
+      return l10n.quranGuidedPassagesOpeningTitle;
+    case 'fatihah_response_passage':
+      return l10n.quranGuidedPassagesResponseTitle;
+    case 'fatihah_full_passage':
+      return l10n.quranGuidedPassagesFullTitle;
+  }
+  return passageId;
+}
+
 class _ColoringPagesCard extends StatelessWidget {
   const _ColoringPagesCard({required this.unlockedCount});
 
@@ -265,60 +669,72 @@ class _ColoringPagesCard extends StatelessWidget {
   }
 }
 
-class _KidsArabicSummaryCard extends StatelessWidget {
-  const _KidsArabicSummaryCard({required this.progress});
+class _MiniPhrasesCard extends StatelessWidget {
+  const _MiniPhrasesCard({
+    required this.initialPhraseId,
+    required this.heardCount,
+  });
 
-  final KidsArabicProgressState progress;
+  final String? initialPhraseId;
+  final int heardCount;
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: const Color(0xFFFFF5E7),
-        borderRadius: BorderRadius.circular(22),
-        border: Border.all(color: const Color(0xFFE8D8BE)),
+    return InkWell(
+      onTap: () => context.pushNamed(
+        'kidsArabicMiniPhrases',
+        queryParameters: initialPhraseId == null
+            ? <String, String>{}
+            : {'phrase': initialPhraseId!},
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            l10n.kidsArabicProgressTitle,
-            style: const TextStyle(
-              fontSize: 17,
-              fontWeight: FontWeight.w700,
-              color: Color(0xFF2E261F),
+      borderRadius: BorderRadius.circular(22),
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: const Color(0xFFEFF6E6),
+          borderRadius: BorderRadius.circular(22),
+          border: Border.all(color: const Color(0xFFD4E4C0)),
+        ),
+        child: Row(
+          children: [
+            Container(
+              width: 56,
+              height: 56,
+              decoration: BoxDecoration(
+                color: const Color(0xFFFCFFF8),
+                borderRadius: BorderRadius.circular(18),
+              ),
+              child: const Icon(
+                Icons.chat_bubble_outline_rounded,
+                color: Color(0xFF64873B),
+              ),
             ),
-          ),
-          const SizedBox(height: 10),
-          Wrap(
-            spacing: 10,
-            runSpacing: 10,
-            children: [
-              _SummaryPill(
-                label: l10n.kidsArabicLettersCompletedValue(
-                  progress.completedLetterIds.length,
-                ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    l10n.kidsArabicMiniPhrasesHomeTitle,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w700,
+                      color: Color(0xFF2E261F),
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    l10n.kidsArabicMiniPhrasesHomeSubtitle(heardCount),
+                    style: const TextStyle(
+                      color: Color(0xFF52713A),
+                      height: 1.3,
+                    ),
+                  ),
+                ],
               ),
-              _SummaryPill(
-                label: l10n.kidsArabicLessonsDoneValue(
-                  progress.totalLessonsDone,
-                ),
-              ),
-              _SummaryPill(
-                label: l10n.kidsArabicCurrentStreakValue(
-                  progress.localCurrentStreakDays,
-                ),
-              ),
-              _SummaryPill(
-                label: l10n.kidsArabicDropsValue(
-                  progress.totalFeatureDropsAwarded,
-                ),
-              ),
-            ],
-          ),
-        ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -773,114 +1189,6 @@ class _MasterySnapshotCard extends StatelessWidget {
               child: TextButton(
                 onPressed: () => context.pushNamed('kidsArabicProgressMap'),
                 child: Text(l10n.kidsArabicMasteryOpenMapAction),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _PracticeLoopCard extends StatelessWidget {
-  const _PracticeLoopCard({required this.plan});
-
-  final KidsArabicPracticePlan plan;
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
-    final title = switch (plan.primaryFocus?.type) {
-      KidsArabicPracticeFocusType.dailyNewLetter =>
-        l10n.kidsArabicPracticeDailyNewLetterTitle(
-          plan.primaryFocus!.letter!.nameAr,
-        ),
-      KidsArabicPracticeFocusType.dailyReviewLetter =>
-        l10n.kidsArabicPracticeDailyReviewTitle(
-          plan.primaryFocus!.letter!.nameAr,
-        ),
-      KidsArabicPracticeFocusType.dailyTraceLetter =>
-        l10n.kidsArabicPracticeDailyTraceTitle(
-          plan.primaryFocus!.letter!.nameAr,
-        ),
-      KidsArabicPracticeFocusType.continueLetter =>
-        l10n.kidsArabicPracticeContinueLetterTitle(
-          plan.primaryFocus!.letter!.nameAr,
-        ),
-      KidsArabicPracticeFocusType.continueWord =>
-        l10n.kidsArabicPracticeContinueWordTitle(
-          plan.primaryFocus!.word!.wordAr,
-        ),
-      KidsArabicPracticeFocusType.reviewLetter =>
-        l10n.kidsArabicPracticeReviewLetterTitle(
-          plan.primaryFocus!.letter!.nameAr,
-        ),
-      KidsArabicPracticeFocusType.reviewWord =>
-        l10n.kidsArabicPracticeReviewWordTitle(plan.primaryFocus!.word!.wordAr),
-      null => l10n.kidsArabicPracticeTitle,
-    };
-    final subtitle = plan.practicedToday
-        ? l10n.kidsArabicPracticeTodayDoneBody
-        : l10n.kidsArabicPracticeHomeSubtitle;
-    return InkWell(
-      onTap: () => context.pushNamed('kidsArabicPractice'),
-      borderRadius: BorderRadius.circular(22),
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: const Color(0xFFEFF6E6),
-          borderRadius: BorderRadius.circular(22),
-          border: Border.all(color: const Color(0xFFD4E4C0)),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              l10n.kidsArabicPracticeTitle,
-              style: const TextStyle(
-                fontWeight: FontWeight.w700,
-                color: Color(0xFF2E261F),
-              ),
-            ),
-            const SizedBox(height: 6),
-            Text(
-              title,
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-                color: Color(0xFF52713A),
-              ),
-            ),
-            const SizedBox(height: 6),
-            Text(
-              subtitle,
-              style: const TextStyle(color: Color(0xFF5A6A4A), height: 1.35),
-            ),
-            const SizedBox(height: 12),
-            Wrap(
-              spacing: 8,
-              runSpacing: 8,
-              children: [
-                _SummaryPill(
-                  label: l10n.kidsArabicLettersCompletedValue(
-                    plan.completedLettersCount,
-                  ),
-                ),
-                _SummaryPill(
-                  label: l10n.kidsArabicWordsCompletedValue(
-                    plan.completedWordsCount,
-                  ),
-                ),
-                if (plan.practicedToday)
-                  _SummaryPill(label: l10n.kidsArabicPracticeTodayDoneBadge),
-              ],
-            ),
-            const SizedBox(height: 12),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: TextButton(
-                onPressed: () => context.pushNamed('kidsArabicPractice'),
-                child: Text(l10n.kidsArabicPracticeOpenAction),
               ),
             ),
           ],

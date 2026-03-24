@@ -13,7 +13,9 @@ import '../../../../shared/widgets/segmented_pill_control.dart';
 import '../../hadith/application/hadith_foundation_repository.dart';
 import '../../hadith/domain/hadith_foundation_models.dart';
 import '../../quran/application/quran_learning_system_service.dart';
+import '../../quran/application/quran_guided_learning_paths_provider.dart';
 import '../../quran/domain/quran_learning_models.dart';
+import '../../quran/presentation/quran_learning_path_copy.dart';
 import '../../quran/presentation/widgets/quran_learning_personalization_section.dart';
 import '../models/learn_category_item.dart';
 import '../widgets/learn_category_grid.dart';
@@ -46,10 +48,12 @@ class _LearnQuranHubPageState extends ConsumerState<LearnQuranHubPage> {
       specialModeProvider.select((mode) => mode.isKids),
     );
     final verses = ref.watch(quranLearningVersesProvider);
-    final paths = ref.watch(quranLearningPathsProvider);
+    final guidedPaths = ref.watch(quranGuidedFeaturedLearningPathsProvider);
+    final continueGuidedPath = ref.watch(quranGuidedContinuePathProvider);
     final memorization = ref.watch(quranMemorizationProgressProvider);
     final dueReviews = ref.watch(quranMemorizationDueProvider);
     final memorizationCoverage = ref.watch(quranMemorizationCoverageProvider);
+    final reviewEntries = ref.watch(quranMemorizationReviewEntriesProvider);
     final dailyVerse = ref.watch(quranDailyReflectionVerseProvider);
     final quranTools = _quranTools(l10n);
 
@@ -67,8 +71,8 @@ class _LearnQuranHubPageState extends ConsumerState<LearnQuranHubPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-                Text(
-                  l10n.quranHubStudyTitle,
+              Text(
+                l10n.quranHubStudyTitle,
                 style: Theme.of(
                   context,
                 ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
@@ -351,56 +355,67 @@ class _LearnQuranHubPageState extends ConsumerState<LearnQuranHubPage> {
             ),
           ),
           const SizedBox(height: 10),
-          ...paths.map((path) {
-            final completed = path.verseIds
-                .where(
-                  (id) => memorization[id]?.stage == MemorizationStage.mastered,
-                )
-                .length;
-            final ratio = path.verseIds.isEmpty
-                ? 0.0
-                : (completed / path.verseIds.length).clamp(0.0, 1.0);
-
+          if (continueGuidedPath != null) ...[
+            PremiumCard(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    l10n.quranLearningPathsContinueTitle,
+                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  const SizedBox(height: 6),
+                  Text(
+                    localizedQuranLearningPathTitle(
+                      l10n,
+                      continueGuidedPath.id,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  FilledButton.tonalIcon(
+                    onPressed: () => context.pushNamed(
+                      'quranLearningPathDetail',
+                      pathParameters: {'pathId': continueGuidedPath.id},
+                    ),
+                    icon: const Icon(Icons.play_circle_outline_rounded),
+                    label: Text(l10n.quranLearningPathsOpenContinueAction),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 10),
+          ],
+          ...guidedPaths.take(3).map((path) {
             return Padding(
               padding: const EdgeInsets.only(bottom: 10),
               child: PremiumCard(
                 child: InkWell(
                   borderRadius: BorderRadius.circular(18),
-                  onTap: () => _openPathSheet(context, path),
+                  onTap: () => context.pushNamed(
+                    'quranLearningPathDetail',
+                    pathParameters: {'pathId': path.id},
+                  ),
                   child: Padding(
                     padding: const EdgeInsets.all(2),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          path.title,
+                          localizedQuranLearningPathTitle(l10n, path.id),
                           style: Theme.of(context).textTheme.titleSmall
                               ?.copyWith(fontWeight: FontWeight.w700),
                         ),
                         const SizedBox(height: 6),
-                        Text(path.description),
-                        const SizedBox(height: 8),
                         Text(
-                          l10n.learnQuranHubPathProgress(
-                            completed,
-                            path.verseIds.length,
-                          ),
+                          localizedQuranLearningPathSubtitle(l10n, path.id),
                           style: Theme.of(context).textTheme.bodySmall
                               ?.copyWith(color: AppColors.onSurfaceSubtle),
                         ),
-                        const SizedBox(height: 6),
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(999),
-                          child: LinearProgressIndicator(
-                            minHeight: 7,
-                            value: ratio,
-                            backgroundColor: AppColors.surface.withValues(
-                              alpha: 0.4,
-                            ),
-                            valueColor: AlwaysStoppedAnimation<Color>(
-                              AppColors.onSurface.withValues(alpha: 0.72),
-                            ),
-                          ),
+                        const SizedBox(height: 8),
+                        Text(
+                          localizedQuranLearningPathDescription(l10n, path.id),
                         ),
                       ],
                     ),
@@ -409,6 +424,11 @@ class _LearnQuranHubPageState extends ConsumerState<LearnQuranHubPage> {
               ),
             );
           }),
+          FilledButton.tonalIcon(
+            onPressed: () => context.pushNamed('quranLearningPaths'),
+            icon: const Icon(Icons.route_rounded),
+            label: Text(l10n.quranLearningPathsBrowseAllAction),
+          ),
         ],
         if (_tab == LearnQuranHubTab.memorize) ...[
           PremiumCard(
@@ -436,6 +456,12 @@ class _LearnQuranHubPageState extends ConsumerState<LearnQuranHubPage> {
                     color: AppColors.onSurfaceSubtle,
                   ),
                 ),
+                const SizedBox(height: 10),
+                FilledButton.tonalIcon(
+                  onPressed: () => context.pushNamed('quranMemorizationReview'),
+                  icon: const Icon(Icons.repeat_rounded),
+                  label: Text(l10n.quranMemorizationReviewOpenListAction),
+                ),
               ],
             ),
           ),
@@ -452,133 +478,168 @@ class _LearnQuranHubPageState extends ConsumerState<LearnQuranHubPage> {
                     ),
                   ),
                   const SizedBox(height: 8),
-                  ...dueReviews.take(5).map((item) {
-                    final verse = ref.watch(
-                      quranLearningVerseByIdProvider(item.verseId),
-                    );
-                    if (verse == null) return const SizedBox.shrink();
-                    return Padding(
-                      padding: const EdgeInsets.only(bottom: 8),
-                      child: Container(
-                        padding: const EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          color: AppColors.surface.withValues(alpha: 0.22),
-                          border: Border.all(
-                            color: AppColors.accentGoldSoft.withValues(
-                              alpha: 0.28,
-                            ),
-                          ),
+                  ...reviewEntries
+                      .where(
+                        (entry) => dueReviews.any(
+                          (item) => item.verseId == entry.progress.verseId,
                         ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              l10n.quranReferenceViewerReferenceLabel(
-                                '${verse.surah}:${verse.ayah}',
+                      )
+                      .take(5)
+                      .map((entry) {
+                        return Padding(
+                          padding: const EdgeInsets.only(bottom: 8),
+                          child: Container(
+                            padding: const EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
+                              color: AppColors.surface.withValues(alpha: 0.22),
+                              border: Border.all(
+                                color: AppColors.accentGoldSoft.withValues(
+                                  alpha: 0.28,
+                                ),
                               ),
                             ),
-                            const SizedBox(height: 4),
-                            Text(
-                              l10n.learnQuranHubStageAndNext(
-                                _stageLabel(l10n, item.stage),
-                                _dateLabel(context, item.nextReview),
-                              ),
-                              style: Theme.of(context).textTheme.bodySmall,
-                            ),
-                            const SizedBox(height: 8),
-                            Wrap(
-                              spacing: 8,
-                              runSpacing: 8,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                FilledButton.tonal(
-                                  onPressed: () => ref
-                                      .read(
-                                        quranMemorizationProgressProvider
-                                            .notifier,
-                                      )
-                                      .markReviewed(
-                                        item.verseId,
-                                        success: true,
-                                      ),
-                                  child: Text(
-                                    l10n.learnQuranHubReviewedWellAction,
+                                Text(
+                                  l10n.quranReferenceViewerReferenceLabel(
+                                    '${entry.surahNumber}:${entry.ayahNumber}',
                                   ),
                                 ),
-                                FilledButton.tonal(
-                                  onPressed: () => ref
-                                      .read(
-                                        quranMemorizationProgressProvider
-                                            .notifier,
-                                      )
-                                      .markReviewed(
-                                        item.verseId,
-                                        success: false,
-                                        targetStage:
-                                            MemorizationStage.repeating,
-                                      ),
-                                  child: Text(
-                                    l10n.learnQuranHubNeedsRepetitionAction,
+                                const SizedBox(height: 4),
+                                Text(
+                                  l10n.learnQuranHubStageAndNext(
+                                    _stageLabel(l10n, entry.progress.stage),
+                                    _dateLabel(
+                                      context,
+                                      entry.progress.nextReview,
+                                    ),
                                   ),
+                                  style: Theme.of(context).textTheme.bodySmall,
                                 ),
-                                FilledButton.tonalIcon(
-                                  onPressed: () => context.pushNamed(
-                                    'quranReader',
-                                    pathParameters: {
-                                      'surahNumber': '${verse.surah}',
-                                    },
-                                    queryParameters: {'ayah': '${verse.ayah}'},
-                                  ),
-                                  icon: const Icon(Icons.play_arrow_rounded),
-                                  label: Text(
-                                    l10n.learnQuranHubReciteVerseAction,
-                                  ),
+                                const SizedBox(height: 8),
+                                Wrap(
+                                  spacing: 8,
+                                  runSpacing: 8,
+                                  children: [
+                                    FilledButton.tonal(
+                                      onPressed: () => ref
+                                          .read(
+                                            quranMemorizationProgressProvider
+                                                .notifier,
+                                          )
+                                          .markReviewed(
+                                            entry.progress.verseId,
+                                            success: true,
+                                          ),
+                                      child: Text(
+                                        l10n.learnQuranHubReviewedWellAction,
+                                      ),
+                                    ),
+                                    FilledButton.tonal(
+                                      onPressed: () => ref
+                                          .read(
+                                            quranMemorizationProgressProvider
+                                                .notifier,
+                                          )
+                                          .markReviewed(
+                                            entry.progress.verseId,
+                                            success: false,
+                                            targetStage:
+                                                MemorizationStage.repeating,
+                                          ),
+                                      child: Text(
+                                        l10n.learnQuranHubNeedsRepetitionAction,
+                                      ),
+                                    ),
+                                    FilledButton.tonalIcon(
+                                      onPressed: () => context.pushNamed(
+                                        'quranReader',
+                                        pathParameters: {
+                                          'surahNumber': '${entry.surahNumber}',
+                                        },
+                                        queryParameters: {
+                                          'ayah': '${entry.ayahNumber}',
+                                          'review': 'memorization',
+                                        },
+                                      ),
+                                      icon: const Icon(
+                                        Icons.play_arrow_rounded,
+                                      ),
+                                      label: Text(
+                                        l10n.learnQuranHubReciteVerseAction,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
-                          ],
-                        ),
-                      ),
-                    );
-                  }),
+                          ),
+                        );
+                      }),
                 ],
               ),
             ),
           const SizedBox(height: 10),
-          ...verses.map((verse) {
-            final item = memorization[verse.id];
-            return Padding(
-              padding: const EdgeInsets.only(bottom: 8),
-              child: PremiumCard(
-                child: ListTile(
-                  contentPadding: EdgeInsets.zero,
-                  title: Text(
-                    l10n.quranReferenceViewerReferenceLabel(
-                      '${verse.surah}:${verse.ayah}',
+          if (reviewEntries.isEmpty)
+            ...verses.take(6).map((verse) {
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 8),
+                child: PremiumCard(
+                  child: ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    title: Text(
+                      l10n.quranReferenceViewerReferenceLabel(
+                        '${verse.surah}:${verse.ayah}',
+                      ),
                     ),
+                    subtitle: Text(verse.translation),
+                    onTap: () {
+                      ref
+                          .read(quranMemorizationProgressProvider.notifier)
+                          .getOrCreate(verse.id);
+                      context.pushNamed(
+                        'quranReader',
+                        pathParameters: {'surahNumber': '${verse.surah}'},
+                        queryParameters: {
+                          'ayah': '${verse.ayah}',
+                          'review': 'memorization',
+                        },
+                      );
+                    },
                   ),
-                  subtitle: Text(
-                    item == null
-                        ? l10n.learnQuranHubNotStarted
-                        : l10n.learnQuranHubNextReviewSummary(
-                            _stageLabel(l10n, item.stage),
-                            _dateLabel(context, item.nextReview),
-                          ),
-                  ),
-                  onTap: () {
-                    ref
-                        .read(quranMemorizationProgressProvider.notifier)
-                        .getOrCreate(verse.id);
-                    context.pushNamed(
-                      'quranReader',
-                      pathParameters: {'surahNumber': '${verse.surah}'},
-                      queryParameters: {'ayah': '${verse.ayah}'},
-                    );
-                  },
                 ),
-              ),
-            );
-          }),
+              );
+            })
+          else
+            ...reviewEntries.map((entry) {
+              final item = memorization[entry.progress.verseId];
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 8),
+                child: PremiumCard(
+                  child: ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    title: Text(
+                      l10n.quranReferenceViewerReferenceLabel(
+                        '${entry.surahNumber}:${entry.ayahNumber}',
+                      ),
+                    ),
+                    subtitle: Text(
+                      item == null
+                          ? l10n.learnQuranHubNotStarted
+                          : l10n.learnQuranHubNextReviewSummary(
+                              _stageLabel(l10n, item.stage),
+                              _dateLabel(context, item.nextReview),
+                            ),
+                    ),
+                    onTap: () {
+                      context.pushNamed('quranMemorizationReview');
+                    },
+                  ),
+                ),
+              );
+            }),
         ],
         const SizedBox(height: 12),
         PremiumCard(
@@ -632,7 +693,12 @@ class _LearnQuranHubPageState extends ConsumerState<LearnQuranHubPage> {
         title: l10n.learningJourneyBrowseQuranUniverseTitle,
         iconKey: 'quran_universe',
         routeName: 'quranUniverse',
-        searchKeywords: ['quran universe', 'connections', 'themes', 'locations'],
+        searchKeywords: [
+          'quran universe',
+          'connections',
+          'themes',
+          'locations',
+        ],
         tags: ['quran', 'exploration'],
         sectionType: 'module',
       ),
@@ -698,55 +764,5 @@ class _LearnQuranHubPageState extends ConsumerState<LearnQuranHubPage> {
   String _dateLabel(BuildContext context, DateTime date) {
     final value = DateTime(date.year, date.month, date.day);
     return MaterialLocalizations.of(context).formatMediumDate(value);
-  }
-
-  Future<void> _openPathSheet(
-    BuildContext context,
-    QuranLearningPath path,
-  ) async {
-    await showModalBottomSheet<void>(
-      context: context,
-      showDragHandle: true,
-      builder: (sheetContext) {
-        final verses = path.verseIds
-            .map((id) => ref.read(quranLearningVerseByIdProvider(id)))
-            .whereType<QuranLearningVerse>()
-            .toList(growable: false);
-
-        return SafeArea(
-          child: ListView(
-            shrinkWrap: true,
-            padding: const EdgeInsets.all(16),
-            children: [
-              Text(path.title, style: Theme.of(context).textTheme.titleLarge),
-              const SizedBox(height: 6),
-              Text(path.description),
-              const SizedBox(height: 12),
-              ...verses.map(
-                (verse) => ListTile(
-                  contentPadding: EdgeInsets.zero,
-                  title: Text(
-                    AppLocalizations.of(
-                      context,
-                    ).quranReferenceViewerReferenceLabel(
-                      '${verse.surah}:${verse.ayah}',
-                    ),
-                  ),
-                  subtitle: Text(verse.translation),
-                  onTap: () {
-                    Navigator.of(sheetContext).pop();
-                    context.pushNamed(
-                      'quranReader',
-                      pathParameters: {'surahNumber': '${verse.surah}'},
-                      queryParameters: {'ayah': '${verse.ayah}'},
-                    );
-                  },
-                ),
-              ),
-            ],
-          ),
-        );
-      },
-    );
   }
 }

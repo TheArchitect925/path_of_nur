@@ -61,14 +61,23 @@ class QuranTeachingReviewDashboardStats {
 
 class QuranTeachingPracticeRecommendation {
   const QuranTeachingPracticeRecommendation({
-    required this.title,
-    required this.subtitle,
+    required this.type,
     required this.icon,
+    this.tag,
+    this.count,
   });
 
-  final String title;
-  final String subtitle;
+  final QuranTeachingPracticeRecommendationType type;
   final IconData icon;
+  final String? tag;
+  final int? count;
+}
+
+enum QuranTeachingPracticeRecommendationType {
+  weakArea,
+  dueWords,
+  duePhrases,
+  lightReview,
 }
 
 class QuranTeachingSmartReviewController
@@ -540,10 +549,9 @@ final quranTeachingPracticeRecommendationsProvider =
       if (weakAreas.isNotEmpty) {
         recommendations.add(
           QuranTeachingPracticeRecommendation(
-            title: _recommendationTitleForTag(weakAreas.first.tag),
-            subtitle:
-                'A few recent misses suggest this area needs another calm pass.',
+            type: QuranTeachingPracticeRecommendationType.weakArea,
             icon: Icons.auto_fix_high_rounded,
+            tag: weakAreas.first.tag,
           ),
         );
       }
@@ -552,9 +560,9 @@ final quranTeachingPracticeRecommendationsProvider =
       if (dueWords > 0) {
         recommendations.add(
           QuranTeachingPracticeRecommendation(
-            title: 'Revisit learned words',
-            subtitle: '$dueWords word items are ready for another look.',
+            type: QuranTeachingPracticeRecommendationType.dueWords,
             icon: Icons.menu_book_rounded,
+            count: dueWords,
           ),
         );
       }
@@ -564,9 +572,9 @@ final quranTeachingPracticeRecommendationsProvider =
       if (duePhrases > 0) {
         recommendations.add(
           QuranTeachingPracticeRecommendation(
-            title: 'Read these phrases again',
-            subtitle: '$duePhrases phrase items are ready for review.',
+            type: QuranTeachingPracticeRecommendationType.duePhrases,
             icon: Icons.short_text_rounded,
+            count: duePhrases,
           ),
         );
       }
@@ -574,8 +582,7 @@ final quranTeachingPracticeRecommendationsProvider =
       if (recommendations.isEmpty && review.records.isNotEmpty) {
         recommendations.add(
           const QuranTeachingPracticeRecommendation(
-            title: 'Keep today light',
-            subtitle: 'A short mixed review will keep recent lessons fresh.',
+            type: QuranTeachingPracticeRecommendationType.lightReview,
             icon: Icons.wb_twilight_rounded,
           ),
         );
@@ -969,22 +976,4 @@ String _buildMixSummary({
     parts.add('${math.max(tricky, mistakes.isNotEmpty ? 1 : 0)} tricky item${math.max(tricky, mistakes.isNotEmpty ? 1 : 0) == 1 ? '' : 's'}');
   }
   return parts.isEmpty ? 'A short mixed review.' : parts.join(', ');
-}
-
-String _recommendationTitleForTag(String tag) {
-  switch (tag) {
-    case 'harakat':
-      return 'Review Harakat Sounds';
-    case 'similar_letters':
-      return 'Practice Similar Letters';
-    case 'word_meaning':
-    case 'word_recognition':
-      return 'Revisit Learned Words';
-    case 'phrase_reading':
-      return 'Read Short Phrases Again';
-    case 'reading_rules':
-      return 'Go Over Reading Rules';
-    default:
-      return 'Practice Weak Areas';
-  }
 }

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:path_of_nur/features/accounts_sync/application/accounts_sync_controller.dart';
+import 'package:path_of_nur/features/accounts_sync/domain/accounts_sync_models.dart';
 import 'package:path_of_nur/features/accounts_sync/application/sync_foundation.dart';
 import 'package:path_of_nur/features/ocean/application/ocean_drops_provider.dart';
 import 'package:path_of_nur/features/worship/data/dhikr_repository.dart';
@@ -90,11 +91,15 @@ void main() {
     final payload = await controller.buildBackupPayload(
       currentProfileOnly: true,
       encrypt: false,
+      appVersion: '1.2.3',
+      buildNumber: '23',
     );
     final decoded = jsonDecode(payload) as Map<String, dynamic>;
-    expect(decoded['schemaVersion'], 1);
+    expect(decoded['schemaVersion'], 2);
+    expect((decoded['metadata'] as Map<String, dynamic>)['appVersion'], '1.2.3');
     expect(decoded.keys, containsAll(<String>[
       'exportedAt',
+      'metadata',
       'accounts',
       'profiles',
       'profileSnapshots',
@@ -128,16 +133,74 @@ void main() {
     );
     final before = container.read(accountsSyncControllerProvider);
 
-    await controller.importBackup(
-      payload: '{not valid json',
-      encrypted: false,
-      createNewProfiles: false,
-      replaceExisting: false,
+    await expectLater(
+      () => controller.importBackup(
+        payload: '{not valid json',
+        encrypted: false,
+        createNewProfiles: false,
+        replaceExisting: false,
+      ),
+      throwsFormatException,
     );
-
     final after = container.read(accountsSyncControllerProvider);
     expect(after.accounts.length, before.accounts.length);
     expect(after.profiles.length, before.profiles.length);
+  });
+
+  test('disconnecting authenticated account keeps local progress intact', () async {
+    final container = await makeTestContainer();
+    addTearDown(container.dispose);
+    final controller = container.read(accountsSyncControllerProvider.notifier);
+    final store = container.read(localStoreProvider);
+
+    await controller.connectAuthenticatedAccount(
+      const AccountIdentity(
+        provider: AccountsAuthProvider.google,
+        identifier: 'user-1',
+        displayName: 'Signed In User',
+        email: 'signed-in@example.com',
+      ),
+    );
+    await controller.createProfile(
+      displayName: 'Owner',
+      kind: ProfileKind.adult,
+      experienceMode: ProfileExperienceMode.full,
+      syncMode: ProfileSyncMode.manualBackupOnly,
+      avatar: 'O',
+    );
+    await store.setJsonMap('settings.profile', <String, dynamic>{'theme': 'emerald'});
+
+    expect(container.read(authStateProvider).status, AuthStatus.authenticated);
+
+    await controller.disconnectAuthenticatedAccount();
+
+    expect(container.read(authStateProvider).status, AuthStatus.unauthenticated);
+    expect(container.read(accountsSyncControllerProvider).profiles, isNotEmpty);
+    expect(store.getJsonMap('settings.profile')?['theme'], 'emerald');
+  });
+
+  test('future schema import is rejected safely', () async {
+    final container = await makeTestContainer();
+    addTearDown(container.dispose);
+    final controller = container.read(accountsSyncControllerProvider.notifier);
+
+    final payload = jsonEncode(<String, dynamic>{
+      'schemaVersion': 99,
+      'accounts': const <Map<String, dynamic>>[],
+      'profiles': const <Map<String, dynamic>>[],
+      'profileSnapshots': const <String, dynamic>{},
+      'structuredDataByProfile': const <String, dynamic>{},
+    });
+
+    await expectLater(
+      () => controller.importBackup(
+        payload: payload,
+        encrypted: false,
+        createNewProfiles: true,
+        replaceExisting: false,
+      ),
+      throwsFormatException,
+    );
   });
 
   test('sync report details are preserved for diagnostics surfaces', () async {

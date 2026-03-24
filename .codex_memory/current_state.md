@@ -1,6 +1,6 @@
 # Current Project State
 
-Last updated: 2026-03-23
+Last updated: 2026-03-24
 
 ## A. Project summary
 
@@ -48,6 +48,52 @@ Path of Nur is a Flutter + Riverpod mobile app centered on worship, Qur'an engag
   - the remaining `/growth/habit/:habitId` alias now redirects to canonical `/journey/habit/:habitId` instead of behaving like a co-equal page owner
   - deep-link normalization for `/tracking` now resolves directly to canonical `/journey/statistics`
   - no Learn route families were removed; hidden/transitional `learnLegacy` references remain compatibility debt until a dedicated Learn-legacy cleanup pass
+- Phase V4 navigation stabilization is complete:
+  - `learn_routes.dart` was reduced to a small composition file
+  - Learn route ownership now lives in focused builders under `lib/app/routes/learn/`
+  - top-level router behavior is unchanged, but `app_router.dart` now reads more clearly because onboarding and shared-device redirect decisions are isolated as small helpers and child-learning/Qur'an location policy moved into `router_policies.dart`
+  - canonical routes and compatibility aliases were preserved; this pass was structural, not an IA redesign
+- Phase V5 navigation gap audit + legacy normalization is complete:
+  - active Learn discovery and category metadata were confirmed to already prefer canonical route ownership after V4
+  - `learnLegacy` remains only as a documented hidden compatibility surface for older library-style destinations and Learning Journey metadata
+  - focused alias-integrity coverage now verifies key Learn alias redirects preserve query forwarding into canonical targets
+  - no route families were removed or renamed; this pass tightened validation and ownership clarity rather than changing product IA
+- Phase V6 hidden Learn metadata ownership cleanup is complete:
+  - hidden catalog items with clear route-backed replacements now point to canonical content or journey destinations instead of `learnLegacy`
+  - ambiguous hidden catalog items and visible journey/lesson fallback tools still retain `learnLegacy` because no one-to-one canonical owner exists yet
+  - surfaced Learn discovery behavior is unchanged; this pass only tightened hidden metadata ownership and added focused regression coverage
+- Phase V7 visible Learning Journey fallback audit is complete:
+  - visible journey-detail fallback actions for short surahs, daily dhikr, and timeline/history now point to route-specific canonical owners instead of `learnLegacy`
+  - visible lesson and stage fallback links that still act as broad companion-library actions were intentionally preserved
+  - no top-level Learn or deep-link behavior changed; this was a narrow visible fallback audit only
+- Phase V9 companion-surface definition is complete:
+  - Seerah, Character/Adab, and Daily Wisdom are now defined as missing product-owned companion surfaces rather than residual routing debt
+  - the recommended future canonical routes are `/learn/seerah`, `/learn/character`, and `/learn/daily-wisdom`
+  - adjacent existing owners were audited so future implementation can reuse Prophets, Hadith, History, Life, Divine Life, and Qur'an systems without creating new parallel hubs
+  - no live routing behavior changed in this phase; it was definition and planning only
+- Phase V10 companion-surface lightweight buildout is complete:
+  - new lightweight owned Learn surfaces now exist at `/learn/seerah`, `/learn/character`, and `/learn/daily-wisdom`
+  - Learn taxonomy now exposes Seerah from Prophets & Stories, routes Character & Adab directly to its owned companion surface, and adds Daily Wisdom under Tools & Explore
+  - visible Journey fallbacks for `seerah-journey`, `seerah-hijrah`, `seerah-madinah-society`, `beautiful-character`, and `wisdom-daily-quote` now point to owned companion routes instead of broad `learnLegacy` fallback
+  - companion surfaces reuse existing Journey, Prophets, Hadith, History, Life, Notes, and Qur'an owners rather than creating parallel content systems
+- Phase V11 companion-surface content depth + refinement is complete:
+  - `/learn/seerah` now has stronger period framing, a turning-points module, richer owner-specific source handoffs, and clearer focused Hijrah / Madinah entry treatment
+  - `/learn/character` now has trait cards with practical behavioral descriptions, richer real-life scenarios including intentions and anger/self-control, and more intentional Hadith / Life / Qur'an handoff copy
+  - `/learn/daily-wisdom` now uses a larger curated entry set, deterministic ordered rotation, theme labels, and a dedicated source-owner handoff block instead of a minimal featured card only
+  - routing stayed stable; this phase deepened content and curation without reopening ownership or architecture
+- Phase V12 companion-surface interaction + personalization is complete:
+  - `/learn/seerah` now remembers the last focused period, exposes focus chips, and surfaces a lightweight continue-exploring card for the selected Seerah period without changing canonical routing
+  - `/learn/character` now remembers the selected trait, keeps the chosen trait visually emphasized, and surfaces a lightweight practice-today scenario tied to the active trait
+  - `/learn/daily-wisdom` now supports lightweight local save/revisit behavior plus recent viewed history using feature-scoped `LocalStore` persistence rather than a broader personalization system
+  - interaction state is intentionally scoped to the companion surfaces only; this pass did not reopen Journey architecture, recommendations, or backend-like personalization
+- Phase V14 companion-surface source handoff refinement is complete:
+  - companion handoff cards across Seerah, Character, and Daily Wisdom now show explicit owner/source chips so route intent is visible instead of implied
+  - the weaker Seerah handoffs were tightened to clearer owned destinations, especially History for the broader timeline handoff and Qur'an Ayah Insights `prophets-lessons` for the Qur'an-adjacent source handoff
+  - Character and Daily Wisdom handoffs now point to more semantically specific owned destinations where the better owner already existed, without rebuilding Prophets, Hadith, History, Divine Life, or Qur'an systems
+ - Phase 35 shared Arabic beginner words and phrases foundation is complete:
+   - shared canonical beginner word and mini-phrase catalogs now live under `lib/features/arabic/`
+   - Kids Arabic beginner words and mini phrases now derive their core Arabic text, transliteration, letter ids, and shared audio-ready metadata from the shared catalog while preserving local progress ids, tracing guides, summaries, and routing
+   - adult Qur'anic Arabic now derives the overlapping beginner word, phrase, listen-item, and audio-manifest entries from the same shared source where the content overlap is strong, while keeping adult lesson/module/review structure local
 
 ## C. Implemented features
 
@@ -102,6 +148,7 @@ Path of Nur is a Flutter + Riverpod mobile app centered on worship, Qur'an engag
     - a local grouped knowledge search that reuses existing Ayah Insights, guided paths, and surah-insight data rather than adding a second search/indexing engine
     - lightweight personalization now reuses recent Qur'an reading state plus the last Ayah Insights path/domain interactions to surface Continue Learning and Suggested for You on the Qur'an hub, Qur'an Learning reflect tab, and Ayah Insights browse page
     - a lightweight Daily Ayah Reflection loop now reuses the Ayah Insights corpus for one deterministic ayah per day, with Home + Qur'an hub cards, a calm completion action, once-per-day Qur'an XP/drop hooks, and a persisted consistency streak without introducing a separate journaling or notification system
+    - the daily reflection layer now also has a dedicated owned follow-through surface at `/quran/daily`, turning the preview cards into a Daily Qur'an Companion flow with meaning, 1-2 high-signal related insights, a practical takeaway, memorization action/review, and guided-path continuation
     - a lightweight private Saved Reflections layer now lives at `/quran/reflections`, with local ayah/insight saves, optional short private notes, Daily Ayah + Ayah Insights save actions, and a dedicated review hub instead of overloading the older generic Qur'an Notes model
     - Qur'an learning progression now also routes meaningful completion events through the shared Journey XP / Drops gateway with deduped source refs: Daily Ayah completion marks the entry complete without double-awarding, Ayah Insight entry completion rewards once per entry, path steps roll up into one-time full-path completion rewards, and the first non-empty private reflection note awards once lifetime
     - a lightweight sharing/export layer now allows Daily Ayah, Ayah Insights, saved reflections, related ayahs, and surah insights to share respectful plain-text excerpts through the native share sheet, with saved reflection notes remaining private by default and only short note excerpts included when the user explicitly chooses that option
@@ -117,6 +164,64 @@ Path of Nur is a Flutter + Riverpod mobile app centered on worship, Qur'an engag
     - curated starter surah pages for Al-Baqarah, Ali 'Imran, Ta-Ha, Al-Furqan, and Luqman
     - concise surah overview, key themes, key lessons, Ayah Insight clusters, and suggested guided paths
     - reader-level entry card when the current surah has curated insight coverage
+  - Qur'an Surah Insights now also act as a stronger surah-study hub for the seeded starter surahs, with localized “Why this surah matters” framing, reflection prompts, related Qur'an theme chips, and semantically curated related-learning handoffs to owned surfaces without pushing more density into the reader
+  - Qur'an topics now also behave as a curated thematic map layer at `/quran/topics` and `/quran/topics/:topicId`, with a smaller high-signal theme set, representative ayahs/surahs, related owner-surface handoffs, localized browse/detail copy, and subtle theme chips inside the reader's ayah and surah-level study surfaces
+  - Qur'an reader related chips and reference-viewer related links now also open a lightweight explanation sheet before routing onward, with category labels, concise “why this is related” copy, owner/source indication, and clearer route-backed study CTAs instead of abrupt direct jumps
+ - Phase 44 Qur'an Readiness bridge expansion is complete:
+  - the original four-snippet bridge has been expanded into an eight-snippet starter pack built from exact app-sourced Qur'an text
+  - bridge content now progresses across three lightweight levels: very first recognition, familiar phrases, and ayah-confidence snippets
+  - the bridge page now groups snippets by level, exposes clearer progression copy, and supports shared-phrase vs recognition-only helper states without pulling in full reader complexity
+  - bridge summary state now tracks current level as well as next snippet so Kids and adult entry points can keep using the same owner routes with a stronger confidence-building flow
+ - Phase 45 Tajweed ↔ Qur'an integration is complete:
+  - the expanded Qur'an Readiness bridge now supports lightweight pronunciation-hint metadata per snippet instead of remaining a pure text/audio surface
+  - active snippets can now softly highlight pronunciation focus text inside the snippet itself, while the ayah-context highlight remains lightweight and reader-separate
+  - hint chips can now deep-link into the existing adult Qur'anic Arabic lesson flow or the existing Kids `tajweed-basics` journey stage when a safe lesson match exists, without introducing a new Tajweed engine or scoring layer
+ - Phase 46 shared Arabic lesson packs + accessibility integration is complete:
+  - a shared Arabic lesson-pack foundation now lives under `lib/features/arabic/` and groups existing Kids/adult Arabic content into reusable pack definitions instead of relying on page-local grouped-entry assumptions
+  - Kids Arabic home and the adult Qur'anic Arabic section page now surface these shared packs directly from their existing hub pages, so grouped content stays reachable without new top-level route sprawl
+  - the shared Arabic discovery/search layer now indexes lesson packs with a dedicated packs filter, and route-target navigation now safely supports adult module pack destinations without changing existing item-level routes
+ - Phase 47 parent-friendly Kids Arabic overview is complete:
+  - the existing Kids Arabic parent dashboard route now acts as a calmer overview surface instead of a denser raw-stat dashboard
+  - the new parent overview summary reuses shared Kids Arabic progress, continuity, review, and latest-achievement signals instead of creating a second parent-only progress system
+  - parents now get one clearer continue CTA, an optional gentle review CTA, recent activity, latest milestone, weekly consistency, and a simpler progress snapshot while child-facing lesson/review flows stay unchanged
+ - Phase 48 gentle Arabic mini assessments are complete:
+  - a shared recognition-only mini-assessment foundation now lives under `lib/features/arabic/` with deterministic 1–3 question sessions, simple `see -> choose` and `hear -> choose` question types, and no scores, timers, or pass/fail logic
+  - existing Kids Arabic home and adult Qur'anic Arabic section surfaces now expose quick-practice entry cards that open the shared assessment page through route-owned Kids and adult destinations rather than a new standalone product flow
+  - end-of-session follow-up now reuses the shared continue/review route targets so quick practice can gently suggest `Continue` or `Review` without introducing a second progress or recommendation system
+ - Phase 49 short-surah readiness bridge is complete:
+  - Qur'an learning now has a second bridge-owned step after snippet recognition: a short-surah readiness surface with four curated beginner surahs, lightweight ayah highlighting, shared Qur'an playback wiring, and an optional handoff into the full reader
+  - Kids and adult Arabic hubs now expose the short-surah step through their existing owned pages, and the original Qur'an Readiness bridge page now links forward into the new short-surah surface instead of ending at snippets only
+  - progression and resume for the short-surah bridge are stored locally per audience, using route-owned Kids and adult destinations without changing the main reader or Arabic continuity ownership
+- Accounts, Profiles & Sync hardening is complete:
+  - the existing settings-owned accounts/sync routes were extended in place instead of rebuilt
+  - Apple and Google sign-in now have real device auth integration paths behind an auth repository, while email remains an honest not-yet-connected shell
+  - manual backup export now writes versioned metadata-rich JSON and supports share-out, and manual import now uses file selection, validation, preview, explicit merge/replace confirmation, and safety snapshots before risky restore
+  - local-only usage remains first-class and sign-out no longer implies local-progress deletion
+ - Phase 2 remote backup transport is complete:
+  - Accounts, Profile & Sync now has a shared remote-backup transport layer with provider-specific Apple, Google, and email-backed transport boundaries instead of Phase 1's local/manual-only posture
+  - Apple backup now uses a real iCloud ubiquity-container document path through the existing native method channel, with metadata fetch, upload, and download support
+  - Google backup now uses the signed-in Google account plus Drive `appDataFolder` transport for metadata lookup, upload, and payload download without exposing backups to the user's general Drive files
+  - email remote backup remains an honest repository boundary that reports not-configured until a real backend is added
+  - remote backup status, last-remote-backup metadata, `Back up now`, and confirmed remote restore now live in the existing settings-owned Accounts, Profile & Sync surface
+  - remote restore reuses the validated import pipeline, schema checks, and safety snapshot path; it does not silently overwrite local progress
+- Phase 3 restore comparison and conflict resolution is complete:
+  - remote restore now has a dedicated restore-preview surface under the existing accounts-sync backup route family instead of a single generic confirmation dialog
+  - a shared restore-comparison engine now compares local vs remote backup data across profile basics, prayer tracking, dhikr, settings/preferences snapshots, Qur'an-related snapshots, learning snapshots, reminders, theme/accessibility, and XP/drops/ocean data using deterministic rules where available and explicit uncertainty where not
+  - the restore flow now warns on schema mismatch, provider mismatch, account mismatch, local-only data, remote-only data, and uncertain domains before any restore action is applied
+  - safe merge is intentionally limited to profile basics, prayer tracking, and dhikr state/history; replace-only domains remain explicit and are not silently merged
+  - post-restore summaries now state whether safe merge or full replace was used, which domains were merged, which were replaced, and whether a safety snapshot was created
+- Phase 4 auto-backup engine and scheduling is complete:
+  - Accounts, Profile & Sync now has a persisted auto-backup policy state with enable/disable, smart/daily/weekly/manual frequency, background eligibility, meaningful-change preference, last attempt/success, failure code, and last successful payload signature
+  - a shared auto-backup controller now evaluates eligibility against sign-in state, provider availability, dirty payload state, throttle windows, and frequency scheduling before any upload runs
+  - lifecycle-aware triggers now attempt safe auto-backup on app launch, resume, background, and sign-in, but only through the same validated remote backup pipeline used by manual backup
+  - auto-backup dirty state is fingerprint-based and only clears after a confirmed successful backup or restore; failed runs preserve pending state and record the failure honestly
+  - the backup settings page now exposes a dedicated auto-backup section with status, retry, preferences, and pending/failure visibility without changing the manual backup/export/import ownership
+- Phase 5 granular sync scope controls is complete:
+  - Accounts, Profile & Sync now has a persisted sync-scope preference layer with required-core domains and user-toggleable optional domains instead of all remote backups implicitly carrying the same payload shape
+  - remote backup payload generation now respects sync scope for provider-backed backups and auto-backup dirty evaluation, while manual export remains intentionally full by default
+  - backup metadata and remote transport metadata now carry a scope summary so backup status and restore preview can distinguish full vs partial backups and show which domains were excluded
+  - restore/import now preserves excluded local-only domains when applying a partial backup, instead of treating absent optional domains as data that should be wiped
+  - the existing backup settings surface now includes a dedicated Sync Scope card with localized domain descriptions, required-core chips, optional toggles, impact confirmation, and restore-defaults behavior
   - Qur'anic Arabic / teaching modules, review, listen-only, asset manifests
   - Salah learning, guided prayer, surah detail, wudu guide/trainer
   - Prophets domain with stories, detail pages, timeline/map/family tree/quiz
@@ -465,6 +570,207 @@ Path of Nur is a Flutter + Riverpod mobile app centered on worship, Qur'an engag
   - the prophetic family tree card now uses directional padding instead of LTR-only indentation
   - locale integration coverage now verifies Urdu RTL routing plus theme-level font selection for `en`, `ar`, and `ur`
   - `quranSharedAudioPlayerProvider` teardown no longer reads another provider during `onDispose`, removing a provider-disposal hazard exposed by widget tests
+- Visible Learning Journey companion-surface ownership is narrower and clearer after the V8 audit:
+  - lesson-level `short-surahs-meaning` now opens canonical Qur'an learning instead of `learnLegacy`
+  - lesson-level `timeline-khulafa` and `timeline-expansion` now open the canonical history archive instead of `learnLegacy`
+  - localized lesson overrides now preserve those route-specific companion tools at runtime
+  - unresolved visible fallbacks are now concentrated in Seerah, Character/Adab, and daily-wisdom ownership rather than generic navigation debt
+- `/learn/seerah` is now materially deeper after the V15 refinement:
+  - the five core Seerah periods now carry explicit “why it matters” and “next exploration” guidance instead of only title/subtitle copy
+  - focused Seerah entry states for `hijrah` and `madinah-society` now reorder related sources and explore links to match the user’s immediate context
+  - Seerah explore links now include tighter owned handoffs to History, Hadith, and Qur'an-linked study while staying curated rather than encyclopedic
+- `/learn/character` is now more scenario-driven after the V16 refinement:
+  - trait cards now surface explicit meaning, practical expression, and next-step guidance instead of stopping at short descriptions
+  - the six live scenario cards now carry clearer practical-expression and next-step copy, with narrower owned handoffs split across Divine Life, Hadith, and Qur'an reflection
+  - the lightweight practice-today block now reinforces the selected trait's next step without turning Character into a tracker or habit platform
+- `/learn/character` is now more practical and less repetitive after the Character content-depth pass:
+  - the weaker `neighbors` and `consistency` scenarios now read as lived situations with clearer boundaries, patience, steady action, and recovery language instead of broad virtue summaries
+  - a new `work-study-pressure` scenario now gives the Character companion a distinct everyday-pressure lane without duplicating Divine Life or turning the page into a productivity tracker
+  - scenario cards now use situation/practice/carry-forward framing so they read differently from trait cards and better distinguish outer situations from inner virtues
+- `/learn/daily-wisdom` is now more curated and source-safe after the V17 refinement:
+  - the dataset now covers mercy, gratitude, patience, trust, sincerity, humility, service, remembrance, hope, reflection, forgiveness, steadiness, and truthful speech with stronger owner balance
+  - each wisdom entry now points to a clearer real owner surface such as Seerah, Character, Divine Life, Qur'an Ayah Insights, Hadith, or Qur'an Reflections instead of reading like an isolated quote card
+  - the deterministic daily ordering now uses a stable co-prime rotation step so featured entries cycle more evenly without feeling noisy or random
+- `/learn/daily-wisdom` is now richer and less repetitive after the content-depth dataset pass:
+  - the dataset now includes additional high-signal entries for mercy with restraint, remembrance as settling, hope through delayed openings, and service through presence rather than only action
+  - practical steps now vary more across gratitude, trust, humility, reflection, forgiveness, steadiness, and speech, so the page reads less like a templated quote feed
+  - saved and recent shelves now follow the current daily rhythm more intelligently, with theme chips and slightly more varied fallback recency instead of flat owner-only cards
+- Companion-surface localization and copy hardening is now stronger:
+  - shared, Seerah, Character, and Daily Wisdom section subtitles were tightened so the three surfaces read more consistently without changing ownership or page structure
+  - non-English companion-surface locale files still rely on English fallback text, but the fallback copy is now structurally aligned across locales instead of mixing older and newer English phrasing
+  - one likely-unused legacy key, `learnDailyWisdomThemeIntention`, was intentionally retained for safety and documented as deferred cleanup rather than being removed during the polish pass
+- Companion-surface accessibility and UX consistency are now stronger:
+  - Seerah, Character, and Daily Wisdom no longer rely on hardcoded muted text colors in their main content blocks, which reduces dark-mode contrast risk and keeps body text aligned with the active theme
+  - section headers, card spacing, subtitle line height, and list-tile vertical rhythm are now more consistent across the three companion surfaces
+  - source chips and tappable card sections now read more clearly as interactive grouped content without changing routing, page order, or surface ownership
+- Qur'an reader learning enrichment is now better aligned with the app's curated knowledge graph:
+  - per-ayah `Learn More` chips in the reader no longer rely on the older translation-keyword matcher that could surface weak links like unrelated world lessons
+  - reader ayah chips now draw from the curated Qur'an reference graph and Ayah Insights actions, capped to a small set of semantically owned routes such as Hadith, Life, Prophets, and Qur'an learning paths
+  - related Qur'an learning path links now use the canonical `quranAyahInsightsPathDetail` route instead of pointing back to the generic `/quran` hub
+  - the reader's surah-insight preview now surfaces a few resolved learning domains and one suggested path entry so surah-level learning support is visible without cluttering the page
+- Qur'an enrichment relevance is now tighter after the quality-hardening pass:
+  - the strongest categories remain curated Hadith, Life, Ayah Insights actions, and seeded surah insights; those flows were preserved
+  - broad fallback prophet links based on whole-surah prefixes were removed in favor of a small explicit allowlist for high-signal cases
+  - the previous default journey fallback for non-curated verses was removed, so ayahs no longer receive generic learning-path links just to fill the chip row
+  - reader-visible contextual links remain capped, route-backed, and calmer than the underlying graph so weak matches are suppressed instead of surfaced
+- Kids Arabic and Adult Qur'anic Arabic now share one canonical alphabet foundation:
+  - a new shared Arabic alphabet catalog under `lib/features/arabic/` now owns the 28-letter order, canonical ids, naming, transliteration, tracing availability, and adult audio compatibility metadata
+  - Kids Arabic now derives its full letter list from that shared catalog and keeps only kids-specific example/reward/presentation content locally
+  - Adult Qur'anic Arabic alphabet seeds now derive their glyphs, naming, transliteration, order, and audio paths from the same shared catalog while preserving legacy adult seed ids as compatibility aliases
+  - the shared Arabic catalog now also owns beginner-safe positional forms plus simple joinability metadata for all 28 letters, including explicit non-forward-joining behavior for `alif`, `dal`, `dhal`, `ra`, `zay`, and `waw`
+  - Kids beginner-word joining visuals now resolve from the shared positional-form foundation instead of hardcoded per-word glyph strings, which corrected previously faked joins such as the final isolated `ب` in `باب`
+  - Adult Qur'anic Arabic letter-shape teaching now reads the same shared positional-form catalog across the full alphabet and displays unavailable beginning/middle forms honestly instead of relying on a smaller duplicated 13-letter seed list
+  - canonical ids intentionally follow the existing Kids-safe short ids so Kids progress, tracing, and route/state continuity remain stable
+- Learning Journey and Qur'an study are now connected through a first contextual integration layer:
+  - Journey lesson pages can now open the canonical Qur'an reader with a stage-aware context payload derived from the lesson's strongest Qur'anic reference instead of only generic reader shortcuts
+  - the Qur'an reader can now show a lightweight Journey context card with the active lesson, owning journey, and optional highlighted theme, plus a return path back to the originating lesson
+  - curated ayah-level `Learn More` links can now include high-signal Learning Journey lesson handoffs where the verse-to-lesson mapping is explicit, without turning every ayah into a journey recommendation
+  - the first reverse-link set is intentionally narrow and driven by curated lesson anchors such as Hijrah, Dhikr, Al-Fatihah, and short-surah meaning rather than broad keyword matching
+- Qur'an reader study UX is now calmer and more legible after the polish pass:
+  - Journey context now appears before surah-wide study when present, so contextual entry explains why the user arrived before broader surah exploration competes for attention
+  - the ayah-level `Learn More` section now groups related links by source category and appears before broader theme chips, which makes ayah-local references easier to scan and better distinguishes verse-level learning from broader thematic study
+  - surah-wide study cards now label Ayah Insights and Themes more clearly and visually emphasize the currently active theme without adding more density or changing route ownership
+- Qur'an memorization and study now share one lightweight bridge instead of separate tracks:
+  - ayahs can now be marked directly from the reader for memorization using the same `q_<surah>_<ayah>` identity pattern already used by seeded memorization verses, so reader-marked ayahs and memorize-tab progress live in one persistence lane
+  - `/quran/review` is now the canonical memorization review surface, with a calm list of saved ayahs, due items, quick return-to-reader actions, and lightweight meaning/theme/related-study context
+  - the main Qur'an hub and Learn-side Qur'an section now expose memorization review more directly, while the existing memorize tab in `/quran/learning?tab=memorize` now reflects real memorization state instead of only seeded starter verses
+  - the reader can now open in a memorization-review context and show a lightweight focus card, while still preserving the existing study links, hifz settings, playback, notes, and bookmarks flow
+- Qur'an reader now supports lightweight adaptive study modes on the shared `/quran/surah/:surahNumber` route:
+  - explicit `mode` query support now accepts `reading`, `reflection`, `study`, `memorization`, and `theme`, while still inferring memorization/theme/journey intent safely from existing route context when no explicit mode is passed
+  - the reader now shows a compact focus card with a mode label, subtitle, and switcher so users can change emphasis without leaving the canonical reader route or entering a separate reader architecture
+  - top-of-page density now shifts by mode: reading and memorization stay calmer, study/reflection keep richer handoffs visible, and theme mode emphasizes the active Qur'anic topic without removing core features
+  - ayah cards now adapt their Learn More and theme-chip density/order by mode, so reading stays quieter, memorization stays more repetition-oriented, and theme mode leads with the active theme before broader related links
+- Qur'an memorization review now has a lightweight revisit rhythm layered onto the existing memorization lane:
+  - memorization progress now persists `addedAt`, `lastReviewed`, `reviewCount`, `nextReview`, and the last review outcome, while preserving the existing stage-based calm review flow
+  - the review page now groups saved ayahs into `Continue review`, `Review today`, `Recently memorized`, `Needs revision`, and `All memorized` instead of a flatter due/saved split
+  - review cards now show a small rhythm summary alongside meaning, theme, and related-study context, and reader re-entry from review passes review-count / last-reviewed metadata into the memorization focus card without changing the canonical reader route
+- Qur'an study now has a lightweight guided path owner at `/quran/paths`:
+  - the new guided-path system reuses the existing reader, thematic map, memorization review, Daily Wisdom, Character companion, Surah Insights, and Ayah Insights path-detail owners instead of introducing a separate course engine
+  - V1 ships with five curated paths: Beginner Understanding, Theme Study: Gratitude, Memorization Support, Reflection Journey, and Surah Study Path
+  - paths support lightweight continuity through a local `continue path` state keyed by the last opened path and step, surfaced both on the dedicated paths page and in the Learn-side Qur'an hub
+  - the main `/quran` hub now exposes Qur'an Learning Paths as a canonical study tool so the feature is discoverable without duplicating navigation ownership
+- Qur'an related-study references now carry a lightweight credibility layer:
+  - route-backed related links now include a normalized knowledge type and connection strength instead of only a route/category pairing
+  - the detail sheet now shows compact type + strength labels such as direct meaning, Hadith connection, Journey connection, and reflective insight before the explanation copy
+  - fallback explanation text is now driven by knowledge type so the system is clearer about direct Qur'anic links versus reflective, thematic, or guided-learning handoffs without adding a heavy authority framework
+  - reader `Learn More` groups now also sort links by the new strength priority inside each source bucket so stronger links rise first without adding more UI density
+- Journey and Qur'an themes now share a curated mapping layer instead of the older stage-topic hardcoding:
+  - a new curated Journey ↔ Theme mapping source of truth now links selected Journey stages such as patience, gratitude, humility, remembrance, repentance, Hijrah, and prophetic leadership to explicit Qur'anic themes, representative ayahs, and suggested reader modes
+  - Journey lesson → Qur'an reader entry now uses that mapping layer so strong stages can open the reader with the right highlighted theme and adaptive reader mode instead of only a verse anchor
+  - Qur'an theme detail pages can now hand back into related Journey stages through a small related-journeys section, which makes the thematic map a two-way bridge instead of a dead-end browse surface
+  - ayah-level Journey reverse links now pick up the same curated mapping set, so high-signal verses like `2:153`, `13:28`, `3:159`, and `9:40` can surface relevant Journey lessons without broadening the reader into a noisy recommendation layer
+- Qur'an study now has a lightweight user-intent personalization layer:
+  - users can set a calm persisted Qur'an focus on the main `/quran` hub, choosing between understand, reflect, memorize, themes, and guided path without entering a separate onboarding or settings flow
+  - the shared reader now treats that saved focus as the default mode only when stronger route context is absent, so direct memorization, Journey, and theme entries still win over generic preference fallback
+  - the Daily Qur'an Companion now carries the active focus through its summary model, gently shifts its primary continuation actions, and prefers the strongest matching guided path when intent and path continuity align
+  - Journey → Qur'an handoffs now also use the saved focus as a fallback `mode` only when the mapping itself does not already specify one, which keeps intent-aware entry helpful without overriding explicit stage study context
+- Daily Qur'an and Learning Journey now share a first unified daily loop instead of only adjacent systems:
+  - the canonical `/quran/daily` owner now carries a small selection-source model, explicit theme section, optional Journey connection section, memorization state, and path continuation in one calm flow rather than leaving those systems implicit
+  - daily ayah selection still uses the deterministic curated rotation by default, but now prefers the active Learning Journey stage's Qur'anic mapping when that stage already has a strong curated theme-to-ayah bridge
+  - when the active verse has no explicit verse-theme match, the daily companion can now fall back to the mapped Journey topic so the loop still exposes a meaningful theme instead of leaving the theme layer blank
+  - the daily continuation actions now respect both saved Qur'an intent and Journey context, so a Journey-aligned daily ayah can open back into the reader with the mapped study emphasis instead of always dropping to generic reading mode
+- The main `/quran` hub now has a lightweight recommendation layer instead of behaving like a flat tool shelf:
+  - a new recommendation model/provider now generates up to three deterministic hub recommendations from active guided-path continuity, Journey-aligned daily study, memorization review rhythm, continue-reading state, saved intent, and stable fallback logic
+  - recommendation rows are explainable by design, each carrying a human-readable title, subtitle, and reason rather than opaque ranking or generic “Explore” copy
+  - the recommendation section sits near the top of the hub after the daily preview and before the focus card, so continuity is surfaced earlier without hiding the existing read/study/word/tool sections
+  - fallback behavior is intentionally stable: when stronger signals are absent, the hub still surfaces daily reflection, continue-surah, and a curated theme-study recommendation instead of empty placeholders or noisy filler
+- The Qur'an thematic map now has a first high-depth study pass for eight flagship themes instead of a flatter starter-only layer:
+  - patience, gratitude, mercy, repentance, sincerity, trust in Allah, family, and remembrance now use stronger curated ayah clusters, clearer study framing, and more intentional owner-surface handoffs
+  - sincerity is now a real first-class Qur'anic theme owner in the thematic map instead of only appearing indirectly through ayah enrichment
+  - theme detail pages now explain why the theme matters, what to notice while studying it, the best reader mode for the topic, and a direct path into theme-aware Qur'an study without rebuilding the topic explorer
+  - remembrance, gratitude, repentance, and patience now connect more clearly into memorization review, daily companion, guided paths, and Character / Seerah / World handoffs where the semantic fit is strong
+- Kids Arabic now has a lightweight mini-phrase confidence layer under the existing route family:
+  - `/learn/kids/arabic/phrases` is now the calm phrase owner, using a six-item curated starter set of very short everyday Arabic phrases such as Bismillah, Alhamdulillah, and Assalamu Alaikum
+  - the phrase flow reuses the existing Kids Arabic TTS service, repeat-after-me card, and reading-mode navigation pattern instead of creating a second audio or lesson engine
+  - learner-scoped local state now remembers the last opened phrase and which phrases have been heard, giving families a gentle resume cue without adding tests, timers, or extra XP pressure
+  - the Kids Arabic home and words surfaces now expose Mini Phrases as a small supporting island so the feature is discoverable without introducing a new parallel hub
+- Adult Qur'anic Arabic now has a cleaner shared-foundation-driven learning surface instead of relying mostly on the underlying seed refactor:
+  - the main adult Arabic section page now opens with a shared alphabet overview card, cleaner localized section copy, clearer continue/recommended/review groupings, and a simpler learning-path summary while keeping the existing section ownership and routing intact
+  - adult module pages now surface stronger context for foundations through shared catalog counts/forms cues and a calmer next-lesson handoff, without flattening the adult flow into the Kids experience
+  - adult lesson pages now expose shared letter support directly inside relevant alphabet and letter-shape lessons, including sound hints, isolated/initial/medial/final forms, and a truthful non-forward-join hint for letters that stop a connection
+  - the shared adult alphabet lesson order now exactly matches the canonical 28-letter catalog again after removing a duplicate overlap between the second and third adult alphabet lesson groups
+- Arabic learning letter audio now also has one shared manifest layer beneath Kids and adult teaching:
+  - the shared `lib/features/arabic/` foundation now owns canonical letter-audio metadata keyed by canonical letter id, with legacy adult Qur'anic Arabic seed-id lookup preserved as a compatibility path instead of a second source of truth
+  - adult Qur'anic Arabic letter audio fallback and manifest resolution now derive from that shared source, while feature-local adult word/harakah/phrase audio stays local for now because it is broader than the canonical alphabet layer
+  - Kids Arabic still uses its existing TTS playback behavior for letters, but `speakLetter` now resolves its spoken text from the same shared letter-audio manifest instead of remaining completely separate from the adult/source-foundation layer
+- Kids Arabic tracing now has full alphabet vector coverage on top of the existing engine:
+  - the existing guide-backed tracing system already covered all 28 letters, and the vector tracing registry now wraps the remaining late-alphabet letters instead of stopping at the earlier partial subset
+  - the tracing pad still uses `kidsArabicSupportsVectorTracing(letterId)` as the single source of truth for whether a letter runs through vector evaluation, so lesson flow, tracing behavior, and progress hooks did not need a parallel condition path
+  - the guide-backed fallback layer remains intact under the vector expansion, which keeps failure safety and future tuning flexibility without changing Kids Arabic routing, rewards, or progress state
+- Adult Qur'anic Arabic now has a dedicated beginner-words reading helper surface on top of the shared Arabic foundations:
+  - the adult teaching controller now exposes a shared beginner-word provider that follows the canonical shared word order, reuses adult module-owned entries where they already exist, and synthesizes safe fallback `QuranWordEntry` items for shared words not yet present in the adult seed groups
+  - the new `QuranTeachingBeginnerWordsPage` gives adults one calm owner surface for short Arabic words with Arabic text, transliteration, simple gloss, joined-letter visualization, letter-level reading helper chips, real audio replay when audio exists, and previous/next navigation
+  - the adult Qur'anic Arabic section page and the recognize-words module now both surface entry into the beginner-words guide, while shared overlap cards inside the module can deep-link directly into the matching word inside the new page
+  - the page relies on the shared alphabet catalog, shared positional-form resolver, shared beginner-content catalog, and shared audio/asset resolution layers instead of introducing a parallel adult-only word dataset or joining logic
+- Arabic learning continuity now has one shared resume layer beneath Kids and adults instead of separate page-local continue logic:
+  - `lib/features/arabic/` now owns a small `ArabicLearningContinuationSummary` model and a shared provider that deterministically resolves `start`, `resume`, `continueForward`, and gentle `review` suggestions for both audiences
+  - Kids continuity now reuses the existing practice-plan and phrase progress signals to surface one calm `Continue Arabic` card on the Kids Arabic home, pointing into the correct lesson, review, word, or mini-phrase route without adding a second decision tree in the UI
+  - adult Qur'anic Arabic now persists last-opened beginner-word state and uses the same shared provider to surface `Resume Arabic` on the section page, choosing unfinished lessons first, then newer word work, then the next recommended lesson, with review as a secondary gentle fallback
+  - the shared continuity layer relies on canonical shared ids and existing progress providers rather than introducing a new recommendation system or changing Kids/adult route ownership
+- Arabic learning now also has a shared gentle review layer beneath the continuity flow:
+  - `lib/features/arabic/` now owns a small shared review-suggestion provider that returns up to three deterministic suggestions per audience, classifying them as `start`, `resume`, `continueForward`, or `review` without introducing spaced repetition, timers, or strict scoring
+  - Kids review suggestions reuse existing practice-plan review candidates, completed-word state, and mini-phrase hearing state so the main Kids Arabic continue card can offer one primary next step plus optional gentle follow-up review buttons
+  - adult Qur'anic Arabic review suggestions reuse unfinished lesson state, last-opened beginner words, and the existing daily-review summary so the section landing can expose one primary resume path and a small set of optional gentle review buttons without replacing the established daily-review owner
+  - the older continuity provider now acts as a compatibility wrapper over the new shared review provider, keeping existing callers stable while centralizing the real decision logic in one place
+- Arabic learning audio now has one shared playback controller beneath Kids and adult surfaces instead of separate TTS/asset playback paths:
+  - `lib/features/arabic/` now owns a shared audio controller with active playback state, persisted normal/slow playback preference, asset-first playback, and Arabic TTS fallback for shared words and phrases when bundled audio is missing
+  - Kids Arabic letter, word, phrase, reading-mode, and lesson playback now route through the shared controller by way of the existing `KidsArabicAudioService`, preserving the calm Kids UX while centralizing the real playback logic
+  - adult Qur'anic Arabic word, lesson, daily-review, and review playback now route through the same shared controller via `QuranTeachingAudioPlaybackService`, replacing the remaining snackbar-only placeholder actions with real playback
+  - the main Kids letter/word/phrase owners plus the adult beginner-words and lesson surfaces now expose one small shared normal/slow playback toggle, while adult shared beginner words now also get Arabic TTS fallback cues when bundled audio is not present
+- Arabic learning now also has a Qur’an Readiness bridge that stays separate from the full reader while connecting shared Arabic learning into real Qur’anic recognition:
+  - `lib/features/learn/quran/` now owns a small curated readiness bridge built from exact app-sourced Qur’an ayahs, currently centered on four very short Al-Fatihah snippets that overlap directly with the shared Arabic phrase layer: `بِسْمِ اللَّهِ`, `الْحَمْدُ لِلّٰهِ`, `رَبِّ الْعَالَمِينَ`, and `إِيَّاكَ نَعْبُدُ`
+  - the bridge persists small per-audience progress so Kids learners and adult Qur'anic Arabic learners can resume the next unread snippet without changing the existing shared Arabic continue card or the full Qur’an reader state
+  - Kids Arabic home now exposes a calm `First Qur’an reading` card that opens `/learn/kids/arabic/quran-readiness`, while adult Qur'anic Arabic now exposes a `Qur’an readiness bridge` card that opens `/quran/arabic/readiness`
+  - the bridge page itself reuses the shared Arabic playback-speed/audio controller, highlights the exact familiar snippet inside the full ayah context, and deep-links the ayah into the canonical Qur’an reader through the shared `QuranReferenceLinkTile` instead of inventing a second reader route or page-local verse navigation
+- Arabic learning now also has a shared search/filter foundation beneath Kids and adult Arabic discovery:
+  - `lib/features/arabic/` now owns a shared discovery model/provider layer that indexes canonical letters, shared beginner words, shared phrases where a real owner exists, shared review/continue targets, and Qur’an Readiness bridge snippets without creating a second Arabic hub
+  - Kids Arabic home now surfaces one calm search/filter section that can find letters, word lessons, mini phrases, continue/review targets, and Qur’an bridge snippets while keeping locked items visibly unavailable instead of bypassing the existing progression rules
+  - adult Qur'anic Arabic now uses the same shared discovery layer on the section landing, replacing the earlier page-local-only search posture with one search field that can find letters, beginner words, review/continue targets, and bridge snippets while still filtering the existing adult modules underneath
+  - canonical route targets now open through one shared Arabic navigation helper so search results, continue cards, and review actions stop duplicating Kids/adult route handling in page-local helpers
+- Arabic learning now also has a shared calm progress dashboard foundation beneath Kids and adult entry surfaces:
+  - `lib/features/arabic/` now owns a small shared progress-summary model/provider that derives calm coverage counts, recent activity, and continue/review actions from existing Kids progress, adult lesson progress, shared continuity, shared review, beginner-word progress, and Qur’an Readiness bridge progress without introducing grades or pressure-heavy analytics
+  - Kids Arabic home now surfaces a shared-backed dashboard card with learned letters, practiced words, heard phrases, a light progress bar, latest achievement highlight, and one primary continue action plus optional review action, replacing the older fragmented summary/continue cards
+  - adult Qur'anic Arabic now surfaces a matching cleaner dashboard card with letters covered, shared beginner-word coverage, bridge phrase coverage, completed lesson count, recent activity, and the next recommended shared continuation/review action without changing adult route ownership
+  - the dashboard copy intentionally stays honest about the weaker adult completion signals that exist today by framing counts as covered/opened where needed rather than inventing stronger completion data
+- Arabic learning now also has a shared offline-first reliability layer beneath Kids and adult entry surfaces:
+  - the shared Arabic data foundations for letters, positional forms, beginner words, phrases, search, review, continuity, and dashboard summaries were confirmed to already be local-first and network-free, so the hardening work focused on asset lookup and playback reliability rather than duplicating local content caches
+  - `lib/features/arabic/application/arabic_learning_asset_bundle.dart` now owns one cached Arabic asset-manifest reader plus a lightweight warmup helper, so Arabic learning checks real bundled asset availability before trying playback and can prewarm a small starter/continue-target asset set without a broad eager-load strategy
+  - the shared Arabic audio controller now only attempts verified local assets before falling back to Arabic TTS, which makes missing asset packs degrade calmly instead of depending on runtime asset guesses or throwing during manifest-unavailable cases
+  - Kids Arabic home and adult Qur'anic Arabic now trigger small post-build offline warmup for the current continue target plus a tiny starter pack, improving first-play reliability without changing presentation, routes, or progress behavior
+- Arabic learning now also has a shared content-authoring framework beneath existing discovery and bridge owners:
+  - `lib/features/arabic/` now owns `ArabicContentUnit` and `ArabicContentPackComposition` models plus a shared authoring provider that normalize reusable Arabic content across letters, shared beginner words/phrases, review anchors, adult module anchors, Qur'an bridge snippets, and short-surah bridge entries
+  - the shared lesson-pack provider now resolves packs from explicit composition metadata instead of repeating grouped content definitions in page-adjacent logic, reducing future drift between pack sections, search, and bridge content
+  - the shared Arabic search provider now reads its letter/word/phrase/Qur'an-bridge entries from the same authored content-unit layer, so future Arabic content can plug into discovery more safely without another pack/search refactor
+  - lightweight contributor guidance for future Arabic additions now lives in `docs/arabic_content_authoring_rules.md`, with follow-up enhancements tracked in `docs/arabic_content_authoring_framework_backlog.md`
+- adult Qur'anic Arabic now also has a calmer self-guided overview at the top of its canonical landing surface:
+  - `lib/features/learn/quran_teaching/` now owns a small adult-overview summary/provider layer that reuses shared Arabic progress, continuity, and review state instead of introducing a second adult progress system
+  - the adult landing page now uses a dedicated overview card instead of the generic shared progress card, with clear first-time/in-progress/completed states, recent activity, next-step framing, and browse letters/words actions while staying visually distinct from Kids and parent surfaces
+  - the new overview keeps route ownership unchanged by opening existing adult lesson, module, word, and review destinations through the shared Arabic route-target navigation helper
+- Arabic learning now also has shared quick-resume entry plumbing for shortcuts and widget payloads:
+  - `lib/features/arabic/` now owns a small quick-resume summary/provider layer plus an app-side `home_widget` bridge that derive Kids and adult one-tap resume/review payloads from the shared continuity layer and canonical review owners without introducing a second progression system
+  - app quick actions now expose localized adult continue, adult review, and Kids continue entries, all resolved from the shared Arabic quick-resume provider instead of hardcoded Arabic routes
+  - adult Arabic continuation targets are now deep-linkable through canonical routes for module, lesson, beginner words, and daily review, which lets external entry points resolve adult learning destinations safely without relying on in-memory `MaterialPageRoute` fallbacks
+  - Kids Arabic home and the adult Qur'anic Arabic landing now both show a shared quick-resume section near the top so in-app one-tap resume/review stays available even without leaving the current landing surfaces
+- the Qur'an bridge now extends beyond snippets and very short surahs into guided longer passages:
+  - `lib/features/learn/quran/` now owns a dedicated guided-passage readiness layer built from exact app-sourced Al-Fatihah ayah ranges, with a small staged progression of opening passage, closing passage, and full-surah confidence instead of jumping straight from very short surahs into the full reader
+  - the new guided-passage page reuses the shared Qur'an player, shared speed settings, whole-ayah highlighting, canonical Qur'an reader handoff, and existing light pronunciation-hint chips without importing the full reader control surface
+  - per-audience guided-passage progress is now persisted separately for Kids and adults so the bridge can resume the next passage calmly while leaving existing snippet and short-surah progress untouched
+  - existing bridge-owned discovery surfaces now surface the next progression step directly: readiness page -> short surahs -> guided passages, while Kids Arabic home and the adult Qur'anic Arabic landing also expose the new guided-passage entry card so the new stage is not stranded behind a hidden route
+- Arabic learning now also has shared vocabulary-theme packs beneath the existing lesson-pack and discovery layers:
+  - the shared lesson-pack framework now includes curated `Daily words`, `Prayer words`, and `Qur'an-linked words` packs for both Kids and adults, all composed from existing shared word/phrase/bridge content-unit ids instead of page-local datasets
+  - Kids Arabic home and the adult Qur'anic Arabic landing automatically surface the new themed packs through the existing shared lesson-pack section, so the new vocabulary groupings stay discoverable without adding routes or a second navigation system
+  - the Qur'an Readiness bridge page now also surfaces the audience-appropriate shared Qur'an-linked vocabulary theme pack, giving bridge learners one calm way back into familiar words and phrases without merging the bridge into the full reader
+  - the shared search/index path picks up the new theme packs automatically through the existing pack index, keeping themed vocabulary discoverable through the current Arabic search/filter foundation while preserving existing route ownership
+- Arabic learning launch-readiness was audited and minimally hardened without adding new systems:
+  - the adult Arabic review surface and adult review widgets now route all new high-visibility chrome through `AppLocalizations`, removing a remaining pocket of hardcoded English strings from a production-facing Arabic flow while keeping seeded lesson/review content ownership unchanged
+  - the adult Qur'anic Arabic landing now guards its daily-review session sync behind a stable signature instead of scheduling `ensureTodaySession(...)` after every rebuild, reducing avoidable post-frame work on a high-traffic surface without changing the shared review truth
+  - the Qur'an Readiness bridge now degrades safely if themed lesson packs are unavailable, so the bridge no longer assumes the Qur'an-linked vocabulary theme card can always resolve from pack data
+  - focused regression coverage now protects the new typed adult review recommendation shape and the bridge's missing-themed-pack fallback, alongside analyzer/test verification for the active Arabic launch surfaces
+- the Qur'an reader now has a shared normalized reader-facing playback state layer on top of the stabilized active-ayah resolver:
+  - `lib/features/learn/quran/application/quran_reader_playback_controller.dart` now owns the reader-facing playback snapshot derived from the shared audio player feed, active playback session, stored recitation session, current reciter settings, and loaded surah ayahs, instead of leaving the page to interpret raw player streams directly
+  - `lib/features/learn/quran/presentation/quran_reader_page.dart` now consumes that shared playback controller for floating transport state, active ayah identity, and playback-state reactions, reducing the number of drift-prone local playback decisions that previously lived in the page
+  - reciter switching during active playback is now centralized through `QuranPlayerController.switchReciter(...)`, which safely rebuilds playback for the same active session instead of only persisting the new reciter id and leaving the player/highlight state to drift
+  - a fake-player test harness now covers controller mapping and reader-facing playback behavior without a real audio backend, protecting play/pause/seek/highlight/reciter-session regressions more directly than the earlier narrow resolver test alone
 
 ## H. Recommended next steps in priority order
 

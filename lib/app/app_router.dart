@@ -19,6 +19,7 @@ import 'routes/discovery_routes.dart';
 import 'routes/journey_routes.dart';
 import 'routes/learn_routes.dart';
 import 'routes/router_deep_links.dart';
+import 'routes/router_policies.dart';
 import 'routes/startup_routes.dart';
 import 'routes/worship_routes.dart';
 
@@ -36,26 +37,24 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       final deepLinkPath = mapAppDeepLink(state.uri);
       if (deepLinkPath != null) return deepLinkPath;
 
-      final onOnboarding = state.matchedLocation == '/onboarding';
-      if (!onboardingCompleted && !onOnboarding) {
-        return '/onboarding';
-      }
-      if (onboardingCompleted && onOnboarding) {
-        return NavTab.home.path;
+      final onboardingRedirect = _onboardingRedirect(
+        matchedLocation: state.matchedLocation,
+        onboardingCompleted: onboardingCompleted,
+      );
+      if (onboardingRedirect != null) {
+        return onboardingRedirect;
       }
 
-      final onSharedPicker = state.matchedLocation == '/profiles/launch';
-      if (accountsSyncState.sharedDeviceModeEnabled &&
-          accountsSyncState
-              .sharedDeviceSafety
-              .requireProfileSelectionOnLaunch &&
-          accountsSyncState.sessionUnlockedProfileId == null &&
-          onboardingCompleted &&
-          !onSharedPicker &&
-          !state.matchedLocation.startsWith('/accounts-sync')) {
-        return '/profiles/launch';
+      final sharedDeviceRedirect = _sharedDeviceLaunchRedirect(
+        matchedLocation: state.matchedLocation,
+        onboardingCompleted: onboardingCompleted,
+        accountsSyncState: accountsSyncState,
+      );
+      if (sharedDeviceRedirect != null) {
+        return sharedDeviceRedirect;
       }
-      final childLearningRedirect = _redirectChildLearningLocation(
+
+      final childLearningRedirect = redirectChildLearningLocation(
         matchedLocation: state.matchedLocation,
         isChildProfile: familyLearningContext.visibilityPolicy.isChildProfile,
       );
@@ -133,34 +132,6 @@ final appRouterProvider = Provider<GoRouter>((ref) {
   );
 });
 
-String? _redirectChildLearningLocation({
-  required String matchedLocation,
-  required bool isChildProfile,
-}) {
-  if (!isChildProfile || !matchedLocation.startsWith('/learn')) {
-    return null;
-  }
-  if (_isKidsLearningLocationAllowed(matchedLocation)) {
-    if (matchedLocation == '/learn') {
-      return '/learn/category/kids-learning';
-    }
-    return null;
-  }
-  return '/learn/category/kids-learning';
-}
-
-bool _isKidsLearningLocationAllowed(String matchedLocation) {
-  return matchedLocation == '/learn' ||
-      matchedLocation == '/learn/category/kids-learning' ||
-      matchedLocation.startsWith('/learn/kids/') ||
-      matchedLocation.startsWith('/learn/quizzes/crossword') ||
-      matchedLocation.startsWith('/learn/quizzes/word-search') ||
-      matchedLocation.startsWith('/learn/quizzes/matching') ||
-      matchedLocation.startsWith('/learn/quizzes/ayah-completion') ||
-      matchedLocation.startsWith('/learn/quizzes/hadith-reflection') ||
-      matchedLocation.startsWith('/learn/quizzes/daily-challenge');
-}
-
 Widget _buildTabPage(NavTab tab) {
   switch (tab) {
     case NavTab.worship:
@@ -177,7 +148,7 @@ Widget _buildTabPage(NavTab tab) {
 }
 
 NavTab navTabFromLocation(String location) {
-  if (_isQuranLocation(location)) {
+  if (isQuranLocation(location)) {
     return NavTab.quran;
   }
   for (final tab in NavTab.values) {
@@ -188,9 +159,35 @@ NavTab navTabFromLocation(String location) {
   return NavTab.home;
 }
 
-bool _isQuranLocation(String location) {
-  return location.startsWith('/quran') ||
-      location.startsWith('/quran-verse') ||
-      location.startsWith('/learn/quran') ||
-      location.startsWith('/learn/hub/quran');
+String? _onboardingRedirect({
+  required String matchedLocation,
+  required bool onboardingCompleted,
+}) {
+  final onOnboarding = matchedLocation == '/onboarding';
+  if (!onboardingCompleted && !onOnboarding) {
+    return '/onboarding';
+  }
+  if (onboardingCompleted && onOnboarding) {
+    return NavTab.home.path;
+  }
+  return null;
+}
+
+String? _sharedDeviceLaunchRedirect({
+  required String matchedLocation,
+  required bool onboardingCompleted,
+  required AccountsSyncState accountsSyncState,
+}) {
+  final onSharedPicker = matchedLocation == '/profiles/launch';
+  if (accountsSyncState.sharedDeviceModeEnabled &&
+      accountsSyncState
+          .sharedDeviceSafety
+          .requireProfileSelectionOnLaunch &&
+      accountsSyncState.sessionUnlockedProfileId == null &&
+      onboardingCompleted &&
+      !onSharedPicker &&
+      !matchedLocation.startsWith('/accounts-sync')) {
+    return '/profiles/launch';
+  }
+  return null;
 }

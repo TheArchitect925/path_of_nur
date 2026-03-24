@@ -1,11 +1,16 @@
 import 'package:flutter_test/flutter_test.dart';
 
+import 'package:path_of_nur/features/arabic/data/arabic_alphabet_catalog.dart';
 import 'package:path_of_nur/features/kids_arabic/application/kids_arabic_progression.dart';
 import 'package:path_of_nur/features/kids_arabic/data/kids_arabic_letters_data.dart';
 
 void main() {
   test('kids Arabic dataset contains 28 letters', () {
     expect(kidsArabicLetters, hasLength(28));
+    expect(
+      kidsArabicLetters.map((letter) => letter.id),
+      orderedEquals(arabicAlphabetLetterIds),
+    );
     for (final letter in kidsArabicLetters) {
       expect(letter.glyph, isNotEmpty);
       expect(letter.nameAr, isNotEmpty);

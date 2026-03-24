@@ -1,47 +1,72 @@
-import 'dart:async';
-
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_tts/flutter_tts.dart';
 
+import '../../arabic/application/arabic_learning_audio_controller.dart';
+import '../../arabic/data/arabic_beginner_content_catalog.dart';
 import '../domain/kids_arabic_models.dart';
+import '../domain/kids_arabic_phrase_models.dart';
 import '../domain/kids_arabic_word_models.dart';
 
 class KidsArabicAudioService {
-  KidsArabicAudioService() : _tts = FlutterTts();
+  KidsArabicAudioService([this._ref]);
 
-  final FlutterTts _tts;
+  final Ref? _ref;
 
   Future<void> configure() async {
-    await _tts.setLanguage('ar');
-    await _tts.setPitch(1.0);
-    await _tts.setVolume(1.0);
-    await _tts.awaitSpeakCompletion(true);
-    await _tts.setSpeechRate(0.35);
+    // Shared Arabic audio is configured centrally.
   }
 
   Future<void> speakLetter(KidsArabicLetter letter) async {
-    await speakText(letter.nameAr);
+    if (_ref == null) {
+      await speakText(letter.nameAr);
+      return;
+    }
+    await _ref
+        .read(arabicLearningAudioControllerProvider.notifier)
+        .playLetterByCanonicalId(letter.id);
   }
 
   Future<void> speakWord(KidsArabicBeginnerWord word) async {
+    if (_ref == null) {
+      await speakText(word.wordAr);
+      return;
+    }
+    final sharedWord = arabicSharedBeginnerWordById(word.id);
+    if (sharedWord != null) {
+      await _ref
+          .read(arabicLearningAudioControllerProvider.notifier)
+          .playBeginnerWord(sharedWord);
+      return;
+    }
     await speakText(word.wordAr);
   }
 
-  Future<void> speakText(String text) async {
-    await _tts.stop();
-    await _tts.speak(text);
+  Future<void> speakPhrase(KidsArabicMiniPhrase phrase) async {
+    if (_ref == null) {
+      await speakText(phrase.phraseAr);
+      return;
+    }
+    final sharedPhrase = arabicSharedMiniPhraseById(phrase.id);
+    if (sharedPhrase != null) {
+      await _ref
+          .read(arabicLearningAudioControllerProvider.notifier)
+          .playBeginnerPhrase(sharedPhrase);
+      return;
+    }
+    await speakText(phrase.phraseAr);
   }
 
-  Future<void> dispose() async {
-    await _tts.stop();
+  Future<void> speakText(String text) async {
+    if (_ref == null) {
+      return;
+    }
+    await _ref
+        .read(arabicLearningAudioControllerProvider.notifier)
+        .playText(playbackId: 'kids:text:$text', text: text);
   }
+
+  Future<void> dispose() async {}
 }
 
 final kidsArabicAudioServiceProvider = Provider<KidsArabicAudioService>((ref) {
-  final service = KidsArabicAudioService();
-  unawaited(service.configure());
-  ref.onDispose(() {
-    unawaited(service.dispose());
-  });
-  return service;
+  return KidsArabicAudioService(ref);
 });

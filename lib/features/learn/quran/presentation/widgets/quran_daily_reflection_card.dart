@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../l10n/app_localizations.dart';
 import '../../../../../shared/widgets/premium_card.dart';
@@ -16,9 +17,16 @@ import '../../domain/quran_reflection_entry.dart';
 import 'quran_reflection_note_dialog.dart';
 
 class QuranDailyReflectionCard extends ConsumerWidget {
-  const QuranDailyReflectionCard({super.key, this.compact = false});
+  const QuranDailyReflectionCard({
+    super.key,
+    this.compact = false,
+    this.showCompanionAction = true,
+    this.showSecondaryActions = true,
+  });
 
   final bool compact;
+  final bool showCompanionAction;
+  final bool showSecondaryActions;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -32,7 +40,7 @@ class QuranDailyReflectionCard extends ConsumerWidget {
     );
     final savedEntry = ref.watch(
       quranReflectionsProvider.select(
-        (items) => _findSavedReflection(
+        (items) => findSavedDailyReflection(
           items,
           ref: entry.ref,
           sourceEnrichmentId: entry.id,
@@ -52,14 +60,18 @@ class QuranDailyReflectionCard extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      l10n.quranDailyReflectionTitle,
+                      compact && showCompanionAction
+                          ? l10n.quranDailyCompanionTitle
+                          : l10n.quranDailyReflectionTitle,
                       style: Theme.of(context).textTheme.titleSmall?.copyWith(
                         fontWeight: FontWeight.w700,
                       ),
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      assignment.isFirstTimeStarter
+                      compact && showCompanionAction
+                          ? l10n.quranDailyCompanionCardSubtitle
+                          : assignment.isFirstTimeStarter
                           ? l10n.quranDailyReflectionStarterSubtitle
                           : l10n.quranDailyReflectionSubtitle,
                       style: Theme.of(context).textTheme.bodySmall,
@@ -136,88 +148,98 @@ class QuranDailyReflectionCard extends ConsumerWidget {
             spacing: 8,
             runSpacing: 8,
             children: [
+              if (showCompanionAction)
+                FilledButton.tonalIcon(
+                  onPressed: () => context.pushNamed('quranDailyCompanion'),
+                  icon: const Icon(Icons.wb_twilight_rounded),
+                  label: Text(l10n.quranDailyCompanionOpenAction),
+                ),
               FilledButton.tonalIcon(
                 onPressed: () =>
                     openQuranReferenceLocation(context, ref: entry.ref),
                 icon: const Icon(Icons.auto_stories_rounded),
                 label: Text(l10n.quranDailyReflectionOpenAyahAction),
               ),
-              OutlinedButton.icon(
-                onPressed: () {
-                  ref
-                      .read(quranReflectionsProvider.notifier)
-                      .toggleSaved(
-                        ref: entry.ref,
-                        sourceType: QuranReflectionSourceType.dailyAyah,
-                        title: entry.title,
-                        summary: entry.summary,
-                        sourceEnrichmentId: entry.id,
-                      );
-                },
-                icon: Icon(
-                  savedEntry == null
-                      ? Icons.bookmark_add_outlined
-                      : Icons.bookmark_rounded,
+              if (showSecondaryActions)
+                OutlinedButton.icon(
+                  onPressed: () {
+                    ref
+                        .read(quranReflectionsProvider.notifier)
+                        .toggleSaved(
+                          ref: entry.ref,
+                          sourceType: QuranReflectionSourceType.dailyAyah,
+                          title: entry.title,
+                          summary: entry.summary,
+                          sourceEnrichmentId: entry.id,
+                        );
+                  },
+                  icon: Icon(
+                    savedEntry == null
+                        ? Icons.bookmark_add_outlined
+                        : Icons.bookmark_rounded,
+                  ),
+                  label: Text(
+                    savedEntry == null
+                        ? l10n.quranReflectionsSaveAction
+                        : l10n.quranReflectionsSavedAction,
+                  ),
                 ),
-                label: Text(
-                  savedEntry == null
-                      ? l10n.quranReflectionsSaveAction
-                      : l10n.quranReflectionsSavedAction,
+              if (showSecondaryActions)
+                OutlinedButton.icon(
+                  onPressed: () {
+                    final text =
+                        QuranLearningShareService.buildAyahInsightShareText(
+                          ref: entry.ref,
+                          title: entry.title,
+                          summary: entry.summary,
+                          attribution: l10n.quranLearningShareAttribution,
+                          reflectionLabel:
+                              l10n.quranLearningShareReflectionLabel,
+                          reflectionPrompt: summary.primaryPrompt,
+                        );
+                    QuranLearningShareService.shareText(text);
+                  },
+                  icon: const Icon(Icons.ios_share_rounded),
+                  label: Text(l10n.quranLearningShareAction),
                 ),
-              ),
-              OutlinedButton.icon(
-                onPressed: () {
-                  final text =
-                      QuranLearningShareService.buildAyahInsightShareText(
-                        ref: entry.ref,
-                        title: entry.title,
-                        summary: entry.summary,
-                        attribution: l10n.quranLearningShareAttribution,
-                        reflectionLabel: l10n.quranLearningShareReflectionLabel,
-                        reflectionPrompt: summary.primaryPrompt,
-                      );
-                  QuranLearningShareService.shareText(text);
-                },
-                icon: const Icon(Icons.ios_share_rounded),
-                label: Text(l10n.quranLearningShareAction),
-              ),
-              OutlinedButton.icon(
-                onPressed: () async {
-                  final note = await showQuranReflectionNoteDialog(
-                    context,
-                    title: savedEntry?.note?.trim().isNotEmpty ?? false
+              if (showSecondaryActions)
+                OutlinedButton.icon(
+                  onPressed: () async {
+                    final note = await showQuranReflectionNoteDialog(
+                      context,
+                      title: savedEntry?.note?.trim().isNotEmpty ?? false
+                          ? l10n.quranReflectionsEditNoteAction
+                          : l10n.quranReflectionsAddNoteAction,
+                      initialNote: savedEntry?.note,
+                    );
+                    if (note == null) return;
+                    ref
+                        .read(quranReflectionsProvider.notifier)
+                        .upsertNote(
+                          ref: entry.ref,
+                          sourceType: QuranReflectionSourceType.dailyAyah,
+                          title: entry.title,
+                          summary: entry.summary,
+                          sourceEnrichmentId: entry.id,
+                          note: note,
+                        );
+                    if (note.trim().isNotEmpty) {
+                      ref
+                          .read(quranLearningProgressStateProvider.notifier)
+                          .rewardFirstReflectionNote(
+                            ref: entry.ref,
+                            sourceEnrichmentId: entry.id,
+                            sourceSurface: 'daily_reflection',
+                          );
+                    }
+                  },
+                  icon: const Icon(Icons.edit_note_rounded),
+                  label: Text(
+                    savedEntry?.note?.trim().isNotEmpty ?? false
                         ? l10n.quranReflectionsEditNoteAction
                         : l10n.quranReflectionsAddNoteAction,
-                    initialNote: savedEntry?.note,
-                  );
-                  if (note == null) return;
-                  ref
-                      .read(quranReflectionsProvider.notifier)
-                      .upsertNote(
-                        ref: entry.ref,
-                        sourceType: QuranReflectionSourceType.dailyAyah,
-                        title: entry.title,
-                        summary: entry.summary,
-                        sourceEnrichmentId: entry.id,
-                        note: note,
-                      );
-                  if (note.trim().isNotEmpty) {
-                    ref
-                        .read(quranLearningProgressStateProvider.notifier)
-                        .rewardFirstReflectionNote(
-                          ref: entry.ref,
-                          sourceEnrichmentId: entry.id,
-                          sourceSurface: 'daily_reflection',
-                        );
-                  }
-                },
-                icon: const Icon(Icons.edit_note_rounded),
-                label: Text(
-                  savedEntry?.note?.trim().isNotEmpty ?? false
-                      ? l10n.quranReflectionsEditNoteAction
-                      : l10n.quranReflectionsAddNoteAction,
+                  ),
                 ),
-              ),
               summary.isCompletedToday
                   ? FilledButton.tonalIcon(
                       onPressed: null,
@@ -252,7 +274,7 @@ class QuranDailyReflectionCard extends ConsumerWidget {
   }
 }
 
-QuranReflectionEntry? _findSavedReflection(
+QuranReflectionEntry? findSavedDailyReflection(
   List<QuranReflectionEntry> items, {
   required QuranQuoteRef ref,
   String? sourceEnrichmentId,

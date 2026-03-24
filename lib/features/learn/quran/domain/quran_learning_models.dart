@@ -38,38 +38,48 @@ class MemorizationProgress {
   const MemorizationProgress({
     required this.verseId,
     required this.stage,
+    required this.addedAt,
     required this.lastReviewed,
     required this.nextReview,
     this.reviewCount = 0,
+    this.lastReviewSuccessful,
   });
 
   final String verseId;
   final MemorizationStage stage;
+  final DateTime addedAt;
   final DateTime? lastReviewed;
   final DateTime nextReview;
   final int reviewCount;
+  final bool? lastReviewSuccessful;
 
   MemorizationProgress copyWith({
     MemorizationStage? stage,
+    DateTime? addedAt,
     DateTime? lastReviewed,
     DateTime? nextReview,
     int? reviewCount,
+    bool? lastReviewSuccessful,
   }) {
     return MemorizationProgress(
       verseId: verseId,
       stage: stage ?? this.stage,
+      addedAt: addedAt ?? this.addedAt,
       lastReviewed: lastReviewed ?? this.lastReviewed,
       nextReview: nextReview ?? this.nextReview,
       reviewCount: reviewCount ?? this.reviewCount,
+      lastReviewSuccessful: lastReviewSuccessful ?? this.lastReviewSuccessful,
     );
   }
 
   Map<String, dynamic> toJson() => {
     'verseId': verseId,
     'stage': stage.name,
+    'addedAt': addedAt.toIso8601String(),
     'lastReviewed': lastReviewed?.toIso8601String(),
     'nextReview': nextReview.toIso8601String(),
     'reviewCount': reviewCount,
+    'lastReviewSuccessful': lastReviewSuccessful,
   };
 
   static MemorizationProgress? fromJson(Map<String, dynamic>? json) {
@@ -79,8 +89,12 @@ class MemorizationProgress {
     if (verseId == null || verseId.isEmpty || nextReviewRaw == null) {
       return null;
     }
+    final addedAtRaw = json['addedAt']?.toString();
     final nextReview = DateTime.tryParse(nextReviewRaw);
     if (nextReview == null) return null;
+    final addedAt =
+        DateTime.tryParse(addedAtRaw ?? '') ??
+        DateTime(nextReview.year, nextReview.month, nextReview.day);
 
     final stageName = json['stage']?.toString();
     var stage = MemorizationStage.newVerse;
@@ -94,9 +108,11 @@ class MemorizationProgress {
     return MemorizationProgress(
       verseId: verseId,
       stage: stage,
+      addedAt: addedAt,
       lastReviewed: DateTime.tryParse(json['lastReviewed']?.toString() ?? ''),
       nextReview: nextReview,
       reviewCount: int.tryParse(json['reviewCount']?.toString() ?? '') ?? 0,
+      lastReviewSuccessful: json['lastReviewSuccessful'] as bool?,
     );
   }
 }

@@ -41,6 +41,10 @@ class LearningJourneyLessonContentRegistry {
       ageGroup: ageGroup,
     );
   }
+
+  static LearningJourneyLessonContent? rawLessonForStage(String stageId) {
+    return _lessons[stageId];
+  }
 }
 
 LearningJourneyLessonContent _adaptLessonForAgeGroup(
@@ -204,7 +208,7 @@ _seerahLessons = <String, LearningJourneyLessonContent>{
     reflectionPrompt:
         'What would it look like to combine planning and trust in one important decision in your life?',
     quranReferences: const ['Qur’an 9:40'],
-    relatedTools: const [_lessonProphetsTool, _lessonLegacyLearnTool],
+    relatedTools: const [_lessonProphetsTool, _lessonSeerahHijrahTool],
   ),
   'seerah-madinah-society': _lesson(
     stageId: 'seerah-madinah-society',
@@ -231,7 +235,7 @@ _seerahLessons = <String, LearningJourneyLessonContent>{
     reflectionPrompt:
         'How can your worship become more connected to service, relationships, and community life?',
     quranReferences: const ['Qur’an 49:10', 'Qur’an 3:103'],
-    relatedTools: const [_lessonHadithHubTool, _lessonLegacyLearnTool],
+    relatedTools: const [_lessonHadithHubTool, _lessonSeerahMadinahTool],
   ),
   'seerah-leadership-character': _lesson(
     stageId: 'seerah-leadership-character',
@@ -1239,7 +1243,7 @@ _quranPathLessons = <String, LearningJourneyLessonContent>{
       'Qur’an 113:1-5',
       'Qur’an 114:1-6',
     ],
-    relatedTools: const [_lessonQuranReaderTool, _lessonLegacyLearnTool],
+    relatedTools: const [_lessonQuranReaderTool, _lessonQuranStudyTool],
   ),
   'recite-fatihah': _lesson(
     stageId: 'recite-fatihah',
@@ -1609,7 +1613,7 @@ _timelineLessons = <String, LearningJourneyLessonContent>{
       'Sahih al-Bukhari',
       'Classical early-history summaries',
     ],
-    relatedTools: const [_lessonProphetsTool, _lessonLegacyLearnTool],
+    relatedTools: const [_lessonProphetsTool, _lessonHistoryArchiveTool],
   ),
   'timeline-expansion': _lesson(
     stageId: 'timeline-expansion',
@@ -1635,7 +1639,7 @@ _timelineLessons = <String, LearningJourneyLessonContent>{
     ],
     reflectionPrompt:
         'What does it mean to inherit a tradition that is both glorious and unfinished?',
-    relatedTools: const [_lessonLegacyLearnTool, _lessonHadithHubTool],
+    relatedTools: const [_lessonHistoryArchiveTool, _lessonHadithHubTool],
   ),
 };
 
@@ -1753,7 +1757,7 @@ _dailyWisdomLessons = <String, LearningJourneyLessonContent>{
     ],
     reflectionPrompt:
         'What kind of daily reminder actually changes the way you move through your day?',
-    relatedTools: const [_lessonLegacyLearnTool, _lessonLearnNotesTool],
+    relatedTools: const [_lessonDailyWisdomTool, _lessonLearnNotesTool],
   ),
   'wisdom-short-lesson': _lesson(
     stageId: 'wisdom-short-lesson',
@@ -1962,10 +1966,25 @@ const _lessonDuaHubTool = LearningJourneyToolLink(
   routeName: 'learnDuaHub',
 );
 
-const _lessonLegacyLearnTool = LearningJourneyToolLink(
-  title: 'Legacy Learning Material',
-  subtitle: 'Open the current Learn ecosystem during migration.',
-  routeName: 'learnLegacy',
+const _lessonSeerahHijrahTool = LearningJourneyToolLink(
+  title: 'Seerah Companion',
+  subtitle: 'Open the Seerah companion with Hijrah in focus.',
+  routeName: 'learnSeerahCompanion',
+  queryParameters: {'focus': 'hijrah'},
+);
+
+const _lessonSeerahMadinahTool = LearningJourneyToolLink(
+  title: 'Seerah Companion',
+  subtitle: 'Open the Seerah companion with Madinah society in focus.',
+  routeName: 'learnSeerahCompanion',
+  queryParameters: {'focus': 'madinah-society'},
+);
+
+const _lessonDailyWisdomTool = LearningJourneyToolLink(
+  title: 'Daily Wisdom',
+  subtitle: 'Open the daily wisdom and reflection surface.',
+  routeName: 'learnDailyWisdomCompanion',
+  queryParameters: {'focus': 'gratitude'},
 );
 
 const _lessonNamesOfAllahTool = LearningJourneyToolLink(
@@ -2051,4 +2070,10 @@ const _lessonLearnNotesTool = LearningJourneyToolLink(
   title: 'Learn Notes',
   subtitle: 'Review saved notes and reflections.',
   routeName: 'learnNotesLanding',
+);
+
+const _lessonHistoryArchiveTool = LearningJourneyToolLink(
+  title: 'History Archive',
+  subtitle: 'Open the main historical archive and timeline surface.',
+  routeName: 'learnHistoryArchive',
 );

@@ -34,21 +34,23 @@ class _GlossaryPageState extends ConsumerState<GlossaryPage> {
     final l10n = AppLocalizations.of(context);
     final query = _searchController.text.trim().toLowerCase();
     final entries = GlossaryCatalog.localizedEntries(context);
-    final filtered = entries.where((entry) {
-      final matchesCategory =
-          _selectedCategory == null || entry.category == _selectedCategory;
-      if (!matchesCategory) return false;
-      if (query.isEmpty) return true;
-      final haystack = [
-        entry.term,
-        entry.shortDefinition,
-        entry.expandedExplanation,
-        entry.kidsShortDefinition,
-        entry.kidsExpandedExplanation,
-        entry.transliteration ?? '',
-      ].join(' ').toLowerCase();
-      return haystack.contains(query);
-    }).toList(growable: false);
+    final filtered = entries
+        .where((entry) {
+          final matchesCategory =
+              _selectedCategory == null || entry.category == _selectedCategory;
+          if (!matchesCategory) return false;
+          if (query.isEmpty) return true;
+          final haystack = [
+            entry.term,
+            entry.shortDefinition,
+            entry.expandedExplanation,
+            entry.kidsShortDefinition,
+            entry.kidsExpandedExplanation,
+            entry.transliteration ?? '',
+          ].join(' ').toLowerCase();
+          return haystack.contains(query);
+        })
+        .toList(growable: false);
 
     return LearnHubPageScaffold(
       headerIcon: Icons.menu_book_rounded,
@@ -62,7 +64,7 @@ class _GlossaryPageState extends ConsumerState<GlossaryPage> {
             children: [
               LearnDiscoverySearchField(
                 controller: _searchController,
-                hintText: l10n.searchTermsHint,
+                hintText: l10n.learnGlossarySearchHint,
                 onChanged: (_) => setState(() {}),
                 onClear: () {
                   _searchController.clear();
@@ -95,9 +97,9 @@ class _GlossaryPageState extends ConsumerState<GlossaryPage> {
             children: [
               Text(
                 l10n.learnGlossaryInlineHintTitle,
-                style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                  fontWeight: FontWeight.w700,
-                ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
               ),
               const SizedBox(height: 6),
               Text(l10n.learnGlossaryInlineHintBody),
@@ -162,9 +164,9 @@ class _GlossaryPageState extends ConsumerState<GlossaryPage> {
           padding: EdgeInsets.only(top: widgets.isEmpty ? 0 : 10, bottom: 8),
           child: Text(
             localizedGlossaryCategoryLabel(context, category),
-            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-              fontWeight: FontWeight.w700,
-            ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
           ),
         ),
       );
@@ -188,10 +190,10 @@ class _GlossaryEntryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isKidsMode =
-        ProviderScope.containerOf(context, listen: false)
-            .read(specialModeProvider)
-            .isKids;
+    final isKidsMode = ProviderScope.containerOf(
+      context,
+      listen: false,
+    ).read(specialModeProvider).isKids;
     return PremiumCard(
       surfaceVariant: AppSurfaceVariant.panel,
       padding: EdgeInsets.zero,

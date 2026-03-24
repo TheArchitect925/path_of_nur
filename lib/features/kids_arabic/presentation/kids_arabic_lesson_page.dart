@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../l10n/app_localizations.dart';
+import '../../arabic/presentation/widgets/arabic_learning_playback_speed_toggle.dart';
 import '../../learn/presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/kids_arabic_achievements_provider.dart';
 import '../application/kids_arabic_audio_service.dart';
@@ -272,6 +273,10 @@ class _KidsArabicLessonPageState extends ConsumerState<KidsArabicLessonPage> {
             child: const SizedBox.shrink(),
           ),
         ],
+        const SizedBox(height: 12),
+        const ArabicLearningPlaybackSpeedToggle(
+          variant: ArabicLearningPlaybackToggleVariant.kids,
+        ),
         const SizedBox(height: 14),
         KidsArabicRepeatAfterMeCard(
           autoplayToken: letter.id,

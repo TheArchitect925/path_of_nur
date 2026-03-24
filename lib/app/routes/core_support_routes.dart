@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../features/accounts_sync/domain/accounts_sync_models.dart';
 import '../../features/accounts_sync/presentation/accounts_profiles_sync_page.dart';
 import '../../features/learn/quran/presentation/names_of_allah_page.dart';
 import '../../features/learn/quran/presentation/quran_bookmarks_page.dart';
+import '../../features/learn/quran/presentation/quran_memorization_review_page.dart';
 import '../../features/learn/quran/presentation/quran_notes_page.dart';
 import '../../features/learn/quran/presentation/quran_reflections_page.dart';
 import '../../features/learn/quran/presentation/quran_reader_page.dart';
@@ -14,6 +16,7 @@ import '../../features/learn/quran/presentation/quran_word_detail_page.dart';
 import '../../features/learn/quran/presentation/quran_topic_explorer_page.dart';
 import '../../features/learn/quran/presentation/quran_word_review_page.dart';
 import '../../features/learn/quran/presentation/quran_words_page.dart';
+import '../../features/learn/quran/domain/quran_reference_models.dart';
 import '../../features/ocean/presentation/ocean_dashboard_page.dart';
 import '../../features/ocean/presentation/ocean_drops_page.dart';
 import '../../features/profile/presentation/profile_coming_soon_page.dart';
@@ -182,6 +185,15 @@ List<RouteBase> buildCoreSupportRoutes() {
           const MaterialPage(child: BackupRestoreHomePage()),
     ),
     GoRoute(
+      path: '/accounts-sync/backup/remote-restore',
+      name: 'remoteBackupRestorePreview',
+      pageBuilder: (context, state) => MaterialPage(
+        child: RemoteRestorePreviewPage(
+          preview: state.extra! as RestorePreview,
+        ),
+      ),
+    ),
+    GoRoute(
       path: '/accounts-sync/backup/export',
       name: 'backupExport',
       pageBuilder: (context, state) =>
@@ -322,6 +334,19 @@ List<RouteBase> buildCoreSupportRoutes() {
         final endAyah = int.tryParse(
           state.uri.queryParameters['endAyah'] ?? '',
         );
+        final journeyId = state.uri.queryParameters['journeyId'];
+        final stageId = state.uri.queryParameters['stageId'];
+        final topicId = state.uri.queryParameters['topicId'];
+        final mode = QuranReaderStudyMode.tryParse(
+          state.uri.queryParameters['mode'],
+        );
+        final review = state.uri.queryParameters['review'];
+        final memorizationReviewCount = int.tryParse(
+          state.uri.queryParameters['reviewCount'] ?? '',
+        );
+        final memorizationLastReviewed = DateTime.tryParse(
+          state.uri.queryParameters['lastReviewed'] ?? '',
+        );
         final autoPlay = switch ((state.uri.queryParameters['autoplay'] ?? '')
             .toLowerCase()) {
           '1' || 'true' || 'yes' => true,
@@ -333,6 +358,13 @@ List<RouteBase> buildCoreSupportRoutes() {
             initialAyah: ayah,
             endAyah: endAyah,
             autoPlay: autoPlay,
+            learningJourneyId: journeyId,
+            learningJourneyStageId: stageId,
+            highlightedTopicId: topicId,
+            memorizationReviewMode: review == 'memorization',
+            studyMode: mode,
+            memorizationReviewCount: memorizationReviewCount,
+            memorizationLastReviewed: memorizationLastReviewed,
           ),
         );
       },
@@ -341,6 +373,16 @@ List<RouteBase> buildCoreSupportRoutes() {
       path: '/learn/quran/surah/:surahNumber',
       redirect: (context, state) =>
           _redirectWithPathAndQuery('/quran/surah/:surahNumber', state),
+    ),
+    GoRoute(
+      path: '/quran/review',
+      name: 'quranMemorizationReview',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: QuranMemorizationReviewPage()),
+    ),
+    GoRoute(
+      path: '/learn/quran/review',
+      redirect: (context, state) => _redirectWithQuery('/quran/review', state),
     ),
     GoRoute(
       path: '/quran/bookmarks',

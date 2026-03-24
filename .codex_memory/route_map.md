@@ -1,6 +1,6 @@
 # Route Map
 
-Last updated: 2026-03-22
+Last updated: 2026-03-24
 
 ## Canonical top-level tabs
 
@@ -12,6 +12,23 @@ Last updated: 2026-03-22
   - current page is `JourneyPage` -> `GrowthHomePage` section landing
 - `/quran`
   - current page is `QuranAppHubPage`
+
+## Router ownership notes
+
+- `lib/app/app_router.dart`
+  - shell composition, top-level tab pages, redirect orchestration
+- `lib/app/routes/router_policies.dart`
+  - child-learning restriction policy and Qur'an-location tab policy helpers
+- `lib/app/routes/learn_routes.dart`
+  - composition entry point only
+- `lib/app/routes/learn/learn_core_routes.dart`
+  - canonical Qur'an learning entrypoints, Learn legacy/journey/explore/history/games/category/family
+- `lib/app/routes/learn/learn_kids_routes.dart`
+  - kids-family route cluster
+- `lib/app/routes/learn/learn_hub_and_quiz_routes.dart`
+  - hub/alias/quizzes/salah/wudu/faq cluster
+- `lib/app/routes/learn/learn_content_domain_routes.dart`
+  - Life, World, Hadith, Learn Notes, content detail, Qur'an-adjacent domain routes
 
 ## Startup / access control routes
 
@@ -57,9 +74,22 @@ Last updated: 2026-03-22
 
 - `/quran`
 - `/quran/learning`
+- `/quran/daily`
 - `/quran/knowledge-search`
 - `/quran/insights`
 - `/quran/insights/paths`
+- `/quran/arabic`
+- `/quran/arabic/module/:moduleId`
+- `/quran/arabic/module/:moduleId/lesson/:lessonId`
+- `/quran/arabic/words`
+- `/quran/arabic/review`
+- `/quran/arabic/readiness`
+- `/quran/arabic/short-surahs`
+- `/quran/arabic/guided-passages`
+- `/learn/kids/arabic`
+- `/learn/kids/arabic/quran-readiness`
+- `/learn/kids/arabic/short-surahs`
+- `/learn/kids/arabic/guided-passages`
 - `/quran/insights/paths/:pathId`
 - `/quran/insights/:domainId`
 - `/quran/surah-insights`
@@ -97,11 +127,15 @@ Last updated: 2026-03-22
 - `/learn/games/:sectionId`
 - `/learn/category/:categoryId`
 - `/learn/family`
+- `/learn/seerah`
+- `/learn/character`
+- `/learn/daily-wisdom`
 - `/learn/kids/games`
 - `/learn/kids/arabic`
 - `/learn/kids/arabic/progress`
 - `/learn/kids/arabic/practice`
 - `/learn/kids/arabic/words`
+- `/learn/kids/arabic/phrases`
 - `/learn/kids/arabic/words/reading`
 - `/learn/kids/arabic/words/:wordId`
 - `/learn/kids/arabic/lesson/:letterId`
@@ -139,6 +173,8 @@ Last updated: 2026-03-22
 ### Legacy or secondary learn hubs still wired
 
 - `/learn/legacy`
+  - hidden compatibility surface only; retained for older library-style catalog entries and Learning Journey metadata
+  - after V6, only unresolved hidden catalog items such as `jummah`, `eid`, and `funeral` plus visible journey/lesson fallback tools still depend on it
 - `/learn/notes`
 - `/learn/notes/browse`
 - `/journal`
@@ -185,6 +221,14 @@ Last updated: 2026-03-22
   - crossword, word search, matching, and ayah completion now live under the Quizzes section rather than as separate top-level Learn hubs
 
 ### Learn domain routes
+
+- Companion surfaces:
+  - `/learn/seerah`
+    - canonical Seerah companion owner for `seerah-journey`, `seerah-hijrah`, and `seerah-madinah-society`
+  - `/learn/character`
+    - canonical Character / Adab companion owner for `beautiful-character`
+  - `/learn/daily-wisdom`
+    - canonical Daily Wisdom / Reflection companion owner for `wisdom-daily-quote`
 
 - Salah:
   - `/learn/salah/prayer/:prayerId`

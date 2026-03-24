@@ -5,6 +5,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:path_provider/path_provider.dart';
 
+import '../domain/accounts_sync_models.dart';
+import 'sync_scope_support.dart';
 import 'sync_foundation.dart';
 import '../../../shared/persistence/app_database.dart';
 import '../../../shared/persistence/local_store.dart';
@@ -526,6 +528,86 @@ class BackupRecord {
   );
 }
 
+class RemoteBackupRecord {
+  const RemoteBackupRecord({
+    required this.providerKey,
+    required this.remoteBackupId,
+    required this.lastRemoteBackupAtIso,
+    required this.lastRemoteRestoreAtIso,
+    required this.lastRemoteCheckAtIso,
+    required this.lastRemoteChecksum,
+    required this.lastRemoteErrorCode,
+    required this.lastRemoteDeviceLabel,
+    required this.lastRemoteAccountLabel,
+  });
+
+  final String? providerKey;
+  final String? remoteBackupId;
+  final String? lastRemoteBackupAtIso;
+  final String? lastRemoteRestoreAtIso;
+  final String? lastRemoteCheckAtIso;
+  final String? lastRemoteChecksum;
+  final String? lastRemoteErrorCode;
+  final String? lastRemoteDeviceLabel;
+  final String? lastRemoteAccountLabel;
+
+  RemoteBackupRecord copyWith({
+    String? providerKey,
+    String? remoteBackupId,
+    String? lastRemoteBackupAtIso,
+    String? lastRemoteRestoreAtIso,
+    String? lastRemoteCheckAtIso,
+    String? lastRemoteChecksum,
+    String? lastRemoteErrorCode,
+    String? lastRemoteDeviceLabel,
+    String? lastRemoteAccountLabel,
+    bool clearRemoteErrorCode = false,
+  }) {
+    return RemoteBackupRecord(
+      providerKey: providerKey ?? this.providerKey,
+      remoteBackupId: remoteBackupId ?? this.remoteBackupId,
+      lastRemoteBackupAtIso:
+          lastRemoteBackupAtIso ?? this.lastRemoteBackupAtIso,
+      lastRemoteRestoreAtIso:
+          lastRemoteRestoreAtIso ?? this.lastRemoteRestoreAtIso,
+      lastRemoteCheckAtIso: lastRemoteCheckAtIso ?? this.lastRemoteCheckAtIso,
+      lastRemoteChecksum: lastRemoteChecksum ?? this.lastRemoteChecksum,
+      lastRemoteErrorCode: clearRemoteErrorCode
+          ? null
+          : lastRemoteErrorCode ?? this.lastRemoteErrorCode,
+      lastRemoteDeviceLabel:
+          lastRemoteDeviceLabel ?? this.lastRemoteDeviceLabel,
+      lastRemoteAccountLabel:
+          lastRemoteAccountLabel ?? this.lastRemoteAccountLabel,
+    );
+  }
+
+  Map<String, dynamic> toJson() => {
+    'providerKey': providerKey,
+    'remoteBackupId': remoteBackupId,
+    'lastRemoteBackupAtIso': lastRemoteBackupAtIso,
+    'lastRemoteRestoreAtIso': lastRemoteRestoreAtIso,
+    'lastRemoteCheckAtIso': lastRemoteCheckAtIso,
+    'lastRemoteChecksum': lastRemoteChecksum,
+    'lastRemoteErrorCode': lastRemoteErrorCode,
+    'lastRemoteDeviceLabel': lastRemoteDeviceLabel,
+    'lastRemoteAccountLabel': lastRemoteAccountLabel,
+  };
+
+  factory RemoteBackupRecord.fromJson(Map<String, dynamic>? json) =>
+      RemoteBackupRecord(
+        providerKey: json?['providerKey']?.toString(),
+        remoteBackupId: json?['remoteBackupId']?.toString(),
+        lastRemoteBackupAtIso: json?['lastRemoteBackupAtIso']?.toString(),
+        lastRemoteRestoreAtIso: json?['lastRemoteRestoreAtIso']?.toString(),
+        lastRemoteCheckAtIso: json?['lastRemoteCheckAtIso']?.toString(),
+        lastRemoteChecksum: json?['lastRemoteChecksum']?.toString(),
+        lastRemoteErrorCode: json?['lastRemoteErrorCode']?.toString(),
+        lastRemoteDeviceLabel: json?['lastRemoteDeviceLabel']?.toString(),
+        lastRemoteAccountLabel: json?['lastRemoteAccountLabel']?.toString(),
+      );
+}
+
 class AccountsSyncState {
   const AccountsSyncState({
     required this.accounts,
@@ -534,12 +616,16 @@ class AccountsSyncState {
     required this.profilePins,
     required this.connectedDevices,
     required this.activeAccountId,
+    required this.authSessionAccountId,
     required this.activeProfileId,
     required this.sessionUnlockedProfileId,
     required this.sharedDeviceModeEnabled,
     required this.sharedDeviceSafety,
     required this.syncStatus,
     required this.backupRecord,
+    required this.remoteBackupRecord,
+    required this.autoBackupState,
+    required this.syncScopePreferences,
     required this.scopeVersion,
   });
 
@@ -549,12 +635,16 @@ class AccountsSyncState {
   final Map<String, String> profilePins;
   final List<ConnectedDeviceRecord> connectedDevices;
   final String? activeAccountId;
+  final String? authSessionAccountId;
   final String? activeProfileId;
   final String? sessionUnlockedProfileId;
   final bool sharedDeviceModeEnabled;
   final SharedDeviceSafetySettings sharedDeviceSafety;
   final SyncStatusSnapshot syncStatus;
   final BackupRecord backupRecord;
+  final RemoteBackupRecord remoteBackupRecord;
+  final AutoBackupPolicyState autoBackupState;
+  final SyncScopePreferences syncScopePreferences;
   final int scopeVersion;
 
   ProfileRecord? get activeProfile =>
@@ -566,6 +656,12 @@ class AccountsSyncState {
   AccountRecord? get activeAccount =>
       accounts.cast<AccountRecord?>().firstWhere(
         (item) => item?.accountId == activeAccountId,
+        orElse: () => null,
+      );
+
+  AccountRecord? get authenticatedAccount =>
+      accounts.cast<AccountRecord?>().firstWhere(
+        (item) => item?.accountId == authSessionAccountId,
         orElse: () => null,
       );
 
@@ -589,13 +685,20 @@ class AccountsSyncState {
     Map<String, String>? profilePins,
     List<ConnectedDeviceRecord>? connectedDevices,
     String? activeAccountId,
+    String? authSessionAccountId,
     String? activeProfileId,
     String? sessionUnlockedProfileId,
+    bool clearActiveAccountId = false,
+    bool clearAuthSessionAccountId = false,
+    bool clearActiveProfileId = false,
     bool clearSessionUnlockedProfileId = false,
     bool? sharedDeviceModeEnabled,
     SharedDeviceSafetySettings? sharedDeviceSafety,
     SyncStatusSnapshot? syncStatus,
     BackupRecord? backupRecord,
+    RemoteBackupRecord? remoteBackupRecord,
+    AutoBackupPolicyState? autoBackupState,
+    SyncScopePreferences? syncScopePreferences,
     int? scopeVersion,
   }) {
     return AccountsSyncState(
@@ -604,8 +707,15 @@ class AccountsSyncState {
       profileSnapshots: profileSnapshots ?? this.profileSnapshots,
       profilePins: profilePins ?? this.profilePins,
       connectedDevices: connectedDevices ?? this.connectedDevices,
-      activeAccountId: activeAccountId ?? this.activeAccountId,
-      activeProfileId: activeProfileId ?? this.activeProfileId,
+      activeAccountId: clearActiveAccountId
+          ? null
+          : activeAccountId ?? this.activeAccountId,
+      authSessionAccountId: clearAuthSessionAccountId
+          ? null
+          : authSessionAccountId ?? this.authSessionAccountId,
+      activeProfileId: clearActiveProfileId
+          ? null
+          : activeProfileId ?? this.activeProfileId,
       sessionUnlockedProfileId: clearSessionUnlockedProfileId
           ? null
           : sessionUnlockedProfileId ?? this.sessionUnlockedProfileId,
@@ -614,6 +724,9 @@ class AccountsSyncState {
       sharedDeviceSafety: sharedDeviceSafety ?? this.sharedDeviceSafety,
       syncStatus: syncStatus ?? this.syncStatus,
       backupRecord: backupRecord ?? this.backupRecord,
+      remoteBackupRecord: remoteBackupRecord ?? this.remoteBackupRecord,
+      autoBackupState: autoBackupState ?? this.autoBackupState,
+      syncScopePreferences: syncScopePreferences ?? this.syncScopePreferences,
       scopeVersion: scopeVersion ?? this.scopeVersion,
     );
   }
@@ -625,12 +738,16 @@ class AccountsSyncState {
     'profilePins': profilePins,
     'connectedDevices': connectedDevices.map((item) => item.toJson()).toList(),
     'activeAccountId': activeAccountId,
+    'authSessionAccountId': authSessionAccountId,
     'activeProfileId': activeProfileId,
     'sessionUnlockedProfileId': sessionUnlockedProfileId,
     'sharedDeviceModeEnabled': sharedDeviceModeEnabled,
     'sharedDeviceSafety': sharedDeviceSafety.toJson(),
     'syncStatus': syncStatus.toJson(),
     'backupRecord': backupRecord.toJson(),
+    'remoteBackupRecord': remoteBackupRecord.toJson(),
+    'autoBackupState': autoBackupState.toJson(),
+    'syncScopePreferences': syncScopePreferences.toJson(),
     'scopeVersion': scopeVersion,
   };
 
@@ -676,6 +793,7 @@ class AccountsSyncState {
           )
           .toList(),
       activeAccountId: json['activeAccountId']?.toString(),
+      authSessionAccountId: json['authSessionAccountId']?.toString(),
       activeProfileId: json['activeProfileId']?.toString(),
       sessionUnlockedProfileId: json['sessionUnlockedProfileId']?.toString(),
       sharedDeviceModeEnabled:
@@ -692,6 +810,21 @@ class AccountsSyncState {
       ),
       backupRecord: BackupRecord.fromJson(
         (json['backupRecord'] as Map?)?.map(
+          (key, value) => MapEntry(key.toString(), value),
+        ),
+      ),
+      remoteBackupRecord: RemoteBackupRecord.fromJson(
+        (json['remoteBackupRecord'] as Map?)?.map(
+          (key, value) => MapEntry(key.toString(), value),
+        ),
+      ),
+      autoBackupState: AutoBackupPolicyState.fromJson(
+        (json['autoBackupState'] as Map?)?.map(
+          (key, value) => MapEntry(key.toString(), value),
+        ),
+      ),
+      syncScopePreferences: SyncScopePreferences.fromJson(
+        (json['syncScopePreferences'] as Map?)?.map(
           (key, value) => MapEntry(key.toString(), value),
         ),
       ),
@@ -717,6 +850,7 @@ class AccountsSyncState {
       profilePins: const {},
       connectedDevices: [device],
       activeAccountId: null,
+      authSessionAccountId: null,
       activeProfileId: null,
       sessionUnlockedProfileId: null,
       sharedDeviceModeEnabled: false,
@@ -729,6 +863,9 @@ class AccountsSyncState {
         'lastResultSummary': 'Local-only mode active',
       }),
       backupRecord: BackupRecord.fromJson(null),
+      remoteBackupRecord: RemoteBackupRecord.fromJson(null),
+      autoBackupState: AutoBackupPolicyState.fromJson(null),
+      syncScopePreferences: SyncScopePreferences.fromJson(null),
       scopeVersion: 0,
     );
   }
@@ -828,7 +965,153 @@ class AccountsSyncController extends StateNotifier<AccountsSyncState> {
         syncMode: syncMode,
       ),
     ];
-    state = state.copyWith(accounts: next, activeAccountId: accountId);
+    state = state.copyWith(
+      accounts: next,
+      activeAccountId: accountId,
+      authSessionAccountId: provider == AccountProviderType.localOnly
+          ? null
+          : accountId,
+    );
+    await _persist();
+  }
+
+  Future<void> connectAuthenticatedAccount(AccountIdentity identity) async {
+    final provider = switch (identity.provider) {
+      AccountsAuthProvider.apple => AccountProviderType.signInWithApple,
+      AccountsAuthProvider.google => AccountProviderType.google,
+      AccountsAuthProvider.email => AccountProviderType.emailMagicLink,
+      AccountsAuthProvider.localOnly => AccountProviderType.localOnly,
+    };
+    final existing = state.accounts.cast<AccountRecord?>().firstWhere(
+      (item) =>
+          item?.provider == provider &&
+          item?.identifier == identity.identifier,
+      orElse: () => null,
+    );
+    final now = DateTime.now().toIso8601String();
+    if (existing != null) {
+      state = state.copyWith(
+        accounts: state.accounts
+            .map(
+              (item) => item.accountId == existing.accountId
+                  ? AccountRecord(
+                      accountId: item.accountId,
+                      provider: item.provider,
+                      identifier: item.identifier,
+                      displayName: identity.displayName,
+                      createdAtIso: item.createdAtIso,
+                      lastLoginAtIso: now,
+                      lastSyncAtIso: item.lastSyncAtIso,
+                      connectedDeviceCount: state.connectedDevices.length,
+                      syncMode: item.syncMode,
+                    )
+                  : item,
+            )
+            .toList(growable: false),
+        activeAccountId: existing.accountId,
+        authSessionAccountId: existing.accountId,
+      );
+      await _persist();
+      return;
+    }
+    final accountId = 'acct_${DateTime.now().microsecondsSinceEpoch}';
+    state = state.copyWith(
+      accounts: [
+        ...state.accounts,
+        AccountRecord(
+          accountId: accountId,
+          provider: provider,
+          identifier: identity.email?.isNotEmpty == true
+              ? identity.email!
+              : identity.identifier,
+          displayName: identity.displayName,
+          createdAtIso: now,
+          lastLoginAtIso: now,
+          lastSyncAtIso: null,
+          connectedDeviceCount: state.connectedDevices.length,
+          syncMode: ProfileSyncMode.manualBackupOnly,
+        ),
+      ],
+      activeAccountId: accountId,
+      authSessionAccountId: accountId,
+    );
+    await _persist();
+  }
+
+  Future<void> disconnectAuthenticatedAccount() async {
+    state = state.copyWith(clearAuthSessionAccountId: true);
+    await _persist();
+  }
+
+  Future<void> updateRemoteBackupRecord({
+    String? providerKey,
+    String? remoteBackupId,
+    String? lastRemoteBackupAtIso,
+    String? lastRemoteRestoreAtIso,
+    String? lastRemoteCheckAtIso,
+    String? lastRemoteChecksum,
+    String? lastRemoteErrorCode,
+    String? lastRemoteDeviceLabel,
+    String? lastRemoteAccountLabel,
+    bool clearRemoteErrorCode = false,
+  }) async {
+    state = state.copyWith(
+      remoteBackupRecord: state.remoteBackupRecord.copyWith(
+        providerKey: providerKey,
+        remoteBackupId: remoteBackupId,
+        lastRemoteBackupAtIso: lastRemoteBackupAtIso,
+        lastRemoteRestoreAtIso: lastRemoteRestoreAtIso,
+        lastRemoteCheckAtIso: lastRemoteCheckAtIso,
+        lastRemoteChecksum: lastRemoteChecksum,
+        lastRemoteErrorCode: lastRemoteErrorCode,
+        lastRemoteDeviceLabel: lastRemoteDeviceLabel,
+        lastRemoteAccountLabel: lastRemoteAccountLabel,
+        clearRemoteErrorCode: clearRemoteErrorCode,
+      ),
+    );
+    await _persist();
+  }
+
+  Future<void> updateAutoBackupState({
+    AutoBackupPreferences? preferences,
+    bool? dirty,
+    List<PendingBackupReason>? pendingReasons,
+    String? lastAttemptAtIso,
+    String? lastSuccessAtIso,
+    String? lastFailureCode,
+    AutoBackupTrigger? lastTrigger,
+    String? lastEvaluatedAtIso,
+    String? lastSuccessfulDataSignature,
+    String? lastEvaluatedDataSignature,
+    bool? inProgress,
+    bool clearLastFailureCode = false,
+  }) async {
+    state = state.copyWith(
+      autoBackupState: state.autoBackupState.copyWith(
+        preferences: preferences,
+        dirty: dirty,
+        pendingReasons: pendingReasons,
+        lastAttemptAtIso: lastAttemptAtIso,
+        lastSuccessAtIso: lastSuccessAtIso,
+        lastFailureCode: lastFailureCode,
+        lastTrigger: lastTrigger,
+        lastEvaluatedAtIso: lastEvaluatedAtIso,
+        lastSuccessfulDataSignature: lastSuccessfulDataSignature,
+        lastEvaluatedDataSignature: lastEvaluatedDataSignature,
+        inProgress: inProgress,
+        clearLastFailureCode: clearLastFailureCode,
+      ),
+    );
+    await _persist();
+  }
+
+  Future<void> updateSyncScopePreferences(
+    SyncScopePreferences preferences,
+  ) async {
+    state = state.copyWith(
+      syncScopePreferences: preferences,
+      scopeVersion: state.scopeVersion + 1,
+    );
     await _persist();
   }
 
@@ -1174,10 +1457,16 @@ class AccountsSyncController extends StateNotifier<AccountsSyncState> {
   Future<String> exportBackup({
     required bool currentProfileOnly,
     required bool encrypt,
+    BackupSourceType sourceType = BackupSourceType.manualExport,
+    String appVersion = 'unknown',
+    String buildNumber = 'unknown',
   }) async {
     final encoded = await buildBackupPayload(
       currentProfileOnly: currentProfileOnly,
       encrypt: encrypt,
+      sourceType: sourceType,
+      appVersion: appVersion,
+      buildNumber: buildNumber,
     );
     final directory = await getApplicationDocumentsDirectory();
     final file = File(
@@ -1197,13 +1486,38 @@ class AccountsSyncController extends StateNotifier<AccountsSyncState> {
   Future<String> buildBackupPayload({
     required bool currentProfileOnly,
     required bool encrypt,
+    BackupSourceType sourceType = BackupSourceType.manualExport,
+    bool useSyncScope = false,
+    String appVersion = 'unknown',
+    String buildNumber = 'unknown',
   }) async {
     await _captureActiveProfileSnapshot();
+    final scopePreferences = state.syncScopePreferences;
+    final scopeSummary = useSyncScope
+        ? buildBackupScopeSummary(scopePreferences)
+        : defaultFullBackupScopeSummary();
+    final scopedSnapshots = useSyncScope
+        ? scopeProfileSnapshots(state.profileSnapshots, scopePreferences)
+        : state.profileSnapshots;
     final payload = <String, dynamic>{
       'exportedAt': DateTime.now().toIso8601String(),
-      'schemaVersion': 1,
+      'schemaVersion': 2,
       'currentProfileOnly': currentProfileOnly,
       'encrypted': encrypt,
+      'metadata': {
+        'schemaVersion': 2,
+        'appVersion': appVersion,
+        'buildNumber': buildNumber,
+        'sourceType': sourceType.name,
+        'exportedAtIso': DateTime.now().toIso8601String(),
+        'currentProfileOnly': currentProfileOnly,
+        'encrypted': encrypt,
+        'provider': state.authenticatedAccount?.provider.name,
+        'accountLabel': state.authenticatedAccount?.displayName,
+        'deviceLabel': state.syncStatus.deviceName,
+        'lastBackupAtIso': state.backupRecord.lastExportAtIso,
+        'scopeSummary': scopeSummary.toJson(),
+      },
       'accounts': currentProfileOnly
           ? state.accounts
                 .where((item) => item.accountId == state.activeAccountId)
@@ -1220,9 +1534,9 @@ class AccountsSyncController extends StateNotifier<AccountsSyncState> {
           ? {
               if (state.activeProfileId != null)
                 state.activeProfileId!:
-                    state.profileSnapshots[state.activeProfileId] ?? const {},
+                    scopedSnapshots[state.activeProfileId] ?? const {},
             }
-          : state.profileSnapshots,
+          : scopedSnapshots,
       'structuredDataByProfile': {
         for (final profile
             in (currentProfileOnly
@@ -1230,7 +1544,12 @@ class AccountsSyncController extends StateNotifier<AccountsSyncState> {
                       .where((item) => item.profileId == state.activeProfileId)
                       .toList(growable: false)
                 : state.profiles))
-          profile.profileId: _database.exportStructuredData(profile.profileId),
+          profile.profileId: useSyncScope
+              ? scopeStructuredDataByProfile(
+                  _database.exportStructuredData(profile.profileId),
+                  scopePreferences,
+                )
+              : _database.exportStructuredData(profile.profileId),
       },
       'syncStatus': state.syncStatus.toJson(),
     };
@@ -1244,14 +1563,25 @@ class AccountsSyncController extends StateNotifier<AccountsSyncState> {
     required bool createNewProfiles,
     required bool replaceExisting,
   }) async {
+    final previousState = state;
+    final previousSnapshots = <String, Map<String, dynamic>>{
+      for (final profile in state.profiles)
+        profile.profileId: _database.exportStructuredData(profile.profileId),
+    };
     Map<String, dynamic> map;
     try {
       final decoded = encrypted ? utf8.decode(base64Decode(payload)) : payload;
       final json = jsonDecode(decoded);
-      if (json is! Map) return;
+      if (json is! Map) {
+        throw const FormatException('invalid_payload');
+      }
       map = json.map((key, value) => MapEntry(key.toString(), value));
     } catch (_) {
-      return;
+      throw const FormatException('invalid_payload');
+    }
+    final schemaVersion = (map['schemaVersion'] as num?)?.toInt() ?? 1;
+    if (schemaVersion > 2) {
+      throw const FormatException('future_schema');
     }
     final importedProfiles = ((map['profiles'] as List?) ?? const [])
         .map(
@@ -1283,27 +1613,72 @@ class AccountsSyncController extends StateNotifier<AccountsSyncState> {
                 : <String, dynamic>{},
           ),
         );
-    state = state.copyWith(
-      accounts: replaceExisting
+    try {
+      final nextAccounts = replaceExisting
           ? importedAccounts
-          : [...state.accounts, ...importedAccounts],
-      profiles: replaceExisting
+          : _mergeAccounts(state.accounts, importedAccounts);
+      final nextProfiles = replaceExisting
           ? importedProfiles
           : createNewProfiles
           ? [...state.profiles, ...importedProfiles]
-          : _mergeProfiles(state.profiles, importedProfiles),
-      profileSnapshots: replaceExisting
+          : _mergeProfiles(state.profiles, importedProfiles);
+      final nextSnapshots = replaceExisting
           ? importedSnapshots
-          : {...state.profileSnapshots, ...importedSnapshots},
-      backupRecord: state.backupRecord.copyWith(
-        lastImportAtIso: DateTime.now().toIso8601String(),
-      ),
-      scopeVersion: state.scopeVersion + 1,
-    );
-    for (final entry in importedStructured.entries) {
-      _database.importStructuredData(entry.key, entry.value);
+          : {...state.profileSnapshots, ...importedSnapshots};
+      final nextActiveProfileId = replaceExisting
+          ? nextProfiles.cast<ProfileRecord?>().firstWhere(
+                (item) => item?.profileId == state.activeProfileId,
+                orElse: () => nextProfiles.isEmpty ? null : nextProfiles.first,
+              )?.profileId
+          : state.activeProfileId;
+      final nextActiveProfile = nextProfiles.cast<ProfileRecord?>().firstWhere(
+        (item) => item?.profileId == nextActiveProfileId,
+        orElse: () => null,
+      );
+      final nextActiveAccountId = replaceExisting
+          ? nextActiveProfile?.accountId ??
+                (nextAccounts.isEmpty ? null : nextAccounts.first.accountId)
+          : state.activeAccountId;
+      final nextAuthAccountId = replaceExisting &&
+              nextAccounts.every(
+                (item) => item.accountId != state.authSessionAccountId,
+              )
+          ? null
+          : state.authSessionAccountId;
+
+      state = state.copyWith(
+        accounts: nextAccounts,
+        profiles: nextProfiles,
+        profileSnapshots: nextSnapshots,
+        activeAccountId: nextActiveAccountId,
+        clearActiveAccountId: nextActiveAccountId == null,
+        authSessionAccountId: nextAuthAccountId,
+        clearAuthSessionAccountId: nextAuthAccountId == null,
+        activeProfileId: nextActiveProfileId,
+        clearActiveProfileId: nextActiveProfileId == null,
+        backupRecord: state.backupRecord.copyWith(
+          lastImportAtIso: DateTime.now().toIso8601String(),
+        ),
+        scopeVersion: state.scopeVersion + 1,
+      );
+      for (final entry in importedStructured.entries) {
+        _database.importStructuredData(entry.key, entry.value);
+      }
+      if (state.activeProfileId != null) {
+        await _store.restoreAll(
+          state.profileSnapshots[state.activeProfileId!] ?? const <String, dynamic>{},
+          replaceKeys: _dataKeysForIsolation(),
+        );
+      }
+      await _persist();
+    } catch (_) {
+      state = previousState;
+      for (final entry in previousSnapshots.entries) {
+        _database.importStructuredData(entry.key, entry.value);
+      }
+      await _persist();
+      rethrow;
     }
-    await _persist();
   }
 
   Future<void> convertGuestProfile(String profileId, String newName) async {
@@ -1366,6 +1741,19 @@ class AccountsSyncController extends StateNotifier<AccountsSyncState> {
       byId[item.profileId] = item;
     }
     return byId.values.toList();
+  }
+
+  List<AccountRecord> _mergeAccounts(
+    List<AccountRecord> existing,
+    List<AccountRecord> imported,
+  ) {
+    final byKey = {
+      for (final item in existing) '${item.provider.name}:${item.identifier}': item,
+    };
+    for (final item in imported) {
+      byKey['${item.provider.name}:${item.identifier}'] = item;
+    }
+    return byKey.values.toList(growable: false);
   }
 
   Future<void> _persist() async {
@@ -1624,24 +2012,29 @@ final pinProtectionServiceProvider = Provider<PinProtectionService>(
 final authStateProvider = Provider<AuthState>((ref) {
   final state = ref.watch(accountsSyncControllerProvider);
   final deviceId = ref.watch(deviceIdentityProvider).deviceId;
-  final activeAccount = state.activeAccount;
-  if (activeAccount == null) {
-    return AuthState(status: AuthStatus.unauthenticated, session: null);
+  final authenticatedAccount = state.authenticatedAccount;
+  if (authenticatedAccount == null) {
+    return AuthState(
+      status: state.activeAccount?.provider == AccountProviderType.localOnly
+          ? AuthStatus.localOnly
+          : AuthStatus.unauthenticated,
+      session: null,
+    );
   }
   final authAccount = AuthAccount(
-    accountId: activeAccount.accountId,
-    provider: activeAccount.provider,
-    identifier: activeAccount.identifier,
-    displayName: activeAccount.displayName,
+    accountId: authenticatedAccount.accountId,
+    provider: authenticatedAccount.provider,
+    identifier: authenticatedAccount.identifier,
+    displayName: authenticatedAccount.displayName,
   );
   return AuthState(
-    status: activeAccount.provider == AccountProviderType.localOnly
+    status: authenticatedAccount.provider == AccountProviderType.localOnly
         ? AuthStatus.localOnly
         : AuthStatus.authenticated,
     session: AuthSession(
       deviceId: deviceId,
       account: authAccount,
-      startedAtIso: activeAccount.lastLoginAtIso,
+      startedAtIso: authenticatedAccount.lastLoginAtIso,
     ),
   );
 });

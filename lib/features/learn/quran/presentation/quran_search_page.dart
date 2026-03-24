@@ -17,6 +17,7 @@ import '../domain/quran_core_word.dart';
 import '../domain/quran_reference_models.dart';
 import '../domain/quran_surah.dart';
 import '../domain/quran_surah_insight_models.dart';
+import 'quran_theme_copy.dart';
 
 class QuranSearchPage extends ConsumerWidget {
   const QuranSearchPage({super.key});
@@ -50,7 +51,11 @@ class QuranSearchPage extends ConsumerWidget {
           );
     final topicResults = normalizedQuery.isEmpty
         ? const <_QuranSupplementalSearchResult>[]
-        : _buildTopicResults(query: normalizedQuery, topics: topics);
+        : _buildTopicResults(
+            query: normalizedQuery,
+            l10n: l10n,
+            topics: topics,
+          );
     final wordResults = wordsAsync.maybeWhen(
       data: (words) => normalizedQuery.isEmpty
           ? const <_QuranSupplementalSearchResult>[]
@@ -478,31 +483,37 @@ List<_QuranSupplementalSearchResult> _buildLearningResults({
 
 List<_QuranSupplementalSearchResult> _buildTopicResults({
   required String query,
+  required AppLocalizations l10n,
   required List<QuranTopic> topics,
 }) {
   final output = <_QuranSupplementalSearchResult>[];
 
   for (final topic in topics) {
+    final localizedTitle = localizedQuranTopicTitle(l10n, topic.id);
+    final localizedDescription = localizedQuranTopicDescription(l10n, topic.id);
     final haystack = _combineSearchFields([
-      topic.title,
-      topic.description,
+      localizedTitle,
+      localizedDescription,
       topic.relatedLessons.join(' '),
       topic.relatedHadith.join(' '),
       topic.relatedProphets.join(' '),
+      topic.searchKeywords.join(' '),
     ]);
     final score = _scoreSearchMatch(
       query: query,
-      title: topic.title,
-      supporting: topic.description,
+      title: localizedTitle,
+      supporting: localizedDescription,
       haystack: haystack,
     );
     if (score == 0) continue;
     output.add(
       _QuranSupplementalSearchResult(
         score: score,
-        title: topic.title,
-        summary: topic.description,
-        supportingLabel: '${topic.verseReferences.length} references',
+        title: localizedTitle,
+        summary: localizedDescription,
+        supportingLabel: l10n.quranThemeMapStarterAyahCount(
+          topic.verseReferences.length,
+        ),
         open: (context) => context.pushNamed(
           'quranTopicDetail',
           pathParameters: {'topicId': topic.id},

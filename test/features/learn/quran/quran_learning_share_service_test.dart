@@ -69,6 +69,7 @@ void main() {
       definition: QuranSurahInsightDefinition(
         surahNumber: 1,
         descriptionId: 'desc',
+        significanceId: 'desc',
         themeIds: ['theme_a'],
         lessonIds: ['lesson_a'],
         clusters: [],

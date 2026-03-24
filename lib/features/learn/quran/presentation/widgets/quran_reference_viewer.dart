@@ -7,13 +7,17 @@ import '../../../../../shared/widgets/quran_navigation.dart';
 import '../../application/quran_ayah_enrichment_provider.dart';
 import '../../domain/quran_ayah_enrichment_models.dart';
 import '../../domain/quran_content_refs.dart';
+import '../../domain/quran_reference_models.dart';
 import '../../application/quran_reference_graph_provider.dart';
 import 'ayah_insights_section.dart';
+import 'quran_related_reference_detail_sheet.dart';
 
 Future<void> showQuranReferenceViewer(
   BuildContext context,
   WidgetRef ref, {
   required String referenceId,
+  String? anchorLabel,
+  String? relationReason,
 }) {
   final reference = ref.read(quranReferenceByIdProvider(referenceId));
   if (reference == null) return Future<void>.value();
@@ -22,7 +26,11 @@ Future<void> showQuranReferenceViewer(
     context: context,
     isScrollControlled: true,
     showDragHandle: true,
-    builder: (_) => _QuranReferenceViewer(referenceId: referenceId),
+    builder: (_) => _QuranReferenceViewer(
+      referenceId: referenceId,
+      anchorLabel: anchorLabel,
+      relationReason: relationReason,
+    ),
   );
 }
 
@@ -31,39 +39,46 @@ class QuranReferenceChip extends ConsumerWidget {
     super.key,
     required this.referenceId,
     this.leading,
+    this.anchorLabel,
+    this.relationReason,
   });
 
   final String referenceId;
   final Widget? leading;
+  final String? anchorLabel;
+  final String? relationReason;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
     final reference = ref.watch(quranReferenceByIdProvider(referenceId));
     if (reference == null) return const SizedBox.shrink();
-    return GestureDetector(
-      onLongPress: () =>
-          showQuranReferenceViewer(context, ref, referenceId: referenceId),
-      child: ActionChip(
-        avatar: leading,
-        label: Text(
-          l10n.quranReferenceViewerReferenceLabel(reference.referenceLabel),
-        ),
-        onPressed: () => openQuranAt(
-          context,
-          surahNumber: reference.surahNumber,
-          ayahNumber: reference.ayahStart,
-          endAyahNumber: reference.ayahEnd,
-        ),
+    return ActionChip(
+      avatar: leading,
+      label: Text(
+        l10n.quranReferenceViewerReferenceLabel(reference.referenceLabel),
+      ),
+      onPressed: () => showQuranReferenceViewer(
+        context,
+        ref,
+        referenceId: referenceId,
+        anchorLabel: anchorLabel,
+        relationReason: relationReason,
       ),
     );
   }
 }
 
 class _QuranReferenceViewer extends ConsumerWidget {
-  const _QuranReferenceViewer({required this.referenceId});
+  const _QuranReferenceViewer({
+    required this.referenceId,
+    this.anchorLabel,
+    this.relationReason,
+  });
 
   final String referenceId;
+  final String? anchorLabel;
+  final String? relationReason;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -119,10 +134,55 @@ class _QuranReferenceViewer extends ConsumerWidget {
                 context,
               ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
             ),
-            const SizedBox(height: 4),
+            const SizedBox(height: 8),
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: [
+                Chip(
+                  visualDensity: VisualDensity.compact,
+                  label: Text(
+                    quranKnowledgeTypeLabel(
+                      l10n,
+                      QuranKnowledgeType.quranDirect,
+                    ),
+                  ),
+                ),
+                Chip(
+                  visualDensity: VisualDensity.compact,
+                  label: Text(
+                    quranConnectionStrengthLabel(
+                      l10n,
+                      QuranConnectionStrength.direct,
+                    ),
+                  ),
+                ),
+                if (anchorLabel?.trim().isNotEmpty ?? false)
+                  Chip(
+                    visualDensity: VisualDensity.compact,
+                    label: Text(
+                      l10n.quranReferenceDetailCurrentAnchorChip(anchorLabel!),
+                    ),
+                  ),
+              ],
+            ),
+            const SizedBox(height: 8),
             Text('${reference.surahName} • ${reference.surahNumber}'),
-            const SizedBox(height: 10),
-            Text(reference.contextSummary),
+            const SizedBox(height: 12),
+            Text(
+              l10n.quranReferenceDetailWhyRelatedTitle,
+              style: Theme.of(
+                context,
+              ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+            ),
+            const SizedBox(height: 6),
+            Text(
+              relationReason?.trim().isNotEmpty ?? false
+                  ? relationReason!
+                  : anchorLabel?.trim().isNotEmpty ?? false
+                  ? l10n.quranReferenceDetailReasonQuranReferenceLinked
+                  : reference.contextSummary,
+            ),
             const SizedBox(height: 10),
             Wrap(
               spacing: 8,
@@ -178,6 +238,9 @@ class _QuranReferenceViewer extends ConsumerWidget {
                 context,
                 title: l10n.quranReferenceViewerRelatedLifeLessons,
                 items: bundle.lifeLessons,
+                anchorLabel: l10n.quranReferenceViewerReferenceLabel(
+                  reference.referenceLabel,
+                ),
               ),
             ],
             if (bundle.hadithEntries.isNotEmpty) ...[
@@ -186,6 +249,9 @@ class _QuranReferenceViewer extends ConsumerWidget {
                 context,
                 title: l10n.quranReferenceViewerRelatedHadith,
                 items: bundle.hadithEntries,
+                anchorLabel: l10n.quranReferenceViewerReferenceLabel(
+                  reference.referenceLabel,
+                ),
               ),
             ],
             if (bundle.prophets.isNotEmpty) ...[
@@ -194,6 +260,9 @@ class _QuranReferenceViewer extends ConsumerWidget {
                 context,
                 title: l10n.quranReferenceViewerRelatedProphets,
                 items: bundle.prophets,
+                anchorLabel: l10n.quranReferenceViewerReferenceLabel(
+                  reference.referenceLabel,
+                ),
               ),
             ],
             if (bundle.journeys.isNotEmpty) ...[
@@ -202,6 +271,9 @@ class _QuranReferenceViewer extends ConsumerWidget {
                 context,
                 title: l10n.quranReferenceViewerRelatedJourneys,
                 items: bundle.journeys,
+                anchorLabel: l10n.quranReferenceViewerReferenceLabel(
+                  reference.referenceLabel,
+                ),
               ),
             ],
           ],
@@ -214,6 +286,7 @@ class _QuranReferenceViewer extends ConsumerWidget {
     BuildContext context, {
     required String title,
     required List<QuranRelatedKnowledgeLink> items,
+    required String anchorLabel,
   }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -228,14 +301,11 @@ class _QuranReferenceViewer extends ConsumerWidget {
                 contentPadding: EdgeInsets.zero,
                 title: Text(item.title),
                 subtitle: Text(item.subtitle),
-                onTap: () {
-                  Navigator.of(context).pop();
-                  context.pushNamed(
-                    item.routeName,
-                    pathParameters: item.pathParameters,
-                    queryParameters: item.queryParameters,
-                  );
-                },
+                onTap: () => showQuranRelatedKnowledgeDetailSheet(
+                  context,
+                  link: item,
+                  anchorLabel: anchorLabel,
+                ),
               ),
             ),
       ],

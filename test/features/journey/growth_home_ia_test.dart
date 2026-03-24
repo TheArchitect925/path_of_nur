@@ -1,5 +1,5 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:path_of_nur/app/app_router.dart';
 import 'package:path_of_nur/features/garden/presentation/garden_page.dart';
@@ -27,15 +27,22 @@ void main() {
     return left.dx.compareTo(right.dx);
   }
 
-  Future<void> tapIslandCard(WidgetTester tester, String label) async {
-    final labelFinder = find.text(label).first;
-    await tester.ensureVisible(labelFinder);
-    await pumpRouteFrames(tester);
-
-    final cardFinder = find.ancestor(
-      of: labelFinder,
+  Finder islandCardFinder(String label) {
+    final gridFinder = find.byType(SectionHubActionGrid);
+    final labelFinder = find.descendant(
+      of: gridFinder,
+      matching: find.text(label),
+    );
+    return find.ancestor(
+      of: labelFinder.first,
       matching: find.byType(SectionHubActionCard),
     );
+  }
+
+  Future<void> tapIslandCard(WidgetTester tester, String label) async {
+    final cardFinder = islandCardFinder(label);
+    await tester.ensureVisible(cardFinder);
+    await pumpRouteFrames(tester);
     await tester.tap(cardFinder.first);
     await pumpRouteFrames(tester);
   }
@@ -75,11 +82,12 @@ void main() {
     ];
 
     for (final title in titles) {
-      expect(find.text(title), findsOneWidget, reason: title);
+      expect(islandCardFinder(title), findsOneWidget, reason: title);
     }
 
     final positions = {
-      for (final title in titles) title: tester.getTopLeft(find.text(title)),
+      for (final title in titles)
+        title: tester.getTopLeft(islandCardFinder(title)),
     };
 
     for (var index = 0; index < titles.length - 1; index++) {
@@ -141,6 +149,59 @@ void main() {
         find.text(l10n.journeyStatsTotalAdhkarCompletedTitle),
         findsAtLeastNWidgets(1),
       );
+    },
+  );
+
+  testWidgets(
+    'growth home highlights progress depth and featured statistics and garden entries',
+    (tester) async {
+      await tester.binding.setSurfaceSize(const Size(1200, 2200));
+      addTearDown(() => tester.binding.setSurfaceSize(null));
+
+      final container = await makeTestContainer(
+        overrides: <Override>[
+          dailyNowProvider.overrideWith(
+            (ref) =>
+                Stream<DateTime>.value(DateTime.parse('2026-03-22T12:00:00')),
+          ),
+        ],
+      );
+
+      await tester.pumpWidget(buildRouterTestApp(container));
+      await pumpRouteFrames(tester);
+
+      final router = container.read(appRouterProvider);
+      router.go('/journey');
+      await pumpRouteFrames(tester);
+      final l10n = await AppLocalizations.delegate.load(const Locale('en'));
+
+      expect(find.text(l10n.growthHomeJourneyDepthTitle), findsOneWidget);
+      expect(
+        find.text(l10n.growthHomeFeaturedStatisticsAction),
+        findsOneWidget,
+      );
+      expect(find.text(l10n.growthHomeFeaturedGardenAction), findsOneWidget);
+
+      final openStatisticsButton = find.widgetWithText(
+        FilledButton,
+        l10n.growthHomeJourneyDepthOpenStatistics,
+      );
+      await tester.ensureVisible(openStatisticsButton);
+      await tester.tap(openStatisticsButton);
+      await pumpRouteFrames(tester);
+      expect(find.byType(GrowthTrackingDashboardPage), findsOneWidget);
+
+      router.go('/journey');
+      await pumpRouteFrames(tester);
+
+      final openGardenButton = find.widgetWithText(
+        FilledButton,
+        l10n.growthHomeFeaturedGardenAction,
+      );
+      await pumpRouteFrames(tester);
+      await tester.tap(openGardenButton);
+      await pumpRouteFrames(tester);
+      expect(find.byType(GardenPage), findsOneWidget);
     },
   );
 

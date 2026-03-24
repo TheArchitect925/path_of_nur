@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../core/theme/app_colors.dart';
+import '../../../../../l10n/app_localizations.dart';
 import '../../../../../shared/widgets/premium_card.dart';
 import '../../application/quran_teaching_smart_review_controller.dart';
 import '../../domain/quran_teaching_review_models.dart';
@@ -17,27 +18,32 @@ class QuranTeachingDailyReviewCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final title = !summary.hasAnyLearnedItems
-        ? 'Daily Review'
+        ? l10n.quranTeachingDailyReviewCardEmptyTitle
         : summary.isComplete
-            ? 'Today’s review is complete'
+            ? l10n.quranTeachingDailyReviewCardCompleteTitle
             : summary.inProgress
-                ? 'Continue today’s practice'
-                : 'Review for today';
+                ? l10n.quranTeachingDailyReviewCardContinueTitle
+                : l10n.quranTeachingDailyReviewCardReadyTitle;
     final subtitle = !summary.hasAnyLearnedItems
-        ? 'Start a few lessons and your daily review will appear here.'
+        ? l10n.quranTeachingDailyReviewCardEmptySubtitle
         : !summary.hasDueItems
-            ? 'No review due right now. A new lesson will build your next session.'
+            ? l10n.quranTeachingDailyReviewCardNothingDueSubtitle
             : summary.inProgress
-                ? '${summary.completedCount} of ${summary.itemCount} items completed. ${summary.mixSummary}'
-            : summary.mixSummary;
+                ? l10n.quranTeachingDailyReviewCardProgressSubtitle(
+                    summary.completedCount,
+                    summary.itemCount,
+                    summary.mixSummary,
+                  )
+                : summary.mixSummary;
     final actionLabel = summary.isComplete
-        ? 'Practice more'
+        ? l10n.quranTeachingDailyReviewCardPracticeMoreAction
         : summary.itemCount == 0
-            ? 'Open review'
+            ? l10n.quranTeachingDailyReviewCardOpenAction
             : summary.inProgress
-                ? 'Continue today’s practice'
-                : 'Start review';
+                ? l10n.quranTeachingDailyReviewCardContinueAction
+                : l10n.quranTeachingDailyReviewCardStartAction;
 
     return PremiumCard(
       child: Column(
@@ -55,7 +61,9 @@ class QuranTeachingDailyReviewCard extends StatelessWidget {
               ),
               if (summary.itemCount > 0)
                 Text(
-                  '${summary.estimatedMinutes} min',
+                  l10n.quranTeachingDailyReviewCardEstimatedMinutes(
+                    summary.estimatedMinutes,
+                  ),
                   style: Theme.of(context).textTheme.labelLarge?.copyWith(
                     color: AppColors.onSurfaceSubtle,
                   ),
@@ -68,8 +76,13 @@ class QuranTeachingDailyReviewCard extends StatelessWidget {
             const SizedBox(height: 10),
             Text(
               summary.inProgress
-                  ? '${summary.completedCount} / ${summary.itemCount} items'
-                  : '${summary.itemCount} items',
+                  ? l10n.quranTeachingDailyReviewCardItemProgress(
+                      summary.completedCount,
+                      summary.itemCount,
+                    )
+                  : l10n.quranTeachingDailyReviewCardItemCount(
+                      summary.itemCount,
+                    ),
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
                 color: AppColors.onSurfaceSubtle,
               ),
@@ -97,6 +110,7 @@ class QuranTeachingRecommendationCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return PremiumCard(
       child: Row(
         children: [
@@ -115,19 +129,63 @@ class QuranTeachingRecommendationCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  recommendation.title,
+                  _titleForRecommendation(l10n),
                   style: Theme.of(context).textTheme.titleSmall?.copyWith(
                     fontWeight: FontWeight.w700,
                   ),
                 ),
                 const SizedBox(height: 4),
-                Text(recommendation.subtitle),
+                Text(_subtitleForRecommendation(l10n)),
               ],
             ),
           ),
         ],
       ),
     );
+  }
+
+  String _titleForRecommendation(AppLocalizations l10n) {
+    switch (recommendation.type) {
+      case QuranTeachingPracticeRecommendationType.weakArea:
+        switch (recommendation.tag) {
+          case 'harakat':
+            return l10n.quranTeachingPracticeRecommendationHarakatTitle;
+          case 'similar_letters':
+            return l10n.quranTeachingPracticeRecommendationSimilarLettersTitle;
+          case 'word_meaning':
+          case 'word_recognition':
+            return l10n.quranTeachingPracticeRecommendationWordsTitle;
+          case 'phrase_reading':
+            return l10n.quranTeachingPracticeRecommendationPhrasesTitle;
+          case 'reading_rules':
+            return l10n.quranTeachingPracticeRecommendationReadingRulesTitle;
+          default:
+            return l10n.quranTeachingPracticeRecommendationWeakAreaTitle;
+        }
+      case QuranTeachingPracticeRecommendationType.dueWords:
+        return l10n.quranTeachingPracticeRecommendationWordsTitle;
+      case QuranTeachingPracticeRecommendationType.duePhrases:
+        return l10n.quranTeachingPracticeRecommendationPhrasesTitle;
+      case QuranTeachingPracticeRecommendationType.lightReview:
+        return l10n.quranTeachingPracticeRecommendationLightTitle;
+    }
+  }
+
+  String _subtitleForRecommendation(AppLocalizations l10n) {
+    switch (recommendation.type) {
+      case QuranTeachingPracticeRecommendationType.weakArea:
+        return l10n.quranTeachingPracticeRecommendationWeakAreaSubtitle;
+      case QuranTeachingPracticeRecommendationType.dueWords:
+        return l10n.quranTeachingPracticeRecommendationWordsSubtitle(
+          recommendation.count ?? 0,
+        );
+      case QuranTeachingPracticeRecommendationType.duePhrases:
+        return l10n.quranTeachingPracticeRecommendationPhrasesSubtitle(
+          recommendation.count ?? 0,
+        );
+      case QuranTeachingPracticeRecommendationType.lightReview:
+        return l10n.quranTeachingPracticeRecommendationLightSubtitle;
+    }
   }
 }
 
@@ -171,12 +229,28 @@ class QuranTeachingMemoryStateChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final (label, color) = switch (memoryState) {
-      QuranTeachingMemoryState.newItem => ('New', Colors.blueGrey),
-      QuranTeachingMemoryState.practicing => ('Practicing', Colors.orange),
-      QuranTeachingMemoryState.familiar => ('Familiar', Colors.blue),
-      QuranTeachingMemoryState.recognized => ('Recognized', Colors.green),
-      QuranTeachingMemoryState.mastered => ('Mastered', Colors.teal),
+      QuranTeachingMemoryState.newItem => (
+          l10n.quranTeachingMemoryStateNew,
+          Colors.blueGrey,
+        ),
+      QuranTeachingMemoryState.practicing => (
+          l10n.quranTeachingMemoryStatePracticing,
+          Colors.orange,
+        ),
+      QuranTeachingMemoryState.familiar => (
+          l10n.quranTeachingMemoryStateFamiliar,
+          Colors.blue,
+        ),
+      QuranTeachingMemoryState.recognized => (
+          l10n.quranTeachingMemoryStateRecognized,
+          Colors.green,
+        ),
+      QuranTeachingMemoryState.mastered => (
+          l10n.quranTeachingMemoryStateMastered,
+          Colors.teal,
+        ),
     };
 
     return Container(
@@ -210,13 +284,14 @@ class QuranTeachingReviewSessionHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final progress = total == 0 ? 0.0 : current / total;
     return PremiumCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Today’s Practice',
+            l10n.quranTeachingReviewSessionHeaderTitle,
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
               fontWeight: FontWeight.w700,
             ),
@@ -230,7 +305,7 @@ class QuranTeachingReviewSessionHeader extends StatelessWidget {
             borderRadius: BorderRadius.circular(999),
           ),
           const SizedBox(height: 8),
-          Text('$current of $total completed'),
+          Text(l10n.quranTeachingReviewSessionHeaderProgress(current, total)),
         ],
       ),
     );
@@ -249,22 +324,27 @@ class QuranTeachingReviewCompletionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return PremiumCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Nice progress.',
+            l10n.quranTeachingReviewCompletionTitle,
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
               fontWeight: FontWeight.w700,
             ),
           ),
           const SizedBox(height: 8),
-          Text('Correct or remembered: $correctCount'),
-          Text('Still due soon: $needsMoreCount'),
+          Text(
+            l10n.quranTeachingReviewCompletionCorrectCount(correctCount),
+          ),
+          Text(
+            l10n.quranTeachingReviewCompletionNeedsMoreCount(needsMoreCount),
+          ),
           const SizedBox(height: 10),
           Text(
-            'A few items are getting stronger. The next short review will bring back anything that still needs another pass.',
+            l10n.quranTeachingReviewCompletionBody,
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
               color: AppColors.onSurfaceSubtle,
             ),

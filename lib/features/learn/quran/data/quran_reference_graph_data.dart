@@ -2,6 +2,7 @@ import '../../divine_life_lessons/data/divine_life_lessons_data.dart';
 import '../../divine_life_lessons/domain/divine_life_models.dart';
 import '../../hadith/data/hadith_curriculum_data.dart';
 import '../../prophets/data/seeded_prophets_data.dart';
+import 'quran_theme_reference_seed_data.dart';
 import 'seeded_quran_learning_data.dart';
 import '../domain/quran_reference_models.dart';
 
@@ -65,6 +66,39 @@ QuranReferenceGraph buildQuranReferenceGraph() {
         contextSummary: verse.explanation,
         importanceScore: 72,
         displayPriority: 72,
+      ),
+    );
+  }
+
+  for (final seed in quranThemeReferenceSeeds) {
+    final id = 'qr_${seed.surahNumber}_${seed.ayahStart}_${seed.ayahEnd}';
+    if (refs.any((item) => item.id == id)) continue;
+    refs.add(
+      QuranReference(
+        id: seed.id,
+        surahNumber: seed.surahNumber,
+        surahName: seed.surahName ?? _surahNameFor(seed.surahNumber),
+        ayahStart: seed.ayahStart,
+        ayahEnd: seed.ayahEnd,
+        referenceLabel: seed.referenceLabel,
+        topicTags: seed.topicTags,
+        relatedProphetIds: seed.relatedProphetIds,
+        relatedLessonIds: seed.relatedLessonIds,
+        relatedHadithIds: seed.relatedHadithIds,
+        relatedJourneyIds: seed.relatedJourneyIds,
+        keywords:
+            [
+                  seed.referenceLabel,
+                  ...seed.topicTags,
+                  ...seed.keywords,
+                ]
+                .map((item) => item.trim().toLowerCase())
+                .where((item) => item.isNotEmpty)
+                .toSet()
+                .toList(growable: false),
+        contextSummary: seed.contextSummary,
+        importanceScore: seed.importanceScore,
+        displayPriority: seed.importanceScore,
       ),
     );
   }
@@ -226,14 +260,12 @@ List<String> _keywordsForLesson(DivineLifeLesson lesson) {
 }
 
 List<String> _prophetLinksForLabel(String label) {
-  final links = <String>{};
-  if (label.startsWith('12:')) links.add('yusuf');
-  if (label.startsWith('20:') || label.startsWith('2:')) links.add('musa');
-  if (label.startsWith('3:')) links.addAll(['ibrahim', 'muhammad']);
-  if (label.startsWith('19:') || label.startsWith('39:')) links.add('muhammad');
-  if (label.startsWith('67:') || label.startsWith('99:')) links.add('muhammad');
-  if (label.startsWith('94:')) links.add('muhammad');
-  return links.toList(growable: false);
+  final map = <String, List<String>>{
+    '12:87': ['yusuf'],
+    '20:14': ['musa'],
+    '3:159': ['muhammad'],
+  };
+  return map[label] ?? const <String>[];
 }
 
 List<String> _hadithLinksForLabel(String label) {
@@ -284,7 +316,7 @@ List<String> _journeyLinksForLabel(String label) {
   if (label.startsWith('67:2') || label.startsWith('99:7')) {
     return const ['hereafter'];
   }
-  return const ['character_quran'];
+  return const <String>[];
 }
 
 List<QuranTopic> _buildTopics(List<QuranReference> references) {
@@ -340,6 +372,8 @@ List<QuranTopic> _buildTopics(List<QuranReference> references) {
         id: seed.$1,
         title: seed.$2,
         description: seed.$3,
+        primaryReferenceId: refs.isEmpty ? null : refs.first.id,
+        suggestedReaderMode: QuranReaderStudyMode.theme,
         verseReferences: refs.map((item) => item.id).toList(growable: false),
         relatedLessons: refs
             .expand((item) => item.relatedLessonIds)

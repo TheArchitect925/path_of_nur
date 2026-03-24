@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../arabic/data/arabic_beginner_content_catalog.dart';
+import '../../arabic/data/arabic_alphabet_catalog.dart';
 import '../application/kids_arabic_starter_tracing.dart';
 import '../domain/kids_arabic_word_models.dart';
 
@@ -9,9 +11,9 @@ final List<KidsArabicBeginnerWord> kidsArabicBeginnerWords =
     <KidsArabicBeginnerWord>[
       KidsArabicBeginnerWord(
         id: 'bab',
-        wordAr: 'باب',
-        transliteration: 'baab',
-        letterIds: const <String>['ba', 'alif', 'ba'],
+        wordAr: arabicSharedBeginnerWordById('bab')!.arabicText,
+        transliteration: arabicSharedBeginnerWordById('bab')!.transliteration,
+        letterIds: arabicSharedBeginnerWordById('bab')!.letterIds,
         requiredCompletedLetterIds: const <String>{'ba', 'alif'},
         guide: const KidsArabicTracingGuide(
           letterId: 'bab',
@@ -46,29 +48,17 @@ final List<KidsArabicBeginnerWord> kidsArabicBeginnerWords =
             KidsArabicGuideStroke.dot(center: Offset(0.27, 0.78)),
           ],
         ),
-        joiningExamples: const <KidsArabicJoiningExample>[
-          KidsArabicJoiningExample(
-            letterId: 'ba',
-            standaloneGlyph: 'ب',
-            joinedGlyph: 'بـ',
-          ),
-          KidsArabicJoiningExample(
-            letterId: 'alif',
-            standaloneGlyph: 'ا',
-            joinedGlyph: 'ـا',
-          ),
-          KidsArabicJoiningExample(
-            letterId: 'ba',
-            standaloneGlyph: 'ب',
-            joinedGlyph: 'ـب',
-          ),
-        ],
+        joiningExamples: _sharedJoiningExamplesForWord(const <String>[
+          'ba',
+          'alif',
+          'ba',
+        ]),
       ),
       KidsArabicBeginnerWord(
         id: 'noor',
-        wordAr: 'نور',
-        transliteration: 'noor',
-        letterIds: const <String>['noon', 'waw', 'ra'],
+        wordAr: arabicSharedBeginnerWordById('noor')!.arabicText,
+        transliteration: arabicSharedBeginnerWordById('noor')!.transliteration,
+        letterIds: arabicSharedBeginnerWordById('noor')!.letterIds,
         requiredCompletedLetterIds: const <String>{'noon'},
         guide: const KidsArabicTracingGuide(
           letterId: 'noor',
@@ -99,29 +89,17 @@ final List<KidsArabicBeginnerWord> kidsArabicBeginnerWords =
             KidsArabicGuideStroke.dot(center: Offset(0.70, 0.26)),
           ],
         ),
-        joiningExamples: const <KidsArabicJoiningExample>[
-          KidsArabicJoiningExample(
-            letterId: 'noon',
-            standaloneGlyph: 'ن',
-            joinedGlyph: 'نـ',
-          ),
-          KidsArabicJoiningExample(
-            letterId: 'waw',
-            standaloneGlyph: 'و',
-            joinedGlyph: 'و',
-          ),
-          KidsArabicJoiningExample(
-            letterId: 'ra',
-            standaloneGlyph: 'ر',
-            joinedGlyph: 'ر',
-          ),
-        ],
+        joiningExamples: _sharedJoiningExamplesForWord(const <String>[
+          'noon',
+          'waw',
+          'ra',
+        ]),
       ),
       KidsArabicBeginnerWord(
         id: 'qalam',
-        wordAr: 'قلم',
-        transliteration: 'qalam',
-        letterIds: const <String>['qaf', 'lam', 'meem'],
+        wordAr: arabicSharedBeginnerWordById('qalam')!.arabicText,
+        transliteration: arabicSharedBeginnerWordById('qalam')!.transliteration,
+        letterIds: arabicSharedBeginnerWordById('qalam')!.letterIds,
         requiredCompletedLetterIds: const <String>{'lam', 'meem'},
         guide: const KidsArabicTracingGuide(
           letterId: 'qalam',
@@ -156,25 +134,28 @@ final List<KidsArabicBeginnerWord> kidsArabicBeginnerWords =
             KidsArabicGuideStroke.dot(center: Offset(0.64, 0.16)),
           ],
         ),
-        joiningExamples: const <KidsArabicJoiningExample>[
-          KidsArabicJoiningExample(
-            letterId: 'qaf',
-            standaloneGlyph: 'ق',
-            joinedGlyph: 'قـ',
-          ),
-          KidsArabicJoiningExample(
-            letterId: 'lam',
-            standaloneGlyph: 'ل',
-            joinedGlyph: 'ـلـ',
-          ),
-          KidsArabicJoiningExample(
-            letterId: 'meem',
-            standaloneGlyph: 'م',
-            joinedGlyph: 'ـم',
-          ),
-        ],
+        joiningExamples: _sharedJoiningExamplesForWord(const <String>[
+          'qaf',
+          'lam',
+          'meem',
+        ]),
       ),
     ];
+
+List<KidsArabicJoiningExample> _sharedJoiningExamplesForWord(
+  List<String> letterIds,
+) {
+  final resolvedForms = resolveArabicLetterSequenceForms(letterIds);
+  return resolvedForms
+      .map(
+        (item) => KidsArabicJoiningExample(
+          letterId: item.letterId,
+          standaloneGlyph: item.isolatedGlyph,
+          joinedGlyph: item.displayGlyph,
+        ),
+      )
+      .toList(growable: false);
+}
 
 KidsArabicBeginnerWord? kidsArabicBeginnerWordById(String id) {
   for (final word in kidsArabicBeginnerWords) {
