@@ -1,0 +1,660 @@
+[
+  {
+    "isFramework" : true,
+    "moduleName" : "AVFAudio",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/appletvos\/prebuilt-modules\/26.4\/AVFAudio.swiftmodule\/arm64-apple-tvos.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "AVFoundation",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/appletvos\/prebuilt-modules\/26.4\/AVFoundation.swiftmodule\/arm64-apple-tvos.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "Accessibility",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/appletvos\/prebuilt-modules\/26.4\/Accessibility.swiftmodule\/arm64-apple-tvos.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "AudioToolbox",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/appletvos\/prebuilt-modules\/26.4\/AudioToolbox.swiftmodule\/arm64-apple-tvos.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "Combine",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/appletvos\/prebuilt-modules\/26.4\/Combine.swiftmodule\/arm64-apple-tvos.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "CoreAudio",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/appletvos\/prebuilt-modules\/26.4\/CoreAudio.swiftmodule\/arm64-apple-tvos.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "CoreData",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/appletvos\/prebuilt-modules\/26.4\/CoreData.swiftmodule\/arm64-apple-tvos.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "CoreFoundation",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/appletvos\/prebuilt-modules\/26.4\/CoreFoundation.swiftmodule\/arm64-apple-tvos.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "CoreGraphics",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/appletvos\/prebuilt-modules\/26.4\/CoreGraphics.swiftmodule\/arm64-apple-tvos.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "CoreImage",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/appletvos\/prebuilt-modules\/26.4\/CoreImage.swiftmodule\/arm64-apple-tvos.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "CoreMedia",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/appletvos\/prebuilt-modules\/26.4\/CoreMedia.swiftmodule\/arm64-apple-tvos.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "CoreText",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/appletvos\/prebuilt-modules\/26.4\/CoreText.swiftmodule\/arm64-apple-tvos.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "CoreTransferable",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/appletvos\/prebuilt-modules\/26.4\/CoreTransferable.swiftmodule\/arm64-apple-tvos.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "CoreVideo",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/appletvos\/prebuilt-modules\/26.4\/CoreVideo.swiftmodule\/arm64-apple-tvos.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "Darwin",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/appletvos\/prebuilt-modules\/26.4\/Darwin.swiftmodule\/arm64-apple-tvos.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "DataDetection",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/appletvos\/prebuilt-modules\/26.4\/DataDetection.swiftmodule\/arm64-apple-tvos.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "DeveloperToolsSupport",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/appletvos\/prebuilt-modules\/26.4\/DeveloperToolsSupport.swiftmodule\/arm64-apple-tvos.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "Dispatch",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/appletvos\/prebuilt-modules\/26.4\/Dispatch.swiftmodule\/arm64-apple-tvos.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "Foundation",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/appletvos\/prebuilt-modules\/26.4\/Foundation.swiftmodule\/arm64-apple-tvos.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "Metal",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/appletvos\/prebuilt-modules\/26.4\/Metal.swiftmodule\/arm64-apple-tvos.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "OSLog",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/appletvos\/prebuilt-modules\/26.4\/OSLog.swiftmodule\/arm64-apple-tvos.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "ObjectiveC",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/appletvos\/prebuilt-modules\/26.4\/ObjectiveC.swiftmodule\/arm64-apple-tvos.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "Observation",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/appletvos\/prebuilt-modules\/26.4\/Observation.swiftmodule\/arm64-apple-tvos.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "QuartzCore",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/appletvos\/prebuilt-modules\/26.4\/QuartzCore.swiftmodule\/arm64-apple-tvos.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "Spatial",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/appletvos\/prebuilt-modules\/26.4\/Spatial.swiftmodule\/arm64-apple-tvos.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "Swift",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/appletvos\/prebuilt-modules\/26.4\/Swift.swiftmodule\/arm64-apple-tvos.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "SwiftUI",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/appletvos\/prebuilt-modules\/26.4\/SwiftUI.swiftmodule\/arm64-apple-tvos.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "SwiftUICore",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/appletvos\/prebuilt-modules\/26.4\/SwiftUICore.swiftmodule\/arm64-apple-tvos.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "Symbols",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/appletvos\/prebuilt-modules\/26.4\/Symbols.swiftmodule\/arm64-apple-tvos.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "Synchronization",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/appletvos\/prebuilt-modules\/26.4\/Synchronization.swiftmodule\/arm64-apple-tvos.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "System",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/appletvos\/prebuilt-modules\/26.4\/System.swiftmodule\/arm64-apple-tvos.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "UIKit",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/appletvos\/prebuilt-modules\/26.4\/UIKit.swiftmodule\/arm64-apple-tvos.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "UniformTypeIdentifiers",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/appletvos\/prebuilt-modules\/26.4\/UniformTypeIdentifiers.swiftmodule\/arm64-apple-tvos.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "XPC",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/appletvos\/prebuilt-modules\/26.4\/XPC.swiftmodule\/arm64-apple-tvos.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "_Builtin_float",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/appletvos\/prebuilt-modules\/26.4\/_Builtin_float.swiftmodule\/arm64-apple-tvos.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "_Concurrency",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/appletvos\/prebuilt-modules\/26.4\/_Concurrency.swiftmodule\/arm64-apple-tvos.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "_DarwinFoundation1",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/appletvos\/prebuilt-modules\/26.4\/_DarwinFoundation1.swiftmodule\/arm64-apple-tvos.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "_DarwinFoundation2",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/appletvos\/prebuilt-modules\/26.4\/_DarwinFoundation2.swiftmodule\/arm64-apple-tvos.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "_DarwinFoundation3",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/appletvos\/prebuilt-modules\/26.4\/_DarwinFoundation3.swiftmodule\/arm64-apple-tvos.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "_StringProcessing",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/appletvos\/prebuilt-modules\/26.4\/_StringProcessing.swiftmodule\/arm64-apple-tvos.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "os",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/appletvos\/prebuilt-modules\/26.4\/os.swiftmodule\/arm64-apple-tvos.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "simd",
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/appletvos\/prebuilt-modules\/26.4\/simd.swiftmodule\/arm64-apple-tvos.swiftmodule"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/AppleTVOS.platform\/Developer\/SDKs\/AppleTVOS.sdk\/System\/Library\/Frameworks\/AVFAudio.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/AVFAudio-QOV4GAVQ76LC5NZBGR3BQWFW.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "AVFAudio"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/AppleTVOS.platform\/Developer\/SDKs\/AppleTVOS.sdk\/System\/Library\/Frameworks\/AVFoundation.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/AVFoundation-CXSUH8IXIKB7L2AJKQ46DUELW.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "AVFoundation"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/AppleTVOS.platform\/Developer\/SDKs\/AppleTVOS.sdk\/System\/Library\/Frameworks\/AVRouting.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/AVRouting-4J9J4SGQVJYGX9X4TO207V56H.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "AVRouting"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/AppleTVOS.platform\/Developer\/SDKs\/AppleTVOS.sdk\/System\/Library\/Frameworks\/Accessibility.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/Accessibility-86AMAIDSGAGG1JH2PQNYBTCE6.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "Accessibility"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/AppleTVOS.platform\/Developer\/SDKs\/AppleTVOS.sdk\/System\/Library\/Frameworks\/AudioToolbox.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/AudioToolbox-BS1TA5PBKMCH021ZWHAK6FZ94.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "AudioToolbox"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/AppleTVOS.platform\/Developer\/SDKs\/AppleTVOS.sdk\/System\/Library\/Frameworks\/CFNetwork.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/CFNetwork-4A4SE7Y5KN2FK8L6X002VWP2W.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CFNetwork"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/AppleTVOS.platform\/Developer\/SDKs\/AppleTVOS.sdk\/System\/Library\/Frameworks\/CoreAudio.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/CoreAudio-6WZG2WOGVH66J5SV2M238F7UZ.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CoreAudio"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/AppleTVOS.platform\/Developer\/SDKs\/AppleTVOS.sdk\/System\/Library\/Frameworks\/CoreAudioTypes.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/CoreAudioTypes-EVDT65I18K21UYS5EHMGGD78X.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CoreAudioTypes"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/AppleTVOS.platform\/Developer\/SDKs\/AppleTVOS.sdk\/System\/Library\/Frameworks\/CoreData.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/CoreData-7C7VNXFCDP96WXVBOPS1D69HD.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CoreData"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/AppleTVOS.platform\/Developer\/SDKs\/AppleTVOS.sdk\/System\/Library\/Frameworks\/CoreFoundation.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/CoreFoundation-1K2YH9W00LJYSB0MY8AC8YYIN.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CoreFoundation"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/AppleTVOS.platform\/Developer\/SDKs\/AppleTVOS.sdk\/System\/Library\/Frameworks\/CoreGraphics.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/CoreGraphics-6X9RUFEVD6ER50LBEEFYZC6FK.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CoreGraphics"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/AppleTVOS.platform\/Developer\/SDKs\/AppleTVOS.sdk\/System\/Library\/Frameworks\/CoreImage.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/CoreImage-AH4NAF5WEWGDXOP5R386G353O.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CoreImage"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/AppleTVOS.platform\/Developer\/SDKs\/AppleTVOS.sdk\/System\/Library\/Frameworks\/CoreMIDI.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/CoreMIDI-6UV4UMMOKDBFCZNPRODDCYIDG.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CoreMIDI"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/AppleTVOS.platform\/Developer\/SDKs\/AppleTVOS.sdk\/System\/Library\/Frameworks\/CoreMedia.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/CoreMedia-CIROCK2AX5JHRAQ6AEFPBWXKQ.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CoreMedia"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/AppleTVOS.platform\/Developer\/SDKs\/AppleTVOS.sdk\/System\/Library\/Frameworks\/CoreText.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/CoreText-8X1MD9OJ3EPJDDCNNID772GYS.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CoreText"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/AppleTVOS.platform\/Developer\/SDKs\/AppleTVOS.sdk\/System\/Library\/Frameworks\/CoreTransferable.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/CoreTransferable-B3ZC64CHPT0OT5DYKYULR4TJL.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CoreTransferable"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/AppleTVOS.platform\/Developer\/SDKs\/AppleTVOS.sdk\/System\/Library\/Frameworks\/CoreVideo.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/CoreVideo-CBN2FZ5U6K47K6K6DJ73XVZDN.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CoreVideo"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/AppleTVOS.platform\/Developer\/SDKs\/AppleTVOS.sdk\/usr\/include\/Darwin.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/Darwin-92SCBVHT8VZC6UDP9AFZ1KNBG.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "Darwin"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/AppleTVOS.platform\/Developer\/SDKs\/AppleTVOS.sdk\/System\/Library\/Frameworks\/DataDetection.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/DataDetection-BBUZIY45R9XDGUKTZ55WG3XDE.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "DataDetection"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/AppleTVOS.platform\/Developer\/SDKs\/AppleTVOS.sdk\/System\/Library\/Frameworks\/DeveloperToolsSupport.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/DeveloperToolsSupport-BKK302KOHJIUR5M5WNK6FUCY5.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "DeveloperToolsSupport"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/AppleTVOS.platform\/Developer\/SDKs\/AppleTVOS.sdk\/usr\/include\/dispatch.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/Dispatch-4ZMQHNZCRS99B8VBMHQW7NPVP.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "Dispatch"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/AppleTVOS.platform\/Developer\/SDKs\/AppleTVOS.sdk\/System\/Library\/Frameworks\/Foundation.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/Foundation-7WW8YVNX7OW5FFDCI1IMLF1SN.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "Foundation"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/AppleTVOS.platform\/Developer\/SDKs\/AppleTVOS.sdk\/System\/Library\/Frameworks\/IOSurface.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/IOSurface-A3T2EBI8A2X581RXOZB3TUMKB.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "IOSurface"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/AppleTVOS.platform\/Developer\/SDKs\/AppleTVOS.sdk\/System\/Library\/Frameworks\/ImageIO.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/ImageIO-8A9VMWUW0Z5NXA42NKI8L49KW.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "ImageIO"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/AppleTVOS.platform\/Developer\/SDKs\/AppleTVOS.sdk\/usr\/include\/DarwinBasic.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/MachO-3B6L467RMCH1WBBVH8PFAWACO.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "MachO"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/AppleTVOS.platform\/Developer\/SDKs\/AppleTVOS.sdk\/System\/Library\/Frameworks\/MediaToolbox.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/MediaToolbox-23LS19CJ8VV7SE0CWO2T1YNJT.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "MediaToolbox"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/AppleTVOS.platform\/Developer\/SDKs\/AppleTVOS.sdk\/System\/Library\/Frameworks\/Metal.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/Metal-CMAH0VMXX5C9G7JOQ0SW5NT3W.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "Metal"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/AppleTVOS.platform\/Developer\/SDKs\/AppleTVOS.sdk\/System\/Library\/Frameworks\/OSLog.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/OSLog-61LE6IL614THSRGBLASRTSQPU.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "OSLog"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/AppleTVOS.platform\/Developer\/SDKs\/AppleTVOS.sdk\/usr\/include\/ObjectiveC.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/ObjectiveC-4JMTPP4NY5SF2ABB1NPY8CJC0.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "ObjectiveC"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/AppleTVOS.platform\/Developer\/SDKs\/AppleTVOS.sdk\/System\/Library\/Frameworks\/OpenGLES.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/OpenGLES-309MMVSPO3G6T2QA9P3JH6U94.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "OpenGLES"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/AppleTVOS.platform\/Developer\/SDKs\/AppleTVOS.sdk\/System\/Library\/Frameworks\/QuartzCore.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/QuartzCore-34NG3ZVREMJA5HPYGE5BEOMA7.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "QuartzCore"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/AppleTVOS.platform\/Developer\/SDKs\/AppleTVOS.sdk\/System\/Library\/Frameworks\/Security.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/Security-9OZ1126K5ZKOLWG3HXQMADDWP.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "Security"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/AppleTVOS.platform\/Developer\/SDKs\/AppleTVOS.sdk\/usr\/include\/Spatial\/module.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/Spatial-D90LV8ZZNNOSHHBTSY96USV5F.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "Spatial"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/AppleTVOS.platform\/Developer\/SDKs\/AppleTVOS.sdk\/usr\/lib\/swift\/shims\/module.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/SwiftShims-7NJH97Y5PGLGFSUJS8I5PXEPG.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "SwiftShims"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/AppleTVOS.platform\/Developer\/SDKs\/AppleTVOS.sdk\/System\/Library\/Frameworks\/SwiftUI.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/SwiftUI-BZZSFQP6YFQYYB1GIKXZPG5RT.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "SwiftUI"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/AppleTVOS.platform\/Developer\/SDKs\/AppleTVOS.sdk\/System\/Library\/Frameworks\/SwiftUICore.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/SwiftUICore-5RVX68NEDMCULZSF5HAYSDQZP.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "SwiftUICore"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/AppleTVOS.platform\/Developer\/SDKs\/AppleTVOS.sdk\/System\/Library\/Frameworks\/Symbols.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/Symbols-7O711WTR3ZPLEYJ0F7AU4PXTT.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "Symbols"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/AppleTVOS.platform\/Developer\/SDKs\/AppleTVOS.sdk\/System\/Library\/Frameworks\/UIKit.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/UIKit-4CZBD2D38OBQW48482W4H2HXT.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "UIKit"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/AppleTVOS.platform\/Developer\/SDKs\/AppleTVOS.sdk\/System\/Library\/SubFrameworks\/UIUtilities.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/UIUtilities-3C5WZQ2JS5MNLL8RSN38VJQSZ.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "UIUtilities"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/AppleTVOS.platform\/Developer\/SDKs\/AppleTVOS.sdk\/System\/Library\/Frameworks\/UniformTypeIdentifiers.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/UniformTypeIdentifiers-AFKZE9XQ0LWB1T1RZTG6YW86.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "UniformTypeIdentifiers"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/AppleTVOS.platform\/Developer\/SDKs\/AppleTVOS.sdk\/System\/Library\/Frameworks\/UserNotifications.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/UserNotifications-AXX9JX779IYICE04FKPEGTVNP.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "UserNotifications"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/AppleTVOS.platform\/Developer\/SDKs\/AppleTVOS.sdk\/usr\/include\/xpc.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/XPC-840QMJZCI8E69GCMK9IO9LKJK.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "XPC"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/AppleTVOS.platform\/Developer\/SDKs\/AppleTVOS.sdk\/usr\/include\/DarwinFoundation1.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/_AvailabilityInternal-DF8G1X9Y9KCPA2YU043G9ANW5.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_AvailabilityInternal"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/clang\/21\/include\/module.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/_Builtin_float-CQ869WF8USOTB25XE33ASAHOA.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_Builtin_float"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/clang\/21\/include\/module.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/_Builtin_intrinsics-665XQ3YOPMDQ123XCOWBKVRBC.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_Builtin_intrinsics"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/clang\/21\/include\/module.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/_Builtin_inttypes-34SHZIQVP2VI6KU1V1OKYJD0O.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_Builtin_inttypes"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/clang\/21\/include\/module.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/_Builtin_limits-7ID8AVTSL3SP9S8KUV3KB1MS.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_Builtin_limits"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/clang\/21\/include\/module.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/_Builtin_stdarg-FNMT94OELND9JBBS99UIRDNE.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_Builtin_stdarg"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/clang\/21\/include\/module.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/_Builtin_stdatomic-1Q72BD3VAXH2BCSNTRIY7I9K0.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_Builtin_stdatomic"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/clang\/21\/include\/module.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/_Builtin_stdbool-QCYHSCWNLEXBD8EKG6RVE4OM.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_Builtin_stdbool"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/clang\/21\/include\/module.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/_Builtin_stddef-CE6EEWSHYRWVY8BXK1KV4IIGS.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_Builtin_stddef"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/clang\/21\/include\/module.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/_Builtin_stdint-AFIMOESJLOKIHGTL8483HRWV2.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_Builtin_stdint"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/clang\/21\/include\/module.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/_Builtin_tgmath-BMP3VHHJVMB0F2OTE7XBTLC8L.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_Builtin_tgmath"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/AppleTVOS.platform\/Developer\/SDKs\/AppleTVOS.sdk\/usr\/include\/DarwinFoundation1.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/_DarwinFoundation1-6N52LBZ1US3WHUI8EXZ6NYJWE.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_DarwinFoundation1"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/AppleTVOS.platform\/Developer\/SDKs\/AppleTVOS.sdk\/usr\/include\/DarwinFoundation2.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/_DarwinFoundation2-BWCFM549WVOWSC7ONMXMU3AFJ.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_DarwinFoundation2"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/AppleTVOS.platform\/Developer\/SDKs\/AppleTVOS.sdk\/usr\/include\/DarwinFoundation3.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/_DarwinFoundation3-35MT3R5P6BRUQPNBLZ3IRH8TZ.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_DarwinFoundation3"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/AppleTVOS.platform\/Developer\/SDKs\/AppleTVOS.sdk\/usr\/lib\/swift\/shims\/module.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/_SwiftConcurrencyShims-BK2617KZNZ9BWKDECQ3L2FQZQ.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_SwiftConcurrencyShims"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/AppleTVOS.platform\/Developer\/SDKs\/AppleTVOS.sdk\/usr\/include\/os.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/os-MNJ54FIG0KP4IJHZOS3I1XFM.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "os"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/AppleTVOS.platform\/Developer\/SDKs\/AppleTVOS.sdk\/usr\/include\/os.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/os_object-77X1MLR38PJED6GHD6N2UH2GZ.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "os_object"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/AppleTVOS.platform\/Developer\/SDKs\/AppleTVOS.sdk\/usr\/include\/os.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/os_workgroup-3ZK0SNCXFJTELMT0P9CJRWO9C.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "os_workgroup"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/clang\/21\/include\/module.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/ptrauth-55IJWORZ3SHGYGV1BYHQQWIJB.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "ptrauth"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/clang\/21\/include\/module.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/ptrcheck-5CDCX5YQ574CBL32LKK1XUM61.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "ptrcheck"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/AppleTVOS.platform\/Developer\/SDKs\/AppleTVOS.sdk\/usr\/include\/simd\/module.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/simd-5X9B3VYDAJP6QCNXGOQV70P8W.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "simd"
+  },
+  {
+    "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/AppleTVOS.platform\/Developer\/SDKs\/AppleTVOS.sdk\/usr\/include\/DarwinFoundation2.modulemap",
+    "clangModulePath" : "\/Users\/shahabmansoor\/Developer\/path_of_nur\/ios\/build\/SwiftExplicitPrecompiledModules\/sys_types-CJN2X2XCUZP5PC1QNE997LRSY.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "sys_types"
+  }
+]

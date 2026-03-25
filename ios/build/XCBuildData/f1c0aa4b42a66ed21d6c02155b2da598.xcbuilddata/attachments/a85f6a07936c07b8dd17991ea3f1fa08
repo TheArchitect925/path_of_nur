@@ -1,0 +1,301 @@
+{
+  "" : {
+    "const-values" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/PathOfNurTV-primary.swiftconstvalues",
+    "dependencies" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/PathOfNurTV-primary.d",
+    "diagnostics" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/PathOfNurTV-primary.dia",
+    "emit-module-dependencies" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/PathOfNurTV-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/PathOfNurTV-primary-emit-module.dia",
+    "pch" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/PathOfNurTV-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/PathOfNurTV-primary.swiftdeps"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/App/PathOfNurTVApp.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/PathOfNurTVApp.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/PathOfNurTVApp.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/PathOfNurTVApp.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/App/TVRootView.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVRootView.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVRootView.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVRootView.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Components/TVActionCard.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVActionCard.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVActionCard.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVActionCard.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Components/TVArabicLetterGroupCard.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVArabicLetterGroupCard.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVArabicLetterGroupCard.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVArabicLetterGroupCard.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Components/TVArabicSupportCard.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVArabicSupportCard.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVArabicSupportCard.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVArabicSupportCard.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Components/TVContinueJourneyCard.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVContinueJourneyCard.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVContinueJourneyCard.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVContinueJourneyCard.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Components/TVDhikrModeCard.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVDhikrModeCard.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVDhikrModeCard.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVDhikrModeCard.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Components/TVDhikrSupportCard.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVDhikrSupportCard.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVDhikrSupportCard.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVDhikrSupportCard.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Components/TVDiagnosticsSummaryCard.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVDiagnosticsSummaryCard.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVDiagnosticsSummaryCard.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVDiagnosticsSummaryCard.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Components/TVEmptyStateCard.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVEmptyStateCard.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVEmptyStateCard.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVEmptyStateCard.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Components/TVFavoritesSupportCard.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVFavoritesSupportCard.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVFavoritesSupportCard.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVFavoritesSupportCard.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Components/TVGamesChallengeCard.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVGamesChallengeCard.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVGamesChallengeCard.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVGamesChallengeCard.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Components/TVGamesSupportCard.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVGamesSupportCard.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVGamesSupportCard.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVGamesSupportCard.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Components/TVHeroCard.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVHeroCard.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVHeroCard.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVHeroCard.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Components/TVHouseholdProfileCard.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVHouseholdProfileCard.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVHouseholdProfileCard.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVHouseholdProfileCard.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Components/TVHouseholdSupportCard.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVHouseholdSupportCard.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVHouseholdSupportCard.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVHouseholdSupportCard.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Components/TVKidsSupportCard.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVKidsSupportCard.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVKidsSupportCard.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVKidsSupportCard.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Components/TVLearnHubItemCard.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVLearnHubItemCard.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVLearnHubItemCard.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVLearnHubItemCard.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Components/TVLearnStoryEntryCard.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVLearnStoryEntryCard.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVLearnStoryEntryCard.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVLearnStoryEntryCard.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Components/TVLearnVisualEntryCard.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVLearnVisualEntryCard.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVLearnVisualEntryCard.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVLearnVisualEntryCard.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Components/TVNavigationSidebar.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVNavigationSidebar.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVNavigationSidebar.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVNavigationSidebar.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Components/TVPrayerFocusCard.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVPrayerFocusCard.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVPrayerFocusCard.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVPrayerFocusCard.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Components/TVPrayerTimeCard.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVPrayerTimeCard.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVPrayerTimeCard.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVPrayerTimeCard.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Components/TVQuranAyahCard.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVQuranAyahCard.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVQuranAyahCard.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVQuranAyahCard.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Components/TVQuranBrowseCollectionCard.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVQuranBrowseCollectionCard.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVQuranBrowseCollectionCard.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVQuranBrowseCollectionCard.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Components/TVQuranPlaybackCard.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVQuranPlaybackCard.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVQuranPlaybackCard.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVQuranPlaybackCard.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Components/TVQuranReaderSummaryCard.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVQuranReaderSummaryCard.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVQuranReaderSummaryCard.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVQuranReaderSummaryCard.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Components/TVQuranSurahRow.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVQuranSurahRow.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVQuranSurahRow.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVQuranSurahRow.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Components/TVSavedItemCard.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVSavedItemCard.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVSavedItemCard.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVSavedItemCard.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Components/TVSectionHeader.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVSectionHeader.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVSectionHeader.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVSectionHeader.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Components/TVSessionContinuityCard.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVSessionContinuityCard.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVSessionContinuityCard.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVSessionContinuityCard.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Components/TVShelfCard.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVShelfCard.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVShelfCard.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVShelfCard.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Components/TVSystemStatusCard.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVSystemStatusCard.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVSystemStatusCard.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVSystemStatusCard.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Data/TVSeedRepository.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVSeedRepository.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVSeedRepository.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVSeedRepository.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Models/TVModels.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVModels.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVModels.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVModels.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Models/TVNavigationModels.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVNavigationModels.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVNavigationModels.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVNavigationModels.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Screens/TVArabicScreen.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVArabicScreen.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVArabicScreen.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVArabicScreen.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Screens/TVDhikrScreen.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVDhikrScreen.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVDhikrScreen.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVDhikrScreen.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Screens/TVFavoritesScreen.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVFavoritesScreen.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVFavoritesScreen.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVFavoritesScreen.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Screens/TVGamesScreen.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVGamesScreen.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVGamesScreen.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVGamesScreen.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Screens/TVHomeScreen.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVHomeScreen.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVHomeScreen.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVHomeScreen.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Screens/TVKidsScreen.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVKidsScreen.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVKidsScreen.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVKidsScreen.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Screens/TVLearnScreen.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVLearnScreen.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVLearnScreen.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVLearnScreen.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Screens/TVPrayerScreen.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVPrayerScreen.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVPrayerScreen.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVPrayerScreen.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Screens/TVProfilesScreen.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVProfilesScreen.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVProfilesScreen.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVProfilesScreen.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Screens/TVQuranListeningModeScreen.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVQuranListeningModeScreen.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVQuranListeningModeScreen.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVQuranListeningModeScreen.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Screens/TVQuranScreen.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVQuranScreen.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVQuranScreen.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVQuranScreen.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Screens/TVSettingsScreen.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVSettingsScreen.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVSettingsScreen.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVSettingsScreen.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Support/TVLocalized.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVLocalized.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVLocalized.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVLocalized.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Support/TVReadableAccessibility.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVReadableAccessibility.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVReadableAccessibility.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVReadableAccessibility.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Support/TVTelemetry.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVTelemetry.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVTelemetry.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVTelemetry.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Theme/TVBackgroundView.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVBackgroundView.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVBackgroundView.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVBackgroundView.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Theme/TVFocusableCardModifier.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVFocusableCardModifier.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVFocusableCardModifier.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVFocusableCardModifier.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Theme/TVSurfaceStyles.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVSurfaceStyles.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVSurfaceStyles.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVSurfaceStyles.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Theme/TVTheme.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVTheme.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVTheme.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVTheme.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/Theme/TVTypography.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVTypography.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVTypography.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVTypography.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurTV/ViewModels/TVAppViewModel.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVAppViewModel.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVAppViewModel.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/TVAppViewModel.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/DerivedSources/GeneratedAssetSymbols.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/GeneratedAssetSymbols.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-appletvos/PathOfNurTV.build/Objects-normal/arm64/GeneratedAssetSymbols.o"
+  }
+}

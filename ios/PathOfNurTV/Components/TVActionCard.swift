@@ -9,23 +9,23 @@ struct TVActionCard: View {
     VStack(alignment: .leading, spacing: 16) {
       Image(systemName: systemImage)
         .font(.system(size: 30, weight: .semibold))
-        .foregroundStyle(TVTheme.accentStrong)
+        .foregroundColor(TVTheme.accentStrong)
 
       Text(title)
-        .font(.system(size: 28, weight: .bold, design: .serif))
-        .foregroundStyle(TVTheme.textPrimary)
+        .font(TVTypography.featureTitle)
+        .foregroundColor(TVTheme.textPrimary)
+        .tvReadableTitle()
 
       Text(subtitle)
-        .font(.system(size: 18, weight: .medium, design: .rounded))
-        .foregroundStyle(TVTheme.textSecondary)
+        .font(TVTypography.featureSubtitle)
+        .foregroundColor(TVTheme.textSecondary)
         .lineLimit(3)
+        .tvReadableBody()
     }
     .frame(width: 340, height: 214, alignment: .leading)
-    .padding(28)
-    .background(
-      RoundedRectangle(cornerRadius: TVTheme.cardRadius, style: .continuous)
-        .fill(TVTheme.surface)
-    )
+    .padding(TVTheme.cardPadding)
+    .tvSurfaceCard()
     .tvFocusableCard()
+    .tvCombinedAccessibility(label: title, hint: subtitle)
   }
 }

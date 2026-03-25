@@ -12,6 +12,7 @@ Canonical tvOS source for Path of Nūr lives in this folder and is compiled by t
 - Qur'an mirrors the mobile app direction with seeded browsing, reader, and audio playback structure adapted for tvOS
 - local seeded data only for now
 - no production prayer engine, sync, persistence, or release-grade Apple TV assets yet
+- the canonical tvOS target now has a concrete brand asset set and Top Shelf image so Xcode Release/TestFlight archive work can proceed without an empty app-icon catalog
 
 ## Folder structure
 
@@ -31,4 +32,12 @@ For mirrored surfaces, especially Home prayer content and the Qur'an page, futur
 
 ## Asset note
 
-The target now includes an accent color asset. Final release-grade Apple TV layered app icon and Top Shelf artwork are still outstanding.
+The target now includes:
+
+- accent color assets
+- a concrete `AppIcon.brandassets` set in the canonical tvOS target
+- a canonical `TopShelf.imageset`
+
+These assets are currently derived from existing Path of Nūr branding so the target can be archived and tested in Xcode/TestFlight without an empty catalog.
+
+They should still be treated as interim assets until final Apple TV-specific layered artwork is approved.

@@ -8,27 +8,29 @@ struct TVPrayerTimeCard: View {
       HStack(alignment: .firstTextBaseline) {
         VStack(alignment: .leading, spacing: 4) {
           Text(prayer.title)
-            .font(.system(size: 26, weight: .bold, design: .serif))
-            .foregroundStyle(TVTheme.textPrimary)
+            .font(TVTypography.featureTitle)
+            .foregroundColor(TVTheme.textPrimary)
+            .tvReadableTitle()
 
           Text(prayer.arabicTitle)
-            .font(.system(size: 22, weight: .semibold, design: .serif))
-            .foregroundStyle(TVTheme.textSecondary)
+            .font(TVTypography.arabicSupport)
+            .foregroundColor(TVTheme.textSecondary)
+            .tvReadableArabic()
         }
 
         Spacer()
 
         if prayer.isCurrent {
-          Text(NSLocalizedString("Current", comment: ""))
-            .font(.system(size: 14, weight: .bold, design: .rounded))
-            .foregroundStyle(TVTheme.prayerCurrentText)
+          Text(tvLocalized("Current"))
+            .font(TVTypography.badge)
+            .foregroundColor(TVTheme.prayerCurrentText)
             .padding(.horizontal, 12)
             .padding(.vertical, 8)
             .background(TVTheme.prayerCurrent, in: Capsule())
         } else if prayer.isNext {
-          Text(NSLocalizedString("Next", comment: ""))
-            .font(.system(size: 14, weight: .bold, design: .rounded))
-            .foregroundStyle(TVTheme.prayerNextText)
+          Text(tvLocalized("Next"))
+            .font(TVTypography.badge)
+            .foregroundColor(TVTheme.prayerNextText)
             .padding(.horizontal, 12)
             .padding(.vertical, 8)
             .background(TVTheme.prayerNext, in: Capsule())
@@ -36,19 +38,23 @@ struct TVPrayerTimeCard: View {
       }
 
       Text(prayer.timeLabel)
-        .font(.system(size: 34, weight: .heavy, design: .rounded))
-        .foregroundStyle(TVTheme.textPrimary)
+        .font(.system(size: 36, weight: .heavy, design: .rounded))
+        .foregroundColor(TVTheme.textPrimary)
+        .tvReadableTitle()
 
       Text(prayer.statusLine)
-        .font(.system(size: 18, weight: .medium, design: .rounded))
-        .foregroundStyle(TVTheme.textSecondary)
+        .font(TVTypography.featureSubtitle)
+        .foregroundColor(TVTheme.textSecondary)
+        .tvReadableBody()
     }
     .frame(maxWidth: .infinity, alignment: .leading)
     .padding(24)
-    .background(
-      RoundedRectangle(cornerRadius: TVTheme.cardRadius, style: .continuous)
-        .fill(prayer.isCurrent ? TVTheme.surfaceElevated : TVTheme.surface)
-    )
+    .tvSurfaceCard(elevated: prayer.isCurrent, emphasized: prayer.isCurrent || prayer.isNext)
     .tvFocusableCard()
+    .tvCombinedAccessibility(
+      label: "\(prayer.title), \(prayer.timeLabel)",
+      hint: prayer.statusLine,
+      value: prayer.isCurrent ? tvLocalized("Current") : (prayer.isNext ? tvLocalized("Next") : nil)
+    )
   }
 }

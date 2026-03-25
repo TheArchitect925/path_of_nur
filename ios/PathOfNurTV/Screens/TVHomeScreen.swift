@@ -3,6 +3,7 @@ import SwiftUI
 struct TVHomeScreen: View {
   @ObservedObject var viewModel: TVHomeViewModel
   @EnvironmentObject private var appViewModel: TVAppViewModel
+  @FocusState private var focusedSection: String?
 
   var body: some View {
     ScrollView {
@@ -15,14 +16,35 @@ struct TVHomeScreen: View {
         )
 
         TVSectionHeader(
-          title: NSLocalizedString("Prayer Times", comment: ""),
-          subtitle: NSLocalizedString(
-            "Prayer times follow the same calm emphasis as mobile: one highlighted current or next prayer, then the full day.",
-            comment: ""
-          )
+          title: viewModel.continueJourneySummaryTitle,
+          subtitle: viewModel.continueJourneySummarySubtitle
         )
 
-        VStack(alignment: .leading, spacing: 18) {
+        ScrollView(.horizontal, showsIndicators: false) {
+          LazyHStack(spacing: TVTheme.railSpacing) {
+            ForEach(Array(viewModel.continueJourneyItems.enumerated()), id: \.element.id) { index, item in
+              let focusID = index == 0
+                  ? TVFocusSectionId.homeContinueJourney
+                  : "home.continueJourney.\(item.id)"
+
+              Button {
+                _handleContinueJourneyTap(for: item.id)
+              } label: {
+                TVContinueJourneyCard(item: item)
+              }
+              .buttonStyle(.plain)
+              .focused($focusedSection, equals: focusID)
+            }
+          }
+          .padding(.vertical, 8)
+        }
+
+        TVSectionHeader(
+          title: tvLocalized("Prayer Times"),
+          subtitle: viewModel.prayerSectionSubtitle
+        )
+
+        VStack(alignment: .leading, spacing: TVTheme.blockSpacing) {
           _summaryCard(
             title: viewModel.prayerSummaryLine,
             subtitle: viewModel.prayerSummaryDetail
@@ -42,32 +64,26 @@ struct TVHomeScreen: View {
         }
 
         TVSectionHeader(
-          title: NSLocalizedString("Today's Light", comment: ""),
-          subtitle: NSLocalizedString(
-            "Home keeps the prayer-first shape of the mobile app, with the Qur'an close at hand.",
-            comment: ""
-          )
+          title: tvLocalized("Today's Light"),
+          subtitle: viewModel.dailyLightSubtitle
         )
 
         _verseCard
 
         TVSectionHeader(
-          title: NSLocalizedString("Featured Qur'an paths", comment: ""),
-          subtitle: NSLocalizedString(
-            "Open the same Qur'an space from the home surface.",
-            comment: ""
-          )
+          title: tvLocalized("Featured Qur'an paths"),
+          subtitle: tvLocalized("Open the same Qur'an space from the home surface.")
         )
 
         ScrollView(.horizontal, showsIndicators: false) {
-          HStack(spacing: TVTheme.railSpacing) {
+          LazyHStack(spacing: TVTheme.railSpacing) {
             Button {
-              appViewModel.selectedTab = .quran
+              appViewModel.navigate(to: .quran, preferredColumn: .content)
             } label: {
               TVActionCard(
-                title: NSLocalizedString("Continue Reading", comment: ""),
-                subtitle: String(
-                  format: NSLocalizedString("Continue with %@ %d:%d", comment: ""),
+                title: tvLocalized("Continue Reading"),
+                subtitle: tvLocalized(
+                  "Continue with %@ %d:%d",
                   viewModel.continueReading.surahName,
                   viewModel.continueReading.surahNumber,
                   viewModel.continueReading.ayahNumber
@@ -76,11 +92,12 @@ struct TVHomeScreen: View {
               )
             }
             .buttonStyle(.plain)
+            .focused($focusedSection, equals: TVFocusSectionId.homeContinueJourney)
 
             ForEach(viewModel.actions) { item in
               Button {
                 if item.id == "home_quran" {
-                  appViewModel.selectedTab = .quran
+                  appViewModel.navigate(to: .quran, preferredColumn: .content)
                 }
               } label: {
                 TVShelfCard(item: item)
@@ -93,53 +110,103 @@ struct TVHomeScreen: View {
       }
       .padding(TVTheme.outerPadding)
     }
-    .background(TVBackgroundView())
-    .navigationTitle(NSLocalizedString("Home", comment: ""))
+    .onAppear {
+      restorePreferredFocus()
+    }
+    .onChange(of: appViewModel.contentFocusRequest) { _ in
+      restorePreferredFocus()
+    }
+    .onChange(of: focusedSection) { section in
+      guard let section else { return }
+      if section.hasPrefix("home.continueJourney") {
+        appViewModel.markContentSectionFocused(
+          TVFocusSectionId.homeContinueJourney,
+          for: .home
+        )
+      } else {
+        appViewModel.markContentSectionFocused(section, for: .home)
+      }
+    }
+    .onMoveCommand { direction in
+      guard direction == .left else { return }
+      appViewModel.focusNavigation()
+    }
   }
 
   private func _summaryCard(title: String, subtitle: String) -> some View {
     VStack(alignment: .leading, spacing: 10) {
       Text(title)
-        .font(.system(size: 34, weight: .bold, design: .serif))
-        .foregroundStyle(TVTheme.textPrimary)
+        .font(TVTypography.summaryTitle)
+        .foregroundColor(TVTheme.textPrimary)
+        .tvReadableTitle()
 
       Text(subtitle)
-        .font(.system(size: 20, weight: .medium, design: .rounded))
-        .foregroundStyle(TVTheme.textSecondary)
+        .font(TVTypography.summaryLine)
+        .foregroundColor(TVTheme.textSecondary)
+        .tvReadableBody()
     }
     .frame(maxWidth: .infinity, alignment: .leading)
-    .padding(28)
-    .background(
-      RoundedRectangle(cornerRadius: 34, style: .continuous)
-        .fill(TVTheme.surface)
-    )
+    .padding(TVTheme.cardPadding)
+    .tvSurfaceCard(elevated: true)
+    .tvCombinedAccessibility(label: title, hint: subtitle)
   }
 
   private var _verseCard: some View {
-    VStack(alignment: .leading, spacing: 14) {
-      Text(viewModel.verse.arabic)
-        .font(.system(size: 34, weight: .medium, design: .serif))
-        .foregroundStyle(TVTheme.textPrimary)
-        .frame(maxWidth: .infinity, alignment: .trailing)
+    Button {
+      appViewModel.navigate(to: .quran, preferredColumn: .content)
+    } label: {
+      VStack(alignment: .leading, spacing: 14) {
+        Text(viewModel.verse.arabic)
+          .font(TVTypography.arabicHero)
+          .foregroundColor(TVTheme.textPrimary)
+          .frame(maxWidth: .infinity, alignment: .trailing)
+          .tvReadableArabic()
 
-      Text(viewModel.verse.transliteration)
-        .font(.system(size: 18, weight: .medium, design: .serif))
-        .italic()
-        .foregroundStyle(TVTheme.textMuted)
+        Text(viewModel.verse.transliteration)
+          .font(TVTypography.bodySecondary.italic())
+          .italic()
+          .foregroundColor(TVTheme.textMuted)
+          .tvReadableBody()
 
-      Text(viewModel.verse.translation)
-        .font(.system(size: 21, weight: .medium, design: .rounded))
-        .foregroundStyle(TVTheme.textSecondary)
+        Text(viewModel.verse.translation)
+          .font(TVTypography.body)
+          .foregroundColor(TVTheme.textSecondary)
+          .tvReadableBody()
 
-      Text(viewModel.verse.locationLabel)
-        .font(.system(size: 15, weight: .semibold, design: .rounded))
-        .foregroundStyle(TVTheme.accentStrong)
+        Text(viewModel.verse.locationLabel)
+          .font(TVTypography.detail)
+          .foregroundColor(TVTheme.accentStrong)
+          .tvReadableBody()
+      }
+      .frame(maxWidth: .infinity, alignment: .leading)
+      .padding(TVTheme.cardPadding)
+      .tvSurfaceCard(elevated: true)
     }
-    .frame(maxWidth: .infinity, alignment: .leading)
-    .padding(28)
-    .background(
-      RoundedRectangle(cornerRadius: 34, style: .continuous)
-        .fill(TVTheme.surface)
-    )
+    .buttonStyle(.plain)
+    .focused($focusedSection, equals: TVFocusSectionId.homeVerse)
+    .tvFocusableCard()
+    .accessibilityLabel(viewModel.verse.locationLabel)
+    .accessibilityHint(tvLocalized("Opens this ayah in the Qur'an route."))
+  }
+
+  private func restorePreferredFocus() {
+    guard appViewModel.selectedRoute == .home, appViewModel.activeColumn == .content else {
+      return
+    }
+
+    DispatchQueue.main.async {
+      focusedSection = appViewModel.preferredContentSection(for: .home)
+    }
+  }
+
+  private func _handleContinueJourneyTap(for itemId: String) {
+    switch itemId {
+    case "continue_reading", "resume_listening":
+      appViewModel.navigate(to: .quran, preferredColumn: .content)
+    case "prayer_focus":
+      focusedSection = TVFocusSectionId.homeContinueJourney
+    default:
+      appViewModel.navigate(to: .quran, preferredColumn: .content)
+    }
   }
 }

@@ -7,13 +7,16 @@ struct TVSectionHeader: View {
   var body: some View {
     VStack(alignment: .leading, spacing: 8) {
       Text(title)
-        .font(.system(size: 34, weight: .bold, design: .rounded))
-        .foregroundStyle(TVTheme.textPrimary)
+        .font(TVTypography.sectionTitle)
+        .foregroundColor(TVTheme.textPrimary)
+        .tvReadableTitle()
 
       Text(subtitle)
-        .font(.system(size: 19, weight: .medium, design: .rounded))
-        .foregroundStyle(TVTheme.textSecondary)
+        .font(TVTypography.sectionSubtitle)
+        .foregroundColor(TVTheme.textSecondary)
         .frame(maxWidth: 920, alignment: .leading)
+        .tvReadableBody()
     }
+    .tvCombinedAccessibility(label: title, hint: subtitle)
   }
 }

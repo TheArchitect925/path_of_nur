@@ -9,27 +9,49 @@ struct TVHeroCard: View {
   var body: some View {
     VStack(alignment: .leading, spacing: 16) {
       Text(eyebrow.uppercased())
-        .font(.system(size: 16, weight: .semibold, design: .rounded))
-        .foregroundStyle(TVTheme.focus)
+        .font(TVTypography.heroEyebrow)
+        .foregroundColor(TVTheme.focus)
+        .tvReadableBody()
 
       Text(title)
-        .font(.system(size: 64, weight: .bold, design: .serif))
-        .foregroundStyle(TVTheme.textPrimary)
+        .font(TVTypography.heroTitle)
+        .foregroundColor(TVTheme.textPrimary)
+        .tvReadableTitle()
 
       Text(subtitle)
-        .font(.system(size: 26, weight: .medium, design: .rounded))
-        .foregroundStyle(TVTheme.textSecondary)
+        .font(TVTypography.heroSubtitle)
+        .foregroundColor(TVTheme.textSecondary)
         .frame(maxWidth: 980, alignment: .leading)
+        .tvReadableBody()
 
       Text(supportingLine)
-        .font(.system(size: 20, weight: .medium, design: .rounded))
-        .foregroundStyle(TVTheme.textMuted)
+        .font(TVTypography.heroSupporting)
+        .foregroundColor(TVTheme.textMuted)
+        .tvReadableBody()
     }
     .frame(maxWidth: .infinity, alignment: .leading)
-    .padding(40)
+    .padding(TVTheme.heroPadding)
     .background(
-      RoundedRectangle(cornerRadius: 36, style: .continuous)
-        .fill(TVTheme.surface)
+      RoundedRectangle(cornerRadius: TVTheme.heroRadius, style: .continuous)
+        .fill(
+          LinearGradient(
+            colors: [
+              TVTheme.surfaceElevated,
+              TVTheme.surface,
+            ],
+            startPoint: .topLeading,
+            endPoint: .bottomTrailing
+          )
+        )
+        .overlay(
+          RoundedRectangle(cornerRadius: TVTheme.heroRadius, style: .continuous)
+            .stroke(TVTheme.surfaceStroke, lineWidth: 1)
+        )
+        .shadow(color: TVTheme.surfaceShadow, radius: 22, x: 0, y: 10)
+    )
+    .tvCombinedAccessibility(
+      label: "\(title). \(subtitle)",
+      hint: supportingLine
     )
   }
 }

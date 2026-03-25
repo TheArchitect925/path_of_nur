@@ -3,9 +3,13 @@ import SwiftUI
 enum TVTheme {
   static let backgroundTop = Color(red: 0.93, green: 0.89, blue: 0.84)
   static let backgroundBottom = Color(red: 0.85, green: 0.82, blue: 0.77)
+  static let backgroundMeshTop = Color(red: 0.97, green: 0.91, blue: 0.71)
+  static let backgroundMeshBottom = Color(red: 0.75, green: 0.64, blue: 0.49)
   static let surface = Color.white.opacity(0.54)
   static let surfaceSoft = Color.white.opacity(0.36)
   static let surfaceElevated = Color(red: 0.98, green: 0.95, blue: 0.89)
+  static let surfaceStroke = Color.white.opacity(0.36)
+  static let surfaceShadow = Color.black.opacity(0.10)
   static let accentSoft = Color(red: 0.95, green: 0.84, blue: 0.54)
   static let accentStrong = Color(red: 0.72, green: 0.57, blue: 0.34)
   static let focus = Color(red: 0.72, green: 0.57, blue: 0.34)
@@ -20,7 +24,13 @@ enum TVTheme {
 
   static let outerPadding: CGFloat = 56
   static let sectionSpacing: CGFloat = 28
+  static let blockSpacing: CGFloat = 20
   static let railSpacing: CGFloat = 18
+  static let columnSpacing: CGFloat = 28
   static let cardRadius: CGFloat = 30
-  static let focusScale: CGFloat = 1.05
+  static let heroRadius: CGFloat = 36
+  static let cardPadding: CGFloat = 28
+  static let heroPadding: CGFloat = 40
+  static let focusScale: CGFloat = 1.045
+  static let focusShadowRadius: CGFloat = 22
 }

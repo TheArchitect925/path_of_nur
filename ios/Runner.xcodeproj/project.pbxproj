@@ -73,7 +73,45 @@
 		A3000000000000000000000F /* TVQuranPlaybackCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000000000000000000000F /* TVQuranPlaybackCard.swift */; };
 		A30000000000000000000010 /* TVQuranSurahRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000010 /* TVQuranSurahRow.swift */; };
 		A30000000000000000000011 /* TVLocalized.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000011 /* TVLocalized.swift */; };
+		A30000000000000000000035 /* TVReadableAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000035 /* TVReadableAccessibility.swift */; };
 		A30000000000000000000012 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000012 /* Localizable.strings */; };
+		A30000000000000000000013 /* TVTypography.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000013 /* TVTypography.swift */; };
+		A30000000000000000000014 /* TVSurfaceStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000014 /* TVSurfaceStyles.swift */; };
+		A30000000000000000000015 /* TVNavigationModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000015 /* TVNavigationModels.swift */; };
+		A30000000000000000000016 /* TVNavigationSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000016 /* TVNavigationSidebar.swift */; };
+		A30000000000000000000017 /* TVContinueJourneyCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000017 /* TVContinueJourneyCard.swift */; };
+		A30000000000000000000018 /* TVQuranBrowseCollectionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000018 /* TVQuranBrowseCollectionCard.swift */; };
+		A30000000000000000000019 /* TVQuranReaderSummaryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000019 /* TVQuranReaderSummaryCard.swift */; };
+		A30000000000000000000020 /* TVQuranListeningModeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000020 /* TVQuranListeningModeScreen.swift */; };
+		A30000000000000000000021 /* TVLearnHubItemCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000021 /* TVLearnHubItemCard.swift */; };
+		A30000000000000000000022 /* TVLearnScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000022 /* TVLearnScreen.swift */; };
+		A30000000000000000000023 /* TVLearnStoryEntryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000023 /* TVLearnStoryEntryCard.swift */; };
+		A30000000000000000000024 /* TVLearnVisualEntryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000024 /* TVLearnVisualEntryCard.swift */; };
+		A30000000000000000000025 /* TVPrayerFocusCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000025 /* TVPrayerFocusCard.swift */; };
+		A30000000000000000000026 /* TVPrayerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000026 /* TVPrayerScreen.swift */; };
+		A30000000000000000000027 /* TVDhikrModeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000027 /* TVDhikrModeCard.swift */; };
+		A30000000000000000000028 /* TVDhikrSupportCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000028 /* TVDhikrSupportCard.swift */; };
+		A30000000000000000000029 /* TVDhikrScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000029 /* TVDhikrScreen.swift */; };
+		A3000000000000000000002A /* TVKidsSupportCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000000000000000000002A /* TVKidsSupportCard.swift */; };
+		A3000000000000000000002B /* TVKidsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000000000000000000002B /* TVKidsScreen.swift */; };
+		A3000000000000000000002C /* TVArabicLetterGroupCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000000000000000000002C /* TVArabicLetterGroupCard.swift */; };
+		A3000000000000000000002D /* TVArabicSupportCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000000000000000000002D /* TVArabicSupportCard.swift */; };
+		A3000000000000000000002E /* TVArabicScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000000000000000000002E /* TVArabicScreen.swift */; };
+		A3000000000000000000002F /* TVGamesChallengeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000000000000000000002F /* TVGamesChallengeCard.swift */; };
+		A30000000000000000000030 /* TVGamesSupportCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000030 /* TVGamesSupportCard.swift */; };
+		A30000000000000000000031 /* TVGamesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000031 /* TVGamesScreen.swift */; };
+		A30000000000000000000032 /* TVSavedItemCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000032 /* TVSavedItemCard.swift */; };
+		A30000000000000000000033 /* TVFavoritesSupportCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000033 /* TVFavoritesSupportCard.swift */; };
+		A30000000000000000000034 /* TVFavoritesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000034 /* TVFavoritesScreen.swift */; };
+		A30000000000000000000036 /* TVSystemStatusCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000036 /* TVSystemStatusCard.swift */; };
+		A30000000000000000000037 /* TVHouseholdProfileCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000037 /* TVHouseholdProfileCard.swift */; };
+		A30000000000000000000038 /* TVSessionContinuityCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000038 /* TVSessionContinuityCard.swift */; };
+		A30000000000000000000039 /* TVHouseholdSupportCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000039 /* TVHouseholdSupportCard.swift */; };
+		A3000000000000000000003A /* TVProfilesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000000000000000000003A /* TVProfilesScreen.swift */; };
+		A3000000000000000000003B /* TVSettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000000000000000000003B /* TVSettingsScreen.swift */; };
+		A3000000000000000000003C /* TVDiagnosticsSummaryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000000000000000000003C /* TVDiagnosticsSummaryCard.swift */; };
+		A3000000000000000000003E /* TVEmptyStateCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000000000000000000003E /* TVEmptyStateCard.swift */; };
+		A3000000000000000000003D /* TVTelemetry.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000000000000000000003D /* TVTelemetry.swift */; };
 		A363E5A80CDC795F50A08433 /* WatchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96F86BD74BDD1F1AAF563FC6 /* WatchKit.framework */; };
 		AA2612948B1D47A3A21231A9 /* WatchStatChip.swift in Sources */ = {isa = PBXBuildFile; fileRef = D615B7BE91472306F2EBD29A /* WatchStatChip.swift */; };
 		AB5CC2B95B3840A21D765075 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5F253D74805B56357ADDF7D /* Localizable.strings */; };
@@ -232,7 +270,45 @@
 		A2000000000000000000000F /* TVQuranPlaybackCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVQuranPlaybackCard.swift; sourceTree = "<group>"; };
 		A20000000000000000000010 /* TVQuranSurahRow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVQuranSurahRow.swift; sourceTree = "<group>"; };
 		A20000000000000000000011 /* TVLocalized.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVLocalized.swift; sourceTree = "<group>"; };
+		A20000000000000000000035 /* TVReadableAccessibility.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVReadableAccessibility.swift; sourceTree = "<group>"; };
 		A20000000000000000000012 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		A20000000000000000000013 /* TVTypography.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVTypography.swift; sourceTree = "<group>"; };
+		A20000000000000000000014 /* TVSurfaceStyles.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVSurfaceStyles.swift; sourceTree = "<group>"; };
+		A20000000000000000000015 /* TVNavigationModels.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVNavigationModels.swift; sourceTree = "<group>"; };
+		A20000000000000000000016 /* TVNavigationSidebar.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVNavigationSidebar.swift; sourceTree = "<group>"; };
+		A20000000000000000000017 /* TVContinueJourneyCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVContinueJourneyCard.swift; sourceTree = "<group>"; };
+		A20000000000000000000018 /* TVQuranBrowseCollectionCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVQuranBrowseCollectionCard.swift; sourceTree = "<group>"; };
+		A20000000000000000000019 /* TVQuranReaderSummaryCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVQuranReaderSummaryCard.swift; sourceTree = "<group>"; };
+		A20000000000000000000020 /* TVQuranListeningModeScreen.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVQuranListeningModeScreen.swift; sourceTree = "<group>"; };
+		A20000000000000000000021 /* TVLearnHubItemCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVLearnHubItemCard.swift; sourceTree = "<group>"; };
+		A20000000000000000000022 /* TVLearnScreen.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVLearnScreen.swift; sourceTree = "<group>"; };
+		A20000000000000000000023 /* TVLearnStoryEntryCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVLearnStoryEntryCard.swift; sourceTree = "<group>"; };
+		A20000000000000000000024 /* TVLearnVisualEntryCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVLearnVisualEntryCard.swift; sourceTree = "<group>"; };
+		A20000000000000000000025 /* TVPrayerFocusCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVPrayerFocusCard.swift; sourceTree = "<group>"; };
+		A20000000000000000000026 /* TVPrayerScreen.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVPrayerScreen.swift; sourceTree = "<group>"; };
+		A20000000000000000000027 /* TVDhikrModeCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVDhikrModeCard.swift; sourceTree = "<group>"; };
+		A20000000000000000000028 /* TVDhikrSupportCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVDhikrSupportCard.swift; sourceTree = "<group>"; };
+		A20000000000000000000029 /* TVDhikrScreen.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVDhikrScreen.swift; sourceTree = "<group>"; };
+		A2000000000000000000002A /* TVKidsSupportCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVKidsSupportCard.swift; sourceTree = "<group>"; };
+		A2000000000000000000002B /* TVKidsScreen.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVKidsScreen.swift; sourceTree = "<group>"; };
+		A2000000000000000000002C /* TVArabicLetterGroupCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVArabicLetterGroupCard.swift; sourceTree = "<group>"; };
+		A2000000000000000000002D /* TVArabicSupportCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVArabicSupportCard.swift; sourceTree = "<group>"; };
+		A2000000000000000000002E /* TVArabicScreen.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVArabicScreen.swift; sourceTree = "<group>"; };
+		A2000000000000000000002F /* TVGamesChallengeCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVGamesChallengeCard.swift; sourceTree = "<group>"; };
+		A20000000000000000000030 /* TVGamesSupportCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVGamesSupportCard.swift; sourceTree = "<group>"; };
+		A20000000000000000000031 /* TVGamesScreen.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVGamesScreen.swift; sourceTree = "<group>"; };
+		A20000000000000000000032 /* TVSavedItemCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVSavedItemCard.swift; sourceTree = "<group>"; };
+		A20000000000000000000033 /* TVFavoritesSupportCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVFavoritesSupportCard.swift; sourceTree = "<group>"; };
+		A20000000000000000000034 /* TVFavoritesScreen.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVFavoritesScreen.swift; sourceTree = "<group>"; };
+		A20000000000000000000036 /* TVSystemStatusCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVSystemStatusCard.swift; sourceTree = "<group>"; };
+		A20000000000000000000037 /* TVHouseholdProfileCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVHouseholdProfileCard.swift; sourceTree = "<group>"; };
+		A20000000000000000000038 /* TVSessionContinuityCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVSessionContinuityCard.swift; sourceTree = "<group>"; };
+		A20000000000000000000039 /* TVHouseholdSupportCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVHouseholdSupportCard.swift; sourceTree = "<group>"; };
+		A2000000000000000000003A /* TVProfilesScreen.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVProfilesScreen.swift; sourceTree = "<group>"; };
+		A2000000000000000000003B /* TVSettingsScreen.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVSettingsScreen.swift; sourceTree = "<group>"; };
+		A2000000000000000000003C /* TVDiagnosticsSummaryCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVDiagnosticsSummaryCard.swift; sourceTree = "<group>"; };
+		A2000000000000000000003E /* TVEmptyStateCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVEmptyStateCard.swift; sourceTree = "<group>"; };
+		A2000000000000000000003D /* TVTelemetry.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TVTelemetry.swift; sourceTree = "<group>"; };
 		A5F253D74805B56357ADDF7D /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		A6094AF93C5CC29D1F3A5AFC /* Pods-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"; sourceTree = "<group>"; };
 		AC5BB7B6F440215F9AAD026E /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -506,7 +582,17 @@
 			isa = PBXGroup;
 			children = (
 				A20000000000000000000001 /* TVHomeScreen.swift */,
+				A2000000000000000000003A /* TVProfilesScreen.swift */,
+				A2000000000000000000003B /* TVSettingsScreen.swift */,
 				A20000000000000000000002 /* TVQuranScreen.swift */,
+				A20000000000000000000034 /* TVFavoritesScreen.swift */,
+				A2000000000000000000002E /* TVArabicScreen.swift */,
+				A20000000000000000000031 /* TVGamesScreen.swift */,
+				A20000000000000000000020 /* TVQuranListeningModeScreen.swift */,
+				A20000000000000000000022 /* TVLearnScreen.swift */,
+				A20000000000000000000026 /* TVPrayerScreen.swift */,
+				A20000000000000000000029 /* TVDhikrScreen.swift */,
+				A2000000000000000000002B /* TVKidsScreen.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -515,13 +601,36 @@
 			isa = PBXGroup;
 			children = (
 				A20000000000000000000004 /* TVActionCard.swift */,
+				A2000000000000000000002C /* TVArabicLetterGroupCard.swift */,
+				A2000000000000000000002D /* TVArabicSupportCard.swift */,
+				A20000000000000000000017 /* TVContinueJourneyCard.swift */,
+				A20000000000000000000027 /* TVDhikrModeCard.swift */,
+				A20000000000000000000028 /* TVDhikrSupportCard.swift */,
+				A20000000000000000000033 /* TVFavoritesSupportCard.swift */,
+				A2000000000000000000002F /* TVGamesChallengeCard.swift */,
+				A20000000000000000000030 /* TVGamesSupportCard.swift */,
+				A2000000000000000000002A /* TVKidsSupportCard.swift */,
 				A20000000000000000000003 /* TVHeroCard.swift */,
+				A20000000000000000000039 /* TVHouseholdSupportCard.swift */,
+				A20000000000000000000037 /* TVHouseholdProfileCard.swift */,
+				A20000000000000000000021 /* TVLearnHubItemCard.swift */,
+				A20000000000000000000023 /* TVLearnStoryEntryCard.swift */,
+				A20000000000000000000024 /* TVLearnVisualEntryCard.swift */,
+				A20000000000000000000016 /* TVNavigationSidebar.swift */,
+				A2000000000000000000003C /* TVDiagnosticsSummaryCard.swift */,
+				A2000000000000000000003E /* TVEmptyStateCard.swift */,
+				A20000000000000000000025 /* TVPrayerFocusCard.swift */,
 				A2000000000000000000000D /* TVPrayerTimeCard.swift */,
 				A2000000000000000000000E /* TVQuranAyahCard.swift */,
+				A20000000000000000000018 /* TVQuranBrowseCollectionCard.swift */,
 				A2000000000000000000000F /* TVQuranPlaybackCard.swift */,
+				A20000000000000000000019 /* TVQuranReaderSummaryCard.swift */,
+				A20000000000000000000038 /* TVSessionContinuityCard.swift */,
 				A20000000000000000000010 /* TVQuranSurahRow.swift */,
+				A20000000000000000000032 /* TVSavedItemCard.swift */,
 				A20000000000000000000005 /* TVSectionHeader.swift */,
 				A20000000000000000000006 /* TVShelfCard.swift */,
+				A20000000000000000000036 /* TVSystemStatusCard.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -530,6 +639,7 @@
 			isa = PBXGroup;
 			children = (
 				A20000000000000000000007 /* TVModels.swift */,
+				A20000000000000000000015 /* TVNavigationModels.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -556,6 +666,8 @@
 				A2000000000000000000000A /* TVTheme.swift */,
 				A2000000000000000000000B /* TVBackgroundView.swift */,
 				A2000000000000000000000C /* TVFocusableCardModifier.swift */,
+				A20000000000000000000013 /* TVTypography.swift */,
+				A20000000000000000000014 /* TVSurfaceStyles.swift */,
 			);
 			path = Theme;
 			sourceTree = "<group>";
@@ -564,6 +676,8 @@
 			isa = PBXGroup;
 			children = (
 				A20000000000000000000011 /* TVLocalized.swift */,
+				A20000000000000000000035 /* TVReadableAccessibility.swift */,
+				A2000000000000000000003D /* TVTelemetry.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -1074,9 +1188,47 @@
 				A3000000000000000000000C /* TVFocusableCardModifier.swift in Sources */,
 				A3000000000000000000000D /* TVPrayerTimeCard.swift in Sources */,
 				A3000000000000000000000E /* TVQuranAyahCard.swift in Sources */,
+				A30000000000000000000018 /* TVQuranBrowseCollectionCard.swift in Sources */,
 				A3000000000000000000000F /* TVQuranPlaybackCard.swift in Sources */,
+				A30000000000000000000019 /* TVQuranReaderSummaryCard.swift in Sources */,
+				A30000000000000000000020 /* TVQuranListeningModeScreen.swift in Sources */,
+				A30000000000000000000021 /* TVLearnHubItemCard.swift in Sources */,
+				A30000000000000000000022 /* TVLearnScreen.swift in Sources */,
+				A30000000000000000000023 /* TVLearnStoryEntryCard.swift in Sources */,
+				A30000000000000000000024 /* TVLearnVisualEntryCard.swift in Sources */,
+				A30000000000000000000025 /* TVPrayerFocusCard.swift in Sources */,
+				A30000000000000000000026 /* TVPrayerScreen.swift in Sources */,
+				A30000000000000000000027 /* TVDhikrModeCard.swift in Sources */,
+				A30000000000000000000028 /* TVDhikrSupportCard.swift in Sources */,
+				A30000000000000000000029 /* TVDhikrScreen.swift in Sources */,
+				A3000000000000000000002A /* TVKidsSupportCard.swift in Sources */,
+				A3000000000000000000002B /* TVKidsScreen.swift in Sources */,
+				A3000000000000000000002C /* TVArabicLetterGroupCard.swift in Sources */,
+				A3000000000000000000002D /* TVArabicSupportCard.swift in Sources */,
+				A3000000000000000000002E /* TVArabicScreen.swift in Sources */,
+				A3000000000000000000002F /* TVGamesChallengeCard.swift in Sources */,
+				A30000000000000000000030 /* TVGamesSupportCard.swift in Sources */,
+				A30000000000000000000031 /* TVGamesScreen.swift in Sources */,
+				A30000000000000000000032 /* TVSavedItemCard.swift in Sources */,
+				A30000000000000000000033 /* TVFavoritesSupportCard.swift in Sources */,
+				A30000000000000000000034 /* TVFavoritesScreen.swift in Sources */,
+				A30000000000000000000036 /* TVSystemStatusCard.swift in Sources */,
+				A30000000000000000000037 /* TVHouseholdProfileCard.swift in Sources */,
+				A30000000000000000000038 /* TVSessionContinuityCard.swift in Sources */,
+				A30000000000000000000039 /* TVHouseholdSupportCard.swift in Sources */,
+				A3000000000000000000003A /* TVProfilesScreen.swift in Sources */,
+				A3000000000000000000003B /* TVSettingsScreen.swift in Sources */,
+				A3000000000000000000003C /* TVDiagnosticsSummaryCard.swift in Sources */,
+				A3000000000000000000003E /* TVEmptyStateCard.swift in Sources */,
 				A30000000000000000000010 /* TVQuranSurahRow.swift in Sources */,
 				A30000000000000000000011 /* TVLocalized.swift in Sources */,
+				A30000000000000000000035 /* TVReadableAccessibility.swift in Sources */,
+				A3000000000000000000003D /* TVTelemetry.swift in Sources */,
+				A30000000000000000000013 /* TVTypography.swift in Sources */,
+				A30000000000000000000014 /* TVSurfaceStyles.swift in Sources */,
+				A30000000000000000000015 /* TVNavigationModels.swift in Sources */,
+				A30000000000000000000016 /* TVNavigationSidebar.swift in Sources */,
+				A30000000000000000000017 /* TVContinueJourneyCard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,0 +1,1 @@
+Now run a full audit on the TVOS build we just did and let me knnw what enhancements we need, what if any errors or issues we have to fix, what the next steps are, run a full audit and find if there are any errors, run flutter, run flutter doctor, run fluter anayaluze and any other tools you find necesarry and provide me with detaled report for the whole TVOS build

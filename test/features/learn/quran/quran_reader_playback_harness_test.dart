@@ -10,6 +10,7 @@ import 'package:path_of_nur/features/learn/quran/domain/quran_ayah.dart';
 import 'package:path_of_nur/features/learn/quran/domain/quran_reference_models.dart';
 import 'package:path_of_nur/features/learn/quran/presentation/quran_reader_page.dart';
 import 'package:path_of_nur/features/learn/quran/presentation/quran_reader_playback_presentation.dart';
+import 'package:path_of_nur/features/learn/quran/presentation/widgets/quran_playback_controls_card.dart';
 import 'package:path_of_nur/l10n/app_localizations.dart';
 import 'package:path_of_nur/shared/persistence/local_store.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -37,7 +38,7 @@ class _ReaderPlaybackHarness extends ConsumerWidget {
           key: const ValueKey('now-playing-label'),
         ),
         Text(state.reciterName, key: const ValueKey('reciter-name')),
-        QuranReaderPlaybackControlsCard(
+        QuranPlaybackControlsCard(
           isPreparing: false,
           hasPlayback: state.hasPlayback,
           isPlaying: state.isPlaying,
@@ -56,6 +57,10 @@ class _ReaderPlaybackHarness extends ConsumerWidget {
           canRestartAyah: false,
           canGoNextAyah: false,
           followModeEnabled: true,
+          onPreviousAyah: () {},
+          onRestartAyah: () {},
+          onNextAyah: () {},
+          onToggleFollowMode: () {},
           onSeek: (_) {},
         ),
         for (final ayah in ayahs)

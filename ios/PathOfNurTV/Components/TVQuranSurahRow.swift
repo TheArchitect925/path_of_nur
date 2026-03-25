@@ -7,32 +7,29 @@ struct TVQuranSurahRow: View {
   var body: some View {
     HStack(spacing: 16) {
       Text("\(surah.number)")
-        .font(.system(size: 22, weight: .bold, design: .rounded))
-        .foregroundStyle(TVTheme.textPrimary)
+        .font(TVTypography.summaryLine)
+        .foregroundColor(TVTheme.textPrimary)
         .frame(width: 42)
 
       VStack(alignment: .leading, spacing: 4) {
         Text(surah.transliteratedName)
-          .font(.system(size: 24, weight: .bold, design: .serif))
-          .foregroundStyle(TVTheme.textPrimary)
+          .font(TVTypography.featureTitle)
+          .foregroundColor(TVTheme.textPrimary)
 
         Text("\(surah.englishName) • \(surah.revelationPlace) • \(surah.verseCount)")
-          .font(.system(size: 16, weight: .medium, design: .rounded))
-          .foregroundStyle(TVTheme.textSecondary)
+          .font(TVTypography.detail)
+          .foregroundColor(TVTheme.textSecondary)
       }
 
       Spacer()
 
       Text(surah.arabicName)
-        .font(.system(size: 24, weight: .semibold, design: .serif))
-        .foregroundStyle(TVTheme.textSecondary)
+        .font(TVTypography.arabicSupport)
+        .foregroundColor(TVTheme.textSecondary)
     }
     .frame(maxWidth: .infinity, alignment: .leading)
     .padding(22)
-    .background(
-      RoundedRectangle(cornerRadius: TVTheme.cardRadius, style: .continuous)
-        .fill(isSelected ? TVTheme.surfaceElevated : TVTheme.surface)
-    )
+    .tvSurfaceCard(elevated: isSelected, emphasized: isSelected)
     .tvFocusableCard()
   }
 }

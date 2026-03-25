@@ -2,25 +2,30 @@ import SwiftUI
 
 struct TVQuranPlaybackCard: View {
   @ObservedObject var viewModel: TVQuranViewModel
+  let primaryFocusID: String
+  var focusedSection: FocusState<String?>.Binding
 
   var body: some View {
     VStack(alignment: .leading, spacing: 18) {
       HStack(alignment: .top) {
         VStack(alignment: .leading, spacing: 6) {
-          Text(NSLocalizedString("Playback", comment: ""))
-            .font(.system(size: 34, weight: .bold, design: .serif))
-            .foregroundStyle(TVTheme.textPrimary)
+          Text(tvLocalized("Playback"))
+            .font(TVTypography.summaryTitle)
+            .foregroundColor(TVTheme.textPrimary)
+            .tvReadableTitle()
 
           Text(viewModel.playbackSummary)
-            .font(.system(size: 19, weight: .medium, design: .rounded))
-            .foregroundStyle(TVTheme.textSecondary)
+            .font(TVTypography.sectionSubtitle)
+            .foregroundColor(TVTheme.textSecondary)
+            .tvReadableBody()
         }
 
         Spacer()
 
         Text(viewModel.selectedReciter.displayName)
-          .font(.system(size: 18, weight: .semibold, design: .rounded))
-          .foregroundStyle(TVTheme.textSecondary)
+          .font(TVTypography.featureSubtitle)
+          .foregroundColor(TVTheme.textSecondary)
+          .tvReadableBody()
       }
 
       HStack(spacing: 16) {
@@ -29,8 +34,8 @@ struct TVQuranPlaybackCard: View {
             viewModel.selectReciter(reciter)
           } label: {
             Text(reciter.shortLabel)
-              .font(.system(size: 17, weight: .semibold, design: .rounded))
-              .foregroundStyle(
+              .font(TVTypography.chip)
+              .foregroundColor(
                 viewModel.selectedReciter == reciter
                     ? TVTheme.prayerCurrentText
                     : TVTheme.textPrimary
@@ -45,6 +50,7 @@ struct TVQuranPlaybackCard: View {
               )
           }
           .buttonStyle(.plain)
+          .accessibilityLabel(tvLocalized("Switch reciter to %@.", reciter.displayName))
         }
       }
 
@@ -55,7 +61,9 @@ struct TVQuranPlaybackCard: View {
 
         _playbackButton(
           systemName: viewModel.isPlaying ? "pause.fill" : "play.fill",
-          large: true
+          large: true,
+          focusID: primaryFocusID,
+          focusedSection: focusedSection
         ) {
           viewModel.togglePlayback()
         }
@@ -65,29 +73,47 @@ struct TVQuranPlaybackCard: View {
         }
       }
 
+      Button {
+        viewModel.openListeningMode()
+      } label: {
+        Label(
+          tvLocalized("Open listening mode"),
+          systemImage: "speaker.wave.2.bubble.left.fill"
+        )
+        .font(TVTypography.chip)
+        .foregroundColor(TVTheme.textPrimary)
+        .padding(.horizontal, 20)
+        .padding(.vertical, 14)
+        .background(TVTheme.surfaceSoft, in: Capsule())
+      }
+      .buttonStyle(.plain)
+      .tvFocusableCard()
+      .accessibilityLabel(tvLocalized("Open listening mode"))
+      .accessibilityHint(tvLocalized("Opens full-screen listening controls."))
+
       if let errorMessage = viewModel.playbackErrorMessage {
         Text(errorMessage)
-          .font(.system(size: 16, weight: .medium, design: .rounded))
-          .foregroundStyle(TVTheme.cautionText)
+          .font(TVTypography.detail)
+          .foregroundColor(TVTheme.cautionText)
+          .tvReadableBody()
       }
     }
     .frame(maxWidth: .infinity, alignment: .leading)
-    .padding(28)
-    .background(
-      RoundedRectangle(cornerRadius: 34, style: .continuous)
-        .fill(TVTheme.surface)
-    )
+    .padding(TVTheme.cardPadding)
+    .tvSurfaceCard(elevated: true)
   }
 
   private func _playbackButton(
     systemName: String,
     large: Bool = false,
+    focusID: String? = nil,
+    focusedSection: FocusState<String?>.Binding? = nil,
     action: @escaping () -> Void
   ) -> some View {
     Button(action: action) {
       Image(systemName: systemName)
         .font(.system(size: large ? 32 : 24, weight: .bold))
-        .foregroundStyle(TVTheme.textPrimary)
+        .foregroundColor(TVTheme.textPrimary)
         .frame(width: large ? 92 : 76, height: large ? 92 : 76)
         .background(
           RoundedRectangle(cornerRadius: 26, style: .continuous)
@@ -96,5 +122,37 @@ struct TVQuranPlaybackCard: View {
     }
     .buttonStyle(.plain)
     .tvFocusableCard()
+    .accessibilityLabel(_playbackAccessibilityLabel(systemName: systemName))
+    .modifier(
+      TVPlaybackFocusModifier(
+        focusID: focusID,
+        focusedSection: focusedSection
+      )
+    )
+  }
+
+  private func _playbackAccessibilityLabel(systemName: String) -> String {
+    switch systemName {
+    case "backward.fill":
+      return tvLocalized("Previous ayah")
+    case "forward.fill":
+      return tvLocalized("Next ayah")
+    default:
+      return viewModel.isPlaying ? tvLocalized("Pause audio") : tvLocalized("Play audio")
+    }
+  }
+}
+
+private struct TVPlaybackFocusModifier: ViewModifier {
+  let focusID: String?
+  let focusedSection: FocusState<String?>.Binding?
+
+  func body(content: Content) -> some View {
+    if let focusID, let focusedSection {
+      content
+        .focused(focusedSection, equals: focusID)
+    } else {
+      content
+    }
   }
 }
