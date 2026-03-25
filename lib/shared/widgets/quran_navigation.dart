@@ -26,6 +26,7 @@ void openQuranReaderLocation(
   int? ayahNumber,
   int? endAyahNumber,
   bool autoplay = false,
+  bool loopFocusedSelection = false,
 }) {
   final queryParameters = <String, String>{};
   if (ayahNumber != null && ayahNumber > 0) {
@@ -38,6 +39,9 @@ void openQuranReaderLocation(
   }
   if (autoplay) {
     queryParameters['autoplay'] = '1';
+  }
+  if (loopFocusedSelection) {
+    queryParameters['playback'] = 'selectionLoop';
   }
 
   context.pushNamed(

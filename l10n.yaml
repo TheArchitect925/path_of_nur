@@ -3,5 +3,6 @@ template-arb-file: app_en.arb
 output-localization-file: app_localizations.dart
 output-dir: lib/l10n
 gen-inputs-and-outputs-list: .dart_tool/l10n_inputs_and_outputs.json
+untranslated-messages-file: .dart_tool/untranslated-messages-file.json
 nullable-getter: false
 use-escaping: true

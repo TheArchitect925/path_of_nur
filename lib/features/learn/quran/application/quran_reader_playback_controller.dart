@@ -4,6 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:just_audio/just_audio.dart';
 
 import '../domain/quran_ayah.dart';
+import '../domain/quran_audio_resilience_models.dart';
+import 'quran_audio_resilience.dart';
 import 'quran_player_controller.dart';
 import 'quran_providers.dart';
 import 'quran_reader_playback_state.dart';
@@ -35,6 +37,27 @@ class QuranReaderPlaybackState {
     this.status = QuranReaderPlaybackStatus.idle,
     this.activeSession,
     this.storedSession,
+    this.canPlay = false,
+    this.canPause = false,
+    this.canSeek = false,
+    this.canGoPreviousAyah = false,
+    this.canRestartAyah = false,
+    this.canGoNextAyah = false,
+    this.canGoPreviousSurah = false,
+    this.canGoNextSurah = false,
+    this.previousAyahNumber,
+    this.nextAyahNumber,
+    this.previousSurahNumber,
+    this.nextSurahNumber,
+    this.repeatStartAyah,
+    this.repeatEndAyah,
+    this.ayahLoopCount = 1,
+    this.activeSourceType = QuranPlaybackSourceType.unavailable,
+    this.sourceResolutionState = QuranPlaybackSourceResolutionState.idle,
+    this.failureType,
+    this.canRetryFromFailure = false,
+    this.didApplyFallback = false,
+    this.fallbackSourceType,
   });
 
   final int pageSurahNumber;
@@ -53,9 +76,34 @@ class QuranReaderPlaybackState {
   final String reciterName;
   final QuranActivePlaybackSession? activeSession;
   final QuranRecitationSession? storedSession;
+  final bool canPlay;
+  final bool canPause;
+  final bool canSeek;
+  final bool canGoPreviousAyah;
+  final bool canRestartAyah;
+  final bool canGoNextAyah;
+  final bool canGoPreviousSurah;
+  final bool canGoNextSurah;
+  final int? previousAyahNumber;
+  final int? nextAyahNumber;
+  final int? previousSurahNumber;
+  final int? nextSurahNumber;
+  final int? repeatStartAyah;
+  final int? repeatEndAyah;
+  final int ayahLoopCount;
+  final QuranPlaybackSourceType activeSourceType;
+  final QuranPlaybackSourceResolutionState sourceResolutionState;
+  final QuranPlaybackFailureType? failureType;
+  final bool canRetryFromFailure;
+  final bool didApplyFallback;
+  final QuranPlaybackSourceType? fallbackSourceType;
 
   bool get isBuffering => status == QuranReaderPlaybackStatus.buffering;
   bool get isLoading => status == QuranReaderPlaybackStatus.loading;
+  bool get hasRepeatRange => repeatStartAyah != null && repeatEndAyah != null;
+  bool get hasRepeatLoop => ayahLoopCount > 1;
+  bool get hasRepeatConfigured => hasRepeatRange || hasRepeatLoop;
+  bool get hasRecoverableFailure => failureType != null && canRetryFromFailure;
 }
 
 abstract class QuranPlaybackFeed {
@@ -146,6 +194,10 @@ class QuranReaderPlaybackController
       quranAudioSettingsProvider,
       (_, next) => _refreshFromEvent(next),
     );
+    ref.listen<QuranPlaybackSourceState>(
+      quranPlaybackSourceStateProvider,
+      (_, next) => _refreshFromEvent(next),
+    );
     ref.listen<AsyncValue<List<QuranAyah>>>(
       quranSurahAyahsProvider(pageSurahNumber),
       (_, next) => _refreshFromEvent(next),
@@ -163,51 +215,7 @@ class QuranReaderPlaybackController
   static QuranReaderPlaybackState _buildState(
     Ref ref, {
     required int pageSurahNumber,
-  }) {
-    final feed = ref.read(quranPlaybackFeedProvider);
-    final audioSettings = ref.read(quranAudioSettingsProvider);
-    final audioRepository = ref.read(quranAudioRepositoryProvider);
-    final activeSession = ref.read(quranActivePlaybackSessionProvider);
-    final storedSession = ref.read(quranRecitationSessionProvider);
-    final surahAyahs = ref.read(quranSurahAyahsProvider(pageSurahNumber)).valueOrNull;
-    final isSurahPlaybackMode =
-        activeSession?.isSurahMode == true &&
-        activeSession?.surahNumber == pageSurahNumber;
-    final activeAyahKey = resolveQuranReaderPlaybackAyahKey(
-      currentSurahNumber: pageSurahNumber,
-      isSurahPlaybackMode: isSurahPlaybackMode,
-      surahPlaybackAyahs: surahAyahs ?? const [],
-      playerIndex: feed.currentIndex,
-      fallbackAyahKey: null,
-      activeSession: activeSession,
-    );
-    final activeAyahNumber = _parseAyahNumber(activeAyahKey);
-    final activeSurahNumber = _parseSurahNumber(activeAyahKey);
-    final status = _resolveStatus(feed);
-    final hasReachedEnd =
-        status == QuranReaderPlaybackStatus.completed && isSurahPlaybackMode;
-    final hasPlayback = feed.hasPlaybackSource || activeAyahKey != null;
-    final reciter = audioRepository.reciterById(audioSettings.reciterId);
-
-    return QuranReaderPlaybackState(
-      pageSurahNumber: pageSurahNumber,
-      activeSurahNumber: activeSurahNumber,
-      activeAyahKey: activeAyahKey,
-      activeAyahNumber: activeAyahNumber,
-      currentIndex: feed.currentIndex,
-      position: feed.position,
-      duration: feed.duration,
-      isSurahPlaybackMode: isSurahPlaybackMode,
-      hasPlayback: hasPlayback,
-      isPlaying: feed.playing,
-      hasReachedEnd: hasReachedEnd,
-      status: status,
-      reciterId: reciter.id,
-      reciterName: reciter.name,
-      activeSession: activeSession,
-      storedSession: storedSession?.surahNumber == pageSurahNumber ? storedSession : null,
-    );
-  }
+  }) => buildQuranReaderPlaybackState(ref, pageSurahNumber: pageSurahNumber);
 
   static QuranReaderPlaybackStatus _resolveStatus(QuranPlaybackFeed feed) {
     switch (feed.processingState) {
@@ -253,6 +261,134 @@ class QuranReaderPlaybackController
     return parts.length == 2 ? int.tryParse(parts.last) : null;
   }
 }
+
+QuranReaderPlaybackState buildQuranReaderPlaybackState(
+  Ref ref, {
+  required int pageSurahNumber,
+}) {
+  final feed = ref.read(quranPlaybackFeedProvider);
+  final audioSettings = ref.read(quranAudioSettingsProvider);
+  final audioRepository = ref.read(quranAudioRepositoryProvider);
+  final activeSession = ref.read(quranActivePlaybackSessionProvider);
+  final storedSession = ref.read(quranRecitationSessionProvider);
+  final surahAyahs = ref.read(quranSurahAyahsProvider(pageSurahNumber)).valueOrNull;
+  final sourceState = ref.read(quranPlaybackSourceStateProvider);
+  final isSurahPlaybackMode =
+      activeSession?.isSurahMode == true &&
+      activeSession?.surahNumber == pageSurahNumber;
+  final activeSessionForResolution =
+      sourceState.hasFailure ? null : activeSession;
+  final resolvedPlayerIndex =
+      feed.hasPlaybackSource ? feed.currentIndex : null;
+  final resolvedActiveAyahKey = resolveQuranReaderPlaybackAyahKey(
+    currentSurahNumber: pageSurahNumber,
+    isSurahPlaybackMode: isSurahPlaybackMode,
+    surahPlaybackAyahs: surahAyahs ?? const [],
+    playerIndex: resolvedPlayerIndex,
+    fallbackAyahKey: null,
+    activeSession: activeSessionForResolution,
+  );
+  final activeAyahKey = resolvedActiveAyahKey;
+  final activeAyahNumber = QuranReaderPlaybackController._parseAyahNumber(
+    activeAyahKey,
+  );
+  final activeSurahNumber = QuranReaderPlaybackController._parseSurahNumber(
+    activeAyahKey,
+  );
+  final status = QuranReaderPlaybackController._resolveStatus(feed);
+  final hasReachedEnd =
+      status == QuranReaderPlaybackStatus.completed && isSurahPlaybackMode;
+  final isPreparingTransition =
+      sourceState.resolutionState ==
+      QuranPlaybackSourceResolutionState.preparingTransition;
+  final hasPlayback =
+      feed.hasPlaybackSource ||
+      activeAyahKey != null ||
+      sourceState.hasFailure ||
+      (activeSession?.surahNumber == pageSurahNumber);
+  final reciter = audioRepository.reciterById(audioSettings.reciterId);
+  final sessionAyahs =
+      activeSession?.surahNumber == activeSurahNumber
+          ? activeSession?.ayahNumbers ?? const <int>[]
+          : const <int>[];
+  final sessionIndex = activeAyahNumber == null
+      ? null
+      : sessionAyahs.indexOf(activeAyahNumber);
+  final hasSessionIndex = sessionIndex != null && sessionIndex >= 0;
+  final resolvedSessionIndex = hasSessionIndex ? sessionIndex : null;
+  final previousAyahNumber = resolvedSessionIndex != null && resolvedSessionIndex > 0
+      ? sessionAyahs[resolvedSessionIndex - 1]
+      : null;
+  final nextAyahNumber =
+      resolvedSessionIndex != null &&
+          resolvedSessionIndex < _sessionAyahsLastIndex(sessionAyahs)
+      ? sessionAyahs[resolvedSessionIndex + 1]
+      : null;
+  final previousSurahNumber = activeSurahNumber != null && activeSurahNumber > 1
+      ? activeSurahNumber - 1
+      : null;
+  final nextSurahNumber =
+      activeSurahNumber != null && activeSurahNumber < 114
+      ? activeSurahNumber + 1
+      : null;
+
+  return QuranReaderPlaybackState(
+    pageSurahNumber: pageSurahNumber,
+    activeSurahNumber: activeSurahNumber,
+    activeAyahKey: activeAyahKey,
+    activeAyahNumber: activeAyahNumber,
+    currentIndex: feed.currentIndex,
+    position: feed.position,
+    duration: feed.duration,
+    isSurahPlaybackMode: isSurahPlaybackMode,
+    hasPlayback: hasPlayback,
+    isPlaying: feed.playing,
+    hasReachedEnd: hasReachedEnd,
+    status: status,
+    reciterId: reciter.id,
+    reciterName: reciter.name,
+    activeSession: activeSession,
+    storedSession: storedSession?.surahNumber == pageSurahNumber ? storedSession : null,
+    canPlay:
+        hasPlayback &&
+        !feed.playing &&
+        status != QuranReaderPlaybackStatus.loading &&
+        !isPreparingTransition,
+    canPause: hasPlayback && feed.playing,
+    canSeek: hasPlayback && (feed.duration?.inMilliseconds ?? 0) > 0,
+    canGoPreviousAyah: previousAyahNumber != null,
+    canRestartAyah: activeAyahNumber != null,
+    canGoNextAyah: nextAyahNumber != null,
+    canGoPreviousSurah: previousSurahNumber != null,
+    canGoNextSurah: nextSurahNumber != null,
+    previousAyahNumber: previousAyahNumber,
+    nextAyahNumber: nextAyahNumber,
+    previousSurahNumber: previousSurahNumber,
+    nextSurahNumber: nextSurahNumber,
+    repeatStartAyah: audioSettings.repeatStartAyah,
+    repeatEndAyah: audioSettings.repeatEndAyah,
+    ayahLoopCount: audioSettings.ayahLoopCount,
+    activeSourceType: sourceState.activeSourceType,
+    sourceResolutionState: sourceState.resolutionState,
+    failureType: sourceState.failureType,
+    canRetryFromFailure: sourceState.canRetry,
+    didApplyFallback: sourceState.didApplyFallback,
+    fallbackSourceType: sourceState.fallbackSourceType,
+  );
+}
+
+int _sessionAyahsLastIndex(List<int> ayahNumbers) => ayahNumbers.length - 1;
+
+final quranGlobalPlaybackStateProvider = Provider<QuranReaderPlaybackState>((ref) {
+  final activeSession = ref.watch(quranActivePlaybackSessionProvider);
+  final storedSession = ref.watch(quranRecitationSessionProvider);
+  final currentSurah = activeSession?.surahNumber ?? storedSession?.surahNumber ?? 1;
+  ref.watch(quranPlaybackFeedProvider);
+  ref.watch(quranAudioSettingsProvider);
+  ref.watch(quranPlaybackSourceStateProvider);
+  ref.watch(quranSurahAyahsProvider(currentSurah));
+  return buildQuranReaderPlaybackState(ref, pageSurahNumber: currentSurah);
+});
 
 final quranReaderPlaybackControllerProvider = StateNotifierProvider.autoDispose
     .family<QuranReaderPlaybackController, QuranReaderPlaybackState, int>((

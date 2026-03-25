@@ -45,7 +45,7 @@ class _CreationChallengesPageState extends ConsumerState<CreationChallengesPage>
     final state = ref.watch(creationChallengeServiceProvider);
     return AppPageScaffold(
       headerIcon: Icons.flag_circle_rounded,
-      title: 'Creation Challenges',
+      title: l10n.creationChallengesPageTitle,
       subtitle: localizedAppPageDescription(
         context,
         AppPageDescriptionKey.creationChallenges,
@@ -67,9 +67,25 @@ class _CreationChallengesPageState extends ConsumerState<CreationChallengesPage>
             spacing: 8,
             runSpacing: 8,
             children: [
-              _pill(context, 'Daily streak', streak == 0 ? 'A new streak begins today.' : '$streak days'),
-              _pill(context, 'Completed', '${state.completions.length}'),
-              _pill(context, 'Recent', '${state.history.where((item) => item.completed).take(7).length} this week'),
+              _pill(
+                context,
+                l10n.creationChallengesDailyStreakLabel,
+                streak == 0
+                    ? l10n.creationChallengesNewStreakBeginsToday
+                    : l10n.creationChallengesStreakDays(streak),
+              ),
+              _pill(
+                context,
+                l10n.creationChallengesCompletedLabel,
+                '${state.completions.length}',
+              ),
+              _pill(
+                context,
+                l10n.creationChallengesRecentLabel,
+                l10n.creationChallengesRecentThisWeek(
+                  state.history.where((item) => item.completed).take(7).length,
+                ),
+              ),
             ],
           ),
         ),
@@ -89,7 +105,7 @@ class _CreationChallengesPageState extends ConsumerState<CreationChallengesPage>
                   contentPadding: EdgeInsets.zero,
                   title: Text(_historyTitle(entry.challengeId)),
                   subtitle: Text(
-                    '${entry.completed ? 'Completed' : 'Skipped'} • ${_dateLabel(entry.date)}',
+                    '${entry.completed ? l10n.creationChallengesStatusCompleted : l10n.creationChallengesSkippedLabel} • ${_dateLabel(entry.date)}',
                   ),
                   trailing: Icon(
                     entry.completed ? Icons.check_circle_rounded : Icons.remove_circle_outline_rounded,
@@ -130,6 +146,7 @@ class _ChallengeCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     final challenge = summary.challenge;
     final category = challenge.targetCategoryId == null ? null : creationCategoryById[challenge.targetCategoryId!];
     final verse = challenge.verseId == null ? null : creationVerseById[challenge.verseId!];
@@ -151,7 +168,10 @@ class _ChallengeCard extends ConsumerWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(_slotLabel(summary.slot), style: Theme.of(context).textTheme.labelLarge),
+                    Text(
+                      _slotLabel(context, summary.slot),
+                      style: Theme.of(context).textTheme.labelLarge,
+                    ),
                     Text(challenge.title, style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700)),
                     const SizedBox(height: 2),
                     Text(challenge.subtitle),
@@ -190,25 +210,27 @@ class _ChallengeCard extends ConsumerWidget {
           const SizedBox(height: 12),
           Row(
             children: [
-              Text('+${challenge.rewardDrops} drop'),
+              Text(
+                l10n.creationChallengesRewardDrops(challenge.rewardDrops),
+              ),
               const Spacer(),
               if (summary.isCompleted)
-                const Text('Completed')
+                Text(l10n.creationChallengesStatusCompleted)
               else ...[
                 if (challenge.completionRule == CreationChallengeRuleType.manualConfirm)
                   OutlinedButton(
                     onPressed: () => ref.read(creationChallengeServiceProvider.notifier).completeManually(challenge.id),
-                    child: const Text('Mark complete'),
+                    child: Text(l10n.creationChallengesMarkCompleteAction),
                   )
                 else
                   FilledButton.tonal(
                     onPressed: () => _openChallenge(context, ref, challenge),
-                    child: Text(_ctaLabel(challenge)),
+                    child: Text(_ctaLabel(l10n, challenge)),
                   ),
                 const SizedBox(width: 8),
                 TextButton(
                   onPressed: () => ref.read(creationChallengeServiceProvider.notifier).skipChallenge(summary.slot),
-                  child: const Text('Skip'),
+                  child: Text(l10n.creationChallengesSkipAction),
                 ),
               ],
             ],
@@ -219,10 +241,11 @@ class _ChallengeCard extends ConsumerWidget {
   }
 
   Widget _statusChip(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final (label, icon) = switch (summary.status) {
-      CreationChallengeStatus.completed => ('Completed', Icons.check_circle_rounded),
-      CreationChallengeStatus.expired => ('Expired', Icons.schedule_rounded),
-      CreationChallengeStatus.available => ('Open', Icons.radio_button_unchecked_rounded),
+      CreationChallengeStatus.completed => (l10n.creationChallengesStatusCompleted, Icons.check_circle_rounded),
+      CreationChallengeStatus.expired => (l10n.creationChallengesStatusExpired, Icons.schedule_rounded),
+      CreationChallengeStatus.available => (l10n.creationChallengesStatusOpen, Icons.radio_button_unchecked_rounded),
     };
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
@@ -241,27 +264,29 @@ class _ChallengeCard extends ConsumerWidget {
     );
   }
 
-  String _slotLabel(ChallengeSlot slot) {
+  String _slotLabel(BuildContext context, ChallengeSlot slot) {
     switch (slot) {
       case ChallengeSlot.daily:
-        return 'Today’s Challenge';
+        return AppLocalizations.of(context).creationChallengesSlotToday;
       case ChallengeSlot.bonus:
-        return 'Bonus Challenge';
+        return AppLocalizations.of(context).creationChallengesSlotBonus;
       case ChallengeSlot.weekly:
-        return 'Weekly Reflection';
+        return AppLocalizations.of(context).creationChallengesSlotWeekly;
     }
   }
 
-  String _ctaLabel(CreationChallenge challenge) {
+  String _ctaLabel(AppLocalizations l10n, CreationChallenge challenge) {
     switch (challenge.targetExplorerMode) {
       case CreationExplorerMode.skyExplorer:
-        return 'Open Sky Explorer';
+        return l10n.creationChallengesOpenSkyExplorerAction;
       case CreationExplorerMode.creationExplorer:
-        return 'Open Creation Explorer';
+        return l10n.creationChallengesOpenCreationExplorerAction;
       case CreationExplorerMode.journal:
-        return 'Open Journal';
+        return l10n.creationChallengesOpenJournalAction;
       case null:
-        return challenge.challengeType == CreationChallengeType.reflect ? 'Reflect now' : 'Open';
+        return challenge.challengeType == CreationChallengeType.reflect
+            ? l10n.creationChallengesReflectNowAction
+            : l10n.creationChallengesOpenAction;
     }
   }
 

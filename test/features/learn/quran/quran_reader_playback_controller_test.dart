@@ -1,9 +1,11 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:path_of_nur/features/learn/quran/application/quran_audio_resilience.dart';
 import 'package:path_of_nur/features/learn/quran/application/quran_player_controller.dart';
 import 'package:path_of_nur/features/learn/quran/application/quran_providers.dart';
 import 'package:path_of_nur/features/learn/quran/application/quran_reader_playback_controller.dart';
+import 'package:path_of_nur/features/learn/quran/domain/quran_audio_resilience_models.dart';
 import 'package:path_of_nur/features/learn/quran/domain/quran_ayah.dart';
 import 'package:path_of_nur/shared/persistence/local_store.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -168,6 +170,46 @@ void main() {
     expect(state.storedSession?.positionSeconds, 18);
   });
 
+  test('retryable source failure preserves session context without faking active highlight', () async {
+    final feed = FakeQuranPlaybackFeed();
+    final container = await createContainer(feed);
+    addTearDown(() async {
+      container.dispose();
+      await feed.dispose();
+    });
+
+    container.read(quranActivePlaybackSessionProvider.notifier).state =
+        const QuranActivePlaybackSession(
+          surahNumber: 1,
+          ayahNumbers: <int>[1, 2, 3],
+          reciterId: 'husary',
+          playbackSpeed: 1,
+          includeMediaTags: true,
+          isSurahMode: true,
+        );
+    container
+        .read(quranRecitationSessionProvider.notifier)
+        .save(surahNumber: 1, ayahNumber: 2, positionSeconds: 18);
+    container.read(quranPlaybackSourceStateProvider.notifier).markFailure(
+      failureType: QuranPlaybackFailureType.networkUnavailable,
+      activeSourceType: QuranPlaybackSourceType.remoteStream,
+      canRetry: true,
+      canUseFallback: false,
+      requiresUserAction: true,
+      surahNumber: 1,
+      ayahNumber: 2,
+      reciterId: 'husary',
+    );
+    await Future<void>.delayed(Duration.zero);
+
+    final state = container.read(quranReaderPlaybackControllerProvider(1));
+    expect(state.hasPlayback, isTrue);
+    expect(state.activeAyahKey, isNull);
+    expect(state.hasRecoverableFailure, isTrue);
+    expect(state.failureType, QuranPlaybackFailureType.networkUnavailable);
+    expect(state.storedSession?.ayahNumber, 2);
+  });
+
   test('reciter metadata follows settings changes without losing active ayah', () async {
     final feed = FakeQuranPlaybackFeed()
       ..update(
@@ -202,5 +244,47 @@ void main() {
     expect(state.activeAyahKey, '1:2');
     expect(state.reciterId, 'alafasy');
     expect(state.reciterName.toLowerCase(), contains('afasy'));
+  });
+
+  test('preparing transition state keeps playback present but disables resume until source is ready', () async {
+    final feed = FakeQuranPlaybackFeed()
+      ..update(
+        playing: false,
+        hasPlaybackSource: true,
+        currentIndex: 1,
+        processingState: ProcessingState.ready,
+      );
+    final container = await createContainer(feed);
+    addTearDown(() async {
+      container.dispose();
+      await feed.dispose();
+    });
+
+    container.read(quranActivePlaybackSessionProvider.notifier).state =
+        const QuranActivePlaybackSession(
+          surahNumber: 1,
+          ayahNumbers: <int>[1, 2, 3],
+          reciterId: 'husary',
+          playbackSpeed: 1,
+          includeMediaTags: true,
+          isSurahMode: true,
+        );
+    container.read(quranPlaybackSourceStateProvider.notifier).markPreparingTransition(
+      activeSourceType: QuranPlaybackSourceType.remoteStream,
+      surahNumber: 1,
+      ayahNumber: 3,
+      reciterId: 'husary',
+    );
+    feed.emitIndex();
+    feed.emitPlayerState();
+    await Future<void>.delayed(Duration.zero);
+
+    final state = container.read(quranReaderPlaybackControllerProvider(1));
+    expect(state.hasPlayback, isTrue);
+    expect(state.canPlay, isFalse);
+    expect(
+      state.sourceResolutionState,
+      QuranPlaybackSourceResolutionState.preparingTransition,
+    );
   });
 }

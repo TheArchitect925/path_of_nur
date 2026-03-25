@@ -11,7 +11,9 @@ import '../../../../core/prayer/prayer_preferences.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_surfaces.dart';
 import '../../../../features/profile/application/profile_settings_provider.dart';
+import '../../../../shared/application/daily_clock_provider.dart';
 import '../../../../shared/state/location_permission_state.dart';
+import '../../../../shared/widgets/home_feature_card_header.dart';
 import '../../../../shared/widgets/moon_phase_visual.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/prayer_location_picker_sheet.dart';
@@ -68,13 +70,21 @@ class _CelestialCycleCardState extends ConsumerState<CelestialCycleCard> {
 
   @override
   Widget build(BuildContext context) {
-    final snapshotAsync = ref.watch(celestialSnapshotProvider);
+    final selectedDate = ref.watch(homeCelestialSelectedDateProvider);
+    final snapshotAsync = ref.watch(celestialSnapshotForDateProvider(selectedDate));
     final reduceMotion = ref.watch(
       profileSettingsProvider.select((value) => value.reduceMotion),
     );
     final prefs = ref.watch(prayerSettingsProvider).preferences;
     final displayLocation = ref.watch(prayerLocationDisplayLabelProvider).value ?? prefs.location;
     final l10n = AppLocalizations.of(context);
+    final now = ref.watch(dailyNowProvider).value ?? DateTime.now();
+    final today = DateTime(now.year, now.month, now.day);
+    final dateLabel = _formatCardDateLabel(
+      l10n: l10n,
+      selectedDate: selectedDate,
+      today: today,
+    );
 
     return PremiumCard(
       padding: const EdgeInsets.all(0),
@@ -96,166 +106,230 @@ class _CelestialCycleCardState extends ConsumerState<CelestialCycleCard> {
                 });
               }
               final moonVisual = moonPhaseVisualForDate(snapshot.timestamp, l10n);
+              final backgroundGradient = _resolveSkyCardGradient(
+                snapshot.solarData.state,
+              );
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Signs in the sky',
-                              style: Theme.of(context).textTheme.titleMedium,
-                            ),
-                            const SizedBox(height: 4),
-                            Text(
-                              '${snapshot.locationLabel} • ${DateFormat.yMMMMd().format(snapshot.timestamp)}',
-                              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                                    color: AppColors.onSurfaceSubtle,
-                                  ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(width: 8),
-                      IconButton(
-                        onPressed: () => _showLocationPicker(context, displayLocation),
-                        tooltip: l10n.worshipPrayerChooseLocationTitle,
-                        splashRadius: 20,
-                        icon: const Icon(Icons.location_on_outlined),
-                      ),
-                      _SkyStateChip(state: snapshot.solarData.state),
-                    ],
-                  ),
-                  const SizedBox(height: 18),
-                  _HorizonProgress(
-                    snapshot: snapshot,
-                    reduceMotion: reduceMotion,
-                  ),
-                  const SizedBox(height: 16),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: _InfoPill(
-                          label: 'Sunrise',
-                          value: DateFormat.jm().format(snapshot.solarData.sunrise),
-                          tint: _resolveSolarTint(
-                            kind: _SolarPillKind.sunrise,
-                            now: snapshot.timestamp,
-                            eventTime: snapshot.solarData.sunrise,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(width: 10),
-                      Expanded(
-                        child: _InfoPill(
-                          label: 'Sunset',
-                          value: DateFormat.jm().format(snapshot.solarData.sunset),
-                          tint: _resolveSolarTint(
-                            kind: _SolarPillKind.sunset,
-                            now: snapshot.timestamp,
-                            eventTime: snapshot.solarData.sunset,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 10),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: _InfoPill(
-                          label: 'Moonrise',
-                          value: snapshot.lunarData.moonrise == null
-                              ? 'Unavailable'
-                              : DateFormat.jm().format(snapshot.lunarData.moonrise!),
-                          footnote: snapshot.lunarData.riseSetApproximate ? 'Approx.' : null,
-                        ),
-                      ),
-                      const SizedBox(width: 10),
-                      Expanded(
-                        child: _InfoPill(
-                          label: 'Moonset',
-                          value: snapshot.lunarData.moonset == null
-                              ? 'Unavailable'
-                              : DateFormat.jm().format(snapshot.lunarData.moonset!),
-                          footnote: snapshot.lunarData.riseSetApproximate ? 'Approx.' : null,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 12),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: _InfoPill(
-                          label: 'Moon phase',
-                          value: snapshot.lunarData.phaseName,
-                          footnote: '${snapshot.lunarData.illuminationPercent}% illumination',
-                        ),
-                      ),
-                      const SizedBox(width: 10),
-                      Expanded(
-                        child: _InfoPill(
-                          label: 'Next event',
-                          value: '${snapshot.nextEvent.label} ${DateFormat.jm().format(snapshot.nextEvent.time)}',
-                          footnote: snapshot.nextEvent.relativeDescription,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 12),
-                  Center(
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 18,
-                        vertical: 10,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Colors.white.withValues(alpha: 0.025),
-                        borderRadius: BorderRadius.circular(22),
-                        border: Border.all(
-                          color: Colors.white.withValues(alpha: 0.06),
-                        ),
-                      ),
-                      child: MoonPhaseVisual(
-                        moon: moonVisual,
-                        size: 68,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 14),
-                  Container(
-                    padding: const EdgeInsets.all(14),
+                  DecoratedBox(
                     decoration: BoxDecoration(
-                      color: Colors.white.withValues(alpha: 0.03),
-                      borderRadius: BorderRadius.circular(20),
+                      gradient: backgroundGradient,
+                      borderRadius: BorderRadius.circular(24),
                       border: Border.all(
                         color: Colors.white.withValues(alpha: 0.08),
                       ),
                     ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        QuranVerseContent(
-                          source: QuranVerseSource(
-                            referenceText: snapshot.verseOfMoment.ayahReference,
-                            arabicText: snapshot.verseOfMoment.arabicText,
-                            translation: snapshot.verseOfMoment.translation,
+                    child: Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          HomeFeatureCardHeader(
+                            icon: Icons.wb_twilight_rounded,
+                            iconTint: const Color(0xFF9AB7FF),
+                            title: l10n.celestialHomeCardTitle,
+                            subtitle: snapshot.locationLabel,
+                            trailing: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                IconButton(
+                                  onPressed: () => _showLocationPicker(
+                                    context,
+                                    displayLocation,
+                                  ),
+                                  tooltip: l10n.worshipPrayerChooseLocationTitle,
+                                  splashRadius: 20,
+                                  icon: const Icon(Icons.location_on_outlined),
+                                ),
+                                _SkyStateChip(state: snapshot.solarData.state),
+                              ],
+                            ),
                           ),
-                          center: false,
-                          dense: true,
-                          arabicBaseSize: 24,
-                        ),
-                        const SizedBox(height: 6),
-                        Text(
-                          snapshot.verseOfMoment.shortReflection,
-                          style: Theme.of(context).textTheme.bodyMedium,
-                        ),
-                      ],
+                          const SizedBox(height: 12),
+                          Row(
+                            children: [
+                              IconButton(
+                                onPressed: () {
+                                  ref
+                                          .read(homeCelestialSelectedDateProvider.notifier)
+                                          .state =
+                                      selectedDate.subtract(const Duration(days: 1));
+                                },
+                                icon: const Icon(
+                                  Icons.chevron_left_rounded,
+                                  color: Color(0xFF7A5A33),
+                                ),
+                                tooltip: l10n.homePrayerPreviousDayTooltip,
+                              ),
+                              Expanded(
+                                child: Text(
+                                  dateLabel,
+                                  textAlign: TextAlign.center,
+                                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                                        fontWeight: FontWeight.w700,
+                                        color: AppColors.onSurface,
+                                      ),
+                                ),
+                              ),
+                              IconButton(
+                                onPressed: () {
+                                  ref
+                                          .read(homeCelestialSelectedDateProvider.notifier)
+                                          .state =
+                                      selectedDate.add(const Duration(days: 1));
+                                },
+                                icon: const Icon(
+                                  Icons.chevron_right_rounded,
+                                  color: Color(0xFF7A5A33),
+                                ),
+                                tooltip: l10n.homePrayerNextDayTooltip,
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 16),
+                          _HorizonProgress(
+                            snapshot: snapshot,
+                            reduceMotion: reduceMotion,
+                          ),
+                          const SizedBox(height: 16),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: _InfoPill(
+                                  label: l10n.celestialSunriseLabel,
+                                  value: DateFormat.jm().format(snapshot.solarData.sunrise),
+                                  shellTint: const Color(0xFFE7C259),
+                                  tint: _resolveSolarTint(
+                                    kind: _SolarPillKind.sunrise,
+                                    now: snapshot.timestamp,
+                                    eventTime: snapshot.solarData.sunrise,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(width: 10),
+                              Expanded(
+                                child: _InfoPill(
+                                  label: l10n.celestialSunsetLabel,
+                                  value: DateFormat.jm().format(snapshot.solarData.sunset),
+                                  shellTint: const Color(0xFFE7C259),
+                                  tint: _resolveSolarTint(
+                                    kind: _SolarPillKind.sunset,
+                                    now: snapshot.timestamp,
+                                    eventTime: snapshot.solarData.sunset,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 10),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: _InfoPill(
+                                  label: l10n.celestialMoonriseLabel,
+                                  value: snapshot.lunarData.moonrise == null
+                                      ? l10n.celestialUnavailableLabel
+                                      : DateFormat.jm().format(snapshot.lunarData.moonrise!),
+                                  shellTint: const Color(0xFFC2C5CC),
+                                  footnote: snapshot.lunarData.riseSetApproximate
+                                      ? l10n.celestialApproximateLabel
+                                      : null,
+                                ),
+                              ),
+                              const SizedBox(width: 10),
+                              Expanded(
+                                child: _InfoPill(
+                                  label: l10n.celestialMoonsetLabel,
+                                  value: snapshot.lunarData.moonset == null
+                                      ? l10n.celestialUnavailableLabel
+                                      : DateFormat.jm().format(snapshot.lunarData.moonset!),
+                                  shellTint: const Color(0xFFC2C5CC),
+                                  footnote: snapshot.lunarData.riseSetApproximate
+                                      ? l10n.celestialApproximateLabel
+                                      : null,
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 12),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: _InfoPill(
+                                  label: l10n.celestialMoonPhaseLabel,
+                                  value: snapshot.lunarData.phaseName,
+                                  footnote: l10n.celestialIlluminationPercentLabel(
+                                    snapshot.lunarData.illuminationPercent,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(width: 10),
+                              Expanded(
+                                child: _InfoPill(
+                                  label: l10n.celestialNextEventLabel,
+                                  value: l10n.celestialNextEventValue(
+                                    snapshot.nextEvent.label,
+                                    DateFormat.jm().format(snapshot.nextEvent.time),
+                                  ),
+                                  footnote: snapshot.nextEvent.relativeDescription,
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 12),
+                          Center(
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 18,
+                                vertical: 10,
+                              ),
+                              decoration: BoxDecoration(
+                                color: Colors.white.withValues(alpha: 0.025),
+                                borderRadius: BorderRadius.circular(20),
+                                border: Border.all(
+                                  color: Colors.white.withValues(alpha: 0.06),
+                                ),
+                              ),
+                              child: MoonPhaseVisual(
+                                moon: moonVisual,
+                                size: 68,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 14),
+                          Container(
+                            padding: const EdgeInsets.all(15),
+                            decoration: BoxDecoration(
+                              color: Colors.white.withValues(alpha: 0.03),
+                              borderRadius: BorderRadius.circular(20),
+                              border: Border.all(
+                                color: Colors.white.withValues(alpha: 0.08),
+                              ),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                QuranVerseContent(
+                                  source: QuranVerseSource(
+                                    referenceText: snapshot.verseOfMoment.ayahReference,
+                                    arabicText: snapshot.verseOfMoment.arabicText,
+                                    translation: snapshot.verseOfMoment.translation,
+                                  ),
+                                  center: false,
+                                  dense: true,
+                                  arabicBaseSize: 24,
+                                ),
+                                const SizedBox(height: 6),
+                                Text(
+                                  snapshot.verseOfMoment.shortReflection,
+                                  style: Theme.of(context).textTheme.bodyMedium,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],
@@ -274,6 +348,47 @@ class _CelestialCycleCardState extends ConsumerState<CelestialCycleCard> {
   }
 }
 
+LinearGradient _resolveSkyCardGradient(CelestialSkyState state) {
+  return switch (state) {
+    CelestialSkyState.dawn => const LinearGradient(
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+      colors: <Color>[
+        Color(0xFFF7E0BB),
+        Color(0xFFEFC6A8),
+        Color(0xFFD8CFE7),
+      ],
+    ),
+    CelestialSkyState.day => const LinearGradient(
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+      colors: <Color>[
+        Color(0xFFF5E7BC),
+        Color(0xFFEED7A2),
+        Color(0xFFD6E7F2),
+      ],
+    ),
+    CelestialSkyState.dusk => const LinearGradient(
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+      colors: <Color>[
+        Color(0xFFE2B493),
+        Color(0xFFB88892),
+        Color(0xFF5A597F),
+      ],
+    ),
+    CelestialSkyState.night => const LinearGradient(
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+      colors: <Color>[
+        Color(0xFFDCEBFA),
+        Color(0xFFCFE3F8),
+        Color(0xFFBFD8F1),
+      ],
+    ),
+  };
+}
+
 class _SkyStateChip extends StatelessWidget {
   const _SkyStateChip({required this.state});
 
@@ -281,11 +396,12 @@ class _SkyStateChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final (label, color) = switch (state) {
-      CelestialSkyState.dawn => ('Dawn', const Color(0xFFFFC68A)),
-      CelestialSkyState.day => ('Day', const Color(0xFFFFE19A)),
-      CelestialSkyState.dusk => ('Dusk', const Color(0xFFE6A3AF)),
-      CelestialSkyState.night => ('Night', const Color(0xFF9AB7FF)),
+      CelestialSkyState.dawn => (l10n.celestialSkyStateDawn, const Color(0xFFFFC68A)),
+      CelestialSkyState.day => (l10n.celestialSkyStateDay, const Color(0xFFFFE19A)),
+      CelestialSkyState.dusk => (l10n.celestialSkyStateDusk, const Color(0xFFE6A3AF)),
+      CelestialSkyState.night => (l10n.celestialSkyStateNight, const Color(0xFF9AB7FF)),
     };
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
@@ -388,12 +504,14 @@ class _InfoPill extends StatelessWidget {
     required this.value,
     this.footnote,
     this.tint,
+    this.shellTint,
   });
 
   final String label;
   final String value;
   final String? footnote;
   final _SolarPillTint? tint;
+  final Color? shellTint;
 
   @override
   Widget build(BuildContext context) {
@@ -407,7 +525,7 @@ class _InfoPill extends StatelessWidget {
     return PremiumCard(
       padding: const EdgeInsets.all(12),
       surfaceVariant: AppSurfaceVariant.pill,
-      surfaceTintColor: tint?.surfaceTint,
+      surfaceTintColor: shellTint ?? tint?.surfaceTint,
       child: DecoratedBox(
         decoration: BoxDecoration(
           gradient: overlayGradient,
@@ -443,6 +561,29 @@ class _InfoPill extends StatelessWidget {
   }
 }
 
+String _formatCardDateLabel({
+  required AppLocalizations l10n,
+  required DateTime selectedDate,
+  required DateTime today,
+}) {
+  if (_sameDay(selectedDate, today)) {
+    return '${l10n.homePrayerDateToday} • ${DateFormat.yMMMMd().format(selectedDate)}';
+  }
+  final yesterday = today.subtract(const Duration(days: 1));
+  if (_sameDay(selectedDate, yesterday)) {
+    return '${l10n.homePrayerDateYesterday} • ${DateFormat.yMMMMd().format(selectedDate)}';
+  }
+  final tomorrow = today.add(const Duration(days: 1));
+  if (_sameDay(selectedDate, tomorrow)) {
+    return '${l10n.homePrayerDateTomorrow} • ${DateFormat.yMMMMd().format(selectedDate)}';
+  }
+  return DateFormat.yMMMMd().format(selectedDate);
+}
+
+bool _sameDay(DateTime a, DateTime b) {
+  return a.year == b.year && a.month == b.month && a.day == b.day;
+}
+
 class _HorizonProgress extends StatelessWidget {
   const _HorizonProgress({
     required this.snapshot,
@@ -454,6 +595,7 @@ class _HorizonProgress extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final progress = snapshot.solarData.progress.clamp(0.0, 1.0);
     final icon = snapshot.solarData.isAboveHorizon ? Icons.wb_sunny_rounded : Icons.dark_mode_rounded;
     final markerColor = snapshot.solarData.isAboveHorizon
@@ -503,7 +645,9 @@ class _HorizonProgress extends StatelessWidget {
                 left: 0,
                 bottom: 0,
                 child: Text(
-                  'Sunrise ${DateFormat.jm().format(snapshot.solarData.sunrise)}',
+                  l10n.celestialSunriseTimeLabel(
+                    DateFormat.jm().format(snapshot.solarData.sunrise),
+                  ),
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
               ),
@@ -511,7 +655,9 @@ class _HorizonProgress extends StatelessWidget {
                 right: 0,
                 bottom: 0,
                 child: Text(
-                  'Sunset ${DateFormat.jm().format(snapshot.solarData.sunset)}',
+                  l10n.celestialSunsetTimeLabel(
+                    DateFormat.jm().format(snapshot.solarData.sunset),
+                  ),
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
               ),
@@ -572,23 +718,24 @@ class _UnavailableState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Celestial data is unavailable right now',
+          l10n.celestialUnavailableTitle,
           style: Theme.of(context).textTheme.titleMedium,
         ),
         const SizedBox(height: 8),
         Text(
-          'Choose a city or refresh location to calculate the sky cycle for your area.',
+          l10n.celestialUnavailableSubtitle,
           style: Theme.of(context).textTheme.bodyMedium,
         ),
         const SizedBox(height: 12),
         OutlinedButton.icon(
           onPressed: onPickLocation,
           icon: const Icon(Icons.place_rounded),
-          label: const Text('Choose location'),
+          label: Text(l10n.celestialChooseLocationAction),
         ),
       ],
     );

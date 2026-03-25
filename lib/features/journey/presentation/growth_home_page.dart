@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/content/learning_quote.dart';
 import '../../../shared/theme/islamic_icons.dart';
+import '../../../shared/widgets/major_page_shortcuts.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/quran_navigation.dart';
 import '../../../shared/widgets/section_hub_scaffold.dart';
@@ -35,6 +36,11 @@ class GrowthHomePage extends ConsumerWidget {
           openQuranQuoteLocation(context, selectedQuote),
       shortcutOpenLabel: l10n.learnShortcutOpen,
       shortcutCloseLabel: l10n.learnShortcutClose,
+      shortcutActions: buildMajorPageShortcutActions(
+        context,
+        ref,
+        MajorPageShortcutFamily.growth,
+      ),
       children: [
         PremiumCard(
           child: Column(

@@ -809,6 +809,12 @@ abstract class AppLocalizations {
   /// **'Open archive'**
   String get historyOpenArchiveAction;
 
+  /// No description provided for @historyNextUpcomingEventLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Next event'**
+  String get historyNextUpcomingEventLabel;
+
   /// No description provided for @historyOverviewTitle.
   ///
   /// In en, this message translates to:
@@ -4926,6 +4932,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Close shortcuts'**
   String get learnShortcutClose;
+
+  /// No description provided for @majorPageShortcutContinueJourneyLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue Journey'**
+  String get majorPageShortcutContinueJourneyLabel;
+
+  /// No description provided for @majorPageShortcutQuickLessonLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Quick Lesson'**
+  String get majorPageShortcutQuickLessonLabel;
+
+  /// No description provided for @majorPageShortcutContinueReadingLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue Reading'**
+  String get majorPageShortcutContinueReadingLabel;
+
+  /// No description provided for @majorPageShortcutContinueListeningLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue Listening'**
+  String get majorPageShortcutContinueListeningLabel;
+
+  /// No description provided for @majorPageShortcutSurahListLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Surah List'**
+  String get majorPageShortcutSurahListLabel;
 
   /// No description provided for @learnSectionLandingSubtitle.
   ///
@@ -28149,6 +28185,156 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Resume Qur\'\'an playback'**
   String get shellQuranPlaybackResumeTooltip;
+
+  /// No description provided for @shellQuranMiniPlayerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Qur\'\'an playback'**
+  String get shellQuranMiniPlayerTitle;
+
+  /// No description provided for @shellQuranMiniPlayerPlaying.
+  ///
+  /// In en, this message translates to:
+  /// **'Playing now'**
+  String get shellQuranMiniPlayerPlaying;
+
+  /// No description provided for @shellQuranMiniPlayerPaused.
+  ///
+  /// In en, this message translates to:
+  /// **'Paused'**
+  String get shellQuranMiniPlayerPaused;
+
+  /// No description provided for @shellQuranMiniPlayerOpenReaderAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open reader'**
+  String get shellQuranMiniPlayerOpenReaderAction;
+
+  /// No description provided for @quranPlaybackStopAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop playback'**
+  String get quranPlaybackStopAction;
+
+  /// No description provided for @quranPlaybackOpenPlayerAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open player'**
+  String get quranPlaybackOpenPlayerAction;
+
+  /// No description provided for @quranFocusRecitationModeAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Focus mode'**
+  String get quranFocusRecitationModeAction;
+
+  /// No description provided for @quranFocusRecitationTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Focus Recitation'**
+  String get quranFocusRecitationTitle;
+
+  /// No description provided for @quranFocusRecitationDisplaySettingsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Focus display'**
+  String get quranFocusRecitationDisplaySettingsTitle;
+
+  /// No description provided for @quranFocusRecitationEmptyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Start Qur’an audio playback to enter this calm ayah-by-ayah recitation mode.'**
+  String get quranFocusRecitationEmptyBody;
+
+  /// No description provided for @quranPlaybackRetryAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry playback'**
+  String get quranPlaybackRetryAction;
+
+  /// No description provided for @quranPlaybackStatusResolving.
+  ///
+  /// In en, this message translates to:
+  /// **'Preparing audio...'**
+  String get quranPlaybackStatusResolving;
+
+  /// No description provided for @quranPlaybackStatusBuffering.
+  ///
+  /// In en, this message translates to:
+  /// **'Buffering audio...'**
+  String get quranPlaybackStatusBuffering;
+
+  /// No description provided for @quranPlaybackFallbackUsingDownloaded.
+  ///
+  /// In en, this message translates to:
+  /// **'Switched to downloaded audio'**
+  String get quranPlaybackFallbackUsingDownloaded;
+
+  /// No description provided for @quranPlaybackFallbackUsingStream.
+  ///
+  /// In en, this message translates to:
+  /// **'Switched to streaming audio'**
+  String get quranPlaybackFallbackUsingStream;
+
+  /// No description provided for @quranPlaybackFailureNetworkUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Playback could not continue because the network is unavailable.'**
+  String get quranPlaybackFailureNetworkUnavailable;
+
+  /// No description provided for @quranPlaybackFailureSourceMissing.
+  ///
+  /// In en, this message translates to:
+  /// **'This recitation source is unavailable right now.'**
+  String get quranPlaybackFailureSourceMissing;
+
+  /// No description provided for @quranPlaybackFailureSourceCorrupt.
+  ///
+  /// In en, this message translates to:
+  /// **'The downloaded audio file could not be played.'**
+  String get quranPlaybackFailureSourceCorrupt;
+
+  /// No description provided for @quranPlaybackFailureReciterUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to switch to this reciter right now.'**
+  String get quranPlaybackFailureReciterUnavailable;
+
+  /// No description provided for @quranPlaybackFailureBufferingTimeout.
+  ///
+  /// In en, this message translates to:
+  /// **'Playback took too long to load. Please try again.'**
+  String get quranPlaybackFailureBufferingTimeout;
+
+  /// No description provided for @quranPlaybackFailureSessionRestore.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to resume the saved recitation right now.'**
+  String get quranPlaybackFailureSessionRestore;
+
+  /// No description provided for @quranPlaybackFailureUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Playback could not continue right now.'**
+  String get quranPlaybackFailureUnknown;
+
+  /// No description provided for @quranPlaybackSourceDownloaded.
+  ///
+  /// In en, this message translates to:
+  /// **'Downloaded audio'**
+  String get quranPlaybackSourceDownloaded;
+
+  /// No description provided for @quranPlaybackSourceStreaming.
+  ///
+  /// In en, this message translates to:
+  /// **'Streaming audio'**
+  String get quranPlaybackSourceStreaming;
+
+  /// No description provided for @quranPlaybackSourceUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Audio unavailable'**
+  String get quranPlaybackSourceUnavailable;
 
   /// No description provided for @profileWhatsNewChangelogTitle.
   ///
@@ -52075,6 +52261,64 @@ abstract class AppLocalizations {
   /// **'Follow mode'**
   String get quranReaderFollowModeLabel;
 
+  /// No description provided for @quranReaderFollowSuspendedLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Follow is paused while you browse.'**
+  String get quranReaderFollowSuspendedLabel;
+
+  /// No description provided for @quranReaderReturnToCurrentAyahAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Return to current ayah'**
+  String get quranReaderReturnToCurrentAyahAction;
+
+  /// No description provided for @quranReaderPreviousSurahAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Previous surah'**
+  String get quranReaderPreviousSurahAction;
+
+  /// No description provided for @quranReaderNextSurahAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Next surah'**
+  String get quranReaderNextSurahAction;
+
+  /// No description provided for @quranReaderAdjacentSurahUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to open that surah right now.'**
+  String get quranReaderAdjacentSurahUnavailable;
+
+  /// No description provided for @quranReaderRepeatRangeSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'Repeat ayahs {startAyah}–{endAyah}'**
+  String quranReaderRepeatRangeSummary(int startAyah, int endAyah);
+
+  /// No description provided for @quranReaderRepeatLoopSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'Loop {count}x'**
+  String quranReaderRepeatLoopSummary(int count);
+
+  /// No description provided for @quranReaderRepeatRangeLoopSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'Repeat ayahs {startAyah}–{endAyah} • {count}x'**
+  String quranReaderRepeatRangeLoopSummary(
+    int startAyah,
+    int endAyah,
+    int count,
+  );
+
+  /// No description provided for @quranReaderNextSurahButtonLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Next Surah ({surahNumber})'**
+  String quranReaderNextSurahButtonLabel(int surahNumber);
+
   /// No description provided for @growthBrowseAllDailyFocusTitle.
   ///
   /// In en, this message translates to:
@@ -57740,6 +57984,1713 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Unable to switch reciters right now. Please try again.'**
   String get quranReciterSwitchFailed;
+
+  /// No description provided for @quranReaderDownloadInProgressLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Downloading {downloadedAyahs}/{totalAyahs}'**
+  String quranReaderDownloadInProgressLabel(
+    int downloadedAyahs,
+    int totalAyahs,
+  );
+
+  /// No description provided for @quranReaderDownloadSurahAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Download Surah'**
+  String get quranReaderDownloadSurahAction;
+
+  /// No description provided for @quranReaderRemoveDownloadAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove Download'**
+  String get quranReaderRemoveDownloadAction;
+
+  /// No description provided for @quranReaderAudioDownloadNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Audio is streamed from trusted reciters. Download only surahs you need to keep app size low.'**
+  String get quranReaderAudioDownloadNote;
+
+  /// No description provided for @quranReaderPlaybackSpeedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Audio Speed'**
+  String get quranReaderPlaybackSpeedTitle;
+
+  /// No description provided for @quranReaderPlaybackSpeedLockedHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Locked to 1.00x while Live word sync highlight is enabled.'**
+  String get quranReaderPlaybackSpeedLockedHint;
+
+  /// No description provided for @quranReaderMemorizationSettingsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Memorization Settings'**
+  String get quranReaderMemorizationSettingsTitle;
+
+  /// No description provided for @quranReaderContinueRecitationTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue Recitation'**
+  String get quranReaderContinueRecitationTitle;
+
+  /// No description provided for @quranReaderResumeAudioRecitationTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Resume Audio Recitation'**
+  String get quranReaderResumeAudioRecitationTitle;
+
+  /// No description provided for @quranReaderContinueRecitationSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Resume from ayah {ayahNumber} at {position}'**
+  String quranReaderContinueRecitationSubtitle(int ayahNumber, Object position);
+
+  /// No description provided for @quranReaderResumeAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Resume'**
+  String get quranReaderResumeAction;
+
+  /// No description provided for @quranReaderRestartSurahAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Restart Surah'**
+  String get quranReaderRestartSurahAction;
+
+  /// No description provided for @quranReaderTransliterationLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to load full transliteration right now. Check connection and try again.'**
+  String get quranReaderTransliterationLoadError;
+
+  /// No description provided for @quranReaderReciterSampleError.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to play sample right now: {error}'**
+  String quranReaderReciterSampleError(Object error);
+
+  /// No description provided for @quranReaderDownloadSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Surah audio downloaded successfully.'**
+  String get quranReaderDownloadSuccess;
+
+  /// No description provided for @quranReaderDownloadFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Download failed: {error}'**
+  String quranReaderDownloadFailed(Object error);
+
+  /// No description provided for @quranReaderDownloadRemoved.
+  ///
+  /// In en, this message translates to:
+  /// **'Downloaded surah audio removed.'**
+  String get quranReaderDownloadRemoved;
+
+  /// No description provided for @quranReaderWordTranslationPrefix.
+  ///
+  /// In en, this message translates to:
+  /// **'Translation: {gloss}'**
+  String quranReaderWordTranslationPrefix(Object gloss);
+
+  /// No description provided for @quranReaderTransliterationUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Transliteration not available for this ayah yet.'**
+  String get quranReaderTransliterationUnavailable;
+
+  /// No description provided for @quranReaderSettingsToggleTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get quranReaderSettingsToggleTitle;
+
+  /// No description provided for @quranReaderSettingsExpandCollapse.
+  ///
+  /// In en, this message translates to:
+  /// **'Expand/Collapse'**
+  String get quranReaderSettingsExpandCollapse;
+
+  /// No description provided for @quranReaderReadingDisplaySectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reading & Display'**
+  String get quranReaderReadingDisplaySectionTitle;
+
+  /// No description provided for @quranReaderReadingDisplaySectionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Adjust what stays visible and how the ayah text feels while you read.'**
+  String get quranReaderReadingDisplaySectionSubtitle;
+
+  /// No description provided for @quranReaderStudyToolsSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Study Tools'**
+  String get quranReaderStudyToolsSectionTitle;
+
+  /// No description provided for @quranReaderStudyToolsSectionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Optional learning aids and beta helpers for deeper study.'**
+  String get quranReaderStudyToolsSectionSubtitle;
+
+  /// No description provided for @quranReaderAudioPlaybackSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Audio & Playback'**
+  String get quranReaderAudioPlaybackSectionTitle;
+
+  /// No description provided for @quranReaderAudioPlaybackSectionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose the reciter and playback behavior without crowding the reading controls.'**
+  String get quranReaderAudioPlaybackSectionSubtitle;
+
+  /// No description provided for @quranReaderDownloadsOfflineSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Downloads & Offline'**
+  String get quranReaderDownloadsOfflineSectionTitle;
+
+  /// No description provided for @quranReaderDownloadsOfflineSectionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep only the surahs you need on this device.'**
+  String get quranReaderDownloadsOfflineSectionSubtitle;
+
+  /// No description provided for @quranReaderMemorizationReviewSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Memorization & Review'**
+  String get quranReaderMemorizationReviewSectionTitle;
+
+  /// No description provided for @quranReaderMemorizationReviewSectionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep hifz-focused controls separate from everyday reading.'**
+  String get quranReaderMemorizationReviewSectionSubtitle;
+
+  /// No description provided for @quranReaderRepeatPracticeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Repeat & practice'**
+  String get quranReaderRepeatPracticeTitle;
+
+  /// No description provided for @quranReaderTextSettingsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Text Settings'**
+  String get quranReaderTextSettingsTitle;
+
+  /// No description provided for @quranReaderTranslationSourceLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Translation source'**
+  String get quranReaderTranslationSourceLabel;
+
+  /// No description provided for @quranReaderTextOptionsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Text Options'**
+  String get quranReaderTextOptionsTitle;
+
+  /// No description provided for @quranReaderLiveWordSyncTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Live word sync highlight (Beta)'**
+  String get quranReaderLiveWordSyncTitle;
+
+  /// No description provided for @quranReaderLiveWordSyncSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Beta testing: timing and highlighting may be imperfect on some verses.'**
+  String get quranReaderLiveWordSyncSubtitle;
+
+  /// No description provided for @quranReaderRedDiacriticsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Red diacritics (harakat)'**
+  String get quranReaderRedDiacriticsTitle;
+
+  /// No description provided for @quranReaderRedDiacriticsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Color pesh, zabar, kasrah and other harakat in red.'**
+  String get quranReaderRedDiacriticsSubtitle;
+
+  /// No description provided for @quranReaderAudioSettingsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Audio Settings'**
+  String get quranReaderAudioSettingsTitle;
+
+  /// No description provided for @quranReaderBackgroundPlaybackTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Background playback + lock-screen controls'**
+  String get quranReaderBackgroundPlaybackTitle;
+
+  /// No description provided for @quranReaderBackgroundPlaybackSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Enables media controls on lock screen / notification and Dynamic Island (iOS).'**
+  String get quranReaderBackgroundPlaybackSubtitle;
+
+  /// No description provided for @quranReaderReciterLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Reciter'**
+  String get quranReaderReciterLabel;
+
+  /// No description provided for @quranReaderReciterSampleAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Sample'**
+  String get quranReaderReciterSampleAction;
+
+  /// No description provided for @celestialHomeCardTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Signs in the sky'**
+  String get celestialHomeCardTitle;
+
+  /// No description provided for @celestialSunriseLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Sunrise'**
+  String get celestialSunriseLabel;
+
+  /// No description provided for @celestialSunsetLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Sunset'**
+  String get celestialSunsetLabel;
+
+  /// No description provided for @celestialMoonriseLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Moonrise'**
+  String get celestialMoonriseLabel;
+
+  /// No description provided for @celestialMoonsetLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Moonset'**
+  String get celestialMoonsetLabel;
+
+  /// No description provided for @celestialMoonPhaseLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Moon phase'**
+  String get celestialMoonPhaseLabel;
+
+  /// No description provided for @celestialNextEventLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Next event'**
+  String get celestialNextEventLabel;
+
+  /// No description provided for @celestialUnavailableLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Unavailable'**
+  String get celestialUnavailableLabel;
+
+  /// No description provided for @celestialApproximateLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Approx.'**
+  String get celestialApproximateLabel;
+
+  /// No description provided for @celestialIlluminationPercentLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{percent}% illumination'**
+  String celestialIlluminationPercentLabel(int percent);
+
+  /// No description provided for @celestialNextEventValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{label} {time}'**
+  String celestialNextEventValue(Object label, Object time);
+
+  /// No description provided for @celestialSkyStateDawn.
+  ///
+  /// In en, this message translates to:
+  /// **'Dawn'**
+  String get celestialSkyStateDawn;
+
+  /// No description provided for @celestialSkyStateDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Day'**
+  String get celestialSkyStateDay;
+
+  /// No description provided for @celestialSkyStateDusk.
+  ///
+  /// In en, this message translates to:
+  /// **'Dusk'**
+  String get celestialSkyStateDusk;
+
+  /// No description provided for @celestialSkyStateNight.
+  ///
+  /// In en, this message translates to:
+  /// **'Night'**
+  String get celestialSkyStateNight;
+
+  /// No description provided for @celestialSunriseTimeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Sunrise {time}'**
+  String celestialSunriseTimeLabel(Object time);
+
+  /// No description provided for @celestialSunsetTimeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Sunset {time}'**
+  String celestialSunsetTimeLabel(Object time);
+
+  /// No description provided for @celestialUnavailableTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Celestial data is unavailable right now'**
+  String get celestialUnavailableTitle;
+
+  /// No description provided for @celestialUnavailableSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a city or refresh location to calculate the sky cycle for your area.'**
+  String get celestialUnavailableSubtitle;
+
+  /// No description provided for @celestialChooseLocationAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose location'**
+  String get celestialChooseLocationAction;
+
+  /// No description provided for @celestialExplorerPageTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Qur’anic Sky Explorer'**
+  String get celestialExplorerPageTitle;
+
+  /// No description provided for @celestialTabNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Now'**
+  String get celestialTabNow;
+
+  /// No description provided for @celestialTabExplore.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore'**
+  String get celestialTabExplore;
+
+  /// No description provided for @celestialTabJournal.
+  ///
+  /// In en, this message translates to:
+  /// **'Journal'**
+  String get celestialTabJournal;
+
+  /// No description provided for @celestialSunLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Sun'**
+  String get celestialSunLabel;
+
+  /// No description provided for @celestialMoonLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Moon'**
+  String get celestialMoonLabel;
+
+  /// No description provided for @celestialBelowHorizonLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Below horizon'**
+  String get celestialBelowHorizonLabel;
+
+  /// No description provided for @celestialVisibleLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Visible'**
+  String get celestialVisibleLabel;
+
+  /// No description provided for @celestialSunriseSunsetDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'Sunrise {sunrise} • Sunset {sunset}'**
+  String celestialSunriseSunsetDetail(Object sunrise, Object sunset);
+
+  /// No description provided for @celestialMoonDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'{percent}% illumination • {riseSetLabel}'**
+  String celestialMoonDetail(int percent, Object riseSetLabel);
+
+  /// No description provided for @celestialRiseSetApproximate.
+  ///
+  /// In en, this message translates to:
+  /// **'Rise/set approximate'**
+  String get celestialRiseSetApproximate;
+
+  /// No description provided for @celestialRiseSetCalculated.
+  ///
+  /// In en, this message translates to:
+  /// **'Rise/set calculated'**
+  String get celestialRiseSetCalculated;
+
+  /// No description provided for @celestialUpcomingLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Upcoming'**
+  String get celestialUpcomingLabel;
+
+  /// No description provided for @celestialUpcomingHeadline.
+  ///
+  /// In en, this message translates to:
+  /// **'{label} at {time}'**
+  String celestialUpcomingHeadline(Object label, Object time);
+
+  /// No description provided for @celestialReflectAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Reflect'**
+  String get celestialReflectAction;
+
+  /// No description provided for @celestialReflectionSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Sky reflection saved.'**
+  String get celestialReflectionSaved;
+
+  /// No description provided for @celestialSaveReflectionAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Save reflection'**
+  String get celestialSaveReflectionAction;
+
+  /// No description provided for @celestialJournalMomentTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Journal this moment'**
+  String get celestialJournalMomentTitle;
+
+  /// No description provided for @celestialJournalPromptHint.
+  ///
+  /// In en, this message translates to:
+  /// **'What did the sky make you notice today?'**
+  String get celestialJournalPromptHint;
+
+  /// No description provided for @celestialCompassUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Compass unavailable'**
+  String get celestialCompassUnavailable;
+
+  /// No description provided for @celestialCompassHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'{heading} heading'**
+  String celestialCompassHeading(Object heading);
+
+  /// No description provided for @celestialPositionEstimateNotice.
+  ///
+  /// In en, this message translates to:
+  /// **'Positions are calculated estimates. Sensor readings may be noisy indoors.'**
+  String get celestialPositionEstimateNotice;
+
+  /// No description provided for @celestialJournalEmptyState.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved sky reflections will appear here once you begin journaling.'**
+  String get celestialJournalEmptyState;
+
+  /// No description provided for @celestialApproximatePositionLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Approximate azimuth {azimuth}° • altitude {altitude}°'**
+  String celestialApproximatePositionLabel(int azimuth, int altitude);
+
+  /// No description provided for @celestialCompassNorthLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'N'**
+  String get celestialCompassNorthLabel;
+
+  /// No description provided for @celestialMoveSlowlyForHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'Move slowly for heading'**
+  String get celestialMoveSlowlyForHeading;
+
+  /// No description provided for @celestialExplorerUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'The explorer could not build a sky snapshot right now. Check location settings and try again.'**
+  String get celestialExplorerUnavailable;
+
+  /// No description provided for @creationChallengesPageTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Creation Challenges'**
+  String get creationChallengesPageTitle;
+
+  /// No description provided for @creationChallengesDailyStreakLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily streak'**
+  String get creationChallengesDailyStreakLabel;
+
+  /// No description provided for @creationChallengesNewStreakBeginsToday.
+  ///
+  /// In en, this message translates to:
+  /// **'A new streak begins today.'**
+  String get creationChallengesNewStreakBeginsToday;
+
+  /// No description provided for @creationChallengesStreakDays.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} days'**
+  String creationChallengesStreakDays(int count);
+
+  /// No description provided for @creationChallengesCompletedLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get creationChallengesCompletedLabel;
+
+  /// No description provided for @creationChallengesRecentLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent'**
+  String get creationChallengesRecentLabel;
+
+  /// No description provided for @creationChallengesRecentThisWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} this week'**
+  String creationChallengesRecentThisWeek(int count);
+
+  /// No description provided for @creationChallengesSkippedLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Skipped'**
+  String get creationChallengesSkippedLabel;
+
+  /// No description provided for @creationChallengesStatusCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get creationChallengesStatusCompleted;
+
+  /// No description provided for @creationChallengesStatusExpired.
+  ///
+  /// In en, this message translates to:
+  /// **'Expired'**
+  String get creationChallengesStatusExpired;
+
+  /// No description provided for @creationChallengesStatusOpen.
+  ///
+  /// In en, this message translates to:
+  /// **'Open'**
+  String get creationChallengesStatusOpen;
+
+  /// No description provided for @creationChallengesMarkCompleteAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark complete'**
+  String get creationChallengesMarkCompleteAction;
+
+  /// No description provided for @creationChallengesSkipAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip'**
+  String get creationChallengesSkipAction;
+
+  /// No description provided for @creationChallengesSlotToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Today’s Challenge'**
+  String get creationChallengesSlotToday;
+
+  /// No description provided for @creationChallengesSlotBonus.
+  ///
+  /// In en, this message translates to:
+  /// **'Bonus Challenge'**
+  String get creationChallengesSlotBonus;
+
+  /// No description provided for @creationChallengesSlotWeekly.
+  ///
+  /// In en, this message translates to:
+  /// **'Weekly Reflection'**
+  String get creationChallengesSlotWeekly;
+
+  /// No description provided for @creationChallengesOpenSkyExplorerAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open Sky Explorer'**
+  String get creationChallengesOpenSkyExplorerAction;
+
+  /// No description provided for @creationChallengesOpenCreationExplorerAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open Creation Explorer'**
+  String get creationChallengesOpenCreationExplorerAction;
+
+  /// No description provided for @creationChallengesOpenJournalAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open Journal'**
+  String get creationChallengesOpenJournalAction;
+
+  /// No description provided for @creationChallengesOpenAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open'**
+  String get creationChallengesOpenAction;
+
+  /// No description provided for @creationChallengesReflectNowAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Reflect now'**
+  String get creationChallengesReflectNowAction;
+
+  /// No description provided for @creationChallengesRewardDrops.
+  ///
+  /// In en, this message translates to:
+  /// **'+{count} drop'**
+  String creationChallengesRewardDrops(int count);
+
+  /// No description provided for @khusuSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Khusū Mode'**
+  String get khusuSectionTitle;
+
+  /// No description provided for @khusuSectionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A calm space to reduce noise and return to presence.'**
+  String get khusuSectionSubtitle;
+
+  /// No description provided for @khusuSectionIntroBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Set intention, slow your breathing, and let worship be your anchor.'**
+  String get khusuSectionIntroBody;
+
+  /// No description provided for @khusuSalahFocusTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Salah Focus'**
+  String get khusuSalahFocusTitle;
+
+  /// No description provided for @khusuSalahFocusSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A minimal countdown and reminder card for one prayer window.'**
+  String get khusuSalahFocusSubtitle;
+
+  /// No description provided for @khusuDhikrFocusTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Dhikr Focus'**
+  String get khusuDhikrFocusTitle;
+
+  /// No description provided for @khusuDhikrFocusSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Close-opened dhikr flow with a clean breathing rhythm.'**
+  String get khusuDhikrFocusSubtitle;
+
+  /// No description provided for @khusuReflectionPauseTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reflection Pause'**
+  String get khusuReflectionPauseTitle;
+
+  /// No description provided for @khusuReflectionPauseSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A short pause with one reflective line and silence.'**
+  String get khusuReflectionPauseSubtitle;
+
+  /// No description provided for @khusuQuietResetTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Quiet Reset'**
+  String get khusuQuietResetTitle;
+
+  /// No description provided for @khusuQuietResetSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Restart focus with gentle re-entry if attention drifted.'**
+  String get khusuQuietResetSubtitle;
+
+  /// No description provided for @khusuSessionSettingsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Session Settings'**
+  String get khusuSessionSettingsTitle;
+
+  /// No description provided for @khusuSessionSettingsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Environment controls for distraction-light use.'**
+  String get khusuSessionSettingsSubtitle;
+
+  /// No description provided for @khusuReduceVisualDistractionsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reduce visual distractions'**
+  String get khusuReduceVisualDistractionsTitle;
+
+  /// No description provided for @khusuMinimalInterfaceTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Minimal interface'**
+  String get khusuMinimalInterfaceTitle;
+
+  /// No description provided for @khusuGentleRemindersTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Gentle reminders'**
+  String get khusuGentleRemindersTitle;
+
+  /// No description provided for @khusuAmbientModeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Ambient mode'**
+  String get khusuAmbientModeTitle;
+
+  /// No description provided for @khusuClosingQuote.
+  ///
+  /// In en, this message translates to:
+  /// **'“Pause without forcing. Breath settles, intention settles, and remembrance becomes softer.”'**
+  String get khusuClosingQuote;
+
+  /// No description provided for @khusuEnterAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter Khusū'**
+  String get khusuEnterAction;
+
+  /// No description provided for @khusuPageTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Khusū'**
+  String get khusuPageTitle;
+
+  /// No description provided for @khusuFocusSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A silent and sacred space for focused presence.'**
+  String get khusuFocusSubtitle;
+
+  /// No description provided for @khusuFocusBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Breathe slowly. Choose intention over momentum. Keep one sentence, one invocation, one pause at a time.'**
+  String get khusuFocusBody;
+
+  /// No description provided for @quranFocusRecitationKeepScreenAwakeAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep screen awake'**
+  String get quranFocusRecitationKeepScreenAwakeAction;
+
+  /// No description provided for @quranFocusRecitationRepeatCurrentAyahAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Repeat current ayah'**
+  String get quranFocusRecitationRepeatCurrentAyahAction;
+
+  /// No description provided for @quranFocusRecitationSleepTimerAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Sleep timer'**
+  String get quranFocusRecitationSleepTimerAction;
+
+  /// No description provided for @quranFocusRecitationSleepTimerCancelAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel timer'**
+  String get quranFocusRecitationSleepTimerCancelAction;
+
+  /// No description provided for @quranFocusRecitationSleepTimerMinutesLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{minutes} min'**
+  String quranFocusRecitationSleepTimerMinutesLabel(int minutes);
+
+  /// No description provided for @quranFocusRecitationSleepTimerActiveLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Sleep timer: {remaining}'**
+  String quranFocusRecitationSleepTimerActiveLabel(String remaining);
+
+  /// No description provided for @onboardingSkipAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip'**
+  String get onboardingSkipAction;
+
+  /// No description provided for @onboardingSettingsHintBody.
+  ///
+  /// In en, this message translates to:
+  /// **'You can change this anytime in Settings.'**
+  String get onboardingSettingsHintBody;
+
+  /// No description provided for @onboardingBeginJourneyAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Begin your journey'**
+  String get onboardingBeginJourneyAction;
+
+  /// No description provided for @onboardingContinueAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get onboardingContinueAction;
+
+  /// No description provided for @onboardingShahadaMeaningBody.
+  ///
+  /// In en, this message translates to:
+  /// **'I bear witness that there is no god except Allah,\nand I bear witness that Muhammad ﷺ is the Messenger of Allah.'**
+  String get onboardingShahadaMeaningBody;
+
+  /// No description provided for @onboardingBismillahTransliteration.
+  ///
+  /// In en, this message translates to:
+  /// **'Bismillahir-Rahmanir-Rahim'**
+  String get onboardingBismillahTransliteration;
+
+  /// No description provided for @onboardingBismillahMeaningBody.
+  ///
+  /// In en, this message translates to:
+  /// **'In the name of Allah, the Most Compassionate, the Most Merciful.'**
+  String get onboardingBismillahMeaningBody;
+
+  /// No description provided for @onboardingOpeningBlessingBody.
+  ///
+  /// In en, this message translates to:
+  /// **'May this journey bring khayr, consistency, and closeness to Allah.'**
+  String get onboardingOpeningBlessingBody;
+
+  /// No description provided for @onboardingLanguageTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose your language'**
+  String get onboardingLanguageTitle;
+
+  /// No description provided for @onboardingLanguageSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Select the language you would like to use in the app.'**
+  String get onboardingLanguageSubtitle;
+
+  /// No description provided for @onboardingAgeRangeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Which age range are you in?'**
+  String get onboardingAgeRangeTitle;
+
+  /// No description provided for @onboardingAgeRangeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Path of Nur adjusts some guidance, tone, and family-related recommendations based on your stage of life so the experience feels more relevant and supportive.'**
+  String get onboardingAgeRangeSubtitle;
+
+  /// No description provided for @onboardingAgeRangeUnder18.
+  ///
+  /// In en, this message translates to:
+  /// **'Under 18'**
+  String get onboardingAgeRangeUnder18;
+
+  /// No description provided for @onboardingAgeRange18To24.
+  ///
+  /// In en, this message translates to:
+  /// **'18-24'**
+  String get onboardingAgeRange18To24;
+
+  /// No description provided for @onboardingAgeRange25To34.
+  ///
+  /// In en, this message translates to:
+  /// **'25-34'**
+  String get onboardingAgeRange25To34;
+
+  /// No description provided for @onboardingAgeRange35To44.
+  ///
+  /// In en, this message translates to:
+  /// **'35-44'**
+  String get onboardingAgeRange35To44;
+
+  /// No description provided for @onboardingAgeRange45To54.
+  ///
+  /// In en, this message translates to:
+  /// **'45-54'**
+  String get onboardingAgeRange45To54;
+
+  /// No description provided for @onboardingAgeRange55Plus.
+  ///
+  /// In en, this message translates to:
+  /// **'55+'**
+  String get onboardingAgeRange55Plus;
+
+  /// No description provided for @onboardingExperienceTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Which description fits your journey with Islam best?'**
+  String get onboardingExperienceTitle;
+
+  /// No description provided for @onboardingExperienceSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'We use this to set a better starting tone, pacing, and learning depth for your experience. Your selection is saved and used to shape guidance across the app.'**
+  String get onboardingExperienceSubtitle;
+
+  /// No description provided for @onboardingExperienceExploring.
+  ///
+  /// In en, this message translates to:
+  /// **'Exploring Islam'**
+  String get onboardingExperienceExploring;
+
+  /// No description provided for @onboardingExperienceNewToIslam.
+  ///
+  /// In en, this message translates to:
+  /// **'New to Islam'**
+  String get onboardingExperienceNewToIslam;
+
+  /// No description provided for @onboardingExperienceBornStillLearning.
+  ///
+  /// In en, this message translates to:
+  /// **'Born Muslim, still learning'**
+  String get onboardingExperienceBornStillLearning;
+
+  /// No description provided for @onboardingExperiencePracticingRegularly.
+  ///
+  /// In en, this message translates to:
+  /// **'Practicing regularly'**
+  String get onboardingExperiencePracticingRegularly;
+
+  /// No description provided for @onboardingExperienceAdvanced.
+  ///
+  /// In en, this message translates to:
+  /// **'Experienced / advanced'**
+  String get onboardingExperienceAdvanced;
+
+  /// No description provided for @onboardingSalahConsistencyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'How consistent is your Salah currently?'**
+  String get onboardingSalahConsistencyTitle;
+
+  /// No description provided for @onboardingSalahConsistencySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose the option that best reflects where you are right now.'**
+  String get onboardingSalahConsistencySubtitle;
+
+  /// No description provided for @onboardingSalahConsistencyAll.
+  ///
+  /// In en, this message translates to:
+  /// **'I pray all prayers consistently'**
+  String get onboardingSalahConsistencyAll;
+
+  /// No description provided for @onboardingSalahConsistencyMost.
+  ///
+  /// In en, this message translates to:
+  /// **'I pray most prayers'**
+  String get onboardingSalahConsistencyMost;
+
+  /// No description provided for @onboardingSalahConsistencySometimes.
+  ///
+  /// In en, this message translates to:
+  /// **'I pray sometimes'**
+  String get onboardingSalahConsistencySometimes;
+
+  /// No description provided for @onboardingSalahConsistencyRarely.
+  ///
+  /// In en, this message translates to:
+  /// **'I rarely pray'**
+  String get onboardingSalahConsistencyRarely;
+
+  /// No description provided for @onboardingSalahConsistencyJustStarted.
+  ///
+  /// In en, this message translates to:
+  /// **'I am just getting started'**
+  String get onboardingSalahConsistencyJustStarted;
+
+  /// No description provided for @onboardingPrayerMethodTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Salah time calculation method'**
+  String get onboardingPrayerMethodTitle;
+
+  /// No description provided for @onboardingPrayerMethodSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose how salah times should be calculated for your location.'**
+  String get onboardingPrayerMethodSubtitle;
+
+  /// No description provided for @onboardingPrayerMethodMuslimWorldLeague.
+  ///
+  /// In en, this message translates to:
+  /// **'Muslim World League'**
+  String get onboardingPrayerMethodMuslimWorldLeague;
+
+  /// No description provided for @onboardingPrayerMethodIsna.
+  ///
+  /// In en, this message translates to:
+  /// **'Islamic Society of North America (ISNA)'**
+  String get onboardingPrayerMethodIsna;
+
+  /// No description provided for @onboardingPrayerMethodUmmAlQura.
+  ///
+  /// In en, this message translates to:
+  /// **'Umm Al-Qura University'**
+  String get onboardingPrayerMethodUmmAlQura;
+
+  /// No description provided for @onboardingPrayerMethodEgyptian.
+  ///
+  /// In en, this message translates to:
+  /// **'Egyptian General Authority of Survey'**
+  String get onboardingPrayerMethodEgyptian;
+
+  /// No description provided for @onboardingPrayerMethodKarachi.
+  ///
+  /// In en, this message translates to:
+  /// **'University of Islamic Sciences, Karachi'**
+  String get onboardingPrayerMethodKarachi;
+
+  /// No description provided for @onboardingPrayerMethodMoonsighting.
+  ///
+  /// In en, this message translates to:
+  /// **'Moonsighting Committee'**
+  String get onboardingPrayerMethodMoonsighting;
+
+  /// No description provided for @onboardingMadhabTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Which Madhab do you follow?'**
+  String get onboardingMadhabTitle;
+
+  /// No description provided for @onboardingMadhabSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'This affects how Asr salah time is calculated. If you are unsure, you can keep the default.'**
+  String get onboardingMadhabSubtitle;
+
+  /// No description provided for @onboardingMadhabHanafi.
+  ///
+  /// In en, this message translates to:
+  /// **'Hanafi'**
+  String get onboardingMadhabHanafi;
+
+  /// No description provided for @onboardingMadhabShafii.
+  ///
+  /// In en, this message translates to:
+  /// **'Shafi\'\'i'**
+  String get onboardingMadhabShafii;
+
+  /// No description provided for @onboardingMadhabMaliki.
+  ///
+  /// In en, this message translates to:
+  /// **'Maliki'**
+  String get onboardingMadhabMaliki;
+
+  /// No description provided for @onboardingMadhabHanbali.
+  ///
+  /// In en, this message translates to:
+  /// **'Hanbali'**
+  String get onboardingMadhabHanbali;
+
+  /// No description provided for @onboardingGrowthInterestsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'What would you like to grow in?'**
+  String get onboardingGrowthInterestsTitle;
+
+  /// No description provided for @onboardingGrowthInterestsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Select the areas you would like Path of Nur to help you with. You can choose multiple.'**
+  String get onboardingGrowthInterestsSubtitle;
+
+  /// No description provided for @onboardingArabicReadModeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'How would you like to read Arabic?'**
+  String get onboardingArabicReadModeTitle;
+
+  /// No description provided for @onboardingArabicReadModeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose the reading style that feels most comfortable for you.'**
+  String get onboardingArabicReadModeSubtitle;
+
+  /// No description provided for @onboardingArabicReadModeNoArabicYet.
+  ///
+  /// In en, this message translates to:
+  /// **'I do not know any Arabic yet'**
+  String get onboardingArabicReadModeNoArabicYet;
+
+  /// No description provided for @onboardingArabicReadModeArabicOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Arabic only'**
+  String get onboardingArabicReadModeArabicOnly;
+
+  /// No description provided for @onboardingArabicReadModeArabicTransliteration.
+  ///
+  /// In en, this message translates to:
+  /// **'Arabic + Transliteration'**
+  String get onboardingArabicReadModeArabicTransliteration;
+
+  /// No description provided for @onboardingArabicReadModeArabicTranslation.
+  ///
+  /// In en, this message translates to:
+  /// **'Arabic + Translation'**
+  String get onboardingArabicReadModeArabicTranslation;
+
+  /// No description provided for @onboardingArabicReadModeArabicTransliterationTranslation.
+  ///
+  /// In en, this message translates to:
+  /// **'Arabic + Transliteration + Translation'**
+  String get onboardingArabicReadModeArabicTransliterationTranslation;
+
+  /// No description provided for @onboardingHarakatTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Harakat / pronunciation marks'**
+  String get onboardingHarakatTitle;
+
+  /// No description provided for @onboardingHarakatFull.
+  ///
+  /// In en, this message translates to:
+  /// **'Full harakat'**
+  String get onboardingHarakatFull;
+
+  /// No description provided for @onboardingHarakatMinimal.
+  ///
+  /// In en, this message translates to:
+  /// **'Minimal harakat'**
+  String get onboardingHarakatMinimal;
+
+  /// No description provided for @onboardingHarakatNone.
+  ///
+  /// In en, this message translates to:
+  /// **'None'**
+  String get onboardingHarakatNone;
+
+  /// No description provided for @onboardingTextSizeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Text size'**
+  String get onboardingTextSizeTitle;
+
+  /// No description provided for @onboardingRemindersTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'How would you like to be reminded?'**
+  String get onboardingRemindersTitle;
+
+  /// No description provided for @onboardingRemindersSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose your preferred reminders for salah and daily spiritual routines.'**
+  String get onboardingRemindersSubtitle;
+
+  /// No description provided for @onboardingSalahReminderStylesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Salah reminder styles'**
+  String get onboardingSalahReminderStylesTitle;
+
+  /// No description provided for @onboardingReminderNotificationOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Notification only'**
+  String get onboardingReminderNotificationOnly;
+
+  /// No description provided for @onboardingReminderAdhanNotification.
+  ///
+  /// In en, this message translates to:
+  /// **'Adhan notification'**
+  String get onboardingReminderAdhanNotification;
+
+  /// No description provided for @onboardingReminderForceAdhan.
+  ///
+  /// In en, this message translates to:
+  /// **'Force Adhan'**
+  String get onboardingReminderForceAdhan;
+
+  /// No description provided for @onboardingDailyQuranReminderTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily Qur\'\'an reading reminder'**
+  String get onboardingDailyQuranReminderTitle;
+
+  /// No description provided for @onboardingDailyLessonReminderTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily lesson reminder'**
+  String get onboardingDailyLessonReminderTitle;
+
+  /// No description provided for @onboardingTrackingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'What would you like to track?'**
+  String get onboardingTrackingTitle;
+
+  /// No description provided for @onboardingTrackingSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose the areas you would like Path of Nur to help you track over time. You can choose multiple.'**
+  String get onboardingTrackingSubtitle;
+
+  /// No description provided for @onboardingFamilyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Grow together with family'**
+  String get onboardingFamilyTitle;
+
+  /// No description provided for @onboardingFamilySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Path of Nur can support individual journeys while also helping families grow together.'**
+  String get onboardingFamilySubtitle;
+
+  /// No description provided for @onboardingFamilyProfilesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Family profiles'**
+  String get onboardingFamilyProfilesTitle;
+
+  /// No description provided for @onboardingFamilyProfilesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Create profiles for family members from the Profiles page.'**
+  String get onboardingFamilyProfilesSubtitle;
+
+  /// No description provided for @onboardingFamilyPrivateJourneysTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Private journeys for each member'**
+  String get onboardingFamilyPrivateJourneysTitle;
+
+  /// No description provided for @onboardingFamilyPrivateJourneysSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Each profile can keep separate progress and reminders.'**
+  String get onboardingFamilyPrivateJourneysSubtitle;
+
+  /// No description provided for @onboardingFamilyAgeAppropriateTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Age-appropriate learning'**
+  String get onboardingFamilyAgeAppropriateTitle;
+
+  /// No description provided for @onboardingFamilyAgeAppropriateSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Content can adapt to stage and experience level.'**
+  String get onboardingFamilyAgeAppropriateSubtitle;
+
+  /// No description provided for @onboardingFamilySharedGrowthTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Shared encouragement and growth'**
+  String get onboardingFamilySharedGrowthTitle;
+
+  /// No description provided for @onboardingFamilySharedGrowthSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Build consistency together over time.'**
+  String get onboardingFamilySharedGrowthSubtitle;
+
+  /// No description provided for @onboardingDhikrFeedbackTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Dhikr counter feedback'**
+  String get onboardingDhikrFeedbackTitle;
+
+  /// No description provided for @onboardingDhikrFeedbackSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose how the dhikr counter should respond when you tap.'**
+  String get onboardingDhikrFeedbackSubtitle;
+
+  /// No description provided for @onboardingDhikrHapticTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Haptic feedback'**
+  String get onboardingDhikrHapticTitle;
+
+  /// No description provided for @onboardingOptionOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Off'**
+  String get onboardingOptionOff;
+
+  /// No description provided for @onboardingOptionLight.
+  ///
+  /// In en, this message translates to:
+  /// **'Light'**
+  String get onboardingOptionLight;
+
+  /// No description provided for @onboardingOptionMedium.
+  ///
+  /// In en, this message translates to:
+  /// **'Medium'**
+  String get onboardingOptionMedium;
+
+  /// No description provided for @onboardingOptionStrong.
+  ///
+  /// In en, this message translates to:
+  /// **'Strong'**
+  String get onboardingOptionStrong;
+
+  /// No description provided for @onboardingDhikrSoundTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sound feedback'**
+  String get onboardingDhikrSoundTitle;
+
+  /// No description provided for @onboardingDhikrSoundSoftClick.
+  ///
+  /// In en, this message translates to:
+  /// **'Soft click'**
+  String get onboardingDhikrSoundSoftClick;
+
+  /// No description provided for @onboardingDhikrSoundTasbih.
+  ///
+  /// In en, this message translates to:
+  /// **'Tasbih bead sound'**
+  String get onboardingDhikrSoundTasbih;
+
+  /// No description provided for @onboardingDhikrVisualTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Visual feedback'**
+  String get onboardingDhikrVisualTitle;
+
+  /// No description provided for @onboardingDhikrVisualSubtleGlow.
+  ///
+  /// In en, this message translates to:
+  /// **'Subtle glow'**
+  String get onboardingDhikrVisualSubtleGlow;
+
+  /// No description provided for @onboardingDhikrVisualPulseAnimation.
+  ///
+  /// In en, this message translates to:
+  /// **'Pulse animation'**
+  String get onboardingDhikrVisualPulseAnimation;
+
+  /// No description provided for @onboardingDhikrPreviewCount.
+  ///
+  /// In en, this message translates to:
+  /// **'Preview count: {count}'**
+  String onboardingDhikrPreviewCount(int count);
+
+  /// No description provided for @onboardingIdentityTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'How should we address you?'**
+  String get onboardingIdentityTitle;
+
+  /// No description provided for @onboardingIdentitySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose your greeting and add your name if you would like a more personal welcome.'**
+  String get onboardingIdentitySubtitle;
+
+  /// No description provided for @onboardingGreetingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Greeting'**
+  String get onboardingGreetingTitle;
+
+  /// No description provided for @onboardingNameTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get onboardingNameTitle;
+
+  /// No description provided for @onboardingOptionalHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Optional'**
+  String get onboardingOptionalHint;
+
+  /// No description provided for @onboardingNameHelperBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Your name is optional and only used to personalize your experience within the app.'**
+  String get onboardingNameHelperBody;
+
+  /// No description provided for @onboardingDefaultNameFallback.
+  ///
+  /// In en, this message translates to:
+  /// **'Friend'**
+  String get onboardingDefaultNameFallback;
+
+  /// No description provided for @onboardingFocusSalahConsistency.
+  ///
+  /// In en, this message translates to:
+  /// **'Salah consistency'**
+  String get onboardingFocusSalahConsistency;
+
+  /// No description provided for @onboardingFocusSalahReminders.
+  ///
+  /// In en, this message translates to:
+  /// **'Salah reminders'**
+  String get onboardingFocusSalahReminders;
+
+  /// No description provided for @onboardingFinalWelcomeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome to Path of Nur'**
+  String get onboardingFinalWelcomeTitle;
+
+  /// No description provided for @onboardingWelcomeGreeting.
+  ///
+  /// In en, this message translates to:
+  /// **'Assalamu Alaikum, {name}.'**
+  String onboardingWelcomeGreeting(String name);
+
+  /// No description provided for @onboardingFinalWelcomeBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Your journey begins now. Path of Nur is ready to support you through learning, reflection, remembrance, and steady growth.'**
+  String get onboardingFinalWelcomeBody;
+
+  /// No description provided for @onboardingFocusListTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You chose to focus on:'**
+  String get onboardingFocusListTitle;
+
+  /// No description provided for @onboardingKnowledgeDuaMeaning.
+  ///
+  /// In en, this message translates to:
+  /// **'My Lord, increase me in knowledge.'**
+  String get onboardingKnowledgeDuaMeaning;
+
+  /// No description provided for @onboardingReminderHelpTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Adhan reminder options'**
+  String get onboardingReminderHelpTitle;
+
+  /// No description provided for @onboardingReminderHelpNotificationOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Notification only: a standard reminder without adhan audio.'**
+  String get onboardingReminderHelpNotificationOnly;
+
+  /// No description provided for @onboardingReminderHelpAdhanNotification.
+  ///
+  /// In en, this message translates to:
+  /// **'Adhan notification: sends a reminder with adhan-style audio when the prayer begins.'**
+  String get onboardingReminderHelpAdhanNotification;
+
+  /// No description provided for @onboardingReminderHelpForceAdhan.
+  ///
+  /// In en, this message translates to:
+  /// **'Force Adhan: will play Adhan audio even if the phone is set to silent.'**
+  String get onboardingReminderHelpForceAdhan;
+
+  /// No description provided for @onboardingLanguageSystemDefault.
+  ///
+  /// In en, this message translates to:
+  /// **'System Default'**
+  String get onboardingLanguageSystemDefault;
+
+  /// No description provided for @onboardingLanguageEnglish.
+  ///
+  /// In en, this message translates to:
+  /// **'English'**
+  String get onboardingLanguageEnglish;
+
+  /// No description provided for @onboardingLanguageArabic.
+  ///
+  /// In en, this message translates to:
+  /// **'Arabic (العربية)'**
+  String get onboardingLanguageArabic;
+
+  /// No description provided for @onboardingLanguageGerman.
+  ///
+  /// In en, this message translates to:
+  /// **'German (Deutsch)'**
+  String get onboardingLanguageGerman;
+
+  /// No description provided for @onboardingLanguageUrdu.
+  ///
+  /// In en, this message translates to:
+  /// **'Urdu (اردو)'**
+  String get onboardingLanguageUrdu;
+
+  /// No description provided for @onboardingLanguageHindi.
+  ///
+  /// In en, this message translates to:
+  /// **'Hindi (हिंदी)'**
+  String get onboardingLanguageHindi;
+
+  /// No description provided for @onboardingLanguageIndonesian.
+  ///
+  /// In en, this message translates to:
+  /// **'Indonesian'**
+  String get onboardingLanguageIndonesian;
+
+  /// No description provided for @onboardingLanguageMalay.
+  ///
+  /// In en, this message translates to:
+  /// **'Malay'**
+  String get onboardingLanguageMalay;
+
+  /// No description provided for @onboardingLanguageTurkish.
+  ///
+  /// In en, this message translates to:
+  /// **'Turkish'**
+  String get onboardingLanguageTurkish;
+
+  /// No description provided for @onboardingLanguageBengali.
+  ///
+  /// In en, this message translates to:
+  /// **'Bengali'**
+  String get onboardingLanguageBengali;
+
+  /// No description provided for @onboardingInterestUnderstandingQuran.
+  ///
+  /// In en, this message translates to:
+  /// **'Understanding the Qur’an'**
+  String get onboardingInterestUnderstandingQuran;
+
+  /// No description provided for @onboardingInterestLearningHadith.
+  ///
+  /// In en, this message translates to:
+  /// **'Learning Hadith'**
+  String get onboardingInterestLearningHadith;
+
+  /// No description provided for @onboardingInterestStoriesProphets.
+  ///
+  /// In en, this message translates to:
+  /// **'Stories of the Prophets'**
+  String get onboardingInterestStoriesProphets;
+
+  /// No description provided for @onboardingInterestStrengtheningSalah.
+  ///
+  /// In en, this message translates to:
+  /// **'Strengthening my Salah'**
+  String get onboardingInterestStrengtheningSalah;
+
+  /// No description provided for @onboardingInterestDhikrRemembrance.
+  ///
+  /// In en, this message translates to:
+  /// **'Dhikr and remembrance'**
+  String get onboardingInterestDhikrRemembrance;
+
+  /// No description provided for @onboardingInterestBetterHabits.
+  ///
+  /// In en, this message translates to:
+  /// **'Building better habits'**
+  String get onboardingInterestBetterHabits;
+
+  /// No description provided for @onboardingInterestWorldThroughQuran.
+  ///
+  /// In en, this message translates to:
+  /// **'Learning about the world through the Qur’an'**
+  String get onboardingInterestWorldThroughQuran;
+
+  /// No description provided for @onboardingInterestIslamicKnowledge.
+  ///
+  /// In en, this message translates to:
+  /// **'Islamic knowledge'**
+  String get onboardingInterestIslamicKnowledge;
+
+  /// No description provided for @onboardingInterestPersonalGrowth.
+  ///
+  /// In en, this message translates to:
+  /// **'Personal growth and discipline'**
+  String get onboardingInterestPersonalGrowth;
+
+  /// No description provided for @onboardingInterestDailyInspiration.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily inspiration'**
+  String get onboardingInterestDailyInspiration;
+
+  /// No description provided for @onboardingTrackingSalah.
+  ///
+  /// In en, this message translates to:
+  /// **'Salah tracking'**
+  String get onboardingTrackingSalah;
+
+  /// No description provided for @onboardingTrackingDhikr.
+  ///
+  /// In en, this message translates to:
+  /// **'Dhikr tracking'**
+  String get onboardingTrackingDhikr;
+
+  /// No description provided for @onboardingTrackingQuranReading.
+  ///
+  /// In en, this message translates to:
+  /// **'Qur’an reading progress'**
+  String get onboardingTrackingQuranReading;
+
+  /// No description provided for @onboardingTrackingLearning.
+  ///
+  /// In en, this message translates to:
+  /// **'Learning progress'**
+  String get onboardingTrackingLearning;
+
+  /// No description provided for @onboardingTrackingHabitBuilding.
+  ///
+  /// In en, this message translates to:
+  /// **'Habit building'**
+  String get onboardingTrackingHabitBuilding;
+
+  /// No description provided for @onboardingTrackingReflection.
+  ///
+  /// In en, this message translates to:
+  /// **'Reflection / journaling'**
+  String get onboardingTrackingReflection;
+
+  /// No description provided for @onboardingSizeSmall.
+  ///
+  /// In en, this message translates to:
+  /// **'Small'**
+  String get onboardingSizeSmall;
+
+  /// No description provided for @onboardingSizeLarge.
+  ///
+  /// In en, this message translates to:
+  /// **'Large'**
+  String get onboardingSizeLarge;
+
+  /// No description provided for @onboardingSizeExtraLarge.
+  ///
+  /// In en, this message translates to:
+  /// **'Extra large'**
+  String get onboardingSizeExtraLarge;
+
+  /// No description provided for @accountsSyncTransportUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown transport'**
+  String get accountsSyncTransportUnknown;
+
+  /// No description provided for @accountsSyncStatusUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Status not available'**
+  String get accountsSyncStatusUnknown;
 }
 
 class _AppLocalizationsDelegate

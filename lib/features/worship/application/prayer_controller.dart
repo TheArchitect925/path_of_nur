@@ -111,6 +111,7 @@ class PrayerController extends StateNotifier<List<DailyPrayerRecord>> {
                 ? record.copyWith(
                     status: PrayerStatus.pending,
                     clearCompletedAtIso: true,
+                    clearPostSalahAdhkarCompletedAtIso: true,
                   )
                 : record,
           )

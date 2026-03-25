@@ -211,6 +211,7 @@ class QuranWordHighlightCoordinator extends StateNotifier<QuranWordHighlightStat
       position: playbackState.position,
       totalDuration: playbackState.duration,
       preciseSegments: _timingSegments,
+      previousWordIndex: state.activeWordIndex,
     );
     state = QuranWordHighlightState(
       activeAyahKey: activeAyahKey,

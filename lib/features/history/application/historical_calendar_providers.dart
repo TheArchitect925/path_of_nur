@@ -10,11 +10,13 @@ class HistoricalTodayState {
     required this.today,
     required this.hijriToday,
     required this.matches,
+    required this.nextUpcomingEvent,
   });
 
   final DateTime today;
   final HijriDateParts hijriToday;
   final List<HistoricalTodayMatch> matches;
+  final HistoricalUpcomingEvent? nextUpcomingEvent;
 
   HistoricalTodayMatch? get featuredMatch =>
       matches.isEmpty ? null : matches.first;
@@ -32,10 +34,14 @@ final historicalTodayProvider = FutureProvider<HistoricalTodayState>((ref) async
   final matches = await ref
       .watch(historicalCalendarRepositoryProvider)
       .getTodayMatches(today: today, hijriToday: hijriToday);
+  final nextUpcomingEvent = await ref
+      .watch(historicalCalendarRepositoryProvider)
+      .getNextUpcomingGregorianEvent(today: today);
   return HistoricalTodayState(
     today: today,
     hijriToday: hijriToday,
     matches: matches,
+    nextUpcomingEvent: nextUpcomingEvent,
   );
 });
 

@@ -45,6 +45,12 @@ const _followPlaybackKey = 'learn.quran.followPlayback';
 const _wordSyncHighlightBetaKey = 'learn.quran.wordSyncHighlightBeta';
 const _redDiacriticsKey = 'learn.quran.redDiacriticsEnabled';
 const _showLearnMoreKey = 'learn.quran.showLearnMore';
+const _focusRecitationShowTranslationKey =
+    'learn.quran.focusRecitationShowTranslation';
+const _focusRecitationShowTransliterationKey =
+    'learn.quran.focusRecitationShowTransliteration';
+const _focusRecitationKeepScreenAwakeKey =
+    'learn.quran.focusRecitationKeepScreenAwake';
 const _wordFavoritesKey = 'learn.quran.wordFavorites';
 const _wordReviewProgressKey = 'learn.quran.wordReviewProgress';
 const _audioSettingsKey = 'learn.quran.audioSettings';
@@ -63,6 +69,11 @@ const quranTranslationCodes = <String>[
   'fa.dari',
 ];
 
+final quranAudioFunctionEnabledProvider = Provider<bool>((ref) => true);
+
+final quranExpandedPlayerOpenProvider = StateProvider<bool>((ref) => false);
+final quranFocusRecitationOpenProvider = StateProvider<bool>((ref) => false);
+
 class QuranReaderSettings {
   const QuranReaderSettings({
     required this.translationCode,
@@ -78,6 +89,9 @@ class QuranReaderSettings {
     required this.wordSyncHighlightBeta,
     required this.redDiacriticsEnabled,
     required this.showLearnMore,
+    required this.focusRecitationShowTranslation,
+    required this.focusRecitationShowTransliteration,
+    required this.focusRecitationKeepScreenAwake,
   });
 
   final String translationCode;
@@ -93,6 +107,9 @@ class QuranReaderSettings {
   final bool wordSyncHighlightBeta;
   final bool redDiacriticsEnabled;
   final bool showLearnMore;
+  final bool focusRecitationShowTranslation;
+  final bool focusRecitationShowTransliteration;
+  final bool focusRecitationKeepScreenAwake;
 
   QuranReaderSettings copyWith({
     String? translationCode,
@@ -108,6 +125,9 @@ class QuranReaderSettings {
     bool? wordSyncHighlightBeta,
     bool? redDiacriticsEnabled,
     bool? showLearnMore,
+    bool? focusRecitationShowTranslation,
+    bool? focusRecitationShowTransliteration,
+    bool? focusRecitationKeepScreenAwake,
   }) {
     return QuranReaderSettings(
       translationCode: translationCode ?? this.translationCode,
@@ -126,6 +146,15 @@ class QuranReaderSettings {
           wordSyncHighlightBeta ?? this.wordSyncHighlightBeta,
       redDiacriticsEnabled: redDiacriticsEnabled ?? this.redDiacriticsEnabled,
       showLearnMore: showLearnMore ?? this.showLearnMore,
+      focusRecitationShowTranslation:
+          focusRecitationShowTranslation ??
+          this.focusRecitationShowTranslation,
+      focusRecitationShowTransliteration:
+          focusRecitationShowTransliteration ??
+          this.focusRecitationShowTransliteration,
+      focusRecitationKeepScreenAwake:
+          focusRecitationKeepScreenAwake ??
+          this.focusRecitationKeepScreenAwake,
     );
   }
 }
@@ -252,12 +281,12 @@ class QuranAudioSettings {
         repeatStartAyah: null,
         repeatEndAyah: null,
         ayahLoopCount: 1,
-        reciterId: 'husary',
+        reciterId: QuranAudioRepository.defaultReciterId,
         backgroundPlaybackEnabled: true,
       );
     }
     final rawReciterId = json['reciterId']?.toString();
-    final defaultReciterId = QuranAudioRepository.reciters.first.id;
+    const defaultReciterId = QuranAudioRepository.defaultReciterId;
     final reciterId =
         QuranAudioRepository.reciters.any((item) => item.id == rawReciterId)
         ? rawReciterId!
@@ -385,6 +414,9 @@ class QuranReaderSettingsNotifier extends StateNotifier<QuranReaderSettings> {
           wordSyncHighlightBeta: false,
           redDiacriticsEnabled: true,
           showLearnMore: true,
+          focusRecitationShowTranslation: true,
+          focusRecitationShowTransliteration: true,
+          focusRecitationKeepScreenAwake: false,
         ),
       ) {
     _load();
@@ -461,6 +493,21 @@ class QuranReaderSettingsNotifier extends StateNotifier<QuranReaderSettings> {
     _store.setBool(_showLearnMoreKey, value);
   }
 
+  void setFocusRecitationShowTranslation(bool value) {
+    state = state.copyWith(focusRecitationShowTranslation: value);
+    _store.setBool(_focusRecitationShowTranslationKey, value);
+  }
+
+  void setFocusRecitationShowTransliteration(bool value) {
+    state = state.copyWith(focusRecitationShowTransliteration: value);
+    _store.setBool(_focusRecitationShowTransliterationKey, value);
+  }
+
+  void setFocusRecitationKeepScreenAwake(bool value) {
+    state = state.copyWith(focusRecitationKeepScreenAwake: value);
+    _store.setBool(_focusRecitationKeepScreenAwakeKey, value);
+  }
+
   void _load() {
     final code = _store.getString(_translationCodeKey);
     final showArabic = _store.getBool(_showArabicKey);
@@ -477,6 +524,15 @@ class QuranReaderSettingsNotifier extends StateNotifier<QuranReaderSettings> {
     final wordSyncHighlightBeta = _store.getBool(_wordSyncHighlightBetaKey);
     final redDiacriticsEnabled = _store.getBool(_redDiacriticsKey);
     final showLearnMore = _store.getBool(_showLearnMoreKey);
+    final focusRecitationShowTranslation = _store.getBool(
+      _focusRecitationShowTranslationKey,
+    );
+    final focusRecitationShowTransliteration = _store.getBool(
+      _focusRecitationShowTransliterationKey,
+    );
+    final focusRecitationKeepScreenAwake = _store.getBool(
+      _focusRecitationKeepScreenAwakeKey,
+    );
 
     state = state.copyWith(
       translationCode: (code != null && quranTranslationCodes.contains(code))
@@ -497,6 +553,13 @@ class QuranReaderSettingsNotifier extends StateNotifier<QuranReaderSettings> {
           wordSyncHighlightBeta ?? state.wordSyncHighlightBeta,
       redDiacriticsEnabled: redDiacriticsEnabled ?? state.redDiacriticsEnabled,
       showLearnMore: showLearnMore ?? state.showLearnMore,
+      focusRecitationShowTranslation:
+          focusRecitationShowTranslation ?? state.showTranslation,
+      focusRecitationShowTransliteration:
+          focusRecitationShowTransliteration ?? state.showTransliteration,
+      focusRecitationKeepScreenAwake:
+          focusRecitationKeepScreenAwake ??
+          state.focusRecitationKeepScreenAwake,
     );
   }
 }

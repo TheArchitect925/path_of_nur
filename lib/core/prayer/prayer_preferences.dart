@@ -1690,6 +1690,8 @@ String localizedPrayerNameForDate({
       return l10n.settingsPrayerNameMaghrib;
     case 'isha':
       return l10n.settingsPrayerNameIsha;
+    case 'tahajjud':
+      return l10n.notificationsPrayerNameTahajjud;
     default:
       return prayerId;
   }

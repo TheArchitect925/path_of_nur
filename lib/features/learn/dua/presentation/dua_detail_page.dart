@@ -247,6 +247,7 @@ class _DuaDetailPageState extends ConsumerState<DuaDetailPage> {
                     ayahNumber: quranRef.$2,
                     endAyahNumber: quranRef.$3,
                     autoplay: true,
+                    loopFocusedSelection: true,
                   ),
                   icon: const Icon(Icons.play_arrow_rounded),
                   label: Text(l10n.duaDetailOpenInQuranReader),

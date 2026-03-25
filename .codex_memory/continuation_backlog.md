@@ -260,3 +260,12 @@ Master consolidation reference:
 146. Add a fuller fake-player widget harness around the real `quran_reader_page.dart` route so page-level playback, reciter switching, and highlight persistence are protected without relying only on the lightweight controls/ayah-card harness.
 147. Move the word-timing lifecycle coordination out of `quran_reader_page.dart` into a dedicated reader word-sync coordinator once the shared playback-state boundary is proven stable on device.
 148. Audit watch/tvOS Qur'an playback consumers against the new normalized playback-state contract before mirrored playback surfaces evolve further, so active-ayah/session drift does not reappear on companion targets.
+253. Run real-device QA for the new Qur'an shell mini-player, especially background playback, route transitions, long-title truncation, and reader re-entry on small phones.
+254. Add a real router-backed test for previous/next surah transitions from the reader so adjacent-surah navigation is protected beyond the current controller/global-state coverage.
+255. Decide whether whole-surah repeat should become a first-class surfaced playback mode or remain limited to repeat-range plus loop-count configuration until device QA validates the simpler contract.
+256. Review watch/tvOS Qur'an playback consumers against the newer global mini-player and normalized transport metadata contract so mirrored playback surfaces do not regress into shell-vs-reader drift.
+257. Add a real route-backed retry harness that exercises a normalized source failure, visible retry action, and successful recovery on the full Qur'an reader route.
+258. Run signed-device QA for corrupt local files, airplane-mode streaming failure, buffering timeout, mid-play reciter switching, and session restore with unavailable audio so the new resilience contract is validated outside the fake-player harness.
+259. Decide whether to expose a user-facing downloaded-vs-streaming source preference after the current automatic fallback behavior is validated on device.
+260. Cache recent bad-source outcomes per ayah/reciter so adjacent ayah and adjacent surah transport do not keep choosing the same known-bad source path in a tight failure loop.
+261. Review watch/tvOS Qur'an playback consumers against the new source/failure/buffering/retry contract so mirrored playback surfaces do not assume playback is only idle, paused, or playing.

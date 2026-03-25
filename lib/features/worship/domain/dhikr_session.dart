@@ -1,3 +1,5 @@
+import '../../../l10n/app_localizations.dart';
+
 class DhikrSession {
   const DhikrSession({
     required this.phraseLabel,
@@ -21,11 +23,11 @@ class DhikrSession {
     return difference;
   }
 
-  String get durationLabel {
+  String localizedDurationLabel(AppLocalizations l10n) {
     final minutes = duration.inMinutes;
     if (minutes <= 0) {
-      return 'just now';
+      return l10n.dhikrDurationJustNow;
     }
-    return '$minutes min';
+    return l10n.dhikrDurationMinutes('$minutes');
   }
 }

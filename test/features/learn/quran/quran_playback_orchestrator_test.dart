@@ -5,6 +5,7 @@ import 'package:path_of_nur/features/learn/quran/application/quran_playback_orch
 import 'package:path_of_nur/features/learn/quran/application/quran_playback_policy.dart';
 import 'package:path_of_nur/features/learn/quran/data/quran_audio_repository.dart';
 import 'package:path_of_nur/features/learn/quran/domain/bismillah_playback_mode.dart';
+import 'package:path_of_nur/features/learn/quran/domain/quran_audio_resilience_models.dart';
 import 'package:path_of_nur/features/learn/quran/domain/quran_audio_source_metadata.dart';
 import 'package:path_of_nur/features/learn/quran/domain/quran_content_refs.dart';
 import 'package:path_of_nur/features/learn/quran/domain/quran_playback_request.dart';
@@ -12,17 +13,22 @@ import 'package:path_of_nur/features/learn/quran/domain/quran_playback_request.d
 class _FakeQuranAudioRepository extends QuranAudioRepository {
   _FakeQuranAudioRepository() : super(client: HttpClient());
 
+  int resolveAyahSourceMetadataCallCount = 0;
+
   @override
   Future<QuranAudioSourceMetadata> resolveAyahSourceMetadata({
     required String reciterId,
     required int surahNumber,
     required int ayahNumber,
+    QuranPlaybackSourceType? preferredSourceType,
   }) async {
+    resolveAyahSourceMetadataCallCount += 1;
     return QuranAudioSourceMetadata(
       surahNumber: surahNumber,
       ayahNumber: ayahNumber,
       reciterId: reciterId,
       source: 'https://example.test/$reciterId/$surahNumber/$ayahNumber.mp3',
+      sourceType: QuranPlaybackSourceType.remoteStream,
       sourceContainsBismillahAtStart: surahNumber == 1 && ayahNumber == 1,
       sourceId: QuranAudioSourceId('example.$reciterId'),
       isAyahGranular: true,
@@ -44,12 +50,14 @@ class _FakeQuranAudioRepository extends QuranAudioRepository {
   @override
   Future<QuranAudioSourceMetadata> resolveCanonicalBismillahMetadata({
     required String reciterId,
+    QuranPlaybackSourceType? preferredSourceType,
   }) async {
     return QuranAudioSourceMetadata(
       surahNumber: 1,
       ayahNumber: 1,
       reciterId: reciterId,
       source: 'https://example.test/$reciterId/bismillah.mp3',
+      sourceType: QuranPlaybackSourceType.remoteStream,
       sourceContainsBismillahAtStart: true,
       sourceId: QuranAudioSourceId('example.$reciterId'),
       isAyahGranular: true,
@@ -71,8 +79,9 @@ class _FakeQuranAudioRepository extends QuranAudioRepository {
 }
 
 void main() {
+  final repository = _FakeQuranAudioRepository();
   final orchestrator = QuranPlaybackOrchestrator(
-    audioRepository: _FakeQuranAudioRepository(),
+    audioRepository: repository,
     policy: const QuranPlaybackPolicy(),
   );
 
@@ -281,5 +290,30 @@ void main() {
 
     expect(prepared.didPrependBismillah, isFalse);
     expect(prepared.preRollSource, isNull);
+  });
+
+  test('reuses cached prepared playback for repeated identical queue requests', () async {
+    repository.resolveAyahSourceMetadataCallCount = 0;
+
+    await prepare(
+      const QuranPlaybackRequest(
+        surahNumber: 18,
+        ayahNumber: 25,
+        resumePosition: Duration(seconds: 5),
+        playbackReason: QuranPlaybackReason.resume,
+      ),
+      ayahs: const <int>[20, 25, 30],
+    );
+    await prepare(
+      const QuranPlaybackRequest(
+        surahNumber: 18,
+        ayahNumber: 25,
+        resumePosition: Duration(seconds: 9),
+        playbackReason: QuranPlaybackReason.resume,
+      ),
+      ayahs: const <int>[20, 25, 30],
+    );
+
+    expect(repository.resolveAyahSourceMetadataCallCount, 3);
   });
 }

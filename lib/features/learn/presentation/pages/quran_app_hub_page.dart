@@ -7,6 +7,7 @@ import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/application/special_mode_provider.dart';
 import '../../../../shared/content/page_description_copy.dart';
 import '../../../../shared/theme/islamic_icons.dart';
+import '../../../../shared/widgets/major_page_shortcuts.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/section_hub_scaffold.dart';
 import '../../journey/data/learning_journey_localized_metadata.dart';
@@ -72,6 +73,11 @@ class _QuranAppHubPageState extends ConsumerState<QuranAppHubPage> {
         context,
         AppPageDescriptionKey.quranHub,
         kidsMode: isKidsMode,
+      ),
+      shortcutActions: buildMajorPageShortcutActions(
+        context,
+        ref,
+        MajorPageShortcutFamily.quran,
       ),
       children: [
         PremiumCard(

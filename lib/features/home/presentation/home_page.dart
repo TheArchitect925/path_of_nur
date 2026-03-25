@@ -16,7 +16,6 @@ import '../../../features/history/presentation/widgets/on_this_day_home_card.dar
 import '../application/home_calendar_progress_provider.dart';
 import '../../../shared/content/contextual_quran_quotes.dart';
 import '../../../features/profile/application/profile_settings_provider.dart';
-import '../../../features/worship/application/dhikr_controller.dart';
 import '../../../features/worship/application/prayer_controller.dart';
 import '../../../features/worship/data/prayer_log_repository.dart';
 import '../../../features/worship/domain/prayer_name.dart';
@@ -24,7 +23,6 @@ import '../../../features/worship/domain/prayer_status.dart';
 import '../../../features/worship/domain/prayer_tracker_fields.dart';
 import '../../../features/worship/presentation/prayer_date_utils.dart';
 import '../../../features/learn/quran/application/quran_providers.dart';
-import '../../../features/learn/quran/presentation/widgets/quran_daily_reflection_card.dart';
 import '../../../features/learn/prophets/application/daily_learning_service.dart';
 import '../../../features/learn/prophets/application/prophets_repository.dart';
 import '../../../features/learn/prophets/presentation/widgets/daily_prophet_quiz_card.dart';
@@ -118,13 +116,6 @@ class _HomePageState extends ConsumerState<HomePage> {
                   children: [
                     _TopGreetingBlock(l10n: l10n, userProfile: userProfile),
                     const SizedBox(height: 12),
-                    const QuranDailyReflectionCard(
-                      compact: true,
-                      showSecondaryActions: false,
-                    ),
-                    const SizedBox(height: 12),
-                    const _ModeAwareHomeCard(),
-                    const SizedBox(height: 10),
                     _AyahCard(
                       verse: displayVerse,
                       onTap: () => ref
@@ -145,13 +136,15 @@ class _HomePageState extends ConsumerState<HomePage> {
                           }),
                     ),
                     const SizedBox(height: 14),
+                    const _ModeAwareHomeCard(),
+                    const SizedBox(height: 10),
                     _SalahSummaryCard(l10n: l10n),
                     const SizedBox(height: 12),
                     const _DailySalahTimingsCard(),
                     const SizedBox(height: 12),
-                    const CelestialCycleCard(),
-                    const SizedBox(height: 12),
                     const OnThisDayHomeCard(),
+                    const SizedBox(height: 12),
+                    const CelestialCycleCard(),
                     const SizedBox(height: 12),
                     const _HomeLearningActionsCard(),
                   ],
@@ -326,7 +319,7 @@ class _DailySalahTimingsCard extends ConsumerWidget {
                       ),
               ),
               IconButton(
-                onPressed: () => context.goNamed('settings'),
+                onPressed: () => context.pushNamed('settingsPrayerWorship'),
                 icon: const Icon(
                   Icons.settings_outlined,
                   color: Color(0xFF8A7A6B),
@@ -390,25 +383,10 @@ class _DailySalahTimingsCard extends ConsumerWidget {
                                 item.id == scheduleContext?.nextPrayerId,
                             onToggleOffered: isFutureDay
                                 ? null
-                                : canOpenDetails
-                                ? () => _openHomePrayerTrackerSheet(
-                                    context,
-                                    ref,
-                                    dayKey: dayKey,
-                                    prayer: prayer,
-                                    prayerName: localizedPrayerNameForDate(
-                                      prayerId: item.id,
-                                      l10n: l10n,
-                                      date: selectedDate,
-                                    ),
-                                    selectedDate: selectedDate,
-                                    existingEntry: entry,
-                                    isToday: isToday,
-                                  )
                                 : isToday
                                 ? () => ref
                                       .read(prayerControllerProvider.notifier)
-                                      .markCompleted(prayer)
+                                      .toggleCompleted(prayer)
                                 : () => _toggleHistoricalPrayerCompletion(
                                     ref,
                                     dayKey: dayKey,
@@ -2181,18 +2159,19 @@ class _SalahSummaryCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final summary = ref.watch(homeDashboardSummaryProvider);
+    final worship = summary.worship;
+    final journey = summary.journey;
     final scheduleContext = ref.watch(prayerScheduleContextProvider);
     final now = ref.watch(dailyNowProvider).value ?? DateTime.now();
     final prayerSettings = ref.watch(prayerSettingsProvider);
     final displayLocation = ref.watch(prayerLocationDisplayLabelProvider);
-    final dhikrState = ref.watch(dhikrControllerProvider);
     final next = scheduleContext.items
         .where((item) => item.id == scheduleContext.nextPrayerId)
         .firstOrNull;
     final current = scheduleContext.items
         .where((item) => item.id == scheduleContext.currentPrayerId)
         .firstOrNull;
-    final prayerSummary = ref.watch(prayerSummaryProvider);
     final forbiddenPeriod = _activeForbiddenPeriod(
       l10n,
       scheduleContext.items,
@@ -2213,15 +2192,17 @@ class _SalahSummaryCard extends ConsumerWidget {
             l10n,
             current.overdueDateTime.difference(now),
           );
-    final todayStart = DateTime(now.year, now.month, now.day);
-    final dhikrCompletedToday = dhikrState.recentSessions
-        .where((session) => !session.finishedAt.isBefore(todayStart))
-        .fold<int>(0, (sum, session) => sum + session.count);
-    final dhikrToday = dhikrCompletedToday + dhikrState.currentCount;
-    const dhikrDailyGoal = 500;
-    final hasReachedDhikrDailyGoal = dhikrToday >= dhikrDailyGoal;
     final offerByLabel = l10n.homePrayerBeginsAt(nextAt);
     final offerByValue = nextAt;
+    final prayerCompletedValue = l10n.homeFractionValue(
+      _formatLocalizedCount(context, worship.prayerCompleted),
+      _formatLocalizedCount(context, worship.prayerTotal),
+    );
+    final dhikrDailyGoal = math.max(worship.dhikrTarget, 500);
+    final dhikrValue = l10n.homeFractionValue(
+      _formatLocalizedCount(context, worship.dhikrCount),
+      _formatLocalizedCount(context, dhikrDailyGoal),
+    );
     final locationLabel =
         displayLocation.valueOrNull ??
         (prayerSettings.preferences.useDeviceLocation
@@ -2235,33 +2216,8 @@ class _SalahSummaryCard extends ConsumerWidget {
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
         radius: 32,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if (forbiddenPeriod != null) ...[
-              _StatsLine(
-                label: forbiddenPeriod.label,
-                value: forbiddenPeriod.value,
-                labelColor: const Color(0xFFD01919),
-                valueColor: const Color(0xFFD01919),
-              ),
-              const SizedBox(height: 10),
-            ] else if (current != null) ...[
-              _StatsLine(
-                label: l10n.homeTimeRemainingToOffer(current.name),
-                value: currentEndsIn ?? current.overdueAt,
-              ),
-              if (current.hasDelayedMakeUpWindow) ...[
-                const Divider(height: 12, color: Color(0x28BFAE98)),
-                _StatsLine(
-                  label: l10n.homePrayerBecomesQada(
-                    current.name,
-                    current.name,
-                    current.overdueAt,
-                  ),
-                  value: current.overdueAt,
-                ),
-              ],
-              const SizedBox(height: 10),
-            ],
             InkWell(
               borderRadius: BorderRadius.circular(999),
               onTap: () => _showLocationPicker(context, ref, locationLabel),
@@ -2289,139 +2245,172 @@ class _SalahSummaryCard extends ConsumerWidget {
                         ),
                       ),
                     ),
-                    const SizedBox(width: 6),
-                    const Icon(
-                      Icons.keyboard_arrow_down_rounded,
-                      size: 16,
-                      color: Color(0xFF7A5A33),
-                    ),
                   ],
                 ),
               ),
             ),
             const SizedBox(height: 10),
-            _GlassCard(
-              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
-              radius: 24,
-              child: Column(
-                children: [
-                  Row(
+            Row(
+              children: [
+                Text(
+                  l10n.nextSalah,
+                  style: const TextStyle(
+                    fontSize: 14.5,
+                    fontWeight: FontWeight.w700,
+                    color: Color(0xFF6E5D4C),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  width: 42,
+                  height: 42,
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFEAF3E8),
+                    borderRadius: BorderRadius.circular(14),
+                  ),
+                  child: const Icon(
+                    Icons.schedule_rounded,
+                    size: 22,
+                    color: Color(0xFF6E9A73),
+                  ),
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        l10n.nextSalah,
+                        nextName,
                         style: const TextStyle(
-                          fontSize: 16,
+                          fontSize: 28,
                           fontWeight: FontWeight.w700,
-                          color: Color(0xFF25221E),
+                          color: Color(0xFF202228),
+                          fontFamily: 'serif',
+                          height: 1.0,
                         ),
                       ),
-                      const Spacer(),
+                      const SizedBox(height: 2),
                       Text(
-                        l10n.allSalahTimes,
+                        nextArabic,
+                        textAlign: textAlignForContent(nextArabic),
+                        textDirection: textDirectionForContent(nextArabic),
                         style: const TextStyle(
                           fontSize: 16,
-                          fontWeight: FontWeight.w700,
-                          color: Color(0xFF98C3A0),
+                          color: Color(0xFF4D4036),
+                          fontFamily: 'serif',
                         ),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 12),
+                ),
+                const SizedBox(width: 10),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(
+                      offerByValue,
+                      style: const TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.w700,
+                        color: Color(0xFF202228),
+                        fontFamily: 'serif',
+                      ),
+                    ),
+                    Text(
+                      offerByLabel,
+                      style: const TextStyle(
+                        fontSize: 12.5,
+                        color: Color(0xFF6E5D4C),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            if (forbiddenPeriod != null) ...[
+              const SizedBox(height: 10),
+              _CompactPrayerMetaChip(
+                icon: Icons.block_rounded,
+                label: '${forbiddenPeriod.label} • ${forbiddenPeriod.value}',
+                color: const Color(0xFFD01919),
+              ),
+            ] else if (current != null) ...[
+              const SizedBox(height: 10),
+              _CompactPrayerMetaChip(
+                icon: Icons.timelapse_rounded,
+                label:
+                    '${l10n.homeTimeRemainingToOffer(current.name)} • ${currentEndsIn ?? current.overdueAt}',
+              ),
+              if (current.hasDelayedMakeUpWindow) ...[
+                const SizedBox(height: 8),
+                _CompactPrayerMetaChip(
+                  icon: Icons.warning_amber_rounded,
+                  label: l10n.homePrayerBecomesQada(
+                    current.name,
+                    current.name,
+                    current.overdueAt,
+                  ),
+                  color: const Color(0xFF9A6D16),
+                ),
+              ],
+            ],
+            const SizedBox(height: 14),
+            Container(
+              padding: const EdgeInsets.all(14),
+              decoration: BoxDecoration(
+                color: const Color(0xFFF5EBDD).withValues(alpha: 0.82),
+                borderRadius: BorderRadius.circular(22),
+                border: Border.all(
+                  color: const Color(0xFFE1CEB8).withValues(alpha: 0.9),
+                ),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
                   Row(
                     children: [
-                      const Icon(
-                        Icons.wb_sunny_outlined,
-                        size: 24,
-                        color: Color(0xFF9BC5A0),
+                      Expanded(
+                        child: _PrayerSummaryMiniStat(
+                          title: l10n.homeShortcutSalahLabel,
+                          value: prayerCompletedValue,
+                          subtitle: l10n.homeShortcutDailyCaption,
+                          icon: Icons.checklist_rounded,
+                          tint: const Color(0xFF9F7A42),
+                        ),
                       ),
-                      const SizedBox(width: 8),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            nextName,
-                            style: const TextStyle(
-                              fontSize: 34,
-                              fontWeight: FontWeight.w700,
-                              color: Color(0xFF202228),
-                              fontFamily: 'serif',
-                              height: 1.0,
-                            ),
-                          ),
-                          Text(
-                            nextArabic,
-                            textAlign: textAlignForContent(nextArabic),
-                            textDirection: textDirectionForContent(nextArabic),
-                            style: const TextStyle(
-                              fontSize: 18,
-                              color: Color(0xFF2D3137),
-                              fontFamily: 'serif',
-                            ),
-                          ),
-                        ],
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: _PrayerSummaryMiniStat(
+                          title: l10n.homeShortcutDhikrLabel,
+                          value: dhikrValue,
+                          subtitle: l10n.homeShortcutDailyCaption,
+                          icon: Icons.favorite_outline_rounded,
+                          tint: const Color(0xFF8F7547),
+                        ),
                       ),
-                      const Spacer(),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Text(
-                            offerByLabel,
-                            style: const TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w700,
-                              color: Color(0xFF202228),
-                            ),
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: _PrayerSummaryMiniStat(
+                          title: l10n.streakLabel,
+                          value: _formatLocalizedCount(
+                            context,
+                            journey.currentStreakDays,
                           ),
-                          const SizedBox(height: 2),
-                          Text(
-                            offerByValue,
-                            style: const TextStyle(
-                              fontSize: 13,
-                              color: Color(0xFF50545A),
-                            ),
-                          ),
-                        ],
+                          subtitle: l10n.homeCurrentStreakTitle,
+                          icon: Icons.local_fire_department_outlined,
+                          tint: const Color(0xFFB56D43),
+                        ),
                       ),
                     ],
                   ),
                 ],
               ),
             ),
-            const SizedBox(height: 10),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(999),
-              child: LinearProgressIndicator(
-                minHeight: 6,
-                value: scheduleContext.progressToNext,
-                backgroundColor: const Color(0x22BFAE98),
-                valueColor: const AlwaysStoppedAnimation<Color>(
-                  Color(0xFF9BC5A0),
-                ),
-              ),
-            ),
-            const SizedBox(height: 10),
-            _StatsLine(
-              label: l10n.salahCompleted,
-              value: l10n.homeFractionValue(
-                _formatCount(context, prayerSummary.completed),
-                _formatCount(context, prayerSummary.total),
-              ),
-            ),
-            const Divider(height: 12, color: Color(0x28BFAE98)),
-            _StatsLine(
-              label: l10n.dhikrToday,
-              value: l10n.homeFractionValue(
-                _formatCount(context, dhikrToday),
-                _formatCount(context, dhikrDailyGoal),
-              ),
-              trailingIcon: hasReachedDhikrDailyGoal
-                  ? Icons.check_circle_rounded
-                  : null,
-              trailingIconColor: const Color(0xFF5E8A43),
-              onTap: () => context.pushNamed('worshipDhikrPage'),
-            ),
-            const Divider(height: 12, color: Color(0x28BFAE98)),
-            _StatsLine(label: l10n.salahStreak, value: l10n.homeDaysCount(1)),
           ],
         ),
       ),
@@ -2440,9 +2429,6 @@ class _SalahSummaryCard extends ConsumerWidget {
       minuteSuffix: l10n.durationCompactMinuteSuffix,
     );
   }
-
-  String _formatCount(BuildContext context, num value) =>
-      _formatLocalizedCount(context, value);
 
   _ForbiddenPrayerPeriod? _activeForbiddenPeriod(
     AppLocalizations l10n,
@@ -2496,104 +2482,115 @@ class _SalahSummaryCard extends ConsumerWidget {
   }
 }
 
-class _StatsLine extends StatelessWidget {
-  const _StatsLine({
-    required this.label,
+class _PrayerSummaryMiniStat extends StatelessWidget {
+  const _PrayerSummaryMiniStat({
+    required this.title,
     required this.value,
-    this.labelColor = const Color(0xFF4A423A),
-    this.valueColor = const Color(0xFF2F2923),
-    this.trailingIcon,
-    this.trailingIconColor,
-    this.onTap,
+    required this.subtitle,
+    required this.icon,
+    required this.tint,
   });
 
-  final String label;
+  final String title;
   final String value;
-  final Color labelColor;
-  final Color valueColor;
-  final IconData? trailingIcon;
-  final Color? trailingIconColor;
-  final VoidCallback? onTap;
+  final String subtitle;
+  final IconData icon;
+  final Color tint;
 
   @override
   Widget build(BuildContext context) {
-    final content = LayoutBuilder(
-      builder: (context, constraints) {
-        final valueRow = Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Flexible(
-              child: Text(
-                value,
-                textAlign: TextAlign.right,
-                softWrap: true,
-                style: TextStyle(
-                  color: valueColor,
-                  fontSize: 14.5,
-                  fontWeight: FontWeight.w700,
-                  fontFamily: 'serif',
-                ),
-              ),
-            ),
-            if (trailingIcon != null) ...[
-              const SizedBox(width: 6),
-              Icon(
-                trailingIcon,
-                size: 16,
-                color: trailingIconColor ?? valueColor,
-              ),
-            ],
-          ],
-        );
-
-        if (constraints.maxWidth < 320) {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      decoration: BoxDecoration(
+        color: Colors.white.withValues(alpha: 0.52),
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: tint.withValues(alpha: 0.16)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
             children: [
-              Text(
-                label,
-                softWrap: true,
-                style: TextStyle(
-                  color: labelColor,
-                  fontSize: 14.5,
-                  fontFamily: 'serif',
+              Icon(icon, size: 14, color: tint),
+              const SizedBox(width: 6),
+              Expanded(
+                child: Text(
+                  title,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontSize: 11.5,
+                    fontWeight: FontWeight.w700,
+                    color: tint,
+                  ),
                 ),
               ),
-              const SizedBox(height: 4),
-              Align(alignment: Alignment.centerRight, child: valueRow),
             ],
-          );
-        }
+          ),
+          const SizedBox(height: 8),
+          Text(
+            value,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: const TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.w700,
+              color: Color(0xFF2F2923),
+            ),
+          ),
+          const SizedBox(height: 2),
+          Text(
+            subtitle,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            style: const TextStyle(
+              fontSize: 11.2,
+              color: Color(0xFF6E5D4C),
+              height: 1.25,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
 
-        return Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              child: Text(
-                label,
-                softWrap: true,
-                style: TextStyle(
-                  color: labelColor,
-                  fontSize: 14.5,
-                  fontFamily: 'serif',
-                ),
+class _CompactPrayerMetaChip extends StatelessWidget {
+  const _CompactPrayerMetaChip({
+    required this.icon,
+    required this.label,
+    this.color = const Color(0xFF6E5D4C),
+  });
+
+  final IconData icon;
+  final String label;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+      decoration: BoxDecoration(
+        color: color.withValues(alpha: 0.08),
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(color: color.withValues(alpha: 0.18)),
+      ),
+      child: Row(
+        children: [
+          Icon(icon, size: 15, color: color),
+          const SizedBox(width: 6),
+          Expanded(
+            child: Text(
+              label,
+              style: TextStyle(
+                fontSize: 12.5,
+                fontWeight: FontWeight.w600,
+                color: color,
+                height: 1.3,
               ),
             ),
-            const SizedBox(width: 10),
-            Flexible(child: valueRow),
-          ],
-        );
-      },
-    );
-
-    if (onTap == null) return content;
-
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(10),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 2),
-        child: content,
+          ),
+        ],
       ),
     );
   }

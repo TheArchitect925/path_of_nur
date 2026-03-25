@@ -7,6 +7,7 @@ import 'package:path_of_nur/features/learn/quran/application/quran_reference_gra
 import 'package:path_of_nur/features/learn/quran/domain/quran_ayah.dart';
 import 'package:path_of_nur/features/learn/quran/domain/quran_reference_models.dart';
 import 'package:path_of_nur/features/learn/quran/presentation/quran_reader_page.dart';
+import 'package:path_of_nur/features/learn/quran/presentation/widgets/quran_playback_controls_card.dart';
 import 'package:path_of_nur/l10n/app_localizations.dart';
 import 'package:path_of_nur/shared/persistence/local_store.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -52,12 +53,13 @@ void main() {
     var previousCount = 0;
     var restartCount = 0;
     var nextCount = 0;
+    var openFullPlayerCount = 0;
 
     await tester.pumpWidget(
       await wrapHarness(
         StatefulBuilder(
           builder: (context, setState) {
-            return QuranReaderPlaybackControlsCard(
+            return QuranPlaybackControlsCard(
               isPreparing: false,
               hasPlayback: true,
               isPlaying: isPlaying,
@@ -67,6 +69,7 @@ void main() {
               sliderMax: 90,
               sliderValue: 12,
               onClose: () {},
+              onOpenExpandedPlayer: () => openFullPlayerCount += 1,
               onBack15: () {},
               onTogglePlayback: () => setState(() => isPlaying = !isPlaying),
               onForward15: () {},
@@ -107,9 +110,12 @@ void main() {
     await tester.pumpAndSettle();
     await tester.tap(find.byKey(const ValueKey('quran-reader-next-ayah')));
     await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const ValueKey('quran-reader-open-full-player')));
+    await tester.pumpAndSettle();
     expect(previousCount, 1);
     expect(restartCount, 1);
     expect(nextCount, 1);
+    expect(openFullPlayerCount, 1);
 
     expect(find.text('Follow mode'), findsOneWidget);
     await tester.tap(find.byKey(const ValueKey('quran-reader-follow-toggle')));

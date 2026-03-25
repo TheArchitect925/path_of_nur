@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
+import '../../../../shared/widgets/quran_presentation_style.dart';
 import '../../../../shared/widgets/quran_reference_link.dart';
 import '../../presentation/kids_learning_localizations.dart';
 import '../application/quran_providers.dart';
@@ -86,12 +87,22 @@ class _KidsQuranAyahCard extends StatelessWidget {
             ).textTheme.headlineSmall?.copyWith(height: 1.8),
           ),
           const SizedBox(height: 10),
-          Text(ayah.translation),
+          Text(
+            ayah.translation,
+            style: QuranPresentationStyle.quranSupportTextStyle(
+              context,
+              Theme.of(context).textTheme.bodyMedium ?? const TextStyle(),
+            ),
+          ),
           if ((ayah.transliteration ?? '').trim().isNotEmpty) ...[
             const SizedBox(height: 10),
             Text(
               ayah.transliteration!,
-              style: Theme.of(context).textTheme.bodySmall,
+              style: QuranPresentationStyle.quranSupportTextStyle(
+                context,
+                Theme.of(context).textTheme.bodySmall ?? const TextStyle(),
+                italic: true,
+              ),
             ),
           ],
           const SizedBox(height: 12),

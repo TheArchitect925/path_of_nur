@@ -11,12 +11,24 @@ class SectionShortcutAction {
     required this.icon,
     required this.onTap,
     this.supportingText,
+    this.palette = ShortcutDockPalette.defaultWarm,
+    this.statusText,
+    this.statusCaption,
+    this.badgeIcon,
+    this.badgeColor,
+    this.badgeTooltip,
   });
 
   final String label;
   final IconData icon;
   final VoidCallback onTap;
   final String? supportingText;
+  final ShortcutDockPalette palette;
+  final String? statusText;
+  final String? statusCaption;
+  final IconData? badgeIcon;
+  final Color? badgeColor;
+  final String? badgeTooltip;
 }
 
 class SectionHubAction {
@@ -250,7 +262,12 @@ class _SectionShortcutDock extends StatelessWidget {
               supportingText: action.supportingText,
               icon: action.icon,
               onTap: action.onTap,
-              palette: ShortcutDockPalette.defaultWarm,
+              palette: action.palette,
+              statusText: action.statusText,
+              statusCaption: action.statusCaption,
+              badgeIcon: action.badgeIcon,
+              badgeColor: action.badgeColor,
+              badgeTooltip: action.badgeTooltip,
             ),
           )
           .toList(growable: false),

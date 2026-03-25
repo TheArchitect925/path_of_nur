@@ -53,6 +53,8 @@ class QuranVerseContent extends ConsumerWidget {
     this.arabicTransform,
     this.transliterationTransform,
     this.translationTransform,
+    this.transliterationColor,
+    this.translationColor,
   });
 
   final QuranVerseSource source;
@@ -65,6 +67,8 @@ class QuranVerseContent extends ConsumerWidget {
   final String Function(String arabic)? arabicTransform;
   final String Function(String transliteration)? transliterationTransform;
   final String Function(String translation)? translationTransform;
+  final Color? transliterationColor;
+  final Color? translationColor;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -94,9 +98,8 @@ class QuranVerseContent extends ConsumerWidget {
         ? CrossAxisAlignment.center
         : CrossAxisAlignment.start;
     final textAlign = center ? TextAlign.center : TextAlign.start;
-    final referenceColor = QuranPresentationStyle.translucentColor(
+    final referenceColor = QuranPresentationStyle.translucentHarakatColor(
       context,
-      Theme.of(context).textTheme.bodySmall?.color ?? const Color(0xFF6D5A4C),
     );
 
     return Column(
@@ -151,7 +154,7 @@ class QuranVerseContent extends ConsumerWidget {
           Text(
             transliteration,
             textAlign: textAlign,
-            style: QuranPresentationStyle.translucentTextStyle(
+            style: QuranPresentationStyle.quranSupportTextStyle(
               context,
               Theme.of(context).textTheme.bodyMedium?.copyWith(
                     fontStyle: FontStyle.italic,
@@ -161,6 +164,8 @@ class QuranVerseContent extends ConsumerWidget {
                     fontStyle: FontStyle.italic,
                     fontSize: transliterationBaseSize * transliterationScale,
                   ),
+              italic: true,
+              colorOverride: transliterationColor,
             ),
           ),
         ],
@@ -169,7 +174,7 @@ class QuranVerseContent extends ConsumerWidget {
           Text(
             translation,
             textAlign: textAlign,
-            style: QuranPresentationStyle.translucentTextStyle(
+            style: QuranPresentationStyle.quranSupportTextStyle(
               context,
               Theme.of(context).textTheme.bodyMedium?.copyWith(
                     fontSize: translationBaseSize * translationScale,
@@ -179,6 +184,7 @@ class QuranVerseContent extends ConsumerWidget {
                     fontSize: translationBaseSize * translationScale,
                     height: 1.35,
                   ),
+              colorOverride: translationColor,
             ),
           ),
         ],
@@ -190,7 +196,7 @@ class QuranVerseContent extends ConsumerWidget {
             style: TextStyle(
               color: referenceColor,
               fontSize: dense ? 11 : 11.5,
-              fontStyle: FontStyle.italic,
+              fontWeight: FontWeight.w700,
             ),
           ),
         ],

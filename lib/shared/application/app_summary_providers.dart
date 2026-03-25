@@ -17,6 +17,7 @@ import '../../features/worship/application/dhikr_controller.dart';
 import '../../features/worship/application/fasting_controller.dart';
 import '../../features/worship/application/prayer_controller.dart';
 import '../../features/worship/domain/fasting_status.dart';
+import '../persistence/local_store.dart';
 import '../state/user_profile_state.dart';
 import 'special_mode_provider.dart';
 
@@ -289,16 +290,22 @@ final worshipSummaryProvider = Provider<WorshipSummary>((ref) {
   final prayerSummary = ref.watch(prayerSummaryProvider);
   final dhikr = ref.watch(dhikrControllerProvider);
   final fasting = ref.watch(fastingControllerProvider);
+  final todayKey = LocalStore.todayKey(DateTime.now());
+  final dhikrCountToday =
+      dhikr.recentSessions
+          .where((session) => LocalStore.todayKey(session.finishedAt) == todayKey)
+          .fold<int>(0, (sum, session) => sum + session.count) +
+      dhikr.currentCount;
 
   final dhikrProgress = dhikr.target <= 0
       ? 0.0
-      : (dhikr.currentCount / dhikr.target).clamp(0.0, 1.0).toDouble();
+      : (dhikrCountToday / dhikr.target).clamp(0.0, 1.0).toDouble();
 
   return WorshipSummary(
     prayerCompleted: prayerSummary.completed,
     prayerTotal: prayerSummary.total,
     prayerProgress: prayerSummary.progress,
-    dhikrCount: dhikr.currentCount,
+    dhikrCount: dhikrCountToday,
     dhikrTarget: dhikr.target,
     dhikrProgress: dhikrProgress,
     fastingStatus: fasting.todayStatus,

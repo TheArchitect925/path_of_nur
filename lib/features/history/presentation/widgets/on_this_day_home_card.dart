@@ -1,127 +1,130 @@
+import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../l10n/app_localizations.dart';
+import '../../../../shared/widgets/home_feature_card_header.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../application/historical_calendar_providers.dart';
+import '../../domain/historical_event_models.dart';
 import '../../presentation/history_ui_helpers.dart';
 
-class OnThisDayHomeCard extends ConsumerWidget {
+class OnThisDayHomeCard extends ConsumerStatefulWidget {
   const OnThisDayHomeCard({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<OnThisDayHomeCard> createState() => _OnThisDayHomeCardState();
+}
+
+class _OnThisDayHomeCardState extends ConsumerState<OnThisDayHomeCard> {
+  int _selectedMatchIndex = 0;
+
+  @override
+  Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final todayAsync = ref.watch(historicalTodayProvider);
 
     return PremiumCard(
+      padding: const EdgeInsets.all(18),
       child: todayAsync.when(
         data: (todayState) {
-          final featured = todayState.featuredMatch;
+          final matches = todayState.matches;
+          final currentIndex = matches.isEmpty
+              ? 0
+              : _selectedMatchIndex.clamp(0, matches.length - 1).toInt();
+          final featured = matches.isEmpty
+              ? null
+              : matches[currentIndex];
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: [
-                  const Icon(Icons.history_edu_rounded),
-                  const SizedBox(width: 10),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          l10n.historyOnThisDayTitle,
-                          style: Theme.of(context).textTheme.titleMedium
-                              ?.copyWith(fontWeight: FontWeight.w700),
+              HomeFeatureCardHeader(
+                icon: Icons.history_edu_rounded,
+                title: l10n.historyOnThisDayTitle,
+                subtitle: l10n.historyOnThisDaySubtitle,
+                trailing: todayState.matches.isNotEmpty
+                    ? TextButton(
+                        onPressed: () => context.pushNamed('learnOnThisDayMatches'),
+                        child: Text(
+                          todayState.matches.length > 1
+                              ? l10n.historyViewAllCount(
+                                  todayState.matches.length,
+                                )
+                              : l10n.historyOpenArchiveAction,
                         ),
-                        const SizedBox(height: 4),
-                        Text(l10n.historyOnThisDaySubtitle),
-                      ],
-                    ),
-                  ),
-                  if (todayState.matches.isNotEmpty)
-                    TextButton(
-                      onPressed: () => context.pushNamed('learnOnThisDayMatches'),
-                      child: Text(
-                        todayState.matches.length > 1
-                            ? l10n.historyViewAllCount(
-                                todayState.matches.length,
-                              )
-                            : l10n.historyOpenArchiveAction,
-                      ),
-                    ),
-                ],
+                      )
+                    : null,
               ),
-              const SizedBox(height: 12),
+              const SizedBox(height: 14),
               Text(
                 formatTodayGregorianDate(context, l10n, todayState.today),
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              const SizedBox(height: 2),
-              Text(formatTodayHijriDate(context, l10n, todayState.hijriToday)),
+              const SizedBox(height: 3),
+              Text(
+                formatTodayHijriDate(context, l10n, todayState.hijriToday),
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
               const SizedBox(height: 14),
               if (featured == null)
-                _EmptyHistoryState(l10n: l10n)
+                _UpcomingHistoryState(
+                  l10n: l10n,
+                  upcoming: todayState.nextUpcomingEvent,
+                )
               else
-                InkWell(
-                  borderRadius: BorderRadius.circular(18),
-                  onTap: () => context.pushNamed(
-                    'learnHistoricalEventDetail',
-                    pathParameters: {'slug': featured.event.slug},
-                  ),
-                  child: Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.all(14),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(18),
-                      color: Theme.of(context).colorScheme.surface.withValues(
-                        alpha: 0.42,
-                      ),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Wrap(
-                          spacing: 8,
-                          runSpacing: 8,
-                          children: [
-                            _Badge(
-                              label: historicalMatchLabel(l10n, featured),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    if (matches.length > 1) ...[
+                      Row(
+                        children: [
+                          IconButton(
+                            onPressed: _selectedMatchIndex <= 0
+                                ? null
+                                : () => setState(() {
+                                    _selectedMatchIndex -= 1;
+                                  }),
+                            icon: const Icon(Icons.arrow_back_ios_new_rounded),
+                            tooltip:
+                                MaterialLocalizations.of(
+                                  context,
+                                ).previousPageTooltip,
+                            visualDensity: VisualDensity.compact,
+                          ),
+                          Expanded(
+                            child: Text(
+                              '${currentIndex + 1} / ${matches.length}',
+                              textAlign: TextAlign.center,
+                              style: Theme.of(context).textTheme.labelMedium
+                                  ?.copyWith(fontWeight: FontWeight.w700),
                             ),
-                            if (featured.event.categories.isNotEmpty)
-                              _Badge(
-                                label: historicalCategoryLabel(
-                                  l10n,
-                                  featured.event.categories.first,
-                                ),
-                              ),
-                          ],
-                        ),
-                        const SizedBox(height: 10),
-                        Text(
-                          featured.event.title,
-                          style: Theme.of(context).textTheme.titleMedium
-                              ?.copyWith(fontWeight: FontWeight.w700),
-                        ),
-                        const SizedBox(height: 4),
-                        Text(
-                          featured.event.summaryShort,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        if (featured.event.hasLocation) ...[
-                          const SizedBox(height: 8),
-                          Text(
-                            featured.event.location.name,
-                            style: Theme.of(context).textTheme.bodySmall,
+                          ),
+                          IconButton(
+                            onPressed: currentIndex >= matches.length - 1
+                                ? null
+                                : () => setState(() {
+                                    _selectedMatchIndex += 1;
+                                  }),
+                            icon: const Icon(Icons.arrow_forward_ios_rounded),
+                            tooltip:
+                                MaterialLocalizations.of(
+                                  context,
+                                ).nextPageTooltip,
+                            visualDensity: VisualDensity.compact,
                           ),
                         ],
-                      ],
+                      ),
+                      const SizedBox(height: 8),
+                    ],
+                    _HistoricalEventPreview(
+                      l10n: l10n,
+                      event: featured.event,
+                      badgeLabel: historicalMatchLabel(l10n, featured),
                     ),
-                  ),
+                  ],
                 ),
             ],
           );
@@ -130,36 +133,128 @@ class OnThisDayHomeCard extends ConsumerWidget {
           height: 140,
           child: Center(child: CircularProgressIndicator()),
         ),
-        error: (_, _) => _EmptyHistoryState(l10n: l10n),
+        error: (_, _) => _UpcomingHistoryState(l10n: l10n, upcoming: null),
       ),
     );
   }
 }
 
-class _EmptyHistoryState extends StatelessWidget {
-  const _EmptyHistoryState({required this.l10n});
+class _HistoricalEventPreview extends StatelessWidget {
+  const _HistoricalEventPreview({
+    required this.l10n,
+    required this.event,
+    required this.badgeLabel,
+    this.secondaryLabel,
+  });
 
   final AppLocalizations l10n;
+  final HistoricalEvent event;
+  final String badgeLabel;
+  final String? secondaryLabel;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          l10n.historyEmptyTodayTitle,
-          style: Theme.of(
-            context,
-          ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+    return InkWell(
+      borderRadius: BorderRadius.circular(20),
+      onTap: () => context.pushNamed(
+        'learnHistoricalEventDetail',
+        pathParameters: {'slug': event.slug},
+      ),
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.all(15),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          color: Theme.of(context).colorScheme.surface.withValues(alpha: 0.36),
+          border: Border.all(
+            color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.10),
+          ),
         ),
-        const SizedBox(height: 4),
-        Text(l10n.historyEmptyTodaySubtitle),
-        const SizedBox(height: 10),
-        TextButton(
-          onPressed: () => context.pushNamed('learnHistoryArchive'),
-          child: Text(l10n.historyOpenArchiveAction),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: [
+                _Badge(label: badgeLabel),
+                if (secondaryLabel != null) _Badge(label: secondaryLabel!),
+                if (event.categories.isNotEmpty)
+                  _Badge(
+                    label: historicalCategoryLabel(
+                      l10n,
+                      event.categories.first,
+                    ),
+                  ),
+              ],
+            ),
+            const SizedBox(height: 12),
+            Text(
+              event.title,
+              style: Theme.of(
+                context,
+              ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              event.summaryShort,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
+            if (event.hasLocation) ...[
+              const SizedBox(height: 10),
+              Text(
+                event.location.name,
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+            ],
+          ],
         ),
-      ],
+      ),
+    );
+  }
+}
+
+class _UpcomingHistoryState extends StatelessWidget {
+  const _UpcomingHistoryState({
+    required this.l10n,
+    required this.upcoming,
+  });
+
+  final AppLocalizations l10n;
+  final HistoricalUpcomingEvent? upcoming;
+
+  @override
+  Widget build(BuildContext context) {
+    if (upcoming == null) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            l10n.historyEmptyTodayTitle,
+            style: Theme.of(
+              context,
+            ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+          ),
+          const SizedBox(height: 4),
+          Text(l10n.historyEmptyTodaySubtitle),
+          const SizedBox(height: 10),
+          TextButton(
+            onPressed: () => context.pushNamed('learnHistoryArchive'),
+            child: Text(l10n.historyOpenArchiveAction),
+          ),
+        ],
+      );
+    }
+
+    final locale = Localizations.localeOf(context).toLanguageTag();
+    return _HistoricalEventPreview(
+      l10n: l10n,
+      event: upcoming!.event,
+      badgeLabel: l10n.historyNextUpcomingEventLabel,
+      secondaryLabel: DateFormat.yMMMd(locale).format(
+        upcoming!.occurrenceDate,
+      ),
     );
   }
 }

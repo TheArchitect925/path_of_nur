@@ -402,6 +402,9 @@ class AppLocalizationsKu extends AppLocalizations {
   String get historyOpenArchiveAction => 'Open archive';
 
   @override
+  String get historyNextUpcomingEventLabel => 'Next event';
+
+  @override
   String get historyOverviewTitle => 'Overview';
 
   @override
@@ -2820,6 +2823,21 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String get learnShortcutClose => 'Close shortcuts';
+
+  @override
+  String get majorPageShortcutContinueJourneyLabel => 'Continue Journey';
+
+  @override
+  String get majorPageShortcutQuickLessonLabel => 'Quick Lesson';
+
+  @override
+  String get majorPageShortcutContinueReadingLabel => 'Continue Reading';
+
+  @override
+  String get majorPageShortcutContinueListeningLabel => 'Continue Listening';
+
+  @override
+  String get majorPageShortcutSurahListLabel => 'Surah List';
 
   @override
   String get learnSectionLandingSubtitle =>
@@ -17112,6 +17130,90 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String get shellQuranPlaybackResumeTooltip => 'Domandinê';
+
+  @override
+  String get shellQuranMiniPlayerTitle => 'Qur\'an playback';
+
+  @override
+  String get shellQuranMiniPlayerPlaying => 'Playing now';
+
+  @override
+  String get shellQuranMiniPlayerPaused => 'Paused';
+
+  @override
+  String get shellQuranMiniPlayerOpenReaderAction => 'Open reader';
+
+  @override
+  String get quranPlaybackStopAction => 'Stop playback';
+
+  @override
+  String get quranPlaybackOpenPlayerAction => 'Open player';
+
+  @override
+  String get quranFocusRecitationModeAction => 'Focus mode';
+
+  @override
+  String get quranFocusRecitationTitle => 'Focus Recitation';
+
+  @override
+  String get quranFocusRecitationDisplaySettingsTitle => 'Focus display';
+
+  @override
+  String get quranFocusRecitationEmptyBody =>
+      'Start Qur’an audio playback to enter this calm ayah-by-ayah recitation mode.';
+
+  @override
+  String get quranPlaybackRetryAction => 'Retry playback';
+
+  @override
+  String get quranPlaybackStatusResolving => 'Preparing audio...';
+
+  @override
+  String get quranPlaybackStatusBuffering => 'Buffering audio...';
+
+  @override
+  String get quranPlaybackFallbackUsingDownloaded =>
+      'Switched to downloaded audio';
+
+  @override
+  String get quranPlaybackFallbackUsingStream => 'Switched to streaming audio';
+
+  @override
+  String get quranPlaybackFailureNetworkUnavailable =>
+      'Playback could not continue because the network is unavailable.';
+
+  @override
+  String get quranPlaybackFailureSourceMissing =>
+      'This recitation source is unavailable right now.';
+
+  @override
+  String get quranPlaybackFailureSourceCorrupt =>
+      'The downloaded audio file could not be played.';
+
+  @override
+  String get quranPlaybackFailureReciterUnavailable =>
+      'Unable to switch to this reciter right now.';
+
+  @override
+  String get quranPlaybackFailureBufferingTimeout =>
+      'Playback took too long to load. Please try again.';
+
+  @override
+  String get quranPlaybackFailureSessionRestore =>
+      'Unable to resume the saved recitation right now.';
+
+  @override
+  String get quranPlaybackFailureUnknown =>
+      'Playback could not continue right now.';
+
+  @override
+  String get quranPlaybackSourceDownloaded => 'Downloaded audio';
+
+  @override
+  String get quranPlaybackSourceStreaming => 'Streaming audio';
+
+  @override
+  String get quranPlaybackSourceUnavailable => 'Audio unavailable';
 
   @override
   String get profileWhatsNewChangelogTitle => 'Nû çi heye';
@@ -31426,6 +31528,47 @@ class AppLocalizationsKu extends AppLocalizations {
   String get quranReaderFollowModeLabel => 'Follow mode';
 
   @override
+  String get quranReaderFollowSuspendedLabel =>
+      'Follow is paused while you browse.';
+
+  @override
+  String get quranReaderReturnToCurrentAyahAction => 'Return to current ayah';
+
+  @override
+  String get quranReaderPreviousSurahAction => 'Previous surah';
+
+  @override
+  String get quranReaderNextSurahAction => 'Next surah';
+
+  @override
+  String get quranReaderAdjacentSurahUnavailable =>
+      'Unable to open that surah right now.';
+
+  @override
+  String quranReaderRepeatRangeSummary(int startAyah, int endAyah) {
+    return 'Repeat ayahs $startAyah–$endAyah';
+  }
+
+  @override
+  String quranReaderRepeatLoopSummary(int count) {
+    return 'Loop ${count}x';
+  }
+
+  @override
+  String quranReaderRepeatRangeLoopSummary(
+    int startAyah,
+    int endAyah,
+    int count,
+  ) {
+    return 'Repeat ayahs $startAyah–$endAyah • ${count}x';
+  }
+
+  @override
+  String quranReaderNextSurahButtonLabel(int surahNumber) {
+    return 'Next Surah ($surahNumber)';
+  }
+
+  @override
   String get growthBrowseAllDailyFocusTitle => 'Daily Focus';
 
   @override
@@ -34906,4 +35049,983 @@ class AppLocalizationsKu extends AppLocalizations {
   @override
   String get quranReciterSwitchFailed =>
       'Unable to switch reciters right now. Please try again.';
+
+  @override
+  String quranReaderDownloadInProgressLabel(
+    int downloadedAyahs,
+    int totalAyahs,
+  ) {
+    return 'Downloading $downloadedAyahs/$totalAyahs';
+  }
+
+  @override
+  String get quranReaderDownloadSurahAction => 'Download Surah';
+
+  @override
+  String get quranReaderRemoveDownloadAction => 'Remove Download';
+
+  @override
+  String get quranReaderAudioDownloadNote =>
+      'Audio is streamed from trusted reciters. Download only surahs you need to keep app size low.';
+
+  @override
+  String get quranReaderPlaybackSpeedTitle => 'Audio Speed';
+
+  @override
+  String get quranReaderPlaybackSpeedLockedHint =>
+      'Locked to 1.00x while Live word sync highlight is enabled.';
+
+  @override
+  String get quranReaderMemorizationSettingsTitle => 'Memorization Settings';
+
+  @override
+  String get quranReaderContinueRecitationTitle => 'Continue Recitation';
+
+  @override
+  String get quranReaderResumeAudioRecitationTitle => 'Resume Audio Recitation';
+
+  @override
+  String quranReaderContinueRecitationSubtitle(
+    int ayahNumber,
+    Object position,
+  ) {
+    return 'Resume from ayah $ayahNumber at $position';
+  }
+
+  @override
+  String get quranReaderResumeAction => 'Resume';
+
+  @override
+  String get quranReaderRestartSurahAction => 'Restart Surah';
+
+  @override
+  String get quranReaderTransliterationLoadError =>
+      'Unable to load full transliteration right now. Check connection and try again.';
+
+  @override
+  String quranReaderReciterSampleError(Object error) {
+    return 'Unable to play sample right now: $error';
+  }
+
+  @override
+  String get quranReaderDownloadSuccess =>
+      'Surah audio downloaded successfully.';
+
+  @override
+  String quranReaderDownloadFailed(Object error) {
+    return 'Download failed: $error';
+  }
+
+  @override
+  String get quranReaderDownloadRemoved => 'Downloaded surah audio removed.';
+
+  @override
+  String quranReaderWordTranslationPrefix(Object gloss) {
+    return 'Translation: $gloss';
+  }
+
+  @override
+  String get quranReaderTransliterationUnavailable =>
+      'Transliteration not available for this ayah yet.';
+
+  @override
+  String get quranReaderSettingsToggleTitle => 'Settings';
+
+  @override
+  String get quranReaderSettingsExpandCollapse => 'Expand/Collapse';
+
+  @override
+  String get quranReaderReadingDisplaySectionTitle => 'Reading & Display';
+
+  @override
+  String get quranReaderReadingDisplaySectionSubtitle =>
+      'Adjust what stays visible and how the ayah text feels while you read.';
+
+  @override
+  String get quranReaderStudyToolsSectionTitle => 'Study Tools';
+
+  @override
+  String get quranReaderStudyToolsSectionSubtitle =>
+      'Optional learning aids and beta helpers for deeper study.';
+
+  @override
+  String get quranReaderAudioPlaybackSectionTitle => 'Audio & Playback';
+
+  @override
+  String get quranReaderAudioPlaybackSectionSubtitle =>
+      'Choose the reciter and playback behavior without crowding the reading controls.';
+
+  @override
+  String get quranReaderDownloadsOfflineSectionTitle => 'Downloads & Offline';
+
+  @override
+  String get quranReaderDownloadsOfflineSectionSubtitle =>
+      'Keep only the surahs you need on this device.';
+
+  @override
+  String get quranReaderMemorizationReviewSectionTitle =>
+      'Memorization & Review';
+
+  @override
+  String get quranReaderMemorizationReviewSectionSubtitle =>
+      'Keep hifz-focused controls separate from everyday reading.';
+
+  @override
+  String get quranReaderRepeatPracticeTitle => 'Repeat & practice';
+
+  @override
+  String get quranReaderTextSettingsTitle => 'Text Settings';
+
+  @override
+  String get quranReaderTranslationSourceLabel => 'Translation source';
+
+  @override
+  String get quranReaderTextOptionsTitle => 'Text Options';
+
+  @override
+  String get quranReaderLiveWordSyncTitle => 'Live word sync highlight (Beta)';
+
+  @override
+  String get quranReaderLiveWordSyncSubtitle =>
+      'Beta testing: timing and highlighting may be imperfect on some verses.';
+
+  @override
+  String get quranReaderRedDiacriticsTitle => 'Red diacritics (harakat)';
+
+  @override
+  String get quranReaderRedDiacriticsSubtitle =>
+      'Color pesh, zabar, kasrah and other harakat in red.';
+
+  @override
+  String get quranReaderAudioSettingsTitle => 'Audio Settings';
+
+  @override
+  String get quranReaderBackgroundPlaybackTitle =>
+      'Background playback + lock-screen controls';
+
+  @override
+  String get quranReaderBackgroundPlaybackSubtitle =>
+      'Enables media controls on lock screen / notification and Dynamic Island (iOS).';
+
+  @override
+  String get quranReaderReciterLabel => 'Reciter';
+
+  @override
+  String get quranReaderReciterSampleAction => 'Sample';
+
+  @override
+  String get celestialHomeCardTitle => 'Signs in the sky';
+
+  @override
+  String get celestialSunriseLabel => 'Sunrise';
+
+  @override
+  String get celestialSunsetLabel => 'Sunset';
+
+  @override
+  String get celestialMoonriseLabel => 'Moonrise';
+
+  @override
+  String get celestialMoonsetLabel => 'Moonset';
+
+  @override
+  String get celestialMoonPhaseLabel => 'Moon phase';
+
+  @override
+  String get celestialNextEventLabel => 'Next event';
+
+  @override
+  String get celestialUnavailableLabel => 'Unavailable';
+
+  @override
+  String get celestialApproximateLabel => 'Approx.';
+
+  @override
+  String celestialIlluminationPercentLabel(int percent) {
+    return '$percent% illumination';
+  }
+
+  @override
+  String celestialNextEventValue(Object label, Object time) {
+    return '$label $time';
+  }
+
+  @override
+  String get celestialSkyStateDawn => 'Dawn';
+
+  @override
+  String get celestialSkyStateDay => 'Day';
+
+  @override
+  String get celestialSkyStateDusk => 'Dusk';
+
+  @override
+  String get celestialSkyStateNight => 'Night';
+
+  @override
+  String celestialSunriseTimeLabel(Object time) {
+    return 'Sunrise $time';
+  }
+
+  @override
+  String celestialSunsetTimeLabel(Object time) {
+    return 'Sunset $time';
+  }
+
+  @override
+  String get celestialUnavailableTitle =>
+      'Celestial data is unavailable right now';
+
+  @override
+  String get celestialUnavailableSubtitle =>
+      'Choose a city or refresh location to calculate the sky cycle for your area.';
+
+  @override
+  String get celestialChooseLocationAction => 'Choose location';
+
+  @override
+  String get celestialExplorerPageTitle => 'Qur’anic Sky Explorer';
+
+  @override
+  String get celestialTabNow => 'Now';
+
+  @override
+  String get celestialTabExplore => 'Explore';
+
+  @override
+  String get celestialTabJournal => 'Journal';
+
+  @override
+  String get celestialSunLabel => 'Sun';
+
+  @override
+  String get celestialMoonLabel => 'Moon';
+
+  @override
+  String get celestialBelowHorizonLabel => 'Below horizon';
+
+  @override
+  String get celestialVisibleLabel => 'Visible';
+
+  @override
+  String celestialSunriseSunsetDetail(Object sunrise, Object sunset) {
+    return 'Sunrise $sunrise • Sunset $sunset';
+  }
+
+  @override
+  String celestialMoonDetail(int percent, Object riseSetLabel) {
+    return '$percent% illumination • $riseSetLabel';
+  }
+
+  @override
+  String get celestialRiseSetApproximate => 'Rise/set approximate';
+
+  @override
+  String get celestialRiseSetCalculated => 'Rise/set calculated';
+
+  @override
+  String get celestialUpcomingLabel => 'Upcoming';
+
+  @override
+  String celestialUpcomingHeadline(Object label, Object time) {
+    return '$label at $time';
+  }
+
+  @override
+  String get celestialReflectAction => 'Reflect';
+
+  @override
+  String get celestialReflectionSaved => 'Sky reflection saved.';
+
+  @override
+  String get celestialSaveReflectionAction => 'Save reflection';
+
+  @override
+  String get celestialJournalMomentTitle => 'Journal this moment';
+
+  @override
+  String get celestialJournalPromptHint =>
+      'What did the sky make you notice today?';
+
+  @override
+  String get celestialCompassUnavailable => 'Compass unavailable';
+
+  @override
+  String celestialCompassHeading(Object heading) {
+    return '$heading heading';
+  }
+
+  @override
+  String get celestialPositionEstimateNotice =>
+      'Positions are calculated estimates. Sensor readings may be noisy indoors.';
+
+  @override
+  String get celestialJournalEmptyState =>
+      'Saved sky reflections will appear here once you begin journaling.';
+
+  @override
+  String celestialApproximatePositionLabel(int azimuth, int altitude) {
+    return 'Approximate azimuth $azimuth° • altitude $altitude°';
+  }
+
+  @override
+  String get celestialCompassNorthLabel => 'N';
+
+  @override
+  String get celestialMoveSlowlyForHeading => 'Move slowly for heading';
+
+  @override
+  String get celestialExplorerUnavailable =>
+      'The explorer could not build a sky snapshot right now. Check location settings and try again.';
+
+  @override
+  String get creationChallengesPageTitle => 'Creation Challenges';
+
+  @override
+  String get creationChallengesDailyStreakLabel => 'Daily streak';
+
+  @override
+  String get creationChallengesNewStreakBeginsToday =>
+      'A new streak begins today.';
+
+  @override
+  String creationChallengesStreakDays(int count) {
+    return '$count days';
+  }
+
+  @override
+  String get creationChallengesCompletedLabel => 'Completed';
+
+  @override
+  String get creationChallengesRecentLabel => 'Recent';
+
+  @override
+  String creationChallengesRecentThisWeek(int count) {
+    return '$count this week';
+  }
+
+  @override
+  String get creationChallengesSkippedLabel => 'Skipped';
+
+  @override
+  String get creationChallengesStatusCompleted => 'Completed';
+
+  @override
+  String get creationChallengesStatusExpired => 'Expired';
+
+  @override
+  String get creationChallengesStatusOpen => 'Open';
+
+  @override
+  String get creationChallengesMarkCompleteAction => 'Mark complete';
+
+  @override
+  String get creationChallengesSkipAction => 'Skip';
+
+  @override
+  String get creationChallengesSlotToday => 'Today’s Challenge';
+
+  @override
+  String get creationChallengesSlotBonus => 'Bonus Challenge';
+
+  @override
+  String get creationChallengesSlotWeekly => 'Weekly Reflection';
+
+  @override
+  String get creationChallengesOpenSkyExplorerAction => 'Open Sky Explorer';
+
+  @override
+  String get creationChallengesOpenCreationExplorerAction =>
+      'Open Creation Explorer';
+
+  @override
+  String get creationChallengesOpenJournalAction => 'Open Journal';
+
+  @override
+  String get creationChallengesOpenAction => 'Open';
+
+  @override
+  String get creationChallengesReflectNowAction => 'Reflect now';
+
+  @override
+  String creationChallengesRewardDrops(int count) {
+    return '+$count drop';
+  }
+
+  @override
+  String get khusuSectionTitle => 'Khusū Mode';
+
+  @override
+  String get khusuSectionSubtitle =>
+      'A calm space to reduce noise and return to presence.';
+
+  @override
+  String get khusuSectionIntroBody =>
+      'Set intention, slow your breathing, and let worship be your anchor.';
+
+  @override
+  String get khusuSalahFocusTitle => 'Salah Focus';
+
+  @override
+  String get khusuSalahFocusSubtitle =>
+      'A minimal countdown and reminder card for one prayer window.';
+
+  @override
+  String get khusuDhikrFocusTitle => 'Dhikr Focus';
+
+  @override
+  String get khusuDhikrFocusSubtitle =>
+      'Close-opened dhikr flow with a clean breathing rhythm.';
+
+  @override
+  String get khusuReflectionPauseTitle => 'Reflection Pause';
+
+  @override
+  String get khusuReflectionPauseSubtitle =>
+      'A short pause with one reflective line and silence.';
+
+  @override
+  String get khusuQuietResetTitle => 'Quiet Reset';
+
+  @override
+  String get khusuQuietResetSubtitle =>
+      'Restart focus with gentle re-entry if attention drifted.';
+
+  @override
+  String get khusuSessionSettingsTitle => 'Session Settings';
+
+  @override
+  String get khusuSessionSettingsSubtitle =>
+      'Environment controls for distraction-light use.';
+
+  @override
+  String get khusuReduceVisualDistractionsTitle => 'Reduce visual distractions';
+
+  @override
+  String get khusuMinimalInterfaceTitle => 'Minimal interface';
+
+  @override
+  String get khusuGentleRemindersTitle => 'Gentle reminders';
+
+  @override
+  String get khusuAmbientModeTitle => 'Ambient mode';
+
+  @override
+  String get khusuClosingQuote =>
+      '“Pause without forcing. Breath settles, intention settles, and remembrance becomes softer.”';
+
+  @override
+  String get khusuEnterAction => 'Enter Khusū';
+
+  @override
+  String get khusuPageTitle => 'Khusū';
+
+  @override
+  String get khusuFocusSubtitle =>
+      'A silent and sacred space for focused presence.';
+
+  @override
+  String get khusuFocusBody =>
+      'Breathe slowly. Choose intention over momentum. Keep one sentence, one invocation, one pause at a time.';
+
+  @override
+  String get quranFocusRecitationKeepScreenAwakeAction => 'Keep screen awake';
+
+  @override
+  String get quranFocusRecitationRepeatCurrentAyahAction =>
+      'Repeat current ayah';
+
+  @override
+  String get quranFocusRecitationSleepTimerAction => 'Sleep timer';
+
+  @override
+  String get quranFocusRecitationSleepTimerCancelAction => 'Cancel timer';
+
+  @override
+  String quranFocusRecitationSleepTimerMinutesLabel(int minutes) {
+    return '$minutes min';
+  }
+
+  @override
+  String quranFocusRecitationSleepTimerActiveLabel(String remaining) {
+    return 'Sleep timer: $remaining';
+  }
+
+  @override
+  String get onboardingSkipAction => 'Skip';
+
+  @override
+  String get onboardingSettingsHintBody =>
+      'You can change this anytime in Settings.';
+
+  @override
+  String get onboardingBeginJourneyAction => 'Begin your journey';
+
+  @override
+  String get onboardingContinueAction => 'Continue';
+
+  @override
+  String get onboardingShahadaMeaningBody =>
+      'I bear witness that there is no god except Allah,\nand I bear witness that Muhammad ﷺ is the Messenger of Allah.';
+
+  @override
+  String get onboardingBismillahTransliteration => 'Bismillahir-Rahmanir-Rahim';
+
+  @override
+  String get onboardingBismillahMeaningBody =>
+      'In the name of Allah, the Most Compassionate, the Most Merciful.';
+
+  @override
+  String get onboardingOpeningBlessingBody =>
+      'May this journey bring khayr, consistency, and closeness to Allah.';
+
+  @override
+  String get onboardingLanguageTitle => 'Choose your language';
+
+  @override
+  String get onboardingLanguageSubtitle =>
+      'Select the language you would like to use in the app.';
+
+  @override
+  String get onboardingAgeRangeTitle => 'Which age range are you in?';
+
+  @override
+  String get onboardingAgeRangeSubtitle =>
+      'Path of Nur adjusts some guidance, tone, and family-related recommendations based on your stage of life so the experience feels more relevant and supportive.';
+
+  @override
+  String get onboardingAgeRangeUnder18 => 'Under 18';
+
+  @override
+  String get onboardingAgeRange18To24 => '18-24';
+
+  @override
+  String get onboardingAgeRange25To34 => '25-34';
+
+  @override
+  String get onboardingAgeRange35To44 => '35-44';
+
+  @override
+  String get onboardingAgeRange45To54 => '45-54';
+
+  @override
+  String get onboardingAgeRange55Plus => '55+';
+
+  @override
+  String get onboardingExperienceTitle =>
+      'Which description fits your journey with Islam best?';
+
+  @override
+  String get onboardingExperienceSubtitle =>
+      'We use this to set a better starting tone, pacing, and learning depth for your experience. Your selection is saved and used to shape guidance across the app.';
+
+  @override
+  String get onboardingExperienceExploring => 'Exploring Islam';
+
+  @override
+  String get onboardingExperienceNewToIslam => 'New to Islam';
+
+  @override
+  String get onboardingExperienceBornStillLearning =>
+      'Born Muslim, still learning';
+
+  @override
+  String get onboardingExperiencePracticingRegularly => 'Practicing regularly';
+
+  @override
+  String get onboardingExperienceAdvanced => 'Experienced / advanced';
+
+  @override
+  String get onboardingSalahConsistencyTitle =>
+      'How consistent is your Salah currently?';
+
+  @override
+  String get onboardingSalahConsistencySubtitle =>
+      'Choose the option that best reflects where you are right now.';
+
+  @override
+  String get onboardingSalahConsistencyAll => 'I pray all prayers consistently';
+
+  @override
+  String get onboardingSalahConsistencyMost => 'I pray most prayers';
+
+  @override
+  String get onboardingSalahConsistencySometimes => 'I pray sometimes';
+
+  @override
+  String get onboardingSalahConsistencyRarely => 'I rarely pray';
+
+  @override
+  String get onboardingSalahConsistencyJustStarted =>
+      'I am just getting started';
+
+  @override
+  String get onboardingPrayerMethodTitle => 'Salah time calculation method';
+
+  @override
+  String get onboardingPrayerMethodSubtitle =>
+      'Choose how salah times should be calculated for your location.';
+
+  @override
+  String get onboardingPrayerMethodMuslimWorldLeague => 'Muslim World League';
+
+  @override
+  String get onboardingPrayerMethodIsna =>
+      'Islamic Society of North America (ISNA)';
+
+  @override
+  String get onboardingPrayerMethodUmmAlQura => 'Umm Al-Qura University';
+
+  @override
+  String get onboardingPrayerMethodEgyptian =>
+      'Egyptian General Authority of Survey';
+
+  @override
+  String get onboardingPrayerMethodKarachi =>
+      'University of Islamic Sciences, Karachi';
+
+  @override
+  String get onboardingPrayerMethodMoonsighting => 'Moonsighting Committee';
+
+  @override
+  String get onboardingMadhabTitle => 'Which Madhab do you follow?';
+
+  @override
+  String get onboardingMadhabSubtitle =>
+      'This affects how Asr salah time is calculated. If you are unsure, you can keep the default.';
+
+  @override
+  String get onboardingMadhabHanafi => 'Hanafi';
+
+  @override
+  String get onboardingMadhabShafii => 'Shafi\'i';
+
+  @override
+  String get onboardingMadhabMaliki => 'Maliki';
+
+  @override
+  String get onboardingMadhabHanbali => 'Hanbali';
+
+  @override
+  String get onboardingGrowthInterestsTitle =>
+      'What would you like to grow in?';
+
+  @override
+  String get onboardingGrowthInterestsSubtitle =>
+      'Select the areas you would like Path of Nur to help you with. You can choose multiple.';
+
+  @override
+  String get onboardingArabicReadModeTitle =>
+      'How would you like to read Arabic?';
+
+  @override
+  String get onboardingArabicReadModeSubtitle =>
+      'Choose the reading style that feels most comfortable for you.';
+
+  @override
+  String get onboardingArabicReadModeNoArabicYet =>
+      'I do not know any Arabic yet';
+
+  @override
+  String get onboardingArabicReadModeArabicOnly => 'Arabic only';
+
+  @override
+  String get onboardingArabicReadModeArabicTransliteration =>
+      'Arabic + Transliteration';
+
+  @override
+  String get onboardingArabicReadModeArabicTranslation =>
+      'Arabic + Translation';
+
+  @override
+  String get onboardingArabicReadModeArabicTransliterationTranslation =>
+      'Arabic + Transliteration + Translation';
+
+  @override
+  String get onboardingHarakatTitle => 'Harakat / pronunciation marks';
+
+  @override
+  String get onboardingHarakatFull => 'Full harakat';
+
+  @override
+  String get onboardingHarakatMinimal => 'Minimal harakat';
+
+  @override
+  String get onboardingHarakatNone => 'None';
+
+  @override
+  String get onboardingTextSizeTitle => 'Text size';
+
+  @override
+  String get onboardingRemindersTitle => 'How would you like to be reminded?';
+
+  @override
+  String get onboardingRemindersSubtitle =>
+      'Choose your preferred reminders for salah and daily spiritual routines.';
+
+  @override
+  String get onboardingSalahReminderStylesTitle => 'Salah reminder styles';
+
+  @override
+  String get onboardingReminderNotificationOnly => 'Notification only';
+
+  @override
+  String get onboardingReminderAdhanNotification => 'Adhan notification';
+
+  @override
+  String get onboardingReminderForceAdhan => 'Force Adhan';
+
+  @override
+  String get onboardingDailyQuranReminderTitle =>
+      'Daily Qur\'an reading reminder';
+
+  @override
+  String get onboardingDailyLessonReminderTitle => 'Daily lesson reminder';
+
+  @override
+  String get onboardingTrackingTitle => 'What would you like to track?';
+
+  @override
+  String get onboardingTrackingSubtitle =>
+      'Choose the areas you would like Path of Nur to help you track over time. You can choose multiple.';
+
+  @override
+  String get onboardingFamilyTitle => 'Grow together with family';
+
+  @override
+  String get onboardingFamilySubtitle =>
+      'Path of Nur can support individual journeys while also helping families grow together.';
+
+  @override
+  String get onboardingFamilyProfilesTitle => 'Family profiles';
+
+  @override
+  String get onboardingFamilyProfilesSubtitle =>
+      'Create profiles for family members from the Profiles page.';
+
+  @override
+  String get onboardingFamilyPrivateJourneysTitle =>
+      'Private journeys for each member';
+
+  @override
+  String get onboardingFamilyPrivateJourneysSubtitle =>
+      'Each profile can keep separate progress and reminders.';
+
+  @override
+  String get onboardingFamilyAgeAppropriateTitle => 'Age-appropriate learning';
+
+  @override
+  String get onboardingFamilyAgeAppropriateSubtitle =>
+      'Content can adapt to stage and experience level.';
+
+  @override
+  String get onboardingFamilySharedGrowthTitle =>
+      'Shared encouragement and growth';
+
+  @override
+  String get onboardingFamilySharedGrowthSubtitle =>
+      'Build consistency together over time.';
+
+  @override
+  String get onboardingDhikrFeedbackTitle => 'Dhikr counter feedback';
+
+  @override
+  String get onboardingDhikrFeedbackSubtitle =>
+      'Choose how the dhikr counter should respond when you tap.';
+
+  @override
+  String get onboardingDhikrHapticTitle => 'Haptic feedback';
+
+  @override
+  String get onboardingOptionOff => 'Off';
+
+  @override
+  String get onboardingOptionLight => 'Light';
+
+  @override
+  String get onboardingOptionMedium => 'Medium';
+
+  @override
+  String get onboardingOptionStrong => 'Strong';
+
+  @override
+  String get onboardingDhikrSoundTitle => 'Sound feedback';
+
+  @override
+  String get onboardingDhikrSoundSoftClick => 'Soft click';
+
+  @override
+  String get onboardingDhikrSoundTasbih => 'Tasbih bead sound';
+
+  @override
+  String get onboardingDhikrVisualTitle => 'Visual feedback';
+
+  @override
+  String get onboardingDhikrVisualSubtleGlow => 'Subtle glow';
+
+  @override
+  String get onboardingDhikrVisualPulseAnimation => 'Pulse animation';
+
+  @override
+  String onboardingDhikrPreviewCount(int count) {
+    return 'Preview count: $count';
+  }
+
+  @override
+  String get onboardingIdentityTitle => 'How should we address you?';
+
+  @override
+  String get onboardingIdentitySubtitle =>
+      'Choose your greeting and add your name if you would like a more personal welcome.';
+
+  @override
+  String get onboardingGreetingTitle => 'Greeting';
+
+  @override
+  String get onboardingNameTitle => 'Name';
+
+  @override
+  String get onboardingOptionalHint => 'Optional';
+
+  @override
+  String get onboardingNameHelperBody =>
+      'Your name is optional and only used to personalize your experience within the app.';
+
+  @override
+  String get onboardingDefaultNameFallback => 'Friend';
+
+  @override
+  String get onboardingFocusSalahConsistency => 'Salah consistency';
+
+  @override
+  String get onboardingFocusSalahReminders => 'Salah reminders';
+
+  @override
+  String get onboardingFinalWelcomeTitle => 'Welcome to Path of Nur';
+
+  @override
+  String onboardingWelcomeGreeting(String name) {
+    return 'Assalamu Alaikum, $name.';
+  }
+
+  @override
+  String get onboardingFinalWelcomeBody =>
+      'Your journey begins now. Path of Nur is ready to support you through learning, reflection, remembrance, and steady growth.';
+
+  @override
+  String get onboardingFocusListTitle => 'You chose to focus on:';
+
+  @override
+  String get onboardingKnowledgeDuaMeaning =>
+      'My Lord, increase me in knowledge.';
+
+  @override
+  String get onboardingReminderHelpTitle => 'Adhan reminder options';
+
+  @override
+  String get onboardingReminderHelpNotificationOnly =>
+      'Notification only: a standard reminder without adhan audio.';
+
+  @override
+  String get onboardingReminderHelpAdhanNotification =>
+      'Adhan notification: sends a reminder with adhan-style audio when the prayer begins.';
+
+  @override
+  String get onboardingReminderHelpForceAdhan =>
+      'Force Adhan: will play Adhan audio even if the phone is set to silent.';
+
+  @override
+  String get onboardingLanguageSystemDefault => 'System Default';
+
+  @override
+  String get onboardingLanguageEnglish => 'English';
+
+  @override
+  String get onboardingLanguageArabic => 'Arabic (العربية)';
+
+  @override
+  String get onboardingLanguageGerman => 'German (Deutsch)';
+
+  @override
+  String get onboardingLanguageUrdu => 'Urdu (اردو)';
+
+  @override
+  String get onboardingLanguageHindi => 'Hindi (हिंदी)';
+
+  @override
+  String get onboardingLanguageIndonesian => 'Indonesian';
+
+  @override
+  String get onboardingLanguageMalay => 'Malay';
+
+  @override
+  String get onboardingLanguageTurkish => 'Turkish';
+
+  @override
+  String get onboardingLanguageBengali => 'Bengali';
+
+  @override
+  String get onboardingInterestUnderstandingQuran => 'Understanding the Qur’an';
+
+  @override
+  String get onboardingInterestLearningHadith => 'Learning Hadith';
+
+  @override
+  String get onboardingInterestStoriesProphets => 'Stories of the Prophets';
+
+  @override
+  String get onboardingInterestStrengtheningSalah => 'Strengthening my Salah';
+
+  @override
+  String get onboardingInterestDhikrRemembrance => 'Dhikr and remembrance';
+
+  @override
+  String get onboardingInterestBetterHabits => 'Building better habits';
+
+  @override
+  String get onboardingInterestWorldThroughQuran =>
+      'Learning about the world through the Qur’an';
+
+  @override
+  String get onboardingInterestIslamicKnowledge => 'Islamic knowledge';
+
+  @override
+  String get onboardingInterestPersonalGrowth =>
+      'Personal growth and discipline';
+
+  @override
+  String get onboardingInterestDailyInspiration => 'Daily inspiration';
+
+  @override
+  String get onboardingTrackingSalah => 'Salah tracking';
+
+  @override
+  String get onboardingTrackingDhikr => 'Dhikr tracking';
+
+  @override
+  String get onboardingTrackingQuranReading => 'Qur’an reading progress';
+
+  @override
+  String get onboardingTrackingLearning => 'Learning progress';
+
+  @override
+  String get onboardingTrackingHabitBuilding => 'Habit building';
+
+  @override
+  String get onboardingTrackingReflection => 'Reflection / journaling';
+
+  @override
+  String get onboardingSizeSmall => 'Small';
+
+  @override
+  String get onboardingSizeLarge => 'Large';
+
+  @override
+  String get onboardingSizeExtraLarge => 'Extra large';
+
+  @override
+  String get accountsSyncTransportUnknown => 'Unknown transport';
+
+  @override
+  String get accountsSyncStatusUnknown => 'Status not available';
 }

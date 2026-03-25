@@ -1,6 +1,11 @@
 import 'dart:io';
 
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/services.dart';
+
+final quranLiveActivityServiceProvider = Provider<QuranLiveActivityService>(
+  (ref) => QuranLiveActivityService(),
+);
 
 class QuranLiveActivityService {
   static const MethodChannel _channel = MethodChannel(

@@ -5,6 +5,7 @@ int? resolveQuranWordHighlightIndex({
   required Duration position,
   Duration? totalDuration,
   List<QuranWordTimingSegment> preciseSegments = const [],
+  int? previousWordIndex,
 }) {
   final words = _splitArabicWords(arabicText);
   if (words.isEmpty) return null;
@@ -12,18 +13,12 @@ int? resolveQuranWordHighlightIndex({
   final elapsedMs = position.inMilliseconds < 0 ? 0 : position.inMilliseconds;
 
   if (preciseSegments.isNotEmpty) {
-    var active = preciseSegments.first.wordIndex.clamp(0, words.length - 1);
-    for (final segment in preciseSegments) {
-      final segmentIndex = segment.wordIndex.clamp(0, words.length - 1);
-      if (elapsedMs < segment.startMs) {
-        return segmentIndex;
-      }
-      if (elapsedMs <= segment.endMs) {
-        return segmentIndex;
-      }
-      active = segmentIndex;
-    }
-    return active;
+    return _resolvePreciseHighlightIndex(
+      elapsedMs: elapsedMs,
+      wordCount: words.length,
+      preciseSegments: preciseSegments,
+      previousWordIndex: previousWordIndex,
+    );
   }
 
   final durationMs = totalDuration?.inMilliseconds ?? 0;
@@ -36,19 +31,90 @@ int? resolveQuranWordHighlightIndex({
   final weightSum = weights
       .fold<int>(0, (sum, value) => sum + value)
       .clamp(1, 1000000);
-  final cumulative = <int>[];
-  var accumulatedMs = 0;
+  final transitionPoints = <int>[];
+  var accumulatedMs = 0.0;
   for (final weight in weights) {
-    accumulatedMs += ((weight / weightSum) * durationMs).round();
-    cumulative.add(accumulatedMs);
+    accumulatedMs += (weight / weightSum) * durationMs;
+    transitionPoints.add(accumulatedMs.round());
   }
 
   var index = 0;
-  while (index < cumulative.length - 1 &&
-      clampedElapsedMs > cumulative[index]) {
+  while (index < transitionPoints.length - 1 &&
+      clampedElapsedMs > transitionPoints[index]) {
     index += 1;
   }
+  if (previousWordIndex != null &&
+      index == previousWordIndex + 1 &&
+      previousWordIndex >= 0 &&
+      previousWordIndex < transitionPoints.length &&
+      clampedElapsedMs <
+          transitionPoints[previousWordIndex] + _transitionHysteresisMs) {
+    return previousWordIndex;
+  }
   return index;
+}
+
+const _transitionHysteresisMs = 90;
+
+int _resolvePreciseHighlightIndex({
+  required int elapsedMs,
+  required int wordCount,
+  required List<QuranWordTimingSegment> preciseSegments,
+  required int? previousWordIndex,
+}) {
+  final normalized = preciseSegments
+      .map(
+        (segment) => QuranWordTimingSegment(
+          wordIndex: segment.wordIndex.clamp(0, wordCount - 1),
+          startMs: segment.startMs < 0 ? 0 : segment.startMs,
+          endMs: segment.endMs < segment.startMs
+              ? segment.startMs
+              : segment.endMs,
+        ),
+      )
+      .toList(growable: false)
+    ..sort((a, b) => a.startMs.compareTo(b.startMs));
+
+  var resolvedIndex = normalized.first.wordIndex;
+  for (var i = 0; i < normalized.length; i += 1) {
+    final segment = normalized[i];
+    final nextSegment = i + 1 < normalized.length ? normalized[i + 1] : null;
+    if (elapsedMs < segment.startMs) {
+      resolvedIndex = segment.wordIndex;
+      break;
+    }
+    if (elapsedMs <= segment.endMs) {
+      resolvedIndex = segment.wordIndex;
+      break;
+    }
+    if (nextSegment == null || elapsedMs < nextSegment.startMs) {
+      resolvedIndex = segment.wordIndex;
+      break;
+    }
+    resolvedIndex = nextSegment.wordIndex;
+  }
+
+  if (previousWordIndex == null) {
+    return resolvedIndex;
+  }
+
+  for (var i = 0; i < normalized.length; i += 1) {
+    final segment = normalized[i];
+    if (segment.wordIndex != resolvedIndex) {
+      continue;
+    }
+    if (resolvedIndex == previousWordIndex + 1 &&
+        elapsedMs < segment.startMs + _transitionHysteresisMs) {
+      return previousWordIndex;
+    }
+    if (resolvedIndex == previousWordIndex - 1 &&
+        elapsedMs > segment.endMs - _transitionHysteresisMs) {
+      return previousWordIndex;
+    }
+    return resolvedIndex;
+  }
+
+  return resolvedIndex;
 }
 
 List<String> _splitArabicWords(String text) {

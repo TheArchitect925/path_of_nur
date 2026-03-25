@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_spacing.dart';
 import '../../../../core/theme/app_surfaces.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/section_title.dart';
 import '../../application/khusu_settings_controller.dart';
@@ -14,23 +15,24 @@ class KhusuSection extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     final settings = ref.watch(khusuSettingsControllerProvider);
     final notifier = ref.read(khusuSettingsControllerProvider.notifier);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SectionTitle(
-          title: 'Khusū Mode',
-          subtitle: 'A calm space to reduce noise and return to presence.',
+        SectionTitle(
+          title: l10n.khusuSectionTitle,
+          subtitle: l10n.khusuSectionSubtitle,
         ),
         PremiumCard(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
+            children: [
               Text(
-                'Set intention, slow your breathing, and let worship be your anchor.',
-                style: TextStyle(
+                l10n.khusuSectionIntroBody,
+                style: const TextStyle(
                   color: AppColors.onSurfaceSubtle,
                   height: 1.45,
                 ),
@@ -41,56 +43,55 @@ class KhusuSection extends ConsumerWidget {
         const SizedBox(height: 14),
         _FocusCard(
           icon: Icons.spa_outlined,
-          title: 'Salah Focus',
-          subtitle:
-              'A minimal countdown and reminder card for one prayer window.',
+          title: l10n.khusuSalahFocusTitle,
+          subtitle: l10n.khusuSalahFocusSubtitle,
         ),
         const SizedBox(height: 10),
         _FocusCard(
           icon: Icons.auto_awesome,
-          title: 'Dhikr Focus',
-          subtitle: 'Close-opened dhikr flow with a clean breathing rhythm.',
+          title: l10n.khusuDhikrFocusTitle,
+          subtitle: l10n.khusuDhikrFocusSubtitle,
         ),
         const SizedBox(height: 10),
         _FocusCard(
           icon: Icons.pause_circle_filled_outlined,
-          title: 'Reflection Pause',
-          subtitle: 'A short pause with one reflective line and silence.',
+          title: l10n.khusuReflectionPauseTitle,
+          subtitle: l10n.khusuReflectionPauseSubtitle,
         ),
         const SizedBox(height: 10),
         _FocusCard(
           icon: Icons.refresh_rounded,
-          title: 'Quiet Reset',
-          subtitle: 'Restart focus with gentle re-entry if attention drifted.',
+          title: l10n.khusuQuietResetTitle,
+          subtitle: l10n.khusuQuietResetSubtitle,
         ),
         const SizedBox(height: 14),
-        const SectionTitle(
-          title: 'Session Settings',
-          subtitle: 'Environment controls for distraction-light use.',
+        SectionTitle(
+          title: l10n.khusuSessionSettingsTitle,
+          subtitle: l10n.khusuSessionSettingsSubtitle,
         ),
         PremiumCard(
           child: Column(
             children: [
               _SettingRow(
-                title: 'Reduce visual distractions',
+                title: l10n.khusuReduceVisualDistractionsTitle,
                 value: settings.reduceVisualDistractions,
                 onChanged: notifier.setReduceVisualDistractions,
               ),
               const Divider(),
               _SettingRow(
-                title: 'Minimal interface',
+                title: l10n.khusuMinimalInterfaceTitle,
                 value: settings.minimalInterface,
                 onChanged: notifier.setMinimalInterface,
               ),
               const Divider(),
               _SettingRow(
-                title: 'Gentle reminders',
+                title: l10n.khusuGentleRemindersTitle,
                 value: settings.gentleReminders,
                 onChanged: notifier.setGentleReminders,
               ),
               const Divider(),
               _SettingRow(
-                title: 'Ambient mode',
+                title: l10n.khusuAmbientModeTitle,
                 value: settings.ambientMode,
                 onChanged: notifier.setAmbientMode,
               ),
@@ -99,9 +100,9 @@ class KhusuSection extends ConsumerWidget {
         ),
         const SizedBox(height: 14),
         PremiumCard(
-          child: const Text(
-            '“Pause without forcing. Breath settles, intention settles, and remembrance becomes softer.”',
-            style: TextStyle(
+          child: Text(
+            l10n.khusuClosingQuote,
+            style: const TextStyle(
               color: AppColors.onSurfaceSubtle,
               fontStyle: FontStyle.italic,
               height: 1.45,
@@ -113,9 +114,12 @@ class KhusuSection extends ConsumerWidget {
           width: double.infinity,
           child: ElevatedButton(
             onPressed: () => context.pushNamed('khusuFocus'),
-            child: const Padding(
+            child: Padding(
               padding: EdgeInsets.symmetric(vertical: 12),
-              child: Text('Enter Khusū', style: TextStyle(fontSize: 16)),
+              child: Text(
+                l10n.khusuEnterAction,
+                style: const TextStyle(fontSize: 16),
+              ),
             ),
           ),
         ),

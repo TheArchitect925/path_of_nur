@@ -395,3 +395,13 @@ class HistoricalTodayMatch {
     return 3;
   }
 }
+
+class HistoricalUpcomingEvent {
+  const HistoricalUpcomingEvent({
+    required this.event,
+    required this.occurrenceDate,
+  });
+
+  final HistoricalEvent event;
+  final DateTime occurrenceDate;
+}

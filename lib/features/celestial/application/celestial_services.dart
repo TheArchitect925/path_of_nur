@@ -55,23 +55,41 @@ final celestialObservationsProvider =
       );
     });
 
+final homeCelestialSelectedDateProvider = StateProvider<DateTime>((ref) {
+  final now = DateTime.now();
+  return DateTime(now.year, now.month, now.day);
+});
+
+final celestialSnapshotForDateProvider =
+    FutureProvider.family<CelestialSnapshot, DateTime>((ref, selectedDate) async {
+      final prefs = ref.watch(prayerSettingsProvider).preferences;
+      final location = ref.watch(prayerLocationProvider);
+      final now = ref.watch(dailyNowProvider).value ?? DateTime.now();
+      final effectiveTimestamp = _effectiveCelestialTimestamp(
+        selectedDate: selectedDate,
+        now: now,
+      );
+      final displayLabel = await ref
+          .watch(prayerLocationDisplayLabelProvider.future)
+          .onError((_, _) => prefs.location);
+      final selector = ref.watch(celestialVerseSelectorProvider);
+      final calculator = ref.watch(celestialCalculationServiceProvider);
+      return calculator.buildSnapshot(
+        timestamp: effectiveTimestamp,
+        latitude: location.latitude,
+        longitude: location.longitude,
+        locationLabel: displayLabel,
+        timezoneLabel: effectiveTimestamp.timeZoneName,
+        verseSelector: selector,
+      );
+    });
+
 final celestialSnapshotProvider = FutureProvider<CelestialSnapshot>((ref) async {
-  final prefs = ref.watch(prayerSettingsProvider).preferences;
-  final location = ref.watch(prayerLocationProvider);
   final now = ref.watch(dailyNowProvider).value ?? DateTime.now();
-  final displayLabel =
-      await ref.watch(prayerLocationDisplayLabelProvider.future).onError((_, _) {
-        return prefs.location;
-      });
-  final selector = ref.watch(celestialVerseSelectorProvider);
-  final calculator = ref.watch(celestialCalculationServiceProvider);
-  final snapshot = calculator.buildSnapshot(
-    timestamp: now,
-    latitude: location.latitude,
-    longitude: location.longitude,
-    locationLabel: displayLabel,
-    timezoneLabel: now.timeZoneName,
-    verseSelector: selector,
+  final snapshot = await ref.watch(
+    celestialSnapshotForDateProvider(
+      DateTime(now.year, now.month, now.day),
+    ).future,
   );
   await ref.read(celestialWidgetBridgeProvider).writeSnapshot(snapshot);
   AppTelemetry.logEvent(
@@ -83,6 +101,22 @@ final celestialSnapshotProvider = FutureProvider<CelestialSnapshot>((ref) async 
   );
   return snapshot;
 });
+
+DateTime _effectiveCelestialTimestamp({
+  required DateTime selectedDate,
+  required DateTime now,
+}) {
+  return DateTime(
+    selectedDate.year,
+    selectedDate.month,
+    selectedDate.day,
+    now.hour,
+    now.minute,
+    now.second,
+    now.millisecond,
+    now.microsecond,
+  );
+}
 
 class CelestialObservationsController extends StateNotifier<List<CelestialObservation>> {
   CelestialObservationsController(this._repository) : super(_repository.load());

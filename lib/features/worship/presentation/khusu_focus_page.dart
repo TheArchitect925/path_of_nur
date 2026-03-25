@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/theme/app_theme.dart';
+import '../../../l10n/app_localizations.dart';
 import '../../../shared/application/special_mode_provider.dart';
 import '../../../shared/content/page_description_copy.dart';
 import '../../../shared/widgets/app_page_scaffold.dart';
@@ -11,6 +12,7 @@ class KhusuFocusPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     final appearance = Theme.of(context).extension<AppAppearanceTheme>();
     final isKidsMode = ref.watch(
       specialModeProvider.select((mode) => mode.isKids),
@@ -21,7 +23,7 @@ class KhusuFocusPage extends ConsumerWidget {
         appearance?.backgroundForegroundSubtle ?? const Color(0xFF6A5A4A);
     return AppPageScaffold(
       headerIcon: Icons.self_improvement_rounded,
-      title: 'Khusū',
+      title: l10n.khusuPageTitle,
       subtitle: localizedAppPageDescription(
         context,
         AppPageDescriptionKey.khusuFocus,
@@ -34,7 +36,7 @@ class KhusuFocusPage extends ConsumerWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                'Khusū',
+                l10n.khusuPageTitle,
                 style: TextStyle(
                   fontSize: 38,
                   fontWeight: FontWeight.w700,
@@ -43,7 +45,7 @@ class KhusuFocusPage extends ConsumerWidget {
               ),
               SizedBox(height: 14),
               Text(
-                'A silent and sacred space for focused presence.',
+                l10n.khusuFocusSubtitle,
                 textAlign: TextAlign.center,
                 style: TextStyle(color: subtleForeground, fontSize: 16),
               ),
@@ -51,7 +53,7 @@ class KhusuFocusPage extends ConsumerWidget {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 18),
                 child: Text(
-                  'Breathe slowly. Choose intention over momentum. Keep one sentence, one invocation, one pause at a time.',
+                  l10n.khusuFocusBody,
                   textAlign: TextAlign.center,
                   style: TextStyle(color: subtleForeground, height: 1.45),
                 ),

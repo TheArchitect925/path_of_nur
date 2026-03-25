@@ -858,9 +858,9 @@ class AccountsSyncState {
       syncStatus: SyncStatusSnapshot.fromJson(<String, dynamic>{
         'deviceName': device.deviceName,
         'syncState': SyncStateKind.localOnly.name,
-        'transportLabel': 'Local storage',
+        'transportLabel': syncTransportKeyLocalStorage,
         'transportAvailable': false,
-        'lastResultSummary': 'Local-only mode active',
+        'lastResultSummary': 'sync_result_local_only_mode_active',
       }),
       backupRecord: BackupRecord.fromJson(null),
       remoteBackupRecord: RemoteBackupRecord.fromJson(null),
@@ -1400,17 +1400,17 @@ class AccountsSyncController extends StateNotifier<AccountsSyncState> {
             : state.syncStatus.lastSyncAtIso,
         pendingChangesCount: report.pendingCount,
         healthy: report.errorMessage == null,
-        recentEvents: [
-          ...report.recentEvents,
-          ...state.syncStatus.recentEvents,
-        ].take(10).toList(),
         lastFailedSyncAtIso: report.errorMessage == null
             ? state.syncStatus.lastFailedSyncAtIso
             : report.completedAtIso,
-        transportLabel: report.transportLabel,
+        transportLabel: _normalizeSyncTransportLabel(report.transportLabel),
         transportAvailable: report.transportAvailable,
-        lastResultSummary: report.resultSummary,
-        lastErrorSummary: report.errorMessage,
+        lastResultSummary: _normalizeSyncFeedbackCode(report.resultSummary),
+        lastErrorSummary: _normalizeSyncFeedbackCode(report.errorMessage),
+        recentEvents: [
+          ...report.recentEvents.map(_normalizeSyncFeedbackCode),
+          ...state.syncStatus.recentEvents,
+        ].whereType<String>().take(10).toList(),
       ),
       accounts: state.accounts
           .map(
@@ -1759,6 +1759,55 @@ class AccountsSyncController extends StateNotifier<AccountsSyncState> {
   Future<void> _persist() async {
     await _store.setJsonMap(_accountsSyncStorageKey, state.toJson());
   }
+}
+
+String _normalizeSyncTransportLabel(String transportLabel) {
+  switch (transportLabel) {
+    case 'Local storage':
+      return syncTransportKeyLocalStorage;
+    case 'iCloud':
+      return syncTransportKeyICloud;
+    default:
+      return transportLabel;
+  }
+}
+
+String? _normalizeSyncFeedbackCode(String? raw) {
+  if (raw == null || raw.isEmpty) {
+    return raw;
+  }
+  switch (raw) {
+    case 'Local-only mode active':
+      return 'sync_event_local_only_mode_active';
+    case 'No changes to sync':
+      return 'sync_event_no_changes';
+    case 'Sync completed successfully':
+      return 'sync_result_completed_successfully';
+    case 'Offline':
+      return 'sync_error_offline';
+    case 'Sync unavailable':
+      return 'sync_error_sync_unavailable';
+    case 'Transport failure':
+      return 'sync_error_transport_failure';
+    case 'iCloud is unavailable or not signed in':
+      return 'sync_error_icloud_unavailable';
+    case 'iCloud sync is only available on Apple devices':
+      return 'sync_error_icloud_unsupported_platform';
+    case 'iCloud write failed. Check signing and iCloud capability.':
+      return 'sync_error_icloud_write_failed';
+  }
+
+  final uploadedMatch = RegExp(r'^Uploaded (\d+) changes$').firstMatch(raw);
+  if (uploadedMatch != null) {
+    return 'sync_event_uploaded:${uploadedMatch.group(1)}';
+  }
+  final inboundMatch = RegExp(
+    r'^Applied (\d+) inbound changes$',
+  ).firstMatch(raw);
+  if (inboundMatch != null) {
+    return 'sync_event_applied_inbound:${inboundMatch.group(1)}';
+  }
+  return raw;
 }
 
 class AccountManager {

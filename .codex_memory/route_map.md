@@ -86,6 +86,7 @@ Last updated: 2026-03-24
 - `/quran/arabic/readiness`
 - `/quran/arabic/short-surahs`
 - `/quran/arabic/guided-passages`
+- `/quran/focus-recitation`
 - `/learn/kids/arabic`
 - `/learn/kids/arabic/quran-readiness`
 - `/learn/kids/arabic/short-surahs`

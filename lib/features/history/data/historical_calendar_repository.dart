@@ -124,6 +124,51 @@ class HistoricalCalendarRepository {
       hijriToday: hijriToday,
     );
   }
+
+  Future<HistoricalUpcomingEvent?> getNextUpcomingGregorianEvent({
+    required DateTime today,
+  }) async {
+    final all = await loadAllEvents();
+    final normalizedToday = DateTime(today.year, today.month, today.day);
+    final candidates = <HistoricalUpcomingEvent>[];
+
+    for (final event in all) {
+      if (!event.isPublished || !event.gregorian.hasMonthDay) continue;
+      final month = event.gregorian.month!;
+      final day = event.gregorian.day!;
+      var occurrenceDate = DateTime(normalizedToday.year, month, day);
+      if (occurrenceDate.isBefore(normalizedToday)) {
+        occurrenceDate = DateTime(normalizedToday.year + 1, month, day);
+      }
+      if (occurrenceDate.isAtSameMomentAs(normalizedToday)) {
+        continue;
+      }
+      candidates.add(
+        HistoricalUpcomingEvent(
+          event: event,
+          occurrenceDate: occurrenceDate,
+        ),
+      );
+    }
+
+    if (candidates.isEmpty) return null;
+
+    candidates.sort((a, b) {
+      final dateCompare = a.occurrenceDate.compareTo(b.occurrenceDate);
+      if (dateCompare != 0) return dateCompare;
+
+      final featuredCompare =
+          b.event.featuredPriority.compareTo(a.event.featuredPriority);
+      if (featuredCompare != 0) return featuredCompare;
+
+      final titleCompare = a.event.title.compareTo(b.event.title);
+      if (titleCompare != 0) return titleCompare;
+
+      return a.event.id.compareTo(b.event.id);
+    });
+
+    return candidates.first;
+  }
 }
 
 final historicalCalendarRepositoryProvider = Provider<HistoricalCalendarRepository>(

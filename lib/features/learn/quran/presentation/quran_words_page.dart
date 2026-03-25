@@ -9,6 +9,7 @@ import '../../../../../l10n/app_localizations.dart';
 import '../../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../../shared/widgets/arabic_text_utils.dart';
 import '../../../../../shared/widgets/premium_card.dart';
+import '../../../../../shared/widgets/quran_presentation_style.dart';
 import '../application/quran_providers.dart';
 import '../application/quran_words_provider.dart';
 import '../domain/quran_core_word.dart';
@@ -406,20 +407,25 @@ class _QuranWordCard extends StatelessWidget {
             const SizedBox(height: 8),
             Text(
               word.transliteration,
-              style: TextStyle(
-                fontSize: 16 * transliterationScale,
-                fontWeight: FontWeight.w700,
-                color: const Color(0xFF47382B),
-                fontStyle: FontStyle.italic,
+              style: QuranPresentationStyle.quranSupportTextStyle(
+                context,
+                TextStyle(
+                  fontSize: 16 * transliterationScale,
+                  fontWeight: FontWeight.w700,
+                  fontStyle: FontStyle.italic,
+                ),
+                italic: true,
               ),
             ),
             const SizedBox(height: 4),
             Text(
               word.meaning,
-              style: TextStyle(
-                fontSize: 15 * translationScale,
-                color: const Color(0xFF6A5A4A),
-                height: 1.35,
+              style: QuranPresentationStyle.quranSupportTextStyle(
+                context,
+                TextStyle(
+                  fontSize: 15 * translationScale,
+                  height: 1.35,
+                ),
               ),
             ),
             const SizedBox(height: 12),
@@ -428,9 +434,9 @@ class _QuranWordCard extends StatelessWidget {
             else if (usageSummary?.exampleRef != null) ...[
               Text(
                 l10n.batch9QuranWordsExampleAyahTitle,
-                style: const TextStyle(
+                style: TextStyle(
                   fontWeight: FontWeight.w700,
-                  color: Color(0xFF47382B),
+                  color: QuranPresentationStyle.quranSupportTextColor(context),
                 ),
               ),
               const SizedBox(height: 8),
@@ -468,8 +474,8 @@ class _QuranWordCard extends StatelessWidget {
             ] else
               Text(
                 l10n.batch9QuranWordsNoUsageAvailable,
-                style: const TextStyle(
-                  color: Color(0xFF6A5A4A),
+                style: TextStyle(
+                  color: QuranPresentationStyle.quranSupportTextColor(context),
                   height: 1.3,
                 ),
               ),
@@ -510,20 +516,25 @@ class _WordPreview extends StatelessWidget {
         const SizedBox(height: 6),
         Text(
           word.transliteration,
-          style: TextStyle(
-            fontSize: 15 * transliterationScale,
-            fontWeight: FontWeight.w700,
-            color: const Color(0xFF47382B),
-            fontStyle: FontStyle.italic,
+          style: QuranPresentationStyle.quranSupportTextStyle(
+            context,
+            TextStyle(
+              fontSize: 15 * transliterationScale,
+              fontWeight: FontWeight.w700,
+              fontStyle: FontStyle.italic,
+            ),
+            italic: true,
           ),
         ),
         const SizedBox(height: 4),
         Text(
           word.meaning,
-          style: TextStyle(
-            fontSize: 14 * translationScale,
-            color: const Color(0xFF6A5A4A),
-            height: 1.35,
+          style: QuranPresentationStyle.quranSupportTextStyle(
+            context,
+            TextStyle(
+              fontSize: 14 * translationScale,
+              height: 1.35,
+            ),
           ),
         ),
       ],

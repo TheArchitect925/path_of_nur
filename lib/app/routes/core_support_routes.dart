@@ -5,6 +5,7 @@ import '../../features/accounts_sync/domain/accounts_sync_models.dart';
 import '../../features/accounts_sync/presentation/accounts_profiles_sync_page.dart';
 import '../../features/learn/quran/presentation/names_of_allah_page.dart';
 import '../../features/learn/quran/presentation/quran_bookmarks_page.dart';
+import '../../features/learn/quran/presentation/quran_focus_recitation_page.dart';
 import '../../features/learn/quran/presentation/quran_memorization_review_page.dart';
 import '../../features/learn/quran/presentation/quran_notes_page.dart';
 import '../../features/learn/quran/presentation/quran_reflections_page.dart';
@@ -325,6 +326,20 @@ List<RouteBase> buildCoreSupportRoutes() {
       },
     ),
     GoRoute(
+      path: '/quran/focus-recitation',
+      name: 'quranFocusRecitation',
+      pageBuilder: (context, state) {
+        final surahNumber = int.tryParse(state.uri.queryParameters['surah'] ?? '');
+        final ayahNumber = int.tryParse(state.uri.queryParameters['ayah'] ?? '');
+        return MaterialPage(
+          child: QuranFocusRecitationPage(
+            initialSurahNumber: surahNumber,
+            initialAyahNumber: ayahNumber,
+          ),
+        );
+      },
+    ),
+    GoRoute(
       path: '/quran/surah/:surahNumber',
       name: 'quranReader',
       pageBuilder: (context, state) {
@@ -352,12 +367,15 @@ List<RouteBase> buildCoreSupportRoutes() {
           '1' || 'true' || 'yes' => true,
           _ => false,
         };
+        final autoPlayFocusedSelectionLoop =
+            state.uri.queryParameters['playback'] == 'selectionLoop';
         return MaterialPage(
           child: QuranReaderPage(
             surahNumber: surahNumber,
             initialAyah: ayah,
             endAyah: endAyah,
             autoPlay: autoPlay,
+            autoPlayFocusedSelectionLoop: autoPlayFocusedSelectionLoop,
             learningJourneyId: journeyId,
             learningJourneyStageId: stageId,
             highlightedTopicId: topicId,

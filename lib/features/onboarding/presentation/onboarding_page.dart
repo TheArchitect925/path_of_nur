@@ -26,6 +26,23 @@ class OnboardingPage extends ConsumerStatefulWidget {
 
 class _OnboardingPageState extends ConsumerState<OnboardingPage> {
   static const _lastIndex = 15;
+  static const _growthInterestUnderstandingQuran = 'understanding_quran';
+  static const _growthInterestLearningHadith = 'learning_hadith';
+  static const _growthInterestStoriesProphets = 'stories_prophets';
+  static const _growthInterestStrengtheningSalah = 'strengthening_salah';
+  static const _growthInterestDhikrRemembrance = 'dhikr_remembrance';
+  static const _growthInterestBetterHabits = 'better_habits';
+  static const _growthInterestWorldThroughQuran = 'world_through_quran';
+  static const _growthInterestIslamicKnowledge = 'islamic_knowledge';
+  static const _growthInterestPersonalGrowth = 'personal_growth';
+  static const _growthInterestDailyInspiration = 'daily_inspiration';
+
+  static const _trackingSalah = 'salah_tracking';
+  static const _trackingDhikr = 'dhikr_tracking';
+  static const _trackingQuranReading = 'quran_reading_progress';
+  static const _trackingLearning = 'learning_progress';
+  static const _trackingHabitBuilding = 'habit_building';
+  static const _trackingReflection = 'reflection_journaling';
 
   late final PageController _controller;
   late final TextEditingController _nameController;
@@ -36,7 +53,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
   bool _showAllahuAkbar = false;
   bool _showBismillah = false;
 
-  _LanguageChoice _languageChoice = _languageChoices.first;
+  _LanguageChoice _languageChoice = const _LanguageChoice(id: 'system', label: '');
   OnboardingAgeRange _ageRange = OnboardingAgeRange.age25_34;
   OnboardingLearningAgeGroup _learningAgeGroup =
       OnboardingLearningAgeGroup.adults;
@@ -49,9 +66,9 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
   PrayerMadhab _madhab = PrayerMadhab.shafii;
 
   final Set<String> _growthInterests = <String>{
-    'Understanding the Qur’an',
-    'Strengthening my Salah',
-    'Daily inspiration',
+    _growthInterestUnderstandingQuran,
+    _growthInterestStrengtheningSalah,
+    _growthInterestDailyInspiration,
   };
 
   OnboardingArabicReadMode _arabicReadMode =
@@ -96,7 +113,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
       _madhab = existing.madhab;
       _growthInterests
         ..clear()
-        ..addAll(existing.growthInterests);
+        ..addAll(existing.growthInterests.map(_normalizeGrowthInterestId));
       _arabicReadMode = existing.arabicReadMode;
       _harakatChoice = existing.harakatChoice;
       _arabicTextScale = existing.arabicTextScale;
@@ -107,7 +124,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
       _dailyLessonReminder = existing.dailyLessonReminder;
       _trackingModules
         ..clear()
-        ..addAll(existing.trackingModules);
+        ..addAll(existing.trackingModules.map(_normalizeTrackingModuleId));
       _dhikrHaptic = existing.dhikrHaptic;
       _dhikrSound = existing.dhikrSound;
       _dhikrPulse = existing.dhikrPulse;
@@ -115,14 +132,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
       if (existing.userName.trim().isNotEmpty) {
         _nameController.text = existing.userName;
       }
-      _LanguageChoice? language;
-      for (final item in _languageChoices) {
-        if (item.id == existing.languageChoiceId) {
-          language = item;
-          break;
-        }
-      }
-      if (language != null) _languageChoice = language;
+      _languageChoice = _languageChoiceForId(existing.languageChoiceId);
     } else {
       final systemLocale = WidgetsBinding.instance.platformDispatcher.locale;
       final country = (systemLocale.countryCode ?? '').toUpperCase();
@@ -163,6 +173,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final reduceMotion = ref.watch(
       profileSettingsProvider.select((value) => value.reduceMotion),
     );
@@ -187,7 +198,10 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
                       Text('${_index + 1} / ${_lastIndex + 1}'),
                       const Spacer(),
                       if (_index < _lastIndex)
-                        TextButton(onPressed: _next, child: const Text('Skip'))
+                        TextButton(
+                          onPressed: _next,
+                          child: Text(l10n.onboardingSkipAction),
+                        )
                       else
                         const SizedBox(width: 62),
                     ],
@@ -245,7 +259,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
                         ),
                       ),
                       child: Text(
-                        'You can change this anytime in Settings.',
+                        l10n.onboardingSettingsHintBody,
                         textAlign: TextAlign.center,
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
                           color: const Color(0xFF5A4635),
@@ -260,8 +274,8 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
                       onPressed: _index == _lastIndex ? _finish : _next,
                       child: Text(
                         _index == _lastIndex
-                            ? 'Begin your journey'
-                            : 'Continue',
+                            ? l10n.onboardingBeginJourneyAction
+                            : l10n.onboardingContinueAction,
                       ),
                     ),
                   ),
@@ -314,6 +328,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
   }
 
   Widget _openingPage() {
+    final l10n = AppLocalizations.of(context);
     return PremiumCard(
       child: SingleChildScrollView(
         child: Column(
@@ -321,7 +336,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
             AnimatedOpacity(
               duration: const Duration(milliseconds: 450),
               opacity: _showShahada ? 1 : 0,
-              child: const Column(
+              child: Column(
                 children: [
                   Text(
                     'أَشْهَدُ أَنْ لَا إِلَٰهَ إِلَّا اللَّهُ\nوَأَشْهَدُ أَنَّ مُحَمَّدًا رَسُولُ اللَّهِ',
@@ -340,7 +355,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
                   ),
                   SizedBox(height: 8),
                   Text(
-                    'I bear witness that there is no god except Allah,\nand I bear witness that Muhammad ﷺ is the Messenger of Allah.',
+                    l10n.onboardingShahadaMeaningBody,
                     textAlign: TextAlign.center,
                   ),
                 ],
@@ -375,7 +390,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
             AnimatedOpacity(
               duration: const Duration(milliseconds: 500),
               opacity: _showBismillah ? 1 : 0,
-              child: const Column(
+              child: Column(
                 children: [
                   Text(
                     'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ',
@@ -387,18 +402,18 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
                     ),
                   ),
                   SizedBox(height: 8),
-                  Text('Bismillahir-Rahmanir-Rahim'),
+                  Text(l10n.onboardingBismillahTransliteration),
                   SizedBox(height: 6),
                   Text(
-                    'In the name of Allah, the Most Compassionate, the Most Merciful.',
+                    l10n.onboardingBismillahMeaningBody,
                     textAlign: TextAlign.center,
                   ),
                 ],
               ),
             ),
             const SizedBox(height: 16),
-            const Text(
-              'May this journey bring khayr, consistency, and closeness to Allah.',
+            Text(
+              l10n.onboardingOpeningBlessingBody,
               textAlign: TextAlign.center,
             ),
           ],
@@ -408,11 +423,13 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
   }
 
   Widget _languagePage() {
+    final l10n = AppLocalizations.of(context);
+    final languageChoices = _localizedLanguageChoices(l10n);
     return _stepCard(
-      title: 'Choose your language',
-      subtitle: 'Select the language you would like to use in the app.',
+      title: l10n.onboardingLanguageTitle,
+      subtitle: l10n.onboardingLanguageSubtitle,
       child: ListView(
-        children: _languageChoices
+        children: languageChoices
             .map(
               (choice) => ListTile(
                 dense: true,
@@ -440,36 +457,40 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
   }
 
   Widget _agePage() {
+    final l10n = AppLocalizations.of(context);
     return _choicePage<OnboardingAgeRange>(
-      title: 'Which age range are you in?',
-      subtitle:
-          'Path of Nur adjusts some guidance, tone, and family-related recommendations based on your stage of life so the experience feels more relevant and supportive.',
+      title: l10n.onboardingAgeRangeTitle,
+      subtitle: l10n.onboardingAgeRangeSubtitle,
       value: _ageRange,
-      options: const {
-        OnboardingAgeRange.under18: 'Under 18',
-        OnboardingAgeRange.age18_24: '18-24',
-        OnboardingAgeRange.age25_34: '25-34',
-        OnboardingAgeRange.age35_44: '35-44',
-        OnboardingAgeRange.age45_54: '45-54',
-        OnboardingAgeRange.age55Plus: '55+',
+      options: {
+        OnboardingAgeRange.under18: l10n.onboardingAgeRangeUnder18,
+        OnboardingAgeRange.age18_24: l10n.onboardingAgeRange18To24,
+        OnboardingAgeRange.age25_34: l10n.onboardingAgeRange25To34,
+        OnboardingAgeRange.age35_44: l10n.onboardingAgeRange35To44,
+        OnboardingAgeRange.age45_54: l10n.onboardingAgeRange45To54,
+        OnboardingAgeRange.age55Plus: l10n.onboardingAgeRange55Plus,
       },
       onChanged: (value) => setState(() => _ageRange = value),
     );
   }
 
   Widget _experiencePage() {
+    final l10n = AppLocalizations.of(context);
     return _choicePage<OnboardingIslamExperience>(
-      title: 'Which description fits your journey with Islam best?',
-      subtitle:
-          'We use this to set a better starting tone, pacing, and learning depth for your experience. Your selection is saved and used to shape guidance across the app.',
+      title: l10n.onboardingExperienceTitle,
+      subtitle: l10n.onboardingExperienceSubtitle,
       value: _islamExperience,
-      options: const {
-        OnboardingIslamExperience.exploring: 'Exploring Islam',
-        OnboardingIslamExperience.newToIslam: 'New to Islam',
+      options: {
+        OnboardingIslamExperience.exploring:
+            l10n.onboardingExperienceExploring,
+        OnboardingIslamExperience.newToIslam:
+            l10n.onboardingExperienceNewToIslam,
         OnboardingIslamExperience.bornStillLearning:
-            'Born Muslim, still learning',
-        OnboardingIslamExperience.practicingRegularly: 'Practicing regularly',
-        OnboardingIslamExperience.advanced: 'Experienced / advanced',
+            l10n.onboardingExperienceBornStillLearning,
+        OnboardingIslamExperience.practicingRegularly:
+            l10n.onboardingExperiencePracticingRegularly,
+        OnboardingIslamExperience.advanced:
+            l10n.onboardingExperienceAdvanced,
       },
       onChanged: (value) => setState(() => _islamExperience = value),
     );
@@ -492,78 +513,87 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
   }
 
   Widget _salahConsistencyPage() {
+    final l10n = AppLocalizations.of(context);
     return _choicePage<OnboardingSalahConsistency>(
-      title: 'How consistent is your Salah currently?',
-      subtitle: 'Choose the option that best reflects where you are right now.',
+      title: l10n.onboardingSalahConsistencyTitle,
+      subtitle: l10n.onboardingSalahConsistencySubtitle,
       value: _salahConsistency,
-      options: const {
-        OnboardingSalahConsistency.all: 'I pray all prayers consistently',
-        OnboardingSalahConsistency.most: 'I pray most prayers',
-        OnboardingSalahConsistency.sometimes: 'I pray sometimes',
-        OnboardingSalahConsistency.rarely: 'I rarely pray',
-        OnboardingSalahConsistency.justStarted: 'I am just getting started',
+      options: {
+        OnboardingSalahConsistency.all:
+            l10n.onboardingSalahConsistencyAll,
+        OnboardingSalahConsistency.most:
+            l10n.onboardingSalahConsistencyMost,
+        OnboardingSalahConsistency.sometimes:
+            l10n.onboardingSalahConsistencySometimes,
+        OnboardingSalahConsistency.rarely:
+            l10n.onboardingSalahConsistencyRarely,
+        OnboardingSalahConsistency.justStarted:
+            l10n.onboardingSalahConsistencyJustStarted,
       },
       onChanged: (value) => setState(() => _salahConsistency = value),
     );
   }
 
   Widget _prayerMethodPage() {
+    final l10n = AppLocalizations.of(context);
     return _choicePage<OnboardingPrayerMethodChoice>(
-      title: 'Salah time calculation method',
-      subtitle:
-          'Choose how salah times should be calculated for your location.',
+      title: l10n.onboardingPrayerMethodTitle,
+      subtitle: l10n.onboardingPrayerMethodSubtitle,
       value: _methodChoice,
-      options: const {
-        OnboardingPrayerMethodChoice.muslimWorldLeague: 'Muslim World League',
-        OnboardingPrayerMethodChoice.isna:
-            'Islamic Society of North America (ISNA)',
-        OnboardingPrayerMethodChoice.ummAlQura: 'Umm Al-Qura University',
+      options: {
+        OnboardingPrayerMethodChoice.muslimWorldLeague:
+            l10n.onboardingPrayerMethodMuslimWorldLeague,
+        OnboardingPrayerMethodChoice.isna: l10n.onboardingPrayerMethodIsna,
+        OnboardingPrayerMethodChoice.ummAlQura:
+            l10n.onboardingPrayerMethodUmmAlQura,
         OnboardingPrayerMethodChoice.egyptian:
-            'Egyptian General Authority of Survey',
+            l10n.onboardingPrayerMethodEgyptian,
         OnboardingPrayerMethodChoice.karachi:
-            'University of Islamic Sciences, Karachi',
-        OnboardingPrayerMethodChoice.moonsighting: 'Moonsighting Committee',
+            l10n.onboardingPrayerMethodKarachi,
+        OnboardingPrayerMethodChoice.moonsighting:
+            l10n.onboardingPrayerMethodMoonsighting,
       },
       onChanged: (value) => setState(() => _methodChoice = value),
     );
   }
 
   Widget _madhabPage() {
+    final l10n = AppLocalizations.of(context);
     return _choicePage<PrayerMadhab>(
-      title: 'Which Madhab do you follow?',
-      subtitle:
-          'This affects how Asr salah time is calculated. If you are unsure, you can keep the default.',
+      title: l10n.onboardingMadhabTitle,
+      subtitle: l10n.onboardingMadhabSubtitle,
       value: _madhab,
-      options: const {
-        PrayerMadhab.hanafi: 'Hanafi',
-        PrayerMadhab.shafii: 'Shafi\'i',
-        PrayerMadhab.maliki: 'Maliki',
-        PrayerMadhab.hanbali: 'Hanbali',
+      options: {
+        PrayerMadhab.hanafi: l10n.onboardingMadhabHanafi,
+        PrayerMadhab.shafii: l10n.onboardingMadhabShafii,
+        PrayerMadhab.maliki: l10n.onboardingMadhabMaliki,
+        PrayerMadhab.hanbali: l10n.onboardingMadhabHanbali,
       },
       onChanged: (value) => setState(() => _madhab = value),
     );
   }
 
   Widget _growthInterestsPage() {
+    final l10n = AppLocalizations.of(context);
+    final interestOptions = _interestOptions(l10n);
     return _stepCard(
-      title: 'What would you like to grow in?',
-      subtitle:
-          'Select the areas you would like Path of Nur to help you with. You can choose multiple.',
+      title: l10n.onboardingGrowthInterestsTitle,
+      subtitle: l10n.onboardingGrowthInterestsSubtitle,
       child: GridView.count(
         crossAxisCount: 2,
         mainAxisSpacing: 8,
         crossAxisSpacing: 8,
         childAspectRatio: 1.7,
-        children: _interestOptions
+        children: interestOptions
             .map(
               (item) => _toggleCard(
-                title: item.$1,
-                icon: item.$2,
-                selected: _growthInterests.contains(item.$1),
+                title: item.title,
+                icon: item.icon,
+                selected: _growthInterests.contains(item.id),
                 onTap: () {
                   setState(() {
-                    if (!_growthInterests.add(item.$1)) {
-                      _growthInterests.remove(item.$1);
+                    if (!_growthInterests.add(item.id)) {
+                      _growthInterests.remove(item.id);
                     }
                   });
                 },
@@ -575,44 +605,46 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
   }
 
   Widget _arabicReadingPage() {
+    final l10n = AppLocalizations.of(context);
     return _stepCard(
-      title: 'How would you like to read Arabic?',
-      subtitle: 'Choose the reading style that feels most comfortable for you.',
+      title: l10n.onboardingArabicReadModeTitle,
+      subtitle: l10n.onboardingArabicReadModeSubtitle,
       child: ListView(
         children: [
           _choiceRow<OnboardingArabicReadMode>(
             value: _arabicReadMode,
-            options: const {
+            options: {
               OnboardingArabicReadMode.noArabicYet:
-                  'I do not know any Arabic yet',
-              OnboardingArabicReadMode.arabicOnly: 'Arabic only',
+                  l10n.onboardingArabicReadModeNoArabicYet,
+              OnboardingArabicReadMode.arabicOnly:
+                  l10n.onboardingArabicReadModeArabicOnly,
               OnboardingArabicReadMode.arabicTransliteration:
-                  'Arabic + Transliteration',
+                  l10n.onboardingArabicReadModeArabicTransliteration,
               OnboardingArabicReadMode.arabicTranslation:
-                  'Arabic + Translation',
+                  l10n.onboardingArabicReadModeArabicTranslation,
               OnboardingArabicReadMode.arabicTransliterationTranslation:
-                  'Arabic + Transliteration + Translation',
+                  l10n.onboardingArabicReadModeArabicTransliterationTranslation,
             },
             onChanged: (value) => setState(() => _arabicReadMode = value),
           ),
           const SizedBox(height: 12),
-          const Text(
-            'Harakat / pronunciation marks',
+          Text(
+            l10n.onboardingHarakatTitle,
             style: TextStyle(fontWeight: FontWeight.w700),
           ),
           const SizedBox(height: 6),
           _choiceRow<OnboardingHarakatChoice>(
             value: _harakatChoice,
-            options: const {
-              OnboardingHarakatChoice.full: 'Full harakat',
-              OnboardingHarakatChoice.minimal: 'Minimal harakat',
-              OnboardingHarakatChoice.none: 'None',
+            options: {
+              OnboardingHarakatChoice.full: l10n.onboardingHarakatFull,
+              OnboardingHarakatChoice.minimal: l10n.onboardingHarakatMinimal,
+              OnboardingHarakatChoice.none: l10n.onboardingHarakatNone,
             },
             onChanged: (value) => setState(() => _harakatChoice = value),
           ),
           const SizedBox(height: 12),
-          const Text(
-            'Text size',
+          Text(
+            l10n.onboardingTextSizeTitle,
             style: TextStyle(fontWeight: FontWeight.w700),
           ),
           Slider(
@@ -620,7 +652,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
             min: 0.85,
             max: 1.4,
             divisions: 11,
-            label: _sizeLabel(_arabicTextScale),
+            label: _sizeLabel(l10n, _arabicTextScale),
             onChanged: (value) => setState(() => _arabicTextScale = value),
           ),
           const SizedBox(height: 8),
@@ -643,14 +675,14 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
                     _arabicReadMode ==
                         OnboardingArabicReadMode
                             .arabicTransliterationTranslation)
-                  const Text('Bismillahir-Rahmanir-Rahim'),
+                  Text(l10n.onboardingBismillahTransliteration),
                 if (_arabicReadMode ==
                         OnboardingArabicReadMode.arabicTranslation ||
                     _arabicReadMode ==
                         OnboardingArabicReadMode
                             .arabicTransliterationTranslation)
-                  const Text(
-                    'In the name of Allah, the Most Compassionate, the Most Merciful.',
+                  Text(
+                    l10n.onboardingBismillahMeaningBody,
                     textAlign: TextAlign.center,
                   ),
               ],
@@ -662,17 +694,17 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
   }
 
   Widget _remindersPage() {
+    final l10n = AppLocalizations.of(context);
     return _stepCard(
-      title: 'How would you like to be reminded?',
-      subtitle:
-          'Choose your preferred reminders for salah and daily spiritual routines.',
+      title: l10n.onboardingRemindersTitle,
+      subtitle: l10n.onboardingRemindersSubtitle,
       child: ListView(
         children: [
           Row(
             children: [
-              const Expanded(
+              Expanded(
                 child: Text(
-                  'Salah reminder styles',
+                  l10n.onboardingSalahReminderStylesTitle,
                   style: TextStyle(fontWeight: FontWeight.w700),
                 ),
               ),
@@ -692,18 +724,19 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      _prayerLabel(prayer),
+                      _prayerLabel(l10n, prayer),
                       style: const TextStyle(fontWeight: FontWeight.w700),
                     ),
                     const SizedBox(height: 6),
                     _choiceRow<OnboardingReminderChoice>(
                       value: _prayerReminders[prayer]!,
-                      options: const {
+                      options: {
                         OnboardingReminderChoice.notificationOnly:
-                            'Notification only',
+                            l10n.onboardingReminderNotificationOnly,
                         OnboardingReminderChoice.adhanNotification:
-                            'Adhan notification',
-                        OnboardingReminderChoice.forceAdhan: 'Force Adhan',
+                            l10n.onboardingReminderAdhanNotification,
+                        OnboardingReminderChoice.forceAdhan:
+                            l10n.onboardingReminderForceAdhan,
                       },
                       onChanged: (choice) =>
                           setState(() => _prayerReminders[prayer] = choice),
@@ -716,12 +749,12 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
           const SizedBox(height: 6),
           SwitchListTile(
             value: _dailyQuranReminder,
-            title: const Text('Daily Qur\'an reading reminder'),
+            title: Text(l10n.onboardingDailyQuranReminderTitle),
             onChanged: (value) => setState(() => _dailyQuranReminder = value),
           ),
           SwitchListTile(
             value: _dailyLessonReminder,
-            title: const Text('Daily lesson reminder'),
+            title: Text(l10n.onboardingDailyLessonReminderTitle),
             onChanged: (value) => setState(() => _dailyLessonReminder = value),
           ),
         ],
@@ -730,20 +763,21 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
   }
 
   Widget _trackingPage() {
+    final l10n = AppLocalizations.of(context);
+    final trackingOptions = _trackingOptions(l10n);
     return _stepCard(
-      title: 'What would you like to track?',
-      subtitle:
-          'Choose the areas you would like Path of Nur to help you track over time. You can choose multiple.',
+      title: l10n.onboardingTrackingTitle,
+      subtitle: l10n.onboardingTrackingSubtitle,
       child: ListView(
-        children: _trackingOptions
+        children: trackingOptions
             .map(
               (item) => CheckboxListTile(
-                value: _trackingModules.contains(item),
-                title: Text(item),
+                value: _trackingModules.contains(item.id),
+                title: Text(item.title),
                 onChanged: (_) {
                   setState(() {
-                    if (!_trackingModules.add(item)) {
-                      _trackingModules.remove(item);
+                    if (!_trackingModules.add(item.id)) {
+                      _trackingModules.remove(item.id);
                     }
                   });
                 },
@@ -755,35 +789,34 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
   }
 
   Widget _familyIntroPage() {
+    final l10n = AppLocalizations.of(context);
     return _stepCard(
-      title: 'Grow together with family',
-      subtitle:
-          'Path of Nur can support individual journeys while also helping families grow together.',
-      child: const Column(
+      title: l10n.onboardingFamilyTitle,
+      subtitle: l10n.onboardingFamilySubtitle,
+      child: Column(
         children: [
           _FeatureInfoCard(
             icon: Icons.groups_rounded,
-            title: 'Family profiles',
-            subtitle:
-                'Create profiles for family members from the Profiles page.',
+            title: l10n.onboardingFamilyProfilesTitle,
+            subtitle: l10n.onboardingFamilyProfilesSubtitle,
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           _FeatureInfoCard(
             icon: Icons.person_pin_circle_outlined,
-            title: 'Private journeys for each member',
-            subtitle: 'Each profile can keep separate progress and reminders.',
+            title: l10n.onboardingFamilyPrivateJourneysTitle,
+            subtitle: l10n.onboardingFamilyPrivateJourneysSubtitle,
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           _FeatureInfoCard(
             icon: Icons.auto_stories_rounded,
-            title: 'Age-appropriate learning',
-            subtitle: 'Content can adapt to stage and experience level.',
+            title: l10n.onboardingFamilyAgeAppropriateTitle,
+            subtitle: l10n.onboardingFamilyAgeAppropriateSubtitle,
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           _FeatureInfoCard(
             icon: Icons.favorite_outline_rounded,
-            title: 'Shared encouragement and growth',
-            subtitle: 'Build consistency together over time.',
+            title: l10n.onboardingFamilySharedGrowthTitle,
+            subtitle: l10n.onboardingFamilySharedGrowthSubtitle,
           ),
         ],
       ),
@@ -791,50 +824,55 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
   }
 
   Widget _dhikrFeedbackPage() {
+    final l10n = AppLocalizations.of(context);
     return _stepCard(
-      title: 'Dhikr counter feedback',
-      subtitle: 'Choose how the dhikr counter should respond when you tap.',
+      title: l10n.onboardingDhikrFeedbackTitle,
+      subtitle: l10n.onboardingDhikrFeedbackSubtitle,
       child: ListView(
         children: [
-          const Text(
-            'Haptic feedback',
+          Text(
+            l10n.onboardingDhikrHapticTitle,
             style: TextStyle(fontWeight: FontWeight.w700),
           ),
           _choiceRow<OnboardingDhikrHapticLevel>(
             value: _dhikrHaptic,
-            options: const {
-              OnboardingDhikrHapticLevel.off: 'Off',
-              OnboardingDhikrHapticLevel.light: 'Light',
-              OnboardingDhikrHapticLevel.medium: 'Medium',
-              OnboardingDhikrHapticLevel.strong: 'Strong',
+            options: {
+              OnboardingDhikrHapticLevel.off: l10n.onboardingOptionOff,
+              OnboardingDhikrHapticLevel.light: l10n.onboardingOptionLight,
+              OnboardingDhikrHapticLevel.medium: l10n.onboardingOptionMedium,
+              OnboardingDhikrHapticLevel.strong: l10n.onboardingOptionStrong,
             },
             onChanged: (value) => setState(() => _dhikrHaptic = value),
           ),
           const SizedBox(height: 10),
-          const Text(
-            'Sound feedback',
+          Text(
+            l10n.onboardingDhikrSoundTitle,
             style: TextStyle(fontWeight: FontWeight.w700),
           ),
           _choiceRow<OnboardingDhikrSound>(
             value: _dhikrSound,
-            options: const {
-              OnboardingDhikrSound.off: 'Off',
-              OnboardingDhikrSound.softClick: 'Soft click',
-              OnboardingDhikrSound.tasbih: 'Tasbih bead sound',
+            options: {
+              OnboardingDhikrSound.off: l10n.onboardingOptionOff,
+              OnboardingDhikrSound.softClick:
+                  l10n.onboardingDhikrSoundSoftClick,
+              OnboardingDhikrSound.tasbih:
+                  l10n.onboardingDhikrSoundTasbih,
             },
             onChanged: (value) => setState(() => _dhikrSound = value),
           ),
           const SizedBox(height: 10),
-          const Text(
-            'Visual feedback',
+          Text(
+            l10n.onboardingDhikrVisualTitle,
             style: TextStyle(fontWeight: FontWeight.w700),
           ),
           _choiceRow<OnboardingDhikrPulse>(
             value: _dhikrPulse,
-            options: const {
-              OnboardingDhikrPulse.off: 'Off',
-              OnboardingDhikrPulse.subtleGlow: 'Subtle glow',
-              OnboardingDhikrPulse.pulse: 'Pulse animation',
+            options: {
+              OnboardingDhikrPulse.off: l10n.onboardingOptionOff,
+              OnboardingDhikrPulse.subtleGlow:
+                  l10n.onboardingDhikrVisualSubtleGlow,
+              OnboardingDhikrPulse.pulse:
+                  l10n.onboardingDhikrVisualPulseAnimation,
             },
             onChanged: (value) => setState(() => _dhikrPulse = value),
           ),
@@ -864,45 +902,55 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
             ),
           ),
           const SizedBox(height: 6),
-          Center(child: Text('Preview count: $_dhikrPreviewCount')),
+          Center(
+            child: Text(
+              l10n.onboardingDhikrPreviewCount(_dhikrPreviewCount),
+            ),
+          ),
         ],
       ),
     );
   }
 
   Widget _identityPage() {
+    final l10n = AppLocalizations.of(context);
     return _stepCard(
-      title: 'How should we address you?',
-      subtitle:
-          'Choose your greeting and add your name if you would like a more personal welcome.',
+      title: l10n.onboardingIdentityTitle,
+      subtitle: l10n.onboardingIdentitySubtitle,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('Greeting', style: TextStyle(fontWeight: FontWeight.w700)),
+          Text(
+            l10n.onboardingGreetingTitle,
+            style: const TextStyle(fontWeight: FontWeight.w700),
+          ),
           const SizedBox(height: 6),
           _choiceRow<UserSex>(
             value: _sex,
-            options: const {
-              UserSex.brother: 'Brother',
-              UserSex.sister: 'Sister',
+            options: {
+              UserSex.brother: l10n.profileBrother,
+              UserSex.sister: l10n.profileSister,
             },
             onChanged: (value) => setState(() => _sex = value),
           ),
           const SizedBox(height: 12),
-          const Text('Name', style: TextStyle(fontWeight: FontWeight.w700)),
+          Text(
+            l10n.onboardingNameTitle,
+            style: const TextStyle(fontWeight: FontWeight.w700),
+          ),
           const SizedBox(height: 6),
           TextField(
             controller: _nameController,
-            decoration: const InputDecoration(
-              hintText: 'Optional',
-              border: OutlineInputBorder(),
+            decoration: InputDecoration(
+              hintText: l10n.onboardingOptionalHint,
+              border: const OutlineInputBorder(),
             ),
           ),
           const SizedBox(height: 8),
           Opacity(
             opacity: 0.7,
             child: Text(
-              'Your name is optional and only used to personalize your experience within the app.',
+              l10n.onboardingNameHelperBody,
               style: Theme.of(context).textTheme.bodySmall,
             ),
           ),
@@ -912,18 +960,21 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
   }
 
   Widget _finalWelcomePage() {
+    final l10n = AppLocalizations.of(context);
     final name = _nameController.text.trim().isEmpty
-        ? 'Friend'
+        ? l10n.onboardingDefaultNameFallback
         : _nameController.text.trim();
     final focus = <String>[];
-    focus.addAll(_growthInterests.take(2));
+    focus.addAll(
+      _growthInterests.take(2).map((item) => _growthInterestLabel(l10n, item)),
+    );
     if (_salahConsistency.index >= OnboardingSalahConsistency.sometimes.index) {
-      focus.add('Salah consistency');
+      focus.add(l10n.onboardingFocusSalahConsistency);
     }
     if (_prayerReminders.values.any(
       (choice) => choice != OnboardingReminderChoice.notificationOnly,
     )) {
-      focus.add('Salah reminders');
+      focus.add(l10n.onboardingFocusSalahReminders);
     }
 
     return PremiumCard(
@@ -932,18 +983,18 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Welcome to Path of Nur',
+              l10n.onboardingFinalWelcomeTitle,
               style: Theme.of(context).textTheme.titleLarge,
             ),
             const SizedBox(height: 8),
-            Text('Assalamu Alaikum, $name.'),
+            Text(l10n.onboardingWelcomeGreeting(name)),
             const SizedBox(height: 8),
-            const Text(
-              'Your journey begins now. Path of Nur is ready to support you through learning, reflection, remembrance, and steady growth.',
+            Text(
+              l10n.onboardingFinalWelcomeBody,
             ),
             const SizedBox(height: 12),
-            const Text(
-              'You chose to focus on:',
+            Text(
+              l10n.onboardingFocusListTitle,
               style: TextStyle(fontWeight: FontWeight.w700),
             ),
             const SizedBox(height: 6),
@@ -961,7 +1012,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
               style: TextStyle(fontSize: 30, fontFamily: 'AmiriQuran'),
             ),
             const SizedBox(height: 4),
-            const Text('My Lord, increase me in knowledge.'),
+            Text(l10n.onboardingKnowledgeDuaMeaning),
           ],
         ),
       ),
@@ -1072,30 +1123,30 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
     );
   }
 
-  String _prayerLabel(String prayer) {
+  String _prayerLabel(AppLocalizations l10n, String prayer) {
     switch (prayer) {
       case 'fajr':
-        return 'Fajr';
+        return l10n.settingsPrayerNameFajr;
       case 'dhuhr':
-        return 'Dhuhr';
+        return l10n.settingsPrayerNameDhuhr;
       case 'asr':
-        return 'Asr';
+        return l10n.settingsPrayerNameAsr;
       case 'maghrib':
-        return 'Maghrib';
+        return l10n.settingsPrayerNameMaghrib;
       case 'isha':
-        return 'Isha';
+        return l10n.settingsPrayerNameIsha;
       case 'tahajjud':
-        return 'Tahajjud';
+        return l10n.notificationsPrayerNameTahajjud;
       default:
         return prayer;
     }
   }
 
-  String _sizeLabel(double value) {
-    if (value < 0.93) return 'Small';
-    if (value < 1.03) return 'Medium';
-    if (value < 1.17) return 'Large';
-    return 'Extra large';
+  String _sizeLabel(AppLocalizations l10n, double value) {
+    if (value < 0.93) return l10n.onboardingSizeSmall;
+    if (value < 1.03) return l10n.onboardingOptionMedium;
+    if (value < 1.17) return l10n.onboardingSizeLarge;
+    return l10n.onboardingSizeExtraLarge;
   }
 
   void _previous() {
@@ -1173,8 +1224,8 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
     );
 
     profileSettings.setDhikrReminders(
-      _trackingModules.contains('Dhikr tracking') ||
-          _growthInterests.contains('Dhikr and remembrance'),
+      _trackingModules.contains(_trackingDhikr) ||
+          _growthInterests.contains(_growthInterestDhikrRemembrance),
     );
 
     final prefs = OnboardingPreferences(
@@ -1270,27 +1321,27 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Adhan reminder options',
+                  AppLocalizations.of(context).onboardingReminderHelpTitle,
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
                 const SizedBox(height: 10),
-                const Text(
-                  'Notification only: a standard reminder without adhan audio.',
+                Text(
+                  AppLocalizations.of(context).onboardingReminderHelpNotificationOnly,
                 ),
                 const SizedBox(height: 8),
-                const Text(
-                  'Adhan notification: sends a reminder with adhan-style audio when the prayer begins.',
+                Text(
+                  AppLocalizations.of(context).onboardingReminderHelpAdhanNotification,
                 ),
                 const SizedBox(height: 8),
-                const Text(
-                  'Force Adhan: will play Adhan audio even if the phone is set to silent.',
+                Text(
+                  AppLocalizations.of(context).onboardingReminderHelpForceAdhan,
                 ),
                 const SizedBox(height: 14),
                 Align(
                   alignment: Alignment.centerRight,
                   child: TextButton(
                     onPressed: () => Navigator.of(context).pop(),
-                    child: const Text('Close'),
+                    child: Text(AppLocalizations.of(context).salahCloseAction),
                   ),
                 ),
               ],
@@ -1316,6 +1367,241 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
       default:
         return 'en.sahih';
     }
+  }
+
+  String _normalizeGrowthInterestId(String raw) {
+    switch (raw) {
+      case 'Understanding the Qur’an':
+      case _growthInterestUnderstandingQuran:
+        return _growthInterestUnderstandingQuran;
+      case 'Learning Hadith':
+      case _growthInterestLearningHadith:
+        return _growthInterestLearningHadith;
+      case 'Stories of the Prophets':
+      case _growthInterestStoriesProphets:
+        return _growthInterestStoriesProphets;
+      case 'Strengthening my Salah':
+      case _growthInterestStrengtheningSalah:
+        return _growthInterestStrengtheningSalah;
+      case 'Dhikr and remembrance':
+      case _growthInterestDhikrRemembrance:
+        return _growthInterestDhikrRemembrance;
+      case 'Building better habits':
+      case _growthInterestBetterHabits:
+        return _growthInterestBetterHabits;
+      case 'Learning about the world through the Qur’an':
+      case _growthInterestWorldThroughQuran:
+        return _growthInterestWorldThroughQuran;
+      case 'Islamic knowledge':
+      case _growthInterestIslamicKnowledge:
+        return _growthInterestIslamicKnowledge;
+      case 'Personal growth and discipline':
+      case _growthInterestPersonalGrowth:
+        return _growthInterestPersonalGrowth;
+      case 'Daily inspiration':
+      case _growthInterestDailyInspiration:
+        return _growthInterestDailyInspiration;
+      default:
+        return raw;
+    }
+  }
+
+  String _normalizeTrackingModuleId(String raw) {
+    switch (raw) {
+      case 'Salah tracking':
+      case _trackingSalah:
+        return _trackingSalah;
+      case 'Dhikr tracking':
+      case _trackingDhikr:
+        return _trackingDhikr;
+      case 'Qur’an reading progress':
+      case _trackingQuranReading:
+        return _trackingQuranReading;
+      case 'Learning progress':
+      case _trackingLearning:
+        return _trackingLearning;
+      case 'Habit building':
+      case _trackingHabitBuilding:
+        return _trackingHabitBuilding;
+      case 'Reflection / journaling':
+      case _trackingReflection:
+        return _trackingReflection;
+      default:
+        return raw;
+    }
+  }
+
+  List<_LanguageChoice> _localizedLanguageChoices(AppLocalizations l10n) {
+    return <_LanguageChoice>[
+      _LanguageChoice(id: 'system', label: l10n.onboardingLanguageSystemDefault),
+      _LanguageChoice(
+        id: 'en',
+        label: l10n.onboardingLanguageEnglish,
+        locale: const Locale('en'),
+      ),
+      _LanguageChoice(
+        id: 'ar',
+        label: l10n.onboardingLanguageArabic,
+        locale: const Locale('ar'),
+      ),
+      _LanguageChoice(
+        id: 'de',
+        label: l10n.onboardingLanguageGerman,
+        locale: const Locale('de'),
+      ),
+      _LanguageChoice(
+        id: 'ur',
+        label: l10n.onboardingLanguageUrdu,
+        locale: const Locale('ur'),
+      ),
+      _LanguageChoice(
+        id: 'hi',
+        label: l10n.onboardingLanguageHindi,
+        locale: const Locale('hi'),
+      ),
+      _LanguageChoice(
+        id: 'id',
+        label: l10n.onboardingLanguageIndonesian,
+        locale: const Locale('id'),
+      ),
+      _LanguageChoice(
+        id: 'ms',
+        label: l10n.onboardingLanguageMalay,
+        locale: const Locale('ms'),
+      ),
+      _LanguageChoice(
+        id: 'tr',
+        label: l10n.onboardingLanguageTurkish,
+        locale: const Locale('tr'),
+      ),
+      _LanguageChoice(
+        id: 'bn',
+        label: l10n.onboardingLanguageBengali,
+        locale: const Locale('bn'),
+      ),
+    ];
+  }
+
+  _LanguageChoice _languageChoiceForId(String id) {
+    switch (id) {
+      case 'en':
+        return const _LanguageChoice(id: 'en', label: '', locale: Locale('en'));
+      case 'ar':
+        return const _LanguageChoice(id: 'ar', label: '', locale: Locale('ar'));
+      case 'de':
+        return const _LanguageChoice(id: 'de', label: '', locale: Locale('de'));
+      case 'ur':
+        return const _LanguageChoice(id: 'ur', label: '', locale: Locale('ur'));
+      case 'hi':
+        return const _LanguageChoice(id: 'hi', label: '', locale: Locale('hi'));
+      case 'id':
+        return const _LanguageChoice(id: 'id', label: '', locale: Locale('id'));
+      case 'ms':
+        return const _LanguageChoice(id: 'ms', label: '', locale: Locale('ms'));
+      case 'tr':
+        return const _LanguageChoice(id: 'tr', label: '', locale: Locale('tr'));
+      case 'bn':
+        return const _LanguageChoice(id: 'bn', label: '', locale: Locale('bn'));
+      default:
+        return const _LanguageChoice(id: 'system', label: '');
+    }
+  }
+
+  List<_OnboardingOption> _interestOptions(AppLocalizations l10n) {
+    return <_OnboardingOption>[
+      _OnboardingOption(
+        id: _growthInterestUnderstandingQuran,
+        title: l10n.onboardingInterestUnderstandingQuran,
+        icon: Icons.menu_book_rounded,
+      ),
+      _OnboardingOption(
+        id: _growthInterestLearningHadith,
+        title: l10n.onboardingInterestLearningHadith,
+        icon: Icons.auto_stories_rounded,
+      ),
+      _OnboardingOption(
+        id: _growthInterestStoriesProphets,
+        title: l10n.onboardingInterestStoriesProphets,
+        icon: Icons.history_edu_rounded,
+      ),
+      _OnboardingOption(
+        id: _growthInterestStrengtheningSalah,
+        title: l10n.onboardingInterestStrengtheningSalah,
+        icon: Icons.mosque_rounded,
+      ),
+      _OnboardingOption(
+        id: _growthInterestDhikrRemembrance,
+        title: l10n.onboardingInterestDhikrRemembrance,
+        icon: Icons.favorite_outline_rounded,
+      ),
+      _OnboardingOption(
+        id: _growthInterestBetterHabits,
+        title: l10n.onboardingInterestBetterHabits,
+        icon: Icons.timeline_rounded,
+      ),
+      _OnboardingOption(
+        id: _growthInterestWorldThroughQuran,
+        title: l10n.onboardingInterestWorldThroughQuran,
+        icon: Icons.public_rounded,
+      ),
+      _OnboardingOption(
+        id: _growthInterestIslamicKnowledge,
+        title: l10n.onboardingInterestIslamicKnowledge,
+        icon: Icons.school_rounded,
+      ),
+      _OnboardingOption(
+        id: _growthInterestPersonalGrowth,
+        title: l10n.onboardingInterestPersonalGrowth,
+        icon: Icons.self_improvement_rounded,
+      ),
+      _OnboardingOption(
+        id: _growthInterestDailyInspiration,
+        title: l10n.onboardingInterestDailyInspiration,
+        icon: Icons.wb_sunny_outlined,
+      ),
+    ];
+  }
+
+  List<_OnboardingOption> _trackingOptions(AppLocalizations l10n) {
+    return <_OnboardingOption>[
+      _OnboardingOption(
+        id: _trackingSalah,
+        title: l10n.onboardingTrackingSalah,
+        icon: Icons.check_circle_outline,
+      ),
+      _OnboardingOption(
+        id: _trackingDhikr,
+        title: l10n.onboardingTrackingDhikr,
+        icon: Icons.check_circle_outline,
+      ),
+      _OnboardingOption(
+        id: _trackingQuranReading,
+        title: l10n.onboardingTrackingQuranReading,
+        icon: Icons.check_circle_outline,
+      ),
+      _OnboardingOption(
+        id: _trackingLearning,
+        title: l10n.onboardingTrackingLearning,
+        icon: Icons.check_circle_outline,
+      ),
+      _OnboardingOption(
+        id: _trackingHabitBuilding,
+        title: l10n.onboardingTrackingHabitBuilding,
+        icon: Icons.check_circle_outline,
+      ),
+      _OnboardingOption(
+        id: _trackingReflection,
+        title: l10n.onboardingTrackingReflection,
+        icon: Icons.check_circle_outline,
+      ),
+    ];
+  }
+
+  String _growthInterestLabel(AppLocalizations l10n, String id) {
+    for (final item in _interestOptions(l10n)) {
+      if (item.id == id) return item.title;
+    }
+    return id;
   }
 }
 
@@ -1364,37 +1650,14 @@ class _LanguageChoice {
   final Locale? locale;
 }
 
-const _languageChoices = <_LanguageChoice>[
-  _LanguageChoice(id: 'system', label: 'System Default'),
-  _LanguageChoice(id: 'en', label: 'English', locale: Locale('en')),
-  _LanguageChoice(id: 'ar', label: 'Arabic (العربية)', locale: Locale('ar')),
-  _LanguageChoice(id: 'de', label: 'German (Deutsch)', locale: Locale('de')),
-  _LanguageChoice(id: 'ur', label: 'Urdu (اردو)', locale: Locale('ur')),
-  _LanguageChoice(id: 'hi', label: 'Hindi (हिंदी)', locale: Locale('hi')),
-  _LanguageChoice(id: 'id', label: 'Indonesian', locale: Locale('id')),
-  _LanguageChoice(id: 'ms', label: 'Malay', locale: Locale('ms')),
-  _LanguageChoice(id: 'tr', label: 'Turkish', locale: Locale('tr')),
-  _LanguageChoice(id: 'bn', label: 'Bengali', locale: Locale('bn')),
-];
+class _OnboardingOption {
+  const _OnboardingOption({
+    required this.id,
+    required this.title,
+    required this.icon,
+  });
 
-const _interestOptions = <(String, IconData)>[
-  ('Understanding the Qur’an', Icons.menu_book_rounded),
-  ('Learning Hadith', Icons.auto_stories_rounded),
-  ('Stories of the Prophets', Icons.history_edu_rounded),
-  ('Strengthening my Salah', Icons.mosque_rounded),
-  ('Dhikr and remembrance', Icons.favorite_outline_rounded),
-  ('Building better habits', Icons.timeline_rounded),
-  ('Learning about the world through the Qur’an', Icons.public_rounded),
-  ('Islamic knowledge', Icons.school_rounded),
-  ('Personal growth and discipline', Icons.self_improvement_rounded),
-  ('Daily inspiration', Icons.wb_sunny_outlined),
-];
-
-const _trackingOptions = <String>[
-  'Salah tracking',
-  'Dhikr tracking',
-  'Qur’an reading progress',
-  'Learning progress',
-  'Habit building',
-  'Reflection / journaling',
-];
+  final String id;
+  final String title;
+  final IconData icon;
+}

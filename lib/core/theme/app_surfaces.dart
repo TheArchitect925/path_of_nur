@@ -179,11 +179,29 @@ class AppSurfaceTheme {
     final milkySurface = Color.lerp(surface, milkTone, milkBlend) ?? surface;
     final blendedSurface =
         Color.lerp(milkySurface, accent, surfaceBlend) ?? milkySurface;
-    final topSurface =
+    var topSurface =
         Color.lerp(blendedSurface, Colors.white, topHighlightBlend) ??
         blendedSurface;
-    final bottomSurface =
+    var bottomSurface =
         Color.lerp(blendedSurface, accent, bottomAccentBlend) ?? blendedSurface;
+
+    if (variant == AppSurfaceVariant.panel) {
+      final depthTone = isDark
+          ? Colors.black
+          : (appearance?.backgroundAlt ?? AppColors.backgroundAlt);
+      topSurface = Color.lerp(
+            topSurface,
+            depthTone,
+            isDark ? 0.16 : 0.12,
+          ) ??
+          topSurface;
+      bottomSurface = Color.lerp(
+            bottomSurface,
+            depthTone,
+            isDark ? 0.22 : 0.18,
+          ) ??
+          bottomSurface;
+    }
 
     final blendedBorder =
         Color.lerp(
@@ -288,6 +306,7 @@ class AppSurfaceTheme {
       case AppSurfaceVariant.featureTile:
         return (base - 0.01).clamp(0.0, 1.0);
       case AppSurfaceVariant.panel:
+        return 0.50;
       case AppSurfaceVariant.card:
         return base;
     }
@@ -343,6 +362,7 @@ class AppSurfaceTheme {
       case AppSurfaceVariant.featureTile:
         return (base + 0.05).clamp(0.0, 1.0);
       case AppSurfaceVariant.panel:
+        return (base + 0.08).clamp(0.0, 1.0);
       case AppSurfaceVariant.card:
         return (base + 0.02).clamp(0.0, 1.0);
     }
@@ -361,6 +381,7 @@ class AppSurfaceTheme {
       case AppSurfaceVariant.featureTile:
         return disableGlass ? 0.12 : 0.09;
       case AppSurfaceVariant.panel:
+        return disableGlass ? 0.14 : 0.11;
       case AppSurfaceVariant.card:
         return disableGlass ? 0.10 : 0.07;
     }
@@ -376,6 +397,7 @@ class AppSurfaceTheme {
       case AppSurfaceVariant.featureTile:
         return 0.68;
       case AppSurfaceVariant.panel:
+        return 0.70;
       case AppSurfaceVariant.card:
         return 0.64;
     }
@@ -398,6 +420,7 @@ class AppSurfaceTheme {
       case AppSurfaceVariant.featureTile:
         return isDark ? 0.05 : 0.10;
       case AppSurfaceVariant.panel:
+        return isDark ? 0.03 : 0.06;
       case AppSurfaceVariant.card:
         return isDark ? 0.04 : 0.08;
     }
@@ -420,6 +443,7 @@ class AppSurfaceTheme {
       case AppSurfaceVariant.featureTile:
         return isDark ? 0.025 : 0.04;
       case AppSurfaceVariant.panel:
+        return isDark ? 0.015 : 0.025;
       case AppSurfaceVariant.card:
         return isDark ? 0.02 : 0.03;
     }
@@ -442,6 +466,7 @@ class AppSurfaceTheme {
       case AppSurfaceVariant.featureTile:
         return isDark ? 0.20 : 0.28;
       case AppSurfaceVariant.panel:
+        return isDark ? 0.15 : 0.18;
       case AppSurfaceVariant.card:
         return isDark ? 0.19 : 0.26;
     }
@@ -464,6 +489,7 @@ class AppSurfaceTheme {
       case AppSurfaceVariant.featureTile:
         return isDark ? 0.14 : 0.20;
       case AppSurfaceVariant.panel:
+        return isDark ? 0.10 : 0.14;
       case AppSurfaceVariant.card:
         return isDark ? 0.13 : 0.18;
     }
@@ -486,6 +512,7 @@ class AppSurfaceTheme {
       case AppSurfaceVariant.featureTile:
         return isDark ? 0.03 : 0.05;
       case AppSurfaceVariant.panel:
+        return isDark ? 0.015 : 0.028;
       case AppSurfaceVariant.card:
         return isDark ? 0.025 : 0.04;
     }

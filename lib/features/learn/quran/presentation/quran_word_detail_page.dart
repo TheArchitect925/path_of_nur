@@ -6,6 +6,7 @@ import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/arabic_text_utils.dart';
 import '../../../../shared/widgets/premium_card.dart';
+import '../../../../shared/widgets/quran_presentation_style.dart';
 import '../application/quran_providers.dart';
 import '../application/quran_words_provider.dart';
 import 'widgets/quran_word_study_sections.dart';
@@ -109,20 +110,24 @@ class QuranWordDetailPage extends ConsumerWidget {
               const SizedBox(height: 10),
               Text(
                 word.transliteration,
-                style: TextStyle(
-                  fontSize: 18 * transliterationScale,
-                  fontWeight: FontWeight.w700,
-                  fontStyle: FontStyle.italic,
-                  color: const Color(0xFF47382B),
+                style: QuranPresentationStyle.quranSupportTextStyle(
+                  context,
+                  TextStyle(
+                    fontSize: 18 * transliterationScale,
+                    fontWeight: FontWeight.w700,
+                  ),
+                  italic: true,
                 ),
               ),
               const SizedBox(height: 6),
               Text(
                 word.meaning,
-                style: TextStyle(
-                  fontSize: 16 * translationScale,
-                  height: 1.35,
-                  color: const Color(0xFF6A5A4A),
+                style: QuranPresentationStyle.quranSupportTextStyle(
+                  context,
+                  TextStyle(
+                    fontSize: 16 * translationScale,
+                    height: 1.35,
+                  ),
                 ),
               ),
               if (word.hasRootLetters) ...[
@@ -155,10 +160,12 @@ class QuranWordDetailPage extends ConsumerWidget {
                 const SizedBox(height: 6),
                 Text(
                   word.meaningExpansion!,
-                  style: TextStyle(
-                    fontSize: 14.5 * translationScale,
-                    height: 1.4,
-                    color: const Color(0xFF6A5A4A),
+                  style: QuranPresentationStyle.quranSupportTextStyle(
+                    context,
+                    TextStyle(
+                      fontSize: 14.5 * translationScale,
+                      height: 1.4,
+                    ),
                   ),
                 ),
               ],
@@ -174,7 +181,7 @@ class QuranWordDetailPage extends ConsumerWidget {
                 l10n.batch9QuranWordsExampleAyahTitle,
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
                   fontWeight: FontWeight.w700,
-                  color: const Color(0xFF47382B),
+                  color: QuranPresentationStyle.quranSupportTextColor(context),
                 ),
               ),
               const SizedBox(height: 10),
@@ -190,8 +197,10 @@ class QuranWordDetailPage extends ConsumerWidget {
               else
                 Text(
                   l10n.batch9QuranWordsNoUsageAvailable,
-                  style: const TextStyle(
-                    color: Color(0xFF6A5A4A),
+                  style: TextStyle(
+                    color: QuranPresentationStyle.quranSupportTextColor(
+                      context,
+                    ),
                     height: 1.3,
                   ),
                 ),
@@ -213,7 +222,7 @@ class QuranWordDetailPage extends ConsumerWidget {
               Text(
                 l10n.batch9QuranWordsAllAyahsSubtitle(word.transliteration),
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: const Color(0xFF6A5A4A),
+                  color: QuranPresentationStyle.quranSupportTextColor(context),
                   height: 1.35,
                 ),
               ),

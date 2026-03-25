@@ -15,7 +15,7 @@ void main() {
     expect(state.playbackSpeed, 1.0);
     expect(state.ayahLoopCount, 1);
     expect(state.backgroundPlaybackEnabled, isTrue);
-    expect(state.reciterId, 'husary');
+    expect(state.reciterId, QuranAudioRepository.defaultReciterId);
   });
 
   test('quran audio settings sanitize invalid stored values on load', () async {
@@ -34,7 +34,7 @@ void main() {
 
     expect(state.playbackSpeed, 1.2);
     expect(state.ayahLoopCount, 12);
-    expect(state.reciterId, QuranAudioRepository.reciters.first.id);
+    expect(state.reciterId, QuranAudioRepository.defaultReciterId);
     expect(state.backgroundPlaybackEnabled, isFalse);
   });
 
@@ -56,7 +56,7 @@ void main() {
 
       expect(state.playbackSpeed, 0.6);
       expect(state.ayahLoopCount, 12);
-      expect(state.reciterId, 'husary');
+      expect(state.reciterId, QuranAudioRepository.defaultReciterId);
       expect(state.backgroundPlaybackEnabled, isFalse);
       expect(saved?['playbackSpeed'], 0.6);
       expect(saved?['ayahLoopCount'], 12);

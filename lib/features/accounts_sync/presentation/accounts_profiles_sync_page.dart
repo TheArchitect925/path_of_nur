@@ -15,11 +15,18 @@ import '../application/sync_scope_support.dart';
 import '../application/sync_foundation.dart';
 import '../domain/accounts_sync_models.dart';
 
-class AccountsProfilesSyncPage extends ConsumerWidget {
+class AccountsProfilesSyncPage extends ConsumerStatefulWidget {
   const AccountsProfilesSyncPage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<AccountsProfilesSyncPage> createState() =>
+      _AccountsProfilesSyncPageState();
+}
+
+class _AccountsProfilesSyncPageState
+    extends ConsumerState<AccountsProfilesSyncPage> {
+  @override
+  Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final state = ref.watch(accountsSyncControllerProvider);
     final accountStatus = ref.watch(accountsSyncStatusProvider);
@@ -156,6 +163,10 @@ class AccountsProfilesSyncPage extends ConsumerWidget {
               ),
             ],
           ),
+        ),
+        const SizedBox(height: 16),
+        _AccountConnectionCard(
+          onManageAccountsTap: () => context.push('/accounts-sync/accounts'),
         ),
         const SizedBox(height: 16),
         SectionTitle(
@@ -621,14 +632,10 @@ class SignedInAccountsPage extends ConsumerStatefulWidget {
 }
 
 class _SignedInAccountsPageState extends ConsumerState<SignedInAccountsPage> {
-  bool _authBusy = false;
-
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final state = ref.watch(accountsSyncControllerProvider);
-    final authState = ref.watch(authStateProvider);
-    final status = ref.watch(accountsSyncStatusProvider);
     return AppPageScaffold(
       headerIcon: Icons.devices_other_rounded,
       title: l10n.accountsSyncSignedInAccountsTitle,
@@ -660,135 +667,160 @@ class _SignedInAccountsPageState extends ConsumerState<SignedInAccountsPage> {
           ),
         ),
         const SizedBox(height: 16),
-        PremiumCard(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                l10n.accountsSyncAccountSectionTitle,
-                style: Theme.of(context).textTheme.titleMedium,
-              ),
-              const SizedBox(height: 6),
-              Text(
-                authState.status == AuthStatus.authenticated
-                    ? l10n.accountsSyncConnectedAccountBody(
-                        state.authenticatedAccount?.displayName ??
-                            l10n.accountsSyncProviderNone,
-                      )
-                    : l10n.accountsSyncLocalOnlyBody,
-              ),
-              const SizedBox(height: 12),
-              ListTile(
-                contentPadding: EdgeInsets.zero,
-                title: Text(l10n.accountsSyncCurrentModeLabel),
-                subtitle: Text(_connectionModeLabel(l10n, status.mode)),
-              ),
-              ListTile(
-                contentPadding: EdgeInsets.zero,
-                title: Text(l10n.accountsSyncBackupStatusTitle),
-                subtitle: Text(
-                  status.lastBackupAtIso == null
-                      ? l10n.accountsSyncBackupNeverBackedUp
-                      : l10n.accountsSyncLastBackupValue(
-                          _formatWhen(
-                            context,
-                            l10n,
-                            status.lastBackupAtIso,
-                          ),
-                        ),
-                ),
-              ),
-              const Divider(height: 24),
-              FilledButton.icon(
-                onPressed: _authBusy
-                    ? null
-                    : () => _handleAuthAction(
-                          context,
-                          () => ref
-                              .read(accountsAuthRepositoryProvider)
-                              .signInWithApple(),
-                        ),
-                icon: const Icon(Icons.apple_rounded),
-                label: Text(l10n.accountsSyncContinueWithAppleAction),
-              ),
-              const SizedBox(height: 12),
-              FilledButton.icon(
-                onPressed: _authBusy
-                    ? null
-                    : () => _handleAuthAction(
-                          context,
-                          () => ref
-                              .read(accountsAuthRepositoryProvider)
-                              .signInWithGoogle(),
-                        ),
-                icon: const Icon(Icons.account_circle_outlined),
-                label: Text(l10n.accountsSyncContinueWithGoogleAction),
-              ),
-              const SizedBox(height: 12),
-              OutlinedButton.icon(
-                onPressed: _authBusy
-                    ? null
-                    : () => _handleAuthAction(
-                          context,
-                          () => ref
-                              .read(accountsAuthRepositoryProvider)
-                              .signInWithEmail(),
-                        ),
-                icon: const Icon(Icons.email_outlined),
-                label: Text(l10n.accountsSyncContinueWithEmailAction),
-              ),
-              const SizedBox(height: 8),
-              Text(
-                l10n.accountsSyncEmailComingNextBody,
-                style: Theme.of(context).textTheme.bodySmall,
-              ),
-              const SizedBox(height: 12),
-              OutlinedButton(
-                onPressed: _authBusy
-                    ? null
-                    : () async {
-                        final messenger = ScaffoldMessenger.of(context);
-                        await ref
-                            .read(accountsAuthRepositoryProvider)
-                            .signOut();
-                        if (!mounted) return;
-                        messenger.showSnackBar(
-                          SnackBar(
-                            content: Text(
-                              l10n.accountsSyncContinueLocalOnlyResult,
-                            ),
-                          ),
-                        );
-                      },
-                child: Text(l10n.accountsSyncContinueLocalOnlyAction),
-              ),
-              if (authState.status == AuthStatus.authenticated) ...[
-                const SizedBox(height: 12),
-                TextButton(
-                  onPressed: _authBusy
-                      ? null
-                      : () async {
-                          final messenger = ScaffoldMessenger.of(context);
-                          await ref.read(accountsAuthRepositoryProvider).signOut();
-                          if (!mounted) return;
-                          messenger.showSnackBar(
-                            SnackBar(
-                              content: Text(l10n.accountsSyncSignedOutResult),
-                            ),
-                          );
-                        },
-                  child: Text(l10n.accountsSyncSignOutAction),
-                ),
-              ],
-            ],
-          ),
-        ),
+        const _AccountConnectionCard(),
       ],
+    );
+  }
+}
+
+class _AccountConnectionCard extends ConsumerStatefulWidget {
+  const _AccountConnectionCard({this.onManageAccountsTap});
+
+  final VoidCallback? onManageAccountsTap;
+
+  @override
+  ConsumerState<_AccountConnectionCard> createState() =>
+      _AccountConnectionCardState();
+}
+
+class _AccountConnectionCardState extends ConsumerState<_AccountConnectionCard> {
+  bool _authBusy = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final state = ref.watch(accountsSyncControllerProvider);
+    final authState = ref.watch(authStateProvider);
+    final status = ref.watch(accountsSyncStatusProvider);
+    return PremiumCard(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            l10n.accountsSyncAccountSectionTitle,
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
+          const SizedBox(height: 6),
+          Text(
+            authState.status == AuthStatus.authenticated
+                ? l10n.accountsSyncConnectedAccountBody(
+                    state.authenticatedAccount?.displayName ??
+                        l10n.accountsSyncProviderNone,
+                  )
+                : l10n.accountsSyncLocalOnlyBody,
+          ),
+          const SizedBox(height: 12),
+          ListTile(
+            contentPadding: EdgeInsets.zero,
+            title: Text(l10n.accountsSyncCurrentModeLabel),
+            subtitle: Text(_connectionModeLabel(l10n, status.mode)),
+          ),
+          ListTile(
+            contentPadding: EdgeInsets.zero,
+            title: Text(l10n.accountsSyncBackupStatusTitle),
+            subtitle: Text(
+              status.lastBackupAtIso == null
+                  ? l10n.accountsSyncBackupNeverBackedUp
+                  : l10n.accountsSyncLastBackupValue(
+                      _formatWhen(
+                        context,
+                        l10n,
+                        status.lastBackupAtIso,
+                      ),
+                    ),
+            ),
+          ),
+          if (widget.onManageAccountsTap != null) ...[
+            const Divider(height: 24),
+            _NavRow(
+              title: l10n.accountsSyncSignedInAccountsTitle,
+              subtitle: l10n.accountsSyncSignInAnotherAccountSubtitle,
+              onTap: widget.onManageAccountsTap!,
+            ),
+          ],
+          const Divider(height: 24),
+          FilledButton.icon(
+            onPressed: _authBusy
+                ? null
+                : () => _handleAuthAction(
+                      () => ref
+                          .read(accountsAuthRepositoryProvider)
+                          .signInWithApple(),
+                    ),
+            icon: const Icon(Icons.apple_rounded),
+            label: Text(l10n.accountsSyncContinueWithAppleAction),
+          ),
+          const SizedBox(height: 12),
+          FilledButton.icon(
+            onPressed: _authBusy
+                ? null
+                : () => _handleAuthAction(
+                      () => ref
+                          .read(accountsAuthRepositoryProvider)
+                          .signInWithGoogle(),
+                    ),
+            icon: const Icon(Icons.account_circle_outlined),
+            label: Text(l10n.accountsSyncContinueWithGoogleAction),
+          ),
+          const SizedBox(height: 12),
+          OutlinedButton.icon(
+            onPressed: _authBusy
+                ? null
+                : () => _handleAuthAction(
+                      () => ref
+                          .read(accountsAuthRepositoryProvider)
+                          .signInWithEmail(),
+                    ),
+            icon: const Icon(Icons.email_outlined),
+            label: Text(l10n.accountsSyncContinueWithEmailAction),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            l10n.accountsSyncEmailComingNextBody,
+            style: Theme.of(context).textTheme.bodySmall,
+          ),
+          const SizedBox(height: 12),
+          OutlinedButton(
+            onPressed: _authBusy
+                ? null
+                : () async {
+                    final messenger = ScaffoldMessenger.of(context);
+                    await ref.read(accountsAuthRepositoryProvider).signOut();
+                    if (!mounted) return;
+                    messenger.showSnackBar(
+                      SnackBar(
+                        content: Text(
+                          l10n.accountsSyncContinueLocalOnlyResult,
+                        ),
+                      ),
+                    );
+                  },
+            child: Text(l10n.accountsSyncContinueLocalOnlyAction),
+          ),
+          if (authState.status == AuthStatus.authenticated) ...[
+            const SizedBox(height: 12),
+            TextButton(
+              onPressed: _authBusy
+                  ? null
+                  : () async {
+                      final messenger = ScaffoldMessenger.of(context);
+                      await ref.read(accountsAuthRepositoryProvider).signOut();
+                      if (!mounted) return;
+                      messenger.showSnackBar(
+                        SnackBar(
+                          content: Text(l10n.accountsSyncSignedOutResult),
+                        ),
+                      );
+                    },
+              child: Text(l10n.accountsSyncSignOutAction),
+            ),
+          ],
+        ],
+      ),
     );
   }
 
   Future<void> _handleAuthAction(
-    BuildContext context,
     Future<AuthActionResult> Function() action,
   ) async {
     setState(() => _authBusy = true);
@@ -799,7 +831,8 @@ class _SignedInAccountsPageState extends ConsumerState<SignedInAccountsPage> {
     setState(() => _authBusy = false);
     final message = switch (result.status) {
       AuthActionStatus.success => l10n.accountsSyncAccountConnectedResult(
-          result.identity?.displayName ?? l10n.accountsSyncDefaultAccountDisplayName,
+          result.identity?.displayName ??
+              l10n.accountsSyncDefaultAccountDisplayName,
         ),
       AuthActionStatus.cancelled => l10n.accountsSyncAuthCancelledResult,
       AuthActionStatus.unavailable => l10n.accountsSyncAuthUnavailableResult,
@@ -2766,7 +2799,7 @@ String _transportLabel(AppLocalizations l10n, String transportLabel) {
     case 'iCloud':
       return l10n.settingsSyncModeICloud;
     default:
-      return transportLabel;
+      return l10n.accountsSyncTransportUnknown;
   }
 }
 
@@ -2820,10 +2853,19 @@ String _syncFeedbackLabel(AppLocalizations l10n, String raw) {
   if (raw == 'sync_result_local_only_mode_active') {
     return l10n.accountsSyncResultLocalOnlyModeActive;
   }
+  if (raw == 'Local-only mode active') {
+    return l10n.accountsSyncResultLocalOnlyModeActive;
+  }
   if (raw == 'sync_result_no_changes') {
     return l10n.accountsSyncResultNoChanges;
   }
+  if (raw == 'No changes to sync') {
+    return l10n.accountsSyncResultNoChanges;
+  }
   if (raw == 'sync_result_completed_successfully') {
+    return l10n.accountsSyncResultCompletedSuccessfully;
+  }
+  if (raw == 'Sync completed successfully') {
     return l10n.accountsSyncResultCompletedSuccessfully;
   }
   if (raw == 'sync_event_local_only_mode_active') {
@@ -2831,6 +2873,38 @@ String _syncFeedbackLabel(AppLocalizations l10n, String raw) {
   }
   if (raw == 'sync_event_no_changes') {
     return l10n.accountsSyncEventNoChanges;
+  }
+  if (raw == 'Offline') {
+    return l10n.accountsSyncErrorOffline;
+  }
+  if (raw == 'Sync unavailable') {
+    return l10n.accountsSyncErrorSyncUnavailable;
+  }
+  if (raw == 'Transport failure') {
+    return l10n.accountsSyncErrorTransportFailure;
+  }
+  if (raw == 'iCloud is unavailable or not signed in') {
+    return l10n.accountsSyncErrorICloudUnavailable;
+  }
+  if (raw == 'iCloud sync is only available on Apple devices') {
+    return l10n.accountsSyncErrorICloudUnsupportedPlatform;
+  }
+  if (raw == 'iCloud write failed. Check signing and iCloud capability.') {
+    return l10n.accountsSyncErrorICloudWriteFailed;
+  }
+  final uploadedLegacy = RegExp(r'^Uploaded (\d+) changes$').firstMatch(raw);
+  if (uploadedLegacy != null) {
+    return l10n.accountsSyncEventUploadedChanges(
+      int.tryParse(uploadedLegacy.group(1) ?? '') ?? 0,
+    );
+  }
+  final inboundLegacy = RegExp(
+    r'^Applied (\d+) inbound changes$',
+  ).firstMatch(raw);
+  if (inboundLegacy != null) {
+    return l10n.accountsSyncEventAppliedInboundChanges(
+      int.tryParse(inboundLegacy.group(1) ?? '') ?? 0,
+    );
   }
   if (raw.startsWith('sync_event_uploaded:')) {
     final count = int.tryParse(raw.split(':').last) ?? 0;
@@ -2855,7 +2929,7 @@ String _syncFeedbackLabel(AppLocalizations l10n, String raw) {
     case 'sync_error_transport_failure':
       return l10n.accountsSyncErrorTransportFailure;
     default:
-      return raw;
+      return l10n.accountsSyncStatusUnknown;
   }
 }
 

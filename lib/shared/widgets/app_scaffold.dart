@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -9,8 +8,11 @@ import '../../app/app_router.dart';
 import '../../app/nav_tabs.dart';
 import '../../core/navigation/app_navigation_gesture_config.dart';
 import '../../core/navigation/app_swipe_back_wrapper.dart';
+import '../../core/reminders/quran_live_activity_service.dart';
 import '../../features/learn/quran/application/quran_providers.dart';
-import '../../features/learn/quran/application/quran_player_controller.dart';
+import '../../features/learn/quran/application/quran_reader_playback_controller.dart';
+import '../../features/learn/quran/presentation/quran_reader_playback_presentation.dart';
+import '../../features/learn/quran/presentation/widgets/quran_expanded_player_sheet.dart';
 import '../../l10n/app_localizations.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_fonts.dart';
@@ -32,8 +34,6 @@ class AppShellScaffold extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final activeTab = navTabFromLocation(currentLocation);
     final previousLocation = ref.watch(shellCurrentLocationProvider);
-    final quranPlayer = ref.watch(quranSharedAudioPlayerProvider);
-    final quranPlayerController = ref.watch(quranPlayerControllerProvider);
 
     if (previousLocation != currentLocation) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -59,14 +59,14 @@ class AppShellScaffold extends ConsumerWidget {
             ),
             child: child,
           ),
+          _QuranPhoneLiveActivityBridge(currentLocation: currentLocation),
           Positioned(
-            left: 0,
-            right: 0,
-            bottom: 92,
-            child: _buildGlobalQuranPlaybackFab(
+            left: 16,
+            right: 16,
+            bottom: 82,
+            child: _buildGlobalQuranMiniPlayer(
               context: context,
-              player: quranPlayer,
-              controller: quranPlayerController,
+              ref: ref,
             ),
           ),
           Positioned(
@@ -80,69 +80,64 @@ class AppShellScaffold extends ConsumerWidget {
     );
   }
 
-  Widget _buildGlobalQuranPlaybackFab({
+  Widget _buildGlobalQuranMiniPlayer({
     required BuildContext context,
-    required AudioPlayer player,
-    required QuranPlayerController controller,
+    required WidgetRef ref,
   }) {
+    final quranAudioEnabled = ref.watch(quranAudioFunctionEnabledProvider);
+    if (!quranAudioEnabled) return const SizedBox.shrink();
+    final expandedPlayerOpen = ref.watch(quranExpandedPlayerOpenProvider);
+    final focusRecitationOpen = ref.watch(quranFocusRecitationOpenProvider);
+    if (expandedPlayerOpen || focusRecitationOpen) {
+      return const SizedBox.shrink();
+    }
     final l10n = AppLocalizations.of(context);
     final isQuranReaderRoute =
         currentLocation.startsWith('/quran/surah/') ||
         currentLocation.startsWith('/learn/quran/surah/');
-    if (isQuranReaderRoute) return const SizedBox.shrink();
+    final isQuranFocusRoute =
+        currentLocation.startsWith('/quran/focus-recitation');
+    if (isQuranReaderRoute || isQuranFocusRoute) {
+      return const SizedBox.shrink();
+    }
+    final playbackState = ref.watch(quranGlobalPlaybackStateProvider);
+    if (!playbackState.hasPlayback || playbackState.activeSurahNumber == null) {
+      return const SizedBox.shrink();
+    }
+    final nowPlayingLabel = buildQuranReaderNowPlayingLabel(
+      l10n: l10n,
+      playbackState: playbackState,
+      surahMap: ref.read(quranSurahMapProvider),
+    );
+    final statusLabel = buildQuranPlaybackStatusLabel(
+      l10n: l10n,
+      playbackState: playbackState,
+    );
+    final showRetryAction = playbackState.hasRecoverableFailure;
 
-    return StreamBuilder<PlayerState>(
-      stream: player.playerStateStream,
-      initialData: player.playerState,
-      builder: (context, snapshot) {
-        final state = snapshot.data ?? player.playerState;
-        final hasActiveAudio =
-            player.audioSource != null &&
-            state.processingState != ProcessingState.idle;
-        if (!hasActiveAudio) return const SizedBox.shrink();
+    final targetSurah = playbackState.activeSurahNumber;
+    final targetAyah =
+        playbackState.activeAyahNumber ?? playbackState.storedSession?.ayahNumber;
 
-        final isPlaying = state.playing;
-        return Center(
-          child: Tooltip(
-            message: isPlaying
-                ? l10n.shellQuranPlaybackPauseTooltip
-                : l10n.shellQuranPlaybackResumeTooltip,
-            child: Semantics(
-              button: true,
-              label: isPlaying
-                  ? l10n.shellQuranPlaybackPauseTooltip
-                  : l10n.shellQuranPlaybackResumeTooltip,
-              child: Material(
-                color: const Color(0xFFE8D7B8),
-                elevation: 6,
-                shadowColor: const Color(0xFF1D1A17).withValues(alpha: 0.22),
-                shape: const CircleBorder(),
-                child: InkWell(
-                  customBorder: const CircleBorder(),
-                  onTap: () {
-                    if (isPlaying) {
-                      unawaited(controller.pause());
-                    } else {
-                      unawaited(controller.resumeCurrentPlayback());
-                    }
-                  },
-                  child: SizedBox(
-                    width: 56,
-                    height: 56,
-                    child: Icon(
-                      isPlaying
-                          ? Icons.pause_circle_filled_rounded
-                          : Icons.play_circle_fill_rounded,
-                      size: 32,
-                      color: const Color(0xFF3A3026),
-                    ),
-                  ),
-                ),
-              ),
+    return Align(
+      alignment: Alignment.center,
+      child: QuranPlayerLauncherPill(
+        label: nowPlayingLabel ?? l10n.shellQuranMiniPlayerTitle,
+        subtitle: '${playbackState.reciterName} • $statusLabel',
+        isPlaying: playbackState.isPlaying,
+        showRetryAction: showRetryAction,
+        onOpenPlayer: () {
+          if (targetSurah == null) return;
+          unawaited(
+            showQuranExpandedPlayerSheet(
+              context,
+              surahNumber: targetSurah,
+              ayahNumber: targetAyah,
             ),
-          ),
-        );
-      },
+          );
+        },
+        openTooltip: l10n.quranPlaybackOpenPlayerAction,
+      ),
     );
   }
 
@@ -368,5 +363,216 @@ class AppShellScaffold extends ConsumerWidget {
       case NavTab.quran:
         return l10n.quranTitle;
     }
+  }
+}
+
+class _QuranPhoneLiveActivityBridge extends ConsumerStatefulWidget {
+  const _QuranPhoneLiveActivityBridge({required this.currentLocation});
+
+  final String currentLocation;
+
+  @override
+  ConsumerState<_QuranPhoneLiveActivityBridge> createState() =>
+      _QuranPhoneLiveActivityBridgeState();
+}
+
+class _QuranPhoneLiveActivityBridgeState
+    extends ConsumerState<_QuranPhoneLiveActivityBridge> {
+  ProviderSubscription<QuranReaderPlaybackState>? _playbackSubscription;
+  late final QuranLiveActivityService _liveActivityService =
+      ref.read(quranLiveActivityServiceProvider);
+  bool _isSupported = false;
+  bool _hasActiveLiveActivity = false;
+  String? _lastPayloadSignature;
+
+  bool get _isReaderRoute =>
+      widget.currentLocation.startsWith('/quran/surah/') ||
+      widget.currentLocation.startsWith('/learn/quran/surah/');
+
+  @override
+  void initState() {
+    super.initState();
+    _playbackSubscription = ref.listenManual<QuranReaderPlaybackState>(
+      quranGlobalPlaybackStateProvider,
+      (_, next) => unawaited(_syncLiveActivity(next)),
+      fireImmediately: false,
+    );
+    unawaited(_bootstrap());
+  }
+
+  @override
+  void didUpdateWidget(covariant _QuranPhoneLiveActivityBridge oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.currentLocation != widget.currentLocation) {
+      unawaited(_syncLiveActivity(ref.read(quranGlobalPlaybackStateProvider)));
+    }
+  }
+
+  @override
+  void dispose() {
+    _playbackSubscription?.close();
+    super.dispose();
+  }
+
+  Future<void> _bootstrap() async {
+    final supported = await _liveActivityService.isSupported();
+    if (!mounted) {
+      return;
+    }
+    _isSupported = supported;
+    if (supported) {
+      await _syncLiveActivity(ref.read(quranGlobalPlaybackStateProvider));
+    }
+  }
+
+  Future<void> _syncLiveActivity(QuranReaderPlaybackState playbackState) async {
+    if (!_isSupported || _isReaderRoute) {
+      return;
+    }
+    final quranAudioEnabled = ref.read(quranAudioFunctionEnabledProvider);
+    final surahNumber = playbackState.activeSurahNumber;
+    final ayahNumber =
+        playbackState.activeAyahNumber ?? playbackState.storedSession?.ayahNumber;
+    if (!quranAudioEnabled ||
+        !playbackState.hasPlayback ||
+        surahNumber == null ||
+        ayahNumber == null) {
+      await _endLiveActivityIfNeeded();
+      return;
+    }
+
+    final elapsedSeconds = playbackState.position.inSeconds.clamp(0, 86400);
+    final totalSeconds =
+        (playbackState.duration?.inSeconds ?? 0).clamp(0, 86400);
+    final payloadSignature =
+        '$surahNumber:$ayahNumber:${playbackState.reciterName}:${playbackState.isPlaying}:$elapsedSeconds:$totalSeconds';
+    if (_lastPayloadSignature == payloadSignature) {
+      return;
+    }
+
+    final surah =
+        ref.read(quranSurahMapProvider)[surahNumber];
+    await _liveActivityService.updatePlaybackCard(
+      surahNumber: surahNumber,
+      surahName: surah?.transliteratedName ?? 'Surah $surahNumber',
+      surahArabicName: surah?.arabicName ?? '',
+      ayahNumber: ayahNumber,
+      reciterName: playbackState.reciterName,
+      isPlaying: playbackState.isPlaying,
+      elapsedSeconds: elapsedSeconds,
+      totalSeconds: totalSeconds,
+    );
+    _hasActiveLiveActivity = true;
+    _lastPayloadSignature = payloadSignature;
+  }
+
+  Future<void> _endLiveActivityIfNeeded() async {
+    if (!_hasActiveLiveActivity) {
+      _lastPayloadSignature = null;
+      return;
+    }
+    await _liveActivityService.endPlaybackCard();
+    _hasActiveLiveActivity = false;
+    _lastPayloadSignature = null;
+  }
+
+  @override
+  Widget build(BuildContext context) => const SizedBox.shrink();
+}
+
+class QuranPlayerLauncherPill extends StatelessWidget {
+  const QuranPlayerLauncherPill({
+    super.key,
+    required this.label,
+    required this.subtitle,
+    required this.isPlaying,
+    required this.showRetryAction,
+    required this.onOpenPlayer,
+    required this.openTooltip,
+  });
+
+  final String label;
+  final String subtitle;
+  final bool isPlaying;
+  final bool showRetryAction;
+  final VoidCallback onOpenPlayer;
+  final String openTooltip;
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: const Color(0xFFF1E5D3),
+      elevation: 8,
+      borderRadius: BorderRadius.circular(999),
+      shadowColor: const Color(0xFF1D1A17).withValues(alpha: 0.16),
+      child: InkWell(
+        key: const ValueKey('quran-shell-player-pill'),
+        borderRadius: BorderRadius.circular(999),
+        onTap: onOpenPlayer,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                width: 34,
+                height: 34,
+                decoration: BoxDecoration(
+                  color: const Color(0xFFE8D1A8),
+                  borderRadius: BorderRadius.circular(999),
+                ),
+                alignment: Alignment.center,
+                child: Icon(
+                  showRetryAction
+                      ? Icons.refresh_rounded
+                      : isPlaying
+                          ? Icons.graphic_eq_rounded
+                          : Icons.play_arrow_rounded,
+                  size: 20,
+                  color: const Color(0xFF5B4837),
+                ),
+              ),
+              const SizedBox(width: 8),
+              Flexible(
+                child: Column(
+                  key: const ValueKey('quran-shell-player-pill-content'),
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      label,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                        fontWeight: FontWeight.w800,
+                        color: const Color(0xFF3A3026),
+                      ),
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      subtitle,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: const Color(0xFF6A5A4A),
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(width: 8),
+              Tooltip(
+                message: openTooltip,
+                child: const Icon(
+                  Icons.expand_less_rounded,
+                  color: Color(0xFF5B4837),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }

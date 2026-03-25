@@ -4,6 +4,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:quran/quran.dart' as q;
 
 import '../domain/quran_content_refs.dart';
+import '../domain/quran_audio_resilience_models.dart';
 import '../domain/quran_audio_source_metadata.dart';
 
 class QuranReciter {
@@ -24,6 +25,7 @@ class QuranAudioRepository {
   QuranAudioRepository({HttpClient? client}) : _client = client ?? HttpClient();
 
   final HttpClient _client;
+  static const String defaultReciterId = 'alafasy';
 
   static const List<QuranReciter> reciters = [
     QuranReciter(
@@ -104,7 +106,16 @@ class QuranAudioRepository {
       surahNumber: surahNumber,
       ayahNumber: ayahNumber,
     );
-    return file.existsSync() ? file.path : null;
+    if (!file.existsSync()) return null;
+    try {
+      if (file.lengthSync() <= 0) {
+        await file.delete();
+        return null;
+      }
+    } catch (_) {
+      return null;
+    }
+    return file.path;
   }
 
   Future<String> resolveAyahSource({
@@ -129,18 +140,40 @@ class QuranAudioRepository {
     required String reciterId,
     required int surahNumber,
     required int ayahNumber,
+    QuranPlaybackSourceType? preferredSourceType,
   }) async {
     final collection = collectionMetadata(reciterId);
-    final source = await resolveAyahSource(
+    final localSource = await localAyahPath(
       reciterId: reciterId,
       surahNumber: surahNumber,
       ayahNumber: ayahNumber,
     );
+    final remoteSource = verseUri(
+      reciterId: reciterId,
+      surahNumber: surahNumber,
+      ayahNumber: ayahNumber,
+    ).toString();
+    final primarySourceType = _resolvePrimarySourceType(
+      preferredSourceType: preferredSourceType,
+      hasLocalSource: localSource != null,
+    );
+    final primarySource = primarySourceType == QuranPlaybackSourceType.localDownload
+        ? localSource!
+        : remoteSource;
+    final fallbackSourceType =
+        primarySourceType == QuranPlaybackSourceType.localDownload
+        ? QuranPlaybackSourceType.remoteStream
+        : (localSource == null ? null : QuranPlaybackSourceType.localDownload);
+    final fallbackSource =
+        fallbackSourceType == QuranPlaybackSourceType.remoteStream
+        ? remoteSource
+        : localSource;
     return QuranAudioSourceMetadata(
       surahNumber: surahNumber,
       ayahNumber: ayahNumber,
       reciterId: reciterId,
-      source: source,
+      source: primarySource,
+      sourceType: primarySourceType,
       sourceContainsBismillahAtStart: surahNumber == 1 && ayahNumber == 1,
       sourceId: collection.sourceId,
       isAyahGranular: collection.isAyahGranular,
@@ -153,42 +186,34 @@ class QuranAudioRepository {
       notes: collection.notes,
       confidence: collection.confidence,
       manualReviewNeeded: collection.manualReviewNeeded,
+      fallbackSource: fallbackSource == primarySource ? null : fallbackSource,
+      fallbackSourceType: fallbackSource == primarySource
+          ? null
+          : fallbackSourceType,
     );
   }
 
   Future<QuranAudioSourceMetadata> resolveCanonicalBismillahMetadata({
     required String reciterId,
+    QuranPlaybackSourceType? preferredSourceType,
   }) async {
-    final collection = collectionMetadata(reciterId);
-    final source = await resolveAyahSource(
+    final metadata = await resolveAyahSourceMetadata(
       reciterId: reciterId,
       surahNumber: 1,
       ayahNumber: 1,
+      preferredSourceType: preferredSourceType,
     );
-    return QuranAudioSourceMetadata(
-      surahNumber: 1,
-      ayahNumber: 1,
-      reciterId: reciterId,
-      source: source,
+    return metadata.copyWith(
       sourceContainsBismillahAtStart: true,
-      sourceId: collection.sourceId,
-      isAyahGranular: collection.isAyahGranular,
-      includesBismillahInFatiha: collection.includesBismillahInFatiha,
-      includesBismillahAtSurahStarts: collection.includesBismillahAtSurahStarts,
-      hasStandaloneBismillahClip: collection.hasStandaloneBismillahClip,
       standaloneBismillahRef: QuranAudioRef(
         surah: 1,
         ayah: 1,
         reciterId: reciterId,
       ),
-      surah9HasNoBismillahIntroInSource:
-          collection.surah9HasNoBismillahIntroInSource,
       notes:
           'Current canonical pre-roll reuses Fatihah 1:1 as the Bismillah '
           'source because no dedicated standalone Bismillah clip is modelled '
           'in the repo yet.',
-      confidence: QuranAudioMetadataConfidence.confirmedFromCode,
-      manualReviewNeeded: true,
       isStandaloneBismillah: true,
     );
   }
@@ -283,5 +308,22 @@ class QuranAudioRepository {
     final name =
         '${surahNumber.toString().padLeft(3, '0')}${ayahNumber.toString().padLeft(3, '0')}.mp3';
     return File('${folder.path}/$name');
+  }
+
+  QuranPlaybackSourceType _resolvePrimarySourceType({
+    required QuranPlaybackSourceType? preferredSourceType,
+    required bool hasLocalSource,
+  }) {
+    if (preferredSourceType == QuranPlaybackSourceType.localDownload &&
+        hasLocalSource) {
+      return QuranPlaybackSourceType.localDownload;
+    }
+    if (preferredSourceType == QuranPlaybackSourceType.remoteStream) {
+      return QuranPlaybackSourceType.remoteStream;
+    }
+    if (hasLocalSource) {
+      return QuranPlaybackSourceType.localDownload;
+    }
+    return QuranPlaybackSourceType.remoteStream;
   }
 }

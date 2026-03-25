@@ -241,10 +241,19 @@ void main() {
     );
 
     final sync = container.read(accountsSyncControllerProvider).syncStatus;
-    expect(sync.transportLabel, 'iCloud');
+    expect(sync.transportLabel, syncTransportKeyICloud);
     expect(sync.transportAvailable, isFalse);
-    expect(sync.lastResultSummary, 'iCloud is unavailable or not signed in');
-    expect(sync.lastErrorSummary, 'iCloud is unavailable or not signed in');
+    expect(sync.lastResultSummary, 'sync_error_icloud_unavailable');
+    expect(sync.lastErrorSummary, 'sync_error_icloud_unavailable');
+  });
+
+  test('default sync snapshot uses locale-neutral transport and result codes', () async {
+    final container = await makeTestContainer();
+    addTearDown(container.dispose);
+
+    final sync = container.read(accountsSyncControllerProvider).syncStatus;
+    expect(sync.transportLabel, syncTransportKeyLocalStorage);
+    expect(sync.lastResultSummary, 'sync_result_local_only_mode_active');
   });
 
   test('structured backup restores prayer, dhikr, and ocean state without cross-profile leakage', () async {

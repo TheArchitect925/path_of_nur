@@ -1,6 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:path_of_nur/features/learn/quran/application/quran_playback_policy.dart';
 import 'package:path_of_nur/features/learn/quran/domain/bismillah_playback_mode.dart';
+import 'package:path_of_nur/features/learn/quran/domain/quran_audio_resilience_models.dart';
 import 'package:path_of_nur/features/learn/quran/domain/quran_audio_source_metadata.dart';
 import 'package:path_of_nur/features/learn/quran/domain/quran_content_refs.dart';
 import 'package:path_of_nur/features/learn/quran/domain/quran_playback_request.dart';
@@ -14,6 +15,7 @@ QuranAudioSourceMetadata _metadata({
     ayahNumber: 1,
     reciterId: 'husary',
     source: 'https://example.test/002001.mp3',
+    sourceType: QuranPlaybackSourceType.remoteStream,
     sourceContainsBismillahAtStart: sourceContainsBismillahAtStart,
     sourceId: const QuranAudioSourceId('example.husary'),
     isAyahGranular: true,
@@ -45,6 +47,7 @@ void main() {
         originatingSurahNumber: 1,
       ),
       _metadata(sourceContainsBismillahAtStart: false),
+      mode: BismillahPlaybackMode.alwaysPrepend,
     );
 
     expect(shouldPlay, isTrue);
@@ -99,6 +102,7 @@ void main() {
         ayahNumber: 1,
         reciterId: 'husary',
         source: 'https://example.test/009001.mp3',
+        sourceType: QuranPlaybackSourceType.remoteStream,
         sourceContainsBismillahAtStart: false,
         sourceId: QuranAudioSourceId('example.husary'),
         isAyahGranular: true,

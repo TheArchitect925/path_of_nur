@@ -14,6 +14,18 @@ class QuranPreparedPlaybackEntry {
   final String source;
   final QuranAudioSourceMetadata metadata;
   final int ayahNumber;
+
+  QuranPreparedPlaybackEntry copyWith({
+    String? source,
+    QuranAudioSourceMetadata? metadata,
+    int? ayahNumber,
+  }) {
+    return QuranPreparedPlaybackEntry(
+      source: source ?? this.source,
+      metadata: metadata ?? this.metadata,
+      ayahNumber: ayahNumber ?? this.ayahNumber,
+    );
+  }
 }
 
 class QuranPreparedPlayback {
@@ -34,10 +46,36 @@ class QuranPreparedPlayback {
   final bool didPrependBismillah;
   final String? preRollSource;
   final QuranAudioSourceMetadata? preRollMetadata;
+
+  QuranPreparedPlayback copyWith({
+    QuranPlaybackRequest? request,
+    List<QuranPreparedPlaybackEntry>? entries,
+    int? initialLogicalIndex,
+    Duration? initialPosition,
+    bool? didPrependBismillah,
+    String? preRollSource,
+    bool clearPreRollSource = false,
+    QuranAudioSourceMetadata? preRollMetadata,
+    bool clearPreRollMetadata = false,
+  }) {
+    return QuranPreparedPlayback(
+      request: request ?? this.request,
+      entries: entries ?? this.entries,
+      initialLogicalIndex: initialLogicalIndex ?? this.initialLogicalIndex,
+      initialPosition: initialPosition ?? this.initialPosition,
+      didPrependBismillah: didPrependBismillah ?? this.didPrependBismillah,
+      preRollSource: clearPreRollSource
+          ? null
+          : (preRollSource ?? this.preRollSource),
+      preRollMetadata: clearPreRollMetadata
+          ? null
+          : (preRollMetadata ?? this.preRollMetadata),
+    );
+  }
 }
 
 class QuranPlaybackOrchestrator {
-  const QuranPlaybackOrchestrator({
+  QuranPlaybackOrchestrator({
     required QuranAudioRepository audioRepository,
     required QuranPlaybackPolicy policy,
   }) : _audioRepository = audioRepository,
@@ -45,6 +83,10 @@ class QuranPlaybackOrchestrator {
 
   final QuranAudioRepository _audioRepository;
   final QuranPlaybackPolicy _policy;
+  final Map<String, QuranPreparedPlayback> _preparedPlaybackCache =
+      <String, QuranPreparedPlayback>{};
+  final Map<String, Future<QuranPreparedPlayback>> _inflightPreparationCache =
+      <String, Future<QuranPreparedPlayback>>{};
 
   // Product rule: all Qur'an playback entry points should resolve here first so
   // Bismillah pre-roll remains centralized instead of being reimplemented in UI.
@@ -67,6 +109,70 @@ class QuranPlaybackOrchestrator {
     required String reciterId,
     required List<int> ayahNumbers,
     BismillahPlaybackMode mode = defaultBismillahPlaybackMode,
+  }) async {
+    final cacheKey = _cacheKey(
+      request: request,
+      reciterId: reciterId,
+      ayahNumbers: ayahNumbers,
+      mode: mode,
+    );
+    final cached = _preparedPlaybackCache[cacheKey];
+    if (cached != null) {
+      return _rebindPreparedPlayback(
+        cached,
+        request: request,
+        ayahNumbers: ayahNumbers,
+      );
+    }
+    final inflight = _inflightPreparationCache[cacheKey];
+    if (inflight != null) {
+      final prepared = await inflight;
+      return _rebindPreparedPlayback(
+        prepared,
+        request: request,
+        ayahNumbers: ayahNumbers,
+      );
+    }
+
+    final future = _preparePlaybackUncached(
+      request: request,
+      reciterId: reciterId,
+      ayahNumbers: ayahNumbers,
+      mode: mode,
+    );
+    _inflightPreparationCache[cacheKey] = future;
+    try {
+      final prepared = await future;
+      _preparedPlaybackCache[cacheKey] = prepared;
+      return _rebindPreparedPlayback(
+        prepared,
+        request: request,
+        ayahNumbers: ayahNumbers,
+      );
+    } finally {
+      _inflightPreparationCache.remove(cacheKey);
+    }
+  }
+
+  Future<void> preloadPlayback({
+    required QuranPlaybackRequest request,
+    required String reciterId,
+    required List<int> ayahNumbers,
+    BismillahPlaybackMode mode = defaultBismillahPlaybackMode,
+  }) async {
+    await preparePlayback(
+      request: request,
+      reciterId: reciterId,
+      ayahNumbers: ayahNumbers,
+      mode: mode,
+    );
+  }
+
+  Future<QuranPreparedPlayback> _preparePlaybackUncached({
+    required QuranPlaybackRequest request,
+    required String reciterId,
+    required List<int> ayahNumbers,
+    required BismillahPlaybackMode mode,
   }) async {
     assert(ayahNumbers.isNotEmpty);
 
@@ -102,6 +208,41 @@ class QuranPlaybackOrchestrator {
       preRollSource: preRollMetadata?.source,
       preRollMetadata: preRollMetadata,
     );
+  }
+
+  QuranPreparedPlayback _rebindPreparedPlayback(
+    QuranPreparedPlayback prepared, {
+    required QuranPlaybackRequest request,
+    required List<int> ayahNumbers,
+  }) {
+    return prepared.copyWith(
+      request: request,
+      initialLogicalIndex: resolveTargetClipOrPosition(
+        request: request,
+        ayahNumbers: ayahNumbers,
+      ),
+      initialPosition: request.resumePosition ?? Duration.zero,
+    );
+  }
+
+  String _cacheKey({
+    required QuranPlaybackRequest request,
+    required String reciterId,
+    required List<int> ayahNumbers,
+    required BismillahPlaybackMode mode,
+  }) {
+    final ayahSequence = ayahNumbers.join(',');
+    return [
+      reciterId,
+      request.surahNumber,
+      request.ayahNumber ?? -1,
+      request.playbackReason.name,
+      request.isSurahEntry,
+      request.isSurahTransition,
+      request.originatingSurahNumber ?? -1,
+      mode.name,
+      ayahSequence,
+    ].join('|');
   }
 
   Future<List<QuranPreparedPlaybackEntry>> buildPlaybackQueue({

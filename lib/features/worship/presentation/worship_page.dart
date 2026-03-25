@@ -7,6 +7,7 @@ import '../../../shared/application/special_mode_provider.dart';
 import '../../../shared/content/page_description_copy.dart';
 import '../../learn/quran/domain/quran_content_refs.dart';
 import '../../../shared/theme/islamic_icons.dart';
+import '../../../shared/widgets/major_page_shortcuts.dart';
 import '../../../shared/widgets/quran_navigation.dart';
 import '../../../shared/widgets/quran_quote_block.dart';
 import '../../../shared/widgets/section_hub_scaffold.dart';
@@ -35,20 +36,11 @@ class WorshipPage extends ConsumerWidget {
           openQuranQuoteLocation(context, selectedQuote),
       shortcutOpenLabel: l10n.learnShortcutOpen,
       shortcutCloseLabel: l10n.learnShortcutClose,
-      shortcutActions: [
-        SectionShortcutAction(
-          label: l10n.worshipPrayerHubTitle,
-          supportingText: l10n.worshipSectionLandingPrayerShortcut,
-          icon: IslamicIcons.prayer,
-          onTap: () => context.pushNamed('worshipPrayerPage'),
-        ),
-        SectionShortcutAction(
-          label: l10n.dhikrSectionTitle,
-          supportingText: l10n.worshipSectionLandingDhikrShortcut,
-          icon: IslamicIcons.tasbih,
-          onTap: () => context.pushNamed('worshipDhikrPage'),
-        ),
-      ],
+      shortcutActions: buildMajorPageShortcutActions(
+        context,
+        ref,
+        MajorPageShortcutFamily.worship,
+      ),
       children: [
         SectionHubActionGrid(
           actions: [

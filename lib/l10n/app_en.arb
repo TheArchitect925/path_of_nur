@@ -196,6 +196,7 @@
   "historyOnThisDaySubtitle": "A gentle historical reflection for today’s Gregorian and Hijri dates.",
   "historyOnThisDayTitle": "On This Day",
   "historyOpenArchiveAction": "Open archive",
+  "historyNextUpcomingEventLabel": "Next event",
   "historyOverviewTitle": "Overview",
   "contextualLinksRelatedTitle": "Related",
   "contextualLinksTypeEvent": "Event",
@@ -1535,6 +1536,11 @@
   "learnHubTitle": "Learning Hub",
   "learnShortcutOpen": "Shortcuts",
   "learnShortcutClose": "Close shortcuts",
+  "majorPageShortcutContinueJourneyLabel": "Continue Journey",
+  "majorPageShortcutQuickLessonLabel": "Quick Lesson",
+  "majorPageShortcutContinueReadingLabel": "Continue Reading",
+  "majorPageShortcutContinueListeningLabel": "Continue Listening",
+  "majorPageShortcutSurahListLabel": "Surah List",
   "learnSectionLandingSubtitle": "Follow a clearer path through foundations, belief, Prophets, Quran learning, ibadah, and character.",
   "learningSectionLandingShortcutJourneys": "Open journeys",
   "learningSectionLandingFoundationsTitle": "Foundations",
@@ -6757,6 +6763,31 @@
   "settingsComingSoonSubtitle": "Preview the next improvements planned for the app.",
   "shellQuranPlaybackPauseTooltip": "Pause Qur''an playback",
   "shellQuranPlaybackResumeTooltip": "Resume Qur''an playback",
+  "shellQuranMiniPlayerTitle": "Qur''an playback",
+  "shellQuranMiniPlayerPlaying": "Playing now",
+  "shellQuranMiniPlayerPaused": "Paused",
+  "shellQuranMiniPlayerOpenReaderAction": "Open reader",
+  "quranPlaybackStopAction": "Stop playback",
+  "quranPlaybackOpenPlayerAction": "Open player",
+  "quranFocusRecitationModeAction": "Focus mode",
+  "quranFocusRecitationTitle": "Focus Recitation",
+  "quranFocusRecitationDisplaySettingsTitle": "Focus display",
+  "quranFocusRecitationEmptyBody": "Start Qur’an audio playback to enter this calm ayah-by-ayah recitation mode.",
+  "quranPlaybackRetryAction": "Retry playback",
+  "quranPlaybackStatusResolving": "Preparing audio...",
+  "quranPlaybackStatusBuffering": "Buffering audio...",
+  "quranPlaybackFallbackUsingDownloaded": "Switched to downloaded audio",
+  "quranPlaybackFallbackUsingStream": "Switched to streaming audio",
+  "quranPlaybackFailureNetworkUnavailable": "Playback could not continue because the network is unavailable.",
+  "quranPlaybackFailureSourceMissing": "This recitation source is unavailable right now.",
+  "quranPlaybackFailureSourceCorrupt": "The downloaded audio file could not be played.",
+  "quranPlaybackFailureReciterUnavailable": "Unable to switch to this reciter right now.",
+  "quranPlaybackFailureBufferingTimeout": "Playback took too long to load. Please try again.",
+  "quranPlaybackFailureSessionRestore": "Unable to resume the saved recitation right now.",
+  "quranPlaybackFailureUnknown": "Playback could not continue right now.",
+  "quranPlaybackSourceDownloaded": "Downloaded audio",
+  "quranPlaybackSourceStreaming": "Streaming audio",
+  "quranPlaybackSourceUnavailable": "Audio unavailable",
   "profileWhatsNewChangelogTitle": "Changelog",
   "profileWhatsNewChangelogSubtitle": "The newest update opens first. Older updates stay collapsed until you expand them.",
   "profileWhatsNewDateMarch2026": "March 2026",
@@ -14196,6 +14227,52 @@
   "quranReaderRestartAyahAction": "Restart ayah",
   "quranReaderNextAyahAction": "Next ayah",
   "quranReaderFollowModeLabel": "Follow mode",
+  "quranReaderFollowSuspendedLabel": "Follow is paused while you browse.",
+  "quranReaderReturnToCurrentAyahAction": "Return to current ayah",
+  "quranReaderPreviousSurahAction": "Previous surah",
+  "quranReaderNextSurahAction": "Next surah",
+  "quranReaderAdjacentSurahUnavailable": "Unable to open that surah right now.",
+  "quranReaderRepeatRangeSummary": "Repeat ayahs {startAyah}–{endAyah}",
+  "@quranReaderRepeatRangeSummary": {
+    "placeholders": {
+      "startAyah": {
+        "type": "int"
+      },
+      "endAyah": {
+        "type": "int"
+      }
+    }
+  },
+  "quranReaderRepeatLoopSummary": "Loop {count}x",
+  "@quranReaderRepeatLoopSummary": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "quranReaderRepeatRangeLoopSummary": "Repeat ayahs {startAyah}–{endAyah} • {count}x",
+  "@quranReaderRepeatRangeLoopSummary": {
+    "placeholders": {
+      "startAyah": {
+        "type": "int"
+      },
+      "endAyah": {
+        "type": "int"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "quranReaderNextSurahButtonLabel": "Next Surah ({surahNumber})",
+  "@quranReaderNextSurahButtonLabel": {
+    "placeholders": {
+      "surahNumber": {
+        "type": "int"
+      }
+    }
+  },
   "growthBrowseAllDailyFocusTitle": "Daily Focus",
   "growthBrowseAllGrowthToolsTitle": "Growth Tools",
   "growthBrowseAllDashboardsTitle": "Dashboards",
@@ -15692,5 +15769,429 @@
       "surahNumber": {}
     }
   },
-  "quranReciterSwitchFailed": "Unable to switch reciters right now. Please try again."
+  "quranReciterSwitchFailed": "Unable to switch reciters right now. Please try again.",
+  "quranReaderDownloadInProgressLabel": "Downloading {downloadedAyahs}/{totalAyahs}",
+  "@quranReaderDownloadInProgressLabel": {
+    "placeholders": {
+      "downloadedAyahs": {
+        "type": "int"
+      },
+      "totalAyahs": {
+        "type": "int"
+      }
+    }
+  },
+  "quranReaderDownloadSurahAction": "Download Surah",
+  "quranReaderRemoveDownloadAction": "Remove Download",
+  "quranReaderAudioDownloadNote": "Audio is streamed from trusted reciters. Download only surahs you need to keep app size low.",
+  "quranReaderPlaybackSpeedTitle": "Audio Speed",
+  "quranReaderPlaybackSpeedLockedHint": "Locked to 1.00x while Live word sync highlight is enabled.",
+  "quranReaderMemorizationSettingsTitle": "Memorization Settings",
+  "quranReaderContinueRecitationTitle": "Continue Recitation",
+  "quranReaderResumeAudioRecitationTitle": "Resume Audio Recitation",
+  "quranReaderContinueRecitationSubtitle": "Resume from ayah {ayahNumber} at {position}",
+  "@quranReaderContinueRecitationSubtitle": {
+    "placeholders": {
+      "ayahNumber": {
+        "type": "int"
+      },
+      "position": {}
+    }
+  },
+  "quranReaderResumeAction": "Resume",
+  "quranReaderRestartSurahAction": "Restart Surah",
+  "quranReaderTransliterationLoadError": "Unable to load full transliteration right now. Check connection and try again.",
+  "quranReaderReciterSampleError": "Unable to play sample right now: {error}",
+  "@quranReaderReciterSampleError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "quranReaderDownloadSuccess": "Surah audio downloaded successfully.",
+  "quranReaderDownloadFailed": "Download failed: {error}",
+  "@quranReaderDownloadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "quranReaderDownloadRemoved": "Downloaded surah audio removed.",
+  "quranReaderWordTranslationPrefix": "Translation: {gloss}",
+  "@quranReaderWordTranslationPrefix": {
+    "placeholders": {
+      "gloss": {}
+    }
+  },
+  "quranReaderTransliterationUnavailable": "Transliteration not available for this ayah yet.",
+  "quranReaderSettingsToggleTitle": "Settings",
+  "quranReaderSettingsExpandCollapse": "Expand/Collapse",
+  "quranReaderReadingDisplaySectionTitle": "Reading & Display",
+  "quranReaderReadingDisplaySectionSubtitle": "Adjust what stays visible and how the ayah text feels while you read.",
+  "quranReaderStudyToolsSectionTitle": "Study Tools",
+  "quranReaderStudyToolsSectionSubtitle": "Optional learning aids and beta helpers for deeper study.",
+  "quranReaderAudioPlaybackSectionTitle": "Audio & Playback",
+  "quranReaderAudioPlaybackSectionSubtitle": "Choose the reciter and playback behavior without crowding the reading controls.",
+  "quranReaderDownloadsOfflineSectionTitle": "Downloads & Offline",
+  "quranReaderDownloadsOfflineSectionSubtitle": "Keep only the surahs you need on this device.",
+  "quranReaderMemorizationReviewSectionTitle": "Memorization & Review",
+  "quranReaderMemorizationReviewSectionSubtitle": "Keep hifz-focused controls separate from everyday reading.",
+  "quranReaderRepeatPracticeTitle": "Repeat & practice",
+  "quranReaderTextSettingsTitle": "Text Settings",
+  "quranReaderTranslationSourceLabel": "Translation source",
+  "quranReaderTextOptionsTitle": "Text Options",
+  "quranReaderLiveWordSyncTitle": "Live word sync highlight (Beta)",
+  "quranReaderLiveWordSyncSubtitle": "Beta testing: timing and highlighting may be imperfect on some verses.",
+  "quranReaderRedDiacriticsTitle": "Red diacritics (harakat)",
+  "quranReaderRedDiacriticsSubtitle": "Color pesh, zabar, kasrah and other harakat in red.",
+  "quranReaderAudioSettingsTitle": "Audio Settings",
+  "quranReaderBackgroundPlaybackTitle": "Background playback + lock-screen controls",
+  "quranReaderBackgroundPlaybackSubtitle": "Enables media controls on lock screen / notification and Dynamic Island (iOS).",
+  "quranReaderReciterLabel": "Reciter",
+  "quranReaderReciterSampleAction": "Sample",
+  "celestialHomeCardTitle": "Signs in the sky",
+  "celestialSunriseLabel": "Sunrise",
+  "celestialSunsetLabel": "Sunset",
+  "celestialMoonriseLabel": "Moonrise",
+  "celestialMoonsetLabel": "Moonset",
+  "celestialMoonPhaseLabel": "Moon phase",
+  "celestialNextEventLabel": "Next event",
+  "celestialUnavailableLabel": "Unavailable",
+  "celestialApproximateLabel": "Approx.",
+  "celestialIlluminationPercentLabel": "{percent}% illumination",
+  "@celestialIlluminationPercentLabel": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "celestialNextEventValue": "{label} {time}",
+  "@celestialNextEventValue": {
+    "placeholders": {
+      "label": {},
+      "time": {}
+    }
+  },
+  "celestialSkyStateDawn": "Dawn",
+  "celestialSkyStateDay": "Day",
+  "celestialSkyStateDusk": "Dusk",
+  "celestialSkyStateNight": "Night",
+  "celestialSunriseTimeLabel": "Sunrise {time}",
+  "@celestialSunriseTimeLabel": {
+    "placeholders": {
+      "time": {}
+    }
+  },
+  "celestialSunsetTimeLabel": "Sunset {time}",
+  "@celestialSunsetTimeLabel": {
+    "placeholders": {
+      "time": {}
+    }
+  },
+  "celestialUnavailableTitle": "Celestial data is unavailable right now",
+  "celestialUnavailableSubtitle": "Choose a city or refresh location to calculate the sky cycle for your area.",
+  "celestialChooseLocationAction": "Choose location",
+  "celestialExplorerPageTitle": "Qur’anic Sky Explorer",
+  "celestialTabNow": "Now",
+  "celestialTabExplore": "Explore",
+  "celestialTabJournal": "Journal",
+  "celestialSunLabel": "Sun",
+  "celestialMoonLabel": "Moon",
+  "celestialBelowHorizonLabel": "Below horizon",
+  "celestialVisibleLabel": "Visible",
+  "celestialSunriseSunsetDetail": "Sunrise {sunrise} • Sunset {sunset}",
+  "@celestialSunriseSunsetDetail": {
+    "placeholders": {
+      "sunrise": {},
+      "sunset": {}
+    }
+  },
+  "celestialMoonDetail": "{percent}% illumination • {riseSetLabel}",
+  "@celestialMoonDetail": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      },
+      "riseSetLabel": {}
+    }
+  },
+  "celestialRiseSetApproximate": "Rise/set approximate",
+  "celestialRiseSetCalculated": "Rise/set calculated",
+  "celestialUpcomingLabel": "Upcoming",
+  "celestialUpcomingHeadline": "{label} at {time}",
+  "@celestialUpcomingHeadline": {
+    "placeholders": {
+      "label": {},
+      "time": {}
+    }
+  },
+  "celestialReflectAction": "Reflect",
+  "celestialReflectionSaved": "Sky reflection saved.",
+  "celestialSaveReflectionAction": "Save reflection",
+  "celestialJournalMomentTitle": "Journal this moment",
+  "celestialJournalPromptHint": "What did the sky make you notice today?",
+  "celestialCompassUnavailable": "Compass unavailable",
+  "celestialCompassHeading": "{heading} heading",
+  "@celestialCompassHeading": {
+    "placeholders": {
+      "heading": {}
+    }
+  },
+  "celestialPositionEstimateNotice": "Positions are calculated estimates. Sensor readings may be noisy indoors.",
+  "celestialJournalEmptyState": "Saved sky reflections will appear here once you begin journaling.",
+  "celestialApproximatePositionLabel": "Approximate azimuth {azimuth}° • altitude {altitude}°",
+  "@celestialApproximatePositionLabel": {
+    "placeholders": {
+      "azimuth": {
+        "type": "int"
+      },
+      "altitude": {
+        "type": "int"
+      }
+    }
+  },
+  "celestialCompassNorthLabel": "N",
+  "celestialMoveSlowlyForHeading": "Move slowly for heading",
+  "celestialExplorerUnavailable": "The explorer could not build a sky snapshot right now. Check location settings and try again.",
+  "creationChallengesPageTitle": "Creation Challenges",
+  "creationChallengesDailyStreakLabel": "Daily streak",
+  "creationChallengesNewStreakBeginsToday": "A new streak begins today.",
+  "creationChallengesStreakDays": "{count} days",
+  "@creationChallengesStreakDays": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "creationChallengesCompletedLabel": "Completed",
+  "creationChallengesRecentLabel": "Recent",
+  "creationChallengesRecentThisWeek": "{count} this week",
+  "@creationChallengesRecentThisWeek": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "creationChallengesSkippedLabel": "Skipped",
+  "creationChallengesStatusCompleted": "Completed",
+  "creationChallengesStatusExpired": "Expired",
+  "creationChallengesStatusOpen": "Open",
+  "creationChallengesMarkCompleteAction": "Mark complete",
+  "creationChallengesSkipAction": "Skip",
+  "creationChallengesSlotToday": "Today’s Challenge",
+  "creationChallengesSlotBonus": "Bonus Challenge",
+  "creationChallengesSlotWeekly": "Weekly Reflection",
+  "creationChallengesOpenSkyExplorerAction": "Open Sky Explorer",
+  "creationChallengesOpenCreationExplorerAction": "Open Creation Explorer",
+  "creationChallengesOpenJournalAction": "Open Journal",
+  "creationChallengesOpenAction": "Open",
+  "creationChallengesReflectNowAction": "Reflect now",
+  "creationChallengesRewardDrops": "+{count} drop",
+  "@creationChallengesRewardDrops": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "khusuSectionTitle": "Khusū Mode",
+  "khusuSectionSubtitle": "A calm space to reduce noise and return to presence.",
+  "khusuSectionIntroBody": "Set intention, slow your breathing, and let worship be your anchor.",
+  "khusuSalahFocusTitle": "Salah Focus",
+  "khusuSalahFocusSubtitle": "A minimal countdown and reminder card for one prayer window.",
+  "khusuDhikrFocusTitle": "Dhikr Focus",
+  "khusuDhikrFocusSubtitle": "Close-opened dhikr flow with a clean breathing rhythm.",
+  "khusuReflectionPauseTitle": "Reflection Pause",
+  "khusuReflectionPauseSubtitle": "A short pause with one reflective line and silence.",
+  "khusuQuietResetTitle": "Quiet Reset",
+  "khusuQuietResetSubtitle": "Restart focus with gentle re-entry if attention drifted.",
+  "khusuSessionSettingsTitle": "Session Settings",
+  "khusuSessionSettingsSubtitle": "Environment controls for distraction-light use.",
+  "khusuReduceVisualDistractionsTitle": "Reduce visual distractions",
+  "khusuMinimalInterfaceTitle": "Minimal interface",
+  "khusuGentleRemindersTitle": "Gentle reminders",
+  "khusuAmbientModeTitle": "Ambient mode",
+  "khusuClosingQuote": "“Pause without forcing. Breath settles, intention settles, and remembrance becomes softer.”",
+  "khusuEnterAction": "Enter Khusū",
+  "khusuPageTitle": "Khusū",
+  "khusuFocusSubtitle": "A silent and sacred space for focused presence.",
+  "khusuFocusBody": "Breathe slowly. Choose intention over momentum. Keep one sentence, one invocation, one pause at a time.",
+  "quranFocusRecitationKeepScreenAwakeAction": "Keep screen awake",
+  "quranFocusRecitationRepeatCurrentAyahAction": "Repeat current ayah",
+  "quranFocusRecitationSleepTimerAction": "Sleep timer",
+  "quranFocusRecitationSleepTimerCancelAction": "Cancel timer",
+  "quranFocusRecitationSleepTimerMinutesLabel": "{minutes} min",
+  "@quranFocusRecitationSleepTimerMinutesLabel": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "quranFocusRecitationSleepTimerActiveLabel": "Sleep timer: {remaining}",
+  "@quranFocusRecitationSleepTimerActiveLabel": {
+    "placeholders": {
+      "remaining": {
+        "type": "String"
+      }
+    }
+  },
+  "onboardingSkipAction": "Skip",
+  "onboardingSettingsHintBody": "You can change this anytime in Settings.",
+  "onboardingBeginJourneyAction": "Begin your journey",
+  "onboardingContinueAction": "Continue",
+  "onboardingShahadaMeaningBody": "I bear witness that there is no god except Allah,\nand I bear witness that Muhammad ﷺ is the Messenger of Allah.",
+  "onboardingBismillahTransliteration": "Bismillahir-Rahmanir-Rahim",
+  "onboardingBismillahMeaningBody": "In the name of Allah, the Most Compassionate, the Most Merciful.",
+  "onboardingOpeningBlessingBody": "May this journey bring khayr, consistency, and closeness to Allah.",
+  "onboardingLanguageTitle": "Choose your language",
+  "onboardingLanguageSubtitle": "Select the language you would like to use in the app.",
+  "onboardingAgeRangeTitle": "Which age range are you in?",
+  "onboardingAgeRangeSubtitle": "Path of Nur adjusts some guidance, tone, and family-related recommendations based on your stage of life so the experience feels more relevant and supportive.",
+  "onboardingAgeRangeUnder18": "Under 18",
+  "onboardingAgeRange18To24": "18-24",
+  "onboardingAgeRange25To34": "25-34",
+  "onboardingAgeRange35To44": "35-44",
+  "onboardingAgeRange45To54": "45-54",
+  "onboardingAgeRange55Plus": "55+",
+  "onboardingExperienceTitle": "Which description fits your journey with Islam best?",
+  "onboardingExperienceSubtitle": "We use this to set a better starting tone, pacing, and learning depth for your experience. Your selection is saved and used to shape guidance across the app.",
+  "onboardingExperienceExploring": "Exploring Islam",
+  "onboardingExperienceNewToIslam": "New to Islam",
+  "onboardingExperienceBornStillLearning": "Born Muslim, still learning",
+  "onboardingExperiencePracticingRegularly": "Practicing regularly",
+  "onboardingExperienceAdvanced": "Experienced / advanced",
+  "onboardingSalahConsistencyTitle": "How consistent is your Salah currently?",
+  "onboardingSalahConsistencySubtitle": "Choose the option that best reflects where you are right now.",
+  "onboardingSalahConsistencyAll": "I pray all prayers consistently",
+  "onboardingSalahConsistencyMost": "I pray most prayers",
+  "onboardingSalahConsistencySometimes": "I pray sometimes",
+  "onboardingSalahConsistencyRarely": "I rarely pray",
+  "onboardingSalahConsistencyJustStarted": "I am just getting started",
+  "onboardingPrayerMethodTitle": "Salah time calculation method",
+  "onboardingPrayerMethodSubtitle": "Choose how salah times should be calculated for your location.",
+  "onboardingPrayerMethodMuslimWorldLeague": "Muslim World League",
+  "onboardingPrayerMethodIsna": "Islamic Society of North America (ISNA)",
+  "onboardingPrayerMethodUmmAlQura": "Umm Al-Qura University",
+  "onboardingPrayerMethodEgyptian": "Egyptian General Authority of Survey",
+  "onboardingPrayerMethodKarachi": "University of Islamic Sciences, Karachi",
+  "onboardingPrayerMethodMoonsighting": "Moonsighting Committee",
+  "onboardingMadhabTitle": "Which Madhab do you follow?",
+  "onboardingMadhabSubtitle": "This affects how Asr salah time is calculated. If you are unsure, you can keep the default.",
+  "onboardingMadhabHanafi": "Hanafi",
+  "onboardingMadhabShafii": "Shafi''i",
+  "onboardingMadhabMaliki": "Maliki",
+  "onboardingMadhabHanbali": "Hanbali",
+  "onboardingGrowthInterestsTitle": "What would you like to grow in?",
+  "onboardingGrowthInterestsSubtitle": "Select the areas you would like Path of Nur to help you with. You can choose multiple.",
+  "onboardingArabicReadModeTitle": "How would you like to read Arabic?",
+  "onboardingArabicReadModeSubtitle": "Choose the reading style that feels most comfortable for you.",
+  "onboardingArabicReadModeNoArabicYet": "I do not know any Arabic yet",
+  "onboardingArabicReadModeArabicOnly": "Arabic only",
+  "onboardingArabicReadModeArabicTransliteration": "Arabic + Transliteration",
+  "onboardingArabicReadModeArabicTranslation": "Arabic + Translation",
+  "onboardingArabicReadModeArabicTransliterationTranslation": "Arabic + Transliteration + Translation",
+  "onboardingHarakatTitle": "Harakat / pronunciation marks",
+  "onboardingHarakatFull": "Full harakat",
+  "onboardingHarakatMinimal": "Minimal harakat",
+  "onboardingHarakatNone": "None",
+  "onboardingTextSizeTitle": "Text size",
+  "onboardingRemindersTitle": "How would you like to be reminded?",
+  "onboardingRemindersSubtitle": "Choose your preferred reminders for salah and daily spiritual routines.",
+  "onboardingSalahReminderStylesTitle": "Salah reminder styles",
+  "onboardingReminderNotificationOnly": "Notification only",
+  "onboardingReminderAdhanNotification": "Adhan notification",
+  "onboardingReminderForceAdhan": "Force Adhan",
+  "onboardingDailyQuranReminderTitle": "Daily Qur''an reading reminder",
+  "onboardingDailyLessonReminderTitle": "Daily lesson reminder",
+  "onboardingTrackingTitle": "What would you like to track?",
+  "onboardingTrackingSubtitle": "Choose the areas you would like Path of Nur to help you track over time. You can choose multiple.",
+  "onboardingFamilyTitle": "Grow together with family",
+  "onboardingFamilySubtitle": "Path of Nur can support individual journeys while also helping families grow together.",
+  "onboardingFamilyProfilesTitle": "Family profiles",
+  "onboardingFamilyProfilesSubtitle": "Create profiles for family members from the Profiles page.",
+  "onboardingFamilyPrivateJourneysTitle": "Private journeys for each member",
+  "onboardingFamilyPrivateJourneysSubtitle": "Each profile can keep separate progress and reminders.",
+  "onboardingFamilyAgeAppropriateTitle": "Age-appropriate learning",
+  "onboardingFamilyAgeAppropriateSubtitle": "Content can adapt to stage and experience level.",
+  "onboardingFamilySharedGrowthTitle": "Shared encouragement and growth",
+  "onboardingFamilySharedGrowthSubtitle": "Build consistency together over time.",
+  "onboardingDhikrFeedbackTitle": "Dhikr counter feedback",
+  "onboardingDhikrFeedbackSubtitle": "Choose how the dhikr counter should respond when you tap.",
+  "onboardingDhikrHapticTitle": "Haptic feedback",
+  "onboardingOptionOff": "Off",
+  "onboardingOptionLight": "Light",
+  "onboardingOptionMedium": "Medium",
+  "onboardingOptionStrong": "Strong",
+  "onboardingDhikrSoundTitle": "Sound feedback",
+  "onboardingDhikrSoundSoftClick": "Soft click",
+  "onboardingDhikrSoundTasbih": "Tasbih bead sound",
+  "onboardingDhikrVisualTitle": "Visual feedback",
+  "onboardingDhikrVisualSubtleGlow": "Subtle glow",
+  "onboardingDhikrVisualPulseAnimation": "Pulse animation",
+  "onboardingDhikrPreviewCount": "Preview count: {count}",
+  "onboardingIdentityTitle": "How should we address you?",
+  "onboardingIdentitySubtitle": "Choose your greeting and add your name if you would like a more personal welcome.",
+  "onboardingGreetingTitle": "Greeting",
+  "onboardingNameTitle": "Name",
+  "onboardingOptionalHint": "Optional",
+  "onboardingNameHelperBody": "Your name is optional and only used to personalize your experience within the app.",
+  "onboardingDefaultNameFallback": "Friend",
+  "onboardingFocusSalahConsistency": "Salah consistency",
+  "onboardingFocusSalahReminders": "Salah reminders",
+  "onboardingFinalWelcomeTitle": "Welcome to Path of Nur",
+  "onboardingWelcomeGreeting": "Assalamu Alaikum, {name}.",
+  "onboardingFinalWelcomeBody": "Your journey begins now. Path of Nur is ready to support you through learning, reflection, remembrance, and steady growth.",
+  "onboardingFocusListTitle": "You chose to focus on:",
+  "onboardingKnowledgeDuaMeaning": "My Lord, increase me in knowledge.",
+  "onboardingReminderHelpTitle": "Adhan reminder options",
+  "onboardingReminderHelpNotificationOnly": "Notification only: a standard reminder without adhan audio.",
+  "onboardingReminderHelpAdhanNotification": "Adhan notification: sends a reminder with adhan-style audio when the prayer begins.",
+  "onboardingReminderHelpForceAdhan": "Force Adhan: will play Adhan audio even if the phone is set to silent.",
+  "onboardingLanguageSystemDefault": "System Default",
+  "onboardingLanguageEnglish": "English",
+  "onboardingLanguageArabic": "Arabic (العربية)",
+  "onboardingLanguageGerman": "German (Deutsch)",
+  "onboardingLanguageUrdu": "Urdu (اردو)",
+  "onboardingLanguageHindi": "Hindi (हिंदी)",
+  "onboardingLanguageIndonesian": "Indonesian",
+  "onboardingLanguageMalay": "Malay",
+  "onboardingLanguageTurkish": "Turkish",
+  "onboardingLanguageBengali": "Bengali",
+  "onboardingInterestUnderstandingQuran": "Understanding the Qur’an",
+  "onboardingInterestLearningHadith": "Learning Hadith",
+  "onboardingInterestStoriesProphets": "Stories of the Prophets",
+  "onboardingInterestStrengtheningSalah": "Strengthening my Salah",
+  "onboardingInterestDhikrRemembrance": "Dhikr and remembrance",
+  "onboardingInterestBetterHabits": "Building better habits",
+  "onboardingInterestWorldThroughQuran": "Learning about the world through the Qur’an",
+  "onboardingInterestIslamicKnowledge": "Islamic knowledge",
+  "onboardingInterestPersonalGrowth": "Personal growth and discipline",
+  "onboardingInterestDailyInspiration": "Daily inspiration",
+  "onboardingTrackingSalah": "Salah tracking",
+  "onboardingTrackingDhikr": "Dhikr tracking",
+  "onboardingTrackingQuranReading": "Qur’an reading progress",
+  "onboardingTrackingLearning": "Learning progress",
+  "onboardingTrackingHabitBuilding": "Habit building",
+  "onboardingTrackingReflection": "Reflection / journaling",
+  "onboardingSizeSmall": "Small",
+  "onboardingSizeLarge": "Large",
+  "onboardingSizeExtraLarge": "Extra large",
+  "@onboardingDhikrPreviewCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@onboardingWelcomeGreeting": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "accountsSyncTransportUnknown": "Unknown transport",
+  "accountsSyncStatusUnknown": "Status not available"
 }

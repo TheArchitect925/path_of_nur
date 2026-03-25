@@ -2,11 +2,14 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
+import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_surfaces.dart';
+import '../../../l10n/app_localizations.dart';
 import '../../../shared/application/special_mode_provider.dart';
 import '../../../shared/content/page_description_copy.dart';
+import '../../../shared/widgets/app_page_scaffold.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/quran_verse_content.dart';
 import '../../creation_challenges/application/creation_challenge_services.dart';
@@ -51,107 +54,96 @@ class _CelestialExplorerPageState extends ConsumerState<CelestialExplorerPage> {
     final isKidsMode = ref.watch(
       specialModeProvider.select((mode) => mode.isKids),
     );
+    final l10n = AppLocalizations.of(context);
     final snapshotAsync = ref.watch(celestialSnapshotProvider);
     final observations = ref.watch(celestialObservationsProvider);
+    final tabContentHeight = math.max(
+      520.0,
+      MediaQuery.sizeOf(context).height - 300,
+    );
 
-    return DecoratedBox(
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [Color(0xFF08121F), Color(0xFF0C1F37), Color(0xFF09111B)],
+    return DefaultTabController(
+      length: 3,
+      child: AppPageScaffold(
+        headerIcon: Icons.wb_twilight_rounded,
+        title: l10n.celestialExplorerPageTitle,
+        subtitle: localizedAppPageDescription(
+          context,
+          AppPageDescriptionKey.celestialExplorer,
+          kidsMode: isKidsMode,
         ),
-      ),
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        body: SafeArea(
-          child: DefaultTabController(
-            length: 3,
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(18, 10, 18, 0),
-                  child: Row(
-                    children: [
-                      IconButton(
-                        onPressed: () => context.pop(),
-                        icon: const Icon(Icons.arrow_back_ios_new_rounded),
-                      ),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Qur’anic Sky Explorer',
-                              style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                                    color: Colors.white,
-                                  ),
-                            ),
-                            Text(
-                              localizedAppPageDescription(
-                                context,
-                                AppPageDescriptionKey.celestialExplorer,
-                                kidsMode: isKidsMode,
-                              ),
-                              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                                    color: Colors.white70,
-                                  ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      IconButton(
-                        onPressed: () => ref.invalidate(celestialSnapshotProvider),
-                        icon: const Icon(Icons.refresh_rounded),
-                      ),
-                    ],
+        headerActions: [
+          IconButton(
+            onPressed: () => ref.invalidate(celestialSnapshotProvider),
+            icon: const Icon(Icons.refresh_rounded),
+          ),
+        ],
+        children: [
+          const _ExplorerTabBar(),
+          const SizedBox(height: 12),
+          SizedBox(
+            height: tabContentHeight,
+            child: snapshotAsync.when(
+              data: (snapshot) => TabBarView(
+                children: [
+                  _OverviewTab(
+                    snapshot: snapshot,
+                    noteController: _noteController,
                   ),
-                ),
-                const SizedBox(height: 8),
-                Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 18),
-                  decoration: BoxDecoration(
-                    color: Colors.white.withValues(alpha: 0.05),
-                    borderRadius: BorderRadius.circular(999),
+                  _ExploreTab(snapshot: snapshot),
+                  _JournalTab(
+                    observations: observations,
+                    onDelete: (id) async {
+                      await ref.read(celestialObservationsProvider.notifier).remove(id);
+                    },
+                    onFavorite: (id) async {
+                      await ref.read(celestialObservationsProvider.notifier).toggleFavorite(id);
+                    },
                   ),
-                  child: const TabBar(
-                    dividerColor: Colors.transparent,
-                    tabs: [
-                      Tab(text: 'Now'),
-                      Tab(text: 'Explore'),
-                      Tab(text: 'Journal'),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 12),
-                Expanded(
-                  child: snapshotAsync.when(
-                    data: (snapshot) => TabBarView(
-                      children: [
-                        _OverviewTab(
-                          snapshot: snapshot,
-                          noteController: _noteController,
-                        ),
-                        _ExploreTab(snapshot: snapshot),
-                        _JournalTab(
-                          observations: observations,
-                          onDelete: (id) async {
-                            await ref.read(celestialObservationsProvider.notifier).remove(id);
-                          },
-                          onFavorite: (id) async {
-                            await ref.read(celestialObservationsProvider.notifier).toggleFavorite(id);
-                          },
-                        ),
-                      ],
-                    ),
-                    loading: () => const Center(child: CircularProgressIndicator.adaptive()),
-                    error: (_, _) => const _ExplorerUnavailable(),
-                  ),
-                ),
-              ],
+                ],
+              ),
+              loading: () => const Center(child: CircularProgressIndicator.adaptive()),
+              error: (_, _) => const _ExplorerUnavailable(),
             ),
           ),
+        ],
+      ),
+    );
+  }
+}
+
+class _ExplorerTabBar extends StatelessWidget {
+  const _ExplorerTabBar();
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final surfaceStyle = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.panel,
+    );
+    return Container(
+      decoration: surfaceStyle.decoration(radius: 18),
+      padding: const EdgeInsets.all(6),
+      child: TabBar(
+        dividerColor: Colors.transparent,
+        indicator: BoxDecoration(
+          borderRadius: BorderRadius.circular(14),
+          color: AppColors.accentGold.withValues(alpha: 0.16),
+          border: Border.all(color: AppColors.accentGold.withValues(alpha: 0.18)),
         ),
+        labelColor: AppColors.onSurface,
+        unselectedLabelColor: AppColors.onSurfaceSubtle,
+        labelStyle: const TextStyle(fontSize: 13.5, fontWeight: FontWeight.w700),
+        unselectedLabelStyle: const TextStyle(
+          fontSize: 13.5,
+          fontWeight: FontWeight.w600,
+        ),
+        tabs: [
+          Tab(text: l10n.celestialTabNow),
+          Tab(text: l10n.celestialTabExplore),
+          Tab(text: l10n.celestialTabJournal),
+        ],
       ),
     );
   }
@@ -168,6 +160,7 @@ class _OverviewTab extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     return ListView(
       physics: const BouncingScrollPhysics(),
       padding: const EdgeInsets.fromLTRB(18, 0, 18, 140),
@@ -178,41 +171,54 @@ class _OverviewTab extends ConsumerWidget {
             children: [
               Text(
                 snapshot.locationLabel,
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(color: Colors.white),
+                style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.w700,
+                ),
               ),
               const SizedBox(height: 4),
               Text(
                 '${DateFormat.yMMMMEEEEd().format(snapshot.timestamp)} • ${snapshot.hijriDate.day} ${snapshot.hijriDate.monthName} ${snapshot.hijriDate.year} AH',
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.white70),
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  color: AppColors.onSurfaceSubtle,
+                ),
               ),
               const SizedBox(height: 16),
               Row(
                 children: [
                   Expanded(
                     child: _MetricCard(
-                      title: 'Sun',
+                      title: l10n.celestialSunLabel,
                       headline: snapshot.solarData.state == CelestialSkyState.night
-                          ? 'Below horizon'
-                          : 'Visible',
-                      detail:
-                          'Sunrise ${DateFormat.jm().format(snapshot.solarData.sunrise)} • Sunset ${DateFormat.jm().format(snapshot.solarData.sunset)}',
+                          ? l10n.celestialBelowHorizonLabel
+                          : l10n.celestialVisibleLabel,
+                      detail: l10n.celestialSunriseSunsetDetail(
+                        DateFormat.jm().format(snapshot.solarData.sunrise),
+                        DateFormat.jm().format(snapshot.solarData.sunset),
+                      ),
                     ),
                   ),
                   const SizedBox(width: 12),
                   Expanded(
                     child: _MetricCard(
-                      title: 'Moon',
+                      title: l10n.celestialMoonLabel,
                       headline: snapshot.lunarData.phaseName,
-                      detail:
-                          '${snapshot.lunarData.illuminationPercent}% illumination • ${snapshot.lunarData.riseSetApproximate ? 'Rise/set approximate' : 'Rise/set calculated'}',
+                      detail: l10n.celestialMoonDetail(
+                        snapshot.lunarData.illuminationPercent,
+                        snapshot.lunarData.riseSetApproximate
+                            ? l10n.celestialRiseSetApproximate
+                            : l10n.celestialRiseSetCalculated,
+                      ),
                     ),
                   ),
                 ],
               ),
               const SizedBox(height: 12),
               _MetricCard(
-                title: 'Upcoming',
-                headline: '${snapshot.nextEvent.label} at ${DateFormat.jm().format(snapshot.nextEvent.time)}',
+                title: l10n.celestialUpcomingLabel,
+                headline: l10n.celestialUpcomingHeadline(
+                  snapshot.nextEvent.label,
+                  DateFormat.jm().format(snapshot.nextEvent.time),
+                ),
                 detail: snapshot.nextEvent.relativeDescription,
               ),
             ],
@@ -236,7 +242,9 @@ class _OverviewTab extends ConsumerWidget {
               const SizedBox(height: 10),
               Text(
                 snapshot.verseOfMoment.shortReflection,
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.white70),
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  color: AppColors.onSurfaceSubtle,
+                ),
               ),
               const SizedBox(height: 12),
               Wrap(
@@ -246,7 +254,7 @@ class _OverviewTab extends ConsumerWidget {
                   OutlinedButton.icon(
                     onPressed: () => ref.read(celestialActionServiceProvider).markVerseOpened(snapshot.verseOfMoment),
                     icon: const Icon(Icons.auto_awesome_rounded),
-                    label: const Text('Reflect'),
+                    label: Text(l10n.celestialReflectAction),
                   ),
                   FilledButton.icon(
                     onPressed: () async {
@@ -261,12 +269,14 @@ class _OverviewTab extends ConsumerWidget {
                       ref.read(celestialObservationsProvider.notifier).reload();
                       if (context.mounted) {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Sky reflection saved.')),
+                          SnackBar(
+                            content: Text(l10n.celestialReflectionSaved),
+                          ),
                         );
                       }
                     },
                     icon: const Icon(Icons.bookmark_add_rounded),
-                    label: const Text('Save reflection'),
+                    label: Text(l10n.celestialSaveReflectionAction),
                   ),
                 ],
               ),
@@ -279,16 +289,18 @@ class _OverviewTab extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Journal this moment',
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(color: Colors.white),
+                l10n.celestialJournalMomentTitle,
+                style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.w700,
+                ),
               ),
               const SizedBox(height: 8),
               TextField(
                 controller: noteController,
                 minLines: 3,
                 maxLines: 6,
-                decoration: const InputDecoration(
-                  hintText: 'What did the sky make you notice today?',
+                decoration: InputDecoration(
+                  hintText: l10n.celestialJournalPromptHint,
                 ),
               ),
             ],
@@ -306,6 +318,7 @@ class _ExploreTab extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     final heading = ref.watch(celestialCompassHeadingProvider).value;
     final reading = ref.read(celestialCalculationServiceProvider).buildDirectionalReading(
           snapshot: snapshot,
@@ -320,16 +333,22 @@ class _ExploreTab extends ConsumerWidget {
           child: Column(
             children: [
               Text(
-                heading == null ? 'Compass unavailable' : '${heading.round()}° heading',
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(color: Colors.white),
+                heading == null
+                    ? l10n.celestialCompassUnavailable
+                    : l10n.celestialCompassHeading('${heading.round()}°'),
+                style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.w700,
+                ),
               ),
               const SizedBox(height: 14),
               _CompassBand(reading: reading),
               const SizedBox(height: 12),
               Text(
-                'Positions are calculated estimates. Sensor readings may be noisy indoors.',
+                l10n.celestialPositionEstimateNotice,
                 textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.white70),
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  color: AppColors.onSurfaceSubtle,
+                ),
               ),
             ],
           ),
@@ -356,13 +375,19 @@ class _JournalTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     if (observations.isEmpty) {
-      return const Center(
+      return Center(
         child: Padding(
-          padding: EdgeInsets.all(24),
-          child: Text(
-            'Saved sky reflections will appear here once you begin journaling.',
-            textAlign: TextAlign.center,
+          padding: const EdgeInsets.fromLTRB(18, 0, 18, 140),
+          child: PremiumCard(
+            child: Text(
+              l10n.celestialJournalEmptyState,
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                color: AppColors.onSurfaceSubtle,
+              ),
+            ),
           ),
         ),
       );
@@ -384,12 +409,16 @@ class _JournalTab extends StatelessWidget {
                       children: [
                         Text(
                           item.locationLabel,
-                          style: Theme.of(context).textTheme.titleSmall?.copyWith(color: Colors.white),
+                          style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                            fontWeight: FontWeight.w700,
+                          ),
                         ),
                         const SizedBox(height: 4),
                         Text(
                           '${DateFormat.yMMMd().add_jm().format(item.timestamp)} • ${item.moonPhaseName}',
-                          style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.white70),
+                          style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                            color: AppColors.onSurfaceSubtle,
+                          ),
                         ),
                       ],
                     ),
@@ -413,12 +442,14 @@ class _JournalTab extends StatelessWidget {
               const SizedBox(height: 8),
               Text(
                 item.verseReference,
-                style: Theme.of(context).textTheme.labelMedium?.copyWith(color: Colors.white70),
+                style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                  color: AppColors.onSurfaceSubtle,
+                ),
               ),
               const SizedBox(height: 4),
               Text(
                 item.reflectionNote,
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.white),
+                style: Theme.of(context).textTheme.bodyMedium,
               ),
             ],
           ),
@@ -443,29 +474,26 @@ class _MetricCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
+    return PremiumCard(
       padding: const EdgeInsets.all(14),
-      decoration: BoxDecoration(
-        color: Colors.white.withValues(alpha: 0.04),
-        borderRadius: BorderRadius.circular(18),
-      ),
+      surfaceVariant: AppSurfaceVariant.pill,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             title,
-            style: Theme.of(context).textTheme.labelMedium?.copyWith(color: Colors.white70),
+            style: Theme.of(context).textTheme.labelMedium?.copyWith(
+              color: AppColors.onSurfaceSubtle,
+            ),
           ),
           const SizedBox(height: 4),
-          Text(
-            headline,
-            style: Theme.of(context).textTheme.titleSmall?.copyWith(color: Colors.white),
-          ),
+          Text(headline, style: Theme.of(context).textTheme.titleSmall),
           const SizedBox(height: 4),
           Text(
             detail,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.white70),
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              color: AppColors.onSurfaceSubtle,
+            ),
           ),
         ],
       ),
@@ -480,6 +508,7 @@ class _DirectionalInfoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return PremiumCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -489,7 +518,9 @@ class _DirectionalInfoCard extends StatelessWidget {
               Expanded(
                 child: Text(
                   marker.label,
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(color: Colors.white),
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
               ),
               Container(
@@ -497,22 +528,27 @@ class _DirectionalInfoCard extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: marker.isVisible
                       ? const Color(0xFFFFD27A).withValues(alpha: 0.16)
-                      : Colors.white.withValues(alpha: 0.08),
+                      : Theme.of(context).colorScheme.surface.withValues(alpha: 0.52),
                   borderRadius: BorderRadius.circular(999),
                 ),
-                child: Text(marker.status),
+                child: Text(
+                  marker.status,
+                  style: Theme.of(context).textTheme.labelMedium,
+                ),
               ),
             ],
           ),
           const SizedBox(height: 8),
-          Text(
-            marker.guidance,
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.white),
-          ),
+          Text(marker.guidance, style: Theme.of(context).textTheme.bodyMedium),
           const SizedBox(height: 8),
           Text(
-            'Approximate azimuth ${marker.azimuthDegrees.round()}° • altitude ${marker.altitudeDegrees.round()}°',
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.white70),
+            l10n.celestialApproximatePositionLabel(
+              marker.azimuthDegrees.round(),
+              marker.altitudeDegrees.round(),
+            ),
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              color: AppColors.onSurfaceSubtle,
+            ),
           ),
         ],
       ),
@@ -527,6 +563,7 @@ class _CompassBand extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return SizedBox(
       height: 180,
       child: LayoutBuilder(
@@ -542,18 +579,19 @@ class _CompassBand extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    'N',
+                    l10n.celestialCompassNorthLabel,
                     style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                          color: Colors.white,
                           fontWeight: FontWeight.w700,
                         ),
                   ),
                   const SizedBox(height: 6),
                   Text(
                     reading.headingDegrees == null
-                        ? 'Move slowly for heading'
+                        ? l10n.celestialMoveSlowlyForHeading
                         : '${reading.headingDegrees!.round()}°',
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.white70),
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      color: AppColors.onSurfaceSubtle,
+                    ),
                   ),
                 ],
               ),
@@ -577,7 +615,7 @@ class _CompassPainter extends CustomPainter {
     final ringPaint = Paint()
       ..style = PaintingStyle.stroke
       ..strokeWidth = 2
-      ..color = Colors.white.withValues(alpha: 0.12);
+      ..color = AppColors.onSurfaceSubtle.withValues(alpha: 0.18);
     canvas.drawCircle(center, radius, ringPaint);
 
     for (var i = 0; i < 12; i += 1) {
@@ -589,7 +627,7 @@ class _CompassPainter extends CustomPainter {
         inner,
         Paint()
           ..strokeWidth = 1.2
-          ..color = Colors.white.withValues(alpha: 0.2),
+          ..color = AppColors.onSurfaceSubtle.withValues(alpha: 0.28),
       );
     }
 
@@ -619,13 +657,18 @@ class _ExplorerUnavailable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Center(
       child: Padding(
-        padding: const EdgeInsets.all(24),
-        child: Text(
-          'The explorer could not build a sky snapshot right now. Check location settings and try again.',
-          style: Theme.of(context).textTheme.bodyLarge,
-          textAlign: TextAlign.center,
+        padding: const EdgeInsets.fromLTRB(18, 0, 18, 140),
+        child: PremiumCard(
+          child: Text(
+            l10n.celestialExplorerUnavailable,
+            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+              color: AppColors.onSurfaceSubtle,
+            ),
+            textAlign: TextAlign.center,
+          ),
         ),
       ),
     );
