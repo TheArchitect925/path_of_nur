@@ -10,7 +10,27 @@ const List<TVOSPhaseId> tvosLaunchReadinessPhases = <TVOSPhaseId>[
   TVOSPhaseId.phase27LaunchPolishReadiness,
 ];
 
-const List<TVOSLaunchReadinessGate> tvosLaunchReadinessGates =
+const List<TVOSDistributionEvidenceRecord> tvosLaunchDistributionEvidence =
+    <TVOSDistributionEvidenceRecord>[
+      TVOSDistributionEvidenceRecord(
+        id: TVOSDistributionEvidenceId.signedArchive,
+        label: 'Signed tvOS archive proof',
+        status: TVOSDistributionEvidenceStatus.missing,
+        reference: 'Awaiting Organizer archive or exported archive evidence.',
+        notes:
+            'Record the signed Xcode Organizer archive result here once a real signed tvOS archive exists.',
+      ),
+      TVOSDistributionEvidenceRecord(
+        id: TVOSDistributionEvidenceId.testflightUpload,
+        label: 'TestFlight upload proof',
+        status: TVOSDistributionEvidenceStatus.missing,
+        reference: 'Awaiting App Store Connect or Organizer upload evidence.',
+        notes:
+            'Record the uploaded TestFlight build reference here once the signed tvOS archive is accepted by App Store Connect.',
+      ),
+    ];
+
+const List<TVOSLaunchReadinessGate> tvosBaseLaunchReadinessGates =
     <TVOSLaunchReadinessGate>[
       TVOSLaunchReadinessGate(
         id: TVOSLaunchReadinessGateId.repoSideReleaseBuild,
@@ -64,7 +84,7 @@ const List<TVOSLaunchReadinessGate> tvosLaunchReadinessGates =
         blocksTestflight: false,
         blocksPublicLaunch: true,
         notes:
-            'Public launch remains blocked until a signed archive and distribution evidence exist outside the repo-side sandbox pass.',
+            'Public launch remains blocked until the shared launch-readiness contract records both signed-archive and TestFlight upload proof.',
       ),
       TVOSLaunchReadinessGate(
         id: TVOSLaunchReadinessGateId.realDeviceAppleTvQa,

@@ -9,6 +9,7 @@ import '../../app/nav_tabs.dart';
 import '../../core/navigation/app_navigation_gesture_config.dart';
 import '../../core/navigation/app_swipe_back_wrapper.dart';
 import '../../core/reminders/quran_live_activity_service.dart';
+import '../../features/learn/quran/application/quran_player_controller.dart';
 import '../../features/learn/quran/application/quran_providers.dart';
 import '../../features/learn/quran/application/quran_reader_playback_controller.dart';
 import '../../features/learn/quran/presentation/quran_reader_playback_presentation.dart';
@@ -109,23 +110,40 @@ class AppShellScaffold extends ConsumerWidget {
       playbackState: playbackState,
       surahMap: ref.read(quranSurahMapProvider),
     );
-    final statusLabel = buildQuranPlaybackStatusLabel(
+    final sourceStatusLabel = buildQuranPlaybackSourceStatusLabel(
       l10n: l10n,
       playbackState: playbackState,
     );
     final showRetryAction = playbackState.hasRecoverableFailure;
+    final controller = ref.read(quranPlayerControllerProvider);
 
     final targetSurah = playbackState.activeSurahNumber;
     final targetAyah =
         playbackState.activeAyahNumber ?? playbackState.storedSession?.ayahNumber;
+    final totalMillis = playbackState.duration?.inMilliseconds ?? 0;
+    final currentMillis = playbackState.position.inMilliseconds.clamp(
+      0,
+      totalMillis > 0 ? totalMillis : 0,
+    );
+    final progressValue = totalMillis > 0 ? currentMillis / totalMillis : 0.0;
+    final compactLabel = showRetryAction
+        ? (sourceStatusLabel ?? l10n.shellQuranMiniPlayerTitle)
+        : nowPlayingLabel;
 
     return Align(
       alignment: Alignment.center,
       child: QuranPlayerLauncherPill(
-        label: nowPlayingLabel ?? l10n.shellQuranMiniPlayerTitle,
-        subtitle: '${playbackState.reciterName} • $statusLabel',
+        label: compactLabel,
         isPlaying: playbackState.isPlaying,
         showRetryAction: showRetryAction,
+        progressValue: progressValue,
+        onTogglePlayback: showRetryAction
+            ? () => unawaited(controller.retryCurrentPlayback())
+            : playbackState.canPause
+            ? () => unawaited(controller.pause())
+            : playbackState.canPlay
+            ? () => unawaited(controller.resumeCurrentPlayback())
+            : null,
         onOpenPlayer: () {
           if (targetSurah == null) return;
           unawaited(
@@ -483,94 +501,120 @@ class _QuranPhoneLiveActivityBridgeState
 class QuranPlayerLauncherPill extends StatelessWidget {
   const QuranPlayerLauncherPill({
     super.key,
-    required this.label,
-    required this.subtitle,
+    this.label,
     required this.isPlaying,
     required this.showRetryAction,
+    required this.progressValue,
+    required this.onTogglePlayback,
     required this.onOpenPlayer,
     required this.openTooltip,
   });
 
-  final String label;
-  final String subtitle;
+  final String? label;
   final bool isPlaying;
   final bool showRetryAction;
+  final double progressValue;
+  final VoidCallback? onTogglePlayback;
   final VoidCallback onOpenPlayer;
   final String openTooltip;
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final clampedProgress = progressValue.clamp(0.0, 1.0);
+    final playbackTooltip = showRetryAction
+        ? l10n.quranPlaybackRetryAction
+        : (isPlaying ? l10n.accessibilityPause : l10n.accessibilityPlay);
+
     return Material(
       color: const Color(0xFFF1E5D3),
-      elevation: 8,
-      borderRadius: BorderRadius.circular(999),
-      shadowColor: const Color(0xFF1D1A17).withValues(alpha: 0.16),
-      child: InkWell(
+      elevation: 7,
+      borderRadius: BorderRadius.circular(20),
+      shadowColor: const Color(0xFF1D1A17).withValues(alpha: 0.12),
+      child: Container(
         key: const ValueKey('quran-shell-player-pill'),
-        borderRadius: BorderRadius.circular(999),
-        onTap: onOpenPlayer,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Container(
-                width: 34,
-                height: 34,
-                decoration: BoxDecoration(
-                  color: const Color(0xFFE8D1A8),
-                  borderRadius: BorderRadius.circular(999),
+        constraints: const BoxConstraints(minHeight: 52, maxWidth: 560),
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Tooltip(
+              message: playbackTooltip,
+              child: IconButton(
+                key: const ValueKey('quran-shell-player-play-pause'),
+                onPressed: onTogglePlayback,
+                iconSize: 22,
+                padding: EdgeInsets.zero,
+                constraints: const BoxConstraints.tightFor(width: 36, height: 36),
+                style: IconButton.styleFrom(
+                  backgroundColor: const Color(0xFFE8D1A8),
+                  foregroundColor: const Color(0xFF5B4837),
                 ),
-                alignment: Alignment.center,
-                child: Icon(
+                icon: Icon(
                   showRetryAction
                       ? Icons.refresh_rounded
                       : isPlaying
-                          ? Icons.graphic_eq_rounded
-                          : Icons.play_arrow_rounded,
-                  size: 20,
-                  color: const Color(0xFF5B4837),
+                      ? Icons.pause_rounded
+                      : Icons.play_arrow_rounded,
                 ),
               ),
-              const SizedBox(width: 8),
-              Flexible(
-                child: Column(
-                  key: const ValueKey('quran-shell-player-pill-content'),
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      label,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                        fontWeight: FontWeight.w800,
-                        color: const Color(0xFF3A3026),
+            ),
+            const SizedBox(width: 8),
+            Expanded(
+              child: InkWell(
+                key: const ValueKey('quran-shell-player-pill-content'),
+                borderRadius: BorderRadius.circular(14),
+                onTap: onOpenPlayer,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      if (label != null && label!.trim().isNotEmpty) ...[
+                        Text(
+                          label!,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                            color: const Color(0xFF6A5A4A),
+                            fontWeight: FontWeight.w700,
+                            height: 1.1,
+                          ),
+                        ),
+                        const SizedBox(height: 4),
+                      ],
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(999),
+                        child: LinearProgressIndicator(
+                          key: const ValueKey('quran-shell-player-progress'),
+                          value: clampedProgress,
+                          minHeight: 3,
+                          backgroundColor: const Color(0xFFD9C9B4),
+                          valueColor: const AlwaysStoppedAnimation<Color>(
+                            Color(0xFF8C6948),
+                          ),
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 2),
-                    Text(
-                      subtitle,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: const Color(0xFF6A5A4A),
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-              const SizedBox(width: 8),
-              Tooltip(
-                message: openTooltip,
-                child: const Icon(
-                  Icons.expand_less_rounded,
-                  color: Color(0xFF5B4837),
-                ),
+            ),
+            const SizedBox(width: 4),
+            Tooltip(
+              message: openTooltip,
+              child: IconButton(
+                key: const ValueKey('quran-shell-player-expand'),
+                onPressed: onOpenPlayer,
+                iconSize: 22,
+                padding: EdgeInsets.zero,
+                constraints: const BoxConstraints.tightFor(width: 36, height: 36),
+                color: const Color(0xFF5B4837),
+                icon: const Icon(Icons.open_in_full_rounded),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

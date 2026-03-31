@@ -1,0 +1,56 @@
+{
+  "source": "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurWatch Watch App Extension/DhikrWatchScreen.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "%lld / %lld",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 80
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld / %lld",
+        "location": {
+          "startingColumn": 14,
+          "startingLine": 133
+        }
+      },
+      {
+        "comment": "",
+        "key": "%@: %@",
+        "location": {
+          "startingColumn": 14,
+          "startingLine": 141
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 182
+        }
+      },
+      {
+        "comment": "",
+        "key": "%@: %@",
+        "location": {
+          "startingColumn": 12,
+          "startingLine": 195
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld • %@",
+        "location": {
+          "startingColumn": 12,
+          "startingLine": 276
+        }
+      }
+    ]
+  },
+  "version": 1
+}

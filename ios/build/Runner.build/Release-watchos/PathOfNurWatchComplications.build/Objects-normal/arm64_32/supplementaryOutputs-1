@@ -1,0 +1,12 @@
+{
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurWatchComplications/PathOfNurWatchComplications.swift" : {
+    "abi-baseline-json" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatchComplications.build/Objects-normal/arm64_32/PathOfNurWatchComplications.abi.json",
+    "const-values" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatchComplications.build/Objects-normal/arm64_32/PathOfNurWatchComplications-primary.swiftconstvalues",
+    "dependencies" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatchComplications.build/Objects-normal/arm64_32/PathOfNurWatchComplications-primary.d",
+    "diagnostics" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatchComplications.build/Objects-normal/arm64_32/PathOfNurWatchComplications-primary.dia",
+    "objc-header" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatchComplications.build/Objects-normal/arm64_32/PathOfNurWatchComplications-Swift.h",
+    "swiftdoc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatchComplications.build/Objects-normal/arm64_32/PathOfNurWatchComplications.swiftdoc",
+    "swiftmodule" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatchComplications.build/Objects-normal/arm64_32/PathOfNurWatchComplications.swiftmodule",
+    "swiftsourceinfo" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatchComplications.build/Objects-normal/arm64_32/PathOfNurWatchComplications.swiftsourceinfo"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "source": "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurWatch Watch App Extension/PrayerCheckInScreen.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "%@ %lld/%lld",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 177
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld / %lld",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 190
+        }
+      }
+    ]
+  },
+  "version": 1
+}

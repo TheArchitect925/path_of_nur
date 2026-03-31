@@ -14,11 +14,27 @@ TVOSLaunchReadinessSnapshot buildTVOSLaunchReadinessSnapshot() {
       .map((flag) => flag.routePath)
       .toList(growable: false);
 
-  final readyForTestflight = tvosLaunchReadinessGates
+  final distributionEvidence = tvosLaunchDistributionEvidence;
+  final gates = tvosBaseLaunchReadinessGates
+      .map(
+        (gate) => gate.id == TVOSLaunchReadinessGateId.signedArchiveDistribution
+            ? TVOSLaunchReadinessGate(
+                id: gate.id,
+                label: gate.label,
+                isPassing: _hasRecordedDistributionProof(distributionEvidence),
+                blocksTestflight: gate.blocksTestflight,
+                blocksPublicLaunch: gate.blocksPublicLaunch,
+                notes: gate.notes,
+              )
+            : gate,
+      )
+      .toList(growable: false);
+
+  final readyForTestflight = gates
       .where((gate) => gate.blocksTestflight)
       .every((gate) => gate.isPassing);
 
-  final readyForPublicLaunch = tvosLaunchReadinessGates
+  final readyForPublicLaunch = gates
       .where((gate) => gate.blocksPublicLaunch)
       .every((gate) => gate.isPassing);
 
@@ -29,7 +45,8 @@ TVOSLaunchReadinessSnapshot buildTVOSLaunchReadinessSnapshot() {
     releaseStage: TVOSReleasePolicy.currentReleaseStage,
     completedPhases: tvosLaunchReadinessPhases,
     polishedRoutePaths: polishedRoutePaths,
-    gates: tvosLaunchReadinessGates,
+    distributionEvidence: distributionEvidence,
+    gates: gates,
     readyForTestflight: readyForTestflight,
     readyForPublicLaunch: readyForPublicLaunch,
   );
@@ -46,4 +63,32 @@ List<TVOSLaunchReadinessGate> tvosPublicLaunchBlockingGates() {
       .gates
       .where((gate) => gate.blocksPublicLaunch && !gate.isPassing)
       .toList(growable: false);
+}
+
+bool tvosHasRecordedSignedArchiveProof() {
+  return _hasRecordedEvidence(
+    buildTVOSLaunchReadinessSnapshot().distributionEvidence,
+    TVOSDistributionEvidenceId.signedArchive,
+  );
+}
+
+bool tvosHasRecordedTestflightUploadProof() {
+  return _hasRecordedEvidence(
+    buildTVOSLaunchReadinessSnapshot().distributionEvidence,
+    TVOSDistributionEvidenceId.testflightUpload,
+  );
+}
+
+bool _hasRecordedDistributionProof(
+  List<TVOSDistributionEvidenceRecord> evidence,
+) {
+  return _hasRecordedEvidence(evidence, TVOSDistributionEvidenceId.signedArchive) &&
+      _hasRecordedEvidence(evidence, TVOSDistributionEvidenceId.testflightUpload);
+}
+
+bool _hasRecordedEvidence(
+  List<TVOSDistributionEvidenceRecord> evidence,
+  TVOSDistributionEvidenceId id,
+) {
+  return evidence.any((record) => record.id == id && record.isRecorded);
 }

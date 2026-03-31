@@ -172,7 +172,6 @@ struct TVGamesScreen: View {
             }
           }
         }
-      }
         Divider()
           .overlay(TVTheme.surfaceStroke)
 

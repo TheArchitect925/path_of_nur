@@ -16,6 +16,16 @@ enum TVOSLaunchReadinessGateId {
   realDeviceAppleTvQa,
 }
 
+enum TVOSDistributionEvidenceId {
+  signedArchive,
+  testflightUpload,
+}
+
+enum TVOSDistributionEvidenceStatus {
+  missing,
+  recorded,
+}
+
 class TVOSLaunchReadinessGate {
   const TVOSLaunchReadinessGate({
     required this.id,
@@ -34,12 +44,33 @@ class TVOSLaunchReadinessGate {
   final String notes;
 }
 
+class TVOSDistributionEvidenceRecord {
+  const TVOSDistributionEvidenceRecord({
+    required this.id,
+    required this.label,
+    required this.status,
+    required this.reference,
+    required this.notes,
+    this.recordedOn,
+  });
+
+  final TVOSDistributionEvidenceId id;
+  final String label;
+  final TVOSDistributionEvidenceStatus status;
+  final String reference;
+  final String notes;
+  final DateTime? recordedOn;
+
+  bool get isRecorded => status == TVOSDistributionEvidenceStatus.recorded;
+}
+
 class TVOSLaunchReadinessSnapshot {
   const TVOSLaunchReadinessSnapshot({
     required this.level,
     required this.releaseStage,
     required this.completedPhases,
     required this.polishedRoutePaths,
+    required this.distributionEvidence,
     required this.gates,
     required this.readyForTestflight,
     required this.readyForPublicLaunch,
@@ -49,6 +80,7 @@ class TVOSLaunchReadinessSnapshot {
   final TVOSReleaseStage releaseStage;
   final List<TVOSPhaseId> completedPhases;
   final List<String> polishedRoutePaths;
+  final List<TVOSDistributionEvidenceRecord> distributionEvidence;
   final List<TVOSLaunchReadinessGate> gates;
   final bool readyForTestflight;
   final bool readyForPublicLaunch;

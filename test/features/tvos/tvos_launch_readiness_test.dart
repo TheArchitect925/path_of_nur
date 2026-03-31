@@ -8,6 +8,18 @@ void main() {
     expect(tvosLaunchReadinessIncludesPhase27(), isTrue);
   });
 
+  test('launch readiness records signed archive and TestFlight upload evidence slots', () {
+    final snapshot = buildTVOSLaunchReadinessSnapshot();
+    final evidenceIds = snapshot.distributionEvidence.map((item) => item.id).toSet();
+
+    expect(evidenceIds, <TVOSDistributionEvidenceId>{
+      TVOSDistributionEvidenceId.signedArchive,
+      TVOSDistributionEvidenceId.testflightUpload,
+    });
+    expect(tvosHasRecordedSignedArchiveProof(), isFalse);
+    expect(tvosHasRecordedTestflightUploadProof(), isFalse);
+  });
+
   test('tvos remains ready for testflight but blocked for public launch', () {
     final snapshot = buildTVOSLaunchReadinessSnapshot();
 
@@ -37,5 +49,13 @@ void main() {
     expect(passingGateIds, contains(TVOSLaunchReadinessGateId.localizationAccessibility));
     expect(passingGateIds, contains(TVOSLaunchReadinessGateId.focusRegressionCoverage));
     expect(passingGateIds, contains(TVOSLaunchReadinessGateId.releaseGovernanceAligned));
+  });
+
+  test('signed distribution gate depends on recorded archive and upload proof', () {
+    final gate = buildTVOSLaunchReadinessSnapshot().gates.firstWhere(
+      (item) => item.id == TVOSLaunchReadinessGateId.signedArchiveDistribution,
+    );
+
+    expect(gate.isPassing, isFalse);
   });
 }

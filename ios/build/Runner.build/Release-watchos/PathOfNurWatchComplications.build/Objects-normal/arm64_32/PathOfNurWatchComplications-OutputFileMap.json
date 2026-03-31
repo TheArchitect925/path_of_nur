@@ -1,0 +1,26 @@
+{
+  "" : {
+    "const-values" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatchComplications.build/Objects-normal/arm64_32/PathOfNurWatchComplications-primary.swiftconstvalues",
+    "dependencies" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatchComplications.build/Objects-normal/arm64_32/PathOfNurWatchComplications-primary.d",
+    "diagnostics" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatchComplications.build/Objects-normal/arm64_32/PathOfNurWatchComplications-primary.dia",
+    "emit-module-dependencies" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatchComplications.build/Objects-normal/arm64_32/PathOfNurWatchComplications-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatchComplications.build/Objects-normal/arm64_32/PathOfNurWatchComplications-primary-emit-module.dia",
+    "pch" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatchComplications.build/Objects-normal/arm64_32/PathOfNurWatchComplications-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatchComplications.build/Objects-normal/arm64_32/PathOfNurWatchComplications-primary.swiftdeps"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurWatch Watch App Extension/WatchCacheStore.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-watchos/PathOfNurWatchComplications.build/Objects-normal/arm64_32/WatchCacheStore.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatchComplications.build/Objects-normal/arm64_32/WatchCacheStore.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatchComplications.build/Objects-normal/arm64_32/WatchCacheStore.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurWatch Watch App Extension/WatchSharedModels.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-watchos/PathOfNurWatchComplications.build/Objects-normal/arm64_32/WatchSharedModels.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatchComplications.build/Objects-normal/arm64_32/WatchSharedModels.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatchComplications.build/Objects-normal/arm64_32/WatchSharedModels.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurWatchComplications/PathOfNurWatchComplications.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-watchos/PathOfNurWatchComplications.build/Objects-normal/arm64_32/PathOfNurWatchComplications.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatchComplications.build/Objects-normal/arm64_32/PathOfNurWatchComplications.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatchComplications.build/Objects-normal/arm64_32/PathOfNurWatchComplications.o"
+  }
+}

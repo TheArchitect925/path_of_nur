@@ -16,36 +16,42 @@ struct TVQuranScreen: View {
         )
 
         ScrollView(.horizontal, showsIndicators: false) {
-          LazyHStack(spacing: TVTheme.railSpacing) {
-            Button {
-              viewModel.selectSurah(
-                TVSeedRepository.quranSurahs.first(where: {
-                  $0.number == viewModel.continueReading.surahNumber
-                }) ?? viewModel.selectedSurah
-              )
-            } label: {
-              _summaryCard(
-                title: viewModel.continueReadingSummaryTitle,
-                line: viewModel.continueReadingLine,
-                detail: viewModel.continueReadingSummarySubtitle
-              )
-            }
-            .buttonStyle(.plain)
+          Group {
+            if hasSummaryContent {
+              LazyHStack(spacing: TVTheme.railSpacing) {
+                Button {
+                  viewModel.selectSurah(
+                    TVSeedRepository.quranSurahs.first(where: {
+                      $0.number == viewModel.continueReading.surahNumber
+                    }) ?? viewModel.selectedSurah
+                  )
+                } label: {
+                  _summaryCard(
+                    title: viewModel.continueReadingSummaryTitle,
+                    line: viewModel.continueReadingLine,
+                    detail: viewModel.continueReadingSummarySubtitle
+                  )
+                }
+                .buttonStyle(.plain)
 
-            Button {
-              viewModel.selectSurah(
-                TVSeedRepository.quranSurahs.first(where: {
-                  $0.number == viewModel.dailyVerse.surahNumber
-                }) ?? viewModel.selectedSurah
-              )
-            } label: {
-              _summaryCard(
-                title: viewModel.dailyVerseSummaryTitle,
-                line: viewModel.dailyVerse.locationLabel,
-                detail: viewModel.dailyVerseSummarySubtitle
-              )
+                Button {
+                  viewModel.selectSurah(
+                    TVSeedRepository.quranSurahs.first(where: {
+                      $0.number == viewModel.dailyVerse.surahNumber
+                    }) ?? viewModel.selectedSurah
+                  )
+                } label: {
+                  _summaryCard(
+                    title: viewModel.dailyVerseSummaryTitle,
+                    line: viewModel.dailyVerse.locationLabel,
+                    detail: viewModel.dailyVerseSummarySubtitle
+                  )
+                }
+                .buttonStyle(.plain)
+              }
+            } else {
+              emptyShelfCard(emphasized: true)
             }
-            .buttonStyle(.plain)
           }
           .padding(.vertical, 8)
         }
@@ -58,39 +64,57 @@ struct TVQuranScreen: View {
             )
 
             ScrollView(.horizontal, showsIndicators: false) {
-              LazyHStack(spacing: TVTheme.railSpacing) {
-                ForEach(Array(viewModel.browseCollections.enumerated()), id: \.element.id) { index, collection in
-                  let focusID = index == 0
-                      ? TVFocusSectionId.quranBrowse
-                      : "quran.browse.collection.\(collection.id)"
+              Group {
+                if viewModel.browseCollections.isEmpty {
+                  emptyShelfCard()
+                } else {
+                  LazyHStack(spacing: TVTheme.railSpacing) {
+                    ForEach(Array(viewModel.browseCollections.enumerated()), id: \.element.id) { index, collection in
+                      let focusID = index == 0
+                          ? TVFocusSectionId.quranBrowse
+                          : "quran.browse.collection.\(collection.id)"
 
-                  Button {
-                    viewModel.selectBrowseCollection(collection)
-                  } label: {
-                    TVQuranBrowseCollectionCard(
-                      collection: collection,
-                      isSelected: viewModel.collectionContainsSelectedSurah(collection)
-                    )
+                      Button {
+                        viewModel.selectBrowseCollection(collection)
+                      } label: {
+                        TVQuranBrowseCollectionCard(
+                          collection: collection,
+                          isSelected: viewModel.collectionContainsSelectedSurah(collection)
+                        )
+                      }
+                      .buttonStyle(.plain)
+                      .focused($focusedSection, equals: focusID)
+                    }
                   }
-                  .buttonStyle(.plain)
-                  .focused($focusedSection, equals: focusID)
                 }
               }
               .padding(.vertical, 8)
             }
 
-            LazyVStack(spacing: 14) {
-              ForEach(viewModel.surahs) { surah in
-                let isSelected = surah.id == viewModel.selectedSurah.id
-                let focusID = TVFocusSectionId.quranSurahRow(surah.id)
+            Group {
+              if viewModel.surahs.isEmpty {
+                emptyRailCard(
+                  title: tvLocalized("Nothing ready yet"),
+                  subtitle: tvLocalized("This shelf is not available on the current Apple TV build."),
+                  supportingLine: tvLocalized("Keep exploring another section and return later.")
+                )
+                .padding(TVTheme.cardPadding)
+                .tvSurfaceCard(elevated: true, emphasized: false)
+              } else {
+                LazyVStack(spacing: 14) {
+                  ForEach(viewModel.surahs) { surah in
+                    let isSelected = surah.id == viewModel.selectedSurah.id
+                    let focusID = TVFocusSectionId.quranSurahRow(surah.id)
 
-                Button {
-                  viewModel.selectSurah(surah)
-                } label: {
-                  TVQuranSurahRow(surah: surah, isSelected: isSelected)
+                    Button {
+                      viewModel.selectSurah(surah)
+                    } label: {
+                      TVQuranSurahRow(surah: surah, isSelected: isSelected)
+                    }
+                    .buttonStyle(.plain)
+                    .focused($focusedSection, equals: focusID)
+                  }
                 }
-                .buttonStyle(.plain)
-                .focused($focusedSection, equals: focusID)
               }
             }
           }
@@ -109,23 +133,33 @@ struct TVQuranScreen: View {
               supportingLine: viewModel.readerStageSupportingLine
             )
 
-            LazyVStack(spacing: 16) {
-              ForEach(Array(viewModel.selectedAyahs.enumerated()), id: \.element.id) { index, ayah in
-                let isSelected = index == viewModel.selectedAyahIndex
-                let isPlaying = viewModel.isPlaying && isSelected
-                let focusID = TVFocusSectionId.quranAyah(ayah.id)
+            if viewModel.selectedAyahs.isEmpty {
+              emptyRailCard(
+                title: tvLocalized("Nothing ready yet"),
+                subtitle: tvLocalized("This shelf is not available on the current Apple TV build."),
+                supportingLine: tvLocalized("Keep exploring another section and return later.")
+              )
+              .padding(TVTheme.cardPadding)
+              .tvSurfaceCard(elevated: true, emphasized: true)
+            } else {
+              LazyVStack(spacing: 16) {
+                ForEach(Array(viewModel.selectedAyahs.enumerated()), id: \.element.id) { index, ayah in
+                  let isSelected = index == viewModel.selectedAyahIndex
+                  let isPlaying = viewModel.isPlaying && isSelected
+                  let focusID = TVFocusSectionId.quranAyah(ayah.id)
 
-                Button {
-                  viewModel.selectAyah(at: index)
-                } label: {
-                  TVQuranAyahCard(
-                    ayah: ayah,
-                    isSelected: isSelected,
-                    isPlaying: isPlaying
-                  )
+                  Button {
+                    viewModel.selectAyah(at: index)
+                  } label: {
+                    TVQuranAyahCard(
+                      ayah: ayah,
+                      isSelected: isSelected,
+                      isPlaying: isPlaying
+                    )
+                  }
+                  .buttonStyle(.plain)
+                  .focused($focusedSection, equals: focusID)
                 }
-                .buttonStyle(.plain)
-                .focused($focusedSection, equals: focusID)
               }
             }
           }
@@ -233,7 +267,10 @@ struct TVQuranScreen: View {
       if let firstCollection = viewModel.browseCollections.first {
         return "quran.browse.collection.\(firstCollection.id)"
       }
-      return TVFocusSectionId.quranSurahRow(viewModel.selectedSurah.id)
+      if let firstSurah = viewModel.surahs.first {
+        return TVFocusSectionId.quranSurahRow(firstSurah.id)
+      }
+      return TVFocusSectionId.quranPlayback
     case TVFocusSectionId.quranReader:
       if let ayah = viewModel.selectedAyah ?? viewModel.selectedAyahs.first {
         return TVFocusSectionId.quranAyah(ayah.id)
@@ -242,5 +279,28 @@ struct TVQuranScreen: View {
     default:
       return TVFocusSectionId.quranPlayback
     }
+  }
+
+  private var hasSummaryContent: Bool {
+    !viewModel.continueReadingLine.isEmpty || !viewModel.dailyVerse.locationLabel.isEmpty
+  }
+
+  private func emptyShelfCard(emphasized: Bool = false) -> some View {
+    TVEmptyStateCard(
+      title: tvLocalized("Nothing ready yet"),
+      subtitle: tvLocalized("This shelf is not available on the current Apple TV build."),
+      supportingLine: tvLocalized("Keep exploring another section and return later.")
+    )
+    .frame(width: 520, alignment: .leading)
+    .padding(TVTheme.cardPadding)
+    .tvSurfaceCard(elevated: true, emphasized: emphasized)
+  }
+
+  private func emptyRailCard(title: String, subtitle: String, supportingLine: String) -> some View {
+    TVEmptyStateCard(
+      title: title,
+      subtitle: subtitle,
+      supportingLine: supportingLine
+    )
   }
 }

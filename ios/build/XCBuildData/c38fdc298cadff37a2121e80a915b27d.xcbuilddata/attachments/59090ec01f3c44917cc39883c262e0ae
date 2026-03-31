@@ -1,0 +1,116 @@
+{
+  "" : {
+    "const-values" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/PathOfNurWatch Watch App Extension-primary.swiftconstvalues",
+    "dependencies" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/PathOfNurWatch Watch App Extension-primary.d",
+    "diagnostics" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/PathOfNurWatch Watch App Extension-primary.dia",
+    "emit-module-dependencies" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/PathOfNurWatch Watch App Extension-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/PathOfNurWatch Watch App Extension-primary-emit-module.dia",
+    "pch" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/PathOfNurWatch Watch App Extension-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/PathOfNurWatch Watch App Extension-primary.swiftdeps"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurWatch Watch App Extension/DhikrWatchScreen.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/DhikrWatchScreen.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/DhikrWatchScreen.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/DhikrWatchScreen.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurWatch Watch App Extension/PathOfNurWatchApp.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/PathOfNurWatchApp.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/PathOfNurWatchApp.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/PathOfNurWatchApp.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurWatch Watch App Extension/PrayerCheckInScreen.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/PrayerCheckInScreen.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/PrayerCheckInScreen.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/PrayerCheckInScreen.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurWatch Watch App Extension/ProgressWatchScreen.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/ProgressWatchScreen.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/ProgressWatchScreen.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/ProgressWatchScreen.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurWatch Watch App Extension/WatchAppModel.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/WatchAppModel.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/WatchAppModel.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/WatchAppModel.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurWatch Watch App Extension/WatchCacheStore.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/WatchCacheStore.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/WatchCacheStore.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/WatchCacheStore.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurWatch Watch App Extension/WatchHaptics.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/WatchHaptics.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/WatchHaptics.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/WatchHaptics.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurWatch Watch App Extension/WatchHeroCard.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/WatchHeroCard.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/WatchHeroCard.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/WatchHeroCard.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurWatch Watch App Extension/WatchHomeView.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/WatchHomeView.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/WatchHomeView.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/WatchHomeView.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurWatch Watch App Extension/WatchMiniProgressRing.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/WatchMiniProgressRing.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/WatchMiniProgressRing.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/WatchMiniProgressRing.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurWatch Watch App Extension/WatchPrayerRow.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/WatchPrayerRow.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/WatchPrayerRow.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/WatchPrayerRow.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurWatch Watch App Extension/WatchQuickActionButton.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/WatchQuickActionButton.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/WatchQuickActionButton.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/WatchQuickActionButton.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurWatch Watch App Extension/WatchRewardProjection.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/WatchRewardProjection.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/WatchRewardProjection.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/WatchRewardProjection.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurWatch Watch App Extension/WatchRootView.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/WatchRootView.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/WatchRootView.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/WatchRootView.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurWatch Watch App Extension/WatchSharedModels.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/WatchSharedModels.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/WatchSharedModels.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/WatchSharedModels.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurWatch Watch App Extension/WatchStatChip.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/WatchStatChip.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/WatchStatChip.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/WatchStatChip.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurWatch Watch App Extension/WatchSyncService.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/WatchSyncService.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/WatchSyncService.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/WatchSyncService.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurWatch Watch App Extension/WatchSyncStatusBadge.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/WatchSyncStatusBadge.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/WatchSyncStatusBadge.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/WatchSyncStatusBadge.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurWatch Watch App Extension/WatchTheme.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/WatchTheme.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/WatchTheme.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/WatchTheme.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurWatch Watch App Extension/WatchUtilityScreen.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/WatchUtilityScreen.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/WatchUtilityScreen.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/WatchUtilityScreen.o"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurWatch Watch App Extension/WatchViewStates.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/WatchViewStates.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/WatchViewStates.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-watchos/PathOfNurWatch Watch App Extension.build/Objects-normal/arm64/WatchViewStates.o"
+  }
+}

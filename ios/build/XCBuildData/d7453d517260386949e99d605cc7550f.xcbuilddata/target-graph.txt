@@ -1,0 +1,4 @@
+Target dependency graph (2 targets)
+Target 'PathOfNurWatch Watch App' in project 'Runner'
+➜ Explicit dependency on target 'PathOfNurWatch Watch App Extension' in project 'Runner'
+Target 'PathOfNurWatch Watch App Extension' in project 'Runner' (no dependencies)
