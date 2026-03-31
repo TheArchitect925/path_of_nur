@@ -3,7 +3,14 @@ import 'app_spacing.dart';
 import 'app_radii.dart';
 import 'app_fonts.dart';
 
-enum AppThemeMode { defaultMode, calmBeautiful, easyRead, dark }
+enum AppThemeMode {
+  defaultMode,
+  calmBeautiful,
+  easyRead,
+  dark,
+  noorGlass,
+  midnightManuscript,
+}
 
 const double _glassContrastAlphaMin = 0.82;
 const double _glassContrastAlphaMax = 0.95;
@@ -16,10 +23,20 @@ class AppAppearanceTheme extends ThemeExtension<AppAppearanceTheme> {
     required this.backgroundAlt,
     required this.surface,
     required this.surfaceSoft,
+    required this.inputSurface,
     required this.onSurface,
     required this.onSurfaceSubtle,
+    required this.onSurfaceMuted,
     required this.accent,
     required this.accentSoft,
+    required this.border,
+    required this.divider,
+    required this.success,
+    required this.quranArabicEmphasis,
+    required this.makkiFill,
+    required this.makkiBorder,
+    required this.madaniFill,
+    required this.madaniBorder,
     required this.glassSurfaceAlpha,
     required this.glassBorderAlpha,
     required this.disableGlassTransparency,
@@ -32,17 +49,28 @@ class AppAppearanceTheme extends ThemeExtension<AppAppearanceTheme> {
   final Color backgroundAlt;
   final Color surface;
   final Color surfaceSoft;
+  final Color inputSurface;
   final Color onSurface;
   final Color onSurfaceSubtle;
+  final Color onSurfaceMuted;
   final Color accent;
   final Color accentSoft;
+  final Color border;
+  final Color divider;
+  final Color success;
+  final Color quranArabicEmphasis;
+  final Color makkiFill;
+  final Color makkiBorder;
+  final Color madaniFill;
+  final Color madaniBorder;
   final double glassSurfaceAlpha;
   final double glassBorderAlpha;
   final bool disableGlassTransparency;
   final bool disableColoredGlass;
   final bool disableBackground;
 
-  bool get isDark => mode == AppThemeMode.dark;
+  bool get isDark =>
+      mode == AppThemeMode.dark || mode == AppThemeMode.midnightManuscript;
 
   double get glassContrastProgress {
     if (disableGlassTransparency) {
@@ -71,11 +99,69 @@ class AppAppearanceTheme extends ThemeExtension<AppAppearanceTheme> {
     strength: 0.56,
   );
 
-  Color get backgroundForeground =>
-      isDark && !disableBackground ? const Color(0xFF2A231C) : onSurface;
+  Color get backgroundForeground => isDark && !disableBackground
+      ? (mode == AppThemeMode.midnightManuscript
+            ? const Color(0xFFE1D0AB)
+            : const Color(0xFF2A231C))
+      : onSurface;
 
-  Color get backgroundForegroundSubtle =>
-      isDark && !disableBackground ? const Color(0xFF4F4438) : onSurfaceSubtle;
+  Color get backgroundForegroundSubtle => isDark && !disableBackground
+      ? (mode == AppThemeMode.midnightManuscript
+            ? const Color(0xFF9D8860)
+            : const Color(0xFF4F4438))
+      : onSurfaceSubtle;
+
+  Color get navLabelActive => mode == AppThemeMode.midnightManuscript
+      ? quranArabicEmphasis
+      : mode == AppThemeMode.noorGlass
+      ? quranArabicEmphasis
+      : glassOnSurface;
+
+  Color get navLabelInactive => mode == AppThemeMode.midnightManuscript
+      ? onSurfaceMuted
+      : mode == AppThemeMode.noorGlass
+      ? onSurfaceSubtle
+      : glassOnSurfaceSubtle;
+
+  Color get navActiveFill => mode == AppThemeMode.midnightManuscript
+      ? Color.alphaBlend(accent.withValues(alpha: 0.18), surfaceSoft)
+      : mode == AppThemeMode.noorGlass
+      ? Color.alphaBlend(accent.withValues(alpha: 0.14), surfaceSoft)
+      : accent.withValues(alpha: isDark ? 0.22 : 0.16);
+
+  Color get inputFocus =>
+      mode == AppThemeMode.midnightManuscript || mode == AppThemeMode.noorGlass
+      ? accent
+      : accentSoft;
+
+  Color get chipSelectedFill => mode == AppThemeMode.midnightManuscript
+      ? accent.withValues(alpha: 0.18)
+      : mode == AppThemeMode.noorGlass
+      ? accent.withValues(alpha: 0.15)
+      : accent.withValues(alpha: isDark ? 0.22 : 0.16);
+
+  Color get chipSelectedText =>
+      mode == AppThemeMode.midnightManuscript || mode == AppThemeMode.noorGlass
+      ? quranArabicEmphasis
+      : onSurface;
+
+  Color get chipUnselectedFill => mode == AppThemeMode.midnightManuscript
+      ? inputSurface.withValues(alpha: 0.90)
+      : mode == AppThemeMode.noorGlass
+      ? inputSurface.withValues(alpha: 0.76)
+      : inputSurface;
+
+  Color get outlinedButtonFill => mode == AppThemeMode.midnightManuscript
+      ? surfaceSoft.withValues(alpha: 0.62)
+      : mode == AppThemeMode.noorGlass
+      ? surface.withValues(alpha: 0.34)
+      : surface.withValues(alpha: isDark ? 0.38 : 0.18);
+
+  Color get filledButtonFill => mode == AppThemeMode.midnightManuscript
+      ? Color.alphaBlend(accent.withValues(alpha: 0.20), surfaceSoft)
+      : mode == AppThemeMode.noorGlass
+      ? Color.alphaBlend(accent.withValues(alpha: 0.18), surfaceSoft)
+      : accent;
 
   Color _scaledGlassTextColor(Color color, {double strength = 1.0}) {
     final progress = (glassContrastProgress * strength).clamp(0.0, 1.0);
@@ -103,10 +189,20 @@ class AppAppearanceTheme extends ThemeExtension<AppAppearanceTheme> {
           backgroundAlt: const Color(0xFFE2D8CC),
           surface: const Color(0xFFF5EEE5),
           surfaceSoft: const Color(0xFFECE1D4),
+          inputSurface: const Color(0xFFF7F0E8),
           onSurface: const Color(0xFF3D3025),
           onSurfaceSubtle: const Color(0xFF6D5C4C),
+          onSurfaceMuted: const Color(0xFF8A7865),
           accent: const Color(0xFFDABE8D),
           accentSoft: const Color(0xFFB9955E),
+          border: const Color(0xFFB9955E),
+          divider: const Color(0xFFD7C5AE),
+          success: const Color(0xFFA8C9A8),
+          quranArabicEmphasis: const Color(0xFF4A3720),
+          makkiFill: const Color(0x26A67C2C),
+          makkiBorder: const Color(0xFFA67C2C),
+          madaniFill: const Color(0x22488667),
+          madaniBorder: const Color(0xFF4F8264),
           glassSurfaceAlpha: disableGlassTransparency
               ? 0.96
               : glassSurfaceAlpha,
@@ -122,10 +218,20 @@ class AppAppearanceTheme extends ThemeExtension<AppAppearanceTheme> {
           backgroundAlt: const Color(0xFFE2D8CC),
           surface: const Color(0xFFF5EEE5),
           surfaceSoft: const Color(0xFFECE1D4),
+          inputSurface: const Color(0xFFF7F0E8),
           onSurface: const Color(0xFF3D3025),
           onSurfaceSubtle: const Color(0xFF6D5C4C),
+          onSurfaceMuted: const Color(0xFF8A7865),
           accent: const Color(0xFFDABE8D),
           accentSoft: const Color(0xFFB9955E),
+          border: const Color(0xFFB9955E),
+          divider: const Color(0xFFD7C5AE),
+          success: const Color(0xFFA8C9A8),
+          quranArabicEmphasis: const Color(0xFF4A3720),
+          makkiFill: const Color(0x26A67C2C),
+          makkiBorder: const Color(0xFFA67C2C),
+          madaniFill: const Color(0x22488667),
+          madaniBorder: const Color(0xFF4F8264),
           glassSurfaceAlpha: disableGlassTransparency
               ? 0.96
               : glassSurfaceAlpha,
@@ -141,10 +247,20 @@ class AppAppearanceTheme extends ThemeExtension<AppAppearanceTheme> {
           backgroundAlt: const Color(0xFFE9E2D8),
           surface: const Color(0xFFF8F4ED),
           surfaceSoft: const Color(0xFFEEE6DA),
+          inputSurface: const Color(0xFFF9F5EE),
           onSurface: const Color(0xFF2C221A),
           onSurfaceSubtle: const Color(0xFF4B3D30),
+          onSurfaceMuted: const Color(0xFF6B5B49),
           accent: const Color(0xFFC6AA78),
           accentSoft: const Color(0xFFA48756),
+          border: const Color(0xFFB0915E),
+          divider: const Color(0xFFDACAB0),
+          success: const Color(0xFF98C3A5),
+          quranArabicEmphasis: const Color(0xFF3A2A1E),
+          makkiFill: const Color(0x26A67C2C),
+          makkiBorder: const Color(0xFFA67C2C),
+          madaniFill: const Color(0x22488667),
+          madaniBorder: const Color(0xFF4F8264),
           glassSurfaceAlpha: disableGlassTransparency
               ? 0.98
               : glassSurfaceAlpha,
@@ -160,14 +276,82 @@ class AppAppearanceTheme extends ThemeExtension<AppAppearanceTheme> {
           backgroundAlt: const Color(0xFF1A1C1F),
           surface: const Color(0xFF1D2024),
           surfaceSoft: const Color(0xFF252A30),
+          inputSurface: const Color(0xFF1F2328),
           onSurface: const Color(0xFFEDE5D7),
           onSurfaceSubtle: const Color(0xFFC8BDAA),
+          onSurfaceMuted: const Color(0xFFA49582),
           accent: const Color(0xFFBFA572),
           accentSoft: const Color(0xFF927647),
+          border: const Color(0xFF5E4A28),
+          divider: const Color(0xFF30271A),
+          success: const Color(0xFF89B2A1),
+          quranArabicEmphasis: const Color(0xFFF4E8CC),
+          makkiFill: const Color(0x3A9C6F28),
+          makkiBorder: const Color(0xFFB28C46),
+          madaniFill: const Color(0x333D7E5A),
+          madaniBorder: const Color(0xFF71AE8B),
           glassSurfaceAlpha: disableGlassTransparency
               ? 0.98
               : glassSurfaceAlpha,
           glassBorderAlpha: disableGlassTransparency ? 0.40 : 0.38,
+          disableGlassTransparency: disableGlassTransparency,
+          disableColoredGlass: disableColoredGlass,
+          disableBackground: disableBackground,
+        );
+      case AppThemeMode.noorGlass:
+        return AppAppearanceTheme(
+          mode: mode,
+          background: const Color(0xFFF3EFE8),
+          backgroundAlt: const Color(0xFFE7E0D6),
+          surface: const Color(0xFFF8F4EE),
+          surfaceSoft: const Color(0xFFF1EADF),
+          inputSurface: const Color(0xFFFCF8F2),
+          onSurface: const Color(0xFF372D24),
+          onSurfaceSubtle: const Color(0xFF605244),
+          onSurfaceMuted: const Color(0xFF837463),
+          accent: const Color(0xFFD6BE96),
+          accentSoft: const Color(0xFFB69A73),
+          border: const Color(0xFFD8C7AE),
+          divider: const Color(0xFFE7DBCB),
+          success: const Color(0xFFA7C8BE),
+          quranArabicEmphasis: const Color(0xFF413429),
+          makkiFill: const Color(0x24B48B43),
+          makkiBorder: const Color(0xFFBC9750),
+          madaniFill: const Color(0x2279B2A4),
+          madaniBorder: const Color(0xFF6EA798),
+          glassSurfaceAlpha: disableGlassTransparency
+              ? 0.96
+              : glassSurfaceAlpha.clamp(0.72, 0.82),
+          glassBorderAlpha: disableGlassTransparency ? 0.34 : 0.28,
+          disableGlassTransparency: disableGlassTransparency,
+          disableColoredGlass: disableColoredGlass,
+          disableBackground: disableBackground,
+        );
+      case AppThemeMode.midnightManuscript:
+        return AppAppearanceTheme(
+          mode: mode,
+          background: const Color(0xFF0D1117),
+          backgroundAlt: const Color(0xFF111418),
+          surface: const Color(0xFF111418),
+          surfaceSoft: const Color(0xFF161B22),
+          inputSurface: const Color(0xFF171D25),
+          onSurface: const Color(0xFFE8DCC8),
+          onSurfaceSubtle: const Color(0xFF8A7A5A),
+          onSurfaceMuted: const Color(0xFF6A5C3A),
+          accent: const Color(0xFFC9A84C),
+          accentSoft: const Color(0xFF9E7E2F),
+          border: const Color(0xFF2A2210),
+          divider: const Color(0xFF3A2A0A),
+          success: const Color(0xFF7EB5A6),
+          quranArabicEmphasis: const Color(0xFFF0E4C9),
+          makkiFill: const Color(0x2EB48936),
+          makkiBorder: const Color(0xFFC9A84C),
+          madaniFill: const Color(0x2A7EB5A6),
+          madaniBorder: const Color(0xFF7EB5A6),
+          glassSurfaceAlpha: disableGlassTransparency
+              ? 0.985
+              : glassSurfaceAlpha.clamp(0.84, 0.95),
+          glassBorderAlpha: disableGlassTransparency ? 0.44 : 0.40,
           disableGlassTransparency: disableGlassTransparency,
           disableColoredGlass: disableColoredGlass,
           disableBackground: disableBackground,
@@ -182,10 +366,20 @@ class AppAppearanceTheme extends ThemeExtension<AppAppearanceTheme> {
     Color? backgroundAlt,
     Color? surface,
     Color? surfaceSoft,
+    Color? inputSurface,
     Color? onSurface,
     Color? onSurfaceSubtle,
+    Color? onSurfaceMuted,
     Color? accent,
     Color? accentSoft,
+    Color? border,
+    Color? divider,
+    Color? success,
+    Color? quranArabicEmphasis,
+    Color? makkiFill,
+    Color? makkiBorder,
+    Color? madaniFill,
+    Color? madaniBorder,
     double? glassSurfaceAlpha,
     double? glassBorderAlpha,
     bool? disableGlassTransparency,
@@ -198,10 +392,20 @@ class AppAppearanceTheme extends ThemeExtension<AppAppearanceTheme> {
       backgroundAlt: backgroundAlt ?? this.backgroundAlt,
       surface: surface ?? this.surface,
       surfaceSoft: surfaceSoft ?? this.surfaceSoft,
+      inputSurface: inputSurface ?? this.inputSurface,
       onSurface: onSurface ?? this.onSurface,
       onSurfaceSubtle: onSurfaceSubtle ?? this.onSurfaceSubtle,
+      onSurfaceMuted: onSurfaceMuted ?? this.onSurfaceMuted,
       accent: accent ?? this.accent,
       accentSoft: accentSoft ?? this.accentSoft,
+      border: border ?? this.border,
+      divider: divider ?? this.divider,
+      success: success ?? this.success,
+      quranArabicEmphasis: quranArabicEmphasis ?? this.quranArabicEmphasis,
+      makkiFill: makkiFill ?? this.makkiFill,
+      makkiBorder: makkiBorder ?? this.makkiBorder,
+      madaniFill: madaniFill ?? this.madaniFill,
+      madaniBorder: madaniBorder ?? this.madaniBorder,
       glassSurfaceAlpha: glassSurfaceAlpha ?? this.glassSurfaceAlpha,
       glassBorderAlpha: glassBorderAlpha ?? this.glassBorderAlpha,
       disableGlassTransparency:
@@ -224,12 +428,27 @@ class AppAppearanceTheme extends ThemeExtension<AppAppearanceTheme> {
           Color.lerp(backgroundAlt, other.backgroundAlt, t) ?? backgroundAlt,
       surface: Color.lerp(surface, other.surface, t) ?? surface,
       surfaceSoft: Color.lerp(surfaceSoft, other.surfaceSoft, t) ?? surfaceSoft,
+      inputSurface:
+          Color.lerp(inputSurface, other.inputSurface, t) ?? inputSurface,
       onSurface: Color.lerp(onSurface, other.onSurface, t) ?? onSurface,
       onSurfaceSubtle:
           Color.lerp(onSurfaceSubtle, other.onSurfaceSubtle, t) ??
           onSurfaceSubtle,
+      onSurfaceMuted:
+          Color.lerp(onSurfaceMuted, other.onSurfaceMuted, t) ?? onSurfaceMuted,
       accent: Color.lerp(accent, other.accent, t) ?? accent,
       accentSoft: Color.lerp(accentSoft, other.accentSoft, t) ?? accentSoft,
+      border: Color.lerp(border, other.border, t) ?? border,
+      divider: Color.lerp(divider, other.divider, t) ?? divider,
+      success: Color.lerp(success, other.success, t) ?? success,
+      quranArabicEmphasis:
+          Color.lerp(quranArabicEmphasis, other.quranArabicEmphasis, t) ??
+          quranArabicEmphasis,
+      makkiFill: Color.lerp(makkiFill, other.makkiFill, t) ?? makkiFill,
+      makkiBorder: Color.lerp(makkiBorder, other.makkiBorder, t) ?? makkiBorder,
+      madaniFill: Color.lerp(madaniFill, other.madaniFill, t) ?? madaniFill,
+      madaniBorder:
+          Color.lerp(madaniBorder, other.madaniBorder, t) ?? madaniBorder,
       glassSurfaceAlpha:
           glassSurfaceAlpha + (other.glassSurfaceAlpha - glassSurfaceAlpha) * t,
       glassBorderAlpha:
@@ -271,7 +490,7 @@ class AppTheme {
         : appearance.onSurfaceSubtle;
     final outlineColor = highContrastText
         ? onSurface.withValues(alpha: 0.55)
-        : appearance.accentSoft.withValues(alpha: 0.24);
+        : appearance.divider.withValues(alpha: 0.42);
     final mutedIconColor = highContrastText ? onSurface : onSurfaceSubtle;
     final brightness = appearance.isDark ? Brightness.dark : Brightness.light;
     final localeUiFont = AppFonts.uiFontFamilyForLocale(locale);
@@ -375,24 +594,30 @@ class AppTheme {
         margin: EdgeInsets.zero,
       ),
       navigationBarTheme: NavigationBarThemeData(
-        backgroundColor: appearance.surface.withValues(alpha: 0.80),
+        backgroundColor: appearance.surfaceSoft.withValues(
+          alpha: appearance.mode == AppThemeMode.midnightManuscript
+              ? 0.84
+              : appearance.mode == AppThemeMode.noorGlass
+              ? 0.68
+              : 0.80,
+        ),
         indicatorColor: Colors.transparent,
         iconTheme: WidgetStateProperty.resolveWith((states) {
           if (states.contains(WidgetState.selected)) {
-            return IconThemeData(color: onSurface);
+            return IconThemeData(color: appearance.navLabelActive);
           }
-          return IconThemeData(color: mutedIconColor);
+          return IconThemeData(color: appearance.navLabelInactive);
         }),
         labelTextStyle: WidgetStateProperty.resolveWith((states) {
           if (states.contains(WidgetState.selected)) {
             return TextStyle(
-              color: onSurface,
-              fontWeight: FontWeight.w600,
+              color: appearance.navLabelActive,
+              fontWeight: FontWeight.w700,
               fontFamily: localeUiFont,
             );
           }
           return TextStyle(
-            color: mutedIconColor,
+            color: appearance.navLabelInactive,
             fontWeight: FontWeight.w500,
             fontFamily: localeUiFont,
           );
@@ -412,15 +637,40 @@ class AppTheme {
       ),
       segmentedButtonTheme: SegmentedButtonThemeData(
         style: ButtonStyle(
-          foregroundColor: WidgetStatePropertyAll(onSurface),
+          foregroundColor: WidgetStateProperty.resolveWith((states) {
+            if (states.contains(WidgetState.selected)) {
+              return appearance.chipSelectedText;
+            }
+            if (states.contains(WidgetState.disabled)) {
+              return onSurfaceSubtle.withValues(alpha: 0.50);
+            }
+            return onSurfaceSubtle;
+          }),
           textStyle: WidgetStatePropertyAll(
             TextStyle(fontWeight: FontWeight.w600, fontFamily: localeUiFont),
           ),
+          backgroundColor: WidgetStateProperty.resolveWith((states) {
+            if (states.contains(WidgetState.selected)) {
+              return appearance.chipSelectedFill;
+            }
+            return appearance.chipUnselectedFill.withValues(
+              alpha: appearance.isDark ? 0.76 : 0.88,
+            );
+          }),
+          side: WidgetStateProperty.resolveWith((states) {
+            return BorderSide(
+              color: states.contains(WidgetState.selected)
+                  ? appearance.accent.withValues(alpha: 0.75)
+                  : outlineColor.withValues(alpha: 0.70),
+            );
+          }),
           iconColor: WidgetStateProperty.resolveWith((states) {
             if (states.contains(WidgetState.disabled)) {
               return onSurfaceSubtle.withValues(alpha: 0.55);
             }
-            return onSurface;
+            return states.contains(WidgetState.selected)
+                ? appearance.chipSelectedText
+                : onSurfaceSubtle;
           }),
         ),
       ),
@@ -443,7 +693,7 @@ class AppTheme {
           ),
         ),
         menuStyle: MenuStyle(
-          backgroundColor: WidgetStatePropertyAll(appearance.surface),
+          backgroundColor: WidgetStatePropertyAll(appearance.inputSurface),
           shadowColor: WidgetStatePropertyAll(
             onSurface.withValues(alpha: 0.16),
           ),
@@ -474,6 +724,16 @@ class AppTheme {
           color: onSurfaceSubtle,
           fontFamily: localeUiFont,
         ),
+        fillColor: appearance.inputSurface.withValues(
+          alpha: appearance.mode == AppThemeMode.midnightManuscript
+              ? 0.94
+              : appearance.mode == AppThemeMode.noorGlass
+              ? 0.78
+              : appearance.isDark
+              ? 0.88
+              : 0.92,
+        ),
+        filled: true,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(AppRadii.button),
           borderSide: BorderSide(color: outlineColor),
@@ -485,17 +745,18 @@ class AppTheme {
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(AppRadii.button),
           borderSide: BorderSide(
-            color: highContrastText ? onSurface : appearance.accentSoft,
+            color: highContrastText ? onSurface : appearance.inputFocus,
             width: highContrastText ? 1.6 : 1.2,
           ),
         ),
       ),
       chipTheme: ChipThemeData(
-        backgroundColor: appearance.surface,
+        backgroundColor: appearance.chipUnselectedFill,
+        selectedColor: appearance.chipSelectedFill,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(AppRadii.pill)),
         ),
-        side: BorderSide(color: appearance.accentSoft),
+        side: BorderSide(color: appearance.border.withValues(alpha: 0.88)),
         showCheckmark: false,
         labelStyle: TextStyle(color: onSurface, fontFamily: localeUiFont),
         secondaryLabelStyle: TextStyle(
@@ -509,7 +770,11 @@ class AppTheme {
       ),
       textButtonTheme: TextButtonThemeData(
         style: ButtonStyle(
-          foregroundColor: WidgetStatePropertyAll(onSurface),
+          foregroundColor: WidgetStatePropertyAll(
+            appearance.mode == AppThemeMode.midnightManuscript
+                ? appearance.quranArabicEmphasis
+                : onSurface,
+          ),
           textStyle: WidgetStatePropertyAll(
             TextStyle(fontWeight: FontWeight.w600, fontFamily: localeUiFont),
           ),
@@ -517,7 +782,16 @@ class AppTheme {
       ),
       filledButtonTheme: FilledButtonThemeData(
         style: ButtonStyle(
+          backgroundColor: WidgetStateProperty.resolveWith((states) {
+            if (states.contains(WidgetState.disabled)) {
+              return appearance.filledButtonFill.withValues(alpha: 0.40);
+            }
+            return appearance.filledButtonFill;
+          }),
           foregroundColor: WidgetStatePropertyAll(onSurface),
+          overlayColor: WidgetStatePropertyAll(
+            appearance.accent.withValues(alpha: 0.12),
+          ),
           textStyle: WidgetStatePropertyAll(
             TextStyle(fontWeight: FontWeight.w700, fontFamily: localeUiFont),
           ),
@@ -525,7 +799,29 @@ class AppTheme {
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: ButtonStyle(
+          backgroundColor: WidgetStateProperty.resolveWith((states) {
+            if (states.contains(WidgetState.disabled)) {
+              return appearance.outlinedButtonFill.withValues(alpha: 0.18);
+            }
+            return appearance.outlinedButtonFill;
+          }),
+          side: WidgetStateProperty.resolveWith((states) {
+            return BorderSide(
+              color: states.contains(WidgetState.disabled)
+                  ? outlineColor.withValues(alpha: 0.35)
+                  : appearance.border.withValues(
+                      alpha: appearance.mode == AppThemeMode.midnightManuscript
+                          ? 0.86
+                          : appearance.mode == AppThemeMode.noorGlass
+                          ? 0.74
+                          : 0.64,
+                    ),
+            );
+          }),
           foregroundColor: WidgetStatePropertyAll(onSurface),
+          overlayColor: WidgetStatePropertyAll(
+            appearance.accent.withValues(alpha: 0.08),
+          ),
           textStyle: WidgetStatePropertyAll(
             TextStyle(fontWeight: FontWeight.w600, fontFamily: localeUiFont),
           ),

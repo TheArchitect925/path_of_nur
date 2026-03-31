@@ -260,6 +260,7 @@
   "quranTitle": "Quran",
   "quranSubtitle": "Read • Search • Notes",
   "quranHubTitle": "कुरान",
+  "quranAppHubTitle": "पवित्र क़ुरआन",
   "quranHubSubtitle": "पढ़ने, अध्ययन, याद रखने, शब्दों, विषयों और नोट्स के लिए एक शांत प्रविष्टि।",
   "quranHubJourneysTitle": "यात्रा",
   "quranHubJourneysSubtitle": "जब आप संरचना, निरंतरता और स्पष्ट अगले चरण चाहते हैं तो निर्देशित पथ का अनुसरण करें।",
@@ -724,8 +725,8 @@
   "homeReflectionSubtitle": "Centerpiece message for the day.",
   "homeLevelStreakTitle": "Level and Streak",
   "homeLevelStreakSubtitle": "Growth signals without pressure.",
-  "homeOverviewHeroTitle": "Daily Nur Overview",
-  "homeOverviewHeroSubtitle": "A compact summary of worship, learning, and growth.",
+  "homeOverviewHeroTitle": "दैनिक नूर अवलोकन",
+  "homeOverviewHeroSubtitle": "पूजा, शिक्षा और विकास का एक संक्षिप्त सारांश।",
   "homePrayerProgressTitle": "Salah progress",
   "homeDhikrProgressTitle": "Dhikr progress",
   "homeCurrentStreakTitle": "Current streak",
@@ -1296,66 +1297,66 @@
   "profileSubtitle": "Intention, preferences, and personalization.",
   "profileQuoteTranslation": "Whoever is mindful of الله is guided toward balance and intention.",
   "profileSummarySubtitle": "Keep your intention steady and your settings aligned with ease.",
-  "profileDisplayNameLabel": "Display name",
-  "profileAddressMeAs": "Address me as:",
-  "profileBrother": "Brother",
-  "profileSister": "Sister",
-  "profilePrayerSettingsTitle": "Salah & Salah Time Settings",
-  "profilePrayerSettingsSubtitle": "Set location and calculation preferences for salah.",
-  "profileLocationLabel": "Location",
-  "profileMadhabLabel": "Madhab",
-  "profileCalculationMethodLabel": "Salah calculation method",
-  "profileAppearanceTitle": "Appearance",
-  "profileAppearanceSubtitle": "Visual and atmosphere preferences.",
-  "profileThemeModeLabel": "Theme mode",
+  "profileDisplayNameLabel": "प्रदर्शित होने वाला नाम",
+  "profileAddressMeAs": "मुझे इस प्रकार संबोधित करें:",
+  "profileBrother": "भाई",
+  "profileSister": "बहन",
+  "profilePrayerSettingsTitle": "सलाह और सलाह समय सेटिंग्स",
+  "profilePrayerSettingsSubtitle": "सलाह के लिए स्थान और गणना प्राथमिकताएँ निर्धारित करें।",
+  "profileLocationLabel": "जगह",
+  "profileMadhabLabel": "माधब",
+  "profileCalculationMethodLabel": "सलाह गणना विधि",
+  "profileAppearanceTitle": "उपस्थिति",
+  "profileAppearanceSubtitle": "दृश्य और वातावरण संबंधी प्राथमिकताएँ।",
+  "profileThemeModeLabel": "थीम मोड",
   "profileThemeSystem": "System",
-  "profileThemeDark": "Dark",
+  "profileThemeDark": "अँधेरा",
   "profileThemeLight": "Light",
-  "profileReduceMotion": "Reduce motion effects",
-  "profileHighContrastText": "High contrast text",
+  "profileReduceMotion": "गति प्रभाव कम करें",
+  "profileHighContrastText": "उच्च कंट्रास्ट पाठ",
   "profileModesTitle": "Modes",
   "profileModesSubtitle": "Mode presets to support focus and consistency.",
-  "profileRamadanModeTitle": "Ramadan Mode",
-  "profileRamadanModeSubtitle": "Prioritize fasting rhythm and devotional consistency.",
-  "profileLossModeTitle": "Loss Mode",
-  "profileLossModeSubtitle": "Gentle structure for spiritually heavy days.",
-  "profileGentleModeTitle": "Gentle Mode",
-  "profileGentleModeSubtitle": "Lighter reminders and softer daily expectations.",
-  "profileTrackingPrivacyTitle": "Tracking & Privacy",
-  "profileTrackingPrivacySubtitle": "Controls for reminders, summaries, and data intent.",
-  "profileLocationWhileUsingApp": "Location while using app",
-  "profileLocationEnabledSubtitle": "Enabled for foreground use only.",
-  "profileLocationDisabledSubtitle": "Enable to keep salah times accurate.",
-  "profileOpenSettings": "Open settings",
-  "profileAllow": "Allow",
-  "profilePrivateTrackingModeTitle": "Private tracking mode",
-  "profilePrivateTrackingModeSubtitle": "Keep progress visible only on this device.",
-  "profileMinimalTrackingModeTitle": "Minimal tracking mode",
-  "profileMinimalTrackingModeSubtitle": "Track only key essentials with reduced metrics.",
-  "profileHideGrowthVisualsTitle": "Hide growth visuals",
-  "profileHideGrowthVisualsSubtitle": "Limit streak and level visuals for a quieter experience.",
-  "profileReflectionOnlyModeTitle": "Reflection-only mode",
-  "profileReflectionOnlyModeSubtitle": "Prioritize reminders and notes over progress visuals.",
+  "profileRamadanModeTitle": "रमज़ान मोड",
+  "profileRamadanModeSubtitle": "उपवास की लय और भक्ति संगति को प्राथमिकता दें।",
+  "profileLossModeTitle": "हानि मोड",
+  "profileLossModeSubtitle": "आध्यात्मिक रूप से कठिन दिनों के लिए सौम्य संरचना।",
+  "profileGentleModeTitle": "सौम्य मोड",
+  "profileGentleModeSubtitle": "हल्के अनुस्मारक और नरम दैनिक अपेक्षाएँ।",
+  "profileTrackingPrivacyTitle": "ट्रैकिंग एवं गोपनीयता",
+  "profileTrackingPrivacySubtitle": "अनुस्मारक, सारांश और डेटा आशय के लिए नियंत्रण।",
+  "profileLocationWhileUsingApp": "ऐप का उपयोग करते समय स्थान",
+  "profileLocationEnabledSubtitle": "केवल अग्रभूमि उपयोग के लिए सक्षम।",
+  "profileLocationDisabledSubtitle": "सलाह समय को सटीक रखने में सक्षम करें।",
+  "profileOpenSettings": "खुली सेटिंग",
+  "profileAllow": "अनुमति दें",
+  "profilePrivateTrackingModeTitle": "निजी ट्रैकिंग मोड",
+  "profilePrivateTrackingModeSubtitle": "प्रगति को केवल इस उपकरण पर दृश्यमान रखें।",
+  "profileMinimalTrackingModeTitle": "न्यूनतम ट्रैकिंग मोड",
+  "profileMinimalTrackingModeSubtitle": "कम मेट्रिक्स के साथ केवल प्रमुख आवश्यक चीज़ों को ट्रैक करें।",
+  "profileHideGrowthVisualsTitle": "विकास दृश्य छिपाएँ",
+  "profileHideGrowthVisualsSubtitle": "शांत अनुभव के लिए स्ट्रीक और स्तरीय दृश्यों को सीमित करें।",
+  "profileReflectionOnlyModeTitle": "केवल प्रतिबिंब मोड",
+  "profileReflectionOnlyModeSubtitle": "प्रगति दृश्यों के स्थान पर अनुस्मारक और नोट्स को प्राथमिकता दें।",
   "profileEntrustDeedsTitle": "Entrust deeds",
   "profileEntrustDeedsSubtitle": "A gentle reminder: sincere deeds are with الله.",
-  "profileNotificationsTitle": "Notifications & Reminders",
-  "profileNotificationsSubtitle": "Placeholder controls for future scheduling.",
-  "profilePrayerReminders": "Salah reminders",
-  "profileDhikrReminders": "Dhikr reminders",
-  "profileQuranReminders": "Qur''an reminders",
-  "profileReflectionReminders": "Reflection reminders",
-  "profileFastingReminders": "Fasting reminders",
+  "profileNotificationsTitle": "सूचनाएं एवं अनुस्मारक",
+  "profileNotificationsSubtitle": "भविष्य के शेड्यूल के लिए प्लेसहोल्डर नियंत्रण।",
+  "profilePrayerReminders": "सलाह अनुस्मारक",
+  "profileDhikrReminders": "धिक्कार अनुस्मारक",
+  "profileQuranReminders": "कुरान अनुस्मारक",
+  "profileReflectionReminders": "प्रतिबिंब अनुस्मारक",
+  "profileFastingReminders": "उपवास अनुस्मारक",
   "profileMoonriseReminders": "चंद्रोदय सूचनाएं",
   "profileMoonriseRemindersSubtitle": "जब चंद्रमा उदय हो तो मुझे सूचित करें।",
   "profileMoonsetReminders": "चन्द्रास्त सूचनाएं",
   "profileMoonsetRemindersSubtitle": "जब चंद्रमा अस्त हो तो मुझे सूचित करें.",
-  "profileLanguageExpandTitle": "Language options",
-  "profileLanguageExpandSubtitle": "Select language below",
-  "profileAboutTitle": "About",
-  "profileAboutSubtitle": "Product and app information.",
+  "profileLanguageExpandTitle": "भाषा विकल्प",
+  "profileLanguageExpandSubtitle": "नीचे भाषा चुनें",
+  "profileAboutTitle": "के बारे में",
+  "profileAboutSubtitle": "उत्पाद और ऐप की जानकारी.",
   "profileMissionLine": "A calm spiritual companion built for consistent, sincere growth.",
   "profileVersionPlaceholder": "Version 0.1.7 (placeholder)",
-  "profilePlannedRemindersToday": "{count} planned reminders today",
+  "profilePlannedRemindersToday": "{count} ने आज अनुस्मारक की योजना बनाई",
   "@profilePlannedRemindersToday": {
     "placeholders": {
       "count": {
@@ -1363,24 +1364,24 @@
       }
     }
   },
-  "languageOptionsTitle": "Language Options",
-  "languageOptionsSubtitle": "Choose your app language. Persian options include Farsi, Dari, and Tajik.",
-  "languageEnglish": "English",
-  "languageArabic": "Arabic",
-  "languageIndonesian": "Indonesian",
-  "languageMalay": "Malay",
-  "languageBengali": "Bengali",
-  "languageUrdu": "Urdu",
-  "languageGerman": "German",
-  "languageFarsi": "Persian (Farsi)",
-  "languageDari": "Persian (Dari)",
-  "languageTajik": "Persian (Tajik)",
-  "languageTurkish": "Turkish",
-  "languageHindi": "Hindi",
-  "languagePunjabi": "Punjabi",
-  "languageHausa": "Hausa",
-  "languagePashto": "Pashto",
-  "languageKurdish": "Kurdish",
+  "languageOptionsTitle": "भाषा विकल्प",
+  "languageOptionsSubtitle": "अपनी ऐप भाषा चुनें. फ़ारसी विकल्पों में फ़ारसी, दारी और ताजिक शामिल हैं।",
+  "languageEnglish": "अंग्रेज़ी",
+  "languageArabic": "अरबी",
+  "languageIndonesian": "इन्डोनेशियाई",
+  "languageMalay": "मलायी",
+  "languageBengali": "बंगाली",
+  "languageUrdu": "उर्दू",
+  "languageGerman": "जर्मन",
+  "languageFarsi": "फ़ारसी (फारसी)",
+  "languageDari": "फ़ारसी (दारी)",
+  "languageTajik": "फ़ारसी (ताजिक)",
+  "languageTurkish": "तुर्की",
+  "languageHindi": "हिंदी",
+  "languagePunjabi": "पंजाबी",
+  "languageHausa": "होउसा",
+  "languagePashto": "पश्तो",
+  "languageKurdish": "कुर्द",
   "learnTabQuran": "Quran",
   "learnTabLife": "Life",
   "learnTabWorld": "World",
@@ -2685,7 +2686,7 @@
   "quranSearchNoResults": "No matches found. Try a different keyword.",
   "salahCurrentPrayerBadge": "Current prayer",
   "salahNextPrayerBadge": "Next prayer",
-  "salahNotificationOff": "Off",
+  "salahNotificationOff": "बंद",
   "worshipPrayerNextPrefix": "Next",
   "worshipPrayerUpcomingPrefix": "Upcoming",
   "salahDailyGuideNote": "इसे एक व्यावहारिक दैनिक मार्गदर्शिका के रूप में उपयोग करें। पहले फ़र्ज़ को सुरक्षित रखें, फिर सुन्नत, नफ्ल और वित्र को स्थिरता के साथ बनाएँ।",
@@ -2725,8 +2726,8 @@
   "quranUpdatedContinueReading": "Continue reading was updated.",
   "quranAddNote": "Add note",
   "quranNoteHint": "Write a short reflection",
-  "quranCancel": "Cancel",
-  "quranSave": "Save",
+  "quranCancel": "रद्द करना",
+  "quranSave": "बचाना",
   "quranBookmark": "Bookmark",
   "quranSetContinueReading": "Set as continue reading",
   "quranTapToResume": "Tap to resume",
@@ -2915,8 +2916,8 @@
   "quranTranslationTurkish": "Turkish Translation",
   "quranTranslationDari": "Dari Translation",
   "quranShowArabic": "अरबी पाठ",
-  "quranShowTransliteration": "Transliteration",
-  "quranShowTranslation": "Translation text",
+  "quranShowTransliteration": "लिप्यंतरण",
+  "quranShowTranslation": "अनुवाद पाठ",
   "quranShowLearnMore": "और अधिक जानें",
   "quranShowLearnMoreSubtitle": "वर्तमान अयाह से संबंधित शिक्षण लिंक और ज्ञान दिखाएं।",
   "quranWordTranslationChip": "Word by Word Translation",
@@ -3049,9 +3050,9 @@
   "quranNamesOfAllahTitle": "99 Names of الله",
   "quranNamesOfAllahSubtitle": "Learn each name in Arabic with transliteration and meaning.",
   "quranCleanReadingMode": "Clean mode",
-  "quranArabicTextSize": "Arabic size",
+  "quranArabicTextSize": "अरबी आकार",
   "quranTransliterationTextSize": "लिप्यंतरण आकार",
-  "quranTranslationTextSize": "Translation size",
+  "quranTranslationTextSize": "अनुवाद का आकार",
   "settingsLearningQuranArabicTitle": "कुरान और अरबी",
   "settingsLearningQuranArabicSubtitle": "पढ़ने, सीखने और प्रतिबिंब सतहों पर कुरान की आयतों के लिए एक वैश्विक प्रदर्शन मानक का उपयोग करें।",
   "settingsQuranShowArabicSubtitle": "जहाँ भी छंद प्रदर्शित हों, अरबी कुरान पाठ दिखाएँ।",
@@ -3086,7 +3087,7 @@
   "wallpaperLibraryTitle": "Wallpaper Library",
   "wallpaperLibrarySubtitle": "Unlock and select wallpapers through growth.",
   "wallpaperSelected": "Selected",
-  "wallpaperApply": "Apply",
+  "wallpaperApply": "आवेदन करना",
   "kidsModeTitle": "Kids Mode",
   "kidsModeSubtitle": "Simpler wording and gentler guidance for younger users.",
   "kidsHomeHint": "Kids mode is active with simpler guidance and gentle next steps.",
@@ -6528,9 +6529,9 @@
       }
     }
   },
-  "settingsCurrentLocation": "Current location",
-  "settingsProfilePersonalizationTitle": "Profile & Personalization",
-  "settingsProfilePersonalizationSubtitle": "Keep your name, address preference, modes, and profile-related shortcuts here now that Profile is no longer a top-level tab.",
+  "settingsCurrentLocation": "वर्तमान स्थान",
+  "settingsProfilePersonalizationTitle": "प्रोफ़ाइल एवं वैयक्तिकरण",
+  "settingsProfilePersonalizationSubtitle": "अब अपना नाम, पता प्राथमिकता, मोड और प्रोफ़ाइल-संबंधित शॉर्टकट यहां रखें क्योंकि प्रोफ़ाइल अब शीर्ष-स्तरीय टैब नहीं है।",
   "settingsProfileDisplayNameSummary": "{title} {name}",
   "@settingsProfileDisplayNameSummary": {
     "placeholders": {
@@ -6553,10 +6554,10 @@
       }
     }
   },
-  "settingsWhatsNewTitle": "What''s new",
-  "settingsWhatsNewSubtitle": "See the latest app changes and earlier updates.",
-  "settingsComingSoonTitle": "Coming soon",
-  "settingsComingSoonSubtitle": "Preview the next improvements planned for the app.",
+  "settingsWhatsNewTitle": "नया क्या है",
+  "settingsWhatsNewSubtitle": "नवीनतम ऐप परिवर्तन और पहले के अपडेट देखें।",
+  "settingsComingSoonTitle": "जल्द आ रहा है",
+  "settingsComingSoonSubtitle": "ऐप के लिए नियोजित अगले सुधारों का पूर्वावलोकन करें।",
   "shellQuranPlaybackPauseTooltip": "क़ुरआन प्लेबैक रोकें",
   "shellQuranPlaybackResumeTooltip": "क़ुरआन प्लेबैक फिर शुरू करें",
   "profileWhatsNewChangelogTitle": "परिवर्तन सूची",
@@ -6595,15 +6596,15 @@
   "profileComingSoonCard3Description": "lock screen और Dynamic Island के लिए और polish, अधिक सुसंगत प्रस्तुति और स्थिर display options के साथ।",
   "profileComingSoonCard4Title": "और सहज personalization",
   "profileComingSoonCard4Description": "अधिक वैकल्पिक onboarding और profile controls की योजना है ताकि ऐप बिना भारी लगे उपयोगकर्ता के अनुसार ढल सके।",
-  "settingsAccountsSyncTitle": "Accounts, Profiles & Sync",
-  "settingsAccountsSyncSubtitle": "Manage shared devices, protected profiles, sync mode, and backups without disturbing your current journey.",
-  "settingsCurrentProfileTitle": "Current Profile",
-  "settingsNoProfileSelected": "No profile selected",
-  "settingsSyncStatusTitle": "Sync Status",
-  "settingsBackupRestoreTitle": "Backup & Restore",
-  "settingsBackupRecommended": "Backup recommended",
-  "settingsNoManualBackupYet": "No manual backup yet",
-  "settingsLastExportRecorded": "Last export recorded",
+  "settingsAccountsSyncTitle": "खाते, प्रोफ़ाइल और सिंक",
+  "settingsAccountsSyncSubtitle": "अपनी वर्तमान यात्रा में खलल डाले बिना साझा किए गए डिवाइस, संरक्षित प्रोफाइल, सिंक मोड और बैकअप प्रबंधित करें।",
+  "settingsCurrentProfileTitle": "वर्तमान प्रोफ़ाइल",
+  "settingsNoProfileSelected": "कोई प्रोफ़ाइल चयनित नहीं",
+  "settingsSyncStatusTitle": "सिंक स्थिति",
+  "settingsBackupRestoreTitle": "बैकअप और पुनर्स्थापना",
+  "settingsBackupRecommended": "बैकअप की अनुशंसा की गई",
+  "settingsNoManualBackupYet": "अभी तक कोई मैन्युअल बैकअप नहीं है",
+  "settingsLastExportRecorded": "अंतिम निर्यात दर्ज किया गया",
   "accountsSyncCurrentProfileSectionSubtitle": "देखें कि अभी कौन सक्रिय है और यह प्रोफ़ाइल कैसे सुरक्षित है।",
   "accountsSyncNoActiveProfileTitle": "कोई सक्रिय प्रोफ़ाइल नहीं",
   "accountsSyncChooseProfileToBegin": "शुरू करने के लिए एक प्रोफ़ाइल चुनें।",
@@ -6881,13 +6882,13 @@
   "accountsSyncDevicePlatformAndroidTablet": "Android टैबलेट",
   "accountsSyncDevicePlatformWearOsWatch": "Wear OS घड़ी",
   "accountsSyncDevicePlatformAndroidTv": "Android TV",
-  "settingsAdhanTitle": "Adhan",
-  "settingsAdhanSubtitle": "Choose a dedicated Fajr Adhan, preview the bundled clips, and keep prayer audio offline.",
-  "settingsEnableAdhanAudioTitle": "Enable Adhan audio",
-  "settingsEnableAdhanAudioSubtitle": "Salah reminders can play the selected Adhan when this is on.",
-  "settingsRegularAdhanTitle": "Regular Adhan",
-  "settingsFajrAdhanTitle": "Fajr Adhan",
-  "settingsPreviewVolumeTitle": "Preview & volume",
+  "settingsAdhanTitle": "अज़ान",
+  "settingsAdhanSubtitle": "एक समर्पित फज्र अज़ान चुनें, बंडल किए गए क्लिप का पूर्वावलोकन करें, और प्रार्थना ऑडियो ऑफ़लाइन रखें।",
+  "settingsEnableAdhanAudioTitle": "Adhan ऑडियो सक्षम करें",
+  "settingsEnableAdhanAudioSubtitle": "सलाह अनुस्मारक इसके चालू होने पर चयनित अज़ान चला सकते हैं।",
+  "settingsRegularAdhanTitle": "नियमित अज़ान",
+  "settingsFajrAdhanTitle": "फज्र अज़ान",
+  "settingsPreviewVolumeTitle": "पूर्वावलोकन और वॉल्यूम",
   "settingsPercentValue": "{value}%",
   "@settingsPercentValue": {
     "placeholders": {
@@ -6902,112 +6903,112 @@
   "settingsAdhanPickerRegularSubtitle": "ज़ुहर, अस्र, मग़रिब और इशा के लिए उपयोग होता है।",
   "settingsAdhanPreviewStopTooltip": "पूर्वावलोकन रोकें",
   "settingsAdhanPreviewPlayTooltip": "पूर्वावलोकन चलाएँ",
-  "settingsTestRegularAdhan": "Test Regular Adhan",
-  "settingsTestFajrAdhan": "Test Fajr Adhan",
-  "settingsUseAppVolumeTitle": "Use App Volume",
-  "settingsUseAppVolumeSubtitle": "Keep preview playback aligned with the app volume level.",
-  "settingsAdhanPreviewVolume": "Adhan preview volume",
-  "settingsUsingAppVolume": "Using app volume",
-  "settingsRestoreDefaultAdhanSettings": "Restore Default Adhan Settings",
-  "settingsMadhabShafii": "Shafi''i",
-  "settingsMadhabHanafi": "Hanafi",
-  "settingsMadhabMaliki": "Maliki",
-  "settingsMadhabHanbali": "Hanbali",
-  "settingsCalculationMethodMuslimWorldLeague": "Muslim World League",
-  "settingsCalculationMethodEgyptian": "Egyptian",
+  "settingsTestRegularAdhan": "नियमित अज़ान का परीक्षण करें",
+  "settingsTestFajrAdhan": "फज्र अज़ान का परीक्षण करें",
+  "settingsUseAppVolumeTitle": "ऐप वॉल्यूम का उपयोग करें",
+  "settingsUseAppVolumeSubtitle": "पूर्वावलोकन प्लेबैक को ऐप वॉल्यूम स्तर के साथ संरेखित रखें।",
+  "settingsAdhanPreviewVolume": "अज़ान पूर्वावलोकन मात्रा",
+  "settingsUsingAppVolume": "ऐप वॉल्यूम का उपयोग करना",
+  "settingsRestoreDefaultAdhanSettings": "डिफ़ॉल्ट Adhan सेटिंग्स को पुनर्स्थापित करें",
+  "settingsMadhabShafii": "शफी''ई",
+  "settingsMadhabHanafi": "हनाफी",
+  "settingsMadhabMaliki": "मलीकी",
+  "settingsMadhabHanbali": "हनबली",
+  "settingsCalculationMethodMuslimWorldLeague": "मुस्लिम वर्ल्ड लीग",
+  "settingsCalculationMethodEgyptian": "मिस्र के",
   "settingsCalculationMethodIsna": "ISNA",
-  "settingsCalculationMethodKarachi": "Karachi",
-  "settingsCalculationMethodUmmAlQura": "Umm Al-Qura",
-  "settingsStableDynamicIslandTitle": "Stable Dynamic Island",
-  "settingsStableDynamicIslandSubtitle": "Keep the prayer Dynamic Island in a calmer, fixed layout.",
-  "settingsStableLockScreenWidgetTitle": "Stable Lock Screen Widget",
-  "settingsStableLockScreenWidgetSubtitle": "Keep the prayer lock screen Live Activity in a calmer, fixed layout.",
-  "settingsThemeChoiceDefault": "Default",
-  "settingsThemeChoiceEasyRead": "Easy Read",
-  "settingsThemeChangedSuccessfully": "Theme changed successfully",
-  "settingsVisualPreferencesTitle": "Visual Preferences",
-  "settingsDisableGlassTransparencyTitle": "Disable Glass Transparency",
-  "settingsDisableGlassTransparencySubtitle": "Use solid surfaces instead of translucent glass.",
+  "settingsCalculationMethodKarachi": "कराची",
+  "settingsCalculationMethodUmmAlQura": "उम्म अल-क़ुरा",
+  "settingsStableDynamicIslandTitle": "स्थिर गतिशील द्वीप",
+  "settingsStableDynamicIslandSubtitle": "प्रार्थना डायनेमिक आइलैंड को शांत, निश्चित लेआउट में रखें।",
+  "settingsStableLockScreenWidgetTitle": "स्थिर लॉक स्क्रीन विजेट",
+  "settingsStableLockScreenWidgetSubtitle": "प्रार्थना लॉक स्क्रीन लाइव गतिविधि को शांत, निश्चित लेआउट में रखें।",
+  "settingsThemeChoiceDefault": "गलती करना",
+  "settingsThemeChoiceEasyRead": "पढ़ने में आसान",
+  "settingsThemeChangedSuccessfully": "थीम सफलतापूर्वक बदल दी गई",
+  "settingsVisualPreferencesTitle": "दृश्य प्राथमिकताएँ",
+  "settingsDisableGlassTransparencyTitle": "ग्लास पारदर्शिता अक्षम करें",
+  "settingsDisableGlassTransparencySubtitle": "पारभासी कांच के स्थान पर ठोस सतहों का उपयोग करें।",
   "settingsDisableColoredGlassTitle": "रंगीन ग्लास अक्षम करें",
   "settingsDisableColoredGlassSubtitle": "रंगे हुए रंग उपचार को हटाते समय कांच की सतहों को रखें।",
   "settingsGlassTransparencyTitle": "कांच की पारदर्शिता",
   "settingsGlassTransparencySubtitle": "समायोजित करें कि ऐप में पारभासी ग्लास कार्ड, द्वीप, गोलियाँ और पैनल कैसे दिखाई देंगे।",
   "settingsGlassTransparencyDisabledSubtitle": "पारदर्शिता को फिर से समायोजित करने के लिए ग्लास को वापस चालू करें।",
-  "settingsVisualPreferenceUpdated": "Visual preference updated",
-  "settingsDisableBackgroundTitle": "Disable Background",
-  "settingsDisableBackgroundSubtitle": "Hide decorative background imagery for a cleaner view.",
-  "settingsAppearanceNoContentChangeNote": "These settings change the look of the app without changing your content or progress.",
-  "settingsDefaultAppearanceActive": "Default appearance active",
-  "settingsAppearanceResetToDefault": "Appearance reset to default",
-  "settingsResetAppearance": "Reset Appearance",
-  "settingsPrayerNotificationsTitle": "Salah Notifications",
-  "settingsPrayerNotificationsSubtitle": "Keep all salah reminder behavior in one place, with one mode for each salah.",
-  "settingsPrayerRemindersToggleSubtitle": "Turn all salah reminders on or off without changing your saved per-salah modes.",
-  "settingsPrayerTimeModeTitle": "Salah Time Mode",
-  "settingsPrayerTimeModeSubtitle": "Choose how Path of Nūr handles your salah schedule. Most users should keep calculated salah times and apply small adjustments if needed.",
-  "settingsPrayerTimeModeCalculatedAdjustedTitle": "Calculated Times + Adjustments",
-  "settingsPrayerTimeModeCalculatedAdjustedDescription": "Best for most users. Path of Nūr calculates salah times for your location and method each day, then applies your saved per-salah adjustments automatically.",
-  "settingsPrayerTimeModeManualTitle": "Fully Manual Salah Times",
-  "settingsPrayerTimeModeManualDescription": "Use exact salah times that you enter yourself. This overrides normal daily salah calculation for tracked salah times and should only be used if you intentionally want a fixed manual schedule.",
-  "settingsManualTimesPrefilledFromToday": "Manual times were prefilled from today''s active prayer schedule.",
-  "settingsPrayerTimeModeManualNote": "Manual mode is an advanced option. If your local salah times change seasonally, you may need to update them yourself.",
-  "settingsRecommendedBadge": "Recommended",
-  "settingsPrayerTimeAdjustmentsTitle": "Salah Time Adjustments",
-  "settingsPrayerTimeAdjustmentsSubtitle": "Fine-tune your calculated salah times by a few minutes. Path of Nūr will continue calculating salah times normally for your location and method, then apply your saved adjustments automatically.",
-  "settingsPrayerTimeAdjustmentsExample": "If Fajr is calculated as 5:00 AM and you change it to 4:55 AM, the app saves a -5 minute adjustment for Fajr. Future Fajr salah times will also use that same saved adjustment.",
-  "settingsPrayerTimeAdjustmentsScope": "Your adjustments are used across the app for salah display, reminders, countdowns, and daily salah tracking.",
-  "settingsCustomAdjustmentsActive": "Custom adjustments active",
-  "settingsResetAllAdjustmentsTitle": "Reset all adjustments?",
-  "settingsResetAllAdjustmentsBody": "This will return Fajr, Dhuhr, Asr, Maghrib, and Isha to their calculated times.",
-  "settingsResetAllAdjustments": "Reset All Adjustments",
-  "settingsResetAdjustmentsNote": "Resetting removes all saved offsets and returns each salah to its calculated time.",
-  "settingsManualPrayerTimesTitle": "Manual Salah Times",
-  "settingsManualPrayerTimesSubtitle": "These manual times will be used across the app for reminders, countdowns, and salah tracking while manual mode is active.",
-  "settingsUseTodaysCalculatedTimes": "Use Today''s Calculated Times",
-  "settingsResetManualTimes": "Reset Manual Times",
-  "settingsReturnToRecommendedMode": "Return to Recommended Mode",
-  "settingsMosqueTimeComparisonTitle": "Masjid Time Comparison",
-  "settingsMosqueTimeComparisonSubtitle": "Compare your local masjid timetable with Path of Nūr''s calculated and adjusted prayer times. This stays local and helps you review how close your current adjustments are.",
-  "settingsApplySuggestedAdjustments": "Apply Suggested Adjustments",
-  "settingsJumuahSettingsTitle": "Jumu''ah Settings",
-  "settingsJumuahSettingsSubtitle": "Use a Friday-specific reminder time if your Jumu''ah timing differs from standard Dhuhr.",
-  "settingsEnableJumuahOverrideTitle": "Enable Jumu''ah override",
-  "settingsEnableJumuahOverrideSubtitle": "Use a dedicated Friday midday reminder without changing the tracked prayer schedule.",
-  "settingsJumuahTimeTitle": "Jumu''ah time",
-  "settingsJumuahTimeSubtitle": "Used for Friday reminder behavior when selected.",
-  "settingsNotSet": "Not set",
-  "settingsUnavailable": "Unavailable",
-  "settingsNoChange": "No change",
-  "settingsModified": "Modified",
-  "settingsApplySuggestedAdjustmentsTitle": "Apply Suggested Adjustments",
-  "settingsApplySuggestedAdjustmentsSubtitle": "Review the proposed offsets before replacing your current calculated-time adjustments.",
-  "settingsPrayerAdjustmentEditorFutureUseNote": "This adjustment will be applied to future calculated salah times for this salah as well.",
-  "settingsResetThisPrayer": "Reset this salah",
-  "settingsFridayReminderModeNormalDhuhr": "Normal Dhuhr timing",
-  "settingsFridayReminderModeCustomJumuah": "Custom Jumu''ah time",
-  "settingsPrayerNameFajr": "Fajr",
+  "settingsVisualPreferenceUpdated": "दृश्य प्राथमिकता अद्यतन की गई",
+  "settingsDisableBackgroundTitle": "पृष्ठभूमि अक्षम करें",
+  "settingsDisableBackgroundSubtitle": "स्वच्छ दृश्य के लिए सजावटी पृष्ठभूमि इमेजरी छिपाएँ।",
+  "settingsAppearanceNoContentChangeNote": "ये सेटिंग्स आपकी सामग्री या प्रगति को बदले बिना ऐप का स्वरूप बदल देती हैं।",
+  "settingsDefaultAppearanceActive": "डिफ़ॉल्ट उपस्थिति सक्रिय",
+  "settingsAppearanceResetToDefault": "उपस्थिति डिफ़ॉल्ट पर रीसेट हो गई",
+  "settingsResetAppearance": "उपस्थिति रीसेट करें",
+  "settingsPrayerNotificationsTitle": "सलाह अधिसूचनाएँ",
+  "settingsPrayerNotificationsSubtitle": "प्रत्येक सलाह के लिए एक मोड के साथ, सभी सलाह अनुस्मारक व्यवहार को एक ही स्थान पर रखें।",
+  "settingsPrayerRemindersToggleSubtitle": "अपने सहेजे गए प्रति-सलाह मोड को बदले बिना सभी सलाह अनुस्मारक चालू या बंद करें।",
+  "settingsPrayerTimeModeTitle": "सलाह समय मोड",
+  "settingsPrayerTimeModeSubtitle": "चुनें कि पाथ ऑफ़ नूर आपके सलाह शेड्यूल को कैसे संभालता है। अधिकांश उपयोगकर्ताओं को सलाहा समय की गणना करनी चाहिए और यदि आवश्यक हो तो छोटे समायोजन लागू करने चाहिए।",
+  "settingsPrayerTimeModeCalculatedAdjustedTitle": "परिकलित समय + समायोजन",
+  "settingsPrayerTimeModeCalculatedAdjustedDescription": "अधिकांश उपयोगकर्ताओं के लिए सर्वोत्तम. पाथ ऑफ नूर प्रत्येक दिन आपके स्थान और विधि के लिए सलाह समय की गणना करता है, फिर आपके सहेजे गए प्रति-सलाह समायोजन को स्वचालित रूप से लागू करता है।",
+  "settingsPrayerTimeModeManualTitle": "पूरी तरह से मैनुअल सलाह टाइम्स",
+  "settingsPrayerTimeModeManualDescription": "सटीक सलाहा समय का उपयोग करें जिसे आप स्वयं दर्ज करते हैं। यह ट्रैक किए गए सलाहा समय के लिए सामान्य दैनिक सलाह गणना को ओवरराइड करता है और इसका उपयोग केवल तभी किया जाना चाहिए यदि आप जानबूझकर एक निश्चित मैनुअल शेड्यूल चाहते हैं।",
+  "settingsManualTimesPrefilledFromToday": "आज के सक्रिय प्रार्थना कार्यक्रम से मैनुअल समय पहले से भरा हुआ था।",
+  "settingsPrayerTimeModeManualNote": "मैनुअल मोड एक उन्नत विकल्प है. यदि आपके स्थानीय सलाह का समय मौसमी रूप से बदलता है, तो आपको उन्हें स्वयं अपडेट करने की आवश्यकता हो सकती है।",
+  "settingsRecommendedBadge": "अनुशंसित",
+  "settingsPrayerTimeAdjustmentsTitle": "सलाह समय समायोजन",
+  "settingsPrayerTimeAdjustmentsSubtitle": "अपने गणना किए गए सलाहा समय को कुछ मिनटों तक ठीक करें। नूर का पथ आपके स्थान और विधि के लिए सामान्य रूप से सलाह समय की गणना करना जारी रखेगा, फिर आपके सहेजे गए समायोजन स्वचालित रूप से लागू होंगे।",
+  "settingsPrayerTimeAdjustmentsExample": "यदि फज्र की गणना सुबह 5:00 बजे की जाती है और आप इसे 4:55 पूर्वाह्न में बदलते हैं, तो ऐप फज्र के लिए -5 मिनट का समायोजन बचाता है। भविष्य में फज्र सलाह के समय भी उसी सहेजे गए समायोजन का उपयोग किया जाएगा।",
+  "settingsPrayerTimeAdjustmentsScope": "आपके समायोजन का उपयोग पूरे ऐप में सलाह प्रदर्शन, अनुस्मारक, उलटी गिनती और दैनिक सलाह ट्रैकिंग के लिए किया जाता है।",
+  "settingsCustomAdjustmentsActive": "कस्टम समायोजन सक्रिय",
+  "settingsResetAllAdjustmentsTitle": "सभी समायोजन रीसेट करें?",
+  "settingsResetAllAdjustmentsBody": "यह फज्र, धूहर, अस्र, मगरिब और ईशा को उनकी गणना के समय पर लौटा देगा।",
+  "settingsResetAllAdjustments": "सभी समायोजन रीसेट करें",
+  "settingsResetAdjustmentsNote": "रीसेट करने से सभी सहेजे गए ऑफ़सेट हट जाते हैं और प्रत्येक सलाह को उसके परिकलित समय पर लौटा दिया जाता है।",
+  "settingsManualPrayerTimesTitle": "मैनुअल सलाह टाइम्स",
+  "settingsManualPrayerTimesSubtitle": "मैन्युअल मोड सक्रिय होने पर इन मैन्युअल समय का उपयोग अनुस्मारक, उलटी गिनती और सलाह ट्रैकिंग के लिए ऐप में किया जाएगा।",
+  "settingsUseTodaysCalculatedTimes": "आज के परिकलित समय का उपयोग करें",
+  "settingsResetManualTimes": "मैनुअल टाइम्स रीसेट करें",
+  "settingsReturnToRecommendedMode": "अनुशंसित मोड पर लौटें",
+  "settingsMosqueTimeComparisonTitle": "मस्जिद समय तुलना",
+  "settingsMosqueTimeComparisonSubtitle": "पाथ ऑफ नूर की गणना और समायोजित प्रार्थना समय के साथ अपनी स्थानीय मस्जिद समय सारिणी की तुलना करें। यह स्थानीय रहता है और आपको यह समीक्षा करने में मदद करता है कि आपके वर्तमान समायोजन कितने करीब हैं।",
+  "settingsApplySuggestedAdjustments": "सुझाए गए समायोजन लागू करें",
+  "settingsJumuahSettingsTitle": "जुमुआ सेटिंग्स",
+  "settingsJumuahSettingsSubtitle": "यदि आपके जुमे का समय मानक धुहर से भिन्न है तो शुक्रवार-विशिष्ट अनुस्मारक समय का उपयोग करें।",
+  "settingsEnableJumuahOverrideTitle": "जुमुआ ओवरराइड सक्षम करें",
+  "settingsEnableJumuahOverrideSubtitle": "ट्रैक किए गए प्रार्थना कार्यक्रम को बदले बिना एक समर्पित शुक्रवार दोपहर अनुस्मारक का उपयोग करें।",
+  "settingsJumuahTimeTitle": "जुमे का समय",
+  "settingsJumuahTimeSubtitle": "चयनित होने पर शुक्रवार अनुस्मारक व्यवहार के लिए उपयोग किया जाता है।",
+  "settingsNotSet": "सेट नहीं",
+  "settingsUnavailable": "अनुपलब्ध",
+  "settingsNoChange": "कोई परिवर्तन नहीं होता है",
+  "settingsModified": "संशोधित",
+  "settingsApplySuggestedAdjustmentsTitle": "सुझाए गए समायोजन लागू करें",
+  "settingsApplySuggestedAdjustmentsSubtitle": "अपने वर्तमान परिकलित-समय समायोजनों को बदलने से पहले प्रस्तावित ऑफसेट की समीक्षा करें।",
+  "settingsPrayerAdjustmentEditorFutureUseNote": "यह समायोजन इस सलाह के लिए भविष्य में गणना किए गए सलाहा समय पर भी लागू किया जाएगा।",
+  "settingsResetThisPrayer": "इस सलाह को रीसेट करें",
+  "settingsFridayReminderModeNormalDhuhr": "सामान्य धुहर समय",
+  "settingsFridayReminderModeCustomJumuah": "कस्टम जुमे का समय",
+  "settingsPrayerNameFajr": "फज्र",
   "settingsPrayerNameJumuah": "जुमुआ",
-  "settingsPrayerNameDhuhr": "Dhuhr",
-  "settingsPrayerNameAsr": "Asr",
-  "settingsPrayerNameMaghrib": "Maghrib",
-  "settingsPrayerNameIsha": "Isha",
-  "settingsNotificationModeNotification": "Notification",
-  "settingsNotificationModeAdhan": "Adhan",
-  "settingsNotificationModeBeforeQaza": "Before qaza",
-  "settingsAttributionsLicensesTitle": "Attributions & Licenses",
-  "settingsSyncModePathOfNurCloud": "Path of Nūr Cloud",
+  "settingsPrayerNameDhuhr": "धुहर",
+  "settingsPrayerNameAsr": "अस्र",
+  "settingsPrayerNameMaghrib": "मग़रिब",
+  "settingsPrayerNameIsha": "ईशा",
+  "settingsNotificationModeNotification": "अधिसूचना",
+  "settingsNotificationModeAdhan": "अज़ान",
+  "settingsNotificationModeBeforeQaza": "क़ज़ा से पहले",
+  "settingsAttributionsLicensesTitle": "गुण और लाइसेंस",
+  "settingsSyncModePathOfNurCloud": "नूर बादल का पथ",
   "settingsSyncModeICloud": "iCloud",
-  "settingsSyncModeLocalOnly": "Local only",
-  "settingsSyncModeManualBackupOnly": "Manual backup only",
-  "settingsSyncStateAllCaughtUp": "All caught up",
-  "settingsSyncStateSyncing": "Syncing",
-  "settingsSyncStateOfflinePending": "Offline with pending changes",
-  "settingsSyncStateNeedsAttention": "Needs attention",
-  "settingsSyncStateLocalOnly": "Local only",
-  "settingsSyncStateICloudActive": "iCloud active",
-  "settingsThemeModeDefaultDescription": "The default Path of Nūr look with a soft, elegant feel and gentle depth.",
-  "settingsThemeModeEasyReadDescription": "Cleaner surfaces and stronger contrast for focused reading. Recommended for longer reading sessions.",
-  "settingsThemeModeDarkDescription": "A calm low-light appearance for night use. Recommended for low-light environments.",
+  "settingsSyncModeLocalOnly": "केवल स्थानीय",
+  "settingsSyncModeManualBackupOnly": "केवल मैन्युअल बैकअप",
+  "settingsSyncStateAllCaughtUp": "सारी जानकारी प्राप्त",
+  "settingsSyncStateSyncing": "सिंक्रनाइज़ किए जा रहे",
+  "settingsSyncStateOfflinePending": "लंबित परिवर्तनों के साथ ऑफ़लाइन",
+  "settingsSyncStateNeedsAttention": "ध्यान देने की जरूरत है",
+  "settingsSyncStateLocalOnly": "केवल स्थानीय",
+  "settingsSyncStateICloudActive": "आईक्लाउड सक्रिय",
+  "settingsThemeModeDefaultDescription": "नूर का डिफ़ॉल्ट पथ नरम, सुरुचिपूर्ण अनुभव और कोमल गहराई के साथ दिखता है।",
+  "settingsThemeModeEasyReadDescription": "केंद्रित पढ़ने के लिए साफ़ सतहें और मजबूत कंट्रास्ट। लंबे समय तक पढ़ने के सत्र के लिए अनुशंसित।",
+  "settingsThemeModeDarkDescription": "रात में उपयोग के लिए एक शांत कम रोशनी वाली उपस्थिति। कम रोशनी वाले वातावरण के लिए अनुशंसित।",
   "settingsCurrentProfileSummary": "{name} • {syncMode}",
   "@settingsCurrentProfileSummary": {
     "placeholders": {
@@ -7019,7 +7020,7 @@
       }
     }
   },
-  "settingsSyncStatusSummary": "{count} pending • {syncState}",
+  "settingsSyncStatusSummary": "{count} लंबित • {syncState}",
   "@settingsSyncStatusSummary": {
     "placeholders": {
       "count": {
@@ -7030,7 +7031,7 @@
       }
     }
   },
-  "settingsMosqueTimeLabel": "Masjid: {time}",
+  "settingsMosqueTimeLabel": "मस्जिद: {time}",
   "@settingsMosqueTimeLabel": {
     "placeholders": {
       "time": {
@@ -7038,7 +7039,7 @@
       }
     }
   },
-  "settingsCalculatedTimeLabel": "Calculated: {time}",
+  "settingsCalculatedTimeLabel": "परिकलित: {time}",
   "@settingsCalculatedTimeLabel": {
     "placeholders": {
       "time": {
@@ -7046,7 +7047,7 @@
       }
     }
   },
-  "settingsAdjustmentValueLabel": "Adjustment: {value}",
+  "settingsAdjustmentValueLabel": "समायोजन: {value}",
   "@settingsAdjustmentValueLabel": {
     "placeholders": {
       "value": {
@@ -7054,7 +7055,7 @@
       }
     }
   },
-  "settingsEffectiveTimeLabel": "Effective: {time}",
+  "settingsEffectiveTimeLabel": "प्रभावी: {time}",
   "@settingsEffectiveTimeLabel": {
     "placeholders": {
       "time": {
@@ -7062,7 +7063,7 @@
       }
     }
   },
-  "settingsDifferenceValueLabel": "Difference: {value}",
+  "settingsDifferenceValueLabel": "अंतर: {value}",
   "@settingsDifferenceValueLabel": {
     "placeholders": {
       "value": {
@@ -7078,7 +7079,7 @@
       }
     }
   },
-  "settingsBaseTimeLabel": "Base: {time}",
+  "settingsBaseTimeLabel": "आधार: {time}",
   "@settingsBaseTimeLabel": {
     "placeholders": {
       "time": {
@@ -7086,7 +7087,7 @@
       }
     }
   },
-  "settingsFinalTimeLabel": "Final: {time}",
+  "settingsFinalTimeLabel": "अंतिम: {time}",
   "@settingsFinalTimeLabel": {
     "placeholders": {
       "time": {
@@ -7094,7 +7095,7 @@
       }
     }
   },
-  "settingsPrayerAdjustmentEditorBaseCalculatedTime": "Base calculated time: {time}",
+  "settingsPrayerAdjustmentEditorBaseCalculatedTime": "आधार गणना समय: {time}",
   "@settingsPrayerAdjustmentEditorBaseCalculatedTime": {
     "placeholders": {
       "time": {
@@ -7102,7 +7103,7 @@
       }
     }
   },
-  "settingsPrayerAdjustmentEditorCurrentAdjustment": "Current adjustment: {value}",
+  "settingsPrayerAdjustmentEditorCurrentAdjustment": "वर्तमान समायोजन: {value}",
   "@settingsPrayerAdjustmentEditorCurrentAdjustment": {
     "placeholders": {
       "value": {
@@ -7124,7 +7125,7 @@
       }
     }
   },
-  "settingsPrayerAdjustmentEditorFinalEffectiveTime": "Final effective time: {time}",
+  "settingsPrayerAdjustmentEditorFinalEffectiveTime": "अंतिम प्रभावी समय: {time}",
   "@settingsPrayerAdjustmentEditorFinalEffectiveTime": {
     "placeholders": {
       "time": {
@@ -13980,10 +13981,10 @@
   "learnDailyWisdomEntrySpeechTitle": "Speech reveals what the heart is carrying",
   "learnDailyWisdomEntrySpeechBody": "Words can heal, expose ego, or deepen tension in seconds. Good speech is not only true; it is timely, measured, and merciful.",
   "learnDailyWisdomEntrySpeechStep": "Before one difficult conversation today, decide the first gentle sentence you want to begin with.",
-  "quranLearningPathsTitle": "Qur''an Learning Paths",
-  "quranLearningPathsSubtitle": "Follow a calm guided path through reading, themes, reflection, memorization, and surah study.",
-  "quranLearningPathsHubSubtitle": "Follow guided routes through reading, themes, reflection, and memorization.",
-  "quranLearningPathsContinueTitle": "Continue your path",
+  "quranLearningPathsTitle": "Qur''an Pathways",
+  "quranLearningPathsSubtitle": "Follow calm guided journeys through surahs, themes, reflection, and meaningful verses.",
+  "quranLearningPathsHubSubtitle": "Follow guided journeys through themes, stories, reflection, and meaningful verses.",
+  "quranLearningPathsContinueTitle": "Continue your pathway",
   "@quranLearningPathsContinueSubtitle": {
     "placeholders": {
       "pathTitle": {},
@@ -13991,8 +13992,8 @@
     }
   },
   "quranLearningPathsContinueSubtitle": "Pick up {pathTitle} with {stepTitle}.",
-  "quranLearningPathsOpenContinueAction": "Continue path",
-  "quranLearningPathsBrowseAllAction": "Browse all paths",
+  "quranLearningPathsOpenContinueAction": "Resume pathway",
+  "quranLearningPathsBrowseAllAction": "Browse all pathways",
   "@quranLearningPathsStepCountLabel": {
     "placeholders": {
       "count": {
@@ -14000,10 +14001,10 @@
       }
     }
   },
-  "quranLearningPathsStepCountLabel": "{count} steps",
-  "quranLearningPathsStepsTitle": "Path steps",
-  "quranLearningPathsOpenStepAction": "Open step",
-  "quranLearningPathsContinueStepLabel": "Continue here",
+  "quranLearningPathsStepCountLabel": "{count} stops",
+  "quranLearningPathsStepsTitle": "Pathway stops",
+  "quranLearningPathsOpenStepAction": "Open stop",
+  "quranLearningPathsContinueStepLabel": "Resume here",
   "quranLearningPathNotFound": "This learning path could not be found.",
   "quranLearningPathTypeBeginner": "Beginner",
   "quranLearningPathTypeTheme": "Thematic",
@@ -16249,5 +16250,673 @@
     }
   },
   "accountsSyncTransportUnknown": "Unknown transport",
-  "accountsSyncStatusUnknown": "Status not available"
+  "accountsSyncStatusUnknown": "Status not available",
+  "batch9FaqSearchResultsTitle": "Search Results",
+  "batch9FaqSearchResultsSubtitle": "Results update live as you type.",
+  "batch9FaqSearchEmptyTitle": "No matching questions found.",
+  "batch9FaqSearchEmptySubtitle": "Try a different keyword or browse categories instead.",
+  "batch9FaqLoadError": "Unable to load FAQ right now. {error}",
+  "@batch9FaqLoadError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "batch9FaqCategoryLoadError": "Unable to load category. {error}",
+  "@batch9FaqCategoryLoadError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "batch9FaqCategoryEmptyFilter": "No questions match this filter right now.",
+  "batch9FaqNotFound": "FAQ item not found.",
+  "batch9FaqFilterAll": "All",
+  "batch9FaqFilterFeatured": "Featured",
+  "batch9FaqDifficultyBeginner": "Beginner",
+  "batch9FaqDifficultyIntermediate": "Intermediate",
+  "batch9FaqDifficultyAdvanced": "Advanced",
+  "batch9FaqBadgeClarification": "Clarification",
+  "batch9FaqBadgeMisconception": "Misconception",
+  "batch9FaqBadgeFeatured": "Featured",
+  "batch9FaqDetailShortAnswerTitle": "Short answer",
+  "batch9FaqDetailAnswerTitle": "Answer",
+  "batch9FaqDetailQuranReferencesTitle": "Qur''an references",
+  "batch9FaqDetailHadithReferencesTitle": "Hadith references",
+  "batch9FaqDetailRelatedTopicsTitle": "Related topics",
+  "batch9FaqQuestionCount": "{count} questions",
+  "@batch9FaqQuestionCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "batch9FaqFeaturedCount": "{count} featured",
+  "@batch9FaqFeaturedCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "batch9FaqQuranReferenceTitle": "Qur''an {reference}",
+  "@batch9FaqQuranReferenceTitle": {
+    "placeholders": {
+      "reference": {
+        "type": "String"
+      }
+    }
+  },
+  "worldLandingTitle": "World & Creation",
+  "worldLandingSubtitle": "Explore the signs of Allah in the universe, nature, life, and the world around you.",
+  "worldLandingMetricCompleted": "Completed",
+  "worldLandingMetricSaved": "Saved",
+  "worldLandingMetricObservations": "Observations",
+  "worldLandingDailyChallengeTitle": "Daily Creation Challenge",
+  "worldLandingViewChallengeHistoryAction": "View challenge history",
+  "worldLandingOpenChallengesAction": "Open challenges",
+  "worldLandingExploreCreationTitle": "Explore Creation",
+  "worldLandingExploreCreationSubtitle": "Move from reading to direct observation with guided prompts, private capture, and reflection.",
+  "worldLandingExploreCreationAction": "Explore Creation",
+  "worldLandingSkyExplorerAction": "Sky Explorer",
+  "worldLandingSignsExplorerAction": "Signs Explorer",
+  "worldLandingCosmicScaleAction": "Cosmic Scale",
+  "worldLandingDeepOceanAction": "Deep Ocean",
+  "worldLandingAtmosphereLayersAction": "Atmosphere Layers",
+  "worldLandingExploreDomainsTitle": "Explore Domains",
+  "worldLandingReflectionModeTitle": "Reflection Mode",
+  "worldLandingReflectionModeSubtitle": "A quiet reading experience with verse, observation, and reflection, designed for slow contemplative review.",
+  "worldLandingStartReflectionModeAction": "Start Reflection Mode",
+  "worldLandingMuslimScientistsTitle": "Muslim Scientists",
+  "worldLandingMuslimScientistsSubtitle": "How Qur''anic curiosity inspired inquiry, observation, and learning.",
+  "worldLandingTabExplore": "Explore",
+  "worldLandingTabReflection": "Reflection",
+  "worldLandingTabScientists": "Scientists",
+  "worldLandingDailySignTitle": "Daily Sign of Creation",
+  "worldLandingObservePromptValue": "Observe: {prompt}",
+  "@worldLandingObservePromptValue": {
+    "placeholders": {
+      "prompt": {}
+    }
+  },
+  "worldLandingOpenLessonAction": "Open lesson",
+  "lifeLandingFilterThemeAny": "Theme: Any",
+  "lifeLandingFilterThemeValue": "Theme: {theme}",
+  "@lifeLandingFilterThemeValue": {
+    "placeholders": {
+      "theme": {}
+    }
+  },
+  "lifeLandingFilterStatusAny": "Status: Any",
+  "lifeLandingFilterStatusValue": "Status: {status}",
+  "@lifeLandingFilterStatusValue": {
+    "placeholders": {
+      "status": {}
+    }
+  },
+  "lifeLandingClearFiltersAction": "Clear",
+  "lifeLandingThemeProgressValue": "{completed}/{total} completed",
+  "@lifeLandingThemeProgressValue": {
+    "placeholders": {
+      "completed": {},
+      "total": {}
+    }
+  },
+  "lifeLandingAnyThemeOption": "Any theme",
+  "lifeLandingAnyStatusOption": "Any status",
+  "lifeLandingTabOverview": "Overview",
+  "lifeLandingTabThemes": "Themes",
+  "lifeLandingTabLessons": "Lessons",
+  "salahGuidedPrayerUnavailable": "Guided prayer unavailable.",
+  "salahGuidedPrayerPageTitle": "{prayerTitle} - Pray With Guidance",
+  "@salahGuidedPrayerPageTitle": {
+    "placeholders": {
+      "prayerTitle": {}
+    }
+  },
+  "salahGuidedPrayerSelectedSurahSubtitle": "Selected surah after al-Fatihah: {surahName}",
+  "@salahGuidedPrayerSelectedSurahSubtitle": {
+    "placeholders": {
+      "surahName": {}
+    }
+  },
+  "salahGuidedPrayerSurahNotSet": "Not set",
+  "salahGuidedPrayerCurrentRakahValue": "Current rakah: {rakah}",
+  "@salahGuidedPrayerCurrentRakahValue": {
+    "placeholders": {
+      "rakah": {}
+    }
+  },
+  "salahGuidedPrayerStepProgressValue": "Step {current} of {total}",
+  "@salahGuidedPrayerStepProgressValue": {
+    "placeholders": {
+      "current": {},
+      "total": {}
+    }
+  },
+  "salahGuidedPrayerFromSurahValue": "From {surahName}",
+  "@salahGuidedPrayerFromSurahValue": {
+    "placeholders": {
+      "surahName": {}
+    }
+  },
+  "salahGuidedPrayerSelectedSurahFallback": "Selected surah",
+  "salahGuidedPrayerShowTransliteration": "Show transliteration",
+  "salahGuidedPrayerShowTranslation": "Show translation",
+  "salahGuidedPrayerPauseAction": "Pause",
+  "salahGuidedPrayerPlayAction": "Play",
+  "salahGuidedPrayerRepeatStepAction": "Repeat Step",
+  "salahGuidedPrayerNextStepAction": "Next Step",
+  "salahGuidedPrayerFinishAction": "Finish",
+  "learnSalahHubTitle": "Salah Trainer",
+  "learnSalahHubGuidanceNoticeDua": "O Allah, make the Qur''an easy for us to learn and remember.",
+  "learnSalahHubGuidanceNoticeVerse": "And We have certainly made the Qur''an easy for remembrance, so is there any who will remember?",
+  "learnSalahHubGuidanceNoticeVerseReference": "Qur''an 54:17",
+  "learnSalahHubAcknowledgeAction": "I acknowledge",
+  "learnSalahHubMetricSalahs": "Salahs",
+  "learnSalahHubMetricUnlockedSurahs": "Unlocked Surahs",
+  "learnSalahHubMetricMemorized": "Memorized",
+  "learnSalahHubMetricRecitations": "Recitations",
+  "learnSalahHubContinuePrayerPracticeTitle": "Continue prayer practice",
+  "learnSalahHubTabLearn": "Learn Salah",
+  "learnSalahHubTabGuided": "Pray With Guidance",
+  "learnSalahHubTabAyah": "Learn Ayah",
+  "learnSalahHubTabRecitations": "Duas & Recitations",
+  "learnSalahHubTabEssentials": "Essentials",
+  "learnSalahHubTabWudu": "Wudu",
+  "learnSalahHubGuidedSurahSelectionTitle": "Surah selection during guided prayer",
+  "learnSalahHubGuidedModeRandom": "Random Surahs",
+  "learnSalahHubGuidedModeFixed": "Fixed Surah",
+  "learnSalahHubGuidedModePracticeSpecific": "Practice Specific",
+  "learnSalahHubFixedSurahFieldLabel": "Fixed surah",
+  "learnSalahHubPracticeSurahFieldLabel": "Practice this surah",
+  "learnSalahHubSearchSurahsHint": "Search surahs for prayer",
+  "learnSalahHubSurahCardSubtitle": "{ayahCount} ayahs • {status}",
+  "@learnSalahHubSurahCardSubtitle": {
+    "placeholders": {
+      "ayahCount": {},
+      "status": {}
+    }
+  },
+  "learnSalahHubSurahLockedSubtitle": "Locked until more surahs are practiced",
+  "learnSalahHubStatusNotStarted": "Not started",
+  "learnSalahHubStatusLearning": "Learning",
+  "learnSalahHubStatusPracticed": "Practiced",
+  "learnSalahHubStatusMemorized": "Memorized",
+  "learnSalahHubSearchRecitationsHint": "Search duas and recitations",
+  "learnSalahHubMarkReviewedAction": "Mark reviewed",
+  "learnSalahHubWuduGuideTitle": "Wudu Guide",
+  "learnSalahHubWuduGuideSubtitle": "Review purification, sequence, and reminders before prayer.",
+  "learnSalahHubWuduTrainerSubtitle": "Interactive guided practice and checklist mode.",
+  "wuduGuideRequiredVsSunnahTitle": "Required vs Sunnah",
+  "wuduGuideRequiredEssentialsTitle": "Required essentials",
+  "wuduGuideSunnahEnhancementsTitle": "Sunnah enhancements",
+  "wuduGuideImportantRemindersTitle": "Important reminders",
+  "quranSummaryIslandTitle": "Quran Summary",
+  "quranSummaryIslandSubtitle": "Explore all 114 surahs with short overviews, revelation type, and key themes.",
+  "quranSummaryPageTitle": "Quran Summary",
+  "quranSummaryPageSubtitle": "Browse every surah with a concise overview, revelation context, and study-friendly details.",
+  "quranSummarySearchHint": "Search by surah number, name, Arabic, or meaning...",
+  "quranSummaryFilterAll": "All",
+  "quranSummaryFilterMakki": "Makki",
+  "quranSummaryFilterMadani": "Madani",
+  "quranSummaryNoResultsTitle": "No surahs matched your search",
+  "quranSummaryNoResultsSubtitle": "Try another surah name, number, Arabic spelling, or revelation filter.",
+  "quranSummaryHeroEyebrow": "Surah Overview",
+  "quranSummaryHeroTitle": "Read the flow of the Quran one surah at a time",
+  "quranSummaryHeroSubtitle": "A calm reference for themes, revelation setting, and quick orientation before you open the reader.",
+  "quranSummaryRevelationMixed": "Mixed",
+  "quranSummaryVersesLabel": "verses",
+  "quranSummaryOpenReaderAction": "Open surah reader",
+  "quranSummaryDetailMissingTitle": "This surah summary is not available",
+  "quranSummaryDetailMissingSubtitle": "Return to the Quran Summary list and choose another surah.",
+  "quranSummaryDetailPageSubtitle": "Surah {surahNumber} study companion",
+  "@quranSummaryDetailPageSubtitle": {
+    "placeholders": {
+      "surahNumber": {}
+    }
+  },
+  "quranSummaryOverviewTitle": "Overview",
+  "quranSummaryMetadataTitle": "Surah at a glance",
+  "quranSummaryRevelationLabel": "Revelation: {value}",
+  "@quranSummaryRevelationLabel": {
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "quranSummaryVerseCountLabel": "{count} verses",
+  "@quranSummaryVerseCountLabel": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "quranSummaryRevelationOrderLabel": "Revelation order {order}",
+  "@quranSummaryRevelationOrderLabel": {
+    "placeholders": {
+      "order": {
+        "type": "int"
+      }
+    }
+  },
+  "quranSummaryKeyThemesTitle": "Key themes",
+  "quranSummaryActionsTitle": "Reader actions",
+  "quranSummaryNoReadingProgress": "No saved reading progress for this surah yet. You can open it directly or begin from ayah 1.",
+  "quranSummaryResumeHint": "Continue where you left off at ayah {ayahNumber}.",
+  "@quranSummaryResumeHint": {
+    "placeholders": {
+      "ayahNumber": {
+        "type": "int"
+      }
+    }
+  },
+  "quranSummaryStartReadingAction": "Start from beginning",
+  "quranSummaryResumeReadingAction": "Resume reading",
+  "quranSummaryViewDetailsAction": "View details",
+  "quranSummaryNotableAyatTitle": "Notable ayat",
+  "quranSummaryRelatedProphetsTitle": "Related prophets",
+  "quranSummaryRelatedEventsTitle": "Related events",
+  "quranSummaryVirtuesTitle": "Virtues and recitation notes",
+  "quranSummaryReflectionPromptsTitle": "Reflection prompts",
+  "quranSummaryThemeTawhid": "Tawhid",
+  "quranSummaryThemeRevelation": "Revelation",
+  "quranSummaryThemeGuidance": "Guidance",
+  "quranSummaryThemeMercy": "Mercy",
+  "quranSummaryThemeJudgment": "Judgment",
+  "quranSummaryThemePatience": "Patience",
+  "quranSummaryThemeRepentance": "Repentance",
+  "quranSummaryThemeProphethood": "Prophethood",
+  "quranSummaryThemeResurrection": "Resurrection",
+  "quranSummaryThemeWorship": "Worship",
+  "quranSummaryThemeLaw": "Law",
+  "quranSummaryThemeCommunity": "Community",
+  "quranSummaryThemeGratitude": "Gratitude",
+  "quranSummaryThemeJustice": "Justice",
+  "quranSummaryThemeSignsOfCreation": "Signs of creation",
+  "quranSummaryThemeHypocrisy": "Hypocrisy",
+  "quranSummaryThemeCharity": "Charity",
+  "quranSummaryThemeFamily": "Family",
+  "quranSummaryThemeStruggle": "Struggle",
+  "quranSummaryThemeParadiseAndHell": "Paradise and Hell",
+  "quranThemeDiscoveryIslandTitle": "Browse by Topic",
+  "quranThemeDiscoveryIslandSubtitle": "Explore the Qur''an through themes like mercy, patience, prophets, guidance, and the hereafter.",
+  "quranThemeDiscoveryPageTitle": "Browse by Topic",
+  "quranThemeDiscoveryPageSubtitle": "Discover the Qur''an through curated themes, related surahs, key ayah anchors, and gentle study pathways.",
+  "quranThemeDiscoveryHeroEyebrow": "Thematic Discovery",
+  "quranThemeDiscoveryHeroTitle": "Explore the Qur''an through themes that shape the heart",
+  "quranThemeDiscoveryHeroSubtitle": "A calm way to follow mercy, patience, prophets, guidance, justice, and the signs of creation across related surahs.",
+  "quranThemeDiscoverySearchHint": "Search topics, prophets, events, or surahs...",
+  "quranThemeDiscoveryFeaturedThemesTitle": "Featured themes",
+  "quranThemeDiscoveryBrowseByCategoryTitle": "Browse by category",
+  "quranThemeDiscoveryKeyAyahReferencesTitle": "Key ayah references",
+  "quranThemeDiscoveryRelatedSurahsTitle": "Related surahs",
+  "quranThemeDiscoveryReflectionTitle": "Reflection",
+  "quranThemeDiscoveryMoreThemesTitle": "More themes",
+  "quranThemeDiscoveryExploreThemeAction": "Explore theme",
+  "quranThemeDiscoveryBrowseMoreThemesAction": "Browse more themes",
+  "quranThemeDiscoveryNoResultsTitle": "No themes matched your search",
+  "quranThemeDiscoveryNoResultsSubtitle": "Try another topic, prophet, event, or category.",
+  "quranThemeDiscoveryMissingThemeTitle": "This theme is not available",
+  "quranThemeDiscoveryMissingThemeSubtitle": "Return to Browse by Topic and choose another Qur''an theme.",
+  "quranThemeDiscoveryCategoryBelief": "Belief",
+  "quranThemeDiscoveryCategoryWorship": "Worship",
+  "quranThemeDiscoveryCategoryCharacter": "Character",
+  "quranThemeDiscoveryCategoryStoriesProphets": "Stories and Prophets",
+  "quranThemeDiscoveryCategoryAkhirah": "Akhirah",
+  "quranThemeDiscoveryCategorySocietyEthics": "Society and Ethics",
+  "quranThemeDiscoveryCategorySignsReflection": "Signs and Reflection",
+  "quranThemeDiscoveryThemeCountLabel": "{count} themes",
+  "@quranThemeDiscoveryThemeCountLabel": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "quranThemeDiscoverySurahCountLabel": "{count} surahs",
+  "@quranThemeDiscoverySurahCountLabel": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "quranPathwaysIslandTitle": "Qur''an Pathways",
+  "quranPathwaysIslandSubtitle": "Follow guided journeys through themes, stories, reflection, and meaningful verses.",
+  "quranPathwaysHeroEyebrow": "Guided Journeys",
+  "quranPathwaysHeroTitle": "Move through the Qur''an with calm structure",
+  "quranPathwaysHeroSubtitle": "Choose a curated pathway when you want a gentler sequence through surahs, themes, key ayat, and reflection.",
+  "quranPathwaysFeaturedTitle": "Featured pathways",
+  "quranPathwaysAllTitle": "All pathways",
+  "quranPathwaysContinueTitle": "Continue your pathway",
+  "quranPathwaysEmptyTitle": "No pathways match this view",
+  "quranPathwaysEmptySubtitle": "Try another category or return to all pathways.",
+  "quranPathwaysMissingTitle": "This pathway is not available",
+  "quranPathwaysMissingSubtitle": "Return to Qur''an Pathways and choose another guided journey.",
+  "quranPathwaysStopMissingTitle": "This stop is not available",
+  "quranPathwaysStopMissingSubtitle": "Return to the pathway and choose another stop.",
+  "quranPathwaysStopsTitle": "Journey stops",
+  "quranPathwaysStartAction": "Start pathway",
+  "quranPathwaysResumeAction": "Resume pathway",
+  "quranPathwaysMarkCompleteAction": "Mark stop complete",
+  "quranPathwaysCompleteLabel": "Pathway complete",
+  "quranPathwaysCurrentStopLabel": "Current stop",
+  "quranPathwaysNextStopAction": "Open next stop",
+  "quranPathwaysReflectAction": "Reflect on this stop",
+  "quranPathwaysOpenStopAction": "Open linked destination",
+  "quranPathwayStatusCompleted": "Completed",
+  "quranPathwayStatusInProgress": "In progress",
+  "quranPathwayStatusNotStarted": "Not started",
+  "quranPathwayCategoryFoundations": "Foundations",
+  "quranPathwayCategorySpiritualSupport": "Spiritual Support",
+  "quranPathwayCategoryProphetStories": "Stories and Prophets",
+  "quranPathwayCategoryReflection": "Reflection",
+  "quranPathwayCategoryCharacterAdab": "Character and Adab",
+  "quranPathwayCategorySignsCreation": "Signs and Creation",
+  "quranPathwayCategoryHereafter": "Hereafter",
+  "quranPathwayPatienceTitle": "Patience in the Qur''an",
+  "quranPathwayPatienceSubtitle": "Move through sabr, prayer, hardship, and hopeful endurance.",
+  "quranPathwayPatienceDescription": "A gentle pathway through verses and surahs that teach patience as trust, worship, and steadiness rather than passive waiting.",
+  "quranPathwayTawhidTitle": "Tawhid Foundations",
+  "quranPathwayTawhidSubtitle": "Begin with Allah''s oneness, majesty, and sole right to worship.",
+  "quranPathwayTawhidDescription": "This pathway gathers a few strong anchors for understanding who Allah is, why worship belongs to Him alone, and how tawhid steadies the heart.",
+  "quranPathwayMercyTitle": "Mercy and Hope",
+  "quranPathwayMercySubtitle": "Follow mercy, repentance, welcome, and hopeful return to Allah.",
+  "quranPathwayMercyDescription": "A calming journey for hearts that need hope, reminding the believer that Allah''s mercy remains open through repentance, gratitude, and return.",
+  "quranPathwayMusaTitle": "Stories of Musa",
+  "quranPathwayMusaSubtitle": "Trace courage, mission, du''a, and reliance through Musa عليه السلام.",
+  "quranPathwayMusaDescription": "This pathway moves through some of the strongest Musa-related anchors so the story becomes a source of courage, prayer, and moral clarity.",
+  "quranPathwayCreationTitle": "Signs of Creation",
+  "quranPathwayCreationSubtitle": "Reflect on the heavens, earth, life, and the self as signs of Allah.",
+  "quranPathwayCreationDescription": "A reflective pathway that slows the heart down around creation, remembrance, and the ordinary signs that point back to Allah.",
+  "quranPathwayHereafterTitle": "Reflection on the Hereafter",
+  "quranPathwayHereafterSubtitle": "Remember return, accountability, and the meeting with Allah.",
+  "quranPathwayHereafterDescription": "This pathway offers a careful sequence through resurrection, judgment, and final return so the believer can reflect without being overwhelmed.",
+  "quranPathwayGratitudeTitle": "Gratitude and Blessings",
+  "quranPathwayGratitudeSubtitle": "Notice blessing, increase, and worshipful thankfulness.",
+  "quranPathwayGratitudeDescription": "A short pathway through shukr in the Qur''an, helping gratitude become worship, awareness, and better use of Allah''s gifts.",
+  "quranPathwayCharacterTitle": "Character and Adab",
+  "quranPathwayCharacterSubtitle": "Follow speech, manners, fairness, and life with others.",
+  "quranPathwayCharacterDescription": "This pathway gathers strong Qur''anic anchors for manners, social conduct, fairness, and guarding the tongue.",
+  "quranPathwayDuaTitle": "Du''a and Reliance on Allah",
+  "quranPathwayDuaSubtitle": "Move through nearness, asking Allah, and trusting Him after effort.",
+  "quranPathwayDuaDescription": "A gentle pathway through supplication and tawakkul so calling upon Allah and relying on Him feel more rooted in Qur''anic guidance.",
+  "quranPathwayHardTimesTitle": "Verses for Hard Times",
+  "quranPathwayHardTimesSubtitle": "Return to a few verses of ease, trust, and reassurance when life feels heavy.",
+  "quranPathwayHardTimesDescription": "This pathway is a calm support path for hardship, drawing from ayat that bring perspective, hope, and trust in Allah without sensational promises.",
+  "quranPathwayPatienceStepThemeTitle": "Begin with the theme of patience",
+  "quranPathwayPatienceStepThemeSubtitle": "See how sabr appears across related surahs before narrowing in.",
+  "quranPathwayPatienceStepYusufTitle": "Study Surah Yusuf",
+  "quranPathwayPatienceStepYusufSubtitle": "Walk through hardship, family pain, and dignified trust in Allah.",
+  "quranPathwayPatienceStepReaderTitle": "Read verses of ease after hardship",
+  "quranPathwayPatienceStepReaderSubtitle": "Open the reader where reassurance is repeated with clarity.",
+  "quranPathwayPatienceStepReflectTitle": "End with a patience reflection",
+  "quranPathwayPatienceStepReflectSubtitle": "Pause with a verse that keeps hardship in proportion.",
+  "quranPathwayTawhidStepThemeTitle": "Open the tawhid theme",
+  "quranPathwayTawhidStepThemeSubtitle": "Start with a concise thematic view of Allah''s oneness.",
+  "quranPathwayTawhidStepIkhlasTitle": "Study Surah Al-Ikhlas",
+  "quranPathwayTawhidStepIkhlasSubtitle": "Return to one of the clearest summaries of divine oneness.",
+  "quranPathwayTawhidStepKursiTitle": "Read Ayat al-Kursi",
+  "quranPathwayTawhidStepKursiSubtitle": "Reflect on Allah''s life, authority, and preservation.",
+  "quranPathwayTawhidStepReflectTitle": "Close with a tawhid reflection",
+  "quranPathwayTawhidStepReflectSubtitle": "Sit with a verse that turns creation back toward its Lord.",
+  "quranPathwayMercyStepThemeTitle": "Begin with mercy as a theme",
+  "quranPathwayMercyStepThemeSubtitle": "See how mercy gathers hope, compassion, and return to Allah.",
+  "quranPathwayMercyStepZumarTitle": "Read the verse of hope",
+  "quranPathwayMercyStepZumarSubtitle": "Open a well-known anchor against despair.",
+  "quranPathwayMercyStepRahmanTitle": "Study Surah Ar-Rahman",
+  "quranPathwayMercyStepRahmanSubtitle": "Notice repeated reminders of divine generosity and favor.",
+  "quranPathwayMercyStepRepentanceTitle": "End with repentance and hope",
+  "quranPathwayMercyStepRepentanceSubtitle": "Finish by connecting mercy to returning sincerely to Allah.",
+  "quranPathwayMusaStepThemeTitle": "Open the Musa theme",
+  "quranPathwayMusaStepThemeSubtitle": "Start with the broad arc of Musa عليه السلام across the Qur''an.",
+  "quranPathwayMusaStepTahaTitle": "Study Surah Taha",
+  "quranPathwayMusaStepTahaSubtitle": "Read a surah that holds mission, reassurance, and du''a together.",
+  "quranPathwayMusaStepDuaTitle": "Read Musa''s du''a",
+  "quranPathwayMusaStepDuaSubtitle": "Pause at the supplication before speaking truth to power.",
+  "quranPathwayMusaStepAnchorTitle": "Anchor the story in reflection",
+  "quranPathwayMusaStepAnchorSubtitle": "Let Musa''s path become a mirror for your own responsibilities.",
+  "quranPathwayCreationStepThemeTitle": "Open the signs of creation theme",
+  "quranPathwayCreationStepThemeSubtitle": "Begin with the Qur''an''s invitation to look outward and inward.",
+  "quranPathwayCreationStepImranTitle": "Read the signs in the heavens and the earth",
+  "quranPathwayCreationStepImranSubtitle": "Open a passage that joins reflection to remembrance.",
+  "quranPathwayCreationStepMulkTitle": "Study Surah Al-Mulk",
+  "quranPathwayCreationStepMulkSubtitle": "Look at order, design, and humility before divine power.",
+  "quranPathwayCreationStepReflectTitle": "End with a creation reflection",
+  "quranPathwayCreationStepReflectSubtitle": "Notice how ordinary life itself points back to Allah.",
+  "quranPathwayHereafterStepThemeTitle": "Begin with judgment as a theme",
+  "quranPathwayHereafterStepThemeSubtitle": "Open the larger picture of accountability and return.",
+  "quranPathwayHereafterStepNabaTitle": "Study Surah An-Naba",
+  "quranPathwayHereafterStepNabaSubtitle": "Read a surah that frames the coming reality with force and clarity.",
+  "quranPathwayHereafterStepZalzalahTitle": "Read the day deeds are shown",
+  "quranPathwayHereafterStepZalzalahSubtitle": "Pause with verses that make every action feel weighty again.",
+  "quranPathwayHereafterStepReflectTitle": "End with resurrection reflection",
+  "quranPathwayHereafterStepReflectSubtitle": "Let the certainty of return soften attachment to what passes.",
+  "quranPathwayGratitudeStepThemeTitle": "Begin with gratitude as a theme",
+  "quranPathwayGratitudeStepThemeSubtitle": "See how shukr is tied to worship and better living.",
+  "quranPathwayGratitudeStepIbrahimTitle": "Read the promise of increase",
+  "quranPathwayGratitudeStepIbrahimSubtitle": "Open a direct reminder that gratitude changes the servant.",
+  "quranPathwayGratitudeStepNahlTitle": "Study Surah An-Nahl",
+  "quranPathwayGratitudeStepNahlSubtitle": "Notice blessings, provision, and the call to recognize them.",
+  "quranPathwayGratitudeStepReflectTitle": "End with a gratitude reflection",
+  "quranPathwayGratitudeStepReflectSubtitle": "Pause with a repeated reminder of Allah''s favors.",
+  "quranPathwayCharacterStepHujuratTitle": "Study Surah Al-Hujurat",
+  "quranPathwayCharacterStepHujuratSubtitle": "Read a surah of speech, manners, and life with others.",
+  "quranPathwayCharacterStepReaderTitle": "Read verses on brotherhood and guarding the tongue",
+  "quranPathwayCharacterStepReaderSubtitle": "Open a passage that makes adab practical and immediate.",
+  "quranPathwayCharacterStepCommunityTitle": "Explore the community theme",
+  "quranPathwayCharacterStepCommunitySubtitle": "See how the Qur''an builds trust and reconciliation.",
+  "quranPathwayCharacterStepReflectTitle": "End with a character reflection",
+  "quranPathwayCharacterStepReflectSubtitle": "Let fairness and restraint become a personal question.",
+  "quranPathwayDuaStepThemeTitle": "Begin with the theme of du''a",
+  "quranPathwayDuaStepThemeSubtitle": "Start by seeing supplication as nearness, humility, and hope.",
+  "quranPathwayDuaStepBaqarahTitle": "Read the verse of nearness",
+  "quranPathwayDuaStepBaqarahSubtitle": "Open the ayah that reassures the caller that Allah is near.",
+  "quranPathwayDuaStepTrustTitle": "Explore trust in Allah",
+  "quranPathwayDuaStepTrustSubtitle": "Follow how tawakkul joins planning, effort, and surrender.",
+  "quranPathwayDuaStepRelianceTitle": "Read a verse of reliance",
+  "quranPathwayDuaStepRelianceSubtitle": "End with a verse that joins decision, effort, and trust.",
+  "quranPathwayHardTimesStepInshirahTitle": "Read verses of ease after hardship",
+  "quranPathwayHardTimesStepInshirahSubtitle": "Start with a short passage many hearts return to in difficulty.",
+  "quranPathwayHardTimesStepBaqarahTitle": "Read the verse of capacity",
+  "quranPathwayHardTimesStepBaqarahSubtitle": "Pause with a verse that restores proportion and trust.",
+  "quranPathwayHardTimesStepPatienceTitle": "Revisit the patience theme",
+  "quranPathwayHardTimesStepPatienceSubtitle": "See hardship through the wider Qur''anic language of sabr.",
+  "quranPathwayHardTimesStepSharhTitle": "End with Surah Ash-Sharh",
+  "quranPathwayHardTimesStepSharhSubtitle": "Finish with a short surah of expansion, ease, and forward motion.",
+  "quranPathwayPatienceStepReflectPrompt": "Where do I most need sabr and steady prayer right now?",
+  "quranPathwayTawhidStepReflectPrompt": "How does remembering Allah as Creator and Sustainer steady my heart?",
+  "quranPathwayMercyStepRepentancePrompt": "What would it mean for me to turn back to Allah with honest hope today?",
+  "quranPathwayMusaStepAnchorPrompt": "What do Musa''s du''a, courage, and dependence on Allah teach me about my own responsibilities?",
+  "quranPathwayCreationStepReflectPrompt": "Which signs of Allah in creation am I rushing past instead of noticing with gratitude?",
+  "quranPathwayHereafterStepReflectPrompt": "How would my choices change if I remembered more often that I will return to Allah?",
+  "quranPathwayGratitudeStepReflectPrompt": "Which blessings have become ordinary to me even though they are signs of Allah''s care?",
+  "quranPathwayCharacterStepReflectPrompt": "Which part of my speech or assumptions needs more taqwa, care, and fairness?",
+  "quranPathwayDuaStepReliancePrompt": "How can I combine sincere du''a with wise effort and tawakkul today?",
+  "quranPathwayHardTimesStepSharhPrompt": "Which verse in this pathway would I like to return to in the next difficult moment?",
+  "quranPathwaysCountLabel": "{count} pathways",
+  "@quranPathwaysCountLabel": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "quranPathwaysEstimatedLengthLabel": "{minutes} min",
+  "@quranPathwaysEstimatedLengthLabel": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "quranPathwaysProgressLabel": "{completed} of {total} stops completed",
+  "@quranPathwaysProgressLabel": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "quranPathwaysStopNumberLabel": "Stop {number}",
+  "@quranPathwaysStopNumberLabel": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "quranPathwaysSurahLabel": "Surah {surahNumber}",
+  "@quranPathwaysSurahLabel": {
+    "placeholders": {
+      "surahNumber": {
+        "type": "int"
+      }
+    }
+  },
+  "quranCompanionSectionTitle": "Your Qur’an Companion",
+  "quranCompanionSectionSubtitle": "A calm set of suggestions shaped by your recent reading, current pathway, and the moment you are in.",
+  "quranCompanionResumePathTitle": "Continue {path}",
+  "@quranCompanionResumePathTitle": {
+    "placeholders": {
+      "path": {}
+    }
+  },
+  "quranCompanionResumePathDescription": "Pick up your guided journey where it last felt most alive.",
+  "quranCompanionResumeBadge": "Resume",
+  "quranCompanionContinueSurahTitle": "Continue Surah {surah}",
+  "@quranCompanionContinueSurahTitle": {
+    "placeholders": {
+      "surah": {}
+    }
+  },
+  "quranCompanionContinueSurahDescription": "Return to the ayah where your reading thread was already open.",
+  "quranCompanionExploreThemeTitle": "Explore {theme}",
+  "@quranCompanionExploreThemeTitle": {
+    "placeholders": {
+      "theme": {}
+    }
+  },
+  "quranCompanionThemeDescription": "Follow one Qur’anic theme across connected surahs, ayat, and reflections.",
+  "quranCompanionRelatedThemeDescription": "A connected theme to keep your recent Qur’an exploration moving gently forward.",
+  "quranCompanionPathwayTitle": "Walk through {path}",
+  "@quranCompanionPathwayTitle": {
+    "placeholders": {
+      "path": {}
+    }
+  },
+  "quranCompanionPathwayDescription": "A guided pathway that keeps the next step clear and spiritually grounded.",
+  "quranCompanionStartHereTitle": "Start with Surah {surah}",
+  "@quranCompanionStartHereTitle": {
+    "placeholders": {
+      "surah": {}
+    }
+  },
+  "quranCompanionStartHereDescription": "A gentle starting point when you want something foundational and clear.",
+  "quranCompanionTimeOfDayTitle": "A reflection for this moment",
+  "quranCompanionTimeOfDayDescription": "Keep one ayah, one meaning cue, and one calm next step close right now.",
+  "quranCompanionFridayTitle": "Friday reflection: {surah}",
+  "@quranCompanionFridayTitle": {
+    "placeholders": {
+      "surah": {}
+    }
+  },
+  "quranCompanionFridayDescription": "A soft Friday nudge toward a widely loved surah for reflection and recitation.",
+  "quranCompanionFocusBadge": "Growth focus",
+  "quranCompanionMomentBadge": "For this moment",
+  "quranCompanionFridayBadge": "Friday",
+  "quranCompanionMomentumBadge": "Keep going",
+  "quranCompanionReasonContinue": "Continue where you left off",
+  "quranCompanionReasonMorning": "For this morning",
+  "quranCompanionReasonAfternoon": "For this afternoon",
+  "quranCompanionReasonEvening": "For this evening",
+  "quranCompanionReasonNight": "For tonight",
+  "quranCompanionReasonRecent": "Based on your recent reading",
+  "quranCompanionReasonFocus": "Based on your growth focus",
+  "quranCompanionReasonFriday": "Friday reflection",
+  "quranCompanionReasonJourney": "Connected to your journey",
+  "quranCompanionReasonMomentum": "Keep your rhythm",
+  "quranCompanionReasonStart": "Start here",
+  "quranCompanionProgressLabel": "{completed} of {total} stops completed",
+  "@quranCompanionProgressLabel": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "quranReflectionsLibraryEyebrow": "Private reflections",
+  "quranReflectionsLibraryTitle": "Your reflections",
+  "quranReflectionsLibrarySubtitle": "Revisit the notes and insights you wanted to keep from your Quran journey.",
+  "quranReflectionsSearchHint": "Search reflections...",
+  "quranReflectionsNoMatchesTitle": "No reflections match this view",
+  "quranReflectionsNoMatchesSubtitle": "Try another search term or switch filters to see more of your saved insights.",
+  "quranReflectionsMissingTitle": "Reflection not found",
+  "quranReflectionsMissingSubtitle": "This saved reflection is no longer available, but your other reflections are still here.",
+  "quranReflectionsSavedInsightSubtitle": "A saved insight from your Quran journey",
+  "quranReflectionsYourReflectionTitle": "Your reflection",
+  "quranReflectionsFavoritesFilter": "Favorites",
+  "quranReflectionsEditReflectionAction": "Edit reflection",
+  "quranReflectionsDeleteReflectionAction": "Delete reflection",
+  "quranReflectionsOpenSourceAction": "Open source",
+  "quranReflectionsComposerHelper": "What stood out to you, and what do you want to remember from this moment?",
+  "quranReflectionsSaveReflectionAction": "Save reflection",
+  "quranReflectionsUpdateReflectionAction": "Update reflection",
+  "quranReflectionsMarkFavoriteAction": "Mark as favorite",
+  "quranReflectionsRemoveFavoriteAction": "Remove favorite",
+  "quranReflectionsFilterSurahs": "Surahs",
+  "quranReflectionsFilterThemes": "Themes",
+  "quranReflectionsFilterPathways": "Pathways",
+  "quranReflectionsFilterRecent": "Recent",
+  "quranReflectionsSourceSurah": "Surah detail",
+  "quranReflectionsSourceTheme": "Theme detail",
+  "quranReflectionsSourcePathway": "Pathway",
+  "quranReflectionsSourcePathwayStop": "Pathway stop",
+  "quranReflectionsSourceAyahReflection": "Ayah reflection",
+  "quranReflectionsSourceCompanion": "Companion prompt",
+  "quranReflectionsSourceReader": "Reader context",
+  "quranReflectionsSurahHelper": "What guidance do you want to remember from {surahName}?",
+  "quranReflectionsThemeHelper": "What is {themeName} drawing your attention to right now?",
+  "quranReflectionsPathwayHelper": "What do you want to carry forward from {pathwayTitle}?",
+  "quranReflectionsPathwayStopHelper": "What do you want to remember from {stopTitle}?",
+  "@quranReflectionsSurahHelper": {
+    "placeholders": {
+      "surahName": {}
+    }
+  },
+  "@quranReflectionsThemeHelper": {
+    "placeholders": {
+      "themeName": {}
+    }
+  },
+  "@quranReflectionsPathwayHelper": {
+    "placeholders": {
+      "pathwayTitle": {}
+    }
+  },
+  "@quranReflectionsPathwayStopHelper": {
+    "placeholders": {
+      "stopTitle": {}
+    }
+  },
+  "settingsThemeChoiceMidnightManuscript": "Midnight Manuscript",
+  "settingsThemeChoiceNoorGlass": "Noor Glass",
+  "settingsThemeModeNoorGlassDescription": "Milky frosted glass with a soft pearled glow and gentle transparency.",
+  "settingsThemeModeMidnightManuscriptDescription": "Deep ink tones with warm gold accents and a quiet manuscript atmosphere.",
+  "settingsThemeModePickerHelper": "Choose the atmosphere that feels most at home in your journey.",
+  "settingsThemeModeDefaultBestFor": "Best for everyday calm and balanced use.",
+  "settingsThemeModeEasyReadBestFor": "Best for longer reading and clearer contrast.",
+  "settingsThemeModeNoorGlassBestFor": "Best for airy glass depth and luminous everyday reading.",
+  "settingsThemeModeDarkBestFor": "Best for low-light reading and quieter evenings.",
+  "settingsThemeModeMidnightManuscriptBestFor": "Best for evening reflection and Qur’an study."
 }

@@ -27,7 +27,7 @@ class FaqDetailPage extends ConsumerWidget {
           return AppPageScaffold(
             title: l10n.batch9FaqTitle,
             subtitle: l10n.batch9FaqSubtitle,
-            children: const [Center(child: Text('FAQ item not found.'))],
+            children: [Center(child: Text(l10n.batch9FaqNotFound))],
           );
         }
         return datasetAsync.when(
@@ -42,13 +42,13 @@ class FaqDetailPage extends ConsumerWidget {
                   runSpacing: 8,
                   children: [
                     _chip(context, categoryTitle),
-                    _chip(context, item.difficulty.label),
+                    _chip(context, _difficultyLabel(l10n, item.difficulty)),
                     if (item.misconceptionTag != null)
                       _badge(
                         context,
                         item.category == 'misconceptions_about_islam'
-                            ? 'Clarification'
-                            : 'Misconception',
+                            ? l10n.batch9FaqBadgeClarification
+                            : l10n.batch9FaqBadgeMisconception,
                       ),
                   ],
                 ),
@@ -58,7 +58,7 @@ class FaqDetailPage extends ConsumerWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Short answer',
+                        l10n.batch9FaqDetailShortAnswerTitle,
                         style: Theme.of(context).textTheme.titleSmall
                             ?.copyWith(fontWeight: FontWeight.w700),
                       ),
@@ -73,7 +73,7 @@ class FaqDetailPage extends ConsumerWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Answer',
+                        l10n.batch9FaqDetailAnswerTitle,
                         style: Theme.of(context).textTheme.titleSmall
                             ?.copyWith(fontWeight: FontWeight.w700),
                       ),
@@ -85,7 +85,7 @@ class FaqDetailPage extends ConsumerWidget {
                 if (item.quranRefs.isNotEmpty) ...[
                   const SizedBox(height: 12),
                   Text(
-                    'Qur’an references',
+                    l10n.batch9FaqDetailQuranReferencesTitle,
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       fontWeight: FontWeight.w700,
                     ),
@@ -105,7 +105,7 @@ class FaqDetailPage extends ConsumerWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Hadith references',
+                          l10n.batch9FaqDetailHadithReferencesTitle,
                           style: Theme.of(context).textTheme.titleSmall
                               ?.copyWith(fontWeight: FontWeight.w700),
                         ),
@@ -127,7 +127,7 @@ class FaqDetailPage extends ConsumerWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Related topics',
+                          l10n.batch9FaqDetailRelatedTopicsTitle,
                           style: Theme.of(context).textTheme.titleSmall
                               ?.copyWith(fontWeight: FontWeight.w700),
                         ),
@@ -154,7 +154,9 @@ class FaqDetailPage extends ConsumerWidget {
           error: (error, _) => AppPageScaffold(
             title: l10n.batch9FaqTitle,
             subtitle: l10n.batch9FaqSubtitle,
-            children: [Center(child: Text('Unable to load FAQ. $error'))],
+            children: [
+              Center(child: Text(l10n.batch9FaqLoadError(error.toString()))),
+            ],
           ),
         );
       },
@@ -166,12 +168,13 @@ class FaqDetailPage extends ConsumerWidget {
       error: (error, _) => AppPageScaffold(
         title: l10n.batch9FaqTitle,
         subtitle: l10n.batch9FaqSubtitle,
-        children: [Center(child: Text('Unable to load FAQ. $error'))],
+        children: [Center(child: Text(l10n.batch9FaqLoadError(error.toString())))],
       ),
     );
   }
 
   Widget _quranReferenceCard(BuildContext context, String refText) {
+    final l10n = AppLocalizations.of(context);
     final parsed = _parseReference(refText);
     if (parsed == null) {
       return PremiumCard(child: Text(refText));
@@ -183,10 +186,21 @@ class FaqDetailPage extends ConsumerWidget {
           surahNumber: parsed.$1,
           ayahStart: parsed.$2,
           ayahEnd: parsed.$3,
-          title: 'Qur’an $refText',
+          title: l10n.batch9FaqQuranReferenceTitle(refText),
         ),
       ],
     );
+  }
+
+  String _difficultyLabel(AppLocalizations l10n, FaqDifficulty difficulty) {
+    switch (difficulty) {
+      case FaqDifficulty.beginner:
+        return l10n.batch9FaqDifficultyBeginner;
+      case FaqDifficulty.intermediate:
+        return l10n.batch9FaqDifficultyIntermediate;
+      case FaqDifficulty.advanced:
+        return l10n.batch9FaqDifficultyAdvanced;
+    }
   }
 
   (int, int, int?)? _parseReference(String raw) {

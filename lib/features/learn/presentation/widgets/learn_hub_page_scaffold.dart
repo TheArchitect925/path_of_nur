@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/content/learning_quote.dart';
+import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/quran_quote_block.dart';
 import '../../../../shared/widgets/section_hub_scaffold.dart';
 
@@ -22,6 +23,8 @@ class LearnHubPageScaffold extends StatelessWidget {
     this.shortcutActions = const <LearnHubShortcutAction>[],
     this.headerActions,
     this.floatingBottom,
+    this.layoutConfig = PageLayoutConfig.standard,
+    this.ownsBackground = true,
   });
 
   final String title;
@@ -36,6 +39,8 @@ class LearnHubPageScaffold extends StatelessWidget {
   final List<LearnHubShortcutAction> shortcutActions;
   final List<Widget>? headerActions;
   final Widget? floatingBottom;
+  final PageLayoutConfig layoutConfig;
+  final bool ownsBackground;
 
   @override
   Widget build(BuildContext context) {
@@ -51,6 +56,8 @@ class LearnHubPageScaffold extends StatelessWidget {
       shortcutActions: shortcutActions,
       headerActions: headerActions,
       floatingBottom: floatingBottom,
+      layoutConfig: layoutConfig,
+      ownsBackground: ownsBackground,
       backgroundAssetPath: backgroundAssetPath,
       backgroundOverlayColor: backgroundOverlayColor,
       children: children,

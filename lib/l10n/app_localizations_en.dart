@@ -503,6 +503,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get quranHubTitle => 'Qur’an';
 
   @override
+  String get quranAppHubTitle => 'The Holy Qur\'an';
+
+  @override
   String get quranHubSubtitle =>
       'A calm entry for reading, study, memorization, words, topics, and notes.';
 
@@ -1047,6 +1050,131 @@ class AppLocalizationsEn extends AppLocalizations {
     Object theme,
   ) {
     return '$journey is currently mapping into the Qur’anic theme of $theme.';
+  }
+
+  @override
+  String get quranCompanionSectionTitle => 'Your Qur’an Companion';
+
+  @override
+  String get quranCompanionSectionSubtitle =>
+      'A calm set of suggestions shaped by your recent reading, current pathway, and the moment you are in.';
+
+  @override
+  String quranCompanionResumePathTitle(Object path) {
+    return 'Continue $path';
+  }
+
+  @override
+  String get quranCompanionResumePathDescription =>
+      'Pick up your guided journey where it last felt most alive.';
+
+  @override
+  String get quranCompanionResumeBadge => 'Resume';
+
+  @override
+  String quranCompanionContinueSurahTitle(Object surah) {
+    return 'Continue Surah $surah';
+  }
+
+  @override
+  String get quranCompanionContinueSurahDescription =>
+      'Return to the ayah where your reading thread was already open.';
+
+  @override
+  String quranCompanionExploreThemeTitle(Object theme) {
+    return 'Explore $theme';
+  }
+
+  @override
+  String get quranCompanionThemeDescription =>
+      'Follow one Qur’anic theme across connected surahs, ayat, and reflections.';
+
+  @override
+  String get quranCompanionRelatedThemeDescription =>
+      'A connected theme to keep your recent Qur’an exploration moving gently forward.';
+
+  @override
+  String quranCompanionPathwayTitle(Object path) {
+    return 'Walk through $path';
+  }
+
+  @override
+  String get quranCompanionPathwayDescription =>
+      'A guided pathway that keeps the next step clear and spiritually grounded.';
+
+  @override
+  String quranCompanionStartHereTitle(Object surah) {
+    return 'Start with Surah $surah';
+  }
+
+  @override
+  String get quranCompanionStartHereDescription =>
+      'A gentle starting point when you want something foundational and clear.';
+
+  @override
+  String get quranCompanionTimeOfDayTitle => 'A reflection for this moment';
+
+  @override
+  String get quranCompanionTimeOfDayDescription =>
+      'Keep one ayah, one meaning cue, and one calm next step close right now.';
+
+  @override
+  String quranCompanionFridayTitle(Object surah) {
+    return 'Friday reflection: $surah';
+  }
+
+  @override
+  String get quranCompanionFridayDescription =>
+      'A soft Friday nudge toward a widely loved surah for reflection and recitation.';
+
+  @override
+  String get quranCompanionFocusBadge => 'Growth focus';
+
+  @override
+  String get quranCompanionMomentBadge => 'For this moment';
+
+  @override
+  String get quranCompanionFridayBadge => 'Friday';
+
+  @override
+  String get quranCompanionMomentumBadge => 'Keep going';
+
+  @override
+  String get quranCompanionReasonContinue => 'Continue where you left off';
+
+  @override
+  String get quranCompanionReasonMorning => 'For this morning';
+
+  @override
+  String get quranCompanionReasonAfternoon => 'For this afternoon';
+
+  @override
+  String get quranCompanionReasonEvening => 'For this evening';
+
+  @override
+  String get quranCompanionReasonNight => 'For tonight';
+
+  @override
+  String get quranCompanionReasonRecent => 'Based on your recent reading';
+
+  @override
+  String get quranCompanionReasonFocus => 'Based on your growth focus';
+
+  @override
+  String get quranCompanionReasonFriday => 'Friday reflection';
+
+  @override
+  String get quranCompanionReasonJourney => 'Connected to your journey';
+
+  @override
+  String get quranCompanionReasonMomentum => 'Keep your rhythm';
+
+  @override
+  String get quranCompanionReasonStart => 'Start here';
+
+  @override
+  String quranCompanionProgressLabel(int completed, int total) {
+    return '$completed of $total stops completed';
   }
 
   @override
@@ -22967,6 +23095,20 @@ class AppLocalizationsEn extends AppLocalizations {
       'Search common questions, answers, topics...';
 
   @override
+  String get batch9FaqSearchResultsTitle => 'Search Results';
+
+  @override
+  String get batch9FaqSearchResultsSubtitle =>
+      'Results update live as you type.';
+
+  @override
+  String get batch9FaqSearchEmptyTitle => 'No matching questions found.';
+
+  @override
+  String get batch9FaqSearchEmptySubtitle =>
+      'Try a different keyword or browse categories instead.';
+
+  @override
   String batch9FaqOverviewSummary(String questions, String categories) {
     return '$questions questions across $categories categories.';
   }
@@ -22974,6 +23116,77 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get batch9FaqFeaturedEmpty =>
       'No featured questions available right now.';
+
+  @override
+  String batch9FaqLoadError(String error) {
+    return 'Unable to load FAQ right now. $error';
+  }
+
+  @override
+  String batch9FaqCategoryLoadError(String error) {
+    return 'Unable to load category. $error';
+  }
+
+  @override
+  String get batch9FaqCategoryEmptyFilter =>
+      'No questions match this filter right now.';
+
+  @override
+  String get batch9FaqNotFound => 'FAQ item not found.';
+
+  @override
+  String get batch9FaqFilterAll => 'All';
+
+  @override
+  String get batch9FaqFilterFeatured => 'Featured';
+
+  @override
+  String get batch9FaqDifficultyBeginner => 'Beginner';
+
+  @override
+  String get batch9FaqDifficultyIntermediate => 'Intermediate';
+
+  @override
+  String get batch9FaqDifficultyAdvanced => 'Advanced';
+
+  @override
+  String get batch9FaqBadgeClarification => 'Clarification';
+
+  @override
+  String get batch9FaqBadgeMisconception => 'Misconception';
+
+  @override
+  String get batch9FaqBadgeFeatured => 'Featured';
+
+  @override
+  String get batch9FaqDetailShortAnswerTitle => 'Short answer';
+
+  @override
+  String get batch9FaqDetailAnswerTitle => 'Answer';
+
+  @override
+  String get batch9FaqDetailQuranReferencesTitle => 'Qur\'an references';
+
+  @override
+  String get batch9FaqDetailHadithReferencesTitle => 'Hadith references';
+
+  @override
+  String get batch9FaqDetailRelatedTopicsTitle => 'Related topics';
+
+  @override
+  String batch9FaqQuestionCount(int count) {
+    return '$count questions';
+  }
+
+  @override
+  String batch9FaqFeaturedCount(int count) {
+    return '$count featured';
+  }
+
+  @override
+  String batch9FaqQuranReferenceTitle(String reference) {
+    return 'Qur\'an $reference';
+  }
 
   @override
   String get accessibilityReminderHelp => 'Reminder help';
@@ -33635,18 +33848,18 @@ class AppLocalizationsEn extends AppLocalizations {
       'Before one difficult conversation today, decide the first gentle sentence you want to begin with.';
 
   @override
-  String get quranLearningPathsTitle => 'Qur\'an Learning Paths';
+  String get quranLearningPathsTitle => 'Qur\'an Pathways';
 
   @override
   String get quranLearningPathsSubtitle =>
-      'Follow a calm guided path through reading, themes, reflection, memorization, and surah study.';
+      'Follow calm guided journeys through surahs, themes, reflection, and meaningful verses.';
 
   @override
   String get quranLearningPathsHubSubtitle =>
-      'Follow guided routes through reading, themes, reflection, and memorization.';
+      'Follow guided journeys through themes, stories, reflection, and meaningful verses.';
 
   @override
-  String get quranLearningPathsContinueTitle => 'Continue your path';
+  String get quranLearningPathsContinueTitle => 'Continue your pathway';
 
   @override
   String quranLearningPathsContinueSubtitle(
@@ -33657,24 +33870,24 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get quranLearningPathsOpenContinueAction => 'Continue path';
+  String get quranLearningPathsOpenContinueAction => 'Resume pathway';
 
   @override
-  String get quranLearningPathsBrowseAllAction => 'Browse all paths';
+  String get quranLearningPathsBrowseAllAction => 'Browse all pathways';
 
   @override
   String quranLearningPathsStepCountLabel(int count) {
-    return '$count steps';
+    return '$count stops';
   }
 
   @override
-  String get quranLearningPathsStepsTitle => 'Path steps';
+  String get quranLearningPathsStepsTitle => 'Pathway stops';
 
   @override
-  String get quranLearningPathsOpenStepAction => 'Open step';
+  String get quranLearningPathsOpenStepAction => 'Open stop';
 
   @override
-  String get quranLearningPathsContinueStepLabel => 'Continue here';
+  String get quranLearningPathsContinueStepLabel => 'Resume here';
 
   @override
   String get quranLearningPathNotFound =>
@@ -36045,4 +36258,1335 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get accountsSyncStatusUnknown => 'Status not available';
+
+  @override
+  String get worldLandingTitle => 'World & Creation';
+
+  @override
+  String get worldLandingSubtitle =>
+      'Explore the signs of Allah in the universe, nature, life, and the world around you.';
+
+  @override
+  String get worldLandingMetricCompleted => 'Completed';
+
+  @override
+  String get worldLandingMetricSaved => 'Saved';
+
+  @override
+  String get worldLandingMetricObservations => 'Observations';
+
+  @override
+  String get worldLandingDailyChallengeTitle => 'Daily Creation Challenge';
+
+  @override
+  String get worldLandingViewChallengeHistoryAction => 'View challenge history';
+
+  @override
+  String get worldLandingOpenChallengesAction => 'Open challenges';
+
+  @override
+  String get worldLandingExploreCreationTitle => 'Explore Creation';
+
+  @override
+  String get worldLandingExploreCreationSubtitle =>
+      'Move from reading to direct observation with guided prompts, private capture, and reflection.';
+
+  @override
+  String get worldLandingExploreCreationAction => 'Explore Creation';
+
+  @override
+  String get worldLandingSkyExplorerAction => 'Sky Explorer';
+
+  @override
+  String get worldLandingSignsExplorerAction => 'Signs Explorer';
+
+  @override
+  String get worldLandingCosmicScaleAction => 'Cosmic Scale';
+
+  @override
+  String get worldLandingDeepOceanAction => 'Deep Ocean';
+
+  @override
+  String get worldLandingAtmosphereLayersAction => 'Atmosphere Layers';
+
+  @override
+  String get worldLandingExploreDomainsTitle => 'Explore Domains';
+
+  @override
+  String get worldLandingReflectionModeTitle => 'Reflection Mode';
+
+  @override
+  String get worldLandingReflectionModeSubtitle =>
+      'A quiet reading experience with verse, observation, and reflection, designed for slow contemplative review.';
+
+  @override
+  String get worldLandingStartReflectionModeAction => 'Start Reflection Mode';
+
+  @override
+  String get worldLandingMuslimScientistsTitle => 'Muslim Scientists';
+
+  @override
+  String get worldLandingMuslimScientistsSubtitle =>
+      'How Qur\'anic curiosity inspired inquiry, observation, and learning.';
+
+  @override
+  String get worldLandingTabExplore => 'Explore';
+
+  @override
+  String get worldLandingTabReflection => 'Reflection';
+
+  @override
+  String get worldLandingTabScientists => 'Scientists';
+
+  @override
+  String get worldLandingDailySignTitle => 'Daily Sign of Creation';
+
+  @override
+  String worldLandingObservePromptValue(Object prompt) {
+    return 'Observe: $prompt';
+  }
+
+  @override
+  String get worldLandingOpenLessonAction => 'Open lesson';
+
+  @override
+  String get lifeLandingFilterThemeAny => 'Theme: Any';
+
+  @override
+  String lifeLandingFilterThemeValue(Object theme) {
+    return 'Theme: $theme';
+  }
+
+  @override
+  String get lifeLandingFilterStatusAny => 'Status: Any';
+
+  @override
+  String lifeLandingFilterStatusValue(Object status) {
+    return 'Status: $status';
+  }
+
+  @override
+  String get lifeLandingClearFiltersAction => 'Clear';
+
+  @override
+  String lifeLandingThemeProgressValue(Object completed, Object total) {
+    return '$completed/$total completed';
+  }
+
+  @override
+  String get lifeLandingAnyThemeOption => 'Any theme';
+
+  @override
+  String get lifeLandingAnyStatusOption => 'Any status';
+
+  @override
+  String get lifeLandingTabOverview => 'Overview';
+
+  @override
+  String get lifeLandingTabThemes => 'Themes';
+
+  @override
+  String get lifeLandingTabLessons => 'Lessons';
+
+  @override
+  String get salahGuidedPrayerUnavailable => 'Guided prayer unavailable.';
+
+  @override
+  String salahGuidedPrayerPageTitle(Object prayerTitle) {
+    return '$prayerTitle - Pray With Guidance';
+  }
+
+  @override
+  String salahGuidedPrayerSelectedSurahSubtitle(Object surahName) {
+    return 'Selected surah after al-Fatihah: $surahName';
+  }
+
+  @override
+  String get salahGuidedPrayerSurahNotSet => 'Not set';
+
+  @override
+  String salahGuidedPrayerCurrentRakahValue(Object rakah) {
+    return 'Current rakah: $rakah';
+  }
+
+  @override
+  String salahGuidedPrayerStepProgressValue(Object current, Object total) {
+    return 'Step $current of $total';
+  }
+
+  @override
+  String salahGuidedPrayerFromSurahValue(Object surahName) {
+    return 'From $surahName';
+  }
+
+  @override
+  String get salahGuidedPrayerSelectedSurahFallback => 'Selected surah';
+
+  @override
+  String get salahGuidedPrayerShowTransliteration => 'Show transliteration';
+
+  @override
+  String get salahGuidedPrayerShowTranslation => 'Show translation';
+
+  @override
+  String get salahGuidedPrayerPauseAction => 'Pause';
+
+  @override
+  String get salahGuidedPrayerPlayAction => 'Play';
+
+  @override
+  String get salahGuidedPrayerRepeatStepAction => 'Repeat Step';
+
+  @override
+  String get salahGuidedPrayerNextStepAction => 'Next Step';
+
+  @override
+  String get salahGuidedPrayerFinishAction => 'Finish';
+
+  @override
+  String get learnSalahHubTitle => 'Salah Trainer';
+
+  @override
+  String get learnSalahHubGuidanceNoticeDua =>
+      'O Allah, make the Qur\'an easy for us to learn and remember.';
+
+  @override
+  String get learnSalahHubGuidanceNoticeVerse =>
+      'And We have certainly made the Qur\'an easy for remembrance, so is there any who will remember?';
+
+  @override
+  String get learnSalahHubGuidanceNoticeVerseReference => 'Qur\'an 54:17';
+
+  @override
+  String get learnSalahHubAcknowledgeAction => 'I acknowledge';
+
+  @override
+  String get learnSalahHubMetricSalahs => 'Salahs';
+
+  @override
+  String get learnSalahHubMetricUnlockedSurahs => 'Unlocked Surahs';
+
+  @override
+  String get learnSalahHubMetricMemorized => 'Memorized';
+
+  @override
+  String get learnSalahHubMetricRecitations => 'Recitations';
+
+  @override
+  String get learnSalahHubContinuePrayerPracticeTitle =>
+      'Continue prayer practice';
+
+  @override
+  String get learnSalahHubTabLearn => 'Learn Salah';
+
+  @override
+  String get learnSalahHubTabGuided => 'Pray With Guidance';
+
+  @override
+  String get learnSalahHubTabAyah => 'Learn Ayah';
+
+  @override
+  String get learnSalahHubTabRecitations => 'Duas & Recitations';
+
+  @override
+  String get learnSalahHubTabEssentials => 'Essentials';
+
+  @override
+  String get learnSalahHubTabWudu => 'Wudu';
+
+  @override
+  String get learnSalahHubGuidedSurahSelectionTitle =>
+      'Surah selection during guided prayer';
+
+  @override
+  String get learnSalahHubGuidedModeRandom => 'Random Surahs';
+
+  @override
+  String get learnSalahHubGuidedModeFixed => 'Fixed Surah';
+
+  @override
+  String get learnSalahHubGuidedModePracticeSpecific => 'Practice Specific';
+
+  @override
+  String get learnSalahHubFixedSurahFieldLabel => 'Fixed surah';
+
+  @override
+  String get learnSalahHubPracticeSurahFieldLabel => 'Practice this surah';
+
+  @override
+  String get learnSalahHubSearchSurahsHint => 'Search surahs for prayer';
+
+  @override
+  String learnSalahHubSurahCardSubtitle(Object ayahCount, Object status) {
+    return '$ayahCount ayahs • $status';
+  }
+
+  @override
+  String get learnSalahHubSurahLockedSubtitle =>
+      'Locked until more surahs are practiced';
+
+  @override
+  String get learnSalahHubStatusNotStarted => 'Not started';
+
+  @override
+  String get learnSalahHubStatusLearning => 'Learning';
+
+  @override
+  String get learnSalahHubStatusPracticed => 'Practiced';
+
+  @override
+  String get learnSalahHubStatusMemorized => 'Memorized';
+
+  @override
+  String get learnSalahHubSearchRecitationsHint =>
+      'Search duas and recitations';
+
+  @override
+  String get learnSalahHubMarkReviewedAction => 'Mark reviewed';
+
+  @override
+  String get learnSalahHubWuduGuideTitle => 'Wudu Guide';
+
+  @override
+  String get learnSalahHubWuduGuideSubtitle =>
+      'Review purification, sequence, and reminders before prayer.';
+
+  @override
+  String get learnSalahHubWuduTrainerSubtitle =>
+      'Interactive guided practice and checklist mode.';
+
+  @override
+  String get wuduGuideRequiredVsSunnahTitle => 'Required vs Sunnah';
+
+  @override
+  String get wuduGuideRequiredEssentialsTitle => 'Required essentials';
+
+  @override
+  String get wuduGuideSunnahEnhancementsTitle => 'Sunnah enhancements';
+
+  @override
+  String get wuduGuideImportantRemindersTitle => 'Important reminders';
+
+  @override
+  String get quranSummaryIslandTitle => 'Quran Summary';
+
+  @override
+  String get quranSummaryIslandSubtitle =>
+      'Explore all 114 surahs with short overviews, revelation type, and key themes.';
+
+  @override
+  String get quranSummaryPageTitle => 'Quran Summary';
+
+  @override
+  String get quranSummaryPageSubtitle =>
+      'Browse every surah with a concise overview, revelation context, and study-friendly details.';
+
+  @override
+  String get quranSummarySearchHint =>
+      'Search by surah number, name, Arabic, or meaning...';
+
+  @override
+  String get quranSummaryFilterAll => 'All';
+
+  @override
+  String get quranSummaryFilterMakki => 'Makki';
+
+  @override
+  String get quranSummaryFilterMadani => 'Madani';
+
+  @override
+  String get quranSummaryNoResultsTitle => 'No surahs matched your search';
+
+  @override
+  String get quranSummaryNoResultsSubtitle =>
+      'Try another surah name, number, Arabic spelling, or revelation filter.';
+
+  @override
+  String get quranSummaryHeroEyebrow => 'Surah Overview';
+
+  @override
+  String get quranSummaryHeroTitle =>
+      'Read the flow of the Quran one surah at a time';
+
+  @override
+  String get quranSummaryHeroSubtitle =>
+      'A calm reference for themes, revelation setting, and quick orientation before you open the reader.';
+
+  @override
+  String get quranSummaryRevelationMixed => 'Mixed';
+
+  @override
+  String get quranSummaryVersesLabel => 'verses';
+
+  @override
+  String get quranSummaryOpenReaderAction => 'Open surah reader';
+
+  @override
+  String get quranSummaryDetailMissingTitle =>
+      'This surah summary is not available';
+
+  @override
+  String get quranSummaryDetailMissingSubtitle =>
+      'Return to the Quran Summary list and choose another surah.';
+
+  @override
+  String quranSummaryDetailPageSubtitle(Object surahNumber) {
+    return 'Surah $surahNumber study companion';
+  }
+
+  @override
+  String get quranSummaryOverviewTitle => 'Overview';
+
+  @override
+  String get quranSummaryMetadataTitle => 'Surah at a glance';
+
+  @override
+  String quranSummaryRevelationLabel(Object value) {
+    return 'Revelation: $value';
+  }
+
+  @override
+  String quranSummaryVerseCountLabel(int count) {
+    return '$count verses';
+  }
+
+  @override
+  String quranSummaryRevelationOrderLabel(int order) {
+    return 'Revelation order $order';
+  }
+
+  @override
+  String get quranSummaryKeyThemesTitle => 'Key themes';
+
+  @override
+  String get quranSummaryNotableAyatTitle => 'Notable ayat';
+
+  @override
+  String get quranSummaryRelatedProphetsTitle => 'Related prophets';
+
+  @override
+  String get quranSummaryRelatedEventsTitle => 'Related events';
+
+  @override
+  String get quranSummaryVirtuesTitle => 'Virtues and recitation notes';
+
+  @override
+  String get quranSummaryReflectionPromptsTitle => 'Reflection prompts';
+
+  @override
+  String get quranSummaryActionsTitle => 'Reader actions';
+
+  @override
+  String get quranSummaryNoReadingProgress =>
+      'No saved reading progress for this surah yet. You can open it directly or begin from ayah 1.';
+
+  @override
+  String quranSummaryResumeHint(int ayahNumber) {
+    return 'Continue where you left off at ayah $ayahNumber.';
+  }
+
+  @override
+  String get quranSummaryStartReadingAction => 'Start from beginning';
+
+  @override
+  String get quranSummaryResumeReadingAction => 'Resume reading';
+
+  @override
+  String get quranSummaryViewDetailsAction => 'View details';
+
+  @override
+  String get quranSummaryThemeTawhid => 'Tawhid';
+
+  @override
+  String get quranSummaryThemeRevelation => 'Revelation';
+
+  @override
+  String get quranSummaryThemeGuidance => 'Guidance';
+
+  @override
+  String get quranSummaryThemeMercy => 'Mercy';
+
+  @override
+  String get quranSummaryThemeJudgment => 'Judgment';
+
+  @override
+  String get quranSummaryThemePatience => 'Patience';
+
+  @override
+  String get quranSummaryThemeRepentance => 'Repentance';
+
+  @override
+  String get quranSummaryThemeProphethood => 'Prophethood';
+
+  @override
+  String get quranSummaryThemeResurrection => 'Resurrection';
+
+  @override
+  String get quranSummaryThemeWorship => 'Worship';
+
+  @override
+  String get quranSummaryThemeLaw => 'Law';
+
+  @override
+  String get quranSummaryThemeCommunity => 'Community';
+
+  @override
+  String get quranSummaryThemeGratitude => 'Gratitude';
+
+  @override
+  String get quranSummaryThemeJustice => 'Justice';
+
+  @override
+  String get quranSummaryThemeSignsOfCreation => 'Signs of creation';
+
+  @override
+  String get quranSummaryThemeHypocrisy => 'Hypocrisy';
+
+  @override
+  String get quranSummaryThemeCharity => 'Charity';
+
+  @override
+  String get quranSummaryThemeFamily => 'Family';
+
+  @override
+  String get quranSummaryThemeStruggle => 'Struggle';
+
+  @override
+  String get quranSummaryThemeParadiseAndHell => 'Paradise and Hell';
+
+  @override
+  String get quranThemeDiscoveryIslandTitle => 'Browse by Topic';
+
+  @override
+  String get quranThemeDiscoveryIslandSubtitle =>
+      'Explore the Qur\'an through themes like mercy, patience, prophets, guidance, and the hereafter.';
+
+  @override
+  String get quranThemeDiscoveryPageTitle => 'Browse by Topic';
+
+  @override
+  String get quranThemeDiscoveryPageSubtitle =>
+      'Discover the Qur\'an through curated themes, related surahs, key ayah anchors, and gentle study pathways.';
+
+  @override
+  String get quranThemeDiscoveryHeroEyebrow => 'Thematic Discovery';
+
+  @override
+  String get quranThemeDiscoveryHeroTitle =>
+      'Explore the Qur\'an through themes that shape the heart';
+
+  @override
+  String get quranThemeDiscoveryHeroSubtitle =>
+      'A calm way to follow mercy, patience, prophets, guidance, justice, and the signs of creation across related surahs.';
+
+  @override
+  String get quranThemeDiscoverySearchHint =>
+      'Search topics, prophets, events, or surahs...';
+
+  @override
+  String get quranThemeDiscoveryFeaturedThemesTitle => 'Featured themes';
+
+  @override
+  String get quranThemeDiscoveryBrowseByCategoryTitle => 'Browse by category';
+
+  @override
+  String get quranThemeDiscoveryKeyAyahReferencesTitle => 'Key ayah references';
+
+  @override
+  String get quranThemeDiscoveryRelatedSurahsTitle => 'Related surahs';
+
+  @override
+  String get quranThemeDiscoveryReflectionTitle => 'Reflection';
+
+  @override
+  String get quranThemeDiscoveryMoreThemesTitle => 'More themes';
+
+  @override
+  String get quranThemeDiscoveryExploreThemeAction => 'Explore theme';
+
+  @override
+  String get quranThemeDiscoveryBrowseMoreThemesAction => 'Browse more themes';
+
+  @override
+  String get quranThemeDiscoveryNoResultsTitle =>
+      'No themes matched your search';
+
+  @override
+  String get quranThemeDiscoveryNoResultsSubtitle =>
+      'Try another topic, prophet, event, or category.';
+
+  @override
+  String get quranThemeDiscoveryMissingThemeTitle =>
+      'This theme is not available';
+
+  @override
+  String get quranThemeDiscoveryMissingThemeSubtitle =>
+      'Return to Browse by Topic and choose another Qur\'an theme.';
+
+  @override
+  String quranThemeDiscoveryThemeCountLabel(int count) {
+    return '$count themes';
+  }
+
+  @override
+  String quranThemeDiscoverySurahCountLabel(int count) {
+    return '$count surahs';
+  }
+
+  @override
+  String get quranThemeDiscoveryCategoryBelief => 'Belief';
+
+  @override
+  String get quranThemeDiscoveryCategoryWorship => 'Worship';
+
+  @override
+  String get quranThemeDiscoveryCategoryCharacter => 'Character';
+
+  @override
+  String get quranThemeDiscoveryCategoryStoriesProphets =>
+      'Stories and Prophets';
+
+  @override
+  String get quranThemeDiscoveryCategoryAkhirah => 'Akhirah';
+
+  @override
+  String get quranThemeDiscoveryCategorySocietyEthics => 'Society and Ethics';
+
+  @override
+  String get quranThemeDiscoveryCategorySignsReflection =>
+      'Signs and Reflection';
+
+  @override
+  String get quranPathwaysIslandTitle => 'Qur\'an Pathways';
+
+  @override
+  String get quranPathwaysIslandSubtitle =>
+      'Follow guided journeys through themes, stories, reflection, and meaningful verses.';
+
+  @override
+  String get quranPathwaysHeroEyebrow => 'Guided Journeys';
+
+  @override
+  String get quranPathwaysHeroTitle =>
+      'Move through the Qur\'an with calm structure';
+
+  @override
+  String get quranPathwaysHeroSubtitle =>
+      'Choose a curated pathway when you want a gentler sequence through surahs, themes, key ayat, and reflection.';
+
+  @override
+  String get quranPathwaysFeaturedTitle => 'Featured pathways';
+
+  @override
+  String get quranPathwaysAllTitle => 'All pathways';
+
+  @override
+  String get quranPathwaysContinueTitle => 'Continue your pathway';
+
+  @override
+  String get quranPathwaysEmptyTitle => 'No pathways match this view';
+
+  @override
+  String get quranPathwaysEmptySubtitle =>
+      'Try another category or return to all pathways.';
+
+  @override
+  String get quranPathwaysMissingTitle => 'This pathway is not available';
+
+  @override
+  String get quranPathwaysMissingSubtitle =>
+      'Return to Qur\'an Pathways and choose another guided journey.';
+
+  @override
+  String get quranPathwaysStopMissingTitle => 'This stop is not available';
+
+  @override
+  String get quranPathwaysStopMissingSubtitle =>
+      'Return to the pathway and choose another stop.';
+
+  @override
+  String get quranPathwaysStopsTitle => 'Journey stops';
+
+  @override
+  String get quranPathwaysStartAction => 'Start pathway';
+
+  @override
+  String get quranPathwaysResumeAction => 'Resume pathway';
+
+  @override
+  String get quranPathwaysMarkCompleteAction => 'Mark stop complete';
+
+  @override
+  String get quranPathwaysCompleteLabel => 'Pathway complete';
+
+  @override
+  String get quranPathwaysCurrentStopLabel => 'Current stop';
+
+  @override
+  String get quranPathwaysNextStopAction => 'Open next stop';
+
+  @override
+  String get quranPathwaysReflectAction => 'Reflect on this stop';
+
+  @override
+  String get quranPathwaysOpenStopAction => 'Open linked destination';
+
+  @override
+  String get quranPathwayStatusCompleted => 'Completed';
+
+  @override
+  String get quranPathwayStatusInProgress => 'In progress';
+
+  @override
+  String get quranPathwayStatusNotStarted => 'Not started';
+
+  @override
+  String get quranPathwayCategoryFoundations => 'Foundations';
+
+  @override
+  String get quranPathwayCategorySpiritualSupport => 'Spiritual Support';
+
+  @override
+  String get quranPathwayCategoryProphetStories => 'Stories and Prophets';
+
+  @override
+  String get quranPathwayCategoryReflection => 'Reflection';
+
+  @override
+  String get quranPathwayCategoryCharacterAdab => 'Character and Adab';
+
+  @override
+  String get quranPathwayCategorySignsCreation => 'Signs and Creation';
+
+  @override
+  String get quranPathwayCategoryHereafter => 'Hereafter';
+
+  @override
+  String get quranPathwayPatienceTitle => 'Patience in the Qur\'an';
+
+  @override
+  String get quranPathwayPatienceSubtitle =>
+      'Move through sabr, prayer, hardship, and hopeful endurance.';
+
+  @override
+  String get quranPathwayPatienceDescription =>
+      'A gentle pathway through verses and surahs that teach patience as trust, worship, and steadiness rather than passive waiting.';
+
+  @override
+  String get quranPathwayTawhidTitle => 'Tawhid Foundations';
+
+  @override
+  String get quranPathwayTawhidSubtitle =>
+      'Begin with Allah\'s oneness, majesty, and sole right to worship.';
+
+  @override
+  String get quranPathwayTawhidDescription =>
+      'This pathway gathers a few strong anchors for understanding who Allah is, why worship belongs to Him alone, and how tawhid steadies the heart.';
+
+  @override
+  String get quranPathwayMercyTitle => 'Mercy and Hope';
+
+  @override
+  String get quranPathwayMercySubtitle =>
+      'Follow mercy, repentance, welcome, and hopeful return to Allah.';
+
+  @override
+  String get quranPathwayMercyDescription =>
+      'A calming journey for hearts that need hope, reminding the believer that Allah\'s mercy remains open through repentance, gratitude, and return.';
+
+  @override
+  String get quranPathwayMusaTitle => 'Stories of Musa';
+
+  @override
+  String get quranPathwayMusaSubtitle =>
+      'Trace courage, mission, du\'a, and reliance through Musa عليه السلام.';
+
+  @override
+  String get quranPathwayMusaDescription =>
+      'This pathway moves through some of the strongest Musa-related anchors so the story becomes a source of courage, prayer, and moral clarity.';
+
+  @override
+  String get quranPathwayCreationTitle => 'Signs of Creation';
+
+  @override
+  String get quranPathwayCreationSubtitle =>
+      'Reflect on the heavens, earth, life, and the self as signs of Allah.';
+
+  @override
+  String get quranPathwayCreationDescription =>
+      'A reflective pathway that slows the heart down around creation, remembrance, and the ordinary signs that point back to Allah.';
+
+  @override
+  String get quranPathwayHereafterTitle => 'Reflection on the Hereafter';
+
+  @override
+  String get quranPathwayHereafterSubtitle =>
+      'Remember return, accountability, and the meeting with Allah.';
+
+  @override
+  String get quranPathwayHereafterDescription =>
+      'This pathway offers a careful sequence through resurrection, judgment, and final return so the believer can reflect without being overwhelmed.';
+
+  @override
+  String get quranPathwayGratitudeTitle => 'Gratitude and Blessings';
+
+  @override
+  String get quranPathwayGratitudeSubtitle =>
+      'Notice blessing, increase, and worshipful thankfulness.';
+
+  @override
+  String get quranPathwayGratitudeDescription =>
+      'A short pathway through shukr in the Qur\'an, helping gratitude become worship, awareness, and better use of Allah\'s gifts.';
+
+  @override
+  String get quranPathwayCharacterTitle => 'Character and Adab';
+
+  @override
+  String get quranPathwayCharacterSubtitle =>
+      'Follow speech, manners, fairness, and life with others.';
+
+  @override
+  String get quranPathwayCharacterDescription =>
+      'This pathway gathers strong Qur\'anic anchors for manners, social conduct, fairness, and guarding the tongue.';
+
+  @override
+  String get quranPathwayDuaTitle => 'Du\'a and Reliance on Allah';
+
+  @override
+  String get quranPathwayDuaSubtitle =>
+      'Move through nearness, asking Allah, and trusting Him after effort.';
+
+  @override
+  String get quranPathwayDuaDescription =>
+      'A gentle pathway through supplication and tawakkul so calling upon Allah and relying on Him feel more rooted in Qur\'anic guidance.';
+
+  @override
+  String get quranPathwayHardTimesTitle => 'Verses for Hard Times';
+
+  @override
+  String get quranPathwayHardTimesSubtitle =>
+      'Return to a few verses of ease, trust, and reassurance when life feels heavy.';
+
+  @override
+  String get quranPathwayHardTimesDescription =>
+      'This pathway is a calm support path for hardship, drawing from ayat that bring perspective, hope, and trust in Allah without sensational promises.';
+
+  @override
+  String get quranPathwayPatienceStepThemeTitle =>
+      'Begin with the theme of patience';
+
+  @override
+  String get quranPathwayPatienceStepThemeSubtitle =>
+      'See how sabr appears across related surahs before narrowing in.';
+
+  @override
+  String get quranPathwayPatienceStepYusufTitle => 'Study Surah Yusuf';
+
+  @override
+  String get quranPathwayPatienceStepYusufSubtitle =>
+      'Walk through hardship, family pain, and dignified trust in Allah.';
+
+  @override
+  String get quranPathwayPatienceStepReaderTitle =>
+      'Read verses of ease after hardship';
+
+  @override
+  String get quranPathwayPatienceStepReaderSubtitle =>
+      'Open the reader where reassurance is repeated with clarity.';
+
+  @override
+  String get quranPathwayPatienceStepReflectTitle =>
+      'End with a patience reflection';
+
+  @override
+  String get quranPathwayPatienceStepReflectSubtitle =>
+      'Pause with a verse that keeps hardship in proportion.';
+
+  @override
+  String get quranPathwayTawhidStepThemeTitle => 'Open the tawhid theme';
+
+  @override
+  String get quranPathwayTawhidStepThemeSubtitle =>
+      'Start with a concise thematic view of Allah\'s oneness.';
+
+  @override
+  String get quranPathwayTawhidStepIkhlasTitle => 'Study Surah Al-Ikhlas';
+
+  @override
+  String get quranPathwayTawhidStepIkhlasSubtitle =>
+      'Return to one of the clearest summaries of divine oneness.';
+
+  @override
+  String get quranPathwayTawhidStepKursiTitle => 'Read Ayat al-Kursi';
+
+  @override
+  String get quranPathwayTawhidStepKursiSubtitle =>
+      'Reflect on Allah\'s life, authority, and preservation.';
+
+  @override
+  String get quranPathwayTawhidStepReflectTitle =>
+      'Close with a tawhid reflection';
+
+  @override
+  String get quranPathwayTawhidStepReflectSubtitle =>
+      'Sit with a verse that turns creation back toward its Lord.';
+
+  @override
+  String get quranPathwayMercyStepThemeTitle => 'Begin with mercy as a theme';
+
+  @override
+  String get quranPathwayMercyStepThemeSubtitle =>
+      'See how mercy gathers hope, compassion, and return to Allah.';
+
+  @override
+  String get quranPathwayMercyStepZumarTitle => 'Read the verse of hope';
+
+  @override
+  String get quranPathwayMercyStepZumarSubtitle =>
+      'Open a well-known anchor against despair.';
+
+  @override
+  String get quranPathwayMercyStepRahmanTitle => 'Study Surah Ar-Rahman';
+
+  @override
+  String get quranPathwayMercyStepRahmanSubtitle =>
+      'Notice repeated reminders of divine generosity and favor.';
+
+  @override
+  String get quranPathwayMercyStepRepentanceTitle =>
+      'End with repentance and hope';
+
+  @override
+  String get quranPathwayMercyStepRepentanceSubtitle =>
+      'Finish by connecting mercy to returning sincerely to Allah.';
+
+  @override
+  String get quranPathwayMusaStepThemeTitle => 'Open the Musa theme';
+
+  @override
+  String get quranPathwayMusaStepThemeSubtitle =>
+      'Start with the broad arc of Musa عليه السلام across the Qur\'an.';
+
+  @override
+  String get quranPathwayMusaStepTahaTitle => 'Study Surah Taha';
+
+  @override
+  String get quranPathwayMusaStepTahaSubtitle =>
+      'Read a surah that holds mission, reassurance, and du\'a together.';
+
+  @override
+  String get quranPathwayMusaStepDuaTitle => 'Read Musa\'s du\'a';
+
+  @override
+  String get quranPathwayMusaStepDuaSubtitle =>
+      'Pause at the supplication before speaking truth to power.';
+
+  @override
+  String get quranPathwayMusaStepAnchorTitle =>
+      'Anchor the story in reflection';
+
+  @override
+  String get quranPathwayMusaStepAnchorSubtitle =>
+      'Let Musa\'s path become a mirror for your own responsibilities.';
+
+  @override
+  String get quranPathwayCreationStepThemeTitle =>
+      'Open the signs of creation theme';
+
+  @override
+  String get quranPathwayCreationStepThemeSubtitle =>
+      'Begin with the Qur\'an\'s invitation to look outward and inward.';
+
+  @override
+  String get quranPathwayCreationStepImranTitle =>
+      'Read the signs in the heavens and the earth';
+
+  @override
+  String get quranPathwayCreationStepImranSubtitle =>
+      'Open a passage that joins reflection to remembrance.';
+
+  @override
+  String get quranPathwayCreationStepMulkTitle => 'Study Surah Al-Mulk';
+
+  @override
+  String get quranPathwayCreationStepMulkSubtitle =>
+      'Look at order, design, and humility before divine power.';
+
+  @override
+  String get quranPathwayCreationStepReflectTitle =>
+      'End with a creation reflection';
+
+  @override
+  String get quranPathwayCreationStepReflectSubtitle =>
+      'Notice how ordinary life itself points back to Allah.';
+
+  @override
+  String get quranPathwayHereafterStepThemeTitle =>
+      'Begin with judgment as a theme';
+
+  @override
+  String get quranPathwayHereafterStepThemeSubtitle =>
+      'Open the larger picture of accountability and return.';
+
+  @override
+  String get quranPathwayHereafterStepNabaTitle => 'Study Surah An-Naba';
+
+  @override
+  String get quranPathwayHereafterStepNabaSubtitle =>
+      'Read a surah that frames the coming reality with force and clarity.';
+
+  @override
+  String get quranPathwayHereafterStepZalzalahTitle =>
+      'Read the day deeds are shown';
+
+  @override
+  String get quranPathwayHereafterStepZalzalahSubtitle =>
+      'Pause with verses that make every action feel weighty again.';
+
+  @override
+  String get quranPathwayHereafterStepReflectTitle =>
+      'End with resurrection reflection';
+
+  @override
+  String get quranPathwayHereafterStepReflectSubtitle =>
+      'Let the certainty of return soften attachment to what passes.';
+
+  @override
+  String get quranPathwayGratitudeStepThemeTitle =>
+      'Begin with gratitude as a theme';
+
+  @override
+  String get quranPathwayGratitudeStepThemeSubtitle =>
+      'See how shukr is tied to worship and better living.';
+
+  @override
+  String get quranPathwayGratitudeStepIbrahimTitle =>
+      'Read the promise of increase';
+
+  @override
+  String get quranPathwayGratitudeStepIbrahimSubtitle =>
+      'Open a direct reminder that gratitude changes the servant.';
+
+  @override
+  String get quranPathwayGratitudeStepNahlTitle => 'Study Surah An-Nahl';
+
+  @override
+  String get quranPathwayGratitudeStepNahlSubtitle =>
+      'Notice blessings, provision, and the call to recognize them.';
+
+  @override
+  String get quranPathwayGratitudeStepReflectTitle =>
+      'End with a gratitude reflection';
+
+  @override
+  String get quranPathwayGratitudeStepReflectSubtitle =>
+      'Pause with a repeated reminder of Allah\'s favors.';
+
+  @override
+  String get quranPathwayCharacterStepHujuratTitle => 'Study Surah Al-Hujurat';
+
+  @override
+  String get quranPathwayCharacterStepHujuratSubtitle =>
+      'Read a surah of speech, manners, and life with others.';
+
+  @override
+  String get quranPathwayCharacterStepReaderTitle =>
+      'Read verses on brotherhood and guarding the tongue';
+
+  @override
+  String get quranPathwayCharacterStepReaderSubtitle =>
+      'Open a passage that makes adab practical and immediate.';
+
+  @override
+  String get quranPathwayCharacterStepCommunityTitle =>
+      'Explore the community theme';
+
+  @override
+  String get quranPathwayCharacterStepCommunitySubtitle =>
+      'See how the Qur\'an builds trust and reconciliation.';
+
+  @override
+  String get quranPathwayCharacterStepReflectTitle =>
+      'End with a character reflection';
+
+  @override
+  String get quranPathwayCharacterStepReflectSubtitle =>
+      'Let fairness and restraint become a personal question.';
+
+  @override
+  String get quranPathwayDuaStepThemeTitle => 'Begin with the theme of du\'a';
+
+  @override
+  String get quranPathwayDuaStepThemeSubtitle =>
+      'Start by seeing supplication as nearness, humility, and hope.';
+
+  @override
+  String get quranPathwayDuaStepBaqarahTitle => 'Read the verse of nearness';
+
+  @override
+  String get quranPathwayDuaStepBaqarahSubtitle =>
+      'Open the ayah that reassures the caller that Allah is near.';
+
+  @override
+  String get quranPathwayDuaStepTrustTitle => 'Explore trust in Allah';
+
+  @override
+  String get quranPathwayDuaStepTrustSubtitle =>
+      'Follow how tawakkul joins planning, effort, and surrender.';
+
+  @override
+  String get quranPathwayDuaStepRelianceTitle => 'Read a verse of reliance';
+
+  @override
+  String get quranPathwayDuaStepRelianceSubtitle =>
+      'End with a verse that joins decision, effort, and trust.';
+
+  @override
+  String get quranPathwayHardTimesStepInshirahTitle =>
+      'Read verses of ease after hardship';
+
+  @override
+  String get quranPathwayHardTimesStepInshirahSubtitle =>
+      'Start with a short passage many hearts return to in difficulty.';
+
+  @override
+  String get quranPathwayHardTimesStepBaqarahTitle =>
+      'Read the verse of capacity';
+
+  @override
+  String get quranPathwayHardTimesStepBaqarahSubtitle =>
+      'Pause with a verse that restores proportion and trust.';
+
+  @override
+  String get quranPathwayHardTimesStepPatienceTitle =>
+      'Revisit the patience theme';
+
+  @override
+  String get quranPathwayHardTimesStepPatienceSubtitle =>
+      'See hardship through the wider Qur\'anic language of sabr.';
+
+  @override
+  String get quranPathwayHardTimesStepSharhTitle => 'End with Surah Ash-Sharh';
+
+  @override
+  String get quranPathwayHardTimesStepSharhSubtitle =>
+      'Finish with a short surah of expansion, ease, and forward motion.';
+
+  @override
+  String get quranPathwayPatienceStepReflectPrompt =>
+      'Where do I most need sabr and steady prayer right now?';
+
+  @override
+  String get quranPathwayTawhidStepReflectPrompt =>
+      'How does remembering Allah as Creator and Sustainer steady my heart?';
+
+  @override
+  String get quranPathwayMercyStepRepentancePrompt =>
+      'What would it mean for me to turn back to Allah with honest hope today?';
+
+  @override
+  String get quranPathwayMusaStepAnchorPrompt =>
+      'What do Musa\'s du\'a, courage, and dependence on Allah teach me about my own responsibilities?';
+
+  @override
+  String get quranPathwayCreationStepReflectPrompt =>
+      'Which signs of Allah in creation am I rushing past instead of noticing with gratitude?';
+
+  @override
+  String get quranPathwayHereafterStepReflectPrompt =>
+      'How would my choices change if I remembered more often that I will return to Allah?';
+
+  @override
+  String get quranPathwayGratitudeStepReflectPrompt =>
+      'Which blessings have become ordinary to me even though they are signs of Allah\'s care?';
+
+  @override
+  String get quranPathwayCharacterStepReflectPrompt =>
+      'Which part of my speech or assumptions needs more taqwa, care, and fairness?';
+
+  @override
+  String get quranPathwayDuaStepReliancePrompt =>
+      'How can I combine sincere du\'a with wise effort and tawakkul today?';
+
+  @override
+  String get quranPathwayHardTimesStepSharhPrompt =>
+      'Which verse in this pathway would I like to return to in the next difficult moment?';
+
+  @override
+  String quranPathwaysCountLabel(int count) {
+    return '$count pathways';
+  }
+
+  @override
+  String quranPathwaysEstimatedLengthLabel(int minutes) {
+    return '$minutes min';
+  }
+
+  @override
+  String quranPathwaysProgressLabel(int completed, int total) {
+    return '$completed of $total stops completed';
+  }
+
+  @override
+  String quranPathwaysStopNumberLabel(int number) {
+    return 'Stop $number';
+  }
+
+  @override
+  String quranPathwaysSurahLabel(int surahNumber) {
+    return 'Surah $surahNumber';
+  }
+
+  @override
+  String get quranReflectionsLibraryEyebrow => 'Private reflections';
+
+  @override
+  String get quranReflectionsLibraryTitle => 'Your reflections';
+
+  @override
+  String get quranReflectionsLibrarySubtitle =>
+      'Revisit the notes and insights you wanted to keep from your Quran journey.';
+
+  @override
+  String get quranReflectionsSearchHint => 'Search reflections...';
+
+  @override
+  String get quranReflectionsNoMatchesTitle => 'No reflections match this view';
+
+  @override
+  String get quranReflectionsNoMatchesSubtitle =>
+      'Try another search term or switch filters to see more of your saved insights.';
+
+  @override
+  String get quranReflectionsMissingTitle => 'Reflection not found';
+
+  @override
+  String get quranReflectionsMissingSubtitle =>
+      'This saved reflection is no longer available, but your other reflections are still here.';
+
+  @override
+  String get quranReflectionsSavedInsightSubtitle =>
+      'A saved insight from your Quran journey';
+
+  @override
+  String get quranReflectionsYourReflectionTitle => 'Your reflection';
+
+  @override
+  String get quranReflectionsFavoritesFilter => 'Favorites';
+
+  @override
+  String get quranReflectionsEditReflectionAction => 'Edit reflection';
+
+  @override
+  String get quranReflectionsDeleteReflectionAction => 'Delete reflection';
+
+  @override
+  String get quranReflectionsOpenSourceAction => 'Open source';
+
+  @override
+  String get quranReflectionsComposerHelper =>
+      'What stood out to you, and what do you want to remember from this moment?';
+
+  @override
+  String get quranReflectionsSaveReflectionAction => 'Save reflection';
+
+  @override
+  String get quranReflectionsUpdateReflectionAction => 'Update reflection';
+
+  @override
+  String get quranReflectionsMarkFavoriteAction => 'Mark as favorite';
+
+  @override
+  String get quranReflectionsRemoveFavoriteAction => 'Remove favorite';
+
+  @override
+  String get quranReflectionsFilterSurahs => 'Surahs';
+
+  @override
+  String get quranReflectionsFilterThemes => 'Themes';
+
+  @override
+  String get quranReflectionsFilterPathways => 'Pathways';
+
+  @override
+  String get quranReflectionsFilterRecent => 'Recent';
+
+  @override
+  String get quranReflectionsSourceSurah => 'Surah detail';
+
+  @override
+  String get quranReflectionsSourceTheme => 'Theme detail';
+
+  @override
+  String get quranReflectionsSourcePathway => 'Pathway';
+
+  @override
+  String get quranReflectionsSourcePathwayStop => 'Pathway stop';
+
+  @override
+  String get quranReflectionsSourceAyahReflection => 'Ayah reflection';
+
+  @override
+  String get quranReflectionsSourceCompanion => 'Companion prompt';
+
+  @override
+  String get quranReflectionsSourceReader => 'Reader context';
+
+  @override
+  String quranReflectionsSurahHelper(Object surahName) {
+    return 'What guidance do you want to remember from $surahName?';
+  }
+
+  @override
+  String quranReflectionsThemeHelper(Object themeName) {
+    return 'What is $themeName drawing your attention to right now?';
+  }
+
+  @override
+  String quranReflectionsPathwayHelper(Object pathwayTitle) {
+    return 'What do you want to carry forward from $pathwayTitle?';
+  }
+
+  @override
+  String quranReflectionsPathwayStopHelper(Object stopTitle) {
+    return 'What do you want to remember from $stopTitle?';
+  }
+
+  @override
+  String get settingsThemeChoiceMidnightManuscript => 'Midnight Manuscript';
+
+  @override
+  String get settingsThemeChoiceNoorGlass => 'Noor Glass';
+
+  @override
+  String get settingsThemeModeNoorGlassDescription =>
+      'Milky frosted glass with a soft pearled glow and gentle transparency.';
+
+  @override
+  String get settingsThemeModeMidnightManuscriptDescription =>
+      'Deep ink tones with warm gold accents and a quiet manuscript atmosphere.';
+
+  @override
+  String get settingsThemeModePickerHelper =>
+      'Choose the atmosphere that feels most at home in your journey.';
+
+  @override
+  String get settingsThemeModeDefaultBestFor =>
+      'Best for everyday calm and balanced use.';
+
+  @override
+  String get settingsThemeModeEasyReadBestFor =>
+      'Best for longer reading and clearer contrast.';
+
+  @override
+  String get settingsThemeModeNoorGlassBestFor =>
+      'Best for airy glass depth and luminous everyday reading.';
+
+  @override
+  String get settingsThemeModeDarkBestFor =>
+      'Best for low-light reading and quieter evenings.';
+
+  @override
+  String get settingsThemeModeMidnightManuscriptBestFor =>
+      'Best for evening reflection and Qur’an study.';
 }

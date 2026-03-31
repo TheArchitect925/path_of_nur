@@ -82,6 +82,7 @@ class _LearnPageState extends ConsumerState<LearnPage> {
     }
 
     return LearnHubPageScaffold(
+      ownsBackground: false,
       headerIcon: Icons.school_rounded,
       title: l10n.learnHubTitle,
       subtitle: localizedAppPageDescription(
@@ -89,13 +90,13 @@ class _LearnPageState extends ConsumerState<LearnPage> {
         AppPageDescriptionKey.learnHub,
         kidsMode: isKidsMode,
       ),
-      quoteHeader: const LearningHubRabbiZidniIlmaHeader(),
       shortcutActions: buildMajorPageShortcutActions(
         context,
         ref,
         MajorPageShortcutFamily.learn,
       ),
       children: [
+        const LearningHubRabbiZidniIlmaHeader(),
         _buildDailyLearning(summary, l10n),
         const SizedBox(height: 12),
         _buildSearchFilters(

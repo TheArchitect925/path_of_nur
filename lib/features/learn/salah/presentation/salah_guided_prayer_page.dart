@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
 
+import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../../quran/application/quran_providers.dart';
@@ -59,14 +60,15 @@ class _SalahGuidedPrayerPageState extends ConsumerState<SalahGuidedPrayerPage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final prayer = ref.watch(salahTrainerPrayerByIdProvider(widget.prayerId));
     final surah = ref.watch(salahTrainerSurahByIdProvider(_surahId));
     final steps = ref.watch(salahGuidedStepsProvider(_args));
     final syncState = ref.watch(guidedPrayerSyncControllerProvider(_args));
     final sync = ref.read(guidedPrayerSyncControllerProvider(_args).notifier);
     if (prayer == null || steps.isEmpty) {
-      return const Scaffold(
-        body: Center(child: Text('Guided prayer unavailable.')),
+      return Scaffold(
+        body: Center(child: Text(l10n.salahGuidedPrayerUnavailable)),
       );
     }
 
@@ -77,8 +79,10 @@ class _SalahGuidedPrayerPageState extends ConsumerState<SalahGuidedPrayerPage> {
     final timing = _timingForStep(current.step);
 
     return LearnHubPageScaffold(
-      title: '${prayer.title} - Pray With Guidance',
-      subtitle: 'Selected surah after al-Fatihah: ${surah?.name ?? 'Not set'}',
+      title: l10n.salahGuidedPrayerPageTitle(prayer.title),
+      subtitle: l10n.salahGuidedPrayerSelectedSurahSubtitle(
+        surah?.name ?? l10n.salahGuidedPrayerSurahNotSet,
+      ),
       children: [
         PremiumCard(
           child: Column(
@@ -91,12 +95,15 @@ class _SalahGuidedPrayerPageState extends ConsumerState<SalahGuidedPrayerPage> {
                 ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700),
               ),
               const SizedBox(height: 6),
-              Text('Current rakah: ${current.rakahNumber}'),
+              Text(l10n.salahGuidedPrayerCurrentRakahValue(current.rakahNumber)),
               const SizedBox(height: 10),
               LinearProgressIndicator(value: progressRatio, minHeight: 8),
               const SizedBox(height: 8),
               Text(
-                'Step ${syncState.currentStepIndex + 1} of ${steps.length}',
+                l10n.salahGuidedPrayerStepProgressValue(
+                  syncState.currentStepIndex + 1,
+                  steps.length,
+                ),
                 style: Theme.of(context).textTheme.bodySmall,
               ),
             ],
@@ -123,7 +130,9 @@ class _SalahGuidedPrayerPageState extends ConsumerState<SalahGuidedPrayerPage> {
               if (current.surahId != null) ...[
                 const SizedBox(height: 4),
                 Text(
-                  'From ${surah?.name ?? 'Selected surah'}',
+                  l10n.salahGuidedPrayerFromSurahValue(
+                    surah?.name ?? l10n.salahGuidedPrayerSelectedSurahFallback,
+                  ),
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
               ],
@@ -157,13 +166,13 @@ class _SalahGuidedPrayerPageState extends ConsumerState<SalahGuidedPrayerPage> {
                 value: _showTransliteration,
                 onChanged: (value) =>
                     setState(() => _showTransliteration = value),
-                title: const Text('Show transliteration'),
+                title: Text(l10n.salahGuidedPrayerShowTransliteration),
               ),
               SwitchListTile.adaptive(
                 contentPadding: EdgeInsets.zero,
                 value: _showTranslation,
                 onChanged: (value) => setState(() => _showTranslation = value),
-                title: const Text('Show translation'),
+                title: Text(l10n.salahGuidedPrayerShowTranslation),
               ),
             ],
           ),
@@ -180,14 +189,18 @@ class _SalahGuidedPrayerPageState extends ConsumerState<SalahGuidedPrayerPage> {
                         ? Icons.pause_rounded
                         : Icons.play_arrow_rounded,
                   ),
-                  label: Text(syncState.isPlaying ? 'Pause' : 'Play'),
+                  label: Text(
+                    syncState.isPlaying
+                        ? l10n.salahGuidedPrayerPauseAction
+                        : l10n.salahGuidedPrayerPlayAction,
+                  ),
                 ),
               ),
               const SizedBox(width: 8),
               Expanded(
                 child: OutlinedButton(
                   onPressed: sync.repeatCurrent,
-                  child: const Text('Repeat Step'),
+                  child: Text(l10n.salahGuidedPrayerRepeatStepAction),
                 ),
               ),
             ],
@@ -201,7 +214,7 @@ class _SalahGuidedPrayerPageState extends ConsumerState<SalahGuidedPrayerPage> {
                 onPressed: syncState.currentStepIndex > 0
                     ? () => sync.setCurrentStep(syncState.currentStepIndex - 1)
                     : null,
-                child: const Text('Previous'),
+                child: Text(l10n.wuduTrainerPreviousAction),
               ),
             ),
             const SizedBox(width: 8),
@@ -217,8 +230,8 @@ class _SalahGuidedPrayerPageState extends ConsumerState<SalahGuidedPrayerPage> {
                       },
                 child: Text(
                   syncState.currentStepIndex < steps.length - 1
-                      ? 'Next Step'
-                      : 'Finish',
+                      ? l10n.salahGuidedPrayerNextStepAction
+                      : l10n.salahGuidedPrayerFinishAction,
                 ),
               ),
             ),

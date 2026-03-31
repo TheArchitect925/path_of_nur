@@ -66,6 +66,8 @@ class SectionHubScaffold extends StatefulWidget {
     this.backgroundAssetPath,
     this.backgroundOverlayColor,
     this.floatingBottom,
+    this.layoutConfig = PageLayoutConfig.standard,
+    this.ownsBackground = true,
   });
 
   final String title;
@@ -82,6 +84,8 @@ class SectionHubScaffold extends StatefulWidget {
   final String? backgroundAssetPath;
   final Color? backgroundOverlayColor;
   final Widget? floatingBottom;
+  final PageLayoutConfig layoutConfig;
+  final bool ownsBackground;
 
   @override
   State<SectionHubScaffold> createState() => _SectionHubScaffoldState();
@@ -102,6 +106,8 @@ class _SectionHubScaffoldState extends State<SectionHubScaffold> {
       headerActions: widget.headerActions,
       backgroundAssetPath: widget.backgroundAssetPath,
       backgroundOverlayColor: widget.backgroundOverlayColor,
+      layoutConfig: widget.layoutConfig,
+      ownsBackground: widget.ownsBackground,
       floatingBottom: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -126,7 +132,6 @@ class _SectionHubScaffoldState extends State<SectionHubScaffold> {
       children: [
         ...widget.children,
         if (widget.floatingBottom != null) const SizedBox(height: 108),
-        if (widget.shortcutActions.isNotEmpty) const SizedBox(height: 96),
       ],
     );
   }

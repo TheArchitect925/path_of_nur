@@ -15,27 +15,58 @@ class QuranReflectionsNotifier
   final LocalStore _store;
 
   QuranReflectionEntry? findEntry({
-    required QuranQuoteRef ref,
+    QuranQuoteRef? ref,
     String? sourceEnrichmentId,
+    QuranReflectionSourceType? sourceType,
+    String? sourceId,
   }) {
     for (final entry in state) {
-      if (_matchesIdentity(entry, ref, sourceEnrichmentId)) {
+      if (
+          _matchesIdentity(
+            entry,
+            ref: ref,
+            sourceEnrichmentId: sourceEnrichmentId,
+            sourceType: sourceType,
+            sourceId: sourceId,
+          )) {
         return entry;
       }
     }
     return null;
   }
 
-  bool isSaved({required QuranQuoteRef ref, String? sourceEnrichmentId}) {
-    return findEntry(ref: ref, sourceEnrichmentId: sourceEnrichmentId) != null;
+  bool isSaved({
+    QuranQuoteRef? ref,
+    String? sourceEnrichmentId,
+    QuranReflectionSourceType? sourceType,
+    String? sourceId,
+  }) {
+    return findEntry(
+          ref: ref,
+          sourceEnrichmentId: sourceEnrichmentId,
+          sourceType: sourceType,
+          sourceId: sourceId,
+        ) !=
+        null;
   }
 
   String save({
-    required QuranQuoteRef ref,
+    QuranQuoteRef? ref,
     required QuranReflectionSourceType sourceType,
     required String title,
     required String summary,
     String? sourceEnrichmentId,
+    String? sourceId,
+    String? sourceLabel,
+    int? surahNumber,
+    String? themeId,
+    String? pathwayId,
+    String? pathwayStopId,
+    String? promptLabel,
+    String? routeName,
+    Map<String, String> pathParameters = const <String, String>{},
+    Map<String, String> queryParameters = const <String, String>{},
+    bool isFavorite = false,
     String? note,
     DateTime? now,
   }) {
@@ -43,12 +74,26 @@ class QuranReflectionsNotifier
     final existing = findEntry(
       ref: ref,
       sourceEnrichmentId: sourceEnrichmentId,
+      sourceType: sourceType,
+      sourceId: sourceId,
     );
     if (existing != null) {
       final updated = existing.copyWith(
+        ref: ref,
         sourceType: sourceType,
         title: title.trim(),
         summary: summary.trim(),
+        sourceId: sourceId,
+        sourceLabel: sourceLabel,
+        surahNumber: surahNumber,
+        themeId: themeId,
+        pathwayId: pathwayId,
+        pathwayStopId: pathwayStopId,
+        promptLabel: promptLabel,
+        routeName: routeName,
+        pathParameters: pathParameters,
+        queryParameters: queryParameters,
+        isFavorite: isFavorite || existing.isFavorite,
         note: _normalizedNote(note) ?? existing.note,
         updatedAtIso: timestamp,
       );
@@ -63,6 +108,17 @@ class QuranReflectionsNotifier
       title: title.trim(),
       summary: summary.trim(),
       sourceEnrichmentId: sourceEnrichmentId,
+      sourceId: sourceId,
+      sourceLabel: sourceLabel,
+      surahNumber: surahNumber,
+      themeId: themeId,
+      pathwayId: pathwayId,
+      pathwayStopId: pathwayStopId,
+      promptLabel: promptLabel,
+      routeName: routeName,
+      pathParameters: pathParameters,
+      queryParameters: queryParameters,
+      isFavorite: isFavorite,
       note: _normalizedNote(note),
       savedAtIso: timestamp,
       updatedAtIso: timestamp,
@@ -73,15 +129,27 @@ class QuranReflectionsNotifier
   }
 
   bool toggleSaved({
-    required QuranQuoteRef ref,
+    QuranQuoteRef? ref,
     required QuranReflectionSourceType sourceType,
     required String title,
     required String summary,
     String? sourceEnrichmentId,
+    String? sourceId,
+    String? sourceLabel,
+    int? surahNumber,
+    String? themeId,
+    String? pathwayId,
+    String? pathwayStopId,
+    String? promptLabel,
+    String? routeName,
+    Map<String, String> pathParameters = const <String, String>{},
+    Map<String, String> queryParameters = const <String, String>{},
   }) {
     final existing = findEntry(
       ref: ref,
       sourceEnrichmentId: sourceEnrichmentId,
+      sourceType: sourceType,
+      sourceId: sourceId,
     );
     if (existing != null) {
       removeById(existing.id);
@@ -93,22 +161,45 @@ class QuranReflectionsNotifier
       title: title,
       summary: summary,
       sourceEnrichmentId: sourceEnrichmentId,
+      sourceId: sourceId,
+      sourceLabel: sourceLabel,
+      surahNumber: surahNumber,
+      themeId: themeId,
+      pathwayId: pathwayId,
+      pathwayStopId: pathwayStopId,
+      promptLabel: promptLabel,
+      routeName: routeName,
+      pathParameters: pathParameters,
+      queryParameters: queryParameters,
     );
     return true;
   }
 
   String upsertNote({
-    required QuranQuoteRef ref,
+    QuranQuoteRef? ref,
     required QuranReflectionSourceType sourceType,
     required String title,
     required String summary,
     String? sourceEnrichmentId,
+    String? sourceId,
+    String? sourceLabel,
+    int? surahNumber,
+    String? themeId,
+    String? pathwayId,
+    String? pathwayStopId,
+    String? promptLabel,
+    String? routeName,
+    Map<String, String> pathParameters = const <String, String>{},
+    Map<String, String> queryParameters = const <String, String>{},
+    bool isFavorite = false,
     String? note,
     DateTime? now,
   }) {
     final existing = findEntry(
       ref: ref,
       sourceEnrichmentId: sourceEnrichmentId,
+      sourceType: sourceType,
+      sourceId: sourceId,
     );
     final normalized = _normalizedNote(note);
     if (existing == null) {
@@ -118,20 +209,82 @@ class QuranReflectionsNotifier
         title: title,
         summary: summary,
         sourceEnrichmentId: sourceEnrichmentId,
+        sourceId: sourceId,
+        sourceLabel: sourceLabel,
+        surahNumber: surahNumber,
+        themeId: themeId,
+        pathwayId: pathwayId,
+        pathwayStopId: pathwayStopId,
+        promptLabel: promptLabel,
+        routeName: routeName,
+        pathParameters: pathParameters,
+        queryParameters: queryParameters,
+        isFavorite: isFavorite,
         note: normalized,
         now: now,
       );
     }
     final timestamp = (now ?? DateTime.now()).toIso8601String();
     final updated = existing.copyWith(
+      ref: ref,
       sourceType: sourceType,
       title: title.trim(),
       summary: summary.trim(),
+      sourceId: sourceId,
+      sourceLabel: sourceLabel,
+      surahNumber: surahNumber,
+      themeId: themeId,
+      pathwayId: pathwayId,
+      pathwayStopId: pathwayStopId,
+      promptLabel: promptLabel,
+      routeName: routeName,
+      pathParameters: pathParameters,
+      queryParameters: queryParameters,
+      isFavorite: isFavorite || existing.isFavorite,
       note: normalized,
       updatedAtIso: timestamp,
     );
     _replace(updated);
     return updated.id;
+  }
+
+  void updateEntry({
+    required String id,
+    String? note,
+    bool? isFavorite,
+  }) {
+    final existing = findById(id);
+    if (existing == null) {
+      return;
+    }
+    final updated = existing.copyWith(
+      note: _normalizedNote(note),
+      isFavorite: isFavorite ?? existing.isFavorite,
+      updatedAtIso: DateTime.now().toIso8601String(),
+    );
+    _replace(updated);
+  }
+
+  void toggleFavorite(String id) {
+    final existing = findById(id);
+    if (existing == null) {
+      return;
+    }
+    _replace(
+      existing.copyWith(
+        isFavorite: !existing.isFavorite,
+        updatedAtIso: DateTime.now().toIso8601String(),
+      ),
+    );
+  }
+
+  QuranReflectionEntry? findById(String id) {
+    for (final entry in state) {
+      if (entry.id == id) {
+        return entry;
+      }
+    }
+    return null;
   }
 
   void removeById(String id) {
@@ -146,15 +299,28 @@ class QuranReflectionsNotifier
 
   bool _matchesIdentity(
     QuranReflectionEntry entry,
-    QuranQuoteRef ref,
-    String? sourceEnrichmentId,
+    {
+    required QuranQuoteRef? ref,
+    required String? sourceEnrichmentId,
+    required QuranReflectionSourceType? sourceType,
+    required String? sourceId,
+  }
   ) {
     if (sourceEnrichmentId != null && entry.sourceEnrichmentId != null) {
       return entry.sourceEnrichmentId == sourceEnrichmentId;
     }
-    return entry.ref.surah == ref.surah &&
-        entry.ref.ayah == ref.ayah &&
-        entry.ref.ayahEnd == ref.ayahEnd;
+    if (sourceType != null &&
+        sourceId != null &&
+        entry.sourceType == sourceType &&
+        entry.sourceId == sourceId) {
+      return true;
+    }
+    if (ref == null || entry.ref == null) {
+      return false;
+    }
+    return entry.ref!.surah == ref.surah &&
+        entry.ref!.ayah == ref.ayah &&
+        entry.ref!.ayahEnd == ref.ayahEnd;
   }
 
   String? _normalizedNote(String? note) {
@@ -192,3 +358,13 @@ final quranReflectionsProvider =
     StateNotifierProvider<QuranReflectionsNotifier, List<QuranReflectionEntry>>(
       (ref) => QuranReflectionsNotifier(ref.watch(localStoreProvider)),
     );
+
+final quranReflectionByIdProvider =
+    Provider.family<QuranReflectionEntry?, String>((ref, id) {
+      for (final entry in ref.watch(quranReflectionsProvider)) {
+        if (entry.id == id) {
+          return entry;
+        }
+      }
+      return null;
+    });

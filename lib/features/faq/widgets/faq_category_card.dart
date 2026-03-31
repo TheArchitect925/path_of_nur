@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_surfaces.dart';
+import '../../../l10n/app_localizations.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../models/faq_item.dart';
 
@@ -19,6 +20,7 @@ class FaqCategoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final pillStyle = AppSurfaceTheme.resolve(
       context,
       variant: AppSurfaceVariant.pill,
@@ -71,9 +73,12 @@ class FaqCategoryCard extends StatelessWidget {
               spacing: 8,
               runSpacing: 8,
               children: [
-                _chip(context, '${summary.questionCount} questions'),
+                _chip(context, l10n.batch9FaqQuestionCount(summary.questionCount)),
                 if (summary.featuredCount > 0)
-                  _chip(context, '${summary.featuredCount} featured'),
+                  _chip(
+                    context,
+                    l10n.batch9FaqFeaturedCount(summary.featuredCount),
+                  ),
               ],
             ),
           ],

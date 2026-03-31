@@ -39,9 +39,8 @@ List<RouteBase> buildWorshipRoutes() {
     GoRoute(
       path: '/worship/duas',
       name: 'worshipDuasPage',
-      pageBuilder: (context, state) => const MaterialPage(
-        child: DuaHubPage(entryContext: DuaHubEntryContext.worship),
-      ),
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: DuaHubPage()),
     ),
   ];
 }

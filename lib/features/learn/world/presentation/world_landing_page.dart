@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/segmented_pill_control.dart';
@@ -26,6 +27,7 @@ class _WorldLandingPageState extends ConsumerState<WorldLandingPage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final categories = ref.watch(worldCreationCategoriesProvider);
     final recentLessons = ref.watch(worldCreationRecentLessonsProvider);
     final progress = ref.watch(worldCreationProgressProvider);
@@ -36,14 +38,13 @@ class _WorldLandingPageState extends ConsumerState<WorldLandingPage> {
 
     return AppPageScaffold(
       headerIcon: Icons.public_rounded,
-      title: 'World & Creation',
-      subtitle:
-          'Explore the signs of Allah in the universe, nature, life, and the world around you.',
+      title: l10n.worldLandingTitle,
+      subtitle: l10n.worldLandingSubtitle,
       children: [
         SegmentedPillControl<_WorldHubTab>(
           items: _WorldHubTab.values,
           selectedItem: _tab,
-          labelBuilder: _tabLabel,
+          labelBuilder: (tab) => _tabLabel(l10n, tab),
           onChanged: (value) => setState(() => _tab = value),
         ),
         const SizedBox(height: 10),
@@ -52,10 +53,19 @@ class _WorldLandingPageState extends ConsumerState<WorldLandingPage> {
             spacing: 8,
             runSpacing: 8,
             children: [
-              _metricPill('Lessons', '${worldCreationLessons.length}'),
-              _metricPill('Completed', '${progress.completedLessonIds.length}'),
-              _metricPill('Saved', '${progress.savedLessonIds.length}'),
-              _metricPill('Observations', '${progress.observations.length}'),
+              _metricPill(l10n.worldLessonsTitle, '${worldCreationLessons.length}'),
+              _metricPill(
+                l10n.worldLandingMetricCompleted,
+                '${progress.completedLessonIds.length}',
+              ),
+              _metricPill(
+                l10n.worldLandingMetricSaved,
+                '${progress.savedLessonIds.length}',
+              ),
+              _metricPill(
+                l10n.worldLandingMetricObservations,
+                '${progress.observations.length}',
+              ),
             ],
           ),
         ),
@@ -68,8 +78,8 @@ class _WorldLandingPageState extends ConsumerState<WorldLandingPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    'Continue Learning',
+                  Text(
+                    l10n.worldContinueLearningTitle,
                     style: TextStyle(fontWeight: FontWeight.w700),
                   ),
                   const SizedBox(height: 8),
@@ -80,7 +90,9 @@ class _WorldLandingPageState extends ConsumerState<WorldLandingPage> {
                           contentPadding: EdgeInsets.zero,
                           title: Text(lesson.title),
                           subtitle: Text(
-                            'Quran ${lesson.quranVerses.first.referenceLabel}',
+                            l10n.quranReferenceViewerReferenceLabel(
+                              lesson.quranVerses.first.referenceLabel,
+                            ),
                           ),
                           trailing: const Icon(Icons.chevron_right_rounded),
                           onTap: () => context.pushNamed(
@@ -114,8 +126,8 @@ class _WorldLandingPageState extends ConsumerState<WorldLandingPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'Daily Creation Challenge',
+                Text(
+                  l10n.worldLandingDailyChallengeTitle,
                   style: TextStyle(fontWeight: FontWeight.w700),
                 ),
                 const SizedBox(height: 8),
@@ -125,8 +137,16 @@ class _WorldLandingPageState extends ConsumerState<WorldLandingPage> {
                 const SizedBox(height: 10),
                 FilledButton.tonalIcon(
                   onPressed: () => context.pushNamed('creationChallenges'),
-                  icon: Icon(dailyChallenge.isCompleted ? Icons.check_circle_rounded : Icons.flag_circle_rounded),
-                  label: Text(dailyChallenge.isCompleted ? 'View challenge history' : 'Open challenges'),
+                  icon: Icon(
+                    dailyChallenge.isCompleted
+                        ? Icons.check_circle_rounded
+                        : Icons.flag_circle_rounded,
+                  ),
+                  label: Text(
+                    dailyChallenge.isCompleted
+                        ? l10n.worldLandingViewChallengeHistoryAction
+                        : l10n.worldLandingOpenChallengesAction,
+                  ),
                 ),
               ],
             ),
@@ -136,52 +156,50 @@ class _WorldLandingPageState extends ConsumerState<WorldLandingPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'Explore Creation',
+                Text(
+                  l10n.worldLandingExploreCreationTitle,
                   style: TextStyle(fontWeight: FontWeight.w700),
                 ),
                 const SizedBox(height: 8),
-                const Text(
-                  'Move from reading to direct observation with guided prompts, private capture, and reflection.',
-                ),
+                Text(l10n.worldLandingExploreCreationSubtitle),
                 const SizedBox(height: 10),
                 _ExploreActionGrid(
                   actions: [
                     _ExploreActionData(
-                      title: 'Explore Creation',
+                      title: l10n.worldLandingExploreCreationAction,
                       icon: Icons.travel_explore_rounded,
                       emphasis: _ExploreActionEmphasis.tonal,
                       onTap: () => context.pushNamed('creationExplorer'),
                     ),
                     _ExploreActionData(
-                      title: 'Creation Challenges',
+                      title: l10n.creationChallengesPageTitle,
                       icon: Icons.flag_circle_rounded,
                       emphasis: _ExploreActionEmphasis.tonal,
                       onTap: () => context.pushNamed('creationChallenges'),
                     ),
                     _ExploreActionData(
-                      title: 'Sky Explorer',
+                      title: l10n.worldLandingSkyExplorerAction,
                       icon: Icons.nights_stay_rounded,
                       emphasis: _ExploreActionEmphasis.tonal,
                       onTap: () => context.pushNamed('skyExplorer'),
                     ),
                     _ExploreActionData(
-                      title: 'Signs Explorer',
+                      title: l10n.worldLandingSignsExplorerAction,
                       icon: Icons.hub_outlined,
                       onTap: () => context.pushNamed('worldSignsExplorer'),
                     ),
                     _ExploreActionData(
-                      title: 'Cosmic Scale',
+                      title: l10n.worldLandingCosmicScaleAction,
                       icon: Icons.straighten_rounded,
                       onTap: () => context.pushNamed('worldCosmicScale'),
                     ),
                     _ExploreActionData(
-                      title: 'Deep Ocean',
+                      title: l10n.worldLandingDeepOceanAction,
                       icon: Icons.water_rounded,
                       onTap: () => context.pushNamed('worldDeepOcean'),
                     ),
                     _ExploreActionData(
-                      title: 'Atmosphere Layers',
+                      title: l10n.worldLandingAtmosphereLayersAction,
                       icon: Icons.layers_rounded,
                       onTap: () => context.pushNamed('worldAtmosphereLayers'),
                     ),
@@ -195,8 +213,8 @@ class _WorldLandingPageState extends ConsumerState<WorldLandingPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'Explore Domains',
+                Text(
+                  l10n.worldLandingExploreDomainsTitle,
                   style: TextStyle(fontWeight: FontWeight.w700),
                 ),
                 const SizedBox(height: 8),
@@ -230,20 +248,18 @@ class _WorldLandingPageState extends ConsumerState<WorldLandingPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'Reflection Mode',
+                Text(
+                  l10n.worldLandingReflectionModeTitle,
                   style: TextStyle(fontWeight: FontWeight.w700),
                 ),
                 const SizedBox(height: 8),
-                const Text(
-                  'A quiet reading experience with verse, observation, and reflection, designed for slow contemplative review.',
-                ),
+                Text(l10n.worldLandingReflectionModeSubtitle),
                 const SizedBox(height: 10),
                 FilledButton.tonalIcon(
                   onPressed: () =>
                       context.pushNamed('worldCreationReflectionMode'),
                   icon: const Icon(Icons.self_improvement_rounded),
-                  label: const Text('Start Reflection Mode'),
+                  label: Text(l10n.worldLandingStartReflectionModeAction),
                 ),
               ],
             ),
@@ -263,13 +279,11 @@ class _WorldLandingPageState extends ConsumerState<WorldLandingPage> {
           PremiumCard(
             child: ListTile(
               contentPadding: EdgeInsets.zero,
-              title: const Text(
-                'Muslim Scientists',
+              title: Text(
+                l10n.worldLandingMuslimScientistsTitle,
                 style: TextStyle(fontWeight: FontWeight.w700),
               ),
-              subtitle: const Text(
-                'How Quranic curiosity inspired inquiry, observation, and learning.',
-              ),
+              subtitle: Text(l10n.worldLandingMuslimScientistsSubtitle),
               trailing: const Icon(Icons.chevron_right_rounded),
               onTap: () => context.pushNamed('worldMuslimScientists'),
             ),
@@ -323,16 +337,16 @@ class _WorldLandingPageState extends ConsumerState<WorldLandingPage> {
     );
   }
 
-  String _tabLabel(_WorldHubTab tab) {
+  String _tabLabel(AppLocalizations l10n, _WorldHubTab tab) {
     switch (tab) {
       case _WorldHubTab.lessons:
-        return 'Lessons';
+        return l10n.worldLessonsTitle;
       case _WorldHubTab.explore:
-        return 'Explore';
+        return l10n.worldLandingTabExplore;
       case _WorldHubTab.reflection:
-        return 'Reflection';
+        return l10n.worldLandingTabReflection;
       case _WorldHubTab.scientists:
-        return 'Scientists';
+        return l10n.worldLandingTabScientists;
     }
   }
 }
@@ -439,20 +453,21 @@ class _DailySignCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return PremiumCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'Daily Sign of Creation',
+          Text(
+            l10n.worldLandingDailySignTitle,
             style: TextStyle(fontWeight: FontWeight.w700),
           ),
           const SizedBox(height: 8),
-          Text('Quran ${sign.verse.referenceLabel}'),
+          Text(l10n.quranReferenceViewerReferenceLabel(sign.verse.referenceLabel)),
           const SizedBox(height: 6),
           Text(sign.reflection),
           const SizedBox(height: 8),
-          Text('Observe: ${sign.prompt}'),
+          Text(l10n.worldLandingObservePromptValue(sign.prompt)),
           const SizedBox(height: 10),
           FilledButton.tonalIcon(
             onPressed: () => context.pushNamed(
@@ -460,7 +475,7 @@ class _DailySignCard extends StatelessWidget {
               pathParameters: {'lessonId': sign.lessonId},
             ),
             icon: const Icon(Icons.auto_stories_rounded),
-            label: const Text('Open lesson'),
+            label: Text(l10n.worldLandingOpenLessonAction),
           ),
         ],
       ),

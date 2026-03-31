@@ -1,13 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/theme/app_backgrounds.dart';
 import '../../core/theme/app_theme.dart';
 import '../../features/profile/application/profile_settings_provider.dart';
 import 'global_background.dart';
 import 'quran_navigation.dart';
 import 'quran_quote_block.dart';
 
+class PageLayoutConfig {
+  final bool extendBehindBottomNav;
+
+  const PageLayoutConfig({this.extendBehindBottomNav = false});
+
+  static const standard = PageLayoutConfig();
+  static const immersive = PageLayoutConfig(extendBehindBottomNav: true);
+}
+
 class AppPageScaffold extends ConsumerWidget {
+  static const double _homeMatchedBottomContentPadding = 136;
+  static const double _homeMatchedFloatingBottomOffset = 92;
+
   const AppPageScaffold({
     super.key,
     required this.title,
@@ -22,6 +35,9 @@ class AppPageScaffold extends ConsumerWidget {
     this.floatingBottom,
     this.backgroundAssetPath,
     this.backgroundOverlayColor,
+    this.backgroundAtmosphere = AppBackgroundAtmosphere.standard,
+    this.layoutConfig = PageLayoutConfig.standard,
+    this.ownsBackground = true,
     required this.children,
   });
 
@@ -37,6 +53,9 @@ class AppPageScaffold extends ConsumerWidget {
   final Widget? floatingBottom;
   final String? backgroundAssetPath;
   final Color? backgroundOverlayColor;
+  final AppBackgroundAtmosphere backgroundAtmosphere;
+  final PageLayoutConfig layoutConfig;
+  final bool ownsBackground;
   final List<Widget> children;
 
   @override
@@ -52,112 +71,136 @@ class AppPageScaffold extends ConsumerWidget {
     final reduceMotion = ref.watch(
       profileSettingsProvider.select((value) => value.reduceMotion),
     );
+    final bottomInset = layoutConfig.extendBehindBottomNav
+        ? 0.0
+        : _homeMatchedBottomContentPadding;
     return _AnimatedPageEntrance(
       reduceMotion: reduceMotion,
       child: Stack(
         children: [
-          GlobalBackground(
-            assetPath: backgroundAssetPath,
-            overlayColor: backgroundOverlayColor,
-          ),
-          SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(16, 18, 16, 24),
-              child: ListView(
-                controller: scrollController,
-                physics: const BouncingScrollPhysics(),
-                children: [
-                  if (canPop || headerIcon != null)
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        if (canPop)
-                          IconButton(
-                            onPressed: () => Navigator.of(context).maybePop(),
-                            tooltip: MaterialLocalizations.of(
-                              context,
-                            ).backButtonTooltip,
-                            icon: const BackButtonIcon(),
-                            color: foreground,
+          if (ownsBackground)
+            layoutConfig.extendBehindBottomNav
+                ? GlobalBackground(
+                    assetPath: backgroundAssetPath,
+                    overlayColor: backgroundOverlayColor,
+                    atmosphere: backgroundAtmosphere,
+                  )
+                : ClipRect(
+                    child: Padding(
+                      padding: EdgeInsets.only(bottom: bottomInset),
+                      child: Stack(
+                        children: [
+                          GlobalBackground(
+                            assetPath: backgroundAssetPath,
+                            overlayColor: backgroundOverlayColor,
+                            atmosphere: backgroundAtmosphere,
                           ),
-                        if (canPop && headerIcon != null)
-                          const SizedBox(width: 4),
-                        if (headerIcon != null)
-                          Icon(headerIcon, color: foreground, size: 24),
-                        if (headerIcon != null) const SizedBox(width: 12),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                title,
-                                style: Theme.of(context).textTheme.titleLarge
-                                    ?.copyWith(color: foreground),
-                              ),
-                              const SizedBox(height: 6),
-                              Text(
-                                subtitle,
-                                style: Theme.of(context).textTheme.bodyMedium
-                                    ?.copyWith(color: subtleForeground),
-                              ),
-                            ],
-                          ),
-                        ),
-                        if (headerActions != null) ...[
-                          const SizedBox(width: 8),
-                          ...headerActions!,
                         ],
-                      ],
-                    )
-                  else
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          title,
-                          style: Theme.of(
-                            context,
-                          ).textTheme.titleLarge?.copyWith(color: foreground),
-                        ),
-                        const SizedBox(height: 6),
-                        Text(
-                          subtitle,
-                          style: Theme.of(context).textTheme.bodyMedium
-                              ?.copyWith(color: subtleForeground),
-                        ),
-                      ],
-                    ),
-                  const SizedBox(height: 12),
-                  if (quoteHeader != null) ...[
-                    const SizedBox(height: 12),
-                    _AnimatedQuoteHeader(
-                      reduceMotion: reduceMotion,
-                      child: quoteHeader!,
-                    ),
-                  ] else if (resolvedQuote != null) ...[
-                    const SizedBox(height: 12),
-                    _AnimatedQuoteHeader(
-                      reduceMotion: reduceMotion,
-                      child: QuranQuoteBlock(
-                        quote: resolvedQuote,
-                        onTap: () {
-                          if (onQuoteTap != null) {
-                            onQuoteTap!(resolvedQuote);
-                            return;
-                          }
-                          openQuranQuoteLocation(context, resolvedQuote);
-                        },
                       ),
                     ),
-                  ],
-                  const SizedBox(height: 20),
-                  ...children,
+                  ),
+          SafeArea(
+            child: ListView(
+              controller: scrollController,
+              physics: const BouncingScrollPhysics(),
+              padding: EdgeInsets.fromLTRB(16, 18, 16, bottomInset),
+              children: [
+                if (canPop || headerIcon != null)
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      if (canPop)
+                        IconButton(
+                          onPressed: () => Navigator.of(context).maybePop(),
+                          tooltip: MaterialLocalizations.of(
+                            context,
+                          ).backButtonTooltip,
+                          icon: const BackButtonIcon(),
+                          color: foreground,
+                        ),
+                      if (canPop && headerIcon != null)
+                        const SizedBox(width: 4),
+                      if (headerIcon != null)
+                        Icon(headerIcon, color: foreground, size: 24),
+                      if (headerIcon != null) const SizedBox(width: 12),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              title,
+                              style: Theme.of(context).textTheme.titleLarge
+                                  ?.copyWith(color: foreground),
+                            ),
+                            const SizedBox(height: 6),
+                            Text(
+                              subtitle,
+                              style: Theme.of(context).textTheme.bodyMedium
+                                  ?.copyWith(color: subtleForeground),
+                            ),
+                          ],
+                        ),
+                      ),
+                      if (headerActions != null) ...[
+                        const SizedBox(width: 8),
+                        ...headerActions!,
+                      ],
+                    ],
+                  )
+                else
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        title,
+                        style: Theme.of(
+                          context,
+                        ).textTheme.titleLarge?.copyWith(color: foreground),
+                      ),
+                      const SizedBox(height: 6),
+                      Text(
+                        subtitle,
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: subtleForeground,
+                        ),
+                      ),
+                    ],
+                  ),
+                const SizedBox(height: 12),
+                if (quoteHeader != null) ...[
+                  const SizedBox(height: 12),
+                  _AnimatedQuoteHeader(
+                    reduceMotion: reduceMotion,
+                    child: quoteHeader!,
+                  ),
+                ] else if (resolvedQuote != null) ...[
+                  const SizedBox(height: 12),
+                  _AnimatedQuoteHeader(
+                    reduceMotion: reduceMotion,
+                    child: QuranQuoteBlock(
+                      quote: resolvedQuote,
+                      onTap: () {
+                        if (onQuoteTap != null) {
+                          onQuoteTap!(resolvedQuote);
+                          return;
+                        }
+                        openQuranQuoteLocation(context, resolvedQuote);
+                      },
+                    ),
+                  ),
                 ],
-              ),
+                const SizedBox(height: 20),
+                ...children,
+              ],
             ),
           ),
           if (floatingBottom != null)
-            Positioned(left: 16, right: 16, bottom: 92, child: floatingBottom!),
+            Positioned(
+              left: 16,
+              right: 16,
+              bottom: _homeMatchedFloatingBottomOffset,
+              child: floatingBottom!,
+            ),
         ],
       ),
     );

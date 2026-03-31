@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/theme/app_backgrounds.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_theme.dart';
 import '../../features/profile/application/profile_settings_provider.dart';
@@ -13,10 +14,12 @@ class GlobalBackground extends ConsumerWidget {
     super.key,
     this.assetPath,
     this.overlayColor,
+    this.atmosphere = AppBackgroundAtmosphere.standard,
   });
 
   final String? assetPath;
   final Color? overlayColor;
+  final AppBackgroundAtmosphere atmosphere;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -24,6 +27,11 @@ class GlobalBackground extends ConsumerWidget {
     final settings = ref.watch(profileSettingsProvider);
     final appearance = Theme.of(context).extension<AppAppearanceTheme>();
     final fallbackColor = appearance?.background ?? AppColors.background;
+    final backgroundSpec = AppBackgroundTheme.resolve(
+      appearance: appearance,
+      disableGlassTransparency: settings.disableGlassTransparency,
+      atmosphere: atmosphere,
+    );
 
     if (settings.disableBackground || appearance?.disableBackground == true) {
       return Positioned.fill(child: ColoredBox(color: fallbackColor));
@@ -38,6 +46,9 @@ class GlobalBackground extends ConsumerWidget {
       child: Stack(
         fit: StackFit.expand,
         children: [
+          DecoratedBox(
+            decoration: BoxDecoration(gradient: backgroundSpec.baseGradient),
+          ),
           Image.asset(
             effectiveAsset,
             fit: BoxFit.cover,
@@ -47,7 +58,19 @@ class GlobalBackground extends ConsumerWidget {
             filterQuality: FilterQuality.none,
             excludeFromSemantics: true,
             errorBuilder: (context, error, stackTrace) =>
-                ColoredBox(color: fallbackColor),
+                const SizedBox.shrink(),
+          ),
+          DecoratedBox(
+            decoration: BoxDecoration(
+              gradient: backgroundSpec.wallpaperTintGradient,
+            ),
+          ),
+          IgnorePointer(
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                gradient: backgroundSpec.foregroundGlowGradient,
+              ),
+            ),
           ),
           if (overlayColor != null) ColoredBox(color: overlayColor!),
         ],

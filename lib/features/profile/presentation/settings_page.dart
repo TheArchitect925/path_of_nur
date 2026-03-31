@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
+import '../../../core/theme/app_backgrounds.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../core/localization/locale_provider.dart';
 import '../../../core/prayer/prayer_preferences.dart';
@@ -81,6 +82,13 @@ class SettingsPage extends ConsumerWidget {
         (prayerState.preferences.useDeviceLocation
             ? l10n.settingsCurrentLocation
             : prayerState.preferences.location);
+    final visibleThemeModes = const [
+      AppThemeMode.defaultMode,
+      AppThemeMode.easyRead,
+      AppThemeMode.noorGlass,
+      AppThemeMode.dark,
+      AppThemeMode.midnightManuscript,
+    ];
     if (category == null) {
       return SectionHubScaffold(
         headerIcon: Icons.settings_outlined,
@@ -775,56 +783,48 @@ class SettingsPage extends ConsumerWidget {
               l10n.profileThemeModeLabel,
               style: Theme.of(context).textTheme.titleMedium,
             ),
+            const SizedBox(height: 4),
+            Text(
+              l10n.settingsThemeModePickerHelper,
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                color: Theme.of(
+                  context,
+                ).textTheme.bodySmall?.color?.withValues(alpha: 0.86),
+                height: 1.35,
+              ),
+            ),
             const SizedBox(height: 10),
             Wrap(
-              spacing: 8,
-              runSpacing: 8,
-              children: [
-                _ThemeChoiceChip(
-                  label: l10n.settingsThemeChoiceDefault,
-                  selected:
-                      profileSettings.appThemeMode == AppThemeMode.defaultMode,
-                  onSelected: () {
-                    profileSettingsNotifier.setAppThemeMode(
-                      AppThemeMode.defaultMode,
-                    );
-                    _showAppearanceSnack(
-                      context,
-                      l10n.settingsThemeChangedSuccessfully,
-                    );
-                  },
-                ),
-                _ThemeChoiceChip(
-                  label: l10n.settingsThemeChoiceEasyRead,
-                  selected:
-                      profileSettings.appThemeMode == AppThemeMode.easyRead,
-                  onSelected: () {
-                    profileSettingsNotifier.setAppThemeMode(
-                      AppThemeMode.easyRead,
-                    );
-                    _showAppearanceSnack(
-                      context,
-                      l10n.settingsThemeChangedSuccessfully,
-                    );
-                  },
-                ),
-                _ThemeChoiceChip(
-                  label: l10n.profileThemeDark,
-                  selected: profileSettings.appThemeMode == AppThemeMode.dark,
-                  onSelected: () {
-                    profileSettingsNotifier.setAppThemeMode(AppThemeMode.dark);
-                    _showAppearanceSnack(
-                      context,
-                      l10n.settingsThemeChangedSuccessfully,
-                    );
-                  },
-                ),
-              ],
+              spacing: 12,
+              runSpacing: 12,
+              children: visibleThemeModes
+                  .map(
+                    (mode) => SizedBox(
+                      width: 168,
+                      child: _ThemePreviewTile(
+                        label: _themeModeLabel(mode, l10n),
+                        description: _themeModeDescription(mode, l10n),
+                        helper: _themeModeBestForLabel(mode, l10n),
+                        data: _themePreviewData(mode),
+                        selected: profileSettings.appThemeMode == mode,
+                        onSelected: () {
+                          profileSettingsNotifier.setAppThemeMode(mode);
+                          _showAppearanceSnack(
+                            context,
+                            l10n.settingsThemeChangedSuccessfully,
+                          );
+                        },
+                      ),
+                    ),
+                  )
+                  .toList(growable: false),
             ),
             const SizedBox(height: 10),
             Text(
-              _themeModeDescription(profileSettings.appThemeMode, l10n),
-              style: Theme.of(context).textTheme.bodySmall,
+              '${_themeModeDescription(profileSettings.appThemeMode, l10n)} ${_themeModeBestForLabel(profileSettings.appThemeMode, l10n)}',
+              style: Theme.of(
+                context,
+              ).textTheme.bodySmall?.copyWith(height: 1.35),
             ),
             const SizedBox(height: 10),
             Text(
@@ -2922,9 +2922,90 @@ String _themeModeDescription(AppThemeMode mode, AppLocalizations l10n) {
       return l10n.settingsThemeModeDefaultDescription;
     case AppThemeMode.easyRead:
       return l10n.settingsThemeModeEasyReadDescription;
+    case AppThemeMode.noorGlass:
+      return l10n.settingsThemeModeNoorGlassDescription;
     case AppThemeMode.dark:
       return l10n.settingsThemeModeDarkDescription;
+    case AppThemeMode.midnightManuscript:
+      return l10n.settingsThemeModeMidnightManuscriptDescription;
   }
+}
+
+String _themeModeLabel(AppThemeMode mode, AppLocalizations l10n) {
+  switch (mode) {
+    case AppThemeMode.defaultMode:
+    case AppThemeMode.calmBeautiful:
+      return l10n.settingsThemeChoiceDefault;
+    case AppThemeMode.easyRead:
+      return l10n.settingsThemeChoiceEasyRead;
+    case AppThemeMode.noorGlass:
+      return l10n.settingsThemeChoiceNoorGlass;
+    case AppThemeMode.dark:
+      return l10n.profileThemeDark;
+    case AppThemeMode.midnightManuscript:
+      return l10n.settingsThemeChoiceMidnightManuscript;
+  }
+}
+
+String _themeModeBestForLabel(AppThemeMode mode, AppLocalizations l10n) {
+  switch (mode) {
+    case AppThemeMode.defaultMode:
+    case AppThemeMode.calmBeautiful:
+      return l10n.settingsThemeModeDefaultBestFor;
+    case AppThemeMode.easyRead:
+      return l10n.settingsThemeModeEasyReadBestFor;
+    case AppThemeMode.noorGlass:
+      return l10n.settingsThemeModeNoorGlassBestFor;
+    case AppThemeMode.dark:
+      return l10n.settingsThemeModeDarkBestFor;
+    case AppThemeMode.midnightManuscript:
+      return l10n.settingsThemeModeMidnightManuscriptBestFor;
+  }
+}
+
+_ThemePreviewData _themePreviewData(AppThemeMode mode) {
+  final appearance = AppAppearanceTheme.defaults(
+    mode: mode,
+    disableGlassTransparency: false,
+    disableColoredGlass: false,
+    disableBackground: false,
+    glassSurfaceAlpha: 0.88,
+  );
+  final background = AppBackgroundTheme.resolve(
+    appearance: appearance,
+    disableGlassTransparency: false,
+    atmosphere: mode == AppThemeMode.midnightManuscript
+        ? AppBackgroundAtmosphere.quran
+        : AppBackgroundAtmosphere.standard,
+  );
+  final isNoorGlass = mode == AppThemeMode.noorGlass;
+  final isMidnight = mode == AppThemeMode.midnightManuscript;
+  return _ThemePreviewData(
+    backgroundGradient: background.previewGradient ?? background.baseGradient,
+    cardGradient: LinearGradient(
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+      colors: [
+        appearance.surfaceSoft.withValues(alpha: isNoorGlass ? 0.58 : 0.86),
+        appearance.surface.withValues(alpha: isNoorGlass ? 0.36 : 0.74),
+      ],
+    ),
+    cardBorder: appearance.border.withValues(
+      alpha: isMidnight
+          ? 0.85
+          : isNoorGlass
+          ? 0.68
+          : 0.58,
+    ),
+    primaryText: appearance.quranArabicEmphasis,
+    secondaryText: appearance.onSurfaceSubtle,
+    accent: appearance.accent,
+    accentSoft: appearance.mode == AppThemeMode.midnightManuscript
+        ? appearance.success
+        : isNoorGlass
+        ? Colors.white.withValues(alpha: 0.92)
+        : appearance.accentSoft,
+  );
 }
 
 void _showAppearanceSnack(BuildContext context, String message) {
@@ -2933,23 +3014,243 @@ void _showAppearanceSnack(BuildContext context, String message) {
     ..showSnackBar(SnackBar(content: Text(message)));
 }
 
-class _ThemeChoiceChip extends StatelessWidget {
-  const _ThemeChoiceChip({
+class _ThemePreviewData {
+  const _ThemePreviewData({
+    required this.backgroundGradient,
+    required this.cardGradient,
+    required this.cardBorder,
+    required this.primaryText,
+    required this.secondaryText,
+    required this.accent,
+    required this.accentSoft,
+  });
+
+  final Gradient backgroundGradient;
+  final Gradient cardGradient;
+  final Color cardBorder;
+  final Color primaryText;
+  final Color secondaryText;
+  final Color accent;
+  final Color accentSoft;
+}
+
+class _ThemePreviewTile extends StatelessWidget {
+  const _ThemePreviewTile({
     required this.label,
+    required this.description,
+    required this.helper,
     required this.selected,
     required this.onSelected,
+    required this.data,
   });
 
   final String label;
+  final String description;
+  final String helper;
   final bool selected;
   final VoidCallback onSelected;
+  final _ThemePreviewData data;
 
   @override
   Widget build(BuildContext context) {
-    return ChoiceChip(
-      label: Text(label),
-      selected: selected,
-      onSelected: (_) => onSelected(),
+    final theme = Theme.of(context);
+    final selectedBorder = selected
+        ? data.accent.withValues(alpha: 0.92)
+        : theme.dividerColor.withValues(alpha: 0.30);
+
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        borderRadius: BorderRadius.circular(22),
+        onTap: onSelected,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 180),
+          padding: const EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(22),
+            border: Border.all(
+              color: selectedBorder,
+              width: selected ? 1.4 : 1,
+            ),
+            color: theme.colorScheme.surface.withValues(alpha: 0.28),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              AspectRatio(
+                aspectRatio: 1.32,
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(18),
+                    gradient: data.backgroundGradient,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withValues(alpha: 0.12),
+                        blurRadius: 16,
+                        offset: const Offset(0, 6),
+                      ),
+                    ],
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Stack(
+                      children: [
+                        Align(
+                          alignment: Alignment.topRight,
+                          child: AnimatedOpacity(
+                            duration: const Duration(milliseconds: 180),
+                            opacity: selected ? 1 : 0,
+                            child: Container(
+                              width: 24,
+                              height: 24,
+                              decoration: BoxDecoration(
+                                color: data.accent.withValues(alpha: 0.24),
+                                shape: BoxShape.circle,
+                                border: Border.all(
+                                  color: data.accent.withValues(alpha: 0.8),
+                                ),
+                              ),
+                              child: Icon(
+                                Icons.check_rounded,
+                                size: 15,
+                                color: data.primaryText,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.topLeft,
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Container(
+                                width: 34,
+                                height: 8,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(999),
+                                  color: data.primaryText.withValues(
+                                    alpha: 0.82,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(width: 6),
+                              Container(
+                                width: 18,
+                                height: 8,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(999),
+                                  color: data.accent.withValues(alpha: 0.72),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Container(
+                            padding: const EdgeInsets.fromLTRB(10, 10, 10, 9),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(16),
+                              gradient: data.cardGradient,
+                              border: Border.all(color: data.cardBorder),
+                            ),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  width: 54,
+                                  height: 7,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(999),
+                                    color: data.accent.withValues(alpha: 0.75),
+                                  ),
+                                ),
+                                const SizedBox(height: 7),
+                                Container(
+                                  width: double.infinity,
+                                  height: 6,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(999),
+                                    color: data.primaryText.withValues(
+                                      alpha: 0.84,
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(height: 6),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: Container(
+                                        height: 6,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(
+                                            999,
+                                          ),
+                                          color: data.secondaryText.withValues(
+                                            alpha: 0.72,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(width: 8),
+                                    Container(
+                                      width: 26,
+                                      height: 18,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(
+                                          999,
+                                        ),
+                                        color: data.accentSoft.withValues(
+                                          alpha: 0.28,
+                                        ),
+                                        border: Border.all(
+                                          color: data.accentSoft.withValues(
+                                            alpha: 0.7,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10),
+              Text(
+                label,
+                style: theme.textTheme.titleSmall?.copyWith(
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                description,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: theme.textTheme.bodySmall?.copyWith(height: 1.3),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                helper,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: theme.textTheme.labelSmall?.copyWith(
+                  color: data.accent,
+                  fontWeight: FontWeight.w600,
+                  height: 1.25,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

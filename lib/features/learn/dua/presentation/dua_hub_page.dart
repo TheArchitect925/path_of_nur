@@ -18,12 +18,8 @@ import 'dua_category_theme.dart';
 
 enum DuaHubTab { duas, categories, saved, daily }
 
-enum DuaHubEntryContext { learn, worship }
-
 class DuaHubPage extends ConsumerStatefulWidget {
-  const DuaHubPage({super.key, this.entryContext = DuaHubEntryContext.learn});
-
-  final DuaHubEntryContext entryContext;
+  const DuaHubPage({super.key});
 
   @override
   ConsumerState<DuaHubPage> createState() => _DuaHubPageState();
@@ -31,17 +27,21 @@ class DuaHubPage extends ConsumerStatefulWidget {
 
 class _DuaHubPageState extends ConsumerState<DuaHubPage> {
   late final TextEditingController _searchController;
+  String _query = '';
   DuaHubTab _tab = DuaHubTab.duas;
   String? _selectedCategoryId;
+  String? _selectedSubcategoryId;
 
   @override
   void initState() {
     super.initState();
     _searchController = TextEditingController();
+    _searchController.addListener(_handleSearchChanged);
   }
 
   @override
   void dispose() {
+    _searchController.removeListener(_handleSearchChanged);
     _searchController.dispose();
     super.dispose();
   }
@@ -52,8 +52,7 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
     final datasetAsync = ref.watch(duaDatasetProvider);
     final categoriesAsync = ref.watch(duaCategorySummariesProvider);
     final userState = ref.watch(duaLearningProvider);
-    final visibleTabs = _visibleTabs;
-
+    final savedIds = userState.savedIds;
     return LearnHubPageScaffold(
       headerIcon: Icons.pan_tool_alt_rounded,
       title: l10n.duaHubTitle,
@@ -61,7 +60,7 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
       children: [
         PremiumCard(
           child: SegmentedPillControl<DuaHubTab>(
-            items: visibleTabs,
+            items: DuaHubTab.values,
             selectedItem: _tab,
             labelBuilder: (tab) => _tabLabel(l10n, tab),
             onChanged: (tab) => setState(() => _tab = tab),
@@ -73,36 +72,51 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
         datasetAsync.when(
           data: (dataset) {
             final verified = _filteredVerifiedItems(dataset);
+            final selectedCategorySummary = _selectedCategorySummary(
+              categoriesAsync.valueOrNull,
+            );
             final daily = _dailyItem(dataset);
             final saved = verified
-                .where((item) => userState.savedIds.contains(item.id))
+                .where((item) => savedIds.contains(item.id))
                 .toList(growable: false);
             return Column(
               children: [
                 _overviewCard(context, l10n, dataset),
-                if (_showsCategorySelection) ...[
-                  const SizedBox(height: 10),
-                  categoriesAsync.when(
-                    data: (categories) =>
-                        _categoryScroller(context, l10n, categories),
-                    loading: () => const SizedBox.shrink(),
-                    error: (_, stackTrace) => const SizedBox.shrink(),
-                  ),
+                const SizedBox(height: 10),
+                categoriesAsync.when(
+                  data: (categories) =>
+                      _categoryScroller(context, l10n, categories),
+                  loading: () => const SizedBox.shrink(),
+                  error: (_, stackTrace) => const SizedBox.shrink(),
+                ),
+                if (selectedCategorySummary != null &&
+                    selectedCategorySummary.subcategories.isNotEmpty) ...[
+                  const SizedBox(height: 8),
+                  _subcategoryScroller(context, selectedCategorySummary),
                 ],
                 const SizedBox(height: 12),
                 if (_tab == DuaHubTab.duas) ...[
                   if (verified.isEmpty)
                     _emptyCard(l10n.duaHubEmptyFiltered)
                   else
-                    ...verified.map((item) => _duaCard(context, item)),
+                    ...verified.map(
+                      (item) => _duaCard(
+                        context,
+                        item,
+                        saved: savedIds.contains(item.id),
+                      ),
+                    ),
                 ] else if (_tab == DuaHubTab.categories) ...[
                   categoriesAsync.when(
                     data: (categories) {
-                      if (categories.isEmpty) {
+                      final filteredCategories = _filteredCategorySummaries(
+                        categories,
+                      );
+                      if (filteredCategories.isEmpty) {
                         return _emptyCard(l10n.duaHubEmptyCategories);
                       }
                       return Column(
-                        children: categories
+                        children: filteredCategories
                             .map((summary) => _categoryCard(context, summary))
                             .toList(growable: false),
                       );
@@ -115,7 +129,13 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
                   if (saved.isEmpty)
                     _emptyCard(l10n.duaHubEmptySaved)
                   else
-                    ...saved.map((item) => _duaCard(context, item)),
+                    ...saved.map(
+                      (item) => _duaCard(
+                        context,
+                        item,
+                        saved: savedIds.contains(item.id),
+                      ),
+                    ),
                 ] else ...[
                   if (daily == null)
                     _emptyCard(l10n.duaHubEmptyDaily)
@@ -132,22 +152,13 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
     );
   }
 
-  List<DuaHubTab> get _visibleTabs {
-    if (_showsCategorySelection) return DuaHubTab.values;
-    return const <DuaHubTab>[DuaHubTab.duas, DuaHubTab.saved, DuaHubTab.daily];
-  }
-
-  bool get _showsCategorySelection =>
-      widget.entryContext == DuaHubEntryContext.learn;
-
   Widget _searchCard(BuildContext context, AppLocalizations l10n) {
     return PremiumCard(
       surfaceVariant: AppSurfaceVariant.panel,
       child: LearnDiscoverySearchField(
         controller: _searchController,
         hintText: l10n.searchDuasHint,
-        onChanged: (_) => setState(() {}),
-        onClear: () => setState(() => _searchController.clear()),
+        onClear: _searchController.clear,
       ),
     );
   }
@@ -201,7 +212,10 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
             child: ChoiceChip(
               label: Text(l10n.duaHubAllCategories),
               selected: _selectedCategoryId == null,
-              onSelected: (_) => setState(() => _selectedCategoryId = null),
+              onSelected: (_) => setState(() {
+                _selectedCategoryId = null;
+                _selectedSubcategoryId = null;
+              }),
             ),
           ),
           ...categories.map(
@@ -210,8 +224,10 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
               child: ChoiceChip(
                 label: Text(summary.label),
                 selected: _selectedCategoryId == summary.id,
-                onSelected: (_) =>
-                    setState(() => _selectedCategoryId = summary.id),
+                onSelected: (selected) => setState(() {
+                  _selectedCategoryId = selected ? summary.id : null;
+                  _selectedSubcategoryId = null;
+                }),
               ),
             ),
           ),
@@ -220,8 +236,39 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
     );
   }
 
+  Widget _subcategoryScroller(
+    BuildContext context,
+    DuaCategorySummary summary,
+  ) {
+    final l10n = AppLocalizations.of(context);
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: summary.subcategories
+            .map(
+              (subcategory) => Padding(
+                padding: const EdgeInsets.only(right: 8),
+                child: ChoiceChip(
+                  label: Text(
+                    l10n.duaHubCategoryTag(
+                      subcategory.label,
+                      subcategory.completeCount,
+                    ),
+                  ),
+                  selected: _selectedSubcategoryId == subcategory.id,
+                  onSelected: (selected) => setState(() {
+                    _selectedSubcategoryId = selected ? subcategory.id : null;
+                  }),
+                ),
+              ),
+            )
+            .toList(growable: false),
+      ),
+    );
+  }
+
   List<DuaItem> _filteredVerifiedItems(DuaDataset dataset) {
-    final query = _searchController.text.trim().toLowerCase();
+    final query = _normalizedQuery;
     final items =
         dataset.verifiedItems
             .where((item) {
@@ -229,21 +276,14 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
                   item.category != _selectedCategoryId) {
                 return false;
               }
-              if (query.isEmpty) return true;
-              final haystack = [
-                item.title,
-                item.arabic,
-                item.transliteration,
-                item.translation,
-                item.sourceType,
-                item.sourceRef,
-                item.whenToSay,
-                item.category,
-                item.subcategory,
-                item.subcategoryLabel,
-                ...item.tags,
-              ].join(' ').toLowerCase();
-              return haystack.contains(query);
+              if (_selectedSubcategoryId != null &&
+                  item.subcategory != _selectedSubcategoryId) {
+                return false;
+              }
+              return item.matchesQuery(
+                query,
+                categoryLabel: dataset.categoryLabel(item.category),
+              );
             })
             .toList(growable: false)
           ..sort((a, b) {
@@ -251,6 +291,25 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
             return a.title.compareTo(b.title);
           });
     return items;
+  }
+
+  List<DuaCategorySummary> _filteredCategorySummaries(
+    List<DuaCategorySummary> categories,
+  ) {
+    final query = _normalizedQuery;
+    return categories
+        .where((summary) {
+          if (_selectedCategoryId != null &&
+              summary.id != _selectedCategoryId) {
+            return false;
+          }
+          if (query.isEmpty) return true;
+          if (summary.matchesQuery(query)) return true;
+          return summary.subcategories.any(
+            (subcategory) => subcategory.matchesQuery(query),
+          );
+        })
+        .toList(growable: false);
   }
 
   DuaItem? _dailyItem(DuaDataset dataset) {
@@ -262,8 +321,7 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
     return items[index];
   }
 
-  Widget _duaCard(BuildContext context, DuaItem item) {
-    final saved = ref.watch(duaLearningProvider).savedIds.contains(item.id);
+  Widget _duaCard(BuildContext context, DuaItem item, {required bool saved}) {
     final colors = DuaCategoryTheme.resolve(context, item.category);
     final l10n = AppLocalizations.of(context);
     return _interactiveCard(
@@ -325,6 +383,7 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
       onTap: () {
         setState(() {
           _selectedCategoryId = summary.id;
+          _selectedSubcategoryId = null;
           _tab = DuaHubTab.duas;
         });
       },
@@ -337,17 +396,31 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
               context: context,
               colors: colors,
               title: summary.label,
-              subtitle: l10n.duaHubOverviewVerifiedNow(summary.completeCount),
+              subtitle: l10n.duaHubCategorySummary(
+                summary.completeCount,
+                summary.stubCount,
+              ),
             ),
             const SizedBox(height: 10),
             Wrap(
               spacing: 8,
               runSpacing: 8,
-              children: summary.subcategories.entries
+              children: summary.subcategories
                   .map(
-                    (entry) => _metaChip(
-                      l10n.duaHubCategoryTag(entry.key, entry.value),
-                      colors: colors,
+                    (subcategory) => ActionChip(
+                      label: Text(
+                        l10n.duaHubCategoryTag(
+                          subcategory.label,
+                          subcategory.completeCount,
+                        ),
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          _selectedCategoryId = summary.id;
+                          _selectedSubcategoryId = subcategory.id;
+                          _tab = DuaHubTab.duas;
+                        });
+                      },
                     ),
                   )
                   .toList(growable: false),
@@ -534,4 +607,26 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
         return l10n.duaHubTabDaily;
     }
   }
+
+  DuaCategorySummary? _selectedCategorySummary(
+    List<DuaCategorySummary>? categories,
+  ) {
+    if (categories == null || _selectedCategoryId == null) return null;
+    for (final summary in categories) {
+      if (summary.id == _selectedCategoryId) {
+        return summary;
+      }
+    }
+    return null;
+  }
+
+  void _handleSearchChanged() {
+    final nextQuery = _searchController.text.trim().toLowerCase();
+    if (_query == nextQuery || !mounted) return;
+    setState(() {
+      _query = nextQuery;
+    });
+  }
+
+  String get _normalizedQuery => _query;
 }

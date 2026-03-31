@@ -995,6 +995,12 @@ abstract class AppLocalizations {
   /// **'Qur’an'**
   String get quranHubTitle;
 
+  /// No description provided for @quranAppHubTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'The Holy Qur\'\'an'**
+  String get quranAppHubTitle;
+
   /// No description provided for @quranHubSubtitle.
   ///
   /// In en, this message translates to:
@@ -1879,6 +1885,210 @@ abstract class AppLocalizations {
     Object journey,
     Object theme,
   );
+
+  /// No description provided for @quranCompanionSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Qur’an Companion'**
+  String get quranCompanionSectionTitle;
+
+  /// No description provided for @quranCompanionSectionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A calm set of suggestions shaped by your recent reading, current pathway, and the moment you are in.'**
+  String get quranCompanionSectionSubtitle;
+
+  /// No description provided for @quranCompanionResumePathTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue {path}'**
+  String quranCompanionResumePathTitle(Object path);
+
+  /// No description provided for @quranCompanionResumePathDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick up your guided journey where it last felt most alive.'**
+  String get quranCompanionResumePathDescription;
+
+  /// No description provided for @quranCompanionResumeBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Resume'**
+  String get quranCompanionResumeBadge;
+
+  /// No description provided for @quranCompanionContinueSurahTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue Surah {surah}'**
+  String quranCompanionContinueSurahTitle(Object surah);
+
+  /// No description provided for @quranCompanionContinueSurahDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Return to the ayah where your reading thread was already open.'**
+  String get quranCompanionContinueSurahDescription;
+
+  /// No description provided for @quranCompanionExploreThemeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore {theme}'**
+  String quranCompanionExploreThemeTitle(Object theme);
+
+  /// No description provided for @quranCompanionThemeDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Follow one Qur’anic theme across connected surahs, ayat, and reflections.'**
+  String get quranCompanionThemeDescription;
+
+  /// No description provided for @quranCompanionRelatedThemeDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'A connected theme to keep your recent Qur’an exploration moving gently forward.'**
+  String get quranCompanionRelatedThemeDescription;
+
+  /// No description provided for @quranCompanionPathwayTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Walk through {path}'**
+  String quranCompanionPathwayTitle(Object path);
+
+  /// No description provided for @quranCompanionPathwayDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'A guided pathway that keeps the next step clear and spiritually grounded.'**
+  String get quranCompanionPathwayDescription;
+
+  /// No description provided for @quranCompanionStartHereTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Start with Surah {surah}'**
+  String quranCompanionStartHereTitle(Object surah);
+
+  /// No description provided for @quranCompanionStartHereDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'A gentle starting point when you want something foundational and clear.'**
+  String get quranCompanionStartHereDescription;
+
+  /// No description provided for @quranCompanionTimeOfDayTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A reflection for this moment'**
+  String get quranCompanionTimeOfDayTitle;
+
+  /// No description provided for @quranCompanionTimeOfDayDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep one ayah, one meaning cue, and one calm next step close right now.'**
+  String get quranCompanionTimeOfDayDescription;
+
+  /// No description provided for @quranCompanionFridayTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Friday reflection: {surah}'**
+  String quranCompanionFridayTitle(Object surah);
+
+  /// No description provided for @quranCompanionFridayDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'A soft Friday nudge toward a widely loved surah for reflection and recitation.'**
+  String get quranCompanionFridayDescription;
+
+  /// No description provided for @quranCompanionFocusBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Growth focus'**
+  String get quranCompanionFocusBadge;
+
+  /// No description provided for @quranCompanionMomentBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'For this moment'**
+  String get quranCompanionMomentBadge;
+
+  /// No description provided for @quranCompanionFridayBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Friday'**
+  String get quranCompanionFridayBadge;
+
+  /// No description provided for @quranCompanionMomentumBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep going'**
+  String get quranCompanionMomentumBadge;
+
+  /// No description provided for @quranCompanionReasonContinue.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue where you left off'**
+  String get quranCompanionReasonContinue;
+
+  /// No description provided for @quranCompanionReasonMorning.
+  ///
+  /// In en, this message translates to:
+  /// **'For this morning'**
+  String get quranCompanionReasonMorning;
+
+  /// No description provided for @quranCompanionReasonAfternoon.
+  ///
+  /// In en, this message translates to:
+  /// **'For this afternoon'**
+  String get quranCompanionReasonAfternoon;
+
+  /// No description provided for @quranCompanionReasonEvening.
+  ///
+  /// In en, this message translates to:
+  /// **'For this evening'**
+  String get quranCompanionReasonEvening;
+
+  /// No description provided for @quranCompanionReasonNight.
+  ///
+  /// In en, this message translates to:
+  /// **'For tonight'**
+  String get quranCompanionReasonNight;
+
+  /// No description provided for @quranCompanionReasonRecent.
+  ///
+  /// In en, this message translates to:
+  /// **'Based on your recent reading'**
+  String get quranCompanionReasonRecent;
+
+  /// No description provided for @quranCompanionReasonFocus.
+  ///
+  /// In en, this message translates to:
+  /// **'Based on your growth focus'**
+  String get quranCompanionReasonFocus;
+
+  /// No description provided for @quranCompanionReasonFriday.
+  ///
+  /// In en, this message translates to:
+  /// **'Friday reflection'**
+  String get quranCompanionReasonFriday;
+
+  /// No description provided for @quranCompanionReasonJourney.
+  ///
+  /// In en, this message translates to:
+  /// **'Connected to your journey'**
+  String get quranCompanionReasonJourney;
+
+  /// No description provided for @quranCompanionReasonMomentum.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep your rhythm'**
+  String get quranCompanionReasonMomentum;
+
+  /// No description provided for @quranCompanionReasonStart.
+  ///
+  /// In en, this message translates to:
+  /// **'Start here'**
+  String get quranCompanionReasonStart;
+
+  /// No description provided for @quranCompanionProgressLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{completed} of {total} stops completed'**
+  String quranCompanionProgressLabel(int completed, int total);
 
   /// No description provided for @quranHubOpenVerseAction.
   ///
@@ -37690,6 +37900,30 @@ abstract class AppLocalizations {
   /// **'Search common questions, answers, topics...'**
   String get batch9FaqSearchHint;
 
+  /// No description provided for @batch9FaqSearchResultsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Search Results'**
+  String get batch9FaqSearchResultsTitle;
+
+  /// No description provided for @batch9FaqSearchResultsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Results update live as you type.'**
+  String get batch9FaqSearchResultsSubtitle;
+
+  /// No description provided for @batch9FaqSearchEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No matching questions found.'**
+  String get batch9FaqSearchEmptyTitle;
+
+  /// No description provided for @batch9FaqSearchEmptySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Try a different keyword or browse categories instead.'**
+  String get batch9FaqSearchEmptySubtitle;
+
   /// No description provided for @batch9FaqOverviewSummary.
   ///
   /// In en, this message translates to:
@@ -37701,6 +37935,126 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No featured questions available right now.'**
   String get batch9FaqFeaturedEmpty;
+
+  /// No description provided for @batch9FaqLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to load FAQ right now. {error}'**
+  String batch9FaqLoadError(String error);
+
+  /// No description provided for @batch9FaqCategoryLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to load category. {error}'**
+  String batch9FaqCategoryLoadError(String error);
+
+  /// No description provided for @batch9FaqCategoryEmptyFilter.
+  ///
+  /// In en, this message translates to:
+  /// **'No questions match this filter right now.'**
+  String get batch9FaqCategoryEmptyFilter;
+
+  /// No description provided for @batch9FaqNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'FAQ item not found.'**
+  String get batch9FaqNotFound;
+
+  /// No description provided for @batch9FaqFilterAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get batch9FaqFilterAll;
+
+  /// No description provided for @batch9FaqFilterFeatured.
+  ///
+  /// In en, this message translates to:
+  /// **'Featured'**
+  String get batch9FaqFilterFeatured;
+
+  /// No description provided for @batch9FaqDifficultyBeginner.
+  ///
+  /// In en, this message translates to:
+  /// **'Beginner'**
+  String get batch9FaqDifficultyBeginner;
+
+  /// No description provided for @batch9FaqDifficultyIntermediate.
+  ///
+  /// In en, this message translates to:
+  /// **'Intermediate'**
+  String get batch9FaqDifficultyIntermediate;
+
+  /// No description provided for @batch9FaqDifficultyAdvanced.
+  ///
+  /// In en, this message translates to:
+  /// **'Advanced'**
+  String get batch9FaqDifficultyAdvanced;
+
+  /// No description provided for @batch9FaqBadgeClarification.
+  ///
+  /// In en, this message translates to:
+  /// **'Clarification'**
+  String get batch9FaqBadgeClarification;
+
+  /// No description provided for @batch9FaqBadgeMisconception.
+  ///
+  /// In en, this message translates to:
+  /// **'Misconception'**
+  String get batch9FaqBadgeMisconception;
+
+  /// No description provided for @batch9FaqBadgeFeatured.
+  ///
+  /// In en, this message translates to:
+  /// **'Featured'**
+  String get batch9FaqBadgeFeatured;
+
+  /// No description provided for @batch9FaqDetailShortAnswerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Short answer'**
+  String get batch9FaqDetailShortAnswerTitle;
+
+  /// No description provided for @batch9FaqDetailAnswerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Answer'**
+  String get batch9FaqDetailAnswerTitle;
+
+  /// No description provided for @batch9FaqDetailQuranReferencesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Qur\'\'an references'**
+  String get batch9FaqDetailQuranReferencesTitle;
+
+  /// No description provided for @batch9FaqDetailHadithReferencesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Hadith references'**
+  String get batch9FaqDetailHadithReferencesTitle;
+
+  /// No description provided for @batch9FaqDetailRelatedTopicsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Related topics'**
+  String get batch9FaqDetailRelatedTopicsTitle;
+
+  /// No description provided for @batch9FaqQuestionCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} questions'**
+  String batch9FaqQuestionCount(int count);
+
+  /// No description provided for @batch9FaqFeaturedCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} featured'**
+  String batch9FaqFeaturedCount(int count);
+
+  /// No description provided for @batch9FaqQuranReferenceTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Qur\'\'an {reference}'**
+  String batch9FaqQuranReferenceTitle(String reference);
 
   /// No description provided for @accessibilityReminderHelp.
   ///
@@ -55643,25 +55997,25 @@ abstract class AppLocalizations {
   /// No description provided for @quranLearningPathsTitle.
   ///
   /// In en, this message translates to:
-  /// **'Qur\'\'an Learning Paths'**
+  /// **'Qur\'\'an Pathways'**
   String get quranLearningPathsTitle;
 
   /// No description provided for @quranLearningPathsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Follow a calm guided path through reading, themes, reflection, memorization, and surah study.'**
+  /// **'Follow calm guided journeys through surahs, themes, reflection, and meaningful verses.'**
   String get quranLearningPathsSubtitle;
 
   /// No description provided for @quranLearningPathsHubSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Follow guided routes through reading, themes, reflection, and memorization.'**
+  /// **'Follow guided journeys through themes, stories, reflection, and meaningful verses.'**
   String get quranLearningPathsHubSubtitle;
 
   /// No description provided for @quranLearningPathsContinueTitle.
   ///
   /// In en, this message translates to:
-  /// **'Continue your path'**
+  /// **'Continue your pathway'**
   String get quranLearningPathsContinueTitle;
 
   /// No description provided for @quranLearningPathsContinueSubtitle.
@@ -55673,37 +56027,37 @@ abstract class AppLocalizations {
   /// No description provided for @quranLearningPathsOpenContinueAction.
   ///
   /// In en, this message translates to:
-  /// **'Continue path'**
+  /// **'Resume pathway'**
   String get quranLearningPathsOpenContinueAction;
 
   /// No description provided for @quranLearningPathsBrowseAllAction.
   ///
   /// In en, this message translates to:
-  /// **'Browse all paths'**
+  /// **'Browse all pathways'**
   String get quranLearningPathsBrowseAllAction;
 
   /// No description provided for @quranLearningPathsStepCountLabel.
   ///
   /// In en, this message translates to:
-  /// **'{count} steps'**
+  /// **'{count} stops'**
   String quranLearningPathsStepCountLabel(int count);
 
   /// No description provided for @quranLearningPathsStepsTitle.
   ///
   /// In en, this message translates to:
-  /// **'Path steps'**
+  /// **'Pathway stops'**
   String get quranLearningPathsStepsTitle;
 
   /// No description provided for @quranLearningPathsOpenStepAction.
   ///
   /// In en, this message translates to:
-  /// **'Open step'**
+  /// **'Open stop'**
   String get quranLearningPathsOpenStepAction;
 
   /// No description provided for @quranLearningPathsContinueStepLabel.
   ///
   /// In en, this message translates to:
-  /// **'Continue here'**
+  /// **'Resume here'**
   String get quranLearningPathsContinueStepLabel;
 
   /// No description provided for @quranLearningPathNotFound.
@@ -59691,6 +60045,2280 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Status not available'**
   String get accountsSyncStatusUnknown;
+
+  /// No description provided for @worldLandingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'World & Creation'**
+  String get worldLandingTitle;
+
+  /// No description provided for @worldLandingSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore the signs of Allah in the universe, nature, life, and the world around you.'**
+  String get worldLandingSubtitle;
+
+  /// No description provided for @worldLandingMetricCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get worldLandingMetricCompleted;
+
+  /// No description provided for @worldLandingMetricSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved'**
+  String get worldLandingMetricSaved;
+
+  /// No description provided for @worldLandingMetricObservations.
+  ///
+  /// In en, this message translates to:
+  /// **'Observations'**
+  String get worldLandingMetricObservations;
+
+  /// No description provided for @worldLandingDailyChallengeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily Creation Challenge'**
+  String get worldLandingDailyChallengeTitle;
+
+  /// No description provided for @worldLandingViewChallengeHistoryAction.
+  ///
+  /// In en, this message translates to:
+  /// **'View challenge history'**
+  String get worldLandingViewChallengeHistoryAction;
+
+  /// No description provided for @worldLandingOpenChallengesAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open challenges'**
+  String get worldLandingOpenChallengesAction;
+
+  /// No description provided for @worldLandingExploreCreationTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore Creation'**
+  String get worldLandingExploreCreationTitle;
+
+  /// No description provided for @worldLandingExploreCreationSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Move from reading to direct observation with guided prompts, private capture, and reflection.'**
+  String get worldLandingExploreCreationSubtitle;
+
+  /// No description provided for @worldLandingExploreCreationAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore Creation'**
+  String get worldLandingExploreCreationAction;
+
+  /// No description provided for @worldLandingSkyExplorerAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Sky Explorer'**
+  String get worldLandingSkyExplorerAction;
+
+  /// No description provided for @worldLandingSignsExplorerAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Signs Explorer'**
+  String get worldLandingSignsExplorerAction;
+
+  /// No description provided for @worldLandingCosmicScaleAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Cosmic Scale'**
+  String get worldLandingCosmicScaleAction;
+
+  /// No description provided for @worldLandingDeepOceanAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Deep Ocean'**
+  String get worldLandingDeepOceanAction;
+
+  /// No description provided for @worldLandingAtmosphereLayersAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Atmosphere Layers'**
+  String get worldLandingAtmosphereLayersAction;
+
+  /// No description provided for @worldLandingExploreDomainsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore Domains'**
+  String get worldLandingExploreDomainsTitle;
+
+  /// No description provided for @worldLandingReflectionModeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reflection Mode'**
+  String get worldLandingReflectionModeTitle;
+
+  /// No description provided for @worldLandingReflectionModeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A quiet reading experience with verse, observation, and reflection, designed for slow contemplative review.'**
+  String get worldLandingReflectionModeSubtitle;
+
+  /// No description provided for @worldLandingStartReflectionModeAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Start Reflection Mode'**
+  String get worldLandingStartReflectionModeAction;
+
+  /// No description provided for @worldLandingMuslimScientistsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Muslim Scientists'**
+  String get worldLandingMuslimScientistsTitle;
+
+  /// No description provided for @worldLandingMuslimScientistsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'How Qur\'\'anic curiosity inspired inquiry, observation, and learning.'**
+  String get worldLandingMuslimScientistsSubtitle;
+
+  /// No description provided for @worldLandingTabExplore.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore'**
+  String get worldLandingTabExplore;
+
+  /// No description provided for @worldLandingTabReflection.
+  ///
+  /// In en, this message translates to:
+  /// **'Reflection'**
+  String get worldLandingTabReflection;
+
+  /// No description provided for @worldLandingTabScientists.
+  ///
+  /// In en, this message translates to:
+  /// **'Scientists'**
+  String get worldLandingTabScientists;
+
+  /// No description provided for @worldLandingDailySignTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily Sign of Creation'**
+  String get worldLandingDailySignTitle;
+
+  /// No description provided for @worldLandingObservePromptValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Observe: {prompt}'**
+  String worldLandingObservePromptValue(Object prompt);
+
+  /// No description provided for @worldLandingOpenLessonAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open lesson'**
+  String get worldLandingOpenLessonAction;
+
+  /// No description provided for @lifeLandingFilterThemeAny.
+  ///
+  /// In en, this message translates to:
+  /// **'Theme: Any'**
+  String get lifeLandingFilterThemeAny;
+
+  /// No description provided for @lifeLandingFilterThemeValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Theme: {theme}'**
+  String lifeLandingFilterThemeValue(Object theme);
+
+  /// No description provided for @lifeLandingFilterStatusAny.
+  ///
+  /// In en, this message translates to:
+  /// **'Status: Any'**
+  String get lifeLandingFilterStatusAny;
+
+  /// No description provided for @lifeLandingFilterStatusValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Status: {status}'**
+  String lifeLandingFilterStatusValue(Object status);
+
+  /// No description provided for @lifeLandingClearFiltersAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear'**
+  String get lifeLandingClearFiltersAction;
+
+  /// No description provided for @lifeLandingThemeProgressValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{completed}/{total} completed'**
+  String lifeLandingThemeProgressValue(Object completed, Object total);
+
+  /// No description provided for @lifeLandingAnyThemeOption.
+  ///
+  /// In en, this message translates to:
+  /// **'Any theme'**
+  String get lifeLandingAnyThemeOption;
+
+  /// No description provided for @lifeLandingAnyStatusOption.
+  ///
+  /// In en, this message translates to:
+  /// **'Any status'**
+  String get lifeLandingAnyStatusOption;
+
+  /// No description provided for @lifeLandingTabOverview.
+  ///
+  /// In en, this message translates to:
+  /// **'Overview'**
+  String get lifeLandingTabOverview;
+
+  /// No description provided for @lifeLandingTabThemes.
+  ///
+  /// In en, this message translates to:
+  /// **'Themes'**
+  String get lifeLandingTabThemes;
+
+  /// No description provided for @lifeLandingTabLessons.
+  ///
+  /// In en, this message translates to:
+  /// **'Lessons'**
+  String get lifeLandingTabLessons;
+
+  /// No description provided for @salahGuidedPrayerUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Guided prayer unavailable.'**
+  String get salahGuidedPrayerUnavailable;
+
+  /// No description provided for @salahGuidedPrayerPageTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{prayerTitle} - Pray With Guidance'**
+  String salahGuidedPrayerPageTitle(Object prayerTitle);
+
+  /// No description provided for @salahGuidedPrayerSelectedSurahSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Selected surah after al-Fatihah: {surahName}'**
+  String salahGuidedPrayerSelectedSurahSubtitle(Object surahName);
+
+  /// No description provided for @salahGuidedPrayerSurahNotSet.
+  ///
+  /// In en, this message translates to:
+  /// **'Not set'**
+  String get salahGuidedPrayerSurahNotSet;
+
+  /// No description provided for @salahGuidedPrayerCurrentRakahValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Current rakah: {rakah}'**
+  String salahGuidedPrayerCurrentRakahValue(Object rakah);
+
+  /// No description provided for @salahGuidedPrayerStepProgressValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Step {current} of {total}'**
+  String salahGuidedPrayerStepProgressValue(Object current, Object total);
+
+  /// No description provided for @salahGuidedPrayerFromSurahValue.
+  ///
+  /// In en, this message translates to:
+  /// **'From {surahName}'**
+  String salahGuidedPrayerFromSurahValue(Object surahName);
+
+  /// No description provided for @salahGuidedPrayerSelectedSurahFallback.
+  ///
+  /// In en, this message translates to:
+  /// **'Selected surah'**
+  String get salahGuidedPrayerSelectedSurahFallback;
+
+  /// No description provided for @salahGuidedPrayerShowTransliteration.
+  ///
+  /// In en, this message translates to:
+  /// **'Show transliteration'**
+  String get salahGuidedPrayerShowTransliteration;
+
+  /// No description provided for @salahGuidedPrayerShowTranslation.
+  ///
+  /// In en, this message translates to:
+  /// **'Show translation'**
+  String get salahGuidedPrayerShowTranslation;
+
+  /// No description provided for @salahGuidedPrayerPauseAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Pause'**
+  String get salahGuidedPrayerPauseAction;
+
+  /// No description provided for @salahGuidedPrayerPlayAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Play'**
+  String get salahGuidedPrayerPlayAction;
+
+  /// No description provided for @salahGuidedPrayerRepeatStepAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Repeat Step'**
+  String get salahGuidedPrayerRepeatStepAction;
+
+  /// No description provided for @salahGuidedPrayerNextStepAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Next Step'**
+  String get salahGuidedPrayerNextStepAction;
+
+  /// No description provided for @salahGuidedPrayerFinishAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish'**
+  String get salahGuidedPrayerFinishAction;
+
+  /// No description provided for @learnSalahHubTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Salah Trainer'**
+  String get learnSalahHubTitle;
+
+  /// No description provided for @learnSalahHubGuidanceNoticeDua.
+  ///
+  /// In en, this message translates to:
+  /// **'O Allah, make the Qur\'\'an easy for us to learn and remember.'**
+  String get learnSalahHubGuidanceNoticeDua;
+
+  /// No description provided for @learnSalahHubGuidanceNoticeVerse.
+  ///
+  /// In en, this message translates to:
+  /// **'And We have certainly made the Qur\'\'an easy for remembrance, so is there any who will remember?'**
+  String get learnSalahHubGuidanceNoticeVerse;
+
+  /// No description provided for @learnSalahHubGuidanceNoticeVerseReference.
+  ///
+  /// In en, this message translates to:
+  /// **'Qur\'\'an 54:17'**
+  String get learnSalahHubGuidanceNoticeVerseReference;
+
+  /// No description provided for @learnSalahHubAcknowledgeAction.
+  ///
+  /// In en, this message translates to:
+  /// **'I acknowledge'**
+  String get learnSalahHubAcknowledgeAction;
+
+  /// No description provided for @learnSalahHubMetricSalahs.
+  ///
+  /// In en, this message translates to:
+  /// **'Salahs'**
+  String get learnSalahHubMetricSalahs;
+
+  /// No description provided for @learnSalahHubMetricUnlockedSurahs.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlocked Surahs'**
+  String get learnSalahHubMetricUnlockedSurahs;
+
+  /// No description provided for @learnSalahHubMetricMemorized.
+  ///
+  /// In en, this message translates to:
+  /// **'Memorized'**
+  String get learnSalahHubMetricMemorized;
+
+  /// No description provided for @learnSalahHubMetricRecitations.
+  ///
+  /// In en, this message translates to:
+  /// **'Recitations'**
+  String get learnSalahHubMetricRecitations;
+
+  /// No description provided for @learnSalahHubContinuePrayerPracticeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue prayer practice'**
+  String get learnSalahHubContinuePrayerPracticeTitle;
+
+  /// No description provided for @learnSalahHubTabLearn.
+  ///
+  /// In en, this message translates to:
+  /// **'Learn Salah'**
+  String get learnSalahHubTabLearn;
+
+  /// No description provided for @learnSalahHubTabGuided.
+  ///
+  /// In en, this message translates to:
+  /// **'Pray With Guidance'**
+  String get learnSalahHubTabGuided;
+
+  /// No description provided for @learnSalahHubTabAyah.
+  ///
+  /// In en, this message translates to:
+  /// **'Learn Ayah'**
+  String get learnSalahHubTabAyah;
+
+  /// No description provided for @learnSalahHubTabRecitations.
+  ///
+  /// In en, this message translates to:
+  /// **'Duas & Recitations'**
+  String get learnSalahHubTabRecitations;
+
+  /// No description provided for @learnSalahHubTabEssentials.
+  ///
+  /// In en, this message translates to:
+  /// **'Essentials'**
+  String get learnSalahHubTabEssentials;
+
+  /// No description provided for @learnSalahHubTabWudu.
+  ///
+  /// In en, this message translates to:
+  /// **'Wudu'**
+  String get learnSalahHubTabWudu;
+
+  /// No description provided for @learnSalahHubGuidedSurahSelectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Surah selection during guided prayer'**
+  String get learnSalahHubGuidedSurahSelectionTitle;
+
+  /// No description provided for @learnSalahHubGuidedModeRandom.
+  ///
+  /// In en, this message translates to:
+  /// **'Random Surahs'**
+  String get learnSalahHubGuidedModeRandom;
+
+  /// No description provided for @learnSalahHubGuidedModeFixed.
+  ///
+  /// In en, this message translates to:
+  /// **'Fixed Surah'**
+  String get learnSalahHubGuidedModeFixed;
+
+  /// No description provided for @learnSalahHubGuidedModePracticeSpecific.
+  ///
+  /// In en, this message translates to:
+  /// **'Practice Specific'**
+  String get learnSalahHubGuidedModePracticeSpecific;
+
+  /// No description provided for @learnSalahHubFixedSurahFieldLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Fixed surah'**
+  String get learnSalahHubFixedSurahFieldLabel;
+
+  /// No description provided for @learnSalahHubPracticeSurahFieldLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Practice this surah'**
+  String get learnSalahHubPracticeSurahFieldLabel;
+
+  /// No description provided for @learnSalahHubSearchSurahsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search surahs for prayer'**
+  String get learnSalahHubSearchSurahsHint;
+
+  /// No description provided for @learnSalahHubSurahCardSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{ayahCount} ayahs • {status}'**
+  String learnSalahHubSurahCardSubtitle(Object ayahCount, Object status);
+
+  /// No description provided for @learnSalahHubSurahLockedSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Locked until more surahs are practiced'**
+  String get learnSalahHubSurahLockedSubtitle;
+
+  /// No description provided for @learnSalahHubStatusNotStarted.
+  ///
+  /// In en, this message translates to:
+  /// **'Not started'**
+  String get learnSalahHubStatusNotStarted;
+
+  /// No description provided for @learnSalahHubStatusLearning.
+  ///
+  /// In en, this message translates to:
+  /// **'Learning'**
+  String get learnSalahHubStatusLearning;
+
+  /// No description provided for @learnSalahHubStatusPracticed.
+  ///
+  /// In en, this message translates to:
+  /// **'Practiced'**
+  String get learnSalahHubStatusPracticed;
+
+  /// No description provided for @learnSalahHubStatusMemorized.
+  ///
+  /// In en, this message translates to:
+  /// **'Memorized'**
+  String get learnSalahHubStatusMemorized;
+
+  /// No description provided for @learnSalahHubSearchRecitationsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search duas and recitations'**
+  String get learnSalahHubSearchRecitationsHint;
+
+  /// No description provided for @learnSalahHubMarkReviewedAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark reviewed'**
+  String get learnSalahHubMarkReviewedAction;
+
+  /// No description provided for @learnSalahHubWuduGuideTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Wudu Guide'**
+  String get learnSalahHubWuduGuideTitle;
+
+  /// No description provided for @learnSalahHubWuduGuideSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Review purification, sequence, and reminders before prayer.'**
+  String get learnSalahHubWuduGuideSubtitle;
+
+  /// No description provided for @learnSalahHubWuduTrainerSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Interactive guided practice and checklist mode.'**
+  String get learnSalahHubWuduTrainerSubtitle;
+
+  /// No description provided for @wuduGuideRequiredVsSunnahTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Required vs Sunnah'**
+  String get wuduGuideRequiredVsSunnahTitle;
+
+  /// No description provided for @wuduGuideRequiredEssentialsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Required essentials'**
+  String get wuduGuideRequiredEssentialsTitle;
+
+  /// No description provided for @wuduGuideSunnahEnhancementsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sunnah enhancements'**
+  String get wuduGuideSunnahEnhancementsTitle;
+
+  /// No description provided for @wuduGuideImportantRemindersTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Important reminders'**
+  String get wuduGuideImportantRemindersTitle;
+
+  /// No description provided for @quranSummaryIslandTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Quran Summary'**
+  String get quranSummaryIslandTitle;
+
+  /// No description provided for @quranSummaryIslandSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore all 114 surahs with short overviews, revelation type, and key themes.'**
+  String get quranSummaryIslandSubtitle;
+
+  /// No description provided for @quranSummaryPageTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Quran Summary'**
+  String get quranSummaryPageTitle;
+
+  /// No description provided for @quranSummaryPageSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Browse every surah with a concise overview, revelation context, and study-friendly details.'**
+  String get quranSummaryPageSubtitle;
+
+  /// No description provided for @quranSummarySearchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search by surah number, name, Arabic, or meaning...'**
+  String get quranSummarySearchHint;
+
+  /// No description provided for @quranSummaryFilterAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get quranSummaryFilterAll;
+
+  /// No description provided for @quranSummaryFilterMakki.
+  ///
+  /// In en, this message translates to:
+  /// **'Makki'**
+  String get quranSummaryFilterMakki;
+
+  /// No description provided for @quranSummaryFilterMadani.
+  ///
+  /// In en, this message translates to:
+  /// **'Madani'**
+  String get quranSummaryFilterMadani;
+
+  /// No description provided for @quranSummaryNoResultsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No surahs matched your search'**
+  String get quranSummaryNoResultsTitle;
+
+  /// No description provided for @quranSummaryNoResultsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Try another surah name, number, Arabic spelling, or revelation filter.'**
+  String get quranSummaryNoResultsSubtitle;
+
+  /// No description provided for @quranSummaryHeroEyebrow.
+  ///
+  /// In en, this message translates to:
+  /// **'Surah Overview'**
+  String get quranSummaryHeroEyebrow;
+
+  /// No description provided for @quranSummaryHeroTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Read the flow of the Quran one surah at a time'**
+  String get quranSummaryHeroTitle;
+
+  /// No description provided for @quranSummaryHeroSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A calm reference for themes, revelation setting, and quick orientation before you open the reader.'**
+  String get quranSummaryHeroSubtitle;
+
+  /// No description provided for @quranSummaryRevelationMixed.
+  ///
+  /// In en, this message translates to:
+  /// **'Mixed'**
+  String get quranSummaryRevelationMixed;
+
+  /// No description provided for @quranSummaryVersesLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'verses'**
+  String get quranSummaryVersesLabel;
+
+  /// No description provided for @quranSummaryOpenReaderAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open surah reader'**
+  String get quranSummaryOpenReaderAction;
+
+  /// No description provided for @quranSummaryDetailMissingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'This surah summary is not available'**
+  String get quranSummaryDetailMissingTitle;
+
+  /// No description provided for @quranSummaryDetailMissingSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Return to the Quran Summary list and choose another surah.'**
+  String get quranSummaryDetailMissingSubtitle;
+
+  /// No description provided for @quranSummaryDetailPageSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Surah {surahNumber} study companion'**
+  String quranSummaryDetailPageSubtitle(Object surahNumber);
+
+  /// No description provided for @quranSummaryOverviewTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Overview'**
+  String get quranSummaryOverviewTitle;
+
+  /// No description provided for @quranSummaryMetadataTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Surah at a glance'**
+  String get quranSummaryMetadataTitle;
+
+  /// No description provided for @quranSummaryRevelationLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Revelation: {value}'**
+  String quranSummaryRevelationLabel(Object value);
+
+  /// No description provided for @quranSummaryVerseCountLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} verses'**
+  String quranSummaryVerseCountLabel(int count);
+
+  /// No description provided for @quranSummaryRevelationOrderLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Revelation order {order}'**
+  String quranSummaryRevelationOrderLabel(int order);
+
+  /// No description provided for @quranSummaryKeyThemesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Key themes'**
+  String get quranSummaryKeyThemesTitle;
+
+  /// No description provided for @quranSummaryNotableAyatTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Notable ayat'**
+  String get quranSummaryNotableAyatTitle;
+
+  /// No description provided for @quranSummaryRelatedProphetsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Related prophets'**
+  String get quranSummaryRelatedProphetsTitle;
+
+  /// No description provided for @quranSummaryRelatedEventsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Related events'**
+  String get quranSummaryRelatedEventsTitle;
+
+  /// No description provided for @quranSummaryVirtuesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Virtues and recitation notes'**
+  String get quranSummaryVirtuesTitle;
+
+  /// No description provided for @quranSummaryReflectionPromptsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reflection prompts'**
+  String get quranSummaryReflectionPromptsTitle;
+
+  /// No description provided for @quranSummaryActionsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reader actions'**
+  String get quranSummaryActionsTitle;
+
+  /// No description provided for @quranSummaryNoReadingProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'No saved reading progress for this surah yet. You can open it directly or begin from ayah 1.'**
+  String get quranSummaryNoReadingProgress;
+
+  /// No description provided for @quranSummaryResumeHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue where you left off at ayah {ayahNumber}.'**
+  String quranSummaryResumeHint(int ayahNumber);
+
+  /// No description provided for @quranSummaryStartReadingAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Start from beginning'**
+  String get quranSummaryStartReadingAction;
+
+  /// No description provided for @quranSummaryResumeReadingAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Resume reading'**
+  String get quranSummaryResumeReadingAction;
+
+  /// No description provided for @quranSummaryViewDetailsAction.
+  ///
+  /// In en, this message translates to:
+  /// **'View details'**
+  String get quranSummaryViewDetailsAction;
+
+  /// No description provided for @quranSummaryThemeTawhid.
+  ///
+  /// In en, this message translates to:
+  /// **'Tawhid'**
+  String get quranSummaryThemeTawhid;
+
+  /// No description provided for @quranSummaryThemeRevelation.
+  ///
+  /// In en, this message translates to:
+  /// **'Revelation'**
+  String get quranSummaryThemeRevelation;
+
+  /// No description provided for @quranSummaryThemeGuidance.
+  ///
+  /// In en, this message translates to:
+  /// **'Guidance'**
+  String get quranSummaryThemeGuidance;
+
+  /// No description provided for @quranSummaryThemeMercy.
+  ///
+  /// In en, this message translates to:
+  /// **'Mercy'**
+  String get quranSummaryThemeMercy;
+
+  /// No description provided for @quranSummaryThemeJudgment.
+  ///
+  /// In en, this message translates to:
+  /// **'Judgment'**
+  String get quranSummaryThemeJudgment;
+
+  /// No description provided for @quranSummaryThemePatience.
+  ///
+  /// In en, this message translates to:
+  /// **'Patience'**
+  String get quranSummaryThemePatience;
+
+  /// No description provided for @quranSummaryThemeRepentance.
+  ///
+  /// In en, this message translates to:
+  /// **'Repentance'**
+  String get quranSummaryThemeRepentance;
+
+  /// No description provided for @quranSummaryThemeProphethood.
+  ///
+  /// In en, this message translates to:
+  /// **'Prophethood'**
+  String get quranSummaryThemeProphethood;
+
+  /// No description provided for @quranSummaryThemeResurrection.
+  ///
+  /// In en, this message translates to:
+  /// **'Resurrection'**
+  String get quranSummaryThemeResurrection;
+
+  /// No description provided for @quranSummaryThemeWorship.
+  ///
+  /// In en, this message translates to:
+  /// **'Worship'**
+  String get quranSummaryThemeWorship;
+
+  /// No description provided for @quranSummaryThemeLaw.
+  ///
+  /// In en, this message translates to:
+  /// **'Law'**
+  String get quranSummaryThemeLaw;
+
+  /// No description provided for @quranSummaryThemeCommunity.
+  ///
+  /// In en, this message translates to:
+  /// **'Community'**
+  String get quranSummaryThemeCommunity;
+
+  /// No description provided for @quranSummaryThemeGratitude.
+  ///
+  /// In en, this message translates to:
+  /// **'Gratitude'**
+  String get quranSummaryThemeGratitude;
+
+  /// No description provided for @quranSummaryThemeJustice.
+  ///
+  /// In en, this message translates to:
+  /// **'Justice'**
+  String get quranSummaryThemeJustice;
+
+  /// No description provided for @quranSummaryThemeSignsOfCreation.
+  ///
+  /// In en, this message translates to:
+  /// **'Signs of creation'**
+  String get quranSummaryThemeSignsOfCreation;
+
+  /// No description provided for @quranSummaryThemeHypocrisy.
+  ///
+  /// In en, this message translates to:
+  /// **'Hypocrisy'**
+  String get quranSummaryThemeHypocrisy;
+
+  /// No description provided for @quranSummaryThemeCharity.
+  ///
+  /// In en, this message translates to:
+  /// **'Charity'**
+  String get quranSummaryThemeCharity;
+
+  /// No description provided for @quranSummaryThemeFamily.
+  ///
+  /// In en, this message translates to:
+  /// **'Family'**
+  String get quranSummaryThemeFamily;
+
+  /// No description provided for @quranSummaryThemeStruggle.
+  ///
+  /// In en, this message translates to:
+  /// **'Struggle'**
+  String get quranSummaryThemeStruggle;
+
+  /// No description provided for @quranSummaryThemeParadiseAndHell.
+  ///
+  /// In en, this message translates to:
+  /// **'Paradise and Hell'**
+  String get quranSummaryThemeParadiseAndHell;
+
+  /// No description provided for @quranThemeDiscoveryIslandTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Browse by Topic'**
+  String get quranThemeDiscoveryIslandTitle;
+
+  /// No description provided for @quranThemeDiscoveryIslandSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore the Qur\'\'an through themes like mercy, patience, prophets, guidance, and the hereafter.'**
+  String get quranThemeDiscoveryIslandSubtitle;
+
+  /// No description provided for @quranThemeDiscoveryPageTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Browse by Topic'**
+  String get quranThemeDiscoveryPageTitle;
+
+  /// No description provided for @quranThemeDiscoveryPageSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Discover the Qur\'\'an through curated themes, related surahs, key ayah anchors, and gentle study pathways.'**
+  String get quranThemeDiscoveryPageSubtitle;
+
+  /// No description provided for @quranThemeDiscoveryHeroEyebrow.
+  ///
+  /// In en, this message translates to:
+  /// **'Thematic Discovery'**
+  String get quranThemeDiscoveryHeroEyebrow;
+
+  /// No description provided for @quranThemeDiscoveryHeroTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore the Qur\'\'an through themes that shape the heart'**
+  String get quranThemeDiscoveryHeroTitle;
+
+  /// No description provided for @quranThemeDiscoveryHeroSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A calm way to follow mercy, patience, prophets, guidance, justice, and the signs of creation across related surahs.'**
+  String get quranThemeDiscoveryHeroSubtitle;
+
+  /// No description provided for @quranThemeDiscoverySearchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search topics, prophets, events, or surahs...'**
+  String get quranThemeDiscoverySearchHint;
+
+  /// No description provided for @quranThemeDiscoveryFeaturedThemesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Featured themes'**
+  String get quranThemeDiscoveryFeaturedThemesTitle;
+
+  /// No description provided for @quranThemeDiscoveryBrowseByCategoryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Browse by category'**
+  String get quranThemeDiscoveryBrowseByCategoryTitle;
+
+  /// No description provided for @quranThemeDiscoveryKeyAyahReferencesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Key ayah references'**
+  String get quranThemeDiscoveryKeyAyahReferencesTitle;
+
+  /// No description provided for @quranThemeDiscoveryRelatedSurahsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Related surahs'**
+  String get quranThemeDiscoveryRelatedSurahsTitle;
+
+  /// No description provided for @quranThemeDiscoveryReflectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reflection'**
+  String get quranThemeDiscoveryReflectionTitle;
+
+  /// No description provided for @quranThemeDiscoveryMoreThemesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'More themes'**
+  String get quranThemeDiscoveryMoreThemesTitle;
+
+  /// No description provided for @quranThemeDiscoveryExploreThemeAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore theme'**
+  String get quranThemeDiscoveryExploreThemeAction;
+
+  /// No description provided for @quranThemeDiscoveryBrowseMoreThemesAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Browse more themes'**
+  String get quranThemeDiscoveryBrowseMoreThemesAction;
+
+  /// No description provided for @quranThemeDiscoveryNoResultsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No themes matched your search'**
+  String get quranThemeDiscoveryNoResultsTitle;
+
+  /// No description provided for @quranThemeDiscoveryNoResultsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Try another topic, prophet, event, or category.'**
+  String get quranThemeDiscoveryNoResultsSubtitle;
+
+  /// No description provided for @quranThemeDiscoveryMissingThemeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'This theme is not available'**
+  String get quranThemeDiscoveryMissingThemeTitle;
+
+  /// No description provided for @quranThemeDiscoveryMissingThemeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Return to Browse by Topic and choose another Qur\'\'an theme.'**
+  String get quranThemeDiscoveryMissingThemeSubtitle;
+
+  /// No description provided for @quranThemeDiscoveryThemeCountLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} themes'**
+  String quranThemeDiscoveryThemeCountLabel(int count);
+
+  /// No description provided for @quranThemeDiscoverySurahCountLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} surahs'**
+  String quranThemeDiscoverySurahCountLabel(int count);
+
+  /// No description provided for @quranThemeDiscoveryCategoryBelief.
+  ///
+  /// In en, this message translates to:
+  /// **'Belief'**
+  String get quranThemeDiscoveryCategoryBelief;
+
+  /// No description provided for @quranThemeDiscoveryCategoryWorship.
+  ///
+  /// In en, this message translates to:
+  /// **'Worship'**
+  String get quranThemeDiscoveryCategoryWorship;
+
+  /// No description provided for @quranThemeDiscoveryCategoryCharacter.
+  ///
+  /// In en, this message translates to:
+  /// **'Character'**
+  String get quranThemeDiscoveryCategoryCharacter;
+
+  /// No description provided for @quranThemeDiscoveryCategoryStoriesProphets.
+  ///
+  /// In en, this message translates to:
+  /// **'Stories and Prophets'**
+  String get quranThemeDiscoveryCategoryStoriesProphets;
+
+  /// No description provided for @quranThemeDiscoveryCategoryAkhirah.
+  ///
+  /// In en, this message translates to:
+  /// **'Akhirah'**
+  String get quranThemeDiscoveryCategoryAkhirah;
+
+  /// No description provided for @quranThemeDiscoveryCategorySocietyEthics.
+  ///
+  /// In en, this message translates to:
+  /// **'Society and Ethics'**
+  String get quranThemeDiscoveryCategorySocietyEthics;
+
+  /// No description provided for @quranThemeDiscoveryCategorySignsReflection.
+  ///
+  /// In en, this message translates to:
+  /// **'Signs and Reflection'**
+  String get quranThemeDiscoveryCategorySignsReflection;
+
+  /// No description provided for @quranPathwaysIslandTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Qur\'\'an Pathways'**
+  String get quranPathwaysIslandTitle;
+
+  /// No description provided for @quranPathwaysIslandSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Follow guided journeys through themes, stories, reflection, and meaningful verses.'**
+  String get quranPathwaysIslandSubtitle;
+
+  /// No description provided for @quranPathwaysHeroEyebrow.
+  ///
+  /// In en, this message translates to:
+  /// **'Guided Journeys'**
+  String get quranPathwaysHeroEyebrow;
+
+  /// No description provided for @quranPathwaysHeroTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Move through the Qur\'\'an with calm structure'**
+  String get quranPathwaysHeroTitle;
+
+  /// No description provided for @quranPathwaysHeroSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a curated pathway when you want a gentler sequence through surahs, themes, key ayat, and reflection.'**
+  String get quranPathwaysHeroSubtitle;
+
+  /// No description provided for @quranPathwaysFeaturedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Featured pathways'**
+  String get quranPathwaysFeaturedTitle;
+
+  /// No description provided for @quranPathwaysAllTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'All pathways'**
+  String get quranPathwaysAllTitle;
+
+  /// No description provided for @quranPathwaysContinueTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue your pathway'**
+  String get quranPathwaysContinueTitle;
+
+  /// No description provided for @quranPathwaysEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No pathways match this view'**
+  String get quranPathwaysEmptyTitle;
+
+  /// No description provided for @quranPathwaysEmptySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Try another category or return to all pathways.'**
+  String get quranPathwaysEmptySubtitle;
+
+  /// No description provided for @quranPathwaysMissingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'This pathway is not available'**
+  String get quranPathwaysMissingTitle;
+
+  /// No description provided for @quranPathwaysMissingSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Return to Qur\'\'an Pathways and choose another guided journey.'**
+  String get quranPathwaysMissingSubtitle;
+
+  /// No description provided for @quranPathwaysStopMissingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'This stop is not available'**
+  String get quranPathwaysStopMissingTitle;
+
+  /// No description provided for @quranPathwaysStopMissingSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Return to the pathway and choose another stop.'**
+  String get quranPathwaysStopMissingSubtitle;
+
+  /// No description provided for @quranPathwaysStopsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Journey stops'**
+  String get quranPathwaysStopsTitle;
+
+  /// No description provided for @quranPathwaysStartAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Start pathway'**
+  String get quranPathwaysStartAction;
+
+  /// No description provided for @quranPathwaysResumeAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Resume pathway'**
+  String get quranPathwaysResumeAction;
+
+  /// No description provided for @quranPathwaysMarkCompleteAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark stop complete'**
+  String get quranPathwaysMarkCompleteAction;
+
+  /// No description provided for @quranPathwaysCompleteLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Pathway complete'**
+  String get quranPathwaysCompleteLabel;
+
+  /// No description provided for @quranPathwaysCurrentStopLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Current stop'**
+  String get quranPathwaysCurrentStopLabel;
+
+  /// No description provided for @quranPathwaysNextStopAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open next stop'**
+  String get quranPathwaysNextStopAction;
+
+  /// No description provided for @quranPathwaysReflectAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Reflect on this stop'**
+  String get quranPathwaysReflectAction;
+
+  /// No description provided for @quranPathwaysOpenStopAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open linked destination'**
+  String get quranPathwaysOpenStopAction;
+
+  /// No description provided for @quranPathwayStatusCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get quranPathwayStatusCompleted;
+
+  /// No description provided for @quranPathwayStatusInProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'In progress'**
+  String get quranPathwayStatusInProgress;
+
+  /// No description provided for @quranPathwayStatusNotStarted.
+  ///
+  /// In en, this message translates to:
+  /// **'Not started'**
+  String get quranPathwayStatusNotStarted;
+
+  /// No description provided for @quranPathwayCategoryFoundations.
+  ///
+  /// In en, this message translates to:
+  /// **'Foundations'**
+  String get quranPathwayCategoryFoundations;
+
+  /// No description provided for @quranPathwayCategorySpiritualSupport.
+  ///
+  /// In en, this message translates to:
+  /// **'Spiritual Support'**
+  String get quranPathwayCategorySpiritualSupport;
+
+  /// No description provided for @quranPathwayCategoryProphetStories.
+  ///
+  /// In en, this message translates to:
+  /// **'Stories and Prophets'**
+  String get quranPathwayCategoryProphetStories;
+
+  /// No description provided for @quranPathwayCategoryReflection.
+  ///
+  /// In en, this message translates to:
+  /// **'Reflection'**
+  String get quranPathwayCategoryReflection;
+
+  /// No description provided for @quranPathwayCategoryCharacterAdab.
+  ///
+  /// In en, this message translates to:
+  /// **'Character and Adab'**
+  String get quranPathwayCategoryCharacterAdab;
+
+  /// No description provided for @quranPathwayCategorySignsCreation.
+  ///
+  /// In en, this message translates to:
+  /// **'Signs and Creation'**
+  String get quranPathwayCategorySignsCreation;
+
+  /// No description provided for @quranPathwayCategoryHereafter.
+  ///
+  /// In en, this message translates to:
+  /// **'Hereafter'**
+  String get quranPathwayCategoryHereafter;
+
+  /// No description provided for @quranPathwayPatienceTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Patience in the Qur\'\'an'**
+  String get quranPathwayPatienceTitle;
+
+  /// No description provided for @quranPathwayPatienceSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Move through sabr, prayer, hardship, and hopeful endurance.'**
+  String get quranPathwayPatienceSubtitle;
+
+  /// No description provided for @quranPathwayPatienceDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'A gentle pathway through verses and surahs that teach patience as trust, worship, and steadiness rather than passive waiting.'**
+  String get quranPathwayPatienceDescription;
+
+  /// No description provided for @quranPathwayTawhidTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Tawhid Foundations'**
+  String get quranPathwayTawhidTitle;
+
+  /// No description provided for @quranPathwayTawhidSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Begin with Allah\'\'s oneness, majesty, and sole right to worship.'**
+  String get quranPathwayTawhidSubtitle;
+
+  /// No description provided for @quranPathwayTawhidDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'This pathway gathers a few strong anchors for understanding who Allah is, why worship belongs to Him alone, and how tawhid steadies the heart.'**
+  String get quranPathwayTawhidDescription;
+
+  /// No description provided for @quranPathwayMercyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Mercy and Hope'**
+  String get quranPathwayMercyTitle;
+
+  /// No description provided for @quranPathwayMercySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Follow mercy, repentance, welcome, and hopeful return to Allah.'**
+  String get quranPathwayMercySubtitle;
+
+  /// No description provided for @quranPathwayMercyDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'A calming journey for hearts that need hope, reminding the believer that Allah\'\'s mercy remains open through repentance, gratitude, and return.'**
+  String get quranPathwayMercyDescription;
+
+  /// No description provided for @quranPathwayMusaTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Stories of Musa'**
+  String get quranPathwayMusaTitle;
+
+  /// No description provided for @quranPathwayMusaSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Trace courage, mission, du\'\'a, and reliance through Musa عليه السلام.'**
+  String get quranPathwayMusaSubtitle;
+
+  /// No description provided for @quranPathwayMusaDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'This pathway moves through some of the strongest Musa-related anchors so the story becomes a source of courage, prayer, and moral clarity.'**
+  String get quranPathwayMusaDescription;
+
+  /// No description provided for @quranPathwayCreationTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Signs of Creation'**
+  String get quranPathwayCreationTitle;
+
+  /// No description provided for @quranPathwayCreationSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reflect on the heavens, earth, life, and the self as signs of Allah.'**
+  String get quranPathwayCreationSubtitle;
+
+  /// No description provided for @quranPathwayCreationDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'A reflective pathway that slows the heart down around creation, remembrance, and the ordinary signs that point back to Allah.'**
+  String get quranPathwayCreationDescription;
+
+  /// No description provided for @quranPathwayHereafterTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reflection on the Hereafter'**
+  String get quranPathwayHereafterTitle;
+
+  /// No description provided for @quranPathwayHereafterSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Remember return, accountability, and the meeting with Allah.'**
+  String get quranPathwayHereafterSubtitle;
+
+  /// No description provided for @quranPathwayHereafterDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'This pathway offers a careful sequence through resurrection, judgment, and final return so the believer can reflect without being overwhelmed.'**
+  String get quranPathwayHereafterDescription;
+
+  /// No description provided for @quranPathwayGratitudeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Gratitude and Blessings'**
+  String get quranPathwayGratitudeTitle;
+
+  /// No description provided for @quranPathwayGratitudeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Notice blessing, increase, and worshipful thankfulness.'**
+  String get quranPathwayGratitudeSubtitle;
+
+  /// No description provided for @quranPathwayGratitudeDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'A short pathway through shukr in the Qur\'\'an, helping gratitude become worship, awareness, and better use of Allah\'\'s gifts.'**
+  String get quranPathwayGratitudeDescription;
+
+  /// No description provided for @quranPathwayCharacterTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Character and Adab'**
+  String get quranPathwayCharacterTitle;
+
+  /// No description provided for @quranPathwayCharacterSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Follow speech, manners, fairness, and life with others.'**
+  String get quranPathwayCharacterSubtitle;
+
+  /// No description provided for @quranPathwayCharacterDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'This pathway gathers strong Qur\'\'anic anchors for manners, social conduct, fairness, and guarding the tongue.'**
+  String get quranPathwayCharacterDescription;
+
+  /// No description provided for @quranPathwayDuaTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Du\'\'a and Reliance on Allah'**
+  String get quranPathwayDuaTitle;
+
+  /// No description provided for @quranPathwayDuaSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Move through nearness, asking Allah, and trusting Him after effort.'**
+  String get quranPathwayDuaSubtitle;
+
+  /// No description provided for @quranPathwayDuaDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'A gentle pathway through supplication and tawakkul so calling upon Allah and relying on Him feel more rooted in Qur\'\'anic guidance.'**
+  String get quranPathwayDuaDescription;
+
+  /// No description provided for @quranPathwayHardTimesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Verses for Hard Times'**
+  String get quranPathwayHardTimesTitle;
+
+  /// No description provided for @quranPathwayHardTimesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Return to a few verses of ease, trust, and reassurance when life feels heavy.'**
+  String get quranPathwayHardTimesSubtitle;
+
+  /// No description provided for @quranPathwayHardTimesDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'This pathway is a calm support path for hardship, drawing from ayat that bring perspective, hope, and trust in Allah without sensational promises.'**
+  String get quranPathwayHardTimesDescription;
+
+  /// No description provided for @quranPathwayPatienceStepThemeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Begin with the theme of patience'**
+  String get quranPathwayPatienceStepThemeTitle;
+
+  /// No description provided for @quranPathwayPatienceStepThemeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'See how sabr appears across related surahs before narrowing in.'**
+  String get quranPathwayPatienceStepThemeSubtitle;
+
+  /// No description provided for @quranPathwayPatienceStepYusufTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Study Surah Yusuf'**
+  String get quranPathwayPatienceStepYusufTitle;
+
+  /// No description provided for @quranPathwayPatienceStepYusufSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Walk through hardship, family pain, and dignified trust in Allah.'**
+  String get quranPathwayPatienceStepYusufSubtitle;
+
+  /// No description provided for @quranPathwayPatienceStepReaderTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Read verses of ease after hardship'**
+  String get quranPathwayPatienceStepReaderTitle;
+
+  /// No description provided for @quranPathwayPatienceStepReaderSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Open the reader where reassurance is repeated with clarity.'**
+  String get quranPathwayPatienceStepReaderSubtitle;
+
+  /// No description provided for @quranPathwayPatienceStepReflectTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'End with a patience reflection'**
+  String get quranPathwayPatienceStepReflectTitle;
+
+  /// No description provided for @quranPathwayPatienceStepReflectSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Pause with a verse that keeps hardship in proportion.'**
+  String get quranPathwayPatienceStepReflectSubtitle;
+
+  /// No description provided for @quranPathwayTawhidStepThemeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Open the tawhid theme'**
+  String get quranPathwayTawhidStepThemeTitle;
+
+  /// No description provided for @quranPathwayTawhidStepThemeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Start with a concise thematic view of Allah\'\'s oneness.'**
+  String get quranPathwayTawhidStepThemeSubtitle;
+
+  /// No description provided for @quranPathwayTawhidStepIkhlasTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Study Surah Al-Ikhlas'**
+  String get quranPathwayTawhidStepIkhlasTitle;
+
+  /// No description provided for @quranPathwayTawhidStepIkhlasSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Return to one of the clearest summaries of divine oneness.'**
+  String get quranPathwayTawhidStepIkhlasSubtitle;
+
+  /// No description provided for @quranPathwayTawhidStepKursiTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Read Ayat al-Kursi'**
+  String get quranPathwayTawhidStepKursiTitle;
+
+  /// No description provided for @quranPathwayTawhidStepKursiSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reflect on Allah\'\'s life, authority, and preservation.'**
+  String get quranPathwayTawhidStepKursiSubtitle;
+
+  /// No description provided for @quranPathwayTawhidStepReflectTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Close with a tawhid reflection'**
+  String get quranPathwayTawhidStepReflectTitle;
+
+  /// No description provided for @quranPathwayTawhidStepReflectSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sit with a verse that turns creation back toward its Lord.'**
+  String get quranPathwayTawhidStepReflectSubtitle;
+
+  /// No description provided for @quranPathwayMercyStepThemeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Begin with mercy as a theme'**
+  String get quranPathwayMercyStepThemeTitle;
+
+  /// No description provided for @quranPathwayMercyStepThemeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'See how mercy gathers hope, compassion, and return to Allah.'**
+  String get quranPathwayMercyStepThemeSubtitle;
+
+  /// No description provided for @quranPathwayMercyStepZumarTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Read the verse of hope'**
+  String get quranPathwayMercyStepZumarTitle;
+
+  /// No description provided for @quranPathwayMercyStepZumarSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Open a well-known anchor against despair.'**
+  String get quranPathwayMercyStepZumarSubtitle;
+
+  /// No description provided for @quranPathwayMercyStepRahmanTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Study Surah Ar-Rahman'**
+  String get quranPathwayMercyStepRahmanTitle;
+
+  /// No description provided for @quranPathwayMercyStepRahmanSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Notice repeated reminders of divine generosity and favor.'**
+  String get quranPathwayMercyStepRahmanSubtitle;
+
+  /// No description provided for @quranPathwayMercyStepRepentanceTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'End with repentance and hope'**
+  String get quranPathwayMercyStepRepentanceTitle;
+
+  /// No description provided for @quranPathwayMercyStepRepentanceSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish by connecting mercy to returning sincerely to Allah.'**
+  String get quranPathwayMercyStepRepentanceSubtitle;
+
+  /// No description provided for @quranPathwayMusaStepThemeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Open the Musa theme'**
+  String get quranPathwayMusaStepThemeTitle;
+
+  /// No description provided for @quranPathwayMusaStepThemeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Start with the broad arc of Musa عليه السلام across the Qur\'\'an.'**
+  String get quranPathwayMusaStepThemeSubtitle;
+
+  /// No description provided for @quranPathwayMusaStepTahaTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Study Surah Taha'**
+  String get quranPathwayMusaStepTahaTitle;
+
+  /// No description provided for @quranPathwayMusaStepTahaSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Read a surah that holds mission, reassurance, and du\'\'a together.'**
+  String get quranPathwayMusaStepTahaSubtitle;
+
+  /// No description provided for @quranPathwayMusaStepDuaTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Read Musa\'\'s du\'\'a'**
+  String get quranPathwayMusaStepDuaTitle;
+
+  /// No description provided for @quranPathwayMusaStepDuaSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Pause at the supplication before speaking truth to power.'**
+  String get quranPathwayMusaStepDuaSubtitle;
+
+  /// No description provided for @quranPathwayMusaStepAnchorTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Anchor the story in reflection'**
+  String get quranPathwayMusaStepAnchorTitle;
+
+  /// No description provided for @quranPathwayMusaStepAnchorSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Let Musa\'\'s path become a mirror for your own responsibilities.'**
+  String get quranPathwayMusaStepAnchorSubtitle;
+
+  /// No description provided for @quranPathwayCreationStepThemeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Open the signs of creation theme'**
+  String get quranPathwayCreationStepThemeTitle;
+
+  /// No description provided for @quranPathwayCreationStepThemeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Begin with the Qur\'\'an\'\'s invitation to look outward and inward.'**
+  String get quranPathwayCreationStepThemeSubtitle;
+
+  /// No description provided for @quranPathwayCreationStepImranTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Read the signs in the heavens and the earth'**
+  String get quranPathwayCreationStepImranTitle;
+
+  /// No description provided for @quranPathwayCreationStepImranSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Open a passage that joins reflection to remembrance.'**
+  String get quranPathwayCreationStepImranSubtitle;
+
+  /// No description provided for @quranPathwayCreationStepMulkTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Study Surah Al-Mulk'**
+  String get quranPathwayCreationStepMulkTitle;
+
+  /// No description provided for @quranPathwayCreationStepMulkSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Look at order, design, and humility before divine power.'**
+  String get quranPathwayCreationStepMulkSubtitle;
+
+  /// No description provided for @quranPathwayCreationStepReflectTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'End with a creation reflection'**
+  String get quranPathwayCreationStepReflectTitle;
+
+  /// No description provided for @quranPathwayCreationStepReflectSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Notice how ordinary life itself points back to Allah.'**
+  String get quranPathwayCreationStepReflectSubtitle;
+
+  /// No description provided for @quranPathwayHereafterStepThemeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Begin with judgment as a theme'**
+  String get quranPathwayHereafterStepThemeTitle;
+
+  /// No description provided for @quranPathwayHereafterStepThemeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Open the larger picture of accountability and return.'**
+  String get quranPathwayHereafterStepThemeSubtitle;
+
+  /// No description provided for @quranPathwayHereafterStepNabaTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Study Surah An-Naba'**
+  String get quranPathwayHereafterStepNabaTitle;
+
+  /// No description provided for @quranPathwayHereafterStepNabaSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Read a surah that frames the coming reality with force and clarity.'**
+  String get quranPathwayHereafterStepNabaSubtitle;
+
+  /// No description provided for @quranPathwayHereafterStepZalzalahTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Read the day deeds are shown'**
+  String get quranPathwayHereafterStepZalzalahTitle;
+
+  /// No description provided for @quranPathwayHereafterStepZalzalahSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Pause with verses that make every action feel weighty again.'**
+  String get quranPathwayHereafterStepZalzalahSubtitle;
+
+  /// No description provided for @quranPathwayHereafterStepReflectTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'End with resurrection reflection'**
+  String get quranPathwayHereafterStepReflectTitle;
+
+  /// No description provided for @quranPathwayHereafterStepReflectSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Let the certainty of return soften attachment to what passes.'**
+  String get quranPathwayHereafterStepReflectSubtitle;
+
+  /// No description provided for @quranPathwayGratitudeStepThemeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Begin with gratitude as a theme'**
+  String get quranPathwayGratitudeStepThemeTitle;
+
+  /// No description provided for @quranPathwayGratitudeStepThemeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'See how shukr is tied to worship and better living.'**
+  String get quranPathwayGratitudeStepThemeSubtitle;
+
+  /// No description provided for @quranPathwayGratitudeStepIbrahimTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Read the promise of increase'**
+  String get quranPathwayGratitudeStepIbrahimTitle;
+
+  /// No description provided for @quranPathwayGratitudeStepIbrahimSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Open a direct reminder that gratitude changes the servant.'**
+  String get quranPathwayGratitudeStepIbrahimSubtitle;
+
+  /// No description provided for @quranPathwayGratitudeStepNahlTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Study Surah An-Nahl'**
+  String get quranPathwayGratitudeStepNahlTitle;
+
+  /// No description provided for @quranPathwayGratitudeStepNahlSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Notice blessings, provision, and the call to recognize them.'**
+  String get quranPathwayGratitudeStepNahlSubtitle;
+
+  /// No description provided for @quranPathwayGratitudeStepReflectTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'End with a gratitude reflection'**
+  String get quranPathwayGratitudeStepReflectTitle;
+
+  /// No description provided for @quranPathwayGratitudeStepReflectSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Pause with a repeated reminder of Allah\'\'s favors.'**
+  String get quranPathwayGratitudeStepReflectSubtitle;
+
+  /// No description provided for @quranPathwayCharacterStepHujuratTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Study Surah Al-Hujurat'**
+  String get quranPathwayCharacterStepHujuratTitle;
+
+  /// No description provided for @quranPathwayCharacterStepHujuratSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Read a surah of speech, manners, and life with others.'**
+  String get quranPathwayCharacterStepHujuratSubtitle;
+
+  /// No description provided for @quranPathwayCharacterStepReaderTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Read verses on brotherhood and guarding the tongue'**
+  String get quranPathwayCharacterStepReaderTitle;
+
+  /// No description provided for @quranPathwayCharacterStepReaderSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Open a passage that makes adab practical and immediate.'**
+  String get quranPathwayCharacterStepReaderSubtitle;
+
+  /// No description provided for @quranPathwayCharacterStepCommunityTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore the community theme'**
+  String get quranPathwayCharacterStepCommunityTitle;
+
+  /// No description provided for @quranPathwayCharacterStepCommunitySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'See how the Qur\'\'an builds trust and reconciliation.'**
+  String get quranPathwayCharacterStepCommunitySubtitle;
+
+  /// No description provided for @quranPathwayCharacterStepReflectTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'End with a character reflection'**
+  String get quranPathwayCharacterStepReflectTitle;
+
+  /// No description provided for @quranPathwayCharacterStepReflectSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Let fairness and restraint become a personal question.'**
+  String get quranPathwayCharacterStepReflectSubtitle;
+
+  /// No description provided for @quranPathwayDuaStepThemeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Begin with the theme of du\'\'a'**
+  String get quranPathwayDuaStepThemeTitle;
+
+  /// No description provided for @quranPathwayDuaStepThemeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Start by seeing supplication as nearness, humility, and hope.'**
+  String get quranPathwayDuaStepThemeSubtitle;
+
+  /// No description provided for @quranPathwayDuaStepBaqarahTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Read the verse of nearness'**
+  String get quranPathwayDuaStepBaqarahTitle;
+
+  /// No description provided for @quranPathwayDuaStepBaqarahSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Open the ayah that reassures the caller that Allah is near.'**
+  String get quranPathwayDuaStepBaqarahSubtitle;
+
+  /// No description provided for @quranPathwayDuaStepTrustTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore trust in Allah'**
+  String get quranPathwayDuaStepTrustTitle;
+
+  /// No description provided for @quranPathwayDuaStepTrustSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Follow how tawakkul joins planning, effort, and surrender.'**
+  String get quranPathwayDuaStepTrustSubtitle;
+
+  /// No description provided for @quranPathwayDuaStepRelianceTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Read a verse of reliance'**
+  String get quranPathwayDuaStepRelianceTitle;
+
+  /// No description provided for @quranPathwayDuaStepRelianceSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'End with a verse that joins decision, effort, and trust.'**
+  String get quranPathwayDuaStepRelianceSubtitle;
+
+  /// No description provided for @quranPathwayHardTimesStepInshirahTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Read verses of ease after hardship'**
+  String get quranPathwayHardTimesStepInshirahTitle;
+
+  /// No description provided for @quranPathwayHardTimesStepInshirahSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Start with a short passage many hearts return to in difficulty.'**
+  String get quranPathwayHardTimesStepInshirahSubtitle;
+
+  /// No description provided for @quranPathwayHardTimesStepBaqarahTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Read the verse of capacity'**
+  String get quranPathwayHardTimesStepBaqarahTitle;
+
+  /// No description provided for @quranPathwayHardTimesStepBaqarahSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Pause with a verse that restores proportion and trust.'**
+  String get quranPathwayHardTimesStepBaqarahSubtitle;
+
+  /// No description provided for @quranPathwayHardTimesStepPatienceTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Revisit the patience theme'**
+  String get quranPathwayHardTimesStepPatienceTitle;
+
+  /// No description provided for @quranPathwayHardTimesStepPatienceSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'See hardship through the wider Qur\'\'anic language of sabr.'**
+  String get quranPathwayHardTimesStepPatienceSubtitle;
+
+  /// No description provided for @quranPathwayHardTimesStepSharhTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'End with Surah Ash-Sharh'**
+  String get quranPathwayHardTimesStepSharhTitle;
+
+  /// No description provided for @quranPathwayHardTimesStepSharhSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish with a short surah of expansion, ease, and forward motion.'**
+  String get quranPathwayHardTimesStepSharhSubtitle;
+
+  /// No description provided for @quranPathwayPatienceStepReflectPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Where do I most need sabr and steady prayer right now?'**
+  String get quranPathwayPatienceStepReflectPrompt;
+
+  /// No description provided for @quranPathwayTawhidStepReflectPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'How does remembering Allah as Creator and Sustainer steady my heart?'**
+  String get quranPathwayTawhidStepReflectPrompt;
+
+  /// No description provided for @quranPathwayMercyStepRepentancePrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'What would it mean for me to turn back to Allah with honest hope today?'**
+  String get quranPathwayMercyStepRepentancePrompt;
+
+  /// No description provided for @quranPathwayMusaStepAnchorPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'What do Musa\'\'s du\'\'a, courage, and dependence on Allah teach me about my own responsibilities?'**
+  String get quranPathwayMusaStepAnchorPrompt;
+
+  /// No description provided for @quranPathwayCreationStepReflectPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Which signs of Allah in creation am I rushing past instead of noticing with gratitude?'**
+  String get quranPathwayCreationStepReflectPrompt;
+
+  /// No description provided for @quranPathwayHereafterStepReflectPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'How would my choices change if I remembered more often that I will return to Allah?'**
+  String get quranPathwayHereafterStepReflectPrompt;
+
+  /// No description provided for @quranPathwayGratitudeStepReflectPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Which blessings have become ordinary to me even though they are signs of Allah\'\'s care?'**
+  String get quranPathwayGratitudeStepReflectPrompt;
+
+  /// No description provided for @quranPathwayCharacterStepReflectPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Which part of my speech or assumptions needs more taqwa, care, and fairness?'**
+  String get quranPathwayCharacterStepReflectPrompt;
+
+  /// No description provided for @quranPathwayDuaStepReliancePrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'How can I combine sincere du\'\'a with wise effort and tawakkul today?'**
+  String get quranPathwayDuaStepReliancePrompt;
+
+  /// No description provided for @quranPathwayHardTimesStepSharhPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Which verse in this pathway would I like to return to in the next difficult moment?'**
+  String get quranPathwayHardTimesStepSharhPrompt;
+
+  /// No description provided for @quranPathwaysCountLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} pathways'**
+  String quranPathwaysCountLabel(int count);
+
+  /// No description provided for @quranPathwaysEstimatedLengthLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{minutes} min'**
+  String quranPathwaysEstimatedLengthLabel(int minutes);
+
+  /// No description provided for @quranPathwaysProgressLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{completed} of {total} stops completed'**
+  String quranPathwaysProgressLabel(int completed, int total);
+
+  /// No description provided for @quranPathwaysStopNumberLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop {number}'**
+  String quranPathwaysStopNumberLabel(int number);
+
+  /// No description provided for @quranPathwaysSurahLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Surah {surahNumber}'**
+  String quranPathwaysSurahLabel(int surahNumber);
+
+  /// No description provided for @quranReflectionsLibraryEyebrow.
+  ///
+  /// In en, this message translates to:
+  /// **'Private reflections'**
+  String get quranReflectionsLibraryEyebrow;
+
+  /// No description provided for @quranReflectionsLibraryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your reflections'**
+  String get quranReflectionsLibraryTitle;
+
+  /// No description provided for @quranReflectionsLibrarySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Revisit the notes and insights you wanted to keep from your Quran journey.'**
+  String get quranReflectionsLibrarySubtitle;
+
+  /// No description provided for @quranReflectionsSearchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search reflections...'**
+  String get quranReflectionsSearchHint;
+
+  /// No description provided for @quranReflectionsNoMatchesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No reflections match this view'**
+  String get quranReflectionsNoMatchesTitle;
+
+  /// No description provided for @quranReflectionsNoMatchesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Try another search term or switch filters to see more of your saved insights.'**
+  String get quranReflectionsNoMatchesSubtitle;
+
+  /// No description provided for @quranReflectionsMissingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reflection not found'**
+  String get quranReflectionsMissingTitle;
+
+  /// No description provided for @quranReflectionsMissingSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'This saved reflection is no longer available, but your other reflections are still here.'**
+  String get quranReflectionsMissingSubtitle;
+
+  /// No description provided for @quranReflectionsSavedInsightSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A saved insight from your Quran journey'**
+  String get quranReflectionsSavedInsightSubtitle;
+
+  /// No description provided for @quranReflectionsYourReflectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your reflection'**
+  String get quranReflectionsYourReflectionTitle;
+
+  /// No description provided for @quranReflectionsFavoritesFilter.
+  ///
+  /// In en, this message translates to:
+  /// **'Favorites'**
+  String get quranReflectionsFavoritesFilter;
+
+  /// No description provided for @quranReflectionsEditReflectionAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit reflection'**
+  String get quranReflectionsEditReflectionAction;
+
+  /// No description provided for @quranReflectionsDeleteReflectionAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete reflection'**
+  String get quranReflectionsDeleteReflectionAction;
+
+  /// No description provided for @quranReflectionsOpenSourceAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open source'**
+  String get quranReflectionsOpenSourceAction;
+
+  /// No description provided for @quranReflectionsComposerHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'What stood out to you, and what do you want to remember from this moment?'**
+  String get quranReflectionsComposerHelper;
+
+  /// No description provided for @quranReflectionsSaveReflectionAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Save reflection'**
+  String get quranReflectionsSaveReflectionAction;
+
+  /// No description provided for @quranReflectionsUpdateReflectionAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Update reflection'**
+  String get quranReflectionsUpdateReflectionAction;
+
+  /// No description provided for @quranReflectionsMarkFavoriteAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark as favorite'**
+  String get quranReflectionsMarkFavoriteAction;
+
+  /// No description provided for @quranReflectionsRemoveFavoriteAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove favorite'**
+  String get quranReflectionsRemoveFavoriteAction;
+
+  /// No description provided for @quranReflectionsFilterSurahs.
+  ///
+  /// In en, this message translates to:
+  /// **'Surahs'**
+  String get quranReflectionsFilterSurahs;
+
+  /// No description provided for @quranReflectionsFilterThemes.
+  ///
+  /// In en, this message translates to:
+  /// **'Themes'**
+  String get quranReflectionsFilterThemes;
+
+  /// No description provided for @quranReflectionsFilterPathways.
+  ///
+  /// In en, this message translates to:
+  /// **'Pathways'**
+  String get quranReflectionsFilterPathways;
+
+  /// No description provided for @quranReflectionsFilterRecent.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent'**
+  String get quranReflectionsFilterRecent;
+
+  /// No description provided for @quranReflectionsSourceSurah.
+  ///
+  /// In en, this message translates to:
+  /// **'Surah detail'**
+  String get quranReflectionsSourceSurah;
+
+  /// No description provided for @quranReflectionsSourceTheme.
+  ///
+  /// In en, this message translates to:
+  /// **'Theme detail'**
+  String get quranReflectionsSourceTheme;
+
+  /// No description provided for @quranReflectionsSourcePathway.
+  ///
+  /// In en, this message translates to:
+  /// **'Pathway'**
+  String get quranReflectionsSourcePathway;
+
+  /// No description provided for @quranReflectionsSourcePathwayStop.
+  ///
+  /// In en, this message translates to:
+  /// **'Pathway stop'**
+  String get quranReflectionsSourcePathwayStop;
+
+  /// No description provided for @quranReflectionsSourceAyahReflection.
+  ///
+  /// In en, this message translates to:
+  /// **'Ayah reflection'**
+  String get quranReflectionsSourceAyahReflection;
+
+  /// No description provided for @quranReflectionsSourceCompanion.
+  ///
+  /// In en, this message translates to:
+  /// **'Companion prompt'**
+  String get quranReflectionsSourceCompanion;
+
+  /// No description provided for @quranReflectionsSourceReader.
+  ///
+  /// In en, this message translates to:
+  /// **'Reader context'**
+  String get quranReflectionsSourceReader;
+
+  /// No description provided for @quranReflectionsSurahHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'What guidance do you want to remember from {surahName}?'**
+  String quranReflectionsSurahHelper(Object surahName);
+
+  /// No description provided for @quranReflectionsThemeHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'What is {themeName} drawing your attention to right now?'**
+  String quranReflectionsThemeHelper(Object themeName);
+
+  /// No description provided for @quranReflectionsPathwayHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'What do you want to carry forward from {pathwayTitle}?'**
+  String quranReflectionsPathwayHelper(Object pathwayTitle);
+
+  /// No description provided for @quranReflectionsPathwayStopHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'What do you want to remember from {stopTitle}?'**
+  String quranReflectionsPathwayStopHelper(Object stopTitle);
+
+  /// No description provided for @settingsThemeChoiceMidnightManuscript.
+  ///
+  /// In en, this message translates to:
+  /// **'Midnight Manuscript'**
+  String get settingsThemeChoiceMidnightManuscript;
+
+  /// No description provided for @settingsThemeChoiceNoorGlass.
+  ///
+  /// In en, this message translates to:
+  /// **'Noor Glass'**
+  String get settingsThemeChoiceNoorGlass;
+
+  /// No description provided for @settingsThemeModeNoorGlassDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Milky frosted glass with a soft pearled glow and gentle transparency.'**
+  String get settingsThemeModeNoorGlassDescription;
+
+  /// No description provided for @settingsThemeModeMidnightManuscriptDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Deep ink tones with warm gold accents and a quiet manuscript atmosphere.'**
+  String get settingsThemeModeMidnightManuscriptDescription;
+
+  /// No description provided for @settingsThemeModePickerHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose the atmosphere that feels most at home in your journey.'**
+  String get settingsThemeModePickerHelper;
+
+  /// No description provided for @settingsThemeModeDefaultBestFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Best for everyday calm and balanced use.'**
+  String get settingsThemeModeDefaultBestFor;
+
+  /// No description provided for @settingsThemeModeEasyReadBestFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Best for longer reading and clearer contrast.'**
+  String get settingsThemeModeEasyReadBestFor;
+
+  /// No description provided for @settingsThemeModeNoorGlassBestFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Best for airy glass depth and luminous everyday reading.'**
+  String get settingsThemeModeNoorGlassBestFor;
+
+  /// No description provided for @settingsThemeModeDarkBestFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Best for low-light reading and quieter evenings.'**
+  String get settingsThemeModeDarkBestFor;
+
+  /// No description provided for @settingsThemeModeMidnightManuscriptBestFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Best for evening reflection and Qur’an study.'**
+  String get settingsThemeModeMidnightManuscriptBestFor;
 }
 
 class _AppLocalizationsDelegate

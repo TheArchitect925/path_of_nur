@@ -15,8 +15,8 @@ import '../../features/learn/quran/application/quran_reader_playback_controller.
 import '../../features/learn/quran/presentation/quran_reader_playback_presentation.dart';
 import '../../features/learn/quran/presentation/widgets/quran_expanded_player_sheet.dart';
 import '../../l10n/app_localizations.dart';
-import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_fonts.dart';
+import '../../core/theme/app_surfaces.dart';
 import '../../core/theme/app_theme.dart';
 import '../state/shell_state.dart';
 import 'global_background.dart';
@@ -35,6 +35,10 @@ class AppShellScaffold extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final activeTab = navTabFromLocation(currentLocation);
     final previousLocation = ref.watch(shellCurrentLocationProvider);
+    final focusRecitationOpen = ref.watch(quranFocusRecitationOpenProvider);
+    final isQuranFocusRoute = currentLocation.startsWith(
+      '/quran/focus-recitation',
+    );
 
     if (previousLocation != currentLocation) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -65,16 +69,15 @@ class AppShellScaffold extends ConsumerWidget {
             left: 16,
             right: 16,
             bottom: 82,
-            child: _buildGlobalQuranMiniPlayer(
-              context: context,
-              ref: ref,
-            ),
+            child: _buildGlobalQuranMiniPlayer(context: context, ref: ref),
           ),
           Positioned(
             left: 0,
             right: 0,
             bottom: 1,
-            child: _buildBottomBar(context, activeTab),
+            child: focusRecitationOpen || isQuranFocusRoute
+                ? const SizedBox.shrink()
+                : _buildBottomBar(context, activeTab),
           ),
         ],
       ),
@@ -96,8 +99,9 @@ class AppShellScaffold extends ConsumerWidget {
     final isQuranReaderRoute =
         currentLocation.startsWith('/quran/surah/') ||
         currentLocation.startsWith('/learn/quran/surah/');
-    final isQuranFocusRoute =
-        currentLocation.startsWith('/quran/focus-recitation');
+    final isQuranFocusRoute = currentLocation.startsWith(
+      '/quran/focus-recitation',
+    );
     if (isQuranReaderRoute || isQuranFocusRoute) {
       return const SizedBox.shrink();
     }
@@ -119,7 +123,8 @@ class AppShellScaffold extends ConsumerWidget {
 
     final targetSurah = playbackState.activeSurahNumber;
     final targetAyah =
-        playbackState.activeAyahNumber ?? playbackState.storedSession?.ayahNumber;
+        playbackState.activeAyahNumber ??
+        playbackState.storedSession?.ayahNumber;
     final totalMillis = playbackState.duration?.inMilliseconds ?? 0;
     final currentMillis = playbackState.position.inMilliseconds.clamp(
       0,
@@ -163,12 +168,12 @@ class AppShellScaffold extends ConsumerWidget {
     final allTabs = NavTab.values;
     const barRadius = 999.0;
     final appearance = Theme.of(context).extension<AppAppearanceTheme>();
-    final surface = appearance?.surface ?? AppColors.surface;
-    final accent = appearance?.accent ?? AppColors.accentGold;
-    final surfaceAlpha =
-        appearance?.glassSurfaceAlpha ?? AppColors.glassSurfaceAlpha;
-    final borderAlpha =
-        appearance?.glassBorderAlpha ?? AppColors.glassBorderAlpha;
+    final navStyle = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.navigationBar,
+      tintColor: appearance?.accent,
+      baseColor: appearance?.surfaceSoft,
+    );
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
@@ -188,14 +193,12 @@ class AppShellScaffold extends ConsumerWidget {
                   height: 62,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(barRadius),
-                    border: Border.all(
-                      color: accent.withValues(alpha: borderAlpha),
-                      width: 1.0,
-                    ),
-                    color: surface.withValues(alpha: surfaceAlpha),
+                    border: Border.all(color: navStyle.borderColor, width: 1.0),
+                    gradient: navStyle.gradient,
+                    color: navStyle.backgroundColor,
                     boxShadow: [
                       BoxShadow(
-                        color: const Color(0xFF000000).withValues(alpha: 0.08),
+                        color: navStyle.shadowColor,
                         blurRadius: 18,
                         offset: const Offset(0, 8),
                       ),
@@ -229,9 +232,9 @@ class AppShellScaffold extends ConsumerWidget {
 
   Widget _tabButton(BuildContext context, NavTab tab, bool active) {
     const bool isHome = false;
-    const iconColor = Color(0xFF1A1A1A);
-    const subtle = Color(0xFF4A4A4A);
     final appearance = Theme.of(context).extension<AppAppearanceTheme>();
+    final iconColor = appearance?.navLabelActive ?? const Color(0xFF1A1A1A);
+    final subtle = appearance?.navLabelInactive ?? const Color(0xFF4A4A4A);
     final localeUiFont = AppFonts.uiFontFamilyForLocale(
       Localizations.localeOf(context),
     );
@@ -339,7 +342,7 @@ class AppShellScaffold extends ConsumerWidget {
         gradient: active
             ? RadialGradient(
                 colors: [
-                  (appearance?.surfaceSoft ?? const Color(0xFFF4E2C8))
+                  (appearance?.navActiveFill ?? const Color(0xFFF4E2C8))
                       .withValues(
                         alpha: appearance?.isDark == true ? 0.5 : 0.90,
                       ),
@@ -397,8 +400,9 @@ class _QuranPhoneLiveActivityBridge extends ConsumerStatefulWidget {
 class _QuranPhoneLiveActivityBridgeState
     extends ConsumerState<_QuranPhoneLiveActivityBridge> {
   ProviderSubscription<QuranReaderPlaybackState>? _playbackSubscription;
-  late final QuranLiveActivityService _liveActivityService =
-      ref.read(quranLiveActivityServiceProvider);
+  late final QuranLiveActivityService _liveActivityService = ref.read(
+    quranLiveActivityServiceProvider,
+  );
   bool _isSupported = false;
   bool _hasActiveLiveActivity = false;
   String? _lastPayloadSignature;
@@ -450,7 +454,8 @@ class _QuranPhoneLiveActivityBridgeState
     final quranAudioEnabled = ref.read(quranAudioFunctionEnabledProvider);
     final surahNumber = playbackState.activeSurahNumber;
     final ayahNumber =
-        playbackState.activeAyahNumber ?? playbackState.storedSession?.ayahNumber;
+        playbackState.activeAyahNumber ??
+        playbackState.storedSession?.ayahNumber;
     if (!quranAudioEnabled ||
         !playbackState.hasPlayback ||
         surahNumber == null ||
@@ -460,16 +465,17 @@ class _QuranPhoneLiveActivityBridgeState
     }
 
     final elapsedSeconds = playbackState.position.inSeconds.clamp(0, 86400);
-    final totalSeconds =
-        (playbackState.duration?.inSeconds ?? 0).clamp(0, 86400);
+    final totalSeconds = (playbackState.duration?.inSeconds ?? 0).clamp(
+      0,
+      86400,
+    );
     final payloadSignature =
         '$surahNumber:$ayahNumber:${playbackState.reciterName}:${playbackState.isPlaying}:$elapsedSeconds:$totalSeconds';
     if (_lastPayloadSignature == payloadSignature) {
       return;
     }
 
-    final surah =
-        ref.read(quranSurahMapProvider)[surahNumber];
+    final surah = ref.read(quranSurahMapProvider)[surahNumber];
     await _liveActivityService.updatePlaybackCard(
       surahNumber: surahNumber,
       surahName: surah?.transliteratedName ?? 'Surah $surahNumber',
@@ -521,20 +527,33 @@ class QuranPlayerLauncherPill extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final appearance = Theme.of(context).extension<AppAppearanceTheme>();
+    final contentColors = AppSurfaceTheme.contentColors(context);
+    final pillStyle = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.pill,
+      tintColor: appearance?.accent,
+      baseColor: appearance?.surfaceSoft,
+    );
     final clampedProgress = progressValue.clamp(0.0, 1.0);
     final playbackTooltip = showRetryAction
         ? l10n.quranPlaybackRetryAction
         : (isPlaying ? l10n.accessibilityPause : l10n.accessibilityPlay);
 
     return Material(
-      color: const Color(0xFFF1E5D3),
+      color: pillStyle.backgroundColor,
       elevation: 7,
       borderRadius: BorderRadius.circular(20),
-      shadowColor: const Color(0xFF1D1A17).withValues(alpha: 0.12),
+      shadowColor: pillStyle.shadowColor,
       child: Container(
         key: const ValueKey('quran-shell-player-pill'),
         constraints: const BoxConstraints(minHeight: 52, maxWidth: 560),
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          gradient: pillStyle.gradient,
+          border: Border.all(color: pillStyle.borderColor),
+        ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -545,10 +564,14 @@ class QuranPlayerLauncherPill extends StatelessWidget {
                 onPressed: onTogglePlayback,
                 iconSize: 22,
                 padding: EdgeInsets.zero,
-                constraints: const BoxConstraints.tightFor(width: 36, height: 36),
+                constraints: const BoxConstraints.tightFor(
+                  width: 36,
+                  height: 36,
+                ),
                 style: IconButton.styleFrom(
-                  backgroundColor: const Color(0xFFE8D1A8),
-                  foregroundColor: const Color(0xFF5B4837),
+                  backgroundColor: appearance?.navActiveFill,
+                  foregroundColor:
+                      appearance?.navLabelActive ?? contentColors.foreground,
                 ),
                 icon: Icon(
                   showRetryAction
@@ -566,7 +589,10 @@ class QuranPlayerLauncherPill extends StatelessWidget {
                 borderRadius: BorderRadius.circular(14),
                 onTap: onOpenPlayer,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 4,
+                    vertical: 2,
+                  ),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -576,11 +602,12 @@ class QuranPlayerLauncherPill extends StatelessWidget {
                           label!,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
-                          style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: const Color(0xFF6A5A4A),
-                            fontWeight: FontWeight.w700,
-                            height: 1.1,
-                          ),
+                          style: Theme.of(context).textTheme.bodySmall
+                              ?.copyWith(
+                                color: contentColors.subtleForeground,
+                                fontWeight: FontWeight.w700,
+                                height: 1.1,
+                              ),
                         ),
                         const SizedBox(height: 4),
                       ],
@@ -590,9 +617,9 @@ class QuranPlayerLauncherPill extends StatelessWidget {
                           key: const ValueKey('quran-shell-player-progress'),
                           value: clampedProgress,
                           minHeight: 3,
-                          backgroundColor: const Color(0xFFD9C9B4),
-                          valueColor: const AlwaysStoppedAnimation<Color>(
-                            Color(0xFF8C6948),
+                          backgroundColor: appearance?.chipUnselectedFill,
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                            appearance?.accentSoft ?? const Color(0xFF8C6948),
                           ),
                         ),
                       ),
@@ -609,8 +636,11 @@ class QuranPlayerLauncherPill extends StatelessWidget {
                 onPressed: onOpenPlayer,
                 iconSize: 22,
                 padding: EdgeInsets.zero,
-                constraints: const BoxConstraints.tightFor(width: 36, height: 36),
-                color: const Color(0xFF5B4837),
+                constraints: const BoxConstraints.tightFor(
+                  width: 36,
+                  height: 36,
+                ),
+                color: appearance?.navLabelActive ?? contentColors.foreground,
                 icon: const Icon(Icons.open_in_full_rounded),
               ),
             ),

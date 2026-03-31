@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../core/theme/app_colors.dart';
+import '../../../../../core/theme/app_surfaces.dart';
 import '../../../../../shared/widgets/premium_card.dart';
 import '../../domain/daily_learning_item.dart';
 import '../prophets_daily_copy.dart';
@@ -14,6 +15,7 @@ class DailyRevelationCard extends StatelessWidget {
     required this.onTakeQuiz,
     required this.onPracticeLesson,
     this.showPracticeLesson = false,
+    this.surfaceTreatment = AppSurfaceTreatment.standard,
   });
 
   final DailyLearningItem item;
@@ -22,11 +24,13 @@ class DailyRevelationCard extends StatelessWidget {
   final VoidCallback onTakeQuiz;
   final VoidCallback onPracticeLesson;
   final bool showPracticeLesson;
+  final AppSurfaceTreatment surfaceTreatment;
 
   @override
   Widget build(BuildContext context) {
     final copy = ProphetsDailyCopy.of(context);
     return PremiumCard(
+      surfaceTreatment: surfaceTreatment,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

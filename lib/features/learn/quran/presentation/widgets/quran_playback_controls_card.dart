@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../l10n/app_localizations.dart';
+import '../../../../../core/theme/app_surfaces.dart';
 import '../../application/quran_reader_playback_controller.dart';
 import '../../../../../shared/widgets/premium_card.dart';
 
@@ -85,20 +86,31 @@ class QuranPlaybackControlsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final contentColors = AppSurfaceTheme.contentColors(context);
+    final panelStyle = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.panel,
+      tintColor: const Color(0xFFDABE8D),
+      surfaceAlphaOverride: 0.62,
+    );
+
     return PremiumCard(
+      surfaceVariant: AppSurfaceVariant.panel,
+      surfaceTintColor: const Color(0xFFDABE8D),
+      surfaceAlphaOverride: 0.62,
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           Row(
             children: [
-              IconButton(
+              IconButton.filledTonal(
                 key: const ValueKey('quran-reader-close-player'),
                 onPressed: isPreparing ? null : onClose,
                 icon: const Icon(Icons.close_rounded),
                 tooltip: l10n.accessibilityClosePlayer,
               ),
-              IconButton(
+              IconButton.filledTonal(
                 key: const ValueKey('quran-reader-open-full-player'),
                 onPressed: isPreparing ? null : onOpenExpandedPlayer,
                 icon: const Icon(Icons.open_in_full_rounded),
@@ -115,6 +127,20 @@ class QuranPlaybackControlsCard extends StatelessWidget {
                 child: FilledButton.icon(
                   key: const ValueKey('quran-reader-play-pause-button'),
                   onPressed: isPreparing ? null : onTogglePlayback,
+                  style: FilledButton.styleFrom(
+                    backgroundColor: const Color(0xFF4A3C2F).withValues(
+                      alpha: 0.94,
+                    ),
+                    foregroundColor: Colors.white,
+                    elevation: 0,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 18,
+                      vertical: 14,
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
                   icon: Icon(
                     showRetryAction
                         ? Icons.refresh_rounded
@@ -201,15 +227,16 @@ class QuranPlaybackControlsCard extends StatelessWidget {
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                 decoration: BoxDecoration(
-                  color: const Color(0xFFF3E8DA),
+                  color: panelStyle.backgroundColor,
                   borderRadius: BorderRadius.circular(999),
+                  border: Border.all(color: panelStyle.borderColor),
                 ),
                 child: Text(
                   repeatSummaryLabel!,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w700,
-                    color: Color(0xFF6A5A4A),
+                    color: contentColors.foreground,
                   ),
                 ),
               ),
@@ -226,15 +253,16 @@ class QuranPlaybackControlsCard extends StatelessWidget {
                       vertical: 6,
                     ),
                     decoration: BoxDecoration(
-                      color: const Color(0xFFECE4D7),
+                      color: panelStyle.backgroundColor,
                       borderRadius: BorderRadius.circular(999),
+                      border: Border.all(color: panelStyle.borderColor),
                     ),
                     child: Text(
                       sourceStatusLabel!,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.w700,
-                        color: Color(0xFF6A5A4A),
+                        color: contentColors.foreground,
                       ),
                     ),
                   ),
@@ -258,10 +286,10 @@ class QuranPlaybackControlsCard extends StatelessWidget {
                 Expanded(
                   child: Text(
                     l10n.quranReaderFollowSuspendedLabel,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w600,
-                      color: Color(0xFF6A5A4A),
+                      color: contentColors.subtleForeground,
                     ),
                   ),
                 ),
@@ -289,23 +317,29 @@ class QuranPlaybackControlsCard extends StatelessWidget {
             children: [
               Text(
                 formatQuranPlaybackDurationLabel(currentPosition),
-                style: const TextStyle(fontSize: 12, color: Color(0xFF6A5A4A)),
+                style: TextStyle(
+                  fontSize: 12,
+                  color: contentColors.subtleForeground,
+                ),
               ),
               const Spacer(),
               if (hasPlayback && nowRecitingLabel != null)
                 Text(
                   nowRecitingLabel!,
                   key: const ValueKey('quran-reader-now-reciting-label'),
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 11,
                     fontWeight: FontWeight.w600,
-                    color: Color(0xFF6A5A4A),
+                    color: contentColors.foreground,
                   ),
                 ),
               if (hasPlayback && nowRecitingLabel != null) const Spacer(),
               Text(
                 formatQuranPlaybackDurationLabel(totalDuration),
-                style: const TextStyle(fontSize: 12, color: Color(0xFF6A5A4A)),
+                style: TextStyle(
+                  fontSize: 12,
+                  color: contentColors.subtleForeground,
+                ),
               ),
             ],
           ),

@@ -13,6 +13,8 @@ class PremiumCard extends ConsumerStatefulWidget {
     this.surfaceAlphaOverride,
     this.surfaceTintColor,
     this.surfaceVariant = AppSurfaceVariant.card,
+    this.surfaceTreatment = AppSurfaceTreatment.standard,
+    this.includeShadow = false,
   });
 
   final Widget child;
@@ -20,6 +22,8 @@ class PremiumCard extends ConsumerStatefulWidget {
   final double? surfaceAlphaOverride;
   final Color? surfaceTintColor;
   final AppSurfaceVariant surfaceVariant;
+  final AppSurfaceTreatment surfaceTreatment;
+  final bool includeShadow;
 
   @override
   ConsumerState<PremiumCard> createState() => _PremiumCardState();
@@ -39,10 +43,14 @@ class _PremiumCardState extends ConsumerState<PremiumCard> {
       profileSettingsProvider.select((value) => value.reduceMotion),
     );
     final theme = Theme.of(context);
-    final contentColors = AppSurfaceTheme.contentColors(context);
+    final contentColors = AppSurfaceTheme.contentColors(
+      context,
+      treatment: widget.surfaceTreatment,
+    );
     final surfaceStyle = AppSurfaceTheme.resolve(
       context,
       variant: widget.surfaceVariant,
+      treatment: widget.surfaceTreatment,
       tintColor: widget.surfaceTintColor,
       surfaceAlphaOverride: widget.surfaceAlphaOverride,
     );
@@ -61,7 +69,10 @@ class _PremiumCardState extends ConsumerState<PremiumCard> {
           child: Container(
             width: double.infinity,
             padding: widget.padding,
-            decoration: surfaceStyle.decoration(radius: AppRadii.card),
+            decoration: surfaceStyle.decoration(
+              radius: AppRadii.card,
+              includeShadow: widget.includeShadow,
+            ),
             child: Theme(
               data: theme.copyWith(
                 textTheme: surfaceTextTheme,

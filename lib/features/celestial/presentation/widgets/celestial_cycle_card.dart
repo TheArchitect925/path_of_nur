@@ -31,7 +31,10 @@ class CelestialCycleCard extends ConsumerStatefulWidget {
 class _CelestialCycleCardState extends ConsumerState<CelestialCycleCard> {
   bool _markedOpen = false;
 
-  Future<void> _showLocationPicker(BuildContext context, String currentLocationLabel) async {
+  Future<void> _showLocationPicker(
+    BuildContext context,
+    String currentLocationLabel,
+  ) async {
     final service = ref.read(prayerLocationSearchServiceProvider);
     final recentLocations = ref.read(prayerRecentLocationsProvider);
     final selection = await showModalBottomSheet<PrayerLocationPickerSelection>(
@@ -47,19 +50,23 @@ class _CelestialCycleCardState extends ConsumerState<CelestialCycleCard> {
     if (selection == null) return;
     final notifier = ref.read(prayerSettingsProvider.notifier);
     if (selection.useDeviceLocation) {
-      await ref.read(locationPermissionProvider.notifier).requestWhileUsingApp();
+      await ref
+          .read(locationPermissionProvider.notifier)
+          .requestWhileUsingApp();
       notifier.useCurrentLocation();
       ref.invalidate(celestialSnapshotProvider);
       return;
     }
     if (selection.latitude == null || selection.longitude == null) return;
-    await ref.read(prayerRecentLocationsStoreProvider).save(
-      PrayerRecentLocation(
-        label: selection.label,
-        latitude: selection.latitude!,
-        longitude: selection.longitude!,
-      ),
-    );
+    await ref
+        .read(prayerRecentLocationsStoreProvider)
+        .save(
+          PrayerRecentLocation(
+            label: selection.label,
+            latitude: selection.latitude!,
+            longitude: selection.longitude!,
+          ),
+        );
     notifier.setManualLocation(
       label: selection.label,
       latitude: selection.latitude!,
@@ -71,12 +78,15 @@ class _CelestialCycleCardState extends ConsumerState<CelestialCycleCard> {
   @override
   Widget build(BuildContext context) {
     final selectedDate = ref.watch(homeCelestialSelectedDateProvider);
-    final snapshotAsync = ref.watch(celestialSnapshotForDateProvider(selectedDate));
+    final snapshotAsync = ref.watch(
+      celestialSnapshotForDateProvider(selectedDate),
+    );
     final reduceMotion = ref.watch(
       profileSettingsProvider.select((value) => value.reduceMotion),
     );
     final prefs = ref.watch(prayerSettingsProvider).preferences;
-    final displayLocation = ref.watch(prayerLocationDisplayLabelProvider).value ?? prefs.location;
+    final displayLocation =
+        ref.watch(prayerLocationDisplayLabelProvider).value ?? prefs.location;
     final l10n = AppLocalizations.of(context);
     final now = ref.watch(dailyNowProvider).value ?? DateTime.now();
     final today = DateTime(now.year, now.month, now.day);
@@ -88,6 +98,8 @@ class _CelestialCycleCardState extends ConsumerState<CelestialCycleCard> {
 
     return PremiumCard(
       padding: const EdgeInsets.all(0),
+      surfaceTreatment: AppSurfaceTreatment.homepageWarmGlass,
+      includeShadow: true,
       child: InkWell(
         onTap: () async {
           await ref.read(celestialActionServiceProvider).markExplorerOpened();
@@ -105,7 +117,10 @@ class _CelestialCycleCardState extends ConsumerState<CelestialCycleCard> {
                   ref.read(celestialActionServiceProvider).markCardOpened();
                 });
               }
-              final moonVisual = moonPhaseVisualForDate(snapshot.timestamp, l10n);
+              final moonVisual = moonPhaseVisualForDate(
+                snapshot.timestamp,
+                l10n,
+              );
               final backgroundGradient = _resolveSkyCardGradient(
                 snapshot.solarData.state,
               );
@@ -114,11 +129,21 @@ class _CelestialCycleCardState extends ConsumerState<CelestialCycleCard> {
                 children: [
                   DecoratedBox(
                     decoration: BoxDecoration(
+                      color: const Color(0xFFFFF7EC).withValues(alpha: 0.22),
                       gradient: backgroundGradient,
                       borderRadius: BorderRadius.circular(24),
                       border: Border.all(
-                        color: Colors.white.withValues(alpha: 0.08),
+                        color: const Color(0xFFE2C288).withValues(alpha: 0.44),
                       ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: const Color(
+                            0xFF8E6E46,
+                          ).withValues(alpha: 0.08),
+                          blurRadius: 18,
+                          offset: const Offset(0, 8),
+                        ),
+                      ],
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(16),
@@ -138,7 +163,8 @@ class _CelestialCycleCardState extends ConsumerState<CelestialCycleCard> {
                                     context,
                                     displayLocation,
                                   ),
-                                  tooltip: l10n.worshipPrayerChooseLocationTitle,
+                                  tooltip:
+                                      l10n.worshipPrayerChooseLocationTitle,
                                   splashRadius: 20,
                                   icon: const Icon(Icons.location_on_outlined),
                                 ),
@@ -152,9 +178,13 @@ class _CelestialCycleCardState extends ConsumerState<CelestialCycleCard> {
                               IconButton(
                                 onPressed: () {
                                   ref
-                                          .read(homeCelestialSelectedDateProvider.notifier)
-                                          .state =
-                                      selectedDate.subtract(const Duration(days: 1));
+                                      .read(
+                                        homeCelestialSelectedDateProvider
+                                            .notifier,
+                                      )
+                                      .state = selectedDate.subtract(
+                                    const Duration(days: 1),
+                                  );
                                 },
                                 icon: const Icon(
                                   Icons.chevron_left_rounded,
@@ -166,7 +196,8 @@ class _CelestialCycleCardState extends ConsumerState<CelestialCycleCard> {
                                 child: Text(
                                   dateLabel,
                                   textAlign: TextAlign.center,
-                                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                                  style: Theme.of(context).textTheme.titleSmall
+                                      ?.copyWith(
                                         fontWeight: FontWeight.w700,
                                         color: AppColors.onSurface,
                                       ),
@@ -175,9 +206,13 @@ class _CelestialCycleCardState extends ConsumerState<CelestialCycleCard> {
                               IconButton(
                                 onPressed: () {
                                   ref
-                                          .read(homeCelestialSelectedDateProvider.notifier)
-                                          .state =
-                                      selectedDate.add(const Duration(days: 1));
+                                      .read(
+                                        homeCelestialSelectedDateProvider
+                                            .notifier,
+                                      )
+                                      .state = selectedDate.add(
+                                    const Duration(days: 1),
+                                  );
                                 },
                                 icon: const Icon(
                                   Icons.chevron_right_rounded,
@@ -198,7 +233,9 @@ class _CelestialCycleCardState extends ConsumerState<CelestialCycleCard> {
                               Expanded(
                                 child: _InfoPill(
                                   label: l10n.celestialSunriseLabel,
-                                  value: DateFormat.jm().format(snapshot.solarData.sunrise),
+                                  value: DateFormat.jm().format(
+                                    snapshot.solarData.sunrise,
+                                  ),
                                   shellTint: const Color(0xFFE7C259),
                                   tint: _resolveSolarTint(
                                     kind: _SolarPillKind.sunrise,
@@ -211,7 +248,9 @@ class _CelestialCycleCardState extends ConsumerState<CelestialCycleCard> {
                               Expanded(
                                 child: _InfoPill(
                                   label: l10n.celestialSunsetLabel,
-                                  value: DateFormat.jm().format(snapshot.solarData.sunset),
+                                  value: DateFormat.jm().format(
+                                    snapshot.solarData.sunset,
+                                  ),
                                   shellTint: const Color(0xFFE7C259),
                                   tint: _resolveSolarTint(
                                     kind: _SolarPillKind.sunset,
@@ -230,9 +269,12 @@ class _CelestialCycleCardState extends ConsumerState<CelestialCycleCard> {
                                   label: l10n.celestialMoonriseLabel,
                                   value: snapshot.lunarData.moonrise == null
                                       ? l10n.celestialUnavailableLabel
-                                      : DateFormat.jm().format(snapshot.lunarData.moonrise!),
+                                      : DateFormat.jm().format(
+                                          snapshot.lunarData.moonrise!,
+                                        ),
                                   shellTint: const Color(0xFFC2C5CC),
-                                  footnote: snapshot.lunarData.riseSetApproximate
+                                  footnote:
+                                      snapshot.lunarData.riseSetApproximate
                                       ? l10n.celestialApproximateLabel
                                       : null,
                                 ),
@@ -243,9 +285,12 @@ class _CelestialCycleCardState extends ConsumerState<CelestialCycleCard> {
                                   label: l10n.celestialMoonsetLabel,
                                   value: snapshot.lunarData.moonset == null
                                       ? l10n.celestialUnavailableLabel
-                                      : DateFormat.jm().format(snapshot.lunarData.moonset!),
+                                      : DateFormat.jm().format(
+                                          snapshot.lunarData.moonset!,
+                                        ),
                                   shellTint: const Color(0xFFC2C5CC),
-                                  footnote: snapshot.lunarData.riseSetApproximate
+                                  footnote:
+                                      snapshot.lunarData.riseSetApproximate
                                       ? l10n.celestialApproximateLabel
                                       : null,
                                 ),
@@ -259,9 +304,10 @@ class _CelestialCycleCardState extends ConsumerState<CelestialCycleCard> {
                                 child: _InfoPill(
                                   label: l10n.celestialMoonPhaseLabel,
                                   value: snapshot.lunarData.phaseName,
-                                  footnote: l10n.celestialIlluminationPercentLabel(
-                                    snapshot.lunarData.illuminationPercent,
-                                  ),
+                                  footnote: l10n
+                                      .celestialIlluminationPercentLabel(
+                                        snapshot.lunarData.illuminationPercent,
+                                      ),
                                 ),
                               ),
                               const SizedBox(width: 10),
@@ -270,9 +316,12 @@ class _CelestialCycleCardState extends ConsumerState<CelestialCycleCard> {
                                   label: l10n.celestialNextEventLabel,
                                   value: l10n.celestialNextEventValue(
                                     snapshot.nextEvent.label,
-                                    DateFormat.jm().format(snapshot.nextEvent.time),
+                                    DateFormat.jm().format(
+                                      snapshot.nextEvent.time,
+                                    ),
                                   ),
-                                  footnote: snapshot.nextEvent.relativeDescription,
+                                  footnote:
+                                      snapshot.nextEvent.relativeDescription,
                                 ),
                               ),
                             ],
@@ -312,9 +361,12 @@ class _CelestialCycleCardState extends ConsumerState<CelestialCycleCard> {
                               children: [
                                 QuranVerseContent(
                                   source: QuranVerseSource(
-                                    referenceText: snapshot.verseOfMoment.ayahReference,
-                                    arabicText: snapshot.verseOfMoment.arabicText,
-                                    translation: snapshot.verseOfMoment.translation,
+                                    referenceText:
+                                        snapshot.verseOfMoment.ayahReference,
+                                    arabicText:
+                                        snapshot.verseOfMoment.arabicText,
+                                    translation:
+                                        snapshot.verseOfMoment.translation,
                                   ),
                                   center: false,
                                   dense: true,
@@ -353,38 +405,22 @@ LinearGradient _resolveSkyCardGradient(CelestialSkyState state) {
     CelestialSkyState.dawn => const LinearGradient(
       begin: Alignment.topLeft,
       end: Alignment.bottomRight,
-      colors: <Color>[
-        Color(0xFFF7E0BB),
-        Color(0xFFEFC6A8),
-        Color(0xFFD8CFE7),
-      ],
+      colors: <Color>[Color(0xFFF7E0BB), Color(0xFFEFC6A8), Color(0xFFD8CFE7)],
     ),
     CelestialSkyState.day => const LinearGradient(
       begin: Alignment.topLeft,
       end: Alignment.bottomRight,
-      colors: <Color>[
-        Color(0xFFF5E7BC),
-        Color(0xFFEED7A2),
-        Color(0xFFD6E7F2),
-      ],
+      colors: <Color>[Color(0xFFF5E7BC), Color(0xFFEED7A2), Color(0xFFD6E7F2)],
     ),
     CelestialSkyState.dusk => const LinearGradient(
       begin: Alignment.topLeft,
       end: Alignment.bottomRight,
-      colors: <Color>[
-        Color(0xFFE2B493),
-        Color(0xFFB88892),
-        Color(0xFF5A597F),
-      ],
+      colors: <Color>[Color(0xFFE2B493), Color(0xFFB88892), Color(0xFF5A597F)],
     ),
     CelestialSkyState.night => const LinearGradient(
       begin: Alignment.topLeft,
       end: Alignment.bottomRight,
-      colors: <Color>[
-        Color(0xFFDCEBFA),
-        Color(0xFFCFE3F8),
-        Color(0xFFBFD8F1),
-      ],
+      colors: <Color>[Color(0xFFDCEBFA), Color(0xFFCFE3F8), Color(0xFFBFD8F1)],
     ),
   };
 }
@@ -398,10 +434,22 @@ class _SkyStateChip extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final (label, color) = switch (state) {
-      CelestialSkyState.dawn => (l10n.celestialSkyStateDawn, const Color(0xFFFFC68A)),
-      CelestialSkyState.day => (l10n.celestialSkyStateDay, const Color(0xFFFFE19A)),
-      CelestialSkyState.dusk => (l10n.celestialSkyStateDusk, const Color(0xFFE6A3AF)),
-      CelestialSkyState.night => (l10n.celestialSkyStateNight, const Color(0xFF9AB7FF)),
+      CelestialSkyState.dawn => (
+        l10n.celestialSkyStateDawn,
+        const Color(0xFFFFC68A),
+      ),
+      CelestialSkyState.day => (
+        l10n.celestialSkyStateDay,
+        const Color(0xFFFFE19A),
+      ),
+      CelestialSkyState.dusk => (
+        l10n.celestialSkyStateDusk,
+        const Color(0xFFE6A3AF),
+      ),
+      CelestialSkyState.night => (
+        l10n.celestialSkyStateNight,
+        const Color(0xFF9AB7FF),
+      ),
     };
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
@@ -446,27 +494,18 @@ _SolarPillTint _resolveSunriseTint(int minutesFromEvent) {
   if (minutesFromEvent < -70) {
     return const _SolarPillTint(
       surfaceTint: Color(0xFFC7D7F3),
-      gradientColors: <Color>[
-        Color(0x26AFC4EE),
-        Color(0x18E7C4A1),
-      ],
+      gradientColors: <Color>[Color(0x26AFC4EE), Color(0x18E7C4A1)],
     );
   }
   if (minutesFromEvent <= 45) {
     return const _SolarPillTint(
       surfaceTint: Color(0xFFF0C987),
-      gradientColors: <Color>[
-        Color(0x30F8D4A2),
-        Color(0x1EF4B78A),
-      ],
+      gradientColors: <Color>[Color(0x30F8D4A2), Color(0x1EF4B78A)],
     );
   }
   return const _SolarPillTint(
     surfaceTint: Color(0xFFE6C37D),
-    gradientColors: <Color>[
-      Color(0x24F5D89C),
-      Color(0x18FFE9BE),
-    ],
+    gradientColors: <Color>[Color(0x24F5D89C), Color(0x18FFE9BE)],
   );
 }
 
@@ -474,27 +513,18 @@ _SolarPillTint _resolveSunsetTint(int minutesFromEvent) {
   if (minutesFromEvent < -90) {
     return const _SolarPillTint(
       surfaceTint: Color(0xFFE0AE70),
-      gradientColors: <Color>[
-        Color(0x22F0C07D),
-        Color(0x12F4D4A0),
-      ],
+      gradientColors: <Color>[Color(0x22F0C07D), Color(0x12F4D4A0)],
     );
   }
   if (minutesFromEvent <= 50) {
     return const _SolarPillTint(
       surfaceTint: Color(0xFFD89563),
-      gradientColors: <Color>[
-        Color(0x30EAA17B),
-        Color(0x1ECA7C78),
-      ],
+      gradientColors: <Color>[Color(0x30EAA17B), Color(0x1ECA7C78)],
     );
   }
   return const _SolarPillTint(
     surfaceTint: Color(0xFFB87F6A),
-    gradientColors: <Color>[
-      Color(0x248C667D),
-      Color(0x186D5E88),
-    ],
+    gradientColors: <Color>[Color(0x248C667D), Color(0x186D5E88)],
   );
 }
 
@@ -525,6 +555,7 @@ class _InfoPill extends StatelessWidget {
     return PremiumCard(
       padding: const EdgeInsets.all(12),
       surfaceVariant: AppSurfaceVariant.pill,
+      surfaceTreatment: AppSurfaceTreatment.homepageWarmGlass,
       surfaceTintColor: shellTint ?? tint?.surfaceTint,
       child: DecoratedBox(
         decoration: BoxDecoration(
@@ -539,8 +570,8 @@ class _InfoPill extends StatelessWidget {
               Text(
                 label,
                 style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                      color: AppColors.onSurfaceSubtle,
-                    ),
+                  color: AppColors.onSurfaceSubtle,
+                ),
               ),
               const SizedBox(height: 4),
               Text(value, style: Theme.of(context).textTheme.titleSmall),
@@ -549,8 +580,8 @@ class _InfoPill extends StatelessWidget {
                 Text(
                   footnote!,
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: AppColors.onSurfaceSubtle,
-                      ),
+                    color: AppColors.onSurfaceSubtle,
+                  ),
                 ),
               ],
             ],
@@ -585,10 +616,7 @@ bool _sameDay(DateTime a, DateTime b) {
 }
 
 class _HorizonProgress extends StatelessWidget {
-  const _HorizonProgress({
-    required this.snapshot,
-    required this.reduceMotion,
-  });
+  const _HorizonProgress({required this.snapshot, required this.reduceMotion});
 
   final CelestialSnapshot snapshot;
   final bool reduceMotion;
@@ -597,7 +625,9 @@ class _HorizonProgress extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final progress = snapshot.solarData.progress.clamp(0.0, 1.0);
-    final icon = snapshot.solarData.isAboveHorizon ? Icons.wb_sunny_rounded : Icons.dark_mode_rounded;
+    final icon = snapshot.solarData.isAboveHorizon
+        ? Icons.wb_sunny_rounded
+        : Icons.dark_mode_rounded;
     final markerColor = snapshot.solarData.isAboveHorizon
         ? const Color(0xFFFFD27A)
         : const Color(0xFFC9D9FF);
@@ -670,10 +700,7 @@ class _HorizonProgress extends StatelessWidget {
 }
 
 class _HorizonPainter extends CustomPainter {
-  const _HorizonPainter({
-    required this.color,
-    required this.accent,
-  });
+  const _HorizonPainter({required this.color, required this.accent});
 
   final Color color;
   final Color accent;

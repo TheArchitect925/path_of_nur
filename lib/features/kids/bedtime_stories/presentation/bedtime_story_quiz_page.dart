@@ -158,7 +158,11 @@ class _BedtimeStoryQuizPageState extends ConsumerState<BedtimeStoryQuizPage> {
                     activityId: quiz.quizId,
                     storyId: story.id,
                     mode: BedtimeStoryLearningMode.quiz,
-                    currentStepIndex: safeIndex + 1,
+                    // Keep the current question visible until the user
+                    // explicitly continues, otherwise the next question
+                    // renders immediately while the local answer state is
+                    // still locked.
+                    currentStepIndex: safeIndex,
                     totalSteps: quiz.questions.length,
                     completedStepId: question.questionId,
                     answeredCorrectly: _answeredCorrectly,
@@ -226,6 +230,15 @@ class _BedtimeStoryQuizPageState extends ConsumerState<BedtimeStoryQuizPage> {
                         });
                         return;
                       }
+                      ref
+                          .read(bedtimeStoryLearningProgressProvider.notifier)
+                          .recordStepProgress(
+                            activityId: quiz.quizId,
+                            storyId: story.id,
+                            mode: BedtimeStoryLearningMode.quiz,
+                            currentStepIndex: safeIndex + 1,
+                            totalSteps: quiz.questions.length,
+                          );
                       setState(() {
                         _selectedAnswerId = null;
                         _submitted = false;

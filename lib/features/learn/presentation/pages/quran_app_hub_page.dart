@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_surfaces.dart';
+import '../../../../core/theme/app_theme.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/application/special_mode_provider.dart';
 import '../../../../shared/content/page_description_copy.dart';
@@ -10,17 +12,17 @@ import '../../../../shared/theme/islamic_icons.dart';
 import '../../../../shared/widgets/major_page_shortcuts.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/section_hub_scaffold.dart';
-import '../../journey/data/learning_journey_localized_metadata.dart';
-import '../../journey/data/learning_journey_registry.dart';
 import '../../quran/application/quran_hub_recommendations_provider.dart';
-import '../../quran/application/quran_learning_system_service.dart';
+import '../../quran/application/quran_daily_reflection_provider.dart';
 import '../../quran/application/quran_providers.dart';
 import '../../quran/application/quran_reflections_provider.dart';
 import '../../quran/application/quran_guided_learning_paths_provider.dart';
+import '../../quran/application/quran_surah_summary_provider.dart';
 import '../../quran/application/quran_user_intent_provider.dart';
 import '../../quran/domain/quran_hub_recommendation_models.dart';
 import '../../quran/domain/quran_user_intent_models.dart';
 import '../../quran/presentation/quran_learning_path_copy.dart';
+import '../../quran/presentation/quran_summary_theme.dart';
 import '../../quran/presentation/quran_theme_copy.dart';
 import '../../quran/presentation/widgets/quran_daily_reflection_card.dart';
 import '../widgets/learn_discovery_search_field.dart';
@@ -54,21 +56,23 @@ class _QuranAppHubPageState extends ConsumerState<QuranAppHubPage> {
     final isKidsMode = ref.watch(
       specialModeProvider.select((mode) => mode.isKids),
     );
-    final continueSummary = ref.watch(quranContinueReadingSummaryProvider);
+    final appearance = Theme.of(context).extension<AppAppearanceTheme>();
     ref.watch(quranBookmarksProvider);
     ref.watch(quranNotesProvider);
     ref.watch(quranReflectionsProvider);
     final userIntentSummary = ref.watch(quranUserIntentSummaryProvider);
     final recommendations = ref.watch(quranHubRecommendationsProvider);
-    final readActions = _readActions(l10n, continueSummary);
+    final summaryPalette = QuranSummaryThemePalette.resolve(context);
+    final readActions = _readActions(l10n);
     final studyActions = _studyActions(l10n);
     final wordStudyActions = _wordStudyActions(l10n);
     final toolActions = _toolActions(l10n);
 
     return LearnHubPageScaffold(
+      ownsBackground: false,
       showDefaultQuote: false,
       headerIcon: IslamicIcons.quran,
-      title: l10n.quranHubTitle,
+      title: l10n.quranAppHubTitle,
       subtitle: localizedAppPageDescription(
         context,
         AppPageDescriptionKey.quranHub,
@@ -93,6 +97,195 @@ class _QuranAppHubPageState extends ConsumerState<QuranAppHubPage> {
         const SizedBox(height: 8),
         SectionHubActionGrid(actions: readActions),
         const SizedBox(height: 12),
+        PremiumCard(
+          surfaceVariant: AppSurfaceVariant.panel,
+          surfaceTintColor: summaryPalette.goldAccent,
+          child: InkWell(
+            onTap: () => context.pushNamed('quranSummaryPage'),
+            borderRadius: BorderRadius.circular(20),
+            child: Padding(
+              padding: const EdgeInsets.all(2),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    width: 52,
+                    height: 52,
+                    decoration: BoxDecoration(
+                      color: summaryPalette.numberFill,
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(
+                        color: summaryPalette.goldAccent.withValues(
+                          alpha: 0.35,
+                        ),
+                      ),
+                    ),
+                    child: Icon(
+                      Icons.auto_stories_rounded,
+                      color: summaryPalette.goldAccent,
+                    ),
+                  ),
+                  const SizedBox(width: 14),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          l10n.quranSummaryIslandTitle,
+                          style: Theme.of(context).textTheme.titleMedium
+                              ?.copyWith(fontWeight: FontWeight.w800),
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          l10n.quranSummaryIslandSubtitle,
+                          style: Theme.of(context).textTheme.bodyMedium
+                              ?.copyWith(
+                                color:
+                                    appearance?.glassOnSurfaceSubtle ??
+                                    AppColors.onSurfaceSubtle,
+                              ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  Icon(
+                    Icons.arrow_forward_ios_rounded,
+                    size: 18,
+                    color: summaryPalette.goldAccent,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+        const SizedBox(height: 12),
+        PremiumCard(
+          surfaceVariant: AppSurfaceVariant.panel,
+          surfaceTintColor: summaryPalette.goldAccent,
+          child: InkWell(
+            onTap: () => context.pushNamed('quranTopicExplorer'),
+            borderRadius: BorderRadius.circular(20),
+            child: Padding(
+              padding: const EdgeInsets.all(2),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    width: 52,
+                    height: 52,
+                    decoration: BoxDecoration(
+                      color: summaryPalette.numberFill,
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(
+                        color: summaryPalette.goldAccent.withValues(
+                          alpha: 0.35,
+                        ),
+                      ),
+                    ),
+                    child: Icon(
+                      Icons.account_tree_outlined,
+                      color: summaryPalette.goldAccent,
+                    ),
+                  ),
+                  const SizedBox(width: 14),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          l10n.quranThemeDiscoveryIslandTitle,
+                          style: Theme.of(context).textTheme.titleMedium
+                              ?.copyWith(fontWeight: FontWeight.w800),
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          l10n.quranThemeDiscoveryIslandSubtitle,
+                          style: Theme.of(context).textTheme.bodyMedium
+                              ?.copyWith(
+                                color:
+                                    appearance?.glassOnSurfaceSubtle ??
+                                    AppColors.onSurfaceSubtle,
+                              ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  Icon(
+                    Icons.arrow_forward_ios_rounded,
+                    size: 18,
+                    color: summaryPalette.goldAccent,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+        const SizedBox(height: 12),
+        PremiumCard(
+          surfaceVariant: AppSurfaceVariant.panel,
+          surfaceTintColor: summaryPalette.goldAccent,
+          child: InkWell(
+            onTap: () => context.pushNamed('quranLearningPaths'),
+            borderRadius: BorderRadius.circular(20),
+            child: Padding(
+              padding: const EdgeInsets.all(2),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    width: 52,
+                    height: 52,
+                    decoration: BoxDecoration(
+                      color: summaryPalette.numberFill,
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(
+                        color: summaryPalette.goldAccent.withValues(
+                          alpha: 0.35,
+                        ),
+                      ),
+                    ),
+                    child: Icon(
+                      Icons.route_rounded,
+                      color: summaryPalette.goldAccent,
+                    ),
+                  ),
+                  const SizedBox(width: 14),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          l10n.quranPathwaysIslandTitle,
+                          style: Theme.of(context).textTheme.titleMedium
+                              ?.copyWith(fontWeight: FontWeight.w800),
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          l10n.quranPathwaysIslandSubtitle,
+                          style: Theme.of(context).textTheme.bodyMedium
+                              ?.copyWith(
+                                color:
+                                    appearance?.glassOnSurfaceSubtle ??
+                                    AppColors.onSurfaceSubtle,
+                              ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  Icon(
+                    Icons.arrow_forward_ios_rounded,
+                    size: 18,
+                    color: summaryPalette.goldAccent,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+        const SizedBox(height: 12),
         const QuranDailyReflectionCard(showSecondaryActions: false),
         const SizedBox(height: 12),
         if (recommendations.isNotEmpty)
@@ -104,9 +297,10 @@ class _QuranAppHubPageState extends ConsumerState<QuranAppHubPage> {
         const SizedBox(height: 6),
         Text(
           l10n.quranHubStudyToolsSubtitle,
-          style: Theme.of(
-            context,
-          ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),
+          style: Theme.of(context).textTheme.bodySmall?.copyWith(
+            color:
+                appearance?.glassOnSurfaceSubtle ?? AppColors.onSurfaceSubtle,
+          ),
         ),
         const SizedBox(height: 10),
         SectionHubActionGrid(actions: studyActions),
@@ -115,9 +309,10 @@ class _QuranAppHubPageState extends ConsumerState<QuranAppHubPage> {
         const SizedBox(height: 6),
         Text(
           l10n.quranHubWordToolsSubtitle,
-          style: Theme.of(
-            context,
-          ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),
+          style: Theme.of(context).textTheme.bodySmall?.copyWith(
+            color:
+                appearance?.glassOnSurfaceSubtle ?? AppColors.onSurfaceSubtle,
+          ),
         ),
         const SizedBox(height: 10),
         SectionHubActionGrid(actions: wordStudyActions),
@@ -136,7 +331,9 @@ class _QuranAppHubPageState extends ConsumerState<QuranAppHubPage> {
               Text(
                 l10n.quranHubRelatedToolsSubtitle,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: AppColors.onSurfaceSubtle,
+                  color:
+                      appearance?.glassOnSurfaceSubtle ??
+                      AppColors.onSurfaceSubtle,
                 ),
               ),
               const SizedBox(height: 10),
@@ -160,10 +357,7 @@ class _QuranAppHubPageState extends ConsumerState<QuranAppHubPage> {
     );
   }
 
-  List<SectionHubAction> _readActions(
-    AppLocalizations l10n,
-    QuranContinueReadingSummary continueSummary,
-  ) {
+  List<SectionHubAction> _readActions(AppLocalizations l10n) {
     return [
       SectionHubAction(
         title: l10n.quranHubReadQuranSectionTitle,
@@ -172,20 +366,6 @@ class _QuranAppHubPageState extends ConsumerState<QuranAppHubPage> {
         color: const Color(0xFFECE5D7),
         accentColor: const Color(0xFF6F5A3E),
         onTap: () => context.pushNamed('quranExplorer'),
-      ),
-      SectionHubAction(
-        title: l10n.quranHubContinueSectionTitle,
-        subtitle: continueSummary.locationLabel,
-        icon: Icons.play_circle_fill_rounded,
-        color: const Color(0xFFF0E2D6),
-        accentColor: const Color(0xFF8D6143),
-        onTap: () => context.pushNamed(
-          'quranReader',
-          pathParameters: {
-            'surahNumber': continueSummary.surahNumber.toString(),
-          },
-          queryParameters: {'ayah': continueSummary.ayahNumber.toString()},
-        ),
       ),
     ];
   }
@@ -292,31 +472,37 @@ class _QuranRecommendationSection extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
+    final palette = QuranSummaryThemePalette.resolve(context);
+    final appearance = Theme.of(context).extension<AppAppearanceTheme>();
+    final primary = recommendations.first;
+    final secondary = recommendations.skip(1).toList(growable: false);
+
     return PremiumCard(
+      surfaceVariant: AppSurfaceVariant.panel,
+      surfaceTintColor: palette.goldAccent,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            l10n.quranHubRecommendationsTitle,
+            l10n.quranCompanionSectionTitle,
             style: Theme.of(
               context,
-            ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+            ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w800),
           ),
           const SizedBox(height: 6),
           Text(
-            l10n.quranHubRecommendationsSubtitle,
+            l10n.quranCompanionSectionSubtitle,
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: AppColors.onSurfaceSubtle,
+              color:
+                  appearance?.glassOnSurfaceSubtle ?? AppColors.onSurfaceSubtle,
             ),
           ),
-          const SizedBox(height: 10),
-          for (var index = 0; index < recommendations.length; index++) ...[
-            _QuranRecommendationTile(recommendation: recommendations[index]),
-            if (index + 1 < recommendations.length)
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 6),
-                child: Divider(height: 1),
-              ),
+          const SizedBox(height: 12),
+          _QuranCompanionPrimaryCard(recommendation: primary),
+          if (secondary.isNotEmpty) const SizedBox(height: 10),
+          for (var index = 0; index < secondary.length; index++) ...[
+            _QuranCompanionSecondaryCard(recommendation: secondary[index]),
+            if (index + 1 < secondary.length) const SizedBox(height: 8),
           ],
         ],
       ),
@@ -324,102 +510,101 @@ class _QuranRecommendationSection extends ConsumerWidget {
   }
 }
 
-class _QuranRecommendationTile extends ConsumerWidget {
-  const _QuranRecommendationTile({required this.recommendation});
+class _QuranCompanionPrimaryCard extends ConsumerWidget {
+  const _QuranCompanionPrimaryCard({required this.recommendation});
 
   final QuranHubRecommendation recommendation;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = AppLocalizations.of(context);
-    final surahMap = ref.watch(quranSurahMapProvider);
-    final dueReviews = ref.watch(quranMemorizationDueProvider);
-    final selectedIntent = ref.watch(quranSelectedUserIntentProvider);
-    final topic = recommendation.topicId == null
-        ? null
-        : ref.watch(quranHubRecommendationTopicProvider(recommendation.topicId!));
-    final journey = recommendation.journeyId == null
-        ? null
-        : LearningJourneyRegistry.journeyById(recommendation.journeyId!);
-    final stage = recommendation.stageId == null
-        ? null
-        : LearningJourneyRegistry.stageById(recommendation.stageId!);
-
-    final title = _recommendationTitle(
-      context,
-      l10n,
-      recommendation,
-      surahMap,
-      topic,
-      journey,
-    );
-    final subtitle = _recommendationSubtitle(
-      context,
-      l10n,
-      recommendation,
-      surahMap,
-      topic,
-      stage,
-    );
-    final reason = _recommendationReason(
-      context,
-      l10n,
-      recommendation,
-      topic,
-      journey,
-      dueReviews.length,
-      selectedIntent,
-    );
+    final palette = QuranSummaryThemePalette.resolve(context);
+    final content = _resolveRecommendationContent(context, ref, recommendation);
 
     return InkWell(
-      borderRadius: BorderRadius.circular(16),
-      onTap: () => context.pushNamed(
-        recommendation.routeName,
-        pathParameters: recommendation.pathParameters,
-        queryParameters: recommendation.queryParameters,
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 2),
-        child: Row(
+      borderRadius: BorderRadius.circular(24),
+      onTap: () => _openRecommendation(context, recommendation),
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.all(18),
+        decoration: palette.elevatedSurfaceDecoration(
+          radius: 24,
+          emphasize: true,
+        ),
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              width: 40,
-              height: 40,
-              decoration: BoxDecoration(
-                color: const Color(0xFFF3EEE5),
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Icon(
-                _recommendationIcon(recommendation.type),
-                color: AppColors.accentGoldSoft,
-              ),
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    title,
-                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      fontWeight: FontWeight.w700,
-                    ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: Wrap(
+                    spacing: 8,
+                    runSpacing: 8,
+                    children: [
+                      _QuranCompanionReasonChip(label: content.reasonLabel),
+                      if (content.badgeLabel != null)
+                        _QuranCompanionReasonChip(
+                          label: content.badgeLabel!,
+                          tone: QuranFeatureRevelationTone.madani,
+                        ),
+                    ],
                   ),
-                  const SizedBox(height: 4),
-                  Text(subtitle, style: Theme.of(context).textTheme.bodySmall),
-                  const SizedBox(height: 6),
-                  Text(
-                    reason,
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: AppColors.onSurfaceSubtle,
-                    ),
+                ),
+                const SizedBox(width: 12),
+                Container(
+                  width: 44,
+                  height: 44,
+                  decoration: palette.subtlePanelDecoration(
+                    radius: 14,
+                    emphasize: true,
                   ),
-                ],
-              ),
+                  child: Icon(content.icon, color: palette.goldAccent),
+                ),
+              ],
             ),
-            const SizedBox(width: 8),
-            const Icon(Icons.chevron_right_rounded, color: AppColors.onSurfaceSubtle),
+            const SizedBox(height: 14),
+            Text(
+              content.title,
+              style: Theme.of(
+                context,
+              ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w800),
+            ),
+            const SizedBox(height: 6),
+            Text(
+              content.subtitle,
+              style: Theme.of(
+                context,
+              ).textTheme.bodyMedium?.copyWith(color: palette.supportText),
+            ),
+            if (content.description != null) ...[
+              const SizedBox(height: 10),
+              Text(
+                content.description!,
+                style: Theme.of(
+                  context,
+                ).textTheme.bodySmall?.copyWith(color: palette.supportText),
+              ),
+            ],
+            if (recommendation.showsProgress) ...[
+              const SizedBox(height: 14),
+              LinearProgressIndicator(
+                value: recommendation.progressRatio,
+                minHeight: 7,
+                backgroundColor: palette.progressTrack,
+                valueColor: AlwaysStoppedAnimation<Color>(palette.progressFill),
+                borderRadius: BorderRadius.circular(999),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                AppLocalizations.of(context).quranCompanionProgressLabel(
+                  recommendation.progressCompleted ?? 0,
+                  recommendation.progressTotal ?? 0,
+                ),
+                style: Theme.of(
+                  context,
+                ).textTheme.bodySmall?.copyWith(color: palette.supportText),
+              ),
+            ],
           ],
         ),
       ),
@@ -427,146 +612,296 @@ class _QuranRecommendationTile extends ConsumerWidget {
   }
 }
 
+class _QuranCompanionSecondaryCard extends ConsumerWidget {
+  const _QuranCompanionSecondaryCard({required this.recommendation});
+
+  final QuranHubRecommendation recommendation;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final palette = QuranSummaryThemePalette.resolve(context);
+    final content = _resolveRecommendationContent(context, ref, recommendation);
+
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        borderRadius: BorderRadius.circular(18),
+        onTap: () => _openRecommendation(context, recommendation),
+        child: Container(
+          padding: const EdgeInsets.all(14),
+          decoration: palette.subtlePanelDecoration(radius: 18),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: 40,
+                height: 40,
+                decoration: palette.subtlePanelDecoration(radius: 12),
+                child: Icon(content.icon, color: palette.goldAccent),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      content.title,
+                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      content.reasonLabel,
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: palette.goldAccent,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      content.subtitle,
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: palette.supportText,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(width: 8),
+              Icon(Icons.chevron_right_rounded, color: palette.supportText),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _ResolvedRecommendationContent {
+  const _ResolvedRecommendationContent({
+    required this.title,
+    required this.subtitle,
+    required this.reasonLabel,
+    required this.icon,
+    this.description,
+    this.badgeLabel,
+  });
+
+  final String title;
+  final String subtitle;
+  final String reasonLabel;
+  final String? description;
+  final String? badgeLabel;
+  final IconData icon;
+}
+
+class _QuranCompanionReasonChip extends StatelessWidget {
+  const _QuranCompanionReasonChip({
+    required this.label,
+    this.tone = QuranFeatureRevelationTone.neutral,
+  });
+
+  final String label;
+  final QuranFeatureRevelationTone tone;
+
+  @override
+  Widget build(BuildContext context) {
+    final palette = QuranSummaryThemePalette.resolve(context);
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+      decoration: BoxDecoration(
+        color: palette.chipFillForTone(tone),
+        borderRadius: BorderRadius.circular(999),
+        border: Border.all(color: palette.chipBorderForTone(tone)),
+      ),
+      child: Text(
+        label,
+        style: Theme.of(context).textTheme.labelSmall?.copyWith(
+          color: palette.chipTextForTone(tone),
+          fontWeight: FontWeight.w700,
+        ),
+      ),
+    );
+  }
+}
+
+_ResolvedRecommendationContent _resolveRecommendationContent(
+  BuildContext context,
+  WidgetRef ref,
+  QuranHubRecommendation recommendation,
+) {
+  final l10n = AppLocalizations.of(context);
+  final dailySummary = ref.watch(quranDailyCompanionSummaryProvider);
+  final surah = recommendation.surahNumber == null
+      ? null
+      : ref.watch(quranSurahSummaryEntryProvider(recommendation.surahNumber!));
+  final topic = recommendation.topicId == null
+      ? null
+      : ref.watch(quranHubRecommendationTopicProvider(recommendation.topicId!));
+  final path = recommendation.pathId == null
+      ? null
+      : ref.watch(quranGuidedLearningPathByIdProvider(recommendation.pathId!));
+
+  final reasonLabel = _recommendationReasonLabel(l10n, recommendation.reason);
+  final icon = _recommendationIcon(recommendation.type);
+
+  switch (recommendation.type) {
+    case QuranHubRecommendationType.resumePathway:
+      final pathTitle = path == null
+          ? l10n.quranLearningPathsTitle
+          : localizedQuranLearningPathTitle(l10n, path.id);
+      final pathSubtitle = path == null
+          ? l10n.quranLearningPathsSubtitle
+          : localizedQuranLearningPathSubtitle(l10n, path.id);
+      return _ResolvedRecommendationContent(
+        title: l10n.quranCompanionResumePathTitle(pathTitle),
+        subtitle: pathSubtitle,
+        description: l10n.quranCompanionResumePathDescription,
+        reasonLabel: reasonLabel,
+        badgeLabel: l10n.quranCompanionResumeBadge,
+        icon: icon,
+      );
+    case QuranHubRecommendationType.continueSurah:
+      final surahName = surah?.transliteratedName ?? l10n.quranSummaryPageTitle;
+      return _ResolvedRecommendationContent(
+        title: l10n.quranCompanionContinueSurahTitle(surahName),
+        subtitle: surah == null
+            ? '${recommendation.surahNumber}:${recommendation.ayahNumber}'
+            : '${surah.transliteratedName} ${recommendation.surahNumber}:${recommendation.ayahNumber}',
+        description: l10n.quranCompanionContinueSurahDescription,
+        reasonLabel: reasonLabel,
+        badgeLabel:
+            recommendation.reason == QuranHubRecommendationReason.keepMomentum
+            ? l10n.quranCompanionMomentumBadge
+            : null,
+        icon: icon,
+      );
+    case QuranHubRecommendationType.themeSuggestion:
+    case QuranHubRecommendationType.relatedFollowUp:
+      final themeTitle = topic == null
+          ? l10n.quranTopicsTitle
+          : localizedQuranTopicTitle(l10n, topic.definition.id);
+      final themeDescription = topic == null
+          ? l10n.quranThemeDiscoveryPageSubtitle
+          : localizedQuranTopicDescription(l10n, topic.definition.id);
+      return _ResolvedRecommendationContent(
+        title: l10n.quranCompanionExploreThemeTitle(themeTitle),
+        subtitle: themeDescription,
+        description:
+            recommendation.type == QuranHubRecommendationType.relatedFollowUp
+            ? l10n.quranCompanionRelatedThemeDescription
+            : l10n.quranCompanionThemeDescription,
+        reasonLabel: reasonLabel,
+        badgeLabel:
+            recommendation.reason ==
+                QuranHubRecommendationReason.basedOnGrowthFocus
+            ? l10n.quranCompanionFocusBadge
+            : null,
+        icon: icon,
+      );
+    case QuranHubRecommendationType.pathwaySuggestion:
+    case QuranHubRecommendationType.growthFocusPick:
+      final pathTitle = path == null
+          ? l10n.quranLearningPathsTitle
+          : localizedQuranLearningPathTitle(l10n, path.id);
+      final pathSubtitle = path == null
+          ? l10n.quranLearningPathsSubtitle
+          : localizedQuranLearningPathSubtitle(l10n, path.id);
+      return _ResolvedRecommendationContent(
+        title: l10n.quranCompanionPathwayTitle(pathTitle),
+        subtitle: pathSubtitle,
+        description: l10n.quranCompanionPathwayDescription,
+        reasonLabel: reasonLabel,
+        badgeLabel:
+            recommendation.reason ==
+                QuranHubRecommendationReason.basedOnGrowthFocus
+            ? l10n.quranCompanionFocusBadge
+            : null,
+        icon: icon,
+      );
+    case QuranHubRecommendationType.reflectionPrompt:
+      final surahName = surah?.transliteratedName ?? l10n.quranSummaryPageTitle;
+      return _ResolvedRecommendationContent(
+        title: l10n.quranCompanionStartHereTitle(surahName),
+        subtitle: surah?.summary ?? l10n.quranCompanionStartHereDescription,
+        reasonLabel: reasonLabel,
+        icon: icon,
+      );
+    case QuranHubRecommendationType.timeOfDayPick:
+      return _ResolvedRecommendationContent(
+        title: l10n.quranCompanionTimeOfDayTitle,
+        subtitle:
+            '${dailySummary.reflection.assignment.entry.ref.surah}:${dailySummary.reflection.assignment.entry.ref.ayah} • ${l10n.quranDailyCompanionSubtitle}',
+        description: l10n.quranCompanionTimeOfDayDescription,
+        reasonLabel: reasonLabel,
+        badgeLabel: l10n.quranCompanionMomentBadge,
+        icon: icon,
+      );
+    case QuranHubRecommendationType.fridayPick:
+      final surahName = surah?.transliteratedName ?? 'Al-Kahf';
+      return _ResolvedRecommendationContent(
+        title: l10n.quranCompanionFridayTitle(surahName),
+        subtitle: surah?.summary ?? l10n.quranCompanionFridayDescription,
+        description: l10n.quranCompanionFridayDescription,
+        reasonLabel: reasonLabel,
+        badgeLabel: l10n.quranCompanionFridayBadge,
+        icon: icon,
+      );
+  }
+}
+
+void _openRecommendation(
+  BuildContext context,
+  QuranHubRecommendation recommendation,
+) {
+  context.pushNamed(
+    recommendation.routeName,
+    pathParameters: recommendation.pathParameters,
+    queryParameters: recommendation.queryParameters,
+  );
+}
+
 IconData _recommendationIcon(QuranHubRecommendationType type) {
   return switch (type) {
-    QuranHubRecommendationType.continuePath => Icons.route_rounded,
-    QuranHubRecommendationType.dailyReflection => Icons.wb_twilight_rounded,
-    QuranHubRecommendationType.reviewMemorization => Icons.repeat_rounded,
+    QuranHubRecommendationType.resumePathway => Icons.route_rounded,
     QuranHubRecommendationType.continueSurah => Icons.play_circle_fill_rounded,
-    QuranHubRecommendationType.exploreTheme => Icons.account_tree_outlined,
-    QuranHubRecommendationType.journeyLinkedStudy => Icons.route_rounded,
+    QuranHubRecommendationType.themeSuggestion => Icons.account_tree_outlined,
+    QuranHubRecommendationType.pathwaySuggestion => Icons.route_rounded,
+    QuranHubRecommendationType.reflectionPrompt => Icons.menu_book_rounded,
+    QuranHubRecommendationType.timeOfDayPick => Icons.wb_twilight_rounded,
+    QuranHubRecommendationType.fridayPick => Icons.today_rounded,
+    QuranHubRecommendationType.relatedFollowUp => Icons.link_rounded,
+    QuranHubRecommendationType.growthFocusPick => Icons.track_changes_rounded,
   };
 }
 
-String _recommendationTitle(
-  BuildContext context,
+String _recommendationReasonLabel(
   AppLocalizations l10n,
-  QuranHubRecommendation recommendation,
-  Map<int, dynamic> surahMap,
-  dynamic topic,
-  dynamic journey,
+  QuranHubRecommendationReason reason,
 ) {
-  switch (recommendation.type) {
-    case QuranHubRecommendationType.continuePath:
-      final pathId = recommendation.pathId;
-      final pathTitle = pathId == null
-          ? l10n.quranLearningPathsTitle
-          : localizedQuranLearningPathTitle(l10n, pathId);
-      return l10n.quranHubRecommendationContinuePathTitle(pathTitle);
-    case QuranHubRecommendationType.dailyReflection:
-      return l10n.quranHubRecommendationDailyTitle;
-    case QuranHubRecommendationType.reviewMemorization:
-      return l10n.quranHubRecommendationReviewTitle;
-    case QuranHubRecommendationType.continueSurah:
-      final surahName =
-          surahMap[recommendation.surahNumber]?.transliteratedName ??
-          l10n.quranHubContinueSectionTitle;
-      return l10n.quranHubRecommendationContinueSurahTitle(surahName);
-    case QuranHubRecommendationType.exploreTheme:
-      final topicTitle = topic == null
-          ? l10n.quranTopicsTitle
-          : localizedQuranTopicTitle(l10n, topic.id as String);
-      return l10n.quranHubRecommendationExploreThemeTitle(topicTitle);
-    case QuranHubRecommendationType.journeyLinkedStudy:
-      final journeyTitle = journey == null
-          ? l10n.learningJourneyHomeTitle
-          : localizedJourneyTitle(context, journey);
-      return l10n.quranHubRecommendationJourneyTitle(journeyTitle);
-  }
-}
-
-String _recommendationSubtitle(
-  BuildContext context,
-  AppLocalizations l10n,
-  QuranHubRecommendation recommendation,
-  Map<int, dynamic> surahMap,
-  dynamic topic,
-  dynamic stage,
-) {
-  switch (recommendation.type) {
-    case QuranHubRecommendationType.continuePath:
-      final pathId = recommendation.pathId;
-      return pathId == null
-          ? l10n.quranLearningPathsSubtitle
-          : localizedQuranLearningPathSubtitle(l10n, pathId);
-    case QuranHubRecommendationType.dailyReflection:
-      return recommendation.surahNumber == null || recommendation.ayahNumber == null
-          ? l10n.quranDailyCompanionSubtitle
-          : '${surahMap[recommendation.surahNumber]?.transliteratedName ?? ''} ${recommendation.surahNumber}:${recommendation.ayahNumber}';
-    case QuranHubRecommendationType.reviewMemorization:
-      final dueCount = recommendation.dueCount ?? 0;
-      return l10n.quranMemorizationReviewSummary(dueCount, dueCount);
-    case QuranHubRecommendationType.continueSurah:
-      final surahName =
-          surahMap[recommendation.surahNumber]?.transliteratedName ?? '';
-      return '$surahName ${recommendation.surahNumber}:${recommendation.ayahNumber}';
-    case QuranHubRecommendationType.exploreTheme:
-      return topic == null
-          ? l10n.quranHubTopicsSubtitle
-          : localizedQuranTopicDescription(l10n, topic.id as String);
-    case QuranHubRecommendationType.journeyLinkedStudy:
-      return stage == null
-          ? l10n.quranDailyCompanionSubtitle
-          : localizedStageTitle(context, stage);
-  }
-}
-
-String _recommendationReason(
-  BuildContext context,
-  AppLocalizations l10n,
-  QuranHubRecommendation recommendation,
-  dynamic topic,
-  dynamic journey,
-  int dueReviewCount,
-  QuranUserIntent? selectedIntent,
-) {
-  switch (recommendation.type) {
-    case QuranHubRecommendationType.continuePath:
-      if (selectedIntent == QuranUserIntent.guidedPath) {
-        return l10n.quranHubRecommendationReasonGuidedPath;
-      }
-      return l10n.quranHubRecommendationReasonContinuePath;
-    case QuranHubRecommendationType.dailyReflection:
-      return recommendation.source == QuranHubRecommendationSource.journey &&
-              journey != null
-          ? l10n.quranHubRecommendationReasonDailyJourney(
-              localizedJourneyTitle(context, journey),
-            )
-          : l10n.quranHubRecommendationReasonDaily;
-    case QuranHubRecommendationType.reviewMemorization:
-      final count = recommendation.dueCount ?? dueReviewCount;
-      if (count > 0) {
-        return l10n.quranHubRecommendationReasonReviewDue(count);
-      }
-      return l10n.quranHubRecommendationReasonMemorizationFocus;
-    case QuranHubRecommendationType.continueSurah:
-      return l10n.quranHubRecommendationReasonRecentStudy;
-    case QuranHubRecommendationType.exploreTheme:
-      if (recommendation.source == QuranHubRecommendationSource.journey &&
-          topic != null) {
-        return l10n.quranHubRecommendationReasonJourneyTheme(
-          localizedQuranTopicTitle(l10n, topic.id as String),
-        );
-      }
-      if (recommendation.source == QuranHubRecommendationSource.intent &&
-          selectedIntent == QuranUserIntent.themes) {
-        return l10n.quranHubRecommendationReasonThemeFocus;
-      }
-      return l10n.quranHubRecommendationReasonTheme;
-    case QuranHubRecommendationType.journeyLinkedStudy:
-      if (journey != null && topic != null) {
-        return l10n.quranHubRecommendationReasonJourneyThemePair(
-          localizedJourneyTitle(context, journey),
-          localizedQuranTopicTitle(l10n, topic.id as String),
-        );
-      }
-      if (journey != null) {
-        return l10n.quranHubRecommendationReasonDailyJourney(
-          localizedJourneyTitle(context, journey),
-        );
-      }
-      return l10n.quranHubRecommendationReasonDaily;
-  }
+  return switch (reason) {
+    QuranHubRecommendationReason.continueWhereLeftOff =>
+      l10n.quranCompanionReasonContinue,
+    QuranHubRecommendationReason.forThisMorning =>
+      l10n.quranCompanionReasonMorning,
+    QuranHubRecommendationReason.forThisAfternoon =>
+      l10n.quranCompanionReasonAfternoon,
+    QuranHubRecommendationReason.forThisEvening =>
+      l10n.quranCompanionReasonEvening,
+    QuranHubRecommendationReason.forTonight => l10n.quranCompanionReasonNight,
+    QuranHubRecommendationReason.basedOnRecentReading =>
+      l10n.quranCompanionReasonRecent,
+    QuranHubRecommendationReason.basedOnGrowthFocus =>
+      l10n.quranCompanionReasonFocus,
+    QuranHubRecommendationReason.fridayReflection =>
+      l10n.quranCompanionReasonFriday,
+    QuranHubRecommendationReason.connectedToYourJourney =>
+      l10n.quranCompanionReasonJourney,
+    QuranHubRecommendationReason.keepMomentum =>
+      l10n.quranCompanionReasonMomentum,
+    QuranHubRecommendationReason.startHere => l10n.quranCompanionReasonStart,
+  };
 }
 
 class _QuranIntentFocusCard extends ConsumerWidget {
@@ -678,8 +1013,7 @@ String _intentRecommendationSubtitle(
     QuranUserIntent.reflect => l10n.quranUserIntentReflectRecommendation,
     QuranUserIntent.memorize => l10n.quranUserIntentMemorizeRecommendation,
     QuranUserIntent.themes => l10n.quranUserIntentThemesRecommendation,
-    QuranUserIntent.guidedPath =>
-      l10n.quranUserIntentGuidedPathRecommendation,
+    QuranUserIntent.guidedPath => l10n.quranUserIntentGuidedPathRecommendation,
   };
 }
 

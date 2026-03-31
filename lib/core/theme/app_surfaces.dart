@@ -5,6 +5,8 @@ import 'app_theme.dart';
 
 enum AppSurfaceVariant { card, island, pill, panel, featureTile, navigationBar }
 
+enum AppSurfaceTreatment { standard, homepageWarmGlass }
+
 @immutable
 class AppSurfaceStyle {
   const AppSurfaceStyle({
@@ -120,6 +122,7 @@ class AppSurfaceTheme {
   static AppSurfaceStyle resolve(
     BuildContext context, {
     AppSurfaceVariant variant = AppSurfaceVariant.card,
+    AppSurfaceTreatment treatment = AppSurfaceTreatment.standard,
     Color? tintColor,
     Color? baseColor,
     double? surfaceAlphaOverride,
@@ -142,14 +145,14 @@ class AppSurfaceTheme {
       variant: variant,
       disableGlass: disableGlass,
     );
-    final surfaceAlpha = surfaceAlphaOverride == null
+    var surfaceAlpha = surfaceAlphaOverride == null
         ? resolvedSurfaceAlpha
         : _resolveSurfaceAlphaOverride(
             baseAlpha: resolvedSurfaceAlpha,
             overrideAlpha: surfaceAlphaOverride,
             disableGlass: disableGlass,
           );
-    final borderAlpha =
+    var borderAlpha =
         borderAlphaOverride ??
         _borderAlpha(
           appearance: appearance,
@@ -189,27 +192,33 @@ class AppSurfaceTheme {
       final depthTone = isDark
           ? Colors.black
           : (appearance?.backgroundAlt ?? AppColors.backgroundAlt);
-      topSurface = Color.lerp(
-            topSurface,
-            depthTone,
-            isDark ? 0.16 : 0.12,
-          ) ??
-          topSurface;
-      bottomSurface = Color.lerp(
-            bottomSurface,
-            depthTone,
-            isDark ? 0.22 : 0.18,
-          ) ??
+      topSurface =
+          Color.lerp(topSurface, depthTone, isDark ? 0.16 : 0.12) ?? topSurface;
+      bottomSurface =
+          Color.lerp(bottomSurface, depthTone, isDark ? 0.22 : 0.18) ??
           bottomSurface;
     }
 
-    final blendedBorder =
+    var blendedBorder =
         Color.lerp(
           Colors.white,
           accent,
           borderBlend,
         )?.withValues(alpha: borderAlpha) ??
         accent.withValues(alpha: borderAlpha);
+
+    var resolvedShadowColor = (isDark ? Colors.black : accent).withValues(
+      alpha: disableGlass ? 0.05 : 0.12,
+    );
+    var resolvedIconBackgroundColor =
+        (Color.lerp(milkTone, accent, 0.55) ?? accent).withValues(
+          alpha: disableGlass ? 0.14 : 0.20,
+        );
+    if (treatment == AppSurfaceTreatment.homepageWarmGlass) {
+      // Intentionally mirrors standard treatment — warm glass look comes
+      // naturally from the shared background image bleeding through the
+      // semi-transparent surface at the theme's base glassSurfaceAlpha.
+    }
 
     final gradient = LinearGradient(
       begin: Alignment.topLeft,
@@ -242,17 +251,17 @@ class AppSurfaceTheme {
       backgroundColor: bottomSurface.withValues(alpha: surfaceAlpha),
       borderColor: blendedBorder,
       gradient: gradient,
-      shadowColor: (isDark ? Colors.black : accent).withValues(
-        alpha: disableGlass ? 0.05 : 0.12,
-      ),
+      shadowColor: resolvedShadowColor,
       splashColor: accent.withValues(alpha: disableGlass ? 0.10 : 0.12),
       highlightColor: accent.withValues(alpha: disableGlass ? 0.06 : 0.07),
-      iconBackgroundColor: (Color.lerp(milkTone, accent, 0.55) ?? accent)
-          .withValues(alpha: disableGlass ? 0.14 : 0.20),
+      iconBackgroundColor: resolvedIconBackgroundColor,
     );
   }
 
-  static AppSurfaceContentColors contentColors(BuildContext context) {
+  static AppSurfaceContentColors contentColors(
+    BuildContext context, {
+    AppSurfaceTreatment treatment = AppSurfaceTreatment.standard,
+  }) {
     final appearance = Theme.of(context).extension<AppAppearanceTheme>();
     return AppSurfaceContentColors(
       foreground: appearance?.glassOnSurface ?? AppColors.onSurface,

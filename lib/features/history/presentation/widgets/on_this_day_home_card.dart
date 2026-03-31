@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../l10n/app_localizations.dart';
+import '../../../../core/theme/app_surfaces.dart';
 import '../../../../shared/widgets/home_feature_card_header.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../application/historical_calendar_providers.dart';
@@ -27,15 +28,15 @@ class _OnThisDayHomeCardState extends ConsumerState<OnThisDayHomeCard> {
 
     return PremiumCard(
       padding: const EdgeInsets.all(18),
+      surfaceTreatment: AppSurfaceTreatment.homepageWarmGlass,
+      includeShadow: true,
       child: todayAsync.when(
         data: (todayState) {
           final matches = todayState.matches;
           final currentIndex = matches.isEmpty
               ? 0
               : _selectedMatchIndex.clamp(0, matches.length - 1).toInt();
-          final featured = matches.isEmpty
-              ? null
-              : matches[currentIndex];
+          final featured = matches.isEmpty ? null : matches[currentIndex];
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -45,7 +46,8 @@ class _OnThisDayHomeCardState extends ConsumerState<OnThisDayHomeCard> {
                 subtitle: l10n.historyOnThisDaySubtitle,
                 trailing: todayState.matches.isNotEmpty
                     ? TextButton(
-                        onPressed: () => context.pushNamed('learnOnThisDayMatches'),
+                        onPressed: () =>
+                            context.pushNamed('learnOnThisDayMatches'),
                         child: Text(
                           todayState.matches.length > 1
                               ? l10n.historyViewAllCount(
@@ -59,9 +61,9 @@ class _OnThisDayHomeCardState extends ConsumerState<OnThisDayHomeCard> {
               const SizedBox(height: 14),
               Text(
                 formatTodayGregorianDate(context, l10n, todayState.today),
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  fontWeight: FontWeight.w600,
-                ),
+                style: Theme.of(
+                  context,
+                ).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600),
               ),
               const SizedBox(height: 3),
               Text(
@@ -88,10 +90,9 @@ class _OnThisDayHomeCardState extends ConsumerState<OnThisDayHomeCard> {
                                     _selectedMatchIndex -= 1;
                                   }),
                             icon: const Icon(Icons.arrow_back_ios_new_rounded),
-                            tooltip:
-                                MaterialLocalizations.of(
-                                  context,
-                                ).previousPageTooltip,
+                            tooltip: MaterialLocalizations.of(
+                              context,
+                            ).previousPageTooltip,
                             visualDensity: VisualDensity.compact,
                           ),
                           Expanded(
@@ -109,10 +110,9 @@ class _OnThisDayHomeCardState extends ConsumerState<OnThisDayHomeCard> {
                                     _selectedMatchIndex += 1;
                                   }),
                             icon: const Icon(Icons.arrow_forward_ios_rounded),
-                            tooltip:
-                                MaterialLocalizations.of(
-                                  context,
-                                ).nextPageTooltip,
+                            tooltip: MaterialLocalizations.of(
+                              context,
+                            ).nextPageTooltip,
                             visualDensity: VisualDensity.compact,
                           ),
                         ],
@@ -154,6 +154,11 @@ class _HistoricalEventPreview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final panelStyle = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.panel,
+      treatment: AppSurfaceTreatment.homepageWarmGlass,
+    );
     return InkWell(
       borderRadius: BorderRadius.circular(20),
       onTap: () => context.pushNamed(
@@ -163,13 +168,7 @@ class _HistoricalEventPreview extends StatelessWidget {
       child: Container(
         width: double.infinity,
         padding: const EdgeInsets.all(15),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          color: Theme.of(context).colorScheme.surface.withValues(alpha: 0.36),
-          border: Border.all(
-            color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.10),
-          ),
-        ),
+        decoration: panelStyle.decoration(radius: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -216,10 +215,7 @@ class _HistoricalEventPreview extends StatelessWidget {
 }
 
 class _UpcomingHistoryState extends StatelessWidget {
-  const _UpcomingHistoryState({
-    required this.l10n,
-    required this.upcoming,
-  });
+  const _UpcomingHistoryState({required this.l10n, required this.upcoming});
 
   final AppLocalizations l10n;
   final HistoricalUpcomingEvent? upcoming;
@@ -252,9 +248,7 @@ class _UpcomingHistoryState extends StatelessWidget {
       l10n: l10n,
       event: upcoming!.event,
       badgeLabel: l10n.historyNextUpcomingEventLabel,
-      secondaryLabel: DateFormat.yMMMd(locale).format(
-        upcoming!.occurrenceDate,
-      ),
+      secondaryLabel: DateFormat.yMMMd(locale).format(upcoming!.occurrenceDate),
     );
   }
 }
@@ -270,9 +264,7 @@ class _Badge extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(999),
-        color: Theme.of(
-          context,
-        ).colorScheme.primary.withValues(alpha: 0.12),
+        color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.12),
       ),
       child: Text(
         label,

@@ -802,9 +802,13 @@ QuranReflectionEntry? _findSavedReflection(
       if (item.sourceEnrichmentId == sourceEnrichmentId) return item;
       continue;
     }
-    if (item.ref.surah == ref.surah &&
-        item.ref.ayah == ref.ayah &&
-        item.ref.ayahEnd == ref.ayahEnd) {
+    final itemRef = item.ref;
+    if (itemRef == null) {
+      continue;
+    }
+    if (itemRef.surah == ref.surah &&
+        itemRef.ayah == ref.ayah &&
+        itemRef.ayahEnd == ref.ayahEnd) {
       return item;
     }
   }

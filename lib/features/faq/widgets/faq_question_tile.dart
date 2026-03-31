@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_surfaces.dart';
+import '../../../l10n/app_localizations.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../models/faq_item.dart';
 
@@ -13,6 +14,7 @@ class FaqQuestionTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return InkWell(
       borderRadius: BorderRadius.circular(24),
       onTap: onTap,
@@ -26,15 +28,15 @@ class FaqQuestionTile extends StatelessWidget {
               runSpacing: 8,
               crossAxisAlignment: WrapCrossAlignment.center,
               children: [
-                _chip(context, item.difficulty.label),
+                _chip(context, _difficultyLabel(l10n, item.difficulty)),
                 if (item.misconceptionTag != null)
                   _badge(
                     context,
                     item.category == 'misconceptions_about_islam'
-                        ? 'Clarification'
-                        : 'Misconception',
+                        ? l10n.batch9FaqBadgeClarification
+                        : l10n.batch9FaqBadgeMisconception,
                   ),
-                if (item.isFeatured) _chip(context, 'Featured'),
+                if (item.isFeatured) _chip(context, l10n.batch9FaqBadgeFeatured),
               ],
             ),
             const SizedBox(height: 10),
@@ -102,5 +104,16 @@ class FaqQuestionTile extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  String _difficultyLabel(AppLocalizations l10n, FaqDifficulty difficulty) {
+    switch (difficulty) {
+      case FaqDifficulty.beginner:
+        return l10n.batch9FaqDifficultyBeginner;
+      case FaqDifficulty.intermediate:
+        return l10n.batch9FaqDifficultyIntermediate;
+      case FaqDifficulty.advanced:
+        return l10n.batch9FaqDifficultyAdvanced;
+    }
   }
 }

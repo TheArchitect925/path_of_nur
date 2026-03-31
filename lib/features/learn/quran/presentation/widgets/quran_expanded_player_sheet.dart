@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'dart:async';
 
 import '../../../../../l10n/app_localizations.dart';
+import '../../../../../core/theme/app_surfaces.dart';
 import '../../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../../shared/widgets/premium_card.dart';
 import '../../application/quran_player_controller.dart';
@@ -204,6 +205,9 @@ class _QuranExpandedPlayerSheet extends ConsumerWidget {
       ],
       children: [
         PremiumCard(
+          surfaceVariant: AppSurfaceVariant.panel,
+          surfaceTintColor: const Color(0xFFDABE8D),
+          surfaceAlphaOverride: 0.62,
           child: _AnimatedExpandedPlayerSummary(
             transitionKey: ayahTransitionKey,
             title: nowPlayingLabel ?? l10n.shellQuranMiniPlayerTitle,

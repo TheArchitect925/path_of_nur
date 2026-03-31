@@ -163,6 +163,7 @@ class WuduReminderCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Column(
       children: [
         PremiumCard(
@@ -170,20 +171,20 @@ class WuduReminderCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Required vs Sunnah',
+                l10n.wuduGuideRequiredVsSunnahTitle,
                 style: Theme.of(
                   context,
                 ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
               ),
               const SizedBox(height: 10),
               _SectionList(
-                title: 'Required essentials',
+                title: l10n.wuduGuideRequiredEssentialsTitle,
                 items: requiredEssentials,
                 icon: Icons.check_circle_outline_rounded,
               ),
               const SizedBox(height: 10),
               _SectionList(
-                title: 'Sunnah enhancements',
+                title: l10n.wuduGuideSunnahEnhancementsTitle,
                 items: sunnahEnhancements,
                 icon: Icons.auto_awesome_outlined,
               ),
@@ -196,7 +197,7 @@ class WuduReminderCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Important reminders',
+                l10n.wuduGuideImportantRemindersTitle,
                 style: Theme.of(
                   context,
                 ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),

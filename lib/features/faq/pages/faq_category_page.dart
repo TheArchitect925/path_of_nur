@@ -46,7 +46,7 @@ class _FaqCategoryPageState extends ConsumerState<FaqCategoryPage> {
                         return Padding(
                           padding: const EdgeInsets.only(right: 8),
                           child: ChoiceChip(
-                            label: Text(_filterLabel(filter)),
+                            label: Text(_filterLabel(l10n, filter)),
                             selected: _filter == filter,
                             onSelected: (_) => setState(() => _filter = filter),
                           ),
@@ -57,10 +57,8 @@ class _FaqCategoryPageState extends ConsumerState<FaqCategoryPage> {
               ),
               const SizedBox(height: 12),
               if (filtered.isEmpty)
-                const PremiumCard(
-                  child: Text(
-                    'No questions match this filter right now.',
-                  ),
+                PremiumCard(
+                  child: Text(l10n.batch9FaqCategoryEmptyFilter),
                 )
               else
                 ...filtered.map(
@@ -86,7 +84,11 @@ class _FaqCategoryPageState extends ConsumerState<FaqCategoryPage> {
         error: (error, _) => AppPageScaffold(
           title: l10n.batch9FaqTitle,
           subtitle: l10n.batch9FaqBrowseSubtitle,
-          children: [Center(child: Text('Unable to load category. $error'))],
+          children: [
+            Center(
+              child: Text(l10n.batch9FaqCategoryLoadError(error.toString())),
+            ),
+          ],
         ),
       ),
       loading: () => AppPageScaffold(
@@ -97,7 +99,11 @@ class _FaqCategoryPageState extends ConsumerState<FaqCategoryPage> {
       error: (error, _) => AppPageScaffold(
         title: l10n.batch9FaqTitle,
         subtitle: l10n.batch9FaqBrowseSubtitle,
-        children: [Center(child: Text('Unable to load category. $error'))],
+        children: [
+          Center(
+            child: Text(l10n.batch9FaqCategoryLoadError(error.toString())),
+          ),
+        ],
       ),
     );
   }
@@ -119,16 +125,16 @@ class _FaqCategoryPageState extends ConsumerState<FaqCategoryPage> {
     }
   }
 
-  String _filterLabel(FaqCategoryFilter filter) {
+  String _filterLabel(AppLocalizations l10n, FaqCategoryFilter filter) {
     switch (filter) {
       case FaqCategoryFilter.all:
-        return 'All';
+        return l10n.batch9FaqFilterAll;
       case FaqCategoryFilter.featured:
-        return 'Featured';
+        return l10n.batch9FaqFilterFeatured;
       case FaqCategoryFilter.beginner:
-        return 'Beginner';
+        return l10n.batch9FaqDifficultyBeginner;
       case FaqCategoryFilter.intermediate:
-        return 'Intermediate';
+        return l10n.batch9FaqDifficultyIntermediate;
     }
   }
 }

@@ -54,7 +54,10 @@ class QuranLearningShareService {
     String? noteLabel,
     bool includeNoteExcerpt = false,
   }) {
-    final lines = <String>[entry.ref.locationLabel, entry.title.trim()];
+    final lines = <String>[
+      if ((entry.ref?.locationLabel ?? '').isNotEmpty) entry.ref!.locationLabel,
+      entry.title.trim(),
+    ];
     final cleanedSummary = entry.summary.trim();
     if (cleanedSummary.isNotEmpty) {
       lines.add(cleanedSummary);

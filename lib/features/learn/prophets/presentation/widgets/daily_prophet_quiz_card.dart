@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../core/theme/app_colors.dart';
+import '../../../../../core/theme/app_surfaces.dart';
 import '../../../../../shared/widgets/premium_card.dart';
 import '../../domain/prophet_quiz.dart';
 import '../prophets_daily_copy.dart';
@@ -14,6 +15,7 @@ class DailyProphetQuizCard extends StatelessWidget {
     required this.onSelectAnswer,
     required this.onReviewProphet,
     required this.onOpenFullQuiz,
+    this.surfaceTreatment = AppSurfaceTreatment.standard,
   });
 
   final ProphetQuizQuestion question;
@@ -22,6 +24,7 @@ class DailyProphetQuizCard extends StatelessWidget {
   final ValueChanged<int> onSelectAnswer;
   final VoidCallback onReviewProphet;
   final VoidCallback onOpenFullQuiz;
+  final AppSurfaceTreatment surfaceTreatment;
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +33,7 @@ class DailyProphetQuizCard extends StatelessWidget {
     final isCorrect = isAnswered && selectedIndex == correctIndex;
 
     return PremiumCard(
+      surfaceTreatment: surfaceTreatment,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

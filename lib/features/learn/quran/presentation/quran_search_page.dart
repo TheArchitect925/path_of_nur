@@ -9,15 +9,14 @@ import '../../../../../shared/widgets/premium_card.dart';
 import '../../../../../shared/widgets/quran_navigation.dart';
 import '../application/quran_ayah_enrichment_provider.dart';
 import '../application/quran_providers.dart';
-import '../application/quran_reference_graph_provider.dart';
 import '../application/quran_surah_insights_provider.dart';
+import '../application/quran_theme_discovery_provider.dart';
 import '../application/quran_words_provider.dart';
 import '../domain/quran_ayah_enrichment_models.dart';
 import '../domain/quran_core_word.dart';
-import '../domain/quran_reference_models.dart';
 import '../domain/quran_surah.dart';
 import '../domain/quran_surah_insight_models.dart';
-import 'quran_theme_copy.dart';
+import '../domain/quran_theme_discovery_models.dart';
 
 class QuranSearchPage extends ConsumerWidget {
   const QuranSearchPage({super.key});
@@ -36,7 +35,7 @@ class QuranSearchPage extends ConsumerWidget {
     final paths = ref.watch(quranAyahInsightResolvedPathsProvider);
     final surahInsights = ref.watch(quranSurahInsightsBrowseProvider);
     final surahMap = ref.watch(quranSurahMapProvider);
-    final topics = ref.watch(quranTopicsProvider);
+    final topics = ref.watch(quranResolvedThemesProvider);
     final wordsAsync = ref.watch(quranCoreWordsProvider);
     final normalizedQuery = _normalizeForSearch(query);
     final learningResults = normalizedQuery.isEmpty
@@ -484,20 +483,21 @@ List<_QuranSupplementalSearchResult> _buildLearningResults({
 List<_QuranSupplementalSearchResult> _buildTopicResults({
   required String query,
   required AppLocalizations l10n,
-  required List<QuranTopic> topics,
+  required List<QuranThemeResolvedTopic> topics,
 }) {
   final output = <_QuranSupplementalSearchResult>[];
 
   for (final topic in topics) {
-    final localizedTitle = localizedQuranTopicTitle(l10n, topic.id);
-    final localizedDescription = localizedQuranTopicDescription(l10n, topic.id);
+    final localizedTitle = topic.definition.title;
+    final localizedDescription = topic.definition.subtitle;
     final haystack = _combineSearchFields([
       localizedTitle,
       localizedDescription,
-      topic.relatedLessons.join(' '),
-      topic.relatedHadith.join(' '),
-      topic.relatedProphets.join(' '),
-      topic.searchKeywords.join(' '),
+      topic.definition.overview,
+      topic.definition.searchAliases.join(' '),
+      topic.relatedProphets.map((item) => item.label).join(' '),
+      topic.relatedEvents.map((item) => item.label).join(' '),
+      topic.relatedSurahs.map((item) => item.transliteratedName).join(' '),
     ]);
     final score = _scoreSearchMatch(
       query: query,
@@ -511,12 +511,12 @@ List<_QuranSupplementalSearchResult> _buildTopicResults({
         score: score,
         title: localizedTitle,
         summary: localizedDescription,
-        supportingLabel: l10n.quranThemeMapStarterAyahCount(
-          topic.verseReferences.length,
+        supportingLabel: l10n.quranThemeDiscoverySurahCountLabel(
+          topic.relatedSurahs.length,
         ),
         open: (context) => context.pushNamed(
           'quranTopicDetail',
-          pathParameters: {'topicId': topic.id},
+          pathParameters: {'topicId': topic.definition.id},
         ),
       ),
     );

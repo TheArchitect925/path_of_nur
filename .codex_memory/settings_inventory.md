@@ -61,11 +61,21 @@ Current major sections present in the UI:
 ## Appearance
 
 - app theme mode
+  - now includes `Midnight Manuscript` as a persisted first-class option
+  - now also includes `Noor Glass` as a persisted first-class option for a lighter milky frosted-glass appearance
+  - now uses compact preview tiles with representative mini background/card/accent samples for visible themes
+  - now also shows a short appearance-helper line plus concise “best for” helper copy on visible theme tiles so Midnight Manuscript and the other visible themes read more intentionally in settings without changing the picker architecture
 - disable glass transparency
 - disable background
 - reset appearance
 - reduce motion
 - high contrast text
+
+Appearance implementation notes:
+
+- shared atmospheric background resolution now lives below the existing global wallpaper/background host instead of in page-local theme code
+- wallpaper choice remains user-owned; Midnight Manuscript applies tint/gradient treatment on top of the selected wallpaper rather than replacing the wallpaper system
+- shared component expression for Midnight Manuscript now also flows through appearance helpers used by nav, chip, segmented-control, button, and input theme states rather than relying on isolated widget-level overrides
 
 ## Tracking privacy
 

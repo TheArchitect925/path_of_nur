@@ -24,6 +24,7 @@ class WorshipPage extends ConsumerWidget {
     const quote = QuranQuote(ref: QuranQuoteRef(surah: 2, ayah: 45));
 
     return SectionHubScaffold(
+      ownsBackground: false,
       headerIcon: IslamicIcons.prayer,
       title: l10n.worshipTitle,
       subtitle: localizedAppPageDescription(
@@ -31,9 +32,6 @@ class WorshipPage extends ConsumerWidget {
         AppPageDescriptionKey.worshipHub,
         kidsMode: isKidsMode,
       ),
-      quote: quote,
-      onQuoteTap: (selectedQuote) =>
-          openQuranQuoteLocation(context, selectedQuote),
       shortcutOpenLabel: l10n.learnShortcutOpen,
       shortcutCloseLabel: l10n.learnShortcutClose,
       shortcutActions: buildMajorPageShortcutActions(
@@ -42,6 +40,11 @@ class WorshipPage extends ConsumerWidget {
         MajorPageShortcutFamily.worship,
       ),
       children: [
+        QuranQuoteBlock(
+          quote: quote,
+          onTap: () => openQuranQuoteLocation(context, quote),
+        ),
+        const SizedBox(height: 12),
         SectionHubActionGrid(
           actions: [
             SectionHubAction(

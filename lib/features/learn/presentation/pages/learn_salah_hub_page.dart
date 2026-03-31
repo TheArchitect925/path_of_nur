@@ -71,7 +71,7 @@ class _LearnSalahHubPageState extends ConsumerState<LearnSalahHubPage> {
 
     return LearnHubPageScaffold(
       headerIcon: IslamicIcons.prayer,
-      title: 'Salah Trainer',
+      title: l10n.learnSalahHubTitle,
       subtitle: l10n.learnSalahHubSubtitle,
       children: [
         if (!guidanceAccepted) ...[
@@ -93,18 +93,16 @@ class _LearnSalahHubPageState extends ConsumerState<LearnSalahHubPage> {
                 Text(l10n.learnSalahHubGuidanceNoticeBody3),
                 const SizedBox(height: 12),
                 Text(
-                  'O Allah, make the Qur’an easy for us to learn and remember.',
+                  l10n.learnSalahHubGuidanceNoticeDua,
                   style: Theme.of(
                     context,
                   ).textTheme.bodyMedium?.copyWith(fontStyle: FontStyle.italic),
                 ),
                 const SizedBox(height: 10),
-                const Text(
-                  '“And We have certainly made the Qur’an easy for remembrance, so is there any who will remember?”',
-                ),
+                Text(l10n.learnSalahHubGuidanceNoticeVerse),
                 const SizedBox(height: 4),
                 Text(
-                  'Qur’an 54:17',
+                  l10n.learnSalahHubGuidanceNoticeVerseReference,
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
                 const SizedBox(height: 12),
@@ -114,7 +112,7 @@ class _LearnSalahHubPageState extends ConsumerState<LearnSalahHubPage> {
                   onPressed: () => ref
                       .read(salahTrainerGuidanceNoticeProvider.notifier)
                       .acknowledge(),
-                  child: const Text('I acknowledge'),
+                  child: Text(l10n.learnSalahHubAcknowledgeAction),
                 ),
               ],
             ),
@@ -133,11 +131,14 @@ class _LearnSalahHubPageState extends ConsumerState<LearnSalahHubPage> {
             spacing: 8,
             runSpacing: 8,
             children: [
-              _metricPill('Salahs', '${prayers.length}'),
-              _metricPill('Unlocked Surahs', '${unlockedSurahIds.length}'),
-              _metricPill('Memorized', '$memorizedCount'),
+              _metricPill(l10n.learnSalahHubMetricSalahs, '${prayers.length}'),
               _metricPill(
-                'Recitations',
+                l10n.learnSalahHubMetricUnlockedSurahs,
+                '${unlockedSurahIds.length}',
+              ),
+              _metricPill(l10n.learnSalahHubMetricMemorized, '$memorizedCount'),
+              _metricPill(
+                l10n.learnSalahHubMetricRecitations,
                 '${progress.learnedRecitationIds.length}',
               ),
             ],
@@ -146,11 +147,11 @@ class _LearnSalahHubPageState extends ConsumerState<LearnSalahHubPage> {
         if (recentPrayers.isNotEmpty) ...[
           const SizedBox(height: 10),
           PremiumCard(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  'Continue prayer practice',
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                Text(
+                  l10n.learnSalahHubContinuePrayerPracticeTitle,
                   style: TextStyle(fontWeight: FontWeight.w700),
                 ),
                 const SizedBox(height: 8),
@@ -168,7 +169,7 @@ class _LearnSalahHubPageState extends ConsumerState<LearnSalahHubPage> {
                             'learnSalahGuidedPrayer',
                             pathParameters: {'prayerId': prayer.id.name},
                           ),
-                          child: const Text('Resume'),
+                          child: Text(l10n.wuduTrainerResumeAction),
                         ),
                       ),
                     ),
@@ -205,19 +206,20 @@ class _LearnSalahHubPageState extends ConsumerState<LearnSalahHubPage> {
   }
 
   String _tabLabel(_SalahTrainerTab tab) {
+    final l10n = AppLocalizations.of(context);
     switch (tab) {
       case _SalahTrainerTab.learn:
-        return 'Learn Salah';
+        return l10n.learnSalahHubTabLearn;
       case _SalahTrainerTab.guided:
-        return 'Pray With Guidance';
+        return l10n.learnSalahHubTabGuided;
       case _SalahTrainerTab.ayah:
-        return 'Learn Ayah';
+        return l10n.learnSalahHubTabAyah;
       case _SalahTrainerTab.recitations:
-        return 'Duas & Recitations';
+        return l10n.learnSalahHubTabRecitations;
       case _SalahTrainerTab.essentials:
-        return 'Essentials';
+        return l10n.learnSalahHubTabEssentials;
       case _SalahTrainerTab.wudu:
-        return 'Wudu';
+        return l10n.learnSalahHubTabWudu;
     }
   }
 
@@ -334,6 +336,7 @@ class _GuidedTab extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     final state = ref.watch(salahTrainerProgressProvider);
     final notifier = ref.read(salahTrainerProgressProvider.notifier);
     final surahs = ref.watch(salahTrainerSurahsProvider);
@@ -346,10 +349,10 @@ class _GuidedTab extends ConsumerWidget {
       children: [
         PremiumCard(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                'Surah selection during guided prayer',
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+              Text(
+                l10n.learnSalahHubGuidedSurahSelectionTitle,
                 style: TextStyle(fontWeight: FontWeight.w700),
               ),
               const SizedBox(height: 8),
@@ -361,10 +364,10 @@ class _GuidedTab extends ConsumerWidget {
                       final selected = state.guidedSurahMode == mode;
                       return ChoiceChip(
                         label: Text(switch (mode) {
-                          GuidedSurahMode.random => 'Random Surahs',
-                          GuidedSurahMode.fixed => 'Fixed Surah',
+                          GuidedSurahMode.random => l10n.learnSalahHubGuidedModeRandom,
+                          GuidedSurahMode.fixed => l10n.learnSalahHubGuidedModeFixed,
                           GuidedSurahMode.practiceSpecific =>
-                            'Practice Specific',
+                            l10n.learnSalahHubGuidedModePracticeSpecific,
                         }),
                         selected: selected,
                         onSelected: (_) => notifier.setGuidedSurahMode(mode),
@@ -385,7 +388,9 @@ class _GuidedTab extends ConsumerWidget {
                       )
                       .toList(growable: false),
                   onChanged: notifier.setFixedSurah,
-                  decoration: const InputDecoration(labelText: 'Fixed surah'),
+                  decoration: InputDecoration(
+                    labelText: l10n.learnSalahHubFixedSurahFieldLabel,
+                  ),
                 ),
               ],
               if (state.guidedSurahMode ==
@@ -402,8 +407,8 @@ class _GuidedTab extends ConsumerWidget {
                       )
                       .toList(growable: false),
                   onChanged: notifier.setPracticeSurah,
-                  decoration: const InputDecoration(
-                    labelText: 'Practice this surah',
+                  decoration: InputDecoration(
+                    labelText: l10n.learnSalahHubPracticeSurahFieldLabel,
                   ),
                 ),
               ],
@@ -452,6 +457,7 @@ class _AyahTab extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     final progress = ref.watch(salahTrainerProgressProvider);
     return Column(
       children: [
@@ -459,9 +465,9 @@ class _AyahTab extends ConsumerWidget {
           child: TextField(
             controller: controller,
             onChanged: onQueryChanged,
-            decoration: const InputDecoration(
-              hintText: 'Search surahs for prayer',
-              prefixIcon: Icon(Icons.search_rounded),
+            decoration: InputDecoration(
+              hintText: l10n.learnSalahHubSearchSurahsHint,
+              prefixIcon: const Icon(Icons.search_rounded),
               border: InputBorder.none,
             ),
           ),
@@ -481,8 +487,11 @@ class _AyahTab extends ConsumerWidget {
                 title: Text('${surah.name} (${surah.surahNumber})'),
                 subtitle: Text(
                   unlocked
-                      ? '${surah.verses.length} ayahs • ${_statusLabel(status)}'
-                      : 'Locked until more surahs are practiced',
+                      ? l10n.learnSalahHubSurahCardSubtitle(
+                          surah.verses.length,
+                          _statusLabel(l10n, status),
+                        )
+                      : l10n.learnSalahHubSurahLockedSubtitle,
                 ),
                 trailing: const Icon(Icons.chevron_right_rounded),
                 onTap: unlocked
@@ -499,16 +508,16 @@ class _AyahTab extends ConsumerWidget {
     );
   }
 
-  String _statusLabel(SalahSurahProgress status) {
+  String _statusLabel(AppLocalizations l10n, SalahSurahProgress status) {
     switch (status) {
       case SalahSurahProgress.notStarted:
-        return 'Not started';
+        return l10n.learnSalahHubStatusNotStarted;
       case SalahSurahProgress.learning:
-        return 'Learning';
+        return l10n.learnSalahHubStatusLearning;
       case SalahSurahProgress.practiced:
-        return 'Practiced';
+        return l10n.learnSalahHubStatusPracticed;
       case SalahSurahProgress.memorized:
-        return 'Memorized';
+        return l10n.learnSalahHubStatusMemorized;
     }
   }
 }
@@ -528,6 +537,7 @@ class _RecitationsTab extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     final progress = ref.watch(salahTrainerProgressProvider);
     final notifier = ref.read(salahTrainerProgressProvider.notifier);
     return Column(
@@ -536,9 +546,9 @@ class _RecitationsTab extends ConsumerWidget {
           child: TextField(
             controller: controller,
             onChanged: onQueryChanged,
-            decoration: const InputDecoration(
-              hintText: 'Search duas and recitations',
-              prefixIcon: Icon(Icons.search_rounded),
+            decoration: InputDecoration(
+              hintText: l10n.learnSalahHubSearchRecitationsHint,
+              prefixIcon: const Icon(Icons.search_rounded),
               border: InputBorder.none,
             ),
           ),
@@ -582,7 +592,7 @@ class _RecitationsTab extends ConsumerWidget {
                   FilledButton.tonal(
                     onPressed: () =>
                         notifier.markRecitationLearned(recitation.id),
-                    child: const Text('Mark reviewed'),
+                    child: Text(l10n.learnSalahHubMarkReviewedAction),
                   ),
                 ],
               ),
@@ -650,16 +660,15 @@ class _WuduTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Column(
       children: [
         PremiumCard(
           child: ListTile(
             contentPadding: EdgeInsets.zero,
             leading: const Icon(IslamicIcons.wudhu),
-            title: const Text('Wudu Guide'),
-            subtitle: const Text(
-              'Review purification, sequence, and reminders before prayer.',
-            ),
+            title: Text(l10n.learnSalahHubWuduGuideTitle),
+            subtitle: Text(l10n.learnSalahHubWuduGuideSubtitle),
             trailing: const Icon(Icons.chevron_right_rounded),
             onTap: () => context.pushNamed('learnWuduGuide'),
           ),
@@ -669,10 +678,8 @@ class _WuduTab extends StatelessWidget {
           child: ListTile(
             contentPadding: EdgeInsets.zero,
             leading: const Icon(Icons.play_circle_fill_rounded),
-            title: const Text('Wudu Trainer'),
-            subtitle: const Text(
-              'Interactive guided practice and checklist mode.',
-            ),
+            title: Text(l10n.wuduTrainerPageTitle),
+            subtitle: Text(l10n.learnSalahHubWuduTrainerSubtitle),
             trailing: const Icon(Icons.chevron_right_rounded),
             onTap: () => context.pushNamed('learnWuduTrainer'),
           ),

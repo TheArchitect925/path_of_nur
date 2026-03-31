@@ -107,15 +107,20 @@ class _LifeLandingPageState extends ConsumerState<LifeLandingPage> {
                   children: [
                     _filterChip(
                       label: _selectedThemeId == null
-                          ? 'Theme: Any'
-                          : 'Theme: ${lifeThemeById(_selectedThemeId!)?.title ?? _selectedThemeId!}',
+                          ? l10n.lifeLandingFilterThemeAny
+                          : l10n.lifeLandingFilterThemeValue(
+                              lifeThemeById(_selectedThemeId!)?.title ??
+                                  _selectedThemeId!,
+                            ),
                       onTap: () => _showThemePicker(context, themes),
                     ),
                     const SizedBox(width: 8),
                     _filterChip(
                       label: _selectedStatus == null
-                          ? 'Status: Any'
-                          : 'Status: ${_statusLabel(l10n, _selectedStatus!)}',
+                          ? l10n.lifeLandingFilterStatusAny
+                          : l10n.lifeLandingFilterStatusValue(
+                              _statusLabel(l10n, _selectedStatus!),
+                            ),
                       onTap: () => _showStatusPicker(context, l10n),
                     ),
                     const SizedBox(width: 8),
@@ -131,7 +136,7 @@ class _LifeLandingPageState extends ConsumerState<LifeLandingPage> {
                           });
                         },
                         icon: const Icon(Icons.clear_rounded),
-                        label: const Text('Clear'),
+                        label: Text(l10n.lifeLandingClearFiltersAction),
                       ),
                   ],
                 ),
@@ -178,7 +183,7 @@ class _LifeLandingPageState extends ConsumerState<LifeLandingPage> {
                   contentPadding: EdgeInsets.zero,
                   title: Text(theme.title),
                   subtitle: Text(
-                    '${theme.summary}\n${themeProgress.completedLessons}/${themeProgress.totalLessons} completed',
+                    '${theme.summary}\n${l10n.lifeLandingThemeProgressValue(themeProgress.completedLessons, themeProgress.totalLessons)}',
                   ),
                   trailing: const Icon(Icons.chevron_right),
                   onTap: () => context.pushNamed(
@@ -349,6 +354,7 @@ class _LifeLandingPageState extends ConsumerState<LifeLandingPage> {
   }
 
   void _showThemePicker(BuildContext context, List<LifeTheme> themes) {
+    final l10n = AppLocalizations.of(context);
     showModalBottomSheet<void>(
       context: context,
       builder: (context) {
@@ -357,7 +363,7 @@ class _LifeLandingPageState extends ConsumerState<LifeLandingPage> {
             shrinkWrap: true,
             children: [
               ListTile(
-                title: const Text('Any theme'),
+                title: Text(l10n.lifeLandingAnyThemeOption),
                 onTap: () {
                   setState(() => _selectedThemeId = null);
                   Navigator.of(context).pop();
@@ -388,7 +394,7 @@ class _LifeLandingPageState extends ConsumerState<LifeLandingPage> {
             shrinkWrap: true,
             children: [
               ListTile(
-                title: const Text('Any status'),
+                title: Text(l10n.lifeLandingAnyStatusOption),
                 onTap: () {
                   setState(() => _selectedStatus = null);
                   Navigator.of(context).pop();
@@ -419,13 +425,14 @@ class _LifeLandingPageState extends ConsumerState<LifeLandingPage> {
   }
 
   String _tabLabel(_LifeLandingTab tab) {
+    final l10n = AppLocalizations.of(context);
     switch (tab) {
       case _LifeLandingTab.overview:
-        return 'Overview';
+        return l10n.lifeLandingTabOverview;
       case _LifeLandingTab.themes:
-        return 'Themes';
+        return l10n.lifeLandingTabThemes;
       case _LifeLandingTab.lessons:
-        return 'Lessons';
+        return l10n.lifeLandingTabLessons;
     }
   }
 

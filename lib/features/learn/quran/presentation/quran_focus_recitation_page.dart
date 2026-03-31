@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_surfaces.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/quran_presentation_style.dart';
@@ -46,7 +47,6 @@ class _QuranFocusRecitationPageState
     _focusSessionNotifier = ref.read(quranFocusRecitationSessionProvider.notifier);
     _sleepTimerNotifier = ref.read(quranFocusRecitationSleepTimerProvider.notifier);
     _wakeLockService = ref.read(quranFocusRecitationWakeLockProvider);
-    ref.read(quranFocusRecitationOpenProvider.notifier).state = true;
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) {
         return;
@@ -61,7 +61,6 @@ class _QuranFocusRecitationPageState
 
   @override
   void dispose() {
-    ref.read(quranFocusRecitationOpenProvider.notifier).state = false;
     _sleepTimerNotifier.clear();
     unawaited(_focusSessionNotifier.clearForExit());
     unawaited(_syncWakeLock(false));
@@ -745,6 +744,13 @@ class _FocusRecitationControls extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final surfaceStyle = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.panel,
+      tintColor: const Color(0xFFDABE8D),
+      surfaceAlphaOverride: 0.62,
+    );
+    final contentColors = AppSurfaceTheme.contentColors(context);
     final primaryIcon = showRetryAction
         ? Icons.refresh_rounded
         : isPreparing
@@ -753,48 +759,68 @@ class _FocusRecitationControls extends StatelessWidget {
                 ? Icons.pause_circle_filled_rounded
                 : Icons.play_circle_fill_rounded;
     final primaryEnabled = showRetryAction || canPause || canPlay;
-    return Column(
-      children: [
-        if (sourceStatusLabel != null && sourceStatusLabel!.trim().isNotEmpty)
-          Padding(
-            padding: const EdgeInsets.only(bottom: 10),
-            child: Text(
-              sourceStatusLabel!,
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                color: AppColors.onSurfaceSubtle,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+    return DecoratedBox(
+      decoration: surfaceStyle.decoration(
+        radius: 28,
+        includeShadow: true,
+      ),
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(16, 14, 16, 16),
+        child: Column(
           children: [
-            IconButton.filledTonal(
-              key: const ValueKey('quran-focus-previous-ayah'),
-              onPressed: canGoPreviousAyah ? onPreviousAyah : null,
-              icon: const Icon(Icons.skip_previous_rounded),
-            ),
-            const SizedBox(width: 18),
-            IconButton.filled(
-              key: const ValueKey('quran-focus-play-pause'),
-              onPressed: primaryEnabled ? onTogglePlayback : null,
-              style: IconButton.styleFrom(
-                minimumSize: const Size(72, 72),
-                backgroundColor: AppColors.onSurface,
-                foregroundColor: Colors.white,
+            if (sourceStatusLabel != null && sourceStatusLabel!.trim().isNotEmpty)
+              Padding(
+                padding: const EdgeInsets.only(bottom: 10),
+                child: Text(
+                  sourceStatusLabel!,
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: contentColors.subtleForeground,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
               ),
-              icon: Icon(primaryIcon, size: 36),
-            ),
-            const SizedBox(width: 18),
-            IconButton.filledTonal(
-              key: const ValueKey('quran-focus-next-ayah'),
-              onPressed: canGoNextAyah ? onNextAyah : null,
-              icon: const Icon(Icons.skip_next_rounded),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton.filledTonal(
+                  key: const ValueKey('quran-focus-previous-ayah'),
+                  onPressed: canGoPreviousAyah ? onPreviousAyah : null,
+                  style: IconButton.styleFrom(
+                    backgroundColor: surfaceStyle.iconBackgroundColor,
+                    foregroundColor: contentColors.foreground,
+                  ),
+                  icon: const Icon(Icons.skip_previous_rounded),
+                ),
+                const SizedBox(width: 18),
+                IconButton.filled(
+                  key: const ValueKey('quran-focus-play-pause'),
+                  onPressed: primaryEnabled ? onTogglePlayback : null,
+                  style: IconButton.styleFrom(
+                    minimumSize: const Size(76, 76),
+                    backgroundColor: const Color(0xFF4A3C2F).withValues(
+                      alpha: 0.94,
+                    ),
+                    foregroundColor: Colors.white,
+                    elevation: 0,
+                  ),
+                  icon: Icon(primaryIcon, size: 38),
+                ),
+                const SizedBox(width: 18),
+                IconButton.filledTonal(
+                  key: const ValueKey('quran-focus-next-ayah'),
+                  onPressed: canGoNextAyah ? onNextAyah : null,
+                  style: IconButton.styleFrom(
+                    backgroundColor: surfaceStyle.iconBackgroundColor,
+                    foregroundColor: contentColors.foreground,
+                  ),
+                  icon: const Icon(Icons.skip_next_rounded),
+                ),
+              ],
             ),
           ],
         ),
-      ],
+      ),
     );
   }
 }

@@ -28,6 +28,8 @@ import '../../../features/learn/quran/presentation/quran_ayah_insights_paths_pag
 import '../../../features/learn/quran/presentation/quran_daily_companion_page.dart';
 import '../../../features/learn/quran/presentation/quran_knowledge_search_page.dart';
 import '../../../features/learn/quran/presentation/quran_learning_paths_page.dart';
+import '../../../features/learn/quran/presentation/quran_summary_page.dart';
+import '../../../features/learn/quran/presentation/quran_surah_summary_detail_page.dart';
 import '../../../features/learn/quran/presentation/quran_guided_passage_readiness_page.dart';
 import '../../../features/learn/quran/presentation/quran_readiness_bridge_page.dart';
 import '../../../features/learn/quran/presentation/quran_short_surah_readiness_page.dart';
@@ -94,6 +96,22 @@ List<RouteBase> buildLearnCoreRoutes() {
           const MaterialPage(child: QuranDailyCompanionPage()),
     ),
     GoRoute(
+      path: '/quran/summary',
+      name: 'quranSummaryPage',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: QuranSummaryPage()),
+    ),
+    GoRoute(
+      path: '/quran/summary/:surahNumber',
+      name: 'quranSummaryDetailPage',
+      pageBuilder: (context, state) => MaterialPage(
+        child: QuranSurahSummaryDetailPage(
+          surahNumber:
+              int.tryParse(state.pathParameters['surahNumber'] ?? '') ?? 1,
+        ),
+      ),
+    ),
+    GoRoute(
       path: '/quran/paths',
       name: 'quranLearningPaths',
       pageBuilder: (context, state) =>
@@ -105,6 +123,16 @@ List<RouteBase> buildLearnCoreRoutes() {
       pageBuilder: (context, state) => MaterialPage(
         child: QuranLearningPathDetailPage(
           pathId: state.pathParameters['pathId'] ?? '',
+        ),
+      ),
+    ),
+    GoRoute(
+      path: '/quran/paths/:pathId/stops/:stopId',
+      name: 'quranLearningPathStopDetail',
+      pageBuilder: (context, state) => MaterialPage(
+        child: QuranLearningPathStopDetailPage(
+          pathId: state.pathParameters['pathId'] ?? '',
+          stopId: state.pathParameters['stopId'] ?? '',
         ),
       ),
     ),

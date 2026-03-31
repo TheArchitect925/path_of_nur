@@ -1132,6 +1132,12 @@ class _PrayerTimingPill extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final palette = _paletteForPrayer(prayer);
+    final warmStyle = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.panel,
+      treatment: AppSurfaceTreatment.homepageWarmGlass,
+      tintColor: palette.base,
+    );
     final accent = isCurrent
         ? palette.strong
         : isNext
@@ -1153,7 +1159,20 @@ class _PrayerTimingPill extends StatelessWidget {
           )
         : palette.soft;
     final isCompleted = status == PrayerStatus.completed;
-
+    final resolvedBackground =
+        Color.lerp(
+          warmStyle.backgroundColor,
+          background,
+          isCurrent ? 0.68 : (isNext ? 0.54 : 0.34),
+        ) ??
+        warmStyle.backgroundColor;
+    final resolvedBorder =
+        Color.lerp(
+          warmStyle.borderColor,
+          accent.withValues(alpha: isCurrent ? 0.42 : 0.30),
+          0.55,
+        ) ??
+        warmStyle.borderColor;
     return Material(
       color: Colors.transparent,
       child: InkWell(
@@ -1162,16 +1181,27 @@ class _PrayerTimingPill extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           decoration: BoxDecoration(
-            color: background,
-            borderRadius: BorderRadius.circular(18),
-            border: Border.all(
-              color: AppSurfaceTheme.adaptiveColor(
-                context,
-                accent,
-                alpha: 0.22,
-                solidAlphaWhenDisabled: 0.34,
-              ),
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: <Color>[
+                Color.lerp(resolvedBackground, Colors.white, 0.18) ??
+                    resolvedBackground,
+                Color.lerp(resolvedBackground, accent, 0.08) ??
+                    resolvedBackground,
+              ],
             ),
+            borderRadius: BorderRadius.circular(18),
+            border: Border.all(color: resolvedBorder),
+            boxShadow: isCurrent || isNext
+                ? <BoxShadow>[
+                    BoxShadow(
+                      color: warmStyle.shadowColor.withValues(alpha: 0.14),
+                      blurRadius: 18,
+                      offset: const Offset(0, 8),
+                    ),
+                  ]
+                : null,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -2270,8 +2300,11 @@ class _SalahSummaryCard extends ConsumerWidget {
                   width: 42,
                   height: 42,
                   decoration: BoxDecoration(
-                    color: const Color(0xFFEAF3E8),
+                    color: const Color(0xFFF0E4D3),
                     borderRadius: BorderRadius.circular(14),
+                    border: Border.all(
+                      color: const Color(0xFFE0C28D).withValues(alpha: 0.72),
+                    ),
                   ),
                   child: const Icon(
                     Icons.schedule_rounded,
@@ -2363,11 +2396,25 @@ class _SalahSummaryCard extends ConsumerWidget {
             Container(
               padding: const EdgeInsets.all(14),
               decoration: BoxDecoration(
-                color: const Color(0xFFF5EBDD).withValues(alpha: 0.82),
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: <Color>[
+                    const Color(0xFFFFF7EC).withValues(alpha: 0.94),
+                    const Color(0xFFF0DEC3).withValues(alpha: 0.92),
+                  ],
+                ),
                 borderRadius: BorderRadius.circular(22),
                 border: Border.all(
-                  color: const Color(0xFFE1CEB8).withValues(alpha: 0.9),
+                  color: const Color(0xFFE0BE86).withValues(alpha: 0.96),
                 ),
+                boxShadow: [
+                  BoxShadow(
+                    color: const Color(0xFF8E6F48).withValues(alpha: 0.10),
+                    blurRadius: 18,
+                    offset: const Offset(0, 10),
+                  ),
+                ],
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -2499,13 +2546,15 @@ class _PrayerSummaryMiniStat extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final style = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.panel,
+      treatment: AppSurfaceTreatment.homepageWarmGlass,
+      tintColor: tint,
+    );
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-      decoration: BoxDecoration(
-        color: Colors.white.withValues(alpha: 0.52),
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: tint.withValues(alpha: 0.16)),
-      ),
+      decoration: style.decoration(radius: 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -2568,13 +2617,15 @@ class _CompactPrayerMetaChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final style = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.pill,
+      treatment: AppSurfaceTreatment.homepageWarmGlass,
+      tintColor: color,
+    );
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-      decoration: BoxDecoration(
-        color: color.withValues(alpha: 0.08),
-        borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: color.withValues(alpha: 0.18)),
-      ),
+      decoration: style.decoration(radius: 14),
       child: Row(
         children: [
           Icon(icon, size: 15, color: color),
@@ -2619,10 +2670,11 @@ class _GlassCard extends StatelessWidget {
     final surfaceStyle = AppSurfaceTheme.resolve(
       context,
       variant: AppSurfaceVariant.card,
+      treatment: AppSurfaceTreatment.homepageWarmGlass,
     );
     return Container(
       padding: padding,
-      decoration: surfaceStyle.decoration(radius: radius),
+      decoration: surfaceStyle.decoration(radius: radius, includeShadow: true),
       child: child,
     );
   }
@@ -2714,6 +2766,8 @@ class _ModeAwareHomeCard extends ConsumerWidget {
     }
 
     return PremiumCard(
+      surfaceTreatment: AppSurfaceTreatment.homepageWarmGlass,
+      includeShadow: true,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -2782,6 +2836,8 @@ class _HomeLearningActionsCard extends ConsumerWidget {
     }
 
     return PremiumCard(
+      surfaceTreatment: AppSurfaceTreatment.homepageWarmGlass,
+      includeShadow: true,
       child: Theme(
         data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
         child: ExpansionTile(
@@ -2803,6 +2859,7 @@ class _HomeLearningActionsCard extends ConsumerWidget {
                 queryParameters: {'tab': 'quiz'},
               ),
               showPracticeLesson: dailyBundle.item.linkedGrowthHabitId != null,
+              surfaceTreatment: AppSurfaceTreatment.homepageWarmGlass,
               onPracticeLesson: () {
                 final habitId = dailyBundle.item.linkedGrowthHabitId;
                 if (habitId != null && habitId.trim().isNotEmpty) {
@@ -2817,6 +2874,7 @@ class _HomeLearningActionsCard extends ConsumerWidget {
               question: dailyBundle.quizQuestion,
               isAnswered: dailyBundle.status.quizAnswered,
               selectedIndex: dailyBundle.status.quizSelectedIndex,
+              surfaceTreatment: AppSurfaceTreatment.homepageWarmGlass,
               onSelectAnswer: (selected) {
                 dailyController.answerTodayQuiz(
                   questionId: dailyBundle.quizQuestion.id,
@@ -2887,6 +2945,7 @@ class _ModeActionChip extends StatelessWidget {
     final style = AppSurfaceTheme.resolve(
       context,
       variant: AppSurfaceVariant.pill,
+      treatment: AppSurfaceTreatment.homepageWarmGlass,
       tintColor: AppColors.accentGold,
     );
     return ActionChip(
@@ -2925,6 +2984,7 @@ class _QuickActionButton extends StatelessWidget {
     final style = AppSurfaceTheme.resolve(
       context,
       variant: AppSurfaceVariant.pill,
+      treatment: AppSurfaceTreatment.homepageWarmGlass,
       tintColor: AppColors.accentGold,
     );
     return InkWell(

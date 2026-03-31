@@ -129,6 +129,31 @@ class DuaItem {
   bool get isSunnah => sourceType.trim().toLowerCase() == 'sunnah';
 
   String get subcategoryLabel => _titleize(subcategory);
+
+  String searchableText({required String categoryLabel}) {
+    return _joinSearchParts(<String>[
+      title,
+      arabic,
+      transliteration,
+      translation,
+      whenToSay,
+      sourceType,
+      sourceRef,
+      category,
+      categoryLabel,
+      subcategory,
+      subcategoryLabel,
+      verificationStatus,
+      ...tags,
+    ]);
+  }
+
+  bool matchesQuery(String query, {required String categoryLabel}) {
+    if (query.trim().isEmpty) return true;
+    return searchableText(
+      categoryLabel: categoryLabel,
+    ).contains(query.trim().toLowerCase());
+  }
 }
 
 enum DuaDifficulty { beginner, intermediate, advanced }
@@ -179,6 +204,7 @@ class DuaCategorySummary {
     required this.label,
     required this.completeCount,
     required this.stubCount,
+    required this.searchableText,
     required this.subcategories,
   });
 
@@ -186,9 +212,39 @@ class DuaCategorySummary {
   final String label;
   final int completeCount;
   final int stubCount;
-  final Map<String, int> subcategories;
+  final String searchableText;
+  final List<DuaSubcategorySummary> subcategories;
 
   int get totalCount => completeCount + stubCount;
+
+  bool matchesQuery(String query) {
+    if (query.trim().isEmpty) return true;
+    return searchableText.contains(query.trim().toLowerCase());
+  }
+}
+
+@immutable
+class DuaSubcategorySummary {
+  const DuaSubcategorySummary({
+    required this.id,
+    required this.label,
+    required this.completeCount,
+    required this.stubCount,
+    required this.searchableText,
+  });
+
+  final String id;
+  final String label;
+  final int completeCount;
+  final int stubCount;
+  final String searchableText;
+
+  int get totalCount => completeCount + stubCount;
+
+  bool matchesQuery(String query) {
+    if (query.trim().isEmpty) return true;
+    return searchableText.contains(query.trim().toLowerCase());
+  }
 }
 
 List<String> rawStringList(Object? value) {
@@ -208,5 +264,12 @@ String _titleize(String raw) {
       .split('_')
       .where((part) => part.isNotEmpty)
       .map((part) => '${part[0].toUpperCase()}${part.substring(1)}')
+      .join(' ');
+}
+
+String _joinSearchParts(Iterable<String> parts) {
+  return parts
+      .map((part) => part.trim().toLowerCase())
+      .where((part) => part.isNotEmpty)
       .join(' ');
 }

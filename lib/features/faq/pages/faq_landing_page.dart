@@ -256,13 +256,14 @@ class _FaqLandingPageState extends ConsumerState<FaqLandingPage> {
     List<FaqItem> results,
     String query,
   ) {
+    final l10n = AppLocalizations.of(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _sectionTitle(
           context,
-          'Search Results',
-          'Results update live as you type.',
+          l10n.batch9FaqSearchResultsTitle,
+          l10n.batch9FaqSearchResultsSubtitle,
         ),
         const SizedBox(height: 8),
         if (results.isEmpty)
@@ -270,10 +271,10 @@ class _FaqLandingPageState extends ConsumerState<FaqLandingPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text('No matching questions found.'),
+                Text(l10n.batch9FaqSearchEmptyTitle),
                 const SizedBox(height: 6),
                 Text(
-                  'Try a different keyword or browse categories instead.',
+                  l10n.batch9FaqSearchEmptySubtitle,
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: AppColors.onSurfaceSubtle,
                   ),
@@ -303,7 +304,8 @@ class _FaqLandingPageState extends ConsumerState<FaqLandingPage> {
   }
 
   Widget _errorCard(Object error) {
-    return PremiumCard(child: Text('Unable to load FAQ right now. $error'));
+    final l10n = AppLocalizations.of(context);
+    return PremiumCard(child: Text(l10n.batch9FaqLoadError(error.toString())));
   }
 
   IconData _categoryIcon(String categoryId) {

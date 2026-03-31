@@ -6,6 +6,7 @@ import '../../../core/prayer/prayer_preferences.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/content/contextual_quran_quotes.dart';
 import '../../../shared/theme/islamic_icons.dart';
+import '../../../shared/widgets/quran_navigation.dart';
 import '../../../shared/widgets/quran_quote_block.dart';
 import '../../../shared/widgets/section_hub_scaffold.dart';
 import '../../profile/application/profile_settings_provider.dart';
@@ -209,13 +210,19 @@ class _WorshipSectionScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     return SectionHubScaffold(
+      ownsBackground: false,
       headerIcon: headerIcon,
       title: title,
       subtitle: subtitle,
-      quote: quote,
       shortcutOpenLabel: l10n.learnShortcutOpen,
       shortcutCloseLabel: l10n.learnShortcutClose,
-      children: [child],
+      children: [
+        QuranQuoteBlock(
+          quote: quote,
+          onTap: () => openQuranQuoteLocation(context, quote),
+        ),
+        child,
+      ],
     );
   }
 }

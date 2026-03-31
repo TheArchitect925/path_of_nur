@@ -62,10 +62,17 @@ class SegmentedPillControl<T> extends StatelessWidget {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(999),
                           color: selectedItem == item
-                              ? selectedStyle.iconBackgroundColor
+                              ? (appearance?.chipSelectedFill ??
+                                    selectedStyle.iconBackgroundColor)
                               : Colors.transparent,
                           border: selectedItem == item
-                              ? Border.all(color: selectedStyle.borderColor)
+                              ? Border.all(
+                                  color:
+                                      appearance?.accent.withValues(
+                                        alpha: 0.74,
+                                      ) ??
+                                      selectedStyle.borderColor,
+                                )
                               : null,
                         ),
                         child: Text(
@@ -74,7 +81,8 @@ class SegmentedPillControl<T> extends StatelessWidget {
                               ?.copyWith(
                                 fontSize: 13,
                                 color: selectedItem == item
-                                    ? onSurface
+                                    ? (appearance?.chipSelectedText ??
+                                          onSurface)
                                     : onSurfaceSubtle,
                               ),
                         ),

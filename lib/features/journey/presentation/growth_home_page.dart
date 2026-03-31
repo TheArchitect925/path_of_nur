@@ -9,6 +9,7 @@ import '../../../shared/theme/islamic_icons.dart';
 import '../../../shared/widgets/major_page_shortcuts.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/quran_navigation.dart';
+import '../../../shared/widgets/quran_quote_block.dart';
 import '../../../shared/widgets/section_hub_scaffold.dart';
 import '../application/journey_progression_provider.dart';
 
@@ -28,12 +29,10 @@ class GrowthHomePage extends ConsumerWidget {
     );
 
     return SectionHubScaffold(
+      ownsBackground: false,
       headerIcon: IslamicIcons.tasbih,
       title: l10n.journeyTitle,
       subtitle: l10n.growthHomeHeaderSubtitle,
-      quote: quote,
-      onQuoteTap: (selectedQuote) =>
-          openQuranQuoteLocation(context, selectedQuote),
       shortcutOpenLabel: l10n.learnShortcutOpen,
       shortcutCloseLabel: l10n.learnShortcutClose,
       shortcutActions: buildMajorPageShortcutActions(
@@ -42,6 +41,10 @@ class GrowthHomePage extends ConsumerWidget {
         MajorPageShortcutFamily.growth,
       ),
       children: [
+        QuranQuoteBlock(
+          quote: quote,
+          onTap: () => openQuranQuoteLocation(context, quote),
+        ),
         PremiumCard(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

@@ -55,6 +55,8 @@ Status legend:
   - topics, names of Allah, top words, word review
   - Qur'an learning and Qur'anic Arabic entrypoints
   - shared ayah-enrichment provider now aggregates starter educational metadata from Qur'an Study seeds, Divine Life Lessons, and World & Creation, and surfaces that through the reader `Learn More` section and `QuranReferenceViewer`
+  - Quran Summary now includes a dedicated summary list, summary-detail flow, canonical reader handoff, reusable Qur'an presentation components, and a typed surah-enrichment layer for themes, notable ayat, related prophets/events, cautious virtues/recitation notes, and reflection prompts
+  - Qur'an thematic discovery now also has a curated Browse by Topic explorer on the canonical `/quran/topics` route family, powered by a normalized theme registry plus resolved links back to enriched surahs, notable ayat, related prophets/events, and direct reader/detail handoffs
   - ayah enrichment now uses a stricter canonical contract for domains, lesson types, normalized tags, link strength, caution levels, and typed mixed display items so future ayah-detail content can expand without page-local display rules
   - Ayah Insights now also has a Qur'an-owned browse/discovery layer at `/quran/insights` with per-domain listings that deep-link back into the reader at the relevant ayah
   - Ayah Insights now also has a lightweight guided-path layer at `/quran/insights/paths` with curated domain-specific starter journeys that reuse existing enrichment entries instead of creating a second content system
@@ -64,6 +66,7 @@ Status legend:
   - Qur'an learning now also has a lightweight Daily Ayah Reflection layer driven by the shared Ayah Insights corpus, with deterministic daily selection, Home + Qur'an hub surfacing, persisted completion/streak state, and once-per-day Qur'an XP/drop awards instead of a separate habit engine
   - Qur'an learning now also has a dedicated Daily Qur'an Companion owner at `/quran/daily`, reusing the existing daily reflection assignment plus reference/memorization/path systems for a calmer daily flow with meaning, practical takeaway, and next-step handoffs
   - Qur'an learning now also has a lightweight Saved Reflections layer at `/quran/reflections`, with local ayah/insight saves, optional short private notes, Daily Ayah + Ayah Insights integration, and a dedicated review hub separate from the older manual Qur'an Notes flow
+  - Quran Summary now also has a typed surah-background art registry and null-safe asset resolver for the Top 10 rollout, plus an in-card background rendering layer that is already integrated into summary cards and will activate automatically once the real `.webp` assets are added
   - Qur'an learning now also has a shared progression bridge that rewards meaningful completions only: Daily Ayah marks the linked entry complete without double XP, Ayah Insights reward once per entry, guided paths award once per fully completed path, and the first non-empty private reflection note awards once lifetime through the existing Journey XP / Drops gateway
   - Qur'an learning now also has a lightweight native sharing/export layer for Daily Ayah, Ayah Insights, related ayahs, saved reflections, and surah insight overviews, using respectful plain-text composition and explicit note-excerpt opt-in instead of a social or public-sharing system
   - kids-safe Ayah Insights now also exists at `/learn/kids/quran-insights`, using a filtered reviewed subset of canonical Ayah Insights entries with simplified localized summaries, safe-theme-only categories, shared Qur'an deep links, and the same respectful studied-completion hook instead of a second kids Qur'an engine
@@ -158,6 +161,13 @@ Status legend:
 - implemented:
   - settings-first ownership for profile/personalization, appearance, notifications, privacy, language, about
   - links into accounts/sync and family learning management
+  - the shared appearance picker now includes a persisted `Midnight Manuscript` theme mode, implemented as a first-class `AppThemeMode` rather than a page-local override
+  - the shared appearance picker now also includes a persisted `Noor Glass` theme mode, implemented as a first-class `AppThemeMode` with a lighter milky frosted-glass palette and shared background integration instead of a page-local surface override
+  - the appearance picker now uses compact preview tiles with mini background/card/accent samples instead of plain swatch-only theme choices
+  - shared appearance tokens now carry richer dark-theme values for borders, dividers, input surfaces, Qur'an emphasis text, success tone, and Makki/Madani chip colors so premium dark styling can flow through existing glass surfaces cleanly
+  - shared backgrounds now resolve through a central theme-aware atmosphere layer that preserves user wallpaper choice while adding Midnight Manuscript ink/gold tinting and safe gradient fallback behavior
+  - shared component states now also have a stronger Midnight Manuscript expression for nav, inputs, segmented controls, chips, button hierarchy, and active shell playback surfaces without forking the app’s component architecture
+  - the shared Qur'an presentation layer now also has a Qur'an-only Midnight Manuscript refinement pass for headers, section wrappers, metadata chips, theme chips, progress strips, pathway stop cards, companion cards, and reflection cards so the active Qur'an surfaces feel more editorial and premium without changing routing or feature behavior
 - partial:
   - high localization debt
   - route migration still keeps `/profile/*` compatibility aliases
@@ -344,6 +354,51 @@ Status legend:
   - the advanced passage set is intentionally narrow and currently centered on Al-Fatihah only; no second longer-passage family has been added yet
 - risky/inconsistent:
   - future guided-passage additions should stay within exact app-sourced Qur'an ranges and single-surah reader handoff unless the canonical reader/navigation model is expanded deliberately
+
+## Qur'an pathways
+
+- implemented:
+  - the canonical Qur'an path routes remain `/quran/paths`, `/quran/paths/:pathId`, and now `/quran/paths/:pathId/stops/:stopId`, but the feature behind them has been upgraded into a real guided-pathways system rather than a shallow starter-path list
+  - `lib/features/learn/quran/domain/quran_guided_learning_path_models.dart` now owns typed pathway categories, richer stop kinds, ayah reference metadata, and persisted progress entries
+  - `lib/features/learn/quran/data/seeded_quran_guided_learning_paths_data.dart` now seeds ten curated pathways spanning patience, tawhid, mercy, Musa, creation, the hereafter, gratitude, character, du'a/reliance, and hardship support
+  - `lib/features/learn/quran/application/quran_guided_learning_paths_provider.dart` now resolves featured paths, by-category views, current progress, next-stop behavior, and continue/resume state using local persistence without introducing a second Learn-journey engine
+  - `lib/features/learn/quran/presentation/quran_learning_paths_page.dart` now provides a landing page, pathway detail page, and stop-detail page that route into existing Surah Summary, Topic Detail, and Reader owners through canonical routes
+  - the main Qur'an landing page now surfaces Qur'an Pathways as a dedicated island alongside Quran Summary and Browse by Topic
+- partial:
+  - there is not yet a dedicated pathways search surface; discovery is currently through the island, category filters, featured cards, and continue/resume behavior
+  - the stop-detail layer currently focuses on ayah anchors, reflection prompts, and canonical navigation rather than broader notes/bookmarks integration
+- risky/inconsistent:
+  - some older recommendation/intention surfaces still refer to the legacy provider/route naming, so future cleanup should preserve alias compatibility until those surfaces are deliberately migrated
+  - the Qur'an hub may now feel slightly redundant because pathways appear both as a dedicated island and in older study-tool entry points; future IA cleanup should decide whether both are still needed
+
+## Qur'an companion recommendations
+
+- implemented:
+  - the main Qur'an hub now includes a localized "Your Qur'an Companion" section that sits beside the existing Summary, Browse by Topic, Pathways, and Daily Companion surfaces instead of creating a new route family
+  - `lib/features/learn/quran/domain/quran_hub_recommendation_models.dart` now owns typed recommendation, destination, rationale, and context snapshot models for the Qur'an hub personalization layer
+  - `lib/features/learn/quran/application/quran_hub_recommendations_provider.dart` now resolves calm, explainable recommendations from existing local signals including continue-reading state, recent surah activity, current pathway progress, selected Qur'an focus, daily companion context, time-of-day, and Friday context
+  - the current companion categories are resume pathway, continue surah, time-of-day reflection, Friday reflection, growth-focus picks, related follow-up suggestions, and evergreen fallback items for low-data users
+  - the active companion cards deep-link only into canonical existing owners such as Surah Summary Detail, Topic Detail, Pathway Detail, Daily Companion, and the Qur'an reader
+- partial:
+  - the recommendation layer is still rules-based and local-only; it does not yet persist dismissals, rotate suggestions on demand, or track impressions/open events
+  - recent-theme inference currently derives mostly from recent surah/theme/path activity rather than a full dedicated theme-view history log
+- risky/inconsistent:
+  - because some localized theme and pathway subtitles still use English-first fallback text in non-English ARB resources, the companion copy is localization-ready but not yet fully translated across all supported locales
+
+## Qur'an reflections / saved insights
+
+- implemented:
+  - the canonical Qur'an reflections route family remains `/quran/reflections`, and now also includes `/quran/reflections/:reflectionId` for a dedicated saved-reflection detail/edit owner instead of routing everything through a flat list
+  - `lib/features/learn/quran/domain/quran_reflection_entry.dart` now supports richer source-aware metadata including optional surah/theme/pathway ownership, back-link route metadata, and favorite state while preserving existing local saved-entry continuity
+  - `lib/features/learn/quran/application/quran_reflections_provider.dart` still owns the canonical local persistence layer and now also resolves source-aware identity matching, update/edit flows, favorite toggles, and direct lookup by reflection id
+  - `lib/features/learn/quran/presentation/quran_reflections_page.dart` now acts as the real Saved Insights library with search, calm filter chips, favorites, richer source labels, safe empty/missing states, and a detail page with edit/delete/open-source actions
+  - `lib/features/learn/quran/presentation/widgets/quran_reflection_capture.dart` now centralizes source-bound reflection capture so Surah Summary Detail, Theme Detail, Pathway Detail, and Pathway Stop Detail can all open the same private composer flow without duplicating note logic
+- partial:
+  - reflection capture is now available on the main surah/theme/pathway discovery/detail surfaces, but the core reader itself is still intentionally uncluttered and does not yet expose a direct inline reflection entry point
+  - saved reflections are still local/private only in this phase and are not yet included in explicit backup/export flows
+- risky/inconsistent:
+  - older saved entries created before the richer source metadata pass may fall back to generic source labels or ayah-only reopening until they are edited or re-saved
+  - the broader older `QuranNote` system still exists separately for generic Qur'an notes, so future cleanup should continue to preserve clear ownership between manual notes and source-bound reflections
 
 ## Arabic vocabulary themes
 

@@ -430,6 +430,15 @@ List<RouteBase> buildCoreSupportRoutes() {
           const MaterialPage(child: QuranReflectionsPage()),
     ),
     GoRoute(
+      path: '/quran/reflections/:reflectionId',
+      name: 'quranReflectionDetail',
+      pageBuilder: (context, state) => MaterialPage(
+        child: QuranReflectionDetailPage(
+          reflectionId: state.pathParameters['reflectionId'] ?? '',
+        ),
+      ),
+    ),
+    GoRoute(
       path: '/learn/quran/reflections',
       redirect: (context, state) =>
           _redirectWithQuery('/quran/reflections', state),
