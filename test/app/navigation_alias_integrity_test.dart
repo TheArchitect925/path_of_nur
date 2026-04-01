@@ -6,6 +6,7 @@ import 'package:path_of_nur/features/learn/presentation/data/learn_category_cata
 import 'package:path_of_nur/features/learn/presentation/learn_page.dart';
 import 'package:path_of_nur/features/learn/presentation/pages/learn_explore_all_knowledge_page.dart';
 import 'package:path_of_nur/features/learn/presentation/pages/learn_quran_hub_page.dart';
+import 'package:path_of_nur/features/learn/presentation/pages/learn_salah_hub_page.dart';
 import 'package:path_of_nur/features/learn/prophets/presentation/prophets_page.dart';
 import 'package:path_of_nur/shared/application/daily_clock_provider.dart';
 
@@ -82,6 +83,49 @@ void main() {
       expect(router.state.uri.queryParameters['tab'], 'reflect');
     },
   );
+
+  testWidgets(
+    'learn salah hub alias forwards query params to canonical salah route',
+    (tester) async {
+      final container = await makeRoutingTestContainer();
+      final router = container.read(appRouterProvider);
+
+      await tester.pumpWidget(buildRouterTestApp(container));
+      await pumpRouteFrames(tester);
+
+      router.go('/learn/hub/salah?tab=wudu');
+      await pumpRouteFrames(tester);
+
+      expect(find.byType(LearnSalahHubPage), findsOneWidget);
+      expect(router.state.uri.path, '/learn/salah');
+      expect(router.state.uri.queryParameters['tab'], 'wudu');
+    },
+  );
+
+  test('trivia route names now resolve to canonical quizzes paths', () async {
+    final container = await makeRoutingTestContainer();
+    final router = container.read(appRouterProvider);
+
+    expect(
+      router.namedLocation('learnTriviaKnowledgePaths'),
+      '/learn/quizzes/trivia/paths',
+    );
+    expect(
+      router.namedLocation(
+        'learnTriviaKnowledgePathDetail',
+        pathParameters: <String, String>{'pathId': 'starter'},
+      ),
+      '/learn/quizzes/trivia/paths/starter',
+    );
+    expect(
+      router.namedLocation('learnTriviaReview'),
+      '/learn/quizzes/trivia/review',
+    );
+    expect(
+      router.namedLocation('learnTriviaStats'),
+      '/learn/quizzes/trivia/stats',
+    );
+  });
 
   testWidgets('learn legacy route remains a stable compatibility surface', (
     tester,

@@ -125,6 +125,10 @@ Last updated: 2026-03-24
 - `/learn/browse`
   - compatibility alias for `/learn/explore`; keep for older tool links only
 - `/learn/games`
+- `/learn/quizzes`
+- `/learn/quizzes/trivia`
+- `/learn/salah`
+- `/learn/paths/:pathId`
 - `/learn/games/:sectionId`
 - `/learn/category/:categoryId`
 - `/learn/family`
@@ -189,6 +193,7 @@ Last updated: 2026-03-24
 - `/learn/hub/quranic-arabic`
   - compatibility redirect for `/quran/arabic`
 - `/learn/hub/trivia`
+  - compatibility redirect for `/learn/quizzes/trivia`
 - `/learn/hub/trivia/paths`
 - `/learn/hub/trivia/paths/:pathId`
 - `/learn/hub/trivia/paths/:pathId/stages/:stageId`
@@ -196,7 +201,11 @@ Last updated: 2026-03-24
 - `/learn/hub/trivia/results`
 - `/learn/hub/trivia/review`
 - `/learn/hub/trivia/stats`
+  - compatibility redirects for `/learn/quizzes/trivia/*`
 - `/learn/hub/salah`
+  - compatibility redirect for `/learn/salah`
+- `/learn/section/salah`
+  - compatibility redirect for `/learn/salah`
 - `/learn/quizzes/crossword`
 - `/learn/quizzes/crossword/pack/:packId`
 - `/learn/quizzes/crossword/daily`
@@ -362,6 +371,18 @@ Last updated: 2026-03-24
 - `/learn/hub/duas`
 - `/learn/section/duas`
   - use `/learn/duas` in new work
+- `/learn/hub/salah`
+- `/learn/section/salah`
+  - use `/learn/salah` in new work
+- `/learn/hub/trivia`
+- `/learn/hub/trivia/paths`
+- `/learn/hub/trivia/paths/:pathId`
+- `/learn/hub/trivia/paths/:pathId/stages/:stageId`
+- `/learn/hub/trivia/session`
+- `/learn/hub/trivia/results`
+- `/learn/hub/trivia/review`
+- `/learn/hub/trivia/stats`
+  - use `/learn/quizzes/trivia*` ownership in new work
 - `/learn/quran/*`
   - compatibility aliases for older Learn-owned Qur'an paths
 - `/growth/today`

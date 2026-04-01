@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../features/learn/analytics/application/learn_analytics_service.dart';
 import '../../../features/history/presentation/history_archive_page.dart';
 import '../../../features/history/presentation/history_event_detail_page.dart';
 import '../../../features/history/presentation/on_this_day_matches_page.dart';
@@ -23,6 +24,14 @@ import '../../../features/learn/presentation/pages/learn_games_browse_all_page.d
 import '../../../features/learn/presentation/pages/learn_quran_hub_page.dart';
 import '../../../features/learn/presentation/pages/learning_journey_island_hub_page.dart';
 import '../../../features/learn/presentation/pages/learning_section_landing_page.dart';
+import '../../../features/learn/guided_paths/presentation/daily_dhikr_path_next_steps_page.dart';
+import '../../../features/learn/guided_paths/presentation/foundations_path_next_steps_page.dart';
+import '../../../features/learn/guided_paths/presentation/guided_learning_path_detail_page.dart';
+import '../../../features/learn/guided_paths/presentation/kids_starter_path_bridge_page.dart';
+import '../../../features/learn/guided_paths/presentation/kids_starter_path_next_steps_page.dart';
+import '../../../features/learn/guided_paths/presentation/quran_beginner_soft_bridge_page.dart';
+import '../../../features/learn/guided_paths/presentation/stories_path_bridge_page.dart';
+import '../../../features/learn/guided_paths/presentation/stories_path_next_steps_page.dart';
 import '../../../features/learn/quran/presentation/quran_ayah_insights_browse_page.dart';
 import '../../../features/learn/quran/presentation/quran_ayah_insights_paths_page.dart';
 import '../../../features/learn/quran/presentation/quran_daily_companion_page.dart';
@@ -243,19 +252,89 @@ List<RouteBase> buildLearnCoreRoutes() {
       name: 'learnLegacy',
       // Compatibility surface retained for hidden catalog items and older
       // Learning Journey metadata that still reference the original library.
-      pageBuilder: (context, state) => const MaterialPage(child: LearnPage()),
+      pageBuilder: (context, state) {
+        const analytics = LearnAnalyticsService();
+        analytics.logLegacyRouteOpened(
+          routeKey: '/learn/legacy',
+          matchedLocation: state.matchedLocation,
+        );
+        return const MaterialPage(child: LearnPage());
+      },
     ),
     GoRoute(
       path: '/learn/journey-home',
       name: 'learnJourneyHome',
-      pageBuilder: (context, state) =>
-          const MaterialPage(child: LearningJourneyHomePage()),
+      pageBuilder: (context, state) {
+        const analytics = LearnAnalyticsService();
+        analytics.logLegacyRouteOpened(
+          routeKey: '/learn/journey-home',
+          matchedLocation: state.matchedLocation,
+        );
+        return const MaterialPage(child: LearningJourneyHomePage());
+      },
     ),
     GoRoute(
       path: '/learn/learning-journey',
       name: 'learnJourneyIslandHub',
+      pageBuilder: (context, state) {
+        const analytics = LearnAnalyticsService();
+        analytics.logLegacyRouteOpened(
+          routeKey: '/learn/learning-journey',
+          matchedLocation: state.matchedLocation,
+        );
+        return const MaterialPage(child: LearningJourneyIslandHubPage());
+      },
+    ),
+    GoRoute(
+      path: '/learn/paths/foundations/next',
+      name: 'learnFoundationsNextSteps',
       pageBuilder: (context, state) =>
-          const MaterialPage(child: LearningJourneyIslandHubPage()),
+          const MaterialPage(child: FoundationsPathNextStepsPage()),
+    ),
+    GoRoute(
+      path: '/learn/paths/daily-dhikr/next',
+      name: 'learnDailyDhikrNextSteps',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: DailyDhikrPathNextStepsPage()),
+    ),
+    GoRoute(
+      path: '/learn/paths/quran-beginner/bridge',
+      name: 'learnQuranBeginnerSoftBridge',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: QuranBeginnerSoftBridgePage()),
+    ),
+    GoRoute(
+      path: '/learn/paths/kids-starter/bridge',
+      name: 'learnKidsStarterBridge',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: KidsStarterPathBridgePage()),
+    ),
+    GoRoute(
+      path: '/learn/paths/kids-starter/next',
+      name: 'learnKidsStarterNextSteps',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: KidsStarterPathNextStepsPage()),
+    ),
+    GoRoute(
+      path: '/learn/paths/stories/bridge',
+      name: 'learnStoriesPathBridge',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: StoriesPathBridgePage()),
+    ),
+    GoRoute(
+      path: '/learn/paths/stories/next',
+      name: 'learnStoriesPathNextSteps',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: StoriesPathNextStepsPage()),
+    ),
+    GoRoute(
+      path: '/learn/paths/:pathId',
+      name: 'learnGuidedPathDetail',
+      pageBuilder: (context, state) => MaterialPage(
+        child: GuidedLearningPathDetailPage(
+          pathId: state.pathParameters['pathId'] ?? '',
+        ),
+      ),
     ),
     GoRoute(
       path: '/learn/glossary',
@@ -297,8 +376,12 @@ List<RouteBase> buildLearnCoreRoutes() {
     GoRoute(
       path: '/learn/browse',
       name: 'learnJourneyBrowse',
-      redirect: (context, state) =>
-          learnRedirectWithQuery('/learn/explore', state),
+      redirect: (context, state) => learnCompatibilityRedirect(
+        canonicalPath: '/learn/explore',
+        state: state,
+        aliasPath: '/learn/browse',
+        routeFamily: 'learn_explore',
+      ),
     ),
     GoRoute(
       path: '/learn/explore',

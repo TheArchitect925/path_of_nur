@@ -7,8 +7,12 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/theme/app_surfaces.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
+import '../../analytics/application/learn_analytics_service.dart';
+import '../../guided_paths/application/guided_learning_paths_provider.dart';
 import '../application/learn_hub_providers.dart';
+import '../application/learn_discovery_providers.dart';
 import '../data/learn_hub_taxonomy.dart';
+import '../models/learn_discovery_models.dart';
 import '../models/learn_hub_models.dart';
 import '../widgets/learn_discovery_search_field.dart';
 import '../widgets/learn_hub_page_scaffold.dart';
@@ -33,8 +37,11 @@ class _LearnExploreAllKnowledgePageState
   late final TextEditingController _searchController;
   late String _query;
   LearnHubCategoryId? _selectedCategory;
-  LearnHubContentType? _selectedType;
+  LearnDiscoveryContentType? _selectedType;
+  LearnDiscoveryAudience? _selectedAudience;
+  LearnDiscoveryDifficulty? _selectedDifficulty;
   bool _alphabetical = false;
+  bool _loggedSearchOpen = false;
 
   @override
   void initState() {
@@ -42,6 +49,12 @@ class _LearnExploreAllKnowledgePageState
     _query = widget.initialQuery ?? '';
     _selectedCategory = widget.initialCategoryId;
     _searchController = TextEditingController(text: _query);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      ref
+          .read(learnAnalyticsServiceProvider)
+          .logLandingViewed(surface: 'learn_explore');
+    });
   }
 
   @override
@@ -53,28 +66,35 @@ class _LearnExploreAllKnowledgePageState
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final analytics = ref.read(learnAnalyticsServiceProvider);
     final categories = ref.watch(learnHubCategoriesProvider);
-    final index = ref.watch(learnHubKnowledgeIndexProvider);
-    final filtered = sortLearnHubKnowledgeItems(
-      filterLearnHubKnowledgeItems(
-            items: index,
-            query: _query,
-            categoryId: _selectedCategory,
-          )
-          .where((item) {
-            if (_selectedType == null) {
-              return item.contentType != LearnHubContentType.category;
-            }
-            return item.contentType == _selectedType;
-          })
-          .toList(growable: false),
+    final discoveryIndex = ref.watch(learnDiscoveryIndexProvider);
+    final searchResults = searchLearnDiscoveryEntries(
+      entries: discoveryIndex,
+      query: _query,
+      categoryId: _selectedCategory,
+      contentType: _selectedType,
+      audience: _selectedAudience,
+      difficulty: _selectedDifficulty,
       alphabetical: _alphabetical,
     );
+    final hasDiscoveryFilters =
+        _selectedCategory != null ||
+        _selectedType != null ||
+        _selectedAudience != null ||
+        _selectedDifficulty != null;
+    final hasSearchIntent = _query.trim().isNotEmpty || hasDiscoveryFilters;
+    final bucketedResults = hasSearchIntent
+        ? bucketLearnDiscoveryResults(
+            results: searchResults,
+            allEntries: discoveryIndex,
+          )
+        : curatedLearnDiscoverySections(entries: discoveryIndex);
 
     return LearnHubPageScaffold(
       headerIcon: Icons.travel_explore_rounded,
-      title: l10n.learnHubExploreAllTitle,
-      subtitle: l10n.learnHubExploreAllSubtitle,
+      title: l10n.learnDiscoveryExploreTitle,
+      subtitle: l10n.learnDiscoveryExploreSubtitle,
       children: [
         PremiumCard(
           surfaceVariant: AppSurfaceVariant.panel,
@@ -85,6 +105,15 @@ class _LearnExploreAllKnowledgePageState
                 controller: _searchController,
                 hintText: l10n.learnDiscoverySearchLessonsHint,
                 onChanged: (value) => setState(() => _query = value),
+                onTap: () {
+                  if (_loggedSearchOpen) return;
+                  _loggedSearchOpen = true;
+                  analytics.logSearchOpened(surface: 'learn_explore');
+                },
+                onSubmitted: (value) => analytics.logSearchQuerySubmitted(
+                  surface: 'learn_explore',
+                  query: value,
+                ),
                 onClear: () {
                   _searchController.clear();
                   setState(() => _query = '');
@@ -104,6 +133,11 @@ class _LearnExploreAllKnowledgePageState
                     selected: _alphabetical,
                     onSelected: (value) {
                       setState(() => _alphabetical = value);
+                      analytics.logFilterApplied(
+                        surface: 'learn_explore',
+                        filterType: 'sort',
+                        filterValue: value ? 'alphabetical' : 'ranked',
+                      );
                     },
                     label: Text(l10n.learnHubSortAlphabetical),
                   );
@@ -142,100 +176,221 @@ class _LearnExploreAllKnowledgePageState
                   ? null
                   : category;
             });
+            analytics.logFilterApplied(
+              surface: 'learn_explore',
+              filterType: 'category',
+              filterValue: _selectedCategory?.name ?? 'all',
+            );
           },
         ),
         const SizedBox(height: 16),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            children: [
+        Wrap(
+          spacing: 8,
+          runSpacing: 8,
+          children: [
+            _TypeFilterChip(
+              label: l10n.learnHubFilterAll,
+              selected: _selectedType == null,
+              onTap: () {
+                setState(() => _selectedType = null);
+                analytics.logFilterApplied(
+                  surface: 'learn_explore',
+                  filterType: 'type',
+                  filterValue: 'all',
+                );
+              },
+            ),
+            for (final type in [
+              LearnDiscoveryContentType.path,
+              LearnDiscoveryContentType.lesson,
+              LearnDiscoveryContentType.practice,
+              LearnDiscoveryContentType.reflection,
+              LearnDiscoveryContentType.quiz,
+              LearnDiscoveryContentType.tool,
+            ])
               _TypeFilterChip(
-                label: l10n.learnHubFilterAll,
-                selected: _selectedType == null,
-                onTap: () => setState(() => _selectedType = null),
+                label: _discoveryContentTypeLabel(l10n, type),
+                selected: _selectedType == type,
+                onTap: () => setState(() {
+                  _selectedType = _selectedType == type ? null : type;
+                  analytics.logFilterApplied(
+                    surface: 'learn_explore',
+                    filterType: 'type',
+                    filterValue: _selectedType?.name ?? 'all',
+                  );
+                }),
               ),
-              const SizedBox(width: 8),
-              for (final type in [
-                LearnHubContentType.lesson,
-                LearnHubContentType.story,
-                LearnHubContentType.quiz,
-                LearnHubContentType.challenge,
-                LearnHubContentType.tool,
-                LearnHubContentType.note,
-                LearnHubContentType.faq,
-                LearnHubContentType.journey,
-              ]) ...[
-                _TypeFilterChip(
-                  label: _contentTypeLabel(l10n, type),
-                  selected: _selectedType == type,
-                  onTap: () => setState(() {
-                    _selectedType = _selectedType == type ? null : type;
-                  }),
-                ),
-                const SizedBox(width: 8),
-              ],
-            ],
-          ),
+          ],
+        ),
+        const SizedBox(height: 12),
+        Wrap(
+          spacing: 8,
+          runSpacing: 8,
+          children: [
+            _TypeFilterChip(
+              label: l10n.learnHubFilterAll,
+              selected: _selectedAudience == null,
+              onTap: () {
+                setState(() => _selectedAudience = null);
+                analytics.logFilterApplied(
+                  surface: 'learn_explore',
+                  filterType: 'audience',
+                  filterValue: 'all',
+                );
+              },
+            ),
+            for (final audience in [
+              LearnDiscoveryAudience.beginner,
+              LearnDiscoveryAudience.general,
+              LearnDiscoveryAudience.kids,
+            ])
+              _TypeFilterChip(
+                label: _audienceLabel(l10n, audience),
+                selected: _selectedAudience == audience,
+                onTap: () => setState(() {
+                  _selectedAudience = _selectedAudience == audience
+                      ? null
+                      : audience;
+                  analytics.logFilterApplied(
+                    surface: 'learn_explore',
+                    filterType: 'audience',
+                    filterValue: _selectedAudience?.name ?? 'all',
+                  );
+                }),
+              ),
+          ],
+        ),
+        const SizedBox(height: 12),
+        Wrap(
+          spacing: 8,
+          runSpacing: 8,
+          children: [
+            _TypeFilterChip(
+              label: l10n.learnHubFilterAll,
+              selected: _selectedDifficulty == null,
+              onTap: () {
+                setState(() => _selectedDifficulty = null);
+                analytics.logFilterApplied(
+                  surface: 'learn_explore',
+                  filterType: 'difficulty',
+                  filterValue: 'all',
+                );
+              },
+            ),
+            for (final difficulty in [
+              LearnDiscoveryDifficulty.startHere,
+              LearnDiscoveryDifficulty.growing,
+              LearnDiscoveryDifficulty.deeper,
+            ])
+              _TypeFilterChip(
+                label: _difficultyLabel(l10n, difficulty),
+                selected: _selectedDifficulty == difficulty,
+                onTap: () => setState(() {
+                  _selectedDifficulty = _selectedDifficulty == difficulty
+                      ? null
+                      : difficulty;
+                  analytics.logFilterApplied(
+                    surface: 'learn_explore',
+                    filterType: 'difficulty',
+                    filterValue: _selectedDifficulty?.name ?? 'all',
+                  );
+                }),
+              ),
+          ],
         ),
         const SizedBox(height: 16),
-        if (filtered.isEmpty)
-          PremiumCard(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  _query.trim().isEmpty
-                      ? l10n.learnHubExploreEmptyTitle
-                      : l10n.learnHubSearchEmptyTitle,
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.w700,
+        ...(bucketedResults.isEmpty
+            ? <Widget>[
+                PremiumCard(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        _query.trim().isEmpty
+                            ? l10n.learnHubExploreEmptyTitle
+                            : l10n.learnHubSearchEmptyTitle,
+                        style: Theme.of(context).textTheme.titleMedium
+                            ?.copyWith(fontWeight: FontWeight.w700),
+                      ),
+                      const SizedBox(height: 6),
+                      Text(
+                        _query.trim().isEmpty
+                            ? l10n.learnHubExploreEmptySubtitle
+                            : l10n.learnHubSearchEmptySubtitle,
+                      ),
+                    ],
                   ),
                 ),
-                const SizedBox(height: 6),
-                Text(
-                  _query.trim().isEmpty
-                      ? l10n.learnHubExploreEmptySubtitle
-                      : l10n.learnHubSearchEmptySubtitle,
-                ),
-              ],
-            ),
-          )
-        else
-          ...filtered.map(
-            (item) => Padding(
-              padding: const EdgeInsets.only(bottom: 10),
-              child: _ExploreKnowledgeCard(item: item),
-            ),
-          ),
+              ]
+            : <Widget>[
+                for (final section in bucketedResults)
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 10),
+                    child: _ExploreDiscoverySection(
+                      section: section,
+                      analytics: analytics,
+                    ),
+                  ),
+              ]),
       ],
     );
   }
 
-  String _contentTypeLabel(
+  String _discoveryContentTypeLabel(
     AppLocalizations l10n,
-    LearnHubContentType contentType,
+    LearnDiscoveryContentType contentType,
   ) {
     switch (contentType) {
-      case LearnHubContentType.category:
-        return l10n.learnHubContentTypeCategory;
-      case LearnHubContentType.subcategory:
-        return l10n.learnHubContentTypeSubcategory;
-      case LearnHubContentType.lesson:
+      case LearnDiscoveryContentType.path:
+        return l10n.learnDiscoveryTypePath;
+      case LearnDiscoveryContentType.lesson:
         return l10n.learnHubContentTypeLesson;
-      case LearnHubContentType.story:
+      case LearnDiscoveryContentType.story:
         return l10n.learnHubContentTypeStory;
-      case LearnHubContentType.quiz:
+      case LearnDiscoveryContentType.practice:
+        return l10n.learnDiscoveryTypePractice;
+      case LearnDiscoveryContentType.reflection:
+        return l10n.learnDiscoveryTypeReflection;
+      case LearnDiscoveryContentType.quiz:
         return l10n.learnHubContentTypeQuiz;
-      case LearnHubContentType.challenge:
-        return l10n.learnHubContentTypeChallenge;
-      case LearnHubContentType.tool:
+      case LearnDiscoveryContentType.tool:
         return l10n.learnHubContentTypeTool;
-      case LearnHubContentType.note:
+      case LearnDiscoveryContentType.note:
         return l10n.learnHubContentTypeNote;
-      case LearnHubContentType.faq:
+      case LearnDiscoveryContentType.faq:
         return l10n.learnHubContentTypeFaq;
-      case LearnHubContentType.journey:
+      case LearnDiscoveryContentType.journey:
         return l10n.learnHubContentTypeJourney;
+      case LearnDiscoveryContentType.hub:
+        return l10n.learnHubContentTypeSubcategory;
+    }
+  }
+
+  String _audienceLabel(
+    AppLocalizations l10n,
+    LearnDiscoveryAudience audience,
+  ) {
+    switch (audience) {
+      case LearnDiscoveryAudience.general:
+        return l10n.learnDiscoveryAudienceGeneral;
+      case LearnDiscoveryAudience.beginner:
+        return l10n.learnTrackBeginner;
+      case LearnDiscoveryAudience.kids:
+        return l10n.learnHubCategoryKidsLearningTitle;
+    }
+  }
+
+  String _difficultyLabel(
+    AppLocalizations l10n,
+    LearnDiscoveryDifficulty difficulty,
+  ) {
+    switch (difficulty) {
+      case LearnDiscoveryDifficulty.startHere:
+        return l10n.learnDiscoveryDifficultyStartHere;
+      case LearnDiscoveryDifficulty.growing:
+        return l10n.learnDiscoveryDifficultyGrowing;
+      case LearnDiscoveryDifficulty.deeper:
+        return l10n.quranLearningPathIntensityDeeper;
     }
   }
 }
@@ -409,22 +564,126 @@ class _TypeFilterChip extends StatelessWidget {
   }
 }
 
-class _ExploreKnowledgeCard extends StatelessWidget {
-  const _ExploreKnowledgeCard({required this.item});
+class _ExploreDiscoverySection extends StatelessWidget {
+  const _ExploreDiscoverySection({
+    required this.section,
+    required this.analytics,
+  });
 
-  final LearnHubKnowledgeItem item;
+  final LearnDiscoveryBucketSection section;
+  final LearnAnalyticsService analytics;
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    final style = LearnHubTaxonomy.styleFor(item.categoryId);
+    return PremiumCard(
+      surfaceVariant: AppSurfaceVariant.panel,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            _sectionTitle(l10n, section.bucket),
+            style: Theme.of(
+              context,
+            ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+          ),
+          const SizedBox(height: 10),
+          ...section.results.map(
+            (result) => Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: _ExploreDiscoveryCard(
+                result: result,
+                bucket: section.bucket,
+                analytics: analytics,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  String _sectionTitle(AppLocalizations l10n, LearnDiscoveryBucket bucket) {
+    switch (bucket) {
+      case LearnDiscoveryBucket.bestMatch:
+        return l10n.learnDiscoveryBestMatchTitle;
+      case LearnDiscoveryBucket.guidedPaths:
+        return l10n.learnHubGuidedPathsTitle;
+      case LearnDiscoveryBucket.lessonsAndPages:
+        return l10n.learnDiscoveryLessonsAndPagesTitle;
+      case LearnDiscoveryBucket.kids:
+        return l10n.learnDiscoveryKidsResultsTitle;
+      case LearnDiscoveryBucket.related:
+        return l10n.learnDiscoveryRelatedContentTitle;
+      case LearnDiscoveryBucket.startHere:
+        return l10n.learnDiscoveryStartHereTitle;
+      case LearnDiscoveryBucket.practiceAndTools:
+        return l10n.learnDiscoveryPracticeAndToolsTitle;
+    }
+  }
+}
+
+class _ExploreDiscoveryCard extends ConsumerWidget {
+  const _ExploreDiscoveryCard({
+    required this.result,
+    required this.bucket,
+    required this.analytics,
+  });
+
+  final LearnDiscoverySearchResult result;
+  final LearnDiscoveryBucket bucket;
+  final LearnAnalyticsService analytics;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final entry = result.entry;
+    final style = LearnHubTaxonomy.styleFor(entry.categoryId);
+    final relatedPaths = ref
+        .watch(localizedGuidedLearningPathsProvider)
+        .where((path) => entry.relatedPathIds.contains(path.path.id))
+        .take(2)
+        .toList(growable: false);
+
+    String? progressLabel;
+    if (entry.contentType == LearnDiscoveryContentType.path &&
+        entry.id.startsWith('path:')) {
+      final pathId = entry.id.replaceFirst('path:', '');
+      final progress = ref.watch(guidedLearningPathProgressProvider(pathId));
+      final localizedPath = ref.watch(
+        localizedGuidedLearningPathByIdProvider(pathId),
+      );
+      if (localizedPath != null) {
+        progressLabel = l10n.guidedLearningPathProgressValue(
+          progress.completedStepIds.length,
+          localizedPath.path.steps.length,
+        );
+      }
+    }
+
     return InkWell(
       borderRadius: BorderRadius.circular(20),
-      onTap: () => context.pushNamed(
-        item.routeTarget.routeName,
-        pathParameters: item.routeTarget.pathParameters,
-        queryParameters: item.routeTarget.queryParameters,
-      ),
+      onTap: () {
+        analytics.logSearchResultOpened(
+          surface: 'learn_explore',
+          resultId: entry.id,
+          resultType: entry.contentType.name,
+          domain: entry.categoryId.name,
+          routeName: entry.routeTarget.routeName,
+        );
+        if (bucket == LearnDiscoveryBucket.related) {
+          analytics.logRelatedContentOpened(
+            sourceId: 'learn_explore_related',
+            targetId: entry.id,
+            sourceSurface: 'learn_explore',
+          );
+        }
+        context.pushNamed(
+          entry.routeTarget.routeName,
+          pathParameters: entry.routeTarget.pathParameters,
+          queryParameters: entry.routeTarget.queryParameters,
+        );
+      },
       child: PremiumCard(
         surfaceTintColor: style.accentColor,
         child: Row(
@@ -432,7 +691,7 @@ class _ExploreKnowledgeCard extends StatelessWidget {
           children: [
             Container(
               width: 12,
-              height: 70,
+              height: 88,
               decoration: BoxDecoration(
                 color: style.accentColor.withValues(alpha: 0.88),
                 borderRadius: BorderRadius.circular(999),
@@ -449,43 +708,25 @@ class _ExploreKnowledgeCard extends StatelessWidget {
                     crossAxisAlignment: WrapCrossAlignment.center,
                     children: [
                       Text(
-                        item.title,
+                        entry.title,
                         style: Theme.of(context).textTheme.titleSmall?.copyWith(
                           fontWeight: FontWeight.w700,
                         ),
                       ),
                       _ExploreBadge(
-                        label: switch (item.contentType) {
-                          LearnHubContentType.category =>
-                            l10n.learnHubContentTypeCategory,
-                          LearnHubContentType.subcategory =>
-                            l10n.learnHubContentTypeSubcategory,
-                          LearnHubContentType.lesson =>
-                            l10n.learnHubContentTypeLesson,
-                          LearnHubContentType.story =>
-                            l10n.learnHubContentTypeStory,
-                          LearnHubContentType.quiz =>
-                            l10n.learnHubContentTypeQuiz,
-                          LearnHubContentType.challenge =>
-                            l10n.learnHubContentTypeChallenge,
-                          LearnHubContentType.tool =>
-                            l10n.learnHubContentTypeTool,
-                          LearnHubContentType.note =>
-                            l10n.learnHubContentTypeNote,
-                          LearnHubContentType.faq =>
-                            l10n.learnHubContentTypeFaq,
-                          LearnHubContentType.journey =>
-                            l10n.learnHubContentTypeJourney,
-                        },
+                        label: _contentTypeLabel(l10n, entry.contentType),
                         accentColor: style.accentColor,
                       ),
+                      if (entry.startHere)
+                        _ExploreBadge(
+                          label: l10n.learnDiscoveryDifficultyStartHere,
+                          accentColor: style.accentColor,
+                        ),
                     ],
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    item.subcategoryTitle == null
-                        ? LearnHubTaxonomy.categoryTitle(l10n, item.categoryId)
-                        : '${LearnHubTaxonomy.categoryTitle(l10n, item.categoryId)} • ${item.subcategoryTitle}',
+                    LearnHubTaxonomy.categoryTitle(l10n, entry.categoryId),
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       color: style.accentColor,
                       fontWeight: FontWeight.w600,
@@ -493,10 +734,40 @@ class _ExploreKnowledgeCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 6),
                   Text(
-                    item.summary.isEmpty ? item.subtitle : item.summary,
+                    entry.summary.isEmpty ? entry.subtitle : entry.summary,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
+                  if (progressLabel != null) ...[
+                    const SizedBox(height: 6),
+                    Text(
+                      progressLabel,
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: style.accentColor,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ],
+                  if (relatedPaths.isNotEmpty) ...[
+                    const SizedBox(height: 8),
+                    Wrap(
+                      spacing: 8,
+                      runSpacing: 6,
+                      children: [
+                        Text(
+                          l10n.learnDiscoveryRelatedLabel,
+                          style: Theme.of(context).textTheme.labelSmall
+                              ?.copyWith(fontWeight: FontWeight.w700),
+                        ),
+                        for (final path in relatedPaths)
+                          Text(
+                            path.title,
+                            style: Theme.of(context).textTheme.labelSmall
+                                ?.copyWith(color: style.accentColor),
+                          ),
+                      ],
+                    ),
+                  ],
                 ],
               ),
             ),
@@ -504,6 +775,36 @@ class _ExploreKnowledgeCard extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  String _contentTypeLabel(
+    AppLocalizations l10n,
+    LearnDiscoveryContentType contentType,
+  ) {
+    switch (contentType) {
+      case LearnDiscoveryContentType.path:
+        return l10n.learnDiscoveryTypePath;
+      case LearnDiscoveryContentType.lesson:
+        return l10n.learnHubContentTypeLesson;
+      case LearnDiscoveryContentType.story:
+        return l10n.learnHubContentTypeStory;
+      case LearnDiscoveryContentType.practice:
+        return l10n.learnDiscoveryTypePractice;
+      case LearnDiscoveryContentType.reflection:
+        return l10n.learnDiscoveryTypeReflection;
+      case LearnDiscoveryContentType.quiz:
+        return l10n.learnHubContentTypeQuiz;
+      case LearnDiscoveryContentType.tool:
+        return l10n.learnHubContentTypeTool;
+      case LearnDiscoveryContentType.note:
+        return l10n.learnHubContentTypeNote;
+      case LearnDiscoveryContentType.faq:
+        return l10n.learnHubContentTypeFaq;
+      case LearnDiscoveryContentType.journey:
+        return l10n.learnHubContentTypeJourney;
+      case LearnDiscoveryContentType.hub:
+        return l10n.learnHubContentTypeSubcategory;
+    }
   }
 }
 

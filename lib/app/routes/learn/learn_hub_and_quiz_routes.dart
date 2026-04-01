@@ -45,19 +45,32 @@ List<RouteBase> buildLearnHubAndQuizRoutes() {
     GoRoute(
       path: '/learn/hub/quran',
       name: 'learnQuranHub',
-      redirect: (context, state) => learnRedirectWithQuery('/quran', state),
+      redirect: (context, state) => learnCompatibilityRedirect(
+        canonicalPath: '/quran',
+        state: state,
+        aliasPath: '/learn/hub/quran',
+        routeFamily: 'quran',
+      ),
     ),
     GoRoute(
       path: '/learn/hub/quran/learning',
       name: 'learnQuranLearning',
-      redirect: (context, state) =>
-          learnRedirectWithQuery('/quran/learning', state),
+      redirect: (context, state) => learnCompatibilityRedirect(
+        canonicalPath: '/quran/learning',
+        state: state,
+        aliasPath: '/learn/hub/quran/learning',
+        routeFamily: 'quran',
+      ),
     ),
     GoRoute(
       path: '/learn/hub/quranic-arabic',
       name: 'learnQuranArabic',
-      redirect: (context, state) =>
-          learnRedirectWithQuery('/quran/arabic', state),
+      redirect: (context, state) => learnCompatibilityRedirect(
+        canonicalPath: '/quran/arabic',
+        state: state,
+        aliasPath: '/learn/hub/quranic-arabic',
+        routeFamily: 'quran',
+      ),
     ),
     GoRoute(
       path: '/learn/prophets',
@@ -66,13 +79,21 @@ List<RouteBase> buildLearnHubAndQuizRoutes() {
     ),
     GoRoute(
       path: '/learn/hub/prophets',
-      redirect: (context, state) =>
-          learnRedirectWithQuery('/learn/prophets', state),
+      redirect: (context, state) => learnCompatibilityRedirect(
+        canonicalPath: '/learn/prophets',
+        state: state,
+        aliasPath: '/learn/hub/prophets',
+        routeFamily: 'stories',
+      ),
     ),
     GoRoute(
       path: '/learn/section/prophets',
-      redirect: (context, state) =>
-          learnRedirectWithQuery('/learn/prophets', state),
+      redirect: (context, state) => learnCompatibilityRedirect(
+        canonicalPath: '/learn/prophets',
+        state: state,
+        aliasPath: '/learn/section/prophets',
+        routeFamily: 'stories',
+      ),
     ),
     GoRoute(
       path: '/learn/quizzes',
@@ -90,6 +111,55 @@ List<RouteBase> buildLearnHubAndQuizRoutes() {
       name: 'learnQuizzesTriviaHome',
       pageBuilder: (context, state) =>
           const MaterialPage(child: IslamicTriviaHomePage()),
+    ),
+    GoRoute(
+      path: '/learn/quizzes/trivia/paths',
+      name: 'learnTriviaKnowledgePaths',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: IslamicTriviaKnowledgePathsPage()),
+    ),
+    GoRoute(
+      path: '/learn/quizzes/trivia/paths/:pathId',
+      name: 'learnTriviaKnowledgePathDetail',
+      pageBuilder: (context, state) => MaterialPage(
+        child: IslamicTriviaKnowledgePathDetailPage(
+          pathId: state.pathParameters['pathId'] ?? '',
+        ),
+      ),
+    ),
+    GoRoute(
+      path: '/learn/quizzes/trivia/paths/:pathId/stages/:stageId',
+      name: 'learnTriviaKnowledgePathStage',
+      pageBuilder: (context, state) => MaterialPage(
+        child: IslamicTriviaKnowledgePathStagePage(
+          pathId: state.pathParameters['pathId'] ?? '',
+          stageId: state.pathParameters['stageId'] ?? '',
+        ),
+      ),
+    ),
+    GoRoute(
+      path: '/learn/quizzes/trivia/session',
+      name: 'learnTriviaSession',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: IslamicTriviaSessionPage()),
+    ),
+    GoRoute(
+      path: '/learn/quizzes/trivia/results',
+      name: 'learnTriviaResults',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: IslamicTriviaResultsPage()),
+    ),
+    GoRoute(
+      path: '/learn/quizzes/trivia/review',
+      name: 'learnTriviaReview',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: IslamicTriviaReviewPage()),
+    ),
+    GoRoute(
+      path: '/learn/quizzes/trivia/stats',
+      name: 'learnTriviaStats',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: IslamicTriviaStatsPage()),
     ),
     GoRoute(
       path: '/learn/quizzes/daily-challenge',
@@ -249,90 +319,142 @@ List<RouteBase> buildLearnHubAndQuizRoutes() {
     ),
     GoRoute(
       path: '/learn/hub/quizzes',
-      redirect: (context, state) =>
-          learnRedirectWithQuery('/learn/quizzes', state),
+      redirect: (context, state) => learnCompatibilityRedirect(
+        canonicalPath: '/learn/quizzes',
+        state: state,
+        aliasPath: '/learn/hub/quizzes',
+        routeFamily: 'games',
+      ),
     ),
     GoRoute(
       path: '/learn/section/quizzes',
-      redirect: (context, state) =>
-          learnRedirectWithQuery('/learn/quizzes', state),
+      redirect: (context, state) => learnCompatibilityRedirect(
+        canonicalPath: '/learn/quizzes',
+        state: state,
+        aliasPath: '/learn/section/quizzes',
+        routeFamily: 'games',
+      ),
     ),
     GoRoute(
       path: '/learn/duas',
       name: 'learnDuaHub',
-      pageBuilder: (context, state) =>
-          const MaterialPage(child: DuaHubPage()),
+      pageBuilder: (context, state) => const MaterialPage(child: DuaHubPage()),
     ),
     GoRoute(
       path: '/learn/hub/duas',
-      redirect: (context, state) =>
-          learnRedirectWithQuery('/learn/duas', state),
+      redirect: (context, state) => learnCompatibilityRedirect(
+        canonicalPath: '/learn/duas',
+        state: state,
+        aliasPath: '/learn/hub/duas',
+        routeFamily: 'worship',
+      ),
     ),
     GoRoute(
       path: '/learn/section/duas',
-      redirect: (context, state) =>
-          learnRedirectWithQuery('/learn/duas', state),
+      redirect: (context, state) => learnCompatibilityRedirect(
+        canonicalPath: '/learn/duas',
+        state: state,
+        aliasPath: '/learn/section/duas',
+        routeFamily: 'worship',
+      ),
     ),
     GoRoute(
       path: '/learn/hub/trivia',
       name: 'learnIslamicTrivia',
-      redirect: (context, state) =>
-          learnRedirectWithQuery('/learn/quizzes/trivia', state),
+      redirect: (context, state) => learnCompatibilityRedirect(
+        canonicalPath: '/learn/quizzes/trivia',
+        state: state,
+        aliasPath: '/learn/hub/trivia',
+        routeFamily: 'games',
+      ),
     ),
     GoRoute(
       path: '/learn/hub/trivia/paths',
-      name: 'learnTriviaKnowledgePaths',
-      pageBuilder: (context, state) =>
-          const MaterialPage(child: IslamicTriviaKnowledgePathsPage()),
+      redirect: (context, state) => learnCompatibilityRedirect(
+        canonicalPath: '/learn/quizzes/trivia/paths',
+        state: state,
+        aliasPath: '/learn/hub/trivia/paths',
+        routeFamily: 'games',
+      ),
     ),
     GoRoute(
       path: '/learn/hub/trivia/paths/:pathId',
-      name: 'learnTriviaKnowledgePathDetail',
-      pageBuilder: (context, state) => MaterialPage(
-        child: IslamicTriviaKnowledgePathDetailPage(
-          pathId: state.pathParameters['pathId'] ?? '',
-        ),
+      redirect: (context, state) => learnCompatibilityRedirectWithPathAndQuery(
+        canonicalPathTemplate: '/learn/quizzes/trivia/paths/:pathId',
+        state: state,
+        aliasPath: '/learn/hub/trivia/paths/:pathId',
+        routeFamily: 'games',
       ),
     ),
     GoRoute(
       path: '/learn/hub/trivia/paths/:pathId/stages/:stageId',
-      name: 'learnTriviaKnowledgePathStage',
-      pageBuilder: (context, state) => MaterialPage(
-        child: IslamicTriviaKnowledgePathStagePage(
-          pathId: state.pathParameters['pathId'] ?? '',
-          stageId: state.pathParameters['stageId'] ?? '',
-        ),
+      redirect: (context, state) => learnCompatibilityRedirectWithPathAndQuery(
+        canonicalPathTemplate:
+            '/learn/quizzes/trivia/paths/:pathId/stages/:stageId',
+        state: state,
+        aliasPath: '/learn/hub/trivia/paths/:pathId/stages/:stageId',
+        routeFamily: 'games',
       ),
     ),
     GoRoute(
       path: '/learn/hub/trivia/session',
-      name: 'learnTriviaSession',
-      pageBuilder: (context, state) =>
-          const MaterialPage(child: IslamicTriviaSessionPage()),
+      redirect: (context, state) => learnCompatibilityRedirect(
+        canonicalPath: '/learn/quizzes/trivia/session',
+        state: state,
+        aliasPath: '/learn/hub/trivia/session',
+        routeFamily: 'games',
+      ),
     ),
     GoRoute(
       path: '/learn/hub/trivia/results',
-      name: 'learnTriviaResults',
-      pageBuilder: (context, state) =>
-          const MaterialPage(child: IslamicTriviaResultsPage()),
+      redirect: (context, state) => learnCompatibilityRedirect(
+        canonicalPath: '/learn/quizzes/trivia/results',
+        state: state,
+        aliasPath: '/learn/hub/trivia/results',
+        routeFamily: 'games',
+      ),
     ),
     GoRoute(
       path: '/learn/hub/trivia/review',
-      name: 'learnTriviaReview',
-      pageBuilder: (context, state) =>
-          const MaterialPage(child: IslamicTriviaReviewPage()),
+      redirect: (context, state) => learnCompatibilityRedirect(
+        canonicalPath: '/learn/quizzes/trivia/review',
+        state: state,
+        aliasPath: '/learn/hub/trivia/review',
+        routeFamily: 'games',
+      ),
     ),
     GoRoute(
       path: '/learn/hub/trivia/stats',
-      name: 'learnTriviaStats',
-      pageBuilder: (context, state) =>
-          const MaterialPage(child: IslamicTriviaStatsPage()),
+      redirect: (context, state) => learnCompatibilityRedirect(
+        canonicalPath: '/learn/quizzes/trivia/stats',
+        state: state,
+        aliasPath: '/learn/hub/trivia/stats',
+        routeFamily: 'games',
+      ),
     ),
     GoRoute(
-      path: '/learn/hub/salah',
+      path: '/learn/salah',
       name: 'learnSalahHub',
       pageBuilder: (context, state) =>
           const MaterialPage(child: LearnSalahHubPage()),
+    ),
+    GoRoute(
+      path: '/learn/hub/salah',
+      redirect: (context, state) => learnCompatibilityRedirect(
+        canonicalPath: '/learn/salah',
+        state: state,
+        aliasPath: '/learn/hub/salah',
+        routeFamily: 'worship',
+      ),
+    ),
+    GoRoute(
+      path: '/learn/section/salah',
+      redirect: (context, state) => learnCompatibilityRedirect(
+        canonicalPath: '/learn/salah',
+        state: state,
+        aliasPath: '/learn/section/salah',
+        routeFamily: 'worship',
+      ),
     ),
     GoRoute(
       path: '/learn/salah/prayer/:prayerId',

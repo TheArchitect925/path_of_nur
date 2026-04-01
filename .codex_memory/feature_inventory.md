@@ -124,6 +124,7 @@ Status legend:
   - ayah completion game under Quizzes with kids mode, adult mode, canonical Qur'an reference-driven seed data, profile-aware daily ayah routing, tappable verse references into the reader, optional shared ayah playback, local progress persistence, and shared XP / Drops / progression hooks
   - foundational Knowledge Games layer with shared game/session/result abstractions, generic recommendation helpers, reusable game shell, and crossword / word-search / matching adapters as the first live game-type integrations
   - legacy Learn hub still available at `/learn/legacy`
+  - Learn now also has a rule-based personalization layer that derives a lightweight user learning profile from existing local signals and surfaces a `Your Next Step` card plus secondary path suggestions on `/learn`, without changing canonical route ownership for Qur'an, Kids, or guided path progress
 - partial:
   - kids Seerah journeys currently ship as one polished journey pack with three companion stories; broader Seerah stage coverage and additional companion content remain expansion work
   - multiple systems overlap:

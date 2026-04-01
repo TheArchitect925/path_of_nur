@@ -1,6 +1,6 @@
 # Current Project State
 
-Last updated: 2026-03-24
+Last updated: 2026-03-31
 
 ## A. Project summary
 
@@ -24,6 +24,19 @@ Path of Nur is a Flutter + Riverpod mobile app centered on worship, Qur'an engag
   - many legacy aliases still exist for compatibility
 
 ## B1. Most recent stabilization update
+
+- Phase 12 pre-launch Learn fix pack is complete:
+  - `Character Path` now stays on existing owned surfaces with a calmer companion-led intro, focused trait guidance, a practical lesson-backed stage, and an explicit reflection stage instead of bouncing across broad companion surfaces
+  - `Salah Path` now opens with the existing `salah-foundations` intro lesson so the first step explains what Salah is and why it matters before sending learners into the full trainer surfaces
+  - no route ownership, canonical Qur'an ownership, kids architecture, search/discovery logic, analytics, or reward boundaries were changed
+  - focused analyzer and regression tests for guided-path seeds and route smoke are green
+
+- Phase 11 final Learn system audit + launch-readiness pass is complete:
+  - overall Learn readiness is now assessed as `Ready with minor polish`
+  - no critical Learn launch blockers were found in primary route ownership, guided path progression, canonical Qur'an handoff, kids safety, search/discovery coherence, analytics coverage, or enrichment stability
+  - a small discovery polish fix now prevents duplicate items from repeating across Explore result buckets and curated discovery sections
+  - focused route-smoke coverage now includes the newer guided-path bridge and next-step pages for Foundations, Daily Dhikr, Qur'an Beginner, Kids Starter, and Stories
+  - the main remaining product-quality debt before or just after launch is targeted path hardening for Character, plus a narrower first-step polish for Salah
 
 - Phase 25B regression hardening is complete:
   - `flutter analyze` is green
@@ -188,10 +201,24 @@ Path of Nur is a Flutter + Riverpod mobile app centered on worship, Qur'an engag
   - a shared recognition-only mini-assessment foundation now lives under `lib/features/arabic/` with deterministic 1–3 question sessions, simple `see -> choose` and `hear -> choose` question types, and no scores, timers, or pass/fail logic
   - existing Kids Arabic home and adult Qur'anic Arabic section surfaces now expose quick-practice entry cards that open the shared assessment page through route-owned Kids and adult destinations rather than a new standalone product flow
   - end-of-session follow-up now reuses the shared continue/review route targets so quick practice can gently suggest `Continue` or `Review` without introducing a second progress or recommendation system
- - Phase 49 short-surah readiness bridge is complete:
+- Phase 49 short-surah readiness bridge is complete:
   - Qur'an learning now has a second bridge-owned step after snippet recognition: a short-surah readiness surface with four curated beginner surahs, lightweight ayah highlighting, shared Qur'an playback wiring, and an optional handoff into the full reader
   - Kids and adult Arabic hubs now expose the short-surah step through their existing owned pages, and the original Qur'an Readiness bridge page now links forward into the new short-surah surface instead of ending at snippets only
   - progression and resume for the short-surah bridge are stored locally per audience, using route-owned Kids and adult destinations without changing the main reader or Arabic continuity ownership
+- Guided Learning Paths V1 is now live as a Learn-layer orchestration system:
+  - starter guided paths now live under `lib/features/learn/guided_paths/` with local persistence at `learn.guided_paths.state.v1`
+  - `/learn` now includes a "Start a Journey" section plus guided-path-aware continue/resume behavior
+  - the starter paths now include Foundations, Salah, Qur'an Beginner, Daily Dhikr, Character, Stories, and Kids, all routing into existing Learn, Worship, Kids, Journey, and canonical Qur'an owners instead of duplicating content systems
+  - `/learn/paths/:pathId` is the new route-owned path detail surface, while `/quran/*` and kids route families remain canonical for their underlying content
+- Safe Learn route canonicalization is now tightened further:
+  - `/learn/salah` is now the canonical Salah hub path, with `/learn/hub/salah` and `/learn/section/salah` preserved as compatibility redirects
+  - deeper trivia flows now canonically live under `/learn/quizzes/trivia/*`, with the older `/learn/hub/trivia*` family preserved as compatibility redirects
+  - `/learn`, `/quran/*`, kids route families, and guided path route names were preserved; this pass reduced ownership ambiguity without deleting legacy surfaces
+- Personalization & Path Intelligence V1 is now live on Learn:
+  - a new rule-based personalization layer now derives a lightweight user learning profile from existing guided-path, Learn, Qur'an, Dhikr, Ramadan-mode, and child-profile signals without adding a second progress ledger
+  - `/learn` now shows a `Your Next Step` recommendation card above Continue, with explainable reason text, optional progress, secondary suggestions, and safe path/detail routing
+  - the recommendation engine prioritizes active guided-path continuity first, then completion sequencing, kids safety, seasonal/contextual cues, domain momentum, and finally safe fallback logic
+  - `/quran/*`, kids route families, guided path ids, and Learn search/indexing ownership were preserved; this pass added orchestration, not a new canonical content owner
 - Accounts, Profiles & Sync hardening is complete:
   - the existing settings-owned accounts/sync routes were extended in place instead of rebuilt
   - Apple and Google sign-in now have real device auth integration paths behind an auth repository, while email remains an honest not-yet-connected shell
@@ -830,6 +857,26 @@ Path of Nur is a Flutter + Riverpod mobile app centered on worship, Qur'an engag
   - `QuranPlayerController` now owns buffering timeout handling, failure classification, retry, local-vs-remote fallback activation, session-restore failure handling, and last-good reciter/session recovery when a reciter switch cannot prepare the new source
   - `quran_reader_playback_controller.dart`, `quran_reader_playback_presentation.dart`, `quran_reader_page.dart`, and `app_scaffold.dart` now surface normalized buffering/failure/fallback state plus retry affordances without faking active playback after an unresolved source failure
   - focused tests now cover resilience classification, recoverable failure state mapping, route-level retry surfacing, and shell mini-player retry behavior, while failed source states preserve stored recitation context without falsely re-highlighting an active ayah
+- the repo now has a dormant app-owned liquid-glass integration seam prepared for future container rollout without changing any live app surfaces yet:
+  - `liquid_glass_renderer` is installed in `pubspec.yaml`, and `lib/shared/widgets/noor_liquid_glass.dart` now wraps the package behind Path of Nūr-owned presets, runtime capability guards, shared-layer helpers, and safe fake/disabled fallback resolution
+  - the current setup intentionally does not touch `PremiumCard`, `AppSurfaceTheme`, or any live page containers yet, so future adoption can happen as a controlled opt-in pass instead of scattering direct package imports across the app
+  - setup notes and rollout/backlog guidance now live in `docs/liquid_glass_renderer_setup_2026-03-31.md` and `docs/liquid_glass_renderer_backlog_2026-03-31.md`
+- Learn search/discovery now has a production path-aware indexing layer on top of the legacy knowledge index:
+  - `lib/features/learn/presentation/application/learn_discovery_providers.dart` and `lib/features/learn/presentation/models/learn_discovery_models.dart` now merge the existing Learn knowledge index with localized guided paths, light intent tags, beginner/kids/difficulty metadata, and related-path hints instead of replacing older metadata contracts
+  - `lib/features/learn/presentation/pages/learn_explore_all_knowledge_page.dart` now uses ranked bucketed discovery results, light filters, and curated empty/default sections rather than only flat title-first filtering
+  - `lib/features/learn/presentation/pages/learning_section_landing_page.dart` now uses the same discovery layer for `/learn` search previews, so landing search and Explore share one ranking model
+  - broad Qur'an search results now canonicalize to direct `/quran/*` route owners where applicable, while guided Qur'an path results remain orchestration-only and kids discovery remains on kids-owned routes
+  - focused tests for path discoverability, kids-safe search, path-only filtering, and canonical Qur'an result routing now live in `test/features/learn/presentation/application/learn_discovery_providers_test.dart`
+- Learn now has a production-safe local analytics and retirement-planning layer after the 2026-03-31 instrumentation pass:
+  - `lib/features/learn/analytics/domain/learn_analytics_models.dart`, `lib/features/learn/analytics/application/learn_analytics_service.dart`, and `lib/features/learn/analytics/application/learn_analytics_summary_provider.dart` now define a stable Learn event taxonomy, lightweight query intent buckets, additive summary aggregation, and recent-usage retirement signals on top of the existing prefs-backed `AppTelemetry` seam
+  - `/learn`, Explore, guided path detail flows, bridge/handoff pages, personalized next-step actions, and compatibility alias redirects now emit Learn-specific events for landing views, primary cards, path start/resume/complete, search/discovery interaction, related-content opens, recommendation acceptance, and alias/legacy route usage
+  - alias families such as `/learn/browse`, `/learn/hub/salah`, `/learn/section/salah`, and `/learn/hub/trivia*` are now measurable without changing canonical ownership, and direct opens for `/learn/legacy`, `/learn/journey-home`, and `/learn/learning-journey` are now observable for future retirement review
+  - focused tests for query classification, summary aggregation, and retirement-signal generation now live in `test/features/learn/analytics/application/learn_analytics_summary_provider_test.dart`
+- Learn now also has a calm enrichment layer after the 2026-03-31 milestone pass:
+  - `lib/features/learn/enrichment/domain/learn_enrichment_models.dart` and `lib/features/learn/enrichment/application/learn_enrichment_provider.dart` now persist additive milestone unlocks, acknowledgements, lightweight learning memories, and recent step-completion timestamps without changing guided-path ownership
+  - guided-path progress events now feed one-time milestones such as first path started, first step completed, first path completed, Foundations completed, first Qur'an step completed, Stories completed, first kids path completed, return-after-break, and three-steps-this-week consistency
+  - `/learn` now surfaces a pending milestone moment plus recent learning memories through calm cards, and completed guided path detail pages now show a richer completion card with encouragement and next-path suggestions instead of only plain completion feedback
+  - the enrichment layer intentionally reuses the existing guided-path XP/Ocean completion boundaries and does not add a second reward ledger, streak-pressure UI, or noisy celebration pattern
 
 ## H. Recommended next steps in priority order
 

@@ -2,17 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../app/nav_tabs.dart';
 import '../../../../core/theme/app_surfaces.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/content/learning_quote.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/section_hub_scaffold.dart';
+import '../../analytics/application/learn_analytics_service.dart';
+import '../../analytics/domain/learn_analytics_models.dart';
+import '../../enrichment/application/learn_enrichment_provider.dart';
+import '../../guided_paths/application/guided_learning_paths_provider.dart';
+import '../../guided_paths/domain/guided_learning_path_models.dart';
 import '../../journey/application/family_learning_provider.dart';
+import '../../personalization/application/learning_personalization_provider.dart';
 import '../../shared/application/learn_system_engine_provider.dart';
 import '../../shared/domain/learn_system_models.dart';
-import '../application/learn_hub_providers.dart';
+import '../application/learn_discovery_providers.dart';
 import '../data/learn_hub_taxonomy.dart';
+import '../models/learn_discovery_models.dart';
 import '../models/learn_hub_models.dart';
+import '../../enrichment/presentation/widgets/learn_enrichment_cards.dart';
+import '../widgets/learn_personalized_next_step_card.dart';
 import '../widgets/learn_hub_page_scaffold.dart';
 
 class LearningSectionLandingPage extends ConsumerStatefulWidget {
@@ -27,11 +37,18 @@ class _LearningSectionLandingPageState
     extends ConsumerState<LearningSectionLandingPage> {
   late final TextEditingController _searchController;
   String _query = '';
+  bool _loggedSearchOpen = false;
 
   @override
   void initState() {
     super.initState();
     _searchController = TextEditingController();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      ref
+          .read(learnAnalyticsServiceProvider)
+          .logLandingViewed(surface: 'learn_landing');
+    });
   }
 
   @override
@@ -43,163 +60,202 @@ class _LearningSectionLandingPageState
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    final categories = ref.watch(learnHubCategoriesProvider);
-    final searchIndex = ref.watch(learnHubKnowledgeIndexProvider);
-    final featuredItems = ref.watch(learnHubFeaturedItemsProvider);
+    final discoveryIndex = ref.watch(learnDiscoveryIndexProvider);
     final summary = ref.watch(learnUnifiedSummaryV2Provider);
-    final visibilityPolicy = ref.watch(
-      activeFamilyLearningContextProvider.select((value) => value.visibilityPolicy),
+    final pathResume = ref.watch(guidedLearningPathResumeProvider);
+    final localizedPaths = ref.watch(localizedGuidedLearningPathsProvider);
+    final personalizedNextStep = ref.watch(
+      localizedLearningPersonalizationSummaryProvider,
     );
-
-    final searchResults = filterLearnHubKnowledgeItems(
-      items: searchIndex,
-      query: _query,
-    ).where((item) => item.contentType != LearnHubContentType.category)
-        .where((item) => !_isJourneyManagedLearnItem(item, l10n))
-        .take(6).toList(
-          growable: false,
-        );
-    final suggestedItems = featuredItems
-        .where((item) => !_isJourneyManagedLearnItem(item, l10n))
-        .take(4)
+    final pendingMilestone = ref.watch(
+      localizedPendingLearningMilestoneProvider,
+    );
+    final learningMemories = ref.watch(localizedLearningMemoriesProvider);
+    final encouragement = ref.watch(localizedLearningEncouragementProvider);
+    final visibilityPolicy = ref.watch(
+      activeFamilyLearningContextProvider.select(
+        (value) => value.visibilityPolicy,
+      ),
+    );
+    final visiblePaths = localizedPaths
+        .where(
+          (path) =>
+              !visibilityPolicy.isChildProfile ||
+              path.path.audience == GuidedLearningPathAudience.kids,
+        )
         .toList(growable: false);
 
+    final searchResults =
+        searchLearnDiscoveryEntries(entries: discoveryIndex, query: _query)
+            .where((item) => !_isJourneyManagedDiscoveryItem(item.entry))
+            .take(6)
+            .toList(growable: false);
     return LearnHubPageScaffold(
       headerIcon: Icons.school_rounded,
       title: l10n.learnHubTitle,
-      subtitle: l10n.learnHubLandingSubtitleV3,
+      subtitle: l10n.learnHubLandingCalmSubtitle,
       quoteHeader: const LearningHubRabbiZidniIlmaHeader(),
       children: [
         _SectionHeader(
-          title: l10n.learnHubSearchSectionTitle,
-          subtitle: l10n.learnHubSearchSectionSubtitle,
+          title: l10n.learnPersonalizationSectionTitle,
+          subtitle: l10n.learnPersonalizationSectionSubtitle,
         ),
         const SizedBox(height: 10),
-        PremiumCard(
-          surfaceVariant: AppSurfaceVariant.panel,
-          child: Column(
-            children: [
-              TextField(
-                controller: _searchController,
-                onChanged: (value) => setState(() => _query = value),
-                decoration: InputDecoration(
-                  hintText: l10n.learnHubSearchHint,
-                  prefixIcon: const Icon(Icons.search_rounded),
-                  suffixIcon: _query.trim().isEmpty
-                      ? null
-                      : IconButton(
-                          onPressed: () {
-                            _searchController.clear();
-                            setState(() => _query = '');
-                          },
-                          icon: const Icon(Icons.close_rounded),
-                        ),
-                  border: InputBorder.none,
-                ),
-              ),
-              if (_query.trim().isNotEmpty) ...[
-                const SizedBox(height: 10),
-                if (searchResults.isEmpty)
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(l10n.learnHubSearchEmptySubtitle),
-                  )
-                else
-                  ...searchResults.map(
-                    (item) => Padding(
-                      padding: const EdgeInsets.only(bottom: 8),
-                      child: _SearchResultTile(item: item),
-                    ),
-                  ),
-              ],
-            ],
-          ),
-        ),
-        const SizedBox(height: 18),
-        if (summary.continueItem != null) ...[
+        LearnPersonalizedNextStepCard(summary: personalizedNextStep),
+        if (pendingMilestone != null || learningMemories.isNotEmpty) ...[
+          const SizedBox(height: 18),
           _SectionHeader(
-            title: l10n.learnHubContinueLearningTitle,
-            subtitle: l10n.learnHubContinueLearningSubtitle,
+            title: l10n.learnEnrichmentSectionTitle,
+            subtitle: l10n.learnEnrichmentSectionSubtitle,
           ),
           const SizedBox(height: 10),
-          _ContinueLearningCard(item: summary.continueItem!),
-          const SizedBox(height: 18),
+          if (pendingMilestone != null) ...[
+            LearnMilestoneMomentCard(moment: pendingMilestone),
+            if (learningMemories.isNotEmpty) const SizedBox(height: 12),
+          ],
+          if (learningMemories.isNotEmpty)
+            LearnMemoryHighlightsCard(
+              memories: learningMemories,
+              encouragement: encouragement,
+            ),
         ],
+        const SizedBox(height: 18),
         _SectionHeader(
-          title: l10n.learnHubCategoriesSectionTitle,
-          subtitle: l10n.learnHubCategoriesSectionSubtitle,
+          title: l10n.learnHubContinueJourneyTitle,
+          subtitle: l10n.learnHubContinueJourneySubtitle,
+        ),
+        const SizedBox(height: 10),
+        if (pathResume.hasActivePath)
+          _ContinueGuidedPathCard(
+            localizedPath: localizedPaths.firstWhere(
+              (path) => path.path.id == pathResume.activePath!.id,
+            ),
+            nextStep: localizedPaths
+                .firstWhere((path) => path.path.id == pathResume.activePath!.id)
+                .steps
+                .firstWhere((step) => step.step.id == pathResume.nextStep!.id),
+            onContinueTracked: () => ref
+                .read(learnAnalyticsServiceProvider)
+                .logPrimaryCardOpened(
+                  cardId: 'continue_guided_path',
+                  sourceSurface: 'learn_landing',
+                  domain: localizedPaths
+                      .firstWhere(
+                        (path) => path.path.id == pathResume.activePath!.id,
+                      )
+                      .path
+                      .bucketId,
+                ),
+          )
+        else if (summary.continueItem != null)
+          _ContinueLearningCard(
+            item: summary.continueItem!,
+            onOpenTracked: () => ref
+                .read(learnAnalyticsServiceProvider)
+                .logPrimaryCardOpened(
+                  cardId: 'continue_learning',
+                  sourceSurface: 'learn_landing',
+                ),
+          )
+        else
+          _BrowseJourneysCard(
+            title: l10n.learnHubLandingBrowseJourneysTitle,
+            subtitle: l10n.learnHubLandingBrowseJourneysSubtitle,
+            onOpenTracked: () => ref
+                .read(learnAnalyticsServiceProvider)
+                .logPrimaryCardOpened(
+                  cardId: 'browse_guided_paths',
+                  sourceSurface: 'learn_landing',
+                ),
+          ),
+        const SizedBox(height: 18),
+        _SectionHeader(
+          title: l10n.learnHubDailyLearningTitle,
+          subtitle: l10n.learnHubDailyLearningLandingSubtitle,
+        ),
+        const SizedBox(height: 10),
+        _DailyLearningCard(summary: summary),
+        const SizedBox(height: 18),
+        _SectionHeader(
+          title: l10n.guidedLearningPathsSectionTitle,
+          subtitle: visibilityPolicy.isChildProfile
+              ? l10n.guidedLearningPathsSectionKidsSubtitle
+              : l10n.guidedLearningPathsSectionSubtitle,
+        ),
+        const SizedBox(height: 10),
+        _GuidedLearningPathsGrid(
+          paths: visiblePaths,
+          activePathId: pathResume.activePath?.id,
+        ),
+        const SizedBox(height: 18),
+        _SectionHeader(
+          title: l10n.learnHubVisibleIslandsTitle,
+          subtitle: visibilityPolicy.isChildProfile
+              ? l10n.learnHubVisibleKidsIslandsSubtitle
+              : l10n.learnHubVisibleIslandsSubtitle,
         ),
         const SizedBox(height: 10),
         SectionHubActionGrid(
-          actions: [
-            SectionHubAction(
-              title: l10n.learnHubJourneyIslandTitle,
-              subtitle: l10n.learnHubJourneyIslandSubtitle,
-              icon: Icons.route_rounded,
-              color: const Color(0xFFE8E3F3),
-              accentColor: const Color(0xFF6D57A6),
-              onTap: () => context.pushNamed('learnJourneyIslandHub'),
-            ),
-            SectionHubAction(
-              title: l10n.learnHubExploreAllTitle,
-              subtitle: l10n.learnHubExploreAllSubtitle,
-              icon: Icons.travel_explore_rounded,
-              color: const Color(0xFFE0EEF0),
-              accentColor: const Color(0xFF2E7380),
-              onTap: () => context.pushNamed('learnExploreAllKnowledge'),
-            ),
-            SectionHubAction(
-              title: l10n.learnGamesHubTitleText,
-              subtitle: l10n.learnGamesIslandLandingCardSubtitle,
-              icon: Icons.sports_esports_rounded,
-              color: const Color(0xFFF3E7D5),
-              accentColor: const Color(0xFFB56C17),
-              onTap: visibilityPolicy.isChildProfile
-                  ? () => context.pushNamed('learnKidsGames')
-                  : () => context.pushNamed('learnGamesIsland'),
-            ),
-            for (final category in categories)
-              SectionHubAction(
-                title: category.title,
-                subtitle: category.subtitle,
-                icon: LearnHubTaxonomy.styleFor(category.id).icon,
-                color: LearnHubTaxonomy.styleFor(category.id).baseColor,
-                accentColor: LearnHubTaxonomy.styleFor(category.id).accentColor,
-                onTap: () => context.pushNamed(
-                  category.routeTarget.routeName,
-                  pathParameters: category.routeTarget.pathParameters,
-                  queryParameters: category.routeTarget.queryParameters,
-                ),
-              ),
-          ],
+          actions: visibilityPolicy.isChildProfile
+              ? _kidsVisibleActions(context, l10n)
+              : _mainIslandActions(context, l10n),
         ),
         const SizedBox(height: 18),
+        if (!visibilityPolicy.isChildProfile) ...[
+          _SectionHeader(
+            title: l10n.learnHubCategoryKidsLearningTitle,
+            subtitle: l10n.learnHubLandingKidsSubtitle,
+          ),
+          const SizedBox(height: 10),
+          _KidsDiscoveryCard(
+            analytics: ref.read(learnAnalyticsServiceProvider),
+            onOpenKidsQuran: () => context.pushNamed('learnKidsQuran'),
+            onOpenKidsGames: () => context.pushNamed('learnKidsGames'),
+            onOpenKidsStories: () => context.pushNamed('kidsStoryLibrary'),
+          ),
+          const SizedBox(height: 18),
+        ],
         _SectionHeader(
-          title: l10n.learnHubSuggestedSectionTitle,
-          subtitle: l10n.learnHubSuggestedSectionSubtitle,
+          title: l10n.learnHubLandingExploreAllTitle,
+          subtitle: l10n.learnHubLandingExploreAllSubtitle,
         ),
         const SizedBox(height: 10),
-        ...suggestedItems.map(
-          (item) => Padding(
-            padding: const EdgeInsets.only(bottom: 10),
-            child: _SearchResultTile(item: item),
-          ),
+        _ExploreAllCard(
+          searchController: _searchController,
+          query: _query,
+          searchResults: searchResults,
+          onQueryChanged: (value) => setState(() => _query = value),
+          onSearchOpened: () {
+            if (_loggedSearchOpen) return;
+            _loggedSearchOpen = true;
+            ref
+                .read(learnAnalyticsServiceProvider)
+                .logSearchOpened(surface: 'learn_landing');
+          },
+          onQuerySubmitted: (value) => ref
+              .read(learnAnalyticsServiceProvider)
+              .logSearchQuerySubmitted(surface: 'learn_landing', query: value),
+          onClearQuery: () {
+            _searchController.clear();
+            setState(() => _query = '');
+          },
+          onOpenExploreAll: () => context.pushNamed('learnExploreAllKnowledge'),
+          onOpenNotes: () => context.pushNamed('learnNotesLanding'),
+          onOpenFaq: () => context.pushNamed('faqLanding'),
+          onOpenLegacy: () => context.pushNamed('learnLegacy'),
+          analytics: ref.read(learnAnalyticsServiceProvider),
         ),
       ],
     );
   }
 
-  bool _isJourneyManagedLearnItem(
-    LearnHubKnowledgeItem item,
-    AppLocalizations l10n,
-  ) {
-    if (item.contentType == LearnHubContentType.journey) {
-      return true;
+  bool _isJourneyManagedDiscoveryItem(LearnDiscoveryIndexEntry entry) {
+    if (entry.contentType == LearnDiscoveryContentType.path ||
+        entry.contentType == LearnDiscoveryContentType.journey) {
+      return false;
     }
-    return LearnHubTaxonomy.subcategoryUsesJourneyRoute(
-      l10n,
-      item.subcategoryId,
-    );
+    return entry.contentType == LearnDiscoveryContentType.hub &&
+        entry.routeTarget.routeName == 'learnJourneyIslandHub';
   }
 }
 
@@ -227,10 +283,62 @@ class _SectionHeader extends StatelessWidget {
   }
 }
 
+class _BrowseJourneysCard extends StatelessWidget {
+  const _BrowseJourneysCard({
+    required this.title,
+    required this.subtitle,
+    required this.onOpenTracked,
+  });
+
+  final String title;
+  final String subtitle;
+  final VoidCallback onOpenTracked;
+
+  @override
+  Widget build(BuildContext context) {
+    return PremiumCard(
+      child: Row(
+        children: [
+          const Icon(Icons.route_rounded),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+                ),
+                const SizedBox(height: 4),
+                Text(subtitle),
+              ],
+            ),
+          ),
+          const SizedBox(width: 12),
+          FilledButton.tonalIcon(
+            onPressed: () {
+              onOpenTracked();
+              context.pushNamed('learnJourneyIslandHub');
+            },
+            icon: const Icon(Icons.arrow_forward_rounded),
+            label: Text(title),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class _ContinueLearningCard extends StatelessWidget {
-  const _ContinueLearningCard({required this.item});
+  const _ContinueLearningCard({
+    required this.item,
+    required this.onOpenTracked,
+  });
 
   final LearnUnifiedContentItem item;
+  final VoidCallback onOpenTracked;
 
   @override
   Widget build(BuildContext context) {
@@ -238,11 +346,14 @@ class _ContinueLearningCard extends StatelessWidget {
       borderRadius: BorderRadius.circular(20),
       onTap: item.routeName == null
           ? null
-          : () => context.pushNamed(
-              item.routeName!,
-              pathParameters: item.pathParameters,
-              queryParameters: item.queryParameters,
-            ),
+          : () {
+              onOpenTracked();
+              context.pushNamed(
+                item.routeName!,
+                pathParameters: item.pathParameters,
+                queryParameters: item.queryParameters,
+              );
+            },
       child: PremiumCard(
         child: Row(
           children: [
@@ -274,31 +385,947 @@ class _ContinueLearningCard extends StatelessWidget {
   }
 }
 
-class _SearchResultTile extends StatelessWidget {
-  const _SearchResultTile({required this.item});
+class _ContinueGuidedPathCard extends ConsumerWidget {
+  const _ContinueGuidedPathCard({
+    required this.localizedPath,
+    required this.nextStep,
+    required this.onContinueTracked,
+  });
 
-  final LearnHubKnowledgeItem item;
+  final LocalizedGuidedLearningPath localizedPath;
+  final LocalizedGuidedLearningPathStep nextStep;
+  final VoidCallback onContinueTracked;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final controller = ref.read(guidedLearningPathsControllerProvider.notifier);
+    final progress = ref.watch(
+      guidedLearningPathProgressProvider(localizedPath.path.id),
+    );
+    final completedCount = progress.completedStepIds.length;
+    final totalCount = localizedPath.path.steps.length;
+    final progressValue = totalCount == 0 ? 0.0 : completedCount / totalCount;
+    return PremiumCard(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Icon(Icons.alt_route_rounded),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      localizedPath.title,
+                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      l10n.guidedLearningPathCurrentStepLabel,
+                      style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    const SizedBox(height: 2),
+                    Text(nextStep.title),
+                    const SizedBox(height: 4),
+                    Text(
+                      nextStep.subtitle,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(width: 12),
+              FilledButton.tonalIcon(
+                onPressed: () {
+                  onContinueTracked();
+                  controller.markStepOpened(
+                    localizedPath.path,
+                    nextStep.step,
+                    sourceSurface: 'learn_landing_continue',
+                  );
+                  context.pushNamed(
+                    nextStep.step.routeTarget.routeName,
+                    pathParameters: nextStep.step.routeTarget.pathParameters,
+                    queryParameters: nextStep.step.routeTarget.queryParameters,
+                  );
+                },
+                icon: const Icon(Icons.play_arrow_rounded),
+                label: Text(l10n.guidedLearningPathContinueAction),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          Text(
+            l10n.guidedLearningPathStepOfTotal(completedCount + 1, totalCount),
+            style: Theme.of(
+              context,
+            ).textTheme.labelMedium?.copyWith(fontWeight: FontWeight.w700),
+          ),
+          const SizedBox(height: 6),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(999),
+            child: LinearProgressIndicator(
+              value: progressValue.clamp(0, 1),
+              minHeight: 8,
+              backgroundColor: Theme.of(
+                context,
+              ).colorScheme.surfaceContainerHighest,
+            ),
+          ),
+          const SizedBox(height: 6),
+          Text(
+            l10n.guidedLearningPathProgressValue(completedCount, totalCount),
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _DailyLearningCard extends StatelessWidget {
+  const _DailyLearningCard({required this.summary});
+
+  final LearnUnifiedSummaryV2 summary;
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    return PremiumCard(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            l10n.learnHubDailyThemeLabel(summary.dailyItem.theme.label),
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
+            ),
+          ),
+          const SizedBox(height: 6),
+          Text(
+            summary.dailyItem.item.title,
+            style: Theme.of(
+              context,
+            ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+          const SizedBox(height: 4),
+          Text(
+            summary.dailyItem.item.summary,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+          ),
+          const SizedBox(height: 10),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              FilledButton.tonalIcon(
+                onPressed: summary.dailyItem.item.routeName == null
+                    ? null
+                    : () => context.pushNamed(
+                        summary.dailyItem.item.routeName!,
+                        pathParameters: summary.dailyItem.item.pathParameters,
+                        queryParameters: summary.dailyItem.item.queryParameters,
+                      ),
+                icon: const Icon(Icons.auto_awesome_rounded),
+                label: Text(l10n.learnHubOpenDailyLearningAction),
+              ),
+              FilledButton.tonalIcon(
+                onPressed: () => context.pushNamed('journalCreate'),
+                icon: const Icon(Icons.edit_note_rounded),
+                label: Text(l10n.learnHubWriteReflectionAction),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _KidsDiscoveryCard extends StatelessWidget {
+  const _KidsDiscoveryCard({
+    required this.analytics,
+    required this.onOpenKidsQuran,
+    required this.onOpenKidsGames,
+    required this.onOpenKidsStories,
+  });
+
+  final LearnAnalyticsService analytics;
+  final VoidCallback onOpenKidsQuran;
+  final VoidCallback onOpenKidsGames;
+  final VoidCallback onOpenKidsStories;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return PremiumCard(
+      surfaceVariant: AppSurfaceVariant.panel,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+            decoration: BoxDecoration(
+              color: Theme.of(
+                context,
+              ).colorScheme.surfaceContainerHighest.withValues(alpha: 0.72),
+              borderRadius: BorderRadius.circular(999),
+            ),
+            child: Text(
+              l10n.learnHubKidsFeaturedLabel,
+              style: Theme.of(
+                context,
+              ).textTheme.labelMedium?.copyWith(fontWeight: FontWeight.w700),
+            ),
+          ),
+          const SizedBox(height: 10),
+          Text(
+            l10n.learnHubCategoryKidsLearningTitle,
+            style: Theme.of(
+              context,
+            ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+          ),
+          const SizedBox(height: 4),
+          Text(l10n.learnHubLandingKidsSubtitle),
+          const SizedBox(height: 6),
+          Text(
+            l10n.learnHubKidsFeaturedHelper,
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
+            ),
+          ),
+          const SizedBox(height: 10),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              FilledButton.tonalIcon(
+                onPressed: () {
+                  analytics.logPrimaryCardOpened(
+                    cardId: 'kids_featured_quran',
+                    sourceSurface: 'learn_landing_kids_featured',
+                    domain: 'kids',
+                    audience: LearnAnalyticsAudience.kids,
+                  );
+                  onOpenKidsQuran();
+                },
+                icon: const Icon(Icons.menu_book_rounded),
+                label: Text(l10n.learnHubSubcategoryKidsQuranTitle),
+              ),
+              FilledButton.tonalIcon(
+                onPressed: () {
+                  analytics.logPrimaryCardOpened(
+                    cardId: 'kids_featured_games',
+                    sourceSurface: 'learn_landing_kids_featured',
+                    domain: 'games',
+                    audience: LearnAnalyticsAudience.kids,
+                  );
+                  onOpenKidsGames();
+                },
+                icon: const Icon(Icons.sports_esports_rounded),
+                label: Text(l10n.learnHubSubcategoryKidsGamesTitle),
+              ),
+              FilledButton.tonalIcon(
+                onPressed: () {
+                  analytics.logPrimaryCardOpened(
+                    cardId: 'kids_featured_stories',
+                    sourceSurface: 'learn_landing_kids_featured',
+                    domain: 'stories',
+                    audience: LearnAnalyticsAudience.kids,
+                  );
+                  onOpenKidsStories();
+                },
+                icon: const Icon(Icons.auto_stories_rounded),
+                label: Text(l10n.learnHubSubcategoryKidsStoriesTitle),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _ExploreAllCard extends StatelessWidget {
+  const _ExploreAllCard({
+    required this.searchController,
+    required this.query,
+    required this.searchResults,
+    required this.onQueryChanged,
+    required this.onSearchOpened,
+    required this.onQuerySubmitted,
+    required this.onClearQuery,
+    required this.onOpenExploreAll,
+    required this.onOpenNotes,
+    required this.onOpenFaq,
+    required this.onOpenLegacy,
+    required this.analytics,
+  });
+
+  final TextEditingController searchController;
+  final String query;
+  final List<LearnDiscoverySearchResult> searchResults;
+  final ValueChanged<String> onQueryChanged;
+  final VoidCallback onSearchOpened;
+  final ValueChanged<String> onQuerySubmitted;
+  final VoidCallback onClearQuery;
+  final VoidCallback onOpenExploreAll;
+  final VoidCallback onOpenNotes;
+  final VoidCallback onOpenFaq;
+  final VoidCallback onOpenLegacy;
+  final LearnAnalyticsService analytics;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return PremiumCard(
+      surfaceVariant: AppSurfaceVariant.panel,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            l10n.learnHubLandingExploreAllTitle,
+            style: Theme.of(
+              context,
+            ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+          ),
+          const SizedBox(height: 4),
+          Text(l10n.learnHubLandingExploreAllSubtitle),
+          const SizedBox(height: 10),
+          TextField(
+            controller: searchController,
+            onChanged: onQueryChanged,
+            onTap: onSearchOpened,
+            onSubmitted: onQuerySubmitted,
+            decoration: InputDecoration(
+              hintText: l10n.learnHubSearchHint,
+              prefixIcon: const Icon(Icons.search_rounded),
+              suffixIcon: query.trim().isEmpty
+                  ? null
+                  : IconButton(
+                      onPressed: onClearQuery,
+                      icon: const Icon(Icons.close_rounded),
+                    ),
+              border: InputBorder.none,
+            ),
+          ),
+          const SizedBox(height: 10),
+          Text(
+            l10n.learnHubExploreQuickAccessTitle,
+            style: Theme.of(
+              context,
+            ).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w700),
+          ),
+          const SizedBox(height: 8),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              FilledButton.tonalIcon(
+                onPressed: () {
+                  analytics.logExploreSectionOpened(
+                    sectionId: 'quick_access_explore_all',
+                    sourceSurface: 'learn_landing',
+                  );
+                  onOpenExploreAll();
+                },
+                icon: const Icon(Icons.travel_explore_rounded),
+                label: Text(l10n.learnHubLandingExploreAllAction),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          Text(
+            l10n.learnHubExploreSupportTitle,
+            style: Theme.of(
+              context,
+            ).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w700),
+          ),
+          const SizedBox(height: 8),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              FilledButton.tonalIcon(
+                onPressed: () {
+                  analytics.logExploreSectionOpened(
+                    sectionId: 'support_notes',
+                    sourceSurface: 'learn_landing',
+                  );
+                  onOpenNotes();
+                },
+                icon: const Icon(Icons.sticky_note_2_outlined),
+                label: Text(l10n.learnHubCategoryNotesTitle),
+              ),
+              FilledButton.tonalIcon(
+                onPressed: () {
+                  analytics.logExploreSectionOpened(
+                    sectionId: 'support_faq',
+                    sourceSurface: 'learn_landing',
+                  );
+                  onOpenFaq();
+                },
+                icon: const Icon(Icons.help_outline_rounded),
+                label: Text(l10n.learnHubCategoryFaqTitle),
+              ),
+              FilledButton.tonalIcon(
+                onPressed: () {
+                  analytics.logLegacyRouteOpened(
+                    routeKey: '/learn/legacy',
+                    matchedLocation: '/learn/legacy',
+                  );
+                  onOpenLegacy();
+                },
+                icon: const Icon(Icons.library_books_rounded),
+                label: Text(l10n.learnHubLandingLibraryAction),
+              ),
+            ],
+          ),
+          if (query.trim().isNotEmpty) ...[
+            const SizedBox(height: 12),
+            Text(
+              l10n.learnHubExploreSearchResultsTitle,
+              style: Theme.of(
+                context,
+              ).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w700),
+            ),
+            const SizedBox(height: 8),
+            if (searchResults.isEmpty)
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(l10n.learnHubSearchEmptySubtitle),
+              )
+            else
+              ...searchResults.map(
+                (item) => Padding(
+                  padding: const EdgeInsets.only(bottom: 8),
+                  child: _SearchResultTile(
+                    result: item,
+                    analytics: analytics,
+                    sourceSurface: 'learn_landing',
+                  ),
+                ),
+              ),
+          ],
+        ],
+      ),
+    );
+  }
+}
+
+class _GuidedLearningPathsGrid extends StatelessWidget {
+  const _GuidedLearningPathsGrid({
+    required this.paths,
+    required this.activePathId,
+  });
+
+  final List<LocalizedGuidedLearningPath> paths;
+  final String? activePathId;
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final columns = constraints.maxWidth >= 720
+            ? 3
+            : constraints.maxWidth >= 460
+            ? 2
+            : 1;
+        final itemWidth = columns == 1
+            ? constraints.maxWidth
+            : (constraints.maxWidth - (12 * (columns - 1))) / columns;
+        return Wrap(
+          spacing: 12,
+          runSpacing: 12,
+          children: paths
+              .map(
+                (path) => SizedBox(
+                  width: itemWidth,
+                  child: _GuidedLearningPathCard(
+                    localizedPath: path,
+                    isActive: activePathId == path.path.id,
+                  ),
+                ),
+              )
+              .toList(growable: false),
+        );
+      },
+    );
+  }
+}
+
+class _GuidedLearningPathCard extends ConsumerWidget {
+  const _GuidedLearningPathCard({
+    required this.localizedPath,
+    required this.isActive,
+  });
+
+  final LocalizedGuidedLearningPath localizedPath;
+  final bool isActive;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final analytics = ref.read(learnAnalyticsServiceProvider);
+    final progress = ref.watch(
+      guidedLearningPathProgressProvider(localizedPath.path.id),
+    );
+    final completedCount = progress.completedStepIds.length;
+    final totalCount = localizedPath.path.steps.length;
+    final statusLabel = progress.isCompleted
+        ? l10n.guidedLearningPathStatusCompleted
+        : progress.isStarted
+        ? l10n.guidedLearningPathStatusInProgress
+        : l10n.guidedLearningPathStatusNotStarted;
+    final nextStep = localizedPath.steps.firstWhere(
+      (step) => !progress.completedStepIds.contains(step.step.id),
+      orElse: () => localizedPath.steps.last,
+    );
+    final progressValue = totalCount == 0 ? 0.0 : completedCount / totalCount;
+    final accent = switch (localizedPath.path.bucketId) {
+      'quran' => const Color(0xFF2C6E5B),
+      'worship' => const Color(0xFF2A7A78),
+      'character' => const Color(0xFF8A5A44),
+      'kids' => const Color(0xFF7A61D1),
+      _ => const Color(0xFF8B6B44),
+    };
+    return AnimatedScale(
+      scale: isActive ? 1.01 : 1,
+      duration: const Duration(milliseconds: 220),
+      curve: Curves.easeOutCubic,
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(20),
+          onTap: () {
+            analytics.logPrimaryCardOpened(
+              cardId: 'guided_path_${localizedPath.path.id}',
+              sourceSurface: 'learn_landing_paths',
+              domain: localizedPath.path.bucketId,
+              audience: switch (localizedPath.path.audience) {
+                GuidedLearningPathAudience.kids => LearnAnalyticsAudience.kids,
+                GuidedLearningPathAudience.general =>
+                  localizedPath.path.bucketId == 'foundations'
+                      ? LearnAnalyticsAudience.beginner
+                      : LearnAnalyticsAudience.general,
+              },
+            );
+            context.pushNamed(
+              'learnGuidedPathDetail',
+              pathParameters: <String, String>{'pathId': localizedPath.path.id},
+            );
+          },
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 220),
+            curve: Curves.easeOutCubic,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              color: accent.withValues(alpha: isActive ? 0.11 : 0.08),
+              border: Border.all(
+                color: accent.withValues(alpha: isActive ? 0.42 : 0.18),
+              ),
+              boxShadow: isActive
+                  ? <BoxShadow>[
+                      BoxShadow(
+                        color: accent.withValues(alpha: 0.10),
+                        blurRadius: 18,
+                        offset: const Offset(0, 8),
+                      ),
+                    ]
+                  : const <BoxShadow>[],
+            ),
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Container(
+                      width: 42,
+                      height: 42,
+                      decoration: BoxDecoration(
+                        color: accent.withValues(alpha: 0.14),
+                        borderRadius: BorderRadius.circular(14),
+                      ),
+                      child: Icon(
+                        IconData(
+                          localizedPath.path.iconCodePoint,
+                          fontFamily: 'MaterialIcons',
+                        ),
+                        color: accent,
+                      ),
+                    ),
+                    const Spacer(),
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 10,
+                        vertical: 6,
+                      ),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(999),
+                        color: accent.withValues(alpha: 0.12),
+                      ),
+                      child: Text(
+                        statusLabel,
+                        style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                          color: accent,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 14),
+                Text(
+                  localizedPath.title,
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+                ),
+                const SizedBox(height: 6),
+                Text(
+                  localizedPath.subtitle,
+                  maxLines: 3,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                const SizedBox(height: 12),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(999),
+                  child: LinearProgressIndicator(
+                    value: progressValue.clamp(0, 1),
+                    minHeight: 7,
+                    backgroundColor: Colors.white.withValues(alpha: 0.35),
+                    valueColor: AlwaysStoppedAnimation<Color>(accent),
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  l10n.guidedLearningPathProgressValue(
+                    completedCount,
+                    totalCount,
+                  ),
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: accent,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                if (!progress.isCompleted) ...[
+                  const SizedBox(height: 6),
+                  Text(
+                    l10n.guidedLearningPathNextStepLabel(nextStep.title),
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    ),
+                  ),
+                ],
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+extension on _LearningSectionLandingPageState {
+  List<SectionHubAction> _mainIslandActions(
+    BuildContext context,
+    AppLocalizations l10n,
+  ) {
+    final analytics = ref.read(learnAnalyticsServiceProvider);
+    final foundationsStyle = LearnHubTaxonomy.styleFor(
+      LearnHubCategoryId.foundations,
+    );
+    final quranStyle = LearnHubTaxonomy.styleFor(
+      LearnHubCategoryId.quranHadith,
+    );
+    final worshipStyle = LearnHubTaxonomy.styleFor(
+      LearnHubCategoryId.worshipPractice,
+    );
+    final characterStyle = LearnHubTaxonomy.styleFor(
+      LearnHubCategoryId.characterAdab,
+    );
+    final storiesStyle = LearnHubTaxonomy.styleFor(
+      LearnHubCategoryId.prophetsStories,
+    );
+    final gamesStyle = LearnHubTaxonomy.styleFor(
+      LearnHubCategoryId.quizzesChallenges,
+    );
+
+    return [
+      SectionHubAction(
+        title: l10n.learnHubCategoryFoundationsTitle,
+        subtitle: l10n.learnHubLandingFoundationsSubtitle,
+        icon: foundationsStyle.icon,
+        color: foundationsStyle.baseColor,
+        accentColor: foundationsStyle.accentColor,
+        onTap: () {
+          analytics.logPrimaryCardOpened(
+            cardId: 'island_foundations',
+            sourceSurface: 'learn_landing_islands',
+            domain: 'foundations',
+            audience: LearnAnalyticsAudience.beginner,
+          );
+          context.pushNamed(
+            'learnHubCategory',
+            pathParameters: {'categoryId': 'foundations'},
+          );
+        },
+      ),
+      SectionHubAction(
+        title: l10n.quranHubTitle,
+        subtitle: l10n.learnHubLandingQuranSubtitle,
+        icon: quranStyle.icon,
+        color: quranStyle.baseColor,
+        accentColor: quranStyle.accentColor,
+        onTap: () {
+          analytics.logPrimaryCardOpened(
+            cardId: 'island_quran',
+            sourceSurface: 'learn_landing_islands',
+            domain: 'quran',
+          );
+          context.push(NavTab.quran.path);
+        },
+      ),
+      SectionHubAction(
+        title: l10n.learnHubMainIslandWorshipTitle,
+        subtitle: l10n.learnHubLandingWorshipSubtitle,
+        icon: worshipStyle.icon,
+        color: worshipStyle.baseColor,
+        accentColor: worshipStyle.accentColor,
+        onTap: () {
+          analytics.logPrimaryCardOpened(
+            cardId: 'island_worship',
+            sourceSurface: 'learn_landing_islands',
+            domain: 'worship',
+          );
+          context.pushNamed(
+            'learnHubCategory',
+            pathParameters: {'categoryId': 'worship-practice'},
+          );
+        },
+      ),
+      SectionHubAction(
+        title: l10n.learnHubMainIslandCharacterTitle,
+        subtitle: l10n.learnHubLandingCharacterSubtitle,
+        icon: characterStyle.icon,
+        color: characterStyle.baseColor,
+        accentColor: characterStyle.accentColor,
+        onTap: () {
+          analytics.logPrimaryCardOpened(
+            cardId: 'island_character',
+            sourceSurface: 'learn_landing_islands',
+            domain: 'character',
+          );
+          context.pushNamed('learnCharacterCompanion');
+        },
+      ),
+      SectionHubAction(
+        title: l10n.learnHubMainIslandStoriesTitle,
+        subtitle: l10n.learnHubLandingStoriesSubtitle,
+        icon: storiesStyle.icon,
+        color: storiesStyle.baseColor,
+        accentColor: storiesStyle.accentColor,
+        onTap: () {
+          analytics.logPrimaryCardOpened(
+            cardId: 'island_stories',
+            sourceSurface: 'learn_landing_islands',
+            domain: 'stories',
+          );
+          context.pushNamed(
+            'learnHubCategory',
+            pathParameters: {'categoryId': 'prophets-stories'},
+          );
+        },
+      ),
+      SectionHubAction(
+        title: l10n.learnHubMainIslandGamesTitle,
+        subtitle: l10n.learnHubLandingGamesSubtitle,
+        icon: Icons.sports_esports_rounded,
+        color: gamesStyle.baseColor,
+        accentColor: gamesStyle.accentColor,
+        onTap: () {
+          analytics.logPrimaryCardOpened(
+            cardId: 'island_games',
+            sourceSurface: 'learn_landing_islands',
+            domain: 'games',
+          );
+          context.pushNamed('learnGamesIsland');
+        },
+      ),
+    ];
+  }
+
+  List<SectionHubAction> _kidsVisibleActions(
+    BuildContext context,
+    AppLocalizations l10n,
+  ) {
+    final analytics = ref.read(learnAnalyticsServiceProvider);
+    final kidsStyle = LearnHubTaxonomy.styleFor(
+      LearnHubCategoryId.kidsLearning,
+    );
+    final gamesStyle = LearnHubTaxonomy.styleFor(
+      LearnHubCategoryId.quizzesChallenges,
+    );
+    return [
+      SectionHubAction(
+        title: l10n.learnHubSubcategoryKidsQuranTitle,
+        subtitle: l10n.learnHubSubcategoryKidsQuranSubtitle,
+        icon: Icons.menu_book_rounded,
+        color: kidsStyle.baseColor,
+        accentColor: kidsStyle.accentColor,
+        onTap: () {
+          analytics.logPrimaryCardOpened(
+            cardId: 'kids_island_quran',
+            sourceSurface: 'learn_landing_islands',
+            domain: 'kids',
+            audience: LearnAnalyticsAudience.kids,
+          );
+          context.pushNamed('learnKidsQuran');
+        },
+      ),
+      SectionHubAction(
+        title: l10n.learnHubSubcategoryKidsArabicLearningTitle,
+        subtitle: l10n.learnHubSubcategoryKidsArabicLearningSubtitle,
+        icon: Icons.translate_rounded,
+        color: kidsStyle.baseColor,
+        accentColor: kidsStyle.accentColor,
+        onTap: () {
+          analytics.logPrimaryCardOpened(
+            cardId: 'kids_island_arabic',
+            sourceSurface: 'learn_landing_islands',
+            domain: 'kids',
+            audience: LearnAnalyticsAudience.kids,
+          );
+          context.pushNamed('learnKidsArabicLearning');
+        },
+      ),
+      SectionHubAction(
+        title: l10n.learnHubSubcategoryKidsStoriesTitle,
+        subtitle: l10n.learnHubSubcategoryKidsStoriesSubtitle,
+        icon: Icons.auto_stories_rounded,
+        color: kidsStyle.baseColor,
+        accentColor: kidsStyle.accentColor,
+        onTap: () {
+          analytics.logPrimaryCardOpened(
+            cardId: 'kids_island_stories',
+            sourceSurface: 'learn_landing_islands',
+            domain: 'stories',
+            audience: LearnAnalyticsAudience.kids,
+          );
+          context.pushNamed('kidsStoryLibrary');
+        },
+      ),
+      SectionHubAction(
+        title: l10n.learnHubSubcategoryKidsHadithTitle,
+        subtitle: l10n.learnHubSubcategoryKidsHadithSubtitle,
+        icon: Icons.menu_book_outlined,
+        color: kidsStyle.baseColor,
+        accentColor: kidsStyle.accentColor,
+        onTap: () {
+          analytics.logPrimaryCardOpened(
+            cardId: 'kids_island_hadith',
+            sourceSurface: 'learn_landing_islands',
+            domain: 'kids',
+            audience: LearnAnalyticsAudience.kids,
+          );
+          context.pushNamed('learnKidsHadith');
+        },
+      ),
+      SectionHubAction(
+        title: l10n.learnHubSubcategoryKidsGamesTitle,
+        subtitle: l10n.learnHubSubcategoryKidsGamesSubtitle,
+        icon: Icons.sports_esports_rounded,
+        color: gamesStyle.baseColor,
+        accentColor: gamesStyle.accentColor,
+        onTap: () {
+          analytics.logPrimaryCardOpened(
+            cardId: 'kids_island_games',
+            sourceSurface: 'learn_landing_islands',
+            domain: 'games',
+            audience: LearnAnalyticsAudience.kids,
+          );
+          context.pushNamed('learnKidsGames');
+        },
+      ),
+      SectionHubAction(
+        title: l10n.learnHubLandingExploreAllTitle,
+        subtitle: l10n.learnHubLandingExploreAllSubtitle,
+        icon: Icons.travel_explore_rounded,
+        color: const Color(0xFFE0EEF0),
+        accentColor: const Color(0xFF2E7380),
+        onTap: () {
+          analytics.logPrimaryCardOpened(
+            cardId: 'kids_island_explore_all',
+            sourceSurface: 'learn_landing_islands',
+            domain: 'explore',
+            audience: LearnAnalyticsAudience.kids,
+          );
+          context.pushNamed('learnExploreAllKnowledge');
+        },
+      ),
+    ];
+  }
+}
+
+class _SearchResultTile extends StatelessWidget {
+  const _SearchResultTile({
+    required this.result,
+    required this.analytics,
+    required this.sourceSurface,
+  });
+
+  final LearnDiscoverySearchResult result;
+  final LearnAnalyticsService analytics;
+  final String sourceSurface;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final item = result.entry;
     final style = LearnHubTaxonomy.styleFor(item.categoryId);
     return Semantics(
       button: true,
       label: '${item.title} ${_contentTypeLabel(l10n, item.contentType)}',
       child: InkWell(
         borderRadius: BorderRadius.circular(16),
-        onTap: () => context.pushNamed(
-          item.routeTarget.routeName,
-          pathParameters: item.routeTarget.pathParameters,
-          queryParameters: item.routeTarget.queryParameters,
-        ),
+        onTap: () {
+          analytics.logSearchResultOpened(
+            surface: sourceSurface,
+            resultId: item.id,
+            resultType: item.contentType.name,
+            domain: item.categoryId.name,
+            routeName: item.routeTarget.routeName,
+          );
+          context.pushNamed(
+            item.routeTarget.routeName,
+            pathParameters: item.routeTarget.pathParameters,
+            queryParameters: item.routeTarget.queryParameters,
+          );
+        },
         child: Container(
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
             color: style.baseColor.withValues(alpha: 0.48),
             borderRadius: BorderRadius.circular(16),
-            border: Border.all(color: style.accentColor.withValues(alpha: 0.16)),
+            border: Border.all(
+              color: style.accentColor.withValues(alpha: 0.16),
+            ),
           ),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -324,9 +1351,7 @@ class _SearchResultTile extends StatelessWidget {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      item.subcategoryTitle == null
-                          ? LearnHubTaxonomy.categoryTitle(l10n, item.categoryId)
-                          : '${LearnHubTaxonomy.categoryTitle(l10n, item.categoryId)} • ${item.subcategoryTitle}',
+                      LearnHubTaxonomy.categoryTitle(l10n, item.categoryId),
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: style.accentColor,
                         fontWeight: FontWeight.w600,
@@ -365,29 +1390,31 @@ class _SearchResultTile extends StatelessWidget {
 
   String _contentTypeLabel(
     AppLocalizations l10n,
-    LearnHubContentType contentType,
+    LearnDiscoveryContentType contentType,
   ) {
     switch (contentType) {
-      case LearnHubContentType.category:
-        return l10n.learnHubContentTypeCategory;
-      case LearnHubContentType.subcategory:
-        return l10n.learnHubContentTypeSubcategory;
-      case LearnHubContentType.lesson:
+      case LearnDiscoveryContentType.path:
+        return l10n.learnDiscoveryTypePath;
+      case LearnDiscoveryContentType.lesson:
         return l10n.learnHubContentTypeLesson;
-      case LearnHubContentType.story:
+      case LearnDiscoveryContentType.story:
         return l10n.learnHubContentTypeStory;
-      case LearnHubContentType.quiz:
+      case LearnDiscoveryContentType.practice:
+        return l10n.learnDiscoveryTypePractice;
+      case LearnDiscoveryContentType.reflection:
+        return l10n.learnDiscoveryTypeReflection;
+      case LearnDiscoveryContentType.quiz:
         return l10n.learnHubContentTypeQuiz;
-      case LearnHubContentType.challenge:
-        return l10n.learnHubContentTypeChallenge;
-      case LearnHubContentType.tool:
+      case LearnDiscoveryContentType.tool:
         return l10n.learnHubContentTypeTool;
-      case LearnHubContentType.note:
+      case LearnDiscoveryContentType.note:
         return l10n.learnHubContentTypeNote;
-      case LearnHubContentType.faq:
+      case LearnDiscoveryContentType.faq:
         return l10n.learnHubContentTypeFaq;
-      case LearnHubContentType.journey:
+      case LearnDiscoveryContentType.journey:
         return l10n.learnHubContentTypeJourney;
+      case LearnDiscoveryContentType.hub:
+        return l10n.learnHubContentTypeSubcategory;
     }
   }
 }

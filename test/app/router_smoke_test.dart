@@ -16,6 +16,13 @@ import 'package:path_of_nur/features/learn/presentation/pages/learning_section_l
 import 'package:path_of_nur/features/learn/presentation/pages/learn_quizzes_hub_page.dart';
 import 'package:path_of_nur/features/learn/presentation/learn_page.dart';
 import 'package:path_of_nur/features/learn/presentation/pages/quran_app_hub_page.dart';
+import 'package:path_of_nur/features/learn/guided_paths/presentation/daily_dhikr_path_next_steps_page.dart';
+import 'package:path_of_nur/features/learn/guided_paths/presentation/foundations_path_next_steps_page.dart';
+import 'package:path_of_nur/features/learn/guided_paths/presentation/kids_starter_path_bridge_page.dart';
+import 'package:path_of_nur/features/learn/guided_paths/presentation/kids_starter_path_next_steps_page.dart';
+import 'package:path_of_nur/features/learn/guided_paths/presentation/quran_beginner_soft_bridge_page.dart';
+import 'package:path_of_nur/features/learn/guided_paths/presentation/stories_path_bridge_page.dart';
+import 'package:path_of_nur/features/learn/guided_paths/presentation/stories_path_next_steps_page.dart';
 import 'package:path_of_nur/features/learn/prophets/presentation/prophets_page.dart';
 import 'package:path_of_nur/features/learn/quran/presentation/quran_reflections_page.dart';
 import 'package:path_of_nur/features/learn/quran/presentation/quran_search_page.dart';
@@ -174,6 +181,41 @@ void main() {
         ('/learn/browse', LearnExploreAllKnowledgePage),
         ('/learn/prophets', ProphetsPage),
         ('/learn/hub/prophets', ProphetsPage),
+      ];
+
+      for (final (path, pageType) in cases) {
+        router.go(path);
+        await pumpRouteFrames(tester);
+        expect(find.byType(pageType), findsOneWidget, reason: path);
+        expect(tester.takeException(), isNull, reason: path);
+      }
+    },
+  );
+
+  testWidgets(
+    'guided path bridge and next-step routes open without runtime failures',
+    (tester) async {
+      final container = await makeTestContainer(
+        overrides: <Override>[
+          dailyNowProvider.overrideWith(
+            (ref) =>
+                Stream<DateTime>.value(DateTime.parse('2026-03-14T12:00:00')),
+          ),
+        ],
+      );
+      final router = container.read(appRouterProvider);
+
+      await tester.pumpWidget(buildRouterTestApp(container));
+      await pumpRouteFrames(tester);
+
+      final cases = <(String, Type)>[
+        ('/learn/paths/foundations/next', FoundationsPathNextStepsPage),
+        ('/learn/paths/daily-dhikr/next', DailyDhikrPathNextStepsPage),
+        ('/learn/paths/quran-beginner/bridge', QuranBeginnerSoftBridgePage),
+        ('/learn/paths/kids-starter/bridge', KidsStarterPathBridgePage),
+        ('/learn/paths/kids-starter/next', KidsStarterPathNextStepsPage),
+        ('/learn/paths/stories/bridge', StoriesPathBridgePage),
+        ('/learn/paths/stories/next', StoriesPathNextStepsPage),
       ];
 
       for (final (path, pageType) in cases) {

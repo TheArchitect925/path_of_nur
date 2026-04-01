@@ -3437,6 +3437,80 @@ class AppLocalizationsUr extends AppLocalizations {
       'اپنا سفر جاری رکھیں، تیزی سے تلاش کریں، اور واضح زمرہ کی ملکیت کے ذریعے سیکھنے کے ہر راستے کو دریافت کریں۔';
 
   @override
+  String get learnHubLandingCalmSubtitle =>
+      'Continue your journey, find today’s lesson, and open one calm learning path at a time.';
+
+  @override
+  String get learnHubContinueJourneyTitle => 'Continue Your Journey';
+
+  @override
+  String get learnHubContinueJourneySubtitle =>
+      'Pick up the last lesson, story, or practice that still feels alive.';
+
+  @override
+  String get learnHubDailyLearningLandingSubtitle =>
+      'A gentle next step for today.';
+
+  @override
+  String get learnHubVisibleIslandsTitle => 'Choose a focus';
+
+  @override
+  String get learnHubVisibleIslandsSubtitle =>
+      'Begin with one area, then go deeper at your own pace.';
+
+  @override
+  String get learnHubVisibleKidsIslandsSubtitle =>
+      'Choose one calm place to read, listen, play, or learn next.';
+
+  @override
+  String get learnHubLandingBrowseJourneysTitle => 'Open Guided Paths';
+
+  @override
+  String get learnHubLandingBrowseJourneysSubtitle =>
+      'Browse the full journeys home when you want a more guided route.';
+
+  @override
+  String get learnHubLandingFoundationsSubtitle =>
+      'Start with belief, prayer basics, and daily essentials.';
+
+  @override
+  String get learnHubLandingQuranSubtitle =>
+      'Enter the Qur’an space for reading, reflection, and guided study.';
+
+  @override
+  String get learnHubLandingWorshipSubtitle =>
+      'Build your daily practice through salah, duas, and guidance.';
+
+  @override
+  String get learnHubLandingCharacterSubtitle =>
+      'Grow in adab, patience, and self-improvement.';
+
+  @override
+  String get learnHubLandingStoriesSubtitle =>
+      'Learn through prophets, seerah, and Islamic history.';
+
+  @override
+  String get learnHubLandingGamesSubtitle =>
+      'Play quizzes, challenges, and review games.';
+
+  @override
+  String get learnHubLandingKidsSubtitle =>
+      'A gentle place for Qur’an, stories, and practice for younger learners.';
+
+  @override
+  String get learnHubLandingExploreAllTitle => 'Explore All';
+
+  @override
+  String get learnHubLandingExploreAllSubtitle =>
+      'Browse tools, notes, and more without crowding the main paths.';
+
+  @override
+  String get learnHubLandingExploreAllAction => 'Open Explore All';
+
+  @override
+  String get learnHubLandingLibraryAction => 'Library';
+
+  @override
   String get learnHubJourneysSectionTitle => 'سفر';
 
   @override
@@ -3487,6 +3561,13 @@ class AppLocalizationsUr extends AppLocalizations {
   @override
   String get learnHubExploreAllSubtitle =>
       'زمرہ کے فلٹرز، تلاش، اور رنگ کوڈڈ کارڈز کے ساتھ مکمل سیکھنے کی لائبریری دیکھیں۔';
+
+  @override
+  String get learnDiscoveryExploreTitle => 'Explore Learning';
+
+  @override
+  String get learnDiscoveryExploreSubtitle =>
+      'Find guided paths, focused lessons, and calm starting points without getting lost in the wider library.';
 
   @override
   String get learnHubCategoryOverviewTitle => 'زمرہ کا جائزہ';
@@ -3570,16 +3651,46 @@ class AppLocalizationsUr extends AppLocalizations {
   String get learnHubBadgeExplore => 'دریافت کریں۔';
 
   @override
+  String get learnDiscoveryBestMatchTitle => 'Best Next Match';
+
+  @override
+  String get learnDiscoveryLessonsAndPagesTitle => 'Lessons & Pages';
+
+  @override
+  String get learnDiscoveryKidsResultsTitle => 'Kids Results';
+
+  @override
+  String get learnDiscoveryRelatedContentTitle => 'You May Also Want';
+
+  @override
+  String get learnDiscoveryStartHereTitle => 'Start Here';
+
+  @override
+  String get learnDiscoveryPracticeAndToolsTitle => 'Practice & Tools';
+
+  @override
+  String get learnDiscoveryRelatedLabel => 'Related:';
+
+  @override
   String get learnHubContentTypeCategory => 'زمرہ';
 
   @override
   String get learnHubContentTypeSubcategory => 'ذیلی زمرہ';
 
   @override
+  String get learnDiscoveryTypePath => 'Path';
+
+  @override
   String get learnHubContentTypeLesson => 'سبق';
 
   @override
   String get learnHubContentTypeStory => 'کہانی';
+
+  @override
+  String get learnDiscoveryTypePractice => 'Practice';
+
+  @override
+  String get learnDiscoveryTypeReflection => 'Reflection';
 
   @override
   String get learnHubContentTypeQuiz => 'کوئز';
@@ -3598,6 +3709,15 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get learnHubContentTypeJourney => 'سفر';
+
+  @override
+  String get learnDiscoveryAudienceGeneral => 'General';
+
+  @override
+  String get learnDiscoveryDifficultyStartHere => 'Start Here';
+
+  @override
+  String get learnDiscoveryDifficultyGrowing => 'Growing';
 
   @override
   String get learnHubCategoryFoundationsTitle => 'بنیادیں';
@@ -3633,6 +3753,18 @@ class AppLocalizationsUr extends AppLocalizations {
   @override
   String get learnHubCategoryCharacterAdabSubtitle =>
       'رحم، آداب، اخلاص اور روزمرہ کے طرز عمل کا ایک واضح مالک ہے۔';
+
+  @override
+  String get learnHubMainIslandWorshipTitle => 'Worship';
+
+  @override
+  String get learnHubMainIslandCharacterTitle => 'Character';
+
+  @override
+  String get learnHubMainIslandStoriesTitle => 'Stories';
+
+  @override
+  String get learnHubMainIslandGamesTitle => 'Games';
 
   @override
   String get learnHubCategoryArabicLanguageTitle => 'Arabic & Language';
@@ -37539,6 +37671,896 @@ class AppLocalizationsUr extends AppLocalizations {
   String quranReflectionsPathwayStopHelper(Object stopTitle) {
     return 'What do you want to remember from $stopTitle?';
   }
+
+  @override
+  String get guidedLearningPathsTitle => 'Guided paths';
+
+  @override
+  String get guidedLearningPathsSectionTitle => 'Start a Journey';
+
+  @override
+  String get guidedLearningPathsSectionSubtitle =>
+      'Choose one clear path and build momentum step by step.';
+
+  @override
+  String get guidedLearningPathsSectionKidsSubtitle =>
+      'Start with one gentle path made for younger learners.';
+
+  @override
+  String get guidedLearningPathMissingSubtitle =>
+      'This path is not available right now';
+
+  @override
+  String get guidedLearningPathMissingBody =>
+      'The journey you selected could not be found, but the rest of Learn is still available.';
+
+  @override
+  String get guidedLearningPathUnavailableSubtitle =>
+      'This path is not part of the current kids view';
+
+  @override
+  String get guidedLearningPathUnavailableBody =>
+      'Open a kids-friendly path to keep learning in the current profile.';
+
+  @override
+  String get guidedLearningPathCompletedLabel => 'Completed';
+
+  @override
+  String get guidedLearningPathCurrentStepLabel => 'Current step';
+
+  @override
+  String get guidedLearningPathContinueAction => 'Continue journey';
+
+  @override
+  String get guidedLearningPathStartAction => 'Start journey';
+
+  @override
+  String get guidedLearningPathMarkStepCompleteAction => 'Mark step complete';
+
+  @override
+  String get guidedLearningPathContinueStepAction => 'Continue step';
+
+  @override
+  String get guidedLearningPathStepOpenAction => 'Open step';
+
+  @override
+  String get guidedLearningPathReviewStepAction => 'Review step';
+
+  @override
+  String get guidedLearningPathOpenNextAction => 'Open next step';
+
+  @override
+  String get guidedLearningPathStatusNotStarted => 'Not started';
+
+  @override
+  String get guidedLearningPathStatusInProgress => 'In progress';
+
+  @override
+  String get guidedLearningPathStatusCompleted => 'Completed';
+
+  @override
+  String get guidedPathFoundationsTitle => 'Foundations Path';
+
+  @override
+  String get guidedPathFoundationsSubtitle =>
+      'Start with a calm, beginner-safe path through Islam, belief, and your first steady steps.';
+
+  @override
+  String get guidedPathFoundationsDescription =>
+      'A gentle first path for new or returning learners. Begin with what Islam is, who Allah is, the five pillars, and the clearest next step for continuing your learning.';
+
+  @override
+  String get guidedPathSalahTitle => 'Salah Path';
+
+  @override
+  String get guidedPathSalahSubtitle =>
+      'Begin with why Salah matters, then move into prayer preparation and guided practice step by step.';
+
+  @override
+  String get guidedPathSalahDescription =>
+      'A calmer beginner path into Salah. Start with the meaning of prayer, then move into wudu, practice, and one guided prayer flow without needing to figure everything out at once.';
+
+  @override
+  String get guidedPathQuranBeginnerTitle => 'Qur’an Beginner Path';
+
+  @override
+  String get guidedPathQuranBeginnerSubtitle =>
+      'Begin gently, start small, and enter the Qur’an with calm reflection instead of pressure.';
+
+  @override
+  String get guidedPathQuranBeginnerDescription =>
+      'A soft introduction to the canonical Qur’an experience. Start with reassurance and one calm entry point, then move into summary, reading, and deeper Qur’an pathways at your pace.';
+
+  @override
+  String get guidedPathDailyDhikrTitle => 'Daily Dhikr Path';
+
+  @override
+  String get guidedPathDailyDhikrSubtitle =>
+      'Begin with the meaning of dhikr, then build a small and steady habit of remembrance.';
+
+  @override
+  String get guidedPathDailyDhikrDescription =>
+      'A calm path into daily dhikr that starts with understanding, grows through one simple remembrance, and only introduces the tool after the habit itself makes sense.';
+
+  @override
+  String get guidedPathCharacterTitle => 'Character Path';
+
+  @override
+  String get guidedPathCharacterSubtitle =>
+      'Begin with what good character means, then carry one trait into daily life with calm reflection.';
+
+  @override
+  String get guidedPathCharacterDescription =>
+      'A grounded character path that starts gently, focuses on relatable traits, includes practical application, and ends with a clear next step into stories or deeper character study.';
+
+  @override
+  String get guidedPathStoriesTitle => 'Stories Path';
+
+  @override
+  String get guidedPathStoriesSubtitle =>
+      'Learn through prophets, Seerah, and story-led lessons that shape the heart before the details.';
+
+  @override
+  String get guidedPathStoriesDescription =>
+      'A beginner-friendly story journey that starts with why sacred stories matter, moves through prophets and the Seerah, then turns those stories into reflection and clear next steps.';
+
+  @override
+  String get guidedPathKidsStarterTitle => 'Kids Starter Path';
+
+  @override
+  String get guidedPathKidsStarterSubtitle =>
+      'A joyful first path through one letter, one story, and one simple dua.';
+
+  @override
+  String get guidedPathKidsStarterDescription =>
+      'A child-friendly starter path that begins gently, uses the strongest kids learning lanes already in the app, and ends with a clear handoff into deeper Arabic, story, and dua learning.';
+
+  @override
+  String get guidedPathFoundationsStepOverviewTitle => 'What is Islam?';
+
+  @override
+  String get guidedPathFoundationsStepOverviewSubtitle =>
+      'Begin with a simple introduction to Islam as surrender, worship, and mercy.';
+
+  @override
+  String get guidedPathFoundationsStepDuasTitle => 'Who is Allah?';
+
+  @override
+  String get guidedPathFoundationsStepDuasSubtitle =>
+      'Build a calm foundation by learning who Allah is before moving deeper into practice.';
+
+  @override
+  String get guidedPathFoundationsStepSalahTitle => 'The five pillars';
+
+  @override
+  String get guidedPathFoundationsStepSalahSubtitle =>
+      'See how prayer fits into the lived structure of Islam and why it matters.';
+
+  @override
+  String get guidedPathFoundationsStepHadithTitle => 'Choose your next step';
+
+  @override
+  String get guidedPathFoundationsStepHadithSubtitle =>
+      'Finish the foundations path with a clear handoff into Salah, Qur’an, or daily dhikr.';
+
+  @override
+  String get guidedPathSalahStepHubTitle => 'Why Salah matters';
+
+  @override
+  String get guidedPathSalahStepHubSubtitle =>
+      'Begin with a calm introduction to prayer as your daily meeting with Allah before entering the full Salah tools.';
+
+  @override
+  String get guidedPathSalahStepWuduGuideTitle => 'Review wudu';
+
+  @override
+  String get guidedPathSalahStepWuduGuideSubtitle =>
+      'Walk through ablution clearly before moving into practice.';
+
+  @override
+  String get guidedPathSalahStepWuduTrainerTitle => 'Practice wudu';
+
+  @override
+  String get guidedPathSalahStepWuduTrainerSubtitle =>
+      'Use the trainer to reinforce each step with calm repetition.';
+
+  @override
+  String get guidedPathSalahStepGuidedPrayerTitle => 'Try guided prayer';
+
+  @override
+  String get guidedPathSalahStepGuidedPrayerSubtitle =>
+      'Enter guided prayer to reinforce one prayer with structured support.';
+
+  @override
+  String get guidedPathQuranStepSummaryTitle => 'Start gently with the Qur’an';
+
+  @override
+  String get guidedPathQuranStepSummarySubtitle =>
+      'Begin with a calm welcome that removes pressure and helps you take the first small step.';
+
+  @override
+  String get guidedPathQuranStepDailyTitle => 'See the wider map';
+
+  @override
+  String get guidedPathQuranStepDailySubtitle =>
+      'Browse the surahs through a calmer summary surface before entering the full reading flow.';
+
+  @override
+  String get guidedPathQuranStepReaderTitle => 'Enter the reader when ready';
+
+  @override
+  String get guidedPathQuranStepReaderSubtitle =>
+      'Open the canonical Qur’an reader and continue at your own pace through reading or listening.';
+
+  @override
+  String get guidedPathQuranStepPathsTitle => 'Continue with Qur’an pathways';
+
+  @override
+  String get guidedPathQuranStepPathsSubtitle =>
+      'Follow the deeper guided Qur’an study paths when you are ready.';
+
+  @override
+  String get guidedPathDhikrStepIntroTitle => 'What is dhikr?';
+
+  @override
+  String get guidedPathDhikrStepIntroSubtitle =>
+      'Begin with a calm explanation of remembrance and why it softens the heart.';
+
+  @override
+  String get guidedPathDhikrStepCounterTitle =>
+      'Start with one simple remembrance';
+
+  @override
+  String get guidedPathDhikrStepCounterSubtitle =>
+      'Keep the barrier low with a small authentic dhikr you can return to easily.';
+
+  @override
+  String get guidedPathDhikrStepAfterSalahTitle =>
+      'Build a simple daily rhythm';
+
+  @override
+  String get guidedPathDhikrStepAfterSalahSubtitle =>
+      'Choose steadiness over volume and let dhikr settle naturally into your day.';
+
+  @override
+  String get guidedPathDhikrStepRoutineTitle =>
+      'Use the dhikr tool and continue';
+
+  @override
+  String get guidedPathDhikrStepRoutineSubtitle =>
+      'Open the counter with intention, then choose the next lane that will help the habit stay alive.';
+
+  @override
+  String get guidedPathCharacterStepCompanionTitle =>
+      'Begin with what good character means';
+
+  @override
+  String get guidedPathCharacterStepCompanionSubtitle =>
+      'Start with a soft introduction to adab, sincerity, patience, and the kind of heart you want to build.';
+
+  @override
+  String get guidedPathCharacterStepLessonsTitle => 'Meet one core trait';
+
+  @override
+  String get guidedPathCharacterStepLessonsSubtitle =>
+      'Use the focused character companion to begin with patience and practical growth.';
+
+  @override
+  String get guidedPathCharacterStepQuranTitle =>
+      'Practice kindness in daily life';
+
+  @override
+  String get guidedPathCharacterStepQuranSubtitle =>
+      'Take one relatable trait into speech, service, and everyday relationships.';
+
+  @override
+  String get guidedPathCharacterStepJourneyTitle =>
+      'Reflect and carry one trait forward';
+
+  @override
+  String get guidedPathCharacterStepJourneySubtitle =>
+      'Pause, gather what you learned, and choose one quality to keep practicing this week.';
+
+  @override
+  String get guidedPathStoriesStepIntroTitle => 'Let’s learn through stories';
+
+  @override
+  String get guidedPathStoriesStepIntroSubtitle =>
+      'Begin with a calm welcome that shows why stories matter in Islamic learning.';
+
+  @override
+  String get guidedPathStoriesStepProphetsEntryTitle =>
+      'Begin with the Prophets';
+
+  @override
+  String get guidedPathStoriesStepProphetsEntrySubtitle =>
+      'Start with a simple entry into the prophetic story lane.';
+
+  @override
+  String get guidedPathStoriesStepProphetsJourneyTitle =>
+      'Follow the prophetic story arc';
+
+  @override
+  String get guidedPathStoriesStepProphetsJourneySubtitle =>
+      'Move through the Journey of Revelation so the stories feel connected instead of scattered.';
+
+  @override
+  String get guidedPathStoriesStepSeerahIntroTitle => 'Enter the Seerah gently';
+
+  @override
+  String get guidedPathStoriesStepSeerahIntroSubtitle =>
+      'Meet the early life of the Prophet ﷺ before the larger mission unfolds.';
+
+  @override
+  String get guidedPathStoriesStepSeerahMomentTitle => 'Learn from the Hijrah';
+
+  @override
+  String get guidedPathStoriesStepSeerahMomentSubtitle =>
+      'See one key moment of sacrifice, planning, and trust in Allah.';
+
+  @override
+  String get guidedPathStoriesStepReflectionTitle =>
+      'Turn story into character';
+
+  @override
+  String get guidedPathStoriesStepReflectionSubtitle =>
+      'Reflect on how mercy, courage, and patience become lived character.';
+
+  @override
+  String get guidedPathStoriesStepNextTitle =>
+      'Choose your next story-led path';
+
+  @override
+  String get guidedPathStoriesStepNextSubtitle =>
+      'Finish with a clear handoff into character, Qur’an reflection, or deeper history.';
+
+  @override
+  String get guidedPathKidsStepQuranTitle => 'Let’s learn together';
+
+  @override
+  String get guidedPathKidsStepQuranSubtitle =>
+      'Start with a warm welcome and one small step at a gentle pace.';
+
+  @override
+  String get guidedPathKidsStepArabicTitle => 'Meet the letter Alif';
+
+  @override
+  String get guidedPathKidsStepArabicSubtitle =>
+      'Trace one first Arabic letter and enjoy hearing its sound.';
+
+  @override
+  String get guidedPathKidsStepStoriesTitle => 'Hear a short story';
+
+  @override
+  String get guidedPathKidsStepStoriesSubtitle =>
+      'Follow a gentle story about saying Bismillah before eating.';
+
+  @override
+  String get guidedPathKidsStepGamesTitle => 'Learn a simple dua';
+
+  @override
+  String get guidedPathKidsStepGamesSubtitle =>
+      'Practice Bismillah, then choose where to learn more next.';
+
+  @override
+  String get learnKidsStarterBridgeTitle => 'Let’s learn together';
+
+  @override
+  String get learnKidsStarterBridgeSubtitle =>
+      'We will start small and enjoy one kind step at a time.';
+
+  @override
+  String get learnKidsStarterBridgeIntroTitle => 'A happy first path';
+
+  @override
+  String get learnKidsStarterBridgeIntroBody =>
+      'This starter path is made for a gentle beginning. We will meet one Arabic letter, hear one short story, and learn one simple dua together.';
+
+  @override
+  String get learnKidsStarterBridgeArabicHint =>
+      'We begin with one easy letter so the first step feels light and fun.';
+
+  @override
+  String get learnKidsStarterBridgeStoryHint =>
+      'Then we hear a short story that helps the next dua feel meaningful.';
+
+  @override
+  String get learnKidsStarterBridgeBeginAction => 'Start with Alif';
+
+  @override
+  String get learnKidsStarterNextStepsTitle => 'You’re ready for more';
+
+  @override
+  String get learnKidsStarterNextStepsSubtitle =>
+      'Finish with one simple dua, then keep learning in the lane that feels best.';
+
+  @override
+  String get learnKidsStarterNextStepsIntroTitle =>
+      'A simple dua to keep with you';
+
+  @override
+  String get learnKidsStarterNextStepsIntroBody =>
+      'Bismillah is a beautiful way to begin. Open the kids dua lesson, practice it calmly, and then choose what you want to explore next.';
+
+  @override
+  String get learnKidsStarterNextStepsOpenDuaAction => 'Open the Bismillah dua';
+
+  @override
+  String get learnKidsStarterNextStepsSectionTitle => 'Choose your next lane';
+
+  @override
+  String get learnKidsStarterNextStepsSectionSubtitle =>
+      'You can keep growing through letters, stories, or more daily duas.';
+
+  @override
+  String get learnKidsStarterNextStepsArabicHint =>
+      'Keep learning letters and sounds one small step at a time.';
+
+  @override
+  String get learnKidsStarterNextStepsStoriesHint =>
+      'Enjoy more prophet stories and gentle lessons through story time.';
+
+  @override
+  String get learnKidsStarterNextStepsDuasHint =>
+      'Learn more short duas for everyday moments and happy routines.';
+
+  @override
+  String get learnStoriesPathBridgeTitle => 'Let’s learn through stories';
+
+  @override
+  String get learnStoriesPathBridgeSubtitle =>
+      'Stories help the heart understand faith, patience, and trust before details feel heavy.';
+
+  @override
+  String get learnStoriesPathBridgeIntroTitle => 'A calm way to begin';
+
+  @override
+  String get learnStoriesPathBridgeIntroBody =>
+      'This path begins with the stories Allah gave us for guidance. We will start with the Prophets, move into the Seerah, and finish by turning those stories into lessons for daily life.';
+
+  @override
+  String get learnStoriesPathBridgeHintNarrative =>
+      'Stories help knowledge feel connected, memorable, and easier to carry.';
+
+  @override
+  String get learnStoriesPathBridgeHintMeaning =>
+      'We are not only collecting events. We are learning what trust, patience, and mercy look like.';
+
+  @override
+  String get learnStoriesPathBridgeBeginAction => 'Start with the Prophets';
+
+  @override
+  String get learnStoriesPathNextStepsTitle => 'Carry the lessons forward';
+
+  @override
+  String get learnStoriesPathNextStepsSubtitle =>
+      'Let the stories lead you into character, Qur’an reflection, or deeper history.';
+
+  @override
+  String get learnStoriesPathNextStepsIntroTitle =>
+      'Stories are meant to change us';
+
+  @override
+  String get learnStoriesPathNextStepsIntroBody =>
+      'Sacred stories are not just timelines. They teach patience, courage, mercy, and trust in Allah. Keep that lesson alive by choosing the next lane that will help it become part of your life.';
+
+  @override
+  String get learnStoriesPathNextStepsHistoryAction =>
+      'Explore Islamic history';
+
+  @override
+  String get learnStoriesPathNextStepsSectionTitle => 'Choose what comes next';
+
+  @override
+  String get learnStoriesPathNextStepsSectionSubtitle =>
+      'Follow the lesson into character, Qur’an reflection, or broader historical context.';
+
+  @override
+  String get learnStoriesPathNextStepsCharacterHint =>
+      'Keep the story lessons alive by growing in patience, adab, and self-improvement.';
+
+  @override
+  String get learnStoriesPathNextStepsQuranHint =>
+      'Continue with the Qur’an and see how revelation deepens the lessons carried by these stories.';
+
+  @override
+  String guidedLearningPathProgressValue(int completed, int total) {
+    return '$completed of $total steps';
+  }
+
+  @override
+  String guidedLearningPathPercentValue(int percent) {
+    return '$percent%';
+  }
+
+  @override
+  String guidedLearningPathNextStepLabel(Object step) {
+    return 'Next: $step';
+  }
+
+  @override
+  String guidedLearningPathStepOfTotal(int step, int total) {
+    return 'Step $step of $total';
+  }
+
+  @override
+  String guidedLearningPathStepCompletedMessage(Object step) {
+    return '$step marked complete.';
+  }
+
+  @override
+  String guidedLearningPathNextUnlockedMessage(Object step) {
+    return 'Next step: $step';
+  }
+
+  @override
+  String guidedLearningPathCompletedMessage(Object pathTitle) {
+    return '$pathTitle is complete.';
+  }
+
+  @override
+  String get learnEnrichmentSectionTitle => 'Learning Moments';
+
+  @override
+  String get learnEnrichmentSectionSubtitle =>
+      'Calm milestones and quiet encouragement for the long journey.';
+
+  @override
+  String get learnEnrichmentMomentLabel => 'A gentle milestone';
+
+  @override
+  String get learnEnrichmentMemoriesTitle => 'Recent learning memories';
+
+  @override
+  String get learnEnrichmentMemoriesSubtitle =>
+      'Small moments that marked your learning journey.';
+
+  @override
+  String get learnEnrichmentKeepGoingAction => 'Keep going';
+
+  @override
+  String get learnEnrichmentOpenPathAction => 'Open path';
+
+  @override
+  String get learnEnrichmentNextPathsTitle => 'Continue with';
+
+  @override
+  String learnEnrichmentCompletionTitle(Object pathTitle) {
+    return 'You completed $pathTitle';
+  }
+
+  @override
+  String get learnEnrichmentCompletionSubtitle =>
+      'A meaningful chapter is complete.';
+
+  @override
+  String get learnEnrichmentCompletionBody =>
+      'Take a quiet moment, then choose a calm next step when you are ready.';
+
+  @override
+  String get learnEnrichmentCompletionKidsTitle =>
+      'You learned something new today';
+
+  @override
+  String get learnEnrichmentCompletionKidsSubtitle =>
+      'A gentle kids journey is complete.';
+
+  @override
+  String get learnEnrichmentCompletionKidsBody =>
+      'A warm little step can lead to another joyful lesson.';
+
+  @override
+  String get learnEnrichmentEncouragementSmallStep =>
+      'A small step is still progress.';
+
+  @override
+  String get learnEnrichmentEncouragementSteadyRhythm =>
+      'You are building a steady rhythm.';
+
+  @override
+  String get learnEnrichmentEncouragementWelcomeBack =>
+      'Returning gently is still progress.';
+
+  @override
+  String get learnEnrichmentEncouragementNextChapter =>
+      'You are ready for the next gentle chapter.';
+
+  @override
+  String get learnEnrichmentEncouragementReadyForNextPath =>
+      'You are ready for a calm next path.';
+
+  @override
+  String get learnEnrichmentEncouragementQuran =>
+      'Understanding can grow one calm step at a time.';
+
+  @override
+  String get learnEnrichmentEncouragementStories =>
+      'Let the lesson of the story travel with you into the next step.';
+
+  @override
+  String get learnEnrichmentEncouragementKids =>
+      'You learned something new today, and that is beautiful.';
+
+  @override
+  String get learnEnrichmentMilestoneGenericTitle =>
+      'A meaningful step is complete';
+
+  @override
+  String get learnEnrichmentMilestoneGenericBody =>
+      'Quiet progress still matters, even when it begins small.';
+
+  @override
+  String learnEnrichmentMilestoneFirstPathStartedTitle(Object pathTitle) {
+    return 'You started $pathTitle';
+  }
+
+  @override
+  String get learnEnrichmentMilestoneFirstPathStartedBody =>
+      'You do not need to do everything at once. One sincere beginning is enough.';
+
+  @override
+  String get learnEnrichmentMilestoneFirstStepCompletedTitle =>
+      'A first step is complete';
+
+  @override
+  String get learnEnrichmentMilestoneFirstStepCompletedBody =>
+      'That first guided step matters more than speed.';
+
+  @override
+  String get learnEnrichmentMilestoneFirstPathCompletedTitle =>
+      'Your first path is complete';
+
+  @override
+  String get learnEnrichmentMilestoneFirstPathCompletedBody =>
+      'A full learning chapter is now behind you, and the next one can begin gently.';
+
+  @override
+  String get learnEnrichmentMilestoneFoundationsCompletedTitle =>
+      'You completed Foundations';
+
+  @override
+  String get learnEnrichmentMilestoneFoundationsCompletedBody =>
+      'You now have a calmer base for Salah, Qur’an, or Daily Dhikr.';
+
+  @override
+  String get learnEnrichmentMilestoneFirstQuranStepCompletedTitle =>
+      'You began with the Qur’an';
+
+  @override
+  String get learnEnrichmentMilestoneFirstQuranStepCompletedBody =>
+      'Starting small with the Qur’an is still a beautiful beginning.';
+
+  @override
+  String get learnEnrichmentMilestoneFirstKidsPathCompletedTitle =>
+      'A joyful kids path is complete';
+
+  @override
+  String get learnEnrichmentMilestoneFirstKidsPathCompletedBody =>
+      'A warm little lesson can open the door to many more.';
+
+  @override
+  String get learnEnrichmentMilestoneStoriesCompletedTitle =>
+      'You completed Stories';
+
+  @override
+  String get learnEnrichmentMilestoneStoriesCompletedBody =>
+      'The lessons of the Prophets and Seerah can now carry into character and reflection.';
+
+  @override
+  String get learnEnrichmentMilestoneThreeStepsWeekTitle =>
+      'A steady rhythm is forming';
+
+  @override
+  String get learnEnrichmentMilestoneThreeStepsWeekBody =>
+      'Three guided steps in a week is meaningful progress.';
+
+  @override
+  String get learnEnrichmentMilestoneReturnAfterBreakTitle => 'Welcome back';
+
+  @override
+  String get learnEnrichmentMilestoneReturnAfterBreakBody =>
+      'Coming back calmly still counts as progress.';
+
+  @override
+  String get learnHubExploreQuickAccessTitle => 'Quick access';
+
+  @override
+  String get learnHubExploreSupportTitle => 'Support and saved spaces';
+
+  @override
+  String get learnHubExploreSearchResultsTitle => 'Search results';
+
+  @override
+  String get learnHubKidsFeaturedLabel => 'For families';
+
+  @override
+  String get learnHubKidsFeaturedHelper =>
+      'Easy entry points for younger learners without leaving the main Learn flow.';
+
+  @override
+  String get learnPersonalizationSectionTitle => 'Your Next Step';
+
+  @override
+  String get learnPersonalizationSectionSubtitle =>
+      'A calm recommendation based on your recent learning.';
+
+  @override
+  String learnPersonalizationContinuePathTitle(Object pathTitle) {
+    return 'Continue $pathTitle';
+  }
+
+  @override
+  String learnPersonalizationStartPathTitle(Object pathTitle) {
+    return 'Start $pathTitle';
+  }
+
+  @override
+  String learnPersonalizationResumePathTitle(Object pathTitle) {
+    return 'Return to $pathTitle';
+  }
+
+  @override
+  String get learnPersonalizationContinueStepAction => 'Open step';
+
+  @override
+  String get learnPersonalizationOpenPathAction => 'Open path';
+
+  @override
+  String get learnPersonalizationViewPathAction => 'View path';
+
+  @override
+  String get learnPersonalizationSecondaryTitle => 'You could also explore';
+
+  @override
+  String get learnPersonalizationBecauseActivePath =>
+      'You already have a guided path in progress.';
+
+  @override
+  String get learnPersonalizationBecauseSequencedAfterCompletion =>
+      'This is the clearest next path after your recent completion.';
+
+  @override
+  String get learnPersonalizationBecauseQuranMomentum =>
+      'You have been spending time with the Qur\'an recently.';
+
+  @override
+  String get learnPersonalizationBecauseDhikrMomentum =>
+      'Your recent dhikr rhythm makes this a gentle next step.';
+
+  @override
+  String get learnPersonalizationBecauseSalahMomentum =>
+      'Your recent salah learning makes this the right next practice.';
+
+  @override
+  String get learnPersonalizationBecauseKidsProfile =>
+      'This keeps the learning journey age-appropriate and easy to follow.';
+
+  @override
+  String get learnPersonalizationBecauseNoHistory =>
+      'This is the best place to begin if you are just getting started.';
+
+  @override
+  String get learnPersonalizationBecauseInactiveReentry =>
+      'This is a light way to return without feeling overwhelmed.';
+
+  @override
+  String get learnPersonalizationBecauseFridayRhythm =>
+      'Friday is a good time for a gentle Qur\'an-focused return.';
+
+  @override
+  String get learnPersonalizationBecauseRamadanRhythm =>
+      'This fits a lighter Ramadan learning rhythm.';
+
+  @override
+  String get learnPersonalizationBecauseKeepMomentum =>
+      'This keeps your recent momentum going.';
+
+  @override
+  String get learnPersonalizationBecauseSafeFallback =>
+      'This is a steady next step while your recent signals are still light.';
+
+  @override
+  String get learnPersonalizationFridayBadge => 'Friday';
+
+  @override
+  String get learnPersonalizationRamadanBadge => 'Ramadan';
+
+  @override
+  String get learnPersonalizationMomentumBadge => 'In progress';
+
+  @override
+  String get learnFoundationsNextStepsTitle => 'What Next?';
+
+  @override
+  String get learnFoundationsNextStepsSubtitle =>
+      'You have enough to move forward calmly. Choose the lane that feels most helpful right now.';
+
+  @override
+  String get learnFoundationsNextStepsIntroTitle =>
+      'A steady beginning matters more than doing everything at once';
+
+  @override
+  String get learnFoundationsNextStepsIntroBody =>
+      'You do not need to master every topic before continuing. After these foundations, the best next step is to choose one gentle lane and build consistency there.';
+
+  @override
+  String get learnFoundationsNextStepsSectionTitle =>
+      'Choose one path to continue';
+
+  @override
+  String get learnFoundationsNextStepsSectionSubtitle =>
+      'These next paths stay focused, so you can keep learning without running into a wall of options.';
+
+  @override
+  String get learnFoundationsNextStepsSalahHint =>
+      'Choose this if you want to understand prayer, wudu, and the first practical steps of daily worship.';
+
+  @override
+  String get learnFoundationsNextStepsQuranHint =>
+      'Choose this if you want a calm way into reading, listening, and reflecting with the Qur’an.';
+
+  @override
+  String get learnFoundationsNextStepsDhikrHint =>
+      'Choose this if you want a light daily rhythm of dua and remembrance you can start right away.';
+
+  @override
+  String get learnDailyDhikrNextStepsTitle => 'Keep the Habit Going';
+
+  @override
+  String get learnDailyDhikrNextStepsSubtitle =>
+      'You have started with meaning and simplicity. Now you can practice gently and connect dhikr to the rest of your worship.';
+
+  @override
+  String get learnDailyDhikrNextStepsIntroTitle =>
+      'Use the tool to support the habit, not replace it';
+
+  @override
+  String get learnDailyDhikrNextStepsIntroBody =>
+      'The dhikr counter can help you stay present and consistent, but the goal is not numbers alone. Start small, keep your heart engaged, and let remembrance become a quiet daily companion.';
+
+  @override
+  String get learnDailyDhikrNextStepsOpenToolAction => 'Open dhikr tool';
+
+  @override
+  String get learnDailyDhikrNextStepsSectionTitle => 'What could come next';
+
+  @override
+  String get learnDailyDhikrNextStepsSectionSubtitle =>
+      'Choose one nearby path if you want your remembrance to strengthen prayer, character, or your wider daily rhythm.';
+
+  @override
+  String get learnDailyDhikrNextStepsCharacterHint =>
+      'Choose this if you want your remembrance to shape patience, adab, and everyday conduct.';
+
+  @override
+  String get learnDailyDhikrNextStepsSalahHint =>
+      'Choose this if you want dhikr to stay closely connected to prayer and daily worship.';
+
+  @override
+  String get learnQuranBeginnerSoftBridgeTitle => 'Begin with the Qur’an';
+
+  @override
+  String get learnQuranBeginnerSoftBridgeSubtitle =>
+      'You do not need to feel fully prepared before you begin. Start small, stay calm, and let understanding grow over time.';
+
+  @override
+  String get learnQuranBeginnerSoftBridgeIntroTitle =>
+      'It is okay to begin gently';
+
+  @override
+  String get learnQuranBeginnerSoftBridgeIntroBody =>
+      'The Qur’an is guidance and mercy. You do not have to read a lot or understand everything at once. One ayah, one moment of listening, or one small reflection is already a meaningful beginning.';
+
+  @override
+  String get learnQuranBeginnerSoftBridgeHintStartSmall =>
+      'Start with one small step. A little steady time with the Qur’an is better than waiting for the perfect moment.';
+
+  @override
+  String get learnQuranBeginnerSoftBridgeHintPace =>
+      'You can read, listen, or simply reflect. Move at a pace that feels sincere and sustainable.';
+
+  @override
+  String get learnQuranBeginnerSoftBridgeBeginAction => 'Let’s begin';
 
   @override
   String get settingsThemeChoiceMidnightManuscript => 'Midnight Manuscript';

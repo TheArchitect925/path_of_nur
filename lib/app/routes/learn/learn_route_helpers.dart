@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../features/learn/analytics/application/learn_analytics_service.dart';
 import '../../../features/learn/content/domain/learn_topic_category.dart';
 import '../../../features/learn/prophets/domain/prophets_tab.dart';
 import '../../../features/learn/prophets/presentation/prophets_page.dart';
@@ -13,6 +14,47 @@ String learnRedirectWithQuery(String path, GoRouterState state) {
         ? null
         : state.uri.queryParameters,
   ).toString();
+}
+
+String learnRedirectWithPathAndQuery(String pathTemplate, GoRouterState state) {
+  var path = pathTemplate;
+  state.pathParameters.forEach((key, value) {
+    path = path.replaceAll(':$key', value);
+  });
+  return learnRedirectWithQuery(path, state);
+}
+
+String learnCompatibilityRedirect({
+  required String canonicalPath,
+  required GoRouterState state,
+  required String aliasPath,
+  required String routeFamily,
+}) {
+  const analytics = LearnAnalyticsService();
+  analytics.logCompatibilityAliasHit(
+    aliasPath: aliasPath,
+    canonicalPath: canonicalPath,
+    routeFamily: routeFamily,
+  );
+  return learnRedirectWithQuery(canonicalPath, state);
+}
+
+String learnCompatibilityRedirectWithPathAndQuery({
+  required String canonicalPathTemplate,
+  required GoRouterState state,
+  required String aliasPath,
+  required String routeFamily,
+}) {
+  var canonicalPath = canonicalPathTemplate;
+  state.pathParameters.forEach((key, value) {
+    canonicalPath = canonicalPath.replaceAll(':$key', value);
+  });
+  return learnCompatibilityRedirect(
+    canonicalPath: canonicalPath,
+    state: state,
+    aliasPath: aliasPath,
+    routeFamily: routeFamily,
+  );
 }
 
 ProphetsTab? prophetsTabFromState(GoRouterState state) {

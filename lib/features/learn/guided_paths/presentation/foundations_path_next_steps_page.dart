@@ -1,0 +1,264 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../../../l10n/app_localizations.dart';
+import '../../../../shared/widgets/premium_card.dart';
+import '../../analytics/application/learn_analytics_service.dart';
+import '../../presentation/widgets/learn_hub_page_scaffold.dart';
+import '../application/guided_learning_paths_provider.dart';
+
+class FoundationsPathNextStepsPage extends ConsumerWidget {
+  const FoundationsPathNextStepsPage({super.key});
+
+  static const List<String> _nextPathIds = <String>[
+    'salah-starter',
+    'quran-beginner-starter',
+    'daily-dhikr-starter',
+  ];
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final analytics = ref.read(learnAnalyticsServiceProvider);
+    final localizedPaths = _nextPathIds
+        .map(
+          (pathId) =>
+              ref.watch(localizedGuidedLearningPathByIdProvider(pathId)),
+        )
+        .whereType<LocalizedGuidedLearningPath>()
+        .toList(growable: false);
+
+    return LearnHubPageScaffold(
+      headerIcon: Icons.alt_route_rounded,
+      title: l10n.learnFoundationsNextStepsTitle,
+      subtitle: l10n.learnFoundationsNextStepsSubtitle,
+      children: [
+        PremiumCard(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                l10n.learnFoundationsNextStepsIntroTitle,
+                style: Theme.of(
+                  context,
+                ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+              ),
+              const SizedBox(height: 8),
+              Text(l10n.learnFoundationsNextStepsIntroBody),
+            ],
+          ),
+        ),
+        const SizedBox(height: 12),
+        PremiumCard(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                l10n.learnFoundationsNextStepsSectionTitle,
+                style: Theme.of(
+                  context,
+                ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                l10n.learnFoundationsNextStepsSectionSubtitle,
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+                ),
+              ),
+              const SizedBox(height: 14),
+              ...localizedPaths.asMap().entries.map((entry) {
+                final index = entry.key;
+                final localizedPath = entry.value;
+                return Padding(
+                  padding: EdgeInsets.only(
+                    bottom: index == localizedPaths.length - 1 ? 0 : 12,
+                  ),
+                  child: _NextPathCard(
+                    localizedPath: localizedPath,
+                    helperText: _helperTextForPath(
+                      context,
+                      localizedPath.path.id,
+                    ),
+                    analytics: analytics,
+                  ),
+                );
+              }),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  String _helperTextForPath(BuildContext context, String pathId) {
+    final l10n = AppLocalizations.of(context);
+    return switch (pathId) {
+      'salah-starter' => l10n.learnFoundationsNextStepsSalahHint,
+      'quran-beginner-starter' => l10n.learnFoundationsNextStepsQuranHint,
+      'daily-dhikr-starter' => l10n.learnFoundationsNextStepsDhikrHint,
+      _ => '',
+    };
+  }
+}
+
+class _NextPathCard extends ConsumerWidget {
+  const _NextPathCard({
+    required this.localizedPath,
+    required this.helperText,
+    required this.analytics,
+  });
+
+  final LocalizedGuidedLearningPath localizedPath;
+  final String helperText;
+  final LearnAnalyticsService analytics;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final progress = ref.watch(
+      guidedLearningPathProgressProvider(localizedPath.path.id),
+    );
+    final completedCount = progress.completedStepIds.length;
+    final totalCount = localizedPath.path.steps.length;
+    final accent = switch (localizedPath.path.id) {
+      'salah-starter' => const Color(0xFF2B7A78),
+      'quran-beginner-starter' => Theme.of(context).colorScheme.primary,
+      'daily-dhikr-starter' => const Color(0xFF6F5A3E),
+      _ => Theme.of(context).colorScheme.primary,
+    };
+
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: accent.withValues(alpha: 0.16)),
+        color: accent.withValues(alpha: 0.04),
+      ),
+      child: PremiumCard(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  width: 40,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    color: accent.withValues(alpha: 0.12),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  alignment: Alignment.center,
+                  child: Icon(
+                    IconData(
+                      localizedPath.path.iconCodePoint,
+                      fontFamily: 'MaterialIcons',
+                    ),
+                    color: accent,
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        localizedPath.title,
+                        style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(localizedPath.subtitle),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            Text(
+              helperText,
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
+              ),
+            ),
+            const SizedBox(height: 12),
+            if (progress.isStarted) ...[
+              ClipRRect(
+                borderRadius: BorderRadius.circular(999),
+                child: LinearProgressIndicator(
+                  value: totalCount == 0 ? 0 : completedCount / totalCount,
+                  minHeight: 8,
+                  backgroundColor: Theme.of(
+                    context,
+                  ).colorScheme.surfaceContainerHighest,
+                ),
+              ),
+              const SizedBox(height: 6),
+            ],
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: [
+                _statusChip(
+                  context,
+                  label: progress.isCompleted
+                      ? l10n.guidedLearningPathCompletedLabel
+                      : progress.isStarted
+                      ? l10n.guidedLearningPathProgressValue(
+                          completedCount,
+                          totalCount,
+                        )
+                      : l10n.guidedLearningPathStatusNotStarted,
+                ),
+                FilledButton.icon(
+                  onPressed: () {
+                    analytics.logRelatedContentOpened(
+                      sourceId: 'foundations_next_steps',
+                      targetId: localizedPath.path.id,
+                      sourceSurface: 'foundations_next_steps',
+                    );
+                    context.pushNamed(
+                      'learnGuidedPathDetail',
+                      pathParameters: <String, String>{
+                        'pathId': localizedPath.path.id,
+                      },
+                    );
+                  },
+                  icon: Icon(
+                    progress.isStarted
+                        ? Icons.play_arrow_rounded
+                        : Icons.alt_route_rounded,
+                  ),
+                  label: Text(
+                    progress.isStarted
+                        ? l10n.guidedLearningPathContinueAction
+                        : l10n.guidedLearningPathStartAction,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _statusChip(BuildContext context, {required String label}) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(999),
+        color: Theme.of(context).colorScheme.surfaceContainerHighest,
+      ),
+      child: Text(
+        label,
+        style: Theme.of(
+          context,
+        ).textTheme.labelMedium?.copyWith(fontWeight: FontWeight.w700),
+      ),
+    );
+  }
+}

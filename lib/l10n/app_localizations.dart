@@ -5939,6 +5939,126 @@ abstract class AppLocalizations {
   /// **'Continue your journeys, search quickly, and explore every learning path through clearer category ownership.'**
   String get learnHubLandingSubtitleV3;
 
+  /// No description provided for @learnHubLandingCalmSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue your journey, find today’s lesson, and open one calm learning path at a time.'**
+  String get learnHubLandingCalmSubtitle;
+
+  /// No description provided for @learnHubContinueJourneyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue Your Journey'**
+  String get learnHubContinueJourneyTitle;
+
+  /// No description provided for @learnHubContinueJourneySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick up the last lesson, story, or practice that still feels alive.'**
+  String get learnHubContinueJourneySubtitle;
+
+  /// No description provided for @learnHubDailyLearningLandingSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A gentle next step for today.'**
+  String get learnHubDailyLearningLandingSubtitle;
+
+  /// No description provided for @learnHubVisibleIslandsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a focus'**
+  String get learnHubVisibleIslandsTitle;
+
+  /// No description provided for @learnHubVisibleIslandsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Begin with one area, then go deeper at your own pace.'**
+  String get learnHubVisibleIslandsSubtitle;
+
+  /// No description provided for @learnHubVisibleKidsIslandsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose one calm place to read, listen, play, or learn next.'**
+  String get learnHubVisibleKidsIslandsSubtitle;
+
+  /// No description provided for @learnHubLandingBrowseJourneysTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Open Guided Paths'**
+  String get learnHubLandingBrowseJourneysTitle;
+
+  /// No description provided for @learnHubLandingBrowseJourneysSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Browse the full journeys home when you want a more guided route.'**
+  String get learnHubLandingBrowseJourneysSubtitle;
+
+  /// No description provided for @learnHubLandingFoundationsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Start with belief, prayer basics, and daily essentials.'**
+  String get learnHubLandingFoundationsSubtitle;
+
+  /// No description provided for @learnHubLandingQuranSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the Qur’an space for reading, reflection, and guided study.'**
+  String get learnHubLandingQuranSubtitle;
+
+  /// No description provided for @learnHubLandingWorshipSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Build your daily practice through salah, duas, and guidance.'**
+  String get learnHubLandingWorshipSubtitle;
+
+  /// No description provided for @learnHubLandingCharacterSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Grow in adab, patience, and self-improvement.'**
+  String get learnHubLandingCharacterSubtitle;
+
+  /// No description provided for @learnHubLandingStoriesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Learn through prophets, seerah, and Islamic history.'**
+  String get learnHubLandingStoriesSubtitle;
+
+  /// No description provided for @learnHubLandingGamesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Play quizzes, challenges, and review games.'**
+  String get learnHubLandingGamesSubtitle;
+
+  /// No description provided for @learnHubLandingKidsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A gentle place for Qur’an, stories, and practice for younger learners.'**
+  String get learnHubLandingKidsSubtitle;
+
+  /// No description provided for @learnHubLandingExploreAllTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore All'**
+  String get learnHubLandingExploreAllTitle;
+
+  /// No description provided for @learnHubLandingExploreAllSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Browse tools, notes, and more without crowding the main paths.'**
+  String get learnHubLandingExploreAllSubtitle;
+
+  /// No description provided for @learnHubLandingExploreAllAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open Explore All'**
+  String get learnHubLandingExploreAllAction;
+
+  /// No description provided for @learnHubLandingLibraryAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Library'**
+  String get learnHubLandingLibraryAction;
+
   /// No description provided for @learnHubJourneysSectionTitle.
   ///
   /// In en, this message translates to:
@@ -6028,6 +6148,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'See the full learning library with category filters, search, and color-coded cards.'**
   String get learnHubExploreAllSubtitle;
+
+  /// No description provided for @learnDiscoveryExploreTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore Learning'**
+  String get learnDiscoveryExploreTitle;
+
+  /// No description provided for @learnDiscoveryExploreSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Find guided paths, focused lessons, and calm starting points without getting lost in the wider library.'**
+  String get learnDiscoveryExploreSubtitle;
 
   /// No description provided for @learnHubCategoryOverviewTitle.
   ///
@@ -6173,6 +6305,48 @@ abstract class AppLocalizations {
   /// **'Explore'**
   String get learnHubBadgeExplore;
 
+  /// No description provided for @learnDiscoveryBestMatchTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Best Next Match'**
+  String get learnDiscoveryBestMatchTitle;
+
+  /// No description provided for @learnDiscoveryLessonsAndPagesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Lessons & Pages'**
+  String get learnDiscoveryLessonsAndPagesTitle;
+
+  /// No description provided for @learnDiscoveryKidsResultsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Kids Results'**
+  String get learnDiscoveryKidsResultsTitle;
+
+  /// No description provided for @learnDiscoveryRelatedContentTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You May Also Want'**
+  String get learnDiscoveryRelatedContentTitle;
+
+  /// No description provided for @learnDiscoveryStartHereTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Start Here'**
+  String get learnDiscoveryStartHereTitle;
+
+  /// No description provided for @learnDiscoveryPracticeAndToolsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Practice & Tools'**
+  String get learnDiscoveryPracticeAndToolsTitle;
+
+  /// No description provided for @learnDiscoveryRelatedLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Related:'**
+  String get learnDiscoveryRelatedLabel;
+
   /// No description provided for @learnHubContentTypeCategory.
   ///
   /// In en, this message translates to:
@@ -6185,6 +6359,12 @@ abstract class AppLocalizations {
   /// **'Subcategory'**
   String get learnHubContentTypeSubcategory;
 
+  /// No description provided for @learnDiscoveryTypePath.
+  ///
+  /// In en, this message translates to:
+  /// **'Path'**
+  String get learnDiscoveryTypePath;
+
   /// No description provided for @learnHubContentTypeLesson.
   ///
   /// In en, this message translates to:
@@ -6196,6 +6376,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Story'**
   String get learnHubContentTypeStory;
+
+  /// No description provided for @learnDiscoveryTypePractice.
+  ///
+  /// In en, this message translates to:
+  /// **'Practice'**
+  String get learnDiscoveryTypePractice;
+
+  /// No description provided for @learnDiscoveryTypeReflection.
+  ///
+  /// In en, this message translates to:
+  /// **'Reflection'**
+  String get learnDiscoveryTypeReflection;
 
   /// No description provided for @learnHubContentTypeQuiz.
   ///
@@ -6232,6 +6424,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Journey'**
   String get learnHubContentTypeJourney;
+
+  /// No description provided for @learnDiscoveryAudienceGeneral.
+  ///
+  /// In en, this message translates to:
+  /// **'General'**
+  String get learnDiscoveryAudienceGeneral;
+
+  /// No description provided for @learnDiscoveryDifficultyStartHere.
+  ///
+  /// In en, this message translates to:
+  /// **'Start Here'**
+  String get learnDiscoveryDifficultyStartHere;
+
+  /// No description provided for @learnDiscoveryDifficultyGrowing.
+  ///
+  /// In en, this message translates to:
+  /// **'Growing'**
+  String get learnDiscoveryDifficultyGrowing;
 
   /// No description provided for @learnHubCategoryFoundationsTitle.
   ///
@@ -6292,6 +6502,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Mercy, manners, sincerity, and everyday conduct have one clear owner.'**
   String get learnHubCategoryCharacterAdabSubtitle;
+
+  /// No description provided for @learnHubMainIslandWorshipTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Worship'**
+  String get learnHubMainIslandWorshipTitle;
+
+  /// No description provided for @learnHubMainIslandCharacterTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Character'**
+  String get learnHubMainIslandCharacterTitle;
+
+  /// No description provided for @learnHubMainIslandStoriesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Stories'**
+  String get learnHubMainIslandStoriesTitle;
+
+  /// No description provided for @learnHubMainIslandGamesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Games'**
+  String get learnHubMainIslandGamesTitle;
 
   /// No description provided for @learnHubCategoryArabicLanguageTitle.
   ///
@@ -62259,6 +62493,1440 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'What do you want to remember from {stopTitle}?'**
   String quranReflectionsPathwayStopHelper(Object stopTitle);
+
+  /// No description provided for @guidedLearningPathsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Guided paths'**
+  String get guidedLearningPathsTitle;
+
+  /// No description provided for @guidedLearningPathsSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Start a Journey'**
+  String get guidedLearningPathsSectionTitle;
+
+  /// No description provided for @guidedLearningPathsSectionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose one clear path and build momentum step by step.'**
+  String get guidedLearningPathsSectionSubtitle;
+
+  /// No description provided for @guidedLearningPathsSectionKidsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Start with one gentle path made for younger learners.'**
+  String get guidedLearningPathsSectionKidsSubtitle;
+
+  /// No description provided for @guidedLearningPathMissingSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'This path is not available right now'**
+  String get guidedLearningPathMissingSubtitle;
+
+  /// No description provided for @guidedLearningPathMissingBody.
+  ///
+  /// In en, this message translates to:
+  /// **'The journey you selected could not be found, but the rest of Learn is still available.'**
+  String get guidedLearningPathMissingBody;
+
+  /// No description provided for @guidedLearningPathUnavailableSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'This path is not part of the current kids view'**
+  String get guidedLearningPathUnavailableSubtitle;
+
+  /// No description provided for @guidedLearningPathUnavailableBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Open a kids-friendly path to keep learning in the current profile.'**
+  String get guidedLearningPathUnavailableBody;
+
+  /// No description provided for @guidedLearningPathCompletedLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get guidedLearningPathCompletedLabel;
+
+  /// No description provided for @guidedLearningPathCurrentStepLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Current step'**
+  String get guidedLearningPathCurrentStepLabel;
+
+  /// No description provided for @guidedLearningPathContinueAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue journey'**
+  String get guidedLearningPathContinueAction;
+
+  /// No description provided for @guidedLearningPathStartAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Start journey'**
+  String get guidedLearningPathStartAction;
+
+  /// No description provided for @guidedLearningPathMarkStepCompleteAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark step complete'**
+  String get guidedLearningPathMarkStepCompleteAction;
+
+  /// No description provided for @guidedLearningPathContinueStepAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue step'**
+  String get guidedLearningPathContinueStepAction;
+
+  /// No description provided for @guidedLearningPathStepOpenAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open step'**
+  String get guidedLearningPathStepOpenAction;
+
+  /// No description provided for @guidedLearningPathReviewStepAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Review step'**
+  String get guidedLearningPathReviewStepAction;
+
+  /// No description provided for @guidedLearningPathOpenNextAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open next step'**
+  String get guidedLearningPathOpenNextAction;
+
+  /// No description provided for @guidedLearningPathStatusNotStarted.
+  ///
+  /// In en, this message translates to:
+  /// **'Not started'**
+  String get guidedLearningPathStatusNotStarted;
+
+  /// No description provided for @guidedLearningPathStatusInProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'In progress'**
+  String get guidedLearningPathStatusInProgress;
+
+  /// No description provided for @guidedLearningPathStatusCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get guidedLearningPathStatusCompleted;
+
+  /// No description provided for @guidedPathFoundationsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Foundations Path'**
+  String get guidedPathFoundationsTitle;
+
+  /// No description provided for @guidedPathFoundationsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Start with a calm, beginner-safe path through Islam, belief, and your first steady steps.'**
+  String get guidedPathFoundationsSubtitle;
+
+  /// No description provided for @guidedPathFoundationsDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'A gentle first path for new or returning learners. Begin with what Islam is, who Allah is, the five pillars, and the clearest next step for continuing your learning.'**
+  String get guidedPathFoundationsDescription;
+
+  /// No description provided for @guidedPathSalahTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Salah Path'**
+  String get guidedPathSalahTitle;
+
+  /// No description provided for @guidedPathSalahSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Begin with why Salah matters, then move into prayer preparation and guided practice step by step.'**
+  String get guidedPathSalahSubtitle;
+
+  /// No description provided for @guidedPathSalahDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'A calmer beginner path into Salah. Start with the meaning of prayer, then move into wudu, practice, and one guided prayer flow without needing to figure everything out at once.'**
+  String get guidedPathSalahDescription;
+
+  /// No description provided for @guidedPathQuranBeginnerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Qur’an Beginner Path'**
+  String get guidedPathQuranBeginnerTitle;
+
+  /// No description provided for @guidedPathQuranBeginnerSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Begin gently, start small, and enter the Qur’an with calm reflection instead of pressure.'**
+  String get guidedPathQuranBeginnerSubtitle;
+
+  /// No description provided for @guidedPathQuranBeginnerDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'A soft introduction to the canonical Qur’an experience. Start with reassurance and one calm entry point, then move into summary, reading, and deeper Qur’an pathways at your pace.'**
+  String get guidedPathQuranBeginnerDescription;
+
+  /// No description provided for @guidedPathDailyDhikrTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily Dhikr Path'**
+  String get guidedPathDailyDhikrTitle;
+
+  /// No description provided for @guidedPathDailyDhikrSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Begin with the meaning of dhikr, then build a small and steady habit of remembrance.'**
+  String get guidedPathDailyDhikrSubtitle;
+
+  /// No description provided for @guidedPathDailyDhikrDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'A calm path into daily dhikr that starts with understanding, grows through one simple remembrance, and only introduces the tool after the habit itself makes sense.'**
+  String get guidedPathDailyDhikrDescription;
+
+  /// No description provided for @guidedPathCharacterTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Character Path'**
+  String get guidedPathCharacterTitle;
+
+  /// No description provided for @guidedPathCharacterSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Begin with what good character means, then carry one trait into daily life with calm reflection.'**
+  String get guidedPathCharacterSubtitle;
+
+  /// No description provided for @guidedPathCharacterDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'A grounded character path that starts gently, focuses on relatable traits, includes practical application, and ends with a clear next step into stories or deeper character study.'**
+  String get guidedPathCharacterDescription;
+
+  /// No description provided for @guidedPathStoriesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Stories Path'**
+  String get guidedPathStoriesTitle;
+
+  /// No description provided for @guidedPathStoriesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Learn through prophets, Seerah, and story-led lessons that shape the heart before the details.'**
+  String get guidedPathStoriesSubtitle;
+
+  /// No description provided for @guidedPathStoriesDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'A beginner-friendly story journey that starts with why sacred stories matter, moves through prophets and the Seerah, then turns those stories into reflection and clear next steps.'**
+  String get guidedPathStoriesDescription;
+
+  /// No description provided for @guidedPathKidsStarterTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Kids Starter Path'**
+  String get guidedPathKidsStarterTitle;
+
+  /// No description provided for @guidedPathKidsStarterSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A joyful first path through one letter, one story, and one simple dua.'**
+  String get guidedPathKidsStarterSubtitle;
+
+  /// No description provided for @guidedPathKidsStarterDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'A child-friendly starter path that begins gently, uses the strongest kids learning lanes already in the app, and ends with a clear handoff into deeper Arabic, story, and dua learning.'**
+  String get guidedPathKidsStarterDescription;
+
+  /// No description provided for @guidedPathFoundationsStepOverviewTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'What is Islam?'**
+  String get guidedPathFoundationsStepOverviewTitle;
+
+  /// No description provided for @guidedPathFoundationsStepOverviewSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Begin with a simple introduction to Islam as surrender, worship, and mercy.'**
+  String get guidedPathFoundationsStepOverviewSubtitle;
+
+  /// No description provided for @guidedPathFoundationsStepDuasTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Who is Allah?'**
+  String get guidedPathFoundationsStepDuasTitle;
+
+  /// No description provided for @guidedPathFoundationsStepDuasSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Build a calm foundation by learning who Allah is before moving deeper into practice.'**
+  String get guidedPathFoundationsStepDuasSubtitle;
+
+  /// No description provided for @guidedPathFoundationsStepSalahTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'The five pillars'**
+  String get guidedPathFoundationsStepSalahTitle;
+
+  /// No description provided for @guidedPathFoundationsStepSalahSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'See how prayer fits into the lived structure of Islam and why it matters.'**
+  String get guidedPathFoundationsStepSalahSubtitle;
+
+  /// No description provided for @guidedPathFoundationsStepHadithTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose your next step'**
+  String get guidedPathFoundationsStepHadithTitle;
+
+  /// No description provided for @guidedPathFoundationsStepHadithSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish the foundations path with a clear handoff into Salah, Qur’an, or daily dhikr.'**
+  String get guidedPathFoundationsStepHadithSubtitle;
+
+  /// No description provided for @guidedPathSalahStepHubTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Why Salah matters'**
+  String get guidedPathSalahStepHubTitle;
+
+  /// No description provided for @guidedPathSalahStepHubSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Begin with a calm introduction to prayer as your daily meeting with Allah before entering the full Salah tools.'**
+  String get guidedPathSalahStepHubSubtitle;
+
+  /// No description provided for @guidedPathSalahStepWuduGuideTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Review wudu'**
+  String get guidedPathSalahStepWuduGuideTitle;
+
+  /// No description provided for @guidedPathSalahStepWuduGuideSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Walk through ablution clearly before moving into practice.'**
+  String get guidedPathSalahStepWuduGuideSubtitle;
+
+  /// No description provided for @guidedPathSalahStepWuduTrainerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Practice wudu'**
+  String get guidedPathSalahStepWuduTrainerTitle;
+
+  /// No description provided for @guidedPathSalahStepWuduTrainerSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Use the trainer to reinforce each step with calm repetition.'**
+  String get guidedPathSalahStepWuduTrainerSubtitle;
+
+  /// No description provided for @guidedPathSalahStepGuidedPrayerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Try guided prayer'**
+  String get guidedPathSalahStepGuidedPrayerTitle;
+
+  /// No description provided for @guidedPathSalahStepGuidedPrayerSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter guided prayer to reinforce one prayer with structured support.'**
+  String get guidedPathSalahStepGuidedPrayerSubtitle;
+
+  /// No description provided for @guidedPathQuranStepSummaryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Start gently with the Qur’an'**
+  String get guidedPathQuranStepSummaryTitle;
+
+  /// No description provided for @guidedPathQuranStepSummarySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Begin with a calm welcome that removes pressure and helps you take the first small step.'**
+  String get guidedPathQuranStepSummarySubtitle;
+
+  /// No description provided for @guidedPathQuranStepDailyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'See the wider map'**
+  String get guidedPathQuranStepDailyTitle;
+
+  /// No description provided for @guidedPathQuranStepDailySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Browse the surahs through a calmer summary surface before entering the full reading flow.'**
+  String get guidedPathQuranStepDailySubtitle;
+
+  /// No description provided for @guidedPathQuranStepReaderTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the reader when ready'**
+  String get guidedPathQuranStepReaderTitle;
+
+  /// No description provided for @guidedPathQuranStepReaderSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Open the canonical Qur’an reader and continue at your own pace through reading or listening.'**
+  String get guidedPathQuranStepReaderSubtitle;
+
+  /// No description provided for @guidedPathQuranStepPathsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue with Qur’an pathways'**
+  String get guidedPathQuranStepPathsTitle;
+
+  /// No description provided for @guidedPathQuranStepPathsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Follow the deeper guided Qur’an study paths when you are ready.'**
+  String get guidedPathQuranStepPathsSubtitle;
+
+  /// No description provided for @guidedPathDhikrStepIntroTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'What is dhikr?'**
+  String get guidedPathDhikrStepIntroTitle;
+
+  /// No description provided for @guidedPathDhikrStepIntroSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Begin with a calm explanation of remembrance and why it softens the heart.'**
+  String get guidedPathDhikrStepIntroSubtitle;
+
+  /// No description provided for @guidedPathDhikrStepCounterTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Start with one simple remembrance'**
+  String get guidedPathDhikrStepCounterTitle;
+
+  /// No description provided for @guidedPathDhikrStepCounterSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep the barrier low with a small authentic dhikr you can return to easily.'**
+  String get guidedPathDhikrStepCounterSubtitle;
+
+  /// No description provided for @guidedPathDhikrStepAfterSalahTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Build a simple daily rhythm'**
+  String get guidedPathDhikrStepAfterSalahTitle;
+
+  /// No description provided for @guidedPathDhikrStepAfterSalahSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose steadiness over volume and let dhikr settle naturally into your day.'**
+  String get guidedPathDhikrStepAfterSalahSubtitle;
+
+  /// No description provided for @guidedPathDhikrStepRoutineTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Use the dhikr tool and continue'**
+  String get guidedPathDhikrStepRoutineTitle;
+
+  /// No description provided for @guidedPathDhikrStepRoutineSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Open the counter with intention, then choose the next lane that will help the habit stay alive.'**
+  String get guidedPathDhikrStepRoutineSubtitle;
+
+  /// No description provided for @guidedPathCharacterStepCompanionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Begin with what good character means'**
+  String get guidedPathCharacterStepCompanionTitle;
+
+  /// No description provided for @guidedPathCharacterStepCompanionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Start with a soft introduction to adab, sincerity, patience, and the kind of heart you want to build.'**
+  String get guidedPathCharacterStepCompanionSubtitle;
+
+  /// No description provided for @guidedPathCharacterStepLessonsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Meet one core trait'**
+  String get guidedPathCharacterStepLessonsTitle;
+
+  /// No description provided for @guidedPathCharacterStepLessonsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Use the focused character companion to begin with patience and practical growth.'**
+  String get guidedPathCharacterStepLessonsSubtitle;
+
+  /// No description provided for @guidedPathCharacterStepQuranTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Practice kindness in daily life'**
+  String get guidedPathCharacterStepQuranTitle;
+
+  /// No description provided for @guidedPathCharacterStepQuranSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Take one relatable trait into speech, service, and everyday relationships.'**
+  String get guidedPathCharacterStepQuranSubtitle;
+
+  /// No description provided for @guidedPathCharacterStepJourneyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reflect and carry one trait forward'**
+  String get guidedPathCharacterStepJourneyTitle;
+
+  /// No description provided for @guidedPathCharacterStepJourneySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Pause, gather what you learned, and choose one quality to keep practicing this week.'**
+  String get guidedPathCharacterStepJourneySubtitle;
+
+  /// No description provided for @guidedPathStoriesStepIntroTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Let’s learn through stories'**
+  String get guidedPathStoriesStepIntroTitle;
+
+  /// No description provided for @guidedPathStoriesStepIntroSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Begin with a calm welcome that shows why stories matter in Islamic learning.'**
+  String get guidedPathStoriesStepIntroSubtitle;
+
+  /// No description provided for @guidedPathStoriesStepProphetsEntryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Begin with the Prophets'**
+  String get guidedPathStoriesStepProphetsEntryTitle;
+
+  /// No description provided for @guidedPathStoriesStepProphetsEntrySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Start with a simple entry into the prophetic story lane.'**
+  String get guidedPathStoriesStepProphetsEntrySubtitle;
+
+  /// No description provided for @guidedPathStoriesStepProphetsJourneyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Follow the prophetic story arc'**
+  String get guidedPathStoriesStepProphetsJourneyTitle;
+
+  /// No description provided for @guidedPathStoriesStepProphetsJourneySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Move through the Journey of Revelation so the stories feel connected instead of scattered.'**
+  String get guidedPathStoriesStepProphetsJourneySubtitle;
+
+  /// No description provided for @guidedPathStoriesStepSeerahIntroTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the Seerah gently'**
+  String get guidedPathStoriesStepSeerahIntroTitle;
+
+  /// No description provided for @guidedPathStoriesStepSeerahIntroSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Meet the early life of the Prophet ﷺ before the larger mission unfolds.'**
+  String get guidedPathStoriesStepSeerahIntroSubtitle;
+
+  /// No description provided for @guidedPathStoriesStepSeerahMomentTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Learn from the Hijrah'**
+  String get guidedPathStoriesStepSeerahMomentTitle;
+
+  /// No description provided for @guidedPathStoriesStepSeerahMomentSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'See one key moment of sacrifice, planning, and trust in Allah.'**
+  String get guidedPathStoriesStepSeerahMomentSubtitle;
+
+  /// No description provided for @guidedPathStoriesStepReflectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn story into character'**
+  String get guidedPathStoriesStepReflectionTitle;
+
+  /// No description provided for @guidedPathStoriesStepReflectionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reflect on how mercy, courage, and patience become lived character.'**
+  String get guidedPathStoriesStepReflectionSubtitle;
+
+  /// No description provided for @guidedPathStoriesStepNextTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose your next story-led path'**
+  String get guidedPathStoriesStepNextTitle;
+
+  /// No description provided for @guidedPathStoriesStepNextSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish with a clear handoff into character, Qur’an reflection, or deeper history.'**
+  String get guidedPathStoriesStepNextSubtitle;
+
+  /// No description provided for @guidedPathKidsStepQuranTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Let’s learn together'**
+  String get guidedPathKidsStepQuranTitle;
+
+  /// No description provided for @guidedPathKidsStepQuranSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Start with a warm welcome and one small step at a gentle pace.'**
+  String get guidedPathKidsStepQuranSubtitle;
+
+  /// No description provided for @guidedPathKidsStepArabicTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Meet the letter Alif'**
+  String get guidedPathKidsStepArabicTitle;
+
+  /// No description provided for @guidedPathKidsStepArabicSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Trace one first Arabic letter and enjoy hearing its sound.'**
+  String get guidedPathKidsStepArabicSubtitle;
+
+  /// No description provided for @guidedPathKidsStepStoriesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Hear a short story'**
+  String get guidedPathKidsStepStoriesTitle;
+
+  /// No description provided for @guidedPathKidsStepStoriesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Follow a gentle story about saying Bismillah before eating.'**
+  String get guidedPathKidsStepStoriesSubtitle;
+
+  /// No description provided for @guidedPathKidsStepGamesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Learn a simple dua'**
+  String get guidedPathKidsStepGamesTitle;
+
+  /// No description provided for @guidedPathKidsStepGamesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Practice Bismillah, then choose where to learn more next.'**
+  String get guidedPathKidsStepGamesSubtitle;
+
+  /// No description provided for @learnKidsStarterBridgeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Let’s learn together'**
+  String get learnKidsStarterBridgeTitle;
+
+  /// No description provided for @learnKidsStarterBridgeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'We will start small and enjoy one kind step at a time.'**
+  String get learnKidsStarterBridgeSubtitle;
+
+  /// No description provided for @learnKidsStarterBridgeIntroTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A happy first path'**
+  String get learnKidsStarterBridgeIntroTitle;
+
+  /// No description provided for @learnKidsStarterBridgeIntroBody.
+  ///
+  /// In en, this message translates to:
+  /// **'This starter path is made for a gentle beginning. We will meet one Arabic letter, hear one short story, and learn one simple dua together.'**
+  String get learnKidsStarterBridgeIntroBody;
+
+  /// No description provided for @learnKidsStarterBridgeArabicHint.
+  ///
+  /// In en, this message translates to:
+  /// **'We begin with one easy letter so the first step feels light and fun.'**
+  String get learnKidsStarterBridgeArabicHint;
+
+  /// No description provided for @learnKidsStarterBridgeStoryHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Then we hear a short story that helps the next dua feel meaningful.'**
+  String get learnKidsStarterBridgeStoryHint;
+
+  /// No description provided for @learnKidsStarterBridgeBeginAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Start with Alif'**
+  String get learnKidsStarterBridgeBeginAction;
+
+  /// No description provided for @learnKidsStarterNextStepsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You’re ready for more'**
+  String get learnKidsStarterNextStepsTitle;
+
+  /// No description provided for @learnKidsStarterNextStepsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish with one simple dua, then keep learning in the lane that feels best.'**
+  String get learnKidsStarterNextStepsSubtitle;
+
+  /// No description provided for @learnKidsStarterNextStepsIntroTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A simple dua to keep with you'**
+  String get learnKidsStarterNextStepsIntroTitle;
+
+  /// No description provided for @learnKidsStarterNextStepsIntroBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Bismillah is a beautiful way to begin. Open the kids dua lesson, practice it calmly, and then choose what you want to explore next.'**
+  String get learnKidsStarterNextStepsIntroBody;
+
+  /// No description provided for @learnKidsStarterNextStepsOpenDuaAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open the Bismillah dua'**
+  String get learnKidsStarterNextStepsOpenDuaAction;
+
+  /// No description provided for @learnKidsStarterNextStepsSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose your next lane'**
+  String get learnKidsStarterNextStepsSectionTitle;
+
+  /// No description provided for @learnKidsStarterNextStepsSectionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You can keep growing through letters, stories, or more daily duas.'**
+  String get learnKidsStarterNextStepsSectionSubtitle;
+
+  /// No description provided for @learnKidsStarterNextStepsArabicHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep learning letters and sounds one small step at a time.'**
+  String get learnKidsStarterNextStepsArabicHint;
+
+  /// No description provided for @learnKidsStarterNextStepsStoriesHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enjoy more prophet stories and gentle lessons through story time.'**
+  String get learnKidsStarterNextStepsStoriesHint;
+
+  /// No description provided for @learnKidsStarterNextStepsDuasHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Learn more short duas for everyday moments and happy routines.'**
+  String get learnKidsStarterNextStepsDuasHint;
+
+  /// No description provided for @learnStoriesPathBridgeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Let’s learn through stories'**
+  String get learnStoriesPathBridgeTitle;
+
+  /// No description provided for @learnStoriesPathBridgeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Stories help the heart understand faith, patience, and trust before details feel heavy.'**
+  String get learnStoriesPathBridgeSubtitle;
+
+  /// No description provided for @learnStoriesPathBridgeIntroTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A calm way to begin'**
+  String get learnStoriesPathBridgeIntroTitle;
+
+  /// No description provided for @learnStoriesPathBridgeIntroBody.
+  ///
+  /// In en, this message translates to:
+  /// **'This path begins with the stories Allah gave us for guidance. We will start with the Prophets, move into the Seerah, and finish by turning those stories into lessons for daily life.'**
+  String get learnStoriesPathBridgeIntroBody;
+
+  /// No description provided for @learnStoriesPathBridgeHintNarrative.
+  ///
+  /// In en, this message translates to:
+  /// **'Stories help knowledge feel connected, memorable, and easier to carry.'**
+  String get learnStoriesPathBridgeHintNarrative;
+
+  /// No description provided for @learnStoriesPathBridgeHintMeaning.
+  ///
+  /// In en, this message translates to:
+  /// **'We are not only collecting events. We are learning what trust, patience, and mercy look like.'**
+  String get learnStoriesPathBridgeHintMeaning;
+
+  /// No description provided for @learnStoriesPathBridgeBeginAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Start with the Prophets'**
+  String get learnStoriesPathBridgeBeginAction;
+
+  /// No description provided for @learnStoriesPathNextStepsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Carry the lessons forward'**
+  String get learnStoriesPathNextStepsTitle;
+
+  /// No description provided for @learnStoriesPathNextStepsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Let the stories lead you into character, Qur’an reflection, or deeper history.'**
+  String get learnStoriesPathNextStepsSubtitle;
+
+  /// No description provided for @learnStoriesPathNextStepsIntroTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Stories are meant to change us'**
+  String get learnStoriesPathNextStepsIntroTitle;
+
+  /// No description provided for @learnStoriesPathNextStepsIntroBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Sacred stories are not just timelines. They teach patience, courage, mercy, and trust in Allah. Keep that lesson alive by choosing the next lane that will help it become part of your life.'**
+  String get learnStoriesPathNextStepsIntroBody;
+
+  /// No description provided for @learnStoriesPathNextStepsHistoryAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore Islamic history'**
+  String get learnStoriesPathNextStepsHistoryAction;
+
+  /// No description provided for @learnStoriesPathNextStepsSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose what comes next'**
+  String get learnStoriesPathNextStepsSectionTitle;
+
+  /// No description provided for @learnStoriesPathNextStepsSectionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Follow the lesson into character, Qur’an reflection, or broader historical context.'**
+  String get learnStoriesPathNextStepsSectionSubtitle;
+
+  /// No description provided for @learnStoriesPathNextStepsCharacterHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep the story lessons alive by growing in patience, adab, and self-improvement.'**
+  String get learnStoriesPathNextStepsCharacterHint;
+
+  /// No description provided for @learnStoriesPathNextStepsQuranHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue with the Qur’an and see how revelation deepens the lessons carried by these stories.'**
+  String get learnStoriesPathNextStepsQuranHint;
+
+  /// No description provided for @guidedLearningPathProgressValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{completed} of {total} steps'**
+  String guidedLearningPathProgressValue(int completed, int total);
+
+  /// No description provided for @guidedLearningPathPercentValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{percent}%'**
+  String guidedLearningPathPercentValue(int percent);
+
+  /// No description provided for @guidedLearningPathNextStepLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Next: {step}'**
+  String guidedLearningPathNextStepLabel(Object step);
+
+  /// No description provided for @guidedLearningPathStepOfTotal.
+  ///
+  /// In en, this message translates to:
+  /// **'Step {step} of {total}'**
+  String guidedLearningPathStepOfTotal(int step, int total);
+
+  /// No description provided for @guidedLearningPathStepCompletedMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'{step} marked complete.'**
+  String guidedLearningPathStepCompletedMessage(Object step);
+
+  /// No description provided for @guidedLearningPathNextUnlockedMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Next step: {step}'**
+  String guidedLearningPathNextUnlockedMessage(Object step);
+
+  /// No description provided for @guidedLearningPathCompletedMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'{pathTitle} is complete.'**
+  String guidedLearningPathCompletedMessage(Object pathTitle);
+
+  /// No description provided for @learnEnrichmentSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Learning Moments'**
+  String get learnEnrichmentSectionTitle;
+
+  /// No description provided for @learnEnrichmentSectionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Calm milestones and quiet encouragement for the long journey.'**
+  String get learnEnrichmentSectionSubtitle;
+
+  /// No description provided for @learnEnrichmentMomentLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'A gentle milestone'**
+  String get learnEnrichmentMomentLabel;
+
+  /// No description provided for @learnEnrichmentMemoriesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent learning memories'**
+  String get learnEnrichmentMemoriesTitle;
+
+  /// No description provided for @learnEnrichmentMemoriesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Small moments that marked your learning journey.'**
+  String get learnEnrichmentMemoriesSubtitle;
+
+  /// No description provided for @learnEnrichmentKeepGoingAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep going'**
+  String get learnEnrichmentKeepGoingAction;
+
+  /// No description provided for @learnEnrichmentOpenPathAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open path'**
+  String get learnEnrichmentOpenPathAction;
+
+  /// No description provided for @learnEnrichmentNextPathsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue with'**
+  String get learnEnrichmentNextPathsTitle;
+
+  /// No description provided for @learnEnrichmentCompletionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You completed {pathTitle}'**
+  String learnEnrichmentCompletionTitle(Object pathTitle);
+
+  /// No description provided for @learnEnrichmentCompletionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A meaningful chapter is complete.'**
+  String get learnEnrichmentCompletionSubtitle;
+
+  /// No description provided for @learnEnrichmentCompletionBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Take a quiet moment, then choose a calm next step when you are ready.'**
+  String get learnEnrichmentCompletionBody;
+
+  /// No description provided for @learnEnrichmentCompletionKidsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You learned something new today'**
+  String get learnEnrichmentCompletionKidsTitle;
+
+  /// No description provided for @learnEnrichmentCompletionKidsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A gentle kids journey is complete.'**
+  String get learnEnrichmentCompletionKidsSubtitle;
+
+  /// No description provided for @learnEnrichmentCompletionKidsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'A warm little step can lead to another joyful lesson.'**
+  String get learnEnrichmentCompletionKidsBody;
+
+  /// No description provided for @learnEnrichmentEncouragementSmallStep.
+  ///
+  /// In en, this message translates to:
+  /// **'A small step is still progress.'**
+  String get learnEnrichmentEncouragementSmallStep;
+
+  /// No description provided for @learnEnrichmentEncouragementSteadyRhythm.
+  ///
+  /// In en, this message translates to:
+  /// **'You are building a steady rhythm.'**
+  String get learnEnrichmentEncouragementSteadyRhythm;
+
+  /// No description provided for @learnEnrichmentEncouragementWelcomeBack.
+  ///
+  /// In en, this message translates to:
+  /// **'Returning gently is still progress.'**
+  String get learnEnrichmentEncouragementWelcomeBack;
+
+  /// No description provided for @learnEnrichmentEncouragementNextChapter.
+  ///
+  /// In en, this message translates to:
+  /// **'You are ready for the next gentle chapter.'**
+  String get learnEnrichmentEncouragementNextChapter;
+
+  /// No description provided for @learnEnrichmentEncouragementReadyForNextPath.
+  ///
+  /// In en, this message translates to:
+  /// **'You are ready for a calm next path.'**
+  String get learnEnrichmentEncouragementReadyForNextPath;
+
+  /// No description provided for @learnEnrichmentEncouragementQuran.
+  ///
+  /// In en, this message translates to:
+  /// **'Understanding can grow one calm step at a time.'**
+  String get learnEnrichmentEncouragementQuran;
+
+  /// No description provided for @learnEnrichmentEncouragementStories.
+  ///
+  /// In en, this message translates to:
+  /// **'Let the lesson of the story travel with you into the next step.'**
+  String get learnEnrichmentEncouragementStories;
+
+  /// No description provided for @learnEnrichmentEncouragementKids.
+  ///
+  /// In en, this message translates to:
+  /// **'You learned something new today, and that is beautiful.'**
+  String get learnEnrichmentEncouragementKids;
+
+  /// No description provided for @learnEnrichmentMilestoneGenericTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A meaningful step is complete'**
+  String get learnEnrichmentMilestoneGenericTitle;
+
+  /// No description provided for @learnEnrichmentMilestoneGenericBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Quiet progress still matters, even when it begins small.'**
+  String get learnEnrichmentMilestoneGenericBody;
+
+  /// No description provided for @learnEnrichmentMilestoneFirstPathStartedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You started {pathTitle}'**
+  String learnEnrichmentMilestoneFirstPathStartedTitle(Object pathTitle);
+
+  /// No description provided for @learnEnrichmentMilestoneFirstPathStartedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'You do not need to do everything at once. One sincere beginning is enough.'**
+  String get learnEnrichmentMilestoneFirstPathStartedBody;
+
+  /// No description provided for @learnEnrichmentMilestoneFirstStepCompletedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A first step is complete'**
+  String get learnEnrichmentMilestoneFirstStepCompletedTitle;
+
+  /// No description provided for @learnEnrichmentMilestoneFirstStepCompletedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'That first guided step matters more than speed.'**
+  String get learnEnrichmentMilestoneFirstStepCompletedBody;
+
+  /// No description provided for @learnEnrichmentMilestoneFirstPathCompletedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your first path is complete'**
+  String get learnEnrichmentMilestoneFirstPathCompletedTitle;
+
+  /// No description provided for @learnEnrichmentMilestoneFirstPathCompletedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'A full learning chapter is now behind you, and the next one can begin gently.'**
+  String get learnEnrichmentMilestoneFirstPathCompletedBody;
+
+  /// No description provided for @learnEnrichmentMilestoneFoundationsCompletedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You completed Foundations'**
+  String get learnEnrichmentMilestoneFoundationsCompletedTitle;
+
+  /// No description provided for @learnEnrichmentMilestoneFoundationsCompletedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'You now have a calmer base for Salah, Qur’an, or Daily Dhikr.'**
+  String get learnEnrichmentMilestoneFoundationsCompletedBody;
+
+  /// No description provided for @learnEnrichmentMilestoneFirstQuranStepCompletedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You began with the Qur’an'**
+  String get learnEnrichmentMilestoneFirstQuranStepCompletedTitle;
+
+  /// No description provided for @learnEnrichmentMilestoneFirstQuranStepCompletedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Starting small with the Qur’an is still a beautiful beginning.'**
+  String get learnEnrichmentMilestoneFirstQuranStepCompletedBody;
+
+  /// No description provided for @learnEnrichmentMilestoneFirstKidsPathCompletedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A joyful kids path is complete'**
+  String get learnEnrichmentMilestoneFirstKidsPathCompletedTitle;
+
+  /// No description provided for @learnEnrichmentMilestoneFirstKidsPathCompletedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'A warm little lesson can open the door to many more.'**
+  String get learnEnrichmentMilestoneFirstKidsPathCompletedBody;
+
+  /// No description provided for @learnEnrichmentMilestoneStoriesCompletedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You completed Stories'**
+  String get learnEnrichmentMilestoneStoriesCompletedTitle;
+
+  /// No description provided for @learnEnrichmentMilestoneStoriesCompletedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'The lessons of the Prophets and Seerah can now carry into character and reflection.'**
+  String get learnEnrichmentMilestoneStoriesCompletedBody;
+
+  /// No description provided for @learnEnrichmentMilestoneThreeStepsWeekTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A steady rhythm is forming'**
+  String get learnEnrichmentMilestoneThreeStepsWeekTitle;
+
+  /// No description provided for @learnEnrichmentMilestoneThreeStepsWeekBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Three guided steps in a week is meaningful progress.'**
+  String get learnEnrichmentMilestoneThreeStepsWeekBody;
+
+  /// No description provided for @learnEnrichmentMilestoneReturnAfterBreakTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome back'**
+  String get learnEnrichmentMilestoneReturnAfterBreakTitle;
+
+  /// No description provided for @learnEnrichmentMilestoneReturnAfterBreakBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Coming back calmly still counts as progress.'**
+  String get learnEnrichmentMilestoneReturnAfterBreakBody;
+
+  /// No description provided for @learnHubExploreQuickAccessTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Quick access'**
+  String get learnHubExploreQuickAccessTitle;
+
+  /// No description provided for @learnHubExploreSupportTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Support and saved spaces'**
+  String get learnHubExploreSupportTitle;
+
+  /// No description provided for @learnHubExploreSearchResultsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Search results'**
+  String get learnHubExploreSearchResultsTitle;
+
+  /// No description provided for @learnHubKidsFeaturedLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'For families'**
+  String get learnHubKidsFeaturedLabel;
+
+  /// No description provided for @learnHubKidsFeaturedHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'Easy entry points for younger learners without leaving the main Learn flow.'**
+  String get learnHubKidsFeaturedHelper;
+
+  /// No description provided for @learnPersonalizationSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Next Step'**
+  String get learnPersonalizationSectionTitle;
+
+  /// No description provided for @learnPersonalizationSectionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A calm recommendation based on your recent learning.'**
+  String get learnPersonalizationSectionSubtitle;
+
+  /// No description provided for @learnPersonalizationContinuePathTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue {pathTitle}'**
+  String learnPersonalizationContinuePathTitle(Object pathTitle);
+
+  /// No description provided for @learnPersonalizationStartPathTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Start {pathTitle}'**
+  String learnPersonalizationStartPathTitle(Object pathTitle);
+
+  /// No description provided for @learnPersonalizationResumePathTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Return to {pathTitle}'**
+  String learnPersonalizationResumePathTitle(Object pathTitle);
+
+  /// No description provided for @learnPersonalizationContinueStepAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open step'**
+  String get learnPersonalizationContinueStepAction;
+
+  /// No description provided for @learnPersonalizationOpenPathAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open path'**
+  String get learnPersonalizationOpenPathAction;
+
+  /// No description provided for @learnPersonalizationViewPathAction.
+  ///
+  /// In en, this message translates to:
+  /// **'View path'**
+  String get learnPersonalizationViewPathAction;
+
+  /// No description provided for @learnPersonalizationSecondaryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You could also explore'**
+  String get learnPersonalizationSecondaryTitle;
+
+  /// No description provided for @learnPersonalizationBecauseActivePath.
+  ///
+  /// In en, this message translates to:
+  /// **'You already have a guided path in progress.'**
+  String get learnPersonalizationBecauseActivePath;
+
+  /// No description provided for @learnPersonalizationBecauseSequencedAfterCompletion.
+  ///
+  /// In en, this message translates to:
+  /// **'This is the clearest next path after your recent completion.'**
+  String get learnPersonalizationBecauseSequencedAfterCompletion;
+
+  /// No description provided for @learnPersonalizationBecauseQuranMomentum.
+  ///
+  /// In en, this message translates to:
+  /// **'You have been spending time with the Qur\'\'an recently.'**
+  String get learnPersonalizationBecauseQuranMomentum;
+
+  /// No description provided for @learnPersonalizationBecauseDhikrMomentum.
+  ///
+  /// In en, this message translates to:
+  /// **'Your recent dhikr rhythm makes this a gentle next step.'**
+  String get learnPersonalizationBecauseDhikrMomentum;
+
+  /// No description provided for @learnPersonalizationBecauseSalahMomentum.
+  ///
+  /// In en, this message translates to:
+  /// **'Your recent salah learning makes this the right next practice.'**
+  String get learnPersonalizationBecauseSalahMomentum;
+
+  /// No description provided for @learnPersonalizationBecauseKidsProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'This keeps the learning journey age-appropriate and easy to follow.'**
+  String get learnPersonalizationBecauseKidsProfile;
+
+  /// No description provided for @learnPersonalizationBecauseNoHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'This is the best place to begin if you are just getting started.'**
+  String get learnPersonalizationBecauseNoHistory;
+
+  /// No description provided for @learnPersonalizationBecauseInactiveReentry.
+  ///
+  /// In en, this message translates to:
+  /// **'This is a light way to return without feeling overwhelmed.'**
+  String get learnPersonalizationBecauseInactiveReentry;
+
+  /// No description provided for @learnPersonalizationBecauseFridayRhythm.
+  ///
+  /// In en, this message translates to:
+  /// **'Friday is a good time for a gentle Qur\'\'an-focused return.'**
+  String get learnPersonalizationBecauseFridayRhythm;
+
+  /// No description provided for @learnPersonalizationBecauseRamadanRhythm.
+  ///
+  /// In en, this message translates to:
+  /// **'This fits a lighter Ramadan learning rhythm.'**
+  String get learnPersonalizationBecauseRamadanRhythm;
+
+  /// No description provided for @learnPersonalizationBecauseKeepMomentum.
+  ///
+  /// In en, this message translates to:
+  /// **'This keeps your recent momentum going.'**
+  String get learnPersonalizationBecauseKeepMomentum;
+
+  /// No description provided for @learnPersonalizationBecauseSafeFallback.
+  ///
+  /// In en, this message translates to:
+  /// **'This is a steady next step while your recent signals are still light.'**
+  String get learnPersonalizationBecauseSafeFallback;
+
+  /// No description provided for @learnPersonalizationFridayBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Friday'**
+  String get learnPersonalizationFridayBadge;
+
+  /// No description provided for @learnPersonalizationRamadanBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Ramadan'**
+  String get learnPersonalizationRamadanBadge;
+
+  /// No description provided for @learnPersonalizationMomentumBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'In progress'**
+  String get learnPersonalizationMomentumBadge;
+
+  /// No description provided for @learnFoundationsNextStepsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'What Next?'**
+  String get learnFoundationsNextStepsTitle;
+
+  /// No description provided for @learnFoundationsNextStepsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You have enough to move forward calmly. Choose the lane that feels most helpful right now.'**
+  String get learnFoundationsNextStepsSubtitle;
+
+  /// No description provided for @learnFoundationsNextStepsIntroTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A steady beginning matters more than doing everything at once'**
+  String get learnFoundationsNextStepsIntroTitle;
+
+  /// No description provided for @learnFoundationsNextStepsIntroBody.
+  ///
+  /// In en, this message translates to:
+  /// **'You do not need to master every topic before continuing. After these foundations, the best next step is to choose one gentle lane and build consistency there.'**
+  String get learnFoundationsNextStepsIntroBody;
+
+  /// No description provided for @learnFoundationsNextStepsSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose one path to continue'**
+  String get learnFoundationsNextStepsSectionTitle;
+
+  /// No description provided for @learnFoundationsNextStepsSectionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'These next paths stay focused, so you can keep learning without running into a wall of options.'**
+  String get learnFoundationsNextStepsSectionSubtitle;
+
+  /// No description provided for @learnFoundationsNextStepsSalahHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose this if you want to understand prayer, wudu, and the first practical steps of daily worship.'**
+  String get learnFoundationsNextStepsSalahHint;
+
+  /// No description provided for @learnFoundationsNextStepsQuranHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose this if you want a calm way into reading, listening, and reflecting with the Qur’an.'**
+  String get learnFoundationsNextStepsQuranHint;
+
+  /// No description provided for @learnFoundationsNextStepsDhikrHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose this if you want a light daily rhythm of dua and remembrance you can start right away.'**
+  String get learnFoundationsNextStepsDhikrHint;
+
+  /// No description provided for @learnDailyDhikrNextStepsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep the Habit Going'**
+  String get learnDailyDhikrNextStepsTitle;
+
+  /// No description provided for @learnDailyDhikrNextStepsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You have started with meaning and simplicity. Now you can practice gently and connect dhikr to the rest of your worship.'**
+  String get learnDailyDhikrNextStepsSubtitle;
+
+  /// No description provided for @learnDailyDhikrNextStepsIntroTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Use the tool to support the habit, not replace it'**
+  String get learnDailyDhikrNextStepsIntroTitle;
+
+  /// No description provided for @learnDailyDhikrNextStepsIntroBody.
+  ///
+  /// In en, this message translates to:
+  /// **'The dhikr counter can help you stay present and consistent, but the goal is not numbers alone. Start small, keep your heart engaged, and let remembrance become a quiet daily companion.'**
+  String get learnDailyDhikrNextStepsIntroBody;
+
+  /// No description provided for @learnDailyDhikrNextStepsOpenToolAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open dhikr tool'**
+  String get learnDailyDhikrNextStepsOpenToolAction;
+
+  /// No description provided for @learnDailyDhikrNextStepsSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'What could come next'**
+  String get learnDailyDhikrNextStepsSectionTitle;
+
+  /// No description provided for @learnDailyDhikrNextStepsSectionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose one nearby path if you want your remembrance to strengthen prayer, character, or your wider daily rhythm.'**
+  String get learnDailyDhikrNextStepsSectionSubtitle;
+
+  /// No description provided for @learnDailyDhikrNextStepsCharacterHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose this if you want your remembrance to shape patience, adab, and everyday conduct.'**
+  String get learnDailyDhikrNextStepsCharacterHint;
+
+  /// No description provided for @learnDailyDhikrNextStepsSalahHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose this if you want dhikr to stay closely connected to prayer and daily worship.'**
+  String get learnDailyDhikrNextStepsSalahHint;
+
+  /// No description provided for @learnQuranBeginnerSoftBridgeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Begin with the Qur’an'**
+  String get learnQuranBeginnerSoftBridgeTitle;
+
+  /// No description provided for @learnQuranBeginnerSoftBridgeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You do not need to feel fully prepared before you begin. Start small, stay calm, and let understanding grow over time.'**
+  String get learnQuranBeginnerSoftBridgeSubtitle;
+
+  /// No description provided for @learnQuranBeginnerSoftBridgeIntroTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'It is okay to begin gently'**
+  String get learnQuranBeginnerSoftBridgeIntroTitle;
+
+  /// No description provided for @learnQuranBeginnerSoftBridgeIntroBody.
+  ///
+  /// In en, this message translates to:
+  /// **'The Qur’an is guidance and mercy. You do not have to read a lot or understand everything at once. One ayah, one moment of listening, or one small reflection is already a meaningful beginning.'**
+  String get learnQuranBeginnerSoftBridgeIntroBody;
+
+  /// No description provided for @learnQuranBeginnerSoftBridgeHintStartSmall.
+  ///
+  /// In en, this message translates to:
+  /// **'Start with one small step. A little steady time with the Qur’an is better than waiting for the perfect moment.'**
+  String get learnQuranBeginnerSoftBridgeHintStartSmall;
+
+  /// No description provided for @learnQuranBeginnerSoftBridgeHintPace.
+  ///
+  /// In en, this message translates to:
+  /// **'You can read, listen, or simply reflect. Move at a pace that feels sincere and sustainable.'**
+  String get learnQuranBeginnerSoftBridgeHintPace;
+
+  /// No description provided for @learnQuranBeginnerSoftBridgeBeginAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Let’s begin'**
+  String get learnQuranBeginnerSoftBridgeBeginAction;
 
   /// No description provided for @settingsThemeChoiceMidnightManuscript.
   ///
