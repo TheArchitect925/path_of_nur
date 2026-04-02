@@ -27,6 +27,7 @@ Status legend:
   - main dashboard
   - daily overview and prayer-facing summary
   - On This Day historical reflection card driven by the shared history archive dataset
+  - temporary glass style preview comparison section under the existing home content, isolated to `lib/features/home/presentation/glass_preview/`
 - partial:
   - still carries localization debt in active surfaces
 - risky/inconsistent:
@@ -55,6 +56,11 @@ Status legend:
   - topics, names of Allah, top words, word review
   - Qur'an learning and Qur'anic Arabic entrypoints
   - shared ayah-enrichment provider now aggregates starter educational metadata from Qur'an Study seeds, Divine Life Lessons, and World & Creation, and surfaces that through the reader `Learn More` section and `QuranReferenceViewer`
+  - the canonical Qur'an reader now also has an inline ayah-by-ayah explanation layer with a separate persisted explanation-detail preference, graceful fallback across `simple` / `standard` / `deep` / `kids`, and a shared curated explanation repository rather than a separate tafsir page
+  - the kids Qur'an surah page now also has a kids-safe explanation toggle that reuses the same shared explanation repository through a simpler wrapper without altering the adult reader mode or playback architecture
+  - the explanation layer now also has attribution-ready internal source metadata, per-surah coverage summaries, and shared surah-level resolved explanation providers so future editorial review and longer-surah rendering can scale without rebuilding the feature
+  - the explanation layer now also powers a shared ayah-action recommendation system with calm "Live this ayah" actions in the main reader, simplified "Try this today" actions in the kids reader, a daily ayah-action anchor on Home and Daily Companion, and once-per-ayah-per-day Journey/Ocean drop awarding through the existing ledger bridge instead of a second reward system
+  - the Qur'an layer now also has a deterministic local-first personalization engine that combines recent reading, reflections, action completions, memorization, prayer/dhikr rhythm, user intent, guided-path context, and kids-safe rules into explainable ayah recommendation bundles for Home, the Qur'an hub, Growth Home, and subtle reader follow-up cards without introducing a black-box engagement system
   - Quran Summary now includes a dedicated summary list, summary-detail flow, canonical reader handoff, reusable Qur'an presentation components, and a typed surah-enrichment layer for themes, notable ayat, related prophets/events, cautious virtues/recitation notes, and reflection prompts
   - Qur'an thematic discovery now also has a curated Browse by Topic explorer on the canonical `/quran/topics` route family, powered by a normalized theme registry plus resolved links back to enriched surahs, notable ayat, related prophets/events, and direct reader/detail handoffs
   - ayah enrichment now uses a stricter canonical contract for domains, lesson types, normalized tags, link strength, caution levels, and typed mixed display items so future ayah-detail content can expand without page-local display rules
@@ -386,6 +392,19 @@ Status legend:
 - risky/inconsistent:
   - because some localized theme and pathway subtitles still use English-first fallback text in non-English ARB resources, the companion copy is localization-ready but not yet fully translated across all supported locales
 
+## Qur'an spiritual moments
+
+- implemented:
+  - the shared spiritual-moments engine now lives in `lib/features/learn/quran/domain/quran_spiritual_moment_models.dart` and `lib/features/learn/quran/application/quran_spiritual_moment_provider.dart`, with deterministic local-first selection across time-of-day, prayer context, Friday, Ramadan, and kids-safe flows
+  - the engine reuses existing explanation/action repositories and the phase-9 personalization profile, then layers on recent prayer completion, current/next prayer context, Hijri/Ramadan awareness, and freshness/cooldown state instead of creating a parallel recommendation backend
+  - Home, Qur'an hub, the shared Prayer section, the main reader, and the kids Qur'an reader now all use the same `QuranSpiritualMomentCard` presentation component, with dismiss-for-today support on calmer overview surfaces and a subtler contextual appearance inside the reader
+  - current moment types include morning/Fajr, sunrise reflection, Dhuhr pause, Asr reset, Maghrib gratitude, Isha wind-down, sleep reflection, quiet night, post-prayer, Friday, Ramadan, and kids daily moments
+- partial:
+  - the moment engine still relies partly on tag/category inference from the current curated ayah-action corpus, so it will improve as more hand-reviewed action tags and moment-specific ayah mappings are added
+  - reminder automation is only hook-ready in this phase through internal ids such as morning/post-prayer/Friday/sleep reflection, and there is not yet any user-facing reminder toggle for spiritual moments
+- risky/inconsistent:
+  - Ramadan awareness currently uses existing special-mode settings plus a local Hijri-month fallback, so future work should keep one canonical Islamic-date source instead of letting parallel Ramadan heuristics drift
+
 ## Qur'an reflections / saved insights
 
 - implemented:
@@ -452,3 +471,7 @@ Status legend:
   - code presence does not equal release readiness
   - mirrored Home prayer and Qur'an surfaces should stay in parity review with mobile changes unless platform constraints justify divergence
   - watch reward projection is intentionally optimistic and must defer final truth to phone-side app logic
+- Internal editorial tooling:
+  Hidden master editorial dashboard behind Settings > About secret gesture plus PIN gate; feature-flagged for public builds and intended for internal coverage/readiness audits only.
+  Includes cross-domain quality scoring, issue queues, pack health, and safe local review-note/readiness metadata for internal triage without destructive editing.
+  Includes hidden drill-down editors for selected content types backed by local versioned overrides with compare/rollback support, without exposing editing in public navigation or mutating seeded source files at runtime.

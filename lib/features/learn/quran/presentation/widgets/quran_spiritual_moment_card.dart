@@ -1,0 +1,229 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../../../../l10n/app_localizations.dart';
+import '../../../../../shared/widgets/premium_card.dart';
+import '../../../../../shared/widgets/quran_navigation.dart';
+import '../../application/quran_ayah_action_provider.dart';
+import '../../application/quran_spiritual_moment_provider.dart';
+import '../../domain/quran_spiritual_moment_models.dart';
+
+class QuranSpiritualMomentCard extends ConsumerStatefulWidget {
+  const QuranSpiritualMomentCard({
+    super.key,
+    required this.bundle,
+    required this.surface,
+    this.allowDismiss = false,
+  });
+
+  final QuranSpiritualMomentBundle bundle;
+  final QuranSpiritualMomentSurface surface;
+  final bool allowDismiss;
+
+  @override
+  ConsumerState<QuranSpiritualMomentCard> createState() =>
+      _QuranSpiritualMomentCardState();
+}
+
+class _QuranSpiritualMomentCardState
+    extends ConsumerState<QuranSpiritualMomentCard> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      ref
+          .read(quranSpiritualMomentStateProvider.notifier)
+          .recordPresentationIfNeeded(
+            surface: widget.surface,
+            ayahKey: widget.bundle.primary.ayahKey,
+          );
+    });
+  }
+
+  @override
+  void didUpdateWidget(covariant QuranSpiritualMomentCard oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.bundle.primary.ayahKey == widget.bundle.primary.ayahKey &&
+        oldWidget.surface == widget.surface) {
+      return;
+    }
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      ref
+          .read(quranSpiritualMomentStateProvider.notifier)
+          .recordPresentationIfNeeded(
+            surface: widget.surface,
+            ayahKey: widget.bundle.primary.ayahKey,
+          );
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final recommendation = widget.bundle.primary;
+
+    return PremiumCard(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      _titleForSurface(
+                        l10n,
+                        widget.surface,
+                        widget.bundle.preferKids,
+                      ),
+                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      _reasonLabel(l10n, recommendation.reasonCode),
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        fontWeight: FontWeight.w700,
+                        color: const Color(0xFF7A6241),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              if (widget.allowDismiss)
+                IconButton(
+                  tooltip: l10n.quranPersonalizationDismissAction,
+                  onPressed: () {
+                    ref
+                        .read(quranSpiritualMomentStateProvider.notifier)
+                        .dismissForToday(
+                          surface: widget.surface,
+                          ayahKey: recommendation.ayahKey,
+                        );
+                  },
+                  icon: const Icon(Icons.close_rounded),
+                ),
+            ],
+          ),
+          const SizedBox(height: 8),
+          Text(
+            recommendation.ref.locationLabel,
+            style: Theme.of(
+              context,
+            ).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w700),
+          ),
+          const SizedBox(height: 6),
+          Text(
+            recommendation.explanation.previewText,
+            style: Theme.of(
+              context,
+            ).textTheme.bodyMedium?.copyWith(height: 1.45),
+          ),
+          const SizedBox(height: 10),
+          Text(
+            widget.bundle.preferKids
+                ? l10n.kidsQuranAyahActionTitle
+                : l10n.quranAyahActionTitle,
+            style: Theme.of(
+              context,
+            ).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w700),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            recommendation.actionRecommendation.action.localizedActionText(
+              Localizations.localeOf(context).languageCode,
+            ),
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              height: 1.45,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          const SizedBox(height: 12),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              FilledButton.tonalIcon(
+                onPressed: () => openQuranReferenceLocation(
+                  context,
+                  ref: recommendation.ref,
+                ),
+                icon: const Icon(Icons.auto_stories_rounded),
+                label: Text(l10n.quranPersonalizationOpenAyahAction),
+              ),
+              recommendation.actionRecommendation.isCompletedToday
+                  ? FilledButton.tonalIcon(
+                      onPressed: null,
+                      icon: const Icon(Icons.check_circle_rounded),
+                      label: Text(l10n.quranAyahActionCompletedAction),
+                    )
+                  : FilledButton.icon(
+                      onPressed: () {
+                        ref
+                            .read(quranAyahActionStateProvider.notifier)
+                            .completeAction(
+                              recommendation.actionRecommendation.action,
+                            );
+                      },
+                      icon: const Icon(Icons.done_rounded),
+                      label: Text(l10n.quranAyahActionCompleteAction),
+                    ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+String _titleForSurface(
+  AppLocalizations l10n,
+  QuranSpiritualMomentSurface surface,
+  bool preferKids,
+) {
+  if (preferKids || surface == QuranSpiritualMomentSurface.kidsReader) {
+    return l10n.quranSpiritualMomentKidsTitle;
+  }
+  return switch (surface) {
+    QuranSpiritualMomentSurface.home => l10n.quranSpiritualMomentHomeTitle,
+    QuranSpiritualMomentSurface.quranHub => l10n.quranSpiritualMomentHubTitle,
+    QuranSpiritualMomentSurface.prayer => l10n.quranSpiritualMomentPrayerTitle,
+    QuranSpiritualMomentSurface.reader => l10n.quranSpiritualMomentReaderTitle,
+    QuranSpiritualMomentSurface.kidsReader =>
+      l10n.quranSpiritualMomentKidsTitle,
+  };
+}
+
+String _reasonLabel(
+  AppLocalizations l10n,
+  QuranSpiritualMomentReasonCode reason,
+) {
+  return switch (reason) {
+    QuranSpiritualMomentReasonCode.morningCalm =>
+      l10n.quranSpiritualMomentReasonMorning,
+    QuranSpiritualMomentReasonCode.afterPrayer =>
+      l10n.quranSpiritualMomentReasonPostPrayer,
+    QuranSpiritualMomentReasonCode.middayPause =>
+      l10n.quranSpiritualMomentReasonDhuhr,
+    QuranSpiritualMomentReasonCode.afternoonReset =>
+      l10n.quranSpiritualMomentReasonAsr,
+    QuranSpiritualMomentReasonCode.sunsetGratitude =>
+      l10n.quranSpiritualMomentReasonMaghrib,
+    QuranSpiritualMomentReasonCode.eveningCalm =>
+      l10n.quranSpiritualMomentReasonIsha,
+    QuranSpiritualMomentReasonCode.quietNight =>
+      l10n.quranSpiritualMomentReasonNight,
+    QuranSpiritualMomentReasonCode.fridayReflection =>
+      l10n.quranSpiritualMomentReasonFriday,
+    QuranSpiritualMomentReasonCode.ramadanReflection =>
+      l10n.quranSpiritualMomentReasonRamadan,
+    QuranSpiritualMomentReasonCode.kidsMoment =>
+      l10n.quranSpiritualMomentReasonKids,
+  };
+}

@@ -109,6 +109,49 @@ class HadithEntry {
       hasVerifiedArabicMatn &&
       displaySourceReference != null &&
       displaySourceReference!.trim().isNotEmpty;
+
+  HadithEntry copyWith({
+    String? title,
+    String? excerpt,
+    String? meaning,
+    List<String>? lessons,
+    List<String>? reflectionPrompts,
+    String? practiceAction,
+    List<String>? tags,
+  }) {
+    return HadithEntry(
+      id: id,
+      themeId: themeId,
+      collectionIds: collectionIds,
+      title: title ?? this.title,
+      excerpt: excerpt ?? this.excerpt,
+      hadithText: hadithText,
+      englishText: englishText,
+      arabicText: arabicText,
+      transliteration: transliteration,
+      sourceUrl: sourceUrl,
+      translationSourceVerified: translationSourceVerified,
+      arabicMatnSourceVerified: arabicMatnSourceVerified,
+      transliterationSourceVerified: transliterationSourceVerified,
+      source: source,
+      sourceCollection: sourceCollection,
+      sourceReference: sourceReference,
+      grading: grading,
+      narrator: narrator,
+      tags: tags ?? this.tags,
+      quranConnections: quranConnections,
+      meaning: meaning ?? this.meaning,
+      lessons: lessons ?? this.lessons,
+      reflectionPrompts: reflectionPrompts ?? this.reflectionPrompts,
+      practiceAction: practiceAction ?? this.practiceAction,
+      relatedHadithIds: relatedHadithIds,
+      isDailyEligible: isDailyEligible,
+      difficultyLevel: difficultyLevel,
+      themeTag: themeTag,
+      recommendedDay: recommendedDay,
+      isEssential: isEssential,
+    );
+  }
 }
 
 class HadithTheme {

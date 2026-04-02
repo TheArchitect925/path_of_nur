@@ -1,0 +1,283 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../../../../l10n/app_localizations.dart';
+import '../../../../../shared/widgets/premium_card.dart';
+import '../../../../../shared/widgets/quran_navigation.dart';
+import '../../application/quran_ayah_action_provider.dart';
+import '../../application/quran_guided_learning_paths_provider.dart';
+import '../../application/quran_personalization_provider.dart';
+import '../../domain/quran_personalization_models.dart';
+import '../quran_learning_path_copy.dart';
+
+class QuranPersonalizedRecommendationCard extends ConsumerStatefulWidget {
+  const QuranPersonalizedRecommendationCard({
+    super.key,
+    required this.bundle,
+    required this.surface,
+    this.allowDismiss = false,
+  });
+
+  final QuranRecommendationBundle bundle;
+  final QuranPersonalizationSurface surface;
+  final bool allowDismiss;
+
+  @override
+  ConsumerState<QuranPersonalizedRecommendationCard> createState() =>
+      _QuranPersonalizedRecommendationCardState();
+}
+
+class _QuranPersonalizedRecommendationCardState
+    extends ConsumerState<QuranPersonalizedRecommendationCard> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      ref
+          .read(quranPersonalizationStateProvider.notifier)
+          .recordPresentationIfNeeded(
+            surface: widget.surface,
+            ayahKey: widget.bundle.primary.ayahKey,
+          );
+    });
+  }
+
+  @override
+  void didUpdateWidget(
+    covariant QuranPersonalizedRecommendationCard oldWidget,
+  ) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.bundle.primary.ayahKey == widget.bundle.primary.ayahKey &&
+        oldWidget.surface == widget.surface) {
+      return;
+    }
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      ref
+          .read(quranPersonalizationStateProvider.notifier)
+          .recordPresentationIfNeeded(
+            surface: widget.surface,
+            ayahKey: widget.bundle.primary.ayahKey,
+          );
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final recommendation = widget.bundle.primary;
+    final suggestedPath = recommendation.suggestedJourney == null
+        ? null
+        : ref.watch(
+            quranGuidedLearningPathByIdProvider(
+              recommendation.suggestedJourney!.pathId,
+            ),
+          );
+
+    return PremiumCard(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      _titleForSurface(
+                        l10n,
+                        widget.surface,
+                        widget.bundle.preferKids,
+                      ),
+                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      _reasonLabel(
+                        l10n,
+                        recommendation.reasonCode,
+                        preferKids: widget.bundle.preferKids,
+                      ),
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        fontWeight: FontWeight.w700,
+                        color: const Color(0xFF7A6241),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              if (widget.allowDismiss)
+                IconButton(
+                  tooltip: l10n.quranPersonalizationDismissAction,
+                  onPressed: () {
+                    ref
+                        .read(quranPersonalizationStateProvider.notifier)
+                        .dismissForToday(
+                          surface: widget.surface,
+                          ayahKey: recommendation.ayahKey,
+                        );
+                  },
+                  icon: const Icon(Icons.close_rounded),
+                ),
+            ],
+          ),
+          const SizedBox(height: 8),
+          Text(
+            recommendation.ref.locationLabel,
+            style: Theme.of(
+              context,
+            ).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w700),
+          ),
+          const SizedBox(height: 6),
+          Text(
+            recommendation.explanationPreview,
+            style: Theme.of(
+              context,
+            ).textTheme.bodyMedium?.copyWith(height: 1.45),
+          ),
+          const SizedBox(height: 10),
+          Text(
+            widget.bundle.preferKids
+                ? l10n.kidsQuranAyahActionTitle
+                : l10n.quranAyahActionTitle,
+            style: Theme.of(
+              context,
+            ).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w700),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            recommendation.actionRecommendation.action.actionText,
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              height: 1.45,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          if (suggestedPath != null) ...[
+            const SizedBox(height: 10),
+            Text(
+              l10n.quranPersonalizationPathHintTitle,
+              style: Theme.of(
+                context,
+              ).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w700),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              localizedQuranLearningPathTitle(l10n, suggestedPath.id),
+              style: Theme.of(context).textTheme.bodySmall,
+            ),
+          ],
+          const SizedBox(height: 12),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              FilledButton.tonalIcon(
+                onPressed: () => openQuranReferenceLocation(
+                  context,
+                  ref: recommendation.ref,
+                ),
+                icon: const Icon(Icons.auto_stories_rounded),
+                label: Text(l10n.quranPersonalizationOpenAyahAction),
+              ),
+              recommendation.actionRecommendation.isCompletedToday
+                  ? FilledButton.tonalIcon(
+                      onPressed: null,
+                      icon: const Icon(Icons.check_circle_rounded),
+                      label: Text(l10n.quranAyahActionCompletedAction),
+                    )
+                  : FilledButton.icon(
+                      onPressed: () {
+                        ref
+                            .read(quranAyahActionStateProvider.notifier)
+                            .completeAction(
+                              recommendation.actionRecommendation.action,
+                            );
+                      },
+                      icon: const Icon(Icons.done_rounded),
+                      label: Text(l10n.quranAyahActionCompleteAction),
+                    ),
+              if (suggestedPath != null)
+                OutlinedButton.icon(
+                  onPressed: () => context.pushNamed(
+                    recommendation.suggestedJourney!.routeName,
+                    pathParameters:
+                        recommendation.suggestedJourney!.pathParameters,
+                  ),
+                  icon: const Icon(Icons.route_rounded),
+                  label: Text(l10n.quranPersonalizationOpenPathAction),
+                ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+String _titleForSurface(
+  AppLocalizations l10n,
+  QuranPersonalizationSurface surface,
+  bool preferKids,
+) {
+  if (preferKids || surface == QuranPersonalizationSurface.kidsReader) {
+    return l10n.quranPersonalizationKidsTitle;
+  }
+  return switch (surface) {
+    QuranPersonalizationSurface.home => l10n.quranPersonalizationHomeTitle,
+    QuranPersonalizationSurface.quranHub => l10n.quranPersonalizationHubTitle,
+    QuranPersonalizationSurface.reader => l10n.quranPersonalizationReaderTitle,
+    QuranPersonalizationSurface.growth => l10n.quranPersonalizationGrowthTitle,
+    QuranPersonalizationSurface.kidsReader =>
+      l10n.quranPersonalizationKidsTitle,
+  };
+}
+
+String _reasonLabel(
+  AppLocalizations l10n,
+  QuranRecommendationReasonCode reason, {
+  required bool preferKids,
+}) {
+  if (preferKids) {
+    return switch (reason) {
+      QuranRecommendationReasonCode.continueReading =>
+        l10n.quranPersonalizationKidsReasonContinue,
+      QuranRecommendationReasonCode.beginnerFriendly ||
+      QuranRecommendationReasonCode.kidsFriendly =>
+        l10n.quranPersonalizationKidsReasonEasy,
+      _ => l10n.quranPersonalizationKidsReasonToday,
+    };
+  }
+
+  return switch (reason) {
+    QuranRecommendationReasonCode.continueReading =>
+      l10n.quranPersonalizationReasonContinueReading,
+    QuranRecommendationReasonCode.recentReflection =>
+      l10n.quranPersonalizationReasonRecentReflection,
+    QuranRecommendationReasonCode.dailyAnchor =>
+      l10n.quranPersonalizationReasonDailyAnchor,
+    QuranRecommendationReasonCode.guidedPathFocus =>
+      l10n.quranPersonalizationReasonGuidedPathFocus,
+    QuranRecommendationReasonCode.prayerSupport =>
+      l10n.quranPersonalizationReasonPrayerSupport,
+    QuranRecommendationReasonCode.remembranceRhythm =>
+      l10n.quranPersonalizationReasonRemembranceRhythm,
+    QuranRecommendationReasonCode.memorizationReview =>
+      l10n.quranPersonalizationReasonMemorizationReview,
+    QuranRecommendationReasonCode.beginnerFriendly =>
+      l10n.quranPersonalizationReasonBeginnerFriendly,
+    QuranRecommendationReasonCode.kidsFriendly =>
+      l10n.quranPersonalizationReasonKidsFriendly,
+    QuranRecommendationReasonCode.keepMomentum =>
+      l10n.quranPersonalizationReasonKeepMomentum,
+    QuranRecommendationReasonCode.gentleForToday =>
+      l10n.quranPersonalizationReasonGentleForToday,
+    QuranRecommendationReasonCode.growthFocus =>
+      l10n.quranPersonalizationReasonGrowthFocus,
+  };
+}

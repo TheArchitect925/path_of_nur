@@ -53,6 +53,33 @@ enum QuranReaderStudyMode {
   }
 }
 
+enum QuranExplanationDetailLevel {
+  off,
+  simple,
+  standard,
+  deep,
+  kids;
+
+  String get wireName => switch (this) {
+    QuranExplanationDetailLevel.off => 'off',
+    QuranExplanationDetailLevel.simple => 'simple',
+    QuranExplanationDetailLevel.standard => 'standard',
+    QuranExplanationDetailLevel.deep => 'deep',
+    QuranExplanationDetailLevel.kids => 'kids',
+  };
+
+  static QuranExplanationDetailLevel? tryParse(String? raw) {
+    return switch (raw?.trim().toLowerCase()) {
+      'off' => QuranExplanationDetailLevel.off,
+      'simple' => QuranExplanationDetailLevel.simple,
+      'standard' => QuranExplanationDetailLevel.standard,
+      'deep' => QuranExplanationDetailLevel.deep,
+      'kids' => QuranExplanationDetailLevel.kids,
+      _ => null,
+    };
+  }
+}
+
 class QuranReference {
   const QuranReference({
     required this.id,

@@ -22,9 +22,13 @@ import '../../shared/application/learn_unified_provider.dart';
 import '../../shared/domain/learn_unified_models.dart';
 import '../../journey/data/learning_journey_localized_metadata.dart';
 import '../../journey/data/learning_journey_registry.dart';
+import '../application/quran_ayah_action_provider.dart';
+import '../application/quran_ayah_explanation_provider.dart';
 import '../application/quran_playback_orchestrator.dart';
 import '../application/quran_audio_resilience.dart';
+import '../application/quran_personalization_provider.dart';
 import '../application/quran_player_controller.dart';
+import '../application/quran_spiritual_moment_provider.dart';
 import '../application/quran_reader_follow_mode_coordinator.dart';
 import '../application/quran_reader_playback_controller.dart';
 import '../application/quran_reader_playback_state.dart';
@@ -41,18 +45,26 @@ import '../data/quran_audio_repository.dart';
 import '../data/quran_word_glossary.dart';
 import '../domain/bismillah_playback_mode.dart';
 import '../domain/quran_ayah.dart';
+import '../domain/quran_ayah_action_models.dart';
+import '../domain/quran_ayah_explanation_models.dart';
 import '../domain/quran_ayah_enrichment_models.dart';
 import '../domain/quran_audio_resilience_models.dart';
 import '../domain/quran_playback_request.dart';
+import '../domain/quran_personalization_models.dart';
 import '../domain/quran_reference_models.dart';
+import '../domain/quran_spiritual_moment_models.dart';
 import '../domain/quran_user_intent_models.dart';
 import 'quran_reader_playback_presentation.dart';
 import 'quran_theme_copy.dart';
 import 'widgets/ayah_insights_section.dart';
+import 'widgets/quran_ayah_action_section.dart';
+import 'widgets/quran_ayah_explanation_section.dart';
+import 'widgets/quran_personalized_recommendation_card.dart';
 import 'widgets/quran_continue_listening_card.dart';
 import 'widgets/quran_playback_controls_card.dart';
 import 'widgets/quran_related_reference_detail_sheet.dart';
 import 'widgets/quran_reference_viewer.dart';
+import 'widgets/quran_spiritual_moment_card.dart';
 
 class QuranReaderPage extends ConsumerStatefulWidget {
   const QuranReaderPage({
@@ -274,6 +286,14 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
         languageCode,
       )),
     );
+    final readerSpiritualMoment = ref.watch(
+      quranReaderSpiritualMomentProvider((
+        widget.surahNumber,
+        effectiveAyah,
+        false,
+        languageCode,
+      )),
+    );
     final selectedReciter = audioRepository.reciterById(
       audioSettings.reciterId,
     );
@@ -324,6 +344,38 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
         ? null
         : LearningJourneyRegistry.stageById(widget.learningJourneyStageId!);
     final effectiveStudyMode = _resolveStudyMode();
+    final resolvedExplanationsByAyah =
+        settings.explanationDetailLevel == QuranExplanationDetailLevel.off ||
+            effectiveStudyMode == QuranReaderStudyMode.memorization
+        ? const <int, QuranAyahResolvedExplanation>{}
+        : ref.watch(
+            quranResolvedAyahExplanationsForSurahProvider((
+              widget.surahNumber,
+              settings.explanationDetailLevel,
+              languageCode,
+            )),
+          );
+    final actionRecommendationsByAyah =
+        settings.explanationDetailLevel == QuranExplanationDetailLevel.off ||
+            effectiveStudyMode == QuranReaderStudyMode.memorization
+        ? const <int, QuranAyahActionRecommendation>{}
+        : ref.watch(
+            quranAyahActionRecommendationsForSurahProvider((
+              widget.surahNumber,
+              languageCode,
+              false,
+            )),
+          );
+    final personalizedRecommendationsByAyah =
+        settings.explanationDetailLevel == QuranExplanationDetailLevel.off ||
+            effectiveStudyMode == QuranReaderStudyMode.memorization
+        ? const <int, QuranRecommendedAyah>{}
+        : ref.watch(
+            quranReaderPersonalizedRecommendationsForSurahProvider((
+              widget.surahNumber,
+              false,
+            )),
+          );
     final showBroaderStudyCards =
         effectiveStudyMode != QuranReaderStudyMode.reading &&
         effectiveStudyMode != QuranReaderStudyMode.memorization;
@@ -975,11 +1027,7 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
         if (ayahsAsync.isLoading && ayahs.isEmpty)
           const PremiumCard(child: LinearProgressIndicator())
         else if (ayahsAsync.hasError && ayahs.isEmpty)
-          PremiumCard(
-            child: Text(
-              l10n.quranReaderTransliterationLoadError,
-            ),
-          )
+          PremiumCard(child: Text(l10n.quranReaderTransliterationLoadError))
         else if (ayahs.isEmpty)
           PremiumCard(child: Text(l10n.quranSearchNoResults))
         else
@@ -1045,6 +1093,15 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
                 harakatColor: settings.redDiacriticsEnabled
                     ? const Color(0xFFC22A2A)
                     : null,
+                resolvedExplanation:
+                    resolvedExplanationsByAyah[ayah.ayahNumber],
+                actionRecommendation:
+                    actionRecommendationsByAyah[ayah.ayahNumber],
+                spiritualMomentBundle: ayah.ayahNumber == effectiveAyah
+                    ? readerSpiritualMoment
+                    : null,
+                personalizedRecommendation:
+                    personalizedRecommendationsByAyah[ayah.ayahNumber],
                 contextualLinks: ref.watch(
                   quranContextualKnowledgeLinksForVerseProvider((
                     ayah.surahNumber,
@@ -1059,16 +1116,16 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
                 ),
                 studyMode: effectiveStudyMode,
                 activeTopicId: widget.highlightedTopicId,
-                onPlayAyah: quranAudioEnabled ? () => _handleAyahPlay(ayah) : null,
+                onPlayAyah: quranAudioEnabled
+                    ? () => _handleAyahPlay(ayah)
+                    : null,
                 onToggleMemorization: () => ref
                     .read(quranMemorizationProgressProvider.notifier)
                     .toggleVerse(
                       surahNumber: ayah.surahNumber,
                       ayahNumber: ayah.ayahNumber,
                     ),
-                onTap: quranAudioEnabled
-                    ? () => _handleAyahPlay(ayah)
-                    : null,
+                onTap: quranAudioEnabled ? () => _handleAyahPlay(ayah) : null,
                 onPlayWord: (word) => _onWordTap(context, ref, word),
                 onMistakeCheckpoint: () {
                   ref
@@ -1181,8 +1238,7 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
     final canGoPreviousAyah =
         playbackState.canGoPreviousAyah && !isPreparingPlayback;
     final canGoNextAyah = playbackState.canGoNextAyah && !isPreparingPlayback;
-    final canRestartAyah =
-        playbackState.canRestartAyah && !isPreparingPlayback;
+    final canRestartAyah = playbackState.canRestartAyah && !isPreparingPlayback;
     final canGoPreviousSurah =
         playbackState.canGoPreviousSurah &&
         playbackState.isSurahPlaybackMode &&
@@ -1212,7 +1268,9 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
                 elevation: 4,
                 borderRadius: BorderRadius.circular(999),
                 child: IconButton(
-                  key: const ValueKey('quran-reader-return-to-current-ayah-pill'),
+                  key: const ValueKey(
+                    'quran-reader-return-to-current-ayah-pill',
+                  ),
                   tooltip: l10n.quranReaderReturnToCurrentAyahAction,
                   onPressed: () => ref
                       .read(
@@ -1296,16 +1354,17 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
           sliderValue: maxMillis > 0 ? currentMillis : 0,
           onOpenExpandedPlayer: hasPlayback
               ? () => context.pushNamed(
-                    'quranFocusRecitation',
-                    queryParameters: <String, String>{
-                      'surah': widget.surahNumber.toString(),
-                      if (playbackState.activeAyahNumber != null ||
-                          playbackState.storedSession?.ayahNumber != null)
-                        'ayah': (playbackState.activeAyahNumber ??
-                                playbackState.storedSession!.ayahNumber)
-                            .toString(),
-                    },
-                  )
+                  'quranFocusRecitation',
+                  queryParameters: <String, String>{
+                    'surah': widget.surahNumber.toString(),
+                    if (playbackState.activeAyahNumber != null ||
+                        playbackState.storedSession?.ayahNumber != null)
+                      'ayah':
+                          (playbackState.activeAyahNumber ??
+                                  playbackState.storedSession!.ayahNumber)
+                              .toString(),
+                  },
+                )
               : null,
           repeatSummaryLabel: repeatSummaryLabel,
           sourceStatusLabel: sourceStatusLabel,
@@ -1446,7 +1505,8 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
         previous?.didApplyFallback != true &&
         next.resolutionState ==
             QuranPlaybackSourceResolutionState.fallbackApplied) {
-      final message = next.activeSourceType == QuranPlaybackSourceType.localDownload
+      final message =
+          next.activeSourceType == QuranPlaybackSourceType.localDownload
           ? l10n.quranPlaybackFallbackUsingDownloaded
           : l10n.quranPlaybackFallbackUsingStream;
       messenger.showSnackBar(SnackBar(content: Text(message)));
@@ -1493,7 +1553,10 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
             );
             return;
           }
-          await _runProgrammaticScrollToAyah(targetAyah.ayahNumber, retries: 30);
+          await _runProgrammaticScrollToAyah(
+            targetAyah.ayahNumber,
+            retries: 30,
+          );
           if (!mounted) return;
           await _startSurahPlaybackFromAyah(
             ayahs,
@@ -1515,8 +1578,7 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
     final endAyah = widget.endAyah ?? startAyah;
     return ayahs
         .where(
-          (ayah) =>
-              ayah.ayahNumber >= startAyah && ayah.ayahNumber <= endAyah,
+          (ayah) => ayah.ayahNumber >= startAyah && ayah.ayahNumber <= endAyah,
         )
         .toList(growable: false);
   }
@@ -1675,7 +1737,9 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
 
   Future<void> _reengageFollowModeForAyah(int ayahNumber) async {
     ref
-        .read(quranReaderFollowModeCoordinatorProvider(widget.surahNumber).notifier)
+        .read(
+          quranReaderFollowModeCoordinatorProvider(widget.surahNumber).notifier,
+        )
         .handleAyahInteraction(ayahNumber);
     await _runProgrammaticScrollToAyah(ayahNumber, retries: 20);
   }
@@ -1699,7 +1763,8 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
     final resumed = await _resumeLoadedPlaybackIfPossible();
     if (resumed) return;
     final currentAyah =
-        _resolvedCurrentPlaybackAyah(ayahs) ?? _currentAyahFromPlaybackKey(ayahs);
+        _resolvedCurrentPlaybackAyah(ayahs) ??
+        _currentAyahFromPlaybackKey(ayahs);
     if (currentAyah != null) {
       await _playAyahAudio(
         currentAyah,
@@ -1767,8 +1832,7 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
                   child: _ScaleControl(
                     label: l10n.quranTransliterationTextSize,
                     percent: settings.transliterationScalePercent,
-                    onChanged:
-                        settingsNotifier.setTransliterationScalePercent,
+                    onChanged: settingsNotifier.setTransliterationScalePercent,
                   ),
                 ),
               ],
@@ -1814,9 +1878,7 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
               onChanged: settingsNotifier.setShowTranslation,
             ),
             SwitchListTile.adaptive(
-              key: const ValueKey(
-                'quran-reader-setting-show-transliteration',
-              ),
+              key: const ValueKey('quran-reader-setting-show-transliteration'),
               contentPadding: EdgeInsets.zero,
               value: settings.showTransliteration,
               title: Text(l10n.quranShowTransliteration),
@@ -1855,6 +1917,29 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
               subtitle: Text(l10n.quranShowLearnMoreSubtitle),
               onChanged: settingsNotifier.setShowLearnMore,
             ),
+            const SizedBox(height: 8),
+            DropdownButtonFormField<QuranExplanationDetailLevel>(
+              initialValue: settings.explanationDetailLevel,
+              style: Theme.of(context).textTheme.bodyLarge,
+              decoration: InputDecoration(
+                labelText: l10n.quranAyahExplanationDetailLabel,
+                helperText: l10n.quranAyahExplanationDetailHelper,
+                isDense: true,
+                border: const OutlineInputBorder(),
+              ),
+              items: QuranExplanationDetailLevel.values
+                  .map(
+                    (detail) => DropdownMenuItem<QuranExplanationDetailLevel>(
+                      value: detail,
+                      child: Text(_readerExplanationDetailLabel(l10n, detail)),
+                    ),
+                  )
+                  .toList(growable: false),
+              onChanged: (value) {
+                if (value == null) return;
+                settingsNotifier.setExplanationDetailLevel(value);
+              },
+            ),
             SwitchListTile.adaptive(
               key: const ValueKey('quran-reader-setting-word-by-word'),
               contentPadding: EdgeInsets.zero,
@@ -1886,9 +1971,7 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SwitchListTile.adaptive(
-                key: const ValueKey(
-                  'quran-reader-setting-background-playback',
-                ),
+                key: const ValueKey('quran-reader-setting-background-playback'),
                 contentPadding: EdgeInsets.zero,
                 value: audioSettings.backgroundPlaybackEnabled,
                 title: Text(l10n.quranReaderBackgroundPlaybackTitle),
@@ -1939,9 +2022,7 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
                 ],
               ),
               const SizedBox(height: 12),
-              _SettingsSubsectionLabel(
-                l10n.quranReaderPlaybackSpeedTitle,
-              ),
+              _SettingsSubsectionLabel(l10n.quranReaderPlaybackSpeedTitle),
               Row(
                 children: [
                   Text(
@@ -2085,7 +2166,9 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
                   const SizedBox(width: 10),
                   Expanded(
                     child: FilledButton.tonalIcon(
-                      onPressed: _isLoopRunning ? null : () => _playConfiguredLoop(ayahs),
+                      onPressed: _isLoopRunning
+                          ? null
+                          : () => _playConfiguredLoop(ayahs),
                       icon: const Icon(Icons.repeat_rounded),
                       label: Text(l10n.quranPlayLoopLabel),
                     ),
@@ -2472,7 +2555,8 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
     if (!_scrollController.hasClients || _isCoordinatorDrivenScroll) {
       return;
     }
-    if (_scrollController.position.userScrollDirection == ScrollDirection.idle) {
+    if (_scrollController.position.userScrollDirection ==
+        ScrollDirection.idle) {
       return;
     }
     final coordinator = ref.read(
@@ -2583,7 +2667,11 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
     );
     if (followPlayback) {
       ref
-          .read(quranReaderFollowModeCoordinatorProvider(widget.surahNumber).notifier)
+          .read(
+            quranReaderFollowModeCoordinatorProvider(
+              widget.surahNumber,
+            ).notifier,
+          )
           .handleAyahInteraction(targetAyah.ayahNumber);
       await _runProgrammaticScrollToAyah(targetAyah.ayahNumber, retries: 20);
     }
@@ -2721,14 +2809,16 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
   }
 
   Future<void> _resumeRecitationSession(QuranRecitationSession session) async {
-    if (_isPreparingSurahPlayback || session.surahNumber != widget.surahNumber) {
+    if (_isPreparingSurahPlayback ||
+        session.surahNumber != widget.surahNumber) {
       return;
     }
     await _playerController.resumeStoredRecitationSession();
   }
 
   Future<void> _restartRecitationSession(QuranRecitationSession session) async {
-    if (_isPreparingSurahPlayback || session.surahNumber != widget.surahNumber) {
+    if (_isPreparingSurahPlayback ||
+        session.surahNumber != widget.surahNumber) {
       return;
     }
     await _playerController.resumeStoredRecitationSession(
@@ -2829,7 +2919,10 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
       final itemMs = itemDuration.inMilliseconds;
       if (remainingMs <= itemMs || i == sequence.length - 1) {
         final positionMs = remainingMs.clamp(0, itemMs);
-        await _playerController.seek(Duration(milliseconds: positionMs), index: i);
+        await _playerController.seek(
+          Duration(milliseconds: positionMs),
+          index: i,
+        );
         _syncCurrentPlaybackAyahKey();
         return;
       }
@@ -3007,9 +3100,9 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
 
     if (!context.mounted) return;
     final l10n = AppLocalizations.of(context);
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(l10n.quranReciterSwitchFailed)),
-    );
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(l10n.quranReciterSwitchFailed)));
   }
 
   Future<void> _handleAdjacentSurahTransition(int offset) async {
@@ -3186,13 +3279,19 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
       );
       if (!context.mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(AppLocalizations.of(context).quranReaderDownloadSuccess)),
+        SnackBar(
+          content: Text(
+            AppLocalizations.of(context).quranReaderDownloadSuccess,
+          ),
+        ),
       );
     } catch (error) {
       if (!context.mounted) return;
       final l10n = AppLocalizations.of(context);
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(l10n.quranReaderDownloadFailed(error.toString()))),
+        SnackBar(
+          content: Text(l10n.quranReaderDownloadFailed(error.toString())),
+        ),
       );
     } finally {
       if (mounted) {
@@ -3214,7 +3313,9 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
     );
     if (!context.mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(AppLocalizations.of(context).quranReaderDownloadRemoved)),
+      SnackBar(
+        content: Text(AppLocalizations.of(context).quranReaderDownloadRemoved),
+      ),
     );
     setState(() {});
   }
@@ -3472,9 +3573,7 @@ class _SettingsGroupCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: const Color(0xFFFAF6F0),
         borderRadius: BorderRadius.circular(18),
-        border: Border.all(
-          color: AppColors.accentGold.withValues(alpha: 0.20),
-        ),
+        border: Border.all(color: AppColors.accentGold.withValues(alpha: 0.20)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -3612,6 +3711,10 @@ class QuranAyahCard extends StatefulWidget {
     required this.transliterationFontSize,
     required this.translationFontSize,
     required this.harakatColor,
+    required this.resolvedExplanation,
+    required this.actionRecommendation,
+    required this.spiritualMomentBundle,
+    required this.personalizedRecommendation,
     required this.contextualLinks,
     required this.themeTopics,
     required this.studyMode,
@@ -3642,6 +3745,10 @@ class QuranAyahCard extends StatefulWidget {
   final double transliterationFontSize;
   final double translationFontSize;
   final Color? harakatColor;
+  final QuranAyahResolvedExplanation? resolvedExplanation;
+  final QuranAyahActionRecommendation? actionRecommendation;
+  final QuranSpiritualMomentBundle? spiritualMomentBundle;
+  final QuranRecommendedAyah? personalizedRecommendation;
   final List<QuranRelatedKnowledgeLink> contextualLinks;
   final List<QuranTopic> themeTopics;
   final QuranReaderStudyMode studyMode;
@@ -3904,8 +4011,10 @@ class _QuranAyahCardState extends State<QuranAyahCard> {
                                     word.transliteration,
                                     style: TextStyle(
                                       fontSize: 10.5,
-                                      color: QuranPresentationStyle
-                                          .quranSupportTextColor(context),
+                                      color:
+                                          QuranPresentationStyle.quranSupportTextColor(
+                                            context,
+                                          ),
                                       fontStyle: FontStyle.italic,
                                     ),
                                   ),
@@ -3916,8 +4025,10 @@ class _QuranAyahCardState extends State<QuranAyahCard> {
                                     ),
                                     style: TextStyle(
                                       fontSize: 10.5,
-                                      color: QuranPresentationStyle
-                                          .quranSupportTextColor(context),
+                                      color:
+                                          QuranPresentationStyle.quranSupportTextColor(
+                                            context,
+                                          ),
                                     ),
                                   ),
                                 ],
@@ -3971,6 +4082,48 @@ class _QuranAyahCardState extends State<QuranAyahCard> {
                       sourceWordCount: arabicWordCount,
                       activeSourceIndex: widget.activeWordIndex,
                     ),
+                  ),
+                ],
+                if (widget.resolvedExplanation != null) ...[
+                  const SizedBox(height: 10),
+                  QuranAyahExplanationSection(
+                    explanation: widget.resolvedExplanation!,
+                    style: QuranAyahExplanationSectionStyle.reader,
+                    studyMode: widget.studyMode,
+                    initiallyExpanded:
+                        widget.studyMode == QuranReaderStudyMode.study ||
+                        widget.studyMode == QuranReaderStudyMode.reflection ||
+                        widget.studyMode == QuranReaderStudyMode.theme,
+                  ),
+                ],
+                if (widget.resolvedExplanation != null &&
+                    widget.actionRecommendation != null) ...[
+                  const SizedBox(height: 10),
+                  QuranAyahActionSection(
+                    recommendation: widget.actionRecommendation!,
+                    style: QuranAyahActionSectionStyle.reader,
+                  ),
+                ],
+                if (widget.spiritualMomentBundle != null) ...[
+                  const SizedBox(height: 10),
+                  QuranSpiritualMomentCard(
+                    bundle: widget.spiritualMomentBundle!,
+                    surface: QuranSpiritualMomentSurface.reader,
+                  ),
+                ],
+                if (widget.resolvedExplanation != null &&
+                    widget.personalizedRecommendation != null) ...[
+                  const SizedBox(height: 10),
+                  QuranPersonalizedRecommendationCard(
+                    bundle: QuranRecommendationBundle(
+                      surface: QuranPersonalizationSurface.reader,
+                      preferKids: false,
+                      generatedDateKey: LocalStore.todayKey(DateTime.now()),
+                      primary: widget.personalizedRecommendation!,
+                      suggestedJourney:
+                          widget.personalizedRecommendation!.suggestedJourney,
+                    ),
+                    surface: QuranPersonalizationSurface.reader,
                   ),
                 ],
                 if (showThemesFirst) ...[
@@ -4320,6 +4473,20 @@ String _readerStudyModeLabel(AppLocalizations l10n, QuranReaderStudyMode mode) {
     QuranReaderStudyMode.study => l10n.quranReaderModeStudyLabel,
     QuranReaderStudyMode.memorization => l10n.quranReaderModeMemorizationLabel,
     QuranReaderStudyMode.theme => l10n.quranReaderModeThemeLabel,
+  };
+}
+
+String _readerExplanationDetailLabel(
+  AppLocalizations l10n,
+  QuranExplanationDetailLevel detail,
+) {
+  return switch (detail) {
+    QuranExplanationDetailLevel.off => l10n.quranAyahExplanationDetailOff,
+    QuranExplanationDetailLevel.simple => l10n.quranAyahExplanationDetailSimple,
+    QuranExplanationDetailLevel.standard =>
+      l10n.quranAyahExplanationDetailStandard,
+    QuranExplanationDetailLevel.deep => l10n.quranAyahExplanationDetailDeep,
+    QuranExplanationDetailLevel.kids => l10n.quranAyahExplanationDetailKids,
   };
 }
 

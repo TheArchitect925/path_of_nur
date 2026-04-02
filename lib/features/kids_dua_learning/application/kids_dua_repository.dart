@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../editorial_dashboard/application/editorial_content_versions_provider.dart';
 import '../data/kids_dua_seed_data.dart';
 import '../domain/kids_dua_models.dart';
 
@@ -9,11 +10,7 @@ final kidsDuaCategoriesProvider = Provider<List<KidsDuaCategory>>((ref) {
 });
 
 final kidsDuaLessonsProvider = Provider<List<KidsDuaLessonContent>>((ref) {
-  return List<KidsDuaLessonContent>.from(kidsDuaStarterLessons)..sort((a, b) {
-    final levelCompare = a.level.compareTo(b.level);
-    if (levelCompare != 0) return levelCompare;
-    return a.sortOrder.compareTo(b.sortOrder);
-  });
+  return ref.watch(editorialKidsDuaLessonsProvider);
 });
 
 final kidsDuaRewardsProvider = Provider<List<KidsDuaRewardItem>>((ref) {

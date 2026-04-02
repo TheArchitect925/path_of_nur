@@ -16,6 +16,9 @@ import '../../../../shared/utils/hijri_date_utils.dart';
 import '../../../../shared/widgets/moon_phase_visual.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/section_title.dart';
+import '../../../learn/quran/application/quran_spiritual_moment_provider.dart';
+import '../../../learn/quran/domain/quran_spiritual_moment_models.dart';
+import '../../../learn/quran/presentation/widgets/quran_spiritual_moment_card.dart';
 import '../../data/prayer_log_repository.dart';
 import '../../application/prayer_tracker_controller.dart';
 import '../../application/sister_cycle_provider.dart';
@@ -105,6 +108,13 @@ class _PrayerTimesTab extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
+    final spiritualMoment = ref.watch(
+      quranSpiritualMomentBundleProvider((
+        QuranSpiritualMomentSurface.prayer,
+        false,
+        Localizations.localeOf(context).languageCode,
+      )),
+    );
     final tracker = ref.watch(prayerTrackerControllerProvider);
     final trackerNotifier = ref.read(prayerTrackerControllerProvider.notifier);
     final sisterCycle = ref.watch(sisterCycleProvider);
@@ -150,6 +160,14 @@ class _PrayerTimesTab extends ConsumerWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          if (spiritualMoment != null) ...[
+            QuranSpiritualMomentCard(
+              bundle: spiritualMoment,
+              surface: QuranSpiritualMomentSurface.prayer,
+              allowDismiss: true,
+            ),
+            const SizedBox(height: 12),
+          ],
           PremiumCard(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -515,6 +533,11 @@ class _PrayerHistoryCard extends ConsumerWidget {
               PrayerStatus.missed => AppColors.caution,
               PrayerStatus.pending => AppColors.onSurfaceSubtle,
             };
+            final statusStyle = AppSurfaceTheme.resolve(
+              context,
+              variant: AppSurfaceVariant.panel,
+              tintColor: statusColor,
+            );
 
             return Padding(
               padding: const EdgeInsets.only(bottom: 8),
@@ -523,13 +546,13 @@ class _PrayerHistoryCard extends ConsumerWidget {
                   horizontal: 12,
                   vertical: 10,
                 ),
-                decoration: BoxDecoration(
-                  color: Colors.white.withValues(alpha: 0.42),
-                  borderRadius: BorderRadius.circular(14),
-                  border: Border.all(
-                    color: statusColor.withValues(alpha: 0.24),
-                  ),
-                ),
+                decoration: statusStyle
+                    .decoration(radius: 14, includeShadow: false)
+                    .copyWith(
+                      border: Border.all(
+                        color: statusColor.withValues(alpha: 0.24),
+                      ),
+                    ),
                 child: Row(
                   children: [
                     Container(
@@ -1125,7 +1148,6 @@ class _QadaPlannerCard extends ConsumerWidget {
                     (prayer) => Chip(
                       visualDensity: VisualDensity.compact,
                       label: Text(prayer.localizedLabel(l10n)),
-                      
                     ),
                   )
                   .toList(),
@@ -1417,9 +1439,7 @@ class _MoonPhaseCard extends StatelessWidget {
                     ),
                   Column(
                     mainAxisSize: MainAxisSize.min,
-                    children: [
-                      MoonPhaseVisual(moon: moon),
-                    ],
+                    children: [MoonPhaseVisual(moon: moon)],
                   ),
                 ],
               ),

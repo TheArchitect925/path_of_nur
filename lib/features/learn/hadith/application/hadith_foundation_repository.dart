@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../shared/persistence/local_store.dart';
+import '../../../editorial_dashboard/application/editorial_content_versions_provider.dart';
 import '../data/seeded_hadith_foundation_data.dart';
 import '../domain/hadith_foundation_models.dart';
 
@@ -15,7 +16,7 @@ final hadithCollectionsProvider = Provider<List<HadithCollection>>(
 );
 
 final hadithEntriesProvider = Provider<List<HadithEntry>>(
-  (_) => seededHadithEntries,
+  (ref) => ref.watch(editorialHadithEntriesProvider),
 );
 
 final hadithThemeByIdProvider = Provider.family<HadithTheme?, String>((
@@ -105,4 +106,3 @@ final savedHadithEntriesProvider = Provider<List<HadithEntry>>((ref) {
   final entries = ref.watch(hadithEntriesProvider);
   return entries.where((entry) => savedIds.contains(entry.id)).toList();
 });
-

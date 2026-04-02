@@ -57,6 +57,10 @@ Last updated: 2026-03-24
 - `/legal/terms`
 - `/legal/support`
 - `/legal/attributions`
+- `/internal/editorial`
+- `/internal/editorial/pin`
+- `/internal/editorial/content/:contentType`
+- `/internal/editorial/content/:contentType/edit?id=...`
 
 ## Canonical accounts / sync routes
 

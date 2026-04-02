@@ -25,6 +25,12 @@ Path of Nur is a Flutter + Riverpod mobile app centered on worship, Qur'an engag
 
 ## B1. Most recent stabilization update
 
+- Temporary homepage glass style preview islands are now live as an isolated comparison section:
+  - `HomePage` now renders a single temporary `HomeGlassStylePreviewSection` below the existing core home content
+  - all preview-specific code lives under `lib/features/home/presentation/glass_preview/` and is safe to remove later by deleting that folder plus one homepage import/insertion
+  - the preview uses the app-owned `NoorLiquidGlassContainer` wrapper on top of `liquid_glass_renderer` only inside that section, without changing the global surface system or homepage architecture
+  - the comparison includes twelve variants, including strong candidates like Milky, Dense Sanctuary, and Warm Glass plus more transparent comparison styles like Crystal, Night, and Clear Showcase
+
 - Phase 12 pre-launch Learn fix pack is complete:
   - `Character Path` now stays on existing owned surfaces with a calmer companion-led intro, focused trait guidance, a practical lesson-backed stage, and an explicit reflection stage instead of bouncing across broad companion surfaces
   - `Salah Path` now opens with the existing `salah-foundations` intro lesson so the first step explains what Salah is and why it matters before sending learners into the full trainer surfaces
@@ -680,6 +686,15 @@ Path of Nur is a Flutter + Riverpod mobile app centered on worship, Qur'an engag
   - the reader now shows a compact focus card with a mode label, subtitle, and switcher so users can change emphasis without leaving the canonical reader route or entering a separate reader architecture
   - top-of-page density now shifts by mode: reading and memorization stay calmer, study/reflection keep richer handoffs visible, and theme mode emphasizes the active Qur'anic topic without removing core features
   - ayah cards now adapt their Learn More and theme-chip density/order by mode, so reading stays quieter, memorization stays more repetition-oriented, and theme mode leads with the active theme before broader related links
+- Qur'an reader now also has a native ayah-by-ayah explanation layer instead of a separate tafsir route:
+  - explanation depth is stored as a separate reader preference with `off`, `simple`, `standard`, `deep`, and `kids`, so the existing study-mode route/query contract stays unchanged
+  - the main reader renders calm inline explanation sections inside ayah cards using a shared explanation repository with graceful fallback when a requested depth is missing
+  - the kids surah page reuses the same repository through a kids-safe toggle so child-facing explanations stay warm, short, and non-technical without overwriting adult reader settings
+  - the explanation domain now also carries attribution-ready internal source metadata, reviewed-source flags, and per-surah coverage summaries for future editorial scaling
+  - reader pages now prefer shared surah-level resolved explanation maps instead of many per-ayah resolution calls, which keeps the long-surah rendering path cleaner
+  - the curated rollout now covers Al-Fatihah, Ayat al-Kursi, At-Tin, Al-'Alaq 1-5, Ad-Duha, Ash-Sharh, Az-Zalzalah, Al-Qadr, Al-Qari'ah, At-Takathur, Al-'Asr, Al-Fil, Quraysh, Al-Ma'un, Al-Kawthar, Al-Kafirun, An-Nasr, Al-Masad, Al-Ikhlas, Al-Falaq, and An-Nas
+  - that explanation layer now also feeds a shared ayah-action system: the main reader can show a calm "Live this ayah" section, the kids reader can show a simpler "Try this today" action, Home/Daily Companion can surface a primary daily ayah-action anchor, and completions persist once per ayah per day while rewarding drops through the existing Journey/Ocean bridge rather than a parallel habit ledger
+  - the same Qur'an stack now also has a transparent local personalization layer with explainable reason codes, deterministic scoring, dismiss-for-today support, cooldown-aware rotation, suggested explanation depth, and shared recommendation bundles for Home, Qur'an Hub, Growth Home, the adult reader, and the kids reader instead of a remote or opaque engagement engine
 - Qur'an memorization review now has a lightweight revisit rhythm layered onto the existing memorization lane:
   - memorization progress now persists `addedAt`, `lastReviewed`, `reviewCount`, `nextReview`, and the last review outcome, while preserving the existing stage-based calm review flow
   - the review page now groups saved ayahs into `Continue review`, `Review today`, `Recently memorized`, `Needs revision`, and `All memorized` instead of a flatter due/saved split
@@ -877,6 +892,16 @@ Path of Nur is a Flutter + Riverpod mobile app centered on worship, Qur'an engag
   - guided-path progress events now feed one-time milestones such as first path started, first step completed, first path completed, Foundations completed, first Qur'an step completed, Stories completed, first kids path completed, return-after-break, and three-steps-this-week consistency
   - `/learn` now surfaces a pending milestone moment plus recent learning memories through calm cards, and completed guided path detail pages now show a richer completion card with encouragement and next-path suggestions instead of only plain completion feedback
   - the enrichment layer intentionally reuses the existing guided-path XP/Ocean completion boundaries and does not add a second reward ledger, streak-pressure UI, or noisy celebration pattern
+- the Qur'an stack now also has a first shared spiritual-moments engine layered on top of explanations, actions, personalization, and prayer timing instead of scattering time-based ayah nudges across surfaces:
+  - `lib/features/learn/quran/domain/quran_spiritual_moment_models.dart` and `lib/features/learn/quran/application/quran_spiritual_moment_provider.dart` now define typed spiritual-moment surfaces, moment kinds, local presentation state, prayer/day/time context gathering, deterministic scoring, freshness/cooldown behavior, and reminder-ready hook ids for moment-aware ayah selection
+  - the engine reuses existing local signals such as `dailyNowProvider`, `prayerScheduleContextProvider`, prayer log completion times, Ramadan special mode / Hijri month, and the existing Qur'an personalization profile instead of introducing a second tracking store or any network profiling
+  - Home, the Qur'an hub, the shared Prayer section, the canonical reader, and the kids Qur'an reader now all consume one shared `QuranSpiritualMomentCard` surface, with kids-safe defaults and a lighter reader-only contextual mode so the feature stays calm and route-safe
+  - Friday and Ramadan awareness are now real local-first selection inputs, while reminder automation remains intentionally structural-only in this pass through stable internal hook ids rather than new scheduling UI or notification spam
+- the curated explanation corpus now also has a deeper study pass for selected high-value ayahs instead of only short-surah starter depth:
+  - `lib/features/learn/quran/data/seeded_quran_ayah_explanations.dart` now includes new reviewed explanation entries and `deepExplanation` coverage for `2:1-5`, `2:183-187`, `2:284-286`, `3:8`, `3:18-19`, `3:26`, and `12:87`
+  - this keeps the deep layer selective and reader-friendly while expanding coverage in the exact places most likely to benefit study, reflection, worship, and guidance-focused reader flows
+- the explanation QA path now reports real full-Qur'an coverage instead of only validating the currently seeded slice:
+  - `tool/quran_explanation_audit.dart` now compares seeded explanation coverage against the full Qur'an ayah count from the `quran` package, reports per-layer percentages and missing counts, and summarizes review-status/metadata coverage so future passes cannot confuse “seeded entries are internally valid” with “the full Qur'an now has explanation coverage”
 
 ## H. Recommended next steps in priority order
 
@@ -900,3 +925,6 @@ Path of Nur is a Flutter + Riverpod mobile app centered on worship, Qur'an engag
 - This snapshot reflects the repo state as inspected on 2026-03-17, including user-owned uncommitted work already present in the tree.
 - Some platform-companion code may be scaffolded more deeply than the Flutter-side docs reveal, but the release guidance in docs is treated as authoritative for readiness.
 - The current engine install is repo-local and intentionally does not use the upstream cross-project installer, because the user requested repository-contained setup with minimal manual work.
+- 2026-04-01: Added a hidden internal editorial dashboard system with a feature-flagged `/internal/editorial` route, session-only unlock state, local hashed PIN seed (`0786`), settings-based hidden unlock gesture, and read-only cross-domain overview/filters for Qur'an, hadith, stories, duas/dhikr, learning paths, kids content, actions/Ocean Drops, recommendations/spiritual moments, and localization.
+- 2026-04-01: Expanded the hidden editorial dashboard into a review-control surface with rule-based quality scoring, issue classification, triage queues, pack-health summaries, score/readiness/priority filtering, and safe local metadata actions for readiness overrides and internal review notes. The route/access model remains unchanged and hidden from public navigation.
+- 2026-04-01: Added a hidden versioned inline-editor layer for selected dashboard-owned content types using local override records instead of seed mutation. Supported editor types now include Qur'an explanations, hadith entries, kids dua lessons, and kids stories, each with structured field editing, save-preview, required change summaries, version history, compare dialogs, and rollback that creates a fresh version entry. Public readers still consume normal providers, now overlaid by latest approved local versions.

@@ -4,6 +4,9 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 import '../../../l10n/app_localizations.dart';
+import '../../learn/quran/application/quran_personalization_provider.dart';
+import '../../learn/quran/domain/quran_personalization_models.dart';
+import '../../learn/quran/presentation/widgets/quran_personalized_recommendation_card.dart';
 import '../../../shared/content/learning_quote.dart';
 import '../../../shared/theme/islamic_icons.dart';
 import '../../../shared/widgets/major_page_shortcuts.dart';
@@ -22,6 +25,12 @@ class GrowthHomePage extends ConsumerWidget {
     final quote = buildGrowthReflectionQuote();
     final snapshot = ref.watch(journeyActivitySnapshotProvider);
     final progress = ref.watch(journeyComputedProgressProvider);
+    final quranBundle = ref.watch(
+      quranPersonalizedRecommendationBundleProvider((
+        QuranPersonalizationSurface.growth,
+        false,
+      )),
+    );
     final locale = Localizations.localeOf(context).toLanguageTag();
     final percentFormat = NumberFormat.decimalPercentPattern(
       locale: locale,
@@ -45,6 +54,14 @@ class GrowthHomePage extends ConsumerWidget {
           quote: quote,
           onTap: () => openQuranQuoteLocation(context, quote),
         ),
+        if (quranBundle != null) ...[
+          QuranPersonalizedRecommendationCard(
+            bundle: quranBundle,
+            surface: QuranPersonalizationSurface.growth,
+            allowDismiss: true,
+          ),
+          const SizedBox(height: 12),
+        ],
         PremiumCard(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

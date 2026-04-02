@@ -153,6 +153,39 @@ class KidsDuaLessonContent {
   final int level;
   final IconData icon;
   final String? practicePrompt;
+
+  KidsDuaLessonContent copyWith({
+    String? title,
+    String? transliteration,
+    String? meaning,
+    String? miniLesson,
+    String? whenToSay,
+    String? practicePrompt,
+    bool clearPracticePrompt = false,
+  }) {
+    return KidsDuaLessonContent(
+      id: id,
+      slug: slug,
+      categoryId: categoryId,
+      title: title ?? this.title,
+      arabic: arabic,
+      transliteration: transliteration ?? this.transliteration,
+      meaning: meaning ?? this.meaning,
+      miniLesson: miniLesson ?? this.miniLesson,
+      whenToSay: whenToSay ?? this.whenToSay,
+      phraseChunks: phraseChunks,
+      sourceType: sourceType,
+      sourceReference: sourceReference,
+      audioAssetPath: audioAssetPath,
+      rewardStickerId: rewardStickerId,
+      sortOrder: sortOrder,
+      level: level,
+      icon: icon,
+      practicePrompt: clearPracticePrompt
+          ? null
+          : practicePrompt ?? this.practicePrompt,
+    );
+  }
 }
 
 class KidsDuaLessonProgress {

@@ -4692,6 +4692,212 @@ class AppLocalizationsPs extends AppLocalizations {
   String get quranLearnMoreSectionTitle => 'Learn More';
 
   @override
+  String get quranAyahExplanationTitle => 'Ayah explanation';
+
+  @override
+  String get quranAyahExplanationDetailLabel => 'Explanation detail';
+
+  @override
+  String get quranAyahExplanationDetailHelper =>
+      'Choose how much explanation appears under ayahs with curated meaning notes.';
+
+  @override
+  String get quranAyahExplanationDetailOff => 'Off';
+
+  @override
+  String get quranAyahExplanationDetailSimple => 'Simple';
+
+  @override
+  String get quranAyahExplanationDetailStandard => 'Standard';
+
+  @override
+  String get quranAyahExplanationDetailDeep => 'Deep';
+
+  @override
+  String get quranAyahExplanationDetailKids => 'Kids';
+
+  @override
+  String get quranAyahExplanationKeyLessonsTitle => 'Key lessons';
+
+  @override
+  String get quranAyahExplanationReflectionPromptTitle => 'Reflection prompt';
+
+  @override
+  String quranAyahExplanationSourceLine(Object sources) {
+    return 'Based on trusted tafsir summaries: $sources';
+  }
+
+  @override
+  String get quranAyahExplanationTrustedSourceLine =>
+      'Based on trusted tafsir sources';
+
+  @override
+  String get quranAyahExplanationFallbackSourceLine =>
+      'Simplified explanation based on trusted tafsir sources';
+
+  @override
+  String get quranAyahActionTitle => 'Live this ayah';
+
+  @override
+  String get quranAyahActionReaderSubtitle =>
+      'A small step to help you live what you just read.';
+
+  @override
+  String get quranAyahActionTodayTitle => 'Today\'s ayah';
+
+  @override
+  String get quranAyahActionDailySubtitle =>
+      'Read, reflect, and try one small action today.';
+
+  @override
+  String get quranAyahActionCompleteAction => 'Mark as done';
+
+  @override
+  String get quranAyahActionCompletedAction => 'Done today';
+
+  @override
+  String get quranAyahActionReflectAction => 'Reflect';
+
+  @override
+  String get quranAyahActionReflectionTitle => 'A short reflection';
+
+  @override
+  String get quranPersonalizationHomeTitle => 'For you today';
+
+  @override
+  String get quranPersonalizationHubTitle => 'Recommended next';
+
+  @override
+  String get quranPersonalizationReaderTitle => 'You may also reflect on';
+
+  @override
+  String get quranPersonalizationGrowthTitle => 'Suggested spiritual focus';
+
+  @override
+  String get quranPersonalizationKidsTitle => 'A gentle next ayah';
+
+  @override
+  String get quranPersonalizationDismissAction => 'Dismiss for today';
+
+  @override
+  String get quranPersonalizationOpenAyahAction => 'Open ayah';
+
+  @override
+  String get quranPersonalizationOpenPathAction => 'Open path';
+
+  @override
+  String get quranPersonalizationPathHintTitle => 'Suggested path';
+
+  @override
+  String get quranPersonalizationReasonContinueReading =>
+      'Continue where you left off';
+
+  @override
+  String get quranPersonalizationReasonRecentReflection =>
+      'Matches your recent reflection';
+
+  @override
+  String get quranPersonalizationReasonDailyAnchor => 'A steady ayah for today';
+
+  @override
+  String get quranPersonalizationReasonGuidedPathFocus =>
+      'Connected to your current path';
+
+  @override
+  String get quranPersonalizationReasonPrayerSupport =>
+      'Supports your prayer journey';
+
+  @override
+  String get quranPersonalizationReasonRemembranceRhythm =>
+      'Fits your recent remembrance';
+
+  @override
+  String get quranPersonalizationReasonMemorizationReview =>
+      'Good for memorization review';
+
+  @override
+  String get quranPersonalizationReasonBeginnerFriendly =>
+      'Recommended for beginners';
+
+  @override
+  String get quranPersonalizationReasonKidsFriendly =>
+      'Gentle and easy to understand';
+
+  @override
+  String get quranPersonalizationReasonKeepMomentum =>
+      'Helps you keep momentum';
+
+  @override
+  String get quranPersonalizationReasonGentleForToday =>
+      'A gentle ayah for this moment';
+
+  @override
+  String get quranPersonalizationReasonGrowthFocus =>
+      'Supports your current spiritual focus';
+
+  @override
+  String get quranPersonalizationKidsReasonContinue =>
+      'Keep going with what you started';
+
+  @override
+  String get quranPersonalizationKidsReasonEasy => 'Easy to understand';
+
+  @override
+  String get quranPersonalizationKidsReasonToday => 'A good ayah for today';
+
+  @override
+  String get quranSpiritualMomentHomeTitle => 'For this moment';
+
+  @override
+  String get quranSpiritualMomentHubTitle => 'Current moment';
+
+  @override
+  String get quranSpiritualMomentPrayerTitle =>
+      'A gentle reminder after prayer';
+
+  @override
+  String get quranSpiritualMomentReaderTitle => 'This ayah fits this moment';
+
+  @override
+  String get quranSpiritualMomentKidsTitle => 'A gentle ayah for now';
+
+  @override
+  String get quranSpiritualMomentReasonMorning =>
+      'A calm ayah for your morning';
+
+  @override
+  String get quranSpiritualMomentReasonPostPrayer =>
+      'A gentle reminder after prayer';
+
+  @override
+  String get quranSpiritualMomentReasonDhuhr =>
+      'A quiet pause for the middle of the day';
+
+  @override
+  String get quranSpiritualMomentReasonAsr =>
+      'A small reset for this afternoon';
+
+  @override
+  String get quranSpiritualMomentReasonMaghrib => 'A gratitude ayah for sunset';
+
+  @override
+  String get quranSpiritualMomentReasonIsha => 'A calm ayah for this evening';
+
+  @override
+  String get quranSpiritualMomentReasonNight =>
+      'A quiet reflection for tonight';
+
+  @override
+  String get quranSpiritualMomentReasonFriday => 'A Friday reflection';
+
+  @override
+  String get quranSpiritualMomentReasonRamadan =>
+      'A meaningful ayah for Ramadan';
+
+  @override
+  String get quranSpiritualMomentReasonKids => 'A gentle ayah for right now';
+
+  @override
   String get quranLearnMoreInsightsTitle => 'Ayah Insights';
 
   @override
@@ -6882,6 +7088,37 @@ class AppLocalizationsPs extends AppLocalizations {
   @override
   String get quranShowLearnMoreSubtitle =>
       'Show related learning links and knowledge around the current ayah.';
+
+  @override
+  String get kidsQuranExplanationToggleTitle => 'Show gentle explanation';
+
+  @override
+  String get kidsQuranExplanationShowTitle => 'Show meaning help';
+
+  @override
+  String get kidsQuranExplanationToggleSubtitle =>
+      'Use short, warm explanations that help children understand what Allah is teaching.';
+
+  @override
+  String get kidsQuranExplanationTitle => 'A gentle explanation';
+
+  @override
+  String get kidsQuranExplanationTakeawayTitle => 'One gentle takeaway';
+
+  @override
+  String get kidsQuranExplanationReflectionTitle => 'What can we learn?';
+
+  @override
+  String kidsQuranExplanationReflectionPrompt(Object prompt) {
+    return 'What can we learn from this? $prompt';
+  }
+
+  @override
+  String get kidsQuranAyahActionTitle => 'Try this today';
+
+  @override
+  String get kidsQuranAyahActionSubtitle =>
+      'One simple way to practice what this ayah teaches.';
 
   @override
   String get quranWordTranslationChip => 'Word by Word Translation';
@@ -38592,4 +38829,1042 @@ class AppLocalizationsPs extends AppLocalizations {
   @override
   String get settingsThemeModeMidnightManuscriptBestFor =>
       'Best for evening reflection and Qur’an study.';
+
+  @override
+  String get editorialDashboardTitle => 'Editorial Dashboard';
+
+  @override
+  String editorialDashboardSubtitle(Object version) {
+    return 'Internal content command center · version $version';
+  }
+
+  @override
+  String get editorialDashboardSubtitleLoading =>
+      'Internal content command center';
+
+  @override
+  String get editorialDashboardSubtitleUnknown =>
+      'Internal content command center · version unavailable';
+
+  @override
+  String get editorialDashboardPinTitle => 'Editorial Access';
+
+  @override
+  String get editorialDashboardPinSubtitle =>
+      'Enter the internal PIN to open the editorial dashboard.';
+
+  @override
+  String get editorialDashboardPinHelper =>
+      'This internal view is hidden from normal navigation and stays locked each time the app restarts.';
+
+  @override
+  String get editorialDashboardPinHint => 'PIN';
+
+  @override
+  String get editorialDashboardPinSubmitAction => 'Unlock dashboard';
+
+  @override
+  String get editorialDashboardPinError => 'That PIN was not correct.';
+
+  @override
+  String get editorialDashboardLockAction => 'Lock dashboard';
+
+  @override
+  String get editorialDashboardFiltersTitle => 'Filters';
+
+  @override
+  String get editorialDashboardSearchHint =>
+      'Search by domain, item, status, or note';
+
+  @override
+  String get editorialDashboardFilterMissingContent => 'Missing content';
+
+  @override
+  String get editorialDashboardFilterNeedsReview => 'Needs review';
+
+  @override
+  String get editorialDashboardFilterKidsMissing => 'Kids missing';
+
+  @override
+  String get editorialDashboardFilterLocalizationMissing =>
+      'Localization missing';
+
+  @override
+  String get editorialDashboardFilterAllDomains => 'All domains';
+
+  @override
+  String get editorialDashboardFilterAllStatuses => 'All statuses';
+
+  @override
+  String editorialDashboardResultsCount(Object visible, Object total) {
+    return '$visible of $total items visible';
+  }
+
+  @override
+  String get editorialDashboardOverviewTitle => 'Overview';
+
+  @override
+  String get editorialDashboardOverviewSubtitle =>
+      'A read-only view of content coverage, system readiness, and internal routing across the app.';
+
+  @override
+  String get editorialDashboardOverviewDomains => 'Domains';
+
+  @override
+  String get editorialDashboardOverviewItems => 'Items';
+
+  @override
+  String get editorialDashboardOverviewVisible => 'Visible';
+
+  @override
+  String get editorialDashboardOverviewMissing => 'Missing';
+
+  @override
+  String get editorialDashboardOverviewNeedsReview => 'Needs review';
+
+  @override
+  String get editorialDashboardOverviewCritical => 'Critical';
+
+  @override
+  String get editorialDashboardOverviewHighPriority => 'High priority';
+
+  @override
+  String get editorialDashboardOverviewKidsGaps => 'Kids gaps';
+
+  @override
+  String get editorialDashboardOverviewSourceGaps => 'Source gaps';
+
+  @override
+  String get editorialDashboardOverviewLocalizationGaps => 'Localization gaps';
+
+  @override
+  String get editorialDashboardOverviewIncompletePacks => 'Incomplete packs';
+
+  @override
+  String get editorialDashboardOverviewReadyToVerify => 'Ready to verify';
+
+  @override
+  String get editorialDashboardOverviewRecentlyUpdated => 'Recently updated';
+
+  @override
+  String get editorialDashboardOverviewStale => 'Stale';
+
+  @override
+  String get editorialDashboardEmptyTitle => 'No matches found';
+
+  @override
+  String get editorialDashboardEmptySubtitle =>
+      'Try a broader search or remove one of the active filters.';
+
+  @override
+  String get editorialDashboardOpenRouteAction => 'Open route';
+
+  @override
+  String get editorialDashboardOpenEditorAction => 'Open editor';
+
+  @override
+  String get editorialDashboardAddNoteAction => 'Add note';
+
+  @override
+  String get editorialDashboardEditNoteAction => 'Edit note';
+
+  @override
+  String get editorialDashboardSaveNoteAction => 'Save note';
+
+  @override
+  String get editorialDashboardClearNoteAction => 'Clear note';
+
+  @override
+  String get editorialDashboardCancelAction => 'Cancel';
+
+  @override
+  String get editorialDashboardSetReadinessAction => 'Set readiness';
+
+  @override
+  String get editorialDashboardClearFiltersAction => 'Clear filters';
+
+  @override
+  String get editorialDashboardFlagKidsSafe => 'Kids safe';
+
+  @override
+  String get editorialDashboardFlagSources => 'Sources tracked';
+
+  @override
+  String get editorialDashboardFlagLocalizationReady => 'Localization ready';
+
+  @override
+  String get editorialDashboardFlagMissingContent => 'Missing content';
+
+  @override
+  String get editorialDashboardFlagNeedsReview => 'Needs review';
+
+  @override
+  String get editorialDashboardDomainQuran => 'Qur’an';
+
+  @override
+  String get editorialDashboardDomainHadith => 'Hadith';
+
+  @override
+  String get editorialDashboardDomainStories => 'Stories';
+
+  @override
+  String get editorialDashboardDomainDuasDhikr => 'Duas and Dhikr';
+
+  @override
+  String get editorialDashboardDomainLearningPaths => 'Learning paths';
+
+  @override
+  String get editorialDashboardDomainKidsContent => 'Kids content';
+
+  @override
+  String get editorialDashboardDomainActionsDrops => 'Actions and Ocean Drops';
+
+  @override
+  String get editorialDashboardDomainRecommendations =>
+      'Recommendations and moments';
+
+  @override
+  String get editorialDashboardDomainLocalization => 'Localization';
+
+  @override
+  String get editorialDashboardTypeSystem => 'System';
+
+  @override
+  String get editorialDashboardTypeCoverage => 'Coverage';
+
+  @override
+  String get editorialDashboardTypePack => 'Pack';
+
+  @override
+  String get editorialDashboardTypeCollection => 'Collection';
+
+  @override
+  String get editorialDashboardTypeContentSet => 'Content set';
+
+  @override
+  String get editorialDashboardTypeJourneySet => 'Journey set';
+
+  @override
+  String get editorialDashboardTypePathSet => 'Path set';
+
+  @override
+  String get editorialDashboardTypeActionSet => 'Action set';
+
+  @override
+  String get editorialDashboardTypeEngine => 'Engine';
+
+  @override
+  String get editorialDashboardTypeLocaleSet => 'Locale set';
+
+  @override
+  String get editorialDashboardStatusDraft => 'Draft';
+
+  @override
+  String get editorialDashboardStatusPartial => 'Partial';
+
+  @override
+  String get editorialDashboardStatusReviewed => 'Reviewed';
+
+  @override
+  String get editorialDashboardStatusVerified => 'Verified';
+
+  @override
+  String get editorialDashboardStatusInfo => 'Info';
+
+  @override
+  String get editorialDashboardPriorityCritical => 'Critical';
+
+  @override
+  String get editorialDashboardPriorityHigh => 'High';
+
+  @override
+  String get editorialDashboardPriorityMedium => 'Medium';
+
+  @override
+  String get editorialDashboardPriorityLow => 'Low';
+
+  @override
+  String get editorialDashboardReadinessNotStarted => 'Not started';
+
+  @override
+  String get editorialDashboardReadinessDraft => 'Draft';
+
+  @override
+  String get editorialDashboardReadinessReviewed => 'Reviewed';
+
+  @override
+  String get editorialDashboardReadinessVerified => 'Verified';
+
+  @override
+  String get editorialDashboardReadinessLaunchReady => 'Launch ready';
+
+  @override
+  String get editorialDashboardReadinessNeedsRevision => 'Needs revision';
+
+  @override
+  String get editorialDashboardScoreBandExcellent => 'Excellent';
+
+  @override
+  String get editorialDashboardScoreBandHealthy => 'Healthy';
+
+  @override
+  String get editorialDashboardScoreBandWeak => 'Weak';
+
+  @override
+  String get editorialDashboardMetricEntries => 'Entries';
+
+  @override
+  String get editorialDashboardMetricTotal => 'Total';
+
+  @override
+  String get editorialDashboardMetricCovered => 'Covered';
+
+  @override
+  String get editorialDashboardMetricMissing => 'Missing';
+
+  @override
+  String get editorialDashboardMetricReviewed => 'Reviewed';
+
+  @override
+  String get editorialDashboardMetricVerified => 'Verified';
+
+  @override
+  String get editorialDashboardMetricKidsReady => 'Kids ready';
+
+  @override
+  String get editorialDashboardMetricLocalized => 'Localized';
+
+  @override
+  String get editorialDashboardMetricRoutes => 'Routes';
+
+  @override
+  String get editorialDashboardMetricCompleted => 'Completed';
+
+  @override
+  String get editorialDashboardMetricSessions => 'Sessions';
+
+  @override
+  String get editorialDashboardMetricDeep => 'Deep';
+
+  @override
+  String get editorialDashboardPackHealthTitle => 'Pack health';
+
+  @override
+  String get editorialDashboardPackHealthSubtitle =>
+      'Grouped health helps surface which rollout packs are ready, weak, or still missing important coverage.';
+
+  @override
+  String get editorialDashboardPackMetricMissingRequired => 'Missing required';
+
+  @override
+  String get editorialDashboardPackMetricKidsCoverage => 'Kids coverage %';
+
+  @override
+  String get editorialDashboardPackMetricSourceCoverage => 'Source coverage %';
+
+  @override
+  String get editorialDashboardPackMetricLocalizationCoverage =>
+      'Localization coverage %';
+
+  @override
+  String get editorialDashboardQueuesTitle => 'Review queues';
+
+  @override
+  String get editorialDashboardQueuesSubtitle =>
+      'Use these queues to triage the highest-value editorial work first.';
+
+  @override
+  String get editorialDashboardQueueItemsLabel => 'Items';
+
+  @override
+  String get editorialDashboardQueueCriticalIssues => 'Critical issues';
+
+  @override
+  String get editorialDashboardQueueNeedsReview => 'Needs review';
+
+  @override
+  String get editorialDashboardQueueKidsSafetyGaps => 'Kids safety gaps';
+
+  @override
+  String get editorialDashboardQueueMissingLocalization =>
+      'Missing localization';
+
+  @override
+  String get editorialDashboardQueueMissingSources => 'Missing source metadata';
+
+  @override
+  String get editorialDashboardQueueIncompletePacks =>
+      'Incomplete content packs';
+
+  @override
+  String get editorialDashboardQueueLowQuality => 'Low quality';
+
+  @override
+  String get editorialDashboardQueueReadyForVerification =>
+      'Ready for verification';
+
+  @override
+  String get editorialDashboardQueueRecentlyUpdated => 'Recently updated';
+
+  @override
+  String get editorialDashboardQueueStaleContent => 'Stale content';
+
+  @override
+  String get editorialDashboardIssueListTitle => 'Issue summary';
+
+  @override
+  String get editorialDashboardPositiveSignalsTitle => 'Positive signals';
+
+  @override
+  String get editorialDashboardNoteLabel => 'Internal note';
+
+  @override
+  String get editorialDashboardNoteDialogTitle => 'Internal review note';
+
+  @override
+  String get editorialDashboardNoteDialogHint =>
+      'Add a short owner note, blocked reason, or follow-up reminder.';
+
+  @override
+  String editorialDashboardScoreLabel(Object score) {
+    return 'Score $score';
+  }
+
+  @override
+  String get editorialDashboardPackLabel => 'Pack';
+
+  @override
+  String get editorialDashboardContentBrowserSubtitle =>
+      'Browse editable content items and open a structured editor with version history.';
+
+  @override
+  String get editorialDashboardContentEditorTitle => 'Content editor';
+
+  @override
+  String editorialDashboardContentVersionCount(Object count) {
+    return '$count saved versions';
+  }
+
+  @override
+  String editorialDashboardContentIdLabel(Object contentId) {
+    return 'Content ID: $contentId';
+  }
+
+  @override
+  String get editorialDashboardContentTypeQuranExplanation =>
+      'Qur’an explanations';
+
+  @override
+  String get editorialDashboardContentTypeHadithEntry => 'Hadith entries';
+
+  @override
+  String get editorialDashboardContentTypeBedtimeStory => 'Kids stories';
+
+  @override
+  String get editorialDashboardContentTypeKidsDuaLesson => 'Kids dua lessons';
+
+  @override
+  String get editorialDashboardSaveVersionAction => 'Save version';
+
+  @override
+  String get editorialDashboardResetFormAction => 'Reset form';
+
+  @override
+  String get editorialDashboardVersionHistoryTitle => 'Version history';
+
+  @override
+  String get editorialDashboardVersionHistorySubtitle =>
+      'Each save creates a new reversible version. Rollbacks also create a fresh version entry.';
+
+  @override
+  String get editorialDashboardNoVersionsYet => 'No saved versions yet.';
+
+  @override
+  String get editorialDashboardPreviewSaveTitle => 'Preview changes';
+
+  @override
+  String get editorialDashboardBeforeLabel => 'Before';
+
+  @override
+  String get editorialDashboardAfterLabel => 'After';
+
+  @override
+  String get editorialDashboardChangeSummaryFieldLabel => 'Change summary';
+
+  @override
+  String get editorialDashboardChangeSummaryFieldHelper =>
+      'Briefly explain what changed and why.';
+
+  @override
+  String get editorialDashboardVersionSavedMessage =>
+      'Version saved successfully.';
+
+  @override
+  String get editorialDashboardRollbackConfirmTitle => 'Confirm rollback';
+
+  @override
+  String get editorialDashboardRollbackAction => 'Rollback';
+
+  @override
+  String editorialDashboardRollbackDefaultSummary(Object versionNumber) {
+    return 'Rolled back to version $versionNumber';
+  }
+
+  @override
+  String get editorialDashboardRollbackSuccessMessage =>
+      'Rollback completed and recorded as a new version.';
+
+  @override
+  String get editorialDashboardCloseAction => 'Close';
+
+  @override
+  String get editorialDashboardCompareVersionAction => 'Compare version';
+
+  @override
+  String editorialDashboardFieldRequired(Object fieldLabel) {
+    return '$fieldLabel is required.';
+  }
+
+  @override
+  String get editorialDashboardQuranExplanationValidation =>
+      'Qur’an explanations must keep simple, standard, and kids explanation fields filled.';
+
+  @override
+  String get editorialDashboardNoChangesDetected => 'No changes detected.';
+
+  @override
+  String get editorialDashboardContentFieldReviewStatus => 'Review status';
+
+  @override
+  String get editorialDashboardContentFieldSimpleSummary => 'Simple summary';
+
+  @override
+  String get editorialDashboardContentFieldSimpleSummaryHelper =>
+      'Keep this short, calm, and beginner-friendly.';
+
+  @override
+  String get editorialDashboardContentFieldStandardExplanation =>
+      'Standard explanation';
+
+  @override
+  String get editorialDashboardContentFieldStandardExplanationHelper =>
+      'Explain the meaning and a clear takeaway without sounding academic.';
+
+  @override
+  String get editorialDashboardContentFieldKidsExplanation =>
+      'Kids explanation';
+
+  @override
+  String get editorialDashboardContentFieldKidsExplanationHelper =>
+      'Use one warm, child-safe teaching at a time.';
+
+  @override
+  String get editorialDashboardContentFieldDeepExplanation =>
+      'Deep explanation';
+
+  @override
+  String get editorialDashboardContentFieldDeepExplanationHelper =>
+      'Add deeper context only where it helps and still reads well in-app.';
+
+  @override
+  String get editorialDashboardContentFieldKeyLessons => 'Key lessons';
+
+  @override
+  String get editorialDashboardContentFieldKeyLessonsHelper =>
+      'Enter one lesson per line.';
+
+  @override
+  String get editorialDashboardContentFieldReflectionPrompt =>
+      'Reflection prompt';
+
+  @override
+  String get editorialDashboardContentFieldReflectionPromptHelper =>
+      'Keep the reflection prompt gentle and practical.';
+
+  @override
+  String get editorialDashboardContentFieldTitle => 'Title';
+
+  @override
+  String get editorialDashboardContentFieldTitleHelper =>
+      'Use a clear, calm content title.';
+
+  @override
+  String get editorialDashboardContentFieldExcerpt => 'Excerpt';
+
+  @override
+  String get editorialDashboardContentFieldExcerptHelper =>
+      'Keep the short preview concise and high signal.';
+
+  @override
+  String get editorialDashboardContentFieldMeaning => 'Meaning';
+
+  @override
+  String get editorialDashboardContentFieldMeaningHelper =>
+      'Explain the meaning clearly and respectfully.';
+
+  @override
+  String get editorialDashboardContentFieldLessons => 'Lessons';
+
+  @override
+  String get editorialDashboardContentFieldLessonsHelper =>
+      'Enter one lesson per line.';
+
+  @override
+  String get editorialDashboardContentFieldReflectionPrompts =>
+      'Reflection prompts';
+
+  @override
+  String get editorialDashboardContentFieldReflectionPromptsHelper =>
+      'Enter one prompt per line.';
+
+  @override
+  String get editorialDashboardContentFieldPracticeAction => 'Practice action';
+
+  @override
+  String get editorialDashboardContentFieldPracticeActionHelper =>
+      'Use a small realistic action step.';
+
+  @override
+  String get editorialDashboardContentFieldTags => 'Tags';
+
+  @override
+  String get editorialDashboardContentFieldTagsHelper =>
+      'Enter one tag per line.';
+
+  @override
+  String get editorialDashboardContentFieldShortTitle => 'Short title';
+
+  @override
+  String get editorialDashboardContentFieldShortTitleHelper =>
+      'Use a compact title for cards and small layouts.';
+
+  @override
+  String get editorialDashboardContentFieldSummary => 'Summary';
+
+  @override
+  String get editorialDashboardContentFieldSummaryHelper =>
+      'Keep the summary calm, readable, and child-safe where needed.';
+
+  @override
+  String get editorialDashboardContentFieldLesson => 'Lesson';
+
+  @override
+  String get editorialDashboardContentFieldLessonHelper =>
+      'Focus on the main teaching or takeaway.';
+
+  @override
+  String get editorialDashboardContentFieldSourceNote => 'Source note';
+
+  @override
+  String get editorialDashboardContentFieldSourceNoteHelper =>
+      'Use this for a light internal-facing source note if needed.';
+
+  @override
+  String get editorialDashboardContentFieldTransliteration => 'Transliteration';
+
+  @override
+  String get editorialDashboardContentFieldTransliterationHelper =>
+      'Keep the transliteration readable and consistent.';
+
+  @override
+  String get editorialDashboardContentFieldMiniLesson => 'Mini lesson';
+
+  @override
+  String get editorialDashboardContentFieldMiniLessonHelper =>
+      'Explain the dua simply and warmly for children.';
+
+  @override
+  String get editorialDashboardContentFieldWhenToSay => 'When to say';
+
+  @override
+  String get editorialDashboardContentFieldWhenToSayHelper =>
+      'Describe the moment or habit cue clearly.';
+
+  @override
+  String get editorialDashboardContentFieldPracticePrompt => 'Practice prompt';
+
+  @override
+  String get editorialDashboardContentFieldPracticePromptHelper =>
+      'Optional gentle practice reminder.';
+
+  @override
+  String get editorialDashboardFilterSourceMissing => 'Source missing';
+
+  @override
+  String get editorialDashboardFilterAllPriorities => 'All priorities';
+
+  @override
+  String get editorialDashboardFilterAllReadinessStates =>
+      'All readiness states';
+
+  @override
+  String get editorialDashboardFilterAllIssueTypes => 'All issue types';
+
+  @override
+  String get editorialDashboardFilterAllScoreBands => 'All score bands';
+
+  @override
+  String get editorialDashboardFilterAllPacks => 'All packs';
+
+  @override
+  String get editorialDashboardIssueMissingContent => 'Missing content';
+
+  @override
+  String get editorialDashboardIssueMissingKids => 'Missing kids-safe layer';
+
+  @override
+  String get editorialDashboardIssueMissingSourceRef =>
+      'Missing source metadata';
+
+  @override
+  String get editorialDashboardIssueMissingLocalization =>
+      'Missing localization';
+
+  @override
+  String get editorialDashboardIssueNeedsReview => 'Needs review';
+
+  @override
+  String get editorialDashboardIssueDraftOnly => 'Draft only';
+
+  @override
+  String get editorialDashboardIssueIncompleteRoute =>
+      'Incomplete route metadata';
+
+  @override
+  String get editorialDashboardIssueWeakPackCoverage => 'Weak pack coverage';
+
+  @override
+  String get editorialDashboardIssueMissingActionMapping =>
+      'Missing action mapping';
+
+  @override
+  String get editorialDashboardIssueMissingRecommendationTags =>
+      'Missing recommendation signals';
+
+  @override
+  String get editorialDashboardIssueLowCoverage => 'Low coverage';
+
+  @override
+  String get editorialDashboardIssueStaleContent => 'Stale content';
+
+  @override
+  String get editorialDashboardIssueInfoOnly => 'Info only';
+
+  @override
+  String get editorialDashboardItemQuranAyahExplanations => 'Ayah explanations';
+
+  @override
+  String get editorialDashboardItemQuranExplanationPacks =>
+      'Explanation rollout packs';
+
+  @override
+  String get editorialDashboardItemQuranSurahSummaries => 'Surah summaries';
+
+  @override
+  String get editorialDashboardItemQuranSurahCoverage =>
+      'Explanation coverage by surah';
+
+  @override
+  String get editorialDashboardItemHadithThemes => 'Hadith themes';
+
+  @override
+  String get editorialDashboardItemHadithCollections => 'Hadith collections';
+
+  @override
+  String get editorialDashboardItemHadithEntries => 'Hadith entries';
+
+  @override
+  String get editorialDashboardItemProphetsLibrary => 'Prophets library';
+
+  @override
+  String get editorialDashboardItemBedtimeStories => 'Bedtime stories';
+
+  @override
+  String get editorialDashboardItemKidsStories => 'Kids story library';
+
+  @override
+  String get editorialDashboardItemKidsSeerahJourney => 'Kids seerah journey';
+
+  @override
+  String get editorialDashboardItemKidsDuaCategories => 'Kids dua categories';
+
+  @override
+  String get editorialDashboardItemKidsDuaLessons => 'Kids dua lessons';
+
+  @override
+  String get editorialDashboardItemKidsDuaStories => 'Kids dua stories';
+
+  @override
+  String get editorialDashboardItemDhikrTracking => 'Dhikr tracking';
+
+  @override
+  String get editorialDashboardItemGuidedPaths => 'Guided learning paths';
+
+  @override
+  String get editorialDashboardItemLearningJourneys => 'Learning journeys';
+
+  @override
+  String get editorialDashboardItemLearningJourneyState =>
+      'Learning journey progress state';
+
+  @override
+  String get editorialDashboardItemKidsQuranLayer =>
+      'Kids Qur’an explanation layer';
+
+  @override
+  String get editorialDashboardItemKidsDuaSystem => 'Kids dua system';
+
+  @override
+  String get editorialDashboardItemKidsStorySystem => 'Kids story system';
+
+  @override
+  String get editorialDashboardItemKidsSeerahSystem => 'Kids seerah system';
+
+  @override
+  String get editorialDashboardItemQuranAyahActions => 'Qur’an ayah actions';
+
+  @override
+  String get editorialDashboardItemOceanDrops => 'Ocean Drop mappings';
+
+  @override
+  String get editorialDashboardItemPersonalizationEngine =>
+      'Personalization engine';
+
+  @override
+  String get editorialDashboardItemSpiritualMomentsEngine =>
+      'Spiritual moments engine';
+
+  @override
+  String get editorialDashboardItemDailyCompanionSurfaces =>
+      'Daily companion surfaces';
+
+  @override
+  String get editorialDashboardItemSupportedLocales => 'Supported locales';
+
+  @override
+  String get editorialDashboardItemRuntimeLocalization =>
+      'Runtime localization shell';
+
+  @override
+  String editorialDashboardVersionLabel(Object version) {
+    return 'Version $version';
+  }
+
+  @override
+  String get editorialDashboardVersionLoading => 'Version';
+
+  @override
+  String get editorialDashboardVersionUnknown => 'Version unavailable';
+
+  @override
+  String get homeGlassVariantSectionTitle => 'Glass Variants';
+
+  @override
+  String get homeGlassVariantSectionSubtitle =>
+      'Temporary homepage comparison of calm glass island styles inspired by the Learning Hub.';
+
+  @override
+  String get homeGlassVariantSectionFootnote =>
+      'Temporary comparison band only. This section is isolated and safe to remove once a homepage glass direction is chosen.';
+
+  @override
+  String get homeGlassVariantWarmTitle => 'Warm Glass';
+
+  @override
+  String get homeGlassVariantWarmSubtitle =>
+      'Parchment warmth with soft gold edges';
+
+  @override
+  String get homeGlassVariantWarmBody =>
+      'A welcoming devotional surface with gentle ivory warmth. It keeps text easy to settle into while still feeling luminous and home-like.';
+
+  @override
+  String get homeGlassVariantWarmFooter => 'Best for welcoming home content';
+
+  @override
+  String get homeGlassVariantWarmMicro => 'Soft warmth · calm depth';
+
+  @override
+  String get homeGlassVariantMilkyTitle => 'Milky Glass';
+
+  @override
+  String get homeGlassVariantMilkySubtitle => 'Cloudy ivory diffusion';
+
+  @override
+  String get homeGlassVariantMilkyBody =>
+      'This denser veil softens whatever sits behind it. It feels serene, readable, and especially safe for text-first spiritual moments.';
+
+  @override
+  String get homeGlassVariantMilkyFooter => 'Best for serene reading';
+
+  @override
+  String get homeGlassVariantMilkyMicro => 'Clouded veil · high comfort';
+
+  @override
+  String get homeGlassVariantCrystalTitle => 'Crystal Glass';
+
+  @override
+  String get homeGlassVariantCrystalSubtitle =>
+      'Clearer, brighter transparency';
+
+  @override
+  String get homeGlassVariantCrystalBody =>
+      'A lighter treatment that lets more atmosphere show through. It feels polished and airy while still protecting titles and body text.';
+
+  @override
+  String get homeGlassVariantCrystalFooter => 'Best for premium highlights';
+
+  @override
+  String get homeGlassVariantCrystalMicro => 'Brighter lift · open clarity';
+
+  @override
+  String get homeGlassVariantNightTitle => 'Night Glass';
+
+  @override
+  String get homeGlassVariantNightSubtitle => 'Smoky dusk elegance';
+
+  @override
+  String get homeGlassVariantNightBody =>
+      'A darker island for quiet evening depth. It stays soft and readable instead of turning into a hard black panel.';
+
+  @override
+  String get homeGlassVariantNightFooter => 'Best for evening reflection';
+
+  @override
+  String get homeGlassVariantNightMicro => 'Low light · calm contrast';
+
+  @override
+  String get homeGlassVariantTintedTitle => 'Tinted Glass';
+
+  @override
+  String get homeGlassVariantTintedSubtitle => 'Gentle app-colored wash';
+
+  @override
+  String get homeGlassVariantTintedBody =>
+      'This version adds a subtle personality tint without becoming loud. It still feels grounded in Path of Nūr’s warm palette.';
+
+  @override
+  String get homeGlassVariantTintedFooter => 'Best for curated accents';
+
+  @override
+  String get homeGlassVariantTintedMicro => 'Editorial wash · soft color';
+
+  @override
+  String get homeGlassVariantFrostedTitle => 'Frosted Glass';
+
+  @override
+  String get homeGlassVariantFrostedSubtitle => 'Classic diffuse blur';
+
+  @override
+  String get homeGlassVariantFrostedBody =>
+      'A practical blur-first surface that protects readability. It is dependable when content should lead and the material should stay quiet.';
+
+  @override
+  String get homeGlassVariantFrostedFooter => 'Best for utility islands';
+
+  @override
+  String get homeGlassVariantFrostedMicro => 'Diffuse blur · readability first';
+
+  @override
+  String get homeGlassVariantLayeredTitle => 'Layered Glass';
+
+  @override
+  String get homeGlassVariantLayeredSubtitle => 'Subtle inner depth';
+
+  @override
+  String get homeGlassVariantLayeredBody =>
+      'A calm outer island with a nested inner veil. It helps the surface feel dimensional without turning into a busy showcase.';
+
+  @override
+  String get homeGlassVariantLayeredFooter => 'Best for nested hierarchy';
+
+  @override
+  String get homeGlassVariantLayeredMicro => 'Inner panel · gentle structure';
+
+  @override
+  String get homeGlassVariantEdgeLitTitle => 'Edge-lit Glass';
+
+  @override
+  String get homeGlassVariantEdgeLitSubtitle => 'Delicate rim light';
+
+  @override
+  String get homeGlassVariantEdgeLitBody =>
+      'A quieter featured treatment with a soft luminous edge. It adds presence around the perimeter while keeping the center calm.';
+
+  @override
+  String get homeGlassVariantEdgeLitFooter => 'Best for featured destinations';
+
+  @override
+  String get homeGlassVariantEdgeLitMicro => 'Rim light · subtle emphasis';
+
+  @override
+  String get homeGlassVariantAdaptiveTitle => 'Adaptive Glass';
+
+  @override
+  String get homeGlassVariantAdaptiveSubtitle => 'Balanced and practical';
+
+  @override
+  String get homeGlassVariantAdaptiveBody =>
+      'This version tries to stay steady across warmer and deeper surroundings. It feels usable, calm, and flexible for everyday home surfaces.';
+
+  @override
+  String get homeGlassVariantAdaptiveFooter => 'Best for default balance';
+
+  @override
+  String get homeGlassVariantAdaptiveMicro => 'Stable blend · everyday fit';
+
+  @override
+  String get homeGlassVariantSoftMatteTitle => 'Soft Matte Glass';
+
+  @override
+  String get homeGlassVariantSoftMatteSubtitle =>
+      'Muted shine with lower sparkle';
+
+  @override
+  String get homeGlassVariantSoftMatteBody =>
+      'Less glossy and more grounded, this surface leans toward restfulness. It keeps the glass mood while reducing reflective energy.';
+
+  @override
+  String get homeGlassVariantSoftMatteFooter => 'Best for restful content';
+
+  @override
+  String get homeGlassVariantSoftMatteMicro => 'Muted sheen · grounded calm';
+
+  @override
+  String get homeGlassVariantDenseSanctuaryTitle => 'Dense Sanctuary Glass';
+
+  @override
+  String get homeGlassVariantDenseSanctuarySubtitle =>
+      'Sacred calm ivory density';
+
+  @override
+  String get homeGlassVariantDenseSanctuaryBody =>
+      'The strongest protective veil in the set. It feels especially suited to sacred, text-heavy moments that need shelter from background noise.';
+
+  @override
+  String get homeGlassVariantDenseSanctuaryFooter =>
+      'Best for sacred text focus';
+
+  @override
+  String get homeGlassVariantDenseSanctuaryMicro =>
+      'Sanctuary veil · strongest cover';
+
+  @override
+  String get homeGlassVariantClearShowcaseTitle => 'Clear Showcase Glass';
+
+  @override
+  String get homeGlassVariantClearShowcaseSubtitle =>
+      'Most transparent showcase feel';
+
+  @override
+  String get homeGlassVariantClearShowcaseBody =>
+      'The most open option in the set, with more atmosphere visible beneath the surface. It still stays within the app’s calm language rather than turning flashy.';
+
+  @override
+  String get homeGlassVariantClearShowcaseFooter =>
+      'Best for visual comparison';
+
+  @override
+  String get homeGlassVariantClearShowcaseMicro =>
+      'Most open · careful contrast';
 }

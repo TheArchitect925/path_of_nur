@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:quran/quran.dart' as q;
 
+import '../../core/theme/app_surfaces.dart';
 import '../../l10n/app_localizations.dart';
 import '../../features/learn/quran/domain/quran_content_refs.dart';
 import 'premium_card.dart';
@@ -50,6 +51,8 @@ class QuranReferenceBlock extends ConsumerWidget {
 
     return PremiumCard(
       padding: EdgeInsets.zero,
+      surfaceTreatment: AppSurfaceTreatment.denseSanctuary,
+      surfaceVariant: AppSurfaceVariant.panel,
       child: InkWell(
         borderRadius: BorderRadius.circular(18),
         onTap: () => openQuranReferenceLocation(context, ref: quoteRef),
@@ -76,10 +79,8 @@ class QuranReferenceBlock extends ConsumerWidget {
               if (showOpenButton) ...[
                 const SizedBox(height: 8),
                 FilledButton.tonalIcon(
-                  onPressed: () => openQuranReferenceLocation(
-                    context,
-                    ref: quoteRef,
-                  ),
+                  onPressed: () =>
+                      openQuranReferenceLocation(context, ref: quoteRef),
                   icon: const Icon(Icons.play_arrow_rounded),
                   label: Text(l10n.quranReferenceViewerOpenInReader),
                 ),

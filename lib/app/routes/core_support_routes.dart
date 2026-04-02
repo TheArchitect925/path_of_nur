@@ -3,6 +3,10 @@ import 'package:go_router/go_router.dart';
 
 import '../../features/accounts_sync/domain/accounts_sync_models.dart';
 import '../../features/accounts_sync/presentation/accounts_profiles_sync_page.dart';
+import '../../features/editorial_dashboard/presentation/editorial_dashboard_page.dart';
+import '../../features/editorial_dashboard/presentation/editorial_dashboard_pin_page.dart';
+import '../../features/editorial_dashboard/presentation/editorial_content_browser_page.dart';
+import '../../features/editorial_dashboard/presentation/editorial_content_editor_page.dart';
 import '../../features/learn/quran/presentation/names_of_allah_page.dart';
 import '../../features/learn/quran/presentation/quran_bookmarks_page.dart';
 import '../../features/learn/quran/presentation/quran_focus_recitation_page.dart';
@@ -133,6 +137,50 @@ List<RouteBase> buildCoreSupportRoutes() {
       pageBuilder: (context, state) => const MaterialPage(
         child: SettingsPage(category: SettingsCategory.about),
       ),
+    ),
+    GoRoute(
+      path: '/internal/editorial/pin',
+      name: 'editorialDashboardPin',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: EditorialDashboardPinPage()),
+    ),
+    GoRoute(
+      path: '/internal/editorial',
+      name: 'editorialDashboard',
+      pageBuilder: (context, state) =>
+          const MaterialPage(child: EditorialDashboardPage()),
+    ),
+    GoRoute(
+      path: '/internal/editorial/content/:contentType',
+      name: 'editorialContentBrowser',
+      pageBuilder: (context, state) {
+        final type = editorialContentTypeFromRouteSegment(
+          state.pathParameters['contentType'] ?? '',
+        );
+        return MaterialPage(
+          child: type == null
+              ? const EditorialDashboardPage()
+              : EditorialContentBrowserPage(contentType: type),
+        );
+      },
+    ),
+    GoRoute(
+      path: '/internal/editorial/content/:contentType/edit',
+      name: 'editorialContentEditor',
+      pageBuilder: (context, state) {
+        final type = editorialContentTypeFromRouteSegment(
+          state.pathParameters['contentType'] ?? '',
+        );
+        final contentId = state.uri.queryParameters['id'] ?? '';
+        return MaterialPage(
+          child: type == null || contentId.isEmpty
+              ? const EditorialDashboardPage()
+              : EditorialContentEditorPage(
+                  contentType: type,
+                  contentId: contentId,
+                ),
+        );
+      },
     ),
     GoRoute(
       path: '/settings/help-guide',

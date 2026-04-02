@@ -8095,6 +8095,366 @@ abstract class AppLocalizations {
   /// **'Learn More'**
   String get quranLearnMoreSectionTitle;
 
+  /// No description provided for @quranAyahExplanationTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Ayah explanation'**
+  String get quranAyahExplanationTitle;
+
+  /// No description provided for @quranAyahExplanationDetailLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Explanation detail'**
+  String get quranAyahExplanationDetailLabel;
+
+  /// No description provided for @quranAyahExplanationDetailHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose how much explanation appears under ayahs with curated meaning notes.'**
+  String get quranAyahExplanationDetailHelper;
+
+  /// No description provided for @quranAyahExplanationDetailOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Off'**
+  String get quranAyahExplanationDetailOff;
+
+  /// No description provided for @quranAyahExplanationDetailSimple.
+  ///
+  /// In en, this message translates to:
+  /// **'Simple'**
+  String get quranAyahExplanationDetailSimple;
+
+  /// No description provided for @quranAyahExplanationDetailStandard.
+  ///
+  /// In en, this message translates to:
+  /// **'Standard'**
+  String get quranAyahExplanationDetailStandard;
+
+  /// No description provided for @quranAyahExplanationDetailDeep.
+  ///
+  /// In en, this message translates to:
+  /// **'Deep'**
+  String get quranAyahExplanationDetailDeep;
+
+  /// No description provided for @quranAyahExplanationDetailKids.
+  ///
+  /// In en, this message translates to:
+  /// **'Kids'**
+  String get quranAyahExplanationDetailKids;
+
+  /// No description provided for @quranAyahExplanationKeyLessonsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Key lessons'**
+  String get quranAyahExplanationKeyLessonsTitle;
+
+  /// No description provided for @quranAyahExplanationReflectionPromptTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reflection prompt'**
+  String get quranAyahExplanationReflectionPromptTitle;
+
+  /// No description provided for @quranAyahExplanationSourceLine.
+  ///
+  /// In en, this message translates to:
+  /// **'Based on trusted tafsir summaries: {sources}'**
+  String quranAyahExplanationSourceLine(Object sources);
+
+  /// No description provided for @quranAyahExplanationTrustedSourceLine.
+  ///
+  /// In en, this message translates to:
+  /// **'Based on trusted tafsir sources'**
+  String get quranAyahExplanationTrustedSourceLine;
+
+  /// No description provided for @quranAyahExplanationFallbackSourceLine.
+  ///
+  /// In en, this message translates to:
+  /// **'Simplified explanation based on trusted tafsir sources'**
+  String get quranAyahExplanationFallbackSourceLine;
+
+  /// No description provided for @quranAyahActionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Live this ayah'**
+  String get quranAyahActionTitle;
+
+  /// No description provided for @quranAyahActionReaderSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A small step to help you live what you just read.'**
+  String get quranAyahActionReaderSubtitle;
+
+  /// No description provided for @quranAyahActionTodayTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Today\'\'s ayah'**
+  String get quranAyahActionTodayTitle;
+
+  /// No description provided for @quranAyahActionDailySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Read, reflect, and try one small action today.'**
+  String get quranAyahActionDailySubtitle;
+
+  /// No description provided for @quranAyahActionCompleteAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark as done'**
+  String get quranAyahActionCompleteAction;
+
+  /// No description provided for @quranAyahActionCompletedAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Done today'**
+  String get quranAyahActionCompletedAction;
+
+  /// No description provided for @quranAyahActionReflectAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Reflect'**
+  String get quranAyahActionReflectAction;
+
+  /// No description provided for @quranAyahActionReflectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A short reflection'**
+  String get quranAyahActionReflectionTitle;
+
+  /// No description provided for @quranPersonalizationHomeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'For you today'**
+  String get quranPersonalizationHomeTitle;
+
+  /// No description provided for @quranPersonalizationHubTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Recommended next'**
+  String get quranPersonalizationHubTitle;
+
+  /// No description provided for @quranPersonalizationReaderTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You may also reflect on'**
+  String get quranPersonalizationReaderTitle;
+
+  /// No description provided for @quranPersonalizationGrowthTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Suggested spiritual focus'**
+  String get quranPersonalizationGrowthTitle;
+
+  /// No description provided for @quranPersonalizationKidsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A gentle next ayah'**
+  String get quranPersonalizationKidsTitle;
+
+  /// No description provided for @quranPersonalizationDismissAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Dismiss for today'**
+  String get quranPersonalizationDismissAction;
+
+  /// No description provided for @quranPersonalizationOpenAyahAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open ayah'**
+  String get quranPersonalizationOpenAyahAction;
+
+  /// No description provided for @quranPersonalizationOpenPathAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open path'**
+  String get quranPersonalizationOpenPathAction;
+
+  /// No description provided for @quranPersonalizationPathHintTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Suggested path'**
+  String get quranPersonalizationPathHintTitle;
+
+  /// No description provided for @quranPersonalizationReasonContinueReading.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue where you left off'**
+  String get quranPersonalizationReasonContinueReading;
+
+  /// No description provided for @quranPersonalizationReasonRecentReflection.
+  ///
+  /// In en, this message translates to:
+  /// **'Matches your recent reflection'**
+  String get quranPersonalizationReasonRecentReflection;
+
+  /// No description provided for @quranPersonalizationReasonDailyAnchor.
+  ///
+  /// In en, this message translates to:
+  /// **'A steady ayah for today'**
+  String get quranPersonalizationReasonDailyAnchor;
+
+  /// No description provided for @quranPersonalizationReasonGuidedPathFocus.
+  ///
+  /// In en, this message translates to:
+  /// **'Connected to your current path'**
+  String get quranPersonalizationReasonGuidedPathFocus;
+
+  /// No description provided for @quranPersonalizationReasonPrayerSupport.
+  ///
+  /// In en, this message translates to:
+  /// **'Supports your prayer journey'**
+  String get quranPersonalizationReasonPrayerSupport;
+
+  /// No description provided for @quranPersonalizationReasonRemembranceRhythm.
+  ///
+  /// In en, this message translates to:
+  /// **'Fits your recent remembrance'**
+  String get quranPersonalizationReasonRemembranceRhythm;
+
+  /// No description provided for @quranPersonalizationReasonMemorizationReview.
+  ///
+  /// In en, this message translates to:
+  /// **'Good for memorization review'**
+  String get quranPersonalizationReasonMemorizationReview;
+
+  /// No description provided for @quranPersonalizationReasonBeginnerFriendly.
+  ///
+  /// In en, this message translates to:
+  /// **'Recommended for beginners'**
+  String get quranPersonalizationReasonBeginnerFriendly;
+
+  /// No description provided for @quranPersonalizationReasonKidsFriendly.
+  ///
+  /// In en, this message translates to:
+  /// **'Gentle and easy to understand'**
+  String get quranPersonalizationReasonKidsFriendly;
+
+  /// No description provided for @quranPersonalizationReasonKeepMomentum.
+  ///
+  /// In en, this message translates to:
+  /// **'Helps you keep momentum'**
+  String get quranPersonalizationReasonKeepMomentum;
+
+  /// No description provided for @quranPersonalizationReasonGentleForToday.
+  ///
+  /// In en, this message translates to:
+  /// **'A gentle ayah for this moment'**
+  String get quranPersonalizationReasonGentleForToday;
+
+  /// No description provided for @quranPersonalizationReasonGrowthFocus.
+  ///
+  /// In en, this message translates to:
+  /// **'Supports your current spiritual focus'**
+  String get quranPersonalizationReasonGrowthFocus;
+
+  /// No description provided for @quranPersonalizationKidsReasonContinue.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep going with what you started'**
+  String get quranPersonalizationKidsReasonContinue;
+
+  /// No description provided for @quranPersonalizationKidsReasonEasy.
+  ///
+  /// In en, this message translates to:
+  /// **'Easy to understand'**
+  String get quranPersonalizationKidsReasonEasy;
+
+  /// No description provided for @quranPersonalizationKidsReasonToday.
+  ///
+  /// In en, this message translates to:
+  /// **'A good ayah for today'**
+  String get quranPersonalizationKidsReasonToday;
+
+  /// No description provided for @quranSpiritualMomentHomeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'For this moment'**
+  String get quranSpiritualMomentHomeTitle;
+
+  /// No description provided for @quranSpiritualMomentHubTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Current moment'**
+  String get quranSpiritualMomentHubTitle;
+
+  /// No description provided for @quranSpiritualMomentPrayerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A gentle reminder after prayer'**
+  String get quranSpiritualMomentPrayerTitle;
+
+  /// No description provided for @quranSpiritualMomentReaderTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'This ayah fits this moment'**
+  String get quranSpiritualMomentReaderTitle;
+
+  /// No description provided for @quranSpiritualMomentKidsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A gentle ayah for now'**
+  String get quranSpiritualMomentKidsTitle;
+
+  /// No description provided for @quranSpiritualMomentReasonMorning.
+  ///
+  /// In en, this message translates to:
+  /// **'A calm ayah for your morning'**
+  String get quranSpiritualMomentReasonMorning;
+
+  /// No description provided for @quranSpiritualMomentReasonPostPrayer.
+  ///
+  /// In en, this message translates to:
+  /// **'A gentle reminder after prayer'**
+  String get quranSpiritualMomentReasonPostPrayer;
+
+  /// No description provided for @quranSpiritualMomentReasonDhuhr.
+  ///
+  /// In en, this message translates to:
+  /// **'A quiet pause for the middle of the day'**
+  String get quranSpiritualMomentReasonDhuhr;
+
+  /// No description provided for @quranSpiritualMomentReasonAsr.
+  ///
+  /// In en, this message translates to:
+  /// **'A small reset for this afternoon'**
+  String get quranSpiritualMomentReasonAsr;
+
+  /// No description provided for @quranSpiritualMomentReasonMaghrib.
+  ///
+  /// In en, this message translates to:
+  /// **'A gratitude ayah for sunset'**
+  String get quranSpiritualMomentReasonMaghrib;
+
+  /// No description provided for @quranSpiritualMomentReasonIsha.
+  ///
+  /// In en, this message translates to:
+  /// **'A calm ayah for this evening'**
+  String get quranSpiritualMomentReasonIsha;
+
+  /// No description provided for @quranSpiritualMomentReasonNight.
+  ///
+  /// In en, this message translates to:
+  /// **'A quiet reflection for tonight'**
+  String get quranSpiritualMomentReasonNight;
+
+  /// No description provided for @quranSpiritualMomentReasonFriday.
+  ///
+  /// In en, this message translates to:
+  /// **'A Friday reflection'**
+  String get quranSpiritualMomentReasonFriday;
+
+  /// No description provided for @quranSpiritualMomentReasonRamadan.
+  ///
+  /// In en, this message translates to:
+  /// **'A meaningful ayah for Ramadan'**
+  String get quranSpiritualMomentReasonRamadan;
+
+  /// No description provided for @quranSpiritualMomentReasonKids.
+  ///
+  /// In en, this message translates to:
+  /// **'A gentle ayah for right now'**
+  String get quranSpiritualMomentReasonKids;
+
   /// No description provided for @quranLearnMoreInsightsTitle.
   ///
   /// In en, this message translates to:
@@ -11941,6 +12301,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Show related learning links and knowledge around the current ayah.'**
   String get quranShowLearnMoreSubtitle;
+
+  /// No description provided for @kidsQuranExplanationToggleTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Show gentle explanation'**
+  String get kidsQuranExplanationToggleTitle;
+
+  /// No description provided for @kidsQuranExplanationShowTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Show meaning help'**
+  String get kidsQuranExplanationShowTitle;
+
+  /// No description provided for @kidsQuranExplanationToggleSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Use short, warm explanations that help children understand what Allah is teaching.'**
+  String get kidsQuranExplanationToggleSubtitle;
+
+  /// No description provided for @kidsQuranExplanationTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A gentle explanation'**
+  String get kidsQuranExplanationTitle;
+
+  /// No description provided for @kidsQuranExplanationTakeawayTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'One gentle takeaway'**
+  String get kidsQuranExplanationTakeawayTitle;
+
+  /// No description provided for @kidsQuranExplanationReflectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'What can we learn?'**
+  String get kidsQuranExplanationReflectionTitle;
+
+  /// No description provided for @kidsQuranExplanationReflectionPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'What can we learn from this? {prompt}'**
+  String kidsQuranExplanationReflectionPrompt(Object prompt);
+
+  /// No description provided for @kidsQuranAyahActionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Try this today'**
+  String get kidsQuranAyahActionTitle;
+
+  /// No description provided for @kidsQuranAyahActionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'One simple way to practice what this ayah teaches.'**
+  String get kidsQuranAyahActionSubtitle;
 
   /// No description provided for @quranWordTranslationChip.
   ///
@@ -63987,6 +64401,1878 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Best for evening reflection and Qur’an study.'**
   String get settingsThemeModeMidnightManuscriptBestFor;
+
+  /// No description provided for @editorialDashboardTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Editorial Dashboard'**
+  String get editorialDashboardTitle;
+
+  /// No description provided for @editorialDashboardSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Internal content command center · version {version}'**
+  String editorialDashboardSubtitle(Object version);
+
+  /// No description provided for @editorialDashboardSubtitleLoading.
+  ///
+  /// In en, this message translates to:
+  /// **'Internal content command center'**
+  String get editorialDashboardSubtitleLoading;
+
+  /// No description provided for @editorialDashboardSubtitleUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Internal content command center · version unavailable'**
+  String get editorialDashboardSubtitleUnknown;
+
+  /// No description provided for @editorialDashboardPinTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Editorial Access'**
+  String get editorialDashboardPinTitle;
+
+  /// No description provided for @editorialDashboardPinSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the internal PIN to open the editorial dashboard.'**
+  String get editorialDashboardPinSubtitle;
+
+  /// No description provided for @editorialDashboardPinHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'This internal view is hidden from normal navigation and stays locked each time the app restarts.'**
+  String get editorialDashboardPinHelper;
+
+  /// No description provided for @editorialDashboardPinHint.
+  ///
+  /// In en, this message translates to:
+  /// **'PIN'**
+  String get editorialDashboardPinHint;
+
+  /// No description provided for @editorialDashboardPinSubmitAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlock dashboard'**
+  String get editorialDashboardPinSubmitAction;
+
+  /// No description provided for @editorialDashboardPinError.
+  ///
+  /// In en, this message translates to:
+  /// **'That PIN was not correct.'**
+  String get editorialDashboardPinError;
+
+  /// No description provided for @editorialDashboardLockAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Lock dashboard'**
+  String get editorialDashboardLockAction;
+
+  /// No description provided for @editorialDashboardFiltersTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Filters'**
+  String get editorialDashboardFiltersTitle;
+
+  /// No description provided for @editorialDashboardSearchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search by domain, item, status, or note'**
+  String get editorialDashboardSearchHint;
+
+  /// No description provided for @editorialDashboardFilterMissingContent.
+  ///
+  /// In en, this message translates to:
+  /// **'Missing content'**
+  String get editorialDashboardFilterMissingContent;
+
+  /// No description provided for @editorialDashboardFilterNeedsReview.
+  ///
+  /// In en, this message translates to:
+  /// **'Needs review'**
+  String get editorialDashboardFilterNeedsReview;
+
+  /// No description provided for @editorialDashboardFilterKidsMissing.
+  ///
+  /// In en, this message translates to:
+  /// **'Kids missing'**
+  String get editorialDashboardFilterKidsMissing;
+
+  /// No description provided for @editorialDashboardFilterLocalizationMissing.
+  ///
+  /// In en, this message translates to:
+  /// **'Localization missing'**
+  String get editorialDashboardFilterLocalizationMissing;
+
+  /// No description provided for @editorialDashboardFilterAllDomains.
+  ///
+  /// In en, this message translates to:
+  /// **'All domains'**
+  String get editorialDashboardFilterAllDomains;
+
+  /// No description provided for @editorialDashboardFilterAllStatuses.
+  ///
+  /// In en, this message translates to:
+  /// **'All statuses'**
+  String get editorialDashboardFilterAllStatuses;
+
+  /// No description provided for @editorialDashboardResultsCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{visible} of {total} items visible'**
+  String editorialDashboardResultsCount(Object visible, Object total);
+
+  /// No description provided for @editorialDashboardOverviewTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Overview'**
+  String get editorialDashboardOverviewTitle;
+
+  /// No description provided for @editorialDashboardOverviewSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A read-only view of content coverage, system readiness, and internal routing across the app.'**
+  String get editorialDashboardOverviewSubtitle;
+
+  /// No description provided for @editorialDashboardOverviewDomains.
+  ///
+  /// In en, this message translates to:
+  /// **'Domains'**
+  String get editorialDashboardOverviewDomains;
+
+  /// No description provided for @editorialDashboardOverviewItems.
+  ///
+  /// In en, this message translates to:
+  /// **'Items'**
+  String get editorialDashboardOverviewItems;
+
+  /// No description provided for @editorialDashboardOverviewVisible.
+  ///
+  /// In en, this message translates to:
+  /// **'Visible'**
+  String get editorialDashboardOverviewVisible;
+
+  /// No description provided for @editorialDashboardOverviewMissing.
+  ///
+  /// In en, this message translates to:
+  /// **'Missing'**
+  String get editorialDashboardOverviewMissing;
+
+  /// No description provided for @editorialDashboardOverviewNeedsReview.
+  ///
+  /// In en, this message translates to:
+  /// **'Needs review'**
+  String get editorialDashboardOverviewNeedsReview;
+
+  /// No description provided for @editorialDashboardOverviewCritical.
+  ///
+  /// In en, this message translates to:
+  /// **'Critical'**
+  String get editorialDashboardOverviewCritical;
+
+  /// No description provided for @editorialDashboardOverviewHighPriority.
+  ///
+  /// In en, this message translates to:
+  /// **'High priority'**
+  String get editorialDashboardOverviewHighPriority;
+
+  /// No description provided for @editorialDashboardOverviewKidsGaps.
+  ///
+  /// In en, this message translates to:
+  /// **'Kids gaps'**
+  String get editorialDashboardOverviewKidsGaps;
+
+  /// No description provided for @editorialDashboardOverviewSourceGaps.
+  ///
+  /// In en, this message translates to:
+  /// **'Source gaps'**
+  String get editorialDashboardOverviewSourceGaps;
+
+  /// No description provided for @editorialDashboardOverviewLocalizationGaps.
+  ///
+  /// In en, this message translates to:
+  /// **'Localization gaps'**
+  String get editorialDashboardOverviewLocalizationGaps;
+
+  /// No description provided for @editorialDashboardOverviewIncompletePacks.
+  ///
+  /// In en, this message translates to:
+  /// **'Incomplete packs'**
+  String get editorialDashboardOverviewIncompletePacks;
+
+  /// No description provided for @editorialDashboardOverviewReadyToVerify.
+  ///
+  /// In en, this message translates to:
+  /// **'Ready to verify'**
+  String get editorialDashboardOverviewReadyToVerify;
+
+  /// No description provided for @editorialDashboardOverviewRecentlyUpdated.
+  ///
+  /// In en, this message translates to:
+  /// **'Recently updated'**
+  String get editorialDashboardOverviewRecentlyUpdated;
+
+  /// No description provided for @editorialDashboardOverviewStale.
+  ///
+  /// In en, this message translates to:
+  /// **'Stale'**
+  String get editorialDashboardOverviewStale;
+
+  /// No description provided for @editorialDashboardEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No matches found'**
+  String get editorialDashboardEmptyTitle;
+
+  /// No description provided for @editorialDashboardEmptySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Try a broader search or remove one of the active filters.'**
+  String get editorialDashboardEmptySubtitle;
+
+  /// No description provided for @editorialDashboardOpenRouteAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open route'**
+  String get editorialDashboardOpenRouteAction;
+
+  /// No description provided for @editorialDashboardOpenEditorAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open editor'**
+  String get editorialDashboardOpenEditorAction;
+
+  /// No description provided for @editorialDashboardAddNoteAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Add note'**
+  String get editorialDashboardAddNoteAction;
+
+  /// No description provided for @editorialDashboardEditNoteAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit note'**
+  String get editorialDashboardEditNoteAction;
+
+  /// No description provided for @editorialDashboardSaveNoteAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Save note'**
+  String get editorialDashboardSaveNoteAction;
+
+  /// No description provided for @editorialDashboardClearNoteAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear note'**
+  String get editorialDashboardClearNoteAction;
+
+  /// No description provided for @editorialDashboardCancelAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get editorialDashboardCancelAction;
+
+  /// No description provided for @editorialDashboardSetReadinessAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Set readiness'**
+  String get editorialDashboardSetReadinessAction;
+
+  /// No description provided for @editorialDashboardClearFiltersAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear filters'**
+  String get editorialDashboardClearFiltersAction;
+
+  /// No description provided for @editorialDashboardFlagKidsSafe.
+  ///
+  /// In en, this message translates to:
+  /// **'Kids safe'**
+  String get editorialDashboardFlagKidsSafe;
+
+  /// No description provided for @editorialDashboardFlagSources.
+  ///
+  /// In en, this message translates to:
+  /// **'Sources tracked'**
+  String get editorialDashboardFlagSources;
+
+  /// No description provided for @editorialDashboardFlagLocalizationReady.
+  ///
+  /// In en, this message translates to:
+  /// **'Localization ready'**
+  String get editorialDashboardFlagLocalizationReady;
+
+  /// No description provided for @editorialDashboardFlagMissingContent.
+  ///
+  /// In en, this message translates to:
+  /// **'Missing content'**
+  String get editorialDashboardFlagMissingContent;
+
+  /// No description provided for @editorialDashboardFlagNeedsReview.
+  ///
+  /// In en, this message translates to:
+  /// **'Needs review'**
+  String get editorialDashboardFlagNeedsReview;
+
+  /// No description provided for @editorialDashboardDomainQuran.
+  ///
+  /// In en, this message translates to:
+  /// **'Qur’an'**
+  String get editorialDashboardDomainQuran;
+
+  /// No description provided for @editorialDashboardDomainHadith.
+  ///
+  /// In en, this message translates to:
+  /// **'Hadith'**
+  String get editorialDashboardDomainHadith;
+
+  /// No description provided for @editorialDashboardDomainStories.
+  ///
+  /// In en, this message translates to:
+  /// **'Stories'**
+  String get editorialDashboardDomainStories;
+
+  /// No description provided for @editorialDashboardDomainDuasDhikr.
+  ///
+  /// In en, this message translates to:
+  /// **'Duas and Dhikr'**
+  String get editorialDashboardDomainDuasDhikr;
+
+  /// No description provided for @editorialDashboardDomainLearningPaths.
+  ///
+  /// In en, this message translates to:
+  /// **'Learning paths'**
+  String get editorialDashboardDomainLearningPaths;
+
+  /// No description provided for @editorialDashboardDomainKidsContent.
+  ///
+  /// In en, this message translates to:
+  /// **'Kids content'**
+  String get editorialDashboardDomainKidsContent;
+
+  /// No description provided for @editorialDashboardDomainActionsDrops.
+  ///
+  /// In en, this message translates to:
+  /// **'Actions and Ocean Drops'**
+  String get editorialDashboardDomainActionsDrops;
+
+  /// No description provided for @editorialDashboardDomainRecommendations.
+  ///
+  /// In en, this message translates to:
+  /// **'Recommendations and moments'**
+  String get editorialDashboardDomainRecommendations;
+
+  /// No description provided for @editorialDashboardDomainLocalization.
+  ///
+  /// In en, this message translates to:
+  /// **'Localization'**
+  String get editorialDashboardDomainLocalization;
+
+  /// No description provided for @editorialDashboardTypeSystem.
+  ///
+  /// In en, this message translates to:
+  /// **'System'**
+  String get editorialDashboardTypeSystem;
+
+  /// No description provided for @editorialDashboardTypeCoverage.
+  ///
+  /// In en, this message translates to:
+  /// **'Coverage'**
+  String get editorialDashboardTypeCoverage;
+
+  /// No description provided for @editorialDashboardTypePack.
+  ///
+  /// In en, this message translates to:
+  /// **'Pack'**
+  String get editorialDashboardTypePack;
+
+  /// No description provided for @editorialDashboardTypeCollection.
+  ///
+  /// In en, this message translates to:
+  /// **'Collection'**
+  String get editorialDashboardTypeCollection;
+
+  /// No description provided for @editorialDashboardTypeContentSet.
+  ///
+  /// In en, this message translates to:
+  /// **'Content set'**
+  String get editorialDashboardTypeContentSet;
+
+  /// No description provided for @editorialDashboardTypeJourneySet.
+  ///
+  /// In en, this message translates to:
+  /// **'Journey set'**
+  String get editorialDashboardTypeJourneySet;
+
+  /// No description provided for @editorialDashboardTypePathSet.
+  ///
+  /// In en, this message translates to:
+  /// **'Path set'**
+  String get editorialDashboardTypePathSet;
+
+  /// No description provided for @editorialDashboardTypeActionSet.
+  ///
+  /// In en, this message translates to:
+  /// **'Action set'**
+  String get editorialDashboardTypeActionSet;
+
+  /// No description provided for @editorialDashboardTypeEngine.
+  ///
+  /// In en, this message translates to:
+  /// **'Engine'**
+  String get editorialDashboardTypeEngine;
+
+  /// No description provided for @editorialDashboardTypeLocaleSet.
+  ///
+  /// In en, this message translates to:
+  /// **'Locale set'**
+  String get editorialDashboardTypeLocaleSet;
+
+  /// No description provided for @editorialDashboardStatusDraft.
+  ///
+  /// In en, this message translates to:
+  /// **'Draft'**
+  String get editorialDashboardStatusDraft;
+
+  /// No description provided for @editorialDashboardStatusPartial.
+  ///
+  /// In en, this message translates to:
+  /// **'Partial'**
+  String get editorialDashboardStatusPartial;
+
+  /// No description provided for @editorialDashboardStatusReviewed.
+  ///
+  /// In en, this message translates to:
+  /// **'Reviewed'**
+  String get editorialDashboardStatusReviewed;
+
+  /// No description provided for @editorialDashboardStatusVerified.
+  ///
+  /// In en, this message translates to:
+  /// **'Verified'**
+  String get editorialDashboardStatusVerified;
+
+  /// No description provided for @editorialDashboardStatusInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Info'**
+  String get editorialDashboardStatusInfo;
+
+  /// No description provided for @editorialDashboardPriorityCritical.
+  ///
+  /// In en, this message translates to:
+  /// **'Critical'**
+  String get editorialDashboardPriorityCritical;
+
+  /// No description provided for @editorialDashboardPriorityHigh.
+  ///
+  /// In en, this message translates to:
+  /// **'High'**
+  String get editorialDashboardPriorityHigh;
+
+  /// No description provided for @editorialDashboardPriorityMedium.
+  ///
+  /// In en, this message translates to:
+  /// **'Medium'**
+  String get editorialDashboardPriorityMedium;
+
+  /// No description provided for @editorialDashboardPriorityLow.
+  ///
+  /// In en, this message translates to:
+  /// **'Low'**
+  String get editorialDashboardPriorityLow;
+
+  /// No description provided for @editorialDashboardReadinessNotStarted.
+  ///
+  /// In en, this message translates to:
+  /// **'Not started'**
+  String get editorialDashboardReadinessNotStarted;
+
+  /// No description provided for @editorialDashboardReadinessDraft.
+  ///
+  /// In en, this message translates to:
+  /// **'Draft'**
+  String get editorialDashboardReadinessDraft;
+
+  /// No description provided for @editorialDashboardReadinessReviewed.
+  ///
+  /// In en, this message translates to:
+  /// **'Reviewed'**
+  String get editorialDashboardReadinessReviewed;
+
+  /// No description provided for @editorialDashboardReadinessVerified.
+  ///
+  /// In en, this message translates to:
+  /// **'Verified'**
+  String get editorialDashboardReadinessVerified;
+
+  /// No description provided for @editorialDashboardReadinessLaunchReady.
+  ///
+  /// In en, this message translates to:
+  /// **'Launch ready'**
+  String get editorialDashboardReadinessLaunchReady;
+
+  /// No description provided for @editorialDashboardReadinessNeedsRevision.
+  ///
+  /// In en, this message translates to:
+  /// **'Needs revision'**
+  String get editorialDashboardReadinessNeedsRevision;
+
+  /// No description provided for @editorialDashboardScoreBandExcellent.
+  ///
+  /// In en, this message translates to:
+  /// **'Excellent'**
+  String get editorialDashboardScoreBandExcellent;
+
+  /// No description provided for @editorialDashboardScoreBandHealthy.
+  ///
+  /// In en, this message translates to:
+  /// **'Healthy'**
+  String get editorialDashboardScoreBandHealthy;
+
+  /// No description provided for @editorialDashboardScoreBandWeak.
+  ///
+  /// In en, this message translates to:
+  /// **'Weak'**
+  String get editorialDashboardScoreBandWeak;
+
+  /// No description provided for @editorialDashboardMetricEntries.
+  ///
+  /// In en, this message translates to:
+  /// **'Entries'**
+  String get editorialDashboardMetricEntries;
+
+  /// No description provided for @editorialDashboardMetricTotal.
+  ///
+  /// In en, this message translates to:
+  /// **'Total'**
+  String get editorialDashboardMetricTotal;
+
+  /// No description provided for @editorialDashboardMetricCovered.
+  ///
+  /// In en, this message translates to:
+  /// **'Covered'**
+  String get editorialDashboardMetricCovered;
+
+  /// No description provided for @editorialDashboardMetricMissing.
+  ///
+  /// In en, this message translates to:
+  /// **'Missing'**
+  String get editorialDashboardMetricMissing;
+
+  /// No description provided for @editorialDashboardMetricReviewed.
+  ///
+  /// In en, this message translates to:
+  /// **'Reviewed'**
+  String get editorialDashboardMetricReviewed;
+
+  /// No description provided for @editorialDashboardMetricVerified.
+  ///
+  /// In en, this message translates to:
+  /// **'Verified'**
+  String get editorialDashboardMetricVerified;
+
+  /// No description provided for @editorialDashboardMetricKidsReady.
+  ///
+  /// In en, this message translates to:
+  /// **'Kids ready'**
+  String get editorialDashboardMetricKidsReady;
+
+  /// No description provided for @editorialDashboardMetricLocalized.
+  ///
+  /// In en, this message translates to:
+  /// **'Localized'**
+  String get editorialDashboardMetricLocalized;
+
+  /// No description provided for @editorialDashboardMetricRoutes.
+  ///
+  /// In en, this message translates to:
+  /// **'Routes'**
+  String get editorialDashboardMetricRoutes;
+
+  /// No description provided for @editorialDashboardMetricCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get editorialDashboardMetricCompleted;
+
+  /// No description provided for @editorialDashboardMetricSessions.
+  ///
+  /// In en, this message translates to:
+  /// **'Sessions'**
+  String get editorialDashboardMetricSessions;
+
+  /// No description provided for @editorialDashboardMetricDeep.
+  ///
+  /// In en, this message translates to:
+  /// **'Deep'**
+  String get editorialDashboardMetricDeep;
+
+  /// No description provided for @editorialDashboardPackHealthTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Pack health'**
+  String get editorialDashboardPackHealthTitle;
+
+  /// No description provided for @editorialDashboardPackHealthSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Grouped health helps surface which rollout packs are ready, weak, or still missing important coverage.'**
+  String get editorialDashboardPackHealthSubtitle;
+
+  /// No description provided for @editorialDashboardPackMetricMissingRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Missing required'**
+  String get editorialDashboardPackMetricMissingRequired;
+
+  /// No description provided for @editorialDashboardPackMetricKidsCoverage.
+  ///
+  /// In en, this message translates to:
+  /// **'Kids coverage %'**
+  String get editorialDashboardPackMetricKidsCoverage;
+
+  /// No description provided for @editorialDashboardPackMetricSourceCoverage.
+  ///
+  /// In en, this message translates to:
+  /// **'Source coverage %'**
+  String get editorialDashboardPackMetricSourceCoverage;
+
+  /// No description provided for @editorialDashboardPackMetricLocalizationCoverage.
+  ///
+  /// In en, this message translates to:
+  /// **'Localization coverage %'**
+  String get editorialDashboardPackMetricLocalizationCoverage;
+
+  /// No description provided for @editorialDashboardQueuesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Review queues'**
+  String get editorialDashboardQueuesTitle;
+
+  /// No description provided for @editorialDashboardQueuesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Use these queues to triage the highest-value editorial work first.'**
+  String get editorialDashboardQueuesSubtitle;
+
+  /// No description provided for @editorialDashboardQueueItemsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Items'**
+  String get editorialDashboardQueueItemsLabel;
+
+  /// No description provided for @editorialDashboardQueueCriticalIssues.
+  ///
+  /// In en, this message translates to:
+  /// **'Critical issues'**
+  String get editorialDashboardQueueCriticalIssues;
+
+  /// No description provided for @editorialDashboardQueueNeedsReview.
+  ///
+  /// In en, this message translates to:
+  /// **'Needs review'**
+  String get editorialDashboardQueueNeedsReview;
+
+  /// No description provided for @editorialDashboardQueueKidsSafetyGaps.
+  ///
+  /// In en, this message translates to:
+  /// **'Kids safety gaps'**
+  String get editorialDashboardQueueKidsSafetyGaps;
+
+  /// No description provided for @editorialDashboardQueueMissingLocalization.
+  ///
+  /// In en, this message translates to:
+  /// **'Missing localization'**
+  String get editorialDashboardQueueMissingLocalization;
+
+  /// No description provided for @editorialDashboardQueueMissingSources.
+  ///
+  /// In en, this message translates to:
+  /// **'Missing source metadata'**
+  String get editorialDashboardQueueMissingSources;
+
+  /// No description provided for @editorialDashboardQueueIncompletePacks.
+  ///
+  /// In en, this message translates to:
+  /// **'Incomplete content packs'**
+  String get editorialDashboardQueueIncompletePacks;
+
+  /// No description provided for @editorialDashboardQueueLowQuality.
+  ///
+  /// In en, this message translates to:
+  /// **'Low quality'**
+  String get editorialDashboardQueueLowQuality;
+
+  /// No description provided for @editorialDashboardQueueReadyForVerification.
+  ///
+  /// In en, this message translates to:
+  /// **'Ready for verification'**
+  String get editorialDashboardQueueReadyForVerification;
+
+  /// No description provided for @editorialDashboardQueueRecentlyUpdated.
+  ///
+  /// In en, this message translates to:
+  /// **'Recently updated'**
+  String get editorialDashboardQueueRecentlyUpdated;
+
+  /// No description provided for @editorialDashboardQueueStaleContent.
+  ///
+  /// In en, this message translates to:
+  /// **'Stale content'**
+  String get editorialDashboardQueueStaleContent;
+
+  /// No description provided for @editorialDashboardIssueListTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Issue summary'**
+  String get editorialDashboardIssueListTitle;
+
+  /// No description provided for @editorialDashboardPositiveSignalsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Positive signals'**
+  String get editorialDashboardPositiveSignalsTitle;
+
+  /// No description provided for @editorialDashboardNoteLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Internal note'**
+  String get editorialDashboardNoteLabel;
+
+  /// No description provided for @editorialDashboardNoteDialogTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Internal review note'**
+  String get editorialDashboardNoteDialogTitle;
+
+  /// No description provided for @editorialDashboardNoteDialogHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a short owner note, blocked reason, or follow-up reminder.'**
+  String get editorialDashboardNoteDialogHint;
+
+  /// No description provided for @editorialDashboardScoreLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Score {score}'**
+  String editorialDashboardScoreLabel(Object score);
+
+  /// No description provided for @editorialDashboardPackLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Pack'**
+  String get editorialDashboardPackLabel;
+
+  /// No description provided for @editorialDashboardContentBrowserSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Browse editable content items and open a structured editor with version history.'**
+  String get editorialDashboardContentBrowserSubtitle;
+
+  /// No description provided for @editorialDashboardContentEditorTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Content editor'**
+  String get editorialDashboardContentEditorTitle;
+
+  /// No description provided for @editorialDashboardContentVersionCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} saved versions'**
+  String editorialDashboardContentVersionCount(Object count);
+
+  /// No description provided for @editorialDashboardContentIdLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Content ID: {contentId}'**
+  String editorialDashboardContentIdLabel(Object contentId);
+
+  /// No description provided for @editorialDashboardContentTypeQuranExplanation.
+  ///
+  /// In en, this message translates to:
+  /// **'Qur’an explanations'**
+  String get editorialDashboardContentTypeQuranExplanation;
+
+  /// No description provided for @editorialDashboardContentTypeHadithEntry.
+  ///
+  /// In en, this message translates to:
+  /// **'Hadith entries'**
+  String get editorialDashboardContentTypeHadithEntry;
+
+  /// No description provided for @editorialDashboardContentTypeBedtimeStory.
+  ///
+  /// In en, this message translates to:
+  /// **'Kids stories'**
+  String get editorialDashboardContentTypeBedtimeStory;
+
+  /// No description provided for @editorialDashboardContentTypeKidsDuaLesson.
+  ///
+  /// In en, this message translates to:
+  /// **'Kids dua lessons'**
+  String get editorialDashboardContentTypeKidsDuaLesson;
+
+  /// No description provided for @editorialDashboardSaveVersionAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Save version'**
+  String get editorialDashboardSaveVersionAction;
+
+  /// No description provided for @editorialDashboardResetFormAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset form'**
+  String get editorialDashboardResetFormAction;
+
+  /// No description provided for @editorialDashboardVersionHistoryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Version history'**
+  String get editorialDashboardVersionHistoryTitle;
+
+  /// No description provided for @editorialDashboardVersionHistorySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Each save creates a new reversible version. Rollbacks also create a fresh version entry.'**
+  String get editorialDashboardVersionHistorySubtitle;
+
+  /// No description provided for @editorialDashboardNoVersionsYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No saved versions yet.'**
+  String get editorialDashboardNoVersionsYet;
+
+  /// No description provided for @editorialDashboardPreviewSaveTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Preview changes'**
+  String get editorialDashboardPreviewSaveTitle;
+
+  /// No description provided for @editorialDashboardBeforeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Before'**
+  String get editorialDashboardBeforeLabel;
+
+  /// No description provided for @editorialDashboardAfterLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'After'**
+  String get editorialDashboardAfterLabel;
+
+  /// No description provided for @editorialDashboardChangeSummaryFieldLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Change summary'**
+  String get editorialDashboardChangeSummaryFieldLabel;
+
+  /// No description provided for @editorialDashboardChangeSummaryFieldHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'Briefly explain what changed and why.'**
+  String get editorialDashboardChangeSummaryFieldHelper;
+
+  /// No description provided for @editorialDashboardVersionSavedMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Version saved successfully.'**
+  String get editorialDashboardVersionSavedMessage;
+
+  /// No description provided for @editorialDashboardRollbackConfirmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm rollback'**
+  String get editorialDashboardRollbackConfirmTitle;
+
+  /// No description provided for @editorialDashboardRollbackAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Rollback'**
+  String get editorialDashboardRollbackAction;
+
+  /// No description provided for @editorialDashboardRollbackDefaultSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'Rolled back to version {versionNumber}'**
+  String editorialDashboardRollbackDefaultSummary(Object versionNumber);
+
+  /// No description provided for @editorialDashboardRollbackSuccessMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Rollback completed and recorded as a new version.'**
+  String get editorialDashboardRollbackSuccessMessage;
+
+  /// No description provided for @editorialDashboardCloseAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get editorialDashboardCloseAction;
+
+  /// No description provided for @editorialDashboardCompareVersionAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Compare version'**
+  String get editorialDashboardCompareVersionAction;
+
+  /// No description provided for @editorialDashboardFieldRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'{fieldLabel} is required.'**
+  String editorialDashboardFieldRequired(Object fieldLabel);
+
+  /// No description provided for @editorialDashboardQuranExplanationValidation.
+  ///
+  /// In en, this message translates to:
+  /// **'Qur’an explanations must keep simple, standard, and kids explanation fields filled.'**
+  String get editorialDashboardQuranExplanationValidation;
+
+  /// No description provided for @editorialDashboardNoChangesDetected.
+  ///
+  /// In en, this message translates to:
+  /// **'No changes detected.'**
+  String get editorialDashboardNoChangesDetected;
+
+  /// No description provided for @editorialDashboardContentFieldReviewStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Review status'**
+  String get editorialDashboardContentFieldReviewStatus;
+
+  /// No description provided for @editorialDashboardContentFieldSimpleSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'Simple summary'**
+  String get editorialDashboardContentFieldSimpleSummary;
+
+  /// No description provided for @editorialDashboardContentFieldSimpleSummaryHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep this short, calm, and beginner-friendly.'**
+  String get editorialDashboardContentFieldSimpleSummaryHelper;
+
+  /// No description provided for @editorialDashboardContentFieldStandardExplanation.
+  ///
+  /// In en, this message translates to:
+  /// **'Standard explanation'**
+  String get editorialDashboardContentFieldStandardExplanation;
+
+  /// No description provided for @editorialDashboardContentFieldStandardExplanationHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'Explain the meaning and a clear takeaway without sounding academic.'**
+  String get editorialDashboardContentFieldStandardExplanationHelper;
+
+  /// No description provided for @editorialDashboardContentFieldKidsExplanation.
+  ///
+  /// In en, this message translates to:
+  /// **'Kids explanation'**
+  String get editorialDashboardContentFieldKidsExplanation;
+
+  /// No description provided for @editorialDashboardContentFieldKidsExplanationHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'Use one warm, child-safe teaching at a time.'**
+  String get editorialDashboardContentFieldKidsExplanationHelper;
+
+  /// No description provided for @editorialDashboardContentFieldDeepExplanation.
+  ///
+  /// In en, this message translates to:
+  /// **'Deep explanation'**
+  String get editorialDashboardContentFieldDeepExplanation;
+
+  /// No description provided for @editorialDashboardContentFieldDeepExplanationHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'Add deeper context only where it helps and still reads well in-app.'**
+  String get editorialDashboardContentFieldDeepExplanationHelper;
+
+  /// No description provided for @editorialDashboardContentFieldKeyLessons.
+  ///
+  /// In en, this message translates to:
+  /// **'Key lessons'**
+  String get editorialDashboardContentFieldKeyLessons;
+
+  /// No description provided for @editorialDashboardContentFieldKeyLessonsHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter one lesson per line.'**
+  String get editorialDashboardContentFieldKeyLessonsHelper;
+
+  /// No description provided for @editorialDashboardContentFieldReflectionPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Reflection prompt'**
+  String get editorialDashboardContentFieldReflectionPrompt;
+
+  /// No description provided for @editorialDashboardContentFieldReflectionPromptHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep the reflection prompt gentle and practical.'**
+  String get editorialDashboardContentFieldReflectionPromptHelper;
+
+  /// No description provided for @editorialDashboardContentFieldTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Title'**
+  String get editorialDashboardContentFieldTitle;
+
+  /// No description provided for @editorialDashboardContentFieldTitleHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'Use a clear, calm content title.'**
+  String get editorialDashboardContentFieldTitleHelper;
+
+  /// No description provided for @editorialDashboardContentFieldExcerpt.
+  ///
+  /// In en, this message translates to:
+  /// **'Excerpt'**
+  String get editorialDashboardContentFieldExcerpt;
+
+  /// No description provided for @editorialDashboardContentFieldExcerptHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep the short preview concise and high signal.'**
+  String get editorialDashboardContentFieldExcerptHelper;
+
+  /// No description provided for @editorialDashboardContentFieldMeaning.
+  ///
+  /// In en, this message translates to:
+  /// **'Meaning'**
+  String get editorialDashboardContentFieldMeaning;
+
+  /// No description provided for @editorialDashboardContentFieldMeaningHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'Explain the meaning clearly and respectfully.'**
+  String get editorialDashboardContentFieldMeaningHelper;
+
+  /// No description provided for @editorialDashboardContentFieldLessons.
+  ///
+  /// In en, this message translates to:
+  /// **'Lessons'**
+  String get editorialDashboardContentFieldLessons;
+
+  /// No description provided for @editorialDashboardContentFieldLessonsHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter one lesson per line.'**
+  String get editorialDashboardContentFieldLessonsHelper;
+
+  /// No description provided for @editorialDashboardContentFieldReflectionPrompts.
+  ///
+  /// In en, this message translates to:
+  /// **'Reflection prompts'**
+  String get editorialDashboardContentFieldReflectionPrompts;
+
+  /// No description provided for @editorialDashboardContentFieldReflectionPromptsHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter one prompt per line.'**
+  String get editorialDashboardContentFieldReflectionPromptsHelper;
+
+  /// No description provided for @editorialDashboardContentFieldPracticeAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Practice action'**
+  String get editorialDashboardContentFieldPracticeAction;
+
+  /// No description provided for @editorialDashboardContentFieldPracticeActionHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'Use a small realistic action step.'**
+  String get editorialDashboardContentFieldPracticeActionHelper;
+
+  /// No description provided for @editorialDashboardContentFieldTags.
+  ///
+  /// In en, this message translates to:
+  /// **'Tags'**
+  String get editorialDashboardContentFieldTags;
+
+  /// No description provided for @editorialDashboardContentFieldTagsHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter one tag per line.'**
+  String get editorialDashboardContentFieldTagsHelper;
+
+  /// No description provided for @editorialDashboardContentFieldShortTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Short title'**
+  String get editorialDashboardContentFieldShortTitle;
+
+  /// No description provided for @editorialDashboardContentFieldShortTitleHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'Use a compact title for cards and small layouts.'**
+  String get editorialDashboardContentFieldShortTitleHelper;
+
+  /// No description provided for @editorialDashboardContentFieldSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'Summary'**
+  String get editorialDashboardContentFieldSummary;
+
+  /// No description provided for @editorialDashboardContentFieldSummaryHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep the summary calm, readable, and child-safe where needed.'**
+  String get editorialDashboardContentFieldSummaryHelper;
+
+  /// No description provided for @editorialDashboardContentFieldLesson.
+  ///
+  /// In en, this message translates to:
+  /// **'Lesson'**
+  String get editorialDashboardContentFieldLesson;
+
+  /// No description provided for @editorialDashboardContentFieldLessonHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'Focus on the main teaching or takeaway.'**
+  String get editorialDashboardContentFieldLessonHelper;
+
+  /// No description provided for @editorialDashboardContentFieldSourceNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Source note'**
+  String get editorialDashboardContentFieldSourceNote;
+
+  /// No description provided for @editorialDashboardContentFieldSourceNoteHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'Use this for a light internal-facing source note if needed.'**
+  String get editorialDashboardContentFieldSourceNoteHelper;
+
+  /// No description provided for @editorialDashboardContentFieldTransliteration.
+  ///
+  /// In en, this message translates to:
+  /// **'Transliteration'**
+  String get editorialDashboardContentFieldTransliteration;
+
+  /// No description provided for @editorialDashboardContentFieldTransliterationHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep the transliteration readable and consistent.'**
+  String get editorialDashboardContentFieldTransliterationHelper;
+
+  /// No description provided for @editorialDashboardContentFieldMiniLesson.
+  ///
+  /// In en, this message translates to:
+  /// **'Mini lesson'**
+  String get editorialDashboardContentFieldMiniLesson;
+
+  /// No description provided for @editorialDashboardContentFieldMiniLessonHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'Explain the dua simply and warmly for children.'**
+  String get editorialDashboardContentFieldMiniLessonHelper;
+
+  /// No description provided for @editorialDashboardContentFieldWhenToSay.
+  ///
+  /// In en, this message translates to:
+  /// **'When to say'**
+  String get editorialDashboardContentFieldWhenToSay;
+
+  /// No description provided for @editorialDashboardContentFieldWhenToSayHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'Describe the moment or habit cue clearly.'**
+  String get editorialDashboardContentFieldWhenToSayHelper;
+
+  /// No description provided for @editorialDashboardContentFieldPracticePrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Practice prompt'**
+  String get editorialDashboardContentFieldPracticePrompt;
+
+  /// No description provided for @editorialDashboardContentFieldPracticePromptHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'Optional gentle practice reminder.'**
+  String get editorialDashboardContentFieldPracticePromptHelper;
+
+  /// No description provided for @editorialDashboardFilterSourceMissing.
+  ///
+  /// In en, this message translates to:
+  /// **'Source missing'**
+  String get editorialDashboardFilterSourceMissing;
+
+  /// No description provided for @editorialDashboardFilterAllPriorities.
+  ///
+  /// In en, this message translates to:
+  /// **'All priorities'**
+  String get editorialDashboardFilterAllPriorities;
+
+  /// No description provided for @editorialDashboardFilterAllReadinessStates.
+  ///
+  /// In en, this message translates to:
+  /// **'All readiness states'**
+  String get editorialDashboardFilterAllReadinessStates;
+
+  /// No description provided for @editorialDashboardFilterAllIssueTypes.
+  ///
+  /// In en, this message translates to:
+  /// **'All issue types'**
+  String get editorialDashboardFilterAllIssueTypes;
+
+  /// No description provided for @editorialDashboardFilterAllScoreBands.
+  ///
+  /// In en, this message translates to:
+  /// **'All score bands'**
+  String get editorialDashboardFilterAllScoreBands;
+
+  /// No description provided for @editorialDashboardFilterAllPacks.
+  ///
+  /// In en, this message translates to:
+  /// **'All packs'**
+  String get editorialDashboardFilterAllPacks;
+
+  /// No description provided for @editorialDashboardIssueMissingContent.
+  ///
+  /// In en, this message translates to:
+  /// **'Missing content'**
+  String get editorialDashboardIssueMissingContent;
+
+  /// No description provided for @editorialDashboardIssueMissingKids.
+  ///
+  /// In en, this message translates to:
+  /// **'Missing kids-safe layer'**
+  String get editorialDashboardIssueMissingKids;
+
+  /// No description provided for @editorialDashboardIssueMissingSourceRef.
+  ///
+  /// In en, this message translates to:
+  /// **'Missing source metadata'**
+  String get editorialDashboardIssueMissingSourceRef;
+
+  /// No description provided for @editorialDashboardIssueMissingLocalization.
+  ///
+  /// In en, this message translates to:
+  /// **'Missing localization'**
+  String get editorialDashboardIssueMissingLocalization;
+
+  /// No description provided for @editorialDashboardIssueNeedsReview.
+  ///
+  /// In en, this message translates to:
+  /// **'Needs review'**
+  String get editorialDashboardIssueNeedsReview;
+
+  /// No description provided for @editorialDashboardIssueDraftOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Draft only'**
+  String get editorialDashboardIssueDraftOnly;
+
+  /// No description provided for @editorialDashboardIssueIncompleteRoute.
+  ///
+  /// In en, this message translates to:
+  /// **'Incomplete route metadata'**
+  String get editorialDashboardIssueIncompleteRoute;
+
+  /// No description provided for @editorialDashboardIssueWeakPackCoverage.
+  ///
+  /// In en, this message translates to:
+  /// **'Weak pack coverage'**
+  String get editorialDashboardIssueWeakPackCoverage;
+
+  /// No description provided for @editorialDashboardIssueMissingActionMapping.
+  ///
+  /// In en, this message translates to:
+  /// **'Missing action mapping'**
+  String get editorialDashboardIssueMissingActionMapping;
+
+  /// No description provided for @editorialDashboardIssueMissingRecommendationTags.
+  ///
+  /// In en, this message translates to:
+  /// **'Missing recommendation signals'**
+  String get editorialDashboardIssueMissingRecommendationTags;
+
+  /// No description provided for @editorialDashboardIssueLowCoverage.
+  ///
+  /// In en, this message translates to:
+  /// **'Low coverage'**
+  String get editorialDashboardIssueLowCoverage;
+
+  /// No description provided for @editorialDashboardIssueStaleContent.
+  ///
+  /// In en, this message translates to:
+  /// **'Stale content'**
+  String get editorialDashboardIssueStaleContent;
+
+  /// No description provided for @editorialDashboardIssueInfoOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Info only'**
+  String get editorialDashboardIssueInfoOnly;
+
+  /// No description provided for @editorialDashboardItemQuranAyahExplanations.
+  ///
+  /// In en, this message translates to:
+  /// **'Ayah explanations'**
+  String get editorialDashboardItemQuranAyahExplanations;
+
+  /// No description provided for @editorialDashboardItemQuranExplanationPacks.
+  ///
+  /// In en, this message translates to:
+  /// **'Explanation rollout packs'**
+  String get editorialDashboardItemQuranExplanationPacks;
+
+  /// No description provided for @editorialDashboardItemQuranSurahSummaries.
+  ///
+  /// In en, this message translates to:
+  /// **'Surah summaries'**
+  String get editorialDashboardItemQuranSurahSummaries;
+
+  /// No description provided for @editorialDashboardItemQuranSurahCoverage.
+  ///
+  /// In en, this message translates to:
+  /// **'Explanation coverage by surah'**
+  String get editorialDashboardItemQuranSurahCoverage;
+
+  /// No description provided for @editorialDashboardItemHadithThemes.
+  ///
+  /// In en, this message translates to:
+  /// **'Hadith themes'**
+  String get editorialDashboardItemHadithThemes;
+
+  /// No description provided for @editorialDashboardItemHadithCollections.
+  ///
+  /// In en, this message translates to:
+  /// **'Hadith collections'**
+  String get editorialDashboardItemHadithCollections;
+
+  /// No description provided for @editorialDashboardItemHadithEntries.
+  ///
+  /// In en, this message translates to:
+  /// **'Hadith entries'**
+  String get editorialDashboardItemHadithEntries;
+
+  /// No description provided for @editorialDashboardItemProphetsLibrary.
+  ///
+  /// In en, this message translates to:
+  /// **'Prophets library'**
+  String get editorialDashboardItemProphetsLibrary;
+
+  /// No description provided for @editorialDashboardItemBedtimeStories.
+  ///
+  /// In en, this message translates to:
+  /// **'Bedtime stories'**
+  String get editorialDashboardItemBedtimeStories;
+
+  /// No description provided for @editorialDashboardItemKidsStories.
+  ///
+  /// In en, this message translates to:
+  /// **'Kids story library'**
+  String get editorialDashboardItemKidsStories;
+
+  /// No description provided for @editorialDashboardItemKidsSeerahJourney.
+  ///
+  /// In en, this message translates to:
+  /// **'Kids seerah journey'**
+  String get editorialDashboardItemKidsSeerahJourney;
+
+  /// No description provided for @editorialDashboardItemKidsDuaCategories.
+  ///
+  /// In en, this message translates to:
+  /// **'Kids dua categories'**
+  String get editorialDashboardItemKidsDuaCategories;
+
+  /// No description provided for @editorialDashboardItemKidsDuaLessons.
+  ///
+  /// In en, this message translates to:
+  /// **'Kids dua lessons'**
+  String get editorialDashboardItemKidsDuaLessons;
+
+  /// No description provided for @editorialDashboardItemKidsDuaStories.
+  ///
+  /// In en, this message translates to:
+  /// **'Kids dua stories'**
+  String get editorialDashboardItemKidsDuaStories;
+
+  /// No description provided for @editorialDashboardItemDhikrTracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Dhikr tracking'**
+  String get editorialDashboardItemDhikrTracking;
+
+  /// No description provided for @editorialDashboardItemGuidedPaths.
+  ///
+  /// In en, this message translates to:
+  /// **'Guided learning paths'**
+  String get editorialDashboardItemGuidedPaths;
+
+  /// No description provided for @editorialDashboardItemLearningJourneys.
+  ///
+  /// In en, this message translates to:
+  /// **'Learning journeys'**
+  String get editorialDashboardItemLearningJourneys;
+
+  /// No description provided for @editorialDashboardItemLearningJourneyState.
+  ///
+  /// In en, this message translates to:
+  /// **'Learning journey progress state'**
+  String get editorialDashboardItemLearningJourneyState;
+
+  /// No description provided for @editorialDashboardItemKidsQuranLayer.
+  ///
+  /// In en, this message translates to:
+  /// **'Kids Qur’an explanation layer'**
+  String get editorialDashboardItemKidsQuranLayer;
+
+  /// No description provided for @editorialDashboardItemKidsDuaSystem.
+  ///
+  /// In en, this message translates to:
+  /// **'Kids dua system'**
+  String get editorialDashboardItemKidsDuaSystem;
+
+  /// No description provided for @editorialDashboardItemKidsStorySystem.
+  ///
+  /// In en, this message translates to:
+  /// **'Kids story system'**
+  String get editorialDashboardItemKidsStorySystem;
+
+  /// No description provided for @editorialDashboardItemKidsSeerahSystem.
+  ///
+  /// In en, this message translates to:
+  /// **'Kids seerah system'**
+  String get editorialDashboardItemKidsSeerahSystem;
+
+  /// No description provided for @editorialDashboardItemQuranAyahActions.
+  ///
+  /// In en, this message translates to:
+  /// **'Qur’an ayah actions'**
+  String get editorialDashboardItemQuranAyahActions;
+
+  /// No description provided for @editorialDashboardItemOceanDrops.
+  ///
+  /// In en, this message translates to:
+  /// **'Ocean Drop mappings'**
+  String get editorialDashboardItemOceanDrops;
+
+  /// No description provided for @editorialDashboardItemPersonalizationEngine.
+  ///
+  /// In en, this message translates to:
+  /// **'Personalization engine'**
+  String get editorialDashboardItemPersonalizationEngine;
+
+  /// No description provided for @editorialDashboardItemSpiritualMomentsEngine.
+  ///
+  /// In en, this message translates to:
+  /// **'Spiritual moments engine'**
+  String get editorialDashboardItemSpiritualMomentsEngine;
+
+  /// No description provided for @editorialDashboardItemDailyCompanionSurfaces.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily companion surfaces'**
+  String get editorialDashboardItemDailyCompanionSurfaces;
+
+  /// No description provided for @editorialDashboardItemSupportedLocales.
+  ///
+  /// In en, this message translates to:
+  /// **'Supported locales'**
+  String get editorialDashboardItemSupportedLocales;
+
+  /// No description provided for @editorialDashboardItemRuntimeLocalization.
+  ///
+  /// In en, this message translates to:
+  /// **'Runtime localization shell'**
+  String get editorialDashboardItemRuntimeLocalization;
+
+  /// No description provided for @editorialDashboardVersionLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Version {version}'**
+  String editorialDashboardVersionLabel(Object version);
+
+  /// No description provided for @editorialDashboardVersionLoading.
+  ///
+  /// In en, this message translates to:
+  /// **'Version'**
+  String get editorialDashboardVersionLoading;
+
+  /// No description provided for @editorialDashboardVersionUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Version unavailable'**
+  String get editorialDashboardVersionUnknown;
+
+  /// No description provided for @homeGlassVariantSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Glass Variants'**
+  String get homeGlassVariantSectionTitle;
+
+  /// No description provided for @homeGlassVariantSectionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Temporary homepage comparison of calm glass island styles inspired by the Learning Hub.'**
+  String get homeGlassVariantSectionSubtitle;
+
+  /// No description provided for @homeGlassVariantSectionFootnote.
+  ///
+  /// In en, this message translates to:
+  /// **'Temporary comparison band only. This section is isolated and safe to remove once a homepage glass direction is chosen.'**
+  String get homeGlassVariantSectionFootnote;
+
+  /// No description provided for @homeGlassVariantWarmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Warm Glass'**
+  String get homeGlassVariantWarmTitle;
+
+  /// No description provided for @homeGlassVariantWarmSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Parchment warmth with soft gold edges'**
+  String get homeGlassVariantWarmSubtitle;
+
+  /// No description provided for @homeGlassVariantWarmBody.
+  ///
+  /// In en, this message translates to:
+  /// **'A welcoming devotional surface with gentle ivory warmth. It keeps text easy to settle into while still feeling luminous and home-like.'**
+  String get homeGlassVariantWarmBody;
+
+  /// No description provided for @homeGlassVariantWarmFooter.
+  ///
+  /// In en, this message translates to:
+  /// **'Best for welcoming home content'**
+  String get homeGlassVariantWarmFooter;
+
+  /// No description provided for @homeGlassVariantWarmMicro.
+  ///
+  /// In en, this message translates to:
+  /// **'Soft warmth · calm depth'**
+  String get homeGlassVariantWarmMicro;
+
+  /// No description provided for @homeGlassVariantMilkyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Milky Glass'**
+  String get homeGlassVariantMilkyTitle;
+
+  /// No description provided for @homeGlassVariantMilkySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Cloudy ivory diffusion'**
+  String get homeGlassVariantMilkySubtitle;
+
+  /// No description provided for @homeGlassVariantMilkyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'This denser veil softens whatever sits behind it. It feels serene, readable, and especially safe for text-first spiritual moments.'**
+  String get homeGlassVariantMilkyBody;
+
+  /// No description provided for @homeGlassVariantMilkyFooter.
+  ///
+  /// In en, this message translates to:
+  /// **'Best for serene reading'**
+  String get homeGlassVariantMilkyFooter;
+
+  /// No description provided for @homeGlassVariantMilkyMicro.
+  ///
+  /// In en, this message translates to:
+  /// **'Clouded veil · high comfort'**
+  String get homeGlassVariantMilkyMicro;
+
+  /// No description provided for @homeGlassVariantCrystalTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Crystal Glass'**
+  String get homeGlassVariantCrystalTitle;
+
+  /// No description provided for @homeGlassVariantCrystalSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Clearer, brighter transparency'**
+  String get homeGlassVariantCrystalSubtitle;
+
+  /// No description provided for @homeGlassVariantCrystalBody.
+  ///
+  /// In en, this message translates to:
+  /// **'A lighter treatment that lets more atmosphere show through. It feels polished and airy while still protecting titles and body text.'**
+  String get homeGlassVariantCrystalBody;
+
+  /// No description provided for @homeGlassVariantCrystalFooter.
+  ///
+  /// In en, this message translates to:
+  /// **'Best for premium highlights'**
+  String get homeGlassVariantCrystalFooter;
+
+  /// No description provided for @homeGlassVariantCrystalMicro.
+  ///
+  /// In en, this message translates to:
+  /// **'Brighter lift · open clarity'**
+  String get homeGlassVariantCrystalMicro;
+
+  /// No description provided for @homeGlassVariantNightTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Night Glass'**
+  String get homeGlassVariantNightTitle;
+
+  /// No description provided for @homeGlassVariantNightSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Smoky dusk elegance'**
+  String get homeGlassVariantNightSubtitle;
+
+  /// No description provided for @homeGlassVariantNightBody.
+  ///
+  /// In en, this message translates to:
+  /// **'A darker island for quiet evening depth. It stays soft and readable instead of turning into a hard black panel.'**
+  String get homeGlassVariantNightBody;
+
+  /// No description provided for @homeGlassVariantNightFooter.
+  ///
+  /// In en, this message translates to:
+  /// **'Best for evening reflection'**
+  String get homeGlassVariantNightFooter;
+
+  /// No description provided for @homeGlassVariantNightMicro.
+  ///
+  /// In en, this message translates to:
+  /// **'Low light · calm contrast'**
+  String get homeGlassVariantNightMicro;
+
+  /// No description provided for @homeGlassVariantTintedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Tinted Glass'**
+  String get homeGlassVariantTintedTitle;
+
+  /// No description provided for @homeGlassVariantTintedSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Gentle app-colored wash'**
+  String get homeGlassVariantTintedSubtitle;
+
+  /// No description provided for @homeGlassVariantTintedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'This version adds a subtle personality tint without becoming loud. It still feels grounded in Path of Nūr’s warm palette.'**
+  String get homeGlassVariantTintedBody;
+
+  /// No description provided for @homeGlassVariantTintedFooter.
+  ///
+  /// In en, this message translates to:
+  /// **'Best for curated accents'**
+  String get homeGlassVariantTintedFooter;
+
+  /// No description provided for @homeGlassVariantTintedMicro.
+  ///
+  /// In en, this message translates to:
+  /// **'Editorial wash · soft color'**
+  String get homeGlassVariantTintedMicro;
+
+  /// No description provided for @homeGlassVariantFrostedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Frosted Glass'**
+  String get homeGlassVariantFrostedTitle;
+
+  /// No description provided for @homeGlassVariantFrostedSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Classic diffuse blur'**
+  String get homeGlassVariantFrostedSubtitle;
+
+  /// No description provided for @homeGlassVariantFrostedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'A practical blur-first surface that protects readability. It is dependable when content should lead and the material should stay quiet.'**
+  String get homeGlassVariantFrostedBody;
+
+  /// No description provided for @homeGlassVariantFrostedFooter.
+  ///
+  /// In en, this message translates to:
+  /// **'Best for utility islands'**
+  String get homeGlassVariantFrostedFooter;
+
+  /// No description provided for @homeGlassVariantFrostedMicro.
+  ///
+  /// In en, this message translates to:
+  /// **'Diffuse blur · readability first'**
+  String get homeGlassVariantFrostedMicro;
+
+  /// No description provided for @homeGlassVariantLayeredTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Layered Glass'**
+  String get homeGlassVariantLayeredTitle;
+
+  /// No description provided for @homeGlassVariantLayeredSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Subtle inner depth'**
+  String get homeGlassVariantLayeredSubtitle;
+
+  /// No description provided for @homeGlassVariantLayeredBody.
+  ///
+  /// In en, this message translates to:
+  /// **'A calm outer island with a nested inner veil. It helps the surface feel dimensional without turning into a busy showcase.'**
+  String get homeGlassVariantLayeredBody;
+
+  /// No description provided for @homeGlassVariantLayeredFooter.
+  ///
+  /// In en, this message translates to:
+  /// **'Best for nested hierarchy'**
+  String get homeGlassVariantLayeredFooter;
+
+  /// No description provided for @homeGlassVariantLayeredMicro.
+  ///
+  /// In en, this message translates to:
+  /// **'Inner panel · gentle structure'**
+  String get homeGlassVariantLayeredMicro;
+
+  /// No description provided for @homeGlassVariantEdgeLitTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edge-lit Glass'**
+  String get homeGlassVariantEdgeLitTitle;
+
+  /// No description provided for @homeGlassVariantEdgeLitSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delicate rim light'**
+  String get homeGlassVariantEdgeLitSubtitle;
+
+  /// No description provided for @homeGlassVariantEdgeLitBody.
+  ///
+  /// In en, this message translates to:
+  /// **'A quieter featured treatment with a soft luminous edge. It adds presence around the perimeter while keeping the center calm.'**
+  String get homeGlassVariantEdgeLitBody;
+
+  /// No description provided for @homeGlassVariantEdgeLitFooter.
+  ///
+  /// In en, this message translates to:
+  /// **'Best for featured destinations'**
+  String get homeGlassVariantEdgeLitFooter;
+
+  /// No description provided for @homeGlassVariantEdgeLitMicro.
+  ///
+  /// In en, this message translates to:
+  /// **'Rim light · subtle emphasis'**
+  String get homeGlassVariantEdgeLitMicro;
+
+  /// No description provided for @homeGlassVariantAdaptiveTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Adaptive Glass'**
+  String get homeGlassVariantAdaptiveTitle;
+
+  /// No description provided for @homeGlassVariantAdaptiveSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Balanced and practical'**
+  String get homeGlassVariantAdaptiveSubtitle;
+
+  /// No description provided for @homeGlassVariantAdaptiveBody.
+  ///
+  /// In en, this message translates to:
+  /// **'This version tries to stay steady across warmer and deeper surroundings. It feels usable, calm, and flexible for everyday home surfaces.'**
+  String get homeGlassVariantAdaptiveBody;
+
+  /// No description provided for @homeGlassVariantAdaptiveFooter.
+  ///
+  /// In en, this message translates to:
+  /// **'Best for default balance'**
+  String get homeGlassVariantAdaptiveFooter;
+
+  /// No description provided for @homeGlassVariantAdaptiveMicro.
+  ///
+  /// In en, this message translates to:
+  /// **'Stable blend · everyday fit'**
+  String get homeGlassVariantAdaptiveMicro;
+
+  /// No description provided for @homeGlassVariantSoftMatteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Soft Matte Glass'**
+  String get homeGlassVariantSoftMatteTitle;
+
+  /// No description provided for @homeGlassVariantSoftMatteSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Muted shine with lower sparkle'**
+  String get homeGlassVariantSoftMatteSubtitle;
+
+  /// No description provided for @homeGlassVariantSoftMatteBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Less glossy and more grounded, this surface leans toward restfulness. It keeps the glass mood while reducing reflective energy.'**
+  String get homeGlassVariantSoftMatteBody;
+
+  /// No description provided for @homeGlassVariantSoftMatteFooter.
+  ///
+  /// In en, this message translates to:
+  /// **'Best for restful content'**
+  String get homeGlassVariantSoftMatteFooter;
+
+  /// No description provided for @homeGlassVariantSoftMatteMicro.
+  ///
+  /// In en, this message translates to:
+  /// **'Muted sheen · grounded calm'**
+  String get homeGlassVariantSoftMatteMicro;
+
+  /// No description provided for @homeGlassVariantDenseSanctuaryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Dense Sanctuary Glass'**
+  String get homeGlassVariantDenseSanctuaryTitle;
+
+  /// No description provided for @homeGlassVariantDenseSanctuarySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sacred calm ivory density'**
+  String get homeGlassVariantDenseSanctuarySubtitle;
+
+  /// No description provided for @homeGlassVariantDenseSanctuaryBody.
+  ///
+  /// In en, this message translates to:
+  /// **'The strongest protective veil in the set. It feels especially suited to sacred, text-heavy moments that need shelter from background noise.'**
+  String get homeGlassVariantDenseSanctuaryBody;
+
+  /// No description provided for @homeGlassVariantDenseSanctuaryFooter.
+  ///
+  /// In en, this message translates to:
+  /// **'Best for sacred text focus'**
+  String get homeGlassVariantDenseSanctuaryFooter;
+
+  /// No description provided for @homeGlassVariantDenseSanctuaryMicro.
+  ///
+  /// In en, this message translates to:
+  /// **'Sanctuary veil · strongest cover'**
+  String get homeGlassVariantDenseSanctuaryMicro;
+
+  /// No description provided for @homeGlassVariantClearShowcaseTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear Showcase Glass'**
+  String get homeGlassVariantClearShowcaseTitle;
+
+  /// No description provided for @homeGlassVariantClearShowcaseSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Most transparent showcase feel'**
+  String get homeGlassVariantClearShowcaseSubtitle;
+
+  /// No description provided for @homeGlassVariantClearShowcaseBody.
+  ///
+  /// In en, this message translates to:
+  /// **'The most open option in the set, with more atmosphere visible beneath the surface. It still stays within the app’s calm language rather than turning flashy.'**
+  String get homeGlassVariantClearShowcaseBody;
+
+  /// No description provided for @homeGlassVariantClearShowcaseFooter.
+  ///
+  /// In en, this message translates to:
+  /// **'Best for visual comparison'**
+  String get homeGlassVariantClearShowcaseFooter;
+
+  /// No description provided for @homeGlassVariantClearShowcaseMicro.
+  ///
+  /// In en, this message translates to:
+  /// **'Most open · careful contrast'**
+  String get homeGlassVariantClearShowcaseMicro;
 }
 
 class _AppLocalizationsDelegate

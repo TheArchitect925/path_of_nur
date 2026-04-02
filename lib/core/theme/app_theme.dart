@@ -23,6 +23,9 @@ class AppAppearanceTheme extends ThemeExtension<AppAppearanceTheme> {
     required this.backgroundAlt,
     required this.surface,
     required this.surfaceSoft,
+    required this.frostedGlassTone,
+    required this.sanctuarySurfaceTone,
+    required this.sanctuaryEdgeLight,
     required this.inputSurface,
     required this.onSurface,
     required this.onSurfaceSubtle,
@@ -49,6 +52,9 @@ class AppAppearanceTheme extends ThemeExtension<AppAppearanceTheme> {
   final Color backgroundAlt;
   final Color surface;
   final Color surfaceSoft;
+  final Color frostedGlassTone;
+  final Color sanctuarySurfaceTone;
+  final Color sanctuaryEdgeLight;
   final Color inputSurface;
   final Color onSurface;
   final Color onSurfaceSubtle;
@@ -189,6 +195,9 @@ class AppAppearanceTheme extends ThemeExtension<AppAppearanceTheme> {
           backgroundAlt: const Color(0xFFE2D8CC),
           surface: const Color(0xFFF5EEE5),
           surfaceSoft: const Color(0xFFECE1D4),
+          frostedGlassTone: const Color(0xFFFBF7F0),
+          sanctuarySurfaceTone: const Color(0xFFF8EFDE),
+          sanctuaryEdgeLight: const Color(0xFFF6E3B7),
           inputSurface: const Color(0xFFF7F0E8),
           onSurface: const Color(0xFF3D3025),
           onSurfaceSubtle: const Color(0xFF6D5C4C),
@@ -218,6 +227,9 @@ class AppAppearanceTheme extends ThemeExtension<AppAppearanceTheme> {
           backgroundAlt: const Color(0xFFE2D8CC),
           surface: const Color(0xFFF5EEE5),
           surfaceSoft: const Color(0xFFECE1D4),
+          frostedGlassTone: const Color(0xFFFBF7F0),
+          sanctuarySurfaceTone: const Color(0xFFF8EFDE),
+          sanctuaryEdgeLight: const Color(0xFFF6E3B7),
           inputSurface: const Color(0xFFF7F0E8),
           onSurface: const Color(0xFF3D3025),
           onSurfaceSubtle: const Color(0xFF6D5C4C),
@@ -247,6 +259,9 @@ class AppAppearanceTheme extends ThemeExtension<AppAppearanceTheme> {
           backgroundAlt: const Color(0xFFE9E2D8),
           surface: const Color(0xFFF8F4ED),
           surfaceSoft: const Color(0xFFEEE6DA),
+          frostedGlassTone: const Color(0xFFFCF9F2),
+          sanctuarySurfaceTone: const Color(0xFFF9F2E4),
+          sanctuaryEdgeLight: const Color(0xFFF7E3B8),
           inputSurface: const Color(0xFFF9F5EE),
           onSurface: const Color(0xFF2C221A),
           onSurfaceSubtle: const Color(0xFF4B3D30),
@@ -276,6 +291,9 @@ class AppAppearanceTheme extends ThemeExtension<AppAppearanceTheme> {
           backgroundAlt: const Color(0xFF1A1C1F),
           surface: const Color(0xFF1D2024),
           surfaceSoft: const Color(0xFF252A30),
+          frostedGlassTone: const Color(0xFFE7DEC9),
+          sanctuarySurfaceTone: const Color(0xFFEADFC7),
+          sanctuaryEdgeLight: const Color(0xFFCBB37E),
           inputSurface: const Color(0xFF1F2328),
           onSurface: const Color(0xFFEDE5D7),
           onSurfaceSubtle: const Color(0xFFC8BDAA),
@@ -305,6 +323,9 @@ class AppAppearanceTheme extends ThemeExtension<AppAppearanceTheme> {
           backgroundAlt: const Color(0xFFE7E0D6),
           surface: const Color(0xFFF8F4EE),
           surfaceSoft: const Color(0xFFF1EADF),
+          frostedGlassTone: const Color(0xFFFFFCF6),
+          sanctuarySurfaceTone: const Color(0xFFFFF4E3),
+          sanctuaryEdgeLight: const Color(0xFFFBE9BF),
           inputSurface: const Color(0xFFFCF8F2),
           onSurface: const Color(0xFF372D24),
           onSurfaceSubtle: const Color(0xFF605244),
@@ -334,6 +355,9 @@ class AppAppearanceTheme extends ThemeExtension<AppAppearanceTheme> {
           backgroundAlt: const Color(0xFF111418),
           surface: const Color(0xFF111418),
           surfaceSoft: const Color(0xFF161B22),
+          frostedGlassTone: const Color(0xFFE7DDC9),
+          sanctuarySurfaceTone: const Color(0xFFEEE0C6),
+          sanctuaryEdgeLight: const Color(0xFFE3CC97),
           inputSurface: const Color(0xFF171D25),
           onSurface: const Color(0xFFE8DCC8),
           onSurfaceSubtle: const Color(0xFF8A7A5A),
@@ -366,6 +390,9 @@ class AppAppearanceTheme extends ThemeExtension<AppAppearanceTheme> {
     Color? backgroundAlt,
     Color? surface,
     Color? surfaceSoft,
+    Color? frostedGlassTone,
+    Color? sanctuarySurfaceTone,
+    Color? sanctuaryEdgeLight,
     Color? inputSurface,
     Color? onSurface,
     Color? onSurfaceSubtle,
@@ -392,6 +419,9 @@ class AppAppearanceTheme extends ThemeExtension<AppAppearanceTheme> {
       backgroundAlt: backgroundAlt ?? this.backgroundAlt,
       surface: surface ?? this.surface,
       surfaceSoft: surfaceSoft ?? this.surfaceSoft,
+      frostedGlassTone: frostedGlassTone ?? this.frostedGlassTone,
+      sanctuarySurfaceTone: sanctuarySurfaceTone ?? this.sanctuarySurfaceTone,
+      sanctuaryEdgeLight: sanctuaryEdgeLight ?? this.sanctuaryEdgeLight,
       inputSurface: inputSurface ?? this.inputSurface,
       onSurface: onSurface ?? this.onSurface,
       onSurfaceSubtle: onSurfaceSubtle ?? this.onSurfaceSubtle,
@@ -428,6 +458,15 @@ class AppAppearanceTheme extends ThemeExtension<AppAppearanceTheme> {
           Color.lerp(backgroundAlt, other.backgroundAlt, t) ?? backgroundAlt,
       surface: Color.lerp(surface, other.surface, t) ?? surface,
       surfaceSoft: Color.lerp(surfaceSoft, other.surfaceSoft, t) ?? surfaceSoft,
+      frostedGlassTone:
+          Color.lerp(frostedGlassTone, other.frostedGlassTone, t) ??
+          frostedGlassTone,
+      sanctuarySurfaceTone:
+          Color.lerp(sanctuarySurfaceTone, other.sanctuarySurfaceTone, t) ??
+          sanctuarySurfaceTone,
+      sanctuaryEdgeLight:
+          Color.lerp(sanctuaryEdgeLight, other.sanctuaryEdgeLight, t) ??
+          sanctuaryEdgeLight,
       inputSurface:
           Color.lerp(inputSurface, other.inputSurface, t) ?? inputSurface,
       onSurface: Color.lerp(onSurface, other.onSurface, t) ?? onSurface,

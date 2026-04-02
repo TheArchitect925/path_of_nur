@@ -27,6 +27,13 @@ import '../../../features/learn/prophets/application/daily_learning_service.dart
 import '../../../features/learn/prophets/application/prophets_repository.dart';
 import '../../../features/learn/prophets/presentation/widgets/daily_prophet_quiz_card.dart';
 import '../../../features/learn/prophets/presentation/widgets/daily_revelation_card.dart';
+import '../../../features/learn/quran/application/quran_personalization_provider.dart';
+import '../../../features/learn/quran/application/quran_spiritual_moment_provider.dart';
+import '../../../features/learn/quran/domain/quran_personalization_models.dart';
+import '../../../features/learn/quran/domain/quran_spiritual_moment_models.dart';
+import '../../../features/learn/quran/presentation/widgets/quran_daily_reflection_card.dart';
+import '../../../features/learn/quran/presentation/widgets/quran_personalized_recommendation_card.dart';
+import '../../../features/learn/quran/presentation/widgets/quran_spiritual_moment_card.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../l10n/home_prayer_localizations.dart';
 import '../../../shared/application/app_summary_providers.dart';
@@ -90,6 +97,22 @@ class _HomePageState extends ConsumerState<HomePage> {
     final l10n = AppLocalizations.of(context);
     final userProfile = ref.watch(userProfileProvider);
     final verseVersion = ref.watch(homeVerseVersionProvider);
+    final isKidsMode = ref.watch(
+      specialModeProvider.select((mode) => mode.isKids),
+    );
+    final quranBundle = ref.watch(
+      quranPersonalizedRecommendationBundleProvider((
+        QuranPersonalizationSurface.home,
+        isKidsMode,
+      )),
+    );
+    final spiritualMoment = ref.watch(
+      quranSpiritualMomentBundleProvider((
+        QuranSpiritualMomentSurface.home,
+        isKidsMode,
+        Localizations.localeOf(context).languageCode,
+      )),
+    );
     final displayVerse =
         homeContextualQuotePool[verseVersion % homeContextualQuotePool.length];
 
@@ -135,6 +158,28 @@ class _HomePageState extends ConsumerState<HomePage> {
                             return next;
                           }),
                     ),
+                    const SizedBox(height: 14),
+                    const QuranDailyReflectionCard(
+                      compact: true,
+                      showCompanionAction: true,
+                      showSecondaryActions: false,
+                    ),
+                    if (spiritualMoment != null) ...[
+                      const SizedBox(height: 14),
+                      QuranSpiritualMomentCard(
+                        bundle: spiritualMoment,
+                        surface: QuranSpiritualMomentSurface.home,
+                        allowDismiss: true,
+                      ),
+                    ],
+                    if (quranBundle != null) ...[
+                      const SizedBox(height: 14),
+                      QuranPersonalizedRecommendationCard(
+                        bundle: quranBundle,
+                        surface: QuranPersonalizationSurface.home,
+                        allowDismiss: true,
+                      ),
+                    ],
                     const SizedBox(height: 14),
                     const _ModeAwareHomeCard(),
                     const SizedBox(height: 10),
@@ -1135,7 +1180,6 @@ class _PrayerTimingPill extends StatelessWidget {
     final warmStyle = AppSurfaceTheme.resolve(
       context,
       variant: AppSurfaceVariant.panel,
-      treatment: AppSurfaceTreatment.homepageWarmGlass,
       tintColor: palette.base,
     );
     final accent = isCurrent
@@ -2121,6 +2165,7 @@ class _AyahCard extends StatelessWidget {
       borderRadius: BorderRadius.circular(30),
       child: _GlassCard(
         radius: 30,
+        treatment: AppSurfaceTreatment.denseSanctuary,
         padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 24),
         child: QuranVerseContent(
           source: QuranVerseSource(
@@ -2549,7 +2594,6 @@ class _PrayerSummaryMiniStat extends StatelessWidget {
     final style = AppSurfaceTheme.resolve(
       context,
       variant: AppSurfaceVariant.panel,
-      treatment: AppSurfaceTreatment.homepageWarmGlass,
       tintColor: tint,
     );
     return Container(
@@ -2620,7 +2664,6 @@ class _CompactPrayerMetaChip extends StatelessWidget {
     final style = AppSurfaceTheme.resolve(
       context,
       variant: AppSurfaceVariant.pill,
-      treatment: AppSurfaceTreatment.homepageWarmGlass,
       tintColor: color,
     );
     return Container(
@@ -2659,18 +2702,20 @@ class _GlassCard extends StatelessWidget {
     required this.child,
     this.padding = const EdgeInsets.all(16),
     this.radius = 30,
+    this.treatment = AppSurfaceTreatment.standard,
   });
 
   final Widget child;
   final EdgeInsetsGeometry padding;
   final double radius;
+  final AppSurfaceTreatment treatment;
 
   @override
   Widget build(BuildContext context) {
     final surfaceStyle = AppSurfaceTheme.resolve(
       context,
       variant: AppSurfaceVariant.card,
-      treatment: AppSurfaceTreatment.homepageWarmGlass,
+      treatment: treatment,
     );
     return Container(
       padding: padding,
@@ -2766,7 +2811,6 @@ class _ModeAwareHomeCard extends ConsumerWidget {
     }
 
     return PremiumCard(
-      surfaceTreatment: AppSurfaceTreatment.homepageWarmGlass,
       includeShadow: true,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -2836,7 +2880,6 @@ class _HomeLearningActionsCard extends ConsumerWidget {
     }
 
     return PremiumCard(
-      surfaceTreatment: AppSurfaceTreatment.homepageWarmGlass,
       includeShadow: true,
       child: Theme(
         data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
@@ -2859,7 +2902,7 @@ class _HomeLearningActionsCard extends ConsumerWidget {
                 queryParameters: {'tab': 'quiz'},
               ),
               showPracticeLesson: dailyBundle.item.linkedGrowthHabitId != null,
-              surfaceTreatment: AppSurfaceTreatment.homepageWarmGlass,
+              surfaceTreatment: AppSurfaceTreatment.standard,
               onPracticeLesson: () {
                 final habitId = dailyBundle.item.linkedGrowthHabitId;
                 if (habitId != null && habitId.trim().isNotEmpty) {
@@ -2874,7 +2917,7 @@ class _HomeLearningActionsCard extends ConsumerWidget {
               question: dailyBundle.quizQuestion,
               isAnswered: dailyBundle.status.quizAnswered,
               selectedIndex: dailyBundle.status.quizSelectedIndex,
-              surfaceTreatment: AppSurfaceTreatment.homepageWarmGlass,
+              surfaceTreatment: AppSurfaceTreatment.standard,
               onSelectAnswer: (selected) {
                 dailyController.answerTodayQuiz(
                   questionId: dailyBundle.quizQuestion.id,
@@ -2945,7 +2988,6 @@ class _ModeActionChip extends StatelessWidget {
     final style = AppSurfaceTheme.resolve(
       context,
       variant: AppSurfaceVariant.pill,
-      treatment: AppSurfaceTreatment.homepageWarmGlass,
       tintColor: AppColors.accentGold,
     );
     return ActionChip(
@@ -2984,7 +3026,6 @@ class _QuickActionButton extends StatelessWidget {
     final style = AppSurfaceTheme.resolve(
       context,
       variant: AppSurfaceVariant.pill,
-      treatment: AppSurfaceTreatment.homepageWarmGlass,
       tintColor: AppColors.accentGold,
     );
     return InkWell(

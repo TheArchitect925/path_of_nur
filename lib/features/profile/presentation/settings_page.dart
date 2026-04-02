@@ -27,6 +27,8 @@ import '../../../shared/widgets/quran_quote_block.dart';
 import '../../../shared/widgets/section_hub_scaffold.dart';
 import '../../../shared/widgets/section_title.dart';
 import '../../accounts_sync/application/accounts_sync_controller.dart';
+import '../../editorial_dashboard/application/editorial_dashboard_access_provider.dart';
+import '../../editorial_dashboard/application/editorial_dashboard_providers.dart';
 import '../../learn/quran/application/quran_providers.dart';
 import '../../profile/application/profile_settings_provider.dart';
 import '../../profile/domain/profile_age_preferences.dart';
@@ -1324,6 +1326,8 @@ class SettingsPage extends ConsumerWidget {
                 ],
               ),
             ),
+            const SizedBox(height: 16),
+            const _EditorialDashboardUnlockFooter(),
           ],
         ),
       ),
@@ -1366,6 +1370,64 @@ class SettingsPage extends ConsumerWidget {
       ),
       quote: quoteFromPoolForToday(reflectionFocusedQuotePool),
       children: sectionMap[currentCategory] ?? const <Widget>[],
+    );
+  }
+}
+
+class _EditorialDashboardUnlockFooter extends ConsumerStatefulWidget {
+  const _EditorialDashboardUnlockFooter();
+
+  @override
+  ConsumerState<_EditorialDashboardUnlockFooter> createState() =>
+      _EditorialDashboardUnlockFooterState();
+}
+
+class _EditorialDashboardUnlockFooterState
+    extends ConsumerState<_EditorialDashboardUnlockFooter> {
+  static const int _requiredTaps = 7;
+  int _tapCount = 0;
+
+  void _handleTap() {
+    final enabled = ref.read(editorialDashboardFeatureEnabledProvider);
+    if (!enabled) return;
+    _tapCount += 1;
+    if (_tapCount < _requiredTaps) return;
+    _tapCount = 0;
+    final unlocked = ref.read(
+      editorialDashboardAccessProvider.select(
+        (value) => value.isSessionUnlocked,
+      ),
+    );
+    if (!mounted) return;
+    context.pushNamed(
+      unlocked ? 'editorialDashboard' : 'editorialDashboardPin',
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final version = ref.watch(editorialDashboardPackageInfoProvider);
+    final label = version.when(
+      data: (value) => l10n.editorialDashboardVersionLabel(value),
+      loading: () => l10n.editorialDashboardVersionLoading,
+      error: (_, _) => l10n.editorialDashboardVersionUnknown,
+    );
+
+    return GestureDetector(
+      onTap: _handleTap,
+      behavior: HitTestBehavior.opaque,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 4),
+        child: Center(
+          child: Text(
+            label,
+            style: Theme.of(
+              context,
+            ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),
+          ),
+        ),
+      ),
     );
   }
 }
@@ -1876,18 +1938,28 @@ class _CalculatedAdjustmentsContent extends StatelessWidget {
         ),
         if (adjustments.hasAnyAdjustment) ...[
           const SizedBox(height: 12),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-            decoration: BoxDecoration(
-              color: Theme.of(
+          Builder(
+            builder: (context) {
+              final activeStyle = AppSurfaceTheme.resolve(
                 context,
-              ).colorScheme.primary.withValues(alpha: 0.08),
-              borderRadius: BorderRadius.circular(999),
-            ),
-            child: Text(
-              l10n.settingsCustomAdjustmentsActive,
-              style: Theme.of(context).textTheme.labelMedium,
-            ),
+                variant: AppSurfaceVariant.pill,
+                tintColor: Theme.of(context).colorScheme.primary,
+              );
+              return Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 8,
+                ),
+                decoration: activeStyle.decoration(
+                  radius: 999,
+                  includeShadow: false,
+                ),
+                child: Text(
+                  l10n.settingsCustomAdjustmentsActive,
+                  style: Theme.of(context).textTheme.labelMedium,
+                ),
+              );
+            },
           ),
         ],
         const SizedBox(height: 14),

@@ -174,6 +174,14 @@ class AppShellScaffold extends ConsumerWidget {
       tintColor: appearance?.accent,
       baseColor: appearance?.surfaceSoft,
     );
+    final layeredCoreColor =
+        Color.lerp(navStyle.backgroundColor, Colors.white, 0.10) ??
+        navStyle.backgroundColor;
+    final layeredBorderColor =
+        Color.lerp(navStyle.borderColor, Colors.white, 0.18) ??
+        navStyle.borderColor;
+    final topRimColor = (appearance?.sanctuaryEdgeLight ?? Colors.white)
+        .withValues(alpha: appearance?.isDark ?? false ? 0.14 : 0.22);
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
@@ -196,13 +204,58 @@ class AppShellScaffold extends ConsumerWidget {
                     border: Border.all(color: navStyle.borderColor, width: 1.0),
                     gradient: navStyle.gradient,
                     color: navStyle.backgroundColor,
-                    boxShadow: [
-                      BoxShadow(
-                        color: navStyle.shadowColor,
-                        blurRadius: 18,
-                        offset: const Offset(0, 8),
-                      ),
-                    ],
+                    boxShadow: navStyle.boxShadows,
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(barRadius),
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          left: 2,
+                          right: 2,
+                          top: 2,
+                          bottom: 2,
+                          child: DecoratedBox(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(barRadius),
+                              gradient: LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                colors: [
+                                  layeredCoreColor.withValues(alpha: 0.72),
+                                  layeredCoreColor.withValues(alpha: 0.28),
+                                ],
+                              ),
+                              border: Border.all(
+                                color: layeredBorderColor.withValues(
+                                  alpha: 0.74,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          left: 16,
+                          right: 16,
+                          top: 6,
+                          child: IgnorePointer(
+                            child: Container(
+                              height: 1.5,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(999),
+                                gradient: LinearGradient(
+                                  colors: [
+                                    Colors.transparent,
+                                    topRimColor,
+                                    Colors.transparent,
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

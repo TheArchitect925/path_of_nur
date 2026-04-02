@@ -14,7 +14,7 @@ class PremiumCard extends ConsumerStatefulWidget {
     this.surfaceTintColor,
     this.surfaceVariant = AppSurfaceVariant.card,
     this.surfaceTreatment = AppSurfaceTreatment.standard,
-    this.includeShadow = false,
+    this.includeShadow = true,
   });
 
   final Widget child;

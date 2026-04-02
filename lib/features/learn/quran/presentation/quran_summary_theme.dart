@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_surfaces.dart';
 import '../../../../core/theme/app_theme.dart';
 
 enum QuranFeatureRevelationTone { makki, madani, neutral }
@@ -128,92 +130,62 @@ class QuranSummaryThemePalette {
 
   static QuranSummaryThemePalette resolve(BuildContext context) {
     final appearance = Theme.of(context).extension<AppAppearanceTheme>();
-    final mode = appearance?.mode;
     final isDark = appearance?.isDark ?? false;
+    final accent = appearance?.accent ?? AppColors.accentGold;
+    final elevatedStyle = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.card,
+      treatment: AppSurfaceTreatment.denseSanctuary,
+      tintColor: accent,
+    );
+    final panelStyle = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.panel,
+      treatment: AppSurfaceTreatment.denseSanctuary,
+      tintColor: accent,
+    );
+    final content = AppSurfaceTheme.contentColors(
+      context,
+      treatment: AppSurfaceTreatment.denseSanctuary,
+    );
 
-    if (mode == AppThemeMode.midnightManuscript && appearance != null) {
-      return QuranSummaryThemePalette(
-        pageOverlay: const Color(0xAA0C1016),
-        cardTop: Color.alphaBlend(
-          appearance.accent.withValues(alpha: 0.08),
-          appearance.surfaceSoft,
-        ),
-        cardBottom: appearance.surface,
-        cardBorder: appearance.border.withValues(alpha: 0.92),
-        goldAccent: appearance.accent,
-        goldSoft: appearance.accentSoft,
-        primaryText: appearance.quranArabicEmphasis,
-        secondaryText: appearance.onSurface,
-        mutedText: appearance.onSurfaceMuted,
-        supportText: appearance.onSurfaceSubtle,
-        makkiFill: appearance.makkiFill,
-        makkiBorder: appearance.makkiBorder,
-        madaniFill: appearance.madaniFill,
-        madaniBorder: appearance.madaniBorder,
-        numberFill: appearance.accent.withValues(alpha: 0.16),
-        subtlePanelFill: Color.alphaBlend(
-          appearance.accent.withValues(alpha: 0.05),
-          appearance.surfaceSoft.withValues(alpha: 0.96),
-        ),
-        subtlePanelBorder: Color.alphaBlend(
-          appearance.accent.withValues(alpha: 0.10),
-          appearance.border.withValues(alpha: 0.92),
-        ),
-        sectionDivider: appearance.accent.withValues(alpha: 0.20),
-        progressTrack: appearance.border.withValues(alpha: 0.72),
-        progressFill: appearance.accent,
-        heroGlow: appearance.accent.withValues(alpha: 0.12),
-      );
-    }
-
-    if (isDark) {
-      return const QuranSummaryThemePalette(
-        pageOverlay: Color(0x99211817),
-        cardTop: Color(0xFF231A16),
-        cardBottom: Color(0xFF17110E),
-        cardBorder: Color(0xFF685338),
-        goldAccent: Color(0xFFD8BE88),
-        goldSoft: Color(0xFFB69561),
-        primaryText: Color(0xFFF2E7D3),
-        secondaryText: Color(0xFFD6C8B0),
-        mutedText: Color(0xFFAA9B85),
-        supportText: Color(0xFFC1AF90),
-        makkiFill: Color(0x3A9C6F28),
-        makkiBorder: Color(0xFFB28C46),
-        madaniFill: Color(0x333D7E5A),
-        madaniBorder: Color(0xFF71AE8B),
-        numberFill: Color(0x33D8BE88),
-        subtlePanelFill: Color(0xD31D1714),
-        subtlePanelBorder: Color(0x80685338),
-        sectionDivider: Color(0x4DD8BE88),
-        progressTrack: Color(0x70685338),
-        progressFill: Color(0xFFD8BE88),
-        heroGlow: Color(0x22D8BE88),
-      );
-    }
-
-    return const QuranSummaryThemePalette(
-      pageOverlay: Color(0x6BE6D8C5),
-      cardTop: Color(0xFFF7F0E5),
-      cardBottom: Color(0xFFECE0CF),
-      cardBorder: Color(0xD19C7A4C),
-      goldAccent: Color(0xFF8D6B36),
-      goldSoft: Color(0xFFA88450),
-      primaryText: Color(0xFF33251A),
-      secondaryText: Color(0xFF5B4634),
-      mutedText: Color(0xFF786553),
-      supportText: Color(0xFF6C5846),
-      makkiFill: Color(0x26A67C2C),
-      makkiBorder: Color(0xFFA67C2C),
-      madaniFill: Color(0x22488667),
-      madaniBorder: Color(0xFF4F8264),
-      numberFill: Color(0x24A88450),
-      subtlePanelFill: Color(0xF2F2E7D7),
-      subtlePanelBorder: Color(0xB89C7A4C),
-      sectionDivider: Color(0x4DA88450),
-      progressTrack: Color(0x579C7A4C),
-      progressFill: Color(0xFF8D6B36),
-      heroGlow: Color(0x159C7A4C),
+    return QuranSummaryThemePalette(
+      pageOverlay: (isDark ? Colors.black : accent).withValues(
+        alpha: isDark ? 0.18 : 0.10,
+      ),
+      cardTop: elevatedStyle.gradient.colors.first,
+      cardBottom: elevatedStyle.gradient.colors.last,
+      cardBorder: elevatedStyle.borderColor,
+      goldAccent: accent,
+      goldSoft:
+          appearance?.accentSoft ??
+          Color.lerp(accent, Colors.white, 0.28) ??
+          accent,
+      primaryText: content.foreground,
+      secondaryText: content.subtleForeground,
+      mutedText: content.captionForeground,
+      supportText: Color.alphaBlend(
+        (isDark ? Colors.white : Colors.black).withValues(alpha: 0.03),
+        content.subtleForeground,
+      ),
+      makkiFill: accent.withValues(alpha: isDark ? 0.24 : 0.14),
+      makkiBorder:
+          appearance?.makkiBorder ??
+          Color.lerp(accent, const Color(0xFFA67C2C), 0.48) ??
+          accent,
+      madaniFill: appearance?.madaniFill ?? const Color(0x22488667),
+      madaniBorder: appearance?.madaniBorder ?? const Color(0xFF4F8264),
+      numberFill: accent.withValues(alpha: isDark ? 0.20 : 0.12),
+      subtlePanelFill: panelStyle.backgroundColor,
+      subtlePanelBorder: panelStyle.borderColor,
+      sectionDivider: accent.withValues(alpha: isDark ? 0.30 : 0.18),
+      progressTrack: panelStyle.borderColor.withValues(
+        alpha: isDark ? 0.80 : 0.58,
+      ),
+      progressFill: accent,
+      heroGlow: (appearance?.sanctuaryEdgeLight ?? accent).withValues(
+        alpha: isDark ? 0.18 : 0.11,
+      ),
     );
   }
 }

@@ -6,6 +6,7 @@ import '../../../l10n/app_localizations.dart';
 import '../../../core/prayer/prayer_preferences.dart';
 import '../../../core/prayer/prayer_location_search_service.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_surfaces.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../learn/quran/domain/quran_content_refs.dart';
 import '../../../features/worship/application/prayer_tracker_controller.dart';
@@ -596,22 +597,14 @@ class _SummaryTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final style = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.panel,
+      tintColor: accent,
+    );
     return Container(
       padding: EdgeInsets.all(emphasized ? 15 : 12),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(18),
-        color: accent.withValues(alpha: 0.08),
-        border: Border.all(color: accent.withValues(alpha: 0.25)),
-        boxShadow: emphasized
-            ? [
-                BoxShadow(
-                  color: accent.withValues(alpha: 0.12),
-                  blurRadius: 16,
-                  offset: const Offset(0, 8),
-                ),
-              ]
-            : const [],
-      ),
+      decoration: style.decoration(radius: 18, includeShadow: emphasized),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -888,13 +881,14 @@ class _DailySalahProgressStrip extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final progress = totalCount <= 0 ? 0.0 : trackedCount / totalCount;
+    final style = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.panel,
+      tintColor: const Color(0xFF5E8D58),
+    );
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(18),
-        color: const Color(0xFFF7F0E5).withValues(alpha: 0.9),
-        border: Border.all(color: const Color(0xFFD7C2A1)),
-      ),
+      decoration: style.decoration(radius: 18),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -932,14 +926,14 @@ class _SalahVerseHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final style = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.panel,
+      treatment: AppSurfaceTreatment.denseSanctuary,
+      tintColor: AppColors.accentGold,
+    );
     return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: const Color(0xFFD8C7AF).withValues(alpha: 0.9),
-        ),
-        color: const Color(0xFFF9F3EA).withValues(alpha: 0.55),
-      ),
+      decoration: style.decoration(radius: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -965,10 +959,7 @@ class _SalahVerseHeader extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12),
-            child: Divider(
-              height: 1,
-              color: const Color(0xFFD8C7AF).withValues(alpha: 0.9),
-            ),
+            child: Divider(height: 1, color: style.borderColor),
           ),
           Padding(
             padding: const EdgeInsets.fromLTRB(12, 8, 12, 12),
@@ -1014,13 +1005,14 @@ class _SalahTrackerInlineSection extends StatelessWidget {
     final l10n = AppLocalizations.of(context);
     final trackerEntry = entry ?? const PrayerTrackerEntry();
     final hasTracked = trackerEntry.status != PrayerStatus.pending;
+    final style = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.panel,
+      tintColor: AppColors.accentGold,
+    );
     return Container(
       padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
-        color: const Color(0xFFF8F2EA).withValues(alpha: 0.82),
-        border: Border.all(color: const Color(0xFFD8C7AF)),
-      ),
+      decoration: style.decoration(radius: 16, includeShadow: false),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -1113,11 +1105,16 @@ class _QuickTrackChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final style = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.pill,
+      tintColor: color,
+    );
     return ActionChip(
       onPressed: onTap,
       avatar: Icon(icon, size: 16, color: color),
-      backgroundColor: color.withValues(alpha: 0.12),
-      side: BorderSide(color: color.withValues(alpha: 0.25)),
+      backgroundColor: style.backgroundColor,
+      side: BorderSide(color: style.borderColor),
       label: Text(
         label,
         style: TextStyle(color: color, fontWeight: FontWeight.w700),
@@ -1139,12 +1136,14 @@ class _TrackerSummaryPill extends StatelessWidget {
       if (entry.timing != null) _salahTimingLabel(entry.timing!),
       if (entry.place != null) _salahPlaceLabel(entry.place!),
     ];
+    final style = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.pill,
+      tintColor: AppColors.accentGoldSoft,
+    );
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(999),
-        color: const Color(0xFFEFE5D4),
-      ),
+      decoration: style.decoration(radius: 999, includeShadow: false),
       child: Text(
         parts.join(' • '),
         style: const TextStyle(

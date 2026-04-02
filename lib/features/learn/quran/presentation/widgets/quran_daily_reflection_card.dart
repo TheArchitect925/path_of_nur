@@ -7,6 +7,7 @@ import '../../../../../shared/widgets/premium_card.dart';
 import '../../../../../shared/widgets/quran_navigation.dart';
 import '../../../../../shared/widgets/quran_verse_content.dart';
 import '../../application/quran_ayah_enrichment_provider.dart';
+import '../../application/quran_ayah_action_provider.dart';
 import '../../application/quran_daily_reflection_provider.dart';
 import '../../application/quran_learning_progression_provider.dart';
 import '../../application/quran_learning_share_service.dart';
@@ -15,6 +16,7 @@ import '../../domain/quran_ayah_enrichment_models.dart';
 import '../../domain/quran_content_refs.dart';
 import '../../domain/quran_reflection_entry.dart';
 import 'quran_reflection_note_dialog.dart';
+import 'quran_ayah_action_section.dart';
 
 class QuranDailyReflectionCard extends ConsumerWidget {
   const QuranDailyReflectionCard({
@@ -33,6 +35,9 @@ class QuranDailyReflectionCard extends ConsumerWidget {
     final l10n = AppLocalizations.of(context);
     final languageCode = Localizations.localeOf(context).languageCode;
     final summary = ref.watch(quranDailyReflectionSummaryProvider);
+    final actionRecommendation = ref.watch(
+      quranPrimaryDailyAyahActionRecommendationProvider,
+    );
     final assignment = summary.assignment;
     final entry = assignment.entry.localizedCopy(languageCode);
     final localizedInsightItems = ref.watch(
@@ -61,6 +66,8 @@ class QuranDailyReflectionCard extends ConsumerWidget {
                   children: [
                     Text(
                       compact && showCompanionAction
+                          ? l10n.quranAyahActionTodayTitle
+                          : compact
                           ? l10n.quranDailyCompanionTitle
                           : l10n.quranDailyReflectionTitle,
                       style: Theme.of(context).textTheme.titleSmall?.copyWith(
@@ -70,6 +77,8 @@ class QuranDailyReflectionCard extends ConsumerWidget {
                     const SizedBox(height: 4),
                     Text(
                       compact && showCompanionAction
+                          ? l10n.quranAyahActionDailySubtitle
+                          : compact
                           ? l10n.quranDailyCompanionCardSubtitle
                           : assignment.isFirstTimeStarter
                           ? l10n.quranDailyReflectionStarterSubtitle
@@ -143,6 +152,14 @@ class QuranDailyReflectionCard extends ConsumerWidget {
             summary.primaryPrompt,
             style: Theme.of(context).textTheme.bodyMedium,
           ),
+          if (actionRecommendation != null) ...[
+            SizedBox(height: spacing),
+            QuranAyahActionSection(
+              recommendation: actionRecommendation,
+              style: QuranAyahActionSectionStyle.daily,
+              showExplanationPreview: compact,
+            ),
+          ],
           SizedBox(height: spacing),
           Wrap(
             spacing: 8,

@@ -1,10 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../editorial_dashboard/application/editorial_content_versions_provider.dart';
 import '../data/bedtime_story_media_manifest.dart';
-import '../data/bedtime_story_seed.dart';
-import '../data/kids_islamic_story_seed.dart';
 import '../domain/bedtime_story_models.dart';
-import '../../seerah/data/companion_story_seed.dart';
 import 'bedtime_story_progress_service.dart';
 
 final bedtimeStoryRepositoryProvider = Provider<BedtimeStoryRepository>((ref) {
@@ -94,11 +92,8 @@ class BedtimeStoryRepository {
 
   final Ref _ref;
 
-  List<BedtimeStorySeed> get allStories => [
-    ...kBedtimeProphetStories,
-    ...kKidsIslamicStories,
-    ...kKidsSeerahCompanionStories,
-  ]..sort((a, b) => a.sortOrder.compareTo(b.sortOrder));
+  List<BedtimeStorySeed> get allStories =>
+      _ref.watch(editorialBedtimeStorySeedsProvider);
 
   List<BedtimeStorySeed> get bedtimeStories => bedtimeEligibleStories;
 

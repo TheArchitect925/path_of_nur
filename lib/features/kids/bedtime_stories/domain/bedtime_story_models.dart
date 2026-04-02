@@ -182,6 +182,67 @@ class BedtimeStorySeed {
       quranQuoteRef != null;
   bool get hasHadithReference =>
       (hadithQuote ?? '').isNotEmpty && (hadithReference ?? '').isNotEmpty;
+
+  BedtimeStorySeed copyWith({
+    String? title,
+    String? shortTitle,
+    String? summary,
+    String? lesson,
+    String? sourceNote,
+    bool clearSourceNote = false,
+    List<String>? tags,
+  }) {
+    return BedtimeStorySeed(
+      id: id,
+      prophetId: prophetId,
+      title: title ?? this.title,
+      shortTitle: shortTitle ?? this.shortTitle,
+      category: category,
+      collectionType: collectionType,
+      storyType: storyType,
+      themes: themes,
+      ageGroup: ageGroup,
+      summary: summary ?? this.summary,
+      audioFileName: audioFileName,
+      audioManifestRef: audioManifestRef,
+      ttsText: ttsText,
+      lesson: lesson ?? this.lesson,
+      quranQuote: quranQuote,
+      quranReference: quranReference,
+      quranQuoteRef: quranQuoteRef,
+      hadithQuote: hadithQuote,
+      hadithReference: hadithReference,
+      sourceCategory: sourceCategory,
+      sourceNote: clearSourceNote ? null : sourceNote ?? this.sourceNote,
+      estimatedDurationSeconds: estimatedDurationSeconds,
+      isFeatured: isFeatured,
+      isMultipart: isMultipart,
+      partNumber: partNumber,
+      totalParts: totalParts,
+      tags: tags ?? this.tags,
+      sortOrder: sortOrder,
+      coverAssetPath: coverAssetPath,
+      backdropAssetPath: backdropAssetPath,
+      narratorDisplayName: narratorDisplayName,
+      isLocked: isLocked,
+      unlockXp: unlockXp,
+      oceanDropsReward: oceanDropsReward,
+      xpReward: xpReward,
+      isDownloadedByDefault: isDownloadedByDefault,
+      isAvailableOffline: isAvailableOffline,
+      recommendedForTonight: recommendedForTonight,
+      relatedStoryIds: relatedStoryIds,
+      storyFamilyId: storyFamilyId,
+      sceneSeedRef: sceneSeedRef,
+      quizRefs: quizRefs,
+      memoryRefs: memoryRefs,
+      bedtimeEligible: bedtimeEligible,
+      routineEligible: routineEligible,
+      quietReflectionFriendly: quietReflectionFriendly,
+      suitableForYoungerLearners: suitableForYoungerLearners,
+      sceneIllustrations: sceneIllustrations,
+    );
+  }
 }
 
 class BedtimeStoryProgress {

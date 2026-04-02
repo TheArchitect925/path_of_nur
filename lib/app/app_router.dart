@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../core/diagnostics/app_telemetry.dart';
 import 'nav_tabs.dart';
 import '../features/accounts_sync/application/accounts_sync_controller.dart';
+import '../features/editorial_dashboard/application/editorial_dashboard_access_provider.dart';
 import '../features/home/presentation/home_page.dart';
 import '../features/journey/presentation/journey_page.dart';
 import '../features/learn/journey/application/family_learning_provider.dart';
@@ -27,6 +28,12 @@ final appRouterProvider = Provider<GoRouter>((ref) {
   final onboardingCompleted = ref.watch(onboardingCompletedProvider);
   final accountsSyncState = ref.watch(accountsSyncControllerProvider);
   final familyLearningContext = ref.watch(activeFamilyLearningContextProvider);
+  final editorialDashboardEnabled = ref.watch(
+    editorialDashboardFeatureEnabledProvider,
+  );
+  final editorialDashboardUnlocked = ref.watch(
+    editorialDashboardAccessProvider.select((value) => value.isSessionUnlocked),
+  );
   final initial = onboardingCompleted ? NavTab.home.path : '/onboarding';
   final shellNavigatorKey = GlobalKey<NavigatorState>();
 
@@ -60,6 +67,15 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       );
       if (childLearningRedirect != null) {
         return childLearningRedirect;
+      }
+
+      final editorialDashboardRedirect = _editorialDashboardRedirect(
+        matchedLocation: state.matchedLocation,
+        featureEnabled: editorialDashboardEnabled,
+        unlocked: editorialDashboardUnlocked,
+      );
+      if (editorialDashboardRedirect != null) {
+        return editorialDashboardRedirect;
       }
       return null;
     },
@@ -145,6 +161,27 @@ Widget _buildTabPage(NavTab tab) {
     case NavTab.quran:
       return const QuranAppHubPage();
   }
+}
+
+String? _editorialDashboardRedirect({
+  required String matchedLocation,
+  required bool featureEnabled,
+  required bool unlocked,
+}) {
+  if (!matchedLocation.startsWith('/internal/editorial')) {
+    return null;
+  }
+  if (!featureEnabled) {
+    return '/settings/about';
+  }
+  final onPin = matchedLocation == '/internal/editorial/pin';
+  if (!unlocked && !onPin) {
+    return '/internal/editorial/pin';
+  }
+  if (unlocked && onPin) {
+    return '/internal/editorial';
+  }
+  return null;
 }
 
 NavTab navTabFromLocation(String location) {

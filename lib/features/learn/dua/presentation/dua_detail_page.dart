@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_surfaces.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/arabic_text_utils.dart';
@@ -103,6 +104,7 @@ class _DuaDetailPageState extends ConsumerState<DuaDetailPage> {
     final l10n = AppLocalizations.of(context);
     final colors = DuaCategoryTheme.resolve(context, item.category);
     return PremiumCard(
+      surfaceTreatment: AppSurfaceTreatment.denseSanctuary,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -173,6 +175,7 @@ class _DuaDetailPageState extends ConsumerState<DuaDetailPage> {
   Widget _duaTextCard(BuildContext context, DuaItem item) {
     final l10n = AppLocalizations.of(context);
     return PremiumCard(
+      surfaceTreatment: AppSurfaceTreatment.denseSanctuary,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -216,6 +219,7 @@ class _DuaDetailPageState extends ConsumerState<DuaDetailPage> {
   ) {
     final l10n = AppLocalizations.of(context);
     return PremiumCard(
+      surfaceTreatment: AppSurfaceTreatment.denseSanctuary,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

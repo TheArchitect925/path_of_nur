@@ -45,12 +45,14 @@ const _followPlaybackKey = 'learn.quran.followPlayback';
 const _wordSyncHighlightBetaKey = 'learn.quran.wordSyncHighlightBeta';
 const _redDiacriticsKey = 'learn.quran.redDiacriticsEnabled';
 const _showLearnMoreKey = 'learn.quran.showLearnMore';
+const _explanationDetailLevelKey = 'learn.quran.explanationDetailLevel';
 const _focusRecitationShowTranslationKey =
     'learn.quran.focusRecitationShowTranslation';
 const _focusRecitationShowTransliterationKey =
     'learn.quran.focusRecitationShowTransliteration';
 const _focusRecitationKeepScreenAwakeKey =
     'learn.quran.focusRecitationKeepScreenAwake';
+const _kidsExplanationEnabledKey = 'learn.quran.kidsExplanationEnabled';
 const _wordFavoritesKey = 'learn.quran.wordFavorites';
 const _wordReviewProgressKey = 'learn.quran.wordReviewProgress';
 const _audioSettingsKey = 'learn.quran.audioSettings';
@@ -89,6 +91,7 @@ class QuranReaderSettings {
     required this.wordSyncHighlightBeta,
     required this.redDiacriticsEnabled,
     required this.showLearnMore,
+    required this.explanationDetailLevel,
     required this.focusRecitationShowTranslation,
     required this.focusRecitationShowTransliteration,
     required this.focusRecitationKeepScreenAwake,
@@ -107,6 +110,7 @@ class QuranReaderSettings {
   final bool wordSyncHighlightBeta;
   final bool redDiacriticsEnabled;
   final bool showLearnMore;
+  final QuranExplanationDetailLevel explanationDetailLevel;
   final bool focusRecitationShowTranslation;
   final bool focusRecitationShowTransliteration;
   final bool focusRecitationKeepScreenAwake;
@@ -125,6 +129,7 @@ class QuranReaderSettings {
     bool? wordSyncHighlightBeta,
     bool? redDiacriticsEnabled,
     bool? showLearnMore,
+    QuranExplanationDetailLevel? explanationDetailLevel,
     bool? focusRecitationShowTranslation,
     bool? focusRecitationShowTransliteration,
     bool? focusRecitationKeepScreenAwake,
@@ -146,15 +151,15 @@ class QuranReaderSettings {
           wordSyncHighlightBeta ?? this.wordSyncHighlightBeta,
       redDiacriticsEnabled: redDiacriticsEnabled ?? this.redDiacriticsEnabled,
       showLearnMore: showLearnMore ?? this.showLearnMore,
+      explanationDetailLevel:
+          explanationDetailLevel ?? this.explanationDetailLevel,
       focusRecitationShowTranslation:
-          focusRecitationShowTranslation ??
-          this.focusRecitationShowTranslation,
+          focusRecitationShowTranslation ?? this.focusRecitationShowTranslation,
       focusRecitationShowTransliteration:
           focusRecitationShowTransliteration ??
           this.focusRecitationShowTransliteration,
       focusRecitationKeepScreenAwake:
-          focusRecitationKeepScreenAwake ??
-          this.focusRecitationKeepScreenAwake,
+          focusRecitationKeepScreenAwake ?? this.focusRecitationKeepScreenAwake,
     );
   }
 }
@@ -397,6 +402,16 @@ class QuranNotesFilterState {
   }
 }
 
+class KidsQuranExplanationSettings {
+  const KidsQuranExplanationSettings({required this.enabled});
+
+  final bool enabled;
+
+  KidsQuranExplanationSettings copyWith({bool? enabled}) {
+    return KidsQuranExplanationSettings(enabled: enabled ?? this.enabled);
+  }
+}
+
 class QuranReaderSettingsNotifier extends StateNotifier<QuranReaderSettings> {
   QuranReaderSettingsNotifier(this._store)
     : super(
@@ -414,6 +429,7 @@ class QuranReaderSettingsNotifier extends StateNotifier<QuranReaderSettings> {
           wordSyncHighlightBeta: false,
           redDiacriticsEnabled: true,
           showLearnMore: true,
+          explanationDetailLevel: QuranExplanationDetailLevel.off,
           focusRecitationShowTranslation: true,
           focusRecitationShowTransliteration: true,
           focusRecitationKeepScreenAwake: false,
@@ -493,6 +509,11 @@ class QuranReaderSettingsNotifier extends StateNotifier<QuranReaderSettings> {
     _store.setBool(_showLearnMoreKey, value);
   }
 
+  void setExplanationDetailLevel(QuranExplanationDetailLevel value) {
+    state = state.copyWith(explanationDetailLevel: value);
+    _store.setString(_explanationDetailLevelKey, value.wireName);
+  }
+
   void setFocusRecitationShowTranslation(bool value) {
     state = state.copyWith(focusRecitationShowTranslation: value);
     _store.setBool(_focusRecitationShowTranslationKey, value);
@@ -524,6 +545,9 @@ class QuranReaderSettingsNotifier extends StateNotifier<QuranReaderSettings> {
     final wordSyncHighlightBeta = _store.getBool(_wordSyncHighlightBetaKey);
     final redDiacriticsEnabled = _store.getBool(_redDiacriticsKey);
     final showLearnMore = _store.getBool(_showLearnMoreKey);
+    final explanationDetailLevel = QuranExplanationDetailLevel.tryParse(
+      _store.getString(_explanationDetailLevelKey),
+    );
     final focusRecitationShowTranslation = _store.getBool(
       _focusRecitationShowTranslationKey,
     );
@@ -553,6 +577,8 @@ class QuranReaderSettingsNotifier extends StateNotifier<QuranReaderSettings> {
           wordSyncHighlightBeta ?? state.wordSyncHighlightBeta,
       redDiacriticsEnabled: redDiacriticsEnabled ?? state.redDiacriticsEnabled,
       showLearnMore: showLearnMore ?? state.showLearnMore,
+      explanationDetailLevel:
+          explanationDetailLevel ?? state.explanationDetailLevel,
       focusRecitationShowTranslation:
           focusRecitationShowTranslation ?? state.showTranslation,
       focusRecitationShowTransliteration:
@@ -561,6 +587,26 @@ class QuranReaderSettingsNotifier extends StateNotifier<QuranReaderSettings> {
           focusRecitationKeepScreenAwake ??
           state.focusRecitationKeepScreenAwake,
     );
+  }
+}
+
+class KidsQuranExplanationSettingsNotifier
+    extends StateNotifier<KidsQuranExplanationSettings> {
+  KidsQuranExplanationSettingsNotifier(this._store)
+    : super(const KidsQuranExplanationSettings(enabled: true)) {
+    _load();
+  }
+
+  final LocalStore _store;
+
+  void setEnabled(bool value) {
+    state = state.copyWith(enabled: value);
+    _store.setBool(_kidsExplanationEnabledKey, value);
+  }
+
+  void _load() {
+    final enabled = _store.getBool(_kidsExplanationEnabledKey);
+    state = state.copyWith(enabled: enabled ?? state.enabled);
   }
 }
 
@@ -1343,6 +1389,16 @@ final quranReaderSettingsProvider =
     StateNotifierProvider<QuranReaderSettingsNotifier, QuranReaderSettings>(
       (ref) => QuranReaderSettingsNotifier(ref.watch(localStoreProvider)),
     );
+
+final kidsQuranExplanationSettingsProvider =
+    StateNotifierProvider<
+      KidsQuranExplanationSettingsNotifier,
+      KidsQuranExplanationSettings
+    >((ref) {
+      return KidsQuranExplanationSettingsNotifier(
+        ref.watch(localStoreProvider),
+      );
+    });
 
 final quranReadingProgressProvider =
     StateNotifierProvider<QuranReadingProgressNotifier, QuranReadingProgress>(

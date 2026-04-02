@@ -84,6 +84,7 @@ class QuranQuoteBlock extends ConsumerWidget {
     final surfaceStyle = AppSurfaceTheme.resolve(
       context,
       variant: AppSurfaceVariant.panel,
+      treatment: AppSurfaceTreatment.denseSanctuary,
       tintColor: accent,
     );
 
@@ -91,7 +92,7 @@ class QuranQuoteBlock extends ConsumerWidget {
       width: double.infinity,
       margin: const EdgeInsets.only(bottom: 16),
       padding: EdgeInsets.all(compact ? 12 : 16),
-      decoration: surfaceStyle.decoration(radius: 18),
+      decoration: surfaceStyle.decoration(radius: 18, includeShadow: true),
       child: QuranVerseContent(
         source: QuranVerseSource(
           ref: quote.ref,

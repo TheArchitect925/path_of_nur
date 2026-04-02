@@ -47,6 +47,11 @@ class _LearnCategoryCardState extends State<LearnCategoryCard> {
       variant: AppSurfaceVariant.island,
       tintColor: accent,
     );
+    final featureStyle = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.featureTile,
+      tintColor: accent,
+    );
 
     final icon = LearnIconRegistry.iconFor(widget.item.iconKey);
     final iconAsset = LearnIconRegistry.assetFor(widget.item.iconKey);
@@ -60,21 +65,10 @@ class _LearnCategoryCardState extends State<LearnCategoryCard> {
         duration: const Duration(milliseconds: 160),
         curve: Curves.easeOut,
         height: widget.height,
-        decoration:
-            BoxDecoration(
-              borderRadius: BorderRadius.circular(AppRadii.card),
-            ).copyWith(
-              color: surfaceStyle.backgroundColor,
-              gradient: surfaceStyle.gradient,
-              border: Border.all(color: surfaceStyle.borderColor, width: 1.0),
-              boxShadow: [
-                BoxShadow(
-                  color: surfaceStyle.shadowColor,
-                  blurRadius: 18,
-                  offset: const Offset(0, 8),
-                ),
-              ],
-            ),
+        decoration: surfaceStyle.decoration(
+          radius: AppRadii.card,
+          includeShadow: true,
+        ),
         child: Material(
           color: Colors.transparent,
           child: InkWell(
@@ -90,17 +84,9 @@ class _LearnCategoryCardState extends State<LearnCategoryCard> {
                   Expanded(
                     child: Container(
                       width: double.infinity,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16),
-                        gradient: RadialGradient(
-                          center: const Alignment(0, -0.35),
-                          radius: 1.18,
-                          colors: [
-                            const Color(0xFFFFF8EE).withValues(alpha: 0.92),
-                            const Color(0xFFF1E5D6).withValues(alpha: 0.72),
-                            const Color(0xFFE8DACB).withValues(alpha: 0.45),
-                          ],
-                        ),
+                      decoration: featureStyle.decoration(
+                        radius: 16,
+                        includeShadow: false,
                       ),
                       child: Stack(
                         children: [

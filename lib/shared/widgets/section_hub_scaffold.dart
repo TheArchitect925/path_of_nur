@@ -112,7 +112,8 @@ class _SectionHubScaffoldState extends State<SectionHubScaffold> {
         mainAxisSize: MainAxisSize.min,
         children: [
           if (widget.floatingBottom != null) widget.floatingBottom!,
-          if (widget.floatingBottom != null && widget.shortcutActions.isNotEmpty)
+          if (widget.floatingBottom != null &&
+              widget.shortcutActions.isNotEmpty)
             const SizedBox(height: 10),
           if (widget.shortcutActions.isNotEmpty)
             Align(
@@ -184,7 +185,6 @@ class SectionHubActionCard extends StatelessWidget {
       context,
       variant: AppSurfaceVariant.island,
       tintColor: action.accentColor,
-      baseColor: action.color,
     );
     return Material(
       color: Colors.transparent,
@@ -203,7 +203,10 @@ class SectionHubActionCard extends StatelessWidget {
                 width: 46,
                 height: 46,
                 decoration: BoxDecoration(
-                  color: surfaceStyle.iconBackgroundColor,
+                  color: Color.alphaBlend(
+                    action.color.withValues(alpha: 0.22),
+                    surfaceStyle.iconBackgroundColor,
+                  ),
                   borderRadius: BorderRadius.circular(14),
                   border: Border.all(color: surfaceStyle.borderColor),
                 ),

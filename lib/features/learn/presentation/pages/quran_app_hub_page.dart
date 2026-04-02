@@ -17,14 +17,20 @@ import '../../quran/application/quran_daily_reflection_provider.dart';
 import '../../quran/application/quran_providers.dart';
 import '../../quran/application/quran_reflections_provider.dart';
 import '../../quran/application/quran_guided_learning_paths_provider.dart';
+import '../../quran/application/quran_personalization_provider.dart';
+import '../../quran/application/quran_spiritual_moment_provider.dart';
 import '../../quran/application/quran_surah_summary_provider.dart';
 import '../../quran/application/quran_user_intent_provider.dart';
 import '../../quran/domain/quran_hub_recommendation_models.dart';
+import '../../quran/domain/quran_personalization_models.dart';
+import '../../quran/domain/quran_spiritual_moment_models.dart';
 import '../../quran/domain/quran_user_intent_models.dart';
 import '../../quran/presentation/quran_learning_path_copy.dart';
 import '../../quran/presentation/quran_summary_theme.dart';
 import '../../quran/presentation/quran_theme_copy.dart';
 import '../../quran/presentation/widgets/quran_daily_reflection_card.dart';
+import '../../quran/presentation/widgets/quran_personalized_recommendation_card.dart';
+import '../../quran/presentation/widgets/quran_spiritual_moment_card.dart';
 import '../widgets/learn_discovery_search_field.dart';
 import '../widgets/learn_hub_page_scaffold.dart';
 
@@ -62,6 +68,19 @@ class _QuranAppHubPageState extends ConsumerState<QuranAppHubPage> {
     ref.watch(quranReflectionsProvider);
     final userIntentSummary = ref.watch(quranUserIntentSummaryProvider);
     final recommendations = ref.watch(quranHubRecommendationsProvider);
+    final personalizedBundle = ref.watch(
+      quranPersonalizedRecommendationBundleProvider((
+        QuranPersonalizationSurface.quranHub,
+        isKidsMode,
+      )),
+    );
+    final spiritualMoment = ref.watch(
+      quranSpiritualMomentBundleProvider((
+        QuranSpiritualMomentSurface.quranHub,
+        isKidsMode,
+        Localizations.localeOf(context).languageCode,
+      )),
+    );
     final summaryPalette = QuranSummaryThemePalette.resolve(context);
     final readActions = _readActions(l10n);
     final studyActions = _studyActions(l10n);
@@ -288,6 +307,22 @@ class _QuranAppHubPageState extends ConsumerState<QuranAppHubPage> {
         const SizedBox(height: 12),
         const QuranDailyReflectionCard(showSecondaryActions: false),
         const SizedBox(height: 12),
+        if (spiritualMoment != null) ...[
+          QuranSpiritualMomentCard(
+            bundle: spiritualMoment,
+            surface: QuranSpiritualMomentSurface.quranHub,
+            allowDismiss: true,
+          ),
+          const SizedBox(height: 12),
+        ],
+        if (personalizedBundle != null) ...[
+          QuranPersonalizedRecommendationCard(
+            bundle: personalizedBundle,
+            surface: QuranPersonalizationSurface.quranHub,
+            allowDismiss: true,
+          ),
+          const SizedBox(height: 12),
+        ],
         if (recommendations.isNotEmpty)
           _QuranRecommendationSection(recommendations: recommendations),
         if (recommendations.isNotEmpty) const SizedBox(height: 12),

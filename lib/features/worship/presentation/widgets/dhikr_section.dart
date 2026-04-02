@@ -660,37 +660,32 @@ class _TargetChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final text = label ?? value.toString();
+    final style = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.pill,
+      tintColor: AppColors.accentGold,
+    );
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(18),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 9),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(18),
-          color: isSelected
-              ? AppSurfaceTheme.adaptiveColor(
-                  context,
-                  AppColors.accentGold,
-                  alpha: 0.18,
-                  solidAlphaWhenDisabled: 0.28,
-                )
-              : AppSurfaceTheme.adaptiveColor(
-                  context,
-                  AppColors.surface,
-                  alpha: 0.45,
-                  solidAlphaWhenDisabled: 0.96,
-                ),
-          border: Border.all(
-            color: isSelected
-                ? AppColors.accentGold
-                : AppSurfaceTheme.adaptiveColor(
-                    context,
-                    AppColors.accentGoldSoft,
-                    alpha: 0.45,
-                    solidAlphaWhenDisabled: 0.55,
-                  ),
-          ),
-        ),
+        decoration: style
+            .decoration(radius: 18, includeShadow: false)
+            .copyWith(
+              color: isSelected
+                  ? AppSurfaceTheme.adaptiveColor(
+                      context,
+                      AppColors.accentGold,
+                      alpha: 0.18,
+                      solidAlphaWhenDisabled: 0.28,
+                    )
+                  : style.backgroundColor,
+              gradient: isSelected ? null : style.gradient,
+              border: Border.all(
+                color: isSelected ? AppColors.accentGold : style.borderColor,
+              ),
+            ),
         child: Text(
           text,
           style: TextStyle(
