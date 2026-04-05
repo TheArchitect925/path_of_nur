@@ -205,7 +205,7 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
           fastingReminders: false,
           moonriseReminders: true,
           moonsetReminders: true,
-          appThemeMode: AppThemeMode.defaultMode,
+          appThemeMode: AppThemeMode.noorGlass,
           prayerCalendarMode: PrayerCalendarMode.gregorian,
           disableGlassTransparency: false,
           disableColoredGlass: false,
@@ -407,7 +407,7 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
 
   void resetAppearance() {
     state = state.copyWith(
-      appThemeMode: AppThemeMode.defaultMode,
+      appThemeMode: AppThemeMode.noorGlass,
       disableGlassTransparency: false,
       disableColoredGlass: false,
       glassTransparencyLevel: kGlassTransparencyLevelDefault,
@@ -437,10 +437,6 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
         break;
       }
     }
-    if (appThemeMode == AppThemeMode.calmBeautiful) {
-      appThemeMode = AppThemeMode.defaultMode;
-    }
-
     PrayerCalendarMode prayerCalendarMode = state.prayerCalendarMode;
     final prayerCalendarModeName = data['prayerCalendarMode'] as String?;
     for (final item in PrayerCalendarMode.values) {

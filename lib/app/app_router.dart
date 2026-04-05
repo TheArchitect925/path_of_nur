@@ -34,7 +34,7 @@ final appRouterProvider = Provider<GoRouter>((ref) {
   final editorialDashboardUnlocked = ref.watch(
     editorialDashboardAccessProvider.select((value) => value.isSessionUnlocked),
   );
-  final initial = onboardingCompleted ? NavTab.home.path : '/onboarding';
+  const initial = '/startup';
   final shellNavigatorKey = GlobalKey<NavigatorState>();
 
   return GoRouter(
@@ -201,6 +201,10 @@ String? _onboardingRedirect({
   required bool onboardingCompleted,
 }) {
   final onOnboarding = matchedLocation == '/onboarding';
+  final onStartup = matchedLocation == '/startup';
+  if (onStartup) {
+    return null;
+  }
   if (!onboardingCompleted && !onOnboarding) {
     return '/onboarding';
   }
@@ -216,10 +220,12 @@ String? _sharedDeviceLaunchRedirect({
   required AccountsSyncState accountsSyncState,
 }) {
   final onSharedPicker = matchedLocation == '/profiles/launch';
+  final onStartup = matchedLocation == '/startup';
+  if (onStartup) {
+    return null;
+  }
   if (accountsSyncState.sharedDeviceModeEnabled &&
-      accountsSyncState
-          .sharedDeviceSafety
-          .requireProfileSelectionOnLaunch &&
+      accountsSyncState.sharedDeviceSafety.requireProfileSelectionOnLaunch &&
       accountsSyncState.sessionUnlockedProfileId == null &&
       onboardingCompleted &&
       !onSharedPicker &&

@@ -3,7 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../core/theme/app_colors.dart';
+import '../../../../../core/theme/app_surfaces.dart';
 import '../../../../../l10n/app_localizations.dart';
+import '../../../../../shared/widgets/app_layered_glass_pill_button.dart';
 import '../../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../../shared/widgets/premium_card.dart';
 import '../application/quran_learning_system_service.dart';
@@ -108,9 +110,15 @@ class _SummaryChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Chip(
-      visualDensity: VisualDensity.compact,
-      label: Text('$label: $count'),
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      decoration: _quranNoorPillDecoration(context),
+      child: Text(
+        '$label: $count',
+        style: Theme.of(
+          context,
+        ).textTheme.bodySmall?.copyWith(fontWeight: FontWeight.w700),
+      ),
     );
   }
 }
@@ -208,9 +216,22 @@ class _MemorizationReviewCard extends ConsumerWidget {
                   ],
                 ),
               ),
-              Chip(
-                visualDensity: VisualDensity.compact,
-                label: Text(_stageLabel(l10n, entry.progress.stage)),
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 7,
+                ),
+                decoration: _quranNoorPillDecoration(
+                  context,
+                  tintColor: AppColors.accentGoldSoft,
+                ),
+                child: Text(
+                  _stageLabel(l10n, entry.progress.stage),
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    fontWeight: FontWeight.w700,
+                    color: AppColors.onSurfaceSubtle,
+                  ),
+                ),
               ),
             ],
           ),
@@ -275,9 +296,9 @@ class _MemorizationReviewCard extends ConsumerWidget {
               children: themes
                   .take(1)
                   .map(
-                    (topic) => ActionChip(
-                      label: Text(localizedQuranTopicTitle(l10n, topic.id)),
-                      onPressed: () => context.pushNamed(
+                    (topic) => _QuranActionPill(
+                      label: localizedQuranTopicTitle(l10n, topic.id),
+                      onTap: () => context.pushNamed(
                         'quranTopicDetail',
                         pathParameters: {'topicId': topic.id},
                       ),
@@ -301,9 +322,9 @@ class _MemorizationReviewCard extends ConsumerWidget {
               children: contextualLinks
                   .take(2)
                   .map(
-                    (link) => ActionChip(
-                      label: Text(link.title),
-                      onPressed: () => showQuranRelatedKnowledgeDetailSheet(
+                    (link) => _QuranActionPill(
+                      label: link.title,
+                      onTap: () => showQuranRelatedKnowledgeDetailSheet(
                         context,
                         link: link,
                         anchorLabel: l10n.quranReferenceViewerReferenceLabel(
@@ -381,4 +402,41 @@ class _MemorizationReviewCard extends ConsumerWidget {
         return l10n.learnQuranHubStageMastered;
     }
   }
+}
+
+class _QuranActionPill extends StatelessWidget {
+  const _QuranActionPill({required this.label, required this.onTap});
+
+  final String label;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return AppLayeredGlassPillButton(
+      onPressed: onTap,
+      label: label,
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      foregroundColor: Theme.of(context).textTheme.bodySmall?.color,
+      fillColor: AppSurfaceTheme.resolve(
+        context,
+        variant: AppSurfaceVariant.pill,
+      ).backgroundColor,
+      borderColor: AppSurfaceTheme.resolve(
+        context,
+        variant: AppSurfaceVariant.pill,
+      ).borderColor,
+    );
+  }
+}
+
+BoxDecoration _quranNoorPillDecoration(
+  BuildContext context, {
+  Color? tintColor,
+}) {
+  final style = AppSurfaceTheme.resolve(
+    context,
+    variant: AppSurfaceVariant.pill,
+    tintColor: tintColor,
+  );
+  return style.decoration(radius: 999, includeShadow: false);
 }

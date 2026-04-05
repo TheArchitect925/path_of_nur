@@ -9,10 +9,7 @@ import '../application/growth_providers.dart';
 import 'widgets/growth_ui_helpers.dart';
 
 class GrowthPathDetailPage extends ConsumerWidget {
-  const GrowthPathDetailPage({
-    super.key,
-    required this.pathId,
-  });
+  const GrowthPathDetailPage({super.key, required this.pathId});
 
   final String pathId;
 
@@ -33,9 +30,7 @@ class GrowthPathDetailPage extends ConsumerWidget {
         headerIcon: Icons.alt_route_rounded,
         title: l10n.growthPathDetailPageTitle,
         subtitle: l10n.growthPathUnavailableMessage,
-        children: [
-          PremiumCard(child: Text(l10n.growthPathUnavailableMessage)),
-        ],
+        children: [PremiumCard(child: Text(l10n.growthPathUnavailableMessage))],
       );
     }
     final p = progress;
@@ -45,7 +40,9 @@ class GrowthPathDetailPage extends ConsumerWidget {
         .toList();
     final journey = ref.watch(growthJourneyStatsProvider);
     final pathCopy = ref.watch(growthPathContentByIdProvider)[p.path.id];
-    final stageCopy = ref.watch(growthStageContentByNumberProvider)[p.path.stage];
+    final stageCopy = ref.watch(
+      growthStageContentByNumberProvider,
+    )[p.path.stage];
 
     return AppPageScaffold(
       headerIcon: growthPathIcon(p.path.icon),
@@ -79,7 +76,8 @@ class GrowthPathDetailPage extends ConsumerWidget {
                     ),
                   ),
                   _Pill(
-                    label: pathCopy?.stageLabel ??
+                    label:
+                        pathCopy?.stageLabel ??
                         stageCopy?.title ??
                         l10n.growthStageValue('${p.path.stage}'),
                   ),
@@ -92,8 +90,7 @@ class GrowthPathDetailPage extends ConsumerWidget {
               ),
               const SizedBox(height: 8),
               Text(
-                pathCopy?.whyItMatters ??
-                    l10n.growthPathWhyItMattersFallback,
+                pathCopy?.whyItMatters ?? l10n.growthPathWhyItMattersFallback,
                 style: const TextStyle(color: Color(0xFF6A5A4A)),
               ),
               if ((pathCopy?.milestoneNames ?? const []).isNotEmpty) ...[
@@ -109,7 +106,10 @@ class GrowthPathDetailPage extends ConsumerWidget {
               const SizedBox(height: 8),
               Text(
                 p.recommendedNextStep,
-                style: const TextStyle(color: Color(0xFF6A5A4A), fontSize: 12.5),
+                style: const TextStyle(
+                  color: Color(0xFF6A5A4A),
+                  fontSize: 12.5,
+                ),
               ),
               const SizedBox(height: 10),
               ClipRRect(
@@ -139,10 +139,14 @@ class GrowthPathDetailPage extends ConsumerWidget {
                       onPressed: !p.unlocked
                           ? null
                           : () {
-                              final controller =
-                                  ref.read(growthControllerProvider.notifier);
+                              final controller = ref.read(
+                                growthControllerProvider.notifier,
+                              );
                               if (!p.started) {
-                                controller.setPathStarted(pathId, started: true);
+                                controller.setPathStarted(
+                                  pathId,
+                                  started: true,
+                                );
                                 return;
                               }
                               controller.setPathPaused(
@@ -208,10 +212,7 @@ class _Pill extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-      decoration: BoxDecoration(
-        color: const Color(0xFFF5EEE3),
-        borderRadius: BorderRadius.circular(999),
-      ),
+      decoration: growthNoorPillDecoration(context),
       child: Text(label, style: const TextStyle(fontSize: 12)),
     );
   }

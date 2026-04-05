@@ -88,16 +88,27 @@ class _PrayerHubTabViews extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return const SizedBox(
-      height: 1750,
-      child: TabBarView(
-        children: [
+    return Builder(
+      builder: (context) {
+        final controller = DefaultTabController.of(context);
+        final tabChildren = const <Widget>[
           _PrayerTimesTab(),
           _PrayerTrackerTab(),
           _PrayerStatsTab(),
           _PrayerRakatTab(),
-        ],
-      ),
+        ];
+
+        return AnimatedBuilder(
+          animation: controller,
+          builder: (context, child) {
+            final index = controller.index.clamp(0, tabChildren.length - 1);
+            return KeyedSubtree(
+              key: ValueKey(index),
+              child: tabChildren[index],
+            );
+          },
+        );
+      },
     );
   }
 }
@@ -218,13 +229,8 @@ class _PrayerTimesTab extends ConsumerWidget {
                       runSpacing: 6,
                       children: sisterCycleGuidance.recommendedFocus
                           .map(
-                            (item) => Chip(
-                              visualDensity: VisualDensity.compact,
-                              label: Text(
-                                item,
-                                style: const TextStyle(fontSize: 11.5),
-                              ),
-                            ),
+                            (item) =>
+                                _PrayerTagPill(label: item, fontSize: 11.5),
                           )
                           .toList(),
                     ),
@@ -717,6 +723,29 @@ class _PrayerMiniPanel extends StatelessWidget {
   }
 }
 
+class _PrayerTagPill extends StatelessWidget {
+  const _PrayerTagPill({required this.label, this.fontSize = 12});
+
+  final String label;
+  final double fontSize;
+
+  @override
+  Widget build(BuildContext context) {
+    final style = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.pill,
+    );
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
+      decoration: style.decoration(radius: 999, includeShadow: false),
+      child: Text(
+        label,
+        style: TextStyle(fontSize: fontSize, fontWeight: FontWeight.w600),
+      ),
+    );
+  }
+}
+
 class _PrayerStatsTab extends ConsumerWidget {
   const _PrayerStatsTab();
 
@@ -1145,10 +1174,8 @@ class _QadaPlannerCard extends ConsumerWidget {
               runSpacing: 6,
               children: queue
                   .map(
-                    (prayer) => Chip(
-                      visualDensity: VisualDensity.compact,
-                      label: Text(prayer.localizedLabel(l10n)),
-                    ),
+                    (prayer) =>
+                        _PrayerTagPill(label: prayer.localizedLabel(l10n)),
                   )
                   .toList(),
             ),

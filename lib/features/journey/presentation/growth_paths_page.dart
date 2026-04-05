@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_surfaces.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../application/growth_providers.dart';
 import 'widgets/growth_ui_helpers.dart';
@@ -31,28 +33,35 @@ class _GrowthPathsPageState extends ConsumerState<GrowthPathsPage> {
 
   @override
   Widget build(BuildContext context) {
+    final iconStyle = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.panel,
+    );
     final paths = ref.watch(growthPathProgressProvider);
     final pathCopy = ref.watch(growthPathContentByIdProvider);
     final stageCopy = ref.watch(growthStageContentByNumberProvider);
-    final visiblePaths = paths.where((progress) {
-      final trimmed = _query.trim().toLowerCase();
-      if (trimmed.isEmpty) return true;
-      final copy = pathCopy[progress.path.id];
-      final stageLabel =
-          copy?.stageLabel ?? stageCopy[progress.path.stage]?.title ?? '';
-      final milestoneNames = (copy?.milestoneNames ?? const <String>[]).join(' ');
-      final haystack = [
-        progress.path.title,
-        progress.path.subtitle,
-        progress.path.description,
-        progress.recommendedNextStep,
-        progress.path.estimatedCommitment,
-        copy?.whyItMatters ?? '',
-        stageLabel,
-        milestoneNames,
-      ].join(' ').toLowerCase();
-      return haystack.contains(trimmed);
-    }).toList(growable: false);
+    final visiblePaths = paths
+        .where((progress) {
+          final trimmed = _query.trim().toLowerCase();
+          if (trimmed.isEmpty) return true;
+          final copy = pathCopy[progress.path.id];
+          final stageLabel =
+              copy?.stageLabel ?? stageCopy[progress.path.stage]?.title ?? '';
+          final milestoneNames = (copy?.milestoneNames ?? const <String>[])
+              .join(' ');
+          final haystack = [
+            progress.path.title,
+            progress.path.subtitle,
+            progress.path.description,
+            progress.recommendedNextStep,
+            progress.path.estimatedCommitment,
+            copy?.whyItMatters ?? '',
+            stageLabel,
+            milestoneNames,
+          ].join(' ').toLowerCase();
+          return haystack.contains(trimmed);
+        })
+        .toList(growable: false);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -117,9 +126,9 @@ class _GrowthPathsPageState extends ConsumerState<GrowthPathsPage> {
                           Container(
                             width: 36,
                             height: 36,
-                            decoration: BoxDecoration(
-                              color: const Color(0xFFEADDC8),
-                              borderRadius: BorderRadius.circular(12),
+                            decoration: iconStyle.decoration(
+                              radius: 12,
+                              includeShadow: false,
                             ),
                             child: Icon(
                               growthPathIcon(progress.path.icon),
@@ -141,7 +150,7 @@ class _GrowthPathsPageState extends ConsumerState<GrowthPathsPage> {
                                 Text(
                                   progress.path.subtitle,
                                   style: const TextStyle(
-                                    color: Color(0xFF6A5A4A),
+                                    color: AppColors.onSurfaceSubtle,
                                   ),
                                 ),
                               ],
@@ -199,7 +208,9 @@ class _GrowthPathsPageState extends ConsumerState<GrowthPathsPage> {
                       const SizedBox(height: 10),
                       ClipRRect(
                         borderRadius: BorderRadius.circular(999),
-                        child: LinearProgressIndicator(value: progress.progress),
+                        child: LinearProgressIndicator(
+                          value: progress.progress,
+                        ),
                       ),
                       const SizedBox(height: 10),
                       Row(

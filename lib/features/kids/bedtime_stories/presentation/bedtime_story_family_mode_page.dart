@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/theme/app_surfaces.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../learn/journey/application/family_learning_provider.dart';
@@ -22,9 +23,9 @@ class BedtimeStoryFamilyModePage extends ConsumerWidget {
     final learners = ref.watch(bedtimeAvailableLearnersProvider);
     final archived = ref.watch(bedtimeArchivedLearnersProvider);
     final canManage = ref.watch(bedtimeCanManageFamilyModeProvider);
-    final activeChildren = learners.where((item) => !item.isArchived).toList(
-      growable: false,
-    );
+    final activeChildren = learners
+        .where((item) => !item.isArchived)
+        .toList(growable: false);
 
     return LearnHubPageScaffold(
       headerIcon: Icons.family_restroom_rounded,
@@ -73,7 +74,9 @@ class BedtimeStoryFamilyModePage extends ConsumerWidget {
           children: [
             Expanded(
               child: FilledButton.tonalIcon(
-                onPressed: canManage ? () => _showCreateSheet(context, ref) : null,
+                onPressed: canManage
+                    ? () => _showCreateSheet(context, ref)
+                    : null,
                 icon: const Icon(Icons.add_circle_outline_rounded),
                 label: Text(l10n.bedtimeFamilyModeAddChildAction),
               ),
@@ -81,7 +84,8 @@ class BedtimeStoryFamilyModePage extends ConsumerWidget {
             const SizedBox(width: 10),
             Expanded(
               child: OutlinedButton.icon(
-                onPressed: () => context.pushNamed('kidsBedtimeStoriesParentDashboard'),
+                onPressed: () =>
+                    context.pushNamed('kidsBedtimeStoriesParentDashboard'),
                 icon: const Icon(Icons.insights_rounded),
                 label: Text(l10n.bedtimeFamilyModeParentDashboardAction),
               ),
@@ -124,9 +128,9 @@ class BedtimeStoryFamilyModePage extends ConsumerWidget {
               children: [
                 Text(
                   l10n.bedtimeFamilyModeArchivedTitle,
-                  style: Theme.of(
-                    context,
-                  ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
                 const SizedBox(height: 8),
                 ...archived.map(
@@ -151,52 +155,64 @@ class BedtimeStoryFamilyModePage extends ConsumerWidget {
       builder: (context) => _LearnerEditorSheet(
         title: l10n.bedtimeFamilyModeAddChildAction,
         submitLabel: l10n.bedtimeFamilyModeCreateChildSubmit,
-        onSubmit: ({
-          required String displayName,
-          required String avatarReference,
-          required LearningAgeGroup ageGroup,
-          required String? nickname,
-        }) async {
-          final notifier = ref.read(familyLearningProvider.notifier);
-          await notifier.createChildProfile(
-            displayName: displayName,
-            ageGroup: ageGroup,
-            learningLevel: LearningPathLevel.beginner,
-            avatarReference: avatarReference,
-            kidsUiThemeMode: KidsUiThemeMode.auto,
-            browsingMode: ChildBrowsingMode.guidedOnly,
-            permissions: ChildLearningPermissions.defaultsFor(ageGroup),
-          );
-          final children = ref.read(familyLearningChildProfilesForGuardianProvider);
-          if (children.isEmpty) {
-            return;
-          }
-          final created = children.where((child) => child.displayName == displayName).lastOrNull ??
-              children.last;
-          if (nickname != null && nickname.trim().isNotEmpty) {
-            await ref.read(bedtimeFamilyModeProvider.notifier).updatePreferences(
-              learnerId: created.id,
-              preferences: BedtimeLearnerPreferences(nickname: nickname.trim()),
-            );
-          }
-          final learners = ref.read(bedtimeAvailableLearnersProvider);
-          final createdLearner = learners.firstWhere(
-            (item) => item.learnerId == created.id,
-            orElse: () => BedtimeLearnerIdentity(
-              learnerId: created.id,
-              linkedChildProfileId: created.id,
-              displayName: created.displayName,
-              avatarReference: created.avatarReference,
-              ageGroup: created.ageGroup,
-              guardianProfileId: ref.read(activeFamilyLearningContextProvider).activeGuardianProfileId,
-              isFallbackLearner: false,
-              preferences: const BedtimeLearnerPreferences(),
-            ),
-          );
-          await ref.read(bedtimeFamilyModeProvider.notifier).selectLearner(
-            createdLearner,
-          );
-        },
+        onSubmit:
+            ({
+              required String displayName,
+              required String avatarReference,
+              required LearningAgeGroup ageGroup,
+              required String? nickname,
+            }) async {
+              final notifier = ref.read(familyLearningProvider.notifier);
+              await notifier.createChildProfile(
+                displayName: displayName,
+                ageGroup: ageGroup,
+                learningLevel: LearningPathLevel.beginner,
+                avatarReference: avatarReference,
+                kidsUiThemeMode: KidsUiThemeMode.auto,
+                browsingMode: ChildBrowsingMode.guidedOnly,
+                permissions: ChildLearningPermissions.defaultsFor(ageGroup),
+              );
+              final children = ref.read(
+                familyLearningChildProfilesForGuardianProvider,
+              );
+              if (children.isEmpty) {
+                return;
+              }
+              final created =
+                  children
+                      .where((child) => child.displayName == displayName)
+                      .lastOrNull ??
+                  children.last;
+              if (nickname != null && nickname.trim().isNotEmpty) {
+                await ref
+                    .read(bedtimeFamilyModeProvider.notifier)
+                    .updatePreferences(
+                      learnerId: created.id,
+                      preferences: BedtimeLearnerPreferences(
+                        nickname: nickname.trim(),
+                      ),
+                    );
+              }
+              final learners = ref.read(bedtimeAvailableLearnersProvider);
+              final createdLearner = learners.firstWhere(
+                (item) => item.learnerId == created.id,
+                orElse: () => BedtimeLearnerIdentity(
+                  learnerId: created.id,
+                  linkedChildProfileId: created.id,
+                  displayName: created.displayName,
+                  avatarReference: created.avatarReference,
+                  ageGroup: created.ageGroup,
+                  guardianProfileId: ref
+                      .read(activeFamilyLearningContextProvider)
+                      .activeGuardianProfileId,
+                  isFallbackLearner: false,
+                  preferences: const BedtimeLearnerPreferences(),
+                ),
+              );
+              await ref
+                  .read(bedtimeFamilyModeProvider.notifier)
+                  .selectLearner(createdLearner);
+            },
       ),
     );
   }
@@ -218,24 +234,18 @@ class _LearnerCard extends ConsumerWidget {
     final l10n = AppLocalizations.of(context);
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(14),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(22),
-        border: Border.all(
-          color: isActive ? const Color(0xFFD9B98B) : const Color(0xFFE7DDD0),
-          width: isActive ? 1.5 : 1,
-        ),
+      padding: const EdgeInsets.all(16),
+      decoration: _bedtimeNoorPanelDecoration(
+        context,
+        borderColor: isActive ? const Color(0xFFD9B98B) : null,
+        borderWidth: isActive ? 1.5 : 1,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
-              CircleAvatar(
-                radius: 22,
-                child: Text(learner.avatarReference),
-              ),
+              CircleAvatar(radius: 22, child: Text(learner.avatarReference)),
               const SizedBox(width: 12),
               Expanded(
                 child: Column(
@@ -280,9 +290,8 @@ class _LearnerCard extends ConsumerWidget {
                   onPressed: () => showModalBottomSheet<void>(
                     context: context,
                     isScrollControlled: true,
-                    builder: (context) => _LearnerEditorSheet.forExisting(
-                      learner: learner,
-                    ),
+                    builder: (context) =>
+                        _LearnerEditorSheet.forExisting(learner: learner),
                   ),
                   icon: const Icon(Icons.edit_outlined),
                   label: Text(l10n.bedtimeFamilyModeEditAction),
@@ -311,13 +320,9 @@ class _ArchivedLearnerRow extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
-    return Container(
+    return PremiumCard(
+      surfaceVariant: AppSurfaceVariant.panel,
       padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: const Color(0xFFFFFCF7),
-        borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: const Color(0xFFE8DED0)),
-      ),
       child: Row(
         children: [
           CircleAvatar(child: Text(learner.avatarReference)),
@@ -358,12 +363,13 @@ class _LearnerEditorSheet extends ConsumerStatefulWidget {
       initialAvatar: learner.avatarReference,
       initialAgeGroup: learner.ageGroup,
       existingLearner: learner,
-      onSubmit: ({
-        required String displayName,
-        required String avatarReference,
-        required LearningAgeGroup ageGroup,
-        required String? nickname,
-      }) async {},
+      onSubmit:
+          ({
+            required String displayName,
+            required String avatarReference,
+            required LearningAgeGroup ageGroup,
+            required String? nickname,
+          }) async {},
     );
   }
 
@@ -383,7 +389,8 @@ class _LearnerEditorSheet extends ConsumerStatefulWidget {
   final BedtimeLearnerIdentity? existingLearner;
 
   @override
-  ConsumerState<_LearnerEditorSheet> createState() => _LearnerEditorSheetState();
+  ConsumerState<_LearnerEditorSheet> createState() =>
+      _LearnerEditorSheetState();
 }
 
 class _LearnerEditorSheetState extends ConsumerState<_LearnerEditorSheet> {
@@ -399,7 +406,9 @@ class _LearnerEditorSheetState extends ConsumerState<_LearnerEditorSheet> {
   void initState() {
     super.initState();
     _nameController = TextEditingController(text: widget.initialDisplayName);
-    _nicknameController = TextEditingController(text: widget.initialNickname ?? '');
+    _nicknameController = TextEditingController(
+      text: widget.initialNickname ?? '',
+    );
     _ageGroup = widget.initialAgeGroup;
     _avatar = widget.initialAvatar;
   }
@@ -486,14 +495,30 @@ class _LearnerEditorSheetState extends ConsumerState<_LearnerEditorSheet> {
               Wrap(
                 spacing: 8,
                 runSpacing: 8,
-                children: _avatars.map((avatar) {
-                  final selected = _avatar == avatar;
-                  return ChoiceChip(
-                    label: Text(avatar),
-                    selected: selected,
-                    onSelected: (_) => setState(() => _avatar = avatar),
-                  );
-                }).toList(growable: false),
+                children: _avatars
+                    .map((avatar) {
+                      final selected = _avatar == avatar;
+                      return InkWell(
+                        onTap: () => setState(() => _avatar = avatar),
+                        borderRadius: BorderRadius.circular(999),
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 12,
+                            vertical: 8,
+                          ),
+                          decoration: _bedtimeNoorPillDecoration(
+                            context,
+                            tintColor: selected
+                                ? Theme.of(
+                                    context,
+                                  ).colorScheme.primary.withValues(alpha: 0.14)
+                                : null,
+                          ),
+                          child: Text(avatar),
+                        ),
+                      );
+                    })
+                    .toList(growable: false),
               ),
               const SizedBox(height: 18),
               SizedBox(
@@ -513,7 +538,8 @@ class _LearnerEditorSheetState extends ConsumerState<_LearnerEditorSheet> {
                                 displayName: displayName,
                                 avatarReference: _avatar,
                                 ageGroup: _ageGroup,
-                                nickname: _nicknameController.text.trim().isEmpty
+                                nickname:
+                                    _nicknameController.text.trim().isEmpty
                                     ? null
                                     : _nicknameController.text.trim(),
                               );
@@ -545,10 +571,12 @@ class _LearnerEditorSheetState extends ConsumerState<_LearnerEditorSheet> {
       nickname: nickname.isEmpty ? null : nickname,
       clearNickname: nickname.isEmpty,
     );
-    await ref.read(bedtimeFamilyModeProvider.notifier).updatePreferences(
-      learnerId: learner.learnerId,
-      preferences: preferences,
-    );
+    await ref
+        .read(bedtimeFamilyModeProvider.notifier)
+        .updatePreferences(
+          learnerId: learner.learnerId,
+          preferences: preferences,
+        );
     if (!learner.isLinkedChildProfile) {
       return;
     }
@@ -557,13 +585,15 @@ class _LearnerEditorSheetState extends ConsumerState<_LearnerEditorSheet> {
     if (child == null) {
       return;
     }
-    await ref.read(familyLearningProvider.notifier).updateChildProfile(
-      child.copyWith(
-        displayName: _nameController.text.trim(),
-        avatarReference: _avatar,
-        ageGroup: _ageGroup,
-      ),
-    );
+    await ref
+        .read(familyLearningProvider.notifier)
+        .updateChildProfile(
+          child.copyWith(
+            displayName: _nameController.text.trim(),
+            avatarReference: _avatar,
+            ageGroup: _ageGroup,
+          ),
+        );
   }
 }
 
@@ -576,14 +606,43 @@ class _Tag extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-      decoration: BoxDecoration(
-        color: const Color(0xFFFFF6E8),
-        borderRadius: BorderRadius.circular(999),
-        border: Border.all(color: const Color(0xFFE2D2BA)),
-      ),
+      decoration: _bedtimeNoorPillDecoration(context),
       child: Text(label, style: Theme.of(context).textTheme.bodySmall),
     );
   }
+}
+
+BoxDecoration _bedtimeNoorPillDecoration(
+  BuildContext context, {
+  Color? tintColor,
+}) {
+  final style = AppSurfaceTheme.resolve(
+    context,
+    variant: AppSurfaceVariant.pill,
+    tintColor: tintColor,
+  );
+  return style.decoration(radius: 999);
+}
+
+BoxDecoration _bedtimeNoorPanelDecoration(
+  BuildContext context, {
+  Color? borderColor,
+  double borderWidth = 1,
+}) {
+  final base = AppSurfaceTheme.resolve(
+    context,
+    variant: AppSurfaceVariant.panel,
+  );
+  return BoxDecoration(
+    color: base.backgroundColor,
+    gradient: base.gradient,
+    borderRadius: BorderRadius.circular(22),
+    border: Border.all(
+      color: borderColor ?? base.borderColor,
+      width: borderWidth,
+    ),
+    boxShadow: base.boxShadows,
+  );
 }
 
 String _ageGroupLabel(AppLocalizations l10n, LearningAgeGroup ageGroup) {

@@ -6,6 +6,8 @@ import '../../../../app/nav_tabs.dart';
 import '../../../../core/theme/app_surfaces.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/content/learning_quote.dart';
+import '../../../../shared/widgets/app_hero_glass_shell.dart';
+import '../../../../shared/widgets/app_layered_glass_pill_button.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/section_hub_scaffold.dart';
 import '../../analytics/application/learn_analytics_service.dart';
@@ -38,6 +40,7 @@ class _LearningSectionLandingPageState
   late final TextEditingController _searchController;
   String _query = '';
   bool _loggedSearchOpen = false;
+  bool _guidedPathsExpanded = true;
 
   @override
   void initState() {
@@ -176,16 +179,19 @@ class _LearningSectionLandingPageState
         const SizedBox(height: 10),
         _DailyLearningCard(summary: summary),
         const SizedBox(height: 18),
-        _SectionHeader(
+        _CollapsibleLearnSection(
           title: l10n.guidedLearningPathsSectionTitle,
           subtitle: visibilityPolicy.isChildProfile
               ? l10n.guidedLearningPathsSectionKidsSubtitle
               : l10n.guidedLearningPathsSectionSubtitle,
-        ),
-        const SizedBox(height: 10),
-        _GuidedLearningPathsGrid(
-          paths: visiblePaths,
-          activePathId: pathResume.activePath?.id,
+          expanded: _guidedPathsExpanded,
+          onExpansionChanged: (expanded) {
+            setState(() => _guidedPathsExpanded = expanded);
+          },
+          child: _GuidedLearningPathsGrid(
+            paths: visiblePaths,
+            activePathId: pathResume.activePath?.id,
+          ),
         ),
         const SizedBox(height: 18),
         _SectionHeader(
@@ -283,6 +289,50 @@ class _SectionHeader extends StatelessWidget {
   }
 }
 
+class _CollapsibleLearnSection extends StatelessWidget {
+  const _CollapsibleLearnSection({
+    required this.title,
+    required this.subtitle,
+    required this.expanded,
+    required this.onExpansionChanged,
+    required this.child,
+  });
+
+  final String title;
+  final String subtitle;
+  final bool expanded;
+  final ValueChanged<bool> onExpansionChanged;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return _LearnLandingNoorCard(
+      child: Theme(
+        data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+        child: ExpansionTile(
+          key: PageStorageKey<String>('learn-section-$title'),
+          initiallyExpanded: expanded,
+          onExpansionChanged: onExpansionChanged,
+          tilePadding: EdgeInsets.zero,
+          childrenPadding: EdgeInsets.zero,
+          maintainState: true,
+          title: Text(
+            title,
+            style: Theme.of(
+              context,
+            ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
+          ),
+          subtitle: Padding(
+            padding: const EdgeInsets.only(top: 4),
+            child: Text(subtitle),
+          ),
+          children: [const SizedBox(height: 10), child],
+        ),
+      ),
+    );
+  }
+}
+
 class _BrowseJourneysCard extends StatelessWidget {
   const _BrowseJourneysCard({
     required this.title,
@@ -296,7 +346,7 @@ class _BrowseJourneysCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PremiumCard(
+    return _LearnLandingNoorCard(
       child: Row(
         children: [
           const Icon(Icons.route_rounded),
@@ -354,7 +404,7 @@ class _ContinueLearningCard extends StatelessWidget {
                 queryParameters: item.queryParameters,
               );
             },
-      child: PremiumCard(
+      child: _LearnLandingNoorCard(
         child: Row(
           children: [
             const Icon(Icons.menu_book_rounded),
@@ -406,7 +456,7 @@ class _ContinueGuidedPathCard extends ConsumerWidget {
     final completedCount = progress.completedStepIds.length;
     final totalCount = localizedPath.path.steps.length;
     final progressValue = totalCount == 0 ? 0.0 : completedCount / totalCount;
-    return PremiumCard(
+    return _LearnLandingNoorCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -503,7 +553,7 @@ class _DailyLearningCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    return PremiumCard(
+    return _LearnLandingNoorCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -533,7 +583,7 @@ class _DailyLearningCard extends StatelessWidget {
             spacing: 8,
             runSpacing: 8,
             children: [
-              FilledButton.tonalIcon(
+              AppLayeredGlassPillButton(
                 onPressed: summary.dailyItem.item.routeName == null
                     ? null
                     : () => context.pushNamed(
@@ -541,13 +591,13 @@ class _DailyLearningCard extends StatelessWidget {
                         pathParameters: summary.dailyItem.item.pathParameters,
                         queryParameters: summary.dailyItem.item.queryParameters,
                       ),
-                icon: const Icon(Icons.auto_awesome_rounded),
-                label: Text(l10n.learnHubOpenDailyLearningAction),
+                leading: const Icon(Icons.auto_awesome_rounded, size: 18),
+                label: l10n.learnHubOpenDailyLearningAction,
               ),
-              FilledButton.tonalIcon(
+              AppLayeredGlassPillButton(
                 onPressed: () => context.pushNamed('journalCreate'),
-                icon: const Icon(Icons.edit_note_rounded),
-                label: Text(l10n.learnHubWriteReflectionAction),
+                leading: const Icon(Icons.edit_note_rounded, size: 18),
+                label: l10n.learnHubWriteReflectionAction,
               ),
             ],
           ),
@@ -573,8 +623,7 @@ class _KidsDiscoveryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    return PremiumCard(
-      surfaceVariant: AppSurfaceVariant.panel,
+    return AppHeroGlassShell(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -693,8 +742,7 @@ class _ExploreAllCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    return PremiumCard(
-      surfaceVariant: AppSurfaceVariant.panel,
+    return AppHeroGlassShell(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -736,7 +784,7 @@ class _ExploreAllCard extends StatelessWidget {
             spacing: 8,
             runSpacing: 8,
             children: [
-              FilledButton.tonalIcon(
+              AppLayeredGlassPillButton(
                 onPressed: () {
                   analytics.logExploreSectionOpened(
                     sectionId: 'quick_access_explore_all',
@@ -744,8 +792,8 @@ class _ExploreAllCard extends StatelessWidget {
                   );
                   onOpenExploreAll();
                 },
-                icon: const Icon(Icons.travel_explore_rounded),
-                label: Text(l10n.learnHubLandingExploreAllAction),
+                leading: const Icon(Icons.travel_explore_rounded, size: 18),
+                label: l10n.learnHubLandingExploreAllAction,
               ),
             ],
           ),
@@ -761,7 +809,7 @@ class _ExploreAllCard extends StatelessWidget {
             spacing: 8,
             runSpacing: 8,
             children: [
-              FilledButton.tonalIcon(
+              AppLayeredGlassPillButton(
                 onPressed: () {
                   analytics.logExploreSectionOpened(
                     sectionId: 'support_notes',
@@ -769,10 +817,10 @@ class _ExploreAllCard extends StatelessWidget {
                   );
                   onOpenNotes();
                 },
-                icon: const Icon(Icons.sticky_note_2_outlined),
-                label: Text(l10n.learnHubCategoryNotesTitle),
+                leading: const Icon(Icons.sticky_note_2_outlined, size: 18),
+                label: l10n.learnHubCategoryNotesTitle,
               ),
-              FilledButton.tonalIcon(
+              AppLayeredGlassPillButton(
                 onPressed: () {
                   analytics.logExploreSectionOpened(
                     sectionId: 'support_faq',
@@ -780,10 +828,10 @@ class _ExploreAllCard extends StatelessWidget {
                   );
                   onOpenFaq();
                 },
-                icon: const Icon(Icons.help_outline_rounded),
-                label: Text(l10n.learnHubCategoryFaqTitle),
+                leading: const Icon(Icons.help_outline_rounded, size: 18),
+                label: l10n.learnHubCategoryFaqTitle,
               ),
-              FilledButton.tonalIcon(
+              AppLayeredGlassPillButton(
                 onPressed: () {
                   analytics.logLegacyRouteOpened(
                     routeKey: '/learn/legacy',
@@ -791,8 +839,8 @@ class _ExploreAllCard extends StatelessWidget {
                   );
                   onOpenLegacy();
                 },
-                icon: const Icon(Icons.library_books_rounded),
-                label: Text(l10n.learnHubLandingLibraryAction),
+                leading: const Icon(Icons.library_books_rounded, size: 18),
+                label: l10n.learnHubLandingLibraryAction,
               ),
             ],
           ),
@@ -825,6 +873,17 @@ class _ExploreAllCard extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class _LearnLandingNoorCard extends StatelessWidget {
+  const _LearnLandingNoorCard({required this.child});
+
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return AppHeroGlassShell(child: child);
   }
 }
 
@@ -882,6 +941,7 @@ class _GuidedLearningPathCard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
     final analytics = ref.read(learnAnalyticsServiceProvider);
+    final contentColors = AppSurfaceTheme.contentColors(context);
     final progress = ref.watch(
       guidedLearningPathProgressProvider(localizedPath.path.id),
     );
@@ -904,6 +964,21 @@ class _GuidedLearningPathCard extends ConsumerWidget {
       'kids' => const Color(0xFF7A61D1),
       _ => const Color(0xFF8B6B44),
     };
+    final surfaceStyle = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.island,
+      tintColor: accent,
+    );
+    final iconStyle = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.panel,
+      tintColor: accent,
+    );
+    final statusStyle = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.pill,
+      tintColor: accent,
+    );
     return AnimatedScale(
       scale: isActive ? 1.01 : 1,
       duration: const Duration(milliseconds: 220),
@@ -930,26 +1005,11 @@ class _GuidedLearningPathCard extends ConsumerWidget {
               pathParameters: <String, String>{'pathId': localizedPath.path.id},
             );
           },
-          child: AnimatedContainer(
-            duration: const Duration(milliseconds: 220),
-            curve: Curves.easeOutCubic,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              color: accent.withValues(alpha: isActive ? 0.11 : 0.08),
-              border: Border.all(
-                color: accent.withValues(alpha: isActive ? 0.42 : 0.18),
-              ),
-              boxShadow: isActive
-                  ? <BoxShadow>[
-                      BoxShadow(
-                        color: accent.withValues(alpha: 0.10),
-                        blurRadius: 18,
-                        offset: const Offset(0, 8),
-                      ),
-                    ]
-                  : const <BoxShadow>[],
-            ),
+          child: PremiumCard(
             padding: const EdgeInsets.all(16),
+            surfaceVariant: AppSurfaceVariant.island,
+            surfaceTintColor: accent,
+            includeShadow: true,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -958,9 +1018,9 @@ class _GuidedLearningPathCard extends ConsumerWidget {
                     Container(
                       width: 42,
                       height: 42,
-                      decoration: BoxDecoration(
-                        color: accent.withValues(alpha: 0.14),
-                        borderRadius: BorderRadius.circular(14),
+                      decoration: iconStyle.decoration(
+                        radius: 14,
+                        includeShadow: false,
                       ),
                       child: Icon(
                         IconData(
@@ -976,9 +1036,9 @@ class _GuidedLearningPathCard extends ConsumerWidget {
                         horizontal: 10,
                         vertical: 6,
                       ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(999),
-                        color: accent.withValues(alpha: 0.12),
+                      decoration: statusStyle.decoration(
+                        radius: 999,
+                        includeShadow: false,
                       ),
                       child: Text(
                         statusLabel,
@@ -993,15 +1053,19 @@ class _GuidedLearningPathCard extends ConsumerWidget {
                 const SizedBox(height: 14),
                 Text(
                   localizedPath.title,
-                  style: Theme.of(
-                    context,
-                  ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                    fontWeight: FontWeight.w700,
+                    color: contentColors.foreground,
+                  ),
                 ),
                 const SizedBox(height: 6),
                 Text(
                   localizedPath.subtitle,
                   maxLines: 3,
                   overflow: TextOverflow.ellipsis,
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    color: contentColors.subtleForeground,
+                  ),
                 ),
                 const SizedBox(height: 12),
                 ClipRRect(
@@ -1009,7 +1073,7 @@ class _GuidedLearningPathCard extends ConsumerWidget {
                   child: LinearProgressIndicator(
                     value: progressValue.clamp(0, 1),
                     minHeight: 7,
-                    backgroundColor: Colors.white.withValues(alpha: 0.35),
+                    backgroundColor: surfaceStyle.iconBackgroundColor,
                     valueColor: AlwaysStoppedAnimation<Color>(accent),
                   ),
                 ),

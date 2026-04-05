@@ -4,6 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 import '../../../app/nav_tabs.dart';
+import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_surfaces.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/widgets/app_page_scaffold.dart';
 import '../../../shared/widgets/premium_card.dart';
@@ -961,13 +963,14 @@ class _ReportCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final style = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.panel,
+    );
     return Container(
       constraints: const BoxConstraints(minWidth: 220, maxWidth: 320),
       padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: const Color(0xFFF5EEE3),
-        borderRadius: BorderRadius.circular(14),
-      ),
+      decoration: style.decoration(radius: 14, includeShadow: false),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -988,13 +991,14 @@ class _MiniMetric extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final style = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.panel,
+    );
     return Container(
       constraints: const BoxConstraints(minWidth: 92, maxWidth: 120),
       padding: const EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        color: const Color(0xFFF5EEE3),
-        borderRadius: BorderRadius.circular(12),
-      ),
+      decoration: style.decoration(radius: 12, includeShadow: false),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -1023,13 +1027,15 @@ class _HighlightMetricCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final style = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.panel,
+      tintColor: AppColors.accentGoldSoft,
+    );
     return Container(
       constraints: const BoxConstraints(minWidth: 170, maxWidth: 240),
       padding: const EdgeInsets.all(14),
-      decoration: BoxDecoration(
-        color: const Color(0xFFF5EEE3),
-        borderRadius: BorderRadius.circular(16),
-      ),
+      decoration: style.decoration(radius: 16, includeShadow: false),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -1068,13 +1074,14 @@ class _OverviewMetric extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final style = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.panel,
+    );
     return Container(
       constraints: const BoxConstraints(minWidth: 140, maxWidth: 220),
       padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: const Color(0xFFF5EEE3),
-        borderRadius: BorderRadius.circular(14),
-      ),
+      decoration: style.decoration(radius: 14, includeShadow: false),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -1108,15 +1115,16 @@ class _DashboardLink extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final style = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.panel,
+    );
     return InkWell(
       borderRadius: BorderRadius.circular(14),
       onTap: onTap,
       child: Ink(
         padding: const EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          color: const Color(0xFFF5EEE3),
-          borderRadius: BorderRadius.circular(14),
-        ),
+        decoration: style.decoration(radius: 14, includeShadow: false),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

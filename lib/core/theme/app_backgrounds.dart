@@ -36,33 +36,45 @@ class AppBackgroundTheme {
           disableBackground: false,
           glassSurfaceAlpha: 0.88,
         );
+    final glassDisabled =
+        effectiveAppearance.resolvesGlassDisabled || disableGlassTransparency;
 
     switch (effectiveAppearance.mode) {
       case AppThemeMode.noorGlass:
+      case AppThemeMode.noorKids:
         return _noorSpec(
           appearance: effectiveAppearance,
           atmosphere: atmosphere,
-          disableGlassTransparency: disableGlassTransparency,
+          disableGlassTransparency: glassDisabled,
+        );
+      case AppThemeMode.noorGlassDark:
+        return _noorDarkSpec(
+          appearance: effectiveAppearance,
+          atmosphere: atmosphere,
+          disableGlassTransparency: glassDisabled,
         );
       case AppThemeMode.midnightManuscript:
+      case AppThemeMode.noorMidnightManuscript:
         return _midnightSpec(
           appearance: effectiveAppearance,
           atmosphere: atmosphere,
-          disableGlassTransparency: disableGlassTransparency,
+          disableGlassTransparency: glassDisabled,
         );
       case AppThemeMode.dark:
+      case AppThemeMode.noGlassDark:
         return _darkSpec(
           appearance: effectiveAppearance,
           atmosphere: atmosphere,
-          disableGlassTransparency: disableGlassTransparency,
+          disableGlassTransparency: glassDisabled,
         );
       case AppThemeMode.defaultMode:
       case AppThemeMode.calmBeautiful:
       case AppThemeMode.easyRead:
+      case AppThemeMode.noGlass:
         return _lightSpec(
           appearance: effectiveAppearance,
           atmosphere: atmosphere,
-          disableGlassTransparency: disableGlassTransparency,
+          disableGlassTransparency: glassDisabled,
         );
     }
   }
@@ -126,6 +138,55 @@ class AppBackgroundTheme {
             appearance.background,
           ),
           appearance.backgroundAlt,
+        ],
+      ),
+    );
+  }
+
+  static AppBackgroundSpec _noorDarkSpec({
+    required AppAppearanceTheme appearance,
+    required AppBackgroundAtmosphere atmosphere,
+    required bool disableGlassTransparency,
+  }) {
+    final quranLift = atmosphere == AppBackgroundAtmosphere.quran;
+    final glowAlpha = disableGlassTransparency
+        ? (quranLift ? 0.08 : 0.06)
+        : (quranLift ? 0.14 : 0.10);
+
+    return AppBackgroundSpec(
+      baseGradient: LinearGradient(
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+        colors: [
+          Color.lerp(appearance.backgroundAlt, appearance.accent, 0.08)!,
+          appearance.background,
+          const Color(0xFF0D1015),
+        ],
+        stops: const [0, 0.42, 1],
+      ),
+      wallpaperTintGradient: LinearGradient(
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+        colors: [
+          appearance.background.withValues(alpha: quranLift ? 0.60 : 0.52),
+          Colors.black.withValues(alpha: quranLift ? 0.70 : 0.62),
+        ],
+      ),
+      foregroundGlowGradient: RadialGradient(
+        center: quranLift ? const Alignment(0, -0.92) : const Alignment(0, -1),
+        radius: quranLift ? 1.04 : 0.94,
+        colors: [
+          appearance.accent.withValues(alpha: glowAlpha),
+          Colors.transparent,
+        ],
+        stops: const [0, 1],
+      ),
+      previewGradient: LinearGradient(
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+        colors: [
+          Color.lerp(appearance.backgroundAlt, appearance.accent, 0.10)!,
+          appearance.background,
         ],
       ),
     );

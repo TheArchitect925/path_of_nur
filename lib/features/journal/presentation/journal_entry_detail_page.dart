@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../core/theme/app_surfaces.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/widgets/app_page_scaffold.dart';
 import '../../../shared/widgets/premium_card.dart';
@@ -349,12 +350,13 @@ class _JournalEntryDetailPageState
   }
 
   Widget _tinyChip(String label) {
+    final style = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.pill,
+    );
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-      decoration: BoxDecoration(
-        color: const Color(0xFFF1ECE4),
-        borderRadius: BorderRadius.circular(999),
-      ),
+      decoration: style.decoration(radius: 999, includeShadow: false),
       child: Text(
         label,
         style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w600),

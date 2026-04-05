@@ -6,7 +6,8 @@ import 'package:go_router/go_router.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../core/theme/app_surfaces.dart';
 import '../../../../shared/widgets/home_feature_card_header.dart';
-import '../../../../shared/widgets/premium_card.dart';
+import '../../../../shared/widgets/noor_glass_card.dart';
+import '../../../../shared/widgets/noor_liquid_glass.dart';
 import '../../application/historical_calendar_providers.dart';
 import '../../domain/historical_event_models.dart';
 import '../../presentation/history_ui_helpers.dart';
@@ -26,9 +27,9 @@ class _OnThisDayHomeCardState extends ConsumerState<OnThisDayHomeCard> {
     final l10n = AppLocalizations.of(context);
     final todayAsync = ref.watch(historicalTodayProvider);
 
-    return PremiumCard(
+    return NoorGlassCard(
       padding: const EdgeInsets.all(18),
-      surfaceTreatment: AppSurfaceTreatment.homepageWarmGlass,
+      surfaceTreatment: AppSurfaceTreatment.standard,
       includeShadow: true,
       child: todayAsync.when(
         data: (todayState) {
@@ -154,21 +155,19 @@ class _HistoricalEventPreview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final panelStyle = AppSurfaceTheme.resolve(
-      context,
-      variant: AppSurfaceVariant.panel,
-      treatment: AppSurfaceTreatment.homepageWarmGlass,
-    );
     return InkWell(
       borderRadius: BorderRadius.circular(20),
       onTap: () => context.pushNamed(
         'learnHistoricalEventDetail',
         pathParameters: {'slug': event.slug},
       ),
-      child: Container(
-        width: double.infinity,
+      child: NoorGlassCard(
         padding: const EdgeInsets.all(15),
-        decoration: panelStyle.decoration(radius: 20),
+        surfaceVariant: AppSurfaceVariant.panel,
+        surfaceTreatment: AppSurfaceTreatment.standard,
+        includeShadow: false,
+        mode: NoorLiquidGlassMode.fake,
+        borderRadius: 20,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

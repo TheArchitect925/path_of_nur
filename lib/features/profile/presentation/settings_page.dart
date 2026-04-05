@@ -85,9 +85,15 @@ class SettingsPage extends ConsumerWidget {
             ? l10n.settingsCurrentLocation
             : prayerState.preferences.location);
     final visibleThemeModes = const [
-      AppThemeMode.defaultMode,
-      AppThemeMode.easyRead,
       AppThemeMode.noorGlass,
+      AppThemeMode.noorGlassDark,
+      AppThemeMode.noGlass,
+      AppThemeMode.noGlassDark,
+      AppThemeMode.noorMidnightManuscript,
+      AppThemeMode.noorKids,
+      AppThemeMode.defaultMode,
+      AppThemeMode.calmBeautiful,
+      AppThemeMode.easyRead,
       AppThemeMode.dark,
       AppThemeMode.midnightManuscript,
     ];
@@ -911,7 +917,7 @@ class SettingsPage extends ConsumerWidget {
               l10n.settingsAppearanceNoContentChangeNote,
               style: Theme.of(context).textTheme.bodySmall,
             ),
-            if (profileSettings.appThemeMode == AppThemeMode.defaultMode &&
+            if (profileSettings.appThemeMode == AppThemeMode.noorGlass &&
                 !profileSettings.disableGlassTransparency &&
                 !profileSettings.disableColoredGlass &&
                 profileSettings.glassTransparencyLevel ==
@@ -2991,47 +2997,79 @@ String _themeModeDescription(AppThemeMode mode, AppLocalizations l10n) {
     case AppThemeMode.defaultMode:
       return l10n.settingsThemeModeDefaultDescription;
     case AppThemeMode.calmBeautiful:
-      return l10n.settingsThemeModeDefaultDescription;
+      return l10n.settingsThemeModeCalmBeautifulDescription;
     case AppThemeMode.easyRead:
       return l10n.settingsThemeModeEasyReadDescription;
     case AppThemeMode.noorGlass:
       return l10n.settingsThemeModeNoorGlassDescription;
+    case AppThemeMode.noorGlassDark:
+      return l10n.settingsThemeModeNoorGlassDarkDescription;
+    case AppThemeMode.noGlass:
+      return l10n.settingsThemeModeNoGlassDescription;
+    case AppThemeMode.noGlassDark:
+      return l10n.settingsThemeModeNoGlassDarkDescription;
     case AppThemeMode.dark:
       return l10n.settingsThemeModeDarkDescription;
     case AppThemeMode.midnightManuscript:
       return l10n.settingsThemeModeMidnightManuscriptDescription;
+    case AppThemeMode.noorMidnightManuscript:
+      return l10n.settingsThemeModeNoorMidnightManuscriptDescription;
+    case AppThemeMode.noorKids:
+      return l10n.settingsThemeModeNoorKidsDescription;
   }
 }
 
 String _themeModeLabel(AppThemeMode mode, AppLocalizations l10n) {
   switch (mode) {
     case AppThemeMode.defaultMode:
-    case AppThemeMode.calmBeautiful:
       return l10n.settingsThemeChoiceDefault;
+    case AppThemeMode.calmBeautiful:
+      return l10n.settingsThemeChoiceCalmBeautiful;
     case AppThemeMode.easyRead:
       return l10n.settingsThemeChoiceEasyRead;
     case AppThemeMode.noorGlass:
       return l10n.settingsThemeChoiceNoorGlass;
+    case AppThemeMode.noorGlassDark:
+      return l10n.settingsThemeChoiceNoorGlassDark;
+    case AppThemeMode.noGlass:
+      return l10n.settingsThemeChoiceNoGlass;
+    case AppThemeMode.noGlassDark:
+      return l10n.settingsThemeChoiceNoGlassDark;
     case AppThemeMode.dark:
       return l10n.profileThemeDark;
     case AppThemeMode.midnightManuscript:
       return l10n.settingsThemeChoiceMidnightManuscript;
+    case AppThemeMode.noorMidnightManuscript:
+      return l10n.settingsThemeChoiceNoorMidnightManuscript;
+    case AppThemeMode.noorKids:
+      return l10n.settingsThemeChoiceNoorKids;
   }
 }
 
 String _themeModeBestForLabel(AppThemeMode mode, AppLocalizations l10n) {
   switch (mode) {
     case AppThemeMode.defaultMode:
-    case AppThemeMode.calmBeautiful:
       return l10n.settingsThemeModeDefaultBestFor;
+    case AppThemeMode.calmBeautiful:
+      return l10n.settingsThemeModeCalmBeautifulBestFor;
     case AppThemeMode.easyRead:
       return l10n.settingsThemeModeEasyReadBestFor;
     case AppThemeMode.noorGlass:
       return l10n.settingsThemeModeNoorGlassBestFor;
+    case AppThemeMode.noorGlassDark:
+      return l10n.settingsThemeModeNoorGlassDarkBestFor;
+    case AppThemeMode.noGlass:
+      return l10n.settingsThemeModeNoGlassBestFor;
+    case AppThemeMode.noGlassDark:
+      return l10n.settingsThemeModeNoGlassDarkBestFor;
     case AppThemeMode.dark:
       return l10n.settingsThemeModeDarkBestFor;
     case AppThemeMode.midnightManuscript:
       return l10n.settingsThemeModeMidnightManuscriptBestFor;
+    case AppThemeMode.noorMidnightManuscript:
+      return l10n.settingsThemeModeNoorMidnightManuscriptBestFor;
+    case AppThemeMode.noorKids:
+      return l10n.settingsThemeModeNoorKidsBestFor;
   }
 }
 
@@ -3046,20 +3084,34 @@ _ThemePreviewData _themePreviewData(AppThemeMode mode) {
   final background = AppBackgroundTheme.resolve(
     appearance: appearance,
     disableGlassTransparency: false,
-    atmosphere: mode == AppThemeMode.midnightManuscript
+    atmosphere: appearance.isMidnightFamily
         ? AppBackgroundAtmosphere.quran
         : AppBackgroundAtmosphere.standard,
   );
-  final isNoorGlass = mode == AppThemeMode.noorGlass;
-  final isMidnight = mode == AppThemeMode.midnightManuscript;
+  final isNoorGlass = appearance.isNoorGlassFamily;
+  final isMidnight = appearance.isMidnightFamily;
+  final isNoGlass =
+      appearance.isNoGlassFamily || appearance.isNoorGlassPrimaryFamily;
   return _ThemePreviewData(
     backgroundGradient: background.previewGradient ?? background.baseGradient,
     cardGradient: LinearGradient(
       begin: Alignment.topLeft,
       end: Alignment.bottomRight,
       colors: [
-        appearance.surfaceSoft.withValues(alpha: isNoorGlass ? 0.58 : 0.86),
-        appearance.surface.withValues(alpha: isNoorGlass ? 0.36 : 0.74),
+        appearance.surfaceSoft.withValues(
+          alpha: isNoGlass
+              ? 0.94
+              : isNoorGlass
+              ? 0.58
+              : 0.86,
+        ),
+        appearance.surface.withValues(
+          alpha: isNoGlass
+              ? 0.96
+              : isNoorGlass
+              ? 0.36
+              : 0.74,
+        ),
       ],
     ),
     cardBorder: appearance.border.withValues(
@@ -3072,7 +3124,7 @@ _ThemePreviewData _themePreviewData(AppThemeMode mode) {
     primaryText: appearance.quranArabicEmphasis,
     secondaryText: appearance.onSurfaceSubtle,
     accent: appearance.accent,
-    accentSoft: appearance.mode == AppThemeMode.midnightManuscript
+    accentSoft: appearance.isMidnightFamily
         ? appearance.success
         : isNoorGlass
         ? Colors.white.withValues(alpha: 0.92)

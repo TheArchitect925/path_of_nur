@@ -63,6 +63,9 @@ Current major sections present in the UI:
 - app theme mode
   - now includes `Midnight Manuscript` as a persisted first-class option
   - now also includes `Noor Glass` as a persisted first-class option for a lighter milky frosted-glass appearance
+  - now also includes `Noor Glass Dark`, `No Glass`, `No Glass Dark`, `Noor Midnight Manuscript`, and `Noor Kids` as persisted first-class options in the same picker
+  - the practical appearance default/reset path now points to `Noor Glass`
+  - the older `Classic Default`, `Calm Beautiful`, `Easy Read`, `Dark`, and `Midnight Manuscript` options remain selectable for continuity
   - now uses compact preview tiles with representative mini background/card/accent samples for visible themes
   - now also shows a short appearance-helper line plus concise “best for” helper copy on visible theme tiles so Midnight Manuscript and the other visible themes read more intentionally in settings without changing the picker architecture
 - disable glass transparency

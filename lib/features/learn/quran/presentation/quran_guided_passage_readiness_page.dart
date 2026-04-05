@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:just_audio/just_audio.dart';
 
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_surfaces.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
@@ -172,17 +173,17 @@ class _QuranGuidedPassageReadinessPageState
               spacing: 8,
               runSpacing: 8,
               children: [
-                ChoiceChip(
-                  label: Text(l10n.arabicLearningPlaybackModeNormal),
+                _GuidedReadinessChoicePill(
+                  label: l10n.arabicLearningPlaybackModeNormal,
                   selected: !selectedSpeedSlow,
-                  onSelected: (_) => ref
+                  onTap: () => ref
                       .read(quranAudioSettingsProvider.notifier)
                       .setPlaybackSpeed(1.0),
                 ),
-                ChoiceChip(
-                  label: Text(l10n.arabicLearningPlaybackModeSlow),
+                _GuidedReadinessChoicePill(
+                  label: l10n.arabicLearningPlaybackModeSlow,
                   selected: selectedSpeedSlow,
-                  onSelected: (_) => ref
+                  onTap: () => ref
                       .read(quranAudioSettingsProvider.notifier)
                       .setPlaybackSpeed(0.8),
                 ),
@@ -221,10 +222,10 @@ class _QuranGuidedPassageReadinessPageState
                 children: passages
                     .where((passage) => passage.stage == stage)
                     .map(
-                      (passage) => ChoiceChip(
-                        label: Text(_passageTitle(l10n, passage.id)),
+                      (passage) => _GuidedReadinessChoicePill(
+                        label: _passageTitle(l10n, passage.id),
                         selected: activePassage?.id == passage.id,
-                        onSelected: (_) {
+                        onTap: () {
                           setState(() {
                             _selectedPassageId = passage.id;
                           });
@@ -607,19 +608,55 @@ class _GuidedPassageSummaryChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final style = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.pill,
+    );
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-      decoration: BoxDecoration(
-        color: const Color(0xFFF7F1E8),
-        borderRadius: BorderRadius.circular(999),
-        border: Border.all(color: const Color(0xFFE2D9CB)),
-      ),
+      decoration: style.decoration(radius: 999, includeShadow: false),
       child: Text(
         label,
         textDirection: rtl ? TextDirection.rtl : null,
         style: Theme.of(context).textTheme.bodySmall?.copyWith(
           fontWeight: FontWeight.w700,
           color: const Color(0xFF5A4A39),
+        ),
+      ),
+    );
+  }
+}
+
+class _GuidedReadinessChoicePill extends StatelessWidget {
+  const _GuidedReadinessChoicePill({
+    required this.label,
+    required this.selected,
+    required this.onTap,
+  });
+
+  final String label;
+  final bool selected;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final style = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.pill,
+      tintColor: selected ? AppColors.accentGoldSoft : null,
+    );
+    return InkWell(
+      borderRadius: BorderRadius.circular(999),
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        decoration: style.decoration(radius: 999, includeShadow: false),
+        child: Text(
+          label,
+          style: Theme.of(context).textTheme.bodySmall?.copyWith(
+            fontWeight: FontWeight.w700,
+            color: selected ? const Color(0xFF8A5A1F) : const Color(0xFF5A4A39),
+          ),
         ),
       ),
     );

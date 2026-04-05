@@ -1,6 +1,6 @@
 # Platform Inventory
 
-Last updated: 2026-03-25
+Last updated: 2026-04-03
 
 - 2026-03-25: Phase 27 added shared tvOS launch-readiness contracts plus native empty-state hardening for Learn, Saved, Profiles, Arabic, and Kids so optional shelves fail calmly instead of collapsing into blank rails. Unsigned native `Release` verification now also passes for this phase with `CLANG_MODULE_CACHE_PATH=/tmp/path_of_nur_phase27_modulecache_escalated_retry`.
 - 2026-03-25: tvOS launch-readiness contracts now include explicit signed-archive and TestFlight-upload evidence records, and the signed-distribution gate is derived from those records instead of only prose notes. Current coded posture remains blocked for public launch because both evidence slots are still unrecorded.
@@ -24,6 +24,20 @@ Last updated: 2026-03-25
   - local notifications permission flow works
   - backup/export/import works under sandboxed signed build
 - unsigned local debug is supported, but not sufficient for release-readiness claims
+
+## Windows
+
+- Flutter Windows runner exists under `windows/`
+- current posture is exploratory only, not Microsoft Store ready
+- repo currently lacks:
+  - MSIX / Store packaging configuration
+  - Windows submission metadata and release documentation
+  - validated Windows QA evidence for notifications, backup flows, keyboard/mouse UX, and desktop-only route behavior
+- 2026-04-03 audit found:
+  - no Microsoft Store packaging path in source control
+  - analyzer baseline currently red from existing test failures outside the Windows runner
+  - desktop device-kind mapping bug in `lib/features/accounts_sync/application/accounts_sync_controller.dart` currently misclassifies macOS as Apple TV and Windows/Linux/Fuchsia as Android tablet
+- do not advertise Windows as a supported Store target until packaging, QA, and release docs are completed
 
 ## Apple Watch
 

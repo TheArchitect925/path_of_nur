@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/theme/app_surfaces.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
@@ -72,32 +73,25 @@ class QuranDailyCompanionPage extends ConsumerWidget {
                 runSpacing: 8,
                 children: [
                   if (reflection.currentStreak > 0)
-                    Chip(
-                      visualDensity: VisualDensity.compact,
-                      label: Text(
-                        l10n.quranDailyReflectionStreakValue(
-                          reflection.currentStreak,
-                        ),
+                    _CompanionMetaChip(
+                      label: l10n.quranDailyReflectionStreakValue(
+                        reflection.currentStreak,
                       ),
                     ),
                   if (summary.isMemorized)
-                    Chip(
-                      visualDensity: VisualDensity.compact,
-                      label: Text(l10n.quranDailyCompanionMemorizedLabel),
+                    _CompanionMetaChip(
+                      label: l10n.quranDailyCompanionMemorizedLabel,
                     ),
                   if (summary.themes.isNotEmpty)
-                    Chip(
-                      visualDensity: VisualDensity.compact,
-                      label: Text(
-                        localizedQuranTopicTitle(l10n, summary.themes.first.id),
+                    _CompanionMetaChip(
+                      label: localizedQuranTopicTitle(
+                        l10n,
+                        summary.themes.first.id,
                       ),
                     ),
                   if (summary.activeIntent != null)
-                    Chip(
-                      visualDensity: VisualDensity.compact,
-                      label: Text(
-                        _quranUserIntentLabel(l10n, summary.activeIntent!),
-                      ),
+                    _CompanionMetaChip(
+                      label: _quranUserIntentLabel(l10n, summary.activeIntent!),
                     ),
                 ],
               ),
@@ -166,9 +160,9 @@ class QuranDailyCompanionPage extends ConsumerWidget {
                 const SizedBox(height: 8),
                 Text(
                   localizedQuranTopicTitle(l10n, summary.themes.first.id),
-                  style: Theme.of(
-                    context,
-                  ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
                 const SizedBox(height: 6),
                 Text(summary.themes.first.description),
@@ -316,7 +310,9 @@ List<Widget> _buildContinueActions(
         actions.add(
           FilledButton.tonalIcon(
             onPressed: () {
-              ref.read(quranMemorizationProgressProvider.notifier).toggleVerse(
+              ref
+                  .read(quranMemorizationProgressProvider.notifier)
+                  .toggleVerse(
                     surahNumber: entry.ref.surah,
                     ayahNumber: entry.ref.ayah,
                   );
@@ -366,13 +362,15 @@ List<Widget> _buildContinueActions(
       break;
     case QuranUserIntent.understand:
       addOpenReader(
-        mode: summary.journeyContext?.suggestedReaderMode ??
+        mode:
+            summary.journeyContext?.suggestedReaderMode ??
             QuranReaderStudyMode.study,
       );
       break;
     case null:
       addOpenReader(
-        mode: summary.journeyContext?.suggestedReaderMode ??
+        mode:
+            summary.journeyContext?.suggestedReaderMode ??
             QuranReaderStudyMode.reading,
       );
       break;
@@ -405,7 +403,9 @@ List<Widget> _buildContinueActions(
       actions.add(
         OutlinedButton.icon(
           onPressed: () {
-            ref.read(quranMemorizationProgressProvider.notifier).toggleVerse(
+            ref
+                .read(quranMemorizationProgressProvider.notifier)
+                .toggleVerse(
                   surahNumber: entry.ref.surah,
                   ayahNumber: entry.ref.ayah,
                 );
@@ -444,7 +444,9 @@ List<Widget> _buildContinueActions(
           initialNote: savedEntry?.note,
         );
         if (note == null) return;
-        ref.read(quranReflectionsProvider.notifier).upsertNote(
+        ref
+            .read(quranReflectionsProvider.notifier)
+            .upsertNote(
               ref: entry.ref,
               sourceType: QuranReflectionSourceType.dailyAyah,
               title: entry.title,
@@ -453,7 +455,9 @@ List<Widget> _buildContinueActions(
               note: note,
             );
         if (note.trim().isNotEmpty) {
-          ref.read(quranLearningProgressStateProvider.notifier).rewardFirstReflectionNote(
+          ref
+              .read(quranLearningProgressStateProvider.notifier)
+              .rewardFirstReflectionNote(
                 ref: entry.ref,
                 sourceEnrichmentId: entry.id,
                 sourceSurface: 'daily_reflection',
@@ -493,7 +497,9 @@ class _DailyJourneyConnectionCard extends ConsumerWidget {
       return const SizedBox.shrink();
     }
 
-    final journey = LearningJourneyRegistry.journeyById(journeyContext.journeyId);
+    final journey = LearningJourneyRegistry.journeyById(
+      journeyContext.journeyId,
+    );
     final stage = LearningJourneyRegistry.stageById(journeyContext.stageId);
     if (journey == null || stage == null) {
       return const SizedBox.shrink();
@@ -518,19 +524,14 @@ class _DailyJourneyConnectionCard extends ConsumerWidget {
             spacing: 8,
             runSpacing: 8,
             children: [
-              Chip(
-                visualDensity: VisualDensity.compact,
-                label: Text(localizedJourneyTitle(context, journey)),
+              _CompanionMetaChip(
+                label: localizedJourneyTitle(context, journey),
               ),
-              Chip(
-                visualDensity: VisualDensity.compact,
-                label: Text(localizedStageTitle(context, stage)),
-              ),
+              _CompanionMetaChip(label: localizedStageTitle(context, stage)),
               if (summary.selectionSource ==
                   QuranDailyLoopSelectionSource.journeyTheme)
-                Chip(
-                  visualDensity: VisualDensity.compact,
-                  label: Text(l10n.quranDailyCompanionJourneyAlignedLabel),
+                _CompanionMetaChip(
+                  label: l10n.quranDailyCompanionJourneyAlignedLabel,
                 ),
             ],
           ),
@@ -544,10 +545,7 @@ class _DailyJourneyConnectionCard extends ConsumerWidget {
           FilledButton.tonalIcon(
             onPressed: () => context.pushNamed(
               'learnJourneyStage',
-              pathParameters: {
-                'journeyId': journey.id,
-                'stageId': stage.id,
-              },
+              pathParameters: {'journeyId': journey.id, 'stageId': stage.id},
             ),
             icon: const Icon(Icons.route_rounded),
             label: Text(l10n.quranDailyCompanionJourneyAction),
@@ -581,4 +579,23 @@ void _openSuggestedPath(
     'quranLearningPathDetail',
     pathParameters: {'pathId': path.id},
   );
+}
+
+class _CompanionMetaChip extends StatelessWidget {
+  const _CompanionMetaChip({required this.label});
+
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    final style = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.pill,
+    );
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+      decoration: style.decoration(radius: 999, includeShadow: false),
+      child: Text(label),
+    );
+  }
 }

@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_surfaces.dart';
 import '../../../l10n/app_localizations.dart';
+import '../../../shared/widgets/premium_card.dart';
 import '../../learn/presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/kids_dua_experience_provider.dart';
 import '../application/kids_dua_progress_provider.dart';
@@ -34,13 +37,8 @@ class KidsDuaCategoryPage extends ConsumerWidget {
       title: category.title,
       subtitle: category.subtitle,
       children: [
-        Container(
-          padding: const EdgeInsets.all(18),
-          decoration: BoxDecoration(
-            color: const Color(0xFFFFF6EA),
-            borderRadius: BorderRadius.circular(22),
-            border: Border.all(color: const Color(0xFFE7D7BE)),
-          ),
+        PremiumCard(
+          surfaceVariant: AppSurfaceVariant.panel,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -80,23 +78,15 @@ class KidsDuaCategoryPage extends ConsumerWidget {
                 pathParameters: {'lessonId': lesson.id},
               ),
               borderRadius: BorderRadius.circular(20),
-              child: Container(
-                padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(20),
-                  border: Border.all(color: const Color(0xFFE8DDD0)),
-                ),
+              child: PremiumCard(
+                surfaceVariant: AppSurfaceVariant.panel,
                 child: Row(
                   children: [
                     Container(
                       width: 50,
                       height: 50,
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFFFF7EB),
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      child: Icon(lesson.icon, color: const Color(0xFF8A6A45)),
+                      decoration: _kidsNoorPanelDecoration(context),
+                      child: Icon(lesson.icon, color: AppColors.accentGold),
                     ),
                     const SizedBox(width: 12),
                     Expanded(
@@ -110,7 +100,9 @@ class KidsDuaCategoryPage extends ConsumerWidget {
                           const SizedBox(height: 4),
                           Text(
                             lesson.whenToSay,
-                            style: const TextStyle(color: Color(0xFF6D6255)),
+                            style: const TextStyle(
+                              color: AppColors.onSurfaceSubtle,
+                            ),
                           ),
                           const SizedBox(height: 8),
                           Row(
@@ -125,7 +117,7 @@ class KidsDuaCategoryPage extends ConsumerWidget {
                     ),
                     const Icon(
                       Icons.chevron_right_rounded,
-                      color: Color(0xFF8A6A45),
+                      color: AppColors.accentGold,
                     ),
                   ],
                 ),
@@ -147,14 +139,11 @@ class _LevelChip extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-      decoration: BoxDecoration(
-        color: const Color(0xFFFFF6EA),
-        borderRadius: BorderRadius.circular(999),
-      ),
+      decoration: _kidsNoorPillDecoration(context),
       child: Text(
         'L$level',
         style: const TextStyle(
-          color: Color(0xFF8A6A45),
+          color: AppColors.accentGold,
           fontWeight: FontWeight.w700,
         ),
       ),
@@ -193,14 +182,31 @@ class _StatusChip extends StatelessWidget {
     }
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-      decoration: BoxDecoration(
-        color: background,
-        borderRadius: BorderRadius.circular(999),
-      ),
+      decoration: _kidsNoorPillDecoration(context, tintColor: background),
       child: Text(
         label,
         style: TextStyle(color: foreground, fontWeight: FontWeight.w700),
       ),
     );
   }
+}
+
+BoxDecoration _kidsNoorPillDecoration(
+  BuildContext context, {
+  Color? tintColor,
+}) {
+  final style = AppSurfaceTheme.resolve(
+    context,
+    variant: AppSurfaceVariant.pill,
+    tintColor: tintColor,
+  );
+  return style.decoration(radius: 999);
+}
+
+BoxDecoration _kidsNoorPanelDecoration(BuildContext context) {
+  final style = AppSurfaceTheme.resolve(
+    context,
+    variant: AppSurfaceVariant.panel,
+  );
+  return style.decoration(radius: 16);
 }

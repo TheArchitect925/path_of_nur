@@ -1,17 +1,11 @@
 # UI Surface Consistency Backlog — 2026-04-02
 
-## High
-- Do a narrow chart/analytics micro-surface pass in prayer and worship visualizations.
-  - Reason: the main card families are unified now, but a few inner chart cells and metric micro-blocks still use local accent decorations.
+## Enhancement options
 
-## Medium
-- Tighten `SettingsPage` preview/configuration sub-elements onto shared pill/panel helpers where beneficial.
-  - Reason: primary cards are already shared, but some inner preview pieces still own local decoration.
-- Add widget tests for shared surface expectations on `PremiumCard`, `SectionHubActionCard`, and `LearnCategoryCard`.
-  - Reason: protects the two-family system from quiet regressions.
-
-## Low
-- Consider deprecating `AppSurfaceTreatment.homepageWarmGlass` now that the temporary comparison runtime code is removed.
-  - Reason: production runtime no longer needs a third general-purpose family.
-- Add a small internal audit helper that flags production usage of preview-only treatments.
-  - Reason: would make future drift easier to catch quickly.
+1. Extract a shared warm feature-chip helper for non-sacred chips used in Home, Salah, Learn, and settings so page code stops rebuilding pill decoration by hand.
+2. Add a shared sacred panel helper for devotional headers that combine a Dense Sanctuary surface with internal spacing/divider rules.
+3. Create a tiny `surface_audit.dart` lint-style script or grep checklist for `BoxDecoration` owners in `lib/features/*/presentation` so future passes can catch drift faster.
+4. Consolidate Home hero sub-panels into shared wrappers and shared content colors to reduce hardcoded text color drift.
+5. Consolidate Salah tracker/support chips into shared Frosted Glass pills with accent-only overrides.
+6. Review `app_scaffold.dart` and bottom navigation decoration so shell chrome follows the same centralized material recipes as content cards.
+7. If the Home comparison surfaces are no longer useful, archive and remove the preview-only glass comparison code in a dedicated cleanup pass.

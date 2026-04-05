@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_surfaces.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
@@ -79,19 +80,28 @@ class HadithLearningPathPage extends ConsumerWidget {
                         horizontal: 10,
                         vertical: 6,
                       ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(999),
-                        color: item.unlocked
-                            ? AppColors.surface.withValues(alpha: 0.32)
-                            : AppColors.surface.withValues(alpha: 0.18),
-                        border: Border.all(
-                          color: item.unlocked
-                              ? AppColors.accentGoldSoft.withValues(alpha: 0.5)
-                              : AppColors.accentGoldSoft.withValues(
-                                  alpha: 0.24,
+                      decoration:
+                          AppSurfaceTheme.resolve(
+                                context,
+                                variant: AppSurfaceVariant.pill,
+                                tintColor: AppColors.accentGold,
+                              )
+                              .decoration(radius: 999, includeShadow: false)
+                              .copyWith(
+                                color: item.unlocked
+                                    ? AppColors.surface.withValues(alpha: 0.32)
+                                    : AppColors.surface.withValues(alpha: 0.18),
+                                gradient: null,
+                                border: Border.all(
+                                  color: item.unlocked
+                                      ? AppColors.accentGoldSoft.withValues(
+                                          alpha: 0.5,
+                                        )
+                                      : AppColors.accentGoldSoft.withValues(
+                                          alpha: 0.24,
+                                        ),
                                 ),
-                        ),
-                      ),
+                              ),
                       child: Text(
                         item.label,
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(

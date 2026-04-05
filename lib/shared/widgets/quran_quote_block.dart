@@ -6,6 +6,7 @@ import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_surfaces.dart';
 import '../../core/theme/app_theme.dart';
 import '../../features/learn/quran/domain/quran_content_refs.dart';
+import 'quran_sacred_block_chrome.dart';
 import 'quran_verse_content.dart';
 
 class QuranQuote {
@@ -64,6 +65,7 @@ class QuranQuoteBlock extends ConsumerWidget {
     this.compact = false,
     this.onTap,
     this.showReference = true,
+    this.margin = const EdgeInsets.only(bottom: 16),
     this.arabicTransform,
     this.transliterationTransform,
     this.translationTransform,
@@ -73,6 +75,7 @@ class QuranQuoteBlock extends ConsumerWidget {
   final bool compact;
   final VoidCallback? onTap;
   final bool showReference;
+  final EdgeInsetsGeometry margin;
   final String Function(String arabic)? arabicTransform;
   final String Function(String transliteration)? transliterationTransform;
   final String Function(String translation)? translationTransform;
@@ -88,25 +91,27 @@ class QuranQuoteBlock extends ConsumerWidget {
       tintColor: accent,
     );
 
-    final card = Container(
-      width: double.infinity,
-      margin: const EdgeInsets.only(bottom: 16),
-      padding: EdgeInsets.all(compact ? 12 : 16),
-      decoration: surfaceStyle.decoration(radius: 18, includeShadow: true),
-      child: QuranVerseContent(
-        source: QuranVerseSource(
-          ref: quote.ref,
-          referenceText: quote.locationText,
+    final card = QuranSacredBlockChrome(
+      margin: margin,
+      child: Container(
+        width: double.infinity,
+        padding: EdgeInsets.all(compact ? 12 : 16),
+        decoration: surfaceStyle.decoration(radius: 18, includeShadow: true),
+        child: QuranVerseContent(
+          source: QuranVerseSource(
+            ref: quote.ref,
+            referenceText: quote.locationText,
+          ),
+          dense: compact,
+          center: true,
+          showReference: showReference,
+          arabicBaseSize: compact ? 30 : 32,
+          transliterationBaseSize: 13.5,
+          translationBaseSize: 12.8,
+          arabicTransform: arabicTransform,
+          transliterationTransform: transliterationTransform,
+          translationTransform: translationTransform,
         ),
-        dense: compact,
-        center: true,
-        showReference: showReference,
-        arabicBaseSize: compact ? 30 : 32,
-        transliterationBaseSize: 13.5,
-        translationBaseSize: 12.8,
-        arabicTransform: arabicTransform,
-        transliterationTransform: transliterationTransform,
-        translationTransform: translationTransform,
       ),
     );
 

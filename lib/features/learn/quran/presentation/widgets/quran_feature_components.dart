@@ -279,28 +279,44 @@ class QuranFeatureFilterChip extends StatelessWidget {
   Widget build(BuildContext context) {
     final appearance = Theme.of(context).extension<AppAppearanceTheme>();
     final isMidnight = appearance?.mode == AppThemeMode.midnightManuscript;
-    return ChoiceChip(
-      selected: selected,
-      onSelected: (_) => onTap(),
-      label: Text(label),
-      selectedColor: isMidnight
-          ? palette.goldAccent.withValues(alpha: 0.22)
-          : palette.goldAccent.withValues(alpha: 0.20),
-      backgroundColor: isMidnight
-          ? palette.cardBottom.withValues(alpha: 0.90)
-          : palette.cardBottom.withValues(alpha: 0.78),
-      side: BorderSide(
-        color: selected
-            ? palette.goldAccent
-            : isMidnight
-            ? palette.subtlePanelBorder
-            : palette.cardBorder,
-      ),
-      labelStyle: Theme.of(context).textTheme.bodySmall?.copyWith(
-        color: selected
-            ? (isMidnight ? palette.primaryText : palette.goldAccent)
-            : (isMidnight ? palette.secondaryText : palette.secondaryText),
-        fontWeight: FontWeight.w700,
+    final chipStyle = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.pill,
+      tintColor: palette.goldAccent,
+    );
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(999),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        decoration: chipStyle
+            .decoration(radius: 999, includeShadow: false)
+            .copyWith(
+              color: selected
+                  ? (isMidnight
+                        ? palette.goldAccent.withValues(alpha: 0.22)
+                        : palette.goldAccent.withValues(alpha: 0.20))
+                  : (isMidnight
+                        ? palette.cardBottom.withValues(alpha: 0.90)
+                        : palette.cardBottom.withValues(alpha: 0.78)),
+              gradient: selected ? null : chipStyle.gradient,
+              border: Border.all(
+                color: selected
+                    ? palette.goldAccent
+                    : isMidnight
+                    ? palette.subtlePanelBorder
+                    : palette.cardBorder,
+              ),
+            ),
+        child: Text(
+          label,
+          style: Theme.of(context).textTheme.bodySmall?.copyWith(
+            color: selected
+                ? (isMidnight ? palette.primaryText : palette.goldAccent)
+                : palette.secondaryText,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
       ),
     );
   }

@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../l10n/app_localizations.dart';
+import '../../../../../core/theme/app_surfaces.dart';
+import '../../../../../shared/widgets/app_layered_glass_pill_button.dart';
 import '../../../../../shared/widgets/premium_card.dart';
 import '../../../../../shared/widgets/quran_navigation.dart';
 import '../../application/quran_ayah_action_provider.dart';
@@ -77,6 +79,8 @@ class _QuranPersonalizedRecommendationCardState
           );
 
     return PremiumCard(
+      surfaceTreatment: AppSurfaceTreatment.denseSanctuary,
+      surfaceVariant: AppSurfaceVariant.panel,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -177,21 +181,21 @@ class _QuranPersonalizedRecommendationCardState
             spacing: 8,
             runSpacing: 8,
             children: [
-              FilledButton.tonalIcon(
+              AppLayeredGlassPillButton(
                 onPressed: () => openQuranReferenceLocation(
                   context,
                   ref: recommendation.ref,
                 ),
-                icon: const Icon(Icons.auto_stories_rounded),
-                label: Text(l10n.quranPersonalizationOpenAyahAction),
+                leading: const Icon(Icons.auto_stories_rounded, size: 18),
+                label: l10n.quranPersonalizationOpenAyahAction,
               ),
               recommendation.actionRecommendation.isCompletedToday
-                  ? FilledButton.tonalIcon(
+                  ? AppLayeredGlassPillButton(
                       onPressed: null,
-                      icon: const Icon(Icons.check_circle_rounded),
-                      label: Text(l10n.quranAyahActionCompletedAction),
+                      leading: const Icon(Icons.check_circle_rounded, size: 18),
+                      label: l10n.quranAyahActionCompletedAction,
                     )
-                  : FilledButton.icon(
+                  : AppLayeredGlassPillButton(
                       onPressed: () {
                         ref
                             .read(quranAyahActionStateProvider.notifier)
@@ -199,18 +203,18 @@ class _QuranPersonalizedRecommendationCardState
                               recommendation.actionRecommendation.action,
                             );
                       },
-                      icon: const Icon(Icons.done_rounded),
-                      label: Text(l10n.quranAyahActionCompleteAction),
+                      leading: const Icon(Icons.done_rounded, size: 18),
+                      label: l10n.quranAyahActionCompleteAction,
                     ),
               if (suggestedPath != null)
-                OutlinedButton.icon(
+                AppLayeredGlassPillButton(
                   onPressed: () => context.pushNamed(
                     recommendation.suggestedJourney!.routeName,
                     pathParameters:
                         recommendation.suggestedJourney!.pathParameters,
                   ),
-                  icon: const Icon(Icons.route_rounded),
-                  label: Text(l10n.quranPersonalizationOpenPathAction),
+                  leading: const Icon(Icons.route_rounded, size: 18),
+                  label: l10n.quranPersonalizationOpenPathAction,
                 ),
             ],
           ),

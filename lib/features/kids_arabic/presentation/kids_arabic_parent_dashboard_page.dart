@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../l10n/app_localizations.dart';
+import '../../../shared/widgets/app_layered_glass_pill_button.dart';
 import '../../arabic/presentation/arabic_learning_route_target_navigation.dart';
 import '../../learn/presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/kids_arabic_achievements_provider.dart';
@@ -62,10 +63,7 @@ class KidsArabicParentDashboardPage extends ConsumerWidget {
             ),
             trailing: Text(
               localizedKidsArabicAchievementSubtitle(l10n, achievement),
-              style: const TextStyle(
-                color: Color(0xFF6A5E50),
-                height: 1.35,
-              ),
+              style: const TextStyle(color: Color(0xFF6A5E50), height: 1.35),
             ),
           ),
           const SizedBox(height: 12),
@@ -265,13 +263,11 @@ class _StatPill extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return AppLayeredGlassPill(
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
-      decoration: BoxDecoration(
-        color: const Color(0xFFFFFBF4),
-        borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: const Color(0xFFE3D7C5)),
-      ),
+      fillColor: const Color(0xFFFFFBF4),
+      borderColor: const Color(0xFFE3D7C5),
+      borderRadius: 18,
       child: Text(
         label,
         style: const TextStyle(
@@ -338,10 +334,7 @@ class _InfoCard extends StatelessWidget {
               ),
             ),
           ],
-          if (trailing != null) ...[
-            const SizedBox(height: 12),
-            trailing!,
-          ],
+          if (trailing != null) ...[const SizedBox(height: 12), trailing!],
           if (actionLabel != null && onActionTap != null) ...[
             const SizedBox(height: 12),
             FilledButton.tonal(
@@ -370,9 +363,7 @@ class _ConsistencyDot extends StatelessWidget {
         color: completed ? const Color(0xFFE6F2DE) : const Color(0xFFFFFBF4),
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: completed
-              ? const Color(0xFFC6D9B4)
-              : const Color(0xFFE3D7C5),
+          color: completed ? const Color(0xFFC6D9B4) : const Color(0xFFE3D7C5),
         ),
       ),
       child: Column(

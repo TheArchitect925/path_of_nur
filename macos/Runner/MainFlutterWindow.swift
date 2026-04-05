@@ -3,6 +3,11 @@ import FlutterMacOS
 
 class MainFlutterWindow: NSWindow {
   private let iCloudSyncChannelName = "path_of_nur/icloud_sync"
+  private lazy var iso8601Formatter: ISO8601DateFormatter = {
+    let formatter = ISO8601DateFormatter()
+    formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+    return formatter
+  }()
 
   override func awakeFromNib() {
     let flutterViewController = FlutterViewController()
@@ -97,7 +102,7 @@ class MainFlutterWindow: NSWindow {
     return [
       "exists": true,
       "path": path,
-      "updatedAtIso": modifiedAt?.ISO8601Format() ?? "",
+      "updatedAtIso": modifiedAt.map { iso8601Formatter.string(from: $0) } ?? "",
       "sizeBytes": size?.intValue ?? 0,
       "schemaVersion": metadata?["schemaVersion"] as? Int ?? 0,
       "appVersion": metadata?["appVersion"] as? String ?? "",

@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 import '../../../app/nav_tabs.dart';
+import '../../../core/theme/app_surfaces.dart';
 import '../../../features/worship/domain/fasting_status.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/application/app_summary_providers.dart';
@@ -399,12 +400,13 @@ class _ValueTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final surfaceStyle = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.panel,
+    );
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-      decoration: BoxDecoration(
-        color: const Color(0xFFEEE6DA),
-        borderRadius: BorderRadius.circular(12),
-      ),
+      decoration: surfaceStyle.decoration(radius: 12, includeShadow: false),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

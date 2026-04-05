@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../../../shared/widgets/app_layered_glass_pill_button.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/arabic_text_utils.dart';
 import '../../../../shared/widgets/premium_card.dart';
@@ -124,19 +125,16 @@ class QuranWordDetailPage extends ConsumerWidget {
                 word.meaning,
                 style: QuranPresentationStyle.quranSupportTextStyle(
                   context,
-                  TextStyle(
-                    fontSize: 16 * translationScale,
-                    height: 1.35,
-                  ),
+                  TextStyle(fontSize: 16 * translationScale, height: 1.35),
                 ),
               ),
               if (word.hasRootLetters) ...[
                 const SizedBox(height: 16),
                 Text(
                   l10n.batch9QuranWordsRootLettersTitle,
-                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                    fontWeight: FontWeight.w700,
-                  ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
                 ),
                 const SizedBox(height: 6),
                 Text(
@@ -153,19 +151,16 @@ class QuranWordDetailPage extends ConsumerWidget {
                 const SizedBox(height: 16),
                 Text(
                   l10n.batch9QuranWordsMeaningExpansionTitle,
-                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                    fontWeight: FontWeight.w700,
-                  ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
                 ),
                 const SizedBox(height: 6),
                 Text(
                   word.meaningExpansion!,
                   style: QuranPresentationStyle.quranSupportTextStyle(
                     context,
-                    TextStyle(
-                      fontSize: 14.5 * translationScale,
-                      height: 1.4,
-                    ),
+                    TextStyle(fontSize: 14.5 * translationScale, height: 1.4),
                   ),
                 ),
               ],
@@ -214,9 +209,9 @@ class QuranWordDetailPage extends ConsumerWidget {
             children: [
               Text(
                 l10n.batch9QuranWordsAllAyahsTitle,
-                style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                  fontWeight: FontWeight.w700,
-                ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
               ),
               const SizedBox(height: 6),
               Text(
@@ -249,10 +244,7 @@ class QuranWordDetailPage extends ConsumerWidget {
               else
                 Text(
                   l10n.batch9QuranWordsNoUsageAvailable,
-                  style: const TextStyle(
-                    color: Color(0xFF6A5A4A),
-                    height: 1.3,
-                  ),
+                  style: const TextStyle(color: Color(0xFF6A5A4A), height: 1.3),
                 ),
             ],
           ),
@@ -269,12 +261,9 @@ class _MetaPill extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return AppLayeredGlassPill(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-      decoration: BoxDecoration(
-        color: const Color(0xFFF1E7D8),
-        borderRadius: BorderRadius.circular(999),
-      ),
+      fillColor: const Color(0xFFF1E7D8),
       child: Text(
         label,
         style: const TextStyle(

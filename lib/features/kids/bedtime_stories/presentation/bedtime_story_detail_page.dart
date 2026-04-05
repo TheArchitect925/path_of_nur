@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/theme/app_surfaces.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
@@ -66,7 +67,8 @@ class _BedtimeStoryDetailPageState
     }
     final progress = ref.watch(
       bedtimeStoryProgressProvider.select(
-        (value) => value.storyProgressById[story.id] ?? const BedtimeStoryProgress(),
+        (value) =>
+            value.storyProgressById[story.id] ?? const BedtimeStoryProgress(),
       ),
     );
     final libraryProgress = ref.watch(bedtimeStoryProgressProvider);
@@ -75,13 +77,17 @@ class _BedtimeStoryDetailPageState
         ? ref.watch(bedtimeStorySeriesProvider(story.effectiveStoryFamilyId))
         : const <BedtimeStorySeed>[];
     final seriesCompleted = story.isMultipart
-        ? ref.watch(bedtimeStorySeriesCompletionProvider(story.effectiveStoryFamilyId))
+        ? ref.watch(
+            bedtimeStorySeriesCompletionProvider(story.effectiveStoryFamilyId),
+          )
         : false;
     final mediaAsync = ref.watch(bedtimeStoryResolvedMediaProvider(story));
     final audioState = ref.watch(bedtimeStoryAudioControllerProvider);
     final nextQueueStory = ref.watch(bedtimeStoryNextQueueStoryProvider);
     final quiz = ref.watch(bedtimeStoryQuizByStoryIdProvider(story.id));
-    final memoryDeck = ref.watch(bedtimeStoryMemoryDeckByStoryIdProvider(story.id));
+    final memoryDeck = ref.watch(
+      bedtimeStoryMemoryDeckByStoryIdProvider(story.id),
+    );
     final nextLearning = ref.watch(
       bedtimeStoryNextLearningSuggestionByStoryIdProvider(story.id),
     );
@@ -125,7 +131,9 @@ class _BedtimeStoryDetailPageState
                   (story.estimatedDurationSeconds / 60).ceil(),
                 ),
               ),
-              _DetailMetaChip(label: _detailAgeGroupLabel(l10n, story.ageGroup)),
+              _DetailMetaChip(
+                label: _detailAgeGroupLabel(l10n, story.ageGroup),
+              ),
               _DetailMetaChip(
                 label: _completionLabel(l10n, progress.completionState),
               ),
@@ -244,7 +252,8 @@ class _BedtimeStoryDetailPageState
           const SizedBox(height: 12),
         ],
         mediaAsync.when(
-          loading: () => PremiumCard(child: Text(l10n.bedtimeStoriesAudioCheckingLabel)),
+          loading: () =>
+              PremiumCard(child: Text(l10n.bedtimeStoriesAudioCheckingLabel)),
           error: (_, _) => PremiumCard(
             child: Text(
               story.bedtimeEligible
@@ -336,7 +345,8 @@ class _BedtimeStoryDetailPageState
             ),
           ),
         ],
-        if (audioState.isCompleted && audioState.currentStoryId == story.id) ...[
+        if (audioState.isCompleted &&
+            audioState.currentStoryId == story.id) ...[
           const SizedBox(height: 12),
           BedtimeStoryCompletionBanner(
             story: story,
@@ -346,7 +356,9 @@ class _BedtimeStoryDetailPageState
                 .playCurrent(restartCompleted: true),
             onNext: nextQueueStory == null
                 ? null
-                : () => ref.read(bedtimeStoryQueueControllerProvider.notifier).next(),
+                : () => ref
+                      .read(bedtimeStoryQueueControllerProvider.notifier)
+                      .next(),
           ),
         ],
         if (story.isMultipart) ...[
@@ -366,13 +378,14 @@ class _BedtimeStoryDetailPageState
                   value: series.isEmpty
                       ? 0
                       : series
-                            .where(
-                              (item) =>
-                                  (libraryProgress.storyProgressById[item.id]
+                                .where(
+                                  (item) =>
+                                      (libraryProgress
+                                          .storyProgressById[item.id]
                                           ?.isCompleted ??
                                       false),
-                            )
-                            .length /
+                                )
+                                .length /
                             series.length,
                 ),
                 const SizedBox(height: 8),
@@ -383,9 +396,10 @@ class _BedtimeStoryDetailPageState
                           series
                               .where(
                                 (item) =>
-                                    (libraryProgress.storyProgressById[item.id]
-                                            ?.isCompleted ??
-                                        false),
+                                    (libraryProgress
+                                        .storyProgressById[item.id]
+                                        ?.isCompleted ??
+                                    false),
                               )
                               .length,
                           series.length,
@@ -541,11 +555,13 @@ class _BedtimeStoryDetailPageState
     );
   }
 
-  Future<void> _markComplete(BuildContext context, BedtimeStorySeed story) async {
-    final outcome = ref.read(bedtimeStoryProgressProvider.notifier).completeStory(
-      story,
-      completionSource: 'manual_read_along',
-    );
+  Future<void> _markComplete(
+    BuildContext context,
+    BedtimeStorySeed story,
+  ) async {
+    final outcome = ref
+        .read(bedtimeStoryProgressProvider.notifier)
+        .completeStory(story, completionSource: 'manual_read_along');
     if (!mounted || !outcome.firstCompletion) {
       return;
     }
@@ -574,9 +590,9 @@ class _BedtimeStoryDetailPageState
         children: [
           Text(
             story.shortTitle,
-            style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-              fontWeight: FontWeight.w800,
-            ),
+            style: Theme.of(
+              context,
+            ).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w800),
           ),
           const SizedBox(height: 8),
           Wrap(
@@ -588,7 +604,9 @@ class _BedtimeStoryDetailPageState
                   (story.estimatedDurationSeconds / 60).ceil(),
                 ),
               ),
-              _DetailMetaChip(label: _detailAgeGroupLabel(l10n, story.ageGroup)),
+              _DetailMetaChip(
+                label: _detailAgeGroupLabel(l10n, story.ageGroup),
+              ),
               _DetailMetaChip(
                 label: _completionLabel(l10n, progress.completionState),
               ),
@@ -654,10 +672,7 @@ class _LearningActivityCard extends StatelessWidget {
           const SizedBox(height: 8),
           Text(subtitle),
           const SizedBox(height: 12),
-          FilledButton(
-            onPressed: onTap,
-            child: Text(actionLabel),
-          ),
+          FilledButton(onPressed: onTap, child: Text(actionLabel)),
         ],
       ),
     );
@@ -671,13 +686,13 @@ class _DetailMetaChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final style = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.pill,
+    );
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-      decoration: BoxDecoration(
-        color: const Color(0xCCFFF8EF),
-        borderRadius: BorderRadius.circular(999),
-        border: Border.all(color: const Color(0xFFE8DDD0)),
-      ),
+      decoration: style.decoration(radius: 999, includeShadow: false),
       child: Text(label, style: Theme.of(context).textTheme.bodySmall),
     );
   }

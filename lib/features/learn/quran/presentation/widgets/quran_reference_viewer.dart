@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../../core/theme/app_surfaces.dart';
 import '../../../../../l10n/app_localizations.dart';
 import '../../../../../shared/widgets/quran_navigation.dart';
 import '../../application/quran_ayah_enrichment_provider.dart';
@@ -53,17 +54,31 @@ class QuranReferenceChip extends ConsumerWidget {
     final l10n = AppLocalizations.of(context);
     final reference = ref.watch(quranReferenceByIdProvider(referenceId));
     if (reference == null) return const SizedBox.shrink();
-    return ActionChip(
-      avatar: leading,
-      label: Text(
-        l10n.quranReferenceViewerReferenceLabel(reference.referenceLabel),
-      ),
-      onPressed: () => showQuranReferenceViewer(
+    final style = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.pill,
+    );
+    return InkWell(
+      borderRadius: BorderRadius.circular(999),
+      onTap: () => showQuranReferenceViewer(
         context,
         ref,
         referenceId: referenceId,
         anchorLabel: anchorLabel,
         relationReason: relationReason,
+      ),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        decoration: style.decoration(radius: 999, includeShadow: false),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (leading != null) ...[leading!, const SizedBox(width: 6)],
+            Text(
+              l10n.quranReferenceViewerReferenceLabel(reference.referenceLabel),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -139,29 +154,22 @@ class _QuranReferenceViewer extends ConsumerWidget {
               spacing: 8,
               runSpacing: 8,
               children: [
-                Chip(
-                  visualDensity: VisualDensity.compact,
-                  label: Text(
-                    quranKnowledgeTypeLabel(
-                      l10n,
-                      QuranKnowledgeType.quranDirect,
-                    ),
+                _ReferenceViewerChip(
+                  label: quranKnowledgeTypeLabel(
+                    l10n,
+                    QuranKnowledgeType.quranDirect,
                   ),
                 ),
-                Chip(
-                  visualDensity: VisualDensity.compact,
-                  label: Text(
-                    quranConnectionStrengthLabel(
-                      l10n,
-                      QuranConnectionStrength.direct,
-                    ),
+                _ReferenceViewerChip(
+                  label: quranConnectionStrengthLabel(
+                    l10n,
+                    QuranConnectionStrength.direct,
                   ),
                 ),
                 if (anchorLabel?.trim().isNotEmpty ?? false)
-                  Chip(
-                    visualDensity: VisualDensity.compact,
-                    label: Text(
-                      l10n.quranReferenceDetailCurrentAnchorChip(anchorLabel!),
+                  _ReferenceViewerChip(
+                    label: l10n.quranReferenceDetailCurrentAnchorChip(
+                      anchorLabel!,
                     ),
                   ),
               ],
@@ -188,12 +196,7 @@ class _QuranReferenceViewer extends ConsumerWidget {
               spacing: 8,
               runSpacing: 8,
               children: reference.topicTags
-                  .map(
-                    (tag) => Chip(
-                      visualDensity: VisualDensity.compact,
-                      label: Text(tag),
-                    ),
-                  )
+                  .map((tag) => _ReferenceViewerChip(label: tag))
                   .toList(growable: false),
             ),
             const SizedBox(height: 12),
@@ -309,6 +312,25 @@ class _QuranReferenceViewer extends ConsumerWidget {
               ),
             ),
       ],
+    );
+  }
+}
+
+class _ReferenceViewerChip extends StatelessWidget {
+  const _ReferenceViewerChip({required this.label});
+
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    final style = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.pill,
+    );
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+      decoration: style.decoration(radius: 999, includeShadow: false),
+      child: Text(label),
     );
   }
 }

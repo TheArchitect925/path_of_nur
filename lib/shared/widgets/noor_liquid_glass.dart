@@ -219,12 +219,12 @@ class NoorLiquidGlassLayer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final resolvedMode = _resolveMode(spec.mode);
-    if (resolvedMode == NoorLiquidGlassMode.disabled) {
+    if (resolvedMode != NoorLiquidGlassMode.liquid) {
       return child;
     }
     return LiquidGlassLayer(
       settings: spec.settings,
-      fake: resolvedMode == NoorLiquidGlassMode.fake,
+      fake: false,
       useBackdropGroup: spec.useBackdropGroup,
       child: child,
     );
@@ -259,12 +259,12 @@ class NoorLiquidGlassContainer extends StatelessWidget {
       child: child,
     );
     final resolvedMode = _resolveMode(spec.mode);
-    if (resolvedMode == NoorLiquidGlassMode.disabled) {
+    if (resolvedMode != NoorLiquidGlassMode.liquid) {
       return chrome;
     }
     return LiquidGlass.withOwnLayer(
       settings: spec.settings,
-      fake: resolvedMode == NoorLiquidGlassMode.fake,
+      fake: false,
       shape: LiquidRoundedSuperellipse(borderRadius: spec.borderRadius),
       glassContainsChild: spec.glassContainsChild,
       clipBehavior: spec.clipBehavior,
@@ -300,7 +300,7 @@ class NoorLiquidGlassShape extends StatelessWidget {
       width: width,
       child: child,
     );
-    if (_resolveMode(spec.mode) == NoorLiquidGlassMode.disabled) {
+    if (_resolveMode(spec.mode) != NoorLiquidGlassMode.liquid) {
       return chrome;
     }
     final shape = LiquidRoundedSuperellipse(borderRadius: spec.borderRadius);

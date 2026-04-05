@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_surfaces.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../application/growth_models.dart';
 
@@ -169,6 +171,37 @@ String growthStatusLocalizedLabel(
     case null:
       return l10n.growthStatusDue;
   }
+}
+
+BoxDecoration growthNoorPillDecoration(
+  BuildContext context, {
+  Color? tintColor,
+  bool includeShadow = false,
+}) {
+  final style = AppSurfaceTheme.resolve(
+    context,
+    variant: AppSurfaceVariant.pill,
+    tintColor: tintColor,
+  );
+  return style.decoration(radius: 999, includeShadow: includeShadow);
+}
+
+BoxDecoration growthNoorPanelDecoration(
+  BuildContext context, {
+  double radius = 12,
+  Color? tintColor,
+  bool includeShadow = false,
+}) {
+  final style = AppSurfaceTheme.resolve(
+    context,
+    variant: AppSurfaceVariant.panel,
+    tintColor: tintColor,
+  );
+  return style.decoration(radius: radius, includeShadow: includeShadow);
+}
+
+Color growthNoorSubtleTextColor(BuildContext context) {
+  return AppColors.onSurfaceSubtle;
 }
 
 AppLocalizations _growthL10n() {

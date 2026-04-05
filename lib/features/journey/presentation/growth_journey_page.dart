@@ -67,8 +67,8 @@ class GrowthJourneyPage extends ConsumerWidget {
               const SizedBox(height: 8),
               Text(
                 growthVisual.recentGrowthLine,
-                style: const TextStyle(
-                  color: Color(0xFF6A5A4A),
+                style: TextStyle(
+                  color: growthNoorSubtleTextColor(context),
                   fontSize: 12.5,
                 ),
               ),
@@ -77,16 +77,16 @@ class GrowthJourneyPage extends ConsumerWidget {
                   l10n.growthJourneyNextStageValue(
                     growthVisual.nextStageLabel!,
                   ),
-                  style: const TextStyle(
-                    color: Color(0xFF6A5A4A),
+                  style: TextStyle(
+                    color: growthNoorSubtleTextColor(context),
                     fontSize: 12.5,
                   ),
                 ),
               if (nextUnlock != null)
                 Text(
                   l10n.growthJourneyNextUnlockValue(nextUnlock.title),
-                  style: const TextStyle(
-                    color: Color(0xFF6A5A4A),
+                  style: TextStyle(
+                    color: growthNoorSubtleTextColor(context),
                     fontSize: 12.5,
                   ),
                 ),
@@ -125,10 +125,7 @@ class GrowthJourneyPage extends ConsumerWidget {
                             horizontal: 10,
                             vertical: 6,
                           ),
-                          decoration: BoxDecoration(
-                            color: const Color(0xFFF5EEE3),
-                            borderRadius: BorderRadius.circular(999),
-                          ),
+                          decoration: growthNoorPillDecoration(context),
                           child: Text(
                             l10n.growthJourneyUnlockTypeValue(
                               _unlockTypeLabel(unlock.type, l10n),
@@ -217,10 +214,7 @@ class GrowthJourneyPage extends ConsumerWidget {
                             horizontal: 10,
                             vertical: 6,
                           ),
-                          decoration: BoxDecoration(
-                            color: const Color(0xFFF5EEE3),
-                            borderRadius: BorderRadius.circular(999),
-                          ),
+                          decoration: growthNoorPillDecoration(context),
                           child: Text(theme.title),
                         ),
                       )

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/theme/app_surfaces.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/widgets/app_page_scaffold.dart';
 import '../../../shared/widgets/premium_card.dart';
@@ -63,6 +64,10 @@ class _ComingSoonCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final iconSurface = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.panel,
+    );
     return PremiumCard(
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,9 +75,9 @@ class _ComingSoonCard extends StatelessWidget {
           Container(
             width: 42,
             height: 42,
-            decoration: BoxDecoration(
-              color: const Color(0xFFF3EBE1),
-              borderRadius: BorderRadius.circular(14),
+            decoration: iconSurface.decoration(
+              radius: 14,
+              includeShadow: false,
             ),
             child: Icon(icon, size: 20),
           ),

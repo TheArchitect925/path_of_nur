@@ -9,7 +9,6 @@ import '../../../l10n/app_localizations.dart';
 import '../../../shared/application/special_mode_provider.dart';
 import '../../../shared/content/learning_quote.dart';
 import '../../../shared/content/page_description_copy.dart';
-import '../../../shared/widgets/major_page_shortcuts.dart';
 import '../../../shared/widgets/premium_card.dart';
 import 'data/learn_category_catalog.dart';
 import 'models/learn_category_item.dart';
@@ -89,11 +88,6 @@ class _LearnPageState extends ConsumerState<LearnPage> {
         context,
         AppPageDescriptionKey.learnHub,
         kidsMode: isKidsMode,
-      ),
-      shortcutActions: buildMajorPageShortcutActions(
-        context,
-        ref,
-        MajorPageShortcutFamily.learn,
       ),
       children: [
         const LearningHubRabbiZidniIlmaHeader(),

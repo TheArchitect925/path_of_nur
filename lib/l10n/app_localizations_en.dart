@@ -2319,6 +2319,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get homeBadgeEarnedToday => 'Earned today';
 
   @override
+  String get homeTodayContentTitle => 'Today\'s content';
+
+  @override
+  String get homeTodayContentSubtitle =>
+      'Keep today\'s ayah, guidance, and learning together in one calm place.';
+
+  @override
   String get homeDailyLearningQuizzesTitle => 'Daily learning & quizzes';
 
   @override
@@ -19257,7 +19264,10 @@ class AppLocalizationsEn extends AppLocalizations {
       'Keep the prayer lock screen Live Activity in a calmer, fixed layout.';
 
   @override
-  String get settingsThemeChoiceDefault => 'Default';
+  String get settingsThemeChoiceDefault => 'Classic Default';
+
+  @override
+  String get settingsThemeChoiceCalmBeautiful => 'Calm Beautiful';
 
   @override
   String get settingsThemeChoiceEasyRead => 'Easy Read';
@@ -19537,6 +19547,10 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get settingsThemeModeDefaultDescription =>
       'The default Path of Nūr look with a soft, elegant feel and gentle depth.';
+
+  @override
+  String get settingsThemeModeCalmBeautifulDescription =>
+      'The earlier calm Path of Nūr style with soft warmth and familiar depth.';
 
   @override
   String get settingsThemeModeEasyReadDescription =>
@@ -38815,15 +38829,51 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingsThemeChoiceMidnightManuscript => 'Midnight Manuscript';
 
   @override
-  String get settingsThemeChoiceNoorGlass => 'Noor Glass';
+  String get settingsThemeChoiceNoorGlass => 'Noor Glass - Default';
+
+  @override
+  String get settingsThemeChoiceNoorGlassDark => 'Noor Glass Dark';
+
+  @override
+  String get settingsThemeChoiceNoGlass => 'No Glass';
+
+  @override
+  String get settingsThemeChoiceNoGlassDark => 'No Glass Dark';
+
+  @override
+  String get settingsThemeChoiceNoorMidnightManuscript =>
+      'Noor Midnight Manuscript';
+
+  @override
+  String get settingsThemeChoiceNoorKids => 'Noor Kids';
 
   @override
   String get settingsThemeModeNoorGlassDescription =>
-      'Milky frosted glass with a soft pearled glow and gentle transparency.';
+      'Warm Noor surfaces with solid premium containers, soft depth, and no glass transparency.';
+
+  @override
+  String get settingsThemeModeNoorGlassDarkDescription =>
+      'A darker Noor surface system with solid containers, warm accents, and calm night-friendly contrast.';
+
+  @override
+  String get settingsThemeModeNoGlassDescription =>
+      'Warm, solid surfaces without transparency for a clean and grounded everyday view.';
+
+  @override
+  String get settingsThemeModeNoGlassDarkDescription =>
+      'A dark solid-surface mode for low-light use without glass effects.';
 
   @override
   String get settingsThemeModeMidnightManuscriptDescription =>
       'Deep ink tones with warm gold accents and a quiet manuscript atmosphere.';
+
+  @override
+  String get settingsThemeModeNoorMidnightManuscriptDescription =>
+      'A luminous manuscript night mode with Noor warmth, ink depth, and soft gold accents.';
+
+  @override
+  String get settingsThemeModeNoorKidsDescription =>
+      'A gentler Noor palette with calm family-friendly warmth and soft cheerful accents.';
 
   @override
   String get settingsThemeModePickerHelper =>
@@ -38834,12 +38884,28 @@ class AppLocalizationsEn extends AppLocalizations {
       'Best for everyday calm and balanced use.';
 
   @override
+  String get settingsThemeModeCalmBeautifulBestFor =>
+      'Best if you prefer the earlier soft Path of Nūr atmosphere.';
+
+  @override
   String get settingsThemeModeEasyReadBestFor =>
       'Best for longer reading and clearer contrast.';
 
   @override
   String get settingsThemeModeNoorGlassBestFor =>
-      'Best for airy glass depth and luminous everyday reading.';
+      'Best for the main Path of Nūr look with solid warm containers and calm depth.';
+
+  @override
+  String get settingsThemeModeNoorGlassDarkBestFor =>
+      'Best for evening use when you want the same Noor surfaces in a darker atmosphere.';
+
+  @override
+  String get settingsThemeModeNoGlassBestFor =>
+      'Best for a stable, opaque look with less visual transparency.';
+
+  @override
+  String get settingsThemeModeNoGlassDarkBestFor =>
+      'Best for dark solid surfaces without glass effects.';
 
   @override
   String get settingsThemeModeDarkBestFor =>
@@ -38848,6 +38914,14 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get settingsThemeModeMidnightManuscriptBestFor =>
       'Best for evening reflection and Qur’an study.';
+
+  @override
+  String get settingsThemeModeNoorMidnightManuscriptBestFor =>
+      'Best for rich night reading with manuscript warmth and Noor glow.';
+
+  @override
+  String get settingsThemeModeNoorKidsBestFor =>
+      'Best for families who want a lighter, warmer, more playful Noor feel.';
 
   @override
   String get editorialDashboardTitle => 'Editorial Dashboard';
@@ -39886,4 +39960,45 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get homeGlassVariantClearShowcaseMicro =>
       'Most open · careful contrast';
+
+  @override
+  String get loadingHeadlineAllahAkbar => 'اللَّهُ أَكْبَرُ';
+
+  @override
+  String get loadingGreetingMorning => 'اللَّهُمَّ بِكَ أَصْبَحْنَا';
+
+  @override
+  String get loadingGreetingMorningTranslation =>
+      'O Allah, by You we enter the morning';
+
+  @override
+  String get loadingGreetingEvening => 'اللَّهُمَّ بِكَ أَمْسَيْنَا';
+
+  @override
+  String get loadingGreetingEveningTranslation =>
+      'O Allah, by You we enter the evening';
+
+  @override
+  String get loadingWelcomeBack => 'Welcome Back';
+
+  @override
+  String get loadingRestoringProgress => 'Restoring your progress';
+
+  @override
+  String get loadingStatusPreparing => 'Preparing your space…';
+
+  @override
+  String get loadingStatusRestoring => 'Restoring your progress…';
+
+  @override
+  String get loadingStatusSyncing => 'Syncing your journey…';
+
+  @override
+  String get loadingStatusFinalizing => 'Finalizing…';
+
+  @override
+  String get homeTestOnboardingPill => 'Test Onboarding';
+
+  @override
+  String get homeTestLoadingScreenPill => 'Test Loading Screen';
 }

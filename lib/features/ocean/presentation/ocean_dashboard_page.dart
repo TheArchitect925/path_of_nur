@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 import '../../../l10n/app_localizations.dart';
+import '../../../shared/widgets/app_layered_glass_pill_button.dart';
 import '../../../shared/widgets/app_page_scaffold.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../journey/drops/application/journey_drops_providers.dart';
@@ -42,10 +43,7 @@ class OceanDashboardPage extends ConsumerWidget {
                   countFormat.format(dropSummary.totalDrops),
                   oceanState.totalCommunityDrops.toString(),
                 ),
-                style: const TextStyle(
-                  color: Color(0xFF6A5A4A),
-                  height: 1.35,
-                ),
+                style: const TextStyle(color: Color(0xFF6A5A4A), height: 1.35),
               ),
               const SizedBox(height: 12),
               Wrap(
@@ -94,14 +92,13 @@ class _MetricPill extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return AppLayeredGlassPill(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-      decoration: BoxDecoration(
-        color: const Color(0xFFF3EEE6),
-        borderRadius: BorderRadius.circular(16),
-      ),
+      fillColor: const Color(0xFFF3EEE6),
+      borderRadius: 16,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
         children: [
           Text(
             label,

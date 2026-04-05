@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../core/theme/app_surfaces.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/application/special_mode_provider.dart';
 import '../../../shared/content/page_description_copy.dart';
@@ -286,12 +287,13 @@ class _JournalTimelinePageState extends ConsumerState<JournalTimelinePage> {
   }
 
   Widget _tinyChip(String label) {
+    final style = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.pill,
+    );
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-      decoration: BoxDecoration(
-        color: const Color(0xFFE8DDCC),
-        borderRadius: BorderRadius.circular(999),
-      ),
+      decoration: style.decoration(radius: 999, includeShadow: false),
       child: Text(label, style: const TextStyle(fontSize: 11)),
     );
   }

@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../../core/theme/app_text_styles.dart';
 import '../../../../../l10n/app_localizations.dart';
+import '../../../../../shared/widgets/app_layered_glass_pill_button.dart';
 import '../../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../../shared/widgets/arabic_text_utils.dart';
 import '../../../../../shared/widgets/premium_card.dart';
@@ -422,10 +423,7 @@ class _QuranWordCard extends StatelessWidget {
               word.meaning,
               style: QuranPresentationStyle.quranSupportTextStyle(
                 context,
-                TextStyle(
-                  fontSize: 15 * translationScale,
-                  height: 1.35,
-                ),
+                TextStyle(fontSize: 15 * translationScale, height: 1.35),
               ),
             ),
             const SizedBox(height: 12),
@@ -531,10 +529,7 @@ class _WordPreview extends StatelessWidget {
           word.meaning,
           style: QuranPresentationStyle.quranSupportTextStyle(
             context,
-            TextStyle(
-              fontSize: 14 * translationScale,
-              height: 1.35,
-            ),
+            TextStyle(fontSize: 14 * translationScale, height: 1.35),
           ),
         ),
       ],
@@ -549,12 +544,9 @@ class _MetaPill extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return AppLayeredGlassPill(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-      decoration: BoxDecoration(
-        color: const Color(0xFFF1E7D8),
-        borderRadius: BorderRadius.circular(999),
-      ),
+      fillColor: const Color(0xFFF1E7D8),
       child: Text(
         label,
         style: const TextStyle(

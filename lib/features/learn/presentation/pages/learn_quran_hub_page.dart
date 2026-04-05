@@ -6,9 +6,9 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/application/special_mode_provider.dart';
 import '../../../../shared/content/page_description_copy.dart';
+import '../../../../shared/widgets/app_layered_glass_pill_button.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/quran_reference_block.dart';
-import '../../../../shared/widgets/quran_verse_content.dart';
 import '../../../../shared/widgets/segmented_pill_control.dart';
 import '../../hadith/application/hadith_foundation_repository.dart';
 import '../../hadith/domain/hadith_foundation_models.dart';
@@ -144,17 +144,13 @@ class _LearnQuranHubPageState extends ConsumerState<LearnQuranHubPage> {
                   subtitle: Text(verse.translation),
                   children: [
                     const SizedBox(height: 8),
-                    QuranVerseContent(
-                      source: QuranVerseSource(
-                        referenceText: l10n.quranReferenceViewerReferenceLabel(
-                          '${verse.surah}:${verse.ayah}',
-                        ),
-                        arabicText: verse.arabicText,
-                        translation: verse.translation,
-                      ),
-                      center: false,
+                    QuranReferenceBlock(
+                      surahNumber: verse.surah,
+                      ayahStart: verse.ayah,
+                      ayahEnd: verse.ayah,
+                      showHeader: false,
+                      showOpenButton: false,
                       dense: true,
-                      arabicBaseSize: 25,
                     ),
                     const SizedBox(height: 8),
                     Align(
@@ -211,14 +207,17 @@ class _LearnQuranHubPageState extends ConsumerState<LearnQuranHubPage> {
                     const SizedBox(height: 6),
                     Align(
                       alignment: Alignment.centerLeft,
-                      child: FilledButton.tonalIcon(
+                      child: AppLayeredGlassPillButton(
                         onPressed: () => context.pushNamed(
                           'quranReader',
                           pathParameters: {'surahNumber': '${verse.surah}'},
                           queryParameters: {'ayah': '${verse.ayah}'},
                         ),
-                        icon: const Icon(Icons.open_in_new_rounded),
-                        label: Text(l10n.learnQuranHubOpenReaderAction),
+                        leading: const Icon(
+                          Icons.open_in_new_rounded,
+                          size: 18,
+                        ),
+                        label: l10n.learnQuranHubOpenReaderAction,
                       ),
                     ),
                   ],
@@ -241,35 +240,35 @@ class _LearnQuranHubPageState extends ConsumerState<LearnQuranHubPage> {
                 const SizedBox(height: 6),
                 Text(l10n.quranAyahInsightsHubEntrySubtitle),
                 const SizedBox(height: 10),
-                FilledButton.tonalIcon(
+                AppLayeredGlassPillButton(
                   onPressed: () => context.pushNamed('quranAyahInsightsBrowse'),
-                  icon: const Icon(Icons.auto_awesome_outlined),
-                  label: Text(l10n.quranAyahInsightsBrowseAction),
+                  leading: const Icon(Icons.auto_awesome_outlined, size: 18),
+                  label: l10n.quranAyahInsightsBrowseAction,
                 ),
                 const SizedBox(height: 8),
-                FilledButton.tonalIcon(
+                AppLayeredGlassPillButton(
                   onPressed: () => context.pushNamed('quranAyahInsightsPaths'),
-                  icon: const Icon(Icons.route_rounded),
-                  label: Text(l10n.quranAyahInsightPathsAction),
+                  leading: const Icon(Icons.route_rounded, size: 18),
+                  label: l10n.quranAyahInsightPathsAction,
                 ),
                 const SizedBox(height: 8),
-                FilledButton.tonalIcon(
+                AppLayeredGlassPillButton(
                   onPressed: () => context.pushNamed('quranKnowledgeSearch'),
-                  icon: const Icon(Icons.manage_search_rounded),
-                  label: Text(l10n.quranKnowledgeSearchAction),
+                  leading: const Icon(Icons.manage_search_rounded, size: 18),
+                  label: l10n.quranKnowledgeSearchAction,
                 ),
                 const SizedBox(height: 8),
-                FilledButton.tonalIcon(
+                AppLayeredGlassPillButton(
                   onPressed: () =>
                       context.pushNamed('quranSurahInsightsBrowse'),
-                  icon: const Icon(Icons.layers_outlined),
-                  label: Text(l10n.quranSurahInsightsBrowseAction),
+                  leading: const Icon(Icons.layers_outlined, size: 18),
+                  label: l10n.quranSurahInsightsBrowseAction,
                 ),
                 const SizedBox(height: 8),
-                FilledButton.tonalIcon(
+                AppLayeredGlassPillButton(
                   onPressed: () => context.pushNamed('quranReflections'),
-                  icon: const Icon(Icons.bookmark_added_outlined),
-                  label: Text(l10n.quranReflectionsHubEntryTitle),
+                  leading: const Icon(Icons.bookmark_added_outlined, size: 18),
+                  label: l10n.quranReflectionsHubEntryTitle,
                 ),
               ],
             ),
@@ -295,10 +294,10 @@ class _LearnQuranHubPageState extends ConsumerState<LearnQuranHubPage> {
                 const SizedBox(height: 8),
                 Text(dailyVerse.explanation),
                 const SizedBox(height: 10),
-                FilledButton.tonalIcon(
+                AppLayeredGlassPillButton(
                   onPressed: () => context.pushNamed('journalCreate'),
-                  icon: const Icon(Icons.edit_note_rounded),
-                  label: Text(l10n.learnQuranHubWriteJournalAction),
+                  leading: const Icon(Icons.edit_note_rounded, size: 18),
+                  label: l10n.learnQuranHubWriteJournalAction,
                 ),
               ],
             ),
@@ -322,14 +321,14 @@ class _LearnQuranHubPageState extends ConsumerState<LearnQuranHubPage> {
                   ),
                 ),
                 const SizedBox(height: 8),
-                FilledButton.tonalIcon(
+                AppLayeredGlassPillButton(
                   onPressed: () => context.pushNamed(
                     'quranReader',
                     pathParameters: {'surahNumber': '${dailyVerse.surah}'},
                     queryParameters: {'ayah': '${dailyVerse.ayah}'},
                   ),
-                  icon: const Icon(Icons.menu_book_rounded),
-                  label: Text(l10n.learnQuranHubReadFullContextAction),
+                  leading: const Icon(Icons.menu_book_rounded, size: 18),
+                  label: l10n.learnQuranHubReadFullContextAction,
                 ),
               ],
             ),
@@ -374,13 +373,16 @@ class _LearnQuranHubPageState extends ConsumerState<LearnQuranHubPage> {
                     ),
                   ),
                   const SizedBox(height: 10),
-                  FilledButton.tonalIcon(
+                  AppLayeredGlassPillButton(
                     onPressed: () => context.pushNamed(
                       'quranLearningPathDetail',
                       pathParameters: {'pathId': continueGuidedPath.id},
                     ),
-                    icon: const Icon(Icons.play_circle_outline_rounded),
-                    label: Text(l10n.quranLearningPathsOpenContinueAction),
+                    leading: const Icon(
+                      Icons.play_circle_outline_rounded,
+                      size: 18,
+                    ),
+                    label: l10n.quranLearningPathsOpenContinueAction,
                   ),
                 ],
               ),
@@ -424,10 +426,10 @@ class _LearnQuranHubPageState extends ConsumerState<LearnQuranHubPage> {
               ),
             );
           }),
-          FilledButton.tonalIcon(
+          AppLayeredGlassPillButton(
             onPressed: () => context.pushNamed('quranLearningPaths'),
-            icon: const Icon(Icons.route_rounded),
-            label: Text(l10n.quranLearningPathsBrowseAllAction),
+            leading: const Icon(Icons.route_rounded, size: 18),
+            label: l10n.quranLearningPathsBrowseAllAction,
           ),
         ],
         if (_tab == LearnQuranHubTab.memorize) ...[
@@ -457,10 +459,10 @@ class _LearnQuranHubPageState extends ConsumerState<LearnQuranHubPage> {
                   ),
                 ),
                 const SizedBox(height: 10),
-                FilledButton.tonalIcon(
+                AppLayeredGlassPillButton(
                   onPressed: () => context.pushNamed('quranMemorizationReview'),
-                  icon: const Icon(Icons.repeat_rounded),
-                  label: Text(l10n.quranMemorizationReviewOpenListAction),
+                  leading: const Icon(Icons.repeat_rounded, size: 18),
+                  label: l10n.quranMemorizationReviewOpenListAction,
                 ),
               ],
             ),
@@ -553,7 +555,7 @@ class _LearnQuranHubPageState extends ConsumerState<LearnQuranHubPage> {
                                         l10n.learnQuranHubNeedsRepetitionAction,
                                       ),
                                     ),
-                                    FilledButton.tonalIcon(
+                                    AppLayeredGlassPillButton(
                                       onPressed: () => context.pushNamed(
                                         'quranReader',
                                         pathParameters: {
@@ -564,12 +566,12 @@ class _LearnQuranHubPageState extends ConsumerState<LearnQuranHubPage> {
                                           'review': 'memorization',
                                         },
                                       ),
-                                      icon: const Icon(
+                                      leading: const Icon(
                                         Icons.play_arrow_rounded,
+                                        size: 18,
                                       ),
-                                      label: Text(
-                                        l10n.learnQuranHubReciteVerseAction,
-                                      ),
+                                      label:
+                                          l10n.learnQuranHubReciteVerseAction,
                                     ),
                                   ],
                                 ),

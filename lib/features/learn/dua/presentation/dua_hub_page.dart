@@ -209,10 +209,10 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
         children: [
           Padding(
             padding: const EdgeInsets.only(right: 8),
-            child: ChoiceChip(
-              label: Text(l10n.duaHubAllCategories),
+            child: _duaFilterChip(
+              label: l10n.duaHubAllCategories,
               selected: _selectedCategoryId == null,
-              onSelected: (_) => setState(() {
+              onTap: () => setState(() {
                 _selectedCategoryId = null;
                 _selectedSubcategoryId = null;
               }),
@@ -221,10 +221,11 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
           ...categories.map(
             (summary) => Padding(
               padding: const EdgeInsets.only(right: 8),
-              child: ChoiceChip(
-                label: Text(summary.label),
+              child: _duaFilterChip(
+                label: summary.label,
                 selected: _selectedCategoryId == summary.id,
-                onSelected: (selected) => setState(() {
+                onTap: () => setState(() {
+                  final selected = _selectedCategoryId != summary.id;
                   _selectedCategoryId = selected ? summary.id : null;
                   _selectedSubcategoryId = null;
                 }),
@@ -248,15 +249,14 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
             .map(
               (subcategory) => Padding(
                 padding: const EdgeInsets.only(right: 8),
-                child: ChoiceChip(
-                  label: Text(
-                    l10n.duaHubCategoryTag(
-                      subcategory.label,
-                      subcategory.completeCount,
-                    ),
+                child: _duaFilterChip(
+                  label: l10n.duaHubCategoryTag(
+                    subcategory.label,
+                    subcategory.completeCount,
                   ),
                   selected: _selectedSubcategoryId == subcategory.id,
-                  onSelected: (selected) => setState(() {
+                  onTap: () => setState(() {
+                    final selected = _selectedSubcategoryId != subcategory.id;
                     _selectedSubcategoryId = selected ? subcategory.id : null;
                   }),
                 ),
@@ -407,14 +407,12 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
               runSpacing: 8,
               children: summary.subcategories
                   .map(
-                    (subcategory) => ActionChip(
-                      label: Text(
-                        l10n.duaHubCategoryTag(
-                          subcategory.label,
-                          subcategory.completeCount,
-                        ),
+                    (subcategory) => _duaActionChip(
+                      label: l10n.duaHubCategoryTag(
+                        subcategory.label,
+                        subcategory.completeCount,
                       ),
-                      onPressed: () {
+                      onTap: () {
                         setState(() {
                           _selectedCategoryId = summary.id;
                           _selectedSubcategoryId = subcategory.id;
@@ -497,14 +495,74 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
   }
 
   Widget _metaChip(String label, {required DuaCategoryThemeData colors}) {
+    final style = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.pill,
+      tintColor: colors.accent,
+    );
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-      decoration: BoxDecoration(
-        color: colors.iconBackground,
-        borderRadius: BorderRadius.circular(999),
-        border: Border.all(color: colors.border),
-      ),
+      decoration: style.decoration(radius: 999, includeShadow: false),
       child: Text(label, style: TextStyle(fontSize: 12, color: colors.accent)),
+    );
+  }
+
+  Widget _duaFilterChip({
+    required String label,
+    required bool selected,
+    required VoidCallback onTap,
+  }) {
+    final style = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.pill,
+      tintColor: AppColors.accentGold,
+    );
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(999),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        decoration: style
+            .decoration(radius: 999, includeShadow: false)
+            .copyWith(
+              color: selected
+                  ? AppSurfaceTheme.adaptiveColor(
+                      context,
+                      AppColors.accentGold,
+                      alpha: 0.18,
+                      solidAlphaWhenDisabled: 0.28,
+                    )
+                  : style.backgroundColor,
+              gradient: selected ? null : style.gradient,
+              border: Border.all(
+                color: selected ? AppColors.accentGold : style.borderColor,
+              ),
+            ),
+        child: Text(
+          label,
+          style: TextStyle(
+            color: selected ? AppColors.onSurface : AppColors.onSurfaceSubtle,
+            fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _duaActionChip({required String label, required VoidCallback onTap}) {
+    final style = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.pill,
+      tintColor: AppColors.accentGold,
+    );
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(999),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        decoration: style.decoration(radius: 999, includeShadow: false),
+        child: Text(label),
+      ),
     );
   }
 
@@ -537,23 +595,26 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
     required String subtitle,
     Widget? trailing,
   }) {
+    final bannerStyle = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.panel,
+      tintColor: colors.accent,
+    );
+    final iconStyle = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.pill,
+      tintColor: colors.accent,
+    );
     return Container(
       padding: const EdgeInsets.all(14),
-      decoration: BoxDecoration(
-        color: colors.surface,
-        borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: colors.border),
-      ),
+      decoration: bannerStyle.decoration(radius: 18, includeShadow: false),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
             width: 42,
             height: 42,
-            decoration: BoxDecoration(
-              color: colors.iconBackground,
-              borderRadius: BorderRadius.circular(14),
-            ),
+            decoration: iconStyle.decoration(radius: 14, includeShadow: false),
             child: Icon(colors.icon, color: colors.accent),
           ),
           const SizedBox(width: 12),

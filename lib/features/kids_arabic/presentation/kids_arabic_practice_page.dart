@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../l10n/app_localizations.dart';
+import '../../../shared/widgets/app_layered_glass_pill_button.dart';
 import '../../learn/presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/kids_arabic_practice_provider.dart';
 import '../domain/kids_arabic_models.dart';
@@ -537,13 +538,10 @@ class _SummaryPill extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return AppLayeredGlassPill(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(999),
-        border: Border.all(color: const Color(0xFFE3D7C8)),
-      ),
+      fillColor: Colors.white,
+      borderColor: const Color(0xFFE3D7C8),
       child: Text(
         label,
         style: const TextStyle(

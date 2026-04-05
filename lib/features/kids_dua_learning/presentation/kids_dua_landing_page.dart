@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_surfaces.dart';
 import '../../../l10n/app_localizations.dart';
+import '../../../shared/widgets/premium_card.dart';
 import '../../learn/presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/kids_dua_creative_provider.dart';
 import '../application/kids_dua_experience_provider.dart';
@@ -153,13 +156,8 @@ class _LightCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: const Color(0xFFFFFBF5),
-        borderRadius: BorderRadius.circular(22),
-        border: Border.all(color: const Color(0xFFE8DDD0)),
-      ),
+    return PremiumCard(
+      surfaceVariant: AppSurfaceVariant.panel,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -175,17 +173,20 @@ class _LightCard extends StatelessWidget {
           const SizedBox(height: 6),
           Text(
             l10n.kidsDuaStreakValue(summary.currentStreakDays),
-            style: const TextStyle(color: Color(0xFF8A6A45)),
+            style: const TextStyle(color: AppColors.accentGold),
           ),
           const SizedBox(height: 6),
           Text(
             _localizedCopy(context, summary.lightDescriptionKey),
-            style: const TextStyle(color: Color(0xFF675B4E), height: 1.4),
+            style: const TextStyle(
+              color: AppColors.onSurfaceSubtle,
+              height: 1.4,
+            ),
           ),
           const SizedBox(height: 6),
           Text(
             _localizedCopy(context, summary.reminderPrompt.bodyKey),
-            style: const TextStyle(color: Color(0xFF675B4E)),
+            style: const TextStyle(color: AppColors.onSurfaceSubtle),
           ),
         ],
       ),
@@ -272,13 +273,8 @@ class _HeroCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    return Container(
-      padding: const EdgeInsets.all(18),
-      decoration: BoxDecoration(
-        color: const Color(0xFFFFF6EA),
-        borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: const Color(0xFFE7D7BE)),
-      ),
+    return PremiumCard(
+      surfaceVariant: AppSurfaceVariant.island,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -289,7 +285,10 @@ class _HeroCard extends StatelessWidget {
           const SizedBox(height: 6),
           Text(
             l10n.kidsDuaHeroSubtitle,
-            style: const TextStyle(color: Color(0xFF675B4E), height: 1.4),
+            style: const TextStyle(
+              color: AppColors.onSurfaceSubtle,
+              height: 1.4,
+            ),
           ),
           const SizedBox(height: 12),
           Wrap(
@@ -335,13 +334,8 @@ class _FeatureCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(22),
-        border: Border.all(color: const Color(0xFFE8DDD0)),
-      ),
+    return PremiumCard(
+      surfaceVariant: AppSurfaceVariant.panel,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -350,11 +344,8 @@ class _FeatureCard extends StatelessWidget {
               Container(
                 width: 52,
                 height: 52,
-                decoration: BoxDecoration(
-                  color: const Color(0xFFFFF8EF),
-                  borderRadius: BorderRadius.circular(18),
-                ),
-                child: Icon(icon, color: const Color(0xFF8A6A45)),
+                decoration: _kidsNoorPanelDecoration(context, radius: 18),
+                child: Icon(icon, color: AppColors.accentGold),
               ),
               const SizedBox(width: 12),
               Expanded(
@@ -379,7 +370,10 @@ class _FeatureCard extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 10),
-          Text(detail, style: const TextStyle(color: Color(0xFF655A4C))),
+          Text(
+            detail,
+            style: const TextStyle(color: AppColors.onSurfaceSubtle),
+          ),
           const SizedBox(height: 12),
           SizedBox(
             width: double.infinity,
@@ -405,23 +399,15 @@ class _CategoryCard extends StatelessWidget {
         pathParameters: {'categoryId': item.category.id},
       ),
       borderRadius: BorderRadius.circular(22),
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(22),
-          border: Border.all(color: const Color(0xFFE8DDD0)),
-        ),
+      child: PremiumCard(
+        surfaceVariant: AppSurfaceVariant.panel,
         child: Row(
           children: [
             Container(
               width: 54,
               height: 54,
-              decoration: BoxDecoration(
-                color: const Color(0xFFFFF8EF),
-                borderRadius: BorderRadius.circular(18),
-              ),
-              child: Icon(item.category.icon, color: const Color(0xFF8A6A45)),
+              decoration: _kidsNoorPanelDecoration(context, radius: 18),
+              child: Icon(item.category.icon, color: AppColors.accentGold),
             ),
             const SizedBox(width: 12),
             Expanded(
@@ -435,7 +421,7 @@ class _CategoryCard extends StatelessWidget {
                   const SizedBox(height: 4),
                   Text(
                     item.category.subtitle,
-                    style: const TextStyle(color: Color(0xFF6D6255)),
+                    style: const TextStyle(color: AppColors.onSurfaceSubtle),
                   ),
                   const SizedBox(height: 6),
                   Text(
@@ -444,14 +430,17 @@ class _CategoryCard extends StatelessWidget {
                       item.totalCount,
                     ),
                     style: const TextStyle(
-                      color: Color(0xFF8A6A45),
+                      color: AppColors.accentGold,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
                 ],
               ),
             ),
-            const Icon(Icons.chevron_right_rounded, color: Color(0xFF8A6A45)),
+            const Icon(
+              Icons.chevron_right_rounded,
+              color: AppColors.accentGold,
+            ),
           ],
         ),
       ),
@@ -477,23 +466,15 @@ class _QuickEntryCard extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(22),
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(22),
-          border: Border.all(color: const Color(0xFFE8DDD0)),
-        ),
+      child: PremiumCard(
+        surfaceVariant: AppSurfaceVariant.panel,
         child: Row(
           children: [
             Container(
               width: 52,
               height: 52,
-              decoration: BoxDecoration(
-                color: const Color(0xFFFFF8EF),
-                borderRadius: BorderRadius.circular(18),
-              ),
-              child: Icon(icon, color: const Color(0xFF8A6A45)),
+              decoration: _kidsNoorPanelDecoration(context, radius: 18),
+              child: Icon(icon, color: AppColors.accentGold),
             ),
             const SizedBox(width: 12),
             Expanded(
@@ -507,12 +488,15 @@ class _QuickEntryCard extends StatelessWidget {
                   const SizedBox(height: 4),
                   Text(
                     subtitle,
-                    style: const TextStyle(color: Color(0xFF6D6255)),
+                    style: const TextStyle(color: AppColors.onSurfaceSubtle),
                   ),
                 ],
               ),
             ),
-            const Icon(Icons.chevron_right_rounded, color: Color(0xFF8A6A45)),
+            const Icon(
+              Icons.chevron_right_rounded,
+              color: AppColors.accentGold,
+            ),
           ],
         ),
       ),
@@ -536,7 +520,10 @@ class _SectionHeader extends StatelessWidget {
           style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
         ),
         const SizedBox(height: 4),
-        Text(subtitle, style: const TextStyle(color: Color(0xFF6D6255))),
+        Text(
+          subtitle,
+          style: const TextStyle(color: AppColors.onSurfaceSubtle),
+        ),
       ],
     );
   }
@@ -551,12 +538,33 @@ class _Pill extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(999),
-        border: Border.all(color: const Color(0xFFE4D7C8)),
-      ),
+      decoration: _kidsNoorPillDecoration(context),
       child: Text(label, style: const TextStyle(fontWeight: FontWeight.w600)),
     );
   }
+}
+
+BoxDecoration _kidsNoorPillDecoration(
+  BuildContext context, {
+  Color? tintColor,
+}) {
+  final style = AppSurfaceTheme.resolve(
+    context,
+    variant: AppSurfaceVariant.pill,
+    tintColor: tintColor,
+  );
+  return style.decoration(radius: 999);
+}
+
+BoxDecoration _kidsNoorPanelDecoration(
+  BuildContext context, {
+  double radius = 16,
+  Color? tintColor,
+}) {
+  final style = AppSurfaceTheme.resolve(
+    context,
+    variant: AppSurfaceVariant.panel,
+    tintColor: tintColor,
+  );
+  return style.decoration(radius: radius);
 }

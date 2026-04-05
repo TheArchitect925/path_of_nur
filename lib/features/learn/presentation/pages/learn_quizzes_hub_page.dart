@@ -122,12 +122,26 @@ class _LearnQuizzesHubPageState extends ConsumerState<LearnQuizzesHubPage> {
                 child: Row(
                   children: LearnQuizFilter.values
                       .map((filter) {
+                        final selected = _filter == filter;
                         return Padding(
                           padding: const EdgeInsets.only(right: 8),
-                          child: ChoiceChip(
-                            label: Text(_filterLabel(filter)),
-                            selected: _filter == filter,
-                            onSelected: (_) => setState(() => _filter = filter),
+                          child: InkWell(
+                            onTap: () => setState(() => _filter = filter),
+                            borderRadius: BorderRadius.circular(999),
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 12,
+                                vertical: 8,
+                              ),
+                              decoration: _noorPillDecoration(
+                                context,
+                                tintColor: selected
+                                    ? Theme.of(context).colorScheme.primary
+                                          .withValues(alpha: 0.14)
+                                    : null,
+                              ),
+                              child: Text(_filterLabel(filter)),
+                            ),
                           ),
                         );
                       })
@@ -348,15 +362,20 @@ class _LearnQuizzesHubPageState extends ConsumerState<LearnQuizzesHubPage> {
   }
 
   Widget _chip(String label) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+      decoration: _noorPillDecoration(context),
+      child: Text(label),
+    );
+  }
+
+  BoxDecoration _noorPillDecoration(BuildContext context, {Color? tintColor}) {
     final style = AppSurfaceTheme.resolve(
       context,
       variant: AppSurfaceVariant.pill,
+      tintColor: tintColor,
     );
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-      decoration: style.decoration(radius: 999),
-      child: Text(label),
-    );
+    return style.decoration(radius: 999);
   }
 
   List<_QuizCatalogItem> _allQuizItems() {

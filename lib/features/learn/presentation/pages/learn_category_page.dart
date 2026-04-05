@@ -351,13 +351,18 @@ class _BadgeChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final style = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.pill,
+      tintColor: accentColor,
+    );
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-      decoration: BoxDecoration(
-        color: accentColor.withValues(alpha: 0.12),
-        borderRadius: BorderRadius.circular(999),
-        border: Border.all(color: accentColor.withValues(alpha: 0.22)),
-      ),
+      decoration: style
+          .decoration(radius: 999, includeShadow: false)
+          .copyWith(
+            border: Border.all(color: accentColor.withValues(alpha: 0.22)),
+          ),
       child: Text(
         label,
         style: Theme.of(context).textTheme.labelSmall?.copyWith(

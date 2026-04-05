@@ -56,7 +56,8 @@ class BedtimeStoriesPage extends ConsumerWidget {
           label: Text(l10n.bedtimeFamilyModeHeaderAction),
         ),
         FilledButton.tonalIcon(
-          onPressed: () => context.pushNamed('kidsBedtimeStoriesParentDashboard'),
+          onPressed: () =>
+              context.pushNamed('kidsBedtimeStoriesParentDashboard'),
           icon: const Icon(Icons.family_restroom_rounded),
           label: Text(l10n.bedtimeParentEntryAction),
         ),
@@ -81,9 +82,9 @@ class BedtimeStoriesPage extends ConsumerWidget {
                   children: [
                     Text(
                       l10n.progressionPageTitle,
-                      style: Theme.of(
-                        context,
-                      ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
                     const SizedBox(height: 4),
                     Text(l10n.progressionPageSubtitle),
@@ -111,9 +112,9 @@ class BedtimeStoriesPage extends ConsumerWidget {
                   children: [
                     Text(
                       l10n.kidsStoryLibraryTitle,
-                      style: Theme.of(
-                        context,
-                      ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
                     const SizedBox(height: 4),
                     Text(l10n.kidsStoryLibrarySubtitle),
@@ -141,9 +142,9 @@ class BedtimeStoriesPage extends ConsumerWidget {
                   children: [
                     Text(
                       l10n.bedtimeCompanionEntryTitle,
-                      style: Theme.of(
-                        context,
-                      ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
                     const SizedBox(height: 4),
                     Text(l10n.bedtimeCompanionEntrySubtitle),
@@ -172,10 +173,9 @@ class BedtimeStoriesPage extends ConsumerWidget {
                     children: [
                       Text(
                         l10n.kidsSeerahJourneysTitle,
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleSmall
-                            ?.copyWith(fontWeight: FontWeight.w700),
+                        style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                          fontWeight: FontWeight.w700,
+                        ),
                       ),
                       const SizedBox(height: 4),
                       Text(l10n.kidsSeerahJourneysSubtitle),
@@ -204,9 +204,9 @@ class BedtimeStoriesPage extends ConsumerWidget {
                   children: [
                     Text(
                       l10n.bedtimeFamilyModeEntryTitle,
-                      style: Theme.of(
-                        context,
-                      ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
                     const SizedBox(height: 4),
                     Text(
@@ -219,7 +219,8 @@ class BedtimeStoriesPage extends ConsumerWidget {
               ),
               const SizedBox(width: 10),
               OutlinedButton(
-                onPressed: () => context.pushNamed('kidsBedtimeStoriesFamilyMode'),
+                onPressed: () =>
+                    context.pushNamed('kidsBedtimeStoriesFamilyMode'),
                 child: Text(l10n.bedtimeFamilyModeHeaderAction),
               ),
             ],
@@ -234,9 +235,9 @@ class BedtimeStoriesPage extends ConsumerWidget {
               children: [
                 Text(
                   l10n.bedtimeStoriesTonightQueueTitle,
-                  style: Theme.of(
-                    context,
-                  ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
                 const SizedBox(height: 6),
                 Text(
@@ -424,11 +425,7 @@ class _HeroCard extends StatelessWidget {
           const SizedBox(height: 12),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-            decoration: BoxDecoration(
-              color: const Color(0xFFFFF6EA),
-              borderRadius: BorderRadius.circular(999),
-              border: Border.all(color: const Color(0xFFE7D7BE)),
-            ),
+            decoration: _kidsNoorPillDecoration(context),
             child: Text(countLabel),
           ),
         ],
@@ -558,17 +555,17 @@ class _StoryListCard extends StatelessWidget {
                   Container(
                     width: 64,
                     height: 64,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(18),
-                      color: const Color(0xFFFFF8EF),
-                    ),
+                    decoration: _kidsNoorPanelDecoration(context, radius: 18),
                     clipBehavior: Clip.antiAlias,
                     child: coverPath != null
                         ? Image.asset(
                             coverPath,
                             fit: BoxFit.cover,
                             errorBuilder: (context, error, stackTrace) {
-                              return const Icon(Icons.auto_stories_rounded, size: 28);
+                              return const Icon(
+                                Icons.auto_stories_rounded,
+                                size: 28,
+                              );
                             },
                           )
                         : const Icon(Icons.auto_stories_rounded, size: 28),
@@ -596,7 +593,9 @@ class _StoryListCard extends StatelessWidget {
                                 ),
                               ),
                             _MetaChip(
-                              label: mediaAsync.valueOrNull?.audio.isAvailable == true
+                              label:
+                                  mediaAsync.valueOrNull?.audio.isAvailable ==
+                                      true
                                   ? l10n.bedtimeStoriesAudioReadyBadge
                                   : l10n.bedtimeStoriesReadAlongBadge,
                             ),
@@ -648,14 +647,35 @@ class _MetaChip extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-      decoration: BoxDecoration(
-        color: const Color(0xFFFFF8EF),
-        borderRadius: BorderRadius.circular(999),
-        border: Border.all(color: const Color(0xFFE8DDD0)),
-      ),
+      decoration: _kidsNoorPillDecoration(context),
       child: Text(label, style: Theme.of(context).textTheme.bodySmall),
     );
   }
+}
+
+BoxDecoration _kidsNoorPillDecoration(
+  BuildContext context, {
+  Color? tintColor,
+}) {
+  final style = AppSurfaceTheme.resolve(
+    context,
+    variant: AppSurfaceVariant.pill,
+    tintColor: tintColor,
+  );
+  return style.decoration(radius: 999);
+}
+
+BoxDecoration _kidsNoorPanelDecoration(
+  BuildContext context, {
+  double radius = 16,
+  Color? tintColor,
+}) {
+  final style = AppSurfaceTheme.resolve(
+    context,
+    variant: AppSurfaceVariant.panel,
+    tintColor: tintColor,
+  );
+  return style.decoration(radius: radius);
 }
 
 String _ageGroupLabel(AppLocalizations l10n, BedtimeStoryAgeGroup ageGroup) {

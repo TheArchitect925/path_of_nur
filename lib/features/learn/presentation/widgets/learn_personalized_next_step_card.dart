@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_surfaces.dart';
 import '../../analytics/application/learn_analytics_service.dart';
 import '../../personalization/domain/learning_personalization_models.dart';
-import '../../../../shared/widgets/premium_card.dart';
+import '../../../../shared/widgets/app_layered_glass_pill_button.dart';
+import '../../../../shared/widgets/app_hero_glass_shell.dart';
 
 class LearnPersonalizedNextStepCard extends ConsumerWidget {
   const LearnPersonalizedNextStepCard({super.key, required this.summary});
@@ -14,7 +17,15 @@ class LearnPersonalizedNextStepCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final analytics = ref.read(learnAnalyticsServiceProvider);
-    return PremiumCard(
+    final badgeStyle = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.pill,
+    );
+    final suggestionStyle = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.panel,
+    );
+    return AppHeroGlassShell(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -45,10 +56,9 @@ class LearnPersonalizedNextStepCard extends ConsumerWidget {
                     horizontal: 10,
                     vertical: 6,
                   ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(999),
-                    color: Theme.of(context).colorScheme.surfaceContainerHighest
-                        .withValues(alpha: 0.72),
+                  decoration: badgeStyle.decoration(
+                    radius: 999,
+                    includeShadow: false,
                   ),
                   child: Text(
                     summary.contextBadgeLabel!,
@@ -93,7 +103,8 @@ class LearnPersonalizedNextStepCard extends ConsumerWidget {
             spacing: 8,
             runSpacing: 8,
             children: [
-              FilledButton.icon(
+              AppLayeredGlassPillButton(
+                label: summary.primaryActionLabel,
                 onPressed: () {
                   analytics.logRecommendedActionOpened(
                     recommendationKind: summary.primaryActionLabel,
@@ -111,8 +122,6 @@ class LearnPersonalizedNextStepCard extends ConsumerWidget {
                   }
                   _open(context, summary.primaryActionRouteTarget);
                 },
-                icon: const Icon(Icons.arrow_forward_rounded),
-                label: Text(summary.primaryActionLabel),
               ),
               if (summary.secondaryActionLabel != null &&
                   summary.secondaryActionRouteTarget != null)
@@ -160,12 +169,9 @@ class LearnPersonalizedNextStepCard extends ConsumerWidget {
                   },
                   child: Container(
                     padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16),
-                      color: Theme.of(context)
-                          .colorScheme
-                          .surfaceContainerHighest
-                          .withValues(alpha: 0.38),
+                    decoration: suggestionStyle.decoration(
+                      radius: 16,
+                      includeShadow: false,
                     ),
                     child: Row(
                       children: [
@@ -183,9 +189,7 @@ class LearnPersonalizedNextStepCard extends ConsumerWidget {
                                 suggestion.subtitle,
                                 style: Theme.of(context).textTheme.bodySmall
                                     ?.copyWith(
-                                      color: Theme.of(
-                                        context,
-                                      ).colorScheme.onSurfaceVariant,
+                                      color: AppColors.onSurfaceSubtle,
                                     ),
                               ),
                             ],

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'app_layered_glass_pill_button.dart';
+
 class ShortcutDockPalette {
   const ShortcutDockPalette({
     required this.textColor,
@@ -120,100 +122,74 @@ class _ShortcutDockChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textColor = action.palette.textColor;
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: action.onTap,
-        borderRadius: BorderRadius.circular(999),
-        child: Ink(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(999),
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: action.palette.gradient,
-            ),
-            border: Border.all(
-              color: action.palette.borderColor.withValues(alpha: 0.32),
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: action.palette.shadowColor.withValues(alpha: 0.18),
-                blurRadius: 14,
-                offset: const Offset(0, 8),
+    return AppLayeredGlassPill(
+      onTap: action.onTap,
+      tintColor: action.palette.borderColor,
+      fillColor: action.palette.gradient.first.withValues(alpha: 0.88),
+      borderColor: action.palette.borderColor.withValues(alpha: 0.24),
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(action.icon, size: 18, color: textColor),
+          const SizedBox(width: 8),
+          ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 196),
+            child: _ShortcutDockLabelBlock(action: action),
+          ),
+          if (action.statusText case final statusText?
+              when statusText.isNotEmpty) ...[
+            const SizedBox(width: 8),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(999),
+                color:
+                    action.palette.detailFillColor ??
+                    Colors.white.withValues(alpha: 0.34),
               ),
-            ],
-          ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(action.icon, size: 18, color: textColor),
-                const SizedBox(width: 8),
-                ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 196),
-                  child: _ShortcutDockLabelBlock(action: action),
-                ),
-                if (action.statusText case final statusText?
-                    when statusText.isNotEmpty) ...[
-                  const SizedBox(width: 8),
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 8,
-                      vertical: 4,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  if (action.statusCaption case final statusCaption?
+                      when statusCaption.isNotEmpty) ...[
+                    Text(
+                      statusCaption,
+                      style: TextStyle(
+                        fontSize: 9.5,
+                        fontWeight: FontWeight.w700,
+                        color: textColor.withValues(alpha: 0.78),
+                        height: 1,
+                      ),
                     ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(999),
-                      color:
-                          action.palette.detailFillColor ??
-                          Colors.white.withValues(alpha: 0.34),
-                    ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        if (action.statusCaption case final statusCaption?
-                            when statusCaption.isNotEmpty) ...[
-                          Text(
-                            statusCaption,
-                            style: TextStyle(
-                              fontSize: 9.5,
-                              fontWeight: FontWeight.w700,
-                              color: textColor.withValues(alpha: 0.78),
-                              height: 1,
-                            ),
-                          ),
-                          const SizedBox(height: 2),
-                        ],
-                        Text(
-                          statusText,
-                          style: TextStyle(
-                            fontSize: 11.5,
-                            fontWeight: FontWeight.w700,
-                            color: textColor,
-                            height: 1,
-                          ),
-                        ),
-                      ],
+                    const SizedBox(height: 2),
+                  ],
+                  Text(
+                    statusText,
+                    style: TextStyle(
+                      fontSize: 11.5,
+                      fontWeight: FontWeight.w700,
+                      color: textColor,
+                      height: 1,
                     ),
                   ),
                 ],
-                if (action.badgeIcon != null) ...[
-                  const SizedBox(width: 6),
-                  Tooltip(
-                    message: action.badgeTooltip ?? '',
-                    child: Icon(
-                      action.badgeIcon,
-                      size: 16,
-                      color: action.badgeColor ?? textColor,
-                    ),
-                  ),
-                ],
-              ],
+              ),
             ),
-          ),
-        ),
+          ],
+          if (action.badgeIcon != null) ...[
+            const SizedBox(width: 6),
+            Tooltip(
+              message: action.badgeTooltip ?? '',
+              child: Icon(
+                action.badgeIcon,
+                size: 16,
+                color: action.badgeColor ?? textColor,
+              ),
+            ),
+          ],
+        ],
       ),
     );
   }
@@ -227,7 +203,8 @@ class _ShortcutDockLabelBlock extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textColor = action.palette.textColor;
-    if (action.supportingText case final supporting? when supporting.isNotEmpty) {
+    if (action.supportingText case final supporting?
+        when supporting.isNotEmpty) {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
@@ -288,53 +265,19 @@ class _ShortcutDockToggleChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        borderRadius: BorderRadius.circular(999),
-        onTap: onTap,
-        child: Ink(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(999),
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: palette.gradient,
-            ),
-            border: Border.all(color: palette.borderColor.withValues(alpha: 0.32)),
-            boxShadow: [
-              BoxShadow(
-                color: palette.shadowColor.withValues(alpha: 0.18),
-                blurRadius: 14,
-                offset: const Offset(0, 8),
-              ),
-            ],
-          ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(
-                  expanded ? Icons.close_rounded : Icons.apps_rounded,
-                  size: 18,
-                  color: palette.textColor,
-                ),
-                const SizedBox(width: 8),
-                Text(
-                  expanded ? closeLabel : openLabel,
-                  style: TextStyle(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w700,
-                    color: palette.textColor,
-                    letterSpacing: 0.2,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
+    return AppLayeredGlassPillButton(
+      onPressed: onTap,
+      tintColor: palette.borderColor,
+      fillColor: palette.gradient.first.withValues(alpha: 0.9),
+      borderColor: palette.borderColor.withValues(alpha: 0.24),
+      foregroundColor: palette.textColor,
+      leading: Icon(
+        expanded ? Icons.close_rounded : Icons.apps_rounded,
+        size: 18,
+        color: palette.textColor,
       ),
+      label: expanded ? closeLabel : openLabel,
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
     );
   }
 }

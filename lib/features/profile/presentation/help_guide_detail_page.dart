@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/theme/app_surfaces.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/widgets/app_page_scaffold.dart';
 import '../../../shared/widgets/premium_card.dart';
@@ -88,6 +89,11 @@ class _GuideStepRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final badgeStyle = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.pill,
+      tintColor: accentColor,
+    );
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -95,10 +101,7 @@ class _GuideStepRow extends StatelessWidget {
           width: 28,
           height: 28,
           alignment: Alignment.center,
-          decoration: BoxDecoration(
-            color: accentColor.withValues(alpha: 0.14),
-            borderRadius: BorderRadius.circular(999),
-          ),
+          decoration: badgeStyle.decoration(radius: 999, includeShadow: false),
           child: Text(
             '$index',
             style: Theme.of(context).textTheme.labelLarge?.copyWith(

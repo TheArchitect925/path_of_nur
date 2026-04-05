@@ -9,8 +9,8 @@ import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/application/special_mode_provider.dart';
 import '../../../../shared/content/page_description_copy.dart';
 import '../../../../shared/theme/islamic_icons.dart';
-import '../../../../shared/widgets/major_page_shortcuts.dart';
 import '../../../../shared/widgets/premium_card.dart';
+import '../../../../shared/widgets/quran_sacred_block_chrome.dart';
 import '../../../../shared/widgets/section_hub_scaffold.dart';
 import '../../quran/application/quran_hub_recommendations_provider.dart';
 import '../../quran/application/quran_daily_reflection_provider.dart';
@@ -97,11 +97,6 @@ class _QuranAppHubPageState extends ConsumerState<QuranAppHubPage> {
         AppPageDescriptionKey.quranHub,
         kidsMode: isKidsMode,
       ),
-      shortcutActions: buildMajorPageShortcutActions(
-        context,
-        ref,
-        MajorPageShortcutFamily.quran,
-      ),
       children: [
         PremiumCard(
           child: LearnDiscoverySearchField(
@@ -116,193 +111,31 @@ class _QuranAppHubPageState extends ConsumerState<QuranAppHubPage> {
         const SizedBox(height: 8),
         SectionHubActionGrid(actions: readActions),
         const SizedBox(height: 12),
-        PremiumCard(
-          surfaceVariant: AppSurfaceVariant.panel,
-          surfaceTintColor: summaryPalette.goldAccent,
-          child: InkWell(
-            onTap: () => context.pushNamed('quranSummaryPage'),
-            borderRadius: BorderRadius.circular(20),
-            child: Padding(
-              padding: const EdgeInsets.all(2),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    width: 52,
-                    height: 52,
-                    decoration: BoxDecoration(
-                      color: summaryPalette.numberFill,
-                      borderRadius: BorderRadius.circular(16),
-                      border: Border.all(
-                        color: summaryPalette.goldAccent.withValues(
-                          alpha: 0.35,
-                        ),
-                      ),
-                    ),
-                    child: Icon(
-                      Icons.auto_stories_rounded,
-                      color: summaryPalette.goldAccent,
-                    ),
-                  ),
-                  const SizedBox(width: 14),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          l10n.quranSummaryIslandTitle,
-                          style: Theme.of(context).textTheme.titleMedium
-                              ?.copyWith(fontWeight: FontWeight.w800),
-                        ),
-                        const SizedBox(height: 4),
-                        Text(
-                          l10n.quranSummaryIslandSubtitle,
-                          style: Theme.of(context).textTheme.bodyMedium
-                              ?.copyWith(
-                                color:
-                                    appearance?.glassOnSurfaceSubtle ??
-                                    AppColors.onSurfaceSubtle,
-                              ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  Icon(
-                    Icons.arrow_forward_ios_rounded,
-                    size: 18,
-                    color: summaryPalette.goldAccent,
-                  ),
-                ],
-              ),
-            ),
-          ),
+        _QuranHubSacredLinkCard(
+          title: l10n.quranSummaryIslandTitle,
+          subtitle: l10n.quranSummaryIslandSubtitle,
+          icon: Icons.auto_stories_rounded,
+          accentColor: summaryPalette.goldAccent,
+          iconFill: summaryPalette.numberFill,
+          onTap: () => context.pushNamed('quranSummaryPage'),
         ),
         const SizedBox(height: 12),
-        PremiumCard(
-          surfaceVariant: AppSurfaceVariant.panel,
-          surfaceTintColor: summaryPalette.goldAccent,
-          child: InkWell(
-            onTap: () => context.pushNamed('quranTopicExplorer'),
-            borderRadius: BorderRadius.circular(20),
-            child: Padding(
-              padding: const EdgeInsets.all(2),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    width: 52,
-                    height: 52,
-                    decoration: BoxDecoration(
-                      color: summaryPalette.numberFill,
-                      borderRadius: BorderRadius.circular(16),
-                      border: Border.all(
-                        color: summaryPalette.goldAccent.withValues(
-                          alpha: 0.35,
-                        ),
-                      ),
-                    ),
-                    child: Icon(
-                      Icons.account_tree_outlined,
-                      color: summaryPalette.goldAccent,
-                    ),
-                  ),
-                  const SizedBox(width: 14),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          l10n.quranThemeDiscoveryIslandTitle,
-                          style: Theme.of(context).textTheme.titleMedium
-                              ?.copyWith(fontWeight: FontWeight.w800),
-                        ),
-                        const SizedBox(height: 4),
-                        Text(
-                          l10n.quranThemeDiscoveryIslandSubtitle,
-                          style: Theme.of(context).textTheme.bodyMedium
-                              ?.copyWith(
-                                color:
-                                    appearance?.glassOnSurfaceSubtle ??
-                                    AppColors.onSurfaceSubtle,
-                              ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  Icon(
-                    Icons.arrow_forward_ios_rounded,
-                    size: 18,
-                    color: summaryPalette.goldAccent,
-                  ),
-                ],
-              ),
-            ),
-          ),
+        _QuranHubSacredLinkCard(
+          title: l10n.quranThemeDiscoveryIslandTitle,
+          subtitle: l10n.quranThemeDiscoveryIslandSubtitle,
+          icon: Icons.account_tree_outlined,
+          accentColor: summaryPalette.goldAccent,
+          iconFill: summaryPalette.numberFill,
+          onTap: () => context.pushNamed('quranTopicExplorer'),
         ),
         const SizedBox(height: 12),
-        PremiumCard(
-          surfaceVariant: AppSurfaceVariant.panel,
-          surfaceTintColor: summaryPalette.goldAccent,
-          child: InkWell(
-            onTap: () => context.pushNamed('quranLearningPaths'),
-            borderRadius: BorderRadius.circular(20),
-            child: Padding(
-              padding: const EdgeInsets.all(2),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    width: 52,
-                    height: 52,
-                    decoration: BoxDecoration(
-                      color: summaryPalette.numberFill,
-                      borderRadius: BorderRadius.circular(16),
-                      border: Border.all(
-                        color: summaryPalette.goldAccent.withValues(
-                          alpha: 0.35,
-                        ),
-                      ),
-                    ),
-                    child: Icon(
-                      Icons.route_rounded,
-                      color: summaryPalette.goldAccent,
-                    ),
-                  ),
-                  const SizedBox(width: 14),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          l10n.quranPathwaysIslandTitle,
-                          style: Theme.of(context).textTheme.titleMedium
-                              ?.copyWith(fontWeight: FontWeight.w800),
-                        ),
-                        const SizedBox(height: 4),
-                        Text(
-                          l10n.quranPathwaysIslandSubtitle,
-                          style: Theme.of(context).textTheme.bodyMedium
-                              ?.copyWith(
-                                color:
-                                    appearance?.glassOnSurfaceSubtle ??
-                                    AppColors.onSurfaceSubtle,
-                              ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  Icon(
-                    Icons.arrow_forward_ios_rounded,
-                    size: 18,
-                    color: summaryPalette.goldAccent,
-                  ),
-                ],
-              ),
-            ),
-          ),
+        _QuranHubSacredLinkCard(
+          title: l10n.quranPathwaysIslandTitle,
+          subtitle: l10n.quranPathwaysIslandSubtitle,
+          icon: Icons.route_rounded,
+          accentColor: summaryPalette.goldAccent,
+          iconFill: summaryPalette.numberFill,
+          onTap: () => context.pushNamed('quranLearningPaths'),
         ),
         const SizedBox(height: 12),
         const QuranDailyReflectionCard(showSecondaryActions: false),
@@ -507,39 +340,36 @@ class _QuranRecommendationSection extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
-    final palette = QuranSummaryThemePalette.resolve(context);
-    final appearance = Theme.of(context).extension<AppAppearanceTheme>();
     final primary = recommendations.first;
     final secondary = recommendations.skip(1).toList(growable: false);
 
-    return PremiumCard(
-      surfaceVariant: AppSurfaceVariant.panel,
-      surfaceTintColor: palette.goldAccent,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            l10n.quranCompanionSectionTitle,
-            style: Theme.of(
-              context,
-            ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w800),
-          ),
-          const SizedBox(height: 6),
-          Text(
-            l10n.quranCompanionSectionSubtitle,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color:
-                  appearance?.glassOnSurfaceSubtle ?? AppColors.onSurfaceSubtle,
+    return QuranSacredBlockChrome(
+      child: PremiumCard(
+        surfaceTreatment: AppSurfaceTreatment.denseSanctuary,
+        surfaceVariant: AppSurfaceVariant.panel,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              l10n.quranCompanionSectionTitle,
+              style: Theme.of(
+                context,
+              ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w800),
             ),
-          ),
-          const SizedBox(height: 12),
-          _QuranCompanionPrimaryCard(recommendation: primary),
-          if (secondary.isNotEmpty) const SizedBox(height: 10),
-          for (var index = 0; index < secondary.length; index++) ...[
-            _QuranCompanionSecondaryCard(recommendation: secondary[index]),
-            if (index + 1 < secondary.length) const SizedBox(height: 8),
+            const SizedBox(height: 6),
+            Text(
+              l10n.quranCompanionSectionSubtitle,
+              style: Theme.of(context).textTheme.bodySmall,
+            ),
+            const SizedBox(height: 12),
+            _QuranCompanionPrimaryCard(recommendation: primary),
+            if (secondary.isNotEmpty) const SizedBox(height: 10),
+            for (var index = 0; index < secondary.length; index++) ...[
+              _QuranCompanionSecondaryCard(recommendation: secondary[index]),
+              if (index + 1 < secondary.length) const SizedBox(height: 8),
+            ],
           ],
-        ],
+        ),
       ),
     );
   }
@@ -554,6 +384,12 @@ class _QuranCompanionPrimaryCard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final palette = QuranSummaryThemePalette.resolve(context);
     final content = _resolveRecommendationContent(context, ref, recommendation);
+    final surfaceStyle = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.card,
+      treatment: AppSurfaceTreatment.denseSanctuary,
+      tintColor: palette.goldAccent,
+    );
 
     return InkWell(
       borderRadius: BorderRadius.circular(24),
@@ -561,10 +397,7 @@ class _QuranCompanionPrimaryCard extends ConsumerWidget {
       child: Container(
         width: double.infinity,
         padding: const EdgeInsets.all(18),
-        decoration: palette.elevatedSurfaceDecoration(
-          radius: 24,
-          emphasize: true,
-        ),
+        decoration: surfaceStyle.decoration(radius: 24, includeShadow: false),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -589,10 +422,12 @@ class _QuranCompanionPrimaryCard extends ConsumerWidget {
                 Container(
                   width: 44,
                   height: 44,
-                  decoration: palette.subtlePanelDecoration(
-                    radius: 14,
-                    emphasize: true,
-                  ),
+                  decoration: AppSurfaceTheme.resolve(
+                    context,
+                    variant: AppSurfaceVariant.pill,
+                    treatment: AppSurfaceTreatment.denseSanctuary,
+                    tintColor: palette.goldAccent,
+                  ).decoration(radius: 14, includeShadow: false),
                   child: Icon(content.icon, color: palette.goldAccent),
                 ),
               ],
@@ -656,6 +491,18 @@ class _QuranCompanionSecondaryCard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final palette = QuranSummaryThemePalette.resolve(context);
     final content = _resolveRecommendationContent(context, ref, recommendation);
+    final surfaceStyle = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.panel,
+      treatment: AppSurfaceTreatment.denseSanctuary,
+      tintColor: palette.goldAccent,
+    );
+    final iconStyle = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.pill,
+      treatment: AppSurfaceTreatment.denseSanctuary,
+      tintColor: palette.goldAccent,
+    );
 
     return Material(
       color: Colors.transparent,
@@ -664,14 +511,17 @@ class _QuranCompanionSecondaryCard extends ConsumerWidget {
         onTap: () => _openRecommendation(context, recommendation),
         child: Container(
           padding: const EdgeInsets.all(14),
-          decoration: palette.subtlePanelDecoration(radius: 18),
+          decoration: surfaceStyle.decoration(radius: 18, includeShadow: false),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
                 width: 40,
                 height: 40,
-                decoration: palette.subtlePanelDecoration(radius: 12),
+                decoration: iconStyle.decoration(
+                  radius: 12,
+                  includeShadow: false,
+                ),
                 child: Icon(content.icon, color: palette.goldAccent),
               ),
               const SizedBox(width: 12),
@@ -713,6 +563,83 @@ class _QuranCompanionSecondaryCard extends ConsumerWidget {
   }
 }
 
+class _QuranHubSacredLinkCard extends StatelessWidget {
+  const _QuranHubSacredLinkCard({
+    required this.title,
+    required this.subtitle,
+    required this.icon,
+    required this.accentColor,
+    required this.iconFill,
+    required this.onTap,
+  });
+
+  final String title;
+  final String subtitle;
+  final IconData icon;
+  final Color accentColor;
+  final Color iconFill;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return PremiumCard(
+      surfaceTreatment: AppSurfaceTreatment.denseSanctuary,
+      surfaceVariant: AppSurfaceVariant.panel,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(20),
+        child: Padding(
+          padding: const EdgeInsets.all(2),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: 52,
+                height: 52,
+                decoration:
+                    AppSurfaceTheme.resolve(
+                          context,
+                          variant: AppSurfaceVariant.pill,
+                          treatment: AppSurfaceTreatment.denseSanctuary,
+                          tintColor: accentColor,
+                        )
+                        .decoration(radius: 16, includeShadow: false)
+                        .copyWith(color: iconFill, gradient: null),
+                child: Icon(icon, color: accentColor),
+              ),
+              const SizedBox(width: 14),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      subtitle,
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(width: 8),
+              Icon(
+                Icons.arrow_forward_ios_rounded,
+                size: 18,
+                color: accentColor,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class _ResolvedRecommendationContent {
   const _ResolvedRecommendationContent({
     required this.title,
@@ -745,10 +672,10 @@ class _QuranCompanionReasonChip extends StatelessWidget {
     final palette = QuranSummaryThemePalette.resolve(context);
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-      decoration: BoxDecoration(
-        color: palette.chipFillForTone(tone),
-        borderRadius: BorderRadius.circular(999),
-        border: Border.all(color: palette.chipBorderForTone(tone)),
+      decoration: _quranReasonChipDecoration(
+        context,
+        fill: palette.chipFillForTone(tone),
+        border: palette.chipBorderForTone(tone),
       ),
       child: Text(
         label,
@@ -966,22 +893,29 @@ class _QuranIntentFocusCard extends ConsumerWidget {
             spacing: 8,
             runSpacing: 8,
             children: QuranUserIntent.values
-                .map(
-                  (intent) => ChoiceChip(
-                    label: Text(_intentLabel(l10n, intent)),
-                    selected: selectedIntent == intent,
-                    onSelected: (selected) {
+                .map((intent) {
+                  final selected = selectedIntent == intent;
+                  return InkWell(
+                    onTap: () {
                       final notifier = ref.read(
                         quranUserIntentStateProvider.notifier,
                       );
-                      if (selected) {
-                        notifier.setIntent(intent);
-                      } else {
-                        notifier.clearIntent();
-                      }
+                      notifier.setIntent(intent);
                     },
-                  ),
-                )
+                    borderRadius: BorderRadius.circular(999),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 12,
+                        vertical: 8,
+                      ),
+                      decoration: _quranIntentPillDecoration(
+                        context,
+                        selected: selected,
+                      ),
+                      child: Text(_intentLabel(l10n, intent)),
+                    ),
+                  );
+                })
                 .toList(growable: false),
           ),
           const SizedBox(height: 10),
@@ -1133,10 +1067,21 @@ class _SecondaryToolChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ActionChip(
-      avatar: Icon(icon, size: 18),
-      label: Text(label),
-      onPressed: onTap,
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(999),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        decoration: _secondaryToolChipDecoration(context),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(icon, size: 18),
+            const SizedBox(width: 8),
+            Text(label),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -1153,4 +1098,45 @@ class _QuranToolAction {
   final String subtitle;
   final IconData icon;
   final VoidCallback onTap;
+}
+
+BoxDecoration _quranReasonChipDecoration(
+  BuildContext context, {
+  required Color fill,
+  required Color border,
+}) {
+  final style = AppSurfaceTheme.resolve(
+    context,
+    variant: AppSurfaceVariant.pill,
+    tintColor: fill,
+  );
+  return BoxDecoration(
+    color: style.backgroundColor,
+    gradient: style.gradient,
+    borderRadius: BorderRadius.circular(999),
+    border: Border.all(color: border),
+    boxShadow: style.boxShadows,
+  );
+}
+
+BoxDecoration _quranIntentPillDecoration(
+  BuildContext context, {
+  required bool selected,
+}) {
+  final style = AppSurfaceTheme.resolve(
+    context,
+    variant: AppSurfaceVariant.pill,
+    tintColor: selected
+        ? Theme.of(context).colorScheme.primary.withValues(alpha: 0.14)
+        : null,
+  );
+  return style.decoration(radius: 999);
+}
+
+BoxDecoration _secondaryToolChipDecoration(BuildContext context) {
+  final style = AppSurfaceTheme.resolve(
+    context,
+    variant: AppSurfaceVariant.pill,
+  );
+  return style.decoration(radius: 999);
 }

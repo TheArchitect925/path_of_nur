@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../../core/theme/app_surfaces.dart';
 import '../../../../../l10n/app_localizations.dart';
+import '../../../../../shared/widgets/app_layered_glass_pill_button.dart';
 import '../../application/quran_ayah_action_provider.dart';
 import '../../application/quran_learning_progression_provider.dart';
 import '../../application/quran_reflections_provider.dart';
@@ -137,22 +138,22 @@ class QuranAyahActionSection extends ConsumerWidget {
             runSpacing: 8,
             children: [
               recommendation.isCompletedToday
-                  ? FilledButton.tonalIcon(
+                  ? AppLayeredGlassPillButton(
                       onPressed: null,
-                      icon: const Icon(Icons.check_circle_rounded),
-                      label: Text(l10n.quranAyahActionCompletedAction),
+                      leading: const Icon(Icons.check_circle_rounded, size: 18),
+                      label: l10n.quranAyahActionCompletedAction,
                     )
-                  : FilledButton.icon(
+                  : AppLayeredGlassPillButton(
                       onPressed: () {
                         ref
                             .read(quranAyahActionStateProvider.notifier)
                             .completeAction(action);
                       },
-                      icon: const Icon(Icons.done_rounded),
-                      label: Text(l10n.quranAyahActionCompleteAction),
+                      leading: const Icon(Icons.done_rounded, size: 18),
+                      label: l10n.quranAyahActionCompleteAction,
                     ),
               if (style != QuranAyahActionSectionStyle.kids)
-                OutlinedButton.icon(
+                AppLayeredGlassPillButton(
                   onPressed: () async {
                     final note = await showQuranReflectionNoteDialog(
                       context,
@@ -182,12 +183,10 @@ class QuranAyahActionSection extends ConsumerWidget {
                           );
                     }
                   },
-                  icon: const Icon(Icons.edit_note_rounded),
-                  label: Text(
-                    noteEntry?.note?.trim().isNotEmpty ?? false
-                        ? l10n.quranReflectionsEditNoteAction
-                        : l10n.quranAyahActionReflectAction,
-                  ),
+                  leading: const Icon(Icons.edit_note_rounded, size: 18),
+                  label: noteEntry?.note?.trim().isNotEmpty ?? false
+                      ? l10n.quranReflectionsEditNoteAction
+                      : l10n.quranAyahActionReflectAction,
                 ),
             ],
           ),

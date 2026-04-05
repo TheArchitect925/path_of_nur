@@ -1,6 +1,6 @@
 # Continuation Backlog
 
-Last updated: 2026-03-24
+Last updated: 2026-04-03
 
 Master consolidation reference:
 
@@ -12,20 +12,21 @@ Master consolidation reference:
 1. Finish the remaining live-surface localization payoff by retiring the last Wudu reward-helper bridge method cleanly, and replace the newly propagated Wudu/Kids Arabic non-English ARB fallback text with real translations.
 2. Localize `SettingsPage` end-to-end, including hardcoded section titles, action labels, helper copy, and snackbar/dialog text.
 3. Replace the newly added Accounts, Profiles & Sync non-English ARB fallback text with real translations and run multilingual QA on the account/backup/import flows.
-4. Run real-device QA for Phase 2 remote backup transport on signed Apple and Google builds, including iCloud unavailable, revoked Google auth, remote metadata fetch, upload, download, and confirmed restore flows.
-5. Run real-device QA for the new auto-backup engine on iOS and Android, especially launch/resume/background triggers, provider-unavailable states, and throttle behavior after repeated local changes.
-6. Implement the backend-backed email remote backup transport behind the shared `BackupTransport` contract instead of adding a separate backup architecture.
-7. Add widget tests for the remote restore preview page and the new auto-backup settings/status card, especially provider/account mismatch warnings, replace-only domain messaging, retry visibility, and failure-state rendering.
-8. Decide whether future backup payloads should carry per-domain last-modified metadata so currently approximate snapshot domains can move out of `uncertain difference` status and payload-fingerprint dirty tracking can become more selective.
-9. Run real-device QA for granular sync-scope controls on Apple and Google backup paths, especially partial backup upload, scope mismatch restore preview messaging, and excluded-domain preservation after partial restore.
-10. Decide whether manual export should stay full-only or optionally support the same sync-scope controls without making the backup model harder to understand.
-11. Finalize the canonical Learn ownership decision between `/learn`, `/learn/legacy`, and `/learn/browse`, then remove one layer of overlap.
-12. Finish the remaining Qur'an ownership cleanup by localizing and tightening the scoped `/quran/learning` surface, then audit older Learn-side wording that still implies `Qur’an Study` as a parallel owner.
-13. Replace the contained Learn guide/mapping routes with real lesson-backed or route-specific production content, and localize the newly live Tajweed lesson bodies.
-14. Add widget tests for `LearningJourneyHomePage` covering Continue Journey, Today’s Light, and profile-aware visibility.
-15. Add tests for progress reload when journey/stage IDs are removed or changed in the registry.
-16. Refresh the root `README.md` with real product/setup/release information.
-17. Finish real-device QA for Apple/Google sign-in, export/share, file-based import, and safety-snapshot restore recovery on the intended release platforms.
+4. Follow up the Windows audit in `docs/windows_store_readiness_audit_2026-04-03.md`: fix desktop device-kind mapping, decide honest Windows V1 scope, add MSIX/store packaging docs, and validate desktop-specific QA before any Microsoft Store submission claim.
+5. Run real-device QA for Phase 2 remote backup transport on signed Apple and Google builds, including iCloud unavailable, revoked Google auth, remote metadata fetch, upload, download, and confirmed restore flows.
+6. Run real-device QA for the new auto-backup engine on iOS and Android, especially launch/resume/background triggers, provider-unavailable states, and throttle behavior after repeated local changes.
+7. Implement the backend-backed email remote backup transport behind the shared `BackupTransport` contract instead of adding a separate backup architecture.
+8. Add widget tests for the remote restore preview page and the new auto-backup settings/status card, especially provider/account mismatch warnings, replace-only domain messaging, retry visibility, and failure-state rendering.
+9. Decide whether future backup payloads should carry per-domain last-modified metadata so currently approximate snapshot domains can move out of `uncertain difference` status and payload-fingerprint dirty tracking can become more selective.
+10. Run real-device QA for granular sync-scope controls on Apple and Google backup paths, especially partial backup upload, scope mismatch restore preview messaging, and excluded-domain preservation after partial restore.
+11. Decide whether manual export should stay full-only or optionally support the same sync-scope controls without making the backup model harder to understand.
+12. Finalize the canonical Learn ownership decision between `/learn`, `/learn/legacy`, and `/learn/browse`, then remove one layer of overlap.
+13. Finish the remaining Qur'an ownership cleanup by localizing and tightening the scoped `/quran/learning` surface, then audit older Learn-side wording that still implies `Qur’an Study` as a parallel owner.
+14. Replace the contained Learn guide/mapping routes with real lesson-backed or route-specific production content, and localize the newly live Tajweed lesson bodies.
+15. Add widget tests for `LearningJourneyHomePage` covering Continue Journey, Today’s Light, and profile-aware visibility.
+16. Add tests for progress reload when journey/stage IDs are removed or changed in the registry.
+17. Refresh the root `README.md` with real product/setup/release information.
+18. Finish real-device QA for Apple/Google sign-in, export/share, file-based import, and safety-snapshot restore recovery on the intended release platforms.
 9. Run paired Apple Watch QA covering snapshot fetch, prayer action queue replay, dhikr completion sync, complication refresh, and offline recovery.
 10. Validate Apple Watch prayer reminder actions on real hardware, including mark prayed, mark prayed late, snooze rescheduling, and prayer-row focus routing after open.
 11. Confirm the new persisted prayer follow-up and snooze settings are surfaced in product UI if they should become user-configurable beyond watch sync truth.

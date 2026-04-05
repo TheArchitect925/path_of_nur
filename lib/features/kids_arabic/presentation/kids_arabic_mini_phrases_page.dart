@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../l10n/app_localizations.dart';
+import '../../../shared/widgets/app_layered_glass_pill_button.dart';
 import '../../arabic/presentation/widgets/arabic_learning_playback_speed_toggle.dart';
 import '../../learn/presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/kids_arabic_audio_service.dart';
@@ -37,9 +38,9 @@ class _KidsArabicMiniPhrasesPageState
       _isPlaying = true;
       _showRepeatPrompt = false;
     });
-    ref.read(kidsArabicMiniPhraseProgressProvider.notifier).markPhraseHeard(
-          phrase.id,
-        );
+    ref
+        .read(kidsArabicMiniPhraseProgressProvider.notifier)
+        .markPhraseHeard(phrase.id);
     try {
       await ref.read(kidsArabicAudioServiceProvider).speakPhrase(phrase);
     } catch (_) {
@@ -97,7 +98,9 @@ class _KidsArabicMiniPhrasesPageState
     final phrases = ref.watch(kidsArabicMiniPhrasesProvider);
     final recommended = ref.watch(kidsArabicMiniPhraseRecommendedProvider);
     final heardCount = ref.watch(kidsArabicMiniPhraseHeardCountProvider);
-    final heardIds = ref.watch(kidsArabicMiniPhraseProgressProvider).heardPhraseIds;
+    final heardIds = ref
+        .watch(kidsArabicMiniPhraseProgressProvider)
+        .heardPhraseIds;
     final parentPreferences = ref.watch(kidsArabicParentPreferencesProvider);
     final activePhrase = _resolveActivePhrase(phrases, recommended);
 
@@ -110,11 +113,13 @@ class _KidsArabicMiniPhrasesPageState
       );
     }
 
-    final activeIndex = phrases.indexWhere((phrase) => phrase.id == activePhrase.id);
-    final previousPhrase =
-        activeIndex > 0 ? phrases[activeIndex - 1] : null;
-    final nextPhrase =
-        activeIndex >= 0 && activeIndex + 1 < phrases.length ? phrases[activeIndex + 1] : null;
+    final activeIndex = phrases.indexWhere(
+      (phrase) => phrase.id == activePhrase.id,
+    );
+    final previousPhrase = activeIndex > 0 ? phrases[activeIndex - 1] : null;
+    final nextPhrase = activeIndex >= 0 && activeIndex + 1 < phrases.length
+        ? phrases[activeIndex + 1]
+        : null;
     final isHeard = heardIds.contains(activePhrase.id);
 
     if (parentPreferences.audioAutoplay &&
@@ -292,9 +297,7 @@ class _KidsArabicMiniPhrasesPageState
           runSpacing: 10,
           children: [
             TextButton.icon(
-              onPressed: () => context.pushNamed(
-                'kidsArabicReadingMode',
-              ),
+              onPressed: () => context.pushNamed('kidsArabicReadingMode'),
               icon: const Icon(Icons.menu_book_rounded),
               label: Text(l10n.kidsArabicMiniPhrasesWordsReadingAction),
             ),
@@ -317,13 +320,10 @@ class _SummaryPill extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return AppLayeredGlassPill(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(999),
-        border: Border.all(color: const Color(0xFFE3D7C8)),
-      ),
+      fillColor: Colors.white,
+      borderColor: const Color(0xFFE3D7C8),
       child: Text(
         label,
         style: const TextStyle(

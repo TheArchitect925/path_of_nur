@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/theme/app_surfaces.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/theme/islamic_icons.dart';
 import '../../../../shared/widgets/premium_card.dart';
@@ -147,9 +148,9 @@ class _LearnSalahHubPageState extends ConsumerState<LearnSalahHubPage> {
         if (recentPrayers.isNotEmpty) ...[
           const SizedBox(height: 10),
           PremiumCard(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
                 Text(
                   l10n.learnSalahHubContinuePrayerPracticeTitle,
                   style: TextStyle(fontWeight: FontWeight.w700),
@@ -226,10 +227,7 @@ class _LearnSalahHubPageState extends ConsumerState<LearnSalahHubPage> {
   Widget _metricPill(String label, String value) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-      decoration: BoxDecoration(
-        color: Colors.white.withValues(alpha: 0.08),
-        borderRadius: BorderRadius.circular(999),
-      ),
+      decoration: _salahNoorPillDecoration(context),
       child: Text('$label  $value'),
     );
   }
@@ -267,9 +265,9 @@ class _LearnTab extends StatelessWidget {
                       spacing: 8,
                       runSpacing: 8,
                       children: [
-                        _infoChip(prayer.sunnahRakahs),
-                        _infoChip(prayer.fardRakahs),
-                        _infoChip(prayer.recitationStyle),
+                        _infoChip(context, prayer.sunnahRakahs),
+                        _infoChip(context, prayer.fardRakahs),
+                        _infoChip(context, prayer.recitationStyle),
                       ],
                     ),
                     const SizedBox(height: 10),
@@ -317,13 +315,10 @@ class _LearnTab extends StatelessWidget {
     );
   }
 
-  Widget _infoChip(String label) {
+  Widget _infoChip(BuildContext context, String label) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(999),
-        color: Colors.white.withValues(alpha: 0.08),
-      ),
+      decoration: _salahNoorPillDecoration(context),
       child: Text(label),
     );
   }
@@ -349,8 +344,8 @@ class _GuidedTab extends ConsumerWidget {
       children: [
         PremiumCard(
           child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
               Text(
                 l10n.learnSalahHubGuidedSurahSelectionTitle,
                 style: TextStyle(fontWeight: FontWeight.w700),
@@ -362,15 +357,31 @@ class _GuidedTab extends ConsumerWidget {
                 children: GuidedSurahMode.values
                     .map((mode) {
                       final selected = state.guidedSurahMode == mode;
-                      return ChoiceChip(
-                        label: Text(switch (mode) {
-                          GuidedSurahMode.random => l10n.learnSalahHubGuidedModeRandom,
-                          GuidedSurahMode.fixed => l10n.learnSalahHubGuidedModeFixed,
-                          GuidedSurahMode.practiceSpecific =>
-                            l10n.learnSalahHubGuidedModePracticeSpecific,
-                        }),
-                        selected: selected,
-                        onSelected: (_) => notifier.setGuidedSurahMode(mode),
+                      return InkWell(
+                        onTap: () => notifier.setGuidedSurahMode(mode),
+                        borderRadius: BorderRadius.circular(999),
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 12,
+                            vertical: 8,
+                          ),
+                          decoration: _salahNoorPillDecoration(
+                            context,
+                            tintColor: selected
+                                ? Theme.of(
+                                    context,
+                                  ).colorScheme.primary.withValues(alpha: 0.14)
+                                : null,
+                          ),
+                          child: Text(switch (mode) {
+                            GuidedSurahMode.random =>
+                              l10n.learnSalahHubGuidedModeRandom,
+                            GuidedSurahMode.fixed =>
+                              l10n.learnSalahHubGuidedModeFixed,
+                            GuidedSurahMode.practiceSpecific =>
+                              l10n.learnSalahHubGuidedModePracticeSpecific,
+                          }),
+                        ),
                       );
                     })
                     .toList(growable: false),
@@ -687,4 +698,16 @@ class _WuduTab extends StatelessWidget {
       ],
     );
   }
+}
+
+BoxDecoration _salahNoorPillDecoration(
+  BuildContext context, {
+  Color? tintColor,
+}) {
+  final style = AppSurfaceTheme.resolve(
+    context,
+    variant: AppSurfaceVariant.pill,
+    tintColor: tintColor,
+  );
+  return style.decoration(radius: 999);
 }

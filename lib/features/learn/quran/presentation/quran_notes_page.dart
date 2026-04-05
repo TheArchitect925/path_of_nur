@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../../core/theme/app_surfaces.dart';
 import '../../../../../l10n/app_localizations.dart';
 import '../../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../../shared/widgets/premium_card.dart';
@@ -151,9 +152,8 @@ class QuranNotesPage extends ConsumerWidget {
                             if (note.isHighlight)
                               Padding(
                                 padding: EdgeInsets.only(bottom: 6),
-                                child: Chip(
-                                  label: Text(l10n.quranHighlightLabel),
-                                  visualDensity: VisualDensity.compact,
+                                child: _QuranNotePill(
+                                  label: l10n.quranHighlightLabel,
                                 ),
                               ),
                             if (note.highlightLabel != null &&
@@ -177,15 +177,9 @@ class QuranNotesPage extends ConsumerWidget {
                               spacing: 6,
                               runSpacing: 6,
                               children: [
-                                Chip(
-                                  visualDensity: VisualDensity.compact,
-                                  label: Text(note.folder),
-                                ),
+                                _QuranNotePill(label: note.folder),
                                 ...note.tags.map(
-                                  (tag) => Chip(
-                                    visualDensity: VisualDensity.compact,
-                                    label: Text('#$tag'),
-                                  ),
+                                  (tag) => _QuranNotePill(label: '#$tag'),
                                 ),
                               ],
                             ),
@@ -213,6 +207,30 @@ class QuranNotesPage extends ConsumerWidget {
             );
           }),
       ],
+    );
+  }
+}
+
+class _QuranNotePill extends StatelessWidget {
+  const _QuranNotePill({required this.label});
+
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    final style = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.pill,
+    );
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      decoration: style.decoration(radius: 999, includeShadow: false),
+      child: Text(
+        label,
+        style: Theme.of(
+          context,
+        ).textTheme.bodySmall?.copyWith(fontWeight: FontWeight.w700),
+      ),
     );
   }
 }

@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_surfaces.dart';
 import '../../../l10n/app_localizations.dart';
+import '../../../shared/widgets/premium_card.dart';
 import '../application/kids_dua_experience_provider.dart';
 import '../application/kids_dua_my_day_provider.dart';
 import '../application/kids_dua_repository.dart';
@@ -44,13 +47,8 @@ class _KidsDuaMyDayPageState extends ConsumerState<KidsDuaMyDayPage> {
       body: ListView(
         padding: const EdgeInsets.fromLTRB(16, 12, 16, 96),
         children: [
-          Container(
-            padding: const EdgeInsets.all(18),
-            decoration: BoxDecoration(
-              color: const Color(0xFFFFF6EA),
-              borderRadius: BorderRadius.circular(24),
-              border: Border.all(color: const Color(0xFFE7D7BE)),
-            ),
+          PremiumCard(
+            surfaceVariant: AppSurfaceVariant.island,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -66,7 +64,10 @@ class _KidsDuaMyDayPageState extends ConsumerState<KidsDuaMyDayPage> {
                   state.isDayComplete
                       ? l10n.kidsDuaMyDayCompleteBody
                       : l10n.kidsDuaMyDaySubtitle,
-                  style: const TextStyle(color: Color(0xFF675B4E), height: 1.4),
+                  style: const TextStyle(
+                    color: AppColors.onSurfaceSubtle,
+                    height: 1.4,
+                  ),
                 ),
                 const SizedBox(height: 14),
                 _LightProgressCard(summary: lightSummary),
@@ -175,13 +176,9 @@ class _LightProgressCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    return Container(
+    return PremiumCard(
+      surfaceVariant: AppSurfaceVariant.panel,
       padding: const EdgeInsets.all(14),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: const Color(0xFFE8DDD0)),
-      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -199,14 +196,14 @@ class _LightProgressCard extends StatelessWidget {
           const SizedBox(height: 4),
           Text(
             l10n.kidsDuaStreakValue(summary.currentStreakDays),
-            style: const TextStyle(color: Color(0xFF8A6A45)),
+            style: const TextStyle(color: AppColors.accentGold),
           ),
           const SizedBox(height: 6),
           Text(
             summary.todayCompleted
                 ? l10n.kidsDuaMyDayLightComplete
                 : l10n.kidsDuaMyDayLightContinue,
-            style: const TextStyle(color: Color(0xFF675B4E)),
+            style: const TextStyle(color: AppColors.onSurfaceSubtle),
           ),
         ],
       ),
@@ -253,16 +250,12 @@ class _SectionCard extends ConsumerWidget {
             ),
       borderRadius: BorderRadius.circular(22),
       child: Container(
+        width: double.infinity,
         padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(22),
-          border: Border.all(
-            color: highlighted
-                ? const Color(0xFFB58B4D)
-                : const Color(0xFFE8DDD0),
-            width: highlighted ? 2 : 1,
-          ),
+        decoration: _kidsNoorPanelDecoration(
+          context,
+          borderColor: highlighted ? const Color(0xFFB58B4D) : null,
+          borderWidth: highlighted ? 2 : 1,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -272,11 +265,8 @@ class _SectionCard extends ConsumerWidget {
                 Container(
                   width: 48,
                   height: 48,
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFFFF8EF),
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  child: Icon(section.icon, color: const Color(0xFF8A6A45)),
+                  decoration: _kidsNoorPanelDecoration(context),
+                  child: Icon(section.icon, color: AppColors.accentGold),
                 ),
                 const SizedBox(width: 12),
                 Expanded(
@@ -332,10 +322,7 @@ class _DuaRow extends StatelessWidget {
       borderRadius: BorderRadius.circular(16),
       child: Container(
         padding: const EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          color: const Color(0xFFFFFBF5),
-          borderRadius: BorderRadius.circular(16),
-        ),
+        decoration: _kidsNoorPanelDecoration(context),
         child: Row(
           children: [
             Expanded(
@@ -351,7 +338,7 @@ class _DuaRow extends StatelessWidget {
               style: TextStyle(
                 color: completed
                     ? const Color(0xFF4E7A39)
-                    : const Color(0xFF8A6A45),
+                    : AppColors.accentGold,
                 fontWeight: FontWeight.w700,
               ),
             ),
@@ -378,11 +365,11 @@ class _TodayStatusBadge extends StatelessWidget {
     final l10n = AppLocalizations.of(context);
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-      decoration: BoxDecoration(
-        color: completed
+      decoration: _kidsNoorPillDecoration(
+        context,
+        tintColor: completed
             ? const Color(0xFFE5F3E0)
             : (highlighted ? const Color(0xFFFFE7C8) : const Color(0xFFFFF1DB)),
-        borderRadius: BorderRadius.circular(999),
       ),
       child: Text(
         completed
@@ -423,19 +410,14 @@ class _GuidanceCard extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(22),
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(22),
-          border: Border.all(color: const Color(0xFFE8DDD0)),
-        ),
+      child: PremiumCard(
+        surfaceVariant: AppSurfaceVariant.panel,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               children: [
-                Icon(icon, color: const Color(0xFF8A6A45)),
+                Icon(icon, color: AppColors.accentGold),
                 const SizedBox(width: 10),
                 Expanded(
                   child: Text(
@@ -451,7 +433,10 @@ class _GuidanceCard extends StatelessWidget {
               style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
             ),
             const SizedBox(height: 6),
-            Text(detail, style: const TextStyle(color: Color(0xFF675B4E))),
+            Text(
+              detail,
+              style: const TextStyle(color: AppColors.onSurfaceSubtle),
+            ),
             const SizedBox(height: 12),
             FilledButton(onPressed: onTap, child: Text(actionLabel)),
           ],
@@ -477,10 +462,46 @@ class _SectionHeader extends StatelessWidget {
           style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
         ),
         const SizedBox(height: 4),
-        Text(subtitle, style: const TextStyle(color: Color(0xFF675B4E))),
+        Text(
+          subtitle,
+          style: const TextStyle(color: AppColors.onSurfaceSubtle),
+        ),
       ],
     );
   }
+}
+
+BoxDecoration _kidsNoorPillDecoration(
+  BuildContext context, {
+  Color? tintColor,
+}) {
+  final style = AppSurfaceTheme.resolve(
+    context,
+    variant: AppSurfaceVariant.pill,
+    tintColor: tintColor,
+  );
+  return style.decoration(radius: 999);
+}
+
+BoxDecoration _kidsNoorPanelDecoration(
+  BuildContext context, {
+  Color? borderColor,
+  double borderWidth = 1,
+}) {
+  final style = AppSurfaceTheme.resolve(
+    context,
+    variant: AppSurfaceVariant.panel,
+  );
+  return BoxDecoration(
+    color: style.backgroundColor,
+    gradient: style.gradient,
+    borderRadius: BorderRadius.circular(16),
+    border: Border.all(
+      color: borderColor ?? style.borderColor,
+      width: borderWidth,
+    ),
+    boxShadow: style.boxShadows,
+  );
 }
 
 String _myDayReasonLabel(AppLocalizations l10n, String key) {

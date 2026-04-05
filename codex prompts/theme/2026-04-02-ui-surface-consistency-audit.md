@@ -258,3 +258,74 @@ Clean up:
 
 Do not delete temporary comparison/demo code unless it is directly interfering and clearly safe to remove.
 If kept, call it out in the final audit.
+
+==================================================
+FILES TO PRIORITIZE FOR FIXES
+==================================================
+
+Primary:
+- `lib/core/theme/app_surfaces.dart`
+- `lib/core/theme/app_theme.dart`
+- `lib/shared/widgets/premium_card.dart`
+
+Likely broad consumers:
+- `lib/shared/widgets/section_hub_scaffold.dart`
+- `lib/shared/widgets/quran_quote_block.dart`
+- `lib/shared/widgets/quran_reference_block.dart`
+
+Likely page-local drift owners:
+- `lib/features/home/presentation/home_page.dart`
+- `lib/features/salah/presentation/salah_page.dart`
+- learning card widgets
+- Qur’an summary theme owners
+- settings preview/local visual owners
+- dua devotional surfaces
+- Qur’an reader/support widgets
+
+==================================================
+OUTPUTS REQUIRED
+==================================================
+
+1. Make the runtime code changes
+2. Save an audit summary here:
+   `docs/ui_surface_consistency_audit_2026-04-02.md`
+
+3. Save the source prompt here:
+   `codex prompts/theme/2026-04-02-ui-surface-consistency-audit.md`
+
+4. At the end provide a final summary covering:
+- files modified
+- files added
+- what sacred surfaces now use Dense Sanctuary
+- what non-sacred surface systems were unified into Frosted Glass
+- where parchment leftovers were replaced
+- where any drift still remains
+- whether temporary comparison/demo code still exists
+- whether `flutter analyze` passed
+
+==================================================
+ACCEPTANCE CRITERIA
+==================================================
+
+After this pass:
+- sacred/devotional containers use Dense Sanctuary Glass
+- all other containers/islands/cards/panels use Frosted Glass
+- Frosted Glass reads consistently warm golden-yellow across the app
+- learning cards are harmonized into Frosted Glass while preserving tasteful accents
+- no obvious default/local/legacy container systems remain where shared surfaces should be used
+- app layouts and logic remain intact
+- implementation is production-clean and centralized
+
+==================================================
+FINAL AUDIT REQUIREMENT
+==================================================
+
+At the very end, do one final repo audit and provide one complete summary.
+Do not just say “updated several files.”
+I want a real closing audit that identifies:
+- what was fully fixed
+- what is still drifting
+- what should be done next if anything remains
+
+Do not stop at a partial pass.
+Finish the repo-wide visual consistency correction properly.

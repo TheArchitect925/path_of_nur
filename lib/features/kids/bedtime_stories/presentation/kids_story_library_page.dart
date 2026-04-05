@@ -25,7 +25,9 @@ class KidsStoryLibraryPage extends ConsumerWidget {
     final l10n = AppLocalizations.of(context);
     final selectedCollection = _collectionFromId(initialCollectionId);
     if (selectedCollection != null) {
-      final stories = ref.watch(kidsStoriesByCollectionProvider(selectedCollection));
+      final stories = ref.watch(
+        kidsStoriesByCollectionProvider(selectedCollection),
+      );
       final seerahJourney = ref.watch(featuredKidsSeerahJourneyProvider);
       return LearnHubPageScaffold(
         headerIcon: Icons.auto_stories_rounded,
@@ -152,24 +154,28 @@ class KidsStoryLibraryPage extends ConsumerWidget {
           subtitle: l10n.kidsStoryBedtimeEligibleSubtitle,
         ),
         const SizedBox(height: 10),
-        ...bedtimeStories.take(6).map(
-          (story) => Padding(
-            padding: const EdgeInsets.only(bottom: 10),
-            child: _StoryListTile(story: story),
-          ),
-        ),
+        ...bedtimeStories
+            .take(6)
+            .map(
+              (story) => Padding(
+                padding: const EdgeInsets.only(bottom: 10),
+                child: _StoryListTile(story: story),
+              ),
+            ),
         const SizedBox(height: 18),
         _SectionHeader(
           title: l10n.kidsStoryFeaturedStoriesTitle,
           subtitle: l10n.kidsStoryFeaturedStoriesSubtitle,
         ),
         const SizedBox(height: 10),
-        ...featuredStories.take(8).map(
-          (story) => Padding(
-            padding: const EdgeInsets.only(bottom: 10),
-            child: _StoryListTile(story: story),
-          ),
-        ),
+        ...featuredStories
+            .take(8)
+            .map(
+              (story) => Padding(
+                padding: const EdgeInsets.only(bottom: 10),
+                child: _StoryListTile(story: story),
+              ),
+            ),
       ],
     );
   }
@@ -260,9 +266,9 @@ class _JourneyCard extends ConsumerWidget {
         children: [
           Text(
             title,
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-              fontWeight: FontWeight.w800,
-            ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w800),
           ),
           const SizedBox(height: 4),
           Text(subtitle),
@@ -317,9 +323,9 @@ class _HeroCard extends StatelessWidget {
         children: [
           Text(
             title,
-            style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-              fontWeight: FontWeight.w800,
-            ),
+            style: Theme.of(
+              context,
+            ).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w800),
           ),
           const SizedBox(height: 8),
           Text(subtitle, style: Theme.of(context).textTheme.bodyLarge),
@@ -342,9 +348,9 @@ class _SectionHeader extends StatelessWidget {
       children: [
         Text(
           title,
-          style: Theme.of(context).textTheme.titleMedium?.copyWith(
-            fontWeight: FontWeight.w800,
-          ),
+          style: Theme.of(
+            context,
+          ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w800),
         ),
         const SizedBox(height: 4),
         Text(subtitle),
@@ -374,9 +380,9 @@ class _StoryHighlightCard extends ConsumerWidget {
         children: [
           Text(
             title,
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-              fontWeight: FontWeight.w800,
-            ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w800),
           ),
           const SizedBox(height: 4),
           Text(subtitle),
@@ -411,7 +417,9 @@ class _StoryHighlightCard extends ConsumerWidget {
                 FilledButton.tonalIcon(
                   onPressed: () => context.pushNamed('kidsBedtimeCompanion'),
                   icon: const Icon(Icons.bedtime_rounded),
-                  label: Text(AppLocalizations.of(context).kidsStoryBedtimeChip),
+                  label: Text(
+                    AppLocalizations.of(context).kidsStoryBedtimeChip,
+                  ),
                 ),
             ],
           ),
@@ -439,19 +447,21 @@ class _CollectionCard extends ConsumerWidget {
         children: [
           Text(
             section.title,
-            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-              fontWeight: FontWeight.w700,
-            ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
           ),
           const SizedBox(height: 4),
           Text(section.subtitle),
           const SizedBox(height: 10),
-          ...stories.take(3).map(
-            (story) => Padding(
-              padding: const EdgeInsets.only(bottom: 8),
-              child: _StoryListTile(story: story, dense: true),
-            ),
-          ),
+          ...stories
+              .take(3)
+              .map(
+                (story) => Padding(
+                  padding: const EdgeInsets.only(bottom: 8),
+                  child: _StoryListTile(story: story, dense: true),
+                ),
+              ),
         ],
       ),
     );
@@ -469,7 +479,8 @@ class _StoryListTile extends ConsumerWidget {
     final l10n = AppLocalizations.of(context);
     final progress = ref.watch(
       bedtimeStoryProgressProvider.select(
-        (value) => value.storyProgressById[story.id] ?? const BedtimeStoryProgress(),
+        (value) =>
+            value.storyProgressById[story.id] ?? const BedtimeStoryProgress(),
       ),
     );
     return PremiumCard(
@@ -487,10 +498,7 @@ class _StoryListTile extends ConsumerWidget {
               Container(
                 width: dense ? 46 : 54,
                 height: dense ? 46 : 54,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16),
-                  color: const Color(0xFFF6EEE2),
-                ),
+                decoration: _kidsNoorPanelDecoration(context),
                 child: const Icon(Icons.auto_stories_rounded),
               ),
               const SizedBox(width: 12),
@@ -515,10 +523,14 @@ class _StoryListTile extends ConsumerWidget {
                       spacing: 8,
                       runSpacing: 6,
                       children: [
-                        _InfoChip(label: _collectionLabel(l10n, story.collectionType)),
+                        _InfoChip(
+                          label: _collectionLabel(l10n, story.collectionType),
+                        ),
                         if (story.bedtimeEligible)
                           _InfoChip(label: l10n.kidsStoryBedtimeChip),
-                        _InfoChip(label: _statusLabel(l10n, progress.completionState)),
+                        _InfoChip(
+                          label: _statusLabel(l10n, progress.completionState),
+                        ),
                       ],
                     ),
                   ],
@@ -579,11 +591,33 @@ class _InfoChip extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(999),
-        color: const Color(0xFFF5EEE5),
-      ),
+      decoration: _kidsNoorPillDecoration(context),
       child: Text(label, style: Theme.of(context).textTheme.bodySmall),
     );
   }
+}
+
+BoxDecoration _kidsNoorPillDecoration(
+  BuildContext context, {
+  Color? tintColor,
+}) {
+  final style = AppSurfaceTheme.resolve(
+    context,
+    variant: AppSurfaceVariant.pill,
+    tintColor: tintColor,
+  );
+  return style.decoration(radius: 999);
+}
+
+BoxDecoration _kidsNoorPanelDecoration(
+  BuildContext context, {
+  double radius = 16,
+  Color? tintColor,
+}) {
+  final style = AppSurfaceTheme.resolve(
+    context,
+    variant: AppSurfaceVariant.panel,
+    tintColor: tintColor,
+  );
+  return style.decoration(radius: radius);
 }

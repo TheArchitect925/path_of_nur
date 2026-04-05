@@ -7,6 +7,388 @@ enum AppSurfaceVariant { card, island, pill, panel, featureTile, navigationBar }
 
 enum AppSurfaceTreatment { standard, homepageWarmGlass, denseSanctuary }
 
+enum AppSurfaceFamily { classic, noor, noGlass, midnight, kids }
+
+@immutable
+class AppSurfaceRecipe {
+  const AppSurfaceRecipe({
+    required this.surfaceAlphaDelta,
+    required this.borderAlphaDelta,
+    required this.surfaceBlendDelta,
+    required this.borderBlendDelta,
+    required this.milkBlendDelta,
+    required this.topHighlightDelta,
+    required this.bottomAccentDelta,
+    required this.tintAlphaDelta,
+    required this.shadowOpacityScale,
+  });
+
+  final double surfaceAlphaDelta;
+  final double borderAlphaDelta;
+  final double surfaceBlendDelta;
+  final double borderBlendDelta;
+  final double milkBlendDelta;
+  final double topHighlightDelta;
+  final double bottomAccentDelta;
+  final double tintAlphaDelta;
+  final double shadowOpacityScale;
+
+  static const zero = AppSurfaceRecipe(
+    surfaceAlphaDelta: 0,
+    borderAlphaDelta: 0,
+    surfaceBlendDelta: 0,
+    borderBlendDelta: 0,
+    milkBlendDelta: 0,
+    topHighlightDelta: 0,
+    bottomAccentDelta: 0,
+    tintAlphaDelta: 0,
+    shadowOpacityScale: 1,
+  );
+}
+
+class AppSurfaceMatrix {
+  const AppSurfaceMatrix._();
+
+  static AppSurfaceFamily familyFor(AppAppearanceTheme? appearance) {
+    if (appearance == null) return AppSurfaceFamily.classic;
+    if (appearance.mode == AppThemeMode.noorKids) {
+      return AppSurfaceFamily.kids;
+    }
+    if (appearance.isMidnightFamily) {
+      return AppSurfaceFamily.midnight;
+    }
+    if (appearance.isNoGlassFamily) {
+      return AppSurfaceFamily.noGlass;
+    }
+    if (appearance.isNoorGlassFamily) {
+      return AppSurfaceFamily.noor;
+    }
+    return AppSurfaceFamily.classic;
+  }
+
+  static AppSurfaceRecipe recipe({
+    required AppAppearanceTheme? appearance,
+    required AppSurfaceVariant variant,
+    required AppSurfaceTreatment treatment,
+  }) {
+    final family = familyFor(appearance);
+    return switch ((family, treatment)) {
+      (AppSurfaceFamily.classic, AppSurfaceTreatment.standard) =>
+        _classicStandard(variant),
+      (AppSurfaceFamily.classic, AppSurfaceTreatment.homepageWarmGlass) =>
+        _classicWarm(variant),
+      (AppSurfaceFamily.classic, AppSurfaceTreatment.denseSanctuary) =>
+        _classicSanctuary(variant),
+      (AppSurfaceFamily.noor, AppSurfaceTreatment.standard) => _noorStandard(
+        variant,
+      ),
+      (AppSurfaceFamily.noor, AppSurfaceTreatment.homepageWarmGlass) =>
+        _noorWarm(variant),
+      (AppSurfaceFamily.noor, AppSurfaceTreatment.denseSanctuary) =>
+        _noorSanctuary(variant),
+      (AppSurfaceFamily.noGlass, AppSurfaceTreatment.standard) =>
+        _noGlassStandard(variant),
+      (AppSurfaceFamily.noGlass, AppSurfaceTreatment.homepageWarmGlass) =>
+        _noGlassWarm(variant),
+      (AppSurfaceFamily.noGlass, AppSurfaceTreatment.denseSanctuary) =>
+        _noGlassSanctuary(variant),
+      (AppSurfaceFamily.midnight, AppSurfaceTreatment.standard) =>
+        _midnightStandard(variant),
+      (AppSurfaceFamily.midnight, AppSurfaceTreatment.homepageWarmGlass) =>
+        _midnightWarm(variant),
+      (AppSurfaceFamily.midnight, AppSurfaceTreatment.denseSanctuary) =>
+        _midnightSanctuary(variant),
+      (AppSurfaceFamily.kids, AppSurfaceTreatment.standard) => _kidsStandard(
+        variant,
+      ),
+      (AppSurfaceFamily.kids, AppSurfaceTreatment.homepageWarmGlass) =>
+        _kidsWarm(variant),
+      (AppSurfaceFamily.kids, AppSurfaceTreatment.denseSanctuary) =>
+        _kidsSanctuary(variant),
+    };
+  }
+
+  static AppSurfaceRecipe _classicStandard(AppSurfaceVariant variant) =>
+      switch (variant) {
+        AppSurfaceVariant.panel => const AppSurfaceRecipe(
+          surfaceAlphaDelta: 0.06,
+          borderAlphaDelta: 0.05,
+          surfaceBlendDelta: 0.05,
+          borderBlendDelta: 0,
+          milkBlendDelta: 0.18,
+          topHighlightDelta: 0.07,
+          bottomAccentDelta: 0.026,
+          tintAlphaDelta: -0.010,
+          shadowOpacityScale: 1.02,
+        ),
+        _ => const AppSurfaceRecipe(
+          surfaceAlphaDelta: 0.05,
+          borderAlphaDelta: 0.05,
+          surfaceBlendDelta: 0.05,
+          borderBlendDelta: 0,
+          milkBlendDelta: 0.17,
+          topHighlightDelta: 0.07,
+          bottomAccentDelta: 0.024,
+          tintAlphaDelta: -0.010,
+          shadowOpacityScale: 1.02,
+        ),
+      };
+
+  static AppSurfaceRecipe _classicWarm(AppSurfaceVariant variant) =>
+      switch (variant) {
+        AppSurfaceVariant.panel => const AppSurfaceRecipe(
+          surfaceAlphaDelta: 0.04,
+          borderAlphaDelta: 0.03,
+          surfaceBlendDelta: 0.035,
+          borderBlendDelta: 0,
+          milkBlendDelta: 0.11,
+          topHighlightDelta: 0.05,
+          bottomAccentDelta: 0.015,
+          tintAlphaDelta: -0.010,
+          shadowOpacityScale: 1,
+        ),
+        _ => const AppSurfaceRecipe(
+          surfaceAlphaDelta: 0.03,
+          borderAlphaDelta: 0.03,
+          surfaceBlendDelta: 0.035,
+          borderBlendDelta: 0,
+          milkBlendDelta: 0.11,
+          topHighlightDelta: 0.05,
+          bottomAccentDelta: 0.015,
+          tintAlphaDelta: -0.010,
+          shadowOpacityScale: 1,
+        ),
+      };
+
+  static AppSurfaceRecipe _classicSanctuary(AppSurfaceVariant variant) =>
+      switch (variant) {
+        AppSurfaceVariant.pill => const AppSurfaceRecipe(
+          surfaceAlphaDelta: 0.03,
+          borderAlphaDelta: 0.10,
+          surfaceBlendDelta: 0.04,
+          borderBlendDelta: 0.10,
+          milkBlendDelta: 0.22,
+          topHighlightDelta: 0.08,
+          bottomAccentDelta: 0.04,
+          tintAlphaDelta: -0.012,
+          shadowOpacityScale: 1,
+        ),
+        AppSurfaceVariant.navigationBar => const AppSurfaceRecipe(
+          surfaceAlphaDelta: 0.02,
+          borderAlphaDelta: 0.10,
+          surfaceBlendDelta: 0.04,
+          borderBlendDelta: 0.10,
+          milkBlendDelta: 0.22,
+          topHighlightDelta: 0.08,
+          bottomAccentDelta: 0.04,
+          tintAlphaDelta: -0.012,
+          shadowOpacityScale: 1,
+        ),
+        AppSurfaceVariant.panel => const AppSurfaceRecipe(
+          surfaceAlphaDelta: 0.10,
+          borderAlphaDelta: 0.10,
+          surfaceBlendDelta: 0.04,
+          borderBlendDelta: 0.10,
+          milkBlendDelta: 0.22,
+          topHighlightDelta: 0.08,
+          bottomAccentDelta: 0.04,
+          tintAlphaDelta: -0.012,
+          shadowOpacityScale: 1,
+        ),
+        _ => const AppSurfaceRecipe(
+          surfaceAlphaDelta: 0.08,
+          borderAlphaDelta: 0.10,
+          surfaceBlendDelta: 0.04,
+          borderBlendDelta: 0.10,
+          milkBlendDelta: 0.22,
+          topHighlightDelta: 0.08,
+          bottomAccentDelta: 0.04,
+          tintAlphaDelta: -0.012,
+          shadowOpacityScale: 1,
+        ),
+      };
+
+  static AppSurfaceRecipe _noorStandard(AppSurfaceVariant variant) =>
+      switch (variant) {
+        AppSurfaceVariant.panel => const AppSurfaceRecipe(
+          surfaceAlphaDelta: 0.08,
+          borderAlphaDelta: 0.07,
+          surfaceBlendDelta: 0.024,
+          borderBlendDelta: 0.02,
+          milkBlendDelta: 0.14,
+          topHighlightDelta: 0.05,
+          bottomAccentDelta: 0.020,
+          tintAlphaDelta: -0.014,
+          shadowOpacityScale: 1.06,
+        ),
+        AppSurfaceVariant.pill => const AppSurfaceRecipe(
+          surfaceAlphaDelta: 0.05,
+          borderAlphaDelta: 0.06,
+          surfaceBlendDelta: 0.020,
+          borderBlendDelta: 0.02,
+          milkBlendDelta: 0.12,
+          topHighlightDelta: 0.05,
+          bottomAccentDelta: 0.016,
+          tintAlphaDelta: -0.014,
+          shadowOpacityScale: 1.03,
+        ),
+        _ => const AppSurfaceRecipe(
+          surfaceAlphaDelta: 0.07,
+          borderAlphaDelta: 0.07,
+          surfaceBlendDelta: 0.024,
+          borderBlendDelta: 0.02,
+          milkBlendDelta: 0.14,
+          topHighlightDelta: 0.06,
+          bottomAccentDelta: 0.020,
+          tintAlphaDelta: -0.014,
+          shadowOpacityScale: 1.07,
+        ),
+      };
+
+  static AppSurfaceRecipe _noorWarm(AppSurfaceVariant variant) =>
+      const AppSurfaceRecipe(
+        surfaceAlphaDelta: 0.05,
+        borderAlphaDelta: 0.05,
+        surfaceBlendDelta: 0.02,
+        borderBlendDelta: 0.02,
+        milkBlendDelta: 0.10,
+        topHighlightDelta: 0.05,
+        bottomAccentDelta: 0.014,
+        tintAlphaDelta: -0.016,
+        shadowOpacityScale: 1.04,
+      );
+
+  static AppSurfaceRecipe _noorSanctuary(AppSurfaceVariant variant) =>
+      const AppSurfaceRecipe(
+        surfaceAlphaDelta: 0.09,
+        borderAlphaDelta: 0.12,
+        surfaceBlendDelta: 0.03,
+        borderBlendDelta: 0.12,
+        milkBlendDelta: 0.18,
+        topHighlightDelta: 0.07,
+        bottomAccentDelta: 0.036,
+        tintAlphaDelta: -0.018,
+        shadowOpacityScale: 1.08,
+      );
+
+  static AppSurfaceRecipe _noGlassStandard(AppSurfaceVariant variant) =>
+      const AppSurfaceRecipe(
+        surfaceAlphaDelta: 0.02,
+        borderAlphaDelta: 0.07,
+        surfaceBlendDelta: 0.01,
+        borderBlendDelta: 0.01,
+        milkBlendDelta: 0.03,
+        topHighlightDelta: 0.04,
+        bottomAccentDelta: 0.008,
+        tintAlphaDelta: -0.020,
+        shadowOpacityScale: 0.94,
+      );
+
+  static AppSurfaceRecipe _noGlassWarm(AppSurfaceVariant variant) =>
+      const AppSurfaceRecipe(
+        surfaceAlphaDelta: 0.02,
+        borderAlphaDelta: 0.06,
+        surfaceBlendDelta: 0.012,
+        borderBlendDelta: 0.01,
+        milkBlendDelta: 0.03,
+        topHighlightDelta: 0.04,
+        bottomAccentDelta: 0.008,
+        tintAlphaDelta: -0.018,
+        shadowOpacityScale: 0.94,
+      );
+
+  static AppSurfaceRecipe _noGlassSanctuary(AppSurfaceVariant variant) =>
+      const AppSurfaceRecipe(
+        surfaceAlphaDelta: 0.05,
+        borderAlphaDelta: 0.12,
+        surfaceBlendDelta: 0.02,
+        borderBlendDelta: 0.12,
+        milkBlendDelta: 0.10,
+        topHighlightDelta: 0.05,
+        bottomAccentDelta: 0.020,
+        tintAlphaDelta: -0.016,
+        shadowOpacityScale: 0.98,
+      );
+
+  static AppSurfaceRecipe _midnightStandard(AppSurfaceVariant variant) =>
+      const AppSurfaceRecipe(
+        surfaceAlphaDelta: 0.04,
+        borderAlphaDelta: 0.06,
+        surfaceBlendDelta: 0.02,
+        borderBlendDelta: 0.03,
+        milkBlendDelta: 0.07,
+        topHighlightDelta: 0.06,
+        bottomAccentDelta: 0.012,
+        tintAlphaDelta: -0.012,
+        shadowOpacityScale: 1.08,
+      );
+
+  static AppSurfaceRecipe _midnightWarm(AppSurfaceVariant variant) =>
+      const AppSurfaceRecipe(
+        surfaceAlphaDelta: 0.03,
+        borderAlphaDelta: 0.05,
+        surfaceBlendDelta: 0.025,
+        borderBlendDelta: 0.03,
+        milkBlendDelta: 0.06,
+        topHighlightDelta: 0.05,
+        bottomAccentDelta: 0.012,
+        tintAlphaDelta: -0.010,
+        shadowOpacityScale: 1.08,
+      );
+
+  static AppSurfaceRecipe _midnightSanctuary(AppSurfaceVariant variant) =>
+      const AppSurfaceRecipe(
+        surfaceAlphaDelta: 0.07,
+        borderAlphaDelta: 0.12,
+        surfaceBlendDelta: 0.03,
+        borderBlendDelta: 0.14,
+        milkBlendDelta: 0.15,
+        topHighlightDelta: 0.07,
+        bottomAccentDelta: 0.028,
+        tintAlphaDelta: -0.014,
+        shadowOpacityScale: 1.12,
+      );
+
+  static AppSurfaceRecipe _kidsStandard(AppSurfaceVariant variant) =>
+      const AppSurfaceRecipe(
+        surfaceAlphaDelta: 0.05,
+        borderAlphaDelta: 0.05,
+        surfaceBlendDelta: 0.022,
+        borderBlendDelta: 0.015,
+        milkBlendDelta: 0.15,
+        topHighlightDelta: 0.06,
+        bottomAccentDelta: 0.016,
+        tintAlphaDelta: -0.010,
+        shadowOpacityScale: 1.02,
+      );
+
+  static AppSurfaceRecipe _kidsWarm(AppSurfaceVariant variant) =>
+      const AppSurfaceRecipe(
+        surfaceAlphaDelta: 0.04,
+        borderAlphaDelta: 0.05,
+        surfaceBlendDelta: 0.02,
+        borderBlendDelta: 0.015,
+        milkBlendDelta: 0.10,
+        topHighlightDelta: 0.05,
+        bottomAccentDelta: 0.012,
+        tintAlphaDelta: -0.014,
+        shadowOpacityScale: 1.01,
+      );
+
+  static AppSurfaceRecipe _kidsSanctuary(AppSurfaceVariant variant) =>
+      const AppSurfaceRecipe(
+        surfaceAlphaDelta: 0.07,
+        borderAlphaDelta: 0.10,
+        surfaceBlendDelta: 0.025,
+        borderBlendDelta: 0.10,
+        milkBlendDelta: 0.16,
+        topHighlightDelta: 0.06,
+        bottomAccentDelta: 0.024,
+        tintAlphaDelta: -0.014,
+        shadowOpacityScale: 1.04,
+      );
+}
+
 @immutable
 class AppSurfaceStyle {
   const AppSurfaceStyle({
@@ -124,11 +506,13 @@ class AppSurfaceTheme {
   }) {
     final appearance = Theme.of(context).extension<AppAppearanceTheme>();
     final isDark = appearance?.isDark ?? false;
-    final disableGlass = appearance?.disableGlassTransparency ?? false;
+    final disableGlass = appearance?.resolvesGlassDisabled ?? false;
     final surface = baseColor ?? appearance?.surface ?? AppColors.surface;
-    final disableColoredGlass = appearance?.disableColoredGlass ?? false;
+    final disableColoredGlass =
+        appearance?.resolvesColoredGlassDisabled ?? false;
     final accent = resolveTintColor(
       appearance: appearance,
+      treatment: treatment,
       tintColor: tintColor,
       surface: surface,
       disableColoredGlass: disableColoredGlass,
@@ -187,75 +571,69 @@ class AppSurfaceTheme {
     final sanctuaryEdgeLight =
         appearance?.sanctuaryEdgeLight ?? const Color(0xFFF6E3B7);
     var milkTone = frostedTone;
+    final recipe = AppSurfaceMatrix.recipe(
+      appearance: appearance,
+      variant: variant,
+      treatment: treatment,
+    );
 
     switch (treatment) {
       case AppSurfaceTreatment.standard:
-        surfaceAlpha =
-            (surfaceAlpha +
-                    (disableGlass
-                        ? 0.0
-                        : variant == AppSurfaceVariant.panel
-                        ? 0.05
-                        : 0.04))
-                .clamp(0.0, 1.0);
-        borderAlpha = (borderAlpha + (isDark ? 0.03 : 0.05)).clamp(0.0, 1.0);
-        surfaceBlend = (surfaceBlend + (disableColoredGlass ? 0.01 : 0.03))
-            .clamp(0.0, 1.0);
-        milkBlend = (milkBlend + (isDark ? 0.08 : 0.14)).clamp(0.0, 1.0);
-        topHighlightBlend = (topHighlightBlend + (isDark ? 0.04 : 0.07)).clamp(
+        surfaceAlpha = (surfaceAlpha + recipe.surfaceAlphaDelta).clamp(
           0.0,
           1.0,
         );
-        bottomAccentBlend = (bottomAccentBlend + 0.018).clamp(0.0, 1.0);
-        tintAlpha = (tintAlpha - (isDark ? 0.008 : 0.014)).clamp(0.0, 1.0);
+        borderAlpha = (borderAlpha + recipe.borderAlphaDelta).clamp(0.0, 1.0);
+        surfaceBlend = (surfaceBlend + recipe.surfaceBlendDelta).clamp(
+          0.0,
+          1.0,
+        );
+        borderBlend = (borderBlend + recipe.borderBlendDelta).clamp(0.0, 1.0);
+        milkBlend = (milkBlend + recipe.milkBlendDelta).clamp(0.0, 1.0);
+        topHighlightBlend = (topHighlightBlend + recipe.topHighlightDelta)
+            .clamp(0.0, 1.0);
+        bottomAccentBlend = (bottomAccentBlend + recipe.bottomAccentDelta)
+            .clamp(0.0, 1.0);
+        tintAlpha = (tintAlpha + recipe.tintAlphaDelta).clamp(0.0, 1.0);
         break;
       case AppSurfaceTreatment.homepageWarmGlass:
         milkTone =
             Color.lerp(frostedTone, sanctuaryTone, 0.45) ?? sanctuaryTone;
-        surfaceAlpha =
-            (surfaceAlpha +
-                    (disableGlass
-                        ? 0.0
-                        : variant == AppSurfaceVariant.panel
-                        ? 0.04
-                        : 0.03))
-                .clamp(0.0, 1.0);
-        borderAlpha = (borderAlpha + (isDark ? 0.02 : 0.03)).clamp(0.0, 1.0);
-        surfaceBlend = (surfaceBlend + (disableColoredGlass ? 0.012 : 0.035))
-            .clamp(0.0, 1.0);
-        milkBlend = (milkBlend + (isDark ? 0.08 : 0.11)).clamp(0.0, 1.0);
-        topHighlightBlend = (topHighlightBlend + (isDark ? 0.03 : 0.05)).clamp(
+        surfaceAlpha = (surfaceAlpha + recipe.surfaceAlphaDelta).clamp(
           0.0,
           1.0,
         );
-        bottomAccentBlend = (bottomAccentBlend + 0.015).clamp(0.0, 1.0);
-        tintAlpha = (tintAlpha - (isDark ? 0.004 : 0.010)).clamp(0.0, 1.0);
+        borderAlpha = (borderAlpha + recipe.borderAlphaDelta).clamp(0.0, 1.0);
+        surfaceBlend = (surfaceBlend + recipe.surfaceBlendDelta).clamp(
+          0.0,
+          1.0,
+        );
+        borderBlend = (borderBlend + recipe.borderBlendDelta).clamp(0.0, 1.0);
+        milkBlend = (milkBlend + recipe.milkBlendDelta).clamp(0.0, 1.0);
+        topHighlightBlend = (topHighlightBlend + recipe.topHighlightDelta)
+            .clamp(0.0, 1.0);
+        bottomAccentBlend = (bottomAccentBlend + recipe.bottomAccentDelta)
+            .clamp(0.0, 1.0);
+        tintAlpha = (tintAlpha + recipe.tintAlphaDelta).clamp(0.0, 1.0);
         break;
       case AppSurfaceTreatment.denseSanctuary:
         milkTone = sanctuaryTone;
-        surfaceAlpha =
-            (surfaceAlpha +
-                    (disableGlass
-                        ? 0.0
-                        : switch (variant) {
-                            AppSurfaceVariant.pill => 0.03,
-                            AppSurfaceVariant.navigationBar => 0.02,
-                            AppSurfaceVariant.panel => 0.10,
-                            AppSurfaceVariant.card ||
-                            AppSurfaceVariant.island ||
-                            AppSurfaceVariant.featureTile => 0.08,
-                          }))
-                .clamp(0.0, 1.0);
-        borderAlpha = (borderAlpha + (isDark ? 0.08 : 0.10)).clamp(0.0, 1.0);
-        surfaceBlend = (surfaceBlend + 0.04).clamp(0.0, 1.0);
-        borderBlend = (borderBlend + 0.10).clamp(0.0, 1.0);
-        milkBlend = (milkBlend + (isDark ? 0.18 : 0.22)).clamp(0.0, 1.0);
-        topHighlightBlend = (topHighlightBlend + (isDark ? 0.05 : 0.08)).clamp(
+        surfaceAlpha = (surfaceAlpha + recipe.surfaceAlphaDelta).clamp(
           0.0,
           1.0,
         );
-        bottomAccentBlend = (bottomAccentBlend + 0.04).clamp(0.0, 1.0);
-        tintAlpha = (tintAlpha - (isDark ? 0.005 : 0.012)).clamp(0.0, 1.0);
+        borderAlpha = (borderAlpha + recipe.borderAlphaDelta).clamp(0.0, 1.0);
+        surfaceBlend = (surfaceBlend + recipe.surfaceBlendDelta).clamp(
+          0.0,
+          1.0,
+        );
+        borderBlend = (borderBlend + recipe.borderBlendDelta).clamp(0.0, 1.0);
+        milkBlend = (milkBlend + recipe.milkBlendDelta).clamp(0.0, 1.0);
+        topHighlightBlend = (topHighlightBlend + recipe.topHighlightDelta)
+            .clamp(0.0, 1.0);
+        bottomAccentBlend = (bottomAccentBlend + recipe.bottomAccentDelta)
+            .clamp(0.0, 1.0);
+        tintAlpha = (tintAlpha + recipe.tintAlphaDelta).clamp(0.0, 1.0);
         break;
     }
 
@@ -351,6 +729,7 @@ class AppSurfaceTheme {
       boxShadows: _boxShadows(
         variant: variant,
         treatment: treatment,
+        appearance: appearance,
         isDark: isDark,
         disableGlass: disableGlass,
         accent: accent,
@@ -402,12 +781,21 @@ class AppSurfaceTheme {
 
   static Color resolveTintColor({
     required AppAppearanceTheme? appearance,
+    AppSurfaceTreatment treatment = AppSurfaceTreatment.standard,
     required Color? tintColor,
     required Color surface,
     required bool disableColoredGlass,
   }) {
     if (!disableColoredGlass) {
-      return tintColor ?? appearance?.accent ?? AppColors.accentGold;
+      if (tintColor != null) {
+        return tintColor;
+      }
+      return Color.lerp(
+            appearance?.sanctuaryEdgeLight ?? AppColors.accentGoldSoft,
+            appearance?.accent ?? AppColors.accentGold,
+            treatment == AppSurfaceTreatment.denseSanctuary ? 0.34 : 0.18,
+          ) ??
+          (appearance?.accent ?? AppColors.accentGold);
     }
     final neutralBase = appearance?.surfaceSoft ?? surface;
     return Color.lerp(surface, neutralBase, 0.78) ?? neutralBase;
@@ -469,7 +857,7 @@ class AppSurfaceTheme {
     double? solidAlphaWhenDisabled,
   }) {
     final clampedAlpha = alpha.clamp(0.0, 1.0);
-    final disableGlass = appearance?.disableGlassTransparency ?? false;
+    final disableGlass = appearance?.resolvesGlassDisabled ?? false;
     if (disableGlass) {
       return (solidAlphaWhenDisabled ?? clampedAlpha).clamp(0.0, 1.0);
     }
@@ -515,11 +903,11 @@ class AppSurfaceTheme {
         return disableGlass ? 0.09 : 0.08;
       case AppSurfaceVariant.island:
       case AppSurfaceVariant.featureTile:
-        return disableGlass ? 0.12 : 0.09;
+        return disableGlass ? 0.12 : 0.10;
       case AppSurfaceVariant.panel:
-        return disableGlass ? 0.14 : 0.10;
+        return disableGlass ? 0.15 : 0.12;
       case AppSurfaceVariant.card:
-        return disableGlass ? 0.10 : 0.08;
+        return disableGlass ? 0.11 : 0.09;
     }
   }
 
@@ -600,11 +988,11 @@ class AppSurfaceTheme {
         return isDark ? 0.18 : 0.24;
       case AppSurfaceVariant.island:
       case AppSurfaceVariant.featureTile:
-        return isDark ? 0.22 : 0.31;
+        return isDark ? 0.24 : 0.34;
       case AppSurfaceVariant.panel:
-        return isDark ? 0.17 : 0.22;
+        return isDark ? 0.20 : 0.28;
       case AppSurfaceVariant.card:
-        return isDark ? 0.21 : 0.29;
+        return isDark ? 0.23 : 0.32;
     }
   }
 
@@ -657,238 +1045,258 @@ class AppSurfaceTheme {
   static List<BoxShadow> _boxShadows({
     required AppSurfaceVariant variant,
     required AppSurfaceTreatment treatment,
+    required AppAppearanceTheme? appearance,
     required bool isDark,
     required bool disableGlass,
     required Color accent,
     required Color highlight,
   }) {
+    final shadowScale = AppSurfaceMatrix.recipe(
+      appearance: appearance,
+      variant: variant,
+      treatment: treatment,
+    ).shadowOpacityScale;
     final extraBlack = disableGlass ? 0.04 : 0.0;
-    switch (treatment) {
-      case AppSurfaceTreatment.standard:
-        return switch (variant) {
-          AppSurfaceVariant.pill => <BoxShadow>[
-            BoxShadow(
-              color: Colors.black.withValues(
-                alpha: (isDark ? 0.18 : 0.12) + extraBlack,
-              ),
-              blurRadius: 20,
-              spreadRadius: -6,
-              offset: const Offset(0, 10),
+    final shadows = switch (treatment) {
+      AppSurfaceTreatment.standard => switch (variant) {
+        AppSurfaceVariant.pill => <BoxShadow>[
+          BoxShadow(
+            color: Colors.black.withValues(
+              alpha: (isDark ? 0.18 : 0.12) + extraBlack,
             ),
-            BoxShadow(
-              color: accent.withValues(alpha: isDark ? 0.08 : 0.07),
-              blurRadius: 14,
-              spreadRadius: -8,
-              offset: const Offset(0, 4),
+            blurRadius: 20,
+            spreadRadius: -6,
+            offset: const Offset(0, 10),
+          ),
+          BoxShadow(
+            color: accent.withValues(alpha: isDark ? 0.08 : 0.07),
+            blurRadius: 14,
+            spreadRadius: -8,
+            offset: const Offset(0, 4),
+          ),
+        ],
+        AppSurfaceVariant.navigationBar => <BoxShadow>[
+          BoxShadow(
+            color: Colors.black.withValues(
+              alpha: (isDark ? 0.22 : 0.15) + extraBlack,
             ),
-          ],
-          AppSurfaceVariant.navigationBar => <BoxShadow>[
-            BoxShadow(
-              color: Colors.black.withValues(
-                alpha: (isDark ? 0.22 : 0.15) + extraBlack,
-              ),
-              blurRadius: 28,
-              spreadRadius: -7,
-              offset: const Offset(0, 15),
+            blurRadius: 28,
+            spreadRadius: -7,
+            offset: const Offset(0, 15),
+          ),
+          BoxShadow(
+            color: accent.withValues(alpha: isDark ? 0.11 : 0.10),
+            blurRadius: 22,
+            spreadRadius: -9,
+            offset: const Offset(0, 8),
+          ),
+        ],
+        AppSurfaceVariant.panel => <BoxShadow>[
+          BoxShadow(
+            color: Colors.black.withValues(
+              alpha: (isDark ? 0.28 : 0.18) + extraBlack,
             ),
-            BoxShadow(
-              color: accent.withValues(alpha: isDark ? 0.11 : 0.10),
-              blurRadius: 22,
-              spreadRadius: -9,
-              offset: const Offset(0, 8),
+            blurRadius: 34,
+            spreadRadius: -5,
+            offset: const Offset(0, 20),
+          ),
+          BoxShadow(
+            color: accent.withValues(alpha: isDark ? 0.14 : 0.12),
+            blurRadius: 24,
+            spreadRadius: -7,
+            offset: const Offset(0, 10),
+          ),
+        ],
+        AppSurfaceVariant.card ||
+        AppSurfaceVariant.island ||
+        AppSurfaceVariant.featureTile => <BoxShadow>[
+          BoxShadow(
+            color: Colors.black.withValues(
+              alpha: (isDark ? 0.30 : 0.18) + extraBlack,
             ),
-          ],
-          AppSurfaceVariant.panel => <BoxShadow>[
-            BoxShadow(
-              color: Colors.black.withValues(
-                alpha: (isDark ? 0.28 : 0.18) + extraBlack,
-              ),
-              blurRadius: 34,
-              spreadRadius: -5,
-              offset: const Offset(0, 20),
+            blurRadius: 40,
+            spreadRadius: -4,
+            offset: const Offset(0, 22),
+          ),
+          BoxShadow(
+            color: accent.withValues(alpha: isDark ? 0.17 : 0.14),
+            blurRadius: 28,
+            spreadRadius: -6,
+            offset: const Offset(0, 10),
+          ),
+          BoxShadow(
+            color: Colors.white.withValues(alpha: isDark ? 0.03 : 0.08),
+            blurRadius: 14,
+            spreadRadius: -8,
+            offset: const Offset(0, 1),
+          ),
+        ],
+      },
+      AppSurfaceTreatment.homepageWarmGlass => switch (variant) {
+        AppSurfaceVariant.pill => <BoxShadow>[
+          BoxShadow(
+            color: Colors.black.withValues(
+              alpha: (isDark ? 0.16 : 0.12) + extraBlack,
             ),
-            BoxShadow(
-              color: accent.withValues(alpha: isDark ? 0.14 : 0.12),
-              blurRadius: 24,
-              spreadRadius: -7,
-              offset: const Offset(0, 10),
+            blurRadius: 18,
+            spreadRadius: -7,
+            offset: const Offset(0, 9),
+          ),
+        ],
+        AppSurfaceVariant.navigationBar => <BoxShadow>[
+          BoxShadow(
+            color: Colors.black.withValues(
+              alpha: (isDark ? 0.20 : 0.14) + extraBlack,
             ),
-          ],
-          AppSurfaceVariant.card ||
-          AppSurfaceVariant.island ||
-          AppSurfaceVariant.featureTile => <BoxShadow>[
-            BoxShadow(
-              color: Colors.black.withValues(
-                alpha: (isDark ? 0.30 : 0.18) + extraBlack,
-              ),
-              blurRadius: 40,
-              spreadRadius: -4,
-              offset: const Offset(0, 22),
+            blurRadius: 26,
+            spreadRadius: -8,
+            offset: const Offset(0, 14),
+          ),
+          BoxShadow(
+            color: accent.withValues(alpha: isDark ? 0.10 : 0.09),
+            blurRadius: 20,
+            spreadRadius: -10,
+            offset: const Offset(0, 8),
+          ),
+        ],
+        AppSurfaceVariant.panel => <BoxShadow>[
+          BoxShadow(
+            color: Colors.black.withValues(
+              alpha: (isDark ? 0.24 : 0.16) + extraBlack,
             ),
-            BoxShadow(
-              color: accent.withValues(alpha: isDark ? 0.17 : 0.14),
-              blurRadius: 28,
-              spreadRadius: -6,
-              offset: const Offset(0, 10),
+            blurRadius: 30,
+            spreadRadius: -6,
+            offset: const Offset(0, 18),
+          ),
+          BoxShadow(
+            color: accent.withValues(alpha: isDark ? 0.12 : 0.11),
+            blurRadius: 24,
+            spreadRadius: -8,
+            offset: const Offset(0, 10),
+          ),
+        ],
+        AppSurfaceVariant.card ||
+        AppSurfaceVariant.island ||
+        AppSurfaceVariant.featureTile => <BoxShadow>[
+          BoxShadow(
+            color: Colors.black.withValues(
+              alpha: (isDark ? 0.26 : 0.16) + extraBlack,
             ),
-            BoxShadow(
-              color: Colors.white.withValues(alpha: isDark ? 0.03 : 0.08),
-              blurRadius: 14,
-              spreadRadius: -8,
-              offset: const Offset(0, 1),
+            blurRadius: 36,
+            spreadRadius: -5,
+            offset: const Offset(0, 20),
+          ),
+          BoxShadow(
+            color: accent.withValues(alpha: isDark ? 0.16 : 0.12),
+            blurRadius: 26,
+            spreadRadius: -8,
+            offset: const Offset(0, 10),
+          ),
+        ],
+      },
+      AppSurfaceTreatment.denseSanctuary => switch (variant) {
+        AppSurfaceVariant.pill => <BoxShadow>[
+          BoxShadow(
+            color: Colors.black.withValues(
+              alpha: (isDark ? 0.18 : 0.12) + extraBlack,
             ),
-          ],
-        };
-      case AppSurfaceTreatment.homepageWarmGlass:
-        return switch (variant) {
-          AppSurfaceVariant.pill => <BoxShadow>[
-            BoxShadow(
-              color: Colors.black.withValues(
-                alpha: (isDark ? 0.16 : 0.12) + extraBlack,
-              ),
-              blurRadius: 18,
-              spreadRadius: -7,
-              offset: const Offset(0, 9),
+            blurRadius: 18,
+            spreadRadius: -7,
+            offset: const Offset(0, 9),
+          ),
+          BoxShadow(
+            color: highlight.withValues(alpha: isDark ? 0.06 : 0.08),
+            blurRadius: 10,
+            spreadRadius: -6,
+            offset: const Offset(0, 1),
+          ),
+        ],
+        AppSurfaceVariant.navigationBar => <BoxShadow>[
+          BoxShadow(
+            color: Colors.black.withValues(
+              alpha: (isDark ? 0.22 : 0.14) + extraBlack,
             ),
-          ],
-          AppSurfaceVariant.navigationBar => <BoxShadow>[
-            BoxShadow(
-              color: Colors.black.withValues(
-                alpha: (isDark ? 0.20 : 0.14) + extraBlack,
-              ),
-              blurRadius: 26,
-              spreadRadius: -8,
-              offset: const Offset(0, 14),
+            blurRadius: 30,
+            spreadRadius: -8,
+            offset: const Offset(0, 16),
+          ),
+          BoxShadow(
+            color: accent.withValues(alpha: isDark ? 0.14 : 0.13),
+            blurRadius: 24,
+            spreadRadius: -9,
+            offset: const Offset(0, 10),
+          ),
+          BoxShadow(
+            color: highlight.withValues(alpha: isDark ? 0.08 : 0.12),
+            blurRadius: 14,
+            spreadRadius: -8,
+            offset: const Offset(0, 1),
+          ),
+        ],
+        AppSurfaceVariant.panel => <BoxShadow>[
+          BoxShadow(
+            color: accent.withValues(alpha: isDark ? 0.16 : 0.15),
+            blurRadius: 30,
+            spreadRadius: -8,
+            offset: const Offset(0, 12),
+          ),
+          BoxShadow(
+            color: Colors.black.withValues(
+              alpha: (isDark ? 0.24 : 0.14) + extraBlack,
             ),
-            BoxShadow(
-              color: accent.withValues(alpha: isDark ? 0.10 : 0.09),
-              blurRadius: 20,
-              spreadRadius: -10,
-              offset: const Offset(0, 8),
+            blurRadius: 40,
+            spreadRadius: -8,
+            offset: const Offset(0, 20),
+          ),
+          BoxShadow(
+            color: highlight.withValues(alpha: isDark ? 0.07 : 0.11),
+            blurRadius: 16,
+            spreadRadius: -8,
+            offset: const Offset(0, 1),
+          ),
+        ],
+        AppSurfaceVariant.card ||
+        AppSurfaceVariant.island ||
+        AppSurfaceVariant.featureTile => <BoxShadow>[
+          BoxShadow(
+            color: accent.withValues(alpha: isDark ? 0.18 : 0.16),
+            blurRadius: 34,
+            spreadRadius: -7,
+            offset: const Offset(0, 14),
+          ),
+          BoxShadow(
+            color: Colors.black.withValues(
+              alpha: (isDark ? 0.24 : 0.14) + extraBlack,
             ),
-          ],
-          AppSurfaceVariant.panel => <BoxShadow>[
-            BoxShadow(
-              color: Colors.black.withValues(
-                alpha: (isDark ? 0.24 : 0.16) + extraBlack,
-              ),
-              blurRadius: 30,
-              spreadRadius: -6,
-              offset: const Offset(0, 18),
+            blurRadius: 44,
+            spreadRadius: -8,
+            offset: const Offset(0, 22),
+          ),
+          BoxShadow(
+            color: highlight.withValues(alpha: isDark ? 0.06 : 0.11),
+            blurRadius: 16,
+            spreadRadius: -8,
+            offset: const Offset(0, 1),
+          ),
+        ],
+      },
+    };
+    return _scaleShadows(shadows, shadowScale);
+  }
+
+  static List<BoxShadow> _scaleShadows(
+    List<BoxShadow> shadows,
+    double opacityScale,
+  ) {
+    if (opacityScale == 1) return shadows;
+    return shadows
+        .map(
+          (shadow) => shadow.copyWith(
+            color: shadow.color.withValues(
+              alpha: (shadow.color.a * opacityScale).clamp(0.0, 1.0),
             ),
-            BoxShadow(
-              color: accent.withValues(alpha: isDark ? 0.12 : 0.11),
-              blurRadius: 24,
-              spreadRadius: -8,
-              offset: const Offset(0, 10),
-            ),
-          ],
-          AppSurfaceVariant.card ||
-          AppSurfaceVariant.island ||
-          AppSurfaceVariant.featureTile => <BoxShadow>[
-            BoxShadow(
-              color: Colors.black.withValues(
-                alpha: (isDark ? 0.26 : 0.16) + extraBlack,
-              ),
-              blurRadius: 36,
-              spreadRadius: -5,
-              offset: const Offset(0, 20),
-            ),
-            BoxShadow(
-              color: accent.withValues(alpha: isDark ? 0.16 : 0.12),
-              blurRadius: 26,
-              spreadRadius: -8,
-              offset: const Offset(0, 10),
-            ),
-          ],
-        };
-      case AppSurfaceTreatment.denseSanctuary:
-        return switch (variant) {
-          AppSurfaceVariant.pill => <BoxShadow>[
-            BoxShadow(
-              color: Colors.black.withValues(
-                alpha: (isDark ? 0.18 : 0.12) + extraBlack,
-              ),
-              blurRadius: 18,
-              spreadRadius: -7,
-              offset: const Offset(0, 9),
-            ),
-            BoxShadow(
-              color: highlight.withValues(alpha: isDark ? 0.06 : 0.08),
-              blurRadius: 10,
-              spreadRadius: -6,
-              offset: const Offset(0, 1),
-            ),
-          ],
-          AppSurfaceVariant.navigationBar => <BoxShadow>[
-            BoxShadow(
-              color: Colors.black.withValues(
-                alpha: (isDark ? 0.22 : 0.14) + extraBlack,
-              ),
-              blurRadius: 30,
-              spreadRadius: -8,
-              offset: const Offset(0, 16),
-            ),
-            BoxShadow(
-              color: accent.withValues(alpha: isDark ? 0.14 : 0.13),
-              blurRadius: 24,
-              spreadRadius: -9,
-              offset: const Offset(0, 10),
-            ),
-            BoxShadow(
-              color: highlight.withValues(alpha: isDark ? 0.08 : 0.12),
-              blurRadius: 14,
-              spreadRadius: -8,
-              offset: const Offset(0, 1),
-            ),
-          ],
-          AppSurfaceVariant.panel => <BoxShadow>[
-            BoxShadow(
-              color: accent.withValues(alpha: isDark ? 0.16 : 0.15),
-              blurRadius: 30,
-              spreadRadius: -8,
-              offset: const Offset(0, 12),
-            ),
-            BoxShadow(
-              color: Colors.black.withValues(
-                alpha: (isDark ? 0.24 : 0.14) + extraBlack,
-              ),
-              blurRadius: 40,
-              spreadRadius: -8,
-              offset: const Offset(0, 20),
-            ),
-            BoxShadow(
-              color: highlight.withValues(alpha: isDark ? 0.07 : 0.11),
-              blurRadius: 16,
-              spreadRadius: -8,
-              offset: const Offset(0, 1),
-            ),
-          ],
-          AppSurfaceVariant.card ||
-          AppSurfaceVariant.island ||
-          AppSurfaceVariant.featureTile => <BoxShadow>[
-            BoxShadow(
-              color: accent.withValues(alpha: isDark ? 0.18 : 0.16),
-              blurRadius: 34,
-              spreadRadius: -7,
-              offset: const Offset(0, 14),
-            ),
-            BoxShadow(
-              color: Colors.black.withValues(
-                alpha: (isDark ? 0.24 : 0.14) + extraBlack,
-              ),
-              blurRadius: 44,
-              spreadRadius: -8,
-              offset: const Offset(0, 22),
-            ),
-            BoxShadow(
-              color: highlight.withValues(alpha: isDark ? 0.06 : 0.11),
-              blurRadius: 16,
-              spreadRadius: -8,
-              offset: const Offset(0, 1),
-            ),
-          ],
-        };
-    }
+          ),
+        )
+        .toList(growable: false);
   }
 }

@@ -15,7 +15,8 @@ import '../../../../shared/application/daily_clock_provider.dart';
 import '../../../../shared/state/location_permission_state.dart';
 import '../../../../shared/widgets/home_feature_card_header.dart';
 import '../../../../shared/widgets/moon_phase_visual.dart';
-import '../../../../shared/widgets/premium_card.dart';
+import '../../../../shared/widgets/noor_glass_card.dart';
+import '../../../../shared/widgets/noor_liquid_glass.dart';
 import '../../../../shared/widgets/prayer_location_picker_sheet.dart';
 import '../../../../shared/widgets/quran_verse_content.dart';
 import '../../application/celestial_services.dart';
@@ -96,9 +97,9 @@ class _CelestialCycleCardState extends ConsumerState<CelestialCycleCard> {
       today: today,
     );
 
-    return PremiumCard(
+    return NoorGlassCard(
       padding: const EdgeInsets.all(0),
-      surfaceTreatment: AppSurfaceTreatment.homepageWarmGlass,
+      surfaceTreatment: AppSurfaceTreatment.standard,
       includeShadow: true,
       child: InkWell(
         onTap: () async {
@@ -328,34 +329,32 @@ class _CelestialCycleCardState extends ConsumerState<CelestialCycleCard> {
                           ),
                           const SizedBox(height: 12),
                           Center(
-                            child: Container(
+                            child: NoorGlassCard(
                               padding: const EdgeInsets.symmetric(
                                 horizontal: 18,
                                 vertical: 10,
                               ),
-                              decoration: BoxDecoration(
-                                color: Colors.white.withValues(alpha: 0.025),
-                                borderRadius: BorderRadius.circular(20),
-                                border: Border.all(
-                                  color: Colors.white.withValues(alpha: 0.06),
-                                ),
-                              ),
+                              surfaceVariant: AppSurfaceVariant.panel,
+                              surfaceTintColor: const Color(0xFFD5D7DD),
+                              surfaceAlphaOverride: 0.10,
+                              includeShadow: false,
+                              mode: NoorLiquidGlassMode.fake,
+                              borderRadius: 20,
                               child: MoonPhaseVisual(
                                 moon: moonVisual,
-                                size: 68,
+                                size: 136,
                               ),
                             ),
                           ),
                           const SizedBox(height: 14),
-                          Container(
+                          NoorGlassCard(
                             padding: const EdgeInsets.all(15),
-                            decoration: BoxDecoration(
-                              color: Colors.white.withValues(alpha: 0.03),
-                              borderRadius: BorderRadius.circular(20),
-                              border: Border.all(
-                                color: Colors.white.withValues(alpha: 0.08),
-                              ),
-                            ),
+                            surfaceVariant: AppSurfaceVariant.panel,
+                            surfaceTintColor: const Color(0xFFF1D8AE),
+                            surfaceAlphaOverride: 0.12,
+                            includeShadow: false,
+                            mode: NoorLiquidGlassMode.fake,
+                            borderRadius: 20,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -552,11 +551,13 @@ class _InfoPill extends StatelessWidget {
             end: Alignment.bottomRight,
             colors: tint!.gradientColors,
           );
-    return PremiumCard(
+    return NoorGlassCard(
       padding: const EdgeInsets.all(12),
       surfaceVariant: AppSurfaceVariant.pill,
-      surfaceTreatment: AppSurfaceTreatment.homepageWarmGlass,
+      surfaceTreatment: AppSurfaceTreatment.standard,
       surfaceTintColor: shellTint ?? tint?.surfaceTint,
+      mode: NoorLiquidGlassMode.fake,
+      includeShadow: false,
       child: DecoratedBox(
         decoration: BoxDecoration(
           gradient: overlayGradient,

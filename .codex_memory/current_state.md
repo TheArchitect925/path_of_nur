@@ -25,6 +25,12 @@ Path of Nur is a Flutter + Riverpod mobile app centered on worship, Qur'an engag
 
 ## B1. Most recent stabilization update
 
+- Shared appearance and surface theming now also has an explicit global surface matrix layer:
+  - `AppSurfaceTheme.resolve(...)` is now driven by centralized family/treatment recipes instead of only one large implicit formula set
+  - the runtime families are currently `classic`, `noor`, `noGlass`, `midnight`, and `kids`
+  - this is intended to make future theme work more centralized so broad visual changes can happen in `app_theme.dart` + `app_surfaces.dart` before page-level QA
+  - the architecture is still not fully zero-outlier because some pages still own local surfaces, but the shared theme layer is now a stronger source of truth than it was before
+
 - Temporary homepage glass style preview islands are now live as an isolated comparison section:
   - `HomePage` now renders a single temporary `HomeGlassStylePreviewSection` below the existing core home content
   - all preview-specific code lives under `lib/features/home/presentation/glass_preview/` and is safe to remove later by deleting that folder plus one homepage import/insertion
@@ -866,6 +872,10 @@ Path of Nur is a Flutter + Riverpod mobile app centered on worship, Qur'an engag
   - the shared navigation shell and the active Qur'an summary/topic/pathway/reflection surfaces now read the same appearance/background layer so Midnight Manuscript preserves the existing glass container language while giving Qur'an-heavy surfaces a stronger night-manuscript tone
   - component-level Midnight expression is now also refined for nav labels/active fill, input focus, chip selection, button surfaces, segmented controls, the shell mini-player, and the active Qur'an companion/header/card surfaces through shared appearance helpers instead of one-off page colors
   - the shared Qur'an presentation layer now also carries a dedicated Midnight Manuscript refinement pass through `quran_summary_theme.dart`, `quran_feature_components.dart`, and `quran_feature_header.dart`, so Summary, Surah Detail, Theme Detail, Pathways, Companion, and Reflections inherit richer section dividers, calmer support-text hierarchy, softer inner panels, stronger progress treatment, and more luminous Arabic/header glow without per-page theme forks
+- the settings-owned appearance picker now also includes expanded first-class mode families for `Noor Glass Dark`, `No Glass`, `No Glass Dark`, `Noor Midnight Manuscript`, and `Noor Kids`, while preserving the older visible modes for continuity:
+  - `lib/core/theme/app_theme.dart`, `lib/core/theme/app_backgrounds.dart`, and `lib/core/theme/app_surfaces.dart` now treat these as real runtime theme modes instead of fake label-only presets, so background/surface behavior changes with the selected mode
+  - `lib/features/profile/application/profile_settings_provider.dart` now uses `Noor Glass` as the practical default/reset appearance mode, while still preserving existing stored selections
+  - `lib/features/profile/presentation/settings_page.dart` now shows the new requested Noor/No Glass family first, followed by the older theme choices underneath for continuity
 - the Qur'an player now has a first normalized source/failure resilience layer on top of the shared playback/session stack:
   - `lib/features/learn/quran/domain/quran_audio_resilience_models.dart` and `lib/features/learn/quran/application/quran_audio_resilience.dart` now define canonical source type, resolution state, and playback failure categories, with one shared Riverpod-owned source/failure state instead of scattering buffering/failure interpretation across page code
   - `lib/features/learn/quran/data/quran_audio_repository.dart` now resolves richer audio metadata with explicit source type and optional fallback source, and it treats zero-byte downloaded files as invalid so corrupt local audio can fail over safely instead of pretending to be available

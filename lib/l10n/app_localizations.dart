@@ -3955,6 +3955,18 @@ abstract class AppLocalizations {
   /// **'Earned today'**
   String get homeBadgeEarnedToday;
 
+  /// No description provided for @homeTodayContentTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Today\'\'s content'**
+  String get homeTodayContentTitle;
+
+  /// No description provided for @homeTodayContentSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep today\'\'s ayah, guidance, and learning together in one calm place.'**
+  String get homeTodayContentSubtitle;
+
   /// No description provided for @homeDailyLearningQuizzesTitle.
   ///
   /// In en, this message translates to:
@@ -31651,8 +31663,14 @@ abstract class AppLocalizations {
   /// No description provided for @settingsThemeChoiceDefault.
   ///
   /// In en, this message translates to:
-  /// **'Default'**
+  /// **'Classic Default'**
   String get settingsThemeChoiceDefault;
+
+  /// No description provided for @settingsThemeChoiceCalmBeautiful.
+  ///
+  /// In en, this message translates to:
+  /// **'Calm Beautiful'**
+  String get settingsThemeChoiceCalmBeautiful;
 
   /// No description provided for @settingsThemeChoiceEasyRead.
   ///
@@ -32151,6 +32169,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'The default Path of Nūr look with a soft, elegant feel and gentle depth.'**
   String get settingsThemeModeDefaultDescription;
+
+  /// No description provided for @settingsThemeModeCalmBeautifulDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'The earlier calm Path of Nūr style with soft warmth and familiar depth.'**
+  String get settingsThemeModeCalmBeautifulDescription;
 
   /// No description provided for @settingsThemeModeEasyReadDescription.
   ///
@@ -64351,20 +64375,80 @@ abstract class AppLocalizations {
   /// No description provided for @settingsThemeChoiceNoorGlass.
   ///
   /// In en, this message translates to:
-  /// **'Noor Glass'**
+  /// **'Noor Glass - Default'**
   String get settingsThemeChoiceNoorGlass;
+
+  /// No description provided for @settingsThemeChoiceNoorGlassDark.
+  ///
+  /// In en, this message translates to:
+  /// **'Noor Glass Dark'**
+  String get settingsThemeChoiceNoorGlassDark;
+
+  /// No description provided for @settingsThemeChoiceNoGlass.
+  ///
+  /// In en, this message translates to:
+  /// **'No Glass'**
+  String get settingsThemeChoiceNoGlass;
+
+  /// No description provided for @settingsThemeChoiceNoGlassDark.
+  ///
+  /// In en, this message translates to:
+  /// **'No Glass Dark'**
+  String get settingsThemeChoiceNoGlassDark;
+
+  /// No description provided for @settingsThemeChoiceNoorMidnightManuscript.
+  ///
+  /// In en, this message translates to:
+  /// **'Noor Midnight Manuscript'**
+  String get settingsThemeChoiceNoorMidnightManuscript;
+
+  /// No description provided for @settingsThemeChoiceNoorKids.
+  ///
+  /// In en, this message translates to:
+  /// **'Noor Kids'**
+  String get settingsThemeChoiceNoorKids;
 
   /// No description provided for @settingsThemeModeNoorGlassDescription.
   ///
   /// In en, this message translates to:
-  /// **'Milky frosted glass with a soft pearled glow and gentle transparency.'**
+  /// **'Warm Noor surfaces with solid premium containers, soft depth, and no glass transparency.'**
   String get settingsThemeModeNoorGlassDescription;
+
+  /// No description provided for @settingsThemeModeNoorGlassDarkDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'A darker Noor surface system with solid containers, warm accents, and calm night-friendly contrast.'**
+  String get settingsThemeModeNoorGlassDarkDescription;
+
+  /// No description provided for @settingsThemeModeNoGlassDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Warm, solid surfaces without transparency for a clean and grounded everyday view.'**
+  String get settingsThemeModeNoGlassDescription;
+
+  /// No description provided for @settingsThemeModeNoGlassDarkDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'A dark solid-surface mode for low-light use without glass effects.'**
+  String get settingsThemeModeNoGlassDarkDescription;
 
   /// No description provided for @settingsThemeModeMidnightManuscriptDescription.
   ///
   /// In en, this message translates to:
   /// **'Deep ink tones with warm gold accents and a quiet manuscript atmosphere.'**
   String get settingsThemeModeMidnightManuscriptDescription;
+
+  /// No description provided for @settingsThemeModeNoorMidnightManuscriptDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'A luminous manuscript night mode with Noor warmth, ink depth, and soft gold accents.'**
+  String get settingsThemeModeNoorMidnightManuscriptDescription;
+
+  /// No description provided for @settingsThemeModeNoorKidsDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'A gentler Noor palette with calm family-friendly warmth and soft cheerful accents.'**
+  String get settingsThemeModeNoorKidsDescription;
 
   /// No description provided for @settingsThemeModePickerHelper.
   ///
@@ -64378,6 +64462,12 @@ abstract class AppLocalizations {
   /// **'Best for everyday calm and balanced use.'**
   String get settingsThemeModeDefaultBestFor;
 
+  /// No description provided for @settingsThemeModeCalmBeautifulBestFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Best if you prefer the earlier soft Path of Nūr atmosphere.'**
+  String get settingsThemeModeCalmBeautifulBestFor;
+
   /// No description provided for @settingsThemeModeEasyReadBestFor.
   ///
   /// In en, this message translates to:
@@ -64387,8 +64477,26 @@ abstract class AppLocalizations {
   /// No description provided for @settingsThemeModeNoorGlassBestFor.
   ///
   /// In en, this message translates to:
-  /// **'Best for airy glass depth and luminous everyday reading.'**
+  /// **'Best for the main Path of Nūr look with solid warm containers and calm depth.'**
   String get settingsThemeModeNoorGlassBestFor;
+
+  /// No description provided for @settingsThemeModeNoorGlassDarkBestFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Best for evening use when you want the same Noor surfaces in a darker atmosphere.'**
+  String get settingsThemeModeNoorGlassDarkBestFor;
+
+  /// No description provided for @settingsThemeModeNoGlassBestFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Best for a stable, opaque look with less visual transparency.'**
+  String get settingsThemeModeNoGlassBestFor;
+
+  /// No description provided for @settingsThemeModeNoGlassDarkBestFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Best for dark solid surfaces without glass effects.'**
+  String get settingsThemeModeNoGlassDarkBestFor;
 
   /// No description provided for @settingsThemeModeDarkBestFor.
   ///
@@ -64401,6 +64509,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Best for evening reflection and Qur’an study.'**
   String get settingsThemeModeMidnightManuscriptBestFor;
+
+  /// No description provided for @settingsThemeModeNoorMidnightManuscriptBestFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Best for rich night reading with manuscript warmth and Noor glow.'**
+  String get settingsThemeModeNoorMidnightManuscriptBestFor;
+
+  /// No description provided for @settingsThemeModeNoorKidsBestFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Best for families who want a lighter, warmer, more playful Noor feel.'**
+  String get settingsThemeModeNoorKidsBestFor;
 
   /// No description provided for @editorialDashboardTitle.
   ///
@@ -66273,6 +66393,84 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Most open · careful contrast'**
   String get homeGlassVariantClearShowcaseMicro;
+
+  /// No description provided for @loadingHeadlineAllahAkbar.
+  ///
+  /// In en, this message translates to:
+  /// **'اللَّهُ أَكْبَرُ'**
+  String get loadingHeadlineAllahAkbar;
+
+  /// No description provided for @loadingGreetingMorning.
+  ///
+  /// In en, this message translates to:
+  /// **'اللَّهُمَّ بِكَ أَصْبَحْنَا'**
+  String get loadingGreetingMorning;
+
+  /// No description provided for @loadingGreetingMorningTranslation.
+  ///
+  /// In en, this message translates to:
+  /// **'O Allah, by You we enter the morning'**
+  String get loadingGreetingMorningTranslation;
+
+  /// No description provided for @loadingGreetingEvening.
+  ///
+  /// In en, this message translates to:
+  /// **'اللَّهُمَّ بِكَ أَمْسَيْنَا'**
+  String get loadingGreetingEvening;
+
+  /// No description provided for @loadingGreetingEveningTranslation.
+  ///
+  /// In en, this message translates to:
+  /// **'O Allah, by You we enter the evening'**
+  String get loadingGreetingEveningTranslation;
+
+  /// No description provided for @loadingWelcomeBack.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome Back'**
+  String get loadingWelcomeBack;
+
+  /// No description provided for @loadingRestoringProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Restoring your progress'**
+  String get loadingRestoringProgress;
+
+  /// No description provided for @loadingStatusPreparing.
+  ///
+  /// In en, this message translates to:
+  /// **'Preparing your space…'**
+  String get loadingStatusPreparing;
+
+  /// No description provided for @loadingStatusRestoring.
+  ///
+  /// In en, this message translates to:
+  /// **'Restoring your progress…'**
+  String get loadingStatusRestoring;
+
+  /// No description provided for @loadingStatusSyncing.
+  ///
+  /// In en, this message translates to:
+  /// **'Syncing your journey…'**
+  String get loadingStatusSyncing;
+
+  /// No description provided for @loadingStatusFinalizing.
+  ///
+  /// In en, this message translates to:
+  /// **'Finalizing…'**
+  String get loadingStatusFinalizing;
+
+  /// No description provided for @homeTestOnboardingPill.
+  ///
+  /// In en, this message translates to:
+  /// **'Test Onboarding'**
+  String get homeTestOnboardingPill;
+
+  /// No description provided for @homeTestLoadingScreenPill.
+  ///
+  /// In en, this message translates to:
+  /// **'Test Loading Screen'**
+  String get homeTestLoadingScreenPill;
 }
 
 class _AppLocalizationsDelegate

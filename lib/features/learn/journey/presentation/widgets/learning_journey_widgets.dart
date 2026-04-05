@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../l10n/app_localizations.dart';
+import '../../../../../shared/widgets/app_layered_glass_pill_button.dart';
 import '../../../../../shared/theme/islamic_icons.dart';
 import '../../data/learning_journey_localized_metadata.dart';
 import '../../domain/learning_journey_models.dart';
@@ -188,96 +189,96 @@ class LearningJourneyCard extends StatelessWidget {
             border: Border.all(color: const Color(0xFFE0CEB4)),
           ),
           child: Row(
-          children: [
-            Container(
-              width: 42,
-              height: 42,
-              decoration: BoxDecoration(
-                color: const Color(0xFFEADCC7),
-                borderRadius: BorderRadius.circular(12),
+            children: [
+              Container(
+                width: 42,
+                height: 42,
+                decoration: BoxDecoration(
+                  color: const Color(0xFFEADCC7),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Icon(leadingIcon, color: leadingColor),
               ),
-              child: Icon(leadingIcon, color: leadingColor),
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    localizedJourneyTitle(context, journey),
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w700,
-                      color: Color(0xFF30281F),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      localizedJourneyTitle(context, journey),
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w700,
+                        color: Color(0xFF30281F),
+                      ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                     ),
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    localizedJourneySubtitle(context, journey),
-                    style: const TextStyle(
-                      fontSize: 12.8,
-                      color: Color(0xFF675B4E),
-                      height: 1.35,
+                    const SizedBox(height: 4),
+                    Text(
+                      localizedJourneySubtitle(context, journey),
+                      style: const TextStyle(
+                        fontSize: 12.8,
+                        color: Color(0xFF675B4E),
+                        height: 1.35,
+                      ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                     ),
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  const SizedBox(height: 8),
-                  Wrap(
-                    spacing: 8,
-                    runSpacing: 8,
-                    children: [
-                      _MetaPill(
-                        label: _difficultyLabel(journey.difficulty, l10n),
-                        color: const Color(0xFFEADCC7),
-                        textColor: const Color(0xFF755937),
-                      ),
-                      _MetaPill(
-                        label: l10n.learningJourneyDurationMinutes(
-                          journey.estimatedDurationMinutes,
-                        ),
-                        color: const Color(0xFFF1E7D9),
-                        textColor: const Color(0xFF7A6243),
-                      ),
-                      _MetaPill(
-                        label: l10n.learningJourneyCardStageCount(stageCount),
-                        color: const Color(0xFFF4EBDE),
-                        textColor: const Color(0xFF866A49),
-                      ),
-                      if (showFeaturedBadge && journey.isFeatured)
+                    const SizedBox(height: 8),
+                    Wrap(
+                      spacing: 8,
+                      runSpacing: 8,
+                      children: [
                         _MetaPill(
-                          label: l10n.learningJourneyFeaturedBadge,
-                          color: const Color(0xFFE5EADF),
-                          textColor: const Color(0xFF587047),
+                          label: _difficultyLabel(journey.difficulty, l10n),
+                          color: const Color(0xFFEADCC7),
+                          textColor: const Color(0xFF755937),
                         ),
-                    ],
-                  ),
-                  if (effectiveProgress != null) ...[
-                    const SizedBox(height: 10),
-                    JourneyProgressBar(
-                      value: effectiveProgress,
-                      label: l10n.learningJourneyCardProgressLabel(
-                        (effectiveProgress * stageCount).round(),
-                        stageCount,
-                      ),
+                        _MetaPill(
+                          label: l10n.learningJourneyDurationMinutes(
+                            journey.estimatedDurationMinutes,
+                          ),
+                          color: const Color(0xFFF1E7D9),
+                          textColor: const Color(0xFF7A6243),
+                        ),
+                        _MetaPill(
+                          label: l10n.learningJourneyCardStageCount(stageCount),
+                          color: const Color(0xFFF4EBDE),
+                          textColor: const Color(0xFF866A49),
+                        ),
+                        if (showFeaturedBadge && journey.isFeatured)
+                          _MetaPill(
+                            label: l10n.learningJourneyFeaturedBadge,
+                            color: const Color(0xFFE5EADF),
+                            textColor: const Color(0xFF587047),
+                          ),
+                      ],
                     ),
-                    if (effectiveProgress > 0 && effectiveProgress < 1) ...[
-                      const SizedBox(height: 6),
-                      Text(
-                        l10n.learningJourneyCardActionContinue,
-                        style: const TextStyle(
-                          fontSize: 12.2,
-                          fontWeight: FontWeight.w700,
-                          color: Color(0xFF7A6650),
+                    if (effectiveProgress != null) ...[
+                      const SizedBox(height: 10),
+                      JourneyProgressBar(
+                        value: effectiveProgress,
+                        label: l10n.learningJourneyCardProgressLabel(
+                          (effectiveProgress * stageCount).round(),
+                          stageCount,
                         ),
                       ),
+                      if (effectiveProgress > 0 && effectiveProgress < 1) ...[
+                        const SizedBox(height: 6),
+                        Text(
+                          l10n.learningJourneyCardActionContinue,
+                          style: const TextStyle(
+                            fontSize: 12.2,
+                            fontWeight: FontWeight.w700,
+                            color: Color(0xFF7A6650),
+                          ),
+                        ),
+                      ],
                     ],
                   ],
-                ],
+                ),
               ),
-            ),
-          ],
+            ],
           ),
         ),
       ),
@@ -554,12 +555,9 @@ class _MetaPill extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return AppLayeredGlassPill(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(999),
-      ),
+      fillColor: color,
       child: Text(
         label,
         style: TextStyle(
@@ -909,10 +907,12 @@ String _difficultyLabel(
   AppLocalizations l10n,
 ) {
   return switch (difficulty) {
-    LearningJourneyDifficulty.beginner => l10n.learningJourneyDifficultyBeginner,
+    LearningJourneyDifficulty.beginner =>
+      l10n.learningJourneyDifficultyBeginner,
     LearningJourneyDifficulty.intermediate =>
       l10n.learningJourneyDifficultyIntermediate,
-    LearningJourneyDifficulty.advanced => l10n.learningJourneyDifficultyAdvanced,
+    LearningJourneyDifficulty.advanced =>
+      l10n.learningJourneyDifficultyAdvanced,
   };
 }
 

@@ -71,50 +71,10 @@ class FastingSection extends ConsumerWidget {
           children: [
             ...FastingType.values.map((type) {
               final isSelected = fasting.selectedType == type;
-              return InkWell(
+              return _FastingChoicePill(
+                label: type.label,
+                isSelected: isSelected,
                 onTap: () => notifier.setType(type),
-                borderRadius: BorderRadius.circular(AppRadii.pill),
-                child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 14,
-                    vertical: 11,
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(AppRadii.pill),
-                    color: isSelected
-                        ? AppSurfaceTheme.adaptiveColor(
-                            context,
-                            AppColors.accentGold,
-                            alpha: 0.18,
-                            solidAlphaWhenDisabled: 0.28,
-                          )
-                        : AppSurfaceTheme.adaptiveColor(
-                            context,
-                            AppColors.surface,
-                            alpha: 0.4,
-                            solidAlphaWhenDisabled: 0.96,
-                          ),
-                    border: Border.all(
-                      color: isSelected
-                          ? AppColors.accentGold
-                          : AppSurfaceTheme.adaptiveColor(
-                              context,
-                              AppColors.accentGoldSoft,
-                              alpha: 0.45,
-                              solidAlphaWhenDisabled: 0.55,
-                            ),
-                    ),
-                  ),
-                  child: Text(
-                    type.label,
-                    style: TextStyle(
-                      color: AppColors.onSurface,
-                      fontWeight: isSelected
-                          ? FontWeight.w700
-                          : FontWeight.w500,
-                    ),
-                  ),
-                ),
               );
             }),
           ],
@@ -130,45 +90,10 @@ class FastingSection extends ConsumerWidget {
           children: [
             ...FastingStatus.values.map((status) {
               final selected = fasting.todayStatus == status;
-              return InkWell(
+              return _FastingChoicePill(
+                label: status.label,
+                isSelected: selected,
                 onTap: () => notifier.setStatus(status),
-                borderRadius: BorderRadius.circular(AppRadii.pill),
-                child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 14,
-                    vertical: 11,
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(AppRadii.pill),
-                    color: selected
-                        ? AppSurfaceTheme.adaptiveColor(
-                            context,
-                            AppColors.accentGold,
-                            alpha: 0.2,
-                            solidAlphaWhenDisabled: 0.30,
-                          )
-                        : AppSurfaceTheme.adaptiveColor(
-                            context,
-                            AppColors.surfaceSoft,
-                            alpha: 0.45,
-                            solidAlphaWhenDisabled: 0.96,
-                          ),
-                    border: Border.all(
-                      color: selected
-                          ? AppColors.accentGold
-                          : AppSurfaceTheme.adaptiveColor(
-                              context,
-                              AppColors.accentGoldSoft,
-                              alpha: 0.45,
-                              solidAlphaWhenDisabled: 0.55,
-                            ),
-                    ),
-                  ),
-                  child: Text(
-                    status.label,
-                    style: const TextStyle(fontWeight: FontWeight.w600),
-                  ),
-                ),
               );
             }),
           ],
@@ -256,5 +181,63 @@ class FastingSection extends ConsumerWidget {
       case FastingStatus.broken:
         return 0.25;
     }
+  }
+}
+
+class _FastingChoicePill extends StatelessWidget {
+  const _FastingChoicePill({
+    required this.label,
+    required this.isSelected,
+    required this.onTap,
+  });
+
+  final String label;
+  final bool isSelected;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final style = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.pill,
+      tintColor: AppColors.accentGold,
+    );
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(AppRadii.pill),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 11),
+        decoration: style
+            .decoration(radius: AppRadii.pill, includeShadow: false)
+            .copyWith(
+              color: isSelected
+                  ? AppSurfaceTheme.adaptiveColor(
+                      context,
+                      AppColors.accentGold,
+                      alpha: 0.18,
+                      solidAlphaWhenDisabled: 0.28,
+                    )
+                  : style.backgroundColor,
+              gradient: isSelected ? null : style.gradient,
+              border: Border.all(
+                color: isSelected
+                    ? AppColors.accentGold
+                    : AppSurfaceTheme.adaptiveColor(
+                        context,
+                        AppColors.accentGoldSoft,
+                        alpha: 0.45,
+                        solidAlphaWhenDisabled: 0.55,
+                      ),
+              ),
+            ),
+        child: Text(
+          label,
+          style: TextStyle(
+            color: AppColors.onSurface,
+            fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
+          ),
+        ),
+      ),
+    );
   }
 }

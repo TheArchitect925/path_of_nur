@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/theme/app_surfaces.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../application/bedtime_story_audio_service.dart';
@@ -42,13 +43,16 @@ class _BedtimeStoryFullPlayerSheet extends ConsumerWidget {
     final mediaAsync = ref.watch(bedtimeStoryResolvedMediaProvider(story));
     final audioState = ref.watch(bedtimeStoryAudioControllerProvider);
     final queueState = ref.watch(bedtimeStoryQueueControllerProvider);
-    final queueController = ref.read(bedtimeStoryQueueControllerProvider.notifier);
+    final queueController = ref.read(
+      bedtimeStoryQueueControllerProvider.notifier,
+    );
     final sleepTimer = ref.watch(bedtimeStorySleepTimerProvider);
     final sleepController = ref.read(bedtimeStorySleepTimerProvider.notifier);
     final nextStory = ref.watch(bedtimeStoryNextQueueStoryProvider);
     final progress = ref.watch(
       bedtimeStoryProgressProvider.select(
-        (value) => value.storyProgressById[story.id] ?? const BedtimeStoryProgress(),
+        (value) =>
+            value.storyProgressById[story.id] ?? const BedtimeStoryProgress(),
       ),
     );
 
@@ -60,7 +64,10 @@ class _BedtimeStoryFullPlayerSheet extends ConsumerWidget {
     final maxMs = duration.inMilliseconds <= 0
         ? 1.0
         : duration.inMilliseconds.toDouble();
-    final sliderValue = position.inMilliseconds.clamp(0, duration.inMilliseconds);
+    final sliderValue = position.inMilliseconds.clamp(
+      0,
+      duration.inMilliseconds,
+    );
 
     return DraggableScrollableSheet(
       initialChildSize: 0.88,
@@ -68,10 +75,7 @@ class _BedtimeStoryFullPlayerSheet extends ConsumerWidget {
       maxChildSize: 0.95,
       builder: (context, scrollController) {
         return DecoratedBox(
-          decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.surface,
-            borderRadius: const BorderRadius.vertical(top: Radius.circular(28)),
-          ),
+          decoration: _playerSheetDecoration(context),
           child: ListView(
             controller: scrollController,
             padding: const EdgeInsets.fromLTRB(16, 14, 16, 24),
@@ -80,10 +84,7 @@ class _BedtimeStoryFullPlayerSheet extends ConsumerWidget {
                 child: Container(
                   width: 48,
                   height: 5,
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).dividerColor,
-                    borderRadius: BorderRadius.circular(999),
-                  ),
+                  decoration: _playerSheetHandleDecoration(context),
                 ),
               ),
               const SizedBox(height: 16),
@@ -91,9 +92,7 @@ class _BedtimeStoryFullPlayerSheet extends ConsumerWidget {
                 loading: () => PremiumCard(
                   child: Text(l10n.bedtimeStoriesMediaLoadingLabel),
                 ),
-                error: (_, _) => PremiumCard(
-                  child: Text(story.shortTitle),
-                ),
+                error: (_, _) => PremiumCard(child: Text(story.shortTitle)),
                 data: (media) => BedtimeStoryCoverCard(
                   story: story,
                   media: media,
@@ -117,10 +116,7 @@ class _BedtimeStoryFullPlayerSheet extends ConsumerWidget {
                 ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w800),
               ),
               const SizedBox(height: 6),
-              Text(
-                story.lesson,
-                style: Theme.of(context).textTheme.bodyMedium,
-              ),
+              Text(story.lesson, style: Theme.of(context).textTheme.bodyMedium),
               const SizedBox(height: 12),
               Wrap(
                 spacing: 8,
@@ -167,7 +163,9 @@ class _BedtimeStoryFullPlayerSheet extends ConsumerWidget {
                   ),
                   IconButton.filledTonal(
                     onPressed: mediaAsync.valueOrNull?.audio.isAvailable == true
-                        ? () => queueController.seekBy(const Duration(seconds: -10))
+                        ? () => queueController.seekBy(
+                            const Duration(seconds: -10),
+                          )
                         : null,
                     icon: const Icon(Icons.replay_10_rounded),
                   ),
@@ -191,7 +189,9 @@ class _BedtimeStoryFullPlayerSheet extends ConsumerWidget {
                   ),
                   IconButton.filledTonal(
                     onPressed: mediaAsync.valueOrNull?.audio.isAvailable == true
-                        ? () => queueController.seekBy(const Duration(seconds: 10))
+                        ? () => queueController.seekBy(
+                            const Duration(seconds: 10),
+                          )
                         : null,
                     icon: const Icon(Icons.forward_10_rounded),
                   ),
@@ -224,8 +224,9 @@ class _BedtimeStoryFullPlayerSheet extends ConsumerWidget {
                     label: Text(l10n.bedtimeStoriesSleepTimerAction),
                   ),
                   OutlinedButton.icon(
-                    onPressed: () =>
-                        queueController.setAutoplayEnabled(!queueState.autoplayEnabled),
+                    onPressed: () => queueController.setAutoplayEnabled(
+                      !queueState.autoplayEnabled,
+                    ),
                     icon: const Icon(Icons.playlist_play_rounded),
                     label: Text(
                       queueState.autoplayEnabled
@@ -235,18 +236,21 @@ class _BedtimeStoryFullPlayerSheet extends ConsumerWidget {
                   ),
                 ],
               ),
-              if (!mediaAsync.hasValue || mediaAsync.valueOrNull?.audio.isAvailable != true) ...[
+              if (!mediaAsync.hasValue ||
+                  mediaAsync.valueOrNull?.audio.isAvailable != true) ...[
                 const SizedBox(height: 12),
                 PremiumCard(
                   child: Text(l10n.bedtimeStoriesAudioUnavailableSubtitle),
                 ),
               ],
-              if (audioState.isCompleted && audioState.currentStoryId == story.id) ...[
+              if (audioState.isCompleted &&
+                  audioState.currentStoryId == story.id) ...[
                 const SizedBox(height: 12),
                 BedtimeStoryCompletionBanner(
                   story: story,
                   nextStory: nextStory,
-                  onReplay: () => queueController.playCurrent(restartCompleted: true),
+                  onReplay: () =>
+                      queueController.playCurrent(restartCompleted: true),
                   onNext: nextStory == null ? null : queueController.next,
                 ),
               ],
@@ -274,9 +278,9 @@ class _BedtimeStoryFullPlayerSheet extends ConsumerWidget {
             children: [
               Text(
                 l10n.bedtimeStoriesSleepTimerTitle,
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.w700,
-                ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
               ),
               const SizedBox(height: 10),
               ...<int>[5, 10, 15].map(
@@ -348,12 +352,33 @@ class _SoftChip extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(999),
-        color: const Color(0xFFFFF8EF),
-        border: Border.all(color: const Color(0xFFE8DDD0)),
-      ),
+      decoration: _playerSoftChipDecoration(context),
       child: Text(label, style: Theme.of(context).textTheme.bodySmall),
     );
   }
+}
+
+BoxDecoration _playerSoftChipDecoration(BuildContext context) {
+  final style = AppSurfaceTheme.resolve(
+    context,
+    variant: AppSurfaceVariant.pill,
+  );
+  return style.decoration(radius: 999);
+}
+
+BoxDecoration _playerSheetDecoration(BuildContext context) {
+  final style = AppSurfaceTheme.resolve(
+    context,
+    variant: AppSurfaceVariant.island,
+  );
+  return style.decoration(radius: 28);
+}
+
+BoxDecoration _playerSheetHandleDecoration(BuildContext context) {
+  final style = AppSurfaceTheme.resolve(
+    context,
+    variant: AppSurfaceVariant.pill,
+    tintColor: Theme.of(context).dividerColor.withValues(alpha: 0.5),
+  );
+  return style.decoration(radius: 999);
 }

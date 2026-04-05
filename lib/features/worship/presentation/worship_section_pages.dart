@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_surfaces.dart';
 import '../../../core/prayer/prayer_preferences.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/content/contextual_quran_quotes.dart';
@@ -29,9 +31,7 @@ class WorshipPrayerPage extends StatelessWidget {
       headerIcon: IslamicIcons.prayer,
       title: l10n.worshipPrayerHubTitle,
       subtitle: l10n.worshipPrayerHubSubtitle,
-      quote: buildContextualQuranQuote(
-        ContextualQuranQuoteKey.worshipPrayer,
-      ),
+      quote: buildContextualQuranQuote(ContextualQuranQuoteKey.worshipPrayer),
       child: const PrayerSection(),
     );
   }
@@ -47,9 +47,7 @@ class WorshipDhikrPage extends StatelessWidget {
       headerIcon: IslamicIcons.tasbih,
       title: l10n.dhikrSectionTitle,
       subtitle: l10n.dhikrSectionSubtitle,
-      quote: buildContextualQuranQuote(
-        ContextualQuranQuoteKey.worshipDhikr,
-      ),
+      quote: buildContextualQuranQuote(ContextualQuranQuoteKey.worshipDhikr),
       child: const DhikrSection(),
     );
   }
@@ -65,9 +63,7 @@ class WorshipFastingPage extends StatelessWidget {
       headerIcon: Icons.fastfood_outlined,
       title: l10n.fastingSectionTitle,
       subtitle: l10n.fastingSectionSubtitle,
-      quote: buildContextualQuranQuote(
-        ContextualQuranQuoteKey.worshipFasting,
-      ),
+      quote: buildContextualQuranQuote(ContextualQuranQuoteKey.worshipFasting),
       child: const FastingSection(),
     );
   }
@@ -90,9 +86,7 @@ class WorshipTrackingPage extends ConsumerWidget {
       headerIcon: Icons.fact_check_rounded,
       title: l10n.worshipTrackingPageTitle,
       subtitle: l10n.worshipTrackingPageSubtitle,
-      quote: buildContextualQuranQuote(
-        ContextualQuranQuoteKey.worshipTracking,
-      ),
+      quote: buildContextualQuranQuote(ContextualQuranQuoteKey.worshipTracking),
       child: Column(
         children: [
           _TrackingLinkCard(
@@ -242,6 +236,14 @@ class _TrackingLinkCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cardStyle = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.card,
+    );
+    final iconStyle = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.panel,
+    );
     return Material(
       color: Colors.transparent,
       child: InkWell(
@@ -249,21 +251,17 @@ class _TrackingLinkCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(18),
         child: Ink(
           padding: const EdgeInsets.all(14),
-          decoration: BoxDecoration(
-            color: const Color(0xFFF7F1E8),
-            borderRadius: BorderRadius.circular(18),
-            border: Border.all(color: const Color(0xFFE3D6C4)),
-          ),
+          decoration: cardStyle.decoration(radius: 18),
           child: Row(
             children: [
               Container(
                 width: 40,
                 height: 40,
-                decoration: BoxDecoration(
-                  color: const Color(0xFFE8DCC8),
-                  borderRadius: BorderRadius.circular(12),
+                decoration: iconStyle.decoration(
+                  radius: 12,
+                  includeShadow: false,
                 ),
-                child: Icon(icon, color: const Color(0xFF71593C)),
+                child: Icon(icon, color: AppColors.onSurface),
               ),
               const SizedBox(width: 12),
               Expanded(
@@ -272,23 +270,23 @@ class _TrackingLinkCard extends StatelessWidget {
                   children: [
                     Text(
                       title,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w700,
-                        color: Color(0xFF30281F),
-                      ),
+                      style: const TextStyle(fontWeight: FontWeight.w700),
                     ),
                     const SizedBox(height: 4),
                     Text(
                       subtitle,
                       style: const TextStyle(
-                        color: Color(0xFF675B4E),
+                        color: AppColors.onSurfaceSubtle,
                         height: 1.35,
                       ),
                     ),
                   ],
                 ),
               ),
-              const Icon(Icons.chevron_right_rounded, color: Color(0xFF8C7966)),
+              const Icon(
+                Icons.chevron_right_rounded,
+                color: AppColors.onSurfaceSubtle,
+              ),
             ],
           ),
         ),

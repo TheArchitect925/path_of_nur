@@ -141,21 +141,36 @@ class _FocusCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final iconStyle = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.panel,
+      tintColor: AppColors.accentGold,
+    );
     return PremiumCard(
       child: Row(
         children: [
           Container(
             width: 40,
             height: 40,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(AppSpacing.s),
-              color: AppSurfaceTheme.adaptiveColor(
-                context,
-                AppColors.accentGold,
-                alpha: 0.18,
-                solidAlphaWhenDisabled: 0.28,
-              ),
-            ),
+            decoration: iconStyle
+                .decoration(radius: AppSpacing.s, includeShadow: false)
+                .copyWith(
+                  color: AppSurfaceTheme.adaptiveColor(
+                    context,
+                    AppColors.accentGold,
+                    alpha: 0.18,
+                    solidAlphaWhenDisabled: 0.28,
+                  ),
+                  gradient: null,
+                  border: Border.all(
+                    color: AppSurfaceTheme.adaptiveColor(
+                      context,
+                      AppColors.accentGold,
+                      alpha: 0.28,
+                      solidAlphaWhenDisabled: 0.34,
+                    ),
+                  ),
+                ),
             child: Icon(icon, color: AppColors.onSurface),
           ),
           const SizedBox(width: 12),

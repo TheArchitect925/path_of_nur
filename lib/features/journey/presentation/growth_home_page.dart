@@ -4,12 +4,13 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 import '../../../l10n/app_localizations.dart';
+import '../../../core/theme/app_surfaces.dart';
 import '../../learn/quran/application/quran_personalization_provider.dart';
 import '../../learn/quran/domain/quran_personalization_models.dart';
 import '../../learn/quran/presentation/widgets/quran_personalized_recommendation_card.dart';
 import '../../../shared/content/learning_quote.dart';
 import '../../../shared/theme/islamic_icons.dart';
-import '../../../shared/widgets/major_page_shortcuts.dart';
+import '../../../shared/widgets/app_layered_glass_pill_button.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/quran_navigation.dart';
 import '../../../shared/widgets/quran_quote_block.dart';
@@ -44,11 +45,6 @@ class GrowthHomePage extends ConsumerWidget {
       subtitle: l10n.growthHomeHeaderSubtitle,
       shortcutOpenLabel: l10n.learnShortcutOpen,
       shortcutCloseLabel: l10n.learnShortcutClose,
-      shortcutActions: buildMajorPageShortcutActions(
-        context,
-        ref,
-        MajorPageShortcutFamily.growth,
-      ),
       children: [
         QuranQuoteBlock(
           quote: quote,
@@ -115,15 +111,15 @@ class GrowthHomePage extends ConsumerWidget {
                 spacing: 10,
                 runSpacing: 10,
                 children: [
-                  FilledButton.tonalIcon(
+                  AppLayeredGlassPillButton(
                     onPressed: () => context.pushNamed('growthStatisticsPage'),
-                    icon: const Icon(Icons.query_stats_rounded),
-                    label: Text(l10n.growthHomeJourneyDepthOpenStatistics),
+                    leading: const Icon(Icons.query_stats_rounded, size: 18),
+                    label: l10n.growthHomeJourneyDepthOpenStatistics,
                   ),
-                  OutlinedButton.icon(
+                  AppLayeredGlassPillButton(
                     onPressed: () => context.pushNamed('gardenPage'),
-                    icon: const Icon(Icons.local_florist_rounded),
-                    label: Text(l10n.growthHomeJourneyDepthOpenGarden),
+                    leading: const Icon(Icons.local_florist_rounded, size: 18),
+                    label: l10n.growthHomeJourneyDepthOpenGarden,
                   ),
                 ],
               ),
@@ -293,6 +289,10 @@ class _GrowthFeatureCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final iconStyle = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.panel,
+    );
     return SizedBox(
       width: 320,
       child: PremiumCard(
@@ -301,7 +301,14 @@ class _GrowthFeatureCard extends StatelessWidget {
           children: [
             Row(
               children: [
-                Icon(icon),
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: iconStyle.decoration(
+                    radius: 14,
+                    includeShadow: false,
+                  ),
+                  child: Icon(icon),
+                ),
                 const SizedBox(width: 8),
                 Expanded(
                   child: Text(
@@ -316,10 +323,10 @@ class _GrowthFeatureCard extends StatelessWidget {
             const SizedBox(height: 12),
             Align(
               alignment: Alignment.centerLeft,
-              child: FilledButton.tonalIcon(
+              child: AppLayeredGlassPillButton(
                 onPressed: onTap,
-                icon: const Icon(Icons.arrow_forward_rounded),
-                label: Text(actionLabel),
+                leading: const Icon(Icons.arrow_forward_rounded, size: 18),
+                label: actionLabel,
               ),
             ),
           ],

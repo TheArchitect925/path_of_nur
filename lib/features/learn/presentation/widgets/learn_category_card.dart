@@ -45,11 +45,15 @@ class _LearnCategoryCardState extends State<LearnCategoryCard> {
     final surfaceStyle = AppSurfaceTheme.resolve(
       context,
       variant: AppSurfaceVariant.island,
-      tintColor: accent,
     );
     final featureStyle = AppSurfaceTheme.resolve(
       context,
       variant: AppSurfaceVariant.featureTile,
+      tintColor: accent.withValues(alpha: 0.92),
+    );
+    final badgeStyle = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.pill,
       tintColor: accent,
     );
 
@@ -147,18 +151,15 @@ class _LearnCategoryCardState extends State<LearnCategoryCard> {
                                   horizontal: 8,
                                   vertical: 4,
                                 ),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(999),
-                                  color: accent.withValues(alpha: 0.22),
-                                  border: Border.all(
-                                    color: accent.withValues(alpha: 0.35),
-                                  ),
+                                decoration: badgeStyle.decoration(
+                                  radius: 999,
+                                  includeShadow: false,
                                 ),
                                 child: Text(
                                   widget.item.localizedBadgeLabel(l10n)!,
                                   style: Theme.of(context).textTheme.labelSmall
                                       ?.copyWith(
-                                        color: onSurface,
+                                        color: accent,
                                         fontWeight: FontWeight.w700,
                                       ),
                                 ),
@@ -197,7 +198,7 @@ class _LearnCategoryCardState extends State<LearnCategoryCard> {
       height: size,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: const Color(0xFFD8B779).withValues(alpha: alpha),
+        color: AppColors.accentGold.withValues(alpha: alpha),
       ),
     );
   }

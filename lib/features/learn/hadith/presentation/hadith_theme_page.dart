@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../l10n/app_localizations.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_surfaces.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../shared/presentation/learning_references.dart';
@@ -151,12 +152,15 @@ class _HadithPreviewCard extends StatelessWidget {
               spacing: 6,
               runSpacing: 6,
               children: [
-                _badge(sourceCollection),
-                if (sourceReference != null) _badge(sourceReference!),
-                _badge(grading),
+                _badge(context, sourceCollection),
+                if (sourceReference != null) _badge(context, sourceReference!),
+                _badge(context, grading),
                 if (quranConnectionCount > 0)
-                  _badge(l10n.hadithPathQuranConnections(quranConnectionCount)),
-                ...tags.take(3).map(_badge),
+                  _badge(
+                    context,
+                    l10n.hadithPathQuranConnections(quranConnectionCount),
+                  ),
+                ...tags.take(3).map((tag) => _badge(context, tag)),
               ],
             ),
           ],
@@ -165,16 +169,21 @@ class _HadithPreviewCard extends StatelessWidget {
     );
   }
 
-  Widget _badge(String text) {
+  Widget _badge(BuildContext context, String text) {
+    final style = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.pill,
+      tintColor: AppColors.accentGold,
+    );
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-      decoration: BoxDecoration(
-        color: AppColors.surface.withValues(alpha: 0.26),
-        borderRadius: BorderRadius.circular(999),
-        border: Border.all(
-          color: AppColors.accentGoldSoft.withValues(alpha: 0.30),
-        ),
-      ),
+      decoration: style
+          .decoration(radius: 999, includeShadow: false)
+          .copyWith(
+            border: Border.all(
+              color: AppColors.accentGoldSoft.withValues(alpha: 0.30),
+            ),
+          ),
       child: Text(text, style: const TextStyle(fontSize: 11.5)),
     );
   }

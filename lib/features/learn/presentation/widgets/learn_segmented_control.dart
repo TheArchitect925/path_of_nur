@@ -35,23 +35,20 @@ class LearnSegmentedControl extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final shellStyle = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.panel,
+      tintColor: AppColors.accentGold,
+    );
+    final selectedStyle = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.pill,
+      tintColor: AppColors.accentGold,
+    );
     return Container(
-      decoration: BoxDecoration(
-        color: AppSurfaceTheme.adaptiveColor(
-          context,
-          AppColors.surface,
-          alpha: 0.34,
-          solidAlphaWhenDisabled: 0.96,
-        ),
-        borderRadius: BorderRadius.circular(AppRadii.pill),
-        border: Border.all(
-          color: AppSurfaceTheme.adaptiveColor(
-            context,
-            AppColors.accentGold,
-            alpha: 0.45,
-            solidAlphaWhenDisabled: 0.55,
-          ),
-        ),
+      decoration: shellStyle.decoration(
+        radius: AppRadii.pill,
+        includeShadow: false,
       ),
       padding: const EdgeInsets.all(AppSpacing.xxs),
       child: Row(
@@ -65,27 +62,25 @@ class LearnSegmentedControl extends StatelessWidget {
                     duration: const Duration(milliseconds: 180),
                     curve: Curves.easeOut,
                     padding: const EdgeInsets.symmetric(vertical: 11),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(AppRadii.pill),
-                      color: selected == tab
-                          ? AppSurfaceTheme.adaptiveColor(
-                              context,
-                              AppColors.accentGold,
-                              alpha: 0.30,
-                              solidAlphaWhenDisabled: 0.42,
-                            )
-                          : Colors.transparent,
-                      border: selected == tab
-                          ? Border.all(
-                              color: AppSurfaceTheme.adaptiveColor(
-                                context,
-                                AppColors.accentGold,
-                                alpha: 0.55,
-                                solidAlphaWhenDisabled: 0.62,
-                              ),
-                            )
-                          : null,
-                    ),
+                    decoration: selected == tab
+                        ? selectedStyle
+                              .decoration(
+                                radius: AppRadii.pill,
+                                includeShadow: false,
+                              )
+                              .copyWith(
+                                border: Border.all(
+                                  color: AppSurfaceTheme.adaptiveColor(
+                                    context,
+                                    AppColors.accentGold,
+                                    alpha: 0.55,
+                                    solidAlphaWhenDisabled: 0.62,
+                                  ),
+                                ),
+                              )
+                        : BoxDecoration(
+                            borderRadius: BorderRadius.circular(AppRadii.pill),
+                          ),
                     child: Text(
                       _label(l10n, tab),
                       textAlign: TextAlign.center,

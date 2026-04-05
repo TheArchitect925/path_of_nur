@@ -7,7 +7,6 @@ import '../../../shared/application/special_mode_provider.dart';
 import '../../../shared/content/page_description_copy.dart';
 import '../../learn/quran/domain/quran_content_refs.dart';
 import '../../../shared/theme/islamic_icons.dart';
-import '../../../shared/widgets/major_page_shortcuts.dart';
 import '../../../shared/widgets/quran_navigation.dart';
 import '../../../shared/widgets/quran_quote_block.dart';
 import '../../../shared/widgets/section_hub_scaffold.dart';
@@ -34,11 +33,6 @@ class WorshipPage extends ConsumerWidget {
       ),
       shortcutOpenLabel: l10n.learnShortcutOpen,
       shortcutCloseLabel: l10n.learnShortcutClose,
-      shortcutActions: buildMajorPageShortcutActions(
-        context,
-        ref,
-        MajorPageShortcutFamily.worship,
-      ),
       children: [
         QuranQuoteBlock(
           quote: quote,

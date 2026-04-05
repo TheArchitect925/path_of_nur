@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../../core/theme/app_surfaces.dart';
 import '../../../../../l10n/app_localizations.dart';
+import '../../../../../shared/widgets/app_layered_glass_pill_button.dart';
 import '../../../../../shared/widgets/premium_card.dart';
 import '../../../../../shared/widgets/quran_navigation.dart';
 import '../../../../../shared/widgets/quran_verse_content.dart';
@@ -55,6 +57,8 @@ class QuranDailyReflectionCard extends ConsumerWidget {
     final spacing = compact ? 10.0 : 12.0;
 
     return PremiumCard(
+      surfaceTreatment: AppSurfaceTreatment.denseSanctuary,
+      surfaceVariant: AppSurfaceVariant.panel,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -166,16 +170,16 @@ class QuranDailyReflectionCard extends ConsumerWidget {
             runSpacing: 8,
             children: [
               if (showCompanionAction)
-                FilledButton.tonalIcon(
+                AppLayeredGlassPillButton(
                   onPressed: () => context.pushNamed('quranDailyCompanion'),
-                  icon: const Icon(Icons.wb_twilight_rounded),
-                  label: Text(l10n.quranDailyCompanionOpenAction),
+                  leading: const Icon(Icons.wb_twilight_rounded, size: 18),
+                  label: l10n.quranDailyCompanionOpenAction,
                 ),
-              FilledButton.tonalIcon(
+              AppLayeredGlassPillButton(
                 onPressed: () =>
                     openQuranReferenceLocation(context, ref: entry.ref),
-                icon: const Icon(Icons.auto_stories_rounded),
-                label: Text(l10n.quranDailyReflectionOpenAyahAction),
+                leading: const Icon(Icons.auto_stories_rounded, size: 18),
+                label: l10n.quranDailyReflectionOpenAyahAction,
               ),
               if (showSecondaryActions)
                 OutlinedButton.icon(
@@ -258,17 +262,17 @@ class QuranDailyReflectionCard extends ConsumerWidget {
                   ),
                 ),
               summary.isCompletedToday
-                  ? FilledButton.tonalIcon(
+                  ? AppLayeredGlassPillButton(
                       onPressed: null,
-                      icon: const Icon(Icons.check_circle_rounded),
-                      label: Text(l10n.quranDailyReflectionCompletedAction),
+                      leading: const Icon(Icons.check_circle_rounded, size: 18),
+                      label: l10n.quranDailyReflectionCompletedAction,
                     )
-                  : FilledButton.icon(
+                  : AppLayeredGlassPillButton(
                       onPressed: () => ref
                           .read(quranDailyReflectionStateProvider.notifier)
                           .completeToday(assignment: assignment),
-                      icon: const Icon(Icons.done_rounded),
-                      label: Text(l10n.quranDailyReflectionCompleteAction),
+                      leading: const Icon(Icons.done_rounded, size: 18),
+                      label: l10n.quranDailyReflectionCompleteAction,
                     ),
             ],
           ),

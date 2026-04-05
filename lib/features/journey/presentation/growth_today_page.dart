@@ -109,7 +109,7 @@ class GrowthTodayPage extends ConsumerWidget {
                       Text(
                         l10n.growthTodayQuietProgressNote,
                         style: TextStyle(
-                          color: Color(0xFF6A5A4A),
+                          color: growthNoorSubtleTextColor(context),
                           fontSize: 12,
                         ),
                       ),
@@ -127,9 +127,9 @@ class GrowthTodayPage extends ConsumerWidget {
                           : encouragement.returning[(selectedDate.day +
                                     selectedDate.month) %
                                 encouragement.returning.length],
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 12,
-                        color: Color(0xFF6A5A4A),
+                        color: growthNoorSubtleTextColor(context),
                       ),
                     ),
                     if (summary.protectedDaysUsedThisWeek > 0)
@@ -198,10 +198,7 @@ class GrowthTodayPage extends ConsumerWidget {
                             horizontal: 10,
                             vertical: 6,
                           ),
-                          decoration: BoxDecoration(
-                            color: const Color(0xFFF5EEE3),
-                            borderRadius: BorderRadius.circular(999),
-                          ),
+                          decoration: growthNoorPillDecoration(context),
                           child: Text('${card.icon} ${card.title}'),
                         ),
                       )

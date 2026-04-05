@@ -36,12 +36,27 @@ class BedtimeStoryParentDashboardPage extends ConsumerWidget {
               children: learners
                   .where((item) => !item.isArchived)
                   .map(
-                    (learner) => ChoiceChip(
-                      label: Text(learner.effectiveDisplayName),
-                      selected: learner.learnerId == activeLearner.learnerId,
-                      onSelected: (_) => ref
+                    (learner) => InkWell(
+                      onTap: () => ref
                           .read(bedtimeFamilyModeProvider.notifier)
                           .selectLearner(learner),
+                      borderRadius: BorderRadius.circular(999),
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 8,
+                        ),
+                        decoration: _bedtimeNoorPillDecoration(
+                          context,
+                          tintColor:
+                              learner.learnerId == activeLearner.learnerId
+                              ? Theme.of(
+                                  context,
+                                ).colorScheme.primary.withValues(alpha: 0.14)
+                              : null,
+                        ),
+                        child: Text(learner.effectiveDisplayName),
+                      ),
                     ),
                   )
                   .toList(growable: false),
@@ -67,7 +82,7 @@ class BedtimeStoryParentDashboardPage extends ConsumerWidget {
         Text(
           l10n.bedtimeParentOverviewSectionTitle,
           style: Theme.of(
-          context,
+            context,
           ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
         ),
         const SizedBox(height: 10),
@@ -101,7 +116,8 @@ class BedtimeStoryParentDashboardPage extends ConsumerWidget {
             ),
             _StatCard(
               label: l10n.bedtimeParentOverallDropsLabel,
-              value: '${summary.overview.totalOceanDropsEarnedAcrossKidsLearning}',
+              value:
+                  '${summary.overview.totalOceanDropsEarnedAcrossKidsLearning}',
             ),
           ],
         ),
@@ -168,10 +184,26 @@ class BedtimeStoryParentDashboardPage extends ConsumerWidget {
                 spacing: 8,
                 runSpacing: 8,
                 children: [
-                  _Badge(label: l10n.bedtimeParentHabitCurrentStreak(summary.habitSummary.currentStreak)),
-                  _Badge(label: l10n.bedtimeParentHabitLongestStreak(summary.habitSummary.longestStreak)),
-                  _Badge(label: l10n.bedtimeParentHabitWeekDays(summary.habitSummary.activeDaysThisWeek)),
-                  _Badge(label: l10n.bedtimeParentHabitMonthDays(summary.habitSummary.activeDaysThisMonth)),
+                  _Badge(
+                    label: l10n.bedtimeParentHabitCurrentStreak(
+                      summary.habitSummary.currentStreak,
+                    ),
+                  ),
+                  _Badge(
+                    label: l10n.bedtimeParentHabitLongestStreak(
+                      summary.habitSummary.longestStreak,
+                    ),
+                  ),
+                  _Badge(
+                    label: l10n.bedtimeParentHabitWeekDays(
+                      summary.habitSummary.activeDaysThisWeek,
+                    ),
+                  ),
+                  _Badge(
+                    label: l10n.bedtimeParentHabitMonthDays(
+                      summary.habitSummary.activeDaysThisMonth,
+                    ),
+                  ),
                 ],
               ),
               const SizedBox(height: 12),
@@ -184,7 +216,10 @@ class BedtimeStoryParentDashboardPage extends ConsumerWidget {
                 const SizedBox(height: 8),
                 Text(
                   l10n.bedtimeParentLastSessionLabel(
-                    _formatDate(context, summary.habitSummary.lastActiveDateIso!),
+                    _formatDate(
+                      context,
+                      summary.habitSummary.lastActiveDateIso!,
+                    ),
                   ),
                 ),
               ],
@@ -417,11 +452,7 @@ class _Badge extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-      decoration: BoxDecoration(
-        color: const Color(0xFFFFF8EF),
-        borderRadius: BorderRadius.circular(999),
-        border: Border.all(color: const Color(0xFFE8DDD0)),
-      ),
+      decoration: _bedtimeNoorPillDecoration(context),
       child: Text(label, style: Theme.of(context).textTheme.bodySmall),
     );
   }
@@ -442,10 +473,7 @@ class _ContinueLearningCard extends StatelessWidget {
           Container(
             width: 40,
             height: 40,
-            decoration: BoxDecoration(
-              color: const Color(0xFFFFF8EF),
-              borderRadius: BorderRadius.circular(14),
-            ),
+            decoration: _bedtimeNoorPanelDecoration(context, radius: 14),
             alignment: Alignment.center,
             child: Icon(_iconFor(item.type), size: 20),
           ),
@@ -528,10 +556,7 @@ class _LearningAreaCard extends StatelessWidget {
           Container(
             width: 40,
             height: 40,
-            decoration: BoxDecoration(
-              color: const Color(0xFFFFF8EF),
-              borderRadius: BorderRadius.circular(14),
-            ),
+            decoration: _bedtimeNoorPanelDecoration(context, radius: 14),
             alignment: Alignment.center,
             child: Icon(_iconFor(item.type), size: 20),
           ),
@@ -641,9 +666,7 @@ class _LearningAreaCard extends StatelessWidget {
           item.secondaryCount,
         );
       case KidsParentLearningAreaType.duas:
-        return l10n.bedtimeParentLearningAreaDuasSecondary(
-          item.secondaryCount,
-        );
+        return l10n.bedtimeParentLearningAreaDuasSecondary(item.secondaryCount);
       case KidsParentLearningAreaType.arabic:
         return l10n.bedtimeParentLearningAreaArabicSecondary(
           item.secondaryCount,
@@ -742,10 +765,7 @@ class _RecentActivityRow extends StatelessWidget {
         Container(
           width: 36,
           height: 36,
-          decoration: BoxDecoration(
-            color: const Color(0xFFFFF8EF),
-            borderRadius: BorderRadius.circular(12),
-          ),
+          decoration: _bedtimeNoorPanelDecoration(context, radius: 12),
           alignment: Alignment.center,
           child: Icon(_iconFor(item.type), size: 18),
         ),
@@ -815,7 +835,9 @@ class _KidsRecentActivityRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    final title = item.title.isNotEmpty ? item.title : _fallbackTitle(l10n, item.type);
+    final title = item.title.isNotEmpty
+        ? item.title
+        : _fallbackTitle(l10n, item.type);
     final subtitle = _labelFor(context, l10n, item);
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -823,10 +845,7 @@ class _KidsRecentActivityRow extends StatelessWidget {
         Container(
           width: 36,
           height: 36,
-          decoration: BoxDecoration(
-            color: const Color(0xFFFFF8EF),
-            borderRadius: BorderRadius.circular(12),
-          ),
+          decoration: _bedtimeNoorPanelDecoration(context, radius: 12),
           alignment: Alignment.center,
           child: Icon(_iconFor(item.type), size: 18),
         ),
@@ -842,11 +861,7 @@ class _KidsRecentActivityRow extends StatelessWidget {
                 ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
               ),
               const SizedBox(height: 2),
-              Text(
-                subtitle,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-              ),
+              Text(subtitle, maxLines: 2, overflow: TextOverflow.ellipsis),
             ],
           ),
         ),
@@ -970,7 +985,11 @@ class _RecommendationRow extends StatelessWidget {
                   ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
                 ),
                 const SizedBox(height: 4),
-                Text(item.subtitle, maxLines: 2, overflow: TextOverflow.ellipsis),
+                Text(
+                  item.subtitle,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
               ],
             ),
           ),
@@ -1003,10 +1022,7 @@ class _RecommendationRow extends StatelessWidget {
     );
   }
 
-  String _actionLabel(
-    AppLocalizations l10n,
-    BedtimeParentRecommendation item,
-  ) {
+  String _actionLabel(AppLocalizations l10n, BedtimeParentRecommendation item) {
     switch (item.type) {
       case BedtimeParentRecommendationType.continueStory:
         return l10n.bedtimeParentRecommendationContinueStory;
@@ -1020,4 +1036,29 @@ class _RecommendationRow extends StatelessWidget {
         return l10n.bedtimeParentRecommendationTonightStory;
     }
   }
+}
+
+BoxDecoration _bedtimeNoorPillDecoration(
+  BuildContext context, {
+  Color? tintColor,
+}) {
+  final style = AppSurfaceTheme.resolve(
+    context,
+    variant: AppSurfaceVariant.pill,
+    tintColor: tintColor,
+  );
+  return style.decoration(radius: 999);
+}
+
+BoxDecoration _bedtimeNoorPanelDecoration(
+  BuildContext context, {
+  double radius = 14,
+  Color? tintColor,
+}) {
+  final style = AppSurfaceTheme.resolve(
+    context,
+    variant: AppSurfaceVariant.panel,
+    tintColor: tintColor,
+  );
+  return style.decoration(radius: radius);
 }

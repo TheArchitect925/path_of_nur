@@ -257,64 +257,24 @@ class _SalahTimesPageState extends ConsumerState<SalahTimesPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             if (highlightCard)
-                              Container(
+                              _SalahStatusPill(
+                                label: isCurrent
+                                    ? 'Track this current salah'
+                                    : 'Most recent untracked salah',
+                                color: isCurrent
+                                    ? const Color(0xFF5E8D58)
+                                    : const Color(0xFFB58D46),
                                 margin: const EdgeInsets.only(bottom: 10),
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 10,
-                                  vertical: 6,
-                                ),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(999),
-                                  color: isCurrent
-                                      ? const Color(
-                                          0xFF5E8D58,
-                                        ).withValues(alpha: 0.14)
-                                      : const Color(
-                                          0xFFB58D46,
-                                        ).withValues(alpha: 0.14),
-                                  border: Border.all(
-                                    color: isCurrent
-                                        ? const Color(0xFF5E8D58)
-                                        : const Color(0xFFB58D46),
-                                  ),
-                                ),
-                                child: Text(
-                                  isCurrent
-                                      ? 'Track this current salah'
-                                      : 'Most recent untracked salah',
-                                  style: const TextStyle(
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 12,
-                                  ),
-                                ),
                               ),
                             if (isNext || isCurrent)
-                              Container(
+                              _SalahStatusPill(
+                                label: isCurrent
+                                    ? 'Current Salah'
+                                    : 'Next Salah',
+                                color: isCurrent
+                                    ? const Color(0xFF8FAF89)
+                                    : const Color(0xFFB58D46),
                                 margin: const EdgeInsets.only(bottom: 8),
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 10,
-                                  vertical: 6,
-                                ),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(999),
-                                  color:
-                                      (isCurrent
-                                              ? const Color(0xFF8FAF89)
-                                              : const Color(0xFFB58D46))
-                                          .withValues(alpha: 0.2),
-                                  border: Border.all(
-                                    color: isCurrent
-                                        ? const Color(0xFF8FAF89)
-                                        : const Color(0xFFB58D46),
-                                  ),
-                                ),
-                                child: Text(
-                                  isCurrent ? 'Current Salah' : 'Next Salah',
-                                  style: const TextStyle(
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 12,
-                                  ),
-                                ),
                               ),
                             Row(
                               children: [
@@ -349,25 +309,10 @@ class _SalahTimesPageState extends ConsumerState<SalahTimesPage> {
                                     ],
                                   ),
                                 ),
-                                Container(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 10,
-                                    vertical: 6,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(999),
-                                    border: Border.all(
-                                      color: AppColors.accentGoldSoft,
-                                    ),
-                                  ),
-                                  child: Text(
-                                    '${entry.totalRakats} Rakats',
-                                    style: const TextStyle(
-                                      color: Color(0xFF5B6B5C),
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 12,
-                                    ),
-                                  ),
+                                _SalahStatusPill(
+                                  label: '${entry.totalRakats} Rakats',
+                                  color: AppColors.accentGoldSoft,
+                                  dense: true,
                                 ),
                               ],
                             ),
@@ -1105,19 +1050,27 @@ class _QuickTrackChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final style = AppSurfaceTheme.resolve(
-      context,
-      variant: AppSurfaceVariant.pill,
-      tintColor: color,
-    );
-    return ActionChip(
-      onPressed: onTap,
-      avatar: Icon(icon, size: 16, color: color),
-      backgroundColor: style.backgroundColor,
-      side: BorderSide(color: style.borderColor),
-      label: Text(
-        label,
-        style: TextStyle(color: color, fontWeight: FontWeight.w700),
+    return InkWell(
+      borderRadius: BorderRadius.circular(999),
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        decoration: _salahPillDecoration(
+          context,
+          tintColor: color,
+          selected: true,
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(icon, size: 16, color: color),
+            const SizedBox(width: 6),
+            Text(
+              label,
+              style: TextStyle(color: color, fontWeight: FontWeight.w700),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -1150,6 +1103,82 @@ class _TrackerSummaryPill extends StatelessWidget {
           fontSize: 11,
           fontWeight: FontWeight.w700,
           color: Color(0xFF5F5144),
+        ),
+      ),
+    );
+  }
+}
+
+class _SalahStatusPill extends StatelessWidget {
+  const _SalahStatusPill({
+    required this.label,
+    required this.color,
+    this.margin,
+    this.dense = false,
+  });
+
+  final String label;
+  final Color color;
+  final EdgeInsetsGeometry? margin;
+  final bool dense;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: margin,
+      padding: EdgeInsets.symmetric(
+        horizontal: dense ? 10 : 12,
+        vertical: dense ? 6 : 7,
+      ),
+      decoration: _salahPillDecoration(
+        context,
+        tintColor: color,
+        selected: true,
+      ),
+      child: Text(
+        label,
+        style: TextStyle(
+          fontWeight: FontWeight.w700,
+          fontSize: 12,
+          color: color,
+        ),
+      ),
+    );
+  }
+}
+
+class _SalahChoicePill extends StatelessWidget {
+  const _SalahChoicePill({
+    required this.label,
+    required this.selected,
+    required this.onTap,
+    this.accentColor,
+  });
+
+  final String label;
+  final bool selected;
+  final VoidCallback onTap;
+  final Color? accentColor;
+
+  @override
+  Widget build(BuildContext context) {
+    final color = accentColor ?? AppColors.accentGold;
+    return InkWell(
+      borderRadius: BorderRadius.circular(999),
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        decoration: _salahPillDecoration(
+          context,
+          tintColor: color,
+          selected: selected,
+        ),
+        child: Text(
+          label,
+          style: TextStyle(
+            fontWeight: FontWeight.w700,
+            color: selected ? color : const Color(0xFF5F5144),
+          ),
         ),
       ),
     );
@@ -1236,10 +1265,10 @@ class _SalahTrackerSheetState extends State<_SalahTrackerSheet> {
                 runSpacing: 8,
                 children: [
                   for (final status in PrayerStatus.values)
-                    ChoiceChip(
-                      label: Text(status.localizedLabel(l10n)),
+                    _SalahChoicePill(
+                      label: status.localizedLabel(l10n),
                       selected: _status == status,
-                      onSelected: (_) {
+                      onTap: () {
                         setState(() {
                           _status = status;
                           if (_status != PrayerStatus.completed) {
@@ -1267,10 +1296,11 @@ class _SalahTrackerSheetState extends State<_SalahTrackerSheet> {
                   runSpacing: 8,
                   children: [
                     for (final timing in PrayerOfferTiming.values)
-                      ChoiceChip(
-                        label: Text(_salahTimingLabel(timing)),
+                      _SalahChoicePill(
+                        label: _salahTimingLabel(timing),
                         selected: _timing == timing,
-                        onSelected: (_) => setState(() => _timing = timing),
+                        accentColor: _timingAccent(timing),
+                        onTap: () => setState(() => _timing = timing),
                       ),
                   ],
                 ),
@@ -1285,10 +1315,10 @@ class _SalahTrackerSheetState extends State<_SalahTrackerSheet> {
                   runSpacing: 8,
                   children: [
                     for (final place in PrayerOfferPlace.values)
-                      ChoiceChip(
-                        label: Text(_salahPlaceLabel(place)),
+                      _SalahChoicePill(
+                        label: _salahPlaceLabel(place),
                         selected: _place == place,
-                        onSelected: (_) => setState(() => _place = place),
+                        onTap: () => setState(() => _place = place),
                       ),
                   ],
                 ),
@@ -1463,5 +1493,40 @@ String _methodLabel(PrayerCalculationMethod method) {
       return 'Karachi';
     case PrayerCalculationMethod.ummAlQura:
       return 'Umm al-Qura';
+  }
+}
+
+BoxDecoration _salahPillDecoration(
+  BuildContext context, {
+  required Color tintColor,
+  bool selected = false,
+}) {
+  final style = AppSurfaceTheme.resolve(
+    context,
+    variant: AppSurfaceVariant.pill,
+    tintColor: tintColor,
+  );
+  return BoxDecoration(
+    color: selected
+        ? style.backgroundColor.withValues(alpha: 0.98)
+        : style.backgroundColor.withValues(alpha: 0.72),
+    gradient: style.gradient,
+    borderRadius: BorderRadius.circular(999),
+    border: Border.all(
+      color: selected
+          ? style.borderColor
+          : style.borderColor.withValues(alpha: 0.82),
+    ),
+  );
+}
+
+Color _timingAccent(PrayerOfferTiming timing) {
+  switch (timing) {
+    case PrayerOfferTiming.onTime:
+      return const Color(0xFF5E8D58);
+    case PrayerOfferTiming.late:
+      return const Color(0xFFB58D46);
+    case PrayerOfferTiming.qada:
+      return const Color(0xFFC85E34);
   }
 }

@@ -22,6 +22,11 @@ class LearnActionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final iconStyle = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.panel,
+      tintColor: AppColors.accentGold,
+    );
     return PremiumCard(
       child: Material(
         type: MaterialType.transparency,
@@ -32,14 +37,9 @@ class LearnActionCard extends StatelessWidget {
               Container(
                 width: 42,
                 height: 42,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  color: AppSurfaceTheme.adaptiveColor(
-                    context,
-                    AppColors.accentGold,
-                    alpha: 0.22,
-                    solidAlphaWhenDisabled: 0.32,
-                  ),
+                decoration: iconStyle.decoration(
+                  radius: 12,
+                  includeShadow: false,
                 ),
                 child: Icon(icon, color: AppColors.onSurface),
               ),

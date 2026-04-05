@@ -167,6 +167,11 @@ class _DhikrSectionState extends ConsumerState<DhikrSection> {
       context: context,
       barrierDismissible: false,
       builder: (dialogContext) {
+        final dialogStyle = AppSurfaceTheme.resolve(
+          dialogContext,
+          variant: AppSurfaceVariant.card,
+          tintColor: AppColors.accentGold,
+        );
         return Dialog(
           backgroundColor: Colors.transparent,
           insetPadding: const EdgeInsets.symmetric(
@@ -175,18 +180,19 @@ class _DhikrSectionState extends ConsumerState<DhikrSection> {
           ),
           child: Container(
             constraints: const BoxConstraints(maxWidth: 520),
-            decoration: BoxDecoration(
-              color: const Color(0xFFF6E7C8),
-              borderRadius: BorderRadius.circular(32),
-              border: Border.all(color: const Color(0x26B79661), width: 1.2),
-              boxShadow: const [
-                BoxShadow(
-                  color: Color(0x3320120B),
-                  blurRadius: 28,
-                  offset: Offset(0, 18),
+            decoration: dialogStyle
+                .decoration(radius: 32)
+                .copyWith(
+                  border: Border.all(
+                    color: AppSurfaceTheme.adaptiveColor(
+                      dialogContext,
+                      AppColors.accentGold,
+                      alpha: 0.26,
+                      solidAlphaWhenDisabled: 0.34,
+                    ),
+                    width: 1.2,
+                  ),
                 ),
-              ],
-            ),
             child: SingleChildScrollView(
               padding: const EdgeInsets.fromLTRB(28, 24, 28, 28),
               child: Column(
@@ -221,7 +227,7 @@ class _DhikrSectionState extends ConsumerState<DhikrSection> {
                         context,
                         AppTextStyles.quranVerse(
                           size: 28,
-                          color: const Color(0xFF261A12),
+                          color: AppColors.onSurface,
                           weight: FontWeight.w600,
                         ),
                       ),
@@ -233,13 +239,13 @@ class _DhikrSectionState extends ConsumerState<DhikrSection> {
                     style: QuranPresentationStyle.translucentTextStyle(
                       context,
                       theme.textTheme.titleLarge?.copyWith(
-                            color: const Color(0xFF7A654C),
+                            color: AppColors.onSurfaceSubtle,
                             fontStyle: FontStyle.italic,
                             fontWeight: FontWeight.w600,
                             height: 1.2,
                           ) ??
                           const TextStyle(
-                            color: Color(0xFF7A654C),
+                            color: AppColors.onSurfaceSubtle,
                             fontStyle: FontStyle.italic,
                             fontWeight: FontWeight.w600,
                             height: 1.2,
@@ -277,7 +283,7 @@ class _DhikrSectionState extends ConsumerState<DhikrSection> {
                     alignment: Alignment.centerRight,
                     child: TextButton(
                       style: TextButton.styleFrom(
-                        foregroundColor: const Color(0xFF8A6430),
+                        foregroundColor: AppColors.accentGold,
                         textStyle: theme.textTheme.headlineSmall?.copyWith(
                           fontWeight: FontWeight.w700,
                         ),
@@ -477,52 +483,10 @@ class _DhikrSectionState extends ConsumerState<DhikrSection> {
           children: [
             ...DhikrPreset.defaults.map((preset) {
               final isSelected = preset.id == state.selectedPreset.id;
-              return InkWell(
+              return _SelectableDhikrPill(
+                label: preset.label,
+                isSelected: isSelected,
                 onTap: () => notifier.selectPreset(preset),
-                borderRadius: BorderRadius.circular(AppRadii.pill),
-                child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 14,
-                    vertical: 10,
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(AppRadii.pill),
-                    border: Border.all(
-                      color: isSelected
-                          ? AppColors.accentGold
-                          : AppSurfaceTheme.adaptiveColor(
-                              context,
-                              AppColors.accentGoldSoft,
-                              alpha: 0.45,
-                              solidAlphaWhenDisabled: 0.55,
-                            ),
-                    ),
-                    color: isSelected
-                        ? AppSurfaceTheme.adaptiveColor(
-                            context,
-                            AppColors.accentGold,
-                            alpha: 0.16,
-                            solidAlphaWhenDisabled: 0.26,
-                          )
-                        : AppSurfaceTheme.adaptiveColor(
-                            context,
-                            AppColors.surfaceSoft,
-                            alpha: 0.35,
-                            solidAlphaWhenDisabled: 0.96,
-                          ),
-                  ),
-                  child: Text(
-                    preset.label,
-                    style: TextStyle(
-                      color: isSelected
-                          ? AppColors.onSurface
-                          : AppColors.onSurfaceSubtle,
-                      fontWeight: isSelected
-                          ? FontWeight.w700
-                          : FontWeight.w500,
-                    ),
-                  ),
-                ),
               );
             }),
           ],
@@ -691,6 +655,64 @@ class _TargetChip extends StatelessWidget {
           style: TextStyle(
             fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
             color: AppColors.onSurface,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _SelectableDhikrPill extends StatelessWidget {
+  const _SelectableDhikrPill({
+    required this.label,
+    required this.isSelected,
+    required this.onTap,
+  });
+
+  final String label;
+  final bool isSelected;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final style = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.pill,
+      tintColor: AppColors.accentGold,
+    );
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(AppRadii.pill),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+        decoration: style
+            .decoration(radius: AppRadii.pill, includeShadow: false)
+            .copyWith(
+              color: isSelected
+                  ? AppSurfaceTheme.adaptiveColor(
+                      context,
+                      AppColors.accentGold,
+                      alpha: 0.16,
+                      solidAlphaWhenDisabled: 0.26,
+                    )
+                  : style.backgroundColor,
+              gradient: isSelected ? null : style.gradient,
+              border: Border.all(
+                color: isSelected
+                    ? AppColors.accentGold
+                    : AppSurfaceTheme.adaptiveColor(
+                        context,
+                        AppColors.accentGoldSoft,
+                        alpha: 0.45,
+                        solidAlphaWhenDisabled: 0.55,
+                      ),
+              ),
+            ),
+        child: Text(
+          label,
+          style: TextStyle(
+            color: isSelected ? AppColors.onSurface : AppColors.onSurfaceSubtle,
+            fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
           ),
         ),
       ),

@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../../core/theme/app_fonts.dart';
 import '../../../../../l10n/app_localizations.dart';
+import '../../../../../shared/widgets/app_layered_glass_pill_button.dart';
 import '../../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../../shared/widgets/premium_card.dart';
 import '../../../../../shared/widgets/quran_navigation.dart';
@@ -113,9 +114,9 @@ class QuranSearchPage extends ConsumerWidget {
                     runSpacing: 8,
                     children: recent
                         .map(
-                          (item) => ActionChip(
-                            label: Text(item),
-                            onPressed: () {
+                          (item) => _SearchPill(
+                            label: item,
+                            onTap: () {
                               ref
                                       .read(quranSearchQueryProvider.notifier)
                                       .state =
@@ -267,6 +268,23 @@ class _TextSearchResultTile extends StatelessWidget {
       subtitle: _SearchResultSubtitle(result: result),
       isThreeLine: result.ayah != null || result.reference != null,
       onTap: onTap,
+    );
+  }
+}
+
+class _SearchPill extends StatelessWidget {
+  const _SearchPill({required this.label, required this.onTap});
+
+  final String label;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return AppLayeredGlassPillButton(
+      onPressed: onTap,
+      label: label,
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      foregroundColor: Theme.of(context).textTheme.bodySmall?.color,
     );
   }
 }

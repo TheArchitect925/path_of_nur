@@ -6,7 +6,9 @@ import 'package:go_router/go_router.dart';
 import 'package:just_audio/just_audio.dart';
 
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_surfaces.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../../../shared/widgets/app_layered_glass_pill_button.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/quran_navigation.dart';
@@ -175,17 +177,17 @@ class _QuranShortSurahReadinessPageState
               spacing: 8,
               runSpacing: 8,
               children: [
-                ChoiceChip(
-                  label: Text(l10n.arabicLearningPlaybackModeNormal),
+                _ReadinessChoicePill(
+                  label: l10n.arabicLearningPlaybackModeNormal,
                   selected: !selectedSpeedSlow,
-                  onSelected: (_) => ref
+                  onTap: () => ref
                       .read(quranAudioSettingsProvider.notifier)
                       .setPlaybackSpeed(1.0),
                 ),
-                ChoiceChip(
-                  label: Text(l10n.arabicLearningPlaybackModeSlow),
+                _ReadinessChoicePill(
+                  label: l10n.arabicLearningPlaybackModeSlow,
                   selected: selectedSpeedSlow,
-                  onSelected: (_) => ref
+                  onTap: () => ref
                       .read(quranAudioSettingsProvider.notifier)
                       .setPlaybackSpeed(0.8),
                 ),
@@ -224,10 +226,10 @@ class _QuranShortSurahReadinessPageState
                 children: surahs
                     .where((surah) => surah.stage == stage)
                     .map(
-                      (surah) => ChoiceChip(
-                        label: Text(surah.surahTransliteratedName),
+                      (surah) => _ReadinessChoicePill(
+                        label: surah.surahTransliteratedName,
                         selected: activeSurah?.surahNumber == surah.surahNumber,
-                        onSelected: (_) {
+                        onTap: () {
                           setState(() {
                             _selectedSurahNumber = surah.surahNumber;
                           });
@@ -283,33 +285,32 @@ class _QuranShortSurahReadinessPageState
                     ),
                   ),
                   const SizedBox(width: 12),
-                  FilledButton.tonalIcon(
+                  AppLayeredGlassPillButton(
                     onPressed: () => _toggleSurahPlayback(
                       activeSurah,
                       isCurrentSession: isCurrentSurahSession,
                     ),
-                    icon: Icon(
+                    leading: Icon(
                       isCurrentSurahSession && _isPlaying
                           ? Icons.pause_rounded
                           : Icons.play_arrow_rounded,
+                      size: 18,
                     ),
-                    label: Text(
-                      isCurrentSurahSession && _isPlaying
-                          ? l10n.quranShortSurahsPauseAction
-                          : l10n.quranShortSurahsPlayAction,
-                    ),
+                    label: isCurrentSurahSession && _isPlaying
+                        ? l10n.quranShortSurahsPauseAction
+                        : l10n.quranShortSurahsPlayAction,
                   ),
                 ],
               ),
               const SizedBox(height: 12),
-              OutlinedButton.icon(
+              AppLayeredGlassPillButton(
                 onPressed: () => openQuranReaderLocation(
                   context,
                   surahNumber: activeSurah.surahNumber,
                   autoplay: true,
                 ),
-                icon: const Icon(Icons.open_in_new_rounded),
-                label: Text(l10n.quranShortSurahsOpenReaderAction),
+                leading: const Icon(Icons.open_in_new_rounded, size: 18),
+                label: l10n.quranShortSurahsOpenReaderAction,
               ),
               if (activeSurah.familiarSnippets.isNotEmpty) ...[
                 const SizedBox(height: 16),
@@ -643,12 +644,13 @@ class _ShortSurahSummaryChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final style = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.pill,
+    );
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-      decoration: BoxDecoration(
-        color: const Color(0xFFF7F1E5),
-        borderRadius: BorderRadius.circular(999),
-      ),
+      decoration: style.decoration(radius: 999, includeShadow: false),
       child: Text(
         label,
         textDirection: rtl ? TextDirection.rtl : null,
@@ -656,6 +658,31 @@ class _ShortSurahSummaryChip extends StatelessWidget {
           context,
         ).textTheme.bodySmall?.copyWith(fontWeight: FontWeight.w700),
       ),
+    );
+  }
+}
+
+class _ReadinessChoicePill extends StatelessWidget {
+  const _ReadinessChoicePill({
+    required this.label,
+    required this.selected,
+    required this.onTap,
+  });
+
+  final String label;
+  final bool selected;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return AppLayeredGlassPillButton(
+      onPressed: onTap,
+      label: label,
+      tintColor: selected ? AppColors.accentGoldSoft : null,
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      foregroundColor: selected
+          ? const Color(0xFF8A5A1F)
+          : AppColors.onSurfaceSubtle,
     );
   }
 }

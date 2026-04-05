@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 import '../../../l10n/app_localizations.dart';
+import '../../../core/theme/app_surfaces.dart';
 import '../../../shared/widgets/app_page_scaffold.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../application/growth_providers.dart';
@@ -115,12 +116,13 @@ class _SummaryTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final style = AppSurfaceTheme.resolve(
+      context,
+      variant: AppSurfaceVariant.panel,
+    );
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-      decoration: BoxDecoration(
-        color: const Color(0xFFF5EEE3),
-        borderRadius: BorderRadius.circular(14),
-      ),
+      decoration: style.decoration(radius: 14, includeShadow: false),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
