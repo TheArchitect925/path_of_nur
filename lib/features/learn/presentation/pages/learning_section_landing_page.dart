@@ -964,14 +964,16 @@ class _GuidedLearningPathCard extends ConsumerWidget {
       'kids' => const Color(0xFF7A61D1),
       _ => const Color(0xFF8B6B44),
     };
+    final iconBase = switch (localizedPath.path.bucketId) {
+      'quran' => const Color(0xFFE2ECE8),
+      'worship' => const Color(0xFFE1ECEA),
+      'character' => const Color(0xFFF0E2D6),
+      'kids' => const Color(0xFFE7E0F7),
+      _ => const Color(0xFFECE5D7),
+    };
     final surfaceStyle = AppSurfaceTheme.resolve(
       context,
       variant: AppSurfaceVariant.island,
-      tintColor: accent,
-    );
-    final iconStyle = AppSurfaceTheme.resolve(
-      context,
-      variant: AppSurfaceVariant.panel,
       tintColor: accent,
     );
     final statusStyle = AppSurfaceTheme.resolve(
@@ -987,6 +989,8 @@ class _GuidedLearningPathCard extends ConsumerWidget {
         color: Colors.transparent,
         child: InkWell(
           borderRadius: BorderRadius.circular(20),
+          splashColor: surfaceStyle.splashColor,
+          highlightColor: surfaceStyle.highlightColor,
           onTap: () {
             analytics.logPrimaryCardOpened(
               cardId: 'guided_path_${localizedPath.path.id}',
@@ -1016,11 +1020,15 @@ class _GuidedLearningPathCard extends ConsumerWidget {
                 Row(
                   children: [
                     Container(
-                      width: 42,
-                      height: 42,
-                      decoration: iconStyle.decoration(
-                        radius: 14,
-                        includeShadow: false,
+                      width: 46,
+                      height: 46,
+                      decoration: BoxDecoration(
+                        color: Color.alphaBlend(
+                          iconBase.withValues(alpha: 0.88),
+                          surfaceStyle.iconBackgroundColor,
+                        ),
+                        borderRadius: BorderRadius.circular(14),
+                        border: Border.all(color: surfaceStyle.borderColor),
                       ),
                       child: Icon(
                         IconData(
@@ -1053,9 +1061,11 @@ class _GuidedLearningPathCard extends ConsumerWidget {
                 const SizedBox(height: 14),
                 Text(
                   localizedPath.title,
-                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.w700,
-                    color: contentColors.foreground,
+                    color: accent,
                   ),
                 ),
                 const SizedBox(height: 6),
@@ -1065,6 +1075,7 @@ class _GuidedLearningPathCard extends ConsumerWidget {
                   overflow: TextOverflow.ellipsis,
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: contentColors.subtleForeground,
+                    height: 1.35,
                   ),
                 ),
                 const SizedBox(height: 12),

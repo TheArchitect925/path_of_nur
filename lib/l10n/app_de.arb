@@ -1114,6 +1114,30 @@
   },
   "worshipQiblaAlignedMessage": "Sie sind auf die Qibla ausgerichtet.",
   "worshipQiblaRotateMessage": "Vorsichtig drehen, bis der Pfeil ausgerichtet ist.",
+  "worshipQiblaCalibrationHint": "Move your phone gently in a figure-eight if the compass feels stuck.",
+  "worshipQiblaCurrentHeadingLabel": "Current heading",
+  "worshipQiblaDirectionValue": "Qibla direction {degrees}°",
+  "@worshipQiblaDirectionValue": {
+    "placeholders": {
+      "degrees": {}
+    }
+  },
+  "worshipQiblaTurnRightValue": "Turn {degrees}° right",
+  "@worshipQiblaTurnRightValue": {
+    "placeholders": {
+      "degrees": {}
+    }
+  },
+  "worshipQiblaTurnLeftValue": "Turn {degrees}° left",
+  "@worshipQiblaTurnLeftValue": {
+    "placeholders": {
+      "degrees": {}
+    }
+  },
+  "worshipQiblaFacingQibla": "Facing Qibla",
+  "worshipQiblaLocationLabel": "Current location",
+  "worshipQiblaLocationUnknown": "Location unavailable",
+  "worshipQiblaRefreshLocation": "Refresh location",
   "homeSearchTooltip": "Suche öffnen",
   "homeSearchHint": "Durchsuchen Sie Seiten, Funktionen und Abschnitte",
   "homeSearchNoResults": "Kein passender Abschnitt gefunden.",

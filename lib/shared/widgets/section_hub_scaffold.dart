@@ -110,8 +110,13 @@ class _SectionHubScaffoldState extends State<SectionHubScaffold> {
       ownsBackground: widget.ownsBackground,
       floatingBottom: Column(
         mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          if (widget.floatingBottom != null) widget.floatingBottom!,
+          if (widget.floatingBottom != null)
+            Align(
+              alignment: Alignment.centerRight,
+              child: widget.floatingBottom!,
+            ),
           if (widget.floatingBottom != null &&
               widget.shortcutActions.isNotEmpty)
             const SizedBox(height: 10),

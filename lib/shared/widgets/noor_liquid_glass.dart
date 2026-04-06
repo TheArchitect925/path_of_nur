@@ -241,7 +241,7 @@ class NoorLiquidGlassContainer extends StatelessWidget {
 
   final NoorLiquidGlassSpec spec;
   final Widget child;
-  final double width;
+  final double? width;
 
   @override
   Widget build(BuildContext context) {
@@ -283,7 +283,7 @@ class NoorLiquidGlassShape extends StatelessWidget {
 
   final NoorLiquidGlassSpec spec;
   final Widget child;
-  final double width;
+  final double? width;
 
   @override
   Widget build(BuildContext context) {
@@ -330,7 +330,7 @@ class _NoorLiquidGlassChrome extends StatelessWidget {
 
   final NoorLiquidGlassSpec spec;
   final AppSurfaceStyle surfaceStyle;
-  final double width;
+  final double? width;
   final Widget child;
 
   @override

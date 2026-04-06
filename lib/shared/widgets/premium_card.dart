@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/theme/app_radii.dart';
 import '../../core/theme/app_surfaces.dart';
 import '../../features/profile/application/profile_settings_provider.dart';
+import 'app_layered_section_glass_card.dart';
 
 class PremiumCard extends ConsumerStatefulWidget {
   const PremiumCard({
@@ -47,13 +48,6 @@ class _PremiumCardState extends ConsumerState<PremiumCard> {
       context,
       treatment: widget.surfaceTreatment,
     );
-    final surfaceStyle = AppSurfaceTheme.resolve(
-      context,
-      variant: widget.surfaceVariant,
-      treatment: widget.surfaceTreatment,
-      tintColor: widget.surfaceTintColor,
-      surfaceAlphaOverride: widget.surfaceAlphaOverride,
-    );
     final surfaceTextTheme = contentColors.applyTo(theme.textTheme);
 
     return Listener(
@@ -66,13 +60,16 @@ class _PremiumCardState extends ConsumerState<PremiumCard> {
         curve: Curves.easeOutCubic,
         child: Material(
           type: MaterialType.transparency,
-          child: Container(
+          child: AppLayeredSectionGlassCard(
             width: double.infinity,
-            padding: widget.padding,
-            decoration: surfaceStyle.decoration(
-              radius: AppRadii.card,
-              includeShadow: widget.includeShadow,
-            ),
+            contentPadding: widget.padding,
+            outerRadius: 32,
+            innerRadius: AppRadii.card,
+            surfaceVariant: widget.surfaceVariant,
+            surfaceTreatment: widget.surfaceTreatment,
+            surfaceTintColor: widget.surfaceTintColor,
+            surfaceAlphaOverride: widget.surfaceAlphaOverride,
+            includeShadow: widget.includeShadow,
             child: Theme(
               data: theme.copyWith(
                 textTheme: surfaceTextTheme,

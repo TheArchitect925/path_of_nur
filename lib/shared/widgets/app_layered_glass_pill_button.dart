@@ -18,6 +18,7 @@ class AppLayeredGlassPill extends StatelessWidget {
     this.outerPadding = const EdgeInsets.all(2),
     this.innerPadding = const EdgeInsets.all(3),
     this.borderRadius = 999,
+    this.expandToWidth = true,
   });
 
   final Widget child;
@@ -30,6 +31,7 @@ class AppLayeredGlassPill extends StatelessWidget {
   final EdgeInsetsGeometry outerPadding;
   final EdgeInsetsGeometry innerPadding;
   final double borderRadius;
+  final bool expandToWidth;
 
   @override
   Widget build(BuildContext context) {
@@ -58,6 +60,7 @@ class AppLayeredGlassPill extends StatelessWidget {
       includeShadow: includeShadow,
       mode: NoorLiquidGlassMode.fake,
       borderRadius: borderRadius,
+      width: expandToWidth ? double.infinity : null,
       child: Container(
         decoration: outerStyle.decoration(
           radius: borderRadius,
@@ -96,6 +99,7 @@ class AppLayeredGlassPillButton extends StatelessWidget {
     this.foregroundColor,
     this.fillColor,
     this.borderColor,
+    this.expandToWidth = true,
   });
 
   final String label;
@@ -107,6 +111,7 @@ class AppLayeredGlassPillButton extends StatelessWidget {
   final Color? foregroundColor;
   final Color? fillColor;
   final Color? borderColor;
+  final bool expandToWidth;
 
   @override
   Widget build(BuildContext context) {
@@ -120,6 +125,7 @@ class AppLayeredGlassPillButton extends StatelessWidget {
       padding: padding,
       fillColor: fillColor,
       borderColor: borderColor,
+      expandToWidth: expandToWidth,
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [

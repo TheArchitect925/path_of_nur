@@ -17,6 +17,7 @@ class NoorGlassCard extends ConsumerStatefulWidget {
     this.includeShadow = true,
     this.mode = NoorLiquidGlassMode.liquid,
     this.borderRadius,
+    this.width = double.infinity,
   });
 
   final Widget child;
@@ -28,6 +29,7 @@ class NoorGlassCard extends ConsumerStatefulWidget {
   final bool includeShadow;
   final NoorLiquidGlassMode mode;
   final double? borderRadius;
+  final double? width;
 
   @override
   ConsumerState<NoorGlassCard> createState() => _NoorGlassCardState();
@@ -86,6 +88,7 @@ class _NoorGlassCardState extends ConsumerState<NoorGlassCard> {
     return Listener(
       child: NoorLiquidGlassContainer(
         spec: _spec(),
+        width: widget.width,
         child: Theme(
           data: theme.copyWith(
             textTheme: surfaceTextTheme,

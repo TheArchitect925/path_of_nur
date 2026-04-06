@@ -184,13 +184,16 @@ class _AppSalahHeroStatsLayer extends StatelessWidget {
           ),
         ],
       ),
-      child: Row(
-        children: [
-          for (var index = 0; index < stats.length; index++) ...[
-            Expanded(child: _AppSalahHeroStatCard(stat: stats[index])),
-            if (index + 1 < stats.length) const SizedBox(width: 10),
+      child: IntrinsicHeight(
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            for (var index = 0; index < stats.length; index++) ...[
+              Expanded(child: _AppSalahHeroStatCard(stat: stats[index])),
+              if (index + 1 < stats.length) const SizedBox(width: 10),
+            ],
           ],
-        ],
+        ),
       ),
     );
   }

@@ -3625,6 +3625,60 @@ abstract class AppLocalizations {
   /// **'Rotate gently until the arrow aligns.'**
   String get worshipQiblaRotateMessage;
 
+  /// No description provided for @worshipQiblaCalibrationHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Move your phone gently in a figure-eight if the compass feels stuck.'**
+  String get worshipQiblaCalibrationHint;
+
+  /// No description provided for @worshipQiblaCurrentHeadingLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Current heading'**
+  String get worshipQiblaCurrentHeadingLabel;
+
+  /// No description provided for @worshipQiblaDirectionValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Qibla direction {degrees}°'**
+  String worshipQiblaDirectionValue(Object degrees);
+
+  /// No description provided for @worshipQiblaTurnRightValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn {degrees}° right'**
+  String worshipQiblaTurnRightValue(Object degrees);
+
+  /// No description provided for @worshipQiblaTurnLeftValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn {degrees}° left'**
+  String worshipQiblaTurnLeftValue(Object degrees);
+
+  /// No description provided for @worshipQiblaFacingQibla.
+  ///
+  /// In en, this message translates to:
+  /// **'Facing Qibla'**
+  String get worshipQiblaFacingQibla;
+
+  /// No description provided for @worshipQiblaLocationLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Current location'**
+  String get worshipQiblaLocationLabel;
+
+  /// No description provided for @worshipQiblaLocationUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Location unavailable'**
+  String get worshipQiblaLocationUnknown;
+
+  /// No description provided for @worshipQiblaRefreshLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Refresh location'**
+  String get worshipQiblaRefreshLocation;
+
   /// No description provided for @homeSearchTooltip.
   ///
   /// In en, this message translates to:

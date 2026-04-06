@@ -1,14 +1,14 @@
 import 'dart:async';
-import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
-import 'package:flutter_compass/flutter_compass.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
 
+import '../../../core/prayer/prayer_location_search_service.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/widgets/app_page_scaffold.dart';
 import '../../../shared/widgets/premium_card.dart';
+import 'widgets/qibla_compass_widget.dart';
 
 class QiblaFinderPage extends StatefulWidget {
   const QiblaFinderPage({super.key});
@@ -18,9 +18,14 @@ class QiblaFinderPage extends StatefulWidget {
 }
 
 class _QiblaFinderPageState extends State<QiblaFinderPage> {
+  final PrayerLocationSearchService _locationSearchService =
+      PrayerLocationSearchService();
+
   Position? _position;
+  String? _locationLabel;
   String? _error;
   bool _loadingLocation = true;
+  bool _resolvingLocationLabel = false;
   bool _arMode = false;
 
   @override
@@ -51,24 +56,30 @@ class _QiblaFinderPageState extends State<QiblaFinderPage> {
               if (_loadingLocation)
                 Row(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       width: 18,
                       height: 18,
                       child: CircularProgressIndicator(strokeWidth: 2),
                     ),
-                    SizedBox(width: 10),
+                    const SizedBox(width: 10),
                     Expanded(child: Text(l10n.worshipQiblaDetectingLocation)),
                   ],
                 )
               else if (_error != null)
                 Text(_error!, style: Theme.of(context).textTheme.bodyMedium)
-              else if (_position != null)
-                _QiblaCompass(
-                  userLat: _position!.latitude,
-                  userLng: _position!.longitude,
+              else if (_position != null) ...[
+                QiblaCompassWidget(
+                  userLatitude: _position!.latitude,
+                  userLongitude: _position!.longitude,
                   arMode: _arMode,
-                )
-              else
+                ),
+                const SizedBox(height: 18),
+                _QiblaLocationSection(
+                  label: _resolvedLocationLabel(context),
+                  loading: _resolvingLocationLabel,
+                  onRefresh: _resolveLocation,
+                ),
+              ] else
                 Text(l10n.worshipQiblaUnableToDetermineLocation),
             ],
           ),
@@ -111,8 +122,28 @@ class _QiblaFinderPageState extends State<QiblaFinderPage> {
     );
   }
 
+  String _resolvedLocationLabel(BuildContext context) {
+    if (_locationLabel != null && _locationLabel!.trim().isNotEmpty) {
+      return _locationLabel!;
+    }
+    final position = _position;
+    if (position == null) {
+      return AppLocalizations.of(context).worshipQiblaLocationUnknown;
+    }
+    final locale = Localizations.localeOf(context).toLanguageTag();
+    final decimal = NumberFormat.decimalPatternDigits(
+      locale: locale,
+      decimalDigits: 2,
+    );
+    return '${decimal.format(position.latitude)}, ${decimal.format(position.longitude)}';
+  }
+
   Future<void> _resolveLocation() async {
     final l10n = AppLocalizations.of(context);
+    setState(() {
+      _loadingLocation = true;
+      _error = null;
+    });
     try {
       final serviceEnabled = await Geolocator.isLocationServiceEnabled();
       if (!serviceEnabled) {
@@ -148,7 +179,9 @@ class _QiblaFinderPageState extends State<QiblaFinderPage> {
         _position = position;
         _loadingLocation = false;
         _error = null;
+        _resolvingLocationLabel = true;
       });
+      unawaited(_resolveLocationLabel(position));
     } catch (_) {
       if (!mounted) return;
       setState(() {
@@ -157,167 +190,104 @@ class _QiblaFinderPageState extends State<QiblaFinderPage> {
       });
     }
   }
+
+  Future<void> _resolveLocationLabel(Position position) async {
+    try {
+      final label = await _locationSearchService.reverseLookup(
+        latitude: position.latitude,
+        longitude: position.longitude,
+      );
+      if (!mounted) return;
+      setState(() {
+        _locationLabel = label;
+        _resolvingLocationLabel = false;
+      });
+    } catch (_) {
+      if (!mounted) return;
+      setState(() {
+        _resolvingLocationLabel = false;
+      });
+    }
+  }
 }
 
-class _QiblaCompass extends StatelessWidget {
-  const _QiblaCompass({
-    required this.userLat,
-    required this.userLng,
-    required this.arMode,
+class _QiblaLocationSection extends StatelessWidget {
+  const _QiblaLocationSection({
+    required this.label,
+    required this.loading,
+    required this.onRefresh,
   });
 
-  final double userLat;
-  final double userLng;
-  final bool arMode;
-
-  static const double _kaabaLat = 21.4225;
-  static const double _kaabaLng = 39.8262;
+  final String label;
+  final bool loading;
+  final Future<void> Function() onRefresh;
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    final locale = Localizations.localeOf(context).toLanguageTag();
-    final decimal = NumberFormat.decimalPatternDigits(
-      locale: locale,
-      decimalDigits: 1,
-    );
-    final qiblaBearing = _bearingToKaaba(
-      lat: userLat,
-      lng: userLng,
-      kaabaLat: _kaabaLat,
-      kaabaLng: _kaabaLng,
-    );
-
-    return StreamBuilder<CompassEvent>(
-      stream: FlutterCompass.events,
-      builder: (context, snapshot) {
-        final heading = snapshot.data?.heading;
-        if (heading == null) {
-          return Text(l10n.worshipQiblaCompassUnavailable);
-        }
-
-        final normalizedHeading = (heading + 360) % 360;
-        final qiblaOffset = (qiblaBearing - normalizedHeading + 360) % 360;
-        final diff = qiblaOffset > 180 ? 360 - qiblaOffset : qiblaOffset;
-
-        final arrowSize = arMode ? 120.0 : 92.0;
-        final dialSize = arMode ? 290.0 : 240.0;
-
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Center(
-              child: SizedBox(
-                width: dialSize,
-                height: dialSize,
-                child: Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    Container(
-                      width: dialSize,
-                      height: dialSize,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                          color: const Color(0xFFB89A6A).withValues(alpha: 0.4),
-                          width: 1.4,
-                        ),
-                        color: const Color(0xFFF2EBE1).withValues(alpha: 0.24),
-                      ),
-                    ),
-                    Positioned(
-                      top: 10,
-                      child: _CardinalLabel(l10n.worshipQiblaCardinalNorth),
-                    ),
-                    Positioned(
-                      bottom: 10,
-                      child: _CardinalLabel(l10n.worshipQiblaCardinalSouth),
-                    ),
-                    Positioned(
-                      left: 12,
-                      child: _CardinalLabel(l10n.worshipQiblaCardinalWest),
-                    ),
-                    Positioned(
-                      right: 12,
-                      child: _CardinalLabel(l10n.worshipQiblaCardinalEast),
-                    ),
-                    Transform.rotate(
-                      angle: qiblaOffset * math.pi / 180,
-                      child: Icon(
-                        Icons.navigation_rounded,
-                        size: arrowSize,
-                        color: const Color(0xFF6A4E2D),
-                      ),
-                    ),
-                    Container(
-                      width: 12,
-                      height: 12,
-                      decoration: const BoxDecoration(
-                        color: Color(0xFF6A4E2D),
-                        shape: BoxShape.circle,
-                      ),
-                    ),
-                  ],
+    final theme = Theme.of(context);
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+      decoration: BoxDecoration(
+        color: Colors.white.withValues(alpha: 0.22),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(
+          color: const Color(0xFFC29A63).withValues(alpha: 0.24),
+        ),
+      ),
+      child: Row(
+        children: [
+          Container(
+            width: 42,
+            height: 42,
+            decoration: BoxDecoration(
+              color: const Color(0xFF3E7471).withValues(alpha: 0.12),
+              borderRadius: BorderRadius.circular(14),
+              border: Border.all(
+                color: const Color(0xFF3E7471).withValues(alpha: 0.18),
+              ),
+            ),
+            child: const Icon(
+              Icons.location_on_rounded,
+              color: Color(0xFF3E7471),
+            ),
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  l10n.worshipQiblaLocationLabel,
+                  style: theme.textTheme.labelLarge?.copyWith(
+                    fontWeight: FontWeight.w700,
+                    color: const Color(0xFF5A4330),
+                  ),
                 ),
-              ),
+                const SizedBox(height: 4),
+                Text(
+                  label,
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    color: const Color(0xFF7B6653),
+                  ),
+                ),
+              ],
             ),
-            const SizedBox(height: 12),
-            Text(l10n.worshipQiblaBearingValue(decimal.format(qiblaBearing))),
-            Text(
-              l10n.worshipQiblaDeviceHeadingValue(
-                decimal.format(normalizedHeading),
-              ),
-            ),
-            Text(
-              l10n.worshipQiblaAlignmentOffsetValue(decimal.format(diff)),
-              style: Theme.of(context).textTheme.bodySmall,
-            ),
-            const SizedBox(height: 8),
-            Text(
-              diff <= 10
-                  ? l10n.worshipQiblaAlignedMessage
-                  : l10n.worshipQiblaRotateMessage,
-            ),
-          ],
-        );
-      },
-    );
-  }
-
-  double _bearingToKaaba({
-    required double lat,
-    required double lng,
-    required double kaabaLat,
-    required double kaabaLng,
-  }) {
-    final lat1 = _degToRad(lat);
-    final lat2 = _degToRad(kaabaLat);
-    final dLng = _degToRad(kaabaLng - lng);
-
-    final y = math.sin(dLng) * math.cos(lat2);
-    final x =
-        math.cos(lat1) * math.sin(lat2) -
-        math.sin(lat1) * math.cos(lat2) * math.cos(dLng);
-    final brng = math.atan2(y, x);
-    return (_radToDeg(brng) + 360) % 360;
-  }
-
-  double _degToRad(double deg) => deg * math.pi / 180;
-  double _radToDeg(double rad) => rad * 180 / math.pi;
-}
-
-class _CardinalLabel extends StatelessWidget {
-  const _CardinalLabel(this.text);
-
-  final String text;
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      text,
-      style: Theme.of(
-        context,
-      ).textTheme.labelMedium?.copyWith(fontWeight: FontWeight.w700),
+          ),
+          const SizedBox(width: 10),
+          IconButton(
+            tooltip: l10n.worshipQiblaRefreshLocation,
+            onPressed: loading ? null : () => unawaited(onRefresh()),
+            icon: loading
+                ? const SizedBox(
+                    width: 18,
+                    height: 18,
+                    child: CircularProgressIndicator(strokeWidth: 2),
+                  )
+                : const Icon(Icons.refresh_rounded),
+          ),
+        ],
+      ),
     );
   }
 }

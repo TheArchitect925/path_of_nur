@@ -8,6 +8,7 @@ class AppShortcutPill extends StatelessWidget {
     required this.label,
     required this.icon,
     required this.onPressed,
+    this.trailingText,
     this.tintColor,
     this.foregroundColor,
     this.fillColor,
@@ -17,6 +18,7 @@ class AppShortcutPill extends StatelessWidget {
   final String label;
   final IconData icon;
   final VoidCallback onPressed;
+  final String? trailingText;
   final Color? tintColor;
   final Color? foregroundColor;
   final Color? fillColor;
@@ -34,8 +36,18 @@ class AppShortcutPill extends StatelessWidget {
       foregroundColor: resolvedForeground,
       fillColor: fillColor,
       borderColor: borderColor,
+      expandToWidth: false,
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
       leading: Icon(icon, size: 18, color: resolvedForeground),
+      trailing: trailingText == null
+          ? null
+          : Text(
+              trailingText!,
+              style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                fontWeight: FontWeight.w700,
+                color: resolvedForeground.withValues(alpha: 0.86),
+              ),
+            ),
     );
   }
 }

@@ -2123,6 +2123,40 @@ class AppLocalizationsDe extends AppLocalizations {
       'Vorsichtig drehen, bis der Pfeil ausgerichtet ist.';
 
   @override
+  String get worshipQiblaCalibrationHint =>
+      'Move your phone gently in a figure-eight if the compass feels stuck.';
+
+  @override
+  String get worshipQiblaCurrentHeadingLabel => 'Current heading';
+
+  @override
+  String worshipQiblaDirectionValue(Object degrees) {
+    return 'Qibla direction $degrees°';
+  }
+
+  @override
+  String worshipQiblaTurnRightValue(Object degrees) {
+    return 'Turn $degrees° right';
+  }
+
+  @override
+  String worshipQiblaTurnLeftValue(Object degrees) {
+    return 'Turn $degrees° left';
+  }
+
+  @override
+  String get worshipQiblaFacingQibla => 'Facing Qibla';
+
+  @override
+  String get worshipQiblaLocationLabel => 'Current location';
+
+  @override
+  String get worshipQiblaLocationUnknown => 'Location unavailable';
+
+  @override
+  String get worshipQiblaRefreshLocation => 'Refresh location';
+
+  @override
   String get homeSearchTooltip => 'Suche öffnen';
 
   @override

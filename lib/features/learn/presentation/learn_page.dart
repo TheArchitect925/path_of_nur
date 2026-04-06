@@ -18,6 +18,8 @@ import 'widgets/learn_category_grid.dart';
 import 'widgets/learn_discovery_search_field.dart';
 import 'widgets/learn_hub_page_scaffold.dart';
 import 'widgets/learn_section_header.dart';
+import '../../../shared/widgets/main_page_shortcut_configs.dart';
+import '../../../shared/widgets/main_page_shortcut_stack.dart';
 
 class LearnPage extends ConsumerStatefulWidget {
   const LearnPage({super.key});
@@ -88,6 +90,11 @@ class _LearnPageState extends ConsumerState<LearnPage> {
         context,
         AppPageDescriptionKey.learnHub,
         kidsMode: isKidsMode,
+      ),
+      floatingBottom: MainPageShortcutStack(
+        items: buildLearnPageShortcuts(l10n),
+        openLabel: l10n.learnShortcutOpen,
+        closeLabel: l10n.learnShortcutClose,
       ),
       children: [
         const LearningHubRabbiZidniIlmaHeader(),
