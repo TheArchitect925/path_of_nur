@@ -4,10 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../l10n/app_localizations.dart';
-import '../../../../core/theme/app_surfaces.dart';
+import '../../../../shared/widgets/app_hero_glass_shell.dart';
 import '../../../../shared/widgets/home_feature_card_header.dart';
-import '../../../../shared/widgets/noor_glass_card.dart';
-import '../../../../shared/widgets/noor_liquid_glass.dart';
 import '../../application/historical_calendar_providers.dart';
 import '../../domain/historical_event_models.dart';
 import '../../presentation/history_ui_helpers.dart';
@@ -27,10 +25,17 @@ class _OnThisDayHomeCardState extends ConsumerState<OnThisDayHomeCard> {
     final l10n = AppLocalizations.of(context);
     final todayAsync = ref.watch(historicalTodayProvider);
 
-    return NoorGlassCard(
-      padding: const EdgeInsets.all(18),
-      surfaceTreatment: AppSurfaceTreatment.standard,
-      includeShadow: true,
+    return AppHeroGlassShell(
+      padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 30),
+      tintColor: const Color(0xFFE7C98C),
+      surfaceAlphaOverride: 0.2,
+      radius: 36,
+      borderColor: const Color(0x42FFFFFF),
+      highlightGradientColors: const [
+        Color(0x24FFFFFF),
+        Colors.transparent,
+        Color(0x16E8C98F),
+      ],
       child: todayAsync.when(
         data: (todayState) {
           final matches = todayState.matches;
@@ -156,57 +161,61 @@ class _HistoricalEventPreview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      borderRadius: BorderRadius.circular(20),
       onTap: () => context.pushNamed(
         'learnHistoricalEventDetail',
         pathParameters: {'slug': event.slug},
       ),
-      child: NoorGlassCard(
-        padding: const EdgeInsets.all(15),
-        surfaceVariant: AppSurfaceVariant.panel,
-        surfaceTreatment: AppSurfaceTreatment.standard,
-        includeShadow: false,
-        mode: NoorLiquidGlassMode.fake,
-        borderRadius: 20,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Wrap(
-              spacing: 8,
-              runSpacing: 8,
-              children: [
-                _Badge(label: badgeLabel),
-                if (secondaryLabel != null) _Badge(label: secondaryLabel!),
-                if (event.categories.isNotEmpty)
-                  _Badge(
-                    label: historicalCategoryLabel(
-                      l10n,
-                      event.categories.first,
+      borderRadius: BorderRadius.circular(24),
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(24),
+          color: const Color(0xFFFFF8EE).withValues(alpha: 0.64),
+          border: Border.all(
+            color: const Color(0xFFE7C98C).withValues(alpha: 0.36),
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(18),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: [
+                  _Badge(label: badgeLabel),
+                  if (secondaryLabel != null) _Badge(label: secondaryLabel!),
+                  if (event.categories.isNotEmpty)
+                    _Badge(
+                      label: historicalCategoryLabel(
+                        l10n,
+                        event.categories.first,
+                      ),
                     ),
-                  ),
-              ],
-            ),
-            const SizedBox(height: 12),
-            Text(
-              event.title,
-              style: Theme.of(
-                context,
-              ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
-            ),
-            const SizedBox(height: 4),
-            Text(
-              event.summaryShort,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-            ),
-            if (event.hasLocation) ...[
-              const SizedBox(height: 10),
-              Text(
-                event.location.name,
-                style: Theme.of(context).textTheme.bodySmall,
+                ],
               ),
+              const SizedBox(height: 12),
+              Text(
+                event.title,
+                style: Theme.of(
+                  context,
+                ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                event.summaryShort,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+              if (event.hasLocation) ...[
+                const SizedBox(height: 10),
+                Text(
+                  event.location.name,
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
+              ],
             ],
-          ],
+          ),
         ),
       ),
     );

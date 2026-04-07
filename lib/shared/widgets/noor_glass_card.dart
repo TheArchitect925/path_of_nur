@@ -85,29 +85,30 @@ class _NoorGlassCardState extends ConsumerState<NoorGlassCard> {
     );
     final theme = Theme.of(context);
     final surfaceTextTheme = contentColors.applyTo(theme.textTheme);
+    final themedChild = Theme(
+      data: theme.copyWith(
+        textTheme: surfaceTextTheme,
+        iconTheme: theme.iconTheme.copyWith(color: contentColors.iconColor),
+        listTileTheme: theme.listTileTheme.copyWith(
+          iconColor: contentColors.iconColor,
+          textColor: contentColors.foreground,
+        ),
+      ),
+      child: IconTheme.merge(
+        data: IconThemeData(color: contentColors.iconColor),
+        child: DefaultTextStyle.merge(
+          style:
+              surfaceTextTheme.bodyMedium ??
+              TextStyle(color: contentColors.subtleForeground),
+          child: widget.child,
+        ),
+      ),
+    );
     return Listener(
       child: NoorLiquidGlassContainer(
         spec: _spec(),
         width: widget.width,
-        child: Theme(
-          data: theme.copyWith(
-            textTheme: surfaceTextTheme,
-            iconTheme: theme.iconTheme.copyWith(color: contentColors.iconColor),
-            listTileTheme: theme.listTileTheme.copyWith(
-              iconColor: contentColors.iconColor,
-              textColor: contentColors.foreground,
-            ),
-          ),
-          child: IconTheme.merge(
-            data: IconThemeData(color: contentColors.iconColor),
-            child: DefaultTextStyle.merge(
-              style:
-                  surfaceTextTheme.bodyMedium ??
-                  TextStyle(color: contentColors.subtleForeground),
-              child: widget.child,
-            ),
-          ),
-        ),
+        child: themedChild,
       ),
     );
   }

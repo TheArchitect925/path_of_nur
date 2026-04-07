@@ -9,6 +9,7 @@ import '../../enrichment/presentation/widgets/learn_enrichment_cards.dart';
 import '../../journey/application/family_learning_provider.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/guided_learning_paths_provider.dart';
+import '../domain/guided_learning_path_icon_registry.dart';
 import '../domain/guided_learning_path_models.dart';
 
 class GuidedLearningPathDetailPage extends ConsumerWidget {
@@ -60,9 +61,8 @@ class GuidedLearningPathDetailPage extends ConsumerWidget {
     }
 
     return LearnHubPageScaffold(
-      headerIcon: IconData(
-        localizedPath.path.iconCodePoint,
-        fontFamily: 'MaterialIcons',
+      headerIcon: GuidedLearningPathIconRegistry.iconForPathId(
+        localizedPath.path.id,
       ),
       title: localizedPath.title,
       subtitle: localizedPath.subtitle,

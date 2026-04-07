@@ -156,6 +156,10 @@ void main() {
           transliterationFontSize: 15,
           translationFontSize: 14,
           harakatColor: null,
+          resolvedExplanation: null,
+          actionRecommendation: null,
+          spiritualMomentBundle: null,
+          personalizedRecommendation: null,
           contextualLinks: const [],
           themeTopics: const [],
           studyMode: QuranReaderStudyMode.reading,
@@ -215,6 +219,10 @@ void main() {
           transliterationFontSize: 15,
           translationFontSize: 14,
           harakatColor: null,
+          resolvedExplanation: null,
+          actionRecommendation: null,
+          spiritualMomentBundle: null,
+          personalizedRecommendation: null,
           contextualLinks: const [
             QuranRelatedKnowledgeLink(
               id: 'hadith-test',
@@ -285,6 +293,10 @@ void main() {
           transliterationFontSize: 15,
           translationFontSize: 14,
           harakatColor: null,
+          resolvedExplanation: null,
+          actionRecommendation: null,
+          spiritualMomentBundle: null,
+          personalizedRecommendation: null,
           contextualLinks: const [
             QuranRelatedKnowledgeLink(
               id: 'hadith-test',
@@ -372,6 +384,10 @@ void main() {
             transliterationFontSize: 15,
             translationFontSize: 14,
             harakatColor: null,
+            resolvedExplanation: null,
+            actionRecommendation: null,
+            spiritualMomentBundle: null,
+            personalizedRecommendation: null,
             contextualLinks: const [
               QuranRelatedKnowledgeLink(
                 id: 'life-test',

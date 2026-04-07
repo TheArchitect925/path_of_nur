@@ -8,13 +8,13 @@ import 'package:path_of_nur/features/learn/quran/presentation/quran_knowledge_se
 import 'package:path_of_nur/features/learn/quran/presentation/quran_learning_paths_page.dart';
 import 'package:path_of_nur/features/learn/quran/presentation/quran_memorization_review_page.dart';
 import 'package:path_of_nur/features/learn/quran/presentation/quran_search_page.dart';
-import 'package:path_of_nur/features/learn/quran/presentation/quran_surah_explorer_page.dart';
 import 'package:path_of_nur/features/learn/quran/presentation/quran_surah_insight_page.dart';
+import 'package:path_of_nur/features/learn/quran/presentation/quran_summary_page.dart';
 import 'package:path_of_nur/features/learn/quran/presentation/quran_topic_explorer_page.dart';
-import 'package:path_of_nur/features/learn/quran/presentation/quran_reader_page.dart';
 import 'package:path_of_nur/features/learn/quran/presentation/quran_word_review_page.dart';
 import 'package:path_of_nur/features/learn/quran/presentation/quran_words_page.dart';
 import 'package:path_of_nur/features/learn/quran/presentation/widgets/quran_learning_personalization_section.dart';
+import 'package:path_of_nur/features/learn/presentation/widgets/learn_discovery_search_field.dart';
 import 'package:path_of_nur/l10n/app_localizations.dart';
 import 'package:path_of_nur/shared/application/daily_clock_provider.dart';
 import 'package:path_of_nur/shared/widgets/quran_quote_block.dart';
@@ -87,54 +87,95 @@ void main() {
     router.go('/quran');
     await pumpRouteFrames(tester);
     expect(find.byType(QuranAppHubPage), findsOneWidget);
-    final pageFinder = find.byType(QuranAppHubPage);
     expect(find.textContaining('Continue Learning'), findsNothing);
     expect(find.textContaining('Journey of the Qur'), findsNothing);
     expect(find.textContaining('Understanding Surah'), findsNothing);
     expect(find.textContaining('Short Surahs'), findsNothing);
     expect(find.textContaining('Memorize'), findsNothing);
 
-    for (final label in <String>[
-      l10n.quranHubRecommendationsTitle,
-      l10n.quranHubStudyToolsTitle,
-      l10n.quranHubWordToolsTitle,
-      l10n.quranKnowledgeSearchTitle,
-      l10n.quranSurahInsightsBrowseTitle,
-      l10n.quranLearningPathsTitle,
-      l10n.quranTopicsTitle,
-      l10n.quranTopWordsTitle,
-      l10n.quranWordReviewTitle,
-      l10n.quranNotesTitle,
-      l10n.quranHubMemorizeTitle,
-      l10n.learnCategoryQuranLearningTitle,
-    ]) {
-      await scrollToLabel(tester, pageFinder, label);
-      expect(find.textContaining(label), findsWidgets);
-    }
+    expect(find.text(l10n.quranDiscoverSectionTitle), findsOneWidget);
   });
 
-  testWidgets('continue and read quran islands keep expected routes', (
+  testWidgets(
+    'discover the quran card groups and collapses discovery surfaces',
+    (tester) async {
+      final container = await makeContainer();
+      final router = container.read(appRouterProvider);
+      final l10n = await AppLocalizations.delegate.load(const Locale('en'));
+
+      await tester.pumpWidget(buildRouterTestApp(container));
+      await pumpRouteFrames(tester);
+
+      router.go('/quran');
+      await pumpRouteFrames(tester);
+
+      expect(find.text(l10n.quranDiscoverSectionTitle), findsOneWidget);
+      expect(find.text(l10n.quranSummaryIslandTitle), findsOneWidget);
+      expect(find.text(l10n.quranThemeDiscoveryIslandTitle), findsOneWidget);
+      expect(find.text(l10n.quranPathwaysIslandTitle), findsOneWidget);
+      expect(find.text(l10n.quranSpiritualMomentHubTitle), findsOneWidget);
+      expect(find.text(l10n.quranPersonalizationHubTitle), findsOneWidget);
+
+      await tester.tap(find.text(l10n.quranDiscoverSectionTitle));
+      await pumpRouteFrames(tester);
+
+      expect(
+        find.text(l10n.quranSummaryIslandTitle).hitTestable(),
+        findsNothing,
+      );
+      expect(
+        find.text(l10n.quranThemeDiscoveryIslandTitle).hitTestable(),
+        findsNothing,
+      );
+      expect(
+        find.text(l10n.quranPathwaysIslandTitle).hitTestable(),
+        findsNothing,
+      );
+      expect(
+        find.text(l10n.quranSpiritualMomentHubTitle).hitTestable(),
+        findsNothing,
+      );
+      expect(
+        find.text(l10n.quranPersonalizationHubTitle).hitTestable(),
+        findsNothing,
+      );
+
+      await tester.tap(find.text(l10n.quranDiscoverSectionTitle));
+      await pumpRouteFrames(tester);
+
+      expect(find.text(l10n.quranSummaryIslandTitle), findsOneWidget);
+      expect(find.text(l10n.quranThemeDiscoveryIslandTitle), findsOneWidget);
+      expect(find.text(l10n.quranPathwaysIslandTitle), findsOneWidget);
+    },
+  );
+
+  testWidgets('summary and search surfaces keep expected routes', (
     tester,
   ) async {
     final container = await makeContainer();
     final router = container.read(appRouterProvider);
+    final l10n = await AppLocalizations.delegate.load(const Locale('en'));
 
     await tester.pumpWidget(buildRouterTestApp(container));
     await pumpRouteFrames(tester);
 
     router.go('/quran');
     await pumpRouteFrames(tester);
-    final pageFinder = find.byType(QuranAppHubPage);
-
-    await tapHubActionLabel(tester, pageFinder, 'Continue');
-    expect(find.byType(QuranReaderPage), findsOneWidget);
+    final summaryFinder = find.text(l10n.quranSummaryIslandTitle).first;
+    await tester.ensureVisible(summaryFinder);
+    await tester.tap(summaryFinder);
+    await pumpRouteFrames(tester);
+    expect(find.byType(QuranSummaryPage), findsOneWidget);
 
     router.go('/quran');
     await pumpRouteFrames(tester);
     expect(find.byType(QuranAppHubPage), findsOneWidget);
 
-    await tapHubActionLabel(tester, find.byType(QuranAppHubPage), 'Read Qur');
-    expect(find.byType(QuranSurahExplorerPage), findsOneWidget);
+    final searchFieldFinder = find.byType(LearnDiscoverySearchField);
+    await tester.ensureVisible(searchFieldFinder);
+    await tester.tap(searchFieldFinder);
+    await pumpRouteFrames(tester);
+    expect(find.byType(QuranSearchPage), findsOneWidget);
   });
 
   testWidgets('quran home no longer shows the shared quote block', (

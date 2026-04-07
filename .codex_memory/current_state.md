@@ -25,6 +25,23 @@ Path of Nur is a Flutter + Riverpod mobile app centered on worship, Qur'an engag
 
 ## B1. Most recent stabilization update
 
+- iOS Runner startup now uses a single explicit shared `FlutterEngine` instead of the earlier implicit-engine + storyboard root-controller path:
+  - `AppDelegate.swift` now owns and starts one guarded shared engine, registers `GeneratedPluginRegistrant` once against that engine, and binds custom method channels against the explicit engine messenger
+  - `SceneDelegate.swift` now creates the `UIWindow` and a programmatic `FlutterViewController(engine:nibName:bundle:)` root controller
+  - `Info.plist` keeps `UIApplicationSceneManifest` + `SceneDelegate`, but no longer points startup at `Main.storyboard`
+  - `Main.storyboard` may remain on disk temporarily, but it is no longer part of app startup
+  - this migration was done to move Runner off the startup shape that matched the `VSyncClient` / `createTouchRateCorrectionVSyncClientIfNeeded` / `FlutterViewController viewDidLoad` iPhone crash family
+
+- the temporary Noor-only "On This Day" global glass preset was removed after broader QA:
+  - the old `useOnThisDayGlobalGlass` setting/toggle/theme path was deleted from appearance state, settings UI, and localization
+  - shared `NoorGlassCard` non-pill surfaces now default directly to `AppHeroGlassShell` behavior when the active appearance is in the Noor family
+  - the intended visual standard is now the calmer shared hero-glass / Next Salah shell direction instead of a second Noor-specific preset mode
+
+- the earlier bootstrap-timing mismatch was superseded by the explicit-engine migration:
+  - custom channel/bootstrap work no longer depends on `didInitializeImplicitFlutterEngine(...)`
+  - `didFinishLaunchingWithOptions(...)` now starts the shared explicit engine once, registers plugins once, and keeps startup/bootstrap logic out of any implicit-engine callback path
+  - the old early `registrar(forPlugin:)` risk remains resolved, but the active architecture is now explicit-engine based rather than implicit-engine based
+
 - Shared appearance and surface theming now also has an explicit global surface matrix layer:
   - `AppSurfaceTheme.resolve(...)` is now driven by centralized family/treatment recipes instead of only one large implicit formula set
   - the runtime families are currently `classic`, `noor`, `noGlass`, `midnight`, and `kids`

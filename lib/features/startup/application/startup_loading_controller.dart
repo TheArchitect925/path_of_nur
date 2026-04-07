@@ -48,14 +48,13 @@ class StartupLoadingController extends StateNotifier<StartupLoadingState> {
   StartupLoadingController() : super(const StartupLoadingState.initial());
 
   final List<Timer> _timers = <Timer>[];
-  bool _started = false;
 
   void start({
     required bool onboardingCompleted,
     required AccountsSyncState accountsSyncState,
   }) {
-    if (_started) return;
-    _started = true;
+    _clearTimers();
+    state = const StartupLoadingState.initial();
     final targetLocation = _resolveTargetLocation(
       onboardingCompleted: onboardingCompleted,
       accountsSyncState: accountsSyncState,
@@ -82,11 +81,16 @@ class StartupLoadingController extends StateNotifier<StartupLoadingState> {
     _timers.add(Timer(delay, callback));
   }
 
-  @override
-  void dispose() {
+  void _clearTimers() {
     for (final timer in _timers) {
       timer.cancel();
     }
+    _timers.clear();
+  }
+
+  @override
+  void dispose() {
+    _clearTimers();
     super.dispose();
   }
 }

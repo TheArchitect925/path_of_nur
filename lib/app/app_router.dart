@@ -46,6 +46,7 @@ final appRouterProvider = Provider<GoRouter>((ref) {
 
       final onboardingRedirect = _onboardingRedirect(
         matchedLocation: state.matchedLocation,
+        uri: state.uri,
         onboardingCompleted: onboardingCompleted,
       );
       if (onboardingRedirect != null) {
@@ -198,17 +199,19 @@ NavTab navTabFromLocation(String location) {
 
 String? _onboardingRedirect({
   required String matchedLocation,
+  required Uri uri,
   required bool onboardingCompleted,
 }) {
   final onOnboarding = matchedLocation == '/onboarding';
   final onStartup = matchedLocation == '/startup';
+  final onboardingPreview = uri.queryParameters['preview'] == '1';
   if (onStartup) {
     return null;
   }
   if (!onboardingCompleted && !onOnboarding) {
     return '/onboarding';
   }
-  if (onboardingCompleted && onOnboarding) {
+  if (onboardingCompleted && onOnboarding && !onboardingPreview) {
     return NavTab.home.path;
   }
   return null;

@@ -6,6 +6,7 @@ import '../../../../../l10n/app_localizations.dart';
 import '../../../../../shared/widgets/premium_card.dart';
 import '../../../analytics/application/learn_analytics_service.dart';
 import '../../application/learn_enrichment_provider.dart';
+import '../../domain/learn_enrichment_icon_registry.dart';
 import '../../domain/learn_enrichment_models.dart';
 
 class LearnMilestoneMomentCard extends ConsumerWidget {
@@ -35,7 +36,9 @@ class LearnMilestoneMomentCard extends ConsumerWidget {
                   color: accent.withValues(alpha: 0.12),
                 ),
                 child: Icon(
-                  IconData(moment.iconCodePoint, fontFamily: 'MaterialIcons'),
+                  LearnEnrichmentIconRegistry.iconForCodePoint(
+                    moment.iconCodePoint,
+                  ),
                   color: accent,
                 ),
               ),
@@ -163,9 +166,8 @@ class LearnMemoryHighlightsCard extends StatelessWidget {
                                   .withValues(alpha: 0.10),
                         ),
                         child: Icon(
-                          IconData(
+                          LearnEnrichmentIconRegistry.iconForCodePoint(
                             memory.iconCodePoint,
-                            fontFamily: 'MaterialIcons',
                           ),
                           size: 18,
                         ),

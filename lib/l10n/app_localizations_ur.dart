@@ -506,6 +506,13 @@ class AppLocalizationsUr extends AppLocalizations {
   String get quranAppHubTitle => 'قرآنِ کریم';
 
   @override
+  String get quranDiscoverSectionTitle => 'Discover the Qur’an';
+
+  @override
+  String get quranDiscoverSectionSubtitle =>
+      'Keep the summary, topics, pathways, current moment, and your next recommendation together in one calm place.';
+
+  @override
   String get quranHubSubtitle =>
       'پڑھنے، مطالعہ، حفظ، الفاظ، عنوانات اور نوٹ کے لیے ایک پرسکون اندراج۔';
 
@@ -2034,6 +2041,44 @@ class AppLocalizationsUr extends AppLocalizations {
       'AR موڈ اب بھی ہلکا ہے اور آلہ کے لحاظ سے مختلف ہو سکتا ہے۔';
 
   @override
+  String get worshipQiblaArLiveTitle => 'Live camera guidance';
+
+  @override
+  String get worshipQiblaArLiveSubtitle =>
+      'Hold your phone up. Keep the Qibla marker above the horizon and align the prayer mat toward the floor.';
+
+  @override
+  String get worshipQiblaArPrayerMatHint =>
+      'Place your prayer mat so its top edge points in the same direction as the Qibla marker.';
+
+  @override
+  String get worshipQiblaArOverlayTitle => 'Move until the marker centers';
+
+  @override
+  String get worshipQiblaArHorizonLineLabel => 'Horizon';
+
+  @override
+  String get worshipQiblaArKaabaLabel => 'Qibla';
+
+  @override
+  String get worshipQiblaArCameraUnavailableTitle => 'Camera unavailable';
+
+  @override
+  String get worshipQiblaArCameraPermissionBody =>
+      'Allow camera access to use AR mode and view the Qibla over your surroundings.';
+
+  @override
+  String get worshipQiblaArCameraUnavailableBody =>
+      'AR mode could not start the camera on this device right now.';
+
+  @override
+  String get worshipQiblaArCameraLoadingBody =>
+      'Starting the camera for live Qibla guidance...';
+
+  @override
+  String get worshipQiblaArRetryCameraAction => 'Retry camera';
+
+  @override
   String get worshipQiblaLocationServicesDisabled =>
       'مقام کی خدمات غیر فعال ہیں۔ انہیں قبلہ فائنڈر استعمال کرنے کے قابل بنائیں۔';
 
@@ -2116,6 +2161,35 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get worshipQiblaRefreshLocation => 'Refresh location';
+
+  @override
+  String get worshipQiblaMajorSitesTitle => 'Distance to major Islamic sites';
+
+  @override
+  String worshipQiblaDistanceKmValue(String distance) {
+    return '$distance km';
+  }
+
+  @override
+  String get worshipQiblaSiteMasjidAlHaram => 'Masjid al-Haram';
+
+  @override
+  String get worshipQiblaSiteProphetsMosque => 'Al-Masjid an-Nabawi';
+
+  @override
+  String get worshipQiblaSiteAlAqsa => 'Al-Aqsa Mosque';
+
+  @override
+  String get worshipQiblaSiteQubaMosque => 'Masjid Quba';
+
+  @override
+  String get worshipQiblaLocationMakkah => 'Makkah';
+
+  @override
+  String get worshipQiblaLocationMadinah => 'Madinah';
+
+  @override
+  String get worshipQiblaLocationJerusalem => 'Jerusalem';
 
   @override
   String get homeSearchTooltip => 'ایپ تلاش کریں۔';
@@ -16662,11 +16736,12 @@ class AppLocalizationsUr extends AppLocalizations {
       'سفر کی تفصیل کے صفحے پر واپس جائیں اور ایک اور دستیاب مرحلہ منتخب کریں۔';
 
   @override
-  String get onboardingLearningAgeGroupTitle => 'آپ کی بہترین وضاحت کیا ہے؟';
+  String get onboardingLearningAgeGroupTitle =>
+      'Which learning path fits you best?';
 
   @override
   String get onboardingLearningAgeGroupSubtitle =>
-      'ہم اس کا استعمال اسباق کے الفاظ، پیسنگ، اور کون سے سفر کو زیادہ نمایاں طور پر ظاہر کرنے کے لیے کرتے ہیں۔';
+      'We use this to adapt lesson wording and the kinds of journeys surfaced first, while keeping the experience calm and supportive.';
 
   @override
   String get onboardingLearningAgeGroupKids =>
@@ -36227,7 +36302,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get onboardingAgeRangeSubtitle =>
-      'Path of Nur adjusts some guidance, tone, and family-related recommendations based on your stage of life so the experience feels more relevant and supportive.';
+      'This helps us keep examples and recommendations relevant to your stage of life.';
 
   @override
   String get onboardingAgeRangeUnder18 => 'Under 18';
@@ -36352,11 +36427,11 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get onboardingArabicReadModeTitle =>
-      'How would you like to read Arabic?';
+      'What is your Qur’an reading preference?';
 
   @override
   String get onboardingArabicReadModeSubtitle =>
-      'Choose the reading style that feels most comfortable for you.';
+      'Choose the reading setup that feels most comfortable for you when reading the Qur’an.';
 
   @override
   String get onboardingArabicReadModeNoArabicYet =>
@@ -36397,7 +36472,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get onboardingRemindersSubtitle =>
-      'Choose your preferred reminders for salah and daily spiritual routines.';
+      'Choose a light reminder setup for salah and daily routines. You can fine-tune everything later.';
 
   @override
   String get onboardingSalahReminderStylesTitle => 'Salah reminder styles';
@@ -36419,11 +36494,11 @@ class AppLocalizationsUr extends AppLocalizations {
   String get onboardingDailyLessonReminderTitle => 'Daily lesson reminder';
 
   @override
-  String get onboardingTrackingTitle => 'What would you like to track?';
+  String get onboardingTrackingTitle => 'What would you like to keep in view?';
 
   @override
   String get onboardingTrackingSubtitle =>
-      'Choose the areas you would like Path of Nur to help you track over time. You can choose multiple.';
+      'Pick the areas you would like Path of Nur to gently keep in view as you grow. You can choose multiple.';
 
   @override
   String get onboardingFamilyTitle => 'Grow together with family';
@@ -36546,10 +36621,10 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get onboardingFinalWelcomeBody =>
-      'Your journey begins now. Path of Nur is ready to support you through learning, reflection, remembrance, and steady growth.';
+      'Your journey begins with intention, and it grows through small consistent steps. Path of Nur is here to support your learning, remembrance, reflection, and daily progress.';
 
   @override
-  String get onboardingFocusListTitle => 'You chose to focus on:';
+  String get onboardingFocusListTitle => 'Your chosen focus areas:';
 
   @override
   String get onboardingKnowledgeDuaMeaning =>
@@ -40023,4 +40098,113 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get homeTestLoadingScreenPill => 'Test Loading Screen';
+
+  @override
+  String get onboardingOpeningTitle => 'A Journey Rooted in Knowledge';
+
+  @override
+  String get onboardingOpeningHadithLead => 'The Messenger of Allah ﷺ said:';
+
+  @override
+  String get onboardingOpeningHadithQuote =>
+      '“Seeking knowledge is obligatory upon every Muslim.”';
+
+  @override
+  String get onboardingOpeningHadithSource => 'Sunan Ibn Majah';
+
+  @override
+  String get onboardingOpeningMissionBodyOne =>
+      'In Islam, knowledge is not a luxury. It is a responsibility. And what is obligatory should be within reach for everyone.';
+
+  @override
+  String get onboardingOpeningMissionBodyTwo =>
+      'Path of Nur was created with that belief at its core — to help keep learning, remembrance, and growth free and accessible for all.';
+
+  @override
+  String get onboardingOpeningMissionBodyThree =>
+      'Whether you are beginning, returning, or trying to stay consistent, the app should feel like a calm companion for worship, reflection, and daily progress.';
+
+  @override
+  String get onboardingOpeningSupportLine =>
+      'This short setup will personalize your experience.';
+
+  @override
+  String get onboardingOpeningPlatformFooter =>
+      'Available across iPhone, iPad, Apple Watch, Mac, Apple TV, Windows, and Android.';
+
+  @override
+  String get onboardingFinalWelcomeClosingBody =>
+      'Take it one sincere step at a time. Meaningful progress is built through small, steady acts.';
+
+  @override
+  String get onboardingDisclaimerTitle => 'A Gentle Note Before You Begin';
+
+  @override
+  String get onboardingDisclaimerIntroBody =>
+      'Path of Nur is not a fatwa app.\nIt is a companion for learning, reflection, worship, and growth.';
+
+  @override
+  String get onboardingDisclaimerSourcesBody =>
+      'The app draws from the Qur’an and Hadith, which are the primary sources of Islamic guidance, along with widely accepted foundational material.';
+
+  @override
+  String get onboardingDisclaimerNeutralBody =>
+      'Content is presented in a broad and neutral way, rather than as personal guidance from a specific scholar or imam.';
+
+  @override
+  String get onboardingDisclaimerNotRulingBody =>
+      'It does not replace guidance from a qualified scholar, imam, or mufti, and it does not provide personal religious rulings.';
+
+  @override
+  String get onboardingDisclaimerSeekScholarBody =>
+      'For personal, sensitive, or complex matters, users should seek guidance from a qualified person of knowledge.';
+
+  @override
+  String get onboardingDisclaimerFeedbackBody =>
+      'Feedback, corrections, and enhancement requests are always welcome and help Path of Nur improve over time.';
+
+  @override
+  String get onboardingDisclaimerFooter =>
+      'Built to support your journey, not replace scholarship.';
+
+  @override
+  String get onboardingArabicReadModePreviewHint =>
+      'A preview is available lower down on this page to help you compare examples and adjust these settings.';
+
+  @override
+  String get onboardingThemeTitle => 'Choose your theme';
+
+  @override
+  String get onboardingThemeSubtitle =>
+      'Pick the atmosphere that feels most at home in your journey. Changes apply instantly as you explore the previews below.';
+
+  @override
+  String get onboardingThemePreviewTitle => 'Live preview';
+
+  @override
+  String get onboardingThemePreviewSubtitle =>
+      'Use this sample text and card layout to compare readability, warmth, and card depth before you continue.';
+
+  @override
+  String get onboardingThemeSampleTitle => 'A calm companion for your day';
+
+  @override
+  String get onboardingThemeSampleBody =>
+      'Your theme affects how reading, reflection, and daily guidance feel across the app. Choose the one that feels steady and comfortable to return to.';
+
+  @override
+  String get onboardingThemeSampleChipPrayer => 'Prayer';
+
+  @override
+  String get onboardingThemeSampleChipReading => 'Reading';
+
+  @override
+  String get onboardingThemeSampleChipReflection => 'Reflection';
+
+  @override
+  String get onboardingThemeSampleCardTitle => 'Today’s gentle focus';
+
+  @override
+  String get onboardingThemeSampleCardBody =>
+      'A softer look can make reading and reflection feel calmer. A stronger-contrast theme can make longer sessions easier.';
 }

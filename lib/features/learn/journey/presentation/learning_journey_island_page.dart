@@ -6,6 +6,7 @@ import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/application/kids_ui_theme_provider.dart';
 import '../../../../shared/content/contextual_quran_quotes.dart';
 import '../../../../shared/widgets/premium_card.dart';
+import '../../../../shared/widgets/app_hero_glass_shell.dart';
 import '../../../../shared/widgets/quran_verse_content.dart';
 import '../../../../shared/content/learning_quote.dart';
 import '../../glossary/domain/glossary_models.dart';
@@ -80,28 +81,16 @@ class LearningJourneyIslandPage extends ConsumerWidget {
       quote: buildLearningCompactQuote(),
       children: [
         if (visibilityPolicy.isChildProfile && journeys.isEmpty)
-          Container(
-            padding: const EdgeInsets.all(14),
-            decoration: BoxDecoration(
-              color: const Color(0xFFF7F1E8),
-              borderRadius: BorderRadius.circular(18),
-              border: Border.all(color: const Color(0xFFE3D6C4)),
-            ),
+          _wrapIbadahContainer(
+            islandId: island.id,
             child: Text(
               l10n.familyLearningIslandReducedSubtitle,
               style: const TextStyle(color: Color(0xFF675B4E), height: 1.35),
             ),
           ),
         if (island.id != 'core-knowledge')
-          Container(
-            padding: const EdgeInsets.all(14),
-            decoration: BoxDecoration(
-              color: island.color,
-              borderRadius: BorderRadius.circular(18),
-              border: Border.all(
-                color: island.accentColor.withValues(alpha: 0.2),
-              ),
-            ),
+          _wrapIbadahContainer(
+            islandId: island.id,
             child: Text(
               localizedIslandSubtitle(context, island),
               style: TextStyle(
@@ -137,28 +126,34 @@ class LearningJourneyIslandPage extends ConsumerWidget {
         ],
         if (island.id == 'practice-worship') ...[
           const SizedBox(height: 14),
-          LearnActionCard(
-            title: l10n.wuduPracticeCardTitle,
-            subtitle: l10n.wuduPracticeCardSubtitle,
-            icon: Icons.water_drop_outlined,
-            onTap: () => context.pushNamed('learnWuduTrainer'),
+          _wrapIbadahContainer(
+            islandId: island.id,
+            child: LearnActionCard(
+              title: l10n.wuduPracticeCardTitle,
+              subtitle: l10n.wuduPracticeCardSubtitle,
+              icon: Icons.water_drop_outlined,
+              onTap: () => context.pushNamed('learnWuduTrainer'),
+            ),
           ),
         ],
         if (spotlightJourney != null) ...[
           const SizedBox(height: 14),
-          LearningJourneyCard(
-            journey: spotlightJourney,
-            stageCount: spotlightJourney.stageIds.length,
-            showFeaturedBadge: true,
-            progress: _journeyProgressValue(
-              spotlightJourney.stageIds.length,
-              progress.completedStageIds
-                  .where((id) => spotlightJourney.stageIds.contains(id))
-                  .length,
-            ),
-            onTap: () => context.pushNamed(
-              'learnJourneyDetail',
-              pathParameters: {'journeyId': spotlightJourney.id},
+          _wrapIbadahContainer(
+            islandId: island.id,
+            child: LearningJourneyCard(
+              journey: spotlightJourney,
+              stageCount: spotlightJourney.stageIds.length,
+              showFeaturedBadge: true,
+              progress: _journeyProgressValue(
+                spotlightJourney.stageIds.length,
+                progress.completedStageIds
+                    .where((id) => spotlightJourney.stageIds.contains(id))
+                    .length,
+              ),
+              onTap: () => context.pushNamed(
+                'learnJourneyDetail',
+                pathParameters: {'journeyId': spotlightJourney.id},
+              ),
             ),
           ),
         ],
@@ -172,19 +167,22 @@ class LearningJourneyIslandPage extends ConsumerWidget {
           ...remainingJourneys.map(
             (journey) => Padding(
               padding: const EdgeInsets.only(bottom: 10),
-              child: LearningJourneyCard(
-                journey: journey,
-                stageCount: journey.stageIds.length,
-                showFeaturedBadge: true,
-                progress: _journeyProgressValue(
-                  journey.stageIds.length,
-                  progress.completedStageIds
-                      .where((id) => journey.stageIds.contains(id))
-                      .length,
-                ),
-                onTap: () => context.pushNamed(
-                  'learnJourneyDetail',
-                  pathParameters: {'journeyId': journey.id},
+              child: _wrapIbadahContainer(
+                islandId: island.id,
+                child: LearningJourneyCard(
+                  journey: journey,
+                  stageCount: journey.stageIds.length,
+                  showFeaturedBadge: true,
+                  progress: _journeyProgressValue(
+                    journey.stageIds.length,
+                    progress.completedStageIds
+                        .where((id) => journey.stageIds.contains(id))
+                        .length,
+                  ),
+                  onTap: () => context.pushNamed(
+                    'learnJourneyDetail',
+                    pathParameters: {'journeyId': journey.id},
+                  ),
                 ),
               ),
             ),
@@ -195,21 +193,19 @@ class LearningJourneyIslandPage extends ConsumerWidget {
             (visibilityPolicy.showSecondaryExploration ||
                 island.relatedTools.isNotEmpty ||
                 kidsUi.enabled))
-          RelatedToolsSection(
-            title: l10n.learningJourneyIslandRelatedToolsTitle,
-            subtitle: l10n.learningJourneyIslandRelatedToolsSubtitle,
-            tools: relatedTools,
+          _wrapIbadahContainer(
+            islandId: island.id,
+            child: RelatedToolsSection(
+              title: l10n.learningJourneyIslandRelatedToolsTitle,
+              subtitle: l10n.learningJourneyIslandRelatedToolsSubtitle,
+              tools: relatedTools,
+            ),
           ),
         if (_whyThisMattersForIsland(island.id, l10n) case final why?)
           Padding(
             padding: const EdgeInsets.only(top: 14),
-            child: Container(
-              padding: const EdgeInsets.all(14),
-              decoration: BoxDecoration(
-                color: const Color(0xFFF7F1E8),
-                borderRadius: BorderRadius.circular(18),
-                border: Border.all(color: const Color(0xFFE3D6C4)),
-              ),
+            child: _wrapIbadahContainer(
+              islandId: island.id,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -294,6 +290,28 @@ class LearningJourneyIslandPage extends ConsumerWidget {
         return null;
     }
   }
+}
+
+Widget _wrapIbadahContainer({
+  required String islandId,
+  required Widget child,
+}) {
+  if (islandId != 'practice-worship') {
+    return child;
+  }
+  return AppHeroGlassShell(
+    padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 30),
+    tintColor: const Color(0xFFE7C98C),
+    surfaceAlphaOverride: 0.2,
+    radius: 36,
+    borderColor: const Color(0x42FFFFFF),
+    highlightGradientColors: const [
+      Color(0x24FFFFFF),
+      Colors.transparent,
+      Color(0x16E8C98F),
+    ],
+    child: child,
+  );
 }
 
 class _FoundationsTawheedBlock extends StatelessWidget {

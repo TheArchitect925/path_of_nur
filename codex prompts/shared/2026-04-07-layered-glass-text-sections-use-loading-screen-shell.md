@@ -1,0 +1,1 @@
+ok now for any layerd glass that we have, the one that contains tthe text should have this - Restyle this section to match the loading screen “Welcome Back” glass card exactly by reusing AppHeroGlassShell with the same padding, tint, alpha, radius, border, and highlight settings. Do not change logic, route behavior, theme system, or architecture.

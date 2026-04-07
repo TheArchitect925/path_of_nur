@@ -2,10 +2,10 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:liquid_glass_renderer/liquid_glass_renderer.dart';
 
 import '../../core/theme/app_radii.dart';
 import '../../core/theme/app_surfaces.dart';
+import '../../core/theme/app_theme.dart';
 
 enum NoorLiquidGlassMode { disabled, fake, liquid }
 
@@ -23,103 +23,82 @@ class NoorLiquidGlassSpec {
   const NoorLiquidGlassSpec({
     required this.mode,
     required this.preset,
-    required this.settings,
     required this.borderRadius,
     required this.padding,
-    this.useBackdropGroup = false,
-    this.grouped = false,
-    this.glassContainsChild = false,
-    this.clipBehavior = Clip.hardEdge,
+    this.clipBehavior = Clip.antiAlias,
     this.fallbackTreatment = AppSurfaceTreatment.standard,
     this.tintColor,
     this.surfaceAlphaOverride,
     this.includeShadow = false,
     this.borderWidth = 1,
+    this.blurSigma,
+    this.borderColor,
+    this.highlightGradientColors,
+    this.highlightGradientStops,
   });
 
   const NoorLiquidGlassSpec.card({
     this.mode = NoorLiquidGlassMode.disabled,
-    this.settings = const LiquidGlassSettings(
-      thickness: 14,
-      blur: 8,
-      lightIntensity: 0.42,
-      ambientStrength: 0.08,
-      saturation: 1.08,
-      glassColor: Color(0x12FFFFFF),
-    ),
     this.padding = const EdgeInsets.all(16),
-    this.useBackdropGroup = false,
-    this.grouped = false,
-    this.glassContainsChild = false,
-    this.clipBehavior = Clip.hardEdge,
+    this.clipBehavior = Clip.antiAlias,
     this.fallbackTreatment = AppSurfaceTreatment.standard,
     this.tintColor,
     this.surfaceAlphaOverride,
     this.includeShadow = false,
     this.borderWidth = 1,
+    this.blurSigma,
+    this.borderColor,
+    this.highlightGradientColors,
+    this.highlightGradientStops,
   }) : preset = NoorLiquidGlassPreset.card,
        borderRadius = AppRadii.card;
 
   const NoorLiquidGlassSpec.panel({
     this.mode = NoorLiquidGlassMode.disabled,
-    this.settings = const LiquidGlassSettings(
-      thickness: 12,
-      blur: 7,
-      lightIntensity: 0.40,
-      ambientStrength: 0.08,
-      saturation: 1.06,
-      glassColor: Color(0x10FFFFFF),
-    ),
     this.padding = const EdgeInsets.all(16),
-    this.useBackdropGroup = true,
-    this.grouped = false,
-    this.glassContainsChild = false,
-    this.clipBehavior = Clip.hardEdge,
+    this.clipBehavior = Clip.antiAlias,
     this.fallbackTreatment = AppSurfaceTreatment.standard,
     this.tintColor,
     this.surfaceAlphaOverride,
     this.includeShadow = false,
     this.borderWidth = 1,
+    this.blurSigma,
+    this.borderColor,
+    this.highlightGradientColors,
+    this.highlightGradientStops,
   }) : preset = NoorLiquidGlassPreset.panel,
        borderRadius = AppRadii.card;
 
   const NoorLiquidGlassSpec.pill({
     this.mode = NoorLiquidGlassMode.disabled,
-    this.settings = const LiquidGlassSettings(
-      thickness: 8,
-      blur: 6,
-      lightIntensity: 0.34,
-      ambientStrength: 0.05,
-      saturation: 1.03,
-      glassColor: Color(0x0FFFFFFF),
-    ),
     this.padding = const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-    this.useBackdropGroup = true,
-    this.grouped = false,
-    this.glassContainsChild = false,
-    this.clipBehavior = Clip.hardEdge,
+    this.clipBehavior = Clip.antiAlias,
     this.fallbackTreatment = AppSurfaceTreatment.standard,
     this.tintColor,
     this.surfaceAlphaOverride,
     this.includeShadow = false,
     this.borderWidth = 1,
+    this.blurSigma,
+    this.borderColor,
+    this.highlightGradientColors,
+    this.highlightGradientStops,
   }) : preset = NoorLiquidGlassPreset.pill,
        borderRadius = AppRadii.pill;
 
   final NoorLiquidGlassMode mode;
   final NoorLiquidGlassPreset preset;
-  final LiquidGlassSettings settings;
   final double borderRadius;
   final EdgeInsetsGeometry padding;
-  final bool useBackdropGroup;
-  final bool grouped;
-  final bool glassContainsChild;
   final Clip clipBehavior;
   final AppSurfaceTreatment fallbackTreatment;
   final Color? tintColor;
   final double? surfaceAlphaOverride;
   final bool includeShadow;
   final double borderWidth;
+  final double? blurSigma;
+  final Color? borderColor;
+  final List<Color>? highlightGradientColors;
+  final List<double>? highlightGradientStops;
 
   AppSurfaceVariant get surfaceVariant {
     switch (preset) {
@@ -140,34 +119,36 @@ class NoorLiquidGlassSpec {
 
   NoorLiquidGlassSpec copyWith({
     NoorLiquidGlassMode? mode,
-    LiquidGlassSettings? settings,
     double? borderRadius,
     EdgeInsetsGeometry? padding,
-    bool? useBackdropGroup,
-    bool? grouped,
-    bool? glassContainsChild,
     Clip? clipBehavior,
     AppSurfaceTreatment? fallbackTreatment,
     Color? tintColor,
     double? surfaceAlphaOverride,
     bool? includeShadow,
     double? borderWidth,
+    double? blurSigma,
+    Color? borderColor,
+    List<Color>? highlightGradientColors,
+    List<double>? highlightGradientStops,
   }) {
     return NoorLiquidGlassSpec(
       mode: mode ?? this.mode,
       preset: preset,
-      settings: settings ?? this.settings,
       borderRadius: borderRadius ?? this.borderRadius,
       padding: padding ?? this.padding,
-      useBackdropGroup: useBackdropGroup ?? this.useBackdropGroup,
-      grouped: grouped ?? this.grouped,
-      glassContainsChild: glassContainsChild ?? this.glassContainsChild,
       clipBehavior: clipBehavior ?? this.clipBehavior,
       fallbackTreatment: fallbackTreatment ?? this.fallbackTreatment,
       tintColor: tintColor ?? this.tintColor,
       surfaceAlphaOverride: surfaceAlphaOverride ?? this.surfaceAlphaOverride,
       includeShadow: includeShadow ?? this.includeShadow,
       borderWidth: borderWidth ?? this.borderWidth,
+      blurSigma: blurSigma ?? this.blurSigma,
+      borderColor: borderColor ?? this.borderColor,
+      highlightGradientColors:
+          highlightGradientColors ?? this.highlightGradientColors,
+      highlightGradientStops:
+          highlightGradientStops ?? this.highlightGradientStops,
     );
   }
 }
@@ -187,22 +168,9 @@ class NoorLiquidGlassCapability {
 
   static NoorLiquidGlassCapability current() {
     return NoorLiquidGlassCapability(
-      platformSupported: !kIsWeb && _supportsPlatform(defaultTargetPlatform),
+      platformSupported: !kIsWeb,
       shaderFilterSupported: ui.ImageFilter.isShaderFilterSupported,
     );
-  }
-
-  static bool _supportsPlatform(TargetPlatform platform) {
-    switch (platform) {
-      case TargetPlatform.iOS:
-      case TargetPlatform.android:
-      case TargetPlatform.macOS:
-        return true;
-      case TargetPlatform.fuchsia:
-      case TargetPlatform.linux:
-      case TargetPlatform.windows:
-        return false;
-    }
   }
 }
 
@@ -217,18 +185,7 @@ class NoorLiquidGlassLayer extends StatelessWidget {
   final Widget child;
 
   @override
-  Widget build(BuildContext context) {
-    final resolvedMode = _resolveMode(spec.mode);
-    if (resolvedMode != NoorLiquidGlassMode.liquid) {
-      return child;
-    }
-    return LiquidGlassLayer(
-      settings: spec.settings,
-      fake: false,
-      useBackdropGroup: spec.useBackdropGroup,
-      child: child,
-    );
-  }
+  Widget build(BuildContext context) => child;
 }
 
 class NoorLiquidGlassContainer extends StatelessWidget {
@@ -245,30 +202,69 @@ class NoorLiquidGlassContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final surfaceStyle = AppSurfaceTheme.resolve(
-      context,
-      variant: spec.surfaceVariant,
-      treatment: spec.fallbackTreatment,
-      tintColor: spec.tintColor,
-      surfaceAlphaOverride: spec.surfaceAlphaOverride,
-    );
-    final chrome = _NoorLiquidGlassChrome(
-      spec: spec,
-      surfaceStyle: surfaceStyle,
-      width: width,
-      child: child,
-    );
-    final resolvedMode = _resolveMode(spec.mode);
-    if (resolvedMode != NoorLiquidGlassMode.liquid) {
-      return chrome;
-    }
-    return LiquidGlass.withOwnLayer(
-      settings: spec.settings,
-      fake: false,
-      shape: LiquidRoundedSuperellipse(borderRadius: spec.borderRadius),
-      glassContainsChild: spec.glassContainsChild,
+    final style = _ResolvedNoorGlassStyle.resolve(context, spec);
+    final radius = BorderRadius.circular(spec.borderRadius);
+    final shell = ClipRRect(
+      borderRadius: radius,
       clipBehavior: spec.clipBehavior,
-      child: chrome,
+      child: Stack(
+        children: [
+          if (style.shouldBlur)
+            Positioned.fill(
+              child: BackdropFilter(
+                filter: ui.ImageFilter.blur(
+                  sigmaX: style.blurSigma,
+                  sigmaY: style.blurSigma,
+                ),
+                child: const SizedBox.expand(),
+              ),
+            ),
+          Positioned.fill(
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                borderRadius: radius,
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: <Color>[
+                    style.topFill.withValues(alpha: style.surfaceAlpha + 0.04),
+                    style.bottomFill.withValues(alpha: style.surfaceAlpha),
+                  ],
+                ),
+                border: Border.all(
+                  color: style.borderColor,
+                  width: spec.borderWidth,
+                ),
+              ),
+            ),
+          ),
+          Positioned.fill(
+            child: IgnorePointer(
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  borderRadius: radius,
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: style.highlightGradientColors,
+                    stops: style.highlightGradientStops,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Padding(padding: spec.padding, child: child),
+        ],
+      ),
+    );
+
+    return Container(
+      width: width,
+      decoration: BoxDecoration(
+        borderRadius: radius,
+        boxShadow: spec.includeShadow ? style.boxShadows : null,
+      ),
+      child: shell,
     );
   }
 }
@@ -287,75 +283,211 @@ class NoorLiquidGlassShape extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final surfaceStyle = AppSurfaceTheme.resolve(
-      context,
-      variant: spec.surfaceVariant,
-      treatment: spec.fallbackTreatment,
-      tintColor: spec.tintColor,
-      surfaceAlphaOverride: spec.surfaceAlphaOverride,
-    );
-    final chrome = _NoorLiquidGlassChrome(
-      spec: spec,
-      surfaceStyle: surfaceStyle,
-      width: width,
-      child: child,
-    );
-    if (_resolveMode(spec.mode) != NoorLiquidGlassMode.liquid) {
-      return chrome;
-    }
-    final shape = LiquidRoundedSuperellipse(borderRadius: spec.borderRadius);
-    return spec.grouped
-        ? LiquidGlass.grouped(
-            shape: shape,
-            glassContainsChild: spec.glassContainsChild,
-            clipBehavior: spec.clipBehavior,
-            child: chrome,
-          )
-        : LiquidGlass(
-            shape: shape,
-            glassContainsChild: spec.glassContainsChild,
-            clipBehavior: spec.clipBehavior,
-            child: chrome,
-          );
+    return NoorLiquidGlassContainer(spec: spec, width: width, child: child);
   }
 }
 
-class _NoorLiquidGlassChrome extends StatelessWidget {
-  const _NoorLiquidGlassChrome({
-    required this.spec,
-    required this.surfaceStyle,
-    required this.width,
-    required this.child,
+class _ResolvedNoorGlassStyle {
+  const _ResolvedNoorGlassStyle({
+    required this.topFill,
+    required this.bottomFill,
+    required this.surfaceAlpha,
+    required this.borderColor,
+    required this.highlightGradientColors,
+    required this.highlightGradientStops,
+    required this.boxShadows,
+    required this.blurSigma,
+    required this.shouldBlur,
   });
 
-  final NoorLiquidGlassSpec spec;
-  final AppSurfaceStyle surfaceStyle;
-  final double? width;
-  final Widget child;
+  final Color topFill;
+  final Color bottomFill;
+  final double surfaceAlpha;
+  final Color borderColor;
+  final List<Color> highlightGradientColors;
+  final List<double> highlightGradientStops;
+  final List<BoxShadow> boxShadows;
+  final double blurSigma;
+  final bool shouldBlur;
 
-  @override
-  Widget build(BuildContext context) {
-    final baseDecoration = surfaceStyle.decoration(
-      radius: spec.borderRadius,
-      borderWidth: spec.borderWidth,
-      includeShadow: spec.includeShadow,
-    );
-    final highlightColor = Colors.white.withValues(alpha: 0.10);
-    return Container(
-      width: width,
-      padding: spec.padding,
-      decoration: baseDecoration.copyWith(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: <Color>[
-            highlightColor,
-            surfaceStyle.backgroundColor.withValues(alpha: 0.12),
-          ],
-        ),
+  static _ResolvedNoorGlassStyle resolve(
+    BuildContext context,
+    NoorLiquidGlassSpec spec,
+  ) {
+    final theme = Theme.of(context);
+    final appearance = theme.extension<AppAppearanceTheme>();
+    final isDark = appearance?.isDark ?? false;
+    final baseSurface = appearance?.surface ?? theme.colorScheme.surface;
+    final softSurface = appearance?.surfaceSoft ?? baseSurface;
+    final milkTone =
+        appearance?.frostedGlassTone ??
+        (isDark ? const Color(0xFFEFE3CB) : const Color(0xFFFEFBF6));
+    final sanctuaryTone =
+        appearance?.sanctuarySurfaceTone ??
+        (isDark ? const Color(0xFFEBDCBD) : const Color(0xFFF9F0DF));
+    final tint = spec.tintColor ?? const Color(0xFFE7C98C);
+    final tokens = _NoorGlassTokens.forPreset(spec.preset);
+    final surfaceAlpha = spec.surfaceAlphaOverride ?? tokens.surfaceAlpha;
+    final fillBase =
+        Color.lerp(softSurface, milkTone, tokens.milkBlend) ?? softSurface;
+    final warmedBase =
+        Color.lerp(fillBase, sanctuaryTone, tokens.sanctuaryBlend) ?? fillBase;
+    final bottomFill =
+        Color.lerp(warmedBase, tint, tokens.tintBlend) ?? warmedBase;
+    final topFill =
+        Color.lerp(bottomFill, Colors.white, tokens.topLightBlend) ??
+        bottomFill;
+    final borderColor =
+        spec.borderColor ??
+        (Color.lerp(Colors.white, tint, tokens.borderTintBlend) ?? Colors.white)
+            .withValues(alpha: tokens.borderAlpha);
+    final highlightGradientColors =
+        spec.highlightGradientColors ??
+        <Color>[
+          Colors.white.withValues(alpha: tokens.topHighlightAlpha),
+          Colors.white.withValues(alpha: tokens.midHighlightAlpha),
+          tint.withValues(alpha: tokens.bottomHighlightAlpha),
+        ];
+    final shadowBase = isDark ? Colors.black : const Color(0xFF7F6642);
+    final boxShadows = <BoxShadow>[
+      BoxShadow(
+        color: shadowBase.withValues(alpha: tokens.shadowAlpha),
+        blurRadius: tokens.shadowBlur,
+        offset: Offset(0, tokens.shadowYOffset),
+        spreadRadius: tokens.shadowSpread,
       ),
-      child: child,
+    ];
+    final resolvedMode = _resolveMode(spec.mode);
+
+    return _ResolvedNoorGlassStyle(
+      topFill: topFill,
+      bottomFill: bottomFill,
+      surfaceAlpha: surfaceAlpha,
+      borderColor: borderColor,
+      highlightGradientColors: highlightGradientColors,
+      highlightGradientStops:
+          spec.highlightGradientStops ?? const <double>[0.0, 0.42, 1.0],
+      boxShadows: boxShadows,
+      blurSigma: spec.blurSigma ?? tokens.blurSigma,
+      shouldBlur:
+          resolvedMode == NoorLiquidGlassMode.liquid &&
+          (spec.blurSigma ?? tokens.blurSigma) > 0,
     );
+  }
+}
+
+class _NoorGlassTokens {
+  const _NoorGlassTokens({
+    required this.surfaceAlpha,
+    required this.milkBlend,
+    required this.sanctuaryBlend,
+    required this.tintBlend,
+    required this.topLightBlend,
+    required this.borderAlpha,
+    required this.borderTintBlend,
+    required this.topHighlightAlpha,
+    required this.midHighlightAlpha,
+    required this.bottomHighlightAlpha,
+    required this.shadowAlpha,
+    required this.shadowBlur,
+    required this.shadowYOffset,
+    required this.shadowSpread,
+    required this.blurSigma,
+  });
+
+  final double surfaceAlpha;
+  final double milkBlend;
+  final double sanctuaryBlend;
+  final double tintBlend;
+  final double topLightBlend;
+  final double borderAlpha;
+  final double borderTintBlend;
+  final double topHighlightAlpha;
+  final double midHighlightAlpha;
+  final double bottomHighlightAlpha;
+  final double shadowAlpha;
+  final double shadowBlur;
+  final double shadowYOffset;
+  final double shadowSpread;
+  final double blurSigma;
+
+  static _NoorGlassTokens forPreset(NoorLiquidGlassPreset preset) {
+    switch (preset) {
+      case NoorLiquidGlassPreset.card:
+      case NoorLiquidGlassPreset.featureTile:
+      case NoorLiquidGlassPreset.island:
+        return const _NoorGlassTokens(
+          surfaceAlpha: 0.24,
+          milkBlend: 0.72,
+          sanctuaryBlend: 0.18,
+          tintBlend: 0.16,
+          topLightBlend: 0.16,
+          borderAlpha: 0.26,
+          borderTintBlend: 0.12,
+          topHighlightAlpha: 0.16,
+          midHighlightAlpha: 0.04,
+          bottomHighlightAlpha: 0.08,
+          shadowAlpha: 0.10,
+          shadowBlur: 22,
+          shadowYOffset: 12,
+          shadowSpread: -8,
+          blurSigma: 18,
+        );
+      case NoorLiquidGlassPreset.navigationBar:
+        return const _NoorGlassTokens(
+          surfaceAlpha: 0.22,
+          milkBlend: 0.70,
+          sanctuaryBlend: 0.16,
+          tintBlend: 0.14,
+          topLightBlend: 0.14,
+          borderAlpha: 0.24,
+          borderTintBlend: 0.10,
+          topHighlightAlpha: 0.14,
+          midHighlightAlpha: 0.03,
+          bottomHighlightAlpha: 0.07,
+          shadowAlpha: 0.08,
+          shadowBlur: 18,
+          shadowYOffset: 10,
+          shadowSpread: -8,
+          blurSigma: 14,
+        );
+      case NoorLiquidGlassPreset.panel:
+        return const _NoorGlassTokens(
+          surfaceAlpha: 0.16,
+          milkBlend: 0.62,
+          sanctuaryBlend: 0.12,
+          tintBlend: 0.10,
+          topLightBlend: 0.10,
+          borderAlpha: 0.18,
+          borderTintBlend: 0.10,
+          topHighlightAlpha: 0.10,
+          midHighlightAlpha: 0.03,
+          bottomHighlightAlpha: 0.05,
+          shadowAlpha: 0.05,
+          shadowBlur: 14,
+          shadowYOffset: 8,
+          shadowSpread: -8,
+          blurSigma: 0,
+        );
+      case NoorLiquidGlassPreset.pill:
+        return const _NoorGlassTokens(
+          surfaceAlpha: 0.14,
+          milkBlend: 0.58,
+          sanctuaryBlend: 0.10,
+          tintBlend: 0.08,
+          topLightBlend: 0.08,
+          borderAlpha: 0.16,
+          borderTintBlend: 0.08,
+          topHighlightAlpha: 0.08,
+          midHighlightAlpha: 0.02,
+          bottomHighlightAlpha: 0.04,
+          shadowAlpha: 0.0,
+          shadowBlur: 0,
+          shadowYOffset: 0,
+          shadowSpread: 0,
+          blurSigma: 0,
+        );
+    }
   }
 }
 

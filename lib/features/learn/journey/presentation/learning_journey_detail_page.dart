@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/application/kids_ui_theme_provider.dart';
 import '../../../../shared/content/learning_quote.dart';
+import '../../../../shared/widgets/app_hero_glass_shell.dart';
 import '../application/family_learning_provider.dart';
 import '../application/learn_together_provider.dart';
 import '../application/learning_journey_progress_provider.dart';
@@ -440,40 +441,55 @@ class LearningJourneyDetailPage extends ConsumerWidget {
           ),
         ),
         const SizedBox(height: 8),
-        FilledButton.icon(
-          onPressed: () {
-            if (isComplete && pathNextJourney != null) {
-              context.pushNamed(
-                'learnJourneyDetail',
-                pathParameters: {'journeyId': pathNextJourney.id},
-              );
-              return;
-            }
-            context.pushNamed(
-              'learnJourneyStage',
-              pathParameters: {
-                'journeyId': journey.id,
-                'stageId': isComplete ? stages.last.id : activeStageId,
+        AppHeroGlassShell(
+          padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 30),
+          tintColor: const Color(0xFFE7C98C),
+          surfaceAlphaOverride: 0.2,
+          radius: 36,
+          borderColor: const Color(0x42FFFFFF),
+          highlightGradientColors: const [
+            Color(0x24FFFFFF),
+            Colors.transparent,
+            Color(0x16E8C98F),
+          ],
+          child: SizedBox(
+            width: double.infinity,
+            child: FilledButton.icon(
+              onPressed: () {
+                if (isComplete && pathNextJourney != null) {
+                  context.pushNamed(
+                    'learnJourneyDetail',
+                    pathParameters: {'journeyId': pathNextJourney.id},
+                  );
+                  return;
+                }
+                context.pushNamed(
+                  'learnJourneyStage',
+                  pathParameters: {
+                    'journeyId': journey.id,
+                    'stageId': isComplete ? stages.last.id : activeStageId,
+                  },
+                );
               },
-            );
-          },
-          icon: Icon(
-            isComplete
-                ? (pathNextJourney != null
-                      ? Icons.route_rounded
-                      : Icons.replay_rounded)
-                : completedStageIds.isEmpty
-                ? Icons.play_arrow_rounded
-                : Icons.arrow_forward_rounded,
-          ),
-          label: Text(
-            isComplete
-                ? (pathNextJourney != null
-                      ? l10n.learningPathNextJourneyAction
-                      : l10n.learningJourneyDetailActionReviewJourney)
-                : completedStageIds.isEmpty
-                ? l10n.learningJourneyDetailActionStart
-                : l10n.learningJourneyDetailActionContinue,
+              icon: Icon(
+                isComplete
+                    ? (pathNextJourney != null
+                          ? Icons.route_rounded
+                          : Icons.replay_rounded)
+                    : completedStageIds.isEmpty
+                    ? Icons.play_arrow_rounded
+                    : Icons.arrow_forward_rounded,
+              ),
+              label: Text(
+                isComplete
+                    ? (pathNextJourney != null
+                          ? l10n.learningPathNextJourneyAction
+                          : l10n.learningJourneyDetailActionReviewJourney)
+                    : completedStageIds.isEmpty
+                    ? l10n.learningJourneyDetailActionStart
+                    : l10n.learningJourneyDetailActionContinue,
+              ),
+            ),
           ),
         ),
       ],

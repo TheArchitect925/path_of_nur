@@ -79,7 +79,6 @@ class AppAppearanceTheme extends ThemeExtension<AppAppearanceTheme> {
   final bool disableGlassTransparency;
   final bool disableColoredGlass;
   final bool disableBackground;
-
   bool get isDark =>
       mode == AppThemeMode.dark ||
       mode == AppThemeMode.noorGlassDark ||

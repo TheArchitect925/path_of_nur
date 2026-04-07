@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../core/theme/app_radii.dart';
 import '../../core/theme/app_surfaces.dart';
 import '../../features/profile/application/profile_settings_provider.dart';
 import 'app_layered_section_glass_card.dart';
@@ -10,7 +9,7 @@ class PremiumCard extends ConsumerStatefulWidget {
   const PremiumCard({
     super.key,
     required this.child,
-    this.padding = const EdgeInsets.all(16),
+    this.padding = const EdgeInsets.symmetric(horizontal: 28, vertical: 30),
     this.surfaceAlphaOverride,
     this.surfaceTintColor,
     this.surfaceVariant = AppSurfaceVariant.card,
@@ -63,8 +62,8 @@ class _PremiumCardState extends ConsumerState<PremiumCard> {
           child: AppLayeredSectionGlassCard(
             width: double.infinity,
             contentPadding: widget.padding,
-            outerRadius: 32,
-            innerRadius: AppRadii.card,
+            outerRadius: 36,
+            innerRadius: 36,
             surfaceVariant: widget.surfaceVariant,
             surfaceTreatment: widget.surfaceTreatment,
             surfaceTintColor: widget.surfaceTintColor,

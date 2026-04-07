@@ -1,0 +1,1 @@
+still happening, change the cards tp https://www.etsy.com/ca/listing/1591086201/porsche-718-boxster-two-child-seats?ls=a&ga_order=most_relevant&ga_search_type=all&ga_view_type=gallery&ga_search_query=porsche+718+accessories&ref=sc_gallery-1-6&sr_prefetch=0&pf_from=market&frs=1&sts=1&plkey=EuXdVftPyzqK8UJoJe5B0DBDVra1%3ALTb838934f3ad43730daf645dc450b0d8db39abaf1

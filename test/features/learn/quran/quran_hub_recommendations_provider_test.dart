@@ -13,7 +13,7 @@ import 'package:path_of_nur/shared/application/daily_clock_provider.dart';
 import '../../../test_helpers/app_test_harness.dart';
 
 void main() {
-  test('hub recommendations prioritize active path, journey-linked daily, and due review', () async {
+  test('hub recommendations prioritize active path and current daily companion context', () async {
     final journey = LearningJourneyRegistry.journeyById('daily-dhikr')!;
     final stage = LearningJourneyRegistry.stageById('dhikr-what-is')!;
     final dueProgress = MemorizationProgress(
@@ -33,7 +33,7 @@ void main() {
         ),
         quranGuidedContinuePathProvider.overrideWith(
           (ref) => seededQuranGuidedLearningPaths.firstWhere(
-            (path) => path.id == 'surah-study-starter',
+            (path) => path.id == 'tawhid-foundations',
           ),
         ),
         learningJourneyContinueProvider.overrideWithValue(
@@ -52,14 +52,18 @@ void main() {
     addTearDown(container.dispose);
 
     final recommendations = container.read(quranHubRecommendationsProvider);
+    final recommendationTypes = recommendations
+        .map((item) => item.type)
+        .toList(growable: false);
 
-    expect(recommendations, hasLength(3));
-    expect(recommendations[0].type, QuranHubRecommendationType.continuePath);
-    expect(recommendations[1].type, QuranHubRecommendationType.journeyLinkedStudy);
-    expect(recommendations[2].type, QuranHubRecommendationType.reviewMemorization);
+    expect(recommendations, hasLength(4));
+    expect(recommendations[0].type, QuranHubRecommendationType.resumePathway);
+    expect(recommendationTypes, contains(QuranHubRecommendationType.continueSurah));
+    expect(recommendationTypes, contains(QuranHubRecommendationType.timeOfDayPick));
+    expect(recommendationTypes, contains(QuranHubRecommendationType.relatedFollowUp));
   });
 
-  test('hub recommendations fall back to stable daily, continue-surah, and theme study suggestions', () async {
+  test('hub recommendations fall back to stable daily, pathway, and theme suggestions', () async {
     final container = await makeTestContainer(
       overrides: <Override>[
         dailyNowProvider.overrideWith(
@@ -78,10 +82,14 @@ void main() {
     addTearDown(container.dispose);
 
     final recommendations = container.read(quranHubRecommendationsProvider);
+    final recommendationTypes = recommendations
+        .map((item) => item.type)
+        .toList(growable: false);
 
-    expect(recommendations, hasLength(3));
-    expect(recommendations[0].type, QuranHubRecommendationType.dailyReflection);
-    expect(recommendations[1].type, QuranHubRecommendationType.continueSurah);
-    expect(recommendations[2].type, QuranHubRecommendationType.exploreTheme);
+    expect(recommendations, hasLength(4));
+    expect(recommendationTypes[0], QuranHubRecommendationType.continueSurah);
+    expect(recommendationTypes, contains(QuranHubRecommendationType.timeOfDayPick));
+    expect(recommendationTypes, contains(QuranHubRecommendationType.pathwaySuggestion));
+    expect(recommendationTypes, contains(QuranHubRecommendationType.relatedFollowUp));
   });
 }

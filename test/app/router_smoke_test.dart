@@ -48,6 +48,11 @@ void main() {
     await tester.pump(const Duration(milliseconds: 180));
   }
 
+  Future<void> pumpAppReady(WidgetTester tester) async {
+    await pumpRouteFrames(tester);
+    await tester.pump(const Duration(seconds: 3));
+  }
+
   testWidgets('root shell routes open without runtime failures', (
     tester,
   ) async {
@@ -62,7 +67,7 @@ void main() {
     final router = container.read(appRouterProvider);
 
     await tester.pumpWidget(buildRouterTestApp(container));
-    await pumpRouteFrames(tester);
+    await pumpAppReady(tester);
     expect(find.byType(HomePage), findsOneWidget);
 
     final cases = <(String, Type)>[
@@ -107,7 +112,7 @@ void main() {
     final router = container.read(appRouterProvider);
 
     await tester.pumpWidget(buildRouterTestApp(container));
-    await pumpRouteFrames(tester);
+    await pumpAppReady(tester);
 
     final cases = <(String, Type)>[
       ('/learn/hub/quran', QuranAppHubPage),
@@ -139,7 +144,7 @@ void main() {
     final router = container.read(appRouterProvider);
 
     await tester.pumpWidget(buildRouterTestApp(container));
-    await pumpRouteFrames(tester);
+    await pumpAppReady(tester);
 
     final cases = <(String, Type)>[
       ('/learn/section/prophets?tab=quiz', ProphetsPage),
@@ -174,7 +179,7 @@ void main() {
       final router = container.read(appRouterProvider);
 
       await tester.pumpWidget(buildRouterTestApp(container));
-      await pumpRouteFrames(tester);
+      await pumpAppReady(tester);
 
       final cases = <(String, Type)>[
         ('/learn/explore', LearnExploreAllKnowledgePage),
@@ -206,7 +211,7 @@ void main() {
       final router = container.read(appRouterProvider);
 
       await tester.pumpWidget(buildRouterTestApp(container));
-      await pumpRouteFrames(tester);
+      await pumpAppReady(tester);
 
       final cases = <(String, Type)>[
         ('/learn/paths/foundations/next', FoundationsPathNextStepsPage),
@@ -241,7 +246,7 @@ void main() {
     );
 
     await tester.pumpWidget(buildRouterTestApp(container));
-    await pumpRouteFrames(tester);
+    await pumpAppReady(tester);
     await tester.pump(const Duration(seconds: 2));
 
     expect(find.byType(OnboardingPage), findsOneWidget);
@@ -262,7 +267,7 @@ void main() {
       final router = container.read(appRouterProvider);
 
       await tester.pumpWidget(buildRouterTestApp(container));
-      await pumpRouteFrames(tester);
+      await pumpAppReady(tester);
 
       router.go('/onboarding');
       await pumpRouteFrames(tester);

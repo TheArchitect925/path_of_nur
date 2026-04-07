@@ -60,74 +60,63 @@ class AppSalahHeroCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final headerStyle = AppSurfaceTheme.resolve(
-      context,
-      variant: AppSurfaceVariant.pill,
-      tintColor: const Color(0xFFE2BC72),
-      surfaceAlphaOverride: 0.58,
-    );
-    final innerStyle = AppSurfaceTheme.resolve(
-      context,
-      variant: AppSurfaceVariant.panel,
-      tintColor: const Color(0xFFE4BE74),
-      surfaceAlphaOverride: 0.66,
-    );
-
     final content = Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(28),
-        border: Border.all(color: Colors.white.withValues(alpha: 0.22)),
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            Colors.white.withValues(alpha: 0.12),
-            Colors.transparent,
-            const Color(0xFFE8C98F).withValues(alpha: 0.08),
-          ],
-          stops: const [0.0, 0.24, 1.0],
-        ),
-      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          InkWell(
-            borderRadius: BorderRadius.circular(999),
-            onTap: onOpenLocationPicker,
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-              decoration: headerStyle.decoration(radius: 16),
-              child: Row(
-                children: [
-                  const Icon(
-                    Icons.location_on_outlined,
-                    size: 15,
-                    color: Color(0xFF7A5A33),
-                  ),
-                  const SizedBox(width: 4),
-                  Expanded(
-                    child: Text(
-                      locationLabel,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        color: Color(0xFF4D4036),
-                        fontSize: 12.8,
-                        fontWeight: FontWeight.w700,
-                        decoration: TextDecoration.underline,
-                        decorationColor: Color(0xFF7A5A33),
+          Material(
+            color: Colors.transparent,
+            child: InkWell(
+              borderRadius: BorderRadius.circular(16),
+              onTap: onOpenLocationPicker,
+              child: NoorGlassCard(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 8,
+                ),
+                surfaceVariant: AppSurfaceVariant.pill,
+                surfaceTintColor: const Color(0xFFE2BC72),
+                surfaceAlphaOverride: 0.16,
+                includeShadow: false,
+                mode: NoorLiquidGlassMode.fake,
+                borderRadius: 16,
+                child: Row(
+                  children: [
+                    const Icon(
+                      Icons.location_on_outlined,
+                      size: 15,
+                      color: Color(0xFF7A5A33),
+                    ),
+                    const SizedBox(width: 4),
+                    Expanded(
+                      child: Text(
+                        locationLabel,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                          color: Color(0xFF4D4036),
+                          fontSize: 12.8,
+                          fontWeight: FontWeight.w700,
+                          decoration: TextDecoration.underline,
+                          decorationColor: Color(0xFF7A5A33),
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
           const SizedBox(height: 12),
-          Container(
+          NoorGlassCard(
             padding: const EdgeInsets.all(14),
-            decoration: innerStyle.decoration(radius: 22),
+            surfaceVariant: AppSurfaceVariant.panel,
+            surfaceTintColor: const Color(0xFFE4BE74),
+            surfaceAlphaOverride: 0.16,
+            includeShadow: false,
+            mode: NoorLiquidGlassMode.fake,
+            borderRadius: 22,
             child: _AppSalahHeroPrimaryRow(
               nextName: nextName,
               nextArabic: nextArabic,
@@ -160,30 +149,14 @@ class _AppSalahHeroStatsLayer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return NoorGlassCard(
       padding: const EdgeInsets.all(5),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(26),
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            const Color(0xFFFFF4DE).withValues(alpha: 0.42),
-            const Color(0xFFE5C88F).withValues(alpha: 0.16),
-          ],
-        ),
-        border: Border.all(
-          color: const Color(0xFFFFF2CD).withValues(alpha: 0.64),
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: const Color(0xFF8B6831).withValues(alpha: 0.08),
-            blurRadius: 12,
-            spreadRadius: -6,
-            offset: const Offset(0, 5),
-          ),
-        ],
-      ),
+      surfaceVariant: AppSurfaceVariant.panel,
+      surfaceTintColor: const Color(0xFFE5C88F),
+      surfaceAlphaOverride: 0.14,
+      includeShadow: false,
+      mode: NoorLiquidGlassMode.fake,
+      borderRadius: 26,
       child: IntrinsicHeight(
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -206,14 +179,14 @@ class _AppSalahHeroStatCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final style = AppSurfaceTheme.resolve(
-      context,
-      variant: AppSurfaceVariant.panel,
-      tintColor: stat.tint,
-    );
-    final card = Container(
+    final card = NoorGlassCard(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-      decoration: style.decoration(radius: 16),
+      surfaceVariant: AppSurfaceVariant.panel,
+      surfaceTintColor: stat.tint,
+      surfaceAlphaOverride: 0.12,
+      includeShadow: false,
+      mode: NoorLiquidGlassMode.fake,
+      borderRadius: 16,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -260,18 +233,7 @@ class _AppSalahHeroStatCard extends StatelessWidget {
         ],
       ),
     );
-
-    return NoorLiquidGlassContainer(
-      spec: NoorLiquidGlassSpec.panel(
-        mode: NoorLiquidGlassMode.fake,
-        padding: const EdgeInsets.all(3),
-        fallbackTreatment: AppSurfaceTreatment.standard,
-        tintColor: stat.tint,
-        surfaceAlphaOverride: 0.14,
-        includeShadow: false,
-      ).copyWith(borderRadius: 18, borderWidth: 1),
-      child: card,
-    );
+    return card;
   }
 }
 
@@ -290,23 +252,27 @@ class _AppSalahHeroPrimaryRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final iconStyle = AppSurfaceTheme.resolve(
-      context,
-      variant: AppSurfaceVariant.panel,
-      tintColor: const Color(0xFFE5C583),
-      surfaceAlphaOverride: 0.18,
-    );
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
+        NoorGlassCard(
+          padding: EdgeInsets.zero,
+          surfaceVariant: AppSurfaceVariant.panel,
+          surfaceTintColor: const Color(0xFFE5C583),
+          surfaceAlphaOverride: 0.12,
+          includeShadow: false,
+          mode: NoorLiquidGlassMode.fake,
+          borderRadius: 16,
           width: 46,
-          height: 46,
-          decoration: iconStyle.decoration(radius: 16, includeShadow: true),
-          child: const Icon(
-            Icons.schedule_rounded,
-            size: 22,
-            color: Color(0xFF6E9A73),
+          child: const SizedBox(
+            height: 46,
+            child: Center(
+              child: Icon(
+                Icons.schedule_rounded,
+                size: 22,
+                color: Color(0xFF6E9A73),
+              ),
+            ),
           ),
         ),
         const SizedBox(width: 12),

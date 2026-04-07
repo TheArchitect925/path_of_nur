@@ -1,0 +1,3 @@
+audit all glass surfaces on the app and the bottom layer should always be left alone, the one above it should follow the rule and be this setting: Restyle this section to match the loading screen “Welcome Back” glass card exactly by reusing AppHeroGlassShell with the same padding, tint, alpha, radius, border, and highlight settings. Do not change logic, route behavior, theme system, or architecture.
+
+What we want, bottom layer fully transparent regular glass, then the one above it should follow the new glass rule - Restyle this section to match the loading screen “Welcome Back” glass card exactly by reusing AppHeroGlassShell with the same padding, tint, alpha, radius, border, and highlight settings. Do not change logic, route behavior, theme system, or architecture.

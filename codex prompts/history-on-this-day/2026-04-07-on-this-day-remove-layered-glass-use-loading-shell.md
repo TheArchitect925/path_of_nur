@@ -1,0 +1,1 @@
+on this day, remove the layered glass and apply yhis Restyle this section to match the loading screen “Welcome Back” glass card exactly by reusing AppHeroGlassShell with the same padding, tint, alpha, radius, border, and highlight settings. Do not change logic, route behavior, theme system, or architecture.

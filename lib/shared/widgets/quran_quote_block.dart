@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:quran/quran.dart' as q;
 
-import '../../core/theme/app_colors.dart';
-import '../../core/theme/app_surfaces.dart';
-import '../../core/theme/app_theme.dart';
 import '../../features/learn/quran/domain/quran_content_refs.dart';
+import 'app_hero_glass_shell.dart';
 import 'quran_sacred_block_chrome.dart';
 import 'quran_verse_content.dart';
 
@@ -82,49 +80,41 @@ class QuranQuoteBlock extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final appearance = Theme.of(context).extension<AppAppearanceTheme>();
-    final accent = appearance?.accent ?? AppColors.accentGold;
-    final surfaceStyle = AppSurfaceTheme.resolve(
-      context,
-      variant: AppSurfaceVariant.panel,
-      treatment: AppSurfaceTreatment.denseSanctuary,
-      tintColor: accent,
-    );
-
     final card = QuranSacredBlockChrome(
       margin: margin,
-      child: Container(
+      child: SizedBox(
         width: double.infinity,
-        padding: EdgeInsets.all(compact ? 12 : 16),
-        decoration: surfaceStyle.decoration(radius: 18, includeShadow: true),
-        child: QuranVerseContent(
-          source: QuranVerseSource(
-            ref: quote.ref,
-            referenceText: quote.locationText,
+        child: AppHeroGlassShell(
+          padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 30),
+          tintColor: const Color(0xFFE7C98C),
+          surfaceAlphaOverride: 0.2,
+          radius: 36,
+          borderColor: const Color(0x42FFFFFF),
+          highlightGradientColors: const [
+            Color(0x24FFFFFF),
+            Colors.transparent,
+            Color(0x16E8C98F),
+          ],
+          onTap: onTap,
+          child: QuranVerseContent(
+            source: QuranVerseSource(
+              ref: quote.ref,
+              referenceText: quote.locationText,
+            ),
+            dense: compact,
+            center: true,
+            showReference: showReference,
+            arabicBaseSize: compact ? 30 : 32,
+            transliterationBaseSize: 13.5,
+            translationBaseSize: 12.8,
+            arabicTransform: arabicTransform,
+            transliterationTransform: transliterationTransform,
+            translationTransform: translationTransform,
           ),
-          dense: compact,
-          center: true,
-          showReference: showReference,
-          arabicBaseSize: compact ? 30 : 32,
-          transliterationBaseSize: 13.5,
-          translationBaseSize: 12.8,
-          arabicTransform: arabicTransform,
-          transliterationTransform: transliterationTransform,
-          translationTransform: translationTransform,
         ),
       ),
     );
 
-    if (onTap == null) {
-      return card;
-    }
-    return Material(
-      type: MaterialType.transparency,
-      child: InkWell(
-        borderRadius: BorderRadius.circular(18),
-        onTap: onTap,
-        child: card,
-      ),
-    );
+    return card;
   }
 }

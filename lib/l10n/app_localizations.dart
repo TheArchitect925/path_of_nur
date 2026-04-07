@@ -1001,6 +1001,18 @@ abstract class AppLocalizations {
   /// **'The Holy Qur\'\'an'**
   String get quranAppHubTitle;
 
+  /// No description provided for @quranDiscoverSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Discover the Qur’an'**
+  String get quranDiscoverSectionTitle;
+
+  /// No description provided for @quranDiscoverSectionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep the summary, topics, pathways, current moment, and your next recommendation together in one calm place.'**
+  String get quranDiscoverSectionSubtitle;
+
   /// No description provided for @quranHubSubtitle.
   ///
   /// In en, this message translates to:
@@ -3547,6 +3559,72 @@ abstract class AppLocalizations {
   /// **'AR mode is still lightweight and may vary by device.'**
   String get worshipQiblaArModeBetaHint;
 
+  /// No description provided for @worshipQiblaArLiveTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Live camera guidance'**
+  String get worshipQiblaArLiveTitle;
+
+  /// No description provided for @worshipQiblaArLiveSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Hold your phone up. Keep the Qibla marker above the horizon and align the prayer mat toward the floor.'**
+  String get worshipQiblaArLiveSubtitle;
+
+  /// No description provided for @worshipQiblaArPrayerMatHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Place your prayer mat so its top edge points in the same direction as the Qibla marker.'**
+  String get worshipQiblaArPrayerMatHint;
+
+  /// No description provided for @worshipQiblaArOverlayTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Move until the marker centers'**
+  String get worshipQiblaArOverlayTitle;
+
+  /// No description provided for @worshipQiblaArHorizonLineLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Horizon'**
+  String get worshipQiblaArHorizonLineLabel;
+
+  /// No description provided for @worshipQiblaArKaabaLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Qibla'**
+  String get worshipQiblaArKaabaLabel;
+
+  /// No description provided for @worshipQiblaArCameraUnavailableTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Camera unavailable'**
+  String get worshipQiblaArCameraUnavailableTitle;
+
+  /// No description provided for @worshipQiblaArCameraPermissionBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow camera access to use AR mode and view the Qibla over your surroundings.'**
+  String get worshipQiblaArCameraPermissionBody;
+
+  /// No description provided for @worshipQiblaArCameraUnavailableBody.
+  ///
+  /// In en, this message translates to:
+  /// **'AR mode could not start the camera on this device right now.'**
+  String get worshipQiblaArCameraUnavailableBody;
+
+  /// No description provided for @worshipQiblaArCameraLoadingBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Starting the camera for live Qibla guidance...'**
+  String get worshipQiblaArCameraLoadingBody;
+
+  /// No description provided for @worshipQiblaArRetryCameraAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry camera'**
+  String get worshipQiblaArRetryCameraAction;
+
   /// No description provided for @worshipQiblaLocationServicesDisabled.
   ///
   /// In en, this message translates to:
@@ -3678,6 +3756,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Refresh location'**
   String get worshipQiblaRefreshLocation;
+
+  /// No description provided for @worshipQiblaMajorSitesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Distance to major Islamic sites'**
+  String get worshipQiblaMajorSitesTitle;
+
+  /// No description provided for @worshipQiblaDistanceKmValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{distance} km'**
+  String worshipQiblaDistanceKmValue(String distance);
+
+  /// No description provided for @worshipQiblaSiteMasjidAlHaram.
+  ///
+  /// In en, this message translates to:
+  /// **'Masjid al-Haram'**
+  String get worshipQiblaSiteMasjidAlHaram;
+
+  /// No description provided for @worshipQiblaSiteProphetsMosque.
+  ///
+  /// In en, this message translates to:
+  /// **'Al-Masjid an-Nabawi'**
+  String get worshipQiblaSiteProphetsMosque;
+
+  /// No description provided for @worshipQiblaSiteAlAqsa.
+  ///
+  /// In en, this message translates to:
+  /// **'Al-Aqsa Mosque'**
+  String get worshipQiblaSiteAlAqsa;
+
+  /// No description provided for @worshipQiblaSiteQubaMosque.
+  ///
+  /// In en, this message translates to:
+  /// **'Masjid Quba'**
+  String get worshipQiblaSiteQubaMosque;
+
+  /// No description provided for @worshipQiblaLocationMakkah.
+  ///
+  /// In en, this message translates to:
+  /// **'Makkah'**
+  String get worshipQiblaLocationMakkah;
+
+  /// No description provided for @worshipQiblaLocationMadinah.
+  ///
+  /// In en, this message translates to:
+  /// **'Madinah'**
+  String get worshipQiblaLocationMadinah;
+
+  /// No description provided for @worshipQiblaLocationJerusalem.
+  ///
+  /// In en, this message translates to:
+  /// **'Jerusalem'**
+  String get worshipQiblaLocationJerusalem;
 
   /// No description provided for @homeSearchTooltip.
   ///
@@ -27558,13 +27690,13 @@ abstract class AppLocalizations {
   /// No description provided for @onboardingLearningAgeGroupTitle.
   ///
   /// In en, this message translates to:
-  /// **'What best describes you?'**
+  /// **'Which learning path fits you best?'**
   String get onboardingLearningAgeGroupTitle;
 
   /// No description provided for @onboardingLearningAgeGroupSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'We use this to adapt lesson wording, pacing, and which journeys are surfaced more prominently.'**
+  /// **'We use this to adapt lesson wording and the kinds of journeys surfaced first, while keeping the experience calm and supportive.'**
   String get onboardingLearningAgeGroupSubtitle;
 
   /// No description provided for @onboardingLearningAgeGroupKids.
@@ -59983,7 +60115,7 @@ abstract class AppLocalizations {
   /// No description provided for @onboardingAgeRangeSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Path of Nur adjusts some guidance, tone, and family-related recommendations based on your stage of life so the experience feels more relevant and supportive.'**
+  /// **'This helps us keep examples and recommendations relevant to your stage of life.'**
   String get onboardingAgeRangeSubtitle;
 
   /// No description provided for @onboardingAgeRangeUnder18.
@@ -60205,13 +60337,13 @@ abstract class AppLocalizations {
   /// No description provided for @onboardingArabicReadModeTitle.
   ///
   /// In en, this message translates to:
-  /// **'How would you like to read Arabic?'**
+  /// **'What is your Qur’an reading preference?'**
   String get onboardingArabicReadModeTitle;
 
   /// No description provided for @onboardingArabicReadModeSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Choose the reading style that feels most comfortable for you.'**
+  /// **'Choose the reading setup that feels most comfortable for you when reading the Qur’an.'**
   String get onboardingArabicReadModeSubtitle;
 
   /// No description provided for @onboardingArabicReadModeNoArabicYet.
@@ -60283,7 +60415,7 @@ abstract class AppLocalizations {
   /// No description provided for @onboardingRemindersSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Choose your preferred reminders for salah and daily spiritual routines.'**
+  /// **'Choose a light reminder setup for salah and daily routines. You can fine-tune everything later.'**
   String get onboardingRemindersSubtitle;
 
   /// No description provided for @onboardingSalahReminderStylesTitle.
@@ -60325,13 +60457,13 @@ abstract class AppLocalizations {
   /// No description provided for @onboardingTrackingTitle.
   ///
   /// In en, this message translates to:
-  /// **'What would you like to track?'**
+  /// **'What would you like to keep in view?'**
   String get onboardingTrackingTitle;
 
   /// No description provided for @onboardingTrackingSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Choose the areas you would like Path of Nur to help you track over time. You can choose multiple.'**
+  /// **'Pick the areas you would like Path of Nur to gently keep in view as you grow. You can choose multiple.'**
   String get onboardingTrackingSubtitle;
 
   /// No description provided for @onboardingFamilyTitle.
@@ -60547,13 +60679,13 @@ abstract class AppLocalizations {
   /// No description provided for @onboardingFinalWelcomeBody.
   ///
   /// In en, this message translates to:
-  /// **'Your journey begins now. Path of Nur is ready to support you through learning, reflection, remembrance, and steady growth.'**
+  /// **'Your journey begins with intention, and it grows through small consistent steps. Path of Nur is here to support your learning, remembrance, reflection, and daily progress.'**
   String get onboardingFinalWelcomeBody;
 
   /// No description provided for @onboardingFocusListTitle.
   ///
   /// In en, this message translates to:
-  /// **'You chose to focus on:'**
+  /// **'Your chosen focus areas:'**
   String get onboardingFocusListTitle;
 
   /// No description provided for @onboardingKnowledgeDuaMeaning.
@@ -66525,6 +66657,186 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Test Loading Screen'**
   String get homeTestLoadingScreenPill;
+
+  /// No description provided for @onboardingOpeningTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A Journey Rooted in Knowledge'**
+  String get onboardingOpeningTitle;
+
+  /// No description provided for @onboardingOpeningHadithLead.
+  ///
+  /// In en, this message translates to:
+  /// **'The Messenger of Allah ﷺ said:'**
+  String get onboardingOpeningHadithLead;
+
+  /// No description provided for @onboardingOpeningHadithQuote.
+  ///
+  /// In en, this message translates to:
+  /// **'“Seeking knowledge is obligatory upon every Muslim.”'**
+  String get onboardingOpeningHadithQuote;
+
+  /// No description provided for @onboardingOpeningHadithSource.
+  ///
+  /// In en, this message translates to:
+  /// **'Sunan Ibn Majah'**
+  String get onboardingOpeningHadithSource;
+
+  /// No description provided for @onboardingOpeningMissionBodyOne.
+  ///
+  /// In en, this message translates to:
+  /// **'In Islam, knowledge is not a luxury. It is a responsibility. And what is obligatory should be within reach for everyone.'**
+  String get onboardingOpeningMissionBodyOne;
+
+  /// No description provided for @onboardingOpeningMissionBodyTwo.
+  ///
+  /// In en, this message translates to:
+  /// **'Path of Nur was created with that belief at its core — to help keep learning, remembrance, and growth free and accessible for all.'**
+  String get onboardingOpeningMissionBodyTwo;
+
+  /// No description provided for @onboardingOpeningMissionBodyThree.
+  ///
+  /// In en, this message translates to:
+  /// **'Whether you are beginning, returning, or trying to stay consistent, the app should feel like a calm companion for worship, reflection, and daily progress.'**
+  String get onboardingOpeningMissionBodyThree;
+
+  /// No description provided for @onboardingOpeningSupportLine.
+  ///
+  /// In en, this message translates to:
+  /// **'This short setup will personalize your experience.'**
+  String get onboardingOpeningSupportLine;
+
+  /// No description provided for @onboardingOpeningPlatformFooter.
+  ///
+  /// In en, this message translates to:
+  /// **'Available across iPhone, iPad, Apple Watch, Mac, Apple TV, Windows, and Android.'**
+  String get onboardingOpeningPlatformFooter;
+
+  /// No description provided for @onboardingFinalWelcomeClosingBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Take it one sincere step at a time. Meaningful progress is built through small, steady acts.'**
+  String get onboardingFinalWelcomeClosingBody;
+
+  /// No description provided for @onboardingDisclaimerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A Gentle Note Before You Begin'**
+  String get onboardingDisclaimerTitle;
+
+  /// No description provided for @onboardingDisclaimerIntroBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Path of Nur is not a fatwa app.\nIt is a companion for learning, reflection, worship, and growth.'**
+  String get onboardingDisclaimerIntroBody;
+
+  /// No description provided for @onboardingDisclaimerSourcesBody.
+  ///
+  /// In en, this message translates to:
+  /// **'The app draws from the Qur’an and Hadith, which are the primary sources of Islamic guidance, along with widely accepted foundational material.'**
+  String get onboardingDisclaimerSourcesBody;
+
+  /// No description provided for @onboardingDisclaimerNeutralBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Content is presented in a broad and neutral way, rather than as personal guidance from a specific scholar or imam.'**
+  String get onboardingDisclaimerNeutralBody;
+
+  /// No description provided for @onboardingDisclaimerNotRulingBody.
+  ///
+  /// In en, this message translates to:
+  /// **'It does not replace guidance from a qualified scholar, imam, or mufti, and it does not provide personal religious rulings.'**
+  String get onboardingDisclaimerNotRulingBody;
+
+  /// No description provided for @onboardingDisclaimerSeekScholarBody.
+  ///
+  /// In en, this message translates to:
+  /// **'For personal, sensitive, or complex matters, users should seek guidance from a qualified person of knowledge.'**
+  String get onboardingDisclaimerSeekScholarBody;
+
+  /// No description provided for @onboardingDisclaimerFeedbackBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Feedback, corrections, and enhancement requests are always welcome and help Path of Nur improve over time.'**
+  String get onboardingDisclaimerFeedbackBody;
+
+  /// No description provided for @onboardingDisclaimerFooter.
+  ///
+  /// In en, this message translates to:
+  /// **'Built to support your journey, not replace scholarship.'**
+  String get onboardingDisclaimerFooter;
+
+  /// No description provided for @onboardingArabicReadModePreviewHint.
+  ///
+  /// In en, this message translates to:
+  /// **'A preview is available lower down on this page to help you compare examples and adjust these settings.'**
+  String get onboardingArabicReadModePreviewHint;
+
+  /// No description provided for @onboardingThemeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose your theme'**
+  String get onboardingThemeTitle;
+
+  /// No description provided for @onboardingThemeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick the atmosphere that feels most at home in your journey. Changes apply instantly as you explore the previews below.'**
+  String get onboardingThemeSubtitle;
+
+  /// No description provided for @onboardingThemePreviewTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Live preview'**
+  String get onboardingThemePreviewTitle;
+
+  /// No description provided for @onboardingThemePreviewSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Use this sample text and card layout to compare readability, warmth, and card depth before you continue.'**
+  String get onboardingThemePreviewSubtitle;
+
+  /// No description provided for @onboardingThemeSampleTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A calm companion for your day'**
+  String get onboardingThemeSampleTitle;
+
+  /// No description provided for @onboardingThemeSampleBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Your theme affects how reading, reflection, and daily guidance feel across the app. Choose the one that feels steady and comfortable to return to.'**
+  String get onboardingThemeSampleBody;
+
+  /// No description provided for @onboardingThemeSampleChipPrayer.
+  ///
+  /// In en, this message translates to:
+  /// **'Prayer'**
+  String get onboardingThemeSampleChipPrayer;
+
+  /// No description provided for @onboardingThemeSampleChipReading.
+  ///
+  /// In en, this message translates to:
+  /// **'Reading'**
+  String get onboardingThemeSampleChipReading;
+
+  /// No description provided for @onboardingThemeSampleChipReflection.
+  ///
+  /// In en, this message translates to:
+  /// **'Reflection'**
+  String get onboardingThemeSampleChipReflection;
+
+  /// No description provided for @onboardingThemeSampleCardTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Today’s gentle focus'**
+  String get onboardingThemeSampleCardTitle;
+
+  /// No description provided for @onboardingThemeSampleCardBody.
+  ///
+  /// In en, this message translates to:
+  /// **'A softer look can make reading and reflection feel calmer. A stronger-contrast theme can make longer sessions easier.'**
+  String get onboardingThemeSampleCardBody;
 }
 
 class _AppLocalizationsDelegate

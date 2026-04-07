@@ -7,6 +7,7 @@ import '../../../../shared/widgets/premium_card.dart';
 import '../../analytics/application/learn_analytics_service.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/guided_learning_paths_provider.dart';
+import '../domain/guided_learning_path_icon_registry.dart';
 
 class DailyDhikrPathNextStepsPage extends ConsumerWidget {
   const DailyDhikrPathNextStepsPage({super.key});
@@ -161,9 +162,8 @@ class _NextPathCard extends ConsumerWidget {
                   ),
                   alignment: Alignment.center,
                   child: Icon(
-                    IconData(
-                      localizedPath.path.iconCodePoint,
-                      fontFamily: 'MaterialIcons',
+                    GuidedLearningPathIconRegistry.iconForPathId(
+                      localizedPath.path.id,
                     ),
                     color: accent,
                   ),

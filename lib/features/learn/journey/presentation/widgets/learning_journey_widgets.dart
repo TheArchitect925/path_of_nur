@@ -318,31 +318,44 @@ class LearningJourneyStageCard extends StatelessWidget {
       LearningJourneyStageStatus.placeholder => const Color(0xFF6C6257),
     };
 
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(18),
-      child: Container(
-        padding: const EdgeInsets.all(15),
-        decoration: BoxDecoration(
-          color: isLocked
-              ? const Color(0xFFF4F0EA)
-              : isCurrent
-              ? const Color(0xFFF4EBDD)
-              : isCompleted
-              ? const Color(0xFFF2F5EF)
-              : const Color(0xFFF8F3EB),
-          borderRadius: BorderRadius.circular(18),
-          border: Border.all(
-            color: isLocked
-                ? const Color(0xFFE3D8CB)
-                : isCurrent
-                ? const Color(0xFFDDBF92)
-                : isCompleted
-                ? const Color(0xFFC9D7BF)
-                : const Color(0xFFE5D8C7),
-          ),
-        ),
-        child: Row(
+    final posterBackground = switch (stage.status) {
+      LearningJourneyStageStatus.real => const Color(0xFFF2E8D6),
+      LearningJourneyStageStatus.partial => const Color(0xFFF0E1CF),
+      LearningJourneyStageStatus.placeholder => const Color(0xFFEAE2D6),
+    };
+    final posterBorder = switch (stage.status) {
+      LearningJourneyStageStatus.real => const Color(0xFFC9A15D),
+      LearningJourneyStageStatus.partial => const Color(0xFFB97D52),
+      LearningJourneyStageStatus.placeholder => const Color(0xFF9A8773),
+    };
+    final posterAccent = switch (stage.status) {
+      LearningJourneyStageStatus.real => const Color(0xFF355C4D),
+      LearningJourneyStageStatus.partial => const Color(0xFF9C5B34),
+      LearningJourneyStageStatus.placeholder => const Color(0xFF74614E),
+    };
+
+    return RepaintBoundary(
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: onTap,
+          borderRadius: BorderRadius.circular(28),
+          child: Ink(
+            decoration: BoxDecoration(
+              color: posterBackground,
+              borderRadius: BorderRadius.circular(28),
+              border: Border.all(color: posterBorder, width: 1.4),
+              boxShadow: const [
+                BoxShadow(
+                  color: Color(0x14000000),
+                  blurRadius: 16,
+                  offset: Offset(0, 8),
+                ),
+              ],
+            ),
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(18, 18, 18, 20),
+              child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
@@ -358,6 +371,9 @@ class LearningJourneyStageCard extends StatelessWidget {
                     ? const Color(0xFFF0DEC4)
                     : const Color(0xFFEADCC7),
                 borderRadius: BorderRadius.circular(10),
+                border: Border.all(
+                  color: posterAccent.withValues(alpha: 0.20),
+                ),
               ),
               child: isLocked
                   ? const Icon(
@@ -391,16 +407,10 @@ class LearningJourneyStageCard extends StatelessWidget {
             ),
             const SizedBox(width: 10),
             Container(
-              width: 3,
+              width: 6,
               margin: const EdgeInsets.only(top: 2),
               decoration: BoxDecoration(
-                color: isCompleted
-                    ? const Color(0xFFAFC3A0)
-                    : isLocked
-                    ? const Color(0xFFE0D5C6)
-                    : isCurrent
-                    ? const Color(0xFFD9B888)
-                    : const Color(0xFFE6DDD1),
+                color: posterAccent,
                 borderRadius: BorderRadius.circular(999),
               ),
             ),
@@ -536,6 +546,9 @@ class LearningJourneyStageCard extends StatelessWidget {
               ),
             ),
           ],
+        ),
+            ),
+          ),
         ),
       ),
     );

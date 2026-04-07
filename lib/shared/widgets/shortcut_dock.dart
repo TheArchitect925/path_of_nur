@@ -75,33 +75,16 @@ class ShortcutDock extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.end,
       mainAxisSize: MainAxisSize.min,
       children: [
-        AnimatedSwitcher(
-          duration: const Duration(milliseconds: 220),
-          switchInCurve: Curves.easeOutCubic,
-          switchOutCurve: Curves.easeInCubic,
-          transitionBuilder: (child, animation) {
-            return FadeTransition(
-              opacity: animation,
-              child: SizeTransition(
-                sizeFactor: animation,
-                axisAlignment: 1,
-                child: child,
-              ),
-            );
-          },
-          child: !expanded
-              ? const SizedBox.shrink()
-              : Column(
-                  key: const ValueKey('shortcut-dock-expanded'),
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    for (final action in actions) ...[
-                      _ShortcutDockChip(action: action),
-                      const SizedBox(height: 10),
-                    ],
-                  ],
-                ),
-        ),
+        if (expanded)
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              for (final action in actions) ...[
+                _ShortcutDockChip(action: action),
+                const SizedBox(height: 10),
+              ],
+            ],
+          ),
         _ShortcutDockToggleChip(
           expanded: expanded,
           openLabel: openLabel,

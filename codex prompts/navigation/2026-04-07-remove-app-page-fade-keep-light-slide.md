@@ -1,0 +1,1 @@
+My recommendation is: first remove the page opacity animation from AppPageScaffold, keep only a very light slide, and re-test on Home/Learn/Quran with the mini player visible. If you want, I can do that next and make the shell transitions feel cleaner without changing the app’s core architecture.

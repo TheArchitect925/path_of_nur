@@ -8,12 +8,15 @@ import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/content/learning_quote.dart';
 import '../../../../shared/widgets/app_hero_glass_shell.dart';
 import '../../../../shared/widgets/app_layered_glass_pill_button.dart';
+import '../../../../shared/widgets/main_page_shortcut_configs.dart';
+import '../../../../shared/widgets/main_page_shortcut_stack.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/section_hub_scaffold.dart';
 import '../../analytics/application/learn_analytics_service.dart';
 import '../../analytics/domain/learn_analytics_models.dart';
 import '../../enrichment/application/learn_enrichment_provider.dart';
 import '../../guided_paths/application/guided_learning_paths_provider.dart';
+import '../../guided_paths/domain/guided_learning_path_icon_registry.dart';
 import '../../guided_paths/domain/guided_learning_path_models.dart';
 import '../../journey/application/family_learning_provider.dart';
 import '../../personalization/application/learning_personalization_provider.dart';
@@ -98,6 +101,11 @@ class _LearningSectionLandingPageState
       title: l10n.learnHubTitle,
       subtitle: l10n.learnHubLandingCalmSubtitle,
       quoteHeader: const LearningHubRabbiZidniIlmaHeader(),
+      floatingBottom: MainPageShortcutStack(
+        items: buildLearnPageShortcuts(l10n),
+        openLabel: l10n.learnShortcutOpen,
+        closeLabel: l10n.learnShortcutClose,
+      ),
       children: [
         _SectionHeader(
           title: l10n.learnPersonalizationSectionTitle,
@@ -981,6 +989,16 @@ class _GuidedLearningPathCard extends ConsumerWidget {
       variant: AppSurfaceVariant.pill,
       tintColor: accent,
     );
+    final innerCardTop =
+        Color.lerp(iconBase, Colors.white, 0.38) ?? Colors.white;
+    final innerCardBottom = Color.lerp(iconBase, accent, 0.16) ?? accent;
+    final innerBorderColor =
+        Color.lerp(
+          Colors.white.withValues(alpha: 0.88),
+          accent.withValues(alpha: 0.30),
+          0.36,
+        ) ??
+        Colors.white.withValues(alpha: 0.88);
     return AnimatedScale(
       scale: isActive ? 1.01 : 1,
       duration: const Duration(milliseconds: 220),
@@ -1010,105 +1028,119 @@ class _GuidedLearningPathCard extends ConsumerWidget {
             );
           },
           child: PremiumCard(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.all(4),
             surfaceVariant: AppSurfaceVariant.island,
             surfaceTintColor: accent,
             includeShadow: true,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Container(
-                      width: 46,
-                      height: 46,
-                      decoration: BoxDecoration(
-                        color: Color.alphaBlend(
-                          iconBase.withValues(alpha: 0.88),
-                          surfaceStyle.iconBackgroundColor,
+            child: Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(color: innerBorderColor),
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    innerCardTop.withValues(alpha: 0.94),
+                    innerCardBottom.withValues(alpha: 0.88),
+                  ],
+                ),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Container(
+                        width: 46,
+                        height: 46,
+                        decoration: BoxDecoration(
+                          color: Color.alphaBlend(
+                            iconBase.withValues(alpha: 0.88),
+                            surfaceStyle.iconBackgroundColor,
+                          ),
+                          borderRadius: BorderRadius.circular(14),
+                          border: Border.all(color: surfaceStyle.borderColor),
                         ),
-                        borderRadius: BorderRadius.circular(14),
-                        border: Border.all(color: surfaceStyle.borderColor),
-                      ),
-                      child: Icon(
-                        IconData(
-                          localizedPath.path.iconCodePoint,
-                          fontFamily: 'MaterialIcons',
-                        ),
-                        color: accent,
-                      ),
-                    ),
-                    const Spacer(),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 10,
-                        vertical: 6,
-                      ),
-                      decoration: statusStyle.decoration(
-                        radius: 999,
-                        includeShadow: false,
-                      ),
-                      child: Text(
-                        statusLabel,
-                        style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                        child: Icon(
+                          GuidedLearningPathIconRegistry.iconForPathId(
+                            localizedPath.path.id,
+                          ),
                           color: accent,
-                          fontWeight: FontWeight.w700,
                         ),
+                      ),
+                      const Spacer(),
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 10,
+                          vertical: 6,
+                        ),
+                        decoration: statusStyle.decoration(
+                          radius: 999,
+                          includeShadow: false,
+                        ),
+                        child: Text(
+                          statusLabel,
+                          style: Theme.of(context).textTheme.labelSmall
+                              ?.copyWith(
+                                color: accent,
+                                fontWeight: FontWeight.w700,
+                              ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 14),
+                  Text(
+                    localizedPath.title,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.w700,
+                      color: accent,
+                    ),
+                  ),
+                  const SizedBox(height: 6),
+                  Text(
+                    localizedPath.subtitle,
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color: contentColors.subtleForeground,
+                      height: 1.35,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(999),
+                    child: LinearProgressIndicator(
+                      value: progressValue.clamp(0, 1),
+                      minHeight: 7,
+                      backgroundColor: surfaceStyle.iconBackgroundColor,
+                      valueColor: AlwaysStoppedAnimation<Color>(accent),
+                    ),
+                  ),
+                  Text(
+                    l10n.guidedLearningPathProgressValue(
+                      completedCount,
+                      totalCount,
+                    ),
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      color: accent,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  if (!progress.isCompleted) ...[
+                    const SizedBox(height: 6),
+                    Text(
+                      l10n.guidedLearningPathNextStepLabel(nextStep.title),
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
                       ),
                     ),
                   ],
-                ),
-                const SizedBox(height: 14),
-                Text(
-                  localizedPath.title,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.w700,
-                    color: accent,
-                  ),
-                ),
-                const SizedBox(height: 6),
-                Text(
-                  localizedPath.subtitle,
-                  maxLines: 3,
-                  overflow: TextOverflow.ellipsis,
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: contentColors.subtleForeground,
-                    height: 1.35,
-                  ),
-                ),
-                const SizedBox(height: 12),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(999),
-                  child: LinearProgressIndicator(
-                    value: progressValue.clamp(0, 1),
-                    minHeight: 7,
-                    backgroundColor: surfaceStyle.iconBackgroundColor,
-                    valueColor: AlwaysStoppedAnimation<Color>(accent),
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  l10n.guidedLearningPathProgressValue(
-                    completedCount,
-                    totalCount,
-                  ),
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: accent,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                if (!progress.isCompleted) ...[
-                  const SizedBox(height: 6),
-                  Text(
-                    l10n.guidedLearningPathNextStepLabel(nextStep.title),
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: Theme.of(context).colorScheme.onSurfaceVariant,
-                    ),
-                  ),
                 ],
-              ],
+              ),
             ),
           ),
         ),

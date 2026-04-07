@@ -248,13 +248,8 @@ class _AnimatedPageEntranceState extends State<_AnimatedPageEntrance> {
     return AnimatedSlide(
       duration: const Duration(milliseconds: 260),
       curve: Curves.easeOutCubic,
-      offset: _visible ? Offset.zero : const Offset(0, 0.018),
-      child: AnimatedOpacity(
-        duration: const Duration(milliseconds: 260),
-        curve: Curves.easeOutCubic,
-        opacity: _visible ? 1 : 0,
-        child: widget.child,
-      ),
+      offset: _visible ? Offset.zero : const Offset(0, 0.012),
+      child: widget.child,
     );
   }
 }
@@ -277,13 +272,8 @@ class _AnimatedQuoteHeaderState extends State<_AnimatedQuoteHeader> {
     return AnimatedSlide(
       duration: const Duration(milliseconds: 420),
       curve: Curves.easeOutCubic,
-      offset: _visible ? Offset.zero : const Offset(0, 0.04),
-      child: AnimatedOpacity(
-        duration: const Duration(milliseconds: 420),
-        curve: Curves.easeOutCubic,
-        opacity: _visible ? 1 : 0,
-        child: widget.child,
-      ),
+      offset: _visible ? Offset.zero : const Offset(0, 0.024),
+      child: widget.child,
     );
   }
 }

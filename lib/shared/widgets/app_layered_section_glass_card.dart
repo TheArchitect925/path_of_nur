@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../core/theme/app_radii.dart';
 import '../../core/theme/app_surfaces.dart';
-import 'noor_glass_card.dart';
-import 'noor_liquid_glass.dart';
+import 'app_hero_glass_shell.dart';
 
 class AppLayeredSectionGlassCard extends StatelessWidget {
   const AppLayeredSectionGlassCard({
@@ -33,79 +32,20 @@ class AppLayeredSectionGlassCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (surfaceTreatment == AppSurfaceTreatment.denseSanctuary) {
-      return NoorGlassCard(
-        padding: contentPadding,
-        surfaceVariant: surfaceVariant,
-        surfaceTreatment: surfaceTreatment,
-        surfaceTintColor: surfaceTintColor,
-        surfaceAlphaOverride: surfaceAlphaOverride,
-        includeShadow: includeShadow,
-        mode: NoorLiquidGlassMode.fake,
-        borderRadius: innerRadius,
-        width: width,
-        child: child,
-      );
-    }
-
-    final innerTint = surfaceTintColor ?? const Color(0xFFE6B85F);
-    final innerAlpha = surfaceAlphaOverride ?? 0.32;
-
-    return NoorGlassCard(
-      padding: const EdgeInsets.all(2),
-      surfaceVariant: AppSurfaceVariant.card,
-      surfaceTreatment: AppSurfaceTreatment.standard,
-      surfaceTintColor: const Color(0xFFE6C98F),
-      surfaceAlphaOverride: 0.18,
-      includeShadow: includeShadow,
-      mode: NoorLiquidGlassMode.fake,
-      borderRadius: outerRadius,
+    return SizedBox(
       width: width,
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(outerRadius - 2),
-          border: Border.all(color: const Color(0x24C8943F)),
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: <Color>[
-              const Color(0x08FFF7E8),
-              Colors.transparent,
-              const Color(0x12E8C98F),
-            ],
-            stops: const [0.0, 0.18, 1.0],
-          ),
-        ),
-        child: SizedBox(
-          width: width,
-          child: NoorGlassCard(
-            padding: const EdgeInsets.all(2),
-            surfaceVariant: surfaceVariant,
-            surfaceTreatment: surfaceTreatment,
-            surfaceTintColor: innerTint,
-            surfaceAlphaOverride: innerAlpha,
-            includeShadow: false,
-            mode: NoorLiquidGlassMode.fake,
-            borderRadius: innerRadius + 4,
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(innerRadius + 2),
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: <Color>[
-                    Colors.white.withValues(alpha: 0.02),
-                    const Color(0xFFE7B965).withValues(alpha: 0.06),
-                    const Color(0xFFC8943F).withValues(alpha: 0.12),
-                  ],
-                  stops: const [0.0, 0.62, 1.0],
-                ),
-                border: Border.all(
-                  color: const Color(0xFFC8943F).withValues(alpha: 0.42),
-                ),
-              ),
-              child: Padding(padding: contentPadding, child: child),
-            ),
+      child: AppHeroGlassShell(
+        padding: contentPadding,
+        tintColor: AppHeroGlassShell.globalCardTintColor,
+        surfaceAlphaOverride: AppHeroGlassShell.globalCardSurfaceAlpha,
+        radius: AppHeroGlassShell.globalCardRadius,
+        borderColor: AppHeroGlassShell.globalCardBorderColor,
+        highlightGradientColors:
+            AppHeroGlassShell.globalCardHighlightGradientColors,
+        child: Theme(
+          data: Theme.of(context).copyWith(),
+          child: DefaultTextStyle.merge(
+            child: child,
           ),
         ),
       ),

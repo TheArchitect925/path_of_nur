@@ -68,7 +68,7 @@ struct FastingCountdownAttributes: ActivityAttributes {
 }
 
 @main
-@objc class AppDelegate: FlutterAppDelegate, FlutterImplicitEngineDelegate {
+@objc class AppDelegate: FlutterAppDelegate {
   private let liveActivityChannelName = "path_of_nur/live_activities"
   private let navigationChannelName = "path_of_nur/navigation"
   private let iCloudSyncChannelName = "path_of_nur/icloud_sync"
@@ -77,7 +77,10 @@ struct FastingCountdownAttributes: ActivityAttributes {
   private let watchSyncChannelName = "path_of_nur/watch_sync"
   private let pendingRouteKey = "path_of_nur.pending_route"
   static weak var shared: AppDelegate?
+  private lazy var flutterEngine = FlutterEngine(name: "path_of_nur.shared_engine")
   private var navigationChannel: FlutterMethodChannel?
+  private var hasConfiguredFlutterChannels = false
+  private var hasStartedFlutterEngine = false
   private let watchPhoneCacheStore = WatchPhoneCacheStore()
   private lazy var watchConnectivityBridge = WatchPhoneConnectivityBridge(
     cacheStore: watchPhoneCacheStore
@@ -88,62 +91,73 @@ struct FastingCountdownAttributes: ActivityAttributes {
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
     AppDelegate.shared = self
-    if let registrar = self.registrar(forPlugin: "PathOfNurLiveActivityBridge") {
-      let channel = FlutterMethodChannel(
-        name: liveActivityChannelName,
-        binaryMessenger: registrar.messenger()
-      )
-      channel.setMethodCallHandler { [weak self] call, result in
-        self?.handleLiveActivityCall(call: call, result: result)
-      }
-
-      let navigationChannel = FlutterMethodChannel(
-        name: navigationChannelName,
-        binaryMessenger: registrar.messenger()
-      )
-      self.navigationChannel = navigationChannel
-      navigationChannel.setMethodCallHandler { [weak self] call, result in
-        self?.handleNavigationCall(call: call, result: result)
-      }
-
-      let iCloudSyncChannel = FlutterMethodChannel(
-        name: iCloudSyncChannelName,
-        binaryMessenger: registrar.messenger()
-      )
-      iCloudSyncChannel.setMethodCallHandler { [weak self] call, result in
-        self?.handleICloudSyncCall(call: call, result: result)
-      }
-
-      let platformRuntimeChannel = FlutterMethodChannel(
-        name: platformRuntimeChannelName,
-        binaryMessenger: registrar.messenger()
-      )
-      platformRuntimeChannel.setMethodCallHandler { [weak self] call, result in
-        self?.handlePlatformRuntimeCall(call: call, result: result)
-      }
-
-      let creationImageLabelingChannel = FlutterMethodChannel(
-        name: creationImageLabelingChannelName,
-        binaryMessenger: registrar.messenger()
-      )
-      creationImageLabelingChannel.setMethodCallHandler { [weak self] call, result in
-        self?.handleCreationImageLabelingCall(call: call, result: result)
-      }
-
-      let watchSyncChannel = FlutterMethodChannel(
-        name: watchSyncChannelName,
-        binaryMessenger: registrar.messenger()
-      )
-      watchSyncChannel.setMethodCallHandler { [weak self] call, result in
-        self?.handleWatchSyncCall(call: call, result: result)
-      }
-      watchConnectivityBridge.attach(channel: watchSyncChannel)
-    }
+    ensureFlutterEngineStarted()
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
 
-  func didInitializeImplicitFlutterEngine(_ engineBridge: FlutterImplicitEngineBridge) {
-    GeneratedPluginRegistrant.register(with: engineBridge.pluginRegistry)
+  @discardableResult
+  func ensureFlutterEngineStarted() -> FlutterEngine {
+    guard !hasStartedFlutterEngine else { return flutterEngine }
+    hasStartedFlutterEngine = true
+    flutterEngine.run()
+    GeneratedPluginRegistrant.register(with: flutterEngine)
+    configureFlutterChannels(using: flutterEngine.binaryMessenger)
+    return flutterEngine
+  }
+
+  private func configureFlutterChannels(using messenger: FlutterBinaryMessenger) {
+    guard !hasConfiguredFlutterChannels else { return }
+    hasConfiguredFlutterChannels = true
+
+    let liveActivityChannel = FlutterMethodChannel(
+      name: liveActivityChannelName,
+      binaryMessenger: messenger
+    )
+    liveActivityChannel.setMethodCallHandler { [weak self] call, result in
+      self?.handleLiveActivityCall(call: call, result: result)
+    }
+
+    let navigationChannel = FlutterMethodChannel(
+      name: navigationChannelName,
+      binaryMessenger: messenger
+    )
+    self.navigationChannel = navigationChannel
+    navigationChannel.setMethodCallHandler { [weak self] call, result in
+      self?.handleNavigationCall(call: call, result: result)
+    }
+
+    let iCloudSyncChannel = FlutterMethodChannel(
+      name: iCloudSyncChannelName,
+      binaryMessenger: messenger
+    )
+    iCloudSyncChannel.setMethodCallHandler { [weak self] call, result in
+      self?.handleICloudSyncCall(call: call, result: result)
+    }
+
+    let platformRuntimeChannel = FlutterMethodChannel(
+      name: platformRuntimeChannelName,
+      binaryMessenger: messenger
+    )
+    platformRuntimeChannel.setMethodCallHandler { [weak self] call, result in
+      self?.handlePlatformRuntimeCall(call: call, result: result)
+    }
+
+    let creationImageLabelingChannel = FlutterMethodChannel(
+      name: creationImageLabelingChannelName,
+      binaryMessenger: messenger
+    )
+    creationImageLabelingChannel.setMethodCallHandler { [weak self] call, result in
+      self?.handleCreationImageLabelingCall(call: call, result: result)
+    }
+
+    let watchSyncChannel = FlutterMethodChannel(
+      name: watchSyncChannelName,
+      binaryMessenger: messenger
+    )
+    watchSyncChannel.setMethodCallHandler { [weak self] call, result in
+      self?.handleWatchSyncCall(call: call, result: result)
+    }
+    watchConnectivityBridge.attach(channel: watchSyncChannel)
   }
 
   private func handleLiveActivityCall(call: FlutterMethodCall, result: @escaping FlutterResult) {

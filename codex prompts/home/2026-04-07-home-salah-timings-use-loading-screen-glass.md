@@ -1,0 +1,1 @@
+salah timings on. homescreen change the container and teh sub container to Restyle this section to match the loading screen “Welcome Back” glass card exactly by reusing AppHeroGlassShell with the same padding, tint, alpha, radius, border, and highlight settings.

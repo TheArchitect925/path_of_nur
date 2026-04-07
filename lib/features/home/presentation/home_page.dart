@@ -68,6 +68,8 @@ String _formatLocalizedCount(BuildContext context, num value) {
 }
 
 const int _shortcutDailyDhikrGoal = 500;
+const double _homeFloatingShortcutBottomOffset = 92;
+const double _homeFloatingShortcutContentPadding = 136;
 
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
@@ -104,12 +106,17 @@ class _HomePageState extends ConsumerState<HomePage> {
     final displayVerse =
         homeContextualQuotePool[verseVersion % homeContextualQuotePool.length];
 
-    return Stack(
-      children: [
-        SafeArea(
-          child: SingleChildScrollView(
+    return SafeArea(
+      child: Stack(
+        children: [
+          SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
-            padding: const EdgeInsets.fromLTRB(18, 8, 18, 152),
+            padding: const EdgeInsets.fromLTRB(
+              18,
+              8,
+              18,
+              _homeFloatingShortcutContentPadding,
+            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
@@ -141,7 +148,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                 const SizedBox(height: 12),
                 const OnThisDayHomeCard(),
                 const SizedBox(height: 12),
-                const CelestialCycleCard(),
+                const CelestialCycleCard(collapsible: true),
                 const SizedBox(height: 12),
                 _TodayContentSection(
                   quranBundle: quranBundle,
@@ -152,23 +159,26 @@ class _HomePageState extends ConsumerState<HomePage> {
               ],
             ),
           ),
-        ),
-        Positioned(
-          left: 0,
-          right: 0,
-          bottom: 92,
-          child: Align(
-            alignment: Alignment.bottomRight,
-            child: _HomeFloatingShortcutPill(
-              isKidsMode: isKidsMode,
-              salahProgressText:
-                  '${_formatLocalizedCount(context, worshipSummary.prayerCompleted)}/${_formatLocalizedCount(context, worshipSummary.prayerTotal)}',
-              dhikrProgressText:
-                  '${_formatLocalizedCount(context, worshipSummary.dhikrCount)}/${_formatLocalizedCount(context, _shortcutDailyDhikrGoal)}',
+          Positioned(
+            left: 16,
+            right: 16,
+            bottom:
+                (_homeFloatingShortcutBottomOffset -
+                        MediaQuery.viewPaddingOf(context).bottom)
+                    .clamp(58.0, _homeFloatingShortcutBottomOffset),
+            child: Align(
+              alignment: Alignment.centerRight,
+              child: _HomeFloatingShortcutSection(
+                isKidsMode: isKidsMode,
+                salahProgressText:
+                    '${_formatLocalizedCount(context, worshipSummary.prayerCompleted)}/${_formatLocalizedCount(context, worshipSummary.prayerTotal)}',
+                dhikrProgressText:
+                    '${_formatLocalizedCount(context, worshipSummary.dhikrCount)}/${_formatLocalizedCount(context, _shortcutDailyDhikrGoal)}',
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
@@ -188,7 +198,7 @@ class _HomeTestingRoutePills extends StatelessWidget {
         children: [
           AppLayeredGlassPillButton(
             label: l10n.homeTestOnboardingPill,
-            onPressed: () => context.go('/onboarding'),
+            onPressed: () => context.go('/onboarding?preview=1'),
           ),
           AppLayeredGlassPillButton(
             label: l10n.homeTestLoadingScreenPill,
@@ -200,8 +210,8 @@ class _HomeTestingRoutePills extends StatelessWidget {
   }
 }
 
-class _HomeFloatingShortcutPill extends StatelessWidget {
-  const _HomeFloatingShortcutPill({
+class _HomeFloatingShortcutSection extends StatelessWidget {
+  const _HomeFloatingShortcutSection({
     required this.isKidsMode,
     required this.salahProgressText,
     required this.dhikrProgressText,
@@ -242,7 +252,17 @@ class _TodayContentSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    return _HomeNoorCardShell(
+    return AppHeroGlassShell(
+      padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 30),
+      tintColor: const Color(0xFFE7C98C),
+      surfaceAlphaOverride: 0.2,
+      radius: 36,
+      borderColor: const Color(0x42FFFFFF),
+      highlightGradientColors: const [
+        Color(0x24FFFFFF),
+        Colors.transparent,
+        Color(0x16E8C98F),
+      ],
       child: Theme(
         data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
         child: ExpansionTile(
@@ -306,7 +326,7 @@ class _DailySalahTimingsCard extends ConsumerWidget {
       latitude: location.latitude,
       longitude: location.longitude,
       settings: prayerState.preferences,
-    ).where((item) => item.id != 'tahajjud').toList();
+    ).toList();
     final scheduleContext = isToday
         ? ref.watch(prayerScheduleContextProvider)
         : null;
@@ -317,6 +337,9 @@ class _DailySalahTimingsCard extends ConsumerWidget {
     ref.watch(prayerControllerProvider);
     final completedCount = dayEntries.values
         .where((entry) => entry.status == PrayerStatus.completed)
+        .length;
+    final trackedPrayerCount = schedule
+        .where((item) => item.id != 'tahajjud')
         .length;
     final locale = Localizations.localeOf(context).toLanguageTag();
     final timeFormat = DateFormat.jm(locale);
@@ -336,276 +359,233 @@ class _DailySalahTimingsCard extends ConsumerWidget {
     }
 
     return AppHeroGlassShell(
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
-      radius: 32,
-      tintColor: const Color(0xFFE6C98F),
-      surfaceAlphaOverride: 0.18,
-      child: NoorGlassCard(
-        padding: const EdgeInsets.all(2),
-        surfaceVariant: AppSurfaceVariant.panel,
-        surfaceTintColor: const Color(0xFFE6B85F),
-        surfaceAlphaOverride: 0.32,
-        includeShadow: false,
-        mode: NoorLiquidGlassMode.fake,
-        borderRadius: 24,
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(22),
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: <Color>[
-                Colors.white.withValues(alpha: 0.02),
-                const Color(0xFFE7B965).withValues(alpha: 0.06),
-                const Color(0xFFC8943F).withValues(alpha: 0.12),
-              ],
-              stops: const [0.0, 0.62, 1.0],
-            ),
-            border: Border.all(
-              color: const Color(0xFFC8943F).withValues(alpha: 0.42),
-            ),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    IconButton(
-                      onPressed: () {
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              IconButton(
+                onPressed: () {
+                  ref.read(homePrayerSelectedDateProvider.notifier).state =
+                      selectedDate.subtract(const Duration(days: 1));
+                },
+                icon: const Icon(
+                  Icons.chevron_left_rounded,
+                  color: Color(0xFF7A5A33),
+                ),
+                tooltip: l10n.homePrayerPreviousDayTooltip,
+              ),
+              Expanded(
+                child: Material(
+                  color: Colors.transparent,
+                  child: InkWell(
+                    borderRadius: BorderRadius.circular(12),
+                    onTap: () async {
+                      final picked = await _showHomePrayerCalendarSheet(
+                        context: context,
+                        initialDate: selectedDate,
+                      );
+                      if (picked != null) {
                         ref
                             .read(homePrayerSelectedDateProvider.notifier)
-                            .state = selectedDate.subtract(
-                          const Duration(days: 1),
+                            .state = DateTime(
+                          picked.year,
+                          picked.month,
+                          picked.day,
                         );
-                      },
-                      icon: const Icon(
-                        Icons.chevron_left_rounded,
-                        color: Color(0xFF7A5A33),
+                      }
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 8,
+                        vertical: 4,
                       ),
-                      tooltip: l10n.homePrayerPreviousDayTooltip,
-                    ),
-                    Expanded(
-                      child: Material(
-                        color: Colors.transparent,
-                        child: InkWell(
-                          borderRadius: BorderRadius.circular(12),
-                          onTap: () async {
-                            final picked = await _showHomePrayerCalendarSheet(
-                              context: context,
-                              initialDate: selectedDate,
-                            );
-                            if (picked != null) {
-                              ref
-                                  .read(homePrayerSelectedDateProvider.notifier)
-                                  .state = DateTime(
-                                picked.year,
-                                picked.month,
-                                picked.day,
-                              );
-                            }
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 8,
-                              vertical: 4,
-                            ),
-                            child: Column(
-                              children: [
-                                Text(
-                                  l10n.homePrayerSectionTitle,
-                                  textAlign: TextAlign.center,
-                                  style: const TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w700,
-                                    color: Color(0xFF25221E),
-                                    fontFamily: 'serif',
-                                  ),
-                                ),
-                                const SizedBox(height: 4),
-                                Text(
-                                  dateLabel,
-                                  textAlign: TextAlign.center,
-                                  style: const TextStyle(
-                                    fontSize: 12.5,
-                                    fontWeight: FontWeight.w600,
-                                    color: Color(0xFF6E5D4C),
-                                    fontFamily: 'serif',
-                                  ),
-                                ),
-                              ],
+                      child: Column(
+                        children: [
+                          Text(
+                            l10n.homePrayerSectionTitle,
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w700,
+                              color: Color(0xFF25221E),
+                              fontFamily: 'serif',
                             ),
                           ),
+                          const SizedBox(height: 4),
+                          Text(
+                            dateLabel,
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              fontSize: 12.5,
+                              fontWeight: FontWeight.w600,
+                              color: Color(0xFF6E5D4C),
+                              fontFamily: 'serif',
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              IconButton(
+                onPressed: () {
+                  ref.read(homePrayerSelectedDateProvider.notifier).state =
+                      selectedDate.add(const Duration(days: 1));
+                },
+                icon: const Icon(
+                  Icons.chevron_right_rounded,
+                  color: Color(0xFF7A5A33),
+                ),
+                tooltip: l10n.homePrayerNextDayTooltip,
+              ),
+            ],
+          ),
+          const SizedBox(height: 6),
+          Row(
+            children: [
+              const SizedBox(width: 8),
+              Expanded(
+                child: isFutureDay
+                    ? const SizedBox.shrink()
+                    : Text(
+                        l10n.homePrayerCompletedCountValue(
+                          _formatLocalizedCount(context, completedCount),
+                          _formatLocalizedCount(context, trackedPrayerCount),
+                        ),
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          fontSize: 12.5,
+                          color: Color(0xFF766656),
+                          height: 1.3,
                         ),
                       ),
-                    ),
-                    IconButton(
-                      onPressed: () {
-                        ref
-                            .read(homePrayerSelectedDateProvider.notifier)
-                            .state = selectedDate.add(
-                          const Duration(days: 1),
-                        );
-                      },
-                      icon: const Icon(
-                        Icons.chevron_right_rounded,
-                        color: Color(0xFF7A5A33),
-                      ),
-                      tooltip: l10n.homePrayerNextDayTooltip,
-                    ),
-                  ],
+              ),
+              IconButton(
+                onPressed: () => context.pushNamed('settingsPrayerWorship'),
+                icon: const Icon(
+                  Icons.settings_outlined,
+                  color: Color(0xFF8A7A6B),
                 ),
-                const SizedBox(height: 6),
-                Row(
-                  children: [
-                    const SizedBox(width: 8),
-                    Expanded(
-                      child: isFutureDay
-                          ? const SizedBox.shrink()
-                          : Text(
-                              l10n.homePrayerCompletedCountValue(
-                                _formatLocalizedCount(context, completedCount),
-                                _formatLocalizedCount(context, schedule.length),
-                              ),
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(
-                                fontSize: 12.5,
-                                color: Color(0xFF766656),
-                                height: 1.3,
-                              ),
+                tooltip: AppLocalizations.of(
+                  context,
+                ).profilePrayerSettingsTitle,
+              ),
+            ],
+          ),
+          if (!isFutureDay) ...[
+            const SizedBox(height: 8),
+          ] else ...[
+            const SizedBox(height: 2),
+          ],
+          LayoutBuilder(
+            builder: (context, constraints) {
+              final itemWidth = (constraints.maxWidth - 10) / 2;
+              return Wrap(
+                spacing: 10,
+                runSpacing: 10,
+                children: [
+                  for (final item in schedule)
+                    SizedBox(
+                      width: itemWidth,
+                      child: Builder(
+                        builder: (context) {
+                          final trackedPrayer = item.id == 'tahajjud'
+                              ? null
+                              : _prayerNameFromScheduleId(item.id);
+                          final entry = trackedPrayer == null
+                              ? null
+                              : dayEntries[trackedPrayer];
+                          final completedAt = entry?.completedAtIso == null
+                              ? null
+                              : DateTime.tryParse(entry!.completedAtIso!);
+                          final hasPostSalahDhikr =
+                              entry?.postSalahAdhkarCompletedAtIso != null;
+                          final canOpenDetails = !isFutureDay;
+                          return _PrayerTimingPill(
+                            prayerId: item.id,
+                            name: localizedPrayerNameForDate(
+                              prayerId: item.id,
+                              l10n: l10n,
+                              date: selectedDate,
                             ),
-                    ),
-                    IconButton(
-                      onPressed: () =>
-                          context.pushNamed('settingsPrayerWorship'),
-                      icon: const Icon(
-                        Icons.settings_outlined,
-                        color: Color(0xFF8A7A6B),
-                      ),
-                      tooltip: AppLocalizations.of(
-                        context,
-                      ).profilePrayerSettingsTitle,
-                    ),
-                  ],
-                ),
-                if (!isFutureDay) ...[
-                  const SizedBox(height: 8),
-                ] else ...[
-                  const SizedBox(height: 2),
-                ],
-                LayoutBuilder(
-                  builder: (context, constraints) {
-                    final itemWidth = (constraints.maxWidth - 10) / 2;
-                    return Wrap(
-                      spacing: 10,
-                      runSpacing: 10,
-                      children: [
-                        for (final item in schedule)
-                          SizedBox(
-                            width: itemWidth,
-                            child: Builder(
-                              builder: (context) {
-                                final prayer = _prayerNameFromScheduleId(
-                                  item.id,
-                                );
-                                final entry = dayEntries[prayer];
-                                final completedAt =
-                                    entry?.completedAtIso == null
-                                    ? null
-                                    : DateTime.tryParse(entry!.completedAtIso!);
-                                final hasPostSalahDhikr =
-                                    entry?.postSalahAdhkarCompletedAtIso !=
-                                    null;
-                                final canOpenDetails = !isFutureDay;
-                                return _PrayerTimingPill(
-                                  prayer: prayer,
-                                  name: localizedPrayerNameForDate(
-                                    prayerId: item.id,
-                                    l10n: l10n,
-                                    date: selectedDate,
+                            arabicName: arabicPrayerNameForDate(
+                              prayerId: item.id,
+                              date: selectedDate,
+                            ),
+                            time: item.offerTime,
+                            status: entry?.status ?? PrayerStatus.pending,
+                            completionDetail: completedAt == null
+                                ? null
+                                : l10n.worshipPrayerCompletedAt(
+                                    timeFormat.format(completedAt),
                                   ),
-                                  arabicName: arabicPrayerNameForDate(
-                                    prayerId: item.id,
-                                    date: selectedDate,
-                                  ),
-                                  time: item.offerTime,
-                                  status: entry?.status ?? PrayerStatus.pending,
-                                  completionDetail: completedAt == null
-                                      ? null
-                                      : l10n.worshipPrayerCompletedAt(
-                                          timeFormat.format(completedAt),
-                                        ),
-                                  hasPostSalahDhikr: hasPostSalahDhikr,
-                                  isCurrent:
-                                      isToday &&
-                                      item.id ==
-                                          scheduleContext?.currentPrayerId,
-                                  isNext:
-                                      isToday &&
-                                      item.id == scheduleContext?.nextPrayerId,
-                                  onToggleOffered: isFutureDay
-                                      ? null
-                                      : entry?.status == PrayerStatus.completed
-                                      ? isToday
-                                            ? () => ref
-                                                  .read(
-                                                    prayerControllerProvider
-                                                        .notifier,
-                                                  )
-                                                  .toggleCompleted(prayer)
-                                            : () =>
-                                                  _toggleHistoricalPrayerCompletion(
-                                                    ref,
-                                                    dayKey: dayKey,
-                                                    prayer: prayer,
-                                                    existingEntry: entry,
-                                                    completedAt:
-                                                        item.offerDateTime,
-                                                  )
-                                      : null,
-                                  onOpenDetails: !canOpenDetails
-                                      ? null
-                                      : () => _openHomePrayerTrackerSheet(
-                                          context,
-                                          ref,
-                                          dayKey: dayKey,
-                                          prayer: prayer,
-                                          prayerName:
-                                              localizedPrayerNameForDate(
-                                                prayerId: item.id,
-                                                l10n: l10n,
-                                                date: selectedDate,
-                                              ),
-                                          selectedDate: selectedDate,
-                                          existingEntry: entry,
-                                          isToday: isToday,
-                                          defaultCompletedAt: isToday
-                                              ? DateTime.now()
-                                              : item.offerDateTime,
-                                        ),
-                                  onMarkPostSalahDhikr:
-                                      !isToday ||
-                                          !canOpenDetails ||
-                                          hasPostSalahDhikr
-                                      ? null
-                                      : () => ref
+                            hasPostSalahDhikr: hasPostSalahDhikr,
+                            isCurrent:
+                                isToday &&
+                                item.id == scheduleContext?.currentPrayerId,
+                            isNext:
+                                isToday &&
+                                item.id == scheduleContext?.nextPrayerId,
+                            onToggleOffered: isFutureDay
+                                ? null
+                                : trackedPrayer == null
+                                ? null
+                                : entry?.status == PrayerStatus.completed
+                                ? isToday
+                                      ? () => ref
                                             .read(
                                               prayerControllerProvider.notifier,
                                             )
-                                            .logPostSalahDhikr(prayer),
-                                );
-                              },
-                            ),
-                          ),
-                      ],
-                    );
-                  },
-                ),
-              ],
-            ),
+                                            .toggleCompleted(trackedPrayer)
+                                      : () => _toggleHistoricalPrayerCompletion(
+                                          ref,
+                                          dayKey: dayKey,
+                                          prayer: trackedPrayer,
+                                          existingEntry: entry,
+                                          completedAt: item.offerDateTime,
+                                        )
+                                : null,
+                            onOpenDetails: !canOpenDetails
+                                ? null
+                                : trackedPrayer == null
+                                ? null
+                                : () => _openHomePrayerTrackerSheet(
+                                    context,
+                                    ref,
+                                    dayKey: dayKey,
+                                    prayer: trackedPrayer,
+                                    prayerName: localizedPrayerNameForDate(
+                                      prayerId: item.id,
+                                      l10n: l10n,
+                                      date: selectedDate,
+                                    ),
+                                    selectedDate: selectedDate,
+                                    existingEntry: entry,
+                                    isToday: isToday,
+                                    defaultCompletedAt: isToday
+                                        ? DateTime.now()
+                                        : item.offerDateTime,
+                                  ),
+                            onMarkPostSalahDhikr:
+                                !isToday ||
+                                    trackedPrayer == null ||
+                                    !canOpenDetails ||
+                                    hasPostSalahDhikr
+                                ? null
+                                : () => ref
+                                      .read(prayerControllerProvider.notifier)
+                                      .logPostSalahDhikr(trackedPrayer),
+                          );
+                        },
+                      ),
+                    ),
+                ],
+              );
+            },
           ),
-        ),
+        ],
       ),
     );
   }
@@ -1297,7 +1277,7 @@ class _TopGreetingBlock extends StatelessWidget {
 
 class _PrayerTimingPill extends StatelessWidget {
   const _PrayerTimingPill({
-    required this.prayer,
+    required this.prayerId,
     required this.name,
     required this.arabicName,
     required this.time,
@@ -1311,7 +1291,7 @@ class _PrayerTimingPill extends StatelessWidget {
     this.onMarkPostSalahDhikr,
   });
 
-  final PrayerName prayer;
+  final String prayerId;
   final String name;
   final String arabicName;
   final String time;
@@ -1327,208 +1307,192 @@ class _PrayerTimingPill extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    final palette = _paletteForPrayer(prayer);
-    final warmStyle = AppSurfaceTheme.resolve(
-      context,
-      variant: AppSurfaceVariant.panel,
-      tintColor: palette.base,
-    );
+    final palette = _paletteForPrayerId(prayerId);
     final accent = isCurrent
         ? palette.strong
         : isNext
         ? palette.base
         : palette.muted;
-    final background = isCurrent
-        ? AppSurfaceTheme.adaptiveColor(
-            context,
-            palette.base,
-            alpha: 0.34,
-            solidAlphaWhenDisabled: 0.44,
-          )
-        : isNext
-        ? AppSurfaceTheme.adaptiveColor(
-            context,
-            palette.base,
-            alpha: 0.26,
-            solidAlphaWhenDisabled: 0.38,
-          )
-        : palette.soft;
     final isCompleted = status == PrayerStatus.completed;
-    final resolvedBackground =
+    final pillBackgroundTint =
         Color.lerp(
-          warmStyle.backgroundColor,
-          background,
-          isCurrent ? 0.9 : (isNext ? 0.68 : 0.48),
+          palette.soft,
+          palette.base,
+          isCurrent ? 0.62 : (isNext ? 0.48 : 0.34),
         ) ??
-        warmStyle.backgroundColor;
-    final resolvedBorder =
+        palette.base;
+    final innerCardTop =
+        Color.lerp(palette.soft, Colors.white, isCurrent ? 0.18 : 0.30) ??
+        palette.soft;
+    final innerCardBottom =
         Color.lerp(
-          warmStyle.borderColor,
-          accent.withValues(alpha: isCurrent ? 0.52 : 0.30),
-          isCurrent ? 0.68 : 0.55,
+          palette.soft,
+          palette.base,
+          isCurrent ? 0.26 : (isNext ? 0.20 : 0.14),
         ) ??
-        warmStyle.borderColor;
-    final pillContent = Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: <Color>[
-            Color.lerp(
-                  resolvedBackground,
-                  Colors.white,
-                  isCurrent ? 0.16 : 0.12,
-                ) ??
-                resolvedBackground,
-            Color.lerp(resolvedBackground, accent, isCurrent ? 0.08 : 0.05) ??
-                resolvedBackground,
-          ],
-        ),
-        borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: resolvedBorder),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Icon(prayer.icon, size: 15, color: accent),
-              const SizedBox(width: 6),
-              Expanded(
-                child: Text(
-                  name,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                    fontSize: 12.8,
-                    fontWeight: FontWeight.w700,
-                    color: Color(0xFF2F2923),
-                    fontFamily: 'serif',
-                  ),
-                ),
-              ),
-              const SizedBox(width: 4),
-              InkWell(
-                onTap: isCompleted ? onToggleOffered : onOpenDetails,
-                borderRadius: BorderRadius.circular(999),
-                child: Container(
-                  width: 24,
-                  height: 24,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: isCompleted
-                        ? const Color(0xFF5E8A43).withValues(alpha: 0.14)
-                        : (onOpenDetails ?? onToggleOffered) == null
-                        ? const Color(0xFFF1ECE4)
-                        : const Color(0xFFF7F1E8),
-                  ),
-                  child: Icon(
-                    isCompleted
-                        ? Icons.check_circle_rounded
-                        : Icons.check_circle_outline_rounded,
-                    size: 18,
-                    color: isCompleted
-                        ? const Color(0xFF5E8A43)
-                        : (onOpenDetails ?? onToggleOffered) == null
-                        ? const Color(0xFFB4A594)
-                        : const Color(0xFF7D705F),
-                  ),
-                ),
-              ),
+        palette.base;
+    final innerBorderColor =
+        Color.lerp(
+          Colors.white.withValues(alpha: 0.88),
+          palette.base.withValues(alpha: isCurrent ? 0.42 : 0.30),
+          isCurrent ? 0.52 : (isNext ? 0.40 : 0.28),
+        ) ??
+        Colors.white.withValues(alpha: 0.88);
+    final pillContent = NoorGlassCard(
+      padding: const EdgeInsets.all(4),
+      surfaceVariant: AppSurfaceVariant.panel,
+      surfaceTintColor: pillBackgroundTint,
+      surfaceAlphaOverride: isCurrent ? 0.34 : (isNext ? 0.30 : 0.26),
+      includeShadow: false,
+      mode: NoorLiquidGlassMode.fake,
+      borderRadius: 28,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(24),
+          border: Border.all(color: innerBorderColor),
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              innerCardTop.withValues(alpha: 0.92),
+              innerCardBottom.withValues(alpha: 0.86),
             ],
           ),
-          const SizedBox(height: 4),
-          Text(
-            arabicName,
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-            textAlign: TextAlign.right,
-            textDirection: textDirectionForContent(arabicName),
-            style: const TextStyle(
-              fontSize: 15,
-              color: Color(0xFF5F554B),
-              fontFamily: 'serif',
-              height: 1.15,
-            ),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            time,
-            style: const TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w700,
-              color: Color(0xFF2F2923),
-              fontFamily: 'serif',
-            ),
-          ),
-          if (isCompleted) ...[
-            const SizedBox(height: 4),
-            Text(
-              completionDetail ?? l10n.homePrayerOfferedStatus,
-              style: const TextStyle(
-                fontSize: 11.5,
-                fontWeight: FontWeight.w700,
-                color: Color(0xFF5E8A43),
-              ),
-            ),
-            const SizedBox(height: 6),
-            Text(
-              l10n.homePrayerCompletedTapHintText,
-              style: const TextStyle(fontSize: 11, color: Color(0xFF7D705F)),
-            ),
-            const SizedBox(height: 4),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
             Row(
               children: [
-                SizedBox(
-                  width: 18,
-                  height: 18,
-                  child: Checkbox(
-                    value: hasPostSalahDhikr,
-                    visualDensity: VisualDensity.compact,
-                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    onChanged: onMarkPostSalahDhikr == null
-                        ? null
-                        : (_) => onMarkPostSalahDhikr?.call(),
-                  ),
-                ),
+                Icon(_iconForPrayerId(prayerId), size: 15, color: accent),
                 const SizedBox(width: 6),
                 Expanded(
                   child: Text(
-                    hasPostSalahDhikr
-                        ? l10n.homePrayerPostSalahDhikrLoggedText
-                        : l10n.homePrayerPostSalahDhikrActionText,
-                    style: TextStyle(
-                      fontSize: 11.5,
-                      fontWeight: FontWeight.w600,
-                      color: hasPostSalahDhikr
+                    name,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      fontSize: 12.8,
+                      fontWeight: FontWeight.w700,
+                      color: Color(0xFF2F2923),
+                      fontFamily: 'serif',
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 4),
+                InkWell(
+                  onTap: isCompleted ? onToggleOffered : onOpenDetails,
+                  borderRadius: BorderRadius.circular(999),
+                  child: Container(
+                    width: 24,
+                    height: 24,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: isCompleted
+                          ? const Color(0xFF5E8A43).withValues(alpha: 0.14)
+                          : (onOpenDetails ?? onToggleOffered) == null
+                          ? const Color(0xFFF1ECE4)
+                          : const Color(0xFFF7F1E8),
+                    ),
+                    child: Icon(
+                      isCompleted
+                          ? Icons.check_circle_rounded
+                          : Icons.check_circle_outline_rounded,
+                      size: 18,
+                      color: isCompleted
                           ? const Color(0xFF5E8A43)
-                          : const Color(0xFF5F554B),
+                          : (onOpenDetails ?? onToggleOffered) == null
+                          ? const Color(0xFFB4A594)
+                          : const Color(0xFF7D705F),
                     ),
                   ),
                 ),
               ],
             ),
+            const SizedBox(height: 4),
+            Text(
+              arabicName,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              textAlign: TextAlign.right,
+              textDirection: textDirectionForContent(arabicName),
+              style: const TextStyle(
+                fontSize: 15,
+                color: Color(0xFF5F554B),
+                fontFamily: 'serif',
+                height: 1.15,
+              ),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              time,
+              style: const TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w700,
+                color: Color(0xFF2F2923),
+                fontFamily: 'serif',
+              ),
+            ),
+            if (isCompleted) ...[
+              const SizedBox(height: 4),
+              Text(
+                completionDetail ?? l10n.homePrayerOfferedStatus,
+                style: const TextStyle(
+                  fontSize: 11.5,
+                  fontWeight: FontWeight.w700,
+                  color: Color(0xFF5E8A43),
+                ),
+              ),
+              const SizedBox(height: 6),
+              Text(
+                l10n.homePrayerCompletedTapHintText,
+                style: const TextStyle(fontSize: 11, color: Color(0xFF7D705F)),
+              ),
+              const SizedBox(height: 4),
+              Row(
+                children: [
+                  SizedBox(
+                    width: 18,
+                    height: 18,
+                    child: Checkbox(
+                      value: hasPostSalahDhikr,
+                      visualDensity: VisualDensity.compact,
+                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      onChanged: onMarkPostSalahDhikr == null
+                          ? null
+                          : (_) => onMarkPostSalahDhikr?.call(),
+                    ),
+                  ),
+                  const SizedBox(width: 6),
+                  Expanded(
+                    child: Text(
+                      hasPostSalahDhikr
+                          ? l10n.homePrayerPostSalahDhikrLoggedText
+                          : l10n.homePrayerPostSalahDhikrActionText,
+                      style: TextStyle(
+                        fontSize: 11.5,
+                        fontWeight: FontWeight.w600,
+                        color: hasPostSalahDhikr
+                            ? const Color(0xFF5E8A43)
+                            : const Color(0xFF5F554B),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ],
-        ],
+        ),
       ),
     );
 
     return Material(
       color: Colors.transparent,
       child: InkWell(
-        borderRadius: BorderRadius.circular(18),
+        borderRadius: BorderRadius.circular(28),
         onTap: onOpenDetails ?? onToggleOffered,
-        child: NoorGlassCard(
-          padding: const EdgeInsets.all(2),
-          surfaceVariant: AppSurfaceVariant.panel,
-          surfaceTintColor: palette.base,
-          surfaceAlphaOverride: isCurrent ? 0.24 : 0.18,
-          includeShadow: isCurrent || isNext,
-          mode: NoorLiquidGlassMode.fake,
-          borderRadius: 18,
-          child: pillContent,
-        ),
+        child: pillContent,
       ),
     );
   }
@@ -1550,37 +1514,63 @@ PrayerName _prayerNameFromScheduleId(String id) {
   }
 }
 
-_PrayerColorPalette _paletteForPrayer(PrayerName prayer) {
-  switch (prayer) {
-    case PrayerName.fajr:
+IconData _iconForPrayerId(String prayerId) {
+  switch (prayerId) {
+    case 'fajr':
+      return PrayerName.fajr.icon;
+    case 'dhuhr':
+      return PrayerName.dhuhr.icon;
+    case 'asr':
+      return PrayerName.asr.icon;
+    case 'maghrib':
+      return PrayerName.maghrib.icon;
+    case 'tahajjud':
+      return IslamicIcons.lantern;
+    case 'isha':
+    default:
+      return PrayerName.isha.icon;
+  }
+}
+
+_PrayerColorPalette _paletteForPrayerId(String prayerId) {
+  switch (prayerId) {
+    case 'fajr':
       return const _PrayerColorPalette(
         base: Color(0xFF87AFC7),
         strong: Color(0xFF587D9A),
         muted: Color(0xFF70889A),
         soft: Color(0xFFE6F0F5),
       );
-    case PrayerName.dhuhr:
+    case 'dhuhr':
       return const _PrayerColorPalette(
         base: Color(0xFFD4A74F),
         strong: Color(0xFF9A6D16),
         muted: Color(0xFFA58850),
         soft: Color(0xFFF6ECD7),
       );
-    case PrayerName.asr:
+    case 'asr':
       return const _PrayerColorPalette(
         base: Color(0xFFC9824F),
         strong: Color(0xFF9C5F34),
         muted: Color(0xFFA67B62),
         soft: Color(0xFFF5E6DC),
       );
-    case PrayerName.maghrib:
+    case 'maghrib':
       return const _PrayerColorPalette(
         base: Color(0xFFC56A63),
         strong: Color(0xFF94443E),
         muted: Color(0xFFA46B67),
         soft: Color(0xFFF6E1E0),
       );
-    case PrayerName.isha:
+    case 'tahajjud':
+      return const _PrayerColorPalette(
+        base: Color(0xFF7A5EA8),
+        strong: Color(0xFF56407C),
+        muted: Color(0xFF7C6A96),
+        soft: Color(0xFFECE6F6),
+      );
+    case 'isha':
+    default:
       return const _PrayerColorPalette(
         base: Color(0xFF6B6FAF),
         strong: Color(0xFF474C84),

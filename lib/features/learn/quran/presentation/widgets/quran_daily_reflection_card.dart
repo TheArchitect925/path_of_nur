@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../../core/theme/app_surfaces.dart';
 import '../../../../../l10n/app_localizations.dart';
 import '../../../../../shared/widgets/app_layered_glass_pill_button.dart';
+import '../../../../../shared/widgets/app_hero_glass_shell.dart';
 import '../../../../../shared/widgets/premium_card.dart';
 import '../../../../../shared/widgets/quran_navigation.dart';
 import '../../../../../shared/widgets/quran_verse_content.dart';
@@ -26,11 +27,13 @@ class QuranDailyReflectionCard extends ConsumerWidget {
     this.compact = false,
     this.showCompanionAction = true,
     this.showSecondaryActions = true,
+    this.useHeroGlassShell = false,
   });
 
   final bool compact;
   final bool showCompanionAction;
   final bool showSecondaryActions;
+  final bool useHeroGlassShell;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -56,241 +59,256 @@ class QuranDailyReflectionCard extends ConsumerWidget {
     );
     final spacing = compact ? 10.0 : 12.0;
 
+    final content = Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    compact && showCompanionAction
+                        ? l10n.quranAyahActionTodayTitle
+                        : compact
+                        ? l10n.quranDailyCompanionTitle
+                        : l10n.quranDailyReflectionTitle,
+                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    compact && showCompanionAction
+                        ? l10n.quranAyahActionDailySubtitle
+                        : compact
+                        ? l10n.quranDailyCompanionCardSubtitle
+                        : assignment.isFirstTimeStarter
+                        ? l10n.quranDailyReflectionStarterSubtitle
+                        : l10n.quranDailyReflectionSubtitle,
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                ],
+              ),
+            ),
+            if (summary.currentStreak > 0)
+              _Badge(
+                icon: Icons.local_fire_department_outlined,
+                label: l10n.quranDailyReflectionStreakValue(
+                  summary.currentStreak,
+                ),
+              ),
+          ],
+        ),
+        SizedBox(height: spacing),
+        InkWell(
+          borderRadius: BorderRadius.circular(18),
+          onTap: () => openQuranReferenceLocation(context, ref: entry.ref),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 2),
+            child: QuranVerseContent(
+              source: QuranVerseSource(
+                ref: entry.ref,
+                referenceText: entry.ref.locationLabel,
+              ),
+              center: false,
+              dense: compact,
+              arabicBaseSize: compact ? 28 : 30,
+            ),
+          ),
+        ),
+        SizedBox(height: spacing),
+        Text(
+          l10n.quranDailyReflectionInsightsTitle,
+          style: Theme.of(
+            context,
+          ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+        ),
+        const SizedBox(height: 8),
+        _InsightLine(
+          label: _typeLabel(l10n, entry.displayType),
+          title: entry.title,
+          summary: entry.summary,
+        ),
+        for (final item in localizedInsightItems)
+          if (item.sourceEnrichmentId != entry.id)
+            Padding(
+              padding: const EdgeInsets.only(top: 8),
+              child: _InsightLine(
+                label: _typeLabel(l10n, item.type),
+                title: item.title,
+                summary: item.summary,
+                caution: item.cautionLevel != QuranAyahCautionLevel.none
+                    ? l10n.quranAyahInsightsCautionLabel
+                    : null,
+              ),
+            ),
+        SizedBox(height: spacing),
+        Text(
+          l10n.quranDailyReflectionPromptTitle,
+          style: Theme.of(
+            context,
+          ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+        ),
+        const SizedBox(height: 6),
+        Text(
+          summary.primaryPrompt,
+          style: Theme.of(context).textTheme.bodyMedium,
+        ),
+        if (actionRecommendation != null) ...[
+          SizedBox(height: spacing),
+          QuranAyahActionSection(
+            recommendation: actionRecommendation,
+            style: QuranAyahActionSectionStyle.daily,
+            showExplanationPreview: compact,
+          ),
+        ],
+        SizedBox(height: spacing),
+        Wrap(
+          spacing: 8,
+          runSpacing: 8,
+          children: [
+            if (showCompanionAction)
+              AppLayeredGlassPillButton(
+                onPressed: () => context.pushNamed('quranDailyCompanion'),
+                leading: const Icon(Icons.wb_twilight_rounded, size: 18),
+                label: l10n.quranDailyCompanionOpenAction,
+              ),
+            AppLayeredGlassPillButton(
+              onPressed: () =>
+                  openQuranReferenceLocation(context, ref: entry.ref),
+              leading: const Icon(Icons.auto_stories_rounded, size: 18),
+              label: l10n.quranDailyReflectionOpenAyahAction,
+            ),
+            if (showSecondaryActions)
+              OutlinedButton.icon(
+                onPressed: () {
+                  ref
+                      .read(quranReflectionsProvider.notifier)
+                      .toggleSaved(
+                        ref: entry.ref,
+                        sourceType: QuranReflectionSourceType.dailyAyah,
+                        title: entry.title,
+                        summary: entry.summary,
+                        sourceEnrichmentId: entry.id,
+                      );
+                },
+                icon: Icon(
+                  savedEntry == null
+                      ? Icons.bookmark_add_outlined
+                      : Icons.bookmark_rounded,
+                ),
+                label: Text(
+                  savedEntry == null
+                      ? l10n.quranReflectionsSaveAction
+                      : l10n.quranReflectionsSavedAction,
+                ),
+              ),
+            if (showSecondaryActions)
+              OutlinedButton.icon(
+                onPressed: () {
+                  final text =
+                      QuranLearningShareService.buildAyahInsightShareText(
+                        ref: entry.ref,
+                        title: entry.title,
+                        summary: entry.summary,
+                        attribution: l10n.quranLearningShareAttribution,
+                        reflectionLabel: l10n.quranLearningShareReflectionLabel,
+                        reflectionPrompt: summary.primaryPrompt,
+                      );
+                  QuranLearningShareService.shareText(text);
+                },
+                icon: const Icon(Icons.ios_share_rounded),
+                label: Text(l10n.quranLearningShareAction),
+              ),
+            if (showSecondaryActions)
+              OutlinedButton.icon(
+                onPressed: () async {
+                  final note = await showQuranReflectionNoteDialog(
+                    context,
+                    title: savedEntry?.note?.trim().isNotEmpty ?? false
+                        ? l10n.quranReflectionsEditNoteAction
+                        : l10n.quranReflectionsAddNoteAction,
+                    initialNote: savedEntry?.note,
+                  );
+                  if (note == null) return;
+                  ref
+                      .read(quranReflectionsProvider.notifier)
+                      .upsertNote(
+                        ref: entry.ref,
+                        sourceType: QuranReflectionSourceType.dailyAyah,
+                        title: entry.title,
+                        summary: entry.summary,
+                        sourceEnrichmentId: entry.id,
+                        note: note,
+                      );
+                  if (note.trim().isNotEmpty) {
+                    ref
+                        .read(quranLearningProgressStateProvider.notifier)
+                        .rewardFirstReflectionNote(
+                          ref: entry.ref,
+                          sourceEnrichmentId: entry.id,
+                          sourceSurface: 'daily_reflection',
+                        );
+                  }
+                },
+                icon: const Icon(Icons.edit_note_rounded),
+                label: Text(
+                  savedEntry?.note?.trim().isNotEmpty ?? false
+                      ? l10n.quranReflectionsEditNoteAction
+                      : l10n.quranReflectionsAddNoteAction,
+                ),
+              ),
+            summary.isCompletedToday
+                ? AppLayeredGlassPillButton(
+                    onPressed: null,
+                    leading: const Icon(Icons.check_circle_rounded, size: 18),
+                    label: l10n.quranDailyReflectionCompletedAction,
+                  )
+                : AppLayeredGlassPillButton(
+                    onPressed: () => ref
+                        .read(quranDailyReflectionStateProvider.notifier)
+                        .completeToday(assignment: assignment),
+                    leading: const Icon(Icons.done_rounded, size: 18),
+                    label: l10n.quranDailyReflectionCompleteAction,
+                  ),
+          ],
+        ),
+        if (!summary.hasHistory) ...[
+          const SizedBox(height: 10),
+          Text(
+            l10n.quranDailyReflectionFirstTimeHint,
+            style: Theme.of(context).textTheme.bodySmall,
+          ),
+        ] else if (summary.bestStreak > 0) ...[
+          const SizedBox(height: 10),
+          Text(
+            l10n.quranDailyReflectionBestStreakValue(summary.bestStreak),
+            style: Theme.of(context).textTheme.bodySmall,
+          ),
+        ],
+      ],
+    );
+    if (useHeroGlassShell) {
+      return AppHeroGlassShell(
+        padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 30),
+        tintColor: const Color(0xFFE7C98C),
+        surfaceAlphaOverride: 0.2,
+        radius: 36,
+        borderColor: const Color(0x42FFFFFF),
+        highlightGradientColors: const [
+          Color(0x24FFFFFF),
+          Colors.transparent,
+          Color(0x16E8C98F),
+        ],
+        child: content,
+      );
+    }
     return PremiumCard(
       surfaceTreatment: AppSurfaceTreatment.denseSanctuary,
       surfaceVariant: AppSurfaceVariant.panel,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      compact && showCompanionAction
-                          ? l10n.quranAyahActionTodayTitle
-                          : compact
-                          ? l10n.quranDailyCompanionTitle
-                          : l10n.quranDailyReflectionTitle,
-                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      compact && showCompanionAction
-                          ? l10n.quranAyahActionDailySubtitle
-                          : compact
-                          ? l10n.quranDailyCompanionCardSubtitle
-                          : assignment.isFirstTimeStarter
-                          ? l10n.quranDailyReflectionStarterSubtitle
-                          : l10n.quranDailyReflectionSubtitle,
-                      style: Theme.of(context).textTheme.bodySmall,
-                    ),
-                  ],
-                ),
-              ),
-              if (summary.currentStreak > 0)
-                _Badge(
-                  icon: Icons.local_fire_department_outlined,
-                  label: l10n.quranDailyReflectionStreakValue(
-                    summary.currentStreak,
-                  ),
-                ),
-            ],
-          ),
-          SizedBox(height: spacing),
-          InkWell(
-            borderRadius: BorderRadius.circular(18),
-            onTap: () => openQuranReferenceLocation(context, ref: entry.ref),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 2),
-              child: QuranVerseContent(
-                source: QuranVerseSource(
-                  ref: entry.ref,
-                  referenceText: entry.ref.locationLabel,
-                ),
-                center: false,
-                dense: compact,
-                arabicBaseSize: compact ? 28 : 30,
-              ),
-            ),
-          ),
-          SizedBox(height: spacing),
-          Text(
-            l10n.quranDailyReflectionInsightsTitle,
-            style: Theme.of(
-              context,
-            ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
-          ),
-          const SizedBox(height: 8),
-          _InsightLine(
-            label: _typeLabel(l10n, entry.displayType),
-            title: entry.title,
-            summary: entry.summary,
-          ),
-          for (final item in localizedInsightItems)
-            if (item.sourceEnrichmentId != entry.id)
-              Padding(
-                padding: const EdgeInsets.only(top: 8),
-                child: _InsightLine(
-                  label: _typeLabel(l10n, item.type),
-                  title: item.title,
-                  summary: item.summary,
-                  caution: item.cautionLevel != QuranAyahCautionLevel.none
-                      ? l10n.quranAyahInsightsCautionLabel
-                      : null,
-                ),
-              ),
-          SizedBox(height: spacing),
-          Text(
-            l10n.quranDailyReflectionPromptTitle,
-            style: Theme.of(
-              context,
-            ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
-          ),
-          const SizedBox(height: 6),
-          Text(
-            summary.primaryPrompt,
-            style: Theme.of(context).textTheme.bodyMedium,
-          ),
-          if (actionRecommendation != null) ...[
-            SizedBox(height: spacing),
-            QuranAyahActionSection(
-              recommendation: actionRecommendation,
-              style: QuranAyahActionSectionStyle.daily,
-              showExplanationPreview: compact,
-            ),
-          ],
-          SizedBox(height: spacing),
-          Wrap(
-            spacing: 8,
-            runSpacing: 8,
-            children: [
-              if (showCompanionAction)
-                AppLayeredGlassPillButton(
-                  onPressed: () => context.pushNamed('quranDailyCompanion'),
-                  leading: const Icon(Icons.wb_twilight_rounded, size: 18),
-                  label: l10n.quranDailyCompanionOpenAction,
-                ),
-              AppLayeredGlassPillButton(
-                onPressed: () =>
-                    openQuranReferenceLocation(context, ref: entry.ref),
-                leading: const Icon(Icons.auto_stories_rounded, size: 18),
-                label: l10n.quranDailyReflectionOpenAyahAction,
-              ),
-              if (showSecondaryActions)
-                OutlinedButton.icon(
-                  onPressed: () {
-                    ref
-                        .read(quranReflectionsProvider.notifier)
-                        .toggleSaved(
-                          ref: entry.ref,
-                          sourceType: QuranReflectionSourceType.dailyAyah,
-                          title: entry.title,
-                          summary: entry.summary,
-                          sourceEnrichmentId: entry.id,
-                        );
-                  },
-                  icon: Icon(
-                    savedEntry == null
-                        ? Icons.bookmark_add_outlined
-                        : Icons.bookmark_rounded,
-                  ),
-                  label: Text(
-                    savedEntry == null
-                        ? l10n.quranReflectionsSaveAction
-                        : l10n.quranReflectionsSavedAction,
-                  ),
-                ),
-              if (showSecondaryActions)
-                OutlinedButton.icon(
-                  onPressed: () {
-                    final text =
-                        QuranLearningShareService.buildAyahInsightShareText(
-                          ref: entry.ref,
-                          title: entry.title,
-                          summary: entry.summary,
-                          attribution: l10n.quranLearningShareAttribution,
-                          reflectionLabel:
-                              l10n.quranLearningShareReflectionLabel,
-                          reflectionPrompt: summary.primaryPrompt,
-                        );
-                    QuranLearningShareService.shareText(text);
-                  },
-                  icon: const Icon(Icons.ios_share_rounded),
-                  label: Text(l10n.quranLearningShareAction),
-                ),
-              if (showSecondaryActions)
-                OutlinedButton.icon(
-                  onPressed: () async {
-                    final note = await showQuranReflectionNoteDialog(
-                      context,
-                      title: savedEntry?.note?.trim().isNotEmpty ?? false
-                          ? l10n.quranReflectionsEditNoteAction
-                          : l10n.quranReflectionsAddNoteAction,
-                      initialNote: savedEntry?.note,
-                    );
-                    if (note == null) return;
-                    ref
-                        .read(quranReflectionsProvider.notifier)
-                        .upsertNote(
-                          ref: entry.ref,
-                          sourceType: QuranReflectionSourceType.dailyAyah,
-                          title: entry.title,
-                          summary: entry.summary,
-                          sourceEnrichmentId: entry.id,
-                          note: note,
-                        );
-                    if (note.trim().isNotEmpty) {
-                      ref
-                          .read(quranLearningProgressStateProvider.notifier)
-                          .rewardFirstReflectionNote(
-                            ref: entry.ref,
-                            sourceEnrichmentId: entry.id,
-                            sourceSurface: 'daily_reflection',
-                          );
-                    }
-                  },
-                  icon: const Icon(Icons.edit_note_rounded),
-                  label: Text(
-                    savedEntry?.note?.trim().isNotEmpty ?? false
-                        ? l10n.quranReflectionsEditNoteAction
-                        : l10n.quranReflectionsAddNoteAction,
-                  ),
-                ),
-              summary.isCompletedToday
-                  ? AppLayeredGlassPillButton(
-                      onPressed: null,
-                      leading: const Icon(Icons.check_circle_rounded, size: 18),
-                      label: l10n.quranDailyReflectionCompletedAction,
-                    )
-                  : AppLayeredGlassPillButton(
-                      onPressed: () => ref
-                          .read(quranDailyReflectionStateProvider.notifier)
-                          .completeToday(assignment: assignment),
-                      leading: const Icon(Icons.done_rounded, size: 18),
-                      label: l10n.quranDailyReflectionCompleteAction,
-                    ),
-            ],
-          ),
-          if (!summary.hasHistory) ...[
-            const SizedBox(height: 10),
-            Text(
-              l10n.quranDailyReflectionFirstTimeHint,
-              style: Theme.of(context).textTheme.bodySmall,
-            ),
-          ] else if (summary.bestStreak > 0) ...[
-            const SizedBox(height: 10),
-            Text(
-              l10n.quranDailyReflectionBestStreakValue(summary.bestStreak),
-              style: Theme.of(context).textTheme.bodySmall,
-            ),
-          ],
-        ],
-      ),
+      child: content,
     );
   }
 }

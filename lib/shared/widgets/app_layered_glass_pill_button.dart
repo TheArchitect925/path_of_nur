@@ -39,33 +39,22 @@ class AppLayeredGlassPill extends StatelessWidget {
     final colorScheme = theme.colorScheme;
     final appearance = theme.extension<AppAppearanceTheme>();
     final tint = tintColor ?? colorScheme.primary;
-    final outerStyle = AppSurfaceTheme.resolve(
-      context,
-      variant: AppSurfaceVariant.pill,
-      tintColor: tint,
-      surfaceAlphaOverride: 0.24,
-    );
     final tonalFill =
         fillColor ??
         appearance?.filledButtonFill ??
         colorScheme.secondaryContainer;
     final resolvedBorder = borderColor ?? Colors.white.withValues(alpha: 0.18);
-    final pillChild = Padding(padding: padding, child: child);
 
     return NoorGlassCard(
       padding: outerPadding,
       surfaceVariant: AppSurfaceVariant.pill,
       surfaceTintColor: tint,
-      surfaceAlphaOverride: 0.24,
+      surfaceAlphaOverride: 0.18,
       includeShadow: includeShadow,
       mode: NoorLiquidGlassMode.fake,
       borderRadius: borderRadius,
       width: expandToWidth ? double.infinity : null,
-      child: Container(
-        decoration: outerStyle.decoration(
-          radius: borderRadius,
-          includeShadow: includeShadow,
-        ),
+      child: Padding(
         padding: innerPadding,
         child: Material(
           type: MaterialType.transparency,
@@ -73,12 +62,13 @@ class AppLayeredGlassPill extends StatelessWidget {
             onTap: onTap,
             borderRadius: BorderRadius.circular(borderRadius),
             child: Container(
+              padding: padding,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(borderRadius),
-                color: tonalFill,
+                color: tonalFill.withValues(alpha: 0.58),
                 border: Border.all(color: resolvedBorder),
               ),
-              child: pillChild,
+              child: child,
             ),
           ),
         ),

@@ -45,6 +45,7 @@ class QuranAppHubPage extends ConsumerStatefulWidget {
 
 class _QuranAppHubPageState extends ConsumerState<QuranAppHubPage> {
   late final TextEditingController _searchController;
+  bool _discoverQuranExpanded = true;
 
   @override
   void initState() {
@@ -118,55 +119,72 @@ class _QuranAppHubPageState extends ConsumerState<QuranAppHubPage> {
         const SizedBox(height: 8),
         SectionHubActionGrid(actions: readActions),
         const SizedBox(height: 12),
-        _QuranHubSacredLinkCard(
-          title: l10n.quranSummaryIslandTitle,
-          subtitle: l10n.quranSummaryIslandSubtitle,
-          icon: Icons.auto_stories_rounded,
-          accentColor: summaryPalette.goldAccent,
-          iconFill: summaryPalette.numberFill,
-          onTap: () => context.pushNamed('quranSummaryPage'),
-        ),
-        const SizedBox(height: 12),
-        _QuranHubSacredLinkCard(
-          title: l10n.quranThemeDiscoveryIslandTitle,
-          subtitle: l10n.quranThemeDiscoveryIslandSubtitle,
-          icon: Icons.account_tree_outlined,
-          accentColor: summaryPalette.goldAccent,
-          iconFill: summaryPalette.numberFill,
-          onTap: () => context.pushNamed('quranTopicExplorer'),
-        ),
-        const SizedBox(height: 12),
-        _QuranHubSacredLinkCard(
-          title: l10n.quranPathwaysIslandTitle,
-          subtitle: l10n.quranPathwaysIslandSubtitle,
-          icon: Icons.route_rounded,
-          accentColor: summaryPalette.goldAccent,
-          iconFill: summaryPalette.numberFill,
-          onTap: () => context.pushNamed('quranLearningPaths'),
-        ),
-        const SizedBox(height: 12),
-        const QuranDailyReflectionCard(showSecondaryActions: false),
-        const SizedBox(height: 12),
-        if (spiritualMoment != null) ...[
-          QuranSpiritualMomentCard(
-            bundle: spiritualMoment,
-            surface: QuranSpiritualMomentSurface.quranHub,
-            allowDismiss: true,
+        _QuranDiscoverCard(
+          title: l10n.quranDiscoverSectionTitle,
+          subtitle: l10n.quranDiscoverSectionSubtitle,
+          isExpanded: _discoverQuranExpanded,
+          onToggle: () {
+            setState(() => _discoverQuranExpanded = !_discoverQuranExpanded);
+          },
+          child: Column(
+            children: [
+              _QuranHubSacredLinkCard(
+                title: l10n.quranSummaryIslandTitle,
+                subtitle: l10n.quranSummaryIslandSubtitle,
+                icon: Icons.auto_stories_rounded,
+                accentColor: summaryPalette.goldAccent,
+                iconFill: summaryPalette.numberFill,
+                onTap: () => context.pushNamed('quranSummaryPage'),
+              ),
+              const SizedBox(height: 12),
+              _QuranHubSacredLinkCard(
+                title: l10n.quranThemeDiscoveryIslandTitle,
+                subtitle: l10n.quranThemeDiscoveryIslandSubtitle,
+                icon: Icons.account_tree_outlined,
+                accentColor: summaryPalette.goldAccent,
+                iconFill: summaryPalette.numberFill,
+                onTap: () => context.pushNamed('quranTopicExplorer'),
+              ),
+              const SizedBox(height: 12),
+              _QuranHubSacredLinkCard(
+                title: l10n.quranPathwaysIslandTitle,
+                subtitle: l10n.quranPathwaysIslandSubtitle,
+                icon: Icons.route_rounded,
+                accentColor: summaryPalette.goldAccent,
+                iconFill: summaryPalette.numberFill,
+                onTap: () => context.pushNamed('quranLearningPaths'),
+              ),
+              if (spiritualMoment != null) ...[
+                const SizedBox(height: 12),
+                QuranSpiritualMomentCard(
+                  bundle: spiritualMoment,
+                  surface: QuranSpiritualMomentSurface.quranHub,
+                  allowDismiss: true,
+                ),
+              ],
+              if (personalizedBundle != null) ...[
+                const SizedBox(height: 12),
+                QuranPersonalizedRecommendationCard(
+                  bundle: personalizedBundle,
+                  surface: QuranPersonalizationSurface.quranHub,
+                  allowDismiss: true,
+                ),
+              ],
+            ],
           ),
-          const SizedBox(height: 12),
-        ],
-        if (personalizedBundle != null) ...[
-          QuranPersonalizedRecommendationCard(
-            bundle: personalizedBundle,
-            surface: QuranPersonalizationSurface.quranHub,
-            allowDismiss: true,
+        ),
+        const SizedBox(height: 12),
+        _SectionHeader(title: l10n.quranHubWordToolsTitle),
+        const SizedBox(height: 6),
+        Text(
+          l10n.quranHubWordToolsSubtitle,
+          style: Theme.of(context).textTheme.bodySmall?.copyWith(
+            color:
+                appearance?.glassOnSurfaceSubtle ?? AppColors.onSurfaceSubtle,
           ),
-          const SizedBox(height: 12),
-        ],
-        if (recommendations.isNotEmpty)
-          _QuranRecommendationSection(recommendations: recommendations),
-        if (recommendations.isNotEmpty) const SizedBox(height: 12),
-        _QuranIntentFocusCard(summary: userIntentSummary),
+        ),
+        const SizedBox(height: 10),
+        SectionHubActionGrid(actions: wordStudyActions),
         const SizedBox(height: 12),
         _SectionHeader(title: l10n.quranHubStudyToolsTitle),
         const SizedBox(height: 6),
@@ -180,17 +198,12 @@ class _QuranAppHubPageState extends ConsumerState<QuranAppHubPage> {
         const SizedBox(height: 10),
         SectionHubActionGrid(actions: studyActions),
         const SizedBox(height: 12),
-        _SectionHeader(title: l10n.quranHubWordToolsTitle),
-        const SizedBox(height: 6),
-        Text(
-          l10n.quranHubWordToolsSubtitle,
-          style: Theme.of(context).textTheme.bodySmall?.copyWith(
-            color:
-                appearance?.glassOnSurfaceSubtle ?? AppColors.onSurfaceSubtle,
-          ),
-        ),
-        const SizedBox(height: 10),
-        SectionHubActionGrid(actions: wordStudyActions),
+        const QuranDailyReflectionCard(showSecondaryActions: false),
+        const SizedBox(height: 12),
+        if (recommendations.isNotEmpty)
+          _QuranRecommendationSection(recommendations: recommendations),
+        if (recommendations.isNotEmpty) const SizedBox(height: 12),
+        _QuranIntentFocusCard(summary: userIntentSummary),
         const SizedBox(height: 12),
         PremiumCard(
           child: Column(
@@ -642,6 +655,96 @@ class _QuranHubSacredLinkCard extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _QuranDiscoverCard extends StatelessWidget {
+  const _QuranDiscoverCard({
+    required this.title,
+    required this.subtitle,
+    required this.isExpanded,
+    required this.onToggle,
+    required this.child,
+  });
+
+  final String title;
+  final String subtitle;
+  final bool isExpanded;
+  final VoidCallback onToggle;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    final appearance = Theme.of(context).extension<AppAppearanceTheme>();
+    return PremiumCard(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          InkWell(
+            onTap: onToggle,
+            borderRadius: BorderRadius.circular(20),
+            child: Padding(
+              padding: const EdgeInsets.all(2),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    width: 52,
+                    height: 52,
+                    decoration: AppSurfaceTheme.resolve(
+                      context,
+                      variant: AppSurfaceVariant.pill,
+                      treatment: AppSurfaceTreatment.denseSanctuary,
+                      tintColor: const Color(0xFFE7C98C),
+                    ).decoration(radius: 16, includeShadow: false),
+                    child: const Icon(
+                      IslamicIcons.quran,
+                      color: Color(0xFF7A6241),
+                    ),
+                  ),
+                  const SizedBox(width: 14),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          title,
+                          style: Theme.of(context).textTheme.titleMedium
+                              ?.copyWith(fontWeight: FontWeight.w800),
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          subtitle,
+                          style: Theme.of(context).textTheme.bodyMedium
+                              ?.copyWith(
+                                color:
+                                    appearance?.glassOnSurfaceSubtle ??
+                                    AppColors.onSurfaceSubtle,
+                              ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  AnimatedRotation(
+                    duration: const Duration(milliseconds: 220),
+                    curve: Curves.easeOutCubic,
+                    turns: isExpanded ? 0.5 : 0,
+                    child: const Icon(
+                      Icons.keyboard_arrow_down_rounded,
+                      size: 28,
+                      color: Color(0xFF7A6241),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          if (isExpanded)
+            Padding(padding: const EdgeInsets.only(top: 12), child: child),
+        ],
       ),
     );
   }

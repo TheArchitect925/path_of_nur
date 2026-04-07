@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/content/learning_quote.dart';
+import '../../../../shared/widgets/app_hero_glass_shell.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/quran_navigation.dart';
@@ -290,8 +291,17 @@ class _ProphetDetailPageState extends State<ProphetDetailPage> {
 
   Widget _sectionJumpRow() {
     final l10n = AppLocalizations.of(context);
-    return PremiumCard(
-      padding: const EdgeInsets.all(10),
+    return AppHeroGlassShell(
+      padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 30),
+      tintColor: const Color(0xFFE7C98C),
+      surfaceAlphaOverride: 0.2,
+      radius: 36,
+      borderColor: const Color(0x42FFFFFF),
+      highlightGradientColors: const [
+        Color(0x24FFFFFF),
+        Colors.transparent,
+        Color(0x16E8C98F),
+      ],
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Row(

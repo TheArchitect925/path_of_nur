@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../../l10n/app_localizations.dart';
 import '../../../../../core/theme/app_surfaces.dart';
 import '../../../../../shared/widgets/app_layered_glass_pill_button.dart';
+import '../../../../../shared/widgets/app_hero_glass_shell.dart';
 import '../../../../../shared/widgets/premium_card.dart';
 import '../../../../../shared/widgets/quran_navigation.dart';
 import '../../application/quran_ayah_action_provider.dart';
@@ -19,11 +20,13 @@ class QuranPersonalizedRecommendationCard extends ConsumerStatefulWidget {
     required this.bundle,
     required this.surface,
     this.allowDismiss = false,
+    this.useHeroGlassShell = false,
   });
 
   final QuranRecommendationBundle bundle;
   final QuranPersonalizationSurface surface;
   final bool allowDismiss;
+  final bool useHeroGlassShell;
 
   @override
   ConsumerState<QuranPersonalizedRecommendationCard> createState() =>
@@ -70,156 +73,166 @@ class _QuranPersonalizedRecommendationCardState
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final recommendation = widget.bundle.primary;
-    final suggestedPath = recommendation.suggestedJourney == null
+    final suggestedJourney = recommendation.suggestedJourney;
+    final suggestedPath = suggestedJourney == null
         ? null
         : ref.watch(
-            quranGuidedLearningPathByIdProvider(
-              recommendation.suggestedJourney!.pathId,
-            ),
+            quranGuidedLearningPathByIdProvider(suggestedJourney.pathId),
           );
 
-    return PremiumCard(
-      surfaceTreatment: AppSurfaceTreatment.denseSanctuary,
-      surfaceVariant: AppSurfaceVariant.panel,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      _titleForSurface(
-                        l10n,
-                        widget.surface,
-                        widget.bundle.preferKids,
-                      ),
-                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                        fontWeight: FontWeight.w800,
-                      ),
+    final content = Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    _titleForSurface(
+                      l10n,
+                      widget.surface,
+                      widget.bundle.preferKids,
                     ),
-                    const SizedBox(height: 4),
-                    Text(
-                      _reasonLabel(
-                        l10n,
-                        recommendation.reasonCode,
-                        preferKids: widget.bundle.preferKids,
-                      ),
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        fontWeight: FontWeight.w700,
-                        color: const Color(0xFF7A6241),
-                      ),
+                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                      fontWeight: FontWeight.w800,
                     ),
-                  ],
-                ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    _reasonLabel(
+                      l10n,
+                      recommendation.reasonCode,
+                      preferKids: widget.bundle.preferKids,
+                    ),
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      fontWeight: FontWeight.w700,
+                      color: const Color(0xFF7A6241),
+                    ),
+                  ),
+                ],
               ),
-              if (widget.allowDismiss)
-                IconButton(
-                  tooltip: l10n.quranPersonalizationDismissAction,
-                  onPressed: () {
-                    ref
-                        .read(quranPersonalizationStateProvider.notifier)
-                        .dismissForToday(
-                          surface: widget.surface,
-                          ayahKey: recommendation.ayahKey,
-                        );
-                  },
-                  icon: const Icon(Icons.close_rounded),
-                ),
-            ],
+            ),
+            if (widget.allowDismiss)
+              IconButton(
+                tooltip: l10n.quranPersonalizationDismissAction,
+                onPressed: () {
+                  ref
+                      .read(quranPersonalizationStateProvider.notifier)
+                      .dismissForToday(
+                        surface: widget.surface,
+                        ayahKey: recommendation.ayahKey,
+                      );
+                },
+                icon: const Icon(Icons.close_rounded),
+              ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        Text(
+          recommendation.ref.locationLabel,
+          style: Theme.of(
+            context,
+          ).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w700),
+        ),
+        const SizedBox(height: 6),
+        Text(
+          recommendation.explanationPreview,
+          style: Theme.of(context).textTheme.bodyMedium?.copyWith(height: 1.45),
+        ),
+        const SizedBox(height: 10),
+        Text(
+          widget.bundle.preferKids
+              ? l10n.kidsQuranAyahActionTitle
+              : l10n.quranAyahActionTitle,
+          style: Theme.of(
+            context,
+          ).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w700),
+        ),
+        const SizedBox(height: 4),
+        Text(
+          recommendation.actionRecommendation.action.actionText,
+          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+            height: 1.45,
+            fontWeight: FontWeight.w600,
           ),
-          const SizedBox(height: 8),
-          Text(
-            recommendation.ref.locationLabel,
-            style: Theme.of(
-              context,
-            ).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w700),
-          ),
-          const SizedBox(height: 6),
-          Text(
-            recommendation.explanationPreview,
-            style: Theme.of(
-              context,
-            ).textTheme.bodyMedium?.copyWith(height: 1.45),
-          ),
+        ),
+        if (suggestedPath != null) ...[
           const SizedBox(height: 10),
           Text(
-            widget.bundle.preferKids
-                ? l10n.kidsQuranAyahActionTitle
-                : l10n.quranAyahActionTitle,
+            l10n.quranPersonalizationPathHintTitle,
             style: Theme.of(
               context,
             ).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w700),
           ),
           const SizedBox(height: 4),
           Text(
-            recommendation.actionRecommendation.action.actionText,
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              height: 1.45,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-          if (suggestedPath != null) ...[
-            const SizedBox(height: 10),
-            Text(
-              l10n.quranPersonalizationPathHintTitle,
-              style: Theme.of(
-                context,
-              ).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w700),
-            ),
-            const SizedBox(height: 4),
-            Text(
-              localizedQuranLearningPathTitle(l10n, suggestedPath.id),
-              style: Theme.of(context).textTheme.bodySmall,
-            ),
-          ],
-          const SizedBox(height: 12),
-          Wrap(
-            spacing: 8,
-            runSpacing: 8,
-            children: [
-              AppLayeredGlassPillButton(
-                onPressed: () => openQuranReferenceLocation(
-                  context,
-                  ref: recommendation.ref,
-                ),
-                leading: const Icon(Icons.auto_stories_rounded, size: 18),
-                label: l10n.quranPersonalizationOpenAyahAction,
-              ),
-              recommendation.actionRecommendation.isCompletedToday
-                  ? AppLayeredGlassPillButton(
-                      onPressed: null,
-                      leading: const Icon(Icons.check_circle_rounded, size: 18),
-                      label: l10n.quranAyahActionCompletedAction,
-                    )
-                  : AppLayeredGlassPillButton(
-                      onPressed: () {
-                        ref
-                            .read(quranAyahActionStateProvider.notifier)
-                            .completeAction(
-                              recommendation.actionRecommendation.action,
-                            );
-                      },
-                      leading: const Icon(Icons.done_rounded, size: 18),
-                      label: l10n.quranAyahActionCompleteAction,
-                    ),
-              if (suggestedPath != null)
-                AppLayeredGlassPillButton(
-                  onPressed: () => context.pushNamed(
-                    recommendation.suggestedJourney!.routeName,
-                    pathParameters:
-                        recommendation.suggestedJourney!.pathParameters,
-                  ),
-                  leading: const Icon(Icons.route_rounded, size: 18),
-                  label: l10n.quranPersonalizationOpenPathAction,
-                ),
-            ],
+            localizedQuranLearningPathTitle(l10n, suggestedPath.id),
+            style: Theme.of(context).textTheme.bodySmall,
           ),
         ],
-      ),
+        const SizedBox(height: 12),
+        Wrap(
+          spacing: 8,
+          runSpacing: 8,
+          children: [
+            AppLayeredGlassPillButton(
+              onPressed: () =>
+                  openQuranReferenceLocation(context, ref: recommendation.ref),
+              leading: const Icon(Icons.auto_stories_rounded, size: 18),
+              label: l10n.quranPersonalizationOpenAyahAction,
+            ),
+            recommendation.actionRecommendation.isCompletedToday
+                ? AppLayeredGlassPillButton(
+                    onPressed: null,
+                    leading: const Icon(Icons.check_circle_rounded, size: 18),
+                    label: l10n.quranAyahActionCompletedAction,
+                  )
+                : AppLayeredGlassPillButton(
+                    onPressed: () {
+                      ref
+                          .read(quranAyahActionStateProvider.notifier)
+                          .completeAction(
+                            recommendation.actionRecommendation.action,
+                          );
+                    },
+                    leading: const Icon(Icons.done_rounded, size: 18),
+                    label: l10n.quranAyahActionCompleteAction,
+                  ),
+            if (suggestedPath != null && suggestedJourney != null)
+              AppLayeredGlassPillButton(
+                onPressed: () => context.pushNamed(
+                  suggestedJourney.routeName,
+                  pathParameters: suggestedJourney.pathParameters,
+                ),
+                leading: const Icon(Icons.route_rounded, size: 18),
+                label: l10n.quranPersonalizationOpenPathAction,
+              ),
+          ],
+        ),
+      ],
+    );
+    if (widget.useHeroGlassShell) {
+      return AppHeroGlassShell(
+        padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 30),
+        tintColor: const Color(0xFFE7C98C),
+        surfaceAlphaOverride: 0.2,
+        radius: 36,
+        borderColor: const Color(0x42FFFFFF),
+        highlightGradientColors: const [
+          Color(0x24FFFFFF),
+          Colors.transparent,
+          Color(0x16E8C98F),
+        ],
+        child: content,
+      );
+    }
+    return PremiumCard(
+      surfaceTreatment: AppSurfaceTreatment.denseSanctuary,
+      surfaceVariant: AppSurfaceVariant.panel,
+      child: content,
     );
   }
 }

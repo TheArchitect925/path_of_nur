@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -7,6 +5,8 @@ import 'package:go_router/go_router.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../core/localization/locale_provider.dart';
 import '../../../core/prayer/prayer_preferences.dart';
+import '../../../core/theme/app_backgrounds.dart';
+import '../../../core/theme/app_theme.dart';
 import '../../../features/learn/quran/application/quran_providers.dart';
 import '../../../shared/state/user_profile_state.dart';
 import '../../../shared/widgets/global_background.dart';
@@ -26,6 +26,7 @@ class OnboardingPage extends ConsumerStatefulWidget {
 
 class _OnboardingPageState extends ConsumerState<OnboardingPage> {
   static const _lastIndex = 15;
+  static const _growthInterestsPageIndex = 8;
   static const _growthInterestUnderstandingQuran = 'understanding_quran';
   static const _growthInterestLearningHadith = 'learning_hadith';
   static const _growthInterestStoriesProphets = 'stories_prophets';
@@ -49,11 +50,10 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
 
   int _index = 0;
 
-  bool _showShahada = false;
-  bool _showAllahuAkbar = false;
-  bool _showBismillah = false;
-
-  _LanguageChoice _languageChoice = const _LanguageChoice(id: 'system', label: '');
+  _LanguageChoice _languageChoice = const _LanguageChoice(
+    id: 'system',
+    label: '',
+  );
   OnboardingAgeRange _ageRange = OnboardingAgeRange.age25_34;
   OnboardingLearningAgeGroup _learningAgeGroup =
       OnboardingLearningAgeGroup.adults;
@@ -65,11 +65,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
       OnboardingPrayerMethodChoice.muslimWorldLeague;
   PrayerMadhab _madhab = PrayerMadhab.shafii;
 
-  final Set<String> _growthInterests = <String>{
-    _growthInterestUnderstandingQuran,
-    _growthInterestStrengtheningSalah,
-    _growthInterestDailyInspiration,
-  };
+  final Set<String> _growthInterests = <String>{};
 
   OnboardingArabicReadMode _arabicReadMode =
       OnboardingArabicReadMode.arabicTransliterationTranslation;
@@ -88,12 +84,11 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
   bool _dailyQuranReminder = true;
   bool _dailyLessonReminder = true;
 
-  final Set<String> _trackingModules = <String>{};
+  final Set<String> _trackingModules = <String>{_trackingSalah};
 
   OnboardingDhikrHapticLevel _dhikrHaptic = OnboardingDhikrHapticLevel.light;
   OnboardingDhikrSound _dhikrSound = OnboardingDhikrSound.softClick;
   OnboardingDhikrPulse _dhikrPulse = OnboardingDhikrPulse.subtleGlow;
-  int _dhikrPreviewCount = 0;
 
   UserSex _sex = UserSex.brother;
 
@@ -140,8 +135,6 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
         _methodChoice = OnboardingPrayerMethodChoice.isna;
       }
     }
-
-    _triggerOpeningSequence();
   }
 
   @override
@@ -151,33 +144,13 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
     super.dispose();
   }
 
-  void _triggerOpeningSequence() {
-    setState(() {
-      _showShahada = false;
-      _showAllahuAkbar = false;
-      _showBismillah = false;
-    });
-    Future<void>.delayed(const Duration(milliseconds: 120), () {
-      if (!mounted || _index != 0) return;
-      setState(() => _showShahada = true);
-    });
-    Future<void>.delayed(const Duration(milliseconds: 700), () {
-      if (!mounted || _index != 0) return;
-      setState(() => _showAllahuAkbar = true);
-    });
-    Future<void>.delayed(const Duration(milliseconds: 1200), () {
-      if (!mounted || _index != 0) return;
-      setState(() => _showBismillah = true);
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final reduceMotion = ref.watch(
       profileSettingsProvider.select((value) => value.reduceMotion),
     );
-    final showSettingsHint = _index > 0 && _index < _lastIndex && _index != 11;
+    final showSettingsHint = _index > 1 && _index < _lastIndex;
 
     return Scaffold(
       body: Stack(
@@ -215,10 +188,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
                     child: PageView.builder(
                       controller: _controller,
                       itemCount: _lastIndex + 1,
-                      onPageChanged: (value) {
-                        setState(() => _index = value);
-                        if (value == 0) _triggerOpeningSequence();
-                      },
+                      onPageChanged: (value) => setState(() => _index = value),
                       itemBuilder: (context, pageIndex) {
                         final page = _buildPage(pageIndex);
                         if (reduceMotion) return page;
@@ -293,31 +263,31 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
       case 0:
         return _openingPage();
       case 1:
-        return _languagePage();
+        return _disclaimerPage();
       case 2:
-        return _agePage();
+        return _languagePage();
       case 3:
-        return _learningAgeGroupPage();
+        return _themePage();
       case 4:
         return _experiencePage();
       case 5:
-        return _salahConsistencyPage();
+        return _agePage();
       case 6:
-        return _prayerMethodPage();
+        return _learningAgeGroupPage();
       case 7:
-        return _madhabPage();
+        return _salahConsistencyPage();
       case 8:
         return _growthInterestsPage();
       case 9:
         return _arabicReadingPage();
       case 10:
-        return _remindersPage();
+        return _prayerMethodPage();
       case 11:
-        return _trackingPage();
+        return _madhabPage();
       case 12:
-        return _familyIntroPage();
+        return _trackingPage();
       case 13:
-        return _dhikrFeedbackPage();
+        return _remindersPage();
       case 14:
         return _identityPage();
       case 15:
@@ -332,67 +302,21 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
     return PremiumCard(
       child: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            AnimatedOpacity(
-              duration: const Duration(milliseconds: 450),
-              opacity: _showShahada ? 1 : 0,
-              child: Column(
-                children: [
-                  Text(
-                    'أَشْهَدُ أَنْ لَا إِلَٰهَ إِلَّا اللَّهُ\nوَأَشْهَدُ أَنَّ مُحَمَّدًا رَسُولُ اللَّهِ',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 25,
-                      height: 1.6,
-                      fontFamily: 'AmiriQuran',
-                    ),
-                  ),
-                  SizedBox(height: 8),
-                  Text(
-                    'Ashhadu an la ilaha illa Allah\nwa ashhadu anna Muhammadan rasulullah',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontStyle: FontStyle.italic),
-                  ),
-                  SizedBox(height: 8),
-                  Text(
-                    l10n.onboardingShahadaMeaningBody,
-                    textAlign: TextAlign.center,
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 16),
-            AnimatedOpacity(
-              duration: const Duration(milliseconds: 500),
-              opacity: _showAllahuAkbar ? 1 : 0,
-              child: Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 20,
-                  vertical: 8,
-                ),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(999),
-                  boxShadow: [
-                    BoxShadow(
-                      color: const Color(0xFFD8C49A).withValues(alpha: 0.24),
-                      blurRadius: 26,
-                      spreadRadius: 2,
-                    ),
-                  ],
-                ),
-                child: const Text(
-                  'اللَّهُ أَكْبَر',
-                  style: TextStyle(fontSize: 34, fontFamily: 'AmiriQuran'),
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 16),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: const Color(0xFFF4ECDD).withValues(alpha: 0.84),
+                border: Border.all(
+                  color: const Color(0xFFD8C49A).withValues(alpha: 0.45),
                 ),
               ),
-            ),
-            const SizedBox(height: 16),
-            AnimatedOpacity(
-              duration: const Duration(milliseconds: 500),
-              opacity: _showBismillah ? 1 : 0,
               child: Column(
                 children: [
-                  Text(
+                  const Text(
                     'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ',
                     textAlign: TextAlign.center,
                     style: TextStyle(
@@ -401,9 +325,15 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
                       fontFamily: 'AmiriQuran',
                     ),
                   ),
-                  SizedBox(height: 8),
-                  Text(l10n.onboardingBismillahTransliteration),
-                  SizedBox(height: 6),
+                  const SizedBox(height: 8),
+                  Text(
+                    l10n.onboardingBismillahTransliteration,
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      fontStyle: FontStyle.italic,
+                    ),
+                  ),
+                  const SizedBox(height: 6),
                   Text(
                     l10n.onboardingBismillahMeaningBody,
                     textAlign: TextAlign.center,
@@ -411,13 +341,122 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
                 ],
               ),
             ),
+            const SizedBox(height: 18),
+            Text(
+              l10n.onboardingOpeningTitle,
+              style: Theme.of(
+                context,
+              ).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w700),
+            ),
+            const SizedBox(height: 14),
+            Text(
+              l10n.onboardingOpeningHadithLead,
+              style: Theme.of(
+                context,
+              ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
+            ),
+            const SizedBox(height: 8),
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(18),
+                color: const Color(0xFFF7F1E7).withValues(alpha: 0.72),
+                border: Border.all(
+                  color: const Color(0xFFD8C49A).withValues(alpha: 0.34),
+                ),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    l10n.onboardingOpeningHadithQuote,
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      fontWeight: FontWeight.w600,
+                      height: 1.45,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    l10n.onboardingOpeningHadithSource,
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      fontStyle: FontStyle.italic,
+                    ),
+                  ),
+                ],
+              ),
+            ),
             const SizedBox(height: 16),
             Text(
-              l10n.onboardingOpeningBlessingBody,
-              textAlign: TextAlign.center,
+              l10n.onboardingOpeningMissionBodyOne,
+              style: Theme.of(
+                context,
+              ).textTheme.bodyLarge?.copyWith(height: 1.45),
+            ),
+            const SizedBox(height: 12),
+            Text(
+              l10n.onboardingOpeningMissionBodyTwo,
+              style: Theme.of(
+                context,
+              ).textTheme.bodyLarge?.copyWith(height: 1.45),
+            ),
+            const SizedBox(height: 12),
+            Text(
+              l10n.onboardingOpeningMissionBodyThree,
+              style: Theme.of(
+                context,
+              ).textTheme.bodyLarge?.copyWith(height: 1.45),
+            ),
+            const SizedBox(height: 16),
+            Text(
+              l10n.onboardingOpeningSupportLine,
+              style: Theme.of(
+                context,
+              ).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w700),
+            ),
+            const SizedBox(height: 10),
+            Text(l10n.onboardingOpeningBlessingBody),
+            const SizedBox(height: 14),
+            Text(
+              l10n.onboardingOpeningPlatformFooter,
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                color: Theme.of(
+                  context,
+                ).textTheme.bodySmall?.color?.withValues(alpha: 0.78),
+              ),
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _disclaimerPage() {
+    final l10n = AppLocalizations.of(context);
+    return _stepCard(
+      title: l10n.onboardingDisclaimerTitle,
+      subtitle: '',
+      child: ListView(
+        children: [
+          Text(l10n.onboardingDisclaimerIntroBody),
+          const SizedBox(height: 12),
+          Text(l10n.onboardingDisclaimerSourcesBody),
+          const SizedBox(height: 12),
+          Text(l10n.onboardingDisclaimerNeutralBody),
+          const SizedBox(height: 12),
+          Text(l10n.onboardingDisclaimerNotRulingBody),
+          const SizedBox(height: 12),
+          Text(l10n.onboardingDisclaimerSeekScholarBody),
+          const SizedBox(height: 12),
+          Text(l10n.onboardingDisclaimerFeedbackBody),
+          const SizedBox(height: 16),
+          Text(
+            l10n.onboardingDisclaimerFooter,
+            style: Theme.of(
+              context,
+            ).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w700),
+          ),
+        ],
       ),
     );
   }
@@ -456,6 +495,120 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
     );
   }
 
+  Widget _themePage() {
+    final l10n = AppLocalizations.of(context);
+    final profileSettings = ref.watch(profileSettingsProvider);
+    final profileSettingsNotifier = ref.read(profileSettingsProvider.notifier);
+    const visibleThemeModes = [
+      AppThemeMode.noorGlass,
+      AppThemeMode.noorGlassDark,
+      AppThemeMode.noGlass,
+      AppThemeMode.noGlassDark,
+      AppThemeMode.noorMidnightManuscript,
+      AppThemeMode.noorKids,
+      AppThemeMode.defaultMode,
+      AppThemeMode.calmBeautiful,
+      AppThemeMode.easyRead,
+      AppThemeMode.dark,
+      AppThemeMode.midnightManuscript,
+    ];
+
+    return _stepCard(
+      title: l10n.onboardingThemeTitle,
+      subtitle: l10n.onboardingThemeSubtitle,
+      child: ListView(
+        children: [
+          Wrap(
+            spacing: 12,
+            runSpacing: 12,
+            children: visibleThemeModes
+                .map(
+                  (mode) => SizedBox(
+                    width: 164,
+                    child: _OnboardingThemePreviewTile(
+                      label: _themeModeLabel(mode, l10n),
+                      description: _themeModeDescription(mode, l10n),
+                      helper: _themeModeBestForLabel(mode, l10n),
+                      data: _themePreviewData(mode),
+                      selected: profileSettings.appThemeMode == mode,
+                      onSelected: () {
+                        profileSettingsNotifier.setAppThemeMode(mode);
+                      },
+                    ),
+                  ),
+                )
+                .toList(growable: false),
+          ),
+          const SizedBox(height: 14),
+          Text(
+            l10n.onboardingThemePreviewTitle,
+            style: Theme.of(context).textTheme.titleSmall,
+          ),
+          const SizedBox(height: 6),
+          Text(
+            l10n.onboardingThemePreviewSubtitle,
+            style: Theme.of(context).textTheme.bodySmall,
+          ),
+          const SizedBox(height: 10),
+          PremiumCard(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  l10n.onboardingThemeSampleTitle,
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+                const SizedBox(height: 6),
+                Text(
+                  l10n.onboardingThemeSampleBody,
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
+                const SizedBox(height: 10),
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: [
+                    Chip(label: Text(l10n.onboardingThemeSampleChipPrayer)),
+                    Chip(label: Text(l10n.onboardingThemeSampleChipReading)),
+                    Chip(label: Text(l10n.onboardingThemeSampleChipReflection)),
+                  ],
+                ),
+                const SizedBox(height: 12),
+                PremiumCard(
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.menu_book_rounded,
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              l10n.onboardingThemeSampleCardTitle,
+                              style: Theme.of(context).textTheme.titleSmall,
+                            ),
+                            const SizedBox(height: 2),
+                            Text(
+                              l10n.onboardingThemeSampleCardBody,
+                              style: Theme.of(context).textTheme.bodySmall,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   Widget _agePage() {
     final l10n = AppLocalizations.of(context);
     return _choicePage<OnboardingAgeRange>(
@@ -481,16 +634,14 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
       subtitle: l10n.onboardingExperienceSubtitle,
       value: _islamExperience,
       options: {
-        OnboardingIslamExperience.exploring:
-            l10n.onboardingExperienceExploring,
+        OnboardingIslamExperience.exploring: l10n.onboardingExperienceExploring,
         OnboardingIslamExperience.newToIslam:
             l10n.onboardingExperienceNewToIslam,
         OnboardingIslamExperience.bornStillLearning:
             l10n.onboardingExperienceBornStillLearning,
         OnboardingIslamExperience.practicingRegularly:
             l10n.onboardingExperiencePracticingRegularly,
-        OnboardingIslamExperience.advanced:
-            l10n.onboardingExperienceAdvanced,
+        OnboardingIslamExperience.advanced: l10n.onboardingExperienceAdvanced,
       },
       onChanged: (value) => setState(() => _islamExperience = value),
     );
@@ -519,10 +670,8 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
       subtitle: l10n.onboardingSalahConsistencySubtitle,
       value: _salahConsistency,
       options: {
-        OnboardingSalahConsistency.all:
-            l10n.onboardingSalahConsistencyAll,
-        OnboardingSalahConsistency.most:
-            l10n.onboardingSalahConsistencyMost,
+        OnboardingSalahConsistency.all: l10n.onboardingSalahConsistencyAll,
+        OnboardingSalahConsistency.most: l10n.onboardingSalahConsistencyMost,
         OnboardingSalahConsistency.sometimes:
             l10n.onboardingSalahConsistencySometimes,
         OnboardingSalahConsistency.rarely:
@@ -646,6 +795,11 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
           Text(
             l10n.onboardingTextSizeTitle,
             style: TextStyle(fontWeight: FontWeight.w700),
+          ),
+          const SizedBox(height: 6),
+          Text(
+            l10n.onboardingArabicReadModePreviewHint,
+            style: Theme.of(context).textTheme.bodySmall,
           ),
           Slider(
             value: _arabicTextScale,
@@ -788,130 +942,6 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
     );
   }
 
-  Widget _familyIntroPage() {
-    final l10n = AppLocalizations.of(context);
-    return _stepCard(
-      title: l10n.onboardingFamilyTitle,
-      subtitle: l10n.onboardingFamilySubtitle,
-      child: Column(
-        children: [
-          _FeatureInfoCard(
-            icon: Icons.groups_rounded,
-            title: l10n.onboardingFamilyProfilesTitle,
-            subtitle: l10n.onboardingFamilyProfilesSubtitle,
-          ),
-          const SizedBox(height: 8),
-          _FeatureInfoCard(
-            icon: Icons.person_pin_circle_outlined,
-            title: l10n.onboardingFamilyPrivateJourneysTitle,
-            subtitle: l10n.onboardingFamilyPrivateJourneysSubtitle,
-          ),
-          const SizedBox(height: 8),
-          _FeatureInfoCard(
-            icon: Icons.auto_stories_rounded,
-            title: l10n.onboardingFamilyAgeAppropriateTitle,
-            subtitle: l10n.onboardingFamilyAgeAppropriateSubtitle,
-          ),
-          const SizedBox(height: 8),
-          _FeatureInfoCard(
-            icon: Icons.favorite_outline_rounded,
-            title: l10n.onboardingFamilySharedGrowthTitle,
-            subtitle: l10n.onboardingFamilySharedGrowthSubtitle,
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _dhikrFeedbackPage() {
-    final l10n = AppLocalizations.of(context);
-    return _stepCard(
-      title: l10n.onboardingDhikrFeedbackTitle,
-      subtitle: l10n.onboardingDhikrFeedbackSubtitle,
-      child: ListView(
-        children: [
-          Text(
-            l10n.onboardingDhikrHapticTitle,
-            style: TextStyle(fontWeight: FontWeight.w700),
-          ),
-          _choiceRow<OnboardingDhikrHapticLevel>(
-            value: _dhikrHaptic,
-            options: {
-              OnboardingDhikrHapticLevel.off: l10n.onboardingOptionOff,
-              OnboardingDhikrHapticLevel.light: l10n.onboardingOptionLight,
-              OnboardingDhikrHapticLevel.medium: l10n.onboardingOptionMedium,
-              OnboardingDhikrHapticLevel.strong: l10n.onboardingOptionStrong,
-            },
-            onChanged: (value) => setState(() => _dhikrHaptic = value),
-          ),
-          const SizedBox(height: 10),
-          Text(
-            l10n.onboardingDhikrSoundTitle,
-            style: TextStyle(fontWeight: FontWeight.w700),
-          ),
-          _choiceRow<OnboardingDhikrSound>(
-            value: _dhikrSound,
-            options: {
-              OnboardingDhikrSound.off: l10n.onboardingOptionOff,
-              OnboardingDhikrSound.softClick:
-                  l10n.onboardingDhikrSoundSoftClick,
-              OnboardingDhikrSound.tasbih:
-                  l10n.onboardingDhikrSoundTasbih,
-            },
-            onChanged: (value) => setState(() => _dhikrSound = value),
-          ),
-          const SizedBox(height: 10),
-          Text(
-            l10n.onboardingDhikrVisualTitle,
-            style: TextStyle(fontWeight: FontWeight.w700),
-          ),
-          _choiceRow<OnboardingDhikrPulse>(
-            value: _dhikrPulse,
-            options: {
-              OnboardingDhikrPulse.off: l10n.onboardingOptionOff,
-              OnboardingDhikrPulse.subtleGlow:
-                  l10n.onboardingDhikrVisualSubtleGlow,
-              OnboardingDhikrPulse.pulse:
-                  l10n.onboardingDhikrVisualPulseAnimation,
-            },
-            onChanged: (value) => setState(() => _dhikrPulse = value),
-          ),
-          const SizedBox(height: 10),
-          Center(
-            child: AnimatedContainer(
-              duration: const Duration(milliseconds: 250),
-              curve: Curves.easeOut,
-              padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: const Color(0xFFD8C49A).withValues(
-                  alpha: _dhikrPulse == OnboardingDhikrPulse.off
-                      ? 0.18
-                      : (_dhikrPulse == OnboardingDhikrPulse.subtleGlow
-                            ? 0.28
-                            : 0.36),
-                ),
-              ),
-              child: IconButton(
-                onPressed: () => setState(() => _dhikrPreviewCount += 1),
-                tooltip: AppLocalizations.of(
-                  context,
-                ).accessibilityIncreaseDhikrCount,
-                icon: const Icon(Icons.touch_app_rounded),
-              ),
-            ),
-          ),
-          const SizedBox(height: 6),
-          Center(
-            child: Text(
-              l10n.onboardingDhikrPreviewCount(_dhikrPreviewCount),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
   Widget _identityPage() {
     final l10n = AppLocalizations.of(context);
     return _stepCard(
@@ -989,9 +1019,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
             const SizedBox(height: 8),
             Text(l10n.onboardingWelcomeGreeting(name)),
             const SizedBox(height: 8),
-            Text(
-              l10n.onboardingFinalWelcomeBody,
-            ),
+            Text(l10n.onboardingFinalWelcomeBody),
             const SizedBox(height: 12),
             Text(
               l10n.onboardingFocusListTitle,
@@ -1008,11 +1036,13 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
                 ),
             const SizedBox(height: 12),
             const Text(
-              'رَبِّ زِدْنِي عِلْمًا',
+              'رَبِّ زِدْنِي عِلْمًا',
               style: TextStyle(fontSize: 30, fontFamily: 'AmiriQuran'),
             ),
             const SizedBox(height: 4),
             Text(l10n.onboardingKnowledgeDuaMeaning),
+            const SizedBox(height: 12),
+            Text(l10n.onboardingFinalWelcomeClosingBody),
           ],
         ),
       ),
@@ -1158,7 +1188,9 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
   }
 
   void _next() {
-    if (_index == 7 && _growthInterests.isEmpty) return;
+    if (_index == _growthInterestsPageIndex && _growthInterests.isEmpty) {
+      return;
+    }
     if (_index >= _lastIndex) return;
     _controller.nextPage(
       duration: const Duration(milliseconds: 240),
@@ -1326,11 +1358,15 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
                 ),
                 const SizedBox(height: 10),
                 Text(
-                  AppLocalizations.of(context).onboardingReminderHelpNotificationOnly,
+                  AppLocalizations.of(
+                    context,
+                  ).onboardingReminderHelpNotificationOnly,
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  AppLocalizations.of(context).onboardingReminderHelpAdhanNotification,
+                  AppLocalizations.of(
+                    context,
+                  ).onboardingReminderHelpAdhanNotification,
                 ),
                 const SizedBox(height: 8),
                 Text(
@@ -1433,7 +1469,10 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
 
   List<_LanguageChoice> _localizedLanguageChoices(AppLocalizations l10n) {
     return <_LanguageChoice>[
-      _LanguageChoice(id: 'system', label: l10n.onboardingLanguageSystemDefault),
+      _LanguageChoice(
+        id: 'system',
+        label: l10n.onboardingLanguageSystemDefault,
+      ),
       _LanguageChoice(
         id: 'en',
         label: l10n.onboardingLanguageEnglish,
@@ -1605,38 +1644,380 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
   }
 }
 
-class _FeatureInfoCard extends StatelessWidget {
-  const _FeatureInfoCard({
-    required this.icon,
-    required this.title,
-    required this.subtitle,
+String _themeModeDescription(AppThemeMode mode, AppLocalizations l10n) {
+  switch (mode) {
+    case AppThemeMode.defaultMode:
+      return l10n.settingsThemeModeDefaultDescription;
+    case AppThemeMode.calmBeautiful:
+      return l10n.settingsThemeModeCalmBeautifulDescription;
+    case AppThemeMode.easyRead:
+      return l10n.settingsThemeModeEasyReadDescription;
+    case AppThemeMode.dark:
+      return l10n.settingsThemeModeDarkDescription;
+    case AppThemeMode.noorGlass:
+      return l10n.settingsThemeModeNoorGlassDescription;
+    case AppThemeMode.noorGlassDark:
+      return l10n.settingsThemeModeNoorGlassDarkDescription;
+    case AppThemeMode.noGlass:
+      return l10n.settingsThemeModeNoGlassDescription;
+    case AppThemeMode.noGlassDark:
+      return l10n.settingsThemeModeNoGlassDarkDescription;
+    case AppThemeMode.midnightManuscript:
+      return l10n.settingsThemeModeMidnightManuscriptDescription;
+    case AppThemeMode.noorMidnightManuscript:
+      return l10n.settingsThemeModeNoorMidnightManuscriptDescription;
+    case AppThemeMode.noorKids:
+      return l10n.settingsThemeModeNoorKidsDescription;
+  }
+}
+
+String _themeModeLabel(AppThemeMode mode, AppLocalizations l10n) {
+  switch (mode) {
+    case AppThemeMode.defaultMode:
+      return l10n.settingsThemeChoiceDefault;
+    case AppThemeMode.calmBeautiful:
+      return l10n.settingsThemeChoiceCalmBeautiful;
+    case AppThemeMode.easyRead:
+      return l10n.settingsThemeChoiceEasyRead;
+    case AppThemeMode.dark:
+      return l10n.profileThemeDark;
+    case AppThemeMode.noorGlass:
+      return l10n.settingsThemeChoiceNoorGlass;
+    case AppThemeMode.noorGlassDark:
+      return l10n.settingsThemeChoiceNoorGlassDark;
+    case AppThemeMode.noGlass:
+      return l10n.settingsThemeChoiceNoGlass;
+    case AppThemeMode.noGlassDark:
+      return l10n.settingsThemeChoiceNoGlassDark;
+    case AppThemeMode.midnightManuscript:
+      return l10n.settingsThemeChoiceMidnightManuscript;
+    case AppThemeMode.noorMidnightManuscript:
+      return l10n.settingsThemeChoiceNoorMidnightManuscript;
+    case AppThemeMode.noorKids:
+      return l10n.settingsThemeChoiceNoorKids;
+  }
+}
+
+String _themeModeBestForLabel(AppThemeMode mode, AppLocalizations l10n) {
+  switch (mode) {
+    case AppThemeMode.defaultMode:
+      return l10n.settingsThemeModeDefaultBestFor;
+    case AppThemeMode.calmBeautiful:
+      return l10n.settingsThemeModeCalmBeautifulBestFor;
+    case AppThemeMode.easyRead:
+      return l10n.settingsThemeModeEasyReadBestFor;
+    case AppThemeMode.dark:
+      return l10n.settingsThemeModeDarkBestFor;
+    case AppThemeMode.noorGlass:
+      return l10n.settingsThemeModeNoorGlassBestFor;
+    case AppThemeMode.noorGlassDark:
+      return l10n.settingsThemeModeNoorGlassDarkBestFor;
+    case AppThemeMode.noGlass:
+      return l10n.settingsThemeModeNoGlassBestFor;
+    case AppThemeMode.noGlassDark:
+      return l10n.settingsThemeModeNoGlassDarkBestFor;
+    case AppThemeMode.midnightManuscript:
+      return l10n.settingsThemeModeMidnightManuscriptBestFor;
+    case AppThemeMode.noorMidnightManuscript:
+      return l10n.settingsThemeModeNoorMidnightManuscriptBestFor;
+    case AppThemeMode.noorKids:
+      return l10n.settingsThemeModeNoorKidsBestFor;
+  }
+}
+
+_OnboardingThemePreviewData _themePreviewData(AppThemeMode mode) {
+  final appearance = AppAppearanceTheme.defaults(
+    mode: mode,
+    disableGlassTransparency: false,
+    disableColoredGlass: false,
+    disableBackground: false,
+    glassSurfaceAlpha: 0.88,
+  );
+  final background = AppBackgroundTheme.resolve(
+    appearance: appearance,
+    disableGlassTransparency: false,
+    atmosphere: appearance.isMidnightFamily
+        ? AppBackgroundAtmosphere.quran
+        : AppBackgroundAtmosphere.standard,
+  );
+  final isNoorGlass = appearance.isNoorGlassFamily;
+  final isMidnight = appearance.isMidnightFamily;
+  final isNoGlass =
+      appearance.isNoGlassFamily || appearance.isNoorGlassPrimaryFamily;
+
+  return _OnboardingThemePreviewData(
+    backgroundGradient: background.previewGradient ?? background.baseGradient,
+    cardGradient: LinearGradient(
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+      colors: [
+        appearance.surfaceSoft.withValues(
+          alpha: isNoGlass
+              ? 0.94
+              : isNoorGlass
+              ? 0.58
+              : 0.86,
+        ),
+        appearance.surface.withValues(
+          alpha: isNoGlass
+              ? 0.96
+              : isNoorGlass
+              ? 0.36
+              : 0.74,
+        ),
+      ],
+    ),
+    cardBorder: appearance.border.withValues(
+      alpha: isMidnight
+          ? 0.85
+          : isNoorGlass
+          ? 0.68
+          : 0.58,
+    ),
+    primaryText: appearance.quranArabicEmphasis,
+    secondaryText: appearance.onSurfaceSubtle,
+    accent: appearance.accent,
+    accentSoft: appearance.isMidnightFamily
+        ? appearance.success
+        : isNoorGlass
+        ? Colors.white.withValues(alpha: 0.92)
+        : appearance.accentSoft,
+  );
+}
+
+class _OnboardingThemePreviewData {
+  const _OnboardingThemePreviewData({
+    required this.backgroundGradient,
+    required this.cardGradient,
+    required this.cardBorder,
+    required this.primaryText,
+    required this.secondaryText,
+    required this.accent,
+    required this.accentSoft,
   });
 
-  final IconData icon;
-  final String title;
-  final String subtitle;
+  final Gradient backgroundGradient;
+  final Gradient cardGradient;
+  final Color cardBorder;
+  final Color primaryText;
+  final Color secondaryText;
+  final Color accent;
+  final Color accentSoft;
+}
+
+class _OnboardingThemePreviewTile extends StatelessWidget {
+  const _OnboardingThemePreviewTile({
+    required this.label,
+    required this.description,
+    required this.helper,
+    required this.selected,
+    required this.onSelected,
+    required this.data,
+  });
+
+  final String label;
+  final String description;
+  final String helper;
+  final bool selected;
+  final VoidCallback onSelected;
+  final _OnboardingThemePreviewData data;
 
   @override
   Widget build(BuildContext context) {
-    return PremiumCard(
-      child: Row(
-        children: [
-          Icon(icon),
-          const SizedBox(width: 10),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: const TextStyle(fontWeight: FontWeight.w700),
-                ),
-                const SizedBox(height: 2),
-                Text(subtitle),
-              ],
+    final theme = Theme.of(context);
+    final selectedBorder = selected
+        ? data.accent.withValues(alpha: 0.92)
+        : theme.dividerColor.withValues(alpha: 0.30);
+
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        borderRadius: BorderRadius.circular(22),
+        onTap: onSelected,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 180),
+          padding: const EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(22),
+            border: Border.all(
+              color: selectedBorder,
+              width: selected ? 1.4 : 1,
             ),
+            color: theme.colorScheme.surface.withValues(alpha: 0.28),
           ),
-        ],
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              AspectRatio(
+                aspectRatio: 1.32,
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(18),
+                    gradient: data.backgroundGradient,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withValues(alpha: 0.12),
+                        blurRadius: 16,
+                        offset: const Offset(0, 6),
+                      ),
+                    ],
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Stack(
+                      children: [
+                        Align(
+                          alignment: Alignment.topRight,
+                          child: AnimatedOpacity(
+                            duration: const Duration(milliseconds: 180),
+                            opacity: selected ? 1 : 0,
+                            child: Container(
+                              width: 24,
+                              height: 24,
+                              decoration: BoxDecoration(
+                                color: data.accent.withValues(alpha: 0.24),
+                                shape: BoxShape.circle,
+                                border: Border.all(
+                                  color: data.accent.withValues(alpha: 0.8),
+                                ),
+                              ),
+                              child: Icon(
+                                Icons.check_rounded,
+                                size: 15,
+                                color: data.primaryText,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.topLeft,
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Container(
+                                width: 34,
+                                height: 8,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(999),
+                                  color: data.primaryText.withValues(
+                                    alpha: 0.82,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(width: 6),
+                              Container(
+                                width: 18,
+                                height: 8,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(999),
+                                  color: data.accent.withValues(alpha: 0.72),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Container(
+                            padding: const EdgeInsets.fromLTRB(10, 10, 10, 9),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(16),
+                              gradient: data.cardGradient,
+                              border: Border.all(color: data.cardBorder),
+                            ),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  width: 54,
+                                  height: 7,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(999),
+                                    color: data.accent.withValues(alpha: 0.75),
+                                  ),
+                                ),
+                                const SizedBox(height: 7),
+                                Container(
+                                  width: double.infinity,
+                                  height: 6,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(999),
+                                    color: data.primaryText.withValues(
+                                      alpha: 0.84,
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(height: 6),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: Container(
+                                        height: 6,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(
+                                            999,
+                                          ),
+                                          color: data.secondaryText.withValues(
+                                            alpha: 0.72,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(width: 8),
+                                    Container(
+                                      width: 26,
+                                      height: 18,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(
+                                          999,
+                                        ),
+                                        color: data.accentSoft.withValues(
+                                          alpha: 0.28,
+                                        ),
+                                        border: Border.all(
+                                          color: data.accentSoft.withValues(
+                                            alpha: 0.7,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10),
+              Text(
+                label,
+                style: theme.textTheme.titleSmall?.copyWith(
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                description,
+                style: theme.textTheme.bodySmall?.copyWith(height: 1.35),
+              ),
+              const SizedBox(height: 6),
+              Text(
+                helper,
+                style: theme.textTheme.bodySmall?.copyWith(
+                  fontWeight: FontWeight.w600,
+                  color: theme.textTheme.bodySmall?.color?.withValues(
+                    alpha: 0.78,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

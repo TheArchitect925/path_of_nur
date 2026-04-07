@@ -94,7 +94,16 @@ void main() {
       expect(find.byType(HomePage), findsOneWidget);
       expect(find.text('Post-salah dhikr logged'), findsOneWidget);
 
-      await tester.tap(find.text('Tap to update prayer details').first);
+      final prayerDetailsCallToAction = find.text(
+        'Tap to update prayer details',
+      ).first;
+      await tester.scrollUntilVisible(
+        prayerDetailsCallToAction,
+        240,
+        scrollable: find.byType(Scrollable).first,
+      );
+      await tester.pump(const Duration(milliseconds: 200));
+      await tester.tap(prayerDetailsCallToAction);
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 200));
 
@@ -103,4 +112,27 @@ void main() {
       expect(find.text('In congregation'), findsWidgets);
     },
   );
+
+  testWidgets('home prayer timings show Tahajjud beside the daily prayers', (
+    tester,
+  ) async {
+    final database = AppDatabase.inMemory();
+    addTearDown(database.close);
+
+    final container = await makeHomeContainer(
+      database: database,
+      overrides: <Override>[
+        dailyNowProvider.overrideWith(
+          (ref) =>
+              Stream<DateTime>.value(DateTime.parse('2026-03-22T12:00:00')),
+        ),
+      ],
+    );
+    addTearDown(container.dispose);
+
+    await pumpHome(tester, container);
+
+    expect(find.text('Tahajjud'), findsOneWidget);
+    expect(find.text('التهجد'), findsOneWidget);
+  });
 }
