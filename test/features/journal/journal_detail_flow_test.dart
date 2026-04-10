@@ -165,23 +165,36 @@ void main() {
     );
     await tester.pumpAndSettle();
 
-    expect(find.text('Moonlit memory'), findsOneWidget);
-    await tester.tap(find.text('Moonlit memory'));
+    final entryTitle = find.text('Moonlit memory');
+    expect(entryTitle, findsOneWidget);
+    await tester.ensureVisible(entryTitle);
+    await tester.pumpAndSettle();
+    final entryInkWell = find.ancestor(
+      of: entryTitle,
+      matching: find.byType(InkWell),
+    );
+    await tester.tap(entryInkWell.first);
     await tester.pumpAndSettle();
 
     expect(find.byType(JournalEntryDetailPage), findsOneWidget);
     expect(find.text('Night prayer'), findsOneWidget);
     expect(find.textContaining('20:114'), findsOneWidget);
 
-    await tester.tap(find.text('Edit entry'));
+    final editAction = find.text('Edit entry');
+    await tester.scrollUntilVisible(
+      editAction,
+      300,
+      scrollable: find.byType(Scrollable).first,
+    );
+    await tester.pumpAndSettle();
+    await tester.tap(editAction);
     await tester.pumpAndSettle();
 
+    final textFields = find.byType(TextField);
+    expect(textFields, findsWidgets);
+    await tester.enterText(textFields.at(0), 'Moonlit memory updated');
     await tester.enterText(
-      find.byType(TextField).at(0),
-      'Moonlit memory updated',
-    );
-    await tester.enterText(
-      find.byType(TextField).at(1),
+      textFields.at(1),
       'I rewrote this journal memory after revisiting the entry in detail.',
     );
     tester.testTextInput.hide();

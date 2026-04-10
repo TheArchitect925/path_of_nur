@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../l10n/app_localizations.dart';
+import '../../../../shared/utils/reward_feedback.dart';
 import '../../../../shared/theme/islamic_icons.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
@@ -300,11 +301,14 @@ class _QuizSummaryCard extends ConsumerWidget {
               if (state.rewardSummary != null) ...[
                 const SizedBox(height: 10),
                 Text(
-                  l10n.wuduQuizRewardFeedback(
-                    state.rewardSummary!.xpAwarded,
-                    state.rewardSummary!.oceanDropsAwarded,
+                  buildCompactRewardSummary(
+                    l10n,
+                    xp: state.rewardSummary!.xpAwarded,
+                    drops: state.rewardSummary!.oceanDropsAwarded,
                   ),
-                  style: Theme.of(context).textTheme.bodyMedium,
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                  ),
                 ),
               ],
               if (state.completedOnce) ...[

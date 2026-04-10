@@ -444,7 +444,7 @@ class _PrayerTrackerTab extends ConsumerWidget {
                   style: TextStyle(color: AppColors.onSurfaceSubtle),
                 ),
                 const SizedBox(height: 10),
-                ...PrayerName.values.map(
+                ...obligatoryPrayerNames.map(
                   (prayer) => Padding(
                     padding: const EdgeInsets.only(bottom: 10),
                     child: _QadaBacklogBar(
@@ -528,7 +528,7 @@ class _PrayerHistoryCard extends ConsumerWidget {
             ),
           ),
           const SizedBox(height: 10),
-          ...PrayerName.values.map((prayer) {
+          ...obligatoryPrayerNames.map((prayer) {
             final raw = data[prayer];
             final completedAt = raw?.completedAtIso == null
                 ? null
@@ -768,7 +768,7 @@ class _PrayerStatsTab extends ConsumerWidget {
     var masjidCount = 0;
     var qadaCount = 0;
     for (final daily in monthRecords.values) {
-      for (final prayer in PrayerName.values) {
+      for (final prayer in obligatoryPrayerNames) {
         final status = daily[prayer] ?? PrayerStatus.pending;
         totalPoints += 1;
         if (status == PrayerStatus.completed) completedPoints += 1;
@@ -1004,7 +1004,7 @@ class _MonthlyTrackerGrid extends StatelessWidget {
                       Wrap(
                         spacing: 1.2,
                         runSpacing: 1.2,
-                        children: PrayerName.values
+                        children: obligatoryPrayerNames
                             .map(
                               (prayer) => Container(
                                 width: 6.8,
@@ -1131,7 +1131,7 @@ class _QadaPlannerCard extends ConsumerWidget {
             ),
           ),
           const SizedBox(height: 10),
-          ...PrayerName.values.map(
+          ...obligatoryPrayerNames.map(
             (prayer) => Padding(
               padding: const EdgeInsets.only(bottom: 8),
               child: Row(
@@ -1306,7 +1306,7 @@ class _PrayerConsistencyHeatmapCard extends StatelessWidget {
             style: TextStyle(color: AppColors.onSurfaceSubtle, fontSize: 12.5),
           ),
           const SizedBox(height: 10),
-          for (final prayer in PrayerName.values)
+          for (final prayer in obligatoryPrayerNames)
             Padding(
               padding: const EdgeInsets.only(bottom: 6),
               child: Row(
@@ -1686,7 +1686,7 @@ List<_TrendPoint> _buildWeeklyTrend(
             day.day,
           )] ??
           const <PrayerName, PrayerStatus>{};
-      for (final prayer in PrayerName.values) {
+      for (final prayer in obligatoryPrayerNames) {
         total += 1;
         if ((map[prayer] ?? PrayerStatus.pending) == PrayerStatus.completed) {
           completed += 1;
@@ -1717,7 +1717,7 @@ List<_TrendPoint> _buildMonthlyTrend(
     var total = 0;
     var completed = 0;
     for (final day in records.values) {
-      for (final prayer in PrayerName.values) {
+      for (final prayer in obligatoryPrayerNames) {
         total += 1;
         if ((day[prayer] ?? PrayerStatus.pending) == PrayerStatus.completed) {
           completed += 1;

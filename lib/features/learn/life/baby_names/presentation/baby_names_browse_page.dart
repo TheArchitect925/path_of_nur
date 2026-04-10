@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../../../l10n/app_localizations.dart';
 import '../../../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../../../shared/widgets/premium_card.dart';
 import '../application/baby_names_controller.dart';
@@ -29,6 +30,7 @@ class _BabyNamesBrowsePageState extends ConsumerState<BabyNamesBrowsePage> {
   final _searchCtrl = TextEditingController();
 
   List<Widget> _buildActiveFilterChips(
+    AppLocalizations l10n,
     BabyNamesState state,
     BabyNamesController controller,
   ) {
@@ -39,25 +41,29 @@ class _BabyNamesBrowsePageState extends ConsumerState<BabyNamesBrowsePage> {
 
     if (state.filters.gender != null) {
       add(
-        'Gender: ${state.filters.gender!.name}',
+        l10n.babyNamesFilterChipGender(
+          _genderLabel(l10n, state.filters.gender!),
+        ),
         () => controller.setFilters(state.filters.copyWith(gender: null)),
       );
     }
     if (state.filters.category != null) {
       add(
-        'Category: ${state.filters.category!.name}',
+        l10n.babyNamesFilterChipCategory(
+          _categoryLabel(l10n, state.filters.category!),
+        ),
         () => controller.setFilters(state.filters.copyWith(category: null)),
       );
     }
     if (state.filters.quranicOnly) {
       add(
-        'Quranic',
+        l10n.babyNamesQuranicLabel,
         () => controller.setFilters(state.filters.copyWith(quranicOnly: false)),
       );
     }
     if (state.filters.prophetAssociationOnly) {
       add(
-        'Prophet linked',
+        l10n.babyNamesFilterChipProphetLinked,
         () => controller.setFilters(
           state.filters.copyWith(prophetAssociationOnly: false),
         ),
@@ -65,7 +71,7 @@ class _BabyNamesBrowsePageState extends ConsumerState<BabyNamesBrowsePage> {
     }
     if (state.filters.companionAssociationOnly) {
       add(
-        'Companion linked',
+        l10n.babyNamesFilterChipCompanionLinked,
         () => controller.setFilters(
           state.filters.copyWith(companionAssociationOnly: false),
         ),
@@ -73,33 +79,33 @@ class _BabyNamesBrowsePageState extends ConsumerState<BabyNamesBrowsePage> {
     }
     if (state.filters.origin != null) {
       add(
-        'Origin: ${state.filters.origin}',
+        l10n.babyNamesFilterChipOrigin(state.filters.origin!),
         () => controller.setFilters(state.filters.copyWith(origin: null)),
       );
     }
     if (state.filters.meaningTheme != null) {
       add(
-        'Theme: ${state.filters.meaningTheme}',
+        l10n.babyNamesFilterChipTheme(state.filters.meaningTheme!),
         () => controller.setFilters(state.filters.copyWith(meaningTheme: null)),
       );
     }
     if (state.filters.startingLetter != null) {
       add(
-        'Letter: ${state.filters.startingLetter}',
+        l10n.babyNamesFilterChipLetter(state.filters.startingLetter!),
         () =>
             controller.setFilters(state.filters.copyWith(startingLetter: null)),
       );
     }
     if (state.filters.favoritesOnly) {
       add(
-        'Favorites',
+        l10n.babyNamesFavoritesLabel,
         () =>
             controller.setFilters(state.filters.copyWith(favoritesOnly: false)),
       );
     }
     if (state.filters.featuredOnly) {
       add(
-        'Featured',
+        l10n.babyNamesFeaturedLabel,
         () =>
             controller.setFilters(state.filters.copyWith(featuredOnly: false)),
       );
@@ -135,6 +141,7 @@ class _BabyNamesBrowsePageState extends ConsumerState<BabyNamesBrowsePage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final controller = ref.read(babyNamesControllerProvider.notifier);
     final state = ref.watch(babyNamesControllerProvider);
     final options = ref.watch(babyNamesFilterOptionsProvider);
@@ -143,8 +150,8 @@ class _BabyNamesBrowsePageState extends ConsumerState<BabyNamesBrowsePage> {
 
     return AppPageScaffold(
       headerIcon: Icons.manage_search_rounded,
-      title: 'Browse Baby Names',
-      subtitle: 'Search and filter across the full offline dataset',
+      title: l10n.babyNamesBrowseSearchTitle,
+      subtitle: l10n.babyNamesBrowseSearchSubtitle,
       children: [
         PremiumCard(
           child: TextField(
@@ -153,7 +160,7 @@ class _BabyNamesBrowsePageState extends ConsumerState<BabyNamesBrowsePage> {
             onSubmitted: controller.submitSearch,
             decoration: InputDecoration(
               isDense: true,
-              hintText: 'Search by name, Arabic, meaning, theme, or origin',
+              hintText: l10n.babyNamesSearchHint,
               border: const OutlineInputBorder(),
               prefixIcon: const Icon(Icons.search_rounded),
               suffixIcon: state.searchQuery.isEmpty
@@ -173,9 +180,9 @@ class _BabyNamesBrowsePageState extends ConsumerState<BabyNamesBrowsePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                'Quick filters',
-                style: TextStyle(fontWeight: FontWeight.w700),
+              Text(
+                l10n.babyNamesFiltersTitle,
+                style: const TextStyle(fontWeight: FontWeight.w700),
               ),
               const SizedBox(height: 8),
               Wrap(
@@ -183,7 +190,7 @@ class _BabyNamesBrowsePageState extends ConsumerState<BabyNamesBrowsePage> {
                 runSpacing: 8,
                 children: [
                   FilterChip(
-                    label: const Text('All'),
+                    label: Text(l10n.babyNamesAllLabel),
                     selected:
                         state.filters.gender == null &&
                         state.filters.category == null &&
@@ -198,42 +205,42 @@ class _BabyNamesBrowsePageState extends ConsumerState<BabyNamesBrowsePage> {
                     onSelected: (_) => controller.clearFilters(),
                   ),
                   FilterChip(
-                    label: const Text('Boys'),
+                    label: Text(l10n.babyNamesBoysLabel),
                     selected: state.filters.gender == BabyNameGender.male,
                     onSelected: (_) => controller.setFilters(
                       state.filters.copyWith(gender: BabyNameGender.male),
                     ),
                   ),
                   FilterChip(
-                    label: const Text('Girls'),
+                    label: Text(l10n.babyNamesGirlsLabel),
                     selected: state.filters.gender == BabyNameGender.female,
                     onSelected: (_) => controller.setFilters(
                       state.filters.copyWith(gender: BabyNameGender.female),
                     ),
                   ),
                   FilterChip(
-                    label: const Text('Unisex'),
+                    label: Text(l10n.babyNamesUnisexLabel),
                     selected: state.filters.gender == BabyNameGender.unisex,
                     onSelected: (_) => controller.setFilters(
                       state.filters.copyWith(gender: BabyNameGender.unisex),
                     ),
                   ),
                   FilterChip(
-                    label: const Text('Quranic'),
+                    label: Text(l10n.babyNamesQuranicLabel),
                     selected: state.filters.quranicOnly,
                     onSelected: (selected) => controller.setFilters(
                       state.filters.copyWith(quranicOnly: selected),
                     ),
                   ),
                   FilterChip(
-                    label: const Text('Prophet Association'),
+                    label: Text(l10n.babyNamesProphetAssociationLabel),
                     selected: state.filters.prophetAssociationOnly,
                     onSelected: (selected) => controller.setFilters(
                       state.filters.copyWith(prophetAssociationOnly: selected),
                     ),
                   ),
                   FilterChip(
-                    label: const Text('Companion Association'),
+                    label: Text(l10n.babyNamesCompanionAssociationLabel),
                     selected: state.filters.companionAssociationOnly,
                     onSelected: (selected) => controller.setFilters(
                       state.filters.copyWith(
@@ -242,7 +249,7 @@ class _BabyNamesBrowsePageState extends ConsumerState<BabyNamesBrowsePage> {
                     ),
                   ),
                   FilterChip(
-                    label: const Text('Favorites'),
+                    label: Text(l10n.babyNamesFavoritesLabel),
                     selected: state.filters.favoritesOnly,
                     onSelected: (selected) => controller.setFilters(
                       state.filters.copyWith(favoritesOnly: selected),
@@ -257,7 +264,7 @@ class _BabyNamesBrowsePageState extends ConsumerState<BabyNamesBrowsePage> {
                   scrollDirection: Axis.horizontal,
                   children: [
                     _LetterChip(
-                      label: 'All',
+                      label: l10n.babyNamesAllLabel,
                       selected: state.filters.startingLetter == null,
                       onTap: () => controller.setFilters(
                         state.filters.copyWith(startingLetter: null),
@@ -283,14 +290,14 @@ class _BabyNamesBrowsePageState extends ConsumerState<BabyNamesBrowsePage> {
                       initialValue: state.filters.origin,
                       isExpanded: true,
                       isDense: true,
-                      decoration: const InputDecoration(
-                        labelText: 'Origin',
+                      decoration: InputDecoration(
+                        labelText: l10n.babyNamesOriginFilterLabel,
                         border: OutlineInputBorder(),
                       ),
                       items: [
-                        const DropdownMenuItem<String>(
+                        DropdownMenuItem<String>(
                           value: null,
-                          child: Text('Any'),
+                          child: Text(l10n.babyNamesAnyOption),
                         ),
                         ...options.origins.map(
                           (origin) => DropdownMenuItem<String>(
@@ -310,14 +317,14 @@ class _BabyNamesBrowsePageState extends ConsumerState<BabyNamesBrowsePage> {
                       initialValue: state.filters.meaningTheme,
                       isExpanded: true,
                       isDense: true,
-                      decoration: const InputDecoration(
-                        labelText: 'Meaning theme',
+                      decoration: InputDecoration(
+                        labelText: l10n.babyNamesMeaningThemeLabel,
                         border: OutlineInputBorder(),
                       ),
                       items: [
-                        const DropdownMenuItem<String>(
+                        DropdownMenuItem<String>(
                           value: null,
-                          child: Text('Any'),
+                          child: Text(l10n.babyNamesAnyOption),
                         ),
                         ...options.meaningThemes.map(
                           (theme) => DropdownMenuItem<String>(
@@ -341,14 +348,14 @@ class _BabyNamesBrowsePageState extends ConsumerState<BabyNamesBrowsePage> {
                       initialValue: state.filters.startingLetter,
                       isExpanded: true,
                       isDense: true,
-                      decoration: const InputDecoration(
-                        labelText: 'Starts with',
+                      decoration: InputDecoration(
+                        labelText: l10n.babyNamesStartsWithLabel,
                         border: OutlineInputBorder(),
                       ),
                       items: [
-                        const DropdownMenuItem<String>(
+                        DropdownMenuItem<String>(
                           value: null,
-                          child: Text('Any'),
+                          child: Text(l10n.babyNamesAnyOption),
                         ),
                         ...options.startingLetters.map(
                           (letter) => DropdownMenuItem<String>(
@@ -368,34 +375,34 @@ class _BabyNamesBrowsePageState extends ConsumerState<BabyNamesBrowsePage> {
                       initialValue: state.sort,
                       isExpanded: true,
                       isDense: true,
-                      decoration: const InputDecoration(
-                        labelText: 'Sort',
+                      decoration: InputDecoration(
+                        labelText: l10n.babyNamesSortLabel,
                         border: OutlineInputBorder(),
                       ),
-                      items: const [
+                      items: [
                         DropdownMenuItem(
                           value: BabyNameSort.alphabeticalAz,
-                          child: Text('Alphabetical A-Z'),
+                          child: Text(l10n.babyNamesSortAlphabeticalAz),
                         ),
                         DropdownMenuItem(
                           value: BabyNameSort.alphabeticalZa,
-                          child: Text('Alphabetical Z-A'),
+                          child: Text(l10n.babyNamesSortAlphabeticalZa),
                         ),
                         DropdownMenuItem(
                           value: BabyNameSort.mostPopular,
-                          child: Text('Most popular'),
+                          child: Text(l10n.babyNamesSortMostPopular),
                         ),
                         DropdownMenuItem(
                           value: BabyNameSort.classicFirst,
-                          child: Text('Classic first'),
+                          child: Text(l10n.babyNamesSortClassicFirst),
                         ),
                         DropdownMenuItem(
                           value: BabyNameSort.modernFirst,
-                          child: Text('Modern first'),
+                          child: Text(l10n.babyNamesSortModernFirst),
                         ),
                         DropdownMenuItem(
                           value: BabyNameSort.shortestFirst,
-                          child: Text('Shortest first'),
+                          child: Text(l10n.babyNamesSortShortestFirst),
                         ),
                       ],
                       onChanged: (value) {
@@ -410,15 +417,19 @@ class _BabyNamesBrowsePageState extends ConsumerState<BabyNamesBrowsePage> {
                 alignment: Alignment.centerRight,
                 child: TextButton(
                   onPressed: controller.clearFilters,
-                  child: const Text('Reset filters'),
+                  child: Text(l10n.babyNamesResetFiltersAction),
                 ),
               ),
-              if (_buildActiveFilterChips(state, controller).isNotEmpty) ...[
+              if (_buildActiveFilterChips(
+                l10n,
+                state,
+                controller,
+              ).isNotEmpty) ...[
                 const SizedBox(height: 2),
                 Wrap(
                   spacing: 8,
                   runSpacing: 8,
-                  children: _buildActiveFilterChips(state, controller),
+                  children: _buildActiveFilterChips(l10n, state, controller),
                 ),
               ],
             ],
@@ -454,7 +465,7 @@ class _BabyNamesBrowsePageState extends ConsumerState<BabyNamesBrowsePage> {
                   child: Row(
                     children: [
                       Text(
-                        '${results.length} names',
+                        '${results.length} ${l10n.babyNamesResultsLabel}',
                         style: const TextStyle(fontWeight: FontWeight.w700),
                       ),
                       const Spacer(),
@@ -462,7 +473,7 @@ class _BabyNamesBrowsePageState extends ConsumerState<BabyNamesBrowsePage> {
                         onPressed: () =>
                             context.pushNamed('babyNamesFavorites'),
                         icon: const Icon(Icons.favorite_outline_rounded),
-                        label: const Text('Favorites'),
+                        label: Text(l10n.babyNamesFavoritesLabel),
                       ),
                     ],
                   ),
@@ -472,10 +483,10 @@ class _BabyNamesBrowsePageState extends ConsumerState<BabyNamesBrowsePage> {
                   PremiumCard(
                     child: Column(
                       children: [
-                        const Text('No names match these filters.'),
+                        Text(l10n.babyNamesNoResults),
                         const SizedBox(height: 6),
-                        const Text(
-                          'Try removing a filter or exploring by meaning instead.',
+                        Text(
+                          l10n.babyNamesNoResultsHint,
                           style: TextStyle(color: Color(0xFF6B604E)),
                         ),
                         const SizedBox(height: 8),
@@ -488,13 +499,13 @@ class _BabyNamesBrowsePageState extends ConsumerState<BabyNamesBrowsePage> {
                                 controller.clearFilters();
                                 _searchCtrl.clear();
                               },
-                              child: const Text('Reset filters'),
+                              child: Text(l10n.babyNamesResetFiltersAction),
                             ),
                             const SizedBox(width: 8),
                             OutlinedButton(
                               onPressed: () =>
                                   context.pushNamed('babyNamesMeaningExplorer'),
-                              child: const Text('Explore meanings'),
+                              child: Text(l10n.babyNamesExploreMeaningsAction),
                             ),
                           ],
                         ),
@@ -516,12 +527,38 @@ class _BabyNamesBrowsePageState extends ConsumerState<BabyNamesBrowsePage> {
               child: Center(child: CircularProgressIndicator(strokeWidth: 2)),
             ),
           ),
-          error: (_, _) => const PremiumCard(
-            child: Text('Unable to load names at the moment.'),
-          ),
+          error: (_, _) => PremiumCard(child: Text(l10n.babyNamesLoadError)),
         ),
       ],
     );
+  }
+}
+
+String _genderLabel(AppLocalizations l10n, BabyNameGender gender) {
+  switch (gender) {
+    case BabyNameGender.male:
+      return l10n.babyNamesBoysLabel;
+    case BabyNameGender.female:
+      return l10n.babyNamesGirlsLabel;
+    case BabyNameGender.unisex:
+      return l10n.babyNamesUnisexLabel;
+  }
+}
+
+String _categoryLabel(AppLocalizations l10n, BabyNameCategory category) {
+  switch (category) {
+    case BabyNameCategory.quranic:
+      return l10n.babyNamesQuranicLabel;
+    case BabyNameCategory.prophet:
+      return l10n.babyNamesProphetsLabel;
+    case BabyNameCategory.companions:
+      return l10n.babyNamesCompanionsLabel;
+    case BabyNameCategory.popular:
+      return l10n.babyNamesPopularLabel;
+    case BabyNameCategory.classic:
+      return l10n.babyNamesClassicLabel;
+    case BabyNameCategory.modern:
+      return l10n.babyNamesModernLabel;
   }
 }
 

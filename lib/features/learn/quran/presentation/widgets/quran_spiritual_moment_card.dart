@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../../l10n/app_localizations.dart';
 import '../../../../../core/theme/app_surfaces.dart';
-import '../../../../../shared/widgets/app_layered_glass_pill_button.dart';
 import '../../../../../shared/widgets/app_hero_glass_shell.dart';
 import '../../../../../shared/widgets/premium_card.dart';
 import '../../../../../shared/widgets/quran_navigation.dart';
@@ -151,19 +150,19 @@ class _QuranSpiritualMomentCardState
           spacing: 8,
           runSpacing: 8,
           children: [
-            AppLayeredGlassPillButton(
+            _SpiritualMomentActionButton(
               onPressed: () =>
                   openQuranReferenceLocation(context, ref: recommendation.ref),
-              leading: const Icon(Icons.auto_stories_rounded, size: 18),
+              icon: Icons.auto_stories_rounded,
               label: l10n.quranPersonalizationOpenAyahAction,
             ),
             recommendation.actionRecommendation.isCompletedToday
-                ? AppLayeredGlassPillButton(
+                ? _SpiritualMomentActionButton(
                     onPressed: null,
-                    leading: const Icon(Icons.check_circle_rounded, size: 18),
+                    icon: Icons.check_circle_rounded,
                     label: l10n.quranAyahActionCompletedAction,
                   )
-                : AppLayeredGlassPillButton(
+                : _SpiritualMomentActionButton(
                     onPressed: () {
                       ref
                           .read(quranAyahActionStateProvider.notifier)
@@ -171,7 +170,7 @@ class _QuranSpiritualMomentCardState
                             recommendation.actionRecommendation.action,
                           );
                     },
-                    leading: const Icon(Icons.done_rounded, size: 18),
+                    icon: Icons.done_rounded,
                     label: l10n.quranAyahActionCompleteAction,
                   ),
           ],
@@ -245,4 +244,32 @@ String _reasonLabel(
     QuranSpiritualMomentReasonCode.kidsMoment =>
       l10n.quranSpiritualMomentReasonKids,
   };
+}
+
+class _SpiritualMomentActionButton extends StatelessWidget {
+  const _SpiritualMomentActionButton({
+    required this.label,
+    required this.icon,
+    required this.onPressed,
+  });
+
+  final String label;
+  final IconData icon;
+  final VoidCallback? onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return FilledButton.tonalIcon(
+      onPressed: onPressed,
+      icon: Icon(icon, size: 18),
+      label: Text(label),
+      style: FilledButton.styleFrom(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(999)),
+        textStyle: Theme.of(
+          context,
+        ).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w700),
+      ),
+    );
+  }
 }

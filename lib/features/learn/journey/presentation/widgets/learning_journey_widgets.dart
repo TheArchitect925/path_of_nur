@@ -532,14 +532,6 @@ class LearningJourneyStageCard extends StatelessWidget {
                         color: const Color(0xFFF2E8D9),
                         textColor: const Color(0xFF725C42),
                       ),
-                      _MetaPill(
-                        label: l10n.learningJourneyStageReward(
-                          stage.xpReward,
-                          stage.dropReward,
-                        ),
-                        color: const Color(0xFFE7EEE1),
-                        textColor: const Color(0xFF4C6540),
-                      ),
                     ],
                   ),
                 ],

@@ -1,0 +1,3 @@
+# Prompt
+
+on the onboarding carousel. remove the descriptions from all the choices, make the selection icons smaller so that the user can see the example which is too far at the bottom of the screen. also remove Noor Midnight Manuscript, Noor Kids, Classic Default, Calm Beautiful, Easy Read, Dark, Midnigh Manuscript as they are not needed, we will focus on the top ones and once we are done teh cleanup we will focus on enhacning the exisitng available themes seperattly ]

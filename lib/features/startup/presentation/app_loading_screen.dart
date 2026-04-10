@@ -90,139 +90,156 @@ class _AppLoadingScreenState extends ConsumerState<AppLoadingScreen> {
             ),
           ),
           SafeArea(
-            child: Center(
-              child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 24,
-                  vertical: 32,
-                ),
-                child: ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 440),
-                  child: AppHeroGlassShell(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 28,
-                      vertical: 30,
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                return SingleChildScrollView(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 24,
+                    vertical: 32,
+                  ),
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(
+                      minHeight: constraints.maxHeight - 64,
                     ),
-                    tintColor: const Color(0xFFE7C98C),
-                    surfaceAlphaOverride: 0.2,
-                    radius: 36,
-                    borderColor: const Color(0x42FFFFFF),
-                    highlightGradientColors: const [
-                      Color(0x24FFFFFF),
-                      Colors.transparent,
-                      Color(0x16E8C98F),
-                    ],
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          l10n.loadingHeadlineAllahAkbar,
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            fontFamily: 'Amiri Quran',
-                            fontSize: 34,
-                            height: 1.25,
-                            fontWeight: FontWeight.w700,
-                            color: _primaryTextColor,
-                            shadows: [
-                              Shadow(
-                                color: Color(0x26FFF8EA),
-                                blurRadius: 10,
-                                offset: Offset(0, 1),
-                              ),
-                            ],
+                    child: Center(
+                      child: ConstrainedBox(
+                        constraints: const BoxConstraints(maxWidth: 440),
+                        child: AppHeroGlassShell(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 28,
+                            vertical: 30,
                           ),
-                        ),
-                        const SizedBox(height: 18),
-                        _StartupLogoHalo(
-                          child: Image.asset(
-                            'assets/icons/home_lantern_cropped.png',
-                            width: 100,
-                            height: 100,
-                          ),
-                        ),
-                        const SizedBox(height: 22),
-                        Text(
-                          greeting.arabic,
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            fontFamily: 'Amiri Quran',
-                            fontSize: 26,
-                            height: 1.25,
-                            fontWeight: FontWeight.w700,
-                            color: _primaryTextColor,
-                            shadows: [
-                              Shadow(
-                                color: Color(0x24FFF8EA),
-                                blurRadius: 8,
-                                offset: Offset(0, 1),
-                              ),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(height: 6),
-                        Text(
-                          greeting.translation,
-                          textAlign: TextAlign.center,
-                          style: Theme.of(context).textTheme.bodySmall
-                              ?.copyWith(
-                                fontSize: 12.5,
-                                color: _secondaryTextColor,
-                                height: 1.35,
-                              ),
-                        ),
-                        const SizedBox(height: 20),
-                        Text(
-                          l10n.loadingWelcomeBack,
-                          textAlign: TextAlign.center,
-                          style: Theme.of(context).textTheme.headlineSmall
-                              ?.copyWith(
-                                fontWeight: FontWeight.w700,
-                                color: _headlineColor,
-                              ),
-                        ),
-                        const SizedBox(height: 6),
-                        Text(
-                          l10n.loadingRestoringProgress,
-                          textAlign: TextAlign.center,
-                          style: Theme.of(context).textTheme.bodyMedium
-                              ?.copyWith(
-                                color: _secondaryTextColor,
-                                height: 1.4,
-                              ),
-                        ),
-                        const SizedBox(height: 24),
-                        const SizedBox(
-                          width: 26,
-                          height: 26,
-                          child: CircularProgressIndicator(
-                            strokeWidth: 2.4,
-                            valueColor: AlwaysStoppedAnimation<Color>(
-                              Color(0xFFB9934B),
-                            ),
-                            backgroundColor: Color(0x1FB9934B),
-                          ),
-                        ),
-                        const SizedBox(height: 16),
-                        AnimatedSwitcher(
-                          duration: const Duration(milliseconds: 240),
-                          child: Text(
-                            statusLabel,
-                            key: ValueKey<String>(statusLabel),
-                            textAlign: TextAlign.center,
-                            style: Theme.of(context).textTheme.bodySmall
-                                ?.copyWith(
-                                  color: _tertiaryTextColor,
-                                  fontWeight: FontWeight.w600,
-                                  height: 1.3,
+                          tintColor: const Color(0xFFE7C98C),
+                          surfaceAlphaOverride: 0.2,
+                          radius: 36,
+                          borderColor: const Color(0x42FFFFFF),
+                          highlightGradientColors: const [
+                            Color(0x24FFFFFF),
+                            Colors.transparent,
+                            Color(0x16E8C98F),
+                          ],
+                          child: SizedBox(
+                            width: double.infinity,
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  l10n.loadingHeadlineAllahAkbar,
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                    fontFamily: 'Amiri Quran',
+                                    fontSize: 34,
+                                    height: 1.25,
+                                    fontWeight: FontWeight.w700,
+                                    color: _primaryTextColor,
+                                    shadows: [
+                                      Shadow(
+                                        color: Color(0x26FFF8EA),
+                                        blurRadius: 10,
+                                        offset: Offset(0, 1),
+                                      ),
+                                    ],
+                                  ),
                                 ),
+                                const SizedBox(height: 18),
+                                Center(
+                                  child: _StartupLogoHalo(
+                                    child: Image.asset(
+                                      'assets/icons/home_lantern_cropped.png',
+                                      width: 100,
+                                      height: 100,
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(height: 22),
+                                Text(
+                                  greeting.arabic,
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                    fontFamily: 'Amiri Quran',
+                                    fontSize: 26,
+                                    height: 1.25,
+                                    fontWeight: FontWeight.w700,
+                                    color: _primaryTextColor,
+                                    shadows: [
+                                      Shadow(
+                                        color: Color(0x24FFF8EA),
+                                        blurRadius: 8,
+                                        offset: Offset(0, 1),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                const SizedBox(height: 6),
+                                Text(
+                                  greeting.translation,
+                                  textAlign: TextAlign.center,
+                                  style: Theme.of(context).textTheme.bodySmall
+                                      ?.copyWith(
+                                        fontSize: 12.5,
+                                        color: _secondaryTextColor,
+                                        height: 1.35,
+                                      ),
+                                ),
+                                const SizedBox(height: 20),
+                                Text(
+                                  l10n.loadingWelcomeBack,
+                                  textAlign: TextAlign.center,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headlineSmall
+                                      ?.copyWith(
+                                        fontWeight: FontWeight.w700,
+                                        color: _headlineColor,
+                                      ),
+                                ),
+                                const SizedBox(height: 6),
+                                Text(
+                                  l10n.loadingRestoringProgress,
+                                  textAlign: TextAlign.center,
+                                  style: Theme.of(context).textTheme.bodyMedium
+                                      ?.copyWith(
+                                        color: _secondaryTextColor,
+                                        height: 1.4,
+                                      ),
+                                ),
+                                const SizedBox(height: 24),
+                                const SizedBox(
+                                  width: 26,
+                                  height: 26,
+                                  child: CircularProgressIndicator(
+                                    strokeWidth: 2.4,
+                                    valueColor: AlwaysStoppedAnimation<Color>(
+                                      Color(0xFFB9934B),
+                                    ),
+                                    backgroundColor: Color(0x1FB9934B),
+                                  ),
+                                ),
+                                const SizedBox(height: 16),
+                                AnimatedSwitcher(
+                                  duration: const Duration(milliseconds: 240),
+                                  child: Text(
+                                    statusLabel,
+                                    key: ValueKey<String>(statusLabel),
+                                    textAlign: TextAlign.center,
+                                    style: Theme.of(context).textTheme.bodySmall
+                                        ?.copyWith(
+                                          color: _tertiaryTextColor,
+                                          fontWeight: FontWeight.w600,
+                                          height: 1.3,
+                                        ),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ],
+                      ),
                     ),
                   ),
-                ),
-              ),
+                );
+              },
             ),
           ),
         ],

@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../l10n/app_localizations.dart';
+import '../../../../shared/utils/reward_feedback.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../journey/application/journey_progression_provider.dart';
@@ -359,6 +360,17 @@ class _HadithReflectionPuzzlePageState
                       ? l10n.hadithReflectionCompletionBestSubtitle
                       : l10n.hadithReflectionCompletionSubtitle,
                 ),
+                const SizedBox(height: 8),
+                Text(
+                  buildCompactRewardSummary(
+                    l10n,
+                    xp: result.xpEarned,
+                    drops: result.dropsEarned,
+                  ),
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                  ),
+                ),
                 if ((puzzle.followUpReflection ?? '').trim().isNotEmpty) ...[
                   const SizedBox(height: 10),
                   Text(
@@ -373,18 +385,6 @@ class _HadithReflectionPuzzlePageState
                   spacing: 8,
                   runSpacing: 8,
                   children: [
-                    _chip(
-                      context,
-                      l10n.hadithReflectionCompletionXpReward(
-                        result.xpEarned.toString(),
-                      ),
-                    ),
-                    _chip(
-                      context,
-                      l10n.hadithReflectionCompletionDropReward(
-                        result.dropsEarned.toString(),
-                      ),
-                    ),
                     if (progress.isBestChoice)
                       _chip(
                         context,

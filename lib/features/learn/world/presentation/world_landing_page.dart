@@ -1,3 +1,4 @@
+// FREE ACCESS: no path-gating — all content accessible ✓
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -34,7 +35,9 @@ class _WorldLandingPageState extends ConsumerState<WorldLandingPage> {
     final dailySign = ref.watch(worldDailySignProvider);
     final scientists = ref.watch(worldCreationScientistsProvider);
     final challengeSummaries = ref.watch(currentCreationChallengesProvider);
-    final dailyChallenge = challengeSummaries.firstWhere((item) => item.slot == ChallengeSlot.daily);
+    final dailyChallenge = challengeSummaries.firstWhere(
+      (item) => item.slot == ChallengeSlot.daily,
+    );
 
     return AppPageScaffold(
       headerIcon: Icons.public_rounded,
@@ -53,7 +56,10 @@ class _WorldLandingPageState extends ConsumerState<WorldLandingPage> {
             spacing: 8,
             runSpacing: 8,
             children: [
-              _metricPill(l10n.worldLessonsTitle, '${worldCreationLessons.length}'),
+              _metricPill(
+                l10n.worldLessonsTitle,
+                '${worldCreationLessons.length}',
+              ),
               _metricPill(
                 l10n.worldLandingMetricCompleted,
                 '${progress.completedLessonIds.length}',
@@ -421,11 +427,7 @@ class _ExploreActionCard extends StatelessWidget {
           ),
           child: Row(
             children: [
-              Icon(
-                action.icon,
-                size: 18,
-                color: const Color(0xFF6A553E),
-              ),
+              Icon(action.icon, size: 18, color: const Color(0xFF6A553E)),
               const SizedBox(width: 10),
               Expanded(
                 child: Text(
@@ -463,7 +465,9 @@ class _DailySignCard extends StatelessWidget {
             style: TextStyle(fontWeight: FontWeight.w700),
           ),
           const SizedBox(height: 8),
-          Text(l10n.quranReferenceViewerReferenceLabel(sign.verse.referenceLabel)),
+          Text(
+            l10n.quranReferenceViewerReferenceLabel(sign.verse.referenceLabel),
+          ),
           const SizedBox(height: 6),
           Text(sign.reflection),
           const SizedBox(height: 8),

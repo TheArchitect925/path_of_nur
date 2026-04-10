@@ -1,0 +1,183 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../../../l10n/app_localizations.dart';
+import '../../../../shared/application/special_mode_provider.dart';
+import '../../../../shared/widgets/app_page_scaffold.dart';
+import '../../../../shared/widgets/premium_card.dart';
+import '../../../../shared/widgets/quran_navigation.dart';
+import '../../../../shared/widgets/quran_quote_block.dart';
+import '../../quran/domain/quran_content_refs.dart';
+
+class LearningSectionLandingPage extends ConsumerWidget {
+  const LearningSectionLandingPage({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final isKids = ref.watch(specialModeProvider).isKids;
+
+    return AppPageScaffold(
+      headerIcon: Icons.school_rounded,
+      title: l10n.learnHubTitle,
+      subtitle: l10n.learnHubLandingCalmSubtitle,
+      quoteHeader: const _LearnHubRabbiZidniIlmaQuote(),
+      children: [
+        _HubDestinationCard(
+          icon: Icons.route_rounded,
+          title: l10n.learnHubLearningPathCardTitle,
+          subtitle: l10n.learnHubLearningPathCardSubtitle,
+          onTap: () => context.pushNamed('learnLearningPath'),
+        ),
+        const SizedBox(height: 12),
+        _HubDestinationCard(
+          icon: Icons.explore_rounded,
+          title: l10n.learnHubSelfLearningCardTitle,
+          subtitle: l10n.learnHubSelfLearningCardSubtitle,
+          onTap: () => context.pushNamed('learnSelfLearning'),
+        ),
+        if (!isKids) ...[
+          const SizedBox(height: 12),
+          _HubDestinationCard(
+            icon: Icons.child_care_rounded,
+            title: l10n.learnHubKidsCardTitle,
+            subtitle: l10n.learnHubKidsCardSubtitle,
+            onTap: () => context.pushNamed('learnKidsPreview'),
+          ),
+        ],
+      ],
+    );
+  }
+}
+
+class _LearnHubRabbiZidniIlmaQuote extends StatelessWidget {
+  const _LearnHubRabbiZidniIlmaQuote();
+
+  static const _sourceRef = QuranQuoteRef(surah: 20, ayah: 114);
+  static const _fallbackArabic = 'رَبِّ زِدْنِي عِلْمًا';
+  static const _fallbackPhrase = 'Rabbi zidni ilma';
+  static const _fallbackTranslation = 'My Lord, increase me in knowledge.';
+
+  @override
+  Widget build(BuildContext context) {
+    const quote = QuranQuote(ref: _sourceRef);
+    return QuranQuoteBlock(
+      quote: quote,
+      onTap: () => openQuranQuoteLocation(context, quote),
+      arabicTextAlign: TextAlign.center,
+      supportTextAlign: TextAlign.center,
+      referenceTextAlign: TextAlign.center,
+      arabicTransform: _extractArabicPhrase,
+      transliterationTransform: _extractPhrase,
+      translationTransform: _extractTranslationPhrase,
+    );
+  }
+
+  static String _extractArabicPhrase(String arabic) {
+    if (arabic.trim().isEmpty) {
+      return _fallbackArabic;
+    }
+    final match = RegExp(r'رَبِّ\s+زِدْنِي\s+عِلْم').firstMatch(arabic);
+    if (match == null) {
+      return _fallbackArabic;
+    }
+    return arabic.substring(match.start, match.end).trim();
+  }
+
+  static String _extractPhrase(String transliteration) {
+    if (transliteration.trim().isEmpty) {
+      return _fallbackPhrase;
+    }
+    final normalized = transliteration.replaceAll(RegExp(r"[‘’']"), '');
+    final match = RegExp(
+      r'(rabbi\s+zidni\s+ilman?)',
+      caseSensitive: false,
+    ).firstMatch(normalized);
+    if (match == null) {
+      return _fallbackPhrase;
+    }
+    final phrase = normalized.substring(match.start, match.end).trim();
+    return phrase
+        .replaceFirst(RegExp(r'ilman$', caseSensitive: false), 'ilma')
+        .replaceFirstMapped(
+          RegExp(r'^[a-z]'),
+          (value) => value.group(0)!.toUpperCase(),
+        );
+  }
+
+  static String _extractTranslationPhrase(String translation) {
+    if (translation.trim().isEmpty) {
+      return _fallbackTranslation;
+    }
+    final match = RegExp(
+      r'(my lord,\s+increase me in knowledge\.?)',
+      caseSensitive: false,
+    ).firstMatch(translation);
+    if (match == null) {
+      return _fallbackTranslation;
+    }
+    final phrase = translation.substring(match.start, match.end).trim();
+    return phrase.replaceFirstMapped(
+      RegExp(r'^[a-z]'),
+      (value) => value.group(0)!.toUpperCase(),
+    );
+  }
+}
+
+class _HubDestinationCard extends StatelessWidget {
+  const _HubDestinationCard({
+    required this.icon,
+    required this.title,
+    required this.subtitle,
+    required this.onTap,
+  });
+
+  final IconData icon;
+  final String title;
+  final String subtitle;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        borderRadius: BorderRadius.circular(36),
+        onTap: onTap,
+        child: PremiumCard(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Icon(icon, size: 28),
+                  const SizedBox(width: 14),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          title,
+                          style: Theme.of(context).textTheme.titleMedium
+                              ?.copyWith(fontWeight: FontWeight.w700),
+                        ),
+                        const SizedBox(height: 6),
+                        Text(
+                          subtitle,
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

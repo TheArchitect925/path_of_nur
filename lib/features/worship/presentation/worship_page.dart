@@ -9,6 +9,7 @@ import '../../../shared/application/special_mode_provider.dart';
 import '../../../shared/content/page_description_copy.dart';
 import '../../learn/quran/domain/quran_content_refs.dart';
 import '../../../shared/theme/islamic_icons.dart';
+import '../../../shared/widgets/main_page_search_launcher.dart';
 import '../../../shared/widgets/main_page_shortcut_configs.dart';
 import '../../../shared/widgets/main_page_shortcut_stack.dart';
 import '../../../shared/widgets/quran_navigation.dart';
@@ -61,6 +62,67 @@ class WorshipPage extends ConsumerWidget {
         QuranQuoteBlock(
           quote: quote,
           onTap: () => openQuranQuoteLocation(context, quote),
+        ),
+        const SizedBox(height: 12),
+        MainPageSearchLauncher(
+          destinations: [
+            MainPageSearchDestination(
+              title: l10n.worshipSectionLandingPrayerTitle,
+              subtitle: l10n.worshipSectionLandingPrayerSubtitle,
+              icon: IslamicIcons.prayer,
+              keywords: ['salah', 'prayer times', 'tracker'],
+              onTap: () => context.pushNamed('worshipPrayerPage'),
+            ),
+            MainPageSearchDestination(
+              title: l10n.worshipSectionLandingDhikrTitle,
+              subtitle: l10n.worshipSectionLandingDhikrSubtitle,
+              icon: IslamicIcons.tasbih,
+              keywords: ['tasbih', 'adhkar', 'remembrance'],
+              onTap: () => context.pushNamed('worshipDhikrPage'),
+            ),
+            MainPageSearchDestination(
+              title: l10n.worshipSectionLandingDuasTitle,
+              subtitle: l10n.worshipSectionLandingDuasSubtitle,
+              icon: IslamicIcons.lantern,
+              keywords: ['dua', 'supplication'],
+              onTap: () => context.pushNamed('worshipDuasPage'),
+            ),
+            MainPageSearchDestination(
+              title: l10n.fastingSectionTitle,
+              subtitle: l10n.worshipSectionLandingFastingSubtitle,
+              icon: Icons.fastfood_outlined,
+              keywords: ['fasting', 'sawm', 'ramadan'],
+              onTap: () => context.pushNamed('worshipFastingPage'),
+            ),
+            MainPageSearchDestination(
+              title: l10n.worshipTrackingPageTitle,
+              subtitle: l10n.worshipTrackingPageSubtitle,
+              icon: Icons.fact_check_rounded,
+              keywords: ['tracking', 'entries', 'history'],
+              onTap: () => context.pushNamed('worshipTrackingPage'),
+            ),
+            MainPageSearchDestination(
+              title: l10n.worshipRemindersPageTitle,
+              subtitle: l10n.worshipRemindersPageSubtitle,
+              icon: Icons.notifications_active_outlined,
+              keywords: ['reminders', 'notifications', 'alerts'],
+              onTap: () => context.pushNamed('worshipRemindersPage'),
+            ),
+            MainPageSearchDestination(
+              title: l10n.worshipQiblaFinderTitle,
+              subtitle: l10n.worshipQiblaFinderSubtitle,
+              icon: Icons.explore_rounded,
+              keywords: ['qibla', 'compass', 'direction'],
+              onTap: () => context.pushNamed('qiblaFinder'),
+            ),
+            MainPageSearchDestination(
+              title: l10n.khusuPageTitle,
+              subtitle: l10n.khusuFocusSubtitle,
+              icon: Icons.self_improvement_rounded,
+              keywords: ['khusu', 'focus', 'presence'],
+              onTap: () => context.pushNamed('khusuFocus'),
+            ),
+          ],
         ),
         const SizedBox(height: 12),
         SectionHubActionGrid(

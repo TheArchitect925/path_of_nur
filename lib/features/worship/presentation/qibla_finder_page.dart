@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
@@ -38,11 +39,29 @@ class _QiblaFinderPageState extends State<QiblaFinderPage> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final position = _position;
+    final isIpad = _isIpad(context);
     return AppPageScaffold(
       headerIcon: Icons.explore_rounded,
       title: l10n.worshipQiblaFinderTitle,
       subtitle: l10n.worshipQiblaFinderSubtitle,
       children: [
+        if (isIpad) ...[
+          PremiumCard(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  l10n.worshipQiblaUnavailableOnIpadTitle,
+                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(l10n.worshipQiblaUnavailableOnIpadBody),
+              ],
+            ),
+          ),
+        ] else ...[
         PremiumCard(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -120,8 +139,14 @@ class _QiblaFinderPageState extends State<QiblaFinderPage> {
             ],
           ),
         ),
+        ],
       ],
     );
+  }
+
+  bool _isIpad(BuildContext context) {
+    return defaultTargetPlatform == TargetPlatform.iOS &&
+        MediaQuery.sizeOf(context).shortestSide >= 600;
   }
 
   String _resolvedLocationLabel(BuildContext context) {

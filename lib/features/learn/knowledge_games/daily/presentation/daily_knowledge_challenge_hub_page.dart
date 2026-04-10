@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../l10n/app_localizations.dart';
+import '../../../../../shared/utils/reward_feedback.dart';
 import '../../../../../shared/widgets/premium_card.dart';
 import '../../../../journey/drops/application/journey_drops_providers.dart';
 import '../../../../journey/xp/application/journey_xp_providers.dart';
@@ -182,19 +183,14 @@ class _DailyKnowledgeChallengeHubPageState
                         const SizedBox(height: 6),
                         Text(l10n.dailyKnowledgeHubCompletionSubtitle),
                         const SizedBox(height: 10),
-                        Wrap(
-                          spacing: 8,
-                          runSpacing: 8,
-                          children: [
-                            _chip(
-                              context,
-                              l10n.dailyKnowledgeHubBonusXpReward('1'),
-                            ),
-                            _chip(
-                              context,
-                              l10n.dailyKnowledgeHubBonusDropReward('1'),
-                            ),
-                          ],
+                        Text(
+                          buildCompactRewardSummary(l10n, xp: 1, drops: 1),
+                          style: Theme.of(context).textTheme.bodySmall
+                              ?.copyWith(
+                                color: Theme.of(
+                                  context,
+                                ).colorScheme.onSurfaceVariant,
+                              ),
                         ),
                       ],
                     ),

@@ -100,62 +100,81 @@ class _BabyNamesFinderPageState extends ConsumerState<BabyNamesFinderPage> {
                 ),
               ),
               const SizedBox(height: 8),
-              Row(
-                children: [
-                  Expanded(
-                    child: DropdownButtonFormField<BabyNameGender>(
-                      initialValue: state.preferredGender,
-                      isDense: true,
-                      decoration: const InputDecoration(
-                        labelText: 'Preferred gender',
-                        border: OutlineInputBorder(),
-                      ),
-                      items: const [
-                        DropdownMenuItem<BabyNameGender>(
-                          value: null,
-                          child: Text('Any'),
-                        ),
-                        DropdownMenuItem(
-                          value: BabyNameGender.male,
-                          child: Text('Boy'),
-                        ),
-                        DropdownMenuItem(
-                          value: BabyNameGender.female,
-                          child: Text('Girl'),
-                        ),
-                        DropdownMenuItem(
-                          value: BabyNameGender.unisex,
-                          child: Text('Unisex'),
-                        ),
-                      ],
-                      onChanged: (value) => _update(preferredGender: value),
+              LayoutBuilder(
+                builder: (context, constraints) {
+                  final narrow = constraints.maxWidth < 560;
+                  final genderField = DropdownButtonFormField<BabyNameGender>(
+                    initialValue: state.preferredGender,
+                    isDense: true,
+                    isExpanded: true,
+                    decoration: const InputDecoration(
+                      labelText: 'Preferred gender',
+                      border: OutlineInputBorder(),
                     ),
-                  ),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: DropdownButtonFormField<String>(
-                      initialValue: state.originPreference,
-                      isDense: true,
-                      decoration: const InputDecoration(
-                        labelText: 'Origin preference',
-                        border: OutlineInputBorder(),
+                    items: const [
+                      DropdownMenuItem<BabyNameGender>(
+                        value: null,
+                        child: Text('Any'),
                       ),
-                      items: [
-                        const DropdownMenuItem<String>(
-                          value: null,
-                          child: Text('Any'),
-                        ),
-                        ...options.origins.map(
-                          (origin) => DropdownMenuItem<String>(
-                            value: origin,
-                            child: Text(origin),
+                      DropdownMenuItem(
+                        value: BabyNameGender.male,
+                        child: Text('Boy'),
+                      ),
+                      DropdownMenuItem(
+                        value: BabyNameGender.female,
+                        child: Text('Girl'),
+                      ),
+                      DropdownMenuItem(
+                        value: BabyNameGender.unisex,
+                        child: Text('Unisex'),
+                      ),
+                    ],
+                    onChanged: (value) => _update(preferredGender: value),
+                  );
+                  final originField = DropdownButtonFormField<String>(
+                    initialValue: state.originPreference,
+                    isDense: true,
+                    isExpanded: true,
+                    decoration: const InputDecoration(
+                      labelText: 'Origin preference',
+                      border: OutlineInputBorder(),
+                    ),
+                    items: [
+                      const DropdownMenuItem<String>(
+                        value: null,
+                        child: Text('Any'),
+                      ),
+                      ...options.origins.map(
+                        (origin) => DropdownMenuItem<String>(
+                          value: origin,
+                          child: Text(
+                            origin,
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ),
+                      ),
+                    ],
+                    onChanged: (value) => _update(origin: value),
+                  );
+
+                  if (narrow) {
+                    return Column(
+                      children: [
+                        genderField,
+                        const SizedBox(height: 8),
+                        originField,
                       ],
-                      onChanged: (value) => _update(origin: value),
-                    ),
-                  ),
-                ],
+                    );
+                  }
+
+                  return Row(
+                    children: [
+                      Expanded(child: genderField),
+                      const SizedBox(width: 8),
+                      Expanded(child: originField),
+                    ],
+                  );
+                },
               ),
               const SizedBox(height: 6),
               CheckboxListTile(
@@ -221,20 +240,79 @@ class _BabyNamesFinderPageState extends ConsumerState<BabyNamesFinderPage> {
           (suggestion) => Padding(
             padding: const EdgeInsets.only(bottom: 10),
             child: PremiumCard(
-              child: ListTile(
-                contentPadding: EdgeInsets.zero,
-                title: Text(
-                  '${suggestion.entry.name} • ${suggestion.entry.arabic}',
-                  style: const TextStyle(fontWeight: FontWeight.w700),
-                ),
-                subtitle: Text(
-                  '${suggestion.entry.meaning}\n${suggestion.explanations.join(' · ')}',
-                ),
-                trailing: const Icon(Icons.chevron_right_rounded),
-                onTap: () => context.pushNamed(
-                  'babyNameDetail',
-                  pathParameters: {'nameId': suggestion.entry.id},
-                ),
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  final compact = constraints.maxWidth < 560;
+                  final title = Text(
+                    '${suggestion.entry.name} • ${suggestion.entry.arabic}',
+                    maxLines: compact ? 3 : 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(fontWeight: FontWeight.w700),
+                  );
+                  final subtitle = Text(
+                    '${suggestion.entry.meaning}\n${suggestion.explanations.join(' · ')}',
+                    maxLines: compact ? 5 : 3,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(height: 1.35),
+                  );
+                  void openDetail() {
+                    context.pushNamed(
+                      'babyNameDetail',
+                      pathParameters: {'nameId': suggestion.entry.id},
+                    );
+                  }
+
+                  if (compact) {
+                    return InkWell(
+                      onTap: openDetail,
+                      borderRadius: BorderRadius.circular(20),
+                      child: Padding(
+                        padding: EdgeInsets.zero,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            title,
+                            const SizedBox(height: 6),
+                            subtitle,
+                            const SizedBox(height: 10),
+                            const Align(
+                              alignment: Alignment.centerRight,
+                              child: Icon(Icons.chevron_right_rounded),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  }
+
+                  return InkWell(
+                    onTap: openDetail,
+                    borderRadius: BorderRadius.circular(20),
+                    child: Padding(
+                      padding: EdgeInsets.zero,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                title,
+                                const SizedBox(height: 6),
+                                subtitle,
+                              ],
+                            ),
+                          ),
+                          const SizedBox(width: 12),
+                          const Padding(
+                            padding: EdgeInsets.only(top: 2),
+                            child: Icon(Icons.chevron_right_rounded),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
               ),
             ),
           ),

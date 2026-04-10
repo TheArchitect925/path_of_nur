@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../../../../l10n/app_localizations.dart';
+import '../../../../shared/utils/reward_feedback.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../application/wudu_trainer_controller.dart';
 import '../models/wudu_models.dart';
-import '../presentation/wudu_localizations.dart';
 import 'wudu_cards.dart';
 
 class WuduTrainerModeSelector extends StatelessWidget {
@@ -468,13 +468,14 @@ class WuduTrainerCompletionCard extends StatelessWidget {
               if (rewardSummary != null) ...[
                 const SizedBox(height: 10),
                 Text(
-                  [
-                    l10n.wuduTrainerCompletionFeedback,
-                    l10n.wuduTrainerRewardFeedbackText(
-                      rewardSummary!.xpAwarded,
-                      rewardSummary!.oceanDropsAwarded,
-                    ),
-                  ].join('\n'),
+                  buildCompactRewardSummary(
+                    l10n,
+                    xp: rewardSummary!.xpAwarded,
+                    drops: rewardSummary!.oceanDropsAwarded,
+                  ),
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                  ),
                 ),
               ],
               const SizedBox(height: 12),

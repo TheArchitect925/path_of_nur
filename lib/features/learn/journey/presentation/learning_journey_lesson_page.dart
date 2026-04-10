@@ -519,10 +519,7 @@ class LearningJourneyLessonPage extends ConsumerWidget {
           _SectionCard(
             title: l10n.learningJourneyLessonSectionRewardsTitle,
             child: Text(
-              l10n.learningJourneyLessonSectionRewardsSubtitle(
-                stage.xpReward,
-                stage.dropReward,
-              ),
+              l10n.learningJourneyLessonSectionProgressSubtitle,
               style: const TextStyle(color: Color(0xFF675B4E), height: 1.4),
             ),
           ),
@@ -569,10 +566,6 @@ class LearningJourneyLessonPage extends ConsumerWidget {
                             l10n.learningJourneyFeedbackStageCompleted(
                               result.currentStreakDays,
                             ),
-                            if (result.xpAwarded > 0)
-                              l10n.learningJourneyFeedbackXpAwarded(
-                                result.xpAwarded,
-                              ),
                             if (result.oceanDropsAwarded > 0)
                               result.learnedTogether
                                   ? (kidsUi.enabled

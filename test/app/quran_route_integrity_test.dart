@@ -55,13 +55,13 @@ void main() {
       240,
       scrollable: find.byType(Scrollable).first,
     );
-    final iconFinder = find.byIcon(Icons.collections_bookmark_outlined);
+    final labelFinder = find.text(l10n.quranReflectionsHubEntryTitle);
     final chipFinder = find.ancestor(
-      of: iconFinder,
-      matching: find.byType(ActionChip),
+      of: labelFinder,
+      matching: find.byType(InkWell),
     );
-    final chip = tester.widget<ActionChip>(chipFinder.first);
-    chip.onPressed?.call();
+    final chip = tester.widget<InkWell>(chipFinder.first);
+    chip.onTap?.call();
     await pumpRouteFrames(tester);
   }
 
@@ -274,27 +274,28 @@ void main() {
     expect(tester.takeException(), isNull);
   });
 
-  testWidgets('persisted reflection intent can shape default reader mode safely', (
-    tester,
-  ) async {
-    final container = await makeContainer(
-      seed: <String, Object>{
-        'learn.quran.user_intent.v1': jsonEncode(<String, Object?>{
-          'intent': 'reflect',
-          'updatedAtIso': '2026-03-24T12:00:00.000Z',
-        }),
-      },
-    );
-    final router = container.read(appRouterProvider);
+  testWidgets(
+    'persisted reflection intent can shape default reader mode safely',
+    (tester) async {
+      final container = await makeContainer(
+        seed: <String, Object>{
+          'learn.quran.user_intent.v1': jsonEncode(<String, Object?>{
+            'intent': 'reflect',
+            'updatedAtIso': '2026-03-24T12:00:00.000Z',
+          }),
+        },
+      );
+      final router = container.read(appRouterProvider);
 
-    await tester.pumpWidget(buildRouterTestApp(container));
-    await pumpRouteFrames(tester);
+      await tester.pumpWidget(buildRouterTestApp(container));
+      await pumpRouteFrames(tester);
 
-    router.go('/quran/surah/18?ayah=1');
-    await pumpRouteFrames(tester);
+      router.go('/quran/surah/18?ayah=1');
+      await pumpRouteFrames(tester);
 
-    expect(find.byType(QuranReaderPage), findsOneWidget);
-    expect(find.text('Reflection mode'), findsOneWidget);
-    expect(tester.takeException(), isNull);
-  });
+      expect(find.byType(QuranReaderPage), findsOneWidget);
+      expect(find.text('Reflection mode'), findsOneWidget);
+      expect(tester.takeException(), isNull);
+    },
+  );
 }

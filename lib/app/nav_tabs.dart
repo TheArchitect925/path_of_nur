@@ -37,6 +37,16 @@ extension NavTabExt on NavTab {
   }
 }
 
+NavTab? adjacentNavTab(NavTab tab, {required bool forward}) {
+  final index = NavTab.values.indexOf(tab);
+  if (index < 0) return null;
+  final nextIndex = forward ? index + 1 : index - 1;
+  if (nextIndex < 0 || nextIndex >= NavTab.values.length) {
+    return null;
+  }
+  return NavTab.values[nextIndex];
+}
+
 void goToTab(BuildContext context, NavTab tab) {
   final current = GoRouterState.of(context).uri.toString();
   if (current != tab.path) {

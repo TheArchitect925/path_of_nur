@@ -61,22 +61,30 @@ class QuranQuoteBlock extends ConsumerWidget {
     super.key,
     required this.quote,
     this.compact = false,
+    this.center = true,
     this.onTap,
     this.showReference = true,
     this.margin = const EdgeInsets.only(bottom: 16),
     this.arabicTransform,
     this.transliterationTransform,
     this.translationTransform,
+    this.arabicTextAlign,
+    this.supportTextAlign,
+    this.referenceTextAlign,
   });
 
   final QuranQuote quote;
   final bool compact;
+  final bool center;
   final VoidCallback? onTap;
   final bool showReference;
   final EdgeInsetsGeometry margin;
   final String Function(String arabic)? arabicTransform;
   final String Function(String transliteration)? transliterationTransform;
   final String Function(String translation)? translationTransform;
+  final TextAlign? arabicTextAlign;
+  final TextAlign? supportTextAlign;
+  final TextAlign? referenceTextAlign;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -102,14 +110,18 @@ class QuranQuoteBlock extends ConsumerWidget {
               referenceText: quote.locationText,
             ),
             dense: compact,
-            center: true,
+            center: center,
             showReference: showReference,
             arabicBaseSize: compact ? 30 : 32,
             transliterationBaseSize: 13.5,
             translationBaseSize: 12.8,
+            referenceBaseSize: compact ? 13 : 13.5,
             arabicTransform: arabicTransform,
             transliterationTransform: transliterationTransform,
             translationTransform: translationTransform,
+            arabicTextAlign: arabicTextAlign,
+            supportTextAlign: supportTextAlign,
+            referenceTextAlign: referenceTextAlign,
           ),
         ),
       ),

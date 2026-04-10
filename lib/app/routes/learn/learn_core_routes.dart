@@ -16,12 +16,12 @@ import '../../../features/learn/journey/presentation/learning_journey_island_pag
 import '../../../features/learn/journey/presentation/learning_journey_stage_page.dart';
 import '../../../features/learn/knowledge_games/content_expansion/presentation/internal_content_builder_page.dart';
 import '../../../features/learn/presentation/data/learn_hub_taxonomy.dart';
-import '../../../features/learn/presentation/learn_page.dart';
 import '../../../features/learn/presentation/pages/games_island_page.dart';
 import '../../../features/learn/presentation/pages/learn_category_page.dart';
 import '../../../features/learn/presentation/pages/learn_explore_all_knowledge_page.dart';
 import '../../../features/learn/presentation/pages/learn_games_browse_all_page.dart';
 import '../../../features/learn/presentation/pages/learn_quran_hub_page.dart';
+import '../../../features/learn/presentation/pages/learn_self_learning_hub_page.dart';
 import '../../../features/learn/presentation/pages/learning_journey_island_hub_page.dart';
 import '../../../features/learn/presentation/pages/learning_section_landing_page.dart';
 import '../../../features/learn/guided_paths/presentation/daily_dhikr_path_next_steps_page.dart';
@@ -258,7 +258,7 @@ List<RouteBase> buildLearnCoreRoutes() {
           routeKey: '/learn/legacy',
           matchedLocation: state.matchedLocation,
         );
-        return const MaterialPage(child: LearnPage());
+        return const MaterialPage(child: LearnSelfLearningHubPage());
       },
     ),
     GoRoute(

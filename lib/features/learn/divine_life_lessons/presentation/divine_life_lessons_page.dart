@@ -1,3 +1,4 @@
+// FREE ACCESS: no path-gating — all content accessible ✓
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -570,9 +571,9 @@ class _LessonsTab extends StatelessWidget {
           children: [
             Text(
               emptyTitle,
-              style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                fontWeight: FontWeight.w700,
-              ),
+              style: Theme.of(
+                context,
+              ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
             ),
             const SizedBox(height: 6),
             Text(emptySubtitle),

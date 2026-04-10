@@ -1,3 +1,4 @@
+// FREE ACCESS: no path-gating — all content accessible ✓
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -9,6 +10,7 @@ import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/application/special_mode_provider.dart';
 import '../../../../shared/content/page_description_copy.dart';
 import '../../../../shared/theme/islamic_icons.dart';
+import '../../../../shared/widgets/main_page_search_launcher.dart';
 import '../../../../shared/widgets/main_page_shortcut_configs.dart';
 import '../../../../shared/widgets/main_page_shortcut_stack.dart';
 import '../../../../shared/widgets/premium_card.dart';
@@ -33,7 +35,6 @@ import '../../quran/presentation/quran_theme_copy.dart';
 import '../../quran/presentation/widgets/quran_daily_reflection_card.dart';
 import '../../quran/presentation/widgets/quran_personalized_recommendation_card.dart';
 import '../../quran/presentation/widgets/quran_spiritual_moment_card.dart';
-import '../widgets/learn_discovery_search_field.dart';
 import '../widgets/learn_hub_page_scaffold.dart';
 
 class QuranAppHubPage extends ConsumerStatefulWidget {
@@ -44,19 +45,11 @@ class QuranAppHubPage extends ConsumerStatefulWidget {
 }
 
 class _QuranAppHubPageState extends ConsumerState<QuranAppHubPage> {
-  late final TextEditingController _searchController;
   bool _discoverQuranExpanded = true;
 
   @override
   void initState() {
     super.initState();
-    _searchController = TextEditingController();
-  }
-
-  @override
-  void dispose() {
-    _searchController.dispose();
-    super.dispose();
   }
 
   @override
@@ -106,13 +99,79 @@ class _QuranAppHubPageState extends ConsumerState<QuranAppHubPage> {
         closeLabel: l10n.learnShortcutClose,
       ),
       children: [
-        PremiumCard(
-          child: LearnDiscoverySearchField(
-            controller: _searchController,
-            hintText: l10n.searchSurahHint,
-            readOnly: true,
-            onTap: () => context.pushNamed('quranSearch'),
-          ),
+        MainPageSearchLauncher(
+          destinations: [
+            MainPageSearchDestination(
+              title: l10n.searchSurahHint,
+              subtitle: l10n.quranExplorerSubtitle,
+              icon: Icons.search_rounded,
+              keywords: ['search', 'surah', 'ayah', 'reader'],
+              onTap: () => context.pushNamed('quranSearch'),
+            ),
+            MainPageSearchDestination(
+              title: l10n.quranKnowledgeSearchTitle,
+              subtitle: l10n.quranKnowledgeSearchSubtitle,
+              icon: Icons.manage_search_rounded,
+              keywords: ['knowledge', 'insights', 'topics'],
+              onTap: () => context.pushNamed('quranKnowledgeSearch'),
+            ),
+            MainPageSearchDestination(
+              title: l10n.quranHubReadQuranSectionTitle,
+              subtitle: l10n.quranExplorerSubtitle,
+              icon: Icons.menu_book_rounded,
+              keywords: ['read', 'quran', 'explorer'],
+              onTap: () => context.pushNamed('quranExplorer'),
+            ),
+            MainPageSearchDestination(
+              title: l10n.quranSummaryIslandTitle,
+              subtitle: l10n.quranSummaryIslandSubtitle,
+              icon: Icons.auto_stories_rounded,
+              keywords: ['summary', 'surah summary'],
+              onTap: () => context.pushNamed('quranSummaryPage'),
+            ),
+            MainPageSearchDestination(
+              title: l10n.quranThemeDiscoveryIslandTitle,
+              subtitle: l10n.quranThemeDiscoveryIslandSubtitle,
+              icon: Icons.account_tree_outlined,
+              keywords: ['topics', 'themes', 'browse by topic'],
+              onTap: () => context.pushNamed('quranTopicExplorer'),
+            ),
+            MainPageSearchDestination(
+              title: l10n.quranPathwaysIslandTitle,
+              subtitle: l10n.quranPathwaysIslandSubtitle,
+              icon: Icons.route_rounded,
+              keywords: ['pathways', 'guided paths', 'study'],
+              onTap: () => context.pushNamed('quranLearningPaths'),
+            ),
+            ...wordStudyActions.map(
+              (action) => MainPageSearchDestination(
+                title: action.title,
+                subtitle: action.subtitle,
+                icon: action.icon,
+                keywords: [action.title, action.subtitle],
+                onTap: action.onTap,
+              ),
+            ),
+            ...studyActions.map(
+              (action) => MainPageSearchDestination(
+                title: action.title,
+                subtitle: action.subtitle,
+                icon: action.icon,
+                keywords: [action.title, action.subtitle],
+                onTap: action.onTap,
+              ),
+            ),
+            ...toolActions.map(
+              (action) => MainPageSearchDestination(
+                title: action.title,
+                subtitle: action.subtitle,
+                icon: action.icon,
+                keywords: [action.title, action.subtitle],
+                onTap: action.onTap,
+              ),
+            ),
+          ],
+          hintText: l10n.searchSurahHint,
         ),
         const SizedBox(height: 12),
         _SectionHeader(title: l10n.quranHubReadQuranSectionTitle),

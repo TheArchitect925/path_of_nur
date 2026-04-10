@@ -97,6 +97,7 @@ class _SalahTimesPageState extends ConsumerState<SalahTimesPage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final now = ref.watch(dailyNowProvider).value ?? DateTime.now();
     final settings = ref.watch(prayerSettingsProvider);
     final tracker = ref.watch(prayerTrackerControllerProvider);
@@ -116,7 +117,7 @@ class _SalahTimesPageState extends ConsumerState<SalahTimesPage> {
     final locationLabel =
         displayLocation.valueOrNull ??
         (settings.preferences.useDeviceLocation
-            ? 'Current location'
+            ? l10n.worshipQiblaLocationLabel
             : settings.preferences.location);
     return Scaffold(
       backgroundColor: Colors.transparent,
@@ -142,12 +143,12 @@ class _SalahTimesPageState extends ConsumerState<SalahTimesPage> {
                       size: 24,
                     ),
                     const SizedBox(width: 8),
-                    const Expanded(
+                    Expanded(
                       child: Text(
-                        'Salah Timings',
+                        l10n.homePrayerSectionTitle,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 26,
                           fontFamily: 'serif',
                           fontWeight: FontWeight.w700,
@@ -225,7 +226,7 @@ class _SalahTimesPageState extends ConsumerState<SalahTimesPage> {
                       ),
                     ),
                     Text(
-                      '· ${_madhabLabel(settings.preferences.madhab)} · ${_methodLabel(settings.preferences.calculationMethod)}',
+                      '· ${settings.preferences.madhab.localizedLabel(l10n)} · ${settings.preferences.calculationMethod.localizedLabel(l10n)}',
                       style: const TextStyle(
                         color: Color(0xFF4D4036),
                         fontSize: 12.8,
@@ -244,7 +245,6 @@ class _SalahTimesPageState extends ConsumerState<SalahTimesPage> {
                   final isMostRecentUntracked =
                       mostRecentUntrackedId == entry.id;
                   final highlightCard = isCurrent || isMostRecentUntracked;
-                  final offerStatus = _offerTimingText(entry, now);
                   return Padding(
                     padding: EdgeInsets.only(
                       bottom: index == schedule.length - 1 ? 0 : 14,
@@ -259,8 +259,8 @@ class _SalahTimesPageState extends ConsumerState<SalahTimesPage> {
                             if (highlightCard)
                               _SalahStatusPill(
                                 label: isCurrent
-                                    ? 'Track this current salah'
-                                    : 'Most recent untracked salah',
+                                    ? l10n.salahTrackCurrentSalah
+                                    : l10n.salahMostRecentUntracked,
                                 color: isCurrent
                                     ? const Color(0xFF5E8D58)
                                     : const Color(0xFFB58D46),
@@ -269,8 +269,8 @@ class _SalahTimesPageState extends ConsumerState<SalahTimesPage> {
                             if (isNext || isCurrent)
                               _SalahStatusPill(
                                 label: isCurrent
-                                    ? 'Current Salah'
-                                    : 'Next Salah',
+                                    ? l10n.salahCurrentSalahTitle
+                                    : l10n.nextSalah,
                                 color: isCurrent
                                     ? const Color(0xFF8FAF89)
                                     : const Color(0xFFB58D46),
@@ -284,7 +284,9 @@ class _SalahTimesPageState extends ConsumerState<SalahTimesPage> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        entry.name,
+                                        _toPrayerName(
+                                          entry.id,
+                                        ).localizedLabel(l10n),
                                         style: const TextStyle(
                                           fontSize: 22,
                                           fontFamily: 'serif',
@@ -310,7 +312,9 @@ class _SalahTimesPageState extends ConsumerState<SalahTimesPage> {
                                   ),
                                 ),
                                 _SalahStatusPill(
-                                  label: '${entry.totalRakats} Rakats',
+                                  label: l10n.salahRakatsLabel(
+                                    '${entry.totalRakats}',
+                                  ),
                                   color: AppColors.accentGoldSoft,
                                   dense: true,
                                 ),
@@ -318,29 +322,31 @@ class _SalahTimesPageState extends ConsumerState<SalahTimesPage> {
                             ),
                             const SizedBox(height: 10),
                             _MetaRow(
-                              label: 'Offer time',
+                              label: l10n.salahOfferTimeLabel,
                               value: entry.offerTime,
                             ),
                             const SizedBox(height: 6),
                             _MetaRow(
-                              label: 'Offer Window',
-                              value:
-                                  '${entry.windowStart} to ${entry.windowEnd}',
+                              label: l10n.salahOfferWindowLabel,
+                              value: l10n.salahWindowValue(
+                                entry.windowStart,
+                                entry.windowEnd,
+                              ),
                             ),
                             const SizedBox(height: 6),
                             _MetaRow(
-                              label: 'Becomes qada after',
+                              label: l10n.salahBecomesQadaAfterLabel,
                               value: entry.overdueAt,
                             ),
                             const SizedBox(height: 6),
                             _MetaRow(
-                              label: 'Time remaining to offer',
-                              value: offerStatus,
+                              label: l10n.salahTimeRemainingToOfferLabel,
+                              value: _offerTimingText(context, entry, now),
                             ),
                             if (entry.hasDelayedMakeUpWindow) ...[
                               const SizedBox(height: 6),
                               _MetaRow(
-                                label: 'Make up from',
+                                label: l10n.salahMakeUpFromLabel,
                                 value: entry.makeUpFrom,
                               ),
                             ],
@@ -368,7 +374,9 @@ class _SalahTimesPageState extends ConsumerState<SalahTimesPage> {
                                       backgroundColor: Colors.transparent,
                                       isScrollControlled: true,
                                       builder: (context) => _SalahTrackerSheet(
-                                        prayerName: entry.name,
+                                        prayerName: _toPrayerName(
+                                          entry.id,
+                                        ).localizedLabel(l10n),
                                         initialEntry:
                                             trackerEntry ??
                                             const PrayerTrackerEntry(),
@@ -399,14 +407,21 @@ class _SalahTimesPageState extends ConsumerState<SalahTimesPage> {
   }
 }
 
-String _offerTimingText(PrayerScheduleItem entry, DateTime now) {
+String _offerTimingText(
+  BuildContext context,
+  PrayerScheduleItem entry,
+  DateTime now,
+) {
+  final l10n = AppLocalizations.of(context);
   if (now.isBefore(entry.windowStartDateTime)) {
-    return 'Starts in ${_formatDuration(entry.windowStartDateTime.difference(now))}';
+    return l10n.salahStartsInLabel(
+      _formatDuration(entry.windowStartDateTime.difference(now)),
+    );
   }
   if (now.isBefore(entry.overdueDateTime)) {
     return _formatDuration(entry.overdueDateTime.difference(now));
   }
-  return 'Offer window ended';
+  return l10n.salahOfferWindowEnded;
 }
 
 String _formatDuration(Duration value) {
@@ -484,11 +499,16 @@ class _SalahSummaryHeader extends StatelessWidget {
           Flexible(
             flex: 6,
             child: _SummaryTile(
-              label: 'Current Salah',
-              title: current?.name ?? 'No active salah',
+              label: l10n.salahCurrentSalahTitle,
+              title: current == null
+                  ? l10n.salahNoActiveSalah
+                  : _toPrayerName(current.id).localizedLabel(l10n),
               subtitle: current == null
                   ? '--'
-                  : 'Offer by ${current.overdueAt} • ${_offerTimingText(current, now)}',
+                  : l10n.salahOfferBySummary(
+                      current.overdueAt,
+                      _offerTimingText(context, current, now),
+                    ),
               accent: currentAccent,
               emphasized: true,
               trailing: current == null
@@ -509,11 +529,16 @@ class _SalahSummaryHeader extends StatelessWidget {
           Flexible(
             flex: 4,
             child: _SummaryTile(
-              label: 'Next Salah',
-              title: next?.name ?? 'No upcoming salah',
+              label: l10n.nextSalah,
+              title: next == null
+                  ? l10n.salahNoUpcomingSalah
+                  : _toPrayerName(next.id).localizedLabel(l10n),
               subtitle: next == null
                   ? '--'
-                  : 'Begins at ${next.offerTime} • ${_startsInText(next, now)}',
+                  : l10n.salahBeginsAtSummary(
+                      next.offerTime,
+                      _startsInText(context, next, now),
+                    ),
               accent: nextAccent,
             ),
           ),
@@ -596,23 +621,48 @@ class _SummaryTile extends StatelessWidget {
 class _SalahRakatGuideCard extends StatelessWidget {
   const _SalahRakatGuideCard();
 
-  static const _rows = [
-    ('Fajr', '2 before', '2', '-'),
-    ('Dhuhr', '4 before, 2 after', '4', '2 after'),
-    ('Asr', '4 before', '4', '-'),
-    ('Maghrib', '2 after', '3', '2 after'),
-    ('Isha', '2 after', '4', '3 witr + 2 nafl'),
-  ];
-
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final rows = [
+      (
+        PrayerName.fajr.localizedLabel(l10n),
+        l10n.salahRakatGuideFajrSunnah,
+        '2',
+        '-',
+      ),
+      (
+        PrayerName.dhuhr.localizedLabel(l10n),
+        l10n.salahRakatGuideDhuhrSunnah,
+        '4',
+        l10n.salahRakatGuideDhuhrNafl,
+      ),
+      (
+        PrayerName.asr.localizedLabel(l10n),
+        l10n.salahRakatGuideAsrSunnah,
+        '4',
+        '-',
+      ),
+      (
+        PrayerName.maghrib.localizedLabel(l10n),
+        l10n.salahRakatGuideMaghribSunnah,
+        '3',
+        l10n.salahRakatGuideMaghribNafl,
+      ),
+      (
+        PrayerName.isha.localizedLabel(l10n),
+        l10n.salahRakatGuideIshaSunnah,
+        '4',
+        l10n.salahRakatGuideIshaNafl,
+      ),
+    ];
     return PremiumCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'Salah Rakat Guide',
-            style: TextStyle(
+          Text(
+            l10n.salahRakatGuideTitle,
+            style: const TextStyle(
               fontWeight: FontWeight.w700,
               fontSize: 15,
               color: Color(0xFF33281F),
@@ -627,46 +677,46 @@ class _SalahRakatGuideCard extends StatelessWidget {
               3: FlexColumnWidth(1.2),
             },
             children: [
-              const TableRow(
+              TableRow(
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(bottom: 8),
+                    padding: const EdgeInsets.only(bottom: 8),
                     child: Text(
-                      'Salah',
-                      style: TextStyle(
+                      l10n.salahRakatGuidePrayerColumn,
+                      style: const TextStyle(
                         fontWeight: FontWeight.w700,
                         color: Color(0xFF5A4A3D),
                       ),
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(bottom: 8),
+                    padding: const EdgeInsets.only(bottom: 8),
                     child: Text(
-                      'Sunnah',
+                      l10n.salahRakatGuideSunnahColumn,
                       textAlign: TextAlign.end,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontWeight: FontWeight.w700,
                         color: Color(0xFF5A4A3D),
                       ),
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(bottom: 8),
+                    padding: const EdgeInsets.only(bottom: 8),
                     child: Text(
-                      'Fard',
+                      l10n.salahRakatGuideFardColumn,
                       textAlign: TextAlign.end,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontWeight: FontWeight.w700,
                         color: Color(0xFF5A4A3D),
                       ),
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(bottom: 8),
+                    padding: const EdgeInsets.only(bottom: 8),
                     child: Text(
-                      'Nafl / Witr',
+                      l10n.salahRakatGuideNaflColumn,
                       textAlign: TextAlign.end,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontWeight: FontWeight.w700,
                         color: Color(0xFF5A4A3D),
                       ),
@@ -674,7 +724,7 @@ class _SalahRakatGuideCard extends StatelessWidget {
                   ),
                 ],
               ),
-              for (final row in _rows)
+              for (final row in rows)
                 TableRow(
                   children: [
                     Padding(
@@ -1086,8 +1136,8 @@ class _TrackerSummaryPill extends StatelessWidget {
     final l10n = AppLocalizations.of(context);
     final parts = <String>[
       entry.status.localizedLabel(l10n),
-      if (entry.timing != null) _salahTimingLabel(entry.timing!),
-      if (entry.place != null) _salahPlaceLabel(entry.place!),
+      if (entry.timing != null) _salahTimingLabel(context, entry.timing!),
+      if (entry.place != null) _salahPlaceLabel(context, entry.place!),
     ];
     final style = AppSurfaceTheme.resolve(
       context,
@@ -1297,7 +1347,7 @@ class _SalahTrackerSheetState extends State<_SalahTrackerSheet> {
                   children: [
                     for (final timing in PrayerOfferTiming.values)
                       _SalahChoicePill(
-                        label: _salahTimingLabel(timing),
+                        label: _salahTimingLabel(context, timing),
                         selected: _timing == timing,
                         accentColor: _timingAccent(timing),
                         onTap: () => setState(() => _timing = timing),
@@ -1316,7 +1366,7 @@ class _SalahTrackerSheetState extends State<_SalahTrackerSheet> {
                   children: [
                     for (final place in PrayerOfferPlace.values)
                       _SalahChoicePill(
-                        label: _salahPlaceLabel(place),
+                        label: _salahPlaceLabel(context, place),
                         selected: _place == place,
                         onTap: () => setState(() => _place = place),
                       ),
@@ -1376,22 +1426,16 @@ class _SalahTrackerSheetState extends State<_SalahTrackerSheet> {
   }
 }
 
-String _madhabLabel(PrayerMadhab madhab) {
-  switch (madhab) {
-    case PrayerMadhab.shafii:
-      return 'Shafi\'i';
-    case PrayerMadhab.hanafi:
-      return 'Hanafi';
-    case PrayerMadhab.maliki:
-      return 'Maliki';
-    case PrayerMadhab.hanbali:
-      return 'Hanbali';
-  }
-}
-
-String _startsInText(PrayerScheduleItem entry, DateTime now) {
-  if (now.isAfter(entry.offerDateTime)) return 'Started';
-  return 'Starts in ${_formatDuration(entry.offerDateTime.difference(now))}';
+String _startsInText(
+  BuildContext context,
+  PrayerScheduleItem entry,
+  DateTime now,
+) {
+  final l10n = AppLocalizations.of(context);
+  if (now.isAfter(entry.offerDateTime)) return l10n.salahStartedLabel;
+  return l10n.salahStartsInLabel(
+    _formatDuration(entry.offerDateTime.difference(now)),
+  );
 }
 
 Color _currentSalahAccent(PrayerScheduleItem? current, DateTime now) {
@@ -1459,42 +1503,11 @@ QuranQuote _dailySalahQuote(DateTime now) {
   return quotes[daySeed % quotes.length];
 }
 
-String _salahTimingLabel(PrayerOfferTiming timing) {
-  switch (timing) {
-    case PrayerOfferTiming.onTime:
-      return 'On time';
-    case PrayerOfferTiming.late:
-      return 'Late';
-    case PrayerOfferTiming.qada:
-      return 'Qada';
-  }
-}
+String _salahTimingLabel(BuildContext context, PrayerOfferTiming timing) =>
+    timing.localizedLabel(AppLocalizations.of(context));
 
-String _salahPlaceLabel(PrayerOfferPlace place) {
-  switch (place) {
-    case PrayerOfferPlace.alone:
-      return 'Alone';
-    case PrayerOfferPlace.congregation:
-      return 'Congregation';
-    case PrayerOfferPlace.masjid:
-      return 'Masjid';
-  }
-}
-
-String _methodLabel(PrayerCalculationMethod method) {
-  switch (method) {
-    case PrayerCalculationMethod.muslimWorldLeague:
-      return 'MWL';
-    case PrayerCalculationMethod.egyptian:
-      return 'Egyptian';
-    case PrayerCalculationMethod.isna:
-      return 'ISNA';
-    case PrayerCalculationMethod.karachi:
-      return 'Karachi';
-    case PrayerCalculationMethod.ummAlQura:
-      return 'Umm al-Qura';
-  }
-}
+String _salahPlaceLabel(BuildContext context, PrayerOfferPlace place) =>
+    place.localizedLabel(AppLocalizations.of(context));
 
 BoxDecoration _salahPillDecoration(
   BuildContext context, {

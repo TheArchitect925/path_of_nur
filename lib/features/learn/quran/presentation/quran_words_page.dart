@@ -123,6 +123,7 @@ class _QuranWordsPageState extends ConsumerState<QuranWordsPage> {
               const SizedBox(height: 10),
               DropdownButtonFormField<_WordSort>(
                 initialValue: _sort,
+                isExpanded: true,
                 style: Theme.of(context).textTheme.bodyLarge,
                 decoration: InputDecoration(
                   labelText: l10n.batch9SortBy,
@@ -356,129 +357,175 @@ class _QuranWordCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    return GestureDetector(
-      behavior: HitTestBehavior.opaque,
-      onTap: onOpenDetail,
-      child: PremiumCard(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                _MetaPill(label: '#${word.rank}'),
-                const SizedBox(width: 8),
-                _MetaPill(
-                  label: l10n.batch9QuranWordsOccurrenceCount(
-                    '${word.occurrences}',
-                  ),
-                ),
-                const SizedBox(width: 8),
-                Icon(
-                  Icons.open_in_new_rounded,
-                  size: 16,
-                  color: Theme.of(context).colorScheme.primary,
-                ),
-                const Spacer(),
-                TextButton.icon(
-                  onPressed: onToggleMastered,
-                  icon: Icon(
-                    mastered
-                        ? Icons.check_circle_rounded
-                        : Icons.check_circle_outline_rounded,
-                    size: 18,
-                  ),
-                  label: Text(
-                    mastered
-                        ? l10n.batch9QuranWordsLearned
-                        : l10n.batch9QuranWordsMarkLearned,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 8),
-            Text(
-              word.arabic,
-              style: AppTextStyles.arabicLearning(
-                size: 28 * arabicScale,
-                weight: FontWeight.w700,
-              ),
-              textAlign: textAlignForContent(word.arabic),
-              textDirection: textDirectionForContent(word.arabic),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              word.transliteration,
-              style: QuranPresentationStyle.quranSupportTextStyle(
-                context,
-                TextStyle(
-                  fontSize: 16 * transliterationScale,
-                  fontWeight: FontWeight.w700,
-                  fontStyle: FontStyle.italic,
-                ),
-                italic: true,
-              ),
-            ),
-            const SizedBox(height: 4),
-            Text(
-              word.meaning,
-              style: QuranPresentationStyle.quranSupportTextStyle(
-                context,
-                TextStyle(fontSize: 15 * translationScale, height: 1.35),
-              ),
-            ),
-            const SizedBox(height: 12),
-            if (usageLoading)
-              const LinearProgressIndicator(minHeight: 3)
-            else if (usageSummary?.exampleRef != null) ...[
-              Text(
-                l10n.batch9QuranWordsExampleAyahTitle,
-                style: TextStyle(
-                  fontWeight: FontWeight.w700,
-                  color: QuranPresentationStyle.quranSupportTextColor(context),
-                ),
-              ),
-              const SizedBox(height: 8),
-              QuranWordExampleAyahSection(
-                usageSummary: usageSummary!,
-                arabicScale: arabicScale,
-                transliterationScale: transliterationScale,
-                translationScale: translationScale,
-              ),
-              const SizedBox(height: 8),
-              Wrap(
+    return PremiumCard(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          LayoutBuilder(
+            builder: (context, constraints) {
+              final compactHeader = constraints.maxWidth < 560;
+              final metaRow = Wrap(
                 spacing: 8,
-                runSpacing: 4,
+                runSpacing: 8,
+                crossAxisAlignment: WrapCrossAlignment.center,
                 children: [
-                  TextButton(
-                    onPressed: () => showQuranWordUsageSheet(
-                      context,
-                      summary: usageSummary!,
-                      arabicScale: arabicScale,
-                      transliterationScale: transliterationScale,
-                      translationScale: translationScale,
-                    ),
-                    child: Text(
-                      l10n.batch9QuranWordsViewOccurrences(
-                        usageSummary!.ayahCount,
-                      ),
+                  _MetaPill(label: '#${word.rank}'),
+                  _MetaPill(
+                    label: l10n.batch9QuranWordsOccurrenceCount(
+                      '${word.occurrences}',
                     ),
                   ),
-                  TextButton(
-                    onPressed: onOpenDetail,
-                    child: Text(l10n.batch9QuranWordsOpenStudy),
+                  Icon(
+                    Icons.open_in_new_rounded,
+                    size: 16,
+                    color: Theme.of(context).colorScheme.primary,
                   ),
                 ],
+              );
+              final learnedButton = _LearnedToggleButton(
+                mastered: mastered,
+                learnedLabel: l10n.batch9QuranWordsLearned,
+                markLearnedLabel: l10n.batch9QuranWordsMarkLearned,
+                onPressed: onToggleMastered,
+              );
+
+              if (compactHeader) {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    metaRow,
+                    const SizedBox(height: 8),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: learnedButton,
+                    ),
+                  ],
+                );
+              }
+
+              return Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(child: metaRow),
+                  const SizedBox(width: 8),
+                  learnedButton,
+                ],
+              );
+            },
+          ),
+          const SizedBox(height: 8),
+          Text(
+            word.arabic,
+            style: AppTextStyles.arabicLearning(
+              size: 28 * arabicScale,
+              weight: FontWeight.w700,
+            ),
+            textAlign: textAlignForContent(word.arabic),
+            textDirection: textDirectionForContent(word.arabic),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            word.transliteration,
+            style: QuranPresentationStyle.quranSupportTextStyle(
+              context,
+              TextStyle(
+                fontSize: 16 * transliterationScale,
+                fontWeight: FontWeight.w700,
+                fontStyle: FontStyle.italic,
               ),
-            ] else
-              Text(
-                l10n.batch9QuranWordsNoUsageAvailable,
-                style: TextStyle(
-                  color: QuranPresentationStyle.quranSupportTextColor(context),
-                  height: 1.3,
-                ),
+              italic: true,
+            ),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            word.meaning,
+            style: QuranPresentationStyle.quranSupportTextStyle(
+              context,
+              TextStyle(fontSize: 15 * translationScale, height: 1.35),
+            ),
+          ),
+          const SizedBox(height: 12),
+          if (usageLoading)
+            const LinearProgressIndicator(minHeight: 3)
+          else if (usageSummary?.exampleRef != null) ...[
+            Text(
+              l10n.batch9QuranWordsExampleAyahTitle,
+              style: TextStyle(
+                fontWeight: FontWeight.w700,
+                color: QuranPresentationStyle.quranSupportTextColor(context),
               ),
-          ],
-        ),
+            ),
+            const SizedBox(height: 8),
+            QuranWordExampleAyahSection(
+              usageSummary: usageSummary!,
+              arabicScale: arabicScale,
+              transliterationScale: transliterationScale,
+              translationScale: translationScale,
+            ),
+            const SizedBox(height: 8),
+            LayoutBuilder(
+              builder: (context, constraints) {
+                final compactActions = constraints.maxWidth < 420;
+                if (compactActions) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TextButton(
+                        onPressed: () => showQuranWordUsageSheet(
+                          context,
+                          summary: usageSummary!,
+                          arabicScale: arabicScale,
+                          transliterationScale: transliterationScale,
+                          translationScale: translationScale,
+                        ),
+                        child: Text(
+                          l10n.batch9QuranWordsViewOccurrences(
+                            usageSummary!.ayahCount,
+                          ),
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: onOpenDetail,
+                        child: Text(l10n.batch9QuranWordsOpenStudy),
+                      ),
+                    ],
+                  );
+                }
+                return Wrap(
+                  spacing: 8,
+                  runSpacing: 4,
+                  children: [
+                    TextButton(
+                      onPressed: () => showQuranWordUsageSheet(
+                        context,
+                        summary: usageSummary!,
+                        arabicScale: arabicScale,
+                        transliterationScale: transliterationScale,
+                        translationScale: translationScale,
+                      ),
+                      child: Text(
+                        l10n.batch9QuranWordsViewOccurrences(
+                          usageSummary!.ayahCount,
+                        ),
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: onOpenDetail,
+                      child: Text(l10n.batch9QuranWordsOpenStudy),
+                    ),
+                  ],
+                );
+              },
+            ),
+          ] else
+            Text(
+              l10n.batch9QuranWordsNoUsageAvailable,
+              style: TextStyle(
+                color: QuranPresentationStyle.quranSupportTextColor(context),
+                height: 1.3,
+              ),
+            ),
+        ],
       ),
     );
   }
@@ -547,6 +594,7 @@ class _MetaPill extends StatelessWidget {
     return AppLayeredGlassPill(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       fillColor: const Color(0xFFF1E7D8),
+      expandToWidth: false,
       child: Text(
         label,
         style: const TextStyle(
@@ -555,6 +603,34 @@ class _MetaPill extends StatelessWidget {
           color: Color(0xFF47382B),
         ),
       ),
+    );
+  }
+}
+
+class _LearnedToggleButton extends StatelessWidget {
+  const _LearnedToggleButton({
+    required this.mastered,
+    required this.learnedLabel,
+    required this.markLearnedLabel,
+    required this.onPressed,
+  });
+
+  final bool mastered;
+  final String learnedLabel;
+  final String markLearnedLabel;
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton.icon(
+      onPressed: onPressed,
+      icon: Icon(
+        mastered
+            ? Icons.check_circle_rounded
+            : Icons.check_circle_outline_rounded,
+        size: 18,
+      ),
+      label: Text(mastered ? learnedLabel : markLearnedLabel),
     );
   }
 }

@@ -373,6 +373,7 @@ class _CelestialCardBody extends StatelessWidget {
             _HorizonProgress(snapshot: snapshot, reduceMotion: reduceMotion),
             const SizedBox(height: 16),
             Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(
                   child: _InfoPill(
@@ -403,6 +404,7 @@ class _CelestialCardBody extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(
                   child: _InfoPill(
@@ -433,6 +435,7 @@ class _CelestialCardBody extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(
                   child: _InfoPill(
@@ -469,7 +472,12 @@ class _CelestialCardBody extends StatelessWidget {
                 includeShadow: false,
                 mode: NoorLiquidGlassMode.fake,
                 borderRadius: 20,
-                child: MoonPhaseVisual(moon: moonVisual, size: 136),
+                child: SizedBox(
+                  width: double.infinity,
+                  child: Center(
+                    child: MoonPhaseVisual(moon: moonVisual, size: 136),
+                  ),
+                ),
               ),
             ),
             const SizedBox(height: 14),
@@ -673,43 +681,48 @@ class _InfoPill extends StatelessWidget {
       surfaceAlphaOverride: 0.26,
       mode: NoorLiquidGlassMode.fake,
       includeShadow: false,
-      child: Container(
-        padding: const EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(14),
-          border: Border.all(color: innerBorder),
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              innerTop.withValues(alpha: 0.94),
-              innerBottom.withValues(alpha: 0.88),
-              if (tint != null)
-                tint!.gradientColors.last.withValues(alpha: 0.18),
-            ],
-          ),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              label,
-              style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                color: AppColors.onSurfaceSubtle,
-              ),
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(minHeight: 108),
+        child: Container(
+          width: double.infinity,
+          padding: const EdgeInsets.all(12),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(14),
+            border: Border.all(color: innerBorder),
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                innerTop.withValues(alpha: 0.94),
+                innerBottom.withValues(alpha: 0.88),
+                if (tint != null)
+                  tint!.gradientColors.last.withValues(alpha: 0.18),
+              ],
             ),
-            const SizedBox(height: 4),
-            Text(value, style: Theme.of(context).textTheme.titleSmall),
-            if (footnote != null) ...[
-              const SizedBox(height: 2),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
               Text(
-                footnote!,
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                label,
+                style: Theme.of(context).textTheme.labelMedium?.copyWith(
                   color: AppColors.onSurfaceSubtle,
                 ),
               ),
+              const SizedBox(height: 2),
+              Text(value, style: Theme.of(context).textTheme.titleSmall),
+              if (footnote != null) ...[
+                const SizedBox(height: 4),
+                Text(
+                  footnote!,
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: AppColors.onSurfaceSubtle,
+                  ),
+                ),
+              ],
             ],
-          ],
+          ),
         ),
       ),
     );

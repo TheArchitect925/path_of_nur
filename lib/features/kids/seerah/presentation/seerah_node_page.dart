@@ -195,7 +195,7 @@ class _KidsSeerahNodePageState extends ConsumerState<KidsSeerahNodePage> {
                   onPressed: nodeSummary.isCompleted
                       ? null
                       : () {
-                          final outcome = ref
+                          ref
                               .read(kidsSeerahJourneyProgressProvider.notifier)
                               .completeManualNode(
                                 journeyId: widget.journeyId,
@@ -203,11 +203,7 @@ class _KidsSeerahNodePageState extends ConsumerState<KidsSeerahNodePage> {
                               );
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
-                              content: Text(
-                                outcome.xpAwarded > 0
-                                    ? l10n.kidsSeerahRewardSnack(outcome.xpAwarded)
-                                    : l10n.kidsSeerahNodeCompletedSnack,
-                              ),
+                              content: Text(l10n.kidsSeerahNodeCompletedSnack),
                             ),
                           );
                           setState(() {});

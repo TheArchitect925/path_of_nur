@@ -33,7 +33,6 @@ import '../application/kids_arabic_words_provider.dart';
 import '../application/kids_arabic_coloring_provider.dart';
 import '../application/kids_arabic_parent_provider.dart';
 import '../application/kids_arabic_progress_provider.dart';
-import '../application/kids_arabic_daily_mission_service.dart';
 import '../domain/kids_arabic_achievement_models.dart';
 import '../domain/kids_arabic_models.dart';
 import 'kids_arabic_localized_content.dart';
@@ -759,10 +758,6 @@ class _DailyJourneyCard extends StatelessWidget {
     final l10n = AppLocalizations.of(context);
     final completed =
         mission.isCompleted || dailyProgress.todayMissionCompleted;
-    final rewardPreview = l10n.kidsArabicDailyJourneyRewardPreview(
-      kidsArabicDailyBonusXp,
-      kidsArabicDailyBonusDrops,
-    );
 
     return Container(
       padding: const EdgeInsets.all(18),
@@ -816,7 +811,6 @@ class _DailyJourneyCard extends StatelessWidget {
                   dailyProgress.currentStreak,
                 ),
               ),
-              _SummaryPill(label: rewardPreview),
               if (dailyProgress.graceDaysAvailable > 0)
                 _SummaryPill(
                   label: l10n.kidsArabicDailyJourneyGraceValue(

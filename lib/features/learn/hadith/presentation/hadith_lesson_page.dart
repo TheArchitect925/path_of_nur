@@ -18,7 +18,6 @@ import '../../quran/presentation/widgets/quran_reference_viewer.dart';
 import '../application/hadith_foundation_repository.dart';
 import '../application/hadith_learning_paths_service.dart';
 import '../application/hadith_path_quiz_service.dart';
-import '../../../journey/application/journey_progression_provider.dart';
 import '../domain/hadith_foundation_models.dart';
 import 'widgets/hadith_content_block.dart';
 
@@ -158,9 +157,8 @@ class HadithLessonPage extends ConsumerWidget {
                       entry.id,
                     );
                     if (!context.mounted) return;
-                    final xp = JourneyXpRules.xpPerReflectionEntry;
                     final message = awarded
-                        ? l10n.hadithLessonCompletedXp(xp)
+                        ? l10n.hadithLessonCompletedQuiet
                         : l10n.hadithLessonAlreadyCompleted;
                     if (awarded) {
                       ref
@@ -181,7 +179,6 @@ class HadithLessonPage extends ConsumerWidget {
           LearningSection(
             title: l10n.hadithSectionRelatedTitle,
             child: LearningRelatedContent(
-              title: l10n.hadithSectionRelatedTitle,
               items: relatedEntries
                   .map(
                     (related) => LearningRelatedLink(

@@ -264,14 +264,10 @@ class IslamicTriviaHomePage extends ConsumerWidget {
               child: TriviaEmptyStateCard(
                 title:
                     '${result.mode.localizedLabel(l10n)} • ${l10n.growthPercentValue(numberFormat.format((result.accuracy * 100).round()))}',
-                subtitle: l10n.triviaHomeRecentPerformanceSummary(
+                subtitle: l10n.triviaHomeRecentPerformanceSummaryQuiet(
                   categoryTitle,
                   numberFormat.format(result.correctCount),
                   numberFormat.format(result.totalAnswered),
-                  numberFormat.format(result.xpEarned),
-                  numberFormat.format((result.accuracy * 100).round()),
-                  numberFormat.format(result.incorrectCount),
-                  '1',
                 ),
               ),
             );

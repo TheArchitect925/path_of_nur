@@ -78,7 +78,7 @@ const List<TriviaKnowledgePath> triviaKnowledgePaths = [
         title: 'Nuh, Hud, and Salih',
         learningText:
             'These prophets called their peoples back to tawhid and warned them against arrogance and rejection.',
-        questionIds: ['prophets_easy_006', 'prophets_easy_008', 'prophets_int_018'],
+        questionIds: ['prophets_easy_002', 'prophets_easy_008', 'prophets_med_003'],
         difficulty: TriviaDifficulty.easy,
       ),
       TriviaKnowledgeStage(
@@ -86,7 +86,7 @@ const List<TriviaKnowledgePath> triviaKnowledgePaths = [
         title: 'Ibrahim and His Family',
         learningText:
             'Ibrahim, peace be upon him, and his family model surrender, trust, and devotion across generations.',
-        questionIds: ['prophets_easy_011', 'prophets_easy_014', 'prophets_int_026'],
+        questionIds: ['prophets_easy_007', 'prophets_easy_020', 'prophets_med_024'],
         difficulty: TriviaDifficulty.medium,
       ),
       TriviaKnowledgeStage(
@@ -94,7 +94,7 @@ const List<TriviaKnowledgePath> triviaKnowledgePaths = [
         title: 'Musa and Harun',
         learningText:
             'The story of Musa and Harun shows da‘wah, courage before tyranny, and reliance on Allah in a time of great trial.',
-        questionIds: ['prophets_easy_024', 'prophets_easy_026', 'prophets_int_037'],
+        questionIds: ['prophets_easy_014', 'prophets_easy_015', 'prophets_med_012'],
         difficulty: TriviaDifficulty.medium,
       ),
       TriviaKnowledgeStage(
@@ -102,7 +102,7 @@ const List<TriviaKnowledgePath> triviaKnowledgePaths = [
         title: 'Kings, Wisdom, and Trial',
         learningText:
             'Dawud, Sulayman, Ayyub, and Yunus each teach different forms of gratitude, patience, repentance, and justice.',
-        questionIds: ['prophets_easy_031', 'prophets_easy_035', 'prophets_int_050'],
+        questionIds: ['prophets_easy_011', 'prophets_easy_008', 'prophets_med_030'],
         difficulty: TriviaDifficulty.medium,
       ),
       TriviaKnowledgeStage(
@@ -111,7 +111,7 @@ const List<TriviaKnowledgePath> triviaKnowledgePaths = [
         learningText:
             'The chain of prophethood leads to Prophet Muhammad ﷺ, whose mission completed and confirmed the message.',
         reference: 'Qur’an 33:40',
-        questionIds: ['prophets_easy_041', 'prophets_int_061', 'prophets_hard_084'],
+        questionIds: ['prophets_easy_009', 'prophets_easy_025', 'prophets_med_027'],
         difficulty: TriviaDifficulty.hard,
       ),
     ],
@@ -138,7 +138,7 @@ const List<TriviaKnowledgePath> triviaKnowledgePaths = [
         learningText:
             'The Qur’an was revealed through Jibril and began in the blessed Night of Decree.',
         reference: 'Qur’an 97:1-5',
-        questionIds: ['quran_easy_009', 'quran_easy_010', 'quran_int_046'],
+        questionIds: ['quran_easy_009', 'quran_easy_010', 'quran_med_020'],
         difficulty: TriviaDifficulty.easy,
       ),
       TriviaKnowledgeStage(
@@ -146,7 +146,7 @@ const List<TriviaKnowledgePath> triviaKnowledgePaths = [
         title: 'Structure and Terms',
         learningText:
             'Terms like surah, ayah, juz, and Makki or Madani help readers understand the organization of the Qur’an.',
-        questionIds: ['quran_easy_014', 'quran_easy_019', 'quran_int_057'],
+        questionIds: ['quran_easy_014', 'quran_easy_019', 'quran_med_003'],
         difficulty: TriviaDifficulty.medium,
       ),
       TriviaKnowledgeStage(
@@ -154,7 +154,7 @@ const List<TriviaKnowledgePath> triviaKnowledgePaths = [
         title: 'Famous Surahs',
         learningText:
             'Knowing the opening, longest, shortest, and widely loved surahs builds confidence and orientation in the Qur’an.',
-        questionIds: ['quran_easy_024', 'quran_easy_029', 'quran_int_070'],
+        questionIds: ['quran_easy_024', 'quran_easy_029', 'quran_med_007'],
         difficulty: TriviaDifficulty.medium,
       ),
       TriviaKnowledgeStage(
@@ -163,7 +163,7 @@ const List<TriviaKnowledgePath> triviaKnowledgePaths = [
         learningText:
             'The Qur’an is not only recited; it is reflected upon, memorized, and lived as guidance in daily life.',
         reference: 'Qur’an 54:17',
-        questionIds: ['quran_int_078', 'quran_int_081', 'quran_hard_091'],
+        questionIds: ['quran_med_011', 'quran_med_026', 'quran_hard_018'],
         difficulty: TriviaDifficulty.hard,
       ),
     ],
@@ -197,7 +197,7 @@ const List<TriviaKnowledgePath> triviaKnowledgePaths = [
         title: 'Inside a Rak‘ah',
         learningText:
             'Knowing the order of standing, bowing, prostration, and sitting builds confidence in the structure of salah.',
-        questionIds: ['salah_easy_019', 'salah_easy_021', 'salah_int_051'],
+        questionIds: ['salah_easy_019', 'salah_easy_021', 'salah_med_013'],
         difficulty: TriviaDifficulty.medium,
       ),
       TriviaKnowledgeStage(
@@ -205,7 +205,7 @@ const List<TriviaKnowledgePath> triviaKnowledgePaths = [
         title: 'Congregation and Jumu‘ah',
         learningText:
             'Salah in congregation builds unity, discipline, and shared remembrance, and Friday salah holds a special place.',
-        questionIds: ['salah_int_058', 'salah_int_063', 'salah_int_067'],
+        questionIds: ['salah_med_004', 'salah_med_007', 'salah_med_022'],
         difficulty: TriviaDifficulty.medium,
       ),
       TriviaKnowledgeStage(
@@ -213,7 +213,7 @@ const List<TriviaKnowledgePath> triviaKnowledgePaths = [
         title: 'Sunnah Salah and Khushu',
         learningText:
             'Beyond obligation, sunnah salahs and inner focus deepen one’s relationship with salah.',
-        questionIds: ['salah_int_071', 'salah_int_076', 'salah_hard_090'],
+        questionIds: ['salah_med_014', 'salah_med_017', 'salah_hard_003'],
         difficulty: TriviaDifficulty.hard,
       ),
     ],

@@ -6,7 +6,6 @@ import 'package:path_of_nur/core/theme/app_fonts.dart';
 import 'package:path_of_nur/core/theme/app_theme.dart';
 import 'package:path_of_nur/features/home/presentation/home_page.dart';
 import 'package:path_of_nur/features/journey/presentation/journey_page.dart';
-import 'package:path_of_nur/features/learn/presentation/learn_page.dart';
 import 'package:path_of_nur/features/learn/presentation/pages/learning_section_landing_page.dart';
 import 'package:path_of_nur/features/learn/presentation/pages/quran_app_hub_page.dart';
 import 'package:path_of_nur/features/profile/presentation/settings_page.dart';
@@ -125,7 +124,6 @@ void main() {
       '/home': HomePage,
       '/worship': WorshipPage,
       '/learn': LearningSectionLandingPage,
-      '/learn/legacy': LearnPage,
       '/journey': JourneyPage,
       '/quran': QuranAppHubPage,
       '/settings': SettingsPage,

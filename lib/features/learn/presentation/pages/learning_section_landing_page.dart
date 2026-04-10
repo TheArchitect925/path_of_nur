@@ -2,32 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../app/nav_tabs.dart';
-import '../../../../core/theme/app_surfaces.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/content/learning_quote.dart';
 import '../../../../shared/widgets/app_hero_glass_shell.dart';
 import '../../../../shared/widgets/app_layered_glass_pill_button.dart';
+import '../../../../shared/widgets/main_page_search_launcher.dart';
 import '../../../../shared/widgets/main_page_shortcut_configs.dart';
 import '../../../../shared/widgets/main_page_shortcut_stack.dart';
-import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/section_hub_scaffold.dart';
 import '../../analytics/application/learn_analytics_service.dart';
 import '../../analytics/domain/learn_analytics_models.dart';
-import '../../enrichment/application/learn_enrichment_provider.dart';
-import '../../guided_paths/application/guided_learning_paths_provider.dart';
-import '../../guided_paths/domain/guided_learning_path_icon_registry.dart';
-import '../../guided_paths/domain/guided_learning_path_models.dart';
 import '../../journey/application/family_learning_provider.dart';
-import '../../personalization/application/learning_personalization_provider.dart';
-import '../../shared/application/learn_system_engine_provider.dart';
-import '../../shared/domain/learn_system_models.dart';
+import '../../journey/domain/family_learning_models.dart';
 import '../application/learn_discovery_providers.dart';
 import '../data/learn_hub_taxonomy.dart';
 import '../models/learn_discovery_models.dart';
 import '../models/learn_hub_models.dart';
-import '../../enrichment/presentation/widgets/learn_enrichment_cards.dart';
-import '../widgets/learn_personalized_next_step_card.dart';
 import '../widgets/learn_hub_page_scaffold.dart';
 
 class LearningSectionLandingPage extends ConsumerStatefulWidget {
@@ -43,7 +33,6 @@ class _LearningSectionLandingPageState
   late final TextEditingController _searchController;
   String _query = '';
   bool _loggedSearchOpen = false;
-  bool _guidedPathsExpanded = true;
 
   @override
   void initState() {
@@ -67,29 +56,10 @@ class _LearningSectionLandingPageState
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final discoveryIndex = ref.watch(learnDiscoveryIndexProvider);
-    final summary = ref.watch(learnUnifiedSummaryV2Provider);
-    final pathResume = ref.watch(guidedLearningPathResumeProvider);
-    final localizedPaths = ref.watch(localizedGuidedLearningPathsProvider);
-    final personalizedNextStep = ref.watch(
-      localizedLearningPersonalizationSummaryProvider,
-    );
-    final pendingMilestone = ref.watch(
-      localizedPendingLearningMilestoneProvider,
-    );
-    final learningMemories = ref.watch(localizedLearningMemoriesProvider);
-    final encouragement = ref.watch(localizedLearningEncouragementProvider);
-    final visibilityPolicy = ref.watch(
-      activeFamilyLearningContextProvider.select(
-        (value) => value.visibilityPolicy,
-      ),
-    );
-    final visiblePaths = localizedPaths
-        .where(
-          (path) =>
-              !visibilityPolicy.isChildProfile ||
-              path.path.audience == GuidedLearningPathAudience.kids,
-        )
-        .toList(growable: false);
+    final visibilityPolicy = ref.watch(learnHubVisibilityPolicyProvider);
+    final visibleActions = visibilityPolicy.isChildProfile
+        ? _kidsVisibleActions(context, l10n)
+        : _mainIslandActions(context, l10n);
 
     final searchResults =
         searchLearnDiscoveryEntries(entries: discoveryIndex, query: _query)
@@ -107,99 +77,39 @@ class _LearningSectionLandingPageState
         closeLabel: l10n.learnShortcutClose,
       ),
       children: [
-        _SectionHeader(
-          title: l10n.learnPersonalizationSectionTitle,
-          subtitle: l10n.learnPersonalizationSectionSubtitle,
-        ),
-        const SizedBox(height: 10),
-        LearnPersonalizedNextStepCard(summary: personalizedNextStep),
-        if (pendingMilestone != null || learningMemories.isNotEmpty) ...[
-          const SizedBox(height: 18),
-          _SectionHeader(
-            title: l10n.learnEnrichmentSectionTitle,
-            subtitle: l10n.learnEnrichmentSectionSubtitle,
-          ),
-          const SizedBox(height: 10),
-          if (pendingMilestone != null) ...[
-            LearnMilestoneMomentCard(moment: pendingMilestone),
-            if (learningMemories.isNotEmpty) const SizedBox(height: 12),
+        MainPageSearchLauncher(
+          destinations: [
+            MainPageSearchDestination(
+              title: l10n.learnHubLandingExploreAllTitle,
+              subtitle: l10n.learnHubLandingExploreAllSubtitle,
+              icon: Icons.travel_explore_rounded,
+              keywords: ['explore', 'browse', 'all knowledge'],
+              onTap: () => context.pushNamed('learnExploreAllKnowledge'),
+            ),
+            ...visibleActions.map(
+              (action) => MainPageSearchDestination(
+                title: action.title,
+                subtitle: action.subtitle,
+                icon: action.icon,
+                keywords: [action.title, action.subtitle],
+                onTap: action.onTap,
+              ),
+            ),
+            MainPageSearchDestination(
+              title: l10n.learnNotesSectionTitle,
+              subtitle: l10n.learnNotesSectionSubtitle,
+              icon: Icons.notes_rounded,
+              keywords: ['notes', 'saved', 'journal'],
+              onTap: () => context.pushNamed('learnNotesLanding'),
+            ),
+            MainPageSearchDestination(
+              title: l10n.batch9FaqTitle,
+              subtitle: l10n.batch9FaqSubtitle,
+              icon: Icons.help_outline_rounded,
+              keywords: ['faq', 'questions', 'answers'],
+              onTap: () => context.pushNamed('faqLanding'),
+            ),
           ],
-          if (learningMemories.isNotEmpty)
-            LearnMemoryHighlightsCard(
-              memories: learningMemories,
-              encouragement: encouragement,
-            ),
-        ],
-        const SizedBox(height: 18),
-        _SectionHeader(
-          title: l10n.learnHubContinueJourneyTitle,
-          subtitle: l10n.learnHubContinueJourneySubtitle,
-        ),
-        const SizedBox(height: 10),
-        if (pathResume.hasActivePath)
-          _ContinueGuidedPathCard(
-            localizedPath: localizedPaths.firstWhere(
-              (path) => path.path.id == pathResume.activePath!.id,
-            ),
-            nextStep: localizedPaths
-                .firstWhere((path) => path.path.id == pathResume.activePath!.id)
-                .steps
-                .firstWhere((step) => step.step.id == pathResume.nextStep!.id),
-            onContinueTracked: () => ref
-                .read(learnAnalyticsServiceProvider)
-                .logPrimaryCardOpened(
-                  cardId: 'continue_guided_path',
-                  sourceSurface: 'learn_landing',
-                  domain: localizedPaths
-                      .firstWhere(
-                        (path) => path.path.id == pathResume.activePath!.id,
-                      )
-                      .path
-                      .bucketId,
-                ),
-          )
-        else if (summary.continueItem != null)
-          _ContinueLearningCard(
-            item: summary.continueItem!,
-            onOpenTracked: () => ref
-                .read(learnAnalyticsServiceProvider)
-                .logPrimaryCardOpened(
-                  cardId: 'continue_learning',
-                  sourceSurface: 'learn_landing',
-                ),
-          )
-        else
-          _BrowseJourneysCard(
-            title: l10n.learnHubLandingBrowseJourneysTitle,
-            subtitle: l10n.learnHubLandingBrowseJourneysSubtitle,
-            onOpenTracked: () => ref
-                .read(learnAnalyticsServiceProvider)
-                .logPrimaryCardOpened(
-                  cardId: 'browse_guided_paths',
-                  sourceSurface: 'learn_landing',
-                ),
-          ),
-        const SizedBox(height: 18),
-        _SectionHeader(
-          title: l10n.learnHubDailyLearningTitle,
-          subtitle: l10n.learnHubDailyLearningLandingSubtitle,
-        ),
-        const SizedBox(height: 10),
-        _DailyLearningCard(summary: summary),
-        const SizedBox(height: 18),
-        _CollapsibleLearnSection(
-          title: l10n.guidedLearningPathsSectionTitle,
-          subtitle: visibilityPolicy.isChildProfile
-              ? l10n.guidedLearningPathsSectionKidsSubtitle
-              : l10n.guidedLearningPathsSectionSubtitle,
-          expanded: _guidedPathsExpanded,
-          onExpansionChanged: (expanded) {
-            setState(() => _guidedPathsExpanded = expanded);
-          },
-          child: _GuidedLearningPathsGrid(
-            paths: visiblePaths,
-            activePathId: pathResume.activePath?.id,
-          ),
         ),
         const SizedBox(height: 18),
         _SectionHeader(
@@ -209,26 +119,8 @@ class _LearningSectionLandingPageState
               : l10n.learnHubVisibleIslandsSubtitle,
         ),
         const SizedBox(height: 10),
-        SectionHubActionGrid(
-          actions: visibilityPolicy.isChildProfile
-              ? _kidsVisibleActions(context, l10n)
-              : _mainIslandActions(context, l10n),
-        ),
+        SectionHubActionGrid(actions: visibleActions),
         const SizedBox(height: 18),
-        if (!visibilityPolicy.isChildProfile) ...[
-          _SectionHeader(
-            title: l10n.learnHubCategoryKidsLearningTitle,
-            subtitle: l10n.learnHubLandingKidsSubtitle,
-          ),
-          const SizedBox(height: 10),
-          _KidsDiscoveryCard(
-            analytics: ref.read(learnAnalyticsServiceProvider),
-            onOpenKidsQuran: () => context.pushNamed('learnKidsQuran'),
-            onOpenKidsGames: () => context.pushNamed('learnKidsGames'),
-            onOpenKidsStories: () => context.pushNamed('kidsStoryLibrary'),
-          ),
-          const SizedBox(height: 18),
-        ],
         _SectionHeader(
           title: l10n.learnHubLandingExploreAllTitle,
           subtitle: l10n.learnHubLandingExploreAllSubtitle,
@@ -273,6 +165,12 @@ class _LearningSectionLandingPageState
   }
 }
 
+final learnHubVisibilityPolicyProvider = Provider<FamilyLearningVisibilityPolicy>(
+  (ref) => ref.watch(
+    activeFamilyLearningContextProvider.select((value) => value.visibilityPolicy),
+  ),
+);
+
 class _SectionHeader extends StatelessWidget {
   const _SectionHeader({required this.title, required this.subtitle});
 
@@ -293,427 +191,6 @@ class _SectionHeader extends StatelessWidget {
         const SizedBox(height: 4),
         Text(subtitle),
       ],
-    );
-  }
-}
-
-class _CollapsibleLearnSection extends StatelessWidget {
-  const _CollapsibleLearnSection({
-    required this.title,
-    required this.subtitle,
-    required this.expanded,
-    required this.onExpansionChanged,
-    required this.child,
-  });
-
-  final String title;
-  final String subtitle;
-  final bool expanded;
-  final ValueChanged<bool> onExpansionChanged;
-  final Widget child;
-
-  @override
-  Widget build(BuildContext context) {
-    return _LearnLandingNoorCard(
-      child: Theme(
-        data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
-        child: ExpansionTile(
-          key: PageStorageKey<String>('learn-section-$title'),
-          initiallyExpanded: expanded,
-          onExpansionChanged: onExpansionChanged,
-          tilePadding: EdgeInsets.zero,
-          childrenPadding: EdgeInsets.zero,
-          maintainState: true,
-          title: Text(
-            title,
-            style: Theme.of(
-              context,
-            ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
-          ),
-          subtitle: Padding(
-            padding: const EdgeInsets.only(top: 4),
-            child: Text(subtitle),
-          ),
-          children: [const SizedBox(height: 10), child],
-        ),
-      ),
-    );
-  }
-}
-
-class _BrowseJourneysCard extends StatelessWidget {
-  const _BrowseJourneysCard({
-    required this.title,
-    required this.subtitle,
-    required this.onOpenTracked,
-  });
-
-  final String title;
-  final String subtitle;
-  final VoidCallback onOpenTracked;
-
-  @override
-  Widget build(BuildContext context) {
-    return _LearnLandingNoorCard(
-      child: Row(
-        children: [
-          const Icon(Icons.route_rounded),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: Theme.of(
-                    context,
-                  ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
-                ),
-                const SizedBox(height: 4),
-                Text(subtitle),
-              ],
-            ),
-          ),
-          const SizedBox(width: 12),
-          FilledButton.tonalIcon(
-            onPressed: () {
-              onOpenTracked();
-              context.pushNamed('learnJourneyIslandHub');
-            },
-            icon: const Icon(Icons.arrow_forward_rounded),
-            label: Text(title),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _ContinueLearningCard extends StatelessWidget {
-  const _ContinueLearningCard({
-    required this.item,
-    required this.onOpenTracked,
-  });
-
-  final LearnUnifiedContentItem item;
-  final VoidCallback onOpenTracked;
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      borderRadius: BorderRadius.circular(20),
-      onTap: item.routeName == null
-          ? null
-          : () {
-              onOpenTracked();
-              context.pushNamed(
-                item.routeName!,
-                pathParameters: item.pathParameters,
-                queryParameters: item.queryParameters,
-              );
-            },
-      child: _LearnLandingNoorCard(
-        child: Row(
-          children: [
-            const Icon(Icons.menu_book_rounded),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    item.title,
-                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    item.summary,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _ContinueGuidedPathCard extends ConsumerWidget {
-  const _ContinueGuidedPathCard({
-    required this.localizedPath,
-    required this.nextStep,
-    required this.onContinueTracked,
-  });
-
-  final LocalizedGuidedLearningPath localizedPath;
-  final LocalizedGuidedLearningPathStep nextStep;
-  final VoidCallback onContinueTracked;
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = AppLocalizations.of(context);
-    final controller = ref.read(guidedLearningPathsControllerProvider.notifier);
-    final progress = ref.watch(
-      guidedLearningPathProgressProvider(localizedPath.path.id),
-    );
-    final completedCount = progress.completedStepIds.length;
-    final totalCount = localizedPath.path.steps.length;
-    final progressValue = totalCount == 0 ? 0.0 : completedCount / totalCount;
-    return _LearnLandingNoorCard(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Icon(Icons.alt_route_rounded),
-              const SizedBox(width: 12),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      localizedPath.title,
-                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      l10n.guidedLearningPathCurrentStepLabel,
-                      style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                        color: Theme.of(context).colorScheme.onSurfaceVariant,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                    const SizedBox(height: 2),
-                    Text(nextStep.title),
-                    const SizedBox(height: 4),
-                    Text(
-                      nextStep.subtitle,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(width: 12),
-              FilledButton.tonalIcon(
-                onPressed: () {
-                  onContinueTracked();
-                  controller.markStepOpened(
-                    localizedPath.path,
-                    nextStep.step,
-                    sourceSurface: 'learn_landing_continue',
-                  );
-                  context.pushNamed(
-                    nextStep.step.routeTarget.routeName,
-                    pathParameters: nextStep.step.routeTarget.pathParameters,
-                    queryParameters: nextStep.step.routeTarget.queryParameters,
-                  );
-                },
-                icon: const Icon(Icons.play_arrow_rounded),
-                label: Text(l10n.guidedLearningPathContinueAction),
-              ),
-            ],
-          ),
-          const SizedBox(height: 12),
-          Text(
-            l10n.guidedLearningPathStepOfTotal(completedCount + 1, totalCount),
-            style: Theme.of(
-              context,
-            ).textTheme.labelMedium?.copyWith(fontWeight: FontWeight.w700),
-          ),
-          const SizedBox(height: 6),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(999),
-            child: LinearProgressIndicator(
-              value: progressValue.clamp(0, 1),
-              minHeight: 8,
-              backgroundColor: Theme.of(
-                context,
-              ).colorScheme.surfaceContainerHighest,
-            ),
-          ),
-          const SizedBox(height: 6),
-          Text(
-            l10n.guidedLearningPathProgressValue(completedCount, totalCount),
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: Theme.of(context).colorScheme.onSurfaceVariant,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _DailyLearningCard extends StatelessWidget {
-  const _DailyLearningCard({required this.summary});
-
-  final LearnUnifiedSummaryV2 summary;
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
-    return _LearnLandingNoorCard(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            l10n.learnHubDailyThemeLabel(summary.dailyItem.theme.label),
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: Theme.of(context).colorScheme.onSurfaceVariant,
-            ),
-          ),
-          const SizedBox(height: 6),
-          Text(
-            summary.dailyItem.item.title,
-            style: Theme.of(
-              context,
-            ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-          ),
-          const SizedBox(height: 4),
-          Text(
-            summary.dailyItem.item.summary,
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-          ),
-          const SizedBox(height: 10),
-          Wrap(
-            spacing: 8,
-            runSpacing: 8,
-            children: [
-              AppLayeredGlassPillButton(
-                onPressed: summary.dailyItem.item.routeName == null
-                    ? null
-                    : () => context.pushNamed(
-                        summary.dailyItem.item.routeName!,
-                        pathParameters: summary.dailyItem.item.pathParameters,
-                        queryParameters: summary.dailyItem.item.queryParameters,
-                      ),
-                leading: const Icon(Icons.auto_awesome_rounded, size: 18),
-                label: l10n.learnHubOpenDailyLearningAction,
-              ),
-              AppLayeredGlassPillButton(
-                onPressed: () => context.pushNamed('journalCreate'),
-                leading: const Icon(Icons.edit_note_rounded, size: 18),
-                label: l10n.learnHubWriteReflectionAction,
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _KidsDiscoveryCard extends StatelessWidget {
-  const _KidsDiscoveryCard({
-    required this.analytics,
-    required this.onOpenKidsQuran,
-    required this.onOpenKidsGames,
-    required this.onOpenKidsStories,
-  });
-
-  final LearnAnalyticsService analytics;
-  final VoidCallback onOpenKidsQuran;
-  final VoidCallback onOpenKidsGames;
-  final VoidCallback onOpenKidsStories;
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
-    return AppHeroGlassShell(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-            decoration: BoxDecoration(
-              color: Theme.of(
-                context,
-              ).colorScheme.surfaceContainerHighest.withValues(alpha: 0.72),
-              borderRadius: BorderRadius.circular(999),
-            ),
-            child: Text(
-              l10n.learnHubKidsFeaturedLabel,
-              style: Theme.of(
-                context,
-              ).textTheme.labelMedium?.copyWith(fontWeight: FontWeight.w700),
-            ),
-          ),
-          const SizedBox(height: 10),
-          Text(
-            l10n.learnHubCategoryKidsLearningTitle,
-            style: Theme.of(
-              context,
-            ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
-          ),
-          const SizedBox(height: 4),
-          Text(l10n.learnHubLandingKidsSubtitle),
-          const SizedBox(height: 6),
-          Text(
-            l10n.learnHubKidsFeaturedHelper,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: Theme.of(context).colorScheme.onSurfaceVariant,
-            ),
-          ),
-          const SizedBox(height: 10),
-          Wrap(
-            spacing: 8,
-            runSpacing: 8,
-            children: [
-              FilledButton.tonalIcon(
-                onPressed: () {
-                  analytics.logPrimaryCardOpened(
-                    cardId: 'kids_featured_quran',
-                    sourceSurface: 'learn_landing_kids_featured',
-                    domain: 'kids',
-                    audience: LearnAnalyticsAudience.kids,
-                  );
-                  onOpenKidsQuran();
-                },
-                icon: const Icon(Icons.menu_book_rounded),
-                label: Text(l10n.learnHubSubcategoryKidsQuranTitle),
-              ),
-              FilledButton.tonalIcon(
-                onPressed: () {
-                  analytics.logPrimaryCardOpened(
-                    cardId: 'kids_featured_games',
-                    sourceSurface: 'learn_landing_kids_featured',
-                    domain: 'games',
-                    audience: LearnAnalyticsAudience.kids,
-                  );
-                  onOpenKidsGames();
-                },
-                icon: const Icon(Icons.sports_esports_rounded),
-                label: Text(l10n.learnHubSubcategoryKidsGamesTitle),
-              ),
-              FilledButton.tonalIcon(
-                onPressed: () {
-                  analytics.logPrimaryCardOpened(
-                    cardId: 'kids_featured_stories',
-                    sourceSurface: 'learn_landing_kids_featured',
-                    domain: 'stories',
-                    audience: LearnAnalyticsAudience.kids,
-                  );
-                  onOpenKidsStories();
-                },
-                icon: const Icon(Icons.auto_stories_rounded),
-                label: Text(l10n.learnHubSubcategoryKidsStoriesTitle),
-              ),
-            ],
-          ),
-        ],
-      ),
     );
   }
 }
@@ -884,271 +361,6 @@ class _ExploreAllCard extends StatelessWidget {
   }
 }
 
-class _LearnLandingNoorCard extends StatelessWidget {
-  const _LearnLandingNoorCard({required this.child});
-
-  final Widget child;
-
-  @override
-  Widget build(BuildContext context) {
-    return AppHeroGlassShell(child: child);
-  }
-}
-
-class _GuidedLearningPathsGrid extends StatelessWidget {
-  const _GuidedLearningPathsGrid({
-    required this.paths,
-    required this.activePathId,
-  });
-
-  final List<LocalizedGuidedLearningPath> paths;
-  final String? activePathId;
-
-  @override
-  Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        final columns = constraints.maxWidth >= 720
-            ? 3
-            : constraints.maxWidth >= 460
-            ? 2
-            : 1;
-        final itemWidth = columns == 1
-            ? constraints.maxWidth
-            : (constraints.maxWidth - (12 * (columns - 1))) / columns;
-        return Wrap(
-          spacing: 12,
-          runSpacing: 12,
-          children: paths
-              .map(
-                (path) => SizedBox(
-                  width: itemWidth,
-                  child: _GuidedLearningPathCard(
-                    localizedPath: path,
-                    isActive: activePathId == path.path.id,
-                  ),
-                ),
-              )
-              .toList(growable: false),
-        );
-      },
-    );
-  }
-}
-
-class _GuidedLearningPathCard extends ConsumerWidget {
-  const _GuidedLearningPathCard({
-    required this.localizedPath,
-    required this.isActive,
-  });
-
-  final LocalizedGuidedLearningPath localizedPath;
-  final bool isActive;
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = AppLocalizations.of(context);
-    final analytics = ref.read(learnAnalyticsServiceProvider);
-    final contentColors = AppSurfaceTheme.contentColors(context);
-    final progress = ref.watch(
-      guidedLearningPathProgressProvider(localizedPath.path.id),
-    );
-    final completedCount = progress.completedStepIds.length;
-    final totalCount = localizedPath.path.steps.length;
-    final statusLabel = progress.isCompleted
-        ? l10n.guidedLearningPathStatusCompleted
-        : progress.isStarted
-        ? l10n.guidedLearningPathStatusInProgress
-        : l10n.guidedLearningPathStatusNotStarted;
-    final nextStep = localizedPath.steps.firstWhere(
-      (step) => !progress.completedStepIds.contains(step.step.id),
-      orElse: () => localizedPath.steps.last,
-    );
-    final progressValue = totalCount == 0 ? 0.0 : completedCount / totalCount;
-    final accent = switch (localizedPath.path.bucketId) {
-      'quran' => const Color(0xFF2C6E5B),
-      'worship' => const Color(0xFF2A7A78),
-      'character' => const Color(0xFF8A5A44),
-      'kids' => const Color(0xFF7A61D1),
-      _ => const Color(0xFF8B6B44),
-    };
-    final iconBase = switch (localizedPath.path.bucketId) {
-      'quran' => const Color(0xFFE2ECE8),
-      'worship' => const Color(0xFFE1ECEA),
-      'character' => const Color(0xFFF0E2D6),
-      'kids' => const Color(0xFFE7E0F7),
-      _ => const Color(0xFFECE5D7),
-    };
-    final surfaceStyle = AppSurfaceTheme.resolve(
-      context,
-      variant: AppSurfaceVariant.island,
-      tintColor: accent,
-    );
-    final statusStyle = AppSurfaceTheme.resolve(
-      context,
-      variant: AppSurfaceVariant.pill,
-      tintColor: accent,
-    );
-    final innerCardTop =
-        Color.lerp(iconBase, Colors.white, 0.38) ?? Colors.white;
-    final innerCardBottom = Color.lerp(iconBase, accent, 0.16) ?? accent;
-    final innerBorderColor =
-        Color.lerp(
-          Colors.white.withValues(alpha: 0.88),
-          accent.withValues(alpha: 0.30),
-          0.36,
-        ) ??
-        Colors.white.withValues(alpha: 0.88);
-    return AnimatedScale(
-      scale: isActive ? 1.01 : 1,
-      duration: const Duration(milliseconds: 220),
-      curve: Curves.easeOutCubic,
-      child: Material(
-        color: Colors.transparent,
-        child: InkWell(
-          borderRadius: BorderRadius.circular(20),
-          splashColor: surfaceStyle.splashColor,
-          highlightColor: surfaceStyle.highlightColor,
-          onTap: () {
-            analytics.logPrimaryCardOpened(
-              cardId: 'guided_path_${localizedPath.path.id}',
-              sourceSurface: 'learn_landing_paths',
-              domain: localizedPath.path.bucketId,
-              audience: switch (localizedPath.path.audience) {
-                GuidedLearningPathAudience.kids => LearnAnalyticsAudience.kids,
-                GuidedLearningPathAudience.general =>
-                  localizedPath.path.bucketId == 'foundations'
-                      ? LearnAnalyticsAudience.beginner
-                      : LearnAnalyticsAudience.general,
-              },
-            );
-            context.pushNamed(
-              'learnGuidedPathDetail',
-              pathParameters: <String, String>{'pathId': localizedPath.path.id},
-            );
-          },
-          child: PremiumCard(
-            padding: const EdgeInsets.all(4),
-            surfaceVariant: AppSurfaceVariant.island,
-            surfaceTintColor: accent,
-            includeShadow: true,
-            child: Container(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                border: Border.all(color: innerBorderColor),
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    innerCardTop.withValues(alpha: 0.94),
-                    innerCardBottom.withValues(alpha: 0.88),
-                  ],
-                ),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Container(
-                        width: 46,
-                        height: 46,
-                        decoration: BoxDecoration(
-                          color: Color.alphaBlend(
-                            iconBase.withValues(alpha: 0.88),
-                            surfaceStyle.iconBackgroundColor,
-                          ),
-                          borderRadius: BorderRadius.circular(14),
-                          border: Border.all(color: surfaceStyle.borderColor),
-                        ),
-                        child: Icon(
-                          GuidedLearningPathIconRegistry.iconForPathId(
-                            localizedPath.path.id,
-                          ),
-                          color: accent,
-                        ),
-                      ),
-                      const Spacer(),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 10,
-                          vertical: 6,
-                        ),
-                        decoration: statusStyle.decoration(
-                          radius: 999,
-                          includeShadow: false,
-                        ),
-                        child: Text(
-                          statusLabel,
-                          style: Theme.of(context).textTheme.labelSmall
-                              ?.copyWith(
-                                color: accent,
-                                fontWeight: FontWeight.w700,
-                              ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 14),
-                  Text(
-                    localizedPath.title,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.w700,
-                      color: accent,
-                    ),
-                  ),
-                  const SizedBox(height: 6),
-                  Text(
-                    localizedPath.subtitle,
-                    maxLines: 3,
-                    overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: contentColors.subtleForeground,
-                      height: 1.35,
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(999),
-                    child: LinearProgressIndicator(
-                      value: progressValue.clamp(0, 1),
-                      minHeight: 7,
-                      backgroundColor: surfaceStyle.iconBackgroundColor,
-                      valueColor: AlwaysStoppedAnimation<Color>(accent),
-                    ),
-                  ),
-                  Text(
-                    l10n.guidedLearningPathProgressValue(
-                      completedCount,
-                      totalCount,
-                    ),
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: accent,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  if (!progress.isCompleted) ...[
-                    const SizedBox(height: 6),
-                    Text(
-                      l10n.guidedLearningPathNextStepLabel(nextStep.title),
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: Theme.of(context).colorScheme.onSurfaceVariant,
-                      ),
-                    ),
-                  ],
-                ],
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
 extension on _LearningSectionLandingPageState {
   List<SectionHubAction> _mainIslandActions(
     BuildContext context,
@@ -1161,12 +373,6 @@ extension on _LearningSectionLandingPageState {
     final quranStyle = LearnHubTaxonomy.styleFor(
       LearnHubCategoryId.quranHadith,
     );
-    final worshipStyle = LearnHubTaxonomy.styleFor(
-      LearnHubCategoryId.worshipPractice,
-    );
-    final characterStyle = LearnHubTaxonomy.styleFor(
-      LearnHubCategoryId.characterAdab,
-    );
     final storiesStyle = LearnHubTaxonomy.styleFor(
       LearnHubCategoryId.prophetsStories,
     );
@@ -1176,103 +382,68 @@ extension on _LearningSectionLandingPageState {
 
     return [
       SectionHubAction(
-        title: l10n.learnHubCategoryFoundationsTitle,
-        subtitle: l10n.learnHubLandingFoundationsSubtitle,
+        title: l10n.learnHubMainIslandLearningPathTitle,
+        subtitle: l10n.learnHubMainIslandLearningPathSubtitle,
         icon: foundationsStyle.icon,
         color: foundationsStyle.baseColor,
         accentColor: foundationsStyle.accentColor,
         onTap: () {
           analytics.logPrimaryCardOpened(
-            cardId: 'island_foundations',
+            cardId: 'island_learning_path',
             sourceSurface: 'learn_landing_islands',
-            domain: 'foundations',
+            domain: 'journeys',
             audience: LearnAnalyticsAudience.beginner,
           );
-          context.pushNamed(
-            'learnHubCategory',
-            pathParameters: {'categoryId': 'foundations'},
-          );
+          context.pushNamed('learnJourneyIslandHub');
         },
       ),
       SectionHubAction(
-        title: l10n.quranHubTitle,
-        subtitle: l10n.learnHubLandingQuranSubtitle,
+        title: l10n.learnHubMainIslandSelfLearningTitle,
+        subtitle: l10n.learnHubMainIslandSelfLearningSubtitle,
         icon: quranStyle.icon,
         color: quranStyle.baseColor,
         accentColor: quranStyle.accentColor,
         onTap: () {
           analytics.logPrimaryCardOpened(
-            cardId: 'island_quran',
+            cardId: 'island_self_learning',
             sourceSurface: 'learn_landing_islands',
-            domain: 'quran',
+            domain: 'self_learning',
           );
-          context.push(NavTab.quran.path);
+          context.pushNamed('learnLegacy');
         },
       ),
       SectionHubAction(
-        title: l10n.learnHubMainIslandWorshipTitle,
-        subtitle: l10n.learnHubLandingWorshipSubtitle,
-        icon: worshipStyle.icon,
-        color: worshipStyle.baseColor,
-        accentColor: worshipStyle.accentColor,
-        onTap: () {
-          analytics.logPrimaryCardOpened(
-            cardId: 'island_worship',
-            sourceSurface: 'learn_landing_islands',
-            domain: 'worship',
-          );
-          context.pushNamed(
-            'learnHubCategory',
-            pathParameters: {'categoryId': 'worship-practice'},
-          );
-        },
-      ),
-      SectionHubAction(
-        title: l10n.learnHubMainIslandCharacterTitle,
-        subtitle: l10n.learnHubLandingCharacterSubtitle,
-        icon: characterStyle.icon,
-        color: characterStyle.baseColor,
-        accentColor: characterStyle.accentColor,
-        onTap: () {
-          analytics.logPrimaryCardOpened(
-            cardId: 'island_character',
-            sourceSurface: 'learn_landing_islands',
-            domain: 'character',
-          );
-          context.pushNamed('learnCharacterCompanion');
-        },
-      ),
-      SectionHubAction(
-        title: l10n.learnHubMainIslandStoriesTitle,
-        subtitle: l10n.learnHubLandingStoriesSubtitle,
-        icon: storiesStyle.icon,
-        color: storiesStyle.baseColor,
-        accentColor: storiesStyle.accentColor,
-        onTap: () {
-          analytics.logPrimaryCardOpened(
-            cardId: 'island_stories',
-            sourceSurface: 'learn_landing_islands',
-            domain: 'stories',
-          );
-          context.pushNamed(
-            'learnHubCategory',
-            pathParameters: {'categoryId': 'prophets-stories'},
-          );
-        },
-      ),
-      SectionHubAction(
-        title: l10n.learnHubMainIslandGamesTitle,
-        subtitle: l10n.learnHubLandingGamesSubtitle,
+        title: l10n.learnHubMainIslandQuizzesGamesTitle,
+        subtitle: l10n.learnHubMainIslandQuizzesGamesSubtitle,
         icon: Icons.sports_esports_rounded,
         color: gamesStyle.baseColor,
         accentColor: gamesStyle.accentColor,
         onTap: () {
           analytics.logPrimaryCardOpened(
-            cardId: 'island_games',
+            cardId: 'island_quizzes_games',
             sourceSurface: 'learn_landing_islands',
-            domain: 'games',
+            domain: 'quizzes_games',
           );
-          context.pushNamed('learnGamesIsland');
+          context.pushNamed('learnQuizzesHub');
+        },
+      ),
+      SectionHubAction(
+        title: l10n.learnHubMainIslandKidsLearningTitle,
+        subtitle: l10n.learnHubMainIslandKidsLearningSubtitle,
+        icon: storiesStyle.icon,
+        color: storiesStyle.baseColor,
+        accentColor: storiesStyle.accentColor,
+        onTap: () {
+          analytics.logPrimaryCardOpened(
+            cardId: 'island_kids_learning',
+            sourceSurface: 'learn_landing_islands',
+            domain: 'kids',
+            audience: LearnAnalyticsAudience.kids,
+          );
+          context.pushNamed(
+            'learnHubCategory',
+            pathParameters: {'categoryId': 'kids-learning'},
+          );
         },
       ),
     ];

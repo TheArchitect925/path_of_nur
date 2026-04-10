@@ -22,11 +22,12 @@ Master consolidation reference:
 11. Decide whether manual export should stay full-only or optionally support the same sync-scope controls without making the backup model harder to understand.
 12. Finalize the canonical Learn ownership decision between `/learn`, `/learn/legacy`, and `/learn/browse`, then remove one layer of overlap.
 13. Finish the remaining Qur'an ownership cleanup by localizing and tightening the scoped `/quran/learning` surface, then audit older Learn-side wording that still implies `Qur’an Study` as a parallel owner.
-14. Replace the contained Learn guide/mapping routes with real lesson-backed or route-specific production content, and localize the newly live Tajweed lesson bodies.
-15. Add widget tests for `LearningJourneyHomePage` covering Continue Journey, Today’s Light, and profile-aware visibility.
-16. Add tests for progress reload when journey/stage IDs are removed or changed in the registry.
-17. Refresh the root `README.md` with real product/setup/release information.
-18. Finish real-device QA for Apple/Google sign-in, export/share, file-based import, and safety-snapshot restore recovery on the intended release platforms.
+14. Run product and test QA on the new Learn three-card hub (`/learn`, `/learn/learning-path`, `/learn/self-learning`, `/learn/kids-preview`), especially onboarding-derived level defaults, kids preview safety, and the new settings handoff row.
+15. Replace the contained Learn guide/mapping routes with real lesson-backed or route-specific production content, and localize the newly live Tajweed lesson bodies.
+16. Add widget tests for `LearningJourneyHomePage` covering Continue Journey, Today’s Light, and profile-aware visibility.
+17. Add tests for progress reload when journey/stage IDs are removed or changed in the registry.
+18. Refresh the root `README.md` with real product/setup/release information.
+19. Finish real-device QA for Apple/Google sign-in, export/share, file-based import, and safety-snapshot restore recovery on the intended release platforms.
 9. Run paired Apple Watch QA covering snapshot fetch, prayer action queue replay, dhikr completion sync, complication refresh, and offline recovery.
 10. Validate Apple Watch prayer reminder actions on real hardware, including mark prayed, mark prayed late, snooze rescheduling, and prayer-row focus routing after open.
 11. Confirm the new persisted prayer follow-up and snooze settings are surfaced in product UI if they should become user-configurable beyond watch sync truth.

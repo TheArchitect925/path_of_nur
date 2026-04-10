@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:path_of_nur/features/journey/application/journey_progression_provider.dart';
@@ -7,13 +8,40 @@ import 'package:path_of_nur/features/learn/salah/application/wudu_trainer_contro
 import 'package:path_of_nur/features/learn/salah/data/wudu_content.dart';
 import 'package:path_of_nur/features/learn/salah/models/wudu_models.dart';
 import 'package:path_of_nur/features/ocean/application/ocean_drops_provider.dart';
+import 'package:path_of_nur/features/worship/domain/fasting_status.dart';
+import 'package:path_of_nur/shared/persistence/app_database.dart';
 import 'package:path_of_nur/shared/persistence/local_store.dart';
 
 import '../../../test_helpers/app_test_harness.dart';
 
 void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
+
+  Override journeySnapshotOverride() {
+    return journeyActivitySnapshotProvider.overrideWith(
+      (ref) => JourneyActivitySnapshot(
+        now: DateTime(2026, 4, 8, 12),
+        prayerCompletedToday: 0,
+        prayerMissedToday: 0,
+        fajrCompletedToday: false,
+        prayerProgress: 0,
+        dhikrSessionsToday: 0,
+        dhikrCountToday: 0,
+        dhikrProgress: 0,
+        fastingStatus: FastingStatus.notFasting,
+        quranEngagementsToday: 0,
+        quranProgress: 0,
+        reflectionEntriesToday: 0,
+        reflectionProgress: 0,
+        learningStageCompletionsToday: 0,
+      ),
+    );
+  }
+
   test('resume state persists across app reopen', () async {
-    final first = await makeTestContainer();
+    final first = await makeTestContainer(
+      overrides: <Override>[journeySnapshotOverride()],
+    );
     addTearDown(first.dispose);
 
     final firstController = first.read(wuduTrainerControllerProvider.notifier);
@@ -66,7 +94,13 @@ void main() {
   test(
     'completion, review re-entry, and restart do not duplicate rewards',
     () async {
-      final first = await makeTestContainer();
+      final database = AppDatabase.inMemory();
+      addTearDown(database.close);
+
+      final first = await makeTestContainer(
+        database: database,
+        overrides: <Override>[journeySnapshotOverride()],
+      );
       addTearDown(first.dispose);
 
       final controller = first.read(wuduTrainerControllerProvider.notifier);
@@ -94,7 +128,11 @@ void main() {
           .dumpAll()
           .map((key, value) => MapEntry(key, value as Object));
 
-      final reopened = await makeTestContainer(seed: persisted);
+      final reopened = await makeTestContainer(
+        seed: persisted,
+        database: database,
+        overrides: <Override>[journeySnapshotOverride()],
+      );
       addTearDown(reopened.dispose);
       final reopenedController = reopened.read(
         wuduTrainerControllerProvider.notifier,

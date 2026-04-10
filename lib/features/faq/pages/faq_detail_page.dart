@@ -218,10 +218,20 @@ class FaqDetailPage extends ConsumerWidget {
       context,
       variant: AppSurfaceVariant.pill,
     );
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-      decoration: style.decoration(radius: 999),
-      child: Text(label, style: Theme.of(context).textTheme.bodySmall),
+    return ConstrainedBox(
+      constraints: BoxConstraints(
+        maxWidth: MediaQuery.sizeOf(context).width * 0.72,
+      ),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+        decoration: style.decoration(radius: 999),
+        child: Text(
+          label,
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+          style: Theme.of(context).textTheme.bodySmall,
+        ),
+      ),
     );
   }
 
@@ -231,14 +241,21 @@ class FaqDetailPage extends ConsumerWidget {
       variant: AppSurfaceVariant.pill,
       tintColor: AppColors.accentGold,
     );
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-      decoration: style.decoration(radius: 999),
-      child: Text(
-        label,
-        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-          color: AppColors.accentGold,
-          fontWeight: FontWeight.w600,
+    return ConstrainedBox(
+      constraints: BoxConstraints(
+        maxWidth: MediaQuery.sizeOf(context).width * 0.72,
+      ),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+        decoration: style.decoration(radius: 999),
+        child: Text(
+          label,
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+          style: Theme.of(context).textTheme.bodySmall?.copyWith(
+            color: AppColors.accentGold,
+            fontWeight: FontWeight.w600,
+          ),
         ),
       ),
     );

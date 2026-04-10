@@ -516,12 +516,7 @@ class _RecentGrowthTile extends StatelessWidget {
         parsedDate == null ? l10n.gardenPageRecentGrowthJustNow : dateFormat.format(parsedDate),
       ),
       trailing: Text(
-        item.dropsAwarded > 0
-            ? l10n.gardenPageRecentGrowthRewardValue(
-                '${item.xpAwarded}',
-                '${item.dropsAwarded}',
-              )
-            : l10n.gardenPageRecentGrowthXpValue('${item.xpAwarded}'),
+        l10n.gardenPageRecentGrowthTracked,
         style: Theme.of(context).textTheme.bodySmall,
       ),
     );

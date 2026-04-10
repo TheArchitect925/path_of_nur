@@ -42,6 +42,7 @@ enum OnboardingArabicReadMode {
 enum OnboardingHarakatChoice { full, minimal, none }
 
 enum OnboardingReminderChoice {
+  none,
   notificationOnly,
   adhanNotification,
   forceAdhan,

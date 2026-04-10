@@ -1,0 +1,1 @@
+Come up with 4 different levels for each of the age groups. only show kids content to 0-14 once the child hits 14 they can see adult and more advance content too. If the child has completed all sections allow them to access the 14+ full content then as well .

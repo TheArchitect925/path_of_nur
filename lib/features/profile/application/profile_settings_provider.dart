@@ -32,6 +32,7 @@ class ProfileSettingsState {
     required this.ageRange,
     required this.kidsUiThemeMode,
     required this.reduceMotion,
+    required this.pageTransitionStyle,
     required this.highContrastText,
     required this.ramadanModeEnabled,
     required this.lossModeEnabled,
@@ -65,6 +66,7 @@ class ProfileSettingsState {
   final ProfileAgeRange ageRange;
   final KidsUiThemeMode kidsUiThemeMode;
   final bool reduceMotion;
+  final AppPageTransitionStyle pageTransitionStyle;
   final bool highContrastText;
   final bool ramadanModeEnabled;
   final bool lossModeEnabled;
@@ -107,6 +109,7 @@ class ProfileSettingsState {
     ProfileAgeRange? ageRange,
     KidsUiThemeMode? kidsUiThemeMode,
     bool? reduceMotion,
+    AppPageTransitionStyle? pageTransitionStyle,
     bool? highContrastText,
     bool? ramadanModeEnabled,
     bool? lossModeEnabled,
@@ -140,6 +143,7 @@ class ProfileSettingsState {
       ageRange: ageRange ?? this.ageRange,
       kidsUiThemeMode: kidsUiThemeMode ?? this.kidsUiThemeMode,
       reduceMotion: reduceMotion ?? this.reduceMotion,
+      pageTransitionStyle: pageTransitionStyle ?? this.pageTransitionStyle,
       highContrastText: highContrastText ?? this.highContrastText,
       ramadanModeEnabled: ramadanModeEnabled ?? this.ramadanModeEnabled,
       lossModeEnabled: lossModeEnabled ?? this.lossModeEnabled,
@@ -186,6 +190,7 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
           ageRange: ProfileAgeRange.adult,
           kidsUiThemeMode: KidsUiThemeMode.auto,
           reduceMotion: false,
+          pageTransitionStyle: AppPageTransitionStyle.defaultSystem,
           highContrastText: false,
           ramadanModeEnabled: false,
           lossModeEnabled: false,
@@ -247,6 +252,11 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
 
   void setReduceMotion(bool value) {
     state = state.copyWith(reduceMotion: value);
+    _save();
+  }
+
+  void setPageTransitionStyle(AppPageTransitionStyle value) {
+    state = state.copyWith(pageTransitionStyle: value);
     _save();
   }
 
@@ -437,6 +447,14 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
         break;
       }
     }
+    AppPageTransitionStyle pageTransitionStyle = state.pageTransitionStyle;
+    final pageTransitionStyleName = data['pageTransitionStyle'] as String?;
+    for (final item in AppPageTransitionStyle.values) {
+      if (item.name == pageTransitionStyleName) {
+        pageTransitionStyle = item;
+        break;
+      }
+    }
     PrayerCalendarMode prayerCalendarMode = state.prayerCalendarMode;
     final prayerCalendarModeName = data['prayerCalendarMode'] as String?;
     for (final item in PrayerCalendarMode.values) {
@@ -478,6 +496,7 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
       ageRange: ageRange,
       kidsUiThemeMode: kidsUiThemeMode,
       reduceMotion: data['reduceMotion'] as bool? ?? state.reduceMotion,
+      pageTransitionStyle: pageTransitionStyle,
       highContrastText:
           data['highContrastText'] as bool? ?? state.highContrastText,
       ramadanModeEnabled:
@@ -542,6 +561,7 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
       'ageRange': state.ageRange.name,
       'kidsUiThemeMode': state.kidsUiThemeMode.name,
       'reduceMotion': state.reduceMotion,
+      'pageTransitionStyle': state.pageTransitionStyle.name,
       'highContrastText': state.highContrastText,
       'ramadanModeEnabled': state.ramadanModeEnabled,
       'lossModeEnabled': state.lossModeEnabled,

@@ -72,31 +72,52 @@ class QuranWordDetailPage extends ConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: [
-                  _MetaPill(label: '#${word.rank}'),
-                  const SizedBox(width: 8),
-                  _MetaPill(
-                    label: l10n.batch9QuranWordsOccurrenceCount(
-                      '${word.occurrences}',
-                    ),
-                  ),
-                  const Spacer(),
-                  TextButton.icon(
+              LayoutBuilder(
+                builder: (context, constraints) {
+                  final compactHeader = constraints.maxWidth < 560;
+                  final metaRow = Wrap(
+                    spacing: 8,
+                    runSpacing: 8,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    children: [
+                      _MetaPill(label: '#${word.rank}'),
+                      _MetaPill(
+                        label: l10n.batch9QuranWordsOccurrenceCount(
+                          '${word.occurrences}',
+                        ),
+                      ),
+                    ],
+                  );
+                  final learnedButton = _LearnedToggleButton(
+                    mastered: mastered,
+                    learnedLabel: l10n.batch9QuranWordsLearned,
+                    markLearnedLabel: l10n.batch9QuranWordsMarkLearned,
                     onPressed: () => progressNotifier.toggleMastered(word.rank),
-                    icon: Icon(
-                      mastered
-                          ? Icons.check_circle_rounded
-                          : Icons.check_circle_outline_rounded,
-                      size: 18,
-                    ),
-                    label: Text(
-                      mastered
-                          ? l10n.batch9QuranWordsLearned
-                          : l10n.batch9QuranWordsMarkLearned,
-                    ),
-                  ),
-                ],
+                  );
+
+                  if (compactHeader) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        metaRow,
+                        const SizedBox(height: 8),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: learnedButton,
+                        ),
+                      ],
+                    );
+                  }
+
+                  return Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(child: metaRow),
+                      const SizedBox(width: 8),
+                      learnedButton,
+                    ],
+                  );
+                },
               ),
               const SizedBox(height: 12),
               Text(
@@ -272,6 +293,34 @@ class _MetaPill extends StatelessWidget {
           color: Color(0xFF47382B),
         ),
       ),
+    );
+  }
+}
+
+class _LearnedToggleButton extends StatelessWidget {
+  const _LearnedToggleButton({
+    required this.mastered,
+    required this.learnedLabel,
+    required this.markLearnedLabel,
+    required this.onPressed,
+  });
+
+  final bool mastered;
+  final String learnedLabel;
+  final String markLearnedLabel;
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton.icon(
+      onPressed: onPressed,
+      icon: Icon(
+        mastered
+            ? Icons.check_circle_rounded
+            : Icons.check_circle_outline_rounded,
+        size: 18,
+      ),
+      label: Text(mastered ? learnedLabel : markLearnedLabel),
     );
   }
 }

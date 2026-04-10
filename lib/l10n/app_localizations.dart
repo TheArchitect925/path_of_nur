@@ -2264,12 +2264,6 @@ abstract class AppLocalizations {
   /// **'Open dua category: {category}'**
   String duaHubOpenCategorySemantics(String category);
 
-  /// No description provided for @duaHubCategorySummary.
-  ///
-  /// In en, this message translates to:
-  /// **'{readyCount} ready • {plannedCount} planned'**
-  String duaHubCategorySummary(int readyCount, int plannedCount);
-
   /// No description provided for @duaHubCategoryTag.
   ///
   /// In en, this message translates to:
@@ -5651,6 +5645,18 @@ abstract class AppLocalizations {
   /// **'Manage lock screen, Dynamic Island, and connected watch surfaces.'**
   String get settingsCategoryWidgetsWatchSubtitle;
 
+  /// No description provided for @settingsWidgetsEnabledTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable widgets'**
+  String get settingsWidgetsEnabledTitle;
+
+  /// No description provided for @settingsWidgetsEnabledSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn widget and live activity surfaces on or off from one place.'**
+  String get settingsWidgetsEnabledSubtitle;
+
   /// No description provided for @settingsCategoryLanguageDownloadsSubtitle.
   ///
   /// In en, this message translates to:
@@ -6140,7 +6146,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnHubLandingCalmSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Continue your journey, find today’s lesson, and open one calm learning path at a time.'**
+  /// **'Discover organized teachings, essential topics, and guided study paths that make learning easier to follow and more rewarding to revisit.'**
   String get learnHubLandingCalmSubtitle;
 
   /// No description provided for @learnHubContinueJourneyTitle.
@@ -6161,10 +6167,16 @@ abstract class AppLocalizations {
   /// **'A gentle next step for today.'**
   String get learnHubDailyLearningLandingSubtitle;
 
+  /// No description provided for @learnHubStartJourneyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Start A Journey'**
+  String get learnHubStartJourneyTitle;
+
   /// No description provided for @learnHubVisibleIslandsTitle.
   ///
   /// In en, this message translates to:
-  /// **'Choose a focus'**
+  /// **'Choose your learning Preference'**
   String get learnHubVisibleIslandsTitle;
 
   /// No description provided for @learnHubVisibleIslandsSubtitle.
@@ -6724,6 +6736,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Games'**
   String get learnHubMainIslandGamesTitle;
+
+  /// No description provided for @learnHubMainIslandLearningPathTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Learning Path'**
+  String get learnHubMainIslandLearningPathTitle;
+
+  /// No description provided for @learnHubMainIslandLearningPathSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'All journey and guided path content in one place.'**
+  String get learnHubMainIslandLearningPathSubtitle;
+
+  /// No description provided for @learnHubMainIslandSelfLearningTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Self Learning'**
+  String get learnHubMainIslandSelfLearningTitle;
+
+  /// No description provided for @learnHubMainIslandSelfLearningSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'All learning content and focus areas in one place.'**
+  String get learnHubMainIslandSelfLearningSubtitle;
+
+  /// No description provided for @learnSelfLearningModulesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Learning Modules'**
+  String get learnSelfLearningModulesTitle;
+
+  /// No description provided for @learnSelfLearningModulesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Open any of the 9 learning modules and study at your own pace.'**
+  String get learnSelfLearningModulesSubtitle;
+
+  /// No description provided for @learnHubMainIslandQuizzesGamesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Games & Quizzes'**
+  String get learnHubMainIslandQuizzesGamesTitle;
+
+  /// No description provided for @learnHubMainIslandQuizzesGamesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'All quizzes, challenges, and review games in one place.'**
+  String get learnHubMainIslandQuizzesGamesSubtitle;
+
+  /// No description provided for @learnHubMainIslandKidsLearningTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Kids Learning'**
+  String get learnHubMainIslandKidsLearningTitle;
+
+  /// No description provided for @learnHubMainIslandKidsLearningSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Stories, Qur\'\'an, Arabic, and kid-friendly learning in one place.'**
+  String get learnHubMainIslandKidsLearningSubtitle;
 
   /// No description provided for @learnHubCategoryArabicLanguageTitle.
   ///
@@ -10748,6 +10820,42 @@ abstract class AppLocalizations {
   /// **'Curated Collections'**
   String get babyNamesCollectionsTitle;
 
+  /// No description provided for @babyNamesProphetsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Prophets'**
+  String get babyNamesProphetsLabel;
+
+  /// No description provided for @babyNamesCompanionsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Companions'**
+  String get babyNamesCompanionsLabel;
+
+  /// No description provided for @babyNamesPopularLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Popular'**
+  String get babyNamesPopularLabel;
+
+  /// No description provided for @babyNamesByMeaningLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'By Meaning'**
+  String get babyNamesByMeaningLabel;
+
+  /// No description provided for @babyNamesByOriginLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'By Origin'**
+  String get babyNamesByOriginLabel;
+
+  /// No description provided for @babyNamesFavoritesLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Favorites'**
+  String get babyNamesFavoritesLabel;
+
   /// No description provided for @babyNamesBoysLabel.
   ///
   /// In en, this message translates to:
@@ -10777,6 +10885,72 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Companion'**
   String get babyNamesCompanionLabel;
+
+  /// No description provided for @babyNamesMeaningExplorerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Meaning Explorer'**
+  String get babyNamesMeaningExplorerTitle;
+
+  /// No description provided for @babyNamesMeaningExplorerSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Browse by themes like light and mercy.'**
+  String get babyNamesMeaningExplorerSubtitle;
+
+  /// No description provided for @babyNamesGeneratorTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Name Generator'**
+  String get babyNamesGeneratorTitle;
+
+  /// No description provided for @babyNamesGeneratorSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Generate 1–3 suggestions.'**
+  String get babyNamesGeneratorSubtitle;
+
+  /// No description provided for @babyNamesSeeAllAction.
+  ///
+  /// In en, this message translates to:
+  /// **'See all'**
+  String get babyNamesSeeAllAction;
+
+  /// No description provided for @babyNamesCollectionsLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to load featured collections right now.'**
+  String get babyNamesCollectionsLoadError;
+
+  /// No description provided for @babyNamesRecentSearchesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent searches'**
+  String get babyNamesRecentSearchesTitle;
+
+  /// No description provided for @babyNamesNoRecentSearches.
+  ///
+  /// In en, this message translates to:
+  /// **'No recent searches yet. Search by meaning, origin, or a specific name.'**
+  String get babyNamesNoRecentSearches;
+
+  /// No description provided for @babyNamesRecentlyViewedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Recently viewed'**
+  String get babyNamesRecentlyViewedTitle;
+
+  /// No description provided for @babyNamesNoRecentlyViewed.
+  ///
+  /// In en, this message translates to:
+  /// **'No recently viewed names yet. Open any name to build your recent activity.'**
+  String get babyNamesNoRecentlyViewed;
+
+  /// No description provided for @babyNamesOfflineCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} names available offline'**
+  String babyNamesOfflineCount(Object count);
 
   /// No description provided for @babyNamesSavedCountLabel.
   ///
@@ -10808,6 +10982,12 @@ abstract class AppLocalizations {
   /// **'Filters'**
   String get babyNamesFiltersTitle;
 
+  /// No description provided for @babyNamesAllLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get babyNamesAllLabel;
+
   /// No description provided for @babyNamesGenderLabel.
   ///
   /// In en, this message translates to:
@@ -10832,6 +11012,18 @@ abstract class AppLocalizations {
   /// **'Origin'**
   String get babyNamesOriginFilterLabel;
 
+  /// No description provided for @babyNamesMeaningThemeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Meaning theme'**
+  String get babyNamesMeaningThemeLabel;
+
+  /// No description provided for @babyNamesStartsWithLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Starts with'**
+  String get babyNamesStartsWithLabel;
+
   /// No description provided for @babyNamesRarityLabel.
   ///
   /// In en, this message translates to:
@@ -10849,6 +11041,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Companion names only'**
   String get babyNamesCompanionOnlyLabel;
+
+  /// No description provided for @babyNamesProphetAssociationLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Prophet Association'**
+  String get babyNamesProphetAssociationLabel;
+
+  /// No description provided for @babyNamesCompanionAssociationLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Companion Association'**
+  String get babyNamesCompanionAssociationLabel;
 
   /// No description provided for @babyNamesAnyOption.
   ///
@@ -10868,11 +11072,29 @@ abstract class AppLocalizations {
   /// **'Alphabetical'**
   String get babyNamesSortAlphabetical;
 
+  /// No description provided for @babyNamesSortAlphabeticalAz.
+  ///
+  /// In en, this message translates to:
+  /// **'Alphabetical A-Z'**
+  String get babyNamesSortAlphabeticalAz;
+
+  /// No description provided for @babyNamesSortAlphabeticalZa.
+  ///
+  /// In en, this message translates to:
+  /// **'Alphabetical Z-A'**
+  String get babyNamesSortAlphabeticalZa;
+
   /// No description provided for @babyNamesSortPopularity.
   ///
   /// In en, this message translates to:
   /// **'Popularity'**
   String get babyNamesSortPopularity;
+
+  /// No description provided for @babyNamesSortMostPopular.
+  ///
+  /// In en, this message translates to:
+  /// **'Most popular'**
+  String get babyNamesSortMostPopular;
 
   /// No description provided for @babyNamesSortQuranicPriority.
   ///
@@ -10886,6 +11108,24 @@ abstract class AppLocalizations {
   /// **'Shortest'**
   String get babyNamesSortShortest;
 
+  /// No description provided for @babyNamesSortClassicFirst.
+  ///
+  /// In en, this message translates to:
+  /// **'Classic first'**
+  String get babyNamesSortClassicFirst;
+
+  /// No description provided for @babyNamesSortModernFirst.
+  ///
+  /// In en, this message translates to:
+  /// **'Modern first'**
+  String get babyNamesSortModernFirst;
+
+  /// No description provided for @babyNamesSortShortestFirst.
+  ///
+  /// In en, this message translates to:
+  /// **'Shortest first'**
+  String get babyNamesSortShortestFirst;
+
   /// No description provided for @babyNamesSortMostSaved.
   ///
   /// In en, this message translates to:
@@ -10898,6 +11138,12 @@ abstract class AppLocalizations {
   /// **'Clear'**
   String get babyNamesClearFilters;
 
+  /// No description provided for @babyNamesResetFiltersAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset filters'**
+  String get babyNamesResetFiltersAction;
+
   /// No description provided for @babyNamesResultsLabel.
   ///
   /// In en, this message translates to:
@@ -10909,6 +11155,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No names match this combination yet. Try easing one or two filters.'**
   String get babyNamesNoResults;
+
+  /// No description provided for @babyNamesNoResultsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Try removing a filter or exploring by meaning instead.'**
+  String get babyNamesNoResultsHint;
+
+  /// No description provided for @babyNamesExploreMeaningsAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore meanings'**
+  String get babyNamesExploreMeaningsAction;
 
   /// No description provided for @babyNamesFavoriteAction.
   ///
@@ -11125,6 +11383,72 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Open details'**
   String get babyNamesOpenDetails;
+
+  /// No description provided for @babyNamesLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to load names at the moment.'**
+  String get babyNamesLoadError;
+
+  /// No description provided for @babyNamesFilterChipGender.
+  ///
+  /// In en, this message translates to:
+  /// **'Gender: {value}'**
+  String babyNamesFilterChipGender(Object value);
+
+  /// No description provided for @babyNamesFilterChipCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Category: {value}'**
+  String babyNamesFilterChipCategory(Object value);
+
+  /// No description provided for @babyNamesFilterChipOrigin.
+  ///
+  /// In en, this message translates to:
+  /// **'Origin: {value}'**
+  String babyNamesFilterChipOrigin(Object value);
+
+  /// No description provided for @babyNamesFilterChipTheme.
+  ///
+  /// In en, this message translates to:
+  /// **'Theme: {value}'**
+  String babyNamesFilterChipTheme(Object value);
+
+  /// No description provided for @babyNamesFilterChipLetter.
+  ///
+  /// In en, this message translates to:
+  /// **'Letter: {value}'**
+  String babyNamesFilterChipLetter(Object value);
+
+  /// No description provided for @babyNamesFilterChipProphetLinked.
+  ///
+  /// In en, this message translates to:
+  /// **'Prophet linked'**
+  String get babyNamesFilterChipProphetLinked;
+
+  /// No description provided for @babyNamesFilterChipCompanionLinked.
+  ///
+  /// In en, this message translates to:
+  /// **'Companion linked'**
+  String get babyNamesFilterChipCompanionLinked;
+
+  /// No description provided for @babyNamesFeaturedLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Featured'**
+  String get babyNamesFeaturedLabel;
+
+  /// No description provided for @babyNamesClassicLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Classic'**
+  String get babyNamesClassicLabel;
+
+  /// No description provided for @babyNamesModernLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Modern'**
+  String get babyNamesModernLabel;
 
   /// No description provided for @babyNamesRarityClassic.
   ///
@@ -11540,6 +11864,90 @@ abstract class AppLocalizations {
   /// **'No matches found. Try a different keyword.'**
   String get quranSearchNoResults;
 
+  /// No description provided for @quranReaderSourcesLicensingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sources & Licensing'**
+  String get quranReaderSourcesLicensingTitle;
+
+  /// No description provided for @quranReaderSourcesArabicTextTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Qur’an Arabic text (reader/search):'**
+  String get quranReaderSourcesArabicTextTitle;
+
+  /// No description provided for @quranReaderSourcesArabicTextValue.
+  ///
+  /// In en, this message translates to:
+  /// **'package:quran (Flutter package), based on Quran data bundled in package.'**
+  String get quranReaderSourcesArabicTextValue;
+
+  /// No description provided for @quranReaderSourcesTranslationsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Translations:'**
+  String get quranReaderSourcesTranslationsTitle;
+
+  /// No description provided for @quranReaderSourcesTranslationsValue.
+  ///
+  /// In en, this message translates to:
+  /// **'package:quran translation set (e.g., Saheeh International, Clear Quran, Urdu, Bengali, Indonesian, Turkish, Dari).'**
+  String get quranReaderSourcesTranslationsValue;
+
+  /// No description provided for @quranReaderSourcesTransliterationTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Transliteration:'**
+  String get quranReaderSourcesTransliterationTitle;
+
+  /// No description provided for @quranReaderSourcesTransliterationValue.
+  ///
+  /// In en, this message translates to:
+  /// **'AlQuran.cloud API (edition: en.transliteration) cached locally on device.'**
+  String get quranReaderSourcesTransliterationValue;
+
+  /// No description provided for @quranReaderSourcesAudioTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Audio recitations:'**
+  String get quranReaderSourcesAudioTitle;
+
+  /// No description provided for @quranReaderSourcesAudioValue.
+  ///
+  /// In en, this message translates to:
+  /// **'EveryAyah CDN (Husary, Alafasy, Abdul Basit).'**
+  String get quranReaderSourcesAudioValue;
+
+  /// No description provided for @quranReaderSourcesTimingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Word timing segments (live sync beta):'**
+  String get quranReaderSourcesTimingTitle;
+
+  /// No description provided for @quranReaderSourcesTimingValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Quran.com API v4 (api.quran.com), recitations by ayah with segments.'**
+  String get quranReaderSourcesTimingValue;
+
+  /// No description provided for @quranReaderAttributionLinksTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Attribution links'**
+  String get quranReaderAttributionLinksTitle;
+
+  /// No description provided for @quranReaderOpenFullAttributionsAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open full Attributions & Licenses page'**
+  String get quranReaderOpenFullAttributionsAction;
+
+  /// No description provided for @quranReaderSourcesLaunchNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Note: verify production usage terms with each provider before public launch, especially audio redistribution rights.'**
+  String get quranReaderSourcesLaunchNote;
+
   /// No description provided for @salahCurrentPrayerBadge.
   ///
   /// In en, this message translates to:
@@ -11617,6 +12025,186 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Track Salah'**
   String get salahTrackSalahTitle;
+
+  /// No description provided for @salahCurrentSalahTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Current Salah'**
+  String get salahCurrentSalahTitle;
+
+  /// No description provided for @salahTrackCurrentSalah.
+  ///
+  /// In en, this message translates to:
+  /// **'Track this current salah'**
+  String get salahTrackCurrentSalah;
+
+  /// No description provided for @salahMostRecentUntracked.
+  ///
+  /// In en, this message translates to:
+  /// **'Most recent untracked salah'**
+  String get salahMostRecentUntracked;
+
+  /// No description provided for @salahRakatsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} Rakats'**
+  String salahRakatsLabel(Object count);
+
+  /// No description provided for @salahOfferTimeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Offer time'**
+  String get salahOfferTimeLabel;
+
+  /// No description provided for @salahOfferWindowLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Offer window'**
+  String get salahOfferWindowLabel;
+
+  /// No description provided for @salahWindowValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{start} to {end}'**
+  String salahWindowValue(Object start, Object end);
+
+  /// No description provided for @salahBecomesQadaAfterLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Becomes qada after'**
+  String get salahBecomesQadaAfterLabel;
+
+  /// No description provided for @salahTimeRemainingToOfferLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Time remaining to offer'**
+  String get salahTimeRemainingToOfferLabel;
+
+  /// No description provided for @salahMakeUpFromLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Make up from'**
+  String get salahMakeUpFromLabel;
+
+  /// No description provided for @salahStartsInLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Starts in {duration}'**
+  String salahStartsInLabel(Object duration);
+
+  /// No description provided for @salahOfferWindowEnded.
+  ///
+  /// In en, this message translates to:
+  /// **'Offer window ended'**
+  String get salahOfferWindowEnded;
+
+  /// No description provided for @salahNoActiveSalah.
+  ///
+  /// In en, this message translates to:
+  /// **'No active salah'**
+  String get salahNoActiveSalah;
+
+  /// No description provided for @salahNoUpcomingSalah.
+  ///
+  /// In en, this message translates to:
+  /// **'No upcoming salah'**
+  String get salahNoUpcomingSalah;
+
+  /// No description provided for @salahOfferBySummary.
+  ///
+  /// In en, this message translates to:
+  /// **'Offer by {time} • {status}'**
+  String salahOfferBySummary(Object time, Object status);
+
+  /// No description provided for @salahBeginsAtSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'Begins at {time} • {status}'**
+  String salahBeginsAtSummary(Object time, Object status);
+
+  /// No description provided for @salahRakatGuideTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Salah Rakat Guide'**
+  String get salahRakatGuideTitle;
+
+  /// No description provided for @salahRakatGuidePrayerColumn.
+  ///
+  /// In en, this message translates to:
+  /// **'Salah'**
+  String get salahRakatGuidePrayerColumn;
+
+  /// No description provided for @salahRakatGuideSunnahColumn.
+  ///
+  /// In en, this message translates to:
+  /// **'Sunnah'**
+  String get salahRakatGuideSunnahColumn;
+
+  /// No description provided for @salahRakatGuideFardColumn.
+  ///
+  /// In en, this message translates to:
+  /// **'Fard'**
+  String get salahRakatGuideFardColumn;
+
+  /// No description provided for @salahRakatGuideNaflColumn.
+  ///
+  /// In en, this message translates to:
+  /// **'Nafl / Witr'**
+  String get salahRakatGuideNaflColumn;
+
+  /// No description provided for @salahRakatGuideFajrSunnah.
+  ///
+  /// In en, this message translates to:
+  /// **'2 before'**
+  String get salahRakatGuideFajrSunnah;
+
+  /// No description provided for @salahRakatGuideDhuhrSunnah.
+  ///
+  /// In en, this message translates to:
+  /// **'4 before, 2 after'**
+  String get salahRakatGuideDhuhrSunnah;
+
+  /// No description provided for @salahRakatGuideDhuhrNafl.
+  ///
+  /// In en, this message translates to:
+  /// **'2 after'**
+  String get salahRakatGuideDhuhrNafl;
+
+  /// No description provided for @salahRakatGuideAsrSunnah.
+  ///
+  /// In en, this message translates to:
+  /// **'4 before'**
+  String get salahRakatGuideAsrSunnah;
+
+  /// No description provided for @salahRakatGuideMaghribSunnah.
+  ///
+  /// In en, this message translates to:
+  /// **'2 after'**
+  String get salahRakatGuideMaghribSunnah;
+
+  /// No description provided for @salahRakatGuideMaghribNafl.
+  ///
+  /// In en, this message translates to:
+  /// **'2 after'**
+  String get salahRakatGuideMaghribNafl;
+
+  /// No description provided for @salahRakatGuideIshaSunnah.
+  ///
+  /// In en, this message translates to:
+  /// **'2 after'**
+  String get salahRakatGuideIshaSunnah;
+
+  /// No description provided for @salahRakatGuideIshaNafl.
+  ///
+  /// In en, this message translates to:
+  /// **'3 witr + 2 nafl'**
+  String get salahRakatGuideIshaNafl;
+
+  /// No description provided for @salahStartedLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Started'**
+  String get salahStartedLabel;
 
   /// No description provided for @salahQuickActionsTitle.
   ///
@@ -60052,6 +60640,12 @@ abstract class AppLocalizations {
   /// **'Skip'**
   String get onboardingSkipAction;
 
+  /// No description provided for @onboardingProgressValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{current} / {total}'**
+  String onboardingProgressValue(Object current, Object total);
+
   /// No description provided for @onboardingSettingsHintBody.
   ///
   /// In en, this message translates to:
@@ -60121,37 +60715,37 @@ abstract class AppLocalizations {
   /// No description provided for @onboardingAgeRangeUnder18.
   ///
   /// In en, this message translates to:
-  /// **'Under 18'**
+  /// **'0-7'**
   String get onboardingAgeRangeUnder18;
 
   /// No description provided for @onboardingAgeRange18To24.
   ///
   /// In en, this message translates to:
-  /// **'18-24'**
+  /// **'7-14'**
   String get onboardingAgeRange18To24;
 
   /// No description provided for @onboardingAgeRange25To34.
   ///
   /// In en, this message translates to:
-  /// **'25-34'**
+  /// **'14-21'**
   String get onboardingAgeRange25To34;
 
   /// No description provided for @onboardingAgeRange35To44.
   ///
   /// In en, this message translates to:
-  /// **'35-44'**
+  /// **'21+'**
   String get onboardingAgeRange35To44;
 
   /// No description provided for @onboardingAgeRange45To54.
   ///
   /// In en, this message translates to:
-  /// **'45-54'**
+  /// **'21+'**
   String get onboardingAgeRange45To54;
 
   /// No description provided for @onboardingAgeRange55Plus.
   ///
   /// In en, this message translates to:
-  /// **'55+'**
+  /// **'21+'**
   String get onboardingAgeRange55Plus;
 
   /// No description provided for @onboardingExperienceTitle.
@@ -60418,12 +61012,6 @@ abstract class AppLocalizations {
   /// **'Choose a light reminder setup for salah and daily routines. You can fine-tune everything later.'**
   String get onboardingRemindersSubtitle;
 
-  /// No description provided for @onboardingSalahReminderStylesTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Salah reminder styles'**
-  String get onboardingSalahReminderStylesTitle;
-
   /// No description provided for @onboardingReminderNotificationOnly.
   ///
   /// In en, this message translates to:
@@ -60435,12 +61023,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Adhan notification'**
   String get onboardingReminderAdhanNotification;
-
-  /// No description provided for @onboardingReminderForceAdhan.
-  ///
-  /// In en, this message translates to:
-  /// **'Force Adhan'**
-  String get onboardingReminderForceAdhan;
 
   /// No description provided for @onboardingDailyQuranReminderTitle.
   ///
@@ -60693,30 +61275,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'My Lord, increase me in knowledge.'**
   String get onboardingKnowledgeDuaMeaning;
-
-  /// No description provided for @onboardingReminderHelpTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Adhan reminder options'**
-  String get onboardingReminderHelpTitle;
-
-  /// No description provided for @onboardingReminderHelpNotificationOnly.
-  ///
-  /// In en, this message translates to:
-  /// **'Notification only: a standard reminder without adhan audio.'**
-  String get onboardingReminderHelpNotificationOnly;
-
-  /// No description provided for @onboardingReminderHelpAdhanNotification.
-  ///
-  /// In en, this message translates to:
-  /// **'Adhan notification: sends a reminder with adhan-style audio when the prayer begins.'**
-  String get onboardingReminderHelpAdhanNotification;
-
-  /// No description provided for @onboardingReminderHelpForceAdhan.
-  ///
-  /// In en, this message translates to:
-  /// **'Force Adhan: will play Adhan audio even if the phone is set to silent.'**
-  String get onboardingReminderHelpForceAdhan;
 
   /// No description provided for @onboardingLanguageSystemDefault.
   ///
@@ -66721,7 +67279,7 @@ abstract class AppLocalizations {
   /// No description provided for @onboardingDisclaimerTitle.
   ///
   /// In en, this message translates to:
-  /// **'A Gentle Note Before You Begin'**
+  /// **'Disclaimer and Note'**
   String get onboardingDisclaimerTitle;
 
   /// No description provided for @onboardingDisclaimerIntroBody.
@@ -66765,12 +67323,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Built to support your journey, not replace scholarship.'**
   String get onboardingDisclaimerFooter;
-
-  /// No description provided for @onboardingArabicReadModePreviewHint.
-  ///
-  /// In en, this message translates to:
-  /// **'A preview is available lower down on this page to help you compare examples and adjust these settings.'**
-  String get onboardingArabicReadModePreviewHint;
 
   /// No description provided for @onboardingThemeTitle.
   ///
@@ -66837,6 +67389,232 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'A softer look can make reading and reflection feel calmer. A stronger-contrast theme can make longer sessions easier.'**
   String get onboardingThemeSampleCardBody;
+
+  /// No description provided for @mainPageSearchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search sections and tools'**
+  String get mainPageSearchHint;
+
+  /// No description provided for @mainPageSearchEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No matches yet'**
+  String get mainPageSearchEmptyTitle;
+
+  /// No description provided for @mainPageSearchEmptySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Try another word or browse the main sections.'**
+  String get mainPageSearchEmptySubtitle;
+
+  /// No description provided for @learnHubLearningPathCardSubtitleNoPath.
+  ///
+  /// In en, this message translates to:
+  /// **'Find your guided path'**
+  String get learnHubLearningPathCardSubtitleNoPath;
+
+  /// No description provided for @learnPathLevelFoundationsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Foundations'**
+  String get learnPathLevelFoundationsTitle;
+
+  /// No description provided for @learnPathLevelGrowingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Growing'**
+  String get learnPathLevelGrowingTitle;
+
+  /// No description provided for @learnPathLevelDeepDiveTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Deep Dive'**
+  String get learnPathLevelDeepDiveTitle;
+
+  /// No description provided for @settingsPageTransitionsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Page transitions'**
+  String get settingsPageTransitionsTitle;
+
+  /// No description provided for @settingsPageTransitionsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose how pages move through the app.'**
+  String get settingsPageTransitionsSubtitle;
+
+  /// No description provided for @settingsReduceMotionTransitionOverrideSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reduce Motion turns off extra transition effects across the app.'**
+  String get settingsReduceMotionTransitionOverrideSubtitle;
+
+  /// No description provided for @settingsLearningLevelTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Learning level'**
+  String get settingsLearningLevelTitle;
+
+  /// No description provided for @settingsRunOnboardingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Run onboarding again'**
+  String get settingsRunOnboardingTitle;
+
+  /// No description provided for @settingsRunOnboardingSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Review and update your setup choices.'**
+  String get settingsRunOnboardingSubtitle;
+
+  /// No description provided for @settingsPageTransitionStyleDefault.
+  ///
+  /// In en, this message translates to:
+  /// **'Default'**
+  String get settingsPageTransitionStyleDefault;
+
+  /// No description provided for @settingsPageTransitionStyleGentleFade.
+  ///
+  /// In en, this message translates to:
+  /// **'Gentle fade'**
+  String get settingsPageTransitionStyleGentleFade;
+
+  /// No description provided for @settingsPageTransitionStyleIos.
+  ///
+  /// In en, this message translates to:
+  /// **'iOS-style'**
+  String get settingsPageTransitionStyleIos;
+
+  /// No description provided for @settingsPageTransitionStyleNone.
+  ///
+  /// In en, this message translates to:
+  /// **'None'**
+  String get settingsPageTransitionStyleNone;
+
+  /// No description provided for @onboardingRemindersDisableAllAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn off all notifications'**
+  String get onboardingRemindersDisableAllAction;
+
+  /// No description provided for @onboardingReminderNone.
+  ///
+  /// In en, this message translates to:
+  /// **'No notification'**
+  String get onboardingReminderNone;
+
+  /// No description provided for @onboardingAccountOptionsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Optional sign in and backup'**
+  String get onboardingAccountOptionsTitle;
+
+  /// No description provided for @onboardingAccountOptionsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Path of Nūr does not collect your learning data by default. Sign in is only for backup, restore, and cross-device sync where available.'**
+  String get onboardingAccountOptionsBody;
+
+  /// No description provided for @onboardingAccountOptionsManualBackupBody.
+  ///
+  /// In en, this message translates to:
+  /// **'You can also back up your data manually later from Settings.'**
+  String get onboardingAccountOptionsManualBackupBody;
+
+  /// No description provided for @historyNoEventsForThisDate.
+  ///
+  /// In en, this message translates to:
+  /// **'There are no events for this date.'**
+  String get historyNoEventsForThisDate;
+
+  /// No description provided for @worshipQiblaUnavailableOnIpadTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Qibla finder unavailable on iPad'**
+  String get worshipQiblaUnavailableOnIpadTitle;
+
+  /// No description provided for @worshipQiblaUnavailableOnIpadBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Qibla finder does not correctly work on iPad due to hardware limitations.'**
+  String get worshipQiblaUnavailableOnIpadBody;
+
+  /// No description provided for @gardenPageRecentGrowthTracked.
+  ///
+  /// In en, this message translates to:
+  /// **'Tracked'**
+  String get gardenPageRecentGrowthTracked;
+
+  /// No description provided for @hadithReflectionCompletedQuiet.
+  ///
+  /// In en, this message translates to:
+  /// **'Reflection completed.'**
+  String get hadithReflectionCompletedQuiet;
+
+  /// No description provided for @hadithLessonCompletedQuiet.
+  ///
+  /// In en, this message translates to:
+  /// **'Lesson completed.'**
+  String get hadithLessonCompletedQuiet;
+
+  /// No description provided for @bedtimeStoriesCompletionSnackQuiet.
+  ///
+  /// In en, this message translates to:
+  /// **'Story completed.'**
+  String get bedtimeStoriesCompletionSnackQuiet;
+
+  /// No description provided for @bedtimeStoryLearningCompletionSnackQuiet.
+  ///
+  /// In en, this message translates to:
+  /// **'Activity completed.'**
+  String get bedtimeStoryLearningCompletionSnackQuiet;
+
+  /// No description provided for @kidsArabicTraceCompletionSubtitleQuiet.
+  ///
+  /// In en, this message translates to:
+  /// **'Your progress has been saved.'**
+  String get kidsArabicTraceCompletionSubtitleQuiet;
+
+  /// No description provided for @learningJourneyLessonSectionProgressSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete this section to save your progress.'**
+  String get learningJourneyLessonSectionProgressSubtitle;
+
+  /// No description provided for @rewardQuietProgressSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Progress saved.'**
+  String get rewardQuietProgressSaved;
+
+  /// No description provided for @triviaHomeRecentPerformanceSummaryQuiet.
+  ///
+  /// In en, this message translates to:
+  /// **'{category} · {correct} of {total} correct'**
+  String triviaHomeRecentPerformanceSummaryQuiet(
+    Object category,
+    Object correct,
+    Object total,
+  );
+
+  /// No description provided for @rewardQuietCompletionSummaryXpDrops.
+  ///
+  /// In en, this message translates to:
+  /// **'{xp} XP · {drops} drops saved'**
+  String rewardQuietCompletionSummaryXpDrops(Object xp, Object drops);
+
+  /// No description provided for @rewardQuietCompletionSummaryXpOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'{xp} XP saved'**
+  String rewardQuietCompletionSummaryXpOnly(Object xp);
+
+  /// No description provided for @rewardQuietCompletionSummaryDropsOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'{drops} drops saved'**
+  String rewardQuietCompletionSummaryDropsOnly(Object drops);
 }
 
 class _AppLocalizationsDelegate

@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../l10n/app_localizations.dart';
+import '../../../../shared/utils/reward_feedback.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/quran_reference_link.dart';
@@ -358,30 +359,31 @@ class _AyahCompletionPuzzlePageState
                             : l10n.ayahCompletionCompletionSubtitle,
                       ),
                       const SizedBox(height: 10),
-                      Wrap(
-                        spacing: 8,
-                        runSpacing: 8,
-                        children: [
-                          _rewardChip(
+                      Text(
+                        buildCompactRewardSummary(
+                          l10n,
+                          xp: result.xpEarned,
+                          drops: result.dropsEarned,
+                        ),
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: Theme.of(
                             context,
-                            l10n.ayahCompletionCompletionXpReward,
-                          ),
-                          _rewardChip(
-                            context,
-                            l10n.ayahCompletionBlankDropReward,
-                          ),
-                          if (result.perfect)
-                            _rewardChip(
-                              context,
-                              l10n.ayahCompletionPerfectBonusReward,
-                            ),
-                          if (dailyProgress?.isCompleted == true)
-                            _rewardChip(
-                              context,
-                              l10n.ayahCompletionDailyCompleteBadge,
-                            ),
-                        ],
+                          ).colorScheme.onSurfaceVariant,
+                        ),
                       ),
+                      if (dailyProgress?.isCompleted == true) ...[
+                        const SizedBox(height: 10),
+                        Text(
+                          l10n.ayahCompletionDailyCompleteBadge,
+                          style: Theme.of(context).textTheme.bodySmall
+                              ?.copyWith(
+                                color: Theme.of(
+                                  context,
+                                ).colorScheme.primary,
+                                fontWeight: FontWeight.w600,
+                              ),
+                        ),
+                      ],
                       const SizedBox(height: 12),
                       QuranVerseContent(
                         source: QuranVerseSource(ref: puzzle.ref),
@@ -732,17 +734,6 @@ class _AyahCompletionPuzzlePageState
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.surface.withValues(alpha: 0.45),
-        borderRadius: BorderRadius.circular(999),
-      ),
-      child: Text(label),
-    );
-  }
-
-  Widget _rewardChip(BuildContext context, String label) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-      decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.secondaryContainer,
         borderRadius: BorderRadius.circular(999),
       ),
       child: Text(label),

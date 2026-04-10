@@ -45,6 +45,8 @@ class PathOfNurApp extends ConsumerWidget {
     ref.watch(prayerLiveActivityBootstrapProvider);
     final theme = AppTheme.themeFor(
       mode: profileSettings.appThemeMode,
+      pageTransitionStyle: profileSettings.pageTransitionStyle,
+      reduceMotion: profileSettings.reduceMotion,
       disableGlassTransparency: profileSettings.disableGlassTransparency,
       disableColoredGlass: profileSettings.disableColoredGlass,
       disableBackground: profileSettings.disableBackground,

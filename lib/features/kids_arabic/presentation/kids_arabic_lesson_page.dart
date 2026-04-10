@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../l10n/app_localizations.dart';
+import '../../../shared/utils/reward_feedback.dart';
 import '../../arabic/presentation/widgets/arabic_learning_playback_speed_toggle.dart';
 import '../../learn/presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/kids_arabic_achievements_provider.dart';
@@ -342,14 +343,12 @@ class _KidsArabicLessonPageState extends ConsumerState<KidsArabicLessonPage> {
                         padding: const EdgeInsets.only(top: 12),
                         child: _TraceCompletionCard(
                           title: l10n.kidsArabicTraceCompletionTitle,
-                          subtitle: l10n.kidsArabicTraceCompletionSubtitle(
-                            letter.rewardXp,
-                            letter.rewardDrops,
-                          ),
+                          subtitle: l10n.kidsArabicTraceCompletionSubtitleQuiet,
                           encouragement: encouragement,
-                          rewardLabel: l10n.kidsArabicCompletionRewardRow(
-                            letter.rewardXp,
-                            letter.rewardDrops,
+                          rewardLabel: buildCompactRewardSummary(
+                            l10n,
+                            xp: letter.rewardXp,
+                            drops: letter.rewardDrops,
                           ),
                           tryAgainLabel: l10n.kidsArabicTryAgainAction,
                           continueLabel: l10n.kidsArabicCompleteLessonAction,
@@ -728,8 +727,8 @@ class _TraceCompletionCard extends StatelessWidget {
           Text(
             rewardLabel,
             style: const TextStyle(
-              fontWeight: FontWeight.w700,
-              color: Color(0xFF64873B),
+              fontSize: 12,
+              color: Color(0xFF675B4E),
             ),
           ),
           const SizedBox(height: 12),
@@ -829,13 +828,14 @@ class _CompletionSheet extends ConsumerWidget {
             ),
             const SizedBox(height: 14),
             Text(
-              l10n.kidsArabicCompletionRewardRow(
-                result.xpAwarded,
-                result.oceanDropsAwarded,
+              buildCompactRewardSummary(
+                l10n,
+                xp: result.xpAwarded,
+                drops: result.oceanDropsAwarded,
               ),
               style: const TextStyle(
-                fontWeight: FontWeight.w700,
-                color: Color(0xFF52713A),
+                fontSize: 12,
+                color: Color(0xFF675B4E),
               ),
             ),
             if (result.dailyMissionResult != null) ...[
@@ -870,13 +870,14 @@ class _CompletionSheet extends ConsumerWidget {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      l10n.kidsArabicDailyMissionRewardRow(
-                        result.dailyMissionResult!.xpAwarded,
-                        result.dailyMissionResult!.oceanDropsAwarded,
+                      buildCompactRewardSummary(
+                        l10n,
+                        xp: result.dailyMissionResult!.xpAwarded,
+                        drops: result.dailyMissionResult!.oceanDropsAwarded,
                       ),
                       style: const TextStyle(
-                        fontWeight: FontWeight.w700,
-                        color: Color(0xFF52713A),
+                        fontSize: 12,
+                        color: Color(0xFF675B4E),
                       ),
                     ),
                     if (result.dailyMissionResult!.graceUsed) ...[

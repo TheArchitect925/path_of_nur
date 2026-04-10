@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../../../l10n/app_localizations.dart';
 import '../../../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../../../shared/widgets/premium_card.dart';
 import '../application/baby_names_controller.dart';
@@ -26,6 +27,7 @@ class _BabyNamesHomePageState extends ConsumerState<BabyNamesHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final namesAsync = ref.watch(babyNamesEntriesProvider);
     final collectionsAsync = ref.watch(babyNamesCollectionsProvider);
     final state = ref.watch(babyNamesControllerProvider);
@@ -36,9 +38,8 @@ class _BabyNamesHomePageState extends ConsumerState<BabyNamesHomePage> {
 
     return AppPageScaffold(
       headerIcon: Icons.child_care_rounded,
-      title: 'Baby Names',
-      subtitle:
-          'Discover meaningful Muslim names through themes, origins, and Quranic associations.',
+      title: l10n.babyNamesTitle,
+      subtitle: l10n.babyNamesSubtitle,
       children: [
         PremiumCard(
           child: Column(
@@ -53,8 +54,7 @@ class _BabyNamesHomePageState extends ConsumerState<BabyNamesHomePage> {
                 },
                 decoration: InputDecoration(
                   isDense: true,
-                  hintText:
-                      'Search name, Arabic spelling, transliteration, meaning, or theme',
+                  hintText: l10n.babyNamesSearchHint,
                   border: const OutlineInputBorder(),
                   prefixIcon: const Icon(Icons.search_rounded),
                   suffixIcon: state.searchQuery.isEmpty
@@ -74,7 +74,7 @@ class _BabyNamesHomePageState extends ConsumerState<BabyNamesHomePage> {
                 runSpacing: 8,
                 children: [
                   _QuickChip(
-                    label: 'Boys',
+                    label: l10n.babyNamesBoysLabel,
                     onTap: () {
                       notifier.setFilters(
                         state.filters.copyWith(gender: BabyNameGender.male),
@@ -83,7 +83,7 @@ class _BabyNamesHomePageState extends ConsumerState<BabyNamesHomePage> {
                     },
                   ),
                   _QuickChip(
-                    label: 'Girls',
+                    label: l10n.babyNamesGirlsLabel,
                     onTap: () {
                       notifier.setFilters(
                         state.filters.copyWith(gender: BabyNameGender.female),
@@ -92,7 +92,7 @@ class _BabyNamesHomePageState extends ConsumerState<BabyNamesHomePage> {
                     },
                   ),
                   _QuickChip(
-                    label: 'Unisex',
+                    label: l10n.babyNamesUnisexLabel,
                     onTap: () {
                       notifier.setFilters(
                         state.filters.copyWith(gender: BabyNameGender.unisex),
@@ -101,7 +101,7 @@ class _BabyNamesHomePageState extends ConsumerState<BabyNamesHomePage> {
                     },
                   ),
                   _QuickChip(
-                    label: 'Quranic',
+                    label: l10n.babyNamesQuranicLabel,
                     onTap: () {
                       notifier.setFilters(
                         state.filters.copyWith(quranicOnly: true),
@@ -110,7 +110,7 @@ class _BabyNamesHomePageState extends ConsumerState<BabyNamesHomePage> {
                     },
                   ),
                   _QuickChip(
-                    label: 'Prophets',
+                    label: l10n.babyNamesProphetsLabel,
                     onTap: () {
                       notifier.setFilters(
                         state.filters.copyWith(
@@ -121,7 +121,7 @@ class _BabyNamesHomePageState extends ConsumerState<BabyNamesHomePage> {
                     },
                   ),
                   _QuickChip(
-                    label: 'Companions',
+                    label: l10n.babyNamesCompanionsLabel,
                     onTap: () {
                       notifier.setFilters(
                         state.filters.copyWith(
@@ -132,7 +132,7 @@ class _BabyNamesHomePageState extends ConsumerState<BabyNamesHomePage> {
                     },
                   ),
                   _QuickChip(
-                    label: 'Popular',
+                    label: l10n.babyNamesPopularLabel,
                     onTap: () {
                       notifier.setFilters(
                         state.filters.copyWith(
@@ -143,15 +143,15 @@ class _BabyNamesHomePageState extends ConsumerState<BabyNamesHomePage> {
                     },
                   ),
                   _QuickChip(
-                    label: 'By Meaning',
+                    label: l10n.babyNamesByMeaningLabel,
                     onTap: () => context.pushNamed('babyNamesMeaningExplorer'),
                   ),
                   _QuickChip(
-                    label: 'By Origin',
+                    label: l10n.babyNamesByOriginLabel,
                     onTap: () => context.pushNamed('babyNamesBrowse'),
                   ),
                   _QuickChip(
-                    label: 'Favorites',
+                    label: l10n.babyNamesFavoritesLabel,
                     onTap: () => context.pushNamed('babyNamesFavorites'),
                   ),
                 ],
@@ -164,9 +164,9 @@ class _BabyNamesHomePageState extends ConsumerState<BabyNamesHomePage> {
           PremiumCard(
             child: ListTile(
               contentPadding: EdgeInsets.zero,
-              title: const Text(
-                'Today\'s highlighted name',
-                style: TextStyle(fontWeight: FontWeight.w700),
+              title: Text(
+                l10n.babyNamesNameOfDay,
+                style: const TextStyle(fontWeight: FontWeight.w700),
               ),
               subtitle: Text(
                 '${nameOfDay.name} • ${nameOfDay.arabic}\n${nameOfDay.meaning}',
@@ -183,8 +183,9 @@ class _BabyNamesHomePageState extends ConsumerState<BabyNamesHomePage> {
           children: [
             Expanded(
               child: _ActionTile(
-                title: 'Favorites',
-                subtitle: '${favorites.length} saved names',
+                title: l10n.babyNamesFavoritesLabel,
+                subtitle:
+                    '${favorites.length} ${l10n.babyNamesSavedCountLabel}',
                 icon: Icons.favorite_outline_rounded,
                 onTap: () => context.pushNamed('babyNamesFavorites'),
               ),
@@ -192,8 +193,8 @@ class _BabyNamesHomePageState extends ConsumerState<BabyNamesHomePage> {
             const SizedBox(width: 10),
             Expanded(
               child: _ActionTile(
-                title: 'Parent Tool',
-                subtitle: 'Get ranked suggestions',
+                title: l10n.babyNamesSmartFinderTitle,
+                subtitle: l10n.babyNamesSmartFinderSubtitle,
                 icon: Icons.auto_awesome_rounded,
                 onTap: () => context.pushNamed('babyNamesFinder'),
               ),
@@ -205,8 +206,8 @@ class _BabyNamesHomePageState extends ConsumerState<BabyNamesHomePage> {
           children: [
             Expanded(
               child: _ActionTile(
-                title: 'Meaning Explorer',
-                subtitle: 'Browse by themes like light and mercy',
+                title: l10n.babyNamesMeaningExplorerTitle,
+                subtitle: l10n.babyNamesMeaningExplorerSubtitle,
                 icon: Icons.auto_awesome_mosaic_rounded,
                 onTap: () => context.pushNamed('babyNamesMeaningExplorer'),
               ),
@@ -214,8 +215,8 @@ class _BabyNamesHomePageState extends ConsumerState<BabyNamesHomePage> {
             const SizedBox(width: 10),
             Expanded(
               child: _ActionTile(
-                title: 'Name Generator',
-                subtitle: 'Generate 1–3 suggestions',
+                title: l10n.babyNamesGeneratorTitle,
+                subtitle: l10n.babyNamesGeneratorSubtitle,
                 icon: Icons.casino_outlined,
                 onTap: () => context.pushNamed('babyNamesGenerator'),
               ),
@@ -279,7 +280,7 @@ class _BabyNamesHomePageState extends ConsumerState<BabyNamesHomePage> {
                                     'collection': collection.id,
                                   },
                                 ),
-                                child: const Text('See all'),
+                                child: Text(l10n.babyNamesSeeAllAction),
                               ),
                             ),
                           ],
@@ -291,9 +292,8 @@ class _BabyNamesHomePageState extends ConsumerState<BabyNamesHomePage> {
             );
           },
           loading: () => const _LoadingBlock(),
-          error: (error, _) => PremiumCard(
-            child: Text('Unable to load featured collections right now.'),
-          ),
+          error: (error, _) =>
+              PremiumCard(child: Text(l10n.babyNamesCollectionsLoadError)),
         ),
         const SizedBox(height: 2),
         if (state.recentSearches.isNotEmpty)
@@ -303,14 +303,14 @@ class _BabyNamesHomePageState extends ConsumerState<BabyNamesHomePage> {
               children: [
                 Row(
                   children: [
-                    const Text(
-                      'Recent searches',
-                      style: TextStyle(fontWeight: FontWeight.w700),
+                    Text(
+                      l10n.babyNamesRecentSearchesTitle,
+                      style: const TextStyle(fontWeight: FontWeight.w700),
                     ),
                     const Spacer(),
                     TextButton(
                       onPressed: notifier.clearRecents,
-                      child: const Text('Clear'),
+                      child: Text(l10n.babyNamesClearFilters),
                     ),
                   ],
                 ),
@@ -334,20 +334,16 @@ class _BabyNamesHomePageState extends ConsumerState<BabyNamesHomePage> {
             ),
           ),
         if (state.recentSearches.isEmpty)
-          const PremiumCard(
-            child: Text(
-              'No recent searches yet. Search by meaning, origin, or a specific name.',
-            ),
-          ),
+          PremiumCard(child: Text(l10n.babyNamesNoRecentSearches)),
         if (recentlyViewed.isNotEmpty) ...[
           const SizedBox(height: 10),
           PremiumCard(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'Recently viewed',
-                  style: TextStyle(fontWeight: FontWeight.w700),
+                Text(
+                  l10n.babyNamesRecentlyViewedTitle,
+                  style: const TextStyle(fontWeight: FontWeight.w700),
                 ),
                 const SizedBox(height: 8),
                 ...recentlyViewed
@@ -371,17 +367,13 @@ class _BabyNamesHomePageState extends ConsumerState<BabyNamesHomePage> {
         ],
         if (recentlyViewed.isEmpty) ...[
           const SizedBox(height: 10),
-          const PremiumCard(
-            child: Text(
-              'No recently viewed names yet. Open any name to build your recent activity.',
-            ),
-          ),
+          PremiumCard(child: Text(l10n.babyNamesNoRecentlyViewed)),
         ],
         const SizedBox(height: 4),
         namesAsync.when(
           data: (all) => PremiumCard(
             child: Text(
-              '${all.length} names available offline',
+              l10n.babyNamesOfflineCount('${all.length}'),
               style: const TextStyle(fontWeight: FontWeight.w600),
             ),
           ),

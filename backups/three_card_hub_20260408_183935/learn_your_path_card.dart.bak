@@ -1,0 +1,67 @@
+import 'package:flutter/material.dart';
+
+import '../../../../l10n/app_localizations.dart';
+import '../../../../shared/widgets/premium_card.dart';
+
+class LearnYourPathCard extends StatelessWidget {
+  const LearnYourPathCard({
+    super.key,
+    required this.pathName,
+    required this.stageName,
+    required this.stagesCompleted,
+    required this.totalStages,
+    required this.onContinue,
+    required this.onBrowseFreelyTapped,
+  });
+
+  final String pathName;
+  final String stageName;
+  final int stagesCompleted;
+  final int totalStages;
+  final VoidCallback onContinue;
+  final VoidCallback onBrowseFreelyTapped;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final progress = totalStages <= 0
+        ? 0.0
+        : (stagesCompleted / totalStages).clamp(0.0, 1.0);
+
+    return PremiumCard(
+      padding: const EdgeInsets.all(20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            l10n.learnHubYourPathSectionTitle,
+            style: Theme.of(
+              context,
+            ).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w700),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            pathName,
+            style: Theme.of(
+              context,
+            ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
+          ),
+          const SizedBox(height: 6),
+          Text(stageName, style: Theme.of(context).textTheme.bodyMedium),
+          const SizedBox(height: 14),
+          LinearProgressIndicator(value: progress),
+          const SizedBox(height: 16),
+          FilledButton(
+            onPressed: onContinue,
+            child: Text(l10n.learnHubPathContinueAction),
+          ),
+          const SizedBox(height: 6),
+          TextButton(
+            onPressed: onBrowseFreelyTapped,
+            child: Text(l10n.learnHubPathCardBrowseFreelyAction),
+          ),
+        ],
+      ),
+    );
+  }
+}

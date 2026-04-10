@@ -10,7 +10,7 @@ import '../../learn/quran/domain/quran_personalization_models.dart';
 import '../../learn/quran/presentation/widgets/quran_personalized_recommendation_card.dart';
 import '../../../shared/content/learning_quote.dart';
 import '../../../shared/theme/islamic_icons.dart';
-import '../../../shared/widgets/app_layered_glass_pill_button.dart';
+import '../../../shared/widgets/main_page_search_launcher.dart';
 import '../../../shared/widgets/main_page_shortcut_configs.dart';
 import '../../../shared/widgets/main_page_shortcut_stack.dart';
 import '../../../shared/widgets/premium_card.dart';
@@ -57,13 +57,81 @@ class GrowthHomePage extends ConsumerWidget {
           quote: quote,
           onTap: () => openQuranQuoteLocation(context, quote),
         ),
+        const SizedBox(height: 12),
+        MainPageSearchLauncher(
+          destinations: [
+            MainPageSearchDestination(
+              title: l10n.growthTabToday,
+              subtitle: l10n.growthHomeTodaySubtitle,
+              icon: Icons.today_rounded,
+              keywords: ['today', 'daily focus', 'tasks'],
+              onTap: () => context.pushNamed('growthTodayPage'),
+            ),
+            MainPageSearchDestination(
+              title: l10n.growthTabPaths,
+              subtitle: l10n.growthHomePathsSubtitle,
+              icon: Icons.alt_route_rounded,
+              keywords: ['paths', 'goals', 'journeys'],
+              onTap: () => context.pushNamed('growthPathsPage'),
+            ),
+            MainPageSearchDestination(
+              title: l10n.growthTabHabits,
+              subtitle: l10n.growthHomeHabitsSubtitle,
+              icon: Icons.checklist_rtl_rounded,
+              keywords: ['habits', 'checklist', 'routine'],
+              onTap: () => context.pushNamed('growthHabitsPage'),
+            ),
+            MainPageSearchDestination(
+              title: l10n.growthTabJourney,
+              subtitle: l10n.growthHomeJourneySubtitle,
+              icon: Icons.route_rounded,
+              keywords: ['journey', 'progress', 'growth'],
+              onTap: () => context.pushNamed('growthJourneyPage'),
+            ),
+            MainPageSearchDestination(
+              title: l10n.growthTabReflection,
+              subtitle: l10n.growthHomeReflectionSubtitle,
+              icon: Icons.auto_stories_rounded,
+              keywords: ['reflection', 'journal', 'notes'],
+              onTap: () => context.pushNamed('growthReflectionPage'),
+            ),
+            MainPageSearchDestination(
+              title: l10n.spiritualGrowthTitle,
+              subtitle: l10n.spiritualGrowthShortcutSubtitle,
+              icon: Icons.self_improvement_rounded,
+              keywords: ['spiritual growth', 'intentions', 'themes'],
+              onTap: () => context.pushNamed('spiritualGrowthPage'),
+            ),
+            MainPageSearchDestination(
+              title: l10n.growthStatisticsTitle,
+              subtitle: l10n.growthStatisticsSubtitle,
+              icon: Icons.query_stats_rounded,
+              keywords: ['statistics', 'stats', 'progress'],
+              onTap: () => context.pushNamed('growthStatisticsPage'),
+            ),
+            MainPageSearchDestination(
+              title: l10n.gardenPageTitle,
+              subtitle: l10n.gardenPageEntryHomeSubtitle,
+              icon: Icons.local_florist_rounded,
+              keywords: ['garden', 'milestones', 'rewards'],
+              onTap: () => context.pushNamed('gardenPage'),
+            ),
+            MainPageSearchDestination(
+              title: l10n.growthHomeBrowseAllTitle,
+              subtitle: l10n.growthHomeBrowseAllSubtitle,
+              icon: Icons.grid_view_rounded,
+              keywords: ['browse', 'all sections', 'overview'],
+              onTap: () => context.pushNamed('growthBrowseAllPage'),
+            ),
+          ],
+        ),
         if (quranBundle != null) ...[
+          const SizedBox(height: 12),
           QuranPersonalizedRecommendationCard(
             bundle: quranBundle,
             surface: QuranPersonalizationSurface.growth,
             allowDismiss: true,
           ),
-          const SizedBox(height: 12),
         ],
         PremiumCard(
           child: Column(
@@ -118,14 +186,14 @@ class GrowthHomePage extends ConsumerWidget {
                 spacing: 10,
                 runSpacing: 10,
                 children: [
-                  AppLayeredGlassPillButton(
+                  _GrowthActionButton(
                     onPressed: () => context.pushNamed('growthStatisticsPage'),
-                    leading: const Icon(Icons.query_stats_rounded, size: 18),
+                    icon: Icons.query_stats_rounded,
                     label: l10n.growthHomeJourneyDepthOpenStatistics,
                   ),
-                  AppLayeredGlassPillButton(
+                  _GrowthActionButton(
                     onPressed: () => context.pushNamed('gardenPage'),
-                    leading: const Icon(Icons.local_florist_rounded, size: 18),
+                    icon: Icons.local_florist_rounded,
                     label: l10n.growthHomeJourneyDepthOpenGarden,
                   ),
                 ],
@@ -330,14 +398,42 @@ class _GrowthFeatureCard extends StatelessWidget {
             const SizedBox(height: 12),
             Align(
               alignment: Alignment.centerLeft,
-              child: AppLayeredGlassPillButton(
+              child: _GrowthActionButton(
                 onPressed: onTap,
-                leading: const Icon(Icons.arrow_forward_rounded, size: 18),
+                icon: Icons.arrow_forward_rounded,
                 label: actionLabel,
               ),
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _GrowthActionButton extends StatelessWidget {
+  const _GrowthActionButton({
+    required this.label,
+    required this.icon,
+    required this.onPressed,
+  });
+
+  final String label;
+  final IconData icon;
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return FilledButton.tonalIcon(
+      onPressed: onPressed,
+      icon: Icon(icon, size: 18),
+      label: Text(label),
+      style: FilledButton.styleFrom(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(999)),
+        textStyle: Theme.of(
+          context,
+        ).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w700),
       ),
     );
   }

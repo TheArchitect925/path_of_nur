@@ -17,18 +17,23 @@ QuranQuote buildGrowthReflectionQuote() {
 }
 
 class LearningHubRabbiZidniIlmaHeader extends StatelessWidget {
-  const LearningHubRabbiZidniIlmaHeader({super.key});
+  const LearningHubRabbiZidniIlmaHeader({
+    super.key,
+    this.center = true,
+  });
 
   static const _sourceRef = QuranQuoteRef(surah: 20, ayah: 114);
   static const _fallbackArabic = 'رَبِّ زِدْنِي عِلْمًا';
   static const _fallbackPhrase = 'Rabbi zidni ilma';
   static const _fallbackTranslation = 'My Lord, increase me in knowledge.';
+  final bool center;
 
   @override
   Widget build(BuildContext context) {
-    return const QuranQuoteBlock(
+    return QuranQuoteBlock(
       quote: QuranQuote(ref: _sourceRef),
       compact: true,
+      center: center,
       showReference: false,
       arabicTransform: _extractArabicPhrase,
       transliterationTransform: _extractPhrase,

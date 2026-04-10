@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../l10n/app_localizations.dart';
+import '../../../../shared/utils/reward_feedback.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../journey/application/journey_progression_provider.dart';
@@ -331,27 +332,31 @@ class _WordSearchPuzzlePageState extends ConsumerState<WordSearchPuzzlePage> {
                             : l10n.wordSearchCompletionSubtitle,
                       ),
                       const SizedBox(height: 10),
-                      Wrap(
-                        spacing: 8,
-                        runSpacing: 8,
-                        children: [
-                          _rewardChip(
+                      Text(
+                        buildCompactRewardSummary(
+                          l10n,
+                          xp: result.xpEarned,
+                          drops: result.dropsEarned,
+                        ),
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: Theme.of(
                             context,
-                            l10n.wordSearchCompletionXpReward,
-                          ),
-                          _rewardChip(context, l10n.wordSearchWordDropReward),
-                          if (result.perfect)
-                            _rewardChip(
-                              context,
-                              l10n.wordSearchPerfectBonusReward,
-                            ),
-                          if (dailyProgress?.isCompleted == true)
-                            _rewardChip(
-                              context,
-                              l10n.wordSearchDailyCompleteBadge,
-                            ),
-                        ],
+                          ).colorScheme.onSurfaceVariant,
+                        ),
                       ),
+                      if (dailyProgress?.isCompleted == true) ...[
+                        const SizedBox(height: 10),
+                        Text(
+                          l10n.wordSearchDailyCompleteBadge,
+                          style: Theme.of(context).textTheme.bodySmall
+                              ?.copyWith(
+                                color: Theme.of(
+                                  context,
+                                ).colorScheme.primary,
+                                fontWeight: FontWeight.w600,
+                              ),
+                        ),
+                      ],
                       const SizedBox(height: 12),
                       Wrap(
                         spacing: 8,
@@ -570,17 +575,6 @@ class _WordSearchPuzzlePageState extends ConsumerState<WordSearchPuzzlePage> {
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.surface.withValues(alpha: 0.45),
-        borderRadius: BorderRadius.circular(999),
-      ),
-      child: Text(label),
-    );
-  }
-
-  Widget _rewardChip(BuildContext context, String label) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-      decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.secondaryContainer,
         borderRadius: BorderRadius.circular(999),
       ),
       child: Text(label),

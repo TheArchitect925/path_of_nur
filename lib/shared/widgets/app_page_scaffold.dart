@@ -71,11 +71,15 @@ class AppPageScaffold extends ConsumerWidget {
     final reduceMotion = ref.watch(
       profileSettingsProvider.select((value) => value.reduceMotion),
     );
+    final pageTransitionStyle = ref.watch(
+      profileSettingsProvider.select((value) => value.pageTransitionStyle),
+    );
     final bottomInset = layoutConfig.extendBehindBottomNav
         ? 0.0
         : _homeMatchedBottomContentPadding;
     return _AnimatedPageEntrance(
       reduceMotion: reduceMotion,
+      style: pageTransitionStyle,
       child: Stack(
         children: [
           if (ownsBackground)
@@ -171,12 +175,14 @@ class AppPageScaffold extends ConsumerWidget {
                   const SizedBox(height: 12),
                   _AnimatedQuoteHeader(
                     reduceMotion: reduceMotion,
+                    style: pageTransitionStyle,
                     child: quoteHeader!,
                   ),
                 ] else if (resolvedQuote != null) ...[
                   const SizedBox(height: 12),
                   _AnimatedQuoteHeader(
                     reduceMotion: reduceMotion,
+                    style: pageTransitionStyle,
                     child: QuranQuoteBlock(
                       quote: resolvedQuote,
                       onTap: () {
@@ -208,10 +214,15 @@ class AppPageScaffold extends ConsumerWidget {
 }
 
 class _AnimatedQuoteHeader extends StatefulWidget {
-  const _AnimatedQuoteHeader({required this.child, required this.reduceMotion});
+  const _AnimatedQuoteHeader({
+    required this.child,
+    required this.reduceMotion,
+    required this.style,
+  });
 
   final Widget child;
   final bool reduceMotion;
+  final AppPageTransitionStyle style;
 
   @override
   State<_AnimatedQuoteHeader> createState() => _AnimatedQuoteHeaderState();
@@ -221,10 +232,12 @@ class _AnimatedPageEntrance extends StatefulWidget {
   const _AnimatedPageEntrance({
     required this.child,
     required this.reduceMotion,
+    required this.style,
   });
 
   final Widget child;
   final bool reduceMotion;
+  final AppPageTransitionStyle style;
 
   @override
   State<_AnimatedPageEntrance> createState() => _AnimatedPageEntranceState();
@@ -245,6 +258,17 @@ class _AnimatedPageEntranceState extends State<_AnimatedPageEntrance> {
   @override
   Widget build(BuildContext context) {
     if (widget.reduceMotion) return widget.child;
+    if (widget.style == AppPageTransitionStyle.noAnimation) {
+      return widget.child;
+    }
+    if (widget.style == AppPageTransitionStyle.gentleFade) {
+      return AnimatedOpacity(
+        duration: const Duration(milliseconds: 220),
+        curve: Curves.easeOutCubic,
+        opacity: _visible ? 1 : 0,
+        child: widget.child,
+      );
+    }
     return AnimatedSlide(
       duration: const Duration(milliseconds: 260),
       curve: Curves.easeOutCubic,
@@ -269,6 +293,17 @@ class _AnimatedQuoteHeaderState extends State<_AnimatedQuoteHeader> {
   @override
   Widget build(BuildContext context) {
     if (widget.reduceMotion) return widget.child;
+    if (widget.style == AppPageTransitionStyle.noAnimation) {
+      return widget.child;
+    }
+    if (widget.style == AppPageTransitionStyle.gentleFade) {
+      return AnimatedOpacity(
+        duration: const Duration(milliseconds: 280),
+        curve: Curves.easeOutCubic,
+        opacity: _visible ? 1 : 0,
+        child: widget.child,
+      );
+    }
     return AnimatedSlide(
       duration: const Duration(milliseconds: 420),
       curve: Curves.easeOutCubic,

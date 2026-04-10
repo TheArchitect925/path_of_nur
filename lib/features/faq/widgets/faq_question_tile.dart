@@ -40,34 +40,55 @@ class FaqQuestionTile extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 10),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  child: Column(
+            LayoutBuilder(
+              builder: (context, constraints) {
+                final compact = constraints.maxWidth < 460;
+                final content = Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      item.question,
+                      maxLines: compact ? 4 : 3,
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    const SizedBox(height: 6),
+                    Text(
+                      item.shortAnswer,
+                      maxLines: 3,
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        color: AppColors.onSurfaceSubtle,
+                      ),
+                    ),
+                  ],
+                );
+
+                if (compact) {
+                  return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        item.question,
-                        style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                      const SizedBox(height: 6),
-                      Text(
-                        item.shortAnswer,
-                        maxLines: 3,
-                        overflow: TextOverflow.ellipsis,
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: AppColors.onSurfaceSubtle,
-                        ),
+                      content,
+                      const SizedBox(height: 8),
+                      const Align(
+                        alignment: Alignment.centerRight,
+                        child: Icon(Icons.chevron_right_rounded),
                       ),
                     ],
-                  ),
-                ),
-                const SizedBox(width: 10),
-                const Icon(Icons.chevron_right_rounded),
-              ],
+                  );
+                }
+
+                return Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(child: content),
+                    const SizedBox(width: 10),
+                    const Icon(Icons.chevron_right_rounded),
+                  ],
+                );
+              },
             ),
           ],
         ),
@@ -80,10 +101,20 @@ class FaqQuestionTile extends StatelessWidget {
       context,
       variant: AppSurfaceVariant.pill,
     );
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-      decoration: style.decoration(radius: 999),
-      child: Text(label, style: Theme.of(context).textTheme.bodySmall),
+    return ConstrainedBox(
+      constraints: BoxConstraints(
+        maxWidth: MediaQuery.sizeOf(context).width * 0.66,
+      ),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+        decoration: style.decoration(radius: 999),
+        child: Text(
+          label,
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+          style: Theme.of(context).textTheme.bodySmall,
+        ),
+      ),
     );
   }
 
@@ -93,14 +124,21 @@ class FaqQuestionTile extends StatelessWidget {
       variant: AppSurfaceVariant.pill,
       tintColor: AppColors.accentGold,
     );
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-      decoration: style.decoration(radius: 999),
-      child: Text(
-        label,
-        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-          color: AppColors.accentGold,
-          fontWeight: FontWeight.w600,
+    return ConstrainedBox(
+      constraints: BoxConstraints(
+        maxWidth: MediaQuery.sizeOf(context).width * 0.7,
+      ),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+        decoration: style.decoration(radius: 999),
+        child: Text(
+          label,
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+          style: Theme.of(context).textTheme.bodySmall?.copyWith(
+            color: AppColors.accentGold,
+            fontWeight: FontWeight.w600,
+          ),
         ),
       ),
     );

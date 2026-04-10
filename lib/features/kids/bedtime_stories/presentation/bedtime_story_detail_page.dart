@@ -569,10 +569,7 @@ class _BedtimeStoryDetailPageState
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
-          l10n.bedtimeStoriesCompletionSnack(
-            outcome.xpAwarded,
-            outcome.dropsAwarded,
-          ),
+          l10n.bedtimeStoriesCompletionSnackQuiet,
         ),
       ),
     );

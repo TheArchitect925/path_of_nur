@@ -24,6 +24,7 @@ class PrayerController extends StateNotifier<List<DailyPrayerRecord>> {
         DailyPrayerRecord(prayer: PrayerName.asr),
         DailyPrayerRecord(prayer: PrayerName.maghrib),
         DailyPrayerRecord(prayer: PrayerName.isha),
+        DailyPrayerRecord(prayer: PrayerName.tahajjud),
       ]) {
     _activeDayKey = LocalStore.todayKey();
     _loadForDay(_activeDayKey);
@@ -68,9 +69,7 @@ class PrayerController extends StateNotifier<List<DailyPrayerRecord>> {
         occurredAt: changedAt,
         sourceRef: 'prayer:$_activeDayKey:${prayer.name}',
         dayKey: _activeDayKey,
-        allFiveCompleted: state.every(
-          (record) => record.status == PrayerStatus.completed,
-        ),
+        allFiveCompleted: _allObligatoryPrayersCompleted(),
       );
     }
   }
@@ -259,9 +258,7 @@ class PrayerController extends StateNotifier<List<DailyPrayerRecord>> {
       occurredAt: occurredAt,
       sourceRef: 'prayer:$_activeDayKey:${prayer.name}',
       dayKey: _activeDayKey,
-      allFiveCompleted: state.every(
-        (record) => record.status == PrayerStatus.completed,
-      ),
+      allFiveCompleted: _allObligatoryPrayersCompleted(),
     );
   }
 
@@ -277,9 +274,7 @@ class PrayerController extends StateNotifier<List<DailyPrayerRecord>> {
       sourceRef: 'prayer:$_activeDayKey:${prayer.name}',
       dayKey: _activeDayKey,
       onTime: timing == PrayerOfferTiming.onTime,
-      allFiveCompleted: state.every(
-        (record) => record.status == PrayerStatus.completed,
-      ),
+      allFiveCompleted: _allObligatoryPrayersCompleted(),
       inCongregation:
           place == PrayerOfferPlace.congregation ||
           place == PrayerOfferPlace.masjid,
@@ -288,6 +283,13 @@ class PrayerController extends StateNotifier<List<DailyPrayerRecord>> {
           prayer == PrayerName.dhuhr &&
           DateTime.now().weekday == DateTime.friday,
     );
+  }
+
+  bool _allObligatoryPrayersCompleted() {
+    return obligatoryPrayerNames.every((prayer) {
+      final record = state.where((item) => item.prayer == prayer).firstOrNull;
+      return record?.status == PrayerStatus.completed;
+    });
   }
 }
 

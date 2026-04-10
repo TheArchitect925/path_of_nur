@@ -36,6 +36,7 @@ class _OnThisDayHomeCardState extends ConsumerState<OnThisDayHomeCard> {
         Colors.transparent,
         Color(0x16E8C98F),
       ],
+      onTap: () => context.pushNamed('learnHistoryArchive'),
       child: todayAsync.when(
         data: (todayState) {
           final matches = todayState.matches;
@@ -76,6 +77,15 @@ class _OnThisDayHomeCardState extends ConsumerState<OnThisDayHomeCard> {
                 formatTodayHijriDate(context, l10n, todayState.hijriToday),
                 style: Theme.of(context).textTheme.bodySmall,
               ),
+              if (featured == null) ...[
+                const SizedBox(height: 6),
+                Text(
+                  l10n.historyNoEventsForThisDate,
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
               const SizedBox(height: 14),
               if (featured == null)
                 _UpcomingHistoryState(

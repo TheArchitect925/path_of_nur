@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../l10n/app_localizations.dart';
+import '../../../shared/utils/reward_feedback.dart';
 import '../../../shared/widgets/quran_reference_link.dart';
 import '../../learn/presentation/widgets/learn_hub_page_scaffold.dart';
 import '../../learn/quran/domain/quran_content_refs.dart';
@@ -1034,41 +1035,47 @@ class _CompletionSheetState extends ConsumerState<_CompletionSheet> {
             style: const TextStyle(color: Color(0xFF655A4C)),
           ),
           const SizedBox(height: 12),
-          Wrap(
-            spacing: 10,
-            runSpacing: 10,
-            children: [
-              _RewardPill(
-                label: l10n.kidsDuaCompletionXpValue(widget.result.xpAwarded),
-              ),
-              _RewardPill(
-                label: l10n.kidsDuaCompletionDropsValue(
-                  widget.result.oceanDropsAwarded,
-                ),
-              ),
-              if (widget.myDayResult.dayCompletedNow)
-                _RewardPill(
-                  label: l10n.kidsDuaMyDayCompleteRewardValue(
-                    widget.myDayResult.xpAwarded,
-                    widget.myDayResult.oceanDropsAwarded,
-                  ),
-                ),
-              if (widget.result.newStickerIds.isNotEmpty)
-                _RewardPill(
-                  label: l10n.kidsDuaStickerUnlockedValue(
-                    widget.result.newStickerIds.length,
-                  ),
-                ),
-              if (widget.result.newRewardIds.isNotEmpty)
-                _RewardPill(
-                  label: l10n.kidsDuaCompletionRewardsValue(
-                    widget.result.newRewardIds.length,
-                  ),
-                ),
-            ],
+          Text(
+            buildCompactRewardSummary(
+              l10n,
+              xp: widget.result.xpAwarded,
+              drops: widget.result.oceanDropsAwarded,
+            ),
+            style: const TextStyle(fontSize: 12, color: Color(0xFF655A4C)),
           ),
+          if (widget.result.newStickerIds.isNotEmpty ||
+              widget.result.newRewardIds.isNotEmpty) ...[
+            const SizedBox(height: 10),
+            Wrap(
+              spacing: 10,
+              runSpacing: 10,
+              children: [
+                if (widget.result.newStickerIds.isNotEmpty)
+                  _RewardPill(
+                    label: l10n.kidsDuaStickerUnlockedValue(
+                      widget.result.newStickerIds.length,
+                    ),
+                  ),
+                if (widget.result.newRewardIds.isNotEmpty)
+                  _RewardPill(
+                    label: l10n.kidsDuaCompletionRewardsValue(
+                      widget.result.newRewardIds.length,
+                    ),
+                  ),
+              ],
+            ),
+          ],
           if (widget.myDayResult.dayCompletedNow) ...[
             const SizedBox(height: 10),
+            Text(
+              buildCompactRewardSummary(
+                l10n,
+                xp: widget.myDayResult.xpAwarded,
+                drops: widget.myDayResult.oceanDropsAwarded,
+              ),
+              style: const TextStyle(fontSize: 12, color: Color(0xFF655A4C)),
+            ),
+            const SizedBox(height: 8),
             Text(
               l10n.kidsDuaMyDayCompleteBody,
               style: const TextStyle(color: Color(0xFF655A4C)),
@@ -1196,23 +1203,20 @@ class _CompletionSheetState extends ConsumerState<_CompletionSheet> {
                   style: const TextStyle(color: Color(0xFF655A4C)),
                 ),
                 const SizedBox(height: 10),
-                Wrap(
-                  spacing: 10,
-                  runSpacing: 10,
-                  children: [
-                    if ((_practiceResult?.correctAnswers ?? 0) > 0)
-                      _RewardPill(
-                        label: l10n.kidsDuaCompletionXpValue(kidsDuaPracticeXp),
-                      ),
-                    if (_bonusXpAwarded > 0 || _bonusDropsAwarded > 0)
-                      _RewardPill(
-                        label: l10n.kidsDuaMyDayRecapBonusValue(
-                          _bonusXpAwarded,
-                          _bonusDropsAwarded,
-                        ),
-                      ),
-                  ],
-                ),
+                if ((_practiceResult?.correctAnswers ?? 0) > 0 ||
+                    _bonusXpAwarded > 0 ||
+                    _bonusDropsAwarded > 0)
+                  Text(
+                    buildCompactRewardSummary(
+                      l10n,
+                      xp: kidsDuaPracticeXp + _bonusXpAwarded,
+                      drops: _bonusDropsAwarded,
+                    ),
+                    style: const TextStyle(
+                      fontSize: 12,
+                      color: Color(0xFF655A4C),
+                    ),
+                  ),
                 const SizedBox(height: 14),
               ] else ...[
                 const SizedBox(height: 16),

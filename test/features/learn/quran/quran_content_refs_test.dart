@@ -7,8 +7,8 @@ void main() {
   test('learning compact quote is backed by canonical verse metadata', () {
     final quote = buildLearningCompactQuote();
 
-    expect(quote.ref.surah, 20);
-    expect(quote.ref.ayah, 114);
+    expect(quote.ref.surah, 38);
+    expect(quote.ref.ayah, 29);
     expect(quote.ref.ayahEnd, isNull);
   });
 

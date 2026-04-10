@@ -168,12 +168,7 @@ class WuduTrainerState {
     );
     return WuduTrainerState(
       mode: mode,
-      currentStepIndex:
-          (json['currentStepIndex'] as num?)?.toInt().clamp(
-            0,
-            wuduTrainerStepCount - 1,
-          ) ??
-          0,
+      currentStepIndex: (json['currentStepIndex'] as num?)?.toInt() ?? 0,
       completedStepNumbers: _toIntSet(json['completedStepNumbers']),
       skippedStepNumbers: _toIntSet(json['skippedStepNumbers']),
       reviewModeEnabled: json['reviewModeEnabled'] == true,
@@ -215,7 +210,8 @@ class WuduTrainerController extends StateNotifier<WuduTrainerState> {
       currentStepIndex: state.currentStepIndex.clamp(0, state.totalSteps - 1),
       completedStepNumbers: state.completedStepNumbers
           .where(
-            (stepNumber) => stepNumber >= 1 && stepNumber <= wuduTrainerStepCount,
+            (stepNumber) =>
+                stepNumber >= 1 && stepNumber <= wuduTrainerStepCount,
           )
           .toSet(),
       skippedStepNumbers: state.skippedStepNumbers
@@ -312,7 +308,7 @@ class WuduTrainerController extends StateNotifier<WuduTrainerState> {
       skipped.remove(stepNumber);
     }
 
-    HapticFeedback.selectionClick();
+    _safeSelectionClick();
     state = state.copyWith(
       completedStepNumbers: completed,
       skippedStepNumbers: skipped,
@@ -354,7 +350,7 @@ class WuduTrainerController extends StateNotifier<WuduTrainerState> {
   void _markStepCompleted(int stepNumber) {
     final completed = {...state.completedStepNumbers, stepNumber};
     final skipped = {...state.skippedStepNumbers}..remove(stepNumber);
-    HapticFeedback.lightImpact();
+    _safeLightImpact();
     state = state.copyWith(
       completedStepNumbers: completed,
       skippedStepNumbers: skipped,
@@ -443,6 +439,19 @@ class WuduTrainerController extends StateNotifier<WuduTrainerState> {
     required int currentIndex,
     required Set<int> completed,
   }) {
+    if (currentIndex < 0 || currentIndex >= wuduTrainerStepCount) {
+      for (
+        var stepNumber = 1;
+        stepNumber <= wuduTrainerStepCount;
+        stepNumber += 1
+      ) {
+        if (!completed.contains(stepNumber)) {
+          return stepNumber - 1;
+        }
+      }
+      return 0;
+    }
+
     final clampedCurrent = currentIndex.clamp(0, wuduTrainerStepCount - 1);
     final currentStepNumber = clampedCurrent + 1;
     if (!completed.contains(currentStepNumber)) {
@@ -461,6 +470,22 @@ class WuduTrainerController extends StateNotifier<WuduTrainerState> {
   }
 
   String _nowIso() => DateTime.now().toIso8601String();
+
+  void _safeLightImpact() {
+    try {
+      unawaited(HapticFeedback.lightImpact());
+    } catch (_) {
+      // Skip haptics when no Flutter services binding is available.
+    }
+  }
+
+  void _safeSelectionClick() {
+    try {
+      unawaited(HapticFeedback.selectionClick());
+    } catch (_) {
+      // Skip haptics when no Flutter services binding is available.
+    }
+  }
 }
 
 final wuduTrainerControllerProvider =

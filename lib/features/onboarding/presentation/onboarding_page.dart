@@ -7,11 +7,14 @@ import '../../../core/localization/locale_provider.dart';
 import '../../../core/prayer/prayer_preferences.dart';
 import '../../../core/theme/app_backgrounds.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../features/accounts_sync/application/accounts_sync_services.dart';
+import '../../../features/accounts_sync/domain/accounts_sync_models.dart';
 import '../../../features/learn/quran/application/quran_providers.dart';
 import '../../../shared/state/user_profile_state.dart';
 import '../../../shared/widgets/global_background.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../profile/application/profile_settings_provider.dart';
+import '../../profile/domain/profile_age_preferences.dart';
 import '../../learn/journey/application/learning_path_provider.dart';
 import '../application/onboarding_preferences_provider.dart';
 import '../application/onboarding_state_provider.dart';
@@ -25,8 +28,7 @@ class OnboardingPage extends ConsumerStatefulWidget {
 }
 
 class _OnboardingPageState extends ConsumerState<OnboardingPage> {
-  static const _lastIndex = 15;
-  static const _growthInterestsPageIndex = 8;
+  static const _lastIndex = 12;
   static const _growthInterestUnderstandingQuran = 'understanding_quran';
   static const _growthInterestLearningHadith = 'learning_hadith';
   static const _growthInterestStoriesProphets = 'stories_prophets';
@@ -54,7 +56,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
     id: 'system',
     label: '',
   );
-  OnboardingAgeRange _ageRange = OnboardingAgeRange.age25_34;
+  OnboardingAgeRange _ageRange = OnboardingAgeRange.age35_44;
   OnboardingLearningAgeGroup _learningAgeGroup =
       OnboardingLearningAgeGroup.adults;
   OnboardingIslamExperience _islamExperience =
@@ -78,7 +80,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
     'asr': OnboardingReminderChoice.notificationOnly,
     'maghrib': OnboardingReminderChoice.adhanNotification,
     'isha': OnboardingReminderChoice.adhanNotification,
-    'tahajjud': OnboardingReminderChoice.notificationOnly,
+    'tahajjud': OnboardingReminderChoice.none,
   };
 
   bool _dailyQuranReminder = true;
@@ -91,6 +93,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
   OnboardingDhikrPulse _dhikrPulse = OnboardingDhikrPulse.subtleGlow;
 
   UserSex _sex = UserSex.brother;
+  bool _authBusy = false;
 
   @override
   void initState() {
@@ -100,21 +103,34 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
 
     final existing = ref.read(onboardingPreferencesProvider);
     if (existing != null) {
-      _ageRange = existing.ageRange;
-      _learningAgeGroup = existing.learningAgeGroup;
+      _ageRange = _normalizeAgeRange(existing.ageRange);
+      _learningAgeGroup = _learningAgeGroupForAgeRange(
+        _normalizeAgeRange(existing.ageRange),
+      );
       _islamExperience = existing.islamExperience;
       _salahConsistency = existing.salahConsistency;
-      _methodChoice = existing.prayerMethodChoice;
+      _methodChoice = _normalizePrayerMethodChoice(existing.prayerMethodChoice);
       _madhab = existing.madhab;
       _growthInterests
         ..clear()
         ..addAll(existing.growthInterests.map(_normalizeGrowthInterestId));
       _arabicReadMode = existing.arabicReadMode;
-      _harakatChoice = existing.harakatChoice;
+      _harakatChoice = existing.harakatChoice == OnboardingHarakatChoice.minimal
+          ? OnboardingHarakatChoice.full
+          : existing.harakatChoice;
       _arabicTextScale = existing.arabicTextScale;
       _prayerReminders
         ..clear()
-        ..addAll(existing.prayerReminderChoices);
+        ..addAll(
+          existing.prayerReminderChoices.map(
+            (key, value) => MapEntry(
+              key,
+              value == OnboardingReminderChoice.forceAdhan
+                  ? OnboardingReminderChoice.adhanNotification
+                  : value,
+            ),
+          ),
+        );
       _dailyQuranReminder = existing.dailyQuranReminder;
       _dailyLessonReminder = existing.dailyLessonReminder;
       _trackingModules
@@ -168,7 +184,12 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
                         icon: const Icon(Icons.chevron_left_rounded),
                       ),
                       const Spacer(),
-                      Text('${_index + 1} / ${_lastIndex + 1}'),
+                      Text(
+                        l10n.onboardingProgressValue(
+                          '${_index + 1}',
+                          '${_lastIndex + 1}',
+                        ),
+                      ),
                       const Spacer(),
                       if (_index < _lastIndex)
                         TextButton(
@@ -273,24 +294,18 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
       case 5:
         return _agePage();
       case 6:
-        return _learningAgeGroupPage();
-      case 7:
         return _salahConsistencyPage();
-      case 8:
-        return _growthInterestsPage();
-      case 9:
+      case 7:
         return _arabicReadingPage();
-      case 10:
+      case 8:
         return _prayerMethodPage();
-      case 11:
+      case 9:
         return _madhabPage();
-      case 12:
-        return _trackingPage();
-      case 13:
+      case 10:
         return _remindersPage();
-      case 14:
+      case 11:
         return _identityPage();
-      case 15:
+      case 12:
         return _finalWelcomePage();
       default:
         return const SizedBox.shrink();
@@ -504,13 +519,6 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
       AppThemeMode.noorGlassDark,
       AppThemeMode.noGlass,
       AppThemeMode.noGlassDark,
-      AppThemeMode.noorMidnightManuscript,
-      AppThemeMode.noorKids,
-      AppThemeMode.defaultMode,
-      AppThemeMode.calmBeautiful,
-      AppThemeMode.easyRead,
-      AppThemeMode.dark,
-      AppThemeMode.midnightManuscript,
     ];
 
     return _stepCard(
@@ -527,8 +535,6 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
                     width: 164,
                     child: _OnboardingThemePreviewTile(
                       label: _themeModeLabel(mode, l10n),
-                      description: _themeModeDescription(mode, l10n),
-                      helper: _themeModeBestForLabel(mode, l10n),
                       data: _themePreviewData(mode),
                       selected: profileSettings.appThemeMode == mode,
                       onSelected: () {
@@ -544,11 +550,6 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
             l10n.onboardingThemePreviewTitle,
             style: Theme.of(context).textTheme.titleSmall,
           ),
-          const SizedBox(height: 6),
-          Text(
-            l10n.onboardingThemePreviewSubtitle,
-            style: Theme.of(context).textTheme.bodySmall,
-          ),
           const SizedBox(height: 10),
           PremiumCard(
             child: Column(
@@ -557,11 +558,6 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
                 Text(
                   l10n.onboardingThemeSampleTitle,
                   style: Theme.of(context).textTheme.titleMedium,
-                ),
-                const SizedBox(height: 6),
-                Text(
-                  l10n.onboardingThemeSampleBody,
-                  style: Theme.of(context).textTheme.bodyMedium,
                 ),
                 const SizedBox(height: 10),
                 Wrap(
@@ -590,11 +586,6 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
                               l10n.onboardingThemeSampleCardTitle,
                               style: Theme.of(context).textTheme.titleSmall,
                             ),
-                            const SizedBox(height: 2),
-                            Text(
-                              l10n.onboardingThemeSampleCardBody,
-                              style: Theme.of(context).textTheme.bodySmall,
-                            ),
                           ],
                         ),
                       ),
@@ -620,10 +611,11 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
         OnboardingAgeRange.age18_24: l10n.onboardingAgeRange18To24,
         OnboardingAgeRange.age25_34: l10n.onboardingAgeRange25To34,
         OnboardingAgeRange.age35_44: l10n.onboardingAgeRange35To44,
-        OnboardingAgeRange.age45_54: l10n.onboardingAgeRange45To54,
-        OnboardingAgeRange.age55Plus: l10n.onboardingAgeRange55Plus,
       },
-      onChanged: (value) => setState(() => _ageRange = value),
+      onChanged: (value) => setState(() {
+        _ageRange = value;
+        _learningAgeGroup = _learningAgeGroupForAgeRange(value);
+      }),
     );
   }
 
@@ -644,22 +636,6 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
         OnboardingIslamExperience.advanced: l10n.onboardingExperienceAdvanced,
       },
       onChanged: (value) => setState(() => _islamExperience = value),
-    );
-  }
-
-  Widget _learningAgeGroupPage() {
-    final l10n = AppLocalizations.of(context);
-    return _choicePage<OnboardingLearningAgeGroup>(
-      title: l10n.onboardingLearningAgeGroupTitle,
-      subtitle: l10n.onboardingLearningAgeGroupSubtitle,
-      value: _learningAgeGroup,
-      options: {
-        OnboardingLearningAgeGroup.kids: l10n.onboardingLearningAgeGroupKids,
-        OnboardingLearningAgeGroup.teens: l10n.onboardingLearningAgeGroupTeens,
-        OnboardingLearningAgeGroup.adults:
-            l10n.onboardingLearningAgeGroupAdults,
-      },
-      onChanged: (value) => setState(() => _learningAgeGroup = value),
     );
   }
 
@@ -699,8 +675,6 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
             l10n.onboardingPrayerMethodEgyptian,
         OnboardingPrayerMethodChoice.karachi:
             l10n.onboardingPrayerMethodKarachi,
-        OnboardingPrayerMethodChoice.moonsighting:
-            l10n.onboardingPrayerMethodMoonsighting,
       },
       onChanged: (value) => setState(() => _methodChoice = value),
     );
@@ -722,37 +696,6 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
     );
   }
 
-  Widget _growthInterestsPage() {
-    final l10n = AppLocalizations.of(context);
-    final interestOptions = _interestOptions(l10n);
-    return _stepCard(
-      title: l10n.onboardingGrowthInterestsTitle,
-      subtitle: l10n.onboardingGrowthInterestsSubtitle,
-      child: GridView.count(
-        crossAxisCount: 2,
-        mainAxisSpacing: 8,
-        crossAxisSpacing: 8,
-        childAspectRatio: 1.7,
-        children: interestOptions
-            .map(
-              (item) => _toggleCard(
-                title: item.title,
-                icon: item.icon,
-                selected: _growthInterests.contains(item.id),
-                onTap: () {
-                  setState(() {
-                    if (!_growthInterests.add(item.id)) {
-                      _growthInterests.remove(item.id);
-                    }
-                  });
-                },
-              ),
-            )
-            .toList(growable: false),
-      ),
-    );
-  }
-
   Widget _arabicReadingPage() {
     final l10n = AppLocalizations.of(context);
     return _stepCard(
@@ -760,56 +703,6 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
       subtitle: l10n.onboardingArabicReadModeSubtitle,
       child: ListView(
         children: [
-          _choiceRow<OnboardingArabicReadMode>(
-            value: _arabicReadMode,
-            options: {
-              OnboardingArabicReadMode.noArabicYet:
-                  l10n.onboardingArabicReadModeNoArabicYet,
-              OnboardingArabicReadMode.arabicOnly:
-                  l10n.onboardingArabicReadModeArabicOnly,
-              OnboardingArabicReadMode.arabicTransliteration:
-                  l10n.onboardingArabicReadModeArabicTransliteration,
-              OnboardingArabicReadMode.arabicTranslation:
-                  l10n.onboardingArabicReadModeArabicTranslation,
-              OnboardingArabicReadMode.arabicTransliterationTranslation:
-                  l10n.onboardingArabicReadModeArabicTransliterationTranslation,
-            },
-            onChanged: (value) => setState(() => _arabicReadMode = value),
-          ),
-          const SizedBox(height: 12),
-          Text(
-            l10n.onboardingHarakatTitle,
-            style: TextStyle(fontWeight: FontWeight.w700),
-          ),
-          const SizedBox(height: 6),
-          _choiceRow<OnboardingHarakatChoice>(
-            value: _harakatChoice,
-            options: {
-              OnboardingHarakatChoice.full: l10n.onboardingHarakatFull,
-              OnboardingHarakatChoice.minimal: l10n.onboardingHarakatMinimal,
-              OnboardingHarakatChoice.none: l10n.onboardingHarakatNone,
-            },
-            onChanged: (value) => setState(() => _harakatChoice = value),
-          ),
-          const SizedBox(height: 12),
-          Text(
-            l10n.onboardingTextSizeTitle,
-            style: TextStyle(fontWeight: FontWeight.w700),
-          ),
-          const SizedBox(height: 6),
-          Text(
-            l10n.onboardingArabicReadModePreviewHint,
-            style: Theme.of(context).textTheme.bodySmall,
-          ),
-          Slider(
-            value: _arabicTextScale,
-            min: 0.85,
-            max: 1.4,
-            divisions: 11,
-            label: _sizeLabel(l10n, _arabicTextScale),
-            onChanged: (value) => setState(() => _arabicTextScale = value),
-          ),
-          const SizedBox(height: 8),
           PremiumCard(
             child: Column(
               children: [
@@ -842,6 +735,51 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
               ],
             ),
           ),
+          const SizedBox(height: 12),
+          Text(
+            l10n.onboardingTextSizeTitle,
+            style: TextStyle(fontWeight: FontWeight.w700),
+          ),
+          const SizedBox(height: 6),
+          Slider(
+            value: _arabicTextScale,
+            min: 0.85,
+            max: 1.4,
+            divisions: 11,
+            label: _sizeLabel(l10n, _arabicTextScale),
+            onChanged: (value) => setState(() => _arabicTextScale = value),
+          ),
+          const SizedBox(height: 12),
+          _choiceRow<OnboardingArabicReadMode>(
+            value: _arabicReadMode,
+            options: {
+              OnboardingArabicReadMode.noArabicYet:
+                  l10n.onboardingArabicReadModeNoArabicYet,
+              OnboardingArabicReadMode.arabicOnly:
+                  l10n.onboardingArabicReadModeArabicOnly,
+              OnboardingArabicReadMode.arabicTransliteration:
+                  l10n.onboardingArabicReadModeArabicTransliteration,
+              OnboardingArabicReadMode.arabicTranslation:
+                  l10n.onboardingArabicReadModeArabicTranslation,
+              OnboardingArabicReadMode.arabicTransliterationTranslation:
+                  l10n.onboardingArabicReadModeArabicTransliterationTranslation,
+            },
+            onChanged: (value) => setState(() => _arabicReadMode = value),
+          ),
+          const SizedBox(height: 12),
+          Text(
+            l10n.onboardingHarakatTitle,
+            style: TextStyle(fontWeight: FontWeight.w700),
+          ),
+          const SizedBox(height: 6),
+          _choiceRow<OnboardingHarakatChoice>(
+            value: _harakatChoice,
+            options: {
+              OnboardingHarakatChoice.full: l10n.onboardingHarakatFull,
+              OnboardingHarakatChoice.none: l10n.onboardingHarakatNone,
+            },
+            onChanged: (value) => setState(() => _harakatChoice = value),
+          ),
         ],
       ),
     );
@@ -854,20 +792,22 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
       subtitle: l10n.onboardingRemindersSubtitle,
       child: ListView(
         children: [
-          Row(
-            children: [
-              Expanded(
-                child: Text(
-                  l10n.onboardingSalahReminderStylesTitle,
-                  style: TextStyle(fontWeight: FontWeight.w700),
-                ),
-              ),
-              IconButton(
-                tooltip: AppLocalizations.of(context).accessibilityReminderHelp,
-                onPressed: _showReminderHelp,
-                icon: const Icon(Icons.help_outline_rounded),
-              ),
-            ],
+          SwitchListTile(
+            value: _dailyQuranReminder,
+            title: Text(l10n.onboardingDailyQuranReminderTitle),
+            onChanged: (value) => setState(() => _dailyQuranReminder = value),
+          ),
+          SwitchListTile(
+            value: _dailyLessonReminder,
+            title: Text(l10n.onboardingDailyLessonReminderTitle),
+            onChanged: (value) => setState(() => _dailyLessonReminder = value),
+          ),
+          SwitchListTile(
+            value: _allNotificationsDisabled,
+            title: Text(l10n.onboardingRemindersDisableAllAction),
+            onChanged: (value) => value
+                ? _turnOffAllNotifications()
+                : _restoreDefaultNotifications(),
           ),
           const SizedBox(height: 4),
           ..._prayerReminders.keys.map(
@@ -885,12 +825,12 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
                     _choiceRow<OnboardingReminderChoice>(
                       value: _prayerReminders[prayer]!,
                       options: {
+                        OnboardingReminderChoice.none:
+                            l10n.onboardingReminderNone,
                         OnboardingReminderChoice.notificationOnly:
                             l10n.onboardingReminderNotificationOnly,
                         OnboardingReminderChoice.adhanNotification:
                             l10n.onboardingReminderAdhanNotification,
-                        OnboardingReminderChoice.forceAdhan:
-                            l10n.onboardingReminderForceAdhan,
                       },
                       onChanged: (choice) =>
                           setState(() => _prayerReminders[prayer] = choice),
@@ -900,44 +840,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
               ),
             ),
           ),
-          const SizedBox(height: 6),
-          SwitchListTile(
-            value: _dailyQuranReminder,
-            title: Text(l10n.onboardingDailyQuranReminderTitle),
-            onChanged: (value) => setState(() => _dailyQuranReminder = value),
-          ),
-          SwitchListTile(
-            value: _dailyLessonReminder,
-            title: Text(l10n.onboardingDailyLessonReminderTitle),
-            onChanged: (value) => setState(() => _dailyLessonReminder = value),
-          ),
         ],
-      ),
-    );
-  }
-
-  Widget _trackingPage() {
-    final l10n = AppLocalizations.of(context);
-    final trackingOptions = _trackingOptions(l10n);
-    return _stepCard(
-      title: l10n.onboardingTrackingTitle,
-      subtitle: l10n.onboardingTrackingSubtitle,
-      child: ListView(
-        children: trackingOptions
-            .map(
-              (item) => CheckboxListTile(
-                value: _trackingModules.contains(item.id),
-                title: Text(item.title),
-                onChanged: (_) {
-                  setState(() {
-                    if (!_trackingModules.add(item.id)) {
-                      _trackingModules.remove(item.id);
-                    }
-                  });
-                },
-              ),
-            )
-            .toList(growable: false),
       ),
     );
   }
@@ -991,6 +894,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
 
   Widget _finalWelcomePage() {
     final l10n = AppLocalizations.of(context);
+    final theme = Theme.of(context);
     final name = _nameController.text.trim().isEmpty
         ? l10n.onboardingDefaultNameFallback
         : _nameController.text.trim();
@@ -1001,9 +905,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
     if (_salahConsistency.index >= OnboardingSalahConsistency.sometimes.index) {
       focus.add(l10n.onboardingFocusSalahConsistency);
     }
-    if (_prayerReminders.values.any(
-      (choice) => choice != OnboardingReminderChoice.notificationOnly,
-    )) {
+    if (_hasAnyPrayerReminderEnabled) {
       focus.add(l10n.onboardingFocusSalahReminders);
     }
 
@@ -1014,16 +916,26 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
           children: [
             Text(
               l10n.onboardingFinalWelcomeTitle,
-              style: Theme.of(context).textTheme.titleLarge,
+              style: theme.textTheme.headlineSmall?.copyWith(
+                fontWeight: FontWeight.w700,
+              ),
             ),
-            const SizedBox(height: 8),
-            Text(l10n.onboardingWelcomeGreeting(name)),
-            const SizedBox(height: 8),
-            Text(l10n.onboardingFinalWelcomeBody),
+            const SizedBox(height: 12),
+            Text(
+              l10n.onboardingWelcomeGreeting(name),
+              style: theme.textTheme.bodyLarge?.copyWith(height: 1.45),
+            ),
+            const SizedBox(height: 12),
+            Text(
+              l10n.onboardingFinalWelcomeBody,
+              style: theme.textTheme.bodyLarge?.copyWith(height: 1.45),
+            ),
             const SizedBox(height: 12),
             Text(
               l10n.onboardingFocusListTitle,
-              style: TextStyle(fontWeight: FontWeight.w700),
+              style: theme.textTheme.titleSmall?.copyWith(
+                fontWeight: FontWeight.w700,
+              ),
             ),
             const SizedBox(height: 6),
             ...focus
@@ -1031,7 +943,10 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
                 .map(
                   (item) => Padding(
                     padding: const EdgeInsets.only(bottom: 4),
-                    child: Text('• $item'),
+                    child: Text(
+                      '• $item',
+                      style: theme.textTheme.bodyLarge?.copyWith(height: 1.45),
+                    ),
                   ),
                 ),
             const SizedBox(height: 12),
@@ -1040,13 +955,115 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
               style: TextStyle(fontSize: 30, fontFamily: 'AmiriQuran'),
             ),
             const SizedBox(height: 4),
-            Text(l10n.onboardingKnowledgeDuaMeaning),
+            Text(
+              l10n.onboardingKnowledgeDuaMeaning,
+              style: theme.textTheme.bodyLarge?.copyWith(height: 1.45),
+            ),
             const SizedBox(height: 12),
-            Text(l10n.onboardingFinalWelcomeClosingBody),
+            Text(
+              l10n.onboardingFinalWelcomeClosingBody,
+              style: theme.textTheme.bodyLarge?.copyWith(height: 1.45),
+            ),
+            const SizedBox(height: 18),
+            PremiumCard(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    l10n.onboardingAccountOptionsTitle,
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    l10n.onboardingAccountOptionsBody,
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      height: 1.45,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    l10n.onboardingAccountOptionsManualBackupBody,
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      height: 1.45,
+                    ),
+                  ),
+                  const SizedBox(height: 14),
+                  FilledButton.icon(
+                    onPressed: _authBusy
+                        ? null
+                        : () => _handleOnboardingAuthAction(
+                              () => ref
+                                  .read(accountsAuthRepositoryProvider)
+                                  .signInWithApple(),
+                            ),
+                    icon: const Icon(Icons.apple_rounded),
+                    label: Text(l10n.accountsSyncContinueWithAppleAction),
+                  ),
+                  const SizedBox(height: 12),
+                  FilledButton.icon(
+                    onPressed: _authBusy
+                        ? null
+                        : () => _handleOnboardingAuthAction(
+                              () => ref
+                                  .read(accountsAuthRepositoryProvider)
+                                  .signInWithGoogle(),
+                            ),
+                    icon: const Icon(Icons.account_circle_outlined),
+                    label: Text(l10n.accountsSyncContinueWithGoogleAction),
+                  ),
+                  const SizedBox(height: 12),
+                  OutlinedButton.icon(
+                    onPressed: _authBusy
+                        ? null
+                        : () => _handleOnboardingAuthAction(
+                              () => ref
+                                  .read(accountsAuthRepositoryProvider)
+                                  .signInWithEmail(),
+                            ),
+                    icon: const Icon(Icons.email_outlined),
+                    label: Text(l10n.accountsSyncContinueWithEmailAction),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    l10n.accountsSyncEmailComingNextBody,
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    l10n.accountsSyncLocalOnlyBody,
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
     );
+  }
+
+  Future<void> _handleOnboardingAuthAction(
+    Future<AuthActionResult> Function() action,
+  ) async {
+    setState(() => _authBusy = true);
+    final l10n = AppLocalizations.of(context);
+    final messenger = ScaffoldMessenger.of(context);
+    final result = await action();
+    if (!mounted) return;
+    setState(() => _authBusy = false);
+    final message = switch (result.status) {
+      AuthActionStatus.success => l10n.accountsSyncAccountConnectedResult(
+          result.identity?.displayName ??
+              l10n.accountsSyncDefaultAccountDisplayName,
+        ),
+      AuthActionStatus.cancelled => l10n.accountsSyncAuthCancelledResult,
+      AuthActionStatus.unavailable => l10n.accountsSyncAuthUnavailableResult,
+      AuthActionStatus.notConfigured => l10n.accountsSyncAuthNotConfiguredResult,
+      AuthActionStatus.error => l10n.accountsSyncAuthFailedResult,
+    };
+    messenger.showSnackBar(SnackBar(content: Text(message)));
   }
 
   Widget _stepCard({
@@ -1054,17 +1071,31 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
     required String subtitle,
     required Widget child,
   }) {
+    final theme = Theme.of(context);
+    final bodyStyle =
+        theme.textTheme.bodyLarge?.copyWith(height: 1.45) ??
+        const TextStyle(fontSize: 16, height: 1.45);
     return PremiumCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(title, style: Theme.of(context).textTheme.titleLarge),
+          Text(
+            title,
+            style: theme.textTheme.headlineSmall?.copyWith(
+              fontWeight: FontWeight.w700,
+            ),
+          ),
           if (subtitle.isNotEmpty) ...[
-            const SizedBox(height: 6),
-            Text(subtitle),
+            const SizedBox(height: 12),
+            Text(
+              subtitle,
+              style: bodyStyle,
+            ),
           ],
-          const SizedBox(height: 10),
-          Expanded(child: child),
+          const SizedBox(height: 14),
+          Expanded(
+            child: DefaultTextStyle.merge(style: bodyStyle, child: child),
+          ),
         ],
       ),
     );
@@ -1112,47 +1143,6 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
     );
   }
 
-  Widget _toggleCard({
-    required String title,
-    required IconData icon,
-    required bool selected,
-    required VoidCallback onTap,
-  }) {
-    return InkWell(
-      borderRadius: BorderRadius.circular(14),
-      onTap: onTap,
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 180),
-        padding: const EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(14),
-          color: selected
-              ? const Color(0xFFD8C49A).withValues(alpha: 0.24)
-              : const Color(0xFFF2EBE1).withValues(alpha: 0.62),
-          border: Border.all(
-            color: selected
-                ? const Color(0xFFD8C49A).withValues(alpha: 0.66)
-                : const Color(0xFFD8C49A).withValues(alpha: 0.34),
-          ),
-        ),
-        child: Row(
-          children: [
-            Icon(icon, size: 18),
-            const SizedBox(width: 8),
-            Expanded(
-              child: Text(
-                title,
-                style: TextStyle(
-                  fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
   String _prayerLabel(AppLocalizations l10n, String prayer) {
     switch (prayer) {
       case 'fajr':
@@ -1179,6 +1169,51 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
     return l10n.onboardingSizeExtraLarge;
   }
 
+  OnboardingAgeRange _normalizeAgeRange(OnboardingAgeRange value) {
+    switch (value) {
+      case OnboardingAgeRange.age45_54:
+      case OnboardingAgeRange.age55Plus:
+        return OnboardingAgeRange.age35_44;
+      case OnboardingAgeRange.under18:
+      case OnboardingAgeRange.age18_24:
+      case OnboardingAgeRange.age25_34:
+      case OnboardingAgeRange.age35_44:
+        return value;
+    }
+  }
+
+  OnboardingLearningAgeGroup _learningAgeGroupForAgeRange(
+    OnboardingAgeRange value,
+  ) {
+    switch (value) {
+      case OnboardingAgeRange.under18:
+      case OnboardingAgeRange.age18_24:
+        return OnboardingLearningAgeGroup.kids;
+      case OnboardingAgeRange.age25_34:
+        return OnboardingLearningAgeGroup.teens;
+      case OnboardingAgeRange.age35_44:
+      case OnboardingAgeRange.age45_54:
+      case OnboardingAgeRange.age55Plus:
+        return OnboardingLearningAgeGroup.adults;
+    }
+  }
+
+  ProfileAgeRange _profileAgeRangeForOnboardingAgeRange(
+    OnboardingAgeRange value,
+  ) {
+    switch (value) {
+      case OnboardingAgeRange.under18:
+      case OnboardingAgeRange.age18_24:
+        return ProfileAgeRange.child;
+      case OnboardingAgeRange.age25_34:
+        return ProfileAgeRange.teen;
+      case OnboardingAgeRange.age35_44:
+      case OnboardingAgeRange.age45_54:
+      case OnboardingAgeRange.age55Plus:
+        return ProfileAgeRange.adult;
+    }
+  }
+
   void _previous() {
     if (_index == 0) return;
     _controller.previousPage(
@@ -1188,9 +1223,6 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
   }
 
   void _next() {
-    if (_index == _growthInterestsPageIndex && _growthInterests.isEmpty) {
-      return;
-    }
     if (_index >= _lastIndex) return;
     _controller.nextPage(
       duration: const Duration(milliseconds: 240),
@@ -1228,7 +1260,8 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
       );
     }
 
-    final hasPrayerReminder = _prayerReminders.isNotEmpty;
+    final hasPrayerReminder = _hasAnyPrayerReminderEnabled;
+    profileSettings.setAgeRange(_profileAgeRangeForOnboardingAgeRange(_ageRange));
     profileSettings.setPrayerReminders(hasPrayerReminder);
     profileSettings.setQuranReminders(_dailyQuranReminder);
     profileSettings.setReflectionReminders(_dailyLessonReminder);
@@ -1240,7 +1273,8 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
               OnboardingArabicReadMode.arabicTransliterationTranslation,
     );
     quranReaderSettings.setShowTranslation(
-      _arabicReadMode == OnboardingArabicReadMode.arabicTranslation ||
+      _arabicReadMode == OnboardingArabicReadMode.noArabicYet ||
+          _arabicReadMode == OnboardingArabicReadMode.arabicTranslation ||
           _arabicReadMode ==
               OnboardingArabicReadMode.arabicTransliterationTranslation,
     );
@@ -1316,8 +1350,25 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
     }
   }
 
+  OnboardingPrayerMethodChoice _normalizePrayerMethodChoice(
+    OnboardingPrayerMethodChoice choice,
+  ) {
+    switch (choice) {
+      case OnboardingPrayerMethodChoice.moonsighting:
+        return OnboardingPrayerMethodChoice.isna;
+      case OnboardingPrayerMethodChoice.muslimWorldLeague:
+      case OnboardingPrayerMethodChoice.isna:
+      case OnboardingPrayerMethodChoice.ummAlQura:
+      case OnboardingPrayerMethodChoice.egyptian:
+      case OnboardingPrayerMethodChoice.karachi:
+        return choice;
+    }
+  }
+
   PrayerNotificationMode _mapReminderChoice(OnboardingReminderChoice choice) {
     switch (choice) {
+      case OnboardingReminderChoice.none:
+        return PrayerNotificationMode.none;
       case OnboardingReminderChoice.notificationOnly:
         return PrayerNotificationMode.notificationOnly;
       case OnboardingReminderChoice.adhanNotification:
@@ -1326,6 +1377,40 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
         // Stored explicitly in onboarding preferences for future platform-specific behavior.
         return PrayerNotificationMode.adhanWithSound;
     }
+  }
+
+  bool get _hasAnyPrayerReminderEnabled =>
+      _prayerReminders.values.any(
+        (choice) => choice != OnboardingReminderChoice.none,
+      );
+
+  bool get _allNotificationsDisabled =>
+      !_dailyQuranReminder &&
+      !_dailyLessonReminder &&
+      !_hasAnyPrayerReminderEnabled;
+
+  void _turnOffAllNotifications() {
+    setState(() {
+      _dailyQuranReminder = false;
+      _dailyLessonReminder = false;
+      for (final prayer in _prayerReminders.keys) {
+        _prayerReminders[prayer] = OnboardingReminderChoice.none;
+      }
+    });
+  }
+
+  void _restoreDefaultNotifications() {
+    setState(() {
+      _dailyQuranReminder = true;
+      _dailyLessonReminder = true;
+      _prayerReminders
+        ..['fajr'] = OnboardingReminderChoice.adhanNotification
+        ..['dhuhr'] = OnboardingReminderChoice.notificationOnly
+        ..['asr'] = OnboardingReminderChoice.notificationOnly
+        ..['maghrib'] = OnboardingReminderChoice.adhanNotification
+        ..['isha'] = OnboardingReminderChoice.adhanNotification
+        ..['tahajjud'] = OnboardingReminderChoice.none;
+    });
   }
 
   String _previewArabicForHarakat(OnboardingHarakatChoice choice) {
@@ -1337,55 +1422,6 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
       case OnboardingHarakatChoice.none:
         return 'بسم الله الرحمن الرحيم';
     }
-  }
-
-  void _showReminderHelp() {
-    showModalBottomSheet<void>(
-      context: context,
-      backgroundColor: Colors.transparent,
-      isScrollControlled: true,
-      builder: (context) => SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
-          child: PremiumCard(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  AppLocalizations.of(context).onboardingReminderHelpTitle,
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-                const SizedBox(height: 10),
-                Text(
-                  AppLocalizations.of(
-                    context,
-                  ).onboardingReminderHelpNotificationOnly,
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  AppLocalizations.of(
-                    context,
-                  ).onboardingReminderHelpAdhanNotification,
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  AppLocalizations.of(context).onboardingReminderHelpForceAdhan,
-                ),
-                const SizedBox(height: 14),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: TextButton(
-                    onPressed: () => Navigator.of(context).pop(),
-                    child: Text(AppLocalizations.of(context).salahCloseAction),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
   }
 
   String _translationCodeForLanguage(String languageChoiceId) {
@@ -1601,73 +1637,11 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
     ];
   }
 
-  List<_OnboardingOption> _trackingOptions(AppLocalizations l10n) {
-    return <_OnboardingOption>[
-      _OnboardingOption(
-        id: _trackingSalah,
-        title: l10n.onboardingTrackingSalah,
-        icon: Icons.check_circle_outline,
-      ),
-      _OnboardingOption(
-        id: _trackingDhikr,
-        title: l10n.onboardingTrackingDhikr,
-        icon: Icons.check_circle_outline,
-      ),
-      _OnboardingOption(
-        id: _trackingQuranReading,
-        title: l10n.onboardingTrackingQuranReading,
-        icon: Icons.check_circle_outline,
-      ),
-      _OnboardingOption(
-        id: _trackingLearning,
-        title: l10n.onboardingTrackingLearning,
-        icon: Icons.check_circle_outline,
-      ),
-      _OnboardingOption(
-        id: _trackingHabitBuilding,
-        title: l10n.onboardingTrackingHabitBuilding,
-        icon: Icons.check_circle_outline,
-      ),
-      _OnboardingOption(
-        id: _trackingReflection,
-        title: l10n.onboardingTrackingReflection,
-        icon: Icons.check_circle_outline,
-      ),
-    ];
-  }
-
   String _growthInterestLabel(AppLocalizations l10n, String id) {
     for (final item in _interestOptions(l10n)) {
       if (item.id == id) return item.title;
     }
     return id;
-  }
-}
-
-String _themeModeDescription(AppThemeMode mode, AppLocalizations l10n) {
-  switch (mode) {
-    case AppThemeMode.defaultMode:
-      return l10n.settingsThemeModeDefaultDescription;
-    case AppThemeMode.calmBeautiful:
-      return l10n.settingsThemeModeCalmBeautifulDescription;
-    case AppThemeMode.easyRead:
-      return l10n.settingsThemeModeEasyReadDescription;
-    case AppThemeMode.dark:
-      return l10n.settingsThemeModeDarkDescription;
-    case AppThemeMode.noorGlass:
-      return l10n.settingsThemeModeNoorGlassDescription;
-    case AppThemeMode.noorGlassDark:
-      return l10n.settingsThemeModeNoorGlassDarkDescription;
-    case AppThemeMode.noGlass:
-      return l10n.settingsThemeModeNoGlassDescription;
-    case AppThemeMode.noGlassDark:
-      return l10n.settingsThemeModeNoGlassDarkDescription;
-    case AppThemeMode.midnightManuscript:
-      return l10n.settingsThemeModeMidnightManuscriptDescription;
-    case AppThemeMode.noorMidnightManuscript:
-      return l10n.settingsThemeModeNoorMidnightManuscriptDescription;
-    case AppThemeMode.noorKids:
-      return l10n.settingsThemeModeNoorKidsDescription;
   }
 }
 
@@ -1695,33 +1669,6 @@ String _themeModeLabel(AppThemeMode mode, AppLocalizations l10n) {
       return l10n.settingsThemeChoiceNoorMidnightManuscript;
     case AppThemeMode.noorKids:
       return l10n.settingsThemeChoiceNoorKids;
-  }
-}
-
-String _themeModeBestForLabel(AppThemeMode mode, AppLocalizations l10n) {
-  switch (mode) {
-    case AppThemeMode.defaultMode:
-      return l10n.settingsThemeModeDefaultBestFor;
-    case AppThemeMode.calmBeautiful:
-      return l10n.settingsThemeModeCalmBeautifulBestFor;
-    case AppThemeMode.easyRead:
-      return l10n.settingsThemeModeEasyReadBestFor;
-    case AppThemeMode.dark:
-      return l10n.settingsThemeModeDarkBestFor;
-    case AppThemeMode.noorGlass:
-      return l10n.settingsThemeModeNoorGlassBestFor;
-    case AppThemeMode.noorGlassDark:
-      return l10n.settingsThemeModeNoorGlassDarkBestFor;
-    case AppThemeMode.noGlass:
-      return l10n.settingsThemeModeNoGlassBestFor;
-    case AppThemeMode.noGlassDark:
-      return l10n.settingsThemeModeNoGlassDarkBestFor;
-    case AppThemeMode.midnightManuscript:
-      return l10n.settingsThemeModeMidnightManuscriptBestFor;
-    case AppThemeMode.noorMidnightManuscript:
-      return l10n.settingsThemeModeNoorMidnightManuscriptBestFor;
-    case AppThemeMode.noorKids:
-      return l10n.settingsThemeModeNoorKidsBestFor;
   }
 }
 
@@ -1808,16 +1755,12 @@ class _OnboardingThemePreviewData {
 class _OnboardingThemePreviewTile extends StatelessWidget {
   const _OnboardingThemePreviewTile({
     required this.label,
-    required this.description,
-    required this.helper,
     required this.selected,
     required this.onSelected,
     required this.data,
   });
 
   final String label;
-  final String description;
-  final String helper;
   final bool selected;
   final VoidCallback onSelected;
   final _OnboardingThemePreviewData data;
@@ -1836,7 +1779,7 @@ class _OnboardingThemePreviewTile extends StatelessWidget {
         onTap: onSelected,
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 180),
-          padding: const EdgeInsets.all(10),
+          padding: const EdgeInsets.all(7),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(22),
             border: Border.all(
@@ -1872,8 +1815,8 @@ class _OnboardingThemePreviewTile extends StatelessWidget {
                             duration: const Duration(milliseconds: 180),
                             opacity: selected ? 1 : 0,
                             child: Container(
-                              width: 24,
-                              height: 24,
+                              width: 14,
+                              height: 14,
                               decoration: BoxDecoration(
                                 color: data.accent.withValues(alpha: 0.24),
                                 shape: BoxShape.circle,
@@ -1883,7 +1826,7 @@ class _OnboardingThemePreviewTile extends StatelessWidget {
                               ),
                               child: Icon(
                                 Icons.check_rounded,
-                                size: 15,
+                                size: 9,
                                 color: data.primaryText,
                               ),
                             ),
@@ -1998,21 +1941,6 @@ class _OnboardingThemePreviewTile extends StatelessWidget {
                 label,
                 style: theme.textTheme.titleSmall?.copyWith(
                   fontWeight: FontWeight.w700,
-                ),
-              ),
-              const SizedBox(height: 4),
-              Text(
-                description,
-                style: theme.textTheme.bodySmall?.copyWith(height: 1.35),
-              ),
-              const SizedBox(height: 6),
-              Text(
-                helper,
-                style: theme.textTheme.bodySmall?.copyWith(
-                  fontWeight: FontWeight.w600,
-                  color: theme.textTheme.bodySmall?.color?.withValues(
-                    alpha: 0.78,
-                  ),
                 ),
               ),
             ],

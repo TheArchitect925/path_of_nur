@@ -98,13 +98,13 @@ HomeDayProgressLevel _resolveSalahLevel(
   Map<PrayerName, PrayerLogDayEntry> entries,
 ) {
   var completed = 0;
-  for (final prayer in PrayerName.values) {
+  for (final prayer in obligatoryPrayerNames) {
     if ((entries[prayer]?.status ?? PrayerStatus.pending) ==
         PrayerStatus.completed) {
       completed += 1;
     }
   }
-  if (completed >= PrayerName.values.length) {
+  if (completed >= obligatoryPrayerNames.length) {
     return HomeDayProgressLevel.complete;
   }
   if (completed > 0) {

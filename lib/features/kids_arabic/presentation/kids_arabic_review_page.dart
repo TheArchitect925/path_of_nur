@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../l10n/app_localizations.dart';
+import '../../../shared/utils/reward_feedback.dart';
 import '../../learn/presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/kids_arabic_parent_provider.dart';
 import '../application/kids_arabic_progression.dart';
@@ -390,13 +391,14 @@ class _ReviewSummaryCard extends StatelessWidget {
             ),
             const SizedBox(height: 6),
             Text(
-              l10n.kidsArabicDailyMissionRewardRow(
-                dailyMissionResult!.xpAwarded,
-                dailyMissionResult!.oceanDropsAwarded,
+              buildCompactRewardSummary(
+                l10n,
+                xp: dailyMissionResult!.xpAwarded,
+                drops: dailyMissionResult!.oceanDropsAwarded,
               ),
               style: const TextStyle(
-                fontWeight: FontWeight.w700,
-                color: Color(0xFF52713A),
+                fontSize: 12,
+                color: Color(0xFF675B4E),
               ),
             ),
             const SizedBox(height: 6),

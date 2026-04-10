@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../l10n/app_localizations.dart';
+import '../../../../shared/utils/reward_feedback.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../journey/application/journey_progression_provider.dart';
@@ -146,8 +147,6 @@ class _CrosswordPuzzlePageState extends ConsumerState<CrosswordPuzzlePage> {
     final currentClue = _currentClue(puzzle);
     final solvedCount = progress.solvedClueIds.length;
     final totalCount = puzzle.clues.length;
-    final perfectCompletion =
-        progress.isCompleted && !progress.hadMistake && !progress.usedAnyHint;
     final adapter = ref.watch(crosswordGameAdapterProvider);
     final variationConfig = _variationConfig(daily);
     final knowledgeGame = adapter
@@ -168,10 +167,8 @@ class _CrosswordPuzzlePageState extends ConsumerState<CrosswordPuzzlePage> {
     final pack = widget.packId == null || catalog == null
         ? null
         : catalog.packsById[widget.packId!];
-    CrosswordPackProgressSummary? packSummary;
     String? nextPackPuzzleId;
     if (pack != null && catalog != null) {
-      packSummary = catalog.progressForPack(pack.id, progressState);
       nextPackPuzzleId = pack.puzzleIds
           .where((id) => id != puzzle.id)
           .firstWhere(
@@ -338,75 +335,29 @@ class _CrosswordPuzzlePageState extends ConsumerState<CrosswordPuzzlePage> {
                             : l10n.crosswordCompletionSubtitle,
                       ),
                       const SizedBox(height: 10),
-                      Wrap(
-                        spacing: 8,
-                        runSpacing: 8,
-                        children: [
-                          _rewardChip(
+                      Text(
+                        buildCompactRewardSummary(
+                          l10n,
+                          xp: result.xpEarned,
+                          drops: result.dropsEarned,
+                        ),
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: Theme.of(
                             context,
-                            l10n.crosswordCompletionXpReward,
-                          ),
-                          _rewardChip(context, l10n.crosswordWordDropReward),
-                          if (perfectCompletion)
-                            _rewardChip(
-                              context,
-                              l10n.crosswordPerfectBonusReward,
-                            ),
-                          if (dailyProgress?.isCompleted == true)
-                            _rewardChip(
-                              context,
-                              l10n.crosswordDailyCompleteBadge,
-                            ),
-                          if ((dailyProgress
-                                      ?.bonusCompletedObjectiveIds
-                                      .length ??
-                                  0) >
-                              0)
-                            _rewardChip(
-                              context,
-                              l10n.crosswordDailyBonusAchievedLabel(
-                                dailyProgress!.bonusCompletedObjectiveIds.length
-                                    .toString(),
-                              ),
-                            ),
-                          if (dailyStreak != null &&
-                              dailyStreak.currentStreak > 0)
-                            _rewardChip(
-                              context,
-                              l10n.crosswordDailyStreakLabel(
-                                dailyStreak.currentStreak.toString(),
-                              ),
-                            ),
-                          if (packSummary != null)
-                            _rewardChip(
-                              context,
-                              l10n.crosswordPackProgressLabel(
-                                packSummary.completedPuzzles.toString(),
-                                packSummary.totalPuzzles.toString(),
-                              ),
-                            ),
-                          if (daily != null && dailyProgress != null)
-                            _rewardChip(
-                              context,
-                              l10n.crosswordDailyDropsContributionLabel(
-                                _dailyContributionDrops(
-                                  puzzle,
-                                  dailyProgress,
-                                ).toString(),
-                              ),
-                            ),
-                        ],
+                          ).colorScheme.onSurfaceVariant,
+                        ),
                       ),
-                      if (daily != null && dailyProgress != null) ...[
+                      if (dailyProgress?.isCompleted == true) ...[
                         const SizedBox(height: 10),
                         Text(
-                          l10n.crosswordDailyOceanSummary(
-                            _dailyContributionDrops(
-                              puzzle,
-                              dailyProgress,
-                            ).toString(),
-                          ),
-                          style: Theme.of(context).textTheme.bodyMedium,
+                          l10n.crosswordDailyCompleteBadge,
+                          style: Theme.of(context).textTheme.bodySmall
+                              ?.copyWith(
+                                color: Theme.of(
+                                  context,
+                                ).colorScheme.primary,
+                                fontWeight: FontWeight.w600,
+                              ),
                         ),
                       ],
                       if (pack != null ||
@@ -1498,15 +1449,6 @@ class _CrosswordPuzzlePageState extends ConsumerState<CrosswordPuzzlePage> {
     return seconds <= 0 ? null : seconds;
   }
 
-  int _dailyContributionDrops(
-    CrosswordPuzzle puzzle,
-    CrosswordDailyProgress dailyProgress,
-  ) {
-    final bonusDrops =
-        (dailyProgress.dailyBonusRewardGrantedAtIso ?? '').isEmpty ? 0 : 2;
-    return puzzle.wordCount + bonusDrops;
-  }
-
   String _dailyObjectiveTitle(
     AppLocalizations l10n,
     CrosswordDailyObjective objective,
@@ -1589,19 +1531,6 @@ class _CrosswordPuzzlePageState extends ConsumerState<CrosswordPuzzlePage> {
         ),
         child: Text(label),
       ),
-    );
-  }
-
-  Widget _rewardChip(BuildContext context, String label) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(999),
-        border: Border.all(
-          color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.2),
-        ),
-      ),
-      child: Text(label),
     );
   }
 

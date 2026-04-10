@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../../core/theme/app_surfaces.dart';
 import '../../../../../l10n/app_localizations.dart';
-import '../../../../../shared/widgets/app_layered_glass_pill_button.dart';
 import '../../../../../shared/widgets/app_hero_glass_shell.dart';
 import '../../../../../shared/widgets/premium_card.dart';
 import '../../../../../shared/widgets/quran_navigation.dart';
@@ -170,15 +169,15 @@ class QuranDailyReflectionCard extends ConsumerWidget {
           runSpacing: 8,
           children: [
             if (showCompanionAction)
-              AppLayeredGlassPillButton(
+              _DailyReflectionActionButton(
                 onPressed: () => context.pushNamed('quranDailyCompanion'),
-                leading: const Icon(Icons.wb_twilight_rounded, size: 18),
+                icon: Icons.wb_twilight_rounded,
                 label: l10n.quranDailyCompanionOpenAction,
               ),
-            AppLayeredGlassPillButton(
+            _DailyReflectionActionButton(
               onPressed: () =>
                   openQuranReferenceLocation(context, ref: entry.ref),
-              leading: const Icon(Icons.auto_stories_rounded, size: 18),
+              icon: Icons.auto_stories_rounded,
               label: l10n.quranDailyReflectionOpenAyahAction,
             ),
             if (showSecondaryActions)
@@ -261,16 +260,16 @@ class QuranDailyReflectionCard extends ConsumerWidget {
                 ),
               ),
             summary.isCompletedToday
-                ? AppLayeredGlassPillButton(
+                ? _DailyReflectionActionButton(
                     onPressed: null,
-                    leading: const Icon(Icons.check_circle_rounded, size: 18),
+                    icon: Icons.check_circle_rounded,
                     label: l10n.quranDailyReflectionCompletedAction,
                   )
-                : AppLayeredGlassPillButton(
+                : _DailyReflectionActionButton(
                     onPressed: () => ref
                         .read(quranDailyReflectionStateProvider.notifier)
                         .completeToday(assignment: assignment),
-                    leading: const Icon(Icons.done_rounded, size: 18),
+                    icon: Icons.done_rounded,
                     label: l10n.quranDailyReflectionCompleteAction,
                   ),
           ],
@@ -334,6 +333,34 @@ QuranReflectionEntry? findSavedDailyReflection(
     }
   }
   return null;
+}
+
+class _DailyReflectionActionButton extends StatelessWidget {
+  const _DailyReflectionActionButton({
+    required this.label,
+    required this.icon,
+    required this.onPressed,
+  });
+
+  final String label;
+  final IconData icon;
+  final VoidCallback? onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return FilledButton.tonalIcon(
+      onPressed: onPressed,
+      icon: Icon(icon, size: 18),
+      label: Text(label),
+      style: FilledButton.styleFrom(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(999)),
+        textStyle: Theme.of(
+          context,
+        ).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w700),
+      ),
+    );
+  }
 }
 
 class _InsightLine extends StatelessWidget {

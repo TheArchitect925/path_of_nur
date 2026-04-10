@@ -81,8 +81,6 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
                 .toList(growable: false);
             return Column(
               children: [
-                _overviewCard(context, l10n, dataset),
-                const SizedBox(height: 10),
                 categoriesAsync.when(
                   data: (categories) =>
                       _categoryScroller(context, l10n, categories),
@@ -159,41 +157,6 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
         controller: _searchController,
         hintText: l10n.searchDuasHint,
         onClear: _searchController.clear,
-      ),
-    );
-  }
-
-  Widget _overviewCard(
-    BuildContext context,
-    AppLocalizations l10n,
-    DuaDataset dataset,
-  ) {
-    return PremiumCard(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            l10n.duaHubOverviewTitle,
-            style: Theme.of(
-              context,
-            ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
-          ),
-          const SizedBox(height: 8),
-          Wrap(
-            spacing: 8,
-            runSpacing: 8,
-            children: [
-              _statChip(l10n.duaHubOverviewVerifiedNow(dataset.completeItems)),
-            ],
-          ),
-          const SizedBox(height: 8),
-          Text(
-            l10n.duaHubOverviewBody,
-            style: Theme.of(
-              context,
-            ).textTheme.bodySmall?.copyWith(color: AppColors.onSurfaceSubtle),
-          ),
-        ],
       ),
     );
   }
@@ -396,10 +359,6 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
               context: context,
               colors: colors,
               title: summary.label,
-              subtitle: l10n.duaHubCategorySummary(
-                summary.completeCount,
-                summary.stubCount,
-              ),
             ),
             const SizedBox(height: 10),
             Wrap(
@@ -479,19 +438,6 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
   Widget _errorCard(Object error) {
     final l10n = AppLocalizations.of(context);
     return PremiumCard(child: Text(l10n.duaHubLoadError(error.toString())));
-  }
-
-  Widget _statChip(String label) {
-    final style = AppSurfaceTheme.resolve(
-      context,
-      variant: AppSurfaceVariant.pill,
-      tintColor: AppColors.accentGold,
-    );
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-      decoration: style.decoration(radius: 999),
-      child: Text(label),
-    );
   }
 
   Widget _metaChip(String label, {required DuaCategoryThemeData colors}) {
@@ -592,7 +538,7 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
     required BuildContext context,
     required DuaCategoryThemeData colors,
     required String title,
-    required String subtitle,
+    String? subtitle,
     Widget? trailing,
   }) {
     final bannerStyle = AppSurfaceTheme.resolve(
@@ -629,13 +575,15 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
                     color: colors.accent,
                   ),
                 ),
-                const SizedBox(height: 4),
-                Text(
-                  subtitle,
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.onSurfaceSubtle,
+                if (subtitle != null && subtitle.isNotEmpty) ...[
+                  const SizedBox(height: 4),
+                  Text(
+                    subtitle,
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      color: AppColors.onSurfaceSubtle,
+                    ),
                   ),
-                ),
+                ],
               ],
             ),
           ),

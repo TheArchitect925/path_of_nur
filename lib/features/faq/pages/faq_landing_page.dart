@@ -82,40 +82,59 @@ class _FaqLandingPageState extends ConsumerState<FaqLandingPage> {
           ),
           const SizedBox(height: 12),
           PremiumCard(
-            child: Row(
-              children: [
-                const Icon(Icons.travel_explore_rounded),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        l10n.batch9FaqBrowseAllAction,
-                        style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                          fontWeight: FontWeight.w700,
-                        ),
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                final compact = constraints.maxWidth < 560;
+                final content = Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      l10n.batch9FaqBrowseAllAction,
+                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                        fontWeight: FontWeight.w700,
                       ),
-                      const SizedBox(height: 4),
-                      Text(
-                        l10n.batch9FaqBrowseAllSubtitle,
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: AppColors.onSurfaceSubtle,
-                        ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      l10n.batch9FaqBrowseAllSubtitle,
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: AppColors.onSurfaceSubtle,
                       ),
-                    ],
-                  ),
-                ),
-                const SizedBox(width: 12),
-                FilledButton.tonalIcon(
+                    ),
+                  ],
+                );
+                final button = FilledButton.tonalIcon(
                   onPressed: () => context.pushNamed(
                     'learnExploreAllKnowledge',
                     queryParameters: const {'category': 'faq'},
                   ),
                   icon: const Icon(Icons.open_in_new_rounded),
                   label: Text(l10n.batch9FaqBrowseAllAction),
-                ),
-              ],
+                );
+
+                if (compact) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Icon(Icons.travel_explore_rounded),
+                      const SizedBox(height: 12),
+                      content,
+                      const SizedBox(height: 12),
+                      SizedBox(width: double.infinity, child: button),
+                    ],
+                  );
+                }
+
+                return Row(
+                  children: [
+                    const Icon(Icons.travel_explore_rounded),
+                    const SizedBox(width: 12),
+                    Expanded(child: content),
+                    const SizedBox(width: 12),
+                    button,
+                  ],
+                );
+              },
             ),
           ),
           const SizedBox(height: 12),
@@ -138,25 +157,34 @@ class _FaqLandingPageState extends ConsumerState<FaqLandingPage> {
           ),
           const SizedBox(height: 8),
           categoriesAsync.when(
-            data: (categories) => GridView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: categories.length,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 10,
-                mainAxisSpacing: 10,
-                childAspectRatio: 0.95,
-              ),
-              itemBuilder: (context, index) {
-                final summary = categories[index];
-                return FaqCategoryCard(
-                  summary: summary,
-                  icon: _categoryIcon(summary.id),
-                  onTap: () => context.pushNamed(
-                    'faqCategory',
-                    pathParameters: {'categoryId': summary.id},
+            data: (categories) => LayoutBuilder(
+              builder: (context, constraints) {
+                final width = constraints.maxWidth;
+                final crossAxisCount = width >= 1040
+                    ? 3
+                    : (width >= 620 ? 2 : 1);
+                final mainAxisExtent = crossAxisCount == 1 ? 186.0 : 214.0;
+                return GridView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: categories.length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: crossAxisCount,
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 10,
+                    mainAxisExtent: mainAxisExtent,
                   ),
+                  itemBuilder: (context, index) {
+                    final summary = categories[index];
+                    return FaqCategoryCard(
+                      summary: summary,
+                      icon: _categoryIcon(summary.id),
+                      onTap: () => context.pushNamed(
+                        'faqCategory',
+                        pathParameters: {'categoryId': summary.id},
+                      ),
+                    );
+                  },
                 );
               },
             ),

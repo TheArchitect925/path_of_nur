@@ -127,7 +127,7 @@ void main() {
     );
   });
 
-  testWidgets('learn legacy route remains a stable compatibility surface', (
+  testWidgets('learn legacy route remains active in the pre-restructure router', (
     tester,
   ) async {
     final container = await makeRoutingTestContainer();
@@ -140,7 +140,7 @@ void main() {
     await pumpRouteFrames(tester);
 
     expect(find.byType(LearnPage), findsOneWidget);
-    expect(router.state.uri.path, '/learn/legacy');
+    expect(find.textContaining('/learn/legacy'), findsNothing);
   });
 
   test('active learn catalog items avoid compatibility-only route targets', () {

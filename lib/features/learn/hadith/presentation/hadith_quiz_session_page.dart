@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/theme/app_colors.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../../../shared/utils/reward_feedback.dart';
 import '../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../shared/presentation/learning_references.dart';
@@ -275,10 +276,13 @@ class _HadithQuizSessionPageState extends ConsumerState<HadithQuizSessionPage> {
               Text(result.encouragement),
               const SizedBox(height: 10),
               Text(
-                l10n.batch9XpReward('${result.xpAwarded}'),
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  fontWeight: FontWeight.w600,
-                  color: AppColors.onSurface,
+                buildCompactRewardSummary(
+                  l10n,
+                  xp: result.xpAwarded,
+                  drops: 0,
+                ),
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  color: AppColors.onSurfaceSubtle,
                 ),
               ),
               if (result.chapterMilestoneUnlocked ||

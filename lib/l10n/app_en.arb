@@ -783,17 +783,6 @@
       }
     }
   },
-  "duaHubCategorySummary": "{readyCount} ready • {plannedCount} planned",
-  "@duaHubCategorySummary": {
-    "placeholders": {
-      "readyCount": {
-        "type": "int"
-      },
-      "plannedCount": {
-        "type": "int"
-      }
-    }
-  },
   "duaHubCategoryTag": "{name} · {count}",
   "@duaHubCategoryTag": {
     "placeholders": {
@@ -1290,22 +1279,22 @@
   "worshipQiblaLocationLabel": "Current location",
   "worshipQiblaLocationUnknown": "Location unavailable",
   "worshipQiblaRefreshLocation": "Refresh location",
-"worshipQiblaMajorSitesTitle": "Distance to major Islamic sites",
-"worshipQiblaDistanceKmValue": "{distance} km",
-"@worshipQiblaDistanceKmValue": {
-  "placeholders": {
-    "distance": {
-      "type": "String"
+  "worshipQiblaMajorSitesTitle": "Distance to major Islamic sites",
+  "worshipQiblaDistanceKmValue": "{distance} km",
+  "@worshipQiblaDistanceKmValue": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
     }
-  }
-},
-"worshipQiblaSiteMasjidAlHaram": "Masjid al-Haram",
-"worshipQiblaSiteProphetsMosque": "Al-Masjid an-Nabawi",
-"worshipQiblaSiteAlAqsa": "Al-Aqsa Mosque",
-"worshipQiblaSiteQubaMosque": "Masjid Quba",
-"worshipQiblaLocationMakkah": "Makkah",
-"worshipQiblaLocationMadinah": "Madinah",
-"worshipQiblaLocationJerusalem": "Jerusalem",
+  },
+  "worshipQiblaSiteMasjidAlHaram": "Masjid al-Haram",
+  "worshipQiblaSiteProphetsMosque": "Al-Masjid an-Nabawi",
+  "worshipQiblaSiteAlAqsa": "Al-Aqsa Mosque",
+  "worshipQiblaSiteQubaMosque": "Masjid Quba",
+  "worshipQiblaLocationMakkah": "Makkah",
+  "worshipQiblaLocationMadinah": "Madinah",
+  "worshipQiblaLocationJerusalem": "Jerusalem",
   "homeSearchTooltip": "Search the app",
   "homeSearchHint": "Search pages, features, and sections",
   "homeSearchNoResults": "No matching section found.",
@@ -1767,6 +1756,8 @@
   "settingsCategoryNotificationsSubtitle": "Salah reminders and general reminder controls.",
   "settingsCategoryWidgetsWatchTitle": "Widgets, Live Activities & Watch",
   "settingsCategoryWidgetsWatchSubtitle": "Manage lock screen, Dynamic Island, and connected watch surfaces.",
+  "settingsWidgetsEnabledTitle": "Enable widgets",
+  "settingsWidgetsEnabledSubtitle": "Turn widget and live activity surfaces on or off from one place.",
   "settingsCategoryLanguageDownloadsSubtitle": "Language choices and download-ready content settings.",
   "settingsCategoryPrivacyDataSubtitle": "Control tracking visibility, privacy, and sensitive data behavior.",
   "settingsCategoryKidsFamilyTitle": "Kids & Family",
@@ -1864,11 +1855,12 @@
   "learnHubSearchHint": "Search across Qur’an, Hadith, Prophets, lessons, names...",
   "learnDiscoverySearchLessonsHint": "Search lessons...",
   "learnHubLandingSubtitleV3": "Continue your journeys, search quickly, and explore every learning path through clearer category ownership.",
-  "learnHubLandingCalmSubtitle": "Continue your journey, find today’s lesson, and open one calm learning path at a time.",
+  "learnHubLandingCalmSubtitle": "Discover organized teachings, essential topics, and guided study paths that make learning easier to follow and more rewarding to revisit.",
   "learnHubContinueJourneyTitle": "Continue Your Journey",
   "learnHubContinueJourneySubtitle": "Pick up the last lesson, story, or practice that still feels alive.",
   "learnHubDailyLearningLandingSubtitle": "A gentle next step for today.",
-  "learnHubVisibleIslandsTitle": "Choose a focus",
+  "learnHubStartJourneyTitle": "Start A Journey",
+  "learnHubVisibleIslandsTitle": "Choose your learning Preference",
   "learnHubVisibleIslandsSubtitle": "Begin with one area, then go deeper at your own pace.",
   "learnHubVisibleKidsIslandsSubtitle": "Choose one calm place to read, listen, play, or learn next.",
   "learnHubLandingBrowseJourneysTitle": "Open Guided Paths",
@@ -1962,6 +1954,16 @@
   "learnHubMainIslandCharacterTitle": "Character",
   "learnHubMainIslandStoriesTitle": "Stories",
   "learnHubMainIslandGamesTitle": "Games",
+  "learnHubMainIslandLearningPathTitle": "Learning Path",
+  "learnHubMainIslandLearningPathSubtitle": "All journey and guided path content in one place.",
+  "learnHubMainIslandSelfLearningTitle": "Self Learning",
+  "learnHubMainIslandSelfLearningSubtitle": "All learning content and focus areas in one place.",
+  "learnSelfLearningModulesTitle": "Learning Modules",
+  "learnSelfLearningModulesSubtitle": "Open any of the 9 learning modules and study at your own pace.",
+  "learnHubMainIslandQuizzesGamesTitle": "Games & Quizzes",
+  "learnHubMainIslandQuizzesGamesSubtitle": "All quizzes, challenges, and review games in one place.",
+  "learnHubMainIslandKidsLearningTitle": "Kids Learning",
+  "learnHubMainIslandKidsLearningSubtitle": "Stories, Qur''an, Arabic, and kid-friendly learning in one place.",
   "learnHubCategoryArabicLanguageTitle": "Arabic & Language",
   "learnHubCategoryArabicLanguageSubtitle": "Arabic learning stays focused here, while kid pathways remain under Kids Learning.",
   "learnHubCategoryKidsLearningTitle": "Kids Learning",
@@ -2873,33 +2875,69 @@
   "babyNamesCompareSubtitle": "See key details side by side before deciding.",
   "babyNamesOverviewTitle": "Library Overview",
   "babyNamesCollectionsTitle": "Curated Collections",
+  "babyNamesProphetsLabel": "Prophets",
+  "babyNamesCompanionsLabel": "Companions",
+  "babyNamesPopularLabel": "Popular",
+  "babyNamesByMeaningLabel": "By Meaning",
+  "babyNamesByOriginLabel": "By Origin",
+  "babyNamesFavoritesLabel": "Favorites",
   "babyNamesBoysLabel": "Boys",
   "babyNamesGirlsLabel": "Girls",
   "babyNamesUnisexLabel": "Unisex",
   "babyNamesQuranicLabel": "Qur’anic",
   "babyNamesCompanionLabel": "Companion",
+  "babyNamesMeaningExplorerTitle": "Meaning Explorer",
+  "babyNamesMeaningExplorerSubtitle": "Browse by themes like light and mercy.",
+  "babyNamesGeneratorTitle": "Name Generator",
+  "babyNamesGeneratorSubtitle": "Generate 1–3 suggestions.",
+  "babyNamesSeeAllAction": "See all",
+  "babyNamesCollectionsLoadError": "Unable to load featured collections right now.",
+  "babyNamesRecentSearchesTitle": "Recent searches",
+  "babyNamesNoRecentSearches": "No recent searches yet. Search by meaning, origin, or a specific name.",
+  "babyNamesRecentlyViewedTitle": "Recently viewed",
+  "babyNamesNoRecentlyViewed": "No recently viewed names yet. Open any name to build your recent activity.",
+  "babyNamesOfflineCount": "{count} names available offline",
+  "@babyNamesOfflineCount": {
+    "placeholders": {
+      "count": {}
+    }
+  },
   "babyNamesSavedCountLabel": "saved",
   "babyNamesShortlistCountLabel": "in shortlist",
   "babyNamesSelectedCountLabel": "selected",
   "babyNamesSearchHint": "Search by name, Arabic, transliteration, meaning, origin, or tags",
   "babyNamesFiltersTitle": "Filters",
+  "babyNamesAllLabel": "All",
   "babyNamesGenderLabel": "Gender",
   "babyNamesGenderAny": "Any",
   "babyNamesRegionFilterLabel": "Region",
   "babyNamesOriginFilterLabel": "Origin",
+  "babyNamesMeaningThemeLabel": "Meaning theme",
+  "babyNamesStartsWithLabel": "Starts with",
   "babyNamesRarityLabel": "Rarity",
   "babyNamesQuranicOnlyLabel": "Qur’anic names only",
   "babyNamesCompanionOnlyLabel": "Companion names only",
+  "babyNamesProphetAssociationLabel": "Prophet Association",
+  "babyNamesCompanionAssociationLabel": "Companion Association",
   "babyNamesAnyOption": "Any",
   "babyNamesSortLabel": "Sort",
   "babyNamesSortAlphabetical": "Alphabetical",
+  "babyNamesSortAlphabeticalAz": "Alphabetical A-Z",
+  "babyNamesSortAlphabeticalZa": "Alphabetical Z-A",
   "babyNamesSortPopularity": "Popularity",
+  "babyNamesSortMostPopular": "Most popular",
   "babyNamesSortQuranicPriority": "Qur’anic priority",
   "babyNamesSortShortest": "Shortest",
+  "babyNamesSortClassicFirst": "Classic first",
+  "babyNamesSortModernFirst": "Modern first",
+  "babyNamesSortShortestFirst": "Shortest first",
   "babyNamesSortMostSaved": "Most saved",
   "babyNamesClearFilters": "Clear",
+  "babyNamesResetFiltersAction": "Reset filters",
   "babyNamesResultsLabel": "results",
   "babyNamesNoResults": "No names match this combination yet. Try easing one or two filters.",
+  "babyNamesNoResultsHint": "Try removing a filter or exploring by meaning instead.",
+  "babyNamesExploreMeaningsAction": "Explore meanings",
   "babyNamesFavoriteAction": "Favorite",
   "babyNamesShortlistAction": "Shortlist",
   "babyNamesCompareAction": "Compare",
@@ -2936,6 +2974,42 @@
   "babyNamesFieldRoot": "Root",
   "babyNamesFieldTags": "Tags",
   "babyNamesOpenDetails": "Open details",
+  "babyNamesLoadError": "Unable to load names at the moment.",
+  "babyNamesFilterChipGender": "Gender: {value}",
+  "@babyNamesFilterChipGender": {
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "babyNamesFilterChipCategory": "Category: {value}",
+  "@babyNamesFilterChipCategory": {
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "babyNamesFilterChipOrigin": "Origin: {value}",
+  "@babyNamesFilterChipOrigin": {
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "babyNamesFilterChipTheme": "Theme: {value}",
+  "@babyNamesFilterChipTheme": {
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "babyNamesFilterChipLetter": "Letter: {value}",
+  "@babyNamesFilterChipLetter": {
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "babyNamesFilterChipProphetLinked": "Prophet linked",
+  "babyNamesFilterChipCompanionLinked": "Companion linked",
+  "babyNamesFeaturedLabel": "Featured",
+  "babyNamesClassicLabel": "Classic",
+  "babyNamesModernLabel": "Modern",
   "babyNamesRarityClassic": "Classic",
   "babyNamesRarityCommon": "Common",
   "babyNamesRarityUncommon": "Uncommon",
@@ -3005,6 +3079,20 @@
   "quranSearchNoRecent": "No recent searches yet.",
   "quranClearRecent": "Clear recent",
   "quranSearchNoResults": "No matches found. Try a different keyword.",
+  "quranReaderSourcesLicensingTitle": "Sources & Licensing",
+  "quranReaderSourcesArabicTextTitle": "Qur’an Arabic text (reader/search):",
+  "quranReaderSourcesArabicTextValue": "package:quran (Flutter package), based on Quran data bundled in package.",
+  "quranReaderSourcesTranslationsTitle": "Translations:",
+  "quranReaderSourcesTranslationsValue": "package:quran translation set (e.g., Saheeh International, Clear Quran, Urdu, Bengali, Indonesian, Turkish, Dari).",
+  "quranReaderSourcesTransliterationTitle": "Transliteration:",
+  "quranReaderSourcesTransliterationValue": "AlQuran.cloud API (edition: en.transliteration) cached locally on device.",
+  "quranReaderSourcesAudioTitle": "Audio recitations:",
+  "quranReaderSourcesAudioValue": "EveryAyah CDN (Husary, Alafasy, Abdul Basit).",
+  "quranReaderSourcesTimingTitle": "Word timing segments (live sync beta):",
+  "quranReaderSourcesTimingValue": "Quran.com API v4 (api.quran.com), recitations by ayah with segments.",
+  "quranReaderAttributionLinksTitle": "Attribution links",
+  "quranReaderOpenFullAttributionsAction": "Open full Attributions & Licenses page",
+  "quranReaderSourcesLaunchNote": "Note: verify production usage terms with each provider before public launch, especially audio redistribution rights.",
   "salahCurrentPrayerBadge": "Current prayer",
   "salahNextPrayerBadge": "Next prayer",
   "salahNotificationOff": "Off",
@@ -3028,6 +3116,64 @@
   "salahReflectionHeaderNote": "Pinned as the spiritual header for this section.",
   "salahOpenInQuranAction": "Open in Quran",
   "salahTrackSalahTitle": "Track Salah",
+  "salahCurrentSalahTitle": "Current Salah",
+  "salahTrackCurrentSalah": "Track this current salah",
+  "salahMostRecentUntracked": "Most recent untracked salah",
+  "salahRakatsLabel": "{count} Rakats",
+  "@salahRakatsLabel": {
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "salahOfferTimeLabel": "Offer time",
+  "salahOfferWindowLabel": "Offer window",
+  "salahWindowValue": "{start} to {end}",
+  "@salahWindowValue": {
+    "placeholders": {
+      "start": {},
+      "end": {}
+    }
+  },
+  "salahBecomesQadaAfterLabel": "Becomes qada after",
+  "salahTimeRemainingToOfferLabel": "Time remaining to offer",
+  "salahMakeUpFromLabel": "Make up from",
+  "salahStartsInLabel": "Starts in {duration}",
+  "@salahStartsInLabel": {
+    "placeholders": {
+      "duration": {}
+    }
+  },
+  "salahOfferWindowEnded": "Offer window ended",
+  "salahNoActiveSalah": "No active salah",
+  "salahNoUpcomingSalah": "No upcoming salah",
+  "salahOfferBySummary": "Offer by {time} • {status}",
+  "@salahOfferBySummary": {
+    "placeholders": {
+      "time": {},
+      "status": {}
+    }
+  },
+  "salahBeginsAtSummary": "Begins at {time} • {status}",
+  "@salahBeginsAtSummary": {
+    "placeholders": {
+      "time": {},
+      "status": {}
+    }
+  },
+  "salahRakatGuideTitle": "Salah Rakat Guide",
+  "salahRakatGuidePrayerColumn": "Salah",
+  "salahRakatGuideSunnahColumn": "Sunnah",
+  "salahRakatGuideFardColumn": "Fard",
+  "salahRakatGuideNaflColumn": "Nafl / Witr",
+  "salahRakatGuideFajrSunnah": "2 before",
+  "salahRakatGuideDhuhrSunnah": "4 before, 2 after",
+  "salahRakatGuideDhuhrNafl": "2 after",
+  "salahRakatGuideAsrSunnah": "4 before",
+  "salahRakatGuideMaghribSunnah": "2 after",
+  "salahRakatGuideMaghribNafl": "2 after",
+  "salahRakatGuideIshaSunnah": "2 after",
+  "salahRakatGuideIshaNafl": "3 witr + 2 nafl",
+  "salahStartedLabel": "Started",
   "salahQuickActionsTitle": "Quick actions",
   "salahQuickTrackOnTime": "On time",
   "salahQuickTrackLate": "Late",
@@ -16347,6 +16493,13 @@
     }
   },
   "onboardingSkipAction": "Skip",
+  "onboardingProgressValue": "{current} / {total}",
+  "@onboardingProgressValue": {
+    "placeholders": {
+      "current": {},
+      "total": {}
+    }
+  },
   "onboardingSettingsHintBody": "You can change this anytime in Settings.",
   "onboardingBeginJourneyAction": "Begin your journey",
   "onboardingContinueAction": "Continue",
@@ -16358,12 +16511,12 @@
   "onboardingLanguageSubtitle": "Select the language you would like to use in the app.",
   "onboardingAgeRangeTitle": "Which age range are you in?",
   "onboardingAgeRangeSubtitle": "This helps us keep examples and recommendations relevant to your stage of life.",
-  "onboardingAgeRangeUnder18": "Under 18",
-  "onboardingAgeRange18To24": "18-24",
-  "onboardingAgeRange25To34": "25-34",
-  "onboardingAgeRange35To44": "35-44",
-  "onboardingAgeRange45To54": "45-54",
-  "onboardingAgeRange55Plus": "55+",
+  "onboardingAgeRangeUnder18": "0-7",
+  "onboardingAgeRange18To24": "7-14",
+  "onboardingAgeRange25To34": "14-21",
+  "onboardingAgeRange35To44": "21+",
+  "onboardingAgeRange45To54": "21+",
+  "onboardingAgeRange55Plus": "21+",
   "onboardingExperienceTitle": "Which description fits your journey with Islam best?",
   "onboardingExperienceSubtitle": "We use this to set a better starting tone, pacing, and learning depth for your experience. Your selection is saved and used to shape guidance across the app.",
   "onboardingExperienceExploring": "Exploring Islam",
@@ -16408,10 +16561,8 @@
   "onboardingTextSizeTitle": "Text size",
   "onboardingRemindersTitle": "How would you like to be reminded?",
   "onboardingRemindersSubtitle": "Choose a light reminder setup for salah and daily routines. You can fine-tune everything later.",
-  "onboardingSalahReminderStylesTitle": "Salah reminder styles",
   "onboardingReminderNotificationOnly": "Notification only",
   "onboardingReminderAdhanNotification": "Adhan notification",
-  "onboardingReminderForceAdhan": "Force Adhan",
   "onboardingDailyQuranReminderTitle": "Daily Qur''an reading reminder",
   "onboardingDailyLessonReminderTitle": "Daily lesson reminder",
   "onboardingTrackingTitle": "What would you like to keep in view?",
@@ -16454,10 +16605,6 @@
   "onboardingFinalWelcomeBody": "Your journey begins with intention, and it grows through small consistent steps. Path of Nur is here to support your learning, remembrance, reflection, and daily progress.",
   "onboardingFocusListTitle": "Your chosen focus areas:",
   "onboardingKnowledgeDuaMeaning": "My Lord, increase me in knowledge.",
-  "onboardingReminderHelpTitle": "Adhan reminder options",
-  "onboardingReminderHelpNotificationOnly": "Notification only: a standard reminder without adhan audio.",
-  "onboardingReminderHelpAdhanNotification": "Adhan notification: sends a reminder with adhan-style audio when the prayer begins.",
-  "onboardingReminderHelpForceAdhan": "Force Adhan: will play Adhan audio even if the phone is set to silent.",
   "onboardingLanguageSystemDefault": "System Default",
   "onboardingLanguageEnglish": "English",
   "onboardingLanguageArabic": "Arabic (العربية)",
@@ -17741,7 +17888,7 @@
   "onboardingOpeningSupportLine": "This short setup will personalize your experience.",
   "onboardingOpeningPlatformFooter": "Available across iPhone, iPad, Apple Watch, Mac, Apple TV, Windows, and Android.",
   "onboardingFinalWelcomeClosingBody": "Take it one sincere step at a time. Meaningful progress is built through small, steady acts.",
-  "onboardingDisclaimerTitle": "A Gentle Note Before You Begin",
+  "onboardingDisclaimerTitle": "Disclaimer and Note",
   "onboardingDisclaimerIntroBody": "Path of Nur is not a fatwa app.\nIt is a companion for learning, reflection, worship, and growth.",
   "onboardingDisclaimerSourcesBody": "The app draws from the Qur’an and Hadith, which are the primary sources of Islamic guidance, along with widely accepted foundational material.",
   "onboardingDisclaimerNeutralBody": "Content is presented in a broad and neutral way, rather than as personal guidance from a specific scholar or imam.",
@@ -17749,7 +17896,6 @@
   "onboardingDisclaimerSeekScholarBody": "For personal, sensitive, or complex matters, users should seek guidance from a qualified person of knowledge.",
   "onboardingDisclaimerFeedbackBody": "Feedback, corrections, and enhancement requests are always welcome and help Path of Nur improve over time.",
   "onboardingDisclaimerFooter": "Built to support your journey, not replace scholarship.",
-  "onboardingArabicReadModePreviewHint": "A preview is available lower down on this page to help you compare examples and adjust these settings.",
   "onboardingThemeTitle": "Choose your theme",
   "onboardingThemeSubtitle": "Pick the atmosphere that feels most at home in your journey. Changes apply instantly as you explore the previews below.",
   "onboardingThemePreviewTitle": "Live preview",
@@ -17760,5 +17906,65 @@
   "onboardingThemeSampleChipReading": "Reading",
   "onboardingThemeSampleChipReflection": "Reflection",
   "onboardingThemeSampleCardTitle": "Today’s gentle focus",
-  "onboardingThemeSampleCardBody": "A softer look can make reading and reflection feel calmer. A stronger-contrast theme can make longer sessions easier."
+  "onboardingThemeSampleCardBody": "A softer look can make reading and reflection feel calmer. A stronger-contrast theme can make longer sessions easier.",
+  "mainPageSearchHint": "Search sections and tools",
+  "mainPageSearchEmptyTitle": "No matches yet",
+  "mainPageSearchEmptySubtitle": "Try another word or browse the main sections.",
+  "learnHubLearningPathCardSubtitleNoPath": "Find your guided path",
+  "learnPathLevelFoundationsTitle": "Foundations",
+  "learnPathLevelGrowingTitle": "Growing",
+  "learnPathLevelDeepDiveTitle": "Deep Dive",
+  "settingsPageTransitionsTitle": "Page transitions",
+  "settingsPageTransitionsSubtitle": "Choose how pages move through the app.",
+  "settingsReduceMotionTransitionOverrideSubtitle": "Reduce Motion turns off extra transition effects across the app.",
+  "settingsLearningLevelTitle": "Learning level",
+  "settingsRunOnboardingTitle": "Run onboarding again",
+  "settingsRunOnboardingSubtitle": "Review and update your setup choices.",
+  "settingsPageTransitionStyleDefault": "Default",
+  "settingsPageTransitionStyleGentleFade": "Gentle fade",
+  "settingsPageTransitionStyleIos": "iOS-style",
+  "settingsPageTransitionStyleNone": "None",
+  "onboardingRemindersDisableAllAction": "Turn off all notifications",
+  "onboardingReminderNone": "No notification",
+  "onboardingAccountOptionsTitle": "Optional sign in and backup",
+  "onboardingAccountOptionsBody": "Path of Nūr does not collect your learning data by default. Sign in is only for backup, restore, and cross-device sync where available.",
+  "onboardingAccountOptionsManualBackupBody": "You can also back up your data manually later from Settings.",
+  "historyNoEventsForThisDate": "There are no events for this date.",
+  "worshipQiblaUnavailableOnIpadTitle": "Qibla finder unavailable on iPad",
+  "worshipQiblaUnavailableOnIpadBody": "Qibla finder does not correctly work on iPad due to hardware limitations.",
+  "gardenPageRecentGrowthTracked": "Tracked",
+  "hadithReflectionCompletedQuiet": "Reflection completed.",
+  "hadithLessonCompletedQuiet": "Lesson completed.",
+  "bedtimeStoriesCompletionSnackQuiet": "Story completed.",
+  "bedtimeStoryLearningCompletionSnackQuiet": "Activity completed.",
+  "kidsArabicTraceCompletionSubtitleQuiet": "Your progress has been saved.",
+  "learningJourneyLessonSectionProgressSubtitle": "Complete this section to save your progress.",
+  "rewardQuietProgressSaved": "Progress saved.",
+  "triviaHomeRecentPerformanceSummaryQuiet": "{category} · {correct} of {total} correct",
+  "@triviaHomeRecentPerformanceSummaryQuiet": {
+    "placeholders": {
+      "category": {},
+      "correct": {},
+      "total": {}
+    }
+  },
+  "rewardQuietCompletionSummaryXpDrops": "{xp} XP · {drops} drops saved",
+  "@rewardQuietCompletionSummaryXpDrops": {
+    "placeholders": {
+      "xp": {},
+      "drops": {}
+    }
+  },
+  "rewardQuietCompletionSummaryXpOnly": "{xp} XP saved",
+  "@rewardQuietCompletionSummaryXpOnly": {
+    "placeholders": {
+      "xp": {}
+    }
+  },
+  "rewardQuietCompletionSummaryDropsOnly": "{drops} drops saved",
+  "@rewardQuietCompletionSummaryDropsOnly": {
+    "placeholders": {
+      "drops": {}
+    }
+  }
 }

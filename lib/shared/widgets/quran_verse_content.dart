@@ -50,11 +50,15 @@ class QuranVerseContent extends ConsumerWidget {
     this.arabicBaseSize = 30,
     this.transliterationBaseSize = 13.5,
     this.translationBaseSize = 12.8,
+    this.referenceBaseSize,
     this.arabicTransform,
     this.transliterationTransform,
     this.translationTransform,
     this.transliterationColor,
     this.translationColor,
+    this.arabicTextAlign,
+    this.supportTextAlign,
+    this.referenceTextAlign,
   });
 
   final QuranVerseSource source;
@@ -64,16 +68,21 @@ class QuranVerseContent extends ConsumerWidget {
   final double arabicBaseSize;
   final double transliterationBaseSize;
   final double translationBaseSize;
+  final double? referenceBaseSize;
   final String Function(String arabic)? arabicTransform;
   final String Function(String transliteration)? transliterationTransform;
   final String Function(String translation)? translationTransform;
   final Color? transliterationColor;
   final Color? translationColor;
+  final TextAlign? arabicTextAlign;
+  final TextAlign? supportTextAlign;
+  final TextAlign? referenceTextAlign;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final settings = ref.watch(quranReaderSettingsProvider);
-    final effectiveRef = source.ref ?? tryParseQuranQuoteRef(source.referenceText);
+    final effectiveRef =
+        source.ref ?? tryParseQuranQuoteRef(source.referenceText);
     final contentAsync = effectiveRef == null
         ? null
         : ref.watch(quranQuoteContentProvider(effectiveRef));
@@ -91,13 +100,15 @@ class QuranVerseContent extends ConsumerWidget {
     final reference = source.displayReference;
 
     final arabicScale = settings.arabicScalePercent / 100.0;
-    final transliterationScale =
-        settings.transliterationScalePercent / 100.0;
+    final transliterationScale = settings.transliterationScalePercent / 100.0;
     final translationScale = settings.translationScalePercent / 100.0;
     final crossAxisAlignment = center
         ? CrossAxisAlignment.center
         : CrossAxisAlignment.start;
     final textAlign = center ? TextAlign.center : TextAlign.start;
+    final resolvedArabicTextAlign = arabicTextAlign ?? textAlignForContent(arabic);
+    final resolvedSupportTextAlign = supportTextAlign ?? textAlign;
+    final resolvedReferenceTextAlign = referenceTextAlign ?? textAlign;
     final referenceColor = QuranPresentationStyle.translucentHarakatColor(
       context,
     );
@@ -122,10 +133,11 @@ class QuranVerseContent extends ConsumerWidget {
                 buildQuranTextWithColoredHarakat(
                   arabic,
                   verseStyle,
-                  harakatColor:
-                      QuranPresentationStyle.translucentHarakatColor(context),
+                  harakatColor: QuranPresentationStyle.translucentHarakatColor(
+                    context,
+                  ),
                 ),
-                textAlign: textAlignForContent(arabic),
+                textAlign: resolvedArabicTextAlign,
                 textDirection: textDirectionForContent(arabic),
                 strutStyle: StrutStyle(
                   fontFamily: verseStyle.fontFamily,
@@ -153,7 +165,7 @@ class QuranVerseContent extends ConsumerWidget {
           SizedBox(height: dense ? 8 : 10),
           Text(
             transliteration,
-            textAlign: textAlign,
+            textAlign: resolvedSupportTextAlign,
             style: QuranPresentationStyle.quranSupportTextStyle(
               context,
               Theme.of(context).textTheme.bodyMedium?.copyWith(
@@ -173,7 +185,7 @@ class QuranVerseContent extends ConsumerWidget {
           SizedBox(height: dense ? 6 : 8),
           Text(
             translation,
-            textAlign: textAlign,
+            textAlign: resolvedSupportTextAlign,
             style: QuranPresentationStyle.quranSupportTextStyle(
               context,
               Theme.of(context).textTheme.bodyMedium?.copyWith(
@@ -192,10 +204,10 @@ class QuranVerseContent extends ConsumerWidget {
           SizedBox(height: dense ? 8 : 10),
           Text(
             reference,
-            textAlign: textAlign,
+            textAlign: resolvedReferenceTextAlign,
             style: TextStyle(
               color: referenceColor,
-              fontSize: dense ? 11 : 11.5,
+              fontSize: referenceBaseSize ?? (dense ? 11 : 11.5),
               fontWeight: FontWeight.w700,
             ),
           ),

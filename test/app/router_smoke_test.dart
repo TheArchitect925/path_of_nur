@@ -14,7 +14,6 @@ import 'package:path_of_nur/features/learn/dua/presentation/dua_hub_page.dart';
 import 'package:path_of_nur/features/learn/presentation/pages/learn_explore_all_knowledge_page.dart';
 import 'package:path_of_nur/features/learn/presentation/pages/learning_section_landing_page.dart';
 import 'package:path_of_nur/features/learn/presentation/pages/learn_quizzes_hub_page.dart';
-import 'package:path_of_nur/features/learn/presentation/learn_page.dart';
 import 'package:path_of_nur/features/learn/presentation/pages/quran_app_hub_page.dart';
 import 'package:path_of_nur/features/learn/guided_paths/presentation/daily_dhikr_path_next_steps_page.dart';
 import 'package:path_of_nur/features/learn/guided_paths/presentation/foundations_path_next_steps_page.dart';
@@ -77,7 +76,6 @@ void main() {
       ('/journey', JourneyPage),
       ('/quran', QuranAppHubPage),
       ('/settings', SettingsPage),
-      ('/learn/legacy', LearnPage),
       ('/accounts-sync', AccountsProfilesSyncPage),
       ('/accounts-sync/sync-details', SyncDetailsPage),
       ('/accounts-sync/backup', BackupRestoreHomePage),

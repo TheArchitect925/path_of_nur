@@ -8,13 +8,8 @@ class LearningRelatedLink {
 }
 
 class LearningRelatedContent extends StatelessWidget {
-  const LearningRelatedContent({
-    super.key,
-    required this.title,
-    required this.items,
-  });
+  const LearningRelatedContent({super.key, required this.items});
 
-  final String title;
   final List<LearningRelatedLink> items;
 
   @override
@@ -23,13 +18,6 @@ class LearningRelatedContent extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          title,
-          style: Theme.of(
-            context,
-          ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
-        ),
-        const SizedBox(height: 8),
         Wrap(
           spacing: 8,
           runSpacing: 8,
@@ -46,4 +34,3 @@ class LearningRelatedContent extends StatelessWidget {
     );
   }
 }
-

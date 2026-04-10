@@ -113,18 +113,39 @@ class _QuranTeachingLessonPageState
           children: [
             const ArabicLearningPlaybackSpeedToggle(),
             const SizedBox(height: 12),
-            Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    widget.module.title,
-                    style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                      color: AppColors.onSurfaceSubtle,
+            LayoutBuilder(
+              builder: (context, constraints) {
+                final compactHeader = constraints.maxWidth < 360;
+                if (compactHeader) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        widget.module.title,
+                        style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                          color: AppColors.onSurfaceSubtle,
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+                      Text('$currentPage / $totalPages'),
+                    ],
+                  );
+                }
+                return Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        widget.module.title,
+                        style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                          color: AppColors.onSurfaceSubtle,
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-                Text('$currentPage / $totalPages'),
-              ],
+                    const SizedBox(width: 12),
+                    Text('$currentPage / $totalPages'),
+                  ],
+                );
+              },
             ),
             const SizedBox(height: 8),
             LinearProgressIndicator(
@@ -520,63 +541,88 @@ class _LessonStepBody extends StatelessWidget {
                     borderRadius: BorderRadius.circular(18),
                     border: Border.all(color: AppColors.surfaceSoft),
                   ),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
+                  child: LayoutBuilder(
+                    builder: (context, constraints) {
+                      final compactExample = constraints.maxWidth < 420;
+                      final details = Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            example.arabic,
+                            textDirection: TextDirection.rtl,
+                            style: const TextStyle(
+                              fontSize: 28,
+                              fontFamily: 'AmiriQuran',
+                            ),
+                          ),
+                          if (example.transliteration != null)
+                            Text(example.transliteration!),
+                          if (example.meaning != null)
                             Text(
-                              example.arabic,
-                              textDirection: TextDirection.rtl,
-                              style: const TextStyle(
-                                fontSize: 28,
-                                fontFamily: 'AmiriQuran',
+                              example.meaning!,
+                              style: Theme.of(context).textTheme.bodySmall,
+                            ),
+                          if (example.verseReference != null)
+                            Padding(
+                              padding: const EdgeInsets.only(top: 4),
+                              child: Text(
+                                l10n.quranTeachingLessonSourceLabel(
+                                  example.verseReference!,
+                                ),
+                                style: Theme.of(context).textTheme.bodySmall
+                                    ?.copyWith(
+                                      color: AppColors.onSurfaceSubtle,
+                                      fontWeight: FontWeight.w600,
+                                    ),
                               ),
                             ),
-                            if (example.transliteration != null)
-                              Text(example.transliteration!),
-                            if (example.meaning != null)
-                              Text(
-                                example.meaning!,
-                                style: Theme.of(context).textTheme.bodySmall,
+                          if (visualModeEnabled && example.visualAnchor != null)
+                            Padding(
+                              padding: const EdgeInsets.only(top: 6),
+                              child: Text(
+                                '${example.visualAnchor!.label} • ${example.visualAnchor!.hint}',
+                                style: Theme.of(context).textTheme.bodySmall
+                                    ?.copyWith(
+                                      color: AppColors.onSurfaceSubtle,
+                                    ),
                               ),
-                            if (example.verseReference != null)
-                              Padding(
-                                padding: const EdgeInsets.only(top: 4),
-                                child: Text(
-                                  l10n.quranTeachingLessonSourceLabel(
-                                    example.verseReference!,
-                                  ),
-                                  style: Theme.of(context).textTheme.bodySmall
-                                      ?.copyWith(
-                                        color: AppColors.onSurfaceSubtle,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                ),
+                            ),
+                        ],
+                      );
+                      final audioButton = example.audio == null
+                          ? null
+                          : QuranTeachingAudioIconButton(
+                              audio: example.audio,
+                              availableIcon: Icons.volume_up_rounded,
+                              onAvailablePressed: () =>
+                                  onPlayAudio(example.audio!),
+                            );
+                      if (compactExample) {
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            details,
+                            if (audioButton != null) ...[
+                              const SizedBox(height: 10),
+                              Align(
+                                alignment: Alignment.centerLeft,
+                                child: audioButton,
                               ),
-                            if (visualModeEnabled &&
-                                example.visualAnchor != null)
-                              Padding(
-                                padding: const EdgeInsets.only(top: 6),
-                                child: Text(
-                                  '${example.visualAnchor!.label} • ${example.visualAnchor!.hint}',
-                                  style: Theme.of(context).textTheme.bodySmall
-                                      ?.copyWith(
-                                        color: AppColors.onSurfaceSubtle,
-                                      ),
-                                ),
-                              ),
+                            ],
                           ],
-                        ),
-                      ),
-                      if (example.audio != null)
-                        QuranTeachingAudioIconButton(
-                          audio: example.audio,
-                          availableIcon: Icons.volume_up_rounded,
-                          onAvailablePressed: () => onPlayAudio(example.audio!),
-                        ),
-                    ],
+                        );
+                      }
+                      return Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(child: details),
+                          if (audioButton != null) ...[
+                            const SizedBox(width: 8),
+                            audioButton,
+                          ],
+                        ],
+                      );
+                    },
                   ),
                 ),
               ),
@@ -684,24 +730,47 @@ class _QuizBody extends StatelessWidget {
             ),
           ),
         ] else if (quiz.type == QuranTeachingQuizType.trueFalse) ...[
-          Row(
-            children: [
-              Expanded(
-                child: ChoiceChip(
-                  label: Text(l10n.quranTeachingDailyReviewTrue),
-                  selected: selectedTrueFalse == true,
-                  onSelected: (_) => onSelectTrueFalse(true),
-                ),
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: ChoiceChip(
-                  label: Text(l10n.quranTeachingDailyReviewFalse),
-                  selected: selectedTrueFalse == false,
-                  onSelected: (_) => onSelectTrueFalse(false),
-                ),
-              ),
-            ],
+          LayoutBuilder(
+            builder: (context, constraints) {
+              final compactChoices = constraints.maxWidth < 380;
+              if (compactChoices) {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    ChoiceChip(
+                      label: Text(l10n.quranTeachingDailyReviewTrue),
+                      selected: selectedTrueFalse == true,
+                      onSelected: (_) => onSelectTrueFalse(true),
+                    ),
+                    const SizedBox(height: 10),
+                    ChoiceChip(
+                      label: Text(l10n.quranTeachingDailyReviewFalse),
+                      selected: selectedTrueFalse == false,
+                      onSelected: (_) => onSelectTrueFalse(false),
+                    ),
+                  ],
+                );
+              }
+              return Row(
+                children: [
+                  Expanded(
+                    child: ChoiceChip(
+                      label: Text(l10n.quranTeachingDailyReviewTrue),
+                      selected: selectedTrueFalse == true,
+                      onSelected: (_) => onSelectTrueFalse(true),
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: ChoiceChip(
+                      label: Text(l10n.quranTeachingDailyReviewFalse),
+                      selected: selectedTrueFalse == false,
+                      onSelected: (_) => onSelectTrueFalse(false),
+                    ),
+                  ),
+                ],
+              );
+            },
           ),
         ] else ...[
           ...quiz.options.map(
@@ -845,37 +914,42 @@ class _SharedLetterSupportCard extends StatelessWidget {
             ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
           ),
           const SizedBox(height: 8),
-          GridView.count(
-            crossAxisCount: 2,
-            mainAxisSpacing: 8,
-            crossAxisSpacing: 8,
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            childAspectRatio: 2.1,
-            children: [
-              _LetterFormTile(
-                label: l10n.quranTeachingLessonFormIsolated,
-                glyph: letter.positionalForms.isolated,
-              ),
-              _LetterFormTile(
-                label: l10n.quranTeachingLessonFormInitial,
-                glyph:
-                    letter.positionalForms.initial ??
-                    l10n.quranTeachingLessonFormUnavailable,
-              ),
-              _LetterFormTile(
-                label: l10n.quranTeachingLessonFormMedial,
-                glyph:
-                    letter.positionalForms.medial ??
-                    l10n.quranTeachingLessonFormUnavailable,
-              ),
-              _LetterFormTile(
-                label: l10n.quranTeachingLessonFormFinal,
-                glyph:
-                    letter.positionalForms.finalForm ??
-                    l10n.quranTeachingLessonFormUnavailable,
-              ),
-            ],
+          LayoutBuilder(
+            builder: (context, constraints) {
+              final compactGrid = constraints.maxWidth < 360;
+              return GridView.count(
+                crossAxisCount: compactGrid ? 1 : 2,
+                mainAxisSpacing: 8,
+                crossAxisSpacing: 8,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                childAspectRatio: compactGrid ? 3.8 : 2.1,
+                children: [
+                  _LetterFormTile(
+                    label: l10n.quranTeachingLessonFormIsolated,
+                    glyph: letter.positionalForms.isolated,
+                  ),
+                  _LetterFormTile(
+                    label: l10n.quranTeachingLessonFormInitial,
+                    glyph:
+                        letter.positionalForms.initial ??
+                        l10n.quranTeachingLessonFormUnavailable,
+                  ),
+                  _LetterFormTile(
+                    label: l10n.quranTeachingLessonFormMedial,
+                    glyph:
+                        letter.positionalForms.medial ??
+                        l10n.quranTeachingLessonFormUnavailable,
+                  ),
+                  _LetterFormTile(
+                    label: l10n.quranTeachingLessonFormFinal,
+                    glyph:
+                        letter.positionalForms.finalForm ??
+                        l10n.quranTeachingLessonFormUnavailable,
+                  ),
+                ],
+              );
+            },
           ),
           if (!letter.joiningBehavior.joinsToNext) ...[
             const SizedBox(height: 10),

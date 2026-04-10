@@ -216,9 +216,7 @@ class _BedtimeStoryQuizPageState extends ConsumerState<BedtimeStoryQuizPage> {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
                               content: Text(
-                                l10n.bedtimeStoryLearningCompletionSnack(
-                                  outcome.xpAwarded,
-                                ),
+                                l10n.bedtimeStoryLearningCompletionSnackQuiet,
                               ),
                             ),
                           );

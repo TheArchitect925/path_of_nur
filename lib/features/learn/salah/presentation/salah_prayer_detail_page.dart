@@ -25,11 +25,14 @@ class SalahPrayerDetailPage extends ConsumerWidget {
     final prayer = ref.watch(salahTrainerPrayerByIdProvider(prayerId));
     final settings = ref.watch(prayerSettingsProvider);
     if (prayer == null) {
-      return Scaffold(body: Center(child: Text(l10n.salahPrayerDetailNotFound)));
+      return Scaffold(
+        body: Center(child: Text(l10n.salahPrayerDetailNotFound)),
+      );
     }
-    final madhhabLabel =
+    final madhhabKey =
         prayerMadhabKey[settings.preferences.madhab] ?? "Shafi'i";
-    final madhhabNote = prayer.madhhabGuidance[madhhabLabel];
+    final madhhabLabel = settings.preferences.madhab.localizedLabel(l10n);
+    final madhhabNote = prayer.madhhabGuidance[madhhabKey];
 
     return LearnHubPageScaffold(
       title: prayer.title,

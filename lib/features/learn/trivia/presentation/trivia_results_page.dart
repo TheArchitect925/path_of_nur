@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 
 import '../../../../core/theme/app_colors.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../../../shared/utils/reward_feedback.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../presentation/widgets/learn_hub_page_scaffold.dart';
 import '../application/trivia_controller.dart';
@@ -72,26 +73,6 @@ class IslamicTriviaResultsPage extends ConsumerWidget {
             ),
           ],
         ),
-        const SizedBox(height: 10),
-        Row(
-          children: [
-            TriviaStatTile(
-              label: l10n.triviaResultsXpGainedLabel,
-              value: '+${numberFormat.format(result.xpEarned)}',
-              caption: result.wasPerfect
-                  ? l10n.triviaResultsPerfectBonusIncluded
-                  : null,
-            ),
-            const SizedBox(width: 10),
-            TriviaStatTile(
-              label: l10n.triviaHomeOceanDropsLabel,
-              value: '+${numberFormat.format(result.oceanDropsEarned)}',
-              caption: result.wasDailyReplay
-                  ? l10n.triviaResultsReplayRewardsLighter
-                  : null,
-            ),
-          ],
-        ),
         const SizedBox(height: 14),
         PremiumCard(
           child: Column(
@@ -111,6 +92,17 @@ class IslamicTriviaResultsPage extends ConsumerWidget {
                   numberFormat.format(result.totalAnswered),
                   numberFormat.format(result.correctCount),
                   numberFormat.format(result.totalAnswered),
+                ),
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  color: AppColors.onSurfaceSubtle,
+                ),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                buildCompactRewardSummary(
+                  l10n,
+                  xp: result.xpEarned,
+                  drops: result.oceanDropsEarned,
                 ),
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: AppColors.onSurfaceSubtle,

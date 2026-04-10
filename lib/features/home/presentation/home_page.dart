@@ -10,7 +10,6 @@ import '../../../core/prayer/prayer_preferences.dart';
 import '../../../core/prayer/prayer_location_search_service.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_surfaces.dart';
-import '../../../core/theme/app_theme.dart';
 import '../../../features/celestial/presentation/widgets/celestial_cycle_card.dart';
 import '../../../features/history/presentation/widgets/on_this_day_home_card.dart';
 import '../application/home_calendar_progress_provider.dart';
@@ -67,9 +66,18 @@ String _formatLocalizedCount(BuildContext context, num value) {
   ).format(value);
 }
 
+String _formatHomePrayerTrackerTotal(
+  BuildContext context, {
+  required int trackedPrayerTotal,
+  required bool includeTahajjudOffer,
+}) {
+  return _formatLocalizedCount(context, trackedPrayerTotal);
+}
+
 const int _shortcutDailyDhikrGoal = 500;
 const double _homeFloatingShortcutBottomOffset = 92;
 const double _homeFloatingShortcutContentPadding = 136;
+const Color _homePrimaryTextColor = Color(0xFF25221E);
 
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
@@ -83,10 +91,15 @@ class HomePage extends ConsumerStatefulWidget {
 class _HomePageState extends ConsumerState<HomePage> {
   @override
   Widget build(BuildContext context) {
+    final homeTextTheme = Theme.of(context).textTheme.apply(
+      bodyColor: _homePrimaryTextColor,
+      displayColor: _homePrimaryTextColor,
+    );
     final l10n = AppLocalizations.of(context);
     final userProfile = ref.watch(userProfileProvider);
     final verseVersion = ref.watch(homeVerseVersionProvider);
     final worshipSummary = ref.watch(worshipSummaryProvider);
+    final scheduleContext = ref.watch(prayerScheduleContextProvider);
     final isKidsMode = ref.watch(
       specialModeProvider.select((mode) => mode.isKids),
     );
@@ -105,79 +118,87 @@ class _HomePageState extends ConsumerState<HomePage> {
     );
     final displayVerse =
         homeContextualQuotePool[verseVersion % homeContextualQuotePool.length];
+    final includesTahajjudOffer = scheduleContext.items.any(
+      (item) => item.id == 'tahajjud',
+    );
+    final trackedPrayerTotal = math.max(worshipSummary.prayerTotal, 5);
+    final salahProgressText =
+        '${_formatLocalizedCount(context, worshipSummary.prayerCompleted)}/${_formatHomePrayerTrackerTotal(context, trackedPrayerTotal: trackedPrayerTotal, includeTahajjudOffer: includesTahajjudOffer)}';
 
-    return SafeArea(
-      child: Stack(
-        children: [
-          SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
-            padding: const EdgeInsets.fromLTRB(
-              18,
-              8,
-              18,
-              _homeFloatingShortcutContentPadding,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                _TopGreetingBlock(l10n: l10n, userProfile: userProfile),
-                const SizedBox(height: 12),
-                _AyahCard(
-                  verse: displayVerse,
-                  onTap: () => ref
-                      .read(homeVerseVersionProvider.notifier)
-                      .update((state) {
-                        final poolLength = homeContextualQuotePool.length;
-                        if (poolLength <= 1) {
-                          return state;
-                        }
-                        var next = HomePage._verseRandom.nextInt(poolLength);
-                        final current = state % poolLength;
-                        while (next == current) {
-                          next = HomePage._verseRandom.nextInt(poolLength);
-                        }
-                        return next;
-                      }),
-                ),
-                const SizedBox(height: 14),
-                const _ModeAwareHomeCard(),
-                const SizedBox(height: 10),
-                _SalahSummaryCard(l10n: l10n),
-                const SizedBox(height: 12),
-                const _DailySalahTimingsCard(),
-                const SizedBox(height: 12),
-                const OnThisDayHomeCard(),
-                const SizedBox(height: 12),
-                const CelestialCycleCard(collapsible: true),
-                const SizedBox(height: 12),
-                _TodayContentSection(
-                  quranBundle: quranBundle,
-                  spiritualMoment: spiritualMoment,
-                ),
-                const SizedBox(height: 14),
-                const _HomeTestingRoutePills(),
-              ],
-            ),
-          ),
-          Positioned(
-            left: 16,
-            right: 16,
-            bottom:
-                (_homeFloatingShortcutBottomOffset -
-                        MediaQuery.viewPaddingOf(context).bottom)
-                    .clamp(58.0, _homeFloatingShortcutBottomOffset),
-            child: Align(
-              alignment: Alignment.centerRight,
-              child: _HomeFloatingShortcutSection(
-                isKidsMode: isKidsMode,
-                salahProgressText:
-                    '${_formatLocalizedCount(context, worshipSummary.prayerCompleted)}/${_formatLocalizedCount(context, worshipSummary.prayerTotal)}',
-                dhikrProgressText:
-                    '${_formatLocalizedCount(context, worshipSummary.dhikrCount)}/${_formatLocalizedCount(context, _shortcutDailyDhikrGoal)}',
+    return Theme(
+      data: Theme.of(context).copyWith(textTheme: homeTextTheme),
+      child: SafeArea(
+        child: Stack(
+          children: [
+            SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              padding: const EdgeInsets.fromLTRB(
+                18,
+                8,
+                18,
+                _homeFloatingShortcutContentPadding,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  _TopGreetingBlock(l10n: l10n, userProfile: userProfile),
+                  const SizedBox(height: 12),
+                  _AyahCard(
+                    verse: displayVerse,
+                    onTap: () => ref
+                        .read(homeVerseVersionProvider.notifier)
+                        .update((state) {
+                          final poolLength = homeContextualQuotePool.length;
+                          if (poolLength <= 1) {
+                            return state;
+                          }
+                          var next = HomePage._verseRandom.nextInt(poolLength);
+                          final current = state % poolLength;
+                          while (next == current) {
+                            next = HomePage._verseRandom.nextInt(poolLength);
+                          }
+                          return next;
+                        }),
+                  ),
+                  const SizedBox(height: 14),
+                  const _ModeAwareHomeCard(),
+                  const SizedBox(height: 10),
+                  _SalahSummaryCard(l10n: l10n),
+                  const SizedBox(height: 12),
+                  const _DailySalahTimingsCard(),
+                  const SizedBox(height: 12),
+                  const OnThisDayHomeCard(),
+                  const SizedBox(height: 12),
+                  const CelestialCycleCard(collapsible: true),
+                  const SizedBox(height: 12),
+                  _TodayContentSection(
+                    quranBundle: quranBundle,
+                    spiritualMoment: spiritualMoment,
+                  ),
+                  const SizedBox(height: 14),
+                  const _HomeTestingRoutePills(),
+                ],
               ),
             ),
-          ),
-        ],
+            Positioned(
+              left: 16,
+              right: 16,
+              bottom:
+                  (_homeFloatingShortcutBottomOffset -
+                          MediaQuery.viewPaddingOf(context).bottom)
+                      .clamp(58.0, _homeFloatingShortcutBottomOffset),
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: _HomeFloatingShortcutSection(
+                  isKidsMode: isKidsMode,
+                  salahProgressText: salahProgressText,
+                  dhikrProgressText:
+                      '${_formatLocalizedCount(context, worshipSummary.dhikrCount)}/${_formatLocalizedCount(context, _shortcutDailyDhikrGoal)}',
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -230,7 +251,7 @@ class _HomeFloatingShortcutSection extends StatelessWidget {
         salahProgressText: salahProgressText,
         dhikrProgressText: dhikrProgressText,
       ),
-      openLabel: isKidsMode ? l10n.kidsHomeShortcutOpen : l10n.homeShortcutOpen,
+      openLabel: l10n.homeShortcutOpen,
       closeLabel: isKidsMode
           ? l10n.kidsHomeShortcutClose
           : l10n.homeShortcutClose,
@@ -408,7 +429,7 @@ class _DailySalahTimingsCard extends ConsumerWidget {
                             style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w700,
-                              color: Color(0xFF25221E),
+                              color: _homePrimaryTextColor,
                               fontFamily: 'serif',
                             ),
                           ),
@@ -419,7 +440,7 @@ class _DailySalahTimingsCard extends ConsumerWidget {
                             style: const TextStyle(
                               fontSize: 12.5,
                               fontWeight: FontWeight.w600,
-                              color: Color(0xFF6E5D4C),
+                              color: _homePrimaryTextColor,
                               fontFamily: 'serif',
                             ),
                           ),
@@ -457,7 +478,7 @@ class _DailySalahTimingsCard extends ConsumerWidget {
                         textAlign: TextAlign.center,
                         style: const TextStyle(
                           fontSize: 12.5,
-                          color: Color(0xFF766656),
+                          color: _homePrimaryTextColor,
                           height: 1.3,
                         ),
                       ),
@@ -491,12 +512,10 @@ class _DailySalahTimingsCard extends ConsumerWidget {
                       width: itemWidth,
                       child: Builder(
                         builder: (context) {
-                          final trackedPrayer = item.id == 'tahajjud'
-                              ? null
-                              : _prayerNameFromScheduleId(item.id);
-                          final entry = trackedPrayer == null
-                              ? null
-                              : dayEntries[trackedPrayer];
+                          final trackedPrayer = _prayerNameFromScheduleId(
+                            item.id,
+                          );
+                          final entry = dayEntries[trackedPrayer];
                           final completedAt = entry?.completedAtIso == null
                               ? null
                               : DateTime.tryParse(entry!.completedAtIso!);
@@ -530,8 +549,6 @@ class _DailySalahTimingsCard extends ConsumerWidget {
                                 item.id == scheduleContext?.nextPrayerId,
                             onToggleOffered: isFutureDay
                                 ? null
-                                : trackedPrayer == null
-                                ? null
                                 : entry?.status == PrayerStatus.completed
                                 ? isToday
                                       ? () => ref
@@ -548,8 +565,6 @@ class _DailySalahTimingsCard extends ConsumerWidget {
                                         )
                                 : null,
                             onOpenDetails: !canOpenDetails
-                                ? null
-                                : trackedPrayer == null
                                 ? null
                                 : () => _openHomePrayerTrackerSheet(
                                     context,
@@ -569,10 +584,7 @@ class _DailySalahTimingsCard extends ConsumerWidget {
                                         : item.offerDateTime,
                                   ),
                             onMarkPostSalahDhikr:
-                                !isToday ||
-                                    trackedPrayer == null ||
-                                    !canOpenDetails ||
-                                    hasPostSalahDhikr
+                                !isToday || !canOpenDetails || hasPostSalahDhikr
                                 ? null
                                 : () => ref
                                       .read(prayerControllerProvider.notifier)
@@ -927,7 +939,7 @@ class _HomePrayerCalendarSheetState
                         textAlign: TextAlign.center,
                         style: const TextStyle(
                           fontSize: 11,
-                          color: AppColors.onSurfaceSubtle,
+                          color: _homePrimaryTextColor,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
@@ -992,7 +1004,7 @@ class _CalendarLegendItem extends StatelessWidget {
           label,
           style: const TextStyle(
             fontSize: 11.5,
-            color: AppColors.onSurfaceSubtle,
+            color: _homePrimaryTextColor,
             fontWeight: FontWeight.w600,
           ),
         ),
@@ -1154,11 +1166,6 @@ class _TopGreetingBlock extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final appearance = Theme.of(context).extension<AppAppearanceTheme>();
-    final foreground =
-        appearance?.backgroundForeground ?? const Color(0xFF3C2F25);
-    final subtleForeground =
-        appearance?.backgroundForegroundSubtle ?? const Color(0xFF5D4F44);
     return Column(
       children: [
         Row(
@@ -1177,7 +1184,7 @@ class _TopGreetingBlock extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 17,
                     fontWeight: FontWeight.w700,
-                    color: foreground,
+                    color: _homePrimaryTextColor,
                     fontFamily: 'serif',
                   ),
                 ),
@@ -1218,7 +1225,7 @@ class _TopGreetingBlock extends StatelessWidget {
           textDirection: textDirectionForContent(l10n.greetingArabic),
           style: TextStyle(
             fontSize: 20,
-            color: foreground,
+            color: _homePrimaryTextColor,
             height: 1.15,
             fontFamily: 'serif',
           ),
@@ -1238,7 +1245,7 @@ class _TopGreetingBlock extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 21,
                       fontWeight: FontWeight.w700,
-                      color: foreground,
+                      color: _homePrimaryTextColor,
                       letterSpacing: 0.2,
                       fontFamily: 'serif',
                     ),
@@ -1248,7 +1255,7 @@ class _TopGreetingBlock extends StatelessWidget {
                     l10n.peaceUponYou,
                     style: TextStyle(
                       fontSize: 15,
-                      color: subtleForeground,
+                      color: _homePrimaryTextColor,
                       fontFamily: 'serif',
                     ),
                   ),
@@ -1375,7 +1382,7 @@ class _PrayerTimingPill extends StatelessWidget {
                     style: const TextStyle(
                       fontSize: 12.8,
                       fontWeight: FontWeight.w700,
-                      color: Color(0xFF2F2923),
+                      color: _homePrimaryTextColor,
                       fontFamily: 'serif',
                     ),
                   ),
@@ -1419,7 +1426,7 @@ class _PrayerTimingPill extends StatelessWidget {
               textDirection: textDirectionForContent(arabicName),
               style: const TextStyle(
                 fontSize: 15,
-                color: Color(0xFF5F554B),
+                color: _homePrimaryTextColor,
                 fontFamily: 'serif',
                 height: 1.15,
               ),
@@ -1430,7 +1437,7 @@ class _PrayerTimingPill extends StatelessWidget {
               style: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w700,
-                color: Color(0xFF2F2923),
+                color: _homePrimaryTextColor,
                 fontFamily: 'serif',
               ),
             ),
@@ -1441,13 +1448,16 @@ class _PrayerTimingPill extends StatelessWidget {
                 style: const TextStyle(
                   fontSize: 11.5,
                   fontWeight: FontWeight.w700,
-                  color: Color(0xFF5E8A43),
+                  color: _homePrimaryTextColor,
                 ),
               ),
               const SizedBox(height: 6),
               Text(
                 l10n.homePrayerCompletedTapHintText,
-                style: const TextStyle(fontSize: 11, color: Color(0xFF7D705F)),
+                style: const TextStyle(
+                  fontSize: 11,
+                  color: _homePrimaryTextColor,
+                ),
               ),
               const SizedBox(height: 4),
               Row(
@@ -1473,9 +1483,7 @@ class _PrayerTimingPill extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 11.5,
                         fontWeight: FontWeight.w600,
-                        color: hasPostSalahDhikr
-                            ? const Color(0xFF5E8A43)
-                            : const Color(0xFF5F554B),
+                        color: _homePrimaryTextColor,
                       ),
                     ),
                   ),
@@ -1508,6 +1516,8 @@ PrayerName _prayerNameFromScheduleId(String id) {
       return PrayerName.asr;
     case 'maghrib':
       return PrayerName.maghrib;
+    case 'tahajjud':
+      return PrayerName.tahajjud;
     case 'isha':
     default:
       return PrayerName.isha;
@@ -1880,7 +1890,7 @@ class _SearchResultList extends StatelessWidget {
       return Center(
         child: Text(
           emptyLabel,
-          style: const TextStyle(color: Color(0xFF65584A)),
+          style: const TextStyle(color: _homePrimaryTextColor),
         ),
       );
     }
@@ -1979,7 +1989,7 @@ class _WelcomeCarouselCard extends StatelessWidget {
                     fontSize: 16,
                     fontFamily: 'serif',
                     fontWeight: FontWeight.w600,
-                    color: Color(0xFF3A3027),
+                    color: _homePrimaryTextColor,
                   ),
                 ),
                 const SizedBox(height: 4),
@@ -1987,7 +1997,7 @@ class _WelcomeCarouselCard extends StatelessWidget {
                   resolvedSubtitle,
                   style: const TextStyle(
                     fontSize: 12.5,
-                    color: Color(0xFF65584A),
+                    color: _homePrimaryTextColor,
                     height: 1.3,
                   ),
                 ),
@@ -2174,7 +2184,14 @@ class _SalahSummaryCard extends ConsumerWidget {
     final scheduleContext = ref.watch(prayerScheduleContextProvider);
     final now = ref.watch(dailyNowProvider).value ?? DateTime.now();
     final prayerSettings = ref.watch(prayerSettingsProvider);
+    final prayerLocation = ref.watch(prayerLocationProvider);
     final displayLocation = ref.watch(prayerLocationDisplayLabelProvider);
+    final todaySchedule = buildPrayerScheduleForDate(
+      date: DateTime(now.year, now.month, now.day),
+      latitude: prayerLocation.latitude,
+      longitude: prayerLocation.longitude,
+      settings: prayerSettings.preferences,
+    ).toList(growable: false);
     final next = scheduleContext.items
         .where((item) => item.id == scheduleContext.nextPrayerId)
         .firstOrNull;
@@ -2203,9 +2220,17 @@ class _SalahSummaryCard extends ConsumerWidget {
           );
     final offerByLabel = l10n.homePrayerBeginsAt(nextAt);
     final offerByValue = nextAt;
+    final includesTahajjudOffer = todaySchedule.any(
+      (item) => item.id == 'tahajjud',
+    );
+    final trackedPrayerTotal = math.max(worship.prayerTotal, 5);
     final prayerCompletedValue = l10n.homeFractionValue(
       _formatLocalizedCount(context, worship.prayerCompleted),
-      _formatLocalizedCount(context, worship.prayerTotal),
+      _formatHomePrayerTrackerTotal(
+        context,
+        trackedPrayerTotal: trackedPrayerTotal,
+        includeTahajjudOffer: includesTahajjudOffer,
+      ),
     );
     final dhikrDailyGoal = math.max(worship.dhikrTarget, 500);
     final dhikrValue = l10n.homeFractionValue(
@@ -2503,10 +2528,7 @@ class _ModeAwareHomeCard extends ConsumerWidget {
           const SizedBox(height: 8),
           Text(
             subtitle,
-            style: const TextStyle(
-              color: AppColors.onSurfaceSubtle,
-              height: 1.35,
-            ),
+            style: const TextStyle(color: _homePrimaryTextColor, height: 1.35),
           ),
           const SizedBox(height: 10),
           Wrap(spacing: 8, runSpacing: 8, children: actions),

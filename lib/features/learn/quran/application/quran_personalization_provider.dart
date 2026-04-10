@@ -198,7 +198,7 @@ final quranPersonalizationProfileProvider =
           .watch(prayerLogRepositoryProvider)
           .readDayEntries(dateKey);
 
-      final prayerCompletedToday = PrayerName.values
+      final prayerCompletedToday = obligatoryPrayerNames
           .where(
             (prayer) =>
                 (prayerEntries[prayer]?.status ?? PrayerStatus.pending) ==

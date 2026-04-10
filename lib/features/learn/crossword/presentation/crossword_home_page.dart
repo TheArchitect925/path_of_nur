@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/theme/app_colors.dart';
+import '../../../../shared/utils/reward_feedback.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../journey/drops/application/journey_drops_providers.dart';
 import '../../../journey/xp/application/journey_xp_providers.dart';
@@ -224,13 +225,19 @@ class CrosswordHomePage extends ConsumerWidget {
                         if (dailyProgress?.isCompleted == true) ...[
                           const SizedBox(height: 10),
                           Text(
-                            l10n.crosswordDailyOceanSummary(
-                              _dailyContributionDrops(
+                            buildCompactRewardSummary(
+                              l10n,
+                              xp: (dailyProgress!.perfectCompletedAtIso ?? '')
+                                      .isNotEmpty
+                                  ? 2
+                                  : 1,
+                              drops: _dailyContributionDrops(
                                 daily.puzzle,
-                                dailyProgress!,
-                              ).toString(),
+                                dailyProgress,
+                              ),
                             ),
-                            style: Theme.of(context).textTheme.bodyMedium,
+                            style: Theme.of(context).textTheme.bodySmall
+                                ?.copyWith(color: AppColors.onSurfaceSubtle),
                           ),
                         ],
                         const SizedBox(height: 12),

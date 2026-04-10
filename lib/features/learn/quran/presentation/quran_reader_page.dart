@@ -2376,9 +2376,14 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
       0,
       24 * 60 * 60,
     );
+    final l10n = AppLocalizations.of(context);
     await QuranLiveActivityService().updatePlaybackCard(
       surahNumber: ayah.surahNumber,
-      surahName: surah?.transliteratedName ?? 'Surah ${ayah.surahNumber}',
+      surahName:
+          surah?.transliteratedName ??
+          l10n.quranReaderNowPlayingFallbackSurahLabel(
+            ayah.surahNumber.toString(),
+          ),
       surahArabicName: surah?.arabicName ?? '',
       ayahNumber: ayah.ayahNumber,
       reciterName: reciter.name,
@@ -3177,6 +3182,7 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
   }
 
   void _showSourcesInfoSheet(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     showModalBottomSheet<void>(
       context: context,
       showDragHandle: true,
@@ -3190,37 +3196,33 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Sources & Licensing',
+                    l10n.quranReaderSourcesLicensingTitle,
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
                   ),
                   SizedBox(height: 10),
                   _SourceLine(
-                    title: 'Qur’an Arabic text (reader/search):',
-                    value:
-                        'package:quran (Flutter package), based on Quran data bundled in package.',
+                    title: l10n.quranReaderSourcesArabicTextTitle,
+                    value: l10n.quranReaderSourcesArabicTextValue,
                   ),
                   _SourceLine(
-                    title: 'Translations:',
-                    value:
-                        'package:quran translation set (e.g., Saheeh International, Clear Quran, Urdu, Bengali, Indonesian, Turkish, Dari).',
+                    title: l10n.quranReaderSourcesTranslationsTitle,
+                    value: l10n.quranReaderSourcesTranslationsValue,
                   ),
                   _SourceLine(
-                    title: 'Transliteration:',
-                    value:
-                        'AlQuran.cloud API (edition: en.transliteration) cached locally on device.',
+                    title: l10n.quranReaderSourcesTransliterationTitle,
+                    value: l10n.quranReaderSourcesTransliterationValue,
                   ),
                   _SourceLine(
-                    title: 'Audio recitations:',
-                    value: 'EveryAyah CDN (Husary, Alafasy, Abdul Basit).',
+                    title: l10n.quranReaderSourcesAudioTitle,
+                    value: l10n.quranReaderSourcesAudioValue,
                   ),
                   _SourceLine(
-                    title: 'Word timing segments (live sync beta):',
-                    value:
-                        'Quran.com API v4 (api.quran.com), recitations by ayah with segments.',
+                    title: l10n.quranReaderSourcesTimingTitle,
+                    value: l10n.quranReaderSourcesTimingValue,
                   ),
                   SizedBox(height: 12),
                   Text(
-                    'Attribution links',
+                    l10n.quranReaderAttributionLinksTitle,
                     style: TextStyle(fontWeight: FontWeight.w700),
                   ),
                   SizedBox(height: 6),
@@ -3238,12 +3240,12 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
                         context.pushNamed('attributionsLicenses');
                       },
                       icon: Icon(Icons.open_in_new_rounded),
-                      label: Text('Open full Attributions & Licenses page'),
+                      label: Text(l10n.quranReaderOpenFullAttributionsAction),
                     ),
                   ),
                   SizedBox(height: 12),
                   Text(
-                    'Note: verify production usage terms with each provider before public launch, especially audio redistribution rights.',
+                    l10n.quranReaderSourcesLaunchNote,
                     style: TextStyle(color: Color(0xFF6A5A4A), height: 1.35),
                   ),
                 ],
@@ -3453,7 +3455,9 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
     final l10n = AppLocalizations.of(context);
     final surahName =
         ref.read(quranSurahMapProvider)[ayah.surahNumber]?.transliteratedName ??
-        'Surah ${ayah.surahNumber}';
+        l10n.quranReaderNowPlayingFallbackSurahLabel(
+          ayah.surahNumber.toString(),
+        );
     final defaultTags = buildQuranNoteTags(
       surahName: surahName,
       surahNumber: ayah.surahNumber,

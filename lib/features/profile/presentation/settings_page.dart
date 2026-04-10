@@ -23,12 +23,13 @@ import '../../../shared/theme/islamic_icons.dart';
 import '../../../shared/widgets/app_page_scaffold.dart';
 import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/prayer_location_picker_sheet.dart';
-import '../../../shared/widgets/quran_quote_block.dart';
 import '../../../shared/widgets/section_hub_scaffold.dart';
 import '../../../shared/widgets/section_title.dart';
 import '../../accounts_sync/application/accounts_sync_controller.dart';
 import '../../editorial_dashboard/application/editorial_dashboard_access_provider.dart';
 import '../../editorial_dashboard/application/editorial_dashboard_providers.dart';
+import '../../learn/journey/application/learning_path_provider.dart';
+import '../../learn/journey/domain/learning_path_models.dart';
 import '../../learn/quran/application/quran_providers.dart';
 import '../../profile/application/profile_settings_provider.dart';
 import '../../profile/domain/profile_age_preferences.dart';
@@ -69,6 +70,7 @@ class SettingsPage extends ConsumerWidget {
     final specialMode = ref.watch(specialModeProvider);
     final profileSettings = ref.watch(profileSettingsProvider);
     final profileSettingsNotifier = ref.read(profileSettingsProvider.notifier);
+    final learningPathSelection = ref.watch(learningPathSelectionProvider);
     final profileSummary = ref.watch(profileSummaryProvider);
     final reminderPlan = ref.watch(reminderSchedulerProvider);
     final adhanRepository = ref.watch(adhanRepositoryProvider);
@@ -106,7 +108,6 @@ class SettingsPage extends ConsumerWidget {
           AppPageDescriptionKey.settingsLanding,
           kidsMode: isKidsMode,
         ),
-        quote: quoteFromPoolForToday(reflectionFocusedQuotePool),
         shortcutOpenLabel: l10n.learnShortcutOpen,
         shortcutCloseLabel: l10n.learnShortcutClose,
         children: [
@@ -760,20 +761,51 @@ class SettingsPage extends ConsumerWidget {
       child: PremiumCard(
         child: Column(
           children: [
-            SwitchListTile.adaptive(
-              contentPadding: EdgeInsets.zero,
-              title: Text(l10n.settingsStableDynamicIslandTitle),
-              subtitle: Text(l10n.settingsStableDynamicIslandSubtitle),
-              value: prayerState.preferences.useStableDynamicIsland,
-              onChanged: prayerNotifier.setStableDynamicIsland,
+            _SettingsToggleRow(
+              label: l10n.settingsWidgetsEnabledTitle,
+              subtitle: l10n.settingsWidgetsEnabledSubtitle,
+              value:
+                  prayerState.preferences.useStableDynamicIsland ||
+                  prayerState.preferences.useStableLockScreenWidget,
+              onChanged: (enabled) {
+                prayerNotifier.setStableDynamicIsland(enabled);
+                prayerNotifier.setStableLockScreenWidget(enabled);
+              },
             ),
             const Divider(height: 1),
-            SwitchListTile.adaptive(
-              contentPadding: EdgeInsets.zero,
-              title: Text(l10n.settingsStableLockScreenWidgetTitle),
-              subtitle: Text(l10n.settingsStableLockScreenWidgetSubtitle),
-              value: prayerState.preferences.useStableLockScreenWidget,
-              onChanged: prayerNotifier.setStableLockScreenWidget,
+            AnimatedOpacity(
+              duration: const Duration(milliseconds: 180),
+              opacity:
+                  prayerState.preferences.useStableDynamicIsland ||
+                      prayerState.preferences.useStableLockScreenWidget
+                  ? 1
+                  : 0.55,
+              child: IgnorePointer(
+                ignoring:
+                    !prayerState.preferences.useStableDynamicIsland &&
+                    !prayerState.preferences.useStableLockScreenWidget,
+                child: Column(
+                  children: [
+                    SwitchListTile.adaptive(
+                      contentPadding: EdgeInsets.zero,
+                      title: Text(l10n.settingsStableDynamicIslandTitle),
+                      subtitle: Text(l10n.settingsStableDynamicIslandSubtitle),
+                      value: prayerState.preferences.useStableDynamicIsland,
+                      onChanged: prayerNotifier.setStableDynamicIsland,
+                    ),
+                    const Divider(height: 1),
+                    SwitchListTile.adaptive(
+                      contentPadding: EdgeInsets.zero,
+                      title: Text(l10n.settingsStableLockScreenWidgetTitle),
+                      subtitle: Text(
+                        l10n.settingsStableLockScreenWidgetSubtitle,
+                      ),
+                      value: prayerState.preferences.useStableLockScreenWidget,
+                      onChanged: prayerNotifier.setStableLockScreenWidget,
+                    ),
+                  ],
+                ),
+              ),
             ),
           ],
         ),
@@ -942,8 +974,31 @@ class SettingsPage extends ConsumerWidget {
               label: Text(l10n.settingsResetAppearance),
             ),
             const SizedBox(height: 10),
+            DropdownButtonFormField<AppPageTransitionStyle>(
+              initialValue: profileSettings.pageTransitionStyle,
+              decoration: InputDecoration(
+                labelText: l10n.settingsPageTransitionsTitle,
+                helperText: l10n.settingsPageTransitionsSubtitle,
+                isDense: true,
+              ),
+              items: AppPageTransitionStyle.values
+                  .map(
+                    (item) => DropdownMenuItem(
+                      value: item,
+                      child: Text(_pageTransitionStyleLabel(item, l10n)),
+                    ),
+                  )
+                  .toList(growable: false),
+              onChanged: (value) {
+                if (value != null) {
+                  profileSettingsNotifier.setPageTransitionStyle(value);
+                }
+              },
+            ),
+            const SizedBox(height: 10),
             _SettingsToggleRow(
               label: l10n.profileReduceMotion,
+              subtitle: l10n.settingsReduceMotionTransitionOverrideSubtitle,
               value: profileSettings.reduceMotion,
               onChanged: profileSettingsNotifier.setReduceMotion,
             ),
@@ -1171,6 +1226,57 @@ class SettingsPage extends ConsumerWidget {
                 const Divider(height: 1),
                 ListTile(
                   contentPadding: EdgeInsets.zero,
+                  leading: const Icon(Icons.route_rounded),
+                  title: Text(l10n.settingsLearningLevelTitle),
+                  subtitle: Text(
+                    _settingsLearningLevelLabel(
+                      context,
+                      learningPathSelection?.selectedLevel,
+                    ),
+                  ),
+                  trailing: const Icon(Icons.chevron_right_rounded),
+                  onTap: () => context.pushNamed('learnLearningPath'),
+                ),
+                const Divider(height: 1),
+                ListTile(
+                  contentPadding: EdgeInsets.zero,
+                  leading: const Icon(Icons.auto_awesome_rounded),
+                  title: Text(l10n.settingsRunOnboardingTitle),
+                  subtitle: Text(l10n.settingsRunOnboardingSubtitle),
+                  trailing: const Icon(Icons.chevron_right_rounded),
+                  onTap: () => context.push('/onboarding?preview=1'),
+                ),
+                const Divider(height: 1),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  child: DropdownButtonFormField<ProfileAgeRange>(
+                    initialValue: profileSettings.ageRange,
+                    decoration: InputDecoration(
+                      labelText: l10n.kidsUiAgeRangeTitle,
+                      helperText: _profileAgeRangeLabel(
+                        profileSettings.ageRange,
+                        l10n,
+                      ),
+                      isDense: true,
+                    ),
+                    items: ProfileAgeRange.values
+                        .map(
+                          (item) => DropdownMenuItem(
+                            value: item,
+                            child: Text(_profileAgeRangeLabel(item, l10n)),
+                          ),
+                        )
+                        .toList(growable: false),
+                    onChanged: (value) {
+                      if (value != null) {
+                        profileSettingsNotifier.setAgeRange(value);
+                      }
+                    },
+                  ),
+                ),
+                const Divider(height: 1),
+                ListTile(
+                  contentPadding: EdgeInsets.zero,
                   leading: const Icon(IslamicIcons.family),
                   title: Text(l10n.familyLearningSettingsTitle),
                   subtitle: Text(l10n.familyLearningSettingsSubtitle),
@@ -1374,7 +1480,6 @@ class SettingsPage extends ConsumerWidget {
         currentCategory,
         kidsMode: isKidsMode,
       ),
-      quote: quoteFromPoolForToday(reflectionFocusedQuotePool),
       children: sectionMap[currentCategory] ?? const <Widget>[],
     );
   }
@@ -1564,6 +1669,24 @@ String _addressFromSex(UserSex sex, AppLocalizations l10n) {
   return sex == UserSex.brother ? l10n.profileBrother : l10n.profileSister;
 }
 
+String _settingsLearningLevelLabel(
+  BuildContext context,
+  LearningPathLevel? level,
+) {
+  final l10n = AppLocalizations.of(context);
+  switch (level) {
+    case LearningPathLevel.beginner:
+      return l10n.learnPathLevelFoundationsTitle;
+    case LearningPathLevel.practicing:
+    case LearningPathLevel.seeker:
+      return l10n.learnPathLevelGrowingTitle;
+    case LearningPathLevel.advanced:
+      return l10n.learnPathLevelDeepDiveTitle;
+    case null:
+      return l10n.learnHubLearningPathCardSubtitleNoPath;
+  }
+}
+
 String _profileAgeRangeLabel(ProfileAgeRange ageRange, AppLocalizations l10n) {
   switch (ageRange) {
     case ProfileAgeRange.child:
@@ -1572,6 +1695,22 @@ String _profileAgeRangeLabel(ProfileAgeRange ageRange, AppLocalizations l10n) {
       return l10n.kidsUiAgeRangeTeen;
     case ProfileAgeRange.adult:
       return l10n.kidsUiAgeRangeAdult;
+  }
+}
+
+String _pageTransitionStyleLabel(
+  AppPageTransitionStyle style,
+  AppLocalizations l10n,
+) {
+  switch (style) {
+    case AppPageTransitionStyle.defaultSystem:
+      return l10n.settingsPageTransitionStyleDefault;
+    case AppPageTransitionStyle.gentleFade:
+      return l10n.settingsPageTransitionStyleGentleFade;
+    case AppPageTransitionStyle.iosStyle:
+      return l10n.settingsPageTransitionStyleIos;
+    case AppPageTransitionStyle.noAnimation:
+      return l10n.settingsPageTransitionStyleNone;
   }
 }
 
@@ -1587,34 +1726,14 @@ String _kidsUiThemeModeLabel(KidsUiThemeMode mode, AppLocalizations l10n) {
 }
 
 String _madhabLabel(PrayerMadhab value, AppLocalizations l10n) {
-  switch (value) {
-    case PrayerMadhab.shafii:
-      return l10n.settingsMadhabShafii;
-    case PrayerMadhab.hanafi:
-      return l10n.settingsMadhabHanafi;
-    case PrayerMadhab.maliki:
-      return l10n.settingsMadhabMaliki;
-    case PrayerMadhab.hanbali:
-      return l10n.settingsMadhabHanbali;
-  }
+  return value.localizedLabel(l10n);
 }
 
 String _calculationMethodLabel(
   PrayerCalculationMethod value,
   AppLocalizations l10n,
 ) {
-  switch (value) {
-    case PrayerCalculationMethod.muslimWorldLeague:
-      return l10n.settingsCalculationMethodMuslimWorldLeague;
-    case PrayerCalculationMethod.egyptian:
-      return l10n.settingsCalculationMethodEgyptian;
-    case PrayerCalculationMethod.isna:
-      return l10n.settingsCalculationMethodIsna;
-    case PrayerCalculationMethod.karachi:
-      return l10n.settingsCalculationMethodKarachi;
-    case PrayerCalculationMethod.ummAlQura:
-      return l10n.settingsCalculationMethodUmmAlQura;
-  }
+  return value.localizedLabel(l10n);
 }
 
 String _prayerCalendarModeLabel(
@@ -1694,7 +1813,7 @@ List<Widget> _buildPrayerNotificationTiles({
   required void Function(String prayerId, PrayerNotificationMode mode)
   onChanged,
 }) {
-  const prayerOrder = ['fajr', 'dhuhr', 'asr', 'maghrib', 'isha'];
+  const prayerOrder = ['fajr', 'dhuhr', 'asr', 'maghrib', 'isha', 'tahajjud'];
   final tiles = <Widget>[];
   for (var index = 0; index < prayerOrder.length; index++) {
     final prayerId = prayerOrder[index];
@@ -2915,6 +3034,8 @@ String _prayerDisplayName(String prayerId, AppLocalizations l10n) {
       return l10n.settingsPrayerNameMaghrib;
     case 'isha':
       return l10n.settingsPrayerNameIsha;
+    case 'tahajjud':
+      return l10n.notificationsPrayerNameTahajjud;
     default:
       return prayerId;
   }

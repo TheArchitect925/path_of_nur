@@ -2,7 +2,15 @@ import 'package:flutter/material.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/theme/islamic_icons.dart';
 
-enum PrayerName { fajr, dhuhr, asr, maghrib, isha }
+enum PrayerName { fajr, dhuhr, asr, maghrib, isha, tahajjud }
+
+const List<PrayerName> obligatoryPrayerNames = <PrayerName>[
+  PrayerName.fajr,
+  PrayerName.dhuhr,
+  PrayerName.asr,
+  PrayerName.maghrib,
+  PrayerName.isha,
+];
 
 extension PrayerNameX on PrayerName {
   String localizedLabel(AppLocalizations l10n) {
@@ -23,6 +31,8 @@ extension PrayerNameX on PrayerName {
         return l10n.settingsPrayerNameMaghrib;
       case PrayerName.isha:
         return l10n.settingsPrayerNameIsha;
+      case PrayerName.tahajjud:
+        return l10n.notificationsPrayerNameTahajjud;
     }
   }
 
@@ -39,6 +49,8 @@ extension PrayerNameX on PrayerName {
         return 'Maghrib';
       case PrayerName.isha:
         return 'Isha';
+      case PrayerName.tahajjud:
+        return 'Tahajjud';
     }
   }
 
@@ -58,6 +70,8 @@ extension PrayerNameX on PrayerName {
         return 'المغرب';
       case PrayerName.isha:
         return 'العشاء';
+      case PrayerName.tahajjud:
+        return 'التهجد';
     }
   }
 
@@ -72,6 +86,8 @@ extension PrayerNameX on PrayerName {
       case PrayerName.maghrib:
         return IslamicIcons.mosque;
       case PrayerName.isha:
+        return IslamicIcons.lantern;
+      case PrayerName.tahajjud:
         return IslamicIcons.lantern;
     }
   }

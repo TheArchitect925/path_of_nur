@@ -55,6 +55,8 @@ class FaqCategoryCard extends StatelessWidget {
             const SizedBox(height: 12),
             Text(
               summary.title,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
               style: Theme.of(
                 context,
               ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700),
@@ -62,7 +64,7 @@ class FaqCategoryCard extends StatelessWidget {
             const SizedBox(height: 6),
             Text(
               summary.subtitle,
-              maxLines: 2,
+              maxLines: 3,
               overflow: TextOverflow.ellipsis,
               style: Theme.of(
                 context,
@@ -92,10 +94,20 @@ class FaqCategoryCard extends StatelessWidget {
       context,
       variant: AppSurfaceVariant.pill,
     );
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-      decoration: style.decoration(radius: 999),
-      child: Text(label, style: Theme.of(context).textTheme.bodySmall),
+    return ConstrainedBox(
+      constraints: BoxConstraints(
+        maxWidth: MediaQuery.sizeOf(context).width * 0.66,
+      ),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+        decoration: style.decoration(radius: 999),
+        child: Text(
+          label,
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+          style: Theme.of(context).textTheme.bodySmall,
+        ),
+      ),
     );
   }
 }

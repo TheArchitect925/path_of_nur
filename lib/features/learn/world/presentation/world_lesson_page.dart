@@ -197,7 +197,6 @@ class _WorldLessonPageState extends ConsumerState<WorldLessonPage> {
         LearningSection(
           title: l10n.learnContentRelatedTopicsTitle,
           child: LearningRelatedContent(
-            title: l10n.learnContentRelatedTopicsTitle,
             items: relatedLessonLinks,
           ),
         ),
@@ -205,7 +204,6 @@ class _WorldLessonPageState extends ConsumerState<WorldLessonPage> {
           LearningSection(
             title: l10n.learnContentReferencesTitle,
             child: LearningRelatedContent(
-              title: l10n.learnContentReferencesTitle,
               items: relatedCrossDomainLinks,
             ),
           ),

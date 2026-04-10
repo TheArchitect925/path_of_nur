@@ -24,6 +24,38 @@ enum PrayerCalculationMethod {
 
 enum PrayerMadhab { shafii, hanafi, maliki, hanbali }
 
+extension PrayerCalculationMethodX on PrayerCalculationMethod {
+  String localizedLabel(AppLocalizations l10n) {
+    switch (this) {
+      case PrayerCalculationMethod.muslimWorldLeague:
+        return l10n.settingsCalculationMethodMuslimWorldLeague;
+      case PrayerCalculationMethod.egyptian:
+        return l10n.settingsCalculationMethodEgyptian;
+      case PrayerCalculationMethod.isna:
+        return l10n.settingsCalculationMethodIsna;
+      case PrayerCalculationMethod.karachi:
+        return l10n.settingsCalculationMethodKarachi;
+      case PrayerCalculationMethod.ummAlQura:
+        return l10n.settingsCalculationMethodUmmAlQura;
+    }
+  }
+}
+
+extension PrayerMadhabX on PrayerMadhab {
+  String localizedLabel(AppLocalizations l10n) {
+    switch (this) {
+      case PrayerMadhab.shafii:
+        return l10n.settingsMadhabShafii;
+      case PrayerMadhab.hanafi:
+        return l10n.settingsMadhabHanafi;
+      case PrayerMadhab.maliki:
+        return l10n.settingsMadhabMaliki;
+      case PrayerMadhab.hanbali:
+        return l10n.settingsMadhabHanbali;
+    }
+  }
+}
+
 enum PrayerNotificationMode {
   none,
   notificationOnly,
@@ -1222,10 +1254,7 @@ final prayerBaseScheduleProvider = Provider<List<PrayerScheduleItem>>((ref) {
 final prayerScheduleContextProvider = Provider<PrayerScheduleContext>((ref) {
   final schedule = ref.watch(prayerScheduleProvider);
   final now = ref.watch(dailyNowProvider).value ?? DateTime.now();
-  return derivePrayerScheduleContext(
-    schedule: schedule,
-    now: now,
-  );
+  return derivePrayerScheduleContext(schedule: schedule, now: now);
 });
 
 List<PrayerScheduleItem> buildPrayerScheduleForDate({
@@ -1247,24 +1276,24 @@ List<PrayerScheduleItem> buildPrayerScheduleForDate({
   if (settings.prayerTimeMode == PrayerTimeMode.manual &&
       settings.manualTimes.isComplete) {
     return buildManualPrayerScheduleForDate(
-      date: date,
-      latitude: latitude,
-      longitude: longitude,
-      settings: settings,
-      baseSchedule: baseSchedule,
-    ).map((item) => _applyFridayJumuahDisplayOverride(item, date)).toList(
-      growable: false,
-    );
+          date: date,
+          latitude: latitude,
+          longitude: longitude,
+          settings: settings,
+          baseSchedule: baseSchedule,
+        )
+        .map((item) => _applyFridayJumuahDisplayOverride(item, date))
+        .toList(growable: false);
   }
   return applyCalculatedPrayerAdjustments(
-    date: date,
-    latitude: latitude,
-    longitude: longitude,
-    settings: settings,
-    baseSchedule: baseSchedule,
-  ).map((item) => _applyFridayJumuahDisplayOverride(item, date)).toList(
-    growable: false,
-  );
+        date: date,
+        latitude: latitude,
+        longitude: longitude,
+        settings: settings,
+        baseSchedule: baseSchedule,
+      )
+      .map((item) => _applyFridayJumuahDisplayOverride(item, date))
+      .toList(growable: false);
 }
 
 List<PrayerScheduleItem> buildCalculatedPrayerScheduleForDate({

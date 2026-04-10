@@ -106,6 +106,7 @@ class PrayerTrackerController extends StateNotifier<PrayerTrackerState> {
       PrayerName.asr: const PrayerTrackerEntry(),
       PrayerName.maghrib: const PrayerTrackerEntry(),
       PrayerName.isha: const PrayerTrackerEntry(),
+      PrayerName.tahajjud: const PrayerTrackerEntry(),
     };
   }
 

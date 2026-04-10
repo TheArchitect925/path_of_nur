@@ -94,9 +94,9 @@ void main() {
       expect(find.byType(HomePage), findsOneWidget);
       expect(find.text('Post-salah dhikr logged'), findsOneWidget);
 
-      final prayerDetailsCallToAction = find.text(
-        'Tap to update prayer details',
-      ).first;
+      final prayerDetailsCallToAction = find
+          .text('Tap to update prayer details')
+          .first;
       await tester.scrollUntilVisible(
         prayerDetailsCallToAction,
         240,
@@ -134,5 +134,6 @@ void main() {
 
     expect(find.text('Tahajjud'), findsOneWidget);
     expect(find.text('التهجد'), findsOneWidget);
+    expect(find.textContaining('5+1'), findsWidgets);
   });
 }

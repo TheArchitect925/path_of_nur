@@ -17,6 +17,13 @@ enum AppThemeMode {
   noorKids,
 }
 
+enum AppPageTransitionStyle {
+  defaultSystem,
+  gentleFade,
+  iosStyle,
+  noAnimation,
+}
+
 const double _glassContrastAlphaMin = 0.82;
 const double _glassContrastAlphaMax = 0.95;
 const double _glassContrastFactorMaxBoost = 0.08;
@@ -682,6 +689,8 @@ class AppTheme {
 
   static ThemeData themeFor({
     required AppThemeMode mode,
+    required AppPageTransitionStyle pageTransitionStyle,
+    required bool reduceMotion,
     required bool disableGlassTransparency,
     required bool disableColoredGlass,
     required bool disableBackground,
@@ -710,7 +719,7 @@ class AppTheme {
     final localeUsesRtlUiFont = AppFonts.usesRtlUiFont(locale);
     final serifOrLocaleUi = localeUsesRtlUiFont ? localeUiFont : 'serif';
 
-    return ThemeData(
+    final themeData = ThemeData(
       useMaterial3: true,
       brightness: brightness,
       scaffoldBackgroundColor: appearance.background,
@@ -1048,14 +1057,81 @@ class AppTheme {
       ),
       extensions: <ThemeExtension<dynamic>>[appearance],
     );
+
+    final effectiveTransitionStyle = reduceMotion
+        ? AppPageTransitionStyle.noAnimation
+        : pageTransitionStyle;
+    final transitionsTheme = _pageTransitionsThemeFor(effectiveTransitionStyle);
+    if (transitionsTheme == null) {
+      return themeData;
+    }
+    return themeData.copyWith(pageTransitionsTheme: transitionsTheme);
   }
 
   static final ThemeData darkTheme = themeFor(
     mode: AppThemeMode.dark,
+    pageTransitionStyle: AppPageTransitionStyle.defaultSystem,
+    reduceMotion: false,
     disableGlassTransparency: false,
     disableColoredGlass: false,
     disableBackground: false,
     highContrastText: false,
     glassSurfaceAlpha: 0.93,
   );
+}
+
+PageTransitionsTheme? _pageTransitionsThemeFor(
+  AppPageTransitionStyle style,
+) {
+  if (style == AppPageTransitionStyle.defaultSystem) {
+    return null;
+  }
+  final builder = switch (style) {
+    AppPageTransitionStyle.defaultSystem => const FadeUpwardsPageTransitionsBuilder(),
+    AppPageTransitionStyle.gentleFade => const _GentleFadePageTransitionsBuilder(),
+    AppPageTransitionStyle.iosStyle => const CupertinoPageTransitionsBuilder(),
+    AppPageTransitionStyle.noAnimation => const _NoAnimationPageTransitionsBuilder(),
+  };
+  return PageTransitionsTheme(
+    builders: {
+      for (final platform in TargetPlatform.values) platform: builder,
+    },
+  );
+}
+
+class _GentleFadePageTransitionsBuilder extends PageTransitionsBuilder {
+  const _GentleFadePageTransitionsBuilder();
+
+  @override
+  Widget buildTransitions<T>(
+    PageRoute<T> route,
+    BuildContext context,
+    Animation<double> animation,
+    Animation<double> secondaryAnimation,
+    Widget child,
+  ) {
+    return FadeTransition(
+      opacity: CurvedAnimation(
+        parent: animation,
+        curve: Curves.easeOutCubic,
+        reverseCurve: Curves.easeInCubic,
+      ),
+      child: child,
+    );
+  }
+}
+
+class _NoAnimationPageTransitionsBuilder extends PageTransitionsBuilder {
+  const _NoAnimationPageTransitionsBuilder();
+
+  @override
+  Widget buildTransitions<T>(
+    PageRoute<T> route,
+    BuildContext context,
+    Animation<double> animation,
+    Animation<double> secondaryAnimation,
+    Widget child,
+  ) {
+    return child;
+  }
 }

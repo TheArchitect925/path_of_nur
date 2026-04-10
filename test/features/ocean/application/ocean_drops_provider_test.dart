@@ -112,19 +112,22 @@ void main() {
     );
   });
 
-  test('community and personal stage helpers use the configured thresholds', () {
-    final communityStage = CommunityOceanLogic.getCommunityStageProgress(
-      BigInt.from(2000000),
-    );
-    final personalStage = CommunityOceanLogic.getPersonalStageProgress(
-      BigInt.from(1500),
-    );
+  test(
+    'community and personal stage helpers use the configured thresholds',
+    () {
+      final communityStage = CommunityOceanLogic.getCommunityStageProgress(
+        BigInt.from(2000000),
+      );
+      final personalStage = CommunityOceanLogic.getPersonalStageProgress(
+        BigInt.from(1500),
+      );
 
-    expect(communityStage.currentStage.title, 'Spring');
-    expect(communityStage.nextStage?.title, 'Stream');
-    expect(personalStage.currentStage.title, 'Brook');
-    expect(personalStage.nextStage?.title, 'Pond');
-  });
+      expect(communityStage.currentStage.title, 'Spring');
+      expect(communityStage.nextStage?.title, 'Stream');
+      expect(personalStage.currentStage.title, 'Brook');
+      expect(personalStage.nextStage?.title, 'Pond');
+    },
+  );
 
   test('water equivalents format into human friendly units', () {
     final milliliters = CommunityOceanLogic.convertDropsToReadableWater(
@@ -135,11 +138,9 @@ void main() {
     );
 
     expect(milliliters.fullLabel, '271 mL');
-    expect(liters.fullLabel, '1 liters');
+    expect(liters.fullLabel, '1 L');
     expect(
-      CommunityOceanLogic.formatLargeDropCount(
-        BigInt.parse('1200000000'),
-      ),
+      CommunityOceanLogic.formatLargeDropCount(BigInt.parse('1200000000')),
       '1.2B',
     );
   });

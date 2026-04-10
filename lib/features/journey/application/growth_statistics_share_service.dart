@@ -64,16 +64,12 @@ class GrowthStatisticsShareService {
       '- Prayers completed: ${countFormat.format(weekly.prayersCompleted)}',
       '- Adhkar completed: ${countFormat.format(weekly.dhikrCount)}',
       '- Qur’an time: ${_formatMinutes(localeTag, weekly.quranSeconds)}',
-      '- XP gained: ${countFormat.format(weekly.xpGained)}',
-      '- Drops gathered: ${countFormat.format(weekly.dropsGained)}',
       '- Consistency: ${percentFormat.format(weekly.averageDayScore.clamp(0, 1))}',
       '',
       'This month',
       '- Prayers completed: ${countFormat.format(monthly.prayersCompleted)}',
       '- Adhkar completed: ${countFormat.format(monthly.dhikrCount)}',
       '- Qur’an time: ${_formatMinutes(localeTag, monthly.quranSeconds)}',
-      '- XP gained: ${countFormat.format(monthly.xpGained)}',
-      '- Drops gathered: ${countFormat.format(monthly.dropsGained)}',
     ];
 
     final bestDay = dashboard.bestDay;
@@ -82,9 +78,7 @@ class GrowthStatisticsShareService {
       lines.add(
         'Best day: ${DateFormat.yMMMd(localeTag).format(bestDay.day)} '
         'with ${countFormat.format(bestDay.prayersCompleted)} prayers, '
-        '${countFormat.format(bestDay.dhikrCount)} adhkar, '
-        '${countFormat.format(bestDay.xpGained)} XP, and '
-        '${countFormat.format(bestDay.dropsGained)} drops.',
+        '${countFormat.format(bestDay.dhikrCount)} adhkar.',
       );
     }
 
@@ -111,8 +105,6 @@ class GrowthStatisticsShareService {
       '- Qur’an time: ${_formatMinutes(localeTag, summary.quranSeconds)}',
       '- Reflections: ${countFormat.format(summary.reflectionEntries)}',
       '- Learning completions: ${countFormat.format(summary.learningCompletions)}',
-      '- XP gained: ${countFormat.format(summary.xpGained)}',
-      '- Drops gathered: ${countFormat.format(summary.dropsGained)}',
       '- Active days: ${countFormat.format(summary.activeDays)}',
     ];
 

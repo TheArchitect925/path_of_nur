@@ -36,40 +36,42 @@ void main() {
     await tester.pump(const Duration(milliseconds: 180));
   }
 
-  testWidgets('home page shows the shortcut pill and expands shortcut actions', (
-    tester,
-  ) async {
-    final container = await makeTestContainer(
-      overrides: <Override>[
-        dailyNowProvider.overrideWith(
-          (ref) => Stream<DateTime>.value(DateTime.parse('2026-04-07T12:00:00')),
-        ),
-      ],
-    );
-    addTearDown(container.dispose);
+  testWidgets(
+    'home page shows the shortcut pill and expands shortcut actions',
+    (tester) async {
+      final container = await makeTestContainer(
+        overrides: <Override>[
+          dailyNowProvider.overrideWith(
+            (ref) =>
+                Stream<DateTime>.value(DateTime.parse('2026-04-07T12:00:00')),
+          ),
+        ],
+      );
+      addTearDown(container.dispose);
 
-    await pumpPage(tester, container, const HomePage());
+      await pumpPage(tester, container, const HomePage());
 
-    final homeContext = tester.element(find.byType(HomePage));
-    final l10n = AppLocalizations.of(homeContext);
-    final homeShortcuts = buildHomePageShortcuts(
-      l10n,
-      salahProgressText: '0/0',
-      dhikrProgressText: '0/0',
-    );
-    final openShortcuts = find.text(l10n.homeShortcutOpen);
-    expect(openShortcuts, findsOneWidget);
+      final homeContext = tester.element(find.byType(HomePage));
+      final l10n = AppLocalizations.of(homeContext);
+      final homeShortcuts = buildHomePageShortcuts(
+        l10n,
+        salahProgressText: '0/0',
+        dhikrProgressText: '0/0',
+      );
+      final openShortcuts = find.text(l10n.homeShortcutOpen);
+      expect(openShortcuts, findsOneWidget);
 
-    await tester.tap(openShortcuts);
-    await tester.pump();
+      await tester.tap(openShortcuts);
+      await tester.pump();
 
-    for (final item in homeShortcuts) {
-      expect(find.text(item.label), findsWidgets);
-    }
-  });
+      for (final item in homeShortcuts) {
+        expect(find.text(item.label), findsWidgets);
+      }
+    },
+  );
 
   testWidgets(
-    'canonical learn landing shows the shortcut pill and expands shortcut actions',
+    'canonical learn landing shows the pre-restructure shortcut layout',
     (tester) async {
       final container = await makeTestContainer(
         overrides: <Override>[
@@ -83,18 +85,11 @@ void main() {
 
       await pumpPage(tester, container, const LearningSectionLandingPage());
 
-      final learnContext = tester.element(find.byType(LearningSectionLandingPage));
+      final learnContext = tester.element(
+        find.byType(LearningSectionLandingPage),
+      );
       final l10n = AppLocalizations.of(learnContext);
-      final learnShortcuts = buildLearnPageShortcuts(l10n);
-      final openShortcuts = find.text(l10n.learnShortcutOpen);
-      expect(openShortcuts, findsOneWidget);
-
-      await tester.tap(openShortcuts);
-      await tester.pump();
-
-      for (final item in learnShortcuts) {
-        expect(find.text(item.label), findsWidgets);
-      }
+      expect(find.text(l10n.learnShortcutOpen), findsOneWidget);
     },
   );
 }

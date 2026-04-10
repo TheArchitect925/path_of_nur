@@ -1,4 +1,5 @@
 import 'daily_prayer_record.dart';
+import 'prayer_name.dart';
 import 'prayer_status.dart';
 
 class PrayerSummary {
@@ -11,8 +12,14 @@ class PrayerSummary {
 }
 
 PrayerSummary buildPrayerSummary(List<DailyPrayerRecord> records) {
-  final completed =
-      records.where((record) => record.status == PrayerStatus.completed).length;
-  return PrayerSummary(completed: completed, total: records.length);
+  final obligatoryRecords = records
+      .where((record) => obligatoryPrayerNames.contains(record.prayer))
+      .toList(growable: false);
+  final completed = obligatoryRecords
+      .where((record) => record.status == PrayerStatus.completed)
+      .length;
+  return PrayerSummary(
+    completed: completed,
+    total: obligatoryRecords.length,
+  );
 }
-

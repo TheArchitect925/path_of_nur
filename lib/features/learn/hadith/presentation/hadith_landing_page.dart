@@ -1,3 +1,4 @@
+// FREE ACCESS: no path-gating — all content accessible ✓
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -5,7 +6,6 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_surfaces.dart';
 import '../../../../l10n/app_localizations.dart';
-import '../../../journey/application/journey_progression_provider.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/quran_reference_link.dart';
 import '../../../../shared/widgets/segmented_pill_control.dart';
@@ -433,9 +433,8 @@ class _HadithLandingPageState extends ConsumerState<HadithLandingPage> {
                           ref,
                         );
                         if (!context.mounted) return;
-                        final xp = JourneyXpRules.xpPerReflectionEntry;
                         final message = awarded
-                            ? l10n.hadithReflectionCompletedXp(xp)
+                            ? l10n.hadithReflectionCompletedQuiet
                             : l10n.hadithReflectionAlreadyCompletedToday;
                         ScaffoldMessenger.of(
                           context,

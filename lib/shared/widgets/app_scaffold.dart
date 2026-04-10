@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/gestures.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -23,6 +24,9 @@ import 'app_hero_glass_shell.dart';
 import 'global_background.dart';
 
 class AppShellScaffold extends ConsumerWidget {
+  static const double _mainTabSwipeMinDistance = 72;
+  static const double _mainTabSwipeMinVelocity = 320;
+
   const AppShellScaffold({
     super.key,
     required this.currentLocation,
@@ -53,17 +57,23 @@ class AppShellScaffold extends ConsumerWidget {
       });
     }
 
+    final isRootTabPage = currentLocation == activeTab.path;
+
     return Scaffold(
       backgroundColor: Colors.transparent,
       extendBody: true,
       body: Stack(
         children: [
           const GlobalBackground(),
-          AppSwipeBackWrapper(
-            enabled: AppNavigationGestureConfig.isEnabledForLocation(
-              currentLocation,
+          _MainTabSwipeWrapper(
+            enabled: isRootTabPage,
+            activeTab: activeTab,
+            child: AppSwipeBackWrapper(
+              enabled: AppNavigationGestureConfig.isEnabledForLocation(
+                currentLocation,
+              ),
+              child: child,
             ),
-            child: child,
           ),
           _QuranPhoneLiveActivityBridge(currentLocation: currentLocation),
           Positioned(
@@ -379,6 +389,117 @@ class AppShellScaffold extends ConsumerWidget {
       case NavTab.quran:
         return l10n.quranTitle;
     }
+  }
+}
+
+class _MainTabSwipeWrapper extends StatefulWidget {
+  const _MainTabSwipeWrapper({
+    required this.enabled,
+    required this.activeTab,
+    required this.child,
+  });
+
+  final bool enabled;
+  final NavTab activeTab;
+  final Widget child;
+
+  @override
+  State<_MainTabSwipeWrapper> createState() => _MainTabSwipeWrapperState();
+}
+
+class _MainTabSwipeWrapperState extends State<_MainTabSwipeWrapper> {
+  VelocityTracker? _velocityTracker;
+  int? _pointer;
+  Offset? _startGlobal;
+  bool _tracking = false;
+  bool _verticalRejected = false;
+  bool _tabCommitted = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Listener(
+      behavior: HitTestBehavior.translucent,
+      onPointerDown: _handlePointerDown,
+      onPointerMove: _handlePointerMove,
+      onPointerUp: _handlePointerUp,
+      onPointerCancel: _reset,
+      child: widget.child,
+    );
+  }
+
+  void _handlePointerDown(PointerDownEvent event) {
+    if (!widget.enabled || ModalRoute.of(context)?.isCurrent != true) {
+      _reset();
+      return;
+    }
+    if (event.kind != PointerDeviceKind.touch) {
+      _reset();
+      return;
+    }
+    _pointer = event.pointer;
+    _startGlobal = event.position;
+    _tracking = true;
+    _verticalRejected = false;
+    _tabCommitted = false;
+    _velocityTracker = VelocityTracker.withKind(event.kind)
+      ..addPosition(event.timeStamp, event.position);
+  }
+
+  void _handlePointerMove(PointerMoveEvent event) {
+    if (!_isActivePointer(event.pointer) || _verticalRejected) {
+      return;
+    }
+    _velocityTracker?.addPosition(event.timeStamp, event.position);
+    final start = _startGlobal;
+    if (start == null) return;
+    final delta = event.position - start;
+    final horizontal = delta.dx.abs();
+    final vertical = delta.dy.abs();
+    if (vertical > 18 && vertical > horizontal * 1.1) {
+      _verticalRejected = true;
+    }
+  }
+
+  void _handlePointerUp(PointerUpEvent event) {
+    if (!_isActivePointer(event.pointer)) {
+      _reset();
+      return;
+    }
+    _velocityTracker?.addPosition(event.timeStamp, event.position);
+    if (!_verticalRejected) {
+      final start = _startGlobal;
+      final velocity = _velocityTracker?.getVelocity();
+      final dx = start == null ? 0.0 : event.position.dx - start.dx;
+      final dy = start == null ? 0.0 : (event.position.dy - start.dy).abs();
+      final horizontalIntent = dx.abs() > dy * 1.1;
+      final farEnough = dx.abs() >= AppShellScaffold._mainTabSwipeMinDistance;
+      final fastEnough =
+          (velocity?.pixelsPerSecond.dx.abs() ?? 0) >=
+          AppShellScaffold._mainTabSwipeMinVelocity;
+      if (horizontalIntent && (farEnough || fastEnough)) {
+        _commitTabSwipe(forward: dx < 0);
+      }
+    }
+    _reset();
+  }
+
+  void _commitTabSwipe({required bool forward}) {
+    if (_tabCommitted) return;
+    final target = adjacentNavTab(widget.activeTab, forward: forward);
+    if (target == null) return;
+    _tabCommitted = true;
+    context.go(target.path);
+  }
+
+  bool _isActivePointer(int pointer) => _tracking && _pointer == pointer;
+
+  void _reset([PointerEvent? _]) {
+    _pointer = null;
+    _startGlobal = null;
+    _tracking = false;
+    _verticalRejected = false;
+    _tabCommitted = false;
+    _velocityTracker = null;
   }
 }
 
