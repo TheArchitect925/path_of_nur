@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../shared/persistence/local_store.dart';
-import '../../hadith/data/seeded_hadith_foundation_data.dart';
+import '../../hadith/data/generated_hadith_foundation_data.dart';
 import '../../hadith/domain/hadith_foundation_models.dart';
 import '../../journey/application/family_learning_provider.dart';
 import '../../knowledge_games/adaptive/application/adaptive_learning_engine.dart';
@@ -27,7 +27,7 @@ class HadithReflectionRepository {
 
   HadithReflectionCatalog buildCatalog() {
     final entriesById = {
-      for (final entry in seededHadithEntries) entry.id: entry,
+      for (final entry in generatedHadithEntries) entry.id: entry,
     };
     final packIdsByPuzzleId = <String, List<String>>{};
     for (final pack in hadithReflectionPuzzlePacks) {
@@ -39,15 +39,21 @@ class HadithReflectionRepository {
         );
       }
     }
-    final puzzles = hadithReflectionScenarioSeeds.map((seed) {
-      final entry = entriesById[seed.hadithId];
-      if (entry == null) {
-        throw StateError(
-          'Missing HadithEntry ${seed.hadithId} for puzzle ${seed.id}.',
-        );
-      }
-      return _buildPuzzle(seed, entry, packIdsByPuzzleId[seed.id] ?? const []);
-    }).toList(growable: false);
+    final puzzles = hadithReflectionScenarioSeeds
+        .map((seed) {
+          final entry = entriesById[seed.hadithId];
+          if (entry == null) {
+            throw StateError(
+              'Missing HadithEntry ${seed.hadithId} for puzzle ${seed.id}.',
+            );
+          }
+          return _buildPuzzle(
+            seed,
+            entry,
+            packIdsByPuzzleId[seed.id] ?? const [],
+          );
+        })
+        .toList(growable: false);
     final catalog = HadithReflectionCatalog(
       puzzles: puzzles,
       packs: hadithReflectionPuzzlePacks,
@@ -93,7 +99,8 @@ class HadithReflectionRepository {
             (item) => item.trim().isNotEmpty,
             orElse: () => '',
           ),
-      helpText: seed.helpText ??
+      helpText:
+          seed.helpText ??
           (entry.meaning.trim().isNotEmpty ? entry.meaning.trim() : null),
     );
   }
@@ -101,10 +108,7 @@ class HadithReflectionRepository {
   String weekdayThemeFor(DateTime date) =>
       weekdayThemes[date.weekday] ?? 'mixed';
 
-  int dailyTargetDifficultyForDate(
-    DateTime date,
-    HadithReflectionMode mode,
-  ) {
+  int dailyTargetDifficultyForDate(DateTime date, HadithReflectionMode mode) {
     final bands = mode == HadithReflectionMode.kids
         ? const <int>[8, 10, 12]
         : const <int>[28, 32, 36, 40];
@@ -262,11 +266,12 @@ final hadithReflectionRepositoryProvider = Provider<HadithReflectionRepository>(
   (_) => const HadithReflectionRepository(),
 );
 
-final hadithReflectionCatalogProvider =
-    FutureProvider<HadithReflectionCatalog>((ref) async {
-      final repository = ref.watch(hadithReflectionRepositoryProvider);
-      return repository.buildCatalog();
-    });
+final hadithReflectionCatalogProvider = FutureProvider<HadithReflectionCatalog>(
+  (ref) async {
+    final repository = ref.watch(hadithReflectionRepositoryProvider);
+    return repository.buildCatalog();
+  },
+);
 
 final hadithReflectionValidationReportProvider =
     FutureProvider<HadithReflectionValidationReport>((ref) async {
@@ -275,13 +280,19 @@ final hadithReflectionValidationReportProvider =
     });
 
 final hadithReflectionPuzzleByIdProvider =
-    FutureProvider.family<HadithReflectionPuzzle?, String>((ref, puzzleId) async {
+    FutureProvider.family<HadithReflectionPuzzle?, String>((
+      ref,
+      puzzleId,
+    ) async {
       final catalog = await ref.watch(hadithReflectionCatalogProvider.future);
       return catalog.puzzlesById[puzzleId];
     });
 
 final hadithReflectionPackByIdProvider =
-    FutureProvider.family<HadithReflectionPuzzlePack?, String>((ref, packId) async {
+    FutureProvider.family<HadithReflectionPuzzlePack?, String>((
+      ref,
+      packId,
+    ) async {
       final catalog = await ref.watch(hadithReflectionCatalogProvider.future);
       return catalog.packsById[packId];
     });

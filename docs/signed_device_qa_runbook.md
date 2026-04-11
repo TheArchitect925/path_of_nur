@@ -57,27 +57,37 @@ flutter build apk --release --dart-define=APP_FLAVOR=prod
 4. Confirm automatic signing resolves for:
    - `Runner`
    - `PrayerLiveActivityExtension`
-   - any included watch-related targets
+   - `PathOfNurHomeWidgets`
+   - `PathOfNurWatch Watch App`
+   - `PathOfNurWatch Watch App Extension`
+   - `PathOfNurWatchComplications`
 5. Confirm the bundle identifiers resolve as expected.
 6. Use a generic iOS device destination.
 7. Archive the Release build.
 8. Validate the archive.
 9. Install the signed build on device or upload to TestFlight.
+10. If tvOS is part of the release train, archive `PathOfNurTV` separately only after Apple TV device QA is complete.
 
 ### Must-check signing items
 
 - `aps-environment` and provisioning profile match in `ios/Runner/Runner.entitlements`
 - iCloud capability enabled for the signed `Runner` target
-- app group capability alignment for Runner and any included extensions
+- app group capability alignment for Runner and all included Apple companions:
+  - `PathOfNurHomeWidgets`
+  - `PathOfNurWatch Watch App Extension`
+  - `PathOfNurWatchComplications`
 - live activity extension signing resolves cleanly
 
 ### Must-check Apple runtime items
 
 - prayer notification actions on a signed iPhone build
 - Dynamic Island and lock screen live activity behavior
+- iPhone widget rendering, refresh, and deep-link behavior
 - iCloud availability on a signed-in Apple device
 - iCloud propagation across two Apple devices
 - Qur'an playback with background and lock-screen controls
+- Apple Watch snapshot sync, prayer completion replay, dhikr sync, and complication freshness
+- Apple TV focus and remote navigation sanity if tvOS is being prepared for distribution
 
 ## Device QA matrix
 

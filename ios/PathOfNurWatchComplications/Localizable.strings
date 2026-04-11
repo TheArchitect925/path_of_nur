@@ -10,8 +10,11 @@
 "watch.complication.nextPrayer.description" = "Shows the next prayer and a concise due time.";
 "watch.complication.dailyProgress.description" = "Shows today's prayer completion at a glance.";
 "watch.complication.autoDhikr.description" = "Launch Auto Dhikr with your last-used rhythm.";
+"watch.complication.spiritualPrompt.title" = "Spiritual Prompt";
+"watch.complication.spiritualPrompt.description" = "Shows a short spiritual prompt from your synced Path of Nūr snapshot.";
 "watch.complication.prayerProgress.title" = "Prayer Progress";
 "watch.complication.startSession" = "Start a session";
+"watch.complication.openApp" = "Open Path of Nūr";
 "watch.complication.prayerProgress.done" = "Done today";
 "watch.complication.prayerProgress.completedFormat" = "%d of %d completed";
 "watch.complication.autoDhikr.summaryFormat" = "%d • %@/count";

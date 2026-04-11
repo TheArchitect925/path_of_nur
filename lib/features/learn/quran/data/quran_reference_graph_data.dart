@@ -1,6 +1,6 @@
 import '../../divine_life_lessons/data/divine_life_lessons_data.dart';
 import '../../divine_life_lessons/domain/divine_life_models.dart';
-import '../../hadith/data/hadith_curriculum_data.dart';
+import '../../hadith/data/generated_hadith_foundation_data.dart';
 import '../../prophets/data/seeded_prophets_data.dart';
 import 'quran_theme_reference_seed_data.dart';
 import 'seeded_quran_learning_data.dart';
@@ -86,16 +86,11 @@ QuranReferenceGraph buildQuranReferenceGraph() {
         relatedLessonIds: seed.relatedLessonIds,
         relatedHadithIds: seed.relatedHadithIds,
         relatedJourneyIds: seed.relatedJourneyIds,
-        keywords:
-            [
-                  seed.referenceLabel,
-                  ...seed.topicTags,
-                  ...seed.keywords,
-                ]
-                .map((item) => item.trim().toLowerCase())
-                .where((item) => item.isNotEmpty)
-                .toSet()
-                .toList(growable: false),
+        keywords: [seed.referenceLabel, ...seed.topicTags, ...seed.keywords]
+            .map((item) => item.trim().toLowerCase())
+            .where((item) => item.isNotEmpty)
+            .toSet()
+            .toList(growable: false),
         contextSummary: seed.contextSummary,
         importanceScore: seed.importanceScore,
         displayPriority: seed.importanceScore,
@@ -270,35 +265,35 @@ List<String> _prophetLinksForLabel(String label) {
 
 List<String> _hadithLinksForLabel(String label) {
   final map = <String, List<String>>{
-    '2:153': ['hardship-sabr-with-purpose'],
-    '12:87': ['hardship-grief-with-hope'],
-    '14:7': ['gratitude-seeing-blessings-daily'],
-    '13:28': ['worship-dhikr-heart-anchor'],
-    '3:159': ['hardship-tawakkul-with-effort'],
-    '65:3': ['hardship-tawakkul-with-effort'],
-    '94:5-6': ['hardship-sabr-with-purpose'],
-    '39:53': ['hardship-grief-with-hope'],
-    '66:8': ['worship-hidden-deeds'],
-    '41:34': ['community-reconciling-hearts'],
-    '2:83': ['speech-say-good-or-silent'],
-    '49:11': ['char-adab-correction'],
-    '49:12': ['speech-avoid-backbiting-harm'],
-    '25:63': ['humility-lowering-ego'],
-    '31:18': ['humility-lowering-ego'],
-    '4:135': ['community-justice-with-mercy'],
-    '5:8': ['community-justice-with-mercy'],
-    '17:23': ['family-honoring-parents'],
-    '2:271': ['mercy-care-for-poor'],
-    '3:92': ['mercy-care-for-poor'],
-    '3:134': ['hardship-managing-anger'],
-    '91:9-10': ['humility-daily-self-accounting'],
-    '2:238': ['worship-consistency-small-deeds'],
-    '29:45': ['worship-consistency-small-deeds'],
-    '3:190-191': ['world-kindness-to-animals'],
-    '20:114': ['worship-intentions-weigh-actions'],
-    '42:43': ['community-reconciling-hearts'],
-    '67:2': ['life-value-of-time'],
-    '99:7-8': ['life-remembering-death-balance'],
+    '2:153': ['whoever_remains_patient'],
+    '12:87': ['repentance_joy', 'allah_accepts_repentance_night_day'],
+    '14:7': ['look_at_those_below', 'prophet_gratitude_prayer_night'],
+    '13:28': ['example_remembers_allah'],
+    '3:159': ['strong_believer_patience'],
+    '65:3': ['strong_believer_patience'],
+    '94:5-6': ['patience_first_strike', 'hardship_expiates_sins'],
+    '39:53': ['repentance_joy', 'allah_accepts_repentance_night_day'],
+    '66:8': ['every_son_of_adam_sins', 'repentance_until_sun_from_west'],
+    '41:34': ['gentleness_all_matters'],
+    '2:83': ['speak_good_or_silent_faith'],
+    '49:11': ['not_insulting_or_cursing'],
+    '49:12': ['speak_good_or_silent_faith', 'not_insulting_or_cursing'],
+    '25:63': ['gentleness_all_matters'],
+    '31:18': ['gentleness_all_matters'],
+    '4:135': ['just_on_pulpits_of_light', 'each_shepherd'],
+    '5:8': ['just_on_pulpits_of_light', 'help_brother_oppressor_oppressed'],
+    '17:23': ['paradise_feet_mothers', 'family_best_to_family'],
+    '2:271': ['allah_helps_servant_helps_brother'],
+    '3:92': ['allah_helps_servant_helps_brother'],
+    '3:134': ['anger_control_strength'],
+    '91:9-10': ['intelligent_prepares_after_death'],
+    '2:238': ['islam_built_on_five_prayer', 'pray_as_you_have_seen_me'],
+    '29:45': ['pray_as_you_have_seen_me', 'covenant_is_prayer'],
+    '3:190-191': ['seek_knowledge', 'gatherings_dhikr_surrounded_angels'],
+    '20:114': ['knowledge_obligation', 'seek_knowledge'],
+    '42:43': ['gentleness_all_matters'],
+    '67:2': ['be_in_world_as_traveler', 'intelligent_prepares_after_death'],
+    '99:7-8': ['visit_graves_reflection', 'intelligent_prepares_after_death'],
   };
   return map[label] ?? const <String>[];
 }
@@ -422,14 +417,14 @@ List<QuranKnowledgeNode> _buildNodes(List<QuranReference> references) {
   }
 
   final hadithIds = references.expand((item) => item.relatedHadithIds).toSet();
-  for (final lesson in hadithCurriculum.lessons.where(
+  for (final entry in generatedHadithEntries.where(
     (item) => hadithIds.contains(item.id),
   )) {
     nodes.add(
       QuranKnowledgeNode(
-        id: 'hadith:${lesson.id}',
+        id: 'hadith:${entry.id}',
         type: QuranGraphNodeType.hadith,
-        title: lesson.title,
+        title: entry.title,
       ),
     );
   }

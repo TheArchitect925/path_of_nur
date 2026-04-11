@@ -33,6 +33,7 @@ import '../../quran/presentation/quran_learning_path_copy.dart';
 import '../../quran/presentation/quran_summary_theme.dart';
 import '../../quran/presentation/quran_theme_copy.dart';
 import '../../quran/presentation/widgets/quran_daily_reflection_card.dart';
+import '../../quran/presentation/widgets/quran_compact_search_results_section.dart';
 import '../../quran/presentation/widgets/quran_personalized_recommendation_card.dart';
 import '../../quran/presentation/widgets/quran_spiritual_moment_card.dart';
 import '../widgets/learn_hub_page_scaffold.dart';
@@ -172,6 +173,13 @@ class _QuranAppHubPageState extends ConsumerState<QuranAppHubPage> {
             ),
           ],
           hintText: l10n.searchSurahHint,
+          supplementalBuilder: (context, query, updateQuery) {
+            if (query.trim().isEmpty) return null;
+            return QuranCompactSearchResultsSection(
+              query: query,
+              maxResults: 3,
+            );
+          },
         ),
         const SizedBox(height: 12),
         _SectionHeader(title: l10n.quranHubReadQuranSectionTitle),

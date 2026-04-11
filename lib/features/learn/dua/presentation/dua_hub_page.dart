@@ -19,7 +19,9 @@ import 'dua_category_theme.dart';
 enum DuaHubTab { duas, categories, saved, daily }
 
 class DuaHubPage extends ConsumerStatefulWidget {
-  const DuaHubPage({super.key});
+  const DuaHubPage({super.key, this.initialQuery = ''});
+
+  final String initialQuery;
 
   @override
   ConsumerState<DuaHubPage> createState() => _DuaHubPageState();
@@ -35,8 +37,20 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
   @override
   void initState() {
     super.initState();
-    _searchController = TextEditingController();
+    _query = widget.initialQuery;
+    _searchController = TextEditingController(text: widget.initialQuery);
     _searchController.addListener(_handleSearchChanged);
+  }
+
+  @override
+  void didUpdateWidget(covariant DuaHubPage oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.initialQuery == widget.initialQuery) return;
+    _query = widget.initialQuery;
+    _searchController.value = TextEditingValue(
+      text: widget.initialQuery,
+      selection: TextSelection.collapsed(offset: widget.initialQuery.length),
+    );
   }
 
   @override
@@ -236,7 +250,7 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
         dataset.verifiedItems
             .where((item) {
               if (_selectedCategoryId != null &&
-                  item.category != _selectedCategoryId) {
+                  !item.matchesCategoryId(_selectedCategoryId!)) {
                 return false;
               }
               if (_selectedSubcategoryId != null &&
@@ -246,6 +260,12 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
               return item.matchesQuery(
                 query,
                 categoryLabel: dataset.categoryLabel(item.category),
+                primaryCategoryLabel: dataset.primaryCategoryLabel(
+                  item.effectivePrimaryCategory,
+                ),
+                secondaryCategoryLabels: item.secondaryCategories.map(
+                  dataset.primaryCategoryLabel,
+                ),
               );
             })
             .toList(growable: false)
@@ -355,11 +375,7 @@ class _DuaHubPageState extends ConsumerState<DuaHubPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _cardBanner(
-              context: context,
-              colors: colors,
-              title: summary.label,
-            ),
+            _cardBanner(context: context, colors: colors, title: summary.label),
             const SizedBox(height: 10),
             Wrap(
               spacing: 8,

@@ -84,6 +84,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get notificationsFastingTitle => 'تذكير بالصيام';
 
   @override
+  String get notificationsOnThisDayTitle => 'On This Day';
+
+  @override
   String get notificationsCycleCheckTitle => 'متابعة الدورة';
 
   @override
@@ -119,6 +122,10 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get notificationsFastingBody => 'استعد لنية الصيام اليوم.';
+
+  @override
+  String get notificationsOnThisDayBody =>
+      'Open today’s historical reflection and revisit a meaningful moment from Islamic history.';
 
   @override
   String get notificationsCycleCheckBody =>
@@ -541,7 +548,21 @@ class AppLocalizationsAr extends AppLocalizations {
   String get hadithTranslationLabel => 'الترجمة';
 
   @override
+  String get hadithSourceLabel => 'المصدر';
+
+  @override
   String get hadithReferenceLabel => 'المرجع';
+
+  @override
+  String hadithReferenceHadithNumber(String number) {
+    return 'الحديث $number';
+  }
+
+  @override
+  String get hadithGradeShortLabel => 'الدرجة';
+
+  @override
+  String get hadithNarratorLabel => 'الراوي';
 
   @override
   String get hadithPageTitle => 'الحديث';
@@ -617,6 +638,21 @@ class AppLocalizationsAr extends AppLocalizations {
   String get hadithActionAddToReflectionJournal => 'إضافة إلى دفتر التأملات';
 
   @override
+  String get hadithActionSave => 'حفظ';
+
+  @override
+  String get hadithActionSaved => 'تم الحفظ';
+
+  @override
+  String get hadithActionRemoveSaved => 'إزالة من المحفوظات';
+
+  @override
+  String get hadithActionCopy => 'نسخ';
+
+  @override
+  String get hadithActionShare => 'مشاركة';
+
+  @override
   String get hadithActionMarkLessonComplete => 'وضع علامة على الدرس مكتمل';
 
   @override
@@ -682,6 +718,15 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get hadithEmptySavedSubtitle =>
       'احفظ الحديث من صفحات الموضوع والتفاصيل لبناء مجموعة الانعكاس الشخصية الخاصة بك.';
+
+  @override
+  String get hadithAddedToSaved => 'تمت إضافة الحديث إلى المحفوظات.';
+
+  @override
+  String get hadithRemovedFromSaved => 'تمت إزالة الحديث من المحفوظات.';
+
+  @override
+  String get hadithCopiedToClipboard => 'تم نسخ الحديث إلى الحافظة.';
 
   @override
   String get hadithTitleDailyReflection => 'الحديث التفكير اليومي';
@@ -2669,6 +2714,13 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get profileFastingReminders => 'رسائل تذكير بالصيام';
+
+  @override
+  String get profileOnThisDayReminders => 'On This Day reminders';
+
+  @override
+  String get profileOnThisDayRemindersSubtitle =>
+      'Notify me when today has a historical Islamic event to reflect on.';
 
   @override
   String get profileMoonriseReminders => 'تنبيهات طلوع القمر';
@@ -6767,7 +6819,57 @@ class AppLocalizationsAr extends AppLocalizations {
   String get quranSearchSubtitle => 'البحث عن السور والآيات بسرعة.';
 
   @override
+  String get quranSearchMoreResultsAction => 'للمزيد من النتائج';
+
+  @override
+  String quranSearchResultCountLabel(int count) {
+    return '$count نتيجة';
+  }
+
+  @override
   String get quranSearchHint => 'البحث عن طريق السورة أو الرقم أو العبارة';
+
+  @override
+  String get quranSearchTypeAll => 'الكل';
+
+  @override
+  String get quranSearchTypeText => 'النص';
+
+  @override
+  String get quranSearchTypeTheme => 'الموضوع العام';
+
+  @override
+  String get quranSearchTypeTopic => 'الموضوع';
+
+  @override
+  String get quranSearchTypeSurah => 'السورة';
+
+  @override
+  String get quranSearchFilterAll => 'الكل';
+
+  @override
+  String get quranSearchFilterTranslation => 'الترجمة';
+
+  @override
+  String get quranSearchFilterTransliteration => 'اللفظ';
+
+  @override
+  String get quranSearchFilterArabic => 'العربية';
+
+  @override
+  String get quranSearchFilterSurah => 'السورة';
+
+  @override
+  String get quranSearchMatchTranslation => 'الترجمة';
+
+  @override
+  String get quranSearchMatchTransliteration => 'اللفظ';
+
+  @override
+  String get quranSearchMatchArabic => 'العربية';
+
+  @override
+  String get quranSearchMatchSurah => 'السورة';
 
   @override
   String get searchSurahHint => 'بحث في سور...';
@@ -6816,6 +6918,21 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get quranClearRecent => 'مسح الأخيرة';
+
+  @override
+  String get quranSuggestedSearches => 'عمليات بحث مقترحة';
+
+  @override
+  String get quranSavedSearches => 'عمليات بحث محفوظة';
+
+  @override
+  String get quranSearchSaveAction => 'حفظ البحث';
+
+  @override
+  String get quranSearchSavedAction => 'محفوظ';
+
+  @override
+  String get quranSearchRemoveSavedAction => 'إزالة البحث المحفوظ';
 
   @override
   String get quranSearchNoResults =>
@@ -40427,5 +40544,508 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String rewardQuietCompletionSummaryDropsOnly(Object drops) {
     return '$drops drops saved';
+  }
+
+  @override
+  String get homeWidgetsNextPrayerTitle => 'Next Prayer';
+
+  @override
+  String get homeWidgetsPrayerOverviewTitle => 'Prayer Overview';
+
+  @override
+  String get homeWidgetsDhikrTitle => 'Daily Dhikr';
+
+  @override
+  String get homeWidgetsJourneyTitle => 'Journey Progress';
+
+  @override
+  String get homeWidgetsCurrentPrayerLabel => 'Current prayer';
+
+  @override
+  String get homeWidgetsNextPrayerLabel => 'Next prayer';
+
+  @override
+  String get homeWidgetsNoPrayerTimesTitle => 'Prayer times unavailable';
+
+  @override
+  String get homeWidgetsNoPrayerTimesBody =>
+      'Open Path of Nūr to refresh prayer times for today.';
+
+  @override
+  String get homeWidgetsDhikrTodayLabel => 'Today';
+
+  @override
+  String get homeWidgetsTargetLabel => 'Target';
+
+  @override
+  String get homeWidgetsStreakLabel => 'Streak';
+
+  @override
+  String get homeWidgetsLevelLabel => 'Level';
+
+  @override
+  String get homeWidgetsTodayXpLabel => 'Today XP';
+
+  @override
+  String get homeWidgetsNoSpiritualContentTitle =>
+      'Spiritual content unavailable';
+
+  @override
+  String get homeWidgetsNoSpiritualContentBody =>
+      'Open Path of Nūr to refresh today’s spiritual content.';
+
+  @override
+  String get homeWidgetsDuaTitle => 'Daily Dua';
+
+  @override
+  String get homeWidgetsMorningDuaReady => 'Morning dua ready';
+
+  @override
+  String get homeWidgetsDailyDuaReady => 'Daily dua ready';
+
+  @override
+  String get homeWidgetsEveningDuaReady => 'Evening dua ready';
+
+  @override
+  String get homeWidgetsNightDuaReady => 'Night dua ready';
+
+  @override
+  String get homeWidgetsHadithTitle => 'Hadith';
+
+  @override
+  String get homeWidgetsHadithTodayInline => 'Hadith today';
+
+  @override
+  String get homeWidgetsAyahTitle => 'Ayah';
+
+  @override
+  String get homeWidgetsAyahTodayInline => 'Ayah today';
+
+  @override
+  String get homeWidgetsReflectionTitle => 'Reflection';
+
+  @override
+  String get homeWidgetsReflectionInline => 'Reflection today';
+
+  @override
+  String get homeWidgetsNameOfAllahTitle => 'Name of Allah';
+
+  @override
+  String get homeWidgetsNameOfAllahInline => 'Name of Allah';
+
+  @override
+  String get homeWidgetsPrayerCountdownSoon => 'Soon';
+
+  @override
+  String homeWidgetsPrayerCountdownInMinutes(Object minutes) {
+    return 'in ${minutes}m';
+  }
+
+  @override
+  String homeWidgetsPrayerCountdownInHoursMinutes(
+    Object hours,
+    Object minutes,
+  ) {
+    return 'in ${hours}h ${minutes}m';
+  }
+
+  @override
+  String get quranReaderSearchPillLabel => 'بحث';
+
+  @override
+  String get quranReaderSearchSheetTitle => 'ابحث داخل السورة';
+
+  @override
+  String get quranReaderSearchScopeSubtitle =>
+      'اعثر على المطابقات داخل السورة الحالية.';
+
+  @override
+  String get quranReaderSearchWholeQuranSubtitle =>
+      'اعثر على المطابقات في القرآن كله.';
+
+  @override
+  String get quranReaderSearchScopeCurrentSurah => 'السورة الحالية';
+
+  @override
+  String get quranReaderSearchScopeWholeQuran => 'القرآن كله';
+
+  @override
+  String get quranReaderSearchHint => 'ابحث في الترجمة أو النطق أو العربية';
+
+  @override
+  String get quranReaderSearchClearAction => 'مسح';
+
+  @override
+  String get quranReaderSearchRunAction => 'بحث';
+
+  @override
+  String get quranReaderSearchClearRecentAction => 'مسح الأخيرة';
+
+  @override
+  String get quranReaderSearchPreviousAction => 'المطابقة السابقة';
+
+  @override
+  String get quranReaderSearchNextAction => 'المطابقة التالية';
+
+  @override
+  String quranReaderSearchMatchCounter(Object current, Object total) {
+    return '$current من $total';
+  }
+
+  @override
+  String get hadithSearchTitle => 'Search Hadith';
+
+  @override
+  String get hadithSearchSubtitle =>
+      'Search the trusted hadith library by text, source, or category.';
+
+  @override
+  String get hadithSearchOpenAction => 'Open search';
+
+  @override
+  String get hadithSearchFilterAll => 'All';
+
+  @override
+  String get hadithSearchFilterSource => 'Source';
+
+  @override
+  String get hadithSearchFilterCategory => 'Category';
+
+  @override
+  String get hadithSearchFilterSubcategory => 'Subcategory';
+
+  @override
+  String get hadithSearchFilterGrade => 'Grade';
+
+  @override
+  String get hadithSearchEmptyQueryTitle => 'Search the hadith library';
+
+  @override
+  String get hadithSearchEmptyQuerySubtitle =>
+      'Search by translation, Arabic, source book, narrator, category, subcategory, or reference.';
+
+  @override
+  String get hadithSearchSuggestedSourcesTitle => 'Suggested sources';
+
+  @override
+  String get hadithSearchSuggestedCategoriesTitle => 'Suggested categories';
+
+  @override
+  String get hadithSearchNoResultsTitle => 'No hadith found';
+
+  @override
+  String get hadithSearchNoResultsSubtitle =>
+      'Try a different phrase, source book, or category.';
+
+  @override
+  String hadithSearchResultsCount(int count) {
+    return '$count results';
+  }
+
+  @override
+  String get hadithSearchMatchTitle => 'Title match';
+
+  @override
+  String get hadithSearchMatchExcerpt => 'Excerpt match';
+
+  @override
+  String get hadithSearchMatchTranslation => 'Translation match';
+
+  @override
+  String get hadithSearchMatchArabic => 'Arabic match';
+
+  @override
+  String get hadithSearchMatchTransliteration => 'Transliteration match';
+
+  @override
+  String get hadithSearchMatchSource => 'Source match';
+
+  @override
+  String get hadithSearchMatchReference => 'Reference match';
+
+  @override
+  String get hadithSearchMatchNarrator => 'Narrator match';
+
+  @override
+  String get hadithSearchMatchCategory => 'Category match';
+
+  @override
+  String get hadithSearchMatchSubcategory => 'Subcategory match';
+
+  @override
+  String get hadithSearchMatchGrade => 'Grade match';
+
+  @override
+  String get hadithSearchSuggestionsTitle => 'Suggestions';
+
+  @override
+  String get hadithSearchRecentTitle => 'Recent searches';
+
+  @override
+  String get hadithSearchClearRecents => 'Clear';
+
+  @override
+  String get hadithSearchNoRecent => 'No recent searches yet.';
+
+  @override
+  String get hadithSearchNoResultsTryBroader => 'Try a broader phrase.';
+
+  @override
+  String get hadithSearchNoResultsTrySource =>
+      'Try a source book like Riyad as-Salihin.';
+
+  @override
+  String get hadithSearchNoResultsTryCategory =>
+      'Try a category such as Character.';
+
+  @override
+  String get hadithSearchGroupText => 'Text matches';
+
+  @override
+  String get hadithSearchGroupSource => 'Source and reference matches';
+
+  @override
+  String get hadithSearchGroupTopical => 'Category and topic matches';
+
+  @override
+  String get hadithSearchGroupGrade => 'Grade matches';
+
+  @override
+  String get hadithSearchSuggestionIntentions => 'intentions';
+
+  @override
+  String get hadithSearchSuggestionSincerity => 'sincerity';
+
+  @override
+  String get hadithSearchSuggestionMercy => 'mercy';
+
+  @override
+  String get hadithSearchSuggestionRepentance => 'repentance';
+
+  @override
+  String get hadithSearchSuggestionDua => 'dua';
+
+  @override
+  String get hadithSearchSuggestionCharacter => 'character';
+
+  @override
+  String get hadithSearchSuggestionJustice => 'justice';
+
+  @override
+  String get hadithSearchSuggestionGratitude => 'gratitude';
+
+  @override
+  String get hadithActionBrowseSources => 'Browse by source';
+
+  @override
+  String get hadithSourceBrowseTitle => 'Browse by source';
+
+  @override
+  String get hadithSourceBrowseSubtitle =>
+      'Explore trusted hadith by source collection and chapter where metadata exists.';
+
+  @override
+  String get hadithSourceBrowseNoSources =>
+      'No source collections are available yet.';
+
+  @override
+  String get hadithSourceBrowseNotFoundSubtitle =>
+      'This source could not be found.';
+
+  @override
+  String get hadithSourceBrowseNotFoundBody =>
+      'Try another trusted source collection from the browse list.';
+
+  @override
+  String hadithSourceBrowseCollectionSummary(int entryCount, int chapterCount) {
+    return '$entryCount hadith across $chapterCount chapters';
+  }
+
+  @override
+  String hadithSourceBrowseCollectionCountOnly(int count) {
+    return '$count hadith';
+  }
+
+  @override
+  String get hadithSourceBrowseChaptersTitle => 'Chapters';
+
+  @override
+  String hadithSourceBrowseChapterSummary(Object chapterLabel, int count) {
+    return '$chapterLabel • $count hadith';
+  }
+
+  @override
+  String get hadithSourceBrowseEntriesTitle => 'Entries';
+
+  @override
+  String get hadithSourceBrowseEntryPreviewTitle => 'Entry preview';
+
+  @override
+  String hadithSourceBrowseChapterPageSubtitle(
+    Object sourceTitle,
+    Object chapterLabel,
+    int count,
+  ) {
+    return '$sourceTitle • $chapterLabel • $count hadith';
+  }
+
+  @override
+  String hadithSourceBrowseEntrySubtitle(Object reference, Object grade) {
+    return '$reference • $grade';
+  }
+
+  @override
+  String hadithSourceBrowseChapterNumber(int number) {
+    return 'Chapter $number';
+  }
+
+  @override
+  String get hadithSourceBrowseChapterFallback => 'Chapter';
+
+  @override
+  String get hadithSourceBrowseGeneralChapter => 'General chapter';
+
+  @override
+  String get hadithSourceBrowseUncategorized => 'Uncategorized';
+
+  @override
+  String get editorialRelationTypeExplains => 'Explains';
+
+  @override
+  String get editorialRelationTypeReinforces => 'Reinforces';
+
+  @override
+  String get editorialRelationTypeSameTheme => 'Same theme';
+
+  @override
+  String get editorialRelationTypeRelatedPractice => 'Related practice';
+
+  @override
+  String get editorialRelationTypeRelatedDua => 'Related dua';
+
+  @override
+  String get editorialRelationTypeRelatedCreationSign =>
+      'Related creation sign';
+
+  @override
+  String get editorialRelationTypeSameLesson => 'Same lesson';
+
+  @override
+  String get editorialRelationTypeReaderFollowUp => 'Reader follow-up';
+
+  @override
+  String get hadithSectionRelatedQuran => 'Related Qur’an';
+
+  @override
+  String get hadithSectionRelatedDuas => 'Related Duas';
+
+  @override
+  String get hadithSectionRelatedCanonical => 'Related hadith';
+
+  @override
+  String get quranReaderRelatedHadithTitle => 'Related Hadith';
+
+  @override
+  String get quranReaderRelatedDuasTitle => 'Related Duas';
+
+  @override
+  String get allSearchTitle => 'All Search';
+
+  @override
+  String get allSearchSubtitle =>
+      'Search Qur’an, hadith, duas, and learning content together.';
+
+  @override
+  String get allSearchHint => 'Search across Path of Nur';
+
+  @override
+  String get allSearchEmptyTitle => 'Search across the app';
+
+  @override
+  String get allSearchEmptySubtitle =>
+      'We’ll group results by domain so it stays calm and easy to trust.';
+
+  @override
+  String get allSearchSuggestionsTitle => 'Suggestions';
+
+  @override
+  String get allSearchRecentTitle => 'Recent searches';
+
+  @override
+  String get allSearchClearRecent => 'Clear';
+
+  @override
+  String get allSearchNoRecent => 'No recent searches yet.';
+
+  @override
+  String get allSearchNoResultsTitle => 'No results yet';
+
+  @override
+  String get allSearchNoResultsSubtitle =>
+      'We could not find a strong match across Qur’an, hadith, duas, or learn content.';
+
+  @override
+  String get allSearchNoResultsTipBroader => 'Try a shorter or broader phrase.';
+
+  @override
+  String get allSearchNoResultsTipDomain =>
+      'You can also jump into a domain search for more depth.';
+
+  @override
+  String get allSearchDomainQuran => 'Qur’an';
+
+  @override
+  String get allSearchDomainHadith => 'Hadith';
+
+  @override
+  String get allSearchDomainDua => 'Duas';
+
+  @override
+  String get allSearchDomainLearn => 'Learn';
+
+  @override
+  String get allSearchViewAllQuran => 'View all in Qur’an';
+
+  @override
+  String get allSearchViewAllHadith => 'View all in Hadith';
+
+  @override
+  String get allSearchViewAllDua => 'View all in Duas';
+
+  @override
+  String get allSearchViewAllLearn => 'View all in Learn';
+
+  @override
+  String get allSearchSuggestionMercy => 'mercy';
+
+  @override
+  String get allSearchSuggestionPatience => 'patience';
+
+  @override
+  String get allSearchSuggestionIntentions => 'intentions';
+
+  @override
+  String get allSearchSuggestionRepentance => 'repentance';
+
+  @override
+  String get allSearchSuggestionDua => 'dua';
+
+  @override
+  String get allSearchSuggestionProphets => 'prophets';
+
+  @override
+  String get allSearchSuggestionGratitude => 'gratitude';
+
+  @override
+  String get allSearchSuggestionJustice => 'justice';
+
+  @override
+  String allSearchResultsFor(Object query) {
+    return 'Results for \"$query\"';
+  }
+
+  @override
+  String allSearchError(Object message) {
+    return 'Search unavailable: $message';
   }
 }

@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../application/hadith_foundation_repository.dart';
 import '../data/seeded_hadith_foundation_data.dart';
 import 'hadith_lesson_page.dart';
 
-class ImportantHadithDetailPage extends StatelessWidget {
+class ImportantHadithDetailPage extends ConsumerWidget {
   const ImportantHadithDetailPage({super.key, required this.number});
 
   final int number;
 
   @override
-  Widget build(BuildContext context) {
-    final essentialEntries = seededHadithEntries
-        .where((entry) => entry.collectionIds.contains(essentialCollectionId))
-        .toList(growable: false);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final essentialEntries = ref.watch(
+      hadithEntriesForCollectionProvider(essentialCollectionId),
+    );
     final index = number <= 0 ? 0 : number - 1;
     final resolved = essentialEntries.isEmpty
         ? null

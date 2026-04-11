@@ -22,9 +22,7 @@ class QuranReaderFollowModeState {
 
   bool get shouldAutoScroll => pendingScrollAyahNumber != null;
   bool get canReturnToCurrentAyah =>
-      followModeEnabled &&
-      isTemporarilySuspended &&
-      activeAyahNumber != null;
+      followModeEnabled && isTemporarilySuspended && activeAyahNumber != null;
 
   QuranReaderFollowModeState copyWith({
     bool? followModeEnabled,
@@ -45,8 +43,7 @@ class QuranReaderFollowModeState {
       isTemporarilySuspended:
           isTemporarilySuspended ?? this.isTemporarilySuspended,
       isProgrammaticScrollInProgress:
-          isProgrammaticScrollInProgress ??
-          this.isProgrammaticScrollInProgress,
+          isProgrammaticScrollInProgress ?? this.isProgrammaticScrollInProgress,
     );
   }
 }
@@ -56,7 +53,9 @@ class QuranReaderFollowModeCoordinator
   QuranReaderFollowModeCoordinator(this.ref, {required this.pageSurahNumber})
     : super(
         QuranReaderFollowModeState(
-          followModeEnabled: ref.read(quranReaderSettingsProvider).followPlayback,
+          followModeEnabled: ref
+              .read(quranReaderSettingsProvider)
+              .followPlayback,
           activeAyahNumber: ref
               .read(quranReaderPlaybackControllerProvider(pageSurahNumber))
               .activeAyahNumber,
@@ -67,6 +66,7 @@ class QuranReaderFollowModeCoordinator
 
   final Ref ref;
   final int pageSurahNumber;
+  bool _resumeOnNextPlaybackAyahChange = false;
 
   void _bind() {
     ref.listen<QuranReaderPlaybackState>(
@@ -89,6 +89,22 @@ class QuranReaderFollowModeCoordinator
     final previousActiveAyahNumber = state.activeAyahNumber;
     state = state.copyWith(activeAyahNumber: activeAyahNumber);
 
+    final activeAyahChanged =
+        previous?.activeAyahNumber != activeAyahNumber ||
+        previousActiveAyahNumber != activeAyahNumber;
+
+    if (state.followModeEnabled &&
+        state.isTemporarilySuspended &&
+        _resumeOnNextPlaybackAyahChange &&
+        next.isPlaying &&
+        activeAyahNumber != null &&
+        activeAyahChanged) {
+      _resumeOnNextPlaybackAyahChange = false;
+      state = state.copyWith(isTemporarilySuspended: false);
+      _queueScroll(activeAyahNumber);
+      return;
+    }
+
     if (!state.followModeEnabled ||
         state.isTemporarilySuspended ||
         state.isProgrammaticScrollInProgress ||
@@ -96,8 +112,7 @@ class QuranReaderFollowModeCoordinator
       return;
     }
 
-    if (previous?.activeAyahNumber != activeAyahNumber ||
-        previousActiveAyahNumber != activeAyahNumber) {
+    if (activeAyahChanged) {
       _queueScroll(activeAyahNumber);
     }
   }
@@ -110,6 +125,7 @@ class QuranReaderFollowModeCoordinator
         isProgrammaticScrollInProgress: false,
         clearPendingScroll: true,
       );
+      _resumeOnNextPlaybackAyahChange = false;
       return;
     }
 
@@ -117,6 +133,7 @@ class QuranReaderFollowModeCoordinator
       followModeEnabled: true,
       isTemporarilySuspended: false,
     );
+    _resumeOnNextPlaybackAyahChange = false;
     final activeAyahNumber = state.activeAyahNumber;
     if (activeAyahNumber != null) {
       _queueScroll(activeAyahNumber);
@@ -130,18 +147,36 @@ class QuranReaderFollowModeCoordinator
         state.isTemporarilySuspended) {
       return;
     }
+    _resumeOnNextPlaybackAyahChange = false;
     state = state.copyWith(
       isTemporarilySuspended: true,
       clearPendingScroll: true,
     );
   }
 
-  void handleUserScrollSettled() {}
+  void handleUserScrollSettled() {
+    if (!state.followModeEnabled || !state.isTemporarilySuspended) {
+      return;
+    }
+    _resumeOnNextPlaybackAyahChange = true;
+  }
+
+  void temporarilySuspendFollowMode() {
+    if (!state.followModeEnabled || state.isTemporarilySuspended) {
+      return;
+    }
+    _resumeOnNextPlaybackAyahChange = true;
+    state = state.copyWith(
+      isTemporarilySuspended: true,
+      clearPendingScroll: true,
+    );
+  }
 
   void handleAyahInteraction(int ayahNumber) {
     if (!state.followModeEnabled) {
       return;
     }
+    _resumeOnNextPlaybackAyahChange = false;
     state = state.copyWith(isTemporarilySuspended: false);
     _queueScroll(ayahNumber);
   }
@@ -151,6 +186,7 @@ class QuranReaderFollowModeCoordinator
     if (!state.followModeEnabled || activeAyahNumber == null) {
       return;
     }
+    _resumeOnNextPlaybackAyahChange = false;
     state = state.copyWith(isTemporarilySuspended: false);
     _queueScroll(activeAyahNumber);
   }
@@ -187,12 +223,12 @@ class QuranReaderFollowModeCoordinator
   }
 }
 
-final quranReaderFollowModeCoordinatorProvider = StateNotifierProvider.autoDispose
-    .family<
-      QuranReaderFollowModeCoordinator,
-      QuranReaderFollowModeState,
-      int
-    >((ref, surahNumber) {
+final quranReaderFollowModeCoordinatorProvider = StateNotifierProvider
+    .autoDispose
+    .family<QuranReaderFollowModeCoordinator, QuranReaderFollowModeState, int>((
+      ref,
+      surahNumber,
+    ) {
       return QuranReaderFollowModeCoordinator(
         ref,
         pageSurahNumber: surahNumber,

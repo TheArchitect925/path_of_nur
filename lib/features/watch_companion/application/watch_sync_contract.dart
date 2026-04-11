@@ -1,10 +1,16 @@
+import 'dart:ui' show Locale;
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../core/localization/locale_provider.dart';
 import '../../../core/prayer/prayer_preferences.dart';
+import '../../../l10n/app_localizations.dart';
 import '../../../shared/application/daily_clock_provider.dart';
 import '../../../shared/persistence/local_store.dart';
 import '../../journey/application/journey_progression_provider.dart';
 import '../../journey/xp/application/journey_xp_providers.dart';
+import '../../ios_widgets/application/spiritual_widget_content_engine.dart';
+import '../../learn/dua/application/daily_dua_content_service.dart';
 import '../../ocean/application/ocean_drops_provider.dart';
 import '../../profile/application/profile_settings_provider.dart';
 import '../../worship/application/dhikr_controller.dart';
@@ -65,6 +71,7 @@ class WatchDailySnapshot {
     required this.growthStageKey,
     required this.prayers,
     required this.activeDhikrSession,
+    required this.spiritualPrompt,
     required this.lastSyncAt,
     required this.sourceVersion,
   });
@@ -87,6 +94,7 @@ class WatchDailySnapshot {
   final String growthStageKey;
   final List<WatchPrayerStatusContract> prayers;
   final WatchDhikrSessionSnapshot? activeDhikrSession;
+  final WatchSpiritualPromptSnapshot? spiritualPrompt;
   final DateTime lastSyncAt;
   final String sourceVersion;
 
@@ -109,8 +117,33 @@ class WatchDailySnapshot {
     'growthStageKey': growthStageKey,
     'prayers': prayers.map((item) => item.toJson()).toList(),
     'activeDhikrSession': activeDhikrSession?.toJson(),
+    'spiritualPrompt': spiritualPrompt?.toJson(),
     'lastSyncAt': lastSyncAt.toIso8601String(),
     'sourceVersion': sourceVersion,
+  };
+}
+
+class WatchSpiritualPromptSnapshot {
+  const WatchSpiritualPromptSnapshot({
+    required this.kind,
+    required this.title,
+    required this.shortText,
+    required this.inlineText,
+    required this.circularText,
+  });
+
+  final String kind;
+  final String title;
+  final String shortText;
+  final String inlineText;
+  final String circularText;
+
+  Map<String, dynamic> toJson() => <String, dynamic>{
+    'kind': kind,
+    'title': title,
+    'shortText': shortText,
+    'inlineText': inlineText,
+    'circularText': circularText,
   };
 }
 
@@ -526,6 +559,8 @@ class WatchDailySnapshotBuilder {
   WatchDailySnapshot build() {
     final now = _ref.read(dailyNowProvider).value ?? DateTime.now();
     final todayKey = LocalStore.todayKey(now);
+    final locale = _ref.read(appLocaleProvider) ?? const Locale('en');
+    final l10n = lookupAppLocalizations(locale);
     final schedule = _ref.read(prayerScheduleProvider);
     final context = _ref.read(prayerScheduleContextProvider);
     final prayerRecords = _ref.read(prayerControllerProvider);
@@ -533,6 +568,9 @@ class WatchDailySnapshotBuilder {
     final xpSummary = _ref.read(journeyXpSummaryProvider);
     final journey = _ref.read(journeyComputedProgressProvider);
     final journeySnapshot = _ref.read(journeyActivitySnapshotProvider);
+    final spiritualBundle = _ref
+        .read(spiritualWidgetContentEngineProvider)
+        .build(now: now, duaSurface: duaSurfaceWatch);
     final ackService = _ref.read(watchSyncAckServiceProvider);
     final activeDhikr = _activeDhikrSessionFromStore(
       ackService.dhikrSession('__active__'),
@@ -573,6 +611,10 @@ class WatchDailySnapshotBuilder {
           ),
       ],
       activeDhikrSession: activeDhikr,
+      spiritualPrompt: _spiritualPromptSnapshot(
+        l10n: l10n,
+        bundle: spiritualBundle,
+      ),
       lastSyncAt: ackService.lastSyncAt() ?? now,
       sourceVersion: _watchSyncSourceVersion,
     );
@@ -585,6 +627,37 @@ class WatchDailySnapshotBuilder {
       'issues': validateWatchDailySnapshot(snapshot).length,
     });
     return snapshot;
+  }
+
+  WatchSpiritualPromptSnapshot _spiritualPromptSnapshot({
+    required AppLocalizations l10n,
+    required SpiritualWidgetContentBundle bundle,
+  }) {
+    final prompt = bundle.watchPrompt;
+    final title = switch (prompt.kind) {
+      'dua' => switch (bundle.timeOfDay) {
+        SpiritualTimeOfDay.morning => l10n.homeWidgetsMorningDuaReady,
+        SpiritualTimeOfDay.afternoon => l10n.homeWidgetsDailyDuaReady,
+        SpiritualTimeOfDay.evening => l10n.homeWidgetsEveningDuaReady,
+        SpiritualTimeOfDay.night => l10n.homeWidgetsNightDuaReady,
+      },
+      'hadith' => l10n.homeWidgetsHadithTodayInline,
+      'ayah' => l10n.homeWidgetsAyahTodayInline,
+      _ => l10n.homeWidgetsReflectionInline,
+    };
+    final circularText = switch (prompt.kind) {
+      'dua' => 'D',
+      'hadith' => 'H',
+      'ayah' => 'A',
+      _ => 'R',
+    };
+    return WatchSpiritualPromptSnapshot(
+      kind: prompt.kind,
+      title: title,
+      shortText: prompt.sourceShortText,
+      inlineText: title,
+      circularText: circularText,
+    );
   }
 
   WatchDhikrSessionSnapshot? _activeDhikrSessionFromStore(
@@ -1573,6 +1646,7 @@ class WatchActionIngestionService {
       dhikrTodayCount: 0,
       xpToday: 0,
       oceanDropsToday: 0,
+      spiritualPrompt: null,
       streakDays: 0,
       currentLevel: 1,
       growthStageKey: 'spring',

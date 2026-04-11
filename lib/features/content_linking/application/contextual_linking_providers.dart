@@ -36,13 +36,18 @@ final contextualLinkCandidateNodesProvider =
     });
 
 final contextualLinksForHistoricalEventProvider =
-    FutureProvider.family<List<ContextualLinkResult>, String>((ref, slug) async {
+    FutureProvider.family<List<ContextualLinkResult>, String>((
+      ref,
+      slug,
+    ) async {
       final event = await ref
           .watch(historicalCalendarRepositoryProvider)
           .getEventBySlug(slug);
       if (event == null) return const <ContextualLinkResult>[];
 
-      final candidates = await ref.watch(contextualLinkCandidateNodesProvider.future);
+      final candidates = await ref.watch(
+        contextualLinkCandidateNodesProvider.future,
+      );
       final service = ref.watch(contextualLinkingServiceProvider);
       return service.findRelated(
         current: _nodeFromHistoricalEvent(event),
@@ -52,11 +57,16 @@ final contextualLinksForHistoricalEventProvider =
     });
 
 final contextualLinksForHadithEntryProvider =
-    FutureProvider.family<List<ContextualLinkResult>, String>((ref, entryId) async {
+    FutureProvider.family<List<ContextualLinkResult>, String>((
+      ref,
+      entryId,
+    ) async {
       final entry = ref.watch(hadithEntryByIdProvider(entryId));
       if (entry == null) return const <ContextualLinkResult>[];
 
-      final candidates = await ref.watch(contextualLinkCandidateNodesProvider.future);
+      final candidates = await ref.watch(
+        contextualLinkCandidateNodesProvider.future,
+      );
       final service = ref.watch(contextualLinkingServiceProvider);
       return service.findRelated(
         current: _nodeFromHadithEntry(entry),
@@ -65,26 +75,30 @@ final contextualLinksForHadithEntryProvider =
       );
     });
 
-final contextualLinksForLearningJourneyStageProvider = FutureProvider.family<
-    List<ContextualLinkResult>,
-    ({String journeyId, String stageId})>((ref, args) async {
-  final journey = LearningJourneyRegistry.journeyById(args.journeyId);
-  final stage = LearningJourneyRegistry.stageById(args.stageId);
-  if (journey == null || stage == null || stage.journeyId != journey.id) {
-    return const <ContextualLinkResult>[];
-  }
+final contextualLinksForLearningJourneyStageProvider =
+    FutureProvider.family<
+      List<ContextualLinkResult>,
+      ({String journeyId, String stageId})
+    >((ref, args) async {
+      final journey = LearningJourneyRegistry.journeyById(args.journeyId);
+      final stage = LearningJourneyRegistry.stageById(args.stageId);
+      if (journey == null || stage == null || stage.journeyId != journey.id) {
+        return const <ContextualLinkResult>[];
+      }
 
-  final candidates = await ref.watch(contextualLinkCandidateNodesProvider.future);
-  final service = ref.watch(contextualLinkingServiceProvider);
-  final filteredCandidates = candidates.where(
-    (candidate) => candidate.id != journey.id,
-  );
-  return service.findRelated(
-    current: _nodeFromJourneyStage(journey, stage),
-    candidates: filteredCandidates,
-    manualIncludeIds: const <String>[],
-  );
-});
+      final candidates = await ref.watch(
+        contextualLinkCandidateNodesProvider.future,
+      );
+      final service = ref.watch(contextualLinkingServiceProvider);
+      final filteredCandidates = candidates.where(
+        (candidate) => candidate.id != journey.id,
+      );
+      return service.findRelated(
+        current: _nodeFromJourneyStage(journey, stage),
+        candidates: filteredCandidates,
+        manualIncludeIds: const <String>[],
+      );
+    });
 
 ContextualLinkNode _nodeFromHistoricalEvent(HistoricalEvent event) {
   return ContextualLinkNode(
@@ -111,11 +125,7 @@ ContextualLinkNode _nodeFromJourney(LearningJourney journey) {
     subtitle: journey.subtitle,
     summary: journey.description,
     tags: journey.tags,
-    categories: <String>[
-      journey.islandId,
-      journey.difficulty.name,
-      'journey',
-    ],
+    categories: <String>[journey.islandId, journey.difficulty.name, 'journey'],
     entities: const <String>[],
     routeName: 'learnJourneyDetail',
     pathParameters: {'journeyId': journey.id},
@@ -133,11 +143,7 @@ ContextualLinkNode _nodeFromJourneyStage(
     title: stage.title,
     subtitle: journey.title,
     summary: stage.summary,
-    tags: <String>[
-      ...journey.tags,
-      ...stage.tags,
-      stage.title,
-    ],
+    tags: <String>[...journey.tags, ...stage.tags, stage.title],
     categories: <String>[
       journey.islandId,
       journey.difficulty.name,
@@ -160,6 +166,8 @@ ContextualLinkNode _nodeFromHadithEntry(HadithEntry entry) {
     tags: entry.tags,
     categories: <String>[
       'hadith',
+      if (entry.normalizedCategoryId != null) entry.normalizedCategoryId!,
+      if (entry.normalizedSubcategoryId != null) entry.normalizedSubcategoryId!,
       entry.themeId,
       ...entry.collectionIds,
     ],

@@ -245,6 +245,12 @@ abstract class AppLocalizations {
   /// **'Fasting reminder'**
   String get notificationsFastingTitle;
 
+  /// No description provided for @notificationsOnThisDayTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'On This Day'**
+  String get notificationsOnThisDayTitle;
+
   /// No description provided for @notificationsCycleCheckTitle.
   ///
   /// In en, this message translates to:
@@ -304,6 +310,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Prepare your intention for fasting today.'**
   String get notificationsFastingBody;
+
+  /// No description provided for @notificationsOnThisDayBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Open today’s historical reflection and revisit a meaningful moment from Islamic history.'**
+  String get notificationsOnThisDayBody;
 
   /// No description provided for @notificationsCycleCheckBody.
   ///
@@ -1067,11 +1079,35 @@ abstract class AppLocalizations {
   /// **'Translation'**
   String get hadithTranslationLabel;
 
+  /// No description provided for @hadithSourceLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Source'**
+  String get hadithSourceLabel;
+
   /// No description provided for @hadithReferenceLabel.
   ///
   /// In en, this message translates to:
   /// **'Reference'**
   String get hadithReferenceLabel;
+
+  /// No description provided for @hadithReferenceHadithNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Hadith {number}'**
+  String hadithReferenceHadithNumber(String number);
+
+  /// No description provided for @hadithGradeShortLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Grade'**
+  String get hadithGradeShortLabel;
+
+  /// No description provided for @hadithNarratorLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Narrated by'**
+  String get hadithNarratorLabel;
 
   /// No description provided for @hadithPageTitle.
   ///
@@ -1217,6 +1253,36 @@ abstract class AppLocalizations {
   /// **'Add to Reflection Journal'**
   String get hadithActionAddToReflectionJournal;
 
+  /// No description provided for @hadithActionSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get hadithActionSave;
+
+  /// No description provided for @hadithActionSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved'**
+  String get hadithActionSaved;
+
+  /// No description provided for @hadithActionRemoveSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove saved'**
+  String get hadithActionRemoveSaved;
+
+  /// No description provided for @hadithActionCopy.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy'**
+  String get hadithActionCopy;
+
+  /// No description provided for @hadithActionShare.
+  ///
+  /// In en, this message translates to:
+  /// **'Share'**
+  String get hadithActionShare;
+
   /// No description provided for @hadithActionMarkLessonComplete.
   ///
   /// In en, this message translates to:
@@ -1342,6 +1408,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Save hadith from theme and detail pages to build your personal reflection set.'**
   String get hadithEmptySavedSubtitle;
+
+  /// No description provided for @hadithAddedToSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Added to saved hadith.'**
+  String get hadithAddedToSaved;
+
+  /// No description provided for @hadithRemovedFromSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Removed from saved hadith.'**
+  String get hadithRemovedFromSaved;
+
+  /// No description provided for @hadithCopiedToClipboard.
+  ///
+  /// In en, this message translates to:
+  /// **'Hadith copied to clipboard.'**
+  String get hadithCopiedToClipboard;
 
   /// No description provided for @hadithTitleDailyReflection.
   ///
@@ -4620,6 +4704,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Fasting reminders'**
   String get profileFastingReminders;
+
+  /// No description provided for @profileOnThisDayReminders.
+  ///
+  /// In en, this message translates to:
+  /// **'On This Day reminders'**
+  String get profileOnThisDayReminders;
+
+  /// No description provided for @profileOnThisDayRemindersSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Notify me when today has a historical Islamic event to reflect on.'**
+  String get profileOnThisDayRemindersSubtitle;
 
   /// No description provided for @profileMoonriseReminders.
   ///
@@ -11762,11 +11858,107 @@ abstract class AppLocalizations {
   /// **'Find surahs and verses quickly.'**
   String get quranSearchSubtitle;
 
+  /// No description provided for @quranSearchMoreResultsAction.
+  ///
+  /// In en, this message translates to:
+  /// **'For More Results'**
+  String get quranSearchMoreResultsAction;
+
+  /// No description provided for @quranSearchResultCountLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 result} other{{count} results}}'**
+  String quranSearchResultCountLabel(int count);
+
   /// No description provided for @quranSearchHint.
   ///
   /// In en, this message translates to:
   /// **'Search by surah, number, or phrase'**
   String get quranSearchHint;
+
+  /// No description provided for @quranSearchTypeAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get quranSearchTypeAll;
+
+  /// No description provided for @quranSearchTypeText.
+  ///
+  /// In en, this message translates to:
+  /// **'Text'**
+  String get quranSearchTypeText;
+
+  /// No description provided for @quranSearchTypeTheme.
+  ///
+  /// In en, this message translates to:
+  /// **'Theme'**
+  String get quranSearchTypeTheme;
+
+  /// No description provided for @quranSearchTypeTopic.
+  ///
+  /// In en, this message translates to:
+  /// **'Topic'**
+  String get quranSearchTypeTopic;
+
+  /// No description provided for @quranSearchTypeSurah.
+  ///
+  /// In en, this message translates to:
+  /// **'Surah'**
+  String get quranSearchTypeSurah;
+
+  /// No description provided for @quranSearchFilterAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get quranSearchFilterAll;
+
+  /// No description provided for @quranSearchFilterTranslation.
+  ///
+  /// In en, this message translates to:
+  /// **'Translation'**
+  String get quranSearchFilterTranslation;
+
+  /// No description provided for @quranSearchFilterTransliteration.
+  ///
+  /// In en, this message translates to:
+  /// **'Transliteration'**
+  String get quranSearchFilterTransliteration;
+
+  /// No description provided for @quranSearchFilterArabic.
+  ///
+  /// In en, this message translates to:
+  /// **'Arabic'**
+  String get quranSearchFilterArabic;
+
+  /// No description provided for @quranSearchFilterSurah.
+  ///
+  /// In en, this message translates to:
+  /// **'Surah'**
+  String get quranSearchFilterSurah;
+
+  /// No description provided for @quranSearchMatchTranslation.
+  ///
+  /// In en, this message translates to:
+  /// **'Translation'**
+  String get quranSearchMatchTranslation;
+
+  /// No description provided for @quranSearchMatchTransliteration.
+  ///
+  /// In en, this message translates to:
+  /// **'Transliteration'**
+  String get quranSearchMatchTransliteration;
+
+  /// No description provided for @quranSearchMatchArabic.
+  ///
+  /// In en, this message translates to:
+  /// **'Arabic'**
+  String get quranSearchMatchArabic;
+
+  /// No description provided for @quranSearchMatchSurah.
+  ///
+  /// In en, this message translates to:
+  /// **'Surah'**
+  String get quranSearchMatchSurah;
 
   /// No description provided for @searchSurahHint.
   ///
@@ -11857,6 +12049,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Clear recent'**
   String get quranClearRecent;
+
+  /// No description provided for @quranSuggestedSearches.
+  ///
+  /// In en, this message translates to:
+  /// **'Suggested searches'**
+  String get quranSuggestedSearches;
+
+  /// No description provided for @quranSavedSearches.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved searches'**
+  String get quranSavedSearches;
+
+  /// No description provided for @quranSearchSaveAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Save search'**
+  String get quranSearchSaveAction;
+
+  /// No description provided for @quranSearchSavedAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved'**
+  String get quranSearchSavedAction;
+
+  /// No description provided for @quranSearchRemoveSavedAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove saved search'**
+  String get quranSearchRemoveSavedAction;
 
   /// No description provided for @quranSearchNoResults.
   ///
@@ -67615,6 +67837,916 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{drops} drops saved'**
   String rewardQuietCompletionSummaryDropsOnly(Object drops);
+
+  /// No description provided for @homeWidgetsNextPrayerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Next Prayer'**
+  String get homeWidgetsNextPrayerTitle;
+
+  /// No description provided for @homeWidgetsPrayerOverviewTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Prayer Overview'**
+  String get homeWidgetsPrayerOverviewTitle;
+
+  /// No description provided for @homeWidgetsDhikrTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily Dhikr'**
+  String get homeWidgetsDhikrTitle;
+
+  /// No description provided for @homeWidgetsJourneyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Journey Progress'**
+  String get homeWidgetsJourneyTitle;
+
+  /// No description provided for @homeWidgetsCurrentPrayerLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Current prayer'**
+  String get homeWidgetsCurrentPrayerLabel;
+
+  /// No description provided for @homeWidgetsNextPrayerLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Next prayer'**
+  String get homeWidgetsNextPrayerLabel;
+
+  /// No description provided for @homeWidgetsNoPrayerTimesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Prayer times unavailable'**
+  String get homeWidgetsNoPrayerTimesTitle;
+
+  /// No description provided for @homeWidgetsNoPrayerTimesBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Open Path of Nūr to refresh prayer times for today.'**
+  String get homeWidgetsNoPrayerTimesBody;
+
+  /// No description provided for @homeWidgetsDhikrTodayLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get homeWidgetsDhikrTodayLabel;
+
+  /// No description provided for @homeWidgetsTargetLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Target'**
+  String get homeWidgetsTargetLabel;
+
+  /// No description provided for @homeWidgetsStreakLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Streak'**
+  String get homeWidgetsStreakLabel;
+
+  /// No description provided for @homeWidgetsLevelLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Level'**
+  String get homeWidgetsLevelLabel;
+
+  /// No description provided for @homeWidgetsTodayXpLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Today XP'**
+  String get homeWidgetsTodayXpLabel;
+
+  /// No description provided for @homeWidgetsNoSpiritualContentTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Spiritual content unavailable'**
+  String get homeWidgetsNoSpiritualContentTitle;
+
+  /// No description provided for @homeWidgetsNoSpiritualContentBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Open Path of Nūr to refresh today’s spiritual content.'**
+  String get homeWidgetsNoSpiritualContentBody;
+
+  /// No description provided for @homeWidgetsDuaTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily Dua'**
+  String get homeWidgetsDuaTitle;
+
+  /// No description provided for @homeWidgetsMorningDuaReady.
+  ///
+  /// In en, this message translates to:
+  /// **'Morning dua ready'**
+  String get homeWidgetsMorningDuaReady;
+
+  /// No description provided for @homeWidgetsDailyDuaReady.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily dua ready'**
+  String get homeWidgetsDailyDuaReady;
+
+  /// No description provided for @homeWidgetsEveningDuaReady.
+  ///
+  /// In en, this message translates to:
+  /// **'Evening dua ready'**
+  String get homeWidgetsEveningDuaReady;
+
+  /// No description provided for @homeWidgetsNightDuaReady.
+  ///
+  /// In en, this message translates to:
+  /// **'Night dua ready'**
+  String get homeWidgetsNightDuaReady;
+
+  /// No description provided for @homeWidgetsHadithTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Hadith'**
+  String get homeWidgetsHadithTitle;
+
+  /// No description provided for @homeWidgetsHadithTodayInline.
+  ///
+  /// In en, this message translates to:
+  /// **'Hadith today'**
+  String get homeWidgetsHadithTodayInline;
+
+  /// No description provided for @homeWidgetsAyahTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Ayah'**
+  String get homeWidgetsAyahTitle;
+
+  /// No description provided for @homeWidgetsAyahTodayInline.
+  ///
+  /// In en, this message translates to:
+  /// **'Ayah today'**
+  String get homeWidgetsAyahTodayInline;
+
+  /// No description provided for @homeWidgetsReflectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reflection'**
+  String get homeWidgetsReflectionTitle;
+
+  /// No description provided for @homeWidgetsReflectionInline.
+  ///
+  /// In en, this message translates to:
+  /// **'Reflection today'**
+  String get homeWidgetsReflectionInline;
+
+  /// No description provided for @homeWidgetsNameOfAllahTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Name of Allah'**
+  String get homeWidgetsNameOfAllahTitle;
+
+  /// No description provided for @homeWidgetsNameOfAllahInline.
+  ///
+  /// In en, this message translates to:
+  /// **'Name of Allah'**
+  String get homeWidgetsNameOfAllahInline;
+
+  /// No description provided for @homeWidgetsPrayerCountdownSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Soon'**
+  String get homeWidgetsPrayerCountdownSoon;
+
+  /// No description provided for @homeWidgetsPrayerCountdownInMinutes.
+  ///
+  /// In en, this message translates to:
+  /// **'in {minutes}m'**
+  String homeWidgetsPrayerCountdownInMinutes(Object minutes);
+
+  /// No description provided for @homeWidgetsPrayerCountdownInHoursMinutes.
+  ///
+  /// In en, this message translates to:
+  /// **'in {hours}h {minutes}m'**
+  String homeWidgetsPrayerCountdownInHoursMinutes(Object hours, Object minutes);
+
+  /// No description provided for @quranReaderSearchPillLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Search'**
+  String get quranReaderSearchPillLabel;
+
+  /// No description provided for @quranReaderSearchSheetTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Search this surah'**
+  String get quranReaderSearchSheetTitle;
+
+  /// No description provided for @quranReaderSearchScopeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Find matches in the current surah.'**
+  String get quranReaderSearchScopeSubtitle;
+
+  /// No description provided for @quranReaderSearchWholeQuranSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Find matches across the whole Qur’an.'**
+  String get quranReaderSearchWholeQuranSubtitle;
+
+  /// No description provided for @quranReaderSearchScopeCurrentSurah.
+  ///
+  /// In en, this message translates to:
+  /// **'Current Surah'**
+  String get quranReaderSearchScopeCurrentSurah;
+
+  /// No description provided for @quranReaderSearchScopeWholeQuran.
+  ///
+  /// In en, this message translates to:
+  /// **'Whole Qur’an'**
+  String get quranReaderSearchScopeWholeQuran;
+
+  /// No description provided for @quranReaderSearchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search translation, transliteration, or Arabic'**
+  String get quranReaderSearchHint;
+
+  /// No description provided for @quranReaderSearchClearAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear'**
+  String get quranReaderSearchClearAction;
+
+  /// No description provided for @quranReaderSearchRunAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Search'**
+  String get quranReaderSearchRunAction;
+
+  /// No description provided for @quranReaderSearchClearRecentAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear recent'**
+  String get quranReaderSearchClearRecentAction;
+
+  /// No description provided for @quranReaderSearchPreviousAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Previous match'**
+  String get quranReaderSearchPreviousAction;
+
+  /// No description provided for @quranReaderSearchNextAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Next match'**
+  String get quranReaderSearchNextAction;
+
+  /// No description provided for @quranReaderSearchMatchCounter.
+  ///
+  /// In en, this message translates to:
+  /// **'{current} of {total}'**
+  String quranReaderSearchMatchCounter(Object current, Object total);
+
+  /// No description provided for @hadithSearchTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Search Hadith'**
+  String get hadithSearchTitle;
+
+  /// No description provided for @hadithSearchSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Search the trusted hadith library by text, source, or category.'**
+  String get hadithSearchSubtitle;
+
+  /// No description provided for @hadithSearchOpenAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open search'**
+  String get hadithSearchOpenAction;
+
+  /// No description provided for @hadithSearchFilterAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get hadithSearchFilterAll;
+
+  /// No description provided for @hadithSearchFilterSource.
+  ///
+  /// In en, this message translates to:
+  /// **'Source'**
+  String get hadithSearchFilterSource;
+
+  /// No description provided for @hadithSearchFilterCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Category'**
+  String get hadithSearchFilterCategory;
+
+  /// No description provided for @hadithSearchFilterSubcategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Subcategory'**
+  String get hadithSearchFilterSubcategory;
+
+  /// No description provided for @hadithSearchFilterGrade.
+  ///
+  /// In en, this message translates to:
+  /// **'Grade'**
+  String get hadithSearchFilterGrade;
+
+  /// No description provided for @hadithSearchEmptyQueryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Search the hadith library'**
+  String get hadithSearchEmptyQueryTitle;
+
+  /// No description provided for @hadithSearchEmptyQuerySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Search by translation, Arabic, source book, narrator, category, subcategory, or reference.'**
+  String get hadithSearchEmptyQuerySubtitle;
+
+  /// No description provided for @hadithSearchSuggestedSourcesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Suggested sources'**
+  String get hadithSearchSuggestedSourcesTitle;
+
+  /// No description provided for @hadithSearchSuggestedCategoriesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Suggested categories'**
+  String get hadithSearchSuggestedCategoriesTitle;
+
+  /// No description provided for @hadithSearchNoResultsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No hadith found'**
+  String get hadithSearchNoResultsTitle;
+
+  /// No description provided for @hadithSearchNoResultsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Try a different phrase, source book, or category.'**
+  String get hadithSearchNoResultsSubtitle;
+
+  /// No description provided for @hadithSearchResultsCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} results'**
+  String hadithSearchResultsCount(int count);
+
+  /// No description provided for @hadithSearchMatchTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Title match'**
+  String get hadithSearchMatchTitle;
+
+  /// No description provided for @hadithSearchMatchExcerpt.
+  ///
+  /// In en, this message translates to:
+  /// **'Excerpt match'**
+  String get hadithSearchMatchExcerpt;
+
+  /// No description provided for @hadithSearchMatchTranslation.
+  ///
+  /// In en, this message translates to:
+  /// **'Translation match'**
+  String get hadithSearchMatchTranslation;
+
+  /// No description provided for @hadithSearchMatchArabic.
+  ///
+  /// In en, this message translates to:
+  /// **'Arabic match'**
+  String get hadithSearchMatchArabic;
+
+  /// No description provided for @hadithSearchMatchTransliteration.
+  ///
+  /// In en, this message translates to:
+  /// **'Transliteration match'**
+  String get hadithSearchMatchTransliteration;
+
+  /// No description provided for @hadithSearchMatchSource.
+  ///
+  /// In en, this message translates to:
+  /// **'Source match'**
+  String get hadithSearchMatchSource;
+
+  /// No description provided for @hadithSearchMatchReference.
+  ///
+  /// In en, this message translates to:
+  /// **'Reference match'**
+  String get hadithSearchMatchReference;
+
+  /// No description provided for @hadithSearchMatchNarrator.
+  ///
+  /// In en, this message translates to:
+  /// **'Narrator match'**
+  String get hadithSearchMatchNarrator;
+
+  /// No description provided for @hadithSearchMatchCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Category match'**
+  String get hadithSearchMatchCategory;
+
+  /// No description provided for @hadithSearchMatchSubcategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Subcategory match'**
+  String get hadithSearchMatchSubcategory;
+
+  /// No description provided for @hadithSearchMatchGrade.
+  ///
+  /// In en, this message translates to:
+  /// **'Grade match'**
+  String get hadithSearchMatchGrade;
+
+  /// No description provided for @hadithSearchSuggestionsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Suggestions'**
+  String get hadithSearchSuggestionsTitle;
+
+  /// No description provided for @hadithSearchRecentTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent searches'**
+  String get hadithSearchRecentTitle;
+
+  /// No description provided for @hadithSearchClearRecents.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear'**
+  String get hadithSearchClearRecents;
+
+  /// No description provided for @hadithSearchNoRecent.
+  ///
+  /// In en, this message translates to:
+  /// **'No recent searches yet.'**
+  String get hadithSearchNoRecent;
+
+  /// No description provided for @hadithSearchNoResultsTryBroader.
+  ///
+  /// In en, this message translates to:
+  /// **'Try a broader phrase.'**
+  String get hadithSearchNoResultsTryBroader;
+
+  /// No description provided for @hadithSearchNoResultsTrySource.
+  ///
+  /// In en, this message translates to:
+  /// **'Try a source book like Riyad as-Salihin.'**
+  String get hadithSearchNoResultsTrySource;
+
+  /// No description provided for @hadithSearchNoResultsTryCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Try a category such as Character.'**
+  String get hadithSearchNoResultsTryCategory;
+
+  /// No description provided for @hadithSearchGroupText.
+  ///
+  /// In en, this message translates to:
+  /// **'Text matches'**
+  String get hadithSearchGroupText;
+
+  /// No description provided for @hadithSearchGroupSource.
+  ///
+  /// In en, this message translates to:
+  /// **'Source and reference matches'**
+  String get hadithSearchGroupSource;
+
+  /// No description provided for @hadithSearchGroupTopical.
+  ///
+  /// In en, this message translates to:
+  /// **'Category and topic matches'**
+  String get hadithSearchGroupTopical;
+
+  /// No description provided for @hadithSearchGroupGrade.
+  ///
+  /// In en, this message translates to:
+  /// **'Grade matches'**
+  String get hadithSearchGroupGrade;
+
+  /// No description provided for @hadithSearchSuggestionIntentions.
+  ///
+  /// In en, this message translates to:
+  /// **'intentions'**
+  String get hadithSearchSuggestionIntentions;
+
+  /// No description provided for @hadithSearchSuggestionSincerity.
+  ///
+  /// In en, this message translates to:
+  /// **'sincerity'**
+  String get hadithSearchSuggestionSincerity;
+
+  /// No description provided for @hadithSearchSuggestionMercy.
+  ///
+  /// In en, this message translates to:
+  /// **'mercy'**
+  String get hadithSearchSuggestionMercy;
+
+  /// No description provided for @hadithSearchSuggestionRepentance.
+  ///
+  /// In en, this message translates to:
+  /// **'repentance'**
+  String get hadithSearchSuggestionRepentance;
+
+  /// No description provided for @hadithSearchSuggestionDua.
+  ///
+  /// In en, this message translates to:
+  /// **'dua'**
+  String get hadithSearchSuggestionDua;
+
+  /// No description provided for @hadithSearchSuggestionCharacter.
+  ///
+  /// In en, this message translates to:
+  /// **'character'**
+  String get hadithSearchSuggestionCharacter;
+
+  /// No description provided for @hadithSearchSuggestionJustice.
+  ///
+  /// In en, this message translates to:
+  /// **'justice'**
+  String get hadithSearchSuggestionJustice;
+
+  /// No description provided for @hadithSearchSuggestionGratitude.
+  ///
+  /// In en, this message translates to:
+  /// **'gratitude'**
+  String get hadithSearchSuggestionGratitude;
+
+  /// No description provided for @hadithActionBrowseSources.
+  ///
+  /// In en, this message translates to:
+  /// **'Browse by source'**
+  String get hadithActionBrowseSources;
+
+  /// No description provided for @hadithSourceBrowseTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Browse by source'**
+  String get hadithSourceBrowseTitle;
+
+  /// No description provided for @hadithSourceBrowseSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore trusted hadith by source collection and chapter where metadata exists.'**
+  String get hadithSourceBrowseSubtitle;
+
+  /// No description provided for @hadithSourceBrowseNoSources.
+  ///
+  /// In en, this message translates to:
+  /// **'No source collections are available yet.'**
+  String get hadithSourceBrowseNoSources;
+
+  /// No description provided for @hadithSourceBrowseNotFoundSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'This source could not be found.'**
+  String get hadithSourceBrowseNotFoundSubtitle;
+
+  /// No description provided for @hadithSourceBrowseNotFoundBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Try another trusted source collection from the browse list.'**
+  String get hadithSourceBrowseNotFoundBody;
+
+  /// No description provided for @hadithSourceBrowseCollectionSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'{entryCount} hadith across {chapterCount} chapters'**
+  String hadithSourceBrowseCollectionSummary(int entryCount, int chapterCount);
+
+  /// No description provided for @hadithSourceBrowseCollectionCountOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} hadith'**
+  String hadithSourceBrowseCollectionCountOnly(int count);
+
+  /// No description provided for @hadithSourceBrowseChaptersTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Chapters'**
+  String get hadithSourceBrowseChaptersTitle;
+
+  /// No description provided for @hadithSourceBrowseChapterSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'{chapterLabel} • {count} hadith'**
+  String hadithSourceBrowseChapterSummary(Object chapterLabel, int count);
+
+  /// No description provided for @hadithSourceBrowseEntriesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Entries'**
+  String get hadithSourceBrowseEntriesTitle;
+
+  /// No description provided for @hadithSourceBrowseEntryPreviewTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Entry preview'**
+  String get hadithSourceBrowseEntryPreviewTitle;
+
+  /// No description provided for @hadithSourceBrowseChapterPageSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{sourceTitle} • {chapterLabel} • {count} hadith'**
+  String hadithSourceBrowseChapterPageSubtitle(
+    Object sourceTitle,
+    Object chapterLabel,
+    int count,
+  );
+
+  /// No description provided for @hadithSourceBrowseEntrySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{reference} • {grade}'**
+  String hadithSourceBrowseEntrySubtitle(Object reference, Object grade);
+
+  /// No description provided for @hadithSourceBrowseChapterNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Chapter {number}'**
+  String hadithSourceBrowseChapterNumber(int number);
+
+  /// No description provided for @hadithSourceBrowseChapterFallback.
+  ///
+  /// In en, this message translates to:
+  /// **'Chapter'**
+  String get hadithSourceBrowseChapterFallback;
+
+  /// No description provided for @hadithSourceBrowseGeneralChapter.
+  ///
+  /// In en, this message translates to:
+  /// **'General chapter'**
+  String get hadithSourceBrowseGeneralChapter;
+
+  /// No description provided for @hadithSourceBrowseUncategorized.
+  ///
+  /// In en, this message translates to:
+  /// **'Uncategorized'**
+  String get hadithSourceBrowseUncategorized;
+
+  /// No description provided for @editorialRelationTypeExplains.
+  ///
+  /// In en, this message translates to:
+  /// **'Explains'**
+  String get editorialRelationTypeExplains;
+
+  /// No description provided for @editorialRelationTypeReinforces.
+  ///
+  /// In en, this message translates to:
+  /// **'Reinforces'**
+  String get editorialRelationTypeReinforces;
+
+  /// No description provided for @editorialRelationTypeSameTheme.
+  ///
+  /// In en, this message translates to:
+  /// **'Same theme'**
+  String get editorialRelationTypeSameTheme;
+
+  /// No description provided for @editorialRelationTypeRelatedPractice.
+  ///
+  /// In en, this message translates to:
+  /// **'Related practice'**
+  String get editorialRelationTypeRelatedPractice;
+
+  /// No description provided for @editorialRelationTypeRelatedDua.
+  ///
+  /// In en, this message translates to:
+  /// **'Related dua'**
+  String get editorialRelationTypeRelatedDua;
+
+  /// No description provided for @editorialRelationTypeRelatedCreationSign.
+  ///
+  /// In en, this message translates to:
+  /// **'Related creation sign'**
+  String get editorialRelationTypeRelatedCreationSign;
+
+  /// No description provided for @editorialRelationTypeSameLesson.
+  ///
+  /// In en, this message translates to:
+  /// **'Same lesson'**
+  String get editorialRelationTypeSameLesson;
+
+  /// No description provided for @editorialRelationTypeReaderFollowUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Reader follow-up'**
+  String get editorialRelationTypeReaderFollowUp;
+
+  /// No description provided for @hadithSectionRelatedQuran.
+  ///
+  /// In en, this message translates to:
+  /// **'Related Qur’an'**
+  String get hadithSectionRelatedQuran;
+
+  /// No description provided for @hadithSectionRelatedDuas.
+  ///
+  /// In en, this message translates to:
+  /// **'Related Duas'**
+  String get hadithSectionRelatedDuas;
+
+  /// No description provided for @hadithSectionRelatedCanonical.
+  ///
+  /// In en, this message translates to:
+  /// **'Related hadith'**
+  String get hadithSectionRelatedCanonical;
+
+  /// No description provided for @quranReaderRelatedHadithTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Related Hadith'**
+  String get quranReaderRelatedHadithTitle;
+
+  /// No description provided for @quranReaderRelatedDuasTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Related Duas'**
+  String get quranReaderRelatedDuasTitle;
+
+  /// No description provided for @allSearchTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'All Search'**
+  String get allSearchTitle;
+
+  /// No description provided for @allSearchSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Search Qur’an, hadith, duas, and learning content together.'**
+  String get allSearchSubtitle;
+
+  /// No description provided for @allSearchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search across Path of Nur'**
+  String get allSearchHint;
+
+  /// No description provided for @allSearchEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Search across the app'**
+  String get allSearchEmptyTitle;
+
+  /// No description provided for @allSearchEmptySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'We’ll group results by domain so it stays calm and easy to trust.'**
+  String get allSearchEmptySubtitle;
+
+  /// No description provided for @allSearchSuggestionsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Suggestions'**
+  String get allSearchSuggestionsTitle;
+
+  /// No description provided for @allSearchRecentTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent searches'**
+  String get allSearchRecentTitle;
+
+  /// No description provided for @allSearchClearRecent.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear'**
+  String get allSearchClearRecent;
+
+  /// No description provided for @allSearchNoRecent.
+  ///
+  /// In en, this message translates to:
+  /// **'No recent searches yet.'**
+  String get allSearchNoRecent;
+
+  /// No description provided for @allSearchNoResultsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No results yet'**
+  String get allSearchNoResultsTitle;
+
+  /// No description provided for @allSearchNoResultsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'We could not find a strong match across Qur’an, hadith, duas, or learn content.'**
+  String get allSearchNoResultsSubtitle;
+
+  /// No description provided for @allSearchNoResultsTipBroader.
+  ///
+  /// In en, this message translates to:
+  /// **'Try a shorter or broader phrase.'**
+  String get allSearchNoResultsTipBroader;
+
+  /// No description provided for @allSearchNoResultsTipDomain.
+  ///
+  /// In en, this message translates to:
+  /// **'You can also jump into a domain search for more depth.'**
+  String get allSearchNoResultsTipDomain;
+
+  /// No description provided for @allSearchDomainQuran.
+  ///
+  /// In en, this message translates to:
+  /// **'Qur’an'**
+  String get allSearchDomainQuran;
+
+  /// No description provided for @allSearchDomainHadith.
+  ///
+  /// In en, this message translates to:
+  /// **'Hadith'**
+  String get allSearchDomainHadith;
+
+  /// No description provided for @allSearchDomainDua.
+  ///
+  /// In en, this message translates to:
+  /// **'Duas'**
+  String get allSearchDomainDua;
+
+  /// No description provided for @allSearchDomainLearn.
+  ///
+  /// In en, this message translates to:
+  /// **'Learn'**
+  String get allSearchDomainLearn;
+
+  /// No description provided for @allSearchViewAllQuran.
+  ///
+  /// In en, this message translates to:
+  /// **'View all in Qur’an'**
+  String get allSearchViewAllQuran;
+
+  /// No description provided for @allSearchViewAllHadith.
+  ///
+  /// In en, this message translates to:
+  /// **'View all in Hadith'**
+  String get allSearchViewAllHadith;
+
+  /// No description provided for @allSearchViewAllDua.
+  ///
+  /// In en, this message translates to:
+  /// **'View all in Duas'**
+  String get allSearchViewAllDua;
+
+  /// No description provided for @allSearchViewAllLearn.
+  ///
+  /// In en, this message translates to:
+  /// **'View all in Learn'**
+  String get allSearchViewAllLearn;
+
+  /// No description provided for @allSearchSuggestionMercy.
+  ///
+  /// In en, this message translates to:
+  /// **'mercy'**
+  String get allSearchSuggestionMercy;
+
+  /// No description provided for @allSearchSuggestionPatience.
+  ///
+  /// In en, this message translates to:
+  /// **'patience'**
+  String get allSearchSuggestionPatience;
+
+  /// No description provided for @allSearchSuggestionIntentions.
+  ///
+  /// In en, this message translates to:
+  /// **'intentions'**
+  String get allSearchSuggestionIntentions;
+
+  /// No description provided for @allSearchSuggestionRepentance.
+  ///
+  /// In en, this message translates to:
+  /// **'repentance'**
+  String get allSearchSuggestionRepentance;
+
+  /// No description provided for @allSearchSuggestionDua.
+  ///
+  /// In en, this message translates to:
+  /// **'dua'**
+  String get allSearchSuggestionDua;
+
+  /// No description provided for @allSearchSuggestionProphets.
+  ///
+  /// In en, this message translates to:
+  /// **'prophets'**
+  String get allSearchSuggestionProphets;
+
+  /// No description provided for @allSearchSuggestionGratitude.
+  ///
+  /// In en, this message translates to:
+  /// **'gratitude'**
+  String get allSearchSuggestionGratitude;
+
+  /// No description provided for @allSearchSuggestionJustice.
+  ///
+  /// In en, this message translates to:
+  /// **'justice'**
+  String get allSearchSuggestionJustice;
+
+  /// No description provided for @allSearchResultsFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Results for \"{query}\"'**
+  String allSearchResultsFor(Object query);
+
+  /// No description provided for @allSearchError.
+  ///
+  /// In en, this message translates to:
+  /// **'Search unavailable: {message}'**
+  String allSearchError(Object message);
 }
 
 class _AppLocalizationsDelegate

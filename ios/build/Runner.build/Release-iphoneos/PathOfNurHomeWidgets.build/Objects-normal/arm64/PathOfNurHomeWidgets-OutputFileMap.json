@@ -1,0 +1,16 @@
+{
+  "" : {
+    "const-values" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-iphoneos/PathOfNurHomeWidgets.build/Objects-normal/arm64/PathOfNurHomeWidgets-primary.swiftconstvalues",
+    "dependencies" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-iphoneos/PathOfNurHomeWidgets.build/Objects-normal/arm64/PathOfNurHomeWidgets-primary.d",
+    "diagnostics" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-iphoneos/PathOfNurHomeWidgets.build/Objects-normal/arm64/PathOfNurHomeWidgets-primary.dia",
+    "emit-module-dependencies" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-iphoneos/PathOfNurHomeWidgets.build/Objects-normal/arm64/PathOfNurHomeWidgets-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-iphoneos/PathOfNurHomeWidgets.build/Objects-normal/arm64/PathOfNurHomeWidgets-primary-emit-module.dia",
+    "pch" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-iphoneos/PathOfNurHomeWidgets.build/Objects-normal/arm64/PathOfNurHomeWidgets-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-iphoneos/PathOfNurHomeWidgets.build/Objects-normal/arm64/PathOfNurHomeWidgets-primary.swiftdeps"
+  },
+  "/Users/shahabmansoor/Developer/path_of_nur/ios/PathOfNurHomeWidgets/PathOfNurHomeWidgets.swift" : {
+    "index-unit-output-path" : "/Runner.build/Release-iphoneos/PathOfNurHomeWidgets.build/Objects-normal/arm64/PathOfNurHomeWidgets.o",
+    "llvm-bc" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-iphoneos/PathOfNurHomeWidgets.build/Objects-normal/arm64/PathOfNurHomeWidgets.bc",
+    "object" : "/Users/shahabmansoor/Developer/path_of_nur/ios/build/Runner.build/Release-iphoneos/PathOfNurHomeWidgets.build/Objects-normal/arm64/PathOfNurHomeWidgets.o"
+  }
+}

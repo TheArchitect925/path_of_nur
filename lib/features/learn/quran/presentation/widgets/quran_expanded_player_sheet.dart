@@ -110,10 +110,7 @@ class _QuranExpandedPlayerSwipeHandle extends StatelessWidget {
 }
 
 class _QuranExpandedPlayerSheet extends ConsumerWidget {
-  const _QuranExpandedPlayerSheet({
-    required this.surahNumber,
-    this.ayahNumber,
-  });
+  const _QuranExpandedPlayerSheet({required this.surahNumber, this.ayahNumber});
 
   final int surahNumber;
   final int? ayahNumber;
@@ -141,7 +138,8 @@ class _QuranExpandedPlayerSheet extends ConsumerWidget {
         playbackState.isBuffering ||
         playbackState.sourceResolutionState ==
             QuranPlaybackSourceResolutionState.preparingTransition;
-    final targetAyah = ayahNumber ??
+    final targetAyah =
+        ayahNumber ??
         playbackState.activeAyahNumber ??
         playbackState.storedSession?.ayahNumber;
     final ayahTransitionKey =
@@ -151,6 +149,12 @@ class _QuranExpandedPlayerSheet extends ConsumerWidget {
     final sliderValue = playbackState.position.inMilliseconds
         .clamp(0, playbackState.duration?.inMilliseconds ?? 0)
         .toDouble();
+    Future<void> closeAndStopPlayer() async {
+      await controller.stop();
+      if (context.mounted) {
+        Navigator.of(context).maybePop();
+      }
+    }
 
     return AppPageScaffold(
       key: const ValueKey('quran-global-player-sheet'),
@@ -161,7 +165,7 @@ class _QuranExpandedPlayerSheet extends ConsumerWidget {
         IconButton(
           key: const ValueKey('quran-global-player-collapse'),
           tooltip: l10n.accessibilityClosePlayer,
-          onPressed: () => Navigator.of(context).maybePop(),
+          onPressed: () => unawaited(closeAndStopPlayer()),
           icon: const Icon(Icons.close_rounded),
         ),
         IconButton(
@@ -174,8 +178,8 @@ class _QuranExpandedPlayerSheet extends ConsumerWidget {
                   context.pushNamed(
                     'quranReader',
                     pathParameters: {
-                      'surahNumber':
-                          playbackState.activeSurahNumber!.toString(),
+                      'surahNumber': playbackState.activeSurahNumber!
+                          .toString(),
                     },
                     queryParameters: targetAyah == null
                         ? const <String, String>{}
@@ -225,7 +229,7 @@ class _QuranExpandedPlayerSheet extends ConsumerWidget {
           sliderMax: sliderMax > 0 ? sliderMax : 1,
           sliderValue: sliderMax > 0 ? sliderValue : 0,
           onClose: () async {
-            Navigator.of(context).maybePop();
+            await closeAndStopPlayer();
           },
           onOpenExpandedPlayer: null,
           onBack15: () async {
@@ -305,12 +309,13 @@ class _AnimatedExpandedPlayerSummary extends StatelessWidget {
       switchInCurve: Curves.easeOutCubic,
       switchOutCurve: Curves.easeInCubic,
       transitionBuilder: (child, animation) {
-        final offsetAnimation = Tween<Offset>(
-          begin: const Offset(0, 0.06),
-          end: Offset.zero,
-        ).animate(
-          CurvedAnimation(parent: animation, curve: Curves.easeOutCubic),
-        );
+        final offsetAnimation =
+            Tween<Offset>(
+              begin: const Offset(0, 0.06),
+              end: Offset.zero,
+            ).animate(
+              CurvedAnimation(parent: animation, curve: Curves.easeOutCubic),
+            );
         return FadeTransition(
           opacity: animation,
           child: SlideTransition(position: offsetAnimation, child: child),

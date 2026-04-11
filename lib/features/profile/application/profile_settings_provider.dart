@@ -50,6 +50,7 @@ class ProfileSettingsState {
     required this.quranReminders,
     required this.reflectionReminders,
     required this.fastingReminders,
+    required this.onThisDayReminders,
     required this.moonriseReminders,
     required this.moonsetReminders,
     required this.appThemeMode,
@@ -84,6 +85,7 @@ class ProfileSettingsState {
   final bool quranReminders;
   final bool reflectionReminders;
   final bool fastingReminders;
+  final bool onThisDayReminders;
   final bool moonriseReminders;
   final bool moonsetReminders;
   final AppThemeMode appThemeMode;
@@ -127,6 +129,7 @@ class ProfileSettingsState {
     bool? quranReminders,
     bool? reflectionReminders,
     bool? fastingReminders,
+    bool? onThisDayReminders,
     bool? moonriseReminders,
     bool? moonsetReminders,
     AppThemeMode? appThemeMode,
@@ -165,6 +168,7 @@ class ProfileSettingsState {
       quranReminders: quranReminders ?? this.quranReminders,
       reflectionReminders: reflectionReminders ?? this.reflectionReminders,
       fastingReminders: fastingReminders ?? this.fastingReminders,
+      onThisDayReminders: onThisDayReminders ?? this.onThisDayReminders,
       moonriseReminders: moonriseReminders ?? this.moonriseReminders,
       moonsetReminders: moonsetReminders ?? this.moonsetReminders,
       appThemeMode: appThemeMode ?? this.appThemeMode,
@@ -208,6 +212,7 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
           quranReminders: false,
           reflectionReminders: false,
           fastingReminders: false,
+          onThisDayReminders: false,
           moonriseReminders: true,
           moonsetReminders: true,
           appThemeMode: AppThemeMode.noorGlass,
@@ -375,6 +380,11 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
     _save();
   }
 
+  void setOnThisDayReminders(bool value) {
+    state = state.copyWith(onThisDayReminders: value);
+    _save();
+  }
+
   void setMoonriseReminders(bool value) {
     state = state.copyWith(moonriseReminders: value);
     _save();
@@ -531,6 +541,8 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
           data['reflectionReminders'] as bool? ?? state.reflectionReminders,
       fastingReminders:
           data['fastingReminders'] as bool? ?? state.fastingReminders,
+      onThisDayReminders:
+          data['onThisDayReminders'] as bool? ?? state.onThisDayReminders,
       moonriseReminders:
           data['moonriseReminders'] as bool? ?? state.moonriseReminders,
       moonsetReminders:
@@ -580,6 +592,7 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
       'quranReminders': state.quranReminders,
       'reflectionReminders': state.reflectionReminders,
       'fastingReminders': state.fastingReminders,
+      'onThisDayReminders': state.onThisDayReminders,
       'moonriseReminders': state.moonriseReminders,
       'moonsetReminders': state.moonsetReminders,
       'appThemeMode': state.appThemeMode.name,

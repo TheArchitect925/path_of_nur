@@ -27,10 +27,17 @@ class MainPageSearchLauncher extends StatelessWidget {
     super.key,
     required this.destinations,
     this.hintText,
+    this.supplementalBuilder,
   });
 
   final List<MainPageSearchDestination> destinations;
   final String? hintText;
+  final Widget? Function(
+    BuildContext context,
+    String query,
+    ValueChanged<String> updateQuery,
+  )?
+  supplementalBuilder;
 
   @override
   Widget build(BuildContext context) {
@@ -50,6 +57,7 @@ class MainPageSearchLauncher extends StatelessWidget {
                     searchFieldLabel: resolvedHint,
                     emptyTitle: l10n.mainPageSearchEmptyTitle,
                     emptySubtitle: l10n.mainPageSearchEmptySubtitle,
+                    supplementalBuilder: supplementalBuilder,
                   ),
                 );
               },
@@ -81,11 +89,18 @@ class _MainPageSearchDelegate extends SearchDelegate<void> {
     required String searchFieldLabel,
     required this.emptyTitle,
     required this.emptySubtitle,
+    this.supplementalBuilder,
   }) : super(searchFieldLabel: searchFieldLabel);
 
   final List<MainPageSearchDestination> destinations;
   final String emptyTitle;
   final String emptySubtitle;
+  final Widget? Function(
+    BuildContext context,
+    String query,
+    ValueChanged<String> updateQuery,
+  )?
+  supplementalBuilder;
 
   List<MainPageSearchDestination> _filteredDestinations() {
     final normalized = query.trim().toLowerCase();
@@ -135,6 +150,11 @@ class _MainPageSearchDelegate extends SearchDelegate<void> {
       results: _filteredDestinations(),
       emptyTitle: emptyTitle,
       emptySubtitle: emptySubtitle,
+      supplementalContent: supplementalBuilder?.call(
+        context,
+        query,
+        (value) => query = value,
+      ),
       onTap: (destination) {
         close(context, null);
         destination.onTap();
@@ -148,6 +168,11 @@ class _MainPageSearchDelegate extends SearchDelegate<void> {
       results: _filteredDestinations(),
       emptyTitle: emptyTitle,
       emptySubtitle: emptySubtitle,
+      supplementalContent: supplementalBuilder?.call(
+        context,
+        query,
+        (value) => query = value,
+      ),
       onTap: (destination) {
         close(context, null);
         destination.onTap();
@@ -162,16 +187,19 @@ class _SearchResultList extends StatelessWidget {
     required this.emptyTitle,
     required this.emptySubtitle,
     required this.onTap,
+    this.supplementalContent,
   });
 
   final List<MainPageSearchDestination> results;
   final String emptyTitle;
   final String emptySubtitle;
   final ValueChanged<MainPageSearchDestination> onTap;
+  final Widget? supplementalContent;
 
   @override
   Widget build(BuildContext context) {
-    if (results.isEmpty) {
+    final hasSupplementalContent = supplementalContent != null;
+    if (results.isEmpty && !hasSupplementalContent) {
       return Center(
         child: Padding(
           padding: const EdgeInsets.all(24),
@@ -199,23 +227,31 @@ class _SearchResultList extends StatelessWidget {
       );
     }
 
-    return ListView.separated(
+    return ListView(
       padding: const EdgeInsets.fromLTRB(16, 12, 16, 24),
-      itemCount: results.length,
-      separatorBuilder: (_, _) => const SizedBox(height: 10),
-      itemBuilder: (context, index) {
-        final destination = results[index];
-        return PremiumCard(
-          child: ListTile(
-            contentPadding: EdgeInsets.zero,
-            leading: Icon(destination.icon),
-            title: Text(destination.title),
-            subtitle: Text(destination.subtitle),
-            trailing: const Icon(Icons.chevron_right_rounded),
-            onTap: () => onTap(destination),
-          ),
-        );
-      },
+      children: [
+        ...?supplementalContent == null ? null : [supplementalContent!],
+        if (supplementalContent != null && results.isNotEmpty)
+          const SizedBox(height: 10),
+        ...List<Widget>.generate(results.length, (index) {
+          final destination = results[index];
+          return Padding(
+            padding: EdgeInsets.only(
+              bottom: index == results.length - 1 ? 0 : 10,
+            ),
+            child: PremiumCard(
+              child: ListTile(
+                contentPadding: EdgeInsets.zero,
+                leading: Icon(destination.icon),
+                title: Text(destination.title),
+                subtitle: Text(destination.subtitle),
+                trailing: const Icon(Icons.chevron_right_rounded),
+                onTap: () => onTap(destination),
+              ),
+            ),
+          );
+        }),
+      ],
     );
   }
 }

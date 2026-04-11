@@ -18,6 +18,7 @@ import '../features/learn/prophets/application/daily_learning_surfaces.dart';
 import '../features/wallpaper/application/wallpaper_provider.dart';
 import '../features/accounts_sync/application/accounts_sync_controller.dart';
 import '../features/accounts_sync/application/auto_backup_engine.dart';
+import '../features/ios_widgets/application/iphone_home_widget_sync_service.dart';
 import '../features/profile/application/profile_settings_provider.dart';
 import '../features/watch_companion/application/apple_watch_runtime_bridge.dart';
 import '../l10n/app_localizations.dart';
@@ -39,6 +40,7 @@ class PathOfNurApp extends ConsumerWidget {
     ref.watch(arabicLearningQuickResumeWidgetBootstrapProvider);
     ref.watch(autoBackupBootstrapProvider);
     ref.watch(appNavigationBridgeBootstrapProvider);
+    ref.watch(iPhoneHomeWidgetBootstrapProvider);
     ref.watch(appleWatchRuntimeBridgeBootstrapProvider);
     ref.watch(journeyProgressAutoSyncProvider);
     ref.watch(wallpaperAutoUnlockProvider);

@@ -46,51 +46,60 @@ void main() {
       expect(key, '1:3');
     });
 
-    test('falls back to remembered single-ayah session when local state drifted', () {
-      final key = resolveQuranReaderPlaybackAyahKey(
-        currentSurahNumber: 1,
-        isSurahPlaybackMode: false,
-        surahPlaybackAyahs: const <QuranAyah>[],
-        playerIndex: 0,
-        fallbackAyahKey: null,
-        activeSession: const QuranActivePlaybackSession(
-          surahNumber: 1,
-          ayahNumbers: <int>[2],
-          reciterId: 'husary',
-          playbackSpeed: 1,
-          includeMediaTags: true,
-          isSurahMode: false,
-        ),
-      );
+    test(
+      'falls back to remembered single-ayah session when local state drifted',
+      () {
+        final key = resolveQuranReaderPlaybackAyahKey(
+          currentSurahNumber: 1,
+          isSurahPlaybackMode: false,
+          surahPlaybackAyahs: const <QuranAyah>[],
+          playerIndex: 0,
+          fallbackAyahKey: null,
+          activeSession: const QuranActivePlaybackSession(
+            surahNumber: 1,
+            ayahNumbers: <int>[2],
+            reciterId: 'husary',
+            playbackSpeed: 1,
+            includeMediaTags: true,
+            isSurahMode: false,
+          ),
+        );
 
-      expect(key, '1:2');
-    });
+        expect(key, '1:2');
+      },
+    );
 
-    test('uses surah session fallback when player index is temporarily unavailable', () {
-      final key = resolveQuranReaderPlaybackAyahKey(
-        currentSurahNumber: 1,
-        isSurahPlaybackMode: true,
-        surahPlaybackAyahs: const <QuranAyah>[],
-        playerIndex: null,
-        fallbackAyahKey: null,
-        activeSession: const QuranActivePlaybackSession(
-          surahNumber: 1,
-          ayahNumbers: <int>[1, 2, 3],
-          reciterId: 'husary',
-          playbackSpeed: 1,
-          includeMediaTags: true,
-          isSurahMode: true,
-        ),
-      );
+    test(
+      'uses an explicit fallback ayah instead of snapping to the first session ayah when player index is temporarily unavailable',
+      () {
+        final key = resolveQuranReaderPlaybackAyahKey(
+          currentSurahNumber: 1,
+          isSurahPlaybackMode: true,
+          surahPlaybackAyahs: const <QuranAyah>[],
+          playerIndex: null,
+          fallbackAyahKey: '1:3',
+          activeSession: const QuranActivePlaybackSession(
+            surahNumber: 1,
+            ayahNumbers: <int>[1, 2, 3],
+            reciterId: 'husary',
+            playbackSpeed: 1,
+            includeMediaTags: true,
+            isSurahMode: true,
+          ),
+        );
 
-      expect(key, '1:1');
-    });
+        expect(key, '1:3');
+      },
+    );
   });
 
-  test('resolveQuranReaderPlaybackAyah maps the resolved key back to the ayah', () {
-    final ayah = resolveQuranReaderPlaybackAyah(ayahs: ayahs, ayahKey: '1:2');
+  test(
+    'resolveQuranReaderPlaybackAyah maps the resolved key back to the ayah',
+    () {
+      final ayah = resolveQuranReaderPlaybackAyah(ayahs: ayahs, ayahKey: '1:2');
 
-    expect(ayah, isNotNull);
-    expect(ayah!.ayahNumber, 2);
-  });
+      expect(ayah, isNotNull);
+      expect(ayah!.ayahNumber, 2);
+    },
+  );
 }

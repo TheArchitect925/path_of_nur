@@ -9,6 +9,7 @@ import '../../../../shared/widgets/quran_navigation.dart';
 import '../../presentation/widgets/learn_discovery_search_field.dart';
 import '../application/quran_ayah_enrichment_provider.dart';
 import '../application/quran_providers.dart';
+import '../application/quran_search_normalization.dart';
 import '../application/quran_surah_insights_provider.dart';
 import '../domain/quran_ayah_enrichment_models.dart';
 import '../domain/quran_surah.dart';
@@ -52,7 +53,7 @@ class _QuranKnowledgeSearchPageState
     final paths = ref.watch(quranAyahInsightResolvedPathsProvider);
     final surahInsights = ref.watch(quranSurahInsightsBrowseProvider);
     final surahMap = ref.watch(quranSurahMapProvider);
-    final normalizedQuery = _normalizeForSearch(_query);
+    final normalizedQuery = normalizeQuranSearchText(_query);
     final searchResults = normalizedQuery.isEmpty
         ? const _QuranKnowledgeSearchResults.empty()
         : _buildSearchResults(
@@ -250,7 +251,7 @@ _QuranKnowledgeSearchResults _buildSearchResults({
             final surahNames = surah == null
                 ? ''
                 : '${surah.transliteratedName} ${surah.englishName} ${surah.arabicName}';
-            final haystack = _combineSearchFields([
+            final haystack = combineQuranSearchFields([
               entry.title,
               entry.summary,
               entry.body,
@@ -293,7 +294,7 @@ _QuranKnowledgeSearchResults _buildSearchResults({
             final entryText = resolvedPath.entries
                 .map((entry) => '${entry.title} ${entry.ref.locationLabel}')
                 .join(' ');
-            final haystack = _combineSearchFields([
+            final haystack = combineQuranSearchFields([
               title,
               description,
               reflectionFocus,
@@ -344,7 +345,7 @@ _QuranKnowledgeSearchResults _buildSearchResults({
             final clusterDomains = insight.clusters
                 .map((cluster) => _domainLabel(l10n, cluster.domain))
                 .join(' ');
-            final haystack = _combineSearchFields([
+            final haystack = combineQuranSearchFields([
               surah.transliteratedName,
               surah.englishName,
               surah.arabicName,
@@ -403,9 +404,9 @@ int _scoreSearchMatch({
   required String haystack,
 }) {
   if (query.isEmpty) return 0;
-  final normalizedTitle = _normalizeForSearch(title);
-  final normalizedSupporting = _normalizeForSearch(supporting);
-  final normalizedHaystack = _normalizeForSearch(haystack);
+  final normalizedTitle = normalizeQuranSearchText(title);
+  final normalizedSupporting = normalizeQuranSearchText(supporting);
+  final normalizedHaystack = normalizeQuranSearchText(haystack);
   final tokens = query.split(' ').where((token) => token.isNotEmpty).toList();
   if (tokens.isEmpty) return 0;
 
@@ -423,18 +424,6 @@ int _scoreSearchMatch({
   if (queryContained) score += 40;
   score += matchedTokens * 15;
   return score;
-}
-
-String _combineSearchFields(List<String> values) {
-  return values.where((value) => value.trim().isNotEmpty).join(' ');
-}
-
-String _normalizeForSearch(String value) {
-  return value
-      .toLowerCase()
-      .replaceAll(RegExp(r'[^\p{L}\p{N}: ]', unicode: true), ' ')
-      .replaceAll(RegExp(r'\s+'), ' ')
-      .trim();
 }
 
 String _domainLabel(AppLocalizations l10n, QuranAyahEnrichmentDomain domain) {

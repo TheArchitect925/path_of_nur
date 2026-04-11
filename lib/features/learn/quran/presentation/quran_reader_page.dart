@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:io';
+import 'dart:math' as math;
 
+import 'package:flutter/foundation.dart';
 import 'package:audio_service/audio_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -13,11 +15,16 @@ import '../../../../../core/theme/app_text_styles.dart';
 import '../../../../../core/reminders/quran_live_activity_service.dart';
 import '../../../../../l10n/app_localizations.dart';
 import '../../../../../shared/persistence/local_store.dart';
+import '../../../../../shared/state/shell_state.dart';
 import '../../../../../shared/widgets/arabic_text_utils.dart';
 import '../../../../../shared/widgets/app_page_scaffold.dart';
 import '../../../../../shared/widgets/premium_card.dart';
+import '../../../../../shared/widgets/quran_navigation.dart';
 import '../../../../../shared/widgets/quran_presentation_style.dart';
 import '../../../../../shared/widgets/quran_text_span.dart';
+import '../../../content_linking/application/editorial_relation_providers.dart';
+import '../../../content_linking/domain/editorial_relation_models.dart';
+import '../../../content_linking/presentation/editorial_relation_section.dart';
 import '../../shared/application/learn_unified_provider.dart';
 import '../../shared/domain/learn_unified_models.dart';
 import '../../journey/data/learning_journey_localized_metadata.dart';
@@ -33,15 +40,18 @@ import '../application/quran_reader_follow_mode_coordinator.dart';
 import '../application/quran_reader_playback_controller.dart';
 import '../application/quran_reader_playback_state.dart';
 import '../application/quran_reader_transport.dart';
+import '../application/quran_search_normalization.dart';
 import '../application/quran_word_highlight_coordinator.dart';
 import '../application/quran_ayah_enrichment_provider.dart';
 import '../application/quran_learning_system_service.dart';
+import '../application/quran_search_support.dart';
 import '../application/quran_user_intent_provider.dart';
 import '../application/quran_note_enrichment.dart';
 import '../application/quran_providers.dart';
 import '../application/quran_reference_graph_provider.dart';
 import '../application/quran_surah_insights_provider.dart';
 import '../data/quran_audio_repository.dart';
+import '../data/quran_repository.dart';
 import '../data/quran_word_glossary.dart';
 import '../domain/bismillah_playback_mode.dart';
 import '../domain/quran_ayah.dart';
@@ -81,6 +91,8 @@ class QuranReaderPage extends ConsumerStatefulWidget {
     this.studyMode,
     this.memorizationReviewCount,
     this.memorizationLastReviewed,
+    this.initialSearchQuery,
+    this.initialSearchField,
   });
 
   final int surahNumber;
@@ -95,6 +107,8 @@ class QuranReaderPage extends ConsumerStatefulWidget {
   final QuranReaderStudyMode? studyMode;
   final int? memorizationReviewCount;
   final DateTime? memorizationLastReviewed;
+  final String? initialSearchQuery;
+  final QuranSearchMatchField? initialSearchField;
 
   @override
   ConsumerState<QuranReaderPage> createState() => _QuranReaderPageState();
@@ -103,6 +117,7 @@ class QuranReaderPage extends ConsumerStatefulWidget {
 class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
     with WidgetsBindingObserver {
   static const _controlsExpandedKey = 'learn.quran.readerControlsExpanded';
+  static const _recentReaderSearchesKey = 'learn.quran.readerRecentSearches';
 
   bool _trackedOpen = false;
   late final AudioPlayer _audioPlayer;
@@ -115,21 +130,30 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
   int _downloadTotalAyahs = 0;
   String? _currentlyPlayingAyahKey;
   bool _isSwitchingAyahSource = false;
-  bool _initialAyahAutoScrolled = false;
   int _lastSentLiveElapsedSecond = -1;
   bool _quranLiveActivitySupported = false;
   QuranAyah? _quranLiveActivityAyah;
   bool _isSurahPlaybackMode = false;
   bool _isPreparingSurahPlayback = false;
+  bool _isPlaybackPanelDismissed = false;
   bool _hasReachedEndOfSurahPlayback = false;
-  bool _didAutoPlayFromRoute = false;
+  bool _didHandleInitialRouteFocus = false;
   int _playerSessionVersion = 0;
   List<QuranAyah> _surahPlaybackAyahs = const [];
   late final ScrollController _scrollController;
   final Map<int, GlobalKey> _ayahItemKeys = {};
+  final GlobalKey _ayahListStartKey = GlobalKey();
   Timer? _userScrollSettledTimer;
   bool _isCoordinatorDrivenScroll = false;
   int _lastHandledFollowScrollRequest = 0;
+  int _currentSurahAyahCount = 0;
+  String _activeReaderSearchQuery = '';
+  QuranSearchMatchField? _activeReaderSearchField;
+  List<String> _recentReaderSearches = const <String>[];
+  int? _activeReaderSearchAyahNumber;
+  bool _didSeedReaderSearchFromRoute = false;
+  bool _isReaderSearchSheetOpen = false;
+  int _readerSearchSheetSessionToken = 0;
 
   @override
   void initState() {
@@ -141,6 +165,7 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
     _scrollController.addListener(_handleScrollControllerChanged);
     final store = ref.read(localStoreProvider);
     _readerControlsExpanded = store.getBool(_controlsExpandedKey) ?? true;
+    _recentReaderSearches = _loadRecentReaderSearches(store);
     _resumeReadingSession();
   }
 
@@ -192,13 +217,19 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
   void didUpdateWidget(covariant QuranReaderPage oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.surahNumber != widget.surahNumber ||
-        oldWidget.initialAyah != widget.initialAyah) {
+        oldWidget.initialAyah != widget.initialAyah ||
+        oldWidget.endAyah != widget.endAyah ||
+        oldWidget.autoPlay != widget.autoPlay ||
+        oldWidget.autoPlayFocusedSelectionLoop !=
+            widget.autoPlayFocusedSelectionLoop ||
+        oldWidget.initialSearchQuery != widget.initialSearchQuery ||
+        oldWidget.initialSearchField != widget.initialSearchField) {
       _pauseReadingSession();
       _flushReadingSession();
       _resumeReadingSession();
       _ayahItemKeys.clear();
-      _initialAyahAutoScrolled = false;
-      _didAutoPlayFromRoute = false;
+      _didHandleInitialRouteFocus = false;
+      _didSeedReaderSearchFromRoute = false;
     }
   }
 
@@ -233,13 +264,19 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
     final l10n = AppLocalizations.of(context);
     final languageCode = Localizations.localeOf(context).languageCode;
     final useArabicReciterLabels = languageCode.toLowerCase().startsWith('ar');
-    final surah = ref.watch(quranSurahMapProvider)[widget.surahNumber];
-    final ayahsAsync = ref.watch(quranSurahAyahsProvider(widget.surahNumber));
-    final ayahs = ayahsAsync.valueOrNull ?? const <QuranAyah>[];
-    final bookmarks = ref.watch(quranBookmarksProvider);
-    final notes = ref.watch(quranNotesProvider);
-    final recitationSession = ref.watch(quranRecitationSessionProvider);
+    final surah = ref.watch(
+      quranSurahMapProvider.select((map) => map[widget.surahNumber]),
+    );
     final settings = ref.watch(quranReaderSettingsProvider);
+    final repository = ref.read(quranRepositoryProvider);
+    final ayahsAsync = ref.watch(quranSurahAyahsProvider(widget.surahNumber));
+    final baseAyahs = repository.getAyahsForSurah(
+      widget.surahNumber,
+      translationCode: settings.translationCode,
+    );
+    final ayahs = ayahsAsync.valueOrNull ?? baseAyahs;
+    _currentSurahAyahCount = ayahs.length;
+    final recitationSession = ref.watch(quranRecitationSessionProvider);
     final quranAudioEnabled = ref.watch(quranAudioFunctionEnabledProvider);
     final settingsNotifier = ref.read(quranReaderSettingsProvider.notifier);
     final audioSettings = ref.watch(quranAudioSettingsProvider);
@@ -252,7 +289,7 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
     final wordHighlightState = ref.watch(
       quranWordHighlightCoordinatorProvider(widget.surahNumber),
     );
-    final audioRepository = ref.watch(quranAudioRepositoryProvider);
+    final audioRepository = ref.read(quranAudioRepositoryProvider);
     final hifzSettings = ref.watch(quranHifzSettingsProvider);
     final revisionPlan = ref.watch(quranDailyRevisionPlanProvider);
     final wordFavorites = ref.watch(quranWordFavoritesProvider);
@@ -269,6 +306,20 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
     final verseKnowledge = ref.watch(
       quranKnowledgeForVerseProvider((widget.surahNumber, effectiveAyah)),
     );
+    final editorialVerseRelationsAsync = ref.watch(
+      editorialResolvedLinksForQuranVerseProvider((
+        surahNumber: widget.surahNumber,
+        ayahNumber: effectiveAyah,
+      )),
+    );
+    final editorialVerseRelations = editorialVerseRelationsAsync.valueOrNull ??
+        const <EditorialResolvedRelationLink>[];
+    final editorialVerseHadithLinks = editorialVerseRelations
+        .where((item) => item.domain == EditorialRelationDomain.hadith)
+        .toList(growable: false);
+    final editorialVerseDuaLinks = editorialVerseRelations
+        .where((item) => item.domain == EditorialRelationDomain.dua)
+        .toList(growable: false);
     final currentAyahAnchorLabel = l10n.quranReferenceViewerReferenceLabel(
       '${widget.surahNumber}:$effectiveAyah',
     );
@@ -317,6 +368,10 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
       quranPlaybackSourceStateProvider,
       _handlePlaybackSourceStateChanged,
     );
+    ref.listen<String>(
+      shellCurrentLocationProvider,
+      _handleShellLocationChanged,
+    );
     final availableAyahNumbers = ayahs.map((a) => a.ayahNumber).toSet();
     final selectedRepeatStart =
         availableAyahNumbers.contains(audioSettings.repeatStartAyah)
@@ -331,6 +386,16 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
             recitationSession.surahNumber == widget.surahNumber
         ? recitationSession
         : null;
+    _seedReaderSearchFromRouteIfNeeded(ayahs);
+    final readerSearchMatches = _buildReaderSearchMatches(ayahs);
+    final readerSearchMatchesByAyah = <int, QuranReaderAyahSearchMatch>{
+      for (final match in readerSearchMatches) match.ayahNumber: match,
+    };
+    final readerSearchActiveIndex = _activeReaderSearchAyahNumber == null
+        ? -1
+        : readerSearchMatches.indexWhere(
+            (match) => match.ayahNumber == _activeReaderSearchAyahNumber,
+          );
     final surahInsight = ref.watch(
       quranSurahInsightProvider(widget.surahNumber),
     );
@@ -393,8 +458,7 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
     final topVerseReferences = verseKnowledge.references
         .take(topReferenceLimit)
         .toList(growable: false);
-    _maybeAutoScrollToInitialAyah(ayahs);
-    _maybeAutoPlayFromRoute(ayahs);
+    _maybeRunInitialRouteStartup(ayahs);
 
     return AppPageScaffold(
       scrollController: _scrollController,
@@ -413,9 +477,138 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
       subtitle: surah == null
           ? l10n.quranReaderSubtitle
           : '${surah.englishName} • ${surah.revelationPlace} • ${surah.revelationClassification} • Revelation ${surah.revelationOrder} • ${surah.revelationPeriod} • ${surah.verseCount} ${l10n.quranAyahsLabel}',
-      floatingBottom: _shouldShowFloatingPlayer(ayahs)
-          ? _buildFloatingSurahPlaybackControls(ayahs, followModeState)
-          : null,
+      floatingBottom: _buildFloatingReaderBottom(
+        ayahs: ayahs,
+        followModeState: followModeState,
+        readerSearchMatches: readerSearchMatches,
+        readerSearchActiveIndex: readerSearchActiveIndex,
+      ),
+      bodySlivers: [
+        const SliverToBoxAdapter(child: SizedBox(height: 12)),
+        if (ayahsAsync.isLoading && ayahs.isEmpty)
+          const SliverToBoxAdapter(
+            child: PremiumCard(child: LinearProgressIndicator()),
+          )
+        else if (ayahsAsync.hasError && ayahs.isEmpty)
+          SliverToBoxAdapter(
+            child: PremiumCard(
+              child: Text(l10n.quranReaderTransliterationLoadError),
+            ),
+          )
+        else if (ayahs.isEmpty)
+          SliverToBoxAdapter(
+            child: PremiumCard(child: Text(l10n.quranSearchNoResults)),
+          )
+        else ...[
+          SliverToBoxAdapter(
+            child: SizedBox(key: _ayahListStartKey, height: 0),
+          ),
+          SliverPadding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            sliver: SliverList.builder(
+              itemCount: ayahs.length,
+              itemBuilder: (context, index) {
+                final ayah = ayahs[index];
+                final readerSearchMatch =
+                    readerSearchMatchesByAyah[ayah.ayahNumber];
+                return Padding(
+                  key: _ayahKeyFor(ayah.ayahNumber),
+                  padding: const EdgeInsets.only(bottom: 12),
+                  child: _QuranReaderAyahListItem(
+                    ayah: ayah,
+                    isHighlighted: _isAyahHighlighted(ayah.ayahNumber),
+                    isNowPlaying:
+                        activePlaybackAyahKey ==
+                        '${ayah.surahNumber}:${ayah.ayahNumber}',
+                    activeWordIndex:
+                        activePlaybackAyahKey ==
+                                '${ayah.surahNumber}:${ayah.ayahNumber}' &&
+                            wordHighlightState.activeAyahKey ==
+                                '${ayah.surahNumber}:${ayah.ayahNumber}'
+                        ? wordHighlightState.activeWordIndex
+                        : null,
+                    showArabic: settings.showArabic,
+                    showTranslation: settings.showTranslation,
+                    showTransliteration: settings.showTransliteration,
+                    showWordByWord:
+                        settings.showArabic && settings.showWordByWord,
+                    showActions: !settings.cleanReadingMode,
+                    hifzRevealMode: hifzSettings.enabled
+                        ? hifzSettings.revealMode
+                        : HifzRevealMode.full,
+                    arabicFontSize: 24 * (settings.arabicScalePercent / 100.0),
+                    translationFontSize:
+                        14 * (settings.translationScalePercent / 100.0),
+                    transliterationFontSize:
+                        15 * (settings.transliterationScalePercent / 100.0),
+                    harakatColor: settings.redDiacriticsEnabled
+                        ? const Color(0xFFC22A2A)
+                        : null,
+                    resolvedExplanation:
+                        resolvedExplanationsByAyah[ayah.ayahNumber],
+                    actionRecommendation:
+                        actionRecommendationsByAyah[ayah.ayahNumber],
+                    spiritualMomentBundle: ayah.ayahNumber == effectiveAyah
+                        ? readerSpiritualMoment
+                        : null,
+                    personalizedRecommendation:
+                        personalizedRecommendationsByAyah[ayah.ayahNumber],
+                    readerSearchQuery: _activeReaderSearchQuery,
+                    readerSearchMatchField: _activeReaderSearchField,
+                    readerSearchTranslationHighlights:
+                        readerSearchMatch?.highlightTermsFor(
+                          QuranSearchMatchField.translation,
+                        ) ??
+                        const <String>[],
+                    readerSearchTransliterationHighlights:
+                        readerSearchMatch?.highlightTermsFor(
+                          QuranSearchMatchField.transliteration,
+                        ) ??
+                        const <String>[],
+                    readerSearchArabicHighlights:
+                        readerSearchMatch?.highlightTermsFor(
+                          QuranSearchMatchField.arabic,
+                        ) ??
+                        const <String>[],
+                    studyMode: effectiveStudyMode,
+                    activeTopicId: widget.highlightedTopicId,
+                    onBookmark: () {
+                      ref
+                          .read(quranBookmarksProvider.notifier)
+                          .toggleBookmark(
+                            surahNumber: ayah.surahNumber,
+                            ayahNumber: ayah.ayahNumber,
+                          );
+                    },
+                    onAddNote: () => _showAddNoteDialog(context, ref, ayah),
+                    onPlayAyah: quranAudioEnabled
+                        ? () => _handleAyahPlay(ayah)
+                        : null,
+                    onToggleMemorization: () => ref
+                        .read(quranMemorizationProgressProvider.notifier)
+                        .toggleVerse(
+                          surahNumber: ayah.surahNumber,
+                          ayahNumber: ayah.ayahNumber,
+                        ),
+                    onTap:
+                        quranAudioEnabled ? () => _handleAyahPlay(ayah) : null,
+                    onPlayWord: (word) => _onWordTap(context, ref, word),
+                    onMistakeCheckpoint: () {
+                      ref
+                          .read(quranHifzSettingsProvider.notifier)
+                          .markMistakeCheckpoint(
+                            surahNumber: ayah.surahNumber,
+                            ayahNumber: ayah.ayahNumber,
+                          );
+                    },
+                  ),
+                );
+              },
+            ),
+          ),
+          const SliverToBoxAdapter(child: SizedBox(height: 96)),
+        ],
+      ],
       children: [
         if (widget.memorizationReviewMode && widget.initialAyah != null) ...[
           PremiumCard(
@@ -985,7 +1178,18 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
                         : 3,
                   ),
                 ],
-                if (verseKnowledge.hadithEntries.isNotEmpty &&
+                if (editorialVerseHadithLinks.isNotEmpty &&
+                    showRelatedOwnerLinks) ...[
+                  const SizedBox(height: 10),
+                  EditorialRelationSection(
+                    title: l10n.quranReaderRelatedHadithTitle,
+                    links: editorialVerseHadithLinks,
+                    maxItems: 3,
+                    compact: true,
+                  ),
+                ],
+                if (editorialVerseHadithLinks.isEmpty &&
+                    verseKnowledge.hadithEntries.isNotEmpty &&
                     showRelatedOwnerLinks) ...[
                   const SizedBox(height: 10),
                   _KnowledgeLinkWrap(
@@ -995,6 +1199,16 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
                     itemLimit: effectiveStudyMode == QuranReaderStudyMode.study
                         ? 4
                         : 3,
+                  ),
+                ],
+                if (editorialVerseDuaLinks.isNotEmpty &&
+                    showRelatedOwnerLinks) ...[
+                  const SizedBox(height: 10),
+                  EditorialRelationSection(
+                    title: l10n.quranReaderRelatedDuasTitle,
+                    links: editorialVerseDuaLinks,
+                    maxItems: 3,
+                    compact: true,
                   ),
                 ],
                 if (verseKnowledge.prophets.isNotEmpty &&
@@ -1023,122 +1237,6 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
             ),
           ),
         ],
-        const SizedBox(height: 12),
-        if (ayahsAsync.isLoading && ayahs.isEmpty)
-          const PremiumCard(child: LinearProgressIndicator())
-        else if (ayahsAsync.hasError && ayahs.isEmpty)
-          PremiumCard(child: Text(l10n.quranReaderTransliterationLoadError))
-        else if (ayahs.isEmpty)
-          PremiumCard(child: Text(l10n.quranSearchNoResults))
-        else
-          ...ayahs.map(
-            (ayah) => Padding(
-              key: _ayahKeyFor(ayah.ayahNumber),
-              padding: const EdgeInsets.only(bottom: 12),
-              child: QuranAyahCard(
-                ayah: ayah,
-                isHighlighted: _isAyahHighlighted(ayah.ayahNumber),
-                isNowPlaying:
-                    activePlaybackAyahKey ==
-                    '${ayah.surahNumber}:${ayah.ayahNumber}',
-                activeWordIndex:
-                    activePlaybackAyahKey ==
-                            '${ayah.surahNumber}:${ayah.ayahNumber}' &&
-                        wordHighlightState.activeAyahKey ==
-                            '${ayah.surahNumber}:${ayah.ayahNumber}'
-                    ? wordHighlightState.activeWordIndex
-                    : null,
-                isBookmarked: bookmarks.any(
-                  (bookmark) =>
-                      bookmark.surahNumber == ayah.surahNumber &&
-                      bookmark.ayahNumber == ayah.ayahNumber,
-                ),
-                isMarkedForMemorization:
-                    ref.watch(
-                      quranMemorizationEntryForAyahProvider((
-                        ayah.surahNumber,
-                        ayah.ayahNumber,
-                      )),
-                    ) !=
-                    null,
-                notesCount: notes
-                    .where(
-                      (note) =>
-                          note.surahNumber == ayah.surahNumber &&
-                          note.ayahNumber == ayah.ayahNumber,
-                    )
-                    .length,
-                onBookmark: () {
-                  ref
-                      .read(quranBookmarksProvider.notifier)
-                      .toggleBookmark(
-                        surahNumber: ayah.surahNumber,
-                        ayahNumber: ayah.ayahNumber,
-                      );
-                },
-                onAddNote: () => _showAddNoteDialog(context, ref, ayah),
-                showArabic: settings.showArabic,
-                showTranslation: settings.showTranslation,
-                showTransliteration: settings.showTransliteration,
-                showWordByWord: settings.showArabic && settings.showWordByWord,
-                showActions: !settings.cleanReadingMode,
-                hifzRevealMode: hifzSettings.enabled
-                    ? hifzSettings.revealMode
-                    : HifzRevealMode.full,
-                arabicFontSize: 24 * (settings.arabicScalePercent / 100.0),
-                translationFontSize:
-                    14 * (settings.translationScalePercent / 100.0),
-                transliterationFontSize:
-                    15 * (settings.transliterationScalePercent / 100.0),
-                harakatColor: settings.redDiacriticsEnabled
-                    ? const Color(0xFFC22A2A)
-                    : null,
-                resolvedExplanation:
-                    resolvedExplanationsByAyah[ayah.ayahNumber],
-                actionRecommendation:
-                    actionRecommendationsByAyah[ayah.ayahNumber],
-                spiritualMomentBundle: ayah.ayahNumber == effectiveAyah
-                    ? readerSpiritualMoment
-                    : null,
-                personalizedRecommendation:
-                    personalizedRecommendationsByAyah[ayah.ayahNumber],
-                contextualLinks: ref.watch(
-                  quranContextualKnowledgeLinksForVerseProvider((
-                    ayah.surahNumber,
-                    ayah.ayahNumber,
-                  )),
-                ),
-                themeTopics: ref.watch(
-                  quranThemesForVerseProvider((
-                    ayah.surahNumber,
-                    ayah.ayahNumber,
-                  )),
-                ),
-                studyMode: effectiveStudyMode,
-                activeTopicId: widget.highlightedTopicId,
-                onPlayAyah: quranAudioEnabled
-                    ? () => _handleAyahPlay(ayah)
-                    : null,
-                onToggleMemorization: () => ref
-                    .read(quranMemorizationProgressProvider.notifier)
-                    .toggleVerse(
-                      surahNumber: ayah.surahNumber,
-                      ayahNumber: ayah.ayahNumber,
-                    ),
-                onTap: quranAudioEnabled ? () => _handleAyahPlay(ayah) : null,
-                onPlayWord: (word) => _onWordTap(context, ref, word),
-                onMistakeCheckpoint: () {
-                  ref
-                      .read(quranHifzSettingsProvider.notifier)
-                      .markMistakeCheckpoint(
-                        surahNumber: ayah.surahNumber,
-                        ayahNumber: ayah.ayahNumber,
-                      );
-                },
-              ),
-            ),
-          ),
-        if (ayahs.isNotEmpty) const SizedBox(height: 96),
       ],
     );
   }
@@ -1188,14 +1286,49 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
         if (widget.highlightedTopicId?.trim().isNotEmpty ?? false)
           'topicId': widget.highlightedTopicId!,
         if (widget.memorizationReviewMode) 'review': 'memorization',
+        if (_activeReaderSearchQuery.trim().isNotEmpty)
+          'search': _activeReaderSearchQuery.trim(),
+        if (_activeReaderSearchField != null)
+          'searchField': _activeReaderSearchField!.wireValue,
         'mode': mode.wireName,
       },
+    );
+  }
+
+  Widget? _buildFloatingReaderBottom({
+    required List<QuranAyah> ayahs,
+    required QuranReaderFollowModeState followModeState,
+    required List<QuranReaderAyahSearchMatch> readerSearchMatches,
+    required int readerSearchActiveIndex,
+  }) {
+    final showPlayer = _shouldShowFloatingPlayer(ayahs);
+    final hasSearchPill = ayahs.isNotEmpty;
+    if (!showPlayer && !hasSearchPill) {
+      return null;
+    }
+
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        if (hasSearchPill)
+          Padding(
+            padding: const EdgeInsets.only(bottom: 8),
+            child: _buildReaderSearchPill(
+              readerSearchMatches: readerSearchMatches,
+              readerSearchActiveIndex: readerSearchActiveIndex,
+            ),
+          ),
+        if (showPlayer)
+          _buildFloatingSurahPlaybackControls(ayahs, followModeState),
+      ],
     );
   }
 
   bool _shouldShowFloatingPlayer(List<QuranAyah> ayahs) {
     if (!ref.read(quranAudioFunctionEnabledProvider)) return false;
     if (ayahs.isEmpty) return false;
+    if (_isPlaybackPanelDismissed) return false;
     final playbackState = ref.read(
       quranReaderPlaybackControllerProvider(widget.surahNumber),
     );
@@ -1374,6 +1507,121 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
     );
   }
 
+  Widget _buildReaderSearchPill({
+    required List<QuranReaderAyahSearchMatch> readerSearchMatches,
+    required int readerSearchActiveIndex,
+  }) {
+    final l10n = AppLocalizations.of(context);
+    final hasActiveQuery = _activeReaderSearchQuery.trim().isNotEmpty;
+    final activeCounterLabel =
+        hasActiveQuery &&
+            readerSearchMatches.isNotEmpty &&
+            readerSearchActiveIndex >= 0
+        ? l10n.quranReaderSearchMatchCounter(
+            readerSearchActiveIndex + 1,
+            readerSearchMatches.length,
+          )
+        : null;
+    return Material(
+      color: Colors.transparent,
+      child: Theme(
+        data: Theme.of(context).copyWith(splashFactory: NoSplash.splashFactory),
+        child: Material(
+          color: const Color(0xFFF3E8DA),
+          elevation: 4,
+          borderRadius: BorderRadius.circular(999),
+          child: GestureDetector(
+            key: const ValueKey('quran-reader-search-pill'),
+            behavior: HitTestBehavior.opaque,
+            onTap: _openReaderSearchSheetSafely,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Icon(
+                    Icons.search_rounded,
+                    size: 18,
+                    color: Color(0xFF6A5A4A),
+                  ),
+                  const SizedBox(width: 8),
+                  ConstrainedBox(
+                    constraints: const BoxConstraints(maxWidth: 140),
+                    child: Text(
+                      hasActiveQuery
+                          ? _activeReaderSearchQuery.trim()
+                          : l10n.quranReaderSearchPillLabel,
+                      key: const ValueKey('quran-reader-search-pill-label'),
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                        color: const Color(0xFF4A4036),
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ),
+                  if (activeCounterLabel != null) ...[
+                    const SizedBox(width: 8),
+                    Text(
+                      activeCounterLabel,
+                      key: const ValueKey('quran-reader-search-pill-count'),
+                      style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                        color: const Color(0xFF7C5D3A),
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
+                  if (hasActiveQuery) ...[
+                    const SizedBox(width: 6),
+                    IconButton(
+                      key: const ValueKey('quran-reader-search-prev-button'),
+                      visualDensity: VisualDensity.compact,
+                      tooltip: l10n.quranReaderSearchPreviousAction,
+                      onPressed: readerSearchMatches.isEmpty
+                          ? null
+                          : () => _jumpBetweenReaderSearchMatches(
+                              readerSearchMatches,
+                              forward: false,
+                            ),
+                      icon: const Icon(
+                        Icons.keyboard_arrow_up_rounded,
+                        size: 20,
+                      ),
+                      color: const Color(0xFF6A5A4A),
+                    ),
+                    IconButton(
+                      key: const ValueKey('quran-reader-search-next-button'),
+                      visualDensity: VisualDensity.compact,
+                      tooltip: l10n.quranReaderSearchNextAction,
+                      onPressed: readerSearchMatches.isEmpty
+                          ? null
+                          : () => _jumpBetweenReaderSearchMatches(
+                              readerSearchMatches,
+                              forward: true,
+                            ),
+                      icon: const Icon(
+                        Icons.keyboard_arrow_down_rounded,
+                        size: 20,
+                      ),
+                      color: const Color(0xFF6A5A4A),
+                    ),
+                    IconButton(
+                      key: const ValueKey('quran-reader-search-clear-button'),
+                      visualDensity: VisualDensity.compact,
+                      tooltip: l10n.quranReaderSearchClearAction,
+                      onPressed: _clearActiveReaderSearch,
+                      icon: const Icon(Icons.close_rounded, size: 18),
+                      color: const Color(0xFF6A5A4A),
+                    ),
+                  ],
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
   String? _resolvedCurrentPlaybackAyahKey() {
     return ref
         .read(quranReaderPlaybackControllerProvider(widget.surahNumber))
@@ -1447,6 +1695,7 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
         (next.status == QuranReaderPlaybackStatus.completed ||
             next.status == QuranReaderPlaybackStatus.idle) &&
         next.activeAyahKey == null) {
+      _isPlaybackPanelDismissed = false;
       _quranLiveActivityAyah = null;
       unawaited(_endQuranLiveActivityIfEnabled());
     }
@@ -1531,43 +1780,23 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
     }
   }
 
-  void _maybeAutoPlayFromRoute(List<QuranAyah> ayahs) {
-    if (!widget.autoPlay || _didAutoPlayFromRoute || ayahs.isEmpty) return;
-    _didAutoPlayFromRoute = true;
-    final targetAyahNumber = widget.initialAyah;
-    final targetAyah = targetAyahNumber == null
-        ? null
-        : ayahs
-              .where((ayah) => ayah.ayahNumber == targetAyahNumber)
-              .firstOrNull;
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (!mounted) return;
-      if (targetAyah != null) {
-        final selectedAyahs = _routePlaybackSelectionAyahs(ayahs);
-        unawaited(() async {
-          if (widget.autoPlayFocusedSelectionLoop && selectedAyahs.isNotEmpty) {
-            await _startFocusedSelectionLoopPlayback(
-              selectionAyahs: selectedAyahs,
-              initialAyah: targetAyah,
-              scrollBeforePlay: true,
-            );
-            return;
-          }
-          await _runProgrammaticScrollToAyah(
-            targetAyah.ayahNumber,
-            retries: 30,
-          );
-          if (!mounted) return;
-          await _startSurahPlaybackFromAyah(
-            ayahs,
-            targetAyah,
-            scrollBeforePlay: true,
-          );
-        }());
-        return;
-      }
-      unawaited(_startSurahPlayback(ayahs: ayahs, initialIndex: 0));
-    });
+  void _handleShellLocationChanged(String? previous, String next) {
+    if (_isReaderShellLocation(next)) {
+      return;
+    }
+    if (_activeReaderSearchQuery.trim().isEmpty && !_isReaderSearchSheetOpen) {
+      return;
+    }
+    if (_isReaderSearchSheetOpen) {
+      _readerSearchSheetSessionToken += 1;
+      _isReaderSearchSheetOpen = false;
+    }
+    _clearActiveReaderSearch();
+  }
+
+  bool _isReaderShellLocation(String location) {
+    return location.startsWith('/quran/surah/') ||
+        location.startsWith('/learn/quran/surah/');
   }
 
   List<QuranAyah> _routePlaybackSelectionAyahs(List<QuranAyah> ayahs) {
@@ -1583,15 +1812,452 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
         .toList(growable: false);
   }
 
-  void _maybeAutoScrollToInitialAyah(List<QuranAyah> ayahs) {
+  void _seedReaderSearchFromRouteIfNeeded(List<QuranAyah> ayahs) {
+    if (_didSeedReaderSearchFromRoute) {
+      return;
+    }
+    _didSeedReaderSearchFromRoute = true;
+    final routeSearchQuery = widget.initialSearchQuery?.trim() ?? '';
+    if (routeSearchQuery.isEmpty || ayahs.isEmpty) {
+      return;
+    }
+    final matches = buildReaderSurahSearchMatches(
+      query: routeSearchQuery,
+      preferredField: widget.initialSearchField,
+      ayahs: ayahs
+          .map(
+            (ayah) => (
+              ayahNumber: ayah.ayahNumber,
+              translation: ayah.translation,
+              transliteration: ayah.transliteration ?? '',
+              arabic: ayah.arabic,
+            ),
+          )
+          .toList(growable: false),
+    );
+    final preferredAyah = widget.initialAyah;
+    final initialMatchAyahNumber =
+        preferredAyah != null &&
+            matches.any((match) => match.ayahNumber == preferredAyah)
+        ? preferredAyah
+        : matches.firstOrNull?.ayahNumber;
+    _activeReaderSearchQuery = routeSearchQuery;
+    _activeReaderSearchField = widget.initialSearchField;
+    _activeReaderSearchAyahNumber = initialMatchAyahNumber;
+    if (routeSearchQuery.isNotEmpty) {
+      _recentReaderSearches = <String>[
+        routeSearchQuery,
+        ..._recentReaderSearches.where((item) => item != routeSearchQuery),
+      ].take(8).toList(growable: false);
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+        _rememberRecentReaderSearch(routeSearchQuery);
+      });
+    }
+  }
+
+  List<QuranReaderAyahSearchMatch> _buildReaderSearchMatches(
+    List<QuranAyah> ayahs,
+  ) {
+    final query = _activeReaderSearchQuery.trim();
+    if (query.isEmpty || ayahs.isEmpty) {
+      return const <QuranReaderAyahSearchMatch>[];
+    }
+    return buildReaderSurahSearchMatches(
+      query: query,
+      preferredField: _activeReaderSearchField,
+      ayahs: ayahs
+          .map(
+            (ayah) => (
+              ayahNumber: ayah.ayahNumber,
+              translation: ayah.translation,
+              transliteration: ayah.transliteration ?? '',
+              arabic: ayah.arabic,
+            ),
+          )
+          .toList(growable: false),
+    );
+  }
+
+  List<String> _loadRecentReaderSearches(LocalStore store) {
+    final sharedRecent = ref
+        .read(quranRecentSearchesProvider)
+        .map((item) => item.query)
+        .where((query) => query.trim().isNotEmpty)
+        .take(8)
+        .toList(growable: false);
+    if (sharedRecent.isNotEmpty) {
+      return sharedRecent;
+    }
+    final List<dynamic> rows =
+        store.getJsonList(_recentReaderSearchesKey) ?? const <dynamic>[];
+    final searches = <String>[];
+    for (final row in rows) {
+      if (row is Map<String, dynamic>) {
+        final query = (row['query'] as String?)?.trim();
+        if (query?.isNotEmpty ?? false) {
+          searches.add(query!);
+        }
+      } else if (row is String && row.trim().isNotEmpty) {
+        searches.add(row.trim());
+      }
+    }
+    final migrated = searches.toSet().take(8).toList(growable: false);
+    if (migrated.isNotEmpty) {
+      ref
+          .read(quranRecentSearchesProvider.notifier)
+          .replaceAll(
+            migrated
+                .map(
+                  (query) => QuranStoredSearch(
+                    query: query,
+                    updatedAtIso: DateTime.now().toIso8601String(),
+                  ),
+                )
+                .toList(growable: false),
+          );
+    }
+    return migrated;
+  }
+
+  void _rememberRecentReaderSearch(String query) {
+    final trimmedQuery = query.trim();
+    if (trimmedQuery.isEmpty) {
+      return;
+    }
+    ref
+        .read(quranRecentSearchesProvider.notifier)
+        .addSearch(
+          trimmedQuery,
+          fieldFilter: _readerSearchFieldFilter(_activeReaderSearchField),
+        );
+    _recentReaderSearches = ref
+        .read(quranRecentSearchesProvider)
+        .map((item) => item.query)
+        .take(8)
+        .toList(growable: false);
+    ref.read(localStoreProvider).remove(_recentReaderSearchesKey);
+  }
+
+  void _persistRecentReaderSearches(List<String> searches) {
+    final normalized = searches
+        .map((query) => query.trim())
+        .where((query) => query.isNotEmpty)
+        .take(8)
+        .toList(growable: false);
+    _recentReaderSearches = normalized;
+    if (normalized.isEmpty) {
+      ref.read(quranRecentSearchesProvider.notifier).clear();
+      ref.read(localStoreProvider).remove(_recentReaderSearchesKey);
+      return;
+    }
+    ref
+        .read(quranRecentSearchesProvider.notifier)
+        .replaceAll(
+          normalized
+              .map(
+                (query) => QuranStoredSearch(
+                  query: query,
+                  updatedAtIso: DateTime.now().toIso8601String(),
+                ),
+              )
+              .toList(growable: false),
+        );
+    ref.read(localStoreProvider).remove(_recentReaderSearchesKey);
+  }
+
+  QuranSearchFieldFilter _readerSearchFieldFilter(
+    QuranSearchMatchField? field,
+  ) {
+    switch (field) {
+      case QuranSearchMatchField.translation:
+        return QuranSearchFieldFilter.translation;
+      case QuranSearchMatchField.transliteration:
+        return QuranSearchFieldFilter.transliteration;
+      case QuranSearchMatchField.arabic:
+        return QuranSearchFieldFilter.arabic;
+      case QuranSearchMatchField.surah:
+        return QuranSearchFieldFilter.surah;
+      case null:
+        return QuranSearchFieldFilter.all;
+    }
+  }
+
+  Future<void> _applyReaderSearchQuery(
+    String query, {
+    QuranSearchMatchField? preferredField,
+    bool scrollToFirstMatch = true,
+    int? targetAyahNumber,
+  }) async {
+    final trimmedQuery = query.trim();
+    final ayahs =
+        ref.read(quranSurahAyahsProvider(widget.surahNumber)).valueOrNull ??
+        ref
+            .read(quranRepositoryProvider)
+            .getAyahsForSurah(
+              widget.surahNumber,
+              translationCode: ref
+                  .read(quranReaderSettingsProvider)
+                  .translationCode,
+            );
+    final matches = buildReaderSurahSearchMatches(
+      query: trimmedQuery,
+      preferredField: preferredField,
+      ayahs: ayahs
+          .map(
+            (ayah) => (
+              ayahNumber: ayah.ayahNumber,
+              translation: ayah.translation,
+              transliteration: ayah.transliteration ?? '',
+              arabic: ayah.arabic,
+            ),
+          )
+          .toList(growable: false),
+    );
+    final resolvedTargetAyahNumber =
+        targetAyahNumber != null &&
+            matches.any((match) => match.ayahNumber == targetAyahNumber)
+        ? targetAyahNumber
+        : matches.firstOrNull?.ayahNumber;
+    setState(() {
+      _activeReaderSearchQuery = trimmedQuery;
+      _activeReaderSearchField = preferredField;
+      _activeReaderSearchAyahNumber = resolvedTargetAyahNumber;
+    });
+    if (trimmedQuery.isEmpty) {
+      return;
+    }
+    _rememberRecentReaderSearch(trimmedQuery);
+    if (scrollToFirstMatch && resolvedTargetAyahNumber != null) {
+      await _scrollToReaderSearchMatch(resolvedTargetAyahNumber);
+    }
+  }
+
+  void _clearActiveReaderSearch() {
+    setState(() {
+      _activeReaderSearchQuery = '';
+      _activeReaderSearchField = null;
+      _activeReaderSearchAyahNumber = null;
+    });
+  }
+
+  Future<void> _jumpBetweenReaderSearchMatches(
+    List<QuranReaderAyahSearchMatch> matches, {
+    required bool forward,
+  }) async {
+    if (matches.isEmpty) {
+      return;
+    }
+    final currentIndex = _activeReaderSearchAyahNumber == null
+        ? -1
+        : matches.indexWhere(
+            (match) => match.ayahNumber == _activeReaderSearchAyahNumber,
+          );
+    final nextIndex = currentIndex < 0
+        ? 0
+        : forward
+        ? (currentIndex + 1) % matches.length
+        : (currentIndex - 1 + matches.length) % matches.length;
+    final targetAyahNumber = matches[nextIndex].ayahNumber;
+    setState(() {
+      _activeReaderSearchAyahNumber = targetAyahNumber;
+    });
+    await _scrollToReaderSearchMatch(targetAyahNumber);
+  }
+
+  Future<void> _scrollToReaderSearchMatch(int ayahNumber) async {
+    ref
+        .read(
+          quranReaderFollowModeCoordinatorProvider(widget.surahNumber).notifier,
+        )
+        .temporarilySuspendFollowMode();
+    await _runProgrammaticScrollToAyah(ayahNumber, retries: 20);
+  }
+
+  Future<void> _showReaderSearchSheet() async {
+    if (!mounted || _isReaderSearchSheetOpen) {
+      return;
+    }
+    final sessionToken = ++_readerSearchSheetSessionToken;
+    final pageContext = context;
+    final theme = Theme.of(pageContext);
+    final repository = ref.read(quranRepositoryProvider);
+    final suggestedSearches = ref
+        .read(quranSuggestedSearchesProvider)
+        .map((entry) => entry.query)
+        .toList(growable: false);
+    final translationCode = ref
+        .read(quranReaderSettingsProvider)
+        .translationCode;
+    final ayahs =
+        ref.read(quranSurahAyahsProvider(widget.surahNumber)).valueOrNull ??
+        repository.getAyahsForSurah(
+          widget.surahNumber,
+          translationCode: translationCode,
+        );
+    _isReaderSearchSheetOpen = true;
+    try {
+      final result = await showModalBottomSheet<_ReaderSearchSheetResult>(
+        context: pageContext,
+        useRootNavigator: false,
+        requestFocus: false,
+        showDragHandle: true,
+        isScrollControlled: true,
+        builder: (sheetContext) {
+          return Theme(
+            data: theme.copyWith(splashFactory: NoSplash.splashFactory),
+            child: _ReaderSearchSheet(
+              surahNumber: widget.surahNumber,
+              initialQuery: _activeReaderSearchQuery,
+              initialRecentSearches: _recentReaderSearches,
+              suggestedSearches: suggestedSearches,
+              hasActiveReaderSearch: _activeReaderSearchQuery.trim().isNotEmpty,
+              ayahs: ayahs,
+              repository: repository,
+              translationCode: translationCode,
+            ),
+          );
+        },
+      );
+      if (!mounted || sessionToken != _readerSearchSheetSessionToken) {
+        return;
+      }
+      if (result?.updatedRecentSearches != null &&
+          !listEquals(result!.updatedRecentSearches, _recentReaderSearches)) {
+        setState(() {
+          _persistRecentReaderSearches(result.updatedRecentSearches!);
+        });
+      }
+      if (result == null) {
+        return;
+      }
+      await WidgetsBinding.instance.endOfFrame;
+      if (!mounted ||
+          !pageContext.mounted ||
+          sessionToken != _readerSearchSheetSessionToken) {
+        return;
+      }
+      if (result.selectedCurrentSurahResult case final selected?) {
+        await _applyReaderSearchQuery(
+          result.query ?? '',
+          preferredField: selected.matchField,
+          scrollToFirstMatch: false,
+          targetAyahNumber: selected.ayahNumber,
+        );
+        if (!mounted || sessionToken != _readerSearchSheetSessionToken) {
+          return;
+        }
+        await _scrollToReaderSearchMatch(selected.ayahNumber);
+        return;
+      }
+      if (result.selectedWholeQuranResult case final selected?) {
+        openQuranReaderLocation(
+          pageContext,
+          surahNumber: selected.surah.number,
+          ayahNumber: selected.ayah?.ayahNumber,
+          searchQuery: result.query?.trim(),
+          searchMatchField: selected.matchField,
+        );
+        return;
+      }
+      if (result.openFullSearch && (result.query?.trim().isNotEmpty ?? false)) {
+        if (!pageContext.mounted) return;
+        pageContext.pushNamed(
+          'quranSearch',
+          queryParameters: {'q': result.query!.trim()},
+        );
+        return;
+      }
+      if (result.clearActiveSearch) {
+        _clearActiveReaderSearch();
+        return;
+      }
+      if (result.query != null) {
+        await _applyReaderSearchQuery(result.query!);
+      }
+    } finally {
+      if (sessionToken == _readerSearchSheetSessionToken) {
+        _isReaderSearchSheetOpen = false;
+      }
+    }
+  }
+
+  void _openReaderSearchSheetSafely() {
+    if (!mounted || _isReaderSearchSheetOpen) {
+      return;
+    }
+    unawaited(_showReaderSearchSheet());
+  }
+
+  void _maybeRunInitialRouteStartup(List<QuranAyah> ayahs) {
+    if (_didHandleInitialRouteFocus || ayahs.isEmpty) return;
     final targetAyah = widget.initialAyah;
-    if (_initialAyahAutoScrolled || targetAyah == null) return;
-    if (!ayahs.any((ayah) => ayah.ayahNumber == targetAyah)) return;
-    _initialAyahAutoScrolled = true;
+    if (targetAyah != null &&
+        !ayahs.any((ayah) => ayah.ayahNumber == targetAyah)) {
+      return;
+    }
+    _didHandleInitialRouteFocus = true;
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
-      unawaited(_runProgrammaticScrollToAyah(targetAyah, retries: 30));
+      unawaited(_runInitialRouteStartup(ayahs));
     });
+  }
+
+  Future<void> _runInitialRouteStartup(List<QuranAyah> ayahs) async {
+    final targetAyahNumber = widget.initialAyah;
+    final targetAyah = targetAyahNumber == null
+        ? null
+        : ayahs
+              .where((ayah) => ayah.ayahNumber == targetAyahNumber)
+              .firstOrNull;
+    if (targetAyah != null) {
+      final targetReady = await _waitForAyahTargetReady(targetAyah.ayahNumber);
+      if (!mounted) return;
+      if (targetReady) {
+        await _runProgrammaticScrollToAyah(targetAyah.ayahNumber, retries: 6);
+      }
+      if (!mounted || !widget.autoPlay) return;
+      final selectedAyahs = _routePlaybackSelectionAyahs(ayahs);
+      if (widget.autoPlayFocusedSelectionLoop && selectedAyahs.isNotEmpty) {
+        await _startFocusedSelectionLoopPlayback(
+          selectionAyahs: selectedAyahs,
+          initialAyah: targetAyah,
+          scrollBeforePlay: false,
+        );
+        return;
+      }
+      await _startSurahPlaybackFromAyah(
+        ayahs,
+        targetAyah,
+        scrollBeforePlay: false,
+      );
+      return;
+    }
+    if (widget.autoPlay) {
+      await _startSurahPlayback(ayahs: ayahs, initialIndex: 0);
+    }
+  }
+
+  Future<bool> _waitForAyahTargetReady(int ayahNumber) async {
+    const maxPasses = 8;
+    for (var pass = 0; pass < maxPasses; pass += 1) {
+      const framesPerPass = 4;
+      for (var frame = 0; frame < framesPerPass; frame += 1) {
+        if (!mounted) return false;
+        final target = _resolveAyahScrollTarget(ayahNumber);
+        if (_scrollController.hasClients &&
+            target != null &&
+            target.renderObject.hasSize) {
+          return true;
+        }
+        await WidgetsBinding.instance.endOfFrame;
+      }
+      if (!mounted) return false;
+      if (await _coarseScrollTowardAyah(ayahNumber, pass: pass)) {
+        await WidgetsBinding.instance.endOfFrame;
+      }
+    }
+    return false;
   }
 
   QuranPlaybackOrchestrator get _playbackOrchestrator =>
@@ -1670,6 +2336,7 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
       );
       if (mounted) {
         setState(() {
+          _isPlaybackPanelDismissed = false;
           _isSurahPlaybackMode = isSurahMode;
           _surahPlaybackAyahs = isSurahMode ? ayahs : const [];
           _currentlyPlayingAyahKey = currentAyahKey;
@@ -1715,6 +2382,7 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
       return;
     }
     setState(() {
+      _isPlaybackPanelDismissed = false;
       _isSurahPlaybackMode = false;
       _surahPlaybackAyahs = const [];
       _currentlyPlayingAyahKey = ayahKey;
@@ -2438,25 +3106,179 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
     return bestAyah;
   }
 
-  Future<void> _scrollToAyah(int ayahNumber, {int retries = 0}) async {
+  _AyahScrollTarget? _resolveAyahScrollTarget(int ayahNumber) {
     final key = _ayahItemKeys[ayahNumber];
     final targetContext = key?.currentContext;
-    if (targetContext == null) {
-      if (retries > 0) {
-        await Future<void>.delayed(const Duration(milliseconds: 50));
-        if (!mounted) return;
-        await _scrollToAyah(ayahNumber, retries: retries - 1);
-      }
-      return;
-    }
+    if (targetContext == null || !targetContext.mounted) return null;
     final renderObject = targetContext.findRenderObject();
-    if (renderObject == null ||
-        renderObject is! RenderBox ||
-        !renderObject.attached) {
+    if (renderObject is! RenderBox || !renderObject.attached) return null;
+    return _AyahScrollTarget(
+      context: targetContext,
+      renderObject: renderObject,
+    );
+  }
+
+  Future<bool> _coarseScrollTowardAyah(
+    int ayahNumber, {
+    required int pass,
+  }) async {
+    if (!_scrollController.hasClients || _currentSurahAyahCount <= 0) {
+      return false;
+    }
+    if (_resolveAyahScrollTarget(ayahNumber) != null) {
+      return true;
+    }
+    final position = _scrollController.position;
+    final maxExtent = position.maxScrollExtent;
+    if (maxExtent <= 0) {
+      return false;
+    }
+    final viewport = position.viewportDimension;
+    final anchors = _measuredAyahAnchors();
+    if (anchors.isEmpty) {
+      final targetOffset = (position.pixels + (viewport * (0.9 + (0.5 * pass))))
+          .clamp(0.0, maxExtent);
+      if ((position.pixels - targetOffset).abs() < 1.0) {
+        return false;
+      }
+      _scrollController.jumpTo(targetOffset);
+      return true;
+    }
+    final estimatedOffset =
+        _estimateAyahScrollOffsetFromAnchors(ayahNumber, anchors) ??
+        _estimateRatioOffset(
+          ayahNumber: ayahNumber,
+          maxExtent: maxExtent,
+          viewport: viewport,
+        );
+    if (estimatedOffset == null) {
+      return false;
+    }
+    final desiredOffset = estimatedOffset.clamp(0.0, maxExtent);
+    final distance = desiredOffset - position.pixels;
+    final incrementalOffset =
+        position.pixels +
+        (distance.sign * math.min(distance.abs(), viewport * 0.95));
+    final targetOffset = pass == 0
+        ? incrementalOffset.clamp(0.0, maxExtent)
+        : desiredOffset;
+    if ((position.pixels - targetOffset).abs() < 1.0) {
+      return false;
+    }
+    _scrollController.jumpTo(targetOffset);
+    return true;
+  }
+
+  double? _estimateRatioOffset({
+    required int ayahNumber,
+    required double maxExtent,
+    required double viewport,
+  }) {
+    final ratio = _currentSurahAyahCount <= 1
+        ? 0.0
+        : ((ayahNumber - 1) / (_currentSurahAyahCount - 1)).clamp(0.0, 1.0);
+    return (maxExtent * ratio) - (viewport * 0.12);
+  }
+
+  double? _estimateAyahScrollOffsetFromAnchors(
+    int ayahNumber,
+    List<_MeasuredAyahAnchor> anchors,
+  ) {
+    final nearest = anchors.reduce(
+      (best, candidate) =>
+          (candidate.ayahNumber - ayahNumber).abs() <
+              (best.ayahNumber - ayahNumber).abs()
+          ? candidate
+          : best,
+    );
+    final averageExtent =
+        anchors.map((anchor) => anchor.extent).reduce((a, b) => a + b) /
+        anchors.length;
+    return nearest.offset + ((ayahNumber - nearest.ayahNumber) * averageExtent);
+  }
+
+  List<_MeasuredAyahAnchor> _measuredAyahAnchors() {
+    final anchors = <_MeasuredAyahAnchor>[];
+    for (final entry in _ayahItemKeys.entries) {
+      final target = _resolveAyahScrollTarget(entry.key);
+      if (target == null) {
+        continue;
+      }
+      final viewport = RenderAbstractViewport.of(target.renderObject);
+      anchors.add(
+        _MeasuredAyahAnchor(
+          ayahNumber: entry.key,
+          offset: viewport.getOffsetToReveal(target.renderObject, 0.0).offset,
+          extent: target.renderObject.size.height + 12,
+        ),
+      );
+    }
+    anchors.sort((a, b) => a.ayahNumber.compareTo(b.ayahNumber));
+    return anchors;
+  }
+
+  bool _isAyahComfortablyVisible(_AyahScrollTarget target) {
+    final viewportHeight = MediaQuery.sizeOf(context).height;
+    final top = target.renderObject.localToGlobal(Offset.zero).dy;
+    final bottom = top + target.renderObject.size.height;
+    const comfortableTop = 116.0;
+    final comfortableBottom = viewportHeight - 190.0;
+    return top >= comfortableTop && bottom <= comfortableBottom;
+  }
+
+  Future<bool> _scrollAyahIntoView(
+    int ayahNumber,
+    _AyahScrollTarget target, {
+    required bool animated,
+  }) async {
+    if (!_scrollController.hasClients) return false;
+    final previousOffset = _scrollController.offset;
+    if (animated) {
+      await _scrollController.position.ensureVisible(
+        target.renderObject,
+        alignment: 0.1,
+        duration: const Duration(milliseconds: 340),
+        curve: Curves.easeOutCubic,
+      );
+    } else {
+      final viewport = RenderAbstractViewport.of(target.renderObject);
+      final targetOffset = viewport
+          .getOffsetToReveal(target.renderObject, 0.1)
+          .offset;
+      final clampedOffset = targetOffset.clamp(
+        _scrollController.position.minScrollExtent,
+        _scrollController.position.maxScrollExtent,
+      );
+      if ((_scrollController.offset - clampedOffset).abs() > 1.0) {
+        _scrollController.jumpTo(clampedOffset);
+      }
+    }
+    if (!mounted) return false;
+    await WidgetsBinding.instance.endOfFrame;
+    final refreshedTarget = _resolveAyahScrollTarget(ayahNumber);
+    final currentTarget = refreshedTarget ?? target;
+    if (_isAyahComfortablyVisible(currentTarget)) {
+      return true;
+    }
+    return (_scrollController.offset - previousOffset).abs() > 1;
+  }
+
+  Future<void> _scrollToAyah(
+    int ayahNumber, {
+    int retries = 0,
+    bool hasAnimatedFinalPass = false,
+  }) async {
+    final target = _resolveAyahScrollTarget(ayahNumber);
+    if (target == null) {
       if (retries > 0) {
+        await _coarseScrollTowardAyah(ayahNumber, pass: 0);
         await Future<void>.delayed(const Duration(milliseconds: 50));
         if (!mounted) return;
-        await _scrollToAyah(ayahNumber, retries: retries - 1);
+        await _scrollToAyah(
+          ayahNumber,
+          retries: retries - 1,
+          hasAnimatedFinalPass: hasAnimatedFinalPass,
+        );
       }
       return;
     }
@@ -2465,68 +3287,45 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
       if (retries > 0) {
         await Future<void>.delayed(const Duration(milliseconds: 50));
         if (!mounted) return;
-        await _scrollToAyah(ayahNumber, retries: retries - 1);
+        await _scrollToAyah(
+          ayahNumber,
+          retries: retries - 1,
+          hasAnimatedFinalPass: hasAnimatedFinalPass,
+        );
       }
       return;
     }
 
-    final listRenderObject = _scrollController.position.context.storageContext
-        .findRenderObject();
-    final previousOffset = _scrollController.offset;
-    final viewportHeight = MediaQuery.sizeOf(context).height;
-    final currentTop = renderObject.localToGlobal(Offset.zero).dy;
-    final currentBottom = currentTop + renderObject.size.height;
-    final comfortableTop = 116.0;
-    final comfortableBottom = viewportHeight - 190.0;
-    if (currentTop >= comfortableTop && currentBottom <= comfortableBottom) {
+    if (_isAyahComfortablyVisible(target)) {
       return;
     }
 
-    var didFallback = false;
-    if (listRenderObject != null) {
-      try {
-        final targetOffset =
-            (_scrollController.offset +
-                    renderObject
-                        .localToGlobal(Offset.zero, ancestor: listRenderObject)
-                        .dy -
-                    120)
-                .clamp(
-                  _scrollController.position.minScrollExtent,
-                  _scrollController.position.maxScrollExtent,
-                );
-        if ((targetOffset - previousOffset).abs() > 28) {
-          didFallback = true;
-          await _scrollController.animateTo(
-            targetOffset,
-            duration: const Duration(milliseconds: 340),
-            curve: Curves.easeOutCubic,
-          );
-        }
-      } catch (_) {
-        didFallback = false;
-      }
+    final didMove = await _scrollAyahIntoView(
+      ayahNumber,
+      target,
+      animated: !hasAnimatedFinalPass,
+    );
+    if (!mounted) return;
+    final refreshedTarget = _resolveAyahScrollTarget(ayahNumber);
+    if (refreshedTarget != null && _isAyahComfortablyVisible(refreshedTarget)) {
+      return;
     }
-
-    if (!didFallback) {
-      if (!targetContext.mounted) return;
-      await Scrollable.ensureVisible(
-        targetContext,
-        duration: const Duration(milliseconds: 340),
-        curve: Curves.easeOutCubic,
-        alignment: 0.1,
-      );
-    }
-
     if (retries > 0) {
-      final top = renderObject.localToGlobal(Offset.zero).dy;
-      final bottom = top + renderObject.size.height;
-      final visible = bottom >= 0 && top <= viewportHeight;
-      if (!visible && (_scrollController.offset - previousOffset).abs() < 0.5) {
-        await Future<void>.delayed(const Duration(milliseconds: 70));
-        if (!mounted) return;
-        await _scrollToAyah(ayahNumber, retries: retries - 1);
+      await Future<void>.delayed(const Duration(milliseconds: 70));
+      if (!mounted) return;
+      if (!didMove || refreshedTarget == null) {
+        await _scrollToAyah(
+          ayahNumber,
+          retries: retries - 1,
+          hasAnimatedFinalPass: true,
+        );
+        return;
       }
+      await _scrollToAyah(
+        ayahNumber,
+        retries: retries - 1,
+        hasAnimatedFinalPass: true,
+      );
     }
   }
 
@@ -2786,6 +3585,7 @@ class _QuranReaderPageState extends ConsumerState<QuranReaderPage>
     unawaited(_endQuranLiveActivityIfEnabled());
     if (!mounted) return;
     setState(() {
+      _isPlaybackPanelDismissed = true;
       _isSurahPlaybackMode = false;
       _isPreparingSurahPlayback = false;
       _isLoopRunning = false;
@@ -3606,6 +4406,590 @@ class _SettingsGroupCard extends StatelessWidget {
   }
 }
 
+class _ReaderSearchSheetResult {
+  const _ReaderSearchSheetResult._({
+    this.query,
+    this.clearActiveSearch = false,
+    this.updatedRecentSearches,
+    this.selectedCurrentSurahResult,
+    this.selectedWholeQuranResult,
+    this.openFullSearch = false,
+  });
+
+  final String? query;
+  final bool clearActiveSearch;
+  final List<String>? updatedRecentSearches;
+  final _ReaderSearchSheetAyahResult? selectedCurrentSurahResult;
+  final QuranSearchResult? selectedWholeQuranResult;
+  final bool openFullSearch;
+}
+
+enum _ReaderSearchScope { currentSurah, wholeQuran }
+
+class _ReaderSearchSheetAyahResult {
+  const _ReaderSearchSheetAyahResult({
+    required this.ayahNumber,
+    required this.title,
+    required this.matchField,
+    required this.snippetText,
+    required this.highlightTerms,
+  });
+
+  final int ayahNumber;
+  final String title;
+  final QuranSearchMatchField matchField;
+  final String snippetText;
+  final List<String> highlightTerms;
+}
+
+class _ReaderSearchSheet extends StatefulWidget {
+  const _ReaderSearchSheet({
+    required this.surahNumber,
+    required this.initialQuery,
+    required this.initialRecentSearches,
+    required this.suggestedSearches,
+    required this.hasActiveReaderSearch,
+    required this.ayahs,
+    required this.repository,
+    required this.translationCode,
+  });
+
+  final int surahNumber;
+  final String initialQuery;
+  final List<String> initialRecentSearches;
+  final List<String> suggestedSearches;
+  final bool hasActiveReaderSearch;
+  final List<QuranAyah> ayahs;
+  final QuranRepository repository;
+  final String translationCode;
+
+  @override
+  State<_ReaderSearchSheet> createState() => _ReaderSearchSheetState();
+}
+
+class _ReaderSearchSheetState extends State<_ReaderSearchSheet> {
+  late final TextEditingController _controller;
+  late List<String> _recentSearches;
+  _ReaderSearchScope _scope = _ReaderSearchScope.currentSurah;
+  List<_ReaderSearchSheetAyahResult> _currentSurahResults =
+      const <_ReaderSearchSheetAyahResult>[];
+  List<QuranSearchResult> _wholeQuranResults = const <QuranSearchResult>[];
+  Timer? _debounce;
+  int _requestVersion = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = TextEditingController(text: widget.initialQuery);
+    _recentSearches = List<String>.from(widget.initialRecentSearches);
+    _controller.addListener(_handleQueryChanged);
+    _schedulePreviewRefresh(immediate: true);
+  }
+
+  @override
+  void dispose() {
+    _debounce?.cancel();
+    _controller.removeListener(_handleQueryChanged);
+    _controller.dispose();
+    super.dispose();
+  }
+
+  void _handleQueryChanged() {
+    _schedulePreviewRefresh();
+  }
+
+  void _schedulePreviewRefresh({bool immediate = false}) {
+    _debounce?.cancel();
+    final runVersion = ++_requestVersion;
+    Future<void> execute() async {
+      await Future<void>.delayed(Duration.zero);
+      if (!mounted || runVersion != _requestVersion) {
+        return;
+      }
+      final query = _controller.text.trim();
+      final currentSurahResults =
+          query.isEmpty || _scope != _ReaderSearchScope.currentSurah
+          ? const <_ReaderSearchSheetAyahResult>[]
+          : _buildCurrentSurahResults(
+              query,
+              buildReaderSurahSearchMatches(
+                query: query,
+                ayahs: widget.ayahs
+                    .map(
+                      (ayah) => (
+                        ayahNumber: ayah.ayahNumber,
+                        translation: ayah.translation,
+                        transliteration: ayah.transliteration ?? '',
+                        arabic: ayah.arabic,
+                      ),
+                    )
+                    .toList(growable: false),
+              ),
+            );
+      final wholeQuranResults =
+          query.isEmpty || _scope != _ReaderSearchScope.wholeQuran
+          ? const <QuranSearchResult>[]
+          : _buildWholeQuranResults(query);
+      if (!mounted || runVersion != _requestVersion) {
+        return;
+      }
+      setState(() {
+        _currentSurahResults = currentSurahResults
+            .take(5)
+            .toList(growable: false);
+        _wholeQuranResults = wholeQuranResults.take(6).toList(growable: false);
+      });
+    }
+
+    if (immediate) {
+      unawaited(execute());
+      return;
+    }
+    _debounce = Timer(const Duration(milliseconds: 120), () {
+      unawaited(execute());
+    });
+  }
+
+  List<String> _updatedRecentSearchesFor(String query) {
+    final trimmedQuery = query.trim();
+    if (trimmedQuery.isEmpty) {
+      return _recentSearches;
+    }
+    return <String>[
+      trimmedQuery,
+      ..._recentSearches.where((item) => item != trimmedQuery),
+    ].take(8).toList(growable: false);
+  }
+
+  void _handleSubmittedQuery(String query) {
+    final trimmed = query.trim();
+    if (trimmed.isEmpty) return;
+    _controller.value = TextEditingValue(
+      text: trimmed,
+      selection: TextSelection.collapsed(offset: trimmed.length),
+    );
+    _schedulePreviewRefresh(immediate: true);
+  }
+
+  List<QuranSearchResult> _buildWholeQuranResults(String query) {
+    final rows = widget.repository.search(
+      query,
+      translationCode: widget.translationCode,
+      maxResults: 6,
+    );
+    final output = <QuranSearchResult>[];
+    final seenKeys = <String>{};
+
+    for (final row in rows) {
+      final key =
+          '${row.surah.number}:${row.ayahNumber ?? 0}:${row.matchField.wireValue}';
+      if (!seenKeys.add(key)) continue;
+      QuranAyah? ayah;
+      if (row.ayahNumber != null) {
+        final ayahs = widget.repository.getAyahsForSurah(
+          row.surah.number,
+          translationCode: widget.translationCode,
+        );
+        final ayahNumber = row.ayahNumber!;
+        if (ayahNumber > 0 && ayahNumber <= ayahs.length) {
+          final resolved = ayahs[ayahNumber - 1];
+          ayah = QuranAyah(
+            surahNumber: resolved.surahNumber,
+            ayahNumber: resolved.ayahNumber,
+            arabic: row.arabicText ?? resolved.arabic,
+            translation: row.translationText ?? resolved.translation,
+            transliteration:
+                row.transliterationText ?? resolved.transliteration,
+          );
+        }
+      }
+      output.add(
+        QuranSearchResult(
+          surah: row.surah,
+          ayah: ayah,
+          matchText: row.matchText,
+          matchField: row.matchField,
+          snippetText: row.snippetText,
+          highlightTerms: row.highlightTerms,
+        ),
+      );
+    }
+
+    return output;
+  }
+
+  List<_ReaderSearchSheetAyahResult> _buildCurrentSurahResults(
+    String query,
+    List<QuranReaderAyahSearchMatch> matches,
+  ) {
+    final surahName = widget.repository
+        .getSurahs()[widget.surahNumber - 1]
+        .transliteratedName;
+    final ayahsByNumber = <int, QuranAyah>{
+      for (final ayah in widget.ayahs) ayah.ayahNumber: ayah,
+    };
+    final output = <_ReaderSearchSheetAyahResult>[];
+
+    for (final match in matches) {
+      final ayah = ayahsByNumber[match.ayahNumber];
+      if (ayah == null) continue;
+      final field = _preferredPreviewField(match);
+      final sourceText = switch (field) {
+        QuranSearchMatchField.translation => ayah.translation,
+        QuranSearchMatchField.transliteration => ayah.transliteration ?? '',
+        QuranSearchMatchField.arabic => ayah.arabic,
+        QuranSearchMatchField.surah => ayah.translation,
+      };
+      final metadata = buildQuranSearchPresentationMetadata(
+        field: field,
+        query: query,
+        sourceText: sourceText,
+      );
+      output.add(
+        _ReaderSearchSheetAyahResult(
+          ayahNumber: match.ayahNumber,
+          title: '$surahName ${match.ayahNumber}',
+          matchField: field,
+          snippetText: metadata.snippetText,
+          highlightTerms: metadata.highlightTerms,
+        ),
+      );
+    }
+
+    return output;
+  }
+
+  QuranSearchMatchField _preferredPreviewField(
+    QuranReaderAyahSearchMatch match,
+  ) {
+    for (final field in const <QuranSearchMatchField>[
+      QuranSearchMatchField.translation,
+      QuranSearchMatchField.transliteration,
+      QuranSearchMatchField.arabic,
+    ]) {
+      if (match.matchesField(field)) {
+        return field;
+      }
+    }
+    return QuranSearchMatchField.translation;
+  }
+
+  String _matchTypeLabel(AppLocalizations l10n, QuranSearchMatchField field) {
+    switch (field) {
+      case QuranSearchMatchField.translation:
+        return l10n.quranSearchMatchTranslation;
+      case QuranSearchMatchField.transliteration:
+        return l10n.quranSearchMatchTransliteration;
+      case QuranSearchMatchField.arabic:
+        return l10n.quranSearchMatchArabic;
+      case QuranSearchMatchField.surah:
+        return l10n.quranSearchMatchSurah;
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final theme = Theme.of(context);
+    final trimmedValue = _controller.text.trim();
+    final bottomActionInset = math.max(
+      16.0,
+      MediaQuery.of(context).padding.bottom + 24,
+    );
+    return FractionallySizedBox(
+      heightFactor: 0.68,
+      child: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.only(
+            left: 20,
+            right: 20,
+            top: 8,
+            bottom: MediaQuery.of(context).viewInsets.bottom + 20,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                l10n.quranReaderSearchSheetTitle,
+                style: theme.textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              const SizedBox(height: 6),
+              Text(
+                _scope == _ReaderSearchScope.currentSurah
+                    ? l10n.quranReaderSearchScopeSubtitle
+                    : l10n.quranReaderSearchWholeQuranSubtitle,
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: const Color(0xFF6A5A4A),
+                ),
+              ),
+              const SizedBox(height: 12),
+              Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: [
+                  ChoiceChip(
+                    label: Text(l10n.quranReaderSearchScopeCurrentSurah),
+                    selected: _scope == _ReaderSearchScope.currentSurah,
+                    onSelected: (_) {
+                      if (_scope == _ReaderSearchScope.currentSurah) return;
+                      setState(() {
+                        _scope = _ReaderSearchScope.currentSurah;
+                      });
+                      _schedulePreviewRefresh(immediate: true);
+                    },
+                  ),
+                  ChoiceChip(
+                    label: Text(l10n.quranReaderSearchScopeWholeQuran),
+                    selected: _scope == _ReaderSearchScope.wholeQuran,
+                    onSelected: (_) {
+                      if (_scope == _ReaderSearchScope.wholeQuran) return;
+                      setState(() {
+                        _scope = _ReaderSearchScope.wholeQuran;
+                      });
+                      _schedulePreviewRefresh(immediate: true);
+                    },
+                  ),
+                ],
+              ),
+              const SizedBox(height: 12),
+              TextField(
+                controller: _controller,
+                autofocus: false,
+                decoration: InputDecoration(
+                  hintText: l10n.quranReaderSearchHint,
+                  prefixIcon: const Icon(Icons.search_rounded),
+                  suffixIcon: trimmedValue.isEmpty
+                      ? null
+                      : IconButton(
+                          tooltip: l10n.quranReaderSearchClearAction,
+                          onPressed: () => _controller.clear(),
+                          icon: const Icon(Icons.close_rounded),
+                        ),
+                ),
+                textInputAction: TextInputAction.search,
+                onSubmitted: _handleSubmittedQuery,
+              ),
+              const SizedBox(height: 12),
+              Expanded(
+                child: ListView(
+                  children: [
+                    if (_recentSearches.isNotEmpty && trimmedValue.isEmpty) ...[
+                      Text(
+                        l10n.quranRecentSearches,
+                        style: theme.textTheme.labelLarge?.copyWith(
+                          color: const Color(0xFF6A5A4A),
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Wrap(
+                        spacing: 8,
+                        runSpacing: 8,
+                        children: _recentSearches
+                            .map(
+                              (query) => ActionChip(
+                                label: Text(query),
+                                onPressed: () {
+                                  _controller.value = TextEditingValue(
+                                    text: query,
+                                    selection: TextSelection.collapsed(
+                                      offset: query.length,
+                                    ),
+                                  );
+                                  _schedulePreviewRefresh(immediate: true);
+                                },
+                              ),
+                            )
+                            .toList(growable: false),
+                      ),
+                      const SizedBox(height: 12),
+                    ],
+                    if (widget.suggestedSearches.isNotEmpty &&
+                        trimmedValue.isEmpty) ...[
+                      Text(
+                        l10n.quranSuggestedSearches,
+                        style: theme.textTheme.labelLarge?.copyWith(
+                          color: const Color(0xFF6A5A4A),
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Wrap(
+                        spacing: 8,
+                        runSpacing: 8,
+                        children: widget.suggestedSearches
+                            .where(
+                              (query) => !_recentSearches.any(
+                                (recent) =>
+                                    recent.toLowerCase() == query.toLowerCase(),
+                              ),
+                            )
+                            .take(6)
+                            .map(
+                              (query) => ActionChip(
+                                label: Text(query),
+                                onPressed: () {
+                                  _controller.value = TextEditingValue(
+                                    text: query,
+                                    selection: TextSelection.collapsed(
+                                      offset: query.length,
+                                    ),
+                                  );
+                                  _schedulePreviewRefresh(immediate: true);
+                                },
+                              ),
+                            )
+                            .toList(growable: false),
+                      ),
+                    ],
+                    if (trimmedValue.isNotEmpty &&
+                        _scope == _ReaderSearchScope.currentSurah) ...[
+                      Text(
+                        l10n.quranSearchResultCountLabel(
+                          _currentSurahResults.length,
+                        ),
+                        style: theme.textTheme.labelLarge?.copyWith(
+                          color: const Color(0xFF6A5A4A),
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      ..._currentSurahResults.map(
+                        (result) => ListTile(
+                          dense: true,
+                          contentPadding: EdgeInsets.zero,
+                          title: Text(
+                            result.title,
+                            style: const TextStyle(fontWeight: FontWeight.w700),
+                          ),
+                          subtitle: Text(
+                            '${_matchTypeLabel(l10n, result.matchField)} • ${result.snippetText}',
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          trailing: const Icon(Icons.chevron_right_rounded),
+                          onTap: () {
+                            final query = trimmedValue;
+                            Navigator.of(context).pop(
+                              _ReaderSearchSheetResult._(
+                                query: query,
+                                selectedCurrentSurahResult: result,
+                                updatedRecentSearches:
+                                    _updatedRecentSearchesFor(query),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    ],
+                    if (trimmedValue.isNotEmpty &&
+                        _scope == _ReaderSearchScope.wholeQuran) ...[
+                      Text(
+                        l10n.quranSearchResultCountLabel(
+                          _wholeQuranResults.length,
+                        ),
+                        style: theme.textTheme.labelLarge?.copyWith(
+                          color: const Color(0xFF6A5A4A),
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      ..._wholeQuranResults.map(
+                        (result) => ListTile(
+                          dense: true,
+                          contentPadding: EdgeInsets.zero,
+                          title: Text(
+                            result.ayah == null
+                                ? result.surah.transliteratedName
+                                : '${result.surah.transliteratedName} ${result.ayah!.ayahNumber}',
+                            style: const TextStyle(fontWeight: FontWeight.w700),
+                          ),
+                          subtitle: Text(
+                            result.snippetText,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          trailing: const Icon(Icons.chevron_right_rounded),
+                          onTap: () {
+                            Navigator.of(context).pop(
+                              _ReaderSearchSheetResult._(
+                                query: trimmedValue,
+                                selectedWholeQuranResult: result,
+                                updatedRecentSearches:
+                                    _updatedRecentSearchesFor(trimmedValue),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                      ListTile(
+                        dense: true,
+                        contentPadding: EdgeInsets.zero,
+                        title: Text(l10n.quranSearchMoreResultsAction),
+                        trailing: const Icon(Icons.open_in_new_rounded),
+                        onTap: () {
+                          Navigator.of(context).pop(
+                            _ReaderSearchSheetResult._(
+                              query: trimmedValue,
+                              openFullSearch: true,
+                              updatedRecentSearches: _updatedRecentSearchesFor(
+                                trimmedValue,
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ],
+                  ],
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 8, bottom: bottomActionInset),
+                child: Row(
+                  children: [
+                    if (_recentSearches.isNotEmpty)
+                      TextButton(
+                        onPressed: () {
+                          setState(() {
+                            _recentSearches = const <String>[];
+                          });
+                        },
+                        child: Text(l10n.quranReaderSearchClearRecentAction),
+                      ),
+                    if (widget.hasActiveReaderSearch)
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop(
+                            _ReaderSearchSheetResult._(
+                              clearActiveSearch: true,
+                              updatedRecentSearches: _recentSearches,
+                            ),
+                          );
+                        },
+                        child: Text(l10n.quranReaderSearchClearAction),
+                      ),
+                    const Spacer(),
+                    FilledButton.icon(
+                      key: const ValueKey('quran-reader-search-run-button'),
+                      onPressed: trimmedValue.isEmpty
+                          ? null
+                          : () => _handleSubmittedQuery(trimmedValue),
+                      icon: const Icon(Icons.search_rounded),
+                      label: Text(l10n.quranReaderSearchRunAction),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class _SettingsSubsectionLabel extends StatelessWidget {
   const _SettingsSubsectionLabel(this.label);
 
@@ -3693,6 +5077,158 @@ String _quranInsightPathTitle(AppLocalizations l10n, String pathId) {
   };
 }
 
+class _QuranReaderAyahListItem extends ConsumerWidget {
+  const _QuranReaderAyahListItem({
+    required this.ayah,
+    required this.isHighlighted,
+    required this.isNowPlaying,
+    required this.activeWordIndex,
+    required this.showArabic,
+    required this.showTranslation,
+    required this.showTransliteration,
+    required this.showWordByWord,
+    required this.showActions,
+    required this.hifzRevealMode,
+    required this.arabicFontSize,
+    required this.transliterationFontSize,
+    required this.translationFontSize,
+    required this.harakatColor,
+    required this.resolvedExplanation,
+    required this.actionRecommendation,
+    required this.spiritualMomentBundle,
+    required this.personalizedRecommendation,
+    required this.readerSearchQuery,
+    required this.readerSearchMatchField,
+    required this.readerSearchTranslationHighlights,
+    required this.readerSearchTransliterationHighlights,
+    required this.readerSearchArabicHighlights,
+    required this.studyMode,
+    required this.onBookmark,
+    required this.onAddNote,
+    required this.onToggleMemorization,
+    required this.onPlayWord,
+    required this.onMistakeCheckpoint,
+    this.activeTopicId,
+    this.onTap,
+    this.onPlayAyah,
+  });
+
+  final QuranAyah ayah;
+  final bool isHighlighted;
+  final bool isNowPlaying;
+  final int? activeWordIndex;
+  final bool showArabic;
+  final bool showTranslation;
+  final bool showTransliteration;
+  final bool showWordByWord;
+  final bool showActions;
+  final HifzRevealMode hifzRevealMode;
+  final double arabicFontSize;
+  final double transliterationFontSize;
+  final double translationFontSize;
+  final Color? harakatColor;
+  final QuranAyahResolvedExplanation? resolvedExplanation;
+  final QuranAyahActionRecommendation? actionRecommendation;
+  final QuranSpiritualMomentBundle? spiritualMomentBundle;
+  final QuranRecommendedAyah? personalizedRecommendation;
+  final String readerSearchQuery;
+  final QuranSearchMatchField? readerSearchMatchField;
+  final List<String> readerSearchTranslationHighlights;
+  final List<String> readerSearchTransliterationHighlights;
+  final List<String> readerSearchArabicHighlights;
+  final QuranReaderStudyMode studyMode;
+  final String? activeTopicId;
+  final VoidCallback? onTap;
+  final VoidCallback? onPlayAyah;
+  final VoidCallback onBookmark;
+  final VoidCallback onAddNote;
+  final VoidCallback onToggleMemorization;
+  final Future<void> Function(QuranWordGloss word) onPlayWord;
+  final VoidCallback onMistakeCheckpoint;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isBookmarked = ref.watch(
+      quranBookmarksProvider.select(
+        (bookmarks) => bookmarks.any(
+          (bookmark) =>
+              bookmark.surahNumber == ayah.surahNumber &&
+              bookmark.ayahNumber == ayah.ayahNumber,
+        ),
+      ),
+    );
+    final notesCount = ref.watch(
+      quranNotesProvider.select(
+        (notes) => notes
+            .where(
+              (note) =>
+                  note.surahNumber == ayah.surahNumber &&
+                  note.ayahNumber == ayah.ayahNumber,
+            )
+            .length,
+      ),
+    );
+    final isMarkedForMemorization =
+        ref.watch(
+          quranMemorizationEntryForAyahProvider((
+            ayah.surahNumber,
+            ayah.ayahNumber,
+          )),
+        ) !=
+        null;
+    final contextualLinks = ref.watch(
+      quranContextualKnowledgeLinksForVerseProvider((
+        ayah.surahNumber,
+        ayah.ayahNumber,
+      )),
+    );
+    final themeTopics = ref.watch(
+      quranThemesForVerseProvider((ayah.surahNumber, ayah.ayahNumber)),
+    );
+
+    return QuranAyahCard(
+      ayah: ayah,
+      isHighlighted: isHighlighted,
+      isNowPlaying: isNowPlaying,
+      activeWordIndex: activeWordIndex,
+      isBookmarked: isBookmarked,
+      isMarkedForMemorization: isMarkedForMemorization,
+      notesCount: notesCount,
+      onBookmark: onBookmark,
+      onAddNote: onAddNote,
+      showArabic: showArabic,
+      showTranslation: showTranslation,
+      showTransliteration: showTransliteration,
+      showWordByWord: showWordByWord,
+      showActions: showActions,
+      hifzRevealMode: hifzRevealMode,
+      arabicFontSize: arabicFontSize,
+      transliterationFontSize: transliterationFontSize,
+      translationFontSize: translationFontSize,
+      harakatColor: harakatColor,
+      resolvedExplanation: resolvedExplanation,
+      actionRecommendation: actionRecommendation,
+      spiritualMomentBundle: spiritualMomentBundle,
+      personalizedRecommendation: personalizedRecommendation,
+      contextualLinks: contextualLinks,
+      themeTopics: themeTopics,
+      readerSearchQuery: readerSearchQuery,
+      readerSearchMatchField: readerSearchMatchField,
+      readerSearchTranslationHighlights: readerSearchTranslationHighlights,
+      readerSearchTransliterationHighlights:
+          readerSearchTransliterationHighlights,
+      readerSearchArabicHighlights: readerSearchArabicHighlights,
+      studyMode: studyMode,
+      activeTopicId: activeTopicId,
+      onTap: onTap,
+      onPlayAyah: onPlayAyah,
+      onToggleMemorization: onToggleMemorization,
+      onPlayWord: onPlayWord,
+      onMistakeCheckpoint: onMistakeCheckpoint,
+    );
+  }
+}
+
 class QuranAyahCard extends StatefulWidget {
   const QuranAyahCard({
     super.key,
@@ -3721,6 +5257,11 @@ class QuranAyahCard extends StatefulWidget {
     required this.personalizedRecommendation,
     required this.contextualLinks,
     required this.themeTopics,
+    required this.readerSearchQuery,
+    required this.readerSearchMatchField,
+    required this.readerSearchTranslationHighlights,
+    required this.readerSearchTransliterationHighlights,
+    required this.readerSearchArabicHighlights,
     required this.studyMode,
     this.activeTopicId,
     this.onTap,
@@ -3755,6 +5296,11 @@ class QuranAyahCard extends StatefulWidget {
   final QuranRecommendedAyah? personalizedRecommendation;
   final List<QuranRelatedKnowledgeLink> contextualLinks;
   final List<QuranTopic> themeTopics;
+  final String readerSearchQuery;
+  final QuranSearchMatchField? readerSearchMatchField;
+  final List<String> readerSearchTranslationHighlights;
+  final List<String> readerSearchTransliterationHighlights;
+  final List<String> readerSearchArabicHighlights;
   final QuranReaderStudyMode studyMode;
   final String? activeTopicId;
   final VoidCallback? onTap;
@@ -3942,6 +5488,15 @@ class _QuranAyahCardState extends State<QuranAyahCard> {
                       final canWordHighlight =
                           widget.hifzRevealMode == HifzRevealMode.full &&
                           widget.activeWordIndex != null;
+                      final searchArabicHighlights = widget
+                          .readerSearchArabicHighlights
+                          .toSet();
+                      final searchHighlightStyle = style.copyWith(
+                        backgroundColor: const Color(
+                          0xFFE8D69B,
+                        ).withValues(alpha: 0.55),
+                        color: const Color(0xFF2F8F5B),
+                      );
 
                       return Text.rich(
                         canWordHighlight
@@ -3951,10 +5506,13 @@ class _QuranAyahCardState extends State<QuranAyahCard> {
                                 style,
                                 widget.activeWordIndex!,
                                 widget.harakatColor,
+                                searchHighlightWords: searchArabicHighlights,
                               )
-                            : buildQuranTextWithColoredHarakat(
+                            : buildQuranTextWithColoredHarakatHighlights(
                                 visibleArabic,
                                 style,
+                                highlightedWords: searchArabicHighlights,
+                                highlightedWordStyle: searchHighlightStyle,
                                 harakatColor:
                                     widget.harakatColor ??
                                     QuranPresentationStyle.translucentHarakatColor(
@@ -4050,6 +5608,8 @@ class _QuranAyahCardState extends State<QuranAyahCard> {
                       text: (widget.ayah.transliteration ?? '').isNotEmpty
                           ? widget.ayah.transliteration!
                           : l10n.quranReaderTransliterationUnavailable,
+                      searchHighlightField:
+                          QuranSearchMatchField.transliteration,
                       baseStyle: QuranPresentationStyle.quranSupportTextStyle(
                         context,
                         TextStyle(
@@ -4061,6 +5621,8 @@ class _QuranAyahCardState extends State<QuranAyahCard> {
                       ),
                       sourceWordCount: arabicWordCount,
                       activeSourceIndex: widget.activeWordIndex,
+                      searchHighlightTerms:
+                          widget.readerSearchTransliterationHighlights,
                     ),
                   ),
                 ],
@@ -4069,6 +5631,7 @@ class _QuranAyahCardState extends State<QuranAyahCard> {
                   Text.rich(
                     _buildFollowTextSpan(
                       text: widget.ayah.translation,
+                      searchHighlightField: QuranSearchMatchField.translation,
                       baseStyle: TextStyle(
                         height:
                             widget.studyMode == QuranReaderStudyMode.reflection
@@ -4085,6 +5648,8 @@ class _QuranAyahCardState extends State<QuranAyahCard> {
                       ),
                       sourceWordCount: arabicWordCount,
                       activeSourceIndex: widget.activeWordIndex,
+                      searchHighlightTerms:
+                          widget.readerSearchTranslationHighlights,
                     ),
                   ),
                 ],
@@ -4307,8 +5872,9 @@ TextSpan _buildWordSyncedArabicSpan(
   String arabic,
   TextStyle baseStyle,
   int activeWordIndex,
-  Color? harakatColor,
-) {
+  Color? harakatColor, {
+  Set<String> searchHighlightWords = const <String>{},
+}) {
   final words = arabic
       .trim()
       .split(RegExp(r'\s+'))
@@ -4327,6 +5893,7 @@ TextSpan _buildWordSyncedArabicSpan(
   final children = <InlineSpan>[];
   for (var i = 0; i < words.length; i += 1) {
     final isActive = i == activeWordIndex;
+    final isSearchHighlighted = searchHighlightWords.contains(words[i]);
     final style = isActive
         ? baseStyle.copyWith(
             color: const Color(0xFF2F8F5B).withValues(
@@ -4343,6 +5910,11 @@ TextSpan _buildWordSyncedArabicSpan(
                 offset: const Offset(0, 0.6),
               ),
             ],
+          )
+        : isSearchHighlighted
+        ? baseStyle.copyWith(
+            backgroundColor: const Color(0xFFE8D69B).withValues(alpha: 0.55),
+            color: const Color(0xFF2F8F5B),
           )
         : baseStyle;
     children.add(
@@ -4364,20 +5936,56 @@ TextSpan _buildWordSyncedArabicSpan(
 
 TextSpan _buildFollowTextSpan({
   required String text,
+  required QuranSearchMatchField searchHighlightField,
   required TextStyle baseStyle,
   required int sourceWordCount,
   required int? activeSourceIndex,
+  List<String> searchHighlightTerms = const <String>[],
 }) {
   final words = text
       .trim()
       .split(RegExp(r'\s+'))
       .where((word) => word.isNotEmpty)
       .toList(growable: false);
-  if (words.isEmpty ||
-      activeSourceIndex == null ||
-      sourceWordCount <= 0 ||
-      words.length <= 1) {
+  final normalizedHighlightTerms = searchHighlightTerms
+      .map(
+        (term) =>
+            _normalizeReaderHighlightWord(searchHighlightField, term.trim()),
+      )
+      .where((term) => term.isNotEmpty)
+      .toSet();
+  if (words.isEmpty) {
     return TextSpan(text: text, style: baseStyle);
+  }
+  if (activeSourceIndex == null || sourceWordCount <= 0 || words.length <= 1) {
+    final spans = <InlineSpan>[];
+    for (var i = 0; i < words.length; i += 1) {
+      final normalizedWord = _normalizeReaderHighlightWord(
+        searchHighlightField,
+        words[i],
+      );
+      final isSearchHighlighted = normalizedHighlightTerms.contains(
+        normalizedWord,
+      );
+      spans.add(
+        TextSpan(
+          text: words[i],
+          style: isSearchHighlighted
+              ? baseStyle.copyWith(
+                  backgroundColor: const Color(
+                    0xFFE8D69B,
+                  ).withValues(alpha: 0.45),
+                  color: const Color(0xFF2F8F5B),
+                  fontWeight: FontWeight.w600,
+                )
+              : baseStyle,
+        ),
+      );
+      if (i != words.length - 1) {
+        spans.add(TextSpan(text: ' ', style: baseStyle));
+      }
+    }
+    return TextSpan(style: baseStyle, children: spans);
   }
 
   final mappedIndex = _mapActiveIndex(
@@ -4389,11 +5997,24 @@ TextSpan _buildFollowTextSpan({
   final spans = <InlineSpan>[];
   for (var i = 0; i < words.length; i += 1) {
     final isActive = i == mappedIndex;
+    final normalizedWord = _normalizeReaderHighlightWord(
+      searchHighlightField,
+      words[i],
+    );
+    final isSearchHighlighted = normalizedHighlightTerms.contains(
+      normalizedWord,
+    );
     final style = isActive
         ? baseStyle.copyWith(
             color: const Color(0xFF2F8F5B),
             fontWeight: FontWeight.w700,
             backgroundColor: const Color(0xFFE8D69B).withValues(alpha: 0.35),
+          )
+        : isSearchHighlighted
+        ? baseStyle.copyWith(
+            color: const Color(0xFF2F8F5B),
+            fontWeight: FontWeight.w600,
+            backgroundColor: const Color(0xFFE8D69B).withValues(alpha: 0.45),
           )
         : baseStyle.copyWith(
             color: (baseStyle.color ?? const Color(0xFF4A4036)).withValues(
@@ -4406,6 +6027,21 @@ TextSpan _buildFollowTextSpan({
     }
   }
   return TextSpan(style: baseStyle, children: spans);
+}
+
+String _normalizeReaderHighlightWord(
+  QuranSearchMatchField field,
+  String value,
+) {
+  switch (field) {
+    case QuranSearchMatchField.translation:
+    case QuranSearchMatchField.surah:
+      return normalizeQuranSearchText(value);
+    case QuranSearchMatchField.transliteration:
+      return normalizeQuranTransliterationSearchText(value);
+    case QuranSearchMatchField.arabic:
+      return normalizeQuranArabicSearchText(value);
+  }
 }
 
 int _mapActiveIndex({
@@ -4609,4 +6245,23 @@ String _translationLabelForCode(AppLocalizations l10n, String code) {
     default:
       return code;
   }
+}
+
+class _AyahScrollTarget {
+  const _AyahScrollTarget({required this.context, required this.renderObject});
+
+  final BuildContext context;
+  final RenderBox renderObject;
+}
+
+class _MeasuredAyahAnchor {
+  const _MeasuredAyahAnchor({
+    required this.ayahNumber,
+    required this.offset,
+    required this.extent,
+  });
+
+  final int ayahNumber;
+  final double offset;
+  final double extent;
 }

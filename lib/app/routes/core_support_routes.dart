@@ -12,6 +12,7 @@ import '../../features/learn/quran/presentation/quran_bookmarks_page.dart';
 import '../../features/learn/quran/presentation/quran_focus_recitation_page.dart';
 import '../../features/learn/quran/presentation/quran_memorization_review_page.dart';
 import '../../features/learn/quran/presentation/quran_notes_page.dart';
+import '../../features/learn/quran/application/quran_search_support.dart';
 import '../../features/learn/quran/presentation/quran_reflections_page.dart';
 import '../../features/learn/quran/presentation/quran_reader_page.dart';
 import '../../features/learn/quran/presentation/quran_search_page.dart';
@@ -31,6 +32,7 @@ import '../../features/profile/presentation/profile_summary_page.dart';
 import '../../features/profile/presentation/profile_whats_new_page.dart';
 import '../../features/profile/presentation/settings_page.dart';
 import '../../features/quran/presentation/quran_verse_page.dart';
+import '../../features/search/presentation/all_search_page.dart';
 import '../../features/salah/presentation/salah_page.dart';
 import '../../features/shared/attributions_licenses_page.dart';
 import '../../features/shared/legal_info_page.dart';
@@ -137,6 +139,19 @@ List<RouteBase> buildCoreSupportRoutes() {
       pageBuilder: (context, state) => const MaterialPage(
         child: SettingsPage(category: SettingsCategory.about),
       ),
+    ),
+    GoRoute(
+      path: '/search',
+      name: 'allSearch',
+      pageBuilder: (context, state) => MaterialPage(
+        child: AllSearchPage(
+          initialQuery: state.uri.queryParameters['q'] ?? '',
+        ),
+      ),
+    ),
+    GoRoute(
+      path: '/learn/search',
+      redirect: (context, state) => _redirectWithQuery('/search', state),
     ),
     GoRoute(
       path: '/internal/editorial/pin',
@@ -377,8 +392,12 @@ List<RouteBase> buildCoreSupportRoutes() {
       path: '/quran/focus-recitation',
       name: 'quranFocusRecitation',
       pageBuilder: (context, state) {
-        final surahNumber = int.tryParse(state.uri.queryParameters['surah'] ?? '');
-        final ayahNumber = int.tryParse(state.uri.queryParameters['ayah'] ?? '');
+        final surahNumber = int.tryParse(
+          state.uri.queryParameters['surah'] ?? '',
+        );
+        final ayahNumber = int.tryParse(
+          state.uri.queryParameters['ayah'] ?? '',
+        );
         return MaterialPage(
           child: QuranFocusRecitationPage(
             initialSurahNumber: surahNumber,
@@ -402,6 +421,10 @@ List<RouteBase> buildCoreSupportRoutes() {
         final topicId = state.uri.queryParameters['topicId'];
         final mode = QuranReaderStudyMode.tryParse(
           state.uri.queryParameters['mode'],
+        );
+        final searchQuery = state.uri.queryParameters['search']?.trim();
+        final searchField = QuranSearchMatchFieldX.fromWireValue(
+          state.uri.queryParameters['searchField'],
         );
         final review = state.uri.queryParameters['review'];
         final memorizationReviewCount = int.tryParse(
@@ -431,6 +454,10 @@ List<RouteBase> buildCoreSupportRoutes() {
             studyMode: mode,
             memorizationReviewCount: memorizationReviewCount,
             memorizationLastReviewed: memorizationLastReviewed,
+            initialSearchQuery: searchQuery?.isEmpty ?? true
+                ? null
+                : searchQuery,
+            initialSearchField: searchField,
           ),
         );
       },
@@ -494,8 +521,17 @@ List<RouteBase> buildCoreSupportRoutes() {
     GoRoute(
       path: '/quran/search',
       name: 'quranSearch',
-      pageBuilder: (context, state) =>
-          const MaterialPage(child: QuranSearchPage()),
+      pageBuilder: (context, state) => MaterialPage(
+        child: QuranSearchPage(
+          initialQuery: state.uri.queryParameters['q'] ?? '',
+          initialSearchType: QuranSearchTypeX.fromWireValue(
+            state.uri.queryParameters['type'],
+          ),
+          initialFieldFilter: QuranSearchFieldFilterX.fromWireValue(
+            state.uri.queryParameters['field'],
+          ),
+        ),
+      ),
     ),
     GoRoute(
       path: '/learn/quran/search',

@@ -20,6 +20,7 @@ import 'package:path_of_nur/features/learn/quran/domain/quran_content_refs.dart'
 import 'package:path_of_nur/features/learn/quran/domain/quran_playback_request.dart';
 import 'package:path_of_nur/features/learn/quran/presentation/quran_reader_page.dart';
 import 'package:path_of_nur/l10n/app_localizations.dart';
+import 'package:path_of_nur/shared/application/daily_clock_provider.dart';
 import 'package:path_of_nur/shared/persistence/local_store.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -40,6 +41,25 @@ class _FakeRoutePlayerController extends QuranPlayerController {
   }
 
   @override
+  Future<void> stop({bool preserveSession = true}) async {
+    if (!preserveSession) {
+      ref.read(quranActivePlaybackSessionProvider.notifier).state = null;
+    }
+    feed.update(
+      playing: false,
+      hasPlaybackSource: false,
+      currentIndex: null,
+      position: Duration.zero,
+      duration: null,
+      processingState: ProcessingState.idle,
+    );
+    feed.emitDuration();
+    feed.emitIndex();
+    feed.emitPosition();
+    feed.emitPlayerState();
+  }
+
+  @override
   Future<bool> startPreparedPlayback(
     QuranPreparedPlayback prepared, {
     required String reciterId,
@@ -52,15 +72,16 @@ class _FakeRoutePlayerController extends QuranPlayerController {
         .map((entry) => entry.ayahNumber)
         .toList(growable: false);
     lastPreparedAyahNumbers = ayahNumbers;
-    ref.read(quranActivePlaybackSessionProvider.notifier).state =
-        QuranActivePlaybackSession(
-          surahNumber: prepared.request.surahNumber,
-          ayahNumbers: ayahNumbers,
-          reciterId: reciterId,
-          playbackSpeed: playbackSpeed,
-          includeMediaTags: includeMediaTags,
-          isSurahMode: ayahNumbers.length > 1,
-        );
+    ref
+        .read(quranActivePlaybackSessionProvider.notifier)
+        .state = QuranActivePlaybackSession(
+      surahNumber: prepared.request.surahNumber,
+      ayahNumbers: ayahNumbers,
+      reciterId: reciterId,
+      playbackSpeed: playbackSpeed,
+      includeMediaTags: includeMediaTags,
+      isSurahMode: ayahNumbers.length > 1,
+    );
     ref
         .read(quranRecitationSessionProvider.notifier)
         .save(
@@ -106,15 +127,16 @@ class _FakeRoutePlayerController extends QuranPlayerController {
             .map((item) => item.ayahNumber)
             .toList(growable: false);
     final targetIndex = resolvedAyahs.indexOf(ayahNumber);
-    ref.read(quranActivePlaybackSessionProvider.notifier).state =
-        QuranActivePlaybackSession(
-          surahNumber: surahNumber,
-          ayahNumbers: resolvedAyahs,
-          reciterId: ref.read(quranAudioSettingsProvider).reciterId,
-          playbackSpeed: ref.read(quranAudioSettingsProvider).playbackSpeed,
-          includeMediaTags: true,
-          isSurahMode: resolvedAyahs.length > 1,
-        );
+    ref
+        .read(quranActivePlaybackSessionProvider.notifier)
+        .state = QuranActivePlaybackSession(
+      surahNumber: surahNumber,
+      ayahNumbers: resolvedAyahs,
+      reciterId: ref.read(quranAudioSettingsProvider).reciterId,
+      playbackSpeed: ref.read(quranAudioSettingsProvider).playbackSpeed,
+      includeMediaTags: true,
+      isSurahMode: resolvedAyahs.length > 1,
+    );
     ref
         .read(quranRecitationSessionProvider.notifier)
         .save(
@@ -154,15 +176,16 @@ class _FakeRoutePlayerController extends QuranPlayerController {
         .toList(growable: false);
     final targetAyah = restartFromSurah ? 1 : stored.ayahNumber;
     final targetIndex = ayahNumbers.indexOf(targetAyah);
-    ref.read(quranActivePlaybackSessionProvider.notifier).state =
-        QuranActivePlaybackSession(
-          surahNumber: stored.surahNumber,
-          ayahNumbers: ayahNumbers,
-          reciterId: ref.read(quranAudioSettingsProvider).reciterId,
-          playbackSpeed: ref.read(quranAudioSettingsProvider).playbackSpeed,
-          includeMediaTags: true,
-          isSurahMode: true,
-        );
+    ref
+        .read(quranActivePlaybackSessionProvider.notifier)
+        .state = QuranActivePlaybackSession(
+      surahNumber: stored.surahNumber,
+      ayahNumbers: ayahNumbers,
+      reciterId: ref.read(quranAudioSettingsProvider).reciterId,
+      playbackSpeed: ref.read(quranAudioSettingsProvider).playbackSpeed,
+      includeMediaTags: true,
+      isSurahMode: true,
+    );
     ref
         .read(quranRecitationSessionProvider.notifier)
         .save(
@@ -242,7 +265,9 @@ class _FakeRoutePlaybackOrchestrator extends QuranPlaybackOrchestrator {
     return QuranPreparedPlayback(
       request: request,
       entries: entries,
-      initialLogicalIndex: ayahNumbers.indexOf(request.ayahNumber ?? ayahNumbers.first),
+      initialLogicalIndex: ayahNumbers.indexOf(
+        request.ayahNumber ?? ayahNumbers.first,
+      ),
       initialPosition: request.resumePosition ?? Duration.zero,
       didPrependBismillah: false,
     );
@@ -281,6 +306,9 @@ void main() {
     return ProviderScope(
       overrides: [
         sharedPreferencesProvider.overrideWithValue(prefs),
+        dailyNowProvider.overrideWith(
+          (ref) => Stream.value(DateTime(2026, 4, 10)),
+        ),
         quranPlaybackFeedProvider.overrideWithValue(feed),
         quranWordTimingRepositoryProvider.overrideWithValue(timingRepository),
         quranPlaybackOrchestratorProvider.overrideWithValue(
@@ -314,442 +342,564 @@ void main() {
     await tester.pumpAndSettle();
   }
 
-  testWidgets('real reader page reflects provider-driven playback state in visible transport UI', (
-    tester,
-  ) async {
-    final feed = FakeQuranPlaybackFeed()
-      ..update(
-        playing: true,
-        hasPlaybackSource: true,
-        currentIndex: 0,
-        position: const Duration(seconds: 1),
-        duration: const Duration(seconds: 4),
-        processingState: ProcessingState.ready,
+  testWidgets(
+    'real reader page reflects provider-driven playback state in visible transport UI',
+    (tester) async {
+      final feed = FakeQuranPlaybackFeed()
+        ..update(
+          playing: true,
+          hasPlaybackSource: true,
+          currentIndex: 0,
+          position: const Duration(seconds: 1),
+          duration: const Duration(seconds: 4),
+          processingState: ProcessingState.ready,
+        );
+      final timingRepository = FakeQuranWordTimingRepository();
+      addTearDown(feed.dispose);
+
+      await tester.pumpWidget(
+        await wrapReader(feed: feed, timingRepository: timingRepository),
       );
-    final timingRepository = FakeQuranWordTimingRepository();
-    addTearDown(feed.dispose);
-
-    await tester.pumpWidget(
-      await wrapReader(feed: feed, timingRepository: timingRepository),
-    );
-    final container = ProviderScope.containerOf(
-      tester.element(find.byType(QuranReaderPage)),
-    );
-    await container.read(quranSurahAyahsProvider(1).future);
-    container.read(quranActivePlaybackSessionProvider.notifier).state =
-        const QuranActivePlaybackSession(
-          surahNumber: 1,
-          ayahNumbers: <int>[2],
-          reciterId: 'husary',
-          playbackSpeed: 1,
-          includeMediaTags: true,
-          isSurahMode: false,
-        );
-    feed.emitDuration();
-    feed.emitIndex();
-    feed.emitPosition();
-    feed.emitPlayerState();
-    await tester.pumpAndSettle();
-
-    expect(find.byKey(const ValueKey('quran-reader-now-reciting-label')), findsOneWidget);
-    expect(find.textContaining('Verse 1:2'), findsOneWidget);
-    expect(find.byIcon(Icons.pause_circle_filled_rounded), findsOneWidget);
-
-    feed.update(playing: false, processingState: ProcessingState.ready);
-    feed.emitPlayerState();
-    await tester.pumpAndSettle();
-    expect(find.byIcon(Icons.play_circle_fill_rounded), findsOneWidget);
-
-    await disposeReaderHarness(tester);
-  });
-
-  testWidgets('real reader page stays stable across timing-ready and timing-missing highlight states', (
-    tester,
-  ) async {
-    final feed = FakeQuranPlaybackFeed()
-      ..update(
-        playing: true,
-        hasPlaybackSource: true,
-        currentIndex: 0,
-        position: const Duration(milliseconds: 1200),
-        duration: const Duration(seconds: 4),
-        processingState: ProcessingState.ready,
+      final container = ProviderScope.containerOf(
+        tester.element(find.byType(QuranReaderPage)),
       );
-    final timingRepository = FakeQuranWordTimingRepository(
-      timings: <String, List<QuranWordTimingSegment>>{
-        'husary:1:2': const <QuranWordTimingSegment>[
-          QuranWordTimingSegment(wordIndex: 0, startMs: 0, endMs: 900),
-          QuranWordTimingSegment(wordIndex: 1, startMs: 901, endMs: 1800),
-        ],
-      },
-    );
-    addTearDown(feed.dispose);
+      await container.read(quranSurahAyahsProvider(1).future);
+      container
+          .read(quranActivePlaybackSessionProvider.notifier)
+          .state = const QuranActivePlaybackSession(
+        surahNumber: 1,
+        ayahNumbers: <int>[2],
+        reciterId: 'husary',
+        playbackSpeed: 1,
+        includeMediaTags: true,
+        isSurahMode: false,
+      );
+      feed.emitDuration();
+      feed.emitIndex();
+      feed.emitPosition();
+      feed.emitPlayerState();
+      await tester.pumpAndSettle();
 
-    await tester.pumpWidget(
-      await wrapReader(feed: feed, timingRepository: timingRepository),
-    );
-    final container = ProviderScope.containerOf(
-      tester.element(find.byType(QuranReaderPage)),
-    );
-    await container.read(quranSurahAyahsProvider(1).future);
-    await tester.pumpAndSettle();
+      expect(
+        find.byKey(const ValueKey('quran-reader-now-reciting-label')),
+        findsOneWidget,
+      );
+      expect(find.textContaining('Verse 1:2'), findsOneWidget);
+      expect(find.byIcon(Icons.pause_circle_filled_rounded), findsOneWidget);
 
-    container.read(quranAudioSettingsProvider.notifier).setReciterId('husary');
-    container.read(quranReaderSettingsProvider.notifier).setWordSyncHighlightBeta(true);
-    container.read(quranActivePlaybackSessionProvider.notifier).state =
-        const QuranActivePlaybackSession(
-          surahNumber: 1,
-          ayahNumbers: <int>[2],
-          reciterId: 'husary',
-          playbackSpeed: 1,
-          includeMediaTags: true,
-          isSurahMode: false,
+      feed.update(playing: false, processingState: ProcessingState.ready);
+      feed.emitPlayerState();
+      await tester.pumpAndSettle();
+      expect(find.byIcon(Icons.play_circle_fill_rounded), findsOneWidget);
+
+      await disposeReaderHarness(tester);
+    },
+  );
+
+  testWidgets(
+    'reader close button stops playback and closes the panel while keeping reader open',
+    (tester) async {
+      final feed = FakeQuranPlaybackFeed()
+        ..update(
+          playing: true,
+          hasPlaybackSource: true,
+          currentIndex: 1,
+          position: const Duration(seconds: 1),
+          duration: const Duration(seconds: 4),
+          processingState: ProcessingState.ready,
         );
-    feed.emitIndex();
-    feed.emitPlayerState();
-    feed.emitPosition();
-    await tester.pumpAndSettle();
+      final timingRepository = FakeQuranWordTimingRepository();
+      addTearDown(feed.dispose);
 
-    expect(
-      container.read(quranWordHighlightCoordinatorProvider(1)).activeWordIndex,
-      1,
-    );
-    expect(find.byKey(const ValueKey('quran-reader-now-reciting-label')), findsOneWidget);
-    expect(find.textContaining('Verse 1:2'), findsOneWidget);
+      await tester.pumpWidget(
+        await wrapReader(feed: feed, timingRepository: timingRepository),
+      );
+      final container = ProviderScope.containerOf(
+        tester.element(find.byType(QuranReaderPage)),
+      );
+      await container.read(quranSurahAyahsProvider(1).future);
+      container
+          .read(quranActivePlaybackSessionProvider.notifier)
+          .state = const QuranActivePlaybackSession(
+        surahNumber: 1,
+        ayahNumbers: <int>[1, 2, 3],
+        reciterId: 'husary',
+        playbackSpeed: 1,
+        includeMediaTags: true,
+        isSurahMode: true,
+      );
+      feed.emitDuration();
+      feed.emitIndex();
+      feed.emitPosition();
+      feed.emitPlayerState();
+      await tester.pumpAndSettle();
 
-    container.read(quranActivePlaybackSessionProvider.notifier).state =
-        const QuranActivePlaybackSession(
-          surahNumber: 1,
-          ayahNumbers: <int>[1],
-          reciterId: 'husary',
-          playbackSpeed: 1,
-          includeMediaTags: true,
-          isSurahMode: false,
+      expect(find.byType(QuranReaderPage), findsOneWidget);
+      expect(
+        find.byKey(const ValueKey('quran-reader-close-player')),
+        findsOneWidget,
+      );
+
+      await tester.tap(find.byKey(const ValueKey('quran-reader-close-player')));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(QuranReaderPage), findsOneWidget);
+      expect(
+        find.byKey(const ValueKey('quran-reader-close-player')),
+        findsNothing,
+      );
+      expect(feed.playing, isFalse);
+      expect(feed.hasPlaybackSource, isFalse);
+
+      final ayahPlayButton = find.byKey(
+        const ValueKey('quran-reader-play-ayah-1:2'),
+        skipOffstage: false,
+      );
+      await tester.scrollUntilVisible(
+        ayahPlayButton,
+        300,
+        scrollable: find.byType(Scrollable).first,
+      );
+      await tester.pumpAndSettle();
+      await tester.tap(ayahPlayButton);
+      await tester.pumpAndSettle();
+
+      expect(
+        find.byKey(const ValueKey('quran-reader-close-player')),
+        findsOneWidget,
+      );
+      expect(feed.hasPlaybackSource, isTrue);
+
+      await disposeReaderHarness(tester);
+    },
+  );
+
+  testWidgets(
+    'real reader page stays stable across timing-ready and timing-missing highlight states',
+    (tester) async {
+      final feed = FakeQuranPlaybackFeed()
+        ..update(
+          playing: true,
+          hasPlaybackSource: true,
+          currentIndex: 0,
+          position: const Duration(milliseconds: 1200),
+          duration: const Duration(seconds: 4),
+          processingState: ProcessingState.ready,
         );
-    feed.update(currentIndex: 0, position: const Duration(milliseconds: 600));
-    feed.emitIndex();
-    feed.emitPlayerState();
-    feed.emitPosition();
-    await tester.pumpAndSettle();
+      final timingRepository = FakeQuranWordTimingRepository(
+        timings: <String, List<QuranWordTimingSegment>>{
+          'husary:1:2': const <QuranWordTimingSegment>[
+            QuranWordTimingSegment(wordIndex: 0, startMs: 0, endMs: 900),
+            QuranWordTimingSegment(wordIndex: 1, startMs: 901, endMs: 1800),
+          ],
+        },
+      );
+      addTearDown(feed.dispose);
 
-    final highlightState = container.read(quranWordHighlightCoordinatorProvider(1));
-    expect(highlightState.activeAyahKey, '1:1');
-    expect(highlightState.activeWordIndex, isNull);
-    expect(highlightState.mode, QuranWordHighlightMode.noTimingAvailable);
-    expect(find.byKey(const ValueKey('quran-reader-now-reciting-label')), findsOneWidget);
-    expect(find.textContaining('Verse 1:1'), findsOneWidget);
+      await tester.pumpWidget(
+        await wrapReader(feed: feed, timingRepository: timingRepository),
+      );
+      final container = ProviderScope.containerOf(
+        tester.element(find.byType(QuranReaderPage)),
+      );
+      await container.read(quranSurahAyahsProvider(1).future);
+      await tester.pumpAndSettle();
 
-    await disposeReaderHarness(tester);
-  });
-
-  testWidgets('real reader page supports visible ayah tap playback and follow recovery', (
-    tester,
-  ) async {
-    final feed = FakeQuranPlaybackFeed();
-    final timingRepository = FakeQuranWordTimingRepository();
-    addTearDown(feed.dispose);
-
-    await tester.pumpWidget(
-      await wrapReader(feed: feed, timingRepository: timingRepository),
-    );
-    final container = ProviderScope.containerOf(
-      tester.element(find.byType(QuranReaderPage)),
-    );
-    await container.read(quranSurahAyahsProvider(1).future);
-    await tester.pumpAndSettle();
-
-    final ayahPlayButton = find.byKey(
-      const ValueKey('quran-reader-play-ayah-1:2'),
-      skipOffstage: false,
-    );
-    final ayahCard = find.byKey(
-      const ValueKey('quran-ayah-card-1:2'),
-      skipOffstage: false,
-    );
-    await tester.scrollUntilVisible(
-      ayahCard,
-      300,
-      scrollable: find.byType(Scrollable).first,
-    );
-    await tester.pumpAndSettle();
-    await tester.tap(ayahCard);
-    await tester.pumpAndSettle();
-
-    expect(feed.hasPlaybackSource, isTrue);
-    expect(feed.currentIndex, 1);
-    expect(find.byIcon(Icons.pause_circle_filled_rounded), findsOneWidget);
-
-    feed.update(
-      playing: false,
-      hasPlaybackSource: false,
-      currentIndex: null,
-      position: Duration.zero,
-      duration: null,
-      processingState: ProcessingState.idle,
-    );
-    feed.emitDuration();
-    feed.emitIndex();
-    feed.emitPosition();
-    feed.emitPlayerState();
-    container.read(quranActivePlaybackSessionProvider.notifier).state = null;
-    await tester.pumpAndSettle();
-
-    await tester.scrollUntilVisible(
-      ayahPlayButton,
-      300,
-      scrollable: find.byType(Scrollable).first,
-    );
-    await tester.pumpAndSettle();
-    await tester.tap(ayahPlayButton);
-    await tester.pumpAndSettle();
-
-    expect(feed.hasPlaybackSource, isTrue);
-    expect(feed.currentIndex, 1);
-    expect(find.byIcon(Icons.pause_circle_filled_rounded), findsOneWidget);
-
-    await tester.tap(find.byKey(const ValueKey('quran-reader-play-pause-button')));
-    await tester.pumpAndSettle();
-    expect(feed.playing, isFalse);
-
-    await tester.tap(find.byKey(const ValueKey('quran-reader-play-pause-button')));
-    await tester.pumpAndSettle();
-    expect(feed.playing, isTrue);
-
-    await tester.drag(find.byType(ListView), const Offset(0, -300));
-    await tester.pump();
-    await tester.pump(const Duration(milliseconds: 300));
-
-    expect(
       container
-          .read(quranReaderFollowModeCoordinatorProvider(1))
-          .isTemporarilySuspended,
-      isTrue,
-    );
-    expect(
-      find.byKey(const ValueKey('quran-reader-return-to-current-ayah-pill')),
-      findsOneWidget,
-    );
-    expect(
-      find.byKey(const ValueKey('quran-reader-return-to-current-ayah')),
-      findsNothing,
-    );
-
-    await tester.tap(
-      find.byKey(const ValueKey('quran-reader-return-to-current-ayah-pill')),
-    );
-    await tester.pumpAndSettle();
-
-    expect(
+          .read(quranAudioSettingsProvider.notifier)
+          .setReciterId('husary');
       container
-          .read(quranReaderFollowModeCoordinatorProvider(1))
-          .isTemporarilySuspended,
-      isFalse,
-    );
-
-    await tester.drag(find.byType(ListView), const Offset(0, -300));
-    await tester.pump();
-    await tester.pump(const Duration(milliseconds: 300));
-    expect(
+          .read(quranReaderSettingsProvider.notifier)
+          .setWordSyncHighlightBeta(true);
       container
-          .read(quranReaderFollowModeCoordinatorProvider(1))
-          .isTemporarilySuspended,
-      isTrue,
-    );
+          .read(quranActivePlaybackSessionProvider.notifier)
+          .state = const QuranActivePlaybackSession(
+        surahNumber: 1,
+        ayahNumbers: <int>[2],
+        reciterId: 'husary',
+        playbackSpeed: 1,
+        includeMediaTags: true,
+        isSurahMode: false,
+      );
+      feed.emitIndex();
+      feed.emitPlayerState();
+      feed.emitPosition();
+      await tester.pumpAndSettle();
 
-    final ayahThreePlayButton = find.byKey(
-      const ValueKey('quran-reader-play-ayah-1:3'),
-      skipOffstage: false,
-    );
-    await tester.scrollUntilVisible(
-      ayahThreePlayButton,
-      300,
-      scrollable: find.byType(Scrollable).first,
-    );
-    await tester.pumpAndSettle();
-    await tester.tap(ayahThreePlayButton);
-    await tester.pumpAndSettle();
+      expect(
+        container
+            .read(quranWordHighlightCoordinatorProvider(1))
+            .activeWordIndex,
+        1,
+      );
+      expect(
+        find.byKey(const ValueKey('quran-reader-now-reciting-label')),
+        findsOneWidget,
+      );
+      expect(find.textContaining('Verse 1:2'), findsOneWidget);
 
-    expect(feed.currentIndex, 2);
-    expect(
       container
-          .read(quranReaderFollowModeCoordinatorProvider(1))
-          .isTemporarilySuspended,
-      isFalse,
-    );
+          .read(quranActivePlaybackSessionProvider.notifier)
+          .state = const QuranActivePlaybackSession(
+        surahNumber: 1,
+        ayahNumbers: <int>[1],
+        reciterId: 'husary',
+        playbackSpeed: 1,
+        includeMediaTags: true,
+        isSurahMode: false,
+      );
+      feed.update(currentIndex: 0, position: const Duration(milliseconds: 600));
+      feed.emitIndex();
+      feed.emitPlayerState();
+      feed.emitPosition();
+      await tester.pumpAndSettle();
 
-    await disposeReaderHarness(tester);
-  });
+      final highlightState = container.read(
+        quranWordHighlightCoordinatorProvider(1),
+      );
+      expect(highlightState.activeAyahKey, '1:1');
+      expect(highlightState.activeWordIndex, isNull);
+      expect(highlightState.mode, QuranWordHighlightMode.noTimingAvailable);
+      expect(
+        find.byKey(const ValueKey('quran-reader-now-reciting-label')),
+        findsOneWidget,
+      );
+      expect(find.textContaining('Verse 1:1'), findsOneWidget);
 
-  testWidgets('reader continue listening card resumes from saved ayah or restarts the surah', (
-    tester,
-  ) async {
-    final feed = FakeQuranPlaybackFeed();
-    final timingRepository = FakeQuranWordTimingRepository();
-    addTearDown(feed.dispose);
+      await disposeReaderHarness(tester);
+    },
+  );
 
-    await tester.pumpWidget(
-      await wrapReader(feed: feed, timingRepository: timingRepository),
-    );
-    final container = ProviderScope.containerOf(
-      tester.element(find.byType(QuranReaderPage)),
-    );
-    await container.read(quranSurahAyahsProvider(1).future);
-    container
-        .read(quranRecitationSessionProvider.notifier)
-        .save(surahNumber: 1, ayahNumber: 3, positionSeconds: 18);
-    await tester.pumpAndSettle();
+  testWidgets(
+    'real reader page supports visible ayah tap playback and follow recovery',
+    (tester) async {
+      final feed = FakeQuranPlaybackFeed();
+      final timingRepository = FakeQuranWordTimingRepository();
+      addTearDown(feed.dispose);
 
-    await tester.scrollUntilVisible(
-      find.byKey(const ValueKey('quran-reader-continue-listening-card')),
-      300,
-      scrollable: find.byType(Scrollable).first,
-    );
-    await tester.pumpAndSettle();
+      await tester.pumpWidget(
+        await wrapReader(feed: feed, timingRepository: timingRepository),
+      );
+      final container = ProviderScope.containerOf(
+        tester.element(find.byType(QuranReaderPage)),
+      );
+      await container.read(quranSurahAyahsProvider(1).future);
+      await tester.pumpAndSettle();
 
-    expect(
-      find.byKey(const ValueKey('quran-reader-continue-listening-card')),
-      findsOneWidget,
-    );
+      final ayahPlayButton = find.byKey(
+        const ValueKey('quran-reader-play-ayah-1:2'),
+        skipOffstage: false,
+      );
+      final ayahCard = find.byKey(
+        const ValueKey('quran-ayah-card-1:2'),
+        skipOffstage: false,
+      );
+      await tester.scrollUntilVisible(
+        ayahCard,
+        300,
+        scrollable: find.byType(Scrollable).first,
+      );
+      await tester.pumpAndSettle();
+      await tester.tap(ayahCard);
+      await tester.pumpAndSettle();
 
-    await tester.tap(find.byKey(const ValueKey('quran-reader-restart-surah-button')));
-    await tester.pumpAndSettle();
-    expect(feed.currentIndex, 0);
-    expect(feed.position, Duration.zero);
+      expect(feed.hasPlaybackSource, isTrue);
+      expect(feed.currentIndex, 1);
+      expect(find.byIcon(Icons.pause_circle_filled_rounded), findsOneWidget);
 
-    feed.update(playing: false, processingState: ProcessingState.ready);
-    feed.emitPlayerState();
-    container
-        .read(quranRecitationSessionProvider.notifier)
-        .save(surahNumber: 1, ayahNumber: 3, positionSeconds: 18);
-    await tester.pumpAndSettle();
+      feed.update(
+        playing: false,
+        hasPlaybackSource: false,
+        currentIndex: null,
+        position: Duration.zero,
+        duration: null,
+        processingState: ProcessingState.idle,
+      );
+      feed.emitDuration();
+      feed.emitIndex();
+      feed.emitPosition();
+      feed.emitPlayerState();
+      container.read(quranActivePlaybackSessionProvider.notifier).state = null;
+      await tester.pumpAndSettle();
 
-    await tester.scrollUntilVisible(
-      find.byKey(const ValueKey('quran-reader-resume-session-button')),
-      300,
-      scrollable: find.byType(Scrollable).first,
-    );
-    await tester.pumpAndSettle();
+      await tester.scrollUntilVisible(
+        ayahPlayButton,
+        300,
+        scrollable: find.byType(Scrollable).first,
+      );
+      await tester.pumpAndSettle();
+      await tester.tap(ayahPlayButton);
+      await tester.pumpAndSettle();
 
-    await tester.tap(find.byKey(const ValueKey('quran-reader-resume-session-button')));
-    await tester.pumpAndSettle();
-    expect(feed.currentIndex, 2);
-    expect(feed.position, const Duration(seconds: 18));
+      expect(feed.hasPlaybackSource, isTrue);
+      expect(feed.currentIndex, 1);
+      expect(find.byIcon(Icons.pause_circle_filled_rounded), findsOneWidget);
 
-    await disposeReaderHarness(tester);
-  });
+      await tester.tap(
+        find.byKey(const ValueKey('quran-reader-play-pause-button')),
+      );
+      await tester.pumpAndSettle();
+      expect(feed.playing, isFalse);
 
-  testWidgets('reader settings surface renders regrouped sections and preserves key toggles', (
-    tester,
-  ) async {
-    final feed = FakeQuranPlaybackFeed();
-    final timingRepository = FakeQuranWordTimingRepository();
-    addTearDown(feed.dispose);
+      await tester.tap(
+        find.byKey(const ValueKey('quran-reader-play-pause-button')),
+      );
+      await tester.pumpAndSettle();
+      expect(feed.playing, isTrue);
 
-    await tester.pumpWidget(
-      await wrapReader(feed: feed, timingRepository: timingRepository),
-    );
-    final container = ProviderScope.containerOf(
-      tester.element(find.byType(QuranReaderPage)),
-    );
-    await container.read(quranSurahAyahsProvider(1).future);
-    await tester.pumpAndSettle();
+      await tester.drag(find.byType(ListView), const Offset(0, -300));
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 300));
 
-    final scrollable = find.byType(Scrollable).first;
-    await tester.scrollUntilVisible(
-      find.byKey(const ValueKey('quran-reader-settings-toggle')),
-      300,
-      scrollable: scrollable,
-    );
-    await tester.pumpAndSettle();
+      expect(
+        container
+            .read(quranReaderFollowModeCoordinatorProvider(1))
+            .isTemporarilySuspended,
+        isTrue,
+      );
+      expect(
+        find.byKey(const ValueKey('quran-reader-return-to-current-ayah-pill')),
+        findsOneWidget,
+      );
+      expect(
+        find.byKey(const ValueKey('quran-reader-return-to-current-ayah')),
+        findsNothing,
+      );
 
-    expect(find.text('Reading & Display'), findsOneWidget);
+      await tester.tap(
+        find.byKey(const ValueKey('quran-reader-return-to-current-ayah-pill')),
+      );
+      await tester.pumpAndSettle();
 
-    await tester.tap(find.byKey(const ValueKey('quran-reader-setting-show-translation')));
-    await tester.pumpAndSettle();
-    expect(container.read(quranReaderSettingsProvider).showTranslation, isFalse);
+      expect(
+        container
+            .read(quranReaderFollowModeCoordinatorProvider(1))
+            .isTemporarilySuspended,
+        isFalse,
+      );
 
-    await tester.scrollUntilVisible(
-      find.text('Audio & Playback'),
-      300,
-      scrollable: scrollable,
-    );
-    await tester.pumpAndSettle();
-    expect(find.text('Audio & Playback'), findsOneWidget);
+      await tester.drag(find.byType(ListView), const Offset(0, -300));
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 300));
+      expect(
+        container
+            .read(quranReaderFollowModeCoordinatorProvider(1))
+            .isTemporarilySuspended,
+        isTrue,
+      );
 
-    await tester.scrollUntilVisible(
-      find.text('Downloads & Offline'),
-      300,
-      scrollable: scrollable,
-    );
-    await tester.pumpAndSettle();
-    expect(find.text('Downloads & Offline'), findsOneWidget);
+      final ayahThreePlayButton = find.byKey(
+        const ValueKey('quran-reader-play-ayah-1:3'),
+        skipOffstage: false,
+      );
+      await tester.scrollUntilVisible(
+        ayahThreePlayButton,
+        300,
+        scrollable: find.byType(Scrollable).first,
+      );
+      await tester.pumpAndSettle();
+      await tester.tap(ayahThreePlayButton);
+      await tester.pumpAndSettle();
 
-    await tester.scrollUntilVisible(
-      find.text('Study Tools'),
-      300,
-      scrollable: scrollable,
-    );
-    await tester.pumpAndSettle();
-    expect(find.text('Study Tools'), findsOneWidget);
+      expect(feed.currentIndex, 2);
+      expect(
+        container
+            .read(quranReaderFollowModeCoordinatorProvider(1))
+            .isTemporarilySuspended,
+        isFalse,
+      );
 
-    await tester.scrollUntilVisible(
-      find.text('Memorization & Review'),
-      300,
-      scrollable: scrollable,
-    );
-    await tester.pumpAndSettle();
-    expect(find.text('Memorization & Review'), findsOneWidget);
+      await disposeReaderHarness(tester);
+    },
+  );
 
-    await tester.scrollUntilVisible(
-      find.byKey(const ValueKey('quran-reader-settings-toggle')),
-      -300,
-      scrollable: scrollable,
-    );
-    await tester.pumpAndSettle();
-    await tester.tap(find.byKey(const ValueKey('quran-reader-settings-toggle')));
-    await tester.pumpAndSettle();
-    expect(find.text('Reading & Display'), findsNothing);
+  testWidgets(
+    'reader continue listening card resumes from saved ayah or restarts the surah',
+    (tester) async {
+      final feed = FakeQuranPlaybackFeed();
+      final timingRepository = FakeQuranWordTimingRepository();
+      addTearDown(feed.dispose);
 
-    await tester.tap(find.byKey(const ValueKey('quran-reader-settings-toggle')));
-    await tester.pumpAndSettle();
-    expect(find.text('Reading & Display'), findsOneWidget);
+      await tester.pumpWidget(
+        await wrapReader(feed: feed, timingRepository: timingRepository),
+      );
+      final container = ProviderScope.containerOf(
+        tester.element(find.byType(QuranReaderPage)),
+      );
+      await container.read(quranSurahAyahsProvider(1).future);
+      container
+          .read(quranRecitationSessionProvider.notifier)
+          .save(surahNumber: 1, ayahNumber: 3, positionSeconds: 18);
+      await tester.pumpAndSettle();
 
-    await disposeReaderHarness(tester);
-  });
+      await tester.scrollUntilVisible(
+        find.byKey(const ValueKey('quran-reader-continue-listening-card')),
+        300,
+        scrollable: find.byType(Scrollable).first,
+      );
+      await tester.pumpAndSettle();
 
-  testWidgets('route autoplay selection loop only plays the requested dua ayah range', (
-    tester,
-  ) async {
-    final feed = FakeQuranPlaybackFeed();
-    final timingRepository = FakeQuranWordTimingRepository();
-    addTearDown(feed.dispose);
+      expect(
+        find.byKey(const ValueKey('quran-reader-continue-listening-card')),
+        findsOneWidget,
+      );
 
-    await tester.pumpWidget(
-      await wrapReader(
-        feed: feed,
-        timingRepository: timingRepository,
-        page: const QuranReaderPage(
-          surahNumber: 1,
-          initialAyah: 2,
-          endAyah: 3,
-          autoPlay: true,
-          autoPlayFocusedSelectionLoop: true,
+      await tester.tap(
+        find.byKey(const ValueKey('quran-reader-restart-surah-button')),
+      );
+      await tester.pumpAndSettle();
+      expect(feed.currentIndex, 0);
+      expect(feed.position, Duration.zero);
+
+      feed.update(playing: false, processingState: ProcessingState.ready);
+      feed.emitPlayerState();
+      container
+          .read(quranRecitationSessionProvider.notifier)
+          .save(surahNumber: 1, ayahNumber: 3, positionSeconds: 18);
+      await tester.pumpAndSettle();
+
+      await tester.scrollUntilVisible(
+        find.byKey(const ValueKey('quran-reader-resume-session-button')),
+        300,
+        scrollable: find.byType(Scrollable).first,
+      );
+      await tester.pumpAndSettle();
+
+      await tester.tap(
+        find.byKey(const ValueKey('quran-reader-resume-session-button')),
+      );
+      await tester.pumpAndSettle();
+      expect(feed.currentIndex, 2);
+      expect(feed.position, const Duration(seconds: 18));
+
+      await disposeReaderHarness(tester);
+    },
+  );
+
+  testWidgets(
+    'reader settings surface renders regrouped sections and preserves key toggles',
+    (tester) async {
+      final feed = FakeQuranPlaybackFeed();
+      final timingRepository = FakeQuranWordTimingRepository();
+      addTearDown(feed.dispose);
+
+      await tester.pumpWidget(
+        await wrapReader(feed: feed, timingRepository: timingRepository),
+      );
+      final container = ProviderScope.containerOf(
+        tester.element(find.byType(QuranReaderPage)),
+      );
+      await container.read(quranSurahAyahsProvider(1).future);
+      await tester.pumpAndSettle();
+
+      final scrollable = find.byType(Scrollable).first;
+      await tester.scrollUntilVisible(
+        find.byKey(const ValueKey('quran-reader-settings-toggle')),
+        300,
+        scrollable: scrollable,
+      );
+      await tester.pumpAndSettle();
+
+      expect(find.text('Reading & Display'), findsOneWidget);
+
+      await tester.tap(
+        find.byKey(const ValueKey('quran-reader-setting-show-translation')),
+      );
+      await tester.pumpAndSettle();
+      expect(
+        container.read(quranReaderSettingsProvider).showTranslation,
+        isFalse,
+      );
+
+      await tester.scrollUntilVisible(
+        find.text('Audio & Playback'),
+        300,
+        scrollable: scrollable,
+      );
+      await tester.pumpAndSettle();
+      expect(find.text('Audio & Playback'), findsOneWidget);
+
+      await tester.scrollUntilVisible(
+        find.text('Downloads & Offline'),
+        300,
+        scrollable: scrollable,
+      );
+      await tester.pumpAndSettle();
+      expect(find.text('Downloads & Offline'), findsOneWidget);
+
+      await tester.scrollUntilVisible(
+        find.text('Study Tools'),
+        300,
+        scrollable: scrollable,
+      );
+      await tester.pumpAndSettle();
+      expect(find.text('Study Tools'), findsOneWidget);
+
+      await tester.scrollUntilVisible(
+        find.text('Memorization & Review'),
+        300,
+        scrollable: scrollable,
+      );
+      await tester.pumpAndSettle();
+      expect(find.text('Memorization & Review'), findsOneWidget);
+
+      await tester.scrollUntilVisible(
+        find.byKey(const ValueKey('quran-reader-settings-toggle')),
+        -300,
+        scrollable: scrollable,
+      );
+      await tester.pumpAndSettle();
+      await tester.tap(
+        find.byKey(const ValueKey('quran-reader-settings-toggle')),
+      );
+      await tester.pumpAndSettle();
+      expect(find.text('Reading & Display'), findsNothing);
+
+      await tester.tap(
+        find.byKey(const ValueKey('quran-reader-settings-toggle')),
+      );
+      await tester.pumpAndSettle();
+      expect(find.text('Reading & Display'), findsOneWidget);
+
+      await disposeReaderHarness(tester);
+    },
+  );
+
+  testWidgets(
+    'route autoplay selection loop only plays the requested dua ayah range',
+    (tester) async {
+      final feed = FakeQuranPlaybackFeed();
+      final timingRepository = FakeQuranWordTimingRepository();
+      addTearDown(feed.dispose);
+
+      await tester.pumpWidget(
+        await wrapReader(
+          feed: feed,
+          timingRepository: timingRepository,
+          page: const QuranReaderPage(
+            surahNumber: 1,
+            initialAyah: 2,
+            endAyah: 3,
+            autoPlay: true,
+            autoPlayFocusedSelectionLoop: true,
+          ),
         ),
-      ),
-    );
-    final container = ProviderScope.containerOf(
-      tester.element(find.byType(QuranReaderPage)),
-    );
-    final controller = container.read(quranPlayerControllerProvider)
-        as _FakeRoutePlayerController;
-    await container.read(quranSurahAyahsProvider(1).future);
-    await tester.pumpAndSettle();
+      );
+      final container = ProviderScope.containerOf(
+        tester.element(find.byType(QuranReaderPage)),
+      );
+      final controller =
+          container.read(quranPlayerControllerProvider)
+              as _FakeRoutePlayerController;
+      await container.read(quranSurahAyahsProvider(1).future);
+      await tester.pumpAndSettle();
 
-    expect(feed.hasPlaybackSource, isTrue);
-    expect(feed.currentIndex, 0);
-    expect(controller.lastLoopMode, LoopMode.all);
-    expect(controller.lastPreparedAyahNumbers, const <int>[2, 3]);
+      expect(feed.hasPlaybackSource, isTrue);
+      expect(feed.currentIndex, 0);
+      expect(controller.lastLoopMode, LoopMode.all);
+      expect(controller.lastPreparedAyahNumbers, const <int>[2, 3]);
 
-    await disposeReaderHarness(tester);
-  });
+      await disposeReaderHarness(tester);
+    },
+  );
 }

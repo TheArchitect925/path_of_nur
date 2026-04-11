@@ -7,7 +7,7 @@ import '../../kids/bedtime_stories/domain/bedtime_story_models.dart';
 import '../../kids/seerah/data/companion_story_seed.dart';
 import '../../kids_dua_learning/data/kids_dua_seed_data.dart';
 import '../../kids_dua_learning/domain/kids_dua_models.dart';
-import '../../learn/hadith/data/seeded_hadith_foundation_data.dart';
+import '../../learn/hadith/data/generated_hadith_foundation_data.dart';
 import '../../learn/hadith/domain/hadith_foundation_models.dart';
 import '../../learn/quran/data/seeded_quran_ayah_explanations.dart';
 import '../../learn/quran/domain/quran_ayah_explanation_models.dart';
@@ -41,12 +41,9 @@ class EditorialContentVersionsController
   }
 
   Future<void> _persist() async {
-    await _store.setJsonMap(
-      _editorialContentVersionsKey,
-      <String, dynamic>{
-        for (final entry in state.entries) entry.key: entry.value.toJson(),
-      },
-    );
+    await _store.setJsonMap(_editorialContentVersionsKey, <String, dynamic>{
+      for (final entry in state.entries) entry.key: entry.value.toJson(),
+    });
   }
 
   static String recordKey(EditorialContentType type, String contentId) =>
@@ -70,10 +67,7 @@ class EditorialContentVersionsController
       previousVersionRef: existing?.latestVersion?.versionRef,
       contentSnapshot: snapshot,
     );
-    final versions = <ContentVersion>[
-      ...?existing?.versions,
-      version,
-    ];
+    final versions = <ContentVersion>[...?existing?.versions, version];
     final trimmedVersions = versions.length > _maxEditorialVersionsPerItem
         ? versions.sublist(versions.length - _maxEditorialVersionsPerItem)
         : versions;
@@ -109,27 +103,35 @@ class EditorialContentVersionsController
   }
 }
 
-final editorialContentVersionsProvider = StateNotifierProvider<
-  EditorialContentVersionsController,
-  Map<String, EditorialContentRecord>
->((ref) {
-  return EditorialContentVersionsController(ref.watch(localStoreProvider));
-});
+final editorialContentVersionsProvider =
+    StateNotifierProvider<
+      EditorialContentVersionsController,
+      Map<String, EditorialContentRecord>
+    >((ref) {
+      return EditorialContentVersionsController(ref.watch(localStoreProvider));
+    });
 
-final editorialContentRecordProvider = Provider.family<
-  EditorialContentRecord?,
-  (EditorialContentType, String)
->((ref, input) {
-  final records = ref.watch(editorialContentVersionsProvider);
-  return records[EditorialContentVersionsController.recordKey(input.$1, input.$2)];
-});
+final editorialContentRecordProvider =
+    Provider.family<EditorialContentRecord?, (EditorialContentType, String)>((
+      ref,
+      input,
+    ) {
+      final records = ref.watch(editorialContentVersionsProvider);
+      return records[EditorialContentVersionsController.recordKey(
+        input.$1,
+        input.$2,
+      )];
+    });
 
 final editorialContentVersionsForItemProvider =
     Provider.family<List<ContentVersion>, (EditorialContentType, String)>((
       ref,
       input,
     ) {
-      return ref.watch(editorialContentRecordProvider(input))?.versions.reversed
+      return ref
+              .watch(editorialContentRecordProvider(input))
+              ?.versions
+              .reversed
               .toList(growable: false) ??
           const <ContentVersion>[];
     });
@@ -163,7 +165,7 @@ final editorialQuranAyahExplanationEntriesProvider =
 final editorialHadithEntriesProvider = Provider<List<HadithEntry>>((ref) {
   final records = ref.watch(editorialContentVersionsProvider);
   final byId = <String, HadithEntry>{
-    for (final entry in seededHadithEntries) entry.id: entry,
+    for (final entry in generatedHadithEntries) entry.id: entry,
   };
   for (final record in records.values) {
     if (record.contentType != EditorialContentType.hadithEntry) continue;
@@ -174,139 +176,159 @@ final editorialHadithEntriesProvider = Provider<List<HadithEntry>>((ref) {
   return byId.values.toList(growable: false);
 });
 
-final editorialKidsDuaLessonsProvider =
-    Provider<List<KidsDuaLessonContent>>((ref) {
-      final records = ref.watch(editorialContentVersionsProvider);
-      final byId = <String, KidsDuaLessonContent>{
-        for (final lesson in kidsDuaStarterLessons) lesson.id: lesson,
-      };
-      for (final record in records.values) {
-        if (record.contentType != EditorialContentType.kidsDuaLesson) continue;
-        final base = byId[record.contentId];
-        if (base == null) continue;
-        byId[record.contentId] = _applyKidsDuaSnapshot(
-          base,
-          record.currentSnapshot,
-        );
-      }
-      final lessons = byId.values.toList(growable: false)
-        ..sort((a, b) {
-          final levelCompare = a.level.compareTo(b.level);
-          if (levelCompare != 0) return levelCompare;
-          return a.sortOrder.compareTo(b.sortOrder);
-        });
-      return lessons;
-    });
-
-final editorialBedtimeStorySeedsProvider =
-    Provider<List<BedtimeStorySeed>>((ref) {
-      final records = ref.watch(editorialContentVersionsProvider);
-      final baseStories = <BedtimeStorySeed>[
-        ...kBedtimeProphetStories,
-        ...kKidsIslamicStories,
-        ...kKidsSeerahCompanionStories,
-      ];
-      final byId = <String, BedtimeStorySeed>{
-        for (final story in baseStories) story.id: story,
-      };
-      for (final record in records.values) {
-        if (record.contentType != EditorialContentType.bedtimeStory) continue;
-        final base = byId[record.contentId];
-        if (base == null) continue;
-        byId[record.contentId] = _applyBedtimeStorySnapshot(
-          base,
-          record.currentSnapshot,
-        );
-      }
-      final stories = byId.values.toList(growable: false)
-        ..sort((a, b) => a.sortOrder.compareTo(b.sortOrder));
-      return stories;
-    });
-
-final editorialEditableContentSummariesProvider = Provider.family<
-  List<EditorialEditableContentSummary>,
-  EditorialContentType
->((ref, type) {
+final editorialKidsDuaLessonsProvider = Provider<List<KidsDuaLessonContent>>((
+  ref,
+) {
   final records = ref.watch(editorialContentVersionsProvider);
-  switch (type) {
-    case EditorialContentType.quranExplanation:
-      return ref.watch(editorialQuranAyahExplanationEntriesProvider).map((entry) {
-        final record = records[EditorialContentVersionsController.recordKey(
-          type,
-          entry.ayahKey,
-        )];
-        return EditorialEditableContentSummary(
-          contentId: entry.ayahKey,
-          contentType: type,
-          title: 'Surah ${entry.surahNumber} · Ayah ${entry.ayahNumber}',
-          subtitle: entry.simpleSummary,
-          searchText:
-              '${entry.ayahKey} ${entry.simpleSummary} ${entry.standardExplanation}'
-                  .toLowerCase(),
-          versionCount: record?.versions.length ?? 0,
-          lastUpdatedIso: record?.latestVersion?.updatedAtIso,
-          changeSummary: record?.latestVersion?.changeSummary,
-        );
-      }).toList(growable: false);
-    case EditorialContentType.hadithEntry:
-      return ref.watch(editorialHadithEntriesProvider).map((entry) {
-        final record = records[EditorialContentVersionsController.recordKey(
-          type,
-          entry.id,
-        )];
-        return EditorialEditableContentSummary(
-          contentId: entry.id,
-          contentType: type,
-          title: entry.title,
-          subtitle: entry.meaning,
-          searchText:
-              '${entry.id} ${entry.title} ${entry.meaning} ${entry.excerpt} ${entry.tags.join(' ')}'
-                  .toLowerCase(),
-          versionCount: record?.versions.length ?? 0,
-          lastUpdatedIso: record?.latestVersion?.updatedAtIso,
-          changeSummary: record?.latestVersion?.changeSummary,
-        );
-      }).toList(growable: false);
-    case EditorialContentType.bedtimeStory:
-      return ref.watch(editorialBedtimeStorySeedsProvider).map((story) {
-        final record = records[EditorialContentVersionsController.recordKey(
-          type,
-          story.id,
-        )];
-        return EditorialEditableContentSummary(
-          contentId: story.id,
-          contentType: type,
-          title: story.title,
-          subtitle: story.lesson,
-          searchText:
-              '${story.id} ${story.title} ${story.shortTitle} ${story.summary} ${story.lesson} ${story.tags.join(' ')}'
-                  .toLowerCase(),
-          versionCount: record?.versions.length ?? 0,
-          lastUpdatedIso: record?.latestVersion?.updatedAtIso,
-          changeSummary: record?.latestVersion?.changeSummary,
-        );
-      }).toList(growable: false);
-    case EditorialContentType.kidsDuaLesson:
-      return ref.watch(editorialKidsDuaLessonsProvider).map((lesson) {
-        final record = records[EditorialContentVersionsController.recordKey(
-          type,
-          lesson.id,
-        )];
-        return EditorialEditableContentSummary(
-          contentId: lesson.id,
-          contentType: type,
-          title: lesson.title,
-          subtitle: lesson.meaning,
-          searchText:
-              '${lesson.id} ${lesson.title} ${lesson.transliteration} ${lesson.meaning} ${lesson.miniLesson} ${lesson.whenToSay}'
-                  .toLowerCase(),
-          versionCount: record?.versions.length ?? 0,
-          lastUpdatedIso: record?.latestVersion?.updatedAtIso,
-          changeSummary: record?.latestVersion?.changeSummary,
-        );
-      }).toList(growable: false);
+  final byId = <String, KidsDuaLessonContent>{
+    for (final lesson in kidsDuaStarterLessons) lesson.id: lesson,
+  };
+  for (final record in records.values) {
+    if (record.contentType != EditorialContentType.kidsDuaLesson) continue;
+    final base = byId[record.contentId];
+    if (base == null) continue;
+    byId[record.contentId] = _applyKidsDuaSnapshot(
+      base,
+      record.currentSnapshot,
+    );
   }
+  final lessons = byId.values.toList(growable: false)
+    ..sort((a, b) {
+      final levelCompare = a.level.compareTo(b.level);
+      if (levelCompare != 0) return levelCompare;
+      return a.sortOrder.compareTo(b.sortOrder);
+    });
+  return lessons;
 });
+
+final editorialBedtimeStorySeedsProvider = Provider<List<BedtimeStorySeed>>((
+  ref,
+) {
+  final records = ref.watch(editorialContentVersionsProvider);
+  final baseStories = <BedtimeStorySeed>[
+    ...kBedtimeProphetStories,
+    ...kKidsIslamicStories,
+    ...kKidsSeerahCompanionStories,
+  ];
+  final byId = <String, BedtimeStorySeed>{
+    for (final story in baseStories) story.id: story,
+  };
+  for (final record in records.values) {
+    if (record.contentType != EditorialContentType.bedtimeStory) continue;
+    final base = byId[record.contentId];
+    if (base == null) continue;
+    byId[record.contentId] = _applyBedtimeStorySnapshot(
+      base,
+      record.currentSnapshot,
+    );
+  }
+  final stories = byId.values.toList(growable: false)
+    ..sort((a, b) => a.sortOrder.compareTo(b.sortOrder));
+  return stories;
+});
+
+final editorialEditableContentSummariesProvider =
+    Provider.family<
+      List<EditorialEditableContentSummary>,
+      EditorialContentType
+    >((ref, type) {
+      final records = ref.watch(editorialContentVersionsProvider);
+      switch (type) {
+        case EditorialContentType.quranExplanation:
+          return ref
+              .watch(editorialQuranAyahExplanationEntriesProvider)
+              .map((entry) {
+                final record =
+                    records[EditorialContentVersionsController.recordKey(
+                      type,
+                      entry.ayahKey,
+                    )];
+                return EditorialEditableContentSummary(
+                  contentId: entry.ayahKey,
+                  contentType: type,
+                  title:
+                      'Surah ${entry.surahNumber} · Ayah ${entry.ayahNumber}',
+                  subtitle: entry.simpleSummary,
+                  searchText:
+                      '${entry.ayahKey} ${entry.simpleSummary} ${entry.standardExplanation}'
+                          .toLowerCase(),
+                  versionCount: record?.versions.length ?? 0,
+                  lastUpdatedIso: record?.latestVersion?.updatedAtIso,
+                  changeSummary: record?.latestVersion?.changeSummary,
+                );
+              })
+              .toList(growable: false);
+        case EditorialContentType.hadithEntry:
+          return ref
+              .watch(editorialHadithEntriesProvider)
+              .map((entry) {
+                final record =
+                    records[EditorialContentVersionsController.recordKey(
+                      type,
+                      entry.id,
+                    )];
+                return EditorialEditableContentSummary(
+                  contentId: entry.id,
+                  contentType: type,
+                  title: entry.title,
+                  subtitle: entry.meaning,
+                  searchText:
+                      '${entry.id} ${entry.title} ${entry.meaning} ${entry.excerpt} ${entry.tags.join(' ')}'
+                          .toLowerCase(),
+                  versionCount: record?.versions.length ?? 0,
+                  lastUpdatedIso: record?.latestVersion?.updatedAtIso,
+                  changeSummary: record?.latestVersion?.changeSummary,
+                );
+              })
+              .toList(growable: false);
+        case EditorialContentType.bedtimeStory:
+          return ref
+              .watch(editorialBedtimeStorySeedsProvider)
+              .map((story) {
+                final record =
+                    records[EditorialContentVersionsController.recordKey(
+                      type,
+                      story.id,
+                    )];
+                return EditorialEditableContentSummary(
+                  contentId: story.id,
+                  contentType: type,
+                  title: story.title,
+                  subtitle: story.lesson,
+                  searchText:
+                      '${story.id} ${story.title} ${story.shortTitle} ${story.summary} ${story.lesson} ${story.tags.join(' ')}'
+                          .toLowerCase(),
+                  versionCount: record?.versions.length ?? 0,
+                  lastUpdatedIso: record?.latestVersion?.updatedAtIso,
+                  changeSummary: record?.latestVersion?.changeSummary,
+                );
+              })
+              .toList(growable: false);
+        case EditorialContentType.kidsDuaLesson:
+          return ref
+              .watch(editorialKidsDuaLessonsProvider)
+              .map((lesson) {
+                final record =
+                    records[EditorialContentVersionsController.recordKey(
+                      type,
+                      lesson.id,
+                    )];
+                return EditorialEditableContentSummary(
+                  contentId: lesson.id,
+                  contentType: type,
+                  title: lesson.title,
+                  subtitle: lesson.meaning,
+                  searchText:
+                      '${lesson.id} ${lesson.title} ${lesson.transliteration} ${lesson.meaning} ${lesson.miniLesson} ${lesson.whenToSay}'
+                          .toLowerCase(),
+                  versionCount: record?.versions.length ?? 0,
+                  lastUpdatedIso: record?.latestVersion?.updatedAtIso,
+                  changeSummary: record?.latestVersion?.changeSummary,
+                );
+              })
+              .toList(growable: false);
+      }
+    });
 
 final editorialCurrentContentSnapshotProvider =
     Provider.family<Map<String, dynamic>?, (EditorialContentType, String)>((
@@ -316,26 +338,30 @@ final editorialCurrentContentSnapshotProvider =
       final type = input.$1;
       final contentId = input.$2;
       return switch (type) {
-        EditorialContentType.quranExplanation => ref
-            .watch(editorialQuranAyahExplanationEntriesProvider)
-            .where((entry) => entry.ayahKey == contentId)
-            .map(_quranExplanationSnapshot)
-            .firstOrNull,
-        EditorialContentType.hadithEntry => ref
-            .watch(editorialHadithEntriesProvider)
-            .where((entry) => entry.id == contentId)
-            .map(_hadithSnapshot)
-            .firstOrNull,
-        EditorialContentType.bedtimeStory => ref
-            .watch(editorialBedtimeStorySeedsProvider)
-            .where((story) => story.id == contentId)
-            .map(_bedtimeStorySnapshot)
-            .firstOrNull,
-        EditorialContentType.kidsDuaLesson => ref
-            .watch(editorialKidsDuaLessonsProvider)
-            .where((lesson) => lesson.id == contentId)
-            .map(_kidsDuaSnapshot)
-            .firstOrNull,
+        EditorialContentType.quranExplanation =>
+          ref
+              .watch(editorialQuranAyahExplanationEntriesProvider)
+              .where((entry) => entry.ayahKey == contentId)
+              .map(_quranExplanationSnapshot)
+              .firstOrNull,
+        EditorialContentType.hadithEntry =>
+          ref
+              .watch(editorialHadithEntriesProvider)
+              .where((entry) => entry.id == contentId)
+              .map(_hadithSnapshot)
+              .firstOrNull,
+        EditorialContentType.bedtimeStory =>
+          ref
+              .watch(editorialBedtimeStorySeedsProvider)
+              .where((story) => story.id == contentId)
+              .map(_bedtimeStorySnapshot)
+              .firstOrNull,
+        EditorialContentType.kidsDuaLesson =>
+          ref
+              .watch(editorialKidsDuaLessonsProvider)
+              .where((lesson) => lesson.id == contentId)
+              .map(_kidsDuaSnapshot)
+              .firstOrNull,
       };
     });
 
@@ -351,11 +377,12 @@ QuranAyahExplanationEntry _applyQuranExplanationSnapshot(
   );
   final deepText = snapshot['deepExplanation']?.toString().trim() ?? '';
   final kidsText = snapshot['kidsExplanation']?.toString().trim() ?? '';
-  final reflectionPrompt = snapshot['reflectionPrompt']?.toString().trim() ?? '';
+  final reflectionPrompt =
+      snapshot['reflectionPrompt']?.toString().trim() ?? '';
   return base.copyWith(
     simpleSummary: snapshot['simpleSummary']?.toString() ?? base.simpleSummary,
-    standardExplanation: snapshot['standardExplanation']?.toString() ??
-        base.standardExplanation,
+    standardExplanation:
+        snapshot['standardExplanation']?.toString() ?? base.standardExplanation,
     deepExplanation: deepText.isEmpty ? null : deepText,
     clearDeepExplanation: deepText.isEmpty,
     kidsExplanation: kidsText.isEmpty ? null : kidsText,
@@ -377,8 +404,11 @@ HadithEntry _applyHadithSnapshot(
     meaning: snapshot['meaning']?.toString() ?? base.meaning,
     lessons: _stringList(snapshot['lessons']),
     reflectionPrompts: _stringList(snapshot['reflectionPrompts']),
-    practiceAction: snapshot['practiceAction']?.toString() ?? base.practiceAction,
+    practiceAction:
+        snapshot['practiceAction']?.toString() ?? base.practiceAction,
     tags: _stringList(snapshot['tags']),
+    sourceProvenance: HadithSourceProvenance.editorialOverride,
+    sourceImportSource: 'editorial_hadith_override',
   );
 }
 
@@ -441,29 +471,27 @@ Map<String, dynamic> _hadithSnapshot(HadithEntry entry) => <String, dynamic>{
   'tags': entry.tags,
 };
 
-Map<String, dynamic> _kidsDuaSnapshot(
-  KidsDuaLessonContent lesson,
-) => <String, dynamic>{
-  'id': lesson.id,
-  'title': lesson.title,
-  'transliteration': lesson.transliteration,
-  'meaning': lesson.meaning,
-  'miniLesson': lesson.miniLesson,
-  'whenToSay': lesson.whenToSay,
-  'practicePrompt': lesson.practicePrompt ?? '',
-};
+Map<String, dynamic> _kidsDuaSnapshot(KidsDuaLessonContent lesson) =>
+    <String, dynamic>{
+      'id': lesson.id,
+      'title': lesson.title,
+      'transliteration': lesson.transliteration,
+      'meaning': lesson.meaning,
+      'miniLesson': lesson.miniLesson,
+      'whenToSay': lesson.whenToSay,
+      'practicePrompt': lesson.practicePrompt ?? '',
+    };
 
-Map<String, dynamic> _bedtimeStorySnapshot(
-  BedtimeStorySeed story,
-) => <String, dynamic>{
-  'id': story.id,
-  'title': story.title,
-  'shortTitle': story.shortTitle,
-  'summary': story.summary,
-  'lesson': story.lesson,
-  'sourceNote': story.sourceNote ?? '',
-  'tags': story.tags,
-};
+Map<String, dynamic> _bedtimeStorySnapshot(BedtimeStorySeed story) =>
+    <String, dynamic>{
+      'id': story.id,
+      'title': story.title,
+      'shortTitle': story.shortTitle,
+      'summary': story.summary,
+      'lesson': story.lesson,
+      'sourceNote': story.sourceNote ?? '',
+      'tags': story.tags,
+    };
 
 List<String> _stringList(Object? value) {
   final raw = value as List?;

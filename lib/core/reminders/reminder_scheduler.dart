@@ -2,11 +2,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../features/profile/application/profile_settings_provider.dart';
 import '../../features/celestial/application/celestial_services.dart';
+import '../../features/history/application/historical_calendar_providers.dart';
+import '../../features/history/data/historical_calendar_repository.dart';
 import '../../features/worship/application/sister_cycle_provider.dart';
 import '../../features/worship/application/prayer_controller.dart';
 import '../../shared/state/user_profile_state.dart';
 import '../../shared/application/daily_clock_provider.dart';
 import '../../shared/persistence/local_store.dart';
+import '../../shared/utils/hijri_date_utils.dart';
 import '../../features/worship/domain/prayer_status.dart';
 import '../prayer/prayer_preferences.dart';
 import 'local_notification_service.dart';
@@ -19,6 +22,7 @@ enum ReminderKind {
   quran,
   reflection,
   fasting,
+  onThisDay,
   cycleCheck,
   moonrise,
   moonset,
@@ -55,6 +59,7 @@ final reminderSchedulerProvider = Provider<ReminderSchedulerState>((ref) {
   final userProfile = ref.watch(userProfileProvider);
   final schedule = ref.watch(prayerScheduleProvider);
   final prayerLocation = ref.watch(prayerLocationProvider);
+  final historicalEventsAsync = ref.watch(historicalCalendarEventsProvider);
   final celestialCalculator = ref.watch(celestialCalculationServiceProvider);
   final celestialVerseSelector = ref.watch(celestialVerseSelectorProvider);
   final now = ref.watch(dailyNowProvider).value ?? DateTime.now();
@@ -207,6 +212,28 @@ final reminderSchedulerProvider = Provider<ReminderSchedulerState>((ref) {
         notificationMode: null,
       ),
     );
+  }
+
+  final historicalEvents = historicalEventsAsync.valueOrNull;
+  if (profileSettings.onThisDayReminders && historicalEvents != null) {
+    final today = DateTime(now.year, now.month, now.day);
+    final hijriToday = toHijriDate(today);
+    final matches = buildHistoricalTodayMatches(
+      events: historicalEvents,
+      today: today,
+      hijriToday: hijriToday,
+    );
+    if (matches.isNotEmpty) {
+      items.add(
+        ReminderPlanItem(
+          id: 'history.on_this_day',
+          kind: ReminderKind.onThisDay,
+          prayerId: null,
+          when: DateTime(now.year, now.month, now.day, 9, 15),
+          notificationMode: null,
+        ),
+      );
+    }
   }
 
   if (shouldAutoAdjustForCycle &&

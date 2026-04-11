@@ -50,12 +50,14 @@ class FakeQuranPlaybackFeed implements QuranPlaybackFeed {
     bool? playing,
     bool? hasPlaybackSource,
     int? currentIndex,
+    bool clearCurrentIndex = false,
     Duration? position,
     Duration? duration,
     ProcessingState? processingState,
   }) {
     if (playing != null) _playing = playing;
     if (hasPlaybackSource != null) _hasPlaybackSource = hasPlaybackSource;
+    if (clearCurrentIndex) _currentIndex = null;
     if (currentIndex != null) _currentIndex = currentIndex;
     if (position != null) _position = position;
     if (duration != null) _duration = duration;

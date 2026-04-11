@@ -1,11 +1,41 @@
 # Continuation Backlog
 
-Last updated: 2026-04-03
+Last updated: 2026-04-11
 
 Master consolidation reference:
 
 - Use `docs/master_execution_roadmap_2026-03-22.md` as the current top-level execution view for recent kids-system, progression, Learn routing, worship/date, and regression-hardening work.
 - Keep this backlog as the rolling engineering queue, but prefer the master roadmap when deciding phase order or explaining overall project state.
+
+## Hadith pipeline follow-up
+
+1. Replace the current bootstrap-generated Hadith raw/editorial JSON inputs with independently maintained trusted-source exports so future dataset refreshes no longer depend on parsing the legacy seed Dart file.
+2. Add CI coverage for `python3 tool/build_hadith_master_dataset.py --check` plus the new pipeline unit tests so dataset drift and release-gate regressions fail before merge.
+3. Decide when to retire direct test usage of `seededHadithEntries` in favor of `generatedHadithEntries` or provider-owned fixtures now that runtime ownership has moved to the generated pipeline output.
+4. Do a second-pass manual review for the remaining `155` excluded `40 Hadith an-Nawawi` and `Riyad as-Salihin` records, focusing only on entries where grade/source evidence may exist beyond the current explicit-text importer heuristics.
+5. Use the expanded corpus inventory artifacts to decide the next trusted collection-expansion order; the public corpus is now heavily weighted toward `Riyad as-Salihin`, with thinner representation still in Abi Dawud, Nasa'i, Ibn Majah, Muwatta Malik, and collections not yet imported.
+6. Add Phase 8 Hadith browse polish on top of the normalized source metadata, especially source-book/chapter browsing, without creating a second search or discovery owner.
+7. Decide whether the large-source browse experience for `Riyad as-Salihin` should later gain a dedicated full-entry listing route or stay chapter-first with preview entries only.
+
+## Qur'an reader performance follow-up
+
+1. Measure the post-lazy-rendering frame improvement on long surahs with and without playback/follow mode so the next optimization targets the real remaining hotspot instead of guessing.
+2. Profile `quran_text_span.dart` and the reader highlight/span helpers first; text/highlight span construction is now the strongest next candidate after the eager-build removal.
+3. Only after measuring the new lazy list behavior, review whether follow-mode scroll coordination still needs a targeted hitch-reduction pass around repeated `ensureVisible` / retry behavior.
+4. If paint remains heavy after span work, audit `QuranAyahCard` for targeted `RepaintBoundary` placement or narrower animated/glass repaint surfaces without changing the reader visual design.
+
+## All Search follow-up
+
+1. Add lightweight per-domain result counts or “more results” summaries to `/search` only if product QA says the current grouped sections feel too opaque without turning the page into a dense dashboard.
+2. Decide whether top All Search results should gain one tiny relation-aware chip on Hadith and Dua results, now that the federated owner already supports light relation previews on Qur'an results.
+3. Replace the new non-English ARB fallback text for the All Search surface with real translations once localization bandwidth is available.
+
+## Apple release-prep follow-up
+
+1. Run the signed physical-device QA pass from `docs/apple_xcode_physical_qa_matrix_2026-04-11.md` across iPhone, iPhone widgets, live activities, Apple Watch, watch complications, and Apple TV.
+2. Fix the `Runner` app icon warning by assigning the remaining unassigned `AppIcon` children before App Store archive submission.
+3. Decide whether the shared app-group name `group.com.pathofnur.watch` should remain the long-term canonical companion group for watch plus iPhone widgets, or be renamed in a dedicated signing-migration pass before public release.
+4. Triage the remaining Apple Release warnings that are currently pod/plugin-owned, especially `home_widget` sendability warnings and deprecated iOS APIs from dependency code, so future Xcode upgrades are less noisy.
 
 ## Top 10 immediate engineering continuation items
 
@@ -271,3 +301,9 @@ Master consolidation reference:
 259. Decide whether to expose a user-facing downloaded-vs-streaming source preference after the current automatic fallback behavior is validated on device.
 260. Cache recent bad-source outcomes per ayah/reciter so adjacent ayah and adjacent surah transport do not keep choosing the same known-bad source path in a tight failure loop.
 261. Review watch/tvOS Qur'an playback consumers against the new source/failure/buffering/retry contract so mirrored playback surfaces do not assume playback is only idle, paused, or playing.
+262. Add a first small Qur'an-reader consumer of the canonical editorial relation layer so related Hadith and related Dua can surface from the same trust-oriented relation owner that the Hadith reader now uses.
+263. Add a validator for canonical editorial relations that fails on unknown ids, stale route names, and non-public Hadith targets before the relation catalog expands.
+264. Add recent searches and lightweight remembered suggestions to the canonical Hadith search route without creating a second search owner.
+265. Decide whether visible grade filtering belongs in the main Hadith search UI or should remain a quiet supported field until product QA confirms it helps more than it crowds.
+266. Add a first small Qur'an-reader consumer of the new canonical Hadith search handoff patterns only after verifying that route/query sync feels stable on device.
+267. Explore a future relation-aware “All” search mode that can surface connected Qur'an, Dua, and Learn results from the editorial relation layer without merging cross-domain logic into the core Hadith result engine.

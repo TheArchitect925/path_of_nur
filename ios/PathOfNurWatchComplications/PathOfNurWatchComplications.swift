@@ -127,6 +127,19 @@ struct AutoDhikrComplication: Widget {
   }
 }
 
+struct SpiritualPromptComplication: Widget {
+  let kind = "PathOfNurWatchSpiritualPrompt"
+
+  var body: some WidgetConfiguration {
+    StaticConfiguration(kind: kind, provider: WatchComplicationProvider()) { entry in
+      SpiritualPromptComplicationView(entry: entry)
+    }
+    .configurationDisplayName(WatchStrings.complicationSpiritualPromptTitle)
+    .description(WatchStrings.complicationSpiritualPromptDescription)
+    .supportedFamilies([.accessoryInline, .accessoryCircular, .accessoryRectangular])
+  }
+}
+
 struct NextPrayerComplicationView: View {
   @Environment(\.widgetFamily) private var family
   let entry: WatchComplicationTimelineEntry
@@ -241,6 +254,44 @@ struct AutoDhikrComplicationView: View {
       }
     }
     .widgetURL(URL(string: "pathofnurwatch://dhikr?mode=auto"))
+  }
+}
+
+struct SpiritualPromptComplicationView: View {
+  @Environment(\.widgetFamily) private var family
+  let entry: WatchComplicationTimelineEntry
+  private var presentation: SpiritualPromptPresentation {
+    SpiritualPromptPresentation(snapshot: entry.snapshot)
+  }
+
+  var body: some View {
+    Group {
+      switch family {
+      case .accessoryInline:
+        Text(presentation.inlineText)
+      case .accessoryCircular:
+        ZStack {
+          AccessoryWidgetBackground()
+          Text(presentation.circularText)
+            .font(.system(size: 13, weight: .bold, design: .rounded))
+            .foregroundStyle(presentation.tint)
+        }
+      default:
+        VStack(alignment: .leading, spacing: 2) {
+          Text(presentation.title)
+            .font(.caption2)
+            .foregroundStyle(.secondary)
+          Text(presentation.bodyText)
+            .font(.headline)
+            .minimumScaleFactor(0.75)
+          Text(presentation.secondaryText)
+            .font(.caption2)
+            .foregroundStyle(.secondary)
+            .minimumScaleFactor(0.75)
+        }
+      }
+    }
+    .widgetURL(URL(string: "pathofnurwatch://home"))
   }
 }
 
@@ -457,11 +508,40 @@ private struct AutoDhikrPresentation {
   }
 }
 
+private struct SpiritualPromptPresentation {
+  let title: String
+  let bodyText: String
+  let secondaryText: String
+  let inlineText: String
+  let circularText: String
+  let tint: Color
+
+  init(snapshot: WatchDailySnapshotPayload?) {
+    guard let prompt = snapshot?.spiritualPrompt else {
+      title = WatchStrings.complicationSpiritualPromptTitle
+      bodyText = WatchStrings.complicationNeedsSync
+      secondaryText = WatchStrings.complicationNoData
+      inlineText = WatchStrings.complicationSpiritualPromptTitle
+      circularText = "S"
+      tint = .teal
+      return
+    }
+
+    title = prompt.title
+    bodyText = prompt.shortText
+    secondaryText = WatchStrings.complicationOpenApp
+    inlineText = prompt.inlineText
+    circularText = prompt.circularText
+    tint = .teal
+  }
+}
+
 @main
 struct PathOfNurWatchComplications: WidgetBundle {
   var body: some Widget {
     NextPrayerComplication()
     DailyProgressComplication()
     AutoDhikrComplication()
+    SpiritualPromptComplication()
   }
 }

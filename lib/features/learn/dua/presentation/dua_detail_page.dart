@@ -25,6 +25,7 @@ class DuaDetailPage extends ConsumerStatefulWidget {
 }
 
 class _DuaDetailPageState extends ConsumerState<DuaDetailPage> {
+  static const double _bottomContentPadding = 136;
   bool _opened = false;
 
   @override
@@ -72,7 +73,12 @@ class _DuaDetailPageState extends ConsumerState<DuaDetailPage> {
           }
           final quranRef = item.isQuran ? _quranRef(item.sourceRef) : null;
           return ListView(
-            padding: const EdgeInsets.fromLTRB(16, 12, 16, 24),
+            padding: const EdgeInsets.fromLTRB(
+              16,
+              12,
+              16,
+              _bottomContentPadding,
+            ),
             children: [
               _heroCard(context, item),
               const SizedBox(height: 12),
@@ -292,7 +298,12 @@ class _DuaDetailPageState extends ConsumerState<DuaDetailPage> {
   Widget _plannedState(BuildContext context, DuaItem item) {
     final l10n = AppLocalizations.of(context);
     return ListView(
-      padding: const EdgeInsets.fromLTRB(16, 12, 16, 24),
+      padding: const EdgeInsets.fromLTRB(
+        16,
+        12,
+        16,
+        _bottomContentPadding,
+      ),
       children: [
         _heroCard(context, item),
         const SizedBox(height: 12),

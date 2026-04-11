@@ -14,13 +14,9 @@ import '../../../features/celestial/presentation/widgets/celestial_cycle_card.da
 import '../../../features/history/presentation/widgets/on_this_day_home_card.dart';
 import '../application/home_calendar_progress_provider.dart';
 import '../../../shared/content/contextual_quran_quotes.dart';
-import '../../../features/profile/application/profile_settings_provider.dart';
-import '../../../features/worship/application/prayer_controller.dart';
-import '../../../features/worship/data/prayer_log_repository.dart';
 import '../../../features/worship/domain/prayer_name.dart';
 import '../../../features/worship/domain/prayer_status.dart';
-import '../../../features/worship/domain/prayer_tracker_fields.dart';
-import '../../../features/worship/presentation/prayer_date_utils.dart';
+import '../../../features/worship/presentation/widgets/salah_timings_tracker_card.dart';
 import '../../../features/learn/prophets/application/daily_learning_service.dart';
 import '../../../features/learn/prophets/application/prophets_repository.dart';
 import '../../../features/learn/prophets/presentation/widgets/daily_prophet_quiz_card.dart';
@@ -36,7 +32,6 @@ import '../../../l10n/app_localizations.dart';
 import '../../../l10n/home_prayer_localizations.dart';
 import '../../../shared/application/app_summary_providers.dart';
 import '../../../shared/application/daily_clock_provider.dart';
-import '../../../shared/persistence/local_store.dart';
 import '../../../shared/profile/profile_logo_assets.dart';
 import '../../../shared/application/special_mode_provider.dart';
 import '../../../shared/state/location_permission_state.dart';
@@ -52,11 +47,12 @@ import '../../../shared/widgets/main_page_shortcut_configs.dart';
 import '../../../shared/widgets/main_page_shortcut_stack.dart';
 import '../../../shared/widgets/noor_glass_card.dart';
 import '../../../shared/widgets/noor_liquid_glass.dart';
-import '../../../shared/widgets/premium_card.dart';
 import '../../../shared/widgets/prayer_location_picker_sheet.dart';
 import '../../../shared/widgets/quran_quote_block.dart';
 import '../../../shared/utils/compact_duration_formatter.dart';
 import '../../learn/presentation/data/learn_category_catalog.dart';
+import '../../learn/quran/application/quran_providers.dart';
+import '../../learn/quran/presentation/widgets/quran_compact_search_results_section.dart';
 import '../../learn/presentation/learn_ui_localization.dart';
 import '../../learn/presentation/models/learn_category_item.dart';
 
@@ -332,818 +328,12 @@ class _DailySalahTimingsCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = AppLocalizations.of(context);
     final selectedDate = ref.watch(homePrayerSelectedDateProvider);
-    ref.watch(homePrayerHistoryEditVersionProvider);
-    final now = ref.watch(dailyNowProvider).value ?? DateTime.now();
-    final today = DateTime(now.year, now.month, now.day);
-    final isToday = sameDay(selectedDate, today);
-    final isFutureDay = selectedDate.isAfter(today);
-    final profileSettings = ref.watch(profileSettingsProvider);
-    final prayerState = ref.watch(prayerSettingsProvider);
-    final location = ref.watch(prayerLocationProvider);
-    final schedule = buildPrayerScheduleForDate(
-      date: selectedDate,
-      latitude: location.latitude,
-      longitude: location.longitude,
-      settings: prayerState.preferences,
-    ).toList();
-    final scheduleContext = isToday
-        ? ref.watch(prayerScheduleContextProvider)
-        : null;
-    final dayKey = LocalStore.todayKey(selectedDate);
-    final dayEntries = ref
-        .watch(prayerLogRepositoryProvider)
-        .readDayEntries(dayKey);
-    ref.watch(prayerControllerProvider);
-    final completedCount = dayEntries.values
-        .where((entry) => entry.status == PrayerStatus.completed)
-        .length;
-    final trackedPrayerCount = schedule
-        .where((item) => item.id != 'tahajjud')
-        .length;
-    final locale = Localizations.localeOf(context).toLanguageTag();
-    final timeFormat = DateFormat.jm(locale);
-    final dateLabel = formatPrayerDateLabel(
-      context: context,
-      l10n: l10n,
+    return SalahTimingsTrackerCard(
       selectedDate: selectedDate,
-      calendarMode: profileSettings.prayerCalendarMode,
-      todayLabel: l10n.homePrayerDateToday,
-      yesterdayLabel: l10n.homePrayerDateYesterday,
-      tomorrowLabel: l10n.homePrayerDateTomorrow,
-      relativeTo: today,
-    );
-
-    if (schedule.isEmpty) {
-      return const SizedBox.shrink();
-    }
-
-    return AppHeroGlassShell(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              IconButton(
-                onPressed: () {
-                  ref.read(homePrayerSelectedDateProvider.notifier).state =
-                      selectedDate.subtract(const Duration(days: 1));
-                },
-                icon: const Icon(
-                  Icons.chevron_left_rounded,
-                  color: Color(0xFF7A5A33),
-                ),
-                tooltip: l10n.homePrayerPreviousDayTooltip,
-              ),
-              Expanded(
-                child: Material(
-                  color: Colors.transparent,
-                  child: InkWell(
-                    borderRadius: BorderRadius.circular(12),
-                    onTap: () async {
-                      final picked = await _showHomePrayerCalendarSheet(
-                        context: context,
-                        initialDate: selectedDate,
-                      );
-                      if (picked != null) {
-                        ref
-                            .read(homePrayerSelectedDateProvider.notifier)
-                            .state = DateTime(
-                          picked.year,
-                          picked.month,
-                          picked.day,
-                        );
-                      }
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 8,
-                        vertical: 4,
-                      ),
-                      child: Column(
-                        children: [
-                          Text(
-                            l10n.homePrayerSectionTitle,
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w700,
-                              color: _homePrimaryTextColor,
-                              fontFamily: 'serif',
-                            ),
-                          ),
-                          const SizedBox(height: 4),
-                          Text(
-                            dateLabel,
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(
-                              fontSize: 12.5,
-                              fontWeight: FontWeight.w600,
-                              color: _homePrimaryTextColor,
-                              fontFamily: 'serif',
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              IconButton(
-                onPressed: () {
-                  ref.read(homePrayerSelectedDateProvider.notifier).state =
-                      selectedDate.add(const Duration(days: 1));
-                },
-                icon: const Icon(
-                  Icons.chevron_right_rounded,
-                  color: Color(0xFF7A5A33),
-                ),
-                tooltip: l10n.homePrayerNextDayTooltip,
-              ),
-            ],
-          ),
-          const SizedBox(height: 6),
-          Row(
-            children: [
-              const SizedBox(width: 8),
-              Expanded(
-                child: isFutureDay
-                    ? const SizedBox.shrink()
-                    : Text(
-                        l10n.homePrayerCompletedCountValue(
-                          _formatLocalizedCount(context, completedCount),
-                          _formatLocalizedCount(context, trackedPrayerCount),
-                        ),
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          fontSize: 12.5,
-                          color: _homePrimaryTextColor,
-                          height: 1.3,
-                        ),
-                      ),
-              ),
-              IconButton(
-                onPressed: () => context.pushNamed('settingsPrayerWorship'),
-                icon: const Icon(
-                  Icons.settings_outlined,
-                  color: Color(0xFF8A7A6B),
-                ),
-                tooltip: AppLocalizations.of(
-                  context,
-                ).profilePrayerSettingsTitle,
-              ),
-            ],
-          ),
-          if (!isFutureDay) ...[
-            const SizedBox(height: 8),
-          ] else ...[
-            const SizedBox(height: 2),
-          ],
-          LayoutBuilder(
-            builder: (context, constraints) {
-              final itemWidth = (constraints.maxWidth - 10) / 2;
-              return Wrap(
-                spacing: 10,
-                runSpacing: 10,
-                children: [
-                  for (final item in schedule)
-                    SizedBox(
-                      width: itemWidth,
-                      child: Builder(
-                        builder: (context) {
-                          final trackedPrayer = _prayerNameFromScheduleId(
-                            item.id,
-                          );
-                          final entry = dayEntries[trackedPrayer];
-                          final completedAt = entry?.completedAtIso == null
-                              ? null
-                              : DateTime.tryParse(entry!.completedAtIso!);
-                          final hasPostSalahDhikr =
-                              entry?.postSalahAdhkarCompletedAtIso != null;
-                          final canOpenDetails = !isFutureDay;
-                          return _PrayerTimingPill(
-                            prayerId: item.id,
-                            name: localizedPrayerNameForDate(
-                              prayerId: item.id,
-                              l10n: l10n,
-                              date: selectedDate,
-                            ),
-                            arabicName: arabicPrayerNameForDate(
-                              prayerId: item.id,
-                              date: selectedDate,
-                            ),
-                            time: item.offerTime,
-                            status: entry?.status ?? PrayerStatus.pending,
-                            completionDetail: completedAt == null
-                                ? null
-                                : l10n.worshipPrayerCompletedAt(
-                                    timeFormat.format(completedAt),
-                                  ),
-                            hasPostSalahDhikr: hasPostSalahDhikr,
-                            isCurrent:
-                                isToday &&
-                                item.id == scheduleContext?.currentPrayerId,
-                            isNext:
-                                isToday &&
-                                item.id == scheduleContext?.nextPrayerId,
-                            onToggleOffered: isFutureDay
-                                ? null
-                                : entry?.status == PrayerStatus.completed
-                                ? isToday
-                                      ? () => ref
-                                            .read(
-                                              prayerControllerProvider.notifier,
-                                            )
-                                            .toggleCompleted(trackedPrayer)
-                                      : () => _toggleHistoricalPrayerCompletion(
-                                          ref,
-                                          dayKey: dayKey,
-                                          prayer: trackedPrayer,
-                                          existingEntry: entry,
-                                          completedAt: item.offerDateTime,
-                                        )
-                                : null,
-                            onOpenDetails: !canOpenDetails
-                                ? null
-                                : () => _openHomePrayerTrackerSheet(
-                                    context,
-                                    ref,
-                                    dayKey: dayKey,
-                                    prayer: trackedPrayer,
-                                    prayerName: localizedPrayerNameForDate(
-                                      prayerId: item.id,
-                                      l10n: l10n,
-                                      date: selectedDate,
-                                    ),
-                                    selectedDate: selectedDate,
-                                    existingEntry: entry,
-                                    isToday: isToday,
-                                    defaultCompletedAt: isToday
-                                        ? DateTime.now()
-                                        : item.offerDateTime,
-                                  ),
-                            onMarkPostSalahDhikr:
-                                !isToday || !canOpenDetails || hasPostSalahDhikr
-                                ? null
-                                : () => ref
-                                      .read(prayerControllerProvider.notifier)
-                                      .logPostSalahDhikr(trackedPrayer),
-                          );
-                        },
-                      ),
-                    ),
-                ],
-              );
-            },
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-void _toggleHistoricalPrayerCompletion(
-  WidgetRef ref, {
-  required String dayKey,
-  required PrayerName prayer,
-  required PrayerLogDayEntry? existingEntry,
-  required DateTime completedAt,
-}) {
-  final repository = ref.read(prayerLogRepositoryProvider);
-  final entries = Map<PrayerName, PrayerLogDayEntry>.from(
-    repository.readDayEntries(dayKey),
-  );
-  final current = existingEntry ?? entries[prayer];
-  final isCompleted = current?.status == PrayerStatus.completed;
-
-  entries[prayer] = isCompleted
-      ? const PrayerLogDayEntry(status: PrayerStatus.pending)
-      : PrayerLogDayEntry(
-          status: PrayerStatus.completed,
-          completedAtIso: completedAt.toIso8601String(),
-          postSalahAdhkarCompletedAtIso: null,
-        );
-  repository.saveDayEntries(dayKey, entries);
-  ref
-      .read(homePrayerHistoryEditVersionProvider.notifier)
-      .update((value) => value + 1);
-}
-
-Future<void> _openHomePrayerTrackerSheet(
-  BuildContext context,
-  WidgetRef ref, {
-  required String dayKey,
-  required PrayerName prayer,
-  required String prayerName,
-  required DateTime selectedDate,
-  required PrayerLogDayEntry? existingEntry,
-  required bool isToday,
-  required DateTime defaultCompletedAt,
-}) async {
-  final result = await showModalBottomSheet<_HomePrayerTrackerResult>(
-    context: context,
-    backgroundColor: Colors.transparent,
-    isScrollControlled: true,
-    builder: (context) => _HomePrayerTrackerSheet(
-      prayerName: prayerName,
-      initialTiming: existingEntry?.timing,
-      initialPlace: existingEntry?.place,
-    ),
-  );
-  if (result == null) return;
-
-  if (isToday) {
-    final controller = ref.read(prayerControllerProvider.notifier);
-    final activeEntry = controller.readActiveDayEntry(prayer);
-    if (activeEntry?.status != PrayerStatus.completed) {
-      controller.markCompleted(prayer);
-    }
-    ref
-        .read(prayerControllerProvider.notifier)
-        .saveCompletionDetails(
-          prayer,
-          timing: result.timing,
-          place: result.place,
-        );
-    return;
-  }
-
-  final repository = ref.read(prayerLogRepositoryProvider);
-  final entries = Map<PrayerName, PrayerLogDayEntry>.from(
-    repository.readDayEntries(dayKey),
-  );
-  final current = existingEntry ?? entries[prayer];
-  entries[prayer] =
-      (current ?? const PrayerLogDayEntry(status: PrayerStatus.completed))
-          .copyWith(
-            status: PrayerStatus.completed,
-            completedAtIso:
-                current?.completedAtIso ?? defaultCompletedAt.toIso8601String(),
-            timing: result.timing,
-            place: result.place,
-          );
-  repository.saveDayEntries(dayKey, entries);
-  ref
-      .read(homePrayerHistoryEditVersionProvider.notifier)
-      .update((value) => value + 1);
-}
-
-class _HomePrayerTrackerResult {
-  const _HomePrayerTrackerResult({required this.timing, required this.place});
-
-  final PrayerOfferTiming timing;
-  final PrayerOfferPlace place;
-}
-
-class _HomePrayerTrackerSheet extends StatefulWidget {
-  const _HomePrayerTrackerSheet({
-    required this.prayerName,
-    required this.initialTiming,
-    required this.initialPlace,
-  });
-
-  final String prayerName;
-  final PrayerOfferTiming? initialTiming;
-  final PrayerOfferPlace? initialPlace;
-
-  @override
-  State<_HomePrayerTrackerSheet> createState() =>
-      _HomePrayerTrackerSheetState();
-}
-
-class _HomePrayerTrackerSheetState extends State<_HomePrayerTrackerSheet> {
-  late PrayerOfferTiming _timing;
-  late PrayerOfferPlace _place;
-
-  @override
-  void initState() {
-    super.initState();
-    _timing = widget.initialTiming ?? PrayerOfferTiming.onTime;
-    _place = widget.initialPlace ?? PrayerOfferPlace.alone;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
-    return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
-        child: PremiumCard(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                widget.prayerName,
-                style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-              const SizedBox(height: 14),
-              Text(
-                l10n.salahHowOfferedTitle,
-                style: const TextStyle(fontWeight: FontWeight.w700),
-              ),
-              const SizedBox(height: 8),
-              Wrap(
-                spacing: 8,
-                runSpacing: 8,
-                children: [
-                  for (final timing in const <PrayerOfferTiming>[
-                    PrayerOfferTiming.onTime,
-                    PrayerOfferTiming.qada,
-                  ])
-                    ChoiceChip(
-                      label: Text(timing.localizedLabel(l10n)),
-                      selected: _timing == timing,
-                      onSelected: (_) => setState(() => _timing = timing),
-                    ),
-                ],
-              ),
-              const SizedBox(height: 14),
-              Text(
-                l10n.salahWhereOfferedTitle,
-                style: const TextStyle(fontWeight: FontWeight.w700),
-              ),
-              const SizedBox(height: 8),
-              Wrap(
-                spacing: 8,
-                runSpacing: 8,
-                children: [
-                  for (final place in PrayerOfferPlace.values)
-                    ChoiceChip(
-                      label: Text(place.localizedLabel(l10n)),
-                      selected: _place == place,
-                      onSelected: (_) => setState(() => _place = place),
-                    ),
-                ],
-              ),
-              const SizedBox(height: 16),
-              Row(
-                children: [
-                  Expanded(
-                    child: OutlinedButton(
-                      onPressed: () => Navigator.of(context).pop(),
-                      child: Text(l10n.quranCancel),
-                    ),
-                  ),
-                  const SizedBox(width: 10),
-                  Expanded(
-                    child: FilledButton(
-                      onPressed: () => Navigator.of(context).pop(
-                        _HomePrayerTrackerResult(
-                          timing: _timing,
-                          place: _place,
-                        ),
-                      ),
-                      child: Text(l10n.quranSave),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-Future<DateTime?> _showHomePrayerCalendarSheet({
-  required BuildContext context,
-  required DateTime initialDate,
-}) {
-  return showModalBottomSheet<DateTime>(
-    context: context,
-    showDragHandle: true,
-    builder: (_) => _HomePrayerCalendarSheet(initialDate: initialDate),
-  );
-}
-
-class _HomePrayerCalendarSheet extends ConsumerStatefulWidget {
-  const _HomePrayerCalendarSheet({required this.initialDate});
-
-  final DateTime initialDate;
-
-  @override
-  ConsumerState<_HomePrayerCalendarSheet> createState() =>
-      _HomePrayerCalendarSheetState();
-}
-
-class _HomePrayerCalendarSheetState
-    extends ConsumerState<_HomePrayerCalendarSheet> {
-  late DateTime _visibleMonth;
-
-  @override
-  void initState() {
-    super.initState();
-    _visibleMonth = DateTime(
-      widget.initialDate.year,
-      widget.initialDate.month,
-      1,
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
-    final locale = Localizations.localeOf(context).toLanguageTag();
-    final progressByDay = ref.watch(
-      homeCalendarMonthProgressProvider(_visibleMonth),
-    );
-    final firstDay = DateTime(_visibleMonth.year, _visibleMonth.month, 1);
-    final nextMonth = DateTime(_visibleMonth.year, _visibleMonth.month + 1, 1);
-    final dayCount = nextMonth.difference(firstDay).inDays;
-    final firstWeekdayOffset = firstDay.weekday % 7;
-    final totalCells = (((firstWeekdayOffset + dayCount) / 7).ceil()) * 7;
-    final today = DateTime.now();
-
-    return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(16, 4, 16, 16),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Row(
-              children: [
-                IconButton(
-                  onPressed: () {
-                    setState(() {
-                      _visibleMonth = DateTime(
-                        _visibleMonth.year,
-                        _visibleMonth.month - 1,
-                        1,
-                      );
-                    });
-                  },
-                  icon: const Icon(Icons.chevron_left_rounded),
-                ),
-                Expanded(
-                  child: Text(
-                    DateFormat.yMMMM(locale).format(_visibleMonth),
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w700,
-                      fontFamily: 'serif',
-                    ),
-                  ),
-                ),
-                IconButton(
-                  onPressed: () {
-                    setState(() {
-                      _visibleMonth = DateTime(
-                        _visibleMonth.year,
-                        _visibleMonth.month + 1,
-                        1,
-                      );
-                    });
-                  },
-                  icon: const Icon(Icons.chevron_right_rounded),
-                ),
-              ],
-            ),
-            const SizedBox(height: 6),
-            Wrap(
-              alignment: WrapAlignment.center,
-              spacing: 10,
-              runSpacing: 6,
-              children: [
-                _CalendarLegendItem(
-                  label: l10n.homeShortcutSalahLabel,
-                  color: AppColors.accentGoldSoft,
-                ),
-                _CalendarLegendItem(
-                  label: l10n.homeShortcutDhikrLabel,
-                  color: AppColors.success,
-                ),
-                _CalendarLegendItem(
-                  label: l10n.quranTitle,
-                  color: AppColors.caution,
-                ),
-                _CalendarLegendItem(
-                  label: l10n.learnTitle,
-                  color: AppColors.onSurfaceSubtle,
-                ),
-              ],
-            ),
-            const SizedBox(height: 12),
-            Row(
-              children: MaterialLocalizations.of(context).narrowWeekdays
-                  .map(
-                    (day) => Expanded(
-                      child: Text(
-                        day,
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          fontSize: 11,
-                          color: _homePrimaryTextColor,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
-                  )
-                  .toList(growable: false),
-            ),
-            const SizedBox(height: 8),
-            for (var row = 0; row < totalCells ~/ 7; row += 1)
-              Padding(
-                padding: const EdgeInsets.only(bottom: 8),
-                child: Row(
-                  children: List.generate(7, (column) {
-                    final index = row * 7 + column;
-                    final dayNumber = index - firstWeekdayOffset + 1;
-                    if (dayNumber < 1 || dayNumber > dayCount) {
-                      return const Expanded(child: SizedBox(height: 48));
-                    }
-                    final date = DateTime(
-                      _visibleMonth.year,
-                      _visibleMonth.month,
-                      dayNumber,
-                    );
-                    final summary = progressByDay[date];
-                    return Expanded(
-                      child: _CalendarDayCell(
-                        date: date,
-                        isToday: sameDay(date, today),
-                        isSelected: sameDay(date, widget.initialDate),
-                        summary: summary,
-                        onTap: () => Navigator.of(context).pop(date),
-                      ),
-                    );
-                  }),
-                ),
-              ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _CalendarLegendItem extends StatelessWidget {
-  const _CalendarLegendItem({required this.label, required this.color});
-
-  final String label;
-  final Color color;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Container(
-          width: 7,
-          height: 7,
-          decoration: BoxDecoration(color: color, shape: BoxShape.circle),
-        ),
-        const SizedBox(width: 4),
-        Text(
-          label,
-          style: const TextStyle(
-            fontSize: 11.5,
-            color: _homePrimaryTextColor,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class _CalendarDayCell extends StatelessWidget {
-  const _CalendarDayCell({
-    required this.date,
-    required this.isToday,
-    required this.isSelected,
-    required this.summary,
-    required this.onTap,
-  });
-
-  final DateTime date;
-  final bool isToday;
-  final bool isSelected;
-  final HomeDayProgressSummary? summary;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    final selectedStyle = AppSurfaceTheme.resolve(
-      context,
-      variant: AppSurfaceVariant.pill,
-      tintColor: AppColors.accentGold,
-    );
-    final unselectedStyle = AppSurfaceTheme.resolve(
-      context,
-      variant: AppSurfaceVariant.pill,
-      surfaceAlphaOverride: 0.12,
-    );
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 2),
-      child: Material(
-        color: Colors.transparent,
-        child: InkWell(
-          borderRadius: BorderRadius.circular(14),
-          onTap: onTap,
-          child: AnimatedContainer(
-            duration: const Duration(milliseconds: 160),
-            padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 6),
-            decoration: (isSelected ? selectedStyle : unselectedStyle)
-                .decoration(radius: 14, includeShadow: false)
-                .copyWith(
-                  border: Border.all(
-                    color: isSelected
-                        ? selectedStyle.borderColor
-                        : isToday
-                        ? AppColors.accentGoldSoft.withValues(alpha: 0.34)
-                        : Colors.transparent,
-                  ),
-                ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  date.day.toString(),
-                  style: TextStyle(
-                    fontSize: 12,
-                    fontWeight: isSelected || isToday
-                        ? FontWeight.w700
-                        : FontWeight.w500,
-                    color: AppColors.onSurface,
-                  ),
-                ),
-                const SizedBox(height: 4),
-                _CalendarDayProgressRow(summary: summary),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _CalendarDayProgressRow extends StatelessWidget {
-  const _CalendarDayProgressRow({required this.summary});
-
-  final HomeDayProgressSummary? summary;
-
-  @override
-  Widget build(BuildContext context) {
-    final effective =
-        summary ??
-        const HomeDayProgressSummary(
-          salah: HomeDayProgressLevel.empty,
-          dhikr: HomeDayProgressLevel.empty,
-          reading: HomeDayProgressLevel.empty,
-          learning: HomeDayProgressLevel.empty,
-        );
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        _CalendarProgressDot(
-          level: effective.salah,
-          color: AppColors.accentGoldSoft,
-        ),
-        const SizedBox(width: 2),
-        _CalendarProgressDot(level: effective.dhikr, color: AppColors.success),
-        const SizedBox(width: 2),
-        _CalendarProgressDot(
-          level: effective.reading,
-          color: AppColors.caution,
-        ),
-        const SizedBox(width: 2),
-        _CalendarProgressDot(
-          level: effective.learning,
-          color: AppColors.onSurfaceSubtle,
-        ),
-      ],
-    );
-  }
-}
-
-class _CalendarProgressDot extends StatelessWidget {
-  const _CalendarProgressDot({required this.level, required this.color});
-
-  final HomeDayProgressLevel level;
-  final Color color;
-
-  @override
-  Widget build(BuildContext context) {
-    final alpha = switch (level) {
-      HomeDayProgressLevel.empty => 0.14,
-      HomeDayProgressLevel.partial => 0.48,
-      HomeDayProgressLevel.complete => 0.92,
-    };
-    return Container(
-      width: 8,
-      height: 4,
-      decoration: BoxDecoration(
-        color: color.withValues(alpha: alpha),
-        borderRadius: BorderRadius.circular(999),
-      ),
+      onSelectedDateChanged: (value) {
+        ref.read(homePrayerSelectedDateProvider.notifier).state = value;
+      },
     );
   }
 }
@@ -1840,6 +1030,7 @@ class _HomeGlobalSearchDelegate extends SearchDelegate<void> {
       query: query,
       items: destinations,
       emptyLabel: l10n.homeSearchNoResults,
+      onRunQuery: (value) => query = value,
       onTap: (item) {
         close(context, null);
         item.onSelected(context);
@@ -1853,6 +1044,7 @@ class _HomeGlobalSearchDelegate extends SearchDelegate<void> {
       query: query,
       items: destinations,
       emptyLabel: l10n.homeSearchNoResults,
+      onRunQuery: (value) => query = value,
       onTap: (item) {
         close(context, null);
         item.onSelected(context);
@@ -1866,12 +1058,14 @@ class _SearchResultList extends StatelessWidget {
     required this.query,
     required this.items,
     required this.emptyLabel,
+    required this.onRunQuery,
     required this.onTap,
   });
 
   final String query;
   final List<_HomeSearchDestination> items;
   final String emptyLabel;
+  final ValueChanged<String> onRunQuery;
   final ValueChanged<_HomeSearchDestination> onTap;
 
   @override
@@ -1885,29 +1079,53 @@ class _SearchResultList extends StatelessWidget {
                     .toLowerCase();
             return haystack.contains(trimmed);
           }).toList();
+    return Consumer(
+      builder: (context, ref, _) {
+        final quranResults = trimmed.isEmpty
+            ? const <QuranSearchResult>[]
+            : ref
+                      .watch(
+                        quranTextSearchResultsProvider(
+                          QuranTextSearchQuery(query: query, maxResults: 3),
+                        ),
+                      )
+                      .asData
+                      ?.value ??
+                  const <QuranSearchResult>[];
 
-    if (filtered.isEmpty) {
-      return Center(
-        child: Text(
-          emptyLabel,
-          style: const TextStyle(color: _homePrimaryTextColor),
-        ),
-      );
-    }
+        if (filtered.isEmpty && quranResults.isEmpty) {
+          return Center(
+            child: Text(
+              emptyLabel,
+              style: const TextStyle(color: _homePrimaryTextColor),
+            ),
+          );
+        }
 
-    return ListView.separated(
-      padding: const EdgeInsets.fromLTRB(12, 12, 12, 24),
-      itemBuilder: (context, index) {
-        final item = filtered[index];
-        return ListTile(
-          title: Text(item.title),
-          subtitle: Text(item.subtitle),
-          trailing: const Icon(Icons.chevron_right_rounded),
-          onTap: () => onTap(item),
+        return ListView(
+          padding: const EdgeInsets.fromLTRB(12, 12, 12, 24),
+          children: [
+            if (trimmed.isNotEmpty) ...[
+              QuranCompactSearchResultsSection(query: query, maxResults: 3),
+              if (filtered.isNotEmpty) const SizedBox(height: 10),
+            ],
+            ...List<Widget>.generate(filtered.length, (index) {
+              final item = filtered[index];
+              return Column(
+                children: [
+                  ListTile(
+                    title: Text(item.title),
+                    subtitle: Text(item.subtitle),
+                    trailing: const Icon(Icons.chevron_right_rounded),
+                    onTap: () => onTap(item),
+                  ),
+                  if (index != filtered.length - 1) const Divider(height: 1),
+                ],
+              );
+            }),
+          ],
         );
       },
-      separatorBuilder: (_, index) => const Divider(height: 1),
-      itemCount: filtered.length,
     );
   }
 }

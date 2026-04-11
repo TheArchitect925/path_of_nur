@@ -1,6 +1,6 @@
 # Apple Platform QA Checklist
 
-Short manual smoke checklist for iPhone, Apple Watch, widgets, complications, and extension entry points.
+Short manual smoke checklist for iPhone, Apple Watch, widgets, complications, live activities, and Apple TV entry points.
 
 ## iPhone
 
@@ -11,6 +11,17 @@ Short manual smoke checklist for iPhone, Apple Watch, widgets, complications, an
   - `/quran`
   - `/journey/today`
 - Confirm the app lands on the expected screen each time.
+- Open Hadith search and source browse and confirm both open cleanly into the canonical reader.
+
+## iPhone Widgets / Live Activities
+
+- Add each supported home-screen widget and confirm it renders real data rather than a placeholder.
+- Tap each widget and confirm it deep-links into the expected iPhone route.
+- Start a prayer live activity and confirm:
+  - lock-screen state is visible
+  - Dynamic Island state is visible on supported devices
+  - prayer-boundary state transitions are coherent
+- Confirm widget and live-activity state update after prayer completion and dhikr changes.
 
 ## Notifications
 
@@ -43,6 +54,14 @@ Short manual smoke checklist for iPhone, Apple Watch, widgets, complications, an
   - sensible stale/no-data fallback
 - Tap each complication and confirm it opens the intended watch screen.
 - Check near-prayer boundary behavior and day rollover behavior.
+- Add the spiritual prompt complication and confirm it renders a synced prompt or a graceful fallback.
+
+## Apple TV
+
+- Launch the tvOS app on a real Apple TV.
+- Confirm Home focus movement is predictable with the Siri Remote.
+- Open the Qur'an area and confirm focus, scrolling, and back-navigation remain stable.
+- Confirm no view traps focus or requires touch-only interaction.
 
 ## Sync / Offline
 
@@ -52,6 +71,13 @@ Short manual smoke checklist for iPhone, Apple Watch, widgets, complications, an
 
 ## Release Readiness
 
-- Build signed iPhone + watch targets with the production team selected.
-- Verify app group capability alignment for Runner, watch extension, and complications.
+- Build signed `Runner` from `Runner.xcworkspace`, not only `Runner.xcodeproj`.
+- Verify signing and capability alignment for:
+  - `Runner`
+  - `PrayerLiveActivityExtension`
+  - `PathOfNurHomeWidgets`
+  - `PathOfNurWatch Watch App`
+  - `PathOfNurWatch Watch App Extension`
+  - `PathOfNurWatchComplications`
+- Verify app group capability alignment for Runner, widgets, watch extension, and complications.
 - Archive once and confirm extension bundle identifiers, icons, and capabilities look correct before TestFlight upload.

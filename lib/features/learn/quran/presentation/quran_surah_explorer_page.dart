@@ -11,6 +11,7 @@ import '../../../../../shared/widgets/segmented_pill_control.dart';
 import '../../presentation/widgets/learn_discovery_search_field.dart';
 import '../application/quran_providers.dart';
 import '../domain/quran_surah.dart';
+import 'widgets/quran_compact_search_results_section.dart';
 
 enum _QuranExplorerSort { surahNumber, revelation }
 
@@ -25,6 +26,7 @@ class QuranSurahExplorerPage extends ConsumerStatefulWidget {
 class _QuranSurahExplorerPageState
     extends ConsumerState<QuranSurahExplorerPage> {
   late final TextEditingController _searchController;
+  String _query = '';
   _QuranExplorerSort _sort = _QuranExplorerSort.surahNumber;
 
   @override
@@ -42,16 +44,8 @@ class _QuranSurahExplorerPageState
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    final searchQuery = ref.watch(quranSearchQueryProvider);
-    final surahs = ref.watch(quranFilteredSurahListProvider);
+    final surahs = ref.watch(quranFilteredSurahListProvider(_query));
     final sortedSurahs = _sortedSurahs(surahs);
-
-    if (_searchController.text != searchQuery) {
-      _searchController.value = TextEditingValue(
-        text: searchQuery,
-        selection: TextSelection.collapsed(offset: searchQuery.length),
-      );
-    }
 
     return AppPageScaffold(
       headerIcon: Icons.explore_outlined,
@@ -64,18 +58,28 @@ class _QuranSurahExplorerPageState
               LearnDiscoverySearchField(
                 controller: _searchController,
                 hintText: l10n.searchSurahHint,
-                onChanged: (value) =>
-                    ref.read(quranSearchQueryProvider.notifier).state = value,
+                onChanged: (value) => setState(() => _query = value),
+                onSubmitted: (value) => context.pushNamed(
+                  'quranSearch',
+                  queryParameters: value.trim().isEmpty
+                      ? const {}
+                      : {'q': value.trim()},
+                ),
                 onClear: () {
                   _searchController.clear();
-                  ref.read(quranSearchQueryProvider.notifier).state = '';
+                  setState(() => _query = '');
                 },
               ),
               const SizedBox(height: 8),
               Align(
                 alignment: Alignment.centerRight,
                 child: TextButton.icon(
-                  onPressed: () => context.pushNamed('quranSearch'),
+                  onPressed: () => context.pushNamed(
+                    'quranSearch',
+                    queryParameters: _query.trim().isEmpty
+                        ? const {}
+                        : {'q': _query.trim()},
+                  ),
                   icon: const Icon(Icons.tune_rounded, size: 18),
                   label: Text(l10n.quranSearchTitle),
                 ),
@@ -83,6 +87,10 @@ class _QuranSurahExplorerPageState
             ],
           ),
         ),
+        if (_query.trim().isNotEmpty) ...[
+          const SizedBox(height: 14),
+          QuranCompactSearchResultsSection(query: _query, maxResults: 4),
+        ],
         const SizedBox(height: 14),
         PremiumCard(
           child: SegmentedPillControl<_QuranExplorerSort>(

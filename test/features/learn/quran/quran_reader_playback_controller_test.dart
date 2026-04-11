@@ -64,42 +64,46 @@ void main() {
     expect(state.activeAyahKey, isNull);
   });
 
-  test('maps active ayah and now-playing metadata from live surah playback', () async {
-    final feed = FakeQuranPlaybackFeed()
-      ..update(
-        playing: true,
-        hasPlaybackSource: true,
-        currentIndex: 1,
-        position: const Duration(seconds: 12),
-        duration: const Duration(seconds: 90),
-        processingState: ProcessingState.ready,
-      );
-    final container = await createContainer(feed);
-    addTearDown(() async {
-      container.dispose();
-      await feed.dispose();
-    });
-
-    container.read(quranActivePlaybackSessionProvider.notifier).state =
-        const QuranActivePlaybackSession(
-          surahNumber: 1,
-          ayahNumbers: <int>[1, 2, 3],
-          reciterId: 'husary',
-          playbackSpeed: 1,
-          includeMediaTags: true,
-          isSurahMode: true,
+  test(
+    'maps active ayah and now-playing metadata from live surah playback',
+    () async {
+      final feed = FakeQuranPlaybackFeed()
+        ..update(
+          playing: true,
+          hasPlaybackSource: true,
+          currentIndex: 1,
+          position: const Duration(seconds: 12),
+          duration: const Duration(seconds: 90),
+          processingState: ProcessingState.ready,
         );
-    feed.emitIndex();
-    feed.emitPlayerState();
-    feed.emitPosition();
-    await Future<void>.delayed(Duration.zero);
+      final container = await createContainer(feed);
+      addTearDown(() async {
+        container.dispose();
+        await feed.dispose();
+      });
 
-    final state = container.read(quranReaderPlaybackControllerProvider(1));
-    expect(state.status, QuranReaderPlaybackStatus.playing);
-    expect(state.activeAyahKey, '1:2');
-    expect(state.activeSurahNumber, 1);
-    expect(state.activeAyahNumber, 2);
-  });
+      container
+          .read(quranActivePlaybackSessionProvider.notifier)
+          .state = const QuranActivePlaybackSession(
+        surahNumber: 1,
+        ayahNumbers: <int>[1, 2, 3],
+        reciterId: 'husary',
+        playbackSpeed: 1,
+        includeMediaTags: true,
+        isSurahMode: true,
+      );
+      feed.emitIndex();
+      feed.emitPlayerState();
+      feed.emitPosition();
+      await Future<void>.delayed(Duration.zero);
+
+      final state = container.read(quranReaderPlaybackControllerProvider(1));
+      expect(state.status, QuranReaderPlaybackStatus.playing);
+      expect(state.activeAyahKey, '1:2');
+      expect(state.activeSurahNumber, 1);
+      expect(state.activeAyahNumber, 2);
+    },
+  );
 
   test('pause and resume transitions stay normalized', () async {
     final feed = FakeQuranPlaybackFeed()
@@ -115,15 +119,16 @@ void main() {
       await feed.dispose();
     });
 
-    container.read(quranActivePlaybackSessionProvider.notifier).state =
-        const QuranActivePlaybackSession(
-          surahNumber: 1,
-          ayahNumbers: <int>[1, 2, 3],
-          reciterId: 'husary',
-          playbackSpeed: 1,
-          includeMediaTags: true,
-          isSurahMode: true,
-        );
+    container
+        .read(quranActivePlaybackSessionProvider.notifier)
+        .state = const QuranActivePlaybackSession(
+      surahNumber: 1,
+      ayahNumbers: <int>[1, 2, 3],
+      reciterId: 'husary',
+      playbackSpeed: 1,
+      includeMediaTags: true,
+      isSurahMode: true,
+    );
     feed.emitIndex();
     feed.emitPlayerState();
     await Future<void>.delayed(Duration.zero);
@@ -152,139 +157,273 @@ void main() {
     );
   });
 
-  test('stored recitation session remains available without presenting active playback', () async {
-    final feed = FakeQuranPlaybackFeed();
-    final container = await createContainer(feed);
-    addTearDown(() async {
-      container.dispose();
-      await feed.dispose();
-    });
+  test(
+    'stored recitation session remains available without presenting active playback',
+    () async {
+      final feed = FakeQuranPlaybackFeed();
+      final container = await createContainer(feed);
+      addTearDown(() async {
+        container.dispose();
+        await feed.dispose();
+      });
 
-    container
-        .read(quranRecitationSessionProvider.notifier)
-        .save(surahNumber: 1, ayahNumber: 3, positionSeconds: 18);
-    await Future<void>.delayed(Duration.zero);
+      container
+          .read(quranRecitationSessionProvider.notifier)
+          .save(surahNumber: 1, ayahNumber: 3, positionSeconds: 18);
+      await Future<void>.delayed(Duration.zero);
 
-    final state = container.read(quranReaderPlaybackControllerProvider(1));
-    expect(state.activeAyahKey, isNull);
-    expect(state.storedSession?.positionSeconds, 18);
-  });
+      final state = container.read(quranReaderPlaybackControllerProvider(1));
+      expect(state.activeAyahKey, isNull);
+      expect(state.storedSession?.positionSeconds, 18);
+    },
+  );
 
-  test('retryable source failure preserves session context without faking active highlight', () async {
-    final feed = FakeQuranPlaybackFeed();
-    final container = await createContainer(feed);
-    addTearDown(() async {
-      container.dispose();
-      await feed.dispose();
-    });
+  test(
+    'retryable source failure preserves session context without faking active highlight',
+    () async {
+      final feed = FakeQuranPlaybackFeed();
+      final container = await createContainer(feed);
+      addTearDown(() async {
+        container.dispose();
+        await feed.dispose();
+      });
 
-    container.read(quranActivePlaybackSessionProvider.notifier).state =
-        const QuranActivePlaybackSession(
-          surahNumber: 1,
-          ayahNumbers: <int>[1, 2, 3],
-          reciterId: 'husary',
-          playbackSpeed: 1,
-          includeMediaTags: true,
-          isSurahMode: true,
-        );
-    container
-        .read(quranRecitationSessionProvider.notifier)
-        .save(surahNumber: 1, ayahNumber: 2, positionSeconds: 18);
-    container.read(quranPlaybackSourceStateProvider.notifier).markFailure(
-      failureType: QuranPlaybackFailureType.networkUnavailable,
-      activeSourceType: QuranPlaybackSourceType.remoteStream,
-      canRetry: true,
-      canUseFallback: false,
-      requiresUserAction: true,
-      surahNumber: 1,
-      ayahNumber: 2,
-      reciterId: 'husary',
-    );
-    await Future<void>.delayed(Duration.zero);
-
-    final state = container.read(quranReaderPlaybackControllerProvider(1));
-    expect(state.hasPlayback, isTrue);
-    expect(state.activeAyahKey, isNull);
-    expect(state.hasRecoverableFailure, isTrue);
-    expect(state.failureType, QuranPlaybackFailureType.networkUnavailable);
-    expect(state.storedSession?.ayahNumber, 2);
-  });
-
-  test('reciter metadata follows settings changes without losing active ayah', () async {
-    final feed = FakeQuranPlaybackFeed()
-      ..update(
-        playing: true,
-        hasPlaybackSource: true,
-        currentIndex: 1,
-        processingState: ProcessingState.ready,
+      container
+          .read(quranActivePlaybackSessionProvider.notifier)
+          .state = const QuranActivePlaybackSession(
+        surahNumber: 1,
+        ayahNumbers: <int>[1, 2, 3],
+        reciterId: 'husary',
+        playbackSpeed: 1,
+        includeMediaTags: true,
+        isSurahMode: true,
       );
-    final container = await createContainer(feed);
-    addTearDown(() async {
-      container.dispose();
-      await feed.dispose();
-    });
+      container
+          .read(quranRecitationSessionProvider.notifier)
+          .save(surahNumber: 1, ayahNumber: 2, positionSeconds: 18);
+      container
+          .read(quranPlaybackSourceStateProvider.notifier)
+          .markFailure(
+            failureType: QuranPlaybackFailureType.networkUnavailable,
+            activeSourceType: QuranPlaybackSourceType.remoteStream,
+            canRetry: true,
+            canUseFallback: false,
+            requiresUserAction: true,
+            surahNumber: 1,
+            ayahNumber: 2,
+            reciterId: 'husary',
+          );
+      await Future<void>.delayed(Duration.zero);
 
-    container.read(quranActivePlaybackSessionProvider.notifier).state =
-        const QuranActivePlaybackSession(
-          surahNumber: 1,
-          ayahNumbers: <int>[1, 2, 3],
-          reciterId: 'husary',
-          playbackSpeed: 1,
-          includeMediaTags: true,
-          isSurahMode: true,
+      final state = container.read(quranReaderPlaybackControllerProvider(1));
+      expect(state.hasPlayback, isTrue);
+      expect(state.activeAyahKey, isNull);
+      expect(state.hasRecoverableFailure, isTrue);
+      expect(state.failureType, QuranPlaybackFailureType.networkUnavailable);
+      expect(state.storedSession?.ayahNumber, 2);
+    },
+  );
+
+  test(
+    'reciter metadata follows settings changes without losing active ayah',
+    () async {
+      final feed = FakeQuranPlaybackFeed()
+        ..update(
+          playing: true,
+          hasPlaybackSource: true,
+          currentIndex: 1,
+          processingState: ProcessingState.ready,
         );
-    feed.emitIndex();
-    feed.emitPlayerState();
-    await Future<void>.delayed(Duration.zero);
+      final container = await createContainer(feed);
+      addTearDown(() async {
+        container.dispose();
+        await feed.dispose();
+      });
 
-    container.read(quranAudioSettingsProvider.notifier).setReciterId('alafasy');
-    await Future<void>.delayed(Duration.zero);
-
-    final state = container.read(quranReaderPlaybackControllerProvider(1));
-    expect(state.activeAyahKey, '1:2');
-    expect(state.reciterId, 'alafasy');
-    expect(state.reciterName.toLowerCase(), contains('afasy'));
-  });
-
-  test('preparing transition state keeps playback present but disables resume until source is ready', () async {
-    final feed = FakeQuranPlaybackFeed()
-      ..update(
-        playing: false,
-        hasPlaybackSource: true,
-        currentIndex: 1,
-        processingState: ProcessingState.ready,
+      container
+          .read(quranActivePlaybackSessionProvider.notifier)
+          .state = const QuranActivePlaybackSession(
+        surahNumber: 1,
+        ayahNumbers: <int>[1, 2, 3],
+        reciterId: 'husary',
+        playbackSpeed: 1,
+        includeMediaTags: true,
+        isSurahMode: true,
       );
-    final container = await createContainer(feed);
-    addTearDown(() async {
-      container.dispose();
-      await feed.dispose();
-    });
+      feed.emitIndex();
+      feed.emitPlayerState();
+      await Future<void>.delayed(Duration.zero);
 
-    container.read(quranActivePlaybackSessionProvider.notifier).state =
-        const QuranActivePlaybackSession(
-          surahNumber: 1,
-          ayahNumbers: <int>[1, 2, 3],
-          reciterId: 'husary',
-          playbackSpeed: 1,
-          includeMediaTags: true,
-          isSurahMode: true,
+      container
+          .read(quranAudioSettingsProvider.notifier)
+          .setReciterId('alafasy');
+      await Future<void>.delayed(Duration.zero);
+
+      final state = container.read(quranReaderPlaybackControllerProvider(1));
+      expect(state.activeAyahKey, '1:2');
+      expect(state.reciterId, 'alafasy');
+      expect(state.reciterName.toLowerCase(), contains('afasy'));
+    },
+  );
+
+  test(
+    'preparing transition state keeps playback present but disables resume until source is ready',
+    () async {
+      final feed = FakeQuranPlaybackFeed()
+        ..update(
+          playing: false,
+          hasPlaybackSource: true,
+          currentIndex: 1,
+          processingState: ProcessingState.ready,
         );
-    container.read(quranPlaybackSourceStateProvider.notifier).markPreparingTransition(
-      activeSourceType: QuranPlaybackSourceType.remoteStream,
-      surahNumber: 1,
-      ayahNumber: 3,
-      reciterId: 'husary',
-    );
-    feed.emitIndex();
-    feed.emitPlayerState();
-    await Future<void>.delayed(Duration.zero);
+      final container = await createContainer(feed);
+      addTearDown(() async {
+        container.dispose();
+        await feed.dispose();
+      });
 
-    final state = container.read(quranReaderPlaybackControllerProvider(1));
-    expect(state.hasPlayback, isTrue);
-    expect(state.canPlay, isFalse);
-    expect(
-      state.sourceResolutionState,
-      QuranPlaybackSourceResolutionState.preparingTransition,
-    );
-  });
+      container
+          .read(quranActivePlaybackSessionProvider.notifier)
+          .state = const QuranActivePlaybackSession(
+        surahNumber: 1,
+        ayahNumbers: <int>[1, 2, 3],
+        reciterId: 'husary',
+        playbackSpeed: 1,
+        includeMediaTags: true,
+        isSurahMode: true,
+      );
+      container
+          .read(quranPlaybackSourceStateProvider.notifier)
+          .markPreparingTransition(
+            activeSourceType: QuranPlaybackSourceType.remoteStream,
+            surahNumber: 1,
+            ayahNumber: 3,
+            reciterId: 'husary',
+          );
+      feed.emitIndex();
+      feed.emitPlayerState();
+      await Future<void>.delayed(Duration.zero);
+
+      final state = container.read(quranReaderPlaybackControllerProvider(1));
+      expect(state.hasPlayback, isTrue);
+      expect(state.canPlay, isFalse);
+      expect(
+        state.sourceResolutionState,
+        QuranPlaybackSourceResolutionState.preparingTransition,
+      );
+    },
+  );
+
+  test(
+    'retains the previous active ayah instead of falling back to the first ayah when player index is temporarily null',
+    () async {
+      final feed = FakeQuranPlaybackFeed()
+        ..update(
+          playing: true,
+          hasPlaybackSource: true,
+          currentIndex: 1,
+          processingState: ProcessingState.ready,
+        );
+      final container = await createContainer(feed);
+      final subscription = container.listen(
+        quranReaderPlaybackControllerProvider(1),
+        (previous, next) {},
+        fireImmediately: true,
+      );
+      addTearDown(() async {
+        subscription.close();
+        container.dispose();
+        await feed.dispose();
+      });
+
+      container
+          .read(quranActivePlaybackSessionProvider.notifier)
+          .state = const QuranActivePlaybackSession(
+        surahNumber: 1,
+        ayahNumbers: <int>[1, 2, 3],
+        reciterId: 'husary',
+        playbackSpeed: 1,
+        includeMediaTags: true,
+        isSurahMode: true,
+      );
+      feed.emitIndex();
+      feed.emitPlayerState();
+      await Future<void>.delayed(Duration.zero);
+
+      expect(
+        container.read(quranReaderPlaybackControllerProvider(1)).activeAyahKey,
+        '1:2',
+      );
+
+      feed.update(clearCurrentIndex: true);
+      feed.emitIndex();
+      await Future<void>.delayed(Duration.zero);
+
+      expect(
+        container.read(quranReaderPlaybackControllerProvider(1)).activeAyahKey,
+        '1:2',
+      );
+    },
+  );
+
+  test(
+    'uses the transition target ayah instead of resetting to the first ayah during preparing-transition windows',
+    () async {
+      final feed = FakeQuranPlaybackFeed()
+        ..update(
+          playing: true,
+          hasPlaybackSource: true,
+          currentIndex: 1,
+          processingState: ProcessingState.ready,
+        );
+      final container = await createContainer(feed);
+      final subscription = container.listen(
+        quranReaderPlaybackControllerProvider(1),
+        (previous, next) {},
+        fireImmediately: true,
+      );
+      addTearDown(() async {
+        subscription.close();
+        container.dispose();
+        await feed.dispose();
+      });
+
+      container
+          .read(quranActivePlaybackSessionProvider.notifier)
+          .state = const QuranActivePlaybackSession(
+        surahNumber: 1,
+        ayahNumbers: <int>[1, 2, 3],
+        reciterId: 'husary',
+        playbackSpeed: 1,
+        includeMediaTags: true,
+        isSurahMode: true,
+      );
+      feed.emitIndex();
+      feed.emitPlayerState();
+      await Future<void>.delayed(Duration.zero);
+
+      container
+          .read(quranPlaybackSourceStateProvider.notifier)
+          .markPreparingTransition(
+            activeSourceType: QuranPlaybackSourceType.remoteStream,
+            surahNumber: 1,
+            ayahNumber: 3,
+            reciterId: 'husary',
+          );
+      feed.update(
+        clearCurrentIndex: true,
+        processingState: ProcessingState.buffering,
+      );
+      feed.emitIndex();
+      feed.emitPlayerState();
+      await Future<void>.delayed(Duration.zero);
+
+      final state = container.read(quranReaderPlaybackControllerProvider(1));
+      expect(state.activeAyahKey, '1:3');
+      expect(
+        state.sourceResolutionState,
+        QuranPlaybackSourceResolutionState.preparingTransition,
+      );
+    },
+  );
 }

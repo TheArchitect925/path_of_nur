@@ -39,6 +39,7 @@ class AppPageScaffold extends ConsumerWidget {
     this.layoutConfig = PageLayoutConfig.standard,
     this.ownsBackground = true,
     required this.children,
+    this.bodySlivers,
   });
 
   final String title;
@@ -57,6 +58,7 @@ class AppPageScaffold extends ConsumerWidget {
   final PageLayoutConfig layoutConfig;
   final bool ownsBackground;
   final List<Widget> children;
+  final List<Widget>? bodySlivers;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -77,6 +79,94 @@ class AppPageScaffold extends ConsumerWidget {
     final bottomInset = layoutConfig.extendBehindBottomNav
         ? 0.0
         : _homeMatchedBottomContentPadding;
+    final headerContent = <Widget>[
+      if (canPop || headerIcon != null)
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            if (canPop)
+              IconButton(
+                onPressed: () => Navigator.of(context).maybePop(),
+                tooltip: MaterialLocalizations.of(context).backButtonTooltip,
+                icon: const BackButtonIcon(),
+                color: foreground,
+              ),
+            if (canPop && headerIcon != null) const SizedBox(width: 4),
+            if (headerIcon != null) Icon(headerIcon, color: foreground, size: 24),
+            if (headerIcon != null) const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: Theme.of(
+                      context,
+                    ).textTheme.titleLarge?.copyWith(color: foreground),
+                  ),
+                  const SizedBox(height: 6),
+                  Text(
+                    subtitle,
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodyMedium?.copyWith(color: subtleForeground),
+                  ),
+                ],
+              ),
+            ),
+            if (headerActions != null) ...[
+              const SizedBox(width: 8),
+              ...headerActions!,
+            ],
+          ],
+        )
+      else
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              title,
+              style: Theme.of(
+                context,
+              ).textTheme.titleLarge?.copyWith(color: foreground),
+            ),
+            const SizedBox(height: 6),
+            Text(
+              subtitle,
+              style: Theme.of(
+                context,
+              ).textTheme.bodyMedium?.copyWith(color: subtleForeground),
+            ),
+          ],
+        ),
+      const SizedBox(height: 12),
+      if (quoteHeader != null) ...[
+        const SizedBox(height: 12),
+        _AnimatedQuoteHeader(
+          reduceMotion: reduceMotion,
+          style: pageTransitionStyle,
+          child: quoteHeader!,
+        ),
+      ] else if (resolvedQuote != null) ...[
+        const SizedBox(height: 12),
+        _AnimatedQuoteHeader(
+          reduceMotion: reduceMotion,
+          style: pageTransitionStyle,
+          child: QuranQuoteBlock(
+            quote: resolvedQuote,
+            onTap: () {
+              if (onQuoteTap != null) {
+                onQuoteTap!(resolvedQuote);
+                return;
+              }
+              openQuranQuoteLocation(context, resolvedQuote);
+            },
+          ),
+        ),
+      ],
+      const SizedBox(height: 20),
+    ];
+    final hasCustomSlivers = bodySlivers != null;
     return _AnimatedPageEntrance(
       reduceMotion: reduceMotion,
       style: pageTransitionStyle,
@@ -104,101 +194,36 @@ class AppPageScaffold extends ConsumerWidget {
                     ),
                   ),
           SafeArea(
-            child: ListView(
-              controller: scrollController,
-              physics: const BouncingScrollPhysics(),
-              padding: EdgeInsets.fromLTRB(16, 18, 16, bottomInset),
-              children: [
-                if (canPop || headerIcon != null)
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      if (canPop)
-                        IconButton(
-                          onPressed: () => Navigator.of(context).maybePop(),
-                          tooltip: MaterialLocalizations.of(
-                            context,
-                          ).backButtonTooltip,
-                          icon: const BackButtonIcon(),
-                          color: foreground,
-                        ),
-                      if (canPop && headerIcon != null)
-                        const SizedBox(width: 4),
-                      if (headerIcon != null)
-                        Icon(headerIcon, color: foreground, size: 24),
-                      if (headerIcon != null) const SizedBox(width: 12),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+            child: hasCustomSlivers
+                ? CustomScrollView(
+                    controller: scrollController,
+                    physics: const BouncingScrollPhysics(),
+                    slivers: [
+                      SliverPadding(
+                        padding: const EdgeInsets.fromLTRB(16, 18, 16, 0),
+                        sliver: SliverList.list(
                           children: [
-                            Text(
-                              title,
-                              style: Theme.of(context).textTheme.titleLarge
-                                  ?.copyWith(color: foreground),
-                            ),
-                            const SizedBox(height: 6),
-                            Text(
-                              subtitle,
-                              style: Theme.of(context).textTheme.bodyMedium
-                                  ?.copyWith(color: subtleForeground),
-                            ),
+                            ...headerContent,
+                            ...children,
                           ],
                         ),
                       ),
-                      if (headerActions != null) ...[
-                        const SizedBox(width: 8),
-                        ...headerActions!,
-                      ],
+                      ...bodySlivers!,
+                      if (bottomInset > 0)
+                        SliverToBoxAdapter(
+                          child: SizedBox(height: bottomInset),
+                        ),
                     ],
                   )
-                else
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                : ListView(
+                    controller: scrollController,
+                    physics: const BouncingScrollPhysics(),
+                    padding: EdgeInsets.fromLTRB(16, 18, 16, bottomInset),
                     children: [
-                      Text(
-                        title,
-                        style: Theme.of(
-                          context,
-                        ).textTheme.titleLarge?.copyWith(color: foreground),
-                      ),
-                      const SizedBox(height: 6),
-                      Text(
-                        subtitle,
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: subtleForeground,
-                        ),
-                      ),
+                      ...headerContent,
+                      ...children,
                     ],
                   ),
-                const SizedBox(height: 12),
-                if (quoteHeader != null) ...[
-                  const SizedBox(height: 12),
-                  _AnimatedQuoteHeader(
-                    reduceMotion: reduceMotion,
-                    style: pageTransitionStyle,
-                    child: quoteHeader!,
-                  ),
-                ] else if (resolvedQuote != null) ...[
-                  const SizedBox(height: 12),
-                  _AnimatedQuoteHeader(
-                    reduceMotion: reduceMotion,
-                    style: pageTransitionStyle,
-                    child: QuranQuoteBlock(
-                      quote: resolvedQuote,
-                      onTap: () {
-                        if (onQuoteTap != null) {
-                          onQuoteTap!(resolvedQuote);
-                          return;
-                        }
-                        openQuranQuoteLocation(context, resolvedQuote);
-                      },
-                    ),
-                  ),
-                ],
-                const SizedBox(height: 20),
-                ...children,
-              ],
-            ),
           ),
           if (floatingBottom != null)
             Positioned(

@@ -41,6 +41,7 @@
   "notificationsQuranTitle": "Koranreflexion",
   "notificationsReflectionTitle": "Tägliche Reflexion",
   "notificationsFastingTitle": "Fasten-Erinnerung",
+  "notificationsOnThisDayTitle": "On This Day",
   "notificationsCycleCheckTitle": "Fahrrad-Check-in",
   "notificationsMoonriseTitle": "Mondaufgang",
   "notificationsMoonsetTitle": "Monduntergang",
@@ -72,6 +73,7 @@
   "notificationsQuranBody": "Kehre mit Absicht zu deiner Quran-Lesung zuruck.",
   "notificationsReflectionBody": "Halten Sie eine kurze Reflexion fest, bevor Ihr Tag zu Ende geht.",
   "notificationsFastingBody": "Bereite deine Absicht fur das heutige Fasten vor.",
+  "notificationsOnThisDayBody": "Open today’s historical reflection and revisit a meaningful moment from Islamic history.",
   "notificationsCycleCheckBody": "Prufe deinen Status und aktiviere Gebetserinnerungen wieder, wenn du bereit bist.",
   "notificationsMoonriseBody": "Der Mond geht jetzt auf.",
   "notificationsMoonsetBody": "Der Mond geht jetzt unter.",
@@ -272,7 +274,18 @@
   "hadithTransliterationLabel": "Transliteration",
   "hadithTransliterationUnavailable": "Transliteration is not available in the current verified dataset for this hadith yet.",
   "hadithTranslationLabel": "Übersetzung",
+  "hadithSourceLabel": "Quelle",
   "hadithReferenceLabel": "Referenz",
+  "hadithReferenceHadithNumber": "Hadith {number}",
+  "@hadithReferenceHadithNumber": {
+    "placeholders": {
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "hadithGradeShortLabel": "Einstufung",
+  "hadithNarratorLabel": "Überliefert von",
   "hadithPageTitle": "Hadithe",
   "hadithPageSubtitle": "Lehren des Propheten ﷺ nach Themen geordnet und mit dem Koran verbunden.",
   "hadithThemeLabel": "Thema",
@@ -297,6 +310,11 @@
   "hadithTabReview": "Rezension",
   "hadithTabPaths": "Wege",
   "hadithActionAddToReflectionJournal": "Zum Reflexionsjournal hinzufügen",
+  "hadithActionSave": "Speichern",
+  "hadithActionSaved": "Gespeichert",
+  "hadithActionRemoveSaved": "Gespeichertes entfernen",
+  "hadithActionCopy": "Kopieren",
+  "hadithActionShare": "Teilen",
   "hadithActionMarkLessonComplete": "Lektion als abgeschlossen markieren",
   "hadithActionLessonCompleted": "Lektion abgeschlossen",
   "hadithActionCompletedToday": "Heute abgeschlossen",
@@ -318,6 +336,9 @@
   "hadithSubtitleSaved": "Bewahren Sie wichtige Hadithe zum wiederholten Lesen und Nachdenken griffbereit auf.",
   "hadithEmptySavedTitle": "Noch kein gespeicherter Hadith",
   "hadithEmptySavedSubtitle": "Speichern Sie Hadithe von Themen- und Detailseiten, um Ihr persönliches Reflexionsset zusammenzustellen.",
+  "hadithAddedToSaved": "Zum gespeicherten Hadith hinzugefügt.",
+  "hadithRemovedFromSaved": "Aus den gespeicherten Hadithen entfernt.",
+  "hadithCopiedToClipboard": "Hadith in die Zwischenablage kopiert.",
   "hadithTitleDailyReflection": "Tägliche Hadith-Reflexion",
   "hadithEmptyDaily": "Derzeit ist kein täglicher Hadith verfügbar.",
   "hadithGradeLabel": "Note: {grade}",
@@ -1388,6 +1409,8 @@
   "profileQuranReminders": "Koran-Erinnerungen",
   "profileReflectionReminders": "Reflexionserinnerungen",
   "profileFastingReminders": "Fastenerinnerungen",
+  "profileOnThisDayReminders": "On This Day reminders",
+  "profileOnThisDayRemindersSubtitle": "Notify me when today has a historical Islamic event to reflect on.",
   "profileMoonriseReminders": "Mondaufgangsbenachrichtigungen",
   "profileMoonriseRemindersSubtitle": "Benachrichtigen Sie mich, wenn der Mond aufgeht.",
   "profileMoonsetReminders": "Monduntergangsbenachrichtigungen",
@@ -2748,7 +2771,30 @@
   "quranExplorerSubtitle": "Durchsuchen Sie Suren und öffnen Sie Ihren Lesefluss.",
   "quranSearchTitle": "Koransuche",
   "quranSearchSubtitle": "Finden Sie schnell Suren und Verse.",
+  "quranSearchMoreResultsAction": "For More Results",
+  "quranSearchResultCountLabel": "{count, plural, =1{1 result} other{{count} results}}",
+  "@quranSearchResultCountLabel": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "quranSearchHint": "Suchen Sie nach Sure, Zahl oder Phrase",
+  "quranSearchTypeAll": "All",
+  "quranSearchTypeText": "Text",
+  "quranSearchTypeTheme": "Theme",
+  "quranSearchTypeTopic": "Topic",
+  "quranSearchTypeSurah": "Surah",
+  "quranSearchFilterAll": "All",
+  "quranSearchFilterTranslation": "Translation",
+  "quranSearchFilterTransliteration": "Transliteration",
+  "quranSearchFilterArabic": "Arabic",
+  "quranSearchFilterSurah": "Surah",
+  "quranSearchMatchTranslation": "Translation",
+  "quranSearchMatchTransliteration": "Transliteration",
+  "quranSearchMatchArabic": "Arabic",
+  "quranSearchMatchSurah": "Surah",
   "searchSurahHint": "Suren suchen...",
   "searchQuranTeachingHint": "Suchen Sie nach Buchstaben, Regeln, Wörtern oder Suren ...",
   "quranAyahsLabel": "Ayahs",
@@ -2764,6 +2810,11 @@
   "quranRecentSearches": "Aktuelle Suchanfragen",
   "quranSearchNoRecent": "Noch keine aktuellen Suchanfragen.",
   "quranClearRecent": "Klar aktuell",
+  "quranSuggestedSearches": "Suggested searches",
+  "quranSavedSearches": "Saved searches",
+  "quranSearchSaveAction": "Save search",
+  "quranSearchSavedAction": "Saved",
+  "quranSearchRemoveSavedAction": "Remove saved search",
   "quranSearchNoResults": "Keine Übereinstimmungen gefunden.Versuchen Sie es mit einem anderen Schlüsselwort.",
   "salahCurrentPrayerBadge": "Aktuelles Gebet",
   "salahNextPrayerBadge": "Nächstes Gebet",
@@ -18024,5 +18075,195 @@
   "homeGlassVariantClearShowcaseSubtitle": "Most transparent showcase feel",
   "homeGlassVariantClearShowcaseBody": "The most open option in the set, with more atmosphere visible beneath the surface. It still stays within the app’s calm language rather than turning flashy.",
   "homeGlassVariantClearShowcaseFooter": "Best for visual comparison",
-  "homeGlassVariantClearShowcaseMicro": "Most open · careful contrast"
+  "homeGlassVariantClearShowcaseMicro": "Most open · careful contrast",
+  "quranReaderSearchPillLabel": "Search",
+  "quranReaderSearchSheetTitle": "Search this surah",
+  "quranReaderSearchScopeSubtitle": "Find matches in the current surah.",
+  "quranReaderSearchWholeQuranSubtitle": "Find matches across the whole Qur’an.",
+  "quranReaderSearchScopeCurrentSurah": "Current Surah",
+  "quranReaderSearchScopeWholeQuran": "Whole Qur’an",
+  "quranReaderSearchHint": "Search translation, transliteration, or Arabic",
+  "quranReaderSearchClearAction": "Clear",
+  "quranReaderSearchRunAction": "Search",
+  "quranReaderSearchClearRecentAction": "Clear recent",
+  "quranReaderSearchPreviousAction": "Previous match",
+  "quranReaderSearchNextAction": "Next match",
+  "quranReaderSearchMatchCounter": "{current} of {total}",
+  "@quranReaderSearchMatchCounter": {
+    "placeholders": {
+      "current": {},
+      "total": {}
+    }
+  },
+  "hadithSearchTitle": "Search Hadith",
+  "hadithSearchSubtitle": "Search the trusted hadith library by text, source, or category.",
+  "hadithSearchOpenAction": "Open search",
+  "hadithSearchFilterAll": "All",
+  "hadithSearchFilterSource": "Source",
+  "hadithSearchFilterCategory": "Category",
+  "hadithSearchFilterSubcategory": "Subcategory",
+  "hadithSearchFilterGrade": "Grade",
+  "hadithSearchEmptyQueryTitle": "Search the hadith library",
+  "hadithSearchEmptyQuerySubtitle": "Search by translation, Arabic, source book, narrator, category, subcategory, or reference.",
+  "hadithSearchSuggestedSourcesTitle": "Suggested sources",
+  "hadithSearchSuggestedCategoriesTitle": "Suggested categories",
+  "hadithSearchNoResultsTitle": "No hadith found",
+  "hadithSearchNoResultsSubtitle": "Try a different phrase, source book, or category.",
+  "hadithSearchResultsCount": "{count} results",
+  "@hadithSearchResultsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "hadithSearchMatchTitle": "Title match",
+  "hadithSearchMatchExcerpt": "Excerpt match",
+  "hadithSearchMatchTranslation": "Translation match",
+  "hadithSearchMatchArabic": "Arabic match",
+  "hadithSearchMatchTransliteration": "Transliteration match",
+  "hadithSearchMatchSource": "Source match",
+  "hadithSearchMatchReference": "Reference match",
+  "hadithSearchMatchNarrator": "Narrator match",
+  "hadithSearchMatchCategory": "Category match",
+  "hadithSearchMatchSubcategory": "Subcategory match",
+  "hadithSearchMatchGrade": "Grade match",
+  "hadithSearchSuggestionsTitle": "Suggestions",
+  "hadithSearchRecentTitle": "Recent searches",
+  "hadithSearchClearRecents": "Clear",
+  "hadithSearchNoRecent": "No recent searches yet.",
+  "hadithSearchNoResultsTryBroader": "Try a broader phrase.",
+  "hadithSearchNoResultsTrySource": "Try a source book like Riyad as-Salihin.",
+  "hadithSearchNoResultsTryCategory": "Try a category such as Character.",
+  "hadithSearchGroupText": "Text matches",
+  "hadithSearchGroupSource": "Source and reference matches",
+  "hadithSearchGroupTopical": "Category and topic matches",
+  "hadithSearchGroupGrade": "Grade matches",
+  "hadithSearchSuggestionIntentions": "intentions",
+  "hadithSearchSuggestionSincerity": "sincerity",
+  "hadithSearchSuggestionMercy": "mercy",
+  "hadithSearchSuggestionRepentance": "repentance",
+  "hadithSearchSuggestionDua": "dua",
+  "hadithSearchSuggestionCharacter": "character",
+  "hadithSearchSuggestionJustice": "justice",
+  "hadithSearchSuggestionGratitude": "gratitude",
+  "hadithActionBrowseSources": "Browse by source",
+  "hadithSourceBrowseTitle": "Browse by source",
+  "hadithSourceBrowseSubtitle": "Explore trusted hadith by source collection and chapter where metadata exists.",
+  "hadithSourceBrowseNoSources": "No source collections are available yet.",
+  "hadithSourceBrowseNotFoundSubtitle": "This source could not be found.",
+  "hadithSourceBrowseNotFoundBody": "Try another trusted source collection from the browse list.",
+  "hadithSourceBrowseCollectionSummary": "{entryCount} hadith across {chapterCount} chapters",
+  "@hadithSourceBrowseCollectionSummary": {
+    "placeholders": {
+      "entryCount": {
+        "type": "int"
+      },
+      "chapterCount": {
+        "type": "int"
+      }
+    }
+  },
+  "hadithSourceBrowseCollectionCountOnly": "{count} hadith",
+  "@hadithSourceBrowseCollectionCountOnly": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "hadithSourceBrowseChaptersTitle": "Chapters",
+  "hadithSourceBrowseChapterSummary": "{chapterLabel} • {count} hadith",
+  "@hadithSourceBrowseChapterSummary": {
+    "placeholders": {
+      "chapterLabel": {},
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "hadithSourceBrowseEntriesTitle": "Entries",
+  "hadithSourceBrowseEntryPreviewTitle": "Entry preview",
+  "hadithSourceBrowseChapterPageSubtitle": "{sourceTitle} • {chapterLabel} • {count} hadith",
+  "@hadithSourceBrowseChapterPageSubtitle": {
+    "placeholders": {
+      "sourceTitle": {},
+      "chapterLabel": {},
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "hadithSourceBrowseEntrySubtitle": "{reference} • {grade}",
+  "@hadithSourceBrowseEntrySubtitle": {
+    "placeholders": {
+      "reference": {},
+      "grade": {}
+    }
+  },
+  "hadithSourceBrowseChapterNumber": "Chapter {number}",
+  "@hadithSourceBrowseChapterNumber": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "hadithSourceBrowseChapterFallback": "Chapter",
+  "hadithSourceBrowseGeneralChapter": "General chapter",
+  "hadithSourceBrowseUncategorized": "Uncategorized",
+  "editorialRelationTypeExplains": "Explains",
+  "editorialRelationTypeReinforces": "Reinforces",
+  "editorialRelationTypeSameTheme": "Same theme",
+  "editorialRelationTypeRelatedPractice": "Related practice",
+  "editorialRelationTypeRelatedDua": "Related dua",
+  "editorialRelationTypeRelatedCreationSign": "Related creation sign",
+  "editorialRelationTypeSameLesson": "Same lesson",
+  "editorialRelationTypeReaderFollowUp": "Reader follow-up",
+  "hadithSectionRelatedQuran": "Related Qur’an",
+  "hadithSectionRelatedDuas": "Related Duas",
+  "hadithSectionRelatedCanonical": "Related hadith",
+  "quranReaderRelatedHadithTitle": "Related Hadith",
+  "quranReaderRelatedDuasTitle": "Related Duas",
+  "allSearchTitle": "All Search",
+  "allSearchSubtitle": "Search Qur’an, hadith, duas, and learning content together.",
+  "allSearchHint": "Search across Path of Nur",
+  "allSearchEmptyTitle": "Search across the app",
+  "allSearchEmptySubtitle": "We’ll group results by domain so it stays calm and easy to trust.",
+  "allSearchSuggestionsTitle": "Suggestions",
+  "allSearchRecentTitle": "Recent searches",
+  "allSearchClearRecent": "Clear",
+  "allSearchNoRecent": "No recent searches yet.",
+  "allSearchNoResultsTitle": "No results yet",
+  "allSearchNoResultsSubtitle": "We could not find a strong match across Qur’an, hadith, duas, or learn content.",
+  "allSearchNoResultsTipBroader": "Try a shorter or broader phrase.",
+  "allSearchNoResultsTipDomain": "You can also jump into a domain search for more depth.",
+  "allSearchDomainQuran": "Qur’an",
+  "allSearchDomainHadith": "Hadith",
+  "allSearchDomainDua": "Duas",
+  "allSearchDomainLearn": "Learn",
+  "allSearchViewAllQuran": "View all in Qur’an",
+  "allSearchViewAllHadith": "View all in Hadith",
+  "allSearchViewAllDua": "View all in Duas",
+  "allSearchViewAllLearn": "View all in Learn",
+  "allSearchSuggestionMercy": "mercy",
+  "allSearchSuggestionPatience": "patience",
+  "allSearchSuggestionIntentions": "intentions",
+  "allSearchSuggestionRepentance": "repentance",
+  "allSearchSuggestionDua": "dua",
+  "allSearchSuggestionProphets": "prophets",
+  "allSearchSuggestionGratitude": "gratitude",
+  "allSearchSuggestionJustice": "justice",
+  "allSearchResultsFor": "Results for \"{query}\"",
+  "@allSearchResultsFor": {
+    "placeholders": {
+      "query": {}
+    }
+  },
+  "allSearchError": "Search unavailable: {message}",
+  "@allSearchError": {
+    "placeholders": {
+      "message": {}
+    }
+  }
 }

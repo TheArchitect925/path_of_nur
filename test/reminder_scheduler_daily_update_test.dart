@@ -7,6 +7,8 @@ import 'package:path_of_nur/core/reminders/adhan_options.dart';
 import 'package:path_of_nur/core/reminders/local_notification_service.dart';
 import 'package:path_of_nur/core/prayer/prayer_preferences.dart';
 import 'package:path_of_nur/core/reminders/reminder_scheduler.dart';
+import 'package:path_of_nur/features/history/application/historical_calendar_providers.dart';
+import 'package:path_of_nur/features/history/domain/historical_event_models.dart';
 import 'package:path_of_nur/features/profile/application/profile_settings_provider.dart';
 import 'package:path_of_nur/features/worship/application/prayer_controller.dart';
 import 'package:path_of_nur/features/worship/data/prayer_log_repository.dart';
@@ -76,6 +78,28 @@ PrayerScheduleItem _item({
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
+  const historicalEvent = HistoricalEvent(
+    id: 'badr',
+    slug: 'battle-of-badr',
+    title: 'Battle of Badr',
+    summaryShort: 'A decisive early Muslim victory.',
+    categories: <HistoricalEventCategory>[HistoricalEventCategory.battles],
+    tags: <String>['badr'],
+    gregorian: HistoricalEventDate(year: 624, month: 3, day: 11),
+    hijri: HistoricalEventDate(year: 2, month: 9, day: 17),
+    location: HistoricalEventLocation(name: 'Badr'),
+    significancePoints: <String>['A turning point for the Muslim community.'],
+    lessons: <String>['Reliance upon Allah and steadfastness matter.'],
+    relatedEntities: <String>['Prophet Muhammad ﷺ'],
+    relatedContentIds: <String>[],
+    relatedContentHooks: <HistoricalRelatedContentHook>[],
+    featuredPriority: 10,
+    sources: <HistoricalSourceReference>[],
+    isPublished: true,
+    dateConfidence: HistoricalDateConfidence.exact,
+    alternateDates: <HistoricalAlternateDate>[],
+  );
+
   test(
     'reminder plan updates daily for prayer and non-prayer reminder types',
     () async {
@@ -138,6 +162,9 @@ void main() {
           sharedPreferencesProvider.overrideWithValue(prefs),
           dailyNowProvider.overrideWith((ref) => Stream.value(day1)),
           prayerScheduleProvider.overrideWithValue(scheduleDay1),
+          historicalCalendarEventsProvider.overrideWith(
+            (ref) => Future.value(<HistoricalEvent>[historicalEvent]),
+          ),
           prayerLocationProvider.overrideWith((ref) {
             return _testPrayerLocationNotifier(LocalStore(prefs));
           }),
@@ -146,6 +173,7 @@ void main() {
       addTearDown(day1Container.dispose);
 
       await day1Container.read(dailyNowProvider.future);
+      await day1Container.read(historicalCalendarEventsProvider.future);
       day1Container
           .read(profileSettingsProvider.notifier)
           .setQuranReminders(true);
@@ -155,6 +183,9 @@ void main() {
       day1Container
           .read(profileSettingsProvider.notifier)
           .setFastingReminders(true);
+      day1Container
+          .read(profileSettingsProvider.notifier)
+          .setOnThisDayReminders(true);
 
       day1Container
           .read(prayerSettingsProvider.notifier)
@@ -197,6 +228,7 @@ void main() {
       expect(day1Plan.items.any((i) => i.id == 'quran.daily'), isTrue);
       expect(day1Plan.items.any((i) => i.id == 'reflection.daily'), isTrue);
       expect(day1Plan.items.any((i) => i.id == 'fasting.daily'), isTrue);
+      expect(day1Plan.items.any((i) => i.id == 'history.on_this_day'), isTrue);
       expect(day1Plan.items.any((i) => i.id == 'celestial.moonrise'), isTrue);
       expect(day1Plan.items.any((i) => i.id == 'celestial.moonset'), isTrue);
       expect(day1Plan.items.every((i) => i.when.day == 11), isTrue);
@@ -206,6 +238,9 @@ void main() {
           sharedPreferencesProvider.overrideWithValue(prefs),
           dailyNowProvider.overrideWith((ref) => Stream.value(day2)),
           prayerScheduleProvider.overrideWithValue(scheduleDay2),
+          historicalCalendarEventsProvider.overrideWith(
+            (ref) => Future.value(<HistoricalEvent>[historicalEvent]),
+          ),
           prayerLocationProvider.overrideWith((ref) {
             return _testPrayerLocationNotifier(LocalStore(prefs));
           }),
@@ -214,10 +249,12 @@ void main() {
       addTearDown(day2Container.dispose);
 
       await day2Container.read(dailyNowProvider.future);
+      await day2Container.read(historicalCalendarEventsProvider.future);
       final day2Plan = day2Container.read(reminderSchedulerProvider);
 
       expect(day2Plan.dayKey, '2026-03-12');
       expect(day2Plan.items.every((i) => i.when.day == 12), isTrue);
+      expect(day2Plan.items.any((i) => i.id == 'history.on_this_day'), isFalse);
 
       final day1Dhuhr = day1Plan.items
           .where((i) => i.id == 'prayer.dhuhr.at.adhan')
@@ -233,51 +270,132 @@ void main() {
     },
   );
 
-  test('moonrise and moonset reminders respect profile notification toggles', () async {
-    SharedPreferences.setMockInitialValues({});
-    final prefs = await SharedPreferences.getInstance();
-    final now = DateTime(2026, 3, 11, 9, 0);
+  test(
+    'moonrise and moonset reminders respect profile notification toggles',
+    () async {
+      SharedPreferences.setMockInitialValues({});
+      final prefs = await SharedPreferences.getInstance();
+      final now = DateTime(2026, 3, 11, 9, 0);
 
-    final container = ProviderContainer(
-      overrides: [
-        sharedPreferencesProvider.overrideWithValue(prefs),
-        dailyNowProvider.overrideWith((ref) => Stream.value(now)),
-        prayerScheduleProvider.overrideWithValue(const <PrayerScheduleItem>[]),
-        prayerLocationProvider.overrideWith((ref) {
-          return _testPrayerLocationNotifier(LocalStore(prefs));
-        }),
-      ],
-    );
-    addTearDown(container.dispose);
+      final container = ProviderContainer(
+        overrides: [
+          sharedPreferencesProvider.overrideWithValue(prefs),
+          dailyNowProvider.overrideWith((ref) => Stream.value(now)),
+          prayerScheduleProvider.overrideWithValue(
+            const <PrayerScheduleItem>[],
+          ),
+          prayerLocationProvider.overrideWith((ref) {
+            return _testPrayerLocationNotifier(LocalStore(prefs));
+          }),
+        ],
+      );
+      addTearDown(container.dispose);
 
-    await container.read(dailyNowProvider.future);
+      await container.read(dailyNowProvider.future);
 
-    final defaultPlan = container.read(reminderSchedulerProvider);
-    expect(defaultPlan.items.any((i) => i.id == 'celestial.moonrise'), isTrue);
-    expect(defaultPlan.items.any((i) => i.id == 'celestial.moonset'), isTrue);
+      final defaultPlan = container.read(reminderSchedulerProvider);
+      expect(
+        defaultPlan.items.any((i) => i.id == 'celestial.moonrise'),
+        isTrue,
+      );
+      expect(defaultPlan.items.any((i) => i.id == 'celestial.moonset'), isTrue);
 
-    container.read(profileSettingsProvider.notifier).setMoonriseReminders(false);
-    final moonsetOnlyPlan = container.read(reminderSchedulerProvider);
-    expect(
-      moonsetOnlyPlan.items.any((i) => i.id == 'celestial.moonrise'),
-      isFalse,
-    );
-    expect(
-      moonsetOnlyPlan.items.any((i) => i.id == 'celestial.moonset'),
-      isTrue,
-    );
+      container
+          .read(profileSettingsProvider.notifier)
+          .setMoonriseReminders(false);
+      final moonsetOnlyPlan = container.read(reminderSchedulerProvider);
+      expect(
+        moonsetOnlyPlan.items.any((i) => i.id == 'celestial.moonrise'),
+        isFalse,
+      );
+      expect(
+        moonsetOnlyPlan.items.any((i) => i.id == 'celestial.moonset'),
+        isTrue,
+      );
 
-    container.read(profileSettingsProvider.notifier).setMoonsetReminders(false);
-    final noCelestialPlan = container.read(reminderSchedulerProvider);
-    expect(
-      noCelestialPlan.items.any((i) => i.id == 'celestial.moonrise'),
-      isFalse,
-    );
-    expect(
-      noCelestialPlan.items.any((i) => i.id == 'celestial.moonset'),
-      isFalse,
-    );
-  });
+      container
+          .read(profileSettingsProvider.notifier)
+          .setMoonsetReminders(false);
+      final noCelestialPlan = container.read(reminderSchedulerProvider);
+      expect(
+        noCelestialPlan.items.any((i) => i.id == 'celestial.moonrise'),
+        isFalse,
+      );
+      expect(
+        noCelestialPlan.items.any((i) => i.id == 'celestial.moonset'),
+        isFalse,
+      );
+    },
+  );
+
+  test(
+    'on this day reminder only appears when today has a historical match',
+    () async {
+      SharedPreferences.setMockInitialValues({});
+      final prefs = await SharedPreferences.getInstance();
+      final now = DateTime(2026, 3, 11, 9, 0);
+
+      final container = ProviderContainer(
+        overrides: [
+          sharedPreferencesProvider.overrideWithValue(prefs),
+          dailyNowProvider.overrideWith((ref) => Stream.value(now)),
+          prayerScheduleProvider.overrideWithValue(
+            const <PrayerScheduleItem>[],
+          ),
+          historicalCalendarEventsProvider.overrideWith(
+            (ref) => Future.value(<HistoricalEvent>[historicalEvent]),
+          ),
+          prayerLocationProvider.overrideWith((ref) {
+            return _testPrayerLocationNotifier(LocalStore(prefs));
+          }),
+        ],
+      );
+      addTearDown(container.dispose);
+
+      await container.read(dailyNowProvider.future);
+      await container.read(historicalCalendarEventsProvider.future);
+      container
+          .read(profileSettingsProvider.notifier)
+          .setOnThisDayReminders(true);
+
+      final planWithMatch = container.read(reminderSchedulerProvider);
+      expect(
+        planWithMatch.items.any((item) => item.id == 'history.on_this_day'),
+        isTrue,
+      );
+
+      final noMatchContainer = ProviderContainer(
+        overrides: [
+          sharedPreferencesProvider.overrideWithValue(prefs),
+          dailyNowProvider.overrideWith(
+            (ref) => Stream.value(DateTime(2026, 3, 12, 9, 0)),
+          ),
+          prayerScheduleProvider.overrideWithValue(
+            const <PrayerScheduleItem>[],
+          ),
+          historicalCalendarEventsProvider.overrideWith(
+            (ref) => Future.value(<HistoricalEvent>[historicalEvent]),
+          ),
+          prayerLocationProvider.overrideWith((ref) {
+            return _testPrayerLocationNotifier(LocalStore(prefs));
+          }),
+        ],
+      );
+      addTearDown(noMatchContainer.dispose);
+
+      await noMatchContainer.read(dailyNowProvider.future);
+      await noMatchContainer.read(historicalCalendarEventsProvider.future);
+      noMatchContainer
+          .read(profileSettingsProvider.notifier)
+          .setOnThisDayReminders(true);
+
+      final planWithoutMatch = noMatchContainer.read(reminderSchedulerProvider);
+      expect(
+        planWithoutMatch.items.any((item) => item.id == 'history.on_this_day'),
+        isFalse,
+      );
+    },
+  );
 
   test(
     'reminder bootstrap stays safe with sparse defaults and empty schedule',
@@ -316,75 +434,82 @@ void main() {
     },
   );
 
-  test('completed Friday Jumu‘ah suppresses Dhuhr reminders for that day', () async {
-    SharedPreferences.setMockInitialValues({});
-    final prefs = await SharedPreferences.getInstance();
-    final database = AppDatabase.inMemory();
-    addTearDown(database.close);
-    final friday = DateTime(2026, 3, 20, 9, 0);
-    final dayKey = LocalStore.todayKey(friday);
+  test(
+    'completed Friday Jumu‘ah suppresses Dhuhr reminders for that day',
+    () async {
+      SharedPreferences.setMockInitialValues({});
+      final prefs = await SharedPreferences.getInstance();
+      final database = AppDatabase.inMemory();
+      addTearDown(database.close);
+      final friday = DateTime(2026, 3, 20, 9, 0);
+      final dayKey = LocalStore.todayKey(friday);
 
-    final fridaySchedule = <PrayerScheduleItem>[
-      _item(
-        id: 'fajr',
-        name: 'Fajr',
-        offer: DateTime(2026, 3, 20, 6, 0),
-        windowEnd: DateTime(2026, 3, 20, 7, 0),
-        qaza: DateTime(2026, 3, 20, 7, 0),
-      ),
-      _item(
-        id: 'dhuhr',
-        name: 'Dhuhr',
-        offer: DateTime(2026, 3, 20, 13, 30),
-        windowEnd: DateTime(2026, 3, 20, 16, 0),
-        qaza: DateTime(2026, 3, 20, 16, 0),
-      ),
-      _item(
-        id: 'asr',
-        name: 'Asr',
-        offer: DateTime(2026, 3, 20, 16, 30),
-        windowEnd: DateTime(2026, 3, 20, 19, 0),
-        qaza: DateTime(2026, 3, 20, 19, 0),
-      ),
-    ];
+      final fridaySchedule = <PrayerScheduleItem>[
+        _item(
+          id: 'fajr',
+          name: 'Fajr',
+          offer: DateTime(2026, 3, 20, 6, 0),
+          windowEnd: DateTime(2026, 3, 20, 7, 0),
+          qaza: DateTime(2026, 3, 20, 7, 0),
+        ),
+        _item(
+          id: 'dhuhr',
+          name: 'Dhuhr',
+          offer: DateTime(2026, 3, 20, 13, 30),
+          windowEnd: DateTime(2026, 3, 20, 16, 0),
+          qaza: DateTime(2026, 3, 20, 16, 0),
+        ),
+        _item(
+          id: 'asr',
+          name: 'Asr',
+          offer: DateTime(2026, 3, 20, 16, 30),
+          windowEnd: DateTime(2026, 3, 20, 19, 0),
+          qaza: DateTime(2026, 3, 20, 19, 0),
+        ),
+      ];
 
-    final container = ProviderContainer(
-      overrides: [
-        sharedPreferencesProvider.overrideWithValue(prefs),
-        appDatabaseProvider.overrideWithValue(database),
-        dailyNowProvider.overrideWith((ref) => Stream.value(friday)),
-        prayerScheduleProvider.overrideWithValue(fridaySchedule),
-        prayerLocationProvider.overrideWith((ref) {
-          return _testPrayerLocationNotifier(LocalStore(prefs));
-        }),
-      ],
-    );
-    addTearDown(container.dispose);
+      final container = ProviderContainer(
+        overrides: [
+          sharedPreferencesProvider.overrideWithValue(prefs),
+          appDatabaseProvider.overrideWithValue(database),
+          dailyNowProvider.overrideWith((ref) => Stream.value(friday)),
+          prayerScheduleProvider.overrideWithValue(fridaySchedule),
+          prayerLocationProvider.overrideWith((ref) {
+            return _testPrayerLocationNotifier(LocalStore(prefs));
+          }),
+        ],
+      );
+      addTearDown(container.dispose);
 
-    await container.read(dailyNowProvider.future);
-    container.read(prayerLogRepositoryProvider).saveDailyRecords(dayKey, const [
-      DailyPrayerRecord(prayer: PrayerName.fajr),
-      DailyPrayerRecord(
-        prayer: PrayerName.dhuhr,
-        status: PrayerStatus.completed,
-        completedAtIso: '2026-03-20T13:35:00.000',
-      ),
-      DailyPrayerRecord(prayer: PrayerName.asr),
-      DailyPrayerRecord(prayer: PrayerName.maghrib),
-      DailyPrayerRecord(prayer: PrayerName.isha),
-    ]);
-    container.read(prayerControllerProvider.notifier).onDayChanged(dayKey, force: true);
-    container
-        .read(prayerSettingsProvider.notifier)
-        .updateNotificationMode(
-          'dhuhr',
-          PrayerNotificationMode.notificationOnly,
-        );
+      await container.read(dailyNowProvider.future);
+      container
+          .read(prayerLogRepositoryProvider)
+          .saveDailyRecords(dayKey, const [
+            DailyPrayerRecord(prayer: PrayerName.fajr),
+            DailyPrayerRecord(
+              prayer: PrayerName.dhuhr,
+              status: PrayerStatus.completed,
+              completedAtIso: '2026-03-20T13:35:00.000',
+            ),
+            DailyPrayerRecord(prayer: PrayerName.asr),
+            DailyPrayerRecord(prayer: PrayerName.maghrib),
+            DailyPrayerRecord(prayer: PrayerName.isha),
+          ]);
+      container
+          .read(prayerControllerProvider.notifier)
+          .onDayChanged(dayKey, force: true);
+      container
+          .read(prayerSettingsProvider.notifier)
+          .updateNotificationMode(
+            'dhuhr',
+            PrayerNotificationMode.notificationOnly,
+          );
 
-    final plan = container.read(reminderSchedulerProvider);
+      final plan = container.read(reminderSchedulerProvider);
 
-    expect(plan.items.any((item) => item.prayerId == 'dhuhr'), isFalse);
-  });
+      expect(plan.items.any((item) => item.prayerId == 'dhuhr'), isFalse);
+    },
+  );
 
   test(
     'reminder bootstrap resyncs when prayer notification settings change',

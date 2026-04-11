@@ -40,6 +40,22 @@ void main() {
       mapAppDeepLink(Uri.parse('pathofnur://quran/read')),
       '/quran/surah/1',
     );
+    expect(
+      mapAppDeepLink(
+        Uri.parse(
+          'pathofnur://quran/surah/2?ayah=255&endAyah=257&autoplay=1&playback=selectionLoop',
+        ),
+      ),
+      '/quran/surah/2?ayah=255&endAyah=257&autoplay=1&playback=selectionLoop',
+    );
+    expect(
+      mapAppDeepLink(
+        Uri.parse(
+          'pathofnur://quran/read?ayah=40&journeyId=seerah-journey&stageId=seerah-hijrah',
+        ),
+      ),
+      '/quran/surah/1?ayah=40&journeyId=seerah-journey&stageId=seerah-hijrah',
+    );
   });
 
   test('unsupported deep links return null', () {

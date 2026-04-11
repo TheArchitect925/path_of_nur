@@ -9,23 +9,21 @@ import '../../../../core/prayer/prayer_preferences.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_surfaces.dart';
 import '../../../../l10n/app_localizations.dart';
-import '../../../../shared/persistence/local_store.dart';
 import '../../../../shared/state/user_profile_state.dart';
 import '../../../../shared/utils/compact_duration_formatter.dart';
-import '../../../../shared/utils/hijri_date_utils.dart';
 import '../../../../shared/widgets/moon_phase_visual.dart';
 import '../../../../shared/widgets/premium_card.dart';
 import '../../../../shared/widgets/section_title.dart';
 import '../../../learn/quran/application/quran_spiritual_moment_provider.dart';
 import '../../../learn/quran/domain/quran_spiritual_moment_models.dart';
 import '../../../learn/quran/presentation/widgets/quran_spiritual_moment_card.dart';
-import '../../data/prayer_log_repository.dart';
 import '../../application/prayer_tracker_controller.dart';
 import '../../application/sister_cycle_provider.dart';
 import '../../domain/prayer_name.dart';
 import '../../domain/prayer_tracker_fields.dart';
 import '../../domain/prayer_status.dart';
 import '../prayer_date_utils.dart';
+import 'salah_timings_tracker_card.dart';
 
 class PrayerSection extends ConsumerWidget {
   const PrayerSection({super.key});
@@ -118,7 +116,6 @@ class _PrayerTimesTab extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = AppLocalizations.of(context);
     final spiritualMoment = ref.watch(
       quranSpiritualMomentBundleProvider((
         QuranSpiritualMomentSurface.prayer,
@@ -133,38 +130,6 @@ class _PrayerTimesTab extends ConsumerWidget {
     final sisterCycleGuidance = ref.watch(sisterCycleGuidanceProvider);
     final userProfile = ref.watch(userProfileProvider);
     final isSister = userProfile.sex == UserSex.sister;
-    final settings = ref.watch(prayerSettingsProvider).preferences;
-    final location = ref.watch(prayerLocationProvider);
-    final schedule = buildPrayerScheduleForDate(
-      date: tracker.selectedDate,
-      latitude: location.latitude,
-      longitude: location.longitude,
-      settings: settings,
-    ).where((item) => item.id != 'tahajjud').toList();
-    final timingContext = _buildTimingContext(
-      schedule,
-      tracker.selectedDate,
-      l10n,
-    );
-    final moon = moonPhaseVisualForDate(tracker.selectedDate, l10n);
-    final hijri = toHijriDate(tracker.selectedDate);
-    final locale = Localizations.localeOf(context).toLanguageTag();
-    final dateFormat = DateFormat.yMMMMEEEEd(locale);
-    final fajr = schedule.where((item) => item.id == 'fajr').firstOrNull;
-    final maghrib = schedule.where((item) => item.id == 'maghrib').firstOrNull;
-    final sunriseLabel = fajr == null
-        ? '--'
-        : DateFormat.jm(locale).format(fajr.windowEndDateTime);
-    final sunsetLabel = maghrib == null
-        ? '--'
-        : DateFormat.jm(locale).format(maghrib.offerDateTime);
-    final moonTimes = (fajr != null && maghrib != null)
-        ? _calculateMoonTimesForDate(
-            tracker.selectedDate,
-            sunrise: fajr.windowEndDateTime,
-            sunset: maghrib.offerDateTime,
-          )
-        : null;
 
     return Padding(
       padding: const EdgeInsets.only(top: 12, bottom: 20),
@@ -179,29 +144,27 @@ class _PrayerTimesTab extends ConsumerWidget {
             ),
             const SizedBox(height: 12),
           ],
-          PremiumCard(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: isSister
-                      ? [
-                          Expanded(
-                            child: Text(
-                              l10n.worshipPrayerSisterCyclePauseTitle,
-                              style: const TextStyle(
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                          ),
-                          Switch.adaptive(
-                            value: sisterCycle.active,
-                            onChanged: sisterCycleNotifier.setActive,
-                          ),
-                        ]
-                      : const [],
-                ),
-                if (isSister) ...[
+          if (isSister) ...[
+            PremiumCard(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          AppLocalizations.of(
+                            context,
+                          ).worshipPrayerSisterCyclePauseTitle,
+                          style: const TextStyle(fontWeight: FontWeight.w700),
+                        ),
+                      ),
+                      Switch.adaptive(
+                        value: sisterCycle.active,
+                        onChanged: sisterCycleNotifier.setActive,
+                      ),
+                    ],
+                  ),
                   const SizedBox(height: 4),
                   Text(
                     sisterCycleGuidance.summary,
@@ -214,7 +177,7 @@ class _PrayerTimesTab extends ConsumerWidget {
                   if (sisterCycle.active) ...[
                     const SizedBox(height: 6),
                     Text(
-                      l10n.worshipPrayerCycleDay(
+                      AppLocalizations.of(context).worshipPrayerCycleDay(
                         _formatCount(context, sisterCycleGuidance.dayNumber),
                         sisterCycleGuidance.dayNumber,
                       ),
@@ -240,7 +203,9 @@ class _PrayerTimesTab extends ConsumerWidget {
                     children: [
                       Expanded(
                         child: Text(
-                          l10n.worshipPrayerExpectedDurationTitle,
+                          AppLocalizations.of(
+                            context,
+                          ).worshipPrayerExpectedDurationTitle,
                           style: const TextStyle(fontWeight: FontWeight.w600),
                         ),
                       ),
@@ -255,7 +220,11 @@ class _PrayerTimesTab extends ConsumerWidget {
                           6,
                           (index) => DropdownMenuItem(
                             value: index + 5,
-                            child: Text(l10n.homeDaysCount(index + 5)),
+                            child: Text(
+                              AppLocalizations.of(context).homeDaysCount(
+                                index + 5,
+                              ),
+                            ),
                           ),
                         ),
                       ),
@@ -264,18 +233,30 @@ class _PrayerTimesTab extends ConsumerWidget {
                   SwitchListTile.adaptive(
                     value: sisterCycle.autoAdjustReminders,
                     contentPadding: EdgeInsets.zero,
-                    title: Text(l10n.worshipPrayerAutoAdjustRemindersTitle),
+                    title: Text(
+                      AppLocalizations.of(
+                        context,
+                      ).worshipPrayerAutoAdjustRemindersTitle,
+                    ),
                     subtitle: Text(
-                      l10n.worshipPrayerAutoAdjustRemindersSubtitle,
+                      AppLocalizations.of(
+                        context,
+                      ).worshipPrayerAutoAdjustRemindersSubtitle,
                     ),
                     onChanged: sisterCycleNotifier.setAutoAdjustReminders,
                   ),
                   SwitchListTile.adaptive(
                     value: sisterCycle.sendPurityCheckReminder,
                     contentPadding: EdgeInsets.zero,
-                    title: Text(l10n.worshipPrayerPurityCheckReminderTitle),
+                    title: Text(
+                      AppLocalizations.of(
+                        context,
+                      ).worshipPrayerPurityCheckReminderTitle,
+                    ),
                     subtitle: Text(
-                      l10n.worshipPrayerPurityCheckReminderSubtitle,
+                      AppLocalizations.of(
+                        context,
+                      ).worshipPrayerPurityCheckReminderSubtitle,
                     ),
                     onChanged: sisterCycleNotifier.setSendPurityCheckReminder,
                   ),
@@ -285,129 +266,21 @@ class _PrayerTimesTab extends ConsumerWidget {
                     onChanged: sisterCycleNotifier.updateNotes,
                     maxLines: 2,
                     decoration: InputDecoration(
-                      hintText: l10n.worshipPrayerOptionalPrivateNotesHint,
-                      border: OutlineInputBorder(),
+                      hintText: AppLocalizations.of(
+                        context,
+                      ).worshipPrayerOptionalPrivateNotesHint,
+                      border: const OutlineInputBorder(),
                       isDense: true,
                     ),
                   ),
-                  const SizedBox(height: 12),
-                  Divider(
-                    height: 1,
-                    color: AppColors.onSurfaceSubtle.withValues(alpha: 0.22),
-                  ),
-                  const SizedBox(height: 10),
                 ],
-                Row(
-                  children: [
-                    IconButton(
-                      onPressed: trackerNotifier.previousDay,
-                      icon: const Icon(Icons.chevron_left_rounded),
-                    ),
-                    Expanded(
-                      child: InkWell(
-                        borderRadius: BorderRadius.circular(10),
-                        onTap: () async {
-                          final picked = await showPrayerDateSelectionSheet(
-                            context: context,
-                            l10n: l10n,
-                            initialDate: tracker.selectedDate,
-                            onCalendarModeChanged:
-                                trackerNotifier.setCalendarMode,
-                          );
-                          if (picked != null) {
-                            trackerNotifier.setSelectedDate(picked);
-                          }
-                        },
-                        child: Column(
-                          children: [
-                            Text(
-                              dateFormat.format(tracker.selectedDate),
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                            const SizedBox(height: 2),
-                            Text(
-                              l10n.worshipPrayerHijriDateValue(
-                                _formatCount(context, hijri.day),
-                                hijriMonthName(l10n, hijri.month),
-                                _formatCount(context, hijri.year),
-                              ),
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(
-                                color: AppColors.onSurfaceSubtle,
-                                fontSize: 12,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: trackerNotifier.nextDay,
-                      icon: const Icon(Icons.chevron_right_rounded),
-                    ),
-                  ],
-                ),
-              ],
+              ),
             ),
-          ),
-          const SizedBox(height: 12),
-          _MoonPhaseCard(
-            moon: moon,
-            prayerSchedule: schedule,
-            nextPrayerName: timingContext.nextPrayerName,
-            remaining: timingContext.remainingToNext,
-            sunriseLabel: sunriseLabel,
-            sunsetLabel: sunsetLabel,
-            moonriseLabel: moonTimes == null
-                ? '--'
-                : DateFormat.jm().format(moonTimes.moonrise),
-            moonsetLabel: moonTimes == null
-                ? '--'
-                : DateFormat.jm().format(moonTimes.moonset),
-          ),
-          const SizedBox(height: 12),
-          _PrayerHistoryCard(selectedDate: tracker.selectedDate),
-          const SizedBox(height: 12),
-          PremiumCard(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  l10n.worshipPrayerSalahTimesTitle,
-                  style: const TextStyle(fontWeight: FontWeight.w700),
-                ),
-                const SizedBox(height: 8),
-                ...schedule.map(
-                  (item) => Padding(
-                    padding: const EdgeInsets.only(bottom: 8),
-                    child: ListTile(
-                      dense: true,
-                      contentPadding: EdgeInsets.zero,
-                      onTap: () => context.pushNamed('salahTimes'),
-                      title: Text(
-                        '${localizedPrayerNameForDate(prayerId: item.id, l10n: l10n, date: tracker.selectedDate)} • ${arabicPrayerNameForDate(prayerId: item.id, date: tracker.selectedDate)}',
-                      ),
-                      subtitle: Text(
-                        l10n.worshipPrayerSalahWindowValue(
-                          item.offerTime,
-                          item.windowStart,
-                          item.windowEnd,
-                          item.offerTime,
-                          item.windowEnd,
-                        ),
-                      ),
-                      trailing: Text(
-                        _formatCount(context, item.totalRakats),
-                        style: const TextStyle(fontWeight: FontWeight.w700),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+            const SizedBox(height: 12),
+          ],
+          SalahTimingsTrackerCard(
+            selectedDate: tracker.selectedDate,
+            onSelectedDateChanged: trackerNotifier.setSelectedDate,
           ),
         ],
       ),
@@ -490,123 +363,6 @@ class _PrayerTrackerTab extends ConsumerWidget {
               ],
             ),
           ),
-        ],
-      ),
-    );
-  }
-}
-
-class _PrayerHistoryCard extends ConsumerWidget {
-  const _PrayerHistoryCard({required this.selectedDate});
-
-  final DateTime selectedDate;
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = AppLocalizations.of(context);
-    final dayKey = LocalStore.todayKey(selectedDate);
-    final data = ref.watch(prayerLogRepositoryProvider).readDayEntries(dayKey);
-    final locale = Localizations.localeOf(context).toLanguageTag();
-    final timeFormat = DateFormat.jm(locale);
-
-    return PremiumCard(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            l10n.worshipPrayerHistoryTitle,
-            style: const TextStyle(fontWeight: FontWeight.w700),
-          ),
-          const SizedBox(height: 6),
-          Text(
-            l10n.worshipPrayerHistorySubtitle(
-              DateFormat.yMMMd(locale).format(selectedDate),
-            ),
-            style: const TextStyle(
-              color: AppColors.onSurfaceSubtle,
-              height: 1.35,
-            ),
-          ),
-          const SizedBox(height: 10),
-          ...obligatoryPrayerNames.map((prayer) {
-            final raw = data[prayer];
-            final completedAt = raw?.completedAtIso == null
-                ? null
-                : DateTime.tryParse(raw!.completedAtIso!);
-            final status = raw?.status ?? PrayerStatus.pending;
-            final statusColor = switch (status) {
-              PrayerStatus.completed => AppColors.success,
-              PrayerStatus.missed => AppColors.caution,
-              PrayerStatus.pending => AppColors.onSurfaceSubtle,
-            };
-            final statusStyle = AppSurfaceTheme.resolve(
-              context,
-              variant: AppSurfaceVariant.panel,
-              tintColor: statusColor,
-            );
-
-            return Padding(
-              padding: const EdgeInsets.only(bottom: 8),
-              child: Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 12,
-                  vertical: 10,
-                ),
-                decoration: statusStyle
-                    .decoration(radius: 14, includeShadow: false)
-                    .copyWith(
-                      border: Border.all(
-                        color: statusColor.withValues(alpha: 0.24),
-                      ),
-                    ),
-                child: Row(
-                  children: [
-                    Container(
-                      width: 10,
-                      height: 10,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: statusColor,
-                      ),
-                    ),
-                    const SizedBox(width: 10),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            prayer.localizedLabelForDate(l10n, selectedDate),
-                            style: const TextStyle(fontWeight: FontWeight.w700),
-                          ),
-                          const SizedBox(height: 2),
-                          Text(
-                            completedAt != null
-                                ? l10n.worshipPrayerCompletedAt(
-                                    timeFormat.format(completedAt),
-                                  )
-                                : status == PrayerStatus.missed
-                                ? l10n.worshipPrayerMarkedMissed
-                                : l10n.worshipPrayerNoRecordedCompletionYet,
-                            style: const TextStyle(
-                              fontSize: 12,
-                              color: AppColors.onSurfaceSubtle,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Text(
-                      status.localizedLabel(l10n),
-                      style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        color: statusColor,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            );
-          }),
         ],
       ),
     );

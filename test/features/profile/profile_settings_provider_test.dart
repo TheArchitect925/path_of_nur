@@ -29,5 +29,19 @@ void main() {
       final reloaded = ProfileSettingsNotifier(store);
       expect(reloaded.state.disableColoredGlass, isFalse);
     });
+
+    test('persists on this day reminder preference', () async {
+      SharedPreferences.setMockInitialValues(const {});
+      final prefs = await SharedPreferences.getInstance();
+      final store = LocalStore(prefs);
+      final notifier = ProfileSettingsNotifier(store);
+
+      expect(notifier.state.onThisDayReminders, isFalse);
+
+      notifier.setOnThisDayReminders(true);
+
+      final reloaded = ProfileSettingsNotifier(store);
+      expect(reloaded.state.onThisDayReminders, isTrue);
+    });
   });
 }

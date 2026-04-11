@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../features/learn/quran/application/quran_search_support.dart';
 import '../../features/learn/quran/domain/quran_content_refs.dart';
 import 'quran_quote_block.dart';
 
@@ -27,6 +28,8 @@ void openQuranReaderLocation(
   int? endAyahNumber,
   bool autoplay = false,
   bool loopFocusedSelection = false,
+  String? searchQuery,
+  QuranSearchMatchField? searchMatchField,
 }) {
   final queryParameters = <String, String>{};
   if (ayahNumber != null && ayahNumber > 0) {
@@ -42,6 +45,13 @@ void openQuranReaderLocation(
   }
   if (loopFocusedSelection) {
     queryParameters['playback'] = 'selectionLoop';
+  }
+  final trimmedSearchQuery = searchQuery?.trim();
+  if (trimmedSearchQuery?.isNotEmpty ?? false) {
+    queryParameters['search'] = trimmedSearchQuery!;
+  }
+  if (searchMatchField != null) {
+    queryParameters['searchField'] = searchMatchField.wireValue;
   }
 
   context.pushNamed(
@@ -114,9 +124,5 @@ void openQuranReferenceRange(
 }
 
 void openQuranQuoteLocation(BuildContext context, QuranQuote quote) {
-  openQuranReferenceLocation(
-    context,
-    ref: quote.ref,
-    autoplay: true,
-  );
+  openQuranReferenceLocation(context, ref: quote.ref);
 }

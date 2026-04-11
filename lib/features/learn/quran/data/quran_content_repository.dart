@@ -1,7 +1,6 @@
 import '../domain/quran_content_refs.dart';
 import 'quran_audio_repository.dart';
 import 'quran_repository.dart';
-import 'quran_transliteration_repository.dart';
 
 abstract class QuranContentRepository {
   Future<QuranQuoteContent> loadQuoteContent({
@@ -20,14 +19,11 @@ class DefaultQuranContentRepository implements QuranContentRepository {
   DefaultQuranContentRepository({
     required QuranRepository quranRepository,
     required QuranAudioRepository audioRepository,
-    required QuranTransliterationRepository transliterationRepository,
   }) : _quranRepository = quranRepository,
-       _audioRepository = audioRepository,
-       _transliterationRepository = transliterationRepository;
+       _audioRepository = audioRepository;
 
   final QuranRepository _quranRepository;
   final QuranAudioRepository _audioRepository;
-  final QuranTransliterationRepository _transliterationRepository;
 
   @override
   Future<QuranQuoteContent> loadQuoteContent({
@@ -38,8 +34,6 @@ class DefaultQuranContentRepository implements QuranContentRepository {
       ref.surah,
       translationCode: translationCode,
     );
-    final transliterationRows = await _transliterationRepository
-        .getSurahTransliteration(ref.surah);
     final endAyah = ref.ayahEnd ?? ref.ayah;
     final selected = ayahs
         .where(
@@ -55,13 +49,7 @@ class DefaultQuranContentRepository implements QuranContentRepository {
         .join(' ')
         .trim();
     final transliteration = selected
-        .map((item) {
-          final index = item.ayahNumber - 1;
-          if (index < 0 || index >= transliterationRows.length) {
-            return '';
-          }
-          return transliterationRows[index].trim();
-        })
+        .map((item) => (item.transliteration ?? '').trim())
         .where((item) => item.isNotEmpty)
         .join(' ')
         .trim();

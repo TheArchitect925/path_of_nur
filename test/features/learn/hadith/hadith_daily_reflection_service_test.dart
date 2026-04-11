@@ -5,6 +5,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:path_of_nur/features/learn/hadith/application/hadith_daily_reflection_service.dart';
 import 'package:path_of_nur/features/learn/hadith/application/hadith_foundation_repository.dart';
+import 'package:path_of_nur/features/learn/hadith/data/seeded_hadith_foundation_data.dart';
+import 'package:path_of_nur/features/learn/hadith/domain/hadith_foundation_models.dart';
 import 'package:path_of_nur/features/learn/hadith/presentation/hadith_landing_page.dart';
 import 'package:path_of_nur/l10n/app_localizations.dart';
 import 'package:path_of_nur/shared/persistence/local_store.dart';
@@ -69,6 +71,60 @@ void main() {
     expect(state.bestStreak, 1);
     expect(state.completedDateKeys.contains(LocalStore.todayKey(now)), isTrue);
     expect(state.lastCompletedDateKey, LocalStore.todayKey(now));
+  });
+
+  test('assignTodayEntry uses the canonical public-safe subset', () {
+    final safeEntry = seededHadithEntries.first;
+    final unsafeEntry = HadithEntry(
+      id: 'unsafe_entry',
+      themeId: safeEntry.themeId,
+      collectionIds: safeEntry.collectionIds,
+      title: 'Unsafe entry',
+      excerpt: safeEntry.excerpt,
+      hadithText: safeEntry.hadithText,
+      englishText: safeEntry.englishText,
+      arabicText: safeEntry.arabicText,
+      transliteration: safeEntry.transliteration,
+      sourceUrl: null,
+      translationSourceVerified: false,
+      arabicMatnSourceVerified: false,
+      transliterationSourceVerified: false,
+      source: safeEntry.source,
+      sourceCollection: safeEntry.sourceCollection,
+      sourceReference: '',
+      grading: '',
+      narrator: safeEntry.narrator,
+      tags: safeEntry.tags,
+      quranConnections: safeEntry.quranConnections,
+      meaning: safeEntry.meaning,
+      lessons: safeEntry.lessons,
+      reflectionPrompts: safeEntry.reflectionPrompts,
+      practiceAction: safeEntry.practiceAction,
+      relatedHadithIds: safeEntry.relatedHadithIds,
+      isDailyEligible: true,
+    );
+    final container = ProviderContainer(
+      overrides: [
+        sharedPreferencesProvider.overrideWithValue(prefs),
+        hadithAllEntriesProvider.overrideWith(
+          (ref) => <HadithEntry>[safeEntry, unsafeEntry],
+        ),
+      ],
+    );
+    addTearDown(container.dispose);
+
+    final controller = container.read(
+      hadithDailyReflectionControllerProvider.notifier,
+    );
+    final entries = container.read(hadithEntriesProvider);
+    final now = DateTime(2026, 3, 13);
+
+    expect(entries.map((entry) => entry.id), <String>[safeEntry.id]);
+
+    controller.assignTodayEntry(entries, now: now);
+    final state = container.read(hadithDailyReflectionControllerProvider);
+
+    expect(state.assignedEntryId, safeEntry.id);
   });
 
   test('bundle provider does not throw when read', () {

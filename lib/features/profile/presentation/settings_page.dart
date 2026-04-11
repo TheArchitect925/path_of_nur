@@ -1157,6 +1157,13 @@ class SettingsPage extends ConsumerWidget {
             ),
             const Divider(height: 1),
             _SettingsToggleRow(
+              label: l10n.profileOnThisDayReminders,
+              subtitle: l10n.profileOnThisDayRemindersSubtitle,
+              value: profileSettings.onThisDayReminders,
+              onChanged: profileSettingsNotifier.setOnThisDayReminders,
+            ),
+            const Divider(height: 1),
+            _SettingsToggleRow(
               label: l10n.profileMoonriseReminders,
               subtitle: l10n.profileMoonriseRemindersSubtitle,
               value: profileSettings.moonriseReminders,

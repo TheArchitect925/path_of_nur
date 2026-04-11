@@ -2,9 +2,12 @@ import 'dart:math';
 
 import 'package:quran/quran.dart' as q;
 
+import '../application/quran_search_normalization.dart';
+import '../application/quran_search_support.dart';
 import '../domain/quran_ayah.dart';
 import '../domain/quran_daily_verse.dart';
 import '../domain/quran_surah.dart';
+import 'quran_transliteration_local_data.dart';
 
 class QuranRepository {
   QuranRepository();
@@ -39,6 +42,7 @@ class QuranRepository {
 
     final count = q.getVerseCount(surahNumber);
     final translation = _translationForCode(translationCode);
+    final transliterationRows = quranTransliterationLocalData[surahNumber];
 
     final rows = List<QuranAyah>.generate(count, (index) {
       final ayahNumber = index + 1;
@@ -51,7 +55,9 @@ class QuranRepository {
           ayahNumber,
           translation: translation,
         ),
-        transliteration: null,
+        transliteration: index < (transliterationRows?.length ?? 0)
+            ? transliterationRows![index]
+            : '',
       );
     });
 
@@ -70,6 +76,7 @@ class QuranRepository {
 
     final surahNumber = location.$1;
     final ayahNumber = location.$2;
+    final transliterationRows = quranTransliterationLocalData[surahNumber];
 
     return QuranDailyVerse(
       surahNumber: surahNumber,
@@ -80,7 +87,9 @@ class QuranRepository {
         ayahNumber,
         translation: translation,
       ),
-      transliteration: '',
+      transliteration: ayahNumber - 1 < (transliterationRows?.length ?? 0)
+          ? transliterationRows![ayahNumber - 1]
+          : '',
       locationLabel: '${q.getSurahName(surahNumber)} $surahNumber:$ayahNumber',
     );
   }
@@ -89,40 +98,62 @@ class QuranRepository {
     String query, {
     required String translationCode,
     int maxResults = 80,
+    QuranSearchFieldFilter fieldFilter = QuranSearchFieldFilter.all,
   }) {
     final rawQuery = query.trim();
-    final normalized = _normalizeForSearch(rawQuery);
+    final normalized = normalizeQuranSearchText(rawQuery);
+    final normalizedArabicQuery = normalizeQuranArabicSearchText(rawQuery);
+    final queryTokens = tokenizeQuranSearchText(rawQuery);
+    final arabicTokens = tokenizeQuranArabicSearchText(rawQuery);
+    final transliterationForms = buildQuranTransliterationSearchForms(rawQuery);
+    final transliterationTokens = tokenizeQuranTransliterationSearchText(
+      rawQuery,
+    );
     if (normalized.isEmpty) return const [];
 
     final surahs = getSurahs();
     final results = <QuranSearchResultData>[];
 
-    for (final surah in surahs) {
-      final transliterated = _normalizeForSearch(surah.transliteratedName);
-      final english = _normalizeForSearch(surah.englishName);
-      final arabic = _normalizeArabicForSearch(surah.arabicName);
-      final queryArabic = _normalizeArabicForSearch(rawQuery);
-      final queryDigits = normalized.replaceAll(RegExp(r'[^0-9]'), '');
-      final score = _surahMatchScore(
-        transliterated: transliterated,
-        english: english,
-        arabic: arabic,
-        queryNormalized: normalized,
-        queryArabic: queryArabic,
-        queryDigits: queryDigits,
-        surahNumber: surah.number,
-      );
-      if (score > 0) {
-        results.add(
-          QuranSearchResultData(
-            surah: surah,
-            ayahNumber: null,
-            matchText: '${surah.transliteratedName} • ${surah.englishName}',
-            arabicText: null,
-            translationText: null,
-            score: score,
-          ),
+    if (fieldFilter.allowsMatchField(QuranSearchMatchField.surah)) {
+      for (final surah in surahs) {
+        final transliterated = normalizeQuranSearchText(
+          surah.transliteratedName,
         );
+        final english = normalizeQuranSearchText(surah.englishName);
+        final arabic = normalizeQuranArabicSearchText(surah.arabicName);
+        final queryDigits = normalized.replaceAll(RegExp(r'[^0-9]'), '');
+        final score = _surahMatchScore(
+          transliterated: transliterated,
+          english: english,
+          arabic: arabic,
+          queryNormalized: normalized,
+          queryArabic: normalizedArabicQuery,
+          queryDigits: queryDigits,
+          surahNumber: surah.number,
+        );
+        if (score > 0) {
+          final displayText =
+              '${surah.transliteratedName} • ${surah.englishName} • ${surah.arabicName}';
+          final metadata = buildQuranSearchPresentationMetadata(
+            field: QuranSearchMatchField.surah,
+            query: rawQuery,
+            sourceText: displayText,
+          );
+          results.add(
+            QuranSearchResultData(
+              surah: surah,
+              ayahNumber: null,
+              matchText: displayText,
+              arabicText: null,
+              translationText: null,
+              transliterationText: null,
+              matchField: QuranSearchMatchField.surah,
+              snippetText: metadata.snippetText,
+              highlightTerms: metadata.highlightTerms,
+              score: score,
+            ),
+          );
+        }
       }
     }
 
@@ -134,19 +165,40 @@ class QuranRepository {
     for (final row in verseRows) {
       final score = _verseMatchScore(
         normalizedQuery: normalized,
-        normalizedArabicQuery: _normalizeArabicForSearch(rawQuery),
+        normalizedArabicQuery: normalizedArabicQuery,
+        queryTokens: queryTokens,
+        arabicTokens: arabicTokens,
+        transliterationForms: transliterationForms,
+        transliterationTokens: transliterationTokens,
         row: row,
+        fieldFilter: fieldFilter,
       );
-      if (score > 0) {
+      if (score.score > 0 && score.field != null) {
         final surah = surahs[row.surahNumber - 1];
+        final matchedSource = switch (score.field!) {
+          QuranSearchMatchField.translation => row.translation,
+          QuranSearchMatchField.transliteration => row.transliteration,
+          QuranSearchMatchField.arabic => row.arabic,
+          QuranSearchMatchField.surah =>
+            '${surah.transliteratedName} • ${surah.englishName} • ${surah.arabicName}',
+        };
+        final metadata = buildQuranSearchPresentationMetadata(
+          field: score.field!,
+          query: rawQuery,
+          sourceText: matchedSource,
+        );
         results.add(
           QuranSearchResultData(
             surah: surah,
             ayahNumber: row.ayahNumber,
-            matchText: row.translation,
+            matchText: matchedSource,
             arabicText: row.arabic,
             translationText: row.translation,
-            score: score,
+            transliterationText: row.transliteration,
+            matchField: score.field!,
+            snippetText: metadata.snippetText,
+            highlightTerms: metadata.highlightTerms,
+            score: score.score,
           ),
         );
       }
@@ -173,6 +225,13 @@ class QuranRepository {
     final rows = <_VerseSearchRow>[];
     for (var surah = 1; surah <= q.totalSurahCount; surah++) {
       final count = q.getVerseCount(surah);
+      final normalizedSurahTransliterated = normalizeQuranSearchText(
+        q.getSurahName(surah),
+      );
+      final normalizedSurahEnglish = normalizeQuranSearchText(
+        q.getSurahNameEnglish(surah),
+      );
+      final transliterationRows = quranTransliterationLocalData[surah];
       for (var ayah = 1; ayah <= count; ayah++) {
         final arabic = q.getVerse(surah, ayah);
         final translated = q.getVerseTranslation(
@@ -180,20 +239,47 @@ class QuranRepository {
           ayah,
           translation: translation,
         );
+        final transliteration = ayah - 1 < (transliterationRows?.length ?? 0)
+            ? transliterationRows![ayah - 1]
+            : '';
+        final normalizedTranslation = normalizeQuranSearchText(translated);
+        final normalizedArabic = normalizeQuranArabicSearchText(arabic);
+        final normalizedTransliteration =
+            normalizeQuranTransliterationSearchText(transliteration);
+        final translationTokens = normalizedTranslation.isEmpty
+            ? const <String>{}
+            : normalizedTranslation.split(' ').toSet();
+        final arabicTokens = normalizedArabic.isEmpty
+            ? const <String>{}
+            : normalizedArabic.split(' ').toSet();
+        final transliterationTokens = normalizedTransliteration.isEmpty
+            ? const <String>{}
+            : normalizedTransliteration.split(' ').toSet();
+        final transliterationForms = buildQuranTransliterationSearchForms(
+          transliteration,
+        );
         rows.add(
           _VerseSearchRow(
             surahNumber: surah,
             ayahNumber: ayah,
             arabic: arabic,
             translation: translated,
-            searchBlob:
-                '${_normalizeForSearch(q.getSurahName(surah))} '
-                '${_normalizeForSearch(q.getSurahNameEnglish(surah))} '
-                '${surah.toString()} '
-                '${_normalizeArabicForSearch(arabic)} '
-                '${_normalizeForSearch(translated)}',
-            normalizedArabic: _normalizeArabicForSearch(arabic),
-            normalizedTranslation: _normalizeForSearch(translated),
+            transliteration: transliteration,
+            normalizedCombinedText: combineQuranSearchFields([
+              normalizedSurahTransliterated,
+              normalizedSurahEnglish,
+              surah.toString(),
+              normalizedTranslation,
+              normalizedTransliteration,
+              ...transliterationForms,
+            ]),
+            normalizedArabic: normalizedArabic,
+            normalizedTranslation: normalizedTranslation,
+            normalizedTransliteration: normalizedTransliteration,
+            translationTokens: translationTokens,
+            arabicTokens: arabicTokens,
+            transliterationTokens: transliterationTokens,
+            transliterationForms: transliterationForms,
           ),
         );
       }
@@ -257,53 +343,154 @@ class QuranRepository {
     } else if (english.contains(queryNormalized)) {
       score += 65;
     }
-    if (queryArabic.isNotEmpty && arabic.contains(queryArabic)) {
-      score += 110;
+    if (queryArabic.isNotEmpty) {
+      if (arabic == queryArabic) {
+        score += 140;
+      } else if (arabic.startsWith(queryArabic)) {
+        score += 125;
+      } else if (arabic.contains(queryArabic)) {
+        score += 110;
+      }
     }
     return score;
   }
 
-  int _verseMatchScore({
+  _MatchScore _verseMatchScore({
     required String normalizedQuery,
     required String normalizedArabicQuery,
+    required List<String> queryTokens,
+    required List<String> arabicTokens,
+    required Set<String> transliterationForms,
+    required List<String> transliterationTokens,
     required _VerseSearchRow row,
+    required QuranSearchFieldFilter fieldFilter,
   }) {
-    var score = 0;
-    if (row.normalizedTranslation.startsWith(normalizedQuery)) {
-      score += 95;
+    final isSingleTokenQuery = queryTokens.length == 1;
+    final isPhraseQuery = queryTokens.length > 1;
+    final hasExactWordMatch =
+        isSingleTokenQuery && row.translationTokens.contains(normalizedQuery);
+    final hasAllWordMatches =
+        queryTokens.isNotEmpty &&
+        queryTokens.every(row.translationTokens.contains);
+    final isSingleArabicTokenQuery = arabicTokens.length == 1;
+    final isArabicPhraseQuery = arabicTokens.length > 1;
+    final hasExactArabicWordMatch =
+        isSingleArabicTokenQuery &&
+        row.arabicTokens.contains(normalizedArabicQuery);
+    final hasAllArabicWordMatches =
+        arabicTokens.isNotEmpty &&
+        arabicTokens.every(row.arabicTokens.contains);
+    var translationScore = 0;
+    var arabicScore = 0;
+    var transliterationScore = 0;
+
+    if (row.normalizedTranslation == normalizedQuery) {
+      translationScore += 240;
+    } else if (isPhraseQuery &&
+        row.normalizedTranslation.startsWith(normalizedQuery)) {
+      translationScore += 200;
+    } else if (row.normalizedTranslation.startsWith(normalizedQuery)) {
+      translationScore += 150;
+    } else if (isPhraseQuery &&
+        row.normalizedTranslation.contains(normalizedQuery)) {
+      translationScore += 140;
     } else if (row.normalizedTranslation.contains(normalizedQuery)) {
-      score += 60;
+      translationScore += 80;
     }
-    if (normalizedArabicQuery.isNotEmpty &&
-        row.normalizedArabic.contains(normalizedArabicQuery)) {
-      score += 105;
+    if (hasExactWordMatch) {
+      translationScore += 120;
     }
-    if (row.searchBlob.contains(normalizedQuery)) {
-      score += 30;
+    if (hasAllWordMatches) {
+      translationScore += 70 + (queryTokens.length * 10);
     }
-    return score;
-  }
+    if (normalizedArabicQuery.isNotEmpty) {
+      if (row.normalizedArabic == normalizedArabicQuery) {
+        arabicScore += 280;
+      } else if (isArabicPhraseQuery &&
+          row.normalizedArabic.startsWith(normalizedArabicQuery)) {
+        arabicScore += 240;
+      } else if (row.normalizedArabic.startsWith(normalizedArabicQuery)) {
+        arabicScore += 200;
+      } else if (isArabicPhraseQuery &&
+          row.normalizedArabic.contains(normalizedArabicQuery)) {
+        arabicScore += 180;
+      } else if (row.normalizedArabic.contains(normalizedArabicQuery)) {
+        arabicScore += 120;
+      }
+    }
+    if (hasExactArabicWordMatch) {
+      arabicScore += 140;
+    }
+    if (hasAllArabicWordMatches) {
+      arabicScore += 80 + (arabicTokens.length * 12);
+    }
+    final primaryTransliterationQuery = transliterationForms.isEmpty
+        ? ''
+        : transliterationForms.first;
+    final hasExactTransliterationWordMatch =
+        transliterationTokens.length == 1 &&
+        row.transliterationTokens.contains(primaryTransliterationQuery);
+    final hasAllTransliterationWordMatches =
+        transliterationTokens.isNotEmpty &&
+        transliterationTokens.every(row.transliterationTokens.contains);
+    if (transliterationForms.isNotEmpty) {
+      if (row.transliterationForms.any(transliterationForms.contains)) {
+        transliterationScore += 210;
+      } else if (row.normalizedTransliteration == primaryTransliterationQuery) {
+        transliterationScore += 180;
+      } else if (row.transliterationForms.any(
+        (form) => transliterationForms.any(form.startsWith),
+      )) {
+        transliterationScore += 150;
+      } else if (transliterationTokens.length > 1 &&
+          primaryTransliterationQuery.isNotEmpty &&
+          row.normalizedTransliteration.contains(primaryTransliterationQuery)) {
+        transliterationScore += 110;
+      }
+    }
+    if (hasExactTransliterationWordMatch) {
+      transliterationScore += 90;
+    }
+    if (hasAllTransliterationWordMatches) {
+      transliterationScore += 60 + (transliterationTokens.length * 8);
+    }
 
-  String _normalizeForSearch(String value) {
-    return _normalizeArabicForSearch(
-      value,
-    ).toLowerCase().replaceAll(RegExp(r'\s+'), ' ').trim();
-  }
+    if (!fieldFilter.allowsMatchField(QuranSearchMatchField.translation)) {
+      translationScore = 0;
+    }
+    if (!fieldFilter.allowsMatchField(QuranSearchMatchField.arabic)) {
+      arabicScore = 0;
+    }
+    if (!fieldFilter.allowsMatchField(QuranSearchMatchField.transliteration)) {
+      transliterationScore = 0;
+    }
 
-  String _normalizeArabicForSearch(String value) {
-    return value
-        // tashkeel and Quranic marks
-        .replaceAll(RegExp(r'[\u064B-\u065F\u0670\u06D6-\u06ED]'), '')
-        .replaceAll('ـ', '')
-        // unify hamza/alef forms
-        .replaceAll('أ', 'ا')
-        .replaceAll('إ', 'ا')
-        .replaceAll('آ', 'ا')
-        .replaceAll('ٱ', 'ا')
-        .replaceAll('ؤ', 'و')
-        .replaceAll('ئ', 'ي')
-        .replaceAll('ى', 'ي')
-        .replaceAll('ة', 'ه');
+    if (translationScore > 0 &&
+        row.normalizedCombinedText.contains(normalizedQuery)) {
+      translationScore += 30;
+    }
+    if (transliterationScore > 0 &&
+        row.normalizedCombinedText.contains(normalizedQuery)) {
+      transliterationScore += 20;
+    }
+
+    final candidates = <_MatchScore>[
+      _MatchScore(
+        score: translationScore,
+        field: QuranSearchMatchField.translation,
+      ),
+      _MatchScore(score: arabicScore, field: QuranSearchMatchField.arabic),
+      _MatchScore(
+        score: transliterationScore,
+        field: QuranSearchMatchField.transliteration,
+      ),
+    ]..sort((a, b) => b.score.compareTo(a.score));
+
+    final best = candidates.first;
+    if (best.score <= 0) {
+      return const _MatchScore(score: 0, field: null);
+    }
+    return best;
   }
 }
 
@@ -314,6 +501,10 @@ class QuranSearchResultData {
     required this.matchText,
     required this.arabicText,
     required this.translationText,
+    required this.transliterationText,
+    required this.matchField,
+    required this.snippetText,
+    required this.highlightTerms,
     required this.score,
   });
 
@@ -322,7 +513,18 @@ class QuranSearchResultData {
   final String matchText;
   final String? arabicText;
   final String? translationText;
+  final String? transliterationText;
+  final QuranSearchMatchField matchField;
+  final String snippetText;
+  final List<String> highlightTerms;
   final int score;
+}
+
+class _MatchScore {
+  const _MatchScore({required this.score, required this.field});
+
+  final int score;
+  final QuranSearchMatchField? field;
 }
 
 class _VerseSearchRow {
@@ -331,16 +533,28 @@ class _VerseSearchRow {
     required this.ayahNumber,
     required this.arabic,
     required this.translation,
-    required this.searchBlob,
+    required this.transliteration,
+    required this.normalizedCombinedText,
     required this.normalizedArabic,
     required this.normalizedTranslation,
+    required this.normalizedTransliteration,
+    required this.translationTokens,
+    required this.arabicTokens,
+    required this.transliterationTokens,
+    required this.transliterationForms,
   });
 
   final int surahNumber;
   final int ayahNumber;
   final String arabic;
   final String translation;
-  final String searchBlob;
+  final String transliteration;
+  final String normalizedCombinedText;
   final String normalizedArabic;
   final String normalizedTranslation;
+  final String normalizedTransliteration;
+  final Set<String> translationTokens;
+  final Set<String> arabicTokens;
+  final Set<String> transliterationTokens;
+  final Set<String> transliterationForms;
 }

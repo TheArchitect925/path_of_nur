@@ -338,7 +338,9 @@ List<RouteBase> buildLearnHubAndQuizRoutes() {
     GoRoute(
       path: '/learn/duas',
       name: 'learnDuaHub',
-      pageBuilder: (context, state) => const MaterialPage(child: DuaHubPage()),
+      pageBuilder: (context, state) => MaterialPage(
+        child: DuaHubPage(initialQuery: state.uri.queryParameters['q'] ?? ''),
+      ),
     ),
     GoRoute(
       path: '/learn/hub/duas',

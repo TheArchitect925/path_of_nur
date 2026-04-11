@@ -20,6 +20,46 @@ TextSpan buildQuranTextWithColoredHarakat(
   return TextSpan(children: spans);
 }
 
+TextSpan buildQuranTextWithColoredHarakatHighlights(
+  String text,
+  TextStyle baseStyle, {
+  required Set<String> highlightedWords,
+  Color? harakatColor = const Color(0xFFC22A2A),
+  TextStyle? highlightedWordStyle,
+}) {
+  final words = text.split(RegExp(r'(\s+)'));
+  if (highlightedWords.isEmpty || words.isEmpty) {
+    return buildQuranTextWithColoredHarakat(
+      text,
+      baseStyle,
+      harakatColor: harakatColor,
+    );
+  }
+
+  final children = <InlineSpan>[];
+  for (final chunk in words) {
+    if (chunk.isEmpty) {
+      continue;
+    }
+    if (chunk.trim().isEmpty) {
+      children.add(TextSpan(text: chunk, style: baseStyle));
+      continue;
+    }
+    final style = highlightedWords.contains(chunk)
+        ? (highlightedWordStyle ?? baseStyle)
+        : baseStyle;
+    children.add(
+      buildQuranTextWithColoredHarakat(
+        chunk,
+        style,
+        harakatColor: harakatColor,
+      ),
+    );
+  }
+
+  return TextSpan(style: baseStyle, children: children);
+}
+
 bool _isArabicDiacritic(int rune) {
   return (rune >= 0x064B && rune <= 0x065F) ||
       rune == 0x0670 ||

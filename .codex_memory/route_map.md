@@ -1,6 +1,6 @@
 # Route Map
 
-Last updated: 2026-03-24
+Last updated: 2026-04-11
 
 ## Canonical top-level tabs
 
@@ -38,6 +38,10 @@ Last updated: 2026-03-24
 
 ## Settings / support canonical routes
 
+- `/search`
+  - canonical cross-domain All Search owner
+- `/learn/search`
+  - compatibility alias redirect for `/search`
 - `/settings`
 - `/settings/account-sync`
 - `/settings/appearance`
@@ -287,6 +291,7 @@ Last updated: 2026-03-24
   - `/learn/world/muslim-scientists`
 - Hadith:
   - `/learn/hadith`
+  - `/learn/hadith/search`
   - `/learn/hadith/theme/:themeId`
   - `/learn/hadith/subcategory/:subcategoryId`
   - `/learn/hadith/lesson/:lessonId`

@@ -1,20 +1,20 @@
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:path_of_nur/features/learn/hadith/data/seeded_hadith_foundation_data.dart';
+import 'package:path_of_nur/features/learn/hadith/data/generated_hadith_foundation_data.dart';
 
 void main() {
   test(
     'canonical hadith dataset is launch-ready for verified text and source coverage',
     () {
-      final missingVerifiedTranslation = seededHadithEntries
+      final missingVerifiedTranslation = generatedHadithEntries
           .where((entry) => !entry.hasVerifiedTranslation)
           .map((entry) => entry.id)
           .toList(growable: false);
-      final missingVerifiedArabic = seededHadithEntries
+      final missingVerifiedArabic = generatedHadithEntries
           .where((entry) => !entry.hasVerifiedArabicMatn)
           .map((entry) => entry.id)
           .toList(growable: false);
-      final missingReference = seededHadithEntries
+      final missingReference = generatedHadithEntries
           .where(
             (entry) =>
                 entry.displaySourceReference == null ||
@@ -23,7 +23,7 @@ void main() {
           )
           .map((entry) => entry.id)
           .toList(growable: false);
-      final unverifiedTransliterationText = seededHadithEntries
+      final unverifiedTransliterationText = generatedHadithEntries
           .where(
             (entry) =>
                 !entry.hasVerifiedTransliteration && entry.hasTransliteration,

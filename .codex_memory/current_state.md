@@ -1,6 +1,6 @@
 # Current Project State
 
-Last updated: 2026-03-31
+Last updated: 2026-04-11
 
 ## A. Project summary
 
@@ -24,6 +24,48 @@ Path of Nur is a Flutter + Riverpod mobile app centered on worship, Qur'an engag
   - many legacy aliases still exist for compatibility
 
 ## B1. Most recent stabilization update
+
+- Qur'an reader performance hardening now has its first production-safe structural optimization in place:
+  - `AppPageScaffold` now supports an optional sliver-backed body path so long-scroll readers can keep the shared shell/header treatment without eagerly building the entire page body
+  - `QuranReaderPage` now renders ayah rows through a lazy `SliverList.builder` instead of expanding the whole surah into `children: [...]` on first build
+  - per-ayah bookmarks, notes, memorization, contextual knowledge links, and theme-topic provider watches were moved out of the parent ayah loop into a narrow `_QuranReaderAyahListItem` boundary so only visible/relevant rows rebuild
+  - safe page-scope narrowing also switched some static repository/provider reads from `watch` to `read` and used a `select` lookup for the current surah rather than watching the full surah map
+  - follow-mode and key-based ayah scroll targeting were intentionally preserved in this pass; the next likely reader performance follow-up is text/highlight span optimization, with scroll-coordination review only after measuring the lazy-list improvement
+
+- Hadith now has a real local ingestion/normalization/verification build pipeline:
+  - `tool/build_hadith_master_dataset.py` now bootstraps structured raw/editorial Hadith inputs, normalizes canonical metadata, applies release gating, emits `data/hadith/hadith_master_dataset.json`, and generates runtime-safe Dart data at `lib/features/learn/hadith/data/generated_hadith_foundation_data.dart`
+  - canonical runtime Hadith base content now flows from `generatedHadithEntries` through `editorialHadithEntriesProvider`, with editorial overrides still layered on top rather than replaced
+  - the active Qur'an graph Hadith nodes and Hadith Reflection catalog now also consume the generated dataset base instead of reading the manual seed list directly
+  - the manual `seeded_hadith_foundation_data.dart` file still exists for bootstrap/legacy support and theme/collection definitions, but it is no longer the primary runtime Hadith data source
+  - a separate corpus-normalization and inventory step now exists in `tool/build_hadith_corpus_inventory.py`, producing `data/hadith/hadith_existing_corpus_normalized.json`, `data/hadith/hadith_existing_corpus_inventory.json`, and `data/hadith/hadith_existing_corpus_inventory.md`
+  - the canonical pipeline now also has a collection import layer in `tool/import_hadith_collection_sources.py` that ingests `40 Hadith an-Nawawi` and `Riyad as-Salihin` into the structured raw/editorial inputs instead of hand-editing runtime data
+  - current repo-owned normalized corpus shape is 1192 verified foundation entries plus 36 legacy curriculum lessons; legacy lessons are inventoried with explicit gaps and are not treated as launch-ready public Hadith entries
+  - the verified public corpus now includes 36 `40 Hadith an-Nawawi` entries and 1068 `Riyad as-Salihin` entries; an explicit grade/source recovery pass promoted 206 additional imported records into runtime without weakening release-gate rules, and 155 imported records still remain excluded where trust-critical grade/source evidence is still missing
+  - the canonical Hadith search route at `/learn/hadith/search` now also has local recent-search memory, deterministic starter suggestions, light grouped result sections, stronger no-result guidance, and snippet/highlight polish while still resolving only through the public verified Hadith subset
+  - a canonical federated All Search owner now exists under `lib/features/search/`, with route ownership at `/search` plus `/learn/search` compatibility redirect; it reuses the canonical Qur'an, Hadith, Dua, and Learn search/index owners instead of replacing them, keeps results grouped by domain, and preserves verified-only Hadith gating
+  - Hadith now also has a canonical source-oriented browse layer under `/learn/hadith/sources` with source-collection listing, source-detail pages, stronger hierarchical chapter grouping, graceful `General chapter` / `Uncategorized` fallback buckets for sparse metadata, and canonical reader handoff while still reading only from the verified public subset
+  - reader surfaces now also consume the canonical editorial relation model directly: the Hadith reader shows light related Qur’an, related Dua, and relation-labeled related Hadith sections, while the Qur’an reader can surface canonical related Hadith and related Dua links per verse without bypassing verified-only Hadith gating
+
+- spiritual widget dua sourcing is now aligned with the release-safe Daily Dua Content Service:
+  - `spiritual_widget_content_engine.dart` no longer picks dua content directly from the full completed dataset using loose time-of-day text heuristics
+  - the engine now delegates dua selection to the trusted daily dua service and derives its default time/date/prayer context through a small shared helper in `daily_dua_content_service.dart`
+  - iPhone widget sync now requests `home_widget`-eligible dua content while watch sync requests `watch`-eligible dua content, so the shared engine no longer applies one looser dua policy across every surface
+  - non-dua spiritual selection logic was intentionally left stable in this pass
+
+- iPhone home-screen widget V1 foundation now exists in repo:
+  - Flutter now has a dedicated `lib/features/ios_widgets/application/` sync layer that reuses the existing prayer schedule context, prayer completion state, dhikr session state, Journey XP/progress providers, `home_widget`, and the existing `pathofnur://...` deep-link scheme
+  - the app-side widget payloads now cover four real-data widget snapshots: Next Prayer, Prayer Overview, Daily Dhikr, and Journey Progress
+  - native SwiftUI widget files now live under `ios/PathOfNurHomeWidgets/` with a shared app-group-backed snapshot reader and WidgetKit views for the same four widgets
+  - the same native widget bundle now also includes lock-screen accessory support for Next Prayer and Daily Dhikr via `accessoryInline`, `accessoryCircular`, and `accessoryRectangular` families
+  - the Flutter sync service now exposes explicit update ownership for next prayer, prayer overview, dhikr, journey, lock-screen widget refreshes, and update-all
+  - the native widget bundle is now wired into the Xcode project and the workspace-backed Release build path validates `PathOfNurHomeWidgets`
+  - widget and live-activity surfaces are therefore repo-build-ready for signed-device QA, but still require physical iPhone validation before they should be treated as ship-ready
+
+- Apple release-prep audit is now materially ahead of the earlier companion-surface posture:
+  - `Runner`, `PrayerLiveActivityExtension`, and `PathOfNurHomeWidgets` now validate through `ios/Runner.xcworkspace` Release builds
+  - `PathOfNurTV`, `PathOfNurWatch Watch App`, and `PathOfNurWatchComplications` now validate through native Release builds
+  - one real repo-owned watch complication blocker was fixed by adding the missing spiritual-prompt and open-app watch string keys to the shared watch-string layer plus the watch/complication localization files
+  - the Apple surfaces are now ready for signed archive work and physical-device QA, but Apple Watch and tvOS still should not be claimed as first-public-release-ready until real hardware validation is complete
 
 - iOS Runner startup now uses a single explicit shared `FlutterEngine` instead of the earlier implicit-engine + storyboard root-controller path:
   - `AppDelegate.swift` now owns and starts one guarded shared engine, registers `GeneratedPluginRegistrant` once against that engine, and binds custom method channels against the explicit engine messenger
@@ -929,6 +971,11 @@ Path of Nur is a Flutter + Riverpod mobile app centered on worship, Qur'an engag
   - this keeps the deep layer selective and reader-friendly while expanding coverage in the exact places most likely to benefit study, reflection, worship, and guidance-focused reader flows
 - the explanation QA path now reports real full-Qur'an coverage instead of only validating the currently seeded slice:
   - `tool/quran_explanation_audit.dart` now compares seeded explanation coverage against the full Qur'an ayah count from the `quran` package, reports per-layer percentages and missing counts, and summarizes review-status/metadata coverage so future passes cannot confuse “seeded entries are internally valid” with “the full Qur'an now has explanation coverage”
+- the iPhone widget stack is no longer just on-disk scaffolding:
+  - `ios/Runner.xcodeproj` now includes a real `PathOfNurHomeWidgets` target wired into Runner embedding, using the shared app group and a dedicated bundle id suffix for iPhone widgets
+  - `ios/PathOfNurHomeWidgets/PathOfNurHomeWidgets.swift` now decodes the spiritual payload families already published by Flutter (`dua`, `hadith`, `ayah`, `reflection`, `name_of_allah`) instead of only prayer/dhikr/journey widgets
+  - canonical iPhone widget deep links now point at current router ownership (`/worship/prayer`, `/worship/dhikr`, `/worship/duas`, `/journey/progress`, `/learn/hadith`, `/quran/daily`, `/quran/names-of-allah`) rather than older compatibility aliases
+  - current remaining validation blocker is workspace-level CocoaPods sync (`Podfile.lock` sandbox mismatch), not missing widget target wiring
 
 ## H. Recommended next steps in priority order
 
@@ -955,3 +1002,5 @@ Path of Nur is a Flutter + Riverpod mobile app centered on worship, Qur'an engag
 - 2026-04-01: Added a hidden internal editorial dashboard system with a feature-flagged `/internal/editorial` route, session-only unlock state, local hashed PIN seed (`0786`), settings-based hidden unlock gesture, and read-only cross-domain overview/filters for Qur'an, hadith, stories, duas/dhikr, learning paths, kids content, actions/Ocean Drops, recommendations/spiritual moments, and localization.
 - 2026-04-01: Expanded the hidden editorial dashboard into a review-control surface with rule-based quality scoring, issue classification, triage queues, pack-health summaries, score/readiness/priority filtering, and safe local metadata actions for readiness overrides and internal review notes. The route/access model remains unchanged and hidden from public navigation.
 - 2026-04-01: Added a hidden versioned inline-editor layer for selected dashboard-owned content types using local override records instead of seed mutation. Supported editor types now include Qur'an explanations, hadith entries, kids dua lessons, and kids stories, each with structured field editing, save-preview, required change summaries, version history, compare dialogs, and rollback that creates a fresh version entry. Public readers still consume normal providers, now overlaid by latest approved local versions.
+- 2026-04-11: Added a canonical cross-domain editorial relation layer under `lib/features/content_linking/` with stable domain/id refs, explicit relation types, seeded editorial Hadith ↔ Dua relations, and deterministic derived Qur'an ↔ Hadith / Qur'an ↔ Dua / Qur'an ↔ World relations. The existing contextual-linking engine remains the fuzzy recommendation layer; the new editorial-relation providers are the canonical trust-oriented relation owner for future Qur'an/Hadith/Dua/World/Learn surfacing.
+- 2026-04-11: Added the canonical Hadith search foundation under `lib/features/learn/hadith/` with one centralized public-provider-backed search owner, dedicated `/learn/hadith/search` route, trusted-field filters (all/source/category/subcategory/grade), snippet/highlight result metadata, and canonical handoff into `hadithLessonDetail`. Search reads only from the verified public Hadith subset and is intentionally scoped to Hadith-only search for now.

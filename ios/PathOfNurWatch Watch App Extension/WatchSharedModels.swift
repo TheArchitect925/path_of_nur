@@ -35,6 +35,14 @@ struct WatchDhikrSessionPayload: Codable {
   let source: String
 }
 
+struct WatchSpiritualPromptPayload: Codable {
+  let kind: String
+  let title: String
+  let shortText: String
+  let inlineText: String
+  let circularText: String
+}
+
 struct WatchDailySnapshotPayload: Codable {
   let schemaVersion: Int
   let snapshotId: String
@@ -54,6 +62,7 @@ struct WatchDailySnapshotPayload: Codable {
   let growthStageKey: String
   var prayers: [WatchPrayerPayload]
   var activeDhikrSession: WatchDhikrSessionPayload?
+  var spiritualPrompt: WatchSpiritualPromptPayload?
   var lastSyncAt: Date
   let sourceVersion: String
 }
@@ -581,8 +590,11 @@ enum WatchStrings {
   static let complicationNextPrayerDescription = value("watch.complication.nextPrayer.description", "Shows the next prayer and a concise due time.")
   static let complicationDailyProgressDescription = value("watch.complication.dailyProgress.description", "Shows today's prayer completion at a glance.")
   static let complicationAutoDhikrDescription = value("watch.complication.autoDhikr.description", "Launch Auto Dhikr with your last-used rhythm.")
+  static let complicationSpiritualPromptTitle = value("watch.complication.spiritualPrompt.title", "Spiritual Prompt")
+  static let complicationSpiritualPromptDescription = value("watch.complication.spiritualPrompt.description", "Shows a short spiritual prompt from your synced Path of Nūr snapshot.")
   static let complicationPrayerProgressTitle = value("watch.complication.prayerProgress.title", "Prayer Progress")
   static let complicationStartSession = value("watch.complication.startSession", "Start a session")
+  static let complicationOpenApp = value("watch.complication.openApp", "Open Path of Nūr")
   static let complicationPrayerProgressDone = value("watch.complication.prayerProgress.done", "Done today")
   static func complicationPrayerProgressCompleted(_ completed: Int, _ total: Int) -> String {
     format("watch.complication.prayerProgress.completedFormat", "%d of %d completed", completed, total)

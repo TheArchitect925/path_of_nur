@@ -30,14 +30,12 @@ String? resolveQuranReaderPlaybackAyahKey({
     if (activeSession != null &&
         activeSession.isSurahMode &&
         activeSession.surahNumber == currentSurahNumber &&
-        activeSession.ayahNumbers.isNotEmpty) {
-      final safeIndex = (playerIndex ?? 0).clamp(
-        0,
-        activeSession.ayahNumbers.length - 1,
-      );
+        playerIndex != null &&
+        playerIndex >= 0 &&
+        playerIndex < activeSession.ayahNumbers.length) {
       return quranPlaybackAyahKey(
         surahNumber: currentSurahNumber,
-        ayahNumber: activeSession.ayahNumbers[safeIndex],
+        ayahNumber: activeSession.ayahNumbers[playerIndex],
       );
     }
     return null;
